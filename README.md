@@ -8,16 +8,15 @@ MeshCore Open is a cross-platform mobile application for communicating with Mesh
 
 ## Screenshots
 
-<p align="center">
-  <img src="docs/screenshots/contacts.jpg" width="200" alt="Contacts Screen" />
-  <img src="docs/screenshots/chat1.jpg" width="200" alt="Chat Screen" />
-  <img src="docs/screenshots/map.jpg" width="200" alt="Map View" />
-  <img src="docs/screenshots/channels.jpg" width="200" alt="Channels" />
-</p>
-
-<p align="center">
-  <img src="docs/screenshots/chat2.jpg" width="200" alt="Chat with Reactions" />
-</p>
+<table>
+  <tr>
+    <td><img src="docs/screenshots/contacts.jpg" width="200"/><br/><p align="center"><b>Contacts</b></p></td>
+    <td><img src="docs/screenshots/chat1.jpg" width="200"/><br/><p align="center"><b>Chat</b></p></td>
+    <td><img src="docs/screenshots/chat2.jpg" width="200"/><br/><p align="center"><b>Reactions</b></p></td>
+    <td><img src="docs/screenshots/map.jpg" width="200"/><br/><p align="center"><b>Map</b></p></td>
+    <td><img src="docs/screenshots/channels.jpg" width="200"/><br/><p align="center"><b>Channels</b></p></td>
+  </tr>
+</table>
 
 ## Features
 
