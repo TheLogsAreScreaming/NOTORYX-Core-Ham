@@ -199,4 +199,3 @@ Your support helps maintain and improve this open-source project!
 
 - Built with [Flutter](https://flutter.dev/)
 - Map tiles from [OpenStreetMap](https://www.openstreetmap.org/)
-- Voice codec support via [Codec2](https://github.com/drowe67/codec2)
