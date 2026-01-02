@@ -67,18 +67,23 @@ class _BatteryIndicatorState extends State<BatteryIndicator> {
       },
       borderRadius: BorderRadius.circular(8),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(batteryUi.icon, size: 20, color: batteryUi.color),
-            const SizedBox(width: 4),
-            Text(
-              displayText,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: batteryUi.color,
+            Icon(batteryUi.icon, size: 18, color: batteryUi.color),
+            const SizedBox(width: 2),
+            Flexible(
+              child: Text(
+                displayText,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: batteryUi.color,
+                ),
+                overflow: TextOverflow.visible,
+                maxLines: 1,
+                softWrap: false,
               ),
             ),
           ],
