@@ -6,6 +6,7 @@ import '../models/contact.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../services/repeater_command_service.dart';
+import '../widgets/path_management_dialog.dart';
 
 class RepeaterSettingsScreen extends StatefulWidget {
   final Contact repeater;
@@ -119,6 +120,13 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
 
     // Notify command service of response (for retry handling)
     _commandService?.handleResponse(widget.repeater, parsed.text);
+  }
+
+  Contact _resolveRepeater(MeshCoreConnector connector) {
+    return connector.contacts.firstWhere(
+      (c) => c.publicKeyHex == widget.repeater.publicKeyHex,
+      orElse: () => widget.repeater,
+    );
   }
 
   bool _matchesRepeaterPrefix(Uint8List prefix) {
@@ -326,9 +334,15 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
     });
 
     var successCount = 0;
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final repeater = _resolveRepeater(connector);
     for (final command in commands) {
       try {
-        final response = await _commandService!.sendCommand(widget.repeater, command);
+        final response = await _commandService!.sendCommand(
+          repeater,
+          command,
+          retries: 1,
+        );
         _applySettingResponse(command, response);
         successCount += 1;
         await Future.delayed(const Duration(milliseconds: 200));
@@ -422,12 +436,14 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
 
   Future<void> _saveSettings() async {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final repeater = _resolveRepeater(connector);
 
     setState(() {
       _isLoading = true;
     });
 
     try {
+      final selection = await connector.preparePathForContactSend(repeater);
       final commands = <String>[];
 
       // Build set commands for each setting
@@ -470,7 +486,18 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
 
       // Send all commands
       for (final command in commands) {
-        final frame = buildSendCliCommandFrame(widget.repeater.publicKey, command);
+        final timestampSeconds = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+        connector.trackRepeaterAck(
+          contact: repeater,
+          selection: selection,
+          text: command,
+          timestampSeconds: timestampSeconds,
+        );
+        final frame = buildSendCliCommandFrame(
+          repeater.publicKey,
+          command,
+          timestampSeconds: timestampSeconds,
+        );
         await connector.sendFrame(frame);
         await Future.delayed(const Duration(milliseconds: 200)); // Delay between commands
       }
@@ -544,6 +571,10 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final connector = context.watch<MeshCoreConnector>();
+    final repeater = _resolveRepeater(connector);
+    final isFloodMode = repeater.pathOverride == -1;
+
     return Scaffold(
       appBar: AppBar(
         title: Column(
@@ -552,13 +583,64 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
           children: [
             const Text('Repeater Settings'),
             Text(
-              widget.repeater.name,
+              repeater.name,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
             ),
           ],
         ),
         centerTitle: false,
         actions: [
+          PopupMenuButton<String>(
+            icon: Icon(isFloodMode ? Icons.waves : Icons.route),
+            tooltip: 'Routing mode',
+            onSelected: (mode) async {
+              if (mode == 'flood') {
+                await connector.setPathOverride(repeater, pathLen: -1);
+              } else {
+                await connector.setPathOverride(repeater, pathLen: null);
+              }
+              if (mounted) {
+                setState(() {});
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 'auto',
+                child: Row(
+                  children: [
+                    Icon(Icons.auto_mode, size: 20, color: !isFloodMode ? Theme.of(context).primaryColor : null),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Auto (use saved path)',
+                      style: TextStyle(
+                        fontWeight: !isFloodMode ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: 'flood',
+                child: Row(
+                  children: [
+                    Icon(Icons.waves, size: 20, color: isFloodMode ? Theme.of(context).primaryColor : null),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Force Flood Mode',
+                      style: TextStyle(
+                        fontWeight: isFloodMode ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          IconButton(
+            icon: const Icon(Icons.timeline),
+            tooltip: 'Path management',
+            onPressed: () => PathManagementDialog.show(context, contact: repeater),
+          ),
           if (_hasChanges)
             TextButton.icon(
               onPressed: _isLoading ? null : _saveSettings,
@@ -995,6 +1077,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
 
   Future<void> _sendDangerCommand(String command) async {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final repeater = _resolveRepeater(connector);
 
     if (command == 'erase') {
       if (mounted) {
@@ -1006,7 +1089,19 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
     }
 
     try {
-      final frame = buildSendCliCommandFrame(widget.repeater.publicKey, command);
+      final selection = await connector.preparePathForContactSend(repeater);
+      final timestampSeconds = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+      connector.trackRepeaterAck(
+        contact: repeater,
+        selection: selection,
+        text: command,
+        timestampSeconds: timestampSeconds,
+      );
+      final frame = buildSendCliCommandFrame(
+        repeater.publicKey,
+        command,
+        timestampSeconds: timestampSeconds,
+      );
       await connector.sendFrame(frame);
 
       if (mounted) {

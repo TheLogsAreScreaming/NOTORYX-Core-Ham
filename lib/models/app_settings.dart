@@ -18,6 +18,7 @@ class AppSettings {
   final bool notifyOnNewAdvert;
   final bool autoRouteRotationEnabled;
   final String themeMode;
+  final bool appDebugLogEnabled;
   final Map<String, String> batteryChemistryByDeviceId;
 
   AppSettings({
@@ -38,6 +39,7 @@ class AppSettings {
     this.notifyOnNewAdvert = true,
     this.autoRouteRotationEnabled = false,
     this.themeMode = 'system',
+    this.appDebugLogEnabled = false,
     Map<String, String>? batteryChemistryByDeviceId,
   }) : batteryChemistryByDeviceId = batteryChemistryByDeviceId ?? {};
 
@@ -60,6 +62,7 @@ class AppSettings {
       'notify_on_new_advert': notifyOnNewAdvert,
       'auto_route_rotation_enabled': autoRouteRotationEnabled,
       'theme_mode': themeMode,
+      'app_debug_log_enabled': appDebugLogEnabled,
       'battery_chemistry_by_device_id': batteryChemistryByDeviceId,
     };
   }
@@ -86,6 +89,7 @@ class AppSettings {
       notifyOnNewAdvert: json['notify_on_new_advert'] as bool? ?? true,
       autoRouteRotationEnabled: json['auto_route_rotation_enabled'] as bool? ?? false,
       themeMode: json['theme_mode'] as String? ?? 'system',
+      appDebugLogEnabled: json['app_debug_log_enabled'] as bool? ?? false,
       batteryChemistryByDeviceId: (json['battery_chemistry_by_device_id'] as Map?)?.map(
             (key, value) => MapEntry(key.toString(), value.toString()),
           ) ??
@@ -111,6 +115,7 @@ class AppSettings {
     bool? notifyOnNewAdvert,
     bool? autoRouteRotationEnabled,
     String? themeMode,
+    bool? appDebugLogEnabled,
     Map<String, String>? batteryChemistryByDeviceId,
   }) {
     return AppSettings(
@@ -133,6 +138,7 @@ class AppSettings {
       notifyOnNewAdvert: notifyOnNewAdvert ?? this.notifyOnNewAdvert,
       autoRouteRotationEnabled: autoRouteRotationEnabled ?? this.autoRouteRotationEnabled,
       themeMode: themeMode ?? this.themeMode,
+      appDebugLogEnabled: appDebugLogEnabled ?? this.appDebugLogEnabled,
       batteryChemistryByDeviceId: batteryChemistryByDeviceId ?? this.batteryChemistryByDeviceId,
     );
   }

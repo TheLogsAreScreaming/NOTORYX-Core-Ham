@@ -592,16 +592,18 @@ Uint8List buildSendCliCommandFrame(
   Uint8List repeaterPubKey,
   String command, {
   int attempt = 0,
+  int? timestampSeconds,
 }) {
   final textBytes = utf8.encode(command);
-  final timestamp = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+  final timestamp = timestampSeconds ?? (DateTime.now().millisecondsSinceEpoch ~/ 1000);
   const prefixSize = 6;
+  final safeAttempt = attempt.clamp(0, 3);
   final frame = Uint8List(1 + 1 + 1 + 4 + prefixSize + textBytes.length + 1);
   int offset = 0;
 
   frame[offset++] = cmdSendTxtMsg;
   frame[offset++] = txtTypeCliData;
-  frame[offset++] = attempt & 0xFF;
+  frame[offset++] = safeAttempt;
   writeUint32LE(frame, offset, timestamp);
   offset += 4;
 

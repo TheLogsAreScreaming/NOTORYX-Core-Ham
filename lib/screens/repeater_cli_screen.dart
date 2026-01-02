@@ -7,6 +7,7 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../widgets/debug_frame_viewer.dart';
 import '../services/repeater_command_service.dart';
+import '../widgets/path_management_dialog.dart';
 
 class RepeaterCliScreen extends StatefulWidget {
   final Contact repeater;
@@ -75,6 +76,13 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
     });
   }
 
+  Contact _resolveRepeater(MeshCoreConnector connector) {
+    return connector.contacts.firstWhere(
+      (c) => c.publicKeyHex == widget.repeater.publicKeyHex,
+      orElse: () => widget.repeater,
+    );
+  }
+
   void _handleTextMessageResponse(Uint8List frame) {
     final parsed = parseContactMessageText(frame);
     if (parsed == null) return;
@@ -117,9 +125,12 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
     // Send CLI command to repeater with retry
     try {
       if (_commandService != null) {
+        final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+        final repeater = _resolveRepeater(connector);
         final response = await _commandService!.sendCommand(
-          widget.repeater,
+          repeater,
           command,
+          retries: 1,
         );
 
         if (mounted) {
@@ -204,6 +215,10 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final connector = context.watch<MeshCoreConnector>();
+    final repeater = _resolveRepeater(connector);
+    final isFloodMode = repeater.pathOverride == -1;
+
     return Scaffold(
       appBar: AppBar(
         title: Column(
@@ -212,13 +227,61 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
           children: [
             const Text('Repeater CLI'),
             Text(
-              widget.repeater.name,
+              repeater.name,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
             ),
           ],
         ),
         centerTitle: false,
         actions: [
+          PopupMenuButton<String>(
+            icon: Icon(isFloodMode ? Icons.waves : Icons.route),
+            tooltip: 'Routing mode',
+            onSelected: (mode) async {
+              if (mode == 'flood') {
+                await connector.setPathOverride(repeater, pathLen: -1);
+              } else {
+                await connector.setPathOverride(repeater, pathLen: null);
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 'auto',
+                child: Row(
+                  children: [
+                    Icon(Icons.auto_mode, size: 20, color: !isFloodMode ? Theme.of(context).primaryColor : null),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Auto (use saved path)',
+                      style: TextStyle(
+                        fontWeight: !isFloodMode ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: 'flood',
+                child: Row(
+                  children: [
+                    Icon(Icons.waves, size: 20, color: isFloodMode ? Theme.of(context).primaryColor : null),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Force Flood Mode',
+                      style: TextStyle(
+                        fontWeight: isFloodMode ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          IconButton(
+            icon: const Icon(Icons.timeline),
+            tooltip: 'Path management',
+            onPressed: () => PathManagementDialog.show(context, contact: repeater),
+          ),
           IconButton(
             icon: const Icon(Icons.bug_report),
             tooltip: 'Debug Next Command',

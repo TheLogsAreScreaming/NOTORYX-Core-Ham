@@ -1,5 +1,6 @@
 import 'dart:async';
 import '../models/contact.dart';
+import '../models/path_selection.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 
@@ -11,7 +12,6 @@ class RepeaterCommandService {
   final Map<String, String> _pendingByPrefix = {};
   int _prefixCounter = 0;
 
-  static const int timeoutSeconds = 10; // Flood mode timeout
   static const int maxRetries = 5;
 
   RepeaterCommandService(this._connector);
@@ -23,6 +23,7 @@ class RepeaterCommandService {
     String command, {
     Function(String)? onResponse,
     Function(int)? onAttempt,
+    int retries = maxRetries,
   }) async {
     final repeaterKey = repeater.publicKeyHex;
     final hasPending = _pendingCommands.keys.any((id) => id.startsWith(repeaterKey));
@@ -30,43 +31,83 @@ class RepeaterCommandService {
       throw Exception('Another command is still awaiting a response.');
     }
 
-    // Create completer for this command
+    final attemptCount = retries < 1 ? 1 : retries;
+    final selection = await _connector.preparePathForContactSend(repeater);
+
+    for (int attempt = 0; attempt < attemptCount; attempt++) {
+      onAttempt?.call(attempt + 1);
+      try {
+        final response = await _sendCommandAttempt(
+          repeater,
+          command,
+          selection,
+          attempt,
+        );
+        onResponse?.call(response);
+        return response;
+      } catch (e) {
+        if (attempt == attemptCount - 1) rethrow;
+      }
+    }
+
+    throw Exception('Command failed after $attemptCount attempts');
+  }
+
+  Future<String> _sendCommandAttempt(
+    Contact repeater,
+    String command,
+    PathSelection selection,
+    int attempt,
+  ) async {
+    final repeaterKey = repeater.publicKeyHex;
     final commandId = '${repeaterKey}_${DateTime.now().millisecondsSinceEpoch}';
     final completer = Completer<String>();
     _pendingCommands[commandId] = completer;
 
-    onAttempt?.call(0);
-
-    // Send frame once (no retries)
     try {
       final prefix = _nextPrefixToken();
       _commandPrefixes[commandId] = prefix;
       _pendingByPrefix[prefix] = commandId;
       final framedCommand = '$prefix$command';
-      final frame = buildSendCliCommandFrame(repeater.publicKey, framedCommand, attempt: 0);
+      final pathLengthValue = selection.useFlood ? -1 : selection.hopCount;
+      final timeoutMs = _connector.calculateTimeout(
+        pathLength: pathLengthValue,
+        messageBytes: framedCommand.length,
+      );
+      final timeoutSeconds = (timeoutMs / 1000).ceil();
+      final timestampSeconds = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+      _connector.trackRepeaterAck(
+        contact: repeater,
+        selection: selection,
+        text: framedCommand,
+        timestampSeconds: timestampSeconds,
+        attempt: attempt,
+      );
+      final frame = buildSendCliCommandFrame(
+        repeater.publicKey,
+        framedCommand,
+        attempt: attempt,
+        timestampSeconds: timestampSeconds,
+      );
       await _connector.sendFrame(frame);
+      _commandTimeouts[commandId]?.cancel();
+      _commandTimeouts[commandId] = Timer(
+        Duration(milliseconds: timeoutMs),
+        () {
+          final completer = _pendingCommands[commandId];
+          if (completer != null && !completer.isCompleted) {
+            completer.completeError('Command timeout after $timeoutSeconds seconds');
+            _cleanup(commandId);
+          }
+        },
+      );
     } catch (e) {
       _cleanup(commandId);
       throw Exception('Failed to send command: $e');
     }
 
-    // Set timeout for this attempt
-    _commandTimeouts[commandId]?.cancel();
-    _commandTimeouts[commandId] = Timer(
-      Duration(seconds: timeoutSeconds),
-      () {
-        final completer = _pendingCommands[commandId];
-        if (completer != null && !completer.isCompleted) {
-          completer.completeError('Command timeout after $timeoutSeconds seconds');
-          _cleanup(commandId);
-        }
-      },
-    );
-
-    // Wait for response or timeout
     try {
-      final response = await completer.future;
-      return response;
+      return await completer.future;
     } finally {
       _cleanup(commandId);
     }

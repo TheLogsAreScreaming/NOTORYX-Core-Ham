@@ -5,9 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 import '../models/contact.dart';
 import '../services/storage_service.dart';
-import '../services/repeater_command_service.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../utils/app_logger.dart';
+import 'path_management_dialog.dart';
 
 class RepeaterLoginDialog extends StatefulWidget {
   final Contact repeater;
@@ -31,8 +32,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
   bool _obscurePassword = true;
   late MeshCoreConnector _connector;
   int _currentAttempt = 0;
-  final int _maxAttempts = RepeaterCommandService.maxRetries;
-  static const int _loginTimeoutSeconds = 10;
+  static const int _maxAttempts = 5;
 
   @override
   void initState() {
@@ -65,6 +65,13 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
 
   bool _isLoggingIn = false;
 
+  Contact _resolveRepeater(MeshCoreConnector connector) {
+    return connector.contacts.firstWhere(
+      (c) => c.publicKeyHex == widget.repeater.publicKeyHex,
+      orElse: () => widget.repeater,
+    );
+  }
+
   Future<void> _handleLogin() async {
     if (_isLoggingIn) return;
 
@@ -75,6 +82,26 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
 
     try {
       final password = _passwordController.text;
+      final repeater = _resolveRepeater(_connector);
+      appLogger.info(
+        'Login started for ${repeater.name} (${repeater.publicKeyHex})',
+        tag: 'RepeaterLogin',
+      );
+      final selection = await _connector.preparePathForContactSend(repeater);
+      final loginFrame = buildSendLoginFrame(repeater.publicKey, password);
+      final pathLengthValue = selection.useFlood ? -1 : selection.hopCount;
+      final timeoutMs = _connector.calculateTimeout(
+        pathLength: pathLengthValue,
+        messageBytes: loginFrame.length,
+      );
+      final timeoutSeconds = (timeoutMs / 1000).ceil();
+      final timeout = Duration(milliseconds: timeoutMs);
+      final selectionLabel =
+          selection.useFlood ? 'flood' : '${selection.hopCount} hops';
+      appLogger.info(
+        'Login routing: $selectionLabel',
+        tag: 'RepeaterLogin',
+      );
       bool? loginResult;
       for (int attempt = 0; attempt < _maxAttempts; attempt++) {
         if (!mounted) return;
@@ -82,17 +109,46 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
           _currentAttempt = attempt + 1;
         });
 
+        appLogger.info(
+          'Sending login attempt ${attempt + 1}/$_maxAttempts',
+          tag: 'RepeaterLogin',
+        );
         await _connector.sendFrame(
-          buildSendLoginFrame(widget.repeater.publicKey, password),
+          loginFrame,
         );
 
-        loginResult = await _awaitLoginResponse();
+        loginResult = await _awaitLoginResponse(timeout);
         if (loginResult == true) {
+          appLogger.info(
+            'Login succeeded for ${repeater.name}',
+            tag: 'RepeaterLogin',
+          );
           break;
         }
         if (loginResult == false) {
+          appLogger.warn(
+            'Login failed for ${repeater.name}',
+            tag: 'RepeaterLogin',
+          );
           throw Exception('Wrong password or node is unreachable');
         }
+        appLogger.warn(
+          'Login attempt ${attempt + 1} timed out after ${timeoutSeconds}s',
+          tag: 'RepeaterLogin',
+        );
+      }
+
+      if (loginResult == null) {
+        appLogger.warn(
+          'Login timed out for ${repeater.name}',
+          tag: 'RepeaterLogin',
+        );
+      }
+
+      if (loginResult == true) {
+        _connector.recordRepeaterPathResult(repeater, selection, true, null);
+      } else {
+        _connector.recordRepeaterPathResult(repeater, selection, false, null);
       }
 
       if (loginResult != true) {
@@ -114,6 +170,11 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
         Future.microtask(() => widget.onLogin(password));
       }
     } catch (e) {
+      final repeater = _resolveRepeater(_connector);
+      appLogger.warn(
+        'Login error for ${repeater.name}: $e',
+        tag: 'RepeaterLogin',
+      );
       if (mounted) {
         setState(() {
           _isLoggingIn = false;
@@ -128,7 +189,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
     }
   }
 
-  Future<bool?> _awaitLoginResponse() async {
+  Future<bool?> _awaitLoginResponse(Duration timeout) async {
     final completer = Completer<bool?>();
     Timer? timer;
     StreamSubscription<Uint8List>? subscription;
@@ -147,7 +208,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
       timer?.cancel();
     });
 
-    timer = Timer(const Duration(seconds: _loginTimeoutSeconds), () {
+    timer = Timer(timeout, () {
       if (!completer.isCompleted) {
         completer.complete(null);
         subscription?.cancel();
@@ -162,6 +223,9 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final connector = context.watch<MeshCoreConnector>();
+    final repeater = _resolveRepeater(connector);
+    final isFloodMode = repeater.pathOverride == -1;
     return AlertDialog(
       title: Row(
         children: [
@@ -173,7 +237,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
               children: [
                 const Text('Repeater Login'),
                 Text(
-                  widget.repeater.name,
+                  repeater.name,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
@@ -244,6 +308,73 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
                   controlAffinity: ListTileControlAffinity.leading,
                   contentPadding: EdgeInsets.zero,
                 ),
+                const Divider(),
+                Row(
+                  children: [
+                    const Text(
+                      'Routing',
+                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    ),
+                    const Spacer(),
+                    PopupMenuButton<String>(
+                      icon: Icon(isFloodMode ? Icons.waves : Icons.route),
+                      tooltip: 'Routing mode',
+                      onSelected: (mode) async {
+                        if (mode == 'flood') {
+                          await connector.setPathOverride(repeater, pathLen: -1);
+                        } else {
+                          await connector.setPathOverride(repeater, pathLen: null);
+                        }
+                      },
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                          value: 'auto',
+                          child: Row(
+                            children: [
+                              Icon(Icons.auto_mode, size: 20, color: !isFloodMode ? Theme.of(context).primaryColor : null),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Auto (use saved path)',
+                                style: TextStyle(
+                                  fontWeight: !isFloodMode ? FontWeight.bold : FontWeight.normal,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        PopupMenuItem(
+                          value: 'flood',
+                          child: Row(
+                            children: [
+                              Icon(Icons.waves, size: 20, color: isFloodMode ? Theme.of(context).primaryColor : null),
+                              const SizedBox(width: 8),
+                              Text(
+                                'Force Flood Mode',
+                                style: TextStyle(
+                                  fontWeight: isFloodMode ? FontWeight.bold : FontWeight.normal,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  repeater.pathLabel,
+                  style: const TextStyle(fontSize: 11, color: Colors.grey),
+                ),
+                const SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton.icon(
+                    onPressed: () => PathManagementDialog.show(context, contact: repeater),
+                    icon: const Icon(Icons.timeline, size: 18),
+                    label: const Text('Manage Paths'),
+                  ),
+                ),
               ],
             ),
       actions: [
@@ -268,7 +399,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  Text('Retries $_currentAttempt/$_maxAttempts'),
+                  Text('Attempt $_currentAttempt/$_maxAttempts'),
                 ],
               ),
             ),

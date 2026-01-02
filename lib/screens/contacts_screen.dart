@@ -13,6 +13,8 @@ import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/emoji_utils.dart';
 import '../utils/route_transitions.dart';
+import '../widgets/battery_indicator.dart';
+import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../widgets/repeater_login_dialog.dart';
@@ -22,22 +24,6 @@ import 'chat_screen.dart';
 import 'map_screen.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
-
-enum ContactSortOption {
-  lastSeen,
-  recentMessages,
-  name,
-  type,
-}
-
-enum _ContactMenuAction {
-  sortRecentMessages,
-  sortName,
-  sortType,
-  toggleLastSeenFilter,
-  toggleUnreadOnly,
-  newGroup,
-}
 
 class ContactsScreen extends StatefulWidget {
   final bool hideBackButton;
@@ -56,8 +42,8 @@ class _ContactsScreenState extends State<ContactsScreen>
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
   ContactSortOption _sortOption = ContactSortOption.lastSeen;
-  bool _forceLastSeenSort = true;
   bool _showUnreadOnly = false;
+  ContactTypeFilter _typeFilter = ContactTypeFilter.all;
   final ContactGroupStore _groupStore = ContactGroupStore();
   List<ContactGroup> _groups = [];
   Timer? _searchDebounce;
@@ -97,41 +83,15 @@ class _ContactsScreenState extends State<ContactsScreen>
     }
 
     final allowBack = !connector.isConnected;
-    final theme = Theme.of(context);
-
     return PopScope(
       canPop: allowBack,
       child: Scaffold(
         appBar: AppBar(
-          titleSpacing: 16,
-          centerTitle: false,
-          automaticallyImplyLeading: !widget.hideBackButton && allowBack,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('Contacts'),
-              Text(
-                '${connector.contacts.length} contacts',
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
+          leading: BatteryIndicator(connector: connector),
+          title: const Text('Contacts'),
+          centerTitle: true,
+          automaticallyImplyLeading: false,
           actions: [
-            IconButton(
-              icon: connector.isLoadingContacts
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : const Icon(Icons.refresh),
-              tooltip: 'Refresh',
-              onPressed: connector.isLoadingContacts ? null : () => connector.getContacts(),
-            ),
             IconButton(
               icon: const Icon(Icons.bluetooth_disabled),
               tooltip: 'Disconnect',
@@ -144,93 +104,6 @@ class _ContactsScreenState extends State<ContactsScreen>
                 context,
                 MaterialPageRoute(builder: (context) => const SettingsScreen()),
               ),
-            ),
-            PopupMenuButton<_ContactMenuAction>(
-              tooltip: 'Contacts options',
-              onSelected: (action) {
-                switch (action) {
-                  case _ContactMenuAction.sortRecentMessages:
-                    setState(() {
-                      _sortOption = ContactSortOption.recentMessages;
-                      _forceLastSeenSort = false;
-                    });
-                    break;
-                  case _ContactMenuAction.sortName:
-                    setState(() {
-                      _sortOption = ContactSortOption.name;
-                      _forceLastSeenSort = false;
-                    });
-                    break;
-                  case _ContactMenuAction.sortType:
-                    setState(() {
-                      _sortOption = ContactSortOption.type;
-                      _forceLastSeenSort = false;
-                    });
-                    break;
-                  case _ContactMenuAction.toggleLastSeenFilter:
-                    setState(() {
-                      _forceLastSeenSort = !_forceLastSeenSort;
-                      if (_forceLastSeenSort) {
-                        _sortOption = ContactSortOption.lastSeen;
-                      }
-                    });
-                    break;
-                  case _ContactMenuAction.toggleUnreadOnly:
-                    setState(() {
-                      _showUnreadOnly = !_showUnreadOnly;
-                    });
-                    break;
-                  case _ContactMenuAction.newGroup:
-                    _showGroupEditor(context, connector.contacts);
-                    break;
-                }
-              },
-              itemBuilder: (context) {
-                final labelStyle = theme.textTheme.labelSmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                  fontWeight: FontWeight.w600,
-                );
-                return [
-                  PopupMenuItem<_ContactMenuAction>(
-                    enabled: false,
-                    child: Text('Sort by', style: labelStyle),
-                  ),
-                  CheckedPopupMenuItem<_ContactMenuAction>(
-                    value: _ContactMenuAction.sortRecentMessages,
-                    checked: _sortOption == ContactSortOption.recentMessages,
-                    child: const Text('Recent messages'),
-                  ),
-                  CheckedPopupMenuItem<_ContactMenuAction>(
-                    value: _ContactMenuAction.sortName,
-                    checked: _sortOption == ContactSortOption.name,
-                    child: const Text('Name'),
-                  ),
-                  CheckedPopupMenuItem<_ContactMenuAction>(
-                    value: _ContactMenuAction.sortType,
-                    checked: _sortOption == ContactSortOption.type,
-                    child: const Text('Type'),
-                  ),
-                  const PopupMenuDivider(),
-                  PopupMenuItem<_ContactMenuAction>(
-                    enabled: false,
-                    child: Text('Filters', style: labelStyle),
-                  ),
-                  CheckedPopupMenuItem<_ContactMenuAction>(
-                    value: _ContactMenuAction.toggleLastSeenFilter,
-                    checked: _forceLastSeenSort,
-                    child: const Text('Last seen'),
-                  ),
-                  CheckedPopupMenuItem<_ContactMenuAction>(
-                    value: _ContactMenuAction.toggleUnreadOnly,
-                    checked: _showUnreadOnly,
-                    child: const Text('Unread only'),
-                  ),
-                  PopupMenuItem<_ContactMenuAction>(
-                    value: _ContactMenuAction.newGroup,
-                    child: const Text('New group'),
-                  ),
-                ];
-              },
             ),
           ],
         ),
@@ -251,6 +124,30 @@ class _ContactsScreenState extends State<ContactsScreen>
     MeshCoreConnector connector,
   ) async {
     await showDisconnectDialog(context, connector);
+  }
+
+  Widget _buildFilterButton(BuildContext context, MeshCoreConnector connector) {
+    return ContactsFilterMenu(
+      sortOption: _sortOption,
+      typeFilter: _typeFilter,
+      showUnreadOnly: _showUnreadOnly,
+      onSortChanged: (value) {
+        setState(() {
+          _sortOption = value;
+        });
+      },
+      onTypeFilterChanged: (value) {
+        setState(() {
+          _typeFilter = value;
+        });
+      },
+      onUnreadOnlyChanged: (value) {
+        setState(() {
+          _showUnreadOnly = value;
+        });
+      },
+      onNewGroup: () => _showGroupEditor(context, connector.contacts),
+    );
   }
 
   Widget _buildContactsBody(BuildContext context, MeshCoreConnector connector) {
@@ -281,8 +178,11 @@ class _ContactsScreenState extends State<ContactsScreen>
             decoration: InputDecoration(
               hintText: 'Search contacts...',
               prefixIcon: const Icon(Icons.search),
-              suffixIcon: _searchQuery.isNotEmpty
-                  ? IconButton(
+              suffixIcon: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (_searchQuery.isNotEmpty)
+                    IconButton(
                       icon: const Icon(Icons.clear),
                       onPressed: () {
                         _searchController.clear();
@@ -290,8 +190,10 @@ class _ContactsScreenState extends State<ContactsScreen>
                           _searchQuery = '';
                         });
                       },
-                    )
-                  : null,
+                    ),
+                  _buildFilterButton(context, connector),
+                ],
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -366,6 +268,13 @@ class _ContactsScreenState extends State<ContactsScreen>
         if (contact != null && matchesContactQuery(contact, query)) return true;
       }
       return false;
+    }).where((group) {
+      if (_typeFilter == ContactTypeFilter.all) return true;
+      for (final key in group.memberKeys) {
+        final contact = contactsByKey[key];
+        if (contact != null && _matchesTypeFilter(contact)) return true;
+      }
+      return false;
     }).toList();
 
     filtered.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
@@ -378,14 +287,17 @@ class _ContactsScreenState extends State<ContactsScreen>
       return matchesContactQuery(contact, _searchQuery);
     }).toList();
 
+    if (_typeFilter != ContactTypeFilter.all) {
+      filtered = filtered.where(_matchesTypeFilter).toList();
+    }
+
     if (_showUnreadOnly) {
       filtered = filtered.where((contact) {
         return connector.getUnreadCountForContact(contact) > 0;
       }).toList();
     }
 
-    final sortOption = _forceLastSeenSort ? ContactSortOption.lastSeen : _sortOption;
-    switch (sortOption) {
+    switch (_sortOption) {
       case ContactSortOption.lastSeen:
         filtered.sort((a, b) => _resolveLastSeen(b).compareTo(_resolveLastSeen(a)));
         break;
@@ -401,16 +313,22 @@ class _ContactsScreenState extends State<ContactsScreen>
       case ContactSortOption.name:
         filtered.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
         break;
-      case ContactSortOption.type:
-        filtered.sort((a, b) {
-          final typeCompare = a.type.compareTo(b.type);
-          if (typeCompare != 0) return typeCompare;
-          return a.name.toLowerCase().compareTo(b.name.toLowerCase());
-        });
-        break;
     }
 
     return filtered;
+  }
+
+  bool _matchesTypeFilter(Contact contact) {
+    switch (_typeFilter) {
+      case ContactTypeFilter.all:
+        return true;
+      case ContactTypeFilter.users:
+        return contact.type == advTypeChat;
+      case ContactTypeFilter.repeaters:
+        return contact.type == advTypeRepeater;
+      case ContactTypeFilter.rooms:
+        return contact.type == advTypeRoom;
+    }
   }
 
   DateTime _resolveLastSeen(Contact contact) {

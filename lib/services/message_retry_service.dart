@@ -1,11 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
+import 'package:crypto/crypto.dart';
 import '../models/contact.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';
 import 'storage_service.dart';
 import 'app_settings_service.dart';
+import 'app_debug_log_service.dart';
 
 class _AckHistoryEntry {
   final String messageId;
@@ -41,7 +44,8 @@ class MessageRetryService extends ChangeNotifier {
   final Map<String, _AckHashMapping> _ackHashToMessageId = {}; // ackHashHex → messageId + timestamp for O(1) lookup
   final Map<String, List<Uint8List>> _expectedAckHashes = {}; // Track all expected ACKs for retries (for history)
   final List<_AckHistoryEntry> _ackHistory = []; // Rolling buffer of recent ACK hashes
-  final Map<String, List<String>> _pendingMessageQueuePerContact = {}; // contactPubKeyHex → FIFO queue of messageIds
+  final Map<String, List<String>> _pendingMessageQueuePerContact = {}; // contactPubKeyHex → FIFO queue of messageIds (DEPRECATED - will be removed)
+  final Map<String, String> _expectedHashToMessageId = {}; // expectedAckHashHex → messageId (for matching RESP_CODE_SENT by hash)
 
   Function(Contact, String, int, int)? _sendMessageCallback;
   Function(String, Message)? _addMessageCallback;
@@ -49,7 +53,10 @@ class MessageRetryService extends ChangeNotifier {
   Function(Contact)? _clearContactPathCallback;
   Function(Contact, Uint8List, int)? _setContactPathCallback;
   Function(int, int)? _calculateTimeoutCallback;
+  Uint8List? Function()? _getSelfPublicKeyCallback;
+  String Function(Contact, String)? _prepareContactOutboundTextCallback;
   AppSettingsService? _appSettingsService;
+  AppDebugLogService? _debugLogService;
   Function(String, PathSelection, bool, int?)? _recordPathResultCallback;
 
   MessageRetryService(this._storage);
@@ -61,7 +68,10 @@ class MessageRetryService extends ChangeNotifier {
     Function(Contact)? clearContactPathCallback,
     Function(Contact, Uint8List, int)? setContactPathCallback,
     Function(int pathLength, int messageBytes)? calculateTimeoutCallback,
+    Uint8List? Function()? getSelfPublicKeyCallback,
+    String Function(Contact, String)? prepareContactOutboundTextCallback,
     AppSettingsService? appSettingsService,
+    AppDebugLogService? debugLogService,
     Function(String, PathSelection, bool, int?)? recordPathResultCallback,
   }) {
     _sendMessageCallback = sendMessageCallback;
@@ -70,8 +80,44 @@ class MessageRetryService extends ChangeNotifier {
     _clearContactPathCallback = clearContactPathCallback;
     _setContactPathCallback = setContactPathCallback;
     _calculateTimeoutCallback = calculateTimeoutCallback;
+    _getSelfPublicKeyCallback = getSelfPublicKeyCallback;
+    _prepareContactOutboundTextCallback = prepareContactOutboundTextCallback;
     _appSettingsService = appSettingsService;
+    _debugLogService = debugLogService;
     _recordPathResultCallback = recordPathResultCallback;
+  }
+
+  /// Compute expected ACK hash using same algorithm as firmware:
+  /// SHA256([timestamp(4)][attempt(1)][text][sender_pubkey(32)]) -> first 4 bytes
+  static Uint8List computeExpectedAckHash(
+    int timestampSeconds,
+    int attempt,
+    String text,
+    Uint8List senderPubKey,
+  ) {
+    final textBytes = utf8.encode(text);
+    final buffer = Uint8List(4 + 1 + textBytes.length + senderPubKey.length);
+    int offset = 0;
+
+    // timestamp (4 bytes, little-endian)
+    buffer[offset++] = timestampSeconds & 0xFF;
+    buffer[offset++] = (timestampSeconds >> 8) & 0xFF;
+    buffer[offset++] = (timestampSeconds >> 16) & 0xFF;
+    buffer[offset++] = (timestampSeconds >> 24) & 0xFF;
+
+    // attempt (1 byte)
+    buffer[offset++] = attempt & 0x03;
+
+    // text
+    buffer.setRange(offset, offset + textBytes.length, textBytes);
+    offset += textBytes.length;
+
+    // sender public key (32 bytes)
+    buffer.setRange(offset, offset + senderPubKey.length, senderPubKey);
+
+    // Compute SHA256 and return first 4 bytes
+    final hash = sha256.convert(buffer);
+    return Uint8List.fromList(hash.bytes.sublist(0, 4));
   }
 
   Future<void> sendMessageWithRetry({
@@ -136,14 +182,35 @@ class MessageRetryService extends ChangeNotifier {
     }
 
     final attempt = message.retryCount.clamp(0, 3);
+    final timestampSeconds = message.timestamp.millisecondsSinceEpoch ~/ 1000;
 
-    // Enqueue this message to track send order for ACK hash mapping (FIFO)
+    // Compute expected ACK hash that device will return in RESP_CODE_SENT
+    // IMPORTANT: Use the transformed text (with SMAZ encoding if enabled) to match device's hash
+    final selfPubKey = _getSelfPublicKeyCallback?.call();
+    if (selfPubKey != null) {
+      final outboundText = _prepareContactOutboundTextCallback?.call(contact, message.text) ?? message.text;
+      final expectedHash = MessageRetryService.computeExpectedAckHash(
+        timestampSeconds,
+        attempt,
+        outboundText,
+        selfPubKey,
+      );
+      final expectedHashHex = expectedHash.map((b) => b.toRadixString(16).padLeft(2, '0')).join();
+      _expectedHashToMessageId[expectedHashHex] = messageId;
+
+      final shortText = message.text.length > 20 ? '${message.text.substring(0, 20)}...' : message.text;
+      _debugLogService?.info(
+        'Sent "$shortText" to ${contact.name} → expect ACK hash $expectedHashHex (attempt $attempt)',
+        tag: 'AckHash',
+      );
+      debugPrint('Computed expected ACK hash $expectedHashHex for message $messageId');
+    }
+
+    // DEPRECATED: Old queue-based matching (kept for fallback)
     _pendingMessageQueuePerContact[contact.publicKeyHex] ??= [];
     _pendingMessageQueuePerContact[contact.publicKeyHex]!.add(messageId);
-    debugPrint('Enqueued message $messageId for ${contact.name} (queue size: ${_pendingMessageQueuePerContact[contact.publicKeyHex]!.length})');
 
     if (_sendMessageCallback != null) {
-      final timestampSeconds = message.timestamp.millisecondsSinceEpoch ~/ 1000;
       _sendMessageCallback!(
         contact,
         message.text,
@@ -156,35 +223,68 @@ class MessageRetryService extends ChangeNotifier {
   void updateMessageFromSent(Uint8List ackHash, int timeoutMs) {
     final ackHashHex = ackHash.map((b) => b.toRadixString(16).padLeft(2, '0')).join();
 
-    // Dequeue the next message from the FIFO queue to match with this RESP_CODE_SENT
-    // We iterate through contacts to find which one has a pending message in their queue
-    String? messageId;
+    // NEW: Try hash-based matching first (fixes LoRa message drops causing mismatches)
+    String? messageId = _expectedHashToMessageId.remove(ackHashHex);
     Contact? contact;
 
-    for (var entry in _pendingMessageQueuePerContact.entries) {
-      final contactKey = entry.key;
-      final queue = entry.value;
+    if (messageId != null) {
+      contact = _pendingContacts[messageId];
+      final message = _pendingMessages[messageId];
 
-      if (queue.isNotEmpty) {
-        // Dequeue the first (oldest) message from this contact's queue
-        final candidateMessageId = queue.removeAt(0);
+      if (contact != null && message != null) {
+        final shortText = message.text.length > 20 ? '${message.text.substring(0, 20)}...' : message.text;
+        _debugLogService?.info(
+          'RESP_CODE_SENT received: ACK hash $ackHashHex ✓ matched "$shortText" to ${contact.name}',
+          tag: 'AckHash',
+        );
+        debugPrint('Hash-based match: ACK hash $ackHashHex → message $messageId ✓');
 
-        // Verify this message is still pending
-        if (_pendingMessages.containsKey(candidateMessageId)) {
-          messageId = candidateMessageId;
-          contact = _pendingContacts[candidateMessageId];
-          debugPrint('Dequeued message $messageId for $contactKey (remaining in queue: ${queue.length})');
-          break;
-        } else {
-          debugPrint('Dequeued stale message $candidateMessageId - skipping');
-          // Continue to next message in queue
-          if (queue.isNotEmpty) {
-            final nextMessageId = queue.removeAt(0);
-            if (_pendingMessages.containsKey(nextMessageId)) {
-              messageId = nextMessageId;
-              contact = _pendingContacts[nextMessageId];
-              debugPrint('Dequeued next message $messageId for $contactKey (remaining: ${queue.length})');
-              break;
+        // Remove from old queue since we matched
+        _pendingMessageQueuePerContact[contact.publicKeyHex]?.remove(messageId);
+        if (_pendingMessageQueuePerContact[contact.publicKeyHex]?.isEmpty ?? false) {
+          _pendingMessageQueuePerContact.remove(contact.publicKeyHex);
+        }
+      } else {
+        _debugLogService?.warn(
+          'RESP_CODE_SENT: ACK hash $ackHashHex matched but message no longer pending',
+          tag: 'AckHash',
+        );
+        debugPrint('Hash matched $messageId but message no longer pending');
+        messageId = null;
+        contact = null;
+      }
+    }
+
+    // FALLBACK: Old queue-based matching (for messages sent before hash computation was added)
+    if (messageId == null) {
+      _debugLogService?.warn(
+        'RESP_CODE_SENT: ACK hash $ackHashHex not found in hash table, falling back to queue',
+        tag: 'AckHash',
+      );
+      debugPrint('Hash-based match failed for $ackHashHex, falling back to queue-based matching');
+
+      for (var entry in _pendingMessageQueuePerContact.entries) {
+        final contactKey = entry.key;
+        final queue = entry.value;
+
+        if (queue.isNotEmpty) {
+          final candidateMessageId = queue.removeAt(0);
+
+          if (_pendingMessages.containsKey(candidateMessageId)) {
+            messageId = candidateMessageId;
+            contact = _pendingContacts[candidateMessageId];
+            debugPrint('Queue-based match (fallback): $ackHashHex → message $messageId for $contactKey');
+            break;
+          } else {
+            debugPrint('Dequeued stale message $candidateMessageId - skipping');
+            if (queue.isNotEmpty) {
+              final nextMessageId = queue.removeAt(0);
+              if (_pendingMessages.containsKey(nextMessageId)) {
+                messageId = nextMessageId;
+                contact = _pendingContacts[nextMessageId];
+                debugPrint('Queue-based match (fallback): $ackHashHex → message $messageId');
+                break;
+              }
             }
           }
         }
@@ -192,7 +292,7 @@ class MessageRetryService extends ChangeNotifier {
     }
 
     if (messageId == null || contact == null) {
-      debugPrint('No pending message found for ACK hash: $ackHashHex (all queues empty or stale)');
+      debugPrint('No pending message found for ACK hash: $ackHashHex');
       return;
     }
 
@@ -270,6 +370,11 @@ class MessageRetryService extends ChangeNotifier {
       return;
     }
 
+    final shortText = message.text.length > 20 ? '${message.text.substring(0, 20)}...' : message.text;
+    _debugLogService?.warn(
+      'Timeout: No ACK received for "$shortText" to ${contact.name} (attempt ${message.retryCount}) → retrying',
+      tag: 'AckHash',
+    );
     debugPrint('Timeout for message $messageId (retry ${message.retryCount}/${maxRetries - 1})');
 
     if (message.retryCount < maxRetries - 1) {
@@ -287,8 +392,14 @@ class MessageRetryService extends ChangeNotifier {
         _updateMessageCallback!(updatedMessage);
       }
 
+      _debugLogService?.info(
+        'Scheduling retry for "$shortText" to ${contact.name} after ${backoffMs}ms backoff',
+        tag: 'AckHash',
+      );
       debugPrint('Scheduling retry after ${backoffMs}ms');
-      Timer(Duration(milliseconds: backoffMs), () {
+
+      // Store the backoff timer so it can be canceled if new RESP_CODE_SENT arrives
+      _timeoutTimers[messageId] = Timer(Duration(milliseconds: backoffMs), () {
         // Double-check message is still pending before retry
         if (_pendingMessages.containsKey(messageId)) {
           _attemptSend(messageId);
@@ -388,6 +499,10 @@ class MessageRetryService extends ChangeNotifier {
       matchedMessageId = mapping.messageId;
       debugPrint('Matched ACK to message via direct lookup: $matchedMessageId');
     } else {
+      _debugLogService?.warn(
+        'PUSH_CODE_SEND_CONFIRMED: ACK hash $ackHashHex not found in direct mapping, trying fallback',
+        tag: 'AckHash',
+      );
       // Fallback: Check against ALL expected ACK hashes (from all retry attempts)
       debugPrint('ACK not in mapping, checking _expectedAckHashes (${_expectedAckHashes.length} messages)');
       for (var entry in _expectedAckHashes.entries) {
@@ -410,6 +525,12 @@ class MessageRetryService extends ChangeNotifier {
       final message = _pendingMessages[matchedMessageId]!;
       final contact = _pendingContacts[matchedMessageId];
       final selection = _pendingPathSelections[matchedMessageId];
+
+      final shortText = message.text.length > 20 ? '${message.text.substring(0, 20)}...' : message.text;
+      _debugLogService?.info(
+        'PUSH_CODE_SEND_CONFIRMED: ACK hash $ackHashHex ✓ "$shortText" delivered to ${contact?.name ?? "unknown"} in ${tripTimeMs}ms',
+        tag: 'AckHash',
+      );
 
       // Cancel any pending timeout or retry
       _timeoutTimers[matchedMessageId]?.cancel();
@@ -448,8 +569,16 @@ class MessageRetryService extends ChangeNotifier {
     } else {
       // Check ACK history for recently completed messages
       if (_checkAckHistory(ackHash)) {
+        _debugLogService?.info(
+          'PUSH_CODE_SEND_CONFIRMED: ACK hash $ackHashHex matched a recently completed message (duplicate ACK)',
+          tag: 'AckHash',
+        );
         debugPrint('ACK matched a recently completed message from history');
       } else {
+        _debugLogService?.error(
+          'PUSH_CODE_SEND_CONFIRMED: ACK hash $ackHashHex has no matching message!',
+          tag: 'AckHash',
+        );
         debugPrint('No matching message found for ACK: $ackHashHex');
       }
     }

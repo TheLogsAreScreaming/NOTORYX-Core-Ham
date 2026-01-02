@@ -32,6 +32,8 @@ class AppSettingsScreen extends StatelessWidget {
                 _buildBatteryCard(context, settingsService, connector),
                 const SizedBox(height: 16),
                 _buildMapSettingsCard(context, settingsService),
+                const SizedBox(height: 16),
+                _buildDebugCard(context, settingsService),
               ],
             );
           },
@@ -383,43 +385,31 @@ class AppSettingsScreen extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Theme'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            RadioListTile<String>(
-              title: const Text('System default'),
-              value: 'system',
-              groupValue: settingsService.settings.themeMode,
-              onChanged: (value) {
-                if (value != null) {
-                  settingsService.setThemeMode(value);
-                  Navigator.pop(context);
-                }
-              },
-            ),
-            RadioListTile<String>(
-              title: const Text('Light'),
-              value: 'light',
-              groupValue: settingsService.settings.themeMode,
-              onChanged: (value) {
-                if (value != null) {
-                  settingsService.setThemeMode(value);
-                  Navigator.pop(context);
-                }
-              },
-            ),
-            RadioListTile<String>(
-              title: const Text('Dark'),
-              value: 'dark',
-              groupValue: settingsService.settings.themeMode,
-              onChanged: (value) {
-                if (value != null) {
-                  settingsService.setThemeMode(value);
-                  Navigator.pop(context);
-                }
-              },
-            ),
-          ],
+        content: RadioGroup<String>(
+          groupValue: settingsService.settings.themeMode,
+          onChanged: (value) {
+            if (value != null) {
+              settingsService.setThemeMode(value);
+              Navigator.pop(context);
+            }
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RadioListTile<String>(
+                title: const Text('System default'),
+                value: 'system',
+              ),
+              RadioListTile<String>(
+                title: const Text('Light'),
+                value: 'light',
+              ),
+              RadioListTile<String>(
+                title: const Text('Dark'),
+                value: 'dark',
+              ),
+            ],
+          ),
         ),
         actions: [
           TextButton(
@@ -447,82 +437,91 @@ class AppSettingsScreen extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Map Time Filter'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Show nodes discovered within:'),
-            const SizedBox(height: 16),
-            ListTile(
-              title: const Text('All time'),
-              leading: Radio<double>(
-                value: 0,
-                groupValue: settingsService.settings.mapTimeFilterHours,
-                onChanged: (value) {
-                  if (value != null) {
-                    settingsService.setMapTimeFilterHours(value);
-                    Navigator.pop(context);
-                  }
-                },
+        content: RadioGroup<double>(
+          groupValue: settingsService.settings.mapTimeFilterHours,
+          onChanged: (value) {
+            if (value != null) {
+              settingsService.setMapTimeFilterHours(value);
+              Navigator.pop(context);
+            }
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('Show nodes discovered within:'),
+              const SizedBox(height: 16),
+              ListTile(
+                title: const Text('All time'),
+                leading: Radio<double>(
+                  value: 0,
+                ),
               ),
-            ),
-            ListTile(
-              title: const Text('Last hour'),
-              leading: Radio<double>(
-                value: 1,
-                groupValue: settingsService.settings.mapTimeFilterHours,
-                onChanged: (value) {
-                  if (value != null) {
-                    settingsService.setMapTimeFilterHours(value);
-                    Navigator.pop(context);
-                  }
-                },
+              ListTile(
+                title: const Text('Last hour'),
+                leading: Radio<double>(
+                  value: 1,
+                ),
               ),
-            ),
-            ListTile(
-              title: const Text('Last 6 hours'),
-              leading: Radio<double>(
-                value: 6,
-                groupValue: settingsService.settings.mapTimeFilterHours,
-                onChanged: (value) {
-                  if (value != null) {
-                    settingsService.setMapTimeFilterHours(value);
-                    Navigator.pop(context);
-                  }
-                },
+              ListTile(
+                title: const Text('Last 6 hours'),
+                leading: Radio<double>(
+                  value: 6,
+                ),
               ),
-            ),
-            ListTile(
-              title: const Text('Last 24 hours'),
-              leading: Radio<double>(
-                value: 24,
-                groupValue: settingsService.settings.mapTimeFilterHours,
-                onChanged: (value) {
-                  if (value != null) {
-                    settingsService.setMapTimeFilterHours(value);
-                    Navigator.pop(context);
-                  }
-                },
+              ListTile(
+                title: const Text('Last 24 hours'),
+                leading: Radio<double>(
+                  value: 24,
+                ),
               ),
-            ),
-            ListTile(
-              title: const Text('Last week'),
-              leading: Radio<double>(
-                value: 168,
-                groupValue: settingsService.settings.mapTimeFilterHours,
-                onChanged: (value) {
-                  if (value != null) {
-                    settingsService.setMapTimeFilterHours(value);
-                    Navigator.pop(context);
-                  }
-                },
+              ListTile(
+                title: const Text('Last week'),
+                leading: Radio<double>(
+                  value: 168,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDebugCard(BuildContext context, AppSettingsService settingsService) {
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+            child: Text(
+              'Debug',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SwitchListTile(
+            secondary: const Icon(Icons.bug_report_outlined),
+            title: const Text('App Debug Logging'),
+            subtitle: const Text('Log app debug messages for troubleshooting'),
+            value: settingsService.settings.appDebugLogEnabled,
+            onChanged: (value) async {
+              await settingsService.setAppDebugLogEnabled(value);
+              if (!context.mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(value
+                      ? 'App debug logging enabled'
+                      : 'App debug logging disabled'),
+                  duration: const Duration(seconds: 2),
+                ),
+              );
+            },
           ),
         ],
       ),

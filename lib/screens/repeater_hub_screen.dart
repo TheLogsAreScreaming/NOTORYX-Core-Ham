@@ -33,11 +33,9 @@ class RepeaterHubScreen extends StatelessWidget {
       ),
       body: SafeArea(
         top: false,
-        child: Padding(
+        child: ListView(
           padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
+          children: [
               // Repeater info card
               Card(
                 child: Padding(
@@ -142,8 +140,7 @@ class RepeaterHubScreen extends StatelessWidget {
                   );
                 },
               ),
-            ],
-          ),
+          ],
         ),
       ),
     );

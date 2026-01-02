@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
@@ -38,11 +39,11 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       context.read<MeshCoreConnector>().setActiveChannel(widget.channel.index);
 
-      // Scroll to bottom when opening channel chat
+      // Scroll to bottom when opening channel chat - use SchedulerBinding for next frame
       if (_scrollController.hasClients) {
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       }
@@ -151,7 +152,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 builder: (context, connector, child) {
                   final messages = connector.getChannelMessages(widget.channel);
 
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                  SchedulerBinding.instance.addPostFrameCallback((_) {
                     _scrollToBottom();
                   });
 

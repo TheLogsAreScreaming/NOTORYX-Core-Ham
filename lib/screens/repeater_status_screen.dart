@@ -4,9 +4,11 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/contact.dart';
+import '../models/path_selection.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../services/repeater_command_service.dart';
+import '../widgets/path_management_dialog.dart';
 
 class RepeaterStatusScreen extends StatefulWidget {
   final Contact repeater;
@@ -23,6 +25,10 @@ class RepeaterStatusScreen extends StatefulWidget {
 }
 
 class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
+  static const int _statusPayloadOffset = 8;
+  static const int _statusStatsSize = 52;
+  static const int _statusResponseBytes = _statusPayloadOffset + _statusStatsSize;
+
   bool _isLoading = false;
   StreamSubscription<Uint8List>? _frameSubscription;
   RepeaterCommandService? _commandService;
@@ -45,6 +51,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
   int? _directRx;
   int? _dupFlood;
   int? _dupDirect;
+  PathSelection? _pendingStatusSelection;
 
   @override
   void initState() {
@@ -80,6 +87,13 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
     });
   }
 
+  Contact _resolveRepeater(MeshCoreConnector connector) {
+    return connector.contacts.firstWhere(
+      (c) => c.publicKeyHex == widget.repeater.publicKeyHex,
+      orElse: () => widget.repeater,
+    );
+  }
+
   void _handleTextMessageResponse(Uint8List frame) {
     final parsed = parseContactMessageText(frame);
     if (parsed == null) return;
@@ -90,6 +104,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
 
     // Parse status responses
     _parseStatusResponse(parsed.text);
+    _recordStatusResult(true);
   }
 
   void _handleStatusResponse(Uint8List frame) {
@@ -97,11 +112,13 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
     final prefix = frame.sublist(2, 8);
     if (!_matchesRepeaterPrefix(prefix)) return;
 
-    const payloadOffset = 8;
-    const statsSize = 52;
-    if (frame.length < payloadOffset + statsSize) return;
+    if (frame.length < _statusResponseBytes) return;
 
-    final data = ByteData.sublistView(frame, payloadOffset, payloadOffset + statsSize);
+    final data = ByteData.sublistView(
+      frame,
+      _statusPayloadOffset,
+      _statusResponseBytes,
+    );
     int offset = 0;
 
     final batteryMv = data.getUint16(offset, Endian.little);
@@ -160,6 +177,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
       _dupDirect = directDups;
       _dupFlood = floodDups;
     });
+    _recordStatusResult(true);
   }
 
   bool _matchesRepeaterPrefix(Uint8List prefix) {
@@ -213,6 +231,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
     setState(() {
       _isLoading = true;
       _statusRequestedAt = DateTime.now();
+      _pendingStatusSelection = null;
       _batteryMv = null;
       _uptimeSecs = null;
       _queueLen = null;
@@ -234,11 +253,22 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
 
     try {
       final connector = Provider.of<MeshCoreConnector>(context, listen: false);
-      final frame = buildSendStatusRequestFrame(widget.repeater.publicKey);
+      final repeater = _resolveRepeater(connector);
+      final selection = await connector.preparePathForContactSend(repeater);
+      _pendingStatusSelection = selection;
+      final frame = buildSendStatusRequestFrame(repeater.publicKey);
       await connector.sendFrame(frame);
 
+      final pathLengthValue = selection.useFlood ? -1 : selection.hopCount;
+      final messageBytes = frame.length >= _statusResponseBytes
+          ? frame.length
+          : _statusResponseBytes;
+      final timeoutMs = connector.calculateTimeout(
+        pathLength: pathLengthValue,
+        messageBytes: messageBytes,
+      );
       _statusTimeout?.cancel();
-      _statusTimeout = Timer(const Duration(seconds: 12), () {
+      _statusTimeout = Timer(Duration(milliseconds: timeoutMs), () {
         if (!mounted) return;
         setState(() {
           _isLoading = false;
@@ -249,6 +279,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
             backgroundColor: Colors.red,
           ),
         );
+        _recordStatusResult(false);
       });
     } catch (e) {
       if (mounted) {
@@ -263,11 +294,25 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
           ),
         );
       }
+      _recordStatusResult(false);
     }
+  }
+
+  void _recordStatusResult(bool success) {
+    final selection = _pendingStatusSelection;
+    if (selection == null) return;
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final repeater = _resolveRepeater(connector);
+    connector.recordRepeaterPathResult(repeater, selection, success, null);
+    _pendingStatusSelection = null;
   }
 
   @override
   Widget build(BuildContext context) {
+    final connector = context.watch<MeshCoreConnector>();
+    final repeater = _resolveRepeater(connector);
+    final isFloodMode = repeater.pathOverride == -1;
+
     return Scaffold(
       appBar: AppBar(
         title: Column(
@@ -276,13 +321,61 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
           children: [
             const Text('Repeater Status'),
             Text(
-              widget.repeater.name,
+              repeater.name,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
             ),
           ],
         ),
         centerTitle: false,
         actions: [
+          PopupMenuButton<String>(
+            icon: Icon(isFloodMode ? Icons.waves : Icons.route),
+            tooltip: 'Routing mode',
+            onSelected: (mode) async {
+              if (mode == 'flood') {
+                await connector.setPathOverride(repeater, pathLen: -1);
+              } else {
+                await connector.setPathOverride(repeater, pathLen: null);
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 'auto',
+                child: Row(
+                  children: [
+                    Icon(Icons.auto_mode, size: 20, color: !isFloodMode ? Theme.of(context).primaryColor : null),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Auto (use saved path)',
+                      style: TextStyle(
+                        fontWeight: !isFloodMode ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: 'flood',
+                child: Row(
+                  children: [
+                    Icon(Icons.waves, size: 20, color: isFloodMode ? Theme.of(context).primaryColor : null),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Force Flood Mode',
+                      style: TextStyle(
+                        fontWeight: isFloodMode ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          IconButton(
+            icon: const Icon(Icons.timeline),
+            tooltip: 'Path management',
+            onPressed: () => PathManagementDialog.show(context, contact: repeater),
+          ),
           IconButton(
             icon: _isLoading
                 ? const SizedBox(

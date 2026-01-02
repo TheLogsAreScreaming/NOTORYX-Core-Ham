@@ -12,6 +12,7 @@ import '../services/map_marker_service.dart';
 import '../services/map_tile_cache_service.dart';
 import '../utils/contact_search.dart';
 import '../utils/route_transitions.dart';
+import '../widgets/battery_indicator.dart';
 import '../widgets/quick_switch_bar.dart';
 import 'channels_screen.dart';
 import 'chat_screen.dart';
@@ -136,10 +137,16 @@ class _MapScreenState extends State<MapScreen> {
           canPop: allowBack,
           child: Scaffold(
             appBar: AppBar(
+              leading: BatteryIndicator(connector: connector),
               title: const Text('Node Map'),
               centerTitle: true,
-              automaticallyImplyLeading: !widget.hideBackButton && allowBack,
+              automaticallyImplyLeading: false,
               actions: [
+                IconButton(
+                  icon: const Icon(Icons.bluetooth_disabled),
+                  tooltip: 'Disconnect',
+                  onPressed: () => _disconnect(context, connector),
+                ),
                 IconButton(
                   icon: const Icon(Icons.tune),
                   tooltip: 'Settings',
@@ -147,11 +154,6 @@ class _MapScreenState extends State<MapScreen> {
                     context,
                     MaterialPageRoute(builder: (context) => const SettingsScreen()),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.bluetooth_disabled),
-                  tooltip: 'Disconnect',
-                  onPressed: () => _disconnect(context, connector),
                 ),
               ],
             ),

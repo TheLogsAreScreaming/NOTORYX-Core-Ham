@@ -39,10 +39,17 @@ class _DeviceScreenState extends State<DeviceScreen>
           canPop: false,
           child: Scaffold(
             appBar: AppBar(
+              leading: _buildBatteryIndicator(connector, context),
               titleSpacing: 16,
               centerTitle: false,
               title: _buildAppBarTitle(connector, theme),
+              automaticallyImplyLeading: false,
               actions: [
+                IconButton(
+                  icon: const Icon(Icons.bluetooth_disabled),
+                  tooltip: 'Disconnect',
+                  onPressed: () => _disconnect(context, connector),
+                ),
                 IconButton(
                   icon: const Icon(Icons.tune),
                   tooltip: 'Settings',
@@ -52,11 +59,6 @@ class _DeviceScreenState extends State<DeviceScreen>
                       builder: (context) => const SettingsScreen(),
                     ),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.bluetooth_disabled),
-                  tooltip: 'Disconnect',
-                  onPressed: () => _disconnect(context, connector),
                 ),
               ],
             ),

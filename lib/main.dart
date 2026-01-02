@@ -9,9 +9,11 @@ import 'services/path_history_service.dart';
 import 'services/app_settings_service.dart';
 import 'services/notification_service.dart';
 import 'services/ble_debug_log_service.dart';
+import 'services/app_debug_log_service.dart';
 import 'services/background_service.dart';
 import 'services/map_tile_cache_service.dart';
 import 'storage/prefs_manager.dart';
+import 'utils/app_logger.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,11 +28,18 @@ void main() async {
   final retryService = MessageRetryService(storage);
   final appSettingsService = AppSettingsService();
   final bleDebugLogService = BleDebugLogService();
+  final appDebugLogService = AppDebugLogService();
   final backgroundService = BackgroundService();
   final mapTileCacheService = MapTileCacheService();
 
   // Load settings
   await appSettingsService.loadSettings();
+
+  // Initialize app logger
+  appLogger.initialize(
+    appDebugLogService,
+    enabled: appSettingsService.settings.appDebugLogEnabled,
+  );
 
   // Initialize notification service
   final notificationService = NotificationService();
@@ -43,6 +52,7 @@ void main() async {
     pathHistoryService: pathHistoryService,
     appSettingsService: appSettingsService,
     bleDebugLogService: bleDebugLogService,
+    appDebugLogService: appDebugLogService,
     backgroundService: backgroundService,
   );
 
@@ -60,6 +70,7 @@ void main() async {
     storage: storage,
     appSettingsService: appSettingsService,
     bleDebugLogService: bleDebugLogService,
+    appDebugLogService: appDebugLogService,
     mapTileCacheService: mapTileCacheService,
   ));
 }
@@ -71,6 +82,7 @@ class MeshCoreApp extends StatelessWidget {
   final StorageService storage;
   final AppSettingsService appSettingsService;
   final BleDebugLogService bleDebugLogService;
+  final AppDebugLogService appDebugLogService;
   final MapTileCacheService mapTileCacheService;
 
   const MeshCoreApp({
@@ -81,6 +93,7 @@ class MeshCoreApp extends StatelessWidget {
     required this.storage,
     required this.appSettingsService,
     required this.bleDebugLogService,
+    required this.appDebugLogService,
     required this.mapTileCacheService,
   });
 
@@ -93,6 +106,7 @@ class MeshCoreApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: pathHistoryService),
         ChangeNotifierProvider.value(value: appSettingsService),
         ChangeNotifierProvider.value(value: bleDebugLogService),
+        ChangeNotifierProvider.value(value: appDebugLogService),
         Provider.value(value: storage),
         Provider.value(value: mapTileCacheService),
       ],

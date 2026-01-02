@@ -5,10 +5,18 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../models/radio_settings.dart';
 import 'app_settings_screen.dart';
+import 'app_debug_log_screen.dart';
 import 'ble_debug_log_screen.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  bool _showBatteryVoltage = false;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +66,7 @@ class SettingsScreen extends StatelessWidget {
             _buildInfoRow('Name', connector.deviceDisplayName),
             _buildInfoRow('ID', connector.deviceIdLabel),
             _buildInfoRow('Status', connector.isConnected ? 'Connected' : 'Disconnected'),
+            _buildBatteryInfoRow(connector),
             if (connector.selfName != null)
               _buildInfoRow('Node Name', connector.selfName!),
             if (connector.selfPublicKey != null)
@@ -67,6 +76,53 @@ class SettingsScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildBatteryInfoRow(MeshCoreConnector connector) {
+    final percent = connector.batteryPercent;
+    final millivolts = connector.batteryMillivolts;
+
+    // figure out display value
+    final String displayValue;
+    if (millivolts == null) {
+      displayValue = '—';
+    } else if (_showBatteryVoltage) {
+      displayValue = '${(millivolts / 1000.0).toStringAsFixed(2)} V';
+    } else {
+      displayValue = percent != null ? '$percent%' : '—';
+    }
+
+    final IconData icon;
+    final Color? iconColor;
+    final Color? valueColor;
+
+    if (percent == null) {
+      icon = Icons.battery_unknown;
+      iconColor = Colors.grey;
+      valueColor = null;
+    } else if (percent <= 15) {
+      icon = Icons.battery_alert;
+      iconColor = Colors.orange;
+      valueColor = Colors.orange;
+    } else {
+      icon = Icons.battery_full;
+      iconColor = null;
+      valueColor = null;
+    }
+
+    return _buildInfoRow(
+      'Battery',
+      displayValue,
+      leading: Icon(icon, size: 18, color: iconColor),
+      valueColor: valueColor,
+      onTap: millivolts != null
+          ? () {
+              setState(() {
+                _showBatteryVoltage = !_showBatteryVoltage;
+              });
+            }
+          : null,
     );
   }
 
@@ -192,38 +248,89 @@ class SettingsScreen extends StatelessWidget {
 
   Widget _buildDebugCard(BuildContext context) {
     return Card(
-      child: ListTile(
-        leading: const Icon(Icons.bug_report_outlined),
-        title: const Text('BLE Debug Log'),
-        subtitle: const Text('Commands, responses, and status'),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const BleDebugLogScreen()),
-          );
-        },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+            child: Text(
+              'Debug',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.bluetooth_outlined),
+            title: const Text('BLE Debug Log'),
+            subtitle: const Text('BLE commands, responses, and raw data'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const BleDebugLogScreen()),
+              );
+            },
+          ),
+          const Divider(height: 1),
+          ListTile(
+            leading: const Icon(Icons.code_outlined),
+            title: const Text('App Debug Log'),
+            subtitle: const Text('Application debug messages'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AppDebugLogScreen()),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildInfoRow(String label, String value) {
-    return Padding(
+  Widget _buildInfoRow(
+    String label,
+    String value, {
+    Widget? leading,
+    Color? valueColor,
+    VoidCallback? onTap,
+  }) {
+    final row = Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: TextStyle(color: Colors.grey[600])),
+          Row(
+            children: [
+              if (leading != null) ...[
+                leading,
+                const SizedBox(width: 8),
+              ],
+              Text(label, style: TextStyle(color: Colors.grey[600])),
+            ],
+          ),
           Flexible(
             child: Text(
               value,
-              style: const TextStyle(fontWeight: FontWeight.w500),
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: valueColor,
+              ),
               overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
       ),
     );
+
+    if (onTap != null) {
+      return InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(4),
+        child: row,
+      );
+    }
+    return row;
   }
 
   void _editNodeName(BuildContext context, MeshCoreConnector connector) {

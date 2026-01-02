@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:latlong2/latlong.dart';
@@ -19,6 +20,8 @@ import '../utils/emoji_utils.dart';
 import '../widgets/emoji_picker.dart';
 import '../widgets/gif_message.dart';
 import '../widgets/gif_picker.dart';
+import '../widgets/path_selection_dialog.dart';
+import '../utils/app_logger.dart';
 
 class ChatScreen extends StatefulWidget {
   final Contact contact;
@@ -36,11 +39,11 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       context.read<MeshCoreConnector>().setActiveContact(widget.contact.publicKeyHex);
 
-      // Scroll to bottom when opening chat
+      // Scroll to bottom when opening chat use SchedulerBinding for next frame
       if (_scrollController.hasClients) {
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       }
@@ -438,13 +441,13 @@ class _ChatScreenState extends State<ChatScreen> {
                             );
 
                             if (!context.mounted) return;
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Using ${path.hopCount} ${path.hopCount == 1 ? 'hop' : 'hops'} path'),
-                                duration: const Duration(seconds: 2),
-                              ),
-                            );
                             Navigator.pop(context);
+                            await _notifyPathSet(
+                              connector,
+                              widget.contact,
+                              pathBytes,
+                              path.hopCount,
+                            );
                           },
                         ),
                       );
@@ -590,6 +593,30 @@ class _ChatScreenState extends State<ChatScreen> {
     return '${contact.pathLength} hops';
   }
 
+  Future<void> _notifyPathSet(
+    MeshCoreConnector connector,
+    Contact contact,
+    Uint8List pathBytes,
+    int hopCount,
+  ) async {
+    final verified = connector.isConnected
+        ? await connector.verifyContactPathOnDevice(contact, pathBytes)
+        : false;
+    if (!mounted) return;
+
+    final status = !connector.isConnected
+        ? 'Saved locally. Connect to sync.'
+        : (verified ? 'Device confirmed.' : 'Device not confirmed yet.');
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Path set: $hopCount ${hopCount == 1 ? 'hop' : 'hops'} - $status',
+        ),
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
   void _showContactInfo(BuildContext context) {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     connector.ensureContactSmazSettingLoaded(widget.contact.publicKeyHex);
@@ -657,7 +684,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  void _showCustomPathDialog(BuildContext context) {
+  Future<void> _showCustomPathDialog(BuildContext context) async {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
 
     final currentContact = _resolveContact(connector);
@@ -665,384 +692,47 @@ class _ChatScreenState extends State<ChatScreen> {
       connector.getContacts();
     }
 
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Row(
-          children: [
-            Icon(Icons.edit_road),
-            SizedBox(width: 8),
-            Text('Set Custom Path'),
-          ],
-        ),
-        content: Consumer<MeshCoreConnector>(
-          builder: (context, connector, _) {
-            final contact = _resolveContact(connector);
-            final pathForInput = contact.pathIdList;
-            final currentPathLabel = _currentPathLabel(contact);
+    final pathForInput = currentContact.pathIdList;
+    final currentPathLabel = _currentPathLabel(currentContact);
 
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Text(
-                      'Current path',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                    ),
-                    const Spacer(),
-                    TextButton.icon(
-                      onPressed: connector.isConnected ? connector.getContacts : null,
-                      icon: const Icon(Icons.refresh, size: 16),
-                      label: const Text('Reload'),
-                    ),
-                  ],
-                ),
-                Text(
-                  currentPathLabel,
-                  style: const TextStyle(fontSize: 11, color: Colors.grey),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'Choose how to set the message path:',
-                  style: TextStyle(fontSize: 14),
-                ),
-                const SizedBox(height: 16),
-                ListTile(
-                  dense: true,
-                  leading: const CircleAvatar(
-                    radius: 16,
-                    backgroundColor: Colors.blue,
-                    child: Icon(Icons.text_fields, size: 16),
-                  ),
-                  title: const Text('Enter Path Manually', style: TextStyle(fontSize: 14)),
-                  subtitle: const Text('Type IDs like: A1B2C3D4,FFEEDDCC', style: TextStyle(fontSize: 11)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    _showManualPathInput(
-                      context,
-                      initialPath: pathForInput.isEmpty ? null : pathForInput,
-                    );
-                  },
-                ),
-                const SizedBox(height: 8),
-                ListTile(
-                  dense: true,
-                  leading: const CircleAvatar(
-                    radius: 16,
-                    backgroundColor: Colors.green,
-                    child: Icon(Icons.contacts, size: 16),
-                  ),
-                  title: const Text('Select from Contacts', style: TextStyle(fontSize: 14)),
-                  subtitle: const Text('Pick repeaters/rooms as hops', style: TextStyle(fontSize: 11)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    _showContactPathPicker(context);
-                  },
-                ),
-              ],
-            );
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showManualPathInput(BuildContext context, {String? initialPath}) {
-    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
-    final controller = TextEditingController(text: initialPath ?? '');
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Enter Custom Path'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Enter 2-character hex prefixes for each hop, separated by commas.',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'Example: A1,F2,3C (each node uses first byte of its public key)',
-              style: TextStyle(fontSize: 11, color: Colors.grey),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: controller,
-              decoration: const InputDecoration(
-                labelText: 'Path (hex prefixes)',
-                hintText: 'A1,F2,3C',
-                border: OutlineInputBorder(),
-                helperText: 'Max 64 hops. Each prefix is 2 hex characters (1 byte)',
-              ),
-              textCapitalization: TextCapitalization.characters,
-              maxLength: 191, // 64 hops * 2 chars + 63 commas
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () async {
-              final path = controller.text.trim().toUpperCase();
-              if (path.isEmpty) {
-                if (context.mounted) Navigator.pop(context);
-                return;
-              }
-
-              // Parse comma-separated hex prefixes
-              final pathIds = path.split(',').map((s) => s.trim()).where((s) => s.isNotEmpty).toList();
-              final pathBytesList = <int>[];
-              final invalidPrefixes = <String>[];
-
-              for (final id in pathIds) {
-                if (id.length < 2) {
-                  invalidPrefixes.add(id);
-                  continue;
-                }
-
-                final prefix = id.substring(0, 2);
-                try {
-                  final byte = int.parse(prefix, radix: 16);
-                  pathBytesList.add(byte);
-                } catch (e) {
-                  invalidPrefixes.add(id);
-                }
-              }
-
-              if (!context.mounted) return;
-
-              // Show error for invalid prefixes
-              if (invalidPrefixes.isNotEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Invalid hex prefixes: ${invalidPrefixes.join(", ")}'),
-                    duration: const Duration(seconds: 3),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-                return;
-              }
-
-              // Check max path length (64 hops)
-              if (pathBytesList.length > 64) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Path too long. Maximum 64 hops allowed.'),
-                    duration: Duration(seconds: 3),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-                return;
-              }
-
-              if (pathBytesList.isNotEmpty) {
-                await connector.setContactPath(
-                  widget.contact,
-                  Uint8List.fromList(pathBytesList),
-                  pathBytesList.length,
-                );
-
-                if (context.mounted) {
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Path set: ${pathBytesList.length} ${pathBytesList.length == 1 ? "hop" : "hops"}'),
-                      duration: const Duration(seconds: 2),
-                    ),
-                  );
-                }
-              }
-            },
-            child: const Text('Set Path'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showContactPathPicker(BuildContext context) {
-    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
-    final selectedContacts = <Contact>[];
-
-    // Filter to only repeaters and room servers
-    final validContacts = connector.contacts
-        .where((c) => (c.type == 2 || c.type == 3) && c != widget.contact)
+    // Filter out the current contact from available contacts
+    final availableContacts = connector.contacts
+        .where((c) => c != widget.contact)
         .toList();
 
-    showDialog(
-      context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setDialogState) => AlertDialog(
-          title: const Text('Build Path from Contacts'),
-          content: SizedBox(
-            width: double.maxFinite,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (validContacts.isEmpty) ...[
-                  const Icon(Icons.info_outline, size: 48, color: Colors.grey),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'No repeaters or room servers found.',
-                    style: TextStyle(fontSize: 14),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Custom paths require intermediate hops that can relay messages.',
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                    textAlign: TextAlign.center,
-                  ),
-                ] else if (selectedContacts.isNotEmpty) ...[
-                  const Text(
-                    'Selected Path:',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-                  ),
-                  const SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: selectedContacts.asMap().entries.map((entry) {
-                      final idx = entry.key;
-                      final contact = entry.value;
-                      return Chip(
-                        avatar: CircleAvatar(
-                          child: Text('${idx + 1}'),
-                        ),
-                        label: Text(contact.name),
-                        onDeleted: () {
-                          setDialogState(() {
-                            selectedContacts.removeAt(idx);
-                          });
-                        },
-                      );
-                    }).toList(),
-                  ),
-                  const Divider(),
-                ] else
-                  const Text(
-                    'Tap repeaters/rooms to add them to the path:',
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                const SizedBox(height: 8),
-                if (validContacts.isNotEmpty)
-                  Flexible(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: validContacts.length,
-                      itemBuilder: (context, index) {
-                        final contact = validContacts[index];
-                        final isSelected = selectedContacts.contains(contact);
-
-                        return ListTile(
-                        dense: true,
-                        leading: CircleAvatar(
-                          radius: 16,
-                          backgroundColor: isSelected ? Colors.green : (contact.type == 2 ? Colors.blue : Colors.purple),
-                          child: Icon(
-                            contact.type == 2 ? Icons.router : Icons.meeting_room,
-                            size: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        title: Text(contact.name, style: const TextStyle(fontSize: 14)),
-                        subtitle: Text(
-                          '${contact.typeLabel} • ${contact.publicKeyHex.substring(0, 8)}',
-                          style: const TextStyle(fontSize: 10),
-                        ),
-                        trailing: isSelected
-                            ? const Icon(Icons.check_circle, color: Colors.green)
-                            : const Icon(Icons.add_circle_outline),
-                        onTap: () {
-                          setDialogState(() {
-                            if (isSelected) {
-                              selectedContacts.remove(contact);
-                            } else {
-                              selectedContacts.add(contact);
-                            }
-                          });
-                        },
-                      );
-                    },
-                  ),
-                  ),
-              ],
-            ),
-          ),
-          actions: [
-            if (selectedContacts.isNotEmpty)
-              TextButton(
-                onPressed: () {
-                  setDialogState(() {
-                    selectedContacts.clear();
-                  });
-                },
-                child: const Text('Clear'),
-              ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: selectedContacts.isEmpty
-                  ? null
-                  : () async {
-                      // Build path bytes from selected contacts (prefix byte of each pub key)
-                      final pathBytesList = <int>[];
-                      for (final contact in selectedContacts) {
-                        if (contact.publicKeyHex.length >= 2) {
-                          try {
-                            pathBytesList.add(int.parse(contact.publicKeyHex.substring(0, 2), radix: 16));
-                          } catch (e) {
-                            // Skip invalid hex
-                          }
-                        }
-                      }
-
-                      if (pathBytesList.isNotEmpty) {
-                        await connector.setContactPath(
-                          widget.contact,
-                          Uint8List.fromList(pathBytesList),
-                          pathBytesList.length,
-                        );
-
-                        final pathIds = selectedContacts
-                            .map((c) => c.publicKeyHex.substring(0, 8))
-                            .join(',');
-
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Custom path set: $pathIds'),
-                              duration: const Duration(seconds: 2),
-                            ),
-                          );
-                          Navigator.pop(context);
-                        }
-                      }
-                    },
-              child: const Text('Set Path'),
-            ),
-          ],
-        ),
-      ),
+    final result = await PathSelectionDialog.show(
+      context,
+      availableContacts: availableContacts,
+      initialPath: pathForInput.isEmpty ? null : pathForInput,
+      title: 'Set Custom Path',
+      currentPathLabel: currentPathLabel,
+      onRefresh: connector.isConnected ? connector.getContacts : null,
     );
+
+    appLogger.info('PathSelectionDialog returned: ${result?.length ?? 0} bytes, mounted: $mounted', tag: 'ChatScreen');
+
+    if (result == null) {
+      appLogger.info('PathSelectionDialog was cancelled or returned null', tag: 'ChatScreen');
+      return;
+    }
+
+    if (!mounted) {
+      appLogger.warn('Widget not mounted after dialog, cannot set path', tag: 'ChatScreen');
+      return;
+    }
+
+    appLogger.info('Calling setPathOverride for ${widget.contact.name}', tag: 'ChatScreen');
+    await connector.setPathOverride(
+      widget.contact,
+      pathLen: result.length,
+      pathBytes: result,
+    );
+    appLogger.info('setPathOverride completed', tag: 'ChatScreen');
+
+    if (!mounted) return;
+    await _notifyPathSet(connector, widget.contact, result, result.length);
   }
+
 
   void _openMessagePath(Message message) {
     final connector = context.read<MeshCoreConnector>();

@@ -10,6 +10,8 @@ import '../models/channel.dart';
 import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/route_transitions.dart';
+import '../widgets/battery_indicator.dart';
+import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../widgets/unread_badge.dart';
@@ -17,6 +19,13 @@ import 'channel_chat_screen.dart';
 import 'contacts_screen.dart';
 import 'map_screen.dart';
 import 'settings_screen.dart';
+
+enum ChannelSortOption {
+  manual,
+  name,
+  latestMessages,
+  unread,
+}
 
 class ChannelsScreen extends StatefulWidget {
   final bool hideBackButton;
@@ -32,12 +41,24 @@ class ChannelsScreen extends StatefulWidget {
 
 class _ChannelsScreenState extends State<ChannelsScreen>
     with DisconnectNavigationMixin {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+  Timer? _searchDebounce;
+  ChannelSortOption _sortOption = ChannelSortOption.manual;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<MeshCoreConnector>().getChannels();
     });
+  }
+
+  @override
+  void dispose() {
+    _searchDebounce?.cancel();
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -55,10 +76,16 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       canPop: allowBack,
       child: Scaffold(
         appBar: AppBar(
+          leading: BatteryIndicator(connector: connector),
           title: const Text('Channels'),
           centerTitle: true,
-          automaticallyImplyLeading: !widget.hideBackButton && allowBack,
+          automaticallyImplyLeading: false,
           actions: [
+            IconButton(
+              icon: const Icon(Icons.bluetooth_disabled),
+              tooltip: 'Disconnect',
+              onPressed: () => _disconnect(context),
+            ),
             IconButton(
               icon: const Icon(Icons.tune),
               tooltip: 'Settings',
@@ -67,57 +94,154 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                 MaterialPageRoute(builder: (context) => const SettingsScreen()),
               ),
             ),
-            IconButton(
-              icon: const Icon(Icons.bluetooth_disabled),
-              tooltip: 'Disconnect',
-              onPressed: () => _disconnect(context),
-            ),
-            IconButton(
-              icon: const Icon(Icons.refresh),
-              onPressed: () => context.read<MeshCoreConnector>().getChannels(),
-            ),
           ],
         ),
-        body: () {
-          if (connector.isLoadingChannels) {
-            return const Center(child: CircularProgressIndicator());
-          }
+        body: RefreshIndicator(
+          onRefresh: () async {
+            await context.read<MeshCoreConnector>().getChannels();
+          },
+          child: () {
+            if (connector.isLoadingChannels) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          final channels = connector.channels;
+            final channels = connector.channels;
 
-          if (channels.isEmpty) {
-            return EmptyState(
-              icon: Icons.tag,
-              title: 'No channels configured',
-              action: FilledButton.icon(
-                onPressed: () => _addPublicChannel(context, connector),
-                icon: const Icon(Icons.public),
-                label: const Text('Add Public Channel'),
-              ),
-            );
-          }
-
-          return ReorderableListView.builder(
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 88),
-            buildDefaultDragHandles: false,
-            itemCount: channels.length,
-            onReorder: (oldIndex, newIndex) {
-              if (newIndex > oldIndex) newIndex -= 1;
-              final reordered = List<Channel>.from(channels);
-              final item = reordered.removeAt(oldIndex);
-              reordered.insert(newIndex, item);
-              unawaited(
-                connector.setChannelOrder(
-                  reordered.map((c) => c.index).toList(),
-                ),
+            if (channels.isEmpty) {
+              return ListView(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height - 200,
+                    child: EmptyState(
+                      icon: Icons.tag,
+                      title: 'No channels configured',
+                      action: FilledButton.icon(
+                        onPressed: () => _addPublicChannel(context, connector),
+                        icon: const Icon(Icons.public),
+                        label: const Text('Add Public Channel'),
+                      ),
+                    ),
+                  ),
+                ],
               );
-            },
-            itemBuilder: (context, index) {
-              final channel = channels[index];
-              return _buildChannelTile(context, connector, channel, index);
-            },
-          );
-        }(),
+            }
+
+            final filteredChannels = _filterAndSortChannels(channels, connector);
+
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      hintText: 'Search channels...',
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (_searchQuery.isNotEmpty)
+                            IconButton(
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                _searchController.clear();
+                                setState(() {
+                                  _searchQuery = '';
+                                });
+                              },
+                            ),
+                          _buildFilterButton(),
+                        ],
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    ),
+                    onChanged: (value) {
+                      _searchDebounce?.cancel();
+                      _searchDebounce = Timer(const Duration(milliseconds: 300), () {
+                        if (!mounted) return;
+                        setState(() {
+                          _searchQuery = value.toLowerCase();
+                        });
+                      });
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: filteredChannels.isEmpty
+                      ? ListView(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height - 300,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.search_off, size: 64, color: Colors.grey[400]),
+                                    const SizedBox(height: 16),
+                                    Text(
+                                      'No channels found',
+                                      style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : (_sortOption == ChannelSortOption.manual && _searchQuery.isEmpty)
+                          ? ReorderableListView.builder(
+                              padding: const EdgeInsets.only(
+                                left: 16,
+                                right: 16,
+                                top: 8,
+                                bottom: 88,
+                              ),
+                              buildDefaultDragHandles: false,
+                              itemCount: filteredChannels.length,
+                              onReorder: (oldIndex, newIndex) {
+                                if (newIndex > oldIndex) newIndex -= 1;
+                                final reordered = List<Channel>.from(filteredChannels);
+                                final item = reordered.removeAt(oldIndex);
+                                reordered.insert(newIndex, item);
+                                unawaited(
+                                  connector.setChannelOrder(
+                                    reordered.map((c) => c.index).toList(),
+                                  ),
+                                );
+                              },
+                              itemBuilder: (context, index) {
+                                final channel = filteredChannels[index];
+                                return _buildChannelTile(
+                                  context,
+                                  connector,
+                                  channel,
+                                  showDragHandle: true,
+                                  dragIndex: index,
+                                );
+                              },
+                            )
+                          : ListView.builder(
+                              padding: const EdgeInsets.only(
+                                left: 16,
+                                right: 16,
+                                top: 8,
+                                bottom: 88,
+                              ),
+                              itemCount: filteredChannels.length,
+                              itemBuilder: (context, index) {
+                                final channel = filteredChannels[index];
+                                return _buildChannelTile(context, connector, channel);
+                              },
+                            ),
+                ),
+              ],
+            );
+          }(),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => _showAddChannelDialog(context),
           child: const Icon(Icons.add),
@@ -137,7 +261,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     BuildContext context,
     MeshCoreConnector connector,
     Channel channel,
-    int index,
+    {
+    bool showDragHandle = false,
+    int? dragIndex,
+  }
   ) {
     final unreadCount = connector.getUnreadCountForChannel(channel);
     return Card(
@@ -179,13 +306,14 @@ class _ChannelsScreenState extends State<ChannelsScreen>
               UnreadBadge(count: unreadCount),
               const SizedBox(width: 4),
             ],
-            ReorderableDelayedDragStartListener(
-              index: index,
-              child: Icon(
-                Icons.drag_handle,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
+            if (showDragHandle && dragIndex != null)
+              ReorderableDelayedDragStartListener(
+                index: dragIndex,
+                child: Icon(
+                  Icons.drag_handle,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
-            ),
           ],
         ),
         onTap: () async {
@@ -269,6 +397,118 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   Future<void> _disconnect(BuildContext context) async {
     final connector = context.read<MeshCoreConnector>();
     await showDisconnectDialog(context, connector);
+  }
+
+  Widget _buildFilterButton() {
+    const actionSortManual = 0;
+    const actionSortName = 1;
+    const actionSortLatest = 2;
+    const actionSortUnread = 3;
+
+    return SortFilterMenu(
+      sections: [
+        SortFilterMenuSection(
+          title: 'Sort by',
+          options: [
+            SortFilterMenuOption(
+              value: actionSortManual,
+              label: 'Manual',
+              checked: _sortOption == ChannelSortOption.manual,
+            ),
+            SortFilterMenuOption(
+              value: actionSortName,
+              label: 'A-Z',
+              checked: _sortOption == ChannelSortOption.name,
+            ),
+            SortFilterMenuOption(
+              value: actionSortLatest,
+              label: 'Latest messages',
+              checked: _sortOption == ChannelSortOption.latestMessages,
+            ),
+            SortFilterMenuOption(
+              value: actionSortUnread,
+              label: 'Unread',
+              checked: _sortOption == ChannelSortOption.unread,
+            ),
+          ],
+        ),
+      ],
+      onSelected: (action) {
+        setState(() {
+          switch (action) {
+            case actionSortManual:
+              _sortOption = ChannelSortOption.manual;
+              break;
+            case actionSortLatest:
+              _sortOption = ChannelSortOption.latestMessages;
+              break;
+            case actionSortUnread:
+              _sortOption = ChannelSortOption.unread;
+              break;
+            case actionSortName:
+            default:
+              _sortOption = ChannelSortOption.name;
+              break;
+          }
+        });
+      },
+    );
+  }
+
+  List<Channel> _filterAndSortChannels(
+    List<Channel> channels,
+    MeshCoreConnector connector,
+  ) {
+    var filtered = channels.where((channel) {
+      if (_searchQuery.isEmpty) return true;
+      final label = _normalizeChannelName(channel);
+      return label.toLowerCase().contains(_searchQuery);
+    }).toList();
+
+    int compareByName(Channel a, Channel b) {
+      final nameA = _normalizeChannelName(a);
+      final nameB = _normalizeChannelName(b);
+      return nameA.toLowerCase().compareTo(nameB.toLowerCase());
+    }
+
+    switch (_sortOption) {
+      case ChannelSortOption.manual:
+        break;
+      case ChannelSortOption.latestMessages:
+        filtered.sort((a, b) {
+          final aMessages = connector.getChannelMessages(a);
+          final bMessages = connector.getChannelMessages(b);
+          final aLast = aMessages.isEmpty ? DateTime(1970) : aMessages.last.timestamp;
+          final bLast = bMessages.isEmpty ? DateTime(1970) : bMessages.last.timestamp;
+          final timeCompare = bLast.compareTo(aLast);
+          if (timeCompare != 0) return timeCompare;
+          return compareByName(a, b);
+        });
+        break;
+      case ChannelSortOption.unread:
+        filtered.sort((a, b) {
+          final aUnread = connector.getUnreadCountForChannel(a);
+          final bUnread = connector.getUnreadCountForChannel(b);
+          final unreadCompare = bUnread.compareTo(aUnread);
+          if (unreadCompare != 0) return unreadCompare;
+          return compareByName(a, b);
+        });
+        break;
+      case ChannelSortOption.name:
+        filtered.sort(compareByName);
+        break;
+    }
+
+    return filtered;
+  }
+
+  String _normalizeChannelName(Channel channel) {
+    if (channel.name.isEmpty) return 'Channel ${channel.index}';
+    final trimmed = channel.name.trim();
+    if (trimmed.startsWith('#') && trimmed.length > 1) {
+      return trimmed.substring(1);
+    }
+    return trimmed;
   }
 
   void _showAddChannelDialog(BuildContext context) {

@@ -46,6 +46,11 @@ class Contact {
   }
 
   String get pathLabel {
+    if (pathOverride != null) {
+      if (pathOverride! < 0) return 'Flood (forced)';
+      if (pathOverride == 0) return 'Direct (forced)';
+      return '$pathOverride hops (forced)';
+    }
     if (pathLength < 0) return 'Flood';
     if (pathLength == 0) return 'Direct';
     return '$pathLength hops';
@@ -83,17 +88,26 @@ class Contact {
   }
 
   String get pathIdList {
-    if (path.isEmpty) return '';
+    final pathBytes = _pathBytesForDisplay;
+    if (pathBytes.isEmpty) return '';
     final parts = <String>[];
     final groupSize = pathHashSize;
-    for (int i = 0; i < path.length; i += groupSize) {
-      final end = (i + groupSize) <= path.length ? (i + groupSize) : path.length;
-      final chunk = path.sublist(i, end);
+    for (int i = 0; i < pathBytes.length; i += groupSize) {
+      final end = (i + groupSize) <= pathBytes.length ? (i + groupSize) : pathBytes.length;
+      final chunk = pathBytes.sublist(i, end);
       parts.add(
         chunk.map((b) => b.toRadixString(16).padLeft(2, '0').toUpperCase()).join(),
       );
     }
     return parts.join(',');
+  }
+
+  Uint8List get _pathBytesForDisplay {
+    if (pathOverride != null) {
+      if (pathOverride! < 0) return Uint8List(0);
+      return pathOverrideBytes ?? Uint8List(0);
+    }
+    return path;
   }
 
   static Contact? fromFrame(Uint8List data) {

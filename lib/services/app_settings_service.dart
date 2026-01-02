@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import '../models/app_settings.dart';
 import '../storage/prefs_manager.dart';
+import '../utils/app_logger.dart';
 
 class AppSettingsService extends ChangeNotifier {
   static const String _settingsKey = 'app_settings';
@@ -110,6 +111,12 @@ class AppSettingsService extends ChangeNotifier {
 
   Future<void> setThemeMode(String value) async {
     await updateSettings(_settings.copyWith(themeMode: value));
+  }
+
+  Future<void> setAppDebugLogEnabled(bool value) async {
+    await updateSettings(_settings.copyWith(appDebugLogEnabled: value));
+    // Update the global logger
+    appLogger.setEnabled(value);
   }
 
   Future<void> setBatteryChemistryForDevice(String deviceId, String chemistry) async {
