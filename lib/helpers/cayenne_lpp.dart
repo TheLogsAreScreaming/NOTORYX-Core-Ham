@@ -188,4 +188,75 @@ class CayenneLpp {
 
     return telemetry;
   }
+
+  static List<Map<String, dynamic>> parseByChannel(Uint8List bytes) {
+    final buffer = BufferReader(bytes);
+    final Map<int, Map<String, dynamic>> channels = {};
+
+    while (buffer.getRemainingBytesCount() >= 2) {
+      final channel = buffer.readUInt8();
+      final type = buffer.readUInt8();
+
+      // Optional: stop on padding (00 00)
+      if (channel == 0 && type == 0) {
+        break;
+      }
+
+      final channelData = channels.putIfAbsent(channel, () => {
+        'channel': channel,
+        'values': <String, dynamic>{},
+      });
+
+      switch (type) {
+        case lppGenericSensor:
+          channelData['values']['generic'] = buffer.readUInt32BE();
+          break;
+        case lppLuminosity:
+          channelData['values']['luminosity'] = buffer.readUInt16BE();
+          break;
+        case lppPresence:
+          channelData['values']['presence'] = buffer.readUInt8() != 0;
+          break;
+        case lppTemperature:
+          channelData['values']['temperature'] = buffer.readInt16BE() / 10.0;
+          break;
+        case lppRelativeHumidity:
+          channelData['values']['humidity'] = buffer.readUInt8() / 2.0;
+          break;
+        case lppBarometricPressure:
+          channelData['values']['pressure'] = buffer.readUInt16BE() / 10.0;
+          break;
+        case lppVoltage:
+          channelData['values']['voltage'] = buffer.readInt16BE() / 100.0;
+          break;
+        case lppCurrent:
+          channelData['values']['current'] = buffer.readInt16BE() / 1000.0;
+          break;
+        case lppPercentage:
+          channelData['values']['percentage'] = buffer.readUInt8();
+          break;
+        case lppConcentration:
+          channelData['values']['concentration'] = buffer.readUInt16BE();
+          break;
+        case lppPower:
+          channelData['values']['power'] = buffer.readUInt16BE();
+          break;
+        case lppGps:
+          channelData['values']['gps'] = {
+            'latitude': buffer.readInt24BE() / 10000.0,
+            'longitude': buffer.readInt24BE() / 10000.0,
+            'altitude': buffer.readInt24BE() / 100.0,
+          };
+          break;
+        // Add more types as needed...
+        default:
+          // Unknown type: skip or handle error?
+          continue;
+      }
+    }
+
+  final List<Map<String, dynamic>> channelsOut = channels.values.toList();
+  channelsOut.sort((a, b) => a['channel'].compareTo(b['channel']));
+  return channelsOut;
+  }
 }

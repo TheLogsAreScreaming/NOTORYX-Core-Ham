@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,12 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
   int _timeEstment = 0;
 
   bool _isLoading = false;
+  bool _isLoaded = false;
   Timer? _statusTimeout;
   StreamSubscription<Uint8List>? _frameSubscription;
   RepeaterCommandService? _commandService;
   PathSelection? _pendingStatusSelection;
+  List<Map<String, dynamic>>? _parsedTelemetry;
 
   @override
   void initState() {
@@ -68,9 +71,13 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
 }
 
   void _handleStatusResponse(BuildContext context, Uint8List frame) {
+    setState(() {
+      _isLoading = false;
+      _isLoaded = true; 
+      _parsedTelemetry = CayenneLpp.parseByChannel(frame);
+    });
 
-    final parsedTelemetry = CayenneLpp.parse(frame);
-    for (final entry in parsedTelemetry) {
+    for (final entry in _parsedTelemetry![1]!.values) {
       print('Telemetry - Channel: ${entry['channel']}, Type: ${entry['type']}, Value: ${entry['value']}');
     }
 
@@ -84,6 +91,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     if (!mounted) return;
     setState(() {
       _isLoading = false;
+      _isLoaded = true;
     });
   }
 
@@ -99,6 +107,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
 
     setState(() {
       _isLoading = true;
+      _isLoaded = false;
     });
     try {
       final connector = Provider.of<MeshCoreConnector>(context, listen: false);
@@ -121,6 +130,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
         if (!mounted) return;
         setState(() {
           _isLoading = false;
+          _isLoaded = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -134,6 +144,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
       if (mounted) {
         setState(() {
           _isLoading = false;
+          _isLoaded = false;
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
@@ -146,6 +157,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     } finally {
       setState(() {
         _isLoading = false;
+        _isLoaded = false;
       });
     }
   }
@@ -179,7 +191,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('Repeater Status'),
+            const Text('Repeater Telemetry', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             Text(
               repeater.name,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
@@ -256,16 +268,97 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              Text("Not implemented yet", style: Theme.of(context).textTheme.bodyMedium),
-              //_buildSystemInfoCard(),
-              //const SizedBox(height: 16),
-              //_buildRadioStatsCard(),
-              //const SizedBox(height: 16),
-              //_buildPacketStatsCard(),
+              for (final entry in _parsedTelemetry ?? [])
+                _buildChannelInfoCard(entry['values'], 'Channel ${entry['channel']}', entry['channel']),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildChannelInfoCard(Map<String, dynamic> channelData, String title, int channel) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.info_outline, color: Theme.of(context).primaryColor),
+                const SizedBox(width: 8),
+                Text(
+                  title,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const Divider(),
+            for (final entry in channelData.entries)
+              if(entry.key == 'voltage' && channel == 1)
+                _buildInfoRow('Battery', _batteryText(entry.value))
+              else if(entry.key == 'voltage')
+                _buildInfoRow('Voltage', '${entry.value}V')
+              else if(entry.key == 'temperature' && channel == 1)
+                _buildInfoRow('MCU Temperature', _TemperatureText(entry.value))
+              else if(entry.key == 'temperature')
+                _buildInfoRow('Temperature', _TemperatureText(entry.value))
+              else if(entry.key == 'current' && channel == 1)
+                _buildInfoRow('Current', '${entry.value}A')
+              else
+              _buildInfoRow(entry.key, entry.value.toString()),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 130,
+            child: Text(
+              label,
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: const TextStyle(fontWeight: FontWeight.w400),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _batteryText(double? _batteryMv) {
+    if (_batteryMv == null) return '—';
+    final percent = _batteryPercentFromMv(_batteryMv);
+    final volts = _batteryMv.toStringAsFixed(2);
+    return '$percent% / ${volts}V';
+  }
+
+  int _batteryPercentFromMv(double millivolts) {
+    const minMv = 2.800;
+    const maxMv = 4.200;
+    if (millivolts <= minMv) return 0;
+    if (millivolts >= maxMv) return 100;
+    return (((millivolts - minMv) * 100) / (maxMv - minMv)).round();
+  }
+
+  String _TemperatureText(double? tempC) {
+    if (tempC == null) return '—';
+    final tempF = (tempC * 9 / 5) + 32;
+    return '${tempC.toStringAsFixed(1)}°C / ${tempF.toStringAsFixed(1)}°F';
   }
 }
