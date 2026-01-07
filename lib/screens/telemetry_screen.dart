@@ -36,6 +36,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
 
   bool _isLoading = false;
   bool _isLoaded = false;
+  bool _hasData = false;
   Timer? _statusTimeout;
   StreamSubscription<Uint8List>? _frameSubscription;
   RepeaterCommandService? _commandService;
@@ -49,6 +50,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     _commandService = RepeaterCommandService(connector);
     _setupMessageListener();
     _loadTelemetry();
+    _hasData = false;
   }
 
   void _setupMessageListener() {
@@ -77,7 +79,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Received status response (not implemented).'),
+        content: Text('Received Telemetry Data'),
         backgroundColor: Colors.green,
       )
     );
@@ -86,6 +88,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     setState(() {
       _isLoading = false;
       _isLoaded = true;
+      _hasData = true;
     });
   }
 
@@ -128,7 +131,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
         });
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Status request timed out.'),
+            content: Text('Telemetry request timed out.'),
             backgroundColor: Colors.red,
           ),
         );
@@ -143,16 +146,11 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error loading status: $e'),
+            content: Text('Error loading telemetry: $e'),
             backgroundColor: Colors.red,
           ),
         );
       }
-    } finally {
-      setState(() {
-        _isLoading = false;
-        _isLoaded = false;
-      });
     }
   }
 
@@ -262,16 +260,16 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              if (_isLoaded && !(_parsedTelemetry == null || _parsedTelemetry!.isEmpty))
-                for (final entry in _parsedTelemetry ?? [])
-                  _buildChannelInfoCard(entry['values'], 'Channel ${entry['channel']}', entry['channel']),
-              if (!_isLoaded && (_parsedTelemetry == null || _parsedTelemetry!.isEmpty))
+              if (!_isLoaded && !_hasData && (_parsedTelemetry == null || _parsedTelemetry!.isEmpty))
                 const Center(
                   child: Text(
                     'No telemetry data available.',
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                 ),
+              if (_isLoaded || _hasData&& !(_parsedTelemetry == null || _parsedTelemetry!.isEmpty))
+                for (final entry in _parsedTelemetry ?? [])
+                  _buildChannelInfoCard(entry['values'], 'Channel ${entry['channel']}', entry['channel']),
             ],
           ),
         ),
