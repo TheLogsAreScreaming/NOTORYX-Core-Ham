@@ -22,6 +22,7 @@ import '../widgets/room_login_dialog.dart';
 import '../widgets/unread_badge.dart';
 import 'channels_screen.dart';
 import 'chat_screen.dart';
+import 'room_chat_screen.dart';
 import 'map_screen.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
@@ -450,7 +451,7 @@ class _ContactsScreenState extends State<ContactsScreen>
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChatScreen(contact: room),
+              builder: (context) => RoomChatScreen(contact: room),
             ),
           );
         },
