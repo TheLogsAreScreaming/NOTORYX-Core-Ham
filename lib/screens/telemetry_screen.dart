@@ -60,17 +60,17 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     _frameSubscription = connector.receivedFrames.listen((frame) {
       if (frame.isEmpty) return;
 
-    if(frame[0] == respCodeSent){
-      _tagData = frame.sublist(2, 6);
-      _timeEstment = frame.buffer.asByteData().getUint32(6, Endian.little);
-    }
+      if (frame[0] == respCodeSent) {
+        _tagData = frame.sublist(2, 6);
+        _timeEstment = frame.buffer.asByteData().getUint32(6, Endian.little);
+      }
 
-    // Check if it's a binary response
-    if (frame[0] == pushCodeBinaryResponse && listEquals(frame.sublist(2, 6), _tagData)) {
-      _handleStatusResponse(context, frame.sublist(6));
-    }
-  });
-}
+      // Check if it's a binary response
+      if (frame[0] == pushCodeBinaryResponse && listEquals(frame.sublist(2, 6), _tagData)) {
+        _handleStatusResponse(context, frame.sublist(6));
+      }
+    });
+  }
 
   void _handleStatusResponse(BuildContext context, Uint8List frame) {
     setState(() {
@@ -267,7 +267,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                 ),
-              if (_isLoaded || _hasData&& !(_parsedTelemetry == null || _parsedTelemetry!.isEmpty))
+              if ((_isLoaded || _hasData) && _parsedTelemetry != null && _parsedTelemetry!.isNotEmpty)
                 for (final entry in _parsedTelemetry ?? [])
                   _buildChannelInfoCard(entry['values'], 'Channel ${entry['channel']}', entry['channel']),
             ],
@@ -296,18 +296,18 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
             ),
             const Divider(),
             for (final entry in channelData.entries)
-              if(entry.key == 'voltage' && channel == 1)
+              if (entry.key == 'voltage' && channel == 1)
                 _buildInfoRow('Battery', _batteryText(entry.value))
-              else if(entry.key == 'voltage')
+              else if (entry.key == 'voltage')
                 _buildInfoRow('Voltage', '${entry.value}V')
-              else if(entry.key == 'temperature' && channel == 1)
-                _buildInfoRow('MCU Temperature', _TemperatureText(entry.value))
-              else if(entry.key == 'temperature')
-                _buildInfoRow('Temperature', _TemperatureText(entry.value))
-              else if(entry.key == 'current' && channel == 1)
+              else if (entry.key == 'temperature' && channel == 1)
+                _buildInfoRow('MCU Temperature', _temperatureText(entry.value))
+              else if (entry.key == 'temperature')
+                _buildInfoRow('Temperature', _temperatureText(entry.value))
+              else if (entry.key == 'current' && channel == 1)
                 _buildInfoRow('Current', '${entry.value}A')
               else
-              _buildInfoRow(entry.key, entry.value.toString()),
+                _buildInfoRow(entry.key, entry.value.toString()),
           ],
         ),
       ),
@@ -356,7 +356,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     return (((millivolts - minMv) * 100) / (maxMv - minMv)).round();
   }
 
-  String _TemperatureText(double? tempC) {
+  String _temperatureText(double? tempC) {
     if (tempC == null) return '—';
     final tempF = (tempC * 9 / 5) + 32;
     return '${tempC.toStringAsFixed(1)}°C / ${tempF.toStringAsFixed(1)}°F';

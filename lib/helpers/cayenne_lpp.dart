@@ -1,6 +1,5 @@
 import 'dart:typed_data';
-import 'buffer_reader.dart';
-import 'buffer_writer.dart';
+import '../connector/meshcore_protocol.dart';
 
 class CayenneLpp {
   static const int lppDigitalInput = 0; // 1 byte
@@ -84,7 +83,7 @@ class CayenneLpp {
     final buffer = BufferReader(bytes);
     final telemetry = <Map<String, dynamic>>[];
 
-    while (buffer.getRemainingBytesCount() >= 2) {
+    while (buffer.remaining >= 2) {
       final channel = buffer.readUInt8();
       final type = buffer.readUInt8();
 
@@ -193,7 +192,7 @@ class CayenneLpp {
     final buffer = BufferReader(bytes);
     final Map<int, Map<String, dynamic>> channels = {};
 
-    while (buffer.getRemainingBytesCount() >= 2) {
+    while (buffer.remaining >= 2) {
       final channel = buffer.readUInt8();
       final type = buffer.readUInt8();
 
