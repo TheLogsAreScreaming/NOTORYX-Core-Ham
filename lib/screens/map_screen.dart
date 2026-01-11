@@ -17,7 +17,6 @@ import '../widgets/quick_switch_bar.dart';
 import 'channels_screen.dart';
 import 'chat_screen.dart';
 import 'contacts_screen.dart';
-//import 'repeater_hub_screen.dart';
 import '../widgets/repeater_login_dialog.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
@@ -617,13 +616,14 @@ class _MapScreenState extends State<MapScreen> {
               },
               child: const Text('Open Chat'),
             ),
-            if(contact.type == advTypeRepeater)
-            TextButton(
-              onPressed: () {
-                _showRepeaterLogin(context, contact);
-              },
-              child: const Text('Manage Repeater'),
-            ),
+            if (contact.type == advTypeRepeater)
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _showRepeaterLogin(context, contact);
+                },
+                child: const Text('Manage Repeater'),
+              ),
         ],
       ),
     );
