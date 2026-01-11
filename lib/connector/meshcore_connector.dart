@@ -1996,14 +1996,14 @@ class MeshCoreConnector extends ChangeNotifier {
         final settings = _appSettingsService!.settings;
         if (settings.notificationsEnabled && settings.notifyOnNewMessage) {
           // Find the contact name
-          if(contact?.type == advTypeChat) { 
+          if (contact?.type == advTypeChat) {
             _notificationService.showMessageNotification(
               contactName: contact?.name ?? 'Unknown',
               message: message.text,
               contactId: message.senderKeyHex,
               badgeCount: getTotalUnreadCount(),
             );
-          }else if(contact?.type == advTypeRoom) {
+          } else if (contact?.type == advTypeRoom) {
             _notificationService.showMessageNotification(
               contactName: contact?.name ?? 'Unknown Room',
               message: message.text.substring(4),

@@ -681,7 +681,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                   _showRepeaterLogin(context, contact);
                 },
               )
-            else if(isRoom)
+            else if (isRoom)
               ListTile(
                 leading: const Icon(Icons.room, color: Colors.blue),
                 title: const Text('Room Login'),

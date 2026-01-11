@@ -87,7 +87,9 @@ class MessageStore {
       reactions: (json['reactions'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(key, value as int),
       ) ?? {},
-      fourByteRoomContactKey: Uint8List.fromList(base64Decode(json['fourByteRoomContactKey'] as String)),
+      fourByteRoomContactKey: json['fourByteRoomContactKey'] != null
+          ? Uint8List.fromList(base64Decode(json['fourByteRoomContactKey'] as String))
+          : null,
     );
   }
 }

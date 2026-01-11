@@ -208,7 +208,7 @@ class _ChatScreenState extends State<ChatScreen> {
         Contact contact = widget.contact;
         final message = messages[index];
         String fourByteHex = '';
-        if(widget.contact.type == advTypeRoom) {
+        if (widget.contact.type == advTypeRoom) {
           contact = _resolveContactFrom4Bytes(
             connector,
             message.fourByteRoomContactKey.isEmpty ? Uint8List.fromList([0, 0, 0, 0]) : message.fourByteRoomContactKey,
@@ -763,9 +763,18 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _openMessagePath(Message message, Contact contact) {
     final connector = context.read<MeshCoreConnector>();
-    final fourByteHex = message.fourByteRoomContactKey.map((b) => b.toRadixString(16).padLeft(2, '0')).join().toUpperCase();
-    final senderName =
-        message.isOutgoing ? (connector.selfName ?? 'Me') : widget.contact.type == advTypeRoom ? "${contact.name} [$fourByteHex]" : widget.contact.name;
+    final fourByteHex = message.fourByteRoomContactKey
+        .map((b) => b.toRadixString(16).padLeft(2, '0'))
+        .join()
+        .toUpperCase();
+    final String senderName;
+    if (message.isOutgoing) {
+      senderName = connector.selfName ?? 'Me';
+    } else if (widget.contact.type == advTypeRoom) {
+      senderName = "${contact.name} [$fourByteHex]";
+    } else {
+      senderName = widget.contact.name;
+    }
     final pathMessage = ChannelMessage(
       senderKey: null,
       senderName: senderName,
@@ -826,11 +835,12 @@ class _ChatScreenState extends State<ChatScreen> {
                   _retryMessage(message);
                 },
               ),
-            if(widget.contact.type == advTypeRoom)
+            if (widget.contact.type == advTypeRoom)
               ListTile(
                 leading: const Icon(Icons.chat),
                 title: const Text('Open Chat'),
                 onTap: () {
+                  Navigator.pop(sheetContext);
                   _openChat(context, contact);
                 },
               ),
@@ -977,20 +987,12 @@ class _MessageBubble extends StatelessWidget {
                         fallbackTextColor: textColor.withValues(alpha: 0.7),
                       )
                     else
-                      if(!isOutgoing)
-                        Text(
-                          messageText,
-                          style: TextStyle(
-                            color: textColor,
-                          ),
+                      Text(
+                        messageText,
+                        style: TextStyle(
+                          color: textColor,
                         ),
-                      if(isOutgoing)
-                        Text(
-                          message.text,
-                          style: TextStyle(
-                            color: textColor,
-                          ),
-                        ),
+                      ),
                     if (isOutgoing && message.retryCount > 0) ...[
                       const SizedBox(height: 4),
                       Text(
