@@ -211,11 +211,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_privacyModeSubtitle =>
-      'Cacher le nom/l\'emplacement dans les publicités';
+      'Cacher le nom/l\'emplacement dans les annonces';
 
   @override
   String get settings_privacyModeToggle =>
-      'Activer le mode confidentialité pour masquer votre nom et votre localisation dans les publicités.';
+      'Activer le mode confidentialité pour masquer votre nom et votre localisation dans les annonces.';
 
   @override
   String get settings_privacyModeEnabled => 'Mode de confidentialité activé';
@@ -228,11 +228,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_actions => 'Actions';
 
   @override
-  String get settings_sendAdvertisement => 'Envoyer la publicité';
+  String get settings_sendAdvertisement => 'Envoyer l\'annnonce';
 
   @override
   String get settings_sendAdvertisementSubtitle =>
-      'Présence diffusée maintenant';
+      'Annonce diffusée maintenant';
 
   @override
   String get settings_advertisementSent => 'Annonce envoyée';
@@ -438,7 +438,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get appSettings_enableNotificationsSubtitle =>
-      'Recevoir des notifications pour les messages et les publicités';
+      'Recevoir des notifications pour les messages et les annonces';
 
   @override
   String get appSettings_notificationPermissionDenied =>
@@ -1771,13 +1771,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_privacyModeSubtitle =>
-      'Cacher le nom/l\'emplacement dans les publicités';
+      'Cacher le nom/l\'emplacement dans les annonces';
 
   @override
-  String get repeater_advertisementSettings => 'Paramètres de Publicité';
+  String get repeater_advertisementSettings => 'Paramètres d\'annonce';
 
   @override
-  String get repeater_localAdvertInterval => 'Intervalle Publicité Locale';
+  String get repeater_localAdvertInterval => 'Intervalle d\'annonce Locale';
 
   @override
   String repeater_localAdvertIntervalMinutes(int minutes) {
@@ -1786,7 +1786,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_floodAdvertInterval =>
-      'Intervalle de Publicité Inondation';
+      'Intervalle d\'annonce à tout le réseau';
 
   @override
   String repeater_floodAdvertIntervalHours(int hours) {
@@ -1886,7 +1886,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_refreshAdvertisementSettings =>
-      'Rafraîchir les Paramètres de la Publicité';
+      'Rafraîchir les Paramètres d\'annonce';
 
   @override
   String repeater_refreshed(String label) {
@@ -2026,7 +2026,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Définit/met à jour le mot de passe de l\'invité. (pour les répéteurs, les connexions d\'invités peuvent envoyer la requête \"Get Stats\")';
 
   @override
-  String get repeater_cliHelpSetName => 'Définit le nom de la publicité.';
+  String get repeater_cliHelpSetName => 'Définit le nom de l\’annonce.';
 
   @override
   String get repeater_cliHelpSetLat =>
@@ -2101,7 +2101,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_cliHelpNeighbors =>
-      'Affiche une liste d\'autres nœuds répétiteurs entendus via des publicités sans relais. Chaque ligne est id-préfixe-hexadécimal:timestamp:snr-fois-4';
+      'Affiche une liste d\'autres nœuds répétiteurs entendus via des annonces sans relais. Chaque ligne est id-préfixe-hexadécimal:timestamp:snr-fois-4';
 
   @override
   String get repeater_cliHelpNeighborRemove =>

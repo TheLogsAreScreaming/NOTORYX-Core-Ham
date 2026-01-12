@@ -91,12 +91,12 @@
   "settings_latitude": "Latitude",
   "settings_longitude": "Longitude",
   "settings_privacyMode": "Mode de confidentialité",
-  "settings_privacyModeSubtitle": "Cacher le nom/l'emplacement dans les publicités",
-  "settings_privacyModeToggle": "Activer le mode confidentialité pour masquer votre nom et votre localisation dans les publicités.",
+  "settings_privacyModeSubtitle": "Cacher le nom/l'emplacement dans les annonces",
+  "settings_privacyModeToggle": "Activer le mode confidentialité pour masquer votre nom et votre localisation dans les annonces.",
   "settings_privacyModeEnabled": "Mode de confidentialité activé",
   "settings_privacyModeDisabled": "Mode de confidentialité désactivé",
   "settings_actions": "Actions",
-  "settings_sendAdvertisement": "Envoyer la publicité",
+  "settings_sendAdvertisement": "S'annoncer",
   "settings_sendAdvertisementSubtitle": "Présence diffusée maintenant",
   "settings_advertisementSent": "Annonce envoyée",
   "settings_syncTime": "Temps de synchronisation",
@@ -176,7 +176,7 @@
   "appSettings_languageBg": "Български",
   "appSettings_notifications": "Notifications",
   "appSettings_enableNotifications": "Activer les Notifications",
-  "appSettings_enableNotificationsSubtitle": "Recevoir des notifications pour les messages et les publicités",
+  "appSettings_enableNotificationsSubtitle": "Recevoir des notifications pour les messages et les annonces",
   "appSettings_notificationPermissionDenied": "Permission de notification refusée",
   "appSettings_notificationsEnabled": "Notifications activées",
   "appSettings_notificationsDisabled": "Notifications désactivées",
@@ -990,9 +990,9 @@
   "repeater_guestAccess": "Accès Invité",
   "repeater_guestAccessSubtitle": "Autoriser l'accès invité en lecture seule",
   "repeater_privacyMode": "Mode de confidentialité",
-  "repeater_privacyModeSubtitle": "Cacher le nom/l'emplacement dans les publicités",
-  "repeater_advertisementSettings": "Paramètres de Publicité",
-  "repeater_localAdvertInterval": "Intervalle Publicité Locale",
+  "repeater_privacyModeSubtitle": "Cacher le nom/l'emplacement dans les annonces",
+  "repeater_advertisementSettings": "Paramètres d'annonces",
+  "repeater_localAdvertInterval": "Intervalle des annonces Locale (0 saut)",
   "repeater_localAdvertIntervalMinutes": "{minutes} minutes",
   "@repeater_localAdvertIntervalMinutes": {
     "placeholders": {
@@ -1001,7 +1001,7 @@
       }
     }
   },
-  "repeater_floodAdvertInterval": "Intervalle de Publicité Inondation",
+  "repeater_floodAdvertInterval": "Intervalle des annonces à tout le réseau (flood)",
   "repeater_floodAdvertIntervalHours": "{hours} heures",
   "@repeater_floodAdvertIntervalHours": {
     "placeholders": {
@@ -1055,7 +1055,7 @@
   "repeater_refreshPacketForwarding": "Rafraîchir le routage des paquets",
   "repeater_refreshGuestAccess": "Rafraîchir l'accès invité",
   "repeater_refreshPrivacyMode": "Rafraîchir le Mode Confidentialité",
-  "repeater_refreshAdvertisementSettings": "Rafraîchir les Paramètres de la Publicité",
+  "repeater_refreshAdvertisementSettings": "Rafraîchir les Paramètres des annonces",
   "repeater_refreshed": "{label} rafraîchi",
   "@repeater_refreshed": {
     "placeholders": {
@@ -1115,7 +1115,7 @@
   "repeater_cliHelpSetAdvertInterval": "Définit l'intervalle du minuteur pour envoyer un paquet d'annonce local (sans relais). Définir sur 0 pour désactiver.",
   "repeater_cliHelpSetFloodAdvertInterval": "Définit l'intervalle du minuteur en heures pour envoyer un paquet d'annonce massive. Définir sur 0 pour désactiver.",
   "repeater_cliHelpSetGuestPassword": "Définit/met à jour le mot de passe de l'invité. (pour les répéteurs, les connexions d'invités peuvent envoyer la requête \"Get Stats\")",
-  "repeater_cliHelpSetName": "Définit le nom de la publicité.",
+  "repeater_cliHelpSetName": "Définit le nom de l'annonce.",
   "repeater_cliHelpSetLat": "Définit la latitude de la carte des annonces. (degrés décimaux)",
   "repeater_cliHelpSetLon": "Définit la longitude de la carte de l'annonce. (degrés décimaux)",
   "repeater_cliHelpSetRadio": "Définit complètement de nouveaux paramètres de radio et les enregistre dans les préférences. Nécessite une commande \"redémarrage\" pour les appliquer.",
@@ -1134,7 +1134,7 @@
   "repeater_cliHelpLogStart": "Démarre l'enregistrement des paquets dans le système de fichiers.",
   "repeater_cliHelpLogStop": "Arrêter de journaliser les paquets vers le système de fichiers.",
   "repeater_cliHelpLogErase": "Supprime les journaux de paquets du système de fichiers.",
-  "repeater_cliHelpNeighbors": "Affiche une liste d'autres nœuds répétiteurs entendus via des publicités sans relais. Chaque ligne est id-préfixe-hexadécimal:timestamp:snr-fois-4",
+  "repeater_cliHelpNeighbors": "Affiche une liste d'autres nœuds répétiteurs entendus via des annonces sans relais. Chaque ligne est id-préfixe-hexadécimal:timestamp:snr-fois-4",
   "repeater_cliHelpNeighborRemove": "Supprime la première entrée correspondante (par préfixe de clé publique (hexadécimal)) de la liste des voisins.",
   "repeater_cliHelpRegion": "(série uniquement) Liste toutes les régions définies et les autorisations de débordement actuelles.",
   "repeater_cliHelpRegionLoad": "REMARQUE : il s'agit d'une invocation multi-commande spéciale. Chaque commande subséquente est un nom de région (indenté avec des espaces pour indiquer la hiérarchie parent, avec un minimum d'un espace). Terminé par l'envoi d'une ligne vide/commande.",
