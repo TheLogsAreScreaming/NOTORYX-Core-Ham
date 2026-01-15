@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+import 'dart:math';
 
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
@@ -70,6 +71,25 @@ class _MapScreenState extends State<MapScreen> {
     });
   }
 
+  double _standardDeviation(List<double> values) {
+    if (values.length <= 1) {
+      return 0.0;
+    }
+
+    final mean = values.reduce((a, b) => a + b) / values.length;
+
+    double sumSquaredDiff = 0.0;
+    for (final value in values) {
+      final diff = value - mean;
+      sumSquaredDiff += diff * diff;
+    }
+
+    // Sample standard deviation (n-1) — most appropriate here
+    final variance = sumSquaredDiff / (values.length - 1);
+
+    return sqrt(variance);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer2<MeshCoreConnector, AppSettingsService>(
@@ -116,19 +136,37 @@ class _MapScreenState extends State<MapScreen> {
             _isSelectingPoi ||
             highlightPosition != null;
         if (contactsWithLocation.isNotEmpty || sharedMarkers.isNotEmpty) {
-          double avgLat = contactsWithLocation
-              .map((c) => c.latitude!)
-              .fold<double>(0, (sum, lat) => sum + lat);
-          double avgLon = contactsWithLocation
-              .map((c) => c.longitude!)
-              .fold<double>(0, (sum, lon) => sum + lon);
-          for (final marker in sharedMarkers) {
-            avgLat += marker.position.latitude;
-            avgLon += marker.position.longitude;
-          }
-          final total = contactsWithLocation.length + sharedMarkers.length;
-          if (total > 0) {
-            center = LatLng(avgLat / total, avgLon / total);
+          double avgLat = 0.0;
+          double avgLon = 0.0;
+          final allPoints = [
+            ...contactsWithLocation.map((c) => LatLng(c.latitude!, c.longitude!)),
+            ...sharedMarkers.map((m) => m.position),
+          ];
+          if (allPoints.length >= 3) {
+            final latValues = allPoints.map((p) => p.latitude).toList();
+            final lonValues = allPoints.map((p) => p.longitude).toList();
+            
+            final latStdDev = _standardDeviation(latValues);
+            final lonStdDev = _standardDeviation(lonValues);
+            final filteredLatValues = latValues
+                .where((lat) => (lat - (latValues.reduce((a, b) => a + b) / latValues.length)).abs() <= latStdDev * 2)
+                .toList();
+            final filteredLonValues = lonValues
+                .where((lon) => (lon - (lonValues.reduce((a, b) => a + b) / lonValues.length)).abs() <= lonStdDev * 2)
+                .toList();
+            center = LatLng(
+              filteredLatValues.reduce((a, b) => a + b) / filteredLatValues.length,
+              filteredLonValues.reduce((a, b) => a + b) / filteredLonValues.length,
+            );
+          } else {
+            for (final point in allPoints) {
+              avgLat += point.latitude;
+              avgLon += point.longitude;
+            }
+            center = LatLng(
+              avgLat / allPoints.length,
+              avgLon / allPoints.length,
+            );
           }
         }
         if (highlightPosition != null) {
@@ -169,7 +207,7 @@ class _MapScreenState extends State<MapScreen> {
                         mapController: _mapController,
                         options: MapOptions(
                           initialCenter: center,
-                          initialZoom: 13.0,
+                          initialZoom: 10.0,
                           minZoom: 2.0,
                           maxZoom: 18.0,
                           onTap: (_, latLng) {
