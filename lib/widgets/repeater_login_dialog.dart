@@ -261,10 +261,11 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
                 child: CircularProgressIndicator(),
               ),
             )
-          : Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+          : SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                 Text(
                   l10n.login_repeaterDescription,
                   style: const TextStyle(fontSize: 14),
@@ -382,6 +383,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
                 ),
               ],
             ),
+          ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
