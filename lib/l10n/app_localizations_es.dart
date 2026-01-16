@@ -1473,6 +1473,10 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get login_failedMessage =>
+      'Inicio fallido. La contraseña es incorrecta o el repetidor no está disponible.';
+
+  @override
   String get common_reload => 'Recargar';
 
   @override

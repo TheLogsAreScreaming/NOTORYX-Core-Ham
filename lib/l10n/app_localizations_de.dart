@@ -1475,6 +1475,10 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get login_failedMessage =>
+      'Anmeldung fehlgeschlagen. Entweder ist das Passwort falsch oder der Repeater ist nicht erreichbar.';
+
+  @override
   String get common_reload => 'Neu laden';
 
   @override

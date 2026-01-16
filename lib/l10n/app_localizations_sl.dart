@@ -1470,6 +1470,10 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get login_failedMessage =>
+      'Prijava je bila neuspešna. Geslo je napačno ali pa je repetitor nedosegljiv.';
+
+  @override
   String get common_reload => 'Ponovno naloži';
 
   @override

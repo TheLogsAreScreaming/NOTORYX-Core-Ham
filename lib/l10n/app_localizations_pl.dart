@@ -1475,6 +1475,10 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
+  String get login_failedMessage =>
+      'Logowanie nie powiodło się. Hasło jest nieprawidłowe albo repeater jest nieosiągalny.';
+
+  @override
   String get common_reload => 'Ponownie załadować';
 
   @override

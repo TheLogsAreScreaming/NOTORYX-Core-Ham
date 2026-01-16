@@ -1454,6 +1454,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get login_failedMessage =>
+      'Login failed. Either the password is incorrect or the repeater is unreachable.';
+
+  @override
   String get common_reload => 'Reload';
 
   @override

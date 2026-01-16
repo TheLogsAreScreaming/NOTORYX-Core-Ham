@@ -1476,6 +1476,10 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get login_failedMessage =>
+      'Входът не беше успешен. Или паролата е грешна, или повторителят е недостъпен.';
+
+  @override
   String get common_reload => 'Презареди';
 
   @override
