@@ -1,8 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
-import 'dart:math';
 
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
@@ -48,6 +49,8 @@ class _MapScreenState extends State<MapScreen> {
   final Set<String> _hiddenMarkerIds = {};
   Set<String> _removedMarkerIds = {};
   bool _isSelectingPoi = false;
+  bool _hasInitializedMap = false;
+  bool _removedMarkersLoaded = false;
 
   @override
   void initState() {
@@ -68,6 +71,7 @@ class _MapScreenState extends State<MapScreen> {
     if (!mounted) return;
     setState(() {
       _removedMarkerIds = ids;
+      _removedMarkersLoaded = true;
     });
   }
 
@@ -88,6 +92,16 @@ class _MapScreenState extends State<MapScreen> {
     final variance = sumSquaredDiff / (values.length - 1);
 
     return sqrt(variance);
+  }
+
+  // Calculate zoom level based on the spread of points (std deviation in degrees)
+  double _zoomFromStdDev(double latStdDev, double lonStdDev) {
+    final maxSpread = max(latStdDev, lonStdDev);
+    if (maxSpread <= 0) return 13.0;
+    // Approzimate: each zoom level halves the visible area
+    // ~0.01 degrees spread -> zoom 13, ~0.1 -> zoom 10, ~1.0 -> zoom 7
+    final zoom = 10.0 - log(maxSpread * 10 + 1) / ln10 * 3;
+    return zoom.clamp(4.0, 15.0);
   }
 
   @override
@@ -133,16 +147,15 @@ class _MapScreenState extends State<MapScreen> {
             .where((c) => c.hasLocation)
             .toList();
 
-        // Calculate center of all nodes, or default to (0, 0)
+        // Calculate center and zoom of all nodes, or default to (0, 0)
         LatLng center = const LatLng(0, 0);
+        double initialZoom = 10.0;
         final hasMapContent =
             contactsWithLocation.isNotEmpty ||
             sharedMarkers.isNotEmpty ||
             _isSelectingPoi ||
             highlightPosition != null;
         if (contactsWithLocation.isNotEmpty || sharedMarkers.isNotEmpty) {
-          double avgLat = 0.0;
-          double avgLon = 0.0;
           final allPoints = [
             ...contactsWithLocation.map(
               (c) => LatLng(c.latitude!, c.longitude!),
@@ -153,35 +166,48 @@ class _MapScreenState extends State<MapScreen> {
             final latValues = allPoints.map((p) => p.latitude).toList();
             final lonValues = allPoints.map((p) => p.longitude).toList();
 
+            final meanLat =
+                latValues.reduce((a, b) => a + b) / latValues.length;
+            final meanLon =
+                lonValues.reduce((a, b) => a + b) / lonValues.length;
             final latStdDev = _standardDeviation(latValues);
             final lonStdDev = _standardDeviation(lonValues);
-            final filteredLatValues = latValues
+
+            final filteredPoints = allPoints
                 .where(
-                  (lat) =>
-                      (lat -
-                              (latValues.reduce((a, b) => a + b) /
-                                  latValues.length))
-                          .abs() <=
-                      latStdDev * 2,
+                  (p) =>
+                      (p.latitude - meanLat).abs() <= latStdDev * 2 &&
+                      (p.longitude - meanLon).abs() <= lonStdDev * 2,
                 )
                 .toList();
-            final filteredLonValues = lonValues
-                .where(
-                  (lon) =>
-                      (lon -
-                              (lonValues.reduce((a, b) => a + b) /
-                                  lonValues.length))
-                          .abs() <=
-                      lonStdDev * 2,
-                )
-                .toList();
-            center = LatLng(
-              filteredLatValues.reduce((a, b) => a + b) /
-                  filteredLatValues.length,
-              filteredLonValues.reduce((a, b) => a + b) /
-                  filteredLonValues.length,
-            );
+
+            if (filteredPoints.isNotEmpty) {
+              final filteredLatValues = filteredPoints
+                  .map((p) => p.latitude)
+                  .toList();
+              final filteredLonValues = filteredPoints
+                  .map((p) => p.longitude)
+                  .toList();
+              final avgLat = filteredLatValues.reduce((a, b) => a + b);
+              final avgLon = filteredLonValues.reduce((a, b) => a + b);
+              center = LatLng(
+                avgLat / filteredPoints.length,
+                avgLon / filteredPoints.length,
+              );
+              // Use std deviation of filtered points for zoom
+              final filteredLatStdDev = _standardDeviation(filteredLatValues);
+              final filteredLonStdDev = _standardDeviation(filteredLonValues);
+              initialZoom = _zoomFromStdDev(
+                filteredLatStdDev,
+                filteredLonStdDev,
+              );
+            } else {
+              center = LatLng(meanLat, meanLon);
+              initialZoom = _zoomFromStdDev(latStdDev, lonStdDev);
+            }
           } else {
+            double avgLat = 0.0;
+            double avgLon = 0.0;
             for (final point in allPoints) {
               avgLat += point.latitude;
               avgLon += point.longitude;
@@ -190,10 +216,22 @@ class _MapScreenState extends State<MapScreen> {
               avgLat / allPoints.length,
               avgLon / allPoints.length,
             );
+            initialZoom = 12.0;
           }
         }
         if (highlightPosition != null) {
           center = highlightPosition;
+          initialZoom = widget.highlightZoom;
+        }
+
+        // Re center map after removed markers have loaded
+        if (!_hasInitializedMap && _removedMarkersLoaded && hasMapContent) {
+          _hasInitializedMap = true;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              _mapController.move(center, initialZoom);
+            }
+          });
         }
 
         final allowBack = !connector.isConnected;
@@ -232,7 +270,7 @@ class _MapScreenState extends State<MapScreen> {
                         mapController: _mapController,
                         options: MapOptions(
                           initialCenter: center,
-                          initialZoom: 10.0,
+                          initialZoom: initialZoom,
                           minZoom: 2.0,
                           maxZoom: 18.0,
                           onTap: (_, latLng) {
