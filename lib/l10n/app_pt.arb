@@ -1335,5 +1335,17 @@
   "listFilter_repeaters": "Repetidores",
   "listFilter_roomServers": "Servidores de sala",
   "listFilter_unreadOnly": "Apenas não lido",
-  "listFilter_newGroup": "Novo grupo"
+  "listFilter_newGroup": "Novo grupo",
+  "channels_createPrivateChannelDesc": "Protegido com uma chave secreta.",
+  "channels_joinPrivateChannelDesc": "Inserir uma chave secreta manualmente.",
+  "channels_createPrivateChannel": "Criar um Canal Privado",
+  "channels_joinPrivateChannel": "Junte-se a um Canal Privado",
+  "channels_joinPublicChannel": "Junte-se ao Canal Público",
+  "channels_joinPublicChannelDesc": "Qualquer pessoa pode entrar neste canal.",
+  "channels_joinHashtagChannel": "Junte-se a um Canal com Hashtag",
+  "channels_joinHashtagChannelDesc": "Qualquer pessoa pode participar de canais com hashtag.",
+  "channels_scanQrCode": "Digitalizar um Código QR",
+  "channels_scanQrCodeComingSoon": "Em breve",
+  "channels_enterHashtag": "Insira hashtag",
+  "channels_hashtagHint": "ex. #equipe"
 }

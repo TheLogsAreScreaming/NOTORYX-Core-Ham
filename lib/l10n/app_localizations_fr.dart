@@ -831,6 +831,46 @@ class AppLocalizationsFr extends AppLocalizations {
   String get channels_sortUnread => 'Non lu';
 
   @override
+  String get channels_createPrivateChannel => 'Créer un Canal Privé';
+
+  @override
+  String get channels_createPrivateChannelDesc =>
+      'Sécurisé avec une clé secrète.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Rejoindre un Canal Privé';
+
+  @override
+  String get channels_joinPrivateChannelDesc =>
+      'Entrer manuellement une clé secrète.';
+
+  @override
+  String get channels_joinPublicChannel => 'Rejoindre le canal public';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Tout le monde peut rejoindre ce canal.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Rejoindre un Canal Hashtag';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'N\'importe qui peut rejoindre les canaux #hashtag.';
+
+  @override
+  String get channels_scanQrCode => 'Scanner un code QR';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Bientôt disponible';
+
+  @override
+  String get channels_enterHashtag => 'Entrez le hashtag';
+
+  @override
+  String get channels_hashtagHint => 'ex. #équipe';
+
+  @override
   String get chat_noMessages => 'Aucun message pour le moment.';
 
   @override

@@ -825,6 +825,46 @@ class AppLocalizationsNl extends AppLocalizations {
   String get channels_sortUnread => 'Ongelezen';
 
   @override
+  String get channels_createPrivateChannel => 'Maak een Privé Kanaal';
+
+  @override
+  String get channels_createPrivateChannelDesc =>
+      'Beveiligd met een geheime sleutel.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Sluit een Privé Kanaal aan';
+
+  @override
+  String get channels_joinPrivateChannelDesc =>
+      'Handmatig een geheime sleutel invoeren.';
+
+  @override
+  String get channels_joinPublicChannel => 'Sluit het Open Kanaal';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Iedereen kan dit kanaal aanmelden.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Sluit een Hashtag Kanaal';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'Iedereen kan lid worden van hashtag-kanalen.';
+
+  @override
+  String get channels_scanQrCode => 'Scan een QR-code';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Komt later';
+
+  @override
+  String get channels_enterHashtag => 'Voer hashtag in';
+
+  @override
+  String get channels_hashtagHint => 'bijv. #team';
+
+  @override
   String get chat_noMessages => 'Nog geen berichten.';
 
   @override

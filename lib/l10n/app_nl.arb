@@ -1335,5 +1335,17 @@
   "listFilter_repeaters": "Repeaters",
   "listFilter_roomServers": "Roomservers",
   "listFilter_unreadOnly": "Alleen ongelezen",
-  "listFilter_newGroup": "Nieuwe groep"
+  "listFilter_newGroup": "Nieuwe groep",
+  "channels_createPrivateChannelDesc": "Beveiligd met een geheime sleutel.",
+  "channels_createPrivateChannel": "Maak een Privé Kanaal",
+  "channels_joinPrivateChannel": "Sluit een Privé Kanaal aan",
+  "channels_joinPrivateChannelDesc": "Handmatig een geheime sleutel invoeren.",
+  "channels_joinPublicChannel": "Sluit het Open Kanaal",
+  "channels_joinPublicChannelDesc": "Iedereen kan dit kanaal aanmelden.",
+  "channels_joinHashtagChannel": "Sluit een Hashtag Kanaal",
+  "channels_joinHashtagChannelDesc": "Iedereen kan lid worden van hashtag-kanalen.",
+  "channels_scanQrCode": "Scan een QR-code",
+  "channels_scanQrCodeComingSoon": "Komt later",
+  "channels_enterHashtag": "Voer hashtag in",
+  "channels_hashtagHint": "bijv. #team"
 }

@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'dart:typed_data';
+
+import 'package:crypto/crypto.dart' as crypto;
 
 import '../connector/meshcore_protocol.dart';
 
@@ -59,6 +62,15 @@ class Channel {
       bytes[i] = int.parse(cleaned.substring(start, start + 2), radix: 16);
     }
     return bytes;
+  }
+
+  /// Derive PSK from hashtag name using SHA256.
+  /// The hashtag is normalized to include '#' prefix.
+  /// Returns first 16 bytes of SHA256 hash as PSK.
+  static Uint8List derivePskFromHashtag(String hashtag) {
+    final name = hashtag.startsWith('#') ? hashtag : '#$hashtag';
+    final hash = crypto.sha256.convert(utf8.encode(name)).bytes;
+    return Uint8List.fromList(hash.sublist(0, 16));
   }
 
   static String formatPskHex(Uint8List psk) {

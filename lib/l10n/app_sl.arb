@@ -1335,5 +1335,17 @@
   "listFilter_repeaters": "Ponovitve",
   "listFilter_roomServers": "Smeti za prostore",
   "listFilter_unreadOnly": "Nezbrani samo",
-  "listFilter_newGroup": "Nova skupina"
+  "listFilter_newGroup": "Nova skupina",
+  "channels_joinPrivateChannel": "Pridružite se zasebni skupini",
+  "channels_createPrivateChannelDesc": "Varno zaklenjeno s skrivnim ključem.",
+  "channels_joinPrivateChannelDesc": "Ročno vnesite zaporni ključ.",
+  "channels_createPrivateChannel": "Ustvari zasebno kanal.",
+  "channels_joinPublicChannel": "Pridružite se javnemu kanalu",
+  "channels_joinPublicChannelDesc": "Kdor karkoli je, lahko se pridruži tej skupini.",
+  "channels_joinHashtagChannel": "Pridružite se Kanalu z Hashtagom",
+  "channels_joinHashtagChannelDesc": "Kdor karkoli, lahko se pridruži hashtag kanalom.",
+  "channels_scanQrCode": "Skeniraj QR kodo",
+  "channels_scanQrCodeComingSoon": "Prihajajoča",
+  "channels_enterHashtag": "Vnesite hashtag",
+  "channels_hashtagHint": "npr. #ekipa"
 }

@@ -1335,5 +1335,17 @@
   "listFilter_repeaters": "Wiederholer",
   "listFilter_roomServers": "Raumserver",
   "listFilter_unreadOnly": "Nur nicht gelesen",
-  "listFilter_newGroup": "Neue Gruppe"
+  "listFilter_newGroup": "Neue Gruppe",
+  "channels_joinPrivateChannel": "Treten Sie einem privaten Kanal bei",
+  "channels_joinPrivateChannelDesc": "Manuelle Eingabe eines geheimen Schlüssels.",
+  "channels_createPrivateChannel": "Erstelle einen privaten Kanal",
+  "channels_createPrivateChannelDesc": "Verschlüsselt mit einem geheimen Schlüssel.",
+  "channels_joinPublicChannel": "Tritt dem öffentlichen Kanal bei",
+  "channels_joinPublicChannelDesc": "Jeder kann diesem Kanal beitreten.",
+  "channels_joinHashtagChannel": "Treten Sie einem Hashtag-Kanal bei",
+  "channels_joinHashtagChannelDesc": "Jeder kann sich bei Hashtag-Kanälen beteiligen.",
+  "channels_scanQrCode": "Scannen Sie einen QR-Code",
+  "channels_scanQrCodeComingSoon": "Bald verfügbar",
+  "channels_enterHashtag": "Gib Hashtag ein",
+  "channels_hashtagHint": "z.B. #team"
 }

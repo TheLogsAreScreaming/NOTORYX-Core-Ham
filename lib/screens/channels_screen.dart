@@ -515,132 +515,318 @@ class _ChannelsScreenState extends State<ChannelsScreen>
 
   void _showAddChannelDialog(BuildContext context) {
     final connector = context.read<MeshCoreConnector>();
+    final nextIndex = _findNextAvailableIndex(connector.channels, connector.maxChannels);
+    final hasPublicChannel = connector.channels.any((c) => c.isPublicChannel);
+    int? selectedOption;
     final nameController = TextEditingController();
     final pskController = TextEditingController();
-    final maxChannels = connector.maxChannels;
-    int selectedIndex = _findNextAvailableIndex(connector.channels, maxChannels);
-    bool usePublicPsk = false;
+    final hashtagController = TextEditingController();
 
     showDialog(
       context: context,
       builder: (dialogContext) => StatefulBuilder(
-        builder: (dialogContext, setDialogState) => AlertDialog(
-          title: Text(dialogContext.l10n.channels_addChannel),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DropdownButtonFormField<int>(
-                  initialValue: selectedIndex,
-                  decoration: InputDecoration(
-                    labelText: dialogContext.l10n.channels_channelIndexLabel,
-                    border: const OutlineInputBorder(),
-                  ),
-                  items: List.generate(maxChannels, (i) => i)
-                      .map((i) => DropdownMenuItem(
-                            value: i,
-                            child: Text(dialogContext.l10n.channels_channelIndex(i)),
-                          ))
-                      .toList(),
-                  onChanged: (value) {
-                    if (value != null) {
-                      setDialogState(() => selectedIndex = value);
-                    }
-                  },
+        builder: (dialogContext, setDialogState) {
+          Widget buildOptionTile({
+            required int optionIndex,
+            required IconData icon,
+            required String title,
+            required String subtitle,
+            bool enabled = true,
+          }) {
+            final isSelected = selectedOption == optionIndex;
+            return ListTile(
+              leading: CircleAvatar(
+                backgroundColor: enabled
+                    ? (isSelected ? Theme.of(dialogContext).colorScheme.primaryContainer : null)
+                    : Colors.grey.withValues(alpha: 0.2),
+                child: Icon(
+                  icon,
+                  color: enabled
+                      ? (isSelected ? Theme.of(dialogContext).colorScheme.primary : null)
+                      : Colors.grey,
                 ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    labelText: dialogContext.l10n.channels_channelName,
-                    border: const OutlineInputBorder(),
-                  ),
-                  maxLength: 31,
-                ),
-                const SizedBox(height: 8),
-                CheckboxListTile(
-                  title: Text(dialogContext.l10n.channels_usePublicChannel),
-                  subtitle: Text(dialogContext.l10n.channels_standardPublicPsk),
-                  value: usePublicPsk,
-                  onChanged: (value) {
-                    setDialogState(() {
-                      usePublicPsk = value ?? false;
-                      if (usePublicPsk) {
-                        nameController.text = 'Public';
-                        pskController.text = Channel.publicChannelPsk;
-                      } else {
+              ),
+              title: Text(
+                title,
+                style: TextStyle(color: enabled ? null : Colors.grey),
+              ),
+              subtitle: Text(
+                subtitle,
+                style: TextStyle(color: enabled ? null : Colors.grey),
+              ),
+              trailing: enabled ? const Icon(Icons.chevron_right) : null,
+              selected: isSelected,
+              onTap: enabled
+                  ? () {
+                      setDialogState(() {
+                        selectedOption = optionIndex;
+                        nameController.clear();
                         pskController.clear();
-                      }
-                    });
-                  },
-                ),
-                if (!usePublicPsk) ...[
-                  const SizedBox(height: 8),
-                  TextField(
-                    controller: pskController,
-                    decoration: InputDecoration(
-                      labelText: dialogContext.l10n.channels_pskHex,
-                      border: const OutlineInputBorder(),
-                      suffixIcon: IconButton(
-                        icon: const Icon(Icons.casino),
-                        tooltip: dialogContext.l10n.channels_generateRandomPsk,
-                        onPressed: () {
-                          final random = Random.secure();
-                          final bytes = Uint8List(16);
-                          for (int i = 0; i < 16; i++) {
-                            bytes[i] = random.nextInt(256);
-                          }
-                          pskController.text = Channel.formatPskHex(bytes);
-                        },
+                        hashtagController.clear();
+                      });
+                    }
+                  : null,
+            );
+          }
+
+          Widget? buildExpandedContent() {
+            switch (selectedOption) {
+              case 0: // Create Private Channel
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: TextField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          labelText: dialogContext.l10n.channels_channelName,
+                          border: const OutlineInputBorder(),
+                        ),
+                        maxLength: 31,
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: FilledButton(
+                              onPressed: () {
+                                final name = nameController.text.trim();
+                                if (name.isEmpty) {
+                                  ScaffoldMessenger.of(dialogContext).showSnackBar(
+                                    SnackBar(content: Text(dialogContext.l10n.channels_enterChannelName)),
+                                  );
+                                  return;
+                                }
+                                final random = Random.secure();
+                                final psk = Uint8List(16);
+                                for (int i = 0; i < 16; i++) {
+                                  psk[i] = random.nextInt(256);
+                                }
+                                Navigator.pop(dialogContext);
+                                connector.setChannel(nextIndex, name, psk);
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(context.l10n.channels_channelAdded(name))),
+                                  );
+                                }
+                              },
+                              child: Text(dialogContext.l10n.common_create),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+
+              case 1: // Join Private Channel
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: TextField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          labelText: dialogContext.l10n.channels_channelName,
+                          border: const OutlineInputBorder(),
+                        ),
+                        maxLength: 31,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: TextField(
+                        controller: pskController,
+                        decoration: InputDecoration(
+                          labelText: dialogContext.l10n.channels_pskHex,
+                          border: const OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: FilledButton(
+                              onPressed: () {
+                                final name = nameController.text.trim();
+                                final pskHex = pskController.text.trim();
+                                if (name.isEmpty) {
+                                  ScaffoldMessenger.of(dialogContext).showSnackBar(
+                                    SnackBar(content: Text(dialogContext.l10n.channels_enterChannelName)),
+                                  );
+                                  return;
+                                }
+                                Uint8List psk;
+                                try {
+                                  psk = Channel.parsePskHex(pskHex);
+                                } on FormatException {
+                                  ScaffoldMessenger.of(dialogContext).showSnackBar(
+                                    SnackBar(content: Text(dialogContext.l10n.channels_pskMustBe32Hex)),
+                                  );
+                                  return;
+                                }
+                                Navigator.pop(dialogContext);
+                                connector.setChannel(nextIndex, name, psk);
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(context.l10n.channels_channelAdded(name))),
+                                  );
+                                }
+                              },
+                              child: Text(dialogContext.l10n.common_add),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+
+              case 2: // Join Public Channel
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: FilledButton(
+                          onPressed: () {
+                            final psk = Channel.parsePskHex(Channel.publicChannelPsk);
+                            Navigator.pop(dialogContext);
+                            connector.setChannel(nextIndex, 'Public', psk);
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(context.l10n.channels_publicChannelAdded)),
+                              );
+                            }
+                          },
+                          child: Text(dialogContext.l10n.common_add),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(dialogContext),
-              child: Text(dialogContext.l10n.common_cancel),
-            ),
-            FilledButton(
-              onPressed: () {
-                final name = nameController.text.trim();
-                final pskHex = usePublicPsk
-                    ? Channel.publicChannelPsk
-                    : pskController.text.trim();
+                );
 
-                if (name.isEmpty) {
-                  ScaffoldMessenger.of(dialogContext).showSnackBar(
-                    SnackBar(content: Text(dialogContext.l10n.channels_enterChannelName)),
-                  );
-                  return;
-                }
+              case 3: // Join Hashtag Channel
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: TextField(
+                        controller: hashtagController,
+                        decoration: InputDecoration(
+                          labelText: dialogContext.l10n.channels_enterHashtag,
+                          hintText: dialogContext.l10n.channels_hashtagHint,
+                          border: const OutlineInputBorder(),
+                          prefixIcon: const Icon(Icons.tag),
+                        ),
+                        maxLength: 31,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: FilledButton(
+                              onPressed: () {
+                                var hashtag = hashtagController.text.trim();
+                                if (hashtag.isEmpty) {
+                                  ScaffoldMessenger.of(dialogContext).showSnackBar(
+                                    SnackBar(content: Text(dialogContext.l10n.channels_enterChannelName)),
+                                  );
+                                  return;
+                                }
+                                // Normalize hashtag name
+                                final name = hashtag.startsWith('#') ? hashtag : '#$hashtag';
+                                final psk = Channel.derivePskFromHashtag(hashtag);
+                                Navigator.pop(dialogContext);
+                                connector.setChannel(nextIndex, name, psk);
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(context.l10n.channels_channelAdded(name))),
+                                  );
+                                }
+                              },
+                              child: Text(dialogContext.l10n.common_add),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
 
-                Uint8List psk;
-                try {
-                  psk = Channel.parsePskHex(pskHex);
-                } on FormatException {
-                  ScaffoldMessenger.of(dialogContext).showSnackBar(
-                    SnackBar(content: Text(dialogContext.l10n.channels_pskMustBe32Hex)),
-                  );
-                  return;
-                }
+              default:
+                return null;
+            }
+          }
 
-                Navigator.pop(dialogContext);
-                connector.setChannel(selectedIndex, name, psk);
-                if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(context.l10n.channels_channelAdded(name))),
-                  );
-                }
-              },
-              child: Text(dialogContext.l10n.common_add),
+          return AlertDialog(
+            title: Text(dialogContext.l10n.channels_addChannel),
+            contentPadding: const EdgeInsets.symmetric(vertical: 16),
+            content: SizedBox(
+              width: double.maxFinite,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    buildOptionTile(
+                      optionIndex: 0,
+                      icon: Icons.add,
+                      title: dialogContext.l10n.channels_createPrivateChannel,
+                      subtitle: dialogContext.l10n.channels_createPrivateChannelDesc,
+                    ),
+                    if (selectedOption == 0) buildExpandedContent()!,
+                    const Divider(height: 1),
+                    buildOptionTile(
+                      optionIndex: 1,
+                      icon: Icons.lock,
+                      title: dialogContext.l10n.channels_joinPrivateChannel,
+                      subtitle: dialogContext.l10n.channels_joinPrivateChannelDesc,
+                    ),
+                    if (selectedOption == 1) buildExpandedContent()!,
+                    if (!hasPublicChannel) ...[
+                      const Divider(height: 1),
+                      buildOptionTile(
+                        optionIndex: 2,
+                        icon: Icons.public,
+                        title: dialogContext.l10n.channels_joinPublicChannel,
+                        subtitle: dialogContext.l10n.channels_joinPublicChannelDesc,
+                      ),
+                      if (selectedOption == 2) buildExpandedContent()!,
+                    ],
+                    const Divider(height: 1),
+                    buildOptionTile(
+                      optionIndex: 3,
+                      icon: Icons.tag,
+                      title: dialogContext.l10n.channels_joinHashtagChannel,
+                      subtitle: dialogContext.l10n.channels_joinHashtagChannelDesc,
+                    ),
+                    if (selectedOption == 3) buildExpandedContent()!,
+                    const Divider(height: 1),
+                    buildOptionTile(
+                      optionIndex: 4,
+                      icon: Icons.qr_code,
+                      title: dialogContext.l10n.channels_scanQrCode,
+                      subtitle: dialogContext.l10n.channels_scanQrCodeComingSoon,
+                      enabled: false,
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ],
-        ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialogContext),
+                child: Text(dialogContext.l10n.common_close),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
