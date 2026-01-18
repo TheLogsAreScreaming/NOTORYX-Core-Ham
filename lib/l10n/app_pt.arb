@@ -821,6 +821,8 @@
       }
     }
   },
+  "login_failedMessage": "Falha no login. A senha está incorreta ou o repetidor está inacessível.",
+
   "common_reload": "Recarregar",
   "common_clear": "Limpar",
   "path_currentPath": "Caminho atual: {path}",
@@ -1336,6 +1338,7 @@
   "listFilter_roomServers": "Servidores de sala",
   "listFilter_unreadOnly": "Apenas não lido",
   "listFilter_newGroup": "Novo grupo",
+  
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1349,5 +1352,18 @@
   "neighbors_RequestTimedOut": "Vizinhos solicitam tempo limite esgotado.",
   "neighbors_errorLoading": "Erro ao carregar vizinhos: {error}",
   "neighbors_repeatersNeighbours": "Repetidores Vizinhos",
-  "neighbors_noData": "Não estão disponíveis dados de vizinhos."
+  "neighbors_noData": "Não estão disponíveis dados de vizinhos.",
+
+  "channels_createPrivateChannelDesc": "Protegido com uma chave secreta.",
+  "channels_joinPrivateChannelDesc": "Inserir uma chave secreta manualmente.",
+  "channels_createPrivateChannel": "Criar um Canal Privado",
+  "channels_joinPrivateChannel": "Junte-se a um Canal Privado",
+  "channels_joinPublicChannel": "Junte-se ao Canal Público",
+  "channels_joinPublicChannelDesc": "Qualquer pessoa pode entrar neste canal.",
+  "channels_joinHashtagChannel": "Junte-se a um Canal com Hashtag",
+  "channels_joinHashtagChannelDesc": "Qualquer pessoa pode participar de canais com hashtag.",
+  "channels_scanQrCode": "Digitalizar um Código QR",
+  "channels_scanQrCodeComingSoon": "Em breve",
+  "channels_enterHashtag": "Insira hashtag",
+  "channels_hashtagHint": "ex. #equipe"
 }

@@ -829,6 +829,46 @@ class AppLocalizationsPl extends AppLocalizations {
   String get channels_sortUnread => 'Niezgłoszone';
 
   @override
+  String get channels_createPrivateChannel => 'Utwórz Prywatny Kanał';
+
+  @override
+  String get channels_createPrivateChannelDesc =>
+      'Zabezpieczone kluczem szyfrowym.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Dołącz do Prywatnego Kanału';
+
+  @override
+  String get channels_joinPrivateChannelDesc => 'Ręcznie wprowadź klucz tajny.';
+
+  @override
+  String get channels_joinPublicChannel => 'Dołącz do kanału publicznego.';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Każdy może dołączyć do tego kanału.';
+
+  @override
+  String get channels_joinHashtagChannel =>
+      'Dołącz do kanału oznaczanego hashtagiem';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'Każdy może dołączyć do kanałów z hashtagami.';
+
+  @override
+  String get channels_scanQrCode => 'Skanuj kod QR';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Wkrótce';
+
+  @override
+  String get channels_enterHashtag => 'Wprowadź hashtag';
+
+  @override
+  String get channels_hashtagHint => 'np. #zespół';
+
+  @override
   String get chat_noMessages => 'Brak jeszcze wiadomości';
 
   @override
@@ -1473,6 +1513,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String login_failed(String error) {
     return 'Zalogowanie się nie powiodło: $error';
   }
+
+  @override
+  String get login_failedMessage =>
+      'Logowanie nie powiodło się. Hasło jest nieprawidłowe albo repeater jest nieosiągalny.';
 
   @override
   String get common_reload => 'Ponownie załadować';

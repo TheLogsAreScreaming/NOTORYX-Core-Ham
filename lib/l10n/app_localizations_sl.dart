@@ -825,6 +825,45 @@ class AppLocalizationsSl extends AppLocalizations {
   String get channels_sortUnread => 'Nerešeno';
 
   @override
+  String get channels_createPrivateChannel => 'Ustvari zasebno kanal.';
+
+  @override
+  String get channels_createPrivateChannelDesc =>
+      'Varno zaklenjeno s skrivnim ključem.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Pridružite se zasebni skupini';
+
+  @override
+  String get channels_joinPrivateChannelDesc => 'Ročno vnesite zaporni ključ.';
+
+  @override
+  String get channels_joinPublicChannel => 'Pridružite se javnemu kanalu';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Kdor karkoli je, lahko se pridruži tej skupini.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Pridružite se Kanalu z Hashtagom';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'Kdor karkoli, lahko se pridruži hashtag kanalom.';
+
+  @override
+  String get channels_scanQrCode => 'Skeniraj QR kodo';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Prihajajoča';
+
+  @override
+  String get channels_enterHashtag => 'Vnesite hashtag';
+
+  @override
+  String get channels_hashtagHint => 'npr. #ekipa';
+
+  @override
   String get chat_noMessages => 'Še ni sporočil.';
 
   @override
@@ -1468,6 +1507,10 @@ class AppLocalizationsSl extends AppLocalizations {
   String login_failed(String error) {
     return 'Prijava je bila neuspešna: $error';
   }
+
+  @override
+  String get login_failedMessage =>
+      'Prijava je bila neuspešna. Geslo je napačno ali pa je repetitor nedosegljiv.';
 
   @override
   String get common_reload => 'Ponovno naloži';

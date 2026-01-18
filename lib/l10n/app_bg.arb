@@ -821,6 +821,8 @@
       }
     }
   },
+  "login_failedMessage": "Входът не беше успешен. Или паролата е грешна, или повторителят е недостъпен.",
+
   "common_reload": "Презареди",
   "common_clear": "Изчисти",
   "path_currentPath": "Текущ път: {path}",
@@ -1349,5 +1351,17 @@
   "neighbors_RequestTimedOut": "Съседите поискат изтичане на време.",
   "neighbors_errorLoading": "Грешка при зареждане на съседи: {error}",
   "neighbors_repeatersNeighbours": "Повторители Съседи",
-  "neighbors_noData": "Няма налични данни за съседи."
+  "neighbors_noData": "Няма налични данни за съседи.",
+  "channels_createPrivateChannel": "Създай Частен Канал",
+  "channels_joinPrivateChannel": "Присъедини се към Частен Канал",
+  "channels_createPrivateChannelDesc": "Защитено с таен ключ.",
+  "channels_joinPrivateChannelDesc": "Ръчно въведете таен ключ.",
+  "channels_joinPublicChannel": "Присъединете се към Публичния канал",
+  "channels_joinPublicChannelDesc": "Всеки може да се присъедини към този канал.",
+  "channels_joinHashtagChannel": "Присъедини се към Хаштаг Канал",
+  "channels_joinHashtagChannelDesc": "Всеки може да се присъедини към хаштаговите канали.",
+  "channels_scanQrCode": "Сканирайте QR код",
+  "channels_scanQrCodeComingSoon": "Ще излезе скоро",
+  "channels_enterHashtag": "Въведете хаштаг",
+  "channels_hashtagHint": "напр. #отбор"
 }

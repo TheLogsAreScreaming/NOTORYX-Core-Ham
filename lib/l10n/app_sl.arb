@@ -821,6 +821,8 @@
       }
     }
   },
+  "login_failedMessage": "Prijava je bila neuspešna. Geslo je napačno ali pa je repetitor nedosegljiv.",
+
   "common_reload": "Ponovno naloži",
   "common_clear": "Ponoviti",
   "path_currentPath": "Trenutna pot: {path}",
@@ -1336,6 +1338,7 @@
   "listFilter_roomServers": "Smeti za prostore",
   "listFilter_unreadOnly": "Nezbrani samo",
   "listFilter_newGroup": "Nova skupina",
+  
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1349,5 +1352,18 @@
   "neighbors_RequestTimedOut": "Sosedi zahtevajo izklop po dogovoru.",
   "neighbors_errorLoading": "Napaka pri obnašanju sosedov: {error}",
   "neighbors_repeatersNeighbours": "Ponovitve Sosedi",
-  "neighbors_noData": "Niso na voljo podatki o sosedih."
+  "neighbors_noData": "Niso na voljo podatki o sosedih.",
+
+  "channels_joinPrivateChannel": "Pridružite se zasebni skupini",
+  "channels_createPrivateChannelDesc": "Varno zaklenjeno s skrivnim ključem.",
+  "channels_joinPrivateChannelDesc": "Ročno vnesite zaporni ključ.",
+  "channels_createPrivateChannel": "Ustvari zasebno kanal.",
+  "channels_joinPublicChannel": "Pridružite se javnemu kanalu",
+  "channels_joinPublicChannelDesc": "Kdor karkoli je, lahko se pridruži tej skupini.",
+  "channels_joinHashtagChannel": "Pridružite se Kanalu z Hashtagom",
+  "channels_joinHashtagChannelDesc": "Kdor karkoli, lahko se pridruži hashtag kanalom.",
+  "channels_scanQrCode": "Skeniraj QR kodo",
+  "channels_scanQrCodeComingSoon": "Prihajajoča",
+  "channels_enterHashtag": "Vnesite hashtag",
+  "channels_hashtagHint": "npr. #ekipa"
 }

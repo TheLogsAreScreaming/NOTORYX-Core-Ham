@@ -1596,6 +1596,78 @@ abstract class AppLocalizations {
   /// **'Unread'**
   String get channels_sortUnread;
 
+  /// No description provided for @channels_createPrivateChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a Private Channel'**
+  String get channels_createPrivateChannel;
+
+  /// No description provided for @channels_createPrivateChannelDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Secured with a secret key.'**
+  String get channels_createPrivateChannelDesc;
+
+  /// No description provided for @channels_joinPrivateChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Join a Private Channel'**
+  String get channels_joinPrivateChannel;
+
+  /// No description provided for @channels_joinPrivateChannelDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Manually enter a secret key.'**
+  String get channels_joinPrivateChannelDesc;
+
+  /// No description provided for @channels_joinPublicChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Join the Public Channel'**
+  String get channels_joinPublicChannel;
+
+  /// No description provided for @channels_joinPublicChannelDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone can join this channel.'**
+  String get channels_joinPublicChannelDesc;
+
+  /// No description provided for @channels_joinHashtagChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Join a Hashtag Channel'**
+  String get channels_joinHashtagChannel;
+
+  /// No description provided for @channels_joinHashtagChannelDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone can join hashtag channels.'**
+  String get channels_joinHashtagChannelDesc;
+
+  /// No description provided for @channels_scanQrCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a QR Code'**
+  String get channels_scanQrCode;
+
+  /// No description provided for @channels_scanQrCodeComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon'**
+  String get channels_scanQrCodeComingSoon;
+
+  /// No description provided for @channels_enterHashtag.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter hashtag'**
+  String get channels_enterHashtag;
+
+  /// No description provided for @channels_hashtagHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. #team'**
+  String get channels_hashtagHint;
+
   /// No description provided for @chat_noMessages.
   ///
   /// In en, this message translates to:
@@ -2686,6 +2758,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login failed: {error}'**
   String login_failed(String error);
+
+  /// No description provided for @login_failedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Login failed. Either the password is incorrect or the repeater is unreachable.'**
+  String get login_failedMessage;
 
   /// No description provided for @common_reload.
   ///

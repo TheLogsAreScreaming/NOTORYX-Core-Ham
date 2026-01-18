@@ -818,6 +818,46 @@ class AppLocalizationsSv extends AppLocalizations {
   String get channels_sortUnread => 'Oläst';
 
   @override
+  String get channels_createPrivateChannel => 'Skapa en privat kanal';
+
+  @override
+  String get channels_createPrivateChannelDesc =>
+      'Skyddat med en hemlig nyckel.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Gå med i en Privat Kanal';
+
+  @override
+  String get channels_joinPrivateChannelDesc =>
+      'Ange en hemlig nyckel manuellt.';
+
+  @override
+  String get channels_joinPublicChannel => 'Gå med i den Offentliga Kanalen';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Vem som helst kan gå med i denna kanal.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Gå med i en Hashtagkanal';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'Väldigt enkelt att gå med i hashtag-kanaler.';
+
+  @override
+  String get channels_scanQrCode => 'Skanna en QR-kod';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Kommer snart';
+
+  @override
+  String get channels_enterHashtag => 'Ange hashtag';
+
+  @override
+  String get channels_hashtagHint => 't.ex. #team';
+
+  @override
   String get chat_noMessages => 'Inga meddelanden ännu';
 
   @override
@@ -1456,6 +1496,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String login_failed(String error) {
     return 'Inloggning misslyckades: $error';
   }
+
+  @override
+  String get login_failedMessage =>
+      'Inloggning misslyckades. Antingen är lösenordet fel eller så går det inte att nå repeatern.';
 
   @override
   String get common_reload => 'Ladda om';

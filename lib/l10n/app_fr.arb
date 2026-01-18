@@ -91,12 +91,12 @@
   "settings_latitude": "Latitude",
   "settings_longitude": "Longitude",
   "settings_privacyMode": "Mode de confidentialité",
-  "settings_privacyModeSubtitle": "Cacher le nom/l'emplacement dans les publicités",
-  "settings_privacyModeToggle": "Activer le mode confidentialité pour masquer votre nom et votre localisation dans les publicités.",
+  "settings_privacyModeSubtitle": "Cacher le nom/l'emplacement dans les annonces",
+  "settings_privacyModeToggle": "Activer le mode confidentialité pour masquer votre nom et votre localisation dans les annonces.",
   "settings_privacyModeEnabled": "Mode de confidentialité activé",
   "settings_privacyModeDisabled": "Mode de confidentialité désactivé",
   "settings_actions": "Actions",
-  "settings_sendAdvertisement": "Envoyer la publicité",
+  "settings_sendAdvertisement": "S'annoncer",
   "settings_sendAdvertisementSubtitle": "Présence diffusée maintenant",
   "settings_advertisementSent": "Annonce envoyée",
   "settings_syncTime": "Temps de synchronisation",
@@ -176,7 +176,7 @@
   "appSettings_languageBg": "Български",
   "appSettings_notifications": "Notifications",
   "appSettings_enableNotifications": "Activer les Notifications",
-  "appSettings_enableNotificationsSubtitle": "Recevoir des notifications pour les messages et les publicités",
+  "appSettings_enableNotificationsSubtitle": "Recevoir des notifications pour les messages et les annonces",
   "appSettings_notificationPermissionDenied": "Permission de notification refusée",
   "appSettings_notificationsEnabled": "Notifications activées",
   "appSettings_notificationsDisabled": "Notifications désactivées",
@@ -184,7 +184,7 @@
   "appSettings_messageNotificationsSubtitle": "Afficher une notification lors de la réception de nouveaux messages",
   "appSettings_channelMessageNotifications": "Notifications des Messages de Canal",
   "appSettings_channelMessageNotificationsSubtitle": "Afficher une notification lors de la réception des messages de canal",
-  "appSettings_advertisementNotifications": "Notifications publicitaires",
+  "appSettings_advertisementNotifications": "Notifications d'annonces",
   "appSettings_advertisementNotificationsSubtitle": "Afficher une notification lors de la découverte de nouveaux nœuds",
   "appSettings_messaging": "Messagerie",
   "appSettings_clearPathOnMaxRetry": "Effacer le chemin sur Max Retry",
@@ -192,7 +192,7 @@
   "appSettings_pathsWillBeCleared": "Les chemins seront effacés après 5 tentatives infructueuses.",
   "appSettings_pathsWillNotBeCleared": "Les chemins ne seront pas effacés automatiquement.",
   "appSettings_autoRouteRotation": "Rotation de l'itinéraire automatique",
-  "appSettings_autoRouteRotationSubtitle": "Alterner entre les meilleurs chemins et le mode inondation",
+  "appSettings_autoRouteRotationSubtitle": "Alterner entre les meilleurs chemins et le mode d'envoi sur tout le réseau (flood)",
   "appSettings_autoRouteRotationEnabled": "Rotation du routage automatique activée",
   "appSettings_autoRouteRotationDisabled": "Rotation de l'itinéraire automatique désactivée",
   "appSettings_battery": "Batterie",
@@ -539,7 +539,7 @@
   "chat_pathManagement": "Gestion des chemins",
   "chat_routingMode": "Mode de routage",
   "chat_autoUseSavedPath": "Auto (utiliser le chemin sauvegardé)",
-  "chat_forceFloodMode": "Mode Inondation Forcée",
+  "chat_forceFloodMode": "Mode tout le réseau forcé",
   "chat_recentAckPaths": "Chemins ACK récents (touchez pour utiliser) :",
   "chat_pathHistoryFull": "L'historique du chemin est plein. Supprimez les entrées pour en ajouter de nouvelles.",
   "chat_hopSingular": "Sautez",
@@ -562,7 +562,7 @@
   "chat_clearPathSubtitle": "Forcer la redécouverte lors de la prochaine envoi",
   "chat_pathCleared": "Le chemin est dégagé. Le prochain message redécouvrira le tracé.",
   "chat_floodModeSubtitle": "Utiliser le commutateur de routage dans la barre d'application",
-  "chat_floodModeEnabled": "Le mode inondation est activé. Réactiver via l'icône de routage dans la barre d'outils.",
+  "chat_floodModeEnabled": "Le mode envoi à tout le réseau est activé. Changer via l'icône de routage dans la barre d'outils.",
   "chat_fullPath": "Chemin complet",
   "chat_pathDetailsNotAvailable": "Les détails du chemin ne sont pas encore disponibles. Essayez d'envoyer un message pour rafraîchir.",
   "chat_pathSetHops": "Chemin défini : {hopCount} {hopCount, plural, =1{hop} other{hops}} - {status}",
@@ -583,7 +583,7 @@
   "chat_path": "Chemin",
   "chat_publicKey": "Clé Publique",
   "chat_compressOutgoingMessages": "Compresser les messages sortants",
-  "chat_floodForced": "Inondation (forcée)",
+  "chat_floodForced": "Tout le réseau  (forcée)",
   "chat_directForced": "Direct (forcé)",
   "chat_hopsForced": "{count} sauts (forcés)",
   "@chat_hopsForced": {
@@ -593,7 +593,7 @@
       }
     }
   },
-  "chat_floodAuto": "Inondation (auto)",
+  "chat_floodAuto": "Tout le réseau (auto)",
   "chat_direct": "Afficher",
   "chat_poiShared": "Point d'intérêt Partagé",
   "chat_unread": "Non lu : {count}",
@@ -799,7 +799,7 @@
   "login_routing": "Redirection",
   "login_routingMode": "Mode de routage",
   "login_autoUseSavedPath": "Auto (utiliser le chemin sauvegardé)",
-  "login_forceFloodMode": "Mode Inondation Forcée",
+  "login_forceFloodMode": "Mode tout le réseau forcé",
   "login_managePaths": "Gérer les chemins",
   "login_login": "Connexion",
   "login_attempt": "Essayer {current}/{max}",
@@ -821,6 +821,8 @@
       }
     }
   },
+  "login_failedMessage": "Connexion échouée. Soit le mot de passe est incorrect, soit le relais est injoignable.",
+
   "common_reload": "Recharger",
   "common_clear": "Effacer",
   "path_currentPath": "Chemin actuel : {path}",
@@ -871,7 +873,7 @@
   "repeater_statusTitle": "État du répétiteur",
   "repeater_routingMode": "Mode de routage",
   "repeater_autoUseSavedPath": "Auto (utiliser le chemin sauvegardé)",
-  "repeater_forceFloodMode": "Mode de submersion forcée",
+  "repeater_forceFloodMode": "Mode tout le réseau forcé",
   "repeater_pathManagement": "Gestion des chemins",
   "repeater_refresh": "Rafraîchir",
   "repeater_statusRequestTimeout": "Demande de statut délai dépassé.",
@@ -916,7 +918,7 @@
       }
     }
   },
-  "repeater_packetTxTotal": "Total : {total}, Inondation : {flood}, Direct : {direct}",
+  "repeater_packetTxTotal": "Total : {total}, Tout le réseau : {flood}, Direct : {direct}",
   "@repeater_packetTxTotal": {
     "placeholders": {
       "total": {
@@ -930,7 +932,7 @@
       }
     }
   },
-  "repeater_packetRxTotal": "Total : {total}, Inondation : {flood}, Direct : {direct}",
+  "repeater_packetRxTotal": "Total : {total}, Tout le réseau : {flood}, Direct : {direct}",
   "@repeater_packetRxTotal": {
     "placeholders": {
       "total": {
@@ -944,7 +946,7 @@
       }
     }
   },
-  "repeater_duplicatesFloodDirect": "Inondation : {flood}, Direct : {direct}",
+  "repeater_duplicatesFloodDirect": "Tout le réseau : {flood}, Direct : {direct}",
   "@repeater_duplicatesFloodDirect": {
     "placeholders": {
       "flood": {
@@ -990,9 +992,9 @@
   "repeater_guestAccess": "Accès Invité",
   "repeater_guestAccessSubtitle": "Autoriser l'accès invité en lecture seule",
   "repeater_privacyMode": "Mode de confidentialité",
-  "repeater_privacyModeSubtitle": "Cacher le nom/l'emplacement dans les publicités",
-  "repeater_advertisementSettings": "Paramètres de Publicité",
-  "repeater_localAdvertInterval": "Intervalle Publicité Locale",
+  "repeater_privacyModeSubtitle": "Cacher le nom/l'emplacement dans les annonces",
+  "repeater_advertisementSettings": "Paramètres d'annonces",
+  "repeater_localAdvertInterval": "Intervalle des annonces Locale (0 saut)",
   "repeater_localAdvertIntervalMinutes": "{minutes} minutes",
   "@repeater_localAdvertIntervalMinutes": {
     "placeholders": {
@@ -1001,7 +1003,7 @@
       }
     }
   },
-  "repeater_floodAdvertInterval": "Intervalle de Publicité Inondation",
+  "repeater_floodAdvertInterval": "Intervalle des annonces à tout le réseau (flood)",
   "repeater_floodAdvertIntervalHours": "{hours} heures",
   "@repeater_floodAdvertIntervalHours": {
     "placeholders": {
@@ -1010,7 +1012,7 @@
       }
     }
   },
-  "repeater_encryptedAdvertInterval": "Intervalle publicitaire crypté",
+  "repeater_encryptedAdvertInterval": "Intervalle d'annonces cryptées",
   "repeater_dangerZone": "Zone d'alerte",
   "repeater_rebootRepeater": "Redémarrer Répéteur",
   "repeater_rebootRepeaterSubtitle": "Réinitialiser l'appareil répétiteur",
@@ -1055,7 +1057,7 @@
   "repeater_refreshPacketForwarding": "Rafraîchir le routage des paquets",
   "repeater_refreshGuestAccess": "Rafraîchir l'accès invité",
   "repeater_refreshPrivacyMode": "Rafraîchir le Mode Confidentialité",
-  "repeater_refreshAdvertisementSettings": "Rafraîchir les Paramètres de la Publicité",
+  "repeater_refreshAdvertisementSettings": "Rafraîchir les Paramètres des annonces",
   "repeater_refreshed": "{label} rafraîchi",
   "@repeater_refreshed": {
     "placeholders": {
@@ -1098,7 +1100,7 @@
   "repeater_cliQuickVersion": "Version",
   "repeater_cliQuickAdvertise": "Publier",
   "repeater_cliQuickClock": "Horloge",
-  "repeater_cliHelpAdvert": "Envoie un paquet publicitaire",
+  "repeater_cliHelpAdvert": "Envoie un paquet d'annonce",
   "repeater_cliHelpReboot": "Redémarre l'appareil. (Note, vous risquez d'obtenir 'Timeout' ce qui est normal)",
   "repeater_cliHelpClock": "Affiche l'heure actuelle par l'horloge de chaque appareil.",
   "repeater_cliHelpPassword": "Définit un nouveau mot de passe administrateur pour l'appareil.",
@@ -1115,12 +1117,12 @@
   "repeater_cliHelpSetAdvertInterval": "Définit l'intervalle du minuteur pour envoyer un paquet d'annonce local (sans relais). Définir sur 0 pour désactiver.",
   "repeater_cliHelpSetFloodAdvertInterval": "Définit l'intervalle du minuteur en heures pour envoyer un paquet d'annonce massive. Définir sur 0 pour désactiver.",
   "repeater_cliHelpSetGuestPassword": "Définit/met à jour le mot de passe de l'invité. (pour les répéteurs, les connexions d'invités peuvent envoyer la requête \"Get Stats\")",
-  "repeater_cliHelpSetName": "Définit le nom de la publicité.",
+  "repeater_cliHelpSetName": "Définit le nom de l'annonce.",
   "repeater_cliHelpSetLat": "Définit la latitude de la carte des annonces. (degrés décimaux)",
   "repeater_cliHelpSetLon": "Définit la longitude de la carte de l'annonce. (degrés décimaux)",
   "repeater_cliHelpSetRadio": "Définit complètement de nouveaux paramètres de radio et les enregistre dans les préférences. Nécessite une commande \"redémarrage\" pour les appliquer.",
   "repeater_cliHelpSetRxDelay": "Paramètres (expérimental) de base pour appliquer un léger délai aux paquets reçus, en fonction de la force du signal/score. Définir sur 0 pour désactiver.",
-  "repeater_cliHelpSetTxDelay": "Définit un facteur multiplié par le temps de fonctionnement en mode inondation pour un paquet et avec un système de slot aléatoire, afin de retarder son envoi (pour diminuer la probabilité de collisions).",
+  "repeater_cliHelpSetTxDelay": "Définit un facteur multiplié par le temps de fonctionnement en mode vers tout le réseau (flood) pour un paquet et avec un système de slot aléatoire, afin de retarder son envoi (pour diminuer la probabilité de collisions).",
   "repeater_cliHelpSetDirectTxDelay": "Identique à txdelay, mais pour appliquer un délai aléatoire au transfert des paquets en mode direct.",
   "repeater_cliHelpSetBridgeEnabled": "Activer/Désactiver le pont.",
   "repeater_cliHelpSetBridgeDelay": "Définir le délai avant de renvoyer les paquets.",
@@ -1134,9 +1136,9 @@
   "repeater_cliHelpLogStart": "Démarre l'enregistrement des paquets dans le système de fichiers.",
   "repeater_cliHelpLogStop": "Arrêter de journaliser les paquets vers le système de fichiers.",
   "repeater_cliHelpLogErase": "Supprime les journaux de paquets du système de fichiers.",
-  "repeater_cliHelpNeighbors": "Affiche une liste d'autres nœuds répétiteurs entendus via des publicités sans relais. Chaque ligne est id-préfixe-hexadécimal:timestamp:snr-fois-4",
+  "repeater_cliHelpNeighbors": "Affiche une liste d'autres nœuds répétiteurs entendus via des annonces sans relais. Chaque ligne est id-préfixe-hexadécimal:timestamp:snr-fois-4",
   "repeater_cliHelpNeighborRemove": "Supprime la première entrée correspondante (par préfixe de clé publique (hexadécimal)) de la liste des voisins.",
-  "repeater_cliHelpRegion": "(série uniquement) Liste toutes les régions définies et les autorisations de débordement actuelles.",
+  "repeater_cliHelpRegion": "(série uniquement) Liste toutes les régions définies et les autorisations actuelles d'annonces sur tout le réseau (flood).",
   "repeater_cliHelpRegionLoad": "REMARQUE : il s'agit d'une invocation multi-commande spéciale. Chaque commande subséquente est un nom de région (indenté avec des espaces pour indiquer la hiérarchie parent, avec un minimum d'un espace). Terminé par l'envoi d'une ligne vide/commande.",
   "repeater_cliHelpRegionGet": "Recherche la région avec le préfixe de nom donné (ou \"\" pour l'étendue globale). Répond avec \"-> nom-de-région (nom-parent) 'F'\"",
   "repeater_cliHelpRegionPut": "Ajoute ou met à jour une définition de région avec le nom donné.",
@@ -1271,7 +1273,7 @@
     }
   },
   "channelPath_unknownPath": "Inconnu",
-  "channelPath_floodPath": "Inondation",
+  "channelPath_floodPath": "Tout le réseau",
   "channelPath_directPath": "Afficher",
   "channelPath_observedZeroOf": "0 de {total} sauts",
   "@channelPath_observedZeroOf": {
@@ -1336,6 +1338,7 @@
   "listFilter_roomServers": "Serveurs de pièce",
   "listFilter_unreadOnly": "Messages non lus seulement",
   "listFilter_newGroup": "Nouvelle groupe",
+  
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1349,5 +1352,18 @@
   "neighbors_RequestTimedOut": "Les voisins demandent un délai.",
   "neighbors_errorLoading": "Erreur lors du chargement des voisins : {error}",
   "neighbors_repeatersNeighbours": "Répéteurs Voisins",
-  "neighbors_noData": "Aucune donnée concernant les voisins disponible."
+  "neighbors_noData": "Aucune donnée concernant les voisins disponible.",
+
+  "channels_createPrivateChannelDesc": "Sécurisé avec une clé secrète.",
+  "channels_joinPrivateChannel": "Rejoindre un Canal Privé",
+  "channels_createPrivateChannel": "Créer un Canal Privé",
+  "channels_joinPrivateChannelDesc": "Entrer manuellement une clé secrète.",
+  "channels_joinPublicChannel": "Rejoindre le canal public",
+  "channels_joinPublicChannelDesc": "Tout le monde peut rejoindre ce canal.",
+  "channels_joinHashtagChannel": "Rejoindre un Canal Hashtag",
+  "channels_joinHashtagChannelDesc": "N'importe qui peut rejoindre les canaux #hashtag.",
+  "channels_scanQrCode": "Scanner un code QR",
+  "channels_scanQrCodeComingSoon": "Bientôt disponible",
+  "channels_enterHashtag": "Entrez le hashtag",
+  "channels_hashtagHint": "ex. #équipe"
 }

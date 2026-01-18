@@ -790,6 +790,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_sortUnread => '未读';
 
   @override
+  String get channels_createPrivateChannel => '创建私聊频道';
+
+  @override
+  String get channels_createPrivateChannelDesc => '使用密钥保护。';
+
+  @override
+  String get channels_joinPrivateChannel => '加入私密频道';
+
+  @override
+  String get channels_joinPrivateChannelDesc => '手动输入密钥。';
+
+  @override
+  String get channels_joinPublicChannel => '加入公共频道';
+
+  @override
+  String get channels_joinPublicChannelDesc => '任何人都可以加入这个频道。';
+
+  @override
+  String get channels_joinHashtagChannel => '加入标签频道';
+
+  @override
+  String get channels_joinHashtagChannelDesc => '任何人都可以加入话题频道。';
+
+  @override
+  String get channels_scanQrCode => '扫描二维码';
+
+  @override
+  String get channels_scanQrCodeComingSoon => '即将到来';
+
+  @override
+  String get channels_enterHashtag => '输入标签';
+
+  @override
+  String get channels_hashtagHint => '例如 #团队';
+
+  @override
   String get chat_noMessages => '目前还没有消息';
 
   @override
@@ -1410,6 +1446,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String login_failed(String error) {
     return '登录失败：$error';
   }
+
+  @override
+  String get login_failedMessage => '登录失败。密码不正确或中继器不可达。';
 
   @override
   String get common_reload => '重新加载';

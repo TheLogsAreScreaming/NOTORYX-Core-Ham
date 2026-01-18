@@ -831,6 +831,45 @@ class AppLocalizationsBg extends AppLocalizations {
   String get channels_sortUnread => 'Непрочетено';
 
   @override
+  String get channels_createPrivateChannel => 'Създай Частен Канал';
+
+  @override
+  String get channels_createPrivateChannelDesc => 'Защитено с таен ключ.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Присъедини се към Частен Канал';
+
+  @override
+  String get channels_joinPrivateChannelDesc => 'Ръчно въведете таен ключ.';
+
+  @override
+  String get channels_joinPublicChannel =>
+      'Присъединете се към Публичния канал';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Всеки може да се присъедини към този канал.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Присъедини се към Хаштаг Канал';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'Всеки може да се присъедини към хаштаговите канали.';
+
+  @override
+  String get channels_scanQrCode => 'Сканирайте QR код';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Ще излезе скоро';
+
+  @override
+  String get channels_enterHashtag => 'Въведете хаштаг';
+
+  @override
+  String get channels_hashtagHint => 'напр. #отбор';
+
+  @override
   String get chat_noMessages => 'Няма съобщения.';
 
   @override
@@ -1474,6 +1513,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String login_failed(String error) {
     return 'Входът не беше успешен: $error';
   }
+
+  @override
+  String get login_failedMessage =>
+      'Входът не беше успешен. Или паролата е грешна, или повторителят е недостъпен.';
 
   @override
   String get common_reload => 'Презареди';

@@ -825,6 +825,45 @@ class AppLocalizationsSk extends AppLocalizations {
   String get channels_sortUnread => 'Nezriadené';
 
   @override
+  String get channels_createPrivateChannel => 'Vytvorte súkromný kanál';
+
+  @override
+  String get channels_createPrivateChannelDesc =>
+      'Zabezpečené pomocou tajného kľúča.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Pripojiť sa k súkromnému kanálu';
+
+  @override
+  String get channels_joinPrivateChannelDesc => 'Ručne zadajte tajný kľúč.';
+
+  @override
+  String get channels_joinPublicChannel => 'Pripojte sa k verejnému kanálu';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Któvek sátó na tutó kanalizovát.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Pripojte sa k Hashtag Kanálu';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'Ktoekolikoľvek sa môže pridať do hashtag kanálov.';
+
+  @override
+  String get channels_scanQrCode => 'Skenujte QR kód';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Čoskoro';
+
+  @override
+  String get channels_enterHashtag => 'Zadajte hashtag';
+
+  @override
+  String get channels_hashtagHint => 'napr. #tím';
+
+  @override
   String get chat_noMessages => 'Zatiaľ žiadne správy.';
 
   @override
@@ -1467,6 +1506,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String login_failed(String error) {
     return 'Prihlásenie zlyhalo: $error';
   }
+
+  @override
+  String get login_failedMessage =>
+      'Prihlásenie zlyhalo. Heslo je nesprávne alebo je opakovač nedostupný.';
 
   @override
   String get common_reload => 'Načítať';

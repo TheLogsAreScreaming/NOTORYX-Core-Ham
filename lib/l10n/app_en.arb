@@ -361,6 +361,18 @@
   "channels_sortAZ": "A-Z",
   "channels_sortLatestMessages": "Latest messages",
   "channels_sortUnread": "Unread",
+  "channels_createPrivateChannel": "Create a Private Channel",
+  "channels_createPrivateChannelDesc": "Secured with a secret key.",
+  "channels_joinPrivateChannel": "Join a Private Channel",
+  "channels_joinPrivateChannelDesc": "Manually enter a secret key.",
+  "channels_joinPublicChannel": "Join the Public Channel",
+  "channels_joinPublicChannelDesc": "Anyone can join this channel.",
+  "channels_joinHashtagChannel": "Join a Hashtag Channel",
+  "channels_joinHashtagChannelDesc": "Anyone can join hashtag channels.",
+  "channels_scanQrCode": "Scan a QR Code",
+  "channels_scanQrCodeComingSoon": "Coming soon",
+  "channels_enterHashtag": "Enter hashtag",
+  "channels_hashtagHint": "e.g. #team",
 
   "chat_noMessages": "No messages yet",
   "chat_sendMessageToStart": "Send a message to get started",
@@ -711,6 +723,8 @@
       "error": {"type": "String"}
     }
   },
+  "login_failedMessage": "Login failed. Either the password is incorrect or the repeater is unreachable.",
+
 
   "common_reload": "Reload",
   "common_clear": "Clear",

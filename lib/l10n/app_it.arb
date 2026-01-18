@@ -821,6 +821,8 @@
       }
     }
   },
+  "login_failedMessage": "Accesso fallito. La password non è corretta oppure il ripetitore non è raggiungibile.",
+
   "common_reload": "Ricaricare",
   "common_clear": "Cancella",
   "path_currentPath": "Percorso corrente: {path}",
@@ -1336,6 +1338,7 @@
   "listFilter_roomServers": "Server della stanza",
   "listFilter_unreadOnly": "Solo non letto",
   "listFilter_newGroup": "Nuovo gruppo",
+  
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1349,5 +1352,18 @@
   "neighbors_RequestTimedOut": "I vicini richiedono un timeout.",
   "neighbors_errorLoading": "Errore nel caricamento dei vicini: {error}",
   "neighbors_repeatersNeighbours": "Ripetitori Vicini",
-  "neighbors_noData": "Nessun dato sugli vicini disponibile."
+  "neighbors_noData": "Nessun dato sugli vicini disponibile.",
+
+  "channels_createPrivateChannel": "Crea un Canale Privato",
+  "channels_createPrivateChannelDesc": "Protetta con una chiave segreta.",
+  "channels_joinPrivateChannel": "Unisciti a un Canale Privato",
+  "channels_joinPrivateChannelDesc": "Inserire manualmente una chiave segreta.",
+  "channels_joinPublicChannel": "Unisciti al Canale Pubblico",
+  "channels_joinPublicChannelDesc": "Chiunque può unirsi a questo canale.",
+  "channels_joinHashtagChannel": "Unisciti a un Canale con Hashtag",
+  "channels_joinHashtagChannelDesc": "Chiunque può unirsi ai canali hashtag.",
+  "channels_scanQrCode": "Scansiona un codice QR",
+  "channels_scanQrCodeComingSoon": "Arriverà presto",
+  "channels_enterHashtag": "Inserisci hashtag",
+  "channels_hashtagHint": "es. #team"
 }

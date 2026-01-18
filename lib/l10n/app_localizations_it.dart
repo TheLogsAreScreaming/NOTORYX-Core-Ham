@@ -828,6 +828,46 @@ class AppLocalizationsIt extends AppLocalizations {
   String get channels_sortUnread => 'Non letto';
 
   @override
+  String get channels_createPrivateChannel => 'Crea un Canale Privato';
+
+  @override
+  String get channels_createPrivateChannelDesc =>
+      'Protetta con una chiave segreta.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Unisciti a un Canale Privato';
+
+  @override
+  String get channels_joinPrivateChannelDesc =>
+      'Inserire manualmente una chiave segreta.';
+
+  @override
+  String get channels_joinPublicChannel => 'Unisciti al Canale Pubblico';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Chiunque può unirsi a questo canale.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Unisciti a un Canale con Hashtag';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'Chiunque può unirsi ai canali hashtag.';
+
+  @override
+  String get channels_scanQrCode => 'Scansiona un codice QR';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Arriverà presto';
+
+  @override
+  String get channels_enterHashtag => 'Inserisci hashtag';
+
+  @override
+  String get channels_hashtagHint => 'es. #team';
+
+  @override
   String get chat_noMessages => 'Nessun messaggio ancora';
 
   @override
@@ -1469,6 +1509,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String login_failed(String error) {
     return 'Accesso fallito: $error';
   }
+
+  @override
+  String get login_failedMessage =>
+      'Accesso fallito. La password non è corretta oppure il ripetitore non è raggiungibile.';
 
   @override
   String get common_reload => 'Ricaricare';

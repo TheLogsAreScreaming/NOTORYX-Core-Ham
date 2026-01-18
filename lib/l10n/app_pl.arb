@@ -821,6 +821,8 @@
       }
     }
   },
+  "login_failedMessage": "Logowanie nie powiodło się. Hasło jest nieprawidłowe albo repeater jest nieosiągalny.",
+
   "common_reload": "Ponownie załadować",
   "common_clear": "Wyczyść",
   "path_currentPath": "Aktualny ścieżka: {path}",
@@ -1336,6 +1338,7 @@
   "listFilter_roomServers": "Serwery pokoju",
   "listFilter_unreadOnly": "Tylko nieprzeczytane",
   "listFilter_newGroup": "Nowa grupa",
+
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1349,5 +1352,18 @@
   "neighbors_RequestTimedOut": "Sąsiedzi proszą o wyłączenie timingu.",
   "neighbors_errorLoading": "Błąd podczas ładowania sąsiadów: {error}",
   "neighbors_repeatersNeighbours": "Powtarzacze Sąsiedzi",
-  "neighbors_noData": "Brak danych dotyczących sąsiadów."
+  "neighbors_noData": "Brak danych dotyczących sąsiadów.",
+  
+  "channels_joinPrivateChannelDesc": "Ręcznie wprowadź klucz tajny.",
+  "channels_createPrivateChannel": "Utwórz Prywatny Kanał",
+  "channels_createPrivateChannelDesc": "Zabezpieczone kluczem szyfrowym.",
+  "channels_joinPrivateChannel": "Dołącz do Prywatnego Kanału",
+  "channels_joinPublicChannel": "Dołącz do kanału publicznego.",
+  "channels_joinPublicChannelDesc": "Każdy może dołączyć do tego kanału.",
+  "channels_joinHashtagChannel": "Dołącz do kanału oznaczanego hashtagiem",
+  "channels_joinHashtagChannelDesc": "Każdy może dołączyć do kanałów z hashtagami.",
+  "channels_scanQrCode": "Skanuj kod QR",
+  "channels_scanQrCodeComingSoon": "Wkrótce",
+  "channels_enterHashtag": "Wprowadź hashtag",
+  "channels_hashtagHint": "np. #zespół"
 }

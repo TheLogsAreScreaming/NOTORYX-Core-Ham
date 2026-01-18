@@ -819,6 +819,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get channels_sortUnread => 'Unread';
 
   @override
+  String get channels_createPrivateChannel => 'Create a Private Channel';
+
+  @override
+  String get channels_createPrivateChannelDesc => 'Secured with a secret key.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Join a Private Channel';
+
+  @override
+  String get channels_joinPrivateChannelDesc => 'Manually enter a secret key.';
+
+  @override
+  String get channels_joinPublicChannel => 'Join the Public Channel';
+
+  @override
+  String get channels_joinPublicChannelDesc => 'Anyone can join this channel.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Join a Hashtag Channel';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'Anyone can join hashtag channels.';
+
+  @override
+  String get channels_scanQrCode => 'Scan a QR Code';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Coming soon';
+
+  @override
+  String get channels_enterHashtag => 'Enter hashtag';
+
+  @override
+  String get channels_hashtagHint => 'e.g. #team';
+
+  @override
   String get chat_noMessages => 'No messages yet';
 
   @override
@@ -1452,6 +1489,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String login_failed(String error) {
     return 'Login failed: $error';
   }
+
+  @override
+  String get login_failedMessage =>
+      'Login failed. Either the password is incorrect or the repeater is unreachable.';
 
   @override
   String get common_reload => 'Reload';

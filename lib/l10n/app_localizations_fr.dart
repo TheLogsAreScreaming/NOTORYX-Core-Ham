@@ -211,11 +211,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_privacyModeSubtitle =>
-      'Cacher le nom/l\'emplacement dans les publicités';
+      'Cacher le nom/l\'emplacement dans les annonces';
 
   @override
   String get settings_privacyModeToggle =>
-      'Activer le mode confidentialité pour masquer votre nom et votre localisation dans les publicités.';
+      'Activer le mode confidentialité pour masquer votre nom et votre localisation dans les annonces.';
 
   @override
   String get settings_privacyModeEnabled => 'Mode de confidentialité activé';
@@ -228,7 +228,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_actions => 'Actions';
 
   @override
-  String get settings_sendAdvertisement => 'Envoyer la publicité';
+  String get settings_sendAdvertisement => 'S\'annoncer';
 
   @override
   String get settings_sendAdvertisementSubtitle =>
@@ -438,7 +438,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get appSettings_enableNotificationsSubtitle =>
-      'Recevoir des notifications pour les messages et les publicités';
+      'Recevoir des notifications pour les messages et les annonces';
 
   @override
   String get appSettings_notificationPermissionDenied =>
@@ -467,7 +467,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get appSettings_advertisementNotifications =>
-      'Notifications publicitaires';
+      'Notifications d\'annonces';
 
   @override
   String get appSettings_advertisementNotificationsSubtitle =>
@@ -498,7 +498,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get appSettings_autoRouteRotationSubtitle =>
-      'Alterner entre les meilleurs chemins et le mode inondation';
+      'Alterner entre les meilleurs chemins et le mode d\'envoi sur tout le réseau (flood)';
 
   @override
   String get appSettings_autoRouteRotationEnabled =>
@@ -831,6 +831,46 @@ class AppLocalizationsFr extends AppLocalizations {
   String get channels_sortUnread => 'Non lu';
 
   @override
+  String get channels_createPrivateChannel => 'Créer un Canal Privé';
+
+  @override
+  String get channels_createPrivateChannelDesc =>
+      'Sécurisé avec une clé secrète.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Rejoindre un Canal Privé';
+
+  @override
+  String get channels_joinPrivateChannelDesc =>
+      'Entrer manuellement une clé secrète.';
+
+  @override
+  String get channels_joinPublicChannel => 'Rejoindre le canal public';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Tout le monde peut rejoindre ce canal.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Rejoindre un Canal Hashtag';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'N\'importe qui peut rejoindre les canaux #hashtag.';
+
+  @override
+  String get channels_scanQrCode => 'Scanner un code QR';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Bientôt disponible';
+
+  @override
+  String get channels_enterHashtag => 'Entrez le hashtag';
+
+  @override
+  String get channels_hashtagHint => 'ex. #équipe';
+
+  @override
   String get chat_noMessages => 'Aucun message pour le moment.';
 
   @override
@@ -1016,7 +1056,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get chat_autoUseSavedPath => 'Auto (utiliser le chemin sauvegardé)';
 
   @override
-  String get chat_forceFloodMode => 'Mode Inondation Forcée';
+  String get chat_forceFloodMode => 'Mode tout le réseau forcé';
 
   @override
   String get chat_recentAckPaths =>
@@ -1080,7 +1120,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chat_floodModeEnabled =>
-      'Le mode inondation est activé. Réactiver via l\'icône de routage dans la barre d\'outils.';
+      'Le mode envoi à tout le réseau est activé. Changer via l\'icône de routage dans la barre d\'outils.';
 
   @override
   String get chat_fullPath => 'Chemin complet';
@@ -1125,7 +1165,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Compresser les messages sortants';
 
   @override
-  String get chat_floodForced => 'Inondation (forcée)';
+  String get chat_floodForced => 'Tout le réseau  (forcée)';
 
   @override
   String get chat_directForced => 'Direct (forcé)';
@@ -1136,7 +1176,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get chat_floodAuto => 'Inondation (auto)';
+  String get chat_floodAuto => 'Tout le réseau (auto)';
 
   @override
   String get chat_direct => 'Afficher';
@@ -1460,7 +1500,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get login_autoUseSavedPath => 'Auto (utiliser le chemin sauvegardé)';
 
   @override
-  String get login_forceFloodMode => 'Mode Inondation Forcée';
+  String get login_forceFloodMode => 'Mode tout le réseau forcé';
 
   @override
   String get login_managePaths => 'Gérer les chemins';
@@ -1477,6 +1517,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String login_failed(String error) {
     return 'Connexion échouée : $error';
   }
+
+  @override
+  String get login_failedMessage =>
+      'Connexion échouée. Soit le mot de passe est incorrect, soit le relais est injoignable.';
 
   @override
   String get common_reload => 'Recharger';
@@ -1594,7 +1638,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Auto (utiliser le chemin sauvegardé)';
 
   @override
-  String get repeater_forceFloodMode => 'Mode de submersion forcée';
+  String get repeater_forceFloodMode => 'Mode tout le réseau forcé';
 
   @override
   String get repeater_pathManagement => 'Gestion des chemins';
@@ -1671,17 +1715,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String repeater_packetTxTotal(int total, String flood, String direct) {
-    return 'Total : $total, Inondation : $flood, Direct : $direct';
+    return 'Total : $total, Tout le réseau : $flood, Direct : $direct';
   }
 
   @override
   String repeater_packetRxTotal(int total, String flood, String direct) {
-    return 'Total : $total, Inondation : $flood, Direct : $direct';
+    return 'Total : $total, Tout le réseau : $flood, Direct : $direct';
   }
 
   @override
   String repeater_duplicatesFloodDirect(String flood, String direct) {
-    return 'Inondation : $flood, Direct : $direct';
+    return 'Tout le réseau : $flood, Direct : $direct';
   }
 
   @override
@@ -1777,13 +1821,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_privacyModeSubtitle =>
-      'Cacher le nom/l\'emplacement dans les publicités';
+      'Cacher le nom/l\'emplacement dans les annonces';
 
   @override
-  String get repeater_advertisementSettings => 'Paramètres de Publicité';
+  String get repeater_advertisementSettings => 'Paramètres d\'annonces';
 
   @override
-  String get repeater_localAdvertInterval => 'Intervalle Publicité Locale';
+  String get repeater_localAdvertInterval =>
+      'Intervalle des annonces Locale (0 saut)';
 
   @override
   String repeater_localAdvertIntervalMinutes(int minutes) {
@@ -1792,7 +1837,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_floodAdvertInterval =>
-      'Intervalle de Publicité Inondation';
+      'Intervalle des annonces à tout le réseau (flood)';
 
   @override
   String repeater_floodAdvertIntervalHours(int hours) {
@@ -1801,7 +1846,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_encryptedAdvertInterval =>
-      'Intervalle publicitaire crypté';
+      'Intervalle d\'annonces cryptées';
 
   @override
   String get repeater_dangerZone => 'Zone d\'alerte';
@@ -1892,7 +1937,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_refreshAdvertisementSettings =>
-      'Rafraîchir les Paramètres de la Publicité';
+      'Rafraîchir les Paramètres des annonces';
 
   @override
   String repeater_refreshed(String label) {
@@ -1966,7 +2011,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get repeater_cliQuickClock => 'Horloge';
 
   @override
-  String get repeater_cliHelpAdvert => 'Envoie un paquet publicitaire';
+  String get repeater_cliHelpAdvert => 'Envoie un paquet d\'annonce';
 
   @override
   String get repeater_cliHelpReboot =>
@@ -2032,7 +2077,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Définit/met à jour le mot de passe de l\'invité. (pour les répéteurs, les connexions d\'invités peuvent envoyer la requête \"Get Stats\")';
 
   @override
-  String get repeater_cliHelpSetName => 'Définit le nom de la publicité.';
+  String get repeater_cliHelpSetName => 'Définit le nom de l\'annonce.';
 
   @override
   String get repeater_cliHelpSetLat =>
@@ -2052,7 +2097,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_cliHelpSetTxDelay =>
-      'Définit un facteur multiplié par le temps de fonctionnement en mode inondation pour un paquet et avec un système de slot aléatoire, afin de retarder son envoi (pour diminuer la probabilité de collisions).';
+      'Définit un facteur multiplié par le temps de fonctionnement en mode vers tout le réseau (flood) pour un paquet et avec un système de slot aléatoire, afin de retarder son envoi (pour diminuer la probabilité de collisions).';
 
   @override
   String get repeater_cliHelpSetDirectTxDelay =>
@@ -2107,7 +2152,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_cliHelpNeighbors =>
-      'Affiche une liste d\'autres nœuds répétiteurs entendus via des publicités sans relais. Chaque ligne est id-préfixe-hexadécimal:timestamp:snr-fois-4';
+      'Affiche une liste d\'autres nœuds répétiteurs entendus via des annonces sans relais. Chaque ligne est id-préfixe-hexadécimal:timestamp:snr-fois-4';
 
   @override
   String get repeater_cliHelpNeighborRemove =>
@@ -2115,7 +2160,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get repeater_cliHelpRegion =>
-      '(série uniquement) Liste toutes les régions définies et les autorisations de débordement actuelles.';
+      '(série uniquement) Liste toutes les régions définies et les autorisations actuelles d\'annonces sur tout le réseau (flood).';
 
   @override
   String get repeater_cliHelpRegionLoad =>
@@ -2342,7 +2387,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get channelPath_unknownPath => 'Inconnu';
 
   @override
-  String get channelPath_floodPath => 'Inondation';
+  String get channelPath_floodPath => 'Tout le réseau';
 
   @override
   String get channelPath_directPath => 'Afficher';

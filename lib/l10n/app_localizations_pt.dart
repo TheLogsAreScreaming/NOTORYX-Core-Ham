@@ -830,6 +830,46 @@ class AppLocalizationsPt extends AppLocalizations {
   String get channels_sortUnread => 'Não lido';
 
   @override
+  String get channels_createPrivateChannel => 'Criar um Canal Privado';
+
+  @override
+  String get channels_createPrivateChannelDesc =>
+      'Protegido com uma chave secreta.';
+
+  @override
+  String get channels_joinPrivateChannel => 'Junte-se a um Canal Privado';
+
+  @override
+  String get channels_joinPrivateChannelDesc =>
+      'Inserir uma chave secreta manualmente.';
+
+  @override
+  String get channels_joinPublicChannel => 'Junte-se ao Canal Público';
+
+  @override
+  String get channels_joinPublicChannelDesc =>
+      'Qualquer pessoa pode entrar neste canal.';
+
+  @override
+  String get channels_joinHashtagChannel => 'Junte-se a um Canal com Hashtag';
+
+  @override
+  String get channels_joinHashtagChannelDesc =>
+      'Qualquer pessoa pode participar de canais com hashtag.';
+
+  @override
+  String get channels_scanQrCode => 'Digitalizar um Código QR';
+
+  @override
+  String get channels_scanQrCodeComingSoon => 'Em breve';
+
+  @override
+  String get channels_enterHashtag => 'Insira hashtag';
+
+  @override
+  String get channels_hashtagHint => 'ex. #equipe';
+
+  @override
   String get chat_noMessages => 'Ainda não existem mensagens.';
 
   @override
@@ -1471,6 +1511,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String login_failed(String error) {
     return 'Login falhou: $error';
   }
+
+  @override
+  String get login_failedMessage =>
+      'Falha no login. A senha está incorreta ou o repetidor está inacessível.';
 
   @override
   String get common_reload => 'Recarregar';
