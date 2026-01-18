@@ -822,7 +822,6 @@
     }
   },
   "login_failedMessage": "Prijava je bila neuspešna. Geslo je napačno ali pa je repetitor nedosegljiv.",
-
   "common_reload": "Ponovno naloži",
   "common_clear": "Ponoviti",
   "path_currentPath": "Trenutna pot: {path}",
@@ -1338,7 +1337,6 @@
   "listFilter_roomServers": "Smeti za prostore",
   "listFilter_unreadOnly": "Nezbrani samo",
   "listFilter_newGroup": "Nova skupina",
-  
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1353,7 +1351,6 @@
   "neighbors_errorLoading": "Napaka pri obnašanju sosedov: {error}",
   "neighbors_repeatersNeighbours": "Ponovitve Sosedi",
   "neighbors_noData": "Niso na voljo podatki o sosedih.",
-
   "channels_joinPrivateChannel": "Pridružite se zasebni skupini",
   "channels_createPrivateChannelDesc": "Varno zaklenjeno s skrivnim ključem.",
   "channels_joinPrivateChannelDesc": "Ročno vnesite zaporni ključ.",
@@ -1365,5 +1362,21 @@
   "channels_scanQrCode": "Skeniraj QR kodo",
   "channels_scanQrCodeComingSoon": "Prihajajoča",
   "channels_enterHashtag": "Vnesite hashtag",
-  "channels_hashtagHint": "npr. #ekipa"
+  "channels_hashtagHint": "npr. #ekipa",
+  "@neighbors_unknownContact": {
+    "placeholders": {
+      "pubkey": {
+        "type": "String"
+      }
+    }
+  },
+  "@neighbors_heardAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "neighbors_unknownContact": "Nepoznano {pubkey}",
+  "neighbors_heardAgo": "Udeleženec je prejel sporočilo {time} nazaj."
 }

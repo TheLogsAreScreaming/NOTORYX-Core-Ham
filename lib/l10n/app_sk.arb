@@ -822,7 +822,6 @@
     }
   },
   "login_failedMessage": "Prihlásenie zlyhalo. Heslo je nesprávne alebo je opakovač nedostupný.",
-
   "common_reload": "Načítať",
   "common_clear": "Zmazať",
   "path_currentPath": "Aktívna cesta: {path}",
@@ -1338,7 +1337,6 @@
   "listFilter_roomServers": "Servéry miestnosti",
   "listFilter_unreadOnly": "Nezaregistrované len",
   "listFilter_newGroup": "Nová skupina",
-
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1353,7 +1351,6 @@
   "neighbors_errorLoading": "Chyba pri načítaní susedov: {error}",
   "neighbors_repeatersNeighbours": "Opakovadlá Súsezná",
   "neighbors_noData": "Nie je dostupná žiadna informácia o susedoch.",
-
   "channels_createPrivateChannel": "Vytvorte súkromný kanál",
   "channels_joinPrivateChannel": "Pripojiť sa k súkromnému kanálu",
   "channels_joinPrivateChannelDesc": "Ručne zadajte tajný kľúč.",
@@ -1365,5 +1362,21 @@
   "channels_scanQrCode": "Skenujte QR kód",
   "channels_scanQrCodeComingSoon": "Čoskoro",
   "channels_enterHashtag": "Zadajte hashtag",
-  "channels_hashtagHint": "napr. #tím"
+  "channels_hashtagHint": "napr. #tím",
+  "@neighbors_unknownContact": {
+    "placeholders": {
+      "pubkey": {
+        "type": "String"
+      }
+    }
+  },
+  "@neighbors_heardAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "neighbors_heardAgo": "Počuli sme to: {time} dozadu",
+  "neighbors_unknownContact": "Neznáma {pubkey}"
 }

@@ -822,7 +822,6 @@
     }
   },
   "login_failedMessage": "Logowanie nie powiodło się. Hasło jest nieprawidłowe albo repeater jest nieosiągalny.",
-
   "common_reload": "Ponownie załadować",
   "common_clear": "Wyczyść",
   "path_currentPath": "Aktualny ścieżka: {path}",
@@ -1338,7 +1337,6 @@
   "listFilter_roomServers": "Serwery pokoju",
   "listFilter_unreadOnly": "Tylko nieprzeczytane",
   "listFilter_newGroup": "Nowa grupa",
-
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1353,7 +1351,6 @@
   "neighbors_errorLoading": "Błąd podczas ładowania sąsiadów: {error}",
   "neighbors_repeatersNeighbours": "Powtarzacze Sąsiedzi",
   "neighbors_noData": "Brak danych dotyczących sąsiadów.",
-  
   "channels_joinPrivateChannelDesc": "Ręcznie wprowadź klucz tajny.",
   "channels_createPrivateChannel": "Utwórz Prywatny Kanał",
   "channels_createPrivateChannelDesc": "Zabezpieczone kluczem szyfrowym.",
@@ -1365,5 +1362,21 @@
   "channels_scanQrCode": "Skanuj kod QR",
   "channels_scanQrCodeComingSoon": "Wkrótce",
   "channels_enterHashtag": "Wprowadź hashtag",
-  "channels_hashtagHint": "np. #zespół"
+  "channels_hashtagHint": "np. #zespół",
+  "@neighbors_unknownContact": {
+    "placeholders": {
+      "pubkey": {
+        "type": "String"
+      }
+    }
+  },
+  "@neighbors_heardAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "neighbors_heardAgo": "Usłyszano: {time} temu",
+  "neighbors_unknownContact": "Nieznana {pubkey}"
 }

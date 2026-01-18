@@ -1082,7 +1082,18 @@
   },
   "neighbors_repeatersNeighbours": "Repeaters Neighbours",
   "neighbors_noData": "No neighbours data available.",
-
+  "neighbors_unknownContact": "Unknown {pubkey}",
+  "@neighbors_unknownContact": {
+    "placeholders": {
+      "pubkey": {"type": "String"}
+    }
+  },
+  "neighbors_heardAgo": "Heard: {time} ago",
+  "@neighbors_heardAgo": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
   "channelPath_title": "Packet Path",
   "channelPath_viewMap": "View map",
   "channelPath_otherObservedPaths": "Other Observed Paths",

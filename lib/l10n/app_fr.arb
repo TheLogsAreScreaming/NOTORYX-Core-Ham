@@ -822,7 +822,6 @@
     }
   },
   "login_failedMessage": "Connexion échouée. Soit le mot de passe est incorrect, soit le relais est injoignable.",
-
   "common_reload": "Recharger",
   "common_clear": "Effacer",
   "path_currentPath": "Chemin actuel : {path}",
@@ -1338,7 +1337,6 @@
   "listFilter_roomServers": "Serveurs de pièce",
   "listFilter_unreadOnly": "Messages non lus seulement",
   "listFilter_newGroup": "Nouvelle groupe",
-  
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1353,7 +1351,6 @@
   "neighbors_errorLoading": "Erreur lors du chargement des voisins : {error}",
   "neighbors_repeatersNeighbours": "Répéteurs Voisins",
   "neighbors_noData": "Aucune donnée concernant les voisins disponible.",
-
   "channels_createPrivateChannelDesc": "Sécurisé avec une clé secrète.",
   "channels_joinPrivateChannel": "Rejoindre un Canal Privé",
   "channels_createPrivateChannel": "Créer un Canal Privé",
@@ -1365,5 +1362,21 @@
   "channels_scanQrCode": "Scanner un code QR",
   "channels_scanQrCodeComingSoon": "Bientôt disponible",
   "channels_enterHashtag": "Entrez le hashtag",
-  "channels_hashtagHint": "ex. #équipe"
+  "channels_hashtagHint": "ex. #équipe",
+  "@neighbors_unknownContact": {
+    "placeholders": {
+      "pubkey": {
+        "type": "String"
+      }
+    }
+  },
+  "@neighbors_heardAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "neighbors_unknownContact": "Clé publique inconnue {pubkey}",
+  "neighbors_heardAgo": "Écouté : {time} auparavant"
 }

@@ -822,7 +822,6 @@
     }
   },
   "login_failedMessage": "Входът не беше успешен. Или паролата е грешна, или повторителят е недостъпен.",
-
   "common_reload": "Презареди",
   "common_clear": "Изчисти",
   "path_currentPath": "Текущ път: {path}",
@@ -1363,5 +1362,21 @@
   "channels_scanQrCode": "Сканирайте QR код",
   "channels_scanQrCodeComingSoon": "Ще излезе скоро",
   "channels_enterHashtag": "Въведете хаштаг",
-  "channels_hashtagHint": "напр. #отбор"
+  "channels_hashtagHint": "напр. #отбор",
+  "@neighbors_unknownContact": {
+    "placeholders": {
+      "pubkey": {
+        "type": "String"
+      }
+    }
+  },
+  "@neighbors_heardAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "neighbors_heardAgo": "Слушано преди {time}.",
+  "neighbors_unknownContact": "Неизвестна {pubkey}"
 }

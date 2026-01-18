@@ -822,7 +822,6 @@
     }
   },
   "login_failedMessage": "Inicio fallido. La contraseña es incorrecta o el repetidor no está disponible.",
-
   "common_reload": "Recargar",
   "common_clear": "Borrar",
   "path_currentPath": "Ruta actual: {path}",
@@ -1338,7 +1337,6 @@
   "listFilter_roomServers": "Servidores de la sala",
   "listFilter_unreadOnly": "Solo sin leer",
   "listFilter_newGroup": "Nuevo grupo",
-  
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1353,7 +1351,6 @@
   "neighbors_errorLoading": "Error al cargar vecinos: {error}",
   "neighbors_repeatersNeighbours": "Repetidores Vecinos",
   "neighbors_noData": "No hay datos de vecinos disponibles.",
-
   "channels_joinPrivateChannel": "Únete a un Canal Privado",
   "channels_createPrivateChannel": "Crear un Canal Privado",
   "channels_createPrivateChannelDesc": "Cifrado con una clave secreta.",
@@ -1365,5 +1362,21 @@
   "channels_scanQrCode": "Escanear un Código QR",
   "channels_scanQrCodeComingSoon": "Próximamente",
   "channels_enterHashtag": "Introducir hashtag",
-  "channels_hashtagHint": "ej. #equipo"
+  "channels_hashtagHint": "ej. #equipo",
+  "@neighbors_unknownContact": {
+    "placeholders": {
+      "pubkey": {
+        "type": "String"
+      }
+    }
+  },
+  "@neighbors_heardAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "neighbors_unknownContact": "Clave pública desconocida {pubkey}",
+  "neighbors_heardAgo": "Escuchado: {time} hace atrás"
 }

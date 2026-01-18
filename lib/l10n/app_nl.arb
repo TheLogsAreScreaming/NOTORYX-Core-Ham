@@ -822,7 +822,6 @@
     }
   },
   "login_failedMessage": "Inloggen mislukt. Het wachtwoord is onjuist of de repeater is niet bereikbaar.",
-
   "common_reload": "Opnieuw laden",
   "common_clear": "Schoonmaken",
   "path_currentPath": "Huidige pad: {path}",
@@ -1338,7 +1337,6 @@
   "listFilter_roomServers": "Roomservers",
   "listFilter_unreadOnly": "Alleen ongelezen",
   "listFilter_newGroup": "Nieuwe groep",
-  
   "@neighbors_errorLoading": {
     "placeholders": {
       "error": {
@@ -1353,7 +1351,6 @@
   "neighbors_errorLoading": "Fout bij het laden van buren: {error}",
   "neighbors_repeatersNeighbours": "Herhalingen Buren",
   "neighbors_noData": "Geen gegevens van buren beschikbaar.",
-
   "channels_createPrivateChannelDesc": "Beveiligd met een geheime sleutel.",
   "channels_createPrivateChannel": "Maak een Privé Kanaal",
   "channels_joinPrivateChannel": "Sluit een Privé Kanaal aan",
@@ -1365,5 +1362,21 @@
   "channels_scanQrCode": "Scan een QR-code",
   "channels_scanQrCodeComingSoon": "Komt later",
   "channels_enterHashtag": "Voer hashtag in",
-  "channels_hashtagHint": "bijv. #team"
+  "channels_hashtagHint": "bijv. #team",
+  "@neighbors_unknownContact": {
+    "placeholders": {
+      "pubkey": {
+        "type": "String"
+      }
+    }
+  },
+  "@neighbors_heardAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "neighbors_unknownContact": "Onbekende {pubkey}",
+  "neighbors_heardAgo": "Horen: {time} geleden"
 }

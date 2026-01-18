@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -70,7 +69,7 @@ class _NeighboursScreenState extends State<NeighboursScreen> {
       // Check if it's a binary response
       if (frame[0] == pushCodeBinaryResponse &&
           listEquals(frame.sublist(2, 6), _tagData)) {
-        _handleNeighboursResponse(context, connector, frame.sublist(6));
+        _handleNeighboursResponse(connector, frame.sublist(6));
       }
     });
   }
@@ -116,18 +115,14 @@ class _NeighboursScreenState extends State<NeighboursScreen> {
     return neighbours.values.toList();
   }
 
-  void _handleNeighboursResponse(
-    BuildContext context,
-    MeshCoreConnector connector,
-    Uint8List frame,
-  ) {
+  void _handleNeighboursResponse(MeshCoreConnector connector, Uint8List frame) {
     final buffer = BufferReader(frame);
     final neighbourCount = buffer.readUInt16LE();
     final parsedNeighbours = parseNeighboursData(buffer, buffer.readUInt16LE());
     connector.contacts.where((c) => c.type == advTypeRepeater).forEach((
       repeater,
     ) {
-      parsedNeighbours.forEach((neighbourData) {
+      for (var neighbourData in parsedNeighbours) {
         final publicKey = neighbourData['publicKey'];
         if (listEquals(
           repeater.publicKey.sublist(0, _reqNeighboursKeyLen),
@@ -135,7 +130,7 @@ class _NeighboursScreenState extends State<NeighboursScreen> {
         )) {
           neighbourData['contact'] = repeater;
         }
-      });
+      }
     });
 
     setState(() {
@@ -376,7 +371,9 @@ class _NeighboursScreenState extends State<NeighboursScreen> {
                   _hasData &&
                       !(_parsedNeighbours == null ||
                           _parsedNeighbours!.isEmpty))
-                _buildNeighboursInfoCard(l10n.repeater_neighbours),
+                _buildNeighboursInfoCard(
+                  "${l10n.repeater_neighbours} - $_neighbourCount",
+                ),
             ],
           ),
         ),
@@ -413,8 +410,12 @@ class _NeighboursScreenState extends State<NeighboursScreen> {
               _buildInfoRow(
                 entry.value['contact'] != null
                     ? entry.value['contact'].name
-                    : 'Unknown (${pubKeyToHex(entry.value['publicKey'])})',
-                'Heard: ${fmtDuration(entry.value['lastHeard'] + 0.0)} ago',
+                    : context.l10n.neighbors_unknownContact(
+                        "<${pubKeyToHex(entry.value['publicKey'])}>",
+                      ),
+                context.l10n.neighbors_heardAgo(
+                  fmtDuration(entry.value['lastHeard'] + 0.0),
+                ),
                 entry.value['snr'],
                 connector.currentSf!,
               ),
