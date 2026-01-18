@@ -1335,5 +1335,19 @@
   "listFilter_repeaters": "Wiederholer",
   "listFilter_roomServers": "Raumserver",
   "listFilter_unreadOnly": "Nur nicht gelesen",
-  "listFilter_newGroup": "Neue Gruppe"
+  "listFilter_newGroup": "Neue Gruppe",
+  "@neighbors_errorLoading": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_neighbours": "Nachbarn",
+  "repeater_neighboursSubtitle": "Anzahl der Hop-Nachbarn anzeigen.",
+  "neighbors_ReceivedData": "Empfangene Nachbarendaten",
+  "neighbors_RequestTimedOut": "Nachbarn melden zeitweise Ausfall.",
+  "neighbors_errorLoading": "Fehler beim Laden der Nachbarn: {error}",
+  "neighbors_repeatersNeighbours": "Wiederholer Nachbarn",
+  "neighbors_noData": "Keine Nachbardaten verfügbar."
 }

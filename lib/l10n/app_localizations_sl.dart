@@ -1562,6 +1562,12 @@ class AppLocalizationsSl extends AppLocalizations {
       'Pošlji ukazne povelje na ponovitveno enoto.';
 
   @override
+  String get repeater_neighbours => 'Neighbors';
+
+  @override
+  String get repeater_neighboursSubtitle => 'View zero hop neighbors.';
+
+  @override
   String get repeater_settings => 'Nastavitve';
 
   @override
@@ -2241,6 +2247,23 @@ class AppLocalizationsSl extends AppLocalizations {
   String telemetry_temperatureValue(String celsius, String fahrenheit) {
     return '$celsius°C / $fahrenheit°F';
   }
+
+  @override
+  String get neighbors_ReceivedData => 'Received Neighbours Data';
+
+  @override
+  String get neighbors_RequestTimedOut => 'Neighbours request timed out.';
+
+  @override
+  String neighbors_errorLoading(String error) {
+    return 'Error loading neighbors: $error';
+  }
+
+  @override
+  String get neighbors_repeatersNeighbours => 'Repeaters Neighbours';
+
+  @override
+  String get neighbors_noData => 'No neighbours data available.';
 
   @override
   String get channelPath_title => 'Pot do paketa';

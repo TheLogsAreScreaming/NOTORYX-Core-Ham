@@ -1335,5 +1335,19 @@
   "listFilter_repeaters": "Powtarzacze",
   "listFilter_roomServers": "Serwery pokoju",
   "listFilter_unreadOnly": "Tylko nieprzeczytane",
-  "listFilter_newGroup": "Nowa grupa"
+  "listFilter_newGroup": "Nowa grupa",
+  "@neighbors_errorLoading": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_neighbours": "Sąsiedzi",
+  "repeater_neighboursSubtitle": "Wyświetl sąsiedztwo zerowych hopów.",
+  "neighbors_ReceivedData": "Otrzymano dane sąsiedztwa",
+  "neighbors_RequestTimedOut": "Sąsiedzi proszą o wyłączenie timingu.",
+  "neighbors_errorLoading": "Błąd podczas ładowania sąsiadów: {error}",
+  "neighbors_repeatersNeighbours": "Powtarzacze Sąsiedzi",
+  "neighbors_noData": "Brak danych dotyczących sąsiadów."
 }

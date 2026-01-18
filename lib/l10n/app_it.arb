@@ -1335,5 +1335,19 @@
   "listFilter_repeaters": "Ripetitori",
   "listFilter_roomServers": "Server della stanza",
   "listFilter_unreadOnly": "Solo non letto",
-  "listFilter_newGroup": "Nuovo gruppo"
+  "listFilter_newGroup": "Nuovo gruppo",
+  "@neighbors_errorLoading": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_neighbours": "Vicini",
+  "repeater_neighboursSubtitle": "Visualizza vicini di salto pari a zero.",
+  "neighbors_ReceivedData": "Ricevute dati vicini",
+  "neighbors_RequestTimedOut": "I vicini richiedono un timeout.",
+  "neighbors_errorLoading": "Errore nel caricamento dei vicini: {error}",
+  "neighbors_repeatersNeighbours": "Ripetitori Vicini",
+  "neighbors_noData": "Nessun dato sugli vicini disponibile."
 }

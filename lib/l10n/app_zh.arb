@@ -1335,5 +1335,19 @@
   "listFilter_repeaters": "重复器",
   "listFilter_roomServers": "房间服务器",
   "listFilter_unreadOnly": "未读消息",
-  "listFilter_newGroup": "新组"
+  "listFilter_newGroup": "新组",
+  "@neighbors_errorLoading": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_neighboursSubtitle": "查看零跳邻居。",
+  "repeater_neighbours": "邻居",
+  "neighbors_ReceivedData": "收到邻居数据",
+  "neighbors_RequestTimedOut": "邻居请求超时处理。",
+  "neighbors_errorLoading": "加载邻居时出错：{error}",
+  "neighbors_repeatersNeighbours": "重复器邻居",
+  "neighbors_noData": "没有可用的邻居数据。"
 }

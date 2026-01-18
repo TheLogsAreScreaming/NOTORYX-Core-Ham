@@ -1335,5 +1335,19 @@
   "listFilter_repeaters": "Upprepare",
   "listFilter_roomServers": "Rumservrar",
   "listFilter_unreadOnly": "Endast oinlästa",
-  "listFilter_newGroup": "Ny grupp"
+  "listFilter_newGroup": "Ny grupp",
+  "@neighbors_errorLoading": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_neighbours": "Grannar",
+  "repeater_neighboursSubtitle": "Visa noll hoppgrannar.",
+  "neighbors_ReceivedData": "Mottagna grannars data",
+  "neighbors_RequestTimedOut": "Grannar begär tidsinställd utskick.",
+  "neighbors_errorLoading": "Fel vid inläsning av grannar: {error}",
+  "neighbors_repeatersNeighbours": "Upprepar grannar",
+  "neighbors_noData": "Inga grannuppgifter finns tillgängliga."
 }

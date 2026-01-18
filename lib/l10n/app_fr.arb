@@ -1335,5 +1335,19 @@
   "listFilter_repeaters": "Répéteurs",
   "listFilter_roomServers": "Serveurs de pièce",
   "listFilter_unreadOnly": "Messages non lus seulement",
-  "listFilter_newGroup": "Nouvelle groupe"
+  "listFilter_newGroup": "Nouvelle groupe",
+  "@neighbors_errorLoading": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_neighbours": "Voisins",
+  "repeater_neighboursSubtitle": "Afficher les voisins de saut nuls.",
+  "neighbors_ReceivedData": "Données des voisins reçues",
+  "neighbors_RequestTimedOut": "Les voisins demandent un délai.",
+  "neighbors_errorLoading": "Erreur lors du chargement des voisins : {error}",
+  "neighbors_repeatersNeighbours": "Répéteurs Voisins",
+  "neighbors_noData": "Aucune donnée concernant les voisins disponible."
 }

@@ -1335,5 +1335,19 @@
   "listFilter_repeaters": "Opakovadlá",
   "listFilter_roomServers": "Servéry miestnosti",
   "listFilter_unreadOnly": "Nezaregistrované len",
-  "listFilter_newGroup": "Nová skupina"
+  "listFilter_newGroup": "Nová skupina",
+  "@neighbors_errorLoading": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_neighboursSubtitle": "Zobraziť susedné body bez skokov.",
+  "neighbors_RequestTimedOut": "Súďia žiadajú o časové ukončenie.",
+  "neighbors_ReceivedData": "Obdielo dáta suseda",
+  "repeater_neighbours": "Súsezný",
+  "neighbors_errorLoading": "Chyba pri načítaní susedov: {error}",
+  "neighbors_repeatersNeighbours": "Opakovadlá Súsezná",
+  "neighbors_noData": "Nie je dostupná žiadna informácia o susedoch."
 }
