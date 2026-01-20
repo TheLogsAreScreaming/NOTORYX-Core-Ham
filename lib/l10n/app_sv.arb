@@ -1349,8 +1349,8 @@
   "channels_scanQrCodeComingSoon": "Kommer snart",
   "channels_enterHashtag": "Ange hashtag",
   "channels_hashtagHint": "t.ex. #team",
+  "settings_locationGPSEnableSubtitle": "Aktiverar automatiska uppdateringar av platsen med hjälp av GPS.",
   "settings_locationGPSEnable": "Aktivera GPS",
-  "settings_locationIntervalSec": "Tidsintervall (Sekunder)",
-  "settings_locationGPSEnableSubtitle": "Aktivera GPS för att automatiskt skicka platsdata (om det stöds).",
+  "settings_locationIntervalSec": "Interval för GPS (Sekunder)",
   "settings_locationIntervalInvalid": "Intervalet måste vara minst 60 sekunder och mindre än 86400 sekunder."
 }

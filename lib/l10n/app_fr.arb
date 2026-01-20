@@ -1349,8 +1349,8 @@
   "channels_scanQrCodeComingSoon": "Bientôt disponible",
   "channels_enterHashtag": "Entrez le hashtag",
   "channels_hashtagHint": "ex. #équipe",
+  "settings_locationGPSEnableSubtitle": "Activer la mise à jour automatique de la position grâce au GPS.",
+  "settings_locationIntervalInvalid": "L'intervalle doit être d’au moins 60 secondes et inférieur à 86400 secondes.",
   "settings_locationGPSEnable": "Activer le GPS",
-  "settings_locationGPSEnableSubtitle": "Activer le GPS pour envoyer automatiquement les données de localisation (si pris en charge).",
-  "settings_locationIntervalSec": "Intervalle (Secondes)",
-  "settings_locationIntervalInvalid": "L'intervalle doit être d'au moins 60 secondes et inférieur à 86400 secondes."
+  "settings_locationIntervalSec": "Intervalle GPS (Secondes)"
 }

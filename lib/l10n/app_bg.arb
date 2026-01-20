@@ -1349,8 +1349,8 @@
   "channels_scanQrCodeComingSoon": "Ще излезе скоро",
   "channels_enterHashtag": "Въведете хаштаг",
   "channels_hashtagHint": "напр. #отбор",
-  "settings_locationIntervalSec": "Интервал (Секунди)",
-  "settings_locationGPSEnableSubtitle": "Активирайте GPS, за автоматично изпращане на данни за местоположението (ако е поддържано).",
-  "settings_locationIntervalInvalid": "Интервалът трябва да бъде поне 60 секунди и по-малко от 86400 секунди.",
-  "settings_locationGPSEnable": "Активиране на GPS"
+  "settings_locationIntervalSec": "Интервал за GPS (Секунди)",
+  "settings_locationGPSEnable": "Активиране на GPS",
+  "settings_locationGPSEnableSubtitle": "Активирайте автоматичното актуализиране на местоположението чрез GPS.",
+  "settings_locationIntervalInvalid": "Интервалът трябва да бъде поне 60 секунди и по-малко от 86400 секунди."
 }

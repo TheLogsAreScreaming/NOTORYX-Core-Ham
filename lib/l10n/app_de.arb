@@ -1350,7 +1350,7 @@
   "channels_enterHashtag": "Gib Hashtag ein",
   "channels_hashtagHint": "z.B. #team",
   "settings_locationGPSEnable": "GPS aktivieren",
-  "settings_locationGPSEnableSubtitle": "Aktivieren Sie GPS, um Standortdaten automatisch zu senden (falls unterstützt).",
-  "settings_locationIntervalSec": "Zeitintervall (Sekunden)",
-  "settings_locationIntervalInvalid": "Der Zeitraum muss mindestens 60 Sekunden betragen und weniger als 86400 Sekunden sein."
+  "settings_locationGPSEnableSubtitle": "Aktivieren Sie die automatische Aktualisierung der Standortdaten per GPS.",
+  "settings_locationIntervalInvalid": "Der Zeitraum muss mindestens 60 Sekunden betragen und weniger als 86400 Sekunden sein.",
+  "settings_locationIntervalSec": "Zeitintervall für GPS (Sekunden)"
 }

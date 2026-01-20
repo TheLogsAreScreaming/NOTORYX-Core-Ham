@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meshcore_open/widgets/elements_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -435,7 +436,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     intervalController.text = "900";
     latController.text = connector.selfLatitude?.toStringAsFixed(6) ?? '';
     lonController.text = connector.selfLongitude?.toStringAsFixed(6) ?? '';
-    bool isGPSEnabled = false;
+    bool hasGPS = connector.currentCustomVars!.isNotEmpty
+        ? connector.currentCustomVars!.containsKey("gps")
+        : false;
+
+    bool isGPSEnabled = hasGPS
+        ? connector.currentCustomVars!["gps"] == "1"
+        : false;
 
     showDialog(
       context: context,
@@ -445,48 +452,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (!isGPSEnabled) ...[
-                TextField(
-                  controller: latController,
-                  decoration: InputDecoration(
-                    labelText: l10n.settings_latitude,
-                    border: const OutlineInputBorder(),
-                  ),
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                    signed: true,
-                  ),
+              TextField(
+                controller: latController,
+                decoration: InputDecoration(
+                  labelText: l10n.settings_latitude,
+                  border: const OutlineInputBorder(),
                 ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: lonController,
-                  decoration: InputDecoration(
-                    labelText: l10n.settings_longitude,
-                    border: const OutlineInputBorder(),
-                  ),
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                    signed: true,
-                  ),
-                ),
-              ],
-              const SizedBox(height: 16),
-              CheckboxListTile(
-                value: isGPSEnabled,
-                enabled: true,
-                onChanged: (v) =>
-                    setDialogState(() => isGPSEnabled = v ?? false),
-                //controlAffinity: ListTileControlAffinity.leading,
-                title: Text(
-                  l10n.settings_locationGPSEnable,
-                  style: TextStyle(fontSize: 12),
-                ),
-                subtitle: Text(
-                  l10n.settings_locationGPSEnableSubtitle,
-                  style: TextStyle(fontSize: 10),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                  signed: true,
                 ),
               ),
-              if (isGPSEnabled) ...{
+              const SizedBox(height: 16),
+              TextField(
+                controller: lonController,
+                decoration: InputDecoration(
+                  labelText: l10n.settings_longitude,
+                  border: const OutlineInputBorder(),
+                ),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                  signed: true,
+                ),
+              ),
+              if (hasGPS) ...[
                 const SizedBox(height: 16),
                 TextField(
                   controller: intervalController,
@@ -499,7 +488,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     signed: false,
                   ),
                 ),
-              },
+                const SizedBox(height: 16),
+                FeatureToggleRow(
+                  title: l10n.settings_locationGPSEnable,
+                  subtitle: l10n.settings_locationGPSEnableSubtitle,
+                  value: isGPSEnabled,
+                  onChanged: (value) async {
+                    setDialogState(() => isGPSEnabled = value);
+                    if (value) {
+                      await connector.setCustomVar("gps:1");
+                    } else {
+                      await connector.setCustomVar("gps:0");
+                    }
+                  },
+                ),
+              ],
             ],
           ),
           actions: [
@@ -510,11 +513,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             TextButton(
               onPressed: () async {
                 Navigator.pop(context);
-                if (isGPSEnabled) {
+
+                if (hasGPS) {
                   final intervalText = intervalController.text.trim();
                   if (intervalText.isEmpty) {
                     return;
                   }
+
                   final interval = int.tryParse(intervalText);
                   if (interval == null || interval < 60) {
                     if (!context.mounted) return;
@@ -525,53 +530,50 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     );
                     return;
                   }
-                  await connector.setCustomVar("gps:1");
+
                   await connector.setCustomVar("gps_interval:$interval");
                   await connector.refreshDeviceInfo();
                   if (!context.mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(l10n.settings_locationUpdated)),
                   );
-                } else {
-                  final latText = latController.text.trim();
-                  final lonText = lonController.text.trim();
-                  if (latText.isEmpty && lonText.isEmpty) {
-                    return;
-                  }
+                }
 
-                  final currentLat = connector.selfLatitude;
-                  final currentLon = connector.selfLongitude;
-                  final lat = latText.isNotEmpty
-                      ? double.tryParse(latText)
-                      : currentLat;
-                  final lon = lonText.isNotEmpty
-                      ? double.tryParse(lonText)
-                      : currentLon;
-                  if (lat == null || lon == null) {
-                    if (!context.mounted) return;
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(l10n.settings_locationBothRequired),
-                      ),
-                    );
-                    return;
-                  }
-                  if (lat < -90 || lat > 90 || lon < -180 || lon > 180) {
-                    if (!context.mounted) return;
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(l10n.settings_locationInvalid)),
-                    );
-                    return;
-                  }
+                final latText = latController.text.trim();
+                final lonText = lonController.text.trim();
+                if (latText.isEmpty && lonText.isEmpty) {
+                  return;
+                }
 
-                  await connector.setCustomVar("gps:0");
-                  await connector.setNodeLocation(lat: lat, lon: lon);
-                  await connector.refreshDeviceInfo();
+                final currentLat = connector.selfLatitude;
+                final currentLon = connector.selfLongitude;
+                final lat = latText.isNotEmpty
+                    ? double.tryParse(latText)
+                    : currentLat;
+                final lon = lonText.isNotEmpty
+                    ? double.tryParse(lonText)
+                    : currentLon;
+                if (lat == null || lon == null) {
                   if (!context.mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(l10n.settings_locationUpdated)),
+                    SnackBar(content: Text(l10n.settings_locationBothRequired)),
                   );
+                  return;
                 }
+                if (lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(l10n.settings_locationInvalid)),
+                  );
+                  return;
+                }
+
+                await connector.setNodeLocation(lat: lat, lon: lon);
+                await connector.refreshDeviceInfo();
+                if (!context.mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n.settings_locationUpdated)),
+                );
               },
               child: Text(l10n.common_save),
             ),

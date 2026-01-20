@@ -489,13 +489,13 @@ abstract class AppLocalizations {
   /// No description provided for @settings_locationGPSEnableSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Enable GPS to automatically send location data (if supported)'**
+  /// **'Enables GPS to automatically send location data (if supported)'**
   String get settings_locationGPSEnableSubtitle;
 
   /// No description provided for @settings_locationIntervalSec.
   ///
   /// In en, this message translates to:
-  /// **'Interval (Seconds)'**
+  /// **'Interval for GPS (Seconds)'**
   String get settings_locationIntervalSec;
 
   /// No description provided for @settings_locationIntervalInvalid.

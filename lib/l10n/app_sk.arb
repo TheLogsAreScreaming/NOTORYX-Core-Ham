@@ -1350,7 +1350,7 @@
   "channels_enterHashtag": "Zadajte hashtag",
   "channels_hashtagHint": "napr. #tím",
   "settings_locationGPSEnable": "Aktivovať GPS",
-  "settings_locationGPSEnableSubtitle": "Zapnite GPS na automatické posielanie dát o polohe (ak je podporované).",
-  "settings_locationIntervalSec": "Interval (Sekundy)",
+  "settings_locationGPSEnableSubtitle": "Povolí automatické aktualizovanie polohy pomocou GPS.",
+  "settings_locationIntervalSec": "Interval pre GPS (Sekundy)",
   "settings_locationIntervalInvalid": "Interval musí byť aspoň 60 sekúnd a menej ako 86400 sekúnd."
 }

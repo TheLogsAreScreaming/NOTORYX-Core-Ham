@@ -1350,7 +1350,7 @@
   "channels_enterHashtag": "Wprowadź hashtag",
   "channels_hashtagHint": "np. #zespół",
   "settings_locationGPSEnable": "Włącz GPS",
-  "settings_locationGPSEnableSubtitle": "Włącz GPS, aby automatycznie wysyłać dane o lokalizacji (jeśli jest obsługiwane).",
-  "settings_locationIntervalSec": "Interwał (Sekundy)",
+  "settings_locationIntervalSec": "Interwał dla GPS (Sekundy)",
+  "settings_locationGPSEnableSubtitle": "Włącza automatyczne aktualizowanie pozycji za pomocą GPS.",
   "settings_locationIntervalInvalid": "Interwał musi wynosić co najmniej 60 sekund i mniej niż 86400 sekund."
 }

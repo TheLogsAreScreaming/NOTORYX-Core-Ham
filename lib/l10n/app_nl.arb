@@ -1350,7 +1350,7 @@
   "channels_enterHashtag": "Voer hashtag in",
   "channels_hashtagHint": "bijv. #team",
   "settings_locationGPSEnable": "GPS inschakelen",
-  "settings_locationGPSEnableSubtitle": "Zijze GPS inschakelen om locatiegegevens automatisch te verzenden (indien ondersteund).",
+  "settings_locationIntervalSec": "Interval voor GPS (Seconden)",
   "settings_locationIntervalInvalid": "De intervallen moeten minstens 60 seconden zijn en minder dan 86400 seconden.",
-  "settings_locationIntervalSec": "Interval (Seconden)"
+  "settings_locationGPSEnableSubtitle": "Activeer automatisch locatieupdates via GPS."
 }
