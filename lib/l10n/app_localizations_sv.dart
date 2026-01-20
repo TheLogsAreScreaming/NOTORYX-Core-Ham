@@ -653,6 +653,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get contacts_manageRepeater => 'Hantera Upprepare';
 
   @override
+  String get contacts_manageRoom => 'Hantera Rumserver';
+
+  @override
   String get contacts_roomLogin => 'Rum Inloggning';
 
   @override
@@ -1582,6 +1585,9 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get repeater_management => 'Återuppspelarens Hantering';
+
+  @override
+  String get room_management => 'Rumserverhantering';
 
   @override
   String get repeater_managementTools => 'Administrationsverktyg';

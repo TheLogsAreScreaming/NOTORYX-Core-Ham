@@ -663,6 +663,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get contacts_manageRepeater => 'Gestionar Repetidor';
 
   @override
+  String get contacts_manageRoom => 'Gestionar Servidor de Habitación';
+
+  @override
   String get contacts_roomLogin => 'Inicio de Sala';
 
   @override
@@ -1598,6 +1601,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get repeater_management => 'Gestión de Repetidores';
+
+  @override
+  String get room_management => 'Administración del Servidor de Habitación';
 
   @override
   String get repeater_managementTools => 'Herramientas de Gestión';
