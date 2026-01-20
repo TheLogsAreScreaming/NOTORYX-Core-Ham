@@ -612,6 +612,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get contacts_manageRepeater => '管理重复项';
 
   @override
+  String get contacts_manageRoom => '管理房间服务器';
+
+  @override
   String get contacts_roomLogin => '房间登录';
 
   @override
@@ -1512,6 +1515,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_management => '重复器管理';
+
+  @override
+  String get room_management => '房间服务器管理';
 
   @override
   String get repeater_managementTools => '管理工具';

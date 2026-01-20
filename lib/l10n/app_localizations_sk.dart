@@ -643,6 +643,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get contacts_manageRepeater => 'Spravovať opakované zoznamy';
 
   @override
+  String get contacts_manageRoom => 'Spravovať server miestnosti';
+
+  @override
   String get contacts_roomLogin => 'Prihlásenie do miestnosti';
 
   @override
@@ -1579,6 +1582,9 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get repeater_management => 'Správa opakérov';
+
+  @override
+  String get room_management => 'Správa servera miestnosti';
 
   @override
   String get repeater_managementTools => 'Nástroje na správu';
