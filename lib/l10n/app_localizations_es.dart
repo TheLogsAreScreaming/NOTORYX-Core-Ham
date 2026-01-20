@@ -205,10 +205,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_locationGPSEnableSubtitle =>
-      'Habilitar GPS para enviar automáticamente datos de ubicación (si está disponible).';
+      'Habilita la actualización automática de la ubicación mediante GPS.';
 
   @override
-  String get settings_locationIntervalSec => 'Intervalo (Segundos)';
+  String get settings_locationIntervalSec => 'Intervalo para GPS (Segundos)';
 
   @override
   String get settings_locationIntervalInvalid =>

@@ -465,7 +465,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_locationUpdated.
   ///
   /// In en, this message translates to:
-  /// **'GPS settings updated.'**
+  /// **'Location and GPS settings updated'**
   String get settings_locationUpdated;
 
   /// No description provided for @settings_locationBothRequired.
@@ -489,7 +489,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_locationGPSEnableSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Enables GPS to automatically send location data (if supported)'**
+  /// **'Enables GPS to automatically update location.'**
   String get settings_locationGPSEnableSubtitle;
 
   /// No description provided for @settings_locationIntervalSec.

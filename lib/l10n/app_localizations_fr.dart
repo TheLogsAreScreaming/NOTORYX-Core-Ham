@@ -201,18 +201,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_locationInvalid => 'Latitude ou longitude invalide.';
 
   @override
-  String get settings_locationGPSEnable => 'Activer le GPS';
+  String get settings_locationGPSEnable => 'Habilita GPS';
 
   @override
   String get settings_locationGPSEnableSubtitle =>
-      'Activer le GPS pour envoyer automatiquement les données de localisation (si pris en charge).';
+      'Habilita la actualización automática de la ubicación mediante GPS.';
 
   @override
-  String get settings_locationIntervalSec => 'Intervalle (Secondes)';
+  String get settings_locationIntervalSec => 'Intervalo pour GPS (Segundos)';
 
   @override
   String get settings_locationIntervalInvalid =>
-      'L\'intervalle doit être d\'au moins 60 secondes et inférieur à 86400 secondes.';
+      'El intervalo debe ser de al menos 60 segundos y menor que 86400 segundos.';
 
   @override
   String get settings_latitude => 'Latitude';
@@ -664,7 +664,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get contacts_manageRepeater => 'Gérer le répétiteur';
 
   @override
-  String get contacts_manageRoom => 'Gérer le serveur de salle';
+  String get contacts_manageRoom => 'Gestionar Servidor de Habitación';
 
   @override
   String get contacts_roomLogin => 'Connexion Salle';
@@ -1609,7 +1609,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get repeater_management => 'Gestion des répétiteurs';
 
   @override
-  String get room_management => 'Gestion du serveur de pièce';
+  String get room_management => 'Administración del Servidor de Habitación';
 
   @override
   String get repeater_managementTools => 'Outils de Gestion';

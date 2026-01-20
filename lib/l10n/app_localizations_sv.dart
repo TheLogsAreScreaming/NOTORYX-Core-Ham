@@ -204,10 +204,10 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get settings_locationGPSEnableSubtitle =>
-      'Aktivera GPS för att automatiskt skicka platsdata (om det stöds).';
+      'Aktivera automatiska uppdateringar av platsen med hjälp av GPS.';
 
   @override
-  String get settings_locationIntervalSec => 'Tidsintervall (Sekunder)';
+  String get settings_locationIntervalSec => 'Interval för GPS (Sekunder)';
 
   @override
   String get settings_locationIntervalInvalid =>

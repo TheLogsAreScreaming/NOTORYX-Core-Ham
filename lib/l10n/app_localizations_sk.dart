@@ -205,10 +205,10 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get settings_locationGPSEnableSubtitle =>
-      'Zapnite GPS na automatické posielanie dát o polohe (ak je podporované).';
+      'Povolí automatické aktualizovanie polohy pomocou GPS.';
 
   @override
-  String get settings_locationIntervalSec => 'Interval (Sekundy)';
+  String get settings_locationIntervalSec => 'Interval pre GPS (Sekundy)';
 
   @override
   String get settings_locationIntervalInvalid =>
@@ -1117,7 +1117,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get chat_clearPathSubtitle =>
-      'Znovu nájsť vynútene pri nasledujacej pošlite';
+      'Znovu nájsť vynútene pri nasledujúcej pošlite';
 
   @override
   String get chat_pathCleared =>

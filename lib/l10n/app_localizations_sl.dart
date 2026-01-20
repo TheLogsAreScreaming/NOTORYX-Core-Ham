@@ -205,10 +205,10 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get settings_locationGPSEnableSubtitle =>
-      'Omogoči GPS za samodejno pošiljanje podatkov o lokaciji (če je podprto).';
+      'Omogoči samodejno posodabljanje lokacije z GPS-jem.';
 
   @override
-  String get settings_locationIntervalSec => 'Interval (Sekunde)';
+  String get settings_locationIntervalSec => 'Interval za GPS (Sekunde)';
 
   @override
   String get settings_locationIntervalInvalid =>
@@ -449,7 +449,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get appSettings_enableNotificationsSubtitle =>
-      'Prejmujte obvestila o sporočilih in oglasih';
+      'Prejmite obvestila o sporočilih in oglasih';
 
   @override
   String get appSettings_notificationPermissionDenied =>
@@ -645,7 +645,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get contacts_noContactsFound =>
-      'Niti ena osebe ali skupine ni najdena.';
+      'Niti ena oseba ali skupine ni najdena.';
 
   @override
   String get contacts_deleteContact => 'Izbrisati Kontakt';
@@ -697,7 +697,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get contacts_noContactsMatchFilter =>
-      'Niti ena osebe ne ustreza vašemu kriteriju.';
+      'Niti ena oseba ne ustreza vašemu kriteriju.';
 
   @override
   String get contacts_noMembers => 'Nič članov.';
@@ -1203,7 +1203,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get map_nodesNeedGps =>
-      'Omrežje morajo deliti svoje GPS koordinate,\nda se prikazajo na zemljeobrazniku.';
+      'Omrežje morajo deliti svoje GPS koordinate,\nda se prikazao na zemljeobrazniku.';
 
   @override
   String map_nodesCount(int count) {

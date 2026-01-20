@@ -190,7 +190,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_locationSubtitle => 'GPS coordinates';
 
   @override
-  String get settings_locationUpdated => 'GPS settings updated.';
+  String get settings_locationUpdated => 'Location and GPS settings updated';
 
   @override
   String get settings_locationBothRequired =>
@@ -204,7 +204,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_locationGPSEnableSubtitle =>
-      'Enables GPS to automatically send location data (if supported)';
+      'Enables GPS to automatically update location.';
 
   @override
   String get settings_locationIntervalSec => 'Interval for GPS (Seconds)';

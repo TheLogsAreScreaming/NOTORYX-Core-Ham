@@ -200,10 +200,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_locationGPSEnable => '启用GPS';
 
   @override
-  String get settings_locationGPSEnableSubtitle => '启用GPS自动发送位置数据（如果支持）。';
+  String get settings_locationGPSEnableSubtitle => '启用GPS自动更新位置。';
 
   @override
-  String get settings_locationIntervalSec => '时间间隔（秒）';
+  String get settings_locationIntervalSec => 'GPS 间隔（秒）';
 
   @override
   String get settings_locationIntervalInvalid => '时间间隔必须至少为60秒，且小于86400秒。';

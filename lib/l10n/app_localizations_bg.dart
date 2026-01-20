@@ -206,10 +206,10 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get settings_locationGPSEnableSubtitle =>
-      'Активирайте GPS, за автоматично изпращане на данни за местоположението (ако е поддържано).';
+      'Активирайте автоматичното актуализиране на местоположението чрез GPS.';
 
   @override
-  String get settings_locationIntervalSec => 'Интервал (Секунди)';
+  String get settings_locationIntervalSec => 'Интервал за GPS (Секунди)';
 
   @override
   String get settings_locationIntervalInvalid =>
