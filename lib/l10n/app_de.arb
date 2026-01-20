@@ -1346,8 +1346,8 @@
   },
   "repeater_neighbours": "Nachbarn",
   "repeater_neighboursSubtitle": "Anzahl der Hop-Nachbarn anzeigen.",
-  "neighbors_ReceivedData": "Empfangene Nachbarendaten",
-  "neighbors_RequestTimedOut": "Nachbarn melden zeitweise Ausfall.",
+  "neighbors_receivedData": "Empfangene Nachbarendaten",
+  "neighbors_requestTimedOut": "Nachbarn melden zeitweise Ausfall.",
   "neighbors_errorLoading": "Fehler beim Laden der Nachbarn: {error}",
   "neighbors_repeatersNeighbours": "Wiederholer Nachbarn",
   "neighbors_noData": "Keine Nachbardaten verfügbar.",
@@ -1378,5 +1378,11 @@
     }
   },
   "neighbors_heardAgo": "Hörte: {time} vor her.",
-  "neighbors_unknownContact": "Unbekannte {pubkey}"
+  "neighbors_unknownContact": "Unbekannte {pubkey}",
+  "settings_locationGPSEnable": "GPS aktivieren",
+  "settings_locationGPSEnableSubtitle": "Aktiviert GPS zur automatischen Aktualisierung des Standorts.",
+  "settings_locationIntervalSec": "Intervall für GPS (Sekunden)",
+  "settings_locationIntervalInvalid": "Das Intervall muss mindestens 60 Sekunden und weniger als 86400 Sekunden betragen.",
+  "contacts_manageRoom": "Raum-Server verwalten",
+  "room_management": "Raum-Server-Verwaltung"
 }

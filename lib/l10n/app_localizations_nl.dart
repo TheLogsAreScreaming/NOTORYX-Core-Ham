@@ -1622,10 +1622,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_cliSubtitle => 'Verzend commando\'s naar de repeater';
 
   @override
-  String get repeater_neighbours => 'Neighbors';
+  String get repeater_neighbours => 'Buren';
 
   @override
-  String get repeater_neighboursSubtitle => 'View zero hop neighbors.';
+  String get repeater_neighboursSubtitle => 'Bekijk nul hops buren.';
 
   @override
   String get repeater_settings => 'Instellingen';
@@ -2309,21 +2309,32 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get neighbors_ReceivedData => 'Received Neighbours Data';
+  String get neighbors_receivedData => 'Ontvangen Buurdata';
 
   @override
-  String get neighbors_RequestTimedOut => 'Neighbours request timed out.';
+  String get neighbors_requestTimedOut =>
+      'Buren vragen om tijdelijk uitgeschakeld.';
 
   @override
   String neighbors_errorLoading(String error) {
-    return 'Error loading neighbors: $error';
+    return 'Fout bij het laden van buren: $error';
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Repeaters Neighbours';
+  String get neighbors_repeatersNeighbours => 'Herhalingen Buren';
 
   @override
-  String get neighbors_noData => 'No neighbours data available.';
+  String get neighbors_noData => 'Geen gegevens van buren beschikbaar.';
+
+  @override
+  String neighbors_unknownContact(String pubkey) {
+    return 'Onbekende $pubkey';
+  }
+
+  @override
+  String neighbors_heardAgo(String time) {
+    return 'Horen: $time geleden';
+  }
 
   @override
   String get channelPath_title => 'Pakketpad';

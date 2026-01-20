@@ -1078,8 +1078,8 @@
     }
   },
 
-  "neighbors_ReceivedData": "Received Neighbours Data",
-  "neighbors_RequestTimedOut": "Neighbours request timed out.",
+  "neighbors_receivedData": "Received Neighbours Data",
+  "neighbors_requestTimedOut": "Neighbours request timed out.",
   "neighbors_errorLoading": "Error loading neighbors: {error}",
   "@neighbors_errorLoading": {
     "placeholders": {

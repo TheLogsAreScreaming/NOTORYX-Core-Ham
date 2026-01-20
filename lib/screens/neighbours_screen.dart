@@ -32,7 +32,6 @@ class _NeighboursScreenState extends State<NeighboursScreen> {
   static const int _statusResponseBytes =
       _statusPayloadOffset + _statusStatsSize;
   Uint8List _tagData = Uint8List(4);
-  //int _timeEstment = 0;
   int _neighbourCount = 0;
 
   bool _isLoading = false;
@@ -140,7 +139,7 @@ class _NeighboursScreenState extends State<NeighboursScreen> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(context.l10n.neighbors_ReceivedData),
+        content: Text(context.l10n.neighbors_receivedData),
         backgroundColor: Colors.green,
       ),
     );
@@ -205,7 +204,7 @@ class _NeighboursScreenState extends State<NeighboursScreen> {
         });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(context.l10n.neighbors_RequestTimedOut),
+            content: Text(context.l10n.neighbors_requestTimedOut),
             backgroundColor: Colors.red,
           ),
         );

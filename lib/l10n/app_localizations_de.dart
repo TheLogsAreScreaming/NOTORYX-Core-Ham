@@ -201,18 +201,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settings_locationInvalid => 'Ungültige Breiten- oder Längengrade.';
 
   @override
-  String get settings_locationGPSEnable => 'GPS Enable';
+  String get settings_locationGPSEnable => 'GPS aktivieren';
 
   @override
   String get settings_locationGPSEnableSubtitle =>
-      'Enables GPS to automatically update location.';
+      'Aktiviert GPS zur automatischen Aktualisierung des Standorts.';
 
   @override
-  String get settings_locationIntervalSec => 'Interval for GPS (Seconds)';
+  String get settings_locationIntervalSec => 'Intervall für GPS (Sekunden)';
 
   @override
   String get settings_locationIntervalInvalid =>
-      'Interval must be at least 60 seconds, and less than 86400 seconds.';
+      'Das Intervall muss mindestens 60 Sekunden und weniger als 86400 Sekunden betragen.';
 
   @override
   String get settings_latitude => 'Breitengrad';
@@ -662,7 +662,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get contacts_manageRepeater => 'Wiederholungen verwalten';
 
   @override
-  String get contacts_manageRoom => 'Manage Room Server';
+  String get contacts_manageRoom => 'Raum-Server verwalten';
 
   @override
   String get contacts_roomLogin => 'Raum-Login';
@@ -1604,7 +1604,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_management => 'Repeater-Verwaltung';
 
   @override
-  String get room_management => 'Room Server Management';
+  String get room_management => 'Raum-Server-Verwaltung';
 
   @override
   String get repeater_managementTools => 'Verwaltungs-Tools';
@@ -1630,10 +1630,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_cliSubtitle => 'Sende Befehle an den Repeater';
 
   @override
-  String get repeater_neighbours => 'Neighbors';
+  String get repeater_neighbours => 'Nachbarn';
 
   @override
-  String get repeater_neighboursSubtitle => 'View zero hop neighbors.';
+  String get repeater_neighboursSubtitle => 'Anzahl der Hop-Nachbarn anzeigen.';
 
   @override
   String get repeater_settings => 'Einstellungen';
@@ -2325,21 +2325,31 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get neighbors_ReceivedData => 'Received Neighbours Data';
+  String get neighbors_receivedData => 'Empfangene Nachbarendaten';
 
   @override
-  String get neighbors_RequestTimedOut => 'Neighbours request timed out.';
+  String get neighbors_requestTimedOut => 'Nachbarn melden zeitweise Ausfall.';
 
   @override
   String neighbors_errorLoading(String error) {
-    return 'Error loading neighbors: $error';
+    return 'Fehler beim Laden der Nachbarn: $error';
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Repeaters Neighbours';
+  String get neighbors_repeatersNeighbours => 'Wiederholer Nachbarn';
 
   @override
-  String get neighbors_noData => 'No neighbours data available.';
+  String get neighbors_noData => 'Keine Nachbardaten verfügbar.';
+
+  @override
+  String neighbors_unknownContact(String pubkey) {
+    return 'Unbekannte $pubkey';
+  }
+
+  @override
+  String neighbors_heardAgo(String time) {
+    return 'Hörte: $time vor her.';
+  }
 
   @override
   String get channelPath_title => 'Paketpfad';

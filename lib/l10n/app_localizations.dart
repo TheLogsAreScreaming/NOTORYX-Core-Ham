@@ -4096,17 +4096,17 @@ abstract class AppLocalizations {
   /// **'{celsius}°C / {fahrenheit}°F'**
   String telemetry_temperatureValue(String celsius, String fahrenheit);
 
-  /// No description provided for @neighbors_ReceivedData.
+  /// No description provided for @neighbors_receivedData.
   ///
   /// In en, this message translates to:
   /// **'Received Neighbours Data'**
-  String get neighbors_ReceivedData;
+  String get neighbors_receivedData;
 
-  /// No description provided for @neighbors_RequestTimedOut.
+  /// No description provided for @neighbors_requestTimedOut.
   ///
   /// In en, this message translates to:
   /// **'Neighbours request timed out.'**
-  String get neighbors_RequestTimedOut;
+  String get neighbors_requestTimedOut;
 
   /// No description provided for @neighbors_errorLoading.
   ///
@@ -4125,6 +4125,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No neighbours data available.'**
   String get neighbors_noData;
+
+  /// No description provided for @neighbors_unknownContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown {pubkey}'**
+  String neighbors_unknownContact(String pubkey);
+
+  /// No description provided for @neighbors_heardAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard: {time} ago'**
+  String neighbors_heardAgo(String time);
 
   /// No description provided for @channelPath_title.
   ///

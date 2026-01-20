@@ -1631,10 +1631,11 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_cliSubtitle => 'Wyślij polecenia do powielacza';
 
   @override
-  String get repeater_neighbours => 'Neighbors';
+  String get repeater_neighbours => 'Sąsiedzi';
 
   @override
-  String get repeater_neighboursSubtitle => 'View zero hop neighbors.';
+  String get repeater_neighboursSubtitle =>
+      'Wyświetl sąsiedztwo zerowych hopów.';
 
   @override
   String get repeater_settings => 'Ustawienia';
@@ -2317,21 +2318,32 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get neighbors_ReceivedData => 'Received Neighbours Data';
+  String get neighbors_receivedData => 'Otrzymano dane sąsiedztwa';
 
   @override
-  String get neighbors_RequestTimedOut => 'Neighbours request timed out.';
+  String get neighbors_requestTimedOut =>
+      'Sąsiedzi proszą o wyłączenie timingu.';
 
   @override
   String neighbors_errorLoading(String error) {
-    return 'Error loading neighbors: $error';
+    return 'Błąd podczas ładowania sąsiadów: $error';
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Repeaters Neighbours';
+  String get neighbors_repeatersNeighbours => 'Powtarzacze Sąsiedzi';
 
   @override
-  String get neighbors_noData => 'No neighbours data available.';
+  String get neighbors_noData => 'Brak danych dotyczących sąsiadów.';
+
+  @override
+  String neighbors_unknownContact(String pubkey) {
+    return 'Nieznana $pubkey';
+  }
+
+  @override
+  String neighbors_heardAgo(String time) {
+    return 'Usłyszano: $time temu';
+  }
 
   @override
   String get channelPath_title => 'Ścieżka pakietu';

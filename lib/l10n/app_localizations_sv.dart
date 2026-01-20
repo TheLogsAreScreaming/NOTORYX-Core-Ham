@@ -1613,10 +1613,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get repeater_cliSubtitle => 'Skicka kommandon till repetitorn';
 
   @override
-  String get repeater_neighbours => 'Neighbors';
+  String get repeater_neighbours => 'Grannar';
 
   @override
-  String get repeater_neighboursSubtitle => 'View zero hop neighbors.';
+  String get repeater_neighboursSubtitle => 'Visa noll hoppgrannar.';
 
   @override
   String get repeater_settings => 'Inställningar';
@@ -2296,21 +2296,31 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get neighbors_ReceivedData => 'Received Neighbours Data';
+  String get neighbors_receivedData => 'Mottagna grannars data';
 
   @override
-  String get neighbors_RequestTimedOut => 'Neighbours request timed out.';
+  String get neighbors_requestTimedOut => 'Grannar begär tidsinställd utskick.';
 
   @override
   String neighbors_errorLoading(String error) {
-    return 'Error loading neighbors: $error';
+    return 'Fel vid inläsning av grannar: $error';
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Repeaters Neighbours';
+  String get neighbors_repeatersNeighbours => 'Upprepar grannar';
 
   @override
-  String get neighbors_noData => 'No neighbours data available.';
+  String get neighbors_noData => 'Inga grannuppgifter finns tillgängliga.';
+
+  @override
+  String neighbors_unknownContact(String pubkey) {
+    return 'Okänd $pubkey';
+  }
+
+  @override
+  String neighbors_heardAgo(String time) {
+    return 'Hördes: $time sedan';
+  }
 
   @override
   String get channelPath_title => 'Paketväg';

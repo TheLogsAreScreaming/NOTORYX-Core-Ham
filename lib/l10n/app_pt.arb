@@ -1345,9 +1345,9 @@
     }
   },
   "repeater_neighbours": "Vizinhos",
-  "neighbors_ReceivedData": "Dados dos Vizinhos Recebidos",
+  "neighbors_receivedData": "Dados dos Vizinhos Recebidos",
   "repeater_neighboursSubtitle": "Visualizar vizinhos de salto zero.",
-  "neighbors_RequestTimedOut": "Vizinhos solicitam tempo limite esgotado.",
+  "neighbors_requestTimedOut": "Vizinhos solicitam tempo limite esgotado.",
   "neighbors_errorLoading": "Erro ao carregar vizinhos: {error}",
   "neighbors_repeatersNeighbours": "Repetidores Vizinhos",
   "neighbors_noData": "Não estão disponíveis dados de vizinhos.",

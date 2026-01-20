@@ -1631,10 +1631,11 @@ class AppLocalizationsBg extends AppLocalizations {
   String get repeater_cliSubtitle => 'Изпрати команди към ретранслатора';
 
   @override
-  String get repeater_neighbours => 'Neighbors';
+  String get repeater_neighbours => 'Съседи';
 
   @override
-  String get repeater_neighboursSubtitle => 'View zero hop neighbors.';
+  String get repeater_neighboursSubtitle =>
+      'Преглед на съседни възли с нулев скок.';
 
   @override
   String get repeater_settings => 'Настройки';
@@ -2322,21 +2323,31 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get neighbors_ReceivedData => 'Received Neighbours Data';
+  String get neighbors_receivedData => 'Получени данни за съседи';
 
   @override
-  String get neighbors_RequestTimedOut => 'Neighbours request timed out.';
+  String get neighbors_requestTimedOut => 'Съседите поискат изтичане на време.';
 
   @override
   String neighbors_errorLoading(String error) {
-    return 'Error loading neighbors: $error';
+    return 'Грешка при зареждане на съседи: $error';
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Repeaters Neighbours';
+  String get neighbors_repeatersNeighbours => 'Повторители Съседи';
 
   @override
-  String get neighbors_noData => 'No neighbours data available.';
+  String get neighbors_noData => 'Няма налични данни за съседи.';
+
+  @override
+  String neighbors_unknownContact(String pubkey) {
+    return 'Неизвестна $pubkey';
+  }
+
+  @override
+  String neighbors_heardAgo(String time) {
+    return 'Слушано преди $time.';
+  }
 
   @override
   String get channelPath_title => 'Пътеки пъзел';

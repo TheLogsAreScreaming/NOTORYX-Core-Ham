@@ -2284,10 +2284,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get neighbors_ReceivedData => 'Received Neighbours Data';
+  String get neighbors_receivedData => 'Received Neighbours Data';
 
   @override
-  String get neighbors_RequestTimedOut => 'Neighbours request timed out.';
+  String get neighbors_requestTimedOut => 'Neighbours request timed out.';
 
   @override
   String neighbors_errorLoading(String error) {
@@ -2299,6 +2299,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get neighbors_noData => 'No neighbours data available.';
+
+  @override
+  String neighbors_unknownContact(String pubkey) {
+    return 'Unknown $pubkey';
+  }
+
+  @override
+  String neighbors_heardAgo(String time) {
+    return 'Heard: $time ago';
+  }
 
   @override
   String get channelPath_title => 'Packet Path';

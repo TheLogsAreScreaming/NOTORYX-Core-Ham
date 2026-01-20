@@ -1629,10 +1629,11 @@ class AppLocalizationsPt extends AppLocalizations {
   String get repeater_cliSubtitle => 'Enviar comandos ao repetidor';
 
   @override
-  String get repeater_neighbours => 'Neighbors';
+  String get repeater_neighbours => 'Vizinhos';
 
   @override
-  String get repeater_neighboursSubtitle => 'View zero hop neighbors.';
+  String get repeater_neighboursSubtitle =>
+      'Visualizar vizinhos de salto zero.';
 
   @override
   String get repeater_settings => 'Configurações';
@@ -2319,21 +2320,32 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get neighbors_ReceivedData => 'Received Neighbours Data';
+  String get neighbors_receivedData => 'Dados dos Vizinhos Recebidos';
 
   @override
-  String get neighbors_RequestTimedOut => 'Neighbours request timed out.';
+  String get neighbors_requestTimedOut =>
+      'Vizinhos solicitam tempo limite esgotado.';
 
   @override
   String neighbors_errorLoading(String error) {
-    return 'Error loading neighbors: $error';
+    return 'Erro ao carregar vizinhos: $error';
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Repeaters Neighbours';
+  String get neighbors_repeatersNeighbours => 'Repetidores Vizinhos';
 
   @override
-  String get neighbors_noData => 'No neighbours data available.';
+  String get neighbors_noData => 'Não estão disponíveis dados de vizinhos.';
+
+  @override
+  String neighbors_unknownContact(String pubkey) {
+    return '$pubkey Desconhecido';
+  }
+
+  @override
+  String neighbors_heardAgo(String time) {
+    return 'Ouvido: $time atrás';
+  }
 
   @override
   String get channelPath_title => 'Rótulo de Caminho de Pacote';
