@@ -110,6 +110,7 @@ class MeshCoreConnector extends ChangeNotifier {
   int _queueSyncRetries = 0;
   static const int _maxQueueSyncRetries = 3;
   static const int _queueSyncTimeoutMs = 5000; // 5 second timeout
+  Map<String, String>? _currentCustomVars;
 
   // Channel syncing state (sequential pattern)
   bool _isSyncingChannels = false;
@@ -196,6 +197,7 @@ class MeshCoreConnector extends ChangeNotifier {
   int? get currentBwHz => _currentBwHz;
   int? get currentSf => _currentSf;
   int? get currentCr => _currentCr;
+  Map<String, String>? get currentCustomVars => _currentCustomVars;
   int? get batteryMillivolts => _batteryMillivolts;
   int get maxContacts => _maxContacts;
   int get maxChannels => _maxChannels;
@@ -952,6 +954,7 @@ class MeshCoreConnector extends ChangeNotifier {
     await sendFrame(buildAppStartFrame());
     await requestBatteryStatus(force: true);
     await sendFrame(buildGetRadioSettingsFrame());
+    await sendFrame(buildGetCustomVarsFrame());
     _scheduleSelfInfoRetry();
   }
 
@@ -959,6 +962,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _awaitingSelfInfo = true;
     await sendFrame(buildDeviceQueryFrame());
     await sendFrame(buildAppStartFrame());
+    await sendFrame(buildGetCustomVarsFrame());
     await requestBatteryStatus();
 
     _scheduleSelfInfoRetry();
@@ -1696,6 +1700,8 @@ class MeshCoreConnector extends ChangeNotifier {
       case respCodeBattAndStorage:
         _handleBatteryAndStorage(frame);
         break;
+      case respCodeCustomVars:
+        _handleCustomVars(frame);
       default:
         debugPrint('Unknown frame code: $code');
     }
@@ -3105,6 +3111,34 @@ class MeshCoreConnector extends ChangeNotifier {
 
     _setState(MeshCoreConnectionState.disconnected);
     _scheduleReconnect();
+  }
+
+  Map<String, String> _parseKeyValueString(String input) {
+    final result = <String, String>{};
+
+    // Split on commas first – empty entries are ignored.
+    for (final pair in input.split(',')) {
+      final trimmedPair = pair.trim();
+      if (trimmedPair.isEmpty) continue;
+
+      // Each pair must contain exactly one ':'.
+      final separatorIndex = trimmedPair.indexOf(':');
+      if (separatorIndex == -1) continue; // malformed, skip
+
+      final key = trimmedPair.substring(0, separatorIndex).trim();
+      final value = trimmedPair.substring(separatorIndex + 1).trim();
+
+      if (key.isNotEmpty) {
+        result[key] = value;
+      }
+    }
+
+    return result;
+  }
+
+  void _handleCustomVars(Uint8List frame) {
+    final buf = BufferReader(frame.sublist(1));
+    _currentCustomVars = _parseKeyValueString(buf.readString());
   }
 
   void _setState(MeshCoreConnectionState newState) {

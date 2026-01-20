@@ -129,6 +129,7 @@ const int cmdGetChannel = 31;
 const int cmdSetChannel = 32;
 const int cmdGetRadioSettings = 57;
 const int cmdGetTelemetryReq = 39;
+const int cmdGetCustomVar = 40;
 const int cmdSetCustomVar = 41;
 const int cmdSendBinaryReq = 50;
 
@@ -164,6 +165,7 @@ const int respCodeContactMsgRecvV3 = 16;
 const int respCodeChannelMsgRecvV3 = 17;
 const int respCodeChannelInfo = 18;
 const int respCodeRadioSettings = 25;
+const int respCodeCustomVars = 21;
 
 // Push codes (async from device)
 const int pushCodeAdvert = 0x80;
@@ -601,6 +603,11 @@ Uint8List buildGetContactByKeyFrame(Uint8List pubKey) {
 // Build CMD_GET_RADIO_SETTINGS frame
 Uint8List buildGetRadioSettingsFrame() {
   return Uint8List.fromList([cmdGetRadioSettings]);
+}
+
+//Build CMD_GET_CUSTOM_VARS frame
+Uint8List buildGetCustomVarsFrame() {
+  return Uint8List.fromList([cmdGetCustomVar]);
 }
 
 // Calculate LoRa airtime for a packet
