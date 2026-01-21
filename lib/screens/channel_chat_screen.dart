@@ -727,6 +727,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                   inputFormatters: [
                     Utf8LengthLimitingTextInputFormatter(maxBytes),
                   ],
+                  textCapitalization: TextCapitalization.sentences,
                   decoration: InputDecoration(
                     hintText: context.l10n.chat_typeMessage,
                     border: OutlineInputBorder(

@@ -281,6 +281,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     inputFormatters: [
                       Utf8LengthLimitingTextInputFormatter(maxBytes),
                     ],
+                    textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
                       hintText: context.l10n.chat_typeMessage,
                       border: const OutlineInputBorder(),
