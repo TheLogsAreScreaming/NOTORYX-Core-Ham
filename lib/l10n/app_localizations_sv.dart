@@ -1193,6 +1193,24 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get chat_openLink => 'Öppna länk?';
+
+  @override
+  String get chat_openLinkConfirmation =>
+      'Vill du öppna den här länken i din webbläsare?';
+
+  @override
+  String get chat_open => 'Öppna';
+
+  @override
+  String chat_couldNotOpenLink(String url) {
+    return 'Kunde inte öppna länken: $url';
+  }
+
+  @override
+  String get chat_invalidLink => 'Ogiltigt länkformat';
+
+  @override
   String get map_title => 'Nodkarta';
 
   @override
@@ -2541,32 +2559,32 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get community_regenerateSecret => 'Regenerate Secret';
+  String get community_regenerateSecret => 'Regenerera hemlig kod';
 
   @override
   String community_regenerateSecretConfirm(String name) {
-    return 'Regenerate the secret key for \"$name\"? All members will need to scan the new QR code to continue communicating.';
+    return 'Regenerera den hemliga nyckeln för \"$name\"? Alla medlemmar måste scanna den nya QR-koden för att fortsätta kommunicera.';
   }
 
   @override
-  String get community_regenerate => 'Regenerate';
+  String get community_regenerate => 'Regenerera';
 
   @override
   String community_secretRegenerated(String name) {
-    return 'Secret regenerated for \"$name\"';
+    return 'Lösenord återskapad för \"$name\"';
   }
 
   @override
-  String get community_updateSecret => 'Update Secret';
+  String get community_updateSecret => 'Uppdatera hemlighet';
 
   @override
   String community_secretUpdated(String name) {
-    return 'Secret updated for \"$name\"';
+    return 'Hemlighet uppdaterad för \"$name\"';
   }
 
   @override
   String community_scanToUpdateSecret(String name) {
-    return 'Scan the new QR code to update the secret for \"$name\"';
+    return 'Skanna den nya QR-koden för att uppdatera hemligheten för \"$name\"';
   }
 
   @override

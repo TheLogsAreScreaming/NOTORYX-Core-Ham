@@ -2226,6 +2226,36 @@ abstract class AppLocalizations {
   /// **'Unread: {count}'**
   String chat_unread(int count);
 
+  /// No description provided for @chat_openLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Link?'**
+  String get chat_openLink;
+
+  /// No description provided for @chat_openLinkConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to open this link in your browser?'**
+  String get chat_openLinkConfirmation;
+
+  /// No description provided for @chat_open.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get chat_open;
+
+  /// No description provided for @chat_couldNotOpenLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open link: {url}'**
+  String chat_couldNotOpenLink(String url);
+
+  /// No description provided for @chat_invalidLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid link format'**
+  String get chat_invalidLink;
+
   /// No description provided for @map_title.
   ///
   /// In en, this message translates to:

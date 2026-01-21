@@ -1187,6 +1187,24 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get chat_openLink => 'Open Link?';
+
+  @override
+  String get chat_openLinkConfirmation =>
+      'Do you want to open this link in your browser?';
+
+  @override
+  String get chat_open => 'Open';
+
+  @override
+  String chat_couldNotOpenLink(String url) {
+    return 'Could not open link: $url';
+  }
+
+  @override
+  String get chat_invalidLink => 'Invalid link format';
+
+  @override
   String get map_title => 'Node Map';
 
   @override

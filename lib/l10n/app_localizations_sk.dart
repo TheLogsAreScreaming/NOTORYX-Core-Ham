@@ -1201,6 +1201,24 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String get chat_openLink => 'Otvoriť odkaz?';
+
+  @override
+  String get chat_openLinkConfirmation =>
+      'Chcete otvoriť tento odkaz v prehliadači?';
+
+  @override
+  String get chat_open => 'Otvoriť';
+
+  @override
+  String chat_couldNotOpenLink(String url) {
+    return 'Nepodarilo sa otvoriť odkaz: $url';
+  }
+
+  @override
+  String get chat_invalidLink => 'Neplatný formát odkazu';
+
+  @override
   String get map_title => 'Mapa uzlov';
 
   @override
@@ -2553,32 +2571,32 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get community_regenerateSecret => 'Regenerate Secret';
+  String get community_regenerateSecret => 'Zobraziť nový tajný kód';
 
   @override
   String community_regenerateSecretConfirm(String name) {
-    return 'Regenerate the secret key for \"$name\"? All members will need to scan the new QR code to continue communicating.';
+    return 'Znovu vygenerovať tajný kľúč pre \"$name\"? Všetci členovia budú musieť skanovať nový QR kód, aby mohli nadviazať komunikáciu.';
   }
 
   @override
-  String get community_regenerate => 'Regenerate';
+  String get community_regenerate => 'Znovu vygenerovať';
 
   @override
   String community_secretRegenerated(String name) {
-    return 'Secret regenerated for \"$name\"';
+    return 'Záznam pre \"$name\" bol regenerovaný tajne';
   }
 
   @override
-  String get community_updateSecret => 'Update Secret';
+  String get community_updateSecret => 'Aktualizovať tajné heslo';
 
   @override
   String community_secretUpdated(String name) {
-    return 'Secret updated for \"$name\"';
+    return 'Zmena tajnej slova pre \"$name\"';
   }
 
   @override
   String community_scanToUpdateSecret(String name) {
-    return 'Scan the new QR code to update the secret for \"$name\"';
+    return 'Skáňte nový QR kód na aktualizáciu tajného hesla pre \"$name\"';
   }
 
   @override

@@ -604,6 +604,18 @@
       }
     }
   },
+  "chat_openLink": "Ouvrir le lien ?",
+  "chat_openLinkConfirmation": "Voulez-vous ouvrir ce lien dans votre navigateur ?",
+  "chat_open": "Ouvrir",
+  "chat_couldNotOpenLink": "Impossible d'ouvrir le lien : {url}",
+  "@chat_couldNotOpenLink": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "chat_invalidLink": "Format de lien invalide",
   "map_title": "Carte des nœuds",
   "map_noNodesWithLocation": "Aucun nœud avec des données de localisation",
   "map_nodesNeedGps": "Les nœuds doivent partager leurs coordonnées GPS\npour apparaître sur la carte.",
@@ -1473,7 +1485,9 @@
   "community_deleteChannelsWarning": "Cela supprimera également {count} canal/canaux et leurs messages.",
   "@community_deleteChannelsWarning": {
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "community_deleted": "Communauté \"{name}\" quittée",
@@ -1484,5 +1498,40 @@
   "community_regularHashtagDesc": "Hashtag public (tout le monde peut rejoindre)",
   "community_communityHashtag": "Hashtag de la communauté",
   "community_communityHashtagDesc": "Exclusif aux membres de la communauté",
-  "community_forCommunity": "Pour {name}"
+  "community_forCommunity": "Pour {name}",
+  "@community_regenerateSecretConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@community_secretRegenerated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@community_secretUpdated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@community_scanToUpdateSecret": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "community_regenerateSecret": "Régénérer le secret",
+  "community_regenerateSecretConfirm": "Régénérer la clé secrète pour \"{name}\" ? Tous les membres devront scanner le nouveau code QR pour continuer à communiquer.",
+  "community_regenerate": "Régénérer",
+  "community_secretRegenerated": "Mot de passe secret régénéré pour \"{name}\"",
+  "community_scanToUpdateSecret": "Scanner le nouveau code QR pour mettre à jour le mot de passe pour \"{name}\"",
+  "community_updateSecret": "Mettre à jour le secret",
+  "community_secretUpdated": "Modification secrète mise à jour pour \"{name}\""
 }

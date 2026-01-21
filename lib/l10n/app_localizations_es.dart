@@ -1205,6 +1205,24 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get chat_openLink => '¿Abrir enlace?';
+
+  @override
+  String get chat_openLinkConfirmation =>
+      '¿Quiere abrir este enlace en su navegador?';
+
+  @override
+  String get chat_open => 'Abrir';
+
+  @override
+  String chat_couldNotOpenLink(String url) {
+    return 'No se pudo abrir el enlace: $url';
+  }
+
+  @override
+  String get chat_invalidLink => 'Formato de enlace no válido';
+
+  @override
   String get map_title => 'Mapa de Nodos';
 
   @override
@@ -2565,32 +2583,32 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get community_regenerateSecret => 'Regenerate Secret';
+  String get community_regenerateSecret => 'Regenerar Contraseña Secreta';
 
   @override
   String community_regenerateSecretConfirm(String name) {
-    return 'Regenerate the secret key for \"$name\"? All members will need to scan the new QR code to continue communicating.';
+    return 'Regenerar la clave secreta para \"$name\"? Todos los miembros deberán escanear el nuevo código QR para seguir comunicándose.';
   }
 
   @override
-  String get community_regenerate => 'Regenerate';
+  String get community_regenerate => 'Regenerar';
 
   @override
   String community_secretRegenerated(String name) {
-    return 'Secret regenerated for \"$name\"';
+    return 'Código secreto regenerado para \"$name\"';
   }
 
   @override
-  String get community_updateSecret => 'Update Secret';
+  String get community_updateSecret => 'Actualizar Contraseña';
 
   @override
   String community_secretUpdated(String name) {
-    return 'Secret updated for \"$name\"';
+    return 'Confidencialidad actualizada para \"$name\"';
   }
 
   @override
   String community_scanToUpdateSecret(String name) {
-    return 'Scan the new QR code to update the secret for \"$name\"';
+    return 'Escanear el nuevo código QR para actualizar el secreto de \"$name\"';
   }
 
   @override

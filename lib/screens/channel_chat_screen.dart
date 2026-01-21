@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../helpers/link_handler.dart';
 import '../helpers/utf8_length_limiter.dart';
 import '../l10n/l10n.dart';
 import '../models/channel.dart';
@@ -280,9 +282,20 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                       )
                     else
-                      Text(
-                        message.text,
+                      Linkify(
+                        text: message.text,
                         style: const TextStyle(fontSize: 14),
+                        linkStyle: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.green,
+                          decoration: TextDecoration.underline,
+                        ),
+                        options: const LinkifyOptions(
+                          humanize: false,
+                          defaultToHttps: false,
+                        ),
+                        linkifiers: const [UrlLinkifier()],
+                        onOpen: (link) => LinkHandler.handleLinkTap(context, link.url),
                       ),
                     if (displayPath.isNotEmpty) ...[
                       const SizedBox(height: 4),

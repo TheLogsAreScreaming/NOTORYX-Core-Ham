@@ -604,6 +604,18 @@
       }
     }
   },
+  "chat_openLink": "Odpreti povezavo?",
+  "chat_openLinkConfirmation": "Ali želite odpreti to povezavo v brskalniku?",
+  "chat_open": "Odpri",
+  "chat_couldNotOpenLink": "Povezave ni bilo mogoče odpreti: {url}",
+  "@chat_couldNotOpenLink": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "chat_invalidLink": "Neveljavna oblika povezave",
   "map_title": "Mapa omrežja",
   "map_noNodesWithLocation": "Nihče od notranjih elementov nima podatkov o lokaciji.",
   "map_nodesNeedGps": "Omrežje morajo deliti svoje GPS koordinate,\nda se prikazao na zemljeobrazniku.",
@@ -1473,7 +1485,9 @@
   "community_deleteChannelsWarning": "To bo izbrisalo tudi {count} kanal/kanalov in njihova sporočila.",
   "@community_deleteChannelsWarning": {
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "community_deleted": "Zapustil skupnost \"{name}\"",
@@ -1484,5 +1498,40 @@
   "community_regularHashtagDesc": "javna oznaka (kateri koli lahko sodelujejo)",
   "community_communityHashtag": "Skupnostni hashtag",
   "community_communityHashtagDesc": "Izključeno za uporabnike skupnosti",
-  "community_forCommunity": "Za {name}"
+  "community_forCommunity": "Za {name}",
+  "@community_regenerateSecretConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@community_secretRegenerated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@community_secretUpdated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@community_scanToUpdateSecret": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "community_secretRegenerated": "Tajna za \"{name}\" ponovno ustvarjena",
+  "community_regenerateSecret": "Preberi nov tajni kôd",
+  "community_regenerateSecretConfirm": "Preberite novo tajno geslo za \"{name}\"? Vsi članici morajo prebrati novo QR kodo, da lahko nadaljujejo s komunikacijo.",
+  "community_regenerate": "Preberi znova",
+  "community_scanToUpdateSecret": "Skeniraj nov kôd QR za posodabljanje tajne za {name}",
+  "community_updateSecret": "Ažurniraj tajno",
+  "community_secretUpdated": "Skrivnostno spremembo za \"{name}\""
 }

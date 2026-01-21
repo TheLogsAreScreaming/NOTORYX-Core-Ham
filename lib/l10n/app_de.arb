@@ -604,6 +604,18 @@
       }
     }
   },
+  "chat_openLink": "Link öffnen?",
+  "chat_openLinkConfirmation": "Möchten Sie diesen Link in Ihrem Browser öffnen?",
+  "chat_open": "Öffnen",
+  "chat_couldNotOpenLink": "Link konnte nicht geöffnet werden: {url}",
+  "@chat_couldNotOpenLink": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "chat_invalidLink": "Ungültiges Link-Format",
   "map_title": "Karte",
   "map_noNodesWithLocation": "Keine Knoten mit Standortdaten",
   "map_nodesNeedGps": "Knoten müssen ihre GPS-Koordinaten teilen,\num auf der Karte zu erscheinen.",
@@ -1473,7 +1485,9 @@
   "community_deleteChannelsWarning": "Dies löscht auch {count} Kanal/Kanäle und deren Nachrichten.",
   "@community_deleteChannelsWarning": {
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "community_deleted": "Community \"{name}\" verlassen",
@@ -1484,5 +1498,40 @@
   "community_regularHashtagDesc": "Öffentliches Hashtag (jeder kann teilnehmen)",
   "community_communityHashtagDesc": "Nur für Mitglieder der Community",
   "community_forCommunity": "Für {name}",
-  "community_communityHashtag": "Community Hashtag"
+  "community_communityHashtag": "Community Hashtag",
+  "@community_regenerateSecretConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@community_secretRegenerated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@community_secretUpdated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@community_scanToUpdateSecret": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "community_regenerate": "Neu generieren",
+  "community_secretRegenerated": "Geheime Wiederherstellung für \"{name}\" erfolgreich",
+  "community_regenerateSecretConfirm": "Nehmen Sie den geheimen Schlüssel für \"{name}\" neu auf? Alle Mitglieder müssen den neuen QR-Code scannen, um die Kommunikation fortzusetzen.",
+  "community_regenerateSecret": "Neu generieren Sie das Geheimnis",
+  "community_secretUpdated": "Geheime für \"{name}\" aktualisiert",
+  "community_scanToUpdateSecret": "Scannen Sie den neuen QR-Code, um das Geheimnis für \"{name}\" zu aktualisieren.",
+  "community_updateSecret": "Aktualisieren Sie das Geheimnis"
 }

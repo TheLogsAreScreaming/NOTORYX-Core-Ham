@@ -550,6 +550,16 @@
       "count": {"type": "int"}
     }
   },
+  "chat_openLink": "Open Link?",
+  "chat_openLinkConfirmation": "Do you want to open this link in your browser?",
+  "chat_open": "Open",
+  "chat_couldNotOpenLink": "Could not open link: {url}",
+  "@chat_couldNotOpenLink": {
+    "placeholders": {
+      "url": {"type": "String"}
+    }
+  },
+  "chat_invalidLink": "Invalid link format",
 
   "map_title": "Node Map",
   "map_noNodesWithLocation": "No nodes with location data",

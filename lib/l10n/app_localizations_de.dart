@@ -1207,6 +1207,24 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get chat_openLink => 'Link öffnen?';
+
+  @override
+  String get chat_openLinkConfirmation =>
+      'Möchten Sie diesen Link in Ihrem Browser öffnen?';
+
+  @override
+  String get chat_open => 'Öffnen';
+
+  @override
+  String chat_couldNotOpenLink(String url) {
+    return 'Link konnte nicht geöffnet werden: $url';
+  }
+
+  @override
+  String get chat_invalidLink => 'Ungültiges Link-Format';
+
+  @override
   String get map_title => 'Karte';
 
   @override
@@ -2570,32 +2588,32 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get community_regenerateSecret => 'Regenerate Secret';
+  String get community_regenerateSecret => 'Neu generieren Sie das Geheimnis';
 
   @override
   String community_regenerateSecretConfirm(String name) {
-    return 'Regenerate the secret key for \"$name\"? All members will need to scan the new QR code to continue communicating.';
+    return 'Nehmen Sie den geheimen Schlüssel für \"$name\" neu auf? Alle Mitglieder müssen den neuen QR-Code scannen, um die Kommunikation fortzusetzen.';
   }
 
   @override
-  String get community_regenerate => 'Regenerate';
+  String get community_regenerate => 'Neu generieren';
 
   @override
   String community_secretRegenerated(String name) {
-    return 'Secret regenerated for \"$name\"';
+    return 'Geheime Wiederherstellung für \"$name\" erfolgreich';
   }
 
   @override
-  String get community_updateSecret => 'Update Secret';
+  String get community_updateSecret => 'Aktualisieren Sie das Geheimnis';
 
   @override
   String community_secretUpdated(String name) {
-    return 'Secret updated for \"$name\"';
+    return 'Geheime für \"$name\" aktualisiert';
   }
 
   @override
   String community_scanToUpdateSecret(String name) {
-    return 'Scan the new QR code to update the secret for \"$name\"';
+    return 'Scannen Sie den neuen QR-Code, um das Geheimnis für \"$name\" zu aktualisieren.';
   }
 
   @override

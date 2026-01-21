@@ -5,11 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:provider/provider.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../helpers/link_handler.dart';
 import '../helpers/utf8_length_limiter.dart';
 import '../models/channel_message.dart';
 import '../models/contact.dart';
@@ -988,11 +990,21 @@ class _MessageBubble extends StatelessWidget {
                         fallbackTextColor: textColor.withValues(alpha: 0.7),
                       )
                     else
-                      Text(
-                        messageText,
+                      Linkify(
+                        text: messageText,
                         style: TextStyle(
                           color: textColor,
                         ),
+                        linkStyle: const TextStyle(
+                          color: Colors.green,
+                          decoration: TextDecoration.underline,
+                        ),
+                        options: const LinkifyOptions(
+                          humanize: false,
+                          defaultToHttps: false,
+                        ),
+                        linkifiers: const [UrlLinkifier()],
+                        onOpen: (link) => LinkHandler.handleLinkTap(context, link.url),
                       ),
                     if (isOutgoing && message.retryCount > 0) ...[
                       const SizedBox(height: 4),
