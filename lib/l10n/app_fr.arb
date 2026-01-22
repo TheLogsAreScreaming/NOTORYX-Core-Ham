@@ -104,7 +104,7 @@
   "settings_timeSynchronized": "Synchronisation temporelle",
   "settings_refreshContacts": "Rafraîchir les Contacts",
   "settings_refreshContactsSubtitle": "Recharger la liste des contacts depuis l'appareil",
-  "settings_rebootDevice": "Réinitialiser l'appareil",
+  "settings_rebootDevice": "Redémarrer l'appareil",
   "settings_rebootDeviceSubtitle": "Redémarrer l'appareil MeshCore",
   "settings_rebootDeviceConfirm": "Êtes-vous sûr de vouloir redémarrer l'appareil ? Vous serez déconnecté.",
   "settings_debug": "Déboguer",
@@ -1024,7 +1024,7 @@
     }
   },
   "repeater_encryptedAdvertInterval": "Intervalle d'annonces cryptées",
-  "repeater_dangerZone": "Zone d'alerte",
+  "repeater_dangerZone": "Zone dangereuse",
   "repeater_rebootRepeater": "Redémarrer Répéteur",
   "repeater_rebootRepeaterSubtitle": "Réinitialiser l'appareil répétiteur",
   "repeater_rebootRepeaterConfirm": "Êtes-vous sûr de vouloir redémarrer ce répétiteur ?",
