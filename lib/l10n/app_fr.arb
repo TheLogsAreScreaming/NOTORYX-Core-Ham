@@ -1393,8 +1393,8 @@
   "neighbors_heardAgo": "Écouté : {time} auparavant",
   "settings_locationGPSEnable": "Activer le GPS",
   "settings_locationGPSEnableSubtitle": "Activer la mise à jour automatique de la position via GPS",
-  "settings_locationIntervalSec": "Intervalo pour GPS (Segundos)",
-  "settings_locationIntervalInvalid": "El intervalo debe ser de al menos 60 segundos y menor que 86400 segundos.",
+  "settings_locationIntervalSec": "Intervalle de mise-à-jour du GPS (Secondes)",
+  "settings_locationIntervalInvalid": "L'intervalle doit être compris entre 60 et 86400 secondes.",
   "contacts_manageRoom": "Gérer le Room Server",
   "room_management": "Administración del Servidor de Habitación",
   "@community_joinConfirmation": {

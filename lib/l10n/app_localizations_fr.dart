@@ -211,11 +211,12 @@ class AppLocalizationsFr extends AppLocalizations {
       'Activer la mise à jour automatique de la position via GPS';
 
   @override
-  String get settings_locationIntervalSec => 'Intervalo pour GPS (Segundos)';
+  String get settings_locationIntervalSec =>
+      'Intervalle de mise-à-jour du GPS (Secondes)';
 
   @override
   String get settings_locationIntervalInvalid =>
-      'El intervalo debe ser de al menos 60 segundos y menor que 86400 segundos.';
+      'L\'intervalle doit être compris entre 60 et 86400 secondes.';
 
   @override
   String get settings_latitude => 'Latitude';
