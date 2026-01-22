@@ -204,11 +204,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settings_locationInvalid => 'Latitude ou longitude invalide.';
 
   @override
-  String get settings_locationGPSEnable => 'Habilita GPS';
+  String get settings_locationGPSEnable => 'Activer le GPS';
 
   @override
   String get settings_locationGPSEnableSubtitle =>
-      'Habilita la actualización automática de la ubicación mediante GPS.';
+      'Activer la mise à jour automatique de la position via GPS';
 
   @override
   String get settings_locationIntervalSec => 'Intervalo pour GPS (Segundos)';
