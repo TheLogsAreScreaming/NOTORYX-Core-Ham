@@ -127,6 +127,7 @@ const int cmdSendStatusReq = 27;
 const int cmdGetContactByKey = 30;
 const int cmdGetChannel = 31;
 const int cmdSetChannel = 32;
+const int cmdSendTracePath = 36;
 const int cmdGetRadioSettings = 57;
 const int cmdGetTelemetryReq = 39;
 const int cmdGetCustomVar = 40;
@@ -176,6 +177,7 @@ const int pushCodeLoginSuccess = 0x85;
 const int pushCodeLoginFail = 0x86;
 const int pushCodeStatusResponse = 0x87;
 const int pushCodeLogRxData = 0x88;
+const int pushCodeTraceData = 0x89;
 const int pushCodeNewAdvert = 0x8A;
 const int pushCodeTelemetryResponse = 0x8B;
 const int pushCodeBinaryResponse = 0x8C;
@@ -703,6 +705,21 @@ Uint8List buildSendBinaryReq(Uint8List repeaterPubKey, {Uint8List? payload}) {
   final writer = BufferWriter();
   writer.writeByte(cmdSendBinaryReq);
   writer.writeBytes(repeaterPubKey);
+  if (payload != null && payload.isNotEmpty) {
+    writer.writeBytes(payload);
+  }
+  return writer.toBytes();
+}
+
+//Build a trace request frame
+//[cmd][tag x4][auth x4][flag][payload]
+Uint8List buildTraceReq(int tag, int auth, int flag, {Uint8List? payload})
+{
+  final writer = BufferWriter();
+  writer.writeByte(cmdSendTracePath);
+  writer.writeUInt32LE(tag);
+  writer.writeUInt32LE(auth);
+  writer.writeByte(flag);
   if (payload != null && payload.isNotEmpty) {
     writer.writeBytes(payload);
   }

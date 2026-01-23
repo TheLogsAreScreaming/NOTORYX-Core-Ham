@@ -752,7 +752,20 @@ class _ContactsScreenState extends State<ContactsScreen>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (isRepeater)
+            if (isRepeater) ...[
+              ListTile(
+                leading: const Icon(Icons.radar, color: Colors.green),
+                title: Text("Ping"),
+                onTap: () async {
+                        final frame = buildTraceReq(
+                          DateTime.now().millisecondsSinceEpoch ~/ 1000,
+                          0,
+                          0,
+                          payload: contact.publicKey.sublist(0,1),
+                        );
+                        await connector.sendFrame(frame);
+                }
+              ),
               ListTile(
                 leading: const Icon(Icons.cell_tower, color: Colors.orange),
                 title: Text(context.l10n.contacts_manageRepeater),
@@ -761,7 +774,20 @@ class _ContactsScreenState extends State<ContactsScreen>
                   _showRepeaterLogin(context, contact);
                 },
               )
-            else if (isRoom) ...[
+            ]else if (isRoom) ...[
+              ListTile(
+                leading: const Icon(Icons.radar, color: Colors.green),
+                title: Text("Ping"),
+                onTap: () async {
+                        final frame = buildTraceReq(
+                          DateTime.now().millisecondsSinceEpoch ~/ 1000,
+                          0,
+                          0,
+                          payload: contact.publicKey.sublist(0,1),
+                        );
+                        await connector.sendFrame(frame);
+                }
+              ),
               ListTile(
                 leading: const Icon(Icons.room, color: Colors.blue),
                 title: Text(context.l10n.contacts_roomLogin),
