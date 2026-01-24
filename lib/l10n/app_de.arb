@@ -74,7 +74,7 @@
   "settings_title": "Einstellungen",
   "settings_deviceInfo": "Geräteinformationen",
   "settings_appSettings": "App-Einstellungen",
-  "settings_appSettingsSubtitle": "Benachrichtigungen, Messaging und Kartenwahrnehmungen",
+  "settings_appSettingsSubtitle": "Benachrichtigungen, Messaging und Kartenwahrnehmung",
   "settings_nodeSettings": "Knoten-Einstellungen",
   "settings_nodeName": "Knotenname",
   "settings_nodeNameNotSet": "Nicht festgelegt",
@@ -266,7 +266,7 @@
       }
     }
   },
-  "contacts_manageRepeater": "Wiederholungen verwalten",
+  "contacts_manageRepeater": "Repeater verwalten",
   "contacts_roomLogin": "Raum-Login",
   "contacts_openChat": "Öffne Chat",
   "contacts_editGroup": "Gruppe bearbeiten",
@@ -360,7 +360,7 @@
   "channels_channelIndexLabel": "Kanalindex",
   "channels_channelName": "Kanalname",
   "channels_usePublicChannel": "Verwende öffentlichen Kanal",
-  "channels_standardPublicPsk": "Standard-Öffentliche PSK",
+  "channels_standardPublicPsk": "Öffentliche Standard PSK",
   "channels_pskHex": "PSK (Hex)",
   "channels_generateRandomPsk": "Zufällige PSK generieren",
   "channels_enterChannelName": "Bitte geben Sie einen Kanalnamen ein.",
@@ -489,8 +489,8 @@
       }
     }
   },
-  "debugFrame_textMessageHeader": "Textnachricht-Frame:",
-  "debugFrame_destinationPubKey": "- Ziel-Pub-Schlüssel: {pubKey}",
+  "debugFrame_textMessageHeader": "Textnachrichten Frame:",
+  "debugFrame_destinationPubKey": "- Ziel-Public-Schlüssel: {pubKey}",
   "@debugFrame_destinationPubKey": {
     "placeholders": {
       "pubKey": {
@@ -1026,7 +1026,7 @@
   "repeater_encryptedAdvertInterval": "Intervall der verschlüsselten Ankündigung",
   "repeater_dangerZone": "Gefahrenzone",
   "repeater_rebootRepeater": "Neustart Repeater",
-  "repeater_rebootRepeaterSubtitle": "Wiederholen Sie das Repeater-Gerät.",
+  "repeater_rebootRepeaterSubtitle": "Repeater-Gerät neu starten.",
   "repeater_rebootRepeaterConfirm": "Sind Sie sicher, dass Sie diesen Repeater neu starten möchten?",
   "repeater_regenerateIdentityKey": "Schlüssel für die Identitätswiederherstellung",
   "repeater_regenerateIdentityKeySubtitle": "Neuen öffentlichen/privaten Schlüsselpaar generieren",
@@ -1361,7 +1361,7 @@
   "neighbors_receivedData": "Empfangene Nachbarendaten",
   "neighbors_requestTimedOut": "Nachbarn melden zeitweise Ausfall.",
   "neighbors_errorLoading": "Fehler beim Laden der Nachbarn: {error}",
-  "neighbors_repeatersNeighbours": "Wiederholer Nachbarn",
+  "neighbors_repeatersNeighbours": "Nachbarn",
   "neighbors_noData": "Keine Nachbardaten verfügbar.",
   "channels_joinPrivateChannel": "Treten Sie einem privaten Kanal bei",
   "channels_joinPrivateChannelDesc": "Manuelle Eingabe eines geheimen Schlüssels.",
@@ -1528,10 +1528,10 @@
     }
   },
   "community_regenerate": "Neu generieren",
-  "community_secretRegenerated": "Geheime Wiederherstellung für \"{name}\" erfolgreich",
+  "community_secretRegenerated": "Wiederherstellung des Schlüssels für \"{name}\" erfolgreich",
   "community_regenerateSecretConfirm": "Nehmen Sie den geheimen Schlüssel für \"{name}\" neu auf? Alle Mitglieder müssen den neuen QR-Code scannen, um die Kommunikation fortzusetzen.",
-  "community_regenerateSecret": "Neu generieren Sie das Geheimnis",
-  "community_secretUpdated": "Geheime für \"{name}\" aktualisiert",
+  "community_regenerateSecret": "Neugenerierung des Schlüssels",
+  "community_secretUpdated": "Schlüssel für \"{name}\" aktualisiert",
   "community_scanToUpdateSecret": "Scannen Sie den neuen QR-Code, um das Geheimnis für \"{name}\" zu aktualisieren.",
-  "community_updateSecret": "Aktualisieren Sie das Geheimnis"
+  "community_updateSecret": "Aktualisieren Sie den Schlüssel"
 }

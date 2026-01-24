@@ -160,7 +160,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settings_appSettingsSubtitle =>
-      'Benachrichtigungen, Messaging und Kartenwahrnehmungen';
+      'Benachrichtigungen, Messaging und Kartenwahrnehmung';
 
   @override
   String get settings_nodeSettings => 'Knoten-Einstellungen';
@@ -662,7 +662,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get contacts_manageRepeater => 'Wiederholungen verwalten';
+  String get contacts_manageRepeater => 'Repeater verwalten';
 
   @override
   String get contacts_manageRoom => 'Raum-Server verwalten';
@@ -796,7 +796,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get channels_usePublicChannel => 'Verwende öffentlichen Kanal';
 
   @override
-  String get channels_standardPublicPsk => 'Standard-Öffentliche PSK';
+  String get channels_standardPublicPsk => 'Öffentliche Standard PSK';
 
   @override
   String get channels_pskHex => 'PSK (Hex)';
@@ -1029,11 +1029,11 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get debugFrame_textMessageHeader => 'Textnachricht-Frame:';
+  String get debugFrame_textMessageHeader => 'Textnachrichten Frame:';
 
   @override
   String debugFrame_destinationPubKey(String pubKey) {
-    return '- Ziel-Pub-Schlüssel: $pubKey';
+    return '- Ziel-Public-Schlüssel: $pubKey';
   }
 
   @override
@@ -1888,8 +1888,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_rebootRepeater => 'Neustart Repeater';
 
   @override
-  String get repeater_rebootRepeaterSubtitle =>
-      'Wiederholen Sie das Repeater-Gerät.';
+  String get repeater_rebootRepeaterSubtitle => 'Repeater-Gerät neu starten.';
 
   @override
   String get repeater_rebootRepeaterConfirm =>
@@ -2357,7 +2356,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Wiederholer Nachbarn';
+  String get neighbors_repeatersNeighbours => 'Nachbarn';
 
   @override
   String get neighbors_noData => 'Keine Nachbardaten verfügbar.';
@@ -2588,7 +2587,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get community_regenerateSecret => 'Neu generieren Sie das Geheimnis';
+  String get community_regenerateSecret => 'Neugenerierung des Schlüssels';
 
   @override
   String community_regenerateSecretConfirm(String name) {
@@ -2600,15 +2599,15 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String community_secretRegenerated(String name) {
-    return 'Geheime Wiederherstellung für \"$name\" erfolgreich';
+    return 'Wiederherstellung des Schlüssels für \"$name\" erfolgreich';
   }
 
   @override
-  String get community_updateSecret => 'Aktualisieren Sie das Geheimnis';
+  String get community_updateSecret => 'Aktualisieren Sie den Schlüssel';
 
   @override
   String community_secretUpdated(String name) {
-    return 'Geheime für \"$name\" aktualisiert';
+    return 'Schlüssel für \"$name\" aktualisiert';
   }
 
   @override
