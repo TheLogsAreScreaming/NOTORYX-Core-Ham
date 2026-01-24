@@ -629,10 +629,25 @@ class MeshCoreConnector extends ChangeNotifier {
     await FlutterBluePlus.stopScan();
     await _scanSubscription?.cancel();
 
-    // On iOS/macOS, add a small delay to allow BLE stack to reset
-    // This prevents cached results from interfering with new scans
+    // On iOS/macOS, wait for Bluetooth to be powered on before scanning
     if (defaultTargetPlatform == TargetPlatform.iOS ||
         defaultTargetPlatform == TargetPlatform.macOS) {
+      // Wait for adapter state to be powered on
+      final adapterState = await FlutterBluePlus.adapterState.first;
+      if (adapterState != BluetoothAdapterState.on) {
+        // Wait for the adapter to turn on, with timeout
+        await FlutterBluePlus.adapterState
+            .firstWhere((state) => state == BluetoothAdapterState.on)
+            .timeout(
+              const Duration(seconds: 5),
+              onTimeout: () {
+                _setState(MeshCoreConnectionState.disconnected);
+                throw Exception('Bluetooth adapter not available');
+              },
+            );
+      }
+
+      // Add a small delay to allow BLE stack to fully initialize
       await Future.delayed(const Duration(milliseconds: 300));
     }
 
