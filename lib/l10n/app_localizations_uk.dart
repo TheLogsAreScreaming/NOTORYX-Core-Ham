@@ -273,7 +273,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get settings_rebootDevice => 'Перезавантажити пристрій';
 
   @override
-  String get settings_rebootDeviceSubtitle => 'Перезавантажити пристрій MeshCore';
+  String get settings_rebootDeviceSubtitle =>
+      'Перезавантажити пристрій MeshCore';
 
   @override
   String get settings_rebootDeviceConfirm =>
@@ -444,9 +445,6 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get appSettings_languageBg => 'Български';
-
- @override
-  String get appSettings_languageUk => 'Українська';
 
   @override
   String get appSettings_notifications => 'Сповіщення';
@@ -695,7 +693,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String contacts_groupAlreadyExists(String name) {
-    return 'Група \"$name\" вже існує.';
+    return 'Група «$name» вже існує.';
   }
 
   @override
@@ -780,7 +778,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String channels_channelDeleted(String name) {
-    return 'Канал \"$name\" видалено';
+    return 'Канал «$name» видалено';
   }
 
   @override
@@ -813,7 +811,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String channels_channelAdded(String name) {
-    return 'Канал \"$name\" додано';
+    return 'Канал «$name» додано';
   }
 
   @override
@@ -826,7 +824,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String channels_channelUpdated(String name) {
-    return 'Канал \"$name\" оновлено';
+    return 'Канал «$name» оновлено';
   }
 
   @override
@@ -999,7 +997,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get debugLog_bleCopied => 'Журнал BLE скопійовано';
 
   @override
-  String get debugLog_noEntries => 'Поки що немає записів журналу налагодження.';
+  String get debugLog_noEntries =>
+      'Поки що немає записів журналу налагодження.';
 
   @override
   String get debugLog_enableInSettings =>
@@ -1227,7 +1226,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get map_title => 'Карта вузлів';
 
   @override
-  String get map_noNodesWithLocation => 'Немає вузлів з даними про розташування';
+  String get map_noNodesWithLocation =>
+      'Немає вузлів з даними про розташування';
 
   @override
   String get map_nodesNeedGps =>
@@ -1359,7 +1359,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get mapCache_title => 'Офлайн-кеш карти';
 
   @override
-  String get mapCache_selectAreaFirst => 'Спершу виберіть область для кешування';
+  String get mapCache_selectAreaFirst =>
+      'Спершу виберіть область для кешування';
 
   @override
   String get mapCache_noTilesToDownload =>
@@ -1653,7 +1654,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get repeater_neighbours => 'Сусіди';
 
   @override
-  String get repeater_neighboursSubtitle => 'Показати сусідів нульового стрибка.';
+  String get repeater_neighboursSubtitle =>
+      'Показати сусідів нульового стрибка.';
 
   @override
   String get repeater_settings => 'Налаштування';
@@ -1744,7 +1746,7 @@ class AppLocalizationsUk extends AppLocalizations {
     int minutes,
     int seconds,
   ) {
-    return '$days дн. ${hours} год $minutes хв $seconds с';
+    return '$days дн. $hours год $minutes хв $seconds с';
   }
 
   @override
@@ -1777,7 +1779,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get repeater_repeaterName => 'Ім\'я ретранслятора';
 
   @override
-  String get repeater_repeaterNameHelper => 'Показати ім\'я цього ретранслятора';
+  String get repeater_repeaterNameHelper =>
+      'Показати ім\'я цього ретранслятора';
 
   @override
   String get repeater_adminPassword => 'Пароль адміністратора';
@@ -1889,14 +1892,16 @@ class AppLocalizationsUk extends AppLocalizations {
   String get repeater_rebootRepeater => 'Перезавантажити ретранслятор';
 
   @override
-  String get repeater_rebootRepeaterSubtitle => 'Скинути пристрій ретранслятора';
+  String get repeater_rebootRepeaterSubtitle =>
+      'Скинути пристрій ретранслятора';
 
   @override
   String get repeater_rebootRepeaterConfirm =>
       'Ви впевнені, що хочете перезавантажити цей ретранслятор?';
 
   @override
-  String get repeater_regenerateIdentityKey => 'Перегенерувати ключ ідентичності';
+  String get repeater_regenerateIdentityKey =>
+      'Перегенерувати ключ ідентичності';
 
   @override
   String get repeater_regenerateIdentityKeySubtitle =>
@@ -2196,7 +2201,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get repeater_cliHelpRegionGet =>
-      'Шукає регіон із заданим префіксом назви (або \"\" для глобальної області). Відповідає: \"-> ім\'я-регіону (ім\'я-батька) \'F\'\"';
+      'Шукає регіон із заданим префіксом назви (або «» для глобальної області). Відповідає: «-> ім\'я-регіону (ім\'я-батька) \'F\'»';
 
   @override
   String get repeater_cliHelpRegionPut =>
@@ -2268,8 +2273,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get repeater_logging => 'Логування';
 
   @override
-  String get repeater_neighborsRepeaterOnly =>
-      'Сусіди (Тільки ретранслятор)';
+  String get repeater_neighborsRepeaterOnly => 'Сусіди (Тільки ретранслятор)';
 
   @override
   String get repeater_regionManagementRepeaterOnly =>
@@ -2322,17 +2326,17 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String telemetry_batteryValue(int percent, String volts) {
-    return '$percent% / ${volts}В';
+    return '$percent% / $voltsВ';
   }
 
   @override
   String telemetry_voltageValue(String volts) {
-    return '${volts}В';
+    return '$voltsВ';
   }
 
   @override
   String telemetry_currentValue(String amps) {
-    return '${amps}А';
+    return '$ampsА';
   }
 
   @override
@@ -2488,7 +2492,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String community_joinConfirmation(String name) {
-    return 'Ви бажаєте приєднатися до спільноти \"$name\"?';
+    return 'Ви бажаєте приєднатися до спільноти «$name»?';
   }
 
   @override
@@ -2515,12 +2519,12 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String community_created(String name) {
-    return 'Спільноту \"$name\" створено';
+    return 'Спільноту «$name» створено';
   }
 
   @override
   String community_joined(String name) {
-    return 'Приєднався до спільноти \"$name\"';
+    return 'Приєднався до спільноти «$name»';
   }
 
   @override
@@ -2543,7 +2547,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String community_alreadyMemberMessage(String name) {
-    return 'Ви вже є учасником \"$name\".';
+    return 'Ви вже є учасником «$name».';
   }
 
   @override
@@ -2554,8 +2558,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'Автоматично додати публічний канал для цієї спільноти';
 
   @override
-  String get community_noCommunities =>
-      'Поки не приєднано до жодної групи.';
+  String get community_noCommunities => 'Поки не приєднано до жодної групи.';
 
   @override
   String get community_scanOrCreate =>
@@ -2569,7 +2572,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String community_deleteConfirm(String name) {
-    return 'Покинути \"$name\"?';
+    return 'Покинути «$name»?';
   }
 
   @override
@@ -2587,7 +2590,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String community_deleted(String name) {
-    return 'Спільноту \"$name\" покинуто';
+    return 'Спільноту «$name» покинуто';
   }
 
   @override
@@ -2595,7 +2598,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String community_regenerateSecretConfirm(String name) {
-    return 'Перегенерувати секретний ключ для \"$name\"? Всі учасники повинні будуть відсканувати новий QR-код, щоб продовжити спілкування.';
+    return 'Перегенерувати секретний ключ для «$name»? Всі учасники повинні будуть відсканувати новий QR-код, щоб продовжити спілкування.';
   }
 
   @override
@@ -2603,7 +2606,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String community_secretRegenerated(String name) {
-    return 'Секретний пароль для \"$name\" перегенеровано';
+    return 'Секретний пароль для «$name» перегенеровано';
   }
 
   @override
@@ -2611,12 +2614,12 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String community_secretUpdated(String name) {
-    return 'Зміну секрету для \"$name\" оновлено';
+    return 'Зміну секрету для «$name» оновлено';
   }
 
   @override
   String community_scanToUpdateSecret(String name) {
-    return 'Відскануйте новий QR-код, щоб оновити пароль для \"$name\"';
+    return 'Відскануйте новий QR-код, щоб оновити пароль для «$name»';
   }
 
   @override
