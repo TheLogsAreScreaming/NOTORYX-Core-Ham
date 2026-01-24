@@ -625,6 +625,17 @@ class MeshCoreConnector extends ChangeNotifier {
     _scanResults.clear();
     _setState(MeshCoreConnectionState.scanning);
 
+    // Ensure any previous scan is fully stopped
+    await FlutterBluePlus.stopScan();
+    await _scanSubscription?.cancel();
+
+    // On iOS/macOS, add a small delay to allow BLE stack to reset
+    // This prevents cached results from interfering with new scans
+    if (defaultTargetPlatform == TargetPlatform.iOS ||
+        defaultTargetPlatform == TargetPlatform.macOS) {
+      await Future.delayed(const Duration(milliseconds: 300));
+    }
+
     _scanSubscription = FlutterBluePlus.scanResults.listen((results) {
       _scanResults.clear();
       for (var result in results) {
