@@ -1,12 +1,9 @@
 {
   "@@locale": "ru",
-
   "appTitle": "MeshCore Open",
-
   "nav_contacts": "Контакты",
   "nav_channels": "Каналы",
   "nav_map": "Карта",
-
   "common_cancel": "Отмена",
   "common_ok": "OK",
   "common_connect": "Коннект",
@@ -326,7 +323,7 @@
   "chat_pathHistoryFull": "История маршрутов заполнена. Удалите записи, чтобы добавить новые.",
   "chat_hopSingular": "хоп",
   "chat_hopPlural": "хопов",
-  "chat_hopsCount": "{count} {plural, select, one {хоп} other {хопов}}",
+  "chat_hopsCount": "{count} {count, plural, one{хоп} few{хопа} many{хопов} other{хопов}}",
   "chat_successes": "успешно",
   "chat_removePath": "Удалить маршрут",
   "chat_noPathHistoryYet": "История маршрутов пока пуста.\nОтправьте сообщение, чтобы обнаружить маршруты.",
@@ -340,7 +337,7 @@
   "chat_floodModeEnabled": "Режим рассылки включён. Отключите через значок маршрутизации в панели приложения.",
   "chat_fullPath": "Полный маршрут",
   "chat_pathDetailsNotAvailable": "Детали маршрута ещё недоступны. Попробуйте отправить сообщение для обновления.",
-  "chat_pathSetHops": "Маршрут установлен: {hopCount} {plural, select, one {хоп} other {хопов}} — {status}",
+  "chat_pathSetHops": "Маршрут установлен: {hopCount} {hopCount, plural, one{хоп} few{хопа} many{хопов} other{хопов}} — {status}",
   "chat_pathSavedLocally": "Сохранено локально. Подключитесь для синхронизации.",
   "chat_pathDeviceConfirmed": "Подтверждено устройством.",
   "chat_pathDeviceNotConfirmed": "Ещё не подтверждено устройством.",
@@ -453,7 +450,7 @@
   "common_reload": "Обновить",
   "common_clear": "Очистить",
   "path_currentPath": "Текущий маршрут: {path}",
-  "path_usingHopsPath": "Используется маршрут из {count} {plural, select, one {хоп} other {хопов}}",
+  "path_usingHopsPath": "Используется маршрут из {count} {count, plural, one{хоп} few{хопа} many{хопов} other{хопов}}",
   "path_enterCustomPath": "Введите маршрут вручную",
   "path_currentPathLabel": "Текущий маршрут",
   "path_hexPrefixInstructions": "Введите 2-символьные шестнадцатеричные префиксы для каждого хопа, разделённые запятыми.",
@@ -757,5 +754,25 @@
   "listFilter_repeaters": "Репитеры",
   "listFilter_roomServers": "Серверы комнат",
   "listFilter_unreadOnly": "Только непрочитанные",
-  "listFilter_newGroup": "Новая группа"
+  "listFilter_newGroup": "Новая группа",
+  "@chat_couldNotOpenLink": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "@neighbors_heardAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "chat_open": "Открыть",
+  "chat_couldNotOpenLink": "Не удалось открыть ссылку: {url}",
+  "chat_openLink": "Открыть ссылку?",
+  "chat_openLinkConfirmation": "Хотите открыть эту ссылку в вашем браузере?",
+  "neighbors_heardAgo": "Слушал(а): {time} назад",
+  "chat_invalidLink": "Неправильный формат ссылки"
 }
