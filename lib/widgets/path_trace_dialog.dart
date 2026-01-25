@@ -183,19 +183,24 @@ class _PathTraceDialogState extends State<PathTraceDialog> {
                 : ListView.builder(
                     itemCount: _snrData.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: index >= _snrData.length / 2 ? Icon(Icons.call_received) : Icon(Icons.call_made),
-                        title: Text(
-                          formatDirectionText(index), style: const TextStyle(fontSize: 14),
-                        ),
-                        subtitle: Text(
-                          formatDirectionSubText(index),
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                        trailing: SNRIcon(snr: _snrData[index].toSigned(8) / 4.0),
-                        onTap: () {
-                          // Handle item tap
-                        },
+                      return Column(
+                        children: [
+                          ListTile(
+                            leading: index >= _snrData.length / 2 ? Icon(Icons.call_received) : Icon(Icons.call_made),
+                            title: Text(
+                              formatDirectionText(index), style: const TextStyle(fontSize: 14),
+                            ),
+                            subtitle: Text(
+                              formatDirectionSubText(index),
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                            trailing: SNRIcon(snr: _snrData[index].toSigned(8) / 4.0),
+                            onTap: () {
+                              // Handle item tap
+                            },
+                          ),
+                          if (index < _snrData.length - 1) const Divider(height: 0.0),
+                        ],
                       );
                     },
                   ),
