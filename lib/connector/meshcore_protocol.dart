@@ -159,6 +159,7 @@ const int respCodeContactMsgRecv = 7;
 const int respCodeChannelMsgRecv = 8;
 const int respCodeCurrTime = 9;
 const int respCodeNoMoreMessages = 10;
+const int respCodeExportContact = 11;
 const int respCodeBattAndStorage = 12;
 const int respCodeDeviceInfo = 13;
 const int respCodeContactMsgRecvV3 = 16;

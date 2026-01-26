@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -53,16 +54,20 @@ class _ContactsScreenState extends State<ContactsScreen>
   List<ContactGroup> _groups = [];
   Timer? _searchDebounce;
 
+  StreamSubscription<Uint8List>? _frameSubscription;
+
   @override
   void initState() {
     super.initState();
     _loadGroups();
+    _setupFrameListener();
   }
 
   @override
   void dispose() {
     _searchDebounce?.cancel();
     _searchController.dispose();
+    _frameSubscription?.cancel();
     super.dispose();
   }
 
@@ -76,6 +81,22 @@ class _ContactsScreenState extends State<ContactsScreen>
 
   Future<void> _saveGroups() async {
     await _groupStore.saveGroups(_groups);
+  }
+
+  void _setupFrameListener() {
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    // Listen for incoming text messages from the repeater
+    _frameSubscription = connector.receivedFrames.listen((frame) {
+      if (frame.isEmpty) return;
+      final frameBuffer = BufferReader(frame);
+      final code = frameBuffer.readUInt8();
+
+      if (code == respCodeExportContact) {
+        final advertPacket = frameBuffer.readRemainingBytes();
+        final hexString = pubKeyToHex(advertPacket);
+        Clipboard.setData(ClipboardData(text: "meshcore://$hexString"));
+      }
+    });
   }
 
   Future<void> _contactExport(Uint8List pubKey) async {
