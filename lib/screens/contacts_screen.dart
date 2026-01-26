@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -77,6 +78,13 @@ class _ContactsScreenState extends State<ContactsScreen>
     await _groupStore.saveGroups(_groups);
   }
 
+  Future<void> _contactExport(Uint8List pubKey) async {
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final exportContactFrame = buildExportContactFrame(pubKey);
+    await connector.sendFrame(exportContactFrame);
+    return;
+  }
+
   @override
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
@@ -96,18 +104,77 @@ class _ContactsScreenState extends State<ContactsScreen>
           centerTitle: true,
           automaticallyImplyLeading: false,
           actions: [
-            IconButton(
-              icon: const Icon(Icons.bluetooth_disabled),
-              tooltip: context.l10n.common_disconnect,
-              onPressed: () => _disconnect(context, connector),
-            ),
-            IconButton(
-              icon: const Icon(Icons.tune),
-              tooltip: context.l10n.common_settings,
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+            PopupMenuButton(itemBuilder:  (context) => [
+              PopupMenuItem(
+                child: Row(
+                  children: [
+                    const Icon(Icons.connect_without_contact),
+                    const SizedBox(width: 8),
+                    Text("Zero Hop Advert"),
+                  ],
+                ),
+                onTap: () => {
+                    connector.sendSelfAdvert(flood: false),
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(context.l10n.settings_advertisementSent))),
+                },
               ),
+              PopupMenuItem(
+                child: Row(
+                  children: [
+                    const Icon(Icons.cell_tower),
+                    const SizedBox(width: 8),
+                    Text("Flood Advert"),
+                  ],
+                ),
+                onTap: () => {
+                    connector.sendSelfAdvert(flood: true),
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(context.l10n.settings_advertisementSent))),
+                },
+              ),
+              PopupMenuItem(
+                child: Row(
+                  children: [
+                    const Icon(Icons.copy),
+                    const SizedBox(width: 8),
+                    Text("Copy Advert to Clipboard"),
+                  ],
+                ),
+                onTap: () => _contactExport(Uint8List.fromList([])),
+              ),
+            ],
+            icon: const Icon(Icons.connect_without_contact),
+            ),
+            PopupMenuButton(
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.logout, color: Colors.red),
+                      const SizedBox(width: 8),
+                      const Text('Disconnect'),
+                    ],
+                  ),
+                  onTap: () => _disconnect(context, connector),
+                ),
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.settings),
+                      const SizedBox(width: 8),
+                      const Text('Settings'),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                  ),
+                ),
+              ],
+              icon: const Icon(Icons.more_vert),
             ),
           ],
         ),

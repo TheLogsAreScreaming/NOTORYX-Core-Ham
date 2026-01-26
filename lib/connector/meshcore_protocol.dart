@@ -708,3 +708,21 @@ Uint8List buildSendBinaryReq(Uint8List repeaterPubKey, {Uint8List? payload}) {
   }
   return writer.toBytes();
 }
+
+// Build a export contact frame
+// [cmd][pub_key x32 / if empty exports your contact info]
+Uint8List buildExportContactFrame(Uint8List pubKey) {
+  final writer = BufferWriter();
+  writer.writeByte(cmdExportContact);
+  writer.writeBytes(pubKey);
+  return writer.toBytes();
+}
+
+// Build a import contact frame
+// [cmd][contact_frame x148]
+Uint8List buildImportContactFrame(Uint8List contactFrame) {
+  final writer = BufferWriter();
+  writer.writeByte(cmdImportContact);
+  writer.writeBytes(contactFrame);
+  return writer.toBytes();
+}
