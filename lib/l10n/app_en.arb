@@ -1308,5 +1308,9 @@
   "listFilter_repeaters": "Repeaters",
   "listFilter_roomServers": "Room servers",
   "listFilter_unreadOnly": "Unread only",
-  "listFilter_newGroup": "New group"
+  "listFilter_newGroup": "New group",
+
+  "contacts_clipboardEmpty": "Clipboard Is Empty.",
+  "contacts_invalidAdvertFormat": "Invalid Contact Data",
+  "contacts_contactAdded": "Contact has been added."
 }

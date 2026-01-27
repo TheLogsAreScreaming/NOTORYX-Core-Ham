@@ -106,6 +106,36 @@ class _ContactsScreenState extends State<ContactsScreen>
     return;
   }
 
+  Future<void> _contactImport() async {
+    final clipboardData = await Clipboard.getData('text/plain');
+    if (clipboardData == null || clipboardData.text == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.contacts_clipboardEmpty)),
+      );
+      return;
+    }
+    final text = clipboardData.text!.trim();
+    if (!text.startsWith('meshcore://')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+      );
+      return;
+    }
+    final hexString = text.substring('meshcore://'.length);
+    try {
+      final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+      final importContactFrame = buildImportContactFrame(hexString);
+      await connector.sendFrame(importContactFrame);
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text(context.l10n.contacts_contactAdded)),
+      // );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
@@ -166,21 +196,21 @@ class _ContactsScreenState extends State<ContactsScreen>
                 ),
                 onTap: () => _contactExport(Uint8List.fromList([])),
               ),
+              PopupMenuItem(
+                child: Row(
+                  children: [
+                    const Icon(Icons.paste),
+                    const SizedBox(width: 8),
+                    Text("Add Contact from Clipboard"),
+                  ],
+                ),
+                onTap: () => _contactImport(),
+              ),
             ],
             icon: const Icon(Icons.connect_without_contact),
             ),
             PopupMenuButton(
               itemBuilder: (context) => [
-                PopupMenuItem(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.logout, color: Colors.red),
-                      const SizedBox(width: 8),
-                      const Text('Disconnect'),
-                    ],
-                  ),
-                  onTap: () => _disconnect(context, connector),
-                ),
                 PopupMenuItem(
                   child: Row(
                     children: [
@@ -194,6 +224,16 @@ class _ContactsScreenState extends State<ContactsScreen>
                     MaterialPageRoute(builder: (context) => const SettingsScreen()),
                   ),
                 ),
+                                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.logout, color: Colors.red),
+                      const SizedBox(width: 8),
+                      const Text('Disconnect'),
+                    ],
+                  ),
+                  onTap: () => _disconnect(context, connector),
+                )
               ],
               icon: const Icon(Icons.more_vert),
             ),

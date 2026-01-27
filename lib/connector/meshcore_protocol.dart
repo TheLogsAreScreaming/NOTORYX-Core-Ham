@@ -98,6 +98,14 @@ class BufferWriter {
     }
     writeBytes(bytes);
   }
+
+  void writeHex(String hex) {
+    List<int> result = [];
+    for (int i = 0; i < hex.length ~/ 2; i++) {
+      result.add(int.parse(hex.substring(i * 2, i * 2 + 2), radix: 16));
+    }
+    writeBytes(Uint8List.fromList(result));
+  }
 }
 
 // Command codes (to device)
@@ -720,10 +728,10 @@ Uint8List buildExportContactFrame(Uint8List pubKey) {
 }
 
 // Build a import contact frame
-// [cmd][contact_frame x148]
-Uint8List buildImportContactFrame(Uint8List contactFrame) {
+// [cmd][contact_frame x98+]
+Uint8List buildImportContactFrame(String contactFrame) {
   final writer = BufferWriter();
   writer.writeByte(cmdImportContact);
-  writer.writeBytes(contactFrame);
+  writer.writeHex(contactFrame);
   return writer.toBytes();
 }
