@@ -102,6 +102,10 @@ class Contact {
     return parts.join(',');
   }
 
+  String get shortPubKeyHex {
+    return "<${publicKeyHex.substring(0, 8)}...${publicKeyHex.substring(publicKeyHex.length - 8)}>";
+  }
+
   Uint8List get _pathBytesForDisplay {
     if (pathOverride != null) {
       if (pathOverride! < 0) return Uint8List(0);

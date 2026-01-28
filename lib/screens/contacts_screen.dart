@@ -177,7 +177,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                   children: [
                     const Icon(Icons.connect_without_contact),
                     const SizedBox(width: 8),
-                    Text("Zero Hop Advert"),
+                    Text(context.l10n.contacts_zeroHopAdvert),
                   ],
                 ),
                 onTap: () => {
@@ -192,7 +192,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                   children: [
                     const Icon(Icons.cell_tower),
                     const SizedBox(width: 8),
-                    Text("Flood Advert"),
+                    Text(context.l10n.contacts_floodAdvert),
                   ],
                 ),
                 onTap: () => {
@@ -207,7 +207,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                   children: [
                     const Icon(Icons.copy),
                     const SizedBox(width: 8),
-                    Text("Copy Advert to Clipboard"),
+                    Text(context.l10n.contacts_copyAdvertToClipboard),
                   ],
                 ),
                 onTap: () => _contactExport(Uint8List.fromList([])),
@@ -217,7 +217,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                   children: [
                     const Icon(Icons.paste),
                     const SizedBox(width: 8),
-                    Text("Add Contact from Clipboard"),
+                    Text(context.l10n.contacts_addContactFromClipboard),
                   ],
                 ),
                 onTap: () => _contactImport(),
@@ -230,9 +230,19 @@ class _ContactsScreenState extends State<ContactsScreen>
                 PopupMenuItem(
                   child: Row(
                     children: [
+                      const Icon(Icons.logout, color: Colors.red),
+                      const SizedBox(width: 8),
+                      Text(context.l10n.common_disconnect),
+                    ],
+                  ),
+                  onTap: () => _disconnect(context, connector),
+                ),
+                PopupMenuItem(
+                  child: Row(
+                    children: [
                       const Icon(Icons.settings),
                       const SizedBox(width: 8),
-                      const Text('Settings'),
+                      Text(context.l10n.settings_title),
                     ],
                   ),
                   onTap: () => Navigator.push(
@@ -240,16 +250,6 @@ class _ContactsScreenState extends State<ContactsScreen>
                     MaterialPageRoute(builder: (context) => const SettingsScreen()),
                   ),
                 ),
-                                PopupMenuItem(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.logout, color: Colors.red),
-                      const SizedBox(width: 8),
-                      const Text('Disconnect'),
-                    ],
-                  ),
-                  onTap: () => _disconnect(context, connector),
-                )
               ],
               icon: const Icon(Icons.more_vert),
             ),
@@ -930,7 +930,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                   _showRoomLogin(context, contact, RoomLoginDestination.management);
                 },
               ),
-            ] else
+            ] else ...[
               ListTile(
                 leading: const Icon(Icons.chat),
                 title: Text(context.l10n.contacts_openChat),
@@ -1005,17 +1005,16 @@ class _ContactTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final shotPublicKey =
-        "<${contact.publicKeyHex.substring(0, 8)}...${contact.publicKeyHex.substring(contact.publicKeyHex.length - 8)}>";
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: _getTypeColor(contact.type),
         child: _buildContactAvatar(contact),
       ),
       title: Text(contact.name),
-      subtitle: Text(
-        '${contact.typeLabel}\n${contact.shortPubKeyHex}',
-      ),
+      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(contact.pathLabel),
+        Text(contact.shortPubKeyHex, style: TextStyle(fontSize: 12))
+      ],),
       // Clamp text scaling in trailing section to prevent overflow while
       // maintaining accessibility. Primary content (title/subtitle) scales normally.
       trailing: MediaQuery(
@@ -1039,21 +1038,15 @@ class _ContactTile extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-              Text(contact.pathLabel,
-                  style: TextStyle(fontSize: 12, color: Colors.grey[600])),
               if (contact.hasLocation)
                 Icon(Icons.location_on, size: 14, color: Colors.grey[400]),
               ],
             ),
-          Text(
-            _formatLastSeen(context, lastSeen),
-            style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-          ),
-          if (contact.hasLocation)
-            Icon(Icons.location_on, size: 14, color: Colors.grey[400]),
           ],
         ),
       ),
+      onTap: onTap,
+      onLongPress: onLongPress,
     );
   }
 

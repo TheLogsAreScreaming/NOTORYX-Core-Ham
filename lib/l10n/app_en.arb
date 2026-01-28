@@ -1327,5 +1327,9 @@
   "contacts_clipboardEmpty": "Clipboard Is Empty.",
   "contacts_invalidAdvertFormat": "Invalid Contact Data",
   "contacts_contactImported": "Contact has been Imported.",
-  "contacts_contactImportFailed": "Contact Failed to Imported."
+  "contacts_contactImportFailed": "Contact Failed to Imported.",
+  "contacts_zeroHopAdvert":"Zero Hop Advert",
+  "contacts_floodAdvert":"Flood Advert",
+  "contacts_copyAdvertToClipboard":"Copy Advert to Clipboard",
+  "contacts_addContactFromClipboard":"Add Contact from Clipboard"
 }
