@@ -447,6 +447,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get appSettings_languageBg => 'Болгарский';
 
   @override
+  String get appSettings_languageRu => 'Русский';
+
+  @override
+  String get appSettings_languageUk => 'Українська';
+
+  @override
   String get appSettings_notifications => 'Уведомления';
 
   @override

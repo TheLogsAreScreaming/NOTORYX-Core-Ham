@@ -433,6 +433,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appSettings_languageBg => 'Български';
 
   @override
+  String get appSettings_languageRu => 'Русский';
+
+  @override
+  String get appSettings_languageUk => 'Українська';
+
+  @override
   String get appSettings_notifications => '通知';
 
   @override

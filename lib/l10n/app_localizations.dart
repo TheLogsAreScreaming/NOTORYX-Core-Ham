@@ -946,6 +946,18 @@ abstract class AppLocalizations {
   /// **'Български'**
   String get appSettings_languageBg;
 
+  /// No description provided for @appSettings_languageRu.
+  ///
+  /// In en, this message translates to:
+  /// **'Русский'**
+  String get appSettings_languageRu;
+
+  /// No description provided for @appSettings_languageUk.
+  ///
+  /// In en, this message translates to:
+  /// **'Українська'**
+  String get appSettings_languageUk;
+
   /// No description provided for @appSettings_notifications.
   ///
   /// In en, this message translates to:
