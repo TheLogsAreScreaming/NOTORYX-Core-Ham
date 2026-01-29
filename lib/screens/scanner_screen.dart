@@ -8,8 +8,34 @@ import '../widgets/device_tile.dart';
 import 'contacts_screen.dart';
 
 /// Screen for scanning and connecting to MeshCore devices
-class ScannerScreen extends StatelessWidget {
+class ScannerScreen extends StatefulWidget {
   const ScannerScreen({super.key});
+
+  @override
+  State<ScannerScreen> createState() => _ScannerScreenState();
+}
+
+class _ScannerScreenState extends State<ScannerScreen> {
+  bool changedNavgation = false;  
+
+  @override
+  void initState() {
+    super.initState();
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    
+    connector.addListener(() {
+      if (connector.state == MeshCoreConnectionState.disconnected) {
+        changedNavgation = false;
+      }else if (connector.state == MeshCoreConnectionState.connected && !changedNavgation) {
+        changedNavgation = true;
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const ContactsScreen(),
+          ),
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -161,15 +187,6 @@ final l10n = context.l10n;
           ? result.device.platformName
           : result.advertisementData.advName;
       await connector.connect(result.device, displayName: name);
-      
-      if (context.mounted && connector.isConnected) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const ContactsScreen(),
-          ),
-        );
-      }
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
