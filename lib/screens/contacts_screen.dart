@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:meshcore_open/widgets/path_trace_dialog.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -53,17 +53,22 @@ class _ContactsScreenState extends State<ContactsScreen>
   final ContactGroupStore _groupStore = ContactGroupStore();
   List<ContactGroup> _groups = [];
   Timer? _searchDebounce;
-  
+
+  bool _imported = false;
+  StreamSubscription<Uint8List>? _frameSubscription;
+
   @override
   void initState() {
     super.initState();
     _loadGroups();
+    _setupFrameListener();
   }
 
   @override
   void dispose() {
     _searchDebounce?.cancel();
     _searchController.dispose();
+    _frameSubscription?.cancel();
     super.dispose();
   }
 
@@ -77,6 +82,74 @@ class _ContactsScreenState extends State<ContactsScreen>
 
   Future<void> _saveGroups() async {
     await _groupStore.saveGroups(_groups);
+  }
+
+  void _setupFrameListener() {
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    // Listen for incoming text messages from the repeater
+    _frameSubscription = connector.receivedFrames.listen((frame) {
+      if (frame.isEmpty) return;
+      final frameBuffer = BufferReader(frame);
+      final code = frameBuffer.readUInt8();
+
+      if (code == respCodeExportContact) {
+        final advertPacket = frameBuffer.readRemainingBytes();
+        final hexString = pubKeyToHex(advertPacket);
+        Clipboard.setData(ClipboardData(text: "meshcore://$hexString"));
+      }
+
+      if(code == respCodeOk && _imported) {
+        // Show a snackbar indicating success
+        _imported = false;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.l10n.contacts_contactImported)),
+        );
+      }
+
+      if(code == respCodeErr && _imported) {
+        // Show a snackbar indicating success
+        _imported = false;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.l10n.contacts_contactImportFailed)),
+        );
+      }
+
+    });
+  }
+
+  Future<void> _contactExport(Uint8List pubKey) async {
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final exportContactFrame = buildExportContactFrame(pubKey);
+    await connector.sendFrame(exportContactFrame);
+    return;
+  }
+
+  Future<void> _contactImport() async {
+    final clipboardData = await Clipboard.getData('text/plain');
+    if (clipboardData == null || clipboardData.text == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.contacts_clipboardEmpty)),
+      );
+      return;
+    }
+    final text = clipboardData.text!.trim();
+    if (!text.startsWith('meshcore://')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+      );
+      return;
+    }
+    final hexString = text.substring('meshcore://'.length);
+    try {
+      final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+      final importContactFrame = buildImportContactFrame(hexString);
+      await connector.sendFrame(importContactFrame);
+      _imported = true;
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+      );
+    }
   }
 
   @override
@@ -98,18 +171,87 @@ class _ContactsScreenState extends State<ContactsScreen>
           centerTitle: true,
           automaticallyImplyLeading: false,
           actions: [
-            IconButton(
-              icon: const Icon(Icons.bluetooth_disabled),
-              tooltip: context.l10n.common_disconnect,
-              onPressed: () => _disconnect(context, connector),
-            ),
-            IconButton(
-              icon: const Icon(Icons.tune),
-              tooltip: context.l10n.common_settings,
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+            PopupMenuButton(itemBuilder:  (context) => [
+              PopupMenuItem(
+                child: Row(
+                  children: [
+                    const Icon(Icons.connect_without_contact),
+                    const SizedBox(width: 8),
+                    Text(context.l10n.contacts_zeroHopAdvert),
+                  ],
+                ),
+                onTap: () => {
+                    connector.sendSelfAdvert(flood: false),
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(context.l10n.settings_advertisementSent))),
+                },
               ),
+              PopupMenuItem(
+                child: Row(
+                  children: [
+                    const Icon(Icons.cell_tower),
+                    const SizedBox(width: 8),
+                    Text(context.l10n.contacts_floodAdvert),
+                  ],
+                ),
+                onTap: () => {
+                    connector.sendSelfAdvert(flood: true),
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(context.l10n.settings_advertisementSent))),
+                },
+              ),
+              PopupMenuItem(
+                child: Row(
+                  children: [
+                    const Icon(Icons.copy),
+                    const SizedBox(width: 8),
+                    Text(context.l10n.contacts_copyAdvertToClipboard),
+                  ],
+                ),
+                onTap: () => _contactExport(Uint8List.fromList([])),
+              ),
+              PopupMenuItem(
+                child: Row(
+                  children: [
+                    const Icon(Icons.paste),
+                    const SizedBox(width: 8),
+                    Text(context.l10n.contacts_addContactFromClipboard),
+                  ],
+                ),
+                onTap: () => _contactImport(),
+              ),
+            ],
+            icon: const Icon(Icons.connect_without_contact),
+            ),
+            PopupMenuButton(
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.logout, color: Colors.red),
+                      const SizedBox(width: 8),
+                      Text(context.l10n.common_disconnect),
+                    ],
+                  ),
+                  onTap: () => _disconnect(context, connector),
+                ),
+                PopupMenuItem(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.settings),
+                      const SizedBox(width: 8),
+                      Text(context.l10n.settings_title),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                  ),
+                ),
+              ],
+              icon: const Icon(Icons.more_vert),
             ),
           ],
         ),
@@ -834,6 +976,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                   _openChat(context, contact);
                 },
               ),
+            ],
             ListTile(
               leading: const Icon(Icons.delete, color: Colors.red),
               title: Text(
@@ -906,9 +1049,10 @@ class _ContactTile extends StatelessWidget {
         child: _buildContactAvatar(contact),
       ),
       title: Text(contact.name),
-      subtitle: Text(
-        '${contact.typeLabel} • ${contact.pathLabel} ${contact.shortPubKeyHex}',
-      ),
+      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(contact.pathLabel),
+        Text(contact.shortPubKeyHex, style: TextStyle(fontSize: 12))
+      ],),
       // Clamp text scaling in trailing section to prevent overflow while
       // maintaining accessibility. Primary content (title/subtitle) scales normally.
       trailing: MediaQuery(
@@ -929,8 +1073,13 @@ class _ContactTile extends StatelessWidget {
               _formatLastSeen(context, lastSeen),
               style: TextStyle(fontSize: 12, color: Colors.grey[600]),
             ),
-            if (contact.hasLocation)
-              Icon(Icons.location_on, size: 14, color: Colors.grey[400]),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+              if (contact.hasLocation)
+                Icon(Icons.location_on, size: 14, color: Colors.grey[400]),
+              ],
+            ),
           ],
         ),
       ),
