@@ -756,3 +756,12 @@ Uint8List buildImportContactFrame(String contactFrame) {
   writer.writeHex(contactFrame);
   return writer.toBytes();
 }
+
+// Build a export contact frame
+// [cmd][pub_key x32]
+Uint8List buildZeroHopContact(Uint8List pubKey) {
+  final writer = BufferWriter();
+  writer.writeByte(cmdShareContact);
+  writer.writeBytes(pubKey);
+  return writer.toBytes();
+}

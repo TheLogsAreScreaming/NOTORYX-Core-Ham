@@ -55,6 +55,9 @@ class _ContactsScreenState extends State<ContactsScreen>
   Timer? _searchDebounce;
 
   bool _imported = false;
+  bool _zeroHopContact = false;
+  bool _copyedContact = false;
+
   StreamSubscription<Uint8List>? _frameSubscription;
 
   @override
@@ -98,20 +101,53 @@ class _ContactsScreenState extends State<ContactsScreen>
         Clipboard.setData(ClipboardData(text: "meshcore://$hexString"));
       }
 
-      if(code == respCodeOk && _imported) {
+      if(code == respCodeOk) {
         // Show a snackbar indicating success
+        if(_imported && mounted){
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.l10n.contacts_contactImported)),
+          );
+        }
+
+        if(_zeroHopContact && mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.l10n.contacts_zeroHopContactAdvertSent)),
+          );
+        }
+
+        if(_copyedContact && mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.l10n.contacts_contactAdvertCopied)),
+          );
+        }
+        
+        _copyedContact = false;
+        _zeroHopContact = false;
         _imported = false;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.contacts_contactImported)),
-        );
       }
 
-      if(code == respCodeErr && _imported) {
-        // Show a snackbar indicating success
+      if(code == respCodeErr) {
+        // Show a snackbar indicating failure
+        if(_imported && mounted){
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.l10n.contacts_contactImportFailed)),
+          );
+        }
+
+        if(_zeroHopContact && mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.l10n.contacts_zeroHopContactAdvertFailed)),
+          );
+        }
+        if(_copyedContact && mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(context.l10n.contacts_contactAdvertCopyFailed)),
+          );
+        }
+
+        _copyedContact = false;
         _imported = false;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.contacts_contactImportFailed)),
-        );
+        _zeroHopContact = false;
       }
 
     });
@@ -120,35 +156,49 @@ class _ContactsScreenState extends State<ContactsScreen>
   Future<void> _contactExport(Uint8List pubKey) async {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     final exportContactFrame = buildExportContactFrame(pubKey);
+    _copyedContact = true;
     await connector.sendFrame(exportContactFrame);
     return;
   }
 
+  Future<void> _contactZeroHop(Uint8List pubKey) async {
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final exportContactZeroHopFrame = buildZeroHopContact(pubKey);
+    _zeroHopContact = true;
+    await connector.sendFrame(exportContactZeroHopFrame);
+  }
+
   Future<void> _contactImport() async {
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     final clipboardData = await Clipboard.getData('text/plain');
     if (clipboardData == null || clipboardData.text == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.contacts_clipboardEmpty)),
-      );
+      if(mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.l10n.contacts_clipboardEmpty)),
+        );
+      }
       return;
     }
     final text = clipboardData.text!.trim();
     if (!text.startsWith('meshcore://')) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
-      );
+      if(mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+        );
+      }
       return;
     }
     final hexString = text.substring('meshcore://'.length);
     try {
-      final connector = Provider.of<MeshCoreConnector>(context, listen: false);
       final importContactFrame = buildImportContactFrame(hexString);
       await connector.sendFrame(importContactFrame);
       _imported = true;
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
-      );
+      if(mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+        );
+      }
     }
   }
 
@@ -978,6 +1028,22 @@ class _ContactsScreenState extends State<ContactsScreen>
               ),
             ],
             ListTile(
+              leading: const Icon(Icons.copy),
+              title: Text(context.l10n.contacts_ShareContact),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                _contactExport(contact.publicKey);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.connect_without_contact),
+              title: Text(context.l10n.contacts_ShareContactZeroHop),
+              onTap: () { 
+                Navigator.pop(sheetContext);
+                _contactZeroHop(contact.publicKey);
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.delete, color: Colors.red),
               title: Text(
                 context.l10n.contacts_deleteContact,
@@ -988,7 +1054,6 @@ class _ContactsScreenState extends State<ContactsScreen>
                 _confirmDelete(context, connector, contact);
               },
             ),
-            ],
           ],
         ),
       ),
