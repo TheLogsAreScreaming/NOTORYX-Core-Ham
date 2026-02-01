@@ -1552,5 +1552,21 @@
   "contacts_roomPathTrace": "路径追踪至房间服务器",
   "contacts_roomPing": "Ping 房间服务器",
   "contacts_chatTraceRoute": "路径追踪",
-  "contacts_pathTraceTo": "追踪路由到 {name}"
+  "contacts_pathTraceTo": "追踪路由到 {name}",
+  "appSettings_languageUk": "乌克兰语",
+  "appSettings_languageRu": "俄语",
+  "contacts_contactImported": "联系人已导入",
+  "contacts_contactImportFailed": "联系人导入失败",
+  "contacts_zeroHopAdvert": "零跳广告",
+  "contacts_floodAdvert": "洪水广告",
+  "contacts_clipboardEmpty": "剪贴板为空。",
+  "contacts_invalidAdvertFormat": "无效联系人数据",
+  "contacts_addContactFromClipboard": "从剪贴板添加联系人",
+  "contacts_zeroHopContactAdvertSent": "通过广告发送的联系人",
+  "contacts_zeroHopContactAdvertFailed": "发送联系人失败",
+  "contacts_contactAdvertCopied": "广告已复制到剪贴板。",
+  "contacts_contactAdvertCopyFailed": "复制广告到剪贴板失败。",
+  "contacts_copyAdvertToClipboard": "复制广告到剪贴板",
+  "contacts_ShareContactZeroHop": "通过广告分享联系人",
+  "contacts_ShareContact": "复制联系人到剪贴板"
 }
