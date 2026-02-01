@@ -990,6 +990,7 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   Future<void> _requestDeviceInfo() async {
+    if (!isConnected || _awaitingSelfInfo) return;
     _awaitingSelfInfo = true;
     await sendFrame(buildDeviceQueryFrame());
     await sendFrame(buildAppStartFrame());
