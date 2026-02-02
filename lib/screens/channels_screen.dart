@@ -164,7 +164,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            await context.read<MeshCoreConnector>().getChannels();
+            await context.read<MeshCoreConnector>().getChannels(force: true);
           },
           child: () {
             if (connector.isLoadingChannels) {

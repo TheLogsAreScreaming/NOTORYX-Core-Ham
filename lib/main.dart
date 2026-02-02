@@ -128,6 +128,9 @@ class MeshCoreApp extends StatelessWidget {
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
               useMaterial3: true,
+              snackBarTheme: const SnackBarThemeData(
+                behavior: SnackBarBehavior.floating,
+              ),
             ),
             darkTheme: ThemeData(
               colorScheme: ColorScheme.fromSeed(
@@ -135,6 +138,9 @@ class MeshCoreApp extends StatelessWidget {
                 brightness: Brightness.dark,
               ),
               useMaterial3: true,
+              snackBarTheme: const SnackBarThemeData(
+                behavior: SnackBarBehavior.floating,
+              ),
             ),
             themeMode: _themeModeFromSetting(settingsService.settings.themeMode),
             home: const ScannerScreen(),

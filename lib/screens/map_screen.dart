@@ -225,13 +225,15 @@ class _MapScreenState extends State<MapScreen> {
         }
 
         // Re center map after removed markers have loaded
-        if (!_hasInitializedMap && _removedMarkersLoaded && hasMapContent) {
+        if (!_hasInitializedMap && _removedMarkersLoaded) {
           _hasInitializedMap = true;
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (mounted) {
-              _mapController.move(center, initialZoom);
-            }
-          });
+          if (hasMapContent) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) {
+                _mapController.move(center, initialZoom);
+              }
+            });
+          }
         }
 
         final allowBack = !connector.isConnected;
@@ -275,9 +277,7 @@ class _MapScreenState extends State<MapScreen> {
                 ),
               ],
             ),
-            body: !hasMapContent
-                ? _buildEmptyState()
-                : Stack(
+            body: Stack(
                     children: [
                       FlutterMap(
                         mapController: _mapController,
@@ -376,27 +376,6 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
-  Widget _buildEmptyState() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.location_off, size: 64, color: Colors.grey[400]),
-          const SizedBox(height: 16),
-          Text(
-            context.l10n.map_noNodesWithLocation,
-            style: TextStyle(fontSize: 18, color: Colors.grey[600]),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            context.l10n.map_nodesNeedGps,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 14, color: Colors.grey[500]),
-          ),
-        ],
-      ),
-    );
-  }
 
   List<Marker> _buildMarkers(List<Contact> contacts, settings) {
     final markers = <Marker>[];

@@ -95,6 +95,7 @@ class MeshCoreConnector extends ChangeNotifier {
   double? _selfLongitude;
   bool _isLoadingContacts = false;
   bool _isLoadingChannels = false;
+  bool _hasLoadedChannels = false;
   bool _batteryRequested = false;
   bool _awaitingSelfInfo = false;
   bool _preserveContactsOnRefresh = false;
@@ -122,7 +123,7 @@ class MeshCoreConnector extends ChangeNotifier {
   List<Channel> _previousChannelsCache = [];
   static const int _maxChannelSyncRetries = 3;
   static const int _channelSyncTimeoutMs = 2000; // 2 second timeout per channel
-  static const Duration _batteryPollInterval = Duration(seconds: 30);
+  static const Duration _batteryPollInterval = Duration(seconds: 120);
 
   // Services
   MessageRetryService? _retryService;
@@ -927,6 +928,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _pendingQueueSync = false;
     _isSyncingChannels = false;
     _channelSyncInFlight = false;
+    _hasLoadedChannels = false;
 
     _setState(MeshCoreConnectionState.disconnected);
     if (!manual) {
@@ -1493,10 +1495,16 @@ class MeshCoreConnector extends ChangeNotifier {
     await sendCliCommand('set privacy ${enabled ? 'on' : 'off'}');
   }
 
-  Future<void> getChannels({int? maxChannels}) async {
+  Future<void> getChannels({int? maxChannels, bool force = false}) async {
     if (!isConnected) return;
     if (_isSyncingChannels) {
       debugPrint('[ChannelSync] Already syncing channels, ignoring request');
+      return;
+    }
+
+    // Skip fetching if already loaded and not forced
+    if (_hasLoadedChannels && !force) {
+      debugPrint('[ChannelSync] Channels already loaded, skipping fetch (use force=true to reload)');
       return;
     }
 
@@ -1619,6 +1627,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _totalChannelsToRequest = 0;
 
     if (completed) {
+      _hasLoadedChannels = true;
       _previousChannelsCache.clear();
     }
     // Keep cache on failure/disconnection for future attempts
@@ -1629,7 +1638,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     await sendFrame(buildSetChannelFrame(index, name, psk));
     // Refresh channels after setting
-    await getChannels();
+    await getChannels(force: true);
   }
 
   Future<void> deleteChannel(int index) async {
@@ -1644,7 +1653,7 @@ class MeshCoreConnector extends ChangeNotifier {
     // Clear in-memory messages for this channel
     _channelMessages.remove(index);
     // Refresh channels after deleting
-    await getChannels();
+    await getChannels(force: true);
   }
 
   void _handleFrame(List<int> data) {
@@ -2105,6 +2114,15 @@ class MeshCoreConnector extends ChangeNotifier {
     }
 
     if (message != null) {
+      // Ignore messages from self (device hearing its own broadcast)
+      // BUT allow repeated messages (pathLength indicates it went through repeater)
+      if (_selfPublicKey != null &&
+          message.senderKeyHex == pubKeyToHex(_selfPublicKey!) &&
+          (message.pathLength == null || message.pathLength == 0)) {
+        debugPrint('Ignoring direct message from self');
+        return;
+      }
+
       final contact = _contacts.cast<Contact?>().firstWhere(
         (c) => c?.publicKeyHex == message!.senderKeyHex,
         orElse: () => null,
@@ -3066,28 +3084,19 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   bool _shouldDropSelfChannelMessage(String senderName, Uint8List pathBytes) {
-    final selfKey = _selfPublicKey;
-    if (selfKey == null) return false;
-    if (pathBytes.length < pathHashSize) return false;
     final trimmed = senderName.trim();
     if (trimmed.isEmpty) return false;
+
     final selfName = _selfName?.trim();
     if (selfName == null || selfName.isEmpty) return false;
+
+    // If sender name doesn't match, keep the message
     if (trimmed != selfName) return false;
-    final prefix = selfKey.sublist(0, pathHashSize);
-    for (int i = 0; i + pathHashSize <= pathBytes.length; i += pathHashSize) {
-      var match = true;
-      for (int j = 0; j < pathHashSize; j++) {
-        if (pathBytes[i + j] != prefix[j]) {
-          match = false;
-          break;
-        }
-      }
-      if (match) {
-        return true;
-      }
-    }
-    return false;
+
+    // Name matches - this is from self
+    // Drop only if pathBytes is empty (direct broadcast)
+    // Keep if pathBytes has data (repeated through another node)
+    return pathBytes.isEmpty;
   }
 
   Uint8List _selectPreferredPathBytes(Uint8List existing, Uint8List incoming) {

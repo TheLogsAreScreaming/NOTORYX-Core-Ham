@@ -780,10 +780,15 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
       return;
     }
 
-    if (txPower == null || txPower < 0 || txPower > 22) {
+    final maxTxPower = widget.connector.maxTxPower ?? 22;
+    if (txPower == null || txPower < 0 || txPower > maxTxPower) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(l10n.settings_txPowerInvalid)));
+      ).showSnackBar(
+        SnackBar(
+          content: Text('${l10n.settings_txPowerInvalid} (0-$maxTxPower dBm)'),
+        ),
+      );
       return;
     }
 
@@ -932,7 +937,9 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
               decoration: InputDecoration(
                 labelText: l10n.settings_txPower,
                 border: const OutlineInputBorder(),
-                helperText: l10n.settings_txPowerHelper,
+                helperText: widget.connector.maxTxPower != null
+                    ? '${l10n.settings_txPowerHelper} (max: ${widget.connector.maxTxPower} dBm)'
+                    : l10n.settings_txPowerHelper,
               ),
               keyboardType: TextInputType.number,
             ),
