@@ -248,12 +248,14 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
           _fetchedSettings['advert.interval']!,
           _advertInterval,
         );
+        _advertEnable = _advertInterval > 0;
       }
       if (_fetchedSettings.containsKey('flood.advert.interval')) {
         _floodAdvertInterval = _parseIntWithFallback(
           _fetchedSettings['flood.advert.interval']!,
           _floodAdvertInterval,
         );
+        _floodAdvertEnable = _floodAdvertInterval > 0;
       }
       if (_fetchedSettings.containsKey('priv.advert.interval')) {
         _privAdvertInterval = _parseIntWithFallback(
@@ -379,18 +381,19 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
       case 'advert.interval':
       case 'flood.advert.interval':
       case 'priv.advert.interval':
-        // Interval: positive integer
+        // Interval: non-negative integer (0 means disabled)
         if (value.contains(',')) return false;
         final interval = int.tryParse(value.replaceAll(RegExp(r'[^0-9]'), ''));
-        return interval != null && interval > 0;
+        return interval != null && interval >= 0;
 
       case 'name':
         // Name: any non-empty string, but should NOT look like radio settings
         if (value.isEmpty) return false;
         // If it has 3+ commas and looks like numbers, probably radio data
         final commaCount = ','.allMatches(value).length;
-        if (commaCount >= 3 && RegExp(r'^[\d.,\s]+$').hasMatch(value))
+        if (commaCount >= 3 && RegExp(r'^[\d.,\s]+$').hasMatch(value)) {
           return false;
+        }
         return true;
 
       default:
