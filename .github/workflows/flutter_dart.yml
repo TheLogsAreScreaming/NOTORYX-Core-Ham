@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  analyze:
+  analyze_and_format:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,19 +23,6 @@ jobs:
 
       - name: Analyze code
         run: flutter analyze --fatal-infos --fatal-warnings
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-
-      - name: Install dependencies
-        run: flutter pub get
 
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
