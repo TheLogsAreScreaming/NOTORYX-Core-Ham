@@ -646,8 +646,9 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
       final direct = _formatValue(_dupDirect);
       return l10n.repeater_duplicatesFloodDirect(flood, direct);
     }
-    if (_packetsRecv == null || _floodRx == null || _directRx == null)
+    if (_packetsRecv == null || _floodRx == null || _directRx == null) {
       return '—';
+    }
     final dupTotal = _packetsRecv! - _floodRx! - _directRx!;
     if (dupTotal < 0) return '—';
     return l10n.repeater_duplicatesTotal(dupTotal);

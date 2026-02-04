@@ -673,8 +673,9 @@ class _ChatScreenState extends State<ChatScreen> {
   String _formatRelativeTime(DateTime time) {
     final diff = DateTime.now().difference(time);
     if (diff.inSeconds < 60) return context.l10n.time_justNow;
-    if (diff.inMinutes < 60)
+    if (diff.inMinutes < 60) {
       return context.l10n.time_minutesAgo(diff.inMinutes);
+    }
     if (diff.inHours < 24) return context.l10n.time_hoursAgo(diff.inHours);
     return context.l10n.time_daysAgo(diff.inDays);
   }
