@@ -691,21 +691,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
   _gpxExport(GpxExport exporter) async {
     final l10n = context.l10n;
     final result = await exporter.exportGPX();
-    // Implement GPX export functionality here
+    if(!mounted) return;
     switch (result) {
-      case GpxExportSuccess:
+      case gpxExportSuccess:
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportSuccess)));
-      case GpxExportNoContacts:
+      case gpxExportNoContacts:
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportNoContacts)));
-      case GpxExportNotAvailable:
+      case gpxExportNotAvailable:
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportNotAvailable)));
-      case GpxExportFailed:
+      case gpxExportFailed:
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportError)));

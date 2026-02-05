@@ -23,15 +23,15 @@ class ContactExport {
   });
 }
 
-const int GpxExportFailed = -1;
-const int GpxExportSuccess = 1;
-const int GpxExportNoContacts = 2;
-const int GpxExportCancelled = 3;
-const int GpxExportNotAvailable = 4;
+const int gpxExportFailed = -1;
+const int gpxExportSuccess = 1;
+const int gpxExportNoContacts = 2;
+const int gpxExportCancelled = 3;
+const int gpxExportNotAvailable = 4;
 
 class GpxExport {
-  MeshCoreConnector _connector;
-  List<ContactExport> _contacts = [];
+  final MeshCoreConnector _connector;
+  final List<ContactExport> _contacts = [];
 
   GpxExport(this._connector);
 
@@ -95,7 +95,7 @@ class GpxExport {
   Future<int> exportGPX() async {
     if (_contacts.isEmpty) {
       debugPrint("No repeaters to export – nothing to share.");
-      return GpxExportNoContacts;
+      return gpxExportNoContacts;
     }
 
     try {
@@ -145,13 +145,13 @@ class GpxExport {
       switch (result.status) {
         case ShareResultStatus.success:
           debugPrint('Share successful – user completed the action.');
-          return GpxExportSuccess;
+          return gpxExportSuccess;
         case ShareResultStatus.dismissed:
           debugPrint('Share sheet was dismissed / cancelled by user.');
-          return GpxExportCancelled;
+          return gpxExportCancelled;
         case ShareResultStatus.unavailable:
           debugPrint('Sharing is not available on this platform / context.');
-          return GpxExportNotAvailable;
+          return gpxExportNotAvailable;
       }
 
       // Optional cleanup (uncomment if you don't want to keep the file)
@@ -160,6 +160,6 @@ class GpxExport {
       debugPrint('Export or share failed: $e\n$stack');
       // → here you could show a SnackBar / AlertDialog in real UI code
     }
-    return GpxExportFailed;
+    return gpxExportFailed;
   }
 }
