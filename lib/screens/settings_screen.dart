@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meshcore_open/utils/gpx_export.dart';
 import 'package:meshcore_open/widgets/elements_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -56,6 +57,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 _buildActionsCard(context, connector),
                 const SizedBox(height: 16),
                 _buildDebugCard(context),
+                const SizedBox(height: 16),
+                _buildExportCard(connector),
                 const SizedBox(height: 16),
                 _buildAboutCard(context),
               ],
@@ -682,6 +685,73 @@ class _SettingsScreenState extends State<SettingsScreen> {
         const SizedBox(height: 16),
         Text(l10n.settings_aboutDescription),
       ],
+    );
+  }
+  
+  _gpxExport(GpxExport exporter) async {
+    final l10n = context.l10n;
+    final result = await exporter.exportGPX();
+    // Implement GPX export functionality here
+    switch (result) {
+      case GpxExportSuccess:
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportSuccess)));
+      case GpxExportNoContacts:
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportNoContacts)));
+      case GpxExportNotAvailable:
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportNotAvailable)));
+      case GpxExportFailed:
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportError)));
+    }
+  }
+
+  _buildExportCard(MeshCoreConnector connector) {
+    final l10n = context.l10n;
+    return Card(
+      child: Column(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.download_outlined),
+            title: Text(l10n.settings_gpxExportRepeaters),
+            subtitle: Text(l10n.settings_gpxExportRepeatersSubtitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () async {
+              final exporter = GpxExport(connector);
+              exporter.addRepeaters();
+              _gpxExport(exporter);
+            },
+          ),
+                    ListTile(
+            leading: const Icon(Icons.download_outlined),
+            title: Text(l10n.settings_gpxExportContacts),
+            subtitle: Text(l10n.settings_gpxExportContactsSubtitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () async {
+              final exporter = GpxExport(connector);
+              exporter.addContacts();
+              _gpxExport(exporter);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.download_outlined),
+            title: Text(l10n.settings_gpxExportAll),
+            subtitle: Text(l10n.settings_gpxExportAllSubtitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () async {
+              final exporter = GpxExport(connector);
+              exporter.addAll();
+              _gpxExport(exporter);
+            },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1343,5 +1343,16 @@
   "contacts_zeroHopContactAdvertSent": "Sent contact by advert.",
   "contacts_zeroHopContactAdvertFailed": "Failed to send contact.",
   "contacts_contactAdvertCopied": "Advert copied to Clipboard.",
-  "contacts_contactAdvertCopyFailed": "Copying advert to Clipboard failed."
+  "contacts_contactAdvertCopyFailed": "Copying advert to Clipboard failed.",
+
+  "settings_gpxExportRepeaters": "Export repeaters to GPX",
+  "settings_gpxExportRepeatersSubtitle": "Exports repeaters with a location to GPX file.",
+  "settings_gpxExportContacts": "Export contacts to GPX",
+  "settings_gpxExportContactsSubtitle": "Exports chat contacts with a location to GPX file.",
+  "settings_gpxExportAll": "Export all to GPX",
+  "settings_gpxExportAllSubtitle": "Exports all contacts with a location to GPX file.", 
+  "settings_gpxExportSuccess": "Successfully exported GPX file.",
+  "settings_gpxExportNoContacts": "No contacts to export.",
+  "settings_gpxExportNotAvailable": "Not supported on your device/OS",
+  "settings_gpxExportError": "There was an error when exporting."
 }
