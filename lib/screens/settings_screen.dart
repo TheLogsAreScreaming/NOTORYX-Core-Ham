@@ -687,24 +687,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ],
     );
   }
-  
+
   _gpxExport(GpxExport exporter) async {
     final l10n = context.l10n;
     final result = await exporter.exportGPX();
-    if(!mounted) return;
+    if (!mounted) return;
     switch (result) {
       case gpxExportSuccess:
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportSuccess)));
       case gpxExportNoContacts:
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportNoContacts)));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.settings_gpxExportNoContacts)),
+        );
       case gpxExportNotAvailable:
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(l10n.settings_gpxExportNotAvailable)));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.settings_gpxExportNotAvailable)),
+        );
       case gpxExportFailed:
         ScaffoldMessenger.of(
           context,
@@ -728,7 +728,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               _gpxExport(exporter);
             },
           ),
-                    ListTile(
+          ListTile(
             leading: const Icon(Icons.download_outlined),
             title: Text(l10n.settings_gpxExportContacts),
             subtitle: Text(l10n.settings_gpxExportContactsSubtitle),

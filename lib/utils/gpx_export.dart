@@ -35,19 +35,29 @@ class GpxExport {
 
   GpxExport(this._connector);
 
-  void _addContact(String name, double lat, double lon, String desc, [double? ele]) {
-    _contacts.add(ContactExport(
-      name: name.trim(),
-      lat: lat,
-      lon: lon,
-      desc: desc.trim(),
-      ele: ele,
-    ));
+  void _addContact(
+    String name,
+    double lat,
+    double lon,
+    String desc, [
+    double? ele,
+  ]) {
+    _contacts.add(
+      ContactExport(
+        name: name.trim(),
+        lat: lat,
+        lon: lon,
+        desc: desc.trim(),
+        ele: ele,
+      ),
+    );
   }
 
   void addRepeaters() {
     final contacts = _connector.contacts;
-    final repeaters = contacts.where((c) => c.type == advTypeRepeater || c.type == advTypeRoom).toList();
+    final repeaters = contacts
+        .where((c) => c.type == advTypeRepeater || c.type == advTypeRoom)
+        .toList();
     for (var repeater in repeaters) {
       if (repeater.latitude == null || repeater.longitude == null) {
         continue;
@@ -79,7 +89,7 @@ class GpxExport {
 
   void addAll() {
     final contacts = _connector.contacts;
-     for (var repeater in contacts.toList()) {
+    for (var repeater in contacts.toList()) {
       if (repeater.latitude == null || repeater.longitude == null) {
         continue;
       }
@@ -104,24 +114,30 @@ class GpxExport {
         ..version = '1.1'
         ..creator = 'meshcore-open Repeater Exporter'
         ..metadata = Metadata(
-            name: 'Meshcore Repeaters',
-            desc: 'Repeater & room locations exported from meshcore-open',
-            time: DateTime.now().toUtc(),
-          );
+          name: 'Meshcore Repeaters',
+          desc: 'Repeater & room locations exported from meshcore-open',
+          time: DateTime.now().toUtc(),
+        );
 
-      gpx.wpts = _contacts.map((c) => Wpt(
-            lat: c.lat,
-            lon: c.lon,
-            ele: c.ele,
-            name: c.name,
-            desc: c.desc,
-          )).toList();
+      gpx.wpts = _contacts
+          .map(
+            (c) => Wpt(
+              lat: c.lat,
+              lon: c.lon,
+              ele: c.ele,
+              name: c.name,
+              desc: c.desc,
+            ),
+          )
+          .toList();
 
       final xml = GpxWriter().asString(gpx, pretty: true);
 
       // 2. Save to file
       final dir = await getApplicationDocumentsDirectory();
-      final timestamp = DateTime.now().toUtc().toIso8601String()
+      final timestamp = DateTime.now()
+          .toUtc()
+          .toIso8601String()
           .replaceAll(':', '-')
           .replaceAll('.', '-')
           .split('T')
@@ -134,7 +150,8 @@ class GpxExport {
       // 3. Modern share call (2025+ style)
       final result = await SharePlus.instance.share(
         ShareParams(
-          text: 'Repeater locations exported from meshcore-open app as GPX file.',
+          text:
+              'Repeater locations exported from meshcore-open app as GPX file.',
           subject: 'Meshcore Repeaters GPX Export',
           files: [XFile(path)],
           // Optional: sharePositionOrigin: ... (if you want iPad popover positioning)
