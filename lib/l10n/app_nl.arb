@@ -1568,5 +1568,6 @@
   "contacts_contactAdvertCopyFailed": "Kopiëren van advertentie naar Clipboard is mislukt.",
   "contacts_ShareContact": "Kontakt naar Klembord kopiëren",
   "contacts_ShareContactZeroHop": "Contact delen via advertentie",
-  "contacts_zeroHopContactAdvertFailed": "Mislukt om contact te verzenden"
+  "contacts_zeroHopContactAdvertFailed": "Mislukt om contact te verzenden",
+  "pathTrace_someHopsNoLocation": "Een of meer van de hops ontbreken een locatie!"
 }

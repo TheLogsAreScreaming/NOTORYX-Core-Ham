@@ -1568,5 +1568,6 @@
   "contacts_zeroHopContactAdvertFailed": "No se pudo enviar el contacto.",
   "contacts_zeroHopContactAdvertSent": "Envió contacto por anuncio.",
   "contacts_contactAdvertCopied": "Anuncio copiado al Portapapeles.",
-  "contacts_contactAdvertCopyFailed": "Copiar anuncio al Portapapeles ha fallado."
+  "contacts_contactAdvertCopyFailed": "Copiar anuncio al Portapapeles ha fallado.",
+  "pathTrace_someHopsNoLocation": "Uno o más de los lúpulos carecen de una ubicación"
 }

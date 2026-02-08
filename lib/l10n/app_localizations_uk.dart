@@ -2706,6 +2706,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Оновити Path Trace';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Одне або більше хмелів відсутнє місце розташування!';
+
+  @override
   String get contacts_pathTrace => 'Трасування шляхів';
 
   @override

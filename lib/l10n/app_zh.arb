@@ -1568,5 +1568,6 @@
   "contacts_zeroHopContactAdvertSent": "通过广告获取联系方式。",
   "contacts_zeroHopContactAdvertFailed": "发送联系方式失败。",
   "contacts_contactAdvertCopied": "广告内容已复制到剪贴板。",
-  "contacts_contactAdvertCopyFailed": "将广告复制到剪贴板操作失败。"
+  "contacts_contactAdvertCopyFailed": "将广告复制到剪贴板操作失败。",
+  "pathTrace_someHopsNoLocation": "其中一个或多个啤酒花缺少位置！"
 }

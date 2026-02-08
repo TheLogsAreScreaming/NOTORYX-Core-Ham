@@ -50,6 +50,7 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
   bool _isLoading = false;
   bool _failed2Loaded = false;
   bool _hasData = false;
+  bool _noLocationErr = false;
   PathTraceData? _traceData;
   List<LatLng> _points = <LatLng>[];
   List<Polyline> _polylines = [];
@@ -108,6 +109,7 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
       setState(() {
         _isLoading = true;
         _failed2Loaded = false;
+        _noLocationErr = false;
       });
     }
 
@@ -159,7 +161,8 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
       }
 
       // Check if it's a binary response
-      if (code == pushCodeTraceData &&
+      if (frame.length > 8 &&
+          code == pushCodeTraceData &&
           listEquals(frame.sublist(4, 8), tagData)) {
         _timeoutTimer?.cancel();
         if (!mounted) return;
@@ -207,8 +210,13 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
       _points.add(LatLng(connector.selfLatitude!, connector.selfLongitude!));
       for (final hop in _traceData!.pathData) {
         final contact = _traceData!.pathContacts[hop];
-        if (contact != null && contact.hasLocation) {
+        if (contact != null &&
+            contact.hasLocation &&
+            contact.latitude != null &&
+            contact.longitude != null) {
           _points.add(LatLng(contact.latitude!, contact.longitude!));
+        } else {
+          _noLocationErr = true;
         }
       }
       _polylines = _points.length > 1
@@ -271,7 +279,20 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
             top: false,
             child: Stack(
               children: [
-                if (!_hasData)
+                if (_noLocationErr)
+                  Center(
+                    child: Card(
+                      color: Colors.red,
+                      child: Padding(
+                        padding: EdgeInsets.all(12),
+                        child: Text(
+                          context.l10n.pathTrace_someHopsNoLocation,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                if (!_hasData && _noLocationErr)
                   Center(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -283,7 +304,7 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
                       ],
                     ),
                   ),
-                if (_hasData)
+                if (_hasData && !_noLocationErr)
                   FlutterMap(
                     key: _mapKey,
                     options: MapOptions(
@@ -318,7 +339,8 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
                 if (_points.isEmpty &&
                     !_hasData &&
                     !_isLoading &&
-                    !_failed2Loaded)
+                    !_failed2Loaded &&
+                    !_noLocationErr)
                   Center(
                     child: Card(
                       color: Colors.white.withValues(alpha: 0.9),
@@ -330,7 +352,8 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
                       ),
                     ),
                   ),
-                if (_hasData) _buildLegendCard(context, _traceData!),
+                if (_hasData && !_noLocationErr)
+                  _buildLegendCard(context, _traceData!),
               ],
             ),
           ),

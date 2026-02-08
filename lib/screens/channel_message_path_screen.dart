@@ -525,8 +525,8 @@ class _ChannelMessagePathMapScreenState
           ),
       Marker(
         point: LatLng(
-          context.read<MeshCoreConnector>().selfLatitude!,
-          context.read<MeshCoreConnector>().selfLongitude!,
+          context.read<MeshCoreConnector>().selfLatitude ?? 0.0,
+          context.read<MeshCoreConnector>().selfLongitude ?? 0.0,
         ),
         width: 40,
         height: 40,

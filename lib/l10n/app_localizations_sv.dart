@@ -2670,6 +2670,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Uppdatera Path Trace';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'En eller flera av humlen saknar en plats!';
+
+  @override
   String get contacts_pathTrace => 'Path Trace';
 
   @override

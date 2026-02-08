@@ -1568,5 +1568,6 @@
   "contacts_contactAdvertCopied": "Oglas je bil kopiran v odložišče.",
   "contacts_contactAdvertCopyFailed": "Kopiranje oglasa v odložišče je spodletelo.",
   "contacts_ShareContactZeroHop": "Deliti kontakt prek oglasa",
-  "contacts_ShareContact": "Kopiraj stik v Odložišče"
+  "contacts_ShareContact": "Kopiraj stik v Odložišče",
+  "pathTrace_someHopsNoLocation": "Ena ali več hmelju manjka lokacija!"
 }

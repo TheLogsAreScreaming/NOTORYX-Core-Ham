@@ -1568,5 +1568,6 @@
   "contacts_contactAdvertCopyFailed": "Kopiowanie ogłoszenia do schowka nie powiodło się.",
   "contacts_ShareContactZeroHop": "Udostępnij kontakt przez ogłoszenie",
   "contacts_ShareContact": "Kopiuj kontakt do schowka",
-  "contacts_zeroHopContactAdvertFailed": "Nie udało się wysłać kontaktu."
+  "contacts_zeroHopContactAdvertFailed": "Nie udało się wysłać kontaktu.",
+  "pathTrace_someHopsNoLocation": "Jeden lub więcej z chmieli nie ma określonej lokalizacji!"
 }

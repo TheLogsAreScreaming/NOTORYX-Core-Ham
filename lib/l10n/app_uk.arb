@@ -1568,5 +1568,6 @@
   "contacts_contactAdvertCopyFailed": "Копіювання оголошення в буфер обміну завершилося невдало",
   "contacts_zeroHopContactAdvertSent": "Відправлено контакт за оголошенням",
   "contacts_addContactFromClipboard": "Додати контакт з буфера обміну",
-  "contacts_ShareContactZeroHop": "Поділитися контактом за оголошенням"
+  "contacts_ShareContactZeroHop": "Поділитися контактом за оголошенням",
+  "pathTrace_someHopsNoLocation": "Одне або більше хмелів відсутнє місце розташування!"
 }
