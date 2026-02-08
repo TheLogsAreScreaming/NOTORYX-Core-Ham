@@ -515,38 +515,45 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
                     ? Center(
                         child: Text(l10n.channelPath_noHopDetailsAvailable),
                       )
-                    : ListView.separated(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
-                        itemCount: pathTraceData.pathData.length + 1,
-                        separatorBuilder: (_, __) => const Divider(height: 1),
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              ListTile(
-                                leading:
-                                    index >= pathTraceData.snrData.length / 2
-                                    ? Icon(Icons.call_received)
-                                    : Icon(Icons.call_made),
-                                title: Text(
-                                  formatDirectionText(pathTraceData, index),
-                                  style: const TextStyle(fontSize: 14),
+                    : Scrollbar(
+                        child: ListView.separated(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          itemCount: pathTraceData.pathData.length + 1,
+                          separatorBuilder: (_, __) => const Divider(height: 1),
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                ListTile(
+                                  leading:
+                                      index >= pathTraceData.snrData.length / 2
+                                      ? Icon(Icons.call_received)
+                                      : Icon(Icons.call_made),
+                                  title: Text(
+                                    formatDirectionText(pathTraceData, index),
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                  subtitle: Text(
+                                    formatDirectionSubText(
+                                      pathTraceData,
+                                      index,
+                                    ),
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                  trailing: SNRIcon(
+                                    snr:
+                                        pathTraceData.snrData[index].toSigned(
+                                          8,
+                                        ) /
+                                        4.0,
+                                  ),
+                                  onTap: () {
+                                    // Handle item tap
+                                  },
                                 ),
-                                subtitle: Text(
-                                  formatDirectionSubText(pathTraceData, index),
-                                  style: const TextStyle(fontSize: 14),
-                                ),
-                                trailing: SNRIcon(
-                                  snr:
-                                      pathTraceData.snrData[index].toSigned(8) /
-                                      4.0,
-                                ),
-                                onTap: () {
-                                  // Handle item tap
-                                },
-                              ),
-                            ],
-                          );
-                        },
+                              ],
+                            );
+                          },
+                        ),
                       ),
               ),
             ],
