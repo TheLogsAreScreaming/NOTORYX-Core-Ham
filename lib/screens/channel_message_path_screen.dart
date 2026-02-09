@@ -385,6 +385,9 @@ class _ChannelMessagePathMapScreenState
                           ),
                     minZoom: 2.0,
                     maxZoom: 18.0,
+                    interactionOptions: InteractionOptions(
+                      flags: ~InteractiveFlag.rotate,
+                    ),
                   ),
                   children: [
                     TileLayer(
