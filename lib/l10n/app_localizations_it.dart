@@ -2696,6 +2696,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Aggiorna Path Trace.';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Uno o più dei luppoli mancano di una posizione!';
+
+  @override
   String get contacts_pathTrace => 'Traccia Percorso';
 
   @override

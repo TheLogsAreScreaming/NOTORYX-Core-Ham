@@ -1568,5 +1568,6 @@
   "contacts_contactAdvertCopyFailed": "Copia dell'annuncio nella Clipboard non riuscita.",
   "contacts_ShareContactZeroHop": "Condividi contatto tramite annuncio",
   "contacts_zeroHopContactAdvertFailed": "Invio del contatto non riuscito.",
-  "contacts_contactAdvertCopied": "Annuncio copiato negli Appunti."
+  "contacts_contactAdvertCopied": "Annuncio copiato negli Appunti.",
+  "pathTrace_someHopsNoLocation": "Uno o più dei luppoli mancano di una posizione!"
 }

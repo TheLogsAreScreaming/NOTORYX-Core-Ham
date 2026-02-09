@@ -2656,6 +2656,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Refresh Path Trace.';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'One or more of the hops is missing a location!';
+
+  @override
   String get contacts_pathTrace => 'Path Trace';
 
   @override

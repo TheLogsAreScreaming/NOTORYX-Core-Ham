@@ -1568,5 +1568,6 @@
   "contacts_contactAdvertCopied": "Рекламата е копирана в клипборда.",
   "contacts_zeroHopContactAdvertFailed": "Неуспешно изпращане на контакт.",
   "contacts_zeroHopContactAdvertSent": "Изпратен контакт по обява.",
-  "contacts_contactAdvertCopyFailed": "Копирането на обявата в клипборда не успя."
+  "contacts_contactAdvertCopyFailed": "Копирането на обявата в клипборда не успя.",
+  "pathTrace_someHopsNoLocation": "Един или повече от хмелите липсва местоположение!"
 }

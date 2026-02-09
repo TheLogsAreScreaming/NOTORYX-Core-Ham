@@ -808,5 +808,6 @@
   "contacts_contactAdvertCopyFailed": "Копирование рекламы в буфер обмена не удалось.",
   "contacts_addContactFromClipboard": "Добавить контакт из буфера обмена",
   "contacts_ShareContactZeroHop": "Поделиться контактом по объявлению",
-  "contacts_zeroHopContactAdvertSent": "Отправлено сообщение по объявлению."
+  "contacts_zeroHopContactAdvertSent": "Отправлено сообщение по объявлению.",
+  "pathTrace_someHopsNoLocation": "Одному или нескольким хмелям не указано местоположение!"
 }

@@ -1568,5 +1568,6 @@
   "contacts_contactAdvertCopyFailed": "Kopiering av annons till Urklipp misslyckades.",
   "contacts_ShareContact": "Kopiera kontakt till Urklipp",
   "contacts_zeroHopContactAdvertFailed": "Misslyckades med att skicka kontakt.",
-  "contacts_ShareContactZeroHop": "Dela kontakt via annons"
+  "contacts_ShareContactZeroHop": "Dela kontakt via annons",
+  "pathTrace_someHopsNoLocation": "En eller flera av humlen saknar en plats!"
 }

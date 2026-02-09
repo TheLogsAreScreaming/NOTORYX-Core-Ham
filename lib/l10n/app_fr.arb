@@ -1568,5 +1568,6 @@
   "contacts_contactAdvertCopied": "Annonce copiée dans le presse-papiers.",
   "contacts_contactAdvertCopyFailed": "La copie de l'annonce vers le presse-papiers a échoué.",
   "contacts_zeroHopContactAdvertSent": "Envoyer un contact par annonce.",
-  "contacts_zeroHopContactAdvertFailed": "Échec de l'envoi du contact."
+  "contacts_zeroHopContactAdvertFailed": "Échec de l'envoi du contact.",
+  "pathTrace_someHopsNoLocation": "Une ou plusieurs des houblons manquent d'une localisation !"
 }

@@ -2682,6 +2682,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Obnoviť Path Trace.';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Jedna alebo viac chmeľov chýba lokalita!';
+
+  @override
   String get contacts_pathTrace => 'Sledovanie lúčov';
 
   @override

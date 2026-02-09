@@ -2555,6 +2555,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get pathTrace_refreshTooltip => '重新绘制路径。';
 
   @override
+  String get pathTrace_someHopsNoLocation => '其中一个或多个啤酒花缺少位置！';
+
+  @override
   String get contacts_pathTrace => '路径追踪';
 
   @override

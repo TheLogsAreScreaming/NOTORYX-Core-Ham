@@ -2697,6 +2697,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Atualizar Path Trace.';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Um ou mais dos lúpulos estão sem localização!';
+
+  @override
   String get contacts_pathTrace => 'Traçado de Caminho';
 
   @override

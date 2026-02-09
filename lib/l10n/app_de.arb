@@ -1568,5 +1568,6 @@
   "contacts_zeroHopContactAdvertFailed": "Kontakt konnte nicht gesendet werden.",
   "contacts_zeroHopContactAdvertSent": "Kontakt über Anzeige gesendet",
   "contacts_contactAdvertCopied": "Anzeige in die Zwischenablage kopiert.",
-  "contacts_contactAdvertCopyFailed": "Kopieren des Werbeinhalts in die Zwischenablage fehlgeschlagen."
+  "contacts_contactAdvertCopyFailed": "Kopieren des Werbeinhalts in die Zwischenablage fehlgeschlagen.",
+  "pathTrace_someHopsNoLocation": "Eine oder mehrere der Hopfen fehlen einen Standort!"
 }
