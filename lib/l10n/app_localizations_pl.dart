@@ -2694,6 +2694,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Odśwież ścieżkę.';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Jeden lub więcej z chmieli nie ma określonej lokalizacji!';
+
+  @override
   String get contacts_pathTrace => 'Śledzenie Ścieżek';
 
   @override

@@ -2699,6 +2699,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Обновить Path Trace';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Одному или нескольким хмелям не указано местоположение!';
+
+  @override
   String get contacts_pathTrace => 'Трассировка пути';
 
   @override

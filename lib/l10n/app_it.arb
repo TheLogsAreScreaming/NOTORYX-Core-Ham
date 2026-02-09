@@ -1583,5 +1583,6 @@
   "settings_gpxExportRepeatersRoom": "Posizioni del server ripetitore e della stanza",
   "settings_gpxExportAllContacts": "Tutte le posizioni dei contatti",
   "settings_gpxExportShareText": "Dati mappa esportati da meshcore-open",
-  "settings_gpxExportShareSubject": "meshcore-open esportazione dati mappa GPX"
+  "settings_gpxExportShareSubject": "meshcore-open esportazione dati mappa GPX",
+  "pathTrace_someHopsNoLocation": "Uno o più dei luppoli mancano di una posizione!"
 }

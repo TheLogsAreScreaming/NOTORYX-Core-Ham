@@ -1583,5 +1583,6 @@
   "settings_gpxExportSuccess": "Fichier GPX exporté avec succès.",
   "settings_gpxExportAllContacts": "Tous les emplacements des contacts",
   "settings_gpxExportShareText": "Données de carte exportées à partir de meshcore-open",
-  "settings_gpxExportShareSubject": "meshcore-open exporter les données de carte GPX"
+  "settings_gpxExportShareSubject": "meshcore-open exporter les données de carte GPX",
+  "pathTrace_someHopsNoLocation": "Une ou plusieurs des houblons manquent d'une localisation !"
 }

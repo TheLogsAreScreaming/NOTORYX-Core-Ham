@@ -2686,6 +2686,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Path Trace vernieuwen.';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Een of meer van de hops ontbreken een locatie!';
+
+  @override
   String get contacts_pathTrace => 'Pad Traceren';
 
   @override

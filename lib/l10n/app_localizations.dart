@@ -4724,6 +4724,12 @@ abstract class AppLocalizations {
   /// **'Refresh Path Trace.'**
   String get pathTrace_refreshTooltip;
 
+  /// No description provided for @pathTrace_someHopsNoLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'One or more of the hops is missing a location!'**
+  String get pathTrace_someHopsNoLocation;
+
   /// No description provided for @contacts_pathTrace.
   ///
   /// In en, this message translates to:

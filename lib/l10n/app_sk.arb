@@ -1583,5 +1583,6 @@
   "settings_gpxExportAllContacts": "Všetky kontaktné lokality",
   "settings_gpxExportChat": "Lokácie sprievodcov",
   "settings_gpxExportShareText": "Mapové údaje exportované z meshcore-open",
-  "settings_gpxExportShareSubject": "meshcore-open export dát GPX mapových údajov"
+  "settings_gpxExportShareSubject": "meshcore-open export dát GPX mapových údajov",
+  "pathTrace_someHopsNoLocation": "Jedna alebo viac chmeľov chýba lokalita!"
 }

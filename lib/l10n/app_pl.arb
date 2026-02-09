@@ -1583,5 +1583,6 @@
   "settings_gpxExportNoContacts": "Brak kontaktów do wyeksportowania.",
   "settings_gpxExportChat": "Lokalizacje towarzyszy",
   "settings_gpxExportShareText": "Dane mapy wyeksportowane z meshcore-open",
-  "settings_gpxExportShareSubject": "Eksport danych mapy GPX meshcore-open"
+  "settings_gpxExportShareSubject": "Eksport danych mapy GPX meshcore-open",
+  "pathTrace_someHopsNoLocation": "Jeden lub więcej z chmieli nie ma określonej lokalizacji!"
 }

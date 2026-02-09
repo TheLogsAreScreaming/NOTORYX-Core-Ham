@@ -1583,5 +1583,6 @@
   "settings_gpxExportSuccess": "Erfolgreich GPX-Datei exportiert.",
   "settings_gpxExportAllContacts": "Alle Kontaktstandorte",
   "settings_gpxExportShareSubject": "meshcore-open GPX-Kartendaten exportieren",
-  "settings_gpxExportShareText": "Kartendaten aus meshcore-open exportiert"
+  "settings_gpxExportShareText": "Kartendaten aus meshcore-open exportiert",
+  "pathTrace_someHopsNoLocation": "Eine oder mehrere der Hopfen fehlen einen Standort!"
 }

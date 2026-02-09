@@ -1583,5 +1583,6 @@
   "settings_gpxExportNotAvailable": "Не е поддържан на вашето устройство/ОС",
   "settings_gpxExportAllContacts": "Местоположения на всички контакти",
   "settings_gpxExportShareText": "Картинни данни изнесени от meshcore-open",
-  "settings_gpxExportShareSubject": "meshcore-open износ на данни за карта в формат GPX"
+  "settings_gpxExportShareSubject": "meshcore-open износ на данни за карта в формат GPX",
+  "pathTrace_someHopsNoLocation": "Един или повече от хмелите липсва местоположение!"
 }

@@ -2696,6 +2696,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Обнови Path Trace.';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Един или повече от хмелите липсва местоположение!';
+
+  @override
   String get contacts_pathTrace => 'Пътен проследяване';
 
   @override

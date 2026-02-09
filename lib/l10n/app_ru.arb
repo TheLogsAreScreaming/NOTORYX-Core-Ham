@@ -823,5 +823,6 @@
   "settings_gpxExportSuccess": "Успешно экспортирован файл GPX.",
   "settings_gpxExportNoContacts": "Нет контактов для экспорта.",
   "settings_gpxExportShareText": "Данные карты экспортированы из meshcore-open",
-  "settings_gpxExportShareSubject": "meshcore-open экспорт данных карты GPX"
+  "settings_gpxExportShareSubject": "meshcore-open экспорт данных карты GPX",
+  "pathTrace_someHopsNoLocation": "Одному или нескольким хмелям не указано местоположение!"
 }

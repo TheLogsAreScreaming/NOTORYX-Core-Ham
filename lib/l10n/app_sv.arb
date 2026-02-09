@@ -1583,5 +1583,6 @@
   "settings_gpxExportError": "Det uppstod ett fel när data exporterades.",
   "settings_gpxExportAllContacts": "Alla kontakters platser",
   "settings_gpxExportShareSubject": "meshcore-open export av GPX-kartdata",
-  "settings_gpxExportShareText": "Kartdata exporterad från meshcore-open"
+  "settings_gpxExportShareText": "Kartdata exporterad från meshcore-open",
+  "pathTrace_someHopsNoLocation": "En eller flera av humlen saknar en plats!"
 }

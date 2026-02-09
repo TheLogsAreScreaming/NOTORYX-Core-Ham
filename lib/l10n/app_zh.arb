@@ -1583,5 +1583,6 @@
   "settings_gpxExportAllContacts": "所有联系人位置",
   "settings_gpxExportNoContacts": "没有联系人可导出",
   "settings_gpxExportShareText": "来自meshcore-open的导出地图数据",
-  "settings_gpxExportShareSubject": "meshcore-open GPX 地图数据导出"
+  "settings_gpxExportShareSubject": "meshcore-open GPX 地图数据导出",
+  "pathTrace_someHopsNoLocation": "其中一个或多个啤酒花缺少位置！"
 }

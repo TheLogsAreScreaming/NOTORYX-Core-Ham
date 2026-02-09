@@ -2700,6 +2700,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Path Trace aktualisieren.';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Eine oder mehrere der Hopfen fehlen einen Standort!';
+
+  @override
   String get contacts_pathTrace => 'Pfadverfolgung';
 
   @override

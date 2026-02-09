@@ -2712,6 +2712,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Actualiser Path Trace';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Une ou plusieurs des houblons manquent d\'une localisation !';
+
+  @override
   String get contacts_pathTrace => 'Traçage de chemin';
 
   @override

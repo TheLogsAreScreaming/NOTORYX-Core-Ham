@@ -1583,5 +1583,6 @@
   "settings_gpxExportShareText": "Podatki kart izvoženi iz meshcore-open",
   "settings_gpxExportNoContacts": "Ni stikov za izvoz.",
   "settings_gpxExportNotAvailable": "Ni podprto na vašem napravi/operacijskem sistemu",
-  "settings_gpxExportShareSubject": "meshcore-open izvoz podatkov GPX karte"
+  "settings_gpxExportShareSubject": "meshcore-open izvoz podatkov GPX karte",
+  "pathTrace_someHopsNoLocation": "Ena ali več hmelju manjka lokacija!"
 }

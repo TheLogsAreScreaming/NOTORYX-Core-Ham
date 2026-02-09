@@ -2685,6 +2685,10 @@ class AppLocalizationsSl extends AppLocalizations {
   String get pathTrace_refreshTooltip => 'Osveži Path Trace.';
 
   @override
+  String get pathTrace_someHopsNoLocation =>
+      'Ena ali več hmelju manjka lokacija!';
+
+  @override
   String get contacts_pathTrace => 'Sledenje poti';
 
   @override

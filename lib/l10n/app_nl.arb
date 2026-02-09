@@ -1583,5 +1583,6 @@
   "settings_gpxExportChat": "Locaties van metgezellen",
   "settings_gpxExportAllContacts": "Alle contactlocaties",
   "settings_gpxExportShareText": "Kaartgegevens geëxporteerd uit meshcore-open",
-  "settings_gpxExportShareSubject": "meshcore-open GPX kaartgegevens exporteren"
+  "settings_gpxExportShareSubject": "meshcore-open GPX kaartgegevens exporteren",
+  "pathTrace_someHopsNoLocation": "Een of meer van de hops ontbreken een locatie!"
 }
