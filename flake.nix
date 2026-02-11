@@ -24,6 +24,19 @@
             # Android development tools
             android-tools
             gradle
+
+            # For the shell hook to set up the environment for Flutter development
+            gtk3
+            glib
+            sysprof
+            libclang
+            cmake
+            ninja
+            pkg-config
+
+            # Additional tools for installing Android SDK if not present
+            curl
+            unzip
           ];
 
           shellHook = ''
@@ -53,10 +66,10 @@
               echo ""
               cat << 'EOF'
 mkdir -p ~/Android/Sdk && cd ~/Android/Sdk && \
-curl -o cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip && \
+curl -o cmdline-tools.zip ${if pkgs.stdenv.isDarwin then "https://dl.google.com/android/repository/commandlinetools-mac-10406996_latest.zip" else "https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip"} && \
 unzip -q cmdline-tools.zip && \
 mkdir -p cmdline-tools/latest && \
-mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null || true && \
+mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null || echo "Warning: failed to move Android cmdline-tools into 'latest' directory; please check your SDK layout." >&2 && \
 rm cmdline-tools.zip && \
 cd cmdline-tools/latest/bin && \
 yes | ./sdkmanager --sdk_root=~/Android/Sdk 'platform-tools' 'platforms;android-34' 'build-tools;34.0.0' && \
@@ -69,8 +82,7 @@ EOF
               echo "Android SDK found at $ANDROID_HOME"
             fi
             
-            echo "Running flutter doctor..."
-            flutter doctor
+            echo "To check that everything is set up correctly, run 'flutter doctor' and ensure there are no issues."
           '';
         };
       }
