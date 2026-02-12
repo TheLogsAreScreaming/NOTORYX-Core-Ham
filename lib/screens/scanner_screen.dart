@@ -50,9 +50,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
           _bluetoothState = state;
         });
         // Cancel scan if Bluetooth turns off while scanning
-        if (state != BluetoothAdapterState.on &&
-            connector.state == MeshCoreConnectionState.scanning) {
-          connector.stopScan();
+        if (state != BluetoothAdapterState.on) {
+          unawaited(connector.stopScan());
         }
       }
     });
@@ -62,7 +61,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
   void dispose() {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     connector.removeListener(_connectionListener);
-    _bluetoothStateSubscription.cancel();
+    unawaited(_bluetoothStateSubscription.cancel());
     super.dispose();
   }
 
