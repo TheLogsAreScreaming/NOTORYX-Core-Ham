@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -263,10 +264,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
               ],
             ),
           ),
-          TextButton(
-            onPressed: () => FlutterBluePlus.turnOn(),
-            child: Text(context.l10n.scanner_enableBluetooth),
-          ),
+          if (Platform.isAndroid)
+            TextButton(
+              onPressed: () => FlutterBluePlus.turnOn(),
+              child: Text(context.l10n.scanner_enableBluetooth),
+            ),
         ],
       ),
     );
