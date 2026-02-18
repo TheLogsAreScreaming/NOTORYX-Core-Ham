@@ -1753,9 +1753,22 @@ class MeshCoreConnector extends ChangeNotifier {
         break;
       case respCodeCustomVars:
         _handleCustomVars(frame);
+        break;
+      // RESP_CODE_ERR is a defined firmware response (code 1), not an unknown frame.
+      case respCodeErr:
+        _handleErrorFrame(frame);
+        break;
       default:
         debugPrint('Unknown frame code: $code');
     }
+  }
+
+  void _handleErrorFrame(Uint8List frame) {
+    final errCode = frame.length > 1 ? frame[1] : -1;
+    _appDebugLogService?.warn(
+      'Firmware responded with error code: $errCode',
+      tag: 'Protocol',
+    );
   }
 
   void _handlePathUpdated(Uint8List frame) {
