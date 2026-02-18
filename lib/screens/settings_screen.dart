@@ -963,9 +963,11 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
       widget.connector.currentCr,
     );
 
-    final supportsRepeat = (widget.connector.firmwareVerCode ?? 0) >= 9;
+    // if the client repeat isnt null then we know its supported
+    //otherwise we leave it out of the frame to avoid accidentally enabling
+    final knownRepeat = widget.connector.clientRepeat != null;
 
-    if (supportsRepeat) {
+    if (knownRepeat) {
       const validRepeatFreqsKHz = {433000, 869000, 918000};
       if (_clientRepeat && !validRepeatFreqsKHz.contains(freqHz)) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -982,7 +984,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
           bwHz,
           sf,
           cr,
-          clientRepeat: supportsRepeat ? _clientRepeat : null,
+          clientRepeat: knownRepeat ? _clientRepeat : null,
         ),
       );
       await widget.connector.sendFrame(buildSetRadioTxPowerFrame(txPower));
@@ -1112,7 +1114,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
               ),
               keyboardType: TextInputType.number,
             ),
-            if ((widget.connector.firmwareVerCode ?? 0) >= 9) ...[
+            if (widget.connector.clientRepeat != null) ...[
               const SizedBox(height: 16),
               SwitchListTile(
                 title: Text(l10n.settings_clientRepeat),
