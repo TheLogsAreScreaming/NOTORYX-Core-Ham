@@ -557,8 +557,13 @@ Uint8List buildSetChannelFrame(int channelIndex, String name, Uint8List psk) {
 // sf: spreading factor (5-12)
 // cr: coding rate (5-8)
 // clientRepeat: enable off-grid packet repeat (firmware v9+, omit for older)
-Uint8List buildSetRadioParamsFrame(int freqHz, int bwHz, int sf, int cr,
-    {bool? clientRepeat}) {
+Uint8List buildSetRadioParamsFrame(
+  int freqHz,
+  int bwHz,
+  int sf,
+  int cr, {
+  bool? clientRepeat,
+}) {
   final writer = BufferWriter();
   writer.writeByte(cmdSetRadioParams);
   writer.writeUInt32LE(freqHz);

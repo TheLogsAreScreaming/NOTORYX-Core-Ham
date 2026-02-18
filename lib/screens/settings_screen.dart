@@ -963,8 +963,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
       widget.connector.currentCr,
     );
 
-    final supportsRepeat =
-        (widget.connector.firmwareVerCode ?? 0) >= 9;
+    final supportsRepeat = (widget.connector.firmwareVerCode ?? 0) >= 9;
 
     if (supportsRepeat) {
       const validRepeatFreqsKHz = {433000, 869000, 918000};
@@ -978,8 +977,13 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
 
     try {
       await widget.connector.sendFrame(
-        buildSetRadioParamsFrame(freqHz, bwHz, sf, cr,
-            clientRepeat: supportsRepeat ? _clientRepeat : null),
+        buildSetRadioParamsFrame(
+          freqHz,
+          bwHz,
+          sf,
+          cr,
+          clientRepeat: supportsRepeat ? _clientRepeat : null,
+        ),
       );
       await widget.connector.sendFrame(buildSetRadioTxPowerFrame(txPower));
       await widget.connector.refreshDeviceInfo();
@@ -1131,4 +1135,3 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
     );
   }
 }
-
