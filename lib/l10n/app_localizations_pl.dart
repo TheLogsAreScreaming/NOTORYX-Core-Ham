@@ -389,11 +389,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get settings_privacyModeSubtitle =>
-      'Ukryj imię/lokalizację w reklamach';
+      'Ukryj imię/lokalizację w rozgłoszeniach';
 
   @override
   String get settings_privacyModeToggle =>
-      'Włącz tryb prywatności, aby ukryć swoje imię i lokalizację w reklamach.';
+      'Włącz tryb prywatności, aby ukryć swoje imię i lokalizację w rozgłoszeniach.';
 
   @override
   String get settings_privacyModeEnabled => 'Tryb prywatności włączony';
@@ -405,14 +405,14 @@ class AppLocalizationsPl extends AppLocalizations {
   String get settings_actions => 'Działania';
 
   @override
-  String get settings_sendAdvertisement => 'Wyślij Reklamę';
+  String get settings_sendAdvertisement => 'Wyślij rozgłoszenie';
 
   @override
   String get settings_sendAdvertisementSubtitle =>
       'Obecność transmisji jest teraz';
 
   @override
-  String get settings_advertisementSent => 'Reklama wysłana';
+  String get settings_advertisementSent => 'Rozgłoszenie wysłane';
 
   @override
   String get settings_syncTime => 'Czas synchronizacji';
@@ -628,7 +628,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get appSettings_enableNotificationsSubtitle =>
-      'Otrzymuj powiadomienia o wiadomościach i reklamach.';
+      'Otrzymuj powiadomienia o wiadomościach i rozgłoszeniach.';
 
   @override
   String get appSettings_notificationPermissionDenied =>
@@ -658,11 +658,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get appSettings_advertisementNotifications =>
-      'Powiadomienia Reklamowe';
+      'Powiadomienia o rozgłoszeniach';
 
   @override
   String get appSettings_advertisementNotificationsSubtitle =>
-      'Wyświetl powiadomienie, gdy zostaną odkryte nowe węzły.';
+      'Wyświetl powiadomienie, gdy zostaną wykryte nowe węzły.';
 
   @override
   String get appSettings_messaging => 'Wiadomości';
@@ -867,7 +867,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get contacts_contactsWillAppear =>
-      'Kontakty będą wyświetlane, gdy urządzenia reklamują się.';
+      'Kontakty będą wyświetlane, gdy urządzenia nadają rozgłoszenia.';
 
   @override
   String get contacts_unread => 'Nieprzeczytane';
@@ -1354,10 +1354,10 @@ class AppLocalizationsPl extends AppLocalizations {
       'Historia ścieżek jest pełna. Usuń wpisy, aby dodać nowe.';
 
   @override
-  String get chat_hopSingular => 'Skacz';
+  String get chat_hopSingular => 'skok';
 
   @override
-  String get chat_hopPlural => 'skoczkowie';
+  String get chat_hopPlural => 'skoki';
 
   @override
   String chat_hopsCount(int count) {
@@ -1450,7 +1450,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get chat_compressOutgoingMessages => 'Kompresuj wychodzące wiadomości';
 
   @override
-  String get chat_floodForced => 'Powodowana Powódź';
+  String get chat_floodForced => 'Zalew (wymuszony)';
 
   @override
   String get chat_directForced => 'Bezpośrednio (wymuszono)';
@@ -1461,7 +1461,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get chat_floodAuto => 'Powodzie (automatyczne)';
+  String get chat_floodAuto => 'Zalew (automatyczny)';
 
   @override
   String get chat_direct => 'Bezpośrednio';
@@ -2012,10 +2012,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_noiseFloor => 'Poziom Szumów';
 
   @override
-  String get repeater_txAirtime => 'TX Airtime';
+  String get repeater_txAirtime => 'Czas nadawania TX';
 
   @override
-  String get repeater_rxAirtime => 'RX Airtime';
+  String get repeater_rxAirtime => 'Czas odbioru RX';
 
   @override
   String get repeater_packetStatistics => 'Statystyki pakietów';
@@ -2093,7 +2093,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_frequencyHelper => '300-2500 MHz';
 
   @override
-  String get repeater_txPower => 'TX Power';
+  String get repeater_txPower => 'Moc TX';
 
   @override
   String get repeater_txPowerHelper => '1-30 dBm';
@@ -2102,7 +2102,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_bandwidth => 'Przepustowość';
 
   @override
-  String get repeater_spreadingFactor => 'Rozkład Czynnika';
+  String get repeater_spreadingFactor => 'Współczynnik rozpraszania';
 
   @override
   String get repeater_codingRate => 'Stawka kodowania';
@@ -2144,13 +2144,13 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get repeater_privacyModeSubtitle =>
-      'Ukryj imię/lokalizację w reklamach';
+      'Ukryj imię/lokalizację w rozgłoszeniach';
 
   @override
-  String get repeater_advertisementSettings => 'Ustawienia Reklam';
+  String get repeater_advertisementSettings => 'Ustawienia rozgłoszeń';
 
   @override
-  String get repeater_localAdvertInterval => 'Interwał Reklamy Lokalnej';
+  String get repeater_localAdvertInterval => 'Interwał rozgłoszenia lokalnego';
 
   @override
   String repeater_localAdvertIntervalMinutes(int minutes) {
@@ -2158,7 +2158,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get repeater_floodAdvertInterval => 'Interwał Reklamy Powodziowej';
+  String get repeater_floodAdvertInterval => 'Interwał rozgłoszenia zalewowego';
 
   @override
   String repeater_floodAdvertIntervalHours(int hours) {
@@ -2237,7 +2237,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_refreshRadioSettings => 'Odśwież Ustawienia Radio';
 
   @override
-  String get repeater_refreshTxPower => 'Odśwież TX power';
+  String get repeater_refreshTxPower => 'Odśwież moc TX';
 
   @override
   String get repeater_refreshLocationSettings =>
@@ -2393,15 +2393,15 @@ class AppLocalizationsPl extends AppLocalizations {
       'Ustawia/aktualizuje hasło gościa. (dla repeaterów, loginy gości mogą wysyłać żądanie \"Get Stats\")';
 
   @override
-  String get repeater_cliHelpSetName => 'Ustawia nazwę reklamy.';
+  String get repeater_cliHelpSetName => 'Ustawia nazwę rozgłoszenia.';
 
   @override
   String get repeater_cliHelpSetLat =>
-      'Ustawia współrzędną geograficzne (w stopniach dziesiętnych) mapy reklam.';
+      'Ustawia współrzędną geograficzną (w stopniach dziesiętnych) mapy rozgłoszeń.';
 
   @override
   String get repeater_cliHelpSetLon =>
-      'Ustawia współrzędną długościową mapy reklamy. (stopnie dziesiętne)';
+      'Ustawia współrzędną długościową mapy rozgłoszeń. (stopnie dziesiętne)';
 
   @override
   String get repeater_cliHelpSetRadio =>
@@ -2530,11 +2530,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get repeater_cliHelpGpsAdvert =>
-      'Udostępnia konfigurację reklamy lokalizacji węzła:\n- brak: nie uwzględniaj lokalizacji w reklamach\n- udostępnia: udostępnia lokalizację GPS (z SensorManager)\n- ustawienia: reklamuj lokalizację przechowywaną w ustawieniach';
+      'Udostępnia konfigurację rozgłoszeń lokalizacji węzła:\n- brak: nie uwzględniaj lokalizacji w rozgłoszeniach\n- udostępnia: udostępnia lokalizację GPS (z SensorManager)\n- ustawienia: rozgłaszaj lokalizację przechowywaną w ustawieniach';
 
   @override
   String get repeater_cliHelpGpsAdvertSet =>
-      'Ustawia konfigurację reklamy w lokalizacji.';
+      'Ustawia konfigurację rozgłoszeń lokalizacji.';
 
   @override
   String get repeater_commandsListTitle => 'Lista poleceń';
@@ -2714,7 +2714,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get channelPath_unknownPath => 'Nieznane';
 
   @override
-  String get channelPath_floodPath => 'Powodzenie';
+  String get channelPath_floodPath => 'Zalew';
 
   @override
   String get channelPath_directPath => 'Bezpośrednio';
