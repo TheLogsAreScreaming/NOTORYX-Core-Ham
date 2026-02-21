@@ -1070,6 +1070,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get chat_pathManagement => 'Stigarhantering';
 
   @override
+  String get chat_ShowAllPaths => 'Visa alla vägar';
+
+  @override
   String get chat_routingMode => 'Ruttläge';
 
   @override
@@ -1658,10 +1661,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get repeater_cliSubtitle => 'Skicka kommandon till repetitorn';
 
   @override
-  String get repeater_neighbours => 'Grannar';
+  String get repeater_neighbors => 'Grannar';
 
   @override
-  String get repeater_neighboursSubtitle => 'Visa noll hoppgrannar.';
+  String get repeater_neighborsSubtitle => 'Visa noll hoppgrannar.';
 
   @override
   String get repeater_settings => 'Inställningar';
@@ -2352,7 +2355,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Upprepar grannar';
+  String get neighbors_repeatersNeighbors => 'Upprepar grannar';
 
   @override
   String get neighbors_noData => 'Inga grannuppgifter finns tillgängliga.';
@@ -2862,4 +2865,10 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get settings_gpxExportShareSubject =>
       'meshcore-open export av GPX-kartdata';
+
+  @override
+  String get snrIndicator_nearByRepeaters => 'Närliggande uppreparstationer';
+
+  @override
+  String get snrIndicator_lastSeen => 'Senast sedd';
 }

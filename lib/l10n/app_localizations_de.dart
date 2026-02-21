@@ -1081,6 +1081,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get chat_pathManagement => 'Pfadverwaltung';
 
   @override
+  String get chat_ShowAllPaths => 'Alle Pfade anzeigen';
+
+  @override
   String get chat_routingMode => 'Routenmodus';
 
   @override
@@ -1676,10 +1679,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_cliSubtitle => 'Sende Befehle an den Repeater';
 
   @override
-  String get repeater_neighbours => 'Nachbarn';
+  String get repeater_neighbors => 'Nachbarn';
 
   @override
-  String get repeater_neighboursSubtitle => 'Anzahl der Hop-Nachbarn anzeigen.';
+  String get repeater_neighborsSubtitle => 'Anzahl der Hop-Nachbarn anzeigen.';
 
   @override
   String get repeater_settings => 'Einstellungen';
@@ -2382,7 +2385,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Nachbarn';
+  String get neighbors_repeatersNeighbors => 'Nachbarn';
 
   @override
   String get neighbors_noData => 'Keine Nachbarsdaten verfügbar.';
@@ -2898,4 +2901,10 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get settings_gpxExportShareSubject =>
       'GPX-Kartendaten aus meshcore-open exportieren';
+
+  @override
+  String get snrIndicator_nearByRepeaters => 'In der Nähe befindliche Repeater';
+
+  @override
+  String get snrIndicator_lastSeen => 'Zuletzt gesehen';
 }

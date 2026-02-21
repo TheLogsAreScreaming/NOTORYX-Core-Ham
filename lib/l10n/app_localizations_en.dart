@@ -1066,6 +1066,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chat_pathManagement => 'Path Management';
 
   @override
+  String get chat_ShowAllPaths => 'Show all paths';
+
+  @override
   String get chat_routingMode => 'Routing mode';
 
   @override
@@ -1650,10 +1653,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repeater_cliSubtitle => 'Send commands to the repeater';
 
   @override
-  String get repeater_neighbours => 'Neighbors';
+  String get repeater_neighbors => 'Neighbors';
 
   @override
-  String get repeater_neighboursSubtitle => 'View zero hop neighbors.';
+  String get repeater_neighborsSubtitle => 'View zero hop neighbors.';
 
   @override
   String get repeater_settings => 'Settings';
@@ -2329,10 +2332,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get neighbors_receivedData => 'Received Neighbours Data';
+  String get neighbors_receivedData => 'Received Neighbors Data';
 
   @override
-  String get neighbors_requestTimedOut => 'Neighbours request timed out.';
+  String get neighbors_requestTimedOut => 'Neighbors request timed out.';
 
   @override
   String neighbors_errorLoading(String error) {
@@ -2340,10 +2343,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Repeaters Neighbours';
+  String get neighbors_repeatersNeighbors => 'Repeaters Neighbors';
 
   @override
-  String get neighbors_noData => 'No neighbours data available.';
+  String get neighbors_noData => 'No neighbors data available.';
 
   @override
   String neighbors_unknownContact(String pubkey) {
@@ -2845,4 +2848,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settings_gpxExportShareSubject =>
       'meshcore-open GPX map data export';
+
+  @override
+  String get snrIndicator_nearByRepeaters => 'Nearby Repeaters';
+
+  @override
+  String get snrIndicator_lastSeen => 'Last seen';
 }

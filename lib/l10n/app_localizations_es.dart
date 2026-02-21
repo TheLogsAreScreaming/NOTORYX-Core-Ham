@@ -1080,6 +1080,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get chat_pathManagement => 'Gestión de Rutas';
 
   @override
+  String get chat_ShowAllPaths => 'Mostrar todos los caminos';
+
+  @override
   String get chat_routingMode => 'Modo de enrutamiento';
 
   @override
@@ -1674,10 +1677,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get repeater_cliSubtitle => 'Enviar comandos al repetidor';
 
   @override
-  String get repeater_neighbours => 'Vecinos';
+  String get repeater_neighbors => 'Vecinos';
 
   @override
-  String get repeater_neighboursSubtitle => 'Ver vecinos de salto cero.';
+  String get repeater_neighborsSubtitle => 'Ver vecinos de salto cero.';
 
   @override
   String get repeater_settings => 'Configuración';
@@ -2376,7 +2379,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Repetidores Vecinos';
+  String get neighbors_repeatersNeighbors => 'Repetidores Vecinos';
 
   @override
   String get neighbors_noData => 'No hay datos de vecinos disponibles.';
@@ -2889,4 +2892,10 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get settings_gpxExportShareSubject =>
       'meshcore-open exportación de datos de mapa GPX';
+
+  @override
+  String get snrIndicator_nearByRepeaters => 'Repetidores cercanos';
+
+  @override
+  String get snrIndicator_lastSeen => 'Visto por última vez';
 }

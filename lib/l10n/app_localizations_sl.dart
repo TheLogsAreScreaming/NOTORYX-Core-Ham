@@ -1073,6 +1073,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get chat_pathManagement => 'Upravljanje poti';
 
   @override
+  String get chat_ShowAllPaths => 'Prikaži vse poti';
+
+  @override
   String get chat_routingMode => 'Navodilo za usmerjevalni način';
 
   @override
@@ -1668,10 +1671,10 @@ class AppLocalizationsSl extends AppLocalizations {
       'Pošlji ukazne povelje na ponovitveno enoto.';
 
   @override
-  String get repeater_neighbours => 'Sosedi';
+  String get repeater_neighbors => 'Sosedi';
 
   @override
-  String get repeater_neighboursSubtitle => 'Pogledati nič sosednjih hopjev.';
+  String get repeater_neighborsSubtitle => 'Pogledati nič sosednjih hopjev.';
 
   @override
   String get repeater_settings => 'Nastavitve';
@@ -2367,7 +2370,7 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get neighbors_repeatersNeighbours => 'Ponovitve Sosedi';
+  String get neighbors_repeatersNeighbors => 'Ponovitve Sosedi';
 
   @override
   String get neighbors_noData => 'Niso na voljo podatki o sosedih.';
@@ -2882,4 +2885,10 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get settings_gpxExportShareSubject =>
       'meshcore-open izvoz podatkov GPX karte';
+
+  @override
+  String get snrIndicator_nearByRepeaters => 'Bližnji ponovitelji';
+
+  @override
+  String get snrIndicator_lastSeen => 'Zadnjič videno';
 }
