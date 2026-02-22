@@ -891,8 +891,9 @@ class MeshCoreConnector extends ChangeNotifier {
         // We trigger it but don't await its completion to avoid blocking the connection flow.
         debugPrint('Web: Calling setNotifyValue(true) without awaiting');
         // ignore: unawaited_futures
-        _txCharacteristic!.setNotifyValue(true).catchError((e) {
+        _txCharacteristic!.setNotifyValue(true, timeout: 2).catchError((e) {
           debugPrint('Web setNotifyValue error (ignoring): $e');
+          return false; // catchError must return a bool to match Future<bool>
         });
         // Give the browser a moment to process the underlying startNotifications call
         await Future.delayed(const Duration(milliseconds: 500));
