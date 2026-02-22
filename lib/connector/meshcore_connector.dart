@@ -29,6 +29,7 @@ import '../storage/contact_store.dart';
 import '../storage/message_store.dart';
 import '../storage/unread_store.dart';
 import '../utils/app_logger.dart';
+import '../utils/battery_utils.dart';
 import 'meshcore_protocol.dart';
 
 class MeshCoreUuids {
@@ -81,6 +82,18 @@ enum MeshCoreConnectionState {
   disconnecting,
 }
 
+class RepeaterBatterySnapshot {
+  final int millivolts;
+  final DateTime updatedAt;
+  final String source;
+
+  const RepeaterBatterySnapshot({
+    required this.millivolts,
+    required this.updatedAt,
+    required this.source,
+  });
+}
+
 class MeshCoreConnector extends ChangeNotifier {
   // Message windowing to limit memory usage
   static const int _messageWindowSize = 200;
@@ -101,6 +114,10 @@ class MeshCoreConnector extends ChangeNotifier {
   final List<Channel> _channels = [];
   final Map<String, List<Message>> _conversations = {};
   final Map<int, List<ChannelMessage>> _channelMessages = {};
+  final List<String> _pendingChannelSentQueue = [];
+  final List<_PendingCommandAck> _pendingGenericAckQueue = [];
+  static const String _reactionSendQueuePrefix = '__reaction_send__';
+  int _reactionSendQueueSequence = 0;
   final Set<String> _loadedConversationKeys = {};
   final Map<int, Set<String>> _processedChannelReactions =
       {}; // channelIndex -> Set of "targetHash_emoji"
@@ -187,6 +204,7 @@ class MeshCoreConnector extends ChangeNotifier {
   final Map<String, bool> _contactSmazEnabled = {};
   final Set<String> _knownContactKeys = {};
   final Map<String, int> _contactUnreadCount = {};
+  final Map<String, RepeaterBatterySnapshot> _repeaterBatterySnapshots = {};
   bool _unreadStateLoaded = false;
   final Map<String, _RepeaterAckContext> _pendingRepeaterAcks = {};
   String? _activeContactKey;
@@ -254,36 +272,37 @@ class MeshCoreConnector extends ChangeNotifier {
       : 0;
   int? get batteryPercent => _batteryMillivolts == null
       ? null
-      : _estimateBatteryPercent(
+      : estimateBatteryPercentFromMillivolts(
           _batteryMillivolts!,
           _batteryChemistryForDevice(),
         );
+  RepeaterBatterySnapshot? getRepeaterBatterySnapshot(String contactKeyHex) =>
+      _repeaterBatterySnapshots[contactKeyHex];
+  int? getRepeaterBatteryMillivolts(String contactKeyHex) =>
+      _repeaterBatterySnapshots[contactKeyHex]?.millivolts;
+
+  void updateRepeaterBatterySnapshot(
+    String contactKeyHex,
+    int millivolts, {
+    String source = 'unknown',
+  }) {
+    if (contactKeyHex.isEmpty || millivolts <= 0) return;
+    final previous = _repeaterBatterySnapshots[contactKeyHex];
+    final snapshot = RepeaterBatterySnapshot(
+      millivolts: millivolts,
+      updatedAt: DateTime.now(),
+      source: source,
+    );
+    _repeaterBatterySnapshots[contactKeyHex] = snapshot;
+    if (previous?.millivolts != millivolts) {
+      notifyListeners();
+    }
+  }
 
   String _batteryChemistryForDevice() {
     final deviceId = _device?.remoteId.toString();
     if (deviceId == null || _appSettingsService == null) return 'nmc';
     return _appSettingsService!.batteryChemistryForDevice(deviceId);
-  }
-
-  int _estimateBatteryPercent(int millivolts, String chemistry) {
-    final range = _batteryVoltageRange(chemistry);
-    final minMv = range.$1;
-    final maxMv = range.$2;
-    if (millivolts <= minMv) return 0;
-    if (millivolts >= maxMv) return 100;
-    return (((millivolts - minMv) * 100) / (maxMv - minMv)).round();
-  }
-
-  (int, int) _batteryVoltageRange(String chemistry) {
-    switch (chemistry) {
-      case 'lifepo4':
-        return (2600, 3650);
-      case 'lipo':
-        return (3000, 4200);
-      case 'nmc':
-      default:
-        return (3000, 4200);
-    }
   }
 
   List<Message> getMessages(Contact contact) {
@@ -961,6 +980,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _clientRepeat = null;
     _firmwareVerCode = null;
     _batteryMillivolts = null;
+    _repeaterBatterySnapshots.clear();
     _batteryRequested = false;
     _awaitingSelfInfo = false;
     _maxContacts = _defaultMaxContacts;
@@ -972,6 +992,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _isSyncingChannels = false;
     _channelSyncInFlight = false;
     _hasLoadedChannels = false;
+    _pendingChannelSentQueue.clear();
+    _pendingGenericAckQueue.clear();
+    _reactionSendQueueSequence = 0;
 
     _setState(MeshCoreConnectionState.disconnected);
     if (!manual) {
@@ -979,7 +1002,11 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<void> sendFrame(Uint8List data) async {
+  Future<void> sendFrame(
+    Uint8List data, {
+    String? channelSendQueueId,
+    bool expectsGenericAck = false,
+  }) async {
     if (!isConnected || _rxCharacteristic == null) {
       throw Exception("Not connected to a MeshCore device");
     }
@@ -997,6 +1024,11 @@ class MeshCoreConnector extends ChangeNotifier {
     await _rxCharacteristic!.write(
       data.toList(),
       withoutResponse: canWriteWithoutResponse,
+    );
+    _trackPendingGenericAck(
+      data,
+      channelSendQueueId: channelSendQueueId,
+      expectsGenericAck: expectsGenericAck,
     );
   }
 
@@ -1353,7 +1385,13 @@ class MeshCoreConnector extends ChangeNotifier {
       notifyListeners();
 
       // Send the reaction to the device (don't add as a visible message)
-      await sendFrame(buildSendChannelTextMsgFrame(channel.index, text));
+      final reactionQueueId = _nextReactionSendQueueId();
+      _pendingChannelSentQueue.add(reactionQueueId);
+      await sendFrame(
+        buildSendChannelTextMsgFrame(channel.index, text),
+        channelSendQueueId: reactionQueueId,
+        expectsGenericAck: true,
+      );
       return;
     }
 
@@ -1363,6 +1401,7 @@ class MeshCoreConnector extends ChangeNotifier {
       channel.index,
     );
     _addChannelMessage(channel.index, message);
+    _pendingChannelSentQueue.add(message.messageId);
     notifyListeners();
 
     final trimmed = text.trim();
@@ -1372,7 +1411,11 @@ class MeshCoreConnector extends ChangeNotifier {
         (isChannelSmazEnabled(channel.index) && !isStructuredPayload)
         ? Smaz.encodeIfSmaller(text)
         : text;
-    await sendFrame(buildSendChannelTextMsgFrame(channel.index, outboundText));
+    await sendFrame(
+      buildSendChannelTextMsgFrame(channel.index, outboundText),
+      channelSendQueueId: message.messageId,
+      expectsGenericAck: true,
+    );
   }
 
   Future<void> removeContact(Contact contact) async {
@@ -1719,6 +1762,9 @@ class MeshCoreConnector extends ChangeNotifier {
     debugPrint('RX frame: code=$code len=${frame.length}');
 
     switch (code) {
+      case respCodeOk:
+        _handleOk();
+        break;
       case respCodeDeviceInfo:
         _handleDeviceInfo(frame);
         break;
@@ -1813,6 +1859,17 @@ class MeshCoreConnector extends ChangeNotifier {
       'Firmware responded with error code: $errCode',
       tag: 'Protocol',
     );
+
+    if (_pendingGenericAckQueue.isEmpty) {
+      return;
+    }
+
+    final failedAck = _pendingGenericAckQueue.removeAt(0);
+    if (failedAck.commandCode != cmdSendChannelTxtMsg ||
+        failedAck.channelSendQueueId == null) {
+      return;
+    }
+    _pendingChannelSentQueue.remove(failedAck.channelSendQueueId);
   }
 
   void _handlePathUpdated(Uint8List frame) {
@@ -2595,8 +2652,22 @@ class MeshCoreConnector extends ChangeNotifier {
         return;
       }
 
-      if (_retryService != null) {
-        _retryService!.updateMessageFromSent(ackHash, timeoutMs);
+      final retryService = _retryService;
+      if (retryService != null &&
+          retryService.updateMessageFromSent(
+            ackHash,
+            timeoutMs,
+            allowQueueFallback: false,
+          )) {
+        return;
+      }
+
+      if (_markNextPendingChannelMessageSent()) {
+        return;
+      }
+
+      if (retryService != null) {
+        retryService.updateMessageFromSent(ackHash, timeoutMs);
       }
     } else {
       // Fallback to old behavior
@@ -2611,6 +2682,64 @@ class MeshCoreConnector extends ChangeNotifier {
         }
       }
     }
+  }
+
+  bool _markNextPendingChannelMessageSent() {
+    while (_pendingChannelSentQueue.isNotEmpty) {
+      final queuedMessageId = _pendingChannelSentQueue.removeAt(0);
+      if (_isReactionSendQueueId(queuedMessageId)) {
+        return true;
+      }
+      if (_markPendingChannelMessageSentById(queuedMessageId)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool _markPendingChannelMessageSentById(String messageId) {
+    for (final entry in _channelMessages.entries) {
+      final channelMessages = entry.value;
+      for (int i = channelMessages.length - 1; i >= 0; i--) {
+        final message = channelMessages[i];
+        if (message.messageId != messageId) {
+          continue;
+        }
+        if (!message.isOutgoing ||
+            message.status != ChannelMessageStatus.pending) {
+          return false;
+        }
+        channelMessages[i] = message.copyWith(
+          status: ChannelMessageStatus.sent,
+        );
+        _pendingChannelSentQueue.remove(messageId);
+        unawaited(
+          _channelMessageStore.saveChannelMessages(entry.key, channelMessages),
+        );
+        notifyListeners();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  void _handleOk() {
+    if (_pendingGenericAckQueue.isEmpty) {
+      return;
+    }
+
+    final pendingAck = _pendingGenericAckQueue.removeAt(0);
+    if (pendingAck.commandCode != cmdSendChannelTxtMsg ||
+        pendingAck.channelSendQueueId == null) {
+      return;
+    }
+
+    final queueId = pendingAck.channelSendQueueId!;
+    _pendingChannelSentQueue.remove(queueId);
+    if (_isReactionSendQueueId(queueId)) {
+      return;
+    }
+    _markPendingChannelMessageSentById(queueId);
   }
 
   void _handleSendConfirmed(Uint8List frame) {
@@ -3191,18 +3320,22 @@ class MeshCoreConnector extends ChangeNotifier {
         mergedPathBytes.length,
       );
       final newRepeatCount = existing.repeatCount + 1;
+      final promotedFromPending =
+          newRepeatCount == 1 &&
+          existing.status == ChannelMessageStatus.pending;
       messages[existingIndex] = existing.copyWith(
         repeatCount: newRepeatCount,
         pathLength: mergedPathLength,
         pathBytes: mergedPathBytes,
         pathVariants: mergedPathVariants,
         // Mark as sent when first repeat is heard
-        status:
-            newRepeatCount == 1 &&
-                existing.status == ChannelMessageStatus.pending
+        status: promotedFromPending
             ? ChannelMessageStatus.sent
             : existing.status,
       );
+      if (promotedFromPending) {
+        _pendingChannelSentQueue.remove(existing.messageId);
+      }
     } else {
       messages.add(processedMessage);
     }
@@ -3375,9 +3508,35 @@ class MeshCoreConnector extends ChangeNotifier {
     _queuedMessageSyncInFlight = false;
     _isSyncingChannels = false;
     _channelSyncInFlight = false;
+    _pendingChannelSentQueue.clear();
+    _pendingGenericAckQueue.clear();
+    _reactionSendQueueSequence = 0;
 
     _setState(MeshCoreConnectionState.disconnected);
     _scheduleReconnect();
+  }
+
+  void _trackPendingGenericAck(
+    Uint8List data, {
+    String? channelSendQueueId,
+    required bool expectsGenericAck,
+  }) {
+    if (!expectsGenericAck || data.isEmpty) return;
+    _pendingGenericAckQueue.add(
+      _PendingCommandAck(
+        commandCode: data[0],
+        channelSendQueueId: channelSendQueueId,
+      ),
+    );
+  }
+
+  String _nextReactionSendQueueId() {
+    _reactionSendQueueSequence++;
+    return '$_reactionSendQueuePrefix$_reactionSendQueueSequence';
+  }
+
+  bool _isReactionSendQueueId(String queueId) {
+    return queueId.startsWith(_reactionSendQueuePrefix);
   }
 
   Map<String, String> _parseKeyValueString(String input) {
@@ -3674,4 +3833,11 @@ class _RepeaterAckContext {
     required this.pathLength,
     required this.messageBytes,
   });
+}
+
+class _PendingCommandAck {
+  final int commandCode;
+  final String? channelSendQueueId;
+
+  _PendingCommandAck({required this.commandCode, this.channelSendQueueId});
 }
