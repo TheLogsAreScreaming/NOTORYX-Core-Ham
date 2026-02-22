@@ -739,13 +739,23 @@ class MeshCoreConnector extends ChangeNotifier {
         },
       );
 
-      await FlutterBluePlus.startScan(
-        withServices: [Guid(MeshCoreUuids.service)],
-        timeout: timeout,
-        androidScanMode: AndroidScanMode.lowLatency,
-      );
+      if (PlatformInfo.isWeb) {
+        await FlutterBluePlus.startScan(
+          withServices: [Guid(MeshCoreUuids.service)],
+        );
+        // On web, the chooser returns once a device is picked, but the scanResults 
+        // stream might take a moment to emit the last result. Wait briefly so the
+        // device appears in the UI before stopScan() clears the list.
+        await Future.delayed(const Duration(milliseconds: 500));
+      } else {
+        await FlutterBluePlus.startScan(
+          withServices: [Guid(MeshCoreUuids.service)],
+          timeout: timeout,
+          androidScanMode: AndroidScanMode.lowLatency,
+        );
 
-      await Future.delayed(timeout);
+        await Future.delayed(timeout);
+      }
     } catch (e) {
       debugPrint("Scan error: $e");
       // On web, suppress common cancellation and chooser errors
@@ -776,6 +786,12 @@ class MeshCoreConnector extends ChangeNotifier {
       }
     } catch (_) {}
     _scanSubscription = null;
+
+    // On web, don't clear results immediately so the picked device remains visible
+    if (!PlatformInfo.isWeb) {
+      _scanResults.clear();
+      notifyListeners();
+    }
   }
 
   Future<void> connect(BluetoothDevice device, {String? displayName}) async {
