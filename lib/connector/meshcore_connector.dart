@@ -694,7 +694,7 @@ class MeshCoreConnector extends ChangeNotifier {
       try {
         await FlutterBluePlus.stopScan();
       } catch (_) {}
-      
+
       try {
         await _scanSubscription?.cancel();
       } catch (_) {}
@@ -743,7 +743,7 @@ class MeshCoreConnector extends ChangeNotifier {
         await FlutterBluePlus.startScan(
           withServices: [Guid(MeshCoreUuids.service)],
         );
-        // On web, the chooser returns once a device is picked, but the scanResults 
+        // On web, the chooser returns once a device is picked, but the scanResults
         // stream might take a moment to emit the last result. Wait briefly so the
         // device appears in the UI before stopScan() clears the list.
         await Future.delayed(const Duration(milliseconds: 500));
@@ -760,7 +760,7 @@ class MeshCoreConnector extends ChangeNotifier {
       debugPrint("Scan error: $e");
       // On web, suppress common cancellation and chooser errors
       if (kIsWeb) return;
-      
+
       if (!PlatformInfo.isWeb) {
         rethrow;
       }

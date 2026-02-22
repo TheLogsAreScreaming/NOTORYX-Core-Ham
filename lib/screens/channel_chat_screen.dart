@@ -367,17 +367,24 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: Icon(
-                                    (message.status == ChannelMessageStatus.sent && displayPath.isNotEmpty)
+                                    (message.status ==
+                                                ChannelMessageStatus.sent &&
+                                            displayPath.isNotEmpty)
                                         ? Icons.check_circle
-                                        : message.status == ChannelMessageStatus.failed
-                                            ? Icons.cancel
-                                            : Icons.cloud,
+                                        : message.status ==
+                                              ChannelMessageStatus.failed
+                                        ? Icons.cancel
+                                        : Icons.cloud,
                                     size: 14,
-                                    color: (message.status == ChannelMessageStatus.sent && displayPath.isNotEmpty)
+                                    color:
+                                        (message.status ==
+                                                ChannelMessageStatus.sent &&
+                                            displayPath.isNotEmpty)
                                         ? Colors.green
-                                        : message.status == ChannelMessageStatus.failed
-                                            ? Colors.red
-                                            : Colors.white70,
+                                        : message.status ==
+                                              ChannelMessageStatus.failed
+                                        ? Colors.red
+                                        : Colors.white70,
                                   ),
                                 ),
                               ),
@@ -402,8 +409,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                   defaultToHttps: false,
                                 ),
                                 linkifiers: const [UrlLinkifier()],
-                                onOpen: (link) =>
-                                    LinkHandler.handleLinkTap(context, link.url),
+                                onOpen: (link) => LinkHandler.handleLinkTap(
+                                  context,
+                                  link.url,
+                                ),
                               ),
                             ),
                             if (!enableTracing && isOutgoing) ...[
@@ -411,17 +420,24 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 2),
                                 child: Icon(
-                                  (message.status == ChannelMessageStatus.sent && displayPath.isNotEmpty)
+                                  (message.status ==
+                                              ChannelMessageStatus.sent &&
+                                          displayPath.isNotEmpty)
                                       ? Icons.check_circle
-                                      : message.status == ChannelMessageStatus.failed
-                                          ? Icons.cancel
-                                          : Icons.cloud,
+                                      : message.status ==
+                                            ChannelMessageStatus.failed
+                                      ? Icons.cancel
+                                      : Icons.cloud,
                                   size: 14,
-                                  color: (message.status == ChannelMessageStatus.sent && displayPath.isNotEmpty)
+                                  color:
+                                      (message.status ==
+                                              ChannelMessageStatus.sent &&
+                                          displayPath.isNotEmpty)
                                       ? Colors.green
-                                      : message.status == ChannelMessageStatus.failed
-                                          ? Colors.red
-                                          : Colors.grey,
+                                      : message.status ==
+                                            ChannelMessageStatus.failed
+                                      ? Colors.red
+                                      : Colors.grey,
                                 ),
                               ),
                             ],
@@ -915,7 +931,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                         onKeyEvent: (node, event) {
                           if (event is KeyDownEvent &&
                               (event.logicalKey == LogicalKeyboardKey.enter ||
-                                  event.logicalKey == LogicalKeyboardKey.numpadEnter)) {
+                                  event.logicalKey ==
+                                      LogicalKeyboardKey.numpadEnter)) {
                             _sendMessage();
                             return KeyEventResult.handled;
                           }
@@ -932,9 +949,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                   backgroundColor: Theme.of(
                                     context,
                                   ).colorScheme.surfaceContainerHighest,
-                                  fallbackTextColor: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurface.withValues(alpha: 0.6),
+                                  fallbackTextColor: Theme.of(context)
+                                      .colorScheme
+                                      .onSurface
+                                      .withValues(alpha: 0.6),
                                   maxSize: 160,
                                 ),
                               ),

@@ -112,9 +112,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
                     if (isScanning) {
                       connector.stopScan();
                     } else {
-                      unawaited(connector.startScan().catchError((e) {
-                        debugPrint("Scanner screen startScan error: $e");
-                      }));
+                      unawaited(
+                        connector.startScan().catchError((e) {
+                          debugPrint("Scanner screen startScan error: $e");
+                        }),
+                      );
                     }
                   },
             icon: isScanning
