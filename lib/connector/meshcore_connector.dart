@@ -727,6 +727,7 @@ class MeshCoreConnector extends ChangeNotifier {
     });
 
     await FlutterBluePlus.startScan(
+      withServices: [Guid(MeshCoreUuids.service)],
       timeout: timeout,
       androidScanMode: AndroidScanMode.lowLatency,
     );
