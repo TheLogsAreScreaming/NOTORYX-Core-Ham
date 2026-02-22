@@ -837,11 +837,17 @@ class MeshCoreConnector extends ChangeNotifier {
       );
 
       // Request larger MTU for sending larger frames
-      try {
-        final mtu = await device.requestMtu(185);
-        debugPrint('MTU set to: $mtu');
-      } catch (e) {
-        debugPrint('MTU request failed: $e, using default');
+      if (!PlatformInfo.isWeb) {
+        try {
+          final mtu = await device.requestMtu(185);
+          debugPrint('MTU set to: $mtu');
+        } catch (e) {
+          debugPrint('MTU request failed: $e, using default');
+        }
+      } else {
+        // On Chrome Web Bluetooth, give the GATT connection a moment to settle
+        // before discovering services, which is a common quirk to avoid timeouts.
+        await Future.delayed(const Duration(milliseconds: 500));
       }
 
       List<BluetoothService> services = await device.discoverServices();
@@ -871,26 +877,43 @@ class MeshCoreConnector extends ChangeNotifier {
         throw Exception("MeshCore characteristics not found");
       }
 
-      // Retry setNotifyValue with increasing delays
-      bool notifySet = false;
-      for (int attempt = 0; attempt < 3 && !notifySet; attempt++) {
-        try {
-          if (attempt > 0) {
-            await Future.delayed(Duration(milliseconds: 500 * attempt));
-          }
-          await _txCharacteristic!.setNotifyValue(true);
-          notifySet = true;
-        } catch (e) {
-          debugPrint('setNotifyValue attempt ${attempt + 1}/3 failed: $e');
-          if (attempt == 2) rethrow;
-        }
-      }
+      // Setup listener BEFORE enabling notifications so we don't miss anything
       _notifySubscription = _txCharacteristic!.onValueReceived.listen(
         _handleFrame,
         onError: (Object e) {
           debugPrint("onValueReceived stream error: $e");
         },
       );
+
+      debugPrint('Starting setNotifyValue(true)');
+      if (PlatformInfo.isWeb) {
+        // On Web, setNotifyValue often hangs indefinitely on the Promise resolution.
+        // We trigger it but don't await its completion to avoid blocking the connection flow.
+        debugPrint('Web: Calling setNotifyValue(true) without awaiting');
+        // ignore: unawaited_futures
+        _txCharacteristic!.setNotifyValue(true).catchError((e) {
+          debugPrint('Web setNotifyValue error (ignoring): $e');
+        });
+        // Give the browser a moment to process the underlying startNotifications call
+        await Future.delayed(const Duration(milliseconds: 500));
+      } else {
+        // Native platforms handle setNotifyValue blockingly with CCCD descriptors
+        bool notifySet = false;
+        for (int attempt = 0; attempt < 3 && !notifySet; attempt++) {
+          try {
+            if (attempt > 0) {
+              await Future.delayed(Duration(milliseconds: 500 * attempt));
+            }
+            debugPrint('Calling setNotifyValue(true), attempt ${attempt + 1}');
+            await _txCharacteristic!.setNotifyValue(true);
+            notifySet = true;
+          } catch (e) {
+            debugPrint('setNotifyValue attempt ${attempt + 1}/3 failed: $e');
+            if (attempt == 2) rethrow;
+          }
+        }
+      }
+      debugPrint('setNotifyValue(true) configuration completed');
 
       _setState(MeshCoreConnectionState.connected);
 
