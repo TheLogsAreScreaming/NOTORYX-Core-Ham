@@ -50,13 +50,13 @@ class LineOfSightResult {
   const LineOfSightResult.error({
     required this.totalDistanceMeters,
     required this.errorMessage,
+    this.usedKFactor = 4.0 / 3.0,
+    this.frequencyMHz,
   }) : hasData = false,
        isClear = false,
        maxObstructionMeters = 0,
        firstObstructionDistanceMeters = null,
-       samples = const [],
-       usedKFactor = 4.0 / 3.0,
-       frequencyMHz = null;
+       samples = const [];
 }
 
 class LineOfSightPathSegment {
@@ -203,6 +203,8 @@ class LineOfSightService {
       return LineOfSightResult.error(
         totalDistanceMeters: totalDistanceMeters,
         errorMessage: errorElevationUnavailable,
+        usedKFactor: kFactor,
+        frequencyMHz: frequencyMHz,
       );
     }
 
@@ -227,9 +229,11 @@ class LineOfSightService {
     double obstructionToleranceMeters = 0.0,
   }) {
     if (points.length < 2 || elevations.length != points.length) {
-      return const LineOfSightResult.error(
+      return LineOfSightResult.error(
         totalDistanceMeters: 0,
         errorMessage: errorInvalidInput,
+        usedKFactor: kFactor,
+        frequencyMHz: frequencyMHz,
       );
     }
 
