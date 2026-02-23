@@ -1,9 +1,8 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+import 'package:web/web.dart' as web;
 
 class BrowserDetection {
   static bool get isChrome {
-    final userAgent = html.window.navigator.userAgent.toLowerCase();
+    final userAgent = web.window.navigator.userAgent.toLowerCase();
     final isChrome = userAgent.contains('chrome');
     return isChrome;
   }
