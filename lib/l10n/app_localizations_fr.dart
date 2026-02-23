@@ -711,7 +711,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get contacts_manageRoom => 'Gérer le Room Server';
 
   @override
-  String get contacts_roomLogin => 'Connexion Salle';
+  String get contacts_roomLogin => 'Connexion Room Server';
 
   @override
   String get contacts_openChat => 'Ouverture du Chat';
@@ -1574,7 +1574,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get login_repeaterLogin => 'Connexion au répéteur';
 
   @override
-  String get login_roomLogin => 'Connexion Salle';
+  String get login_roomLogin => 'Connexion Room Server';
 
   @override
   String get login_password => 'Mot de passe';
@@ -1699,7 +1699,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get repeater_management => 'Gestion des répéteurs';
 
   @override
-  String get room_management => 'Administración del Servidor de Habitación';
+  String get room_management => 'Administrattion Room Server';
 
   @override
   String get repeater_managementTools => 'Outils de Gestion';
