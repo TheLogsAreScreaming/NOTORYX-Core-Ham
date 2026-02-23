@@ -212,6 +212,7 @@ class LineOfSightService {
       startAntennaHeightMeters: startAntennaHeightMeters,
       endAntennaHeightMeters: endAntennaHeightMeters,
       kFactor: kFactor,
+      frequencyMHz: frequencyMHz,
       obstructionToleranceMeters: obstructionToleranceMeters,
     );
   }

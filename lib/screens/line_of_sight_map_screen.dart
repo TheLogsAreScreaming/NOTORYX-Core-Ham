@@ -1021,10 +1021,20 @@ class _LosProfilePainter extends CustomPainter {
     if (samples.length < 2) return;
 
     final minY = samples
-        .map((s) => math.min(s.terrainMeters, s.lineHeightMeters))
+        .map(
+          (s) => math.min(
+            math.min(s.terrainMeters, s.lineHeightMeters),
+            s.refractedHeightMeters,
+          ),
+        )
         .reduce(math.min);
     final maxY = samples
-        .map((s) => math.max(s.terrainMeters, s.lineHeightMeters))
+        .map(
+          (s) => math.max(
+            math.max(s.terrainMeters, s.lineHeightMeters),
+            s.refractedHeightMeters,
+          ),
+        )
         .reduce(math.max);
     final ySpan = math.max(1.0, maxY - minY);
     final maxDist = math.max(1.0, samples.last.distanceMeters);
