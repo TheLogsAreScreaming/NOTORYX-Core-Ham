@@ -464,6 +464,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appSettings_languageUk => 'Ucraniano';
 
   @override
+  String get appSettings_enableMessageTracing =>
+      'Habilitar seguimiento de mensajes';
+
+  @override
+  String get appSettings_enableMessageTracingSubtitle =>
+      'Mostrar metadatos detallados de enrutamiento y tiempo para los mensajes';
+
+  @override
   String get appSettings_notifications => 'Notificaciones';
 
   @override
@@ -2860,22 +2868,22 @@ class AppLocalizationsEs extends AppLocalizations {
       'Datos de elevación: Open-Meteo (CC BY 4.0)';
 
   @override
-  String get losLegendRadioHorizon => 'Horizonte radioeléctrico';
+  String get losLegendRadioHorizon => 'Radio horizon';
 
   @override
-  String get losLegendLosBeam => 'Haz LOS';
+  String get losLegendLosBeam => 'LOS beam';
 
   @override
-  String get losLegendTerrain => 'Terreno';
+  String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losFrequencyLabel => 'Frecuencia';
+  String get losFrequencyLabel => 'Frequency';
 
   @override
-  String get losFrequencyInfoTooltip => 'Ver detalles del cálculo';
+  String get losFrequencyInfoTooltip => 'View calculation details';
 
   @override
-  String get losFrequencyDialogTitle => 'Cálculo del horizonte radioeléctrico';
+  String get losFrequencyDialogTitle => 'Radio horizon calculation';
 
   @override
   String losFrequencyDialogDescription(
@@ -2884,7 +2892,7 @@ class AppLocalizationsEs extends AppLocalizations {
     double frequencyMHz,
     double kFactor,
   ) {
-    return 'Partiendo de k=$baselineK a $baselineFreq MHz, el cálculo multiplica 0.15 × (frequency − $baselineFreq) / $baselineFreq para llegar a k approx $kFactor para la banda actual de $frequencyMHz MHz, que define el límite curvo del horizonte radioeléctrico.';
+    return 'Starting from k=$baselineK at $baselineFreq MHz, the calculation multiplies 0.15 × (frequency − $baselineFreq) / $baselineFreq to reach k approx $kFactor for the current $frequencyMHz MHz band, which defines the curved radio horizon cap.';
   }
 
   @override

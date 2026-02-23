@@ -458,6 +458,13 @@ class AppLocalizationsSv extends AppLocalizations {
   String get appSettings_languageUk => 'Ukrainska';
 
   @override
+  String get appSettings_enableMessageTracing => 'Aktivera meddelandespårning';
+
+  @override
+  String get appSettings_enableMessageTracingSubtitle =>
+      'Visa detaljerade metadata om dirigering och tidsinställningar för meddelanden';
+
+  @override
   String get appSettings_notifications => 'Meddelanden';
 
   @override
@@ -2831,22 +2838,22 @@ class AppLocalizationsSv extends AppLocalizations {
   String get losElevationAttribution => 'Höjddata: Open-Meteo (CC BY 4.0)';
 
   @override
-  String get losLegendRadioHorizon => 'Radiohorisont';
+  String get losLegendRadioHorizon => 'Radio horizon';
 
   @override
-  String get losLegendLosBeam => 'LOS-stråle';
+  String get losLegendLosBeam => 'LOS beam';
 
   @override
-  String get losLegendTerrain => 'Terräng';
+  String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losFrequencyLabel => 'Frekvens';
+  String get losFrequencyLabel => 'Frequency';
 
   @override
-  String get losFrequencyInfoTooltip => 'Visa beräkningsdetaljer';
+  String get losFrequencyInfoTooltip => 'View calculation details';
 
   @override
-  String get losFrequencyDialogTitle => 'Beräkning av radiohorisont';
+  String get losFrequencyDialogTitle => 'Radio horizon calculation';
 
   @override
   String losFrequencyDialogDescription(
@@ -2855,7 +2862,7 @@ class AppLocalizationsSv extends AppLocalizations {
     double frequencyMHz,
     double kFactor,
   ) {
-    return 'Med start från k=$baselineK vid $baselineFreq MHz multiplicerar beräkningen 0.15 × (frequency − $baselineFreq) / $baselineFreq för att nå k approx $kFactor för det aktuella $frequencyMHz-MHz-bandet, vilket definierar den krökta radiohorisontgränsen.';
+    return 'Starting from k=$baselineK at $baselineFreq MHz, the calculation multiplies 0.15 × (frequency − $baselineFreq) / $baselineFreq to reach k approx $kFactor for the current $frequencyMHz MHz band, which defines the curved radio horizon cap.';
   }
 
   @override

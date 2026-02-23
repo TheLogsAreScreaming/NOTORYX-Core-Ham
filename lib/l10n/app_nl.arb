@@ -1557,6 +1557,8 @@
   "contacts_floodAdvert": "Overstromingsadvertentie",
   "contacts_copyAdvertToClipboard": "Advert naar klembord kopiëren",
   "appSettings_languageRu": "Russisch",
+  "appSettings_enableMessageTracing": "Berichttracking inschakelen",
+  "appSettings_enableMessageTracingSubtitle": "Gedetailleerde routerings- en timing-metadata voor berichten weergeven",
   "contacts_clipboardEmpty": "Knipbord is leeg.",
   "contacts_addContactFromClipboard": "Contact uit klembord toevoegen",
   "contacts_contactImported": "Contact is geïmporteerd.",
@@ -1716,21 +1718,5 @@
   "losPointName": "Puntnaam",
   "losShowPanelTooltip": "Toon LOS-paneel",
   "losHidePanelTooltip": "LOS-paneel verbergen",
-  "losElevationAttribution": "Hoogtegegevens: Open-Meteo (CC BY 4.0)",
-  "losLegendRadioHorizon": "Radiohorizon",
-  "losLegendLosBeam": "LOS-straal",
-  "losLegendTerrain": "Terrein",
-  "losFrequencyLabel": "Frequentie",
-  "losFrequencyInfoTooltip": "Berekeningsdetails bekijken",
-  "losFrequencyDialogTitle": "Radiohorizon-berekening",
-  "losFrequencyDialogDescription": "Uitgaande van k={baselineK} bij {baselineFreq} MHz vermenigvuldigt de berekening 0.15 × (frequency − {baselineFreq}) / {baselineFreq} om k approx {kFactor} te bereiken voor de huidige {frequencyMHz}-MHz-band, die de gebogen radiohorizon-limiet definieert.",
-  "@losFrequencyDialogDescription": {
-    "description": "Explain how the calculation uses the baseline frequency and derived k-factor.",
-    "placeholders": {
-      "baselineK": { "type": "double" },
-      "baselineFreq": { "type": "double" },
-      "frequencyMHz": { "type": "double" },
-      "kFactor": { "type": "double" }
-    }
-  }
+  "losElevationAttribution": "Hoogtegegevens: Open-Meteo (CC BY 4.0)"
 }

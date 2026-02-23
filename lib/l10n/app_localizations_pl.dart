@@ -465,6 +465,13 @@ class AppLocalizationsPl extends AppLocalizations {
   String get appSettings_languageUk => 'Ukraińska';
 
   @override
+  String get appSettings_enableMessageTracing => 'Włącz śledzenie wiadomości';
+
+  @override
+  String get appSettings_enableMessageTracingSubtitle =>
+      'Pokaż szczegółowe metadane trasowania i czasu dla wiadomości';
+
+  @override
   String get appSettings_notifications => 'Powiadomienia';
 
   @override
@@ -2857,22 +2864,22 @@ class AppLocalizationsPl extends AppLocalizations {
       'Dane dotyczące wysokości: Open-Meteo (CC BY 4.0)';
 
   @override
-  String get losLegendRadioHorizon => 'Horyzont radiowy';
+  String get losLegendRadioHorizon => 'Radio horizon';
 
   @override
-  String get losLegendLosBeam => 'Wiązka LOS';
+  String get losLegendLosBeam => 'LOS beam';
 
   @override
-  String get losLegendTerrain => 'Teren';
+  String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losFrequencyLabel => 'Częstotliwość';
+  String get losFrequencyLabel => 'Frequency';
 
   @override
-  String get losFrequencyInfoTooltip => 'Zobacz szczegóły obliczeń';
+  String get losFrequencyInfoTooltip => 'View calculation details';
 
   @override
-  String get losFrequencyDialogTitle => 'Obliczanie horyzontu radiowego';
+  String get losFrequencyDialogTitle => 'Radio horizon calculation';
 
   @override
   String losFrequencyDialogDescription(
@@ -2881,7 +2888,7 @@ class AppLocalizationsPl extends AppLocalizations {
     double frequencyMHz,
     double kFactor,
   ) {
-    return 'Wychodząc od k=$baselineK przy $baselineFreq MHz, obliczenie mnoży 0.15 × (frequency − $baselineFreq) / $baselineFreq, aby osiągnąć k approx $kFactor dla bieżącego pasma $frequencyMHz MHz, które definiuje zakrzywioną granicę horyzontu radiowego.';
+    return 'Starting from k=$baselineK at $baselineFreq MHz, the calculation multiplies 0.15 × (frequency − $baselineFreq) / $baselineFreq to reach k approx $kFactor for the current $frequencyMHz MHz band, which defines the curved radio horizon cap.';
   }
 
   @override

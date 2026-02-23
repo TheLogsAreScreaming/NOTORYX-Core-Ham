@@ -1558,6 +1558,8 @@
   "contacts_copyAdvertToClipboard": "Copiar Anúncio para Área de Transferência",
   "contacts_addContactFromClipboard": "Adicionar Contato da Área de Transferência",
   "appSettings_languageRu": "Russo",
+  "appSettings_enableMessageTracing": "Ativar rastreamento de mensagens",
+  "appSettings_enableMessageTracingSubtitle": "Mostrar metadados detalhados de roteamento e tempo para as mensagens",
   "contacts_ShareContact": "Copiar contato para Área de Transferência",
   "contacts_contactImportFailed": "Contato falhou ao ser importado.",
   "contacts_zeroHopContactAdvertSent": "Enviou contato por anúncio.",
@@ -1716,21 +1718,5 @@
   "losPointName": "Nome do ponto",
   "losShowPanelTooltip": "Mostrar painel LOS",
   "losHidePanelTooltip": "Ocultar painel LOS",
-  "losElevationAttribution": "Dados de elevação: Open-Meteo (CC BY 4.0)",
-  "losLegendRadioHorizon": "Horizonte de rádio",
-  "losLegendLosBeam": "Feixe LOS",
-  "losLegendTerrain": "Terreno",
-  "losFrequencyLabel": "Frequência",
-  "losFrequencyInfoTooltip": "Ver detalhes do cálculo",
-  "losFrequencyDialogTitle": "Cálculo do horizonte de rádio",
-  "losFrequencyDialogDescription": "Partindo de k={baselineK} a {baselineFreq} MHz, o cálculo multiplica 0.15 × (frequency − {baselineFreq}) / {baselineFreq} para chegar a k approx {kFactor} para a banda atual de {frequencyMHz} MHz, que define o limite curvo do horizonte de rádio.",
-  "@losFrequencyDialogDescription": {
-    "description": "Explain how the calculation uses the baseline frequency and derived k-factor.",
-    "placeholders": {
-      "baselineK": { "type": "double" },
-      "baselineFreq": { "type": "double" },
-      "frequencyMHz": { "type": "double" },
-      "kFactor": { "type": "double" }
-    }
-  }
+  "losElevationAttribution": "Dados de elevação: Open-Meteo (CC BY 4.0)"
 }

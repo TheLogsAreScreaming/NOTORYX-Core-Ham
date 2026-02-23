@@ -447,6 +447,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appSettings_languageUk => '乌克兰';
 
   @override
+  String get appSettings_enableMessageTracing => '启用消息追踪';
+
+  @override
+  String get appSettings_enableMessageTracingSubtitle => '显示消息的详细路由和时间元数据';
+
+  @override
   String get appSettings_notifications => '通知';
 
   @override
@@ -2710,22 +2716,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get losElevationAttribution => '高程数据：Open-Meteo (CC BY 4.0)';
 
   @override
-  String get losLegendRadioHorizon => '无线电地平线';
+  String get losLegendRadioHorizon => 'Radio horizon';
 
   @override
-  String get losLegendLosBeam => 'LOS 波束';
+  String get losLegendLosBeam => 'LOS beam';
 
   @override
-  String get losLegendTerrain => '地形';
+  String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losFrequencyLabel => '频率';
+  String get losFrequencyLabel => 'Frequency';
 
   @override
-  String get losFrequencyInfoTooltip => '查看计算详情';
+  String get losFrequencyInfoTooltip => 'View calculation details';
 
   @override
-  String get losFrequencyDialogTitle => '无线电地平线计算';
+  String get losFrequencyDialogTitle => 'Radio horizon calculation';
 
   @override
   String losFrequencyDialogDescription(
@@ -2734,7 +2740,7 @@ class AppLocalizationsZh extends AppLocalizations {
     double frequencyMHz,
     double kFactor,
   ) {
-    return '从 k=$baselineK（$baselineFreq MHz）开始，计算将 0.15 × (frequency − $baselineFreq) / $baselineFreq，以得到当前 $frequencyMHz MHz 频段的 k approx $kFactor，从而定义弯曲的无线电地平线边界。';
+    return 'Starting from k=$baselineK at $baselineFreq MHz, the calculation multiplies 0.15 × (frequency − $baselineFreq) / $baselineFreq to reach k approx $kFactor for the current $frequencyMHz MHz band, which defines the curved radio horizon cap.';
   }
 
   @override

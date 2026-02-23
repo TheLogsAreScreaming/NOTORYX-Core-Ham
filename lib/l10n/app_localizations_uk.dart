@@ -463,6 +463,14 @@ class AppLocalizationsUk extends AppLocalizations {
   String get appSettings_languageUk => 'Українська';
 
   @override
+  String get appSettings_enableMessageTracing =>
+      'Увімкнути відстеження повідомлень';
+
+  @override
+  String get appSettings_enableMessageTracingSubtitle =>
+      'Показувати детальні метадані про маршрутизацію та час для повідомлень';
+
+  @override
   String get appSettings_notifications => 'Сповіщення';
 
   @override
@@ -2870,22 +2878,22 @@ class AppLocalizationsUk extends AppLocalizations {
       'Дані про висоту: Open-Meteo (CC BY 4.0)';
 
   @override
-  String get losLegendRadioHorizon => 'Радіогоризонт';
+  String get losLegendRadioHorizon => 'Radio horizon';
 
   @override
-  String get losLegendLosBeam => 'Промінь LOS';
+  String get losLegendLosBeam => 'LOS beam';
 
   @override
-  String get losLegendTerrain => 'Рельєф';
+  String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losFrequencyLabel => 'Частота';
+  String get losFrequencyLabel => 'Frequency';
 
   @override
-  String get losFrequencyInfoTooltip => 'Переглянути деталі розрахунку';
+  String get losFrequencyInfoTooltip => 'View calculation details';
 
   @override
-  String get losFrequencyDialogTitle => 'Розрахунок радіогоризонту';
+  String get losFrequencyDialogTitle => 'Radio horizon calculation';
 
   @override
   String losFrequencyDialogDescription(
@@ -2894,7 +2902,7 @@ class AppLocalizationsUk extends AppLocalizations {
     double frequencyMHz,
     double kFactor,
   ) {
-    return 'Виходячи з k=$baselineK при $baselineFreq MHz, розрахунок множить 0.15 × (frequency − $baselineFreq) / $baselineFreq, щоб отримати k approx $kFactor для поточного діапазону $frequencyMHz MHz, який визначає вигнуту межу радіогоризонту.';
+    return 'Starting from k=$baselineK at $baselineFreq MHz, the calculation multiplies 0.15 × (frequency − $baselineFreq) / $baselineFreq to reach k approx $kFactor for the current $frequencyMHz MHz band, which defines the curved radio horizon cap.';
   }
 
   @override

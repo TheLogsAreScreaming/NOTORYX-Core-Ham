@@ -465,6 +465,14 @@ class AppLocalizationsPt extends AppLocalizations {
   String get appSettings_languageUk => 'Ucraniano';
 
   @override
+  String get appSettings_enableMessageTracing =>
+      'Ativar rastreamento de mensagens';
+
+  @override
+  String get appSettings_enableMessageTracingSubtitle =>
+      'Mostrar metadados detalhados de roteamento e tempo para as mensagens';
+
+  @override
   String get appSettings_notifications => 'Notificações';
 
   @override
@@ -2859,22 +2867,22 @@ class AppLocalizationsPt extends AppLocalizations {
       'Dados de elevação: Open-Meteo (CC BY 4.0)';
 
   @override
-  String get losLegendRadioHorizon => 'Horizonte de rádio';
+  String get losLegendRadioHorizon => 'Radio horizon';
 
   @override
-  String get losLegendLosBeam => 'Feixe LOS';
+  String get losLegendLosBeam => 'LOS beam';
 
   @override
-  String get losLegendTerrain => 'Terreno';
+  String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losFrequencyLabel => 'Frequência';
+  String get losFrequencyLabel => 'Frequency';
 
   @override
-  String get losFrequencyInfoTooltip => 'Ver detalhes do cálculo';
+  String get losFrequencyInfoTooltip => 'View calculation details';
 
   @override
-  String get losFrequencyDialogTitle => 'Cálculo do horizonte de rádio';
+  String get losFrequencyDialogTitle => 'Radio horizon calculation';
 
   @override
   String losFrequencyDialogDescription(
@@ -2883,7 +2891,7 @@ class AppLocalizationsPt extends AppLocalizations {
     double frequencyMHz,
     double kFactor,
   ) {
-    return 'Partindo de k=$baselineK a $baselineFreq MHz, o cálculo multiplica 0.15 × (frequency − $baselineFreq) / $baselineFreq para chegar a k approx $kFactor para a banda atual de $frequencyMHz MHz, que define o limite curvo do horizonte de rádio.';
+    return 'Starting from k=$baselineK at $baselineFreq MHz, the calculation multiplies 0.15 × (frequency − $baselineFreq) / $baselineFreq to reach k approx $kFactor for the current $frequencyMHz MHz band, which defines the curved radio horizon cap.';
   }
 
   @override

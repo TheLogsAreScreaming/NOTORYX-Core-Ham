@@ -467,6 +467,14 @@ class AppLocalizationsBg extends AppLocalizations {
   String get appSettings_languageUk => 'Украински';
 
   @override
+  String get appSettings_enableMessageTracing =>
+      'Разрешаване на проследяване на съобщения';
+
+  @override
+  String get appSettings_enableMessageTracingSubtitle =>
+      'Показване на подробни метаданни за маршрутизация и синхронизация за съобщения';
+
+  @override
   String get appSettings_notifications => 'Уведомления';
 
   @override
@@ -2860,23 +2868,22 @@ class AppLocalizationsBg extends AppLocalizations {
       'Данни за надморска височина: Open-Meteo (CC BY 4.0)';
 
   @override
-  String get losLegendRadioHorizon => 'Радиохоризонт';
+  String get losLegendRadioHorizon => 'Radio horizon';
 
   @override
-  String get losLegendLosBeam => 'LOS лъч';
+  String get losLegendLosBeam => 'LOS beam';
 
   @override
-  String get losLegendTerrain => 'Терен';
+  String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losFrequencyLabel => 'Честота';
+  String get losFrequencyLabel => 'Frequency';
 
   @override
-  String get losFrequencyInfoTooltip =>
-      'Преглед на подробностите за изчислението';
+  String get losFrequencyInfoTooltip => 'View calculation details';
 
   @override
-  String get losFrequencyDialogTitle => 'Изчисление на радиохоризонта';
+  String get losFrequencyDialogTitle => 'Radio horizon calculation';
 
   @override
   String losFrequencyDialogDescription(
@@ -2885,7 +2892,7 @@ class AppLocalizationsBg extends AppLocalizations {
     double frequencyMHz,
     double kFactor,
   ) {
-    return 'Започвайки от k=$baselineK при $baselineFreq MHz, изчислението умножава 0.15 × (frequency − $baselineFreq) / $baselineFreq, за да достигне k approx $kFactor за текущата лента $frequencyMHz MHz, която определя извитата граница на радиохоризонта.';
+    return 'Starting from k=$baselineK at $baselineFreq MHz, the calculation multiplies 0.15 × (frequency − $baselineFreq) / $baselineFreq to reach k approx $kFactor for the current $frequencyMHz MHz band, which defines the curved radio horizon cap.';
   }
 
   @override

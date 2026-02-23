@@ -1554,6 +1554,8 @@
   "contacts_clipboardEmpty": "Клипборда е празна.",
   "contacts_invalidAdvertFormat": "Невалидни данни за контакт",
   "appSettings_languageRu": "Руски",
+  "appSettings_enableMessageTracing": "Разрешаване на проследяване на съобщения",
+  "appSettings_enableMessageTracingSubtitle": "Показване на подробни метаданни за маршрутизация и синхронизация за съобщения",
   "contacts_contactImported": "Контактът е импортиран.",
   "contacts_zeroHopAdvert": "Реклама без скок",
   "contacts_contactImportFailed": "Контактът не е успешно импортиран.",
@@ -1716,21 +1718,5 @@
   "losPointName": "Име на точката",
   "losShowPanelTooltip": "Показване на LOS панел",
   "losHidePanelTooltip": "Скриване на LOS панела",
-  "losElevationAttribution": "Данни за надморска височина: Open-Meteo (CC BY 4.0)",
-  "losLegendRadioHorizon": "Радиохоризонт",
-  "losLegendLosBeam": "LOS лъч",
-  "losLegendTerrain": "Терен",
-  "losFrequencyLabel": "Честота",
-  "losFrequencyInfoTooltip": "Преглед на подробностите за изчислението",
-  "losFrequencyDialogTitle": "Изчисление на радиохоризонта",
-  "losFrequencyDialogDescription": "Започвайки от k={baselineK} при {baselineFreq} MHz, изчислението умножава 0.15 × (frequency − {baselineFreq}) / {baselineFreq}, за да достигне k approx {kFactor} за текущата лента {frequencyMHz} MHz, която определя извитата граница на радиохоризонта.",
-  "@losFrequencyDialogDescription": {
-    "description": "Explain how the calculation uses the baseline frequency and derived k-factor.",
-    "placeholders": {
-      "baselineK": { "type": "double" },
-      "baselineFreq": { "type": "double" },
-      "frequencyMHz": { "type": "double" },
-      "kFactor": { "type": "double" }
-    }
-  }
+  "losElevationAttribution": "Данни за надморска височина: Open-Meteo (CC BY 4.0)"
 }

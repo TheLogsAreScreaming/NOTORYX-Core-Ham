@@ -1558,6 +1558,8 @@
   "contacts_copyAdvertToClipboard": "Kopírovať reklamu do schránky",
   "contacts_invalidAdvertFormat": "Neplatné kontaktné údaje",
   "appSettings_languageRu": "Ruština",
+  "appSettings_enableMessageTracing": "Povoliť sledovanie správ",
+  "appSettings_enableMessageTracingSubtitle": "Zobraziť podrobné metadáta o smerovaní a časovaní správ",
   "contacts_addContactFromClipboard": "Pridať kontakt z schránky",
   "contacts_contactImported": "Kontakt bol importovaný.",
   "contacts_zeroHopContactAdvertSent": "Poslal kontakt cez inzerát.",
@@ -1716,21 +1718,5 @@
   "losPointName": "Názov bodu",
   "losShowPanelTooltip": "Zobraziť panel LOS",
   "losHidePanelTooltip": "Skryť panel LOS",
-  "losElevationAttribution": "Údaje o nadmorskej výške: Open-Meteo (CC BY 4.0)",
-  "losLegendRadioHorizon": "Rádiový horizont",
-  "losLegendLosBeam": "LOS lúč",
-  "losLegendTerrain": "Terén",
-  "losFrequencyLabel": "Frekvencia",
-  "losFrequencyInfoTooltip": "Zobraziť podrobnosti výpočtu",
-  "losFrequencyDialogTitle": "Výpočet rádiového horizontu",
-  "losFrequencyDialogDescription": "Vychádzajúc z k={baselineK} pri {baselineFreq} MHz výpočet násobí 0.15 × (frequency − {baselineFreq}) / {baselineFreq}, aby dosiahol k approx {kFactor} pre aktuálne pásmo {frequencyMHz} MHz, ktoré definuje zakrivenú hranicu rádiového horizontu.",
-  "@losFrequencyDialogDescription": {
-    "description": "Explain how the calculation uses the baseline frequency and derived k-factor.",
-    "placeholders": {
-      "baselineK": { "type": "double" },
-      "baselineFreq": { "type": "double" },
-      "frequencyMHz": { "type": "double" },
-      "kFactor": { "type": "double" }
-    }
-  }
+  "losElevationAttribution": "Údaje o nadmorskej výške: Open-Meteo (CC BY 4.0)"
 }

@@ -461,6 +461,13 @@ class AppLocalizationsSk extends AppLocalizations {
   String get appSettings_languageUk => 'Ukrajinská';
 
   @override
+  String get appSettings_enableMessageTracing => 'Povoliť sledovanie správ';
+
+  @override
+  String get appSettings_enableMessageTracingSubtitle =>
+      'Zobraziť podrobné metadáta o smerovaní a časovaní správ';
+
+  @override
   String get appSettings_notifications => 'Upozornenia';
 
   @override
@@ -2845,22 +2852,22 @@ class AppLocalizationsSk extends AppLocalizations {
       'Údaje o nadmorskej výške: Open-Meteo (CC BY 4.0)';
 
   @override
-  String get losLegendRadioHorizon => 'Rádiový horizont';
+  String get losLegendRadioHorizon => 'Radio horizon';
 
   @override
-  String get losLegendLosBeam => 'LOS lúč';
+  String get losLegendLosBeam => 'LOS beam';
 
   @override
-  String get losLegendTerrain => 'Terén';
+  String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losFrequencyLabel => 'Frekvencia';
+  String get losFrequencyLabel => 'Frequency';
 
   @override
-  String get losFrequencyInfoTooltip => 'Zobraziť podrobnosti výpočtu';
+  String get losFrequencyInfoTooltip => 'View calculation details';
 
   @override
-  String get losFrequencyDialogTitle => 'Výpočet rádiového horizontu';
+  String get losFrequencyDialogTitle => 'Radio horizon calculation';
 
   @override
   String losFrequencyDialogDescription(
@@ -2869,7 +2876,7 @@ class AppLocalizationsSk extends AppLocalizations {
     double frequencyMHz,
     double kFactor,
   ) {
-    return 'Vychádzajúc z k=$baselineK pri $baselineFreq MHz výpočet násobí 0.15 × (frequency − $baselineFreq) / $baselineFreq, aby dosiahol k approx $kFactor pre aktuálne pásmo $frequencyMHz MHz, ktoré definuje zakrivenú hranicu rádiového horizontu.';
+    return 'Starting from k=$baselineK at $baselineFreq MHz, the calculation multiplies 0.15 × (frequency − $baselineFreq) / $baselineFreq to reach k approx $kFactor for the current $frequencyMHz MHz band, which defines the curved radio horizon cap.';
   }
 
   @override

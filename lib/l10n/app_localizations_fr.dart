@@ -465,6 +465,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appSettings_languageUk => 'Ukrainien';
 
   @override
+  String get appSettings_enableMessageTracing =>
+      'Activer le traçage des messages';
+
+  @override
+  String get appSettings_enableMessageTracingSubtitle =>
+      'Afficher les métadonnées détaillées de routage et de synchronisation des messages';
+
+  @override
   String get appSettings_notifications => 'Notifications';
 
   @override
@@ -2875,22 +2883,22 @@ class AppLocalizationsFr extends AppLocalizations {
       'Données d\'altitude : Open-Meteo (CC BY 4.0)';
 
   @override
-  String get losLegendRadioHorizon => 'Horizon radio';
+  String get losLegendRadioHorizon => 'Radio horizon';
 
   @override
-  String get losLegendLosBeam => 'Faisceau LOS';
+  String get losLegendLosBeam => 'LOS beam';
 
   @override
   String get losLegendTerrain => 'Terrain';
 
   @override
-  String get losFrequencyLabel => 'Fréquence';
+  String get losFrequencyLabel => 'Frequency';
 
   @override
-  String get losFrequencyInfoTooltip => 'Voir les détails du calcul';
+  String get losFrequencyInfoTooltip => 'View calculation details';
 
   @override
-  String get losFrequencyDialogTitle => 'Calcul de l’horizon radio';
+  String get losFrequencyDialogTitle => 'Radio horizon calculation';
 
   @override
   String losFrequencyDialogDescription(
@@ -2899,7 +2907,7 @@ class AppLocalizationsFr extends AppLocalizations {
     double frequencyMHz,
     double kFactor,
   ) {
-    return 'En partant de k=$baselineK à $baselineFreq MHz, le calcul multiplie 0.15 × (frequency − $baselineFreq) / $baselineFreq pour atteindre k approx $kFactor pour la bande actuelle de $frequencyMHz MHz, qui définit la limite courbe de l’horizon radio.';
+    return 'Starting from k=$baselineK at $baselineFreq MHz, the calculation multiplies 0.15 × (frequency − $baselineFreq) / $baselineFreq to reach k approx $kFactor for the current $frequencyMHz MHz band, which defines the curved radio horizon cap.';
   }
 
   @override
