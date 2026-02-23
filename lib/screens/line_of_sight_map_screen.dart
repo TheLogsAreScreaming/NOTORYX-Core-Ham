@@ -1065,13 +1065,15 @@ class _LosProfilePainter extends CustomPainter {
       samples.last.terrainMeters,
     );
 
-    double distanceForCanvasX(double x) =>
-        ((x - horizontalPadding) / chartWidth) * maxDist;
+    double distanceForCanvasX(double x) {
+      final normalized = ((x - horizontalPadding) / chartWidth).clamp(0.0, 1.0);
+      return normalized * maxDist;
+    }
 
-    double elevationToPixel(double elevation) =>
-        size.height -
-        verticalPadding -
-        ((elevation - minY) / ySpan) * chartHeight;
+    double elevationToPixel(double elevation) {
+      final normalized = ((elevation - minY) / ySpan).clamp(0.0, 1.0);
+      return size.height - verticalPadding - normalized * chartHeight;
+    }
 
     double extrapolateTerrain(double distance, bool isLeft) {
       final samplesForSlope = isLeft
