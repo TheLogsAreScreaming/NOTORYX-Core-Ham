@@ -522,7 +522,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     : context.l10n.channels_muteChannel,
               ),
               onTap: () async {
-                Navigator.pop(context);
+                Navigator.pop(sheetContext);
                 if (isMuted) {
                   await settingsService.unmuteChannel(channel.name);
                 } else {
