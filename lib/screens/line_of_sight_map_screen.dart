@@ -73,6 +73,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
   bool _showMarkerLabels = true;
   bool _didReceivePositionUpdate = false;
   int _losRequestNonce = 0;
+  bool _initialLosScheduled = false;
 
   @override
   void initState() {
@@ -83,7 +84,16 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
         _end = widget.candidates[1];
       }
     }
-    _runLos();
+    _scheduleInitialRun();
+  }
+
+  void _scheduleInitialRun() {
+    if (_initialLosScheduled) return;
+    _initialLosScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _runLos();
+    });
   }
 
   @override
