@@ -1,4 +1,4 @@
-﻿{
+{
   "channels_channelDeleteFailed": "Kanal {name} konnte nicht gelöscht werden",
   "@channels_channelDeleteFailed": { "placeholders": { "name": { "type": "String" } } },
   "@@locale": "de",

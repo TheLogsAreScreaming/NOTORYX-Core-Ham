@@ -1,4 +1,4 @@
-﻿{
+{
   "channels_channelDeleteFailed": "Impossibile eliminare il canale \"{name}\"",
   "@channels_channelDeleteFailed": { "placeholders": { "name": { "type": "String" } } },
   "@@locale": "it",
