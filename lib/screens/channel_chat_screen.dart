@@ -1073,6 +1073,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     connector.sendChannelMessage(widget.channel, messageText);
     _textController.clear();
     _cancelReply();
+    _textFieldFocusNode.requestFocus();
   }
 
   String _formatTime(DateTime time) {
