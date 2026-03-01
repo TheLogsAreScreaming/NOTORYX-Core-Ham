@@ -164,7 +164,7 @@ const int cmdGetChannel = 31;
 const int cmdSetChannel = 32;
 const int cmdSendTracePath = 36;
 const int cmdSetOtherParams = 38;
-const int cmdGetRadioSettings = 57;
+const int cmdSendAnonReq = 57;
 const int cmdGetTelemetryReq = 39;
 const int cmdGetCustomVar = 40;
 const int cmdSetCustomVar = 41;
@@ -689,11 +689,6 @@ Uint8List buildGetContactByKeyFrame(Uint8List pubKey) {
   writer.writeByte(cmdGetContactByKey);
   writer.writeBytes(pubKey);
   return writer.toBytes();
-}
-
-// Build CMD_GET_RADIO_SETTINGS frame
-Uint8List buildGetRadioSettingsFrame() {
-  return Uint8List.fromList([cmdGetRadioSettings]);
 }
 
 //Build CMD_GET_CUSTOM_VARS frame

@@ -1093,7 +1093,6 @@ class MeshCoreConnector extends ChangeNotifier {
     await sendFrame(buildDeviceQueryFrame());
     await sendFrame(buildAppStartFrame());
     await requestBatteryStatus(force: true);
-    await sendFrame(buildGetRadioSettingsFrame());
     await sendFrame(buildGetCustomVarsFrame());
     await sendFrame(buildGetAutoAddFlagsFrame());
     _scheduleSelfInfoRetry();
