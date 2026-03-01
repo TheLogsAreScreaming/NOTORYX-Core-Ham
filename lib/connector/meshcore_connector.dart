@@ -2060,7 +2060,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _selfLatitude = readInt32LE(frame, 36) / 1000000.0;
     _selfLongitude = readInt32LE(frame, 40) / 1000000.0;
 
-    if (frame.length >= 47 && frame[47] == 0x00) {
+    if (frame.length >= 48 && frame[47] == 0x00) {
       sendFrame(buildSetOtherParamsFrame(0, 0, 0));
     }
 
@@ -3947,17 +3947,6 @@ class MeshCoreConnector extends ChangeNotifier {
     final existingIndex = _discoveredContacts.indexWhere(
       (c) => c.publicKeyHex == contact.publicKeyHex,
     );
-    final existingContactsIndex = _contacts.indexWhere(
-      (c) => c.publicKeyHex == contact.publicKeyHex,
-    );
-
-    if (existingContactsIndex >= 0) {
-      if (existingIndex >= 0) {
-        removeDiscoveredContact(_discoveredContacts[existingIndex]);
-        unawaited(_persistDiscoveredContacts());
-      }
-      return;
-    }
 
     // Update existing contact
     if (existingIndex >= 0) {
@@ -3972,6 +3961,7 @@ class MeshCoreConnector extends ChangeNotifier {
             longitude: contact.longitude,
             lastSeen: contact.lastSeen,
           );
+      notifyListeners();
       return;
     }
 

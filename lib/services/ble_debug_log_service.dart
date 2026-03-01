@@ -172,8 +172,6 @@ class BleDebugLogService extends ChangeNotifier {
         return 'CMD_GET_CHANNEL';
       case cmdSetChannel:
         return 'CMD_SET_CHANNEL';
-      case cmdGetRadioSettings:
-        return 'CMD_GET_RADIO_SETTINGS';
       case cmdSetCustomVar:
         return 'CMD_SET_CUSTOM_VAR';
       case cmdSendTracePath:

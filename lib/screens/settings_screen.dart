@@ -938,16 +938,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Text(l10n.common_cancel),
             ),
             TextButton(
-              onPressed: () async {
-                final frame = buildSetAutoAddConfigFrame(
-                  autoAddChat: autoAddChat,
-                  autoAddRepeater: autoAddRepeater,
-                  autoAddRoomServer: autoAddRoomServer,
-                  autoAddSensor: autoAddSensor,
-                  overwriteOldest: overwriteOldest,
+              onPressed: () {
+                _sendSettings(
+                  connector,
+                  autoAddChat,
+                  autoAddRepeater,
+                  autoAddRoomServer,
+                  autoAddSensor,
+                  overwriteOldest,
                 );
-                await connector.sendFrame(frame);
-                await connector.sendFrame(buildGetAutoAddFlagsFrame());
                 Navigator.pop(context);
               },
               child: Text(l10n.common_save),
@@ -956,6 +955,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
       ),
     );
+  }
+
+  void _sendSettings(
+    MeshCoreConnector connector,
+    autoAddChat,
+    autoAddRepeater,
+    autoAddRoomServer,
+    autoAddSensor,
+    overwriteOldest,
+  ) async {
+    final frame = buildSetAutoAddConfigFrame(
+      autoAddChat: autoAddChat,
+      autoAddRepeater: autoAddRepeater,
+      autoAddRoomServer: autoAddRoomServer,
+      autoAddSensor: autoAddSensor,
+      overwriteOldest: overwriteOldest,
+    );
+    await connector.sendFrame(frame);
+    await connector.sendFrame(buildGetAutoAddFlagsFrame());
   }
 }
 

@@ -30,7 +30,7 @@ class AppBarTitle extends StatelessWidget {
         final availableWidth = constraints.hasBoundedWidth
             ? constraints.maxWidth
             : MediaQuery.sizeOf(context).width;
-        final compact = availableWidth < 240;
+        final compact = availableWidth < 170;
         final showSubtitle =
             !compact && connector.isConnected && selfName != null && subtitle;
         final showBattery = availableWidth >= 60;
