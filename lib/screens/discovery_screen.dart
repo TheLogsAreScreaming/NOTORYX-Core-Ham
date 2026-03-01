@@ -293,9 +293,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
 
     switch (sortOption) {
       case ContactSortOption.lastSeen:
-        filtered.sort(
-          (a, b) => _resolveLastSeen(b).compareTo(_resolveLastSeen(a)),
-        );
+        filtered.sort((a, b) => b.lastSeen.compareTo(a.lastSeen));
         break;
       case ContactSortOption.name:
         filtered.sort(
@@ -322,13 +320,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
       default:
         return false;
     }
-  }
-
-  DateTime _resolveLastSeen(DiscoveryContact contact) {
-    if (contact.type != advTypeChat) return contact.lastSeen;
-    return contact.lastSeen.isAfter(contact.lastSeen)
-        ? contact.lastSeen
-        : contact.lastSeen;
   }
 
   IconData _getTypeIcon(int type) {
