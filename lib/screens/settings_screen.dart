@@ -8,7 +8,6 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/radio_settings.dart';
-import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/app_bar.dart';
 import 'app_settings_screen.dart';
 import 'app_debug_log_screen.dart';
