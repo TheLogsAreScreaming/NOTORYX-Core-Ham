@@ -1805,7 +1805,7 @@
   "connectionChoiceTitle": "Choisissez votre méthode de connexion.",
   "connectionChoiceBluetoothLabel": "Bluetooth",
   "connectionChoiceUsbLabel": "USB",
-  "connectionChoiceSubtitle": "Choisissez la méthode de livraison que vous préférez pour votre appareil MeshCore.",
+  "connectionChoiceSubtitle": "Choisissez la méthode de connexion que vous préférez pour votre appareil MeshCore.",
   "usbScreenStatus": "Sélectionnez un périphérique USB",
   "usbScreenSubtitle": "Sélectionnez un périphérique série détecté et connectez-vous directement à votre nœud MeshCore.",
   "usbScreenNote": "La communication série USB est active sur les appareils Android et les plateformes de bureau pris en charge.",

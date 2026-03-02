@@ -113,7 +113,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get connectionChoiceSubtitle =>
-      'Choisissez la méthode de livraison que vous préférez pour votre appareil MeshCore.';
+      'Choisissez la méthode de connexion que vous préférez pour votre appareil MeshCore.';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
