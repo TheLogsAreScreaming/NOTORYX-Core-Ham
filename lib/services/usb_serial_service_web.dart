@@ -26,6 +26,7 @@ class UsbSerialService {
   JSObject? _writer;
   String? _connectedPortName;
   String? _connectedPortKey;
+  String _requestPortLabel = 'Choose USB Device';
 
   UsbSerialStatus get status => _status;
   String? get activePortName => _connectedPortName;
@@ -49,7 +50,7 @@ class UsbSerialService {
 
     final ports = await _getAuthorizedPorts();
     if (ports.isEmpty) {
-      return const <String>[usbRequestPortLabel];
+      return <String>[_requestPortLabel];
     }
     return ports.map(_displayLabelForPort).toList(growable: false);
   }
@@ -159,6 +160,14 @@ class UsbSerialService {
     _connectedPortName = _buildDisplayLabel(portKey);
   }
 
+  void setRequestPortLabel(String label) {
+    final trimmed = label.trim();
+    if (trimmed.isEmpty) {
+      return;
+    }
+    _requestPortLabel = trimmed;
+  }
+
   void dispose() {
     unawaited(disconnect().whenComplete(_closeFrameController));
   }
@@ -189,7 +198,7 @@ class UsbSerialService {
     if (ports.isEmpty) {
       return null;
     }
-    if (requestedPortName.isEmpty || requestedPortName == usbRequestPortLabel) {
+    if (requestedPortName.isEmpty || requestedPortName == _requestPortLabel) {
       return ports.first;
     }
     for (final port in ports) {
@@ -350,7 +359,7 @@ class UsbSerialService {
     try {
       final info = port.callMethod<JSAny?>('getInfo'.toJS);
       if (info == null) {
-        return usbRequestPortLabel;
+        return _requestPortLabel;
       }
       final infoObject = info as JSObject;
 
@@ -366,10 +375,11 @@ class UsbSerialService {
       return describeWebUsbPort(
         vendorId: hasVendor ? vendorId.toInt() : null,
         productId: hasProduct ? productId.toInt() : null,
+        requestPortLabel: _requestPortLabel,
         knownUsbNames: _knownUsbNames,
       );
     } catch (_) {
-      return usbRequestPortLabel;
+      return _requestPortLabel;
     }
   }
 

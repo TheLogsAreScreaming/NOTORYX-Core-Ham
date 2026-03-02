@@ -5,6 +5,7 @@ import 'package:flserial/flserial_exception.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import '../utils/platform_info.dart';
 import '../utils/usb_port_labels.dart';
 import 'usb_serial_frame_codec.dart';
 
@@ -21,28 +22,38 @@ class UsbSerialService {
   );
   final StreamController<Uint8List> _frameController =
       StreamController<Uint8List>.broadcast();
-  final FlSerial _serial = FlSerial();
   final UsbSerialFrameDecoder _frameDecoder = UsbSerialFrameDecoder();
   StreamSubscription<dynamic>? _androidDataSubscription;
   StreamSubscription<FlSerialEventArgs>? _dataSubscription;
   UsbSerialStatus _status = UsbSerialStatus.disconnected;
   String? _connectedPortName;
+  FlSerial? _serial;
 
   UsbSerialStatus get status => _status;
   String? get activePortName => _connectedPortName;
   Stream<Uint8List> get frameStream => _frameController.stream;
   bool get _useAndroidUsbHost =>
       !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+  bool get _useDesktopFlSerial =>
+      PlatformInfo.isWindows || PlatformInfo.isLinux;
+  bool get _isSupportedPlatform => _useAndroidUsbHost || _useDesktopFlSerial;
+  FlSerial get _nativeSerial => _serial ??= FlSerial();
 
   bool get isConnected {
+    if (!_isSupportedPlatform) {
+      return false;
+    }
     if (_useAndroidUsbHost) {
       return _status == UsbSerialStatus.connected;
     }
     return _status == UsbSerialStatus.connected &&
-        _serial.isOpen() == FlOpenStatus.open;
+        _serial?.isOpen() == FlOpenStatus.open;
   }
 
   Future<List<String>> listPorts() async {
+    if (!_isSupportedPlatform) {
+      return const <String>[];
+    }
     if (_useAndroidUsbHost) {
       final ports = await _androidMethodChannel.invokeListMethod<String>(
         'listPorts',
@@ -59,6 +70,9 @@ class UsbSerialService {
     if (_status == UsbSerialStatus.connected ||
         _status == UsbSerialStatus.connecting) {
       throw StateError('USB serial transport is already active');
+    }
+    if (!_isSupportedPlatform) {
+      throw UnsupportedError('USB serial is not supported on this platform.');
     }
 
     _status = UsbSerialStatus.connecting;
@@ -78,32 +92,35 @@ class UsbSerialService {
         throw StateError(error.message ?? error.code);
       }
     } else {
-      _serial.init();
+      final serial = _nativeSerial;
+      serial.init();
 
       try {
-        final status = _serial.openPort(normalizedPortName, baudRate);
+        final status = serial.openPort(normalizedPortName, baudRate);
         if (status != FlOpenStatus.open) {
           throw StateError(
             'Failed to open USB port $normalizedPortName ($status)',
           );
         }
-        _serial.setByteSize8();
-        _serial.setBitParityNone();
-        _serial.setStopBits1();
-        _serial.setFlowControlNone();
-        _serial.setRTS(false);
-        _serial.setDTR(true);
+        serial.setByteSize8();
+        serial.setBitParityNone();
+        serial.setStopBits1();
+        serial.setFlowControlNone();
+        serial.setRTS(false);
+        serial.setDTR(true);
         debugPrint(
-          'USB serial opened port=$normalizedPortName cts=${_serial.getCTS()} dsr=${_serial.getDSR()} dtr=true rts=false',
+          'USB serial opened port=$normalizedPortName cts=${serial.getCTS()} dsr=${serial.getDSR()} dtr=true rts=false',
         );
       } on FlSerialException catch (error) {
-        _serial.free();
+        _serial?.free();
+        _serial = null;
         _status = UsbSerialStatus.disconnected;
         throw StateError(
           'Failed to open USB port $normalizedPortName: ${error.msg} (${error.error})',
         );
       } catch (error) {
-        _serial.free();
+        _serial?.free();
+        _serial = null;
         _status = UsbSerialStatus.disconnected;
         rethrow;
       }
@@ -119,7 +136,7 @@ class UsbSerialService {
             onDone: _handleSerialDone,
           );
     } else {
-      _dataSubscription = _serial.onSerialData.stream.listen(
+      _dataSubscription = _nativeSerial.onSerialData.stream.listen(
         _handleSerialData,
         onError: _handleSerialError,
         onDone: _handleSerialDone,
@@ -143,7 +160,7 @@ class UsbSerialService {
         throw StateError(error.message ?? error.code);
       }
     } else {
-      _serial.write(packet);
+      _nativeSerial.write(packet);
     }
   }
 
@@ -165,16 +182,21 @@ class UsbSerialService {
       }
     } else {
       try {
-        if (_serial.isOpen() == FlOpenStatus.open) {
-          _serial.closePort();
+        if (_serial?.isOpen() == FlOpenStatus.open) {
+          _serial?.closePort();
         }
       } catch (_) {
         // Ignore errors while closing.
       }
 
-      _serial.free();
+      _serial?.free();
+      _serial = null;
     }
     _status = UsbSerialStatus.disconnected;
+  }
+
+  void setRequestPortLabel(String label) {
+    // Native implementations do not use a synthetic chooser row.
   }
 
   void updateConnectedLabel(String label) {

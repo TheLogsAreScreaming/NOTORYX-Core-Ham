@@ -62,6 +62,12 @@ class _UsbScreenState extends State<UsbScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _connector.setUsbRequestPortLabel(context.l10n.usbScreenStatus);
+  }
+
+  @override
   void dispose() {
     _connector.removeListener(_connectionListener);
     super.dispose();
@@ -389,6 +395,7 @@ class _UsbScreenState extends State<UsbScreen> {
 
   Future<void> _loadPorts() async {
     if (!mounted) return;
+    _connector.setUsbRequestPortLabel(context.l10n.usbScreenStatus);
 
     setState(() {
       _isLoadingPorts = true;
@@ -425,6 +432,7 @@ class _UsbScreenState extends State<UsbScreen> {
     if (selectedPort == null || selectedPort.isEmpty) {
       return;
     }
+    _connector.setUsbRequestPortLabel(context.l10n.usbScreenStatus);
     if (_connector.state != MeshCoreConnectionState.disconnected) {
       setState(() {
         _isConnecting = false;

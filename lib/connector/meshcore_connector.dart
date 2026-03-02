@@ -767,6 +767,10 @@ class MeshCoreConnector extends ChangeNotifier {
 
   Future<List<String>> listUsbPorts() => _usbSerialService.listPorts();
 
+  void setUsbRequestPortLabel(String label) {
+    _usbSerialService.setRequestPortLabel(label);
+  }
+
   Future<void> connect(BluetoothDevice device, {String? displayName}) async {
     if (_state == MeshCoreConnectionState.connecting ||
         _state == MeshCoreConnectionState.connected) {

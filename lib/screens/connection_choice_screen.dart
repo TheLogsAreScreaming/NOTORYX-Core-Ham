@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
+import '../utils/platform_info.dart';
 import 'scanner_screen.dart';
 import 'usb_screen.dart';
 
@@ -14,6 +15,7 @@ class ConnectionChoiceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final theme = Theme.of(context);
+    final usbSupported = PlatformInfo.supportsUsbSerial;
     return Scaffold(
       appBar: AppBar(
         title: FittedBox(
@@ -82,14 +84,18 @@ class ConnectionChoiceScreen extends StatelessWidget {
                       label: l10n.connectionChoiceUsbLabel,
                       color: theme.colorScheme.primaryContainer,
                       iconColor: theme.colorScheme.onPrimaryContainer,
-                      onPressed: () {
-                        debugPrint(
-                          'ConnectionChoiceScreen: USB selected, opening UsbScreen',
-                        );
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => const UsbScreen()),
-                        );
-                      },
+                      onPressed: usbSupported
+                          ? () {
+                              debugPrint(
+                                'ConnectionChoiceScreen: USB selected, opening UsbScreen',
+                              );
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => const UsbScreen(),
+                                ),
+                              );
+                            }
+                          : null,
                     ),
                   ),
                   SizedBox(height: gap),
@@ -133,7 +139,7 @@ class _ConnectionMethodButton extends StatelessWidget {
 
   final IconData icon;
   final String label;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color color;
   final Color iconColor;
 

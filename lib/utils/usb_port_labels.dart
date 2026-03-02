@@ -1,5 +1,3 @@
-const String usbRequestPortLabel = 'Choose USB Device';
-
 String normalizeUsbPortName(String portLabel) {
   final separatorIndex = portLabel.indexOf(' - ');
   final normalized = separatorIndex >= 0
@@ -23,10 +21,11 @@ String friendlyUsbPortName(String portLabel) {
 String describeWebUsbPort({
   required int? vendorId,
   required int? productId,
+  String requestPortLabel = 'Choose USB Device',
   Map<String, String> knownUsbNames = const <String, String>{},
 }) {
   if (vendorId == null && productId == null) {
-    return usbRequestPortLabel;
+    return requestPortLabel;
   }
 
   final vendorHex = vendorId?.toRadixString(16).padLeft(4, '0').toUpperCase();
