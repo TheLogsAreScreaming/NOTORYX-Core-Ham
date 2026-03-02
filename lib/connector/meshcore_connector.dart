@@ -31,6 +31,7 @@ import '../storage/message_store.dart';
 import '../storage/unread_store.dart';
 import '../utils/app_logger.dart';
 import '../utils/battery_utils.dart';
+import '../utils/platform_info.dart';
 import 'meshcore_protocol.dart';
 
 class MeshCoreUuids {
@@ -744,7 +745,9 @@ class MeshCoreConnector extends ChangeNotifier {
     );
 
     await Future.delayed(timeout);
-    await stopScan();
+    if (!PlatformInfo.isWeb) {
+      await stopScan();
+    }
   }
 
   Future<void> stopScan() async {
@@ -898,6 +901,9 @@ class MeshCoreConnector extends ChangeNotifier {
       await _usbFrameSubscription?.cancel();
       _usbFrameSubscription = null;
       await _usbSerialService.connect(portName: portName, baudRate: baudRate);
+      if (PlatformInfo.isWeb) {
+        await stopScan();
+      }
       await Future<void>.delayed(const Duration(milliseconds: 200));
       _usbFrameSubscription = _usbSerialService.frameStream.listen(
         _handleFrame,
@@ -2086,6 +2092,13 @@ class MeshCoreConnector extends ChangeNotifier {
     // Node name starts at offset 58 if frame is long enough
     if (frame.length > 58) {
       _selfName = readCString(frame, 58, frame.length - 58);
+    }
+    final selfName = _selfName?.trim();
+    if (_activeTransport == MeshCoreTransportType.usb &&
+        selfName != null &&
+        selfName.isNotEmpty) {
+      _usbSerialService.updateConnectedLabel(selfName);
+      _activeUsbPort = _usbSerialService.activePortName ?? _activeUsbPort;
     }
     _awaitingSelfInfo = false;
     _selfInfoRetryTimer?.cancel();

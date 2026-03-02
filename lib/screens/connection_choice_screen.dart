@@ -157,30 +157,55 @@ class _ConnectionMethodButton extends StatelessWidget {
               ? constraints.maxWidth
               : 320.0;
           final isCompact = availableHeight < 72.0 || availableWidth < 180.0;
-          final baseGap = isCompact ? 8.0 : 12.0;
-          final content = Flex(
-            direction: isCompact ? Axis.horizontal : Axis.vertical,
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, size: isCompact ? 24.0 : 60.0, color: iconColor),
-              SizedBox(
-                width: isCompact ? baseGap : 0,
-                height: isCompact ? 0 : baseGap,
-              ),
-              Text(
-                label,
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                overflow: TextOverflow.visible,
-                style:
-                    (isCompact
+          final useTightVertical = !isCompact && availableHeight < 120.0;
+          final baseGap = isCompact
+              ? 8.0
+              : (useTightVertical
+                    ? math.max(4.0, math.min(8.0, availableHeight * 0.06))
+                    : 12.0);
+          final labelStyle =
+              (isCompact
+                      ? theme.textTheme.titleMedium
+                      : (useTightVertical
                             ? theme.textTheme.titleMedium
-                            : theme.textTheme.titleLarge)
-                        ?.copyWith(fontWeight: FontWeight.w600),
-              ),
-            ],
-          );
+                            : theme.textTheme.titleLarge))
+                  ?.copyWith(fontWeight: FontWeight.w600);
+          final verticalIconSize = useTightVertical
+              ? math.max(32.0, math.min(48.0, availableHeight * 0.42))
+              : 60.0;
+          final content = isCompact
+              ? Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(icon, size: 24.0, color: iconColor),
+                    SizedBox(width: baseGap),
+                    Flexible(
+                      child: Text(
+                        label,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: labelStyle,
+                      ),
+                    ),
+                  ],
+                )
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(icon, size: verticalIconSize, color: iconColor),
+                    SizedBox(height: baseGap),
+                    Text(
+                      label,
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.visible,
+                      style: labelStyle,
+                    ),
+                  ],
+                );
 
           return Center(
             child: FittedBox(

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
+import '../utils/usb_port_labels.dart';
 import 'contacts_screen.dart';
 
 class UsbScreen extends StatefulWidget {
@@ -31,6 +32,14 @@ class _UsbScreenState extends State<UsbScreen> {
     _connector = context.read<MeshCoreConnector>();
     _connectionListener = () {
       if (!mounted) return;
+      final activeUsbPort = _connector.activeUsbPort;
+      if (activeUsbPort != null &&
+          activeUsbPort.isNotEmpty &&
+          activeUsbPort != _selectedPort) {
+        setState(() {
+          _selectedPort = activeUsbPort;
+        });
+      }
       if (_connector.state == MeshCoreConnectionState.disconnected) {
         _navigatedToContacts = false;
         if (_isConnecting) {
@@ -192,7 +201,7 @@ class _UsbScreenState extends State<UsbScreen> {
                         FilledButton.icon(
                           onPressed: _canConnect
                               ? () {
-                                  final rawPortName = _normalizedPortName(
+                                  final rawPortName = normalizeUsbPortName(
                                     _selectedPort!,
                                   );
                                   debugPrint(
@@ -236,7 +245,7 @@ class _UsbScreenState extends State<UsbScreen> {
                           child: FilledButton.icon(
                             onPressed: _canConnect
                                 ? () {
-                                    final rawPortName = _normalizedPortName(
+                                    final rawPortName = normalizeUsbPortName(
                                       _selectedPort!,
                                     );
                                     debugPrint(
@@ -322,7 +331,7 @@ class _UsbScreenState extends State<UsbScreen> {
         final port = _ports[index];
         final isSelected = port == _selectedPort;
         final displayName = _friendlyPortName(port);
-        final rawName = _normalizedPortName(port);
+        final rawName = normalizeUsbPortName(port);
         final showRawName = rawName != displayName;
         return Material(
           color: isSelected
@@ -416,7 +425,7 @@ class _UsbScreenState extends State<UsbScreen> {
     if (selectedPort == null || selectedPort.isEmpty) {
       return;
     }
-    final rawPortName = _normalizedPortName(selectedPort);
+    final rawPortName = normalizeUsbPortName(selectedPort);
 
     setState(() {
       _isConnecting = true;
@@ -434,23 +443,5 @@ class _UsbScreenState extends State<UsbScreen> {
     }
   }
 
-  String _normalizedPortName(String portLabel) {
-    final separatorIndex = portLabel.indexOf(' - ');
-    final normalized = separatorIndex >= 0
-        ? portLabel.substring(0, separatorIndex)
-        : portLabel;
-    return normalized.trim();
-  }
-
-  String _friendlyPortName(String portLabel) {
-    final separatorIndex = portLabel.indexOf(' - ');
-    if (separatorIndex < 0) {
-      return portLabel.trim();
-    }
-    final friendlyName = portLabel.substring(separatorIndex + 3).trim();
-    if (friendlyName.isEmpty) {
-      return _normalizedPortName(portLabel);
-    }
-    return friendlyName;
-  }
+  String _friendlyPortName(String portLabel) => friendlyUsbPortName(portLabel);
 }
