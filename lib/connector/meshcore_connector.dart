@@ -1266,14 +1266,23 @@ class MeshCoreConnector extends ChangeNotifier {
     _selfInfoRetryTimer?.cancel();
     if (PlatformInfo.isWeb &&
         _activeTransport == MeshCoreTransportType.bluetooth) {
-      _selfInfoRetryTimer = Timer(const Duration(seconds: 10), () {
+      var attempts = 0;
+      const maxAttempts = 3;
+      _selfInfoRetryTimer = Timer.periodic(const Duration(seconds: 10), (
+        timer,
+      ) {
         if (!isConnected || !_awaitingSelfInfo) {
+          timer.cancel();
           return;
         }
         if (_isLoadingContacts || _isSyncingChannels || _channelSyncInFlight) {
           return;
         }
+        attempts += 1;
         unawaited(sendFrame(buildAppStartFrame()));
+        if (attempts >= maxAttempts) {
+          timer.cancel();
+        }
       });
       return;
     }

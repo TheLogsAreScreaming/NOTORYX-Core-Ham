@@ -186,8 +186,7 @@ class UsbSerialService {
   }
 
   void dispose() {
-    unawaited(disconnect());
-    unawaited(_frameController.close());
+    unawaited(disconnect().whenComplete(_closeFrameController));
   }
 
   void _handleSerialData(FlSerialEventArgs event) {
@@ -197,7 +196,7 @@ class UsbSerialService {
         _ingestRawBytes(Uint8List.fromList(bytes));
       }
     } catch (error, stack) {
-      _frameController.addError(error, stack);
+      _addFrameError(error, stack);
     }
   }
 
@@ -210,13 +209,13 @@ class UsbSerialService {
       _ingestRawBytes(data.buffer.asUint8List());
       return;
     }
-    _frameController.addError(
+    _addFrameError(
       StateError('Unexpected Android USB event payload: ${data.runtimeType}'),
     );
   }
 
   void _handleSerialError(Object error, [StackTrace? stackTrace]) {
-    _frameController.addError(error, stackTrace);
+    _addFrameError(error, stackTrace);
   }
 
   void _handleSerialDone() {
@@ -231,8 +230,29 @@ class UsbSerialService {
         );
         continue;
       }
-      _frameController.add(packet.payload);
+      _addFrame(packet.payload);
     }
+  }
+
+  void _addFrame(Uint8List payload) {
+    if (_frameController.isClosed) {
+      return;
+    }
+    _frameController.add(payload);
+  }
+
+  void _addFrameError(Object error, [StackTrace? stackTrace]) {
+    if (_frameController.isClosed) {
+      return;
+    }
+    _frameController.addError(error, stackTrace);
+  }
+
+  Future<void> _closeFrameController() async {
+    if (_frameController.isClosed) {
+      return;
+    }
+    await _frameController.close();
   }
 
   void _logFrameSummary(String prefix, Uint8List bytes) {

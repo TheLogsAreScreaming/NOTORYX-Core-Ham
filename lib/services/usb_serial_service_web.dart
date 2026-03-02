@@ -160,8 +160,7 @@ class UsbSerialService {
   }
 
   void dispose() {
-    unawaited(disconnect());
-    unawaited(_frameController.close());
+    unawaited(disconnect().whenComplete(_closeFrameController));
   }
 
   Future<List<JSObject>> _getAuthorizedPorts() async {
@@ -285,12 +284,12 @@ class UsbSerialService {
       }
     } catch (error, stackTrace) {
       if (_status == UsbSerialStatus.connected) {
-        _frameController.addError(error, stackTrace);
+        _addFrameError(error, stackTrace);
       }
     } finally {
       _releaseLock(reader);
       if (_status == UsbSerialStatus.connected && identical(reader, _reader)) {
-        _frameController.addError(StateError('USB serial connection closed'));
+        _addFrameError(StateError('USB serial connection closed'));
       }
     }
   }
@@ -402,8 +401,29 @@ class UsbSerialService {
         );
         continue;
       }
-      _frameController.add(packet.payload);
+      _addFrame(packet.payload);
     }
+  }
+
+  void _addFrame(Uint8List payload) {
+    if (_frameController.isClosed) {
+      return;
+    }
+    _frameController.add(payload);
+  }
+
+  void _addFrameError(Object error, [StackTrace? stackTrace]) {
+    if (_frameController.isClosed) {
+      return;
+    }
+    _frameController.addError(error, stackTrace);
+  }
+
+  Future<void> _closeFrameController() async {
+    if (_frameController.isClosed) {
+      return;
+    }
+    await _frameController.close();
   }
 
   void _logFrameSummary(String prefix, Uint8List bytes) {

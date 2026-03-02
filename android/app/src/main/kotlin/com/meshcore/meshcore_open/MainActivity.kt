@@ -105,11 +105,8 @@ class MainActivity : FlutterActivity() {
                     "connect" -> handleUsbConnect(call, result)
                     "write" -> handleUsbWrite(call, result)
                     "disconnect" -> {
-                        usbIoExecutor.execute {
-                            closeUsbConnection()
-                            mainHandler.post {
-                                result.success(null)
-                            }
+                        scheduleCloseUsbConnection {
+                            result.success(null)
                         }
                     }
                     else -> result.notImplemented()
@@ -315,7 +312,7 @@ class MainActivity : FlutterActivity() {
                                         null,
                                     )
                                 }
-                                closeUsbConnection()
+                                scheduleCloseUsbConnection()
                             }
                         },
                     ).also { manager ->
@@ -338,6 +335,16 @@ class MainActivity : FlutterActivity() {
         return driver.ports.firstOrNull()
     }
 
+    private fun scheduleCloseUsbConnection(onComplete: (() -> Unit)? = null) {
+        usbIoExecutor.execute {
+            closeUsbConnection()
+            if (onComplete != null) {
+                mainHandler.post(onComplete)
+            }
+        }
+    }
+
+    @Synchronized
     private fun closeUsbConnection() {
         try {
             ioManager?.stop()
@@ -381,12 +388,13 @@ class MainActivity : FlutterActivity() {
         }
 
         if (connectedDeviceName == detachedName) {
-            closeUsbConnection()
-            eventSink?.error(
-                "usb_device_detached",
-                "USB device was disconnected",
-                null,
-            )
+            scheduleCloseUsbConnection {
+                eventSink?.error(
+                    "usb_device_detached",
+                    "USB device was disconnected",
+                    null,
+                )
+            }
         }
     }
 
