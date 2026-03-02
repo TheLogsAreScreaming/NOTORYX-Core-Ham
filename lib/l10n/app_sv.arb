@@ -1807,7 +1807,7 @@
   "connectionChoiceSubtitle": "Välj hur du vill komma åt din MeshCore-enhet.",
   "connectionChoiceTitle": "Välj din anslutningsmetod",
   "usbScreenTitle": "Anslut via USB",
-  "usbScreenNote": "USB-seriell kommunikation är aktiv på stöderliga Android-enheter och skrivbordsplattformar.",
+  "usbScreenNote": "USB-seriell kommunikation är aktiv på kompatibla Android-enheter och datorplattformar.",
   "usbScreenSubtitle": "Välj en detekterad seriell enhet och anslut direkt till din MeshCore-nod.",
   "usbScreenStatus": "Välj en USB-enhet",
   "usbScreenEmptyState": "Inga USB-enheter hittades. Anslut en och uppdatera."
