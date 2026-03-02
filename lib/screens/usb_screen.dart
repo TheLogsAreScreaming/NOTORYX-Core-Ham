@@ -425,6 +425,13 @@ class _UsbScreenState extends State<UsbScreen> {
     if (selectedPort == null || selectedPort.isEmpty) {
       return;
     }
+    if (_connector.state != MeshCoreConnectionState.disconnected) {
+      setState(() {
+        _isConnecting = false;
+        _errorText = null;
+      });
+      return;
+    }
     final rawPortName = normalizeUsbPortName(selectedPort);
 
     setState(() {

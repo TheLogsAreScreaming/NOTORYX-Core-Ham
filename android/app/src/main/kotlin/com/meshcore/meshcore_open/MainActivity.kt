@@ -238,75 +238,95 @@ class MainActivity : FlutterActivity() {
         baudRate: Int,
         result: MethodChannel.Result,
     ) {
-        try {
-            closeUsbConnection()
+        usbIoExecutor.execute {
+            try {
+                closeUsbConnection()
 
-            val driver = UsbSerialProber.getDefaultProber().probeDevice(device)
-            if (driver == null) {
-                result.error("usb_driver_missing", "No USB serial driver for ${device.deviceName}", null)
-                return
-            }
-
-            val connection = usbManager.openDevice(device)
-            if (connection == null) {
-                result.error(
-                    "usb_open_failed",
-                    "UsbManager could not open ${device.deviceName}",
-                    null,
-                )
-                return
-            }
-
-            val port = firstPort(driver)
-            if (port == null) {
-                connection.close()
-                result.error("usb_port_missing", "No USB serial port exposed by ${device.deviceName}", null)
-                return
-            }
-
-            port.open(connection)
-            port.setParameters(
-                baudRate,
-                8,
-                UsbSerialPort.STOPBITS_1,
-                UsbSerialPort.PARITY_NONE,
-            )
-            port.rts = false
-            port.dtr = true
-
-            usbConnection = connection
-            usbPort = port
-            connectedDeviceName = device.deviceName
-
-            ioManager =
-                SerialInputOutputManager(
-                    port,
-                    object : SerialInputOutputManager.Listener {
-                        override fun onNewData(data: ByteArray) {
-                            mainHandler.post {
-                                eventSink?.success(data)
-                            }
-                        }
-
-                        override fun onRunError(e: Exception) {
-                            mainHandler.post {
-                                eventSink?.error(
-                                    "usb_io_error",
-                                    e.message ?: "USB serial I/O error",
-                                    null,
-                                )
-                            }
-                            closeUsbConnection()
-                        }
-                    },
-                ).also { manager ->
-                    manager.start()
+                val driver = UsbSerialProber.getDefaultProber().probeDevice(device)
+                if (driver == null) {
+                    mainHandler.post {
+                        result.error(
+                            "usb_driver_missing",
+                            "No USB serial driver for ${device.deviceName}",
+                            null,
+                        )
+                    }
+                    return@execute
                 }
 
-            result.success(null)
-        } catch (error: Exception) {
-            closeUsbConnection()
-            result.error("usb_connect_failed", error.message, null)
+                val connection = usbManager.openDevice(device)
+                if (connection == null) {
+                    mainHandler.post {
+                        result.error(
+                            "usb_open_failed",
+                            "UsbManager could not open ${device.deviceName}",
+                            null,
+                        )
+                    }
+                    return@execute
+                }
+
+                val port = firstPort(driver)
+                if (port == null) {
+                    connection.close()
+                    mainHandler.post {
+                        result.error(
+                            "usb_port_missing",
+                            "No USB serial port exposed by ${device.deviceName}",
+                            null,
+                        )
+                    }
+                    return@execute
+                }
+
+                port.open(connection)
+                port.setParameters(
+                    baudRate,
+                    8,
+                    UsbSerialPort.STOPBITS_1,
+                    UsbSerialPort.PARITY_NONE,
+                )
+                port.rts = false
+                port.dtr = true
+
+                usbConnection = connection
+                usbPort = port
+                connectedDeviceName = device.deviceName
+
+                ioManager =
+                    SerialInputOutputManager(
+                        port,
+                        object : SerialInputOutputManager.Listener {
+                            override fun onNewData(data: ByteArray) {
+                                mainHandler.post {
+                                    eventSink?.success(data)
+                                }
+                            }
+
+                            override fun onRunError(e: Exception) {
+                                mainHandler.post {
+                                    eventSink?.error(
+                                        "usb_io_error",
+                                        e.message ?: "USB serial I/O error",
+                                        null,
+                                    )
+                                }
+                                closeUsbConnection()
+                            }
+                        },
+                    ).also { manager ->
+                        manager.start()
+                    }
+
+                mainHandler.post {
+                    result.success(null)
+                }
+            } catch (error: Exception) {
+                closeUsbConnection()
+                mainHandler.post {
+                    result.error("usb_connect_failed", error.message, null)
+                }
+            }
         }
     }
 
