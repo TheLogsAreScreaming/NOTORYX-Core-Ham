@@ -3506,14 +3506,17 @@ class MeshCoreConnector extends ChangeNotifier {
       // For 1:1 chats, sender is implicit (null)
       String? senderName;
       if (isRoomServer && !msg.isOutgoing) {
-        // Resolve sender from the message's fourByteRoomContactKey
-        final senderContact = _contacts.cast<Contact?>().firstWhere(
-          (c) =>
-              c != null &&
-              _matchesPrefix(c.publicKey, msg.fourByteRoomContactKey),
-          orElse: () => null,
-        );
-        senderName = senderContact?.name;
+        // Treat a missing room-contact key as unknown instead of matching every
+        // contact via an empty prefix.
+        if (msg.fourByteRoomContactKey.length == 4) {
+          final senderContact = _contacts.cast<Contact?>().firstWhere(
+            (c) =>
+                c != null &&
+                _matchesPrefix(c.publicKey, msg.fourByteRoomContactKey),
+            orElse: () => null,
+          );
+          senderName = senderContact?.name;
+        }
       } else if (isRoomServer && msg.isOutgoing) {
         senderName = selfName;
       }
