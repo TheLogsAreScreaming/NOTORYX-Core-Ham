@@ -82,13 +82,6 @@ class MeshcoreUsbFunctions(
                     return
                 }
 
-                val granted =
-                    intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
-                if (!granted) {
-                    result.error("usb_permission_denied", "USB permission denied", null)
-                    return
-                }
-
                 val device = findUsbDevice(portName)
                 if (device == null) {
                     result.error(
@@ -96,6 +89,13 @@ class MeshcoreUsbFunctions(
                         "USB device no longer available for $portName",
                         null,
                     )
+                    return
+                }
+
+                val granted =
+                    intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)
+                if (!granted || !usbManager.hasPermission(device)) {
+                    result.error("usb_permission_denied", "USB permission denied", null)
                     return
                 }
 

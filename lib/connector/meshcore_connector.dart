@@ -1169,7 +1169,6 @@ class MeshCoreConnector extends ChangeNotifier {
     _pendingInitialContactsSync = false;
     _bleInitialSyncStarted = false;
     _pendingDeferredChannelSyncAfterContacts = false;
-    _webInitialHandshakeRequestSent = false;
   }
 
   bool get _shouldAutoReconnect =>
@@ -2241,6 +2240,7 @@ class MeshCoreConnector extends ChangeNotifier {
             (_activeTransport == MeshCoreTransportType.bluetooth ||
                 _activeTransport == MeshCoreTransportType.usb)) {
           _pendingDeferredChannelSyncAfterContacts = false;
+          _pendingInitialChannelSync = false;
           unawaited(getChannels());
         }
         break;
