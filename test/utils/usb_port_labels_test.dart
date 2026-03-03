@@ -11,19 +11,47 @@ void main() {
     );
   });
 
-  test('friendlyUsbPortName prefers suffix when present', () {
-    expect(
-      friendlyUsbPortName(
-        'COM6 - USB Serial Device (COM6) - USB\\VID_2886&PID_1667',
-      ),
-      'USB Serial Device (COM6) - USB\\VID_2886&PID_1667',
-    );
-  });
+  test(
+    'friendlyUsbPortName returns only description, not hardware_id (3-part label)',
+    () {
+      expect(
+        friendlyUsbPortName(
+          'COM6 - USB Serial Device (COM6) - USB\\VID_2886&PID_1667',
+        ),
+        'USB Serial Device (COM6)',
+      );
+    },
+  );
 
   test(
-    'friendlyUsbPortName falls back to normalized port when suffix is empty',
+    'friendlyUsbPortName works for macOS-style 3-part label with USB product name',
     () {
-      expect(friendlyUsbPortName('COM6 - '), 'COM6');
+      expect(
+        friendlyUsbPortName(
+          '/dev/cu.usbmodem1101 - Nordic Semiconductor nRF52 DK - USB VID:PID=1915:520f SNR=ABCDEF',
+        ),
+        'Nordic Semiconductor nRF52 DK',
+      );
+    },
+  );
+
+  test(
+    'friendlyUsbPortName falls back to port name when description is n/a',
+    () {
+      expect(
+        friendlyUsbPortName('/dev/cu.Bluetooth-Incoming-Port - n/a - n/a'),
+        '/dev/cu.Bluetooth-Incoming-Port',
+      );
+    },
+  );
+
+  test(
+    'friendlyUsbPortName handles 2-part label (no hardware_id) correctly',
+    () {
+      expect(
+        friendlyUsbPortName('COM6 - USB Serial Device (COM6)'),
+        'USB Serial Device (COM6)',
+      );
     },
   );
 

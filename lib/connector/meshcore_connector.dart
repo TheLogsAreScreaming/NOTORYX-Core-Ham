@@ -737,8 +737,15 @@ class MeshCoreConnector extends ChangeNotifier {
     _scanResults.clear();
     _setState(MeshCoreConnectionState.scanning);
 
-    // Ensure any previous scan is fully stopped
-    await FlutterBluePlus.stopScan();
+    // Ensure any previous scan is fully stopped. Guard with isScanningNow to
+    // avoid triggering stale native callbacks when no scan is active.
+    if (FlutterBluePlus.isScanningNow) {
+      try {
+        await FlutterBluePlus.stopScan();
+      } catch (e) {
+        debugPrint('[FBP] stopScan error in startScan (ignored): $e');
+      }
+    }
     await _scanSubscription?.cancel();
 
     // On iOS/macOS, wait for Bluetooth to be powered on before scanning
@@ -787,7 +794,18 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   Future<void> stopScan() async {
-    await FlutterBluePlus.stopScan();
+    // Only call FlutterBluePlus.stopScan() when a scan is actually running.
+    // Calling it when idle triggers a native BLE completion callback even
+    // though no scan was started. After a hot restart Dart has already freed
+    // those callback handles, so the callback crashes with
+    // "Callback invoked after it has been deleted".
+    if (FlutterBluePlus.isScanningNow) {
+      try {
+        await FlutterBluePlus.stopScan();
+      } catch (e) {
+        debugPrint('[FBP] stopScan error (ignored): $e');
+      }
+    }
     await _scanSubscription?.cancel();
     _scanSubscription = null;
 

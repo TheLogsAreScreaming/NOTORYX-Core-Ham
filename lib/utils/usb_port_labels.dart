@@ -6,16 +6,25 @@ String normalizeUsbPortName(String portLabel) {
   return normalized.trim();
 }
 
+/// Returns a human-readable name for a serial port label.
+///
+/// The native flserial library encodes port info as a ` - `-separated string:
+///   `"<port> - <description> - <hardware_id>"`
+///
+/// This function extracts the *description* field (index 1) and discards the
+/// raw hardware_id, which is not user-friendly. If the description is missing
+/// or unhelpful (e.g. "n/a"), it falls back to the raw port name.
 String friendlyUsbPortName(String portLabel) {
-  final separatorIndex = portLabel.indexOf(' - ');
-  if (separatorIndex < 0) {
+  final parts = portLabel.split(' - ');
+  if (parts.length < 2) {
     return portLabel.trim();
   }
-  final friendlyName = portLabel.substring(separatorIndex + 3).trim();
-  if (friendlyName.isEmpty) {
-    return normalizeUsbPortName(portLabel);
+  // parts[0] = port name, parts[1] = description, parts[2+] = hardware id
+  final description = parts[1].trim();
+  if (description.isEmpty || description.toLowerCase() == 'n/a') {
+    return parts[0].trim();
   }
-  return friendlyName;
+  return description;
 }
 
 String describeWebUsbPort({

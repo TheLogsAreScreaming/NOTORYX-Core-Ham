@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
+import '../utils/platform_info.dart';
 import '../utils/usb_port_labels.dart';
 import 'contacts_screen.dart';
 
@@ -25,8 +26,15 @@ class _UsbScreenState extends State<UsbScreen> {
   String? _selectedPort;
   String? _connectedPortDisplayLabel;
   String? _errorText;
+  Timer? _hotPlugTimer;
   late final MeshCoreConnector _connector;
   late final VoidCallback _connectionListener;
+
+  /// Whether the current platform supports dynamic hot-plug polling.
+  /// On desktop (macOS, Windows, Linux) we poll continuously so the user
+  /// never needs to hit Refresh manually.
+  bool get _supportsHotPlug =>
+      PlatformInfo.isWindows || PlatformInfo.isLinux || PlatformInfo.isMacOS;
 
   @override
   void initState() {
@@ -58,6 +66,7 @@ class _UsbScreenState extends State<UsbScreen> {
       }
     };
     _connector.addListener(_connectionListener);
+    _startHotPlugTimer();
   }
 
   @override
@@ -72,6 +81,8 @@ class _UsbScreenState extends State<UsbScreen> {
 
   @override
   void dispose() {
+    _hotPlugTimer?.cancel();
+    _hotPlugTimer = null;
     _connector.removeListener(_connectionListener);
     if (!_navigatedToContacts &&
         _connector.activeTransport == MeshCoreTransportType.usb &&
@@ -124,101 +135,77 @@ class _UsbScreenState extends State<UsbScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Flexible(
-                    flex: 3,
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.usb,
-                            size: iconSize,
-                            color: theme.colorScheme.primary,
-                          ),
-                          SizedBox(height: gap),
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                l10n.usbScreenTitle,
-                                textAlign: TextAlign.center,
-                                style: theme.textTheme.headlineSmall?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: math.max(4.0, gap * 0.5)),
-                          Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                l10n.usbScreenSubtitle,
-                                textAlign: TextAlign.center,
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: theme.colorScheme.onSurfaceVariant,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: gap),
-                          FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Chip(
-                              label: Text(
-                                _connectedPortDisplayLabel != null &&
-                                        _connectedPortDisplayLabel!.isNotEmpty
-                                    ? _friendlyPortName(
-                                        _connectedPortDisplayLabel!,
-                                      )
-                                    : _selectedPort == null
-                                    ? l10n.usbScreenStatus
-                                    : _friendlyPortName(_selectedPort!),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              backgroundColor:
-                                  theme.colorScheme.surfaceContainerHighest,
-                            ),
-                          ),
-                        ],
+                  // ── Compact header ──────────────────────────────────────
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.usb,
+                        size: iconSize.clamp(24.0, 40.0),
+                        color: theme.colorScheme.primary,
                       ),
-                    ),
+                      SizedBox(width: gap),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              l10n.usbScreenTitle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.titleLarge?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              l10n.usbScreenSubtitle,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: gap),
+                  // ── Port list takes all remaining space ─────────────────
                   Expanded(child: _buildPortList(context)),
                   if (_errorText != null) ...[
-                    SizedBox(height: gap),
-                    Flexible(
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          _errorText!,
-                          textAlign: TextAlign.center,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.error,
-                          ),
-                        ),
+                    SizedBox(height: gap * 0.5),
+                    Text(
+                      _errorText!,
+                      textAlign: TextAlign.center,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.error,
                       ),
                     ),
                   ],
                   SizedBox(height: gap),
+                  // ── Action buttons ──────────────────────────────────────
                   if (isNarrow)
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        OutlinedButton.icon(
-                          onPressed: _isLoadingPorts || _isConnecting
-                              ? null
-                              : () {
-                                  debugPrint(
-                                    'UsbScreen: refresh ports pressed',
-                                  );
-                                  _loadPorts();
-                                },
-                          icon: const Icon(Icons.refresh),
-                          label: Text(l10n.repeater_refresh),
-                        ),
-                        SizedBox(height: gap),
+                        if (!_supportsHotPlug) ...[
+                          OutlinedButton.icon(
+                            onPressed: _isLoadingPorts || _isConnecting
+                                ? null
+                                : () {
+                                    debugPrint(
+                                      'UsbScreen: refresh ports pressed',
+                                    );
+                                    _loadPorts();
+                                  },
+                            icon: const Icon(Icons.refresh),
+                            label: Text(l10n.repeater_refresh),
+                          ),
+                          SizedBox(height: gap),
+                        ],
                         FilledButton.icon(
                           onPressed: _canConnect
                               ? () {
@@ -247,21 +234,23 @@ class _UsbScreenState extends State<UsbScreen> {
                   else
                     Row(
                       children: [
-                        Expanded(
-                          child: OutlinedButton.icon(
-                            onPressed: _isLoadingPorts || _isConnecting
-                                ? null
-                                : () {
-                                    debugPrint(
-                                      'UsbScreen: refresh ports pressed',
-                                    );
-                                    _loadPorts();
-                                  },
-                            icon: const Icon(Icons.refresh),
-                            label: Text(l10n.repeater_refresh),
+                        if (!_supportsHotPlug) ...[
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              onPressed: _isLoadingPorts || _isConnecting
+                                  ? null
+                                  : () {
+                                      debugPrint(
+                                        'UsbScreen: refresh ports pressed',
+                                      );
+                                      _loadPorts();
+                                    },
+                              icon: const Icon(Icons.refresh),
+                              label: Text(l10n.repeater_refresh),
+                            ),
                           ),
-                        ),
-                        SizedBox(width: gap),
+                          SizedBox(width: gap),
+                        ],
                         Expanded(
                           child: FilledButton.icon(
                             onPressed: _canConnect
@@ -289,17 +278,14 @@ class _UsbScreenState extends State<UsbScreen> {
                         ),
                       ],
                     ),
-                  SizedBox(height: math.max(4.0, gap * 0.75)),
-                  Flexible(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        l10n.usbScreenNote,
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.colorScheme.onSurfaceVariant,
-                        ),
-                      ),
+                  SizedBox(height: math.max(4.0, gap * 0.5)),
+                  Text(
+                    l10n.usbScreenNote,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -316,6 +302,43 @@ class _UsbScreenState extends State<UsbScreen> {
       !_isConnecting &&
       _selectedPort != null &&
       _selectedPort!.isNotEmpty;
+
+  void _startHotPlugTimer() {
+    if (!_supportsHotPlug) return;
+    _hotPlugTimer?.cancel();
+    _hotPlugTimer = Timer.periodic(const Duration(seconds: 2), (_) {
+      _pollHotPlug();
+    });
+  }
+
+  Future<void> _pollHotPlug() async {
+    // Don't interfere with an active connection attempt or initial load.
+    if (_isConnecting || _isLoadingPorts) return;
+    if (!mounted) return;
+    try {
+      final ports = await _connector.listUsbPorts();
+      if (!mounted) return;
+      final added = ports.where((p) => !_ports.contains(p)).toList();
+      final removed = _ports.where((p) => !ports.contains(p)).toList();
+      if (added.isEmpty && removed.isEmpty) return;
+      setState(() {
+        _ports
+          ..clear()
+          ..addAll(ports);
+        if (_ports.isEmpty) {
+          _selectedPort = null;
+        } else if (added.isNotEmpty) {
+          // Auto-select the newly-connected device.
+          _selectedPort = added.first;
+        } else if (_selectedPort != null && !_ports.contains(_selectedPort)) {
+          // Previously-selected device was unplugged.
+          _selectedPort = _ports.isNotEmpty ? _ports.first : null;
+        }
+      });
+    } catch (_) {
+      // Silent — hot-plug failures are non-critical.
+    }
+  }
 
   Widget _buildPortList(BuildContext context) {
     final theme = Theme.of(context);
@@ -464,13 +487,31 @@ class _UsbScreenState extends State<UsbScreen> {
 
     try {
       await _connector.connectUsb(portName: rawPortName);
-    } catch (error) {
+    } catch (error, stackTrace) {
+      debugPrint(
+        'UsbScreen: connect failed for $rawPortName: $error\n$stackTrace',
+      );
       if (!mounted) return;
       setState(() {
         _isConnecting = false;
-        _errorText = error.toString();
+        _errorText = _friendlyErrorMessage(error);
       });
+      // Re-scan so stale or renamed port entries are cleared from the list.
+      unawaited(_loadPorts());
     }
+  }
+
+  /// Strips the Dart runtime prefix (e.g. "Bad state: ", "Exception: ")
+  /// from error messages before showing them in the UI.
+  String _friendlyErrorMessage(Object error) {
+    var msg = error.toString();
+    // StateError surfaces as "Bad state: <message>"
+    if (msg.startsWith('Bad state: ')) {
+      msg = msg.substring('Bad state: '.length);
+    } else if (msg.startsWith('Exception: ')) {
+      msg = msg.substring('Exception: '.length);
+    }
+    return msg;
   }
 
   String _friendlyPortName(String portLabel) => friendlyUsbPortName(portLabel);
