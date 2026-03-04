@@ -35,6 +35,24 @@ void main() {
     },
   );
 
+  test('friendlyUsbPortName works for Linux-style label', () {
+    expect(
+      friendlyUsbPortName(
+        '/dev/ttyACM0 - RAK4631 - USB VID:PID=239A:8029 SER=xxxxxxxx',
+      ),
+      'RAK4631',
+    );
+  });
+
+  test('friendlyUsbPortName trims whitespace from label parts', () {
+    expect(
+      friendlyUsbPortName(
+        ' /dev/ttyS0  -  My Serial Port   -  n/a ',
+      ),
+      'My Serial Port',
+    );
+  });
+
   test(
     'friendlyUsbPortName falls back to port name when description is n/a',
     () {

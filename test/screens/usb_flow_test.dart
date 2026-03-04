@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +24,8 @@ class _FakeMeshCoreConnector extends MeshCoreConnector {
   String? fakeActiveUsbPort;
   String? fakeActiveUsbPortDisplayLabel;
   bool fakeUsbTransportConnected = false;
+  Future<List<String>> Function()? listUsbPortsImpl;
+  Future<void> Function({required String portName})? connectUsbImpl;
 
   @override
   MeshCoreConnectionState get state => initialState;
@@ -38,13 +41,21 @@ class _FakeMeshCoreConnector extends MeshCoreConnector {
   bool get isUsbTransportConnected => fakeUsbTransportConnected;
 
   @override
-  Future<List<String>> listUsbPorts() async => List<String>.from(_ports);
+  Future<List<String>> listUsbPorts() async {
+    if (listUsbPortsImpl != null) {
+      return listUsbPortsImpl!();
+    }
+    return List<String>.from(_ports);
+  }
 
   @override
   Future<void> connectUsb({
     required String portName,
     int baudRate = 115200,
   }) async {
+    if (connectUsbImpl != null) {
+      return connectUsbImpl!(portName: portName);
+    }
     connectUsbCalls += 1;
     lastConnectPortName = portName;
   }
@@ -144,5 +155,51 @@ void main() {
     } else {
       expect(find.widgetWithText(FloatingActionButton, 'USB'), findsNothing);
     }
+  });
+
+  group('Error Handling', () {
+    testWidgets('shows error message when listing ports fails', (tester) async {
+      final connector = _FakeMeshCoreConnector();
+      connector.listUsbPortsImpl = () async {
+        throw PlatformException(
+          code: 'usb_permission_denied',
+          message: 'Permission denied',
+        );
+      };
+
+      await tester.pumpWidget(
+        _buildTestApp(connector: connector, child: const UsbScreen()),
+      );
+      await tester.pumpAndSettle();
+
+      expect(
+        find.text('USB permission was denied.'),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets(
+      'connection failure completes without leaving loading state',
+      (tester) async {
+      final connector = _FakeMeshCoreConnector(
+        ports: <String>['COM1'],
+      );
+      var connectAttempted = false;
+      connector.connectUsbImpl = ({required String portName}) async {
+        connectAttempted = true;
+        throw PlatformException(code: 'usb_busy', message: 'Device is busy');
+      };
+
+      await tester.pumpWidget(
+        _buildTestApp(connector: connector, child: const UsbScreen()),
+      );
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.widgetWithText(FilledButton, 'Connect'));
+      await tester.pumpAndSettle();
+
+      expect(connectAttempted, isTrue);
+      expect(find.byType(CircularProgressIndicator), findsNothing);
+    });
   });
 }

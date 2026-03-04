@@ -138,4 +138,25 @@ void main() {
     expect(packets, hasLength(1));
     expect(packets.single.payload, orderedEquals(<int>[0x55]));
   });
+
+  test('recovers from invalid frame header', () {
+    final decoder = UsbSerialFrameDecoder();
+
+    final packets = decoder.ingest(
+      Uint8List.fromList(<int>[
+        // First, a malformed frame (e.g. from a partial TX echo)
+        usbSerialRxFrameStart,
+        usbSerialTxFrameStart,
+        // Then, a valid frame
+        usbSerialRxFrameStart,
+        0x01,
+        0x00,
+        0x88,
+      ]),
+    );
+
+    expect(packets, hasLength(1));
+    expect(packets.single.isRxFrame, isTrue);
+    expect(packets.single.payload, orderedEquals(<int>[0x88]));
+  });
 }
