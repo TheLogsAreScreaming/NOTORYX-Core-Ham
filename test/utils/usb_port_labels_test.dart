@@ -46,9 +46,7 @@ void main() {
 
   test('friendlyUsbPortName trims whitespace from label parts', () {
     expect(
-      friendlyUsbPortName(
-        ' /dev/ttyS0  -  My Serial Port   -  n/a ',
-      ),
+      friendlyUsbPortName(' /dev/ttyS0  -  My Serial Port   -  n/a '),
       'My Serial Port',
     );
   });

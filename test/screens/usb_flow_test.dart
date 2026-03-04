@@ -172,18 +172,13 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(
-        find.text('USB permission was denied.'),
-        findsOneWidget,
-      );
+      expect(find.text('USB permission was denied.'), findsOneWidget);
     });
 
-    testWidgets(
-      'connection failure completes without leaving loading state',
-      (tester) async {
-      final connector = _FakeMeshCoreConnector(
-        ports: <String>['COM1'],
-      );
+    testWidgets('connection failure completes without leaving loading state', (
+      tester,
+    ) async {
+      final connector = _FakeMeshCoreConnector(ports: <String>['COM1']);
       var connectAttempted = false;
       connector.connectUsbImpl = ({required String portName}) async {
         connectAttempted = true;
