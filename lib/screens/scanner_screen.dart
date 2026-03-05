@@ -33,9 +33,12 @@ class _ScannerScreenState extends State<ScannerScreen> {
     _connector = Provider.of<MeshCoreConnector>(context, listen: false);
 
     _connectionListener = () {
+      final isCurrentRoute = ModalRoute.of(context)?.isCurrent ?? true;
       if (_connector.state == MeshCoreConnectionState.disconnected) {
         _changedNavigation = false;
       } else if (_connector.state == MeshCoreConnectionState.connected &&
+          _connector.activeTransport == MeshCoreTransportType.bluetooth &&
+          isCurrentRoute &&
           !_changedNavigation) {
         _changedNavigation = true;
         if (mounted) {

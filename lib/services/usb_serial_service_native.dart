@@ -344,10 +344,6 @@ class UsbSerialService {
     // with a dangling NativeCallable pointer.
     if (_useDesktopFlSerial) {
       final serial = _serial;
-      _serial = null;
-      _status = UsbSerialStatus.disconnected;
-      _connectedPortKey = null;
-      _connectedPortLabel = null;
       try {
         if (serial?.isOpen() == FlOpenStatus.open) {
           serial?.closePort(); // synchronous C call — kills the SerialThread
