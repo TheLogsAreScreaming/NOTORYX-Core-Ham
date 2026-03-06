@@ -281,6 +281,7 @@ class PathHistoryService extends ChangeNotifier {
     _autoRotationIndex.remove(contactPubKeyHex);
     _floodStats.remove(contactPubKeyHex);
     await _storage.clearPathHistory(contactPubKeyHex);
+    _version++;
     notifyListeners();
   }
 
@@ -300,6 +301,7 @@ class PathHistoryService extends ChangeNotifier {
     );
 
     await _storage.savePathHistory(contactPubKeyHex, _cache[contactPubKeyHex]!);
+    _version++;
     notifyListeners();
   }
 
