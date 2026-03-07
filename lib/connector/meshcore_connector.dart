@@ -385,13 +385,23 @@ class MeshCoreConnector extends ChangeNotifier {
       final currentMessages =
           _conversations[contactKeyHex] ?? const <Message>[];
       final mergedMessages = <Message>[...windowedMessages];
-      final existingKeys = <String>{
-        for (final message in windowedMessages) _messageMergeKey(message),
-      };
+      final persistedKeyCounts = <String, int>{};
+      for (final message in windowedMessages) {
+        final key = _messageMergeKey(message);
+        persistedKeyCounts[key] = (persistedKeyCounts[key] ?? 0) + 1;
+      }
+      final currentKeyCounts = <String, int>{};
 
       for (final message in currentMessages) {
         final key = _messageMergeKey(message);
-        if (existingKeys.add(key)) {
+        final currentCount = (currentKeyCounts[key] ?? 0) + 1;
+        currentKeyCounts[key] = currentCount;
+        final persistedCount = persistedKeyCounts[key] ?? 0;
+
+        // Preserve distinct duplicates without IDs (for example same text
+        // received multiple times in the same second) by only skipping the
+        // overlapping occurrences that already exist in persisted storage.
+        if (currentCount > persistedCount) {
           mergedMessages.add(message);
         }
       }
@@ -413,7 +423,7 @@ class MeshCoreConnector extends ChangeNotifier {
     if (messageId != null && messageId.isNotEmpty) {
       return 'id:$messageId';
     }
-    return 'fallback:${message.isOutgoing}:${message.timestamp.millisecondsSinceEpoch}:${message.text}';
+    return 'fallback:${message.senderKeyHex}:${message.isOutgoing}:${message.isCli}:${message.timestamp.millisecondsSinceEpoch}:${message.text}';
   }
 
   /// Load older messages for a contact (pagination)

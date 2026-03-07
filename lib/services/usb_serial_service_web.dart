@@ -57,10 +57,7 @@ class UsbSerialService {
 
     _resetPortCache();
     final ports = await _getAuthorizedPorts();
-    if (ports.isEmpty) {
-      return <String>[_requestPortListEntry];
-    }
-    return ports.map(_listEntryForPort).toList(growable: false);
+    return <String>[_requestPortListEntry, ...ports.map(_listEntryForPort)];
   }
 
   Future<void> connect({
