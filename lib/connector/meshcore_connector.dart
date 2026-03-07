@@ -1572,6 +1572,8 @@ class MeshCoreConnector extends ChangeNotifier {
         type: contact.type,
         pathLength: contact.pathLength,
         path: contact.path,
+        latitude: contact.latitude,
+        longitude: contact.longitude,
         lastSeen: DateTime.now(),
       ),
     );
@@ -3890,8 +3892,8 @@ class MeshCoreConnector extends ChangeNotifier {
       appLogger.warn('Malformed RX frame: $e', tag: 'Connector');
       return;
     }
-    double latitude = 0.0;
-    double longitude = 0.0;
+    double? latitude;
+    double? longitude;
     String name = '';
     Uint8List publicKey = Uint8List(0);
     int type = 0;
@@ -3951,8 +3953,8 @@ class MeshCoreConnector extends ChangeNotifier {
     double snr,
   ) {
     final advert = BufferReader(payload);
-    double latitude = 0.0;
-    double longitude = 0.0;
+    double? latitude;
+    double? longitude;
     String name = '';
     String contactKeyHex = '';
     Uint8List publicKey = Uint8List(0);
