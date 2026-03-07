@@ -268,9 +268,23 @@ class UsbSerialService {
     return null;
   }
 
-  Future<void> _openPort(JSObject port, int baudRate) {
-    final options = JSObject()..['baudRate'] = baudRate.toJS;
-    return port.callMethod<JSPromise<JSAny?>>('open'.toJS, options).toDart;
+  Future<void> _openPort(JSObject port, int baudRate) async {
+    final options = JSObject()
+      ..['baudRate'] = baudRate.toJS
+      ..['flowControl'] = 'none'.toJS;
+    await port.callMethod<JSPromise<JSAny?>>('open'.toJS, options).toDart;
+
+    // Prevent ESP32 USB-CDC reset: hold DTR=true, RTS=false after open.
+    try {
+      final signals = JSObject()
+        ..['dataTerminalReady'] = true.toJS
+        ..['requestToSend'] = false.toJS;
+      await port
+          .callMethod<JSPromise<JSAny?>>('setSignals'.toJS, signals)
+          .toDart;
+    } catch (_) {
+      // setSignals may not be supported on all browsers/devices.
+    }
   }
 
   Future<void> _cleanupFailedConnect() async {
@@ -324,8 +338,12 @@ class UsbSerialService {
 
   Future<void> _pumpReads() async {
     final reader = _reader;
-    if (reader == null) return;
+    if (reader == null) {
+      _debugLogService?.warn('_pumpReads: reader is null', tag: 'USB Serial');
+      return;
+    }
 
+    _debugLogService?.info('_pumpReads: started', tag: 'USB Serial');
     try {
       while (_status == UsbSerialStatus.connected &&
           identical(reader, _reader)) {
@@ -333,6 +351,7 @@ class UsbSerialService {
             .callMethod<JSPromise<JSAny?>>('read'.toJS)
             .toDart;
         if (result == null) {
+          _debugLogService?.warn('_pumpReads: null result', tag: 'USB Serial');
           break;
         }
         final resultObject = result as JSObject;
@@ -340,20 +359,30 @@ class UsbSerialService {
         final doneValue = resultObject.getProperty<JSAny?>('done'.toJS);
         final done = doneValue != null && doneValue.dartify() == true;
         if (done) {
+          _debugLogService?.info('_pumpReads: done=true', tag: 'USB Serial');
           break;
         }
 
         final value = resultObject.getProperty<JSAny?>('value'.toJS);
         final bytes = _coerceBytes(value);
         if (bytes != null && bytes.isNotEmpty) {
+          _debugLogService?.info(
+            'USB RX raw: ${bytes.length} byte(s)',
+            tag: 'USB Serial',
+          );
           _ingestRawBytes(bytes);
         }
       }
     } catch (error, stackTrace) {
+      _debugLogService?.error(
+        '_pumpReads error: $error',
+        tag: 'USB Serial',
+      );
       if (_status == UsbSerialStatus.connected) {
         _addFrameError(error, stackTrace);
       }
     } finally {
+      _debugLogService?.info('_pumpReads: ended', tag: 'USB Serial');
       _releaseLock(reader);
       if (_status == UsbSerialStatus.connected && identical(reader, _reader)) {
         _addFrameError(StateError('USB serial connection closed'));
