@@ -51,6 +51,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   // Cache of PSK hex -> Community for quick lookup
   final Map<String, Community> _pskToCommunity = {};
 
+  ChannelMessageStore get _channelMessageStore => ChannelMessageStore();
+
   @override
   void initState() {
     super.initState();
@@ -61,6 +63,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   }
 
   Future<void> _loadCommunities() async {
+    final connector = context.read<MeshCoreConnector>();
+    _communityStore.setPublicKeyHex = connector.selfPublicKeyHex;
     final communities = await _communityStore.loadCommunities();
     if (mounted) {
       setState(() {
@@ -714,6 +718,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     bool isRegularHashtag = true;
     Community? selectedCommunity;
 
+    _communityStore.setPublicKeyHex = connector.selfPublicKeyHex;
+
     showDialog(
       context: context,
       builder: (dialogContext) => StatefulBuilder(
@@ -765,7 +771,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             );
           }
 
-          Widget? buildExpandedContent() {
+          Widget? buildExpandedContent(
+            ChannelMessageStore channelMessageStore,
+          ) {
             switch (selectedOption) {
               case 0: // Create Private Channel
                 return Column(
@@ -790,7 +798,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         children: [
                           Expanded(
                             child: FilledButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 final name = nameController.text.trim();
                                 if (name.isEmpty) {
                                   ScaffoldMessenger.of(
@@ -812,7 +820,14 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                   psk[i] = random.nextInt(256);
                                 }
                                 Navigator.pop(dialogContext);
-                                connector.setChannel(nextIndex, name, psk);
+                                await connector.setChannel(
+                                  nextIndex,
+                                  name,
+                                  psk,
+                                );
+                                await channelMessageStore.clearChannelMessages(
+                                  nextIndex,
+                                );
                                 if (context.mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
@@ -1331,7 +1346,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       subtitle:
                           dialogContext.l10n.channels_createPrivateChannelDesc,
                     ),
-                    if (selectedOption == 0) buildExpandedContent()!,
+                    if (selectedOption == 0)
+                      buildExpandedContent(_channelMessageStore)!,
                     const Divider(height: 1),
                     buildOptionTile(
                       optionIndex: 1,
@@ -1340,7 +1356,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       subtitle:
                           dialogContext.l10n.channels_joinPrivateChannelDesc,
                     ),
-                    if (selectedOption == 1) buildExpandedContent()!,
+                    if (selectedOption == 1)
+                      buildExpandedContent(_channelMessageStore)!,
                     if (!hasPublicChannel) ...[
                       const Divider(height: 1),
                       buildOptionTile(
@@ -1350,7 +1367,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         subtitle:
                             dialogContext.l10n.channels_joinPublicChannelDesc,
                       ),
-                      if (selectedOption == 2) buildExpandedContent()!,
+                      if (selectedOption == 2)
+                        buildExpandedContent(_channelMessageStore)!,
                     ],
                     const Divider(height: 1),
                     buildOptionTile(
@@ -1360,7 +1378,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       subtitle:
                           dialogContext.l10n.channels_joinHashtagChannelDesc,
                     ),
-                    if (selectedOption == 3) buildExpandedContent()!,
+                    if (selectedOption == 3)
+                      buildExpandedContent(_channelMessageStore)!,
                     const Divider(height: 1),
                     buildOptionTile(
                       optionIndex: 4,
@@ -1368,7 +1387,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       title: dialogContext.l10n.community_scanQr,
                       subtitle: dialogContext.l10n.community_join,
                     ),
-                    if (selectedOption == 4) buildExpandedContent()!,
+                    if (selectedOption == 4)
+                      buildExpandedContent(_channelMessageStore)!,
                     const Divider(height: 1),
                     buildOptionTile(
                       optionIndex: 5,
@@ -1376,7 +1396,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       title: dialogContext.l10n.community_create,
                       subtitle: dialogContext.l10n.community_createDesc,
                     ),
-                    if (selectedOption == 5) buildExpandedContent()!,
+                    if (selectedOption == 5)
+                      buildExpandedContent(_channelMessageStore)!,
                   ],
                 ),
               ),
@@ -1526,7 +1547,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
               try {
                 await connector.deleteChannel(channel.index);
 
-                channelMessageStore.clearChannelMessages(channel.index);
+                await channelMessageStore.clearChannelMessages(channel.index);
 
                 if (!context.mounted) return;
 
@@ -1751,6 +1772,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     }
 
     final channelCount = communityChannels.length;
+    _communityStore.setPublicKeyHex = connector.selfPublicKeyHex;
 
     showDialog(
       context: context,

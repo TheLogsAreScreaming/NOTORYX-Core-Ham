@@ -48,7 +48,7 @@ class ChannelMessageStore {
     final key = '$keyFor$channelIndex';
     final oldKey = '$_keyPrefix$channelIndex';
 
-    String? jsonString = prefs.getString(oldKey);
+    String? jsonString = prefs.getString(key);
     if (jsonString == null || jsonString.isEmpty) {
       // Attempt migration from legacy unscoped key on first load
       final legacyJsonString = prefs.getString(oldKey);
