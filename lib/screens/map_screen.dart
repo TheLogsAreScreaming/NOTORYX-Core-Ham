@@ -1514,15 +1514,16 @@ class _MapScreenState extends State<MapScreen> {
               title: Text(context.l10n.map_setAsMyLocation),
               onTap: () async {
                 final messenger = ScaffoldMessenger.of(context);
-                final message = context.l10n.settings_locationUpdated;
+                final successMsg = context.l10n.settings_locationUpdated;
                 Navigator.pop(sheetContext);
+                if (!connector.isConnected) return;
                 await connector.setNodeLocation(
                   lat: position.latitude,
                   lon: position.longitude,
                 );
                 await connector.refreshDeviceInfo();
                 if (!mounted) return;
-                messenger.showSnackBar(SnackBar(content: Text(message)));
+                messenger.showSnackBar(SnackBar(content: Text(successMsg)));
               },
             ),
             ListTile(

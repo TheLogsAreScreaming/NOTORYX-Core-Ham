@@ -184,7 +184,16 @@ class MessageRetryService extends ChangeNotifier {
       final messageId = queue.removeAt(0);
       if (_pendingMessages.containsKey(messageId)) {
         _activeMessages.add(messageId);
-        _attemptSend(messageId);
+        _attemptSend(messageId).catchError((e) {
+          debugPrint('_attemptSend threw for $messageId: $e');
+          final msg = _pendingMessages[messageId];
+          if (msg != null) {
+            final failed = msg.copyWith(status: MessageStatus.failed);
+            _pendingMessages[messageId] = failed;
+            _updateMessageCallback?.call(failed);
+          }
+          _onMessageResolved(messageId, contactKey);
+        });
         return;
       }
       // Message was cancelled/cleaned up while queued — try next
