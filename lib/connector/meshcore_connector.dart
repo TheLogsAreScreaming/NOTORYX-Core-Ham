@@ -19,6 +19,7 @@ import '../services/message_retry_service.dart';
 import '../services/path_history_service.dart';
 import '../services/app_settings_service.dart';
 import '../services/background_service.dart';
+import '../services/timeout_prediction_service.dart';
 import '../services/notification_service.dart';
 import 'meshcore_connector_usb.dart';
 import 'meshcore_connector_tcp.dart';
@@ -166,6 +167,8 @@ class MeshCoreConnector extends ChangeNotifier {
   bool _isLoadingContacts = false;
   bool _isLoadingChannels = false;
   bool _hasLoadedChannels = false;
+  TimeoutPredictionService? _timeoutPredictionService;
+  DateTime _lastRxTime = DateTime.now();
   bool _batteryRequested = false;
   bool _awaitingSelfInfo = false;
   bool _hasReceivedDeviceInfo = false;
@@ -668,6 +671,7 @@ class MeshCoreConnector extends ChangeNotifier {
     BleDebugLogService? bleDebugLogService,
     AppDebugLogService? appDebugLogService,
     BackgroundService? backgroundService,
+    TimeoutPredictionService? timeoutPredictionService,
   }) {
     _retryService = retryService;
     _pathHistoryService = pathHistoryService;
@@ -675,6 +679,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _bleDebugLogService = bleDebugLogService;
     _appDebugLogService = appDebugLogService;
     _backgroundService = backgroundService;
+    _timeoutPredictionService = timeoutPredictionService;
     _usbManager.setDebugLogService(_appDebugLogService);
     _tcpConnector.setDebugLogService(_appDebugLogService);
 
@@ -689,13 +694,23 @@ class MeshCoreConnector extends ChangeNotifier {
       updateMessageCallback: _updateMessage,
       clearContactPathCallback: clearContactPath,
       setContactPathCallback: setContactPath,
-      calculateTimeoutCallback: (pathLength, messageBytes) =>
-          calculateTimeout(pathLength: pathLength, messageBytes: messageBytes),
+      calculateTimeoutCallback: (pathLength, messageBytes, {String? contactKey}) =>
+          calculateTimeout(pathLength: pathLength, messageBytes: messageBytes, contactKey: contactKey),
       getSelfPublicKeyCallback: () => _selfPublicKey,
       prepareContactOutboundTextCallback: prepareContactOutboundText,
       appSettingsService: appSettingsService,
       debugLogService: _appDebugLogService,
       recordPathResultCallback: _recordPathResult,
+      onDeliveryObservedCallback: (contactKey, pathLength, messageBytes, tripTimeMs) {
+        final secSinceRx = DateTime.now().difference(_lastRxTime).inSeconds;
+        _timeoutPredictionService?.recordObservation(
+          contactKey: contactKey,
+          pathLength: pathLength,
+          messageBytes: messageBytes,
+          tripTimeMs: tripTimeMs,
+          secondsSinceLastRx: secSinceRx,
+        );
+      },
     );
   }
 
@@ -2498,6 +2513,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void _handleFrame(List<int> data) {
     if (data.isEmpty) return;
+    _lastRxTime = DateTime.now();
 
     final frame = Uint8List.fromList(data);
     _receivedFramesController.add(frame);
@@ -2876,7 +2892,21 @@ class MeshCoreConnector extends ChangeNotifier {
 
   /// Calculate timeout for a message based on radio settings and path length
   /// Returns timeout in milliseconds, considering number of hops
-  int calculateTimeout({required int pathLength, int messageBytes = 100}) {
+  int calculateTimeout({
+    required int pathLength,
+    int messageBytes = 100,
+    String? contactKey,
+  }) {
+    // Try ML-based prediction first
+    final secSinceRx = DateTime.now().difference(_lastRxTime).inSeconds;
+    final mlTimeout = _timeoutPredictionService?.predictTimeout(
+      contactKey: contactKey,
+      pathLength: pathLength,
+      messageBytes: messageBytes,
+      secondsSinceLastRx: secSinceRx,
+    );
+    if (mlTimeout != null) return mlTimeout;
+
     // If we have radio settings, use them for accurate calculation
     if (_currentFreqHz != null &&
         _currentBwHz != null &&
