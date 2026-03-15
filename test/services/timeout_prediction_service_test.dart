@@ -64,9 +64,9 @@ void main() {
     expect(direct4!, greaterThan(direct2!));
     expect(direct2, greaterThan(direct0!));
 
-    // All should be within the clamp range
-    expect(direct0, greaterThanOrEqualTo(2000));
-    expect(direct4, lessThanOrEqualTo(120000));
+    // All should be positive
+    expect(direct0, greaterThan(0));
+    expect(direct4, greaterThan(0));
 
     // Print predictions for visibility
     debugPrint('Predictions (with 1.5x safety margin):');

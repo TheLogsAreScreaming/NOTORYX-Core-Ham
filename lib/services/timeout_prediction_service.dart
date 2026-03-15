@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'dart:math';
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:ml_algo/ml_algo.dart';
 import 'package:ml_dataframe/ml_dataframe.dart';
@@ -9,16 +8,13 @@ import 'storage_service.dart';
 class _ContactStats {
   int count = 0;
   double _sum = 0;
-  double _sumSq = 0;
 
   void add(double ms) {
     count++;
     _sum += ms;
-    _sumSq += ms * ms;
   }
 
   double get mean => _sum / count;
-  double get stdDev => sqrt((_sumSq / count) - (mean * mean));
 }
 
 class TimeoutPredictionService extends ChangeNotifier {
@@ -27,9 +23,10 @@ class TimeoutPredictionService extends ChangeNotifier {
   static const int minObservations = 10;
   static const int maxObservations = 100;
   static const int _retrainInterval = 5;
+  // 1.5x multiplier on raw prediction to account for variance in delivery
+  // times — tight enough to improve on worst-case physics, loose enough
+  // to avoid premature timeouts from model noise.
   static const double _safetyMargin = 1.5;
-  static const int _minTimeoutMs = 2000;
-  static const int _maxTimeoutMs = 120000;
   static const int _minContactObservations = 10;
 
   List<DeliveryObservation> _observations = [];
@@ -37,6 +34,7 @@ class TimeoutPredictionService extends ChangeNotifier {
   List<String> _activeFeatures = [];
   int _observationsSinceLastTrain = 0;
   final Map<String, _ContactStats> _contactStats = {};
+  Timer? _persistTimer;
 
   TimeoutPredictionService(StorageService storage) : _storage = storage;
   TimeoutPredictionService.noStorage() : _storage = null;
@@ -89,7 +87,10 @@ class TimeoutPredictionService extends ChangeNotifier {
       _trainModel();
     }
 
-    _storage?.saveDeliveryObservations(_observations);
+    _persistTimer?.cancel();
+    _persistTimer = Timer(const Duration(seconds: 2), () {
+      _storage?.saveDeliveryObservations(_observations);
+    });
     debugPrint(
       'TimeoutPrediction: recorded ${tripTimeMs}ms for $pathLength hops '
       '(${_observations.length} total)',
@@ -123,7 +124,9 @@ class TimeoutPredictionService extends ChangeNotifier {
 
       final prediction = _model!.predict(features);
       final rawValue = prediction.rows.first.first;
-      var predictedMs = (rawValue is double) ? rawValue : (rawValue as num).toDouble();
+      var predictedMs = (rawValue is double)
+          ? rawValue
+          : (rawValue as num).toDouble();
 
       debugPrint(
         'TimeoutPrediction: raw prediction=$predictedMs for '
@@ -142,8 +145,8 @@ class TimeoutPredictionService extends ChangeNotifier {
         }
       }
 
-      final timeout =
-          (predictedMs * _safetyMargin).ceil().clamp(_minTimeoutMs, _maxTimeoutMs);
+      // Connector clamps this between physics min/max bounds
+      final timeout = (predictedMs * _safetyMargin).ceil();
       debugPrint(
         'TimeoutPrediction: ML timeout ${timeout}ms '
         '(raw: ${predictedMs.round()}ms, contact: $contactKey)',
@@ -174,7 +177,9 @@ class TimeoutPredictionService extends ChangeNotifier {
       }
 
       if (_activeFeatures.isEmpty) {
-        debugPrint('TimeoutPrediction: no features with variance, skipping training');
+        debugPrint(
+          'TimeoutPrediction: no features with variance, skipping training',
+        );
         return;
       }
 
@@ -190,25 +195,19 @@ class TimeoutPredictionService extends ChangeNotifier {
         return row;
       });
 
-      final data = DataFrame(
-        [header, ...rows],
-        headerExists: true,
-      );
+      final data = DataFrame([header, ...rows], headerExists: true);
 
       _model = LinearRegressor(data, 'deliveryMs');
       _observationsSinceLastTrain = 0;
 
       // Log training summary with sample predictions
-      final avgMs = _observations.map((o) => o.deliveryMs).reduce((a, b) => a + b) /
+      final avgMs =
+          _observations.map((o) => o.deliveryMs).reduce((a, b) => a + b) /
           _observations.length;
       debugPrint(
         'TimeoutPrediction: trained on ${_observations.length} observations '
         '(avg: ${avgMs.round()}ms, features: $_activeFeatures)',
       );
-
-      final modelJson = jsonEncode(_model!.toJson());
-      _storage?.saveTimeoutModel(modelJson);
-      notifyListeners();
     } catch (e) {
       debugPrint('TimeoutPrediction: training failed: $e');
     }

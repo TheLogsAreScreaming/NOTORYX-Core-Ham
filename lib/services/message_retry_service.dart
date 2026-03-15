@@ -74,14 +74,20 @@ class MessageRetryService extends ChangeNotifier {
     required Function(Message) updateMessageCallback,
     Function(Contact)? clearContactPathCallback,
     Function(Contact, Uint8List, int)? setContactPathCallback,
-    Function(int pathLength, int messageBytes, {String? contactKey})? calculateTimeoutCallback,
+    Function(int pathLength, int messageBytes, {String? contactKey})?
+    calculateTimeoutCallback,
     Uint8List? Function()? getSelfPublicKeyCallback,
     String Function(Contact, String)? prepareContactOutboundTextCallback,
     AppSettingsService? appSettingsService,
     AppDebugLogService? debugLogService,
     Function(String, PathSelection, bool, int?)? recordPathResultCallback,
-    Function(String contactKey, int pathLength, int messageBytes, int tripTimeMs)?
-        onDeliveryObservedCallback,
+    Function(
+      String contactKey,
+      int pathLength,
+      int messageBytes,
+      int tripTimeMs,
+    )?
+    onDeliveryObservedCallback,
   }) {
     _sendMessageCallback = sendMessageCallback;
     _addMessageCallback = addMessageCallback;
@@ -750,10 +756,12 @@ class MessageRetryService extends ChangeNotifier {
           true,
           tripTimeMs,
         );
-        if (_onDeliveryObservedCallback != null && tripTimeMs > 0) {
+        if (_onDeliveryObservedCallback != null &&
+            tripTimeMs > 0 &&
+            message.pathLength != null) {
           _onDeliveryObservedCallback!(
             contact.publicKeyHex,
-            message.pathLength ?? 0,
+            message.pathLength!,
             message.text.length,
             tripTimeMs,
           );

@@ -8,7 +8,6 @@ class StorageService {
   static const String _pendingMessagesKey = 'pending_messages';
   static const String _repeaterPasswordsKey = 'repeater_passwords';
   static const String _deliveryObservationsKey = 'delivery_observations';
-  static const String _timeoutModelKey = 'timeout_ml_model';
 
   Future<void> savePathHistory(
     String contactPubKeyHex,
@@ -143,10 +142,7 @@ class StorageService {
     try {
       final list = jsonDecode(jsonStr) as List;
       return list
-          .map(
-            (e) =>
-                DeliveryObservation.fromJson(e as Map<String, dynamic>),
-          )
+          .map((e) => DeliveryObservation.fromJson(e as Map<String, dynamic>))
           .toList();
     } catch (e) {
       return [];
@@ -156,20 +152,5 @@ class StorageService {
   Future<void> clearDeliveryObservations() async {
     final prefs = PrefsManager.instance;
     await prefs.remove(_deliveryObservationsKey);
-  }
-
-  Future<void> saveTimeoutModel(String modelJson) async {
-    final prefs = PrefsManager.instance;
-    await prefs.setString(_timeoutModelKey, modelJson);
-  }
-
-  Future<String?> loadTimeoutModel() async {
-    final prefs = PrefsManager.instance;
-    return prefs.getString(_timeoutModelKey);
-  }
-
-  Future<void> clearTimeoutModel() async {
-    final prefs = PrefsManager.instance;
-    await prefs.remove(_timeoutModelKey);
   }
 }
