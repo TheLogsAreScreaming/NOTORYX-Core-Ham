@@ -1938,5 +1938,16 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Gewicht, das nach einem fehlgeschlagenen Versand von einem Weg entfernt wurde",
   "appSettings_maxMessageRetries": "Maximale Anzahl an Wiederholungsversuchen",
   "appSettings_maxMessageRetriesSubtitle": "Anzahl der Versuche, eine Nachricht erneut zu senden, bevor sie als fehlgeschlagen markiert wird.",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingHidePin": "PIN verbergen",
+  "scanner_linuxPairingPinPrompt": "Geben Sie den PIN-Code für {deviceName} ein (lassen Sie das Feld leer, falls kein PIN-Code vorhanden ist).",
+  "scanner_linuxPairingShowPin": "PIN anzeigen",
+  "scanner_linuxPairingPinTitle": "PIN für die Bluetooth-Verbindung"
 }

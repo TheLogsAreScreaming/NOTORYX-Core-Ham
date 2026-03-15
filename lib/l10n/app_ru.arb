@@ -1150,5 +1150,16 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Вес, который был удален с пути после неудачной доставки.",
   "appSettings_maxMessageRetries": "Максимальное количество повторных попыток отправки сообщения",
   "appSettings_maxMessageRetriesSubtitle": "Количество попыток повторной отправки сообщения перед тем, как пометить его как неудачное.",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingShowPin": "Показать PIN-код",
+  "scanner_linuxPairingPinPrompt": "Введите PIN-код для {deviceName} (оставьте поле пустым, если PIN-код отсутствует).",
+  "scanner_linuxPairingHidePin": "Скрыть PIN-код",
+  "scanner_linuxPairingPinTitle": "PIN для сопряжения устройств по Bluetooth"
 }

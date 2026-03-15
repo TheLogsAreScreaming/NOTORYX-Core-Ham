@@ -1915,5 +1915,16 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "从一条路径上移除的货物，由于无法成功交付而移除。",
   "appSettings_maxMessageRetries": "最大消息重试次数",
   "appSettings_maxMessageRetriesSubtitle": "在将消息标记为失败之前，允许尝试的次数",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingPinTitle": "蓝牙配对 PIN",
+  "scanner_linuxPairingHidePin": "隐藏PIN码",
+  "scanner_linuxPairingPinPrompt": "输入 {deviceName} 的 PIN 码（如果为空，则留空）。",
+  "scanner_linuxPairingShowPin": "显示PIN码"
 }

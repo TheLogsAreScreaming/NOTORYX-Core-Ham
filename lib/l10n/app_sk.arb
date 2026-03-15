@@ -1910,5 +1910,16 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Hmotnosť odstránená z cesty po neúspešnej doručenie",
   "appSettings_maxMessageRetries": "Maximalný počet pokusov o doručenie správ",
   "appSettings_maxMessageRetriesSubtitle": "Počet pokusov o odošleť pred označením správy ako neúspešnej",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingPinPrompt": "Zadajte PIN pre {deviceName} (nechajte prázdne, ak neexistuje).",
+  "scanner_linuxPairingShowPin": "Zobraziť PIN",
+  "scanner_linuxPairingHidePin": "Skryť PIN",
+  "scanner_linuxPairingPinTitle": "PIN pre párovanie cez Bluetooth"
 }

@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart' as crypto;
 import 'package:pointycastle/export.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_blue_plus_platform_interface/flutter_blue_plus_platform_interface.dart';
 
 import '../models/channel.dart';
 import '../models/channel_message.dart';
@@ -15,6 +16,9 @@ import '../helpers/reaction_helper.dart';
 import '../helpers/smaz.dart';
 import '../services/app_debug_log_service.dart';
 import '../services/ble_debug_log_service.dart';
+import '../services/linux_ble_error_classifier.dart';
+import '../services/linux_ble_pairing_service_stub.dart'
+    if (dart.library.io) '../services/linux_ble_pairing_service.dart';
 import '../services/message_retry_service.dart';
 import '../services/path_history_service.dart';
 import '../services/app_settings_service.dart';
@@ -116,11 +120,14 @@ class MeshCoreConnector extends ChangeNotifier {
   String? _lastDeviceDisplayName;
   bool _manualDisconnect = false;
   final MeshCoreUsbManager _usbManager = MeshCoreUsbManager();
+  final LinuxBlePairingService _linuxBlePairingService =
+      LinuxBlePairingService();
   StreamSubscription<Uint8List>? _usbFrameSubscription;
   final MeshCoreTcpConnector _tcpConnector = MeshCoreTcpConnector();
   MeshCoreTransportType _activeTransport = MeshCoreTransportType.bluetooth;
 
   final List<ScanResult> _scanResults = [];
+  final List<ScanResult> _linuxSystemScanResults = [];
   final List<Contact> _contacts = [];
   final List<Contact> _discoveredContacts = [];
   final List<Channel> _channels = [];
@@ -269,6 +276,8 @@ class MeshCoreConnector extends ChangeNotifier {
   bool get isUsbTransportConnected =>
       _state == MeshCoreConnectionState.connected &&
       _activeTransport == MeshCoreTransportType.usb;
+  bool get isAutoReconnectScheduled =>
+      _shouldAutoReconnect && (_reconnectTimer?.isActive ?? false);
   String? get activeTcpEndpoint => _tcpConnector.activeEndpoint;
   bool get isTcpTransportConnected =>
       _state == MeshCoreConnectionState.connected &&
@@ -933,6 +942,7 @@ class MeshCoreConnector extends ChangeNotifier {
     if (_state == MeshCoreConnectionState.scanning) return;
 
     _scanResults.clear();
+    _linuxSystemScanResults.clear();
     _setState(MeshCoreConnectionState.scanning);
 
     // Ensure any previous scan is fully stopped. Guard with isScanningNow to
@@ -971,9 +981,15 @@ class MeshCoreConnector extends ChangeNotifier {
       await Future.delayed(const Duration(milliseconds: 300));
     }
 
+    if (PlatformInfo.isLinux) {
+      await _loadLinuxSystemDevicesForScan();
+    }
+
     _scanSubscription = FlutterBluePlus.scanResults.listen((results) {
-      _scanResults.clear();
-      _scanResults.addAll(results);
+      _scanResults
+        ..clear()
+        ..addAll(results);
+      _mergeLinuxSystemScanResults();
       notifyListeners();
     });
 
@@ -992,6 +1008,62 @@ class MeshCoreConnector extends ChangeNotifier {
 
     await Future.delayed(timeout);
     await stopScan();
+  }
+
+  Future<void> _loadLinuxSystemDevicesForScan() async {
+    try {
+      final systemDevices = await FlutterBluePlus.systemDevices([
+        Guid(MeshCoreUuids.service),
+      ]);
+      _linuxSystemScanResults
+        ..clear()
+        ..addAll(
+          systemDevices
+              .where(
+                (device) =>
+                    device.platformName.startsWith('MeshCore-') ||
+                    device.platformName.startsWith('Whisper-'),
+              )
+              .map(
+                (device) => ScanResult(
+                  device: device,
+                  advertisementData: AdvertisementData(
+                    advName: device.platformName,
+                    txPowerLevel: null,
+                    appearance: null,
+                    connectable: true,
+                    manufacturerData: const <int, List<int>>{},
+                    serviceData: const <Guid, List<int>>{},
+                    serviceUuids: <Guid>[Guid(MeshCoreUuids.service)],
+                  ),
+                  rssi: 0,
+                  timeStamp: DateTime.now(),
+                ),
+              ),
+        );
+      _mergeLinuxSystemScanResults();
+      notifyListeners();
+    } catch (error) {
+      _appDebugLogService?.warn(
+        'Failed loading Linux paired/system BLE devices: $error',
+        tag: 'BLE Scan',
+      );
+    }
+  }
+
+  void _mergeLinuxSystemScanResults() {
+    if (!PlatformInfo.isLinux || _linuxSystemScanResults.isEmpty) {
+      return;
+    }
+    final existingIds = _scanResults
+        .map((result) => result.device.remoteId.str)
+        .toSet();
+    for (final result in _linuxSystemScanResults) {
+      if (existingIds.contains(result.device.remoteId.str)) {
+        continue;
+      }
+      _scanResults.add(result);
+    }
   }
 
   Future<void> stopScan() async {
@@ -1250,7 +1322,11 @@ class MeshCoreConnector extends ChangeNotifier {
         activeTransport == MeshCoreTransportType.tcp;
   }
 
-  Future<void> connect(BluetoothDevice device, {String? displayName}) async {
+  Future<void> connect(
+    BluetoothDevice device, {
+    String? displayName,
+    Future<String?> Function()? linuxPairingPinProvider,
+  }) async {
     if (_state == MeshCoreConnectionState.connecting ||
         _state == MeshCoreConnectionState.connected) {
       return;
@@ -1295,22 +1371,149 @@ class MeshCoreConnector extends ChangeNotifier {
         }
       });
 
-      try {
-        await device.connect(
-          timeout: const Duration(seconds: 15),
-          mtu: null,
-          license: License.free,
-        );
-      } catch (error) {
-        _appDebugLogService?.error(
-          'device.connect() failure: $error',
+      if (PlatformInfo.isLinux) {
+        final remoteId = device.remoteId.str;
+        _appDebugLogService?.info(
+          'Linux pre-connect BlueZ disconnect for $remoteId',
           tag: 'BLE Connect',
         );
-        rethrow;
+        await _linuxBlePairingService.disconnectDevice(
+          remoteId,
+          onLog: (message) {
+            _appDebugLogService?.info(message, tag: 'BLE Pair');
+          },
+        );
       }
 
-      // Request larger MTU only on native platforms; web does not support it.
-      if (!PlatformInfo.isWeb) {
+      final connectTimeout = PlatformInfo.isLinux
+          ? const Duration(seconds: 6)
+          : const Duration(seconds: 15);
+      _appDebugLogService?.info(
+        'device.connect timeout set to ${connectTimeout.inSeconds}s',
+        tag: 'BLE Connect',
+      );
+      if (PlatformInfo.isLinux) {
+        Future<void> attemptConnect() {
+          return device
+              .connect(
+                timeout: connectTimeout,
+                mtu: null,
+                license: License.free,
+              )
+              .timeout(
+                connectTimeout + const Duration(seconds: 2),
+                onTimeout: () {
+                  throw TimeoutException(
+                    'Linux connect hard-timeout after ${connectTimeout.inSeconds + 2}s',
+                  );
+                },
+              );
+        }
+
+        try {
+          await attemptConnect();
+        } catch (error) {
+          _appDebugLogService?.error(
+            'device.connect() failure: $error',
+            tag: 'BLE Connect',
+          );
+          final remoteId = device.remoteId.str;
+          _appDebugLogService?.warn(
+            'Linux immediate retry: forcing BlueZ disconnect before second connect attempt',
+            tag: 'BLE Connect',
+          );
+          await _linuxBlePairingService.disconnectDevice(
+            remoteId,
+            onLog: (message) {
+              _appDebugLogService?.info(message, tag: 'BLE Pair');
+            },
+          );
+          await Future<void>.delayed(const Duration(milliseconds: 700));
+          try {
+            await attemptConnect();
+            _appDebugLogService?.info(
+              'Linux immediate retry connect succeeded',
+              tag: 'BLE Connect',
+            );
+          } catch (retryError, retryStackTrace) {
+            Object finalConnectError = retryError;
+            StackTrace finalConnectStackTrace = retryStackTrace;
+            final retryErrorText = retryError.toString().toLowerCase();
+            final isAbortByLocal = retryErrorText.contains(
+              'le-connection-abort-by-local',
+            );
+            var recoveredOnThirdAttempt = false;
+            if (isAbortByLocal) {
+              _appDebugLogService?.warn(
+                'Linux immediate retry aborted by local stack; waiting and retrying once more',
+                tag: 'BLE Connect',
+              );
+              await Future<void>.delayed(const Duration(milliseconds: 1200));
+              try {
+                await attemptConnect();
+                _appDebugLogService?.info(
+                  'Linux third-attempt connect succeeded after local abort',
+                  tag: 'BLE Connect',
+                );
+                recoveredOnThirdAttempt = true;
+              } catch (thirdError, thirdStackTrace) {
+                finalConnectError = thirdError;
+                finalConnectStackTrace = thirdStackTrace;
+                _appDebugLogService?.error(
+                  'device.connect() third-attempt failure: $thirdError',
+                  tag: 'BLE Connect',
+                );
+              }
+            }
+            if (!recoveredOnThirdAttempt) {
+              final recoveredByPairing = await _recoverLinuxConnectFailure(
+                device,
+                attemptConnect: attemptConnect,
+                onRequestPin: linuxPairingPinProvider,
+              );
+              if (recoveredByPairing) {
+                _appDebugLogService?.info(
+                  'Linux connect succeeded after pairing/trust recovery',
+                  tag: 'BLE Connect',
+                );
+              } else {
+                _appDebugLogService?.error(
+                  'device.connect() retry failure: $finalConnectError',
+                  tag: 'BLE Connect',
+                );
+                Error.throwWithStackTrace(
+                  _wrapLinuxConnectStageError(finalConnectError),
+                  finalConnectStackTrace,
+                );
+              }
+            }
+          }
+        }
+      } else {
+        try {
+          await device.connect(
+            timeout: connectTimeout,
+            mtu: null,
+            license: License.free,
+          );
+        } catch (error) {
+          _appDebugLogService?.error(
+            'device.connect() failure: $error',
+            tag: 'BLE Connect',
+          );
+          rethrow;
+        }
+      }
+
+      if (PlatformInfo.isLinux) {
+        await _ensureLinuxBleBond(
+          device,
+          onRequestPin: linuxPairingPinProvider,
+        );
+      }
+
+      // Request larger MTU only where the platform path supports it.
+      if (!PlatformInfo.isWeb && !PlatformInfo.isLinux) {
         try {
           final mtu = await device.requestMtu(185);
           _appDebugLogService?.info('MTU set to: $mtu', tag: 'BLE Connect');
@@ -1320,6 +1523,11 @@ class MeshCoreConnector extends ChangeNotifier {
             tag: 'BLE Connect',
           );
         }
+      } else if (PlatformInfo.isLinux) {
+        _appDebugLogService?.info(
+          'Skipping MTU request on Linux; flutter_blue_plus only supports requestMtu on Android',
+          tag: 'BLE Connect',
+        );
       }
 
       late final List<BluetoothService> services;
@@ -1433,8 +1641,210 @@ class MeshCoreConnector extends ChangeNotifier {
       await _startBleInitialSync();
     } catch (e) {
       _appDebugLogService?.error('Connection error: $e', tag: 'BLE Connect');
-      await disconnect(manual: false);
+      final errorText = e.toString();
+      final lowerErrorText = errorText.toLowerCase();
+      final isLinuxPairingFailure =
+          PlatformInfo.isLinux && isLinuxBlePairingFailureText(errorText);
+      final isLikelyPairingTimeout = isLikelyLinuxBlePairingTimeoutText(
+        errorText,
+      );
+      final isConnectFailure = isLinuxBleConnectFailureText(errorText);
+      final isConnectTimeoutFailure =
+          isConnectFailure && lowerErrorText.contains('timed out');
+      final isLinuxConnectFailure = PlatformInfo.isLinux && isConnectFailure;
+      // Linux pairing failures should not enter auto-reconnect loops; user
+      // needs to retry manually so they can re-enter PIN / resolve pairing.
+      if (isLinuxPairingFailure) {
+        _appDebugLogService?.warn(
+          isLikelyPairingTimeout
+              ? 'Linux pairing timed out: stopping reconnect until user retries manually'
+              : 'Linux pairing failure: stopping reconnect until user retries manually',
+          tag: 'BLE Connect',
+        );
+        await disconnect(manual: true);
+      } else if (isLinuxConnectFailure) {
+        _appDebugLogService?.warn(
+          isConnectTimeoutFailure
+              ? 'Linux connect timeout: issuing BlueZ disconnect before reconnect'
+              : 'Linux connect failure: issuing BlueZ disconnect before reconnect',
+          tag: 'BLE Connect',
+        );
+        final remoteId = _device?.remoteId.str;
+        if (remoteId != null) {
+          await _linuxBlePairingService.disconnectDevice(
+            remoteId,
+            onLog: (message) {
+              _appDebugLogService?.info(message, tag: 'BLE Pair');
+            },
+          );
+        }
+        await disconnect(manual: false, skipBleDeviceDisconnect: true);
+      } else {
+        await disconnect(manual: false);
+      }
       rethrow;
+    }
+  }
+
+  Future<bool> _recoverLinuxConnectFailure(
+    BluetoothDevice device, {
+    required Future<void> Function() attemptConnect,
+    Future<String?> Function()? onRequestPin,
+  }) async {
+    if (!PlatformInfo.isLinux ||
+        !await _linuxBlePairingService.isBluetoothctlAvailable()) {
+      return false;
+    }
+    final remoteId = device.remoteId.str;
+    final pluginBondState = await _getLinuxPluginBondState(device);
+    final trustedByBluez = await _linuxBlePairingService.isPairedAndTrusted(
+      remoteId,
+    );
+    final needsBondRecovery =
+        pluginBondState != BmBondStateEnum.bonded || !trustedByBluez;
+    if (!needsBondRecovery) {
+      return false;
+    }
+    _appDebugLogService?.warn(
+      pluginBondState == BmBondStateEnum.bonded
+          ? 'Linux connect failed with an untrusted bond; attempting trust/pair recovery'
+          : 'Linux connect failed before bond completed; attempting pairing fallback',
+      tag: 'BLE Connect',
+    );
+    await _ensureLinuxBleBond(device, onRequestPin: onRequestPin);
+    _appDebugLogService?.info(
+      'Resetting BlueZ connection after Linux pairing/trust recovery',
+      tag: 'BLE Connect',
+    );
+    await _linuxBlePairingService.disconnectDevice(
+      remoteId,
+      onLog: (message) {
+        _appDebugLogService?.info(message, tag: 'BLE Pair');
+      },
+    );
+    await Future<void>.delayed(const Duration(milliseconds: 700));
+    try {
+      await attemptConnect();
+    } catch (error, stackTrace) {
+      Error.throwWithStackTrace(_wrapLinuxConnectStageError(error), stackTrace);
+    }
+    return true;
+  }
+
+  Object _wrapLinuxConnectStageError(Object error) {
+    final errorText = error.toString();
+    if (errorText.toLowerCase().contains(linuxConnectStageFailureMarker)) {
+      return error;
+    }
+    return StateError('Linux connect stage failure: $error');
+  }
+
+  Future<BmBondStateEnum?> _getLinuxPluginBondState(
+    BluetoothDevice device,
+  ) async {
+    try {
+      final response = await FlutterBluePlusPlatform.instance.getBondState(
+        BmBondStateRequest(remoteId: device.remoteId),
+      );
+      return response.bondState;
+    } catch (error) {
+      _appDebugLogService?.warn(
+        'Linux getBondState unavailable for ${device.remoteId.str}: $error',
+        tag: 'BLE Connect',
+      );
+      return null;
+    }
+  }
+
+  Future<void> _ensureLinuxBleBond(
+    BluetoothDevice device, {
+    Future<String?> Function()? onRequestPin,
+  }) async {
+    final remoteId = device.remoteId.str;
+    final bluetoothctlAvailable = await _linuxBlePairingService
+        .isBluetoothctlAvailable();
+    final beforeBondState = await _getLinuxPluginBondState(device);
+    if (!bluetoothctlAvailable) {
+      if (beforeBondState == BmBondStateEnum.bonded) {
+        _appDebugLogService?.warn(
+          'bluetoothctl unavailable; continuing with plugin bonded state',
+          tag: 'BLE Connect',
+        );
+      } else {
+        _appDebugLogService?.warn(
+          'bluetoothctl unavailable and device is not bonded; skipping Linux pairing fallback',
+          tag: 'BLE Connect',
+        );
+      }
+      return;
+    }
+
+    final trustedByBluez = await _linuxBlePairingService.isPairedAndTrusted(
+      remoteId,
+    );
+    if (trustedByBluez) {
+      _appDebugLogService?.info(
+        'Linux BLE device already paired/trusted, skipping pairing flow',
+        tag: 'BLE Connect',
+      );
+      return;
+    }
+
+    if (beforeBondState == BmBondStateEnum.bonded && !trustedByBluez) {
+      _appDebugLogService?.warn(
+        'Linux BLE device is bonded but not trusted in BlueZ; repairing trust',
+        tag: 'BLE Connect',
+      );
+      final trustRepaired = await _linuxBlePairingService.trustDevice(
+        remoteId,
+        onLog: (message) {
+          _appDebugLogService?.info(message, tag: 'BLE Pair');
+        },
+      );
+      if (trustRepaired) {
+        _appDebugLogService?.info(
+          'Linux BLE trust repair succeeded without re-pairing',
+          tag: 'BLE Connect',
+        );
+        return;
+      }
+      _appDebugLogService?.warn(
+        'Linux BLE trust repair did not stick; retrying pairing flow',
+        tag: 'BLE Connect',
+      );
+    }
+
+    _appDebugLogService?.info(
+      beforeBondState == BmBondStateEnum.bonded
+          ? 'Linux BLE device still untrusted after repair; requesting pair'
+          : 'Linux BLE device not bonded, requesting pair',
+      tag: 'BLE Connect',
+    );
+    final paired = await _linuxBlePairingService.pairAndTrust(
+      remoteId: remoteId,
+      onLog: (message) {
+        _appDebugLogService?.info(message, tag: 'BLE Pair');
+      },
+      onRequestPin: onRequestPin,
+    );
+    if (!paired) {
+      throw StateError('Linux pairing fallback failed');
+    }
+
+    final afterBondState = await _getLinuxPluginBondState(device);
+    if (afterBondState != null && afterBondState != BmBondStateEnum.bonded) {
+      throw StateError('Linux BLE pairing did not complete');
+    } else if (afterBondState == null) {
+      _appDebugLogService?.warn(
+        'Linux plugin bond state unavailable after pairing; relying on BlueZ trust verification',
+        tag: 'BLE Connect',
+      );
+    }
+    final trustedAfter = await _linuxBlePairingService.isPairedAndTrusted(
+      remoteId,
+    );
+    if (!trustedAfter) {
+      throw StateError('Linux BLE trust repair did not complete');
     }
   }
 
@@ -1559,7 +1969,10 @@ class MeshCoreConnector extends ChangeNotifier {
     });
   }
 
-  Future<void> disconnect({bool manual = true}) async {
+  Future<void> disconnect({
+    bool manual = true,
+    bool skipBleDeviceDisconnect = false,
+  }) async {
     if (_state == MeshCoreConnectionState.disconnecting) return;
     final transportAtDisconnect = _activeTransport;
     final transportLabel = switch (transportAtDisconnect) {
@@ -1602,11 +2015,18 @@ class MeshCoreConnector extends ChangeNotifier {
     _channelSyncTimeout = null;
     _channelSyncRetries = 0;
 
-    try {
-      // Skip queued BLE operations so disconnect doesn't get stuck behind them.
-      await _device?.disconnect(queue: false);
-    } catch (e) {
-      _appDebugLogService?.warn('Disconnect error: $e', tag: 'BLE Connect');
+    if (!skipBleDeviceDisconnect) {
+      try {
+        // Skip queued BLE operations so disconnect doesn't get stuck behind them.
+        await _device?.disconnect(queue: false);
+      } catch (e) {
+        _appDebugLogService?.warn('Disconnect error: $e', tag: 'BLE Connect');
+      }
+    } else {
+      _appDebugLogService?.info(
+        'Skipping plugin BLE disconnect and continuing cleanup',
+        tag: 'BLE Connect',
+      );
     }
 
     _device = null;

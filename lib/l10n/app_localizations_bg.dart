@@ -269,6 +269,20 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get scanner_linuxPairingPinTitle => 'PIN за свързване чрез Bluetooth';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Въведете PIN кода за $deviceName (оставете празно, ако няма такъв).';
+  }
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Покажи PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Скриване на PIN кода';
+
+  @override
   String get scanner_stop => 'Спрете';
 
   @override

@@ -1910,5 +1910,16 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Vikt som tagits bort från en väg efter ett misslyckat leveransförsök",
   "appSettings_maxMessageRetries": "Maximalt antal försök",
   "appSettings_maxMessageRetriesSubtitle": "Antal försök att skicka om ett meddelande innan det markeras som misslyckat.",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingPinPrompt": "Ange PIN-kod för {deviceName} (lämna tomt om ingen finns).",
+  "scanner_linuxPairingHidePin": "Dölj PIN-kod",
+  "scanner_linuxPairingShowPin": "Visa PIN-kod",
+  "scanner_linuxPairingPinTitle": "PIN för Bluetooth-parning"
 }

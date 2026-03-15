@@ -268,6 +268,21 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get scanner_linuxPairingPinTitle =>
+      'PIN za združevanje preko Bluetootha';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Vnesite PIN kodo za $deviceName (ostavite prazno, če nimate kode).';
+  }
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Prikaži PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Skrijte PIN';
+
+  @override
   String get scanner_stop => 'Prekliči';
 
   @override

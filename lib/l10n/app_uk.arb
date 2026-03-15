@@ -1910,5 +1910,16 @@
   "appSettings_routeWeightFailureDecrementSubtitle": "Вага, яка була знята з маршруту після невдалої доставки",
   "appSettings_maxMessageRetries": "Максимальна кількість повторних спроб надсилання повідомлення",
   "appSettings_maxMessageRetriesSubtitle": "Кількість спроб повторного відправлення повідомлення перед тим, як позначити його як невдале",
-  "path_routeWeight": "{weight}/{max}"
+  "path_routeWeight": "{weight}/{max}",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "scanner_linuxPairingHidePin": "Приховати PIN-код",
+  "scanner_linuxPairingPinTitle": "PIN для з'єднання через Bluetooth",
+  "scanner_linuxPairingPinPrompt": "Введіть PIN-код для {deviceName} (залиште поле порожнім, якщо немає).",
+  "scanner_linuxPairingShowPin": "Показати PIN-код"
 }
