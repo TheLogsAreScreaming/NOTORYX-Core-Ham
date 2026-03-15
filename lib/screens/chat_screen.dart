@@ -858,7 +858,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 builder: (context) => PathTraceMapScreen(
                   title: context.l10n.contacts_repeaterPathTrace,
                   path: Uint8List.fromList(pathBytes),
-                  flipPathRound: true,
+                  flipPathAround: true,
                   targetContact: widget.contact,
                 ),
               ),
@@ -1027,7 +1027,7 @@ class _ChatScreenState extends State<ChatScreen> {
     final currentPathLabel = _currentPathLabel(currentContact);
 
     // Filter out the current contact from available contacts
-    final availableContacts = connector.contacts
+    final availableContacts = connector.allContacts
         .where((c) => c != widget.contact)
         .toList();
 

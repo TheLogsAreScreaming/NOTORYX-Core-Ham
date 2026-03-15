@@ -137,10 +137,7 @@ class _MapScreenState extends State<MapScreen> {
       builder: (context, connector, settingsService, pathHistory, child) {
         final tileCache = context.read<MapTileCacheService>();
         final settings = settingsService.settings;
-        final allContacts = <Contact>[
-          ...connector.contacts,
-          ...connector.discoveredContacts.where((c) => !c.isActive),
-        ];
+        final allContacts = connector.allContacts;
 
         final contacts = settings.mapShowDiscoveryContacts
             ? allContacts
@@ -179,20 +176,13 @@ class _MapScreenState extends State<MapScreen> {
 
         // Filter by location
         final contactsWithLocation = filteredByKeyPrefix.where((c) {
-          if (!c.hasLocation) {
-            return false;
-          }
-          return _checkLocationPlausibility(c.latitude!, c.longitude!);
+          return c.hasLocation;
         }).toList();
 
         // All contacts with a known location — used as anchors regardless of
         // time/key-prefix filters so that repeaters are always available.
         final allContactsWithLocation = allContacts
-            .where(
-              (c) =>
-                  c.hasLocation &&
-                  _checkLocationPlausibility(c.latitude!, c.longitude!),
-            )
+            .where((c) => c.hasLocation)
             .toList();
 
         // Compute guessed locations with caching

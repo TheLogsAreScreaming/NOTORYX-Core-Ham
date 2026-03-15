@@ -294,6 +294,10 @@ class MeshCoreConnector extends ChangeNotifier {
     );
   }
 
+  List<Contact> get allContacts => List.unmodifiable([
+    ..._contacts,
+    ..._discoveredContacts.where((c) => !c.isActive),
+  ]);
   List<Contact> get discoveredContacts {
     return List.unmodifiable(_discoveredContacts);
   }
@@ -726,6 +730,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _knownContactKeys
       ..clear()
       ..addAll(cached.map((c) => c.publicKeyHex));
+    _contacts
+      ..clear()
+      ..addAll(cached);
     for (final contact in cached) {
       _ensureContactSmazSettingLoaded(contact.publicKeyHex);
     }
@@ -1558,6 +1565,10 @@ class MeshCoreConnector extends ChangeNotifier {
 
     if (_activeTransport == MeshCoreTransportType.usb) {
       await _usbManager.write(data);
+      // Brief pause so the device firmware can process each frame before the
+      // next arrives. Without this, rapid-fire frames over USB can cause the
+      // device to miss responses (especially on reconnect).
+      await Future<void>.delayed(const Duration(milliseconds: 10));
     } else if (_activeTransport == MeshCoreTransportType.tcp) {
       await _tcpConnector.write(data);
     } else {
@@ -2962,6 +2973,8 @@ class MeshCoreConnector extends ChangeNotifier {
   void _handleContact(Uint8List frame, {bool isContact = true}) {
     final contact = Contact.fromFrame(frame);
     if (contact != null) {
+      _handleDiscovery(contact, frame, noNotify: true, addActive: true);
+
       if (contact.type == advTypeRepeater) {
         _contactUnreadCount.remove(contact.publicKeyHex);
         _unreadStore.saveContactUnreadCount(
@@ -4770,6 +4783,12 @@ class MeshCoreConnector extends ChangeNotifier {
           (_autoAddRoomServers && type == advTypeRoom) ||
           (_autoAddSensors && type == advTypeSensor)) {
         _handleContactAdvert(newContact);
+        _handleDiscovery(
+          newContact,
+          rawPacket,
+          noNotify: true,
+          addActive: true,
+        );
       } else {
         _handleDiscovery(newContact, rawPacket);
       }
@@ -4794,8 +4813,20 @@ class MeshCoreConnector extends ChangeNotifier {
 
       // CRITICAL: Preserve user's path override when contact is refreshed from device
       _contacts[existingIndex] = existing.copyWith(
-        latitude: hasLocation ? latitude : existing.latitude,
-        longitude: hasLocation ? longitude : existing.longitude,
+        latitude:
+            hasLocation &&
+                latitude != null &&
+                latitude.abs() <= 90 &&
+                (latitude != 0 || longitude != 0)
+            ? latitude
+            : existing.latitude,
+        longitude:
+            hasLocation &&
+                longitude != null &&
+                longitude.abs() <= 180 &&
+                (latitude != 0 || longitude != 0)
+            ? longitude
+            : existing.longitude,
         name: hasName ? name : existing.name,
         path: Uint8List.fromList(path.reversed.toList()),
         pathLength: path.length,
@@ -4866,11 +4897,11 @@ class MeshCoreConnector extends ChangeNotifier {
     try {
       reader.skipBytes(1); // Skip the response code byte
       final flags = reader.readByte();
-      _autoAddUsers = flags & autoAddChatFlag != 0;
-      _autoAddRepeaters = flags & autoAddRepeaterFlag != 0;
-      _autoAddRoomServers = flags & autoAddRoomServerFlag != 0;
-      _autoAddSensors = flags & autoAddSensorFlag != 0;
-      _overwriteOldest = flags & autoAddOverwriteOldestFlag != 0;
+      _autoAddUsers = (flags & autoAddChatFlag) != 0;
+      _autoAddRepeaters = (flags & autoAddRepeaterFlag) != 0;
+      _autoAddRoomServers = (flags & autoAddRoomServerFlag) != 0;
+      _autoAddSensors = (flags & autoAddSensorFlag) != 0;
+      _overwriteOldest = (flags & autoAddOverwriteOldestFlag) != 0;
     } catch (e) {
       appLogger.error('Failed to parse auto-add config: $e', tag: 'Connector');
     }
@@ -4880,6 +4911,7 @@ class MeshCoreConnector extends ChangeNotifier {
     Contact contact,
     Uint8List rawPacket, {
     bool noNotify = false,
+    bool addActive = false,
   }) {
     appLogger.info('Discovered new contact: ${contact.name}', tag: 'Connector');
 
@@ -4900,7 +4932,7 @@ class MeshCoreConnector extends ChangeNotifier {
             longitude: contact.longitude,
             lastSeen: contact.lastSeen,
             flags: 0,
-            isActive: false,
+            isActive: addActive,
           );
       notifyListeners();
       unawaited(_persistDiscoveredContacts());
@@ -4918,7 +4950,7 @@ class MeshCoreConnector extends ChangeNotifier {
       longitude: contact.longitude,
       lastSeen: contact.lastSeen,
       lastMessageAt: contact.lastMessageAt,
-      isActive: false,
+      isActive: addActive,
       flags: 0,
     );
     _discoveredContacts.add(disContact);

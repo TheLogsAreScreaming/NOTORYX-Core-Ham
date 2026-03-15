@@ -78,7 +78,7 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
                 builder: (context) => PathTraceMapScreen(
                   title: context.l10n.contacts_repeaterPathTrace,
                   path: Uint8List.fromList(pathBytes),
-                  flipPathRound: true,
+                  flipPathAround: true,
                   targetContact: widget.contact,
                 ),
               ),
@@ -107,7 +107,7 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
     }
 
     final pathForInput = currentContact.pathIdList;
-    final availableContacts = connector.contacts
+    final availableContacts = connector.allContacts
         .where((c) => c.publicKeyHex != currentContact.publicKeyHex)
         .toList();
 
