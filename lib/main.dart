@@ -19,6 +19,7 @@ import 'services/app_debug_log_service.dart';
 import 'services/background_service.dart';
 import 'services/map_tile_cache_service.dart';
 import 'services/chat_text_scale_service.dart';
+import 'services/ui_view_state_service.dart';
 import 'services/timeout_prediction_service.dart';
 import 'storage/prefs_manager.dart';
 import 'utils/app_logger.dart';
@@ -40,6 +41,7 @@ void main() async {
   final backgroundService = BackgroundService();
   final mapTileCacheService = MapTileCacheService();
   final chatTextScaleService = ChatTextScaleService();
+  final uiViewStateService = UiViewStateService();
   final timeoutPredictionService = TimeoutPredictionService(storage);
 
   // Load settings
@@ -58,6 +60,7 @@ void main() async {
   _registerThirdPartyLicenses();
 
   await chatTextScaleService.initialize();
+  await uiViewStateService.initialize();
   await timeoutPredictionService.initialize();
 
   // Wire up connector with services
@@ -90,6 +93,7 @@ void main() async {
       appDebugLogService: appDebugLogService,
       mapTileCacheService: mapTileCacheService,
       chatTextScaleService: chatTextScaleService,
+      uiViewStateService: uiViewStateService,
       timeoutPredictionService: timeoutPredictionService,
     ),
   );
@@ -126,6 +130,7 @@ class MeshCoreApp extends StatelessWidget {
   final AppDebugLogService appDebugLogService;
   final MapTileCacheService mapTileCacheService;
   final ChatTextScaleService chatTextScaleService;
+  final UiViewStateService uiViewStateService;
   final TimeoutPredictionService timeoutPredictionService;
 
   const MeshCoreApp({
@@ -139,6 +144,7 @@ class MeshCoreApp extends StatelessWidget {
     required this.appDebugLogService,
     required this.mapTileCacheService,
     required this.chatTextScaleService,
+    required this.uiViewStateService,
     required this.timeoutPredictionService,
   });
 
@@ -153,6 +159,7 @@ class MeshCoreApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: bleDebugLogService),
         ChangeNotifierProvider.value(value: appDebugLogService),
         ChangeNotifierProvider.value(value: chatTextScaleService),
+        ChangeNotifierProvider.value(value: uiViewStateService),
         Provider.value(value: storage),
         Provider.value(value: mapTileCacheService),
         ChangeNotifierProvider.value(value: timeoutPredictionService),

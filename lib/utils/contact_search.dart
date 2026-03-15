@@ -1,5 +1,7 @@
 import '../models/contact.dart';
 
+export 'contact_filter_types.dart';
+
 bool matchesContactQuery(Contact contact, String query) {
   final normalizedQuery = query.trim().toLowerCase();
   if (normalizedQuery.isEmpty) return true;
