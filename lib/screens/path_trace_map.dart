@@ -312,8 +312,8 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
             targetPos = LatLng(target!.latitude!, target!.longitude!);
           } else if (widget.path.length > 1) {
             // Infer from the last hop: average GPS contacts sharing that hop.
-            // For a round-trip path (flipPathRound), the target-side hop sits
-            // in the middle of the symmetric sequence; .last is the local side.
+            // For a round-trip path (flipPathAround/reversePathAround), the target-side hop
+            // sits in the middle of the symmetric sequence; .last is the local side.
             final lastHop = widget.reversePathAround
                 ? widget.path.first
                 : widget.path.last;
