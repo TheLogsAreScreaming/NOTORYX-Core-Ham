@@ -454,8 +454,11 @@ class _ContactsScreenState extends State<ContactsScreen>
     }
   }
 
-  void _closeDropdownAndRun(BuildContext context, VoidCallback action) {
-    Navigator.of(context).pop();
+  void _closeDropdownAndRun(BuildContext popupContext, VoidCallback action) {
+    final route = ModalRoute.of(popupContext);
+    if (route != null && route.isCurrent) {
+      Navigator.of(popupContext).pop();
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       action();
