@@ -213,6 +213,12 @@ class TimeoutPredictionService extends ChangeNotifier {
     }
   }
 
+  @override
+  void dispose() {
+    _persistTimer?.cancel();
+    super.dispose();
+  }
+
   void _rebuildContactStats() {
     _contactStats.clear();
     for (final obs in _observations) {
