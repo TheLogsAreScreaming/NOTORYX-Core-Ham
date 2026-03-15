@@ -4753,8 +4753,20 @@ class MeshCoreConnector extends ChangeNotifier {
 
       // CRITICAL: Preserve user's path override when contact is refreshed from device
       _contacts[existingIndex] = existing.copyWith(
-        latitude: hasLocation ? latitude : existing.latitude,
-        longitude: hasLocation ? longitude : existing.longitude,
+        latitude:
+            hasLocation &&
+                latitude != null &&
+                latitude.abs() <= 90 &&
+                longitude != 0
+            ? latitude
+            : existing.latitude,
+        longitude:
+            hasLocation &&
+                longitude != null &&
+                longitude.abs() <= 180 &&
+                longitude != 0
+            ? longitude
+            : existing.longitude,
         name: hasName ? name : existing.name,
         path: Uint8List.fromList(path.reversed.toList()),
         pathLength: path.length,

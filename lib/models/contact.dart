@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 import 'package:meshcore_open/utils/app_logger.dart';
 
 import '../connector/meshcore_protocol.dart';
@@ -65,7 +66,17 @@ class Contact {
     return '$pathLength hops';
   }
 
-  bool get hasLocation => latitude != null && longitude != null;
+  bool get hasLocation {
+    const double epsilon = 1e-6;
+    final lat = latitude ?? 0.0;
+    final lon = longitude ?? 0.0;
+    return (lat.abs() > epsilon || lon.abs() > epsilon) &&
+        lat >= -90.0 &&
+        lat <= 90.0 &&
+        lon >= -180.0 &&
+        lon <= 180.0;
+  }
+
   bool get isFavorite => (flags & contactFlagFavorite) != 0;
 
   Contact copyWith({
@@ -108,7 +119,7 @@ class Contact {
   }
 
   String get pathIdList {
-    final pathBytes = _pathBytesForDisplay;
+    final pathBytes = pathBytesForDisplay;
     if (pathBytes.isEmpty) return '';
     final parts = <String>[];
     final groupSize = pathHashSize;
@@ -130,43 +141,7 @@ class Contact {
     return "<${publicKeyHex.substring(0, 8)}...${publicKeyHex.substring(publicKeyHex.length - 8)}>";
   }
 
-  Uint8List? get traceRouteBytes {
-    final pathBytes = _pathBytesForDisplay;
-    Uint8List? traceBytes;
-
-    if (pathBytes.isEmpty) {
-      traceBytes = Uint8List(1);
-      traceBytes[0] = publicKey[0];
-      return traceBytes;
-    }
-
-    if (type == advTypeRepeater || type == advTypeRoom) {
-      final len = (pathBytes.length + pathBytes.length + 1);
-      traceBytes = Uint8List(len);
-      traceBytes[pathBytes.length] = publicKey[0];
-      for (int i = 0; i < pathBytes.length; i++) {
-        traceBytes[i] = pathBytes[i];
-        if (i < pathBytes.length) {
-          traceBytes[len - 1 - i] = pathBytes[i];
-        }
-      }
-    } else {
-      if (pathBytes.length < 2) {
-        return pathBytes[0] == 0 ? null : pathBytes;
-      }
-      final len = (pathBytes.length + pathBytes.length - 1);
-      traceBytes = Uint8List(len);
-      for (int i = 0; i < pathBytes.length; i++) {
-        traceBytes[i] = pathBytes[i];
-        if (i < pathBytes.length - 1) {
-          traceBytes[len - 1 - i] = pathBytes[i];
-        }
-      }
-    }
-    return traceBytes;
-  }
-
-  Uint8List get _pathBytesForDisplay {
+  Uint8List get pathBytesForDisplay {
     if (pathOverride != null) {
       if (pathOverride! < 0) return Uint8List(0);
       return pathOverrideBytes ?? Uint8List(0);
@@ -197,6 +172,7 @@ class Contact {
       double? lat, lon;
       final latRaw = reader.readInt32LE();
       final lonRaw = reader.readInt32LE();
+
       if (latRaw != 0 || lonRaw != 0) {
         lat = latRaw / 1e6;
         lon = lonRaw / 1e6;

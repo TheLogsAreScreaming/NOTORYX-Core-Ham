@@ -1064,7 +1064,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             if (isRepeater) ...[
               ListTile(
                 leading: const Icon(Icons.radar, color: Colors.green),
-                title: contact.pathLength > 0
+                title: contact.pathBytesForDisplay.isNotEmpty
                     ? Text(context.l10n.contacts_pathTrace)
                     : Text(context.l10n.contacts_ping),
                 onTap: () {
@@ -1072,10 +1072,12 @@ class _ContactsScreenState extends State<ContactsScreen>
                     context,
                     MaterialPageRoute(
                       builder: (context) => PathTraceMapScreen(
-                        title: contact.pathLength > 0
+                        title: contact.pathBytesForDisplay.isNotEmpty
                             ? context.l10n.contacts_repeaterPathTrace
                             : context.l10n.contacts_repeaterPing,
-                        path: contact.traceRouteBytes ?? Uint8List(0),
+                        path: contact.pathBytesForDisplay,
+                        flipPathAround: true,
+                        targetContact: contact,
                       ),
                     ),
                   );
@@ -1100,10 +1102,12 @@ class _ContactsScreenState extends State<ContactsScreen>
                     context,
                     MaterialPageRoute(
                       builder: (context) => PathTraceMapScreen(
-                        title: contact.pathLength > 0
+                        title: contact.pathBytesForDisplay.isNotEmpty
                             ? context.l10n.contacts_roomPathTrace
                             : context.l10n.contacts_roomPing,
-                        path: contact.traceRouteBytes ?? Uint8List(0),
+                        path: contact.pathBytesForDisplay,
+                        flipPathAround: contact.pathBytesForDisplay.isNotEmpty,
+                        targetContact: contact,
                       ),
                     ),
                   );
@@ -1145,7 +1149,8 @@ class _ContactsScreenState extends State<ContactsScreen>
                           title: context.l10n.contacts_pathTraceTo(
                             contact.name,
                           ),
-                          path: contact.traceRouteBytes ?? Uint8List(0),
+                          path: contact.pathBytesForDisplay,
+                          flipPathAround: true,
                           targetContact: contact,
                         ),
                       ),

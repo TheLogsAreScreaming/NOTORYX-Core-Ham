@@ -62,8 +62,9 @@ class ChannelMessagePathScreen extends StatelessWidget {
                     builder: (context) => PathTraceMapScreen(
                       title: context.l10n.contacts_repeaterPathTrace,
                       path: primaryPath,
-                      flipPathRound: true,
-                      reversePathRound: !message.isOutgoing && !channelMessage,
+                      flipPathAround: true,
+                      reversePathAround:
+                          !(!channelMessage && !message.isOutgoing),
                     ),
                   ),
                 ),
