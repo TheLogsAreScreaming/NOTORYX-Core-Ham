@@ -39,13 +39,8 @@ import '../storage/unread_store.dart';
 import '../utils/app_logger.dart';
 import '../utils/battery_utils.dart';
 import '../utils/platform_info.dart';
+import 'meshcore_uuids.dart';
 import 'meshcore_protocol.dart';
-
-class MeshCoreUuids {
-  static const String service = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
-  static const String rxCharacteristic = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
-  static const String txCharacteristic = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
-}
 
 class DirectRepeater {
   static const int maxAgeMinutes = 30; // Max age for direct repeater info
@@ -995,7 +990,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     try {
       await FlutterBluePlus.startScan(
-        withKeywords: ["MeshCore-", "Whisper-"],
+        withKeywords: MeshCoreUuids.deviceNamePrefixes,
         webOptionalServices: [Guid(MeshCoreUuids.service)],
         timeout: timeout,
         androidScanMode: AndroidScanMode.lowLatency,
@@ -1020,9 +1015,9 @@ class MeshCoreConnector extends ChangeNotifier {
         ..addAll(
           systemDevices
               .where(
-                (device) =>
-                    device.platformName.startsWith('MeshCore-') ||
-                    device.platformName.startsWith('Whisper-'),
+                (device) => MeshCoreUuids.deviceNamePrefixes.any(
+                  device.platformName.startsWith,
+                ),
               )
               .map(
                 (device) => ScanResult(
