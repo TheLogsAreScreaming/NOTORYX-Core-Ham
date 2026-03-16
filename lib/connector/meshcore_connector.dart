@@ -1701,7 +1701,9 @@ class MeshCoreConnector extends ChangeNotifier {
       remoteId,
     );
     final needsBondRecovery =
-        pluginBondState != BmBondStateEnum.bonded || !trustedByBluez;
+        (pluginBondState != null &&
+            pluginBondState != BmBondStateEnum.bonded) ||
+        !trustedByBluez;
     if (!needsBondRecovery) {
       return false;
     }
@@ -1770,6 +1772,11 @@ class MeshCoreConnector extends ChangeNotifier {
           'bluetoothctl unavailable; continuing with plugin bonded state',
           tag: 'BLE Connect',
         );
+      } else if (beforeBondState == null) {
+        _appDebugLogService?.warn(
+          'bluetoothctl unavailable and plugin bond state is unknown; skipping Linux pairing fallback',
+          tag: 'BLE Connect',
+        );
       } else {
         _appDebugLogService?.warn(
           'bluetoothctl unavailable and device is not bonded; skipping Linux pairing fallback',
@@ -1817,6 +1824,8 @@ class MeshCoreConnector extends ChangeNotifier {
     _appDebugLogService?.info(
       beforeBondState == BmBondStateEnum.bonded
           ? 'Linux BLE device still untrusted after repair; requesting pair'
+          : beforeBondState == null
+          ? 'Linux BLE device bond state unknown; requesting pair'
           : 'Linux BLE device not bonded, requesting pair',
       tag: 'BLE Connect',
     );

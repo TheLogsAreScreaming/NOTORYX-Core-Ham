@@ -12,9 +12,9 @@ typedef ProcessRunFn =
 /// This is used only as a fallback when BlueZ pairing via flutter_blue_plus
 /// fails to surface agent prompts in-app.
 class LinuxBlePairingService {
-  /// Maximum number of retry attempts for the pairing flow.
+  /// Maximum number of pairing attempts (initial + retries).
   /// Covers one remove-and-retry plus one proactive-PIN retry.
-  static const int _maxRetries = 2;
+  static const int _maxAttempts = 3;
 
   static const Duration _processExitTimeout = Duration(seconds: 6);
   static const Duration _pairingCleanupTimeout = Duration(seconds: 5);
@@ -110,7 +110,7 @@ class LinuxBlePairingService {
     var proactivePinRetryUsed = false;
     Future<String?> Function()? currentPinProvider = onRequestPin;
 
-    for (var attempt = 0; attempt <= _maxRetries; attempt++) {
+    for (var attempt = 0; attempt < _maxAttempts; attempt++) {
       final result = await _runPairingAttempt(
         remoteId: remoteId,
         timeout: timeout,
@@ -129,7 +129,7 @@ class LinuxBlePairingService {
           removeRetryUsed = true;
           onLog?.call(
             'Pairing failed; removing cached bond and retrying '
-            '(attempt ${attempt + 1}/$_maxRetries)',
+            '(attempt ${attempt + 1}/$_maxAttempts)',
           );
           await _removeDevice(remoteId, onLog: onLog);
           continue;
@@ -140,7 +140,7 @@ class LinuxBlePairingService {
           proactivePinRetryUsed = true;
           onLog?.call(
             'Pairing failed before PIN challenge; requesting PIN for '
-            'proactive retry (attempt ${attempt + 1}/$_maxRetries)',
+            'proactive retry (attempt ${attempt + 1}/$_maxAttempts)',
           );
           final pin = await currentPinProvider();
           if (pin == null) {
@@ -162,7 +162,7 @@ class LinuxBlePairingService {
         proactivePinRetryUsed = true;
         onLog?.call(
           'No PIN challenge observed before timeout; requesting PIN for '
-          'proactive retry (attempt ${attempt + 1}/$_maxRetries)',
+          'proactive retry (attempt ${attempt + 1}/$_maxAttempts)',
         );
         final pin = await currentPinProvider();
         if (pin == null) {
