@@ -40,8 +40,7 @@ class ChannelMessagePathScreen extends StatelessWidget {
         final primaryPath = !channelMessage && !message.isOutgoing
             ? Uint8List.fromList(primaryPathTmp.reversed.toList())
             : primaryPathTmp;
-        final contacts = connector.allContacts;
-        final hops = _buildPathHops(primaryPath, contacts, l10n);
+        final hops = _buildPathHops(primaryPath, connector, l10n);
         final hasHopDetails = primaryPath.isNotEmpty;
         final observedLabel = _formatObservedHops(
           primaryPath.length,
@@ -365,8 +364,7 @@ class _ChannelMessagePathMapScreenState
             : selectedPathTmp;
 
         final selectedIndex = _indexForPath(selectedPath, observedPaths);
-        final contacts = connector.allContacts;
-        final hops = _buildPathHops(selectedPath, contacts, context.l10n);
+        final hops = _buildPathHops(selectedPath, connector, context.l10n);
 
         final points = <LatLng>[];
 
@@ -787,17 +785,62 @@ class _ObservedPath {
 
 List<_PathHop> _buildPathHops(
   Uint8List pathBytes,
-  List<Contact> contacts,
+  MeshCoreConnector connector,
   AppLocalizations l10n,
 ) {
+  if (pathBytes.isEmpty) return const [];
+  final candidatesByPrefix = <int, List<Contact>>{};
+  for (final contact in connector.allContacts) {
+    if (contact.publicKey.isEmpty) continue;
+    if (contact.type != advTypeRepeater && contact.type != advTypeRoom) {
+      continue;
+    }
+    final prefix = contact.publicKey.first;
+    candidatesByPrefix.putIfAbsent(prefix, () => <Contact>[]).add(contact);
+  }
+  for (final candidates in candidatesByPrefix.values) {
+    candidates.sort((a, b) => b.lastSeen.compareTo(a.lastSeen));
+  }
+  final startPoint =
+      (connector.selfLatitude != null && connector.selfLongitude != null)
+      ? LatLng(connector.selfLatitude!, connector.selfLongitude!)
+      : null;
+  var previousPosition = startPoint;
+  final distance = Distance();
+
   final hops = <_PathHop>[];
   for (var i = 0; i < pathBytes.length; i++) {
-    final prefix = pathBytes[i];
-    final contact = _matchContactForPrefix(contacts, prefix);
+    final searchPoint = i == 0 ? startPoint : previousPosition;
+    final candidates = candidatesByPrefix[pathBytes[i]];
+    Contact? contact;
+    if (candidates != null && candidates.isNotEmpty) {
+      var bestIndex = 0;
+      if (searchPoint != null) {
+        var bestDistance = double.infinity;
+        for (var j = 0; j < candidates.length; j++) {
+          final candidate = candidates[j];
+          if (!candidate.hasLocation) continue;
+          final currentDistance = distance(
+            searchPoint,
+            LatLng(candidate.latitude!, candidate.longitude!),
+          );
+          if (currentDistance < bestDistance) {
+            bestDistance = currentDistance;
+            bestIndex = j;
+          }
+        }
+      }
+      contact = candidates.removeAt(bestIndex);
+      if (candidates.isEmpty) {
+        candidatesByPrefix.remove(pathBytes[i]);
+      }
+    }
+
+    previousPosition = _resolvePosition(contact);
     hops.add(
       _PathHop(
         index: i + 1,
-        prefix: prefix,
+        prefix: pathBytes[i],
         contact: contact,
         position: _resolvePosition(contact),
         l10n: l10n,
@@ -807,42 +850,10 @@ List<_PathHop> _buildPathHops(
   return hops;
 }
 
-Contact? _matchContactForPrefix(List<Contact> contacts, int prefix) {
-  final matches = contacts
-      .where(
-        (contact) =>
-            (contact.type == advTypeRepeater || contact.type == advTypeRoom) &&
-            contact.publicKey.isNotEmpty &&
-            contact.publicKey[0] == prefix,
-      )
-      .toList();
-  if (matches.isEmpty) return null;
-
-  Contact? pickWhere(bool Function(Contact) predicate) {
-    for (final contact in matches) {
-      if (predicate(contact)) return contact;
-    }
-    return null;
-  }
-
-  return pickWhere((c) => c.type == advTypeRepeater && _hasValidLocation(c)) ??
-      pickWhere((c) => c.type == advTypeRepeater) ??
-      pickWhere(_hasValidLocation) ??
-      matches.first;
-}
-
 LatLng? _resolvePosition(Contact? contact) {
   if (contact == null) return null;
-  if (!_hasValidLocation(contact)) return null;
+  if (!contact.hasLocation) return null;
   return LatLng(contact.latitude!, contact.longitude!);
-}
-
-bool _hasValidLocation(Contact contact) {
-  final lat = contact.latitude;
-  final lon = contact.longitude;
-  if (lat == null || lon == null) return false;
-  if (lat == 0 && lon == 0) return false;
-  return true;
 }
 
 String _formatPrefix(int prefix) {
