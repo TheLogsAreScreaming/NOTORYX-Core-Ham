@@ -341,8 +341,8 @@ class _ChannelMessagePathMapScreenState
   void _focusHop(_PathHop hop) {
     if (!hop.hasLocation) return;
     final targetZoom = _didReceivePositionUpdate
-        ? max(_mapController.camera.zoom, 14.0)
-        : 14.0;
+        ? max(_mapController.camera.zoom, 10.0)
+        : 12.0;
     _mapController.move(hop.position!, targetZoom);
   }
 
