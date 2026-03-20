@@ -699,43 +699,44 @@ class MeshCoreConnector extends ChangeNotifier {
     _loadChannelOrder();
 
     // Initialize retry service callbacks
-    _retryService?.initialize(RetryServiceConfig(
-      sendMessage: _sendMessageDirect,
-      addMessage: _addMessage,
-      updateMessage: _updateMessage,
-      clearContactPath: clearContactPath,
-      setContactPath: setContactPath,
-      calculateTimeout:
-          (pathLength, messageBytes, {String? contactKey}) => calculateTimeout(
-            pathLength: pathLength,
-            messageBytes: messageBytes,
-            contactKey: contactKey,
-          ),
-      getSelfPublicKey: () => _selfPublicKey,
-      prepareContactOutboundText: prepareContactOutboundText,
-      appSettingsService: appSettingsService,
-      debugLogService: _appDebugLogService,
-      recordPathResult: _recordPathResult,
-      selectRetryPath:
-          (contactKey, attemptIndex, maxRetries, recentSelections) =>
-              _selectAutoPathForAttempt(
-                contactKey,
-                attemptIndex: attemptIndex,
-                maxRetries: maxRetries,
-                recentSelections: recentSelections,
-              ),
-      onDeliveryObserved:
-          (contactKey, pathLength, messageBytes, tripTimeMs) {
-            final secSinceRx = DateTime.now().difference(_lastRxTime).inSeconds;
-            _timeoutPredictionService?.recordObservation(
-              contactKey: contactKey,
+    _retryService?.initialize(
+      RetryServiceConfig(
+        sendMessage: _sendMessageDirect,
+        addMessage: _addMessage,
+        updateMessage: _updateMessage,
+        clearContactPath: clearContactPath,
+        setContactPath: setContactPath,
+        calculateTimeout: (pathLength, messageBytes, {String? contactKey}) =>
+            calculateTimeout(
               pathLength: pathLength,
               messageBytes: messageBytes,
-              tripTimeMs: tripTimeMs,
-              secondsSinceLastRx: secSinceRx,
-            );
-          },
-    ));
+              contactKey: contactKey,
+            ),
+        getSelfPublicKey: () => _selfPublicKey,
+        prepareContactOutboundText: prepareContactOutboundText,
+        appSettingsService: appSettingsService,
+        debugLogService: _appDebugLogService,
+        recordPathResult: _recordPathResult,
+        selectRetryPath:
+            (contactKey, attemptIndex, maxRetries, recentSelections) =>
+                _selectAutoPathForAttempt(
+                  contactKey,
+                  attemptIndex: attemptIndex,
+                  maxRetries: maxRetries,
+                  recentSelections: recentSelections,
+                ),
+        onDeliveryObserved: (contactKey, pathLength, messageBytes, tripTimeMs) {
+          final secSinceRx = DateTime.now().difference(_lastRxTime).inSeconds;
+          _timeoutPredictionService?.recordObservation(
+            contactKey: contactKey,
+            pathLength: pathLength,
+            messageBytes: messageBytes,
+            tripTimeMs: tripTimeMs,
+            secondsSinceLastRx: secSinceRx,
+          );
+        },
+      ),
+    );
     final maxRetries = _appSettingsService?.settings.maxMessageRetries ?? 5;
     _retryService?.setMaxRetries(maxRetries);
   }
@@ -908,7 +909,8 @@ class MeshCoreConnector extends ChangeNotifier {
     List<PathSelection> recentSelections = const [],
   }) {
     final hasKnownPaths =
-        _pathHistoryService?.getRecentPaths(contactPubKeyHex).isNotEmpty ?? false;
+        _pathHistoryService?.getRecentPaths(contactPubKeyHex).isNotEmpty ??
+        false;
     if (!hasKnownPaths) {
       return null;
     }
@@ -3619,10 +3621,7 @@ class MeshCoreConnector extends ChangeNotifier {
   void _handleIncomingChannelMessage(Uint8List frame) {
     final parsed = ChannelMessage.fromFrame(frame);
     if (parsed != null && parsed.channelIndex != null) {
-      if (_shouldDropSelfChannelMessage(
-        parsed.senderName,
-        parsed.pathBytes,
-      )) {
+      if (_shouldDropSelfChannelMessage(parsed.senderName, parsed.pathBytes)) {
         return;
       }
       final contentHash = _computeContentHash(
@@ -4246,7 +4245,9 @@ class MeshCoreConnector extends ChangeNotifier {
     final pathLenRaw = raw[index++];
     final pathByteLen = _decodePathByteLen(pathLenRaw);
     if (raw.length < index + pathByteLen) return null;
-    final pathBytes = Uint8List.fromList(raw.sublist(index, index + pathByteLen));
+    final pathBytes = Uint8List.fromList(
+      raw.sublist(index, index + pathByteLen),
+    );
     index += pathByteLen;
     if (raw.length <= index) return null;
     final payload = Uint8List.fromList(raw.sublist(index));
@@ -4273,12 +4274,19 @@ class MeshCoreConnector extends ChangeNotifier {
     input[0] = payloadType;
     input.setRange(1, input.length, payload);
     final digest = crypto.sha256.convert(input).bytes;
-    return digest.sublist(0, 8).map((b) => b.toRadixString(16).padLeft(2, '0')).join();
+    return digest
+        .sublist(0, 8)
+        .map((b) => b.toRadixString(16).padLeft(2, '0'))
+        .join();
   }
 
   /// Content-based dedup hash for sync queue messages (no raw payload available).
   /// Prefixed with 'c:' to avoid collisions with packet hashes.
-  String _computeContentHash(int channelIdx, int timestampSecs, String fullText) {
+  String _computeContentHash(
+    int channelIdx,
+    int timestampSecs,
+    String fullText,
+  ) {
     final textBytes = utf8.encode(fullText);
     final input = Uint8List(5 + textBytes.length);
     input[0] = channelIdx;

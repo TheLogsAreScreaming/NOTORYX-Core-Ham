@@ -140,7 +140,11 @@ void main() {
           attemptIndex: i,
           maxRetries: 5,
         );
-        expect(selection.useFlood, isFalse, reason: 'attempt $i should be path');
+        expect(
+          selection.useFlood,
+          isFalse,
+          reason: 'attempt $i should be path',
+        );
         expect(selection.pathBytes, equals([0x01, 0x02]));
       }
     });
@@ -400,45 +404,49 @@ void main() {
       expect(first.pathBytes, equals([0x02]));
     });
 
-    test('higher route weight wins when other factors are effectively tied', () async {
-      final pubKey = _hex('rank4');
-      final sharedTimestamp =
-          DateTime.now().subtract(const Duration(minutes: 30));
-      storage._store[pubKey] = ContactPathHistory(
-        contactPubKeyHex: pubKey,
-        recentPaths: [
-          PathRecord(
-            hopCount: 1,
-            tripTimeMs: 750,
-            timestamp: sharedTimestamp,
-            wasFloodDiscovery: false,
-            pathBytes: const [0x01],
-            successCount: 1,
-            failureCount: 0,
-            routeWeight: 4.0,
-          ),
-          PathRecord(
-            hopCount: 1,
-            tripTimeMs: 750,
-            timestamp: sharedTimestamp,
-            wasFloodDiscovery: false,
-            pathBytes: const [0x02],
-            successCount: 1,
-            failureCount: 0,
-            routeWeight: 1.0,
-          ),
-        ],
-      );
-      svc.getRecentPaths(pubKey);
-      await _flush();
+    test(
+      'higher route weight wins when other factors are effectively tied',
+      () async {
+        final pubKey = _hex('rank4');
+        final sharedTimestamp = DateTime.now().subtract(
+          const Duration(minutes: 30),
+        );
+        storage._store[pubKey] = ContactPathHistory(
+          contactPubKeyHex: pubKey,
+          recentPaths: [
+            PathRecord(
+              hopCount: 1,
+              tripTimeMs: 750,
+              timestamp: sharedTimestamp,
+              wasFloodDiscovery: false,
+              pathBytes: const [0x01],
+              successCount: 1,
+              failureCount: 0,
+              routeWeight: 4.0,
+            ),
+            PathRecord(
+              hopCount: 1,
+              tripTimeMs: 750,
+              timestamp: sharedTimestamp,
+              wasFloodDiscovery: false,
+              pathBytes: const [0x02],
+              successCount: 1,
+              failureCount: 0,
+              routeWeight: 1.0,
+            ),
+          ],
+        );
+        svc.getRecentPaths(pubKey);
+        await _flush();
 
-      final first = svc.selectPathForAttempt(
-        pubKey,
-        attemptIndex: 0,
-        maxRetries: 5,
-      );
-      expect(first.pathBytes, equals([0x01]));
-    });
+        final first = svc.selectPathForAttempt(
+          pubKey,
+          attemptIndex: 0,
+          maxRetries: 5,
+        );
+        expect(first.pathBytes, equals([0x01]));
+      },
+    );
   });
 
   // -------------------------------------------------------------------------

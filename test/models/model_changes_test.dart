@@ -15,7 +15,9 @@ Uint8List _buildContactFrame({
 }) {
   final writer = BytesBuilder();
   writer.addByte(respCodeContact); // 3
-  writer.add(pubKey ?? Uint8List.fromList(List.generate(32, (i) => i + 1))); // valid pubkey
+  writer.add(
+    pubKey ?? Uint8List.fromList(List.generate(32, (i) => i + 1)),
+  ); // valid pubkey
   writer.addByte(1); // type
   writer.addByte(0); // flags
   writer.addByte(pathLen);
@@ -239,21 +241,23 @@ void main() {
       expect(record.routeWeight, equals(4.0));
     });
 
-    test('fromJson with missing route_weight defaults to 1.0 (backward compat)',
-        () {
-      final json = {
-        'hop_count': 1,
-        'trip_time_ms': 100,
-        'timestamp': DateTime(2024).toIso8601String(),
-        'was_flood': false,
-        'path_bytes': [],
-        'success_count': 0,
-        'failure_count': 0,
-        // 'route_weight' intentionally omitted
-      };
-      final record = PathRecord.fromJson(json);
-      expect(record.routeWeight, equals(1.0));
-    });
+    test(
+      'fromJson with missing route_weight defaults to 1.0 (backward compat)',
+      () {
+        final json = {
+          'hop_count': 1,
+          'trip_time_ms': 100,
+          'timestamp': DateTime(2024).toIso8601String(),
+          'was_flood': false,
+          'path_bytes': [],
+          'success_count': 0,
+          'failure_count': 0,
+          // 'route_weight' intentionally omitted
+        };
+        final record = PathRecord.fromJson(json);
+        expect(record.routeWeight, equals(1.0));
+      },
+    );
   });
 
   group('AppSettings — new fields', () {

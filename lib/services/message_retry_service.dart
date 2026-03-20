@@ -22,7 +22,11 @@ class _AckHistoryEntry {
 }
 
 /// (messageId, timestamp, attemptIndex) — stored per ACK hash for O(1) lookup.
-typedef AckHashMapping = ({String messageId, DateTime timestamp, int attemptIndex});
+typedef AckHashMapping = ({
+  String messageId,
+  DateTime timestamp,
+  int attemptIndex,
+});
 
 class RetryServiceConfig {
   final void Function(Contact, String, int, int) sendMessage;
@@ -31,7 +35,7 @@ class RetryServiceConfig {
   final Function(Contact)? clearContactPath;
   final Function(Contact, Uint8List, int)? setContactPath;
   final int Function(int pathLength, int messageBytes, {String? contactKey})?
-      calculateTimeout;
+  calculateTimeout;
   final Uint8List? Function()? getSelfPublicKey;
   final String Function(Contact, String)? prepareContactOutboundText;
   final AppSettingsService? appSettingsService;
@@ -43,7 +47,8 @@ class RetryServiceConfig {
     int attemptIndex,
     int maxRetries,
     List<PathSelection> recentSelections,
-  )? selectRetryPath;
+  )?
+  selectRetryPath;
 
   const RetryServiceConfig({
     required this.sendMessage,
@@ -132,7 +137,8 @@ class MessageRetryService extends ChangeNotifier {
   }) async {
     final messageId = const Uuid().v4();
     final resolved = resolvePathSelection(contact);
-    final messagePathBytes = pathBytes ?? Uint8List.fromList(resolved.pathBytes);
+    final messagePathBytes =
+        pathBytes ?? Uint8List.fromList(resolved.pathBytes);
     final messagePathLength =
         pathLength ?? (resolved.useFlood ? -1 : resolved.hopCount);
     final message = Message(
@@ -262,7 +268,8 @@ class MessageRetryService extends ChangeNotifier {
     if (config.setContactPath != null && config.clearContactPath != null) {
       final bool useFlood = currentSelection != null
           ? currentSelection.useFlood
-          : (effectiveMessage.pathLength != null && effectiveMessage.pathLength! < 0);
+          : (effectiveMessage.pathLength != null &&
+                effectiveMessage.pathLength! < 0);
       final List<int> pathBytes = currentSelection != null
           ? currentSelection.pathBytes
           : effectiveMessage.pathBytes;

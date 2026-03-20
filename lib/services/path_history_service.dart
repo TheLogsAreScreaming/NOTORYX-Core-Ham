@@ -469,17 +469,18 @@ class PathHistoryService extends ChangeNotifier {
     final highestRouteWeight = _getHighestKnownRouteWeight(ranked);
 
     ranked.sort((a, b) {
-      final scoreCompare = _scorePathRecord(
-        b,
-        fastestTripMs: fastestTripMs,
-        highestRouteWeight: highestRouteWeight,
-      ).compareTo(
-        _scorePathRecord(
-          a,
-          fastestTripMs: fastestTripMs,
-          highestRouteWeight: highestRouteWeight,
-        ),
-      );
+      final scoreCompare =
+          _scorePathRecord(
+            b,
+            fastestTripMs: fastestTripMs,
+            highestRouteWeight: highestRouteWeight,
+          ).compareTo(
+            _scorePathRecord(
+              a,
+              fastestTripMs: fastestTripMs,
+              highestRouteWeight: highestRouteWeight,
+            ),
+          );
       if (scoreCompare != 0) {
         return scoreCompare;
       }
@@ -531,8 +532,7 @@ class PathHistoryService extends ChangeNotifier {
                   (DateTime.now().difference(path.timestamp!).inMinutes /
                       60.0 /
                       24.0));
-    final routeWeight =
-        (path.routeWeight / highestRouteWeight).clamp(0.0, 1.0);
+    final routeWeight = (path.routeWeight / highestRouteWeight).clamp(0.0, 1.0);
 
     return (reliability * 0.45) +
         (latency * 0.25) +
