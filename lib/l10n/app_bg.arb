@@ -1889,5 +1889,26 @@
   "tcpErrorTimedOut": "Връзката TCP изтекла.",
   "tcpConnectionFailed": "Неуспешно е установено TCP връзката: {error}",
   "map_showDiscoveryContacts": "Покажи контакти за откриване",
-  "map_setAsMyLocation": "Задайте като моя местоположение"
+  "map_setAsMyLocation": "Задайте като моя местоположение",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeight": "Първоначална тежест на маршрута",
+  "appSettings_maxRouteWeight": "Максимално допустимо тегло на маршрута",
+  "appSettings_initialRouteWeightSubtitle": "Начално тегло за новооткрити маршрути",
+  "appSettings_maxRouteWeightSubtitle": "Максималното тегло, което един маршрут може да събере от успешни доставки.",
+  "appSettings_routeWeightSuccessIncrement": "Увеличение на теглото за успех",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Тегло, добавено към път след успешно доставяне.",
+  "appSettings_routeWeightFailureDecrement": "Намаляване на теглото, свързано с неуспех",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Тегло, което е било премахнато от пътя след неуспешен опит за доставка.",
+  "appSettings_maxMessageRetries": "Максимален брой опити за изпращане на съобщение",
+  "appSettings_maxMessageRetriesSubtitle": "Брой опити за повторно изпращане, преди съобщението да бъде маркирано като неуспешно.",
+  "path_routeWeight": "{weight}/{max}"
 }

@@ -617,19 +617,6 @@ class _MapScreenState extends State<MapScreen> {
         if (r != null) anchorSet.add(LatLng(r.latitude!, r.longitude!));
       }
 
-      // Fallback: for any last-hop byte with no GPS repeater, average the
-      // positions of contacts with known GPS that share the same last hop.
-      // Those contacts are all adjacent to the same unknown repeater, so their
-      // centroid is a reasonable proxy for its location.
-      for (final byte in lastHopBytes) {
-        if (repeaterByHash.containsKey(byte)) continue;
-        for (final c in withLocation) {
-          if (c.path.isNotEmpty && c.path.last == byte) {
-            anchorSet.add(LatLng(c.latitude!, c.longitude!));
-          }
-        }
-      }
-
       // Filter anchors that are geometrically inconsistent with radio range.
       // Two anchors more than 2 * maxRange apart cannot both be in direct radio
       // range of the same node, so isolated outliers are removed.
@@ -641,15 +628,12 @@ class _MapScreenState extends State<MapScreen> {
 
       final LatLng position;
       if (anchors.length == 1) {
-        // Offset single-anchor guesses so they don't overlap the repeater marker.
-        // Use the contact's public key byte as a deterministic angle seed.
-        const offsetDeg = 0.003; // ~330 m at the equator
-        final angle = (contact.publicKey[1] / 255.0) * 2 * pi;
-        position = LatLng(
-          anchors[0].latitude + offsetDeg * cos(angle),
-          anchors[0].longitude + offsetDeg * sin(angle),
+        // Spread single-anchor guesses around the anchor so they remain visible.
+        position = _offsetGuessedPosition(
+          anchors[0],
+          contact,
+          radiusMeters: 330,
         );
-
         if (!_checkLocationPlausibility(
           position.latitude,
           position.longitude,
@@ -662,7 +646,11 @@ class _MapScreenState extends State<MapScreen> {
           lat += a.latitude;
           lon += a.longitude;
         }
-        position = LatLng(lat / anchors.length, lon / anchors.length);
+        position = _offsetGuessedPosition(
+          LatLng(lat / anchors.length, lon / anchors.length),
+          contact,
+          radiusMeters: anchors.length >= 3 ? 80 : 120,
+        );
         if (!_checkLocationPlausibility(
           position.latitude,
           position.longitude,
@@ -680,6 +668,31 @@ class _MapScreenState extends State<MapScreen> {
     }
 
     return result;
+  }
+
+  LatLng _offsetGuessedPosition(
+    LatLng anchor,
+    Contact contact, {
+    required double radiusMeters,
+  }) {
+    final seed = _guessSeed(contact.publicKey);
+    final angle = ((seed & 0xFFFF) / 0x10000) * 2 * pi;
+    final latOffsetDeg = (radiusMeters / 111320.0) * cos(angle);
+    final lonScale = max(cos(anchor.latitude * pi / 180.0).abs(), 0.2);
+    final lonOffsetDeg = (radiusMeters / (111320.0 * lonScale)) * sin(angle);
+    return LatLng(
+      anchor.latitude + latOffsetDeg,
+      anchor.longitude + lonOffsetDeg,
+    );
+  }
+
+  int _guessSeed(Uint8List publicKey) {
+    var seed = 0x811C9DC5;
+    for (final byte in publicKey) {
+      seed ^= byte;
+      seed = (seed * 0x01000193) & 0x7FFFFFFF;
+    }
+    return seed;
   }
 
   /// Estimates the free-space maximum LoRa range in km from the connected

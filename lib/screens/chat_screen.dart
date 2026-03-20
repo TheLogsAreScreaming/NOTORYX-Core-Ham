@@ -5,9 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:meshcore_open/screens/path_trace_map.dart';
 import 'package:provider/provider.dart';
+
+import '../utils/platform_info.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -16,6 +17,7 @@ import '../helpers/reaction_helper.dart';
 import '../widgets/message_status_icon.dart';
 import '../helpers/chat_scroll_controller.dart';
 import '../helpers/link_handler.dart';
+import '../helpers/path_helper.dart';
 import '../helpers/utf8_length_limiter.dart';
 import '../models/channel_message.dart';
 import '../models/contact.dart';
@@ -362,6 +364,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 textScale: textScale,
                 onTap: () => _openMessagePath(message, contact),
                 onLongPress: () => _showMessageActions(message, contact),
+                onRetryReaction: (msg, emoji) =>
+                    _sendReaction(msg, contact, emoji),
               );
             },
           );
@@ -820,7 +824,8 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  String _formatRelativeTime(DateTime time) {
+  String _formatRelativeTime(DateTime? time) {
+    if (time == null) return '—';
     final diff = DateTime.now().difference(time);
     if (diff.inSeconds < 60) return context.l10n.time_justNow;
     if (diff.inMinutes < 60) {
@@ -841,15 +846,31 @@ class _ChatScreenState extends State<ChatScreen> {
       return;
     }
 
-    final formattedPath = pathBytes
-        .map((b) => b.toRadixString(16).padLeft(2, '0').toUpperCase())
-        .join(',');
+    final connector = context.read<MeshCoreConnector>();
+    final allContacts = connector.allContacts;
+
+    final formattedPath = PathHelper.formatPathHex(pathBytes);
+    final resolvedNames = PathHelper.resolvePathNames(pathBytes, allContacts);
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(context.l10n.chat_fullPath),
-        content: SelectableText(formattedPath),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SelectableText(formattedPath),
+            const SizedBox(height: 8),
+            SelectableText(
+              resolvedNames,
+              style: TextStyle(
+                fontSize: 13,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.push(
@@ -1127,6 +1148,15 @@ class _ChatScreenState extends State<ChatScreen> {
                   _showEmojiPicker(message, contact);
                 },
               ),
+            if (PlatformInfo.isDesktop)
+              ListTile(
+                leading: const Icon(Icons.route),
+                title: Text(context.l10n.chat_path),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _openMessagePath(message, contact);
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.copy),
               title: Text(context.l10n.common_copy),
@@ -1237,6 +1267,7 @@ class _MessageBubble extends StatelessWidget {
   final bool isRoomServer;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
+  final void Function(Message message, String emoji)? onRetryReaction;
   final double textScale;
 
   const _MessageBubble({
@@ -1246,6 +1277,7 @@ class _MessageBubble extends StatelessWidget {
     required this.textScale,
     this.onTap,
     this.onLongPress,
+    this.onRetryReaction,
   });
 
   @override
@@ -1279,8 +1311,11 @@ class _MessageBubble extends StatelessWidget {
             : CrossAxisAlignment.start,
         children: [
           GestureDetector(
-            onTap: onTap,
+            onTap: PlatformInfo.isDesktop ? null : onTap,
             onLongPress: onLongPress,
+            onSecondaryTapUp: PlatformInfo.isDesktop
+                ? (_) => onLongPress?.call()
+                : null,
             child: Row(
               mainAxisAlignment: isOutgoing
                   ? MainAxisAlignment.end
@@ -1397,7 +1432,8 @@ class _MessageBubble extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Flexible(
-                                child: Linkify(
+                                child: LinkHandler.buildLinkifyText(
+                                  context: context,
                                   text: messageText,
                                   style: TextStyle(
                                     color: textColor,
@@ -1407,15 +1443,6 @@ class _MessageBubble extends StatelessWidget {
                                     color: Colors.green,
                                     decoration: TextDecoration.underline,
                                     fontSize: bodyFontSize * textScale,
-                                  ),
-                                  options: const LinkifyOptions(
-                                    humanize: false,
-                                    defaultToHttps: false,
-                                  ),
-                                  linkifiers: const [UrlLinkifier()],
-                                  onOpen: (link) => LinkHandler.handleLinkTap(
-                                    context,
-                                    link.url,
                                   ),
                                 ),
                               ),
@@ -1606,33 +1633,64 @@ class _MessageBubble extends StatelessWidget {
       children: message.reactions.entries.map((entry) {
         final emoji = entry.key;
         final count = entry.value;
+        final status = message.reactionStatuses[emoji];
+        final isPending =
+            status == MessageStatus.pending || status == MessageStatus.sent;
+        final isFailed = status == MessageStatus.failed;
 
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-          decoration: BoxDecoration(
-            color: colorScheme.secondaryContainer,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: colorScheme.outline.withValues(alpha: 0.3),
-              width: 1,
-            ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(emoji, style: const TextStyle(fontSize: 16)),
-              if (count > 1) ...[
-                const SizedBox(width: 4),
-                Text(
-                  '$count',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: colorScheme.onSecondaryContainer,
-                  ),
+        return GestureDetector(
+          onTap: isFailed && onRetryReaction != null
+              ? () => onRetryReaction!(message, emoji)
+              : null,
+          child: Opacity(
+            opacity: isPending ? 0.5 : 1.0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: isFailed
+                    ? colorScheme.errorContainer
+                    : colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: isFailed
+                      ? colorScheme.error
+                      : colorScheme.outline.withValues(alpha: 0.3),
+                  width: 1,
                 ),
-              ],
-            ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(emoji, style: const TextStyle(fontSize: 16)),
+                  if (count > 1) ...[
+                    const SizedBox(width: 4),
+                    Text(
+                      '$count',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: colorScheme.onSecondaryContainer,
+                      ),
+                    ),
+                  ],
+                  if (isPending) ...[
+                    const SizedBox(width: 2),
+                    SizedBox(
+                      width: 8,
+                      height: 8,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1.5,
+                        color: colorScheme.onSecondaryContainer,
+                      ),
+                    ),
+                  ],
+                  if (isFailed) ...[
+                    const SizedBox(width: 2),
+                    Icon(Icons.replay, size: 10, color: colorScheme.error),
+                  ],
+                ],
+              ),
+            ),
           ),
         );
       }).toList(),

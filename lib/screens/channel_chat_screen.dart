@@ -4,11 +4,11 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../utils/platform_info.dart';
 import '../helpers/chat_scroll_controller.dart';
 import '../connector/meshcore_protocol.dart';
 import '../helpers/link_handler.dart';
@@ -311,8 +311,13 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
             ],
             Flexible(
               child: GestureDetector(
-                onTap: () => _showMessagePathInfo(message),
+                onTap: PlatformInfo.isDesktop
+                    ? null
+                    : () => _showMessagePathInfo(message),
                 onLongPress: () => _showMessageActions(message),
+                onSecondaryTapUp: PlatformInfo.isDesktop
+                    ? (_) => _showMessageActions(message)
+                    : null,
                 child: Container(
                   padding: gifId != null
                       ? const EdgeInsets.all(4)
@@ -430,7 +435,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Flexible(
-                              child: Linkify(
+                              child: LinkHandler.buildLinkifyText(
+                                context: context,
                                 text: message.text,
                                 style: TextStyle(
                                   fontSize: bodyFontSize * textScale,
@@ -439,15 +445,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                   fontSize: bodyFontSize * textScale,
                                   color: Colors.green,
                                   decoration: TextDecoration.underline,
-                                ),
-                                options: const LinkifyOptions(
-                                  humanize: false,
-                                  defaultToHttps: false,
-                                ),
-                                linkifiers: const [UrlLinkifier()],
-                                onOpen: (link) => LinkHandler.handleLinkTap(
-                                  context,
-                                  link.url,
                                 ),
                               ),
                             ),
@@ -557,7 +554,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       ],
     );
 
-    if (!isOutgoing) {
+    if (!isOutgoing && !PlatformInfo.isDesktop) {
       return _SwipeReplyBubble(
         maxSwipeOffset: maxSwipeOffset,
         replySwipeThreshold: replySwipeThreshold,
@@ -1112,6 +1109,15 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 _setReplyingTo(message);
               },
             ),
+            if (PlatformInfo.isDesktop)
+              ListTile(
+                leading: const Icon(Icons.route),
+                title: Text(context.l10n.chat_path),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showMessagePathInfo(message);
+                },
+              ),
             // Can't react to your own messages
             if (!message.isOutgoing)
               ListTile(

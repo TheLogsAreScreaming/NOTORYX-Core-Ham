@@ -96,6 +96,9 @@ class MessageStore {
           ? base64Encode(msg.pathBytes)
           : null,
       'reactions': msg.reactions,
+      'reactionStatuses': msg.reactionStatuses.map(
+        (key, value) => MapEntry(key, value.index),
+      ),
       'fourByteRoomContactKey': base64Encode(msg.fourByteRoomContactKey),
     };
   }
@@ -133,6 +136,11 @@ class MessageStore {
       reactions:
           (json['reactions'] as Map<String, dynamic>?)?.map(
             (key, value) => MapEntry(key, value as int),
+          ) ??
+          {},
+      reactionStatuses:
+          (json['reactionStatuses'] as Map<String, dynamic>?)?.map(
+            (key, value) => MapEntry(key, MessageStatus.values[value as int]),
           ) ??
           {},
       fourByteRoomContactKey: json['fourByteRoomContactKey'] != null

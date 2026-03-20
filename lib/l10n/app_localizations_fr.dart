@@ -699,6 +699,50 @@ class AppLocalizationsFr extends AppLocalizations {
       'Rotation de l\'itinéraire automatique désactivée';
 
   @override
+  String get appSettings_maxRouteWeight =>
+      'Poids maximal autorisé pour le trajet';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Poids maximal qu\'un itinéraire peut accumuler grâce à des livraisons réussies.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Poids initial de l\'itinéraire';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Poids de départ pour les nouveaux chemins découverts';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Augmentation du poids de réussite';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Poids ajouté à un itinéraire après une livraison réussie.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Réduction du poids de pénalité';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Poids retiré d\'un itinéraire après une tentative de livraison infructueuse.';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Nombre maximal de tentatives de récupération de messages';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Nombre de tentatives de relance avant de marquer un message comme ayant échoué.';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Batterie';
 
   @override

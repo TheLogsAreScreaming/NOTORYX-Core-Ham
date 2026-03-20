@@ -157,6 +157,12 @@ class Contact {
         return null;
       }
       final pubKey = reader.readBytes(pubKeySize);
+
+      // Guard: reject contacts with zeroed or mostly-zeroed public keys
+      // (indicates corrupt flash storage on the firmware side)
+      final zeroCount = pubKey.where((b) => b == 0).length;
+      if (zeroCount > pubKeySize ~/ 2) return null;
+
       final type = reader.readByte();
       final flags = reader.readByte();
       final pathLen = reader.readByte();
@@ -165,6 +171,12 @@ class Contact {
           : 0;
       final pathBytes = reader.readBytes(maxPathSize).sublist(0, safePathLen);
       final name = reader.readCStringGreedy(maxNameSize);
+
+      // Guard: reject contacts with non-printable names (corrupt flash data)
+      if (name.isNotEmpty &&
+          name.codeUnits.every((c) => c < 0x20 || c == 0xFFFD)) {
+        return null;
+      }
 
       final lastMod = reader.readUInt32LE();
 
@@ -182,7 +194,7 @@ class Contact {
         name: name.isEmpty ? 'Unknown' : name,
         type: type,
         flags: flags,
-        pathLength: pathLen > 0 ? (pathLen > maxPathSize ? -1 : pathLen) : -1,
+        pathLength: (pathLen == 0xFF || pathLen > maxPathSize) ? -1 : pathLen,
         path: pathBytes,
         latitude: lat,
         longitude: lon,

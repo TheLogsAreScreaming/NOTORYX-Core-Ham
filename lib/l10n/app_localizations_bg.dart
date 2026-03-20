@@ -696,6 +696,51 @@ class AppLocalizationsBg extends AppLocalizations {
       'Автоматично маршрутизирането е деактивирано';
 
   @override
+  String get appSettings_maxRouteWeight =>
+      'Максимално допустимо тегло на маршрута';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Максималното тегло, което един маршрут може да събере от успешни доставки.';
+
+  @override
+  String get appSettings_initialRouteWeight =>
+      'Първоначална тежест на маршрута';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Начално тегло за новооткрити маршрути';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Увеличение на теглото за успех';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Тегло, добавено към път след успешно доставяне.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Намаляване на теглото, свързано с неуспех';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Тегло, което е било премахнато от пътя след неуспешен опит за доставка.';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Максимален брой опити за изпращане на съобщение';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Брой опити за повторно изпращане, преди съобщението да бъде маркирано като неуспешно.';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Батерия';
 
   @override

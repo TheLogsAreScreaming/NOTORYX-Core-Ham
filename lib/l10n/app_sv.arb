@@ -1889,5 +1889,26 @@
   "tcpErrorTimedOut": "TCP-anslutningen har tidsut gått.",
   "tcpConnectionFailed": "Fel vid TCP-anslutning: {error}",
   "map_showDiscoveryContacts": "Visa Discovery-kontakter",
-  "map_setAsMyLocation": "Ange som min plats"
+  "map_setAsMyLocation": "Ange som min plats",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeightSubtitle": "Initial vikt för nyligen upptäckta vägar",
+  "appSettings_maxRouteWeight": "Maximalt tillåtet vikt för rutten",
+  "appSettings_maxRouteWeightSubtitle": "Maximal vikt som en leveransväg kan ackumulera från framgångsrika leveranser.",
+  "appSettings_initialRouteWeight": "Initial vikt för rutt",
+  "appSettings_routeWeightSuccessIncrement": "Ökning av vikt för framgång",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Vikt läggs till en väg efter en lyckad leverans.",
+  "appSettings_routeWeightFailureDecrement": "Minskning av vikten för misslyckande",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Vikt som tagits bort från en väg efter ett misslyckat leveransförsök",
+  "appSettings_maxMessageRetries": "Maximalt antal försök",
+  "appSettings_maxMessageRetriesSubtitle": "Antal försök att skicka om ett meddelande innan det markeras som misslyckat.",
+  "path_routeWeight": "{weight}/{max}"
 }

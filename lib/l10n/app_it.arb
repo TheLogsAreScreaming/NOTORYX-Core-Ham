@@ -1889,5 +1889,26 @@
   "tcpErrorTimedOut": "La connessione TCP è scaduta.",
   "tcpConnectionFailed": "Impossibile stabilire la connessione TCP: {error}",
   "map_showDiscoveryContacts": "Mostra Contatti di Discovery",
-  "map_setAsMyLocation": "Imposta come la mia posizione"
+  "map_setAsMyLocation": "Imposta come la mia posizione",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeight": "Peso iniziale del percorso",
+  "appSettings_initialRouteWeightSubtitle": "Peso di partenza per nuovi percorsi",
+  "appSettings_maxRouteWeightSubtitle": "Il peso massimo che un percorso può accumulare grazie a consegne di successo.",
+  "appSettings_maxRouteWeight": "Massimo peso consentito per il percorso",
+  "appSettings_routeWeightSuccessIncrement": "Aumento del peso del successo",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Peso aggiunto a un percorso dopo una consegna riuscita.",
+  "appSettings_routeWeightFailureDecrement": "Riduzione del peso associato al fallimento",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Peso rimosso da un percorso dopo un tentativo di consegna fallito.",
+  "appSettings_maxMessageRetries": "Numero massimo di tentativi di invio del messaggio",
+  "appSettings_maxMessageRetriesSubtitle": "Numero di tentativi di riprova prima di considerare un messaggio come fallito.",
+  "path_routeWeight": "{weight}/{max}"
 }

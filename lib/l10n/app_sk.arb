@@ -1889,5 +1889,26 @@
   "tcpErrorTimedOut": "Pripojenie TCP vypršalo.",
   "tcpConnectionFailed": "Neúspešné vytvorenie TCP spojenia: {error}",
   "map_showDiscoveryContacts": "Zobraziť kontakty objavov",
-  "map_setAsMyLocation": "Nastavte ako moju polohu"
+  "map_setAsMyLocation": "Nastavte ako moju polohu",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_maxRouteWeightSubtitle": "Maximálna hmotnosť, ktorú môže trás prenášať vďaka úspešným zásielkam.",
+  "appSettings_initialRouteWeightSubtitle": "Počiatočná váha pre nové, objavené cesty",
+  "appSettings_initialRouteWeight": "Počiatočná váha trasy",
+  "appSettings_maxRouteWeight": "Maximálna hmotnosť trasy",
+  "appSettings_routeWeightSuccessIncrement": "Zvyšenie váhy úspechu",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Hmotnosť pridaná k trase po úspešnej doručení",
+  "appSettings_routeWeightFailureDecrement": "Sníženie váhy, ktorá sa používa na odhad rizika.",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Hmotnosť odstránená z cesty po neúspešnej doručenie",
+  "appSettings_maxMessageRetries": "Maximalný počet pokusov o doručenie správ",
+  "appSettings_maxMessageRetriesSubtitle": "Počet pokusov o odošleť pred označením správy ako neúspešnej",
+  "path_routeWeight": "{weight}/{max}"
 }

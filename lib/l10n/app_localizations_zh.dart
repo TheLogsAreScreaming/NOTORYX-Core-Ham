@@ -649,6 +649,43 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appSettings_autoRouteRotationDisabled => '自动路径轮换已禁用';
 
   @override
+  String get appSettings_maxRouteWeight => '最大路径重量';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle => '一条路径可以累积的最大重量，取决于成功交付的数量。';
+
+  @override
+  String get appSettings_initialRouteWeight => '初始路线权重';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle => '新发现路径的初始重量';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement => '成功权重增加';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      '在成功交付后，将重量添加到路径中';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement => '失败权重降低';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      '从一条路径上移除的货物，由于无法成功交付而移除。';
+
+  @override
+  String get appSettings_maxMessageRetries => '最大消息重试次数';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle => '在将消息标记为失败之前，允许尝试的次数';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => '电池';
 
   @override

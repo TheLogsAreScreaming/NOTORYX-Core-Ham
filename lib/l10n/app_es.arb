@@ -1917,5 +1917,26 @@
   "tcpErrorTimedOut": "La conexión TCP ha caducado.",
   "tcpConnectionFailed": "Error en la conexión TCP: {error}",
   "map_showDiscoveryContacts": "Mostrar Contactos de Descubrimiento",
-  "map_setAsMyLocation": "Establecer mi ubicación"
+  "map_setAsMyLocation": "Establecer mi ubicación",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeight": "Peso inicial de la ruta",
+  "appSettings_maxRouteWeight": "Peso máximo permitido para la ruta",
+  "appSettings_initialRouteWeightSubtitle": "Peso inicial para rutas recién descubiertas",
+  "appSettings_maxRouteWeightSubtitle": "Peso máximo que una ruta puede acumular gracias a entregas exitosas.",
+  "appSettings_routeWeightSuccessIncrement": "Incremento de peso para el éxito",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Peso añadido a una ruta después de una entrega exitosa.",
+  "appSettings_routeWeightFailureDecrement": "Reducción del peso asociado al fallo",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Peso retirado de un camino después de un intento de entrega fallido.",
+  "appSettings_maxMessageRetries": "Número máximo de reintentos de envío de mensajes",
+  "appSettings_maxMessageRetriesSubtitle": "Número de intentos de reintento antes de marcar un mensaje como fallido.",
+  "path_routeWeight": "{weight}/{max}"
 }

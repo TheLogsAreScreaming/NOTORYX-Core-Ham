@@ -23,6 +23,7 @@ class Message {
   final int? pathLength;
   final Uint8List pathBytes;
   final Map<String, int> reactions;
+  final Map<String, MessageStatus> reactionStatuses;
   final Uint8List fourByteRoomContactKey;
 
   Message({
@@ -43,9 +44,11 @@ class Message {
     Uint8List? pathBytes,
     Uint8List? fourByteRoomContactKey,
     Map<String, int>? reactions,
+    Map<String, MessageStatus>? reactionStatuses,
   }) : pathBytes = pathBytes ?? Uint8List(0),
        fourByteRoomContactKey = fourByteRoomContactKey ?? Uint8List(0),
-       reactions = reactions ?? {};
+       reactions = reactions ?? {},
+       reactionStatuses = reactionStatuses ?? {};
 
   String get senderKeyHex => pubKeyToHex(senderKey);
 
@@ -61,6 +64,7 @@ class Message {
     Uint8List? pathBytes,
     bool? isCli,
     Map<String, int>? reactions,
+    Map<String, MessageStatus>? reactionStatuses,
     Uint8List? fourByteRoomContactKey,
   }) {
     return Message(
@@ -80,6 +84,7 @@ class Message {
       pathLength: pathLength ?? this.pathLength,
       pathBytes: pathBytes ?? this.pathBytes,
       reactions: reactions ?? this.reactions,
+      reactionStatuses: reactionStatuses ?? this.reactionStatuses,
       fourByteRoomContactKey:
           fourByteRoomContactKey ?? this.fourByteRoomContactKey,
     );

@@ -509,7 +509,7 @@ Uint8List buildSendTextMsgFrame(
   final writer = BufferWriter();
   writer.writeByte(cmdSendTxtMsg);
   writer.writeByte(txtTypePlain);
-  writer.writeByte(attempt.clamp(0, 3));
+  writer.writeByte(attempt.clamp(0, 255));
   writer.writeUInt32LE(timestamp);
   writer.writeBytes(recipientPubKey.sublist(0, 6));
   writer.writeString(text);
@@ -838,7 +838,7 @@ Uint8List buildSendCliCommandFrame(
   final writer = BufferWriter();
   writer.writeByte(cmdSendTxtMsg);
   writer.writeByte(txtTypeCliData);
-  writer.writeByte(attempt.clamp(0, 3));
+  writer.writeByte(attempt.clamp(0, 255));
   writer.writeUInt32LE(timestamp);
   writer.writeBytes(repeaterPubKey.sublist(0, 6));
   writer.writeString(command);

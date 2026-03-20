@@ -1894,5 +1894,26 @@
   "tcpErrorTimedOut": "TCP 连接超时。",
   "tcpConnectionFailed": "TCP 连接失败：{error}",
   "map_showDiscoveryContacts": "显示发现联系人",
-  "map_setAsMyLocation": "设置为我的位置"
+  "map_setAsMyLocation": "设置为我的位置",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_maxRouteWeight": "最大路径重量",
+  "appSettings_initialRouteWeightSubtitle": "新发现路径的初始重量",
+  "appSettings_initialRouteWeight": "初始路线权重",
+  "appSettings_maxRouteWeightSubtitle": "一条路径可以累积的最大重量，取决于成功交付的数量。",
+  "appSettings_routeWeightSuccessIncrement": "成功权重增加",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "在成功交付后，将重量添加到路径中",
+  "appSettings_routeWeightFailureDecrement": "失败权重降低",
+  "appSettings_routeWeightFailureDecrementSubtitle": "从一条路径上移除的货物，由于无法成功交付而移除。",
+  "appSettings_maxMessageRetries": "最大消息重试次数",
+  "appSettings_maxMessageRetriesSubtitle": "在将消息标记为失败之前，允许尝试的次数",
+  "path_routeWeight": "{weight}/{max}"
 }

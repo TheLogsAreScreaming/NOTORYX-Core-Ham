@@ -1360,6 +1360,72 @@ abstract class AppLocalizations {
   /// **'Auto route rotation disabled'**
   String get appSettings_autoRouteRotationDisabled;
 
+  /// No description provided for @appSettings_maxRouteWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Route Weight'**
+  String get appSettings_maxRouteWeight;
+
+  /// No description provided for @appSettings_maxRouteWeightSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum weight a path can accumulate from successful deliveries'**
+  String get appSettings_maxRouteWeightSubtitle;
+
+  /// No description provided for @appSettings_initialRouteWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Initial Route Weight'**
+  String get appSettings_initialRouteWeight;
+
+  /// No description provided for @appSettings_initialRouteWeightSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting weight for newly discovered paths'**
+  String get appSettings_initialRouteWeightSubtitle;
+
+  /// No description provided for @appSettings_routeWeightSuccessIncrement.
+  ///
+  /// In en, this message translates to:
+  /// **'Success Weight Increment'**
+  String get appSettings_routeWeightSuccessIncrement;
+
+  /// No description provided for @appSettings_routeWeightSuccessIncrementSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight added to a path after successful delivery'**
+  String get appSettings_routeWeightSuccessIncrementSubtitle;
+
+  /// No description provided for @appSettings_routeWeightFailureDecrement.
+  ///
+  /// In en, this message translates to:
+  /// **'Failure Weight Decrement'**
+  String get appSettings_routeWeightFailureDecrement;
+
+  /// No description provided for @appSettings_routeWeightFailureDecrementSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight removed from a path after failed delivery'**
+  String get appSettings_routeWeightFailureDecrementSubtitle;
+
+  /// No description provided for @appSettings_maxMessageRetries.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Message Retries'**
+  String get appSettings_maxMessageRetries;
+
+  /// No description provided for @appSettings_maxMessageRetriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of retry attempts before marking a message as failed'**
+  String get appSettings_maxMessageRetriesSubtitle;
+
+  /// No description provided for @path_routeWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'{weight}/{max}'**
+  String path_routeWeight(String weight, String max);
+
   /// No description provided for @appSettings_battery.
   ///
   /// In en, this message translates to:

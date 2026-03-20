@@ -120,6 +120,30 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(autoRouteRotationEnabled: value));
   }
 
+  Future<void> setMaxRouteWeight(double value) async {
+    await updateSettings(_settings.copyWith(maxRouteWeight: value));
+  }
+
+  Future<void> setInitialRouteWeight(double value) async {
+    await updateSettings(_settings.copyWith(initialRouteWeight: value));
+  }
+
+  Future<void> setRouteWeightSuccessIncrement(double value) async {
+    await updateSettings(
+      _settings.copyWith(routeWeightSuccessIncrement: value),
+    );
+  }
+
+  Future<void> setRouteWeightFailureDecrement(double value) async {
+    await updateSettings(
+      _settings.copyWith(routeWeightFailureDecrement: value),
+    );
+  }
+
+  Future<void> setMaxMessageRetries(int value) async {
+    await updateSettings(_settings.copyWith(maxMessageRetries: value));
+  }
+
   Future<void> setThemeMode(String value) async {
     await updateSettings(_settings.copyWith(themeMode: value));
   }

@@ -32,6 +32,11 @@ class AppSettings {
   final bool notifyOnNewChannelMessage;
   final bool notifyOnNewAdvert;
   final bool autoRouteRotationEnabled;
+  final double maxRouteWeight;
+  final double initialRouteWeight;
+  final double routeWeightSuccessIncrement;
+  final double routeWeightFailureDecrement;
+  final int maxMessageRetries;
   final String themeMode;
   final String? languageOverride; // null = system default
   final bool appDebugLogEnabled;
@@ -62,6 +67,11 @@ class AppSettings {
     this.notifyOnNewChannelMessage = true,
     this.notifyOnNewAdvert = true,
     this.autoRouteRotationEnabled = false,
+    this.maxRouteWeight = 5.0,
+    this.initialRouteWeight = 3.0,
+    this.routeWeightSuccessIncrement = 0.5,
+    this.routeWeightFailureDecrement = 0.2,
+    this.maxMessageRetries = 5,
     this.themeMode = 'system',
     this.languageOverride,
     this.appDebugLogEnabled = false,
@@ -96,6 +106,11 @@ class AppSettings {
       'notify_on_new_channel_message': notifyOnNewChannelMessage,
       'notify_on_new_advert': notifyOnNewAdvert,
       'auto_route_rotation_enabled': autoRouteRotationEnabled,
+      'max_route_weight': maxRouteWeight,
+      'initial_route_weight': initialRouteWeight,
+      'route_weight_success_increment': routeWeightSuccessIncrement,
+      'route_weight_failure_decrement': routeWeightFailureDecrement,
+      'max_message_retries': maxMessageRetries,
       'theme_mode': themeMode,
       'language_override': languageOverride,
       'app_debug_log_enabled': appDebugLogEnabled,
@@ -142,6 +157,14 @@ class AppSettings {
       notifyOnNewAdvert: json['notify_on_new_advert'] as bool? ?? true,
       autoRouteRotationEnabled:
           json['auto_route_rotation_enabled'] as bool? ?? false,
+      maxRouteWeight: (json['max_route_weight'] as num?)?.toDouble() ?? 5.0,
+      initialRouteWeight:
+          (json['initial_route_weight'] as num?)?.toDouble() ?? 3.0,
+      routeWeightSuccessIncrement:
+          (json['route_weight_success_increment'] as num?)?.toDouble() ?? 0.5,
+      routeWeightFailureDecrement:
+          (json['route_weight_failure_decrement'] as num?)?.toDouble() ?? 0.2,
+      maxMessageRetries: json['max_message_retries'] as int? ?? 5,
       themeMode: json['theme_mode'] as String? ?? 'system',
       languageOverride: json['language_override'] as String?,
       appDebugLogEnabled: json['app_debug_log_enabled'] as bool? ?? false,
@@ -187,6 +210,11 @@ class AppSettings {
     bool? notifyOnNewChannelMessage,
     bool? notifyOnNewAdvert,
     bool? autoRouteRotationEnabled,
+    double? maxRouteWeight,
+    double? initialRouteWeight,
+    double? routeWeightSuccessIncrement,
+    double? routeWeightFailureDecrement,
+    int? maxMessageRetries,
     String? themeMode,
     Object? languageOverride = _unset,
     bool? appDebugLogEnabled,
@@ -222,6 +250,13 @@ class AppSettings {
       notifyOnNewAdvert: notifyOnNewAdvert ?? this.notifyOnNewAdvert,
       autoRouteRotationEnabled:
           autoRouteRotationEnabled ?? this.autoRouteRotationEnabled,
+      maxRouteWeight: maxRouteWeight ?? this.maxRouteWeight,
+      initialRouteWeight: initialRouteWeight ?? this.initialRouteWeight,
+      routeWeightSuccessIncrement:
+          routeWeightSuccessIncrement ?? this.routeWeightSuccessIncrement,
+      routeWeightFailureDecrement:
+          routeWeightFailureDecrement ?? this.routeWeightFailureDecrement,
+      maxMessageRetries: maxMessageRetries ?? this.maxMessageRetries,
       themeMode: themeMode ?? this.themeMode,
       languageOverride: languageOverride == _unset
           ? this.languageOverride

@@ -696,6 +696,50 @@ class AppLocalizationsIt extends AppLocalizations {
       'Rotazione del percorso automatico disabilitata';
 
   @override
+  String get appSettings_maxRouteWeight =>
+      'Massimo peso consentito per il percorso';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Il peso massimo che un percorso può accumulare grazie a consegne di successo.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Peso iniziale del percorso';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Peso di partenza per nuovi percorsi';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Aumento del peso del successo';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Peso aggiunto a un percorso dopo una consegna riuscita.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Riduzione del peso associato al fallimento';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Peso rimosso da un percorso dopo un tentativo di consegna fallito.';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Numero massimo di tentativi di invio del messaggio';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Numero di tentativi di riprova prima di considerare un messaggio come fallito.';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Batteria';
 
   @override

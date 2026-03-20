@@ -1889,5 +1889,26 @@
   "tcpErrorTimedOut": "La connexion TCP a expiré.",
   "tcpConnectionFailed": "Échec de la connexion TCP : {error}",
   "map_showDiscoveryContacts": "Afficher les contacts de découverte",
-  "map_setAsMyLocation": "Définir comme ma localisation"
+  "map_setAsMyLocation": "Définir comme ma localisation",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_maxRouteWeightSubtitle": "Poids maximal qu'un itinéraire peut accumuler grâce à des livraisons réussies.",
+  "appSettings_initialRouteWeight": "Poids initial de l'itinéraire",
+  "appSettings_maxRouteWeight": "Poids maximal autorisé pour le trajet",
+  "appSettings_initialRouteWeightSubtitle": "Poids de départ pour les nouveaux chemins découverts",
+  "appSettings_routeWeightSuccessIncrement": "Augmentation du poids de réussite",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Poids ajouté à un itinéraire après une livraison réussie.",
+  "appSettings_routeWeightFailureDecrement": "Réduction du poids de pénalité",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Poids retiré d'un itinéraire après une tentative de livraison infructueuse.",
+  "appSettings_maxMessageRetries": "Nombre maximal de tentatives de récupération de messages",
+  "appSettings_maxMessageRetriesSubtitle": "Nombre de tentatives de relance avant de marquer un message comme ayant échoué.",
+  "path_routeWeight": "{weight}/{max}"
 }

@@ -688,6 +688,49 @@ class AppLocalizationsSl extends AppLocalizations {
       'Samodejno krmilno rotiranje je onemogočeno';
 
   @override
+  String get appSettings_maxRouteWeight => 'Največja dovoljena teža poti';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Največja teža, ki jo lahko pot doseže s uspešnimi dostavnami.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Izvirna teža poti';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Izguba teže za nove, odkriti poti';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Učinkovitost: povečanje';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Težava, dodana poti po uspešni dostavi';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Zmanjšanje teže, ki je povezana s pomanjkanjem';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Težo, ki ni bila uspešno dostavljena, odstranili s poti.';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Najve število poskusov pošiljanja sporočil';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Število poskusov ponovnega poslanja, preden se sporočilo označuje kot neuspešno';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Baterija';
 
   @override

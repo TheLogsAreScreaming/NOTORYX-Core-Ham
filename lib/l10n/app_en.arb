@@ -269,6 +269,23 @@
   "appSettings_autoRouteRotationSubtitle": "Cycle between best paths and flood mode",
   "appSettings_autoRouteRotationEnabled": "Auto route rotation enabled",
   "appSettings_autoRouteRotationDisabled": "Auto route rotation disabled",
+  "appSettings_maxRouteWeight": "Max Route Weight",
+  "appSettings_maxRouteWeightSubtitle": "Maximum weight a path can accumulate from successful deliveries",
+  "appSettings_initialRouteWeight": "Initial Route Weight",
+  "appSettings_initialRouteWeightSubtitle": "Starting weight for newly discovered paths",
+  "appSettings_routeWeightSuccessIncrement": "Success Weight Increment",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Weight added to a path after successful delivery",
+  "appSettings_routeWeightFailureDecrement": "Failure Weight Decrement",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Weight removed from a path after failed delivery",
+  "appSettings_maxMessageRetries": "Max Message Retries",
+  "appSettings_maxMessageRetriesSubtitle": "Number of retry attempts before marking a message as failed",
+  "path_routeWeight": "{weight}/{max}",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": { "type": "String" },
+      "max": { "type": "String" }
+    }
+  },
   "appSettings_battery": "Battery",
   "appSettings_batteryChemistry": "Battery Chemistry",
   "appSettings_batteryChemistryPerDevice": "Set per device ({deviceName})",

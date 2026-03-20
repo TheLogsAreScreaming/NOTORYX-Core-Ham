@@ -1889,5 +1889,26 @@
   "tcpErrorTimedOut": "De TCP-verbinding is verlopen.",
   "tcpConnectionFailed": "Verbinding met TCP mislukt: {error}",
   "map_showDiscoveryContacts": "Ontdek contacten weergeven",
-  "map_setAsMyLocation": "Stel dit in als mijn locatie"
+  "map_setAsMyLocation": "Stel dit in als mijn locatie",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_maxRouteWeightSubtitle": "Het maximale gewicht dat een route kan bereiken door succesvolle leveringen.",
+  "appSettings_initialRouteWeight": "เริ่มต้น gewicht van de route",
+  "appSettings_maxRouteWeight": "Maximale gewicht voor de route",
+  "appSettings_initialRouteWeightSubtitle": "Startgewicht voor nieuwe, ontdekte routes",
+  "appSettings_routeWeightSuccessIncrement": "Toename in het gewicht van het succes",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Gewicht wordt toegevoegd aan een route na een succesvolle levering.",
+  "appSettings_routeWeightFailureDecrement": "Vermindering van het gewicht van fouten",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Gewicht verwijderd van een pad na een mislukte levering",
+  "appSettings_maxMessageRetries": "Aantal pogingen om berichten te versturen",
+  "appSettings_maxMessageRetriesSubtitle": "Aantal pogingen om een bericht opnieuw te versturen voordat het als mislukt wordt gemarkeerd",
+  "path_routeWeight": "{weight}/{max}"
 }

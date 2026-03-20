@@ -1889,5 +1889,26 @@
   "tcpErrorTimedOut": "Połączenie TCP zakończyło się bez powodzenia.",
   "tcpConnectionFailed": "Błąd połączenia TCP: {error}",
   "map_showDiscoveryContacts": "Pokaż kontakty odkrywania",
-  "map_setAsMyLocation": "Ustaw jako moje lokalizację"
+  "map_setAsMyLocation": "Ustaw jako moje lokalizację",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeight": "Początkowa waga trasy",
+  "appSettings_maxRouteWeight": "Maksymalny dopuszczalny ciężar pojazdu",
+  "appSettings_initialRouteWeightSubtitle": "Początkowa waga dla nowych, odkrytych ścieżek",
+  "appSettings_maxRouteWeightSubtitle": "Maksymalna waga, jaką ścieżka może zgromadzić dzięki udanym dostawom.",
+  "appSettings_routeWeightSuccessIncrement": "Wzrost wagi sukcesu",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Waga dodana do ścieżki po pomyślnym dostarczeniu",
+  "appSettings_routeWeightFailureDecrement": "Zmniejszenie wagi kary",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Waga usunięta z trasy po nieudanej dostawie",
+  "appSettings_maxMessageRetries": "Maksymalna liczba prób wysłania wiadomości",
+  "appSettings_maxMessageRetriesSubtitle": "Liczba prób ponownego wysłania wiadomości przed oznaczaniem jej jako nieudanej",
+  "path_routeWeight": "{weight}/{max}"
 }

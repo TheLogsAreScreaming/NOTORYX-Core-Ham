@@ -1,8 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../l10n/l10n.dart';
+import '../utils/platform_info.dart';
 
 class LinkHandler {
+  /// Returns a [SelectableLinkify] on desktop or a [Linkify] on mobile.
+  static Widget buildLinkifyText({
+    required BuildContext context,
+    required String text,
+    required TextStyle style,
+    TextStyle? linkStyle,
+  }) {
+    final effectiveLinkStyle =
+        linkStyle ??
+        style.copyWith(
+          color: Colors.green,
+          decoration: TextDecoration.underline,
+        );
+    const options = LinkifyOptions(humanize: false, defaultToHttps: false);
+    const linkifiers = [UrlLinkifier()];
+    void onOpen(LinkableElement link) => handleLinkTap(context, link.url);
+
+    if (PlatformInfo.isDesktop) {
+      return SelectableLinkify(
+        text: text,
+        style: style,
+        linkStyle: effectiveLinkStyle,
+        options: options,
+        linkifiers: linkifiers,
+        onOpen: onOpen,
+      );
+    }
+    return Linkify(
+      text: text,
+      style: style,
+      linkStyle: effectiveLinkStyle,
+      options: options,
+      linkifiers: linkifiers,
+      onOpen: onOpen,
+    );
+  }
+
   static Future<void> handleLinkTap(BuildContext context, String url) async {
     // Show confirmation dialog
     final shouldOpen = await showDialog<bool>(

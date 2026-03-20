@@ -1129,5 +1129,26 @@
   "tcpErrorTimedOut": "Соединение TCP не удалось установить.",
   "tcpConnectionFailed": "Не удалось установить соединение TCP: {error}",
   "map_showDiscoveryContacts": "Показать контакты Discovery",
-  "map_setAsMyLocation": "Установить мое местоположение"
+  "map_setAsMyLocation": "Установить мое местоположение",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_maxRouteWeight": "Максимальный допустимый вес маршрута",
+  "appSettings_maxRouteWeightSubtitle": "Максимальный вес, который может быть перевезён по определённому маршруту при успешных доставках.",
+  "appSettings_initialRouteWeightSubtitle": "Начальный вес для новых, только что открытых маршрутов",
+  "appSettings_initialRouteWeight": "Начальный вес маршрута",
+  "appSettings_routeWeightSuccessIncrement": "Увеличение веса успеха",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Вес, добавленный к маршруту после успешной доставки.",
+  "appSettings_routeWeightFailureDecrement": "Уменьшение веса неудачи",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Вес, который был удален с пути после неудачной доставки.",
+  "appSettings_maxMessageRetries": "Максимальное количество повторных попыток отправки сообщения",
+  "appSettings_maxMessageRetriesSubtitle": "Количество попыток повторной отправки сообщения перед тем, как пометить его как неудачное.",
+  "path_routeWeight": "{weight}/{max}"
 }

@@ -683,6 +683,48 @@ class AppLocalizationsSv extends AppLocalizations {
       'Automatisk ruttrotation är avstängd';
 
   @override
+  String get appSettings_maxRouteWeight => 'Maximalt tillåtet vikt för rutten';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Maximal vikt som en leveransväg kan ackumulera från framgångsrika leveranser.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Initial vikt för rutt';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Initial vikt för nyligen upptäckta vägar';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Ökning av vikt för framgång';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Vikt läggs till en väg efter en lyckad leverans.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Minskning av vikten för misslyckande';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Vikt som tagits bort från en väg efter ett misslyckat leveransförsök';
+
+  @override
+  String get appSettings_maxMessageRetries => 'Maximalt antal försök';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Antal försök att skicka om ett meddelande innan det markeras som misslyckat.';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Batteri';
 
   @override

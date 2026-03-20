@@ -697,6 +697,50 @@ class AppLocalizationsRu extends AppLocalizations {
       'Автоматическое переключение маршрутов отключено';
 
   @override
+  String get appSettings_maxRouteWeight =>
+      'Максимальный допустимый вес маршрута';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Максимальный вес, который может быть перевезён по определённому маршруту при успешных доставках.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Начальный вес маршрута';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Начальный вес для новых, только что открытых маршрутов';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Увеличение веса успеха';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Вес, добавленный к маршруту после успешной доставки.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Уменьшение веса неудачи';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Вес, который был удален с пути после неудачной доставки.';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Максимальное количество повторных попыток отправки сообщения';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Количество попыток повторной отправки сообщения перед тем, как пометить его как неудачное.';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Батарея';
 
   @override

@@ -1889,5 +1889,26 @@
   "tcpErrorTimedOut": "З'єднання TCP завершилося через закінчення часу очікування.",
   "tcpConnectionFailed": "Не вдалося встановити з'єднання TCP: {error}",
   "map_showDiscoveryContacts": "Показати контакти Відкриття",
-  "map_setAsMyLocation": "Встановити моє місцезнаходження"
+  "map_setAsMyLocation": "Встановити моє місцезнаходження",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeight": "Початкова вартість маршруту",
+  "appSettings_initialRouteWeightSubtitle": "Початкова вага для нових відкритих шляхів",
+  "appSettings_maxRouteWeight": "Максимальна вага маршруту",
+  "appSettings_maxRouteWeightSubtitle": "Максимальна вага, яку може накопичити маршрут завдяки успішним доставкам.",
+  "appSettings_routeWeightSuccessIncrement": "Збільшення ваги успіху",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Вага, додана до маршруту після успішної доставки",
+  "appSettings_routeWeightFailureDecrement": "Зменшення ваги помилки",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Вага, яка була знята з маршруту після невдалої доставки",
+  "appSettings_maxMessageRetries": "Максимальна кількість повторних спроб надсилання повідомлення",
+  "appSettings_maxMessageRetriesSubtitle": "Кількість спроб повторного відправлення повідомлення перед тим, як позначити його як невдале",
+  "path_routeWeight": "{weight}/{max}"
 }

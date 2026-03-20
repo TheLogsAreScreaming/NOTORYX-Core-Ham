@@ -685,6 +685,48 @@ class AppLocalizationsEn extends AppLocalizations {
       'Auto route rotation disabled';
 
   @override
+  String get appSettings_maxRouteWeight => 'Max Route Weight';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Maximum weight a path can accumulate from successful deliveries';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Initial Route Weight';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Starting weight for newly discovered paths';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Success Weight Increment';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Weight added to a path after successful delivery';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Failure Weight Decrement';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Weight removed from a path after failed delivery';
+
+  @override
+  String get appSettings_maxMessageRetries => 'Max Message Retries';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Number of retry attempts before marking a message as failed';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Battery';
 
   @override

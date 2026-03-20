@@ -1917,5 +1917,26 @@
   "tcpErrorTimedOut": "Die TCP-Verbindung ist abgelaufen.",
   "tcpConnectionFailed": "Fehler beim TCP-Verbindungsaufbau: {error}",
   "map_showDiscoveryContacts": "Entdeckungs-Kontakte anzeigen",
-  "map_setAsMyLocation": "Als meine aktuelle Position festlegen"
+  "map_setAsMyLocation": "Als meine aktuelle Position festlegen",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeightSubtitle": "Ausgangsgewicht für neu entdeckte Pfade",
+  "appSettings_maxRouteWeightSubtitle": "Maximales Gewicht, das ein Weg durch erfolgreiche Lieferungen erreichen kann.",
+  "appSettings_maxRouteWeight": "Maximale Gesamtstreckenlänge",
+  "appSettings_initialRouteWeight": "Anfangs-Streckengewicht",
+  "appSettings_routeWeightSuccessIncrement": "Erhöhung des Erfolgsgewichts",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Gewicht, das einem Pfad nach erfolgreicher Lieferung hinzugefügt wird.",
+  "appSettings_routeWeightFailureDecrement": "Reduzierung des Gewichts bei Fehlern",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Gewicht, das nach einem fehlgeschlagenen Versand von einem Weg entfernt wurde",
+  "appSettings_maxMessageRetries": "Maximale Anzahl an Wiederholungsversuchen",
+  "appSettings_maxMessageRetriesSubtitle": "Anzahl der Versuche, eine Nachricht erneut zu senden, bevor sie als fehlgeschlagen markiert wird.",
+  "path_routeWeight": "{weight}/{max}"
 }

@@ -693,6 +693,49 @@ class AppLocalizationsUk extends AppLocalizations {
       'Авторотація маршрутизації вимкнена';
 
   @override
+  String get appSettings_maxRouteWeight => 'Максимальна вага маршруту';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Максимальна вага, яку може накопичити маршрут завдяки успішним доставкам.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Початкова вартість маршруту';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Початкова вага для нових відкритих шляхів';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Збільшення ваги успіху';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Вага, додана до маршруту після успішної доставки';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Зменшення ваги помилки';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Вага, яка була знята з маршруту після невдалої доставки';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Максимальна кількість повторних спроб надсилання повідомлення';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Кількість спроб повторного відправлення повідомлення перед тим, як позначити його як невдале';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Батарея';
 
   @override

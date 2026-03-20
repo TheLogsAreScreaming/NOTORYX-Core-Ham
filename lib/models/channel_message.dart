@@ -36,6 +36,7 @@ class ChannelMessage {
   final List<Uint8List> pathVariants;
   final int? channelIndex;
   final String messageId;
+  final String? packetHash;
   final String? replyToMessageId;
   final String? replyToSenderName;
   final String? replyToText;
@@ -55,6 +56,7 @@ class ChannelMessage {
     List<Uint8List>? pathVariants,
     this.channelIndex,
     String? messageId,
+    this.packetHash,
     this.replyToMessageId,
     this.replyToSenderName,
     this.replyToText,
@@ -79,6 +81,7 @@ class ChannelMessage {
     int? pathLength,
     Uint8List? pathBytes,
     List<Uint8List>? pathVariants,
+    String? packetHash,
     String? replyToMessageId,
     String? replyToSenderName,
     String? replyToText,
@@ -98,6 +101,7 @@ class ChannelMessage {
       pathVariants: pathVariants ?? this.pathVariants,
       channelIndex: channelIndex,
       messageId: messageId,
+      packetHash: packetHash ?? this.packetHash,
       replyToMessageId: replyToMessageId ?? this.replyToMessageId,
       replyToSenderName: replyToSenderName ?? this.replyToSenderName,
       replyToText: replyToText ?? this.replyToText,

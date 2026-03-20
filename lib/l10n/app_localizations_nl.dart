@@ -690,6 +690,49 @@ class AppLocalizationsNl extends AppLocalizations {
       'Automatische route rotatie is uitgeschakeld';
 
   @override
+  String get appSettings_maxRouteWeight => 'Maximale gewicht voor de route';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Het maximale gewicht dat een route kan bereiken door succesvolle leveringen.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'เริ่มต้น gewicht van de route';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Startgewicht voor nieuwe, ontdekte routes';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Toename in het gewicht van het succes';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Gewicht wordt toegevoegd aan een route na een succesvolle levering.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Vermindering van het gewicht van fouten';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Gewicht verwijderd van een pad na een mislukte levering';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Aantal pogingen om berichten te versturen';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Aantal pogingen om een bericht opnieuw te versturen voordat het als mislukt wordt gemarkeerd';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Batterij';
 
   @override

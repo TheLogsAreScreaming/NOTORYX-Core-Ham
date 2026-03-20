@@ -696,6 +696,49 @@ class AppLocalizationsDe extends AppLocalizations {
       'Automatische Routenrotation deaktiviert';
 
   @override
+  String get appSettings_maxRouteWeight => 'Maximale Gesamtstreckenlänge';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Maximales Gewicht, das ein Weg durch erfolgreiche Lieferungen erreichen kann.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Anfangs-Streckengewicht';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Ausgangsgewicht für neu entdeckte Pfade';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Erhöhung des Erfolgsgewichts';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Gewicht, das einem Pfad nach erfolgreicher Lieferung hinzugefügt wird.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Reduzierung des Gewichts bei Fehlern';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Gewicht, das nach einem fehlgeschlagenen Versand von einem Weg entfernt wurde';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Maximale Anzahl an Wiederholungsversuchen';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Anzahl der Versuche, eine Nachricht erneut zu senden, bevor sie als fehlgeschlagen markiert wird.';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Akku';
 
   @override

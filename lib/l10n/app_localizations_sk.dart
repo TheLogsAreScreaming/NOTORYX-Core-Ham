@@ -688,6 +688,48 @@ class AppLocalizationsSk extends AppLocalizations {
       'Automatické prekladanie trás pozastavené';
 
   @override
+  String get appSettings_maxRouteWeight => 'Maximálna hmotnosť trasy';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Maximálna hmotnosť, ktorú môže trás prenášať vďaka úspešným zásielkam.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Počiatočná váha trasy';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Počiatočná váha pre nové, objavené cesty';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement => 'Zvyšenie váhy úspechu';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Hmotnosť pridaná k trase po úspešnej doručení';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Sníženie váhy, ktorá sa používa na odhad rizika.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Hmotnosť odstránená z cesty po neúspešnej doručenie';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Maximalný počet pokusov o doručenie správ';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Počet pokusov o odošleť pred označením správy ako neúspešnej';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Batéria';
 
   @override
