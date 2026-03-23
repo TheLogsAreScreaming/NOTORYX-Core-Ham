@@ -132,17 +132,15 @@ class ChannelMessage {
         final hasPath = (flags & 0x01) != 0;
         reader.skipBytes(1); // Skip reserved byte
         channelIdx = reader.readByte();
-        pathLen = reader.readByte();
+        pathLen = reader.readInt8();
         txtType = reader.readByte();
         if (hasPath && pathLen > 0) {
           reader.rewind(); // Rewind to read path length again for pathBytes
           pathBytes = reader.readBytes(pathLen);
-        } else {
-          pathLen = 0;
         }
       } else {
         channelIdx = reader.readByte();
-        pathLen = reader.readByte();
+        pathLen = reader.readInt8();
         txtType = reader.readByte();
       }
       final timestampRaw = reader.readUInt32LE();

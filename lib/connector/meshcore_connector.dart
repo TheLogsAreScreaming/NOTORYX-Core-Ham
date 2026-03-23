@@ -3043,7 +3043,7 @@ class MeshCoreConnector extends ChangeNotifier {
     try {
       final reader = BufferReader(frame);
       reader.skipBytes(1);
-      _batteryMillivolts = reader.readInt16LE();
+      _batteryMillivolts = reader.readUInt16LE();
       _storageUsedKb = reader.readUInt32LE();
       _storageTotalKb = reader.readUInt32LE();
       final volts = (_batteryMillivolts! / 1000.0).toStringAsFixed(2);
