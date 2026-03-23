@@ -307,8 +307,8 @@
   "contacts_filterContacts": "Filtruj kontakty...",
   "contacts_noContactsMatchFilter": "Brak pasujących kontaktów do Twojego filtra",
   "contacts_noMembers": "Brak członków",
-  "contacts_lastSeenNow": "Widziano przed chwilą",
-  "contacts_lastSeenMinsAgo": "Widziano {minutes} min temu",
+  "contacts_lastSeenNow": "niedawno",
+  "contacts_lastSeenMinsAgo": "~ {minutes} min",
   "@contacts_lastSeenMinsAgo": {
     "placeholders": {
       "minutes": {
@@ -316,8 +316,8 @@
       }
     }
   },
-  "contacts_lastSeenHourAgo": "Ostatni raz widziany 1 godzinę temu",
-  "contacts_lastSeenHoursAgo": "Widziano {hours} godz. temu",
+  "contacts_lastSeenHourAgo": "~ 1 godz.",
+  "contacts_lastSeenHoursAgo": "~ {hours} godz.",
   "@contacts_lastSeenHoursAgo": {
     "placeholders": {
       "hours": {
@@ -325,8 +325,8 @@
       }
     }
   },
-  "contacts_lastSeenDayAgo": "Ostatni raz widziany 1 dzień temu",
-  "contacts_lastSeenDaysAgo": "Widziano {days} dni temu",
+  "contacts_lastSeenDayAgo": "~ 1 dzień",
+  "contacts_lastSeenDaysAgo": "~ {days} dni",
   "@contacts_lastSeenDaysAgo": {
     "placeholders": {
       "days": {

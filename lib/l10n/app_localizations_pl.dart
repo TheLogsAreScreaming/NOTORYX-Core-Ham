@@ -973,27 +973,27 @@ class AppLocalizationsPl extends AppLocalizations {
   String get contacts_noMembers => 'Brak członków';
 
   @override
-  String get contacts_lastSeenNow => 'Widziano przed chwilą';
+  String get contacts_lastSeenNow => 'niedawno';
 
   @override
   String contacts_lastSeenMinsAgo(int minutes) {
-    return 'Widziano $minutes min temu';
+    return '~ $minutes min';
   }
 
   @override
-  String get contacts_lastSeenHourAgo => 'Ostatni raz widziany 1 godzinę temu';
+  String get contacts_lastSeenHourAgo => '~ 1 godz.';
 
   @override
   String contacts_lastSeenHoursAgo(int hours) {
-    return 'Widziano $hours godz. temu';
+    return '~ $hours godz.';
   }
 
   @override
-  String get contacts_lastSeenDayAgo => 'Ostatni raz widziany 1 dzień temu';
+  String get contacts_lastSeenDayAgo => '~ 1 dzień';
 
   @override
   String contacts_lastSeenDaysAgo(int days) {
-    return 'Widziano $days dni temu';
+    return '~ $days dni';
   }
 
   @override
