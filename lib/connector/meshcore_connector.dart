@@ -4323,7 +4323,8 @@ class MeshCoreConnector extends ChangeNotifier {
           routeType == _routeTransportFlood ||
           routeType == _routeTransportDirect;
       if (hasTransport) {
-        reader.skipBytes(2); // Skip reserved bytes in transport header
+        // Skip reserved bytes in transport header made up of two u16 fields
+        reader.skipBytes(4);
       }
       final pathLenRaw = reader.readByte();
       final pathByteLen = _decodePathByteLen(pathLenRaw);

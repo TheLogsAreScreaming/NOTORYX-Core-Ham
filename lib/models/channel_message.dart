@@ -129,11 +129,11 @@ class ChannelMessage {
       if (code == respCodeChannelMsgRecvV3) {
         reader.skipBytes(1); // Skip SNR
         final flags = reader.readByte();
+        final hasPath = (flags & 0x01) != 0;
         reader.skipBytes(1); // Skip reserved byte
         channelIdx = reader.readByte();
         pathLen = reader.readByte();
         txtType = reader.readByte();
-        final hasPath = (flags & 0x01) != 0;
         if (hasPath && pathLen > 0) {
           reader.rewind(); // Rewind to read path length again for pathBytes
           pathBytes = reader.readBytes(pathLen);

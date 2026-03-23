@@ -678,7 +678,7 @@ class MessageRetryService extends ChangeNotifier {
     }
   }
 
-  String? getContactKeyForAckHash(Uint8List ackHash) {
+  String? getContactKeyForAckHash(int ackHash) {
     for (var entry in _pendingMessages.entries) {
       final message = entry.value;
       if (message.expectedAckHash != null &&
