@@ -3194,13 +3194,13 @@ class AppLocalizationsPl extends AppLocalizations {
       'Kontakt nie został zaimportowany.';
 
   @override
-  String get contacts_zeroHopAdvert => 'Reklama Zero Hop';
+  String get contacts_zeroHopAdvert => 'Rozgłoszenie zero-hop';
 
   @override
-  String get contacts_floodAdvert => 'Reklama powodziowa';
+  String get contacts_floodAdvert => 'Rozgłoszenie zalewowe';
 
   @override
-  String get contacts_copyAdvertToClipboard => 'Kopiuj ogłoszenie do schowka';
+  String get contacts_copyAdvertToClipboard => 'Kopiuj rozgłoszenie do schowka';
 
   @override
   String get contacts_addContactFromClipboard => 'Dodaj kontakt z schowka';
@@ -3210,22 +3210,23 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get contacts_ShareContactZeroHop =>
-      'Udostępnij kontakt przez ogłoszenie';
+      'Udostępnij kontakt przez rozgłoszenie';
 
   @override
   String get contacts_zeroHopContactAdvertSent =>
-      'Wysłano kontakt przez ogłoszenie.';
+      'Wysłano kontakt przez rozgłoszenie.';
 
   @override
   String get contacts_zeroHopContactAdvertFailed =>
       'Nie udało się wysłać kontaktu.';
 
   @override
-  String get contacts_contactAdvertCopied => 'Reklama skopiowana do schowka.';
+  String get contacts_contactAdvertCopied =>
+      'Rozgłoszenie skopiowano do schowka.';
 
   @override
   String get contacts_contactAdvertCopyFailed =>
-      'Kopiowanie ogłoszenia do schowka nie powiodło się.';
+      'Kopiowanie rozgłoszenia do schowka nie powiodło się.';
 
   @override
   String get notification_activityTitle => 'Aktywność MeshCore';
