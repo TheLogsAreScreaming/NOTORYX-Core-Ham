@@ -2839,7 +2839,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _bleDebugLogService?.logFrame(frame, outgoing: false);
 
     final code = frame[0];
-    debugPrint('RX frame: code=$code len=${frame.length}');
+    // debugPrint('RX frame: code=$code len=${frame.length}');
 
     switch (code) {
       case respCodeOk:

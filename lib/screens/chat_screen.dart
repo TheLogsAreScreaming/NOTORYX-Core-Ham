@@ -1697,7 +1697,7 @@ class _MessageBubble extends StatelessWidget {
                               child: Text(
                                 context.l10n.chat_retryCount(
                                   message.retryCount,
-                                  4,
+                                  context.read<AppSettingsService>().settings.maxMessageRetries,
                                 ),
                                 style: TextStyle(
                                   fontSize: 10,

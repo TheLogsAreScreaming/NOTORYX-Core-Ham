@@ -21,11 +21,16 @@ class _AckHistoryEntry {
   });
 }
 
-/// (messageId, timestamp, attemptIndex) — stored per ACK hash for O(1) lookup.
+/// (messageId, timestamp, attemptIndex, pathSelection) — stored per ACK hash
+/// for O(1) lookup.  [pathSelection] snapshots the route used for this
+/// specific attempt so that a late PUSH_CODE_SEND_CONFIRMED credits the
+/// correct path even when the message has since been retried on a different
+/// route.
 typedef AckHashMapping = ({
   String messageId,
   DateTime timestamp,
   int attemptIndex,
+  PathSelection? pathSelection,
 });
 
 class RetryServiceConfig {
@@ -382,6 +387,7 @@ class MessageRetryService extends ChangeNotifier {
       messageId: messageId,
       timestamp: DateTime.now(),
       attemptIndex: message.retryCount,
+      pathSelection: _selectionFromMessage(message),
     );
 
     // Add this ACK hash to the list of expected ACKs for this message (for history)
@@ -395,14 +401,11 @@ class MessageRetryService extends ChangeNotifier {
 
     int actualTimeout = timeoutMs;
     if (config.calculateTimeout != null) {
-      final calculated = config.calculateTimeout!(
+      actualTimeout = config.calculateTimeout!(
         pathLengthValue,
         message.text.length,
         contactKey: contact.publicKeyHex,
       );
-      if (timeoutMs <= 0 || calculated < timeoutMs) {
-        actualTimeout = calculated;
-      }
     }
 
     final updatedMessage = message.copyWith(
@@ -569,6 +572,7 @@ class MessageRetryService extends ChangeNotifier {
     final config = _config;
     String? matchedMessageId;
     int? matchedAttemptIndex;
+    PathSelection? matchedPathSelection;
     final ackHashHex = ackHash.toRadixString(16).padLeft(8, '0');
 
     // Clean up old ACK hash mappings (older than 15 minutes)
@@ -588,6 +592,7 @@ class MessageRetryService extends ChangeNotifier {
     if (mapping != null) {
       matchedMessageId = mapping.messageId;
       matchedAttemptIndex = mapping.attemptIndex;
+      matchedPathSelection = mapping.pathSelection;
     } else {
       config?.debugLogService?.warn(
         'PUSH_CODE_SEND_CONFIRMED: ACK hash $ackHashHex not found in direct mapping, trying fallback',
@@ -618,13 +623,13 @@ class MessageRetryService extends ChangeNotifier {
       }
       final contact = _pendingContacts[matchedMessageId];
       final ackedAttempt = matchedAttemptIndex ?? message.retryCount;
-      final selection = _selectionFromMessage(message);
+      final selection = matchedPathSelection ?? _selectionFromMessage(message);
 
       final shortText = message.text.length > 20
           ? '${message.text.substring(0, 20)}...'
           : message.text;
       config?.debugLogService?.info(
-        'PUSH_CODE_SEND_CONFIRMED: ACK hash $ackHashHex ✓ "$shortText" delivered to ${contact?.name ?? "unknown"} on retry ${ackedAttempt + 1} in ${tripTimeMs}ms',
+        'PUSH_CODE_SEND_CONFIRMED: ACK hash $ackHashHex ✓ "$shortText" delivered to ${contact?.name ?? "unknown"} on attempt $ackedAttempt in ${tripTimeMs}ms',
         tag: 'AckHash',
       );
 
@@ -635,6 +640,8 @@ class MessageRetryService extends ChangeNotifier {
         deliveredAt: DateTime.now(),
         tripTimeMs: tripTimeMs,
       );
+
+      final wasAlreadyResolved = _resolvedMessages.contains(matchedMessageId);
 
       _cleanupMessage(matchedMessageId);
 
@@ -658,7 +665,9 @@ class MessageRetryService extends ChangeNotifier {
             tripTimeMs,
           );
         }
-        _onMessageResolved(matchedMessageId, contact.publicKeyHex);
+        if (!wasAlreadyResolved) {
+          _onMessageResolved(matchedMessageId, contact.publicKeyHex);
+        }
       }
 
       notifyListeners();
