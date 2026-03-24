@@ -5,6 +5,17 @@ import '../l10n/l10n.dart';
 import '../utils/platform_info.dart';
 
 class LinkHandler {
+  static TextStyle defaultLinkStyle(BuildContext context, TextStyle base) {
+    final brightness = Theme.of(context).brightness;
+    final orange = brightness == Brightness.dark
+        ? const Color(0xFFFFB74D)
+        : const Color(0xFFE65100);
+    return base.copyWith(
+      color: orange,
+      decoration: TextDecoration.underline,
+    );
+  }
+
   /// Returns a [SelectableLinkify] on desktop or a [Linkify] on mobile.
   static Widget buildLinkifyText({
     required BuildContext context,
@@ -13,13 +24,9 @@ class LinkHandler {
     TextStyle? linkStyle,
   }) {
     final effectiveLinkStyle =
-        linkStyle ??
-        style.copyWith(
-          color: Colors.green,
-          decoration: TextDecoration.underline,
-        );
+        linkStyle ?? defaultLinkStyle(context, style);
     const options = LinkifyOptions(humanize: false, defaultToHttps: false);
-    const linkifiers = [UrlLinkifier()];
+    const linkifiers = [UrlLinkifier(), EmailLinkifier()];
     void onOpen(LinkableElement link) => handleLinkTap(context, link.url);
 
     if (PlatformInfo.isDesktop) {

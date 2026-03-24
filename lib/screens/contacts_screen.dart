@@ -1244,6 +1244,8 @@ class _ContactsScreenState extends State<ContactsScreen>
                     ? Text(context.l10n.contacts_pathTrace)
                     : Text(context.l10n.contacts_ping),
                 onTap: () {
+                  final hw =
+                      context.read<MeshCoreConnector>().pathHashByteWidth;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -1254,6 +1256,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                         path: contact.pathBytesForDisplay,
                         flipPathAround: true,
                         targetContact: contact,
+                        pathHashByteWidth: hw,
                       ),
                     ),
                   );
@@ -1274,6 +1277,8 @@ class _ContactsScreenState extends State<ContactsScreen>
                     ? Text(context.l10n.contacts_pathTrace)
                     : Text(context.l10n.contacts_ping),
                 onTap: () {
+                  final hw =
+                      context.read<MeshCoreConnector>().pathHashByteWidth;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -1284,6 +1289,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                         path: contact.pathBytesForDisplay,
                         flipPathAround: contact.pathBytesForDisplay.isNotEmpty,
                         targetContact: contact,
+                        pathHashByteWidth: hw,
                       ),
                     ),
                   );
@@ -1318,6 +1324,8 @@ class _ContactsScreenState extends State<ContactsScreen>
                   leading: const Icon(Icons.radar, color: Colors.green),
                   title: Text(context.l10n.contacts_chatTraceRoute),
                   onTap: () {
+                    final hw =
+                        context.read<MeshCoreConnector>().pathHashByteWidth;
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -1328,6 +1336,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                           path: contact.pathBytesForDisplay,
                           flipPathAround: true,
                           targetContact: contact,
+                          pathHashByteWidth: hw,
                         ),
                       ),
                     );

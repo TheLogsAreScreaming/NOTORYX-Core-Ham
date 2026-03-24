@@ -209,6 +209,8 @@ const int cmdSetCustomVar = 41;
 const int cmdSendBinaryReq = 50;
 const int cmdSetAutoAddConfig = 58;
 const int cmdGetAutoAddConfig = 59;
+const int cmdSetPathHashMode = 61;
+const int cmdGetStats = 56;
 
 // Text message types
 const int txtTypePlain = 0;
@@ -245,6 +247,11 @@ const int respCodeChannelMsgRecvV3 = 17;
 const int respCodeChannelInfo = 18;
 const int respCodeCustomVars = 21;
 const int respCodeAutoAddConfig = 25;
+const int respCodeStats = 24;
+
+const int statsTypeCore = 0;
+const int statsTypeRadio = 1;
+const int statsTypePackets = 2;
 
 // Push codes (async from device)
 const int pushCodeAdvert = 0x80;
@@ -552,6 +559,17 @@ Uint8List buildGetDeviceTimeFrame() {
 // Build CMD_GET_BATT_AND_STORAGE frame
 Uint8List buildGetBattAndStorageFrame() {
   return Uint8List.fromList([cmdGetBattAndStorage]);
+}
+
+/// Companion radio stats: [56][statsType] where statsType is statsTypeCore/Radio/Packets.
+Uint8List buildGetStatsFrame(int statsType) {
+  return Uint8List.fromList([cmdGetStats, statsType & 0xFF]);
+}
+
+/// Path hash width on air: [61][0][mode], mode 0..2 → (mode+1) bytes per hop hash.
+Uint8List buildSetPathHashModeFrame(int mode) {
+  final m = mode.clamp(0, 2);
+  return Uint8List.fromList([cmdSetPathHashMode, 0, m]);
 }
 
 // Build CMD_SET_DEVICE_TIME frame

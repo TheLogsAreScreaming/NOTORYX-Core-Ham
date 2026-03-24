@@ -2191,12 +2191,15 @@ class _MapScreenState extends State<MapScreen> {
                   if (_pathTrace.isNotEmpty)
                     IconButton(
                       onPressed: () {
+                        final hashW =
+                            context.read<MeshCoreConnector>().pathHashByteWidth;
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => PathTraceMapScreen(
                               title: l10n.contacts_pathTrace,
                               path: Uint8List.fromList(_pathTrace),
+                              pathHashByteWidth: hashW,
                             ),
                           ),
                         );

@@ -3484,4 +3484,87 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get discoveredContacts_deleteContactAllContent =>
       'Сигурни ли сте, че искате да изтриете всички открити контакти?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Моля, изчакайте малко, преди да изпратите отново.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Преминете към най-старата непочетена статия';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'Когато отворите чат с непрочетени съобщения, плъзнете надолу, за да видите първото непрочетено съобщение, вместо най-новото.';
+
+  @override
+  String get appSettings_languageHu => 'Унгарски';
+
+  @override
+  String get appSettings_languageJa => 'Японски';
+
+  @override
+  String get appSettings_languageKo => 'Корейски';
+
+  @override
+  String get radioStats_tooltip => 'Статистика за радио и мрежа';
+
+  @override
+  String get radioStats_screenTitle =>
+      'Статистически данни за радиопредаванията';
+
+  @override
+  String get radioStats_notConnected =>
+      'Свържете се с устройство, за да видите статистически данни за радиопредаване.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Статистиката на радиостанцията изисква съвместимо софтуерно решение версия 8 или по-нова.';
+
+  @override
+  String get radioStats_waiting => 'Изчакване на данни…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Ниво на шума: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Последен RSSI: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Последна стойност на SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'Време на въздух (общо): $seconds секунди';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'Общо време на използване на RX (в секунди): $seconds с';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Ниво на шума (dBm) за последните измервания.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Ниво на шума: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Извличане на данни за радиото…';
+
+  @override
+  String get radioStats_settingsTile => 'Статистически данни за радиостанции';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Ниво на шума, RSSI, SNR и време на пренос';
 }

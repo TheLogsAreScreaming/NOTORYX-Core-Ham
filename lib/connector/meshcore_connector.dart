@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:pointycastle/export.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 import '../models/channel.dart';
 import '../models/channel_message.dart';
+import '../models/companion_radio_stats.dart';
 import '../models/contact.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';
@@ -143,6 +145,10 @@ class MeshCoreConnector extends ChangeNotifier {
   Timer? _selfInfoRetryTimer;
   Timer? _reconnectTimer;
   Timer? _batteryPollTimer;
+  Timer? _radioStatsPollTimer;
+  int _radioStatsPollRefCount = 0;
+  final ValueNotifier<CompanionRadioStats?> radioStatsNotifier =
+      ValueNotifier<CompanionRadioStats?>(null);
   int _reconnectAttempts = 0;
   bool _notifyListenersDirty = false;
   static const Duration _notifyListenersDebounce = Duration(milliseconds: 50);
@@ -160,6 +166,10 @@ class MeshCoreConnector extends ChangeNotifier {
   int? _currentCr;
   bool? _clientRepeat;
   int? _firmwareVerCode;
+  int _pathHashByteWidth = 1;
+  CompanionRadioStats? _latestRadioStats;
+  Stopwatch? _airtimeBumpStopwatch;
+  int _prevTotalAirSecs = 0;
   int? _batteryMillivolts;
   double? _selfLatitude;
   double? _selfLongitude;
@@ -173,9 +183,13 @@ class MeshCoreConnector extends ChangeNotifier {
   DateTime _lastRxTime = DateTime.now();
   DateTime _lastRadioRxTime = DateTime.fromMillisecondsSinceEpoch(0);
   DateTime _lastContactMsgRxTime = DateTime.fromMillisecondsSinceEpoch(0);
+  DateTime _lastChannelMsgRxTime = DateTime.fromMillisecondsSinceEpoch(0);
   static const int _radioQuietMs = 3000;
   static const int _radioQuietMaxWaitMs = 3000;
-  static const int _contactMsgBackoffMs = 5000;
+  /// When companion radio stats are unavailable, keep the legacy fixed backoff.
+  static const int _contactMsgBackoffFallbackMs = 5000;
+  static const int _contactMsgBackoffMinMs = 500;
+  static const int _contactMsgBackoffMaxMs = 15000;
   bool _batteryRequested = false;
   bool _awaitingSelfInfo = false;
   bool _hasReceivedDeviceInfo = false;
@@ -323,6 +337,18 @@ class MeshCoreConnector extends ChangeNotifier {
   List<DirectRepeater> get directRepeaters => _directRepeaters;
   int? get currentTxPower => _currentTxPower;
   int? get maxTxPower => _maxTxPower;
+
+  int get pathHashByteWidth => _pathHashByteWidth;
+
+  CompanionRadioStats? get latestRadioStats => _latestRadioStats;
+
+  bool get supportsCompanionRadioStats => (_firmwareVerCode ?? 0) >= 8;
+
+  bool get radioStatsAirActivityPulse {
+    final sw = _airtimeBumpStopwatch;
+    if (sw == null || !sw.isRunning) return false;
+    return sw.elapsed < const Duration(seconds: 2);
+  }
   int? get currentFreqHz => _currentFreqHz;
   int? get currentBwHz => _currentBwHz;
   int? get currentSf => _currentSf;
@@ -779,15 +805,71 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<void> _waitForRadioQuiet() async {
-    // Wait for backoff after receiving a contact message (avoid collision
-    // with their transmission still propagating through repeaters)
-    final msSinceContactMsg = DateTime.now()
-        .difference(_lastContactMsgRxTime)
-        .inMilliseconds;
-    if (msSinceContactMsg < _contactMsgBackoffMs) {
-      final waitMs = _contactMsgBackoffMs - msSinceContactMsg;
-      debugPrint('Contact message backoff: waiting ${waitMs}ms');
+  /// After an incoming DM or channel message, wait before TX so we do not
+  /// collide with mesh propagation. With companion stats, scale wait by RF
+  /// conditions (up to [_contactMsgBackoffMaxMs]); otherwise use
+  /// [_contactMsgBackoffFallbackMs].
+  int _contactMessageBackoffTargetMs() {
+    if (!supportsCompanionRadioStats || _latestRadioStats == null) {
+      return _contactMsgBackoffFallbackMs;
+    }
+    final stats = _latestRadioStats!;
+    final nf = stats.noiseFloorDbm.toDouble();
+    // Quieter (more negative) → lower score; noisier → higher.
+    const noiseQuietDbm = -118.0;
+    const noiseNoisyDbm = -88.0;
+    final noiseT =
+        ((nf - noiseQuietDbm) / (noiseNoisyDbm - noiseQuietDbm)).clamp(0.0, 1.0);
+
+    final snr = stats.lastSnrDb;
+    const snrGood = 12.0;
+    const snrBad = -2.0;
+    final snrT =
+        (1.0 - ((snr - snrBad) / (snrGood - snrBad))).clamp(0.0, 1.0);
+
+    final airBusy = _recentAirtimeBusyFraction();
+    final severity =
+        (math.max(noiseT, snrT) * 0.82 + airBusy * 0.18).clamp(0.0, 1.0);
+
+    return (_contactMsgBackoffMinMs +
+            severity * (_contactMsgBackoffMaxMs - _contactMsgBackoffMinMs))
+        .round();
+  }
+
+  /// 1.0 shortly after TX/RX airtime counters increase, decaying to 0 over ~8s.
+  double _recentAirtimeBusyFraction() {
+    final sw = _airtimeBumpStopwatch;
+    if (sw == null || !sw.isRunning) return 0;
+    final ms = sw.elapsedMilliseconds;
+    const windowMs = 8000;
+    if (ms >= windowMs) return 0;
+    return 1.0 - (ms / windowMs);
+  }
+
+  /// Start of the post-inbound cool-down: the later of BLE message RX time and
+  /// companion airtime bump ([_airtimeBumpStopwatch], same as the activity dot).
+  DateTime _postTxBackoffAnchor(DateTime lastInboundRxTime) {
+    if (!supportsCompanionRadioStats) return lastInboundRxTime;
+    final sw = _airtimeBumpStopwatch;
+    if (sw == null || !sw.isRunning) return lastInboundRxTime;
+    final bumpAt = DateTime.now().subtract(sw.elapsed);
+    return bumpAt.isAfter(lastInboundRxTime) ? bumpAt : lastInboundRxTime;
+  }
+
+  Future<void> _waitForRadioQuiet({
+    required DateTime lastInboundRxTime,
+  }) async {
+    // Wait for backoff after inbound traffic / RF airtime (avoid collision with
+    // mesh propagation). Elapsed time uses the dot's airtime bump when newer.
+    final backoffTargetMs = _contactMessageBackoffTargetMs();
+    final anchor = _postTxBackoffAnchor(lastInboundRxTime);
+    final msSinceAnchor = DateTime.now().difference(anchor).inMilliseconds;
+    if (msSinceAnchor < backoffTargetMs) {
+      final waitMs = backoffTargetMs - msSinceAnchor;
+      debugPrint(
+        'Post-inbound backoff: waiting ${waitMs}ms '
+        '(target=${backoffTargetMs}ms, anchorAge=${msSinceAnchor}ms)',
+      );
       await Future<void>.delayed(Duration(milliseconds: waitMs));
     }
 
@@ -821,7 +903,7 @@ class MeshCoreConnector extends ChangeNotifier {
   ) async {
     if (!isConnected || text.isEmpty) return;
     try {
-      await _waitForRadioQuiet();
+      await _waitForRadioQuiet(lastInboundRxTime: _lastContactMsgRxTime);
       final outboundText = prepareContactOutboundText(contact, text);
       await sendFrame(
         buildSendTextMsgFrame(
@@ -1097,6 +1179,7 @@ class MeshCoreConnector extends ChangeNotifier {
       );
       await _requestDeviceInfo();
       _startBatteryPolling();
+      if (_radioStatsPollRefCount > 0) _startRadioStatsPolling();
       var gotSelfInfo = await _waitForSelfInfo(
         timeout: const Duration(seconds: 3),
       );
@@ -1202,6 +1285,7 @@ class MeshCoreConnector extends ChangeNotifier {
       _pendingInitialChannelSync = true;
       await _requestDeviceInfo();
       _startBatteryPolling();
+      if (_radioStatsPollRefCount > 0) _startRadioStatsPolling();
 
       var gotSelfInfo = await _waitForSelfInfo(
         timeout: const Duration(seconds: 3),
@@ -1489,6 +1573,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     await _requestDeviceInfo();
     _startBatteryPolling();
+    if (_radioStatsPollRefCount > 0) _startRadioStatsPolling();
 
     final gotSelfInfo = await _waitForSelfInfo(
       timeout: const Duration(seconds: 3),
@@ -1516,6 +1601,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _pendingInitialContactsSync = false;
     _bleInitialSyncStarted = false;
     _pendingDeferredChannelSyncAfterContacts = false;
+    _pathHashByteWidth = 1;
   }
 
   bool get _shouldAutoReconnect =>
@@ -1592,6 +1678,7 @@ class MeshCoreConnector extends ChangeNotifier {
     }
     _setState(MeshCoreConnectionState.disconnecting);
     _stopBatteryPolling();
+    _stopRadioStatsPolling();
 
     await _usbFrameSubscription?.cancel();
     _usbFrameSubscription = null;
@@ -1728,6 +1815,49 @@ class MeshCoreConnector extends ChangeNotifier {
   void _stopBatteryPolling() {
     _batteryPollTimer?.cancel();
     _batteryPollTimer = null;
+  }
+
+  void _startRadioStatsPolling() {
+    _radioStatsPollTimer?.cancel();
+    _radioStatsPollTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (!isConnected) {
+        _stopRadioStatsPolling();
+        return;
+      }
+      unawaited(requestRadioStats());
+    });
+  }
+
+  void _stopRadioStatsPolling() {
+    _radioStatsPollTimer?.cancel();
+    _radioStatsPollTimer = null;
+  }
+
+  void acquireRadioStatsPolling() {
+    _radioStatsPollRefCount++;
+    if (_radioStatsPollRefCount == 1 && isConnected) {
+      _startRadioStatsPolling();
+    }
+  }
+
+  void releaseRadioStatsPolling() {
+    _radioStatsPollRefCount = (_radioStatsPollRefCount - 1).clamp(0, 999);
+    if (_radioStatsPollRefCount == 0) {
+      _stopRadioStatsPolling();
+    }
+  }
+
+  Future<void> requestRadioStats() async {
+    if (!isConnected) return;
+    if (!supportsCompanionRadioStats) return;
+    try {
+      await sendFrame(buildGetStatsFrame(statsTypeRadio));
+    } catch (_) {}
+  }
+
+  Future<void> setPathHashMode(int mode) async {
+    if (!isConnected) return;
+    await sendFrame(buildSetPathHashModeFrame(mode.clamp(0, 2)));
   }
 
   Future<void> refreshDeviceInfo() async {
@@ -2219,6 +2349,7 @@ class MeshCoreConnector extends ChangeNotifier {
       // Send the reaction to the device (don't add as a visible message)
       final reactionQueueId = _nextReactionSendQueueId();
       _pendingChannelSentQueue.add(reactionQueueId);
+      await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
       await sendFrame(
         buildSendChannelTextMsgFrame(channel.index, text),
         channelSendQueueId: reactionQueueId,
@@ -2243,6 +2374,7 @@ class MeshCoreConnector extends ChangeNotifier {
         (isChannelSmazEnabled(channel.index) && !isStructuredPayload)
         ? Smaz.encodeIfSmaller(text)
         : text;
+    await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
     await sendFrame(
       buildSendChannelTextMsgFrame(channel.index, outboundText),
       channelSendQueueId: message.messageId,
@@ -2808,6 +2940,9 @@ class MeshCoreConnector extends ChangeNotifier {
       case respCodeBattAndStorage:
         _handleBatteryAndStorage(frame);
         break;
+      case respCodeStats:
+        _handleStatsFrame(frame);
+        break;
       case respCodeCustomVars:
         _handleCustomVars(frame);
         break;
@@ -2880,8 +3015,8 @@ class MeshCoreConnector extends ChangeNotifier {
     final reader = BufferReader(frame);
     try {
       reader.skipBytes(2);
-      _currentTxPower = reader.readByte();
-      _maxTxPower = reader.readByte();
+      _currentTxPower = reader.readInt8();
+      _maxTxPower = reader.readInt8();
       _selfPublicKey = reader.readBytes(pubKeySize);
       _selfLatitude = reader.readInt32LE() / 1000000.0;
       _selfLongitude = reader.readInt32LE() / 1000000.0;
@@ -2975,6 +3110,13 @@ class MeshCoreConnector extends ChangeNotifier {
     if (frame.length >= 81) {
       _clientRepeat = frame[80] != 0;
     }
+    // Path hash mode v10+ (byte 81): width = mode + 1 byte(s) per hop
+    if (frame.length >= 82) {
+      final mode = (frame[81] & 0xFF).clamp(0, 2);
+      _pathHashByteWidth = mode + 1;
+    } else {
+      _pathHashByteWidth = 1;
+    }
 
     // Firmware reports MAX_CONTACTS / 2 for v3+ device info.
     final reportedContacts = frame[2];
@@ -3032,6 +3174,19 @@ class MeshCoreConnector extends ChangeNotifier {
     _queuedMessageSyncInFlight = false;
     _queueSyncRetries = 0; // Reset retry counter on successful message
     unawaited(_requestNextQueuedMessage());
+  }
+
+  void _handleStatsFrame(Uint8List frame) {
+    final stats = CompanionRadioStats.tryParse(frame);
+    if (stats == null) return;
+    final total = stats.txAirSecs + stats.rxAirSecs;
+    if (total > _prevTotalAirSecs) {
+      (_airtimeBumpStopwatch ??= Stopwatch()).reset();
+      _airtimeBumpStopwatch!.start();
+    }
+    _prevTotalAirSecs = total;
+    _latestRadioStats = stats;
+    radioStatsNotifier.value = stats;
   }
 
   void _handleBatteryAndStorage(Uint8List frame) {
@@ -3402,9 +3557,10 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   bool _pathMatchesContact(Uint8List pathBytes, Uint8List publicKey) {
-    if (pathBytes.isEmpty || publicKey.length < pathHashSize) return false;
-    for (int i = 0; i + pathHashSize <= pathBytes.length; i += pathHashSize) {
-      final prefix = pathBytes.sublist(i, i + pathHashSize);
+    final w = _pathHashByteWidth;
+    if (pathBytes.isEmpty || publicKey.length < w) return false;
+    for (int i = 0; i + w <= pathBytes.length; i += w) {
+      final prefix = pathBytes.sublist(i, i + w);
       if (_matchesPrefix(publicKey, prefix)) {
         return true;
       }
@@ -3689,6 +3845,7 @@ class MeshCoreConnector extends ChangeNotifier {
       if (_shouldDropSelfChannelMessage(parsed.senderName, parsed.pathBytes)) {
         return;
       }
+      _lastChannelMsgRxTime = DateTime.now();
       final contentHash = _computeContentHash(
         parsed.channelIndex!,
         parsed.timestamp.millisecondsSinceEpoch ~/ 1000,
@@ -4680,6 +4837,12 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void _handleDisconnection() {
     _stopBatteryPolling();
+    _stopRadioStatsPolling();
+    _latestRadioStats = null;
+    radioStatsNotifier.value = null;
+    _prevTotalAirSecs = 0;
+    _airtimeBumpStopwatch?.stop();
+    _airtimeBumpStopwatch = null;
 
     for (final entry in _pendingRepeaterAcks.values) {
       entry.timeout?.cancel();
@@ -4818,6 +4981,8 @@ class MeshCoreConnector extends ChangeNotifier {
     _notifyListenersTimer?.cancel();
     _reconnectTimer?.cancel();
     _batteryPollTimer?.cancel();
+    _radioStatsPollTimer?.cancel();
+    radioStatsNotifier.dispose();
     _receivedFramesController.close();
     _usbManager.dispose();
     _tcpConnector.dispose();

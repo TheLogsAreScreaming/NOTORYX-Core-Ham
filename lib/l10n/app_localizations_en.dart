@@ -3421,4 +3421,84 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get discoveredContacts_deleteContactAllContent =>
       'Are you sure you want to delete all discovered contacts?';
+
+  @override
+  String get chat_sendCooldown => 'Please wait a moment before sending again.';
+
+  @override
+  String get appSettings_jumpToOldestUnread => 'Jump to oldest unread';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'When opening a chat with unread messages, scroll to the first unread instead of the latest.';
+
+  @override
+  String get appSettings_languageHu => 'Hungarian';
+
+  @override
+  String get appSettings_languageJa => 'Japanese';
+
+  @override
+  String get appSettings_languageKo => 'Korean';
+
+  @override
+  String get radioStats_tooltip => 'Radio & mesh stats';
+
+  @override
+  String get radioStats_screenTitle => 'Radio stats';
+
+  @override
+  String get radioStats_notConnected =>
+      'Connect to a device to view radio statistics.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Radio statistics require companion firmware v8 or newer.';
+
+  @override
+  String get radioStats_waiting => 'Waiting for data…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Noise floor: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Last RSSI: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Last SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'TX airtime (total): $seconds s';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'RX airtime (total): $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Noise floor (dBm) over recent samples.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Noise floor: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Fetching radio stats…';
+
+  @override
+  String get radioStats_settingsTile => 'Radio stats';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Noise floor, RSSI, SNR, and airtime';
 }

@@ -3222,4 +3222,80 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get discoveredContacts_deleteContactAllContent => '您确定要删除所有发现的联系人吗？';
+
+  @override
+  String get chat_sendCooldown => '请稍等片刻后再尝试发送。';
+
+  @override
+  String get appSettings_jumpToOldestUnread => '跳转到最旧未读的文章';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      '在打开包含未读消息的聊天时，请滚动到第一个未读消息，而不是最新的消息。';
+
+  @override
+  String get appSettings_languageHu => '匈牙利';
+
+  @override
+  String get appSettings_languageJa => '日语';
+
+  @override
+  String get appSettings_languageKo => '韩语';
+
+  @override
+  String get radioStats_tooltip => '无线电和网状结构统计数据';
+
+  @override
+  String get radioStats_screenTitle => '广播统计数据';
+
+  @override
+  String get radioStats_notConnected => '连接到设备以查看收音机统计信息。';
+
+  @override
+  String get radioStats_firmwareTooOld => '使用无线电统计功能需要配合使用 v8 或更高版本的固件。';
+
+  @override
+  String get radioStats_waiting => '正在等待数据…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return '噪声水平：$noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return '上次 RSSI 值：$rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return '上次 SNR：$snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'TX 频道播出时间（总时长）：$seconds 秒';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'RX 使用时长（总时长）：$seconds 秒';
+  }
+
+  @override
+  String get radioStats_chartCaption => '近期的噪声水平（dBm）。';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return '噪声水平：$noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => '正在获取收音机数据…';
+
+  @override
+  String get radioStats_settingsTile => '广播统计数据';
+
+  @override
+  String get radioStats_settingsSubtitle => '噪声水平、RSSI、信噪比和空中时间';
 }

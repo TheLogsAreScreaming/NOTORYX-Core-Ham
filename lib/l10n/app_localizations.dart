@@ -10,7 +10,10 @@ import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
+import 'app_localizations_hu.dart';
 import 'app_localizations_it.dart';
+import 'app_localizations_ja.dart';
+import 'app_localizations_ko.dart';
 import 'app_localizations_nl.dart';
 import 'app_localizations_pl.dart';
 import 'app_localizations_pt.dart';
@@ -112,7 +115,10 @@ abstract class AppLocalizations {
     Locale('en'),
     Locale('es'),
     Locale('fr'),
+    Locale('hu'),
     Locale('it'),
+    Locale('ja'),
+    Locale('ko'),
     Locale('nl'),
     Locale('pl'),
     Locale('pt'),
@@ -6016,6 +6022,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Are you sure you want to delete all discovered contacts?'**
   String get discoveredContacts_deleteContactAllContent;
+
+  /// No description provided for @chat_sendCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait a moment before sending again.'**
+  String get chat_sendCooldown;
+
+  /// No description provided for @appSettings_jumpToOldestUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'Jump to oldest unread'**
+  String get appSettings_jumpToOldestUnread;
+
+  /// No description provided for @appSettings_jumpToOldestUnreadSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When opening a chat with unread messages, scroll to the first unread instead of the latest.'**
+  String get appSettings_jumpToOldestUnreadSubtitle;
+
+  /// No description provided for @appSettings_languageHu.
+  ///
+  /// In en, this message translates to:
+  /// **'Hungarian'**
+  String get appSettings_languageHu;
+
+  /// No description provided for @appSettings_languageJa.
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese'**
+  String get appSettings_languageJa;
+
+  /// No description provided for @appSettings_languageKo.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean'**
+  String get appSettings_languageKo;
+
+  /// No description provided for @radioStats_tooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio & mesh stats'**
+  String get radioStats_tooltip;
+
+  /// No description provided for @radioStats_screenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio stats'**
+  String get radioStats_screenTitle;
+
+  /// No description provided for @radioStats_notConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to a device to view radio statistics.'**
+  String get radioStats_notConnected;
+
+  /// No description provided for @radioStats_firmwareTooOld.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio statistics require companion firmware v8 or newer.'**
+  String get radioStats_firmwareTooOld;
+
+  /// No description provided for @radioStats_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for data…'**
+  String get radioStats_waiting;
+
+  /// No description provided for @radioStats_noiseFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor: {noiseDbm} dBm'**
+  String radioStats_noiseFloor(int noiseDbm);
+
+  /// No description provided for @radioStats_lastRssi.
+  ///
+  /// In en, this message translates to:
+  /// **'Last RSSI: {rssiDbm} dBm'**
+  String radioStats_lastRssi(int rssiDbm);
+
+  /// No description provided for @radioStats_lastSnr.
+  ///
+  /// In en, this message translates to:
+  /// **'Last SNR: {snr} dB'**
+  String radioStats_lastSnr(String snr);
+
+  /// No description provided for @radioStats_txAir.
+  ///
+  /// In en, this message translates to:
+  /// **'TX airtime (total): {seconds} s'**
+  String radioStats_txAir(int seconds);
+
+  /// No description provided for @radioStats_rxAir.
+  ///
+  /// In en, this message translates to:
+  /// **'RX airtime (total): {seconds} s'**
+  String radioStats_rxAir(int seconds);
+
+  /// No description provided for @radioStats_chartCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor (dBm) over recent samples.'**
+  String get radioStats_chartCaption;
+
+  /// No description provided for @radioStats_stripNoise.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor: {noiseDbm} dBm'**
+  String radioStats_stripNoise(int noiseDbm);
+
+  /// No description provided for @radioStats_stripWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Fetching radio stats…'**
+  String get radioStats_stripWaiting;
+
+  /// No description provided for @radioStats_settingsTile.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio stats'**
+  String get radioStats_settingsTile;
+
+  /// No description provided for @radioStats_settingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor, RSSI, SNR, and airtime'**
+  String get radioStats_settingsSubtitle;
 }
 
 class _AppLocalizationsDelegate
@@ -6034,7 +6166,10 @@ class _AppLocalizationsDelegate
     'en',
     'es',
     'fr',
+    'hu',
     'it',
+    'ja',
+    'ko',
     'nl',
     'pl',
     'pt',
@@ -6063,8 +6198,14 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
+    case 'hu':
+      return AppLocalizationsHu();
     case 'it':
       return AppLocalizationsIt();
+    case 'ja':
+      return AppLocalizationsJa();
+    case 'ko':
+      return AppLocalizationsKo();
     case 'nl':
       return AppLocalizationsNl();
     case 'pl':

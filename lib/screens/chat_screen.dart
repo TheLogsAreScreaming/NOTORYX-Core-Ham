@@ -36,6 +36,7 @@ import '../widgets/gif_message.dart';
 import '../widgets/jump_to_bottom_button.dart';
 import '../widgets/gif_picker.dart';
 import '../widgets/path_selection_dialog.dart';
+import '../widgets/radio_stats_entry.dart';
 import '../utils/app_logger.dart';
 import '../l10n/l10n.dart';
 import 'telemetry_screen.dart';
@@ -53,8 +54,11 @@ class _ChatScreenState extends State<ChatScreen> {
   final _textController = TextEditingController();
   final _scrollController = ChatScrollController();
   final _textFieldFocusNode = FocusNode();
+  final GlobalKey _unreadScrollKey = GlobalKey();
   bool _isLoadingOlder = false;
   MeshCoreConnector? _connector;
+  Message? _pendingUnreadScrollTarget;
+  DateTime? _lastTextSendAt;
 
   @override
   void initState() {
@@ -63,9 +67,48 @@ class _ChatScreenState extends State<ChatScreen> {
     _scrollController.onScrollNearTop = _loadOlderMessages;
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      _connector = context.read<MeshCoreConnector>();
-      _connector?.setActiveContact(widget.contact.publicKeyHex);
+      final connector = context.read<MeshCoreConnector>();
+      final settings = context.read<AppSettingsService>().settings;
+      final keyHex = widget.contact.publicKeyHex;
+      final unread = connector.getUnreadCountForContactKey(keyHex);
+      Message? anchor;
+      if (settings.jumpToOldestUnread && unread > 0) {
+        anchor = _findOldestUnreadAnchor(
+          connector.getMessages(widget.contact),
+          unread,
+        );
+      }
+      connector.setActiveContact(keyHex);
+      _connector = connector;
+      if (anchor != null) {
+        setState(() => _pendingUnreadScrollTarget = anchor);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          final ctx = _unreadScrollKey.currentContext;
+          if (ctx != null) {
+            Scrollable.ensureVisible(
+              ctx,
+              duration: const Duration(milliseconds: 350),
+              alignment: 0.15,
+            );
+          }
+          setState(() => _pendingUnreadScrollTarget = null);
+        });
+      }
     });
+  }
+
+  Message? _findOldestUnreadAnchor(List<Message> messages, int unreadCount) {
+    if (unreadCount <= 0 || messages.isEmpty) return null;
+    var n = 0;
+    Message? oldest;
+    for (final m in messages.reversed) {
+      if (m.isOutgoing || m.isCli) continue;
+      n++;
+      oldest = m;
+      if (n >= unreadCount) break;
+    }
+    return oldest;
   }
 
   void _onTextFieldFocusChange() {
@@ -319,6 +362,7 @@ class _ChatScreenState extends State<ChatScreen> {
               );
             },
           ),
+          const RadioStatsIconButton(),
         ],
       ),
       body: Consumer<MeshCoreConnector>(
@@ -378,6 +422,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // Auto-scroll to bottom if user is already at bottom
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
+      if (_pendingUnreadScrollTarget != null) return;
       _scrollController.scrollToBottomIfAtBottom();
     });
 
@@ -424,7 +469,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 (service) => service.scale,
               );
               final resolvedContact = _resolveContact(connector);
-              return _MessageBubble(
+              final bubble = _MessageBubble(
                 message: message,
                 senderName: resolvedContact.type == advTypeRoom
                     ? "${contact.name} [$fourByteHex]"
@@ -436,6 +481,10 @@ class _ChatScreenState extends State<ChatScreen> {
                 onRetryReaction: (msg, emoji) =>
                     _sendReaction(msg, contact, emoji),
               );
+              if (identical(message, _pendingUnreadScrollTarget)) {
+                return KeyedSubtree(key: _unreadScrollKey, child: bubble);
+              }
+              return bubble;
             },
           );
         },
@@ -560,6 +609,16 @@ class _ChatScreenState extends State<ChatScreen> {
   void _sendMessage(MeshCoreConnector connector) {
     final text = _textController.text.trim();
     if (text.isEmpty) return;
+
+    final now = DateTime.now();
+    if (_lastTextSendAt != null &&
+        now.difference(_lastTextSendAt!) < const Duration(seconds: 1)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.chat_sendCooldown)),
+      );
+      return;
+    }
+    _lastTextSendAt = now;
 
     final maxBytes = maxContactMessageBytes();
     if (utf8.encode(text).length > maxBytes) {
@@ -950,6 +1009,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   path: Uint8List.fromList(pathBytes),
                   flipPathAround: true,
                   targetContact: widget.contact,
+                  pathHashByteWidth: connector.pathHashByteWidth,
                 ),
               ),
             ),
@@ -1212,7 +1272,9 @@ class _ChatScreenState extends State<ChatScreen> {
       connector.getContacts();
     }
 
-    final pathForInput = currentContact.pathIdList;
+    final pathForInput = currentContact.pathFormattedIdList(
+      connector.pathHashByteWidth,
+    );
     final currentPathLabel = _currentPathLabel(currentContact);
 
     // Filter out the current contact from available contacts
@@ -1605,11 +1667,6 @@ class _MessageBubble extends StatelessWidget {
                                   text: messageText,
                                   style: TextStyle(
                                     color: textColor,
-                                    fontSize: bodyFontSize * textScale,
-                                  ),
-                                  linkStyle: TextStyle(
-                                    color: Colors.green,
-                                    decoration: TextDecoration.underline,
                                     fontSize: bodyFontSize * textScale,
                                   ),
                                 ),

@@ -109,6 +109,7 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
                   path: Uint8List.fromList(pathBytes),
                   flipPathAround: true,
                   targetContact: widget.contact,
+                  pathHashByteWidth: connector.pathHashByteWidth,
                 ),
               ),
             ),
@@ -135,7 +136,9 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
       connector.getContacts();
     }
 
-    final pathForInput = currentContact.pathIdList;
+    final pathForInput = currentContact.pathFormattedIdList(
+      connector.pathHashByteWidth,
+    );
     final availableContacts = connector.allContacts
         .where((c) => c.publicKeyHex != currentContact.publicKeyHex)
         .toList();

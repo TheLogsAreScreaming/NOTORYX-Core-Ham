@@ -3467,4 +3467,86 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get discoveredContacts_deleteContactAllContent =>
       'Ste prepričani, da želite izbrisati vse odkrite kontakte?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Prosimo, počakajte trenutek, preden pošljete ponovno.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Pritisnite za najstarejše nepročitano sporočilo';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'Ko odpirate klepet z neprebranimi sporočili, se premaknite na prvo neprebrano sporočilo, namesto najnovejšega.';
+
+  @override
+  String get appSettings_languageHu => 'Madžarski';
+
+  @override
+  String get appSettings_languageJa => 'Japonski';
+
+  @override
+  String get appSettings_languageKo => 'Korejski';
+
+  @override
+  String get radioStats_tooltip => 'Statistike za radio in mrežo';
+
+  @override
+  String get radioStats_screenTitle => 'Radijske statistike';
+
+  @override
+  String get radioStats_notConnected =>
+      'Povežite se z napravo, da si ogledate statistiko o radiju.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Statistika za radio zahteva združljivo programsko opremo v8 ali kasnejše različice.';
+
+  @override
+  String get radioStats_waiting => 'Čakam na podatke…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Število šuma: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Najkasnejše vrednost RSSI: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Najkasnejše vrednost SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'Čas na TX (skupno): $seconds s';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'Čas, namenjen RX-ju (skupno): $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Ravnovredna raven šuma (dBm) za nedavne vzorce.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Število šuma: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Prejemanje statistike o radiju…';
+
+  @override
+  String get radioStats_settingsTile => 'Radijske statistike';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Število šumov, RSSI, SNR in čas, ki ga je napolnila oprema';
 }

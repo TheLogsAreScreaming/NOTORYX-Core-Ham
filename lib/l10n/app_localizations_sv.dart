@@ -3444,4 +3444,86 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get discoveredContacts_deleteContactAllContent =>
       'Är du säker på att du vill ta bort alla upptäckta kontakter?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Vänligen vänta en stund innan du skickar igen.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Gå direkt till det äldsta, obesvarade meddelandet';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'När du öppnar en chatt med oinlästa meddelanden, scrolla till det första oinlästa meddelandet istället för det senaste.';
+
+  @override
+  String get appSettings_languageHu => 'Ungerskt';
+
+  @override
+  String get appSettings_languageJa => 'Japanska';
+
+  @override
+  String get appSettings_languageKo => 'Koreanska';
+
+  @override
+  String get radioStats_tooltip => 'Radio- och mesh-statistik';
+
+  @override
+  String get radioStats_screenTitle => 'Radiostation';
+
+  @override
+  String get radioStats_notConnected =>
+      'Anslut till en enhet för att visa radiostatistik.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Radio statistik kräver kompatibel firmware version 8 eller senare.';
+
+  @override
+  String get radioStats_waiting => 'Väntar på data…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Bakgrundsnivå: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Senaste RSSI-värde: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Senaste SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'TX-tid (total): $seconds sekunder';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'RX-tid (total): $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Ljudnivå (dBm) baserat på de senaste mätningarna.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Bakgrundsnivå: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Hämtar radiostatistik…';
+
+  @override
+  String get radioStats_settingsTile => 'Radiostation';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Bakgrundsnivå, RSSI, SNR och tillgänglig tid';
 }

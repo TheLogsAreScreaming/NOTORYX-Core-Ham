@@ -3469,4 +3469,86 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get discoveredContacts_deleteContactAllContent =>
       'Weet u zeker dat u alle ontdekte contacten wilt verwijderen?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Gelieve even te wachten voordat u opnieuw verzendt.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Ga naar het oudste ongelezen bericht';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'Bij het openen van een chat met ongelezen berichten, scroll dan naar het eerste ongelezen bericht, in plaats van naar het meest recente.';
+
+  @override
+  String get appSettings_languageHu => 'Hongaars';
+
+  @override
+  String get appSettings_languageJa => 'Japanisch';
+
+  @override
+  String get appSettings_languageKo => 'Koreaans';
+
+  @override
+  String get radioStats_tooltip => 'Statistieken voor radio en mesh-netwerken';
+
+  @override
+  String get radioStats_screenTitle => 'Statistieken over radio';
+
+  @override
+  String get radioStats_notConnected =>
+      'Verbind met een apparaat om radio-statistieken te bekijken.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Om de statistieken via radio te kunnen gebruiken, is firmware versie 8 of een nieuwere vereist.';
+
+  @override
+  String get radioStats_waiting => 'Wacht op gegevens…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Ruisfrequentie: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Laatste RSSI-waarde: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Laatste SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'TX-tijd (totaal): $seconds s';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'Tijd besteed met RX (totaal): $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Ruisfrequentie (dBm) over recente metingen.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Ruisfrequentie: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Radio-statistieken ophalen…';
+
+  @override
+  String get radioStats_settingsTile => 'Statistieken over radio';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Ruimtelijke ruis, RSSI, SNR en beschikbare tijd';
 }

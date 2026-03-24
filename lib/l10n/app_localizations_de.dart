@@ -3494,4 +3494,86 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get discoveredContacts_deleteContactAllContent =>
       'Sind Sie sicher, dass Sie alle gefundenen Kontakte löschen möchten?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Bitte warten Sie einen Moment, bevor Sie erneut senden.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Zum ältesten, nicht gelesenen Eintrag springen';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'Wenn Sie ein Chatfenster öffnen, in dem Nachrichten vorhanden sind, die noch nicht gelesen wurden, scrollen Sie zu der ersten unlesenen Nachricht, anstatt zur neuesten.';
+
+  @override
+  String get appSettings_languageHu => 'Ungarisch';
+
+  @override
+  String get appSettings_languageJa => 'Japanisch';
+
+  @override
+  String get appSettings_languageKo => 'Koreanisch';
+
+  @override
+  String get radioStats_tooltip => 'Daten zu Radio- und Mesh-Netzwerken';
+
+  @override
+  String get radioStats_screenTitle => 'Senderinformationen';
+
+  @override
+  String get radioStats_notConnected =>
+      'Verbinden Sie ein Gerät, um Radiostatisiken anzuzeigen.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Für die Verwendung der Funkstatistiken ist die Firmware-Version 8 oder höher erforderlich.';
+
+  @override
+  String get radioStats_waiting => 'Warte auf Daten…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Rauschpegel: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Letzter RSSI-Wert: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Letzter SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'Gesamt-TX-Zeit: $seconds s';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'Gesamt-RX-Zeit: $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Rauschpegel (dBm) basierend auf den letzten Messwerten.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Rauschpegel: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Abrufen von Radiostatus…';
+
+  @override
+  String get radioStats_settingsTile => 'Senderinformationen';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Rauschpegel, RSSI, Signal-Rausch-Verhältnis (SNR) und Nutzzeit';
 }

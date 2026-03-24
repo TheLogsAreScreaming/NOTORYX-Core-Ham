@@ -12,6 +12,7 @@ import '../widgets/app_bar.dart';
 import 'app_settings_screen.dart';
 import 'app_debug_log_screen.dart';
 import 'ble_debug_log_screen.dart';
+import '../widgets/radio_stats_entry.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -267,6 +268,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
             subtitle: Text(l10n.settings_radioSettingsSubtitle),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _showRadioSettings(context, connector),
+          ),
+          const Divider(height: 1),
+          ListTile(
+            leading: const Icon(Icons.sensors_outlined),
+            title: Text(l10n.radioStats_settingsTile),
+            subtitle: Text(l10n.radioStats_settingsSubtitle),
+            trailing: const Icon(Icons.chevron_right),
+            enabled: connector.isConnected &&
+                connector.supportsCompanionRadioStats,
+            onTap: () => pushCompanionRadioStatsScreen(context),
           ),
           const Divider(height: 1),
           ListTile(

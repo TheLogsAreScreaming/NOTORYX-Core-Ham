@@ -48,6 +48,7 @@ class AppSettings {
   final bool mapShowDiscoveryContacts;
   final String tcpServerAddress;
   final int tcpServerPort;
+  final bool jumpToOldestUnread;
 
   AppSettings({
     this.clearPathOnMaxRetry = false,
@@ -84,6 +85,7 @@ class AppSettings {
     this.mapShowDiscoveryContacts = true,
     this.tcpServerAddress = '',
     this.tcpServerPort = 0,
+    this.jumpToOldestUnread = false,
   }) : batteryChemistryByDeviceId = batteryChemistryByDeviceId ?? {},
        batteryChemistryByRepeaterId = batteryChemistryByRepeaterId ?? {},
        mutedChannels = mutedChannels ?? {};
@@ -124,6 +126,7 @@ class AppSettings {
       'map_show_discovery_contacts': mapShowDiscoveryContacts,
       'tcp_server_address': tcpServerAddress,
       'tcp_server_port': tcpServerPort,
+      'jump_to_oldest_unread': jumpToOldestUnread,
     };
   }
 
@@ -192,6 +195,7 @@ class AppSettings {
           json['map_show_discovery_contacts'] as bool? ?? true,
       tcpServerAddress: json['tcp_server_address'] as String? ?? '',
       tcpServerPort: json['tcp_server_port'] as int? ?? 0,
+      jumpToOldestUnread: json['jump_to_oldest_unread'] as bool? ?? false,
     );
   }
 
@@ -230,6 +234,7 @@ class AppSettings {
     bool? mapShowDiscoveryContacts,
     String? tcpServerAddress,
     int? tcpServerPort,
+    bool? jumpToOldestUnread,
   }) {
     return AppSettings(
       clearPathOnMaxRetry: clearPathOnMaxRetry ?? this.clearPathOnMaxRetry,
@@ -278,6 +283,7 @@ class AppSettings {
           mapShowDiscoveryContacts ?? this.mapShowDiscoveryContacts,
       tcpServerAddress: tcpServerAddress ?? this.tcpServerAddress,
       tcpServerPort: tcpServerPort ?? this.tcpServerPort,
+      jumpToOldestUnread: jumpToOldestUnread ?? this.jumpToOldestUnread,
     );
   }
 }

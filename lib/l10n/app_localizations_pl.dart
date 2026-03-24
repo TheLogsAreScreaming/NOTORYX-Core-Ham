@@ -3503,4 +3503,86 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get discoveredContacts_deleteContactAllContent =>
       'Czy na pewno chcesz usunąć wszystkie znalezione kontakty?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Prosimy o chwilowe oczekiwanie przed ponownym wysłaniem.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Przejdź do najstarszego nieodczytanej wiadomości';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'Przy otwieraniu czatu z nieodczytanymi wiadomościami, przewijaj, aby przejść do pierwszej nieodczytanej wiadomości, zamiast do najnowszej.';
+
+  @override
+  String get appSettings_languageHu => 'Węgierski';
+
+  @override
+  String get appSettings_languageJa => 'Japoński';
+
+  @override
+  String get appSettings_languageKo => 'Koreański';
+
+  @override
+  String get radioStats_tooltip => 'Statystyki dotyczące radia i siatki';
+
+  @override
+  String get radioStats_screenTitle => 'Statystyki radiowe';
+
+  @override
+  String get radioStats_notConnected =>
+      'Połącz się z urządzeniem, aby wyświetlić statystyki radiowe.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Statystyki radiowe wymagają towarzyszącej oprogramowania w wersji 8 lub nowszej.';
+
+  @override
+  String get radioStats_waiting => 'Czekam na dane…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Poziom szumów: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Ostatni poziom RSSI: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Ostatni poziom SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'Czas emisji w stacji TX (całkowity): $seconds s';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'Czas wykorzystania kanału RX (całkowity): $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Poziom szumów (dBm) w ostatnich próbkach.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Poziom szumów: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Pobieranie danych dotyczących radia…';
+
+  @override
+  String get radioStats_settingsTile => 'Statystyki radiowe';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Szum tła, RSSI, SNR oraz czas dostępny';
 }

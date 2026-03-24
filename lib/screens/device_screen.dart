@@ -7,6 +7,8 @@ import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/route_transitions.dart';
 import '../widgets/quick_switch_bar.dart';
+import '../widgets/battery_indicator_chip.dart';
+import '../widgets/radio_stats_entry.dart';
 import 'channels_screen.dart';
 import 'contacts_screen.dart';
 import 'map_screen.dart';
@@ -40,7 +42,22 @@ class _DeviceScreenState extends State<DeviceScreen>
           canPop: false,
           child: Scaffold(
             appBar: AppBar(
-              leading: _buildBatteryIndicator(connector, context),
+              leadingWidth: 128,
+              leading: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  BatteryIndicatorChip(
+                    connector: connector,
+                    showVoltage: _showBatteryVoltage,
+                    onPressed: () {
+                      setState(() {
+                        _showBatteryVoltage = !_showBatteryVoltage;
+                      });
+                    },
+                  ),
+                  const RadioStatsIconButton(),
+                ],
+              ),
               titleSpacing: 16,
               centerTitle: false,
               title: _buildAppBarTitle(connector, theme),
@@ -187,7 +204,15 @@ class _DeviceScreenState extends State<DeviceScreen>
                   ),
                   visualDensity: VisualDensity.compact,
                 ),
-                _buildBatteryIndicator(connector, context),
+                BatteryIndicatorChip(
+                  connector: connector,
+                  showVoltage: _showBatteryVoltage,
+                  onPressed: () {
+                    setState(() {
+                      _showBatteryVoltage = !_showBatteryVoltage;
+                    });
+                  },
+                ),
               ],
             ),
           ],
@@ -203,44 +228,6 @@ class _DeviceScreenState extends State<DeviceScreen>
         _openQuickDestination(index, context);
       },
     );
-  }
-
-  Widget _buildBatteryIndicator(
-    MeshCoreConnector connector,
-    BuildContext context,
-  ) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final percent = connector.batteryPercent;
-    final millivolts = connector.batteryMillivolts;
-    final percentLabel = percent != null ? '$percent%' : '--%';
-    final voltageLabel = millivolts == null
-        ? '-- V'
-        : '${(millivolts / 1000.0).toStringAsFixed(2)} V';
-    final displayLabel = _showBatteryVoltage ? voltageLabel : percentLabel;
-    final icon = _batteryIcon(percent);
-
-    return ActionChip(
-      avatar: Icon(icon, size: 16, color: colorScheme.onSecondaryContainer),
-      label: Text(displayLabel),
-      labelStyle: theme.textTheme.labelMedium?.copyWith(
-        color: colorScheme.onSecondaryContainer,
-        fontWeight: FontWeight.w600,
-      ),
-      backgroundColor: colorScheme.secondaryContainer,
-      visualDensity: VisualDensity.compact,
-      onPressed: () {
-        setState(() {
-          _showBatteryVoltage = !_showBatteryVoltage;
-        });
-      },
-    );
-  }
-
-  IconData _batteryIcon(int? percent) {
-    if (percent == null) return Icons.battery_unknown;
-    if (percent <= 15) return Icons.battery_alert;
-    return Icons.battery_full;
   }
 
   void _openQuickDestination(int index, BuildContext context) {

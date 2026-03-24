@@ -119,15 +119,14 @@ class Contact {
     );
   }
 
-  String get pathIdList {
+  /// Formats path bytes into comma-separated hex groups of [hashByteWidth] bytes.
+  String pathFormattedIdList(int hashByteWidth) {
     final pathBytes = pathBytesForDisplay;
     if (pathBytes.isEmpty) return '';
+    final w = hashByteWidth.clamp(1, 8);
     final parts = <String>[];
-    final groupSize = pathHashSize;
-    for (int i = 0; i < pathBytes.length; i += groupSize) {
-      final end = (i + groupSize) <= pathBytes.length
-          ? (i + groupSize)
-          : pathBytes.length;
+    for (int i = 0; i < pathBytes.length; i += w) {
+      final end = (i + w) <= pathBytes.length ? (i + w) : pathBytes.length;
       final chunk = pathBytes.sublist(i, end);
       parts.add(
         chunk
@@ -137,6 +136,9 @@ class Contact {
     }
     return parts.join(',');
   }
+
+  /// Default grouping uses legacy single-byte hop hash width.
+  String get pathIdList => pathFormattedIdList(pathHashSize);
 
   String get shortPubKeyHex {
     return "<${publicKeyHex.substring(0, 8)}...${publicKeyHex.substring(publicKeyHex.length - 8)}>";

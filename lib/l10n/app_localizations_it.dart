@@ -3491,4 +3491,86 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get discoveredContacts_deleteContactAllContent =>
       'Sei sicuro di voler eliminare tutti i contatti scoperti?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Si prega di attendere un momento prima di inviare nuovamente.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Vai al messaggio più vecchio non letto';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'Quando si apre una chat con messaggi non letti, scorrete verso l\'alto fino al primo messaggio non letto, invece che al più recente.';
+
+  @override
+  String get appSettings_languageHu => 'Ungherese';
+
+  @override
+  String get appSettings_languageJa => 'Giapponese';
+
+  @override
+  String get appSettings_languageKo => 'Coreano';
+
+  @override
+  String get radioStats_tooltip => 'Statistiche per radio e reti';
+
+  @override
+  String get radioStats_screenTitle => 'Statistiche radio';
+
+  @override
+  String get radioStats_notConnected =>
+      'Connettiti a un dispositivo per visualizzare le statistiche radio.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Le statistiche radio richiedono il firmware versione 8 o successiva.';
+
+  @override
+  String get radioStats_waiting => 'In attesa dei dati…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Livello di rumore: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Ultimo valore RSSI: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Ultimo SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'Tempo di trasmissione in diretta (totale): $seconds s';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'Tempo di trasmissione RX (totale): $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Livello di rumore (dBm) misurato su campioni recenti.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Livello di rumore: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Recupero delle statistiche radio…';
+
+  @override
+  String get radioStats_settingsTile => 'Statistiche radio';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Livello di rumore, RSSI, rapporto segnale/rumore (SNR) e tempo di trasmissione';
 }
