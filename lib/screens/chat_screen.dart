@@ -650,7 +650,7 @@ class _ChatScreenState extends State<ChatScreen> {
     String? translationModelId;
     if (settings.translationEnabled) {
       final targetLanguageCode = translationService.resolvedTargetLanguageCode(
-        settings.languageOverride,
+        Localizations.localeOf(context).languageCode,
       );
       if (translationService.shouldTranslateOutgoing(
         text: text,

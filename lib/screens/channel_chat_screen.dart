@@ -1172,7 +1172,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     String? translationModelId;
     if (settings.translationEnabled) {
       final targetLanguageCode = translationService.resolvedTargetLanguageCode(
-        settings.languageOverride,
+        Localizations.localeOf(context).languageCode,
       );
       if (translationService.shouldTranslateOutgoing(
         text: text,

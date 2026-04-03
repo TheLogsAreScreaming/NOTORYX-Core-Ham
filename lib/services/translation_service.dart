@@ -326,7 +326,7 @@ class TranslationService extends ChangeNotifier {
     }
     final trackedStream = _trackDownloadProgress(response.stream);
     await _fileStore.writeModelBytes(
-      fileName: chunkPath.split('/').last,
+      fileName: chunkPath.split(RegExp(r'[/\\]')).last,
       chunks: trackedStream,
     );
   }
