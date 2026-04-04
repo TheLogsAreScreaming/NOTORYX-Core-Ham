@@ -8,5 +8,6 @@ class MeshCoreUuids {
     "Whisper-",
     "WisCore-",
     "HT-",
+    "LowMesh_MC_",
   ];
 }
