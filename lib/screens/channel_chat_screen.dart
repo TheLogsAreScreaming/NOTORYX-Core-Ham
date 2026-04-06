@@ -11,6 +11,7 @@ import '../connector/meshcore_connector.dart';
 import '../utils/platform_info.dart';
 import '../helpers/chat_scroll_controller.dart';
 import '../connector/meshcore_protocol.dart';
+import '../helpers/gif_helper.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/utf8_length_limiter.dart';
 import '../l10n/l10n.dart';
@@ -355,7 +356,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final settingsService = context.watch<AppSettingsService>();
     final enableTracing = settingsService.settings.enableMessageTracing;
     final isOutgoing = message.isOutgoing;
-    final gifId = _parseGifId(message.text);
+    final gifId = GifHelper.parseGifId(message.text);
     final poi = _parsePoiMessage(message.text);
     final translatedDisplayText =
         message.translatedText != null &&
@@ -699,7 +700,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final colorScheme = Theme.of(context).colorScheme;
     final previewTextColor = colorScheme.onSurface.withValues(alpha: 0.7);
 
-    final gifId = _parseGifId(replyText);
+    final gifId = GifHelper.parseGifId(replyText);
     final poi = _parsePoiMessage(replyText);
 
     Widget contentPreview;
@@ -809,12 +810,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         );
       }).toList(),
     );
-  }
-
-  String? _parseGifId(String text) {
-    final trimmed = text.trim();
-    final match = RegExp(r'^g:([A-Za-z0-9_-]+)$').firstMatch(trimmed);
-    return match?.group(1);
   }
 
   _PoiInfo? _parsePoiMessage(String text) {
@@ -1053,7 +1048,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 child: ValueListenableBuilder<TextEditingValue>(
                   valueListenable: _textController,
                   builder: (context, value, child) {
-                    final gifId = _parseGifId(value.text);
+                    final gifId = GifHelper.parseGifId(value.text);
                     if (gifId != null) {
                       return Focus(
                         autofocus: true,

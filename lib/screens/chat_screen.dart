@@ -16,6 +16,7 @@ import '../connector/meshcore_protocol.dart';
 import '../helpers/reaction_helper.dart';
 import '../widgets/message_status_icon.dart';
 import '../helpers/chat_scroll_controller.dart';
+import '../helpers/gif_helper.dart';
 import '../helpers/path_helper.dart';
 import '../helpers/utf8_length_limiter.dart';
 import '../models/channel_message.dart';
@@ -523,7 +524,7 @@ class _ChatScreenState extends State<ChatScreen> {
               child: ValueListenableBuilder<TextEditingValue>(
                 valueListenable: _textController,
                 builder: (context, value, child) {
-                  final gifId = _parseGifId(value.text);
+                  final gifId = GifHelper.parseGifId(value.text);
                   if (gifId != null) {
                     return Focus(
                       autofocus: true,
@@ -596,28 +597,6 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ),
     );
-  }
-
-  String? _parseGifId(String text) {
-    final trimmed = text.trim();
-    final match = RegExp(r'^g:([A-Za-z0-9_-]+)$').firstMatch(trimmed);
-    if (match != null) {
-      return match.group(1);
-    }
-    final directUrlMatch = RegExp(
-      r'^(?:https?:\/\/)?media\.giphy\.com\/media\/([A-Za-z0-9_-]+)\/giphy\.gif$',
-    ).firstMatch(trimmed);
-    if (directUrlMatch != null) {
-      return directUrlMatch.group(1);
-    }
-    // Giphy understands page URLs with just the ID, or any string and a
-    // dash before the ID, and redirects to a page with a dash-separated
-    // title, a dash, and the ID. IDs in this form *probably* can't
-    // contain dashes.
-    final pageMatch = RegExp(
-      r'^(?:https?:\/\/)?giphy\.com\/gifs\/(?:[^/?]*-)?([A-Za-z0-9_]+)\/?$',
-    ).firstMatch(trimmed);
-    return pageMatch?.group(1);
   }
 
   void _showGifPicker(BuildContext context) {
@@ -1589,7 +1568,7 @@ class _MessageBubble extends StatelessWidget {
     final enableTracing = settingsService.settings.enableMessageTracing;
     final isOutgoing = message.isOutgoing;
     final colorScheme = Theme.of(context).colorScheme;
-    final gifId = _parseGifId(message.text);
+    final gifId = GifHelper.parseGifId(message.text);
     final poi = _parsePoiMessage(message.text);
     final isFailed = message.status == MessageStatus.failed;
     final bubbleColor = isFailed
@@ -1861,12 +1840,6 @@ class _MessageBubble extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String? _parseGifId(String text) {
-    final trimmed = text.trim();
-    final match = RegExp(r'^g:([A-Za-z0-9_-]+)$').firstMatch(trimmed);
-    return match?.group(1);
   }
 
   _PoiInfo? _parsePoiMessage(String text) {
