@@ -7,6 +7,8 @@ class MeshCoreUuids {
     "MeshCore-",
     "Whisper-",
     "WisCore-",
+    "Seeed",
+    "Lilygo",
     "HT-",
     "LowMesh_MC_",
   ];
