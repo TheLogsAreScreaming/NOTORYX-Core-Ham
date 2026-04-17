@@ -94,6 +94,7 @@ class ByteCountedTextField extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
+              maxLines: null,
               controller: controller,
               focusNode: focusNode,
               inputFormatters: [
