@@ -1356,7 +1356,6 @@
   "listFilter_users": "Benutzer",
   "listFilter_repeaters": "Repeater",
   "listFilter_roomServers": "Raumserver",
-  "listFilter_usersFirst": "Benutzer zuerst",
   "listFilter_unreadOnly": "Nicht gelesen",
   "listFilter_newGroup": "Neue Gruppe",
   "@neighbors_errorLoading": {

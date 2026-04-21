@@ -3071,9 +3071,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get listFilter_az => 'A-Z';
 
   @override
-  String get listFilter_usersFirst => 'Utenti per primi';
-
-  @override
   String get listFilter_filters => 'Filtri';
 
   @override

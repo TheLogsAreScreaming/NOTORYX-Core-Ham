@@ -3049,9 +3049,6 @@ class AppLocalizationsSk extends AppLocalizations {
   String get listFilter_az => 'A-Z';
 
   @override
-  String get listFilter_usersFirst => 'Najskôr používatelia';
-
-  @override
   String get listFilter_filters => 'Filtre';
 
   @override

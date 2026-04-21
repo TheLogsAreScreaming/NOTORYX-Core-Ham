@@ -3082,9 +3082,6 @@ class AppLocalizationsHu extends AppLocalizations {
   String get listFilter_az => 'A-Z';
 
   @override
-  String get listFilter_usersFirst => 'Felhasználók elöl';
-
-  @override
   String get listFilter_filters => 'Szűrők';
 
   @override

@@ -3076,9 +3076,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String get listFilter_az => 'А-Я';
 
   @override
-  String get listFilter_usersFirst => 'Спочатку користувачі';
-
-  @override
   String get listFilter_filters => 'Фільтри';
 
   @override

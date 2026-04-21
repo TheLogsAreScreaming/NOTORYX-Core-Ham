@@ -3034,9 +3034,6 @@ class AppLocalizationsSv extends AppLocalizations {
   String get listFilter_az => 'A-Z';
 
   @override
-  String get listFilter_usersFirst => 'Användare först';
-
-  @override
   String get listFilter_filters => 'Filteralternativ';
 
   @override

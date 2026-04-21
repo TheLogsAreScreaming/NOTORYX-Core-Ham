@@ -1353,7 +1353,6 @@
   "listFilter_users": "Používatelia",
   "listFilter_repeaters": "Opakovadlá",
   "listFilter_roomServers": "Servéry miestnosti",
-  "listFilter_usersFirst": "Najskôr používatelia",
   "listFilter_unreadOnly": "Nezaregistrované len",
   "listFilter_newGroup": "Nová skupina",
   "@neighbors_errorLoading": {
