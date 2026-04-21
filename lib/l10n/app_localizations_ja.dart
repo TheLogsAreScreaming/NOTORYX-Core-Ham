@@ -2930,6 +2930,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get listFilter_az => 'AからZ';
 
   @override
+  String get listFilter_usersFirst => 'ユーザー優先';
+
+  @override
   String get listFilter_filters => 'フィルター';
 
   @override

@@ -1698,6 +1698,7 @@
   "listFilter_latestMessages": "Legfrissebb üzenetek",
   "listFilter_heardRecently": "Úgy hallottam, hogy...",
   "listFilter_az": "A-Z",
+  "listFilter_usersFirst": "Felhasználók elöl",
   "listFilter_filters": "Szűrők",
   "listFilter_all": "Mind",
   "listFilter_favorites": "Kedvencek",

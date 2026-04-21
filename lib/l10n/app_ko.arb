@@ -1698,6 +1698,7 @@
   "listFilter_latestMessages": "최신 메시지",
   "listFilter_heardRecently": "최근에 들었습니다",
   "listFilter_az": "A부터 Z까지",
+  "listFilter_usersFirst": "사용자 우선",
   "listFilter_filters": "필터",
   "listFilter_all": "모든",
   "listFilter_favorites": "관심 목록",

@@ -1698,6 +1698,7 @@
   "listFilter_latestMessages": "最新のメッセージ",
   "listFilter_heardRecently": "最近、聞いた",
   "listFilter_az": "AからZ",
+  "listFilter_usersFirst": "ユーザー優先",
   "listFilter_filters": "フィルター",
   "listFilter_all": "すべて",
   "listFilter_favorites": "お気に入り",

@@ -2930,6 +2930,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get listFilter_az => 'A부터 Z까지';
 
   @override
+  String get listFilter_usersFirst => '사용자 우선';
+
+  @override
   String get listFilter_filters => '필터';
 
   @override
