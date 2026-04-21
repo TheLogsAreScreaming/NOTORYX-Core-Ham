@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meshcore_open/screens/path_trace_map.dart';
+import 'package:meshcore_open/services/notification_service.dart';
 import 'package:meshcore_open/utils/app_logger.dart';
+import 'package:meshcore_open/utils/platform_info.dart';
 import 'package:meshcore_open/widgets/app_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +14,9 @@ import '../l10n/l10n.dart';
 import '../connector/meshcore_protocol.dart';
 import '../models/contact.dart';
 import '../models/contact_group.dart';
-import '../storage/contact_group_store.dart';
+import '../services/ui_view_state_service.dart';
 import '../utils/contact_search.dart';
+import '../storage/contact_group_store.dart';
 import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/emoji_utils.dart';
@@ -24,8 +27,10 @@ import '../widgets/quick_switch_bar.dart';
 import '../widgets/repeater_login_dialog.dart';
 import '../widgets/room_login_dialog.dart';
 import '../widgets/unread_badge.dart';
+import '../helpers/snack_bar_builder.dart';
 import 'channels_screen.dart';
 import 'chat_screen.dart';
+import 'discovery_screen.dart';
 import 'map_screen.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
@@ -46,13 +51,10 @@ class ContactsScreen extends StatefulWidget {
 class _ContactsScreenState extends State<ContactsScreen>
     with DisconnectNavigationMixin {
   final TextEditingController _searchController = TextEditingController();
-  String _searchQuery = '';
-  ContactSortOption _sortOption = ContactSortOption.lastSeen;
-  bool _showUnreadOnly = false;
-  bool _prioritizeUsers = true;
-  ContactTypeFilter _typeFilter = ContactTypeFilter.all;
   final ContactGroupStore _groupStore = ContactGroupStore();
+  MeshCoreConnector? _scopeSyncConnector;
   List<ContactGroup> _groups = [];
+  String _loadedGroupScopeKeyHex = '';
   Timer? _searchDebounce;
 
   final Set<ContactOperationType> _pendingOperations = {};
@@ -62,8 +64,30 @@ class _ContactsScreenState extends State<ContactsScreen>
   @override
   void initState() {
     super.initState();
+    _searchController.text = context
+        .read<UiViewStateService>()
+        .contactsSearchText;
     _loadGroups();
     _setupFrameListener();
+    _clearAdvertNotifications();
+  }
+
+  void _clearAdvertNotifications() {
+    final connector = context.read<MeshCoreConnector>();
+    final contactIds = connector.contacts.map((c) => c.publicKeyHex).toList();
+    NotificationService().clearAdvertNotifications(contactIds);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final connector = context.read<MeshCoreConnector>();
+    if (!identical(_scopeSyncConnector, connector)) {
+      _scopeSyncConnector?.removeListener(_handleConnectorScopeChange);
+      _scopeSyncConnector = connector;
+      _scopeSyncConnector?.addListener(_handleConnectorScopeChange);
+    }
+    _handleConnectorScopeChange();
   }
 
   @override
@@ -71,19 +95,66 @@ class _ContactsScreenState extends State<ContactsScreen>
     _searchDebounce?.cancel();
     _searchController.dispose();
     _frameSubscription?.cancel();
+    _scopeSyncConnector?.removeListener(_handleConnectorScopeChange);
     super.dispose();
   }
 
+  void _handleConnectorScopeChange() {
+    final connector = _scopeSyncConnector;
+    if (connector == null) return;
+    _syncGroupScopeIfNeeded(connector);
+  }
+
   Future<void> _loadGroups() async {
+    final selfPublicKeyHex = context.read<MeshCoreConnector>().selfPublicKeyHex;
+    if (selfPublicKeyHex.isEmpty) {
+      return;
+    }
+    _groupStore.setPublicKeyHex = selfPublicKeyHex;
     final groups = await _groupStore.loadGroups();
     if (!mounted) return;
     setState(() {
+      _loadedGroupScopeKeyHex = selfPublicKeyHex;
       _groups = groups;
+      _ensureValidSelectedGroup();
     });
   }
 
   Future<void> _saveGroups() async {
+    final selfPublicKeyHex = context.read<MeshCoreConnector>().selfPublicKeyHex;
+    if (selfPublicKeyHex.isEmpty) {
+      return;
+    }
+    _groupStore.setPublicKeyHex = selfPublicKeyHex;
     await _groupStore.saveGroups(_groups);
+  }
+
+  bool _hasGroupStoreScope(MeshCoreConnector connector) {
+    return connector.selfPublicKeyHex.isNotEmpty;
+  }
+
+  void _syncGroupScopeIfNeeded(MeshCoreConnector connector) {
+    final selfPublicKeyHex = connector.selfPublicKeyHex;
+    if (selfPublicKeyHex.isEmpty ||
+        selfPublicKeyHex == _loadedGroupScopeKeyHex) {
+      return;
+    }
+    _loadGroups();
+  }
+
+  void _collapseContactsSearch(UiViewStateService viewState) {
+    _searchDebounce?.cancel();
+    _searchDebounce = null;
+    _searchController.clear();
+    viewState.setContactsSearchText('');
+    viewState.setContactsSearchExpanded(false);
+  }
+
+  void _showGroupsUnavailableMessage(BuildContext context) {
+    showDismissibleSnackBar(
+      context,
+      content: Text(context.l10n.common_loading),
+    );
   }
 
   void _setupFrameListener() {
@@ -100,10 +171,9 @@ class _ContactsScreenState extends State<ContactsScreen>
           // Validate packet has expected minimum size (98+ bytes per protocol)
           if (advertPacket.length < 98) {
             if (mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(context.l10n.contacts_invalidAdvertFormat),
-                ),
+              showDismissibleSnackBar(
+                context,
+                content: Text(context.l10n.contacts_invalidAdvertFormat),
               );
             }
             _pendingOperations.remove(ContactOperationType.export);
@@ -118,24 +188,23 @@ class _ContactsScreenState extends State<ContactsScreen>
           if (!mounted) return;
 
           if (_pendingOperations.contains(ContactOperationType.import)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(context.l10n.contacts_contactImported)),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_contactImported),
             );
           }
 
           if (_pendingOperations.contains(ContactOperationType.zeroHopShare)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_zeroHopContactAdvertSent),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_zeroHopContactAdvertSent),
             );
           }
 
           if (_pendingOperations.contains(ContactOperationType.export)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_contactAdvertCopied),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_contactAdvertCopied),
             );
           }
 
@@ -147,25 +216,22 @@ class _ContactsScreenState extends State<ContactsScreen>
           if (!mounted) return;
 
           if (_pendingOperations.contains(ContactOperationType.import)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_contactImportFailed),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_contactImportFailed),
             );
           }
 
           if (_pendingOperations.contains(ContactOperationType.zeroHopShare)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_zeroHopContactAdvertFailed),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_zeroHopContactAdvertFailed),
             );
           }
           if (_pendingOperations.contains(ContactOperationType.export)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(context.l10n.contacts_contactAdvertCopyFailed),
-              ),
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_contactAdvertCopyFailed),
             );
           }
 
@@ -202,8 +268,9 @@ class _ContactsScreenState extends State<ContactsScreen>
     final clipboardData = await Clipboard.getData('text/plain');
     if (clipboardData == null || clipboardData.text == null) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.contacts_clipboardEmpty)),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.contacts_clipboardEmpty),
         );
       }
       return;
@@ -211,21 +278,24 @@ class _ContactsScreenState extends State<ContactsScreen>
     final text = clipboardData.text!.trim();
     if (!text.startsWith('meshcore://')) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.contacts_invalidAdvertFormat),
         );
       }
       return;
     }
     final hexString = text.substring('meshcore://'.length);
     try {
-      final importContactFrame = buildImportContactFrame(hexString);
+      final bytes = hex2Uint8List(hexString);
+      final importContactFrame = buildImportContactFrame(bytes);
       _pendingOperations.add(ContactOperationType.import);
-      await connector.sendFrame(importContactFrame, expectsGenericAck: true);
+      connector.importContact(importContactFrame);
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.contacts_invalidAdvertFormat)),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.contacts_invalidAdvertFormat),
         );
       }
     }
@@ -260,10 +330,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                   ),
                   onTap: () => {
                     connector.sendSelfAdvert(flood: false),
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.settings_advertisementSent),
-                      ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(context.l10n.settings_advertisementSent),
                     ),
                   },
                 ),
@@ -277,10 +346,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                   ),
                   onTap: () => {
                     connector.sendSelfAdvert(flood: true),
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.settings_advertisementSent),
-                      ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(context.l10n.settings_advertisementSent),
                     ),
                   },
                 ),
@@ -322,6 +390,21 @@ class _ContactsScreenState extends State<ContactsScreen>
                 PopupMenuItem(
                   child: Row(
                     children: [
+                      const Icon(Icons.person_add_rounded),
+                      const SizedBox(width: 8),
+                      Text(context.l10n.discoveredContacts_Title),
+                    ],
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DiscoveryScreen(),
+                    ),
+                  ),
+                ),
+                PopupMenuItem(
+                  child: Row(
+                    children: [
                       const Icon(Icons.settings),
                       const SizedBox(width: 8),
                       Text(context.l10n.settings_title),
@@ -346,8 +429,6 @@ class _ContactsScreenState extends State<ContactsScreen>
             selectedIndex: 0,
             onDestinationSelected: (index) =>
                 _handleQuickSwitch(index, context),
-            contactsUnreadCount: connector.getTotalContactsUnreadCount(),
-            channelsUnreadCount: connector.getTotalChannelsUnreadCount(),
           ),
         ),
       ),
@@ -361,40 +442,176 @@ class _ContactsScreenState extends State<ContactsScreen>
     await showDisconnectDialog(context, connector);
   }
 
-  Widget _buildFilterButton(BuildContext context, MeshCoreConnector connector) {
+  ContactGroup? _selectedGroupForName(String selectedGroupName) {
+    if (selectedGroupName == contactsAllGroupsValue) return null;
+    for (final group in _groups) {
+      if (group.name == selectedGroupName) return group;
+    }
+    return null;
+  }
+
+  void _ensureValidSelectedGroup() {
+    final viewState = context.read<UiViewStateService>();
+    if (viewState.contactsSelectedGroupName == contactsAllGroupsValue) return;
+    final exists = _groups.any(
+      (group) => group.name == viewState.contactsSelectedGroupName,
+    );
+    if (!exists) {
+      viewState.setContactsSelectedGroupName(contactsAllGroupsValue);
+    }
+  }
+
+  void _closeDropdownAndRun(BuildContext popupContext, VoidCallback action) {
+    final route = ModalRoute.of(popupContext);
+    if (route != null && route.isCurrent) {
+      Navigator.of(popupContext).pop();
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      action();
+    });
+  }
+
+  Widget _buildFilterButton(
+    BuildContext context,
+    UiViewStateService viewState,
+  ) {
     return ContactsFilterMenu(
-      sortOption: _sortOption,
-      typeFilter: _typeFilter,
-      showUnreadOnly: _showUnreadOnly,
-      prioritizeUsers: _prioritizeUsers,
+      sortOption: viewState.contactsSortOption,
+      typeFilter: viewState.contactsTypeFilter,
+      showUnreadOnly: viewState.contactsShowUnreadOnly,
       onSortChanged: (value) {
-        setState(() {
-          _sortOption = value;
-        });
+        viewState.setContactsSortOption(value);
       },
       onTypeFilterChanged: (value) {
-        setState(() {
-          _typeFilter = value;
-        });
+        viewState.setContactsTypeFilter(value);
       },
       onUnreadOnlyChanged: (value) {
-        setState(() {
-          _showUnreadOnly = value;
-        });
+        viewState.setContactsShowUnreadOnly(value);
       },
-      onPrioritizeUsersChanged: (value) {
-        setState(() {
-          _prioritizeUsers = value;
-        });
+    );
+  }
+
+  Widget _buildGroupButton(
+    BuildContext context,
+    MeshCoreConnector connector,
+    UiViewStateService viewState,
+    List<Contact> contacts,
+    List<ContactGroup> sortedGroups,
+  ) {
+    final canManageGroups = _hasGroupStoreScope(connector);
+    final selectedGroupName =
+        _selectedGroupForName(viewState.contactsSelectedGroupName)?.name ??
+        context.l10n.listFilter_all;
+    final double menuWidth = (MediaQuery.sizeOf(context).width - 16).clamp(
+      0.0,
+      double.infinity,
+    );
+
+    return PopupMenuButton<String>(
+      position: PopupMenuPosition.under,
+      constraints: BoxConstraints.tightFor(width: menuWidth),
+      onSelected: (String value) {
+        viewState.setContactsSelectedGroupName(value);
       },
-      onNewGroup: () => _showGroupEditor(context, connector.contacts),
+      itemBuilder: (menuContext) => [
+        PopupMenuItem<String>(
+          value: contactsAllGroupsValue,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(menuContext.l10n.listFilter_all),
+              IconButton(
+                tooltip: menuContext.l10n.contacts_newGroup,
+                icon: const Icon(Icons.group_add, size: 20),
+                onPressed: canManageGroups
+                    ? () => _closeDropdownAndRun(
+                        menuContext,
+                        () => _showGroupEditor(this.context, contacts),
+                      )
+                    : () => _closeDropdownAndRun(
+                        menuContext,
+                        () => _showGroupsUnavailableMessage(this.context),
+                      ),
+              ),
+            ],
+          ),
+        ),
+        ...sortedGroups.map((group) {
+          return PopupMenuItem<String>(
+            value: group.name,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(group.name, overflow: TextOverflow.ellipsis),
+                ),
+                IconButton(
+                  tooltip: menuContext.l10n.contacts_editGroup,
+                  icon: const Icon(Icons.edit, size: 20),
+                  onPressed: canManageGroups
+                      ? () => _closeDropdownAndRun(
+                          menuContext,
+                          () => _showGroupEditor(
+                            this.context,
+                            contacts,
+                            group: group,
+                          ),
+                        )
+                      : () => _closeDropdownAndRun(
+                          menuContext,
+                          () => _showGroupsUnavailableMessage(this.context),
+                        ),
+                ),
+                const SizedBox(width: 8),
+                IconButton(
+                  tooltip: menuContext.l10n.contacts_deleteGroup,
+                  icon: const Icon(Icons.delete, size: 20, color: Colors.red),
+                  onPressed: canManageGroups
+                      ? () => _closeDropdownAndRun(
+                          menuContext,
+                          () => _confirmDeleteGroup(this.context, group),
+                        )
+                      : () => _closeDropdownAndRun(
+                          menuContext,
+                          () => _showGroupsUnavailableMessage(this.context),
+                        ),
+                ),
+              ],
+            ),
+          );
+        }),
+      ],
+      child: SizedBox(
+        height: 48,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(selectedGroupName, overflow: TextOverflow.ellipsis),
+              ),
+              const SizedBox(width: 8),
+              const Icon(Icons.arrow_drop_down),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
   Widget _buildContactsBody(BuildContext context, MeshCoreConnector connector) {
+    final viewState = context.watch<UiViewStateService>();
     final contacts = connector.contacts;
+    final shouldShowStartupSpinner =
+        contacts.isEmpty &&
+        _groups.isEmpty &&
+        connector.isConnected &&
+        (connector.isLoadingContacts ||
+            connector.isLoadingChannels ||
+            connector.selfPublicKey == null);
 
-    if (contacts.isEmpty && connector.isLoadingContacts && _groups.isEmpty) {
+    if (shouldShowStartupSpinner) {
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -406,92 +623,171 @@ class _ContactsScreenState extends State<ContactsScreen>
       );
     }
 
-    final filteredAndSorted = _filterAndSortContacts(contacts, connector);
-    final filteredGroups = _showUnreadOnly
-        ? const <ContactGroup>[]
-        : _filterAndSortGroups(_groups, contacts);
+    final filteredAndSorted = _filterAndSortContacts(
+      contacts,
+      connector,
+      viewState,
+    );
 
     String hintText = "";
 
-    switch (_typeFilter) {
+    switch (viewState.contactsTypeFilter) {
       case ContactTypeFilter.all:
         hintText = context.l10n.contacts_searchContacts(
           filteredAndSorted.length,
-          _showUnreadOnly ? " ${context.l10n.contacts_unread}" : "",
+          viewState.contactsShowUnreadOnly
+              ? " ${context.l10n.contacts_unread}"
+              : "",
         );
         break;
       case ContactTypeFilter.users:
         hintText = context.l10n.contacts_searchUsers(
           filteredAndSorted.length,
-          _showUnreadOnly ? " ${context.l10n.contacts_unread}" : "",
+          viewState.contactsShowUnreadOnly
+              ? " ${context.l10n.contacts_unread}"
+              : "",
         );
         break;
       case ContactTypeFilter.repeaters:
         hintText = context.l10n.contacts_searchRepeaters(
           filteredAndSorted.length,
-          _showUnreadOnly ? " ${context.l10n.contacts_unread}" : "",
+          viewState.contactsShowUnreadOnly
+              ? " ${context.l10n.contacts_unread}"
+              : "",
         );
         break;
       case ContactTypeFilter.rooms:
         hintText = context.l10n.contacts_searchRoomServers(
           filteredAndSorted.length,
-          _showUnreadOnly ? " ${context.l10n.contacts_unread}" : "",
+          viewState.contactsShowUnreadOnly
+              ? " ${context.l10n.contacts_unread}"
+              : "",
         );
         break;
       case ContactTypeFilter.favorites:
         hintText = context.l10n.contacts_searchFavorites(
           filteredAndSorted.length,
-          _showUnreadOnly ? " ${context.l10n.contacts_unread}" : "",
+          viewState.contactsShowUnreadOnly
+              ? " ${context.l10n.contacts_unread}"
+              : "",
         );
         break;
     }
+
+    final groupsByName = <String, ContactGroup>{};
+    for (final group in _groups) {
+      groupsByName.putIfAbsent(group.name, () => group);
+    }
+    final sortedGroups = groupsByName.values.toList()
+      ..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final searchExpandedWidth = (screenWidth * 0.52).clamp(
+      97.0,
+      double.infinity,
+    ); // allow expansion up to 52% of screen width, but not less than the collapsed width
+    final searchCollapsedWidth = (screenWidth * 0.22).clamp(
+      97.0,
+      120.0,
+    ); //two 48px icon buttons + 1px divider
 
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: TextField(
-            controller: _searchController,
-            decoration: InputDecoration(
-              hintText: hintText,
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (_searchQuery.isNotEmpty)
-                    IconButton(
-                      icon: const Icon(Icons.clear),
-                      onPressed: () {
-                        _searchController.clear();
-                        setState(() {
-                          _searchQuery = '';
-                        });
-                      },
+          child: Row(
+            children: [
+              Expanded(
+                child: _buildGroupButton(
+                  context,
+                  connector,
+                  viewState,
+                  contacts,
+                  sortedGroups,
+                ),
+              ),
+              const SizedBox(width: 8),
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 220),
+                curve: Curves.easeOutCubic,
+                width: viewState.contactsSearchExpanded
+                    ? searchExpandedWidth
+                    : searchCollapsedWidth,
+                height: 48,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.outline,
                     ),
-                  _buildFilterButton(context, connector),
-                ],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: viewState.contactsSearchExpanded
+                            ? TextField(
+                                controller: _searchController,
+                                autofocus: true,
+                                decoration: InputDecoration(
+                                  hintText: hintText,
+                                  border: InputBorder.none,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 10,
+                                  ),
+                                ),
+                                onChanged: (value) {
+                                  _searchDebounce?.cancel();
+                                  _searchDebounce = Timer(
+                                    const Duration(milliseconds: 300),
+                                    () {
+                                      if (!mounted) return;
+                                      context
+                                          .read<UiViewStateService>()
+                                          .setContactsSearchText(value);
+                                    },
+                                  );
+                                },
+                              )
+                            : const SizedBox.shrink(),
+                      ),
+                      SizedBox(
+                        width: 48,
+                        height: 48,
+                        child: IconButton(
+                          onPressed: () {
+                            if (viewState.contactsSearchExpanded) {
+                              _collapseContactsSearch(viewState);
+                              return;
+                            }
+                            viewState.setContactsSearchExpanded(true);
+                          },
+                          icon: Icon(
+                            viewState.contactsSearchExpanded
+                                ? Icons.close
+                                : Icons.search,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 1,
+                        height: 24,
+                        color: Theme.of(context).colorScheme.outlineVariant,
+                      ),
+                      SizedBox(
+                        width: 48,
+                        height: 48,
+                        child: _buildFilterButton(context, viewState),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 12,
-              ),
-            ),
-            onChanged: (value) {
-              _searchDebounce?.cancel();
-              _searchDebounce = Timer(const Duration(milliseconds: 300), () {
-                if (!mounted) return;
-                setState(() {
-                  _searchQuery = value.toLowerCase();
-                });
-              });
-            },
+            ],
           ),
         ),
         Expanded(
-          child: filteredAndSorted.isEmpty && filteredGroups.isEmpty
+          child: filteredAndSorted.isEmpty
               ? Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -499,7 +795,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                       Icon(Icons.search_off, size: 64, color: Colors.grey[400]),
                       const SizedBox(height: 16),
                       Text(
-                        _showUnreadOnly
+                        viewState.contactsShowUnreadOnly
                             ? context.l10n.contacts_noUnreadContacts
                             : context.l10n.contacts_noContactsFound,
                         style: TextStyle(fontSize: 16, color: Colors.grey[600]),
@@ -510,14 +806,9 @@ class _ContactsScreenState extends State<ContactsScreen>
               : RefreshIndicator(
                   onRefresh: () => connector.getContacts(),
                   child: ListView.builder(
-                    itemCount: filteredGroups.length + filteredAndSorted.length,
+                    itemCount: filteredAndSorted.length,
                     itemBuilder: (context, index) {
-                      if (index < filteredGroups.length) {
-                        final group = filteredGroups[index];
-                        return _buildGroupTile(context, group, contacts);
-                      }
-                      final contact =
-                          filteredAndSorted[index - filteredGroups.length];
+                      final contact = filteredAndSorted[index];
                       final unreadCount = connector.getUnreadCountForContact(
                         contact,
                       );
@@ -538,54 +829,25 @@ class _ContactsScreenState extends State<ContactsScreen>
     );
   }
 
-  List<ContactGroup> _filterAndSortGroups(
-    List<ContactGroup> groups,
-    List<Contact> contacts,
-  ) {
-    final query = _searchQuery.trim().toLowerCase();
-    final contactsByKey = <String, Contact>{};
-    for (final contact in contacts) {
-      contactsByKey[contact.publicKeyHex] = contact;
-    }
-
-    final filtered = groups
-        .where((group) {
-          if (query.isEmpty) return true;
-          if (group.name.toLowerCase().contains(query)) return true;
-          for (final key in group.memberKeys) {
-            final contact = contactsByKey[key];
-            if (contact != null && matchesContactQuery(contact, query)) {
-              return true;
-            }
-          }
-          return false;
-        })
-        .where((group) {
-          if (_typeFilter == ContactTypeFilter.all) return true;
-          // Groups don't have a favorite flag, so hide them under favorites filter
-          if (_typeFilter == ContactTypeFilter.favorites) return false;
-          for (final key in group.memberKeys) {
-            final contact = contactsByKey[key];
-            if (contact != null && _matchesTypeFilter(contact)) return true;
-          }
-          return false;
-        })
-        .toList();
-
-    filtered.sort(
-      (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
-    );
-    return filtered;
-  }
-
   List<Contact> _filterAndSortContacts(
     List<Contact> contacts,
     MeshCoreConnector connector,
+    UiViewStateService viewState,
   ) {
     var filtered = contacts.where((contact) {
-      if (_searchQuery.isEmpty) return true;
-      return matchesContactQuery(contact, _searchQuery);
+      if (viewState.contactsSearchText.isEmpty) return true;
+      return matchesContactQuery(contact, viewState.contactsSearchText);
     }).toList();
+
+    final selectedGroup = _selectedGroupForName(
+      viewState.contactsSelectedGroupName,
+    );
+    if (selectedGroup != null) {
+      final memberKeys = selectedGroup.memberKeys.toSet();
+      filtered = filtered
+          .where((contact) => memberKeys.contains(contact.publicKeyHex))
+          .toList();
+    }
 
     // Filter out own node from the list
     if (connector.selfPublicKey != null) {
@@ -595,45 +857,29 @@ class _ContactsScreenState extends State<ContactsScreen>
       }).toList();
     }
 
-    if (_typeFilter != ContactTypeFilter.all) {
-      filtered = filtered.where(_matchesTypeFilter).toList();
+    if (viewState.contactsTypeFilter != ContactTypeFilter.all) {
+      filtered = filtered
+          .where(
+            (contact) =>
+                _matchesTypeFilter(contact, viewState.contactsTypeFilter),
+          )
+          .toList();
     }
 
-    if (_showUnreadOnly) {
+    if (viewState.contactsShowUnreadOnly) {
       filtered = filtered.where((contact) {
         return connector.getUnreadCountForContact(contact) > 0;
       }).toList();
     }
 
-    // Apply "users first" partitioning: separate users from other node types,
-    // sort each partition, then combine with users on top
-    if (_prioritizeUsers) {
-      // Separate users (advTypeChat) from others
-      final users = filtered.where((c) => c.type == advTypeChat).toList();
-      final others = filtered.where((c) => c.type != advTypeChat).toList();
-
-      // Sort each group separately
-      _applySorting(users, connector);
-      _applySorting(others, connector);
-
-      // Combine: users first, then others
-      filtered = [...users, ...others];
-    } else {
-      _applySorting(filtered, connector);
-    }
-
-    return filtered;
-  }
-
-  void _applySorting(List<Contact> contacts, MeshCoreConnector connector) {
-    switch (_sortOption) {
+    switch (viewState.contactsSortOption) {
       case ContactSortOption.lastSeen:
-        contacts.sort(
+        filtered.sort(
           (a, b) => _resolveLastSeen(b).compareTo(_resolveLastSeen(a)),
         );
         break;
       case ContactSortOption.recentMessages:
-        contacts.sort((a, b) {
+        filtered.sort((a, b) {
           final aMessages = connector.getMessages(a);
           final bMessages = connector.getMessages(b);
           final aLastMsg = aMessages.isEmpty
@@ -646,15 +892,17 @@ class _ContactsScreenState extends State<ContactsScreen>
         });
         break;
       case ContactSortOption.name:
-        contacts.sort(
+        filtered.sort(
           (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
         );
         break;
     }
+
+    return filtered;
   }
 
-  bool _matchesTypeFilter(Contact contact) {
-    switch (_typeFilter) {
+  bool _matchesTypeFilter(Contact contact, ContactTypeFilter typeFilter) {
+    switch (typeFilter) {
       case ContactTypeFilter.all:
         return true;
       case ContactTypeFilter.favorites:
@@ -673,57 +921,6 @@ class _ContactsScreenState extends State<ContactsScreen>
     return contact.lastMessageAt.isAfter(contact.lastSeen)
         ? contact.lastMessageAt
         : contact.lastSeen;
-  }
-
-  Widget _buildGroupTile(
-    BuildContext context,
-    ContactGroup group,
-    List<Contact> contacts,
-  ) {
-    final memberContacts = _resolveGroupContacts(group, contacts);
-    final subtitle = _formatGroupMembers(context, memberContacts);
-    return ListTile(
-      leading: const CircleAvatar(
-        backgroundColor: Colors.teal,
-        child: Icon(Icons.group, color: Colors.white, size: 20),
-      ),
-      title: Text(group.name),
-      subtitle: Text(subtitle),
-      trailing: Text(
-        memberContacts.length.toString(),
-        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-      ),
-      onTap: () => _showGroupOptions(context, group, contacts),
-      onLongPress: () => _showGroupOptions(context, group, contacts),
-    );
-  }
-
-  List<Contact> _resolveGroupContacts(
-    ContactGroup group,
-    List<Contact> contacts,
-  ) {
-    final byKey = <String, Contact>{};
-    for (final contact in contacts) {
-      byKey[contact.publicKeyHex] = contact;
-    }
-    final resolved = <Contact>[];
-    for (final key in group.memberKeys) {
-      final contact = byKey[key];
-      if (contact != null) {
-        resolved.add(contact);
-      }
-    }
-    resolved.sort(
-      (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
-    );
-    return resolved;
-  }
-
-  String _formatGroupMembers(BuildContext context, List<Contact> members) {
-    if (members.isEmpty) return context.l10n.contacts_noMembers;
-    final names = members.map((c) => c.name).toList();
-    if (names.length <= 2) return names.join(', ');
-    return '${names.take(2).join(', ')} +${names.length - 2}';
   }
 
   void _openChat(BuildContext context, Contact contact) {
@@ -764,13 +961,16 @@ class _ContactsScreenState extends State<ContactsScreen>
       context: context,
       builder: (context) => RepeaterLoginDialog(
         repeater: repeater,
-        onLogin: (password) {
+        onLogin: (password, isAdmin) {
           // Navigate to repeater hub screen after successful login
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  RepeaterHubScreen(repeater: repeater, password: password),
+              builder: (context) => RepeaterHubScreen(
+                repeater: repeater,
+                password: password,
+                isAdmin: isAdmin,
+              ),
             ),
           );
         },
@@ -787,14 +987,18 @@ class _ContactsScreenState extends State<ContactsScreen>
       context: context,
       builder: (context) => RoomLoginDialog(
         room: room,
-        onLogin: (password) {
+        onLogin: (password, isAdmin) {
           context.read<MeshCoreConnector>().markContactRead(room.publicKeyHex);
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) =>
                   destination == RoomLoginDestination.management
-                  ? RepeaterHubScreen(repeater: room, password: password)
+                  ? RepeaterHubScreen(
+                      repeater: room,
+                      password: password,
+                      isAdmin: isAdmin,
+                    )
                   : ChatScreen(contact: room),
             ),
           );
@@ -803,58 +1007,11 @@ class _ContactsScreenState extends State<ContactsScreen>
     );
   }
 
-  void _showGroupOptions(
-    BuildContext context,
-    ContactGroup group,
-    List<Contact> contacts,
-  ) {
-    final members = _resolveGroupContacts(group, contacts);
-    showModalBottomSheet(
-      context: context,
-      builder: (sheetContext) => SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: const Icon(Icons.edit),
-                title: Text(context.l10n.contacts_editGroup),
-                onTap: () {
-                  Navigator.pop(sheetContext);
-                  _showGroupEditor(context, contacts, group: group);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.delete, color: Colors.red),
-                title: Text(
-                  context.l10n.contacts_deleteGroup,
-                  style: const TextStyle(color: Colors.red),
-                ),
-                onTap: () {
-                  Navigator.pop(sheetContext);
-                  _confirmDeleteGroup(context, group);
-                },
-              ),
-              if (members.isNotEmpty) const Divider(),
-              ...members.map((member) {
-                return ListTile(
-                  leading: const Icon(Icons.person),
-                  title: Text(member.name),
-                  subtitle: Text(member.typeLabel),
-                  onTap: () {
-                    Navigator.pop(sheetContext);
-                    _openChat(context, member);
-                  },
-                );
-              }),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   void _confirmDeleteGroup(BuildContext context, ContactGroup group) {
+    if (!_hasGroupStoreScope(context.read<MeshCoreConnector>())) {
+      _showGroupsUnavailableMessage(context);
+      return;
+    }
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
@@ -870,6 +1027,7 @@ class _ContactsScreenState extends State<ContactsScreen>
               Navigator.pop(dialogContext);
               setState(() {
                 _groups.removeWhere((g) => g.name == group.name);
+                _ensureValidSelectedGroup();
               });
               await _saveGroups();
             },
@@ -888,6 +1046,10 @@ class _ContactsScreenState extends State<ContactsScreen>
     List<Contact> contacts, {
     ContactGroup? group,
   }) {
+    if (!_hasGroupStoreScope(context.read<MeshCoreConnector>())) {
+      _showGroupsUnavailableMessage(context);
+      return;
+    }
     final isEditing = group != null;
     final nameController = TextEditingController(text: group?.name ?? '');
     final selectedKeys = <String>{...group?.memberKeys ?? []};
@@ -914,64 +1076,70 @@ class _ContactsScreenState extends State<ContactsScreen>
             ),
             content: SizedBox(
               width: double.maxFinite,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      labelText: context.l10n.contacts_groupName,
-                      border: const OutlineInputBorder(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.8,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        labelText: context.l10n.contacts_groupName,
+                        border: const OutlineInputBorder(),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: context.l10n.contacts_filterContacts,
-                      prefixIcon: const Icon(Icons.search),
-                      border: const OutlineInputBorder(),
-                      isDense: true,
+                    const SizedBox(height: 12),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: context.l10n.contacts_filterContacts,
+                        prefixIcon: const Icon(Icons.search),
+                        border: const OutlineInputBorder(),
+                        isDense: true,
+                      ),
+                      onChanged: (value) {
+                        setDialogState(() {
+                          filterQuery = value.toLowerCase();
+                        });
+                      },
                     ),
-                    onChanged: (value) {
-                      setDialogState(() {
-                        filterQuery = value.toLowerCase();
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    height: 240,
-                    child: filteredContacts.isEmpty
-                        ? Center(
-                            child: Text(
-                              context.l10n.contacts_noContactsMatchFilter,
+                    const SizedBox(height: 12),
+                    Expanded(
+                      child: filteredContacts.isEmpty
+                          ? Center(
+                              child: Text(
+                                context.l10n.contacts_noContactsMatchFilter,
+                              ),
+                            )
+                          : ListView.builder(
+                              itemCount: filteredContacts.length,
+                              itemBuilder: (context, index) {
+                                final contact = filteredContacts[index];
+                                final isSelected = selectedKeys.contains(
+                                  contact.publicKeyHex,
+                                );
+                                return CheckboxListTile(
+                                  value: isSelected,
+                                  title: Text(contact.name),
+                                  subtitle: Text(contact.typeLabel),
+                                  onChanged: (value) {
+                                    setDialogState(() {
+                                      if (value == true) {
+                                        selectedKeys.add(contact.publicKeyHex);
+                                      } else {
+                                        selectedKeys.remove(
+                                          contact.publicKeyHex,
+                                        );
+                                      }
+                                    });
+                                  },
+                                );
+                              },
                             ),
-                          )
-                        : ListView.builder(
-                            itemCount: filteredContacts.length,
-                            itemBuilder: (context, index) {
-                              final contact = filteredContacts[index];
-                              final isSelected = selectedKeys.contains(
-                                contact.publicKeyHex,
-                              );
-                              return CheckboxListTile(
-                                value: isSelected,
-                                title: Text(contact.name),
-                                subtitle: Text(contact.typeLabel),
-                                onChanged: (value) {
-                                  setDialogState(() {
-                                    if (value == true) {
-                                      selectedKeys.add(contact.publicKeyHex);
-                                    } else {
-                                      selectedKeys.remove(contact.publicKeyHex);
-                                    }
-                                  });
-                                },
-                              );
-                            },
-                          ),
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
             actions: [
@@ -983,10 +1151,17 @@ class _ContactsScreenState extends State<ContactsScreen>
                 onPressed: () async {
                   final name = nameController.text.trim();
                   if (name.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.contacts_groupNameRequired),
-                      ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(context.l10n.contacts_groupNameRequired),
+                    );
+                    return;
+                  }
+                  if (name.toLowerCase() ==
+                      contactsAllGroupsValue.toLowerCase()) {
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(context.l10n.contacts_groupNameReserved),
                     );
                     return;
                   }
@@ -995,25 +1170,30 @@ class _ContactsScreenState extends State<ContactsScreen>
                     return g.name.toLowerCase() == name.toLowerCase();
                   });
                   if (exists) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          context.l10n.contacts_groupAlreadyExists(name),
-                        ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(
+                        context.l10n.contacts_groupAlreadyExists(name),
                       ),
                     );
                     return;
                   }
                   setState(() {
+                    final viewState = context.read<UiViewStateService>();
                     if (isEditing) {
                       final index = _groups.indexWhere(
                         (g) => g.name == group.name,
                       );
                       if (index != -1) {
+                        final wasSelected =
+                            viewState.contactsSelectedGroupName == group.name;
                         _groups[index] = ContactGroup(
                           name: name,
                           memberKeys: selectedKeys.toList(),
                         );
+                        if (wasSelected) {
+                          viewState.setContactsSelectedGroupName(name);
+                        }
                       }
                     } else {
                       _groups.add(
@@ -1022,7 +1202,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                           memberKeys: selectedKeys.toList(),
                         ),
                       );
+                      viewState.setContactsSelectedGroupName(name);
                     }
+                    _ensureValidSelectedGroup();
                   });
                   await _saveGroups();
                   if (dialogContext.mounted) {
@@ -1060,18 +1242,19 @@ class _ContactsScreenState extends State<ContactsScreen>
             if (isRepeater) ...[
               ListTile(
                 leading: const Icon(Icons.radar, color: Colors.green),
-                title: contact.pathLength > 0
-                    ? Text(context.l10n.contacts_pathTrace)
-                    : Text(context.l10n.contacts_ping),
+                title: Text(context.l10n.contacts_ping),
                 onTap: () {
+                  final hw = context
+                      .read<MeshCoreConnector>()
+                      .pathHashByteWidth;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => PathTraceMapScreen(
-                        title: contact.pathLength > 0
-                            ? context.l10n.contacts_repeaterPathTrace
-                            : context.l10n.contacts_repeaterPing,
-                        path: contact.traceRouteBytes ?? Uint8List(0),
+                        title: context.l10n.contacts_repeaterPing,
+                        path: Uint8List.fromList([contact.publicKey.first]),
+                        targetContact: contact,
+                        pathHashByteWidth: hw,
                       ),
                     ),
                   );
@@ -1088,18 +1271,24 @@ class _ContactsScreenState extends State<ContactsScreen>
             ] else if (isRoom) ...[
               ListTile(
                 leading: const Icon(Icons.radar, color: Colors.green),
-                title: contact.pathLength > 0
-                    ? Text(context.l10n.contacts_pathTrace)
-                    : Text(context.l10n.contacts_ping),
+                title: Text(context.l10n.contacts_pathTrace),
                 onTap: () {
+                  final hw = context
+                      .read<MeshCoreConnector>()
+                      .pathHashByteWidth;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => PathTraceMapScreen(
-                        title: contact.pathLength > 0
+                        title: contact.pathBytesForDisplay.isNotEmpty
                             ? context.l10n.contacts_roomPathTrace
                             : context.l10n.contacts_roomPing,
-                        path: contact.traceRouteBytes ?? Uint8List(0),
+                        path: contact.pathBytesForDisplay.isNotEmpty
+                            ? contact.pathBytesForDisplay
+                            : Uint8List.fromList([contact.publicKey.first]),
+                        flipPathAround: contact.pathBytesForDisplay.isNotEmpty,
+                        targetContact: contact,
+                        pathHashByteWidth: hw,
                       ),
                     ),
                   );
@@ -1134,6 +1323,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                   leading: const Icon(Icons.radar, color: Colors.green),
                   title: Text(context.l10n.contacts_chatTraceRoute),
                   onTap: () {
+                    final hw = context
+                        .read<MeshCoreConnector>()
+                        .pathHashByteWidth;
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -1141,7 +1333,10 @@ class _ContactsScreenState extends State<ContactsScreen>
                           title: context.l10n.contacts_pathTraceTo(
                             contact.name,
                           ),
-                          path: contact.traceRouteBytes ?? Uint8List(0),
+                          path: contact.pathBytesForDisplay,
+                          flipPathAround: true,
+                          targetContact: contact,
+                          pathHashByteWidth: hw,
                         ),
                       ),
                     );
@@ -1168,7 +1363,10 @@ class _ContactsScreenState extends State<ContactsScreen>
               ),
               onTap: () async {
                 Navigator.pop(sheetContext);
-                await connector.setContactFavorite(contact, !isFavorite);
+                await connector.setContactFlags(
+                  contact,
+                  isFavorite: !isFavorite,
+                );
               },
             ),
             ListTile(
@@ -1254,66 +1452,77 @@ class _ContactTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: _getTypeColor(contact.type),
-        child: _buildContactAvatar(contact),
-      ),
-      title: Text(contact.name, maxLines: 1, overflow: TextOverflow.ellipsis),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(contact.pathLabel, maxLines: 1, overflow: TextOverflow.ellipsis),
-          Text(
-            contact.shortPubKeyHex,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 12),
-          ),
-        ],
-      ),
-      // Clamp text scaling in trailing section to prevent overflow while
-      // maintaining accessibility. Primary content (title/subtitle) scales normally.
-      trailing: MediaQuery(
-        data: MediaQuery.of(context).copyWith(
-          textScaler: TextScaler.linear(
-            MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.3),
-          ),
+    return GestureDetector(
+      onSecondaryTapUp: PlatformInfo.isDesktop ? (_) => onLongPress() : null,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: _getTypeColor(contact.type),
+          child: _buildContactAvatar(contact),
         ),
-        child: SizedBox(
-          width: 120,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              if (unreadCount > 0) ...[
-                UnreadBadge(count: unreadCount),
-                const SizedBox(height: 4),
-              ],
-              Text(
-                _formatLastSeen(context, lastSeen),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (isFavorite)
-                    Icon(Icons.star, size: 14, color: Colors.amber[700]),
-                  if (isFavorite && contact.hasLocation)
-                    const SizedBox(width: 2),
-                  if (contact.hasLocation)
-                    Icon(Icons.location_on, size: 14, color: Colors.grey[400]),
+        title: Text(contact.name, maxLines: 1, overflow: TextOverflow.ellipsis),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              contact.pathLabel,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              contact.shortPubKeyHex,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 12),
+            ),
+          ],
+        ),
+        // Clamp text scaling in trailing section to prevent overflow while
+        // maintaining accessibility. Primary content (title/subtitle) scales normally.
+        trailing: MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: TextScaler.linear(
+              MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.3),
+            ),
+          ),
+          child: SizedBox(
+            width: 120,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                if (unreadCount > 0) ...[
+                  UnreadBadge(count: unreadCount),
+                  const SizedBox(height: 4),
                 ],
-              ),
-            ],
+                Text(
+                  _formatLastSeen(context, lastSeen),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (isFavorite)
+                      Icon(Icons.star, size: 14, color: Colors.amber[700]),
+                    if (isFavorite && contact.hasLocation)
+                      const SizedBox(width: 2),
+                    if (contact.hasLocation)
+                      Icon(
+                        Icons.location_on,
+                        size: 14,
+                        color: Colors.grey[400],
+                      ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
+        onTap: onTap,
+        onLongPress: onLongPress,
       ),
-      onTap: onTap,
-      onLongPress: onLongPress,
     );
   }
 

@@ -12,6 +12,7 @@ import '../services/app_settings_service.dart';
 import '../services/repeater_command_service.dart';
 import '../utils/battery_utils.dart';
 import '../widgets/path_management_dialog.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class RepeaterStatusScreen extends StatefulWidget {
   final Contact repeater;
@@ -91,11 +92,22 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
     });
   }
 
+  int _resolveRepeaterIndex = -1;
+
   Contact _resolveRepeater(MeshCoreConnector connector) {
-    return connector.contacts.firstWhere(
+    if (_resolveRepeaterIndex >= 0 &&
+        _resolveRepeaterIndex < connector.contacts.length &&
+        connector.contacts[_resolveRepeaterIndex].publicKeyHex ==
+            widget.repeater.publicKeyHex) {
+      return connector.contacts[_resolveRepeaterIndex];
+    }
+    _resolveRepeaterIndex = connector.contacts.indexWhere(
       (c) => c.publicKeyHex == widget.repeater.publicKeyHex,
-      orElse: () => widget.repeater,
     );
+    if (_resolveRepeaterIndex == -1) {
+      return widget.repeater;
+    }
+    return connector.contacts[_resolveRepeaterIndex];
   }
 
   void _handleTextMessageResponse(Uint8List frame) {
@@ -298,11 +310,10 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
         setState(() {
           _isLoading = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(context.l10n.repeater_statusRequestTimeout),
-            backgroundColor: Colors.red,
-          ),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.repeater_statusRequestTimeout),
+          backgroundColor: Colors.red,
         );
         _recordStatusResult(false);
       });
@@ -312,13 +323,10 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
           _isLoading = false;
         });
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              context.l10n.repeater_errorLoadingStatus(e.toString()),
-            ),
-            backgroundColor: Colors.red,
-          ),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.repeater_errorLoadingStatus(e.toString())),
+          backgroundColor: Colors.red,
         );
       }
       _recordStatusResult(false);

@@ -1,3 +1,5 @@
+import 'translation_support.dart';
+
 enum UnitSystem { metric, imperial }
 
 extension UnitSystemValue on UnitSystem {
@@ -18,10 +20,12 @@ class AppSettings {
   final bool mapShowRepeaters;
   final bool mapShowChatNodes;
   final bool mapShowOtherNodes;
+  final bool mapShowOverlaps;
   final double mapTimeFilterHours; // 0 = all time
   final bool mapKeyPrefixEnabled;
   final String mapKeyPrefix;
   final bool mapShowMarkers;
+  final bool mapShowGuessedLocations;
   final bool enableMessageTracing;
   final Map<String, double>? mapCacheBounds;
   final int mapCacheMinZoom;
@@ -31,6 +35,11 @@ class AppSettings {
   final bool notifyOnNewChannelMessage;
   final bool notifyOnNewAdvert;
   final bool autoRouteRotationEnabled;
+  final double maxRouteWeight;
+  final double initialRouteWeight;
+  final double routeWeightSuccessIncrement;
+  final double routeWeightFailureDecrement;
+  final int maxMessageRetries;
   final String themeMode;
   final String? languageOverride; // null = system default
   final bool appDebugLogEnabled;
@@ -38,16 +47,28 @@ class AppSettings {
   final Map<String, String> batteryChemistryByRepeaterId;
   final UnitSystem unitSystem;
   final Set<String> mutedChannels;
+  final bool mapShowDiscoveryContacts;
+  final String tcpServerAddress;
+  final int tcpServerPort;
+  final bool jumpToOldestUnread;
+  final bool translationEnabled;
+  final String? translationTargetLanguageCode;
+  final bool composerTranslationEnabled;
+  final String? translationModelSourceUrl;
+  final String? translationSelectedModelId;
+  final List<TranslationModelRecord> translationDownloadedModels;
 
   AppSettings({
     this.clearPathOnMaxRetry = false,
     this.mapShowRepeaters = true,
     this.mapShowChatNodes = true,
     this.mapShowOtherNodes = true,
+    this.mapShowOverlaps = false,
     this.mapTimeFilterHours = 0, // Default to all time
     this.mapKeyPrefixEnabled = false,
     this.mapKeyPrefix = '',
     this.mapShowMarkers = true,
+    this.mapShowGuessedLocations = true,
     this.enableMessageTracing = false,
     this.mapCacheBounds,
     this.mapCacheMinZoom = 10,
@@ -57,6 +78,11 @@ class AppSettings {
     this.notifyOnNewChannelMessage = true,
     this.notifyOnNewAdvert = true,
     this.autoRouteRotationEnabled = false,
+    this.maxRouteWeight = 5.0,
+    this.initialRouteWeight = 3.0,
+    this.routeWeightSuccessIncrement = 0.5,
+    this.routeWeightFailureDecrement = 0.2,
+    this.maxMessageRetries = 5,
     this.themeMode = 'system',
     this.languageOverride,
     this.appDebugLogEnabled = false,
@@ -64,9 +90,20 @@ class AppSettings {
     Map<String, String>? batteryChemistryByRepeaterId,
     this.unitSystem = UnitSystem.metric,
     Set<String>? mutedChannels,
+    this.mapShowDiscoveryContacts = true,
+    this.tcpServerAddress = '',
+    this.tcpServerPort = 0,
+    this.jumpToOldestUnread = false,
+    this.translationEnabled = false,
+    this.translationTargetLanguageCode,
+    this.composerTranslationEnabled = false,
+    this.translationModelSourceUrl,
+    this.translationSelectedModelId,
+    List<TranslationModelRecord>? translationDownloadedModels,
   }) : batteryChemistryByDeviceId = batteryChemistryByDeviceId ?? {},
        batteryChemistryByRepeaterId = batteryChemistryByRepeaterId ?? {},
-       mutedChannels = mutedChannels ?? {};
+       mutedChannels = mutedChannels ?? {},
+       translationDownloadedModels = translationDownloadedModels ?? const [];
 
   Map<String, dynamic> toJson() {
     return {
@@ -74,10 +111,12 @@ class AppSettings {
       'map_show_repeaters': mapShowRepeaters,
       'map_show_chat_nodes': mapShowChatNodes,
       'map_show_other_nodes': mapShowOtherNodes,
+      'map_show_overlaps': mapShowOverlaps,
       'map_time_filter_hours': mapTimeFilterHours,
       'map_key_prefix_enabled': mapKeyPrefixEnabled,
       'map_key_prefix': mapKeyPrefix,
       'map_show_markers': mapShowMarkers,
+      'map_show_guessed_locations': mapShowGuessedLocations,
       'enable_message_tracing': enableMessageTracing,
       'map_cache_bounds': mapCacheBounds,
       'map_cache_min_zoom': mapCacheMinZoom,
@@ -87,6 +126,11 @@ class AppSettings {
       'notify_on_new_channel_message': notifyOnNewChannelMessage,
       'notify_on_new_advert': notifyOnNewAdvert,
       'auto_route_rotation_enabled': autoRouteRotationEnabled,
+      'max_route_weight': maxRouteWeight,
+      'initial_route_weight': initialRouteWeight,
+      'route_weight_success_increment': routeWeightSuccessIncrement,
+      'route_weight_failure_decrement': routeWeightFailureDecrement,
+      'max_message_retries': maxMessageRetries,
       'theme_mode': themeMode,
       'language_override': languageOverride,
       'app_debug_log_enabled': appDebugLogEnabled,
@@ -94,6 +138,18 @@ class AppSettings {
       'battery_chemistry_by_repeater_id': batteryChemistryByRepeaterId,
       'unit_system': unitSystem.value,
       'muted_channels': mutedChannels.toList(),
+      'map_show_discovery_contacts': mapShowDiscoveryContacts,
+      'tcp_server_address': tcpServerAddress,
+      'tcp_server_port': tcpServerPort,
+      'jump_to_oldest_unread': jumpToOldestUnread,
+      'translation_enabled': translationEnabled,
+      'translation_target_language_code': translationTargetLanguageCode,
+      'composer_translation_enabled': composerTranslationEnabled,
+      'translation_model_source_url': translationModelSourceUrl,
+      'translation_selected_model_id': translationSelectedModelId,
+      'translation_downloaded_models': translationDownloadedModels
+          .map((model) => model.toJson())
+          .toList(),
     };
   }
 
@@ -110,11 +166,14 @@ class AppSettings {
       mapShowRepeaters: json['map_show_repeaters'] as bool? ?? true,
       mapShowChatNodes: json['map_show_chat_nodes'] as bool? ?? true,
       mapShowOtherNodes: json['map_show_other_nodes'] as bool? ?? true,
+      mapShowOverlaps: json['map_show_overlaps'] as bool? ?? false,
       mapTimeFilterHours:
           (json['map_time_filter_hours'] as num?)?.toDouble() ?? 0,
       mapKeyPrefixEnabled: json['map_key_prefix_enabled'] as bool? ?? false,
       mapKeyPrefix: json['map_key_prefix'] as String? ?? '',
       mapShowMarkers: json['map_show_markers'] as bool? ?? true,
+      mapShowGuessedLocations:
+          json['map_show_guessed_locations'] as bool? ?? true,
       enableMessageTracing: json['enable_message_tracing'] as bool? ?? false,
       mapCacheBounds: (json['map_cache_bounds'] as Map?)?.map(
         (key, value) => MapEntry(key.toString(), (value as num).toDouble()),
@@ -128,6 +187,14 @@ class AppSettings {
       notifyOnNewAdvert: json['notify_on_new_advert'] as bool? ?? true,
       autoRouteRotationEnabled:
           json['auto_route_rotation_enabled'] as bool? ?? false,
+      maxRouteWeight: (json['max_route_weight'] as num?)?.toDouble() ?? 5.0,
+      initialRouteWeight:
+          (json['initial_route_weight'] as num?)?.toDouble() ?? 3.0,
+      routeWeightSuccessIncrement:
+          (json['route_weight_success_increment'] as num?)?.toDouble() ?? 0.5,
+      routeWeightFailureDecrement:
+          (json['route_weight_failure_decrement'] as num?)?.toDouble() ?? 0.2,
+      maxMessageRetries: json['max_message_retries'] as int? ?? 5,
       themeMode: json['theme_mode'] as String? ?? 'system',
       languageOverride: json['language_override'] as String?,
       appDebugLogEnabled: json['app_debug_log_enabled'] as bool? ?? false,
@@ -147,6 +214,29 @@ class AppSettings {
               ?.map((e) => e.toString())
               .toSet()) ??
           {},
+      mapShowDiscoveryContacts:
+          json['map_show_discovery_contacts'] as bool? ?? true,
+      tcpServerAddress: json['tcp_server_address'] as String? ?? '',
+      tcpServerPort: json['tcp_server_port'] as int? ?? 0,
+      jumpToOldestUnread: json['jump_to_oldest_unread'] as bool? ?? false,
+      translationEnabled: json['translation_enabled'] as bool? ?? false,
+      translationTargetLanguageCode:
+          json['translation_target_language_code'] as String?,
+      composerTranslationEnabled:
+          json['composer_translation_enabled'] as bool? ?? false,
+      translationModelSourceUrl:
+          json['translation_model_source_url'] as String?,
+      translationSelectedModelId:
+          json['translation_selected_model_id'] as String?,
+      translationDownloadedModels:
+          (json['translation_downloaded_models'] as List<dynamic>?)
+              ?.map(
+                (entry) => TranslationModelRecord.fromJson(
+                  Map<String, dynamic>.from(entry as Map),
+                ),
+              )
+              .toList() ??
+          const [],
     );
   }
 
@@ -155,10 +245,12 @@ class AppSettings {
     bool? mapShowRepeaters,
     bool? mapShowChatNodes,
     bool? mapShowOtherNodes,
+    bool? mapShowOverlaps,
     double? mapTimeFilterHours,
     bool? mapKeyPrefixEnabled,
     String? mapKeyPrefix,
     bool? mapShowMarkers,
+    bool? mapShowGuessedLocations,
     bool? enableMessageTracing,
     Object? mapCacheBounds = _unset,
     int? mapCacheMinZoom,
@@ -168,6 +260,11 @@ class AppSettings {
     bool? notifyOnNewChannelMessage,
     bool? notifyOnNewAdvert,
     bool? autoRouteRotationEnabled,
+    double? maxRouteWeight,
+    double? initialRouteWeight,
+    double? routeWeightSuccessIncrement,
+    double? routeWeightFailureDecrement,
+    int? maxMessageRetries,
     String? themeMode,
     Object? languageOverride = _unset,
     bool? appDebugLogEnabled,
@@ -175,16 +272,29 @@ class AppSettings {
     Map<String, String>? batteryChemistryByRepeaterId,
     UnitSystem? unitSystem,
     Set<String>? mutedChannels,
+    bool? mapShowDiscoveryContacts,
+    String? tcpServerAddress,
+    int? tcpServerPort,
+    bool? jumpToOldestUnread,
+    bool? translationEnabled,
+    Object? translationTargetLanguageCode = _unset,
+    bool? composerTranslationEnabled,
+    Object? translationModelSourceUrl = _unset,
+    Object? translationSelectedModelId = _unset,
+    List<TranslationModelRecord>? translationDownloadedModels,
   }) {
     return AppSettings(
       clearPathOnMaxRetry: clearPathOnMaxRetry ?? this.clearPathOnMaxRetry,
       mapShowRepeaters: mapShowRepeaters ?? this.mapShowRepeaters,
       mapShowChatNodes: mapShowChatNodes ?? this.mapShowChatNodes,
       mapShowOtherNodes: mapShowOtherNodes ?? this.mapShowOtherNodes,
+      mapShowOverlaps: mapShowOverlaps ?? this.mapShowOverlaps,
       mapTimeFilterHours: mapTimeFilterHours ?? this.mapTimeFilterHours,
       mapKeyPrefixEnabled: mapKeyPrefixEnabled ?? this.mapKeyPrefixEnabled,
       mapKeyPrefix: mapKeyPrefix ?? this.mapKeyPrefix,
       mapShowMarkers: mapShowMarkers ?? this.mapShowMarkers,
+      mapShowGuessedLocations:
+          mapShowGuessedLocations ?? this.mapShowGuessedLocations,
       enableMessageTracing: enableMessageTracing ?? this.enableMessageTracing,
       mapCacheBounds: mapCacheBounds == _unset
           ? this.mapCacheBounds
@@ -198,6 +308,13 @@ class AppSettings {
       notifyOnNewAdvert: notifyOnNewAdvert ?? this.notifyOnNewAdvert,
       autoRouteRotationEnabled:
           autoRouteRotationEnabled ?? this.autoRouteRotationEnabled,
+      maxRouteWeight: maxRouteWeight ?? this.maxRouteWeight,
+      initialRouteWeight: initialRouteWeight ?? this.initialRouteWeight,
+      routeWeightSuccessIncrement:
+          routeWeightSuccessIncrement ?? this.routeWeightSuccessIncrement,
+      routeWeightFailureDecrement:
+          routeWeightFailureDecrement ?? this.routeWeightFailureDecrement,
+      maxMessageRetries: maxMessageRetries ?? this.maxMessageRetries,
       themeMode: themeMode ?? this.themeMode,
       languageOverride: languageOverride == _unset
           ? this.languageOverride
@@ -209,6 +326,25 @@ class AppSettings {
           batteryChemistryByRepeaterId ?? this.batteryChemistryByRepeaterId,
       unitSystem: unitSystem ?? this.unitSystem,
       mutedChannels: mutedChannels ?? this.mutedChannels,
+      mapShowDiscoveryContacts:
+          mapShowDiscoveryContacts ?? this.mapShowDiscoveryContacts,
+      tcpServerAddress: tcpServerAddress ?? this.tcpServerAddress,
+      tcpServerPort: tcpServerPort ?? this.tcpServerPort,
+      jumpToOldestUnread: jumpToOldestUnread ?? this.jumpToOldestUnread,
+      translationEnabled: translationEnabled ?? this.translationEnabled,
+      translationTargetLanguageCode: translationTargetLanguageCode == _unset
+          ? this.translationTargetLanguageCode
+          : translationTargetLanguageCode as String?,
+      composerTranslationEnabled:
+          composerTranslationEnabled ?? this.composerTranslationEnabled,
+      translationModelSourceUrl: translationModelSourceUrl == _unset
+          ? this.translationModelSourceUrl
+          : translationModelSourceUrl as String?,
+      translationSelectedModelId: translationSelectedModelId == _unset
+          ? this.translationSelectedModelId
+          : translationSelectedModelId as String?,
+      translationDownloadedModels:
+          translationDownloadedModels ?? this.translationDownloadedModels,
     );
   }
 }

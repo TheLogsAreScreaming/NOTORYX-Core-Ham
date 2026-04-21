@@ -1,6 +1,22 @@
 import '../models/contact.dart';
 
+export 'contact_filter_types.dart';
+
 bool matchesContactQuery(Contact contact, String query) {
+  final normalizedQuery = query.trim().toLowerCase();
+  if (normalizedQuery.isEmpty) return true;
+
+  if (contact.name.toLowerCase().contains(normalizedQuery)) {
+    return true;
+  }
+
+  final hexPrefix = _extractHexPrefix(normalizedQuery);
+  if (hexPrefix == null) return false;
+
+  return contact.publicKeyHex.toLowerCase().startsWith(hexPrefix);
+}
+
+bool matchesDiscoveryContactQuery(Contact contact, String query) {
   final normalizedQuery = query.trim().toLowerCase();
   if (normalizedQuery.isEmpty) return true;
 
@@ -16,6 +32,9 @@ bool matchesContactQuery(Contact contact, String query) {
 
 String? _extractHexPrefix(String query) {
   var cleaned = query;
+  if (cleaned.startsWith('<')) {
+    cleaned = cleaned.substring(1).replaceAll(">", "");
+  }
   if (cleaned.startsWith('0x')) {
     cleaned = cleaned.substring(2);
   }

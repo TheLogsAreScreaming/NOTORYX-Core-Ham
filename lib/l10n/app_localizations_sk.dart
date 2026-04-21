@@ -39,6 +39,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get common_delete => 'Odstrániť';
 
   @override
+  String get common_deleteAll => 'Zmazať všetko';
+
+  @override
   String get common_close => 'Zavrieť';
 
   @override
@@ -109,6 +112,135 @@ class AppLocalizationsSk extends AppLocalizations {
   String get scanner_title => 'MeshCore Open';
 
   @override
+  String get connectionChoiceUsbLabel => 'USB';
+
+  @override
+  String get connectionChoiceBluetoothLabel => 'Bluetooth';
+
+  @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Spojte sa pomocou protokolu TCP';
+
+  @override
+  String get tcpHostLabel => 'IP adresa';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Port';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => 'Zadajte cieľovú adresu a pripojte sa.';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Pripojenie k $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'Je potrebné zadať IP adresu.';
+
+  @override
+  String get tcpErrorPortInvalid => 'Číslo portu musí byť medzi 1 a 65535.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'Prevoz prostredníctvom protokolu TCP nie je na tejto platforme podporovaný.';
+
+  @override
+  String get tcpErrorTimedOut => 'Pripojenie TCP vypršalo.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Neúspešné vytvorenie TCP spojenia: $error';
+  }
+
+  @override
+  String get usbScreenTitle => 'Pripojte cez USB';
+
+  @override
+  String get usbScreenSubtitle =>
+      'Vyberte detekovaný sériový zariadenie a pripojte ho priamo k vašej MeshCore uzlu.';
+
+  @override
+  String get usbScreenStatus => 'Vyberte USB zariadenie';
+
+  @override
+  String get usbScreenNote =>
+      'USB sériová komunikácia je aktívna na podporovaných zariadeniach s Androidom a na desktopových platformách.';
+
+  @override
+  String get usbScreenEmptyState =>
+      'Nenašli sa žiadne USB zariadenia. Pripojte jedno a obnovte.';
+
+  @override
+  String get usbErrorPermissionDenied =>
+      'Žiadosť o prístup cez USB bola zamietnutá.';
+
+  @override
+  String get usbErrorDeviceMissing =>
+      'Vybrané USB zariadenie už nie je dostupné.';
+
+  @override
+  String get usbErrorInvalidPort => 'Vyberte platné USB zariadenie.';
+
+  @override
+  String get usbErrorBusy =>
+      'Ďalšia požiadavka na pripojenie cez USB je aktuálne v procese.';
+
+  @override
+  String get usbErrorNotConnected => 'Nie je pripojené žiadne USB zariadenie.';
+
+  @override
+  String get usbErrorOpenFailed =>
+      'Nepodarilo sa otvoriť vybrané USB zariadenie.';
+
+  @override
+  String get usbErrorConnectFailed =>
+      'Nepodarilo sa sa sa pripojiť k vybranému USB zariadeniu.';
+
+  @override
+  String get usbErrorUnsupported =>
+      'Podpora USB sériového rozhrania nie je na tejto platforme dostupná.';
+
+  @override
+  String get usbErrorAlreadyActive => 'Pripojenie cez USB je už aktivované.';
+
+  @override
+  String get usbErrorNoDeviceSelected =>
+      'Nebolo vybrané žiadne USB zariadenie.';
+
+  @override
+  String get usbErrorPortClosed => 'Pripojenie cez USB nie je aktivované.';
+
+  @override
+  String get usbErrorConnectTimedOut =>
+      'Pripojenie nebolo úspešné. Uistite sa, že zariadenie má nainštalovaný firmware USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName => 'Webový sériový zariadenie';
+
+  @override
+  String get usbStatus_notConnected => 'Vyberte USB zariadenie';
+
+  @override
+  String get usbStatus_connecting => 'Pripojenie k USB zariadeniu...';
+
+  @override
+  String get usbStatus_searching => 'Hľadanie USB zariadení...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Neúspešné pripojenie cez USB: $error';
+  }
+
+  @override
   String get scanner_scanning => 'Skrívania zariadení...';
 
   @override
@@ -149,6 +281,13 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get scanner_bluetoothOffMessage =>
       'Prosím, zapnite Bluetooth, aby ste mohli skenovať pre zariadenia.';
+
+  @override
+  String get scanner_chromeRequired => 'Vyžaduje sa prehliadač Chrome';
+
+  @override
+  String get scanner_chromeRequiredMessage =>
+      'Táto webová aplikácia vyžaduje Google Chrome alebo prehliadač založený na Chromium pre podporu Bluetooth.';
 
   @override
   String get scanner_enableBluetooth => 'Povolte Bluetooth';
@@ -234,6 +373,13 @@ class AppLocalizationsSk extends AppLocalizations {
   String get settings_longitude => 'Dĺžka';
 
   @override
+  String get settings_contactSettings => 'Nastavenia kontaktov';
+
+  @override
+  String get settings_contactSettingsSubtitle =>
+      'Nastavenia pre pridávanie kontaktov.';
+
+  @override
   String get settings_privacyMode => 'Režim ochrany súkromia';
 
   @override
@@ -248,6 +394,49 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get settings_privacyModeDisabled => 'Ochranný režim je vypnutý';
+
+  @override
+  String get settings_privacy => 'Nastavenia súkromia';
+
+  @override
+  String get settings_privacySubtitle => 'Ovládni, aké informácie sa zdieľajú.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Vyberte, ktoré informácie váš zariadenie zdieľa s ostatnými.';
+
+  @override
+  String get settings_denyAll => 'Zamietnuť všetko';
+
+  @override
+  String get settings_allowByContact => 'Povoliť podľa kontaktových vlajok';
+
+  @override
+  String get settings_allowAll => 'Povoliť všetko';
+
+  @override
+  String get settings_telemetryBaseMode => 'Základný režim telemetrie';
+
+  @override
+  String get settings_telemetryLocationMode => 'Režim umiestnenia telemetrie';
+
+  @override
+  String get settings_telemetryEnvironmentMode => 'Režim prostredia telemetrie';
+
+  @override
+  String get settings_advertLocation => 'Umiestnenie inzerátu';
+
+  @override
+  String get settings_advertLocationSubtitle => 'Zahrnúť polohu do inzerátu';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Viaceré ACK: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated =>
+      'Režim telemetrie bol aktualizovaný';
 
   @override
   String get settings_actions => 'Možné akcie';
@@ -542,6 +731,48 @@ class AppLocalizationsSk extends AppLocalizations {
       'Automatické prekladanie trás pozastavené';
 
   @override
+  String get appSettings_maxRouteWeight => 'Maximálna hmotnosť trasy';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Maximálna hmotnosť, ktorú môže trás prenášať vďaka úspešným zásielkam.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Počiatočná váha trasy';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Počiatočná váha pre nové, objavené cesty';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement => 'Zvyšenie váhy úspechu';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Hmotnosť pridaná k trase po úspešnej doručení';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Sníženie váhy, ktorá sa používa na odhad rizika.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Hmotnosť odstránená z cesty po neúspešnej doručenie';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Maximalný počet pokusov o doručenie správ';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Počet pokusov o odošleť pred označením správy ako neúspešnej';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Batéria';
 
   @override
@@ -749,6 +980,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get contacts_groupNameRequired => 'Skupina musí mať názov.';
 
   @override
+  String get contacts_groupNameReserved => 'Tento názov skupiny je rezervovaný';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return 'Skupina \"$name\" už existuje';
   }
@@ -788,6 +1022,41 @@ class AppLocalizationsSk extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Posledné zobrazenie $days dní dozadu';
   }
+
+  @override
+  String get contact_info => 'Kontaktné informácie';
+
+  @override
+  String get contact_settings => 'Nastavenia kontaktov';
+
+  @override
+  String get contact_telemetry => 'Telemetria';
+
+  @override
+  String get contact_lastSeen => 'Naposledy videný';
+
+  @override
+  String get contact_clearChat => 'Vymazať chat';
+
+  @override
+  String get contact_teleBase => 'Báza telemetrie';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Povoliť zdieľanie úrovne batérie a základnej telemetrie';
+
+  @override
+  String get contact_teleLoc => 'Lokácia telemetrie';
+
+  @override
+  String get contact_teleLocSubtitle => 'Povoliť zdieľanie údajov o lokalite';
+
+  @override
+  String get contact_teleEnv => 'Prostredie telemetrie';
+
+  @override
+  String get contact_teleEnvSubtitle =>
+      'Povoliť zdieľanie údajov senzorov prostredia';
 
   @override
   String get channels_title => 'Kanály';
@@ -958,6 +1227,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chat_noMessages => 'Zatiaľ žiadne správy.';
 
   @override
+  String get chat_sendMessage => 'Odoslať správu';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Pošli správu $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Pošlite správu na začiatok';
 
   @override
@@ -975,11 +1252,6 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get chat_location => 'Lokalita';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Pošli správu $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Napište správu...';
@@ -1359,6 +1631,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get map_shareMarkerHere => 'Zdieľte značku tu';
 
   @override
+  String get map_setAsMyLocation => 'Nastavte ako moju polohu';
+
+  @override
   String get map_pinLabel => 'Označka upozornenia';
 
   @override
@@ -1404,6 +1679,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get map_otherNodes => 'Ostatné uzly';
 
   @override
+  String get map_showOverlaps => 'Prekrývanie opakovača kľúča';
+
+  @override
   String get map_keyPrefix => 'Päťciferné predpona';
 
   @override
@@ -1417,6 +1695,16 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get map_showSharedMarkers => 'Zobraziť zdieľané značky';
+
+  @override
+  String get map_showGuessedLocations =>
+      'Zobraziť umiestnenia odhadnutých uzlov';
+
+  @override
+  String get map_showDiscoveryContacts => 'Zobraziť kontakty objavov';
+
+  @override
+  String get map_guessedLocation => 'Odhadnutá lokalita';
 
   @override
   String get map_lastSeenTime => 'Posledný čas sledovania';
@@ -1435,6 +1723,9 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get map_runTrace => 'Spustiť trasovaním cesty';
+
+  @override
+  String get map_runTraceWithReturnPath => 'Vráťte sa späť po tej istej ceste.';
 
   @override
   String get map_removeLast => 'Odstrániť posledný';
@@ -1714,7 +2005,16 @@ class AppLocalizationsSk extends AppLocalizations {
   String get room_management => 'Správa servera miestnosti';
 
   @override
+  String get repeater_guest => 'Informácie o opakovači';
+
+  @override
+  String get room_guest => 'Informácie o serveri';
+
+  @override
   String get repeater_managementTools => 'Nástroje na správu';
+
+  @override
+  String get repeater_guestTools => 'Nástroje pre hostí';
 
   @override
   String get repeater_status => 'Status';
@@ -1747,6 +2047,14 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Konfigurujte parametre opakovača';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Synchronizácia hodiniek po prihlávení';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automaticky posielajte notifikáciu \"synchronizácia času\" po úspešnom prihládení.';
 
   @override
   String get repeater_statusTitle => 'Status opakého zboru';
@@ -2117,6 +2425,12 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Hodiny';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Synchronizácia hodin';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Objaviť susedov';
 
   @override
   String get repeater_cliHelpAdvert => 'Odosiela reklamnú balíček.';
@@ -3101,4 +3415,272 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get snrIndicator_lastSeen => 'Naposledy videný';
+
+  @override
+  String get contactsSettings_title => 'Nastavenia kontaktov';
+
+  @override
+  String get contactsSettings_autoAddTitle => 'Automatické zisťovanie';
+
+  @override
+  String get contactsSettings_otherTitle =>
+      'Ďalšie nastavenia súvisiace s kontaktami';
+
+  @override
+  String get contactsSettings_autoAddUsersTitle =>
+      'Automaticky pridávať užívateľov';
+
+  @override
+  String get contactsSettings_autoAddUsersSubtitle =>
+      'Povoliť spoločníkovi automaticky pridávať objavených užívateľov.';
+
+  @override
+  String get contactsSettings_autoAddRepeatersTitle =>
+      'Automaticky pridávať opakovače';
+
+  @override
+  String get contactsSettings_autoAddRepeatersSubtitle =>
+      'Povoliť spoločníkovi automaticky pridávať objavené repeater.';
+
+  @override
+  String get contactsSettings_autoAddRoomServersTitle =>
+      'Automaticky pridávať server miestnosti';
+
+  @override
+  String get contactsSettings_autoAddRoomServersSubtitle =>
+      'Povoliť spoločníkovi automaticky pridať objavené serverové miestnosti.';
+
+  @override
+  String get contactsSettings_autoAddSensorsTitle =>
+      'Automaticky pridávať senzory';
+
+  @override
+  String get contactsSettings_autoAddSensorsSubtitle =>
+      'Povoliť spoločníkovi automaticky pridávať objavené senzory.';
+
+  @override
+  String get contactsSettings_overwriteOldestTitle => 'Prepísať najstaršie';
+
+  @override
+  String get contactsSettings_overwriteOldestSubtitle =>
+      'Keď je zoznam kontaktov plný, bude nahradený najstarší neoznačený kontakt.';
+
+  @override
+  String get discoveredContacts_Title => 'Objavené kontakty';
+
+  @override
+  String get discoveredContacts_noMatching => 'Žiadne zhodné kontakty';
+
+  @override
+  String get discoveredContacts_searchHint => 'Vyhľadať objavené kontakty';
+
+  @override
+  String get discoveredContacts_contactAdded => 'Kontakt bol pridaný';
+
+  @override
+  String get discoveredContacts_addContact => 'Pridať kontakt';
+
+  @override
+  String get discoveredContacts_copyContact => 'Kopírovať kontakt do schránky';
+
+  @override
+  String get discoveredContacts_deleteContact => 'Zmazať kontakt';
+
+  @override
+  String get discoveredContacts_deleteContactAll =>
+      'Zmazať všetky objavené kontakty';
+
+  @override
+  String get discoveredContacts_deleteContactAllContent =>
+      'Ste si istí, že chcete zmazať všetky objavené kontakty?';
+
+  @override
+  String get chat_sendCooldown => 'Prosím, počkajte chvíľu, než zašlete znova.';
+
+  @override
+  String get appSettings_jumpToOldestUnread => 'Presk oceň';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'Pri otvorení chatu s neprečítanými správami, prejdite do prvého neprečítaného, namiesto poslednej.';
+
+  @override
+  String get appSettings_languageHu => 'Maďarský';
+
+  @override
+  String get appSettings_languageJa => 'Japonský';
+
+  @override
+  String get appSettings_languageKo => 'Kórejský';
+
+  @override
+  String get radioStats_tooltip => 'Statistiky rádiových a sieťových kanálov';
+
+  @override
+  String get radioStats_screenTitle => 'Štatistiky rádiových vysielaní';
+
+  @override
+  String get radioStats_notConnected =>
+      'Pripojte sa k zariadeniu, aby ste mohli sledovať štatistiky rádiového vysielania.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Statistické údaje z rádia vyžadujú sprievodný softvér verzie v8 alebo novšej.';
+
+  @override
+  String get radioStats_waiting => 'Čakám na údaje…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Úroveň hluku: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Posledný údaj RSSI: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Posledná hodnota SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'Čas vysielania na TX (celkový): $seconds s';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'Čas RX (celkový): $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Úroveň šumu (dBm) pre posledné vzorky.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Úroveň hluku: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Získavanie údajov o rádiu…';
+
+  @override
+  String get radioStats_settingsTile => 'Štatistiky rádiových vysielaní';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Úroveň hluku, RSSI, SNR a časové rozloženie';
+
+  @override
+  String get translation_title => 'Preklad';
+
+  @override
+  String get translation_enableTitle => 'Aktivovať preklad';
+
+  @override
+  String get translation_enableSubtitle =>
+      'Prekladajte prichádzajúce správy a umožnite ich preklad pred odoslaním.';
+
+  @override
+  String get translation_composerTitle => 'Preložte pred odeslaním';
+
+  @override
+  String get translation_composerSubtitle =>
+      'Riadi výchoce stav ikony pre preklad, ktorú používa program.';
+
+  @override
+  String get translation_targetLanguage => 'Cieľový jazyk';
+
+  @override
+  String get translation_useAppLanguage => 'Použite jazyk aplikácie';
+
+  @override
+  String get translation_downloadedModelLabel => 'Stiahnutý model';
+
+  @override
+  String get translation_presetModelLabel =>
+      'Prednastavený model od Hugging Face';
+
+  @override
+  String get translation_manualUrlLabel =>
+      'Odkaz na manuál (v elektronickej forme)';
+
+  @override
+  String get translation_downloadModel => 'Stiahnuť model';
+
+  @override
+  String get translation_downloading => 'Stiahnutie...';
+
+  @override
+  String get translation_working => 'Práca...';
+
+  @override
+  String get translation_stop => 'Zastavte';
+
+  @override
+  String get translation_mergingChunks =>
+      'Sliečenie stiahnutých častí do konečného súboru...';
+
+  @override
+  String get translation_downloadedModels => 'Stiahnuté modely';
+
+  @override
+  String get translation_deleteModel => 'Odstrániť model';
+
+  @override
+  String get translation_modelDownloaded => 'Model pre preklad bol stiahnutý.';
+
+  @override
+  String get translation_downloadStopped => 'Stiahnutie bolo prerušené.';
+
+  @override
+  String translation_downloadFailed(String error) {
+    return 'Neúspešné stiahnutie: $error';
+  }
+
+  @override
+  String get translation_enterUrlFirst =>
+      'Najprv zadajte URL pre konkrétny model.';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Zobraziť PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Skryť PIN';
+
+  @override
+  String get scanner_linuxPairingPinTitle => 'PIN pre párovanie cez Bluetooth';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Zadajte PIN pre $deviceName (ak neexistuje, nechajte prázdne).';
+  }
+
+  @override
+  String get translation_messageTranslation => 'Preklad textu';
+
+  @override
+  String get translation_translateBeforeSending => 'Preložte pred odeslaním';
+
+  @override
+  String get translation_composerEnabledHint =>
+      'Správy budú preložené, než budú odoslané.';
+
+  @override
+  String get translation_composerDisabledHint =>
+      'Posielajte správy v pôvodnej písanom jazyku.';
+
+  @override
+  String translation_translateTo(String language) {
+    return 'Preložte do $language';
+  }
+
+  @override
+  String get translation_translationOptions => 'Možnosti prekladania';
+
+  @override
+  String get translation_systemLanguage => 'Jazyk systému';
 }

@@ -143,8 +143,8 @@
   "settings_frequencyHelper": "300,0 - 2 500,0",
   "settings_frequencyInvalid": "Fréquence invalide (300-2500 MHz)",
   "settings_bandwidth": "Bande passante",
-  "settings_spreadingFactor": "Facteur de répartition",
-  "settings_codingRate": "Taux de codage",
+  "settings_spreadingFactor": "Facteur de répartition (SF)",
+  "settings_codingRate": "Taux de codage (CR)",
   "settings_txPower": "TX Puissance (dBm)",
   "settings_txPowerHelper": "0 - 22",
   "settings_txPowerInvalid": "Puissance TX invalide (0-22 dBm)",
@@ -285,6 +285,7 @@
   "contacts_newGroup": "Nouveau Groupe",
   "contacts_groupName": "Nom du groupe",
   "contacts_groupNameRequired": "Le nom du groupe est obligatoire.",
+  "contacts_groupNameReserved": "Ce nom de groupe est réservé",
   "contacts_groupAlreadyExists": "Le groupe \"{name}\" existe déjà.",
   "@contacts_groupAlreadyExists": {
     "placeholders": {
@@ -297,7 +298,7 @@
   "contacts_noContactsMatchFilter": "Aucun contact ne correspond à votre filtre.",
   "contacts_noMembers": "Aucun membre",
   "contacts_lastSeenNow": "Vu maintenant",
-  "contacts_lastSeenMinsAgo": "Vu il y a {minutes} minutes",
+  "contacts_lastSeenMinsAgo": "~ {minutes} min.",
   "@contacts_lastSeenMinsAgo": {
     "placeholders": {
       "minutes": {
@@ -305,8 +306,8 @@
       }
     }
   },
-  "contacts_lastSeenHourAgo": "Vu il y a 1 heure",
-  "contacts_lastSeenHoursAgo": "Vu il y a {hours} heures",
+  "contacts_lastSeenHourAgo": "~ 1 heure",
+  "contacts_lastSeenHoursAgo": "~ {hours} heures",
   "@contacts_lastSeenHoursAgo": {
     "placeholders": {
       "hours": {
@@ -314,8 +315,8 @@
       }
     }
   },
-  "contacts_lastSeenDayAgo": "Vu il y a 1 jour",
-  "contacts_lastSeenDaysAgo": "Vu il y a {days} jours",
+  "contacts_lastSeenDayAgo": "~ 1 jour",
+  "contacts_lastSeenDaysAgo": "~ {days} jours",
   "@contacts_lastSeenDaysAgo": {
     "placeholders": {
       "days": {
@@ -566,7 +567,7 @@
   "chat_clearPath": "Effacer le chemin",
   "chat_clearPathSubtitle": "Forcer la redécouverte lors de la prochaine envoi",
   "chat_pathCleared": "Le chemin est dégagé. Le prochain message redécouvrira le tracé.",
-  "chat_floodModeSubtitle": "Utiliser le commutateur de routage dans la barre d'application",
+  "chat_floodModeSubtitle": "Désactive l'apprentissage du chemin (à éviter). Utiliser le commutateur de routage dans la barre d'application pour rebasculer en mode auto par la suite.",
   "chat_floodModeEnabled": "Le mode envoi à tout le réseau est activé. Changer via l'icône de routage dans la barre d'outils.",
   "chat_fullPath": "Chemin complet",
   "chat_pathDetailsNotAvailable": "Les détails du chemin ne sont pas encore disponibles. Essayez d'envoyer un message pour rafraîchir.",
@@ -642,7 +643,7 @@
   },
   "map_chat": "Chat",
   "map_repeater": "Répéteur",
-  "map_room": "Salle",
+  "map_room": "Room Server",
   "map_sensor": "Capteur",
   "map_pinDm": "Clé (DM)",
   "map_pinPrivate": "Verrouiller (Privé)",
@@ -681,7 +682,7 @@
   "map_showSharedMarkers": "Afficher les marqueurs partagés",
   "map_lastSeenTime": "Dernière fois vu",
   "map_sharedPin": "Clé partagée",
-  "map_joinRoom": "Rejoindre la salle",
+  "map_joinRoom": "Rejoindre le room server",
   "map_manageRepeater": "Gérer le répéteur",
   "mapCache_title": "Cache de Carte Hors Ligne",
   "mapCache_selectAreaFirst": "Sélectionner une zone pour la mise en cache en premier",
@@ -864,7 +865,7 @@
   "path_labelHexPrefixes": "Préfixes hexadécimaux",
   "path_helperMaxHops": "Max 64 sauts. Chaque préfixe fait 2 caractères hexadécimaux (1 octet)",
   "path_selectFromContacts": "Sélectionner à partir des contacts :",
-  "path_noRepeatersFound": "Aucun répéteur ou serveur de salle n'a été trouvé.",
+  "path_noRepeatersFound": "Aucun répéteur ou room server n'a été trouvé.",
   "path_customPathsRequire": "Les chemins personnalisés nécessitent des sauts intermédiaires qui peuvent transmettre des messages.",
   "path_invalidHexPrefixes": "Préfixes hexadécimaux invalides : {prefixes}",
   "@path_invalidHexPrefixes": {
@@ -995,15 +996,15 @@
   "repeater_txPower": "TX Puissance",
   "repeater_txPowerHelper": "1-30 dBm",
   "repeater_bandwidth": "Bande passante",
-  "repeater_spreadingFactor": "Facteur de répartition",
-  "repeater_codingRate": "Taux de codage",
+  "repeater_spreadingFactor": "Facteur de répartition (SF)",
+  "repeater_codingRate": "Taux de codage (CR)",
   "repeater_locationSettings": "Paramètres de localisation",
   "repeater_latitude": "Latitude",
   "repeater_latitudeHelper": "Degrés décimaux (par exemple, 37.7749)",
   "repeater_longitude": "Longitude",
   "repeater_longitudeHelper": "Degrés décimaux (par exemple, -122,4194)",
   "repeater_features": "Fonctionnalités",
-  "repeater_packetForwarding": "Transfert de paquets",
+  "repeater_packetForwarding": "Mode répéteur",
   "repeater_packetForwardingSubtitle": "Activer le répéteur pour transmettre des paquets",
   "repeater_guestAccess": "Accès Invité",
   "repeater_guestAccessSubtitle": "Autoriser l'accès invité en lecture seule",
@@ -1377,7 +1378,7 @@
   "channels_joinPublicChannelDesc": "Tout le monde peut rejoindre ce canal.",
   "channels_joinHashtagChannel": "Rejoindre un Canal Hashtag",
   "channels_joinHashtagChannelDesc": "N'importe qui peut rejoindre les canaux #hashtag.",
-  "channels_scanQrCode": "Scanner un code QR",
+  "channels_scanQrCode": "Scanner un QR code",
   "channels_scanQrCodeComingSoon": "Bientôt disponible",
   "channels_enterHashtag": "Entrez le hashtag",
   "channels_hashtagHint": "ex. #equipe",
@@ -1466,8 +1467,8 @@
   "community_join": "Rejoindre",
   "community_joinTitle": "Rejoindre la communauté",
   "community_joinConfirmation": "Souhaitez-vous rejoindre la communauté \"{name}\" ?",
-  "community_scanQr": "Scanner la communauté QR",
-  "community_scanInstructions": "Pointez l'appareil photo vers un code QR communautaire.",
+  "community_scanQr": "Scanner un QR code de communauté",
+  "community_scanInstructions": "Pointez l'appareil photo vers un QR code de communauté.",
   "community_showQr": "Afficher le QR Code",
   "community_publicChannel": "Communauté Publique",
   "community_hashtagChannel": "Hashtag Communauté",
@@ -1478,13 +1479,13 @@
   "community_qrTitle": "Partager Communauté",
   "community_qrInstructions": "Scanner ce QR code pour rejoindre {name}",
   "community_hashtagPrivacyHint": "Les canaux hashtag de la communauté ne sont accessibles qu'aux membres de la communauté",
-  "community_invalidQrCode": "Code QR de communauté non valide",
+  "community_invalidQrCode": "QR code de communauté non valide",
   "community_alreadyMember": "Déjà membre",
   "community_alreadyMemberMessage": "Vous êtes déjà membre de \"{name}\".",
   "community_addPublicChannel": "Ajouter un Canal Public de la Communauté",
   "community_addPublicChannelHint": "Ajouter automatiquement le canal public pour cette communauté",
   "community_noCommunities": "Aucun groupe n'a été rejoint pour le moment.",
-  "community_scanOrCreate": "Scanner un code QR ou créer une communauté pour commencer",
+  "community_scanOrCreate": "Scanner un QR code ou créer une communauté pour commencer",
   "community_manageCommunities": "Gérer les Communautés",
   "community_delete": "Quitter la communauté",
   "community_deleteConfirm": "Quitter \"{name}\" ?",
@@ -1534,10 +1535,10 @@
     }
   },
   "community_regenerateSecret": "Régénérer le secret",
-  "community_regenerateSecretConfirm": "Régénérer la clé secrète pour \"{name}\" ? Tous les membres devront scanner le nouveau code QR pour continuer à communiquer.",
+  "community_regenerateSecretConfirm": "Régénérer la clé secrète pour \"{name}\" ? Tous les membres devront scanner le nouveau QR code pour continuer à communiquer.",
   "community_regenerate": "Régénérer",
   "community_secretRegenerated": "Mot de passe secret régénéré pour \"{name}\"",
-  "community_scanToUpdateSecret": "Scanner le nouveau code QR pour mettre à jour le mot de passe pour \"{name}\"",
+  "community_scanToUpdateSecret": "Scanner le nouveau QR code pour mettre à jour le mot de passe pour \"{name}\"",
   "community_updateSecret": "Mettre à jour le secret",
   "community_secretUpdated": "Modification secrète mise à jour pour \"{name}\"",
   "@contacts_pathTraceTo": {
@@ -1554,11 +1555,11 @@
   "contacts_pathTrace": "Traçage de chemin",
   "contacts_repeaterPathTrace": "Tracer le chemin vers le répéteur",
   "contacts_repeaterPing": "Pinguer le répéteur",
-  "contacts_roomPathTrace": "Traçage du chemin vers le serveur de la salle",
+  "contacts_roomPathTrace": "Traçage du chemin vers le room server",
   "contacts_chatTraceRoute": "Tracer le chemin",
   "contacts_pathTraceTo": "Tracer l'itinéraire vers {name}",
   "contacts_ping": "Ping",
-  "contacts_roomPing": "Pinguer le serveur de la salle",
+  "contacts_roomPing": "Pinguer le room server",
   "contacts_invalidAdvertFormat": "Données de contact non valides",
   "appSettings_languageUk": "Ukrainien",
   "appSettings_languageRu": "Russe",
@@ -1583,12 +1584,12 @@
   "notification_newNodesCount": "{count} {count, plural, =1{nouveau nœud} other{nouveaux nœuds}}",
   "notification_newTypeDiscovered": "Nouveau {contactType} découvert",
   "notification_receivedNewMessage": "Nouveau message reçu",
-  "settings_gpxExportRepeaters": "Exporter les répéteurs / serveur de salle au format GPX",
+  "settings_gpxExportRepeaters": "Exporter les répéteurs / room servers au format GPX",
   "settings_gpxExportRepeatersSubtitle": "Exporte les répéteurs / roomserver avec une localisation vers un fichier GPX.",
   "settings_gpxExportNoContacts": "Aucun contact à exporter.",
   "settings_gpxExportNotAvailable": "Non pris en charge sur votre appareil/Système d'exploitation",
   "settings_gpxExportError": "Une erreur s'est produite lors de l'exportation.",
-  "settings_gpxExportRepeatersRoom": "Emplacements des serveurs de répéteur et de salle",
+  "settings_gpxExportRepeatersRoom": "Emplacements des répéteurs et room servers",
   "settings_gpxExportContacts": "Exporter les compagnons au format GPX",
   "settings_gpxExportAll": "Exporter tous les contacts au format GPX",
   "settings_gpxExportAllSubtitle": "Exporte tous les contacts avec une localisation vers un fichier GPX.",
@@ -1605,6 +1606,8 @@
   "map_removeLast": "Supprimer le dernier",
   "map_runTrace": "Exécuter la traçage de chemin",
   "scanner_bluetoothOffMessage": "Veuillez activer le Bluetooth pour rechercher des appareils.",
+  "scanner_chromeRequired": "Navigateur Chrome requis",
+  "scanner_chromeRequiredMessage": "Cette application web nécessite Google Chrome ou un navigateur basé sur Chromium pour le support Bluetooth.",
   "scanner_bluetoothOff": "Le Bluetooth est désactivé.",
   "scanner_enableBluetooth": "Activer le Bluetooth",
   "snrIndicator_lastSeen": "Dernière fois vu",
@@ -1798,7 +1801,278 @@
   "contacts_unread": "Non lu",
   "contacts_searchFavorites": "Rechercher {number}{str} Favoris...",
   "contacts_searchUsers": "Rechercher {number}{str} utilisateurs...",
-  "contacts_searchRoomServers": "Rechercher {number}{str} serveurs de salle...",
+  "contacts_searchRoomServers": "Rechercher {number}{str} room server...",
   "contacts_searchRepeaters": "Rechercher {number}{str} Répéteurs...",
-  "contacts_searchContactsNoNumber": "Rechercher des contacts..."
+  "contacts_searchContactsNoNumber": "Rechercher des contacts...",
+  "settings_contactSettings": "Paramètres de contact",
+  "settings_contactSettingsSubtitle": "Paramètres pour l'ajout de contacts",
+  "contactsSettings_autoAddRepeatersTitle": "Ajouter automatiquement les répéteurs",
+  "contactsSettings_autoAddRepeatersSubtitle": "Autoriser le compagnon à ajouter automatiquement les répéteurs découverts",
+  "contactsSettings_autoAddRoomServersTitle": "Ajouter automatiquement les room servers",
+  "contactsSettings_autoAddRoomServersSubtitle": "Autoriser le compagnon à ajouter automatiquement les room servers découverts",
+  "contactsSettings_otherTitle": "Autres paramètres liés aux contacts",
+  "contactsSettings_title": "Paramètres des contacts",
+  "contactsSettings_autoAddUsersTitle": "Ajouter automatiquement les utilisateurs",
+  "contactsSettings_autoAddTitle": "Découverte automatique",
+  "contactsSettings_autoAddSensorsTitle": "Ajouter automatiquement les capteurs",
+  "contactsSettings_autoAddUsersSubtitle": "Autoriser le compagnon à ajouter automatiquement les utilisateurs découverts",
+  "discoveredContacts_noMatching": "Aucun contact correspondant",
+  "discoveredContacts_contactAdded": "Contact ajouté",
+  "discoveredContacts_addContact": "Ajouter un contact",
+  "discoveredContacts_copyContact": "Copier le contact dans le presse-papiers",
+  "discoveredContacts_deleteContact": "Supprimer le contact",
+  "contactsSettings_overwriteOldestTitle": "Écraser le plus ancien",
+  "contactsSettings_autoAddSensorsSubtitle": "Autoriser le compagnon à ajouter automatiquement les capteurs découverts.",
+  "discoveredContacts_Title": "Contacts découverts",
+  "discoveredContacts_searchHint": "Rechercher des contacts découverts",
+  "contactsSettings_overwriteOldestSubtitle": "Lorsque la liste de contacts est pleine, le contact le plus ancien non favori sera remplacé.",
+  "common_deleteAll": "Supprimer tout",
+  "discoveredContacts_deleteContactAll": "Supprimer tous les contacts découverts",
+  "discoveredContacts_deleteContactAllContent": "Êtes-vous sûr de vouloir supprimer tous les contacts découverts ?",
+  "map_showGuessedLocations": "Afficher les emplacements des nœuds estimés",
+  "map_guessedLocation": "Lieu deviné",
+  "connectionChoiceUsbLabel": "USB",
+  "usbScreenTitle": "Connectez via USB",
+  "connectionChoiceBluetoothLabel": "Bluetooth",
+  "usbScreenSubtitle": "Sélectionnez un périphérique série détecté et connectez-vous directement à votre nœud MeshCore.",
+  "usbScreenStatus": "Sélectionnez un périphérique USB",
+  "usbScreenNote": "La communication série USB est active sur les appareils Android et les plateformes de bureau compatibles.",
+  "usbScreenEmptyState": "Aucun périphérique USB n'a été trouvé. Veuillez en brancher un et rafraîchir la page.",
+  "usbErrorPermissionDenied": "L'accès via USB a été refusé.",
+  "usbErrorDeviceMissing": "Le périphérique USB sélectionné n'est plus disponible.",
+  "usbErrorInvalidPort": "Sélectionnez un périphérique USB valide.",
+  "usbErrorBusy": "Une autre demande de connexion USB est déjà en cours.",
+  "usbErrorNotConnected": "Aucun appareil USB n'est connecté.",
+  "usbErrorOpenFailed": "Impossible d'ouvrir l'appareil USB sélectionné.",
+  "usbErrorConnectFailed": "Impossible de se connecter à l'appareil USB sélectionné.",
+  "usbErrorUnsupported": "La communication série USB n'est pas prise en charge sur cette plateforme.",
+  "usbErrorAlreadyActive": "Une connexion USB est déjà établie.",
+  "usbErrorNoDeviceSelected": "Aucun appareil USB n'a été sélectionné.",
+  "usbErrorPortClosed": "La connexion USB n'est pas établie.",
+  "usbFallbackDeviceName": "Dispositif de communication série sur le Web",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_notConnected": "Sélectionnez un périphérique USB",
+  "usbConnectionFailed": "Échec de la connexion USB : {error}",
+  "usbStatus_connecting": "Connexion au périphérique USB...",
+  "usbStatus_searching": "Recherche de périphériques USB...",
+  "usbErrorConnectTimedOut": "La connexion a expiré. Assurez-vous que l'appareil dispose du firmware USB Companion.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpHostLabel": "Adresse IP",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpScreenTitle": "Établir une connexion via TCP",
+  "tcpHostHint": "192.168.40.10",
+  "tcpPortLabel": "Port",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Entrez l'adresse de destination et connectez-vous.",
+  "tcpStatus_connectingTo": "Connexion à {endpoint}...",
+  "tcpErrorHostRequired": "Une adresse IP est obligatoire.",
+  "tcpErrorPortInvalid": "La taille du port doit être comprise entre 1 et 65535.",
+  "tcpErrorUnsupported": "Le protocole TCP n'est pas pris en charge sur cette plateforme.",
+  "tcpErrorTimedOut": "La connexion TCP a expiré.",
+  "tcpConnectionFailed": "Échec de la connexion TCP : {error}",
+  "map_showDiscoveryContacts": "Afficher les contacts de découverte",
+  "map_setAsMyLocation": "Définir comme ma localisation",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_privacy": "Paramètres de confidentialité",
+  "settings_privacySubtitle": "Contrôlez les informations partagées",
+  "settings_telemetryLocationMode": "Mode d'emplacement de télémétrie",
+  "settings_telemetryEnvironmentMode": "Mode d'environnement de télémétrie",
+  "settings_advertLocation": "Emplacement de l'annonce",
+  "settings_advertLocationSubtitle": "Inclure l'emplacement dans l'annonce",
+  "settings_denyAll": "Refuser tout",
+  "settings_allowByContact": "Autoriser par drapeaux de contact",
+  "settings_privacySettingsDescription": "Choisissez les informations que votre appareil partage avec les autres.",
+  "settings_allowAll": "Autoriser tout",
+  "contact_info": "Informations de contact",
+  "settings_telemetryBaseMode": "Mode de base Télémétrie",
+  "contact_teleBase": "Base de télémétrie",
+  "contact_teleLoc": "Emplacement de télémétrie",
+  "contact_teleLocSubtitle": "Autoriser le partage des données de localisation",
+  "contact_teleEnv": "Environnement Télémétrie",
+  "contact_teleEnvSubtitle": "Autoriser le partage des données des capteurs d'environnement",
+  "contact_telemetry": "Télémétrie",
+  "contact_settings": "Paramètres de contact",
+  "contact_lastSeen": "Dernière fois vu",
+  "contact_clearChat": "Effacer la conversation",
+  "contact_teleBaseSubtitle": "Autoriser le partage du niveau de batterie et de la télémétrie de base",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_maxRouteWeightSubtitle": "Poids maximal qu'un itinéraire peut accumuler grâce à des livraisons réussies.",
+  "appSettings_initialRouteWeight": "Poids initial de l'itinéraire",
+  "appSettings_maxRouteWeight": "Poids maximal autorisé pour le trajet",
+  "appSettings_initialRouteWeightSubtitle": "Poids de départ pour les nouveaux chemins découverts",
+  "appSettings_routeWeightSuccessIncrement": "Augmentation du poids de réussite",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Poids ajouté à un itinéraire après une livraison réussie.",
+  "appSettings_routeWeightFailureDecrement": "Réduction du poids de pénalité",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Poids retiré d'un itinéraire après une tentative de livraison infructueuse.",
+  "appSettings_maxMessageRetries": "Nombre maximal de tentatives de récupération de messages",
+  "appSettings_maxMessageRetriesSubtitle": "Nombre de tentatives de relance avant de marquer un message comme ayant échoué.",
+  "path_routeWeight": "{weight}/{max}",
+  "settings_multiAck": "Multi-ACKs : {value}",
+  "settings_telemetryModeUpdated": "Le mode télémétrie a été mis à jour",
+  "map_showOverlaps": "Chevauchement de la touche répétitive",
+  "map_runTraceWithReturnPath": "Revenir sur le même chemin.",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "chat_sendCooldown": "Veuillez patienter un instant avant de réessayer.",
+  "appSettings_jumpToOldestUnread": "Accéder au message le plus ancien non lu",
+  "appSettings_languageHu": "Hongrois",
+  "appSettings_jumpToOldestUnreadSubtitle": "Lorsque vous ouvrez une conversation contenant des messages non lus, faites défiler la page jusqu'au premier message non lu, plutôt que jusqu'au dernier.",
+  "appSettings_languageJa": "Japonais",
+  "appSettings_languageKo": "Coréen",
+  "radioStats_tooltip": "Statistiques des radios et des réseaux sans fil",
+  "radioStats_screenTitle": "Statistiques de radio",
+  "radioStats_notConnected": "Connectez-vous à un appareil pour visualiser les statistiques de la radio.",
+  "radioStats_firmwareTooOld": "Les statistiques radio nécessitent un firmware compatible v8 ou une version ultérieure.",
+  "radioStats_waiting": "En attente des données…",
+  "radioStats_noiseFloor": "Niveau de bruit : {noiseDbm} dBm",
+  "radioStats_lastRssi": "Dernier RSSI : {rssiDbm} dBm",
+  "radioStats_lastSnr": "Dernier SNR : {snr} dB",
+  "radioStats_txAir": "Temps d'antenne à la télévision du Texas (total) : {seconds} s",
+  "radioStats_rxAir": "Temps d'utilisation de l'appareil RX (total) : {seconds} s",
+  "radioStats_chartCaption": "Niveau de bruit (dBm) sur les échantillons récents.",
+  "radioStats_stripNoise": "Niveau de bruit : {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Récupération des statistiques de la radio…",
+  "radioStats_settingsTile": "Statistiques de radio",
+  "radioStats_settingsSubtitle": "Niveau de bruit, RSSI, rapport signal/bruit (SNR) et temps d'antenne",
+  "@translation_downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_composerTitle": "Traduire avant d'envoyer",
+  "translation_enableTitle": "Activer la traduction",
+  "translation_title": "Traduction",
+  "translation_enableSubtitle": "Traduire les messages entrants et permettre la traduction avant l'envoi.",
+  "translation_composerSubtitle": "Contrôle l'état par défaut de l'icône de traduction du composant.",
+  "translation_targetLanguage": "Langue cible",
+  "translation_useAppLanguage": "Utiliser la langue de l'application",
+  "translation_downloadedModelLabel": "Modèle téléchargé",
+  "translation_presetModelLabel": "Modèle Hugging Face préconfiguré",
+  "translation_manualUrlLabel": "URL du modèle manuel",
+  "translation_downloadModel": "Télécharger le modèle",
+  "translation_downloading": "Téléchargement...",
+  "translation_working": "Au travail...",
+  "translation_stop": "Arrêtez",
+  "translation_mergingChunks": "Fusion des fragments téléchargés dans le fichier final...",
+  "translation_downloadedModels": "Modèles téléchargés",
+  "translation_deleteModel": "Supprimer le modèle",
+  "translation_modelDownloaded": "Modèle de traduction téléchargé.",
+  "translation_downloadStopped": "Le téléchargement a été interrompu.",
+  "translation_downloadFailed": "Échec du téléchargement : {error}",
+  "translation_enterUrlFirst": "Entrez d'abord l'URL du modèle.",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "@translation_translateTo": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_composerEnabledHint": "Les messages seront traduits avant d'être envoyés.",
+  "translation_translateBeforeSending": "Traduire avant d'envoyer",
+  "translation_composerDisabledHint": "Envoyez des messages dans la langue originale, telle que vous l'avez tapée.",
+  "translation_messageTranslation": "Traduction du message",
+  "translation_translateTo": "Traduire en {language}",
+  "translation_translationOptions": "Options de traduction",
+  "translation_systemLanguage": "Langue du système",
+  "scanner_linuxPairingPinTitle": "Code PIN pour la connexion Bluetooth",
+  "scanner_linuxPairingHidePin": "Masquer le code PIN",
+  "scanner_linuxPairingPinPrompt": "Entrez le code PIN pour {deviceName} (laissez vide si nécessaire).",
+  "scanner_linuxPairingShowPin": "Afficher le code PIN",
+  "repeater_cliQuickClockSync": "Synchronisation de l'horloge",
+  "repeater_cliQuickDiscovery": "Découvrir les voisins",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Envoyer automatiquement une notification \"synchronisation de l'heure\" après une connexion réussie.",
+  "repeater_clockSyncAfterLogin": "Synchronisation de l'horloge après la connexion",
+  "repeater_guestTools": "Outils pour les invités",
+  "chat_sendMessage": "Envoyer un message",
+  "room_guest": "Informations sur le serveur",
+  "repeater_guest": "Informations sur les répéteurs"
 }

@@ -10,7 +10,10 @@ import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
+import 'app_localizations_hu.dart';
 import 'app_localizations_it.dart';
+import 'app_localizations_ja.dart';
+import 'app_localizations_ko.dart';
 import 'app_localizations_nl.dart';
 import 'app_localizations_pl.dart';
 import 'app_localizations_pt.dart';
@@ -112,7 +115,10 @@ abstract class AppLocalizations {
     Locale('en'),
     Locale('es'),
     Locale('fr'),
+    Locale('hu'),
     Locale('it'),
+    Locale('ja'),
+    Locale('ko'),
     Locale('nl'),
     Locale('pl'),
     Locale('pt'),
@@ -183,6 +189,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete'**
   String get common_delete;
+
+  /// No description provided for @common_deleteAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete All'**
+  String get common_deleteAll;
 
   /// No description provided for @common_close.
   ///
@@ -316,6 +328,228 @@ abstract class AppLocalizations {
   /// **'MeshCore Open'**
   String get scanner_title;
 
+  /// No description provided for @connectionChoiceUsbLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'USB'**
+  String get connectionChoiceUsbLabel;
+
+  /// No description provided for @connectionChoiceBluetoothLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth'**
+  String get connectionChoiceBluetoothLabel;
+
+  /// No description provided for @connectionChoiceTcpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'TCP'**
+  String get connectionChoiceTcpLabel;
+
+  /// No description provided for @tcpScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect over TCP'**
+  String get tcpScreenTitle;
+
+  /// No description provided for @tcpHostLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'IP Address'**
+  String get tcpHostLabel;
+
+  /// No description provided for @tcpHostHint.
+  ///
+  /// In en, this message translates to:
+  /// **'192.168.40.10'**
+  String get tcpHostHint;
+
+  /// No description provided for @tcpPortLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Port'**
+  String get tcpPortLabel;
+
+  /// No description provided for @tcpPortHint.
+  ///
+  /// In en, this message translates to:
+  /// **'5000'**
+  String get tcpPortHint;
+
+  /// No description provided for @tcpStatus_notConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter endpoint and connect'**
+  String get tcpStatus_notConnected;
+
+  /// No description provided for @tcpStatus_connectingTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting to {endpoint}...'**
+  String tcpStatus_connectingTo(String endpoint);
+
+  /// No description provided for @tcpErrorHostRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'IP address is required.'**
+  String get tcpErrorHostRequired;
+
+  /// No description provided for @tcpErrorPortInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Port must be between 1 and 65535.'**
+  String get tcpErrorPortInvalid;
+
+  /// No description provided for @tcpErrorUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'TCP transport is not supported on this platform.'**
+  String get tcpErrorUnsupported;
+
+  /// No description provided for @tcpErrorTimedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'TCP connection timed out.'**
+  String get tcpErrorTimedOut;
+
+  /// No description provided for @tcpConnectionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'TCP connection failed: {error}'**
+  String tcpConnectionFailed(String error);
+
+  /// No description provided for @usbScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect over USB'**
+  String get usbScreenTitle;
+
+  /// No description provided for @usbScreenSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a detected serial device and connect directly to your MeshCore node.'**
+  String get usbScreenSubtitle;
+
+  /// No description provided for @usbScreenStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a USB device'**
+  String get usbScreenStatus;
+
+  /// No description provided for @usbScreenNote.
+  ///
+  /// In en, this message translates to:
+  /// **'USB serial is active on supported Android devices and desktop platforms.'**
+  String get usbScreenNote;
+
+  /// No description provided for @usbScreenEmptyState.
+  ///
+  /// In en, this message translates to:
+  /// **'No USB devices found. Plug one in and refresh.'**
+  String get usbScreenEmptyState;
+
+  /// No description provided for @usbErrorPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'USB permission was denied.'**
+  String get usbErrorPermissionDenied;
+
+  /// No description provided for @usbErrorDeviceMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'The selected USB device is no longer available.'**
+  String get usbErrorDeviceMissing;
+
+  /// No description provided for @usbErrorInvalidPort.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a valid USB device.'**
+  String get usbErrorInvalidPort;
+
+  /// No description provided for @usbErrorBusy.
+  ///
+  /// In en, this message translates to:
+  /// **'Another USB connection request is already in progress.'**
+  String get usbErrorBusy;
+
+  /// No description provided for @usbErrorNotConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'No USB device is connected.'**
+  String get usbErrorNotConnected;
+
+  /// No description provided for @usbErrorOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to open the selected USB device.'**
+  String get usbErrorOpenFailed;
+
+  /// No description provided for @usbErrorConnectFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to connect to the selected USB device.'**
+  String get usbErrorConnectFailed;
+
+  /// No description provided for @usbErrorUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'USB serial is not supported on this platform.'**
+  String get usbErrorUnsupported;
+
+  /// No description provided for @usbErrorAlreadyActive.
+  ///
+  /// In en, this message translates to:
+  /// **'A USB connection is already active.'**
+  String get usbErrorAlreadyActive;
+
+  /// No description provided for @usbErrorNoDeviceSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'No USB device was selected.'**
+  String get usbErrorNoDeviceSelected;
+
+  /// No description provided for @usbErrorPortClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'The USB connection is not open.'**
+  String get usbErrorPortClosed;
+
+  /// No description provided for @usbErrorConnectTimedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection timed out. Make sure the device has USB Companion firmware.'**
+  String get usbErrorConnectTimedOut;
+
+  /// No description provided for @usbFallbackDeviceName.
+  ///
+  /// In en, this message translates to:
+  /// **'Web Serial Device'**
+  String get usbFallbackDeviceName;
+
+  /// No description provided for @usbStatus_notConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a USB device'**
+  String get usbStatus_notConnected;
+
+  /// No description provided for @usbStatus_connecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting to USB device...'**
+  String get usbStatus_connecting;
+
+  /// No description provided for @usbStatus_searching.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching for USB devices...'**
+  String get usbStatus_searching;
+
+  /// No description provided for @usbConnectionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'USB connection failed: {error}'**
+  String usbConnectionFailed(String error);
+
   /// No description provided for @scanner_scanning.
   ///
   /// In en, this message translates to:
@@ -387,6 +621,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please turn on Bluetooth to scan for devices'**
   String get scanner_bluetoothOffMessage;
+
+  /// No description provided for @scanner_chromeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Chrome Browser Required'**
+  String get scanner_chromeRequired;
+
+  /// No description provided for @scanner_chromeRequiredMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This web application requires Google Chrome or a Chromium-based browser for Bluetooth support.'**
+  String get scanner_chromeRequiredMessage;
 
   /// No description provided for @scanner_enableBluetooth.
   ///
@@ -544,6 +790,18 @@ abstract class AppLocalizations {
   /// **'Longitude'**
   String get settings_longitude;
 
+  /// No description provided for @settings_contactSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Settings'**
+  String get settings_contactSettings;
+
+  /// No description provided for @settings_contactSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings for how contacts are added.'**
+  String get settings_contactSettingsSubtitle;
+
   /// No description provided for @settings_privacyMode.
   ///
   /// In en, this message translates to:
@@ -573,6 +831,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Privacy mode disabled'**
   String get settings_privacyModeDisabled;
+
+  /// No description provided for @settings_privacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Settings'**
+  String get settings_privacy;
+
+  /// No description provided for @settings_privacySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Control what information is shared.'**
+  String get settings_privacySubtitle;
+
+  /// No description provided for @settings_privacySettingsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what information your device shares with others.'**
+  String get settings_privacySettingsDescription;
+
+  /// No description provided for @settings_denyAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Deny all'**
+  String get settings_denyAll;
+
+  /// No description provided for @settings_allowByContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow by contact flags'**
+  String get settings_allowByContact;
+
+  /// No description provided for @settings_allowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow all'**
+  String get settings_allowAll;
+
+  /// No description provided for @settings_telemetryBaseMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Base Mode'**
+  String get settings_telemetryBaseMode;
+
+  /// No description provided for @settings_telemetryLocationMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Location Mode'**
+  String get settings_telemetryLocationMode;
+
+  /// No description provided for @settings_telemetryEnvironmentMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Environment Mode'**
+  String get settings_telemetryEnvironmentMode;
+
+  /// No description provided for @settings_advertLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Advert Location'**
+  String get settings_advertLocation;
+
+  /// No description provided for @settings_advertLocationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Include location in advert.'**
+  String get settings_advertLocationSubtitle;
+
+  /// No description provided for @settings_multiAck.
+  ///
+  /// In en, this message translates to:
+  /// **'Multi-ACKs: {value}'**
+  String settings_multiAck(String value);
+
+  /// No description provided for @settings_telemetryModeUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry mode updated'**
+  String get settings_telemetryModeUpdated;
 
   /// No description provided for @settings_actions.
   ///
@@ -1108,6 +1444,72 @@ abstract class AppLocalizations {
   /// **'Auto route rotation disabled'**
   String get appSettings_autoRouteRotationDisabled;
 
+  /// No description provided for @appSettings_maxRouteWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Route Weight'**
+  String get appSettings_maxRouteWeight;
+
+  /// No description provided for @appSettings_maxRouteWeightSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum weight a path can accumulate from successful deliveries'**
+  String get appSettings_maxRouteWeightSubtitle;
+
+  /// No description provided for @appSettings_initialRouteWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Initial Route Weight'**
+  String get appSettings_initialRouteWeight;
+
+  /// No description provided for @appSettings_initialRouteWeightSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting weight for newly discovered paths'**
+  String get appSettings_initialRouteWeightSubtitle;
+
+  /// No description provided for @appSettings_routeWeightSuccessIncrement.
+  ///
+  /// In en, this message translates to:
+  /// **'Success Weight Increment'**
+  String get appSettings_routeWeightSuccessIncrement;
+
+  /// No description provided for @appSettings_routeWeightSuccessIncrementSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight added to a path after successful delivery'**
+  String get appSettings_routeWeightSuccessIncrementSubtitle;
+
+  /// No description provided for @appSettings_routeWeightFailureDecrement.
+  ///
+  /// In en, this message translates to:
+  /// **'Failure Weight Decrement'**
+  String get appSettings_routeWeightFailureDecrement;
+
+  /// No description provided for @appSettings_routeWeightFailureDecrementSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight removed from a path after failed delivery'**
+  String get appSettings_routeWeightFailureDecrementSubtitle;
+
+  /// No description provided for @appSettings_maxMessageRetries.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Message Retries'**
+  String get appSettings_maxMessageRetries;
+
+  /// No description provided for @appSettings_maxMessageRetriesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of retry attempts before marking a message as failed'**
+  String get appSettings_maxMessageRetriesSubtitle;
+
+  /// No description provided for @path_routeWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'{weight}/{max}'**
+  String path_routeWeight(String weight, String max);
+
   /// No description provided for @appSettings_battery.
   ///
   /// In en, this message translates to:
@@ -1462,6 +1864,12 @@ abstract class AppLocalizations {
   /// **'Group name is required'**
   String get contacts_groupNameRequired;
 
+  /// No description provided for @contacts_groupNameReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'This group name is reserved'**
+  String get contacts_groupNameReserved;
+
   /// No description provided for @contacts_groupAlreadyExists.
   ///
   /// In en, this message translates to:
@@ -1489,38 +1897,104 @@ abstract class AppLocalizations {
   /// No description provided for @contacts_lastSeenNow.
   ///
   /// In en, this message translates to:
-  /// **'Last seen now'**
+  /// **'recently'**
   String get contacts_lastSeenNow;
 
   /// No description provided for @contacts_lastSeenMinsAgo.
   ///
   /// In en, this message translates to:
-  /// **'Last seen {minutes} mins ago'**
+  /// **'~ {minutes} min.'**
   String contacts_lastSeenMinsAgo(int minutes);
 
   /// No description provided for @contacts_lastSeenHourAgo.
   ///
   /// In en, this message translates to:
-  /// **'Last seen 1 hour ago'**
+  /// **'~ 1 hour'**
   String get contacts_lastSeenHourAgo;
 
   /// No description provided for @contacts_lastSeenHoursAgo.
   ///
   /// In en, this message translates to:
-  /// **'Last seen {hours} hours ago'**
+  /// **'~ {hours} hours'**
   String contacts_lastSeenHoursAgo(int hours);
 
   /// No description provided for @contacts_lastSeenDayAgo.
   ///
   /// In en, this message translates to:
-  /// **'Last seen 1 day ago'**
+  /// **'~ 1 day'**
   String get contacts_lastSeenDayAgo;
 
   /// No description provided for @contacts_lastSeenDaysAgo.
   ///
   /// In en, this message translates to:
-  /// **'Last seen {days} days ago'**
+  /// **'~ {days} days'**
   String contacts_lastSeenDaysAgo(int days);
+
+  /// No description provided for @contact_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Info'**
+  String get contact_info;
+
+  /// No description provided for @contact_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Settings'**
+  String get contact_settings;
+
+  /// No description provided for @contact_telemetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry'**
+  String get contact_telemetry;
+
+  /// No description provided for @contact_lastSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Last seen'**
+  String get contact_lastSeen;
+
+  /// No description provided for @contact_clearChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Chat'**
+  String get contact_clearChat;
+
+  /// No description provided for @contact_teleBase.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Base'**
+  String get contact_teleBase;
+
+  /// No description provided for @contact_teleBaseSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow sharing battery level and basic telemetry'**
+  String get contact_teleBaseSubtitle;
+
+  /// No description provided for @contact_teleLoc.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Location'**
+  String get contact_teleLoc;
+
+  /// No description provided for @contact_teleLocSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow sharing location data'**
+  String get contact_teleLocSubtitle;
+
+  /// No description provided for @contact_teleEnv.
+  ///
+  /// In en, this message translates to:
+  /// **'Telemetry Environment'**
+  String get contact_teleEnv;
+
+  /// No description provided for @contact_teleEnvSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow sharing environment sensor data'**
+  String get contact_teleEnvSubtitle;
 
   /// No description provided for @channels_title.
   ///
@@ -1822,6 +2296,18 @@ abstract class AppLocalizations {
   /// **'No messages yet'**
   String get chat_noMessages;
 
+  /// No description provided for @chat_sendMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Send message'**
+  String get chat_sendMessage;
+
+  /// No description provided for @chat_sendMessageTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a message to {contactName}'**
+  String chat_sendMessageTo(String contactName);
+
   /// No description provided for @chat_sendMessageToStart.
   ///
   /// In en, this message translates to:
@@ -1851,12 +2337,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Location'**
   String get chat_location;
-
-  /// No description provided for @chat_sendMessageTo.
-  ///
-  /// In en, this message translates to:
-  /// **'Send a message to {contactName}'**
-  String chat_sendMessageTo(String contactName);
 
   /// No description provided for @chat_typeMessage.
   ///
@@ -2494,6 +2974,12 @@ abstract class AppLocalizations {
   /// **'Share marker here'**
   String get map_shareMarkerHere;
 
+  /// No description provided for @map_setAsMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Set as my location'**
+  String get map_setAsMyLocation;
+
   /// No description provided for @map_pinLabel.
   ///
   /// In en, this message translates to:
@@ -2578,6 +3064,12 @@ abstract class AppLocalizations {
   /// **'Other Nodes'**
   String get map_otherNodes;
 
+  /// No description provided for @map_showOverlaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater Key Overlaps'**
+  String get map_showOverlaps;
+
   /// No description provided for @map_keyPrefix.
   ///
   /// In en, this message translates to:
@@ -2607,6 +3099,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show shared markers'**
   String get map_showSharedMarkers;
+
+  /// No description provided for @map_showGuessedLocations.
+  ///
+  /// In en, this message translates to:
+  /// **'Show guessed node locations'**
+  String get map_showGuessedLocations;
+
+  /// No description provided for @map_showDiscoveryContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Discovery Contacts'**
+  String get map_showDiscoveryContacts;
+
+  /// No description provided for @map_guessedLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Guessed location'**
+  String get map_guessedLocation;
 
   /// No description provided for @map_lastSeenTime.
   ///
@@ -2641,8 +3151,14 @@ abstract class AppLocalizations {
   /// No description provided for @map_runTrace.
   ///
   /// In en, this message translates to:
-  /// **'Run Path Trace'**
+  /// **'Run path trace'**
   String get map_runTrace;
+
+  /// No description provided for @map_runTraceWithReturnPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Return back on the same path.'**
+  String get map_runTraceWithReturnPath;
 
   /// No description provided for @map_removeLast.
   ///
@@ -2922,13 +3438,13 @@ abstract class AppLocalizations {
   /// No description provided for @login_repeaterDescription.
   ///
   /// In en, this message translates to:
-  /// **'Enter the repeater password to access settings and status.'**
+  /// **'Enter the repeater password for guest or admin access.'**
   String get login_repeaterDescription;
 
   /// No description provided for @login_roomDescription.
   ///
   /// In en, this message translates to:
-  /// **'Enter the room password to access settings and status.'**
+  /// **'Enter the room password for guest or admin access.'**
   String get login_roomDescription;
 
   /// No description provided for @login_routing.
@@ -3093,11 +3609,29 @@ abstract class AppLocalizations {
   /// **'Room Server Management'**
   String get room_management;
 
+  /// No description provided for @repeater_guest.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater Information'**
+  String get repeater_guest;
+
+  /// No description provided for @room_guest.
+  ///
+  /// In en, this message translates to:
+  /// **'Room Server Information'**
+  String get room_guest;
+
   /// No description provided for @repeater_managementTools.
   ///
   /// In en, this message translates to:
   /// **'Management Tools'**
   String get repeater_managementTools;
+
+  /// No description provided for @repeater_guestTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest Tools'**
+  String get repeater_guestTools;
 
   /// No description provided for @repeater_status.
   ///
@@ -3158,6 +3692,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Configure repeater parameters'**
   String get repeater_settingsSubtitle;
+
+  /// Repeater setting: auto sync device clock after successful login
+  ///
+  /// In en, this message translates to:
+  /// **'Clock sync after login'**
+  String get repeater_clockSyncAfterLogin;
+
+  /// Repeater setting subtitle: describes the clock sync after login behavior
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically send \"clock sync\" after a successful login'**
+  String get repeater_clockSyncAfterLoginSubtitle;
 
   /// No description provided for @repeater_statusTitle.
   ///
@@ -3811,6 +4357,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clock'**
   String get repeater_cliQuickClock;
+
+  /// No description provided for @repeater_cliQuickClockSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock Sync'**
+  String get repeater_cliQuickClockSync;
+
+  /// No description provided for @repeater_cliQuickDiscovery.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover Neighbors'**
+  String get repeater_cliQuickDiscovery;
 
   /// No description provided for @repeater_cliHelpAdvert.
   ///
@@ -5386,6 +5944,456 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Last seen'**
   String get snrIndicator_lastSeen;
+
+  /// No description provided for @contactsSettings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts settings'**
+  String get contactsSettings_title;
+
+  /// No description provided for @contactsSettings_autoAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic Discovery'**
+  String get contactsSettings_autoAddTitle;
+
+  /// No description provided for @contactsSettings_otherTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Other contact related settings'**
+  String get contactsSettings_otherTitle;
+
+  /// No description provided for @contactsSettings_autoAddUsersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-add users'**
+  String get contactsSettings_autoAddUsersTitle;
+
+  /// No description provided for @contactsSettings_autoAddUsersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow the companion to automatically add discovered users.'**
+  String get contactsSettings_autoAddUsersSubtitle;
+
+  /// No description provided for @contactsSettings_autoAddRepeatersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-add repeaters'**
+  String get contactsSettings_autoAddRepeatersTitle;
+
+  /// No description provided for @contactsSettings_autoAddRepeatersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow the companion to automatically add discovered repeaters.'**
+  String get contactsSettings_autoAddRepeatersSubtitle;
+
+  /// No description provided for @contactsSettings_autoAddRoomServersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-add room servers'**
+  String get contactsSettings_autoAddRoomServersTitle;
+
+  /// No description provided for @contactsSettings_autoAddRoomServersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow the companion to automatically add discovered room servers.'**
+  String get contactsSettings_autoAddRoomServersSubtitle;
+
+  /// No description provided for @contactsSettings_autoAddSensorsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-add sensors'**
+  String get contactsSettings_autoAddSensorsTitle;
+
+  /// No description provided for @contactsSettings_autoAddSensorsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow the companion to automatically add discovered sensors.'**
+  String get contactsSettings_autoAddSensorsSubtitle;
+
+  /// No description provided for @contactsSettings_overwriteOldestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overwrite Oldest'**
+  String get contactsSettings_overwriteOldestTitle;
+
+  /// No description provided for @contactsSettings_overwriteOldestSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When the contact list is full, the oldest non-favorited contact will be replaced.'**
+  String get contactsSettings_overwriteOldestSubtitle;
+
+  /// No description provided for @discoveredContacts_Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Discovered Contacts'**
+  String get discoveredContacts_Title;
+
+  /// No description provided for @discoveredContacts_noMatching.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching contacts'**
+  String get discoveredContacts_noMatching;
+
+  /// No description provided for @discoveredContacts_searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search discovered contacts'**
+  String get discoveredContacts_searchHint;
+
+  /// No description provided for @discoveredContacts_contactAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact added'**
+  String get discoveredContacts_contactAdded;
+
+  /// No description provided for @discoveredContacts_addContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Contact'**
+  String get discoveredContacts_addContact;
+
+  /// No description provided for @discoveredContacts_copyContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Contact to clipboard'**
+  String get discoveredContacts_copyContact;
+
+  /// No description provided for @discoveredContacts_deleteContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Discovered Contact'**
+  String get discoveredContacts_deleteContact;
+
+  /// No description provided for @discoveredContacts_deleteContactAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete All Discovered Contacts'**
+  String get discoveredContacts_deleteContactAll;
+
+  /// No description provided for @discoveredContacts_deleteContactAllContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete all discovered contacts?'**
+  String get discoveredContacts_deleteContactAllContent;
+
+  /// No description provided for @chat_sendCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait a moment before sending again.'**
+  String get chat_sendCooldown;
+
+  /// No description provided for @appSettings_jumpToOldestUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'Jump to oldest unread'**
+  String get appSettings_jumpToOldestUnread;
+
+  /// No description provided for @appSettings_jumpToOldestUnreadSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When opening a chat with unread messages, scroll to the first unread instead of the latest.'**
+  String get appSettings_jumpToOldestUnreadSubtitle;
+
+  /// No description provided for @appSettings_languageHu.
+  ///
+  /// In en, this message translates to:
+  /// **'Hungarian'**
+  String get appSettings_languageHu;
+
+  /// No description provided for @appSettings_languageJa.
+  ///
+  /// In en, this message translates to:
+  /// **'Japanese'**
+  String get appSettings_languageJa;
+
+  /// No description provided for @appSettings_languageKo.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean'**
+  String get appSettings_languageKo;
+
+  /// No description provided for @radioStats_tooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio & mesh stats'**
+  String get radioStats_tooltip;
+
+  /// No description provided for @radioStats_screenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio stats'**
+  String get radioStats_screenTitle;
+
+  /// No description provided for @radioStats_notConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to a device to view radio statistics.'**
+  String get radioStats_notConnected;
+
+  /// No description provided for @radioStats_firmwareTooOld.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio statistics require companion firmware v8 or newer.'**
+  String get radioStats_firmwareTooOld;
+
+  /// No description provided for @radioStats_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for data…'**
+  String get radioStats_waiting;
+
+  /// No description provided for @radioStats_noiseFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor: {noiseDbm} dBm'**
+  String radioStats_noiseFloor(int noiseDbm);
+
+  /// No description provided for @radioStats_lastRssi.
+  ///
+  /// In en, this message translates to:
+  /// **'Last RSSI: {rssiDbm} dBm'**
+  String radioStats_lastRssi(int rssiDbm);
+
+  /// No description provided for @radioStats_lastSnr.
+  ///
+  /// In en, this message translates to:
+  /// **'Last SNR: {snr} dB'**
+  String radioStats_lastSnr(String snr);
+
+  /// No description provided for @radioStats_txAir.
+  ///
+  /// In en, this message translates to:
+  /// **'TX airtime (total): {seconds} s'**
+  String radioStats_txAir(int seconds);
+
+  /// No description provided for @radioStats_rxAir.
+  ///
+  /// In en, this message translates to:
+  /// **'RX airtime (total): {seconds} s'**
+  String radioStats_rxAir(int seconds);
+
+  /// No description provided for @radioStats_chartCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor (dBm) over recent samples.'**
+  String get radioStats_chartCaption;
+
+  /// No description provided for @radioStats_stripNoise.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor: {noiseDbm} dBm'**
+  String radioStats_stripNoise(int noiseDbm);
+
+  /// No description provided for @radioStats_stripWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Fetching radio stats…'**
+  String get radioStats_stripWaiting;
+
+  /// No description provided for @radioStats_settingsTile.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio stats'**
+  String get radioStats_settingsTile;
+
+  /// No description provided for @radioStats_settingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor, RSSI, SNR, and airtime'**
+  String get radioStats_settingsSubtitle;
+
+  /// No description provided for @translation_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation'**
+  String get translation_title;
+
+  /// No description provided for @translation_enableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable translation'**
+  String get translation_enableTitle;
+
+  /// No description provided for @translation_enableSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Translate incoming messages and allow pre-send translation.'**
+  String get translation_enableSubtitle;
+
+  /// No description provided for @translation_composerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Translate before sending'**
+  String get translation_composerTitle;
+
+  /// No description provided for @translation_composerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Controls the default state of the composer translation icon.'**
+  String get translation_composerSubtitle;
+
+  /// No description provided for @translation_targetLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Target language'**
+  String get translation_targetLanguage;
+
+  /// No description provided for @translation_useAppLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Use app language'**
+  String get translation_useAppLanguage;
+
+  /// No description provided for @translation_downloadedModelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded model'**
+  String get translation_downloadedModelLabel;
+
+  /// No description provided for @translation_presetModelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Preset Hugging Face model'**
+  String get translation_presetModelLabel;
+
+  /// No description provided for @translation_manualUrlLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual model URL'**
+  String get translation_manualUrlLabel;
+
+  /// No description provided for @translation_downloadModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Download model'**
+  String get translation_downloadModel;
+
+  /// No description provided for @translation_downloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading...'**
+  String get translation_downloading;
+
+  /// No description provided for @translation_working.
+  ///
+  /// In en, this message translates to:
+  /// **'Working...'**
+  String get translation_working;
+
+  /// No description provided for @translation_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get translation_stop;
+
+  /// No description provided for @translation_mergingChunks.
+  ///
+  /// In en, this message translates to:
+  /// **'Merging downloaded chunks into final file...'**
+  String get translation_mergingChunks;
+
+  /// No description provided for @translation_downloadedModels.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded models'**
+  String get translation_downloadedModels;
+
+  /// No description provided for @translation_deleteModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete model'**
+  String get translation_deleteModel;
+
+  /// No description provided for @translation_modelDownloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation model downloaded.'**
+  String get translation_modelDownloaded;
+
+  /// No description provided for @translation_downloadStopped.
+  ///
+  /// In en, this message translates to:
+  /// **'Download stopped.'**
+  String get translation_downloadStopped;
+
+  /// No description provided for @translation_downloadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Download failed: {error}'**
+  String translation_downloadFailed(String error);
+
+  /// No description provided for @translation_enterUrlFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a model URL first.'**
+  String get translation_enterUrlFirst;
+
+  /// No description provided for @scanner_linuxPairingShowPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Show PIN'**
+  String get scanner_linuxPairingShowPin;
+
+  /// No description provided for @scanner_linuxPairingHidePin.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide PIN'**
+  String get scanner_linuxPairingHidePin;
+
+  /// No description provided for @scanner_linuxPairingPinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth Pairing PIN'**
+  String get scanner_linuxPairingPinTitle;
+
+  /// No description provided for @scanner_linuxPairingPinPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter PIN for {deviceName} (leave blank if none).'**
+  String scanner_linuxPairingPinPrompt(String deviceName);
+
+  /// No description provided for @translation_messageTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Message translation'**
+  String get translation_messageTranslation;
+
+  /// No description provided for @translation_translateBeforeSending.
+  ///
+  /// In en, this message translates to:
+  /// **'Translate before sending'**
+  String get translation_translateBeforeSending;
+
+  /// No description provided for @translation_composerEnabledHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages will be translated before send.'**
+  String get translation_composerEnabledHint;
+
+  /// No description provided for @translation_composerDisabledHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Send messages in the original typed language.'**
+  String get translation_composerDisabledHint;
+
+  /// No description provided for @translation_translateTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Translate to {language}'**
+  String translation_translateTo(String language);
+
+  /// No description provided for @translation_translationOptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation options'**
+  String get translation_translationOptions;
+
+  /// No description provided for @translation_systemLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'System language'**
+  String get translation_systemLanguage;
 }
 
 class _AppLocalizationsDelegate
@@ -5404,7 +6412,10 @@ class _AppLocalizationsDelegate
     'en',
     'es',
     'fr',
+    'hu',
     'it',
+    'ja',
+    'ko',
     'nl',
     'pl',
     'pt',
@@ -5433,8 +6444,14 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
+    case 'hu':
+      return AppLocalizationsHu();
     case 'it':
       return AppLocalizationsIt();
+    case 'ja':
+      return AppLocalizationsJa();
+    case 'ko':
+      return AppLocalizationsKo();
     case 'nl':
       return AppLocalizationsNl();
     case 'pl':

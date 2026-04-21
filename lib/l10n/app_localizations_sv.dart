@@ -39,6 +39,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get common_delete => 'Radera';
 
   @override
+  String get common_deleteAll => 'Ta bort alla';
+
+  @override
   String get common_close => 'Stänga';
 
   @override
@@ -109,6 +112,133 @@ class AppLocalizationsSv extends AppLocalizations {
   String get scanner_title => 'MeshCore Open';
 
   @override
+  String get connectionChoiceUsbLabel => 'USB';
+
+  @override
+  String get connectionChoiceBluetoothLabel => 'Bluetooth';
+
+  @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Anslut via TCP';
+
+  @override
+  String get tcpHostLabel => 'IP-adress';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Port';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => 'Ange slutpunkt och anslut';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Anslutning till $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'IP-adress krävs.';
+
+  @override
+  String get tcpErrorPortInvalid => 'Porten måste vara mellan 1 och 65535.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'TCP-transport fungerar inte på denna plattform.';
+
+  @override
+  String get tcpErrorTimedOut => 'TCP-anslutningen har tidsut gått.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Fel vid TCP-anslutning: $error';
+  }
+
+  @override
+  String get usbScreenTitle => 'Anslut via USB';
+
+  @override
+  String get usbScreenSubtitle =>
+      'Välj en detekterad seriell enhet och anslut direkt till din MeshCore-nod.';
+
+  @override
+  String get usbScreenStatus => 'Välj en USB-enhet';
+
+  @override
+  String get usbScreenNote =>
+      'USB-seriell kommunikation är aktiv på stödda Android-enheter och på skrivbordsplattformar.';
+
+  @override
+  String get usbScreenEmptyState =>
+      'Inga USB-enheter hittades. Anslut en och uppdatera.';
+
+  @override
+  String get usbErrorPermissionDenied => 'Tillgången via USB nekas.';
+
+  @override
+  String get usbErrorDeviceMissing =>
+      'Den valda USB-enheten är inte längre tillgänglig.';
+
+  @override
+  String get usbErrorInvalidPort => 'Välj en giltig USB-enhet.';
+
+  @override
+  String get usbErrorBusy =>
+      'En annan förfrågan om USB-anslutning är redan pågående.';
+
+  @override
+  String get usbErrorNotConnected => 'Ingen USB-enhet är ansluten.';
+
+  @override
+  String get usbErrorOpenFailed =>
+      'Misslyckades med att öppna det valda USB-enheten.';
+
+  @override
+  String get usbErrorConnectFailed =>
+      'Kunde inte ansluta till det valda USB-enheten.';
+
+  @override
+  String get usbErrorUnsupported =>
+      'USB-seriell kommunikation stöds inte på denna plattform.';
+
+  @override
+  String get usbErrorAlreadyActive => 'En USB-anslutning är redan aktiv.';
+
+  @override
+  String get usbErrorNoDeviceSelected => 'Ingen USB-enhet valdes.';
+
+  @override
+  String get usbErrorPortClosed => 'USB-anslutningen är inte aktiv.';
+
+  @override
+  String get usbErrorConnectTimedOut =>
+      'Anslutningen har tidsutgått. Se till att enheten har rätt USB-firmware.';
+
+  @override
+  String get usbFallbackDeviceName => 'Web-serieenhet';
+
+  @override
+  String get usbStatus_notConnected => 'Välj en USB-enhet';
+
+  @override
+  String get usbStatus_connecting => 'Anslutning till USB-enhet...';
+
+  @override
+  String get usbStatus_searching => 'Söker efter USB-enheter...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Fel vid USB-anslutning: $error';
+  }
+
+  @override
   String get scanner_scanning => 'Söker efter enheter...';
 
   @override
@@ -148,6 +278,13 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get scanner_bluetoothOffMessage =>
       'Vänligen aktivera Bluetooth för att söka efter enheter.';
+
+  @override
+  String get scanner_chromeRequired => 'Chrome-webbläsare krävs';
+
+  @override
+  String get scanner_chromeRequiredMessage =>
+      'Denna webbapplikation kräver Google Chrome oder en Chromium-baserader webbläsare för Bluetooth-stöd.';
 
   @override
   String get scanner_enableBluetooth => 'Aktivera Bluetooth';
@@ -233,6 +370,13 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settings_longitude => 'Längdgrad';
 
   @override
+  String get settings_contactSettings => 'Kontaktinställningar';
+
+  @override
+  String get settings_contactSettingsSubtitle =>
+      'Inställningar för hur kontakter läggs till.';
+
+  @override
   String get settings_privacyMode => 'Privatläge';
 
   @override
@@ -247,6 +391,49 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get settings_privacyModeDisabled => 'Privatläge är avstängt';
+
+  @override
+  String get settings_privacy => 'Inställningar för sekretess';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Kontrollera vilken information som delas.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Välj vilken information din enhet delar med andra.';
+
+  @override
+  String get settings_denyAll => 'Neka alla';
+
+  @override
+  String get settings_allowByContact => 'Tillåt via kontaktflaggor';
+
+  @override
+  String get settings_allowAll => 'Tillåt alla';
+
+  @override
+  String get settings_telemetryBaseMode => 'Telemetribasläge';
+
+  @override
+  String get settings_telemetryLocationMode => 'Telemetritillstånd för plats';
+
+  @override
+  String get settings_telemetryEnvironmentMode => 'Telemetri miljöläge';
+
+  @override
+  String get settings_advertLocation => 'Annonsplacering';
+
+  @override
+  String get settings_advertLocationSubtitle => 'Inkludera plats i annonsen';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Multi-ACKs: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Telemetri-läge uppdaterat';
 
   @override
   String get settings_actions => 'Åtgärder';
@@ -539,6 +726,48 @@ class AppLocalizationsSv extends AppLocalizations {
       'Automatisk ruttrotation är avstängd';
 
   @override
+  String get appSettings_maxRouteWeight => 'Maximalt tillåtet vikt för rutten';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Maximal vikt som en leveransväg kan ackumulera från framgångsrika leveranser.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Initial vikt för rutt';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Initial vikt för nyligen upptäckta vägar';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Ökning av vikt för framgång';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Vikt läggs till en väg efter en lyckad leverans.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Minskning av vikten för misslyckande';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Vikt som tagits bort från en väg efter ett misslyckat leveransförsök';
+
+  @override
+  String get appSettings_maxMessageRetries => 'Maximalt antal försök';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Antal försök att skicka om ett meddelande innan det markeras som misslyckat.';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Batteri';
 
   @override
@@ -745,6 +974,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get contacts_groupNameRequired => 'Gruppnamnet är obligatoriskt';
 
   @override
+  String get contacts_groupNameReserved => 'Detta gruppnamn är reserverat';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return 'Gruppen \"$name\" finns redan.';
   }
@@ -782,6 +1014,40 @@ class AppLocalizationsSv extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Senast synlig $days dagar sedan';
   }
+
+  @override
+  String get contact_info => 'Kontaktinformation';
+
+  @override
+  String get contact_settings => 'Kontaktinställningar';
+
+  @override
+  String get contact_telemetry => 'Telemetri';
+
+  @override
+  String get contact_lastSeen => 'Senast sedd';
+
+  @override
+  String get contact_clearChat => 'Rensa Chatt';
+
+  @override
+  String get contact_teleBase => 'Telemetribas';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Tillåt delning av batterinivå och grundläggande telemetri';
+
+  @override
+  String get contact_teleLoc => 'Telemetridata plats';
+
+  @override
+  String get contact_teleLocSubtitle => 'Tillåt delning av platsdata';
+
+  @override
+  String get contact_teleEnv => 'Telemetri Miljö';
+
+  @override
+  String get contact_teleEnvSubtitle => 'Tillåt delning av miljösensordata';
 
   @override
   String get channels_title => 'Kanaler';
@@ -952,6 +1218,14 @@ class AppLocalizationsSv extends AppLocalizations {
   String get chat_noMessages => 'Inga meddelanden ännu';
 
   @override
+  String get chat_sendMessage => 'Skicka meddelande';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Skicka ett meddelande till $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart =>
       'Skicka ett meddelande för att komma igång';
 
@@ -971,11 +1245,6 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get chat_location => 'Plats';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Skicka ett meddelande till $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Skriv ett meddelande...';
@@ -1351,6 +1620,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get map_shareMarkerHere => 'Dela markeringen här';
 
   @override
+  String get map_setAsMyLocation => 'Ange som min plats';
+
+  @override
   String get map_pinLabel => 'Fästetikett';
 
   @override
@@ -1396,6 +1668,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get map_otherNodes => 'Andra noder';
 
   @override
+  String get map_showOverlaps => 'Repeater-nyckelöverlappningar';
+
+  @override
   String get map_keyPrefix => 'Nyckelprefix';
 
   @override
@@ -1409,6 +1684,16 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get map_showSharedMarkers => 'Visa delade markörer';
+
+  @override
+  String get map_showGuessedLocations =>
+      'Visa upp de antagna nodernas placeringar';
+
+  @override
+  String get map_showDiscoveryContacts => 'Visa Discovery-kontakter';
+
+  @override
+  String get map_guessedLocation => 'Gissad plats';
 
   @override
   String get map_lastSeenTime => 'Senaste Visats Tid';
@@ -1427,6 +1712,9 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get map_runTrace => 'Kör spårsökning';
+
+  @override
+  String get map_runTraceWithReturnPath => 'Gå tillbaka på samma väg';
 
   @override
   String get map_removeLast => 'Ta bort sista';
@@ -1703,7 +1991,16 @@ class AppLocalizationsSv extends AppLocalizations {
   String get room_management => 'Rumserverhantering';
 
   @override
+  String get repeater_guest => 'Information om repetorer';
+
+  @override
+  String get room_guest => 'Information om servern';
+
+  @override
   String get repeater_managementTools => 'Administrationsverktyg';
+
+  @override
+  String get repeater_guestTools => 'Gästverktyg';
 
   @override
   String get repeater_status => 'Status';
@@ -1736,6 +2033,14 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Konfigurera återspolarparametrar';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Synkronisera klockan efter inloggning';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Automatiskt skicka \"klocksynkronisering\" efter en lyckad inloggning.';
 
   @override
   String get repeater_statusTitle => 'Återspelsstatus';
@@ -2108,6 +2413,12 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Klocka';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Synkronisera klocka';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Upptäck grannar';
 
   @override
   String get repeater_cliHelpAdvert => 'Skickar ett annonspaket';
@@ -3084,4 +3395,274 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get snrIndicator_lastSeen => 'Senast sedd';
+
+  @override
+  String get contactsSettings_title => 'Kontaktinställningar';
+
+  @override
+  String get contactsSettings_autoAddTitle => 'Automatisk upptäckt';
+
+  @override
+  String get contactsSettings_otherTitle =>
+      'Andra inställningar relaterade till kontakt';
+
+  @override
+  String get contactsSettings_autoAddUsersTitle =>
+      'Lägg till användare automatiskt';
+
+  @override
+  String get contactsSettings_autoAddUsersSubtitle =>
+      'Tillåt kompanjonen att automatiskt lägga till upptäckta användare';
+
+  @override
+  String get contactsSettings_autoAddRepeatersTitle =>
+      'Lägg till upprepande enheter automatiskt';
+
+  @override
+  String get contactsSettings_autoAddRepeatersSubtitle =>
+      'Tillåt kompanjonen att automatiskt lägga till upptäckta repeater.';
+
+  @override
+  String get contactsSettings_autoAddRoomServersTitle =>
+      'Lägg automatiskt till rumsservrar';
+
+  @override
+  String get contactsSettings_autoAddRoomServersSubtitle =>
+      'Tillåt kompanjonen att automatiskt lägga till upptäckta rumsservrar.';
+
+  @override
+  String get contactsSettings_autoAddSensorsTitle =>
+      'Lägg till sensorer automatiskt';
+
+  @override
+  String get contactsSettings_autoAddSensorsSubtitle =>
+      'Tillåt kompanjonen att automatiskt lägga till upptäckta sensorer.';
+
+  @override
+  String get contactsSettings_overwriteOldestTitle => 'Skriv över äldst';
+
+  @override
+  String get contactsSettings_overwriteOldestSubtitle =>
+      'När kontaktlistan är full ersätts den äldsta icke-favoriterade kontakten.';
+
+  @override
+  String get discoveredContacts_Title => 'Upptäckta kontakter';
+
+  @override
+  String get discoveredContacts_noMatching => 'Inga matchande kontakter';
+
+  @override
+  String get discoveredContacts_searchHint => 'Sök uppfunna kontakter';
+
+  @override
+  String get discoveredContacts_contactAdded => 'Kontakt tillagd';
+
+  @override
+  String get discoveredContacts_addContact => 'Lägg till kontakt';
+
+  @override
+  String get discoveredContacts_copyContact => 'Kopiera kontakt till urklipp';
+
+  @override
+  String get discoveredContacts_deleteContact => 'Ta bort kontakt';
+
+  @override
+  String get discoveredContacts_deleteContactAll =>
+      'Ta bort alla upptäckta kontakter';
+
+  @override
+  String get discoveredContacts_deleteContactAllContent =>
+      'Är du säker på att du vill ta bort alla upptäckta kontakter?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Vänligen vänta en stund innan du skickar igen.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Gå direkt till det äldsta, obesvarade meddelandet';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'När du öppnar en chatt med oinlästa meddelanden, scrolla till det första oinlästa meddelandet istället för det senaste.';
+
+  @override
+  String get appSettings_languageHu => 'Ungerskt';
+
+  @override
+  String get appSettings_languageJa => 'Japanska';
+
+  @override
+  String get appSettings_languageKo => 'Koreanska';
+
+  @override
+  String get radioStats_tooltip => 'Radio- och mesh-statistik';
+
+  @override
+  String get radioStats_screenTitle => 'Radiostation';
+
+  @override
+  String get radioStats_notConnected =>
+      'Anslut till en enhet för att visa radiostatistik.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Radio statistik kräver kompatibel firmware version 8 eller senare.';
+
+  @override
+  String get radioStats_waiting => 'Väntar på data…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Bakgrundsnivå: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Senaste RSSI-värde: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Senaste SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'TX-tid (total): $seconds sekunder';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'RX-tid (total): $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Ljudnivå (dBm) baserat på de senaste mätningarna.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Bakgrundsnivå: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Hämtar radiostatistik…';
+
+  @override
+  String get radioStats_settingsTile => 'Radiostation';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Bakgrundsnivå, RSSI, SNR och tillgänglig tid';
+
+  @override
+  String get translation_title => 'Översättning';
+
+  @override
+  String get translation_enableTitle => 'Aktivera översättning';
+
+  @override
+  String get translation_enableSubtitle =>
+      'Översätt inkommande meddelanden och möjliggör översättning före avsändning.';
+
+  @override
+  String get translation_composerTitle => 'Översätt innan du skickar';
+
+  @override
+  String get translation_composerSubtitle =>
+      'Styr standardtillståndet för kompositorns översättningsikon.';
+
+  @override
+  String get translation_targetLanguage => 'Målmedvetet språk';
+
+  @override
+  String get translation_useAppLanguage => 'Använd appens språk';
+
+  @override
+  String get translation_downloadedModelLabel => 'Nedladdad modell';
+
+  @override
+  String get translation_presetModelLabel =>
+      'Fördefinierat Hugging Face-modell';
+
+  @override
+  String get translation_manualUrlLabel => 'Manualens URL';
+
+  @override
+  String get translation_downloadModel => 'Ladda ner modellen';
+
+  @override
+  String get translation_downloading => 'Nedladdning...';
+
+  @override
+  String get translation_working => 'Arbeta...';
+
+  @override
+  String get translation_stop => 'Stopp';
+
+  @override
+  String get translation_mergingChunks =>
+      'Slå samman de nedladdade delarna till en slutlig fil...';
+
+  @override
+  String get translation_downloadedModels => 'Nedladdade modeller';
+
+  @override
+  String get translation_deleteModel => 'Ta bort modell';
+
+  @override
+  String get translation_modelDownloaded =>
+      'Översättningsmodellen har laddats ner.';
+
+  @override
+  String get translation_downloadStopped => 'Nedladdningen avbruten.';
+
+  @override
+  String translation_downloadFailed(String error) {
+    return 'Nedladdning misslyckades: $error';
+  }
+
+  @override
+  String get translation_enterUrlFirst =>
+      'Ange först en URL för en specifik modell.';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Visa PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Dölj PIN';
+
+  @override
+  String get scanner_linuxPairingPinTitle => 'Bluetooth‑parnings‑PIN';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Ange PIN för $deviceName (lämna tomt om ingen).';
+  }
+
+  @override
+  String get translation_messageTranslation => 'Meddelandets översättning';
+
+  @override
+  String get translation_translateBeforeSending => 'Översätt innan du skickar';
+
+  @override
+  String get translation_composerEnabledHint =>
+      'Meddelandena kommer att översättas innan de skickas.';
+
+  @override
+  String get translation_composerDisabledHint =>
+      'Skicka meddelanden på det ursprungliga, stavade språket.';
+
+  @override
+  String translation_translateTo(String language) {
+    return 'Översätt till $language';
+  }
+
+  @override
+  String get translation_translationOptions => 'Översättningsalternativ';
+
+  @override
+  String get translation_systemLanguage => 'Språk för systemet';
 }

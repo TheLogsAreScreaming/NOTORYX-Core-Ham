@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:meshcore_open/storage/channel_message_store.dart';
+import 'package:meshcore_open/utils/platform_info.dart';
 import 'package:meshcore_open/widgets/app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -11,6 +12,7 @@ import 'package:uuid/uuid.dart';
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../services/app_settings_service.dart';
+import '../services/ui_view_state_service.dart';
 import '../models/channel.dart';
 import '../models/community.dart';
 import '../storage/community_store.dart';
@@ -22,13 +24,12 @@ import '../widgets/empty_state.dart';
 import '../widgets/qr_code_display.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../widgets/unread_badge.dart';
+import '../helpers/snack_bar_builder.dart';
 import 'channel_chat_screen.dart';
 import 'community_qr_scanner_screen.dart';
 import 'contacts_screen.dart';
 import 'map_screen.dart';
 import 'settings_screen.dart';
-
-enum ChannelSortOption { manual, name, latestMessages, unread }
 
 class ChannelsScreen extends StatefulWidget {
   final bool hideBackButton;
@@ -43,17 +44,20 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     with DisconnectNavigationMixin {
   final TextEditingController _searchController = TextEditingController();
   final CommunityStore _communityStore = CommunityStore();
-  String _searchQuery = '';
   Timer? _searchDebounce;
-  ChannelSortOption _sortOption = ChannelSortOption.manual;
   List<Community> _communities = [];
 
   // Cache of PSK hex -> Community for quick lookup
   final Map<String, Community> _pskToCommunity = {};
 
+  ChannelMessageStore get _channelMessageStore => ChannelMessageStore();
+
   @override
   void initState() {
     super.initState();
+    _searchController.text = context
+        .read<UiViewStateService>()
+        .channelsSearchText;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<MeshCoreConnector>().getChannels();
       _loadCommunities();
@@ -61,6 +65,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   }
 
   Future<void> _loadCommunities() async {
+    final connector = context.read<MeshCoreConnector>();
+    _communityStore.setPublicKeyHex = connector.selfPublicKeyHex;
     final communities = await _communityStore.loadCommunities();
     if (mounted) {
       setState(() {
@@ -106,7 +112,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   @override
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
+    final viewState = context.watch<UiViewStateService>();
+
     final channelMessageStore = ChannelMessageStore();
+    channelMessageStore.setPublicKeyHex = connector.selfPublicKeyHex;
 
     // Auto-navigate back to scanner if disconnected
     if (!checkConnectionAndNavigate(connector)) {
@@ -199,6 +208,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             final filteredChannels = _filterAndSortChannels(
               channels,
               connector,
+              viewState,
             );
 
             return Column(
@@ -213,17 +223,19 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       suffixIcon: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (_searchQuery.isNotEmpty)
+                          if (viewState.channelsSearchText.isNotEmpty)
                             IconButton(
                               icon: const Icon(Icons.clear),
                               onPressed: () {
+                                _searchDebounce?.cancel();
+                                _searchDebounce = null;
                                 _searchController.clear();
-                                setState(() {
-                                  _searchQuery = '';
-                                });
+                                context
+                                    .read<UiViewStateService>()
+                                    .setChannelsSearchText('');
                               },
                             ),
-                          _buildFilterButton(),
+                          _buildFilterButton(viewState),
                         ],
                       ),
                       border: OutlineInputBorder(
@@ -240,9 +252,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         const Duration(milliseconds: 300),
                         () {
                           if (!mounted) return;
-                          setState(() {
-                            _searchQuery = value.toLowerCase();
-                          });
+                          context
+                              .read<UiViewStateService>()
+                              .setChannelsSearchText(value);
                         },
                       );
                     },
@@ -277,8 +289,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             ),
                           ],
                         )
-                      : (_sortOption == ChannelSortOption.manual &&
-                            _searchQuery.isEmpty)
+                      : (viewState.channelsSortOption ==
+                                ChannelSortOption.manual &&
+                            viewState.channelsSearchText.isEmpty)
                       ? ReorderableListView.builder(
                           padding: const EdgeInsets.only(
                             left: 16,
@@ -408,78 +421,96 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     return Card(
       key: ValueKey('channel_${channel.index}'),
       margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        dense: true,
-        minVerticalPadding: 0,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-        visualDensity: const VisualDensity(vertical: -2),
-        leading: Stack(
-          children: [
-            CircleAvatar(
-              backgroundColor: bgColor,
-              child: Icon(icon, color: iconColor),
-            ),
-            if (isCommunityChannel)
-              Positioned(
-                right: 0,
-                bottom: 0,
-                child: Container(
-                  width: 14,
-                  height: 14,
-                  decoration: BoxDecoration(
-                    color: Colors.purple,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Theme.of(context).cardColor,
-                      width: 2,
+      child: GestureDetector(
+        onSecondaryTapUp: PlatformInfo.isDesktop
+            ? (_) => _showChannelActions(
+                context,
+                connector,
+                channelMessageStore,
+                channel,
+              )
+            : null,
+        child: ListTile(
+          dense: true,
+          minVerticalPadding: 0,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+          visualDensity: const VisualDensity(vertical: -2),
+          leading: Stack(
+            children: [
+              CircleAvatar(
+                backgroundColor: bgColor,
+                child: Icon(icon, color: iconColor),
+              ),
+              if (isCommunityChannel)
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    width: 14,
+                    height: 14,
+                    decoration: BoxDecoration(
+                      color: Colors.purple,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Theme.of(context).cardColor,
+                        width: 2,
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.people,
+                      size: 8,
+                      color: Colors.white,
                     ),
                   ),
-                  child: const Icon(Icons.people, size: 8, color: Colors.white),
                 ),
-              ),
-          ],
-        ),
-        title: Text(
-          channel.name.isEmpty
-              ? context.l10n.channels_channelIndex(channel.index)
-              : channel.name,
-          style: const TextStyle(fontWeight: FontWeight.w500),
-        ),
-        subtitle: Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (unreadCount > 0) ...[
-              UnreadBadge(count: unreadCount),
-              const SizedBox(width: 4),
             ],
-            if (showDragHandle && dragIndex != null)
-              ReorderableDelayedDragStartListener(
-                index: dragIndex,
-                child: Icon(
-                  Icons.drag_handle,
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
+          title: Text(
+            channel.name.isEmpty
+                ? context.l10n.channels_channelIndex(channel.index)
+                : channel.name,
+            style: const TextStyle(fontWeight: FontWeight.w500),
+          ),
+          subtitle: Text(
+            subtitle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (unreadCount > 0) ...[
+                UnreadBadge(count: unreadCount),
+                const SizedBox(width: 4),
+              ],
+              if (showDragHandle && dragIndex != null)
+                ReorderableDelayedDragStartListener(
+                  index: dragIndex,
+                  child: Icon(
+                    Icons.drag_handle,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
-              ),
-          ],
-        ),
-        onTap: () async {
-          connector.markChannelRead(channel.index);
-          await Future.delayed(const Duration(milliseconds: 50));
-          if (context.mounted) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ChannelChatScreen(channel: channel),
-              ),
-            );
-          }
-        },
-        onLongPress: () => _showChannelActions(
-          context,
-          connector,
-          channelMessageStore,
-          channel,
+            ],
+          ),
+          onTap: () async {
+            connector.markChannelRead(channel.index);
+            await Future.delayed(const Duration(milliseconds: 50));
+            if (context.mounted) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChannelChatScreen(channel: channel),
+                ),
+              );
+            }
+          },
+          onLongPress: () => _showChannelActions(
+            context,
+            connector,
+            channelMessageStore,
+            channel,
+          ),
         ),
       ),
     );
@@ -580,59 +611,40 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     await showDisconnectDialog(context, connector);
   }
 
-  Widget _buildFilterButton() {
-    const actionSortManual = 0;
-    const actionSortName = 1;
-    const actionSortLatest = 2;
-    const actionSortUnread = 3;
-
-    return SortFilterMenu(
+  Widget _buildFilterButton(UiViewStateService viewState) {
+    return SortFilterMenu<ChannelSortOption>(
       tooltip: context.l10n.listFilter_tooltip,
       sections: [
-        SortFilterMenuSection(
+        SortFilterMenuSection<ChannelSortOption>(
           title: context.l10n.channels_sortBy,
           options: [
-            SortFilterMenuOption(
-              value: actionSortManual,
+            SortFilterMenuOption<ChannelSortOption>(
+              value: ChannelSortOption.manual,
               label: context.l10n.channels_sortManual,
-              checked: _sortOption == ChannelSortOption.manual,
+              checked: viewState.channelsSortOption == ChannelSortOption.manual,
             ),
-            SortFilterMenuOption(
-              value: actionSortName,
+            SortFilterMenuOption<ChannelSortOption>(
+              value: ChannelSortOption.name,
               label: context.l10n.channels_sortAZ,
-              checked: _sortOption == ChannelSortOption.name,
+              checked: viewState.channelsSortOption == ChannelSortOption.name,
             ),
-            SortFilterMenuOption(
-              value: actionSortLatest,
+            SortFilterMenuOption<ChannelSortOption>(
+              value: ChannelSortOption.latestMessages,
               label: context.l10n.channels_sortLatestMessages,
-              checked: _sortOption == ChannelSortOption.latestMessages,
+              checked:
+                  viewState.channelsSortOption ==
+                  ChannelSortOption.latestMessages,
             ),
-            SortFilterMenuOption(
-              value: actionSortUnread,
+            SortFilterMenuOption<ChannelSortOption>(
+              value: ChannelSortOption.unread,
               label: context.l10n.channels_sortUnread,
-              checked: _sortOption == ChannelSortOption.unread,
+              checked: viewState.channelsSortOption == ChannelSortOption.unread,
             ),
           ],
         ),
       ],
-      onSelected: (action) {
-        setState(() {
-          switch (action) {
-            case actionSortManual:
-              _sortOption = ChannelSortOption.manual;
-              break;
-            case actionSortLatest:
-              _sortOption = ChannelSortOption.latestMessages;
-              break;
-            case actionSortUnread:
-              _sortOption = ChannelSortOption.unread;
-              break;
-            case actionSortName:
-            default:
-              _sortOption = ChannelSortOption.name;
-              break;
-          }
-        });
+      onSelected: (sortOption) {
+        viewState.setChannelsSortOption(sortOption);
       },
     );
   }
@@ -640,11 +652,14 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   List<Channel> _filterAndSortChannels(
     List<Channel> channels,
     MeshCoreConnector connector,
+    UiViewStateService viewState,
   ) {
     var filtered = channels.where((channel) {
-      if (_searchQuery.isEmpty) return true;
+      if (viewState.channelsSearchText.isEmpty) return true;
       final label = _normalizeChannelName(channel);
-      return label.toLowerCase().contains(_searchQuery);
+      return label.toLowerCase().contains(
+        viewState.channelsSearchText.toLowerCase(),
+      );
     }).toList();
 
     int compareByName(Channel a, Channel b) {
@@ -653,7 +668,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       return nameA.toLowerCase().compareTo(nameB.toLowerCase());
     }
 
-    switch (_sortOption) {
+    switch (viewState.channelsSortOption) {
       case ChannelSortOption.manual:
         break;
       case ChannelSortOption.latestMessages:
@@ -714,6 +729,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     bool isRegularHashtag = true;
     Community? selectedCommunity;
 
+    _communityStore.setPublicKeyHex = connector.selfPublicKeyHex;
+
     showDialog(
       context: context,
       builder: (dialogContext) => StatefulBuilder(
@@ -765,7 +782,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             );
           }
 
-          Widget? buildExpandedContent() {
+          Widget? buildExpandedContent(
+            ChannelMessageStore channelMessageStore,
+          ) {
             switch (selectedOption) {
               case 0: // Create Private Channel
                 return Column(
@@ -790,18 +809,15 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         children: [
                           Expanded(
                             child: FilledButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 final name = nameController.text.trim();
                                 if (name.isEmpty) {
-                                  ScaffoldMessenger.of(
-                                    dialogContext,
-                                  ).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        dialogContext
-                                            .l10n
-                                            .channels_enterChannelName,
-                                      ),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      dialogContext
+                                          .l10n
+                                          .channels_enterChannelName,
                                     ),
                                   );
                                   return;
@@ -812,15 +828,19 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                   psk[i] = random.nextInt(256);
                                 }
                                 Navigator.pop(dialogContext);
-                                connector.setChannel(nextIndex, name, psk);
+                                await connector.setChannel(
+                                  nextIndex,
+                                  name,
+                                  psk,
+                                );
+                                await channelMessageStore.clearChannelMessages(
+                                  nextIndex,
+                                );
                                 if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        context.l10n.channels_channelAdded(
-                                          name,
-                                        ),
-                                      ),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      context.l10n.channels_channelAdded(name),
                                     ),
                                   );
                                 }
@@ -874,15 +894,12 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                 final name = nameController.text.trim();
                                 final pskHex = pskController.text.trim();
                                 if (name.isEmpty) {
-                                  ScaffoldMessenger.of(
-                                    dialogContext,
-                                  ).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        dialogContext
-                                            .l10n
-                                            .channels_enterChannelName,
-                                      ),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      dialogContext
+                                          .l10n
+                                          .channels_enterChannelName,
                                     ),
                                   );
                                   return;
@@ -891,15 +908,12 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                 try {
                                   psk = Channel.parsePskHex(pskHex);
                                 } on FormatException {
-                                  ScaffoldMessenger.of(
-                                    dialogContext,
-                                  ).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        dialogContext
-                                            .l10n
-                                            .channels_pskMustBe32Hex,
-                                      ),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      dialogContext
+                                          .l10n
+                                          .channels_pskMustBe32Hex,
                                     ),
                                   );
                                   return;
@@ -907,13 +921,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                 Navigator.pop(dialogContext);
                                 connector.setChannel(nextIndex, name, psk);
                                 if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        context.l10n.channels_channelAdded(
-                                          name,
-                                        ),
-                                      ),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      context.l10n.channels_channelAdded(name),
                                     ),
                                   );
                                 }
@@ -944,11 +955,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             Navigator.pop(dialogContext);
                             connector.setChannel(nextIndex, 'Public', psk);
                             if (context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    context.l10n.channels_publicChannelAdded,
-                                  ),
+                              showDismissibleSnackBar(
+                                context,
+                                content: Text(
+                                  context.l10n.channels_publicChannelAdded,
                                 ),
                               );
                             }
@@ -1074,15 +1084,12 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                               onPressed: () async {
                                 var hashtag = hashtagController.text.trim();
                                 if (hashtag.isEmpty) {
-                                  ScaffoldMessenger.of(
-                                    dialogContext,
-                                  ).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        dialogContext
-                                            .l10n
-                                            .channels_enterChannelName,
-                                      ),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      dialogContext
+                                          .l10n
+                                          .channels_enterChannelName,
                                     ),
                                   );
                                   return;
@@ -1102,15 +1109,12 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                 } else {
                                   // Community hashtag - HMAC derivation from community secret
                                   if (selectedCommunity == null) {
-                                    ScaffoldMessenger.of(
+                                    showDismissibleSnackBar(
                                       dialogContext,
-                                    ).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          dialogContext
-                                              .l10n
-                                              .community_selectCommunity,
-                                        ),
+                                      content: Text(
+                                        dialogContext
+                                            .l10n
+                                            .community_selectCommunity,
                                       ),
                                     );
                                     return;
@@ -1136,12 +1140,11 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                   psk,
                                 );
                                 if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        context.l10n.channels_channelAdded(
-                                          channelName,
-                                        ),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      context.l10n.channels_channelAdded(
+                                        channelName,
                                       ),
                                     ),
                                   );
@@ -1236,13 +1239,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                               onPressed: () async {
                                 final name = nameController.text.trim();
                                 if (name.isEmpty) {
-                                  ScaffoldMessenger.of(
-                                    dialogContext,
-                                  ).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        dialogContext.l10n.community_enterName,
-                                      ),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      dialogContext.l10n.community_enterName,
                                     ),
                                   );
                                   return;
@@ -1278,11 +1278,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                 _loadCommunities();
 
                                 if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        context.l10n.community_created(name),
-                                      ),
+                                  showDismissibleSnackBar(
+                                    context,
+                                    content: Text(
+                                      context.l10n.community_created(name),
                                     ),
                                   );
 
@@ -1331,7 +1330,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       subtitle:
                           dialogContext.l10n.channels_createPrivateChannelDesc,
                     ),
-                    if (selectedOption == 0) buildExpandedContent()!,
+                    if (selectedOption == 0)
+                      buildExpandedContent(_channelMessageStore)!,
                     const Divider(height: 1),
                     buildOptionTile(
                       optionIndex: 1,
@@ -1340,7 +1340,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       subtitle:
                           dialogContext.l10n.channels_joinPrivateChannelDesc,
                     ),
-                    if (selectedOption == 1) buildExpandedContent()!,
+                    if (selectedOption == 1)
+                      buildExpandedContent(_channelMessageStore)!,
                     if (!hasPublicChannel) ...[
                       const Divider(height: 1),
                       buildOptionTile(
@@ -1350,7 +1351,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         subtitle:
                             dialogContext.l10n.channels_joinPublicChannelDesc,
                       ),
-                      if (selectedOption == 2) buildExpandedContent()!,
+                      if (selectedOption == 2)
+                        buildExpandedContent(_channelMessageStore)!,
                     ],
                     const Divider(height: 1),
                     buildOptionTile(
@@ -1360,7 +1362,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       subtitle:
                           dialogContext.l10n.channels_joinHashtagChannelDesc,
                     ),
-                    if (selectedOption == 3) buildExpandedContent()!,
+                    if (selectedOption == 3)
+                      buildExpandedContent(_channelMessageStore)!,
                     const Divider(height: 1),
                     buildOptionTile(
                       optionIndex: 4,
@@ -1368,7 +1371,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       title: dialogContext.l10n.community_scanQr,
                       subtitle: dialogContext.l10n.community_join,
                     ),
-                    if (selectedOption == 4) buildExpandedContent()!,
+                    if (selectedOption == 4)
+                      buildExpandedContent(_channelMessageStore)!,
                     const Divider(height: 1),
                     buildOptionTile(
                       optionIndex: 5,
@@ -1376,7 +1380,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       title: dialogContext.l10n.community_create,
                       subtitle: dialogContext.l10n.community_createDesc,
                     ),
-                    if (selectedOption == 5) buildExpandedContent()!,
+                    if (selectedOption == 5)
+                      buildExpandedContent(_channelMessageStore)!,
                   ],
                 ),
               ),
@@ -1465,10 +1470,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                 try {
                   psk = Channel.parsePskHex(pskHex);
                 } on FormatException {
-                  ScaffoldMessenger.of(dialogContext).showSnackBar(
-                    SnackBar(
-                      content: Text(dialogContext.l10n.channels_pskMustBe32Hex),
-                    ),
+                  showDismissibleSnackBar(
+                    dialogContext,
+                    content: Text(dialogContext.l10n.channels_pskMustBe32Hex),
                   );
                   return;
                 }
@@ -1481,16 +1485,16 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     smazEnabled,
                   );
                   if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(context.l10n.channels_channelUpdated(name)),
-                    ),
+                  showDismissibleSnackBar(
+                    context,
+                    content: Text(context.l10n.channels_channelUpdated(name)),
                   );
                 } catch (e, st) {
                   debugPrint(st.toString());
                   if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Failed to update channel: $e')),
+                  showDismissibleSnackBar(
+                    context,
+                    content: Text('Failed to update channel: $e'),
                   );
                 }
               },
@@ -1526,25 +1530,23 @@ class _ChannelsScreenState extends State<ChannelsScreen>
               try {
                 await connector.deleteChannel(channel.index);
 
-                channelMessageStore.clearChannelMessages(channel.index);
+                await channelMessageStore.clearChannelMessages(channel.index);
 
                 if (!context.mounted) return;
 
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      context.l10n.channels_channelDeleted(channel.name),
-                    ),
+                showDismissibleSnackBar(
+                  context,
+                  content: Text(
+                    context.l10n.channels_channelDeleted(channel.name),
                   ),
                 );
               } catch (e, st) {
                 if (!context.mounted) return;
 
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      context.l10n.channels_channelDeleteFailed(channel.name),
-                    ),
+                showDismissibleSnackBar(
+                  context,
+                  content: Text(
+                    context.l10n.channels_channelDeleteFailed(channel.name),
                   ),
                 );
 
@@ -1565,8 +1567,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
   void _addPublicChannel(BuildContext context, MeshCoreConnector connector) {
     final psk = Channel.parsePskHex(Channel.publicChannelPsk);
     connector.setChannel(0, 'Public', psk);
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(context.l10n.channels_publicChannelAdded)),
+    showDismissibleSnackBar(
+      context,
+      content: Text(context.l10n.channels_publicChannelAdded),
     );
   }
 
@@ -1751,6 +1754,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     }
 
     final channelCount = communityChannels.length;
+    _communityStore.setPublicKeyHex = connector.selfPublicKeyHex;
 
     showDialog(
       context: context,
@@ -1780,12 +1784,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
               _loadCommunities();
 
               if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      context.l10n.community_deleted(community.name),
-                    ),
-                  ),
+                showDismissibleSnackBar(
+                  context,
+                  content: Text(context.l10n.community_deleted(community.name)),
                 );
               }
             },

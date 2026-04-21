@@ -10,6 +10,7 @@
   "common_unknownDevice": "Unknown Device",
   "common_save": "Save",
   "common_delete": "Delete",
+  "common_deleteAll": "Delete All",
   "common_close": "Close",
   "common_edit": "Edit",
   "common_add": "Add",
@@ -46,6 +47,64 @@
     }
   },
   "scanner_title": "MeshCore Open",
+  "connectionChoiceUsbLabel": "USB",
+  "connectionChoiceBluetoothLabel": "Bluetooth",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpScreenTitle": "Connect over TCP",
+  "tcpHostLabel": "IP Address",
+  "tcpHostHint": "192.168.40.10",
+  "tcpPortLabel": "Port",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Enter endpoint and connect",
+  "tcpStatus_connectingTo": "Connecting to {endpoint}...",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpErrorHostRequired": "IP address is required.",
+  "tcpErrorPortInvalid": "Port must be between 1 and 65535.",
+  "tcpErrorUnsupported": "TCP transport is not supported on this platform.",
+  "tcpErrorTimedOut": "TCP connection timed out.",
+  "tcpConnectionFailed": "TCP connection failed: {error}",
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbScreenTitle": "Connect over USB",
+  "usbScreenSubtitle": "Choose a detected serial device and connect directly to your MeshCore node.",
+  "usbScreenStatus": "Select a USB device",
+  "usbScreenNote": "USB serial is active on supported Android devices and desktop platforms.",
+  "usbScreenEmptyState": "No USB devices found. Plug one in and refresh.",
+  "usbErrorPermissionDenied": "USB permission was denied.",
+  "usbErrorDeviceMissing": "The selected USB device is no longer available.",
+  "usbErrorInvalidPort": "Select a valid USB device.",
+  "usbErrorBusy": "Another USB connection request is already in progress.",
+  "usbErrorNotConnected": "No USB device is connected.",
+  "usbErrorOpenFailed": "Failed to open the selected USB device.",
+  "usbErrorConnectFailed": "Failed to connect to the selected USB device.",
+  "usbErrorUnsupported": "USB serial is not supported on this platform.",
+  "usbErrorAlreadyActive": "A USB connection is already active.",
+  "usbErrorNoDeviceSelected": "No USB device was selected.",
+  "usbErrorPortClosed": "The USB connection is not open.",
+  "usbErrorConnectTimedOut": "Connection timed out. Make sure the device has USB Companion firmware.",
+  "usbFallbackDeviceName": "Web Serial Device",
+  "usbStatus_notConnected": "Select a USB device",
+  "usbStatus_connecting": "Connecting to USB device...",
+  "usbStatus_searching": "Searching for USB devices...",
+  "usbConnectionFailed": "USB connection failed: {error}",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "scanner_scanning": "Scanning for devices...",
   "scanner_connecting": "Connecting...",
   "scanner_disconnecting": "Disconnecting...",
@@ -68,10 +127,13 @@
       }
     }
   },
+  
   "scanner_stop": "Stop",
   "scanner_scan": "Scan",
   "scanner_bluetoothOff": "Bluetooth is off",
   "scanner_bluetoothOffMessage": "Please turn on Bluetooth to scan for devices",
+  "scanner_chromeRequired": "Chrome Browser Required",
+  "scanner_chromeRequiredMessage": "This web application requires Google Chrome or a Chromium-based browser for Bluetooth support.",
   "scanner_enableBluetooth": "Enable Bluetooth",
   "device_quickSwitch": "Quick switch",
   "device_meshcore": "MeshCore",
@@ -98,11 +160,33 @@
   "settings_locationIntervalInvalid": "Interval must be at least 60 seconds, and less than 86400 seconds.",
   "settings_latitude": "Latitude",
   "settings_longitude": "Longitude",
+  "settings_contactSettings": "Contact Settings",
+  "settings_contactSettingsSubtitle": "Settings for how contacts are added.",
   "settings_privacyMode": "Privacy Mode",
   "settings_privacyModeSubtitle": "Hide name/location in advertisements",
   "settings_privacyModeToggle": "Toggle privacy mode to hide your name and location in advertisements.",
   "settings_privacyModeEnabled": "Privacy mode enabled",
   "settings_privacyModeDisabled": "Privacy mode disabled",
+  "settings_privacy": "Privacy Settings",
+  "settings_privacySubtitle": "Control what information is shared.",
+  "settings_privacySettingsDescription": "Choose what information your device shares with others.",
+  "settings_denyAll": "Deny all",
+  "settings_allowByContact": "Allow by contact flags",
+  "settings_allowAll": "Allow all",
+  "settings_telemetryBaseMode": "Telemetry Base Mode",
+  "settings_telemetryLocationMode": "Telemetry Location Mode",
+  "settings_telemetryEnvironmentMode": "Telemetry Environment Mode",
+  "settings_advertLocation": "Advert Location",
+  "settings_advertLocationSubtitle": "Include location in advert.",
+  "settings_multiAck": "Multi-ACKs: {value}",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_telemetryModeUpdated": "Telemetry mode updated",
   "settings_actions": "Actions",
   "settings_sendAdvertisement": "Send Advertisement",
   "settings_sendAdvertisementSubtitle": "Broadcast presence now",
@@ -206,6 +290,27 @@
   "appSettings_autoRouteRotationSubtitle": "Cycle between best paths and flood mode",
   "appSettings_autoRouteRotationEnabled": "Auto route rotation enabled",
   "appSettings_autoRouteRotationDisabled": "Auto route rotation disabled",
+  "appSettings_maxRouteWeight": "Max Route Weight",
+  "appSettings_maxRouteWeightSubtitle": "Maximum weight a path can accumulate from successful deliveries",
+  "appSettings_initialRouteWeight": "Initial Route Weight",
+  "appSettings_initialRouteWeightSubtitle": "Starting weight for newly discovered paths",
+  "appSettings_routeWeightSuccessIncrement": "Success Weight Increment",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Weight added to a path after successful delivery",
+  "appSettings_routeWeightFailureDecrement": "Failure Weight Decrement",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Weight removed from a path after failed delivery",
+  "appSettings_maxMessageRetries": "Max Message Retries",
+  "appSettings_maxMessageRetriesSubtitle": "Number of retry attempts before marking a message as failed",
+  "path_routeWeight": "{weight}/{max}",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_battery": "Battery",
   "appSettings_batteryChemistry": "Battery Chemistry",
   "appSettings_batteryChemistryPerDevice": "Set per device ({deviceName})",
@@ -353,6 +458,7 @@
   "contacts_newGroup": "New Group",
   "contacts_groupName": "Group name",
   "contacts_groupNameRequired": "Group name is required",
+  "contacts_groupNameReserved": "This group name is reserved",
   "contacts_groupAlreadyExists": "Group \"{name}\" already exists",
   "@contacts_groupAlreadyExists": {
     "placeholders": {
@@ -364,8 +470,8 @@
   "contacts_filterContacts": "Filter contacts...",
   "contacts_noContactsMatchFilter": "No contacts match your filter",
   "contacts_noMembers": "No members",
-  "contacts_lastSeenNow": "Last seen now",
-  "contacts_lastSeenMinsAgo": "Last seen {minutes} mins ago",
+  "contacts_lastSeenNow": "recently",
+  "contacts_lastSeenMinsAgo": "~ {minutes} min.",
   "@contacts_lastSeenMinsAgo": {
     "placeholders": {
       "minutes": {
@@ -373,8 +479,8 @@
       }
     }
   },
-  "contacts_lastSeenHourAgo": "Last seen 1 hour ago",
-  "contacts_lastSeenHoursAgo": "Last seen {hours} hours ago",
+  "contacts_lastSeenHourAgo": "~ 1 hour",
+  "contacts_lastSeenHoursAgo": "~ {hours} hours",
   "@contacts_lastSeenHoursAgo": {
     "placeholders": {
       "hours": {
@@ -382,8 +488,8 @@
       }
     }
   },
-  "contacts_lastSeenDayAgo": "Last seen 1 day ago",
-  "contacts_lastSeenDaysAgo": "Last seen {days} days ago",
+  "contacts_lastSeenDayAgo": "~ 1 day",
+  "contacts_lastSeenDaysAgo": "~ {days} days",
   "@contacts_lastSeenDaysAgo": {
     "placeholders": {
       "days": {
@@ -391,6 +497,17 @@
       }
     }
   },
+  "contact_info": "Contact Info",
+  "contact_settings": "Contact Settings",
+  "contact_telemetry": "Telemetry",
+  "contact_lastSeen": "Last seen",
+  "contact_clearChat": "Clear Chat",
+  "contact_teleBase": "Telemetry Base",
+  "contact_teleBaseSubtitle": "Allow sharing battery level and basic telemetry",
+  "contact_teleLoc": "Telemetry Location",
+  "contact_teleLocSubtitle": "Allow sharing location data",
+  "contact_teleEnv": "Telemetry Environment",
+  "contact_teleEnvSubtitle": "Allow sharing environment sensor data",
   "channels_title": "Channels",
   "channels_noChannelsConfigured": "No channels configured",
   "channels_addPublicChannel": "Add Public Channel",
@@ -490,6 +607,15 @@
   "channels_enterHashtag": "Enter hashtag",
   "channels_hashtagHint": "e.g. #team",
   "chat_noMessages": "No messages yet",
+  "chat_sendMessage": "Send message",
+  "chat_sendMessageTo": "Send message to {name}",
+  "@chat_sendMessageTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "chat_sendMessageToStart": "Send a message to get started",
   "chat_originalMessageNotFound": "Original message not found",
   "chat_replyingTo": "Replying to {name}",
@@ -744,6 +870,7 @@
   "map_source": "Source",
   "map_flags": "Flags",
   "map_shareMarkerHere": "Share marker here",
+  "map_setAsMyLocation": "Set as my location",
   "map_pinLabel": "Pin label",
   "map_label": "Label",
   "map_pointOfInterest": "Point of interest",
@@ -765,17 +892,22 @@
   "map_chatNodes": "Chat Nodes",
   "map_repeaters": "Repeaters",
   "map_otherNodes": "Other Nodes",
+  "map_showOverlaps": "Repeater Key Overlaps",
   "map_keyPrefix": "Key Prefix",
   "map_filterByKeyPrefix": "Filter by key prefix",
   "map_publicKeyPrefix": "Public key prefix",
   "map_markers": "Markers",
   "map_showSharedMarkers": "Show shared markers",
+  "map_showGuessedLocations": "Show guessed node locations",
+  "map_showDiscoveryContacts": "Show Discovery Contacts",
+  "map_guessedLocation": "Guessed location",
   "map_lastSeenTime": "Last Seen Time",
   "map_sharedPin": "Shared pin",
   "map_joinRoom": "Join Room",
   "map_manageRepeater": "Manage Repeater",
   "map_tapToAdd": "Tap on nodes to add them to the path.",
-  "map_runTrace": "Run Path Trace",
+  "map_runTrace": "Run path trace",
+  "map_runTraceWithReturnPath": "Return back on the same path.",
   "map_removeLast": "Remove Last",
   "map_pathTraceCancelled": "Path trace cancelled.",
   "mapCache_title": "Offline Map Cache",
@@ -906,8 +1038,8 @@
   "login_enterPassword": "Enter password",
   "login_savePassword": "Save password",
   "login_savePasswordSubtitle": "Password will be stored securely on this device",
-  "login_repeaterDescription": "Enter the repeater password to access settings and status.",
-  "login_roomDescription": "Enter the room password to access settings and status.",
+  "login_repeaterDescription": "Enter the repeater password for guest or admin access.",
+  "login_roomDescription": "Enter the room password for guest or admin access.",
   "login_routing": "Routing",
   "login_routingMode": "Routing mode",
   "login_autoUseSavedPath": "Auto (use saved path)",
@@ -973,7 +1105,10 @@
   "path_setPath": "Set Path",
   "repeater_management": "Repeater Management",
   "room_management": "Room Server Management",
+  "repeater_guest": "Repeater Information",
+  "room_guest": "Room Server Information",
   "repeater_managementTools": "Management Tools",
+  "repeater_guestTools": "Guest Tools",
   "repeater_status": "Status",
   "repeater_statusSubtitle": "View repeater status, stats, and neighbors",
   "repeater_telemetry": "Telemetry",
@@ -984,6 +1119,14 @@
   "repeater_neighborsSubtitle": "View zero hop neighbors.",
   "repeater_settings": "Settings",
   "repeater_settingsSubtitle": "Configure repeater parameters",
+  "repeater_clockSyncAfterLogin": "Clock sync after login",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Automatically send \"clock sync\" after a successful login",
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
   "repeater_statusTitle": "Repeater Status",
   "repeater_routingMode": "Routing mode",
   "repeater_autoUseSavedPath": "Auto (use saved path)",
@@ -1214,6 +1357,8 @@
   "repeater_cliQuickVersion": "Version",
   "repeater_cliQuickAdvertise": "Advertise",
   "repeater_cliQuickClock": "Clock",
+  "repeater_cliQuickClockSync": "Clock Sync",
+  "repeater_cliQuickDiscovery": "Discover Neighbors",
   "repeater_cliHelpAdvert": "Sends an advertisement packet",
   "repeater_cliHelpReboot": "Reboots the device. (note, you'll prob get 'Timeout' which is normal)",
   "repeater_cliHelpClock": "Displays current time per device's clock.",
@@ -1838,5 +1983,144 @@
   "settings_gpxExportShareText": "Map data exported from meshcore-open",
   "settings_gpxExportShareSubject": "meshcore-open GPX map data export",
   "snrIndicator_nearByRepeaters": "Nearby Repeaters",
-  "snrIndicator_lastSeen": "Last seen"
+  "snrIndicator_lastSeen": "Last seen",
+  "contactsSettings_title": "Contacts settings",
+  "contactsSettings_autoAddTitle": "Automatic Discovery",
+  "contactsSettings_otherTitle": "Other contact related settings",
+  "contactsSettings_autoAddUsersTitle": "Auto-add users",
+  "contactsSettings_autoAddUsersSubtitle": "Allow the companion to automatically add discovered users.",
+  "contactsSettings_autoAddRepeatersTitle": "Auto-add repeaters",
+  "contactsSettings_autoAddRepeatersSubtitle": "Allow the companion to automatically add discovered repeaters.",
+  "contactsSettings_autoAddRoomServersTitle": "Auto-add room servers",
+  "contactsSettings_autoAddRoomServersSubtitle": "Allow the companion to automatically add discovered room servers.",
+  "contactsSettings_autoAddSensorsTitle": "Auto-add sensors",
+  "contactsSettings_autoAddSensorsSubtitle": "Allow the companion to automatically add discovered sensors.",
+  "contactsSettings_overwriteOldestTitle": "Overwrite Oldest",
+  "contactsSettings_overwriteOldestSubtitle": "When the contact list is full, the oldest non-favorited contact will be replaced.",
+  "discoveredContacts_Title": "Discovered Contacts",
+  "discoveredContacts_noMatching": "No matching contacts",
+  "discoveredContacts_searchHint": "Search discovered contacts",
+  "discoveredContacts_contactAdded": "Contact added",
+  "discoveredContacts_addContact": "Add Contact",
+  "discoveredContacts_copyContact": "Copy Contact to clipboard",
+  "discoveredContacts_deleteContact": "Delete Discovered Contact",
+  "discoveredContacts_deleteContactAll": "Delete All Discovered Contacts",
+  "discoveredContacts_deleteContactAllContent": "Are you sure you want to delete all discovered contacts?",
+  "chat_sendCooldown": "Please wait a moment before sending again.",
+  "appSettings_jumpToOldestUnread": "Jump to oldest unread",
+  "appSettings_jumpToOldestUnreadSubtitle": "When opening a chat with unread messages, scroll to the first unread instead of the latest.",
+  "appSettings_languageHu": "Hungarian",
+  "appSettings_languageJa": "Japanese",
+  "appSettings_languageKo": "Korean",
+  "radioStats_tooltip": "Radio & mesh stats",
+  "radioStats_screenTitle": "Radio stats",
+  "radioStats_notConnected": "Connect to a device to view radio statistics.",
+  "radioStats_firmwareTooOld": "Radio statistics require companion firmware v8 or newer.",
+  "radioStats_waiting": "Waiting for data…",
+  "radioStats_noiseFloor": "Noise floor: {noiseDbm} dBm",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "radioStats_lastRssi": "Last RSSI: {rssiDbm} dBm",
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "radioStats_lastSnr": "Last SNR: {snr} dB",
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "radioStats_txAir": "TX airtime (total): {seconds} s",
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "radioStats_rxAir": "RX airtime (total): {seconds} s",
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "radioStats_chartCaption": "Noise floor (dBm) over recent samples.",
+  "radioStats_stripNoise": "Noise floor: {noiseDbm} dBm",
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "radioStats_stripWaiting": "Fetching radio stats…",
+  "radioStats_settingsTile": "Radio stats",
+  "radioStats_settingsSubtitle": "Noise floor, RSSI, SNR, and airtime",
+
+  "translation_title": "Translation",
+  "translation_enableTitle": "Enable translation",
+  "translation_enableSubtitle": "Translate incoming messages and allow pre-send translation.",
+  "translation_composerTitle": "Translate before sending",
+  "translation_composerSubtitle": "Controls the default state of the composer translation icon.",
+  "translation_targetLanguage": "Target language",
+  "translation_useAppLanguage": "Use app language",
+  "translation_downloadedModelLabel": "Downloaded model",
+  "translation_presetModelLabel": "Preset Hugging Face model",
+  "translation_manualUrlLabel": "Manual model URL",
+  "translation_downloadModel": "Download model",
+  "translation_downloading": "Downloading...",
+  "translation_working": "Working...",
+  "translation_stop": "Stop",
+  "translation_mergingChunks": "Merging downloaded chunks into final file...",
+  "translation_downloadedModels": "Downloaded models",
+  "translation_deleteModel": "Delete model",
+  "translation_modelDownloaded": "Translation model downloaded.",
+  "translation_downloadStopped": "Download stopped.",
+  "translation_downloadFailed": "Download failed: {error}",
+  "@translation_downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_enterUrlFirst": "Enter a model URL first.",
+  "scanner_linuxPairingShowPin": "Show PIN",
+  "scanner_linuxPairingHidePin": "Hide PIN",
+  "scanner_linuxPairingPinTitle": "Bluetooth Pairing PIN",
+  "scanner_linuxPairingPinPrompt": "Enter PIN for {deviceName} (leave blank if none).",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_messageTranslation": "Message translation",
+  "translation_translateBeforeSending": "Translate before sending",
+  "translation_composerEnabledHint": "Messages will be translated before send.",
+  "translation_composerDisabledHint": "Send messages in the original typed language.",
+  "translation_translateTo": "Translate to {language}",
+  "@translation_translateTo": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_translationOptions": "Translation options",
+  "translation_systemLanguage": "System language"
 }

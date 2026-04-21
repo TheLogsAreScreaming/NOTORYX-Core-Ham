@@ -4,28 +4,34 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../utils/platform_info.dart';
 import '../helpers/chat_scroll_controller.dart';
 import '../connector/meshcore_protocol.dart';
-import '../helpers/link_handler.dart';
+import '../helpers/gif_helper.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/utf8_length_limiter.dart';
+import '../helpers/snack_bar_builder.dart';
 import '../l10n/l10n.dart';
 import '../models/channel.dart';
 import '../models/channel_message.dart';
+import '../models/translation_support.dart';
 import '../services/app_settings_service.dart';
 import '../services/chat_text_scale_service.dart';
+import '../services/translation_service.dart';
 import '../utils/emoji_utils.dart';
 import '../widgets/chat_zoom_wrapper.dart';
 import '../widgets/emoji_picker.dart';
 import '../widgets/gif_message.dart';
 import '../widgets/jump_to_bottom_button.dart';
 import '../widgets/gif_picker.dart';
+import '../widgets/message_translation_button.dart';
 import '../widgets/message_status_icon.dart';
+import '../widgets/radio_stats_entry.dart';
+import '../widgets/translated_message_content.dart';
 import 'channel_message_path_screen.dart';
 import 'map_screen.dart';
 
@@ -47,6 +53,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   bool _isLoadingOlder = false;
 
   MeshCoreConnector? _connector;
+  DateTime? _lastChannelSendAt;
+  bool _channelSkipNextBottomSnap = false;
 
   @override
   void initState() {
@@ -55,9 +63,43 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     _scrollController.onScrollNearTop = _loadOlderMessages;
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      _connector = context.read<MeshCoreConnector>();
-      _connector?.setActiveChannel(widget.channel.index);
+      final connector = context.read<MeshCoreConnector>();
+      final settings = context.read<AppSettingsService>().settings;
+      final idx = widget.channel.index;
+      final unread = connector.getUnreadCountForChannelIndex(idx);
+      ChannelMessage? anchor;
+      if (settings.jumpToOldestUnread && unread > 0) {
+        anchor = _findOldestUnreadChannelAnchor(
+          connector.getChannelMessages(widget.channel),
+          unread,
+        );
+      }
+      connector.setActiveChannel(idx);
+      _connector = connector;
+      if (anchor != null) {
+        _channelSkipNextBottomSnap = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          _scrollToMessage(anchor!.messageId);
+        });
+      }
     });
+  }
+
+  ChannelMessage? _findOldestUnreadChannelAnchor(
+    List<ChannelMessage> messages,
+    int unreadCount,
+  ) {
+    if (unreadCount <= 0 || messages.isEmpty) return null;
+    var n = 0;
+    ChannelMessage? oldest;
+    for (final m in messages.reversed) {
+      if (m.isOutgoing) continue;
+      n++;
+      oldest = m;
+      if (n >= unreadCount) break;
+    }
+    return oldest;
   }
 
   void _onTextFieldFocusChange() {
@@ -103,11 +145,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   Future<void> _scrollToMessage(String messageId) async {
     final key = _messageKeys[messageId];
     if (key == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(context.l10n.chat_originalMessageNotFound),
-          duration: const Duration(seconds: 2),
-        ),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.chat_originalMessageNotFound),
+        duration: const Duration(seconds: 2),
       );
       return;
     }
@@ -166,6 +207,34 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
           ],
         ),
         centerTitle: false,
+        actions: [
+          const RadioStatsIconButton(),
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert),
+            onSelected: (value) {
+              if (value == 'clearChat') {
+                context.read<MeshCoreConnector>().clearMessagesForChannel(
+                  widget.channel.index,
+                );
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 'clearChat',
+                child: Row(
+                  children: [
+                    const Icon(Icons.delete, size: 20, color: Colors.red),
+                    const SizedBox(width: 12),
+                    Text(
+                      context.l10n.contact_clearChat,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       body: SafeArea(
         top: false,
@@ -216,6 +285,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
 
                   // Auto-scroll to bottom if user is already at bottom
                   WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (_channelSkipNextBottomSnap) {
+                      _channelSkipNextBottomSnap = false;
+                      return;
+                    }
                     _scrollController.scrollToBottomIfAtBottom();
                   });
 
@@ -283,8 +356,16 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final settingsService = context.watch<AppSettingsService>();
     final enableTracing = settingsService.settings.enableMessageTracing;
     final isOutgoing = message.isOutgoing;
-    final gifId = _parseGifId(message.text);
+    final gifId = GifHelper.parseGif(message.text);
     final poi = _parsePoiMessage(message.text);
+    final translatedDisplayText =
+        message.translatedText != null &&
+            message.translatedText!.trim().isNotEmpty
+        ? message.translatedText!.trim()
+        : message.text;
+    final originalDisplayText = message.isOutgoing
+        ? message.originalText
+        : (translatedDisplayText != message.text ? message.text : null);
     final displayPath = message.pathBytes.isNotEmpty
         ? message.pathBytes
         : (message.pathVariants.isNotEmpty
@@ -311,8 +392,13 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
             ],
             Flexible(
               child: GestureDetector(
-                onTap: () => _showMessagePathInfo(message),
+                onTap: PlatformInfo.isDesktop
+                    ? null
+                    : () => _showMessagePathInfo(message),
                 onLongPress: () => _showMessageActions(message),
+                onSecondaryTapUp: PlatformInfo.isDesktop
+                    ? (_) => _showMessageActions(message)
+                    : null,
                 child: Container(
                   padding: gifId != null
                       ? const EdgeInsets.all(4)
@@ -430,24 +516,17 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Flexible(
-                              child: Linkify(
-                                text: message.text,
+                              child: TranslatedMessageContent(
+                                displayText: translatedDisplayText,
+                                originalText: originalDisplayText,
                                 style: TextStyle(
                                   fontSize: bodyFontSize * textScale,
                                 ),
-                                linkStyle: TextStyle(
+                                originalStyle: TextStyle(
                                   fontSize: bodyFontSize * textScale,
-                                  color: Colors.green,
-                                  decoration: TextDecoration.underline,
-                                ),
-                                options: const LinkifyOptions(
-                                  humanize: false,
-                                  defaultToHttps: false,
-                                ),
-                                linkifiers: const [UrlLinkifier()],
-                                onOpen: (link) => LinkHandler.handleLinkTap(
-                                  context,
-                                  link.url,
+                                  fontStyle: FontStyle.italic,
+                                  color: Theme.of(context).colorScheme.onSurface
+                                      .withValues(alpha: 0.72),
                                 ),
                               ),
                             ),
@@ -557,7 +636,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       ],
     );
 
-    if (!isOutgoing) {
+    if (!isOutgoing && !PlatformInfo.isDesktop) {
       return _SwipeReplyBubble(
         maxSwipeOffset: maxSwipeOffset,
         replySwipeThreshold: replySwipeThreshold,
@@ -621,7 +700,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final colorScheme = Theme.of(context).colorScheme;
     final previewTextColor = colorScheme.onSurface.withValues(alpha: 0.7);
 
-    final gifId = _parseGifId(replyText);
+    final gifId = GifHelper.parseGif(replyText);
     final poi = _parsePoiMessage(replyText);
 
     Widget contentPreview;
@@ -733,12 +812,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
-  String? _parseGifId(String text) {
-    final trimmed = text.trim();
-    final match = RegExp(r'^g:([A-Za-z0-9_-]+)$').firstMatch(trimmed);
-    return match?.group(1);
-  }
-
   _PoiInfo? _parsePoiMessage(String text) {
     final trimmed = text.trim();
     final match = RegExp(
@@ -819,7 +892,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       isScrollControlled: true,
       builder: (context) => GifPicker(
         onGifSelected: (gifId) {
-          _textController.text = 'g:$gifId';
+          _textController.text = GifHelper.encodeGif(gifId);
         },
       ),
     );
@@ -933,6 +1006,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   Widget _buildMessageComposer() {
     final connector = context.watch<MeshCoreConnector>();
     final maxBytes = maxChannelMessageBytes(connector.selfName);
+    final settings = context.watch<AppSettingsService>().settings;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -964,11 +1038,17 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 onPressed: () => _showGifPicker(context),
                 tooltip: context.l10n.chat_sendGif,
               ),
+              if (settings.translationEnabled)
+                MessageTranslationButton(
+                  enabled: settings.composerTranslationEnabled,
+                  languageCode: settings.translationTargetLanguageCode,
+                  onPressed: _showTranslationOptions,
+                ),
               Expanded(
                 child: ValueListenableBuilder<TextEditingValue>(
                   valueListenable: _textController,
                   builder: (context, value, child) {
-                    final gifId = _parseGifId(value.text);
+                    final gifId = GifHelper.parseGif(value.text);
                     if (gifId != null) {
                       return Focus(
                         autofocus: true,
@@ -1041,6 +1121,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               const SizedBox(width: 8),
               IconButton(
                 icon: const Icon(Icons.send),
+                tooltip: context.l10n.chat_sendMessage,
                 onPressed: _sendMessage,
                 color: Theme.of(context).colorScheme.primary,
               ),
@@ -1051,29 +1132,87 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
-  void _sendMessage() {
+  Future<void> _showTranslationOptions() async {
+    final settingsService = context.read<AppSettingsService>();
+    final settings = settingsService.settings;
+    await showMessageTranslationSheet(
+      context: context,
+      enabled: settings.composerTranslationEnabled,
+      selectedLanguageCode: settings.translationTargetLanguageCode,
+      onEnabledChanged: settingsService.setComposerTranslationEnabled,
+      onLanguageSelected: settingsService.setTranslationTargetLanguageCode,
+    );
+  }
+
+  Future<void> _sendMessage() async {
     final text = _textController.text.trim();
     if (text.isEmpty) return;
 
+    final now = DateTime.now();
+    if (_lastChannelSendAt != null &&
+        now.difference(_lastChannelSendAt!) < const Duration(seconds: 1)) {
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.chat_sendCooldown),
+      );
+      return;
+    }
+    _lastChannelSendAt = now;
+
     final connector = context.read<MeshCoreConnector>();
+    final settings = context.read<AppSettingsService>().settings;
+    final translationService = context.read<TranslationService>();
 
     String messageText = text;
+    String? originalText;
+    String? translatedLanguageCode;
+    String? translationModelId;
+    if (settings.translationEnabled) {
+      final targetLanguageCode = translationService.resolvedTargetLanguageCode(
+        Localizations.localeOf(context).languageCode,
+      );
+      if (translationService.shouldTranslateOutgoing(
+        text: text,
+        targetLanguageCode: targetLanguageCode,
+      )) {
+        final result = await translationService.translateOutgoingText(
+          text: text,
+          targetLanguageCode: targetLanguageCode,
+        );
+        if (!mounted) return;
+        if (result != null &&
+            result.status == MessageTranslationStatus.completed &&
+            result.translatedText.isNotEmpty) {
+          messageText = result.translatedText;
+          originalText = text;
+          translatedLanguageCode = result.targetLanguageCode;
+          translationModelId = result.modelId;
+        }
+      }
+    }
     if (_replyingToMessage != null) {
-      messageText = '@[${_replyingToMessage!.senderName}] $text';
+      messageText = '@[${_replyingToMessage!.senderName}] $messageText';
     }
 
     final maxBytes = maxChannelMessageBytes(connector.selfName);
     if (utf8.encode(messageText).length > maxBytes) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.chat_messageTooLong(maxBytes))),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.chat_messageTooLong(maxBytes)),
       );
       return;
     }
 
-    connector.sendChannelMessage(widget.channel, messageText);
     _textController.clear();
     _cancelReply();
     _textFieldFocusNode.requestFocus();
+    connector.sendChannelMessage(
+      widget.channel,
+      messageText,
+      originalText: originalText,
+      translatedLanguageCode: translatedLanguageCode,
+      translationModelId: translationModelId,
+    );
   }
 
   String _formatTime(DateTime time) {
@@ -1112,6 +1251,15 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 _setReplyingTo(message);
               },
             ),
+            if (PlatformInfo.isDesktop)
+              ListTile(
+                leading: const Icon(Icons.route),
+                title: Text(context.l10n.chat_path),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _showMessagePathInfo(message);
+                },
+              ),
             // Can't react to your own messages
             if (!message.isOutgoing)
               ListTile(
@@ -1171,23 +1319,25 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       message.senderName,
       message.text,
     );
-    final reactionText = 'r:$hash:$emojiIndex';
+    final reactionText = ReactionHelper.encodeReaction(hash, emojiIndex);
     connector.sendChannelMessage(widget.channel, reactionText);
   }
 
   void _copyMessageText(String text) {
     Clipboard.setData(ClipboardData(text: text));
-    ScaffoldMessenger.of(
+    showDismissibleSnackBar(
       context,
-    ).showSnackBar(SnackBar(content: Text(context.l10n.chat_messageCopied)));
+      content: Text(context.l10n.chat_messageCopied),
+    );
   }
 
   Future<void> _deleteMessage(ChannelMessage message) async {
     await context.read<MeshCoreConnector>().deleteChannelMessage(message);
     if (!mounted) return;
-    ScaffoldMessenger.of(
+    showDismissibleSnackBar(
       context,
-    ).showSnackBar(SnackBar(content: Text(context.l10n.chat_messageDeleted)));
+      content: Text(context.l10n.chat_messageDeleted),
+    );
   }
 
   String _formatPathPrefixes(Uint8List pathBytes) {

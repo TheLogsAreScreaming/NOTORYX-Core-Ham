@@ -39,6 +39,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get common_delete => 'Elimina';
 
   @override
+  String get common_deleteAll => 'Elimina tutto';
+
+  @override
   String get common_close => 'Chiudi';
 
   @override
@@ -109,6 +112,137 @@ class AppLocalizationsIt extends AppLocalizations {
   String get scanner_title => 'MeshCore Open';
 
   @override
+  String get connectionChoiceUsbLabel => 'USB';
+
+  @override
+  String get connectionChoiceBluetoothLabel => 'Bluetooth';
+
+  @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Stabilire una connessione tramite TCP';
+
+  @override
+  String get tcpHostLabel => 'Indirizzo IP';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Porta';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => 'Inserisci l\'endpoint e connettiti.';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Connessione a $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'È necessario fornire un indirizzo IP.';
+
+  @override
+  String get tcpErrorPortInvalid =>
+      'La dimensione della porta deve essere compresa tra 1 e 65535.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'Il protocollo TCP non è supportato su questa piattaforma.';
+
+  @override
+  String get tcpErrorTimedOut => 'La connessione TCP è scaduta.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Impossibile stabilire la connessione TCP: $error';
+  }
+
+  @override
+  String get usbScreenTitle => 'Connessione tramite USB';
+
+  @override
+  String get usbScreenSubtitle =>
+      'Seleziona il dispositivo seriale rilevato e connettilo direttamente al tuo nodo MeshCore.';
+
+  @override
+  String get usbScreenStatus => 'Seleziona un dispositivo USB';
+
+  @override
+  String get usbScreenNote =>
+      'La comunicazione seriale USB è attiva sui dispositivi Android supportati e sulle piattaforme desktop.';
+
+  @override
+  String get usbScreenEmptyState =>
+      'Nessun dispositivo USB rilevato. Collegare uno e aggiornare.';
+
+  @override
+  String get usbErrorPermissionDenied =>
+      'È stato negato l\'accesso tramite USB.';
+
+  @override
+  String get usbErrorDeviceMissing =>
+      'Il dispositivo USB selezionato non è più disponibile.';
+
+  @override
+  String get usbErrorInvalidPort => 'Seleziona un dispositivo USB valido.';
+
+  @override
+  String get usbErrorBusy =>
+      'Un\'altra richiesta di connessione tramite USB è già in corso.';
+
+  @override
+  String get usbErrorNotConnected => 'Non è collegato alcun dispositivo USB.';
+
+  @override
+  String get usbErrorOpenFailed =>
+      'Impossibile aprire il dispositivo USB selezionato.';
+
+  @override
+  String get usbErrorConnectFailed =>
+      'Impossibile connettersi al dispositivo USB selezionato.';
+
+  @override
+  String get usbErrorUnsupported =>
+      'La comunicazione seriale tramite USB non è supportata su questa piattaforma.';
+
+  @override
+  String get usbErrorAlreadyActive => 'La connessione USB è già attiva.';
+
+  @override
+  String get usbErrorNoDeviceSelected =>
+      'Non è stato selezionato alcun dispositivo USB.';
+
+  @override
+  String get usbErrorPortClosed => 'La connessione USB non è attiva.';
+
+  @override
+  String get usbErrorConnectTimedOut =>
+      'La connessione è scaduta. Assicurarsi che il dispositivo abbia il firmware USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName =>
+      'Dispositivo per comunicazione seriale su rete';
+
+  @override
+  String get usbStatus_notConnected => 'Seleziona un dispositivo USB';
+
+  @override
+  String get usbStatus_connecting => 'Connessione al dispositivo USB...';
+
+  @override
+  String get usbStatus_searching => 'Ricerca di dispositivi USB...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Errore nella connessione USB: $error';
+  }
+
+  @override
   String get scanner_scanning => 'Scansione in corso per i dispositivi...';
 
   @override
@@ -149,6 +283,13 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get scanner_bluetoothOffMessage =>
       'Si prega di attivare il Bluetooth per effettuare la scansione dei dispositivi.';
+
+  @override
+  String get scanner_chromeRequired => 'Browser Chrome richiesto';
+
+  @override
+  String get scanner_chromeRequiredMessage =>
+      'Questa applicazione web richiede Google Chrome o un browser basato su Chromium per il supporto Bluetooth.';
 
   @override
   String get scanner_enableBluetooth => 'Abilita il Bluetooth';
@@ -234,6 +375,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settings_longitude => 'Longitudine';
 
   @override
+  String get settings_contactSettings => 'Impostazioni di contatto';
+
+  @override
+  String get settings_contactSettingsSubtitle =>
+      'Impostazioni per l\'aggiunta dei contatti';
+
+  @override
   String get settings_privacyMode => 'Modalità Privacy';
 
   @override
@@ -249,6 +397,52 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get settings_privacyModeDisabled => 'Modalità privacy disabilitata';
+
+  @override
+  String get settings_privacy => 'Impostazioni sulla privacy';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Controlla le informazioni che vengono condivise.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Scegli le informazioni che il tuo dispositivo condivide con gli altri.';
+
+  @override
+  String get settings_denyAll => 'Negare tutto';
+
+  @override
+  String get settings_allowByContact => 'Consenti in base ai flag di contatto';
+
+  @override
+  String get settings_allowAll => 'Consenti tutto';
+
+  @override
+  String get settings_telemetryBaseMode => 'Modalità di base di telemetria';
+
+  @override
+  String get settings_telemetryLocationMode =>
+      'Modalità di posizionamento telemetrico';
+
+  @override
+  String get settings_telemetryEnvironmentMode =>
+      'Modalità di ambiente di telemetria';
+
+  @override
+  String get settings_advertLocation => 'Posizione dell\'annuncio';
+
+  @override
+  String get settings_advertLocationSubtitle =>
+      'Includi la posizione nell\'annuncio';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Multi-ACKs: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Modalità telemetria aggiornata';
 
   @override
   String get settings_actions => 'Azioni';
@@ -548,6 +742,50 @@ class AppLocalizationsIt extends AppLocalizations {
       'Rotazione del percorso automatico disabilitata';
 
   @override
+  String get appSettings_maxRouteWeight =>
+      'Massimo peso consentito per il percorso';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Il peso massimo che un percorso può accumulare grazie a consegne di successo.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Peso iniziale del percorso';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Peso di partenza per nuovi percorsi';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Aumento del peso del successo';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Peso aggiunto a un percorso dopo una consegna riuscita.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Riduzione del peso associato al fallimento';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Peso rimosso da un percorso dopo un tentativo di consegna fallito.';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Numero massimo di tentativi di invio del messaggio';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Numero di tentativi di riprova prima di considerare un messaggio come fallito.';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Batteria';
 
   @override
@@ -754,6 +992,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get contacts_groupNameRequired => 'Il nome del gruppo è obbligatorio.';
 
   @override
+  String get contacts_groupNameReserved => 'Questo nome del gruppo è riservato';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return 'Il gruppo \"$name\" esiste già.';
   }
@@ -791,6 +1032,42 @@ class AppLocalizationsIt extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Ultimo visto $days giorni fa';
   }
+
+  @override
+  String get contact_info => 'Informazioni di Contatto';
+
+  @override
+  String get contact_settings => 'Impostazioni di contatto';
+
+  @override
+  String get contact_telemetry => 'Telemetria';
+
+  @override
+  String get contact_lastSeen => 'Ultimo accesso';
+
+  @override
+  String get contact_clearChat => 'Cancella chat';
+
+  @override
+  String get contact_teleBase => 'Base di telemetria';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Consenti la condivisione del livello della batteria e della telemetria di base';
+
+  @override
+  String get contact_teleLoc => 'Posizione telemetria';
+
+  @override
+  String get contact_teleLocSubtitle =>
+      'Consenti la condivisione dei dati di posizione';
+
+  @override
+  String get contact_teleEnv => 'Ambiente di telemetria';
+
+  @override
+  String get contact_teleEnvSubtitle =>
+      'Consenti la condivisione dei dati del sensore ambientale';
 
   @override
   String get channels_title => 'Canali';
@@ -963,6 +1240,14 @@ class AppLocalizationsIt extends AppLocalizations {
   String get chat_noMessages => 'Nessun messaggio ancora';
 
   @override
+  String get chat_sendMessage => 'Invia messaggio';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Invia un messaggio a $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Invia un messaggio per iniziare';
 
   @override
@@ -980,11 +1265,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get chat_location => 'Posizione';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Invia un messaggio a $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Digita un messaggio...';
@@ -1363,6 +1643,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get map_shareMarkerHere => 'Condividi marcatore qui';
 
   @override
+  String get map_setAsMyLocation => 'Imposta come la mia posizione';
+
+  @override
   String get map_pinLabel => 'Etichetta PIN';
 
   @override
@@ -1408,6 +1691,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get map_otherNodes => 'Altri Nodi';
 
   @override
+  String get map_showOverlaps => 'Sovrapposizioni della chiave ripetitore';
+
+  @override
   String get map_keyPrefix => 'Prefisso Chiave';
 
   @override
@@ -1421,6 +1707,15 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get map_showSharedMarkers => 'Mostra i segnaposto condivisi';
+
+  @override
+  String get map_showGuessedLocations => 'Mostra le posizioni stimate dei nodi';
+
+  @override
+  String get map_showDiscoveryContacts => 'Mostra Contatti di Discovery';
+
+  @override
+  String get map_guessedLocation => 'Località indovinata';
 
   @override
   String get map_lastSeenTime => 'Ultimo Tempo di Visualizzazione';
@@ -1439,6 +1734,10 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get map_runTrace => 'Esegui Path Trace';
+
+  @override
+  String get map_runTraceWithReturnPath =>
+      'Tornare indietro sullo stesso percorso';
 
   @override
   String get map_removeLast => 'Rimuovi ultimo';
@@ -1718,7 +2017,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get room_management => 'Gestione del Server di Camera';
 
   @override
+  String get repeater_guest => 'Informazioni sul ripetitore';
+
+  @override
+  String get room_guest => 'Informazioni sul server';
+
+  @override
   String get repeater_managementTools => 'Strumenti di Gestione';
+
+  @override
+  String get repeater_guestTools => 'Strumenti per gli ospiti';
 
   @override
   String get repeater_status => 'Stato';
@@ -1753,6 +2061,14 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get repeater_settingsSubtitle =>
       'Configura i parametri del ripetitore';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Sincronizzazione dell\'orologio dopo il login';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Invia automaticamente il comando \"sincronizzazione dell\'orologio\" dopo un login riuscito.';
 
   @override
   String get repeater_statusTitle => 'Stato del Ripetitore';
@@ -2129,6 +2445,12 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Orologio';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Sincronizzazione dell\'orologio';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Scopri i Vicini';
 
   @override
   String get repeater_cliHelpAdvert => 'Invia un pacchetto pubblicitario';
@@ -3119,4 +3441,275 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get snrIndicator_lastSeen => 'Ultimo accesso';
+
+  @override
+  String get contactsSettings_title => 'Impostazioni dei contatti';
+
+  @override
+  String get contactsSettings_autoAddTitle => 'Scoperta automatica';
+
+  @override
+  String get contactsSettings_otherTitle =>
+      'Altre impostazioni relative ai contatti';
+
+  @override
+  String get contactsSettings_autoAddUsersTitle =>
+      'Aggiungere utenti automaticamente';
+
+  @override
+  String get contactsSettings_autoAddUsersSubtitle =>
+      'Consenti al compagno di aggiungere automaticamente gli utenti scoperti.';
+
+  @override
+  String get contactsSettings_autoAddRepeatersTitle =>
+      'Aggiungere ripetitori automaticamente';
+
+  @override
+  String get contactsSettings_autoAddRepeatersSubtitle =>
+      'Consenti al compagno di aggiungere automaticamente i ripetitori scoperti.';
+
+  @override
+  String get contactsSettings_autoAddRoomServersTitle =>
+      'Aggiungere automaticamente i server delle stanze';
+
+  @override
+  String get contactsSettings_autoAddRoomServersSubtitle =>
+      'Consenti al compagno di aggiungere automaticamente i server delle stanze scoperte.';
+
+  @override
+  String get contactsSettings_autoAddSensorsTitle =>
+      'Aggiungere automaticamente i sensori';
+
+  @override
+  String get contactsSettings_autoAddSensorsSubtitle =>
+      'Consenti al compagno di aggiungere automaticamente i sensori scoperti';
+
+  @override
+  String get contactsSettings_overwriteOldestTitle =>
+      'Sostituisci il più vecchio';
+
+  @override
+  String get contactsSettings_overwriteOldestSubtitle =>
+      'Quando l\'elenco dei contatti è pieno, il contatto più vecchio non tra i preferiti verrà sostituito.';
+
+  @override
+  String get discoveredContacts_Title => 'Contatti scoperti';
+
+  @override
+  String get discoveredContacts_noMatching => 'Nessun contatto corrispondente';
+
+  @override
+  String get discoveredContacts_searchHint => 'Cerca contatti scoperti';
+
+  @override
+  String get discoveredContacts_contactAdded => 'Contatto aggiunto';
+
+  @override
+  String get discoveredContacts_addContact => 'Aggiungi contatto';
+
+  @override
+  String get discoveredContacts_copyContact => 'Copia contatto negli appunti';
+
+  @override
+  String get discoveredContacts_deleteContact => 'Elimina Contatto';
+
+  @override
+  String get discoveredContacts_deleteContactAll =>
+      'Eliminare tutti i contatti scoperti';
+
+  @override
+  String get discoveredContacts_deleteContactAllContent =>
+      'Sei sicuro di voler eliminare tutti i contatti scoperti?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Si prega di attendere un momento prima di inviare nuovamente.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Vai al messaggio più vecchio non letto';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'Quando si apre una chat con messaggi non letti, scorrete verso l\'alto fino al primo messaggio non letto, invece che al più recente.';
+
+  @override
+  String get appSettings_languageHu => 'Ungherese';
+
+  @override
+  String get appSettings_languageJa => 'Giapponese';
+
+  @override
+  String get appSettings_languageKo => 'Coreano';
+
+  @override
+  String get radioStats_tooltip => 'Statistiche per radio e reti';
+
+  @override
+  String get radioStats_screenTitle => 'Statistiche radio';
+
+  @override
+  String get radioStats_notConnected =>
+      'Connettiti a un dispositivo per visualizzare le statistiche radio.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Le statistiche radio richiedono il firmware versione 8 o successiva.';
+
+  @override
+  String get radioStats_waiting => 'In attesa dei dati…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Livello di rumore: $noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Ultimo valore RSSI: $rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Ultimo SNR: $snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'Tempo di trasmissione in diretta (totale): $seconds s';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'Tempo di trasmissione RX (totale): $seconds s';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Livello di rumore (dBm) misurato su campioni recenti.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Livello di rumore: $noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Recupero delle statistiche radio…';
+
+  @override
+  String get radioStats_settingsTile => 'Statistiche radio';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Livello di rumore, RSSI, rapporto segnale/rumore (SNR) e tempo di trasmissione';
+
+  @override
+  String get translation_title => 'Traduzione';
+
+  @override
+  String get translation_enableTitle => 'Abilitare la traduzione';
+
+  @override
+  String get translation_enableSubtitle =>
+      'Tradurre i messaggi in arrivo e consentire la traduzione preventiva prima dell\'invio.';
+
+  @override
+  String get translation_composerTitle => 'Tradurre prima di inviare';
+
+  @override
+  String get translation_composerSubtitle =>
+      'Controlla lo stato predefinito dell\'icona di traduzione del compositore.';
+
+  @override
+  String get translation_targetLanguage => 'Lingua di destinazione';
+
+  @override
+  String get translation_useAppLanguage => 'Utilizza la lingua dell\'app';
+
+  @override
+  String get translation_downloadedModelLabel => 'Modello scaricato';
+
+  @override
+  String get translation_presetModelLabel =>
+      'Modello predefinito di Hugging Face';
+
+  @override
+  String get translation_manualUrlLabel => 'URL del modello manuale';
+
+  @override
+  String get translation_downloadModel => 'Scarica il modello';
+
+  @override
+  String get translation_downloading => 'Inizio download...';
+
+  @override
+  String get translation_working => 'Lavoro...';
+
+  @override
+  String get translation_stop => 'Smetta';
+
+  @override
+  String get translation_mergingChunks =>
+      'Unione dei frammenti scaricati in un unico file...';
+
+  @override
+  String get translation_downloadedModels => 'Modelli scaricati';
+
+  @override
+  String get translation_deleteModel => 'Elimina modello';
+
+  @override
+  String get translation_modelDownloaded => 'Modello di traduzione scaricato.';
+
+  @override
+  String get translation_downloadStopped => 'Il download è stato interrotto.';
+
+  @override
+  String translation_downloadFailed(String error) {
+    return 'Download fallito: $error';
+  }
+
+  @override
+  String get translation_enterUrlFirst =>
+      'Inserite innanzitutto l\'URL del modello.';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Mostra PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Nascondi il PIN';
+
+  @override
+  String get scanner_linuxPairingPinTitle =>
+      'PIN per l\'accoppiamento Bluetooth';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Inserire il codice PIN per $deviceName (lasciare vuoto se non presente).';
+  }
+
+  @override
+  String get translation_messageTranslation => 'Traduzione del messaggio';
+
+  @override
+  String get translation_translateBeforeSending => 'Tradurre prima di inviare';
+
+  @override
+  String get translation_composerEnabledHint =>
+      'I messaggi verranno tradotti prima di essere inviati.';
+
+  @override
+  String get translation_composerDisabledHint =>
+      'Invia messaggi utilizzando la lingua originale, scritta.';
+
+  @override
+  String translation_translateTo(String language) {
+    return 'Tradurre in $language';
+  }
+
+  @override
+  String get translation_translationOptions => 'Opzioni di traduzione';
+
+  @override
+  String get translation_systemLanguage => 'Lingua del sistema';
 }

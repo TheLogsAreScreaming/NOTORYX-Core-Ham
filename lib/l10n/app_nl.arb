@@ -84,7 +84,7 @@
   "settings_appSettings": "App Instellingen",
   "settings_appSettingsSubtitle": "Notificaties, berichten en kaartinstellingen",
   "settings_nodeSettings": "Node Instellingen",
-  "settings_nodeName": "Node Naam",
+  "settings_nodeName": "Nodenaam",
   "settings_nodeNameNotSet": "Niet ingesteld",
   "settings_nodeNameHint": "Voer nodenaam in",
   "settings_nodeNameUpdated": "Naam bijgewerkt",
@@ -107,13 +107,13 @@
   "settings_sendAdvertisement": "Verzend Advertentie",
   "settings_sendAdvertisementSubtitle": "Nu aanwezigheid uitzenden",
   "settings_advertisementSent": "Advertentie verzonden",
-  "settings_syncTime": "Synchronisatie Tijd",
+  "settings_syncTime": "Tijd Synchroniseren",
   "settings_syncTimeSubtitle": "Stel de apparaatklok in op de tijd van de telefoon.",
   "settings_timeSynchronized": "Tijdsynchronisatie",
   "settings_refreshContacts": "Contacten vernieuwen",
   "settings_refreshContactsSubtitle": "Contactlijst opnieuw laden van het apparaat",
   "settings_rebootDevice": "Apparaat opnieuw opstarten",
-  "settings_rebootDeviceSubtitle": "Herstart het MeshCore apparaat",
+  "settings_rebootDeviceSubtitle": "Herstart het MeshCore-apparaat",
   "settings_rebootDeviceConfirm": "Ben je er zeker van dat je het apparaat opnieuw wilt opstarten? Je wordt losgekoppeld.",
   "settings_debug": "Debug",
   "settings_bleDebugLog": "BLE Debug Log",
@@ -145,7 +145,7 @@
   "settings_bandwidth": "Bandbreedte",
   "settings_spreadingFactor": "Spreadsnelheid",
   "settings_codingRate": "Codeertarief",
-  "settings_txPower": "TX Vermogen (dBm)",
+  "settings_txPower": "TX-Vermogen (dBm)",
   "settings_txPowerHelper": "0 - 22",
   "settings_txPowerInvalid": "Ongeldige TX-vermogen (0-22 dBm)",
   "settings_error": "Fout: {message}",
@@ -232,11 +232,11 @@
   "appSettings_mapTimeFilter": "Filter tijd op kaart",
   "appSettings_showNodesDiscoveredWithin": "Toon nodes ontdekt binnen:",
   "appSettings_allTime": "Altijd",
-  "appSettings_lastHour": "Laat uur",
-  "appSettings_last6Hours": "laatste 6 uur",
-  "appSettings_last24Hours": "De laatste 24 uur",
-  "appSettings_lastWeek": "Laatste week",
-  "appSettings_offlineMapCache": "Offline Kaarten Cache",
+  "appSettings_lastHour": "Afgelopen uur",
+  "appSettings_last6Hours": "Afgelopen 6 uur",
+  "appSettings_last24Hours": "Afgelopen 24 uur",
+  "appSettings_lastWeek": "Afgelopen week",
+  "appSettings_offlineMapCache": "Offline Kaartcache",
   "appSettings_noAreaSelected": "Geen gebied geselecteerd",
   "appSettings_areaSelectedZoom": "Geselecteerd gebied (zoom {minZoom}-{maxZoom})",
   "@appSettings_areaSelectedZoom": {
@@ -285,6 +285,7 @@
   "contacts_newGroup": "Nieuwe Groep",
   "contacts_groupName": "Groepnaam",
   "contacts_groupNameRequired": "De groepnaam is verplicht.",
+  "contacts_groupNameReserved": "Deze groepsnaam is gereserveerd",
   "contacts_groupAlreadyExists": "De groep \"{name}\" bestaat al.",
   "@contacts_groupAlreadyExists": {
     "placeholders": {
@@ -681,7 +682,7 @@
   "map_showSharedMarkers": "Toon gedeelde markeringen",
   "map_lastSeenTime": "Laatste Bekeken Tijd",
   "map_sharedPin": "Gedeelde pin",
-  "map_joinRoom": "Sluit Kamer",
+  "map_joinRoom": "Kamer Toetreden",
   "map_manageRepeater": "Beheer Repeater",
   "mapCache_title": "Offline Kaarten Cache",
   "mapCache_selectAreaFirst": "Select een gebied om eerst in de cache op te slaan",
@@ -877,7 +878,7 @@
   "path_tooLong": "Pad is te lang. Maximaal 64 sprongen zijn toegestaan.",
   "path_setPath": "Stel Pad in",
   "repeater_management": "Beheer Repeaters",
-  "repeater_managementTools": "Beheerinstrumenten",
+  "repeater_managementTools": "Beheerfuncties",
   "repeater_status": "Status",
   "repeater_statusSubtitle": "Status, statistieken en buren bekijken",
   "repeater_telemetry": "Telemetry",
@@ -911,8 +912,8 @@
   "repeater_lastRssi": "Laatste RSSI",
   "repeater_lastSnr": "Laatste SNR",
   "repeater_noiseFloor": "Ruisvloer",
-  "repeater_txAirtime": "TX Airtime",
-  "repeater_rxAirtime": "RX Airtime",
+  "repeater_txAirtime": "TX-zendtijd",
+  "repeater_rxAirtime": "RX-zendtijd",
   "repeater_packetStatistics": "Pakketstatistieken",
   "repeater_sent": "Verzonden",
   "repeater_received": "Ontvangen",
@@ -981,14 +982,14 @@
       }
     }
   },
-  "repeater_settingsTitle": "Repeater Instellingen",
+  "repeater_settingsTitle": "Repeaterinstellingen",
   "repeater_basicSettings": "Basisinstellingen",
   "repeater_repeaterName": "Repeaternaam",
-  "repeater_repeaterNameHelper": "Weergave naam voor deze repeater",
+  "repeater_repeaterNameHelper": "Weergavenaam voor deze repeater",
   "repeater_adminPassword": "Admin wachtwoord",
-  "repeater_adminPasswordHelper": "Volledige toegangspaswoord",
-  "repeater_guestPassword": "Wachtwoord Gast",
-  "repeater_guestPasswordHelper": "Leesbeheer wachtwoord",
+  "repeater_adminPasswordHelper": "Wachtwoord administratortoegang",
+  "repeater_guestPassword": "Gast wachtwoord",
+  "repeater_guestPasswordHelper": "Wachtwoord gasttoegen",
   "repeater_radioSettings": "Radio Instellingen",
   "repeater_frequencyMhz": "Frequentie (MHz)",
   "repeater_frequencyHelper": "300-2500 MHz",
@@ -997,7 +998,7 @@
   "repeater_bandwidth": "Bandbreedte",
   "repeater_spreadingFactor": "Spreidingsfactor",
   "repeater_codingRate": "Codeertarief",
-  "repeater_locationSettings": "Locatie Instellingen",
+  "repeater_locationSettings": "Locatie-instellingen",
   "repeater_latitude": "Breedtegraad",
   "repeater_latitudeHelper": "Graadseconden (bijv. 37.7749)",
   "repeater_longitude": "Lengtegraad",
@@ -1007,9 +1008,9 @@
   "repeater_packetForwardingSubtitle": "Repeater instellen om pakketten door te sturen",
   "repeater_guestAccess": "Toegang voor Gasten",
   "repeater_guestAccessSubtitle": "Toegestane leesbeheer toegang voor gasten.",
-  "repeater_privacyMode": "Privacy Modus",
+  "repeater_privacyMode": "Privacymodus",
   "repeater_privacyModeSubtitle": "Naam/locatie verbergen in advertenties",
-  "repeater_advertisementSettings": "Advertentie Instellingen",
+  "repeater_advertisementSettings": "Advertentie-instellingen",
   "repeater_localAdvertInterval": "Lokale Advertentie Interval",
   "repeater_localAdvertIntervalMinutes": "{minutes} minuten",
   "@repeater_localAdvertIntervalMinutes": {
@@ -1072,7 +1073,7 @@
   "repeater_refreshLocationSettings": "Instellingen Locatie Vernieuwen",
   "repeater_refreshPacketForwarding": "Vernieuwen Pakket Doorversturing",
   "repeater_refreshGuestAccess": "Toegang Gast Vernieuwen",
-  "repeater_refreshPrivacyMode": "Privacy Mode vernieuwen",
+  "repeater_refreshPrivacyMode": "Privacymode vernieuwen",
   "repeater_refreshAdvertisementSettings": "Instellingen Advertentie Bijwerken",
   "repeater_refreshed": "{label} is vernieuwd",
   "@repeater_refreshed": {
@@ -1093,8 +1094,8 @@
   "repeater_cliTitle": "Repeater CLI",
   "repeater_debugNextCommand": "Debug Volgende Commando",
   "repeater_commandHelp": "Help",
-  "repeater_clearHistory": "Verwijder Geschiedenis",
-  "repeater_noCommandsSent": "Geen commando's verzonden nog.",
+  "repeater_clearHistory": "Geschiedenis Verwijderen",
+  "repeater_noCommandsSent": "Nog geen commando's verzonden.",
   "repeater_typeCommandOrUseQuick": "Typ een opdracht hieronder of gebruik snelle commando's",
   "repeater_enterCommandHint": "Voer bevel in...",
   "repeater_previousCommand": "Vorige opdracht",
@@ -1109,14 +1110,14 @@
       }
     }
   },
-  "repeater_cliQuickGetName": "Haal Naam op",
-  "repeater_cliQuickGetRadio": "Radio ontvangen",
-  "repeater_cliQuickGetTx": "Krijg TX",
-  "repeater_cliQuickNeighbors": "Buren",
-  "repeater_cliQuickVersion": "Versie",
-  "repeater_cliQuickAdvertise": "Advertenties",
-  "repeater_cliQuickClock": "Tijd",
-  "repeater_cliHelpAdvert": "Verstuurt een advertentiepakket",
+  "repeater_cliQuickGetName": "Naam opvragen",
+  "repeater_cliQuickGetRadio": "Radio-instellingen opvragen",
+  "repeater_cliQuickGetTx": "TX opvragen",
+  "repeater_cliQuickNeighbors": "Buren opvragen",
+  "repeater_cliQuickVersion": "Versie opvragen",
+  "repeater_cliQuickAdvertise": "Advertenties opvragen",
+  "repeater_cliQuickClock": "Tijd opvragen",
+  "repeater_cliHelpAdvert": "Advertentie uitzenden",
   "repeater_cliHelpReboot": "Herstart het apparaat. (let op, je krijgt mogelijk een 'Timeout', wat normaal is)",
   "repeater_cliHelpClock": "Toont de huidige tijd per apparaat's klok.",
   "repeater_cliHelpPassword": "Stelt een nieuw beheerderswachtwoord in voor het apparaat.",
@@ -1202,7 +1203,7 @@
   },
   "telemetry_batteryLabel": "Batterij",
   "telemetry_voltageLabel": "Spanning",
-  "telemetry_mcuTemperatureLabel": "MCU Temperatuur",
+  "telemetry_mcuTemperatureLabel": "MCU-temperatuur",
   "telemetry_temperatureLabel": "Temperatuur",
   "telemetry_currentLabel": "Huidig",
   "telemetry_batteryValue": "{percent}% / {volts}V",
@@ -1345,7 +1346,7 @@
   "listFilter_tooltip": "Filteren en sorteren",
   "listFilter_sortBy": "Sorteren door",
   "listFilter_latestMessages": "Recente berichten",
-  "listFilter_heardRecently": "Hoor je onlangs",
+  "listFilter_heardRecently": "Recent gezien",
   "listFilter_az": "A-Z",
   "listFilter_filters": "Filters",
   "listFilter_all": "Alles",
@@ -1363,20 +1364,20 @@
     }
   },
   "repeater_neighbors": "Buren",
-  "repeater_neighborsSubtitle": "Bekijk nul hops buren.",
+  "repeater_neighborsSubtitle": "Bekijk nul-hopsburen.",
   "neighbors_receivedData": "Ontvangen Buurdata",
   "neighbors_requestTimedOut": "Buren vragen om tijdelijk uitgeschakeld.",
   "neighbors_errorLoading": "Fout bij het laden van buren: {error}",
-  "neighbors_repeatersNeighbors": "Herhalingen Buren",
+  "neighbors_repeatersNeighbors": "Repeatbburen",
   "neighbors_noData": "Geen gegevens van buren beschikbaar.",
   "channels_createPrivateChannelDesc": "Beveiligd met een geheime sleutel.",
-  "channels_createPrivateChannel": "Maak een Privé Kanaal",
-  "channels_joinPrivateChannel": "Sluit een Privé Kanaal aan",
-  "channels_joinPrivateChannelDesc": "Handmatig een geheime sleutel invoeren.",
-  "channels_joinPublicChannel": "Sluit het Open Kanaal",
-  "channels_joinPublicChannelDesc": "Iedereen kan dit kanaal aanmelden.",
-  "channels_joinHashtagChannel": "Sluit een Hashtag Kanaal",
-  "channels_joinHashtagChannelDesc": "Iedereen kan lid worden van hashtag-kanalen.",
+  "channels_createPrivateChannel": "PrivéKanaal Aanmaken",
+  "channels_joinPrivateChannel": "PrivéKanaal Toetreden",
+  "channels_joinPrivateChannelDesc": "Voer handmatig een geheime sleutel in.",
+  "channels_joinPublicChannel": "Publiek Kanaal Toetreden",
+  "channels_joinPublicChannelDesc": "Iedereen kan toetreden tot dit kanaal.",
+  "channels_joinHashtagChannel": "Hashtag-kanaal Aanmaken",
+  "channels_joinHashtagChannelDesc": "Iedereen kan toetreden tot hashtag-kanalen.",
   "channels_scanQrCode": "Scan een QR-code",
   "channels_scanQrCodeComingSoon": "Komt later",
   "channels_enterHashtag": "Voer hashtag in",
@@ -1574,7 +1575,7 @@
   "contacts_zeroHopContactAdvertSent": "Contact verzonden via advertentie",
   "contacts_contactAdvertCopied": "Reclame gekopieerd naar Klembord.",
   "contacts_contactAdvertCopyFailed": "Kopiëren van advertentie naar Clipboard is mislukt.",
-  "contacts_ShareContact": "Kontakt naar Klembord kopiëren",
+  "contacts_ShareContact": "Contact naar Klembord kopiëren",
   "contacts_ShareContactZeroHop": "Contact delen via advertentie",
   "contacts_zeroHopContactAdvertFailed": "Mislukt om contact te verzenden",
   "notification_activityTitle": "MeshCore Activiteit",
@@ -1606,12 +1607,14 @@
   "map_runTrace": "Padeshulp traceren",
   "scanner_enableBluetooth": "Activeer Bluetooth",
   "scanner_bluetoothOffMessage": "Zorg ervoor dat Bluetooth is ingeschakeld om naar apparaten te zoeken.",
+  "scanner_chromeRequired": "Chrome-browser vereist",
+  "scanner_chromeRequiredMessage": "Deze webapplicatie vereist Google Chrome of een op Chromium gebaseerde browser voor Bluetooth-ondersteuning.",
   "scanner_bluetoothOff": "Bluetooth is uitgeschakeld",
   "snrIndicator_lastSeen": "Laatst gezien",
   "snrIndicator_nearByRepeaters": "Nabije herhalingseenheden",
   "chat_ShowAllPaths": "Toon alle paden",
-  "settings_clientRepeat": "Herhalen: Afgekoppeld",
-  "settings_clientRepeatSubtitle": "Laat dit apparaat de mesh-pakketten opnieuw verzenden voor andere apparaten.",
+  "settings_clientRepeat": "Off-Grid Herhalen",
+  "settings_clientRepeatSubtitle": "Laat dit apparaat de berichten van andere apparaten doorsturen.",
   "settings_clientRepeatFreqWarning": "Om een signaal buiten het netwerk te versturen, zijn frequenties van 433, 869 of 918 MHz vereist.",
   "settings_aboutOpenMeteoAttribution": "LOS-hoogtegegevens: Open-Meteo (CC BY 4.0)",
   "appSettings_unitsTitle": "Eenheden",
@@ -1800,5 +1803,276 @@
   "contacts_searchContactsNoNumber": "Zoek contacten...",
   "contacts_searchUsers": "Zoek {number}{str} gebruikers...",
   "contacts_searchFavorites": "Zoek {number}{str} favorieten...",
-  "contacts_searchRoomServers": "Zoek {number}{str} Room servers..."
+  "contacts_searchRoomServers": "Zoek {number}{str} Room servers...",
+  "contactsSettings_autoAddUsersTitle": "Gebruikers automatisch toevoegen",
+  "contactsSettings_title": "Instellingen voor contacten",
+  "settings_contactSettings": "Contactinstellingen",
+  "contactsSettings_otherTitle": "Andere instellingen voor contactgerelateerde zaken",
+  "contactsSettings_autoAddRepeatersSubtitle": "Sta toe dat de companion automatisch ontdekte repeaters toevoegt",
+  "contactsSettings_autoAddRoomServersTitle": "Automatisch kamerservers toevoegen",
+  "contactsSettings_autoAddRoomServersSubtitle": "Sta toe dat de companion automatisch ontdekte kamer servers toevoegt.",
+  "contactsSettings_autoAddSensorsTitle": "Automatisch sensoren toevoegen",
+  "settings_contactSettingsSubtitle": "Instellingen voor het toevoegen van contacten",
+  "contactsSettings_autoAddTitle": "Automatische detectie",
+  "contactsSettings_autoAddSensorsSubtitle": "Sta toe dat de companion automatisch ontdekte sensoren toevoegt",
+  "contactsSettings_autoAddUsersSubtitle": "Sta toe dat de companion automatisch ontdekte gebruikers toevoegt",
+  "contactsSettings_autoAddRepeatersTitle": "Automatisch herhalingstoestellen toevoegen",
+  "contactsSettings_overwriteOldestTitle": "Overschrijf Oudste",
+  "discoveredContacts_noMatching": "Geen overeenkomende contacten",
+  "discoveredContacts_addContact": "Contact toevoegen",
+  "discoveredContacts_copyContact": "Kopieer contact naar klembord",
+  "discoveredContacts_deleteContact": "Contact verwijderen",
+  "discoveredContacts_Title": "Ontdekte contacten",
+  "discoveredContacts_contactAdded": "Contact toegevoegd",
+  "discoveredContacts_searchHint": "Ontdekte contacten zoeken",
+  "contactsSettings_overwriteOldestSubtitle": "Wanneer de contactenlijst vol is, wordt de oudste niet-favoriete contactpersoon vervangen.",
+  "common_deleteAll": "Alles verwijderen",
+  "discoveredContacts_deleteContactAll": "Verwijder alle ontdekte contacten",
+  "discoveredContacts_deleteContactAllContent": "Weet u zeker dat u alle ontdekte contacten wilt verwijderen?",
+  "map_guessedLocation": "Geroerde locatie",
+  "map_showGuessedLocations": "Toon de voorspelde locaties van de knopen",
+  "connectionChoiceUsbLabel": "USB",
+  "usbScreenSubtitle": "Selecteer een gedetecteerd seriële apparaat en verbind deze direct met uw MeshCore-node.",
+  "connectionChoiceBluetoothLabel": "Bluetooth",
+  "usbScreenTitle": "Verbind via USB",
+  "usbScreenStatus": "Selecteer een USB-apparaat",
+  "usbScreenNote": "USB-serieel is actief op ondersteunde Android-apparaten en desktop-platforms.",
+  "usbScreenEmptyState": "Geen USB-apparaten gevonden. Sluit er een aan en herlaad.",
+  "usbErrorPermissionDenied": "Toegang via USB is geweigerd.",
+  "usbErrorDeviceMissing": "Het geselecteerde USB-apparaat is niet meer beschikbaar.",
+  "usbErrorInvalidPort": "Selecteer een geldig USB-apparaat.",
+  "usbErrorBusy": "Een andere verzoek om een USB-verbinding is al in behandeling.",
+  "usbErrorNotConnected": "Er is geen USB-apparaat aangesloten.",
+  "usbErrorOpenFailed": "Kon het geselecteerde USB-apparaat niet openen.",
+  "usbErrorConnectFailed": "Kon niet verbinding maken met het geselecteerde USB-apparaat.",
+  "usbErrorUnsupported": "USB-serieel is niet ondersteund op deze platform.",
+  "usbErrorAlreadyActive": "Een USB-verbinding is al actief.",
+  "usbErrorNoDeviceSelected": "Geen USB-apparaat is geselecteerd.",
+  "usbErrorPortClosed": "De USB-verbinding is niet actief.",
+  "usbFallbackDeviceName": "Web-serieapparaat",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbConnectionFailed": "Fout bij de USB-verbinding: {error}",
+  "usbStatus_notConnected": "Selecteer een USB-apparaat",
+  "usbStatus_connecting": "Verbinding maken met USB-apparaat...",
+  "usbStatus_searching": "Zoeken naar USB-apparaten...",
+  "usbErrorConnectTimedOut": "Verbinding is verbroken. Zorg ervoor dat het apparaat de juiste USB-firmware heeft.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpScreenTitle": "Verbind via TCP",
+  "tcpHostLabel": "IP-adres",
+  "tcpHostHint": "192.168.40.10",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpPortLabel": "Poort",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Voer het eindpunt in en verbind",
+  "tcpStatus_connectingTo": "Verbinding maken met {endpoint}...",
+  "tcpErrorHostRequired": "Een IP-adres is vereist.",
+  "tcpErrorPortInvalid": "De poortwaarde moet tussen 1 en 65535 liggen.",
+  "tcpErrorUnsupported": "TCP-transport wordt niet ondersteund op deze platform.",
+  "tcpErrorTimedOut": "De TCP-verbinding is verlopen.",
+  "tcpConnectionFailed": "Verbinding met TCP mislukt: {error}",
+  "map_showDiscoveryContacts": "Ontdek contacten weergeven",
+  "map_setAsMyLocation": "Stel dit in als mijn locatie",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_privacy": "Privacyinstellingen",
+  "settings_privacySubtitle": "Beheer welke informatie wordt gedeeld",
+  "settings_telemetryLocationMode": "Telemetrie-locatiemodus",
+  "settings_telemetryEnvironmentMode": "Telemetrie-omgevingsmodus",
+  "settings_advertLocation": "Advertentielocatie",
+  "settings_advertLocationSubtitle": "Locatie opnemen in advertentie",
+  "settings_privacySettingsDescription": "Kies welke informatie uw apparaat deelt met anderen",
+  "settings_allowByContact": "Toestaan op basis van contactvlaggen",
+  "settings_allowAll": "Alles toestaan",
+  "settings_denyAll": "Weiger alles",
+  "contact_info": "Contactinformatie",
+  "settings_telemetryBaseMode": "Telemetrie-basismodus",
+  "contact_teleBase": "Telemetrie_basis",
+  "contact_teleLoc": "Telemetrielocatie",
+  "contact_teleLocSubtitle": "Locatiegegevens delen toestaan",
+  "contact_teleEnv": "Telemetrieomgeving",
+  "contact_teleEnvSubtitle": "Delen van omgevingsensordata toestaan",
+  "contact_settings": "Contactinstellingen",
+  "contact_telemetry": "Telemetrie",
+  "contact_lastSeen": "Laatst gezien",
+  "contact_clearChat": "Chat leegmaken",
+  "contact_teleBaseSubtitle": "Sta delen van batterij niveau en basis telemetrie toe",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_maxRouteWeightSubtitle": "Het maximale gewicht dat een route kan bereiken door succesvolle leveringen.",
+  "appSettings_initialRouteWeight": "เริ่มต้น gewicht van de route",
+  "appSettings_maxRouteWeight": "Maximale gewicht voor de route",
+  "appSettings_initialRouteWeightSubtitle": "Startgewicht voor nieuwe, ontdekte routes",
+  "appSettings_routeWeightSuccessIncrement": "Toename in het gewicht van het succes",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Gewicht wordt toegevoegd aan een route na een succesvolle levering.",
+  "appSettings_routeWeightFailureDecrement": "Vermindering van het gewicht van fouten",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Gewicht verwijderd van een pad na een mislukte levering",
+  "appSettings_maxMessageRetries": "Aantal pogingen om berichten te versturen",
+  "appSettings_maxMessageRetriesSubtitle": "Aantal pogingen om een bericht opnieuw te versturen voordat het als mislukt wordt gemarkeerd",
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Telemetrie-modus bijgewerkt",
+  "settings_multiAck": "Multi-ACKs: {value}",
+  "map_showOverlaps": "Herhalingssleutel overlapt",
+  "map_runTraceWithReturnPath": "Terugkeren op hetzelfde pad.",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "appSettings_jumpToOldestUnread": "Ga naar het oudste ongelezen bericht",
+  "appSettings_jumpToOldestUnreadSubtitle": "Bij het openen van een chat met ongelezen berichten, scroll dan naar het eerste ongelezen bericht, in plaats van naar het meest recente.",
+  "chat_sendCooldown": "Gelieve even te wachten voordat u opnieuw verzendt.",
+  "appSettings_languageHu": "Hongaars",
+  "appSettings_languageJa": "Japanisch",
+  "appSettings_languageKo": "Koreaans",
+  "radioStats_tooltip": "Statistieken voor radio en mesh-netwerken",
+  "radioStats_screenTitle": "Statistieken over radio",
+  "radioStats_notConnected": "Verbind met een apparaat om radio-statistieken te bekijken.",
+  "radioStats_firmwareTooOld": "Om de statistieken via radio te kunnen gebruiken, is firmware versie 8 of een nieuwere vereist.",
+  "radioStats_waiting": "Wacht op gegevens…",
+  "radioStats_noiseFloor": "Ruisfrequentie: {noiseDbm} dBm",
+  "radioStats_lastRssi": "Laatste RSSI-waarde: {rssiDbm} dBm",
+  "radioStats_lastSnr": "Laatste SNR: {snr} dB",
+  "radioStats_txAir": "TX-tijd (totaal): {seconds} s",
+  "radioStats_rxAir": "Tijd besteed met RX (totaal): {seconds} s",
+  "radioStats_chartCaption": "Ruisfrequentie (dBm) over recente metingen.",
+  "radioStats_stripNoise": "Ruisfrequentie: {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Radio-statistieken ophalen…",
+  "radioStats_settingsTile": "Statistieken over radio",
+  "radioStats_settingsSubtitle": "Ruimtelijke ruis, RSSI, SNR en beschikbare tijd",
+  "@translation_downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_enableSubtitle": "Vertaal inkomende berichten en maak het mogelijk om berichten vooraf te vertalen.",
+  "translation_enableTitle": "Activeer vertaling",
+  "translation_title": "Vertaling",
+  "translation_composerTitle": "Vertaal voor verzending",
+  "translation_composerSubtitle": "Stelt de standaardstatus van het pictogram voor de vertaling van de componist in.",
+  "translation_useAppLanguage": "Gebruik de taal van de app",
+  "translation_targetLanguage": "Doeltaal",
+  "translation_downloadedModelLabel": "Gedownloade model",
+  "translation_presetModelLabel": "Voorgeprogrammeerd Hugging Face-model",
+  "translation_manualUrlLabel": "URL van de handleiding",
+  "translation_downloadModel": "Download het model",
+  "translation_downloading": "Downloaden...",
+  "translation_working": "Werken...",
+  "translation_mergingChunks": "Het samenvoegen van de gedownloade stukken tot één eindbestand...",
+  "translation_stop": "Stoppen",
+  "translation_downloadedModels": "Gedownloade modellen",
+  "translation_deleteModel": "Model verwijderen",
+  "translation_modelDownloaded": "Vertalingmodel gedownload.",
+  "translation_downloadStopped": "Download is afgebroken.",
+  "translation_downloadFailed": "Download mislukt: {error}",
+  "translation_enterUrlFirst": "Voer eerst een URL van een model in.",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "@translation_translateTo": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_composerDisabledHint": "Stuur berichten in de oorspronkelijke, getypte taal.",
+  "translation_translateBeforeSending": "Vertaal voor verzending",
+  "translation_composerEnabledHint": "De berichten worden vertaald voordat ze verzonden worden.",
+  "translation_messageTranslation": "Berichtvertaling",
+  "translation_translationOptions": "Opties voor vertaling",
+  "translation_systemLanguage": "Taal van het systeem",
+  "translation_translateTo": "Vertalen naar {language}",
+  "scanner_linuxPairingShowPin": "Toon PIN",
+  "scanner_linuxPairingHidePin": "PIN verbergen",
+  "scanner_linuxPairingPinPrompt": "Voer PIN in voor {deviceName} (laat leeg als er geen is).",
+  "scanner_linuxPairingPinTitle": "Bluetooth‑koppelings‑PIN",
+  "repeater_cliQuickDiscovery": "Ontdek Buren",
+  "repeater_cliQuickClockSync": "Kloksynchronisatie",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Automatisch een \"klok synchroniseren\" bericht versturen na een succesvolle inlog.",
+  "repeater_clockSyncAfterLogin": "Na het inloggen, klok synchroniseren",
+  "repeater_guestTools": "Gastenfuncties",
+  "room_guest": "Informatie over de server",
+  "chat_sendMessage": "Verzend bericht",
+  "repeater_guest": "Informatie over herhalingsapparatuur"
 }

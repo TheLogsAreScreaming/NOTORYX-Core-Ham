@@ -39,6 +39,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get common_delete => '删除';
 
   @override
+  String get common_deleteAll => '删除全部';
+
+  @override
   String get common_close => '关闭';
 
   @override
@@ -109,6 +112,123 @@ class AppLocalizationsZh extends AppLocalizations {
   String get scanner_title => '连接设备';
 
   @override
+  String get connectionChoiceUsbLabel => 'USB';
+
+  @override
+  String get connectionChoiceBluetoothLabel => '蓝牙';
+
+  @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => '通过 TCP 连接';
+
+  @override
+  String get tcpHostLabel => 'IP地址';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => '端口';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => '输入目标地址，然后连接';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return '连接到 $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => '需要提供IP地址。';
+
+  @override
+  String get tcpErrorPortInvalid => '端口号必须在 1 到 65535 之间。';
+
+  @override
+  String get tcpErrorUnsupported => '此平台不支持 TCP 传输。';
+
+  @override
+  String get tcpErrorTimedOut => 'TCP 连接超时。';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'TCP 连接失败：$error';
+  }
+
+  @override
+  String get usbScreenTitle => '通过USB连接';
+
+  @override
+  String get usbScreenSubtitle => '选择已检测到的串行设备，并直接连接到您的 MeshCore 节点。';
+
+  @override
+  String get usbScreenStatus => '选择一个 USB 设备';
+
+  @override
+  String get usbScreenNote => 'USB 串行接口在支持的 Android 设备和桌面平台上处于活动状态。';
+
+  @override
+  String get usbScreenEmptyState => '未找到任何 USB 设备。请插入一个，然后刷新。';
+
+  @override
+  String get usbErrorPermissionDenied => '拒绝了USB权限。';
+
+  @override
+  String get usbErrorDeviceMissing => '所选的USB设备已不再可用。';
+
+  @override
+  String get usbErrorInvalidPort => '选择一个有效的USB设备。';
+
+  @override
+  String get usbErrorBusy => '还有一个 USB 连接请求正在进行中。';
+
+  @override
+  String get usbErrorNotConnected => '没有连接任何USB设备。';
+
+  @override
+  String get usbErrorOpenFailed => '未能打开所选的USB设备。';
+
+  @override
+  String get usbErrorConnectFailed => '未能连接到所选的USB设备。';
+
+  @override
+  String get usbErrorUnsupported => '此平台不支持USB串行通信。';
+
+  @override
+  String get usbErrorAlreadyActive => 'USB 连接已建立。';
+
+  @override
+  String get usbErrorNoDeviceSelected => '未选择任何 USB 设备。';
+
+  @override
+  String get usbErrorPortClosed => 'USB 连接未建立。';
+
+  @override
+  String get usbErrorConnectTimedOut => '连接超时。请确保设备已安装 USB 伴侣固件。';
+
+  @override
+  String get usbFallbackDeviceName => 'Web 串流设备';
+
+  @override
+  String get usbStatus_notConnected => '选择一个 USB 设备';
+
+  @override
+  String get usbStatus_connecting => '连接USB设备...';
+
+  @override
+  String get usbStatus_searching => '正在搜索 USB 设备...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'USB 连接失败：$error';
+  }
+
+  @override
   String get scanner_scanning => '正在搜索设备...';
 
   @override
@@ -147,6 +267,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get scanner_bluetoothOffMessage => '请开启蓝牙以搜索设备';
+
+  @override
+  String get scanner_chromeRequired => '需要 Chrome 浏览器';
+
+  @override
+  String get scanner_chromeRequiredMessage =>
+      '此 Web 应用程序需要 Google Chrome 或基于 Chromium 的浏览器以支持蓝牙。';
 
   @override
   String get scanner_enableBluetooth => '启用蓝牙';
@@ -227,6 +354,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_longitude => '经度';
 
   @override
+  String get settings_contactSettings => '联系人设置';
+
+  @override
+  String get settings_contactSettingsSubtitle => '添加联系人的设置';
+
+  @override
   String get settings_privacyMode => '隐私模式';
 
   @override
@@ -240,6 +373,47 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_privacyModeDisabled => '隐私模式已关闭';
+
+  @override
+  String get settings_privacy => '隐私设置';
+
+  @override
+  String get settings_privacySubtitle => '控制要共享的信息。';
+
+  @override
+  String get settings_privacySettingsDescription => '选择您的设备与他人共享的信息。';
+
+  @override
+  String get settings_denyAll => '拒绝所有';
+
+  @override
+  String get settings_allowByContact => '按联系人标志允许';
+
+  @override
+  String get settings_allowAll => '允许全部';
+
+  @override
+  String get settings_telemetryBaseMode => '遥测基础模式';
+
+  @override
+  String get settings_telemetryLocationMode => '遥测位置模式';
+
+  @override
+  String get settings_telemetryEnvironmentMode => '遥测环境模式';
+
+  @override
+  String get settings_advertLocation => '广告位置';
+
+  @override
+  String get settings_advertLocationSubtitle => '在广告中包含位置';
+
+  @override
+  String settings_multiAck(String value) {
+    return '多重ACK：$value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => '遥测模式已更新';
 
   @override
   String get settings_actions => '操作';
@@ -516,6 +690,43 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appSettings_autoRouteRotationDisabled => '自动路径轮换已禁用';
 
   @override
+  String get appSettings_maxRouteWeight => '最大路径重量';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle => '一条路径可以累积的最大重量，取决于成功交付的数量。';
+
+  @override
+  String get appSettings_initialRouteWeight => '初始路线权重';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle => '新发现路径的初始重量';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement => '成功权重增加';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      '在成功交付后，将重量添加到路径中';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement => '失败权重降低';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      '从一条路径上移除的货物，由于无法成功交付而移除。';
+
+  @override
+  String get appSettings_maxMessageRetries => '最大消息重试次数';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle => '在将消息标记为失败之前，允许尝试的次数';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => '电池';
 
   @override
@@ -713,6 +924,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get contacts_groupNameRequired => '请输入群聊名称';
 
   @override
+  String get contacts_groupNameReserved => '该群组名称已被保留';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return '名为 \"$name\" 的群聊已存在';
   }
@@ -749,6 +963,39 @@ class AppLocalizationsZh extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return '最后在线 $days 天前';
   }
+
+  @override
+  String get contact_info => '联系信息';
+
+  @override
+  String get contact_settings => '联系人设置';
+
+  @override
+  String get contact_telemetry => '遥测数据';
+
+  @override
+  String get contact_lastSeen => '最近出现';
+
+  @override
+  String get contact_clearChat => '清除聊天记录';
+
+  @override
+  String get contact_teleBase => '遥测基站';
+
+  @override
+  String get contact_teleBaseSubtitle => '允许共享电池电量和基本遥测数据';
+
+  @override
+  String get contact_teleLoc => '遥测位置';
+
+  @override
+  String get contact_teleLocSubtitle => '允许共享位置数据';
+
+  @override
+  String get contact_teleEnv => '遥测环境';
+
+  @override
+  String get contact_teleEnvSubtitle => '允许共享环境传感器数据';
 
   @override
   String get channels_title => '频道';
@@ -915,6 +1162,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_noMessages => '暂无消息';
 
   @override
+  String get chat_sendMessage => '发送消息';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return '发送消息给 $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => '发送消息开始对话';
 
   @override
@@ -932,11 +1187,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get chat_location => '位置';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return '发送消息给 $contactName';
-  }
 
   @override
   String get chat_typeMessage => '输入消息...';
@@ -1289,6 +1539,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get map_shareMarkerHere => '在此分享标记';
 
   @override
+  String get map_setAsMyLocation => '设置为我的位置';
+
+  @override
   String get map_pinLabel => '标签';
 
   @override
@@ -1333,6 +1586,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get map_otherNodes => '其他节点';
 
   @override
+  String get map_showOverlaps => '重复键重叠';
+
+  @override
   String get map_keyPrefix => '关键字前缀';
 
   @override
@@ -1346,6 +1602,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get map_showSharedMarkers => '显示共享标记';
+
+  @override
+  String get map_showGuessedLocations => '显示猜测的节点位置';
+
+  @override
+  String get map_showDiscoveryContacts => '显示发现联系人';
+
+  @override
+  String get map_guessedLocation => '猜测的位置';
 
   @override
   String get map_lastSeenTime => '最后在线时间';
@@ -1364,6 +1629,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get map_runTrace => '运行路径追踪';
+
+  @override
+  String get map_runTraceWithReturnPath => '沿着相同的路径返回';
 
   @override
   String get map_removeLast => '移除最后一个';
@@ -1623,7 +1891,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get room_management => '房间服务器管理';
 
   @override
+  String get repeater_guest => '重复器信息';
+
+  @override
+  String get room_guest => '服务器信息';
+
+  @override
   String get repeater_managementTools => '管理工具';
+
+  @override
+  String get repeater_guestTools => '访客工具';
 
   @override
   String get repeater_status => '状态';
@@ -1654,6 +1931,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => '配置转发节点参数';
+
+  @override
+  String get repeater_clockSyncAfterLogin => '登录后，自动同步时钟';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle => '在成功登录后，自动发送“时钟同步”指令。';
 
   @override
   String get repeater_statusTitle => '转发节点状态';
@@ -2011,6 +2294,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => '时钟';
+
+  @override
+  String get repeater_cliQuickClockSync => '同步时钟';
+
+  @override
+  String get repeater_cliQuickDiscovery => '发现邻居';
 
   @override
   String get repeater_cliHelpAdvert => '发送广播包';
@@ -2893,4 +3182,249 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get snrIndicator_lastSeen => '最近访问';
+
+  @override
+  String get contactsSettings_title => '联系人设置';
+
+  @override
+  String get contactsSettings_autoAddTitle => '自动发现';
+
+  @override
+  String get contactsSettings_otherTitle => '其他联系人相关设置';
+
+  @override
+  String get contactsSettings_autoAddUsersTitle => '自动添加用户';
+
+  @override
+  String get contactsSettings_autoAddUsersSubtitle => '允许伴侣自动添加发现的用户';
+
+  @override
+  String get contactsSettings_autoAddRepeatersTitle => '自动添加重复器';
+
+  @override
+  String get contactsSettings_autoAddRepeatersSubtitle => '允许伴侣自动添加发现的重复器';
+
+  @override
+  String get contactsSettings_autoAddRoomServersTitle => '自动添加房间服务器';
+
+  @override
+  String get contactsSettings_autoAddRoomServersSubtitle => '允许伴侣自动添加发现的房间服务器';
+
+  @override
+  String get contactsSettings_autoAddSensorsTitle => '自动添加传感器';
+
+  @override
+  String get contactsSettings_autoAddSensorsSubtitle => '允许伴侣自动添加发现的传感器';
+
+  @override
+  String get contactsSettings_overwriteOldestTitle => '覆盖最旧的';
+
+  @override
+  String get contactsSettings_overwriteOldestSubtitle =>
+      '当联系人列表已满时，将替换最老的非收藏联系人。';
+
+  @override
+  String get discoveredContacts_Title => '已发现的联系人';
+
+  @override
+  String get discoveredContacts_noMatching => '没有匹配的联系人';
+
+  @override
+  String get discoveredContacts_searchHint => '搜索已发现的联系人';
+
+  @override
+  String get discoveredContacts_contactAdded => '联系人已添加';
+
+  @override
+  String get discoveredContacts_addContact => '添加联系人';
+
+  @override
+  String get discoveredContacts_copyContact => '复制联系人到剪贴板';
+
+  @override
+  String get discoveredContacts_deleteContact => '删除联系人';
+
+  @override
+  String get discoveredContacts_deleteContactAll => '删除所有发现的联系人';
+
+  @override
+  String get discoveredContacts_deleteContactAllContent => '您确定要删除所有发现的联系人吗？';
+
+  @override
+  String get chat_sendCooldown => '请稍等片刻后再尝试发送。';
+
+  @override
+  String get appSettings_jumpToOldestUnread => '跳转到最旧、未读的文章';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      '在打开包含未读消息的聊天时，请滚动到第一个未读消息，而不是最新的消息。';
+
+  @override
+  String get appSettings_languageHu => '匈牙利';
+
+  @override
+  String get appSettings_languageJa => '日语';
+
+  @override
+  String get appSettings_languageKo => '韩语';
+
+  @override
+  String get radioStats_tooltip => '无线电和网状结构统计数据';
+
+  @override
+  String get radioStats_screenTitle => '广播统计数据';
+
+  @override
+  String get radioStats_notConnected => '连接到设备以查看收音机统计信息。';
+
+  @override
+  String get radioStats_firmwareTooOld => '使用无线电统计功能需要配合使用 v8 或更高版本的固件。';
+
+  @override
+  String get radioStats_waiting => '正在等待数据…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return '噪声水平：$noiseDbm dBm';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return '上次 RSSI 值：$rssiDbm dBm';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return '上次 SNR：$snr dB';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'TX 频道播出时间（总时长）：$seconds 秒';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'RX 使用时长（总时长）：$seconds 秒';
+  }
+
+  @override
+  String get radioStats_chartCaption => '近期的噪声水平（dBm）。';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return '噪声水平：$noiseDbm dBm';
+  }
+
+  @override
+  String get radioStats_stripWaiting => '正在获取收音机数据…';
+
+  @override
+  String get radioStats_settingsTile => '广播统计数据';
+
+  @override
+  String get radioStats_settingsSubtitle => '噪声水平、RSSI、信噪比和空中时间';
+
+  @override
+  String get translation_title => '翻译';
+
+  @override
+  String get translation_enableTitle => '启用翻译功能';
+
+  @override
+  String get translation_enableSubtitle => '翻译收到的消息，并允许在发送前进行翻译。';
+
+  @override
+  String get translation_composerTitle => '在发送之前进行翻译';
+
+  @override
+  String get translation_composerSubtitle => '控制作曲家翻译图标的默认状态。';
+
+  @override
+  String get translation_targetLanguage => '目标语言';
+
+  @override
+  String get translation_useAppLanguage => '使用应用程序语言';
+
+  @override
+  String get translation_downloadedModelLabel => '下载的模型';
+
+  @override
+  String get translation_presetModelLabel => '预设的 Hugging Face 模型';
+
+  @override
+  String get translation_manualUrlLabel => '手动模型网址';
+
+  @override
+  String get translation_downloadModel => '下载模型';
+
+  @override
+  String get translation_downloading => '正在下载...';
+
+  @override
+  String get translation_working => '工作中...';
+
+  @override
+  String get translation_stop => '停止';
+
+  @override
+  String get translation_mergingChunks => '将下载的片段合并成最终文件...';
+
+  @override
+  String get translation_downloadedModels => '下载的模型';
+
+  @override
+  String get translation_deleteModel => '删除模型';
+
+  @override
+  String get translation_modelDownloaded => '翻译模型已下载。';
+
+  @override
+  String get translation_downloadStopped => '下载已停止。';
+
+  @override
+  String translation_downloadFailed(String error) {
+    return '下载失败：$error';
+  }
+
+  @override
+  String get translation_enterUrlFirst => '首先，请输入模型的 URL。';
+
+  @override
+  String get scanner_linuxPairingShowPin => '显示PIN码';
+
+  @override
+  String get scanner_linuxPairingHidePin => '隐藏 PIN';
+
+  @override
+  String get scanner_linuxPairingPinTitle => '蓝牙配对 PIN';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return '输入 $deviceName 的 PIN 码（如果为空，则留空）。';
+  }
+
+  @override
+  String get translation_messageTranslation => '消息翻译';
+
+  @override
+  String get translation_translateBeforeSending => '在发送前进行翻译';
+
+  @override
+  String get translation_composerEnabledHint => '消息将在发送前进行翻译。';
+
+  @override
+  String get translation_composerDisabledHint => '使用原始的打字方式发送消息。';
+
+  @override
+  String translation_translateTo(String language) {
+    return '翻译成 $language';
+  }
+
+  @override
+  String get translation_translationOptions => '翻译选项';
+
+  @override
+  String get translation_systemLanguage => '系统语言';
 }

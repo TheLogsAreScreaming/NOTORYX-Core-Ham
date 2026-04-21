@@ -33,6 +33,9 @@ migrate_working_dir/
 pubspec.lock
 /build/
 /coverage/
+# fvm project files
+.fvm/
+.fvmrc
 
 # Symbolication related
 app.*.symbols
@@ -58,6 +61,7 @@ secrets.dart
 .DS_Store
 .AppleDouble
 .LSOverride
+macos/Flutter/GeneratedPluginRegistrant.swift
 
 # iOS
 **/ios/Pods/
@@ -83,3 +87,6 @@ keystore.properties
 # IDE
 .vscode/launch.json
 .vscode/settings.json
+
+# Cloudflare Wrangler
+.wrangler

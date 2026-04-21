@@ -4,6 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/chrome_required_screen.dart';
+import 'utils/platform_info.dart';
+
 import 'connector/meshcore_connector.dart';
 import 'screens/scanner_screen.dart';
 import 'services/storage_service.dart';
@@ -16,6 +19,9 @@ import 'services/app_debug_log_service.dart';
 import 'services/background_service.dart';
 import 'services/map_tile_cache_service.dart';
 import 'services/chat_text_scale_service.dart';
+import 'services/translation_service.dart';
+import 'services/ui_view_state_service.dart';
+import 'services/timeout_prediction_service.dart';
 import 'storage/prefs_manager.dart';
 import 'utils/app_logger.dart';
 
@@ -36,6 +42,9 @@ void main() async {
   final backgroundService = BackgroundService();
   final mapTileCacheService = MapTileCacheService();
   final chatTextScaleService = ChatTextScaleService();
+  final translationService = TranslationService(appSettingsService);
+  final uiViewStateService = UiViewStateService();
+  final timeoutPredictionService = TimeoutPredictionService(storage);
 
   // Load settings
   await appSettingsService.loadSettings();
@@ -53,15 +62,20 @@ void main() async {
   _registerThirdPartyLicenses();
 
   await chatTextScaleService.initialize();
+  await translationService.refreshDownloadedModels();
+  await uiViewStateService.initialize();
+  await timeoutPredictionService.initialize();
 
   // Wire up connector with services
   connector.initialize(
     retryService: retryService,
     pathHistoryService: pathHistoryService,
     appSettingsService: appSettingsService,
+    translationService: translationService,
     bleDebugLogService: bleDebugLogService,
     appDebugLogService: appDebugLogService,
     backgroundService: backgroundService,
+    timeoutPredictionService: timeoutPredictionService,
   );
 
   await connector.loadContactCache();
@@ -83,6 +97,9 @@ void main() async {
       appDebugLogService: appDebugLogService,
       mapTileCacheService: mapTileCacheService,
       chatTextScaleService: chatTextScaleService,
+      translationService: translationService,
+      uiViewStateService: uiViewStateService,
+      timeoutPredictionService: timeoutPredictionService,
     ),
   );
 }
@@ -118,6 +135,9 @@ class MeshCoreApp extends StatelessWidget {
   final AppDebugLogService appDebugLogService;
   final MapTileCacheService mapTileCacheService;
   final ChatTextScaleService chatTextScaleService;
+  final TranslationService translationService;
+  final UiViewStateService uiViewStateService;
+  final TimeoutPredictionService timeoutPredictionService;
 
   const MeshCoreApp({
     super.key,
@@ -130,6 +150,9 @@ class MeshCoreApp extends StatelessWidget {
     required this.appDebugLogService,
     required this.mapTileCacheService,
     required this.chatTextScaleService,
+    required this.translationService,
+    required this.uiViewStateService,
+    required this.timeoutPredictionService,
   });
 
   @override
@@ -143,8 +166,11 @@ class MeshCoreApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: bleDebugLogService),
         ChangeNotifierProvider.value(value: appDebugLogService),
         ChangeNotifierProvider.value(value: chatTextScaleService),
+        ChangeNotifierProvider.value(value: translationService),
+        ChangeNotifierProvider.value(value: uiViewStateService),
         Provider.value(value: storage),
         Provider.value(value: mapTileCacheService),
+        ChangeNotifierProvider.value(value: timeoutPredictionService),
       ],
       child: Consumer<AppSettingsService>(
         builder: (context, settingsService, child) {
@@ -187,7 +213,9 @@ class MeshCoreApp extends StatelessWidget {
               NotificationService().setLocale(locale);
               return child ?? const SizedBox.shrink();
             },
-            home: const ScannerScreen(),
+            home: (PlatformInfo.isWeb && !PlatformInfo.isChrome)
+                ? const ChromeRequiredScreen()
+                : const ScannerScreen(),
           );
         },
       ),

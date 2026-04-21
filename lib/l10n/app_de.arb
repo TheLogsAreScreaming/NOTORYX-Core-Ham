@@ -285,6 +285,7 @@
   "contacts_newGroup": "Neue Gruppe",
   "contacts_groupName": "Gruppenname",
   "contacts_groupNameRequired": "Der Gruppennamen ist erforderlich.",
+  "contacts_groupNameReserved": "Dieser Gruppenname ist reserviert",
   "contacts_groupAlreadyExists": "Die Gruppe \"{name}\" existiert bereits.",
   "@contacts_groupAlreadyExists": {
     "placeholders": {
@@ -296,8 +297,8 @@
   "contacts_filterContacts": "Filtert Kontakte...",
   "contacts_noContactsMatchFilter": "Keine Kontakte passen zu Ihrem Filter",
   "contacts_noMembers": "Keine Mitglieder",
-  "contacts_lastSeenNow": "gerade gesehen",
-  "contacts_lastSeenMinsAgo": "Letzte Sichtung vor {minutes} Minuten.",
+  "contacts_lastSeenNow": "kürzlich",
+  "contacts_lastSeenMinsAgo": "~ {minutes} Min.",
   "@contacts_lastSeenMinsAgo": {
     "placeholders": {
       "minutes": {
@@ -305,8 +306,8 @@
       }
     }
   },
-  "contacts_lastSeenHourAgo": "Letzte Sichtung vor 1 Stunde.",
-  "contacts_lastSeenHoursAgo": "Letzte Sichtung vor {hours} Stunden.",
+  "contacts_lastSeenHourAgo": "~ 1 Std.",
+  "contacts_lastSeenHoursAgo": "~ {hours} Std.",
   "@contacts_lastSeenHoursAgo": {
     "placeholders": {
       "hours": {
@@ -314,8 +315,8 @@
       }
     }
   },
-  "contacts_lastSeenDayAgo": "Letzte Sichtung vor 1 Tag",
-  "contacts_lastSeenDaysAgo": "Letzte Sichtung {days} Tage zuvor",
+  "contacts_lastSeenDayAgo": "~ 1 Tag",
+  "contacts_lastSeenDaysAgo": "~ {days} Tage",
   "@contacts_lastSeenDaysAgo": {
     "placeholders": {
       "days": {
@@ -1636,6 +1637,8 @@
   "pathTrace_clearTooltip": "Pfad löschen",
   "map_pathTraceCancelled": "Pfadverfolgung abgebrochen.",
   "scanner_bluetoothOffMessage": "Bitte aktivieren Sie Bluetooth, um nach Geräten zu suchen.",
+  "scanner_chromeRequired": "Chrome Browser erforderlich",
+  "scanner_chromeRequiredMessage": "Diese Webanwendung erfordert Google Chrome oder einen Chromium-basierten Browser für die Bluetooth-Unterstützung.",
   "scanner_bluetoothOff": "Bluetooth ist deaktiviert.",
   "scanner_enableBluetooth": "Bluetooth aktivieren",
   "snrIndicator_lastSeen": "Zuletzt gesehen",
@@ -1828,5 +1831,276 @@
   "contacts_searchRepeaters": "Suche {number}{str} Repeater...",
   "contacts_searchFavorites": "Suche {number}{str} Favoriten...",
   "contacts_searchUsers": "Suche {number}{str} Benutzer...",
-  "contacts_searchRoomServers": "Suche {number}{str} Raumserver..."
+  "contacts_searchRoomServers": "Suche {number}{str} Raumserver...",
+  "settings_contactSettings": "Kontakteinstellungen",
+  "contactsSettings_otherTitle": "Weitere Einstellungen zu Kontakten",
+  "contactsSettings_title": "Kontakteinstellungen",
+  "contactsSettings_autoAddTitle": "Automatische Erkennung",
+  "contactsSettings_autoAddUsersTitle": "Automatische Hinzufügung von Benutzern",
+  "settings_contactSettingsSubtitle": "Einstellungen für das Hinzufügen von Kontakten",
+  "contactsSettings_autoAddSensorsTitle": "Automatisch Sensoren hinzufügen",
+  "contactsSettings_autoAddUsersSubtitle": "Ermöglichen Sie dem Begleiter, automatisch entdeckte Benutzer hinzuzufügen",
+  "contactsSettings_autoAddRoomServersTitle": "Automatisch Raumservers hinzufügen",
+  "contactsSettings_autoAddRoomServersSubtitle": "Ermöglichen Sie dem Begleiter, entdeckte Raumserver automatisch hinzuzufügen",
+  "contactsSettings_autoAddRepeatersTitle": "Automatisch Repeater hinzufügen",
+  "contactsSettings_autoAddRepeatersSubtitle": "Ermöglichen Sie dem Begleiter, automatisch entdeckte Repeater hinzuzufügen.",
+  "discoveredContacts_noMatching": "Keine passenden Kontakte",
+  "discoveredContacts_searchHint": "Entdeckte Kontakte suchen",
+  "discoveredContacts_addContact": "Kontakt hinzufügen",
+  "discoveredContacts_contactAdded": "Kontakt hinzugefügt",
+  "discoveredContacts_deleteContact": "Kontakt löschen",
+  "discoveredContacts_Title": "Entdeckte Kontakte",
+  "discoveredContacts_copyContact": "Kontakt in die Zwischenablage kopieren",
+  "contactsSettings_overwriteOldestTitle": "Überschreiben des Ältesten",
+  "contactsSettings_autoAddSensorsSubtitle": "Ermöglichen Sie dem Begleiter, automatisch entdeckte Sensoren hinzuzufügen",
+  "contactsSettings_overwriteOldestSubtitle": "Wenn die Kontaktliste voll ist, wird der älteste nicht favorisierte Kontakt ersetzt.",
+  "common_deleteAll": "Alles löschen",
+  "discoveredContacts_deleteContactAllContent": "Sind Sie sicher, dass Sie alle gefundenen Kontakte löschen möchten?",
+  "discoveredContacts_deleteContactAll": "Alle entdeckten Kontakte löschen",
+  "map_showGuessedLocations": "Zeige die vermuteten Knotenpositionen",
+  "map_guessedLocation": "Geschätzter Ort",
+  "usbScreenSubtitle": "Wählen Sie ein erkannten serielles Gerät aus und verbinden Sie es direkt mit Ihrem MeshCore-Knoten.",
+  "connectionChoiceUsbLabel": "USB",
+  "usbScreenTitle": "Verbinden über USB",
+  "connectionChoiceBluetoothLabel": "Bluetooth",
+  "usbScreenStatus": "Wählen Sie ein USB-Gerät aus",
+  "usbScreenNote": "Die USB-Serielle Schnittstelle ist auf unterstützten Android-Geräten und Desktop-Plattformen aktiv.",
+  "usbScreenEmptyState": "Keine USB-Geräte gefunden. Schließen Sie eines an und aktualisieren Sie.",
+  "usbErrorPermissionDenied": "Die USB-Berechtigung wurde abgelehnt.",
+  "usbErrorDeviceMissing": "Das ausgewählte USB-Gerät ist nicht mehr verfügbar.",
+  "usbErrorInvalidPort": "Wählen Sie ein gültiges USB-Gerät aus.",
+  "usbErrorBusy": "Eine weitere Anfrage für eine USB-Verbindung ist bereits in Bearbeitung.",
+  "usbErrorNotConnected": "Es ist kein USB-Gerät angeschlossen.",
+  "usbErrorOpenFailed": "Fehlgeschlagen beim Öffnen des ausgewählten USB-Geräts.",
+  "usbErrorConnectFailed": "Keine Verbindung zum ausgewählten USB-Gerät hergestellt.",
+  "usbErrorUnsupported": "Die USB-Serielle Schnittstelle wird auf dieser Plattform nicht unterstützt.",
+  "usbErrorAlreadyActive": "Eine USB-Verbindung ist bereits hergestellt.",
+  "usbErrorNoDeviceSelected": "Kein USB-Gerät wurde ausgewählt.",
+  "usbErrorPortClosed": "Die USB-Verbindung ist nicht aktiv.",
+  "usbFallbackDeviceName": "Web-Serielle Geräte",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_searching": "Suche nach USB-Geräten...",
+  "usbStatus_notConnected": "Wählen Sie ein USB-Gerät aus",
+  "usbStatus_connecting": "Verbindung zum USB-Gerät...",
+  "usbConnectionFailed": "Fehler beim USB-Verbindungsaufbau: {error}",
+  "usbErrorConnectTimedOut": "Verbindung konnte nicht hergestellt werden. Stellen Sie sicher, dass das Gerät die entsprechende USB-Firmware enthält.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpHostLabel": "IP-Adresse",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpHostHint": "192.168.40.10",
+  "tcpScreenTitle": "Verbinden über TCP",
+  "tcpPortLabel": "Port",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Geben Sie den Endpunkt ein und verbinden Sie sich.",
+  "tcpStatus_connectingTo": "Verbindung zu {endpoint}...",
+  "tcpErrorHostRequired": "Eine IP-Adresse ist erforderlich.",
+  "tcpErrorPortInvalid": "Die Portnummer muss zwischen 1 und 65535 liegen.",
+  "tcpErrorUnsupported": "Die TCP-Übertragung wird auf dieser Plattform nicht unterstützt.",
+  "tcpErrorTimedOut": "Die TCP-Verbindung ist abgelaufen.",
+  "tcpConnectionFailed": "Fehler beim TCP-Verbindungsaufbau: {error}",
+  "map_showDiscoveryContacts": "Entdeckungs-Kontakte anzeigen",
+  "map_setAsMyLocation": "Als meine aktuelle Position festlegen",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_allowByContact": "Zulassen durch Kontaktflaggen",
+  "settings_privacy": "Datenschutzeinstellungen",
+  "settings_allowAll": "Alles zulassen",
+  "settings_privacySettingsDescription": "Wählen Sie die Informationen, die Ihr Gerät mit anderen teilt.",
+  "settings_denyAll": "Alle ablehnen",
+  "settings_privacySubtitle": "Steuern Sie die Informationen, die freigegeben werden.",
+  "settings_telemetryLocationMode": "Telemetrie-Ortsmodus",
+  "settings_telemetryEnvironmentMode": "Telemetrie-Umgebungsmodus",
+  "settings_advertLocation": "Anzeigenort",
+  "settings_advertLocationSubtitle": "Ort in der Anzeige einbeziehen",
+  "settings_telemetryBaseMode": "Telemetrie-Basismodus",
+  "contact_teleBase": "Telemetriebasis",
+  "contact_teleBaseSubtitle": "Erlauben des Freigebens des Batteriestands und der grundlegenden Telemetrie",
+  "contact_teleLoc": "Telemetrieort",
+  "contact_teleLocSubtitle": "Teilen von Standortdaten zulassen",
+  "contact_info": "Kontaktinformationen",
+  "contact_settings": "Kontakteinstellungen",
+  "contact_telemetry": "Telemetrie",
+  "contact_teleEnv": "Telemetrieumgebung",
+  "contact_lastSeen": "Zuletzt gesehen",
+  "contact_clearChat": "Chat löschen",
+  "contact_teleEnvSubtitle": "Teilen von Umgebungsensordaten zulassen",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeightSubtitle": "Ausgangsgewicht für neu entdeckte Pfade",
+  "appSettings_maxRouteWeightSubtitle": "Maximales Gewicht, das ein Weg durch erfolgreiche Lieferungen erreichen kann.",
+  "appSettings_maxRouteWeight": "Maximale Gesamtstreckenlänge",
+  "appSettings_initialRouteWeight": "Anfangs-Streckengewicht",
+  "appSettings_routeWeightSuccessIncrement": "Erhöhung des Erfolgsgewichts",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Gewicht, das einem Pfad nach erfolgreicher Lieferung hinzugefügt wird.",
+  "appSettings_routeWeightFailureDecrement": "Reduzierung des Gewichts bei Fehlern",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Gewicht, das nach einem fehlgeschlagenen Versand von einem Weg entfernt wurde",
+  "appSettings_maxMessageRetries": "Maximale Anzahl an Wiederholungsversuchen",
+  "appSettings_maxMessageRetriesSubtitle": "Anzahl der Versuche, eine Nachricht erneut zu senden, bevor sie als fehlgeschlagen markiert wird.",
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Telemetriemodus aktualisiert",
+  "settings_multiAck": "Mehrfach-Bestätigungen: {value}",
+  "map_showOverlaps": "Überlappungen der Repeater-Taste",
+  "map_runTraceWithReturnPath": "Auf dem gleichen Pfad zurückkehren.",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "chat_sendCooldown": "Bitte warten Sie einen Moment, bevor Sie erneut senden.",
+  "appSettings_jumpToOldestUnread": "Zum ältesten, nicht gelesenen Eintrag springen",
+  "appSettings_languageHu": "Ungarisch",
+  "appSettings_jumpToOldestUnreadSubtitle": "Wenn Sie ein Chatfenster öffnen, in dem Nachrichten vorhanden sind, die noch nicht gelesen wurden, scrollen Sie zu der ersten unlesenen Nachricht, anstatt zur neuesten.",
+  "appSettings_languageJa": "Japanisch",
+  "appSettings_languageKo": "Koreanisch",
+  "radioStats_tooltip": "Daten zu Radio- und Mesh-Netzwerken",
+  "radioStats_screenTitle": "Senderinformationen",
+  "radioStats_notConnected": "Verbinden Sie ein Gerät, um Radiostatisiken anzuzeigen.",
+  "radioStats_firmwareTooOld": "Für die Verwendung der Funkstatistiken ist die Firmware-Version 8 oder höher erforderlich.",
+  "radioStats_waiting": "Warte auf Daten…",
+  "radioStats_noiseFloor": "Rauschpegel: {noiseDbm} dBm",
+  "radioStats_lastRssi": "Letzter RSSI-Wert: {rssiDbm} dBm",
+  "radioStats_lastSnr": "Letzter SNR: {snr} dB",
+  "radioStats_txAir": "Gesamt-TX-Zeit: {seconds} s",
+  "radioStats_rxAir": "Gesamt-RX-Zeit: {seconds} s",
+  "radioStats_chartCaption": "Rauschpegel (dBm) basierend auf den letzten Messwerten.",
+  "radioStats_stripNoise": "Rauschpegel: {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Abrufen von Radiostatus…",
+  "radioStats_settingsTile": "Senderinformationen",
+  "radioStats_settingsSubtitle": "Rauschpegel, RSSI, Signal-Rausch-Verhältnis (SNR) und Nutzzeit",
+  "@translation_downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_title": "Übersetzung",
+  "translation_composerTitle": "Übersetzen Sie vor dem Versenden",
+  "translation_enableSubtitle": "Nachrichten empfangen und übersetzen sowie die Möglichkeit bieten, Nachrichten vor dem Versenden zu übersetzen.",
+  "translation_enableTitle": "Aktivieren Sie die Übersetzung",
+  "translation_composerSubtitle": "Steuert den Standardzustand des Icons für die Übersetzung des Komponisten.",
+  "translation_targetLanguage": "Zielsprache",
+  "translation_useAppLanguage": "Verwenden Sie die App-Sprache",
+  "translation_downloadedModelLabel": "Heruntergeladenes Modell",
+  "translation_presetModelLabel": "Vordefinierter Hugging Face-Modell",
+  "translation_manualUrlLabel": "URL für das manuelle Modell",
+  "translation_downloadModel": "Modell herunterladen",
+  "translation_downloading": "Herunterladen...",
+  "translation_working": "Arbeiten...",
+  "translation_stop": "Stopp",
+  "translation_mergingChunks": "Zusammenführen der heruntergeladenen Teile in die finale Datei...",
+  "translation_downloadedModels": "Heruntergeladene Modelle",
+  "translation_deleteModel": "Modell löschen",
+  "translation_modelDownloaded": "Übersetzungsmotor heruntergeladen.",
+  "translation_downloadStopped": "Herunterladen abgebrochen.",
+  "translation_downloadFailed": "Download fehlgeschlagen: {error}",
+  "translation_enterUrlFirst": "Geben Sie zunächst die URL eines Modells ein.",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "@translation_translateTo": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_messageTranslation": "Nachricht übersetzen",
+  "translation_composerEnabledHint": "Die Nachrichten werden vor dem Versenden übersetzt.",
+  "translation_translateBeforeSending": "Übersetzen Sie vor dem Versenden",
+  "translation_composerDisabledHint": "Nachrichten in der ursprünglichen, getippten Sprache senden.",
+  "translation_translateTo": "Übersetzen Sie auf {language}",
+  "translation_translationOptions": "Übersetzungsmöglichkeiten",
+  "translation_systemLanguage": "Sprache des Systems",
+  "scanner_linuxPairingShowPin": "PIN anzeigen",
+  "scanner_linuxPairingHidePin": "PIN ausblenden",
+  "scanner_linuxPairingPinTitle": "Bluetooth-Paarungs-PIN",
+  "scanner_linuxPairingPinPrompt": "Geben Sie die PIN für {deviceName} ein (leer lassen, falls keine).",
+  "repeater_cliQuickClockSync": "Uhr Synchronisieren",
+  "repeater_cliQuickDiscovery": "Entdecke Nachbarn",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLogin": "Uhrzeit-Synchronisation nach dem Anmelden",
+  "repeater_clockSyncAfterLoginSubtitle": "Automatisch \"Uhrzeit-Synchronisierung\" nach erfolgreicher Anmeldung senden.",
+  "repeater_guest": "Informationen zu Repeatern",
+  "repeater_guestTools": "Gastwerkzeuge",
+  "chat_sendMessage": "Nachricht senden",
+  "room_guest": "Informationen zum Room Server"
 }

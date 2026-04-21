@@ -1,6 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
+
 import '../connector/meshcore_connector.dart';
+import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
+import '../models/contact.dart';
+import 'signal_ui.dart';
+
+Contact? _getRepeaterPrefixMatchNearLocation(
+  List<Contact> contacts,
+  int pubkeyFirstByte, {
+  LatLng? searchPoint,
+  bool preferFavorites = false,
+}) {
+  final candidates = contacts
+      .where(
+        (c) =>
+            c.publicKey.isNotEmpty &&
+            c.publicKey.first == pubkeyFirstByte &&
+            (c.type == advTypeRepeater || c.type == advTypeRoom),
+      )
+      .toList();
+
+  if (candidates.isEmpty) return null;
+
+  candidates.sort((a, b) {
+    if (preferFavorites) {
+      final favA = a.isFavorite ? 1 : 0;
+      final favB = b.isFavorite ? 1 : 0;
+      final favCompare = favB.compareTo(favA);
+      if (favCompare != 0) return favCompare;
+    }
+
+    final seenCompare = b.lastSeen.compareTo(a.lastSeen);
+    if (seenCompare != 0) return seenCompare;
+
+    return a.publicKeyHex.compareTo(b.publicKeyHex);
+  });
+
+  if (searchPoint == null) {
+    return candidates.first;
+  }
+
+  final distance = Distance();
+  Contact best = candidates.first;
+  var bestDistance = double.infinity;
+
+  for (final c in candidates) {
+    if (c.hasLocation && c.latitude != null && c.longitude != null) {
+      final d = distance(searchPoint, LatLng(c.latitude!, c.longitude!));
+      if (d < bestDistance) {
+        bestDistance = d;
+        best = c;
+      }
+    }
+  }
+
+  return best;
+}
 
 class SNRUi {
   final IconData icon;
@@ -38,28 +95,19 @@ SNRUi snrUiFromSNR(double? snr, int? spreadingFactor) {
 
   final snrLevels = getSNRfromSF(spreadingFactor);
 
-  IconData icon;
-  Color color;
   String text = '${snr.toStringAsFixed(1)} dB';
+  final tier = snr >= snrLevels[0]
+      ? 0
+      : snr >= snrLevels[1]
+      ? 1
+      : snr >= snrLevels[2]
+      ? 2
+      : snr >= snrLevels[3]
+      ? 3
+      : 4;
+  final signalUi = signalUiForStrengthTier(tier);
 
-  if (snr >= snrLevels[0]) {
-    icon = Icons.signal_cellular_alt;
-    color = Colors.green;
-  } else if (snr >= snrLevels[1]) {
-    icon = Icons.signal_cellular_alt;
-    color = Colors.lightGreen;
-  } else if (snr >= snrLevels[2]) {
-    icon = Icons.signal_cellular_alt;
-    color = Colors.yellow;
-  } else if (snr >= snrLevels[3]) {
-    icon = Icons.signal_cellular_alt_2_bar;
-    color = Colors.orange;
-  } else {
-    icon = Icons.signal_cellular_alt_1_bar;
-    color = Colors.red;
-  }
-
-  return SNRUi(icon, color, text);
+  return SNRUi(signalUi.icon, signalUi.color, text);
 }
 
 class SNRIndicator extends StatefulWidget {
@@ -72,6 +120,15 @@ class SNRIndicator extends StatefulWidget {
 }
 
 class _SNRIndicatorState extends State<SNRIndicator> {
+  bool _isValidSelfLocation(double lat, double lon) {
+    const double epsilon = 1e-6;
+    return (lat.abs() > epsilon || lon.abs() > epsilon) &&
+        lat >= -90.0 &&
+        lat <= 90.0 &&
+        lon >= -180.0 &&
+        lon <= 180.0;
+  }
+
   @override
   Widget build(BuildContext context) {
     final directRepeaters = widget.connector.directRepeaters;
@@ -86,40 +143,36 @@ class _SNRIndicatorState extends State<SNRIndicator> {
       widget.connector.currentSf,
     );
 
-    return InkWell(
-      onTap: () {
-        if (directRepeater != null) {
-          _showFullPathDialog(context, directBestRepeaters);
-        }
-      },
-      borderRadius: BorderRadius.circular(8),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(snrUi.icon, size: 18, color: snrUi.color),
-                Text(
-                  snrUi.text,
-                  style: TextStyle(fontSize: 12, color: snrUi.color),
-                ),
-              ],
-            ),
-            if (directRepeater != null)
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+      child: InkWell(
+        onTap: directRepeater != null
+            ? () => _showFullPathDialog(context, directBestRepeaters)
+            : null,
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(snrUi.icon, size: 18, color: snrUi.color),
               Text(
-                '${directRepeaters.length}: ${directRepeater.pubkeyFirstByte.toRadixString(16).padLeft(2, '0')}: ${_formatLastUpdated(directRepeater.lastUpdated)}',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                snrUi.text,
+                style: TextStyle(fontSize: 12, color: snrUi.color),
               ),
-          ],
+              if (directRepeater != null)
+                Text(
+                  '${directRepeaters.length}: ${directRepeater.pubkeyFirstByte.toRadixString(16).padLeft(2, '0')}: ${_formatLastUpdated(directRepeater.lastUpdated)}',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -156,8 +209,10 @@ class _SNRIndicatorState extends State<SNRIndicator> {
       builder: (context) => AlertDialog(
         title: Text(l10n.snrIndicator_nearByRepeaters),
         content: SizedBox(
+          width: double.maxFinite,
           child: Scrollbar(
             child: ListView.separated(
+              shrinkWrap: true,
               padding: const EdgeInsets.symmetric(vertical: 4),
               itemCount: directBestRepeaters.length,
               separatorBuilder: (_, _) => const Divider(height: 1),
@@ -167,11 +222,26 @@ class _SNRIndicatorState extends State<SNRIndicator> {
                   repeater.snr,
                   widget.connector.currentSf,
                 );
+                final allContacts = widget.connector.allContacts;
 
-                final name = widget.connector.contacts
-                    .where((c) => c.publicKey.first == repeater.pubkeyFirstByte)
-                    .map((c) => c.name)
-                    .firstOrNull;
+                final selfLat = widget.connector.selfLatitude;
+                final selfLon = widget.connector.selfLongitude;
+
+                LatLng? selfPoint;
+                if (selfLat != null &&
+                    selfLon != null &&
+                    _isValidSelfLocation(selfLat, selfLon)) {
+                  selfPoint = LatLng(selfLat, selfLon);
+                }
+
+                final contact = _getRepeaterPrefixMatchNearLocation(
+                  allContacts,
+                  repeater.pubkeyFirstByte,
+                  searchPoint: selfPoint,
+                  preferFavorites: true,
+                );
+
+                final name = contact?.name;
 
                 return Column(
                   children: [

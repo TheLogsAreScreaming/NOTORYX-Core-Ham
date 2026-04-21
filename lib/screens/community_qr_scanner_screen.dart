@@ -8,6 +8,7 @@ import '../models/community.dart';
 import '../storage/community_store.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/qr_scanner_widget.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// Screen for scanning community QR codes to join communities.
 ///
@@ -51,6 +52,9 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
       _isProcessing = true;
     });
 
+    final connector = context.read<MeshCoreConnector>();
+    _communityStore.setPublicKeyHex = connector.selfPublicKeyHex;
+
     try {
       // Parse the community data
       final community = Community.fromQrData(const Uuid().v4(), data);
@@ -73,11 +77,10 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
       }
     } catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(context.l10n.community_invalidQrCode),
-            backgroundColor: Colors.red,
-          ),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.community_invalidQrCode),
+          backgroundColor: Colors.red,
         );
       }
     } finally {
@@ -90,12 +93,11 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
   }
 
   void _showInvalidQrError(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(context.l10n.community_invalidQrCode),
-        backgroundColor: Colors.orange,
-        duration: const Duration(seconds: 2),
-      ),
+    showDismissibleSnackBar(
+      context,
+      content: Text(context.l10n.community_invalidQrCode),
+      backgroundColor: Colors.orange,
+      duration: const Duration(seconds: 2),
     );
   }
 
@@ -209,6 +211,8 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
     bool addPublicChannel,
   ) async {
     // Save community to local storage
+    final connector = context.read<MeshCoreConnector>();
+    _communityStore.setPublicKeyHex = connector.selfPublicKeyHex;
     await _communityStore.addCommunity(community);
 
     // Optionally add the community public channel to the device
@@ -224,11 +228,10 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
     }
 
     if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(context.l10n.community_joined(community.name)),
-          backgroundColor: Colors.green,
-        ),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.community_joined(community.name)),
+        backgroundColor: Colors.green,
       );
 
       // Return to previous screen

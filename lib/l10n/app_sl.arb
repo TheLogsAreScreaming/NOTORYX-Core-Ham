@@ -285,6 +285,7 @@
   "contacts_newGroup": "Nova skupina",
   "contacts_groupName": "Ime skupine",
   "contacts_groupNameRequired": "Ime skupine je obvezno.",
+  "contacts_groupNameReserved": "To ime skupine je rezervirano",
   "contacts_groupAlreadyExists": "Skupina \"{name}\" že obstaja",
   "@contacts_groupAlreadyExists": {
     "placeholders": {
@@ -1606,6 +1607,8 @@
   "map_pathTraceCancelled": "Spremljanje poti je prekinjeno.",
   "scanner_enableBluetooth": "Omogočite Bluetooth",
   "scanner_bluetoothOffMessage": "Prosimo, vklopite Bluetooth, da lahko poiščete naprave.",
+  "scanner_chromeRequired": "Zahtevan brskalnik Chrome",
+  "scanner_chromeRequiredMessage": "Ta spletna aplikacija za podporo Bluetooth zahteva Google Chrome ali brskalnik na osnovi Chromiuma.",
   "scanner_bluetoothOff": "Bluetooth je izklopljen",
   "snrIndicator_lastSeen": "Zadnjič videno",
   "snrIndicator_nearByRepeaters": "Bližnji ponovitelji",
@@ -1800,5 +1803,276 @@
   "contacts_searchRoomServers": "Išči {number}{str} strežnikov sob...",
   "contacts_searchContactsNoNumber": "Iskanje stikov...",
   "contacts_searchRepeaters": "Išči {number}{str} ponavljalnike...",
-  "contacts_searchUsers": "Išči {number}{str} uporabnikov..."
+  "contacts_searchUsers": "Išči {number}{str} uporabnikov...",
+  "settings_contactSettings": "Nastavitve stika",
+  "contactsSettings_autoAddTitle": "Avtomatsko odkrivanje",
+  "contactsSettings_autoAddUsersTitle": "Avtomatsko dodaj uporabnike",
+  "contactsSettings_autoAddRepeatersTitle": "Avtomatsko dodaj ponovitelje",
+  "contactsSettings_autoAddRepeatersSubtitle": "Dovoli spremljevalcu, da samodejno doda odkrite ponovitelje.",
+  "contactsSettings_autoAddRoomServersTitle": "Avtomatsko dodaj strežnike sob",
+  "contactsSettings_autoAddRoomServersSubtitle": "Dovoli spremljevalcu, da samodejno doda odkrite strežnike sob.",
+  "contactsSettings_otherTitle": "Druge nastavitve v zvezi s stiki",
+  "settings_contactSettingsSubtitle": "Nastavitve za dodajanje stikov.",
+  "contactsSettings_title": "Nastavitve stikov",
+  "contactsSettings_autoAddSensorsTitle": "Avtomatsko dodaj senzorje",
+  "contactsSettings_autoAddUsersSubtitle": "Dovoli spremljevalcu, da samodejno doda odkrite uporabnike.",
+  "discoveredContacts_noMatching": "Ni ujemajočih stikov",
+  "contactsSettings_autoAddSensorsSubtitle": "Dovoli spremljevalcu, da samodejno doda odkrite senzorje.",
+  "discoveredContacts_addContact": "Dodaj stik",
+  "discoveredContacts_contactAdded": "Kontakt dodan",
+  "discoveredContacts_copyContact": "Kopiraj stik v odložišče",
+  "contactsSettings_overwriteOldestTitle": "Prepiši najstarejše",
+  "discoveredContacts_Title": "Odkriti stiki",
+  "discoveredContacts_searchHint": "Najdeni stiki po iskanju",
+  "discoveredContacts_deleteContact": "Izbriši stik",
+  "contactsSettings_overwriteOldestSubtitle": "Ko je seznam stikov poln, bo najstarejši nestarševski stik zamenjan.",
+  "common_deleteAll": "Izbriši vse",
+  "discoveredContacts_deleteContactAllContent": "Ste prepričani, da želite izbrisati vse odkrite kontakte?",
+  "discoveredContacts_deleteContactAll": "Izbriši vse odkrite kontakte",
+  "map_guessedLocation": "Predpostavljena lokacija",
+  "map_showGuessedLocations": "Pokaži lokacije domnevnih not.",
+  "usbScreenTitle": "Povežite preko USB",
+  "usbScreenSubtitle": "Izberite zaznano serijsko napravo in se neposredno povežite z vašo MeshCore napravo.",
+  "connectionChoiceBluetoothLabel": "Bluetooth",
+  "connectionChoiceUsbLabel": "USB",
+  "usbScreenStatus": "Izberite USB naprave",
+  "usbScreenNote": "USB serijska povezava je aktivna na podprtih napravah Android in na desktop platformah.",
+  "usbScreenEmptyState": "Niti en USB naprave niso najdeni. Povežite eno in posodobite.",
+  "usbErrorPermissionDenied": "Dovoljenje za dostop preko USB-ja je bilo zavrnjeno.",
+  "usbErrorDeviceMissing": "Izbrani USB napravej je več ne.",
+  "usbErrorInvalidPort": "Izberite veljavno USB naprave.",
+  "usbErrorBusy": "Že je v teku zahteva za povezavo preko USB.",
+  "usbErrorNotConnected": "Ni priklopljenih USB naprave.",
+  "usbErrorOpenFailed": "Uspešno ni bilo mogo, da se odpre izbran naprave USB.",
+  "usbErrorConnectFailed": "Niso bilo mogoče uskladiti povezave z izbranim USB napom.",
+  "usbErrorUnsupported": "USB serijska komunikacija ni podprta na tej platformi.",
+  "usbErrorAlreadyActive": "USB povezava je že aktivirana.",
+  "usbErrorNoDeviceSelected": "Ni bilo izbranega USB naprave.",
+  "usbErrorPortClosed": "USB povezava ni aktivirana.",
+  "usbFallbackDeviceName": "Naprave za serijsko komunikacijo preko spleta",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_notConnected": "Izberite USB naprave.",
+  "usbStatus_connecting": "Povezava z USB napravo...",
+  "usbStatus_searching": "Iskanje USB naprav...",
+  "usbConnectionFailed": "Napaka pri povezavi preko USB: {error}",
+  "usbErrorConnectTimedOut": "Vzpostavitve ni bilo mogo. Prosimo, da se prepričate, da ima naprave trenutno nameštan firmware USB Companion.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpHostLabel": "IP naslov",
+  "tcpHostHint": "192.168.40.10",
+  "tcpScreenTitle": "Komunicirajte preko protokola TCP",
+  "tcpPortLabel": "Vrata",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Vnesite končni naslov in se povežite",
+  "tcpStatus_connectingTo": "Povezava z {endpoint}...",
+  "tcpErrorHostRequired": "Potrebna je IP-naslov.",
+  "tcpErrorPortInvalid": "Port mora biti med 1 in 65535.",
+  "tcpErrorUnsupported": "Transport preko protokola TCP ni podprt na tej platformi.",
+  "tcpErrorTimedOut": "Povezava TCP je presegla časovno obdobje.",
+  "tcpConnectionFailed": "Napaka pri povezavi TCP: {error}",
+  "map_showDiscoveryContacts": "Prikaži odkritja kontaktov",
+  "map_setAsMyLocation": "Nastavite to kot mojo lokacijo",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_privacy": "Nastavitve zasebnosti",
+  "settings_privacySettingsDescription": "Izberite, katere informacije vaš naprava deli z drugimi.",
+  "settings_telemetryBaseMode": "Osnovni način telemetrije",
+  "settings_telemetryLocationMode": "Način delovanja telemetrije",
+  "settings_telemetryEnvironmentMode": "Način delovanja okolja telemetrije",
+  "settings_advertLocation": "Lokacija oglasa",
+  "settings_allowByContact": "Dovoli po kontaktnih zastavah",
+  "settings_denyAll": "Zavrniti vse",
+  "settings_allowAll": "Dovoli vse",
+  "settings_privacySubtitle": "Kontrolirajte, katere informacije so deljene.",
+  "contact_info": "Kontaktni podatki",
+  "contact_teleBase": "Baza telemetrije",
+  "contact_teleBaseSubtitle": "Dovoli deljenje stanja baterije in osnovne telemetrije",
+  "contact_teleLoc": "Lokacija telemetrije",
+  "contact_lastSeen": "Zadnjič videno",
+  "contact_settings": "Nastavitve stika",
+  "settings_advertLocationSubtitle": "Vključi lokacijo v oglas.",
+  "contact_telemetry": "Telemetrija",
+  "contact_clearChat": "Počisti klepet",
+  "contact_teleEnv": "Okolje telemetrije",
+  "contact_teleEnvSubtitle": "Dovoli deljenje podatkov okoljskih senzorjev",
+  "contact_teleLocSubtitle": "Dovoli deljenje podatkov o lokaciji",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_maxRouteWeightSubtitle": "Največja teža, ki jo lahko pot doseže s uspešnimi dostavnami.",
+  "appSettings_initialRouteWeight": "Izvirna teža poti",
+  "appSettings_initialRouteWeightSubtitle": "Izguba teže za nove, odkriti poti",
+  "appSettings_maxRouteWeight": "Največja dovoljena teža poti",
+  "appSettings_routeWeightSuccessIncrement": "Učinkovitost: povečanje",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Težava, dodana poti po uspešni dostavi",
+  "appSettings_routeWeightFailureDecrement": "Zmanjšanje teže, ki je povezana s pomanjkanjem",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Težo, ki ni bila uspešno dostavljena, odstranili s poti.",
+  "appSettings_maxMessageRetries": "Najve število poskusov pošiljanja sporočil",
+  "appSettings_maxMessageRetriesSubtitle": "Število poskusov ponovnega poslanja, preden se sporočilo označuje kot neuspešno",
+  "path_routeWeight": "{weight}/{max}",
+  "settings_multiAck": "Večkratni potrditvi: {value}",
+  "settings_telemetryModeUpdated": "Način telemetrije posodobljen",
+  "map_showOverlaps": "Prekrivanje ključa ponovnega predvajanja",
+  "map_runTraceWithReturnPath": "Vrni se nazaj po isti poti.",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "appSettings_languageHu": "Madžarski",
+  "appSettings_jumpToOldestUnreadSubtitle": "Ko odpirate klepet z neprebranimi sporočili, se premaknite na prvo neprebrano sporočilo, namesto najnovejšega.",
+  "chat_sendCooldown": "Prosimo, počakajte trenutek, preden pošljete ponovno.",
+  "appSettings_jumpToOldestUnread": "Pritisnite za najstarejše nepročitano sporočilo",
+  "appSettings_languageJa": "Japonski",
+  "appSettings_languageKo": "Korejski",
+  "radioStats_tooltip": "Statistike za radio in mrežo",
+  "radioStats_notConnected": "Povežite se z napravo, da si ogledate statistiko o radiju.",
+  "radioStats_screenTitle": "Radijske statistike",
+  "radioStats_firmwareTooOld": "Statistika za radio zahteva združljivo programsko opremo v8 ali kasnejše.",
+  "radioStats_waiting": "Čakam na podatke…",
+  "radioStats_noiseFloor": "Število šuma: {noiseDbm} dBm",
+  "radioStats_lastRssi": "Najkasnejše vrednost RSSI: {rssiDbm} dBm",
+  "radioStats_lastSnr": "Najkasnejše vrednost SNR: {snr} dB",
+  "radioStats_txAir": "Čas na TX (skupno): {seconds} s",
+  "radioStats_rxAir": "Čas, namenjen RX-ju (skupno): {seconds} s",
+  "radioStats_chartCaption": "Ravnovredna raven šuma (dBm) za nedavne vzorce.",
+  "radioStats_stripNoise": "Število šuma: {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Prejemanje statistike o radiju…",
+  "radioStats_settingsTile": "Radijske statistike",
+  "radioStats_settingsSubtitle": "Število šumov, RSSI, SNR in čas, ki ga je napolnila oprema",
+  "@translation_downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_composerTitle": "Preprištejte, preden pošljete",
+  "translation_title": "Prevod",
+  "translation_enableSubtitle": "Prevedite vstopne sporočila in omogočite predhodno prevajanje.",
+  "translation_enableTitle": "Omogočite prevod",
+  "translation_composerSubtitle": "Ureja privzeto stanje ikone za prevod, ki jo uporablja avtor.",
+  "translation_targetLanguage": "Ciljna jezika",
+  "translation_useAppLanguage": "Uporabite jezik aplikacije",
+  "translation_downloadedModelLabel": "Naložen model",
+  "translation_presetModelLabel": "Prednastavljeni model Hugging Face",
+  "translation_manualUrlLabel": "URL za ročni model",
+  "translation_downloadModel": "Prenesite model",
+  "translation_downloading": "Izvajanje...",
+  "translation_working": "Delo...",
+  "translation_stop": "Prekliji",
+  "translation_mergingChunks": "Sklapljanje prenesenih delov v končni datoteko...",
+  "translation_downloadedModels": "Naloženi modeli",
+  "translation_deleteModel": "Izbrisati model",
+  "translation_modelDownloaded": "Model za prevajanje je bil naložen.",
+  "translation_downloadStopped": "Prenos je bil prekinjen.",
+  "translation_downloadFailed": "Izgovoritev ni bila uspešna: {error}",
+  "translation_enterUrlFirst": "Najprej vnesite URL model.",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "@translation_translateTo": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_translateBeforeSending": "Preprištejte, preden pošljete",
+  "translation_composerDisabledHint": "Pošljite sporočila v originalnem tipkanem jeziku.",
+  "translation_composerEnabledHint": "Vsebina sporočil bo prevedena, preden jih pošljemo.",
+  "translation_messageTranslation": "Prevod sporočila",
+  "translation_translateTo": "Prevesti v {language}",
+  "translation_translationOptions": "Možnosti prevoda",
+  "translation_systemLanguage": "Jezik sistema",
+  "scanner_linuxPairingShowPin": "Prikaži PIN",
+  "scanner_linuxPairingHidePin": "Skrij PIN",
+  "scanner_linuxPairingPinPrompt": "Vnesite PIN za {deviceName} (pustite prazno, če ga ni).",
+  "scanner_linuxPairingPinTitle": "Bluetooth PIN za seznanjanje",
+  "repeater_cliQuickDiscovery": "Odkrijte sosede",
+  "repeater_cliQuickClockSync": "Usklajevanje ure",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Samodejno po uspešnem vstopu pošljite obvestilo o sinhronizaciji časa.",
+  "repeater_clockSyncAfterLogin": "Sinhronizacija ure po prijavi",
+  "repeater_guest": "Informacije o ponovljalniku",
+  "chat_sendMessage": "Pošlji sporočilo",
+  "room_guest": "Informacije o strežniku",
+  "repeater_guestTools": "Naložila za goste"
 }

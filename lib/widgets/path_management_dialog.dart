@@ -9,7 +9,9 @@ import 'package:provider/provider.dart';
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
+import '../helpers/path_helper.dart';
 import '../services/path_history_service.dart';
+import '../helpers/snack_bar_builder.dart';
 import 'path_selection_dialog.dart';
 
 class PathManagementDialog {
@@ -33,14 +35,26 @@ class _PathManagementDialog extends StatefulWidget {
 class _PathManagementDialogState extends State<_PathManagementDialog> {
   bool _showAllPaths = false;
 
+  int _resolveContactIndex = -1;
+
   Contact _resolveContact(MeshCoreConnector connector) {
-    return connector.contacts.firstWhere(
+    if (_resolveContactIndex >= 0 &&
+        _resolveContactIndex < connector.contacts.length &&
+        connector.contacts[_resolveContactIndex].publicKeyHex ==
+            widget.contact.publicKeyHex) {
+      return connector.contacts[_resolveContactIndex];
+    }
+    _resolveContactIndex = connector.contacts.indexWhere(
       (c) => c.publicKeyHex == widget.contact.publicKeyHex,
-      orElse: () => widget.contact,
     );
+    if (_resolveContactIndex == -1) {
+      return widget.contact;
+    }
+    return connector.contacts[_resolveContactIndex];
   }
 
-  String _formatRelativeTime(BuildContext context, DateTime time) {
+  String _formatRelativeTime(BuildContext context, DateTime? time) {
+    if (time == null) return '—';
     final l10n = context.l10n;
     final diff = DateTime.now().difference(time);
     if (diff.inSeconds < 60) return l10n.time_justNow;
@@ -52,24 +66,39 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
   void _showFullPathDialog(BuildContext context, List<int> pathBytes) {
     final l10n = context.l10n;
     if (pathBytes.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(l10n.chat_pathDetailsNotAvailable),
-          duration: const Duration(seconds: 2),
-        ),
+      showDismissibleSnackBar(
+        context,
+        content: Text(l10n.chat_pathDetailsNotAvailable),
+        duration: const Duration(seconds: 2),
       );
       return;
     }
 
-    final formattedPath = pathBytes
-        .map((b) => b.toRadixString(16).padLeft(2, '0').toUpperCase())
-        .join(',');
+    final connector = context.read<MeshCoreConnector>();
+    final allContacts = connector.allContacts;
+
+    final formattedPath = PathHelper.formatPathHex(pathBytes);
+    final resolvedNames = PathHelper.resolvePathNames(pathBytes, allContacts);
 
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(l10n.chat_fullPath),
-        content: SelectableText(formattedPath),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SelectableText(formattedPath),
+            const SizedBox(height: 8),
+            SelectableText(
+              resolvedNames,
+              style: TextStyle(
+                fontSize: 13,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.push(
@@ -78,7 +107,9 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
                 builder: (context) => PathTraceMapScreen(
                   title: context.l10n.contacts_repeaterPathTrace,
                   path: Uint8List.fromList(pathBytes),
-                  flipPathRound: true,
+                  flipPathAround: true,
+                  targetContact: widget.contact,
+                  pathHashByteWidth: connector.pathHashByteWidth,
                 ),
               ),
             ),
@@ -105,8 +136,10 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
       connector.getContacts();
     }
 
-    final pathForInput = currentContact.pathIdList;
-    final availableContacts = connector.contacts
+    final pathForInput = currentContact.pathFormattedIdList(
+      connector.pathHashByteWidth,
+    );
+    final availableContacts = connector.allContacts
         .where((c) => c.publicKeyHex != currentContact.publicKeyHex)
         .toList();
 
@@ -126,11 +159,10 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
       );
 
       if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(l10n.chat_hopsCount(result.length)),
-          duration: const Duration(seconds: 2),
-        ),
+      showDismissibleSnackBar(
+        context,
+        content: Text(l10n.chat_hopsCount(result.length)),
+        duration: const Duration(seconds: 2),
       );
     }
   }
@@ -261,16 +293,17 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
                             radius: 16,
                             backgroundColor: color,
                             child: Text(
-                              '${path.hopCount}',
-                              style: const TextStyle(fontSize: 12),
+                              path.routeWeight.toStringAsFixed(1),
+                              style: const TextStyle(fontSize: 10),
                             ),
                           ),
                           title: Text(
                             l10n.chat_hopsCount(path.hopCount),
                             style: const TextStyle(fontSize: 14),
                           ),
+                          isThreeLine: true,
                           subtitle: Text(
-                            '${(path.tripTimeMs / 1000).toStringAsFixed(2)}s • ${_formatRelativeTime(context, path.timestamp)} • ${path.successCount} ${l10n.chat_successes}',
+                            '${(path.tripTimeMs / 1000).toStringAsFixed(2)}s • ${_formatRelativeTime(context, path.timestamp)}\n${path.successCount} ${l10n.chat_successes} • Score: ${path.routeWeight.toStringAsFixed(1)}',
                             style: const TextStyle(fontSize: 11),
                           ),
                           trailing: Row(
@@ -303,13 +336,12 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
                               _showFullPathDialog(context, path.pathBytes),
                           onTap: () async {
                             if (path.pathBytes.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    l10n.chat_pathDetailsNotAvailable,
-                                  ),
-                                  duration: const Duration(seconds: 2),
+                              showDismissibleSnackBar(
+                                context,
+                                content: Text(
+                                  l10n.chat_pathDetailsNotAvailable,
                                 ),
+                                duration: const Duration(seconds: 2),
                               );
                               return;
                             }
@@ -327,13 +359,12 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
 
                             if (!context.mounted) return;
                             Navigator.pop(context);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  l10n.path_usingHopsPath(path.hopCount),
-                                ),
-                                duration: const Duration(seconds: 2),
+                            showDismissibleSnackBar(
+                              context,
+                              content: Text(
+                                l10n.path_usingHopsPath(path.hopCount),
                               ),
+                              duration: const Duration(seconds: 2),
                             );
                           },
                         ),
@@ -345,6 +376,40 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
                   Text(l10n.chat_noPathHistoryYet),
                   const Divider(),
                 ],
+                // Flood delivery stats
+                Builder(
+                  builder: (context) {
+                    final floodStats = pathService.getFloodStats(
+                      currentContact.publicKeyHex,
+                    );
+                    if (floodStats == null ||
+                        (floodStats.successCount == 0 &&
+                            floodStats.failureCount == 0)) {
+                      return const SizedBox.shrink();
+                    }
+                    return Card(
+                      margin: const EdgeInsets.symmetric(vertical: 4),
+                      child: ListTile(
+                        dense: true,
+                        leading: const CircleAvatar(
+                          radius: 16,
+                          backgroundColor: Colors.blue,
+                          child: Icon(Icons.waves, size: 16),
+                        ),
+                        title: const Text(
+                          'Flood Mode',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        subtitle: Text(
+                          '${floodStats.successCount} ${l10n.chat_successes} / ${floodStats.failureCount} failures'
+                          '${floodStats.lastTripTimeMs > 0 ? ' • ${(floodStats.lastTripTimeMs / 1000).toStringAsFixed(2)}s' : ''}'
+                          '${floodStats.lastUsed != null ? ' • ${_formatRelativeTime(context, floodStats.lastUsed!)}' : ''}',
+                          style: const TextStyle(fontSize: 11),
+                        ),
+                      ),
+                    );
+                  },
+                ),
                 const SizedBox(height: 8),
                 Text(
                   l10n.chat_pathActions,
@@ -391,11 +456,10 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
                   onTap: () async {
                     await connector.clearContactPath(currentContact);
                     if (!context.mounted) return;
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(l10n.chat_pathCleared),
-                        duration: const Duration(seconds: 2),
-                      ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(l10n.chat_pathCleared),
+                      duration: const Duration(seconds: 2),
                     );
                     Navigator.pop(context);
                   },
@@ -421,11 +485,10 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
                       pathLen: -1,
                     );
                     if (!context.mounted) return;
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(l10n.chat_floodModeEnabled),
-                        duration: const Duration(seconds: 2),
-                      ),
+                    showDismissibleSnackBar(
+                      context,
+                      content: Text(l10n.chat_floodModeEnabled),
+                      duration: const Duration(seconds: 2),
                     );
                     Navigator.pop(context);
                   },

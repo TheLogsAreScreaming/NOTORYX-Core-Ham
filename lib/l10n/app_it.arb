@@ -285,6 +285,7 @@
   "contacts_newGroup": "Nuovo Gruppo",
   "contacts_groupName": "Nome gruppo",
   "contacts_groupNameRequired": "Il nome del gruppo è obbligatorio.",
+  "contacts_groupNameReserved": "Questo nome del gruppo è riservato",
   "contacts_groupAlreadyExists": "Il gruppo \"{name}\" esiste già.",
   "@contacts_groupAlreadyExists": {
     "placeholders": {
@@ -1606,6 +1607,8 @@
   "map_tapToAdd": "Tocca i nodi per aggiungerli al percorso.",
   "scanner_bluetoothOff": "Il Bluetooth è disattivato.",
   "scanner_bluetoothOffMessage": "Si prega di attivare il Bluetooth per effettuare la scansione dei dispositivi.",
+  "scanner_chromeRequired": "Browser Chrome richiesto",
+  "scanner_chromeRequiredMessage": "Questa applicazione web richiede Google Chrome o un browser basato su Chromium per il supporto Bluetooth.",
   "scanner_enableBluetooth": "Abilita il Bluetooth",
   "snrIndicator_nearByRepeaters": "Ripetitori vicini",
   "snrIndicator_lastSeen": "Ultimo accesso",
@@ -1800,5 +1803,276 @@
   "contacts_searchFavorites": "Cerca {number}{str} Preferiti...",
   "contacts_unread": "Non letti",
   "contacts_searchRepeaters": "Cerca {number}{str} Ripetitori...",
-  "contacts_searchRoomServers": "Cerca {number}{str} server Room..."
+  "contacts_searchRoomServers": "Cerca {number}{str} server Room...",
+  "contactsSettings_title": "Impostazioni dei contatti",
+  "settings_contactSettings": "Impostazioni di contatto",
+  "contactsSettings_otherTitle": "Altre impostazioni relative ai contatti",
+  "contactsSettings_autoAddUsersSubtitle": "Consenti al compagno di aggiungere automaticamente gli utenti scoperti.",
+  "contactsSettings_autoAddRepeatersTitle": "Aggiungere ripetitori automaticamente",
+  "contactsSettings_autoAddRoomServersSubtitle": "Consenti al compagno di aggiungere automaticamente i server delle stanze scoperte.",
+  "contactsSettings_autoAddSensorsTitle": "Aggiungere automaticamente i sensori",
+  "settings_contactSettingsSubtitle": "Impostazioni per l'aggiunta dei contatti",
+  "contactsSettings_autoAddUsersTitle": "Aggiungere utenti automaticamente",
+  "contactsSettings_autoAddTitle": "Scoperta automatica",
+  "contactsSettings_autoAddSensorsSubtitle": "Consenti al compagno di aggiungere automaticamente i sensori scoperti",
+  "discoveredContacts_noMatching": "Nessun contatto corrispondente",
+  "contactsSettings_autoAddRepeatersSubtitle": "Consenti al compagno di aggiungere automaticamente i ripetitori scoperti.",
+  "discoveredContacts_searchHint": "Cerca contatti scoperti",
+  "contactsSettings_autoAddRoomServersTitle": "Aggiungere automaticamente i server delle stanze",
+  "discoveredContacts_addContact": "Aggiungi contatto",
+  "contactsSettings_overwriteOldestTitle": "Sostituisci il più vecchio",
+  "discoveredContacts_Title": "Contatti scoperti",
+  "discoveredContacts_contactAdded": "Contatto aggiunto",
+  "discoveredContacts_deleteContact": "Elimina Contatto",
+  "discoveredContacts_copyContact": "Copia contatto negli appunti",
+  "contactsSettings_overwriteOldestSubtitle": "Quando l'elenco dei contatti è pieno, il contatto più vecchio non tra i preferiti verrà sostituito.",
+  "common_deleteAll": "Elimina tutto",
+  "discoveredContacts_deleteContactAllContent": "Sei sicuro di voler eliminare tutti i contatti scoperti?",
+  "discoveredContacts_deleteContactAll": "Eliminare tutti i contatti scoperti",
+  "map_guessedLocation": "Località indovinata",
+  "map_showGuessedLocations": "Mostra le posizioni stimate dei nodi",
+  "connectionChoiceBluetoothLabel": "Bluetooth",
+  "usbScreenSubtitle": "Seleziona il dispositivo seriale rilevato e connettilo direttamente al tuo nodo MeshCore.",
+  "connectionChoiceUsbLabel": "USB",
+  "usbScreenTitle": "Connessione tramite USB",
+  "usbScreenStatus": "Seleziona un dispositivo USB",
+  "usbScreenNote": "La comunicazione seriale USB è attiva sui dispositivi Android supportati e sulle piattaforme desktop.",
+  "usbScreenEmptyState": "Nessun dispositivo USB rilevato. Collegare uno e aggiornare.",
+  "usbErrorPermissionDenied": "È stato negato l'accesso tramite USB.",
+  "usbErrorDeviceMissing": "Il dispositivo USB selezionato non è più disponibile.",
+  "usbErrorInvalidPort": "Seleziona un dispositivo USB valido.",
+  "usbErrorBusy": "Un'altra richiesta di connessione tramite USB è già in corso.",
+  "usbErrorNotConnected": "Non è collegato alcun dispositivo USB.",
+  "usbErrorOpenFailed": "Impossibile aprire il dispositivo USB selezionato.",
+  "usbErrorConnectFailed": "Impossibile connettersi al dispositivo USB selezionato.",
+  "usbErrorUnsupported": "La comunicazione seriale tramite USB non è supportata su questa piattaforma.",
+  "usbErrorAlreadyActive": "La connessione USB è già attiva.",
+  "usbErrorNoDeviceSelected": "Non è stato selezionato alcun dispositivo USB.",
+  "usbErrorPortClosed": "La connessione USB non è attiva.",
+  "usbFallbackDeviceName": "Dispositivo per comunicazione seriale su rete",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_searching": "Ricerca di dispositivi USB...",
+  "usbConnectionFailed": "Errore nella connessione USB: {error}",
+  "usbStatus_notConnected": "Seleziona un dispositivo USB",
+  "usbStatus_connecting": "Connessione al dispositivo USB...",
+  "usbErrorConnectTimedOut": "La connessione è scaduta. Assicurarsi che il dispositivo abbia il firmware USB Companion.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tcpHostLabel": "Indirizzo IP",
+  "tcpHostHint": "192.168.40.10",
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpScreenTitle": "Stabilire una connessione tramite TCP",
+  "tcpPortLabel": "Porta",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Inserisci l'endpoint e connettiti.",
+  "tcpStatus_connectingTo": "Connessione a {endpoint}...",
+  "tcpErrorHostRequired": "È necessario fornire un indirizzo IP.",
+  "tcpErrorPortInvalid": "La dimensione della porta deve essere compresa tra 1 e 65535.",
+  "tcpErrorUnsupported": "Il protocollo TCP non è supportato su questa piattaforma.",
+  "tcpErrorTimedOut": "La connessione TCP è scaduta.",
+  "tcpConnectionFailed": "Impossibile stabilire la connessione TCP: {error}",
+  "map_showDiscoveryContacts": "Mostra Contatti di Discovery",
+  "map_setAsMyLocation": "Imposta come la mia posizione",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_privacySettingsDescription": "Scegli le informazioni che il tuo dispositivo condivide con gli altri.",
+  "settings_allowByContact": "Consenti in base ai flag di contatto",
+  "settings_telemetryLocationMode": "Modalità di posizionamento telemetrico",
+  "settings_telemetryEnvironmentMode": "Modalità di ambiente di telemetria",
+  "settings_advertLocation": "Posizione dell'annuncio",
+  "settings_advertLocationSubtitle": "Includi la posizione nell'annuncio",
+  "settings_privacy": "Impostazioni sulla privacy",
+  "settings_denyAll": "Negare tutto",
+  "settings_privacySubtitle": "Controlla le informazioni che vengono condivise.",
+  "settings_allowAll": "Consenti tutto",
+  "contact_info": "Informazioni di Contatto",
+  "settings_telemetryBaseMode": "Modalità di base di telemetria",
+  "contact_teleBase": "Base di telemetria",
+  "contact_teleLoc": "Posizione telemetria",
+  "contact_teleLocSubtitle": "Consenti la condivisione dei dati di posizione",
+  "contact_clearChat": "Cancella chat",
+  "contact_telemetry": "Telemetria",
+  "contact_settings": "Impostazioni di contatto",
+  "contact_lastSeen": "Ultimo accesso",
+  "contact_teleBaseSubtitle": "Consenti la condivisione del livello della batteria e della telemetria di base",
+  "contact_teleEnvSubtitle": "Consenti la condivisione dei dati del sensore ambientale",
+  "contact_teleEnv": "Ambiente di telemetria",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeight": "Peso iniziale del percorso",
+  "appSettings_initialRouteWeightSubtitle": "Peso di partenza per nuovi percorsi",
+  "appSettings_maxRouteWeightSubtitle": "Il peso massimo che un percorso può accumulare grazie a consegne di successo.",
+  "appSettings_maxRouteWeight": "Massimo peso consentito per il percorso",
+  "appSettings_routeWeightSuccessIncrement": "Aumento del peso del successo",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Peso aggiunto a un percorso dopo una consegna riuscita.",
+  "appSettings_routeWeightFailureDecrement": "Riduzione del peso associato al fallimento",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Peso rimosso da un percorso dopo un tentativo di consegna fallito.",
+  "appSettings_maxMessageRetries": "Numero massimo di tentativi di invio del messaggio",
+  "appSettings_maxMessageRetriesSubtitle": "Numero di tentativi di riprova prima di considerare un messaggio come fallito.",
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Modalità telemetria aggiornata",
+  "settings_multiAck": "Multi-ACKs: {value}",
+  "map_showOverlaps": "Sovrapposizioni della chiave ripetitore",
+  "map_runTraceWithReturnPath": "Tornare indietro sullo stesso percorso",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "appSettings_jumpToOldestUnreadSubtitle": "Quando si apre una chat con messaggi non letti, scorrete verso l'alto fino al primo messaggio non letto, invece che al più recente.",
+  "chat_sendCooldown": "Si prega di attendere un momento prima di inviare nuovamente.",
+  "appSettings_jumpToOldestUnread": "Vai al messaggio più vecchio non letto",
+  "appSettings_languageHu": "Ungherese",
+  "appSettings_languageJa": "Giapponese",
+  "appSettings_languageKo": "Coreano",
+  "radioStats_tooltip": "Statistiche per radio e reti",
+  "radioStats_screenTitle": "Statistiche radio",
+  "radioStats_notConnected": "Connettiti a un dispositivo per visualizzare le statistiche radio.",
+  "radioStats_firmwareTooOld": "Le statistiche radio richiedono il firmware versione 8 o successiva.",
+  "radioStats_noiseFloor": "Livello di rumore: {noiseDbm} dBm",
+  "radioStats_waiting": "In attesa dei dati…",
+  "radioStats_lastRssi": "Ultimo valore RSSI: {rssiDbm} dBm",
+  "radioStats_lastSnr": "Ultimo SNR: {snr} dB",
+  "radioStats_txAir": "Tempo di trasmissione in diretta (totale): {seconds} s",
+  "radioStats_rxAir": "Tempo di trasmissione RX (totale): {seconds} s",
+  "radioStats_chartCaption": "Livello di rumore (dBm) misurato su campioni recenti.",
+  "radioStats_stripNoise": "Livello di rumore: {noiseDbm} dBm",
+  "radioStats_stripWaiting": "Recupero delle statistiche radio…",
+  "radioStats_settingsTile": "Statistiche radio",
+  "radioStats_settingsSubtitle": "Livello di rumore, RSSI, rapporto segnale/rumore (SNR) e tempo di trasmissione",
+  "@translation_downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_composerTitle": "Tradurre prima di inviare",
+  "translation_enableSubtitle": "Tradurre i messaggi in arrivo e consentire la traduzione preventiva prima dell'invio.",
+  "translation_enableTitle": "Abilitare la traduzione",
+  "translation_title": "Traduzione",
+  "translation_composerSubtitle": "Controlla lo stato predefinito dell'icona di traduzione del compositore.",
+  "translation_targetLanguage": "Lingua di destinazione",
+  "translation_useAppLanguage": "Utilizza la lingua dell'app",
+  "translation_downloadedModelLabel": "Modello scaricato",
+  "translation_presetModelLabel": "Modello predefinito di Hugging Face",
+  "translation_manualUrlLabel": "URL del modello manuale",
+  "translation_downloadModel": "Scarica il modello",
+  "translation_downloading": "Inizio download...",
+  "translation_working": "Lavoro...",
+  "translation_stop": "Smetta",
+  "translation_downloadedModels": "Modelli scaricati",
+  "translation_mergingChunks": "Unione dei frammenti scaricati in un unico file...",
+  "translation_deleteModel": "Elimina modello",
+  "translation_modelDownloaded": "Modello di traduzione scaricato.",
+  "translation_downloadStopped": "Il download è stato interrotto.",
+  "translation_downloadFailed": "Download fallito: {error}",
+  "translation_enterUrlFirst": "Inserite innanzitutto l'URL del modello.",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "@translation_translateTo": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_messageTranslation": "Traduzione del messaggio",
+  "translation_translateBeforeSending": "Tradurre prima di inviare",
+  "translation_composerDisabledHint": "Invia messaggi utilizzando la lingua originale, scritta.",
+  "translation_composerEnabledHint": "I messaggi verranno tradotti prima di essere inviati.",
+  "translation_translateTo": "Tradurre in {language}",
+  "translation_translationOptions": "Opzioni di traduzione",
+  "translation_systemLanguage": "Lingua del sistema",
+  "scanner_linuxPairingPinPrompt": "Inserire il codice PIN per {deviceName} (lasciare vuoto se non presente).",
+  "scanner_linuxPairingShowPin": "Mostra PIN",
+  "scanner_linuxPairingPinTitle": "PIN per l'accoppiamento Bluetooth",
+  "scanner_linuxPairingHidePin": "Nascondi il PIN",
+  "repeater_cliQuickClockSync": "Sincronizzazione dell'orologio",
+  "repeater_cliQuickDiscovery": "Scopri i Vicini",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Invia automaticamente il comando \"sincronizzazione dell'orologio\" dopo un login riuscito.",
+  "repeater_clockSyncAfterLogin": "Sincronizzazione dell'orologio dopo il login",
+  "repeater_guest": "Informazioni sul ripetitore",
+  "repeater_guestTools": "Strumenti per gli ospiti",
+  "chat_sendMessage": "Invia messaggio",
+  "room_guest": "Informazioni sul server"
 }

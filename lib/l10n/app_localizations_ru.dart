@@ -39,6 +39,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get common_delete => 'Удалить';
 
   @override
+  String get common_deleteAll => 'Удалить все';
+
+  @override
   String get common_close => 'Закрыть';
 
   @override
@@ -109,6 +112,137 @@ class AppLocalizationsRu extends AppLocalizations {
   String get scanner_title => 'MeshCore Open';
 
   @override
+  String get connectionChoiceUsbLabel => 'USB';
+
+  @override
+  String get connectionChoiceBluetoothLabel => 'Bluetooth';
+
+  @override
+  String get connectionChoiceTcpLabel => 'TCP';
+
+  @override
+  String get tcpScreenTitle => 'Установить соединение по протоколу TCP';
+
+  @override
+  String get tcpHostLabel => 'IP-адрес';
+
+  @override
+  String get tcpHostHint => '192.168.40.10';
+
+  @override
+  String get tcpPortLabel => 'Порт';
+
+  @override
+  String get tcpPortHint => '5000';
+
+  @override
+  String get tcpStatus_notConnected => 'Введите адрес и подключитесь.';
+
+  @override
+  String tcpStatus_connectingTo(String endpoint) {
+    return 'Подключение к $endpoint...';
+  }
+
+  @override
+  String get tcpErrorHostRequired => 'Необходимо указать IP-адрес.';
+
+  @override
+  String get tcpErrorPortInvalid =>
+      'Порт должен находиться в диапазоне от 1 до 65535.';
+
+  @override
+  String get tcpErrorUnsupported =>
+      'Протокол TCP не поддерживается на этой платформе.';
+
+  @override
+  String get tcpErrorTimedOut => 'Соединение TCP не удалось установить.';
+
+  @override
+  String tcpConnectionFailed(String error) {
+    return 'Не удалось установить соединение TCP: $error';
+  }
+
+  @override
+  String get usbScreenTitle => 'Подключение через USB';
+
+  @override
+  String get usbScreenSubtitle =>
+      'Выберите обнаруженное устройство с последовательным интерфейсом и подключите его напрямую к вашему узлу MeshCore.';
+
+  @override
+  String get usbScreenStatus => 'Выберите USB-устройство';
+
+  @override
+  String get usbScreenNote =>
+      'USB-серийный порт активен на поддерживаемых устройствах Android и на настольных платформах.';
+
+  @override
+  String get usbScreenEmptyState =>
+      'Не обнаружено устройств USB. Подключите одно из них и обновите список.';
+
+  @override
+  String get usbErrorPermissionDenied =>
+      'Запрос на доступ через USB был отклонен.';
+
+  @override
+  String get usbErrorDeviceMissing =>
+      'Выбранное USB-устройство больше недоступно.';
+
+  @override
+  String get usbErrorInvalidPort => 'Выберите действительное USB-устройство.';
+
+  @override
+  String get usbErrorBusy =>
+      'Еще одно запрошенное соединение через USB уже находится в процессе.';
+
+  @override
+  String get usbErrorNotConnected => 'Ни одно USB-устройство не подключено.';
+
+  @override
+  String get usbErrorOpenFailed =>
+      'Не удалось открыть выбранное USB-устройство.';
+
+  @override
+  String get usbErrorConnectFailed =>
+      'Не удалось установить соединение с выбранным USB-устройством.';
+
+  @override
+  String get usbErrorUnsupported =>
+      'Поддержка последовательного USB отсутствует на данной платформе.';
+
+  @override
+  String get usbErrorAlreadyActive => 'USB-соединение уже установлено.';
+
+  @override
+  String get usbErrorNoDeviceSelected =>
+      'Не было выбрано ни одно устройство USB.';
+
+  @override
+  String get usbErrorPortClosed => 'USB-соединение не установлено.';
+
+  @override
+  String get usbErrorConnectTimedOut =>
+      'Соединение не установлено. Убедитесь, что устройство имеет установленное программное обеспечение USB Companion.';
+
+  @override
+  String get usbFallbackDeviceName =>
+      'Устройство для последовательного подключения к сети';
+
+  @override
+  String get usbStatus_notConnected => 'Выберите USB-устройство';
+
+  @override
+  String get usbStatus_connecting => 'Подключение к USB-устройству...';
+
+  @override
+  String get usbStatus_searching => 'Поиск USB-устройств...';
+
+  @override
+  String usbConnectionFailed(String error) {
+    return 'Не удалось установить соединение через USB: $error';
+  }
+
+  @override
   String get scanner_scanning => 'Поиск устройств...';
 
   @override
@@ -148,6 +282,13 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get scanner_bluetoothOffMessage =>
       'Пожалуйста, включите Bluetooth, чтобы найти устройства.';
+
+  @override
+  String get scanner_chromeRequired => 'Требуется браузер Chrome';
+
+  @override
+  String get scanner_chromeRequiredMessage =>
+      'Для поддержки Bluetooth в этом веб-приложении требуется Google Chrome или браузер на базе Chromium.';
 
   @override
   String get scanner_enableBluetooth => 'Включите Bluetooth';
@@ -233,6 +374,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_longitude => 'Долгота';
 
   @override
+  String get settings_contactSettings => 'Настройки контактов';
+
+  @override
+  String get settings_contactSettingsSubtitle =>
+      'Настройки добавления контактов';
+
+  @override
   String get settings_privacyMode => 'Режим конфиденциальности';
 
   @override
@@ -249,6 +397,51 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get settings_privacyModeDisabled =>
       'Режим конфиденциальности выключен';
+
+  @override
+  String get settings_privacy => 'Настройки конфиденциальности';
+
+  @override
+  String get settings_privacySubtitle =>
+      'Контролируйте, какую информацию делиться.';
+
+  @override
+  String get settings_privacySettingsDescription =>
+      'Выберите, какую информацию ваше устройство будет делиться с другими.';
+
+  @override
+  String get settings_denyAll => 'Отклонить все';
+
+  @override
+  String get settings_allowByContact => 'Разрешить по флагам контактов';
+
+  @override
+  String get settings_allowAll => 'Разрешить все';
+
+  @override
+  String get settings_telemetryBaseMode => 'Базовый режим телеметрии';
+
+  @override
+  String get settings_telemetryLocationMode =>
+      'Режим местоположения телеметрии';
+
+  @override
+  String get settings_telemetryEnvironmentMode => 'Режим среды телеметрии';
+
+  @override
+  String get settings_advertLocation => 'Местоположение рекламы';
+
+  @override
+  String get settings_advertLocationSubtitle =>
+      'Включить местоположение в объявление';
+
+  @override
+  String settings_multiAck(String value) {
+    return 'Мульти-ACK: $value';
+  }
+
+  @override
+  String get settings_telemetryModeUpdated => 'Режим телеметрии обновлен';
 
   @override
   String get settings_actions => 'Действия';
@@ -549,6 +742,50 @@ class AppLocalizationsRu extends AppLocalizations {
       'Автоматическое переключение маршрутов отключено';
 
   @override
+  String get appSettings_maxRouteWeight =>
+      'Максимальный допустимый вес маршрута';
+
+  @override
+  String get appSettings_maxRouteWeightSubtitle =>
+      'Максимальный вес, который может быть перевезён по определённому маршруту при успешных доставках.';
+
+  @override
+  String get appSettings_initialRouteWeight => 'Начальный вес маршрута';
+
+  @override
+  String get appSettings_initialRouteWeightSubtitle =>
+      'Начальный вес для новых, только что открытых маршрутов';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrement =>
+      'Увеличение веса успеха';
+
+  @override
+  String get appSettings_routeWeightSuccessIncrementSubtitle =>
+      'Вес, добавленный к маршруту после успешной доставки.';
+
+  @override
+  String get appSettings_routeWeightFailureDecrement =>
+      'Уменьшение веса неудачи';
+
+  @override
+  String get appSettings_routeWeightFailureDecrementSubtitle =>
+      'Вес, который был удален с пути после неудачной доставки.';
+
+  @override
+  String get appSettings_maxMessageRetries =>
+      'Максимальное количество повторных попыток отправки сообщения';
+
+  @override
+  String get appSettings_maxMessageRetriesSubtitle =>
+      'Количество попыток повторной отправки сообщения перед тем, как пометить его как неудачное.';
+
+  @override
+  String path_routeWeight(String weight, String max) {
+    return '$weight/$max';
+  }
+
+  @override
   String get appSettings_battery => 'Батарея';
 
   @override
@@ -755,6 +992,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get contacts_groupNameRequired => 'Имя группы обязательно';
 
   @override
+  String get contacts_groupNameReserved => 'Это имя группы зарезервировано';
+
+  @override
   String contacts_groupAlreadyExists(String name) {
     return 'Группа \"$name\" уже существует';
   }
@@ -792,6 +1032,42 @@ class AppLocalizationsRu extends AppLocalizations {
   String contacts_lastSeenDaysAgo(int days) {
     return 'Видели $days дн. назад';
   }
+
+  @override
+  String get contact_info => 'Контактная информация';
+
+  @override
+  String get contact_settings => 'Настройки контактов';
+
+  @override
+  String get contact_telemetry => 'Телеметрия';
+
+  @override
+  String get contact_lastSeen => 'Последний раз видели';
+
+  @override
+  String get contact_clearChat => 'Очистить чат';
+
+  @override
+  String get contact_teleBase => 'База телеметрии';
+
+  @override
+  String get contact_teleBaseSubtitle =>
+      'Разрешить обмен уровнем заряда батареи и базовой телеметрией';
+
+  @override
+  String get contact_teleLoc => 'Местоположение телеметрии';
+
+  @override
+  String get contact_teleLocSubtitle =>
+      'Разрешить обмен данными о местоположении';
+
+  @override
+  String get contact_teleEnv => 'Среда телеметрии';
+
+  @override
+  String get contact_teleEnvSubtitle =>
+      'Разрешить обмен данными датчиков окружающей среды';
 
   @override
   String get channels_title => 'Каналы';
@@ -963,6 +1239,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get chat_noMessages => 'Сообщений пока нет';
 
   @override
+  String get chat_sendMessage => 'Отправить сообщение';
+
+  @override
+  String chat_sendMessageTo(String contactName) {
+    return 'Отправить сообщение $contactName';
+  }
+
+  @override
   String get chat_sendMessageToStart => 'Отправьте сообщение, чтобы начать';
 
   @override
@@ -980,11 +1264,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get chat_location => 'Местоположение';
-
-  @override
-  String chat_sendMessageTo(String contactName) {
-    return 'Отправить сообщение $contactName';
-  }
 
   @override
   String get chat_typeMessage => 'Напишите сообщение...';
@@ -1366,6 +1645,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get map_shareMarkerHere => 'Поделиться меткой здесь';
 
   @override
+  String get map_setAsMyLocation => 'Установить мое местоположение';
+
+  @override
   String get map_pinLabel => 'Метка';
 
   @override
@@ -1411,6 +1693,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get map_otherNodes => 'Другие ноды';
 
   @override
+  String get map_showOverlaps => 'Перекрытия ключа повтора';
+
+  @override
   String get map_keyPrefix => 'Префикс ключа';
 
   @override
@@ -1424,6 +1709,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get map_showSharedMarkers => 'Показывать общие метки';
+
+  @override
+  String get map_showGuessedLocations =>
+      'Отобразить предполагаемые места расположения узлов';
+
+  @override
+  String get map_showDiscoveryContacts => 'Показать контакты Discovery';
+
+  @override
+  String get map_guessedLocation => 'Угаданное место';
 
   @override
   String get map_lastSeenTime => 'Время последнего появления';
@@ -1442,6 +1737,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get map_runTrace => 'Запустить трассировку пути';
+
+  @override
+  String get map_runTraceWithReturnPath => 'Вернуться обратно по тому же пути';
 
   @override
   String get map_removeLast => 'Удалить последний';
@@ -1722,7 +2020,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get room_management => 'Управление сервером комнат';
 
   @override
+  String get repeater_guest => 'Информация о ретрансляторе';
+
+  @override
+  String get room_guest => 'Информация о сервере';
+
+  @override
   String get repeater_managementTools => 'Инструменты управления';
+
+  @override
+  String get repeater_guestTools => 'Инструменты для гостей';
 
   @override
   String get repeater_status => 'Статус';
@@ -1755,6 +2062,14 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get repeater_settingsSubtitle => 'Настройка параметров репитера';
+
+  @override
+  String get repeater_clockSyncAfterLogin =>
+      'Синхронизация часов после входа в систему';
+
+  @override
+  String get repeater_clockSyncAfterLoginSubtitle =>
+      'Автоматически отправлять сообщение \"синхронизация времени\" после успешной авторизации.';
 
   @override
   String get repeater_statusTitle => 'Статус репитера';
@@ -2131,6 +2446,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get repeater_cliQuickClock => 'Время';
+
+  @override
+  String get repeater_cliQuickClockSync => 'Синхронизация часов';
+
+  @override
+  String get repeater_cliQuickDiscovery => 'Обнаружить Соседей';
 
   @override
   String get repeater_cliHelpAdvert => 'Отправляет пакет анонсирования';
@@ -3126,4 +3447,274 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get snrIndicator_lastSeen => 'Последний раз видели';
+
+  @override
+  String get contactsSettings_title => 'Настройки контактов';
+
+  @override
+  String get contactsSettings_autoAddTitle => 'Автоматическое обнаружение';
+
+  @override
+  String get contactsSettings_otherTitle =>
+      'Другие настройки, связанные с контактами';
+
+  @override
+  String get contactsSettings_autoAddUsersTitle =>
+      'Автоматически добавлять пользователей';
+
+  @override
+  String get contactsSettings_autoAddUsersSubtitle =>
+      'Разрешить компаньону автоматически добавлять обнаруженных пользователей';
+
+  @override
+  String get contactsSettings_autoAddRepeatersTitle =>
+      'Автоматически добавлять ретрансляторы';
+
+  @override
+  String get contactsSettings_autoAddRepeatersSubtitle =>
+      'Разрешить спутнику автоматически добавлять обнаруженные ретрансляторы';
+
+  @override
+  String get contactsSettings_autoAddRoomServersTitle =>
+      'Автоматически добавлять серверы комнат';
+
+  @override
+  String get contactsSettings_autoAddRoomServersSubtitle =>
+      'Разрешить компаньону автоматически добавлять обнаруженные сервера комнат.';
+
+  @override
+  String get contactsSettings_autoAddSensorsTitle =>
+      'Автоматически добавлять датчики';
+
+  @override
+  String get contactsSettings_autoAddSensorsSubtitle =>
+      'Разрешить компаньону автоматически добавлять обнаруженные датчики';
+
+  @override
+  String get contactsSettings_overwriteOldestTitle =>
+      'Перезаписать самое старое';
+
+  @override
+  String get contactsSettings_overwriteOldestSubtitle =>
+      'Когда список контактов заполнен, будет заменен самый старый контакт, который не находится в избранном.';
+
+  @override
+  String get discoveredContacts_Title => 'Обнаруженные контакты';
+
+  @override
+  String get discoveredContacts_noMatching => 'Нет совпадающих контактов';
+
+  @override
+  String get discoveredContacts_searchHint => 'Найденные контакты поиска';
+
+  @override
+  String get discoveredContacts_contactAdded => 'Контакт добавлен';
+
+  @override
+  String get discoveredContacts_addContact => 'Добавить контакт';
+
+  @override
+  String get discoveredContacts_copyContact =>
+      'Копировать контакт в буфер обмена';
+
+  @override
+  String get discoveredContacts_deleteContact => 'Удалить контакт';
+
+  @override
+  String get discoveredContacts_deleteContactAll =>
+      'Удалить Все Обнаруженные Контакты';
+
+  @override
+  String get discoveredContacts_deleteContactAllContent =>
+      'Вы уверены, что хотите удалить все обнаруженные контакты?';
+
+  @override
+  String get chat_sendCooldown =>
+      'Пожалуйста, подождите немного, прежде чем отправлять сообщение снова.';
+
+  @override
+  String get appSettings_jumpToOldestUnread =>
+      'Перейти к самому старому непрочитанному сообщению';
+
+  @override
+  String get appSettings_jumpToOldestUnreadSubtitle =>
+      'При открытии чата с непрочитанными сообщениями, прокрутите страницу, чтобы увидеть первое непрочитанное сообщение, а не последнее.';
+
+  @override
+  String get appSettings_languageHu => 'Венгерский';
+
+  @override
+  String get appSettings_languageJa => 'Японский';
+
+  @override
+  String get appSettings_languageKo => 'Корейский';
+
+  @override
+  String get radioStats_tooltip => 'Статистика радио и беспроводной сети';
+
+  @override
+  String get radioStats_screenTitle => 'Статистика радиовещания';
+
+  @override
+  String get radioStats_notConnected =>
+      'Подключитесь к устройству, чтобы просмотреть статистику радио.';
+
+  @override
+  String get radioStats_firmwareTooOld =>
+      'Для работы радиостатистики требуется установленная версия прошивки v8 или более новая.';
+
+  @override
+  String get radioStats_waiting => 'Ожидаем данных…';
+
+  @override
+  String radioStats_noiseFloor(int noiseDbm) {
+    return 'Уровень шума: $noiseDbm дБм';
+  }
+
+  @override
+  String radioStats_lastRssi(int rssiDbm) {
+    return 'Последнее значение RSSI: $rssiDbm дБм';
+  }
+
+  @override
+  String radioStats_lastSnr(String snr) {
+    return 'Последнее значение SNR: $snr дБ';
+  }
+
+  @override
+  String radioStats_txAir(int seconds) {
+    return 'Время эфира на телеканале TX (общее): $seconds секунд';
+  }
+
+  @override
+  String radioStats_rxAir(int seconds) {
+    return 'Общее время использования RX (в секундах): $seconds с';
+  }
+
+  @override
+  String get radioStats_chartCaption =>
+      'Уровень шума (дБм) на основе последних измерений.';
+
+  @override
+  String radioStats_stripNoise(int noiseDbm) {
+    return 'Уровень шума: $noiseDbm дБм';
+  }
+
+  @override
+  String get radioStats_stripWaiting => 'Получение данных о радио…';
+
+  @override
+  String get radioStats_settingsTile => 'Статистика радиовещания';
+
+  @override
+  String get radioStats_settingsSubtitle =>
+      'Уровень шума, RSSI, SNR и время передачи';
+
+  @override
+  String get translation_title => 'Перевод';
+
+  @override
+  String get translation_enableTitle => 'Включить перевод';
+
+  @override
+  String get translation_enableSubtitle =>
+      'Переводить входящие сообщения и позволять предварительный перевод перед отправкой.';
+
+  @override
+  String get translation_composerTitle => 'Переводить перед отправкой';
+
+  @override
+  String get translation_composerSubtitle =>
+      'Управляет исходным состоянием значка перевода, предоставляемого редактором.';
+
+  @override
+  String get translation_targetLanguage => 'Целевой язык';
+
+  @override
+  String get translation_useAppLanguage => 'Используйте язык приложения';
+
+  @override
+  String get translation_downloadedModelLabel => 'Загруженная модель';
+
+  @override
+  String get translation_presetModelLabel =>
+      'Предопределенная модель от Hugging Face';
+
+  @override
+  String get translation_manualUrlLabel => 'Ссылка на руководство';
+
+  @override
+  String get translation_downloadModel => 'Скачать модель';
+
+  @override
+  String get translation_downloading => 'Загрузка...';
+
+  @override
+  String get translation_working => 'Работа...';
+
+  @override
+  String get translation_stop => 'Прекратите';
+
+  @override
+  String get translation_mergingChunks =>
+      'Объединение скачанных фрагментов в один финальный файл...';
+
+  @override
+  String get translation_downloadedModels => 'Загруженные модели';
+
+  @override
+  String get translation_deleteModel => 'Удалить модель';
+
+  @override
+  String get translation_modelDownloaded => 'Модель перевода загружена.';
+
+  @override
+  String get translation_downloadStopped => 'Процесс загрузки был прерван.';
+
+  @override
+  String translation_downloadFailed(String error) {
+    return 'Не удалось скачать: $error';
+  }
+
+  @override
+  String get translation_enterUrlFirst => 'Сначала введите URL модели.';
+
+  @override
+  String get scanner_linuxPairingShowPin => 'Показать PIN';
+
+  @override
+  String get scanner_linuxPairingHidePin => 'Скрыть PIN';
+
+  @override
+  String get scanner_linuxPairingPinTitle => 'PIN‑код сопряжения Bluetooth';
+
+  @override
+  String scanner_linuxPairingPinPrompt(String deviceName) {
+    return 'Введите PIN‑код для $deviceName (оставьте пустым, если нет).';
+  }
+
+  @override
+  String get translation_messageTranslation => 'Перевод сообщения';
+
+  @override
+  String get translation_translateBeforeSending => 'Перевести перед отправкой';
+
+  @override
+  String get translation_composerEnabledHint =>
+      'Сообщения будут переведены перед отправкой.';
+
+  @override
+  String get translation_composerDisabledHint =>
+      'Отправляйте сообщения на языке, в котором они были изначально набраны.';
+
+  @override
+  String translation_translateTo(String language) {
+    return 'Перевести на $language';
+  }
+
+  @override
+  String get translation_translationOptions => 'Варианты перевода';
+
+  @override
+  String get translation_systemLanguage => 'Язык системы';
 }

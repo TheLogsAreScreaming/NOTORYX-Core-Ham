@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:flutter/widgets.dart';
+
 // Buffer Reader - sequential binary data reader with pointer tracking
 class BufferReader {
   int _pointer = 0;
+  int _lastPointer = 0;
   final Uint8List _buffer;
 
   BufferReader(Uint8List data) : _buffer = Uint8List.fromList(data);
@@ -13,6 +16,7 @@ class BufferReader {
   int readByte() => readBytes(1)[0];
 
   Uint8List readBytes(int count) {
+    _lastPointer = _pointer;
     if (_pointer + count > _buffer.length) {
       throw RangeError(
         'Attempted to read $count bytes at offset $_pointer, but only $remaining bytes remaining in buffer of length ${_buffer.length}',
@@ -24,6 +28,7 @@ class BufferReader {
   }
 
   void skipBytes(int count) {
+    _lastPointer = _pointer;
     if (_pointer + count > _buffer.length) {
       throw RangeError(
         'Attempted to skip $count bytes at offset $_pointer, but only $remaining bytes remaining in buffer of length ${_buffer.length}',
@@ -34,16 +39,33 @@ class BufferReader {
 
   Uint8List readRemainingBytes() => readBytes(remaining);
 
-  String readString() =>
-      utf8.decode(readRemainingBytes(), allowMalformed: true);
-
-  String readCString(int maxLength) {
+  String readCStringGreedy(int maxLength) {
+    _lastPointer = _pointer;
     final value = <int>[];
     final bytes = readBytes(maxLength);
     for (final byte in bytes) {
       if (byte == 0) break;
       value.add(byte);
     }
+    try {
+      return utf8.decode(Uint8List.fromList(value), allowMalformed: true);
+    } catch (e) {
+      return String.fromCharCodes(value); // Latin-1 fallback
+    }
+  }
+
+  String readCString({int maxLength = -1}) {
+    final backupPointer = _pointer;
+    final value = <int>[];
+    int counter = 0;
+    final maxLen = maxLength >= 0 ? maxLength : remaining;
+    while (counter < maxLen) {
+      final byte = readByte();
+      if (byte == 0) break;
+      value.add(byte);
+      counter++;
+    }
+    _lastPointer = backupPointer;
     try {
       return utf8.decode(Uint8List.fromList(value), allowMalformed: true);
     } catch (e) {
@@ -72,6 +94,9 @@ class BufferReader {
     if ((value & 0x800000) != 0) value -= 0x1000000;
     return value;
   }
+
+  void resetPointer() => _pointer = 0;
+  void rewind() => _pointer = _lastPointer;
 }
 
 // Buffer Writer - accumulating binary data builder
@@ -114,23 +139,38 @@ class BufferWriter {
   }
 
   void writeHex(String hex) {
-    // Validate hex string length is even and not empty
-    if (hex.isEmpty || hex.length % 2 != 0) {
-      throw FormatException('Invalid hex string length: ${hex.length}');
-    }
-    List<int> result = [];
-    for (int i = 0; i < hex.length ~/ 2; i++) {
-      final hexByte = hex.substring(i * 2, i * 2 + 2);
-      final byte = int.tryParse(hexByte, radix: 16);
-      if (byte == null) {
-        throw FormatException(
-          'Invalid hex characters at position $i: $hexByte',
-        );
-      }
-      result.add(byte);
-    }
-    writeBytes(Uint8List.fromList(result));
+    writeBytes(hex2Uint8List(hex));
   }
+
+  void writeBytesPadded(Uint8List bytes, int totalLength) {
+    // Path data (64 bytes, zero-padded)
+    final bytesPadded = Uint8List(totalLength);
+    final len = bytes.length < totalLength ? bytes.length : totalLength;
+    if (bytes.isNotEmpty && len > 0) {
+      final copyLen = bytes.length < totalLength ? bytes.length : totalLength;
+      for (int i = 0; i < copyLen; i++) {
+        bytesPadded[i] = bytes[i];
+      }
+    }
+    writeBytes(bytesPadded);
+  }
+}
+
+Uint8List hex2Uint8List(String hex) {
+  // Validate hex string length is even and not empty
+  if (hex.isEmpty || hex.length % 2 != 0) {
+    throw FormatException('Invalid hex string length: ${hex.length}');
+  }
+  List<int> result = [];
+  for (int i = 0; i < hex.length ~/ 2; i++) {
+    final hexByte = hex.substring(i * 2, i * 2 + 2);
+    final byte = int.tryParse(hexByte, radix: 16);
+    if (byte == null) {
+      throw FormatException('Invalid hex characters at position $i: $hexByte');
+    }
+    result.add(byte);
+  }
+  return Uint8List.fromList(result);
 }
 
 // Command codes (to device)
@@ -162,15 +202,20 @@ const int cmdGetChannel = 31;
 const int cmdSetChannel = 32;
 const int cmdSendTracePath = 36;
 const int cmdSetOtherParams = 38;
-const int cmdGetRadioSettings = 57;
-const int cmdGetTelemetryReq = 39;
+const int cmdSendTelemetryReq = 39;
 const int cmdGetCustomVar = 40;
 const int cmdSetCustomVar = 41;
 const int cmdSendBinaryReq = 50;
+const int cmdGetStats = 56;
+const int cmdSendAnonReq = 57;
+const int cmdSetAutoAddConfig = 58;
+const int cmdGetAutoAddConfig = 59;
+const int cmdSetPathHashMode = 61;
 
 // Text message types
 const int txtTypePlain = 0;
 const int txtTypeCliData = 1;
+const int txtTypeSigned = 2;
 
 // Repeater request types (for server requests)
 const int reqTypeGetStatus = 0x01;
@@ -200,8 +245,13 @@ const int respCodeDeviceInfo = 13;
 const int respCodeContactMsgRecvV3 = 16;
 const int respCodeChannelMsgRecvV3 = 17;
 const int respCodeChannelInfo = 18;
-const int respCodeRadioSettings = 25;
 const int respCodeCustomVars = 21;
+const int respCodeAutoAddConfig = 25;
+const int respCodeStats = 24;
+
+const int statsTypeCore = 0;
+const int statsTypeRadio = 1;
+const int statsTypePackets = 2;
 
 // Push codes (async from device)
 const int pushCodeAdvert = 0x80;
@@ -222,6 +272,10 @@ const int advTypeChat = 1;
 const int advTypeRepeater = 2;
 const int advTypeRoom = 3;
 const int advTypeSensor = 4;
+
+const int teleModeDeny = 0;
+const int teleModeAllowFlags = 1; // use contact.flags
+const int teleModeAllowAll = 2;
 
 // Payload Types
 const int payloadTypeREQ =
@@ -247,8 +301,21 @@ const int payloadTypeCONTROL = 0x0B; // a control/discovery packet
 const int payloadTypeRawCustom =
     0x0F; // custom packet as raw bytes, for applications with custom encryption, payloads, etc
 
+//auto-add flags
+const int autoAddOverwriteOldestFlag =
+    1 << 0; // 0x01 - overwrite oldest non-favourite when full
+const int autoAddChatFlag =
+    1 << 1; // 0x02 - auto-add Chat (Companion) (ADV_TYPE_CHAT)
+const int autoAddRepeaterFlag =
+    1 << 2; // 0x04 - auto-add Repeater (ADV_TYPE_REPEATER)
+const int autoAddRoomServerFlag =
+    1 << 3; // 0x08 - auto-add Room Server (ADV_TYPE_ROOM)
+const int autoAddSensorFlag =
+    1 << 4; // 0x10 - auto-add Sensor (ADV_TYPE_SENSOR)
+
 // Sizes
 const int pubKeySize = 32;
+const int signatureSize = 64;
 const int maxPathSize = 64;
 const int pathHashSize = 1;
 const int maxNameSize = 32;
@@ -291,13 +358,16 @@ const int contactPubKeyOffset = 1;
 const int contactTypeOffset = 33;
 const int contactFlagsOffset = 34;
 const int contactFlagFavorite = 0x01;
+const int contactFlagTeleBase = 0x02; // 'base' permission includes battery
+const int contactFlagTeleLoc = 0x04;
+const int contactFlagTeleEnv = 0x08; //access environment sensors
 const int contactPathLenOffset = 35;
 const int contactPathOffset = 36;
 const int contactNameOffset = 100;
 const int contactTimestampOffset = 132;
 const int contactLatOffset = 136;
 const int contactLonOffset = 140;
-const int contactLastmodOffset = 144;
+const int contactLastModOffset = 144;
 const int contactFrameSize = 148;
 
 // Message frame offsets
@@ -309,52 +379,44 @@ const int msgTextOffset = 38;
 class ParsedContactText {
   final Uint8List senderPrefix;
   final String text;
-
   const ParsedContactText({required this.senderPrefix, required this.text});
 }
 
 ParsedContactText? parseContactMessageText(Uint8List frame) {
   if (frame.isEmpty) return null;
-  final code = frame[0];
-  if (code != respCodeContactMsgRecv && code != respCodeContactMsgRecvV3) {
+
+  final message = BufferReader(frame);
+  try {
+    final code = message.readByte();
+    if (code != respCodeContactMsgRecv && code != respCodeContactMsgRecvV3) {
+      return null;
+    }
+
+    // Companion radio layout:
+    // [code][snr?][res?][res?][prefix x6][path_len][txt_type][timestamp x4][extra?][text...]
+    if (code == respCodeContactMsgRecvV3) {
+      // Skip SNR and reserved bytes in v3 layout
+      message.skipBytes(3);
+    }
+    final senderPrefix = message.readBytes(6); // public key
+    message.skipBytes(1); // path length
+    final textType = message.readByte();
+    message.skipBytes(4); // timestamp (4 bytes)
+
+    final shiftedType = textType >> 2;
+    final isSigned = shiftedType == txtTypeSigned || textType == txtTypeSigned;
+    if (isSigned) {
+      // Signed messages have a 4-byte signature after the timestamp, before the text
+      message.skipBytes(4);
+    }
+    final text = message.readCString();
+    if (text.isEmpty) return null;
+
+    return ParsedContactText(senderPrefix: senderPrefix, text: text);
+  } catch (e) {
+    debugPrint('Error parsing contact message text: $e');
     return null;
   }
-
-  // Companion radio layout:
-  // [code][snr?][res?][res?][prefix x6][path_len][txt_type][timestamp x4][extra?][text...]
-  final isV3 = code == respCodeContactMsgRecvV3;
-  final prefixOffset = isV3 ? 4 : 1;
-  const prefixLen = 6;
-  final txtTypeOffset = prefixOffset + prefixLen + 1;
-  final timestampOffset = txtTypeOffset + 1;
-  final baseTextOffset = timestampOffset + 4;
-  if (frame.length <= baseTextOffset) return null;
-
-  final flags = frame[txtTypeOffset];
-  final shiftedType = flags >> 2;
-  final rawType = flags;
-  final isPlain = shiftedType == txtTypePlain || rawType == txtTypePlain;
-  final isCli = shiftedType == txtTypeCliData || rawType == txtTypeCliData;
-  if (!isPlain && !isCli) {
-    return null;
-  }
-
-  var text = readCString(
-    frame,
-    baseTextOffset,
-    frame.length - baseTextOffset,
-  ).trim();
-  if (text.isEmpty && frame.length > baseTextOffset + 4) {
-    text = readCString(
-      frame,
-      baseTextOffset + 4,
-      frame.length - (baseTextOffset + 4),
-    ).trim();
-  }
-  if (text.isEmpty) return null;
-
-  final senderPrefix = frame.sublist(prefixOffset, prefixOffset + prefixLen);
-  return ParsedContactText(senderPrefix: senderPrefix, text: text);
 }
 
 // Helper to read uint32 little-endian
@@ -377,18 +439,9 @@ int readInt32LE(Uint8List data, int offset) {
   return val;
 }
 
-// Helper to read null-terminated UTF-8 string
-String readCString(Uint8List data, int offset, int maxLen) {
-  int end = offset;
-  while (end < offset + maxLen && end < data.length && data[end] != 0) {
-    end++;
-  }
-  try {
-    return utf8.decode(data.sublist(offset, end), allowMalformed: true);
-  } catch (e) {
-    // Fallback to Latin-1 if UTF-8 decoding fails
-    return String.fromCharCodes(data.sublist(offset, end));
-  }
+// Helper to convert uint32 to hex string
+String ackHashToHex(int ackHash) {
+  return ackHash.toRadixString(16).padLeft(8, '0');
 }
 
 // Helper to convert public key to hex string
@@ -448,7 +501,7 @@ Uint8List buildSendTextMsgFrame(
   final writer = BufferWriter();
   writer.writeByte(cmdSendTxtMsg);
   writer.writeByte(txtTypePlain);
-  writer.writeByte(attempt.clamp(0, 3));
+  writer.writeByte(attempt.clamp(0, 255));
   writer.writeUInt32LE(timestamp);
   writer.writeBytes(recipientPubKey.sublist(0, 6));
   writer.writeString(text);
@@ -506,6 +559,17 @@ Uint8List buildGetDeviceTimeFrame() {
 // Build CMD_GET_BATT_AND_STORAGE frame
 Uint8List buildGetBattAndStorageFrame() {
   return Uint8List.fromList([cmdGetBattAndStorage]);
+}
+
+/// Companion radio stats: [56][statsType] where statsType is statsTypeCore/Radio/Packets.
+Uint8List buildGetStatsFrame(int statsType) {
+  return Uint8List.fromList([cmdGetStats, statsType & 0xFF]);
+}
+
+/// Path hash width on air: [61][0][mode], mode 0..2 → (mode+1) bytes per hop hash.
+Uint8List buildSetPathHashModeFrame(int mode) {
+  final m = mode.clamp(0, 2);
+  return Uint8List.fromList([cmdSetPathHashMode, 0, m]);
 }
 
 // Build CMD_SET_DEVICE_TIME frame
@@ -628,14 +692,17 @@ Uint8List buildResetPathFrame(Uint8List pubKey) {
 }
 
 // Build CMD_ADD_UPDATE_CONTACT frame to set custom path
-// Format: [cmd][pub_key x32][type][flags][path_len][path x64][name x32][timestamp x4]
+// Format: [cmd][pub_key x32][type][flags][path_len][path x64][name x32][Lat? x4, Lon? x4][timestamp? x4]
 Uint8List buildUpdateContactPathFrame(
   Uint8List pubKey,
-  Uint8List customPath,
+  Uint8List path,
   int pathLen, {
   int type = 1, // ADV_TYPE_CHAT
   int flags = 0,
   String name = '',
+  double? lat,
+  double? lon,
+  DateTime? lastModified,
 }) {
   final writer = BufferWriter();
   writer.writeByte(cmdAddUpdateContact);
@@ -644,17 +711,7 @@ Uint8List buildUpdateContactPathFrame(
   writer.writeByte(flags);
   writer.writeByte(pathLen);
 
-  // Path data (64 bytes, zero-padded)
-  final pathPadded = Uint8List(maxPathSize);
-  if (customPath.isNotEmpty && pathLen > 0) {
-    final copyLen = customPath.length < maxPathSize
-        ? customPath.length
-        : maxPathSize;
-    for (int i = 0; i < copyLen; i++) {
-      pathPadded[i] = customPath[i];
-    }
-  }
-  writer.writeBytes(pathPadded);
+  writer.writeBytesPadded(path, maxPathSize);
 
   // Name (32 bytes, null-padded)
   writer.writeCString(name, maxNameSize);
@@ -662,6 +719,27 @@ Uint8List buildUpdateContactPathFrame(
   // Timestamp
   final timestamp = DateTime.now().millisecondsSinceEpoch ~/ 1000;
   writer.writeUInt32LE(timestamp);
+
+  if ((lat == null || lon == null) && lastModified != null) {
+    // If lat/lon not provided, write zeros
+    writer.writeInt32LE(0);
+    writer.writeInt32LE(0);
+  } else {
+    // Latitude and Longitude are expected in degrees, convert to int by multiplying by 1e6
+    // Latitude
+    final latitude = lat ?? 0.0;
+    writer.writeInt32LE((latitude * 1e6).round());
+
+    // Longitude
+    final longitude = lon ?? 0.0;
+    writer.writeInt32LE((longitude * 1e6).round());
+  }
+
+  if (lastModified != null) {
+    // Last modified
+    final lastModifiedTimestamp = lastModified.millisecondsSinceEpoch ~/ 1000;
+    writer.writeUInt32LE(lastModifiedTimestamp);
+  }
 
   return writer.toBytes();
 }
@@ -675,14 +753,13 @@ Uint8List buildGetContactByKeyFrame(Uint8List pubKey) {
   return writer.toBytes();
 }
 
-// Build CMD_GET_RADIO_SETTINGS frame
-Uint8List buildGetRadioSettingsFrame() {
-  return Uint8List.fromList([cmdGetRadioSettings]);
-}
-
 //Build CMD_GET_CUSTOM_VARS frame
 Uint8List buildGetCustomVarsFrame() {
   return Uint8List.fromList([cmdGetCustomVar]);
+}
+
+Uint8List buildGetAutoAddFlagsFrame() {
+  return Uint8List.fromList([cmdGetAutoAddConfig]);
 }
 
 // Calculate LoRa airtime for a packet
@@ -764,7 +841,7 @@ Uint8List buildSendCliCommandFrame(
   final writer = BufferWriter();
   writer.writeByte(cmdSendTxtMsg);
   writer.writeByte(txtTypeCliData);
-  writer.writeByte(attempt.clamp(0, 3));
+  writer.writeByte(attempt.clamp(0, 255));
   writer.writeUInt32LE(timestamp);
   writer.writeBytes(repeaterPubKey.sublist(0, 6));
   writer.writeString(command);
@@ -809,10 +886,10 @@ Uint8List buildExportContactFrame(Uint8List pubKey) {
 
 // Build a import contact frame
 // [cmd][contact_frame x98+]
-Uint8List buildImportContactFrame(String contactFrame) {
+Uint8List buildImportContactFrame(Uint8List contactFrame) {
   final writer = BufferWriter();
   writer.writeByte(cmdImportContact);
-  writer.writeHex(contactFrame);
+  writer.writeBytes(contactFrame);
   return writer.toBytes();
 }
 
@@ -826,20 +903,55 @@ Uint8List buildZeroHopContact(Uint8List pubKey) {
 }
 
 // Build CMD_SET_OTHER_PARAMS frame
-// Format: [cmd][allowAutoAddContacts][allowTelemetryFlags][advertLocationPolicy][multiAcks]
+// Format: [cmd][allowTelemetryFlags][advertLocationPolicy][multiAcks]
 Uint8List buildSetOtherParamsFrame(
-  bool allowAutoAddContacts,
   int allowTelemetryFlags,
   int advertLocationPolicy,
   int multiAcks,
 ) {
   final writer = BufferWriter();
   writer.writeByte(cmdSetOtherParams);
-  writer.writeByte(
-    allowAutoAddContacts ? 0x00 : 0x01,
-  ); // Allow Auto Add Contacts
+  //Going forward the app will just set Auto Add Contacts to disabled, and use the filter flags
+  //Allow Auto Add Contacts use inverted logic (0x01 = disabled, 0x00 = enabled).
+  writer.writeByte(0x01);
   writer.writeByte(allowTelemetryFlags); // Allow Telemetry Flags
   writer.writeByte(advertLocationPolicy); // Advertisement Location Policy
   writer.writeByte(multiAcks); // Multi Acknowledgements
+  return writer.toBytes();
+}
+
+// Build CMD_SET_AUTO_ADD_CONFIG frame
+// Format: [cmd][flags]
+Uint8List buildSetAutoAddConfigFrame({
+  required bool autoAddChat,
+  required bool autoAddRepeater,
+  required bool autoAddRoomServer,
+  required bool autoAddSensor,
+  required bool overwriteOldest,
+}) {
+  final writer = BufferWriter();
+  writer.writeByte(cmdSetAutoAddConfig);
+  int flags = 0;
+  if (autoAddChat) flags |= autoAddChatFlag;
+  if (autoAddRepeater) flags |= autoAddRepeaterFlag;
+  if (autoAddRoomServer) flags |= autoAddRoomServerFlag;
+  if (autoAddSensor) flags |= autoAddSensorFlag;
+  if (overwriteOldest) flags |= autoAddOverwriteOldestFlag;
+  writer.writeByte(flags);
+  return writer.toBytes();
+}
+
+//Build CMD_SEND_TELEMETRY_REQ
+// Format: [cmd][reserved x3][pub_key? x32]
+Uint8List buildSendTelemetryReq(Uint8List? pubKey) {
+  final writer = BufferWriter();
+  writer.writeByte(cmdSendTelemetryReq);
+
+  if (pubKey != null && pubKey.length == pubKeySize) {
+    writer.writeBytes(Uint8List(3)); // reserved bytes
+    writer.writeBytes(pubKey);
+  } else {
+    writer.writeBytes(Uint8List(4)); // reserved bytes
+  }
   return writer.toBytes();
 }

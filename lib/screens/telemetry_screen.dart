@@ -10,30 +10,23 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../services/app_settings_service.dart';
 import '../services/repeater_command_service.dart';
+import '../utils/app_logger.dart';
 import '../widgets/path_management_dialog.dart';
 import '../helpers/cayenne_lpp.dart';
 import '../utils/battery_utils.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class TelemetryScreen extends StatefulWidget {
-  final Contact repeater;
-  final String password;
+  final Contact contact;
 
-  const TelemetryScreen({
-    super.key,
-    required this.repeater,
-    required this.password,
-  });
+  const TelemetryScreen({super.key, required this.contact});
 
   @override
   State<TelemetryScreen> createState() => _TelemetryScreenState();
 }
 
 class _TelemetryScreenState extends State<TelemetryScreen> {
-  static const int _statusPayloadOffset = 8;
-  static const int _statusStatsSize = 52;
-  static const int _statusResponseBytes =
-      _statusPayloadOffset + _statusStatsSize;
-  Uint8List _tagData = Uint8List(4);
+  int _tagData = 0;
 
   bool _isLoading = false;
   bool _isLoaded = false;
@@ -43,6 +36,26 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
   RepeaterCommandService? _commandService;
   PathSelection? _pendingStatusSelection;
   List<Map<String, dynamic>>? _parsedTelemetry;
+
+  int _tripTime = 0;
+
+  int _resolveContactIndex = -1;
+
+  Contact _resolveContact(MeshCoreConnector connector) {
+    if (_resolveContactIndex >= 0 &&
+        _resolveContactIndex < connector.contacts.length &&
+        connector.contacts[_resolveContactIndex].publicKeyHex ==
+            widget.contact.publicKeyHex) {
+      return connector.contacts[_resolveContactIndex];
+    }
+    _resolveContactIndex = connector.contacts.indexWhere(
+      (c) => c.publicKeyHex == widget.contact.publicKeyHex,
+    );
+    if (_resolveContactIndex == -1) {
+      return widget.contact;
+    }
+    return connector.contacts[_resolveContactIndex];
+  }
 
   @override
   void initState() {
@@ -60,27 +73,61 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     // Listen for incoming text messages from the repeater
     _frameSubscription = connector.receivedFrames.listen((frame) {
       if (frame.isEmpty) return;
+      final reader = BufferReader(frame);
+      try {
+        final cmd = reader.readByte();
+        if (cmd == respCodeSent) {
+          reader.skipBytes(1); // Skip the reserved byte
+          _tagData = reader.readUInt32LE();
+          _tripTime = reader.readUInt32LE();
+          _statusTimeout?.cancel();
+          _statusTimeout = Timer(Duration(milliseconds: _tripTime), () {
+            if (!mounted) return;
+            setState(() {
+              _isLoading = false;
+              _isLoaded = false;
+            });
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.telemetry_requestTimeout),
+              backgroundColor: Colors.red,
+            );
+            _recordTelemetryResult(false);
+          });
+        }
 
-      if (frame[0] == respCodeSent) {
-        _tagData = frame.sublist(2, 6);
-      }
+        // Check if it's a binary response
+        if (cmd == pushCodeBinaryResponse) {
+          if (!mounted) return;
+          reader.skipBytes(1); // Skip the reserved byte
+          if (reader.readUInt32LE() != _tagData) return;
+          _handleTelemetryResponse(reader.readRemainingBytes());
+        }
 
-      // Check if it's a binary response
-      if (frame[0] == pushCodeBinaryResponse &&
-          listEquals(frame.sublist(2, 6), _tagData)) {
-        if (!mounted) return;
-        _handleStatusResponse(frame.sublist(6));
+        // Check if it's a telemetry response (for chat contacts)
+        if (cmd == pushCodeTelemetryResponse) {
+          reader.skipBytes(1); // Skip the reserved byte
+          final pubkey = reader.readBytes(6);
+          if (!mounted) return;
+          if (!listEquals(widget.contact.publicKey.sublist(0, 6), pubkey)) {
+            return;
+          }
+          _handleTelemetryResponse(reader.readRemainingBytes());
+        }
+      } catch (e) {
+        appLogger.error('Error parsing incoming frame: $e');
+        // If parsing fails, ignore the frame
       }
     });
   }
 
-  void _handleStatusResponse(Uint8List frame) {
+  void _handleTelemetryResponse(Uint8List frame) {
     final parsedTelemetry = CayenneLpp.parseByChannel(frame);
     final batteryMv = _extractTelemetryBatteryMillivolts(parsedTelemetry);
     if (batteryMv != null) {
       final connector = Provider.of<MeshCoreConnector>(context, listen: false);
       connector.updateRepeaterBatterySnapshot(
-        widget.repeater.publicKeyHex,
+        widget.contact.publicKeyHex,
         batteryMv,
         source: 'telemetry',
       );
@@ -90,11 +137,10 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
       _parsedTelemetry = parsedTelemetry;
     });
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(context.l10n.telemetry_receivedData),
-        backgroundColor: Colors.green,
-      ),
+    showDismissibleSnackBar(
+      context,
+      content: Text(context.l10n.telemetry_receivedData),
+      backgroundColor: Colors.green,
     );
     _statusTimeout?.cancel();
     if (!mounted) return;
@@ -103,13 +149,6 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
       _isLoaded = true;
       _hasData = true;
     });
-  }
-
-  Contact _resolveRepeater(MeshCoreConnector connector) {
-    return connector.contacts.firstWhere(
-      (c) => c.publicKeyHex == widget.repeater.publicKeyHex,
-      orElse: () => widget.repeater,
-    );
   }
 
   Future<void> _loadTelemetry() async {
@@ -121,41 +160,20 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     });
     try {
       final connector = Provider.of<MeshCoreConnector>(context, listen: false);
-      final repeater = _resolveRepeater(connector);
-      final selection = await connector.preparePathForContactSend(repeater);
+      final selection = await connector.preparePathForContactSend(
+        _resolveContact(connector),
+      );
       _pendingStatusSelection = selection;
-      final frame = buildSendBinaryReq(
-        repeater.publicKey,
-        payload: Uint8List.fromList([reqTypeGetTelemetry]),
-      );
-      await connector.sendFrame(frame);
-
-      final pathLengthValue = selection.useFlood ? -1 : selection.hopCount;
-      var messageBytes = frame.length >= _statusResponseBytes
-          ? frame.length
-          : _statusResponseBytes;
-      if (messageBytes < maxFrameSize) {
-        messageBytes = maxFrameSize;
-      }
-      final timeoutMs = connector.calculateTimeout(
-        pathLength: pathLengthValue,
-        messageBytes: messageBytes,
-      );
-      _statusTimeout?.cancel();
-      _statusTimeout = Timer(Duration(milliseconds: timeoutMs), () {
-        if (!mounted) return;
-        setState(() {
-          _isLoading = false;
-          _isLoaded = false;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(context.l10n.telemetry_requestTimeout),
-            backgroundColor: Colors.red,
-          ),
+      Uint8List frame;
+      if (widget.contact.type != advTypeChat) {
+        frame = buildSendBinaryReq(
+          widget.contact.publicKey,
+          payload: Uint8List.fromList([reqTypeGetTelemetry]),
         );
-        _recordStatusResult(false);
-      });
+      } else {
+        frame = buildSendTelemetryReq(widget.contact.publicKey);
+      }
+      await connector.sendFrame(frame);
     } catch (e) {
       if (mounted) {
         setState(() {
@@ -163,22 +181,25 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           _isLoaded = false;
         });
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(context.l10n.telemetry_errorLoading(e.toString())),
-            backgroundColor: Colors.red,
-          ),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.telemetry_errorLoading(e.toString())),
+          backgroundColor: Colors.red,
         );
       }
     }
   }
 
-  void _recordStatusResult(bool success) {
+  void _recordTelemetryResult(bool success) {
     final selection = _pendingStatusSelection;
     if (selection == null) return;
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
-    final repeater = _resolveRepeater(connector);
-    connector.recordRepeaterPathResult(repeater, selection, success, null);
+    connector.recordRepeaterPathResult(
+      widget.contact,
+      selection,
+      success,
+      null,
+    );
     _pendingStatusSelection = null;
   }
 
@@ -196,8 +217,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     final connector = context.watch<MeshCoreConnector>();
     final settings = context.watch<AppSettingsService>().settings;
     final isImperialUnits = settings.unitSystem == UnitSystem.imperial;
-    final repeater = _resolveRepeater(connector);
-    final isFloodMode = repeater.pathOverride == -1;
+    final isFloodMode = widget.contact.pathOverride == -1;
 
     return Scaffold(
       appBar: AppBar(
@@ -210,7 +230,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(
-              repeater.name,
+              widget.contact.name,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
@@ -225,9 +245,9 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
             tooltip: l10n.repeater_routingMode,
             onSelected: (mode) async {
               if (mode == 'flood') {
-                await connector.setPathOverride(repeater, pathLen: -1);
+                await connector.setPathOverride(widget.contact, pathLen: -1);
               } else {
-                await connector.setPathOverride(repeater, pathLen: null);
+                await connector.setPathOverride(widget.contact, pathLen: null);
               }
             },
             itemBuilder: (context) => [
@@ -283,7 +303,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
             icon: const Icon(Icons.timeline),
             tooltip: l10n.repeater_pathManagement,
             onPressed: () =>
-                PathManagementDialog.show(context, contact: repeater),
+                PathManagementDialog.show(context, contact: widget.contact),
           ),
           IconButton(
             icon: _isLoading
@@ -437,7 +457,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     final l10n = context.l10n;
     final connector = context.watch<MeshCoreConnector>();
     final batteryMv =
-        connector.getRepeaterBatteryMillivolts(widget.repeater.publicKeyHex) ??
+        connector.getRepeaterBatteryMillivolts(widget.contact.publicKeyHex) ??
         (telemetryVolts == null ? null : (telemetryVolts * 1000).round());
     if (batteryMv == null) return l10n.common_notAvailable;
     final chemistry = _batteryChemistry();
@@ -449,7 +469,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
   String _batteryChemistry() {
     final settingsService = context.read<AppSettingsService>();
     return settingsService.batteryChemistryForRepeater(
-      widget.repeater.publicKeyHex,
+      widget.contact.publicKeyHex,
     );
   }
 

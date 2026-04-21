@@ -286,6 +286,7 @@
   "contacts_newGroup": "Нова група",
   "contacts_groupName": "Назва групи",
   "contacts_groupNameRequired": "Назва групи обов'язкова.",
+  "contacts_groupNameReserved": "Ця назва групи зарезервована",
   "contacts_groupAlreadyExists": "Група «{name}» вже існує.",
   "@contacts_groupAlreadyExists": {
     "placeholders": {
@@ -1606,6 +1607,8 @@
   "map_pathTraceCancelled": "Відмінується трасування шляху",
   "scanner_enableBluetooth": "Увімкніть Bluetooth",
   "scanner_bluetoothOffMessage": "Будь ласка, увімкніть Bluetooth, щоб сканувати пристрої.",
+  "scanner_chromeRequired": "Потрібен браузер Chrome",
+  "scanner_chromeRequiredMessage": "Для підтримки Bluetooth у цьому веб-додатку потрібен Google Chrome або браузер на базі Chromium.",
   "scanner_bluetoothOff": "Bluetooth вимкнено",
   "snrIndicator_lastSeen": "Останній раз бачили",
   "snrIndicator_nearByRepeaters": "Ближні ретранслятори",
@@ -1800,5 +1803,276 @@
   "contacts_searchFavorites": "Пошук {number}{str} улюблених...",
   "contacts_searchContactsNoNumber": "Пошук контактів...",
   "contacts_searchRepeaters": "Пошук {number}{str} ретрансляторів...",
-  "contacts_unread": "Непрочитане"
+  "contacts_unread": "Непрочитане",
+  "settings_contactSettingsSubtitle": "Налаштування для додавання контактів",
+  "settings_contactSettings": "Налаштування контактів",
+  "contactsSettings_autoAddUsersSubtitle": "Дозволити супутникові автоматично додавати виявлених користувачів",
+  "contactsSettings_autoAddRepeatersTitle": "Автоматично додавати повторювачі",
+  "contactsSettings_autoAddRepeatersSubtitle": "Дозволити супутнику автоматично додавати виявлені ретранслятори",
+  "contactsSettings_autoAddRoomServersTitle": "Автоматично додавати сервери кімнат",
+  "contactsSettings_otherTitle": "Інші налаштування, пов'язані з контактами",
+  "contactsSettings_autoAddTitle": "Автоматичне виявлення",
+  "contactsSettings_autoAddUsersTitle": "Автоматично додавати користувачів",
+  "contactsSettings_title": "Налаштування контактів",
+  "contactsSettings_autoAddRoomServersSubtitle": "Дозволити супровіднику автоматично додавати виявлені сервери кімнат.",
+  "contactsSettings_autoAddSensorsTitle": "Автоматично додавати датчики",
+  "discoveredContacts_searchHint": "Знайти виявлені контакти",
+  "discoveredContacts_contactAdded": "Контакт додано",
+  "contactsSettings_autoAddSensorsSubtitle": "Дозволити супровіднику автоматично додавати виявлені сенсори",
+  "contactsSettings_overwriteOldestTitle": "Перезаписати найстаріше",
+  "discoveredContacts_Title": "Виявлені контакти",
+  "discoveredContacts_noMatching": "Відповідних контактів не знайдено",
+  "discoveredContacts_deleteContact": "Видалити контакт",
+  "discoveredContacts_copyContact": "Копіювати контакт у буфер обміну",
+  "discoveredContacts_addContact": "Додати контакт",
+  "contactsSettings_overwriteOldestSubtitle": "Коли список контактів заповнений, найстарший контакт без позначки улюбленого буде замінений.",
+  "common_deleteAll": "Видалити все",
+  "discoveredContacts_deleteContactAll": "Видалити всі виявлені контакти",
+  "discoveredContacts_deleteContactAllContent": "Ви впевнені, що хочете видалити всі виявлені контакти?",
+  "map_showGuessedLocations": "Показати місцезнаходження передбачених вузлів",
+  "map_guessedLocation": "Визначено місцезнаходження",
+  "usbScreenSubtitle": "Виберіть виявлене серійне пристрій і підключіть його безпосередньо до вашого вузла MeshCore.",
+  "usbScreenTitle": "Підключити через USB",
+  "connectionChoiceBluetoothLabel": "Bluetooth",
+  "connectionChoiceUsbLabel": "USB",
+  "usbScreenStatus": "Виберіть пристрій USB",
+  "usbScreenNote": "USB-серіальний інтерфейс активний на підтримуваних пристроях на базі Android та на десктопних платформах.",
+  "usbScreenEmptyState": "Не знайдено жодних пристроїв USB. Підключіть один і перезавантажте.",
+  "usbErrorPermissionDenied": "Було відмовлено у наданні дозволу на використання USB.",
+  "usbErrorDeviceMissing": "Вибране USB-пристрій більше недоступне.",
+  "usbErrorInvalidPort": "Виберіть дійсний USB-пристрій.",
+  "usbErrorBusy": "Ще один запит на підключення через USB вже обробляється.",
+  "usbErrorNotConnected": "Немає підключених пристроїв USB.",
+  "usbErrorOpenFailed": "Не вдалося відкрити вибране USB-пристрій.",
+  "usbErrorConnectFailed": "Не вдалося підключитися до вибраного USB-пристрою.",
+  "usbErrorUnsupported": "Підтримка USB-серіального інтерфейсу не реалізована на цій платформі.",
+  "usbErrorAlreadyActive": "USB-з'єднання вже встановлено.",
+  "usbErrorNoDeviceSelected": "Не було вибрано жодного пристрою USB.",
+  "usbErrorPortClosed": "З'єднання USB не встановлено.",
+  "usbFallbackDeviceName": "Пристрій для передачі даних по веб-серіалах",
+  "@usbConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbStatus_searching": "Пошук пристроїв USB...",
+  "usbStatus_notConnected": "Виберіть пристрій USB",
+  "usbConnectionFailed": "Не вдалося встановити з'єднання через USB: {error}",
+  "usbStatus_connecting": "Підключення до USB-пристрою...",
+  "usbErrorConnectTimedOut": "З'єднання не вдалося встановити. Переконайтеся, що пристрій має встановлене програмне забезпечення USB Companion.",
+  "@tcpStatus_connectingTo": {
+    "placeholders": {
+      "endpoint": {
+        "type": "String"
+      }
+    }
+  },
+  "@tcpConnectionFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "connectionChoiceTcpLabel": "TCP",
+  "tcpHostHint": "192.168.40.10",
+  "tcpHostLabel": "IP-адреса",
+  "tcpScreenTitle": "З'єднатися через протокол TCP",
+  "tcpPortLabel": "Порт",
+  "tcpPortHint": "5000",
+  "tcpStatus_notConnected": "Введіть кінцеву точку та підключіться",
+  "tcpStatus_connectingTo": "Підключення до {endpoint}...",
+  "tcpErrorHostRequired": "Необхідно вказати IP-адресу.",
+  "tcpErrorPortInvalid": "Порт повинен бути в межах від 1 до 65535.",
+  "tcpErrorUnsupported": "Транспорт TCP не підтримується на цій платформі.",
+  "tcpErrorTimedOut": "З'єднання TCP завершилося через закінчення часу очікування.",
+  "tcpConnectionFailed": "Не вдалося встановити з'єднання TCP: {error}",
+  "map_showDiscoveryContacts": "Показати контакти Відкриття",
+  "map_setAsMyLocation": "Встановити моє місцезнаходження",
+  "@path_routeWeight": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_privacySubtitle": "Керуйте інформацією, яку буде спільно використовуватися",
+  "settings_privacy": "Налаштування приватності",
+  "settings_telemetryBaseMode": "Режим базової телеметрії",
+  "settings_telemetryLocationMode": "Режим місця телеметрії",
+  "settings_advertLocation": "Розміщення реклами",
+  "settings_advertLocationSubtitle": "Включити місце розташування в оголошення",
+  "settings_privacySettingsDescription": "Виберіть, яку інформацію ваш пристрій буде передавати іншим.",
+  "settings_allowAll": "Дозволити все",
+  "settings_denyAll": "Відхилити все",
+  "settings_allowByContact": "Дозволити за контактними прапорцями",
+  "settings_telemetryEnvironmentMode": "Режим середовища телеметрії",
+  "contact_info": "Контактна інформація",
+  "contact_teleBaseSubtitle": "Дозволити спільний доступ до рівня заряду батареї та базової телеметрії",
+  "contact_teleLoc": "Розташування телеметрії",
+  "contact_teleBase": "Базовий телебачення",
+  "contact_teleLocSubtitle": "Дозволити спільне використання даних про місцеположення",
+  "contact_settings": "Налаштування контактів",
+  "contact_telemetry": "Телеметрія",
+  "contact_clearChat": "Очистити чат",
+  "contact_lastSeen": "Останній раз бачили",
+  "contact_teleEnv": "Середовище телеметрії",
+  "contact_teleEnvSubtitle": "Дозволити спільний доступ до даних датчиків середовища",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_initialRouteWeight": "Початкова вартість маршруту",
+  "appSettings_initialRouteWeightSubtitle": "Початкова вага для нових відкритих шляхів",
+  "appSettings_maxRouteWeight": "Максимальна вага маршруту",
+  "appSettings_maxRouteWeightSubtitle": "Максимальна вага, яку може накопичити маршрут завдяки успішним доставкам.",
+  "appSettings_routeWeightSuccessIncrement": "Збільшення ваги успіху",
+  "appSettings_routeWeightSuccessIncrementSubtitle": "Вага, додана до маршруту після успішної доставки",
+  "appSettings_routeWeightFailureDecrement": "Зменшення ваги помилки",
+  "appSettings_routeWeightFailureDecrementSubtitle": "Вага, яка була знята з маршруту після невдалої доставки",
+  "appSettings_maxMessageRetries": "Максимальна кількість повторних спроб надсилання повідомлення",
+  "appSettings_maxMessageRetriesSubtitle": "Кількість спроб повторного відправлення повідомлення перед тим, як позначити його як невдале",
+  "path_routeWeight": "{weight}/{max}",
+  "settings_telemetryModeUpdated": "Режим телеметрії оновлено",
+  "settings_multiAck": "Багатократне підтвердження: {value}",
+  "map_showOverlaps": "Перекриття ключа повторювача",
+  "map_runTraceWithReturnPath": "Повернутися назад тим же шляхом",
+  "@radioStats_noiseFloor": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastRssi": {
+    "placeholders": {
+      "rssiDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_lastSnr": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "@radioStats_txAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_rxAir": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "@radioStats_stripNoise": {
+    "placeholders": {
+      "noiseDbm": {
+        "type": "int"
+      }
+    }
+  },
+  "chat_sendCooldown": "Будь ласка, зачекайте трохи, перш ніж відправляти знову.",
+  "appSettings_languageHu": "Угорський",
+  "appSettings_jumpToOldestUnreadSubtitle": "При відкритті чату з не прочитаними повідомленнями, прокрутіть до першого не прочитаного повідомлення, а не до останнього.",
+  "appSettings_jumpToOldestUnread": "Перейти до найстарішого непрочитаного повідомлення",
+  "appSettings_languageJa": "Японська",
+  "appSettings_languageKo": "Кореєська",
+  "radioStats_tooltip": "Статистика радіо та мережі",
+  "radioStats_screenTitle": "Дані про радіостанції",
+  "radioStats_notConnected": "Підключіться до пристрою, щоб переглядати статистику радіопередач.",
+  "radioStats_firmwareTooOld": "Статистика радіо приймача вимагає супутнього програмного забезпечення версії 8 або новішої.",
+  "radioStats_waiting": "Очікую на отримання даних…",
+  "radioStats_noiseFloor": "Рівень шуму: {noiseDbm} дБм",
+  "radioStats_lastRssi": "Останній показник RSSI: {rssiDbm} дБм",
+  "radioStats_lastSnr": "Останній показник SNR: {snr} дБ",
+  "radioStats_txAir": "Час трансляції на телеканалі TX (загальний): {seconds} секунд",
+  "radioStats_rxAir": "Загальний час використання RX: {seconds} секунд",
+  "radioStats_chartCaption": "Рівень шуму (дБм) на основі останніх вимірювань.",
+  "radioStats_stripNoise": "Рівень шуму: {noiseDbm} дБм",
+  "radioStats_stripWaiting": "Отримано статистику радіо…",
+  "radioStats_settingsTile": "Дані про радіостанції",
+  "radioStats_settingsSubtitle": "Рівень шуму, RSSI, SNR та час, протягом якого пристрій використовує радіоканал.",
+  "@translation_downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_composerTitle": "Перекладіть перед відправкою",
+  "translation_title": "Переклад",
+  "translation_enableTitle": "Увімкнути переклад",
+  "translation_enableSubtitle": "Перекладати отримані повідомлення та дозволяти попередній переклад перед відправкою.",
+  "translation_composerSubtitle": "Контролює стан ікон перекладу, який використовується за замовчуванням.",
+  "translation_targetLanguage": "Цільова мова",
+  "translation_useAppLanguage": "Використовуйте мову додатку",
+  "translation_downloadedModelLabel": "Завантажений шаблон",
+  "translation_presetModelLabel": "Заздалегідь налаштований модель від Hugging Face",
+  "translation_manualUrlLabel": "Посилання на веб-сторінку з інструкцією",
+  "translation_downloadModel": "Завантажити модель",
+  "translation_downloading": "Завантаження...",
+  "translation_working": "Працюю...",
+  "translation_stop": "Припинити",
+  "translation_mergingChunks": "Об'єднання завантажених фрагментів у кінцевий файл...",
+  "translation_downloadedModels": "Завантажені моделі",
+  "translation_deleteModel": "Видалити модель",
+  "translation_modelDownloaded": "Модель перекладу завантажена.",
+  "translation_downloadStopped": "Завантаження призупинено.",
+  "translation_downloadFailed": "Не вдалося завантажити: {error}",
+  "translation_enterUrlFirst": "Спочатку введіть URL моделі.",
+  "@scanner_linuxPairingPinPrompt": {
+    "placeholders": {
+      "deviceName": {
+        "type": "String"
+      }
+    }
+  },
+  "@translation_translateTo": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "translation_composerEnabledHint": "Повідомлення будуть перекладені перед відправленням.",
+  "translation_messageTranslation": "Переклад повідомлення",
+  "translation_composerDisabledHint": "Надсилайте повідомлення, використовуючи оригінальний текстовий формат.",
+  "translation_translateBeforeSending": "Перекладіть перед відправкою",
+  "translation_translateTo": "Перекласти на {language}",
+  "translation_translationOptions": "Варіанти перекладу",
+  "translation_systemLanguage": "Мова системи",
+  "scanner_linuxPairingPinTitle": "PIN‑код спарювання Bluetooth",
+  "scanner_linuxPairingShowPin": "Показати PIN",
+  "scanner_linuxPairingPinPrompt": "Введіть PIN для {deviceName} (залиште порожнім, якщо його немає).",
+  "scanner_linuxPairingHidePin": "Приховати PIN",
+  "repeater_cliQuickClockSync": "Синхронізація годинника",
+  "repeater_cliQuickDiscovery": "Відкрити сусідів",
+  "@repeater_clockSyncAfterLogin": {
+    "description": "Repeater setting: auto sync device clock after successful login"
+  },
+  "@repeater_clockSyncAfterLoginSubtitle": {
+    "description": "Repeater setting subtitle: describes the clock sync after login behavior"
+  },
+  "repeater_clockSyncAfterLoginSubtitle": "Автоматично надсилати повідомлення \"синхронізація годин\" після успішного входу.",
+  "repeater_clockSyncAfterLogin": "Синхронізація годин після входу",
+  "repeater_guestTools": "Інструменти для гостей",
+  "repeater_guest": "Інформація про ретранслятор",
+  "room_guest": "Інформація про сервер кімнати",
+  "chat_sendMessage": "Надіслати повідомлення"
 }

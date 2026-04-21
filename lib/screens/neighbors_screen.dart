@@ -11,6 +11,7 @@ import '../connector/meshcore_protocol.dart';
 import '../services/repeater_command_service.dart';
 import '../widgets/path_management_dialog.dart';
 import '../widgets/snr_indicator.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class NeighborsScreen extends StatefulWidget {
   final Contact repeater;
@@ -43,6 +44,24 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
   RepeaterCommandService? _commandService;
   PathSelection? _pendingStatusSelection;
   List<Map<String, dynamic>>? _parsedNeighbors;
+
+  int _resolveRepeaterIndex = -1;
+
+  Contact _resolveRepeater(MeshCoreConnector connector) {
+    if (_resolveRepeaterIndex >= 0 &&
+        _resolveRepeaterIndex < connector.contacts.length &&
+        connector.contacts[_resolveRepeaterIndex].publicKeyHex ==
+            widget.repeater.publicKeyHex) {
+      return connector.contacts[_resolveRepeaterIndex];
+    }
+    _resolveRepeaterIndex = connector.contacts.indexWhere(
+      (c) => c.publicKeyHex == widget.repeater.publicKeyHex,
+    );
+    if (_resolveRepeaterIndex == -1) {
+      return widget.repeater;
+    }
+    return connector.contacts[_resolveRepeaterIndex];
+  }
 
   @override
   void initState() {
@@ -124,12 +143,11 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
 
   void _handleNeighborsResponse(MeshCoreConnector connector, Uint8List frame) {
     final buffer = BufferReader(frame);
+    final contacts = connector.allContactsUnfiltered;
     try {
       final neighborCount = buffer.readUInt16LE();
       final parsedNeighbors = parseNeighborsData(buffer, buffer.readUInt16LE());
-      connector.contacts.where((c) => c.type == advTypeRepeater).forEach((
-        repeater,
-      ) {
+      contacts.where((c) => c.type == advTypeRepeater).forEach((repeater) {
         for (var neighborData in parsedNeighbors) {
           final publicKey = neighborData['publicKey'];
           if (listEquals(
@@ -146,11 +164,10 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
         _neighborCount = neighborCount;
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(context.l10n.neighbors_receivedData),
-          backgroundColor: Colors.green,
-        ),
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.neighbors_receivedData),
+        backgroundColor: Colors.green,
       );
       _statusTimeout?.cancel();
       if (!mounted) return;
@@ -162,13 +179,6 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
     } catch (e) {
       appLogger.error('Error handling neighbors response: $e');
     }
-  }
-
-  Contact _resolveRepeater(MeshCoreConnector connector) {
-    return connector.contacts.firstWhere(
-      (c) => c.publicKeyHex == widget.repeater.publicKeyHex,
-      orElse: () => widget.repeater,
-    );
   }
 
   Future<void> _loadNeighbors() async {
@@ -214,11 +224,10 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
           _isLoading = false;
           _isLoaded = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(context.l10n.neighbors_requestTimedOut),
-            backgroundColor: Colors.red,
-          ),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.neighbors_requestTimedOut),
+          backgroundColor: Colors.red,
         );
         _recordStatusResult(false);
       });
@@ -229,11 +238,10 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
           _isLoaded = false;
         });
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(context.l10n.neighbors_errorLoading(e.toString())),
-            backgroundColor: Colors.red,
-          ),
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.neighbors_errorLoading(e.toString())),
+          backgroundColor: Colors.red,
         );
       }
     }
