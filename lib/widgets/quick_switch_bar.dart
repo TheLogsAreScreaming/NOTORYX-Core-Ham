@@ -109,11 +109,7 @@ class QuickSwitchBar extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         icon,
-        Positioned(
-          right: -6,
-          top: -4,
-          child: UnreadBadge(count: count),
-        ),
+        Positioned(right: -6, top: -4, child: UnreadBadge(count: count)),
       ],
     );
   }
