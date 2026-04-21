@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import '../l10n/l10n.dart';
-import 'unread_badge.dart';
 
 class QuickSwitchBar extends StatelessWidget {
   final int selectedIndex;
@@ -109,7 +108,18 @@ class QuickSwitchBar extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         icon,
-        Positioned(right: -6, top: -4, child: UnreadBadge(count: count)),
+        Positioned(
+          right: -2,
+          top: -2,
+          child: Container(
+            width: 8,
+            height: 8,
+            decoration: const BoxDecoration(
+              color: Colors.redAccent,
+              shape: BoxShape.circle,
+            ),
+          ),
+        ),
       ],
     );
   }
