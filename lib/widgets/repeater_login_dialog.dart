@@ -467,7 +467,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    repeater.pathLabel,
+                    repeater.pathLabel(context.l10n),
                     style: const TextStyle(fontSize: 11, color: Colors.grey),
                   ),
                   const SizedBox(height: 8),

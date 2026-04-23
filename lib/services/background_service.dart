@@ -1,5 +1,8 @@
-import '../utils/platform_info.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
+
+import '../l10n/app_localizations.dart';
+import '../utils/platform_info.dart';
 
 class BackgroundService {
   bool _initialized = false;
@@ -34,11 +37,23 @@ class BackgroundService {
     }
     final running = await FlutterForegroundTask.isRunningService;
     if (running) return;
+    final l10n = await _loadLocalizations();
     await FlutterForegroundTask.startService(
-      notificationTitle: 'MeshCore running',
-      notificationText: 'Keeping BLE connected',
+      notificationTitle: l10n.background_serviceTitle,
+      notificationText: l10n.background_serviceText,
       callback: startCallback,
     );
+  }
+
+  Future<AppLocalizations> _loadLocalizations() async {
+    final supported = AppLocalizations.supportedLocales;
+    final system =
+        WidgetsBinding.instance.platformDispatcher.locale;
+    final match = basicLocaleListResolution(
+      <Locale>[system],
+      supported,
+    );
+    return AppLocalizations.delegate.load(match);
   }
 
   Future<void> stop() async {

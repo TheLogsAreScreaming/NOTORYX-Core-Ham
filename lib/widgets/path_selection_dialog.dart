@@ -311,7 +311,7 @@ class _PathSelectionDialogState extends State<PathSelectionDialog> {
                           style: const TextStyle(fontSize: 14),
                         ),
                         subtitle: Text(
-                          '${contact.typeLabel} • ${contact.publicKeyHex.substring(0, 2)}',
+                          '${contact.typeLabelLocalized(l10n)} • ${contact.publicKeyHex.substring(0, 2)}',
                           style: const TextStyle(fontSize: 10),
                         ),
                         trailing: isSelected

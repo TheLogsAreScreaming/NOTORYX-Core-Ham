@@ -147,7 +147,7 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
       context,
       availableContacts: availableContacts,
       initialPath: pathForInput.isEmpty ? null : pathForInput,
-      currentPathLabel: currentContact.pathLabel,
+      currentPathLabel: currentContact.pathLabel(l10n),
       onRefresh: connector.isConnected ? connector.getContacts : null,
     );
 
@@ -236,7 +236,7 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  l10n.path_currentPath(currentContact.pathLabel),
+                  l10n.path_currentPath(currentContact.pathLabel(l10n)),
                   style: const TextStyle(fontSize: 12, color: Colors.grey),
                 ),
                 const SizedBox(height: 12),

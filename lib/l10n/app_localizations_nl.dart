@@ -45,6 +45,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get common_close => 'Sluiten';
 
   @override
+  String get common_done => 'Done';
+
+  @override
   String get common_edit => 'Bewerken';
 
   @override
@@ -441,6 +444,13 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get settings_actions => 'Acties';
+
+  @override
+  String get settings_deleteAllPaths => 'Delete All Paths';
+
+  @override
+  String get settings_deleteAllPathsSubtitle =>
+      'Clear all path data from contacts.';
 
   @override
   String get settings_sendAdvertisement => 'Verzend Advertentie';
@@ -1085,6 +1095,11 @@ class AppLocalizationsNl extends AppLocalizations {
   String get channels_public => 'Openbaar';
 
   @override
+  String channels_via(String path) {
+    return 'via $path';
+  }
+
+  @override
   String get channels_private => 'Privé';
 
   @override
@@ -1625,6 +1640,24 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get map_flags => 'Vlaggen';
+
+  @override
+  String get map_type => 'Type';
+
+  @override
+  String get map_path => 'Path';
+
+  @override
+  String get map_location => 'Location';
+
+  @override
+  String get map_estLocation => 'Est. Location';
+
+  @override
+  String get map_publicKey => 'Public Key';
+
+  @override
+  String get map_publicKeyPrefixHint => 'e.g. ab12';
 
   @override
   String get map_shareMarkerHere => 'Deel marker hier';
@@ -3686,4 +3719,40 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get translation_systemLanguage => 'Taal van het systeem';
+
+  @override
+  String get background_serviceTitle => 'MeshCore running';
+
+  @override
+  String get background_serviceText => 'Keeping BLE connected';
+
+  @override
+  String appSettings_translationModelDeleted(String name) {
+    return 'Deleted $name';
+  }
+
+  @override
+  String appSettings_translationModelDeleteFailed(String error) {
+    return 'Failed to delete: $error';
+  }
+
+  @override
+  String channels_channelUpdateFailed(String error) {
+    return 'Failed to update channel: $error';
+  }
+
+  @override
+  String get contact_typeChat => 'Chat';
+
+  @override
+  String get contact_typeRepeater => 'Repeater';
+
+  @override
+  String get contact_typeRoom => 'Room';
+
+  @override
+  String get contact_typeSensor => 'Sensor';
+
+  @override
+  String get contact_typeUnknown => 'Unknown';
 }

@@ -12,6 +12,7 @@
   "common_delete": "Delete",
   "common_deleteAll": "Delete All",
   "common_close": "Close",
+  "common_done": "Done",
   "common_edit": "Edit",
   "common_add": "Add",
   "common_settings": "Settings",
@@ -188,6 +189,8 @@
   },
   "settings_telemetryModeUpdated": "Telemetry mode updated",
   "settings_actions": "Actions",
+  "settings_deleteAllPaths": "Delete All Paths",
+  "settings_deleteAllPathsSubtitle": "Clear all path data from contacts.",
   "settings_sendAdvertisement": "Send Advertisement",
   "settings_sendAdvertisementSubtitle": "Broadcast presence now",
   "settings_advertisementSent": "Advertisement sent",
@@ -523,6 +526,14 @@
   },
   "channels_hashtagChannel": "Hashtag channel",
   "channels_public": "Public",
+  "channels_via": "via {path}",
+  "@channels_via": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
   "channels_private": "Private",
   "channels_publicChannel": "Public channel",
   "channels_privateChannel": "Private channel",
@@ -869,6 +880,12 @@
   "map_from": "From",
   "map_source": "Source",
   "map_flags": "Flags",
+  "map_type": "Type",
+  "map_path": "Path",
+  "map_location": "Location",
+  "map_estLocation": "Est. Location",
+  "map_publicKey": "Public Key",
+  "map_publicKeyPrefixHint": "e.g. ab12",
   "map_shareMarkerHere": "Share marker here",
   "map_setAsMyLocation": "Set as my location",
   "map_pinLabel": "Pin label",
@@ -2121,5 +2138,36 @@
     }
   },
   "translation_translationOptions": "Translation options",
-  "translation_systemLanguage": "System language"
+  "translation_systemLanguage": "System language",
+  "background_serviceTitle": "MeshCore running",
+  "background_serviceText": "Keeping BLE connected",
+  "appSettings_translationModelDeleted": "Deleted {name}",
+  "@appSettings_translationModelDeleted": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_translationModelDeleteFailed": "Failed to delete: {error}",
+  "@appSettings_translationModelDeleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "channels_channelUpdateFailed": "Failed to update channel: {error}",
+  "@channels_channelUpdateFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "contact_typeChat": "Chat",
+  "contact_typeRepeater": "Repeater",
+  "contact_typeRoom": "Room",
+  "contact_typeSensor": "Sensor",
+  "contact_typeUnknown": "Unknown"
 }

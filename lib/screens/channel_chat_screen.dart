@@ -555,7 +555,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                 ? const EdgeInsets.symmetric(horizontal: 8)
                                 : EdgeInsets.zero,
                             child: Text(
-                              'via ${_formatPathPrefixes(displayPath)}',
+                              context.l10n.channels_via(
+                                _formatPathPrefixes(displayPath),
+                              ),
                               style: TextStyle(
                                 fontSize: 11,
                                 color: Colors.grey[600],

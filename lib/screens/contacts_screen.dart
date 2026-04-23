@@ -1122,7 +1122,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                                 return CheckboxListTile(
                                   value: isSelected,
                                   title: Text(contact.name),
-                                  subtitle: Text(contact.typeLabel),
+                                  subtitle: Text(
+                                    contact.typeLabelLocalized(context.l10n),
+                                  ),
                                   onChanged: (value) {
                                     setDialogState(() {
                                       if (value == true) {
@@ -1464,7 +1466,7 @@ class _ContactTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              contact.pathLabel,
+              contact.pathLabel(context.l10n),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

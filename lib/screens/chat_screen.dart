@@ -1168,8 +1168,8 @@ class _ChatScreenState extends State<ChatScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildInfoRow(context.l10n.chat_type, contact.typeLabel),
-              _buildInfoRow(context.l10n.chat_path, contact.pathLabel),
+              _buildInfoRow(context.l10n.chat_type, contact.typeLabelLocalized(context.l10n)),
+              _buildInfoRow(context.l10n.chat_path, contact.pathLabel(context.l10n)),
               _buildInfoRow(
                 context.l10n.contact_lastSeen,
                 _formatContactLastMessage(contact.lastMessageAt),

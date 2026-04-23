@@ -93,7 +93,7 @@ class RepeaterHubScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      repeater.pathLabel,
+                      repeater.pathLabel(context.l10n),
                       style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                     ),
                     if (repeater.hasLocation) ...[

@@ -1425,23 +1425,23 @@ class _MapScreenState extends State<MapScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildInfoRow('Type', contact.typeLabel),
-            _buildInfoRow('Path', contact.pathLabel),
+            _buildInfoRow(context.l10n.map_type, contact.typeLabelLocalized(context.l10n)),
+            _buildInfoRow(context.l10n.map_path, contact.pathLabel(context.l10n)),
             if (contact.hasLocation)
               _buildInfoRow(
-                'Location',
+                context.l10n.map_location,
                 '${contact.latitude!.toStringAsFixed(6)}, ${contact.longitude!.toStringAsFixed(6)}',
               )
             else if (guessedPosition != null)
               _buildInfoRow(
-                'Est. Location',
+                context.l10n.map_estLocation,
                 '~${guessedPosition.latitude.toStringAsFixed(6)}, ${guessedPosition.longitude.toStringAsFixed(6)}',
               ),
             _buildInfoRow(
               context.l10n.map_lastSeen,
               _formatLastSeen(contact.lastSeen),
             ),
-            _buildInfoRow('Public Key', contact.publicKeyHex),
+            _buildInfoRow(context.l10n.map_publicKey, contact.publicKeyHex),
           ],
         ),
         actions: [
@@ -1550,7 +1550,7 @@ class _MapScreenState extends State<MapScreen> {
             _buildInfoRow(context.l10n.map_from, marker.fromName),
             _buildInfoRow(context.l10n.map_source, marker.sourceLabel),
             _buildInfoRow(
-              'Location',
+              context.l10n.map_location,
               '${marker.position.latitude.toStringAsFixed(6)}, ${marker.position.longitude.toStringAsFixed(6)}',
             ),
             if (marker.flags.isNotEmpty)
@@ -2019,7 +2019,7 @@ class _MapScreenState extends State<MapScreen> {
                     enabled: settings.mapKeyPrefixEnabled,
                     decoration: InputDecoration(
                       labelText: context.l10n.map_publicKeyPrefix,
-                      hintText: 'e.g. ab12',
+                      hintText: context.l10n.map_publicKeyPrefixHint,
                       border: const OutlineInputBorder(),
                       isDense: true,
                     ),
