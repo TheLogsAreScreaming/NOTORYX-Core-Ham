@@ -394,10 +394,16 @@
   "channels_cyr2latSettingsSubheading": "Seznam zamenjav",
   "channels_cyr2latSettingsDscr": "Uredi JSON-konfiguracijo zamenjav znakov",
   "channels_cyr2latSettingsDialogHint": "JSON-tabela zamenjav",
-  "channels_cyr2latSettingsDialogSuccess": "Seznam zamenjav je posodobljen",
   "channels_cyr2latSettingsDialogWrongJSON": "Nepravilen JSON: {error}",
-  "channels_cyr2latSettingsDialogReset": "Ponastavi na privzete",
-  "channels_cyr2latSettingsDialogResetted": "Nastavitve zamenjav Cyr2Lat so ponastavljene na privzete",
+  "settings_cyr2latProfileAdd": "Dodaj profil Cyr2Lat",
+  "settings_cyr2latProfileName": "Ime profila",
+  "settings_cyr2latProfileNameEmpty": "Ime profila ne sme biti prazno",
+  "settings_cyr2latProfileAdded": "Profil je bil uspešno dodan",
+  "settings_cyr2latProfileUpdated": "Profil je bil uspešno posodobljen",
+  "settings_cyr2latProfileEdit": "Uredi profil Cyr2Lat",
+  "settings_cyr2latProfileDelete": "Izbriši profil Cyr2Lat",
+  "settings_cyr2latProfileDeleted": "Profil je bil uspešno izbrisan",
+  "settings_cyr2latProfileDeleteDscr": "Ali res želite izbrisati profil \"{name}\"?",
   "channels_channelUpdated": "Kanal {name} je bil posodobljen",
   "@channels_channelUpdated": {
     "placeholders": {
@@ -1932,6 +1938,13 @@
   "contact_teleEnv": "Okolje telemetrije",
   "contact_teleEnvSubtitle": "Dovoli deljenje podatkov okoljskih senzorjev",
   "contact_teleLocSubtitle": "Dovoli deljenje podatkov o lokaciji",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeightSubtitle": "Največja teža, ki jo lahko pot doseže s uspešnimi dostavnami.",
   "appSettings_initialRouteWeight": "Izvirna teža poti",
   "appSettings_initialRouteWeightSubtitle": "Izguba teže za nove, odkriti poti",
@@ -1943,6 +1956,7 @@
   "appSettings_maxMessageRetries": "Najve število poskusov pošiljanja sporočil",
   "appSettings_maxMessageRetriesSubtitle": "Število poskusov ponovnega poslanja, preden se sporočilo označuje kot neuspešno",
   "path_routeWeight": "{weight}/{max}",
+  "settings_multiAck": "Večkratni potrditvi: {value}",
   "settings_telemetryModeUpdated": "Način telemetrije posodobljen",
   "map_showOverlaps": "Prekrivanje ključa ponovnega predvajanja",
   "map_runTraceWithReturnPath": "Vrni se nazaj po isti poti.",
@@ -2075,6 +2089,5 @@
   "repeater_guest": "Informacije o ponovljalniku",
   "chat_sendMessage": "Pošlji sporočilo",
   "room_guest": "Informacije o strežniku",
-  "repeater_guestTools": "Naložila za goste",
-  "settings_multiAck": "Več potrdil"
+  "repeater_guestTools": "Naložila za goste"
 }

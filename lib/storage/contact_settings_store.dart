@@ -58,19 +58,6 @@ class ContactSettingsStore {
     }
     final prefs = PrefsManager.instance;
     final key = '$keyForCyr2Lat$contactKeyHex';
-    final oldKey = '$_cyr2latKeyPrefix$contactKeyHex';
-    bool? enabled = prefs.getBool(key);
-    if (enabled == null) {
-      // Attempt migration from legacy unscoped key on first load
-      enabled = prefs.getBool(oldKey);
-      prefs.remove(oldKey);
-      if (enabled != null) {
-        appLogger.info(
-          'Migrating contact Cyr2Lat settings from legacy key $oldKey to scoped key $key',
-        );
-        await prefs.setBool(key, enabled);
-      }
-    }
     return prefs.getBool(key) ?? false;
   }
 
@@ -84,5 +71,36 @@ class ContactSettingsStore {
     final prefs = PrefsManager.instance;
     final key = '$keyForCyr2Lat$contactKeyHex';
     await prefs.setBool(key, enabled);
+  }
+
+  Future<String?> loadCyr2LatProfileId(String contactKeyHex) async {
+    if (publicKeyHex.isEmpty) {
+      appLogger.warn(
+        'Public key hex is not set. Cannot load contact settings.',
+      );
+      return null;
+    }
+    final prefs = PrefsManager.instance;
+    final key = '${keyForCyr2Lat}profile_$contactKeyHex';
+    return prefs.getString(key);
+  }
+
+  Future<void> saveCyr2LatProfileId(
+    String contactKeyHex,
+    String? profileId,
+  ) async {
+    if (publicKeyHex.isEmpty) {
+      appLogger.warn(
+        'Public key hex is not set. Cannot save contact settings.',
+      );
+      return;
+    }
+    final prefs = PrefsManager.instance;
+    final key = '${keyForCyr2Lat}profile_$contactKeyHex';
+    if (profileId == null) {
+      await prefs.remove(key);
+    } else {
+      await prefs.setString(key, profileId);
+    }
   }
 }

@@ -394,10 +394,16 @@
   "channels_cyr2latSettingsSubheading": "Elenco delle sostituzioni",
   "channels_cyr2latSettingsDscr": "Modifica la configurazione JSON delle sostituzioni dei caratteri",
   "channels_cyr2latSettingsDialogHint": "Mappa JSON delle sostituzioni",
-  "channels_cyr2latSettingsDialogSuccess": "Elenco delle sostituzioni aggiornato",
   "channels_cyr2latSettingsDialogWrongJSON": "JSON non corretto: {error}",
-  "channels_cyr2latSettingsDialogReset": "Ripristina impostazioni predefinite",
-  "channels_cyr2latSettingsDialogResetted": "Le impostazioni di sostituzione Cyr2Lat sono state ripristinate alle impostazioni predefinite",
+  "settings_cyr2latProfileAdd": "Aggiungi profilo Cyr2Lat",
+  "settings_cyr2latProfileName": "Nome profilo",
+  "settings_cyr2latProfileNameEmpty": "Il nome del profilo non può essere vuoto",
+  "settings_cyr2latProfileAdded": "Profilo aggiunto con successo",
+  "settings_cyr2latProfileUpdated": "Profilo aggiornato con successo",
+  "settings_cyr2latProfileEdit": "Modifica profilo Cyr2Lat",
+  "settings_cyr2latProfileDelete": "Elimina profilo Cyr2Lat",
+  "settings_cyr2latProfileDeleted": "Profilo eliminato con successo",
+  "settings_cyr2latProfileDeleteDscr": "Sei sicuro di voler eliminare il profilo \"{name}\"?",
   "channels_channelUpdated": "Canale \"{name}\" aggiornato",
   "@channels_channelUpdated": {
     "placeholders": {
@@ -1932,6 +1938,13 @@
   "contact_teleBaseSubtitle": "Consenti la condivisione del livello della batteria e della telemetria di base",
   "contact_teleEnvSubtitle": "Consenti la condivisione dei dati del sensore ambientale",
   "contact_teleEnv": "Ambiente di telemetria",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_initialRouteWeight": "Peso iniziale del percorso",
   "appSettings_initialRouteWeightSubtitle": "Peso di partenza per nuovi percorsi",
   "appSettings_maxRouteWeightSubtitle": "Il peso massimo che un percorso può accumulare grazie a consegne di successo.",
@@ -1944,6 +1957,7 @@
   "appSettings_maxMessageRetriesSubtitle": "Numero di tentativi di riprova prima di considerare un messaggio come fallito.",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Modalità telemetria aggiornata",
+  "settings_multiAck": "Multi-ACKs: {value}",
   "map_showOverlaps": "Sovrapposizioni della chiave ripetitore",
   "map_runTraceWithReturnPath": "Tornare indietro sullo stesso percorso",
   "@radioStats_noiseFloor": {
@@ -2075,6 +2089,5 @@
   "repeater_guest": "Informazioni sul ripetitore",
   "repeater_guestTools": "Strumenti per gli ospiti",
   "chat_sendMessage": "Invia messaggio",
-  "room_guest": "Informazioni sul server",
-  "settings_multiAck": "ACK multipli"
+  "room_guest": "Informazioni sul server"
 }

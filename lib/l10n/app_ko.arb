@@ -554,10 +554,16 @@
   "channels_cyr2latSettingsSubheading": "변환 목록",
   "channels_cyr2latSettingsDscr": "문자 변환 JSON 구성 편집",
   "channels_cyr2latSettingsDialogHint": "JSON 변환 맵",
-  "channels_cyr2latSettingsDialogSuccess": "변환 목록이 업데이트되었습니다",
   "channels_cyr2latSettingsDialogWrongJSON": "잘못된 JSON: {error}",
-  "channels_cyr2latSettingsDialogReset": "초기값으로 초기화",
-  "channels_cyr2latSettingsDialogResetted": "Cyr2Lat 변환 설정이 초기값으로 초기화되었습니다",
+  "settings_cyr2latProfileAdd": "Cyr2Lat 프로필 추가",
+  "settings_cyr2latProfileName": "프로필 이름",
+  "settings_cyr2latProfileNameEmpty": "프로필 이름은 비워둘 수 없습니다",
+  "settings_cyr2latProfileAdded": "프로필이 성공적으로 추가되었습니다",
+  "settings_cyr2latProfileUpdated": "프로필이 성공적으로 업데이트되었습니다",
+  "settings_cyr2latProfileEdit": "Cyr2Lat 프로필 편집",
+  "settings_cyr2latProfileDelete": "Cyr2Lat 프로필 삭제",
+  "settings_cyr2latProfileDeleted": "프로필이 성공적으로 삭제되었습니다",
+  "settings_cyr2latProfileDeleteDscr": "\"{name}\" 프로필을 삭제하시겠습니까?",
   "channels_channelUpdated": "채널 \"{name}\"이 업데이트되었습니다.",
   "@channels_channelUpdated": {
     "placeholders": {
@@ -2022,6 +2028,13 @@
   "radioStats_stripWaiting": "라디오 통계 가져오기…",
   "radioStats_settingsTile": "라디오 통계",
   "radioStats_settingsSubtitle": "잡음 수준, RSSI, 신호 대 잡음비, 통신 시간",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "settings_privacy": "개인 정보 설정",
   "settings_privacySubtitle": "어떤 정보를 공유할지 통제하세요.",
   "settings_privacySettingsDescription": "어떤 정보를 기기가 다른 사람들과 공유할지 선택하세요.",
@@ -2033,6 +2046,7 @@
   "settings_telemetryEnvironmentMode": "텔레메트리 환경 모드",
   "settings_advertLocation": "광고 위치",
   "settings_advertLocationSubtitle": "광고에 위치 정보를 포함하세요.",
+  "settings_multiAck": "다중 ACK: {value}",
   "settings_telemetryModeUpdated": "텔레메트리 모드 업데이트 완료",
   "contact_info": "연락처",
   "contact_settings": "연락처 설정",
@@ -2113,6 +2127,5 @@
   "repeater_guestTools": "손님용 도구",
   "chat_sendMessage": "메시지를 보내기",
   "repeater_guest": "반복 장비 정보",
-  "room_guest": "서버 정보",
-  "settings_multiAck": "다중 ACK"
+  "room_guest": "서버 정보"
 }

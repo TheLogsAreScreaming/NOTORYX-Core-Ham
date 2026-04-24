@@ -394,10 +394,16 @@
   "channels_cyr2latSettingsSubheading": "Zoznam nahradení",
   "channels_cyr2latSettingsDscr": "Upravte konfiguráciu JSON pre nahradenie znakov",
   "channels_cyr2latSettingsDialogHint": "JSON mapa nahradení",
-  "channels_cyr2latSettingsDialogSuccess": "Zoznam nahradení bol aktualizovaný",
   "channels_cyr2latSettingsDialogWrongJSON": "Nesprávny JSON: {error}",
-  "channels_cyr2latSettingsDialogReset": "Obnoviť predvolené nastavenia",
-  "channels_cyr2latSettingsDialogResetted": "Nastavenia nahradzovania Cyr2Lat boli obnovené na predvolené",
+  "settings_cyr2latProfileAdd": "Pridať profil Cyr2Lat",
+  "settings_cyr2latProfileName": "Názov profilu",
+  "settings_cyr2latProfileNameEmpty": "Názov profilu nesmie byť prázdny",
+  "settings_cyr2latProfileAdded": "Profil bol úspešne pridaný",
+  "settings_cyr2latProfileUpdated": "Profil bol úspešne aktualizovaný",
+  "settings_cyr2latProfileEdit": "Upraviť profil Cyr2Lat",
+  "settings_cyr2latProfileDelete": "Odstrániť profil Cyr2Lat",
+  "settings_cyr2latProfileDeleted": "Profil bol úspešne odstránený",
+  "settings_cyr2latProfileDeleteDscr": "Naozaj chcete odstrániť profil \"{name}\"?",
   "channels_channelUpdated": "Kanál \"{name}\" bol aktualizovaný",
   "@channels_channelUpdated": {
     "placeholders": {
@@ -1932,6 +1938,13 @@
   "contact_lastSeen": "Naposledy videný",
   "contact_teleBase": "Báza telemetrie",
   "contact_teleEnvSubtitle": "Povoliť zdieľanie údajov senzorov prostredia",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeightSubtitle": "Maximálna hmotnosť, ktorú môže trás prenášať vďaka úspešným zásielkam.",
   "appSettings_initialRouteWeightSubtitle": "Počiatočná váha pre nové, objavené cesty",
   "appSettings_initialRouteWeight": "Počiatočná váha trasy",
@@ -1944,7 +1957,7 @@
   "appSettings_maxMessageRetriesSubtitle": "Počet pokusov o odošleť pred označením správy ako neúspešnej",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Režim telemetrie bol aktualizovaný",
-  "settings_multiAck": "Viaceré ACK",
+  "settings_multiAck": "Viaceré ACK: {value}",
   "map_showOverlaps": "Prekrývanie opakovača kľúča",
   "map_runTraceWithReturnPath": "Vráťte sa späť po tej istej ceste.",
   "@radioStats_noiseFloor": {

@@ -394,10 +394,16 @@
   "channels_cyr2latSettingsSubheading" : "Liste des remplacements",
   "channels_cyr2latSettingsDscr" : "Modifier la configuration JSON des remplacements de caractères",
   "channels_cyr2latSettingsDialogHint": "Tableau de remplacement JSON",
-  "channels_cyr2latSettingsDialogSuccess": "Liste de remplacement mise à jour",
   "channels_cyr2latSettingsDialogWrongJSON": "JSON incorrect : {error}",
-  "channels_cyr2latSettingsDialogReset": "Réinitialiser les paramètres par défaut",
-  "channels_cyr2latSettingsDialogResetted": "Les paramètres de remplacement Cyr2Lat ont été réinitialisés aux valeurs par défaut",
+  "settings_cyr2latProfileAdd" : "Ajouter un profil Cyr2Lat",
+  "settings_cyr2latProfileName" : "Nom du profil",
+  "settings_cyr2latProfileNameEmpty" : "Le nom du profil ne peut pas être vide",
+  "settings_cyr2latProfileAdded": "Profil ajouté avec succès",
+  "settings_cyr2latProfileUpdated": "Profil mis à jour avec succès",
+  "settings_cyr2latProfileEdit": "Modifier le profil Cyr2Lat",
+  "settings_cyr2latProfileDelete" : "Supprimer le profil Cyr2Lat",
+  "settings_cyr2latProfileDeleted" : "Profil supprimé avec succès",
+  "settings_cyr2latProfileDeleteDscr" : "Êtes-vous sûr de vouloir supprimer le profil \"{name}\"?",
   "channels_channelUpdated": "Le canal \"{name}\" a été mis à jour",
   "@channels_channelUpdated": {
     "placeholders": {
@@ -1932,6 +1938,13 @@
   "contact_lastSeen": "Dernière fois vu",
   "contact_clearChat": "Effacer la conversation",
   "contact_teleBaseSubtitle": "Autoriser le partage du niveau de batterie et de la télémétrie de base",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeightSubtitle": "Poids maximal qu'un itinéraire peut accumuler grâce à des livraisons réussies.",
   "appSettings_initialRouteWeight": "Poids initial de l'itinéraire",
   "appSettings_maxRouteWeight": "Poids maximal autorisé pour le trajet",
@@ -1943,6 +1956,7 @@
   "appSettings_maxMessageRetries": "Nombre maximal de tentatives de récupération de messages",
   "appSettings_maxMessageRetriesSubtitle": "Nombre de tentatives de relance avant de marquer un message comme ayant échoué.",
   "path_routeWeight": "{weight}/{max}",
+  "settings_multiAck": "Multi-ACKs : {value}",
   "settings_telemetryModeUpdated": "Le mode télémétrie a été mis à jour",
   "map_showOverlaps": "Chevauchement de la touche répétitive",
   "map_runTraceWithReturnPath": "Revenir sur le même chemin.",
@@ -2075,6 +2089,5 @@
   "repeater_guestTools": "Outils pour les invités",
   "chat_sendMessage": "Envoyer un message",
   "room_guest": "Informations sur le serveur",
-  "repeater_guest": "Informations sur les répéteurs",
-  "settings_multiAck": "Plusieurs accusés de réception"
+  "repeater_guest": "Informations sur les répéteurs"
 }

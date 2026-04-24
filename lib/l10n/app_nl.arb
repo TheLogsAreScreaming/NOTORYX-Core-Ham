@@ -394,10 +394,16 @@
   "channels_cyr2latSettingsSubheading": "Lijst met vervangingen",
   "channels_cyr2latSettingsDscr": "Bewerk de JSON-configuratie voor tekenvervanging",
   "channels_cyr2latSettingsDialogHint": "JSON-vervangingskaart",
-  "channels_cyr2latSettingsDialogSuccess": "Lijst met vervangingen bijgewerkt",
   "channels_cyr2latSettingsDialogWrongJSON": "Onjuiste JSON: {error}",
-  "channels_cyr2latSettingsDialogReset": "Terugzetten naar standaard",
-  "channels_cyr2latSettingsDialogResetted": "De instellingen voor Cyr2Lat-vervangingen zijn teruggezet naar de standaardinstellingen",
+  "settings_cyr2latProfileAdd": "Cyr2Lat-profiel toevoegen",
+  "settings_cyr2latProfileName": "Profielnaam",
+  "settings_cyr2latProfileNameEmpty": "Profielnaam mag niet leeg zijn",
+  "settings_cyr2latProfileAdded": "Profiel succesvol toegevoegd",
+  "settings_cyr2latProfileUpdated": "Profiel succesvol bijgewerkt",
+  "settings_cyr2latProfileEdit": "Cyr2Lat-profiel bewerken",
+  "settings_cyr2latProfileDelete": "Cyr2Lat-profiel verwijderen",
+  "settings_cyr2latProfileDeleted": "Profiel succesvol verwijderd",
+  "settings_cyr2latProfileDeleteDscr": "Weet u zeker dat u het profiel \"{name}\" wilt verwijderen?",
   "channels_channelUpdated": "Kanaal \"{name}\" is bijgewerkt",
   "@channels_channelUpdated": {
     "placeholders": {
@@ -1932,6 +1938,13 @@
   "contact_lastSeen": "Laatst gezien",
   "contact_clearChat": "Chat leegmaken",
   "contact_teleBaseSubtitle": "Sta delen van batterij niveau en basis telemetrie toe",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeightSubtitle": "Het maximale gewicht dat een route kan bereiken door succesvolle leveringen.",
   "appSettings_initialRouteWeight": "เริ่มต้น gewicht van de route",
   "appSettings_maxRouteWeight": "Maximale gewicht voor de route",
@@ -1944,6 +1957,7 @@
   "appSettings_maxMessageRetriesSubtitle": "Aantal pogingen om een bericht opnieuw te versturen voordat het als mislukt wordt gemarkeerd",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Telemetrie-modus bijgewerkt",
+  "settings_multiAck": "Multi-ACKs: {value}",
   "map_showOverlaps": "Herhalingssleutel overlapt",
   "map_runTraceWithReturnPath": "Terugkeren op hetzelfde pad.",
   "@radioStats_noiseFloor": {
@@ -2075,6 +2089,5 @@
   "repeater_guestTools": "Gastenfuncties",
   "room_guest": "Informatie over de server",
   "chat_sendMessage": "Verzend bericht",
-  "repeater_guest": "Informatie over herhalingsapparatuur",
-  "settings_multiAck": "Meerdere bevestigingen"
+  "repeater_guest": "Informatie over herhalingsapparatuur"
 }

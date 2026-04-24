@@ -430,7 +430,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get settings_advertLocationSubtitle => 'Vključi lokacijo v oglas.';
 
   @override
-  String get settings_multiAck => 'Več potrdil';
+  String settings_multiAck(String value) {
+    return 'Večkratni potrditvi: $value';
+  }
 
   @override
   String get settings_telemetryModeUpdated => 'Način telemetrije posodobljen';
@@ -1178,24 +1180,44 @@ class AppLocalizationsSl extends AppLocalizations {
   String get channels_cyr2latSettingsDialogHint => 'JSON-tabela zamenjav';
 
   @override
-  String get channels_cyr2latSettingsDialogSuccess =>
-      'Seznam zamenjav je posodobljen';
-
-  @override
   String channels_cyr2latSettingsDialogWrongJSON(Object error) {
     return 'Nepravilen JSON: $error';
   }
 
   @override
-  String get channels_cyr2latSettingsDialogReset => 'Ponastavi na privzete';
-
-  @override
-  String get channels_cyr2latSettingsDialogResetted =>
-      'Nastavitve zamenjav Cyr2Lat so ponastavljene na privzete';
-
-  @override
   String channels_channelUpdated(String name) {
     return 'Kanal $name je bil posodobljen';
+  }
+
+  @override
+  String get settings_cyr2latProfileAdd => 'Dodaj profil Cyr2Lat';
+
+  @override
+  String get settings_cyr2latProfileName => 'Ime profila';
+
+  @override
+  String get settings_cyr2latProfileNameEmpty =>
+      'Ime profila ne sme biti prazno';
+
+  @override
+  String get settings_cyr2latProfileAdded => 'Profil je bil uspešno dodan';
+
+  @override
+  String get settings_cyr2latProfileUpdated =>
+      'Profil je bil uspešno posodobljen';
+
+  @override
+  String get settings_cyr2latProfileEdit => 'Uredi profil Cyr2Lat';
+
+  @override
+  String get settings_cyr2latProfileDelete => 'Izbriši profil Cyr2Lat';
+
+  @override
+  String get settings_cyr2latProfileDeleted => 'Profil je bil uspešno izbrisan';
+
+  @override
+  String settings_cyr2latProfileDeleteDscr(String name) {
+    return 'Ali res želite izbrisati profil \"$name\"?';
   }
 
   @override

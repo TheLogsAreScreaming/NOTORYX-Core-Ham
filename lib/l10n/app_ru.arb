@@ -258,10 +258,16 @@
   "channels_cyr2latSettingsSubheading": "Список замен",
   "channels_cyr2latSettingsDscr": "Редактировать JSON-конфигурацию замены символов",
   "channels_cyr2latSettingsDialogHint": "JSON-карта замен",
-  "channels_cyr2latSettingsDialogSuccess": "Список замен обновлён",
   "channels_cyr2latSettingsDialogWrongJSON": "Некорректный JSON: {error}",
-  "channels_cyr2latSettingsDialogReset": "Сбросить к начальным",
-  "channels_cyr2latSettingsDialogResetted": "Настройки замен Cyr2Lat сброшены к начальным",
+  "settings_cyr2latProfileAdd": "Добавить профиль Cyr2Lat",
+  "settings_cyr2latProfileName": "Название профиля",
+  "settings_cyr2latProfileNameEmpty": "Название профиля не может быть пустым",
+  "settings_cyr2latProfileAdded": "Профиль добавлен",
+  "settings_cyr2latProfileUpdated": "Профиль успешно обновлен",
+  "settings_cyr2latProfileEdit": "Редактировать профиль Cyr2Lat",
+  "settings_cyr2latProfileDelete": "Удалить профиль Cyr2Lat",
+  "settings_cyr2latProfileDeleted": "Профиль успешно удален",
+  "settings_cyr2latProfileDeleteDscr": "Вы действительно хотите удалить профиль \"{name}\"?",
   "channels_channelUpdated": "Канал \"{name}\" обновлён",
   "channels_publicChannelAdded": "Публичный канал добавлен",
   "channels_sortBy": "Сортировка",
@@ -1172,6 +1178,13 @@
   "contact_clearChat": "Очистить чат",
   "contact_lastSeen": "Последний раз видели",
   "contact_teleBaseSubtitle": "Разрешить обмен уровнем заряда батареи и базовой телеметрией",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_maxRouteWeight": "Максимальный допустимый вес маршрута",
   "appSettings_maxRouteWeightSubtitle": "Максимальный вес, который может быть перевезён по определённому маршруту при успешных доставках.",
   "appSettings_initialRouteWeightSubtitle": "Начальный вес для новых, только что открытых маршрутов",
@@ -1184,6 +1197,7 @@
   "appSettings_maxMessageRetriesSubtitle": "Количество попыток повторной отправки сообщения перед тем, как пометить его как неудачное.",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Режим телеметрии обновлен",
+  "settings_multiAck": "Мульти-ACK: {value}",
   "map_showOverlaps": "Перекрытия ключа повтора",
   "map_runTraceWithReturnPath": "Вернуться обратно по тому же пути",
   "@radioStats_noiseFloor": {
@@ -1315,6 +1329,5 @@
   "chat_sendMessage": "Отправить сообщение",
   "repeater_guest": "Информация о ретрансляторе",
   "room_guest": "Информация о сервере",
-  "repeater_guestTools": "Инструменты для гостей",
-  "settings_multiAck": "Несколько подтверждений"
+  "repeater_guestTools": "Инструменты для гостей"
 }

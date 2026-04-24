@@ -395,10 +395,16 @@
   "channels_cyr2latSettingsSubheading": "Список замін",
   "channels_cyr2latSettingsDscr": "Редагувати JSON-конфігурацію заміни символів",
   "channels_cyr2latSettingsDialogHint": "JSON-карта замін",
-  "channels_cyr2latSettingsDialogSuccess": "Список замін оновлено",
   "channels_cyr2latSettingsDialogWrongJSON": "Некоректний JSON: {error}",
-  "channels_cyr2latSettingsDialogReset": "Скинути до початкових",
-  "channels_cyr2latSettingsDialogResetted": "Налаштування замін Cyr2Lat скинуто до початкових",
+  "settings_cyr2latProfileAdd": "Додати профіль Cyr2Lat",
+  "settings_cyr2latProfileName": "Назва профілю",
+  "settings_cyr2latProfileNameEmpty": "Назва профілю не може бути порожньою",
+  "settings_cyr2latProfileAdded": "Профіль успішно додано",
+  "settings_cyr2latProfileUpdated": "Профіль успішно оновлено",
+  "settings_cyr2latProfileEdit": "Редагувати профіль Cyr2Lat",
+  "settings_cyr2latProfileDelete": "Видалити профіль Cyr2Lat",
+  "settings_cyr2latProfileDeleted": "Профіль успішно видалено",
+  "settings_cyr2latProfileDeleteDscr": "Ви впевнені, що хочете видалити профіль \"{name}\"?",
   "channels_channelUpdated": "Канал «{name}» оновлено",
   "@channels_channelUpdated": {
     "placeholders": {
@@ -1932,6 +1938,13 @@
   "contact_lastSeen": "Останній раз бачили",
   "contact_teleEnv": "Середовище телеметрії",
   "contact_teleEnvSubtitle": "Дозволити спільний доступ до даних датчиків середовища",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "appSettings_initialRouteWeight": "Початкова вартість маршруту",
   "appSettings_initialRouteWeightSubtitle": "Початкова вага для нових відкритих шляхів",
   "appSettings_maxRouteWeight": "Максимальна вага маршруту",
@@ -1944,6 +1957,7 @@
   "appSettings_maxMessageRetriesSubtitle": "Кількість спроб повторного відправлення повідомлення перед тим, як позначити його як невдале",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Режим телеметрії оновлено",
+  "settings_multiAck": "Багатократне підтвердження: {value}",
   "map_showOverlaps": "Перекриття ключа повторювача",
   "map_runTraceWithReturnPath": "Повернутися назад тим же шляхом",
   "@radioStats_noiseFloor": {
@@ -2075,6 +2089,5 @@
   "repeater_guestTools": "Інструменти для гостей",
   "repeater_guest": "Інформація про ретранслятор",
   "room_guest": "Інформація про сервер кімнати",
-  "chat_sendMessage": "Надіслати повідомлення",
-  "settings_multiAck": "Багато підтверджень"
+  "chat_sendMessage": "Надіслати повідомлення"
 }
