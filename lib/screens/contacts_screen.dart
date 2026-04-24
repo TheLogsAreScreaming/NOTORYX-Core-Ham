@@ -13,6 +13,7 @@ import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../connector/meshcore_protocol.dart';
 import '../models/contact.dart';
+import '../l10n/contact_localization.dart';
 import '../models/contact_group.dart';
 import '../services/ui_view_state_service.dart';
 import '../utils/contact_search.dart';
@@ -1123,7 +1124,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                                   value: isSelected,
                                   title: Text(contact.name),
                                   subtitle: Text(
-                                    contact.typeLabelLocalized(context.l10n),
+                                    contact.typeLabel(context.l10n),
                                   ),
                                   onChanged: (value) {
                                     setDialogState(() {

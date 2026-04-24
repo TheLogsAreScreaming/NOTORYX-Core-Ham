@@ -16,6 +16,7 @@ import '../connector/meshcore_protocol.dart';
 import '../models/app_settings.dart';
 import '../models/channel.dart';
 import '../models/contact.dart';
+import '../l10n/contact_localization.dart';
 import '../services/app_settings_service.dart';
 import '../services/path_history_service.dart';
 import '../services/map_marker_service.dart';
@@ -1425,7 +1426,7 @@ class _MapScreenState extends State<MapScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildInfoRow(context.l10n.map_type, contact.typeLabelLocalized(context.l10n)),
+            _buildInfoRow(context.l10n.map_type, contact.typeLabel(context.l10n)),
             _buildInfoRow(context.l10n.map_path, contact.pathLabel(context.l10n)),
             if (contact.hasLocation)
               _buildInfoRow(

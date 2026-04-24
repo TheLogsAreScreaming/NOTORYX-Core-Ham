@@ -2,7 +2,6 @@ import 'dart:typed_data';
 import 'package:meshcore_open/utils/app_logger.dart';
 
 import '../connector/meshcore_protocol.dart';
-import '../l10n/app_localizations.dart';
 
 class Contact {
   final Uint8List publicKey;
@@ -42,7 +41,10 @@ class Contact {
 
   String get publicKeyHex => pubKeyToHex(publicKey);
 
-  String get typeLabel {
+  /// Non-localized type label, intended for logs and non-UI exports
+  /// (e.g. GPX). For UI use the `typeLabel(l10n)` extension in
+  /// `lib/l10n/contact_localization.dart`.
+  String get typeLabelRaw {
     switch (type) {
       case advTypeChat:
         return 'Chat';
@@ -55,32 +57,6 @@ class Contact {
       default:
         return 'Unknown';
     }
-  }
-
-  String typeLabelLocalized(AppLocalizations l10n) {
-    switch (type) {
-      case advTypeChat:
-        return l10n.contact_typeChat;
-      case advTypeRepeater:
-        return l10n.contact_typeRepeater;
-      case advTypeRoom:
-        return l10n.contact_typeRoom;
-      case advTypeSensor:
-        return l10n.contact_typeSensor;
-      default:
-        return l10n.contact_typeUnknown;
-    }
-  }
-
-  String pathLabel(AppLocalizations l10n) {
-    if (pathOverride != null) {
-      if (pathOverride! < 0) return l10n.chat_floodForced;
-      if (pathOverride == 0) return l10n.chat_directForced;
-      return l10n.chat_hopsForced(pathOverride!);
-    }
-    if (pathLength < 0) return l10n.channelPath_floodPath;
-    if (pathLength == 0) return l10n.chat_direct;
-    return l10n.chat_hopsCount(pathLength);
   }
 
   bool get hasLocation {

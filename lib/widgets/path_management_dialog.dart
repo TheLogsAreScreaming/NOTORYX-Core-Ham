@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
+import '../l10n/contact_localization.dart';
 import '../helpers/path_helper.dart';
 import '../services/path_history_service.dart';
 import '../helpers/snack_bar_builder.dart';

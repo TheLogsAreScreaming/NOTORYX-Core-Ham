@@ -20,6 +20,7 @@ import '../helpers/gif_helper.dart';
 import '../helpers/path_helper.dart';
 import '../models/channel_message.dart';
 import '../models/contact.dart';
+import '../l10n/contact_localization.dart';
 import '../models/message.dart';
 import '../models/path_history.dart';
 import '../models/translation_support.dart';
@@ -1168,7 +1169,7 @@ class _ChatScreenState extends State<ChatScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildInfoRow(context.l10n.chat_type, contact.typeLabelLocalized(context.l10n)),
+              _buildInfoRow(context.l10n.chat_type, contact.typeLabel(context.l10n)),
               _buildInfoRow(context.l10n.chat_path, contact.pathLabel(context.l10n)),
               _buildInfoRow(
                 context.l10n.contact_lastSeen,

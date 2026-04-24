@@ -6,6 +6,14 @@ import '../utils/platform_info.dart';
 
 class BackgroundService {
   bool _initialized = false;
+  String? Function()? _languageOverrideProvider;
+
+  /// Allows the app to expose its current language override (e.g. from
+  /// AppSettingsService) so the foreground notification matches the app UI
+  /// language instead of only the system locale.
+  void setLanguageOverrideProvider(String? Function()? provider) {
+    _languageOverrideProvider = provider;
+  }
 
   Future<void> initialize() async {
     if (!PlatformInfo.isAndroid || _initialized) return;
@@ -47,6 +55,10 @@ class BackgroundService {
 
   Future<AppLocalizations> _loadLocalizations() async {
     final supported = AppLocalizations.supportedLocales;
+    final override = _languageOverrideProvider?.call();
+    if (override != null && override.isNotEmpty) {
+      return AppLocalizations.delegate.load(Locale(override));
+    }
     final system =
         WidgetsBinding.instance.platformDispatcher.locale;
     final match = basicLocaleListResolution(
