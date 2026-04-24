@@ -57,14 +57,17 @@ class BackgroundService {
     final supported = AppLocalizations.supportedLocales;
     final override = _languageOverrideProvider?.call();
     if (override != null && override.isNotEmpty) {
-      return AppLocalizations.delegate.load(Locale(override));
+      final overrideLocale = Locale(override);
+      final isSupported = supported.any(
+        (l) => l.languageCode == overrideLocale.languageCode,
+      );
+      if (isSupported) {
+        return AppLocalizations.delegate.load(overrideLocale);
+      }
     }
-    final system =
-        WidgetsBinding.instance.platformDispatcher.locale;
-    final match = basicLocaleListResolution(
-      <Locale>[system],
-      supported,
-    );
+    final preferred =
+        WidgetsBinding.instance.platformDispatcher.locales;
+    final match = basicLocaleListResolution(preferred, supported);
     return AppLocalizations.delegate.load(match);
   }
 

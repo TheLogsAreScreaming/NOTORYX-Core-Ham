@@ -57,6 +57,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   DateTime? _lastChannelSendAt;
   bool _channelSkipNextBottomSnap = false;
 
+  String? _cachedFormatLocale;
+  late DateFormat _hmFormat;
+  late DateFormat _mdFormat;
+
   @override
   void initState() {
     super.initState();
@@ -1232,10 +1236,15 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final now = DateTime.now();
     final diff = now.difference(time);
     final locale = Localizations.localeOf(context).toString();
-    final hm = DateFormat.Hm(locale).format(time);
+    if (locale != _cachedFormatLocale) {
+      _cachedFormatLocale = locale;
+      _hmFormat = DateFormat.Hm(locale);
+      _mdFormat = DateFormat.Md(locale);
+    }
+    final hm = _hmFormat.format(time);
 
     if (diff.inDays > 0) {
-      return '${DateFormat.Md(locale).format(time)} $hm';
+      return '${_mdFormat.format(time)} $hm';
     } else {
       return hm;
     }
