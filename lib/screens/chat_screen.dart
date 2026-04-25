@@ -44,6 +44,7 @@ import '../widgets/translated_message_content.dart';
 import '../utils/app_logger.dart';
 import '../l10n/l10n.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../widgets/unread_divider.dart';
 import 'telemetry_screen.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -68,6 +69,7 @@ class _ChatScreenState extends State<ChatScreen> {
   bool _isLoadingOlder = false;
   MeshCoreConnector? _connector;
   Message? _pendingUnreadScrollTarget;
+  String? _unreadDividerMessageId;
   DateTime? _lastTextSendAt;
 
   @override
@@ -75,6 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
     _textFieldFocusNode.addListener(_onTextFieldFocusChange);
     _scrollController.onScrollNearTop = _loadOlderMessages;
+    _scrollController.showJumpToBottom.addListener(_clearDividerAtBottom);
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       final connector = context.read<MeshCoreConnector>();
@@ -83,13 +86,18 @@ class _ChatScreenState extends State<ChatScreen> {
       final unread = widget.initialUnreadCount;
       final messages = connector.getMessages(widget.contact);
       Message? anchor;
-      if (settings.jumpToOldestUnread && unread > 0) {
+      if (unread > 0) {
         anchor = _findOldestUnreadAnchor(messages, unread);
       }
+      setState(() {
+        if (anchor != null) _unreadDividerMessageId = anchor.messageId;
+        if (anchor != null && settings.jumpToOldestUnread) {
+          _pendingUnreadScrollTarget = anchor;
+        }
+      });
       connector.setActiveContact(keyHex);
       _connector = connector;
-      if (anchor != null) {
-        setState(() => _pendingUnreadScrollTarget = anchor);
+      if (anchor != null && settings.jumpToOldestUnread) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
           _scrollController.jumpToEstimatedOffset(
@@ -128,6 +136,13 @@ class _ChatScreenState extends State<ChatScreen> {
     return oldest;
   }
 
+  void _clearDividerAtBottom() {
+    if (!_scrollController.showJumpToBottom.value &&
+        _unreadDividerMessageId != null) {
+      setState(() => _unreadDividerMessageId = null);
+    }
+  }
+
   void _onTextFieldFocusChange() {
     if (_textFieldFocusNode.hasFocus && mounted) {
       _scrollController.handleKeyboardOpen();
@@ -149,6 +164,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void dispose() {
     _connector?.setActiveContact(null);
+    _scrollController.showJumpToBottom.removeListener(_clearDividerAtBottom);
     _textFieldFocusNode.removeListener(_onTextFieldFocusChange);
     _textFieldFocusNode.dispose();
     _textController.dispose();
@@ -498,15 +514,36 @@ class _ChatScreenState extends State<ChatScreen> {
                 onRetryReaction: (msg, emoji) =>
                     _sendReaction(msg, contact, emoji),
               );
+              final isUnreadAnchor = _unreadDividerMessageId != null &&
+                  message.messageId == _unreadDividerMessageId;
+              final child = isUnreadAnchor
+                  ? Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [const UnreadDivider(), bubble],
+                    )
+                  : bubble;
               if (identical(message, _pendingUnreadScrollTarget)) {
-                return KeyedSubtree(key: _unreadScrollKey, child: bubble);
+                return KeyedSubtree(key: _unreadScrollKey, child: child);
               }
-              return bubble;
+              return child;
             },
           );
         },
       ),
     );
+  }
+
+  void _markAsUnread(Message message) {
+    final connector = context.read<MeshCoreConnector>();
+    final messages = connector.getMessages(widget.contact);
+    var count = 0;
+    var found = false;
+    for (final m in messages) {
+      if (m.messageId == message.messageId) found = true;
+      if (found && !m.isOutgoing && !m.isCli) count++;
+    }
+    connector.setContactUnreadCount(widget.contact.publicKeyHex, count);
+    Navigator.pop(context);
   }
 
   Widget _buildInputBar(MeshCoreConnector connector) {
@@ -1465,6 +1502,15 @@ class _ChatScreenState extends State<ChatScreen> {
                 _copyMessageText(message.text);
               },
             ),
+            if (!message.isOutgoing)
+              ListTile(
+                leading: const Icon(Icons.mark_chat_unread_outlined),
+                title: Text(context.l10n.chat_markAsUnread),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _markAsUnread(message);
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.delete_outline),
               title: Text(context.l10n.common_delete),

@@ -32,6 +32,7 @@ import '../widgets/message_translation_button.dart';
 import '../widgets/message_status_icon.dart';
 import '../widgets/radio_stats_entry.dart';
 import '../widgets/translated_message_content.dart';
+import '../widgets/unread_divider.dart';
 import 'channel_message_path_screen.dart';
 import 'map_screen.dart';
 
@@ -60,12 +61,14 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   MeshCoreConnector? _connector;
   DateTime? _lastChannelSendAt;
   bool _channelSkipNextBottomSnap = false;
+  String? _unreadDividerMessageId;
 
   @override
   void initState() {
     super.initState();
     _textFieldFocusNode.addListener(_onTextFieldFocusChange);
     _scrollController.onScrollNearTop = _loadOlderMessages;
+    _scrollController.showJumpToBottom.addListener(_clearDividerAtBottom);
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       final connector = context.read<MeshCoreConnector>();
@@ -74,12 +77,15 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       final unread = widget.initialUnreadCount;
       final messages = connector.getChannelMessages(widget.channel);
       ChannelMessage? anchor;
-      if (settings.jumpToOldestUnread && unread > 0) {
+      if (unread > 0) {
         anchor = _findOldestUnreadChannelAnchor(messages, unread);
       }
+      setState(() {
+        if (anchor != null) _unreadDividerMessageId = anchor.messageId;
+      });
       connector.setActiveChannel(idx);
       _connector = connector;
-      if (anchor != null) {
+      if (anchor != null && settings.jumpToOldestUnread) {
         _channelSkipNextBottomSnap = true;
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
@@ -112,6 +118,13 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     return oldest;
   }
 
+  void _clearDividerAtBottom() {
+    if (!_scrollController.showJumpToBottom.value &&
+        _unreadDividerMessageId != null) {
+      setState(() => _unreadDividerMessageId = null);
+    }
+  }
+
   void _onTextFieldFocusChange() {
     if (_textFieldFocusNode.hasFocus && mounted) {
       _scrollController.handleKeyboardOpen();
@@ -133,6 +146,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   @override
   void dispose() {
     _connector?.setActiveChannel(null);
+    _scrollController.showJumpToBottom.removeListener(_clearDividerAtBottom);
     _textFieldFocusNode.removeListener(_onTextFieldFocusChange);
     _textFieldFocusNode.dispose();
     _textController.dispose();
@@ -331,6 +345,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             if (!_messageKeys.containsKey(message.messageId)) {
                               _messageKeys[message.messageId] = GlobalKey();
                             }
+                            final isUnreadAnchor =
+                                _unreadDividerMessageId != null &&
+                                    message.messageId ==
+                                        _unreadDividerMessageId;
                             return Container(
                               key: _messageKeys[message.messageId]!,
                               child: Builder(
@@ -339,10 +357,20 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                       .select<ChatTextScaleService, double>(
                                         (service) => service.scale,
                                       );
-                                  return _buildMessageBubble(
+                                  final bubble = _buildMessageBubble(
                                     message,
                                     textScale,
                                   );
+                                  if (isUnreadAnchor) {
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const UnreadDivider(),
+                                        bubble,
+                                      ],
+                                    );
+                                  }
+                                  return bubble;
                                 },
                               ),
                             );
@@ -360,6 +388,19 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         ),
       ),
     );
+  }
+
+  void _markAsUnread(ChannelMessage message) {
+    final connector = context.read<MeshCoreConnector>();
+    final messages = connector.getChannelMessages(widget.channel);
+    var count = 0;
+    var found = false;
+    for (final m in messages) {
+      if (m.messageId == message.messageId) found = true;
+      if (found && !m.isOutgoing) count++;
+    }
+    connector.setChannelUnreadCount(widget.channel.index, count);
+    Navigator.pop(context);
   }
 
   Widget _buildMessageBubble(ChannelMessage message, double textScale) {
@@ -1288,6 +1329,15 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 _copyMessageText(message.text);
               },
             ),
+            if (!message.isOutgoing)
+              ListTile(
+                leading: const Icon(Icons.mark_chat_unread_outlined),
+                title: Text(context.l10n.chat_markAsUnread),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _markAsUnread(message);
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.delete_outline),
               title: Text(context.l10n.common_delete),
