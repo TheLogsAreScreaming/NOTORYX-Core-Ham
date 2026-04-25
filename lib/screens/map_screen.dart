@@ -1286,7 +1286,7 @@ class _MapScreenState extends State<MapScreen> {
     for (final contact in connector.contacts) {
       final messages = connector.getMessages(contact);
       for (final message in messages) {
-        final payload = _parseMarkerText(message.text);
+        final payload = parseMarkerText(message.text);
         if (payload == null) continue;
         final fromName = message.isOutgoing ? selfName : contact.name;
         final key = buildSharedMarkerKey(
@@ -1300,7 +1300,9 @@ class _MapScreenState extends State<MapScreen> {
           _SharedMarker(
             id: key,
             position: payload.position,
-            label: payload.label,
+            label: payload.label.isEmpty
+                ? context.l10n.map_sharedPin
+                : payload.label,
             flags: payload.flags,
             fromName: fromName,
             sourceLabel: contact.name,
@@ -1316,7 +1318,7 @@ class _MapScreenState extends State<MapScreen> {
       final isPublic = _isPublicChannel(channel);
       final messages = connector.getChannelMessages(channel);
       for (final message in messages) {
-        final payload = _parseMarkerText(message.text);
+        final payload = parseMarkerText(message.text);
         if (payload == null) continue;
         final key = buildSharedMarkerKey(
           sourceId: 'channel:${channel.index}',
@@ -1329,7 +1331,9 @@ class _MapScreenState extends State<MapScreen> {
           _SharedMarker(
             id: key,
             position: payload.position,
-            label: payload.label,
+            label: payload.label.isEmpty
+                ? context.l10n.map_sharedPin
+                : payload.label,
             flags: payload.flags,
             fromName: message.senderName,
             sourceLabel: channel.name.isEmpty
@@ -1362,27 +1366,6 @@ class _MapScreenState extends State<MapScreen> {
 
     markers.sort((a, b) => b.timestamp.compareTo(a.timestamp));
     return markers;
-  }
-
-  _MarkerPayload? _parseMarkerText(String text) {
-    final trimmed = text.trim();
-    if (!trimmed.startsWith('m:')) return null;
-
-    final parts = trimmed.substring(2).split('|');
-    if (parts.isEmpty) return null;
-    final coords = parts[0].split(',');
-    if (coords.length != 2) return null;
-    final lat = double.tryParse(coords[0].trim());
-    final lon = double.tryParse(coords[1].trim());
-    if (lat == null || lon == null) return null;
-
-    final label = parts.length > 1 ? parts[1].trim() : '';
-    final flags = parts.length > 2 ? parts[2].trim() : '';
-    return _MarkerPayload(
-      position: LatLng(lat, lon),
-      label: label.isEmpty ? context.l10n.map_sharedPin : label,
-      flags: flags,
-    );
   }
 
   Marker _buildSharedMarker(_SharedMarker marker) {
@@ -2385,16 +2368,32 @@ class _GuessedLocation {
   });
 }
 
-class _MarkerPayload {
+class MarkerPayload {
   final LatLng position;
   final String label;
   final String flags;
 
-  _MarkerPayload({
+  MarkerPayload({
     required this.position,
     required this.label,
     required this.flags,
   });
+}
+
+/// Parse a shared marker text message of the form
+/// `m:<lat>,<lon>|<label>|<flags>` and return a [MarkerPayload].
+MarkerPayload? parseMarkerText(String text) {
+  final trimmed = text.trim();
+  final match = RegExp(
+    r'm:([\-0-9.]+),([\-0-9.]+)\|([^|]*)\|(.*)',
+  ).firstMatch(trimmed);
+  if (match == null) return null;
+  final lat = double.tryParse(match.group(1) ?? '');
+  final lon = double.tryParse(match.group(2) ?? '');
+  if (lat == null || lon == null) return null;
+  final label = (match.group(3) ?? '').trim();
+  final flags = (match.group(4) ?? '').trim();
+  return MarkerPayload(position: LatLng(lat, lon), label: label, flags: flags);
 }
 
 /// Build a normalized dedupe key for shared markers.
