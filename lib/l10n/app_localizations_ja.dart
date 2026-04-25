@@ -1649,6 +1649,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get map_sharedPin => '共有パスワード';
 
   @override
+  String get map_sharedAt => '共有済み';
+
+  @override
   String get map_joinRoom => '部屋に参加する';
 
   @override

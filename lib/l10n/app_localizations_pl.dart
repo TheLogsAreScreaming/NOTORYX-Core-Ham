@@ -1734,6 +1734,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get map_sharedPin => 'Udostępniona pinezka';
 
   @override
+  String get map_sharedAt => 'Udostępnione';
+
+  @override
   String get map_joinRoom => 'Dołącz do pokoju';
 
   @override

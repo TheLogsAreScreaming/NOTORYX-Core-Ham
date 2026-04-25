@@ -37,6 +37,7 @@ import 'line_of_sight_map_screen.dart';
 class MapScreen extends StatefulWidget {
   final LatLng? highlightPosition;
   final String? highlightLabel;
+  final String? highlightMarkerKey;
   final double highlightZoom;
   final bool hideBackButton;
 
@@ -44,6 +45,7 @@ class MapScreen extends StatefulWidget {
     super.key,
     this.highlightPosition,
     this.highlightLabel,
+    this.highlightMarkerKey,
     this.highlightZoom = 15.0,
     this.hideBackButton = false,
   });
@@ -94,6 +96,19 @@ class _MapScreenState extends State<MapScreen> {
       _removedMarkerIds = ids;
       _removedMarkersLoaded = true;
     });
+    // If this screen was opened to highlight a marker, and that marker
+    // was previously removed, re-enable it now that we've loaded the saved
+    // removed IDs.
+    if (widget.highlightMarkerKey != null &&
+        _removedMarkerIds.contains(widget.highlightMarkerKey)) {
+      final updated = Set<String>.from(_removedMarkerIds);
+      updated.remove(widget.highlightMarkerKey);
+      if (!mounted) return;
+      setState(() {
+        _removedMarkerIds = updated;
+      });
+      await _markerService.saveRemovedIds(updated);
+    }
   }
 
   bool _checkLocationPlausibility(double lat, double lon) {
@@ -228,6 +243,24 @@ class _MapScreenState extends State<MapScreen> {
                 ]
               : <Polyline>[],
         );
+
+        // Collect polylines for shared markers' history with dashed lines
+        final List<Polyline> sharedMarkerPolylines = [];
+        for (final marker in sharedMarkers) {
+          if (marker.history.isNotEmpty) {
+            final points = List<LatLng>.from(marker.history);
+            points.add(marker.position);
+            sharedMarkerPolylines.add(
+              Polyline(
+                points: points,
+                color: marker.isChannel
+                    ? (marker.isPublicChannel ? Colors.orange : Colors.purple)
+                    : Colors.blue,
+                strokeWidth: 3,
+              ),
+            );
+          }
+        }
 
         // Calculate center and zoom of all nodes, or default to (0, 0)
         LatLng center = const LatLng(0, 0);
@@ -475,6 +508,8 @@ class _MapScreenState extends State<MapScreen> {
                     ),
                     if (_polylines.isNotEmpty && _isBuildingPathTrace)
                       PolylineLayer(polylines: _polylines),
+                    if (sharedMarkerPolylines.isNotEmpty)
+                      PolylineLayer(polylines: sharedMarkerPolylines),
                     MarkerLayer(
                       markers: [
                         if (highlightPosition != null)
@@ -1239,8 +1274,14 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   List<_SharedMarker> _collectSharedMarkers(MeshCoreConnector connector) {
-    final markers = <_SharedMarker>[];
+    // Build a _SharedMarker per message (history empty), grouped by dedupe key.
+    // Afterwards pick the latest per key and fill its history from older ones.
+    final updatesByKey = <String, List<_SharedMarker>>{};
     final selfName = connector.selfName ?? 'Me';
+
+    void addUpdate(_SharedMarker update) {
+      (updatesByKey[update.id] ??= <_SharedMarker>[]).add(update);
+    }
 
     for (final contact in connector.contacts) {
       final messages = connector.getMessages(contact);
@@ -1248,19 +1289,22 @@ class _MapScreenState extends State<MapScreen> {
         final payload = _parseMarkerText(message.text);
         if (payload == null) continue;
         final fromName = message.isOutgoing ? selfName : contact.name;
-        final id = _buildMarkerId(
+        final key = buildSharedMarkerKey(
           sourceId: contact.publicKeyHex,
-          timestamp: message.timestamp,
-          text: message.text,
+          label: payload.label,
+          fromName: fromName,
+          flags: payload.flags,
+          isChannel: false,
         );
-        markers.add(
+        addUpdate(
           _SharedMarker(
-            id: id,
+            id: key,
             position: payload.position,
             label: payload.label,
             flags: payload.flags,
             fromName: fromName,
             sourceLabel: contact.name,
+            timestamp: message.timestamp,
             isChannel: false,
             isPublicChannel: false,
           ),
@@ -1274,14 +1318,16 @@ class _MapScreenState extends State<MapScreen> {
       for (final message in messages) {
         final payload = _parseMarkerText(message.text);
         if (payload == null) continue;
-        final id = _buildMarkerId(
+        final key = buildSharedMarkerKey(
           sourceId: 'channel:${channel.index}',
-          timestamp: message.timestamp,
-          text: message.text,
+          label: payload.label,
+          fromName: message.senderName,
+          flags: payload.flags,
+          isChannel: true,
         );
-        markers.add(
+        addUpdate(
           _SharedMarker(
-            id: id,
+            id: key,
             position: payload.position,
             label: payload.label,
             flags: payload.flags,
@@ -1289,6 +1335,7 @@ class _MapScreenState extends State<MapScreen> {
             sourceLabel: channel.name.isEmpty
                 ? 'Channel ${channel.index}'
                 : channel.name,
+            timestamp: message.timestamp,
             isChannel: true,
             isPublicChannel: isPublic,
           ),
@@ -1296,6 +1343,24 @@ class _MapScreenState extends State<MapScreen> {
       }
     }
 
+    final markers = <_SharedMarker>[];
+    updatesByKey.forEach((_, updates) {
+      updates.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+      final latest = updates.last;
+      // History: older positions, drop consecutive duplicates at same position.
+      final history = <LatLng>[];
+      for (var i = 0; i < updates.length - 1; i++) {
+        final p = updates[i].position;
+        if (history.isEmpty ||
+            history.last.latitude != p.latitude ||
+            history.last.longitude != p.longitude) {
+          history.add(p);
+        }
+      }
+      markers.add(latest.copyWithHistory(history));
+    });
+
+    markers.sort((a, b) => b.timestamp.compareTo(a.timestamp));
     return markers;
   }
 
@@ -1320,14 +1385,6 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
-  String _buildMarkerId({
-    required String sourceId,
-    required DateTime timestamp,
-    required String text,
-  }) {
-    return '$sourceId|${timestamp.millisecondsSinceEpoch}|$text';
-  }
-
   Marker _buildSharedMarker(_SharedMarker marker) {
     final markerColor = marker.isChannel
         ? (marker.isPublicChannel ? Colors.orange : Colors.purple)
@@ -1337,7 +1394,15 @@ class _MapScreenState extends State<MapScreen> {
       width: 60,
       height: 60,
       child: GestureDetector(
-        onTap: () => _showMarkerInfo(marker),
+        onTap: () async {
+          if (_removedMarkerIds.contains(marker.id)) {
+            setState(() {
+              _removedMarkerIds.remove(marker.id);
+            });
+            await _markerService.saveRemovedIds(_removedMarkerIds);
+          }
+          _showMarkerInfo(marker);
+        },
         child: Column(
           children: [
             Container(
@@ -1542,13 +1607,19 @@ class _MapScreenState extends State<MapScreen> {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        title: Text(marker.label),
+        title: Text(
+          marker.label.isEmpty ? context.l10n.map_sharedPin : marker.label,
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildInfoRow(context.l10n.map_from, marker.fromName),
             _buildInfoRow(context.l10n.map_source, marker.sourceLabel),
+            _buildInfoRow(
+              context.l10n.map_sharedAt,
+              _formatLastSeen(marker.timestamp),
+            ),
             _buildInfoRow(
               'Location',
               '${marker.position.latitude.toStringAsFixed(6)}, ${marker.position.longitude.toStringAsFixed(6)}',
@@ -1715,6 +1786,10 @@ class _MapScreenState extends State<MapScreen> {
     String defaultLabel,
   ) async {
     final controller = TextEditingController(text: defaultLabel);
+    controller.selection = TextSelection(
+      baseOffset: 0,
+      extentOffset: controller.text.length,
+    );
     return showDialog<String>(
       context: context,
       builder: (dialogContext) => AlertDialog(
@@ -2322,6 +2397,22 @@ class _MarkerPayload {
   });
 }
 
+/// Build a normalized dedupe key for shared markers.
+/// Keeps the same algorithm previously present in both chat and map screens.
+String buildSharedMarkerKey({
+  required String sourceId,
+  required String label,
+  required String fromName,
+  required String flags,
+  required bool isChannel,
+}) {
+  final normalizedLabel = label.trim().toLowerCase();
+  final normalizedFrom = fromName.trim().toLowerCase();
+  final normalizedFlags = flags.trim().toLowerCase();
+  final scope = isChannel ? 'ch' : 'dm';
+  return '$scope|$sourceId|$normalizedFrom|$normalizedLabel|$normalizedFlags';
+}
+
 class _SharedMarker {
   final String id;
   final LatLng position;
@@ -2329,8 +2420,10 @@ class _SharedMarker {
   final String flags;
   final String fromName;
   final String sourceLabel;
+  final DateTime timestamp;
   final bool isChannel;
   final bool isPublicChannel;
+  final List<LatLng> history;
 
   _SharedMarker({
     required this.id,
@@ -2339,7 +2432,24 @@ class _SharedMarker {
     required this.flags,
     required this.fromName,
     required this.sourceLabel,
+    required this.timestamp,
     required this.isChannel,
     required this.isPublicChannel,
+    this.history = const [],
   });
+
+  _SharedMarker copyWithHistory(List<LatLng> newHistory) {
+    return _SharedMarker(
+      id: id,
+      position: position,
+      label: label,
+      flags: flags,
+      fromName: fromName,
+      sourceLabel: sourceLabel,
+      timestamp: timestamp,
+      isChannel: isChannel,
+      isPublicChannel: isPublicChannel,
+      history: newHistory,
+    );
+  }
 }

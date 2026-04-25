@@ -1722,6 +1722,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get map_sharedPin => 'Gemeinsames Passwort';
 
   @override
+  String get map_sharedAt => 'Geteilt';
+
+  @override
   String get map_joinRoom => 'Beitreten Sie dem Raum';
 
   @override

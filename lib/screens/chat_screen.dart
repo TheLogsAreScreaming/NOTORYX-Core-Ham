@@ -479,6 +479,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 senderName: resolvedContact.type == advTypeRoom
                     ? "${contact.name} [$fourByteHex]"
                     : contact.name,
+                sourceId: widget.contact.publicKeyHex,
                 isRoomServer: resolvedContact.type == advTypeRoom,
                 textScale: textScale,
                 onTap: () => _openMessagePath(message, contact),
@@ -1568,10 +1569,12 @@ class _MessageBubble extends StatelessWidget {
   final VoidCallback? onLongPress;
   final void Function(Message message, String emoji)? onRetryReaction;
   final double textScale;
+  final String sourceId;
 
   const _MessageBubble({
     required this.message,
     required this.senderName,
+    required this.sourceId,
     required this.isRoomServer,
     required this.textScale,
     this.onTap,
@@ -1678,6 +1681,7 @@ class _MessageBubble extends StatelessWidget {
                             textColor,
                             metaColor,
                             textScale,
+                            senderName,
                             trailing: (!enableTracing && isOutgoing)
                                 ? Padding(
                                     padding: const EdgeInsets.only(bottom: 2),
@@ -1862,14 +1866,15 @@ class _MessageBubble extends StatelessWidget {
   _PoiInfo? _parsePoiMessage(String text) {
     final trimmed = text.trim();
     final match = RegExp(
-      r'^m:([\-0-9.]+),([\-0-9.]+)\|([^|]*)\|.*$',
+      r'^m:([\-0-9.]+),([\-0-9.]+)\|([^|]*)\|(.*)$',
     ).firstMatch(trimmed);
     if (match == null) return null;
     final lat = double.tryParse(match.group(1) ?? '');
     final lon = double.tryParse(match.group(2) ?? '');
     if (lat == null || lon == null) return null;
     final label = match.group(3) ?? '';
-    return _PoiInfo(lat: lat, lon: lon, label: label);
+    final flags = match.group(4) ?? '';
+    return _PoiInfo(lat: lat, lon: lon, label: label, flags: flags);
   }
 
   Widget _buildPoiMessage(
@@ -1877,7 +1882,8 @@ class _MessageBubble extends StatelessWidget {
     _PoiInfo poi,
     Color textColor,
     Color metaColor,
-    double textScale, {
+    double textScale,
+    String senderName, {
     Widget? trailing,
   }) {
     return Row(
@@ -1887,13 +1893,23 @@ class _MessageBubble extends StatelessWidget {
           icon: Icon(Icons.location_on_outlined, color: textColor),
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-          onPressed: () {
+          onPressed: () async {
+            final selfName = context.read<MeshCoreConnector>().selfName ?? 'Me';
+            final fromName = message.isOutgoing ? selfName : senderName;
+            final key = buildSharedMarkerKey(
+              sourceId: sourceId,
+              label: poi.label,
+              fromName: fromName,
+              flags: poi.flags,
+              isChannel: false,
+            );
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => MapScreen(
                   highlightPosition: LatLng(poi.lat, poi.lon),
                   highlightLabel: poi.label,
+                  highlightMarkerKey: key,
                 ),
               ),
             );
@@ -2079,6 +2095,12 @@ class _PoiInfo {
   final double lat;
   final double lon;
   final String label;
+  final String flags;
 
-  const _PoiInfo({required this.lat, required this.lon, required this.label});
+  const _PoiInfo({
+    required this.lat,
+    required this.lon,
+    required this.label,
+    required this.flags,
+  });
 }
