@@ -48,8 +48,13 @@ import 'telemetry_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   final Contact contact;
+  final int initialUnreadCount;
 
-  const ChatScreen({super.key, required this.contact});
+  const ChatScreen({
+    super.key,
+    required this.contact,
+    this.initialUnreadCount = 0,
+  });
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -75,13 +80,11 @@ class _ChatScreenState extends State<ChatScreen> {
       final connector = context.read<MeshCoreConnector>();
       final settings = context.read<AppSettingsService>().settings;
       final keyHex = widget.contact.publicKeyHex;
-      final unread = connector.getUnreadCountForContactKey(keyHex);
+      final unread = widget.initialUnreadCount;
+      final messages = connector.getMessages(widget.contact);
       Message? anchor;
       if (settings.jumpToOldestUnread && unread > 0) {
-        anchor = _findOldestUnreadAnchor(
-          connector.getMessages(widget.contact),
-          unread,
-        );
+        anchor = _findOldestUnreadAnchor(messages, unread);
       }
       connector.setActiveContact(keyHex);
       _connector = connector;
@@ -89,15 +92,24 @@ class _ChatScreenState extends State<ChatScreen> {
         setState(() => _pendingUnreadScrollTarget = anchor);
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
-          final ctx = _unreadScrollKey.currentContext;
-          if (ctx != null) {
-            Scrollable.ensureVisible(
-              ctx,
-              duration: const Duration(milliseconds: 350),
-              alignment: 0.15,
-            );
-          }
-          setState(() => _pendingUnreadScrollTarget = null);
+          _scrollController.jumpToEstimatedOffset(
+            unreadCount: unread,
+            totalMessages: messages.length,
+            onJumped: () async {
+              if (!mounted) return;
+              final ctx = _unreadScrollKey.currentContext;
+              if (ctx != null) {
+                await Scrollable.ensureVisible(
+                  ctx,
+                  duration: const Duration(milliseconds: 350),
+                  alignment: 0.15,
+                );
+              }
+              if (mounted) {
+                setState(() => _pendingUnreadScrollTarget = null);
+              }
+            },
+          );
         });
       }
     });
@@ -1305,11 +1317,18 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void _openChat(BuildContext context, Contact contact) {
-    // Check if this is a repeater
-    context.read<MeshCoreConnector>().markContactRead(contact.publicKeyHex);
+    final connector = context.read<MeshCoreConnector>();
+    final unread =
+        connector.getUnreadCountForContactKey(contact.publicKeyHex);
+    connector.markContactRead(contact.publicKeyHex);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ChatScreen(contact: contact)),
+      MaterialPageRoute(
+        builder: (context) => ChatScreen(
+          contact: contact,
+          initialUnreadCount: unread,
+        ),
+      ),
     );
   }
 

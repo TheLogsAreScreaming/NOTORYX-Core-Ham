@@ -37,8 +37,13 @@ import 'map_screen.dart';
 
 class ChannelChatScreen extends StatefulWidget {
   final Channel channel;
+  final int initialUnreadCount;
 
-  const ChannelChatScreen({super.key, required this.channel});
+  const ChannelChatScreen({
+    super.key,
+    required this.channel,
+    this.initialUnreadCount = 0,
+  });
 
   @override
   State<ChannelChatScreen> createState() => _ChannelChatScreenState();
@@ -66,13 +71,11 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       final connector = context.read<MeshCoreConnector>();
       final settings = context.read<AppSettingsService>().settings;
       final idx = widget.channel.index;
-      final unread = connector.getUnreadCountForChannelIndex(idx);
+      final unread = widget.initialUnreadCount;
+      final messages = connector.getChannelMessages(widget.channel);
       ChannelMessage? anchor;
       if (settings.jumpToOldestUnread && unread > 0) {
-        anchor = _findOldestUnreadChannelAnchor(
-          connector.getChannelMessages(widget.channel),
-          unread,
-        );
+        anchor = _findOldestUnreadChannelAnchor(messages, unread);
       }
       connector.setActiveChannel(idx);
       _connector = connector;
@@ -80,7 +83,14 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         _channelSkipNextBottomSnap = true;
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
-          _scrollToMessage(anchor!.messageId);
+          _scrollController.jumpToEstimatedOffset(
+            unreadCount: unread,
+            totalMessages: messages.length,
+            onJumped: () {
+              if (!mounted) return;
+              _scrollToMessage(anchor!.messageId);
+            },
+          );
         });
       }
     });
