@@ -1391,11 +1391,17 @@ class _MapScreenState extends State<MapScreen> {
         room: room,
         // onLogin(password, isAdmin) isAdmin not used for room caht screen
         onLogin: (password, _) {
-          // Navigate to chat screen after successful login
-          context.read<MeshCoreConnector>().markContactRead(room.publicKeyHex);
+          final connector = context.read<MeshCoreConnector>();
+          final unread = connector.getUnreadCountForContactKey(
+            room.publicKeyHex,
+          );
+          connector.markContactRead(room.publicKeyHex);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ChatScreen(contact: room)),
+            MaterialPageRoute(
+              builder: (context) =>
+                  ChatScreen(contact: room, initialUnreadCount: unread),
+            ),
           );
         },
       ),
@@ -1456,11 +1462,17 @@ class _MapScreenState extends State<MapScreen> {
                 if (!contact.isActive) {
                   connector.importDiscoveredContact(contact);
                 }
+                final unread = connector.getUnreadCountForContactKey(
+                  contact.publicKeyHex,
+                );
                 Navigator.pop(dialogContext);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ChatScreen(contact: contact),
+                    builder: (context) => ChatScreen(
+                      contact: contact,
+                      initialUnreadCount: unread,
+                    ),
                   ),
                 );
               },

@@ -1545,6 +1545,12 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => 'Otvoriť odkaz?';
 
   @override
