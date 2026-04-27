@@ -3142,6 +3142,12 @@ abstract class AppLocalizations {
   /// **'Shared pin'**
   String get map_sharedPin;
 
+  /// No description provided for @map_sharedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared'**
+  String get map_sharedAt;
+
   /// No description provided for @map_joinRoom.
   ///
   /// In en, this message translates to:

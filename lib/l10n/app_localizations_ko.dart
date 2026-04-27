@@ -1651,6 +1651,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get map_sharedPin => '공유 비밀번호';
 
   @override
+  String get map_sharedAt => '공유됨';
+
+  @override
   String get map_joinRoom => '방에 참여';
 
   @override

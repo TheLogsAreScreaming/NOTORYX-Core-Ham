@@ -1728,6 +1728,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get map_sharedPin => 'Pin compartilhado';
 
   @override
+  String get map_sharedAt => 'Compartilhado';
+
+  @override
   String get map_joinRoom => 'Junte-se à Sala';
 
   @override

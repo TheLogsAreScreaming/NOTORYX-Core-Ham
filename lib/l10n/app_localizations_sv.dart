@@ -1706,6 +1706,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get map_sharedPin => 'Delad PIN';
 
   @override
+  String get map_sharedAt => 'Delad';
+
+  @override
   String get map_joinRoom => 'Gå med i rum';
 
   @override

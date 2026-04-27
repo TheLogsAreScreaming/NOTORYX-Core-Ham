@@ -1740,6 +1740,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get map_sharedPin => 'Gemeinsames PIN-kód';
 
   @override
+  String get map_sharedAt => 'Megosztva';
+
+  @override
   String get map_joinRoom => 'Csatlakozás a szobához';
 
   @override

@@ -1712,6 +1712,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get map_sharedPin => 'Deljeno naslovno geslo';
 
   @override
+  String get map_sharedAt => 'Deljeno';
+
+  @override
   String get map_joinRoom => 'Pridružiti sobo';
 
   @override

@@ -1623,6 +1623,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get map_sharedPin => '共享标记';
 
   @override
+  String get map_sharedAt => '已分享';
+
+  @override
   String get map_joinRoom => '加入房间';
 
   @override

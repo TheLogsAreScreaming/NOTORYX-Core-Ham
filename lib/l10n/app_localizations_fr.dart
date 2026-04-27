@@ -1737,6 +1737,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get map_sharedPin => 'Clé partagée';
 
   @override
+  String get map_sharedAt => 'Partagé';
+
+  @override
   String get map_joinRoom => 'Rejoindre le room server';
 
   @override

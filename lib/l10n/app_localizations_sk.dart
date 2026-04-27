@@ -1717,6 +1717,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get map_sharedPin => 'Zdieľaný PIN';
 
   @override
+  String get map_sharedAt => 'Zdieľané';
+
+  @override
   String get map_joinRoom => 'Pripojiť miestnosť';
 
   @override

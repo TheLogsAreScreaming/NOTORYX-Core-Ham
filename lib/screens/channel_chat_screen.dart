@@ -4,7 +4,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -403,7 +402,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final enableTracing = settingsService.settings.enableMessageTracing;
     final isOutgoing = message.isOutgoing;
     final gifId = GifHelper.parseGif(message.text);
-    final poi = _parsePoiMessage(message.text);
+    final poi = parseMarkerText(message.text);
     final translatedDisplayText =
         message.translatedText != null &&
             message.translatedText!.trim().isNotEmpty
@@ -491,6 +490,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           poi,
                           isOutgoing,
                           textScale,
+                          message.senderName,
                           trailing: (!enableTracing && isOutgoing)
                               ? Padding(
                                   padding: const EdgeInsets.only(bottom: 2),
@@ -747,7 +747,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final previewTextColor = colorScheme.onSurface.withValues(alpha: 0.7);
 
     final gifId = GifHelper.parseGif(replyText);
-    final poi = _parsePoiMessage(replyText);
+    final poi = parseMarkerText(replyText);
 
     Widget contentPreview;
     if (gifId != null) {
@@ -858,24 +858,12 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
-  _PoiInfo? _parsePoiMessage(String text) {
-    final trimmed = text.trim();
-    final match = RegExp(
-      r'm:([\-0-9.]+),([\-0-9.]+)\|([^|]*)\|',
-    ).firstMatch(trimmed);
-    if (match == null) return null;
-    final lat = double.tryParse(match.group(1) ?? '');
-    final lon = double.tryParse(match.group(2) ?? '');
-    if (lat == null || lon == null) return null;
-    final label = match.group(3) ?? '';
-    return _PoiInfo(lat: lat, lon: lon, label: label);
-  }
-
   Widget _buildPoiMessage(
     BuildContext context,
-    _PoiInfo poi,
+    MarkerPayload poi,
     bool isOutgoing,
-    double textScale, {
+    double textScale,
+    String senderName, {
     Widget? trailing,
   }) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -895,12 +883,22 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
           onPressed: () {
+            final selfName = context.read<MeshCoreConnector>().selfName ?? 'Me';
+            final fromName = isOutgoing ? selfName : senderName;
+            final key = buildSharedMarkerKey(
+              sourceId: 'channel:${widget.channel.index}',
+              label: poi.label,
+              fromName: fromName,
+              flags: poi.flags,
+              isChannel: true,
+            );
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => MapScreen(
-                  highlightPosition: LatLng(poi.lat, poi.lon),
+                  highlightPosition: poi.position,
                   highlightLabel: poi.label,
+                  highlightMarkerKey: key,
                 ),
               ),
             );
@@ -1561,12 +1559,4 @@ class _SwipeReplyBubbleState extends State<_SwipeReplyBubble> {
       ),
     );
   }
-}
-
-class _PoiInfo {
-  final double lat;
-  final double lon;
-  final String label;
-
-  const _PoiInfo({required this.lat, required this.lon, required this.label});
 }
