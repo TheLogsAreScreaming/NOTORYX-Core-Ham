@@ -347,8 +347,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             }
                             final isUnreadAnchor =
                                 _unreadDividerMessageId != null &&
-                                    message.messageId ==
-                                        _unreadDividerMessageId;
+                                message.messageId == _unreadDividerMessageId;
                             return Container(
                               key: _messageKeys[message.messageId]!,
                               child: Builder(
@@ -364,10 +363,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                   if (isUnreadAnchor) {
                                     return Column(
                                       mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const UnreadDivider(),
-                                        bubble,
-                                      ],
+                                      children: [const UnreadDivider(), bubble],
                                     );
                                   }
                                   return bubble;

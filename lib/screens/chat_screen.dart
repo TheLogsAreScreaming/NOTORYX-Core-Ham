@@ -514,7 +514,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 onRetryReaction: (msg, emoji) =>
                     _sendReaction(msg, contact, emoji),
               );
-              final isUnreadAnchor = _unreadDividerMessageId != null &&
+              final isUnreadAnchor =
+                  _unreadDividerMessageId != null &&
                   message.messageId == _unreadDividerMessageId;
               final child = isUnreadAnchor
                   ? Column(
@@ -1354,16 +1355,13 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _openChat(BuildContext context, Contact contact) {
     final connector = context.read<MeshCoreConnector>();
-    final unread =
-        connector.getUnreadCountForContactKey(contact.publicKeyHex);
+    final unread = connector.getUnreadCountForContactKey(contact.publicKeyHex);
     connector.markContactRead(contact.publicKeyHex);
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ChatScreen(
-          contact: contact,
-          initialUnreadCount: unread,
-        ),
+        builder: (context) =>
+            ChatScreen(contact: contact, initialUnreadCount: unread),
       ),
     );
   }
