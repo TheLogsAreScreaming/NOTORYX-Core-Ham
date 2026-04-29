@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -56,8 +57,11 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
   static const double _maxAntennaFeet = 400.0;
   static const double _maxAntennaMeters = _maxAntennaFeet / _metersToFeet;
   static const double _labelZoomThreshold = 8.5;
+  static const double _mapMinZoom = 2.0;
+  static const double _mapMaxZoom = 18.0;
 
   final LineOfSightService _lineOfSightService = LineOfSightService();
+  final MapController _mapController = MapController();
 
   bool _loading = false;
   String? _error;
@@ -99,8 +103,83 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
 
   @override
   void dispose() {
+    _mapController.dispose();
     _lineOfSightService.dispose();
     super.dispose();
+  }
+
+  bool _isDesktopPlatform(TargetPlatform platform) {
+    return platform == TargetPlatform.linux ||
+        platform == TargetPlatform.windows ||
+        platform == TargetPlatform.macOS;
+  }
+
+  void _zoomMapBy(double delta) {
+    final camera = _mapController.camera;
+    final nextZoom = (camera.zoom + delta)
+        .clamp(_mapMinZoom, _mapMaxZoom)
+        .toDouble();
+    _mapController.move(camera.center, nextZoom);
+  }
+
+  void _resetMapView({
+    required LatLng initialCenter,
+    required double initialZoom,
+    required LatLngBounds? bounds,
+  }) {
+    if (bounds != null) {
+      _mapController.fitCamera(
+        CameraFit.bounds(
+          bounds: bounds,
+          padding: const EdgeInsets.all(64),
+          maxZoom: 16,
+        ),
+      );
+      return;
+    }
+    _mapController.move(initialCenter, initialZoom);
+  }
+
+  Widget _buildDesktopMapControls({
+    required LatLng initialCenter,
+    required double initialZoom,
+    required LatLngBounds? bounds,
+  }) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final topOffset = _showHud
+        ? math.min(screenHeight * 0.52 + 24, screenHeight - 220)
+        : 12.0;
+    return Positioned(
+      top: topOffset,
+      left: 12,
+      child: Card(
+        elevation: 4,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.add),
+              tooltip: 'Zoom in',
+              onPressed: () => _zoomMapBy(1),
+            ),
+            IconButton(
+              icon: const Icon(Icons.remove),
+              tooltip: 'Zoom out',
+              onPressed: () => _zoomMapBy(-1),
+            ),
+            IconButton(
+              icon: const Icon(Icons.my_location),
+              tooltip: 'Center map',
+              onPressed: () => _resetMapView(
+                initialCenter: initialCenter,
+                initialZoom: initialZoom,
+                bounds: bounds,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<void> _runLos() async {
@@ -325,6 +404,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
         ? LatLngBounds.fromPoints(mapPoints)
         : null;
     final initialZoom = mapPoints.length > 1 ? 13.0 : 2.0;
+    final isDesktop = _isDesktopPlatform(defaultTargetPlatform);
     if (!_didReceivePositionUpdate) {
       _showMarkerLabels = initialZoom >= _labelZoomThreshold;
     }
@@ -350,6 +430,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
       body: Stack(
         children: [
           FlutterMap(
+            mapController: _mapController,
             options: MapOptions(
               initialCenter: initialCenter,
               initialZoom: initialZoom,
@@ -362,7 +443,19 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                     ),
               interactionOptions: InteractionOptions(
                 flags: ~InteractiveFlag.rotate,
+                scrollWheelVelocity: isDesktop ? 0.012 : 0.005,
+                cursorKeyboardRotationOptions:
+                    CursorKeyboardRotationOptions.disabled(),
+                keyboardOptions: isDesktop
+                    ? const KeyboardOptions(
+                        enableArrowKeysPanning: true,
+                        enableWASDPanning: true,
+                        enableRFZooming: true,
+                      )
+                    : const KeyboardOptions.disabled(),
               ),
+              minZoom: _mapMinZoom,
+              maxZoom: _mapMaxZoom,
               onLongPress: (_, point) => _addCustomPoint(point),
               onPositionChanged: (camera, hasGesture) {
                 final shouldShow = camera.zoom >= _labelZoomThreshold;
@@ -389,6 +482,12 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               ),
             ],
           ),
+          if (isDesktop)
+            _buildDesktopMapControls(
+              initialCenter: initialCenter,
+              initialZoom: initialZoom,
+              bounds: bounds,
+            ),
           if (_showHud)
             Positioned(
               left: 12,

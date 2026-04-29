@@ -1,6 +1,5 @@
 import 'dart:collection';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +57,8 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   // Zoom level at which node labels start to appear
   static const double _labelZoomThreshold = 14.0;
+  static const double _mapMinZoom = 2.0;
+  static const double _mapMaxZoom = 18.0;
 
   final MapController _mapController = MapController();
   final MapMarkerService _markerService = MapMarkerService();
@@ -150,11 +151,62 @@ class _MapScreenState extends State<MapScreen> {
     return zoom.clamp(4.0, 15.0);
   }
 
+  bool _isDesktopPlatform(TargetPlatform platform) {
+    return platform == TargetPlatform.linux ||
+        platform == TargetPlatform.windows ||
+        platform == TargetPlatform.macOS;
+  }
+
+  void _zoomMapBy(double delta) {
+    final camera = _mapController.camera;
+    final nextZoom = (camera.zoom + delta)
+        .clamp(_mapMinZoom, _mapMaxZoom)
+        .toDouble();
+    _mapController.move(camera.center, nextZoom);
+  }
+
+  Widget _buildDesktopMapControls(
+    BuildContext context, {
+    required LatLng center,
+    required double zoom,
+    required bool hasPathSelector,
+  }) {
+    return Positioned(
+      left: 16,
+      top: hasPathSelector ? null : 16,
+      bottom: hasPathSelector ? 16 : null,
+      child: Card(
+        elevation: 4,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.add),
+              tooltip: 'Zoom in',
+              onPressed: () => _zoomMapBy(1),
+            ),
+            IconButton(
+              icon: const Icon(Icons.remove),
+              tooltip: 'Zoom out',
+              onPressed: () => _zoomMapBy(-1),
+            ),
+            IconButton(
+              icon: const Icon(Icons.my_location),
+              tooltip: 'Center map',
+              onPressed: () => _mapController.move(center, zoom),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer3<MeshCoreConnector, AppSettingsService, PathHistoryService>(
       builder: (context, connector, settingsService, pathHistory, child) {
         final tileCache = context.read<MapTileCacheService>();
+        final isDesktop = _isDesktopPlatform(defaultTargetPlatform);
         final settings = settingsService.settings;
         final allContacts = connector.allContacts;
 
@@ -451,10 +503,20 @@ class _MapScreenState extends State<MapScreen> {
                   options: MapOptions(
                     initialCenter: center,
                     initialZoom: initialZoom,
-                    minZoom: 2.0,
-                    maxZoom: 18.0,
+                    minZoom: _mapMinZoom,
+                    maxZoom: _mapMaxZoom,
                     interactionOptions: InteractionOptions(
                       flags: ~InteractiveFlag.rotate,
+                      scrollWheelVelocity: isDesktop ? 0.012 : 0.005,
+                      cursorKeyboardRotationOptions:
+                          CursorKeyboardRotationOptions.disabled(),
+                      keyboardOptions: isDesktop
+                          ? const KeyboardOptions(
+                              enableArrowKeysPanning: true,
+                              enableWASDPanning: true,
+                              enableRFZooming: true,
+                            )
+                          : const KeyboardOptions.disabled(),
                     ),
                     onTap: (_, latLng) {
                       if (_isSelectingPoi) {
@@ -597,6 +659,13 @@ class _MapScreenState extends State<MapScreen> {
                     settings,
                     sharedMarkers.length,
                     guessedLocations.length,
+                  ),
+                if (isDesktop)
+                  _buildDesktopMapControls(
+                    context,
+                    center: center,
+                    zoom: initialZoom,
+                    hasPathSelector: _isBuildingPathTrace,
                   ),
                 if (_isBuildingPathTrace) _buildPathTraceOverlay(),
               ],
@@ -1480,8 +1549,14 @@ class _MapScreenState extends State<MapScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildInfoRow(context.l10n.map_type, contact.typeLabel(context.l10n)),
-            _buildInfoRow(context.l10n.map_path, contact.pathLabel(context.l10n)),
+            _buildInfoRow(
+              context.l10n.map_type,
+              contact.typeLabel(context.l10n),
+            ),
+            _buildInfoRow(
+              context.l10n.map_path,
+              contact.pathLabel(context.l10n),
+            ),
             if (contact.hasLocation)
               _buildInfoRow(
                 context.l10n.map_location,
