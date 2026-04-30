@@ -2161,6 +2161,7 @@ class MeshCoreConnector extends ChangeNotifier {
       return;
     }
     _bleInitialSyncStarted = true;
+    _pendingInitialContactsSync = true;
 
     await _requestDeviceInfo();
     _startBatteryPolling();
@@ -4138,7 +4139,9 @@ class MeshCoreConnector extends ChangeNotifier {
     if (_contacts.isEmpty) return 0;
     var latest = 0;
     for (final contact in _contacts) {
-      final seconds = contact.lastSeen.millisecondsSinceEpoch ~/ 1000;
+      // prefer lastmod per spec, fallback to lastseen
+      final source = contact.lastModified ?? contact.lastSeen;
+      final seconds = source.millisecondsSinceEpoch ~/ 1000;
       if (seconds > latest) {
         latest = seconds;
       }
