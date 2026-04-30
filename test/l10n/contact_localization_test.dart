@@ -36,10 +36,7 @@ void main() {
     });
 
     test('repeater', () {
-      expect(
-        _contact(type: advTypeRepeater).typeLabel(l10n),
-        'Repeater',
-      );
+      expect(_contact(type: advTypeRepeater).typeLabel(l10n), 'Repeater');
     });
 
     test('room', () {
@@ -57,24 +54,15 @@ void main() {
 
   group('Contact.pathLabel (override)', () {
     test('override < 0 -> flood (forced)', () {
-      expect(
-        _contact(pathOverride: -1).pathLabel(l10n),
-        'Flood (forced)',
-      );
+      expect(_contact(pathOverride: -1).pathLabel(l10n), 'Flood (forced)');
     });
 
     test('override == 0 -> direct (forced)', () {
-      expect(
-        _contact(pathOverride: 0).pathLabel(l10n),
-        'Direct (forced)',
-      );
+      expect(_contact(pathOverride: 0).pathLabel(l10n), 'Direct (forced)');
     });
 
     test('override > 0 -> hops (forced)', () {
-      expect(
-        _contact(pathOverride: 3).pathLabel(l10n),
-        '3 hops (forced)',
-      );
+      expect(_contact(pathOverride: 3).pathLabel(l10n), '3 hops (forced)');
     });
 
     test('override takes precedence over pathLength', () {
