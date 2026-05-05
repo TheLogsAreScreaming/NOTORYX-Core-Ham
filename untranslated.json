@@ -1,86 +1,103 @@
 {
   "bg": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "de": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "es": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "fr": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "hu": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "it": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "ja": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "ko": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "nl": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "pl": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "pt": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "ru": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "sk": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "sl": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "sv": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "uk": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ],
 
   "zh": [
     "chat_markAsUnread",
-    "chat_newMessages"
+    "chat_newMessages",
+    "repeater_chanUtil"
   ]
 }

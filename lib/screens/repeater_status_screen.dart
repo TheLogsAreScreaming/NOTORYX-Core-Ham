@@ -56,6 +56,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
   int? _directRx;
   int? _dupFlood;
   int? _dupDirect;
+  double? _chanUtil;
   PathSelection? _pendingStatusSelection;
 
   @override
@@ -192,6 +193,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
       _lastSnr = lastSnrRaw / 4.0;
       _dupDirect = directDups;
       _dupFlood = floodDups;
+      _chanUtil = ((txAirSecs + rxAirSecs) / uptimeSecs) * 100;
     });
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     connector.updateRepeaterBatterySnapshot(
@@ -283,6 +285,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
       _directRx = null;
       _dupFlood = null;
       _dupDirect = null;
+      _chanUtil = null;
     });
 
     try {
@@ -570,6 +573,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
             _buildInfoRow(l10n.repeater_sent, _packetTxText()),
             _buildInfoRow(l10n.repeater_received, _packetRxText()),
             _buildInfoRow(l10n.repeater_duplicates, _duplicateText()),
+            _buildInfoRow(l10n.repeater_chanUtil, _chanUtilText()),
           ],
         ),
       ),
@@ -673,6 +677,11 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
     return l10n.repeater_packetRxTotal(_packetsRecv!, flood, direct);
   }
 
+  String _chanUtilText() {
+    if (_chanUtil == null) return '—';
+    return _formatPercent(_chanUtil);
+  }
+
   String _duplicateText() {
     final l10n = context.l10n;
     if (_dupFlood != null || _dupDirect != null) {
@@ -691,6 +700,11 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
   String _formatValue(num? value, {String? suffix}) {
     if (value == null) return '—';
     return suffix == null ? value.toString() : '$value$suffix';
+  }
+
+  String _formatPercent(double? p) {
+    if (p == null) return '—';
+    return '${p.toStringAsFixed(2)}%';
   }
 
   String _formatSnr(double? snr) {

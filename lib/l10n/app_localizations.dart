@@ -3909,6 +3909,12 @@ abstract class AppLocalizations {
   /// **'RX Airtime'**
   String get repeater_rxAirtime;
 
+  /// No description provided for @repeater_chanUtil.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel Utilization'**
+  String get repeater_chanUtil;
+
   /// No description provided for @repeater_packetStatistics.
   ///
   /// In en, this message translates to:

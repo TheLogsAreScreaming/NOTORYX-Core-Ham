@@ -2149,6 +2149,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get repeater_rxAirtime => 'RX Airtime';
 
   @override
+  String get repeater_chanUtil => 'Channel Utilization';
+
+  @override
   String get repeater_packetStatistics => 'Paketstatistik';
 
   @override

@@ -2190,6 +2190,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get repeater_rxAirtime => 'RX Airtime';
 
   @override
+  String get repeater_chanUtil => 'Channel Utilization';
+
+  @override
   String get repeater_packetStatistics => 'Csomagok statisztikája';
 
   @override

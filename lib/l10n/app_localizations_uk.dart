@@ -2174,6 +2174,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get repeater_rxAirtime => 'Ефірний час RX';
 
   @override
+  String get repeater_chanUtil => 'Channel Utilization';
+
+  @override
   String get repeater_packetStatistics => 'Статистика пакетів';
 
   @override
