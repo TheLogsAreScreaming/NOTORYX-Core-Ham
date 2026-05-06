@@ -341,12 +341,9 @@
       }
     }
   },
-  "channels_hashtagChannel": "Хештег-канал",
   "channels_public": "Публічний",
   "channels_via": "через {path}",
   "channels_private": "Приватний",
-  "channels_publicChannel": "Публічний канал",
-  "channels_privateChannel": "Приватний канал",
   "channels_editChannel": "Редагувати канал",
   "channels_muteChannel": "Вимкнути сповіщення каналу",
   "channels_unmuteChannel": "Увімкнути сповіщення каналу",

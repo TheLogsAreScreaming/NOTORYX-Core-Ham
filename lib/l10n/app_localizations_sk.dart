@@ -1087,9 +1087,6 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => 'Kanál s hashtagom';
-
-  @override
   String get channels_public => 'Veľké verejné';
 
   @override
@@ -1099,12 +1096,6 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get channels_private => 'Osobné';
-
-  @override
-  String get channels_publicChannel => 'Veľké verejne kanály';
-
-  @override
-  String get channels_privateChannel => 'Osobné kanál';
 
   @override
   String get channels_editChannel => 'Upraviť kanál';

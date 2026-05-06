@@ -1098,9 +1098,6 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => 'Canale hashtag';
-
-  @override
   String get channels_public => 'Pubblico';
 
   @override
@@ -1110,12 +1107,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get channels_private => 'Privato';
-
-  @override
-  String get channels_publicChannel => 'Canale pubblico';
-
-  @override
-  String get channels_privateChannel => 'Canale privato';
 
   @override
   String get channels_editChannel => 'Modifica canale';

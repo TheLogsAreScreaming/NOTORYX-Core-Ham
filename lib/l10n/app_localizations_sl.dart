@@ -1085,9 +1085,6 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => 'Hashtag kanal';
-
-  @override
   String get channels_public => 'Javni';
 
   @override
@@ -1097,12 +1094,6 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get channels_private => 'Zasebni';
-
-  @override
-  String get channels_publicChannel => 'Javni kanal';
-
-  @override
-  String get channels_privateChannel => 'Zasebni kanal';
 
   @override
   String get channels_editChannel => 'Uredi kanal';

@@ -1100,9 +1100,6 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => 'Канал с хаштаг';
-
-  @override
   String get channels_public => 'Публично';
 
   @override
@@ -1112,12 +1109,6 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get channels_private => 'Личен';
-
-  @override
-  String get channels_publicChannel => 'Публичен канал';
-
-  @override
-  String get channels_privateChannel => 'Частен канал';
 
   @override
   String get channels_editChannel => 'Редактирай канал';

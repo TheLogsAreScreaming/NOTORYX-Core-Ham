@@ -1093,9 +1093,6 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => 'Хештег-канал';
-
-  @override
   String get channels_public => 'Публічний';
 
   @override
@@ -1105,12 +1102,6 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get channels_private => 'Приватний';
-
-  @override
-  String get channels_publicChannel => 'Публічний канал';
-
-  @override
-  String get channels_privateChannel => 'Приватний канал';
 
   @override
   String get channels_editChannel => 'Редагувати канал';

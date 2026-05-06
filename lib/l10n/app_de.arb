@@ -339,11 +339,8 @@
       }
     }
   },
-  "channels_hashtagChannel": "Hashtag-Kanal",
   "channels_public": "Öffentlich",
   "channels_private": "Privat",
-  "channels_publicChannel": "Öffentlicher Kanal",
-  "channels_privateChannel": "Privater Kanal",
   "channels_editChannel": "Kanal bearbeiten",
   "channels_muteChannel": "Kanal stummschalten",
   "channels_unmuteChannel": "Kanal Stummschaltung aufheben",

@@ -491,11 +491,8 @@
       }
     }
   },
-  "channels_hashtagChannel": "ハッシュタグチャンネル",
   "channels_public": "一般の人々",
   "channels_private": "個人の",
-  "channels_publicChannel": "一般チャンネル",
-  "channels_privateChannel": "プライベートチャンネル",
   "channels_editChannel": "チャンネルを編集する",
   "channels_muteChannel": "ミュート機能",
   "channels_unmuteChannel": "ミュートを解除する",

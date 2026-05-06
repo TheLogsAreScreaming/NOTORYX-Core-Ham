@@ -339,11 +339,8 @@
       }
     }
   },
-  "channels_hashtagChannel": "Hashtag kanal",
   "channels_public": "Javni",
   "channels_private": "Zasebni",
-  "channels_publicChannel": "Javni kanal",
-  "channels_privateChannel": "Zasebni kanal",
   "channels_editChannel": "Uredi kanal",
   "channels_muteChannel": "Utišaj kanal",
   "channels_unmuteChannel": "Vklopi obvestila kanala",

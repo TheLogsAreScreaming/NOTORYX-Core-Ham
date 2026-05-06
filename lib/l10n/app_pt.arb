@@ -339,11 +339,8 @@
       }
     }
   },
-  "channels_hashtagChannel": "Canal com hashtag",
   "channels_public": "Público",
   "channels_private": "Privado",
-  "channels_publicChannel": "Canal público",
-  "channels_privateChannel": "Canal privado",
   "channels_editChannel": "Editar canal",
   "channels_muteChannel": "Silenciar canal",
   "channels_unmuteChannel": "Ativar canal",
