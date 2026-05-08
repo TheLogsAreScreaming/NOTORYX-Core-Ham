@@ -416,6 +416,7 @@ class MeshCoreConnector extends ChangeNotifier {
     final prefix = pubKeyToHex(publicKey.sublist(0, 6));
     return _repeaterLoginClocks[prefix];
   }
+
   void rememberNonRepeatRadioState(MeshCoreRadioStateSnapshot snapshot) {
     _rememberedNonRepeatRadioState = snapshot;
   }
@@ -5662,11 +5663,12 @@ class MeshCoreConnector extends ChangeNotifier {
   void _handleLoginSuccess(Uint8List frame) {
     if (frame.length < 12) return;
     final prefix = pubKeyToHex(frame.sublist(2, 8));
-    final ts =
-        ByteData.sublistView(frame, 8, 12).getUint32(0, Endian.little);
+    final ts = ByteData.sublistView(frame, 8, 12).getUint32(0, Endian.little);
     if (ts == 0) return;
-    _repeaterLoginClocks[prefix] =
-        DateTime.fromMillisecondsSinceEpoch(ts * 1000, isUtc: true);
+    _repeaterLoginClocks[prefix] = DateTime.fromMillisecondsSinceEpoch(
+      ts * 1000,
+      isUtc: true,
+    );
     notifyListeners();
   }
 

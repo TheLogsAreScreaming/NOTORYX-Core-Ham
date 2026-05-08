@@ -151,7 +151,8 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
   // Advanced
   int _pathHashMode = 0; // 0-2
   final TextEditingController _txDelayController = TextEditingController();
-  final TextEditingController _directTxDelayController = TextEditingController();
+  final TextEditingController _directTxDelayController =
+      TextEditingController();
   final TextEditingController _intThreshController = TextEditingController();
   int _agcResetInterval = 0; // seconds, multiple of 4, 0 disabled
 
@@ -762,10 +763,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
           _txPowerController.text.isNotEmpty) {
         final dbm = int.tryParse(_txPowerController.text.trim());
         if (dbm != null) {
-          pending.add((
-            field: _SettingField.txPower,
-            command: 'set tx $dbm',
-          ));
+          pending.add((field: _SettingField.txPower, command: 'set tx $dbm'));
         }
       }
 
@@ -913,9 +911,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
             rebootNeeded = true;
           }
         } catch (e) {
-          failures.add(
-            '${_shortCommandLabel(entry.command)}: ${e.toString()}',
-          );
+          failures.add('${_shortCommandLabel(entry.command)}: ${e.toString()}');
           failed = true;
         }
         if (failed) {
