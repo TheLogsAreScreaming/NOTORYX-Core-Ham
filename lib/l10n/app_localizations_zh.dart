@@ -2036,6 +2036,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get repeater_rxAirtime => '接收空中时间';
 
   @override
+  String get repeater_chanUtil => 'Channel Utilization';
+
+  @override
   String get repeater_packetStatistics => '数据包统计';
 
   @override

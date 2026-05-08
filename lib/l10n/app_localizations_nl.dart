@@ -2153,6 +2153,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_rxAirtime => 'RX-zendtijd';
 
   @override
+  String get repeater_chanUtil => 'Channel Utilization';
+
+  @override
   String get repeater_packetStatistics => 'Pakketstatistieken';
 
   @override

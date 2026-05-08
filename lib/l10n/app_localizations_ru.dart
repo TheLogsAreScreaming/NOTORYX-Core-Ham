@@ -2169,6 +2169,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get repeater_rxAirtime => 'Время эфира (приём)';
 
   @override
+  String get repeater_chanUtil => 'Channel Utilization';
+
+  @override
   String get repeater_packetStatistics => 'Статистика пакетов';
 
   @override

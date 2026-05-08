@@ -2076,6 +2076,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get repeater_rxAirtime => 'RX 에어타임';
 
   @override
+  String get repeater_chanUtil => 'Channel Utilization';
+
+  @override
   String get repeater_packetStatistics => '패킷 통계';
 
   @override

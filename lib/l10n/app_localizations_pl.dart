@@ -2182,6 +2182,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get repeater_rxAirtime => 'Czas odbioru RX';
 
   @override
+  String get repeater_chanUtil => 'Channel Utilization';
+
+  @override
   String get repeater_packetStatistics => 'Statystyki pakietów';
 
   @override

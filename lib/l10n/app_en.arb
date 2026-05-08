@@ -1156,6 +1156,7 @@
   "repeater_noiseFloor": "Noise Floor",
   "repeater_txAirtime": "TX Airtime",
   "repeater_rxAirtime": "RX Airtime",
+  "repeater_chanUtil": "Channel Utilization",
   "repeater_packetStatistics": "Packet Statistics",
   "repeater_sent": "Sent",
   "repeater_received": "Received",
