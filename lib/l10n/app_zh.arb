@@ -354,11 +354,8 @@
       }
     }
   },
-  "channels_hashtagChannel": "标签频道",
   "channels_public": "公共",
   "channels_private": "私有",
-  "channels_publicChannel": "公共频道",
-  "channels_privateChannel": "私有频道",
   "channels_editChannel": "编辑频道",
   "channels_muteChannel": "静音频道",
   "channels_unmuteChannel": "取消静音频道",

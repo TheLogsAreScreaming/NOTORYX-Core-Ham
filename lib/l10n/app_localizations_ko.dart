@@ -1039,9 +1039,6 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => '해시태그 채널';
-
-  @override
   String get channels_public => '대중의';
 
   @override
@@ -1051,12 +1048,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get channels_private => '사립';
-
-  @override
-  String get channels_publicChannel => '공개 채널';
-
-  @override
-  String get channels_privateChannel => '개인 채널';
 
   @override
   String get channels_editChannel => '채널 편집';

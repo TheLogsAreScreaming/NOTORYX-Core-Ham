@@ -491,11 +491,8 @@
       }
     }
   },
-  "channels_hashtagChannel": "해시태그 채널",
   "channels_public": "대중의",
   "channels_private": "사립",
-  "channels_publicChannel": "공개 채널",
-  "channels_privateChannel": "개인 채널",
   "channels_editChannel": "채널 편집",
   "channels_muteChannel": "음소거 채널",
   "channels_unmuteChannel": "채널 음소거 해제",

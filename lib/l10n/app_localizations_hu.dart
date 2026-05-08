@@ -1102,9 +1102,6 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => 'Hashtag-ok közössége';
-
-  @override
   String get channels_public => 'A nyilvánosság számára';
 
   @override
@@ -1114,12 +1111,6 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get channels_private => 'Személyes';
-
-  @override
-  String get channels_publicChannel => 'Össztávos csatorna';
-
-  @override
-  String get channels_privateChannel => 'Személyes csatorna';
 
   @override
   String get channels_editChannel => 'Csatorna szerkesztése';

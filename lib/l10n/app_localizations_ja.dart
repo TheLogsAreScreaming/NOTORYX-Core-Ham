@@ -1044,9 +1044,6 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => 'ハッシュタグチャンネル';
-
-  @override
   String get channels_public => '一般の人々';
 
   @override
@@ -1056,12 +1053,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get channels_private => '個人の';
-
-  @override
-  String get channels_publicChannel => '一般チャンネル';
-
-  @override
-  String get channels_privateChannel => 'プライベートチャンネル';
 
   @override
   String get channels_editChannel => 'チャンネルを編集する';

@@ -339,11 +339,8 @@
       }
     }
   },
-  "channels_hashtagChannel": "Канал с хаштаг",
   "channels_public": "Публично",
   "channels_private": "Личен",
-  "channels_publicChannel": "Публичен канал",
-  "channels_privateChannel": "Частен канал",
   "channels_editChannel": "Редактирай канал",
   "channels_muteChannel": "Заглуши канала",
   "channels_unmuteChannel": "Включи известията на канала",

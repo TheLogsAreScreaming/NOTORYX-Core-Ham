@@ -339,11 +339,8 @@
       }
     }
   },
-  "channels_hashtagChannel": "Hashtagkanal",
   "channels_public": "Offentligt",
   "channels_private": "Privat",
-  "channels_publicChannel": "Allmänt kanal",
-  "channels_privateChannel": "Privat kanal",
   "channels_editChannel": "Redigera kanal",
   "channels_muteChannel": "Tysta kanal",
   "channels_unmuteChannel": "Slå på ljud för kanal",

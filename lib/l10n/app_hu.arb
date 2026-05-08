@@ -491,11 +491,8 @@
       }
     }
   },
-  "channels_hashtagChannel": "Hashtag-ok közössége",
   "channels_public": "A nyilvánosság számára",
   "channels_private": "Személyes",
-  "channels_publicChannel": "Össztávos csatorna",
-  "channels_privateChannel": "Személyes csatorna",
   "channels_editChannel": "Csatorna szerkesztése",
   "channels_muteChannel": "Csendes csatorna",
   "channels_unmuteChannel": "Engedje be a hangot",

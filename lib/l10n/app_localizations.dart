@@ -2050,12 +2050,6 @@ abstract class AppLocalizations {
   /// **'Channel {index}'**
   String channels_channelIndex(int index);
 
-  /// No description provided for @channels_hashtagChannel.
-  ///
-  /// In en, this message translates to:
-  /// **'Hashtag channel'**
-  String get channels_hashtagChannel;
-
   /// No description provided for @channels_public.
   ///
   /// In en, this message translates to:
@@ -2073,18 +2067,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Private'**
   String get channels_private;
-
-  /// No description provided for @channels_publicChannel.
-  ///
-  /// In en, this message translates to:
-  /// **'Public channel'**
-  String get channels_publicChannel;
-
-  /// No description provided for @channels_privateChannel.
-  ///
-  /// In en, this message translates to:
-  /// **'Private channel'**
-  String get channels_privateChannel;
 
   /// No description provided for @channels_editChannel.
   ///

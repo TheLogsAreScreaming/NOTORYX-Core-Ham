@@ -1026,9 +1026,6 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => '标签频道';
-
-  @override
   String get channels_public => '公共';
 
   @override
@@ -1038,12 +1035,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get channels_private => '私有';
-
-  @override
-  String get channels_publicChannel => '公共频道';
-
-  @override
-  String get channels_privateChannel => '私有频道';
 
   @override
   String get channels_editChannel => '编辑频道';

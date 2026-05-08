@@ -516,7 +516,6 @@
       }
     }
   },
-  "channels_hashtagChannel": "Hashtag channel",
   "channels_public": "Public",
   "channels_via": "via {path}",
   "@channels_via": {
@@ -527,8 +526,6 @@
     }
   },
   "channels_private": "Private",
-  "channels_publicChannel": "Public channel",
-  "channels_privateChannel": "Private channel",
   "channels_editChannel": "Edit channel",
   "channels_muteChannel": "Mute channel",
   "channels_unmuteChannel": "Unmute channel",
