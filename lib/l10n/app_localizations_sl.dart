@@ -45,6 +45,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get common_close => 'Zapri';
 
   @override
+  String get common_done => 'Done';
+
+  @override
   String get common_edit => 'Uredi';
 
   @override
@@ -430,15 +433,20 @@ class AppLocalizationsSl extends AppLocalizations {
   String get settings_advertLocationSubtitle => 'Vključi lokacijo v oglas.';
 
   @override
-  String settings_multiAck(String value) {
-    return 'Večkratni potrditvi: $value';
-  }
+  String get settings_multiAck => 'Več potrdil';
 
   @override
   String get settings_telemetryModeUpdated => 'Način telemetrije posodobljen';
 
   @override
   String get settings_actions => 'Akcije';
+
+  @override
+  String get settings_deleteAllPaths => 'Delete All Paths';
+
+  @override
+  String get settings_deleteAllPathsSubtitle =>
+      'Clear all path data from contacts.';
 
   @override
   String get settings_sendAdvertisement => 'Pošlji Oglas';
@@ -1083,6 +1091,11 @@ class AppLocalizationsSl extends AppLocalizations {
   String get channels_public => 'Javni';
 
   @override
+  String channels_via(String path) {
+    return 'via $path';
+  }
+
+  @override
   String get channels_private => 'Zasebni';
 
   @override
@@ -1443,6 +1456,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get chat_successes => 'Uspešni';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Izbriši pot';
 
   @override
@@ -1542,6 +1558,12 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => 'Odpreti povezavo?';
 
   @override
@@ -1622,6 +1644,24 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get map_flags => 'Zapestnice';
+
+  @override
+  String get map_type => 'Type';
+
+  @override
+  String get map_path => 'Path';
+
+  @override
+  String get map_location => 'Location';
+
+  @override
+  String get map_estLocation => 'Est. Location';
+
+  @override
+  String get map_publicKey => 'Public Key';
+
+  @override
+  String get map_publicKeyPrefixHint => 'e.g. ab12';
 
   @override
   String get map_shareMarkerHere => 'Delite točke tukaj.';
@@ -1706,6 +1746,9 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get map_sharedPin => 'Deljeno naslovno geslo';
+
+  @override
+  String get map_sharedAt => 'Deljeno';
 
   @override
   String get map_joinRoom => 'Pridružiti sobo';
@@ -3641,6 +3684,37 @@ class AppLocalizationsSl extends AppLocalizations {
   String get losLegendTerrain => 'Teren';
 
   @override
+  String get losBlockedSpotsTitle => 'Zasedena parkirišča';
+
+  @override
+  String get losBlockedSpotsHint =>
+      'Dotaknite blokirano točko, da jo označite na zemljeplati.';
+
+  @override
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  ) {
+    return '$distance $distanceUnit • $obstruction $heightUnit';
+  }
+
+  @override
+  String get losSelectedObstructionTitle => 'Izbrano ovire';
+
+  @override
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  ) {
+    return 'Blocked by $obstruction $heightUnit, $distanceFromA from A and $distanceFromB from B ($distanceUnit).';
+  }
+
+  @override
   String get losFrequencyLabel => 'Frekvenca';
 
   @override
@@ -4107,4 +4181,40 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get translation_systemLanguage => 'Jezik sistema';
+
+  @override
+  String get background_serviceTitle => 'MeshCore running';
+
+  @override
+  String get background_serviceText => 'Keeping BLE connected';
+
+  @override
+  String appSettings_translationModelDeleted(String name) {
+    return 'Deleted $name';
+  }
+
+  @override
+  String appSettings_translationModelDeleteFailed(String error) {
+    return 'Failed to delete: $error';
+  }
+
+  @override
+  String channels_channelUpdateFailed(String error) {
+    return 'Failed to update channel: $error';
+  }
+
+  @override
+  String get contact_typeChat => 'Chat';
+
+  @override
+  String get contact_typeRepeater => 'Repeater';
+
+  @override
+  String get contact_typeRoom => 'Room';
+
+  @override
+  String get contact_typeSensor => 'Sensor';
+
+  @override
+  String get contact_typeUnknown => 'Unknown';
 }

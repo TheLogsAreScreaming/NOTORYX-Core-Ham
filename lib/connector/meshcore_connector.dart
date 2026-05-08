@@ -675,6 +675,27 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  void setContactUnreadCount(String contactKeyHex, int count) {
+    _contactUnreadCount[contactKeyHex] = count;
+    _unreadStore.saveContactUnreadCount(
+      Map<String, int>.from(_contactUnreadCount),
+    );
+    notifyListeners();
+  }
+
+  void setChannelUnreadCount(int channelIndex, int count) {
+    final channel = _findChannelByIndex(channelIndex);
+    if (channel != null) {
+      channel.unreadCount = count;
+      unawaited(
+        _channelStore.saveChannels(
+          _channels.isNotEmpty ? _channels : _cachedChannels,
+        ),
+      );
+      notifyListeners();
+    }
+  }
+
   void markChannelRead(int channelIndex) {
     final channel = _findChannelByIndex(channelIndex);
     if (channel != null && channel.unreadCount > 0) {
@@ -2157,6 +2178,7 @@ class MeshCoreConnector extends ChangeNotifier {
       return;
     }
     _bleInitialSyncStarted = true;
+    _pendingInitialContactsSync = true;
 
     await _requestDeviceInfo();
     _startBatteryPolling();
@@ -3030,13 +3052,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _pendingChannelSentQueue.add(message.messageId);
     notifyListeners();
 
-    final trimmed = text.trim();
-    final isStructuredPayload =
-        trimmed.startsWith('g:') || trimmed.startsWith('m:');
-    final outboundText =
-        (isChannelSmazEnabled(channel.index) && !isStructuredPayload)
-        ? Smaz.encodeIfSmaller(text)
-        : text;
+    final outboundText = prepareChannelOutboundText(channel.index, text);
     await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
     await sendFrame(
       buildSendChannelTextMsgFrame(channel.index, outboundText),
@@ -4046,7 +4062,7 @@ class MeshCoreConnector extends ChangeNotifier {
           );
         } else {
           appLogger.info(
-            "Discovered contact ${contact.name} (type ${contact.typeLabel}) not added due to auto-add settings",
+            "Discovered contact ${contact.name} (type ${contact.typeLabelRaw}) not added due to auto-add settings",
             tag: 'Connector',
           );
           return;
@@ -4068,7 +4084,7 @@ class MeshCoreConnector extends ChangeNotifier {
         if (settings.notificationsEnabled && settings.notifyOnNewAdvert) {
           _notificationService.showAdvertNotification(
             contactName: contact.name,
-            contactType: contact.typeLabel,
+            contactType: contact.typeLabelRaw,
             contactId: contact.publicKeyHex,
           );
         }
@@ -4143,7 +4159,7 @@ class MeshCoreConnector extends ChangeNotifier {
       if (settings.notificationsEnabled && settings.notifyOnNewAdvert) {
         _notificationService.showAdvertNotification(
           contactName: contact.name,
-          contactType: contact.typeLabel,
+          contactType: contact.typeLabelRaw,
           contactId: contact.publicKeyHex,
         );
       }
@@ -4166,7 +4182,9 @@ class MeshCoreConnector extends ChangeNotifier {
     if (_contacts.isEmpty) return 0;
     var latest = 0;
     for (final contact in _contacts) {
-      final seconds = contact.lastSeen.millisecondsSinceEpoch ~/ 1000;
+      // prefer lastmod per spec, fallback to lastseen
+      final source = contact.lastModified ?? contact.lastSeen;
+      final seconds = source.millisecondsSinceEpoch ~/ 1000;
       if (seconds > latest) {
         latest = seconds;
       }
@@ -4490,6 +4508,16 @@ class MeshCoreConnector extends ChangeNotifier {
         trimmed.startsWith('m:') ||
         trimmed.startsWith('V1|');
     if (!isStructuredPayload && isContactSmazEnabled(contact.publicKeyHex)) {
+      return Smaz.encodeIfSmaller(text);
+    }
+    return text;
+  }
+
+  String prepareChannelOutboundText(int channelIndex, String text) {
+    final trimmed = text.trim();
+    final isStructuredPayload =
+        trimmed.startsWith('g:') || trimmed.startsWith('m:');
+    if (!isStructuredPayload && isChannelSmazEnabled(channelIndex)) {
       return Smaz.encodeIfSmaller(text);
     }
     return text;
@@ -6090,7 +6118,7 @@ class MeshCoreConnector extends ChangeNotifier {
       if (settings.notificationsEnabled && settings.notifyOnNewAdvert) {
         _notificationService.showAdvertNotification(
           contactName: contact.name,
-          contactType: contact.typeLabel,
+          contactType: contact.typeLabelRaw,
           contactId: contact.publicKeyHex,
         );
       }

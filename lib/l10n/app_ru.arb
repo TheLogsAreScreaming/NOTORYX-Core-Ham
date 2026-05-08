@@ -13,7 +13,7 @@
   "nav_channels": "Каналы",
   "nav_map": "Карта",
   "common_cancel": "Отмена",
-  "common_ok": "Хорошо",
+  "common_ok": "OK",
   "common_connect": "Коннект",
   "common_unknownDevice": "Неизвестное устройство",
   "common_save": "Сохранить",
@@ -39,7 +39,7 @@
   "common_notAvailable": "—",
   "common_voltageValue": "{volts} В",
   "common_percentValue": "{percent}%",
-  "scanner_title": "MeshCore: Открытый исходный код",
+  "scanner_title": "MeshCore Open",
   "scanner_scanning": "Поиск устройств...",
   "scanner_connecting": "Подключение...",
   "scanner_disconnecting": "Отключение...",
@@ -81,6 +81,8 @@
   "settings_privacyModeEnabled": "Режим конфиденциальности включен",
   "settings_privacyModeDisabled": "Режим конфиденциальности выключен",
   "settings_actions": "Действия",
+  "settings_deleteAllPaths": "Delete All Paths",
+  "settings_deleteAllPathsSubtitle": "Clear all path data from contacts.",
   "settings_sendAdvertisement": "Отправить анонсирование",
   "settings_sendAdvertisementSubtitle": "Отправить анонсирование о присутствии сейчас",
   "settings_advertisementSent": "Анонсирование отправлено",
@@ -98,11 +100,11 @@
   "settings_appDebugLog": "Журнал отладки приложения",
   "settings_appDebugLogSubtitle": "Сообщения отладки приложения",
   "settings_about": "О программе",
-  "settings_aboutVersion": "MeshCore Open, версия {version}",
-  "settings_aboutLegalese": "Проект MeshCore с открытым исходным кодом, 2026 год",
+  "settings_aboutVersion": "MeshCore Open v{version}",
+  "settings_aboutLegalese": "2026 MeshCore Open Source Project",
   "settings_aboutDescription": "Открытое клиентское приложение на Flutter для устройств MeshCore с LoRa-сетями.",
   "settings_infoName": "Имя",
-  "settings_infoId": "Идентификационный номер",
+  "settings_infoId": "ID",
   "settings_infoStatus": "Статус",
   "settings_infoBattery": "Батарея",
   "settings_infoPublicKey": "Публичный ключ",
@@ -245,7 +247,7 @@
   "channels_channelName": "Имя канала",
   "channels_usePublicChannel": "Использовать публичный канал",
   "channels_standardPublicPsk": "Стандартный публичный PSK",
-  "channels_pskHex": "PSK (шестнадцатеричный код)",
+  "channels_pskHex": "PSK (Hex)",
   "channels_generateRandomPsk": "Сгенерировать случайный PSK",
   "channels_enterChannelName": "Введите имя канала",
   "channels_pskMustBe32Hex": "PSK должен содержать 32 шестнадцатеричных символа",
@@ -317,7 +319,7 @@
   "debugFrame_timestamp": "- Временная метка: {timestamp}",
   "debugFrame_flags": "- Флаги: 0x{value}",
   "debugFrame_textType": "- Тип текста: {type} ({label})",
-  "debugFrame_textTypeCli": "Интерфейс командной строки",
+  "debugFrame_textTypeCli": "CLI",
   "debugFrame_textTypePlain": "Обычный",
   "debugFrame_text": "- Текст: \"{text}\"",
   "debugFrame_hexDump": "Шестнадцатеричный дамп:",
@@ -476,7 +478,7 @@
   "repeater_statusSubtitle": "Просмотр статуса, статистики и соседей репитера",
   "repeater_telemetry": "Телеметрия",
   "repeater_telemetrySubtitle": "Просмотр телеметрии датчиков и системной статистики",
-  "repeater_cli": "Интерфейс командной строки",
+  "repeater_cli": "CLI",
   "repeater_cliSubtitle": "Отправка команд репитеру",
   "repeater_neighbors": "Соседи",
   "repeater_neighborsSubtitle": "Просмотр соседей на нулевом хопе.",
@@ -560,88 +562,15 @@
   "repeater_errorSendingCommand": "Ошибка отправки команды: {error}",
   "repeater_confirm": "Подтвердить",
   "repeater_settingsSaved": "Настройки успешно сохранены",
-  "repeater_rxGain": "Увеличенная эффективность RX",
-  "repeater_rxGainHelper": "Более высокая чувствительность, больший ток потребления (только для SX1262/SX1268)",
-  "repeater_refreshRxGain": "Обновите усиление RX",
-  "repeater_multiAcks": "Несколько подтверждений",
-  "repeater_multiAcksSubtitle": "Обеспечьте доставку сообщений по нескольким каналам для повышения эффективности.",
-  "repeater_refreshMultiAcks": "Обновление нескольких подтверждений",
-  "repeater_networkHealth": "Состояние сети",
-  "repeater_loopDetect": "Обнаружение циклов",
-  "repeater_loopDetectHelper": "Создайте пакеты данных, которые выглядят как циклы маршрутизации.",
-  "repeater_loopDetectOff": "Отключено",
-  "repeater_loopDetectMinimal": "Минимальный",
-  "repeater_loopDetectModerate": "Умеренный",
-  "repeater_loopDetectStrict": "Строгий",
-  "repeater_dutyCycle": "Цикл работы",
-  "repeater_dutyCycleHelper": "Максимальный процент времени, выделенного на трансляцию.",
-  "repeater_dutyCyclePercent": "{percent}%",
-  "@repeater_dutyCyclePercent": {
-    "placeholders": {
-      "percent": {
-        "type": "int"
-      }
-    }
-  },
-  "repeater_ownerInfo": "Информация о операторе",
-  "repeater_ownerInfoHelper": "Общая метаинформация для этого ретранслятора",
-  "repeater_refreshOwnerInfo": "Обновить информацию о операторе",
-  "repeater_floodMax": "Максимальное количество прыжков при наводнении",
-  "repeater_floodMaxHelper": "Максимальное количество пакетов, которые могут быть отправлены в одном потоке (0-64)",
-  "repeater_advancedSettings": "Продвинутый",
-  "repeater_advancedSettingsSubtitle": "Регуляторы для опытных операторов",
-  "repeater_pathHashMode": "Режим хеширования пути",
-  "repeater_pathHashModeHelper": "Байты, используемые для кодирования идентификатора этого ретранслятора в тегах для обнаружения потоков/циклов. 0 = 1 байт (256 идентификаторов, до 64 переходов), 1 = 2 байта (65 000 идентификаторов, до 32 переходов), 2 = 3 байта (1 600 000 идентификаторов, до 21 перехода). Версии прошивки v1.13 и более ранние версии не поддерживают многобайтовые пути — они поднимаются только после того, как ваша сеть будет обновлена до версии v1.14 и выше.",
-  "repeater_txDelay": "Задержка в работе системы Flood TX",
-  "repeater_txDelayHelper": "Передача с увеличенным интервалом для трафика во время наводнения, в качестве коэффициента, умножающего время передачи пакета (от 0 до 2, по умолчанию 0,5). Более высокое значение означает меньшее количество столкновений, но более медленную передачу.",
-  "repeater_directTxDelay": "Прямая задержка сигнала TX",
-  "repeater_directTxDelayHelper": "Передача промежуточных данных для прямого (немассового) трафика, в качестве коэффициента, равного времени передачи пакета (от 0 до 2, по умолчанию 0,3).",
-  "repeater_intThresh": "Пороговое значение помех",
-  "repeater_intThreshHelper": "Порог устанавливается для калибровки уровня шума радио, чтобы оно отсеивало помехи, превышающие этот уровень. Значение \"0\" означает отключение – используйте только в случае, если вы наблюдаете ошибки при приеме сигнала в шумном диапазоне.",
-  "repeater_agcResetInterval": "Интервал сброса AGC",
-  "repeater_agcResetIntervalHelper": "Как часто следует сбрасывать автоматическую регулировку усиления радио, чтобы вернуться к нормальному состоянию после заклинивания? Интервал сброса составляет несколько секунд, кратный 4. Отключение периодического сброса осуществляется с помощью параметра 0.",
-  "repeater_actionsTitle": "Действия",
-  "repeater_sendAdvert": "Отправить объявление о наводнении",
-  "repeater_sendAdvertSubtitle": "Разместите рекламу о наводнении в эфире по всей сети.",
-  "repeater_sendAdvertZeroHop": "Опубликуйте рекламу, не требующую промежуточного распространения.",
-  "repeater_sendAdvertZeroHopSubtitle": "Разместите рекламу, распространяемую одним способом (без использования ретрансляторов).",
-  "repeater_clockSync": "Синхронизировать время сейчас",
-  "repeater_clockSyncSubtitle": "Установите время на вашем телефоне, чтобы оно совпадало со временем ретранслятора.",
-  "repeater_actionSucceeded": "{action} succeeded",
-  "@repeater_actionSucceeded": {
-    "placeholders": {
-      "action": {
-        "type": "String"
-      }
-    }
-  },
-  "repeater_actionFailed": "{action} failed: {error}",
-  "@repeater_actionFailed": {
-    "placeholders": {
-      "action": {
-        "type": "String"
-      },
-      "error": {
-        "type": "String"
-      }
-    }
-  },
-  "repeater_settingsSavedRebootNeeded": "Настройки сохранены — перезагрузите ретранслятор, чтобы применить их.",
-  "repeater_settingsPartialFailure": "Некоторые настройки не удалось применить: {failures}",
-  "@repeater_settingsPartialFailure": {
-    "placeholders": {
-      "failures": {
-        "type": "String"
-      }
-    }
-  },
   "repeater_errorSavingSettings": "Ошибка сохранения настроек: {error}",
   "repeater_refreshBasicSettings": "Обновить основные настройки",
   "repeater_refreshRadioSettings": "Обновить настройки радио",
   "repeater_refreshTxPower": "Обновить мощность передачи",
+  "repeater_refreshLocationSettings": "Обновить настройки местоположения",
   "repeater_refreshPacketForwarding": "Обновить пересылку пакетов",
   "repeater_refreshGuestAccess": "Обновить гостевой доступ",
   "repeater_refreshPrivacyMode": "Обновить режим конфиденциальности",
+  "repeater_refreshAdvertisementSettings": "Обновить настройки анонсирований",
   "repeater_refreshed": "{label} обновлён",
   "repeater_errorRefreshing": "Ошибка обновления {label}",
   "repeater_cliTitle": "CLI репитера",
@@ -877,7 +806,7 @@
   "contacts_contactImportFailed": "Контакт не удалось импортировать",
   "contacts_invalidAdvertFormat": "Недействительные контактные данные",
   "contacts_zeroHopAdvert": "Реклама Zero Hop",
-  "appSettings_languageUk": "Украинский",
+  "appSettings_languageUk": "Українська",
   "appSettings_enableMessageTracing": "Включить трассировку сообщений",
   "appSettings_enableMessageTracingSubtitle": "Показывать подробные метаданные о маршрутизации и времени для сообщений",
   "contacts_floodAdvert": "Рекламный поток",
@@ -1235,13 +1164,6 @@
   "contact_clearChat": "Очистить чат",
   "contact_lastSeen": "Последний раз видели",
   "contact_teleBaseSubtitle": "Разрешить обмен уровнем заряда батареи и базовой телеметрией",
-  "@settings_multiAck": {
-    "placeholders": {
-      "value": {
-        "type": "String"
-      }
-    }
-  },
   "appSettings_maxRouteWeight": "Максимальный допустимый вес маршрута",
   "appSettings_maxRouteWeightSubtitle": "Максимальный вес, который может быть перевезён по определённому маршруту при успешных доставках.",
   "appSettings_initialRouteWeightSubtitle": "Начальный вес для новых, только что открытых маршрутов",
@@ -1254,7 +1176,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Количество попыток повторной отправки сообщения перед тем, как пометить его как неудачное.",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Режим телеметрии обновлен",
-  "settings_multiAck": "Мульти-ACK: {value}",
   "map_showOverlaps": "Перекрытия ключа повтора",
   "map_runTraceWithReturnPath": "Вернуться обратно по тому же пути",
   "@radioStats_noiseFloor": {
@@ -1387,6 +1308,170 @@
   "repeater_guest": "Информация о ретрансляторе",
   "room_guest": "Информация о сервере",
   "repeater_guestTools": "Инструменты для гостей",
+  "common_done": "Готово",
+  "background_serviceTitle": "MeshCore работает",
+  "background_serviceText": "Поддерживает BLE-соединение",
+  "appSettings_translationModelDeleted": "Удалено {name}",
+  "@appSettings_translationModelDeleted": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_translationModelDeleteFailed": "Не удалось удалить: {error}",
+  "@appSettings_translationModelDeleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "channels_channelUpdateFailed": "Не удалось обновить канал: {error}",
+  "@channels_channelUpdateFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "map_type": "Тип",
+  "map_path": "Путь",
+  "map_location": "Местоположение",
+  "map_estLocation": "Прибл. местоположение",
+  "map_publicKey": "Публичный ключ",
+  "map_publicKeyPrefixHint": "напр. ab12",
+  "contact_typeChat": "Чат",
+  "contact_typeRepeater": "Ретранслятор",
+  "contact_typeRoom": "Комната",
+  "contact_typeSensor": "Датчик",
+  "contact_typeUnknown": "Неизвестно",
+  "channels_via": "через {path}",
+  "chat_score": "Оценка",
+  "settings_multiAck": "Несколько подтверждений",
+  "map_sharedAt": "Поделено",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
+  "losBlockedSpotsHint": "Щелкните по заблокированной области, чтобы выделить ее на карте.",
+  "losBlockedSpotsTitle": "Зарезервированные места",
+  "losSelectedObstructionTitle": "Выбранный объект, препятствующий движению",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
+  "losSelectedObstructionDetails": "Blocked by {obstruction} {heightUnit}, {distanceFromA} from A and {distanceFromB} from B ({distanceUnit}).",
+  "repeater_rxGain": "Увеличенная эффективность RX",
+  "repeater_rxGainHelper": "Более высокая чувствительность, больший ток потребления (только для SX1262/SX1268)",
+  "repeater_refreshRxGain": "Обновите усиление RX",
+  "repeater_multiAcks": "Несколько подтверждений",
+  "repeater_multiAcksSubtitle": "Обеспечьте доставку сообщений по нескольким каналам для повышения эффективности.",
+  "repeater_refreshMultiAcks": "Обновление нескольких подтверждений",
+  "repeater_networkHealth": "Состояние сети",
+  "repeater_loopDetect": "Обнаружение циклов",
+  "repeater_loopDetectHelper": "Создайте пакеты данных, которые выглядят как циклы маршрутизации.",
+  "repeater_loopDetectOff": "Отключено",
+  "repeater_loopDetectMinimal": "Минимальный",
+  "repeater_loopDetectModerate": "Умеренный",
+  "repeater_loopDetectStrict": "Строгий",
+  "repeater_dutyCycle": "Цикл работы",
+  "repeater_dutyCycleHelper": "Максимальный процент времени, выделенного на трансляцию.",
+  "repeater_dutyCyclePercent": "{percent}%",
+  "@repeater_dutyCyclePercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "repeater_ownerInfo": "Информация о операторе",
+  "repeater_ownerInfoHelper": "Общая метаинформация для этого ретранслятора",
+  "repeater_refreshOwnerInfo": "Обновить информацию о операторе",
+  "repeater_floodMax": "Максимальное количество прыжков при наводнении",
+  "repeater_floodMaxHelper": "Максимальное количество пакетов, которые могут быть отправлены в одном потоке (0-64)",
+  "repeater_advancedSettings": "Продвинутый",
+  "repeater_advancedSettingsSubtitle": "Регуляторы для опытных операторов",
+  "repeater_pathHashMode": "Режим хеширования пути",
+  "repeater_pathHashModeHelper": "Байты, используемые для кодирования идентификатора этого ретранслятора в тегах для обнаружения потоков/циклов. 0 = 1 байт (256 идентификаторов, до 64 переходов), 1 = 2 байта (65 000 идентификаторов, до 32 переходов), 2 = 3 байта (1 600 000 идентификаторов, до 21 перехода). Версии прошивки v1.13 и более ранние версии не поддерживают многобайтовые пути — они поднимаются только после того, как ваша сеть будет обновлена до версии v1.14 и выше.",
+  "repeater_txDelay": "Задержка в работе системы Flood TX",
+  "repeater_txDelayHelper": "Передача с увеличенным интервалом для трафика во время наводнения, в качестве коэффициента, умножающего время передачи пакета (от 0 до 2, по умолчанию 0,5). Более высокое значение означает меньшее количество столкновений, но более медленную передачу.",
+  "repeater_directTxDelay": "Прямая задержка сигнала TX",
+  "repeater_directTxDelayHelper": "Передача промежуточных данных для прямого (немассового) трафика, в качестве коэффициента, равного времени передачи пакета (от 0 до 2, по умолчанию 0,3).",
+  "repeater_intThresh": "Пороговое значение помех",
+  "repeater_intThreshHelper": "Порог устанавливается для калибровки уровня шума радио, чтобы оно отсеивало помехи, превышающие этот уровень. Значение \"0\" означает отключение – используйте только в случае, если вы наблюдаете ошибки при приеме сигнала в шумном диапазоне.",
+  "repeater_agcResetInterval": "Интервал сброса AGC",
+  "repeater_agcResetIntervalHelper": "Как часто следует сбрасывать автоматическую регулировку усиления радио, чтобы вернуться к нормальному состоянию после заклинивания? Интервал сброса составляет несколько секунд, кратный 4. Отключение периодического сброса осуществляется с помощью параметра 0.",
+  "repeater_actionsTitle": "Действия",
+  "repeater_sendAdvert": "Отправить объявление о наводнении",
+  "repeater_sendAdvertSubtitle": "Разместите рекламу о наводнении в эфире по всей сети.",
+  "repeater_sendAdvertZeroHop": "Опубликуйте рекламу, не требующую промежуточного распространения.",
+  "repeater_sendAdvertZeroHopSubtitle": "Разместите рекламу, распространяемую одним способом (без использования ретрансляторов).",
+  "repeater_clockSync": "Синхронизировать время сейчас",
+  "repeater_clockSyncSubtitle": "Установите время на вашем телефоне, чтобы оно совпадало со временем ретранслятора.",
+  "repeater_actionSucceeded": "{action} succeeded",
+  "@repeater_actionSucceeded": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_actionFailed": "{action} failed: {error}",
+  "@repeater_actionFailed": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "repeater_settingsSavedRebootNeeded": "Настройки сохранены — перезагрузите ретранслятор, чтобы применить их.",
+  "repeater_settingsPartialFailure": "Некоторые настройки не удалось применить: {failures}",
+  "@repeater_settingsPartialFailure": {
+    "placeholders": {
+      "failures": {
+        "type": "String"
+      }
+    }
+  },
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "@common_percentValue": {
     "placeholders": {
       "percent": {

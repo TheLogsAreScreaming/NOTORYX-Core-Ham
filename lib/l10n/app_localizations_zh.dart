@@ -45,6 +45,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get common_close => '关闭';
 
   @override
+  String get common_done => 'Done';
+
+  @override
   String get common_edit => '编辑';
 
   @override
@@ -408,15 +411,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_advertLocationSubtitle => '在广告中包含位置';
 
   @override
-  String settings_multiAck(String value) {
-    return '多重ACK：$value';
-  }
+  String get settings_multiAck => '多重ACK';
 
   @override
   String get settings_telemetryModeUpdated => '遥测模式已更新';
 
   @override
   String get settings_actions => '操作';
+
+  @override
+  String get settings_deleteAllPaths => 'Delete All Paths';
+
+  @override
+  String get settings_deleteAllPathsSubtitle =>
+      'Clear all path data from contacts.';
 
   @override
   String get settings_sendAdvertisement => '发送广播';
@@ -1024,6 +1032,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_public => '公共';
 
   @override
+  String channels_via(String path) {
+    return 'via $path';
+  }
+
+  @override
   String get channels_private => '私有';
 
   @override
@@ -1371,6 +1384,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_successes => '成功';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => '移除路径';
 
   @override
@@ -1458,6 +1474,12 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => '打开链接？';
 
   @override
@@ -1534,6 +1556,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get map_flags => '标志';
+
+  @override
+  String get map_type => 'Type';
+
+  @override
+  String get map_path => 'Path';
+
+  @override
+  String get map_location => 'Location';
+
+  @override
+  String get map_estLocation => 'Est. Location';
+
+  @override
+  String get map_publicKey => 'Public Key';
+
+  @override
+  String get map_publicKeyPrefixHint => 'e.g. ab12';
 
   @override
   String get map_shareMarkerHere => '在此分享标记';
@@ -1617,6 +1657,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get map_sharedPin => '共享标记';
+
+  @override
+  String get map_sharedAt => '已分享';
 
   @override
   String get map_joinRoom => '加入房间';
@@ -3376,6 +3419,36 @@ class AppLocalizationsZh extends AppLocalizations {
   String get losLegendTerrain => '地形';
 
   @override
+  String get losBlockedSpotsTitle => '被占用区域';
+
+  @override
+  String get losBlockedSpotsHint => '点击地图上的某个被遮盖的区域，以突出显示该区域。';
+
+  @override
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  ) {
+    return '$distance $distanceUnit • $obstruction $heightUnit';
+  }
+
+  @override
+  String get losSelectedObstructionTitle => '选择性阻碍';
+
+  @override
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  ) {
+    return 'Blocked by $obstruction $heightUnit, $distanceFromA from A and $distanceFromB from B ($distanceUnit).';
+  }
+
+  @override
   String get losFrequencyLabel => '频率';
 
   @override
@@ -3783,4 +3856,40 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get translation_systemLanguage => '系统语言';
+
+  @override
+  String get background_serviceTitle => 'MeshCore running';
+
+  @override
+  String get background_serviceText => 'Keeping BLE connected';
+
+  @override
+  String appSettings_translationModelDeleted(String name) {
+    return 'Deleted $name';
+  }
+
+  @override
+  String appSettings_translationModelDeleteFailed(String error) {
+    return 'Failed to delete: $error';
+  }
+
+  @override
+  String channels_channelUpdateFailed(String error) {
+    return 'Failed to update channel: $error';
+  }
+
+  @override
+  String get contact_typeChat => 'Chat';
+
+  @override
+  String get contact_typeRepeater => 'Repeater';
+
+  @override
+  String get contact_typeRoom => 'Room';
+
+  @override
+  String get contact_typeSensor => 'Sensor';
+
+  @override
+  String get contact_typeUnknown => 'Unknown';
 }

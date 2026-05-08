@@ -45,6 +45,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get common_close => '닫기';
 
   @override
+  String get common_done => 'Done';
+
+  @override
   String get common_edit => '수정';
 
   @override
@@ -414,15 +417,20 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settings_advertLocationSubtitle => '광고에 위치 정보를 포함하세요.';
 
   @override
-  String settings_multiAck(String value) {
-    return '다중 ACK: $value';
-  }
+  String get settings_multiAck => '다중 ACK';
 
   @override
   String get settings_telemetryModeUpdated => '텔레메트리 모드 업데이트 완료';
 
   @override
   String get settings_actions => '행동';
+
+  @override
+  String get settings_deleteAllPaths => 'Delete All Paths';
+
+  @override
+  String get settings_deleteAllPathsSubtitle =>
+      'Clear all path data from contacts.';
 
   @override
   String get settings_sendAdvertisement => '광고 전송';
@@ -1037,6 +1045,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get channels_public => '대중의';
 
   @override
+  String channels_via(String path) {
+    return 'via $path';
+  }
+
+  @override
   String get channels_private => '사립';
 
   @override
@@ -1391,6 +1404,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get chat_successes => '성공 사례';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => '경로 제거';
 
   @override
@@ -1486,6 +1502,12 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => '링크를 열기?';
 
   @override
@@ -1562,6 +1584,24 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get map_flags => '깃발';
+
+  @override
+  String get map_type => 'Type';
+
+  @override
+  String get map_path => 'Path';
+
+  @override
+  String get map_location => 'Location';
+
+  @override
+  String get map_estLocation => 'Est. Location';
+
+  @override
+  String get map_publicKey => 'Public Key';
+
+  @override
+  String get map_publicKeyPrefixHint => 'e.g. ab12';
 
   @override
   String get map_shareMarkerHere => '여기에서 마커 공유';
@@ -1645,6 +1685,9 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get map_sharedPin => '공유 비밀번호';
+
+  @override
+  String get map_sharedAt => '공유됨';
 
   @override
   String get map_joinRoom => '방에 참여';
@@ -3474,6 +3517,36 @@ class AppLocalizationsKo extends AppLocalizations {
   String get losLegendTerrain => '지형';
 
   @override
+  String get losBlockedSpotsTitle => '차단된 공간';
+
+  @override
+  String get losBlockedSpotsHint => '지도에서 특정 위치를 강조하려면 해당 위치를 클릭하세요.';
+
+  @override
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  ) {
+    return '$distance $distanceUnit • $obstruction $heightUnit';
+  }
+
+  @override
+  String get losSelectedObstructionTitle => '선택된 장애물';
+
+  @override
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  ) {
+    return 'Blocked by $obstruction $heightUnit, $distanceFromA from A and $distanceFromB from B ($distanceUnit).';
+  }
+
+  @override
   String get losFrequencyLabel => '빈도';
 
   @override
@@ -3908,4 +3981,40 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get translation_systemLanguage => '시스템 언어';
+
+  @override
+  String get background_serviceTitle => 'MeshCore running';
+
+  @override
+  String get background_serviceText => 'Keeping BLE connected';
+
+  @override
+  String appSettings_translationModelDeleted(String name) {
+    return 'Deleted $name';
+  }
+
+  @override
+  String appSettings_translationModelDeleteFailed(String error) {
+    return 'Failed to delete: $error';
+  }
+
+  @override
+  String channels_channelUpdateFailed(String error) {
+    return 'Failed to update channel: $error';
+  }
+
+  @override
+  String get contact_typeChat => 'Chat';
+
+  @override
+  String get contact_typeRepeater => 'Repeater';
+
+  @override
+  String get contact_typeRoom => 'Room';
+
+  @override
+  String get contact_typeSensor => 'Sensor';
+
+  @override
+  String get contact_typeUnknown => 'Unknown';
 }

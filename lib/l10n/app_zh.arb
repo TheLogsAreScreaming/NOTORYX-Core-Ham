@@ -109,6 +109,8 @@
   "settings_privacyModeEnabled": "隐私模式已启用",
   "settings_privacyModeDisabled": "隐私模式已关闭",
   "settings_actions": "操作",
+  "settings_deleteAllPaths": "Delete All Paths",
+  "settings_deleteAllPathsSubtitle": "Clear all path data from contacts.",
   "settings_sendAdvertisement": "发送广播",
   "settings_sendAdvertisementSubtitle": "立即发送广播",
   "settings_advertisementSent": "已发送广播",
@@ -2000,13 +2002,6 @@
   "contact_settings": "联系人设置",
   "contact_teleLocSubtitle": "允许共享位置数据",
   "contact_telemetry": "遥测数据",
-  "@settings_multiAck": {
-    "placeholders": {
-      "value": {
-        "type": "String"
-      }
-    }
-  },
   "appSettings_maxRouteWeight": "最大路径重量",
   "appSettings_initialRouteWeightSubtitle": "新发现路径的初始重量",
   "appSettings_initialRouteWeight": "初始路线权重",
@@ -2018,7 +2013,7 @@
   "appSettings_maxMessageRetries": "最大消息重试次数",
   "appSettings_maxMessageRetriesSubtitle": "在将消息标记为失败之前，允许尝试的次数",
   "path_routeWeight": "{weight}/{max}",
-  "settings_multiAck": "多重ACK：{value}",
+  "settings_multiAck": "多重ACK",
   "settings_telemetryModeUpdated": "遥测模式已更新",
   "map_showOverlaps": "重复键重叠",
   "map_runTraceWithReturnPath": "沿着相同的路径返回",
@@ -2222,5 +2217,86 @@
   "repeater_cliHelpRegionListDenied": "列出禁止洪水交通的区域。",
   "repeater_cliHelpStatsPackets": "（仅显示序列信息）显示数据包级别的统计信息。",
   "repeater_cliHelpStatsRadio": "（仅显示序列信息）显示收音机相关统计数据。",
-  "repeater_cliHelpStatsCore": "（仅显示序列号）显示核心固件统计信息。"
+  "repeater_cliHelpStatsCore": "（仅显示序列号）显示核心固件统计信息。",
+  "common_done": "Done",
+  "background_serviceTitle": "MeshCore running",
+  "background_serviceText": "Keeping BLE connected",
+  "appSettings_translationModelDeleted": "Deleted {name}",
+  "@appSettings_translationModelDeleted": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_translationModelDeleteFailed": "Failed to delete: {error}",
+  "@appSettings_translationModelDeleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "channels_channelUpdateFailed": "Failed to update channel: {error}",
+  "@channels_channelUpdateFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "map_type": "Type",
+  "map_path": "Path",
+  "map_location": "Location",
+  "map_estLocation": "Est. Location",
+  "map_publicKey": "Public Key",
+  "map_publicKeyPrefixHint": "e.g. ab12",
+  "contact_typeChat": "Chat",
+  "contact_typeRepeater": "Repeater",
+  "contact_typeRoom": "Room",
+  "contact_typeSensor": "Sensor",
+  "contact_typeUnknown": "Unknown",
+  "channels_via": "via {path}",
+  "chat_score": "Score",
+  "map_sharedAt": "已分享",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
+  "losBlockedSpotsTitle": "被占用区域",
+  "losBlockedSpotsHint": "点击地图上的某个被遮盖的区域，以突出显示该区域。",
+  "losSelectedObstructionTitle": "选择性阻碍",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
+  "losSelectedObstructionDetails": "Blocked by {obstruction} {heightUnit}, {distanceFromA} from A and {distanceFromB} from B ({distanceUnit})."
 }

@@ -104,6 +104,8 @@
   "settings_privacyModeEnabled": "Mode de confidentialité activé",
   "settings_privacyModeDisabled": "Mode de confidentialité désactivé",
   "settings_actions": "Actions",
+  "settings_deleteAllPaths": "Delete All Paths",
+  "settings_deleteAllPathsSubtitle": "Clear all path data from contacts.",
   "settings_sendAdvertisement": "S'annoncer",
   "settings_sendAdvertisementSubtitle": "Présence diffusée maintenant",
   "settings_advertisementSent": "Annonce envoyée",
@@ -1995,13 +1997,6 @@
   "contact_lastSeen": "Dernière fois vu",
   "contact_clearChat": "Effacer la conversation",
   "contact_teleBaseSubtitle": "Autoriser le partage du niveau de batterie et de la télémétrie de base",
-  "@settings_multiAck": {
-    "placeholders": {
-      "value": {
-        "type": "String"
-      }
-    }
-  },
   "appSettings_maxRouteWeightSubtitle": "Poids maximal qu'un itinéraire peut accumuler grâce à des livraisons réussies.",
   "appSettings_initialRouteWeight": "Poids initial de l'itinéraire",
   "appSettings_maxRouteWeight": "Poids maximal autorisé pour le trajet",
@@ -2013,7 +2008,6 @@
   "appSettings_maxMessageRetries": "Nombre maximal de tentatives de récupération de messages",
   "appSettings_maxMessageRetriesSubtitle": "Nombre de tentatives de relance avant de marquer un message comme ayant échoué.",
   "path_routeWeight": "{weight}/{max}",
-  "settings_multiAck": "Multi-ACKs : {value}",
   "settings_telemetryModeUpdated": "Le mode télémétrie a été mis à jour",
   "map_showOverlaps": "Chevauchement de la touche répétitive",
   "map_runTraceWithReturnPath": "Revenir sur le même chemin.",
@@ -2224,5 +2218,87 @@
   "repeater_cliHelpRegionListDenied": "Liste des régions qui interdisent la circulation en cas de inondation.",
   "repeater_cliHelpStatsPackets": "(Uniquement pour les séries) Affiche des statistiques au niveau des paquets.",
   "repeater_cliHelpStatsRadio": "(Uniquement pour les séries) Affiche les statistiques de la radio.",
-  "repeater_cliHelpStatsCore": "(Uniquement pour les séries) Affiche les statistiques du micrologicem intégré."
+  "repeater_cliHelpStatsCore": "(Uniquement pour les séries) Affiche les statistiques du micrologicem intégré.",
+  "common_done": "Done",
+  "background_serviceTitle": "MeshCore running",
+  "background_serviceText": "Keeping BLE connected",
+  "appSettings_translationModelDeleted": "Deleted {name}",
+  "@appSettings_translationModelDeleted": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_translationModelDeleteFailed": "Failed to delete: {error}",
+  "@appSettings_translationModelDeleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "channels_channelUpdateFailed": "Failed to update channel: {error}",
+  "@channels_channelUpdateFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "map_type": "Type",
+  "map_path": "Path",
+  "map_location": "Location",
+  "map_estLocation": "Est. Location",
+  "map_publicKey": "Public Key",
+  "map_publicKeyPrefixHint": "e.g. ab12",
+  "contact_typeChat": "Chat",
+  "contact_typeRepeater": "Repeater",
+  "contact_typeRoom": "Room",
+  "contact_typeSensor": "Sensor",
+  "contact_typeUnknown": "Unknown",
+  "channels_via": "via {path}",
+  "chat_score": "Score",
+  "settings_multiAck": "Plusieurs accusés de réception",
+  "map_sharedAt": "Partagé",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
+  "losSelectedObstructionTitle": "Obstruction sélectionnée",
+  "losBlockedSpotsTitle": "Places occupés",
+  "losBlockedSpotsHint": "Sélectionnez un emplacement bloqué pour le mettre en évidence sur la carte.",
+  "losSelectedObstructionDetails": "Bloqué par {obstruction}, à une hauteur de {heightUnit}, à une distance de {distanceFromA} par rapport à A et à une distance de {distanceFromB} par rapport à B ({distanceUnit}).",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}"
 }
