@@ -490,11 +490,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settings_debug => 'Foutopsporing';
 
   @override
-  String get settings_companionDebugLog => 'Companion Debug Log';
+  String get settings_companionDebugLog =>
+      'Debuglog voor aanvullende informatie';
 
   @override
   String get settings_companionDebugLogSubtitle =>
-      'BLE/TCP/USB commands, responses, and raw data';
+      'BLE/TCP/USB commando\'s, antwoorden en ruwe data';
 
   @override
   String get settings_appDebugLog => 'Debuglog van de app';
@@ -1608,10 +1609,10 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get chat_markAsUnread => 'Mark as Unread';
+  String get chat_markAsUnread => 'Markeer als ongelezen';
 
   @override
-  String get chat_newMessages => 'New messages';
+  String get chat_newMessages => 'Nieuwe berichten';
 
   @override
   String get chat_openLink => 'Link openen?';
@@ -2208,7 +2209,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_rxAirtime => 'RX-zendtijd';
 
   @override
-  String get repeater_chanUtil => 'Channel Utilization';
+  String get repeater_chanUtil => 'Gebruik van het kanaal';
 
   @override
   String get repeater_packetStatistics => 'Pakketstatistieken';
