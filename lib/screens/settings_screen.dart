@@ -305,6 +305,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _editLocation(context, connector),
           ),
+          if (connector.currentCustomVars?.containsKey('gps') ?? false) ...[
+            const Divider(height: 1),
+            SwitchListTile(
+              secondary: const Icon(Icons.gps_fixed),
+              title: Text(l10n.settings_locationGPSEnable),
+              subtitle: Text(l10n.settings_locationGPSEnableSubtitle),
+              value: connector.currentCustomVars?['gps'] == '1',
+              onChanged: (value) async {
+                await connector.setCustomVar(value ? 'gps:1' : 'gps:0');
+              },
+            ),
+          ],
           const Divider(height: 1),
           ListTile(
             leading: const Icon(Icons.group_add_outlined),
@@ -341,9 +353,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.delete_outline, color: Colors.red),
-            title: Text("Delete All Paths"),
+            title: Text(l10n.settings_deleteAllPaths),
             subtitle: Text(
-              "Clear all path data from contacts.",
+              l10n.settings_deleteAllPathsSubtitle,
               style: TextStyle(color: Colors.red[700]),
             ),
             onTap: () => connector.deleteAllPaths(),
@@ -405,8 +417,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           ListTile(
             leading: const Icon(Icons.bluetooth_outlined),
-            title: Text(l10n.settings_bleDebugLog),
-            subtitle: Text(l10n.settings_bleDebugLogSubtitle),
+            title: Text(l10n.settings_companionDebugLog),
+            subtitle: Text(l10n.settings_companionDebugLogSubtitle),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
               Navigator.push(
@@ -1011,6 +1023,15 @@ void _privacySettings(BuildContext context, MeshCoreConnector connector) {
                 },
               ),
               const SizedBox(height: 8),
+              SwitchListTile(
+                title: Text(l10n.settings_multiAck),
+                value: multiAcks == 1,
+                onChanged: (value) {
+                  setDialogState(() => multiAcks = value ? 1 : 0);
+                },
+                contentPadding: EdgeInsets.zero,
+              ),
+              const SizedBox(height: 16),
               DropdownButtonFormField<int>(
                 initialValue: telemetryMode,
                 decoration: InputDecoration(
@@ -1050,21 +1071,6 @@ void _privacySettings(BuildContext context, MeshCoreConnector connector) {
                   if (value != null) {
                     setDialogState(() => telemetryEnvMode = value);
                   }
-                },
-              ),
-              const SizedBox(height: 16),
-              Text(
-                l10n.settings_multiAck(multiAcks.toString()),
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              Slider(
-                value: multiAcks.toDouble(),
-                min: 0,
-                max: 2,
-                divisions: 2,
-                label: multiAcks.toString(),
-                onChanged: (value) {
-                  setDialogState(() => multiAcks = value.round());
                 },
               ),
             ],

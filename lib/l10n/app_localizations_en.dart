@@ -45,6 +45,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common_close => 'Close';
 
   @override
+  String get common_done => 'Done';
+
+  @override
   String get common_edit => 'Edit';
 
   @override
@@ -124,10 +127,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tcpScreenTitle => 'Connect over TCP';
 
   @override
-  String get tcpHostLabel => 'IP Address';
+  String get tcpHostLabel => 'Endpoint';
 
   @override
-  String get tcpHostHint => '192.168.40.10';
+  String get tcpHostHint => '192.168.40.10 / example.com';
 
   @override
   String get tcpPortLabel => 'Port';
@@ -144,7 +147,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get tcpErrorHostRequired => 'IP address is required.';
+  String get tcpErrorHostRequired => 'Host is required.';
 
   @override
   String get tcpErrorPortInvalid => 'Port must be between 1 and 65535.';
@@ -427,15 +430,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_advertLocationSubtitle => 'Include location in advert.';
 
   @override
-  String settings_multiAck(String value) {
-    return 'Multi-ACKs: $value';
-  }
+  String get settings_multiAck => 'Multi-ACKs';
 
   @override
   String get settings_telemetryModeUpdated => 'Telemetry mode updated';
 
   @override
   String get settings_actions => 'Actions';
+
+  @override
+  String get settings_deleteAllPaths => 'Delete All Paths';
+
+  @override
+  String get settings_deleteAllPathsSubtitle =>
+      'Clear all path data from contacts.';
 
   @override
   String get settings_sendAdvertisement => 'Send Advertisement';
@@ -476,11 +484,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_debug => 'Debug';
 
   @override
-  String get settings_bleDebugLog => 'BLE Debug Log';
+  String get settings_companionDebugLog => 'Companion Debug Log';
 
   @override
-  String get settings_bleDebugLogSubtitle =>
-      'BLE commands, responses, and raw data';
+  String get settings_companionDebugLogSubtitle =>
+      'BLE/TCP/USB commands, responses, and raw data';
 
   @override
   String get settings_appDebugLog => 'App Debug Log';
@@ -1069,19 +1077,15 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get channels_hashtagChannel => 'Hashtag channel';
-
-  @override
   String get channels_public => 'Public';
 
   @override
+  String channels_via(String path) {
+    return 'via $path';
+  }
+
+  @override
   String get channels_private => 'Private';
-
-  @override
-  String get channels_publicChannel => 'Public channel';
-
-  @override
-  String get channels_privateChannel => 'Private channel';
 
   @override
   String get channels_editChannel => 'Edit channel';
@@ -1151,8 +1155,62 @@ class AppLocalizationsEn extends AppLocalizations {
   String get channels_smazCompression => 'SMAZ compression';
 
   @override
+  String get channels_cyr2latCompression => 'Cyr2Lat compression';
+
+  @override
+  String get channels_cyr2latCompressionDscr =>
+      'Replaces some Cyrillic characters with Latin characters when sending.';
+
+  @override
+  String get channels_cyr2latSettingsHeading => 'Cyr2Lat Setup';
+
+  @override
+  String get channels_cyr2latSettingsSubheading => 'List of replacements';
+
+  @override
+  String get channels_cyr2latSettingsDscr =>
+      'Edit the JSON configuration of character replacement';
+
+  @override
+  String get channels_cyr2latSettingsDialogHint => 'JSON replacement map';
+
+  @override
+  String channels_cyr2latSettingsDialogWrongJSON(Object error) {
+    return 'Invalid JSON: $error';
+  }
+
+  @override
   String channels_channelUpdated(String name) {
     return 'Channel \"$name\" updated';
+  }
+
+  @override
+  String get settings_cyr2latProfileAdd => 'Add Cyr2Lat Profile';
+
+  @override
+  String get settings_cyr2latProfileName => 'Profile Name';
+
+  @override
+  String get settings_cyr2latProfileNameEmpty => 'Profile name cannot be empty';
+
+  @override
+  String get settings_cyr2latProfileAdded => 'Profile added successfully';
+
+  @override
+  String get settings_cyr2latProfileUpdated => 'Profile updated successfully';
+
+  @override
+  String get settings_cyr2latProfileEdit => 'Edit Cyr2Lat Profile';
+
+  @override
+  String get settings_cyr2latProfileDelete => 'Delete Cyr2Lat Profile';
+
+  @override
+  String get settings_cyr2latProfileDeleted => 'Profile deleted successfully';
+
+  @override
+  String settings_cyr2latProfileDeleteDscr(String name) {
+    return 'Are you sure you want to delete the profile \"$name\"?';
   }
 
   @override
@@ -1431,6 +1489,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chat_successes => 'successes';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Remove path';
 
   @override
@@ -1528,6 +1589,12 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => 'Open Link?';
 
   @override
@@ -1607,6 +1674,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get map_flags => 'Flags';
+
+  @override
+  String get map_type => 'Type';
+
+  @override
+  String get map_path => 'Path';
+
+  @override
+  String get map_location => 'Location';
+
+  @override
+  String get map_estLocation => 'Est. Location';
+
+  @override
+  String get map_publicKey => 'Public Key';
+
+  @override
+  String get map_publicKeyPrefixHint => 'e.g. ab12';
 
   @override
   String get map_shareMarkerHere => 'Share marker here';
@@ -1691,6 +1776,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get map_sharedPin => 'Shared pin';
+
+  @override
+  String get map_sharedAt => 'Shared';
 
   @override
   String get map_joinRoom => 'Join Room';
@@ -2093,6 +2181,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repeater_rxAirtime => 'RX Airtime';
 
   @override
+  String get repeater_chanUtil => 'Channel Utilization';
+
+  @override
   String get repeater_packetStatistics => 'Packet Statistics';
 
   @override
@@ -2299,6 +2390,160 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repeater_settingsSaved => 'Settings saved successfully';
 
   @override
+  String get repeater_rxGain => 'Boosted RX gain';
+
+  @override
+  String get repeater_rxGainHelper =>
+      'Higher sensitivity, more current draw (SX1262/SX1268 only)';
+
+  @override
+  String get repeater_refreshRxGain => 'Refresh boosted RX gain';
+
+  @override
+  String get repeater_multiAcks => 'Multi-ACKs';
+
+  @override
+  String get repeater_multiAcksSubtitle =>
+      'Acknowledge messages over multiple paths for better delivery';
+
+  @override
+  String get repeater_refreshMultiAcks => 'Refresh multi-ACKs';
+
+  @override
+  String get repeater_networkHealth => 'Network health';
+
+  @override
+  String get repeater_loopDetect => 'Loop detection';
+
+  @override
+  String get repeater_loopDetectHelper =>
+      'Drop flood packets that look like routing loops';
+
+  @override
+  String get repeater_loopDetectOff => 'Off';
+
+  @override
+  String get repeater_loopDetectMinimal => 'Minimal';
+
+  @override
+  String get repeater_loopDetectModerate => 'Moderate';
+
+  @override
+  String get repeater_loopDetectStrict => 'Strict';
+
+  @override
+  String get repeater_dutyCycle => 'Duty cycle';
+
+  @override
+  String get repeater_dutyCycleHelper => 'Maximum percentage of airtime';
+
+  @override
+  String repeater_dutyCyclePercent(int percent) {
+    return '$percent%';
+  }
+
+  @override
+  String get repeater_ownerInfo => 'Operator info';
+
+  @override
+  String get repeater_ownerInfoHelper => 'Public metadata for this repeater';
+
+  @override
+  String get repeater_refreshOwnerInfo => 'Refresh operator info';
+
+  @override
+  String get repeater_floodMax => 'Flood max hops';
+
+  @override
+  String get repeater_floodMaxHelper =>
+      'Maximum hops a flood packet may travel (0-64)';
+
+  @override
+  String get repeater_advancedSettings => 'Advanced';
+
+  @override
+  String get repeater_advancedSettingsSubtitle =>
+      'Tuning knobs for experienced operators';
+
+  @override
+  String get repeater_pathHashMode => 'Path hash mode';
+
+  @override
+  String get repeater_pathHashModeHelper =>
+      'Bytes used to encode this repeater\'s ID in flood path/loop-detect tags. 0=1 byte (256 IDs, up to 64 hops), 1=2 bytes (65K IDs, up to 32 hops), 2=3 bytes (16M IDs, up to 21 hops). v1.13 and older firmware drops multi-byte paths — only raise once your network is on v1.14+.';
+
+  @override
+  String get repeater_txDelay => 'Flood TX delay';
+
+  @override
+  String get repeater_txDelayHelper =>
+      'Retransmit spacing for flood traffic, as a multiplier of the packet\'s airtime (0-2, default 0.5). Higher = fewer collisions but slower delivery.';
+
+  @override
+  String get repeater_directTxDelay => 'Direct TX delay';
+
+  @override
+  String get repeater_directTxDelayHelper =>
+      'Retransmit spacing for direct (non-flood) traffic, as a multiplier of the packet\'s airtime (0-2, default 0.3).';
+
+  @override
+  String get repeater_intThresh => 'Interference threshold';
+
+  @override
+  String get repeater_intThreshHelper =>
+      'Threshold passed to the radio\'s noise-floor calibration so it rejects interference above this level. 0 disables — only raise if you see RX errors in a noisy band.';
+
+  @override
+  String get repeater_agcResetInterval => 'AGC reset interval';
+
+  @override
+  String get repeater_agcResetIntervalHelper =>
+      'How often to reset the radio\'s automatic gain control to recover from a stuck gain state. Seconds, snapped down to a multiple of 4. 0 disables periodic resets.';
+
+  @override
+  String get repeater_actionsTitle => 'Actions';
+
+  @override
+  String get repeater_sendAdvert => 'Send flood advert';
+
+  @override
+  String get repeater_sendAdvertSubtitle =>
+      'Broadcast a flood advert through the network';
+
+  @override
+  String get repeater_sendAdvertZeroHop => 'Send zero-hop advert';
+
+  @override
+  String get repeater_sendAdvertZeroHopSubtitle =>
+      'Broadcast a one-hop advert (no relays)';
+
+  @override
+  String get repeater_clockSync => 'Sync clock now';
+
+  @override
+  String get repeater_clockSyncSubtitle =>
+      'Push your phone\'s time to the repeater';
+
+  @override
+  String repeater_actionSucceeded(String action) {
+    return '$action succeeded';
+  }
+
+  @override
+  String repeater_actionFailed(String action, String error) {
+    return '$action failed: $error';
+  }
+
+  @override
+  String get repeater_settingsSavedRebootNeeded =>
+      'Settings saved — reboot the repeater to apply';
+
+  @override
+  String repeater_settingsPartialFailure(String failures) {
+    return 'Some settings failed: $failures';
+  }
+
+  @override
   String repeater_errorSavingSettings(String error) {
     return 'Error saving settings: $error';
   }
@@ -2313,9 +2558,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repeater_refreshTxPower => 'Refresh TX power';
 
   @override
-  String get repeater_refreshLocationSettings => 'Refresh Location Settings';
-
-  @override
   String get repeater_refreshPacketForwarding => 'Refresh Packet Forwarding';
 
   @override
@@ -2323,10 +2565,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get repeater_refreshPrivacyMode => 'Refresh Privacy Mode';
-
-  @override
-  String get repeater_refreshAdvertisementSettings =>
-      'Refresh Advertisement Settings';
 
   @override
   String repeater_refreshed(String label) {
@@ -2648,6 +2886,278 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get repeater_gpsNote =>
       'gps command has been introduced to manage location related topics.';
+
+  @override
+  String get repeater_getCategory => 'Get Values';
+
+  @override
+  String get repeater_powerMgmt => 'Power Management';
+
+  @override
+  String get repeater_sensors => 'Sensors';
+
+  @override
+  String get repeater_cliHelpPowerOff =>
+      'Powers the device off. (no response expected)';
+
+  @override
+  String get repeater_cliHelpClkReboot =>
+      'Resets the clock to a known epoch and reboots the device.';
+
+  @override
+  String get repeater_cliHelpAdvertZeroHop =>
+      'Sends a zero-hop advertisement (immediate neighbors only).';
+
+  @override
+  String get repeater_cliHelpStartOta =>
+      'Starts an over-the-air firmware update on supported boards.';
+
+  @override
+  String get repeater_cliHelpTime =>
+      'Sets the device clock to the given Unix epoch seconds. Clock cannot move backwards.';
+
+  @override
+  String get repeater_cliHelpBoard =>
+      'Shows the board manufacturer / hardware identifier.';
+
+  @override
+  String get repeater_cliHelpDiscoverNeighbors =>
+      'Sends a node-discovery request to nearby neighbors. (Repeater only)';
+
+  @override
+  String get repeater_cliHelpPowersaving =>
+      'Shows whether powersaving mode is on or off.';
+
+  @override
+  String get repeater_cliHelpPowersavingOnOff =>
+      'Enables or disables powersaving mode (where supported).';
+
+  @override
+  String get repeater_cliHelpErase =>
+      '(Serial only) Formats the device file system. Wipes all settings and contacts.';
+
+  @override
+  String get repeater_cliHelpSetDutyCycle =>
+      'Sets the maximum allowed transmit duty cycle as a percentage (1-100). Internally adjusts the airtime factor.';
+
+  @override
+  String get repeater_cliHelpSetPrvKey =>
+      '(Serial only) Replaces the device identity private key. Reboot required to apply. Generates a new public key.';
+
+  @override
+  String get repeater_cliHelpSetRadioRxGain =>
+      '(SX126x only) Toggles boosted RX gain for improved sensitivity at higher current draw.';
+
+  @override
+  String get repeater_cliHelpSetOwnerInfo =>
+      'Sets the owner contact info string included in adverts. Use \'|\' for newlines.';
+
+  @override
+  String get repeater_cliHelpSetPathHashMode =>
+      'Sets the path-hash mode. 0 = legacy, 1 = standard, 2 = strict. Affects how routing paths are matched.';
+
+  @override
+  String get repeater_cliHelpSetLoopDetect =>
+      'Sets the routing loop-detection sensitivity: off, minimal, moderate, or strict.';
+
+  @override
+  String get repeater_cliHelpSetFreq =>
+      '(Serial only) Quickly sets just the frequency. Reboot required. Prefer \"set radio\" for full radio params.';
+
+  @override
+  String get repeater_cliHelpSetBridgeChannel =>
+      '(ESPNow bridge only) Sets the WiFi channel (1-14) used by the bridge.';
+
+  @override
+  String get repeater_cliHelpGetName => 'Shows the configured node name.';
+
+  @override
+  String get repeater_cliHelpGetRole =>
+      'Shows the firmware role (Repeater, Room Server, etc.).';
+
+  @override
+  String get repeater_cliHelpGetPublicKey => 'Shows the device public key.';
+
+  @override
+  String get repeater_cliHelpGetPrvKey =>
+      '(Serial only) Shows the device private key. Treat as a secret.';
+
+  @override
+  String get repeater_cliHelpGetRepeat =>
+      'Shows whether packet forwarding (repeater role) is on or off.';
+
+  @override
+  String get repeater_cliHelpGetTx => 'Shows the current TX power in dBm.';
+
+  @override
+  String get repeater_cliHelpGetFreq =>
+      'Shows the configured radio frequency in MHz.';
+
+  @override
+  String get repeater_cliHelpGetRadio =>
+      'Shows full radio params: freq, bandwidth, spreading factor, coding rate.';
+
+  @override
+  String get repeater_cliHelpGetRadioRxGain =>
+      '(SX126x only) Shows the RX boosted gain state.';
+
+  @override
+  String get repeater_cliHelpGetAf => 'Shows the current airtime factor.';
+
+  @override
+  String get repeater_cliHelpGetDutyCycle =>
+      'Shows the current allowed duty cycle as a percentage.';
+
+  @override
+  String get repeater_cliHelpGetIntThresh =>
+      'Shows the channel interference threshold in dB.';
+
+  @override
+  String get repeater_cliHelpGetAgcResetInterval =>
+      'Shows the AGC reset interval in seconds.';
+
+  @override
+  String get repeater_cliHelpGetMultiAcks =>
+      'Shows whether double-ACK mode is on (1) or off (0).';
+
+  @override
+  String get repeater_cliHelpGetAllowReadOnly =>
+      'Shows whether guest read-only access is allowed.';
+
+  @override
+  String get repeater_cliHelpGetAdvertInterval =>
+      'Shows the local advertisement interval in minutes.';
+
+  @override
+  String get repeater_cliHelpGetFloodAdvertInterval =>
+      'Shows the flood advertisement interval in hours.';
+
+  @override
+  String get repeater_cliHelpGetGuestPassword =>
+      'Shows the configured guest password.';
+
+  @override
+  String get repeater_cliHelpGetLat => 'Shows the configured latitude.';
+
+  @override
+  String get repeater_cliHelpGetLon => 'Shows the configured longitude.';
+
+  @override
+  String get repeater_cliHelpGetRxDelay => 'Shows the rxdelay base value.';
+
+  @override
+  String get repeater_cliHelpGetTxDelay =>
+      'Shows the flood-mode txdelay factor.';
+
+  @override
+  String get repeater_cliHelpGetDirectTxDelay =>
+      'Shows the direct-mode txdelay factor.';
+
+  @override
+  String get repeater_cliHelpGetFloodMax =>
+      'Shows the maximum flood hop count.';
+
+  @override
+  String get repeater_cliHelpGetOwnerInfo =>
+      'Shows the owner contact info string.';
+
+  @override
+  String get repeater_cliHelpGetPathHashMode =>
+      'Shows the path-hash mode (0/1/2).';
+
+  @override
+  String get repeater_cliHelpGetLoopDetect =>
+      'Shows the loop-detection sensitivity.';
+
+  @override
+  String get repeater_cliHelpGetAcl =>
+      '(Serial only) Lists the access-control entries on a repeater.';
+
+  @override
+  String get repeater_cliHelpGetBridgeEnabled =>
+      'Shows whether the bridge is enabled.';
+
+  @override
+  String get repeater_cliHelpGetBridgeDelay => 'Shows the bridge delay in ms.';
+
+  @override
+  String get repeater_cliHelpGetBridgeSource =>
+      'Shows whether the bridge logs RX or TX packets.';
+
+  @override
+  String get repeater_cliHelpGetBridgeBaud =>
+      '(RS232 bridge only) Shows the bridge baud rate.';
+
+  @override
+  String get repeater_cliHelpGetBridgeChannel =>
+      '(ESPNow bridge only) Shows the bridge WiFi channel.';
+
+  @override
+  String get repeater_cliHelpGetBridgeSecret =>
+      '(ESPNow bridge only) Shows the bridge shared secret.';
+
+  @override
+  String get repeater_cliHelpGetBootloaderVer =>
+      '(NRF52 only) Shows the bootloader version.';
+
+  @override
+  String get repeater_cliHelpGetAdcMultiplier =>
+      'Shows the ADC multiplier (battery-voltage scaling).';
+
+  @override
+  String get repeater_cliHelpGetPwrMgtSupport =>
+      'Reports whether the board has power-management support.';
+
+  @override
+  String get repeater_cliHelpGetPwrMgtSource =>
+      'Shows the current power source: external or battery.';
+
+  @override
+  String get repeater_cliHelpGetPwrMgtBootReason =>
+      'Shows the most recent reset and shutdown reasons.';
+
+  @override
+  String get repeater_cliHelpGetPwrMgtBootMv =>
+      'Shows the boot-time battery voltage in mV.';
+
+  @override
+  String get repeater_cliHelpSensorGet =>
+      'Reads a custom sensor setting by key.';
+
+  @override
+  String get repeater_cliHelpSensorSet => 'Writes a custom sensor setting.';
+
+  @override
+  String get repeater_cliHelpSensorList =>
+      'Lists all custom sensor settings, paginated from optional start index.';
+
+  @override
+  String get repeater_cliHelpRegionDefault =>
+      'Shows the current default region scope.';
+
+  @override
+  String get repeater_cliHelpRegionDefaultSet =>
+      'Sets the default region scope. Use \"<null>\" to clear.';
+
+  @override
+  String get repeater_cliHelpRegionListAllowed =>
+      'Lists regions that allow flood traffic.';
+
+  @override
+  String get repeater_cliHelpRegionListDenied =>
+      'Lists regions that deny flood traffic.';
+
+  @override
+  String get repeater_cliHelpStatsPackets =>
+      '(Serial only) Shows packet-level statistics.';
+
+  @override
+  String get repeater_cliHelpStatsRadio =>
+      '(Serial only) Shows radio statistics.';
+
+  @override
+  String get repeater_cliHelpStatsCore =>
+      '(Serial only) Shows core firmware statistics.';
 
   @override
   String get telemetry_receivedData => 'Received Telemetry Data';
@@ -3183,6 +3693,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get losLegendTerrain => 'Terrain';
 
   @override
+  String get losBlockedSpotsTitle => 'Blocked spots';
+
+  @override
+  String get losBlockedSpotsHint =>
+      'Tap a blocked spot to highlight it on the map.';
+
+  @override
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  ) {
+    return '$distance $distanceUnit • $obstruction $heightUnit';
+  }
+
+  @override
+  String get losSelectedObstructionTitle => 'Selected obstruction';
+
+  @override
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  ) {
+    return 'Blocked by $obstruction $heightUnit, $distanceFromA from A and $distanceFromB from B ($distanceUnit).';
+  }
+
+  @override
   String get losFrequencyLabel => 'Frequency';
 
   @override
@@ -3633,4 +4174,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get translation_systemLanguage => 'System language';
+
+  @override
+  String get background_serviceTitle => 'MeshCore running';
+
+  @override
+  String get background_serviceText => 'Keeping BLE connected';
+
+  @override
+  String appSettings_translationModelDeleted(String name) {
+    return 'Deleted $name';
+  }
+
+  @override
+  String appSettings_translationModelDeleteFailed(String error) {
+    return 'Failed to delete: $error';
+  }
+
+  @override
+  String channels_channelUpdateFailed(String error) {
+    return 'Failed to update channel: $error';
+  }
+
+  @override
+  String get contact_typeChat => 'Chat';
+
+  @override
+  String get contact_typeRepeater => 'Repeater';
+
+  @override
+  String get contact_typeRoom => 'Room';
+
+  @override
+  String get contact_typeSensor => 'Sensor';
+
+  @override
+  String get contact_typeUnknown => 'Unknown';
 }

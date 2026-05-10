@@ -16,6 +16,7 @@ import '../models/message.dart';
 import '../models/path_selection.dart';
 import '../models/translation_support.dart';
 import '../helpers/reaction_helper.dart';
+import '../helpers/cyr2lat.dart';
 import '../helpers/smaz.dart';
 import '../services/app_debug_log_service.dart';
 import '../services/ble_debug_log_service.dart';
@@ -165,6 +166,8 @@ class MeshCoreConnector extends ChangeNotifier {
   Timer? _selfInfoRetryTimer;
   Timer? _reconnectTimer;
   Timer? _batteryPollTimer;
+  Timer? _gpsLocationPollTimer;
+  static const _gpsLocationPollInterval = Duration(minutes: 1);
   Timer? _radioStatsPollTimer;
   int _radioStatsPollRefCount = 0;
   final ValueNotifier<CompanionRadioStats?> radioStatsNotifier =
@@ -252,6 +255,11 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> _pathOpLock = Future.value();
   Map<String, String>? _currentCustomVars;
 
+  /// Maps repeater pubkey-prefix hex (12 hex chars = first 6 bytes) → the
+  /// repeater's RTC clock at the moment of the most recent successful login.
+  /// Reported by firmware in the login-success push frame at byte offset 8.
+  final Map<String, DateTime> _repeaterLoginClocks = {};
+
   // Channel syncing state (sequential pattern)
   bool _isSyncingChannels = false;
   bool _channelSyncInFlight = false;
@@ -283,9 +291,13 @@ class MeshCoreConnector extends ChangeNotifier {
   final UnreadStore _unreadStore = UnreadStore();
   List<Channel> _cachedChannels = [];
   final Map<int, bool> _channelSmazEnabled = {};
+  final Map<int, bool> _channelCyr2LatEnabled = {};
+  final Map<int, String?> _channelCyr2LatProfileId = {};
   bool _lastSentWasCliCommand =
       false; // Track if last sent message was a CLI command
   final Map<String, bool> _contactSmazEnabled = {};
+  final Map<String, bool> _contactCyr2LatEnabled = {};
+  final Map<String, String?> _contactCyr2LatProfileId = {};
   final Set<String> _knownContactKeys = {};
   final Map<String, int> _contactUnreadCount = {};
   final Map<String, RepeaterBatterySnapshot> _repeaterBatterySnapshots = {};
@@ -399,6 +411,17 @@ class MeshCoreConnector extends ChangeNotifier {
   int get advertLocationPolicy => _advertLocPolicy;
   int get multiAcks => _multiAcks;
   bool? get clientRepeat => _clientRepeat;
+
+  /// Returns the repeater's RTC clock at the time of the most recent
+  /// successful login, looked up by the contact's full public key.
+  /// Returns null if no login response has been observed for this repeater
+  /// since connection.
+  DateTime? repeaterClockAtLogin(Uint8List publicKey) {
+    if (publicKey.length < 6) return null;
+    final prefix = pubKeyToHex(publicKey.sublist(0, 6));
+    return _repeaterLoginClocks[prefix];
+  }
+
   void rememberNonRepeatRadioState(MeshCoreRadioStateSnapshot snapshot) {
     _rememberedNonRepeatRadioState = snapshot;
   }
@@ -607,6 +630,20 @@ class MeshCoreConnector extends ChangeNotifier {
     _ensureContactSmazSettingLoaded(contactKeyHex);
   }
 
+  bool isChannelCyr2LatEnabled(int channelIndex) {
+    _ensureChannelCyr2LatSettingLoaded(channelIndex);
+    return _channelCyr2LatEnabled[channelIndex] ?? false;
+  }
+
+  bool isContactCyr2LatEnabled(String contactKeyHex) {
+    _ensureContactCyr2LatSettingLoaded(contactKeyHex);
+    return _contactCyr2LatEnabled[contactKeyHex] ?? false;
+  }
+
+  void ensureContactCyr2LatSettingLoaded(String contactKeyHex) {
+    _ensureContactCyr2LatSettingLoaded(contactKeyHex);
+  }
+
   Future<void> loadUnreadState() async {
     _contactUnreadCount
       ..clear()
@@ -658,6 +695,27 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  void setContactUnreadCount(String contactKeyHex, int count) {
+    _contactUnreadCount[contactKeyHex] = count;
+    _unreadStore.saveContactUnreadCount(
+      Map<String, int>.from(_contactUnreadCount),
+    );
+    notifyListeners();
+  }
+
+  void setChannelUnreadCount(int channelIndex, int count) {
+    final channel = _findChannelByIndex(channelIndex);
+    if (channel != null) {
+      channel.unreadCount = count;
+      unawaited(
+        _channelStore.saveChannels(
+          _channels.isNotEmpty ? _channels : _cachedChannels,
+        ),
+      );
+      notifyListeners();
+    }
+  }
+
   void markChannelRead(int channelIndex) {
     final channel = _findChannelByIndex(channelIndex);
     if (channel != null && channel.unreadCount > 0) {
@@ -682,6 +740,10 @@ class MeshCoreConnector extends ChangeNotifier {
 
   Future<void> setChannelSmazEnabled(int channelIndex, bool enabled) async {
     _channelSmazEnabled[channelIndex] = enabled;
+    if (enabled) {
+      _channelCyr2LatEnabled[channelIndex] = false;
+      await _channelSettingsStore.saveCyr2LatEnabled(channelIndex, false);
+    }
     await _channelSettingsStore.saveSmazEnabled(channelIndex, enabled);
     notifyListeners();
   }
@@ -689,6 +751,25 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> setContactSmazEnabled(String contactKeyHex, bool enabled) async {
     _contactSmazEnabled[contactKeyHex] = enabled;
     await _contactSettingsStore.saveSmazEnabled(contactKeyHex, enabled);
+    notifyListeners();
+  }
+
+  Future<void> setChannelCyr2LatEnabled(int channelIndex, bool enabled) async {
+    _channelCyr2LatEnabled[channelIndex] = enabled;
+    if (enabled) {
+      _channelSmazEnabled[channelIndex] = false;
+      await _channelSettingsStore.saveSmazEnabled(channelIndex, false);
+    }
+    await _channelSettingsStore.saveCyr2LatEnabled(channelIndex, enabled);
+    notifyListeners();
+  }
+
+  Future<void> setContactCyr2LatEnabled(
+    String contactKeyHex,
+    bool enabled,
+  ) async {
+    _contactCyr2LatEnabled[contactKeyHex] = enabled;
+    await _contactSettingsStore.saveCyr2LatEnabled(contactKeyHex, enabled);
     notifyListeners();
   }
 
@@ -828,6 +909,7 @@ class MeshCoreConnector extends ChangeNotifier {
       ..addAll(cached);
     for (final contact in cached) {
       _ensureContactSmazSettingLoaded(contact.publicKeyHex);
+      _ensureContactCyr2LatSettingLoaded(contact.publicKeyHex);
     }
   }
 
@@ -840,9 +922,12 @@ class MeshCoreConnector extends ChangeNotifier {
 
   Future<void> loadChannelSettings({int? maxChannels}) async {
     _channelSmazEnabled.clear();
+    _channelCyr2LatEnabled.clear();
     final channelCount = maxChannels ?? _maxChannels;
     for (int i = 0; i < channelCount; i++) {
       _channelSmazEnabled[i] = await _channelSettingsStore.loadSmazEnabled(i);
+      _channelCyr2LatEnabled[i] = await _channelSettingsStore
+          .loadCyr2LatEnabled(i);
     }
   }
 
@@ -2140,6 +2225,7 @@ class MeshCoreConnector extends ChangeNotifier {
       return;
     }
     _bleInitialSyncStarted = true;
+    _pendingInitialContactsSync = true;
 
     await _requestDeviceInfo();
     _startBatteryPolling();
@@ -2397,6 +2483,25 @@ class MeshCoreConnector extends ChangeNotifier {
   void _stopBatteryPolling() {
     _batteryPollTimer?.cancel();
     _batteryPollTimer = null;
+  }
+
+  /// Start polling the radio's GPS-backed self-info every minute.
+  /// No-op if already running. Triggered when the radio reports `gps=1`.
+  void _startGpsLocationPolling() {
+    if (_gpsLocationPollTimer != null) return;
+    _gpsLocationPollTimer = Timer.periodic(_gpsLocationPollInterval, (timer) {
+      if (!isConnected) {
+        timer.cancel();
+        _gpsLocationPollTimer = null;
+        return;
+      }
+      unawaited(sendFrame(buildAppStartFrame()));
+    });
+  }
+
+  void _stopGpsLocationPolling() {
+    _gpsLocationPollTimer?.cancel();
+    _gpsLocationPollTimer = null;
   }
 
   void setPollingInterval(int i) {
@@ -2994,13 +3099,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _pendingChannelSentQueue.add(message.messageId);
     notifyListeners();
 
-    final trimmed = text.trim();
-    final isStructuredPayload =
-        trimmed.startsWith('g:') || trimmed.startsWith('m:');
-    final outboundText =
-        (isChannelSmazEnabled(channel.index) && !isStructuredPayload)
-        ? Smaz.encodeIfSmaller(text)
-        : text;
+    final outboundText = prepareChannelOutboundText(channel.index, text);
     await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
     await sendFrame(
       buildSendChannelTextMsgFrame(channel.index, outboundText),
@@ -3242,6 +3341,18 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> setCustomVar(String value) async {
     if (!isConnected) return;
     await sendFrame(buildSetCustomVarFrame(value));
+    final sep = value.indexOf(':');
+    if (sep > 0) {
+      final key = value.substring(0, sep);
+      final val = value.substring(sep + 1);
+      (_currentCustomVars ??= <String, String>{})[key] = val;
+      notifyListeners();
+    }
+    if (value == 'gps:1') {
+      _startGpsLocationPolling();
+    } else if (value == 'gps:0') {
+      _stopGpsLocationPolling();
+    }
   }
 
   Future<void> sendSelfAdvert({bool flood = true}) async {
@@ -3549,6 +3660,8 @@ class MeshCoreConnector extends ChangeNotifier {
         _handlePathUpdated(frame);
         break;
       case pushCodeLoginSuccess:
+        _handleLoginSuccess(frame);
+        break;
       case pushCodeLoginFail:
       case pushCodeStatusResponse:
         break;
@@ -3675,6 +3788,14 @@ class MeshCoreConnector extends ChangeNotifier {
       _usbManager.updateConnectedLabel(selfName);
     }
 
+    // GPS poll responses arrive as RESP_CODE_SELF_INFO but are not the real
+    // handshake — only update location and notify, skip store reloads and
+    // contact sync which would clear and re-fetch contacts every minute.
+    if (!wasAwaitingSelfInfo) {
+      notifyListeners();
+      return;
+    }
+
     //set all the stores' public key so they can load the correct data
     _channelMessageStore.setPublicKeyHex = selfPublicKeyHex;
     _messageStore.setPublicKeyHex = selfPublicKeyHex;
@@ -3700,12 +3821,6 @@ class MeshCoreConnector extends ChangeNotifier {
     _selfInfoRetryTimer?.cancel();
     _selfInfoRetryTimer = null;
     notifyListeners();
-
-    if (PlatformInfo.isWeb &&
-        _activeTransport == MeshCoreTransportType.bluetooth &&
-        !wasAwaitingSelfInfo) {
-      return;
-    }
 
     // Auto-fetch contacts after getting self info. On web BLE, defer this
     // until after channel 0 so startup writes stay serialized.
@@ -4003,7 +4118,7 @@ class MeshCoreConnector extends ChangeNotifier {
           );
         } else {
           appLogger.info(
-            "Discovered contact ${contact.name} (type ${contact.typeLabel}) not added due to auto-add settings",
+            "Discovered contact ${contact.name} (type ${contact.typeLabelRaw}) not added due to auto-add settings",
             tag: 'Connector',
           );
           return;
@@ -4025,7 +4140,7 @@ class MeshCoreConnector extends ChangeNotifier {
         if (settings.notificationsEnabled && settings.notifyOnNewAdvert) {
           _notificationService.showAdvertNotification(
             contactName: contact.name,
-            contactType: contact.typeLabel,
+            contactType: contact.typeLabelRaw,
             contactId: contact.publicKeyHex,
           );
         }
@@ -4100,7 +4215,7 @@ class MeshCoreConnector extends ChangeNotifier {
       if (settings.notificationsEnabled && settings.notifyOnNewAdvert) {
         _notificationService.showAdvertNotification(
           contactName: contact.name,
-          contactType: contact.typeLabel,
+          contactType: contact.typeLabelRaw,
           contactId: contact.publicKeyHex,
         );
       }
@@ -4123,7 +4238,9 @@ class MeshCoreConnector extends ChangeNotifier {
     if (_contacts.isEmpty) return 0;
     var latest = 0;
     for (final contact in _contacts) {
-      final seconds = contact.lastSeen.millisecondsSinceEpoch ~/ 1000;
+      // prefer lastmod per spec, fallback to lastseen
+      final source = contact.lastModified ?? contact.lastSeen;
+      final seconds = source.millisecondsSinceEpoch ~/ 1000;
       if (seconds > latest) {
         latest = seconds;
       }
@@ -4438,6 +4555,72 @@ class MeshCoreConnector extends ChangeNotifier {
     });
   }
 
+  void _ensureContactCyr2LatSettingLoaded(String contactKeyHex) {
+    if (_contactCyr2LatEnabled.containsKey(contactKeyHex)) return;
+    _contactSettingsStore.loadCyr2LatEnabled(contactKeyHex).then((enabled) {
+      if (_contactCyr2LatEnabled[contactKeyHex] == enabled) return;
+      _contactCyr2LatEnabled[contactKeyHex] = enabled;
+      notifyListeners();
+    });
+  }
+
+  void _ensureContactCyr2LatProfileLoaded(String contactKeyHex) {
+    if (_contactCyr2LatProfileId.containsKey(contactKeyHex)) return;
+    _contactSettingsStore.loadCyr2LatProfileId(contactKeyHex).then((profileId) {
+      if (_contactCyr2LatProfileId[contactKeyHex] == profileId) return;
+      _contactCyr2LatProfileId[contactKeyHex] = profileId;
+      notifyListeners();
+    });
+  }
+
+  void _ensureChannelCyr2LatSettingLoaded(int channelIndex) {
+    if (_channelCyr2LatEnabled.containsKey(channelIndex)) return;
+    _channelSettingsStore.loadCyr2LatEnabled(channelIndex).then((enabled) {
+      if (_channelCyr2LatEnabled[channelIndex] == enabled) return;
+      _channelCyr2LatEnabled[channelIndex] = enabled;
+      notifyListeners();
+    });
+  }
+
+  void _ensureChannelCyr2LatProfileLoaded(int channelIndex) {
+    if (_channelCyr2LatProfileId.containsKey(channelIndex)) return;
+    _channelSettingsStore.loadCyr2LatProfileId(channelIndex).then((profileId) {
+      if (_channelCyr2LatProfileId[channelIndex] == profileId) return;
+      _channelCyr2LatProfileId[channelIndex] = profileId;
+      notifyListeners();
+    });
+  }
+
+  String? getChannelCyr2LatProfileId(int channelIndex) {
+    _ensureChannelCyr2LatProfileLoaded(channelIndex);
+    return _channelCyr2LatProfileId[channelIndex];
+  }
+
+  Future<void> setChannelCyr2LatProfileId(
+    int channelIndex,
+    String? profileId,
+  ) async {
+    if (_channelCyr2LatProfileId[channelIndex] == profileId) return;
+    _channelCyr2LatProfileId[channelIndex] = profileId;
+    await _channelSettingsStore.saveCyr2LatProfileId(channelIndex, profileId);
+    notifyListeners();
+  }
+
+  String? getContactCyr2LatProfileId(String contactKeyHex) {
+    _ensureContactCyr2LatProfileLoaded(contactKeyHex);
+    return _contactCyr2LatProfileId[contactKeyHex];
+  }
+
+  Future<void> setContactCyr2LatProfileId(
+    String contactKeyHex,
+    String? profileId,
+  ) async {
+    if (_contactCyr2LatProfileId[contactKeyHex] == profileId) return;
+    _contactCyr2LatProfileId[contactKeyHex] = profileId;
+    await _contactSettingsStore.saveCyr2LatProfileId(contactKeyHex, profileId);
+    notifyListeners();
+  }
+
   /// Prepares contact outbound text by applying SMAZ encoding if enabled.
   /// This should be used to transform text before computing ACK hashes.
   String prepareContactOutboundText(Contact contact, String text) {
@@ -4446,8 +4629,54 @@ class MeshCoreConnector extends ChangeNotifier {
         trimmed.startsWith('g:') ||
         trimmed.startsWith('m:') ||
         trimmed.startsWith('V1|');
-    if (!isStructuredPayload && isContactSmazEnabled(contact.publicKeyHex)) {
-      return Smaz.encodeIfSmaller(text);
+    if (!isStructuredPayload) {
+      if (isContactSmazEnabled(contact.publicKeyHex)) {
+        return Smaz.encodeIfSmaller(text);
+      } else if (isContactCyr2LatEnabled(contact.publicKeyHex)) {
+        final profileId = getContactCyr2LatProfileId(contact.publicKeyHex);
+        final profile = profileId != null && _appSettingsService != null
+            ? _appSettingsService!.getCyr2LatProfileById(profileId)
+            : null;
+        if (profile != null) {
+          Cyr2Lat.setCharMap(profile.charMap);
+        } else {
+          // Use global profile
+          final globalProfile = _appSettingsService
+              ?.getSelectedCyr2LatProfile();
+          if (globalProfile != null) {
+            Cyr2Lat.setCharMap(globalProfile.charMap);
+          }
+        }
+        return Cyr2Lat.encode(text);
+      }
+    }
+    return text;
+  }
+
+  String prepareChannelOutboundText(int channelIndex, String text) {
+    final trimmed = text.trim();
+    final isStructuredPayload =
+        trimmed.startsWith('g:') || trimmed.startsWith('m:');
+    if (!isStructuredPayload) {
+      if (isChannelSmazEnabled(channelIndex)) {
+        return Smaz.encodeIfSmaller(text);
+      } else if (isChannelCyr2LatEnabled(channelIndex)) {
+        final profileId = getChannelCyr2LatProfileId(channelIndex);
+        final profile = profileId != null && _appSettingsService != null
+            ? _appSettingsService!.getCyr2LatProfileById(profileId)
+            : null;
+        if (profile != null) {
+          Cyr2Lat.setCharMap(profile.charMap);
+        } else {
+          // Use global profile
+          final globalProfile = _appSettingsService
+              ?.getSelectedCyr2LatProfile();
+          if (globalProfile != null) {
+            Cyr2Lat.setCharMap(globalProfile.charMap);
+          }
+        }
+        return Cyr2Lat.encode(text);
+      }
     }
     return text;
   }
@@ -5496,6 +5725,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void _handleDisconnection() {
     _stopBatteryPolling();
+    _stopGpsLocationPolling();
     _stopRadioStatsPolling();
     _latestRadioStats = null;
     radioStatsNotifier.value = null;
@@ -5581,10 +5811,35 @@ class MeshCoreConnector extends ChangeNotifier {
     return result;
   }
 
+  /// Parse PUSH_CODE_LOGIN_SUCCESS (0x85) frame and stash the repeater's
+  /// reported clock. Frame layout (firmware companion_radio/MyMesh.cpp:678+):
+  ///   [0]=0x85, [1]=permissions, [2..7]=pubkey prefix (6 bytes),
+  ///   [8..11]=repeater RTC unix seconds (LE), [12]=ACL perms, [13]=fw level
+  /// The timestamp is only present in the v7+ "new login response" — older
+  /// firmware emits a shorter frame that we silently skip.
+  void _handleLoginSuccess(Uint8List frame) {
+    if (frame.length < 12) return;
+    final prefix = pubKeyToHex(frame.sublist(2, 8));
+    final ts = ByteData.sublistView(frame, 8, 12).getUint32(0, Endian.little);
+    if (ts == 0) return;
+    _repeaterLoginClocks[prefix] = DateTime.fromMillisecondsSinceEpoch(
+      ts * 1000,
+      isUtc: true,
+    );
+    notifyListeners();
+  }
+
   void _handleCustomVars(Uint8List frame) {
     final buf = BufferReader(frame.sublist(1));
     try {
       _currentCustomVars = _parseKeyValueString(buf.readCString());
+      // Reflect current GPS state in the polling timer (handles initial
+      // device state on connect as well as external CLI/USB toggles).
+      if (_currentCustomVars?['gps'] == '1') {
+        _startGpsLocationPolling();
+      } else {
+        _stopGpsLocationPolling();
+      }
     } catch (e) {
       appLogger.warn('Malformed custom vars frame: $e', tag: 'Connector');
     }
@@ -5640,6 +5895,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _notifyListenersTimer?.cancel();
     _reconnectTimer?.cancel();
     _batteryPollTimer?.cancel();
+    _gpsLocationPollTimer?.cancel();
     _radioStatsPollTimer?.cancel();
     radioStatsNotifier.dispose();
     _receivedFramesController.close();
@@ -6021,7 +6277,7 @@ class MeshCoreConnector extends ChangeNotifier {
       if (settings.notificationsEnabled && settings.notifyOnNewAdvert) {
         _notificationService.showAdvertNotification(
           contactName: contact.name,
-          contactType: contact.typeLabel,
+          contactType: contact.typeLabelRaw,
           contactId: contact.publicKeyHex,
         );
       }

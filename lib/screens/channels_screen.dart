@@ -384,7 +384,6 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     IconData icon;
     Color iconColor;
     Color bgColor;
-    String subtitle;
 
     if (isCommunityChannel) {
       // Community channel styling
@@ -392,28 +391,21 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       bgColor = Colors.purple.withValues(alpha: 0.2);
       if (isCommunityPublic) {
         icon = Icons.groups;
-        subtitle =
-            '${context.l10n.community_publicChannel} • ${community.name}';
       } else {
         icon = Icons.tag;
-        subtitle =
-            '${context.l10n.community_hashtagChannel} • ${community.name}';
       }
     } else if (channel.isPublicChannel) {
       icon = Icons.public;
       iconColor = Colors.green;
       bgColor = Colors.green.withValues(alpha: 0.2);
-      subtitle = context.l10n.channels_publicChannel;
     } else if (channel.name.startsWith('#')) {
       icon = Icons.tag;
       iconColor = Colors.blue;
       bgColor = Colors.blue.withValues(alpha: 0.2);
-      subtitle = context.l10n.channels_hashtagChannel;
     } else {
       icon = Icons.lock;
       iconColor = Colors.blue;
       bgColor = Colors.blue.withValues(alpha: 0.2);
-      subtitle = context.l10n.channels_privateChannel;
     }
 
     return Card(
@@ -430,14 +422,17 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             : null,
         child: ListTile(
           dense: true,
-          minVerticalPadding: 0,
+          minVerticalPadding: 14,
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
           visualDensity: const VisualDensity(vertical: -2),
           leading: Stack(
             children: [
-              CircleAvatar(
-                backgroundColor: bgColor,
-                child: Icon(icon, color: iconColor),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 3),
+                child: CircleAvatar(
+                  backgroundColor: bgColor,
+                  child: Icon(icon, color: iconColor),
+                ),
               ),
               if (isCommunityChannel)
                 Positioned(
@@ -469,11 +464,6 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                 : channel.name,
             style: const TextStyle(fontWeight: FontWeight.w500),
           ),
-          subtitle: Text(
-            subtitle,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -492,13 +482,19 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             ],
           ),
           onTap: () async {
+            final unread = connector.getUnreadCountForChannelIndex(
+              channel.index,
+            );
             connector.markChannelRead(channel.index);
             await Future.delayed(const Duration(milliseconds: 50));
             if (context.mounted) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ChannelChatScreen(channel: channel),
+                  builder: (context) => ChannelChatScreen(
+                    channel: channel,
+                    initialUnreadCount: unread,
+                  ),
                 ),
               );
             }
@@ -1401,9 +1397,17 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     MeshCoreConnector connector,
     Channel channel,
   ) {
+    final appSettingsService = Provider.of<AppSettingsService>(
+      context,
+      listen: false,
+    );
     final nameController = TextEditingController(text: channel.name);
     final pskController = TextEditingController(text: channel.pskHex);
     bool smazEnabled = connector.isChannelSmazEnabled(channel.index);
+    bool cyr2latEnabled = connector.isChannelCyr2LatEnabled(channel.index);
+    String? selectedCyr2LatProfileId = connector.getChannelCyr2LatProfileId(
+      channel.index,
+    );
 
     showDialog(
       context: context,
@@ -1449,8 +1453,52 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                   contentPadding: EdgeInsets.zero,
                   title: Text(dialogContext.l10n.channels_smazCompression),
                   value: smazEnabled,
-                  onChanged: (value) => setState(() => smazEnabled = value),
+                  onChanged: (value) => setState(() {
+                    smazEnabled = value;
+                    if (smazEnabled) {
+                      cyr2latEnabled = false;
+                    }
+                  }),
                 ),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(dialogContext.l10n.channels_cyr2latCompression),
+                  subtitle: Text(
+                    dialogContext.l10n.channels_cyr2latCompressionDscr,
+                  ),
+                  value: cyr2latEnabled,
+                  onChanged: (value) => setState(() {
+                    cyr2latEnabled = value;
+                    if (cyr2latEnabled) {
+                      smazEnabled = false;
+                    }
+                  }),
+                ),
+                if (cyr2latEnabled) ...[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                    child: DropdownButtonFormField<String>(
+                      initialValue: selectedCyr2LatProfileId,
+                      decoration: InputDecoration(
+                        labelText: dialogContext
+                            .l10n
+                            .channels_cyr2latSettingsSubheading,
+                        border: const OutlineInputBorder(),
+                      ),
+                      items: appSettingsService.settings.cyr2latProfiles.map((
+                        profile,
+                      ) {
+                        return DropdownMenuItem(
+                          value: profile.id,
+                          child: Text(profile.name),
+                        );
+                      }).toList(),
+                      onChanged: (value) => setState(() {
+                        selectedCyr2LatProfileId = value;
+                      }),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -1482,6 +1530,14 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     channel.index,
                     smazEnabled,
                   );
+                  await connector.setChannelCyr2LatEnabled(
+                    channel.index,
+                    cyr2latEnabled,
+                  );
+                  await connector.setChannelCyr2LatProfileId(
+                    channel.index,
+                    selectedCyr2LatProfileId,
+                  );
                   if (!context.mounted) return;
                   showDismissibleSnackBar(
                     context,
@@ -1492,7 +1548,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                   if (!context.mounted) return;
                   showDismissibleSnackBar(
                     context,
-                    content: Text('Failed to update channel: $e'),
+                    content: Text(
+                      context.l10n.channels_channelUpdateFailed('$e'),
+                    ),
                   );
                 }
               },
