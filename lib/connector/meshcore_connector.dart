@@ -3442,6 +3442,7 @@ class MeshCoreConnector extends ChangeNotifier {
     // Cache channels for offline use
     _cachedChannels = List<Channel>.from(_channels);
     unawaited(_channelStore.saveChannels(_channels));
+    _recalculateCachedChannelsUnreadTotal();
 
     // Apply ordering and notify UI
     _applyChannelOrder();
@@ -3460,7 +3461,6 @@ class MeshCoreConnector extends ChangeNotifier {
     if (completed) {
       _hasLoadedChannels = true;
       _previousChannelsCache.clear();
-      _recalculateCachedChannelsUnreadTotal();
     }
 
     // Fallback: if contact sync was deferred waiting for channel 0 but
