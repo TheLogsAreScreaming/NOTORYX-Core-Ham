@@ -182,22 +182,22 @@ class RadioSettings {
       ),
     ),
     (
+      'Russia Artyom (VVO)',
+      RadioSettings(
+        frequencyMHz: 864.281,
+        bandwidth: LoRaBandwidth.bw62_5,
+        spreadingFactor: LoRaSpreadingFactor.sf8,
+        codingRate: LoRaCodingRate.cr4_6,
+        txPowerDbm: 20,
+      ),
+    ),
+    (
       'Russia Biysk (BSK)',
       RadioSettings(
         frequencyMHz: 869.000,
         bandwidth: LoRaBandwidth.bw62_5,
         spreadingFactor: LoRaSpreadingFactor.sf8,
         codingRate: LoRaCodingRate.cr4_5,
-        txPowerDbm: 20,
-      ),
-    ),
-    (
-      'Russia Cherepovets (CEE)',
-      RadioSettings(
-        frequencyMHz: 868.570,
-        bandwidth: LoRaBandwidth.bw62_5,
-        spreadingFactor: LoRaSpreadingFactor.sf7,
-        codingRate: LoRaCodingRate.cr4_8,
         txPowerDbm: 20,
       ),
     ),
@@ -212,41 +212,11 @@ class RadioSettings {
       ),
     ),
     (
-      'Russia Nizhny Novgorod (GOJ)',
+      'Russia Cherepovets (CEE)',
       RadioSettings(
-        frequencyMHz: 868.731,
-        bandwidth: LoRaBandwidth.bw62_5,
-        spreadingFactor: LoRaSpreadingFactor.sf8,
-        codingRate: LoRaCodingRate.cr4_6,
-        txPowerDbm: 20,
-      ),
-    ),
-    (
-      'Russia Saratov (GSV)',
-      RadioSettings(
-        frequencyMHz: 864.281,
-        bandwidth: LoRaBandwidth.bw62_5,
-        spreadingFactor: LoRaSpreadingFactor.sf8,
-        codingRate: LoRaCodingRate.cr4_7,
-        txPowerDbm: 20,
-      ),
-    ),
-    (
-      'Russia St. Petersburg (LED)',
-      RadioSettings(
-        frequencyMHz: 868.856,
+        frequencyMHz: 868.570,
         bandwidth: LoRaBandwidth.bw62_5,
         spreadingFactor: LoRaSpreadingFactor.sf7,
-        codingRate: LoRaCodingRate.cr4_7,
-        txPowerDbm: 20,
-      ),
-    ),
-    (
-      'Russia Izhevsk (IJK)',
-      RadioSettings(
-        frequencyMHz: 868.732,
-        bandwidth: LoRaBandwidth.bw62_5,
-        spreadingFactor: LoRaSpreadingFactor.sf8,
         codingRate: LoRaCodingRate.cr4_8,
         txPowerDbm: 20,
       ),
@@ -272,19 +242,9 @@ class RadioSettings {
       ),
     ),
     (
-      'Russia Khabarovsk (KHV)',
+      'Russia Izhevsk (IJK)',
       RadioSettings(
-        frequencyMHz: 864.281,
-        bandwidth: LoRaBandwidth.bw62_5,
-        spreadingFactor: LoRaSpreadingFactor.sf8,
-        codingRate: LoRaCodingRate.cr4_6,
-        txPowerDbm: 20,
-      ),
-    ),
-    (
-      'Russia Tver (KLD)',
-      RadioSettings(
-        frequencyMHz: 869.169,
+        frequencyMHz: 868.732,
         bandwidth: LoRaBandwidth.bw62_5,
         spreadingFactor: LoRaSpreadingFactor.sf8,
         codingRate: LoRaCodingRate.cr4_8,
@@ -302,12 +262,22 @@ class RadioSettings {
       ),
     ),
     (
-      'Russia Samara (KUF)',
+      'Russia Kazan (KZN)',
+      RadioSettings(
+        frequencyMHz: 868.731,
+        bandwidth: LoRaBandwidth.bw62_5,
+        spreadingFactor: LoRaSpreadingFactor.sf8,
+        codingRate: LoRaCodingRate.cr4_6,
+        txPowerDbm: 20,
+      ),
+    ),
+    (
+      'Russia Khabarovsk (KHV)',
       RadioSettings(
         frequencyMHz: 864.281,
         bandwidth: LoRaBandwidth.bw62_5,
         spreadingFactor: LoRaSpreadingFactor.sf8,
-        codingRate: LoRaCodingRate.cr4_7,
+        codingRate: LoRaCodingRate.cr4_6,
         txPowerDbm: 20,
       ),
     ),
@@ -318,16 +288,6 @@ class RadioSettings {
         bandwidth: LoRaBandwidth.bw62_5,
         spreadingFactor: LoRaSpreadingFactor.sf8,
         codingRate: LoRaCodingRate.cr4_8,
-        txPowerDbm: 20,
-      ),
-    ),
-    (
-      'Russia Kazan (KZN)',
-      RadioSettings(
-        frequencyMHz: 868.731,
-        bandwidth: LoRaBandwidth.bw62_5,
-        spreadingFactor: LoRaSpreadingFactor.sf8,
-        codingRate: LoRaCodingRate.cr4_6,
         txPowerDbm: 20,
       ),
     ),
@@ -348,6 +308,16 @@ class RadioSettings {
         bandwidth: LoRaBandwidth.bw62_5,
         spreadingFactor: LoRaSpreadingFactor.sf7,
         codingRate: LoRaCodingRate.cr4_7,
+        txPowerDbm: 20,
+      ),
+    ),
+    (
+      'Russia Nizhny Novgorod (GOJ)',
+      RadioSettings(
+        frequencyMHz: 868.731,
+        bandwidth: LoRaBandwidth.bw62_5,
+        spreadingFactor: LoRaSpreadingFactor.sf8,
+        codingRate: LoRaCodingRate.cr4_6,
         txPowerDbm: 20,
       ),
     ),
@@ -382,9 +352,29 @@ class RadioSettings {
       ),
     ),
     (
-      'Russia Yekaterinburg (SVX)',
+      'Russia Samara (KUF)',
       RadioSettings(
-        frequencyMHz: 869.046,
+        frequencyMHz: 864.281,
+        bandwidth: LoRaBandwidth.bw62_5,
+        spreadingFactor: LoRaSpreadingFactor.sf8,
+        codingRate: LoRaCodingRate.cr4_7,
+        txPowerDbm: 20,
+      ),
+    ),
+    (
+      'Russia Saratov (GSV)',
+      RadioSettings(
+        frequencyMHz: 864.281,
+        bandwidth: LoRaBandwidth.bw62_5,
+        spreadingFactor: LoRaSpreadingFactor.sf8,
+        codingRate: LoRaCodingRate.cr4_7,
+        txPowerDbm: 20,
+      ),
+    ),
+    (
+      'Russia St. Petersburg (LED)',
+      RadioSettings(
+        frequencyMHz: 868.856,
         bandwidth: LoRaBandwidth.bw62_5,
         spreadingFactor: LoRaSpreadingFactor.sf7,
         codingRate: LoRaCodingRate.cr4_7,
@@ -408,6 +398,16 @@ class RadioSettings {
         bandwidth: LoRaBandwidth.bw62_5,
         spreadingFactor: LoRaSpreadingFactor.sf8,
         codingRate: LoRaCodingRate.cr4_7,
+        txPowerDbm: 20,
+      ),
+    ),
+    (
+      'Russia Tver (KLD)',
+      RadioSettings(
+        frequencyMHz: 869.169,
+        bandwidth: LoRaBandwidth.bw62_5,
+        spreadingFactor: LoRaSpreadingFactor.sf8,
+        codingRate: LoRaCodingRate.cr4_8,
         txPowerDbm: 20,
       ),
     ),
@@ -442,22 +442,12 @@ class RadioSettings {
       ),
     ),
     (
-      'Russia Lugansk (VSG)',
+      'Russia Yekaterinburg (SVX)',
       RadioSettings(
-        frequencyMHz: 868.825,
+        frequencyMHz: 869.046,
         bandwidth: LoRaBandwidth.bw62_5,
         spreadingFactor: LoRaSpreadingFactor.sf7,
         codingRate: LoRaCodingRate.cr4_7,
-        txPowerDbm: 20,
-      ),
-    ),
-    (
-      'Russia Artyom (VVO)',
-      RadioSettings(
-        frequencyMHz: 864.281,
-        bandwidth: LoRaBandwidth.bw62_5,
-        spreadingFactor: LoRaSpreadingFactor.sf8,
-        codingRate: LoRaCodingRate.cr4_6,
         txPowerDbm: 20,
       ),
     ),
