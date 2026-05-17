@@ -4338,6 +4338,12 @@ class MeshCoreConnector extends ChangeNotifier {
   void _handleIncomingMessage(Uint8List frame) async {
     if (_selfPublicKey == null) return;
 
+    // If we're syncing the queued messages, advance the queue immediately
+    // before any potentially long async work (like translation/notifications).
+    if (_isSyncingQueuedMessages) {
+      _handleQueuedMessageReceived();
+    }
+
     var message = _parseContactMessage(frame);
 
     // If message parsing failed due to unknown contact, refresh contacts and retry
@@ -4403,26 +4409,23 @@ class MeshCoreConnector extends ChangeNotifier {
         }
       }
       _addMessage(message.senderKeyHex, message);
-      TranslationResult? translationResult;
-      if (!message.isOutgoing) {
-        translationResult = await _translateIncomingContactMessage(
-          message.senderKeyHex,
-          message,
-        );
-      }
       _maybeIncrementContactUnread(message);
       notifyListeners();
 
-      // Show notification for new incoming message
+      // Show notification for new incoming message (run async with translation)
       if (!message.isOutgoing &&
           !message.isCli &&
           _appSettingsService != null) {
         final settings = _appSettingsService!.settings;
         if (settings.notificationsEnabled && settings.notifyOnNewMessage) {
-          // Capture non-null local for async closure type promotion
-          final msg = message;
-          if (contact?.type == advTypeChat) {
-            unawaited(() async {
+          final msg = message; // capture for closure
+          final c = contact; // capture contact reference
+          unawaited(() async {
+            final translationResult = await _translateIncomingContactMessage(
+              msg.senderKeyHex,
+              msg,
+            );
+            if (c?.type == advTypeChat) {
               final resolvedText =
                   (translationResult != null &&
                       translationResult.status ==
@@ -4431,18 +4434,16 @@ class MeshCoreConnector extends ChangeNotifier {
                   ? translationResult.translatedText.trim()
                   : msg.text.trim();
               await _notificationService.showMessageNotification(
-                contactName: contact?.name ?? 'Unknown',
+                contactName: c?.name ?? 'Unknown',
                 message: resolvedText,
                 contactId: msg.senderKeyHex,
                 badgeCount: getTotalUnreadCount(),
               );
-            }());
-          } else if (contact?.type == advTypeRoom) {
-            // Room server messages include a 4-char prefix; strip it for notifications
-            final bodyText = msg.text.length > 4
-                ? msg.text.substring(4)
-                : msg.text;
-            unawaited(() async {
+            } else if (c?.type == advTypeRoom) {
+              // Room server messages include a 4-char prefix; strip it for notifications
+              final bodyText = msg.text.length > 4
+                  ? msg.text.substring(4)
+                  : msg.text;
               final resolvedText =
                   (translationResult != null &&
                       translationResult.status ==
@@ -4451,18 +4452,15 @@ class MeshCoreConnector extends ChangeNotifier {
                   ? translationResult.translatedText.trim()
                   : bodyText.trim();
               await _notificationService.showMessageNotification(
-                contactName: contact?.name ?? 'Unknown Room',
+                contactName: c?.name ?? 'Unknown Room',
                 message: resolvedText,
                 contactId: msg.senderKeyHex,
                 badgeCount: getTotalUnreadCount(),
               );
-            }());
-          }
+            }
+          }());
         }
       }
-      _handleQueuedMessageReceived();
-    } else if (_isSyncingQueuedMessages) {
-      _handleQueuedMessageReceived();
     }
   }
 
@@ -4758,6 +4756,11 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   void _handleIncomingChannelMessage(Uint8List frame) async {
+    // If we're syncing the queued messages, advance the queue immediately
+    // before any potentially long async work (like translation/notifications).
+    if (_isSyncingQueuedMessages) {
+      _handleQueuedMessageReceived();
+    }
     final parsed = ChannelMessage.fromFrame(frame);
     if (parsed != null && parsed.channelIndex != null) {
       if (_shouldDropSelfChannelMessage(parsed.senderName, parsed.pathBytes)) {
@@ -4776,24 +4779,18 @@ class MeshCoreConnector extends ChangeNotifier {
         pathBytes: message.pathBytes,
       );
       final isNew = _addChannelMessage(message.channelIndex!, message);
-      TranslationResult? translationResult;
-      if (isNew && !message.isOutgoing) {
-        translationResult = await _translateIncomingChannelMessage(
-          message.channelIndex!,
-          message,
-        );
-      }
       _maybeIncrementChannelUnread(message, isNew: isNew);
       notifyListeners();
-      if (isNew) {
-        _maybeNotifyChannelMessage(
-          message,
-          translationResult: translationResult,
-        );
+      if (isNew && !message.isOutgoing) {
+        final msg = message; // capture for closure
+        unawaited(() async {
+          final translationResult = await _translateIncomingChannelMessage(
+            msg.channelIndex!,
+            msg,
+          );
+          _maybeNotifyChannelMessage(msg, translationResult: translationResult);
+        }());
       }
-      _handleQueuedMessageReceived();
-    } else if (_isSyncingQueuedMessages) {
-      _handleQueuedMessageReceived();
     }
   }
 
@@ -4865,24 +4862,24 @@ class MeshCoreConnector extends ChangeNotifier {
             pathBytes: message.pathBytes,
           );
           final isNew = _addChannelMessage(channel.index, message);
-          TranslationResult? translationResult;
-          if (isNew && !message.isOutgoing) {
-            translationResult = await _translateIncomingChannelMessage(
-              channel.index,
-              message,
-            );
-          }
           _maybeIncrementChannelUnread(message, isNew: isNew);
           notifyListeners();
           if (isNew) {
-            final label = channel.name.isEmpty
-                ? 'Channel ${channel.index}'
-                : channel.name;
-            _maybeNotifyChannelMessage(
-              message,
-              channelName: label,
-              translationResult: translationResult,
-            );
+            // Run translation + notification asynchronously to avoid blocking
+            unawaited(() async {
+              final translationResult = await _translateIncomingChannelMessage(
+                channel.index,
+                message,
+              );
+              final label = channel.name.isEmpty
+                  ? 'Channel ${channel.index}'
+                  : channel.name;
+              _maybeNotifyChannelMessage(
+                message,
+                channelName: label,
+                translationResult: translationResult,
+              );
+            }());
           }
           return;
         } catch (e) {
