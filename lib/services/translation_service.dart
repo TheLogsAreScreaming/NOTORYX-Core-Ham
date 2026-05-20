@@ -388,7 +388,9 @@ class TranslationService extends ChangeNotifier {
     if (targetLanguageCode == null || !_isPlainTextEligible(text)) {
       return null;
     }
-    final detectedLanguageCode = await detectLanguage(text);
+    final detectedLanguageCode = await detectLanguage(
+      _stripReplyInfoForDetection(text),
+    );
     if (detectedLanguageCode != null &&
         detectedLanguageCode == targetLanguageCode) {
       return const TranslationResult(
@@ -429,7 +431,9 @@ class TranslationService extends ChangeNotifier {
     if (targetLanguageCode == null || !_isPlainTextEligible(text)) {
       return null;
     }
-    final detectedLanguageCode = await detectLanguage(text);
+    final detectedLanguageCode = await detectLanguage(
+      _stripReplyInfoForDetection(text),
+    );
     if (detectedLanguageCode != null &&
         detectedLanguageCode == targetLanguageCode) {
       return const TranslationResult(
@@ -468,6 +472,14 @@ class TranslationService extends ChangeNotifier {
       notifyListeners();
       return null;
     }
+  }
+
+  String _stripReplyInfoForDetection(String text) {
+    final match = RegExp(
+      r'@\[([^\]]+)\]\s+(.+)$',
+      dotAll: true,
+    ).firstMatch(text);
+    return match?.group(2) ?? text;
   }
 
   Future<String?> _translateText({
