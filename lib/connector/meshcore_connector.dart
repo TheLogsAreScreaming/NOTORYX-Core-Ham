@@ -1072,18 +1072,30 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<TranslationResult?> _translateIncomingContactMessage(
+  Future<TranslationResult?> translateContactMessage(
     String contactKeyHex,
-    Message message,
-  ) async {
+    Message message, {
+    bool manualTranslation = false,
+  }) async {
     try {
+      if (message.translatedText?.trim().isNotEmpty == true ||
+          (!manualTranslation &&
+              message.translationStatus != MessageTranslationStatus.none)) {
+        return null;
+      }
       final service = _translationService;
       if (service == null ||
-          !service.shouldTranslateIncoming(
-            text: message.text,
-            isCli: message.isCli,
-            isOutgoing: message.isOutgoing,
-          )) {
+          !(manualTranslation
+              ? service.canTranslateIncoming(
+                  text: message.text,
+                  isCli: message.isCli,
+                  isOutgoing: message.isOutgoing,
+                )
+              : service.shouldAutoTranslateIncoming(
+                  text: message.text,
+                  isCli: message.isCli,
+                  isOutgoing: message.isOutgoing,
+                ))) {
         return null;
       }
       final targetLanguageCode = service.resolvedIncomingLanguageCode(
@@ -1116,18 +1128,30 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<TranslationResult?> _translateIncomingChannelMessage(
+  Future<TranslationResult?> translateChannelMessage(
     int channelIndex,
-    ChannelMessage message,
-  ) async {
+    ChannelMessage message, {
+    bool manualTranslation = false,
+  }) async {
     try {
+      if (message.translatedText?.trim().isNotEmpty == true ||
+          (!manualTranslation &&
+              message.translationStatus != MessageTranslationStatus.none)) {
+        return null;
+      }
       final service = _translationService;
       if (service == null ||
-          !service.shouldTranslateIncoming(
-            text: message.text,
-            isCli: false,
-            isOutgoing: message.isOutgoing,
-          )) {
+          !(manualTranslation
+              ? service.canTranslateIncoming(
+                  text: message.text,
+                  isCli: false,
+                  isOutgoing: message.isOutgoing,
+                )
+              : service.shouldAutoTranslateIncoming(
+                  text: message.text,
+                  isCli: false,
+                  isOutgoing: message.isOutgoing,
+                ))) {
         return null;
       }
       final targetLanguageCode = service.resolvedIncomingLanguageCode(
@@ -4421,7 +4445,7 @@ class MeshCoreConnector extends ChangeNotifier {
           final msg = message; // capture for closure
           final c = contact; // capture contact reference
           unawaited(() async {
-            final translationResult = await _translateIncomingContactMessage(
+            final translationResult = await translateContactMessage(
               msg.senderKeyHex,
               msg,
             );
@@ -4784,7 +4808,7 @@ class MeshCoreConnector extends ChangeNotifier {
       if (isNew && !message.isOutgoing) {
         final msg = message; // capture for closure
         unawaited(() async {
-          final translationResult = await _translateIncomingChannelMessage(
+          final translationResult = await translateChannelMessage(
             msg.channelIndex!,
             msg,
           );
@@ -4867,7 +4891,7 @@ class MeshCoreConnector extends ChangeNotifier {
           if (isNew) {
             // Run translation + notification asynchronously to avoid blocking
             unawaited(() async {
-              final translationResult = await _translateIncomingChannelMessage(
+              final translationResult = await translateChannelMessage(
                 channel.index,
                 message,
               );

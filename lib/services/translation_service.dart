@@ -89,7 +89,22 @@ class TranslationService extends ChangeNotifier {
         'en';
   }
 
-  bool shouldTranslateIncoming({
+  bool shouldAutoTranslateIncoming({
+    required String text,
+    required bool isCli,
+    required bool isOutgoing,
+  }) {
+    if (!_settings.autoTranslateIncomingMessages) {
+      return false;
+    }
+    return canTranslateIncoming(
+      text: text,
+      isCli: isCli,
+      isOutgoing: isOutgoing,
+    );
+  }
+
+  bool canTranslateIncoming({
     required String text,
     required bool isCli,
     required bool isOutgoing,
