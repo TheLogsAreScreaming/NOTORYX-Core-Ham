@@ -1,0 +1,63 @@
+name: Build Bastion APK
+
+on:
+  push:
+    branches:
+      - dev
+    paths-ignore:
+      - '**/*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('android/gradle/wrapper/gradle-wrapper.properties', 'android/build.gradle', 'android/settings.gradle', 'android/app/build.gradle', 'pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build release APK
+        run: flutter build apk --release --no-pub
+
+      - name: Prepare direct-download filename
+        run: cp build/app/outputs/flutter-apk/app-release.apk Bastion-MeshCore.apk
+
+      - name: Generate SHA256 checksum
+        run: sha256sum Bastion-MeshCore.apk > Bastion-MeshCore.apk.sha256
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Bastion-MeshCore-Android
+          path: |
+            Bastion-MeshCore.apk
+            Bastion-MeshCore.apk.sha256
+          if-no-files-found: error
+          retention-days: 30
