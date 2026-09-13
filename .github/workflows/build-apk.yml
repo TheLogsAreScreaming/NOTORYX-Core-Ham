@@ -40,103 +40,124 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Apply Bastion branding
+      - name: Install image tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick
+
+      - name: Apply exact Bastion branding
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
 
-          def replace(path, pairs):
-              p = Path(path)
-              s = p.read_text()
-              for old, new in pairs:
-                  s = s.replace(old, new)
-              p.write_text(s)
+          # Remove the visible upstream product name anywhere it can surface in the app UI.
+          for root in [Path('lib'), Path('android/app/src/main')]:
+              for p in root.rglob('*'):
+                  if not p.is_file() or p.suffix.lower() not in {'.dart', '.xml', '.arb', '.json', '.kt', '.java'}:
+                      continue
+                  try:
+                      s = p.read_text()
+                  except UnicodeDecodeError:
+                      continue
+                  s2 = s.replace('MeshCore Open', 'Bastion')
+                  s2 = s2.replace('Mesh Open', 'Bastion')
+                  if s2 != s:
+                      p.write_text(s2)
 
-          replace('android/app/src/main/AndroidManifest.xml', [
-              ('android:label="MeshCore Open"', 'android:label="Bastion"'),
-              ('android:icon="@mipmap/ic_launcher"', 'android:icon="@drawable/bastion_launcher"'),
-          ])
+          # Apply the current Bastion website palette:
+          # bg #090B10, panel #121722, panel2 #181F2C, text #F5F7FB,
+          # muted #A8B3C7, pink #FF1493, blue #00A6FF, yellow #FFD400, line #1E2633.
+          theme = Path('lib/theme/mesh_theme.dart')
+          s = theme.read_text()
+          pairs = [
+              ('MeshCore palette — high-contrast slate surfaces with sky-blue accents.', 'Bastion palette — dark surfaces with pink, blue and yellow accents.'),
+              ('0xFF0B1220', '0xFF090B10'),
+              ('0xFF0F172A', '0xFF121722'),
+              ('0xFF162033', '0xFF181F2C'),
+              ('0xFF1E293B', '0xFF1E2633'),
+              ('0xFF334155', '0xFF27364B'),
+              ('0xFF2A3850', '0xFF1E2633'),
+              ('0xFF3B4A61', '0xFF27364B'),
+              ('0xFF546376', '0xFFA8B3C7'),
+              ('0xFFF8FAFC', '0xFFF5F7FB'),
+              ('0xFFD5DEE9', '0xFFC1CAD8'),
+              ('0xFFAAB6C6', '0xFFA8B3C7'),
+              ('0xFF828FA3', '0xFF7F8CA1'),
+              ('0xFF0EA5E9', '0xFFFF1493'),
+              ('0xFF0284C7', '0xFF00A6FF'),
+              ('0x290EA5E9', '0x29FF1493'),
+              ('0x800EA5E9', '0x80FF1493'),
+              ('0xFFDE7FDB', '0xFFFFD400'),
+              ('0x1CDE7FDB', '0x1CFFD400'),
+              ('0x47DE7FDB', '0x47FFD400'),
+              ('0xFF0C4A6E', '0xFF121722'),
+              ('0xFF0369A1', '0xFF00A6FF'),
+              ('0xFFF0F9FF', '0xFFF5F7FB'),
+              ('0xFF2F6EA8', '0xFF00A6FF'),
+              ('0xFF2563EB', '0xFF00A6FF'),
+              ('0xFF7C3AED', '0xFFFF1493'),
+              ('0xFFF97316', '0xFFFFD400'),
+              ('0xFF0F766E', '0xFF00A6FF'),
+              ('0xFF38BDF8', '0xFF00A6FF'),
+          ]
+          for old, new in pairs:
+              s = s.replace(old, new)
+          theme.write_text(s)
 
-          replace('lib/main.dart', [
-              ("title: 'MeshCore Open'", "title: 'Bastion'"),
-          ])
-
-          replace('lib/theme/mesh_theme.dart', [
-              ('MeshCore palette — high-contrast slate surfaces with sky-blue accents.', 'Bastion palette — near-black surfaces with bronze and olive accents.'),
-              ('0xFF0B1220', '0xFF080B0A'),
-              ('0xFF0F172A', '0xFF0E120F'),
-              ('0xFF162033', '0xFF151A16'),
-              ('0xFF1E293B', '0xFF1C221D'),
-              ('0xFF334155', '0xFF2A302B'),
-              ('0xFF2A3850', '0xFF34362F'),
-              ('0xFF3B4A61', '0xFF4A4B40'),
-              ('0xFF546376', '0xFF66675B'),
-              ('0xFFF8FAFC', '0xFFEEE9DC'),
-              ('0xFFD5DEE9', '0xFFD8D1C2'),
-              ('0xFFAAB6C6', '0xFFB4AC9D'),
-              ('0xFF828FA3', '0xFF8F887B'),
-              ('0xFF0EA5E9', '0xFF9A6F35'),
-              ('0xFF0284C7', '0xFF7B572A'),
-              ('0x290EA5E9', '0x299A6F35'),
-              ('0x800EA5E9', '0x809A6F35'),
-              ('0xFFDE7FDB', '0xFF7F8F6A'),
-              ('0x1CDE7FDB', '0x1C7F8F6A'),
-              ('0x47DE7FDB', '0x477F8F6A'),
-              ('0xFF0C4A6E', '0xFF3F3526'),
-              ('0xFF0369A1', '0xFF9A6F35'),
-              ('0xFFF0F9FF', '0xFFEEE9DC'),
-              ('0xFF2F6EA8', '0xFF8A642F'),
-              ('0xFF2563EB', '0xFF7F8F6A'),
-              ('0xFF7C3AED', '0xFF9A6F35'),
-              ('0xFFF97316', '0xFF9A6F35'),
-              ('0xFF0F766E', '0xFF7F8F6A'),
-              ('0xFF38BDF8', '0xFF9A6F35'),
-          ])
+          manifest = Path('android/app/src/main/AndroidManifest.xml')
+          m = manifest.read_text()
+          m = m.replace('android:label="MeshCore Open"', 'android:label="Bastion"')
+          m = m.replace('android:label="Bastion"', 'android:label="Bastion"')
+          m = m.replace('android:icon="@drawable/bastion_launcher"', 'android:icon="@mipmap/ic_launcher"')
+          manifest.write_text(m)
           PY
 
           cat > android/app/src/main/res/values/colors.xml <<'EOF'
           <?xml version="1.0" encoding="utf-8"?>
           <resources>
-              <color name="ic_launcher_background">#080B0A</color>
-              <color name="bastion_bronze">#9A6F35</color>
-              <color name="bastion_cream">#EEE9DC</color>
+              <color name="ic_launcher_background">#090B10</color>
           </resources>
           EOF
 
-          cat > android/app/src/main/res/drawable/bastion_launcher.xml <<'EOF'
-          <?xml version="1.0" encoding="utf-8"?>
-          <vector xmlns:android="http://schemas.android.com/apk/res/android"
-              android:width="108dp"
-              android:height="108dp"
-              android:viewportWidth="108"
-              android:viewportHeight="108">
-              <path android:fillColor="#080B0A" android:pathData="M0,0h108v108h-108z"/>
-              <path android:fillColor="#9A6F35" android:pathData="M18,22h72v8h-72zM18,38h28v8h-28zM62,38h28v8h-28zM18,54h28v8h-28zM62,54h28v8h-28zM18,70h72v8h-72z"/>
-              <path android:fillColor="#EEE9DC" android:pathData="M50,36h8v28h-8z"/>
-          </vector>
-          EOF
+          # Use the actual Bastion logo from the website repository, not a made-up substitute.
+          curl -L --fail --retry 3 \
+            https://example.invalid/removed-asset \
+            -o /tmp/bastion-club-logo.jpg
+
+          mkdir -p android/app/src/main/res/mipmap-mdpi \
+                   android/app/src/main/res/mipmap-hdpi \
+                   android/app/src/main/res/mipmap-xhdpi \
+                   android/app/src/main/res/mipmap-xxhdpi \
+                   android/app/src/main/res/mipmap-xxxhdpi
+
+          # Crop to a centered square and generate Android launcher sizes from the official logo.
+          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 48x48   android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 72x72   android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 96x96   android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 144x144 android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 192x192 android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
 
           cat > android/app/src/main/res/drawable/launch_background.xml <<'EOF'
           <?xml version="1.0" encoding="utf-8"?>
           <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
               <item>
                   <shape android:shape="rectangle">
-                      <solid android:color="#080B0A" />
+                      <solid android:color="#090B10" />
                   </shape>
               </item>
               <item android:gravity="center">
-                  <shape android:shape="rectangle">
-                      <size android:width="116dp" android:height="48dp" />
-                      <solid android:color="#080B0A" />
-                      <stroke android:width="2dp" android:color="#9A6F35" />
-                      <corners android:radius="8dp" />
-                  </shape>
+                  <bitmap android:gravity="center" android:src="@mipmap/ic_launcher" />
               </item>
           </layer-list>
           EOF
 
           cp android/app/src/main/res/drawable/launch_background.xml android/app/src/main/res/drawable-v21/launch_background.xml
+
+          # Fail the build if the upstream app name is still present in UI/app resources.
+          if grep -RIn --exclude-dir=.git --include='*.dart' --include='*.arb' --include='*.xml' \
+             -E 'MeshCore Open|Mesh Open' lib android/app/src/main; then
+            echo 'Upstream app name still present after branding pass.'
+            exit 1
+          fi
 
       - name: Get dependencies
         run: flutter pub get
