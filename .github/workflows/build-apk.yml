@@ -49,7 +49,6 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
 
-          # Remove the visible upstream product name anywhere it can surface in the app UI.
           for root in [Path('lib'), Path('android/app/src/main')]:
               for p in root.rglob('*'):
                   if not p.is_file() or p.suffix.lower() not in {'.dart', '.xml', '.arb', '.json', '.kt', '.java'}:
@@ -63,9 +62,6 @@ jobs:
                   if s2 != s:
                       p.write_text(s2)
 
-          # Apply the current Bastion website palette:
-          # bg #090B10, panel #121722, panel2 #181F2C, text #F5F7FB,
-          # muted #A8B3C7, pink #FF1493, blue #00A6FF, yellow #FFD400, line #1E2633.
           theme = Path('lib/theme/mesh_theme.dart')
           s = theme.read_text()
           pairs = [
@@ -106,7 +102,6 @@ jobs:
           manifest = Path('android/app/src/main/AndroidManifest.xml')
           m = manifest.read_text()
           m = m.replace('android:label="MeshCore Open"', 'android:label="Bastion"')
-          m = m.replace('android:label="Bastion"', 'android:label="Bastion"')
           m = m.replace('android:icon="@drawable/bastion_launcher"', 'android:icon="@mipmap/ic_launcher"')
           manifest.write_text(m)
           PY
@@ -118,7 +113,6 @@ jobs:
           </resources>
           EOF
 
-          # Use the actual Bastion logo from the website repository, not a made-up substitute.
           curl -L --fail --retry 3 \
             https://example.invalid/removed-asset \
             -o /tmp/bastion-club-logo.jpg
@@ -129,12 +123,11 @@ jobs:
                    android/app/src/main/res/mipmap-xxhdpi \
                    android/app/src/main/res/mipmap-xxxhdpi
 
-          # Crop to a centered square and generate Android launcher sizes from the official logo.
-          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 48x48   android/app/src/main/res/mipmap-mdpi/ic_launcher.png
-          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 72x72   android/app/src/main/res/mipmap-hdpi/ic_launcher.png
-          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 96x96   android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
-          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 144x144 android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
-          convert /tmp/bastion-club-logo.jpg -gravity center -crop '1:1' +repage -resize 192x192 android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+          convert /tmp/bastion-club-logo.jpg -thumbnail 48x48^   -gravity center -extent 48x48   android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          convert /tmp/bastion-club-logo.jpg -thumbnail 72x72^   -gravity center -extent 72x72   android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+          convert /tmp/bastion-club-logo.jpg -thumbnail 96x96^   -gravity center -extent 96x96   android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          convert /tmp/bastion-club-logo.jpg -thumbnail 144x144^ -gravity center -extent 144x144 android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          convert /tmp/bastion-club-logo.jpg -thumbnail 192x192^ -gravity center -extent 192x192 android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
 
           cat > android/app/src/main/res/drawable/launch_background.xml <<'EOF'
           <?xml version="1.0" encoding="utf-8"?>
@@ -152,7 +145,6 @@ jobs:
 
           cp android/app/src/main/res/drawable/launch_background.xml android/app/src/main/res/drawable-v21/launch_background.xml
 
-          # Fail the build if the upstream app name is still present in UI/app resources.
           if grep -RIn --exclude-dir=.git --include='*.dart' --include='*.arb' --include='*.xml' \
              -E 'MeshCore Open|Mesh Open' lib android/app/src/main; then
             echo 'Upstream app name still present after branding pass.'
