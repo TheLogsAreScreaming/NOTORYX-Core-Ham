@@ -56,33 +56,15 @@ jobs:
           s = theme.read_text()
           pairs = [
               ('MeshCore palette — high-contrast slate surfaces with sky-blue accents.', 'Bastion palette — dark surfaces with pink, blue and yellow accents.'),
-              ('0xFF0B1220', '0xFF090B10'),
-              ('0xFF0F172A', '0xFF121722'),
-              ('0xFF162033', '0xFF181F2C'),
-              ('0xFF1E293B', '0xFF1E2633'),
-              ('0xFF334155', '0xFF27364B'),
-              ('0xFF2A3850', '0xFF1E2633'),
-              ('0xFF3B4A61', '0xFF27364B'),
-              ('0xFF546376', '0xFFA8B3C7'),
-              ('0xFFF8FAFC', '0xFFF5F7FB'),
-              ('0xFFD5DEE9', '0xFFC1CAD8'),
-              ('0xFFAAB6C6', '0xFFA8B3C7'),
-              ('0xFF828FA3', '0xFF7F8CA1'),
-              ('0xFF0EA5E9', '0xFFFF1493'),
-              ('0xFF0284C7', '0xFF00A6FF'),
-              ('0x290EA5E9', '0x29FF1493'),
-              ('0x800EA5E9', '0x80FF1493'),
-              ('0xFFDE7FDB', '0xFFFFD400'),
-              ('0x1CDE7FDB', '0x1CFFD400'),
-              ('0x47DE7FDB', '0x47FFD400'),
-              ('0xFF0C4A6E', '0xFF121722'),
-              ('0xFF0369A1', '0xFF00A6FF'),
-              ('0xFFF0F9FF', '0xFFF5F7FB'),
-              ('0xFF2F6EA8', '0xFF00A6FF'),
-              ('0xFF2563EB', '0xFF00A6FF'),
-              ('0xFF7C3AED', '0xFFFF1493'),
-              ('0xFFF97316', '0xFFFFD400'),
-              ('0xFF0F766E', '0xFF00A6FF'),
+              ('0xFF0B1220', '0xFF090B10'), ('0xFF0F172A', '0xFF121722'), ('0xFF162033', '0xFF181F2C'),
+              ('0xFF1E293B', '0xFF1E2633'), ('0xFF334155', '0xFF27364B'), ('0xFF2A3850', '0xFF1E2633'),
+              ('0xFF3B4A61', '0xFF27364B'), ('0xFF546376', '0xFFA8B3C7'), ('0xFFF8FAFC', '0xFFF5F7FB'),
+              ('0xFFD5DEE9', '0xFFC1CAD8'), ('0xFFAAB6C6', '0xFFA8B3C7'), ('0xFF828FA3', '0xFF7F8CA1'),
+              ('0xFF0EA5E9', '0xFFFF1493'), ('0xFF0284C7', '0xFF00A6FF'), ('0x290EA5E9', '0x29FF1493'),
+              ('0x800EA5E9', '0x80FF1493'), ('0xFFDE7FDB', '0xFFFFD400'), ('0x1CDE7FDB', '0x1CFFD400'),
+              ('0x47DE7FDB', '0x47FFD400'), ('0xFF0C4A6E', '0xFF121722'), ('0xFF0369A1', '0xFF00A6FF'),
+              ('0xFFF0F9FF', '0xFFF5F7FB'), ('0xFF2F6EA8', '0xFF00A6FF'), ('0xFF2563EB', '0xFF00A6FF'),
+              ('0xFF7C3AED', '0xFFFF1493'), ('0xFFF97316', '0xFFFFD400'), ('0xFF0F766E', '0xFF00A6FF'),
               ('0xFF38BDF8', '0xFF00A6FF'),
           ]
           for old, new in pairs:
@@ -96,27 +78,7 @@ jobs:
           manifest.write_text(m)
           PY
 
-          cat > /tmp/bastion-neon.svg <<'EOF'
-          <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-            <defs>
-              <linearGradient id="border" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#ff1493"/><stop offset="48%" stop-color="#ff1493"/>
-                <stop offset="66%" stop-color="#00a6ff"/><stop offset="86%" stop-color="#00e5ff"/><stop offset="100%" stop-color="#ffd400"/>
-              </linearGradient>
-              <linearGradient id="yellow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff500"/><stop offset="1" stop-color="#ffb000"/></linearGradient>
-              <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#00e5ff"/><stop offset="1" stop-color="#008cff"/></linearGradient>
-              <linearGradient id="slash" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ff1493"/><stop offset="1" stop-color="#ff4bc4"/></linearGradient>
-              <filter id="glow"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            </defs>
-            <rect width="1024" height="1024" rx="230" fill="#090b10"/>
-            <rect x="72" y="72" width="880" height="880" rx="220" fill="none" stroke="url(#border)" stroke-width="20" filter="url(#glow)"/>
-            <rect x="220" y="545" width="105" height="205" rx="34" fill="url(#yellow)" filter="url(#glow)"/>
-            <rect x="360" y="440" width="105" height="310" rx="34" fill="url(#blue)" filter="url(#glow)"/>
-            <rect x="500" y="335" width="105" height="415" rx="34" fill="url(#yellow)" filter="url(#glow)"/>
-            <rect x="640" y="225" width="105" height="525" rx="34" fill="url(#blue)" filter="url(#glow)"/>
-            <line x1="205" y1="760" x2="825" y2="275" stroke="url(#slash)" stroke-width="52" stroke-linecap="round" filter="url(#glow)"/>
-          </svg>
-          EOF
+          cp branding/app-icon-final.svg /tmp/bastion-neon.svg
 
           mkdir -p android/app/src/main/res/mipmap-mdpi \
                    android/app/src/main/res/mipmap-hdpi \
