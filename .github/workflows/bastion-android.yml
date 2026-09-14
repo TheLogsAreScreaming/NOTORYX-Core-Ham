@@ -1,0 +1,56 @@
+name: Bastion Android APK
+
+on:
+  push:
+    branches: [bastion]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
+        continue-on-error: true
+
+      - name: Build Bastion APK
+        run: flutter build apk --release
+
+      - name: Stage APK
+        run: |
+          mkdir -p dist
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Android-arm64.apk
+
+      - name: Upload Bastion APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Bastion-Android-APK
+          path: dist/Bastion-Android-arm64.apk
+          if-no-files-found: error
+          retention-days: 30
