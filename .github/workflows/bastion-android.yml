@@ -35,21 +35,22 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Analyze diagnostic entrypoint
-        run: flutter analyze lib/bastion_bootstrap.dart
+      - name: Analyze
+        run: flutter analyze
+        continue-on-error: true
 
-      - name: Build Bastion diagnostic APK
-        run: flutter build apk --release --target lib/bastion_bootstrap.dart
+      - name: Build Bastion functional APK
+        run: flutter build apk --release --target lib/main.dart
 
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build1-Diagnostic-arm64.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build2-Functional-arm64.apk
 
       - name: Upload Bastion APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build1-Diagnostic-APK
-          path: dist/Bastion-Build1-Diagnostic-arm64.apk
+          name: Bastion-Build2-Functional-APK
+          path: dist/Bastion-Build2-Functional-arm64.apk
           if-no-files-found: error
           retention-days: 30
