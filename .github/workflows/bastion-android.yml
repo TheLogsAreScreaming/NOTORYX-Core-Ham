@@ -35,22 +35,47 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Apply Bastion visible branding
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          # Rebrand user-facing Dart strings while leaving repository legal/license
+          # files untouched so upstream attribution remains intact.
+          for path in Path('lib').rglob('*.dart'):
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              branded = text.replace('MeshCore Open', 'Bastion')
+              if branded != text:
+                  path.write_text(branded, encoding='utf-8')
+
+          # Reinforce Android application label without changing the working
+          # fully-qualified launcher Activity fix.
+          manifest = Path('android/app/src/main/AndroidManifest.xml')
+          text = manifest.read_text(encoding='utf-8')
+          text = text.replace('android:label="MeshCore Open"', 'android:label="Bastion"')
+          manifest.write_text(text, encoding='utf-8')
+          PY
+
       - name: Analyze
         run: flutter analyze
         continue-on-error: true
 
-      - name: Build Bastion functional APK
+      - name: Build Bastion branding APK
         run: flutter build apk --release --target lib/main.dart
 
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build2-Functional-arm64.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build3-Branding-arm64.apk
 
       - name: Upload Bastion APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build2-Functional-APK
-          path: dist/Bastion-Build2-Functional-arm64.apk
+          name: Bastion-Build3-Branding-APK
+          path: dist/Bastion-Build3-Branding-arm64.apk
           if-no-files-found: error
           retention-days: 30
