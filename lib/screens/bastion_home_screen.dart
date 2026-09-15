@@ -4,6 +4,7 @@ import 'discovery_screen.dart';
 import 'bastion_map_hub_screen.dart';
 import 'bastion_path_hub_screen.dart';
 import 'bastion_repeater_tools_screen.dart';
+import 'bastion_field_stats_screen.dart';
 
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
@@ -15,7 +16,7 @@ class BastionHomeScreen extends StatelessWidget {
     const SizedBox(height:12),_ActionCard(icon:Icons.radar_rounded,title:'MESH DISCOVERY',subtitle:'Find nodes and inspect the mesh around you',onTap:()=>Navigator.of(context).push(MaterialPageRoute(builder:(_)=>const DiscoveryScreen()))),
     const SizedBox(height:22),const Text('BASTION FIELD TOOLS',style:TextStyle(color:_cyan,fontSize:12,fontWeight:FontWeight.w800,letterSpacing:1.4)),const SizedBox(height:10),
     Row(children:[Expanded(child:_ToolTile(icon:Icons.map_rounded,label:'MAP + COVERAGE',status:'ACTIVE',onTap:()=>Navigator.of(context).push(MaterialPageRoute(builder:(_)=>const BastionMapHubScreen())))),const SizedBox(width:10),Expanded(child:_ToolTile(icon:Icons.route_rounded,label:'PATH ANALYSIS',status:'ACTIVE',onTap:()=>Navigator.of(context).push(MaterialPageRoute(builder:(_)=>const BastionPathHubScreen()))))]),
-    const SizedBox(height:10),Row(children:[Expanded(child:_ToolTile(icon:Icons.cell_tower_rounded,label:'REPEATER TOOLS',status:'ACTIVE',onTap:()=>Navigator.of(context).push(MaterialPageRoute(builder:(_)=>const BastionRepeaterToolsScreen())))),const SizedBox(width:10),const Expanded(child:_ToolTile(icon:Icons.analytics_rounded,label:'FIELD STATS',status:'NEXT'))]),
+    const SizedBox(height:10),Row(children:[Expanded(child:_ToolTile(icon:Icons.cell_tower_rounded,label:'REPEATER TOOLS',status:'ACTIVE',onTap:()=>Navigator.of(context).push(MaterialPageRoute(builder:(_)=>const BastionRepeaterToolsScreen())))),const SizedBox(width:10),Expanded(child:_ToolTile(icon:Icons.analytics_rounded,label:'FIELD STATS',status:'ACTIVE',onTap:()=>Navigator.of(context).push(MaterialPageRoute(builder:(_)=>const BastionFieldStatsScreen()))))]),
     const SizedBox(height:24),const Center(child:Text('BASTION  •  BASTION',style:TextStyle(color:Color(0xFF66727D),fontSize:10,fontWeight:FontWeight.w700,letterSpacing:1.3)))
   ])));
 }
