@@ -52,9 +52,8 @@ jobs:
               except UnicodeDecodeError:continue
               n=s.replace('MeshCore Open','Bastion')
               if n!=s:p.write_text(n)
-          m=Path('android/app/src/main/AndroidManifest.xml');m.write_text(m.read_text().replace('android:label="MeshCore Open"','android:label="Bastion"'))
           PY
-      - name: Generate temporary Bastion launcher artwork
+      - name: Generate Bastion launcher artwork fallback
         run: |
           python3 - <<'PY'
           import struct,zlib
@@ -76,22 +75,22 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          p=Path('pubspec.yaml');s=p.read_text().replace('image_path: "mesh-icon.png"','image_path: "bastion-launcher.png"').replace('adaptive_icon_background: "#9F9D95"','adaptive_icon_background: "#111418"').replace('adaptive_icon_foreground: "assets/icons/ic_foreground.png"','adaptive_icon_foreground: "bastion-launcher.png"');p.write_text(s)
+          p=Path('pubspec.yaml');s=p.read_text().replace('image_path: "mesh-icon.png"','image_path: "bastion-launcher.png"').replace('adaptive_icon_foreground: "mesh-icon.png"','adaptive_icon_foreground: "bastion-launcher.png"');p.write_text(s)
           PY
           dart run flutter_launcher_icons
       - name: Analyze
         run: flutter analyze
         continue-on-error: true
-      - name: Build Bastion 15 APK
+      - name: Build Bastion 16 APK
         run: flutter build apk --release --target lib/main.dart
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build15-arm64.apk
-      - name: Upload Bastion 15 APK
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build16-arm64.apk
+      - name: Upload Bastion 16 APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build15-APK
-          path: dist/Bastion-Build15-arm64.apk
+          name: Bastion-Build16-APK
+          path: dist/Bastion-Build16-arm64.apk
           if-no-files-found: error
           retention-days: 30
