@@ -23,9 +23,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Flutter
+      - name: Set up known-good Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.41.5'
           channel: stable
           cache: true
 
@@ -106,12 +107,12 @@ jobs:
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build5-Branding-arm64.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build6-Branding-arm64.apk
 
       - name: Upload Bastion APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build5-Branding-APK
-          path: dist/Bastion-Build5-Branding-arm64.apk
+          name: Bastion-Build6-Branding-APK
+          path: dist/Bastion-Build6-Branding-arm64.apk
           if-no-files-found: error
           retention-days: 30
