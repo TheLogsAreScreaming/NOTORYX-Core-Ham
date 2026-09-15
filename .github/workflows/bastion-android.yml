@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Apply Bastion branding
+      - name: Apply Bastion visible branding only
         shell: bash
         run: |
           python3 - <<'PY'
@@ -42,7 +42,7 @@ jobs:
                   text = path.read_text(encoding='utf-8')
               except UnicodeDecodeError:
                   continue
-              branded = text.replace('MeshCore Open', 'Bastion').replace('meshcore_open', 'bastion')
+              branded = text.replace('MeshCore Open', 'Bastion')
               if branded != text:
                   path.write_text(branded, encoding='utf-8')
           manifest = Path('android/app/src/main/AndroidManifest.xml')
@@ -64,16 +64,13 @@ jobs:
               for y in range(max(0,y0),min(H,y1)):
                   base=y*W
                   for x in range(max(0,x0),min(W,x1)): px[base+x]=list(c)
-          # cyan border
           rect(70,70,954,105,cyan); rect(70,919,954,954,cyan); rect(70,70,105,954,cyan); rect(919,70,954,954,cyan)
-          # fortress body and towers
           rect(260,390,764,735,white); rect(220,300,355,735,white); rect(669,300,804,735,white)
-          # battlement cutouts
           for x in (255,315,375,435,495,555,615,675,735): rect(x,300,x+32,390,bg)
-          # arched-ish doorway
           rect(455,575,569,735,bg)
           for yy in range(535,576):
-              half=int(((57*57-(yy-575)*(yy-575)) if 57*57-(yy-575)*(yy-575)>0 else 0)**0.5)
+              v=57*57-(yy-575)*(yy-575)
+              half=int((v if v>0 else 0)**0.5)
               rect(512-half,yy,512+half,yy+1,bg)
           raw=bytearray()
           for y in range(H):
@@ -109,12 +106,12 @@ jobs:
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build4-Branding-arm64.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build5-Branding-arm64.apk
 
       - name: Upload Bastion APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build4-Branding-APK
-          path: dist/Bastion-Build4-Branding-arm64.apk
+          name: Bastion-Build5-Branding-APK
+          path: dist/Bastion-Build5-Branding-arm64.apk
           if-no-files-found: error
           retention-days: 30
