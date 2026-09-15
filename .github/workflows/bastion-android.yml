@@ -33,6 +33,18 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Apply Flutter 3.41 reorder compatibility
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          for filename in ['lib/screens/channels_screen.dart', 'lib/widgets/path_editor_sheet.dart']:
+              p = Path(filename)
+              s = p.read_text(encoding='utf-8')
+              s = s.replace('onReorderItem:', 'onReorder:')
+              p.write_text(s, encoding='utf-8')
+          PY
+
       - name: Apply Bastion visible branding only
         shell: bash
         run: |
@@ -107,12 +119,12 @@ jobs:
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build6-Branding-arm64.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build7-Branding-arm64.apk
 
       - name: Upload Bastion APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build6-Branding-APK
-          path: dist/Bastion-Build6-Branding-arm64.apk
+          name: Bastion-Build7-Branding-APK
+          path: dist/Bastion-Build7-Branding-arm64.apk
           if-no-files-found: error
           retention-days: 30
