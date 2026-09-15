@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'scanner_screen.dart';
 import 'discovery_screen.dart';
+import 'bastion_map_hub_screen.dart';
 
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
@@ -69,10 +70,15 @@ class BastionHomeScreen extends StatelessWidget {
             const SizedBox(height: 22),
             const Text('BASTION FIELD TOOLS', style: TextStyle(color: _cyan, fontSize: 12, fontWeight: FontWeight.w800, letterSpacing: 1.4)),
             const SizedBox(height: 10),
-            const Row(children: [
-              Expanded(child: _ToolTile(icon: Icons.map_rounded, label: 'MAP + COVERAGE', status: 'NEXT')),
-              SizedBox(width: 10),
-              Expanded(child: _ToolTile(icon: Icons.route_rounded, label: 'PATH ANALYSIS', status: 'NEXT')),
+            Row(children: [
+              Expanded(child: _ToolTile(
+                icon: Icons.map_rounded,
+                label: 'MAP + COVERAGE',
+                status: 'ACTIVE',
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const BastionMapHubScreen())),
+              )),
+              const SizedBox(width: 10),
+              const Expanded(child: _ToolTile(icon: Icons.route_rounded, label: 'PATH ANALYSIS', status: 'NEXT')),
             ]),
             const SizedBox(height: 10),
             const Row(children: [
@@ -121,19 +127,37 @@ class _ToolTile extends StatelessWidget {
   final IconData icon;
   final String label;
   final String status;
-  const _ToolTile({required this.icon, required this.label, required this.status});
+  final VoidCallback? onTap;
+  const _ToolTile({required this.icon, required this.label, required this.status, this.onTap});
 
   @override
-  Widget build(BuildContext context) => Container(
-    height: 112,
-    padding: const EdgeInsets.all(13),
-    decoration: BoxDecoration(color: const Color(0xFF10151A), borderRadius: BorderRadius.circular(15), border: Border.all(color: const Color(0xFF26313A))),
-    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Icon(icon, color: const Color(0xFF18D3D3), size: 25),
-      const Spacer(),
-      Text(label, style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w800)),
-      const SizedBox(height: 3),
-      Text(status, style: const TextStyle(color: Color(0xFF18D3D3), fontSize: 9, fontWeight: FontWeight.w900, letterSpacing: 1)),
-    ]),
+  Widget build(BuildContext context) => Material(
+    color: const Color(0xFF10151A),
+    borderRadius: BorderRadius.circular(15),
+    child: InkWell(
+      borderRadius: BorderRadius.circular(15),
+      onTap: onTap,
+      child: Container(
+        height: 112,
+        padding: const EdgeInsets.all(13),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: onTap == null ? const Color(0xFF26313A) : const Color(0xFF18D3D3).withValues(alpha: .45)),
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Icon(icon, color: const Color(0xFF18D3D3), size: 25),
+          const Spacer(),
+          Text(label, style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w800)),
+          const SizedBox(height: 3),
+          Row(children: [
+            Text(status, style: const TextStyle(color: Color(0xFF18D3D3), fontSize: 9, fontWeight: FontWeight.w900, letterSpacing: 1)),
+            if (onTap != null) ...[
+              const Spacer(),
+              const Icon(Icons.chevron_right_rounded, color: Color(0xFF18D3D3), size: 17),
+            ],
+          ]),
+        ]),
+      ),
+    ),
   );
 }
