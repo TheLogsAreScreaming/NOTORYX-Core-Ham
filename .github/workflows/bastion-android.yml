@@ -34,44 +34,46 @@ jobs:
         run: flutter pub get
 
       - name: Apply Flutter 3.41 reorder compatibility
-        shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
           for filename in ['lib/screens/channels_screen.dart', 'lib/widgets/path_editor_sheet.dart']:
-              p = Path(filename)
-              s = p.read_text(encoding='utf-8')
-              s = s.replace('onReorderItem:', 'onReorder:')
-              p.write_text(s, encoding='utf-8')
+              p=Path(filename); s=p.read_text(); p.write_text(s.replace('onReorderItem:', 'onReorder:'))
           PY
 
-      - name: Apply Bastion visible branding only
-        shell: bash
+      - name: Wire Bastion home into startup
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('lib/main.dart'); s=p.read_text()
+          needle="import 'screens/scanner_screen.dart';"
+          if "bastion_home_screen.dart" not in s:
+              s=s.replace(needle, needle+"\nimport 'screens/bastion_home_screen.dart';")
+          s=s.replace("title: 'MeshCore Open'", "title: 'Bastion'")
+          s=s.replace("title: 'Bastion'", "title: 'Bastion'")
+          s=s.replace(": const ScannerScreen(),", ": const BastionHomeScreen(),")
+          p.write_text(s)
+          PY
+
+      - name: Apply Bastion visible branding
         run: |
           python3 - <<'PY'
           from pathlib import Path
           for path in Path('lib').rglob('*.dart'):
-              try:
-                  text = path.read_text(encoding='utf-8')
-              except UnicodeDecodeError:
-                  continue
-              branded = text.replace('MeshCore Open', 'Bastion')
-              if branded != text:
-                  path.write_text(branded, encoding='utf-8')
-          manifest = Path('android/app/src/main/AndroidManifest.xml')
-          text = manifest.read_text(encoding='utf-8')
-          text = text.replace('android:label="MeshCore Open"', 'android:label="Bastion"')
-          manifest.write_text(text, encoding='utf-8')
+              try: text=path.read_text(encoding='utf-8')
+              except UnicodeDecodeError: continue
+              branded=text.replace('MeshCore Open','Bastion')
+              if branded != text: path.write_text(branded,encoding='utf-8')
+          manifest=Path('android/app/src/main/AndroidManifest.xml')
+          text=manifest.read_text(); text=text.replace('android:label="MeshCore Open"','android:label="Bastion"'); manifest.write_text(text)
           PY
 
-      - name: Generate Bastion launcher artwork
-        shell: bash
+      - name: Generate temporary Bastion launcher artwork
         run: |
           python3 - <<'PY'
-          import struct, zlib
+          import struct,zlib
           from pathlib import Path
-          W=1024; H=1024
-          bg=(17,20,24); cyan=(24,211,211); white=(245,247,248)
+          W=1024; H=1024; bg=(17,20,24); cyan=(24,211,211); white=(245,247,248)
           px=[list(bg) for _ in range(W*H)]
           def rect(x0,y0,x1,y1,c):
               for y in range(max(0,y0),min(H,y1)):
@@ -81,27 +83,20 @@ jobs:
           rect(260,390,764,735,white); rect(220,300,355,735,white); rect(669,300,804,735,white)
           for x in (255,315,375,435,495,555,615,675,735): rect(x,300,x+32,390,bg)
           rect(455,575,569,735,bg)
-          for yy in range(535,576):
-              v=57*57-(yy-575)*(yy-575)
-              half=int((v if v>0 else 0)**0.5)
-              rect(512-half,yy,512+half,yy+1,bg)
           raw=bytearray()
           for y in range(H):
               raw.append(0)
               for x in range(W): raw.extend(px[y*W+x])
-          def chunk(t,d):
-              return struct.pack('>I',len(d))+t+d+struct.pack('>I',zlib.crc32(t+d)&0xffffffff)
+          def chunk(t,d): return struct.pack('>I',len(d))+t+d+struct.pack('>I',zlib.crc32(t+d)&0xffffffff)
           data=b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',W,H,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(bytes(raw),9))+chunk(b'IEND',b'')
           Path('bastion-launcher.png').write_bytes(data)
           PY
 
-      - name: Force launcher icon config and generate icons
-        shell: bash
+      - name: Generate Android launcher icons
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          p=Path('pubspec.yaml')
-          s=p.read_text()
+          p=Path('pubspec.yaml'); s=p.read_text()
           s=s.replace('image_path: "mesh-icon.png"','image_path: "bastion-launcher.png"')
           s=s.replace('adaptive_icon_background: "#9F9D95"','adaptive_icon_background: "#111418"')
           s=s.replace('adaptive_icon_foreground: "assets/icons/ic_foreground.png"','adaptive_icon_foreground: "bastion-launcher.png"')
@@ -113,18 +108,18 @@ jobs:
         run: flutter analyze
         continue-on-error: true
 
-      - name: Build Bastion APK
+      - name: Build Bastion 9 APK
         run: flutter build apk --release --target lib/main.dart
 
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build7-Branding-arm64.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build9-arm64.apk
 
-      - name: Upload Bastion APK
+      - name: Upload Bastion 9 APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build7-Branding-APK
-          path: dist/Bastion-Build7-Branding-arm64.apk
+          name: Bastion-Build9-APK
+          path: dist/Bastion-Build9-arm64.apk
           if-no-files-found: error
           retention-days: 30
