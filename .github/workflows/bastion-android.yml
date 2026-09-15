@@ -50,7 +50,6 @@ jobs:
           if "bastion_home_screen.dart" not in s:
               s=s.replace(needle, needle+"\nimport 'screens/bastion_home_screen.dart';")
           s=s.replace("title: 'MeshCore Open'", "title: 'Bastion'")
-          s=s.replace("title: 'Bastion'", "title: 'Bastion'")
           s=s.replace(": const ScannerScreen(),", ": const BastionHomeScreen(),")
           p.write_text(s)
           PY
@@ -108,18 +107,18 @@ jobs:
         run: flutter analyze
         continue-on-error: true
 
-      - name: Build Bastion 9 APK
+      - name: Build Bastion 10 APK
         run: flutter build apk --release --target lib/main.dart
 
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build9-arm64.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build10-arm64.apk
 
-      - name: Upload Bastion 9 APK
+      - name: Upload Bastion 10 APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build9-APK
-          path: dist/Bastion-Build9-arm64.apk
+          name: Bastion-Build10-APK
+          path: dist/Bastion-Build10-arm64.apk
           if-no-files-found: error
           retention-days: 30
