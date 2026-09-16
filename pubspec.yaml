@@ -1,4 +1,4 @@
-name: bastion
+name: meshcore_open
 description: "Bastion by Bastion"
 publish_to: 'none'
 version: 9.5.0+16
