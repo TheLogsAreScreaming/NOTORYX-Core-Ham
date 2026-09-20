@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'MeshCore Open';
+  String get appTitle => 'Bastion';
 
   @override
   String get nav_contacts => 'Contacts';
@@ -142,7 +142,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common_interval => 'Interval';
 
   @override
-  String get scanner_title => 'MeshCore Open';
+  String get scanner_title => 'Bastion • Connect Radio';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -582,15 +582,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'MeshCore Open v$version';
+    return 'Bastion v$version';
   }
 
   @override
-  String get settings_aboutLegalese => '2026 MeshCore Open Source Project';
+  String get settings_aboutLegalese => 'Bastion by Bastion • Built with open-source MeshCore Open components';
 
   @override
   String get settings_aboutDescription =>
-      'An open-source Flutter client for MeshCore LoRa mesh networking devices.';
+      'Bastion is a community-focused MeshCore companion app by Bastion. It includes and builds on open-source components from MeshCore Open and other credited projects.';
 
   @override
   String get settings_aboutOpenMeteoAttribution =>
@@ -4205,7 +4205,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Copying advert to Clipboard failed.';
 
   @override
-  String get notification_activityTitle => 'MeshCore Activity';
+  String get notification_activityTitle => 'Bastion Activity';
 
   @override
   String notification_messagesCount(int count) {
@@ -4295,11 +4295,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Map data exported from meshcore-open';
+      'Map data exported from Bastion';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'meshcore-open GPX map data export';
+      'Bastion GPX map data export';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Nearby Repeaters';
@@ -4617,7 +4617,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get translation_systemLanguage => 'System language';
 
   @override
-  String get background_serviceTitle => 'MeshCore running';
+  String get background_serviceTitle => 'Bastion running';
 
   @override
   String get background_serviceText => 'Keeping BLE connected';
