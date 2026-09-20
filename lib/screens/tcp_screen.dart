@@ -58,7 +58,9 @@ class _TcpScreenState extends State<TcpScreen> {
         );
         _navigatedToChannels = true;
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const ChannelsScreen()),
+          MaterialPageRoute(
+            builder: (_) => const ChannelsScreen(hideBackButton: true),
+          ),
         );
       }
     };

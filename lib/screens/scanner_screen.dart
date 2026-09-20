@@ -50,8 +50,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
           !_changedNavigation) {
         _changedNavigation = true;
         if (mounted) {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const ChannelsScreen()),
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const ChannelsScreen(hideBackButton: true),
+            ),
           );
         }
       }
