@@ -1,7 +1,7 @@
 name: meshcore_open
 description: "Bastion by Bastion"
 publish_to: 'none'
-version: 9.5.0+39
+version: 9.5.0+41
 
 environment:
   sdk: ^3.9.2
