@@ -5,16 +5,16 @@ class MeshPalette {
   MeshPalette._();
 
   // Surfaces shared with the map overlays and navigation.
-  static const bg = Color(0xFF0B1220);
-  static const bg1 = Color(0xFF0F172A);
-  static const bg2 = Color(0xFF162033);
-  static const bg3 = Color(0xFF1E293B);
-  static const bg4 = Color(0xFF334155);
+  static const bg = Color(0xFF0B0E11);
+  static const bg1 = Color(0xFF10151A);
+  static const bg2 = Color(0xFF12171C);
+  static const bg3 = Color(0xFF1A2229);
+  static const bg4 = Color(0xFF26313A);
 
   // Lines — lifted for clearer element separation on the near-black surface
-  static const line = Color(0xFF2A3850);
-  static const line2 = Color(0xFF3B4A61);
-  static const line3 = Color(0xFF546376);
+  static const line = Color(0xFF26313A);
+  static const line2 = Color(0xFF33414C);
+  static const line3 = Color(0xFF4C5C68);
 
   // Ink — muted tones brightened for readable secondary/tertiary text in dark
   static const ink = Color(0xFFF8FAFC);
@@ -38,10 +38,10 @@ class MeshPalette {
   static const alertLine = Color(0x66EF4444);
 
   // Blue — primary map/app accent
-  static const blue = Color(0xFF0EA5E9);
-  static const blueDim = Color(0xFF0284C7);
-  static const blueBg = Color(0x290EA5E9);
-  static const blueLine = Color(0x800EA5E9);
+  static const blue = Color(0xFF18D3D3);
+  static const blueDim = Color(0xFF0FAAAA);
+  static const blueBg = Color(0x2918D3D3);
+  static const blueLine = Color(0x8018D3D3);
 
   // Magenta
   static const magenta = Color(0xFFDE7FDB);
@@ -75,7 +75,7 @@ class MapPalette {
   static const router = Color(0xFF7C3AED);
   static const batteryLow = Color(0xFFEF4444);
   static const cluster = Color(0xFFF97316);
-  static const selected = Color(0xFF0EA5E9);
+  static const selected = Color(0xFF18D3D3);
   static const sensor = Color(0xFF0F766E);
   static const shared = Color(0xFF0369A1);
 
@@ -99,7 +99,7 @@ class LosPalette {
   static const blocked = Color(0xFFEF4444);
   static const marginal = Color(0xFFF59E0B);
   static const clear = Color(0xFF22C55E);
-  static const selected = Color(0xFF0EA5E9);
+  static const selected = Color(0xFF18D3D3);
   static const chartBackground = Color(0xFF0B1220);
   static const panelDark = Color(0xF00F172A);
   static const panelLight = Color(0xF5FFFFFF);
