@@ -142,7 +142,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common_interval => 'Interval';
 
   @override
-  String get scanner_title => 'Bastion • Connect Radio';
+  String get scanner_title => 'Connect Radio';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -332,7 +332,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get device_meshcore => 'MeshCore';
 
   @override
-  String get settings_title => 'Settings';
+  String get settings_title => 'Bastion Settings';
 
   @override
   String get settings_deviceInfo => 'Device Info';
@@ -1014,7 +1014,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'App debug logging disabled';
 
   @override
-  String get contacts_title => 'Contacts';
+  String get contacts_title => 'Nodes';
 
   @override
   String get contacts_noContacts => 'No contacts yet';
@@ -1185,7 +1185,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contact_teleEnvSubtitle => 'Allow sharing environment sensor data';
 
   @override
-  String get channels_title => 'Channels';
+  String get channels_title => 'Chats & Channels';
 
   @override
   String get channels_noChannelsConfigured => 'No channels configured';

@@ -43,15 +43,19 @@ jobs:
           if 'bastion_home_screen.dart' not in s:s=s.replace(needle,needle+"\nimport 'screens/bastion_home_screen.dart';")
           s=s.replace("title: 'MeshCore Open'","title: 'Bastion'").replace(": const ScannerScreen(),",": const BastionHomeScreen(),");p.write_text(s)
           PY
-      - name: Apply Bastion visible branding
+      - name: Verify Bastion branding source
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          for p in Path('lib').rglob('*.dart'):
-              try:s=p.read_text()
-              except UnicodeDecodeError:continue
-              n=s.replace('MeshCore Open','Bastion')
-              if n!=s:p.write_text(n)
+          checks = [
+              Path('lib/l10n/app_en.arb'),
+              Path('lib/l10n/app_localizations_en.dart'),
+              Path('lib/main.dart'),
+          ]
+          for p in checks:
+              s = p.read_text()
+              if "MeshCore Open" in s and "Built with open-source MeshCore Open components" not in s:
+                  raise SystemExit(f"Visible MeshCore Open branding remains in {p}")
           PY
       - name: Generate Bastion launcher artwork fallback
         run: |
@@ -81,16 +85,16 @@ jobs:
       - name: Analyze
         run: flutter analyze
         continue-on-error: true
-      - name: Build Bastion 16 APK
+      - name: Build Bastion 39 APK
         run: flutter build apk --release --target lib/main.dart
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build16-arm64.apk
-      - name: Upload Bastion 16 APK
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build39-arm64.apk
+      - name: Upload Bastion 39 APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build16-APK
-          path: dist/Bastion-Build16-arm64.apk
+          name: Bastion-Build39-APK
+          path: dist/Bastion-Build39-arm64.apk
           if-no-files-found: error
           retention-days: 30
