@@ -24,7 +24,6 @@ class QuickSwitchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final background = highContrast
         ? MapPalette.panelDark
         : const Color(0xF20B0E11);
@@ -84,7 +83,7 @@ class QuickSwitchBar extends StatelessWidget {
               ),
               child: NavigationBar(
                 height: 64,
-                selectedIndex: selectedIndex.clamp(0, 2),
+                selectedIndex: selectedIndex < 0 ? 0 : (selectedIndex > 2 ? 2 : selectedIndex),
                 onDestinationSelected: handleDestination,
                 destinations: [
                   NavigationDestination(
