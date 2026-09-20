@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import '../l10n/l10n.dart';
+
+import '../screens/bastion_tools_screen.dart';
+import '../screens/settings_screen.dart';
 import '../theme/mesh_theme.dart';
 
 class QuickSwitchBar extends StatelessWidget {
@@ -22,38 +24,40 @@ class QuickSwitchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final labelStyle = theme.textTheme.labelMedium ?? const TextStyle();
-    final background = highContrast ? MapPalette.panelDark : Colors.transparent;
-    // The selected icon sits on the primary indicator pill, so it uses
-    // onPrimary. The label sits below on the bar background, so it must use a
-    // foreground color that contrasts with the surface (not onPrimary, which
-    // is white-on-white in the light theme).
-    final selectedIconColor = highContrast
-        ? MapPalette.textPrimary
-        : colorScheme.onPrimary;
-    final selectedLabelColor = highContrast
-        ? MapPalette.textPrimary
-        : colorScheme.onSurface;
-    final unselectedColor = highContrast
-        ? MapPalette.textSecondary
-        : colorScheme.onSurfaceVariant;
-    final indicator = highContrast ? MapPalette.selected : colorScheme.primary;
+    final colorScheme = Theme.of(context).colorScheme;
+    final background = highContrast
+        ? MapPalette.panelDark
+        : const Color(0xF20B0E11);
+    const cyan = Color(0xFF18D3D3);
+    const muted = Color(0xFF9AA6AF);
+
+    void handleDestination(int index) {
+      if (index <= 2) {
+        onDestinationSelected(index);
+        return;
+      }
+      if (index == 3) {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => const BastionToolsScreen()),
+        );
+        return;
+      }
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => const SettingsScreen()),
+      );
+    }
 
     return SizedBox(
       width: double.infinity,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: background,
-              border: Border.all(
-                color: highContrast
-                    ? MapPalette.border
-                    : colorScheme.outlineVariant.withValues(alpha: 0.4),
+              border: Border(
+                top: BorderSide(color: cyan.withValues(alpha: .45), width: 1),
               ),
             ),
             child: NavigationBarTheme(
@@ -61,56 +65,64 @@ class QuickSwitchBar extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 surfaceTintColor: Colors.transparent,
                 shadowColor: Colors.transparent,
-                indicatorColor: indicator,
+                indicatorColor: cyan.withValues(alpha: .18),
                 labelTextStyle: WidgetStateProperty.resolveWith((states) {
-                  final isSelected = states.contains(WidgetState.selected);
-                  return labelStyle.copyWith(
-                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                    color: isSelected ? selectedLabelColor : unselectedColor,
+                  final selected = states.contains(WidgetState.selected);
+                  return TextStyle(
+                    color: selected ? cyan : muted,
+                    fontSize: 10.5,
+                    fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
                   );
                 }),
                 iconTheme: WidgetStateProperty.resolveWith((states) {
-                  final isSelected = states.contains(WidgetState.selected);
+                  final selected = states.contains(WidgetState.selected);
                   return IconThemeData(
-                    color: isSelected ? selectedIconColor : unselectedColor,
+                    color: selected ? cyan : muted,
+                    size: 22,
                   );
                 }),
               ),
               child: NavigationBar(
-                height: 60,
-                selectedIndex: selectedIndex,
-                onDestinationSelected: onDestinationSelected,
+                height: 64,
+                selectedIndex: selectedIndex.clamp(0, 2),
+                onDestinationSelected: handleDestination,
                 destinations: [
                   NavigationDestination(
                     icon: _buildIconWithBadge(
-                      context,
-                      const Icon(Icons.people_outline),
+                      const Icon(Icons.hub_outlined),
                       contactsUnreadCount,
                     ),
                     selectedIcon: _buildIconWithBadge(
-                      context,
-                      const Icon(Icons.people),
+                      const Icon(Icons.hub_rounded),
                       contactsUnreadCount,
                     ),
-                    label: context.l10n.nav_contacts,
+                    label: 'NODES',
                   ),
                   NavigationDestination(
                     icon: _buildIconWithBadge(
-                      context,
-                      const Icon(Icons.tag),
+                      const Icon(Icons.forum_outlined),
                       channelsUnreadCount,
                     ),
                     selectedIcon: _buildIconWithBadge(
-                      context,
-                      const Icon(Icons.tag),
+                      const Icon(Icons.forum_rounded),
                       channelsUnreadCount,
                     ),
-                    label: context.l10n.nav_channels,
+                    label: 'CHATS',
                   ),
-                  NavigationDestination(
-                    icon: const Icon(Icons.map_outlined),
-                    selectedIcon: const Icon(Icons.map),
-                    label: context.l10n.nav_map,
+                  const NavigationDestination(
+                    icon: Icon(Icons.map_outlined),
+                    selectedIcon: Icon(Icons.map_rounded),
+                    label: 'MAP',
+                  ),
+                  const NavigationDestination(
+                    icon: Icon(Icons.construction_outlined),
+                    selectedIcon: Icon(Icons.construction_rounded),
+                    label: 'TOOLS',
+                  ),
+                  const NavigationDestination(
+                    icon: Icon(Icons.tune_outlined),
+                    selectedIcon: Icon(Icons.tune_rounded),
+                    label: 'SETTINGS',
                   ),
                 ],
               ),
@@ -121,7 +133,7 @@ class QuickSwitchBar extends StatelessWidget {
     );
   }
 
-  Widget _buildIconWithBadge(BuildContext context, Icon icon, int count) {
+  Widget _buildIconWithBadge(Icon icon, int count) {
     if (count <= 0) return icon;
     final label = count > 99 ? '99+' : '$count';
     return Badge(label: Text(label), child: icon);
