@@ -12,7 +12,6 @@ import 'utils/platform_info.dart';
 
 import 'connector/meshcore_connector.dart';
 import 'models/image_codec_support.dart';
-import 'screens/scanner_screen.dart';
 import 'screens/bastion_home_screen.dart';
 import 'services/image_chunk_transport.dart';
 import 'services/image_codec_service.dart';
