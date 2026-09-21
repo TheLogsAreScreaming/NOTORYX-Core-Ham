@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'bastion_about_screen.dart';
+import 'bastion_diagnostics_screen.dart';
 import 'bastion_field_stats_screen.dart';
 import 'bastion_map_hub_screen.dart';
 import 'bastion_path_hub_screen.dart';
@@ -88,6 +90,32 @@ class BastionToolsScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (_) => const BastionFieldStatsScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _tool(
+              context,
+              Icons.monitor_heart_rounded,
+              'DIAGNOSTICS',
+              'Radio health, device information, raw frames and export',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const BastionDiagnosticsScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _tool(
+              context,
+              Icons.info_outline_rounded,
+              'ABOUT + CREDITS',
+              'Bastion version, independence statement and open-source licenses',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const BastionAboutScreen(),
                 ),
               ),
             ),

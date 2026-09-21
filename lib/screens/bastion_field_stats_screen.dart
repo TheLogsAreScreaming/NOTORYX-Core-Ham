@@ -104,13 +104,13 @@ class BastionFieldStatsScreen extends StatelessWidget {
           const _Panel(
             Icons.route_rounded,
             'PATH INTELLIGENCE',
-            'Bastion’s path engine separately tracks attempts, hop counts, success/failure, trip time and route weighting. The Path Analysis module is being expanded around those persisted records.',
+            'Bastion’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.',
           ),
           const SizedBox(height: 10),
           const _Panel(
             Icons.map_rounded,
             'COVERAGE SESSIONS',
-            'Coverage Capture is active as a field-session module. Radio event + GPS persistence is the next wiring layer before we call it true wardrive logging.',
+            'Coverage Capture now saves field sessions, restores interrupted work, exports observations and maps recorded coverage points. RSSI/SNR remain the nearest available radio snapshot.',
           ),
         ],
       ),
