@@ -57,36 +57,12 @@ jobs:
               if "MeshCore Open" in s and "Built with open-source MeshCore Open components" not in s:
                   raise SystemExit(f"Visible MeshCore Open branding remains in {p}")
           PY
-      - name: Generate Bastion launcher artwork fallback
-        run: |
-          python3 - <<'PY'
-          import struct,zlib
-          from pathlib import Path
-          W=1024;H=1024;bg=(17,20,24);cyan=(24,211,211);white=(245,247,248);px=[list(bg) for _ in range(W*H)]
-          def rect(x0,y0,x1,y1,c):
-            for y in range(max(0,y0),min(H,y1)):
-              for x in range(max(0,x0),min(W,x1)):px[y*W+x]=list(c)
-          rect(70,70,954,105,cyan);rect(70,919,954,954,cyan);rect(70,70,105,954,cyan);rect(919,70,954,954,cyan);rect(260,390,764,735,white);rect(220,300,355,735,white);rect(669,300,804,735,white)
-          for x in (255,315,375,435,495,555,615,675,735):rect(x,300,x+32,390,bg)
-          rect(455,575,569,735,bg);raw=bytearray()
-          for y in range(H):
-            raw.append(0)
-            for x in range(W):raw.extend(px[y*W+x])
-          def chunk(t,d):return struct.pack('>I',len(d))+t+d+struct.pack('>I',zlib.crc32(t+d)&0xffffffff)
-          Path('bastion-launcher.png').write_bytes(b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',W,H,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(bytes(raw),9))+chunk(b'IEND',b''))
-          PY
-      - name: Generate Android launcher icons
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('pubspec.yaml');s=p.read_text().replace('image_path: "mesh-icon.png"','image_path: "bastion-launcher.png"').replace('adaptive_icon_foreground: "mesh-icon.png"','adaptive_icon_foreground: "bastion-launcher.png"');p.write_text(s)
-          PY
-          dart run flutter_launcher_icons
       - name: Analyze
-        run: flutter analyze
-        continue-on-error: true
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Test coverage persistence
+        run: flutter test test/services/coverage_history_test.dart
       - name: Build Bastion 46 APK
-        run: flutter build apk --release --target lib/main.dart
+        run: flutter build apk --release --target-platform android-arm64 --target lib/main.dart
       - name: Stage APK
         run: |
           mkdir -p dist

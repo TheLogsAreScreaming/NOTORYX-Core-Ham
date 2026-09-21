@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'bastion_coverage_history_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,7 @@ class _BastionCoverageCaptureScreenState
   final CoverageCaptureService _capture = CoverageCaptureService();
   MeshCoreConnector? _connector;
   Timer? _clock;
+  bool _busy = false;
 
   @override
   void didChangeDependencies() {
@@ -58,6 +60,8 @@ class _BastionCoverageCaptureScreenState
   }
 
   Future<void> _toggle() async {
+    if (_busy) return;
+    setState(() => _busy = true);
     try {
       if (_capture.recording) {
         await _capture.stop();
@@ -69,6 +73,8 @@ class _BastionCoverageCaptureScreenState
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(error.toString().replaceFirst('Bad state: ', ''))),
       );
+    } finally {
+      if (mounted) setState(() => _busy = false);
     }
   }
 
@@ -104,7 +110,12 @@ class _BastionCoverageCaptureScreenState
     final observations = _capture.observations;
     final hasGps = connector.selfLatitude != null && connector.selfLongitude != null;
 
-    return Scaffold(
+    return PopScope(
+      canPop: !_capture.recording && !_busy,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Stop and save the session before leaving.')));
+      },
+      child: Scaffold(
       backgroundColor: bg,
       appBar: AppBar(
         backgroundColor: bg,
@@ -131,6 +142,11 @@ class _BastionCoverageCaptureScreenState
       body: ListView(
         padding: const EdgeInsets.all(18),
         children: [
+          OutlinedButton.icon(
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => BastionCoverageHistoryScreen(capture: _capture))),
+            icon: const Icon(Icons.history), label: const Text('SAVED SESSIONS'),
+          ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 12), child: Text(coverageCaveat)),
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
@@ -226,7 +242,7 @@ class _BastionCoverageCaptureScreenState
               foregroundColor: _capture.recording ? Colors.white : Colors.black,
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
-            onPressed: connector.isConnected || _capture.recording ? _toggle : null,
+            onPressed: !_busy && (connector.isConnected || _capture.recording) ? _toggle : null,
             icon: Icon(
               _capture.recording ? Icons.stop_rounded : Icons.play_arrow_rounded,
             ),
@@ -257,6 +273,7 @@ class _BastionCoverageCaptureScreenState
               ],
             ),
           ],
+          if (observations.isNotEmpty) CoverageSessionMap(observations: observations),
           const SizedBox(height: 22),
           const Text(
             'LIVE OBSERVATIONS',
@@ -284,7 +301,7 @@ class _BastionCoverageCaptureScreenState
             ),
         ],
       ),
-    );
+    ));
   }
 }
 

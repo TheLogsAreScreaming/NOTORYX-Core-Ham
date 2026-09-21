@@ -114,7 +114,17 @@ class CoverageCaptureSession {
     required this.observations,
   });
 
+  factory CoverageCaptureSession.fromJson(Map<String, dynamic> json) =>
+      CoverageCaptureSession(
+        id: json['id'] as String,
+        startedAt: DateTime.parse(json['started_at'] as String),
+        endedAt: json['ended_at'] == null ? null : DateTime.parse(json['ended_at'] as String),
+        observations: (json['observations'] as List).map((o) =>
+          CoverageObservation.fromJson(Map<String, dynamic>.from(o as Map))).toList(),
+      );
+
   Map<String, dynamic> toJson() => {
+        'signal_note': 'RSSI/SNR are radio snapshots, not per-node or per-packet measurements. Recorder position is the radio advertised position, not phone GPS.',
         'id': id,
         'started_at': startedAt.toIso8601String(),
         'ended_at': endedAt?.toIso8601String(),
@@ -136,6 +146,50 @@ class CoverageCaptureService extends ChangeNotifier {
   final Map<String, DateTime> _lastCapturedSeen = {};
   Timer? _persistTimer;
 
+  final List<CoverageCaptureSession> _history = [];
+  List<CoverageCaptureSession> get history => List.unmodifiable(_history);
+  String? loadWarning;
+
+  Future<void> loadHistory() async {
+    final prefs = await SharedPreferences.getInstance();
+    _history.clear();
+    loadWarning = null;
+    for (final raw in prefs.getStringList(_historyKey) ?? <String>[]) {
+      try {
+        _history.add(CoverageCaptureSession.fromJson(jsonDecode(raw) as Map<String, dynamic>));
+      } catch (_) {
+        loadWarning = 'A damaged saved session could not be opened. Its stored data has been retained.';
+      }
+    }
+    // Recover interrupted captures as read-only sessions; never silently resume.
+    final active = prefs.getString(_activeKey);
+    if (active != null && !_recording) {
+      try {
+        final recovered = CoverageCaptureSession.fromJson(jsonDecode(active) as Map<String, dynamic>);
+        if (!_history.any((s) => s.id == recovered.id)) _history.insert(0, recovered);
+      } catch (_) {
+        loadWarning = 'An interrupted session could not be recovered. Its stored data has been retained.';
+      }
+    }
+    notifyListeners();
+  }
+
+  Future<void> deleteSession(String id) async {
+    final prefs = await SharedPreferences.getInstance();
+    final rows = prefs.getStringList(_historyKey) ?? <String>[];
+    rows.removeWhere((raw) {
+      try { return (jsonDecode(raw) as Map)['id'] == id; } catch (_) { return false; }
+    });
+    if (!await prefs.setStringList(_historyKey, rows)) throw StateError('Could not delete session.');
+    final active = prefs.getString(_activeKey);
+    if (!_recording && active != null) {
+      try {
+        if ((jsonDecode(active) as Map)['id'] == id) await prefs.remove(_activeKey);
+      } on FormatException { /* Retain unreadable recovery data. */ }
+    }
+    await loadHistory();
+  }
+
   bool get recording => _recording;
   DateTime? get startedAt => _startedAt;
   DateTime? get endedAt => _endedAt;
@@ -154,6 +208,17 @@ class CoverageCaptureService extends ChangeNotifier {
     final connector = _connector;
     if (connector == null || !connector.isConnected) {
       throw StateError('Connect a radio before starting coverage capture.');
+    }
+    if (_recording) return;
+    final prefs = await SharedPreferences.getInstance();
+    final interrupted = prefs.getString(_activeKey);
+    if (interrupted != null) {
+      final rows = prefs.getStringList(_historyKey) ?? <String>[];
+      if (!rows.contains(interrupted)) {
+        if (!await prefs.setStringList(_historyKey, [interrupted, ...rows])) {
+          throw StateError('Could not preserve interrupted session.');
+        }
+      }
     }
     _recording = true;
     _sessionId = const Uuid().v4();
@@ -174,6 +239,7 @@ class CoverageCaptureService extends ChangeNotifier {
     _persistTimer = null;
     await _saveCompletedSession();
     await _clearActive();
+    await loadHistory();
     notifyListeners();
   }
 
@@ -278,17 +344,17 @@ class CoverageCaptureService extends ChangeNotifier {
     if (updated.length > _maxSavedSessions) {
       updated.removeRange(_maxSavedSessions, updated.length);
     }
-    await prefs.setStringList(_historyKey, updated);
+    if (!await prefs.setStringList(_historyKey, updated)) throw StateError('Could not save session.');
   }
 
-  Future<String> exportJson() async {
+  Future<String> exportJson({CoverageCaptureSession? session}) async {
     final file = await _createExportFile('json');
-    final payload = CoverageCaptureSession(
+    final payload = (session ?? CoverageCaptureSession(
       id: _sessionId ?? const Uuid().v4(),
       startedAt: _startedAt ?? DateTime.now(),
       endedAt: _endedAt,
       observations: List.of(_observations),
-    ).toJson();
+    )).toJson();
     await file.writeAsString(
       const JsonEncoder.withIndent('  ').convert(payload),
       flush: true,
@@ -296,7 +362,7 @@ class CoverageCaptureService extends ChangeNotifier {
     return file.path;
   }
 
-  Future<String> exportCsv() async {
+  Future<String> exportCsv({CoverageCaptureSession? session}) async {
     final file = await _createExportFile('csv');
     final out = StringBuffer();
     out.writeln(
@@ -305,7 +371,7 @@ class CoverageCaptureService extends ChangeNotifier {
       'rssi_dbm,snr_db,noise_floor_dbm,radio_snapshot_age_ms,'
       'frequency_hz,bandwidth_hz,spreading_factor,coding_rate,transport',
     );
-    for (final o in _observations) {
+    for (final o in session?.observations ?? _observations) {
       out.writeln([
         o.timestamp.toIso8601String(),
         o.nodeKey,
