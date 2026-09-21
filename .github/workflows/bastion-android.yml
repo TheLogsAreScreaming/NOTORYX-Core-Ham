@@ -85,16 +85,16 @@ jobs:
       - name: Analyze
         run: flutter analyze
         continue-on-error: true
-      - name: Build Bastion 45 APK
+      - name: Build Bastion 46 APK
         run: flutter build apk --release --target lib/main.dart
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build45-arm64.apk
-      - name: Upload Bastion 45 APK
+          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-Build46-arm64.apk
+      - name: Upload Bastion 46 APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Build45-APK
-          path: dist/Bastion-Build45-arm64.apk
+          name: Bastion-Build46-APK
+          path: dist/Bastion-Build46-arm64.apk
           if-no-files-found: error
           retention-days: 30
