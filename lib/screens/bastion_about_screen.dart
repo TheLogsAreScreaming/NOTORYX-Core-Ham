@@ -42,16 +42,16 @@ class BastionAboutScreen extends StatelessWidget {
           const SizedBox(height: 12),
           FutureBuilder<PackageInfo>(
             future: PackageInfo.fromPlatform(),
-            builder: (context, snapshot) => _panel(
+            builder: (context, snapshot) => _infoPanel(
               Icons.info_outline_rounded,
               'VERSION',
               snapshot.hasData ? '${snapshot.data!.version} (${snapshot.data!.buildNumber})' : 'Loading…',
             ),
           ),
           const SizedBox(height: 12),
-          _panel(Icons.code_rounded, 'OPEN SOURCE FOUNDATION', 'Bastion is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.'),
+          _infoPanel(Icons.code_rounded, 'OPEN SOURCE FOUNDATION', 'Bastion is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.'),
           const SizedBox(height: 12),
-          _panel(Icons.groups_rounded, 'COMMUNITY FIRST', 'Bastion claims no ownership over third-party creator resources. Original projects, names and contributions remain the property of their respective creators.'),
+          _infoPanel(Icons.groups_rounded, 'COMMUNITY FIRST', 'Bastion claims no ownership over third-party creator resources. Original projects, names and contributions remain the property of their respective creators.'),
           const SizedBox(height: 18),
           FilledButton.icon(
             style: FilledButton.styleFrom(backgroundColor: _cyan, foregroundColor: Colors.black, padding: const EdgeInsets.symmetric(vertical: 14)),
@@ -68,7 +68,7 @@ class BastionAboutScreen extends StatelessWidget {
     );
   }
 
-  Widget _panel(IconData icon, String title, String body) => Container(
+  Widget _infoPanel(IconData icon, String title, String body) => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(color: _panel, borderRadius: BorderRadius.circular(16), border: Border.all(color: const Color(0xFF26313A))),
     child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
