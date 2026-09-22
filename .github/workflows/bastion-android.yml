@@ -28,6 +28,12 @@ jobs:
           cache: true
       - name: Install dependencies
         run: flutter pub get
+      - name: Generate approved Bastion launcher icons
+        run: |
+          echo "00393b601be8a7be1dd4f73b64c25718887e27fa75eb8dbf1796c80e76c828d1  branding/bastion-icon.png" | sha256sum -c -
+          dart run flutter_launcher_icons
+          test -s android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+          test -s android/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png
       - name: Apply Flutter 3.41 reorder compatibility
         run: |
           python3 - <<'PY'
@@ -63,6 +69,21 @@ jobs:
         run: flutter test test/services/coverage_history_test.dart
       - name: Build Bastion RC1 APK
         run: flutter build apk --release --target-platform android-arm64 --target lib/main.dart
+      - name: Verify packaged Bastion icon resources
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          from zipfile import ZipFile
+          apk = 'build/app/outputs/flutter-apk/app-release.apk'
+          with ZipFile(apk) as z:
+              names = [n for n in z.namelist() if n.startswith('res/') and 'ic_launcher' in n]
+              required = ('/ic_launcher.png', '/ic_launcher_foreground.png', '/ic_launcher.xml')
+              for suffix in required:
+                  if not any(n.endswith(suffix) for n in names):
+                      raise SystemExit(f'Missing packaged launcher resource: {suffix}')
+              for name in names:
+                  print(f'{name}: {hashlib.sha256(z.read(name)).hexdigest()}')
+          PY
       - name: Stage APK
         run: |
           mkdir -p dist
