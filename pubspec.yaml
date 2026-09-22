@@ -90,10 +90,10 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "mesh-icon.png"
+  image_path: "branding/bastion-icon.png"
   remove_alpha_ios: true
   adaptive_icon_background: "#111418"
-  adaptive_icon_foreground: "mesh-icon.png"
+  adaptive_icon_foreground: "branding/bastion-icon.png"
 
 build_pipe:
   workflows:
