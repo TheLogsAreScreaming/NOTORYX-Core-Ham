@@ -240,8 +240,8 @@
       }
     }
   },
-  "settings_aboutLegalese": "Bastion by Bastion • Built with open-source MeshCore Open components",
-  "settings_aboutDescription": "Bastion is a community-focused MeshCore companion app by Bastion. It includes and builds on open-source components from MeshCore Open and other credited projects.",
+  "settings_aboutLegalese": "Bastion • Built with open-source MeshCore Open components",
+  "settings_aboutDescription": "Bastion is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.",
   "settings_aboutOpenMeteoAttribution": "LOS elevation data: Open-Meteo (CC BY 4.0)",
   "settings_infoName": "Name",
   "settings_infoId": "ID",

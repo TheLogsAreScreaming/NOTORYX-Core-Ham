@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-Bastion is an independent Bastion community application. It is not an official MeshCore application and is not endorsed by the projects credited below.
+Bastion is an independent community application. It is not an official MeshCore application and is not endorsed by the projects credited below.
 
 ## MeshCore Open
 

@@ -586,11 +586,11 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get settings_aboutLegalese => 'Bastion by Bastion • Built with open-source MeshCore Open components';
+  String get settings_aboutLegalese => 'Bastion • Built with open-source MeshCore Open components';
 
   @override
   String get settings_aboutDescription =>
-      'Bastion is a community-focused MeshCore companion app by Bastion. It includes and builds on open-source components from MeshCore Open and other credited projects.';
+      'Bastion is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.';
 
   @override
   String get settings_aboutOpenMeteoAttribution =>

@@ -34,7 +34,6 @@ class BastionAboutScreen extends StatelessWidget {
               SizedBox(height: 12),
               Text('BASTION', style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w900, letterSpacing: 2)),
               SizedBox(height: 4),
-              Text('BY BASTION', style: TextStyle(color: _cyan, fontSize: 11, fontWeight: FontWeight.w900, letterSpacing: 1.3)),
               SizedBox(height: 14),
               Text('An independent community companion app for MeshCore networks. Bastion is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.', style: TextStyle(color: Color(0xFFB8C1C9), height: 1.45)),
             ]),
@@ -51,7 +50,7 @@ class BastionAboutScreen extends StatelessWidget {
           const SizedBox(height: 12),
           _infoPanel(Icons.code_rounded, 'OPEN SOURCE FOUNDATION', 'Bastion is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.'),
           const SizedBox(height: 12),
-          _infoPanel(Icons.groups_rounded, 'COMMUNITY FIRST', 'Bastion claims no ownership over third-party creator resources. Original projects, names and contributions remain the property of their respective creators.'),
+          _infoPanel(Icons.groups_rounded, 'COMMUNITY FIRST', 'Third-party creator resources remain the property of their respective creators. No ownership or partnership is implied.'),
           const SizedBox(height: 18),
           FilledButton.icon(
             style: FilledButton.styleFrom(backgroundColor: _cyan, foregroundColor: Colors.black, padding: const EdgeInsets.symmetric(vertical: 14)),

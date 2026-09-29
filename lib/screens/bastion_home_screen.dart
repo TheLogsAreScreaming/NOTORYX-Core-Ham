@@ -37,7 +37,7 @@ class BastionHomeScreen extends StatelessWidget {
               const SizedBox(width: 14),
               const Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text('BASTION', style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w900, letterSpacing: 2.4)),
-                Text('BASTION  •  MESHCORE', style: TextStyle(color: _cyan, fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: 1.1)),
+                Text('MESHCORE COMPANION', style: TextStyle(color: _cyan, fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: 1.1)),
               ])),
               IconButton(
                 tooltip: 'About Bastion',
@@ -77,7 +77,7 @@ class BastionHomeScreen extends StatelessWidget {
               Expanded(child: _ToolTile(icon: Icons.analytics_rounded, label: 'FIELD STATS', status: 'ACTIVE', onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const BastionFieldStatsScreen())))),
             ]),
             const SizedBox(height: 24),
-            const Center(child: Text('BASTION  •  BASTION', style: TextStyle(color: Color(0xFF66727D), fontSize: 10, fontWeight: FontWeight.w700, letterSpacing: 1.3))),
+            const Center(child: Text('BASTION', style: TextStyle(color: Color(0xFF66727D), fontSize: 10, fontWeight: FontWeight.w700, letterSpacing: 1.3))),
           ],
         ),
       ),
