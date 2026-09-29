@@ -1,267 +1,82 @@
-# MeshCore Open
+# Bastion
 
-Open-source Flutter client for MeshCore LoRa mesh networking devices.
+Bastion is an independent MeshCore companion app built with Flutter.
 
-## Overview
+It combines messaging, maps, coverage capture, route intelligence, repeater tools, diagnostics, and offline field features in one app.
 
-MeshCore Open is a cross-platform mobile application for communicating with MeshCore LoRa mesh network devices via Bluetooth Low Energy (BLE). The app enables long-range, off-grid communication through peer-to-peer messaging, public channels, and mesh networking capabilities.
+## Status
 
-**Website:** [meshcoreopen.org](https://meshcoreopen.org/)
-
-<a href="http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/zjs81/meshcore-open">
-        <img src="assets/badges/badge_obtainium.png" height="80" align="center" alt="Get it on Obtainium"/>
-</a>
-
-## Screenshots
-
-<table>
-  <tr>
-    <td><img src="docs/screenshots/contacts.jpg" width="200"/><br/><p align="center"><b>Contacts</b></p></td>
-    <td><img src="docs/screenshots/chat1.jpg" width="200"/><br/><p align="center"><b>Chat</b></p></td>
-    <td><img src="docs/screenshots/chat2.jpg" width="200"/><br/><p align="center"><b>Reactions</b></p></td>
-    <td><img src="docs/screenshots/map.jpg" width="200"/><br/><p align="center"><b>Map</b></p></td>
-    <td><img src="docs/screenshots/channels.jpg" width="200"/><br/><p align="center"><b>Channels</b></p></td>
-  </tr>
-</table>
+Bastion is under active development. Android ARM64 is the primary release target today. Other Flutter-supported platforms remain part of the project architecture but may not have the same level of testing.
 
 ## Features
 
-### Core Functionality
+- MeshCore contacts, direct messages, and channels
+- BLE, USB, and TCP companion connections
+- Live mesh map and node discovery
+- Coverage capture with saved sessions, recovery, maps, and export
+- Route/path history and route intelligence
+- Repeater status, telemetry, neighbors, settings, and CLI access
+- Field statistics and diagnostics
+- Offline map support
+- QR sharing and region-aware workflows where supported
+- Local persistence for app and mesh data
 
-- **Direct Messaging**: Private encrypted conversations with individual contacts
-- **Public Channels**: Broadcast messages to channel subscribers on the mesh network
-- **Contact Management**: Organize contacts, track last seen times, and manage conversation history
-- **Contact Groups**: Create custom groups to organize your mesh network contacts
-- **Message Reactions**: React to messages with emoji responses
-- **Message Replies**: Thread conversations with inline reply functionality
+## Android build
 
-### Mesh Network
+The project uses Flutter 3.41.5 in its Android CI pipeline.
 
-- **Path Visualization**: View routing paths and signal quality for each contact
-- **Route Management**: Manual path overriding and automatic route rotation
-- **Signal Metrics**: Real-time SNR (Signal-to-Noise Ratio) tracking
-- **Node Discovery**: Automatic detection of nearby mesh nodes
-- **Repeater Support**: Connect to and manage repeater nodes for extended range
-
-### Map & Location
-
-- **Live Map View**: Real-time visualization of mesh network nodes on an interactive map
-- **Node Filtering**: Filter by node type (chat, repeater, sensor) and time range
-- **Location Sharing**: Share GPS coordinates and custom markers with contacts
-- **Offline Maps**: Download map tiles for offline use in remote areas (with [StadiaMaps](https://stadiamaps.com/pricing/) Free Subscription API-Key)
-- **MGRS Coordinates**: Support for Military Grid Reference System coordinate format
-
-### Device Management
-
-- **BLE, USB, TCP Connection**: Scan and connect to MeshCore devices via Bluetooth, USB or TCP
-- **Device Settings**: Configure radio parameters, power settings, and network options
-- **Battery Monitoring**: Real-time battery status with chemistry-specific voltage curves
-- **Firmware Updates**: Over-the-air firmware updates via BLE (coming soon)
-
-### Repeater Hub
-
-- **CLI Access**: Full command-line interface to repeater nodes
-- **Settings Management**: Configure repeater behavior, power limits, and network settings
-- **Statistics Dashboard**: View repeater traffic, connected clients, and system health
-- **Remote Management**: Administer repeaters from anywhere on the mesh network
-
-## Technical Details
-
-### Architecture
-
-- **Framework**: Flutter 3.38.5 / Dart 3.10.4
-- **State Management**: Provider pattern with ChangeNotifier
-- **BLE Protocol**: Nordic UART Service (NUS) over Bluetooth Low Energy
-- **Storage**: Local SQLite database for messages and contact data
-- **Encryption**: End-to-end encryption for private messages using the MeshCore protocol
-
-### Platform Support
-
-| Feature            | Android (API 21+) | iOS (12+) | Linux | Windows | macOS |                Web                |
-|--------------------|:-----------------:|:---------:|:-----:|:-------:|:-----:|:---------------------------------:|
-| BLE companion      | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
-| USB companion      | ✅                | 🚧        | ✅   | ✅      | ✅    | ✅                                |
-| TCP companion      | ✅                | 🚧        | ✅   | ✅      | ✅    | ❌<br>(requires websocket bridge) |
-| Core Functionality | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
-| Mesh Network       | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
-| Map & Location     | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
-| Device Management  | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
-| Repeater Hub       | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
-
-### Dependencies
-
-| Package | Purpose |
-|---------|---------|
-| flutter_blue_plus | Bluetooth Low Energy communication |
-| provider | State management |
-| shared_preferences | Local key-value storage (scoped per device) |
-| flutter_map | Interactive map display |
-| latlong2 | Geographic coordinate handling |
-| flutter_local_notifications | Background notification support |
-| pointycastle | Cryptographic operations |
-| llamadart | On-device LLM message translation |
-| intl | Internationalization and date formatting |
-
-## Getting Started
-
-### Prerequisites
-
-- Flutter SDK 3.38.5 or later
-- Android Studio / Xcode (for mobile development)
-- A MeshCore-compatible LoRa device
-
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/zjs81/meshcore-open.git
-   cd meshcore-open
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   flutter pub get
-   ```
-
-3. **Run the app**
-
-   ```bash
-   flutter run
-   ```
-
-### Building for Release
-
-**Android APK:**
+To build locally:
 
 ```bash
-flutter build apk --release
+flutter pub get
+dart run flutter_launcher_icons
+flutter build apk --release --target-platform android-arm64 --target lib/main.dart
 ```
 
-**iOS:**
+The Android application ID is:
+
+```
+com.bastionmesh.bastion
+```
+
+This identifier is kept for package continuity and does not represent in-app branding.
+
+## Development
+
+Run the app locally with:
 
 ```bash
-flutter build ios --release
+flutter pub get
+flutter run
 ```
 
-## Project Structure
+Before submitting changes:
 
-```
-lib/
-├── main.dart                    # App entry point
-├── connector/
-│   ├── meshcore_connector.dart  # BLE communication & state management
-│   ├── meshcore_protocol.dart   # Protocol definitions & frame parsing
-│   └── meshcore_uuids.dart      # Device names and IDs (add prefixes here!)
-├── screens/
-│   ├── scanner_screen.dart      # Device scanning (home screen)
-│   ├── contacts_screen.dart     # Contact list
-│   ├── chat_screen.dart         # Direct messaging
-│   ├── channels_screen.dart     # Public channels
-│   ├── map_screen.dart          # Network visualization map
-│   ├── settings_screen.dart     # Device settings
-│   └── repeater_hub_screen.dart # Repeater management
-├── models/
-│   ├── contact.dart             # Contact data model
-│   ├── message.dart             # Message data structure
-│   └── channel.dart             # Channel definitions
-├── services/
-│   ├── notification_service.dart      # Push notifications
-│   ├── message_retry_service.dart     # Automatic message retry
-│   ├── background_service.dart        # Background BLE connection
-│   └── map_tile_cache_service.dart    # Offline map storage
-└── storage/
-    ├── message_store.dart       # Message persistence
-    ├── contact_store.dart       # Contact database
-    └── unread_store.dart        # Unread message tracking
+```bash
+dart format .
+flutter analyze
+flutter test
 ```
 
-## BLE Protocol
+## Project structure
 
-### Nordic UART Service (NUS)
+- `lib/connector/` — MeshCore protocol and transport logic
+- `lib/screens/` — Bastion UI
+- `lib/services/` — coverage, routing, diagnostics, storage, notifications, and supporting services
+- `lib/storage/` — persistent app/mesh data
+- `lib/widgets/` — reusable UI components
+- `android/`, `ios/`, `macos/`, `linux/`, `windows/`, `web/` — platform projects
 
-- **Service UUID**: `6e400001-b5a3-f393-e0a9-e50e24dcca9e`
-- **RX Characteristic**: `6e400002-b5a3-f393-e0a9-e50e24dcca9e` (Write to device)
-- **TX Characteristic**: `6e400003-b5a3-f393-e0a9-e50e24dcca9e` (Notify from device)
+## Issues and contributions
 
-### Device Discovery
+Use this repository's **Issues** tab for bugs, feature requests, and development discussion. See `CONTRIBUTING.md` before opening a pull request.
 
-Devices are discovered by scanning for BLE advertisements with known MeshCore device name prefixes. These are currently:
-    - `MeshCore-`
-    - `Whisper-`
-    - `WisCore-`
-    - `HT-`
-    - `LowMesh_MC_`
-    - `NRF52`
+## Independence and attribution
 
-New device prefixes can be added in `lib/connector/meshcore_uuids.dart`.
+Bastion is an independent community application. It is not an official MeshCore application and does not imply endorsement by MeshCore or other credited projects.
 
+Bastion includes or builds on open-source work from other projects. Required license text, copyright notices, and source attribution are preserved in `THIRD_PARTY_NOTICES.md` and the app's Open Source Licenses screen.
 
-### Message Format
+## License
 
-Messages are transmitted as binary frames using a custom protocol optimized for LoRa transmission. See `meshcore_protocol.dart` for frame structure definitions.
-
-## Configuration
-
-### App Settings
-
-- **Theme**: System default, light, or dark mode
-- **Language**: Use one of 15 languages (English, Chinese, French, Spanish, Portuguese, German, Dutch, Polish, Swedish, Italian, Slovak, Slovene, Bulgarian, Russian, Ukrainian)
-- **Notifications**: Configurable for messages, channels, and node advertisements
-- **Battery Chemistry**: Support for NMC, LiFePO4, and LiPo battery types
-- **Message Retry**: Automatic retry with configurable path clearing
-
-### Device Settings
-
-- **Radio Power**: Transmit power adjustment (10-30 dBm)
-- **Frequency**: LoRa frequency configuration
-- **Bandwidth**: Channel bandwidth selection
-- **Spreading Factor**: Range vs. speed trade-off
-- **Network ID**: Mesh network identifier
-
-## Contributing
-
-This is an open-source project. Contributions are welcome!
-
-## SWHID and Archive badge
-[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/zjs81/meshcore-open/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/zjs81/meshcore-open)
-[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:d37a80b06359730864150ad2aeadd46cce9abd55/)](https://archive.softwareheritage.org/swh:1:dir:d37a80b06359730864150ad2aeadd46cce9abd55;origin=https://github.com/zjs81/meshcore-open;visit=swh:1:snp:47656c4b55ab40a689ff8d2f045196725f05096b;anchor=swh:1:rev:0fe250230905fdd05dbedc0f546736990beacf53)
-
-### Development Guidelines
-
-- Follow the Flutter style guide
-- Use Material 3 design components
-- Write clear commit messages
-- Test on both Android and iOS before submitting PRs
-
-### Code Style
-
-- Prefer `StatelessWidget` with `Consumer` for reactive UI
-- Use `const` constructors where possible
-- Keep functions small and focused
-- Avoid premature abstractions
-- Run dart format on all changes before submitting
-
-## Support
-
-For issues, questions, or feature requests, please open an issue on GitHub:
-<https://github.com/zjs81/meshcore-open/issues>
-
-## Donate
-
-If you find MeshCore Open useful and would like to support development, you can donate Solana or other Solana tokens:
-
-**Solana Address:** `F15YanjZj96YTBtKJYgNa8RLQLCZkx5CEwogPWkqXeoQ`
-
-
-**Monero Address:** `453TxnpUqjkJtXxzdjMsrgERNkBRXEGamPbpC45ENrvKAk9tH7kZbxWF82Hz66etgDZyXFPEBU2JUEqhLeJyWt9kBvTVy5m`
-
-**Bitcoin Address:** `bc1qh45x28v8dslcg4v4upmqd9g0mvc3lnyffmyzr5`
-
-Your support helps maintain and improve this open-source project!
-
-## Acknowledgments
-
-- Built with [Flutter](https://flutter.dev/)
-- Map tiles from [OpenStreetMap](https://www.openstreetmap.org/)
+See the repository license and `THIRD_PARTY_NOTICES.md` for applicable licensing and third-party notices.

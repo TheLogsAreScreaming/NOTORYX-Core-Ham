@@ -1,16 +1,16 @@
 # Bastion
 
-Bastion is the Bastion all-in-one MeshCore client.
+Bastion is an independent, all-in-one MeshCore companion client.
 
 ## Product direction
 
-Bastion combines a full MeshCore companion experience with mapping, wardriving, network analysis, repeater administration, offline field tools, and region-aware workflows in one branded application.
+Bastion combines a full MeshCore companion experience with mapping, coverage capture, network analysis, repeater administration, offline field tools, and region-aware workflows in one application.
 
 ## Design
 
 - Product name: Bastion
 - Brand: Bastion
-- Theme: dark charcoal/black, white, cyan/teal accents matching the Bastion website
+- Theme: dark charcoal/black, white, cyan/teal accents
 - Launcher icon: approved Bastion fortress icon
 - Mobile-first with Android as the first release target; retain cross-platform Flutter architecture for iOS/desktop/web where practical
 
@@ -51,7 +51,7 @@ Bastion combines a full MeshCore companion experience with mapping, wardriving, 
 - high-contrast/dark maps
 - offline map downloads/cache
 
-### Coverage / MeshMapper
+### Coverage
 - GPS wardrive sessions
 - TX/RX/discovery ping markers
 - repeater echo detection
@@ -109,7 +109,7 @@ Bastion combines a full MeshCore companion experience with mapping, wardriving, 
 2. Launcher icon + splash
 3. Preserve and verify core MeshCore connectivity/messaging
 4. Consolidated map shell
-5. MeshMapper wardrive module
+5. Coverage capture / wardrive module
 6. Offline maps
 7. Network/path intelligence
 8. Region-aware workflows
@@ -120,4 +120,4 @@ Bastion combines a full MeshCore companion experience with mapping, wardriving, 
 
 ## Licensing / attribution
 
-Maintain a THIRD_PARTY_NOTICES file and in-app Open Source Licenses screen. Confirm each imported component's exact license at the commit used before merging source.
+Maintain THIRD_PARTY_NOTICES.md and an in-app Open Source Licenses screen. Confirm each imported component's exact license at the commit used before merging source.
