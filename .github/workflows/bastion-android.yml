@@ -1,8 +1,8 @@
-name: Bastion Android APK
+name: Bastion Bot Mode Android APK
 
 on:
   push:
-    branches: [bastion]
+    branches: [bastion, bastion-bot-mode]
   workflow_dispatch:
 
 permissions:
@@ -65,8 +65,8 @@ jobs:
           PY
       - name: Analyze
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
-      - name: Test coverage persistence
-        run: flutter test test/services/coverage_history_test.dart
+      - name: Test
+        run: flutter test --timeout 2m
       - name: Build Bastion RC1 APK
         run: flutter build apk --release --target-platform android-arm64 --target lib/main.dart
       - name: Verify packaged Bastion icon resources
@@ -92,11 +92,11 @@ jobs:
       - name: Stage APK
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-RC1-arm64.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/app-release.apk
       - name: Upload Bastion RC1 APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-RC1-APK
-          path: dist/Bastion-RC1-arm64.apk
+          name: Bastion-MeshCore-Bot-Mode-APK
+          path: dist/app-release.apk
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 14
