@@ -1,7 +1,7 @@
 name: meshcore_open
 description: "Bastion"
 publish_to: 'none'
-version: 10.0.0-rc.2+53
+version: 10.0.0-rc.3+54
 
 environment:
   sdk: ^3.9.2
@@ -92,7 +92,7 @@ flutter_launcher_icons:
   ios: true
   image_path: "branding/bastion-icon.png"
   remove_alpha_ios: true
-  adaptive_icon_background: "#111418"
+  adaptive_icon_background: "#182126"
   adaptive_icon_foreground: "branding/bastion-icon.png"
 
 build_pipe:

@@ -7,7 +7,7 @@ class AdaptiveAppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cyan = Color(0xFF18D3D3);
+    const cyan = Color(0xFF8AB6AA);
     return LayoutBuilder(
       builder: (context, constraints) => SizedBox(
         width: constraints.maxWidth,

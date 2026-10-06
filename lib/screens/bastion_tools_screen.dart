@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'bastion_about_screen.dart';
+import 'bastion_field_ops_screen.dart';
 import 'bastion_diagnostics_screen.dart';
 import 'bastion_field_stats_screen.dart';
 import 'bastion_map_hub_screen.dart';
@@ -10,9 +11,9 @@ import 'bastion_repeater_tools_screen.dart';
 class BastionToolsScreen extends StatelessWidget {
   const BastionToolsScreen({super.key});
 
-  static const _cyan = Color(0xFF18D3D3);
-  static const _bg = Color(0xFF0B0E11);
-  static const _panel = Color(0xFF12171C);
+  static const _cyan = Color(0xFF8AB6AA);
+  static const _bg = Color(0xFF182126);
+  static const _panel = Color(0xFF202D33);
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +21,24 @@ class BastionToolsScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Colors.white,
+        foregroundColor: Color(0xFFE4E6DF),
         titleSpacing: 16,
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            _tool(
+              context,
+              Icons.backpack_outlined,
+              'TRIP + FIELD OPERATIONS',
+              'Check-ins, readiness, Field Log, automations and comparisons',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const BastionFieldOpsScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
             Text(
               'BASTION',
               style: TextStyle(
@@ -161,7 +175,7 @@ class BastionToolsScreen extends StatelessWidget {
                     Text(
                       title,
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFFE4E6DF),
                         fontWeight: FontWeight.w900,
                         letterSpacing: .4,
                       ),
@@ -170,7 +184,7 @@ class BastionToolsScreen extends StatelessWidget {
                     Text(
                       subtitle,
                       style: const TextStyle(
-                        color: Color(0xFF9AA6AF),
+                        color: Color(0xFFADBEB7),
                         fontSize: 12.5,
                         height: 1.35,
                       ),

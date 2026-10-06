@@ -26,9 +26,9 @@ class QuickSwitchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final background = highContrast
         ? MapPalette.panelDark
-        : const Color(0xF20B0E11);
-    const cyan = Color(0xFF18D3D3);
-    const muted = Color(0xFF9AA6AF);
+        : const Color(0xF2182126);
+    const cyan = Color(0xFF8AB6AA);
+    const muted = Color(0xFFADBEB7);
 
     void handleDestination(int index) {
       if (index <= 2) {

@@ -69,7 +69,7 @@ class NotificationService {
       requestSoundPermission: true,
     );
     const windowsSettings = WindowsInitializationSettings(
-      appName: 'MeshCore Open',
+      appName: 'Bastion',
       appUserModelId: 'org.meshcore.open.app',
       guid: 'e7ea8f85-72f5-4f36-91f6-038f740ccf86',
     );
@@ -149,6 +149,32 @@ class NotificationService {
 
     // iOS/macOS request permission during initialize(); desktop has no gate.
     return _canNotify = true;
+  }
+
+  Future<bool> showFieldAlert(String message) async {
+    if (!await _ensureCanNotify()) return false;
+    try {
+      await _notifications.show(
+        id: 73001,
+        title: 'Bastion Field Alert',
+        body: message,
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'bastion_field',
+            'Bastion Field Alerts',
+            channelDescription: 'Opt-in trip automation alerts',
+            importance: Importance.defaultImportance,
+            priority: Priority.defaultPriority,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: DarwinNotificationDetails(),
+          macOS: DarwinNotificationDetails(),
+        ),
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   Future<bool> requestPermissions() async {

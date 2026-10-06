@@ -21,6 +21,7 @@ import 'services/received_image_store.dart';
 import 'services/storage_service.dart';
 import 'services/message_retry_service.dart';
 import 'services/bot_service.dart';
+import 'services/field_ops_service.dart';
 import 'services/path_history_service.dart';
 import 'services/app_settings_service.dart';
 import 'services/notification_service.dart';
@@ -244,11 +245,14 @@ const Duration _kImageSweepInterval = Duration(seconds: 5);
 class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   Timer? _imageSweepTimer;
   late final BotService _botService;
+  late final FieldOpsService _fieldOps;
   @override
   void initState() {
     super.initState();
     _botService = BotService(widget.connector);
     unawaited(_botService.load());
+    _fieldOps = FieldOpsService(widget.connector);
+    unawaited(_fieldOps.load());
     WidgetsBinding.instance.addObserver(this);
     _imageSweepTimer = Timer.periodic(
       _kImageSweepInterval,
@@ -259,6 +263,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     _botService.dispose();
+    _fieldOps.dispose();
     _imageSweepTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
@@ -267,6 +272,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+    _fieldOps.setForeground(state == AppLifecycleState.resumed);
     widget.receivedImageStore.setForeground(state == AppLifecycleState.resumed);
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.hidden) {
@@ -289,6 +295,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: _botService),
+        ChangeNotifierProvider.value(value: _fieldOps),
         ChangeNotifierProvider.value(value: connector),
         ChangeNotifierProvider.value(value: widget.retryService),
         ChangeNotifierProvider.value(value: widget.pathHistoryService),

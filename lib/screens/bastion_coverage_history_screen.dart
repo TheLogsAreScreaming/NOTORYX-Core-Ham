@@ -84,7 +84,7 @@ class _HistoryState extends State<BastionCoverageHistoryScreen> {
               for (final session in widget.capture.history)
                 Card(
                   child: ListTile(
-                    leading: const Icon(Icons.route, color: Color(0xFF18D3D3)),
+                    leading: const Icon(Icons.route, color: Color(0xFF8AB6AA)),
                     title: Text(
                       session.startedAt.toLocal().toString().split('.').first,
                     ),
@@ -207,7 +207,7 @@ class CoverageSessionMap extends StatelessWidget {
                   '${recorder ? 'Recorder' : o.nodeName}: ${o.timestamp.toLocal()}',
               child: Icon(
                 recorder ? Icons.my_location : Icons.cell_tower,
-                color: recorder ? const Color(0xFF18D3D3) : Colors.amber,
+                color: recorder ? const Color(0xFF8AB6AA) : Colors.amber,
               ),
             ),
           ),

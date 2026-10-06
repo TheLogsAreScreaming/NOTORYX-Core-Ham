@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import 'bastion_about_screen.dart';
+import 'bastion_field_ops_screen.dart';
 import 'bastion_diagnostics_screen.dart';
 import 'bastion_field_stats_screen.dart';
 import 'bastion_map_hub_screen.dart';
@@ -15,9 +16,9 @@ import 'scanner_screen.dart';
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
 
-  static const _cyan = Color(0xFF18D3D3);
-  static const _bg = Color(0xFF0B0E11);
-  static const _panel = Color(0xFF12171C);
+  static const _cyan = Color(0xFF8AB6AA);
+  static const _bg = Color(0xFF182126);
+  static const _panel = Color(0xFF202D33);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class BastionHomeScreen extends StatelessWidget {
                   ),
                   child: const Icon(
                     Icons.fort_rounded,
-                    color: Colors.white,
+                    color: Color(0xFFE4E6DF),
                     size: 31,
                   ),
                 ),
@@ -57,7 +58,7 @@ class BastionHomeScreen extends StatelessWidget {
                       Text(
                         'BASTION',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFE4E6DF),
                           fontSize: 28,
                           fontWeight: FontWeight.w900,
                           letterSpacing: 2.4,
@@ -84,7 +85,7 @@ class BastionHomeScreen extends StatelessWidget {
                   ),
                   icon: const Icon(
                     Icons.info_outline_rounded,
-                    color: Color(0xFF9AA6AF),
+                    color: Color(0xFFADBEB7),
                   ),
                 ),
               ],
@@ -129,6 +130,18 @@ class BastionHomeScreen extends StatelessWidget {
               subtitle: 'Find nodes and inspect the mesh around you',
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const DiscoveryScreen()),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _ActionCard(
+              icon: Icons.backpack_outlined,
+              title: 'TRIP + FIELD OPERATIONS',
+              subtitle:
+                  'Check-ins, readiness, Field Log, automations and coverage comparison',
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const BastionFieldOpsScreen(),
+                ),
               ),
             ),
             const SizedBox(height: 22),
@@ -206,7 +219,7 @@ class BastionHomeScreen extends StatelessWidget {
               child: Text(
                 'BASTION',
                 style: TextStyle(
-                  color: Color(0xFF66727D),
+                  color: Color(0xFF8EA39C),
                   fontSize: 10,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.3,
@@ -238,7 +251,7 @@ class BastionHomeScreen extends StatelessWidget {
         border: Border.all(
           color: c.isConnected
               ? _cyan.withValues(alpha: .55)
-              : const Color(0xFF26313A),
+              : const Color(0xFF36474E),
         ),
       ),
       child: Column(
@@ -270,7 +283,7 @@ class BastionHomeScreen extends StatelessWidget {
                           ? 'FIELD CONSOLE ONLINE'
                           : 'FIELD CONSOLE READY',
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Color(0xFFE4E6DF),
                         fontSize: 18,
                         fontWeight: FontWeight.w900,
                       ),
@@ -281,7 +294,7 @@ class BastionHomeScreen extends StatelessWidget {
                           ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}'
                           : 'Connect a radio to light up the live dashboard.',
                       style: const TextStyle(
-                        color: Color(0xFF9AA6AF),
+                        color: Color(0xFFADBEB7),
                         fontSize: 12,
                       ),
                     ),
@@ -293,14 +306,14 @@ class BastionHomeScreen extends StatelessWidget {
                 height: 9,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: c.isConnected ? _cyan : const Color(0xFF56616A),
+                  color: c.isConnected ? _cyan : const Color(0xFF62787D),
                 ),
               ),
             ],
           ),
           if (c.isConnected) ...[
             const SizedBox(height: 14),
-            const Divider(color: Color(0xFF26313A), height: 1),
+            const Divider(color: Color(0xFF36474E), height: 1),
             const SizedBox(height: 12),
             Row(
               children: [
@@ -308,7 +321,7 @@ class BastionHomeScreen extends StatelessWidget {
                   child: Text(
                     signal,
                     style: const TextStyle(
-                      color: Color(0xFFB8C1C9),
+                      color: Color(0xFFCED8D2),
                       fontSize: 11.5,
                       fontWeight: FontWeight.w700,
                     ),
@@ -335,7 +348,7 @@ class BastionHomeScreen extends StatelessWidget {
     decoration: BoxDecoration(
       color: _panel,
       borderRadius: BorderRadius.circular(13),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Column(
       children: [
@@ -352,7 +365,7 @@ class BastionHomeScreen extends StatelessWidget {
           label,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            color: Color(0xFF8D9AA4),
+            color: Color(0xFFADBEB7),
             fontSize: 8.5,
             fontWeight: FontWeight.w800,
           ),
@@ -375,7 +388,7 @@ class _ActionCard extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Material(
-    color: const Color(0xFF12171C),
+    color: const Color(0xFF202D33),
     borderRadius: BorderRadius.circular(16),
     child: InkWell(
       borderRadius: BorderRadius.circular(16),
@@ -383,7 +396,7 @@ class _ActionCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFF26313A)),
+          border: Border.all(color: const Color(0xFF36474E)),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -392,10 +405,10 @@ class _ActionCard extends StatelessWidget {
               width: 46,
               height: 46,
               decoration: BoxDecoration(
-                color: const Color(0xFF18D3D3).withValues(alpha: .12),
+                color: const Color(0xFF8AB6AA).withValues(alpha: .12),
                 borderRadius: BorderRadius.circular(13),
               ),
-              child: Icon(icon, color: const Color(0xFF18D3D3)),
+              child: Icon(icon, color: const Color(0xFF8AB6AA)),
             ),
             const SizedBox(width: 14),
             Expanded(
@@ -405,7 +418,7 @@ class _ActionCard extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFFE4E6DF),
                       fontWeight: FontWeight.w800,
                       letterSpacing: .5,
                     ),
@@ -414,14 +427,14 @@ class _ActionCard extends StatelessWidget {
                   Text(
                     subtitle,
                     style: const TextStyle(
-                      color: Color(0xFF9AA6AF),
+                      color: Color(0xFFADBEB7),
                       fontSize: 12.5,
                     ),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded, color: Color(0xFF18D3D3)),
+            const Icon(Icons.chevron_right_rounded, color: Color(0xFF8AB6AA)),
           ],
         ),
       ),
@@ -442,7 +455,7 @@ class _ToolTile extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Material(
-    color: const Color(0xFF12171C),
+    color: const Color(0xFF202D33),
     borderRadius: BorderRadius.circular(16),
     child: InkWell(
       onTap: onTap,
@@ -451,19 +464,19 @@ class _ToolTile extends StatelessWidget {
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFF26313A)),
+          border: Border.all(color: const Color(0xFF36474E)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Icon(icon, color: const Color(0xFF18D3D3)),
+                Icon(icon, color: const Color(0xFF8AB6AA)),
                 const Spacer(),
                 Text(
                   status,
                   style: const TextStyle(
-                    color: Color(0xFF18D3D3),
+                    color: Color(0xFF8AB6AA),
                     fontSize: 8,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1,
@@ -475,7 +488,7 @@ class _ToolTile extends StatelessWidget {
             Text(
               label,
               style: const TextStyle(
-                color: Colors.white,
+                color: Color(0xFFE4E6DF),
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
               ),

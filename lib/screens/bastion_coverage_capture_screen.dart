@@ -18,9 +18,9 @@ class BastionCoverageCaptureScreen extends StatefulWidget {
 
 class _BastionCoverageCaptureScreenState
     extends State<BastionCoverageCaptureScreen> {
-  static const cyan = Color(0xFF18D3D3);
-  static const bg = Color(0xFF0B0E11);
-  static const panel = Color(0xFF12171C);
+  static const cyan = Color(0xFF8AB6AA);
+  static const bg = Color(0xFF182126);
+  static const panel = Color(0xFF202D33);
 
   final CoverageCaptureService _capture = CoverageCaptureService();
   MeshCoreConnector? _connector;
@@ -130,7 +130,7 @@ class _BastionCoverageCaptureScreenState
         backgroundColor: bg,
         appBar: AppBar(
           backgroundColor: bg,
-          foregroundColor: Colors.white,
+          foregroundColor: Color(0xFFE4E6DF),
           title: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -194,7 +194,7 @@ class _BastionCoverageCaptureScreenState
                               ? 'CAPTURE ACTIVE'
                               : 'FIELD COVERAGE SESSION',
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFFE4E6DF),
                             fontSize: 20,
                             fontWeight: FontWeight.w900,
                           ),
@@ -208,7 +208,7 @@ class _BastionCoverageCaptureScreenState
                         ? 'Bastion records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.'
                         : 'Connect a radio before starting. Coverage capture records live mesh observations from the connected companion radio.',
                     style: const TextStyle(
-                      color: Color(0xFF9AA6AF),
+                      color: Color(0xFFADBEB7),
                       height: 1.45,
                     ),
                   ),
@@ -353,9 +353,9 @@ class _Stat extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(12),
     decoration: BoxDecoration(
-      color: const Color(0xFF12171C),
+      color: const Color(0xFF202D33),
       borderRadius: BorderRadius.circular(14),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -363,7 +363,7 @@ class _Stat extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-            color: Color(0xFF9AA6AF),
+            color: Color(0xFFADBEB7),
             fontSize: 9,
             fontWeight: FontWeight.w800,
           ),
@@ -372,7 +372,7 @@ class _Stat extends StatelessWidget {
         Text(
           value,
           style: const TextStyle(
-            color: Color(0xFF18D3D3),
+            color: Color(0xFF8AB6AA),
             fontSize: 15,
             fontWeight: FontWeight.w900,
           ),
@@ -397,12 +397,12 @@ class _Status extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
     decoration: BoxDecoration(
-      color: const Color(0xFF10151A),
+      color: const Color(0xFF1C272D),
       borderRadius: BorderRadius.circular(12),
       border: Border.all(
         color: active
-            ? const Color(0xFF18D3D3).withValues(alpha: .45)
-            : const Color(0xFF26313A),
+            ? const Color(0xFF8AB6AA).withValues(alpha: .45)
+            : const Color(0xFF36474E),
       ),
     ),
     child: Row(
@@ -410,7 +410,7 @@ class _Status extends StatelessWidget {
         Icon(
           icon,
           size: 17,
-          color: active ? const Color(0xFF18D3D3) : const Color(0xFF697680),
+          color: active ? const Color(0xFF8AB6AA) : const Color(0xFF697680),
         ),
         const SizedBox(width: 7),
         Expanded(
@@ -450,14 +450,14 @@ class _ObservationTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        color: const Color(0xFF10151A),
+        color: const Color(0xFF1C272D),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFF26313A)),
+        border: Border.all(color: const Color(0xFF36474E)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.cell_tower_rounded, color: Color(0xFF18D3D3)),
+          const Icon(Icons.cell_tower_rounded, color: Color(0xFF8AB6AA)),
           const SizedBox(width: 11),
           Expanded(
             child: Column(
@@ -466,7 +466,7 @@ class _ObservationTile extends StatelessWidget {
                 Text(
                   observation.nodeName,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFE4E6DF),
                     fontWeight: FontWeight.w800,
                   ),
                 ),
@@ -510,14 +510,14 @@ class _Info extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(15),
     decoration: BoxDecoration(
-      color: const Color(0xFF10151A),
+      color: const Color(0xFF1C272D),
       borderRadius: BorderRadius.circular(15),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: const Color(0xFF18D3D3)),
+        Icon(icon, color: const Color(0xFF8AB6AA)),
         const SizedBox(width: 11),
         Expanded(
           child: Column(
@@ -526,7 +526,7 @@ class _Info extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFE4E6DF),
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -534,7 +534,7 @@ class _Info extends StatelessWidget {
               Text(
                 body,
                 style: const TextStyle(
-                  color: Color(0xFF9AA6AF),
+                  color: Color(0xFFADBEB7),
                   fontSize: 12.5,
                   height: 1.4,
                 ),

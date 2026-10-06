@@ -28,7 +28,7 @@ class AppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
     final selfName = connector.selfName;
-    const cyan = Color(0xFF18D3D3);
+    const cyan = Color(0xFF8AB6AA);
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -64,7 +64,7 @@ class AppBarTitle extends StatelessWidget {
                       selfName,
                       style: const TextStyle(
                         fontSize: 11,
-                        color: Color(0xFF9AA6AF),
+                        color: Color(0xFFADBEB7),
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
