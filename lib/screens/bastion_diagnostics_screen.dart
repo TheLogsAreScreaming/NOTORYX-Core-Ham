@@ -20,7 +20,8 @@ class BastionDiagnosticsScreen extends StatelessWidget {
 
   String _value(Object? value) => value == null ? '—' : '$value';
 
-  String _mhz(int? hz) => hz == null ? '—' : '${(hz / 1000000).toStringAsFixed(4)} MHz';
+  String _mhz(int? hz) =>
+      hz == null ? '—' : '${(hz / 1000000).toStringAsFixed(4)} MHz';
 
   String _battery(int? mv) =>
       mv == null ? '—' : '${(mv / 1000).toStringAsFixed(2)} V';
@@ -64,7 +65,9 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     ];
 
     final dir = await getTemporaryDirectory();
-    final file = File('${dir.path}/bastion-diagnostics-${DateTime.now().millisecondsSinceEpoch}.txt');
+    final file = File(
+      '${dir.path}/bastion-diagnostics-${DateTime.now().millisecondsSinceEpoch}.txt',
+    );
     await file.writeAsString(lines.join('\n'));
     if (!context.mounted) return;
     await SharePlus.instance.share(
@@ -90,7 +93,15 @@ class BastionDiagnosticsScreen extends StatelessWidget {
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('BASTION', style: TextStyle(color: _cyan, fontSize: 10, fontWeight: FontWeight.w900, letterSpacing: 1.7)),
+            Text(
+              'BASTION',
+              style: TextStyle(
+                color: _cyan,
+                fontSize: 10,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 1.7,
+              ),
+            ),
             Text('Diagnostics', style: TextStyle(fontWeight: FontWeight.w900)),
           ],
         ),
@@ -119,12 +130,21 @@ class BastionDiagnosticsScreen extends StatelessWidget {
           const SizedBox(height: 18),
           _section('RADIO', [
             _row('Frequency', _mhz(c.currentFreqHz)),
-            _row('Bandwidth', c.currentBwHz == null ? '—' : '${c.currentBwHz} Hz'),
+            _row(
+              'Bandwidth',
+              c.currentBwHz == null ? '—' : '${c.currentBwHz} Hz',
+            ),
             _row('Spreading factor', _value(c.currentSf)),
             _row('Coding rate', _value(c.currentCr)),
-            _row('TX power', c.currentTxPower == null ? '—' : '${c.currentTxPower} dBm'),
+            _row(
+              'TX power',
+              c.currentTxPower == null ? '—' : '${c.currentTxPower} dBm',
+            ),
             _row('RSSI', s == null ? '—' : '${s.lastRssiDbm} dBm'),
-            _row('SNR', s == null ? '—' : '${s.lastSnrDb.toStringAsFixed(1)} dB'),
+            _row(
+              'SNR',
+              s == null ? '—' : '${s.lastSnrDb.toStringAsFixed(1)} dB',
+            ),
             _row('Noise floor', s == null ? '—' : '${s.noiseFloorDbm} dBm'),
           ]),
           const SizedBox(height: 12),
@@ -134,16 +154,47 @@ class BastionDiagnosticsScreen extends StatelessWidget {
             _row('Firmware', _value(c.firmwareVersionString)),
             _row('Battery', _battery(c.batteryMillivolts)),
             _row('Transport', c.activeTransport.name.toUpperCase()),
-            _row('GPS', c.selfLatitude == null || c.selfLongitude == null ? '—' : '${c.selfLatitude!.toStringAsFixed(5)}, ${c.selfLongitude!.toStringAsFixed(5)}'),
+            _row(
+              'GPS',
+              c.selfLatitude == null || c.selfLongitude == null
+                  ? '—'
+                  : '${c.selfLatitude!.toStringAsFixed(5)}, ${c.selfLongitude!.toStringAsFixed(5)}',
+            ),
           ]),
           const SizedBox(height: 18),
-          const Text('DEEP TOOLS', style: TextStyle(color: _cyan, fontSize: 11, fontWeight: FontWeight.w900, letterSpacing: 1.3)),
+          const Text(
+            'DEEP TOOLS',
+            style: TextStyle(
+              color: _cyan,
+              fontSize: 11,
+              fontWeight: FontWeight.w900,
+              letterSpacing: 1.3,
+            ),
+          ),
           const SizedBox(height: 8),
-          _nav(context, Icons.monitor_heart_rounded, 'LIVE RADIO STATS', 'Noise, RSSI, SNR and airtime', const CompanionRadioStatsScreen()),
+          _nav(
+            context,
+            Icons.monitor_heart_rounded,
+            'LIVE RADIO STATS',
+            'Noise, RSSI, SNR and airtime',
+            const CompanionRadioStatsScreen(),
+          ),
           const SizedBox(height: 8),
-          _nav(context, Icons.data_object_rounded, 'FRAME / BLE DEBUG', 'Inspect decoded and raw received frames', const BleDebugLogScreen()),
+          _nav(
+            context,
+            Icons.data_object_rounded,
+            'FRAME / BLE DEBUG',
+            'Inspect decoded and raw received frames',
+            const BleDebugLogScreen(),
+          ),
           const SizedBox(height: 8),
-          _nav(context, Icons.bug_report_outlined, 'APP DEBUG LOG', 'Review application diagnostic events', const AppDebugLogScreen()),
+          _nav(
+            context,
+            Icons.bug_report_outlined,
+            'APP DEBUG LOG',
+            'Review application diagnostic events',
+            const AppDebugLogScreen(),
+          ),
         ],
       ),
     );
@@ -151,22 +202,49 @@ class BastionDiagnosticsScreen extends StatelessWidget {
 
   Widget _statusCard(MeshCoreConnector c) => Container(
     padding: const EdgeInsets.all(18),
-    decoration: BoxDecoration(color: _panel, borderRadius: BorderRadius.circular(18), border: Border.all(color: _cyan.withValues(alpha: .45))),
+    decoration: BoxDecoration(
+      color: _panel,
+      borderRadius: BorderRadius.circular(18),
+      border: Border.all(color: _cyan.withValues(alpha: .45)),
+    ),
     child: Row(
       children: [
         Container(
           width: 48,
           height: 48,
-          decoration: BoxDecoration(color: _cyan.withValues(alpha: .12), borderRadius: BorderRadius.circular(14)),
-          child: Icon(c.isConnected ? Icons.radio_rounded : Icons.portable_wifi_off_rounded, color: _cyan),
+          decoration: BoxDecoration(
+            color: _cyan.withValues(alpha: .12),
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Icon(
+            c.isConnected
+                ? Icons.radio_rounded
+                : Icons.portable_wifi_off_rounded,
+            color: _cyan,
+          ),
         ),
         const SizedBox(width: 14),
         Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(c.isConnected ? 'RADIO ONLINE' : 'RADIO OFFLINE', style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w900)),
-            const SizedBox(height: 3),
-            Text(c.isConnected ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}' : 'Connect a MeshCore companion to populate live diagnostics.', style: const TextStyle(color: Color(0xFF9AA6AF), fontSize: 12)),
-          ]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                c.isConnected ? 'RADIO ONLINE' : 'RADIO OFFLINE',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              const SizedBox(height: 3),
+              Text(
+                c.isConnected
+                    ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}'
+                    : 'Connect a MeshCore companion to populate live diagnostics.',
+                style: const TextStyle(color: Color(0xFF9AA6AF), fontSize: 12),
+              ),
+            ],
+          ),
         ),
       ],
     ),
@@ -174,51 +252,129 @@ class BastionDiagnosticsScreen extends StatelessWidget {
 
   Widget _metric(String label, String value) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-    decoration: BoxDecoration(color: _panel, borderRadius: BorderRadius.circular(14), border: Border.all(color: const Color(0xFF26313A))),
-    child: Column(children: [
-      Text(value, style: const TextStyle(color: _cyan, fontSize: 18, fontWeight: FontWeight.w900)),
-      const SizedBox(height: 3),
-      Text(label, style: const TextStyle(color: Color(0xFF8D9AA4), fontSize: 9, fontWeight: FontWeight.w800)),
-    ]),
+    decoration: BoxDecoration(
+      color: _panel,
+      borderRadius: BorderRadius.circular(14),
+      border: Border.all(color: const Color(0xFF26313A)),
+    ),
+    child: Column(
+      children: [
+        Text(
+          value,
+          style: const TextStyle(
+            color: _cyan,
+            fontSize: 18,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+        const SizedBox(height: 3),
+        Text(
+          label,
+          style: const TextStyle(
+            color: Color(0xFF8D9AA4),
+            fontSize: 9,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+      ],
+    ),
   );
 
   Widget _section(String title, List<Widget> children) => Container(
     padding: const EdgeInsets.all(16),
-    decoration: BoxDecoration(color: _panel, borderRadius: BorderRadius.circular(16), border: Border.all(color: const Color(0xFF26313A))),
-    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(title, style: const TextStyle(color: _cyan, fontSize: 11, fontWeight: FontWeight.w900, letterSpacing: 1.3)),
-      const SizedBox(height: 8),
-      ...children,
-    ]),
+    decoration: BoxDecoration(
+      color: _panel,
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(color: const Color(0xFF26313A)),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            color: _cyan,
+            fontSize: 11,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.3,
+          ),
+        ),
+        const SizedBox(height: 8),
+        ...children,
+      ],
+    ),
   );
 
   Widget _row(String label, String value) => Padding(
     padding: const EdgeInsets.symmetric(vertical: 5),
-    child: Row(children: [
-      Expanded(child: Text(label, style: const TextStyle(color: Color(0xFF9AA6AF), fontSize: 12))),
-      const SizedBox(width: 12),
-      Flexible(child: Text(value, textAlign: TextAlign.right, style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700))),
-    ]),
+    child: Row(
+      children: [
+        Expanded(
+          child: Text(
+            label,
+            style: const TextStyle(color: Color(0xFF9AA6AF), fontSize: 12),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Flexible(
+          child: Text(
+            value,
+            textAlign: TextAlign.right,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ],
+    ),
   );
 
-  Widget _nav(BuildContext context, IconData icon, String title, String subtitle, Widget screen) => Material(
+  Widget _nav(
+    BuildContext context,
+    IconData icon,
+    String title,
+    String subtitle,
+    Widget screen,
+  ) => Material(
     color: _panel,
     borderRadius: BorderRadius.circular(14),
     child: InkWell(
       borderRadius: BorderRadius.circular(14),
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen)),
+      onTap: () =>
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen)),
       child: Padding(
         padding: const EdgeInsets.all(14),
-        child: Row(children: [
-          Icon(icon, color: _cyan),
-          const SizedBox(width: 12),
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800)),
-            const SizedBox(height: 2),
-            Text(subtitle, style: const TextStyle(color: Color(0xFF9AA6AF), fontSize: 11.5)),
-          ])),
-          const Icon(Icons.chevron_right_rounded, color: _cyan),
-        ]),
+        child: Row(
+          children: [
+            Icon(icon, color: _cyan),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(
+                      color: Color(0xFF9AA6AF),
+                      fontSize: 11.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right_rounded, color: _cyan),
+          ],
+        ),
       ),
     ),
   );

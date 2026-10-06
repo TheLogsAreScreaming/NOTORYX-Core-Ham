@@ -55,26 +55,26 @@ class CoverageObservation {
   });
 
   Map<String, dynamic> toJson() => {
-        'timestamp': timestamp.toIso8601String(),
-        'node_key': nodeKey,
-        'node_name': nodeName,
-        'node_type': nodeType,
-        'path_length': pathLength,
-        'path_hex': pathHex,
-        'node_latitude': nodeLatitude,
-        'node_longitude': nodeLongitude,
-        'recorder_latitude': recorderLatitude,
-        'recorder_longitude': recorderLongitude,
-        'rssi_dbm': rssiDbm,
-        'snr_db': snrDb,
-        'noise_floor_dbm': noiseFloorDbm,
-        'radio_snapshot_age_ms': radioSnapshotAgeMs,
-        'frequency_hz': frequencyHz,
-        'bandwidth_hz': bandwidthHz,
-        'spreading_factor': spreadingFactor,
-        'coding_rate': codingRate,
-        'transport': transport,
-      };
+    'timestamp': timestamp.toIso8601String(),
+    'node_key': nodeKey,
+    'node_name': nodeName,
+    'node_type': nodeType,
+    'path_length': pathLength,
+    'path_hex': pathHex,
+    'node_latitude': nodeLatitude,
+    'node_longitude': nodeLongitude,
+    'recorder_latitude': recorderLatitude,
+    'recorder_longitude': recorderLongitude,
+    'rssi_dbm': rssiDbm,
+    'snr_db': snrDb,
+    'noise_floor_dbm': noiseFloorDbm,
+    'radio_snapshot_age_ms': radioSnapshotAgeMs,
+    'frequency_hz': frequencyHz,
+    'bandwidth_hz': bandwidthHz,
+    'spreading_factor': spreadingFactor,
+    'coding_rate': codingRate,
+    'transport': transport,
+  };
 
   factory CoverageObservation.fromJson(Map<String, dynamic> json) {
     return CoverageObservation(
@@ -118,18 +118,26 @@ class CoverageCaptureSession {
       CoverageCaptureSession(
         id: json['id'] as String,
         startedAt: DateTime.parse(json['started_at'] as String),
-        endedAt: json['ended_at'] == null ? null : DateTime.parse(json['ended_at'] as String),
-        observations: (json['observations'] as List).map((o) =>
-          CoverageObservation.fromJson(Map<String, dynamic>.from(o as Map))).toList(),
+        endedAt: json['ended_at'] == null
+            ? null
+            : DateTime.parse(json['ended_at'] as String),
+        observations: (json['observations'] as List)
+            .map(
+              (o) => CoverageObservation.fromJson(
+                Map<String, dynamic>.from(o as Map),
+              ),
+            )
+            .toList(),
       );
 
   Map<String, dynamic> toJson() => {
-        'signal_note': 'RSSI/SNR are radio snapshots, not per-node or per-packet measurements. Recorder position is the radio advertised position, not phone GPS.',
-        'id': id,
-        'started_at': startedAt.toIso8601String(),
-        'ended_at': endedAt?.toIso8601String(),
-        'observations': observations.map((o) => o.toJson()).toList(),
-      };
+    'signal_note':
+        'RSSI/SNR are radio snapshots, not per-node or per-packet measurements. Recorder position is the radio advertised position, not phone GPS.',
+    'id': id,
+    'started_at': startedAt.toIso8601String(),
+    'ended_at': endedAt?.toIso8601String(),
+    'observations': observations.map((o) => o.toJson()).toList(),
+  };
 }
 
 class CoverageCaptureService extends ChangeNotifier {
@@ -156,19 +164,28 @@ class CoverageCaptureService extends ChangeNotifier {
     loadWarning = null;
     for (final raw in prefs.getStringList(_historyKey) ?? <String>[]) {
       try {
-        _history.add(CoverageCaptureSession.fromJson(jsonDecode(raw) as Map<String, dynamic>));
+        _history.add(
+          CoverageCaptureSession.fromJson(
+            jsonDecode(raw) as Map<String, dynamic>,
+          ),
+        );
       } catch (_) {
-        loadWarning = 'A damaged saved session could not be opened. Its stored data has been retained.';
+        loadWarning =
+            'A damaged saved session could not be opened. Its stored data has been retained.';
       }
     }
     // Recover interrupted captures as read-only sessions; never silently resume.
     final active = prefs.getString(_activeKey);
     if (active != null && !_recording) {
       try {
-        final recovered = CoverageCaptureSession.fromJson(jsonDecode(active) as Map<String, dynamic>);
-        if (!_history.any((s) => s.id == recovered.id)) _history.insert(0, recovered);
+        final recovered = CoverageCaptureSession.fromJson(
+          jsonDecode(active) as Map<String, dynamic>,
+        );
+        if (!_history.any((s) => s.id == recovered.id))
+          _history.insert(0, recovered);
       } catch (_) {
-        loadWarning = 'An interrupted session could not be recovered. Its stored data has been retained.';
+        loadWarning =
+            'An interrupted session could not be recovered. Its stored data has been retained.';
       }
     }
     notifyListeners();
@@ -178,14 +195,22 @@ class CoverageCaptureService extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     final rows = prefs.getStringList(_historyKey) ?? <String>[];
     rows.removeWhere((raw) {
-      try { return (jsonDecode(raw) as Map)['id'] == id; } catch (_) { return false; }
+      try {
+        return (jsonDecode(raw) as Map)['id'] == id;
+      } catch (_) {
+        return false;
+      }
     });
-    if (!await prefs.setStringList(_historyKey, rows)) throw StateError('Could not delete session.');
+    if (!await prefs.setStringList(_historyKey, rows))
+      throw StateError('Could not delete session.');
     final active = prefs.getString(_activeKey);
     if (!_recording && active != null) {
       try {
-        if ((jsonDecode(active) as Map)['id'] == id) await prefs.remove(_activeKey);
-      } on FormatException { /* Retain unreadable recovery data. */ }
+        if ((jsonDecode(active) as Map)['id'] == id)
+          await prefs.remove(_activeKey);
+      } on FormatException {
+        /* Retain unreadable recovery data. */
+      }
     }
     await loadHistory();
   }
@@ -344,17 +369,21 @@ class CoverageCaptureService extends ChangeNotifier {
     if (updated.length > _maxSavedSessions) {
       updated.removeRange(_maxSavedSessions, updated.length);
     }
-    if (!await prefs.setStringList(_historyKey, updated)) throw StateError('Could not save session.');
+    if (!await prefs.setStringList(_historyKey, updated))
+      throw StateError('Could not save session.');
   }
 
   Future<String> exportJson({CoverageCaptureSession? session}) async {
     final file = await _createExportFile('json');
-    final payload = (session ?? CoverageCaptureSession(
-      id: _sessionId ?? const Uuid().v4(),
-      startedAt: _startedAt ?? DateTime.now(),
-      endedAt: _endedAt,
-      observations: List.of(_observations),
-    )).toJson();
+    final payload =
+        (session ??
+                CoverageCaptureSession(
+                  id: _sessionId ?? const Uuid().v4(),
+                  startedAt: _startedAt ?? DateTime.now(),
+                  endedAt: _endedAt,
+                  observations: List.of(_observations),
+                ))
+            .toJson();
     await file.writeAsString(
       const JsonEncoder.withIndent('  ').convert(payload),
       flush: true,
@@ -372,27 +401,29 @@ class CoverageCaptureService extends ChangeNotifier {
       'frequency_hz,bandwidth_hz,spreading_factor,coding_rate,transport',
     );
     for (final o in session?.observations ?? _observations) {
-      out.writeln([
-        o.timestamp.toIso8601String(),
-        o.nodeKey,
-        o.nodeName,
-        o.nodeType,
-        o.pathLength,
-        o.pathHex,
-        o.nodeLatitude,
-        o.nodeLongitude,
-        o.recorderLatitude,
-        o.recorderLongitude,
-        o.rssiDbm,
-        o.snrDb,
-        o.noiseFloorDbm,
-        o.radioSnapshotAgeMs,
-        o.frequencyHz,
-        o.bandwidthHz,
-        o.spreadingFactor,
-        o.codingRate,
-        o.transport,
-      ].map(_csv).join(','));
+      out.writeln(
+        [
+          o.timestamp.toIso8601String(),
+          o.nodeKey,
+          o.nodeName,
+          o.nodeType,
+          o.pathLength,
+          o.pathHex,
+          o.nodeLatitude,
+          o.nodeLongitude,
+          o.recorderLatitude,
+          o.recorderLongitude,
+          o.rssiDbm,
+          o.snrDb,
+          o.noiseFloorDbm,
+          o.radioSnapshotAgeMs,
+          o.frequencyHz,
+          o.bandwidthHz,
+          o.spreadingFactor,
+          o.codingRate,
+          o.transport,
+        ].map(_csv).join(','),
+      );
     }
     await file.writeAsString(out.toString(), flush: true);
     return file.path;

@@ -24,10 +24,7 @@ class AdaptiveAppBarTitle extends StatelessWidget {
                 letterSpacing: 1.7,
               ),
             ),
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(text, maxLines: 1),
-            ),
+            FittedBox(fit: BoxFit.scaleDown, child: Text(text, maxLines: 1)),
           ],
         ),
       ),

@@ -36,14 +36,14 @@ class QuickSwitchBar extends StatelessWidget {
         return;
       }
       if (index == 3) {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => const BastionToolsScreen()),
-        );
+        Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (_) => const BastionToolsScreen()));
         return;
       }
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => const SettingsScreen()),
-      );
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (_) => const SettingsScreen()));
     }
 
     return SizedBox(
@@ -83,7 +83,9 @@ class QuickSwitchBar extends StatelessWidget {
               ),
               child: NavigationBar(
                 height: 64,
-                selectedIndex: selectedIndex < 0 ? 0 : (selectedIndex > 2 ? 2 : selectedIndex),
+                selectedIndex: selectedIndex < 0
+                    ? 0
+                    : (selectedIndex > 2 ? 2 : selectedIndex),
                 onDestinationSelected: handleDestination,
                 destinations: [
                   NavigationDestination(

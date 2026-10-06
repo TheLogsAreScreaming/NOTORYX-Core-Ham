@@ -23,7 +23,7 @@ jobs:
       - name: Set up known-good Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.41.5'
+          flutter-version: '3.47.6'
           channel: stable
           cache: true
       - name: Install dependencies
@@ -34,13 +34,6 @@ jobs:
           dart run flutter_launcher_icons
           test -s android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
           test -s android/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png
-      - name: Apply Flutter 3.41 reorder compatibility
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          for filename in ['lib/screens/channels_screen.dart','lib/widgets/path_editor_sheet.dart']:
-              p=Path(filename);p.write_text(p.read_text().replace('onReorderItem:','onReorder:'))
-          PY
       - name: Wire Bastion home into startup
         run: |
           python3 - <<'PY'
@@ -64,7 +57,7 @@ jobs:
                   raise SystemExit(f"Visible MeshCore Open branding remains in {p}")
           PY
       - name: Analyze
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        run: flutter analyze --fatal-infos --fatal-warnings
       - name: Test
         run: flutter test --timeout 2m
       - name: Build Bastion RC1 APK

@@ -586,7 +586,8 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get settings_aboutLegalese => 'Bastion • Built with open-source MeshCore Open components';
+  String get settings_aboutLegalese =>
+      'Bastion • Built with open-source MeshCore Open components';
 
   @override
   String get settings_aboutDescription =>
@@ -4294,12 +4295,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_gpxExportAllContacts => 'All contacts locations';
 
   @override
-  String get settings_gpxExportShareText =>
-      'Map data exported from Bastion';
+  String get settings_gpxExportShareText => 'Map data exported from Bastion';
 
   @override
-  String get settings_gpxExportShareSubject =>
-      'Bastion GPX map data export';
+  String get settings_gpxExportShareSubject => 'Bastion GPX map data export';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Nearby Repeaters';

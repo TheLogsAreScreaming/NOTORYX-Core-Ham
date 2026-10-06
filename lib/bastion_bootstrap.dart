@@ -46,7 +46,10 @@ class BastionStartupScreen extends StatelessWidget {
                   width: 112,
                   height: 112,
                   decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xFF18D7D0), width: 5),
+                    border: Border.all(
+                      color: const Color(0xFF18D7D0),
+                      width: 5,
+                    ),
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: const Icon(Icons.fort, size: 64, color: Colors.white),
@@ -54,7 +57,11 @@ class BastionStartupScreen extends StatelessWidget {
                 const SizedBox(height: 24),
                 const Text(
                   'BASTION',
-                  style: TextStyle(fontSize: 34, fontWeight: FontWeight.w800, letterSpacing: 5),
+                  style: TextStyle(
+                    fontSize: 34,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 5,
+                  ),
                 ),
                 const SizedBox(height: 14),
                 const Text(

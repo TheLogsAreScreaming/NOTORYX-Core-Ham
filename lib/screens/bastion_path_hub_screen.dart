@@ -117,13 +117,21 @@ class BastionPathHubScreen extends StatelessWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(child: _Metric(label: 'NODES', value: '${entries.length}')),
+              Expanded(
+                child: _Metric(label: 'NODES', value: '${entries.length}'),
+              ),
               const SizedBox(width: 8),
-              Expanded(child: _Metric(label: 'ROUTES', value: '$routeCount')),
+              Expanded(
+                child: _Metric(label: 'ROUTES', value: '$routeCount'),
+              ),
               const SizedBox(width: 8),
-              Expanded(child: _Metric(label: 'SUCCESS', value: '$successful')),
+              Expanded(
+                child: _Metric(label: 'SUCCESS', value: '$successful'),
+              ),
               const SizedBox(width: 8),
-              Expanded(child: _Metric(label: 'FAILED', value: '$failed')),
+              Expanded(
+                child: _Metric(label: 'FAILED', value: '$failed'),
+              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -134,9 +142,9 @@ class BastionPathHubScreen extends StatelessWidget {
                   icon: Icons.map_rounded,
                   title: 'ROUTE MAP',
                   subtitle: 'Inspect nodes and paths',
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const MapScreen()),
-                  ),
+                  onTap: () => Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
                 ),
               ),
               const SizedBox(width: 10),
@@ -192,7 +200,8 @@ class _ContactRoutes {
     int failureCount,
     int lastTripTimeMs,
     DateTime? lastUsed,
-  })? flood;
+  })?
+  flood;
 
   const _ContactRoutes(this.contact, this.paths, this.flood);
 }
@@ -214,9 +223,9 @@ class _ContactRouteCard extends StatelessWidget {
     final fastest = entry.paths
         .where((p) => p.tripTimeMs > 0)
         .fold<PathRecord?>(null, (current, p) {
-      if (current == null || p.tripTimeMs < current.tripTimeMs) return p;
-      return current;
-    });
+          if (current == null || p.tripTimeMs < current.tripTimeMs) return p;
+          return current;
+        });
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -293,34 +302,34 @@ class _Metric extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 11),
-        decoration: BoxDecoration(
-          color: const Color(0xFF12171C),
-          borderRadius: BorderRadius.circular(13),
-          border: Border.all(color: const Color(0xFF26313A)),
+    padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 11),
+    decoration: BoxDecoration(
+      color: const Color(0xFF12171C),
+      borderRadius: BorderRadius.circular(13),
+      border: Border.all(color: const Color(0xFF26313A)),
+    ),
+    child: Column(
+      children: [
+        Text(
+          value,
+          style: const TextStyle(
+            color: Color(0xFF18D3D3),
+            fontWeight: FontWeight.w900,
+            fontSize: 16,
+          ),
         ),
-        child: Column(
-          children: [
-            Text(
-              value,
-              style: const TextStyle(
-                color: Color(0xFF18D3D3),
-                fontWeight: FontWeight.w900,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              label,
-              style: const TextStyle(
-                color: Color(0xFF8D9AA4),
-                fontSize: 8.5,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ],
+        const SizedBox(height: 3),
+        Text(
+          label,
+          style: const TextStyle(
+            color: Color(0xFF8D9AA4),
+            fontSize: 8.5,
+            fontWeight: FontWeight.w800,
+          ),
         ),
-      );
+      ],
+    ),
+  );
 }
 
 class _PathAction extends StatelessWidget {
@@ -338,42 +347,39 @@ class _PathAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-        color: const Color(0xFF12171C),
-        borderRadius: BorderRadius.circular(16),
-        child: InkWell(
+    color: const Color(0xFF12171C),
+    borderRadius: BorderRadius.circular(16),
+    child: InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          border: Border.all(color: const Color(0xFF26313A)),
           borderRadius: BorderRadius.circular(16),
-          onTap: onTap,
-          child: Container(
-            padding: const EdgeInsets.all(14),
-            decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFF26313A)),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(icon, color: const Color(0xFF18D3D3)),
-                const SizedBox(height: 9),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    color: Color(0xFF9AA6AF),
-                    fontSize: 11,
-                  ),
-                ),
-              ],
-            ),
-          ),
         ),
-      );
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: const Color(0xFF18D3D3)),
+            const SizedBox(height: 9),
+            Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(height: 3),
+            Text(
+              subtitle,
+              style: const TextStyle(color: Color(0xFF9AA6AF), fontSize: 11),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 class _InfoPanel extends StatelessWidget {
@@ -389,40 +395,37 @@ class _InfoPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFF10151A),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFF26313A)),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, color: const Color(0xFF18D3D3)),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    body,
-                    style: const TextStyle(
-                      color: Color(0xFF9AA6AF),
-                      height: 1.4,
-                    ),
-                  ),
-                ],
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: const Color(0xFF10151A),
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(color: const Color(0xFF26313A)),
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, color: const Color(0xFF18D3D3)),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 5),
+              Text(
+                body,
+                style: const TextStyle(color: Color(0xFF9AA6AF), height: 1.4),
+              ),
+            ],
+          ),
         ),
-      );
+      ],
+    ),
+  );
 }

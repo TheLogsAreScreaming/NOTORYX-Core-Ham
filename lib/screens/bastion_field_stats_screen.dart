@@ -171,14 +171,14 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Text(
-        text,
-        style: const TextStyle(
-          color: Color(0xFF18D3D3),
-          fontSize: 11,
-          fontWeight: FontWeight.w900,
-          letterSpacing: 1.3,
-        ),
-      );
+    text,
+    style: const TextStyle(
+      color: Color(0xFF18D3D3),
+      fontSize: 11,
+      fontWeight: FontWeight.w900,
+      letterSpacing: 1.3,
+    ),
+  );
 }
 
 class _Panel extends StatelessWidget {
@@ -189,40 +189,37 @@ class _Panel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFF10151A),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: const Color(0xFF26313A)),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, color: const Color(0xFF18D3D3)),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    body,
-                    style: const TextStyle(
-                      color: Color(0xFF9AA6AF),
-                      height: 1.4,
-                    ),
-                  ),
-                ],
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: const Color(0xFF10151A),
+      borderRadius: BorderRadius.circular(15),
+      border: Border.all(color: const Color(0xFF26313A)),
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, color: const Color(0xFF18D3D3)),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 5),
+              Text(
+                body,
+                style: const TextStyle(color: Color(0xFF9AA6AF), height: 1.4),
+              ),
+            ],
+          ),
         ),
-      );
+      ],
+    ),
+  );
 }

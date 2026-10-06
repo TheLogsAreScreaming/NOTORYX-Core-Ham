@@ -58,11 +58,7 @@ class AppBarTitle extends StatelessWidget {
                       letterSpacing: 1.7,
                     ),
                   ),
-                  Text(
-                    title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
                   if (subtitle && connector.isConnected && selfName != null)
                     Text(
                       selfName,

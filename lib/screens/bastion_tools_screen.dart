@@ -114,9 +114,7 @@ class BastionToolsScreen extends StatelessWidget {
               'Bastion version, independence statement and open-source licenses',
               () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => const BastionAboutScreen(),
-                ),
+                MaterialPageRoute(builder: (_) => const BastionAboutScreen()),
               ),
             ),
           ],
