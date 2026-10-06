@@ -118,12 +118,13 @@ class _BastionCoverageCaptureScreenState
     return PopScope(
       canPop: !_capture.recording && !_busy,
       onPopInvokedWithResult: (didPop, result) {
-        if (!didPop)
+        if (!didPop) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Stop and save the session before leaving.'),
             ),
           );
+        }
       },
       child: Scaffold(
         backgroundColor: bg,

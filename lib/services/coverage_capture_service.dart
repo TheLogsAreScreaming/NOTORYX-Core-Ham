@@ -181,8 +181,9 @@ class CoverageCaptureService extends ChangeNotifier {
         final recovered = CoverageCaptureSession.fromJson(
           jsonDecode(active) as Map<String, dynamic>,
         );
-        if (!_history.any((s) => s.id == recovered.id))
+        if (!_history.any((s) => s.id == recovered.id)) {
           _history.insert(0, recovered);
+        }
       } catch (_) {
         loadWarning =
             'An interrupted session could not be recovered. Its stored data has been retained.';
@@ -201,13 +202,15 @@ class CoverageCaptureService extends ChangeNotifier {
         return false;
       }
     });
-    if (!await prefs.setStringList(_historyKey, rows))
+    if (!await prefs.setStringList(_historyKey, rows)) {
       throw StateError('Could not delete session.');
+    }
     final active = prefs.getString(_activeKey);
     if (!_recording && active != null) {
       try {
-        if ((jsonDecode(active) as Map)['id'] == id)
+        if ((jsonDecode(active) as Map)['id'] == id) {
           await prefs.remove(_activeKey);
+        }
       } on FormatException {
         /* Retain unreadable recovery data. */
       }
@@ -369,8 +372,9 @@ class CoverageCaptureService extends ChangeNotifier {
     if (updated.length > _maxSavedSessions) {
       updated.removeRange(_maxSavedSessions, updated.length);
     }
-    if (!await prefs.setStringList(_historyKey, updated))
+    if (!await prefs.setStringList(_historyKey, updated)) {
       throw StateError('Could not save session.');
+    }
   }
 
   Future<String> exportJson({CoverageCaptureSession? session}) async {

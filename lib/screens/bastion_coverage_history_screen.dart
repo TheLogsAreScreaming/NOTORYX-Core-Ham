@@ -130,10 +130,11 @@ class _SessionScreen extends StatelessWidget {
         ),
       );
     } catch (e) {
-      if (context.mounted)
+      if (context.mounted) {
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text('Export failed: $e')));
+      }
     }
   }
 
@@ -216,13 +217,14 @@ class CoverageSessionMap extends StatelessWidget {
       add(o.recorderLatitude, o.recorderLongitude, true);
       add(o.nodeLatitude, o.nodeLongitude, false);
     }
-    if (markers.isEmpty)
+    if (markers.isEmpty) {
       return const Padding(
         padding: EdgeInsets.all(24),
         child: Text(
           'No usable coordinates in this session. Observations remain available below.',
         ),
       );
+    }
     return SizedBox(
       height: 320,
       child: FlutterMap(
