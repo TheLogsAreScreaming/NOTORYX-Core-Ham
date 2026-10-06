@@ -21,24 +21,11 @@ class BastionToolsScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Color(0xFFE4E6DF),
+        foregroundColor: const Color(0xFFE4E6DF),
         titleSpacing: 16,
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _tool(
-              context,
-              Icons.backpack_outlined,
-              'TRIP + FIELD OPERATIONS',
-              'Check-ins, readiness, Field Log, automations and comparisons',
-              () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const BastionFieldOpsScreen(),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
             Text(
               'BASTION',
               style: TextStyle(
@@ -60,6 +47,19 @@ class BastionToolsScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
           children: [
+            _tool(
+              context,
+              Icons.backpack_outlined,
+              'TRIP + FIELD OPERATIONS',
+              'Check-ins, readiness, Field Log, automations and comparisons',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const BastionFieldOpsScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
             _tool(
               context,
               Icons.map_rounded,
