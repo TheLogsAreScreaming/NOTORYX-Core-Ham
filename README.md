@@ -1,16 +1,27 @@
-# MeshCore Open
+# BCS Connect MeshCore
 
-Open-source Flutter client for MeshCore LoRa mesh networking devices.
+Open-source Flutter client for MeshCore LoRa mesh networking, maintained by **BackCountrySignal**.
 
 ## Overview
 
-MeshCore Open is a cross-platform mobile application for communicating with MeshCore LoRa mesh network devices via Bluetooth Low Energy (BLE). The app enables long-range, off-grid communication through peer-to-peer messaging, public channels, and mesh networking capabilities.
+**BCS Connect MeshCore** is a cross-platform MeshCore client focused on reliable off-grid communication, field usability, emergency communications, and a clean user experience. It communicates with compatible MeshCore LoRa devices through Bluetooth Low Energy (BLE), USB, or TCP and supports peer-to-peer messaging, public channels, maps, node management, and repeater tools.
 
-**Website:** [meshcoreopen.org](https://meshcoreopen.org/)
+**Website:** [backcountrysignal.org](https://backcountrysignal.org/)  
+**Repository:** [backcountrysignal/BCS-Connect-MeshCore](https://github.com/backcountrysignal/BCS-Connect-MeshCore)
 
-<a href="http://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/zjs81/meshcore-open">
-        <img src="assets/badges/badge_obtainium.png" height="80" align="center" alt="Get it on Obtainium"/>
-</a>
+### Project Direction
+
+BCS Connect is being developed with an emphasis on:
+
+- Reliable field and backcountry operation
+- Simple, low-distraction controls
+- Offline-friendly tools and mapping
+- Mesh diagnostics and network visibility
+- Emergency and community communications
+- Automation, including optional bot / auto-responder capabilities
+- Privacy and open-source development
+
+> **Upstream credit:** BCS Connect MeshCore is derived from the open-source [MeshCore Open](https://github.com/zjs81/meshcore-open) project. We appreciate the work of its developers and the broader MeshCore community. BCS Connect maintains its own branding, enhancements, and development direction while retaining applicable upstream licensing and attribution.
 
 ## Screenshots
 
@@ -115,8 +126,8 @@ MeshCore Open is a cross-platform mobile application for communicating with Mesh
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/zjs81/meshcore-open.git
-   cd meshcore-open
+   git clone https://github.com/backcountrysignal/BCS-Connect-MeshCore.git
+   cd BCS-Connect-MeshCore
    ```
 
 2. **Install dependencies**
@@ -224,10 +235,6 @@ Messages are transmitted as binary frames using a custom protocol optimized for 
 
 This is an open-source project. Contributions are welcome!
 
-## SWHID and Archive badge
-[![SWH](https://archive.softwareheritage.org/badge/origin/https://github.com/zjs81/meshcore-open/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/zjs81/meshcore-open)
-[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:d37a80b06359730864150ad2aeadd46cce9abd55/)](https://archive.softwareheritage.org/swh:1:dir:d37a80b06359730864150ad2aeadd46cce9abd55;origin=https://github.com/zjs81/meshcore-open;visit=swh:1:snp:47656c4b55ab40a689ff8d2f045196725f05096b;anchor=swh:1:rev:0fe250230905fdd05dbedc0f546736990beacf53)
-
 ### Development Guidelines
 
 - Follow the Flutter style guide
@@ -245,21 +252,15 @@ This is an open-source project. Contributions are welcome!
 
 ## Support
 
-For issues, questions, or feature requests, please open an issue on GitHub:
-<https://github.com/zjs81/meshcore-open/issues>
+For issues, questions, compatibility reports, or feature requests, please use the [BCS Connect MeshCore GitHub Issues](https://github.com/backcountrysignal/BCS-Connect-MeshCore/issues) page.
 
-## Donate
+For BackCountrySignal project information and resources, visit [backcountrysignal.org](https://backcountrysignal.org/).
 
-If you find MeshCore Open useful and would like to support development, you can donate Solana or other Solana tokens:
+## License and Upstream Attribution
 
-**Solana Address:** `F15YanjZj96YTBtKJYgNa8RLQLCZkx5CEwogPWkqXeoQ`
+BCS Connect MeshCore is based on open-source upstream software. This project is intended to retain and comply with all applicable upstream license, copyright, and attribution requirements.
 
-
-**Monero Address:** `453TxnpUqjkJtXxzdjMsrgERNkBRXEGamPbpC45ENrvKAk9tH7kZbxWF82Hz66etgDZyXFPEBU2JUEqhLeJyWt9kBvTVy5m`
-
-**Bitcoin Address:** `bc1qh45x28v8dslcg4v4upmqd9g0mvc3lnyffmyzr5`
-
-Your support helps maintain and improve this open-source project!
+See the repository's license and source files for complete licensing information. The upstream MeshCore Open project is available at [zjs81/meshcore-open](https://github.com/zjs81/meshcore-open).
 
 ## Acknowledgments
 
