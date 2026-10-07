@@ -147,7 +147,8 @@ class BastionHomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              checkInReason ?? 'Review contacts and message before sending. Track acknowledgements in Field Log.',
+              checkInReason ??
+                  'Review contacts and message before sending. Track acknowledgements in Field Log.',
               style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
             ),
             const SizedBox(height: 18),
@@ -184,7 +185,8 @@ class BastionHomeScreen extends StatelessWidget {
             _ActionCard(
               icon: Icons.backpack_outlined,
               title: 'TRIP + FIELD OPERATIONS',
-              subtitle: 'Trip brief, readiness, Field Log, automations and coverage comparison',
+              subtitle:
+                  'Trip brief, readiness, Field Log, automations and coverage comparison',
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => const BastionFieldOpsScreen(),

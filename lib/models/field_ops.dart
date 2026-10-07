@@ -299,8 +299,11 @@ ScheduleState scheduleState(FieldRule rule, DateTime now) {
 String explainMessageStatus(String status) => switch (status) {
   'pending' =>
     'Queued locally. This does not confirm radio transmission or receipt.',
-  'sent' => 'The radio accepted the send. No delivery acknowledgment has been recorded.',
-  'delivered' => 'The app recorded a delivery acknowledgment. It does not prove the person read it.',
-  'failed' => 'No confirmed delivery. Check radio connection, recipient reachability and retry history.',
+  'sent' =>
+    'The radio accepted the send. No delivery acknowledgment has been recorded.',
+  'delivered' =>
+    'The app recorded a delivery acknowledgment. It does not prove the person read it.',
+  'failed' =>
+    'No confirmed delivery. Check radio connection, recipient reachability and retry history.',
   _ => 'Delivery state is unavailable. Do not assume this message arrived.',
 };
