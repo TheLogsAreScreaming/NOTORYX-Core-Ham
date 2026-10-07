@@ -71,9 +71,10 @@ void main() {
   test(
     'unrelated cached tile and deleted file cannot count as ready',
     () async {
-      local.files['https://tile.openstreetmap.org/3/5/3.png'] = await File(
-        '${temp.path}/other.png',
-      ).writeAsBytes([1]);
+      local.files['https://tile.openstreetmap.org/3/5/3.png'] =
+          await const LocalFileSystem()
+              .file('${temp.path}/other.png')
+              .writeAsBytes([1]);
       local.files[tile] = const LocalFileSystem().file(
         '${temp.path}/deleted.png',
       );
