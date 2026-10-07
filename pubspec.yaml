@@ -65,6 +65,7 @@ hooks:
             backends: [cpu]
 
 dev_dependencies:
+  file: ^7.0.1
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0

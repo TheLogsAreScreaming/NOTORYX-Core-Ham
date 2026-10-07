@@ -50,10 +50,12 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
 
   Future<void> _loadCoverage() async {
     await _coverage.loadHistory();
-    if (!_coverage.history.any((s) => s.id == _firstSession))
+    if (!_coverage.history.any((s) => s.id == _firstSession)) {
       _firstSession = null;
-    if (!_coverage.history.any((s) => s.id == _secondSession))
+    }
+    if (!_coverage.history.any((s) => s.id == _secondSession)) {
       _secondSession = null;
+    }
     if (mounted) setState(() {});
   }
 

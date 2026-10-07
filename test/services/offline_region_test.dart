@@ -1,4 +1,6 @@
-import 'dart:io';
+import 'dart:io' as io;
+import 'package:file/file.dart' show File;
+import 'package:file/local.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -33,14 +35,14 @@ class _LocalCache implements BaseCacheManager {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  late Directory temp;
+  late io.Directory temp;
   late _LocalCache local;
   late AppSettingsService settings;
   late MapTileCacheService cache;
   final bounds = LatLngBounds(const LatLng(0.1, 0.1), const LatLng(0.2, 0.2));
   const tile = 'https://tile.openstreetmap.org/3/4/3.png';
   setUp(() async {
-    temp = await Directory.systemTemp.createTemp('bastion-map-test-');
+    temp = await io.Directory.systemTemp.createTemp('bastion-map-test-');
     local = _LocalCache();
     settings = AppSettingsService();
     cache = MapTileCacheService(
@@ -54,7 +56,9 @@ void main() {
     await temp.delete(recursive: true);
   });
   test('checks exact selected tiles locally without download calls', () async {
-    final file = await File('${temp.path}/tile.png').writeAsBytes([1, 2, 3]);
+    final file = await const LocalFileSystem()
+        .file('${temp.path}/tile.png')
+        .writeAsBytes([1, 2, 3]);
     local.files[tile] = file;
     final result = await cache.verifyOfflineRegion(
       bounds: bounds,
@@ -70,7 +74,9 @@ void main() {
       local.files['https://tile.openstreetmap.org/3/5/3.png'] = await File(
         '${temp.path}/other.png',
       ).writeAsBytes([1]);
-      local.files[tile] = File('${temp.path}/deleted.png');
+      local.files[tile] = const LocalFileSystem().file(
+        '${temp.path}/deleted.png',
+      );
       expect(
         await cache.verifyOfflineRegion(bounds: bounds, minZoom: 3, maxZoom: 3),
         (expected: 1, available: 0),
@@ -78,7 +84,9 @@ void main() {
     },
   );
   test('zero-byte cached files remain missing', () async {
-    local.files[tile] = await File('${temp.path}/empty.png').writeAsBytes([]);
+    local.files[tile] = await const LocalFileSystem()
+        .file('${temp.path}/empty.png')
+        .writeAsBytes([]);
     expect(
       await cache.verifyOfflineRegion(bounds: bounds, minZoom: 3, maxZoom: 3),
       (expected: 1, available: 0),
