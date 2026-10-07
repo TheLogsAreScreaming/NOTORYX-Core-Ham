@@ -104,9 +104,8 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
       await action();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(e.toString())));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(e.toString())));
       }
     }
   }
@@ -210,6 +209,11 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
             label: Text(ops.trip.active ? 'End trip' : 'Start trip'),
           ),
           OutlinedButton.icon(
+            onPressed: () => _shareTripBrief(ops),
+            icon: const Icon(Icons.description_outlined),
+            label: const Text('Trip brief'),
+          ),
+          OutlinedButton.icon(
             onPressed: () => _open(const ScannerScreen()),
             icon: const Icon(Icons.bluetooth),
             label: const Text('Connect radio'),
@@ -217,22 +221,23 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
         ],
       ),
     ]),
-    _card('One-tap check-ins', [
+    _card('Previewed check-ins', [
       const Text(
         'Choose a status, review the actual recipients and message, then send. Queued does not mean delivered.',
       ),
       const SizedBox(height: 10),
+      if (_checkInReason(ops, radio) case final reason?)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Text(reason, style: Theme.of(context).textTheme.bodyMedium),
+        ),
       Wrap(
         spacing: 8,
         runSpacing: 8,
         children: [
           for (final label in ["I'm OK", 'At Camp', 'Delayed', 'Heading Back'])
             FilledButton.tonal(
-              onPressed:
-                  !ops.trip.active ||
-                      !radio.isConnected ||
-                      ops.busy ||
-                      ops.error != null
+              onPressed: _checkInReason(ops, radio) != null
                   ? null
                   : () => _checkIn(ops, label),
               child: Text(label),
@@ -269,6 +274,17 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
       ),
     ]),
   ]);
+
+  String? _checkInReason(FieldOpsService ops, MeshCoreConnector radio) =>
+      checkInUnavailableReason(
+        ready: ops.ready,
+        storageError: ops.error != null,
+        active: ops.trip.active,
+        connected: radio.isConnected,
+        busy: ops.busy,
+        selectedContacts: ops.trip.members.length,
+        availableContacts: ops.members.length,
+      );
 
   Widget _memberTile(FieldOpsService ops, String key) {
     final matches = ops.members.where((c) => c.publicKeyHex == key);
@@ -343,9 +359,9 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            backgroundColor: Theme.of(
-                              context,
-                            ).colorScheme.surface,
+                            backgroundColor: Theme.of(context)
+                                .colorScheme
+                                .surface,
                           ),
                         ),
                       ],
@@ -364,6 +380,58 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
         ),
       ),
     ]);
+  }
+
+  Future<void> _shareTripBrief(FieldOpsService ops) async {
+    final brief = tripBrief(ops.trip, {
+      for (final contact in ops.members) contact.publicKeyHex: contact.name,
+    });
+    final share = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Preview Trip Brief'),
+        content: SizedBox(
+          width: 420,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Includes trip and contact names. Review before sharing. Coordinates, keys and message history are omitted.',
+                ),
+                const SizedBox(height: 16),
+                SelectableText(brief),
+              ],
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Close'),
+          ),
+          FilledButton.icon(
+            onPressed: () => Navigator.pop(ctx, true),
+            icon: const Icon(Icons.share_outlined),
+            label: const Text('Share brief'),
+          ),
+        ],
+      ),
+    );
+    if (share != true || !mounted) return;
+    final box = context.findRenderObject() as RenderBox?;
+    await _perform(() async {
+      await SharePlus.instance.share(
+        ShareParams(
+          text: brief,
+          subject: 'Bastion Trip Brief',
+          sharePositionOrigin: box == null
+              ? null
+              : box.localToGlobal(Offset.zero) & box.size,
+        ),
+      );
+    });
   }
 
   Future<void> _editTrip(FieldOpsService ops) async {

@@ -11,6 +11,53 @@ enum FieldTrigger {
 
 enum FieldAction { log, notify, checkIn }
 
+/// A local summary: never includes message history, public keys or coordinates.
+String tripBrief(TripPlan trip, Map<String, String> contactNames) {
+  final roster = trip.members.map(
+    (key) => contactNames[key] ?? 'Unavailable contact (review roster)',
+  );
+  return [
+    'BASTION • MeshCore Trip Brief',
+    'Communication without infrastructure.',
+    '',
+    'Trip: ${trip.name}',
+    'Status: ${trip.active ? 'Active' : 'Stopped'}',
+    'Contacts: ${roster.isEmpty ? 'None selected' : roster.join(', ')}',
+    'Activity overdue after: ${trip.overdueMinutes} minutes',
+    'Check-in choices: I’m OK • At Camp • Delayed • Heading Back',
+    'Radio position in check-ins: ${trip.shareLocation ? 'Included; may be stale' : 'Off'}',
+    'Radio battery in check-ins: ${trip.shareBattery ? 'Included' : 'Off'}',
+    '',
+    'Review recipients and message before sending a check-in.',
+    'Queued or sent does not prove delivery. An acknowledgment does not prove it was read.',
+    'Overdue means no recent contact activity; it is not a confirmed emergency.',
+    'Field automations run only while the app is active. Agree on a separate plan for missed contact.',
+    'This brief shares information only; it does not send a radio message or start a trip.',
+  ].join('\n');
+}
+
+String? checkInUnavailableReason({
+  required bool ready,
+  required bool storageError,
+  required bool active,
+  required bool connected,
+  required bool busy,
+  required int selectedContacts,
+  required int availableContacts,
+}) {
+  if (!ready) return 'Loading your trip…';
+  if (storageError)
+    return 'Resolve the Field Log storage error before sending.';
+  if (busy) return 'A check-in is being sent. Please wait.';
+  if (selectedContacts == 0) return 'Choose trip contacts in Plan trip.';
+  if (availableContacts != selectedContacts) {
+    return 'Some trip contacts are unavailable. Review your roster.';
+  }
+  if (!connected) return 'Connect your MeshCore radio to check in.';
+  if (!active) return 'Start your trip to enable check-ins.';
+  return null;
+}
+
 class TripPlan {
   final String name;
   final List<String> members;
@@ -251,11 +298,8 @@ ScheduleState scheduleState(FieldRule rule, DateTime now) {
 String explainMessageStatus(String status) => switch (status) {
   'pending' =>
     'Queued locally. This does not confirm radio transmission or receipt.',
-  'sent' =>
-    'The radio accepted the send. No delivery acknowledgment has been recorded.',
-  'delivered' =>
-    'The app recorded a delivery acknowledgment. It does not prove the person read it.',
-  'failed' =>
-    'No confirmed delivery. Check radio connection, recipient reachability and retry history.',
+  'sent' => 'The radio accepted the send. No delivery acknowledgment has been recorded.',
+  'delivered' => 'The app recorded a delivery acknowledgment. It does not prove the person read it.',
+  'failed' => 'No confirmed delivery. Check radio connection, recipient reachability and retry history.',
   _ => 'Delivery state is unavailable. Do not assume this message arrived.',
 };

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../services/field_ops_service.dart';
+import '../models/field_ops.dart';
 import 'bastion_about_screen.dart';
 import 'bastion_field_ops_screen.dart';
 import 'bastion_diagnostics_screen.dart';
@@ -26,6 +27,15 @@ class BastionHomeScreen extends StatelessWidget {
     final c = context.watch<MeshCoreConnector>();
     final stats = c.latestRadioStats;
     final ops = context.watch<FieldOpsService>();
+    final checkInReason = checkInUnavailableReason(
+      ready: ops.ready,
+      storageError: ops.error != null,
+      active: ops.trip.active,
+      connected: c.isConnected,
+      busy: ops.busy,
+      selectedContacts: ops.trip.members.length,
+      availableContacts: ops.members.length,
+    );
     final repeaters = c.contacts.where((x) => x.type == advTypeRepeater).length;
     final active = c.contacts
         .where((x) => DateTime.now().difference(x.lastSeen).inMinutes <= 60)
@@ -121,12 +131,7 @@ class BastionHomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             FilledButton.icon(
-              onPressed:
-                  ops.ready &&
-                      ops.error == null &&
-                      ops.trip.active &&
-                      c.isConnected &&
-                      !ops.busy
+              onPressed: checkInReason == null
                   ? () => Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) =>
@@ -141,9 +146,9 @@ class BastionHomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 4),
-            const Text(
-              'Review contacts and message before sending. Track acknowledgements in Field Log.',
-              style: TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
+            Text(
+              checkInReason ?? 'Review contacts and message before sending. Track acknowledgements in Field Log.',
+              style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
             ),
             const SizedBox(height: 18),
             if (!c.isConnected)
@@ -179,8 +184,7 @@ class BastionHomeScreen extends StatelessWidget {
             _ActionCard(
               icon: Icons.backpack_outlined,
               title: 'TRIP + FIELD OPERATIONS',
-              subtitle:
-                  'Check-ins, readiness, Field Log, automations and coverage comparison',
+              subtitle: 'Trip brief, readiness, Field Log, automations and coverage comparison',
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => const BastionFieldOpsScreen(),
@@ -409,7 +413,7 @@ class BastionHomeScreen extends StatelessWidget {
           textAlign: TextAlign.center,
           style: const TextStyle(
             color: Color(0xFFADBEB7),
-            fontSize: 8.5,
+            fontSize: 11,
             fontWeight: FontWeight.w800,
           ),
         ),
