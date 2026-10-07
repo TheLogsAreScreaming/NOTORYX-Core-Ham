@@ -38,6 +38,7 @@ void main() {
       ),
     );
     expect(find.text('No radio connected yet.'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('Open test chat'), 200);
     final button = tester.widget<FilledButton>(
       find.widgetWithText(FilledButton, 'Open test chat'),
     );
@@ -74,11 +75,15 @@ void main() {
         child: const MaterialApp(home: BastionSetupScreen()),
       ),
     );
-    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>));
+    await tester.scrollUntilVisible(
+      find.byType(DropdownButtonFormField<String>),
+      200,
+    );
     await tester.tap(find.byType(DropdownButtonFormField<String>));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Trail partner').last);
     await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('Open test chat'), 200);
     expect(
       find.text('No outgoing test message recorded in this guide session.'),
       findsOneWidget,
