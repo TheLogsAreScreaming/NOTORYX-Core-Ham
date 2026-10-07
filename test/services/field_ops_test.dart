@@ -90,8 +90,23 @@ void main() {
       expect(ops.entries.first.status, 'pending');
       expect(radio.sent.single.text, isNot(contains('Radio advert')));
       radio.sent[0] = radio.sent[0].copyWith(status: MessageStatus.delivered);
+      // Connector notifications are intentionally debounced by 50 ms.
+      final acknowledged = Completer<void>();
+      void observe() {
+        if (ops.entries.first.status == 'delivered' &&
+            !acknowledged.isCompleted) {
+          acknowledged.complete();
+        }
+      }
+
+      ops.addListener(observe);
       radio.changed();
-      expect(ops.entries.first.status, 'delivered');
+      try {
+        await acknowledged.future.timeout(const Duration(seconds: 2));
+        expect(ops.entries.first.status, 'delivered');
+      } finally {
+        ops.removeListener(observe);
+      }
     },
   );
   test('inactive trip and disconnected radio cannot send check-ins', () async {
