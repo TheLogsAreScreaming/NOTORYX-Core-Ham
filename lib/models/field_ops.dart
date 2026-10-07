@@ -46,8 +46,9 @@ String? checkInUnavailableReason({
   required int availableContacts,
 }) {
   if (!ready) return 'Loading your trip…';
-  if (storageError)
+  if (storageError) {
     return 'Resolve the Field Log storage error before sending.';
+  }
   if (busy) return 'A check-in is being sent. Please wait.';
   if (selectedContacts == 0) return 'Choose trip contacts in Plan trip.';
   if (availableContacts != selectedContacts) {
