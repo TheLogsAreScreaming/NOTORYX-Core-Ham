@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../services/field_ops_service.dart';
 import 'bastion_about_screen.dart';
 import 'bastion_field_ops_screen.dart';
 import 'bastion_diagnostics_screen.dart';
@@ -24,6 +25,7 @@ class BastionHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.watch<MeshCoreConnector>();
     final stats = c.latestRadioStats;
+    final ops = context.watch<FieldOpsService>();
     final repeaters = c.contacts.where((x) => x.type == advTypeRepeater).length;
     final active = c.contacts
         .where((x) => DateTime.now().difference(x.lastSeen).inMinutes <= 60)
@@ -65,13 +67,16 @@ class BastionHomeScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'MESHCORE COMPANION',
+                        'Communication without infrastructure.',
                         style: TextStyle(
                           color: _cyan,
-                          fontSize: 11,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 1.1,
+                          fontSize: 12,
+                          fontStyle: FontStyle.italic,
                         ),
+                      ),
+                      Text(
+                        'MeshCore',
+                        style: TextStyle(color: _cyan, fontSize: 12),
                       ),
                     ],
                   ),
@@ -101,6 +106,44 @@ class BastionHomeScreen extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(child: _metric('REPEATERS', '$repeaters')),
               ],
+            ),
+            const SizedBox(height: 12),
+            _ActionCard(
+              icon: Icons.backpack_outlined,
+              title: ops.trip.active ? ops.trip.name : 'PLAN YOUR TRIP',
+              subtitle:
+                  '${ops.trip.active ? "Trip active" : "Trip stopped"} • ${ops.members.length} contacts • ${c.getTotalUnreadCount()} unread messages',
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const BastionFieldOpsScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              onPressed:
+                  ops.ready &&
+                      ops.error == null &&
+                      ops.trip.active &&
+                      c.isConnected &&
+                      !ops.busy
+                  ? () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            const BastionFieldOpsScreen(initialCheckIn: true),
+                      ),
+                    )
+                  : null,
+              icon: const Icon(Icons.check_circle_outline),
+              label: const Padding(
+                padding: EdgeInsets.all(12),
+                child: Text("CHECK IN: I'M OK"),
+              ),
+            ),
+            const SizedBox(height: 4),
+            const Text(
+              'Review contacts and message before sending. Track acknowledgements in Field Log.',
+              style: TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
             ),
             const SizedBox(height: 18),
             if (!c.isConnected)

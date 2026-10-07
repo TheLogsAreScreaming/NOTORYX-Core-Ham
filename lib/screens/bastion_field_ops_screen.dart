@@ -9,6 +9,7 @@ import 'package:share_plus/share_plus.dart';
 import '../connector/meshcore_connector.dart';
 import '../models/field_ops.dart';
 import '../services/coverage_capture_service.dart';
+import '../services/app_settings_service.dart';
 import '../services/field_ops_service.dart';
 import '../services/map_tile_cache_service.dart';
 import '../services/notification_service.dart';
@@ -20,7 +21,8 @@ import 'map_cache_screen.dart';
 import 'scanner_screen.dart';
 
 class BastionFieldOpsScreen extends StatefulWidget {
-  const BastionFieldOpsScreen({super.key});
+  const BastionFieldOpsScreen({super.key, this.initialCheckIn = false});
+  final bool initialCheckIn;
   @override
   State<BastionFieldOpsScreen> createState() => _FieldOpsState();
 }
@@ -31,16 +33,27 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
   String? _firstSession, _secondSession;
   CachedTileInventory? _inventory;
   String? _cacheError;
+  ({int expected, int available})? _region;
+  String _regionLabel = "Select an area and zoom levels in Offline maps.";
   bool _loadingMaps = false;
   @override
   void initState() {
     super.initState();
     unawaited(_loadCoverage());
-    WidgetsBinding.instance.addPostFrameCallback((_) => unawaited(_loadMaps()));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(_loadMaps());
+      if (mounted && widget.initialCheckIn) {
+        unawaited(_checkIn(context.read<FieldOpsService>(), "I'm OK"));
+      }
+    });
   }
 
   Future<void> _loadCoverage() async {
     await _coverage.loadHistory();
+    if (!_coverage.history.any((s) => s.id == _firstSession))
+      _firstSession = null;
+    if (!_coverage.history.any((s) => s.id == _secondSession))
+      _secondSession = null;
     if (mounted) setState(() {});
   }
 
@@ -49,13 +62,31 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     setState(() {
       _loadingMaps = true;
       _cacheError = null;
+      _region = null;
     });
     try {
       _inventory = await context
           .read<MapTileCacheService>()
           .getCachedTileInventory();
-    } catch (_) {
-      _cacheError = 'Map inventory could not be verified.';
+      if (!mounted) return;
+      final settings = context.read<AppSettingsService>().settings;
+      final bounds = MapTileCacheService.boundsFromJson(
+        settings.mapCacheBounds,
+      );
+      if (bounds != null) {
+        final cache = context.read<MapTileCacheService>();
+        _regionLabel =
+            '${cache.source.label} • zoom ${settings.mapCacheMinZoom}–${settings.mapCacheMaxZoom}';
+        _region = await cache.verifyOfflineRegion(
+          bounds: bounds,
+          minZoom: settings.mapCacheMinZoom,
+          maxZoom: settings.mapCacheMaxZoom,
+        );
+      } else {
+        _regionLabel = 'Select an area and zoom levels in Offline maps.';
+      }
+    } catch (e) {
+      _cacheError = 'Map area could not be verified: $e';
     }
     if (mounted) setState(() => _loadingMaps = false);
   }
@@ -70,10 +101,11 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     try {
       await action();
     } catch (e) {
-      if (mounted)
+      if (mounted) {
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text(e.toString())));
+      }
     }
   }
 
@@ -238,12 +270,13 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
 
   Widget _memberTile(FieldOpsService ops, String key) {
     final matches = ops.members.where((c) => c.publicKeyHex == key);
-    if (matches.isEmpty)
+    if (matches.isEmpty) {
       return const ListTile(
         leading: Icon(Icons.person_off),
         title: Text('Selected contact unavailable'),
         subtitle: Text('Review this trip before sending.'),
       );
+    }
     final c = matches.first;
     final activity = c.lastMessageAt.isAfter(c.lastSeen)
         ? c.lastMessageAt
@@ -268,10 +301,11 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
 
   Widget _tripMap(FieldOpsService ops) {
     final positioned = ops.members.where((c) => c.hasLocation).toList();
-    if (positioned.isEmpty)
+    if (positioned.isEmpty) {
       return _card('Trip map', [
         const Text('No selected contacts have advertised coordinates yet.'),
       ]);
+    }
     return _card('Last advertised positions', [
       const Text(
         'Positions can be stale. This map does not track phone GPS or prove members are currently here.',
@@ -369,7 +403,8 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                     decoration: const InputDecoration(
                       labelText: 'Activity overdue after',
                     ),
-                    items: [15, 30, 60, 120, 240, 1440]
+                    items: {15, 30, 60, 120, 240, 1440, overdue}
+                        .toList()
                         .map(
                           (n) => DropdownMenuItem(
                             value: n,
@@ -487,12 +522,16 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
         '${ops.members.length}/${ops.trip.members.length} available. Check they have compatible radios and channels.',
       ),
       _readyRow(
-        _inventory != null && _inventory!.tiles.isNotEmpty,
-        'Offline map inventory',
+        !_loadingMaps &&
+            _region != null &&
+            _region!.available == _region!.expected,
+        'Selected offline map area',
         _cacheError ??
-            (_inventory == null
-                ? 'Not verified yet.'
-                : '${_inventory!.tiles.length} tiles saved; open your route offline to verify coverage.'),
+            (_loadingMaps
+                ? 'Checking local files…'
+                : _region == null
+                ? _regionLabel
+                : '$_regionLabel\n${_region!.available}/${_region!.expected} tile files available; ${_region!.expected - _region!.available} missing. This is a snapshot; open the area offline before leaving.'),
       ),
       _readyRow(
         !ops.trip.shareLocation ||
@@ -547,7 +586,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
         .where(
           (e) =>
               (_kind == 'all' || e.kind == _kind) &&
-              '${e.text} ${e.kind} ${e.contactKey ?? ''}'
+              '${e.text} ${e.kind} ${e.contactKey ?? ''} ${e.tripName ?? ''}'
                   .toLowerCase()
                   .contains(_search.toLowerCase()),
         )
@@ -617,7 +656,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
           child: ListTile(
             title: Text(e.text),
             subtitle: Text(
-              '${e.at.toLocal()} • ${e.kind}${e.status == null ? '' : '\n${e.status}: ${explainMessageStatus(e.status!)}'}${e.latitude == null ? '' : '\nManual observation position ${e.latitude}, ${e.longitude}'}',
+              '${e.at.toLocal()} • ${e.kind} • ${e.tripName ?? 'Trip unspecified'}${e.status == null ? '' : '\n${e.status}: ${explainMessageStatus(e.status!)}'}${e.latitude == null ? '' : '\nRecorded radio-advertised position ${e.latitude}, ${e.longitude} (may be stale)'}',
             ),
           ),
         ),
@@ -627,6 +666,9 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
   Future<void> _note(FieldOpsService ops) async {
     final text = TextEditingController();
     var deadZone = false;
+    var includePosition = false;
+    final radio = context.read<MeshCoreConnector>();
+    final lat = radio.selfLatitude, lon = radio.selfLongitude;
     await showDialog<void>(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -651,6 +693,18 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                 value: deadZone,
                 onChanged: (v) => setDialogState(() => deadZone = v),
               ),
+              SwitchListTile(
+                title: const Text('Save radio-advertised position'),
+                subtitle: Text(
+                  usablePosition(lat, lon)
+                      ? '$lat, $lon • may be stale; not phone GPS'
+                      : 'No usable advertised coordinates',
+                ),
+                value: includePosition,
+                onChanged: usablePosition(lat, lon)
+                    ? (v) => setDialogState(() => includePosition = v)
+                    : null,
+              ),
             ],
           ),
           actions: [
@@ -664,6 +718,8 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                 await ops.record(
                   deadZone ? 'dead-zone' : 'note',
                   text.text.trim(),
+                  latitude: includePosition ? lat : null,
+                  longitude: includePosition ? lon : null,
                 );
                 if (ctx.mounted) Navigator.pop(ctx);
               },
@@ -757,12 +813,14 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
             key: ValueKey('${rule.id}_${rule.batteryThreshold}'),
             initialValue: rule.batteryThreshold,
             decoration: const InputDecoration(labelText: 'Battery at or below'),
-            items: [5, 10, 15, 20, 30, 40, 50]
+            items: {5, 10, 15, 20, 30, 40, 50, rule.batteryThreshold}
+                .toList()
                 .map((n) => DropdownMenuItem(value: n, child: Text('$n%')))
                 .toList(),
             onChanged: (v) {
-              if (v != null)
+              if (v != null) {
                 ops.configureRule(rule.copyWith(batteryThreshold: v));
+              }
             },
           ),
         if (rule.trigger == FieldTrigger.scheduled) ...[
@@ -770,14 +828,16 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
             key: ValueKey('${rule.id}_${rule.intervalMinutes}'),
             initialValue: rule.intervalMinutes,
             decoration: const InputDecoration(labelText: 'Interval'),
-            items: [15, 30, 60, 120, 240, 1440]
+            items: {15, 30, 60, 120, 240, 1440, rule.intervalMinutes}
+                .toList()
                 .map(
                   (n) => DropdownMenuItem(value: n, child: Text('$n minutes')),
                 )
                 .toList(),
             onChanged: (v) {
-              if (v != null)
+              if (v != null) {
                 ops.configureRule(rule.copyWith(intervalMinutes: v));
+              }
             },
           ),
           Text('Next due: ${rule.nextDue?.toLocal() ?? 'not scheduled'}'),
@@ -875,7 +935,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     void add(CoverageCaptureSession? s, Color color) {
       if (s == null) return;
       for (final o in s.observations) {
-        if (usablePosition(o.recorderLatitude, o.recorderLongitude))
+        if (usablePosition(o.recorderLatitude, o.recorderLongitude)) {
           points.add(
             Marker(
               point: LatLng(o.recorderLatitude!, o.recorderLongitude!),
@@ -888,11 +948,34 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
               ),
             ),
           );
+        }
       }
     }
 
     add(a, Theme.of(context).colorScheme.primary);
     add(b, Theme.of(context).colorScheme.secondary);
+    for (final entry in context.watch<FieldOpsService>().entries) {
+      if ((entry.kind == 'note' || entry.kind == 'dead-zone') &&
+          usablePosition(entry.latitude, entry.longitude)) {
+        points.add(
+          Marker(
+            point: LatLng(entry.latitude!, entry.longitude!),
+            width: 28,
+            height: 28,
+            child: Tooltip(
+              message:
+                  '${entry.kind} • ${entry.at.toLocal()}\n${entry.text}\nLocal note at radio-advertised coordinates; may be stale.',
+              child: Icon(
+                entry.kind == 'dead-zone'
+                    ? Icons.warning_amber
+                    : Icons.edit_location_alt_outlined,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+            ),
+          ),
+        );
+      }
+    }
     return _page([
       _card('Coverage intelligence', [
         const Text(

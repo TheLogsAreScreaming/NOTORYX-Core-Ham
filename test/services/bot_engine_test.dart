@@ -26,6 +26,10 @@ void main() {
     commandResponses: {'!ping': 'Pong', '!where': 'Private location'},
   );
 
+  test('field check-ins never trigger automatic bot replies', () {
+    expect(reply(text: '[Bastion Check-in] I am OK'), isNull);
+  });
+
   test('master switch defaults off', () {
     expect(reply(settings: BotSettings()), isNull);
   });

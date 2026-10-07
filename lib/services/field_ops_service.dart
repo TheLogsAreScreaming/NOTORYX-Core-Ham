@@ -57,8 +57,9 @@ class FieldOpsService extends ChangeNotifier {
             .map((r) => FieldRule.fromJson(Map<String, dynamic>.from(r as Map)))
             .toList();
         for (final t in FieldTrigger.values) {
-          if (!rules.any((r) => r.trigger == t))
+          if (!rules.any((r) => r.trigger == t)) {
             rules.add(FieldRule(id: t.name, trigger: t));
+          }
         }
         for (final row in (j['entries'] as List? ?? []).take(1000)) {
           _entries.add(
@@ -99,8 +100,9 @@ class FieldOpsService extends ChangeNotifier {
     });
     final write = _writes.then((_) async {
       final prefs = await SharedPreferences.getInstance();
-      if (!await prefs.setString(_key, payload))
+      if (!await prefs.setString(_key, payload)) {
         throw StateError('Storage rejected write');
+      }
     });
     _writes = write.catchError((Object _) {});
     try {
@@ -123,8 +125,9 @@ class FieldOpsService extends ChangeNotifier {
   }
 
   Future<void> startTrip() async {
-    if (trip.members.isEmpty || !connector.isConnected)
+    if (trip.members.isEmpty || !connector.isConnected) {
       throw StateError('Connect a radio and choose trip contacts first.');
+    }
     trip = trip.copyWith(active: true);
     await record('trip', 'Started ${trip.name}');
     _notify();
@@ -158,6 +161,7 @@ class FieldOpsService extends ChangeNotifier {
         contactKey: contactKey,
         messageId: messageId,
         status: status,
+        tripName: trip.name,
         latitude: latitude,
         longitude: longitude,
       ),
@@ -205,10 +209,11 @@ class FieldOpsService extends ChangeNotifier {
       throw ArgumentError('Invalid field check-in.');
     }
     final targets = members.where((c) => c.type == advTypeChat).toList();
-    if (targets.isEmpty || targets.length != trip.members.length)
+    if (targets.isEmpty || targets.length != trip.members.length) {
       throw StateError(
         'Some selected contacts are unavailable. Review the trip roster.',
       );
+    }
     final now = DateTime.now();
     if (automatic &&
         _lastAutoSend != null &&
@@ -225,8 +230,9 @@ class FieldOpsService extends ChangeNotifier {
       // Reserve the automation budget before invoking any radio sends.
       if (automatic) {
         _lastAutoSend = now;
-        if (!await _save())
+        if (!await _save()) {
           throw StateError('Could not reserve transmission budget.');
+        }
       }
       for (final contact in targets) {
         if (!trip.active ||
@@ -291,8 +297,9 @@ class FieldOpsService extends ChangeNotifier {
     if (!trip.active ||
         !foreground ||
         !trip.members.contains(message.senderKeyHex) ||
-        !_received.add(message.messageId))
+        !_received.add(message.messageId)) {
       return;
+    }
     if (_received.length > 2000) _received.remove(_received.first);
     unawaited(
       record('received', message.text, contactKey: message.senderKeyHex),
@@ -306,13 +313,14 @@ class FieldOpsService extends ChangeNotifier {
       _connected = connected;
       _primed = false;
       _knownNodes.clear();
-      if (trip.active)
+      if (trip.active) {
         unawaited(
           record(
             'radio',
             connected ? 'Radio reconnected.' : 'Radio disconnected.',
           ),
         );
+      }
       unawaited(
         _event(connected ? FieldTrigger.reconnect : FieldTrigger.disconnect),
       );
@@ -383,8 +391,9 @@ class FieldOpsService extends ChangeNotifier {
   }
 
   Future<void> enableAutomations(bool enabled) async {
-    if (enabled && (!ready || error != null || !trip.active))
+    if (enabled && (!ready || error != null || !trip.active)) {
       throw StateError('Start a trip before enabling automations.');
+    }
     automationEnabled = enabled;
     await record(
       'automation',
@@ -440,8 +449,9 @@ class FieldOpsService extends ChangeNotifier {
         !trip.active ||
         !foreground ||
         !ready ||
-        error != null)
+        error != null) {
       return;
+    }
     for (final rule in List<FieldRule>.from(
       rules,
     ).where((r) => r.enabled && r.trigger == trigger)) {
@@ -459,15 +469,17 @@ class FieldOpsService extends ChangeNotifier {
       'automation',
       '${rule.dryRun ? 'DRY RUN: ' : ''}$detail → ${rule.action.name}',
     );
-    if (rule.dryRun || !automationEnabled || !foreground || !trip.active)
+    if (rule.dryRun || !automationEnabled || !foreground || !trip.active) {
       return;
+    }
     if (rule.action == FieldAction.notify) {
       final shown = await NotificationService().showFieldAlert(detail);
-      if (!shown)
+      if (!shown) {
         await record(
           'missed',
           'Notification could not be shown. Check notification permission.',
         );
+      }
     }
     if (rule.action == FieldAction.checkIn) {
       try {

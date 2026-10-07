@@ -580,6 +580,41 @@ class MapTileCacheService extends ChangeNotifier {
     return polygons;
   }
 
+  /// Verifies the current source's exact tile URLs and actual files without
+  /// requesting network downloads. A result describes this area and zoom range,
+  /// not radio coverage, route safety, or permanently retained map data.
+  Future<({int expected, int available})> verifyOfflineRegion({
+    required LatLngBounds bounds,
+    required int minZoom,
+    required int maxZoom,
+  }) async {
+    final safeMin = math.min(minZoom, maxZoom).clamp(3, 18);
+    final safeMax = math.max(minZoom, maxZoom).clamp(3, 18);
+    final expected = estimateTileCount(bounds, safeMin, safeMax);
+    if (expected > 50000) {
+      throw StateError(
+        'Select a smaller map area or fewer zoom levels (maximum 50,000 tiles per check).',
+      );
+    }
+    final template = urlTemplate;
+    var available = 0;
+    for (var zoom = safeMin; zoom <= safeMax; zoom++) {
+      final range = _tileBoundsForBounds(bounds, zoom);
+      for (var x = range.minX; x <= range.maxX; x++) {
+        for (var y = range.minY; y <= range.maxY; y++) {
+          final key = _buildTileUrl(x, y, zoom, urlTemplate: template);
+          final cached = await cacheManager.getFileFromCache(key);
+          if (cached != null &&
+              await cached.file.exists() &&
+              await cached.file.length() > 0) {
+            available++;
+          }
+        }
+      }
+    }
+    return (expected: expected, available: available);
+  }
+
   int estimateTileCount(LatLngBounds bounds, int minZoom, int maxZoom) {
     final safeMin = math.min(minZoom, maxZoom);
     final safeMax = math.max(minZoom, maxZoom);

@@ -75,6 +75,7 @@ class FieldEntry {
   final String? contactKey;
   final String? messageId;
   final String? status;
+  final String? tripName;
   final double? latitude;
   final double? longitude;
   const FieldEntry({
@@ -85,6 +86,7 @@ class FieldEntry {
     this.contactKey,
     this.messageId,
     this.status,
+    this.tripName,
     this.latitude,
     this.longitude,
   });
@@ -96,6 +98,7 @@ class FieldEntry {
     contactKey: contactKey,
     messageId: messageId,
     status: value,
+    tripName: tripName,
     latitude: latitude,
     longitude: longitude,
   );
@@ -107,6 +110,7 @@ class FieldEntry {
     'contactKey': contactKey,
     'messageId': messageId,
     'status': status,
+    'tripName': tripName,
     'latitude': latitude,
     'longitude': longitude,
   };
@@ -118,6 +122,7 @@ class FieldEntry {
     contactKey: j['contactKey'] as String?,
     messageId: j['messageId'] as String?,
     status: j['status'] as String?,
+    tripName: j['tripName'] as String?,
     latitude: (j['latitude'] as num?)?.toDouble(),
     longitude: (j['longitude'] as num?)?.toDouble(),
   );
@@ -222,8 +227,9 @@ String checkInText(
         ' | Radio advert ${latitude!.toStringAsFixed(4)},${longitude!.toStringAsFixed(4)} (may be stale)';
   }
   if (battery != null) text += ' | Battery $battery%';
-  if (utf8.encode(text).length > 140)
+  if (utf8.encode(text).length > 140) {
     throw ArgumentError('Check-in exceeds the 140-byte field limit.');
+  }
   return text;
 }
 
