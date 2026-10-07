@@ -14,6 +14,7 @@ import 'bastion_path_hub_screen.dart';
 import 'bastion_repeater_tools_screen.dart';
 import 'discovery_screen.dart';
 import 'scanner_screen.dart';
+import 'bastion_setup_screen.dart';
 
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
@@ -106,6 +107,15 @@ class BastionHomeScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 22),
+            _ActionCard(
+              icon: Icons.explore_outlined,
+              title: 'GET STARTED',
+              subtitle: 'Connect your radio and verify your first message',
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const BastionSetupScreen()),
+              ),
+            ),
+            const SizedBox(height: 12),
             _connectionCard(context, c, stats),
             const SizedBox(height: 12),
             Row(
