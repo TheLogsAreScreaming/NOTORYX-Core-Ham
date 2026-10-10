@@ -3610,6 +3610,84 @@ abstract class AppLocalizations {
   /// **'Set as my location'**
   String get map_setAsMyLocation;
 
+  /// No description provided for @floodCorridor_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood Corridor'**
+  String get floodCorridor_title;
+
+  /// No description provided for @floodCorridor_previewToHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview flood corridor to here'**
+  String get floodCorridor_previewToHere;
+
+  /// No description provided for @floodCorridor_requesting.
+  ///
+  /// In en, this message translates to:
+  /// **'Asking your radio for a corridor…'**
+  String get floodCorridor_requesting;
+
+  /// No description provided for @floodCorridor_unsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio\'s firmware doesn\'t support flood corridors.'**
+  String get floodCorridor_unsupported;
+
+  /// No description provided for @floodCorridor_noProposal.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio couldn\'t propose a corridor. Make sure it has a position set.'**
+  String get floodCorridor_noProposal;
+
+  /// No description provided for @floodCorridor_circleCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 circle} other{{count} circles}}'**
+  String floodCorridor_circleCount(int count);
+
+  /// No description provided for @floodCorridor_repeatersInside.
+  ///
+  /// In en, this message translates to:
+  /// **'{inside} of {total} known repeaters inside'**
+  String floodCorridor_repeatersInside(int inside, int total);
+
+  /// No description provided for @floodCorridor_straightLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Straight line: no known repeaters along the way'**
+  String get floodCorridor_straightLine;
+
+  /// No description provided for @floodCorridor_followsRepeaters.
+  ///
+  /// In en, this message translates to:
+  /// **'Follows your known repeaters'**
+  String get floodCorridor_followsRepeaters;
+
+  /// No description provided for @floodCorridor_horizonLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Known repeaters don\'t reach the target; the rest is a straight line'**
+  String get floodCorridor_horizonLimited;
+
+  /// No description provided for @floodCorridor_thinStretch.
+  ///
+  /// In en, this message translates to:
+  /// **'Part of the corridor has few known repeaters'**
+  String get floodCorridor_thinStretch;
+
+  /// No description provided for @floodCorridor_moreCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Require more repeater coverage'**
+  String get floodCorridor_moreCoverage;
+
+  /// No description provided for @floodCorridor_previewNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview only. Repeaters without corridor firmware don\'t apply corridors.'**
+  String get floodCorridor_previewNote;
+
   /// No description provided for @map_pinLabel.
   ///
   /// In en, this message translates to:

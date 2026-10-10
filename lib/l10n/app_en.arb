@@ -1015,6 +1015,36 @@
   "map_publicKeyPrefixHint": "e.g. ab12",
   "map_shareMarkerHere": "Share marker here",
   "map_setAsMyLocation": "Set as my location",
+  "floodCorridor_title": "Flood Corridor",
+  "floodCorridor_previewToHere": "Preview flood corridor to here",
+  "floodCorridor_requesting": "Asking your radio for a corridor…",
+  "floodCorridor_unsupported": "Your radio's firmware doesn't support flood corridors.",
+  "floodCorridor_noProposal": "Your radio couldn't propose a corridor. Make sure it has a position set.",
+  "floodCorridor_circleCount": "{count, plural, =1{1 circle} other{{count} circles}}",
+  "@floodCorridor_circleCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "floodCorridor_repeatersInside": "{inside} of {total} known repeaters inside",
+  "@floodCorridor_repeatersInside": {
+    "placeholders": {
+      "inside": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "floodCorridor_straightLine": "Straight line: no known repeaters along the way",
+  "floodCorridor_followsRepeaters": "Follows your known repeaters",
+  "floodCorridor_horizonLimited": "Known repeaters don't reach the target; the rest is a straight line",
+  "floodCorridor_thinStretch": "Part of the corridor has few known repeaters",
+  "floodCorridor_moreCoverage": "Require more repeater coverage",
+  "floodCorridor_previewNote": "Preview only. Repeaters without corridor firmware don't apply corridors.",
   "map_pinLabel": "Pin label",
   "map_label": "Label",
   "map_pointOfInterest": "Point of interest",

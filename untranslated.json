@@ -2,100 +2,320 @@
   "bg": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "de": [
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "es": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "fr": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "hu": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "it": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "ja": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "ko": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "nl": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "pl": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "pt": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "ru": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "sk": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "sl": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "sv": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "uk": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ],
 
   "zh": [
     "urlImage_enable",
     "urlImage_possible",
-    "reaction_report"
+    "reaction_report",
+    "floodCorridor_title",
+    "floodCorridor_previewToHere",
+    "floodCorridor_requesting",
+    "floodCorridor_unsupported",
+    "floodCorridor_noProposal",
+    "floodCorridor_circleCount",
+    "floodCorridor_repeatersInside",
+    "floodCorridor_straightLine",
+    "floodCorridor_followsRepeaters",
+    "floodCorridor_horizonLimited",
+    "floodCorridor_thinStretch",
+    "floodCorridor_moreCoverage",
+    "floodCorridor_previewNote"
   ]
 }
