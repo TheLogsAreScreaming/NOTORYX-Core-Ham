@@ -382,6 +382,29 @@ class AppLocalizationsRu extends AppLocalizations {
       'Управление сохранёнными регионами';
 
   @override
+  String get settings_corridorRegion => 'Corridor region';
+
+  @override
+  String get settings_corridorRegionDefault => '#corridor (default)';
+
+  @override
+  String get settings_corridorRegionHelp =>
+      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+
+  @override
+  String get settings_corridorRegionHint => 'Region name';
+
+  @override
+  String get settings_corridorRegionUseDefault => 'Use default';
+
+  @override
+  String get settings_corridorRegionUpdated => 'Corridor region updated';
+
+  @override
+  String get settings_corridorRegionFailed =>
+      'Couldn\'t update the corridor region';
+
+  @override
   String get settings_regionManagement_screenTitle => 'Управление регионами';
 
   @override

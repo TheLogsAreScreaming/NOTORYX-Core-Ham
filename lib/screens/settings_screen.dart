@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../storage/region_store.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/radio_settings.dart';
@@ -470,6 +471,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
           subtitle: l10n.settings_regionSettingsSubtitle,
           onTap: () => pushRegionManagementScreen(context),
         ),
+        if (connector.floodCorridorSupported == true) ...[
+          const Divider(height: 1, indent: 16),
+          _tappableTile(
+            context,
+            icon: Icons.route,
+            title: l10n.settings_corridorRegion,
+            subtitle: (connector.corridorRegion ?? '').isEmpty
+                ? l10n.settings_corridorRegionDefault
+                : '#${connector.corridorRegion}',
+            onTap: () => _editCorridorRegion(context, connector),
+          ),
+        ],
         const Divider(height: 1, indent: 16),
         _tappableTile(
           context,
@@ -779,6 +792,85 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Text(l10n.common_save),
               );
             },
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _editCorridorRegion(BuildContext context, MeshCoreConnector connector) {
+    final l10n = context.l10n;
+    final controller = TextEditingController(
+      text: connector.corridorRegion ?? '',
+    );
+    final storedRegions = RegionStore().loadRegions();
+
+    Future<void> save(String region) async {
+      Navigator.pop(context);
+      try {
+        await connector.setCorridorRegion(region.trim());
+        if (!context.mounted) return;
+        showDismissibleSnackBar(
+          context,
+          content: Text(l10n.settings_corridorRegionUpdated),
+        );
+      } catch (_) {
+        if (!context.mounted) return;
+        showDismissibleSnackBar(
+          context,
+          content: Text(l10n.settings_corridorRegionFailed),
+        );
+      }
+    }
+
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(l10n.settings_corridorRegion),
+        scrollable: true,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.settings_corridorRegionHelp),
+            const SizedBox(height: 16),
+            TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                hintText: l10n.settings_corridorRegionHint,
+                prefixText: '#',
+                border: const OutlineInputBorder(),
+              ),
+              maxLength: 31,
+            ),
+            if (storedRegions.isNotEmpty)
+              Wrap(
+                spacing: 8,
+                runSpacing: 4,
+                children: [
+                  for (final region in storedRegions)
+                    ActionChip(
+                      label: Text(region),
+                      onPressed: () => controller.text = region.startsWith('#')
+                          ? region.substring(1)
+                          : region,
+                    ),
+                ],
+              ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: Text(l10n.common_cancel),
+          ),
+          TextButton(
+            onPressed: () => save(''),
+            child: Text(l10n.settings_corridorRegionUseDefault),
+          ),
+          TextButton(
+            onPressed: () => save(controller.text),
+            child: Text(l10n.common_save),
           ),
         ],
       ),

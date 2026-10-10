@@ -808,6 +808,48 @@ abstract class AppLocalizations {
   /// **'Manage stored regions'**
   String get settings_regionSettingsSubtitle;
 
+  /// No description provided for @settings_corridorRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Corridor region'**
+  String get settings_corridorRegion;
+
+  /// No description provided for @settings_corridorRegionDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'#corridor (default)'**
+  String get settings_corridorRegionDefault;
+
+  /// No description provided for @settings_corridorRegionHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.'**
+  String get settings_corridorRegionHelp;
+
+  /// No description provided for @settings_corridorRegionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Region name'**
+  String get settings_corridorRegionHint;
+
+  /// No description provided for @settings_corridorRegionUseDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Use default'**
+  String get settings_corridorRegionUseDefault;
+
+  /// No description provided for @settings_corridorRegionUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Corridor region updated'**
+  String get settings_corridorRegionUpdated;
+
+  /// No description provided for @settings_corridorRegionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update the corridor region'**
+  String get settings_corridorRegionFailed;
+
   /// No description provided for @settings_regionManagement_screenTitle.
   ///
   /// In en, this message translates to:
