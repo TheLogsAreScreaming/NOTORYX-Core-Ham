@@ -1845,7 +1845,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             children: [
                               const Icon(Icons.route),
                               const SizedBox(width: 12),
-                              Text(context.l10n.chat_limitToArea),
+                              Flexible(
+                                child: Text(context.l10n.chat_limitToArea),
+                              ),
                             ],
                           ),
                         ),

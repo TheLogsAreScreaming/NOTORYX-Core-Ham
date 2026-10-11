@@ -139,7 +139,7 @@ void main() {
     expect(corridor.single.radiusKm, 12);
     expect(corridor.single.lat, 49.25);
 
-    await tester.tap(find.byIcon(Icons.cancel));
+    await tester.tap(find.byTooltip('Clear'));
     await _settle(tester);
     expect(find.text('Only within 12 km of you'), findsNothing);
 
