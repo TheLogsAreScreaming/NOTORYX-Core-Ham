@@ -100,7 +100,7 @@ void main() {
       ),
     );
     radio.changed();
-    await tester.pump();
+    await tester.pumpAndSettle();
     expect(
       find.text('No outgoing test message recorded in this guide session.'),
       findsOneWidget,
@@ -115,7 +115,11 @@ void main() {
       ),
     );
     radio.changed();
-    await tester.pump();
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.textContaining('Latest message: SENT'),
+      100,
+    );
     expect(find.textContaining('Latest message: SENT'), findsOneWidget);
     expect(find.textContaining('No delivery acknowledgment'), findsOneWidget);
     await tester.pumpWidget(const SizedBox());
