@@ -79,6 +79,8 @@ void main() {
       find.byType(DropdownButtonFormField<String>),
       200,
     );
+    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>));
+    await tester.pumpAndSettle();
     await tester.tap(find.byType(DropdownButtonFormField<String>));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Trail partner').last);
