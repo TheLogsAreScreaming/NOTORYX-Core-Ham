@@ -3657,6 +3657,52 @@ class MeshCoreConnector extends ChangeNotifier {
     }, region: getChannelRegion(channel.index));
   }
 
+  /// Sends a channel text that corridor-aware repeaters forward only inside
+  /// [corridor]. Flood Corridor firmware confirms it with RESP_CODE_OK rather
+  /// than RESP_CODE_SENT, so it rides the generic-ack queue.
+  Future<void> sendChannelMessageWithCorridor(
+    Channel channel,
+    String text,
+    List<CorridorTriple> corridor, {
+    String? originalText,
+    String? translatedLanguageCode,
+    String? translationModelId,
+  }) async {
+    if (!isConnected || text.isEmpty || _floodCorridorSupported != true) {
+      return;
+    }
+
+    final message = ChannelMessage.outgoing(
+      text,
+      _selfName ?? 'Me',
+      channel.index,
+      originalText: originalText,
+      translatedLanguageCode: translatedLanguageCode,
+      translationModelId: translationModelId,
+    );
+    _addChannelMessage(channel.index, message);
+    notifyListeners();
+
+    final outboundText = prepareChannelOutboundText(channel.index, text);
+    try {
+      await _runScopedChannelSend(() async {
+        await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
+        await _sendFrameAndWaitForCommandAck(
+          buildSendChannelTextMsgCorridorFrame(
+            channel.index,
+            outboundText,
+            corridor,
+          ),
+          channelSendQueueId: message.messageId,
+          expectsGenericAck: true,
+        );
+      }, region: '');
+    } catch (e) {
+      appLogger.warn('Corridor channel send failed: $e');
+      _markPendingChannelMessageFailedById(message.messageId);
+    }
+  }
+
   /// Minimum companion firmware version code that implements
   /// CMD_SEND_CHANNEL_DATA (62) / RESP_CODE_CHANNEL_DATA_RECV (27).
   static const int _minFirmwareVerCodeForChannelData = 13;
@@ -4584,7 +4630,7 @@ class MeshCoreConnector extends ChangeNotifier {
     failedAck.completer?.completeError(
       Exception('Firmware rejected command with error code $errCode'),
     );
-    if (failedAck.commandCode != cmdSendChannelTxtMsg ||
+    if (!_isChannelTextCommand(failedAck.commandCode) ||
         failedAck.channelSendQueueId == null) {
       return;
     }
@@ -6069,6 +6115,10 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  bool _isChannelTextCommand(int commandCode) =>
+      commandCode == cmdSendChannelTxtMsg ||
+      commandCode == cmdSendChannelTxtMsgCorridor;
+
   void _handleOk() {
     if (_pendingGenericAckQueue.isEmpty) {
       return;
@@ -6076,7 +6126,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     final pendingAck = _pendingGenericAckQueue.removeAt(0);
     pendingAck.completer?.complete();
-    if (pendingAck.commandCode != cmdSendChannelTxtMsg ||
+    if (!_isChannelTextCommand(pendingAck.commandCode) ||
         pendingAck.channelSendQueueId == null) {
       return;
     }

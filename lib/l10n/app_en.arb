@@ -751,6 +751,27 @@
   },
   "chat_selectSendAction": "Select send action",
   "chat_sendGif": "Send GIF",
+  "chat_limitToArea": "Limit to an area",
+  "chat_limitToAreaTitle": "Only send within…",
+  "chat_limitToAreaHelp": "Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.",
+  "chat_limitToAreaRadius": "{km} km of you",
+  "@chat_limitToAreaRadius": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "chat_limitToAreaActive": "Only within {km} km of you",
+  "@chat_limitToAreaActive": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "chat_limitToAreaOff": "No limit",
+  "chat_limitToAreaNeedsPosition": "Set your radio's position to limit messages to an area.",
   "chat_sendImageLora": "Send image via meshcore",
   "chat_imagePickFailed": "Couldn't open that image",
   "@chat_imagePickFailed": {

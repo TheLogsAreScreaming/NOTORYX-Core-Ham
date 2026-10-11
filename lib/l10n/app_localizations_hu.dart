@@ -1515,6 +1515,33 @@ class AppLocalizationsHu extends AppLocalizations {
   String get chat_sendGif => 'GIF küldése';
 
   @override
+  String get chat_limitToArea => 'Limit to an area';
+
+  @override
+  String get chat_limitToAreaTitle => 'Only send within…';
+
+  @override
+  String get chat_limitToAreaHelp =>
+      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+
+  @override
+  String chat_limitToAreaRadius(int km) {
+    return '$km km of you';
+  }
+
+  @override
+  String chat_limitToAreaActive(int km) {
+    return 'Only within $km km of you';
+  }
+
+  @override
+  String get chat_limitToAreaOff => 'No limit';
+
+  @override
+  String get chat_limitToAreaNeedsPosition =>
+      'Set your radio\'s position to limit messages to an area.';
+
+  @override
   String get chat_sendImageLora => 'Kép küldése MeshCore-on keresztül';
 
   @override

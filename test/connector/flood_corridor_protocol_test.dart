@@ -161,4 +161,21 @@ void main() {
       expect(parseCorridorProposalFrame(frame), isNull);
     });
   });
+
+  test('corridor channel limit leaves room for 4 bytes per circle', () {
+    final plain = maxChannelMessageBytes('Alice');
+    expect(maxCorridorChannelMessageBytes('Alice', 1), plain - 4);
+    expect(maxCorridorChannelMessageBytes('Alice', 8), plain - 32);
+
+    // The limit must also keep the built frame within maxFrameSize.
+    final corridor = List.filled(
+      8,
+      CorridorTriple(lat: 0, lon: 0, radiusCode: 0),
+    );
+    final text = 'a' * maxCorridorChannelMessageBytes('', 8);
+    expect(
+      buildSendChannelTextMsgCorridorFrame(0, text, corridor).length,
+      lessThanOrEqualTo(maxFrameSize),
+    );
+  });
 }

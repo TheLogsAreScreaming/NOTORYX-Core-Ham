@@ -2794,6 +2794,48 @@ abstract class AppLocalizations {
   /// **'Send GIF'**
   String get chat_sendGif;
 
+  /// No description provided for @chat_limitToArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit to an area'**
+  String get chat_limitToArea;
+
+  /// No description provided for @chat_limitToAreaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Only send within…'**
+  String get chat_limitToAreaTitle;
+
+  /// No description provided for @chat_limitToAreaHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.'**
+  String get chat_limitToAreaHelp;
+
+  /// No description provided for @chat_limitToAreaRadius.
+  ///
+  /// In en, this message translates to:
+  /// **'{km} km of you'**
+  String chat_limitToAreaRadius(int km);
+
+  /// No description provided for @chat_limitToAreaActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Only within {km} km of you'**
+  String chat_limitToAreaActive(int km);
+
+  /// No description provided for @chat_limitToAreaOff.
+  ///
+  /// In en, this message translates to:
+  /// **'No limit'**
+  String get chat_limitToAreaOff;
+
+  /// No description provided for @chat_limitToAreaNeedsPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your radio\'s position to limit messages to an area.'**
+  String get chat_limitToAreaNeedsPosition;
+
   /// No description provided for @chat_sendImageLora.
   ///
   /// In en, this message translates to:

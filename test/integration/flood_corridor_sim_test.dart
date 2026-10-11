@@ -15,105 +15,27 @@
 // Verified against usrflo/MeshCore ab947662.
 library;
 
-import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/models/flood_corridor.dart';
-import 'package:meshcore_open/services/usb_serial_frame_codec.dart';
-
-const _alicePort = 9300;
-const _bobPort = 9301;
-const _alice = (lat: 47.6100, lon: -122.4000);
-const _bob = (lat: 47.7400, lon: -122.2500);
-const _publicChannel = 0;
-
-class _Radio {
-  _Radio._(this._socket) {
-    _socket.listen((bytes) {
-      for (final packet in _decoder.ingest(Uint8List.fromList(bytes))) {
-        if (!packet.isRxFrame) continue;
-        final code = packet.payload.isEmpty ? -1 : packet.payload[0];
-        if (code == respCodeChannelMsgRecv ||
-            code == respCodeChannelMsgRecvV3) {
-          channelTexts.add(String.fromCharCodes(packet.payload));
-        }
-        _frames.add(packet.payload);
-      }
-    });
-  }
-
-  final Socket _socket;
-  final _decoder = UsbSerialFrameDecoder();
-  final _frames = StreamController<Uint8List>.broadcast();
-
-  /// Every channel message seen on this connection. The simulator's own agent
-  /// shares the UART and may fetch messages before we ask, so record them all.
-  final List<String> channelTexts = [];
-
-  static Future<_Radio> connect(int port) async =>
-      _Radio._(await Socket.connect(InternetAddress.loopbackIPv4, port));
-
-  Future<Uint8List> request(
-    Uint8List frame,
-    Set<int> replyCodes, {
-    Duration timeout = const Duration(seconds: 5),
-  }) {
-    final reply = _frames.stream.firstWhere(
-      (f) => f.isNotEmpty && replyCodes.contains(f[0]),
-    );
-    _socket.add(wrapUsbSerialTxFrame(frame));
-    return reply.timeout(timeout);
-  }
-
-  Future<void> close() async {
-    await _socket.close();
-    await _frames.close();
-  }
-}
-
-/// Polls [radio]'s message queue for up to [within] and returns every channel
-/// text seen on the connection; stops early once one contains [until].
-Future<List<String>> _receivedChannelTexts(
-  _Radio radio,
-  Duration within, {
-  String? until,
-}) async {
-  final deadline = DateTime.now().add(within);
-  while (DateTime.now().isBefore(deadline)) {
-    if (until != null && radio.channelTexts.any((t) => t.contains(until))) {
-      break;
-    }
-    await radio.request(buildSyncNextMessageFrame(), {
-      respCodeChannelMsgRecv,
-      respCodeChannelMsgRecvV3,
-      respCodeContactMsgRecv,
-      respCodeContactMsgRecvV3,
-      respCodeNoMoreMessages,
-    });
-    await Future<void>.delayed(const Duration(milliseconds: 500));
-  }
-  return radio.channelTexts;
-}
+import 'mcsim_radio.dart';
 
 void main() {
-  final enabled = Platform.environment['MCSIM'] == '1';
-  late _Radio alice;
-  late _Radio bob;
+  final enabled = mcsimEnabled;
+  late SimRadio alice;
+  late SimRadio bob;
 
   setUpAll(() async {
     if (!enabled) return;
-    alice = await _Radio.connect(_alicePort);
-    bob = await _Radio.connect(_bobPort);
+    alice = await SimRadio.connect(alicePort);
+    bob = await SimRadio.connect(bobPort);
     for (final radio in [alice, bob]) {
       await radio.request(buildAppStartFrame(), {respCodeSelfInfo});
     }
-    await alice.request(buildSetAdvertLatLonFrame(_alice.lat, _alice.lon), {
+    await alice.request(buildSetAdvertLatLonFrame(aliceAt.lat, aliceAt.lon), {
       respCodeOk,
     });
-    await _receivedChannelTexts(bob, const Duration(seconds: 1));
+    await receivedChannelTexts(bob, const Duration(seconds: 1));
   });
 
   tearDownAll(() async {
@@ -147,34 +69,34 @@ void main() {
 
   test('proposes a corridor from Alice to Bob', () async {
     final reply = await alice.request(
-      buildProposeCorridorFrame(_bob.lat, _bob.lon),
+      buildProposeCorridorFrame(bobAt.lat, bobAt.lon),
       {respCodeProposeCorridor, respCodeErr},
     );
     expect(reply[0], respCodeProposeCorridor);
     final proposal = parseCorridorProposalFrame(reply)!;
     expect(proposal.triples.length, greaterThanOrEqualTo(2));
-    expect(proposal.triples.first.lat, closeTo(_alice.lat, 0.02));
-    expect(proposal.triples.last.lat, closeTo(_bob.lat, 0.02));
-    expect(proposal.triples.last.lon, closeTo(_bob.lon, 0.02));
+    expect(proposal.triples.first.lat, closeTo(aliceAt.lat, 0.02));
+    expect(proposal.triples.last.lat, closeTo(bobAt.lat, 0.02));
+    expect(proposal.triples.last.lon, closeTo(bobAt.lon, 0.02));
   }, skip: !enabled);
 
   test(
     'a corridor along the path delivers to Bob',
     () async {
       final reply = await alice.request(
-        buildProposeCorridorFrame(_bob.lat, _bob.lon),
+        buildProposeCorridorFrame(bobAt.lat, bobAt.lon),
         {respCodeProposeCorridor},
       );
       final corridor = parseCorridorProposalFrame(reply)!.triples;
       await alice.request(
         buildSendChannelTextMsgCorridorFrame(
-          _publicChannel,
+          publicChannel,
           'corridor-hit',
           corridor,
         ),
         {respCodeOk},
       );
-      final texts = await _receivedChannelTexts(
+      final texts = await receivedChannelTexts(
         bob,
         const Duration(seconds: 20),
         until: 'corridor-hit',
@@ -190,18 +112,18 @@ void main() {
     () async {
       // 1 km around Alice: R_in_H (~7 km away) is outside and must not forward.
       final corridor = [
-        CorridorTriple(lat: _alice.lat, lon: _alice.lon, radiusCode: 0),
+        CorridorTriple(lat: aliceAt.lat, lon: aliceAt.lon, radiusCode: 0),
       ];
       await alice.request(
         buildSendChannelTextMsgCorridorFrame(
-          _publicChannel,
+          publicChannel,
           'corridor-miss',
           corridor,
           flags: corridorFlagFailClosed,
         ),
         {respCodeOk},
       );
-      final texts = await _receivedChannelTexts(
+      final texts = await receivedChannelTexts(
         bob,
         const Duration(seconds: 20),
         until: 'corridor-miss',

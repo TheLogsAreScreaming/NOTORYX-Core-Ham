@@ -370,6 +370,21 @@ int maxChannelMessageBytes(String? senderName) {
   return _minPositive(byPayload, byFrame);
 }
 
+// Corridor channel sends carry 4 bytes per circle. The firmware truncates text
+// that would push corridor + payload past MAX_PACKET_PAYLOAD (the budget
+// corridor-unaware repeaters enforce), which costs the same 4 bytes per circle.
+const int _sendChannelTextMsgCorridorOverheadBytes =
+    1 + 1 + 1 + 4 + 1 + 1 + 2; // count + flags, +2 safety margin
+
+int maxCorridorChannelMessageBytes(String? senderName, int circleCount) {
+  final prefixBytes = _senderNameBytes(senderName) + 2; // "<name>: "
+  final corridorBytes = circleCount * corridorTripleBytes;
+  final byPayload = maxTextPayloadBytes - prefixBytes - corridorBytes;
+  final byFrame =
+      maxFrameSize - _sendChannelTextMsgCorridorOverheadBytes - corridorBytes;
+  return _minPositive(byPayload, byFrame);
+}
+
 int _senderNameBytes(String? senderName) {
   if (senderName == null || senderName.isEmpty) return maxNameSize - 1;
   final bytes = utf8.encode(senderName);
