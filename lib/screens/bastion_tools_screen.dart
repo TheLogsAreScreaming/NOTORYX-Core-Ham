@@ -27,11 +27,6 @@ class BastionToolsScreen extends StatelessWidget {
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _tool(context, Icons.lock_outline, 'ENCRYPTED BACKUP',
-              'Save settings, contacts and keys with optional chat history',
-              () => Navigator.push(context, MaterialPageRoute(
-                builder: (_) => const EncryptedBackupScreen()))),
-            const SizedBox(height: 12),
             Text(
               'BASTION',
               style: TextStyle(
@@ -53,6 +48,19 @@ class BastionToolsScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
           children: [
+            _tool(
+              context,
+              Icons.lock_outline,
+              'ENCRYPTED BACKUP',
+              'Save settings, contacts and keys with optional chat history',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const EncryptedBackupScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
             _tool(
               context,
               Icons.backpack_outlined,
