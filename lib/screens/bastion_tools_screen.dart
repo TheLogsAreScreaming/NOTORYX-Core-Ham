@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'bastion_about_screen.dart';
+import 'encrypted_backup_screen.dart';
 import 'bastion_field_ops_screen.dart';
 import 'bastion_diagnostics_screen.dart';
 import 'bastion_field_stats_screen.dart';
@@ -47,6 +48,19 @@ class BastionToolsScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
           children: [
+            _tool(
+              context,
+              Icons.lock_outline,
+              'ENCRYPTED BACKUP',
+              'Save settings, contacts and keys with optional chat history',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const EncryptedBackupScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
             _tool(
               context,
               Icons.backpack_outlined,

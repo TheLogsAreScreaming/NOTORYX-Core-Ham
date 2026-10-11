@@ -9,6 +9,7 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/radio_settings.dart';
+import '../widgets/us_bandwidth_notice.dart';
 import '../services/app_settings_service.dart';
 import '../services/app_debug_log_service.dart';
 import '../theme/mesh_theme.dart';
@@ -1953,6 +1954,10 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
                 }
               },
             ),
+            if (double.tryParse(_frequencyController.text)
+                case final double mhz)
+              if (mhz >= 902 && mhz <= 928)
+                UsBandwidthNotice(bandwidthHz: _bandwidth.hz),
             const SizedBox(height: 16),
             DropdownButtonFormField<LoRaSpreadingFactor>(
               initialValue: _spreadingFactor,

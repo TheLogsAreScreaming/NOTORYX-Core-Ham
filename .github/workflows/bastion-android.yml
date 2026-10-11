@@ -3,6 +3,8 @@ name: Bastion Field Operations Android APK
 on:
   push:
     branches: [bastion, bastion-bot-mode, bastion-field-ops]
+  pull_request:
+    branches: [bastion-field-ops]
   workflow_dispatch:
 
 permissions:
