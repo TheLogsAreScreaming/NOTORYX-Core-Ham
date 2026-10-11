@@ -15,8 +15,9 @@ class EncryptedBackupService {
   );
 
   Future<String> seal(Map<String, Object> values, String passphrase) async {
-    if (passphrase.length < 12)
+    if (passphrase.length < 12) {
       throw const FormatException('Use at least 12 characters.');
+    }
     _validate(values);
     final salt = SecretKeyData.random(length: 32).bytes;
     final key = await _kdf.deriveKey(
@@ -40,8 +41,9 @@ class EncryptedBackupService {
   }
 
   Future<Map<String, Object>> open(String text, String passphrase) async {
-    if (text.length > 32 * 1024 * 1024)
+    if (text.length > 32 * 1024 * 1024) {
       throw const FormatException('Backup is too large.');
+    }
     final json = jsonDecode(text);
     if (json is! Map ||
         json['format'] != 'bastion-meshcore-backup' ||
@@ -69,16 +71,18 @@ class EncryptedBackupService {
       aad: utf8.encode('bastion-meshcore-backup-v1'),
     );
     final decoded = jsonDecode(utf8.decode(bytes));
-    if (decoded is! Map<String, dynamic>)
+    if (decoded is! Map<String, dynamic>) {
       throw const FormatException('Invalid settings.');
+    }
     final values = decoded.map((key, value) => MapEntry(key, value as Object));
     _validate(values);
     return values;
   }
 
   static void _validate(Map<String, Object> values) {
-    if (values.length > 20000)
+    if (values.length > 20000) {
       throw const FormatException('Too many settings.');
+    }
     for (final entry in values.entries) {
       final v = entry.value;
       if (entry.key.isEmpty ||

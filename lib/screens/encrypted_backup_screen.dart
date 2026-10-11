@@ -62,17 +62,19 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
       );
       _passphrase.clear();
       _confirmation.clear();
-      if (mounted)
+      if (mounted) {
         setState(
           () => _status =
               'Backup prepared. Keep your saved file and passphrase somewhere safe.',
         );
+      }
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(
           () => _status =
               'Could not export the backup. Your existing data was unchanged.',
         );
+      }
     } finally {
       if (file != null && await file.exists()) await file.delete();
       if (mounted) setState(() => _busy = false);
