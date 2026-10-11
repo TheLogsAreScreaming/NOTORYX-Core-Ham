@@ -666,7 +666,249 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
     );
   }
 
-  /// Send a one-sh…2154 tokens truncated…           field: _SettingField.intThresh,
+  /// Send a one-shot CLI action (advert / clock sync / etc.) and surface the
+  /// firmware's reply via snackbar. Not part of the dirty-field save flow.
+  Future<void> _runAction(String command, String label) async {
+    if (_commandService == null) return;
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final repeater = _resolveRepeater(connector);
+    final l10n = context.l10n;
+    setState(() => _runningAction = true);
+    try {
+      final response = await _commandService!.sendCommand(
+        repeater,
+        command,
+        retries: 1,
+      );
+      if (!mounted) return;
+      final outcome = _classifySaveResponse(response);
+      showDismissibleSnackBar(
+        context,
+        content: Text(
+          outcome == _SaveOutcome.error
+              ? l10n.repeater_actionFailed(label, response.trim())
+              : l10n.repeater_actionSucceeded(label),
+        ),
+        backgroundColor: outcome == _SaveOutcome.error
+            ? Theme.of(context).colorScheme.error
+            : null,
+      );
+    } catch (e) {
+      if (!mounted) return;
+      showDismissibleSnackBar(
+        context,
+        content: Text(l10n.repeater_actionFailed(label, e.toString())),
+        backgroundColor: Theme.of(context).colorScheme.error,
+      );
+    } finally {
+      if (mounted) setState(() => _runningAction = false);
+    }
+  }
+
+  Future<void> _loadSettings() async {
+    // Just populate with current repeater data on initial load
+    // User must click sync button to fetch from device
+    setState(() {
+      _nameController.text = widget.repeater.name;
+
+      if (widget.repeater.hasLocation) {
+        _latController.text = widget.repeater.latitude?.toString() ?? '';
+        _lonController.text = widget.repeater.longitude?.toString() ?? '';
+      }
+    });
+
+    final autoClockSync = await _storage
+        .getRepeaterAutoClockSyncAfterLoginEnabled(
+          widget.repeater.publicKeyHex,
+        );
+    if (!mounted) return;
+    setState(() {
+      _autoClockSyncAfterLogin = autoClockSync;
+    });
+  }
+
+  Future<void> _saveSettings() async {
+    if (_commandService == null) return;
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final repeater = _resolveRepeater(connector);
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      // Each pending command remembers the dirty-field it came from (null for
+      // password commands, which always re-send when text is present). On
+      // failure we keep that field in `_dirtyFields` so the Save button stays
+      // available and the user can retry.
+      final pending = <({_SettingField? field, String command})>[];
+
+      if (_dirtyFields.contains(_SettingField.name) &&
+          _nameController.text.isNotEmpty) {
+        pending.add((
+          field: _SettingField.name,
+          command: 'set name ${_nameController.text}',
+        ));
+      }
+
+      // Passwords are write-only; send whenever a value was typed.
+      if (_passwordController.text.isNotEmpty) {
+        pending.add((
+          field: null,
+          command: 'password ${_passwordController.text}',
+        ));
+      }
+      if (_guestPasswordController.text.isNotEmpty) {
+        pending.add((
+          field: null,
+          command: 'set guest.password ${_guestPasswordController.text}',
+        ));
+      }
+
+      // Radio parameters are bundled in a single command.
+      if (_dirtyFields.contains(_SettingField.radio) &&
+          _freqController.text.isNotEmpty &&
+          _bandwidth != null &&
+          _spreadingFactor != null &&
+          _codingRate != null) {
+        final freqText = _freqController.text.trim();
+        if (double.tryParse(freqText) != null) {
+          final bwKHz = _bandwidth! / 1000;
+          pending.add((
+            field: _SettingField.radio,
+            command:
+                'set radio $freqText,$bwKHz,$_spreadingFactor,$_codingRate',
+          ));
+        }
+      }
+
+      if (_dirtyFields.contains(_SettingField.txPower) &&
+          _txPowerController.text.isNotEmpty) {
+        final dbm = int.tryParse(_txPowerController.text.trim());
+        if (dbm != null) {
+          pending.add((field: _SettingField.txPower, command: 'set tx $dbm'));
+        }
+      }
+
+      if (_dirtyFields.contains(_SettingField.lat) &&
+          _latController.text.isNotEmpty &&
+          _isValidCoordinate(_latController.text, 90)) {
+        pending.add((
+          field: _SettingField.lat,
+          command: 'set lat ${_latController.text}',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.lon) &&
+          _lonController.text.isNotEmpty &&
+          _isValidCoordinate(_lonController.text, 180)) {
+        pending.add((
+          field: _SettingField.lon,
+          command: 'set lon ${_lonController.text}',
+        ));
+      }
+
+      if (_dirtyFields.contains(_SettingField.repeat)) {
+        pending.add((
+          field: _SettingField.repeat,
+          command: 'set repeat ${_repeatEnabled ? "on" : "off"}',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.allowReadOnly)) {
+        pending.add((
+          field: _SettingField.allowReadOnly,
+          command: 'set allow.read.only ${_allowReadOnly ? "on" : "off"}',
+        ));
+      }
+
+      if (_dirtyFields.contains(_SettingField.advertInterval)) {
+        pending.add((
+          field: _SettingField.advertInterval,
+          command: 'set advert.interval $_advertInterval',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.floodAdvertInterval)) {
+        pending.add((
+          field: _SettingField.floodAdvertInterval,
+          command: 'set flood.advert.interval $_floodAdvertInterval',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.floodMax)) {
+        pending.add((
+          field: _SettingField.floodMax,
+          command: 'set flood.max $_floodMax',
+        ));
+      }
+
+      if (_dirtyFields.contains(_SettingField.rxGain)) {
+        pending.add((
+          field: _SettingField.rxGain,
+          command: 'set radio.rxgain ${_rxGainBoosted ? "on" : "off"}',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.multiAcks)) {
+        pending.add((
+          field: _SettingField.multiAcks,
+          command: 'set multi.acks ${_multiAcks ? 1 : 0}',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.loopDetect)) {
+        pending.add((
+          field: _SettingField.loopDetect,
+          command: 'set loop.detect $_loopDetect',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.dutyCycle)) {
+        pending.add((
+          field: _SettingField.dutyCycle,
+          command: 'set dutycycle $_dutyCycle',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.ownerInfo)) {
+        // Firmware splits on '|', treating it as newline.
+        final encoded = _ownerInfoController.text.replaceAll('\n', '|');
+        pending.add((
+          field: _SettingField.ownerInfo,
+          command: 'set owner.info $encoded',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.pathHashMode)) {
+        pending.add((
+          field: _SettingField.pathHashMode,
+          command: 'set path.hash.mode $_pathHashMode',
+        ));
+      }
+      if (_dirtyFields.contains(_SettingField.prvKey)) {
+        final v = _prvKeyController.text.trim();
+        if (v != "") {
+          pending.add((field: _SettingField.prvKey, command: 'set prv.key $v'));
+        }
+      }
+      if (_dirtyFields.contains(_SettingField.txDelay) &&
+          _txDelayController.text.isNotEmpty) {
+        final v = double.tryParse(_txDelayController.text.trim());
+        if (v != null) {
+          pending.add((
+            field: _SettingField.txDelay,
+            command: 'set txdelay $v',
+          ));
+        }
+      }
+      if (_dirtyFields.contains(_SettingField.directTxDelay) &&
+          _directTxDelayController.text.isNotEmpty) {
+        final v = double.tryParse(_directTxDelayController.text.trim());
+        if (v != null) {
+          pending.add((
+            field: _SettingField.directTxDelay,
+            command: 'set direct.txdelay $v',
+          ));
+        }
+      }
+      if (_dirtyFields.contains(_SettingField.intThresh) &&
+          _intThreshController.text.isNotEmpty) {
+        final v = int.tryParse(_intThreshController.text.trim());
+        if (v != null) {
+          pending.add((
+            field: _SettingField.intThresh,
             command: 'set int.thresh $v',
           ));
         }
