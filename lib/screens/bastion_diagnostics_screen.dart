@@ -14,9 +14,9 @@ import 'companion_radio_stats_screen.dart';
 class BastionDiagnosticsScreen extends StatelessWidget {
   const BastionDiagnosticsScreen({super.key});
 
-  static const _cyan = Color(0xFF18D3D3);
-  static const _bg = Color(0xFF0B0E11);
-  static const _panel = Color(0xFF12171C);
+  static const _cyan = Color(0xFF8AB6AA);
+  static const _bg = Color(0xFF182126);
+  static const _panel = Color(0xFF202D33);
 
   String _value(Object? value) => value == null ? '—' : '$value';
 
@@ -89,7 +89,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Colors.white,
+        foregroundColor: Color(0xFFE4E6DF),
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -231,7 +231,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
               Text(
                 c.isConnected ? 'RADIO ONLINE' : 'RADIO OFFLINE',
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFE4E6DF),
                   fontSize: 18,
                   fontWeight: FontWeight.w900,
                 ),
@@ -241,7 +241,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                 c.isConnected
                     ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}'
                     : 'Connect a MeshCore companion to populate live diagnostics.',
-                style: const TextStyle(color: Color(0xFF9AA6AF), fontSize: 12),
+                style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
               ),
             ],
           ),
@@ -255,7 +255,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     decoration: BoxDecoration(
       color: _panel,
       borderRadius: BorderRadius.circular(14),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Column(
       children: [
@@ -271,7 +271,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-            color: Color(0xFF8D9AA4),
+            color: Color(0xFFADBEB7),
             fontSize: 9,
             fontWeight: FontWeight.w800,
           ),
@@ -285,7 +285,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     decoration: BoxDecoration(
       color: _panel,
       borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -312,7 +312,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
         Expanded(
           child: Text(
             label,
-            style: const TextStyle(color: Color(0xFF9AA6AF), fontSize: 12),
+            style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
           ),
         ),
         const SizedBox(width: 12),
@@ -321,7 +321,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
             value,
             textAlign: TextAlign.right,
             style: const TextStyle(
-              color: Colors.white,
+              color: Color(0xFFE4E6DF),
               fontSize: 12,
               fontWeight: FontWeight.w700,
             ),
@@ -357,7 +357,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFFE4E6DF),
                       fontWeight: FontWeight.w800,
                     ),
                   ),
@@ -365,7 +365,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                   Text(
                     subtitle,
                     style: const TextStyle(
-                      color: Color(0xFF9AA6AF),
+                      color: Color(0xFFADBEB7),
                       fontSize: 11.5,
                     ),
                   ),

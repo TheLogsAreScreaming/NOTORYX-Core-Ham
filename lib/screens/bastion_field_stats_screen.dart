@@ -6,9 +6,9 @@ import '../connector/meshcore_protocol.dart';
 class BastionFieldStatsScreen extends StatelessWidget {
   const BastionFieldStatsScreen({super.key});
 
-  static const _cyan = Color(0xFF18D3D3);
-  static const _bg = Color(0xFF0B0E11);
-  static const _panel = Color(0xFF12171C);
+  static const _cyan = Color(0xFF8AB6AA);
+  static const _bg = Color(0xFF182126);
+  static const _panel = Color(0xFF202D33);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class BastionFieldStatsScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Colors.white,
+        foregroundColor: Color(0xFFE4E6DF),
         title: const Text(
           'FIELD INTELLIGENCE',
           style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.2),
@@ -67,7 +67,7 @@ class BastionFieldStatsScreen extends StatelessWidget {
                 Text(
                   'What Bastion knows right now.',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFE4E6DF),
                     fontSize: 21,
                     fontWeight: FontWeight.w800,
                   ),
@@ -75,7 +75,7 @@ class BastionFieldStatsScreen extends StatelessWidget {
                 SizedBox(height: 6),
                 Text(
                   'These counters are calculated from the connected MeshCore contact table, locations, paths and last-seen timestamps.',
-                  style: TextStyle(color: Color(0xFFB8C1C9), height: 1.4),
+                  style: TextStyle(color: Color(0xFFCED8D2), height: 1.4),
                 ),
               ],
             ),
@@ -132,9 +132,9 @@ class BastionFieldStatsScreen extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.all(13),
           decoration: BoxDecoration(
-            color: const Color(0xFF10151A),
+            color: const Color(0xFF1C272D),
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: const Color(0xFF26313A)),
+            border: Border.all(color: const Color(0xFF36474E)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,7 +143,7 @@ class BastionFieldStatsScreen extends StatelessWidget {
               Text(
                 values[i][1],
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFE4E6DF),
                   fontSize: 24,
                   fontWeight: FontWeight.w900,
                 ),
@@ -173,7 +173,7 @@ class _Title extends StatelessWidget {
   Widget build(BuildContext context) => Text(
     text,
     style: const TextStyle(
-      color: Color(0xFF18D3D3),
+      color: Color(0xFF8AB6AA),
       fontSize: 11,
       fontWeight: FontWeight.w900,
       letterSpacing: 1.3,
@@ -191,14 +191,14 @@ class _Panel extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: const Color(0xFF10151A),
+      color: const Color(0xFF1C272D),
       borderRadius: BorderRadius.circular(15),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: const Color(0xFF18D3D3)),
+        Icon(icon, color: const Color(0xFF8AB6AA)),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -207,14 +207,14 @@ class _Panel extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFE4E6DF),
                   fontWeight: FontWeight.w800,
                 ),
               ),
               const SizedBox(height: 5),
               Text(
                 body,
-                style: const TextStyle(color: Color(0xFF9AA6AF), height: 1.4),
+                style: const TextStyle(color: Color(0xFFADBEB7), height: 1.4),
               ),
             ],
           ),

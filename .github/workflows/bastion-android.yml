@@ -1,12 +1,18 @@
-name: Bastion Bot Mode Android APK
+name: Bastion Field Operations Android APK
 
 on:
   push:
-    branches: [bastion, bastion-bot-mode]
+    branches: [bastion, bastion-bot-mode, bastion-field-ops]
+  pull_request:
+    branches: [bastion-field-ops]
   workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-android:
@@ -15,6 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Free Android build disk
+        run: bash ci/free-android-disk.sh
       - name: Set up Java 17
         uses: actions/setup-java@v5
         with:
@@ -30,7 +38,7 @@ jobs:
         run: flutter pub get
       - name: Generate approved Bastion launcher icons
         run: |
-          echo "00393b601be8a7be1dd4f73b64c25718887e27fa75eb8dbf1796c80e76c828d1  branding/bastion-icon.png" | sha256sum -c -
+          echo "a04a27fafe146c4f9062b1667ca9fb890a082566303f33ede0893b6a67f6dafa  branding/bastion-icon.png" | sha256sum -c -
           dart run flutter_launcher_icons
           test -s android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
           test -s android/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png
@@ -89,7 +97,7 @@ jobs:
       - name: Upload Bastion RC1 APK
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-MeshCore-Bot-Mode-APK
+          name: Bastion-MeshCore-Field-Operations-APK
           path: dist/app-release.apk
           if-no-files-found: error
           retention-days: 14

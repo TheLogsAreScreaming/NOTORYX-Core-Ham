@@ -6,16 +6,16 @@ import 'bastion_coverage_capture_screen.dart';
 
 class BastionMapHubScreen extends StatelessWidget {
   const BastionMapHubScreen({super.key});
-  static const _cyan = Color(0xFF18D3D3),
-      _bg = Color(0xFF0B0E11),
-      _panel = Color(0xFF12171C),
-      _muted = Color(0xFF9AA6AF);
+  static const _cyan = Color(0xFF8AB6AA),
+      _bg = Color(0xFF182126),
+      _panel = Color(0xFF202D33),
+      _muted = Color(0xFFADBEB7);
   @override
   Widget build(BuildContext context) => Scaffold(
     backgroundColor: _bg,
     appBar: AppBar(
       backgroundColor: _bg,
-      foregroundColor: Colors.white,
+      foregroundColor: Color(0xFFE4E6DF),
       surfaceTintColor: Colors.transparent,
       title: const Text(
         'BASTION FIELD MAP',
@@ -45,7 +45,7 @@ class BastionMapHubScreen extends StatelessWidget {
                       child: Text(
                         'MAP + COVERAGE',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFFE4E6DF),
                           fontSize: 21,
                           fontWeight: FontWeight.w900,
                           letterSpacing: .7,
@@ -123,7 +123,7 @@ class _MapAction extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Material(
-    color: const Color(0xFF12171C),
+    color: const Color(0xFF202D33),
     borderRadius: BorderRadius.circular(16),
     child: InkWell(
       borderRadius: BorderRadius.circular(16),
@@ -131,7 +131,7 @@ class _MapAction extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFF26313A)),
+          border: Border.all(color: const Color(0xFF36474E)),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -156,7 +156,7 @@ class _MapAction extends StatelessWidget {
                         child: Text(
                           title,
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: Color(0xFFE4E6DF),
                             fontWeight: FontWeight.w800,
                             letterSpacing: .4,
                           ),

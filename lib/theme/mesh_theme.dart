@@ -1,87 +1,87 @@
 import 'package:flutter/material.dart';
 
-/// MeshCore palette — high-contrast slate surfaces with sky-blue accents.
+/// Bastion palette: charcoal surfaces, muted teal and warm ivory.
 class MeshPalette {
   MeshPalette._();
 
   // Surfaces shared with the map overlays and navigation.
-  static const bg = Color(0xFF0B0E11);
-  static const bg1 = Color(0xFF10151A);
-  static const bg2 = Color(0xFF12171C);
-  static const bg3 = Color(0xFF1A2229);
-  static const bg4 = Color(0xFF26313A);
+  static const bg = Color(0xFF182126);
+  static const bg1 = Color(0xFF1C272D);
+  static const bg2 = Color(0xFF202D33);
+  static const bg3 = Color(0xFF28373E);
+  static const bg4 = Color(0xFF36474E);
 
   // Lines — lifted for clearer element separation on the near-black surface
-  static const line = Color(0xFF26313A);
-  static const line2 = Color(0xFF33414C);
-  static const line3 = Color(0xFF4C5C68);
+  static const line = Color(0xFF36474E);
+  static const line2 = Color(0xFF455B61);
+  static const line3 = Color(0xFF62787D);
 
   // Ink — muted tones brightened for readable secondary/tertiary text in dark
-  static const ink = Color(0xFFF8FAFC);
-  static const ink2 = Color(0xFFD5DEE9);
-  static const ink3 = Color(0xFFAAB6C6);
-  static const ink4 = Color(0xFF828FA3);
+  static const ink = Color(0xFFE4E6DF);
+  static const ink2 = Color(0xFFCED8D2);
+  static const ink3 = Color(0xFFADBEB7);
+  static const ink4 = Color(0xFF8EA39C);
 
   // Signal-quality green (used only for SNR coloring, not UI chrome)
-  static const signal = Color(0xFF22C55E);
-  static const signalDim = Color(0xFF16A34A);
+  static const signal = Color(0xFF93B99D);
+  static const signalDim = Color(0xFF6F9B7B);
 
   // Warn
-  static const warn = Color(0xFFF59E0B);
-  static const warnDim = Color(0xFFD97706);
-  static const warnBg = Color(0x1FF59E0B);
-  static const warnLine = Color(0x66F59E0B);
+  static const warn = Color(0xFFD6B77C);
+  static const warnDim = Color(0xFFB89459);
+  static const warnBg = Color(0x1FD6B77C);
+  static const warnLine = Color(0x66D6B77C);
 
   // Alert
-  static const alert = Color(0xFFEF4444);
-  static const alertBg = Color(0x1FEF4444);
-  static const alertLine = Color(0x66EF4444);
+  static const alert = Color(0xFFDB8D85);
+  static const alertBg = Color(0x1FDB8D85);
+  static const alertLine = Color(0x66DB8D85);
 
   // Blue — primary map/app accent
-  static const blue = Color(0xFF18D3D3);
-  static const blueDim = Color(0xFF0FAAAA);
-  static const blueBg = Color(0x2918D3D3);
-  static const blueLine = Color(0x8018D3D3);
+  static const blue = Color(0xFF8AB6AA);
+  static const blueDim = Color(0xFF5E9485);
+  static const blueBg = Color(0x298AB6AA);
+  static const blueLine = Color(0x808AB6AA);
 
   // Magenta
-  static const magenta = Color(0xFFDE7FDB);
-  static const magentaBg = Color(0x1CDE7FDB);
-  static const magentaLine = Color(0x47DE7FDB);
+  static const magenta = Color(0xFFB7A3BA);
+  static const magentaBg = Color(0x1CB7A3BA);
+  static const magentaLine = Color(0x47B7A3BA);
 
   // Me bubble (dusk blue)
-  static const me = Color(0xFF0C4A6E);
-  static const meBorder = Color(0xFF0369A1);
-  static const meInk = Color(0xFFF0F9FF);
+  static const me = Color(0xFF304C49);
+  static const meBorder = Color(0xFF6D978C);
+  static const meInk = Color(0xFFE4E6DF);
 
   // ── Light variant (used when user explicitly picks light theme)
-  static const lightBg = Color(0xFFF4F6F8);
-  static const lightBg1 = Color(0xFFEAEEF2);
-  static const lightBg2 = Color(0xFFDFE5EA);
-  static const lightLine = Color(0xFFC3CCD4);
-  static const lightInk = Color(0xFF10161B);
-  static const lightInk2 = Color(0xFF3C4853);
-  static const lightInk3 = Color(0xFF69767F);
-  static const lightBlue = Color(0xFF2F6EA8);
+  static const lightBg = Color(0xFFF1F1E9);
+  static const lightBg1 = Color(0xFFE7EAE2);
+  static const lightBg2 = Color(0xFFDDE3DA);
+  static const lightLine = Color(0xFFB6C3B9);
+  static const lightInk = Color(0xFF24332D);
+  static const lightInk2 = Color(0xFF43564B);
+  static const lightInk3 = Color(0xFF5D7065);
+  static const lightBlue = Color(0xFF386C60);
 }
 
 /// High-contrast semantic colors for UI rendered over variable map tiles.
 class MapPalette {
   MapPalette._();
 
-  static const online = Color(0xFF22C55E);
+  static const online = Color(0xFF93B99D);
   static const offline = Color(0xFF6B7280);
-  static const stale = Color(0xFFF59E0B);
+  static const stale = Color(0xFFD6B77C);
   static const repeater = Color(0xFF2563EB);
   static const router = Color(0xFF7C3AED);
-  static const batteryLow = Color(0xFFEF4444);
+  static const batteryLow = Color(0xFFDB8D85);
   static const cluster = Color(0xFFF97316);
-  static const selected = Color(0xFF18D3D3);
+  static const selected = Color(0xFF8AB6AA);
   static const sensor = Color(0xFF0F766E);
-  static const shared = Color(0xFF0369A1);
+  static const shared = Color(0xFF6D978C);
 
   static const panelLight = Color(0xF0FFFFFF);
   static const panelDark = Color(0xF50B1220);
-  static const textPrimary = Color(0xFFF8FAFC);
+  static const textPrimary = Color(0xFFE4E6DF);
   static const textSecondary = Color(0xFFCBD5E1);
   static const textMuted = Color(0xFF94A3B8);
   static const border = Color(0x5264758B);
@@ -96,14 +96,14 @@ class LosPalette {
   static const terrain = Color(0xFFA3E635);
   static const beam = Color(0xFF38BDF8);
   static const horizon = Color(0xFFFBBF24);
-  static const blocked = Color(0xFFEF4444);
-  static const marginal = Color(0xFFF59E0B);
-  static const clear = Color(0xFF22C55E);
-  static const selected = Color(0xFF18D3D3);
+  static const blocked = Color(0xFFDB8D85);
+  static const marginal = Color(0xFFD6B77C);
+  static const clear = Color(0xFF93B99D);
+  static const selected = Color(0xFF8AB6AA);
   static const chartBackground = Color(0xFF0B1220);
   static const panelDark = Color(0xF00F172A);
   static const panelLight = Color(0xF5FFFFFF);
-  static const text = Color(0xFFF8FAFC);
+  static const text = Color(0xFFE4E6DF);
   static const textMuted = Color(0xFFCBD5E1);
   static const border = Color(0x5264758B);
   static const shadow = Color(0x99000000);
@@ -164,19 +164,19 @@ class MeshTheme {
   static ThemeData dark() {
     const scheme = ColorScheme.dark(
       primary: MeshPalette.blue,
-      onPrimary: Colors.white,
-      primaryContainer: Color(0xFF075985),
-      onPrimaryContainer: Colors.white,
-      secondary: MeshPalette.magenta,
-      onSecondary: Colors.white,
-      secondaryContainer: Color(0xFF331A33),
-      onSecondaryContainer: Colors.white,
+      onPrimary: MeshPalette.bg,
+      primaryContainer: Color(0xFF304C49),
+      onPrimaryContainer: MeshPalette.ink,
+      secondary: MeshPalette.warn,
+      onSecondary: MeshPalette.bg,
+      secondaryContainer: Color(0xFF514635),
+      onSecondaryContainer: MeshPalette.ink,
       tertiary: MeshPalette.warn,
       onTertiary: Color(0xFF0B1220),
       tertiaryContainer: Color(0xFF78350F),
       onTertiaryContainer: Colors.white,
       error: MeshPalette.alert,
-      onError: Colors.white,
+      onError: MeshPalette.bg,
       errorContainer: Color(0xFF7F1D1D),
       onErrorContainer: Colors.white,
       surface: MeshPalette.bg,
@@ -202,12 +202,12 @@ class MeshTheme {
     const scheme = ColorScheme.light(
       primary: MeshPalette.lightBlue,
       onPrimary: Colors.white,
-      primaryContainer: Color(0xFFD3E4F5),
-      onPrimaryContainer: Color(0xFF12354F),
-      secondary: Color(0xFF8C4A8A),
+      primaryContainer: Color(0xFFD6E5DC),
+      onPrimaryContainer: Color(0xFF243D34),
+      secondary: Color(0xFF75603C),
       onSecondary: Colors.white,
-      secondaryContainer: Color(0xFFEFD6EE),
-      onSecondaryContainer: Color(0xFF3D1A3C),
+      secondaryContainer: Color(0xFFE9DFC9),
+      onSecondaryContainer: Color(0xFF413421),
       tertiary: Color(0xFF9A5B16),
       onTertiary: Colors.white,
       tertiaryContainer: Color(0xFFF8E3C9),

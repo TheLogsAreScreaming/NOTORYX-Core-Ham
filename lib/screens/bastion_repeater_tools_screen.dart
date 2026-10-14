@@ -8,8 +8,8 @@ import 'repeater_hub_screen.dart';
 
 class BastionRepeaterToolsScreen extends StatelessWidget {
   const BastionRepeaterToolsScreen({super.key});
-  static const _cyan = Color(0xFF18D3D3);
-  static const _bg = Color(0xFF0B0E11);
+  static const _cyan = Color(0xFF8AB6AA);
+  static const _bg = Color(0xFF182126);
 
   void _login(BuildContext context, Contact repeater) {
     showDialog<void>(
@@ -42,7 +42,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Colors.white,
+        foregroundColor: Color(0xFFE4E6DF),
         title: const Text(
           'REPEATER TOOLS',
           style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.3),
@@ -54,7 +54,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: const Color(0xFF12171C),
+              color: const Color(0xFF202D33),
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: _cyan.withValues(alpha: .45)),
             ),
@@ -74,7 +74,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                 Text(
                   'Manage the infrastructure behind your mesh.',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFE4E6DF),
                     fontSize: 21,
                     fontWeight: FontWeight.w800,
                   ),
@@ -82,7 +82,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                 SizedBox(height: 6),
                 Text(
                   'Select a discovered repeater to authenticate and open its existing MeshCore status, telemetry, neighbors, settings and CLI tools.',
-                  style: TextStyle(color: Color(0xFFB8C1C9), height: 1.4),
+                  style: TextStyle(color: Color(0xFFCED8D2), height: 1.4),
                 ),
               ],
             ),
@@ -113,7 +113,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
               (r) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Material(
-                  color: const Color(0xFF12171C),
+                  color: const Color(0xFF202D33),
                   borderRadius: BorderRadius.circular(15),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(15),
@@ -122,7 +122,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: const Color(0xFF26313A)),
+                        border: Border.all(color: const Color(0xFF36474E)),
                       ),
                       child: Row(
                         children: [
@@ -139,7 +139,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                                 Text(
                                   r.name.isEmpty ? 'Unnamed repeater' : r.name,
                                   style: const TextStyle(
-                                    color: Colors.white,
+                                    color: Color(0xFFE4E6DF),
                                     fontWeight: FontWeight.w800,
                                   ),
                                 ),
@@ -147,7 +147,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                                 Text(
                                   r.shortPubKeyHex,
                                   style: const TextStyle(
-                                    color: Color(0xFF9AA6AF),
+                                    color: Color(0xFFADBEB7),
                                     fontSize: 11,
                                   ),
                                 ),
@@ -197,9 +197,9 @@ class _Stat extends StatelessWidget {
     child: Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFF10151A),
+        color: const Color(0xFF1C272D),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFF26313A)),
+        border: Border.all(color: const Color(0xFF36474E)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,7 +207,7 @@ class _Stat extends StatelessWidget {
           Text(
             value,
             style: const TextStyle(
-              color: Color(0xFF18D3D3),
+              color: Color(0xFF8AB6AA),
               fontSize: 24,
               fontWeight: FontWeight.w900,
             ),
@@ -215,7 +215,7 @@ class _Stat extends StatelessWidget {
           Text(
             label,
             style: const TextStyle(
-              color: Color(0xFF9AA6AF),
+              color: Color(0xFFADBEB7),
               fontSize: 9,
               fontWeight: FontWeight.w800,
               letterSpacing: 1,
@@ -233,18 +233,18 @@ class _EmptyRepeaters extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(18),
     decoration: BoxDecoration(
-      color: const Color(0xFF10151A),
+      color: const Color(0xFF1C272D),
       borderRadius: BorderRadius.circular(15),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: const Row(
       children: [
-        Icon(Icons.portable_wifi_off_rounded, color: Color(0xFF18D3D3)),
+        Icon(Icons.portable_wifi_off_rounded, color: Color(0xFF8AB6AA)),
         SizedBox(width: 12),
         Expanded(
           child: Text(
             'No repeaters discovered yet. Connect a radio and discover the mesh first.',
-            style: TextStyle(color: Color(0xFFB8C1C9), height: 1.35),
+            style: TextStyle(color: Color(0xFFCED8D2), height: 1.35),
           ),
         ),
       ],
@@ -265,14 +265,14 @@ class _Capability extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(15),
     decoration: BoxDecoration(
-      color: const Color(0xFF10151A),
+      color: const Color(0xFF1C272D),
       borderRadius: BorderRadius.circular(15),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: const Color(0xFF18D3D3)),
+        Icon(icon, color: const Color(0xFF8AB6AA)),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -281,14 +281,14 @@ class _Capability extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFE4E6DF),
                   fontWeight: FontWeight.w800,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 body,
-                style: const TextStyle(color: Color(0xFF9AA6AF), height: 1.35),
+                style: const TextStyle(color: Color(0xFFADBEB7), height: 1.35),
               ),
             ],
           ),

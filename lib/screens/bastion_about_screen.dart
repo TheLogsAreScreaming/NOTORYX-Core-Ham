@@ -4,9 +4,9 @@ import 'package:package_info_plus/package_info_plus.dart';
 class BastionAboutScreen extends StatelessWidget {
   const BastionAboutScreen({super.key});
 
-  static const _cyan = Color(0xFF18D3D3);
-  static const _bg = Color(0xFF0B0E11);
-  static const _panel = Color(0xFF12171C);
+  static const _cyan = Color(0xFF8AB6AA);
+  static const _bg = Color(0xFF182126);
+  static const _panel = Color(0xFF202D33);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class BastionAboutScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Colors.white,
+        foregroundColor: Color(0xFFE4E6DF),
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -52,7 +52,7 @@ class BastionAboutScreen extends StatelessWidget {
                 Text(
                   'BASTION',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFE4E6DF),
                     fontSize: 28,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 2,
@@ -62,7 +62,7 @@ class BastionAboutScreen extends StatelessWidget {
                 SizedBox(height: 14),
                 Text(
                   'An independent community companion app for MeshCore networks. Bastion is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.',
-                  style: TextStyle(color: Color(0xFFB8C1C9), height: 1.45),
+                  style: TextStyle(color: Color(0xFFCED8D2), height: 1.45),
                 ),
               ],
             ),
@@ -118,7 +118,7 @@ class BastionAboutScreen extends StatelessWidget {
     decoration: BoxDecoration(
       color: _panel,
       borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,14 +132,14 @@ class BastionAboutScreen extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFE4E6DF),
                   fontWeight: FontWeight.w900,
                 ),
               ),
               const SizedBox(height: 5),
               Text(
                 body,
-                style: const TextStyle(color: Color(0xFF9AA6AF), height: 1.4),
+                style: const TextStyle(color: Color(0xFFADBEB7), height: 1.4),
               ),
             ],
           ),

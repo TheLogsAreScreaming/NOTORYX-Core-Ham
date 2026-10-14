@@ -11,9 +11,9 @@ import 'map_screen.dart';
 class BastionPathHubScreen extends StatelessWidget {
   const BastionPathHubScreen({super.key});
 
-  static const _cyan = Color(0xFF18D3D3);
-  static const _bg = Color(0xFF0B0E11);
-  static const _panel = Color(0xFF12171C);
+  static const _cyan = Color(0xFF8AB6AA);
+  static const _bg = Color(0xFF182126);
+  static const _panel = Color(0xFF202D33);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class BastionPathHubScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Colors.white,
+        foregroundColor: Color(0xFFE4E6DF),
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -101,7 +101,7 @@ class BastionPathHubScreen extends StatelessWidget {
                 Text(
                   'See how traffic moves through the mesh.',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFE4E6DF),
                     fontSize: 21,
                     fontWeight: FontWeight.w800,
                   ),
@@ -109,7 +109,7 @@ class BastionPathHubScreen extends StatelessWidget {
                 SizedBox(height: 6),
                 Text(
                   'Bastion ranks saved routes using the path history already learned from real message attempts and discoveries.',
-                  style: TextStyle(color: Color(0xFFB8C1C9), height: 1.4),
+                  style: TextStyle(color: Color(0xFFCED8D2), height: 1.4),
                 ),
               ],
             ),
@@ -231,29 +231,29 @@ class _ContactRouteCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFF10151A),
+        color: const Color(0xFF1C272D),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFF26313A)),
+        border: Border.all(color: const Color(0xFF36474E)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const Icon(Icons.hub_rounded, color: Color(0xFF18D3D3), size: 20),
+              const Icon(Icons.hub_rounded, color: Color(0xFF8AB6AA), size: 20),
               const SizedBox(width: 9),
               Expanded(
                 child: Text(
                   entry.contact.name,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Color(0xFFE4E6DF),
                     fontWeight: FontWeight.w900,
                   ),
                 ),
               ),
               Text(
                 '${entry.paths.length} route${entry.paths.length == 1 ? '' : 's'}',
-                style: const TextStyle(color: Color(0xFF8D9AA4), fontSize: 11),
+                style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
               ),
             ],
           ),
@@ -264,7 +264,7 @@ class _ContactRouteCard extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
-                color: Color(0xFF18D3D3),
+                color: Color(0xFF8AB6AA),
                 fontSize: 11,
                 fontWeight: FontWeight.w800,
               ),
@@ -279,14 +279,14 @@ class _ContactRouteCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               'Fastest known: ${fastest.tripTimeMs} ms',
-              style: const TextStyle(color: Color(0xFF8D9AA4), fontSize: 11),
+              style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
             ),
           ],
           if (entry.flood != null) ...[
             const SizedBox(height: 4),
             Text(
               'Flood: ${entry.flood!.successCount} success / ${entry.flood!.failureCount} fail',
-              style: const TextStyle(color: Color(0xFF8D9AA4), fontSize: 11),
+              style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
             ),
           ],
         ],
@@ -304,16 +304,16 @@ class _Metric extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 11),
     decoration: BoxDecoration(
-      color: const Color(0xFF12171C),
+      color: const Color(0xFF202D33),
       borderRadius: BorderRadius.circular(13),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Column(
       children: [
         Text(
           value,
           style: const TextStyle(
-            color: Color(0xFF18D3D3),
+            color: Color(0xFF8AB6AA),
             fontWeight: FontWeight.w900,
             fontSize: 16,
           ),
@@ -322,7 +322,7 @@ class _Metric extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-            color: Color(0xFF8D9AA4),
+            color: Color(0xFFADBEB7),
             fontSize: 8.5,
             fontWeight: FontWeight.w800,
           ),
@@ -347,7 +347,7 @@ class _PathAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-    color: const Color(0xFF12171C),
+    color: const Color(0xFF202D33),
     borderRadius: BorderRadius.circular(16),
     child: InkWell(
       borderRadius: BorderRadius.circular(16),
@@ -355,25 +355,25 @@ class _PathAction extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFF26313A)),
+          border: Border.all(color: const Color(0xFF36474E)),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(icon, color: const Color(0xFF18D3D3)),
+            Icon(icon, color: const Color(0xFF8AB6AA)),
             const SizedBox(height: 9),
             Text(
               title,
               style: const TextStyle(
-                color: Colors.white,
+                color: Color(0xFFE4E6DF),
                 fontWeight: FontWeight.w800,
               ),
             ),
             const SizedBox(height: 3),
             Text(
               subtitle,
-              style: const TextStyle(color: Color(0xFF9AA6AF), fontSize: 11),
+              style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
             ),
           ],
         ),
@@ -397,14 +397,14 @@ class _InfoPanel extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: const Color(0xFF10151A),
+      color: const Color(0xFF1C272D),
       borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: const Color(0xFF26313A)),
+      border: Border.all(color: const Color(0xFF36474E)),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: const Color(0xFF18D3D3)),
+        Icon(icon, color: const Color(0xFF8AB6AA)),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -413,14 +413,14 @@ class _InfoPanel extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Color(0xFFE4E6DF),
                   fontWeight: FontWeight.w800,
                 ),
               ),
               const SizedBox(height: 5),
               Text(
                 body,
-                style: const TextStyle(color: Color(0xFF9AA6AF), height: 1.4),
+                style: const TextStyle(color: Color(0xFFADBEB7), height: 1.4),
               ),
             ],
           ),

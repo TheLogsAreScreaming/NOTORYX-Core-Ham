@@ -35,6 +35,7 @@ class BotEngine {
         text.trim().isEmpty ||
         text.trimLeft().startsWith(botPrefix.trim()) ||
         text.trimLeft().startsWith('[BCS Bot]') ||
+        text.trimLeft().startsWith('[Bastion Check-in]') ||
         (settings.allowedSenders.isNotEmpty &&
             !settings.allowedSenders.contains(sender))) {
       return null;
