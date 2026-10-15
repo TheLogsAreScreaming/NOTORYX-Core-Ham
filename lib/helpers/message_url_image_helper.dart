@@ -10,6 +10,13 @@ import 'package:http/http.dart' as http;
 /// This is deliberately separate from MeshCore's transmitted channel-image
 /// protocol, which is handled by [ReceivedImageStore].
 class MessageUrlImageHelper {
+  /// Creates the [http.Client] used to fetch sharing pages (pyx.li, ibb.co).
+  ///
+  /// Overridable so tests can resolve sharing pages against a `MockClient`
+  /// instead of depending on the live hosts.
+  @visibleForTesting
+  static http.Client Function() clientFactory = http.Client.new;
+
   static final Map<String, Future<bool>> _verifiedImageCache =
       <String, Future<bool>>{};
   static const int _maxMessageImageCacheEntries = 200;
@@ -131,8 +138,9 @@ class MessageUrlImageHelper {
   }
 
   static Future<String?> _extractFromUrl(String pageUrl, RegExp pattern) async {
+    final client = clientFactory();
     try {
-      final response = await http
+      final response = await client
           .get(Uri.parse(pageUrl))
           .timeout(const Duration(seconds: 8));
       if (response.statusCode < 200 || response.statusCode >= 300) {
@@ -149,6 +157,8 @@ class MessageUrlImageHelper {
           : null;
     } catch (_) {
       return null;
+    } finally {
+      client.close();
     }
   }
 
