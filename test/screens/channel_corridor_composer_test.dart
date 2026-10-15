@@ -143,7 +143,10 @@ void main() {
     await _settle(tester);
     expect(find.text('Only within 12 km of you'), findsNothing);
 
-    await tester.pump(const Duration(seconds: 5)); // send cooldown
+    // The send cooldown reads the wall clock, which pump() doesn't advance.
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 1100)),
+    );
     await _type(tester, 'everywhere');
     await tester.tap(find.byIcon(Icons.send));
     await _settle(tester);
