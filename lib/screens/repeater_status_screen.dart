@@ -497,7 +497,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
               icon: Icons.timer_outlined,
               label: l10n.repeater_uptime,
               value: _formatDuration(_uptimeSecs),
-              color: MeshPalette.blue,
+              color: MeshPalette.accent,
             ),
             _StatItem(
               icon: Icons.schedule,
@@ -531,7 +531,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
               icon: Icons.signal_cellular_alt,
               label: l10n.repeater_lastRssi,
               value: _formatValue(_lastRssi, suffix: ' dB'),
-              color: MeshPalette.blue,
+              color: MeshPalette.accent,
             ),
             _StatItem(
               icon: Icons.waves,
@@ -569,7 +569,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
               icon: Icons.send,
               label: l10n.repeater_sent,
               value: _packetTxText(),
-              color: MeshPalette.blue,
+              color: MeshPalette.accent,
             ),
             _StatItem(
               icon: Icons.call_received,

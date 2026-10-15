@@ -22,7 +22,7 @@ import '../storage/contact_group_store.dart';
 import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/emoji_utils.dart';
-import '../utils/route_transitions.dart';
+import '../utils/main_tab_navigation.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
@@ -32,10 +32,8 @@ import '../widgets/room_login_dialog.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/unread_badge.dart';
 import '../helpers/snack_bar_builder.dart';
-import 'channels_screen.dart';
 import 'chat_screen.dart';
 import 'discovery_screen.dart';
-import 'map_screen.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
 
@@ -344,7 +342,7 @@ class _ContactsScreenState extends State<ContactsScreen>
       canPop: allowBack,
       child: Scaffold(
         appBar: AppBar(
-          title: AppBarTitle(context.l10n.contacts_title),
+          title: AppBarTitle(context.l10n.nav_nodes),
           automaticallyImplyLeading: false,
           bottom: const SyncProgressAppBarBottom(),
           actions: [
@@ -460,13 +458,7 @@ class _ContactsScreenState extends State<ContactsScreen>
         ),
         bottomNavigationBar: SafeArea(
           top: false,
-          child: QuickSwitchBar(
-            selectedIndex: 0,
-            onDestinationSelected: (index) =>
-                _handleQuickSwitch(index, context),
-            contactsUnreadCount: connector.getTotalContactsUnreadCount(),
-            channelsUnreadCount: connector.getTotalChannelsUnreadCount(),
-          ),
+          child: const QuickSwitchBar(current: MainTab.nodes),
         ),
       ),
     );
@@ -1047,24 +1039,6 @@ class _ContactsScreenState extends State<ContactsScreen>
     }
   }
 
-  void _handleQuickSwitch(int index, BuildContext context) {
-    if (index == 0) return;
-    switch (index) {
-      case 1:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const ChannelsScreen(hideBackButton: true)),
-        );
-        break;
-      case 2:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const MapScreen(hideBackButton: true)),
-        );
-        break;
-    }
-  }
-
   void _showRepeaterLogin(BuildContext context, Contact repeater) {
     showDialog(
       context: context,
@@ -1419,7 +1393,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                 },
               ),
               ListTile(
-                leading: Icon(Icons.meeting_room, color: MeshPalette.blue),
+                leading: Icon(Icons.meeting_room, color: MeshPalette.accent),
                 title: Text(context.l10n.contacts_roomLogin),
                 onTap: () {
                   Navigator.pop(sheetContext);
@@ -1591,7 +1565,7 @@ class _ContactTile extends StatelessWidget {
         return const Color(0xFF4ACCC4); // teal
       default:
         return MeshPalette
-            .blue; // chat — AvatarCircle handles deterministic hue
+            .accent; // chat — AvatarCircle handles deterministic hue
     }
   }
 
@@ -1612,144 +1586,112 @@ class _ContactTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = context.l10n;
     final emoji = firstEmoji(contact.name);
     final isChat = contact.type == advTypeChat;
-    final pathLen = contact.pathBytesForDisplay.length;
-    final isDirect = contact.pathLength >= 0;
-    final hasPath = pathLen > 0 || contact.pathLength == 0;
+    final hasUnread = unreadCount > 0;
+    // One line of context: what it is, how far, when we last heard it.
+    final subtitle = [
+      contact.typeLabel(l10n),
+      contact.pathLabel(l10n, pathHashByteWidth: pathHashByteWidth),
+      _formatLastSeen(context, lastSeen),
+    ].join(' · ');
+
+    final Widget avatar = emoji != null
+        ? Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: scheme.surfaceContainerHigh,
+            ),
+            alignment: Alignment.center,
+            child: Text(emoji, style: const TextStyle(fontSize: 20)),
+          )
+        : AvatarCircle(
+            name: contact.name,
+            size: 44,
+            color: isChat ? null : _avatarColor(),
+            icon: _avatarIcon(),
+          );
 
     return GestureDetector(
       onSecondaryTapUp: PlatformInfo.isDesktop ? (_) => onLongPress() : null,
-      child: MeshCard(
+      child: InkWell(
         onTap: onTap,
         onLongPress: onLongPress,
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-        child: Row(
-          children: [
-            // Avatar
-            if (emoji != null)
-              Container(
-                width: 42,
-                height: 42,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: scheme.surfaceContainerHigh,
-                  border: Border.all(color: scheme.outlineVariant),
-                ),
-                alignment: Alignment.center,
-                child: Text(emoji, style: const TextStyle(fontSize: 20)),
-              )
-            else
-              AvatarCircle(
-                name: contact.name,
-                size: 42,
-                color: isChat ? null : _avatarColor(),
-                icon: _avatarIcon(),
-              ),
-            const SizedBox(width: 12),
-            // Main content
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(color: scheme.outlineVariant)),
+          ),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 68),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
+              child: Row(
                 children: [
-                  // Name row + route chip
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          contact.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontWeight: unreadCount > 0
-                                ? FontWeight.w700
-                                : FontWeight.w500,
-                            fontSize: 15,
-                            color: scheme.onSurface,
-                          ),
+                  avatar,
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                contact.name,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: hasUnread
+                                      ? FontWeight.w700
+                                      : FontWeight.w600,
+                                  fontSize: 16,
+                                  color: scheme.onSurface,
+                                ),
+                              ),
+                            ),
+                            if (isFavorite) ...[
+                              const SizedBox(width: 6),
+                              Icon(
+                                Icons.star,
+                                size: 16,
+                                color: MeshPalette.warn,
+                                semanticLabel: l10n.listFilter_favorites,
+                              ),
+                            ],
+                            if (contact.hasLocation) ...[
+                              const SizedBox(width: 4),
+                              Icon(
+                                Icons.location_on_outlined,
+                                size: 16,
+                                color: scheme.onSurfaceVariant,
+                              ),
+                            ],
+                          ],
                         ),
-                      ),
-                      if (isFavorite) ...[
-                        const SizedBox(width: 4),
-                        Icon(Icons.star, size: 13, color: MeshPalette.warn),
-                      ],
-                      if (contact.hasLocation) ...[
-                        const SizedBox(width: 4),
-                        Icon(
-                          Icons.location_on,
-                          size: 13,
-                          color: scheme.onSurfaceVariant.withValues(
-                            alpha: 0.55,
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                  const SizedBox(height: 3),
-                  // Path / subtitle row
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          contact.pathLabel(
-                            context.l10n,
-                            pathHashByteWidth: pathHashByteWidth,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        const SizedBox(height: 2),
+                        Text(
+                          subtitle,
+                          maxLines: 2,
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: scheme.onSurfaceVariant,
                           ),
                         ),
-                      ),
-                      if (hasPath) ...[
-                        const SizedBox(width: 6),
-                        RouteChip(
-                          isDirect: isDirect,
-                          hops: isDirect ? contact.pathLength : null,
-                        ),
                       ],
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 10),
-            // Trailing: time + unread badge
-            // Clamp text scale to prevent overflow in trailing section.
-            MediaQuery(
-              data: MediaQuery.of(context).copyWith(
-                textScaler: TextScaler.linear(
-                  MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.3),
-                ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (unreadCount > 0) ...[
-                    UnreadBadge(count: unreadCount),
-                    const SizedBox(height: 4),
-                  ],
-                  Text(
-                    _formatLastSeen(context, lastSeen),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.right,
-                    style: MeshTheme.mono(
-                      fontSize: 11,
-                      color: unreadCount > 0
-                          ? MeshPalette.blue
-                          : scheme.onSurfaceVariant,
                     ),
                   ),
+                  if (hasUnread) ...[
+                    const SizedBox(width: 10),
+                    UnreadBadge(count: unreadCount),
+                  ],
                 ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

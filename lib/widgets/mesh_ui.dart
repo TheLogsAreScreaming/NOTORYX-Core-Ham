@@ -243,8 +243,10 @@ class AvatarCircle extends StatelessWidget {
     this.icon,
   });
 
+  static final _punctuation = RegExp(r'\p{P}', unicode: true);
+
   static const _hues = [
-    MeshPalette.blue,
+    MeshPalette.accent,
     MeshPalette.magenta,
     MeshPalette.signal,
     MeshPalette.warn,
@@ -263,7 +265,7 @@ class AvatarCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accent = color ?? _colorFor(name);
-    final initials = _initials(name);
+    final initials = initialsFor(name);
     return Container(
       width: size,
       height: size,
@@ -286,10 +288,14 @@ class AvatarCircle extends StatelessWidget {
     );
   }
 
-  static String _initials(String name) {
+  /// Up to two initials for [name]. Punctuation is ignored, so
+  /// "Sam (trail crew)" gives "ST" rather than "S(".
+  @visibleForTesting
+  static String initialsFor(String name) {
     final words = name
         .trim()
         .split(RegExp(r'\s+'))
+        .map((w) => w.replaceAll(_punctuation, ''))
         .where((w) => w.isNotEmpty)
         .toList();
     if (words.isEmpty) return '?';

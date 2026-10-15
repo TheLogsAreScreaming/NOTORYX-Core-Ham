@@ -19,26 +19,20 @@ import '../storage/community_store.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
-import '../utils/route_transitions.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/qr_code_display.dart';
-import '../widgets/quick_switch_bar.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/unread_badge.dart';
 import '../helpers/gif_helper.dart';
 import '../helpers/snack_bar_builder.dart';
 import 'channel_chat_screen.dart';
 import 'community_qr_scanner_screen.dart';
-import 'contacts_screen.dart';
-import 'map_screen.dart';
 import 'settings_screen.dart';
 
 class ChannelsScreen extends StatefulWidget {
-  final bool hideBackButton;
-
-  const ChannelsScreen({super.key, this.hideBackButton = false});
+  const ChannelsScreen({super.key});
 
   @override
   State<ChannelsScreen> createState() => _ChannelsScreenState();
@@ -106,15 +100,11 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       return const SizedBox.shrink();
     }
 
-    final allowBack = !connector.isConnected;
-
     return PopScope(
-      canPop: allowBack,
       child: Scaffold(
         appBar: AppBar(
           title: AppBarTitle(context.l10n.channels_title),
           centerTitle: true,
-          automaticallyImplyLeading: false,
           bottom: const SyncProgressAppBarBottom(),
           actions: [
             PopupMenuButton(
@@ -336,16 +326,6 @@ class _ChannelsScreenState extends State<ChannelsScreen>
           tooltip: context.l10n.channels_addChannel,
           child: const Icon(Icons.add),
         ),
-        bottomNavigationBar: SafeArea(
-          top: false,
-          child: QuickSwitchBar(
-            selectedIndex: 1,
-            onDestinationSelected: (index) =>
-                _handleQuickSwitch(index, context),
-            contactsUnreadCount: connector.getTotalContactsUnreadCount(),
-            channelsUnreadCount: connector.getTotalChannelsUnreadCount(),
-          ),
-        ),
       ),
     );
   }
@@ -402,10 +382,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
         iconColor = MeshPalette.signal;
       case ChannelType.hashtag:
         icon = Icons.tag;
-        iconColor = MeshPalette.blue;
+        iconColor = MeshPalette.accent;
       case ChannelType.private:
         icon = Icons.lock;
-        iconColor = MeshPalette.blue;
+        iconColor = MeshPalette.accent;
     }
 
     // Last message preview
@@ -682,24 +662,6 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     );
   }
 
-  void _handleQuickSwitch(int index, BuildContext context) {
-    if (index == 1) return;
-    switch (index) {
-      case 0:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const ContactsScreen(hideBackButton: true)),
-        );
-        break;
-      case 2:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const MapScreen(hideBackButton: true)),
-        );
-        break;
-    }
-  }
-
   Future<void> _disconnect(BuildContext context) async {
     final connector = context.read<MeshCoreConnector>();
     await showDisconnectDialog(context, connector);
@@ -841,8 +803,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             return MeshCard(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              borderColor: isSelected && enabled ? MeshPalette.blueLine : null,
-              color: isSelected && enabled ? MeshPalette.blueBg : null,
+              borderColor: isSelected && enabled
+                  ? MeshPalette.accentLine
+                  : null,
+              color: isSelected && enabled ? MeshPalette.accentBg : null,
               onTap: enabled
                   ? () {
                       setSheetState(() {
@@ -860,7 +824,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     size: 38,
                     color: enabled
                         ? (isSelected
-                              ? MeshPalette.blue
+                              ? MeshPalette.accent
                               : cardScheme.onSurfaceVariant)
                         : cardScheme.outline,
                     icon: icon,
@@ -898,7 +862,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     Icon(
                       Icons.chevron_right,
                       color: isSelected
-                          ? MeshPalette.blue
+                          ? MeshPalette.accent
                           : cardScheme.onSurfaceVariant,
                       size: 20,
                     ),

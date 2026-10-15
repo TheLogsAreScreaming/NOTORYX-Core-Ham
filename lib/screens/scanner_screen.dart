@@ -15,7 +15,7 @@ import '../widgets/device_tile.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
 import '../helpers/snack_bar_builder.dart';
-import 'channels_screen.dart';
+import 'messages_screen.dart';
 import 'tcp_screen.dart';
 import 'usb_screen.dart';
 
@@ -51,7 +51,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
         _changedNavigation = true;
         if (mounted) {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const ChannelsScreen()),
+            MaterialPageRoute(builder: (context) => const MessagesScreen()),
           );
         }
       }
@@ -483,7 +483,7 @@ class _ConnectionStatusHeader extends StatelessWidget {
     final (String label, Color color, bool pulse) = switch (connector.state) {
       MeshCoreConnectionState.scanning => (
         l10n.scanner_scanning,
-        MeshPalette.blue,
+        MeshPalette.accent,
         true,
       ),
       MeshCoreConnectionState.connecting => (

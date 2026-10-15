@@ -159,7 +159,7 @@ class _BleDebugLogScreenState extends State<BleDebugLogScreen> {
                                             : Icons.download,
                                         size: 18,
                                         color: entry.outgoing
-                                            ? MeshPalette.blue
+                                            ? MeshPalette.accent
                                             : MeshPalette.signal,
                                       ),
                                       const SizedBox(width: 10),

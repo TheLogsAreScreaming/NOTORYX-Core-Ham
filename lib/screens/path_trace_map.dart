@@ -1055,7 +1055,7 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         if (_isLoading)
-                          CircularProgressIndicator(color: MeshPalette.blue),
+                          CircularProgressIndicator(color: MeshPalette.accent),
                         const SizedBox(height: 16),
                         if (!_isLoading && _failed2Loaded)
                           Text(
@@ -1209,14 +1209,14 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
               height: 35,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: MeshPalette.blue.withValues(alpha: 0.18),
+                color: MeshPalette.accent.withValues(alpha: 0.18),
                 border: Border.all(
-                  color: MeshPalette.blue.withValues(alpha: 0.7),
+                  color: MeshPalette.accent.withValues(alpha: 0.7),
                   width: 2,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: MeshPalette.blue.withValues(alpha: 0.35),
+                    color: MeshPalette.accent.withValues(alpha: 0.35),
                     blurRadius: 6,
                   ),
                 ],
@@ -1227,7 +1227,7 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
                 style: MeshTheme.mono(
                   fontSize: 9,
                   fontWeight: FontWeight.w700,
-                  color: MeshPalette.blue,
+                  color: MeshPalette.accent,
                 ),
               ),
             ),

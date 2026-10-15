@@ -331,11 +331,11 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                         style: MeshTheme.mono(
                           fontSize: 11,
                           fontWeight: FontWeight.w600,
-                          color: MeshPalette.blue,
+                          color: MeshPalette.accent,
                         ),
                       ),
-                      backgroundColor: MeshPalette.blueBg,
-                      side: const BorderSide(color: MeshPalette.blueLine),
+                      backgroundColor: MeshPalette.accentBg,
+                      side: const BorderSide(color: MeshPalette.accentLine),
                       visualDensity: VisualDensity.compact,
                       onPressed: () => _useQuickCommand(cmd['command']!),
                     ),
@@ -400,7 +400,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                         prefixText: '> ',
                         prefixStyle: MeshTheme.mono(
                           fontSize: 13,
-                          color: MeshPalette.blue,
+                          color: MeshPalette.accent,
                           fontWeight: FontWeight.w700,
                         ),
                         filled: true,
@@ -424,7 +424,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(MeshRadii.pill),
                           borderSide: const BorderSide(
-                            color: MeshPalette.blue,
+                            color: MeshPalette.accent,
                             width: 1.5,
                           ),
                         ),
@@ -435,9 +435,9 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                   ),
                   const SizedBox(width: 6),
                   Material(
-                    color: MeshPalette.blue.withValues(alpha: 0.15),
+                    color: MeshPalette.accent.withValues(alpha: 0.15),
                     shape: const CircleBorder(
-                      side: BorderSide(color: MeshPalette.blueLine),
+                      side: BorderSide(color: MeshPalette.accentLine),
                     ),
                     child: InkWell(
                       customBorder: const CircleBorder(),
@@ -450,7 +450,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                         child: Icon(
                           Icons.send,
                           size: 18,
-                          color: MeshPalette.blue,
+                          color: MeshPalette.accent,
                         ),
                       ),
                     ),
@@ -508,7 +508,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                   style: MeshTheme.mono(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
-                    color: isCommand ? MeshPalette.blue : MeshPalette.ink3,
+                    color: isCommand ? MeshPalette.accent : MeshPalette.ink3,
                   ),
                 ),
               ),
@@ -518,7 +518,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                   entry['text']!,
                   style: MeshTheme.mono(
                     fontSize: 12.5,
-                    color: isCommand ? MeshPalette.blue : MeshPalette.ink,
+                    color: isCommand ? MeshPalette.accent : MeshPalette.ink,
                   ),
                 ),
               ),
@@ -1193,7 +1193,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                 style: MeshTheme.mono(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: MeshPalette.blue,
+                  color: MeshPalette.accent,
                 ),
               ),
               const SizedBox(height: 4),

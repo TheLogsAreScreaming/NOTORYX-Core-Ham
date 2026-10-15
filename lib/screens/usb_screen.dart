@@ -14,7 +14,7 @@ import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
 import '../helpers/snack_bar_builder.dart';
-import 'channels_screen.dart';
+import 'messages_screen.dart';
 import 'tcp_screen.dart';
 
 class UsbScreen extends StatefulWidget {
@@ -50,7 +50,7 @@ class _UsbScreenState extends State<UsbScreen> {
           !_navigatedToChannels) {
         _navigatedToChannels = true;
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const ChannelsScreen()),
+          MaterialPageRoute(builder: (_) => const MessagesScreen()),
         );
       }
     };

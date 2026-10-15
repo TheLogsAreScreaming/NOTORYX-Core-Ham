@@ -189,10 +189,6 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Consumer2<PathHistoryService, MeshCoreConnector>(
           builder: (context, pathService, connector, _) {
             final contact = _resolveContact(connector);
-            final unreadCount = connector.getUnreadCountForContactKey(
-              widget.contact.publicKeyHex,
-            );
-            final unreadLabel = context.l10n.chat_unread(unreadCount);
             final pathLabel = _currentPathLabel(contact);
 
             return Column(
@@ -211,7 +207,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: Text(
-                      '$pathLabel • $unreadLabel',
+                      pathLabel,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 11,
@@ -426,6 +422,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           ? "${roomAuthor.name} [$fourByteHex]"
                           : "[$fourByteHex]")
                     : contact.name,
+                showSender: isRoom,
                 sourceId: widget.contact.publicKeyHex,
                 textScale: textScale,
                 onLongPress: () => _showMessageActions(message, contact),
@@ -1329,6 +1326,10 @@ class _ChatScreenState extends State<ChatScreen> {
 class _MessageBubble extends StatelessWidget {
   final Message message;
   final String senderName;
+
+  /// Whether to label each incoming bubble with its author: true in room
+  /// servers, where several people post; false in a 1:1 chat.
+  final bool showSender;
   final VoidCallback? onLongPress;
   final void Function(Message message, String emoji)? onRetryReaction;
   final double textScale;
@@ -1337,6 +1338,7 @@ class _MessageBubble extends StatelessWidget {
   const _MessageBubble({
     required this.message,
     required this.senderName,
+    required this.showSender,
     required this.sourceId,
     required this.textScale,
     this.onLongPress,
@@ -1361,19 +1363,16 @@ class _MessageBubble extends StatelessWidget {
         ? scheme.errorContainer
         : isOutgoing
         ? MeshPalette.me
-        : scheme.surfaceContainerLow;
-    final bubbleBorder = isFailed
-        ? scheme.error
-        : isOutgoing
-        ? MeshPalette.meBorder
-        : scheme.outlineVariant;
+        : scheme.surfaceContainerHigh;
+    // Only a failed message gets an outline; fills carry the rest.
+    final bubbleBorder = isFailed ? scheme.error : null;
     final textColor = isFailed
         ? scheme.onErrorContainer
         : isOutgoing
         ? MeshPalette.meInk
         : scheme.onSurface;
     final metaColor = textColor.withValues(alpha: 0.65);
-    const bodyFontSize = 14.0;
+    const bodyFontSize = 16.0;
 
     // Asymmetric radius: outgoing — top-left large, others also large; outgoing bottom-right tight.
     final borderRadius = isOutgoing
@@ -1384,9 +1383,9 @@ class _MessageBubble extends StatelessWidget {
             bottomRight: Radius.circular(MeshRadii.xs),
           )
         : const BorderRadius.only(
-            topLeft: Radius.circular(MeshRadii.xs),
+            topLeft: Radius.circular(MeshRadii.lg),
             topRight: Radius.circular(MeshRadii.lg),
-            bottomLeft: Radius.circular(MeshRadii.lg),
+            bottomLeft: Radius.circular(MeshRadii.xs),
             bottomRight: Radius.circular(MeshRadii.lg),
           );
 
@@ -1445,7 +1444,7 @@ class _MessageBubble extends StatelessWidget {
                     : MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  if (!isOutgoing) ...[
+                  if (!isOutgoing && showSender) ...[
                     _buildAvatar(senderName),
                     const SizedBox(width: 6),
                   ],
@@ -1454,8 +1453,8 @@ class _MessageBubble extends StatelessWidget {
                       padding: gifId != null
                           ? const EdgeInsets.all(4)
                           : const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 8,
+                              horizontal: 14,
+                              vertical: 10,
                             ),
                       constraints: BoxConstraints(
                         maxWidth: constraints.maxWidth * 0.72,
@@ -1463,12 +1462,14 @@ class _MessageBubble extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: bubbleColor,
                         borderRadius: borderRadius,
-                        border: Border.all(color: bubbleBorder, width: 1),
+                        border: bubbleBorder == null
+                            ? null
+                            : Border.all(color: bubbleBorder, width: 1),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          if (!isOutgoing) ...[
+                          if (!isOutgoing && showSender) ...[
                             Padding(
                               padding: gifId != null
                                   ? const EdgeInsets.only(
@@ -1479,9 +1480,9 @@ class _MessageBubble extends StatelessWidget {
                                   : EdgeInsets.zero,
                               child: Text(
                                 senderName,
-                                style: MeshTheme.mono(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w700,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
                                   color: _colorForName(senderName),
                                 ),
                               ),
@@ -1624,8 +1625,8 @@ class _MessageBubble extends StatelessWidget {
                               children: [
                                 Text(
                                   _formatTime(message.timestamp),
-                                  style: MeshTheme.mono(
-                                    fontSize: 10 * textScale,
+                                  style: TextStyle(
+                                    fontSize: 12 * textScale,
                                     color: metaColor,
                                   ),
                                 ),
@@ -1848,7 +1849,7 @@ class _MessageBubble extends StatelessWidget {
 /// Deterministic name-to-hue mapping consistent with [AvatarCircle].
 Color _colorForName(String name) {
   const hues = [
-    MeshPalette.blue,
+    MeshPalette.accent,
     MeshPalette.magenta,
     MeshPalette.signal,
     MeshPalette.warn,

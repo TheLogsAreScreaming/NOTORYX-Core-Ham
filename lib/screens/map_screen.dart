@@ -23,13 +23,11 @@ import '../services/map_marker_service.dart';
 import '../services/map_tile_cache_service.dart';
 import '../utils/contact_search.dart';
 import '../utils/battery_utils.dart';
-import '../utils/route_transitions.dart';
+import '../utils/main_tab_navigation.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../icons/los_icon.dart';
-import 'channels_screen.dart';
 import 'chat_screen.dart';
-import 'contacts_screen.dart';
 import 'flood_corridor_screen.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
@@ -933,11 +931,7 @@ class _MapScreenState extends State<MapScreen> {
             bottomNavigationBar: SafeArea(
               top: false,
               child: QuickSwitchBar(
-                selectedIndex: 2,
-                onDestinationSelected: (index) =>
-                    _handleQuickSwitch(index, context),
-                contactsUnreadCount: connector.getTotalContactsUnreadCount(),
-                channelsUnreadCount: connector.getTotalChannelsUnreadCount(),
+                current: MainTab.map,
                 highContrast: _useDarkOverlay,
               ),
             ),
@@ -2849,24 +2843,6 @@ class _MapScreenState extends State<MapScreen> {
         );
       },
     );
-  }
-
-  void _handleQuickSwitch(int index, BuildContext context) {
-    if (index == 2) return;
-    switch (index) {
-      case 0:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const ContactsScreen(hideBackButton: true)),
-        );
-        break;
-      case 1:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const ChannelsScreen(hideBackButton: true)),
-        );
-        break;
-    }
   }
 
   Future<void> _disconnect(

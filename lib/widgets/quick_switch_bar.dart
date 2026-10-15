@@ -1,27 +1,43 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
+import '../utils/main_tab_navigation.dart';
 
 class QuickSwitchBar extends StatelessWidget {
-  final int selectedIndex;
-  final ValueChanged<int> onDestinationSelected;
-  final int contactsUnreadCount;
-  final int channelsUnreadCount;
+  /// The tab whose screen hosts this bar.
+  final MainTab current;
+
+  /// Called instead of the default tab switch, for screens that are not a
+  /// tab themselves (the line-of-sight map pops back to the map).
+  final ValueChanged<MainTab>? onSelected;
   final bool highContrast;
 
   const QuickSwitchBar({
     super.key,
-    required this.selectedIndex,
-    required this.onDestinationSelected,
-    this.contactsUnreadCount = 0,
-    this.channelsUnreadCount = 0,
+    required this.current,
+    this.onSelected,
     this.highContrast = false,
   });
 
+  void _select(BuildContext context, MainTab tab) {
+    if (onSelected != null) {
+      onSelected!(tab);
+    } else if (tab != current) {
+      switchMainTab(context, tab);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final connector = context.watch<MeshCoreConnector>();
+    final messagesUnread =
+        connector.getTotalContactsUnreadCount() +
+        connector.getTotalChannelsUnreadCount();
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final labelStyle = theme.textTheme.labelMedium ?? const TextStyle();
@@ -78,39 +94,37 @@ class QuickSwitchBar extends StatelessWidget {
               ),
               child: NavigationBar(
                 height: 60,
-                selectedIndex: selectedIndex,
-                onDestinationSelected: onDestinationSelected,
+                selectedIndex: current.index,
+                onDestinationSelected: (index) =>
+                    _select(context, MainTab.values[index]),
                 destinations: [
                   NavigationDestination(
                     icon: _buildIconWithBadge(
                       context,
-                      const Icon(Icons.people_outline),
-                      contactsUnreadCount,
+                      const Icon(Icons.chat_bubble_outline),
+                      messagesUnread,
                     ),
                     selectedIcon: _buildIconWithBadge(
                       context,
-                      const Icon(Icons.people),
-                      contactsUnreadCount,
+                      const Icon(Icons.chat_bubble),
+                      messagesUnread,
                     ),
-                    label: context.l10n.nav_contacts,
+                    label: context.l10n.nav_messages,
                   ),
                   NavigationDestination(
-                    icon: _buildIconWithBadge(
-                      context,
-                      const Icon(Icons.tag),
-                      channelsUnreadCount,
-                    ),
-                    selectedIcon: _buildIconWithBadge(
-                      context,
-                      const Icon(Icons.tag),
-                      channelsUnreadCount,
-                    ),
-                    label: context.l10n.nav_channels,
+                    icon: const Icon(Icons.hub_outlined),
+                    selectedIcon: const Icon(Icons.hub),
+                    label: context.l10n.nav_nodes,
                   ),
                   NavigationDestination(
                     icon: const Icon(Icons.map_outlined),
                     selectedIcon: const Icon(Icons.map),
                     label: context.l10n.nav_map,
+                  ),
+                  NavigationDestination(
+                    icon: const Icon(Icons.settings_input_antenna_outlined),
+                    selectedIcon: const Icon(Icons.settings_input_antenna),
+                    label: context.l10n.nav_radio,
                   ),
                 ],
               ),

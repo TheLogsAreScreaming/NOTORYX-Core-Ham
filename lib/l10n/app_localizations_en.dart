@@ -21,6 +21,112 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nav_map => 'Map';
 
   @override
+  String get nav_messages => 'Messages';
+
+  @override
+  String get nav_nodes => 'Nodes';
+
+  @override
+  String get nav_radio => 'Radio';
+
+  @override
+  String get messages_title => 'Messages';
+
+  @override
+  String get messages_filterAll => 'All';
+
+  @override
+  String get messages_filterDirect => 'Direct';
+
+  @override
+  String get messages_filterChannels => 'Channels';
+
+  @override
+  String messages_filterWithUnread(String label, int count) {
+    return '$label · $count';
+  }
+
+  @override
+  String get messages_search => 'Search messages';
+
+  @override
+  String get messages_searchHint => 'Search conversations';
+
+  @override
+  String get messages_closeSearch => 'Close search';
+
+  @override
+  String get messages_manageChannels => 'Manage channels';
+
+  @override
+  String get messages_new => 'New';
+
+  @override
+  String get messages_newDirect => 'Message a node';
+
+  @override
+  String get messages_newChannel => 'Add or join a channel';
+
+  @override
+  String get messages_empty => 'No conversations yet';
+
+  @override
+  String get messages_emptyHint =>
+      'Messages from nodes and channels show up here.';
+
+  @override
+  String get messages_noMatches => 'No conversations match your search';
+
+  @override
+  String messages_you(String text) {
+    return 'You: $text';
+  }
+
+  @override
+  String get messages_yesterday => 'Yesterday';
+
+  @override
+  String messages_unreadCount(int count) {
+    return '$count unread';
+  }
+
+  @override
+  String radioStatus_connectedVia(String transport) {
+    return 'Connected over $transport';
+  }
+
+  @override
+  String get radioStatus_bluetooth => 'Bluetooth';
+
+  @override
+  String get radioStatus_usb => 'USB';
+
+  @override
+  String get radioStatus_tcp => 'Wi‑Fi (TCP)';
+
+  @override
+  String radioStatus_battery(int percent) {
+    return 'Battery $percent%';
+  }
+
+  @override
+  String get radioStatus_openRadio => 'Open radio details';
+
+  @override
+  String get radioOverview_battery => 'Battery';
+
+  @override
+  String radioOverview_firmware(String version) {
+    return 'Firmware $version';
+  }
+
+  @override
+  String get radioOverview_sendAdvert => 'Send advert';
+
+  @override
+  String get radioOverview_stats => 'Radio stats';
+
+  @override
   String get common_cancel => 'Cancel';
 
   @override
@@ -1150,27 +1256,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contacts_noMembers => 'No members';
 
   @override
-  String get contacts_lastSeenNow => 'recently';
+  String get contacts_lastSeenNow => 'just now';
 
   @override
   String contacts_lastSeenMinsAgo(int minutes) {
-    return '~ $minutes min.';
+    return '$minutes min ago';
   }
 
   @override
-  String get contacts_lastSeenHourAgo => '~ 1 hour';
+  String get contacts_lastSeenHourAgo => '1 hour ago';
 
   @override
   String contacts_lastSeenHoursAgo(int hours) {
-    return '~ $hours hours';
+    return '$hours hours ago';
   }
 
   @override
-  String get contacts_lastSeenDayAgo => '~ 1 day';
+  String get contacts_lastSeenDayAgo => '1 day ago';
 
   @override
   String contacts_lastSeenDaysAgo(int days) {
-    return '~ $days days';
+    return '$days days ago';
   }
 
   @override
