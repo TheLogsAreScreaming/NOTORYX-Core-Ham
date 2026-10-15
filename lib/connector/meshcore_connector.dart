@@ -3614,7 +3614,6 @@ class MeshCoreConnector extends ChangeNotifier {
           buildSendChannelTextMsgFrame(channel.index, text),
           channelSendQueueId: reactionQueueId,
           expectsGenericAck: true,
-          successCode: respCodeSent,
         );
       }, region: getChannelRegion(channel.index));
       return;
@@ -3639,7 +3638,6 @@ class MeshCoreConnector extends ChangeNotifier {
         buildSendChannelTextMsgFrame(channel.index, outboundText),
         channelSendQueueId: message.messageId,
         expectsGenericAck: true,
-        successCode: respCodeSent,
       );
     }, region: getChannelRegion(channel.index));
   }
@@ -3704,10 +3702,8 @@ class MeshCoreConnector extends ChangeNotifier {
             payload: blobs[i],
             pathLen: outPathUnknown, // 0xFF => flood
           ),
-          // Code 62 must not be enrolled in the generic-ack queue, and the
-          // firmware replies with RESP_CODE_OK (writeOKFrame), not RESP_CODE_SENT.
+          // Code 62 must not be enrolled in the generic-ack queue.
           expectsGenericAck: false,
-          successCode: respCodeOk,
         );
         onProgress?.call(i + 1, blobs.length);
       }
@@ -3747,16 +3743,15 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  // Sends [data] and resolves once the device replies. [successCode] is the
-  // response code that signals success for this frame: SET_FLOOD_SCOPE replies
-  // with RESP_CODE_OK, whereas a channel text send replies with RESP_CODE_SENT.
-  // Waiting for the text send's RESP_CODE_SENT before the scope is reset
-  // guarantees the firmware has already built the packet with the active scope.
+  // Sends [data] and resolves once the device replies with RESP_CODE_OK.
+  // SET_FLOOD_SCOPE, channel text sends and channel data sends all reply with
+  // RESP_CODE_OK (writeOKFrame); only direct messages reply with RESP_CODE_SENT.
+  // Waiting for the text send's ack before the scope is reset guarantees the
+  // firmware has already built the packet with the active scope.
   Future<void> _sendFrameAndWaitForCommandAck(
     Uint8List data, {
     String? channelSendQueueId,
     bool expectsGenericAck = false,
-    int successCode = respCodeOk,
   }) async {
     final completer = Completer<void>();
     late final StreamSubscription<Uint8List> subscription;
@@ -3772,7 +3767,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     subscription = receivedFrames.listen((frame) {
       if (frame.isEmpty) return;
-      if (frame[0] == successCode) {
+      if (frame[0] == respCodeOk) {
         complete();
       } else if (frame[0] == respCodeErr) {
         final errCode = frame.length > 1 ? frame[1] : -1;
