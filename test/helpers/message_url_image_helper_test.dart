@@ -1,8 +1,30 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:meshcore_open/helpers/message_url_image_helper.dart';
 
 void main() {
   group('MessageUrlImageHelper', () {
+    setUp(() {
+      // Serve pyx.li sharing pages locally so the tests do not depend on the
+      // live host. Each page embeds its image the way pyx.li did when the
+      // scraping in _extractFromUrl was written: a relative <img src>.
+      MessageUrlImageHelper.clientFactory = () => MockClient((request) async {
+        final id = request.url.queryParameters['i'];
+        if (request.url.host != 'pyx.li' || id == null) {
+          return http.Response('not found', 404);
+        }
+        return http.Response(
+          '<html><body><img class="image" src="/i/$id.jpg"></body></html>',
+          200,
+        );
+      });
+    });
+
+    tearDown(() {
+      MessageUrlImageHelper.clientFactory = http.Client.new;
+    });
+
     test('parses short pyx ids', () async {
       final attachment = await MessageUrlImageHelper.parse(
         'my picture: https://pyx.li/?i=RzmdkTsE text',
