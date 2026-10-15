@@ -316,6 +316,30 @@ abstract class AppLocalizations {
   /// **'Open radio details'**
   String get radioStatus_openRadio;
 
+  /// No description provided for @radioOverview_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get radioOverview_battery;
+
+  /// No description provided for @radioOverview_firmware.
+  ///
+  /// In en, this message translates to:
+  /// **'Firmware {version}'**
+  String radioOverview_firmware(String version);
+
+  /// No description provided for @radioOverview_sendAdvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Send advert'**
+  String get radioOverview_sendAdvert;
+
+  /// No description provided for @radioOverview_stats.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio stats'**
+  String get radioOverview_stats;
+
   /// No description provided for @common_cancel.
   ///
   /// In en, this message translates to:
@@ -2317,37 +2341,37 @@ abstract class AppLocalizations {
   /// No description provided for @contacts_lastSeenNow.
   ///
   /// In en, this message translates to:
-  /// **'recently'**
+  /// **'just now'**
   String get contacts_lastSeenNow;
 
   /// No description provided for @contacts_lastSeenMinsAgo.
   ///
   /// In en, this message translates to:
-  /// **'~ {minutes} min.'**
+  /// **'{minutes} min ago'**
   String contacts_lastSeenMinsAgo(int minutes);
 
   /// No description provided for @contacts_lastSeenHourAgo.
   ///
   /// In en, this message translates to:
-  /// **'~ 1 hour'**
+  /// **'1 hour ago'**
   String get contacts_lastSeenHourAgo;
 
   /// No description provided for @contacts_lastSeenHoursAgo.
   ///
   /// In en, this message translates to:
-  /// **'~ {hours} hours'**
+  /// **'{hours} hours ago'**
   String contacts_lastSeenHoursAgo(int hours);
 
   /// No description provided for @contacts_lastSeenDayAgo.
   ///
   /// In en, this message translates to:
-  /// **'~ 1 day'**
+  /// **'1 day ago'**
   String get contacts_lastSeenDayAgo;
 
   /// No description provided for @contacts_lastSeenDaysAgo.
   ///
   /// In en, this message translates to:
-  /// **'~ {days} days'**
+  /// **'{days} days ago'**
   String contacts_lastSeenDaysAgo(int days);
 
   /// No description provided for @contact_info.

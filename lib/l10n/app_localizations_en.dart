@@ -113,6 +113,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get radioStatus_openRadio => 'Open radio details';
 
   @override
+  String get radioOverview_battery => 'Battery';
+
+  @override
+  String radioOverview_firmware(String version) {
+    return 'Firmware $version';
+  }
+
+  @override
+  String get radioOverview_sendAdvert => 'Send advert';
+
+  @override
+  String get radioOverview_stats => 'Radio stats';
+
+  @override
   String get common_cancel => 'Cancel';
 
   @override
@@ -1219,27 +1233,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contacts_noMembers => 'No members';
 
   @override
-  String get contacts_lastSeenNow => 'recently';
+  String get contacts_lastSeenNow => 'just now';
 
   @override
   String contacts_lastSeenMinsAgo(int minutes) {
-    return '~ $minutes min.';
+    return '$minutes min ago';
   }
 
   @override
-  String get contacts_lastSeenHourAgo => '~ 1 hour';
+  String get contacts_lastSeenHourAgo => '1 hour ago';
 
   @override
   String contacts_lastSeenHoursAgo(int hours) {
-    return '~ $hours hours';
+    return '$hours hours ago';
   }
 
   @override
-  String get contacts_lastSeenDayAgo => '~ 1 day';
+  String get contacts_lastSeenDayAgo => '1 day ago';
 
   @override
   String contacts_lastSeenDaysAgo(int days) {
-    return '~ $days days';
+    return '$days days ago';
   }
 
   @override

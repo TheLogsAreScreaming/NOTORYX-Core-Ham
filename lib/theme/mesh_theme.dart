@@ -50,9 +50,9 @@ class MeshPalette {
   static const magentaBg = Color(0x1CDE7FDB);
   static const magentaLine = Color(0x47DE7FDB);
 
-  // Me bubble (dusk blue)
-  static const me = Color(0xFF0C4A6E);
-  static const meBorder = Color(0xFF0369A1);
+  // Me bubble (dusk blue): calm next to the orange accent.
+  static const me = Color(0xFF1D3A5C);
+  static const meBorder = Color(0xFF2B5581);
   static const meInk = Color(0xFFF0F9FF);
 
   // ── Light variant (used when user explicitly picks light theme)

@@ -321,10 +321,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                     ),
                     Consumer<MeshCoreConnector>(
                       builder: (context, connector, _) {
-                        final unreadCount = connector
-                            .getUnreadCountForChannelIndex(
-                              widget.channel.index,
-                            );
                         final privacy = widget.channel.isPublicChannel
                             ? context.l10n.channels_public
                             : context.l10n.channels_private;
@@ -335,7 +331,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             ? ' • ${context.l10n.channels_regionSetTo(region)}'
                             : '';
                         return Text(
-                          '$privacy • ${context.l10n.chat_unread(unreadCount)}$regionText',
+                          '$privacy$regionText',
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontSize: 12),
                         );
@@ -587,13 +583,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     // Bubble colors — outgoing uses MeshPalette.me / meBorder / meInk.
     final bubbleColor = isOutgoing
         ? MeshPalette.me
-        : scheme.surfaceContainerLow;
-    final bubbleBorder = isOutgoing
-        ? MeshPalette.meBorder
-        : scheme.outlineVariant;
+        : scheme.surfaceContainerHigh;
     final textColor = isOutgoing ? MeshPalette.meInk : scheme.onSurface;
     final metaColor = textColor.withValues(alpha: 0.65);
-    const bodyFontSize = 14.0;
+    const bodyFontSize = 16.0;
 
     Widget buildTextContent() {
       return Row(
@@ -631,9 +624,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
             bottomRight: Radius.circular(MeshRadii.xs),
           )
         : const BorderRadius.only(
-            topLeft: Radius.circular(MeshRadii.xs),
+            topLeft: Radius.circular(MeshRadii.lg),
             topRight: Radius.circular(MeshRadii.lg),
-            bottomLeft: Radius.circular(MeshRadii.lg),
+            bottomLeft: Radius.circular(MeshRadii.xs),
             bottomRight: Radius.circular(MeshRadii.lg),
           );
 
@@ -665,8 +658,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                     padding: gifId != null
                         ? const EdgeInsets.all(4)
                         : const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 8,
+                            horizontal: 14,
+                            vertical: 10,
                           ),
                     constraints: BoxConstraints(
                       maxWidth: constraints.maxWidth * 0.72,
@@ -674,7 +667,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                     decoration: BoxDecoration(
                       color: bubbleColor,
                       borderRadius: borderRadius,
-                      border: Border.all(color: bubbleBorder, width: 1),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -692,8 +684,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                               message.senderName,
                               style: TextStyle(
                                 fontSize: 13 * textScale,
-                                fontWeight: FontWeight.w700,
-                                color: textColor,
+                                fontWeight: FontWeight.w600,
+                                color: scheme.onSurfaceVariant,
                               ),
                             ),
                           ),
@@ -846,8 +838,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             children: [
                               Text(
                                 _formatTime(context, message.timestamp),
-                                style: MeshTheme.mono(
-                                  fontSize: 10 * textScale,
+                                style: TextStyle(
+                                  fontSize: 12 * textScale,
                                   color: metaColor,
                                 ),
                               ),

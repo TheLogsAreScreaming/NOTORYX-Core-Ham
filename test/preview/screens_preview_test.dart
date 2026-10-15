@@ -43,17 +43,22 @@ final _now = DateTime(2026, 10, 14, 9, 30);
 Uint8List _key(int seed) =>
     Uint8List.fromList(List.generate(32, (i) => (seed * 37 + i * 11) & 0xFF));
 
-Contact _contact(int seed, String name, int type, {int hops = 1, int ago = 5}) =>
-    Contact(
-      publicKey: _key(seed),
-      name: name,
-      type: type,
-      pathLength: hops,
-      path: Uint8List.fromList(List.generate(hops, (i) => seed + i)),
-      latitude: 49.25 + seed / 100,
-      longitude: -123.1 - seed / 100,
-      lastSeen: _now.subtract(Duration(minutes: ago)),
-    );
+Contact _contact(
+  int seed,
+  String name,
+  int type, {
+  int hops = 1,
+  int ago = 5,
+}) => Contact(
+  publicKey: _key(seed),
+  name: name,
+  type: type,
+  pathLength: hops,
+  path: Uint8List.fromList(List.generate(hops, (i) => seed + i)),
+  latitude: 49.25 + seed / 100,
+  longitude: -123.1 - seed / 100,
+  lastSeen: _now.subtract(Duration(minutes: ago)),
+);
 
 final _contacts = [
   _contact(1, 'Ridge Camp', advTypeChat, ago: 2),
@@ -138,6 +143,18 @@ class _PreviewConnector extends MeshCoreConnector {
   @override
   int? get batteryPercent => 78;
   @override
+  String? get firmwareVersionString => 'v1.9.1';
+  @override
+  int? get currentFreqHz => 910525000;
+  @override
+  int? get currentBwHz => 62500;
+  @override
+  int? get currentSf => 7;
+  @override
+  int? get currentCr => 5;
+  @override
+  int? get currentTxPower => 22;
+  @override
   List<Contact> get contacts => _contacts;
   @override
   List<Contact> get allContactsUnfiltered => _contacts;
@@ -189,10 +206,9 @@ Future<void> _loadFonts() async {
     for (final style in ['Outlined', 'Rounded', 'Sharp']) {
       final f = '$root/lib/fonts/MaterialSymbols$style.ttf';
       if (File(f).existsSync()) {
-        await load(
-          'packages/material_symbols_icons/MaterialSymbols$style',
-          [f],
-        );
+        await load('packages/material_symbols_icons/MaterialSymbols$style', [
+          f,
+        ]);
       }
     }
   }
@@ -256,6 +272,16 @@ void main() {
         .setMockMethodCallHandler(
           const MethodChannel('plugins.flutter.io/path_provider'),
           (call) async => tmp,
+        );
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+          const MethodChannel('dev.fluttercommunity.plus/package_info'),
+          (call) async => {
+            'appName': 'BCS Connect',
+            'packageName': 'preview',
+            'version': '0.0.0',
+            'buildNumber': '0',
+          },
         );
   });
 

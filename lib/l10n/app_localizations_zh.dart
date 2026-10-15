@@ -113,6 +113,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get radioStatus_openRadio => 'Open radio details';
 
   @override
+  String get radioOverview_battery => 'Battery';
+
+  @override
+  String radioOverview_firmware(String version) {
+    return 'Firmware $version';
+  }
+
+  @override
+  String get radioOverview_sendAdvert => 'Send advert';
+
+  @override
+  String get radioOverview_stats => 'Radio stats';
+
+  @override
   String get common_cancel => '取消';
 
   @override

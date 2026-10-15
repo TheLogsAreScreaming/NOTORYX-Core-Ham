@@ -23,6 +23,7 @@ import '../widgets/sync_progress_overlay.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/main_tab_navigation.dart';
 import '../widgets/quick_switch_bar.dart';
+import '../widgets/radio_overview_card.dart';
 import 'region_management_screen.dart';
 
 /// Convert device coding-rate value (1-4 on some firmware, 5-8 on others)
@@ -97,8 +98,10 @@ class _SettingsScreenState extends State<SettingsScreen>
             return ListView(
               padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
               children: [
+                if (widget.asTab) RadioOverviewCard(connector: connector),
+
                 // IDENTITY section
-                SectionHeader(l10n.settings_deviceInfo),
+                if (!widget.asTab) SectionHeader(l10n.settings_deviceInfo),
                 MeshCard(
                   padding: EdgeInsets.zero,
                   child: _buildIdentityCardContent(context, connector),
@@ -248,29 +251,40 @@ class _SettingsScreenState extends State<SettingsScreen>
             child: Row(
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        connector.deviceDisplayName,
-                        style: MeshTheme.mono(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: scheme.onSurface,
+                  // On the Radio tab the overview card above already shows
+                  // the name and status, so this row only opens the details.
+                  child: widget.asTab
+                      ? Text(
+                          l10n.settings_deviceInfo,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: scheme.onSurface,
+                          ),
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              connector.deviceDisplayName,
+                              style: MeshTheme.mono(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: scheme.onSurface,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            StatusChip(
+                              label: connector.isConnected
+                                  ? l10n.common_connected
+                                  : l10n.common_disconnected,
+                              color: connector.isConnected
+                                  ? MeshPalette.signal
+                                  : scheme.onSurfaceVariant,
+                              pulse: connector.isConnected,
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      StatusChip(
-                        label: connector.isConnected
-                            ? l10n.common_connected
-                            : l10n.common_disconnected,
-                        color: connector.isConnected
-                            ? MeshPalette.accent
-                            : scheme.onSurfaceVariant,
-                        pulse: connector.isConnected,
-                      ),
-                    ],
-                  ),
                 ),
                 AnimatedRotation(
                   turns: _deviceInfoExpanded ? 0.5 : 0,
