@@ -25,6 +25,7 @@ import '../helpers/snack_bar_builder.dart';
 import '../l10n/l10n.dart';
 import '../models/channel.dart';
 import '../models/channel_message.dart';
+import '../models/flood_corridor.dart';
 import '../models/image_codec_support.dart' show aeicRatePointForUi;
 import '../models/translation_support.dart';
 import '../services/app_settings_service.dart';
@@ -92,6 +93,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   /// nothing is being sent.
   int _imageSendSent = 0;
   int _imageSendTotal = 0;
+
+  /// Radius code of the area outgoing texts are limited to, or null for none.
+  int? _corridorRadiusCode;
 
   MeshCoreConnector? _connector;
   DateTime? _lastChannelSendAt;
@@ -1751,11 +1755,15 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
 
   Widget _buildInputBar() {
     final connector = context.watch<MeshCoreConnector>();
-    final maxBytes = maxChannelMessageBytes(connector.selfName);
+    final corridor = _activeCorridor(connector);
+    final maxBytes = _maxMessageBytes(connector, corridor);
     final settings = context.watch<AppSettingsService>().settings;
     final imageCodecDownloading = _isImageCodecDownloading(context);
     final showImageAction =
         settings.imageMessagesEnabled && !imageCodecDownloading;
+    final showCorridorAction = connector.floodCorridorSupported == true;
+    final menuItemCount =
+        1 + (showImageAction ? 1 : 0) + (showCorridorAction ? 1 : 0);
     final scheme = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
@@ -1777,6 +1785,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 },
               ),
             if (_imageSendTotal > 0) _buildImageSendProgress(scheme),
+            if (_corridorRadiusCode != null) _buildCorridorBanner(scheme),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
               child: Row(
@@ -1785,7 +1794,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                   PopupMenuButton<String>(
                     icon: const Icon(Icons.add_circle_outline),
                     position: PopupMenuPosition.over,
-                    offset: Offset(0, showImageAction ? -112 : -64),
+                    offset: Offset(0, -16.0 - 48 * menuItemCount),
                     tooltip: context.l10n.chat_selectSendAction,
                     onSelected: (action) {
                       switch (action) {
@@ -1794,6 +1803,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           break;
                         case 'meshcore-image':
                           _showImageSendPreview();
+                          break;
+                        case 'corridor':
+                          _showCorridorPicker(connector);
                           break;
                       }
                     },
@@ -1823,6 +1835,19 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                               const Icon(Icons.image_outlined),
                               const SizedBox(width: 12),
                               Text(context.l10n.chat_sendImageLora),
+                            ],
+                          ),
+                        ),
+                      if (showCorridorAction)
+                        PopupMenuItem(
+                          value: 'corridor',
+                          child: Row(
+                            children: [
+                              const Icon(Icons.route),
+                              const SizedBox(width: 12),
+                              Flexible(
+                                child: Text(context.l10n.chat_limitToArea),
+                              ),
                             ],
                           ),
                         ),
@@ -2033,7 +2058,21 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       messageText = '@[${_replyingToMessage!.senderName}] $messageText';
     }
 
-    final maxBytes = maxChannelMessageBytes(connector.selfName);
+    final isReaction = ReactionHelper.parseReaction(messageText) != null;
+    final corridor = isReaction ? null : _activeCorridor(connector);
+    if (!isReaction && _corridorRadiusCode != null && corridor == null) {
+      // Never fall back to an unlimited flood when the user asked to stay local.
+      showDismissibleSnackBar(
+        context,
+        content: Text(
+          connector.floodCorridorSupported == true
+              ? context.l10n.chat_limitToAreaNeedsPosition
+              : context.l10n.floodCorridor_unsupported,
+        ),
+      );
+      return;
+    }
+    final maxBytes = _maxMessageBytes(connector, corridor);
     final outboundText = connector.prepareChannelOutboundText(
       widget.channel.index,
       messageText,
@@ -2058,12 +2097,126 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     _textController.clear();
     _cancelReply();
     _textFieldFocusNode.requestFocus();
+    if (corridor != null) {
+      connector.sendChannelMessageWithCorridor(
+        widget.channel,
+        messageText,
+        corridor,
+        originalText: originalText,
+        translatedLanguageCode: translatedLanguageCode,
+        translationModelId: translationModelId,
+      );
+      return;
+    }
     connector.sendChannelMessage(
       widget.channel,
       messageText,
       originalText: originalText,
       translatedLanguageCode: translatedLanguageCode,
       translationModelId: translationModelId,
+    );
+  }
+
+  static const List<int> _corridorRadiusChoices = [3, 5, 7, 9, 11];
+
+  /// The single circle around our own position that outgoing texts are
+  /// limited to, or null when no limit is set or it can't be applied.
+  List<CorridorTriple>? _activeCorridor(MeshCoreConnector connector) {
+    final code = _corridorRadiusCode;
+    final lat = connector.selfLatitude;
+    final lon = connector.selfLongitude;
+    if (code == null ||
+        connector.floodCorridorSupported != true ||
+        lat == null ||
+        lon == null) {
+      return null;
+    }
+    return [CorridorTriple(lat: lat, lon: lon, radiusCode: code)];
+  }
+
+  int _maxMessageBytes(
+    MeshCoreConnector connector,
+    List<CorridorTriple>? corridor,
+  ) => corridor == null
+      ? maxChannelMessageBytes(connector.selfName)
+      : maxCorridorChannelMessageBytes(connector.selfName, corridor.length);
+
+  void _showCorridorPicker(MeshCoreConnector connector) {
+    if (connector.selfLatitude == null || connector.selfLongitude == null) {
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.chat_limitToAreaNeedsPosition),
+      );
+      return;
+    }
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (sheetContext) {
+        final l10n = sheetContext.l10n;
+        void choose(int? code) {
+          Navigator.pop(sheetContext);
+          setState(() => _corridorRadiusCode = code);
+        }
+
+        return SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListTile(
+                  title: Text(
+                    l10n.chat_limitToAreaTitle,
+                    style: Theme.of(sheetContext).textTheme.titleMedium,
+                  ),
+                  subtitle: Text(l10n.chat_limitToAreaHelp),
+                ),
+                for (final code in _corridorRadiusChoices)
+                  ListTile(
+                    leading: Icon(
+                      code == _corridorRadiusCode
+                          ? Icons.radio_button_checked
+                          : Icons.radio_button_unchecked,
+                    ),
+                    title: Text(
+                      l10n.chat_limitToAreaRadius(
+                        corridorRadiusKm[code].round(),
+                      ),
+                    ),
+                    onTap: () => choose(code),
+                  ),
+                ListTile(
+                  leading: Icon(
+                    _corridorRadiusCode == null
+                        ? Icons.radio_button_checked
+                        : Icons.radio_button_unchecked,
+                  ),
+                  title: Text(l10n.chat_limitToAreaOff),
+                  onTap: () => choose(null),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildCorridorBanner(ColorScheme scheme) {
+    final km = corridorRadiusKm[_corridorRadiusCode!].round();
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 6, 12, 0),
+      child: Align(
+        alignment: AlignmentDirectional.centerStart,
+        child: InputChip(
+          avatar: Icon(Icons.route, size: 18, color: scheme.primary),
+          label: Text(context.l10n.chat_limitToAreaActive(km)),
+          onPressed: () =>
+              _showCorridorPicker(context.read<MeshCoreConnector>()),
+          onDeleted: () => setState(() => _corridorRadiusCode = null),
+          deleteButtonTooltipMessage: context.l10n.common_clear,
+        ),
+      ),
     );
   }
 

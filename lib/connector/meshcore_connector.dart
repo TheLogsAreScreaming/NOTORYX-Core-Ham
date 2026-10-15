@@ -13,6 +13,7 @@ import '../models/channel.dart';
 import '../models/channel_message.dart';
 import '../models/companion_radio_stats.dart';
 import '../models/contact.dart';
+import '../models/flood_corridor.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';
 import '../models/translation_support.dart';
@@ -244,6 +245,9 @@ class MeshCoreConnector extends ChangeNotifier {
   bool? _clientRepeat;
   MeshCoreRadioStateSnapshot? _rememberedNonRepeatRadioState;
   int? _firmwareVerCode;
+  bool? _floodCorridorSupported;
+  bool _floodCorridorProbePending = false;
+  String? _corridorRegion;
   int _pathHashByteWidth = 1;
   CompanionRadioStats? _latestRadioStats;
   Stopwatch? _airtimeBumpStopwatch;
@@ -545,6 +549,12 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   int? get firmwareVerCode => _firmwareVerCode;
+
+  /// Null until probed after SELF_INFO; true only on Flood Corridor firmware.
+  bool? get floodCorridorSupported => _floodCorridorSupported;
+
+  /// Compat region corridor packets are tagged with; empty means "#corridor".
+  String? get corridorRegion => _corridorRegion;
   Map<String, String>? get currentCustomVars => _currentCustomVars;
   int? get batteryMillivolts => _batteryMillivolts;
   int? get storageUsedKb => _storageUsedKb;
@@ -2837,6 +2847,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _clientRepeat = null;
     _rememberedNonRepeatRadioState = null;
     _firmwareVerCode = null;
+    _floodCorridorSupported = null;
+    _floodCorridorProbePending = false;
+    _corridorRegion = null;
     _batteryMillivolts = null;
     _repeaterBatterySnapshots.clear();
     _batteryRequested = false;
@@ -3640,6 +3653,52 @@ class MeshCoreConnector extends ChangeNotifier {
         expectsGenericAck: true,
       );
     }, region: getChannelRegion(channel.index));
+  }
+
+  /// Sends a channel text that corridor-aware repeaters forward only inside
+  /// [corridor]. Flood Corridor firmware confirms it with RESP_CODE_OK rather
+  /// than RESP_CODE_SENT, so it rides the generic-ack queue.
+  Future<void> sendChannelMessageWithCorridor(
+    Channel channel,
+    String text,
+    List<CorridorTriple> corridor, {
+    String? originalText,
+    String? translatedLanguageCode,
+    String? translationModelId,
+  }) async {
+    if (!isConnected || text.isEmpty || _floodCorridorSupported != true) {
+      return;
+    }
+
+    final message = ChannelMessage.outgoing(
+      text,
+      _selfName ?? 'Me',
+      channel.index,
+      originalText: originalText,
+      translatedLanguageCode: translatedLanguageCode,
+      translationModelId: translationModelId,
+    );
+    _addChannelMessage(channel.index, message);
+    notifyListeners();
+
+    final outboundText = prepareChannelOutboundText(channel.index, text);
+    try {
+      await _runScopedChannelSend(() async {
+        await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
+        await _sendFrameAndWaitForCommandAck(
+          buildSendChannelTextMsgCorridorFrame(
+            channel.index,
+            outboundText,
+            corridor,
+          ),
+          channelSendQueueId: message.messageId,
+          expectsGenericAck: true,
+        );
+      }, region: '');
+    } catch (e) {
+      appLogger.warn('Corridor channel send failed: $e');
+      _markPendingChannelMessageFailedById(message.messageId);
+    }
   }
 
   /// Minimum companion firmware version code that implements
@@ -4457,6 +4516,12 @@ class MeshCoreConnector extends ChangeNotifier {
       case respCodeCustomVars:
         _handleCustomVars(frame);
         break;
+      case respCodeCorridorRegion:
+        _handleCorridorRegion(frame);
+        break;
+      case respCodeProposeCorridor:
+        // proposeCorridor() listens to receivedFrames directly.
+        break;
       // RESP_CODE_ERR is a defined firmware response (code 1), not an unknown frame.
       case respCodeErr:
         _handleErrorFrame(frame);
@@ -4466,8 +4531,87 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  void _handleCorridorRegion(Uint8List frame) {
+    final region = parseCorridorRegionFrame(frame);
+    if (region == null) return;
+    _floodCorridorProbePending = false;
+    _floodCorridorSupported = true;
+    _corridorRegion = region;
+    notifyListeners();
+  }
+
+  Future<void> _probeFloodCorridorSupport() async {
+    if (!isConnected || _floodCorridorSupported != null) return;
+    if (_floodCorridorProbePending || _pendingGenericAckQueue.isNotEmpty) {
+      return;
+    }
+    _floodCorridorProbePending = true;
+    try {
+      await sendFrame(buildGetCorridorRegionFrame());
+    } catch (e) {
+      _floodCorridorProbePending = false;
+      appLogger.warn('Flood corridor probe failed: $e');
+      return;
+    }
+    await Future<void>.delayed(_commandAckTimeout);
+    if (_floodCorridorProbePending) {
+      _floodCorridorProbePending = false;
+      _floodCorridorSupported ??= false;
+      notifyListeners();
+    }
+  }
+
+  /// Asks the radio which corridor it would use toward [lat]/[lon], built
+  /// from the positions of known repeaters. Null on timeout or unsupported
+  /// firmware; the radio rejects the request while its own position is unknown.
+  Future<CorridorProposal?> proposeCorridor(
+    double lat,
+    double lon, {
+    bool dense = false,
+  }) async {
+    if (!isConnected || _floodCorridorSupported != true) return null;
+    final completer = Completer<CorridorProposal?>();
+    final subscription = receivedFrames.listen((frame) {
+      if (frame.isEmpty || completer.isCompleted) return;
+      if (frame[0] == respCodeProposeCorridor) {
+        completer.complete(parseCorridorProposalFrame(frame));
+      } else if (frame[0] == respCodeErr) {
+        completer.complete(null);
+      }
+    });
+    final timer = Timer(_commandAckTimeout, () {
+      if (!completer.isCompleted) completer.complete(null);
+    });
+    try {
+      await sendFrame(buildProposeCorridorFrame(lat, lon, dense: dense));
+      return await completer.future;
+    } finally {
+      timer.cancel();
+      await subscription.cancel();
+    }
+  }
+
+  /// Sets the region corridor packets are tagged with, so stock repeaters that
+  /// allow that region still forward them. Empty resets to "#corridor".
+  Future<void> setCorridorRegion(String region) async {
+    if (!isConnected || _floodCorridorSupported != true) return;
+    await _sendFrameAndWaitForCommandAck(buildSetCorridorRegionFrame(region));
+    _corridorRegion = region.startsWith('#') ? region.substring(1) : region;
+    notifyListeners();
+  }
+
   void _handleErrorFrame(Uint8List frame) {
     final errCode = frame.length > 1 ? frame[1] : -1;
+
+    // The probe is only sent with no generic ACK pending, and the firmware
+    // answers in order, so an UNSUPPORTED_CMD while it is outstanding is the
+    // probe's reply and must not fail an unrelated queued command.
+    if (_floodCorridorProbePending && errCode == errCodeUnsupportedCmd) {
+      _floodCorridorProbePending = false;
+      _floodCorridorSupported = false;
+      notifyListeners();
+      return;
+    }
     _appDebugLogService?.warn(
       'Firmware responded with error code: $errCode',
       tag: 'Protocol',
@@ -4481,7 +4625,7 @@ class MeshCoreConnector extends ChangeNotifier {
     failedAck.completer?.completeError(
       Exception('Firmware rejected command with error code $errCode'),
     );
-    if (failedAck.commandCode != cmdSendChannelTxtMsg ||
+    if (!_isChannelTextCommand(failedAck.commandCode) ||
         failedAck.channelSendQueueId == null) {
       return;
     }
@@ -4641,6 +4785,8 @@ class MeshCoreConnector extends ChangeNotifier {
     _selfInfoRetryTimer?.cancel();
     _selfInfoRetryTimer = null;
     notifyListeners();
+
+    unawaited(_probeFloodCorridorSupport());
 
     // Start the serialized initial sync pipeline after SELF_INFO.
     _maybeStartInitialChannelSync();
@@ -5964,6 +6110,10 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  bool _isChannelTextCommand(int commandCode) =>
+      commandCode == cmdSendChannelTxtMsg ||
+      commandCode == cmdSendChannelTxtMsgCorridor;
+
   void _handleOk() {
     if (_pendingGenericAckQueue.isEmpty) {
       return;
@@ -5971,7 +6121,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     final pendingAck = _pendingGenericAckQueue.removeAt(0);
     pendingAck.completer?.complete();
-    if (pendingAck.commandCode != cmdSendChannelTxtMsg ||
+    if (!_isChannelTextCommand(pendingAck.commandCode) ||
         pendingAck.channelSendQueueId == null) {
       return;
     }

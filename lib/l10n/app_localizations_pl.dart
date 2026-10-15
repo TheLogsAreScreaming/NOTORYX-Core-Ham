@@ -385,6 +385,29 @@ class AppLocalizationsPl extends AppLocalizations {
       'Zarządzanie zapisanymi regionami';
 
   @override
+  String get settings_corridorRegion => 'Corridor region';
+
+  @override
+  String get settings_corridorRegionDefault => '#corridor (default)';
+
+  @override
+  String get settings_corridorRegionHelp =>
+      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+
+  @override
+  String get settings_corridorRegionHint => 'Region name';
+
+  @override
+  String get settings_corridorRegionUseDefault => 'Use default';
+
+  @override
+  String get settings_corridorRegionUpdated => 'Corridor region updated';
+
+  @override
+  String get settings_corridorRegionFailed =>
+      'Couldn\'t update the corridor region';
+
+  @override
   String get settings_regionManagement_screenTitle => 'Zarządzanie Regionami';
 
   @override
@@ -1510,6 +1533,33 @@ class AppLocalizationsPl extends AppLocalizations {
   String get chat_sendGif => 'Wyślij GIF';
 
   @override
+  String get chat_limitToArea => 'Limit to an area';
+
+  @override
+  String get chat_limitToAreaTitle => 'Only send within…';
+
+  @override
+  String get chat_limitToAreaHelp =>
+      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+
+  @override
+  String chat_limitToAreaRadius(int km) {
+    return '$km km of you';
+  }
+
+  @override
+  String chat_limitToAreaActive(int km) {
+    return 'Only within $km km of you';
+  }
+
+  @override
+  String get chat_limitToAreaOff => 'No limit';
+
+  @override
+  String get chat_limitToAreaNeedsPosition =>
+      'Set your radio\'s position to limit messages to an area.';
+
+  @override
   String get chat_sendImageLora => 'Wyślij obraz przez MeshCore';
 
   @override
@@ -1997,6 +2047,61 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get map_setAsMyLocation => 'Ustaw jako moją lokalizację';
+
+  @override
+  String get floodCorridor_title => 'Flood Corridor';
+
+  @override
+  String get floodCorridor_previewToHere => 'Preview flood corridor to here';
+
+  @override
+  String get floodCorridor_requesting => 'Asking your radio for a corridor…';
+
+  @override
+  String get floodCorridor_unsupported =>
+      'Your radio\'s firmware doesn\'t support flood corridors.';
+
+  @override
+  String get floodCorridor_noProposal =>
+      'Your radio couldn\'t propose a corridor. Make sure it has a position set.';
+
+  @override
+  String floodCorridor_circleCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count circles',
+      one: '1 circle',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String floodCorridor_repeatersInside(int inside, int total) {
+    return '$inside of $total known repeaters inside';
+  }
+
+  @override
+  String get floodCorridor_straightLine =>
+      'Straight line: no known repeaters along the way';
+
+  @override
+  String get floodCorridor_followsRepeaters => 'Follows your known repeaters';
+
+  @override
+  String get floodCorridor_horizonLimited =>
+      'Known repeaters don\'t reach the target; the rest is a straight line';
+
+  @override
+  String get floodCorridor_thinStretch =>
+      'Part of the corridor has few known repeaters';
+
+  @override
+  String get floodCorridor_moreCoverage => 'Require more repeater coverage';
+
+  @override
+  String get floodCorridor_previewNote =>
+      'Preview only. Repeaters without corridor firmware don\'t apply corridors.';
 
   @override
   String get map_pinLabel => 'Etykieta pinezki';

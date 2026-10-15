@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/widgets.dart';
 
+import '../models/flood_corridor.dart';
+
 // Buffer Reader - sequential binary data reader with pointer tracking
 class BufferReader {
   int _pointer = 0;
@@ -215,6 +217,13 @@ const int cmdSetAutoAddConfig = 58;
 const int cmdGetAutoAddConfig = 59;
 const int cmdSetPathHashMode = 61;
 
+// Flood Corridor commands (usrflo/MeshCore feature/flood-corridor only;
+// stock firmware replies RESP_CODE_ERR / ERR_CODE_UNSUPPORTED_CMD).
+const int cmdSendChannelTxtMsgCorridor = 53;
+const int cmdProposeCorridor = 67;
+const int cmdSetCorridorRegion = 68;
+const int cmdGetCorridorRegion = 69;
+
 // Text message types
 const int txtTypePlain = 0;
 const int txtTypeCliData = 1;
@@ -263,6 +272,10 @@ const int respCodeChannelInfo = 18;
 const int respCodeCustomVars = 21;
 const int respCodeAutoAddConfig = 25;
 const int respCodeStats = 24;
+const int respCodeProposeCorridor = 30;
+const int respCodeCorridorRegion = 31;
+
+const int errCodeUnsupportedCmd = 1;
 
 const int statsTypeCore = 0;
 const int statsTypeRadio = 1;
@@ -354,6 +367,21 @@ int maxChannelMessageBytes(String? senderName) {
   final prefixBytes = nameLength + 2; // "<name>: "
   final byPayload = maxTextPayloadBytes - prefixBytes;
   final byFrame = maxFrameSize - _sendChannelTextMsgOverheadBytes;
+  return _minPositive(byPayload, byFrame);
+}
+
+// Corridor channel sends carry 4 bytes per circle. The firmware truncates text
+// that would push corridor + payload past MAX_PACKET_PAYLOAD (the budget
+// corridor-unaware repeaters enforce), which costs the same 4 bytes per circle.
+const int _sendChannelTextMsgCorridorOverheadBytes =
+    1 + 1 + 1 + 4 + 1 + 1 + 2; // count + flags, +2 safety margin
+
+int maxCorridorChannelMessageBytes(String? senderName, int circleCount) {
+  final prefixBytes = _senderNameBytes(senderName) + 2; // "<name>: "
+  final corridorBytes = circleCount * corridorTripleBytes;
+  final byPayload = maxTextPayloadBytes - prefixBytes - corridorBytes;
+  final byFrame =
+      maxFrameSize - _sendChannelTextMsgCorridorOverheadBytes - corridorBytes;
   return _minPositive(byPayload, byFrame);
 }
 
@@ -1045,4 +1073,101 @@ Uint8List buildSetFloodScopeFrame(String region) {
   final scope = Uint8List.fromList(hash.sublist(0, 16));
 
   return Uint8List.fromList([cmdSetFloodScope, 0, ...scope]);
+}
+
+// Build CMD_SEND_CHANNEL_TXT_MSG_CORRIDOR frame
+// Format: [cmd][txt_type][channel_idx][timestamp x4][text...][triple x4]*N[N][flags]
+// Unlike the plain channel send, the text is not NUL-terminated: the firmware
+// derives its length from the trailer.
+Uint8List buildSendChannelTextMsgCorridorFrame(
+  int channelIndex,
+  String text,
+  List<CorridorTriple> corridor, {
+  int flags = 0,
+}) {
+  if (corridor.isEmpty || corridor.length > maxCorridorTriples) {
+    throw ArgumentError.value(corridor.length, 'corridor', 'must hold 1..8');
+  }
+  final timestamp = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+  final writer = BufferWriter();
+  writer.writeByte(cmdSendChannelTxtMsgCorridor);
+  writer.writeByte(txtTypePlain);
+  writer.writeByte(channelIndex);
+  writer.writeUInt32LE(timestamp);
+  writer.writeString(text);
+  for (final triple in corridor) {
+    writer.writeUInt32LE(triple.encode());
+  }
+  writer.writeByte(corridor.length);
+  writer.writeByte(
+    flags & (corridorFlagFailClosed | corridorFlagDestLastTriple),
+  );
+  final frame = writer.toBytes();
+  if (frame.length > maxFrameSize) {
+    throw ArgumentError.value(text, 'text', 'too long for corridor frame');
+  }
+  return frame;
+}
+
+// Build CMD_PROPOSE_CORRIDOR frame
+// Format: [cmd][lat x4][lon x4][mode]  (mode bit 1 = denser width preset)
+Uint8List buildProposeCorridorFrame(
+  double lat,
+  double lon, {
+  bool dense = false,
+}) {
+  final writer = BufferWriter();
+  writer.writeByte(cmdProposeCorridor);
+  writer.writeInt32LE((lat * 1000000).round());
+  writer.writeInt32LE((lon * 1000000).round());
+  writer.writeByte(dense ? 0x02 : 0x00);
+  return writer.toBytes();
+}
+
+// Build CMD_SET_CORRIDOR_REGION frame
+// Format: [cmd][region name, no '#', max 31 bytes]; empty resets to "#corridor"
+Uint8List buildSetCorridorRegionFrame(String region) {
+  final name = region.startsWith('#') ? region.substring(1) : region;
+  final encoded = utf8.encode(name);
+  if (encoded.length > 31) {
+    throw ArgumentError.value(region, 'region', 'longer than 31 bytes');
+  }
+  return Uint8List.fromList([cmdSetCorridorRegion, ...encoded]);
+}
+
+Uint8List buildGetCorridorRegionFrame() {
+  return Uint8List.fromList([cmdGetCorridorRegion]);
+}
+
+// Parse RESP_CODE_PROPOSE_CORRIDOR
+// Format: [resp][reason][count][triple x4]*count
+CorridorProposal? parseCorridorProposalFrame(Uint8List frame) {
+  if (frame.length < 3 || frame[0] != respCodeProposeCorridor) return null;
+  final count = frame[2];
+  if (count > maxCorridorTriples ||
+      frame.length < 3 + count * corridorTripleBytes) {
+    return null;
+  }
+  final data = ByteData.sublistView(frame);
+  return CorridorProposal(
+    reason: frame[1],
+    triples: [
+      for (var i = 0; i < count; i++)
+        CorridorTriple.decode(
+          data.getUint32(3 + i * corridorTripleBytes, Endian.little),
+        ),
+    ],
+  );
+}
+
+// Parse RESP_CODE_CORRIDOR_REGION
+// Format: [resp][region name x31, NUL-padded]; empty name means "#corridor"
+String? parseCorridorRegionFrame(Uint8List frame) {
+  if (frame.length < 32 || frame[0] != respCodeCorridorRegion) return null;
+  final bytes = frame.sublist(1, 32);
+  final end = bytes.indexOf(0);
+  return utf8.decode(
+    end == -1 ? bytes : bytes.sublist(0, end),
+    allowMalformed: true,
+  );
 }
