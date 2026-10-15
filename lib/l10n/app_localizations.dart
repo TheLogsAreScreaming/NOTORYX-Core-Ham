@@ -994,6 +994,48 @@ abstract class AppLocalizations {
   /// **'Manage stored regions'**
   String get settings_regionSettingsSubtitle;
 
+  /// No description provided for @settings_corridorRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Corridor region'**
+  String get settings_corridorRegion;
+
+  /// No description provided for @settings_corridorRegionDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'#corridor (default)'**
+  String get settings_corridorRegionDefault;
+
+  /// No description provided for @settings_corridorRegionHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.'**
+  String get settings_corridorRegionHelp;
+
+  /// No description provided for @settings_corridorRegionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Region name'**
+  String get settings_corridorRegionHint;
+
+  /// No description provided for @settings_corridorRegionUseDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Use default'**
+  String get settings_corridorRegionUseDefault;
+
+  /// No description provided for @settings_corridorRegionUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Corridor region updated'**
+  String get settings_corridorRegionUpdated;
+
+  /// No description provided for @settings_corridorRegionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update the corridor region'**
+  String get settings_corridorRegionFailed;
+
   /// No description provided for @settings_regionManagement_screenTitle.
   ///
   /// In en, this message translates to:
@@ -2938,6 +2980,48 @@ abstract class AppLocalizations {
   /// **'Send GIF'**
   String get chat_sendGif;
 
+  /// No description provided for @chat_limitToArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit to an area'**
+  String get chat_limitToArea;
+
+  /// No description provided for @chat_limitToAreaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Only send within…'**
+  String get chat_limitToAreaTitle;
+
+  /// No description provided for @chat_limitToAreaHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.'**
+  String get chat_limitToAreaHelp;
+
+  /// No description provided for @chat_limitToAreaRadius.
+  ///
+  /// In en, this message translates to:
+  /// **'{km} km of you'**
+  String chat_limitToAreaRadius(int km);
+
+  /// No description provided for @chat_limitToAreaActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Only within {km} km of you'**
+  String chat_limitToAreaActive(int km);
+
+  /// No description provided for @chat_limitToAreaOff.
+  ///
+  /// In en, this message translates to:
+  /// **'No limit'**
+  String get chat_limitToAreaOff;
+
+  /// No description provided for @chat_limitToAreaNeedsPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your radio\'s position to limit messages to an area.'**
+  String get chat_limitToAreaNeedsPosition;
+
   /// No description provided for @chat_sendImageLora.
   ///
   /// In en, this message translates to:
@@ -3795,6 +3879,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Set as my location'**
   String get map_setAsMyLocation;
+
+  /// No description provided for @floodCorridor_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood Corridor'**
+  String get floodCorridor_title;
+
+  /// No description provided for @floodCorridor_previewToHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview flood corridor to here'**
+  String get floodCorridor_previewToHere;
+
+  /// No description provided for @floodCorridor_requesting.
+  ///
+  /// In en, this message translates to:
+  /// **'Asking your radio for a corridor…'**
+  String get floodCorridor_requesting;
+
+  /// No description provided for @floodCorridor_unsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio\'s firmware doesn\'t support flood corridors.'**
+  String get floodCorridor_unsupported;
+
+  /// No description provided for @floodCorridor_noProposal.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio couldn\'t propose a corridor. Make sure it has a position set.'**
+  String get floodCorridor_noProposal;
+
+  /// No description provided for @floodCorridor_circleCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 circle} other{{count} circles}}'**
+  String floodCorridor_circleCount(int count);
+
+  /// No description provided for @floodCorridor_repeatersInside.
+  ///
+  /// In en, this message translates to:
+  /// **'{inside} of {total} known repeaters inside'**
+  String floodCorridor_repeatersInside(int inside, int total);
+
+  /// No description provided for @floodCorridor_straightLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Straight line: no known repeaters along the way'**
+  String get floodCorridor_straightLine;
+
+  /// No description provided for @floodCorridor_followsRepeaters.
+  ///
+  /// In en, this message translates to:
+  /// **'Follows your known repeaters'**
+  String get floodCorridor_followsRepeaters;
+
+  /// No description provided for @floodCorridor_horizonLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Known repeaters don\'t reach the target; the rest is a straight line'**
+  String get floodCorridor_horizonLimited;
+
+  /// No description provided for @floodCorridor_thinStretch.
+  ///
+  /// In en, this message translates to:
+  /// **'Part of the corridor has few known repeaters'**
+  String get floodCorridor_thinStretch;
+
+  /// No description provided for @floodCorridor_moreCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Require more repeater coverage'**
+  String get floodCorridor_moreCoverage;
+
+  /// No description provided for @floodCorridor_previewNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview only. Repeaters without corridor firmware don\'t apply corridors.'**
+  String get floodCorridor_previewNote;
 
   /// No description provided for @map_pinLabel.
   ///

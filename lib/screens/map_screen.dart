@@ -28,6 +28,7 @@ import '../widgets/quick_switch_bar.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../icons/los_icon.dart';
 import 'chat_screen.dart';
+import 'flood_corridor_screen.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/repeater_login_dialog.dart';
@@ -3015,6 +3016,21 @@ class _MapScreenState extends State<MapScreen> {
                 messenger.showSnackBar(SnackBar(content: Text(successMsg)));
               },
             ),
+            if (connector.floodCorridorSupported == true)
+              ListTile(
+                leading: const Icon(Icons.route),
+                title: Text(context.l10n.floodCorridor_previewToHere),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          FloodCorridorScreen(target: position),
+                    ),
+                  );
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.close),
               title: Text(context.l10n.common_cancel),
