@@ -354,7 +354,7 @@ class ChannelMessagePathScreen extends StatelessWidget {
                         width: 18,
                         height: 18,
                         decoration: BoxDecoration(
-                          color: MeshPalette.blueDim,
+                          color: MeshPalette.accentDim,
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: scheme.surfaceContainerLow,
@@ -379,7 +379,7 @@ class ChannelMessagePathScreen extends StatelessWidget {
                     child: Container(
                       width: 2,
                       margin: const EdgeInsets.symmetric(vertical: 4),
-                      color: MeshPalette.blueLine,
+                      color: MeshPalette.accentLine,
                     ),
                   )
                 else
@@ -938,7 +938,7 @@ class _ChannelMessagePathMapScreenState
                 Polyline(
                   points: points,
                   strokeWidth: 4,
-                  color: MeshPalette.blue,
+                  color: MeshPalette.accent,
                 ),
               ]
             : <Polyline>[];
@@ -1216,7 +1216,7 @@ class _ChannelMessagePathMapScreenState
               width: 35,
               height: 35,
               decoration: BoxDecoration(
-                color: MeshPalette.blue,
+                color: MeshPalette.accent,
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.white, width: 2),
                 boxShadow: [
@@ -1359,7 +1359,7 @@ class _ChannelMessagePathMapScreenState
                   width: 35,
                   height: 35,
                   decoration: BoxDecoration(
-                    color: MeshPalette.blue,
+                    color: MeshPalette.accent,
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: Colors.white,
@@ -1670,7 +1670,7 @@ class _ChannelMessagePathMapScreenState
             activeSegment < selectedDisplay.rowForSegment.length) {
           highlightRow = selectedDisplay.rowForSegment[activeSegment];
         }
-        final highlightColor = (selectedDisplay?.color ?? MeshPalette.blue)
+        final highlightColor = (selectedDisplay?.color ?? MeshPalette.accent)
             .withValues(alpha: 0.14);
         return ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: 4),
@@ -1686,7 +1686,7 @@ class _ChannelMessagePathMapScreenState
                 color: index == highlightRow
                     ? highlightColor
                     : isFocused
-                    ? MeshPalette.blueBg
+                    ? MeshPalette.accentBg
                     : Colors.transparent,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 12,
@@ -1698,10 +1698,10 @@ class _ChannelMessagePathMapScreenState
                       width: 28,
                       height: 28,
                       decoration: BoxDecoration(
-                        color: MeshPalette.blueDim.withValues(alpha: 0.3),
+                        color: MeshPalette.accentDim.withValues(alpha: 0.3),
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: MeshPalette.blueDim.withValues(alpha: 0.5),
+                          color: MeshPalette.accentDim.withValues(alpha: 0.5),
                         ),
                       ),
                       alignment: Alignment.center,

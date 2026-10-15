@@ -1848,7 +1848,7 @@ class _MessageBubble extends StatelessWidget {
 /// Deterministic name-to-hue mapping consistent with [AvatarCircle].
 Color _colorForName(String name) {
   const hues = [
-    MeshPalette.blue,
+    MeshPalette.accent,
     MeshPalette.magenta,
     MeshPalette.signal,
     MeshPalette.warn,

@@ -59,7 +59,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
       case advTypeSensor:
         return const Color(0xFF4ACCC4); // teal
       default:
-        return MeshPalette.blue;
+        return MeshPalette.accent;
     }
   }
 

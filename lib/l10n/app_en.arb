@@ -4,6 +4,59 @@
   "nav_contacts": "Contacts",
   "nav_channels": "Channels",
   "nav_map": "Map",
+  "nav_messages": "Messages",
+  "nav_nodes": "Nodes",
+  "nav_radio": "Radio",
+  "messages_title": "Messages",
+  "messages_filterAll": "All",
+  "messages_filterDirect": "Direct",
+  "messages_filterChannels": "Channels",
+  "messages_filterWithUnread": "{label} · {count}",
+  "@messages_filterWithUnread": {
+    "placeholders": {
+      "label": {"type": "String"},
+      "count": {"type": "int"}
+    }
+  },
+  "messages_search": "Search messages",
+  "messages_searchHint": "Search conversations",
+  "messages_closeSearch": "Close search",
+  "messages_manageChannels": "Manage channels",
+  "messages_new": "New",
+  "messages_newDirect": "Message a node",
+  "messages_newChannel": "Add or join a channel",
+  "messages_empty": "No conversations yet",
+  "messages_emptyHint": "Messages from nodes and channels show up here.",
+  "messages_noMatches": "No conversations match your search",
+  "messages_you": "You: {text}",
+  "@messages_you": {
+    "placeholders": {
+      "text": {"type": "String"}
+    }
+  },
+  "messages_yesterday": "Yesterday",
+  "messages_unreadCount": "{count} unread",
+  "@messages_unreadCount": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "radioStatus_connectedVia": "Connected over {transport}",
+  "@radioStatus_connectedVia": {
+    "placeholders": {
+      "transport": {"type": "String"}
+    }
+  },
+  "radioStatus_bluetooth": "Bluetooth",
+  "radioStatus_usb": "USB",
+  "radioStatus_tcp": "Wi‑Fi (TCP)",
+  "radioStatus_battery": "Battery {percent}%",
+  "@radioStatus_battery": {
+    "placeholders": {
+      "percent": {"type": "int"}
+    }
+  },
+  "radioStatus_openRadio": "Open radio details",
   "common_cancel": "Cancel",
   "common_ok": "OK",
   "common_connect": "Connect",

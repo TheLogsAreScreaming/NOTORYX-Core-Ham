@@ -151,7 +151,7 @@ class AppDebugLogScreen extends StatelessWidget {
   Color _levelColor(AppDebugLogLevel level) {
     switch (level) {
       case AppDebugLogLevel.info:
-        return MeshPalette.blue;
+        return MeshPalette.accent;
       case AppDebugLogLevel.warning:
         return MeshPalette.warn;
       case AppDebugLogLevel.error:
@@ -165,7 +165,7 @@ class AppDebugLogScreen extends StatelessWidget {
         return const Icon(
           Icons.info_outline,
           size: 18,
-          color: MeshPalette.blue,
+          color: MeshPalette.accent,
         );
       case AppDebugLogLevel.warning:
         return const Icon(

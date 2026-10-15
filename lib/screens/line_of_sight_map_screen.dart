@@ -8,13 +8,11 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
-import '../screens/channels_screen.dart';
-import '../screens/contacts_screen.dart';
 import '../models/app_settings.dart';
 import '../services/app_settings_service.dart';
 import '../services/line_of_sight_service.dart';
 import '../services/map_tile_cache_service.dart';
-import '../utils/route_transitions.dart';
+import '../utils/main_tab_navigation.dart';
 import '../connector/meshcore_connector.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/quick_switch_bar.dart';
@@ -488,15 +486,15 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
       bottomNavigationBar: SafeArea(
         top: false,
         child: QuickSwitchBar(
-          selectedIndex: 2,
-          onDestinationSelected: (index) => _handleQuickSwitch(index, context),
-          contactsUnreadCount: context
-              .watch<MeshCoreConnector>()
-              .getTotalContactsUnreadCount(),
-          channelsUnreadCount: context
-              .watch<MeshCoreConnector>()
-              .getTotalChannelsUnreadCount(),
+          current: MainTab.map,
           highContrast: true,
+          onSelected: (tab) {
+            if (tab == MainTab.map) {
+              Navigator.pop(context);
+            } else {
+              switchMainTab(context, tab);
+            }
+          },
         ),
       ),
     );
@@ -1717,27 +1715,6 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
 
   double _toMetersHeight(double displayHeight, bool isImperial) {
     return isImperial ? displayHeight / _metersToFeet : displayHeight;
-  }
-
-  void _handleQuickSwitch(int index, BuildContext context) {
-    if (index == 2) {
-      Navigator.pop(context);
-      return;
-    }
-    switch (index) {
-      case 0:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const ContactsScreen(hideBackButton: true)),
-        );
-        break;
-      case 1:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const ChannelsScreen(hideBackButton: true)),
-        );
-        break;
-    }
   }
 
   void _showFrequencyInfoDialog(

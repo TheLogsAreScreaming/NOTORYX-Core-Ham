@@ -21,6 +21,98 @@ class AppLocalizationsSk extends AppLocalizations {
   String get nav_map => 'Mapa';
 
   @override
+  String get nav_messages => 'Messages';
+
+  @override
+  String get nav_nodes => 'Nodes';
+
+  @override
+  String get nav_radio => 'Radio';
+
+  @override
+  String get messages_title => 'Messages';
+
+  @override
+  String get messages_filterAll => 'All';
+
+  @override
+  String get messages_filterDirect => 'Direct';
+
+  @override
+  String get messages_filterChannels => 'Channels';
+
+  @override
+  String messages_filterWithUnread(String label, int count) {
+    return '$label · $count';
+  }
+
+  @override
+  String get messages_search => 'Search messages';
+
+  @override
+  String get messages_searchHint => 'Search conversations';
+
+  @override
+  String get messages_closeSearch => 'Close search';
+
+  @override
+  String get messages_manageChannels => 'Manage channels';
+
+  @override
+  String get messages_new => 'New';
+
+  @override
+  String get messages_newDirect => 'Message a node';
+
+  @override
+  String get messages_newChannel => 'Add or join a channel';
+
+  @override
+  String get messages_empty => 'No conversations yet';
+
+  @override
+  String get messages_emptyHint =>
+      'Messages from nodes and channels show up here.';
+
+  @override
+  String get messages_noMatches => 'No conversations match your search';
+
+  @override
+  String messages_you(String text) {
+    return 'You: $text';
+  }
+
+  @override
+  String get messages_yesterday => 'Yesterday';
+
+  @override
+  String messages_unreadCount(int count) {
+    return '$count unread';
+  }
+
+  @override
+  String radioStatus_connectedVia(String transport) {
+    return 'Connected over $transport';
+  }
+
+  @override
+  String get radioStatus_bluetooth => 'Bluetooth';
+
+  @override
+  String get radioStatus_usb => 'USB';
+
+  @override
+  String get radioStatus_tcp => 'Wi‑Fi (TCP)';
+
+  @override
+  String radioStatus_battery(int percent) {
+    return 'Battery $percent%';
+  }
+
+  @override
+  String get radioStatus_openRadio => 'Open radio details';
+
+  @override
   String get common_cancel => 'Zrušiť';
 
   @override

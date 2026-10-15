@@ -22,7 +22,7 @@ import '../storage/contact_group_store.dart';
 import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/emoji_utils.dart';
-import '../utils/route_transitions.dart';
+import '../utils/main_tab_navigation.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
@@ -32,10 +32,8 @@ import '../widgets/room_login_dialog.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/unread_badge.dart';
 import '../helpers/snack_bar_builder.dart';
-import 'channels_screen.dart';
 import 'chat_screen.dart';
 import 'discovery_screen.dart';
-import 'map_screen.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
 
@@ -344,7 +342,7 @@ class _ContactsScreenState extends State<ContactsScreen>
       canPop: allowBack,
       child: Scaffold(
         appBar: AppBar(
-          title: AppBarTitle(context.l10n.contacts_title),
+          title: AppBarTitle(context.l10n.nav_nodes),
           automaticallyImplyLeading: false,
           bottom: const SyncProgressAppBarBottom(),
           actions: [
@@ -460,13 +458,7 @@ class _ContactsScreenState extends State<ContactsScreen>
         ),
         bottomNavigationBar: SafeArea(
           top: false,
-          child: QuickSwitchBar(
-            selectedIndex: 0,
-            onDestinationSelected: (index) =>
-                _handleQuickSwitch(index, context),
-            contactsUnreadCount: connector.getTotalContactsUnreadCount(),
-            channelsUnreadCount: connector.getTotalChannelsUnreadCount(),
-          ),
+          child: const QuickSwitchBar(current: MainTab.nodes),
         ),
       ),
     );
@@ -1047,24 +1039,6 @@ class _ContactsScreenState extends State<ContactsScreen>
     }
   }
 
-  void _handleQuickSwitch(int index, BuildContext context) {
-    if (index == 0) return;
-    switch (index) {
-      case 1:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const ChannelsScreen(hideBackButton: true)),
-        );
-        break;
-      case 2:
-        Navigator.pushReplacement(
-          context,
-          buildQuickSwitchRoute(const MapScreen(hideBackButton: true)),
-        );
-        break;
-    }
-  }
-
   void _showRepeaterLogin(BuildContext context, Contact repeater) {
     showDialog(
       context: context,
@@ -1419,7 +1393,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                 },
               ),
               ListTile(
-                leading: Icon(Icons.meeting_room, color: MeshPalette.blue),
+                leading: Icon(Icons.meeting_room, color: MeshPalette.accent),
                 title: Text(context.l10n.contacts_roomLogin),
                 onTap: () {
                   Navigator.pop(sheetContext);
@@ -1591,7 +1565,7 @@ class _ContactTile extends StatelessWidget {
         return const Color(0xFF4ACCC4); // teal
       default:
         return MeshPalette
-            .blue; // chat — AvatarCircle handles deterministic hue
+            .accent; // chat — AvatarCircle handles deterministic hue
     }
   }
 
@@ -1742,7 +1716,7 @@ class _ContactTile extends StatelessWidget {
                     style: MeshTheme.mono(
                       fontSize: 11,
                       color: unreadCount > 0
-                          ? MeshPalette.blue
+                          ? MeshPalette.accent
                           : scheme.onSurfaceVariant,
                     ),
                   ),

@@ -160,13 +160,13 @@ class _CompanionRadioStatsScreenState extends State<CompanionRadioStatsScreen> {
                           _tile(
                             l10n.radioStats_txAir(stats.txAirSecs),
                             Icons.upload,
-                            MeshPalette.blue,
+                            MeshPalette.accent,
                           ),
                           const Divider(height: 1),
                           _tile(
                             l10n.radioStats_rxAir(stats.rxAirSecs),
                             Icons.download,
-                            MeshPalette.blue,
+                            MeshPalette.accent,
                           ),
                         ],
                       ),

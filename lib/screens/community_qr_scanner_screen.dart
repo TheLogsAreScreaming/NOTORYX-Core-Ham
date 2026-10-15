@@ -88,7 +88,7 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
         // Corner brackets on top
         const ScannerCornerOverlay(
           scanWindowSize: 250,
-          borderColor: MeshPalette.blue,
+          borderColor: MeshPalette.accent,
           borderWidth: 2,
           cornerLength: 24,
         ),

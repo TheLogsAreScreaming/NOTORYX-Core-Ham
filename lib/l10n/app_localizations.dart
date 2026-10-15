@@ -154,6 +154,168 @@ abstract class AppLocalizations {
   /// **'Map'**
   String get nav_map;
 
+  /// No description provided for @nav_messages.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get nav_messages;
+
+  /// No description provided for @nav_nodes.
+  ///
+  /// In en, this message translates to:
+  /// **'Nodes'**
+  String get nav_nodes;
+
+  /// No description provided for @nav_radio.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio'**
+  String get nav_radio;
+
+  /// No description provided for @messages_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get messages_title;
+
+  /// No description provided for @messages_filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get messages_filterAll;
+
+  /// No description provided for @messages_filterDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct'**
+  String get messages_filterDirect;
+
+  /// No description provided for @messages_filterChannels.
+  ///
+  /// In en, this message translates to:
+  /// **'Channels'**
+  String get messages_filterChannels;
+
+  /// No description provided for @messages_filterWithUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} · {count}'**
+  String messages_filterWithUnread(String label, int count);
+
+  /// No description provided for @messages_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search messages'**
+  String get messages_search;
+
+  /// No description provided for @messages_searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search conversations'**
+  String get messages_searchHint;
+
+  /// No description provided for @messages_closeSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Close search'**
+  String get messages_closeSearch;
+
+  /// No description provided for @messages_manageChannels.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage channels'**
+  String get messages_manageChannels;
+
+  /// No description provided for @messages_new.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get messages_new;
+
+  /// No description provided for @messages_newDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Message a node'**
+  String get messages_newDirect;
+
+  /// No description provided for @messages_newChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Add or join a channel'**
+  String get messages_newChannel;
+
+  /// No description provided for @messages_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations yet'**
+  String get messages_empty;
+
+  /// No description provided for @messages_emptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages from nodes and channels show up here.'**
+  String get messages_emptyHint;
+
+  /// No description provided for @messages_noMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations match your search'**
+  String get messages_noMatches;
+
+  /// No description provided for @messages_you.
+  ///
+  /// In en, this message translates to:
+  /// **'You: {text}'**
+  String messages_you(String text);
+
+  /// No description provided for @messages_yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get messages_yesterday;
+
+  /// No description provided for @messages_unreadCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} unread'**
+  String messages_unreadCount(int count);
+
+  /// No description provided for @radioStatus_connectedVia.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected over {transport}'**
+  String radioStatus_connectedVia(String transport);
+
+  /// No description provided for @radioStatus_bluetooth.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth'**
+  String get radioStatus_bluetooth;
+
+  /// No description provided for @radioStatus_usb.
+  ///
+  /// In en, this message translates to:
+  /// **'USB'**
+  String get radioStatus_usb;
+
+  /// No description provided for @radioStatus_tcp.
+  ///
+  /// In en, this message translates to:
+  /// **'Wi‑Fi (TCP)'**
+  String get radioStatus_tcp;
+
+  /// No description provided for @radioStatus_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery {percent}%'**
+  String radioStatus_battery(int percent);
+
+  /// No description provided for @radioStatus_openRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Open radio details'**
+  String get radioStatus_openRadio;
+
   /// No description provided for @common_cancel.
   ///
   /// In en, this message translates to:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// MeshCore palette — high-contrast slate surfaces with sky-blue accents.
+/// BCS palette — high-contrast slate surfaces with a signal-orange accent.
 class MeshPalette {
   MeshPalette._();
 
@@ -37,11 +37,13 @@ class MeshPalette {
   static const alertBg = Color(0x1FEF4444);
   static const alertLine = Color(0x66EF4444);
 
-  // Blue — primary map/app accent
-  static const blue = Color(0xFF0EA5E9);
-  static const blueDim = Color(0xFF0284C7);
-  static const blueBg = Color(0x290EA5E9);
-  static const blueLine = Color(0x800EA5E9);
+  // Accent — high-visibility signal orange, the app's primary accent.
+  // Text on it uses [onAccent]; it is never the only cue for a state.
+  static const accent = Color(0xFFFF9A3C);
+  static const accentDim = Color(0xFFE07A1A);
+  static const accentBg = Color(0x29FF9A3C);
+  static const accentLine = Color(0x80FF9A3C);
+  static const onAccent = Color(0xFF1A0E02);
 
   // Magenta
   static const magenta = Color(0xFFDE7FDB);
@@ -61,7 +63,8 @@ class MeshPalette {
   static const lightInk = Color(0xFF10161B);
   static const lightInk2 = Color(0xFF3C4853);
   static const lightInk3 = Color(0xFF69767F);
-  static const lightBlue = Color(0xFF2F6EA8);
+  // Darker orange so text and icons keep 4.5:1 on the light surfaces.
+  static const lightAccent = Color(0xFFB45309);
 }
 
 /// High-contrast semantic colors for UI rendered over variable map tiles.
@@ -163,10 +166,10 @@ class MeshTheme {
 
   static ThemeData dark() {
     const scheme = ColorScheme.dark(
-      primary: MeshPalette.blue,
-      onPrimary: Colors.white,
-      primaryContainer: Color(0xFF075985),
-      onPrimaryContainer: Colors.white,
+      primary: MeshPalette.accent,
+      onPrimary: MeshPalette.onAccent,
+      primaryContainer: Color(0xFF5C3A12),
+      onPrimaryContainer: Color(0xFFFFE4C7),
       secondary: MeshPalette.magenta,
       onSecondary: Colors.white,
       secondaryContainer: Color(0xFF331A33),
@@ -193,17 +196,17 @@ class MeshTheme {
       scrim: Colors.black54,
       inverseSurface: MeshPalette.ink,
       onInverseSurface: MeshPalette.bg,
-      inversePrimary: MeshPalette.blueDim,
+      inversePrimary: MeshPalette.accentDim,
     );
     return _build(scheme, Brightness.dark);
   }
 
   static ThemeData light() {
     const scheme = ColorScheme.light(
-      primary: MeshPalette.lightBlue,
+      primary: MeshPalette.lightAccent,
       onPrimary: Colors.white,
-      primaryContainer: Color(0xFFD3E4F5),
-      onPrimaryContainer: Color(0xFF12354F),
+      primaryContainer: Color(0xFFFDE3C8),
+      onPrimaryContainer: Color(0xFF4A2504),
       secondary: Color(0xFF8C4A8A),
       onSecondary: Colors.white,
       secondaryContainer: Color(0xFFEFD6EE),

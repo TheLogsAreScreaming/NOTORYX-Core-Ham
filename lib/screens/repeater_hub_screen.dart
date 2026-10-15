@@ -124,7 +124,7 @@ class RepeaterHubScreen extends StatelessWidget {
                     StatusChip(
                       label: isAdmin ? 'ADMIN' : 'GUEST',
                       color: isAdmin
-                          ? MeshPalette.blue
+                          ? MeshPalette.accent
                           : scheme.onSurfaceVariant,
                     ),
                   ],
@@ -186,7 +186,7 @@ class RepeaterHubScreen extends StatelessWidget {
               icon: Icons.analytics,
               title: l10n.repeater_status,
               subtitle: l10n.repeater_statusSubtitle,
-              accentColor: MeshPalette.blue,
+              accentColor: MeshPalette.accent,
               onTap: () {
                 HapticFeedback.selectionClick();
                 Navigator.push(
