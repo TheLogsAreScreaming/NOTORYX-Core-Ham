@@ -15,13 +15,16 @@ import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/channel.dart';
 import 'package:meshcore_open/models/channel_message.dart';
 import 'package:meshcore_open/models/contact.dart';
+import 'package:meshcore_open/models/access_control.dart';
 import 'package:meshcore_open/models/message.dart';
+import 'package:meshcore_open/screens/access_control_screen.dart';
 import 'package:meshcore_open/screens/channel_chat_screen.dart';
 import 'package:meshcore_open/screens/channels_screen.dart';
 import 'package:meshcore_open/screens/chat_screen.dart';
 import 'package:meshcore_open/screens/contacts_screen.dart';
 import 'package:meshcore_open/screens/messages_screen.dart';
 import 'package:meshcore_open/screens/settings_screen.dart';
+import 'package:meshcore_open/services/access_control_service.dart';
 import 'package:meshcore_open/services/app_debug_log_service.dart';
 import 'package:meshcore_open/services/app_settings_service.dart';
 import 'package:meshcore_open/services/chat_text_scale_service.dart';
@@ -29,6 +32,7 @@ import 'package:meshcore_open/services/image_codec_service.dart';
 import 'package:meshcore_open/services/map_tile_cache_service.dart';
 import 'package:meshcore_open/services/message_retry_service.dart';
 import 'package:meshcore_open/services/path_history_service.dart';
+import 'package:meshcore_open/services/repeater_command_service.dart';
 import 'package:meshcore_open/services/received_image_store.dart';
 import 'package:meshcore_open/services/storage_service.dart';
 import 'package:meshcore_open/services/translation_service.dart';
@@ -180,6 +184,23 @@ class _PreviewConnector extends MeshCoreConnector {
   }) async {}
 }
 
+class _PreviewAclService extends AccessControlService {
+  _PreviewAclService(MeshCoreConnector c) : super(c, RepeaterCommandService(c));
+
+  static AclEntry _e(Uint8List key, AclRole role) => AclEntry(
+    keyPrefix: Uint8List.fromList(key.sublist(0, 6)),
+    permissions: role.value,
+  );
+
+  @override
+  Future<List<AclEntry>> fetch(Contact node) async => [
+    _e(_key(99), AclRole.admin),
+    _e(_contacts[0].publicKey, AclRole.admin),
+    _e(_contacts[1].publicKey, AclRole.readWrite),
+    _e(_key(77), AclRole.readOnly),
+  ];
+}
+
 Future<void> _loadFonts() async {
   Future<void> load(String family, List<String> paths) async {
     final loader = FontLoader(family);
@@ -257,6 +278,12 @@ void main() {
     'channel_chat': () => ChannelChatScreen(channel: _channels[1]),
     'dm_chat': () => ChatScreen(contact: _contacts[0]),
     'radio': () => const SettingsScreen(asTab: true),
+    'access_control': () => Builder(
+      builder: (context) => AccessControlScreen(
+        node: _contacts[2],
+        service: _PreviewAclService(context.read<MeshCoreConnector>()),
+      ),
+    ),
   };
 
   setUpAll(() async {

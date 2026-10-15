@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/widgets.dart';
 
+import '../models/access_control.dart';
 import '../models/flood_corridor.dart';
 
 // Buffer Reader - sequential binary data reader with pointer tracking
@@ -903,6 +904,42 @@ Uint8List buildSendBinaryReq(Uint8List repeaterPubKey, {Uint8List? payload}) {
   }
   return writer.toBytes();
 }
+
+/// Most access-list entries a repeater or room server fits in one reply:
+/// 7 bytes each in a 184-byte payload after the 4-byte tag. A full reply may
+/// mean the list was cut short.
+const int maxAccessListEntriesPerReply = 25;
+
+/// Payload for REQ_TYPE_GET_ACCESS_LIST (admin only). Bytes 1-2 must be zero
+/// on v1.18 firmware; [nonce] keeps repeated requests from being deduplicated.
+Uint8List buildGetAccessListPayload(Uint8List nonce) {
+  return Uint8List.fromList([reqTypeGetAccessList, 0x00, 0x00, 0x00, ...nonce]);
+}
+
+/// Parses an access-list reply (the data after the response tag): 6-byte
+/// key prefix plus one permission byte per entry. A trailing partial entry
+/// is ignored.
+List<AclEntry> parseAccessListResponse(Uint8List data) {
+  const entrySize = AclEntry.keyPrefixLength + 1;
+  final entries = <AclEntry>[];
+  for (var ofs = 0; ofs + entrySize <= data.length; ofs += entrySize) {
+    entries.add(
+      AclEntry(
+        keyPrefix: Uint8List.fromList(
+          data.sublist(ofs, ofs + AclEntry.keyPrefixLength),
+        ),
+        permissions: data[ofs + AclEntry.keyPrefixLength],
+      ),
+    );
+  }
+  return entries;
+}
+
+/// CLI command that gives [publicKey] the [role] on a repeater or room
+/// server. [AclRole.guest] removes the entry, which also works with a key
+/// prefix; any other role needs the full 32-byte key on v1.18 firmware.
+String buildSetPermCommand(Uint8List publicKey, AclRole role) =>
+    'setperm ${pubKeyToHex(publicKey)} ${role.value}';
 
 Uint8List buildSendControlDataFrame(Uint8List payload) {
   final writer = BufferWriter();

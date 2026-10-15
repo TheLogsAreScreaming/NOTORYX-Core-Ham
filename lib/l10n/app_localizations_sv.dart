@@ -127,6 +127,96 @@ class AppLocalizationsSv extends AppLocalizations {
   String get radioOverview_stats => 'Radio stats';
 
   @override
+  String get accessControl_title => 'Access control';
+
+  @override
+  String get accessControl_hubSubtitle => 'Who can log in without the password';
+
+  @override
+  String get accessControl_explainRepeater =>
+      'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.';
+
+  @override
+  String get accessControl_explainRoom =>
+      'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.';
+
+  @override
+  String get accessControl_roleReadOnly => 'Read only';
+
+  @override
+  String get accessControl_roleReadWrite => 'Read & write';
+
+  @override
+  String get accessControl_roleAdmin => 'Admin';
+
+  @override
+  String get accessControl_you => 'You';
+
+  @override
+  String get accessControl_unknownNode => 'Unknown node';
+
+  @override
+  String get accessControl_add => 'Add';
+
+  @override
+  String get accessControl_addTitle => 'Add to access list';
+
+  @override
+  String get accessControl_pickContact => 'Choose a contact';
+
+  @override
+  String get accessControl_noContacts =>
+      'No contacts to add. Nodes appear here once you have heard their advert.';
+
+  @override
+  String get accessControl_changeRole => 'Change role';
+
+  @override
+  String get accessControl_remove => 'Remove access';
+
+  @override
+  String accessControl_removeConfirm(String name) {
+    return 'Remove $name from the access list? They will need the password to log in.';
+  }
+
+  @override
+  String get accessControl_removeSelfWarning =>
+      'This is you. If you remove yourself you will need the admin password to manage this node again.';
+
+  @override
+  String get accessControl_unknownKeyNote =>
+      'This node isn\'t in your contacts, so its role can only be removed, not changed.';
+
+  @override
+  String get accessControl_empty => 'Nobody is on the access list';
+
+  @override
+  String get accessControl_emptyHint =>
+      'Add people so they can log in without the password.';
+
+  @override
+  String get accessControl_loading => 'Asking the node for its access list…';
+
+  @override
+  String get accessControl_timeout =>
+      'The node didn\'t answer. Check the path and try again.';
+
+  @override
+  String get accessControl_maybeIncomplete =>
+      'The list is full for one reply and may be missing entries.';
+
+  @override
+  String get accessControl_saved => 'Access list updated';
+
+  @override
+  String accessControl_failed(String reply) {
+    return 'The node refused the change: $reply';
+  }
+
+  @override
+  String get accessControl_refresh => 'Refresh';
+
+  @override
   String get common_cancel => 'Avbryt';
 
   @override
