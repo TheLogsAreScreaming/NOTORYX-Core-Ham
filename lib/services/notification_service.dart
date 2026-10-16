@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 import '../helpers/message_url_image_helper.dart';
 import '../helpers/reaction_helper.dart';
@@ -175,6 +176,48 @@ class NotificationService {
     } catch (_) {
       return false;
     }
+  }
+
+  static const _fieldDetails = NotificationDetails(
+    android: AndroidNotificationDetails(
+      'bastion_field',
+      'Bastion Field Alerts',
+      channelDescription: 'Opt-in trip automation alerts',
+      importance: Importance.defaultImportance,
+      priority: Priority.defaultPriority,
+      icon: '@mipmap/ic_launcher',
+    ),
+    iOS: DarwinNotificationDetails(),
+    macOS: DarwinNotificationDetails(),
+  );
+  static const _checkInReminderId = 73002;
+
+  /// Has the OS show a check-in reminder at [at], even if the app is closed
+  /// by then. Replaces any earlier reminder. Android may deliver it a few
+  /// minutes late to save battery.
+  Future<bool> scheduleCheckInReminder(DateTime at, String message) async {
+    if (!await _ensureCanNotify()) return false;
+    try {
+      await _notifications.zonedSchedule(
+        id: _checkInReminderId,
+        title: 'Bastion check-in reminder',
+        body: message,
+        scheduledDate: tz.TZDateTime.from(at.toUtc(), tz.UTC),
+        notificationDetails: _fieldDetails,
+        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      );
+      return true;
+    } catch (e) {
+      debugPrint('Could not schedule check-in reminder: $e');
+      return false;
+    }
+  }
+
+  Future<void> cancelCheckInReminder() async {
+    if (!await _ensureInitialized()) return;
+    try {
+      await _notifications.cancel(id: _checkInReminderId);
+    } catch (_) {}
   }
 
   Future<bool> requestPermissions() async {

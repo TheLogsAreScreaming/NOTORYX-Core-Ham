@@ -190,6 +190,17 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
             ? 'Trip active • ${ops.trip.members.length} contacts'
             : 'Trip stopped. Start it when you are ready.',
       ),
+      if (ops.trip.active && ops.reminderAt != null)
+        Text(
+          'Check-in reminder at ${TimeOfDay.fromDateTime(ops.reminderAt!).format(context)}',
+          key: const ValueKey('reminder-at'),
+        ),
+      if (ops.overdueNames.isNotEmpty)
+        Text(
+          'Quiet too long: ${ops.overdueNames.join(', ')}',
+          key: const ValueKey('overdue-names'),
+          style: const TextStyle(fontWeight: FontWeight.w700),
+        ),
       const SizedBox(height: 12),
       Wrap(
         spacing: 8,
@@ -440,6 +451,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     final selected = ops.trip.members.toSet();
     var location = ops.trip.shareLocation, battery = ops.trip.shareBattery;
     var overdue = ops.trip.overdueMinutes;
+    var reminder = ops.trip.reminderMinutes;
     final channels = ops.connector.channels.where((c) => !c.isEmpty).toList();
     var sosChannel = channels.any((c) => c.index == ops.trip.sosChannel)
         ? ops.trip.sosChannel
@@ -476,7 +488,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                   DropdownButtonFormField<int>(
                     initialValue: overdue,
                     decoration: const InputDecoration(
-                      labelText: 'Activity overdue after',
+                      labelText: 'Alert me when a contact is quiet for',
                     ),
                     items: {15, 30, 60, 120, 240, 1440, overdue}
                         .toList()
@@ -489,6 +501,26 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                         .toList(),
                     onChanged: (v) {
                       if (v != null) setDialogState(() => overdue = v);
+                    },
+                  ),
+                  DropdownButtonFormField<int>(
+                    initialValue: reminder,
+                    decoration: const InputDecoration(
+                      labelText: 'Remind me to check in',
+                      helperText:
+                          'A phone notification, even if Bastion is closed.',
+                    ),
+                    items: [
+                      for (final n in reminderChoices)
+                        DropdownMenuItem(
+                          value: n,
+                          child: Text(
+                            n == 0 ? 'Off' : 'After $n minutes without one',
+                          ),
+                        ),
+                    ],
+                    onChanged: (v) {
+                      if (v != null) setDialogState(() => reminder = v);
                     },
                   ),
                   DropdownButtonFormField<int>(
@@ -537,6 +569,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                         : name.text.trim(),
                     members: selected.toList(),
                     sosChannel: sosChannel,
+                    reminderMinutes: reminder,
                     shareLocation: location,
                     shareBattery: battery,
                     overdueMinutes: overdue,

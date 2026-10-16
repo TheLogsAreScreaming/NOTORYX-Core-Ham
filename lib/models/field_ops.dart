@@ -23,7 +23,8 @@ String tripBrief(TripPlan trip, Map<String, String> contactNames) {
     'Trip: ${trip.name}',
     'Status: ${trip.active ? 'Active' : 'Stopped'}',
     'Contacts: ${roster.isEmpty ? 'None selected' : roster.join(', ')}',
-    'Activity overdue after: ${trip.overdueMinutes} minutes',
+    'Activity overdue after: ${trip.overdueMinutes} minutes (this phone alerts when a contact goes quiet)',
+    'Check-in reminder: ${trip.reminderMinutes == 0 ? 'Off' : 'every ${trip.reminderMinutes} minutes without a check-in'}',
     'Check-in choices: I’m OK • At Camp • Delayed • Heading Back',
     'Radio position in check-ins: ${trip.shareLocation ? 'Included; may be stale' : 'Off'}',
     'Radio battery in check-ins: ${trip.shareBattery ? 'Included' : 'Off'}',
@@ -69,6 +70,9 @@ class TripPlan {
 
   /// Channel index an SOS is also sent to, or -1 for trip contacts only.
   final int sosChannel;
+
+  /// Minutes after the last check-in before a reminder notification, or 0.
+  final int reminderMinutes;
   const TripPlan({
     this.name = 'My trip',
     this.members = const [],
@@ -77,6 +81,7 @@ class TripPlan {
     this.shareBattery = false,
     this.overdueMinutes = 60,
     this.sosChannel = -1,
+    this.reminderMinutes = 0,
   });
   TripPlan copyWith({
     String? name,
@@ -86,6 +91,7 @@ class TripPlan {
     bool? shareBattery,
     int? overdueMinutes,
     int? sosChannel,
+    int? reminderMinutes,
   }) => TripPlan(
     name: name ?? this.name,
     members: members ?? this.members,
@@ -94,6 +100,7 @@ class TripPlan {
     shareBattery: shareBattery ?? this.shareBattery,
     overdueMinutes: overdueMinutes ?? this.overdueMinutes,
     sosChannel: sosChannel ?? this.sosChannel,
+    reminderMinutes: reminderMinutes ?? this.reminderMinutes,
   );
   Map<String, dynamic> toJson() => {
     'name': name,
@@ -103,6 +110,7 @@ class TripPlan {
     'shareBattery': shareBattery,
     'overdueMinutes': overdueMinutes,
     'sosChannel': sosChannel,
+    'reminderMinutes': reminderMinutes,
   };
   factory TripPlan.fromJson(Map<String, dynamic> j) => TripPlan(
     name: (j['name'] as String? ?? 'My trip').trim(),
@@ -120,6 +128,9 @@ class TripPlan {
       1440,
     ),
     sosChannel: (j['sosChannel'] as num?)?.toInt() ?? -1,
+    reminderMinutes: reminderChoices.contains(j['reminderMinutes'])
+        ? j['reminderMinutes'] as int
+        : 0,
   );
 }
 
@@ -429,3 +440,22 @@ class SosState {
     acknowledgedBy: by,
   );
 }
+
+/// Check-in reminder choices in minutes; 0 is off.
+const reminderChoices = [0, 30, 60, 120, 240];
+
+/// Trip contacts with no activity (message or advert) for [overdue]. Time
+/// before the trip started doesn't count, so nobody is overdue at once.
+List<String> overdueMembers({
+  required List<String> members,
+  required Map<String, DateTime> lastHeard,
+  required DateTime tripStarted,
+  required DateTime now,
+  required Duration overdue,
+}) => members.where((key) {
+  final heard = lastHeard[key];
+  final since = heard == null || heard.isBefore(tripStarted)
+      ? tripStarted
+      : heard;
+  return now.difference(since) >= overdue;
+}).toList();

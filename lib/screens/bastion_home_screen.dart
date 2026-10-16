@@ -133,7 +133,7 @@ class BastionHomeScreen extends StatelessWidget {
               icon: Icons.backpack_outlined,
               title: ops.trip.active ? ops.trip.name : 'PLAN YOUR TRIP',
               subtitle:
-                  '${ops.trip.active ? "Trip active" : "Trip stopped"} • ${ops.members.length} contacts • ${c.getTotalUnreadCount()} unread messages',
+                  '${ops.trip.active ? "Trip active" : "Trip stopped"} • ${ops.members.length} contacts • ${c.getTotalUnreadCount()} unread messages${ops.overdueNames.isEmpty ? '' : ' • Quiet too long: ${ops.overdueNames.join(', ')}'}',
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => const BastionFieldOpsScreen(),
