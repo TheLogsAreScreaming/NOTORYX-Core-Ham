@@ -3,6 +3,7 @@ import '../l10n/l10n.dart';
 
 import 'antenna_coverage_screen.dart';
 import 'bastion_about_screen.dart';
+import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
 import 'bastion_field_ops_screen.dart';
 import 'bastion_diagnostics_screen.dart';
@@ -122,6 +123,17 @@ class BastionToolsScreen extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (_) => const BastionFieldStatsScreen(),
                 ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _tool(
+              context,
+              Icons.account_tree_outlined,
+              'PATH GRAPH',
+              'How messages reach you: every path heard, with busiest repeaters',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const PathGraphScreen()),
               ),
             ),
             const SizedBox(height: 12),

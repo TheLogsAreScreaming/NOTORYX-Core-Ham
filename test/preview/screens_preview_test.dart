@@ -18,6 +18,7 @@ import 'package:meshcore_open/models/channel_message.dart';
 import 'package:meshcore_open/models/contact.dart';
 import 'package:meshcore_open/models/access_control.dart';
 import 'package:meshcore_open/models/message.dart';
+import 'package:meshcore_open/screens/path_graph_screen.dart';
 import 'package:meshcore_open/screens/access_control_screen.dart';
 import 'package:meshcore_open/screens/channel_chat_screen.dart';
 import 'package:meshcore_open/screens/channels_screen.dart';
@@ -136,9 +137,40 @@ List<Message> _dmMessages(Contact c) => [
   ),
 ];
 
+/// Sample heard paths for the path graph: repeaters 3 and 4 are known
+/// contacts; 0x5A/0x5B share first byte 0x5A in 1-byte mode.
+List<ChannelMessage> _pathHistory() {
+  final k3 = _key(3), k4 = _key(4);
+  ChannelMessage m(List<int> path, int width, int minutes) => ChannelMessage(
+    senderKey: null,
+    senderName: 'Alex',
+    text: 'hi',
+    timestamp: _now.subtract(Duration(minutes: minutes)),
+    isOutgoing: false,
+    status: ChannelMessageStatus.sent,
+    channelIndex: 1,
+    pathBytes: Uint8List.fromList(path),
+    pathHashWidth: width,
+  );
+  return [
+    for (var i = 0; i < 6; i++)
+      m([0x5a, 0x10, k4[0], k4[1], k3[0], k3[1]], 2, 10 + i),
+    for (var i = 0; i < 4; i++)
+      m([0x5a, 0x20, 0x77, 0x01, k3[0], k3[1]], 2, 30 + i),
+    for (var i = 0; i < 9; i++) m([0x5a, k4[0], k3[0]], 1, 50 + i),
+    for (var i = 0; i < 5; i++) m([0x5a, 0x77, k3[0]], 1, 70 + i),
+    for (var i = 0; i < 7; i++) m([k4[0], k3[0]], 1, 90 + i),
+    for (var i = 0; i < 3; i++) m([0x91, 0x77, k3[0]], 1, 110 + i),
+    for (var i = 0; i < 4; i++) m([k3[0]], 1, 130 + i),
+  ];
+}
+
 class _PreviewConnector extends MeshCoreConnector {
   @override
   bool get isConnected => true;
+  @override
+  Future<List<ChannelMessage>> loadFullChannelHistory(Channel channel) async =>
+      channel.index == 1 ? _pathHistory() : const [];
   @override
   String? get selfName => 'Trail Lead';
   @override
@@ -292,6 +324,7 @@ void main() {
   final screens = <String, Widget Function()>{
     'home': () => const BastionHomeScreen(),
     'tools': () => const BastionToolsScreen(),
+    'path_graph': () => const PathGraphScreen(),
     'contacts': () => const ContactsScreen(hideBackButton: true),
     'channels': () => const ChannelsScreen(),
     'channel_chat': () => ChannelChatScreen(channel: _channels[1]),

@@ -825,6 +825,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                 RouteChip(
                                   isDirect: (message.pathLength ?? -1) >= 0,
                                   hops: displayHopCount,
+                                  hashBytes: displayPathHashWidth,
                                 ),
                                 const SizedBox(width: 4),
                                 Flexible(
