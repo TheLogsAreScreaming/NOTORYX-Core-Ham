@@ -40,6 +40,9 @@ jobs:
           echo "Architectures: $ARCHS"
           case "$ARCHS" in *x86_64*) ;; *) echo "No Intel (x86_64) slice"; exit 1;; esac
           case "$ARCHS" in *arm64*) ;; *) echo "No Apple silicon (arm64) slice"; exit 1;; esac
+          # Impeller scrambles text on some Intel Macs; the app must ship with it off.
+          test "$(/usr/libexec/PlistBuddy -c 'Print :FLTEnableImpeller' "$APP/Contents/Info.plist")" = "false" \
+            || { echo "FLTEnableImpeller must be false"; exit 1; }
           # Every bundled framework and library must also include Intel code.
           find "$APP/Contents/Frameworks" -type f -perm -u+x | while read -r f; do
             if file "$f" | grep -q "Mach-O" && ! lipo -archs "$f" | grep -q x86_64; then
