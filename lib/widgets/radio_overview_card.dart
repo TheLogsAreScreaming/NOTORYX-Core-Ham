@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../connector/meshcore_protocol.dart';
 import '../connector/meshcore_connector.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../l10n/l10n.dart';
@@ -18,7 +19,7 @@ class RadioOverviewCard extends StatelessWidget {
   /// "910.525 MHz · SF7 · BW62.5 · CR5 · 22 dBm", or null before the radio
   /// has reported its settings.
   String? _radioLine() {
-    final freq = connector.currentFreqHz;
+    final freq = radioFrequencyMHz(connector.currentFreqHz);
     final bw = connector.currentBwHz;
     final sf = connector.currentSf;
     final cr = connector.currentCr;
@@ -29,7 +30,7 @@ class RadioOverviewCard extends StatelessWidget {
         .replaceFirst(RegExp(r'0+$'), '')
         .replaceFirst(RegExp(r'\.$'), '');
     return [
-      '${trim(freq / 1e6)}\u00A0MHz',
+      '${trim(freq)}\u00A0MHz',
       if (sf != null) 'SF$sf',
       if (bw != null) 'BW${trim(bw / 1000)}',
       if (cr != null) 'CR$cr',

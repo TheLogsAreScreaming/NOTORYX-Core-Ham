@@ -188,7 +188,7 @@ class _PreviewConnector extends MeshCoreConnector {
   @override
   String? get firmwareVersionString => 'v1.9.1';
   @override
-  int? get currentFreqHz => 910525000;
+  int? get currentFreqHz => 910525; // kHz, as radios report it
   @override
   int? get currentBwHz => 62500;
   @override

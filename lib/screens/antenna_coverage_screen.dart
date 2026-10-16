@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
+import '../connector/meshcore_protocol.dart';
 import '../connector/meshcore_connector.dart';
 import '../models/coverage_sweep.dart';
 import '../services/line_of_sight_service.dart';
@@ -49,12 +50,8 @@ class _AntennaCoverageScreenState extends State<AntennaCoverageScreen> {
     super.dispose();
   }
 
-  double? _frequencyMHz(MeshCoreConnector c) {
-    final f = c.currentFreqHz;
-    if (f == null || f <= 0) return null;
-    // Radios report kHz; tolerate Hz too.
-    return f > 10000000 ? f / 1e6 : f / 1e3;
-  }
+  double? _frequencyMHz(MeshCoreConnector c) =>
+      radioFrequencyMHz(c.currentFreqHz);
 
   Future<void> _analyze() async {
     final origin = _origin;
