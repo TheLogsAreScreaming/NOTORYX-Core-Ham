@@ -338,6 +338,10 @@ class MeshCoreConnector extends ChangeNotifier {
   // Flood scope is a global firmware setting, so scoped channel sends must not
   // overlap or a message may inherit another channel's region.
   Future<void> _channelScopedSendLock = Future.value();
+  // Companion CLI commands run one at a time; replies carry no request id
+  // beyond the optional two-character prefix the firmware echoes back.
+  Future<void> _cliLock = Future.value();
+  int _cliPrefixCounter = 0;
   static const Duration _commandAckTimeout = Duration(seconds: 5);
   Map<String, String>? _currentCustomVars;
 
@@ -509,6 +513,11 @@ class MeshCoreConnector extends ChangeNotifier {
   CompanionRadioStats? get latestRadioStats => _latestRadioStats;
 
   bool get supportsCompanionRadioStats => (_firmwareVerCode ?? 0) >= 8;
+
+  /// True when the connected companion has a text CLI (firmware v14+).
+  bool get supportsCompanionCli =>
+      isConnected &&
+      (_firmwareVerCode ?? 0) >= minFirmwareVerCodeForCompanionCli;
 
   bool get radioStatsAirActivityPulse {
     final sw = _airtimeBumpStopwatch;
@@ -4120,6 +4129,45 @@ class MeshCoreConnector extends ChangeNotifier {
       _startGpsLocationPolling();
     } else if (value == 'gps:0') {
       _stopGpsLocationPolling();
+    }
+  }
+
+  /// Runs [command] on the connected companion's text CLI (firmware v14+)
+  /// and returns the reply text. Throws [TimeoutException] if no reply
+  /// arrives; commands like `reboot` never reply.
+  Future<String> runCliCommand(
+    String command, {
+    Duration timeout = const Duration(seconds: 5),
+  }) async {
+    final previous = _cliLock;
+    final done = Completer<void>();
+    _cliLock = done.future;
+    await previous;
+
+    // "xy|command" makes the firmware echo "xy|" before its reply.
+    final n = _cliPrefixCounter++ % (26 * 26);
+    final prefix =
+        String.fromCharCode(0x61 + n ~/ 26) +
+        String.fromCharCode(0x61 + n % 26);
+    final reply = Completer<String>();
+    final subscription = receivedFrames.listen((frame) {
+      if (frame.isEmpty || frame[0] != respCodeCliReply || reply.isCompleted) {
+        return;
+      }
+      final text = utf8.decode(frame.sublist(1), allowMalformed: true);
+      if (text.startsWith('$prefix|')) {
+        reply.complete(text.substring(3));
+      } else if (text.length < 3 || text[2] != '|') {
+        // Short commands aren't prefixed; commands are serialized anyway.
+        reply.complete(text);
+      }
+    });
+    try {
+      await sendFrame(buildRunCliCommandFrame('$prefix|$command'));
+      return await reply.future.timeout(timeout);
+    } finally {
+      await subscription.cancel();
+      done.complete();
     }
   }
 
