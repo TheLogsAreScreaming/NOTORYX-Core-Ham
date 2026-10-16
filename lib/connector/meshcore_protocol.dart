@@ -231,6 +231,10 @@ const int txtTypePlain = 0;
 const int txtTypeCliData = 1;
 const int txtTypeSigned = 2;
 
+/// A command for another companion radio's CLI. It runs only if that radio
+/// gave us [contactFlagRemoteCli]; the reply comes back as [txtTypeCliData].
+const int txtTypeCliCommand = 3;
+
 // Repeater request types (for server requests)
 const int reqTypeGetStatus = 0x01;
 const int reqTypeKeepAlive = 0x02;
@@ -408,6 +412,9 @@ const int contactFlagFavorite = 0x01;
 const int contactFlagTeleBase = 0x02; // 'base' permission includes battery
 const int contactFlagTeleLoc = 0x04;
 const int contactFlagTeleEnv = 0x08; //access environment sensors
+
+/// Lets this contact run commands on our radio (MeshCore v1.18+ companion).
+const int contactFlagRemoteCli = 0x10;
 const int contactPathLenOffset = 35;
 const int contactPathOffset = 36;
 const int contactNameOffset = 100;
@@ -881,12 +888,13 @@ Uint8List buildSendCliCommandFrame(
   String command, {
   int attempt = 0,
   int? timestampSeconds,
+  int txtType = txtTypeCliData,
 }) {
   final timestamp =
       timestampSeconds ?? (DateTime.now().millisecondsSinceEpoch ~/ 1000);
   final writer = BufferWriter();
   writer.writeByte(cmdSendTxtMsg);
-  writer.writeByte(txtTypeCliData);
+  writer.writeByte(txtType);
   writer.writeByte(attempt.clamp(0, 255));
   writer.writeUInt32LE(timestamp);
   writer.writeBytes(repeaterPubKey.sublist(0, 6));
