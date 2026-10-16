@@ -40,6 +40,10 @@
             </intent-filter>
         </activity>
         <meta-data android:name="flutterEmbedding" android:value="2" />
+        <!-- Delivers scheduled notifications (trip check-in reminders). -->
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
     </application>
     <queries>
         <intent>

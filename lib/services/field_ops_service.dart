@@ -40,6 +40,21 @@ class FieldOpsService extends ChangeNotifier {
   SosState sos = SosState.idle;
   Timer? _sosTimer;
   bool _sosSending = false;
+
+  /// Trip watch: when the trip started, when this phone last checked in, and
+  /// when each trip contact was last heard (message or advert). The watch
+  /// timer, like the SOS timer, keeps running in the background.
+  DateTime? tripStartedAt, lastCheckInAt, reminderAt;
+  final Map<String, DateTime> _lastHeard = {};
+  final Map<String, DateTime> _lastSeen = {};
+  final Set<String> _overdue = {};
+  Timer? _watchTimer;
+
+  /// Names of trip contacts currently overdue.
+  List<String> get overdueNames => members
+      .where((c) => _overdue.contains(c.publicKeyHex))
+      .map((c) => c.name)
+      .toList();
   Future<void> _writes = Future<void>.value();
 
   List<Contact> get members => connector.contacts
@@ -199,6 +214,8 @@ class FieldOpsService extends ChangeNotifier {
           'Field data could not be loaded. Saved data was retained; automations remain off.';
     }
     if (_disposed) return;
+    // Trips never resume after a restart, so neither does their reminder.
+    unawaited(NotificationService().cancelCheckInReminder());
     ready = true;
     _connected = connector.isConnected;
     _primeNodes();
@@ -247,6 +264,7 @@ class FieldOpsService extends ChangeNotifier {
     if (!ready || busy || error != null) return;
     trip = value.copyWith(members: value.members.toSet().take(6).toList());
     await _save();
+    if (trip.active) await _scheduleReminder();
     _notify();
   }
 
@@ -255,14 +273,105 @@ class FieldOpsService extends ChangeNotifier {
       throw StateError('Connect a radio and choose trip contacts first.');
     }
     trip = trip.copyWith(active: true);
+    tripStartedAt = DateTime.now();
+    lastCheckInAt = null;
+    _lastHeard.clear();
+    _overdue.clear();
+    _snapshotSeen();
+    _watchTimer?.cancel();
+    _watchTimer = Timer.periodic(
+      const Duration(seconds: 30),
+      (_) => unawaited(watchTick()),
+    );
     await record('trip', 'Started ${trip.name}');
+    await _scheduleReminder();
     _notify();
   }
 
   Future<void> endTrip() async {
     trip = trip.copyWith(active: false);
     automationEnabled = false;
+    _watchTimer?.cancel();
+    _watchTimer = null;
+    _overdue.clear();
+    reminderAt = null;
+    unawaited(NotificationService().cancelCheckInReminder());
     await record('trip', 'Ended ${trip.name}');
+    _notify();
+  }
+
+  /// Schedules (or clears) the OS reminder for the next check-in.
+  Future<void> _scheduleReminder() async {
+    final minutes = trip.reminderMinutes;
+    if (!trip.active || minutes == 0) {
+      reminderAt = null;
+      await NotificationService().cancelCheckInReminder();
+      return;
+    }
+    final from = lastCheckInAt ?? tripStartedAt ?? DateTime.now();
+    reminderAt = from.add(Duration(minutes: minutes));
+    final ok = await NotificationService().scheduleCheckInReminder(
+      reminderAt!,
+      'No check-in for $minutes minutes on ${trip.name}. Open Bastion to check in.',
+    );
+    if (!ok) {
+      await record(
+        'missed',
+        'Check-in reminder could not be scheduled. Check notification permission.',
+      );
+    }
+  }
+
+  void _snapshotSeen() {
+    for (final c in members) {
+      _lastSeen[c.publicKeyHex] = c.lastSeen;
+    }
+  }
+
+  void _heard(String key, DateTime at) {
+    _lastHeard[key] = at;
+    if (_overdue.remove(key)) {
+      final name = members
+          .where((c) => c.publicKeyHex == key)
+          .map((c) => c.name)
+          .firstOrNull;
+      unawaited(
+        record('overdue', '${name ?? 'A trip contact'} heard from again.'),
+      );
+      _notify();
+    }
+  }
+
+  /// Checks trip contacts for overdue silence. Called by the watch timer.
+  @visibleForTesting
+  Future<void> watchTick([DateTime? at]) async {
+    if (_disposed || !trip.active || tripStartedAt == null) return;
+    final now = at ?? DateTime.now();
+    final late = overdueMembers(
+      members: trip.members,
+      lastHeard: _lastHeard,
+      tripStarted: tripStartedAt!,
+      now: now,
+      overdue: Duration(minutes: trip.overdueMinutes),
+    ).where((k) => !_overdue.contains(k)).toList();
+    if (late.isEmpty) return;
+    for (final key in late) {
+      _overdue.add(key);
+      final name = members
+          .where((c) => c.publicKeyHex == key)
+          .map((c) => c.name)
+          .firstOrNull;
+      final text =
+          '${name ?? 'A trip contact'} not heard from in ${trip.overdueMinutes} minutes. This is not a confirmed emergency.';
+      await record('overdue', text, contactKey: key);
+      final shown = await NotificationService().showFieldAlert(text);
+      if (!shown) {
+        await record(
+          'missed',
+          'Overdue alert could not be shown. Check notification permission.',
+        );
+      }
+    }
     _notify();
   }
 
@@ -397,6 +506,7 @@ class FieldOpsService extends ChangeNotifier {
             continue;
           }
           final message = added.last;
+          lastCheckInAt = now;
           await record(
             'check-in',
             '${contact.name}: $text',
@@ -415,6 +525,7 @@ class FieldOpsService extends ChangeNotifier {
       }
     } finally {
       busy = false;
+      if (lastCheckInAt == now) await _scheduleReminder();
       _notify();
     }
   }
@@ -443,6 +554,9 @@ class FieldOpsService extends ChangeNotifier {
       );
       _notify();
     }
+    if (trip.active && trip.members.contains(message.senderKeyHex)) {
+      _heard(message.senderKeyHex, DateTime.now());
+    }
     if (!trip.active ||
         !foreground ||
         !trip.members.contains(message.senderKeyHex) ||
@@ -457,6 +571,16 @@ class FieldOpsService extends ChangeNotifier {
 
   void _changed() {
     if (_disposed || !ready) return;
+    if (trip.active) {
+      // A new advert from a trip contact counts as activity.
+      for (final c in members) {
+        final seen = _lastSeen[c.publicKeyHex];
+        if (seen != null && c.lastSeen != seen) {
+          _heard(c.publicKeyHex, DateTime.now());
+        }
+        _lastSeen[c.publicKeyHex] = c.lastSeen;
+      }
+    }
     final connected = connector.isConnected;
     if (connected != _connected) {
       _connected = connected;
@@ -653,6 +777,7 @@ class FieldOpsService extends ChangeNotifier {
     _disposed = true;
     _timer?.cancel();
     _sosTimer?.cancel();
+    _watchTimer?.cancel();
     _messages?.cancel();
     connector.removeListener(_changed);
     super.dispose();
