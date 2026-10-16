@@ -1044,11 +1044,59 @@ class MeshCoreConnector extends ChangeNotifier {
     return [...saved, ...memory.where((m) => !seen.contains(id(m)))];
   }
 
+  /// Points the channel message store at [selfKeyHex]'s data and uses
+  /// [settings], as connecting to that radio would.
+  @visibleForTesting
+  void debugUseChannelStore(String selfKeyHex, AppSettingsService settings) {
+    _channelMessageStore.setPublicKeyHex = selfKeyHex;
+    _appSettingsService = settings;
+  }
+
+  /// The auto-delete cutoff from settings, or null to keep everything.
+  DateTime? get _channelRetentionCutoff {
+    final days = _appSettingsService?.settings.channelMessageRetentionDays ?? 0;
+    if (days <= 0) return null;
+    return DateTime.now().subtract(Duration(days: days));
+  }
+
+  /// Deletes channel messages older than the auto-delete setting, saved and
+  /// in memory. Returns how many were deleted.
+  Future<int> pruneOldChannelMessages({int? maxChannels}) async {
+    final cutoff = _channelRetentionCutoff;
+    if (cutoff == null) return 0;
+    var removed = 0;
+    for (var i = 0; i < (maxChannels ?? _maxChannels); i++) {
+      final saved = await _channelMessageStore.loadChannelMessages(i);
+      final kept = keepChannelMessagesSince(saved, cutoff);
+      if (kept.length != saved.length) {
+        removed += saved.length - kept.length;
+        await _channelMessageStore.saveChannelMessages(i, kept);
+      }
+      final memory = _channelMessages[i];
+      if (memory != null) {
+        _channelMessages[i] = keepChannelMessagesSince(memory, cutoff);
+      }
+    }
+    if (removed > 0) {
+      appLogger.info('Auto-deleted $removed old channel messages');
+      notifyListeners();
+    }
+    return removed;
+  }
+
   /// Load persisted channel messages for a specific channel
   Future<void> _loadChannelMessages(int channelIndex) async {
-    final allMessages = await _channelMessageStore.loadChannelMessages(
+    var allMessages = await _channelMessageStore.loadChannelMessages(
       channelIndex,
     );
+    final cutoff = _channelRetentionCutoff;
+    if (cutoff != null) {
+      final kept = keepChannelMessagesSince(allMessages, cutoff);
+      if (kept.length != allMessages.length) {
+        await _channelMessageStore.saveChannelMessages(channelIndex, kept);
+        allMessages = kept;
+      }
+    }
     if (allMessages.isNotEmpty) {
       // Keep only the most recent N messages in memory to bound memory usage
       final windowedMessages = allMessages.length > _messageWindowSize
@@ -7942,3 +7990,9 @@ class BlockedRemoteCommand {
     required this.at,
   });
 }
+
+/// [messages] without those sent before [cutoff], in their original order.
+List<ChannelMessage> keepChannelMessagesSince(
+  List<ChannelMessage> messages,
+  DateTime cutoff,
+) => messages.where((m) => !m.timestamp.isBefore(cutoff)).toList();

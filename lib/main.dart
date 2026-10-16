@@ -246,6 +246,7 @@ const Duration _kImageSweepInterval = Duration(seconds: 5);
 
 class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   Timer? _imageSweepTimer;
+  Timer? _channelPruneTimer;
   late final BotService _botService;
   late final FieldOpsService _fieldOps;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -268,6 +269,11 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     }
     _sensorSubscriptions = SensorSubscriptionService(widget.connector);
     WidgetsBinding.instance.addObserver(this);
+    // Channel message auto-delete runs on load and then hourly.
+    _channelPruneTimer = Timer.periodic(
+      const Duration(hours: 1),
+      (_) => unawaited(widget.connector.pruneOldChannelMessages()),
+    );
     _imageSweepTimer = Timer.periodic(
       _kImageSweepInterval,
       (_) => widget.imageReassembler.evictExpired(),
@@ -281,6 +287,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _fieldOps.dispose();
     _sensorSubscriptions.dispose();
     _imageSweepTimer?.cancel();
+    _channelPruneTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }

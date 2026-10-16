@@ -122,6 +122,9 @@ class AppSettings {
 
   /// Slows the app's routine radio polling and background checks.
   final bool batterySaver;
+
+  /// Channel messages older than this many days are deleted; 0 keeps them.
+  final int channelMessageRetentionDays;
   final bool imageMessagesEnabled;
 
   /// Whether a received image is decoded as soon as it is reassembled.
@@ -225,6 +228,7 @@ class AppSettings {
     this.tcpServerPort = 0,
     this.jumpToOldestUnread = false,
     this.batterySaver = false,
+    this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
     this.imageProcessAutomatically = false,
     this.imageCodecEnabled = false,
@@ -301,6 +305,7 @@ class AppSettings {
       'tcp_server_port': tcpServerPort,
       'jump_to_oldest_unread': jumpToOldestUnread,
       'battery_saver': batterySaver,
+      'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
       'image_process_automatically': imageProcessAutomatically,
       'image_codec_enabled': imageCodecEnabled,
@@ -400,6 +405,12 @@ class AppSettings {
       tcpServerPort: json['tcp_server_port'] as int? ?? 0,
       jumpToOldestUnread: json['jump_to_oldest_unread'] as bool? ?? false,
       batterySaver: json['battery_saver'] as bool? ?? false,
+      channelMessageRetentionDays:
+          channelRetentionChoices.contains(
+            json['channel_message_retention_days'],
+          )
+          ? json['channel_message_retention_days'] as int
+          : 0,
       imageMessagesEnabled: json['image_messages_enabled'] as bool? ?? false,
       imageProcessAutomatically:
           json['image_process_automatically'] as bool? ?? false,
@@ -514,6 +525,7 @@ class AppSettings {
     int? tcpServerPort,
     bool? jumpToOldestUnread,
     bool? batterySaver,
+    int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
     bool? imageProcessAutomatically,
     bool? imageCodecEnabled,
@@ -589,6 +601,8 @@ class AppSettings {
       tcpServerPort: tcpServerPort ?? this.tcpServerPort,
       jumpToOldestUnread: jumpToOldestUnread ?? this.jumpToOldestUnread,
       batterySaver: batterySaver ?? this.batterySaver,
+      channelMessageRetentionDays:
+          channelMessageRetentionDays ?? this.channelMessageRetentionDays,
       imageMessagesEnabled: imageMessagesEnabled ?? this.imageMessagesEnabled,
       imageProcessAutomatically:
           imageProcessAutomatically ?? this.imageProcessAutomatically,
@@ -624,3 +638,6 @@ class AppSettings {
     );
   }
 }
+
+/// Auto-delete choices for channel messages, in days; 0 keeps them forever.
+const channelRetentionChoices = [0, 7, 30, 90, 365];

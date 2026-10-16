@@ -16,6 +16,7 @@ import '../services/app_debug_log_service.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/app_bar.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../widgets/channel_retention_card.dart';
 import '../widgets/mesh_ui.dart';
 import 'app_settings_screen.dart';
 import 'app_debug_log_screen.dart';
@@ -90,6 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 RadioOverviewCard(connector: connector),
                 const BatterySaverCard(),
+                const ChannelRetentionCard(),
 
                 // IDENTITY section
                 MeshCard(

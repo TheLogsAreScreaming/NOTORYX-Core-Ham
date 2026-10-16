@@ -277,6 +277,10 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(tcpServerPort: value));
   }
 
+  Future<void> setChannelMessageRetentionDays(int days) async {
+    await updateSettings(_settings.copyWith(channelMessageRetentionDays: days));
+  }
+
   Future<void> setBatterySaver(bool value) async {
     await updateSettings(_settings.copyWith(batterySaver: value));
   }
