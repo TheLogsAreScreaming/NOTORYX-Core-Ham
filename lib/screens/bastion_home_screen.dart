@@ -15,6 +15,7 @@ import 'bastion_repeater_tools_screen.dart';
 import 'discovery_screen.dart';
 import 'scanner_screen.dart';
 import 'bastion_setup_screen.dart';
+import '../widgets/sos_panel.dart';
 
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
@@ -161,6 +162,8 @@ class BastionHomeScreen extends StatelessWidget {
                   'Review contacts and message before sending. Track acknowledgements in Field Log.',
               style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
             ),
+            const SizedBox(height: 12),
+            const SosPanel(),
             const SizedBox(height: 18),
             if (!c.isConnected)
               _ActionCard(

@@ -66,6 +66,9 @@ class TripPlan {
   final bool shareLocation;
   final bool shareBattery;
   final int overdueMinutes;
+
+  /// Channel index an SOS is also sent to, or -1 for trip contacts only.
+  final int sosChannel;
   const TripPlan({
     this.name = 'My trip',
     this.members = const [],
@@ -73,6 +76,7 @@ class TripPlan {
     this.shareLocation = false,
     this.shareBattery = false,
     this.overdueMinutes = 60,
+    this.sosChannel = -1,
   });
   TripPlan copyWith({
     String? name,
@@ -81,6 +85,7 @@ class TripPlan {
     bool? shareLocation,
     bool? shareBattery,
     int? overdueMinutes,
+    int? sosChannel,
   }) => TripPlan(
     name: name ?? this.name,
     members: members ?? this.members,
@@ -88,6 +93,7 @@ class TripPlan {
     shareLocation: shareLocation ?? this.shareLocation,
     shareBattery: shareBattery ?? this.shareBattery,
     overdueMinutes: overdueMinutes ?? this.overdueMinutes,
+    sosChannel: sosChannel ?? this.sosChannel,
   );
   Map<String, dynamic> toJson() => {
     'name': name,
@@ -96,6 +102,7 @@ class TripPlan {
     'shareLocation': shareLocation,
     'shareBattery': shareBattery,
     'overdueMinutes': overdueMinutes,
+    'sosChannel': sosChannel,
   };
   factory TripPlan.fromJson(Map<String, dynamic> j) => TripPlan(
     name: (j['name'] as String? ?? 'My trip').trim(),
@@ -112,6 +119,7 @@ class TripPlan {
       15,
       1440,
     ),
+    sosChannel: (j['sosChannel'] as num?)?.toInt() ?? -1,
   );
 }
 
@@ -307,3 +315,117 @@ String explainMessageStatus(String status) => switch (status) {
     'No confirmed delivery. Check radio connection, recipient reachability and retry history.',
   _ => 'Delivery state is unavailable. Do not assume this message arrived.',
 };
+
+/// Time between SOS repeats; keeps an emergency from flooding the mesh.
+const sosRepeatInterval = Duration(minutes: 5);
+
+/// SOS transmissions per activation (the first plus repeats): one hour.
+const sosMaxSends = 12;
+
+/// The SOS message. Unlike a check-in it always carries the radio's
+/// position when one is known, because that is what responders need.
+String sosText(
+  DateTime at, {
+  double? latitude,
+  double? longitude,
+  int? battery,
+}) {
+  final stamp = at
+      .toUtc()
+      .toIso8601String()
+      .substring(0, 16)
+      .replaceFirst('T', ' ');
+  var text = '[Bastion SOS] Need help | $stamp UTC';
+  if (usablePosition(latitude, longitude)) {
+    text +=
+        ' | Radio advert ${latitude!.toStringAsFixed(4)},${longitude!.toStringAsFixed(4)} (may be stale)';
+  } else {
+    text += ' | No position';
+  }
+  if (battery != null) text += ' | Battery $battery%';
+  if (utf8.encode(text).length > 140) {
+    throw ArgumentError('SOS exceeds the 140-byte field limit.');
+  }
+  return text;
+}
+
+/// Sent when an SOS is stopped and the sender chose to say they are safe.
+String sosAllClearText(DateTime at) {
+  final stamp = at
+      .toUtc()
+      .toIso8601String()
+      .substring(0, 16)
+      .replaceFirst('T', ' ');
+  return '[Bastion SOS] All clear | $stamp UTC';
+}
+
+/// Why an SOS can't be sent right now, or null when it can.
+String? sosUnavailableReason({
+  required bool ready,
+  required bool storageError,
+  required bool connected,
+  required int selectedContacts,
+  required int availableContacts,
+  required bool hasChannel,
+}) {
+  if (!ready) return 'Loading your trip…';
+  if (storageError) return 'Resolve the Field Log storage error first.';
+  if (!connected) return 'Connect your MeshCore radio to send an SOS.';
+  if (availableContacts == 0 && !hasChannel) {
+    return 'Choose trip contacts or an SOS channel in Plan trip.';
+  }
+  if (availableContacts != selectedContacts && !hasChannel) {
+    return 'Some trip contacts are unavailable. Review your roster.';
+  }
+  return null;
+}
+
+/// The state of an SOS for this app session (never resumed after a restart).
+class SosState {
+  final bool active;
+  final DateTime? startedAt;
+  final DateTime? lastSentAt;
+  final int sends;
+
+  /// Name of the trip contact whose reply acknowledged the SOS.
+  final String? acknowledgedBy;
+
+  const SosState({
+    this.active = false,
+    this.startedAt,
+    this.lastSentAt,
+    this.sends = 0,
+    this.acknowledgedBy,
+  });
+
+  static const idle = SosState();
+
+  /// Whether another transmission is due at [now].
+  bool dueAt(DateTime now) =>
+      active &&
+      acknowledgedBy == null &&
+      sends < sosMaxSends &&
+      (lastSentAt == null || now.difference(lastSentAt!) >= sosRepeatInterval);
+
+  /// When the next repeat goes out, or null when none will.
+  DateTime? get nextSendAt =>
+      !active || acknowledgedBy != null || sends >= sosMaxSends
+      ? null
+      : lastSentAt?.add(sosRepeatInterval);
+
+  SosState sent(DateTime at) => SosState(
+    active: active,
+    startedAt: startedAt,
+    lastSentAt: at,
+    sends: sends + 1,
+    acknowledgedBy: acknowledgedBy,
+  );
+
+  SosState acknowledged(String by) => SosState(
+    active: active,
+    startedAt: startedAt,
+    lastSentAt: lastSentAt,
+    sends: sends,
+    acknowledgedBy: by,
+  );
+}
