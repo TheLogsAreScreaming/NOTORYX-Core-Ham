@@ -1018,6 +1018,32 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// A conversation's whole saved history plus anything newer in memory,
+  /// for search. Doesn't change what the chat screen has loaded.
+  Future<List<Message>> loadFullConversation(Contact contact) async {
+    final saved = await _messageStore.loadMessages(contact.publicKeyHex);
+    return _mergeHistory(saved, getMessages(contact), (m) => m.messageId);
+  }
+
+  /// A channel's whole saved history plus anything newer in memory.
+  Future<List<ChannelMessage>> loadFullChannelHistory(Channel channel) async {
+    final saved = await _channelMessageStore.loadChannelMessages(channel.index);
+    return _mergeHistory(
+      saved,
+      _channelMessages[channel.index] ?? const <ChannelMessage>[],
+      (m) => m.messageId,
+    );
+  }
+
+  static List<T> _mergeHistory<T>(
+    List<T> saved,
+    List<T> memory,
+    String Function(T) id,
+  ) {
+    final seen = saved.map(id).toSet();
+    return [...saved, ...memory.where((m) => !seen.contains(id(m)))];
+  }
+
   /// Load persisted channel messages for a specific channel
   Future<void> _loadChannelMessages(int channelIndex) async {
     final allMessages = await _channelMessageStore.loadChannelMessages(
