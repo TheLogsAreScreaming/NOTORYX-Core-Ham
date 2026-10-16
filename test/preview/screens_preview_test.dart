@@ -2,6 +2,7 @@
 //
 // Skipped unless PREVIEW_OUT is set:
 //   PREVIEW_OUT=/some/dir flutter test test/preview
+// PREVIEW_LOCALE=de (for example) renders a translation.
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -271,6 +272,10 @@ Widget _app(Widget home, ThemeMode mode) {
       theme: MeshTheme.light(),
       darkTheme: MeshTheme.dark(),
       themeMode: mode,
+      locale: switch (Platform.environment['PREVIEW_LOCALE']) {
+        final code? => Locale(code),
+        null => null,
+      },
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: home,

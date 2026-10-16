@@ -5409,4 +5409,1671 @@ class AppLocalizationsSv extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes min $seconds s';
   }
+
+  @override
+  String get bastion_tagline => 'Kommunikation utan infrastruktur.';
+
+  @override
+  String get bastion_nodes => 'NODER';
+
+  @override
+  String get bastion_repeaters => 'REPEATRAR';
+
+  @override
+  String get bastion_active1h => 'AKTIVA 1 H';
+
+  @override
+  String get bastion_mapCoverage => 'KARTA + TÄCKNING';
+
+  @override
+  String get bastion_routeIntelligence => 'RUTTANALYS';
+
+  @override
+  String get bastion_repeaterTools => 'REPEATERVERKTYG';
+
+  @override
+  String get bastion_fieldStats => 'FÄLTSTATISTIK';
+
+  @override
+  String get bastion_fieldOps => 'TUR + FÄLTARBETE';
+
+  @override
+  String get bastion_coverageCapture => 'TÄCKNINGSINSAMLING';
+
+  @override
+  String get bastion_mapAttribution =>
+      'Kartdata © OpenStreetMap-bidragsgivare; kartrutor från vald leverantör';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count observationer',
+      one: '1 observation',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count unika noder',
+      one: '1 unik nod',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hopp',
+      one: '1 hopp',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count minuter',
+      one: '1 minut',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint =>
+      'Håll in i 2 sekunder. Skickar din position till dina turkontakter var 5:e minut tills någon svarar.';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return 'Håll in i 2 sekunder. Skickar din position till dina turkontakter och $channel var 5:e minut tills någon svarar.';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'SOS skickades inte: $error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return 'Bekräftat av $name. Upprepningar stoppade.';
+  }
+
+  @override
+  String get sos_waitingForRadio => 'Väntar på att radion ska skicka…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return 'Skickat $sends av $max gånger. Upprepningar klara; inget svar än.';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return 'Skickat $sends av $max gånger. Nästa kl. $time.';
+  }
+
+  @override
+  String get sos_active => 'SOS AKTIVT';
+
+  @override
+  String get sos_stop => 'STOPPA';
+
+  @override
+  String get sos_imSafe => 'JAG ÄR I SÄKERHET';
+
+  @override
+  String get sos_holdSemantics => 'SOS. Håll in för att skicka.';
+
+  @override
+  String get sos_keepHolding => 'FORTSÄTT HÅLLA…';
+
+  @override
+  String get sos_holdForSos => 'HÅLL FÖR SOS';
+
+  @override
+  String get sos_blockStorage => 'Åtgärda först fältloggens lagringsfel.';
+
+  @override
+  String get sos_blockNotConnected =>
+      'Anslut din MeshCore-radio för att skicka ett SOS.';
+
+  @override
+  String get sos_blockNoTarget =>
+      'Välj turkontakter eller en SOS-kanal under Planera tur.';
+
+  @override
+  String get checkIn_labelOk => 'Jag mår bra';
+
+  @override
+  String get checkIn_labelAtCamp => 'I lägret';
+
+  @override
+  String get checkIn_labelDelayed => 'Försenad';
+
+  @override
+  String get checkIn_labelHeadingBack => 'På väg tillbaka';
+
+  @override
+  String get checkIn_blockLoading => 'Laddar din tur…';
+
+  @override
+  String get checkIn_blockStorage =>
+      'Åtgärda fältloggens lagringsfel innan du skickar.';
+
+  @override
+  String get checkIn_blockBusy => 'En incheckning skickas. Vänta.';
+
+  @override
+  String get checkIn_blockNoContacts => 'Välj turkontakter under Planera tur.';
+
+  @override
+  String get checkIn_blockRosterIncomplete =>
+      'Vissa turkontakter är inte tillgängliga. Granska din lista.';
+
+  @override
+  String get checkIn_blockNotConnected =>
+      'Anslut din MeshCore-radio för att checka in.';
+
+  @override
+  String get checkIn_blockNotActive =>
+      'Starta din tur för att aktivera incheckningar.';
+
+  @override
+  String get checkIn_notSent => 'Inte skickad';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return 'Levererad till $name';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return 'Levererad till alla $count kontakter';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return 'Levererad till $delivered av $total';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return 'Inte levererad: $names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => 'Väntar på resten';
+
+  @override
+  String get checkIn_aContact => 'en kontakt';
+
+  @override
+  String get checkIn_statusPending => 'Väntar';
+
+  @override
+  String get checkIn_statusSent => 'Skickad';
+
+  @override
+  String get checkIn_statusDelivered => 'Levererad';
+
+  @override
+  String get checkIn_statusFailed => 'Misslyckad';
+
+  @override
+  String get checkIn_explainPending =>
+      'Köad lokalt. Detta bekräftar varken radiosändning eller mottagning.';
+
+  @override
+  String get checkIn_explainSent =>
+      'Radion tog emot sändningen. Ingen leveranskvittens har registrerats.';
+
+  @override
+  String get checkIn_explainDelivered =>
+      'Appen registrerade en leveranskvittens. Det bevisar inte att personen har läst den.';
+
+  @override
+  String get checkIn_explainFailed =>
+      'Ingen bekräftad leverans. Kontrollera radioanslutning, mottagarens nåbarhet och historik för nya försök.';
+
+  @override
+  String get checkIn_explainUnknown =>
+      'Leveransstatus är inte tillgänglig. Utgå inte från att meddelandet kom fram.';
+
+  @override
+  String get tripBrief_heading => 'BASTION • MeshCore-turöversikt';
+
+  @override
+  String tripBrief_trip(String name) {
+    return 'Tur: $name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return 'Status: $status';
+  }
+
+  @override
+  String get tripBrief_active => 'Aktiv';
+
+  @override
+  String get tripBrief_stopped => 'Stoppad';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return 'Kontakter: $names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => 'Inga valda';
+
+  @override
+  String get tripBrief_unavailableContact =>
+      'Otillgänglig kontakt (granska listan)';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return 'Aktivitet försenad efter: $minutes minuter (den här telefonen varnar när en kontakt blir tyst)';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return 'Påminnelse om incheckning: $value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return 'var $minutes:e minut utan incheckning';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return 'Incheckningsval: $choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return 'Radioposition i incheckningar: $value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale => 'Ingår; kan vara inaktuell';
+
+  @override
+  String tripBrief_battery(String value) {
+    return 'Radiobatteri i incheckningar: $value';
+  }
+
+  @override
+  String get tripBrief_included => 'Ingår';
+
+  @override
+  String get tripBrief_off => 'Av';
+
+  @override
+  String get tripBrief_review =>
+      'Granska mottagare och meddelande innan du skickar en incheckning.';
+
+  @override
+  String get tripBrief_noProof =>
+      'Köad eller skickad bevisar inte leverans. En kvittens bevisar inte att den lästs.';
+
+  @override
+  String get tripBrief_overdueMeaning =>
+      'Försenad betyder ingen ny kontaktaktivitet; det är inte en bekräftad nödsituation.';
+
+  @override
+  String get tripBrief_automations =>
+      'Fältautomatiseringar körs bara medan appen är aktiv. Kom överens om en separat plan för missad kontakt.';
+
+  @override
+  String get tripBrief_sharesOnly =>
+      'Den här översikten delar bara information; den skickar inget radiomeddelande och startar ingen tur.';
+
+  @override
+  String get fieldOps_title => 'Bastion fältarbete';
+
+  @override
+  String get fieldOps_tabTrip => 'TUR';
+
+  @override
+  String get fieldOps_tabReady => 'REDO';
+
+  @override
+  String get fieldOps_tabLog => 'LOGG';
+
+  @override
+  String get fieldOps_tabAuto => 'AUTO';
+
+  @override
+  String get fieldOps_tabCoverage => 'TÄCKNING';
+
+  @override
+  String get fieldOps_tabConnection => 'ANSLUTNING';
+
+  @override
+  String get fieldOps_diagnostics => 'Diagnostik';
+
+  @override
+  String get fieldOps_storageLoadError =>
+      'Fältdata kunde inte laddas. Sparade data behölls; automatiseringar förblir avstängda.';
+
+  @override
+  String get fieldOps_storageSaveError =>
+      'Fältdata kunde inte sparas. Automatiseringar stoppade; befintliga sparade data behålls.';
+
+  @override
+  String get fieldOps_regionHint =>
+      'Välj ett område och zoomnivåer under Offlinekartor.';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • zoom $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return 'Kartområdet kunde inte verifieras: $error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tur aktiv • $count kontakter',
+      one: 'Tur aktiv • 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped =>
+      'Turen är stoppad. Starta den när du är redo.';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return 'Påminnelse om incheckning kl. $time';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return 'Tyst för länge: $names';
+  }
+
+  @override
+  String get fieldOps_planTrip => 'Planera tur';
+
+  @override
+  String get fieldOps_endTrip => 'Avsluta tur';
+
+  @override
+  String get fieldOps_startTrip => 'Starta tur';
+
+  @override
+  String get fieldOps_tripBrief => 'Turöversikt';
+
+  @override
+  String get fieldOps_connectRadio => 'Anslut radio';
+
+  @override
+  String get fieldOps_previewedCheckIns => 'Incheckningar med förhandsvisning';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      'Välj en status, granska de faktiska mottagarna och meddelandet och skicka sedan. Köad betyder inte levererad.';
+
+  @override
+  String get fieldOps_tripRoster => 'Turlista';
+
+  @override
+  String get fieldOps_rosterEmpty =>
+      'Välj upp till sex kända chattkontakter under Planera tur.';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      'Senast hörd är bevis på tidigare aktivitet. Det fastställer inte nuvarande nåbarhet. Försenad-märken betyder ingen ny kontaktaktivitet, inte en bekräftad nödsituation.';
+
+  @override
+  String get fieldOps_offlineMaps => 'Offlinekartor';
+
+  @override
+  String get fieldOps_checkingTiles => 'Kontrollerar sparade kartrutor…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count cachade kartrutor.',
+      one: '1 cachad kartruta.',
+    );
+    return '$_temp0 Det garanterar inte att hela din rutt täcks.';
+  }
+
+  @override
+  String get fieldOps_downloadAreas => 'Ladda ned / granska offlineområden';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return 'Senaste incheckning, $time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name: $status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => 'Kontakt';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Skicka igen till $count ej levererade',
+      one: 'Skicka igen till 1 ej levererad',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable => 'Vald kontakt är inte tillgänglig';
+
+  @override
+  String get fieldOps_memberUnavailableHint =>
+      'Granska turen innan du skickar.';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return 'Senaste aktivitet för $minutes min sedan';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return 'Senaste aktivitet för $minutes min sedan • försenad';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded =>
+      'Ingen incheckning registrerad i den här loggen.';
+
+  @override
+  String get fieldOps_tripMap => 'Turkarta';
+
+  @override
+  String get fieldOps_tripMapEmpty =>
+      'Inga valda kontakter har annonserat koordinater än.';
+
+  @override
+  String get fieldOps_lastPositions => 'Senast annonserade positioner';
+
+  @override
+  String get fieldOps_positionsCaveat =>
+      'Positioner kan vara inaktuella. Kartan spårar inte telefonens GPS och bevisar inte att medlemmarna är här nu.';
+
+  @override
+  String get fieldOps_briefPreviewTitle => 'Förhandsvisa turöversikt';
+
+  @override
+  String get fieldOps_briefPreviewHint =>
+      'Innehåller tur- och kontaktnamn. Granska innan du delar. Koordinater, nycklar och meddelandehistorik utelämnas.';
+
+  @override
+  String get fieldOps_shareBrief => 'Dela översikt';
+
+  @override
+  String get fieldOps_briefSubject => 'Bastion-turöversikt';
+
+  @override
+  String get fieldOps_tripName => 'Turnamn';
+
+  @override
+  String get fieldOps_defaultTripName => 'Min tur';
+
+  @override
+  String get fieldOps_includePosition =>
+      'Inkludera radions annonserade position';
+
+  @override
+  String get fieldOps_includePositionHint =>
+      'Kan vara inaktuell; delning är av som standard.';
+
+  @override
+  String get fieldOps_includeBattery => 'Inkludera radiobatteri';
+
+  @override
+  String get fieldOps_overdueLabel => 'Varna mig när en kontakt varit tyst i';
+
+  @override
+  String get fieldOps_reminderLabel => 'Påminn mig att checka in';
+
+  @override
+  String get fieldOps_reminderHelper =>
+      'En telefonavisering, även om Bastion är stängt.';
+
+  @override
+  String get fieldOps_reminderOff => 'Av';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Efter $count minuter utan incheckning',
+      one: 'Efter 1 minut utan incheckning',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'SOS går också till kanal';
+
+  @override
+  String get fieldOps_sosChannelNone => 'Ingen';
+
+  @override
+  String get fieldOps_selectContacts =>
+      'Välj upp till sex kända chattkontakter';
+
+  @override
+  String get fieldOps_sendCheckInTitle => 'Skicka incheckning?';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return 'Till: $names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint =>
+      'Använder vanliga direktmeddelanden. Leveransen följs i fältloggen.';
+
+  @override
+  String get fieldOps_send => 'Skicka';
+
+  @override
+  String get fieldOps_beforeYouLeave => 'Innan du ger dig av';
+
+  @override
+  String get fieldOps_radioConnected => 'Radio ansluten';
+
+  @override
+  String get fieldOps_connectHint => 'Anslut via Bluetooth, USB eller TCP.';
+
+  @override
+  String get fieldOps_radioBattery => 'Radiobatteri';
+
+  @override
+  String get fieldOps_batteryUnknown => 'Okänt; kontrollera radion.';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent % • ladda inför din planerade tur.';
+  }
+
+  @override
+  String get fieldOps_tripContacts => 'Turkontakter';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return '$available/$selected tillgängliga. Kontrollera att de har kompatibla radioapparater och kanaler.';
+  }
+
+  @override
+  String get fieldOps_offlineArea => 'Valt offlinekartområde';
+
+  @override
+  String get fieldOps_checkingFiles => 'Kontrollerar lokala filer…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return '$available/$expected kartrutefiler tillgängliga; $missing saknas. Detta är en ögonblicksbild; öppna området offline innan du ger dig av.';
+  }
+
+  @override
+  String get fieldOps_locationChoice => 'Platsdelning';
+
+  @override
+  String get fieldOps_locationOptedIn =>
+      'På: radions annonserade koordinater kan vara inaktuella.';
+
+  @override
+  String get fieldOps_locationOff =>
+      'Delning är av. Dina incheckningar utelämnar koordinater.';
+
+  @override
+  String get fieldOps_automationAvailability =>
+      'Automatiseringens tillgänglighet';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      'Körs bara medan appen är aktiv. Viloläge, stängning eller förlorad radio kan förhindra schemalagda åtgärder.';
+
+  @override
+  String get fieldOps_readinessCaveat =>
+      'Beredskapskontrollerna är vägledande; de bevisar inte radioräckvidd och garanterar inte leverans.';
+
+  @override
+  String get fieldOps_radio => 'Radio';
+
+  @override
+  String get fieldOps_refreshChecks => 'Uppdatera kontroller';
+
+  @override
+  String get fieldOps_searchLog => 'Sök i fältloggen';
+
+  @override
+  String get fieldOps_kindAll => 'Alla';
+
+  @override
+  String get fieldOps_kindCheckIn => 'Incheckning';
+
+  @override
+  String get fieldOps_kindReceived => 'Mottagen';
+
+  @override
+  String get fieldOps_kindNote => 'Anteckning';
+
+  @override
+  String get fieldOps_kindDeadZone => 'Täckningslucka';
+
+  @override
+  String get fieldOps_kindRadio => 'Radio';
+
+  @override
+  String get fieldOps_kindAutomation => 'Automatisering';
+
+  @override
+  String get fieldOps_kindMissed => 'Missad';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => 'Tur';
+
+  @override
+  String get fieldOps_kindOverdue => 'Försenad';
+
+  @override
+  String get fieldOps_addNote => 'Lägg till anteckning';
+
+  @override
+  String get fieldOps_exportJson => 'Exportera JSON';
+
+  @override
+  String get fieldOps_deleteLog => 'Radera logg';
+
+  @override
+  String get fieldOps_logSubject => 'Bastion-fältlogg';
+
+  @override
+  String get fieldOps_logCaveat =>
+      'Lagras lokalt, upp till 1 000 poster. Exporter kan innehålla kontaktnycklar, meddelanden och platser; granska innan du delar.';
+
+  @override
+  String get fieldOps_noEntries => 'Inga matchande poster.';
+
+  @override
+  String get fieldOps_tripUnspecified => 'Tur ej angiven';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status: $explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return 'Registrerad annonserad radioposition $latitude, $longitude (kan vara inaktuell)';
+  }
+
+  @override
+  String get fieldOps_noteTitle => 'Fältobservation';
+
+  @override
+  String get fieldOps_noteLabel => 'Vad observerade du?';
+
+  @override
+  String get fieldOps_deadZone => 'Rapporterad täckningslucka';
+
+  @override
+  String get fieldOps_deadZoneHint =>
+      'Din observation, inte en verifierad täckningsprognos.';
+
+  @override
+  String get fieldOps_savePosition => 'Spara radions annonserade position';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • kan vara inaktuell; inte telefonens GPS';
+  }
+
+  @override
+  String get fieldOps_noPosition => 'Inga användbara annonserade koordinater';
+
+  @override
+  String get fieldOps_deleteLogTitle => 'Radera fältloggen?';
+
+  @override
+  String get fieldOps_deleteLogBody =>
+      'Detta tar bort alla sparade poster på den här telefonen. Turinställningarna behålls.';
+
+  @override
+  String get fieldOps_localAutomations => 'Lokala automatiseringar';
+
+  @override
+  String get fieldOps_enableForTrip => 'Aktivera för den här turen';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      'Avstängda efter varje omstart av appen. Regler körs bara medan appen är aktiv. Missade schemalagda åtgärder visas i fältloggen och spelas aldrig upp i en skur. Automatiska incheckningar är begränsade till en omgång per 10 minuter.';
+
+  @override
+  String get fieldOps_openBotMode => 'Öppna Bastions botläge';
+
+  @override
+  String get fieldOps_ruleEnabled => 'Regel aktiverad';
+
+  @override
+  String get fieldOps_dryRun => 'Testkörning';
+
+  @override
+  String get fieldOps_dryRunHint =>
+      'Registrera åtgärden utan att skicka eller avisera.';
+
+  @override
+  String get fieldOps_then => 'DÅ';
+
+  @override
+  String get fieldOps_actionLog => 'Skriv till fältloggen';
+
+  @override
+  String get fieldOps_actionNotify => 'Visa lokal avisering';
+
+  @override
+  String get fieldOps_actionCheckIn => 'Skicka ”I\'m OK” till turkontakter';
+
+  @override
+  String get fieldOps_batteryThreshold => 'Batteri på eller under';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return 'Nästa: $time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => 'Nästa: inte schemalagd';
+
+  @override
+  String get fieldOps_previewInLog => 'Förhandsvisa i loggen';
+
+  @override
+  String get fieldOps_allowNotifications => 'Tillåt aviseringar';
+
+  @override
+  String get fieldOps_triggerReconnect => 'NÄR radion återansluter';
+
+  @override
+  String get fieldOps_triggerDisconnect => 'NÄR radion kopplas från';
+
+  @override
+  String get fieldOps_triggerLowBattery =>
+      'NÄR radiobatteriet passerar tröskeln';
+
+  @override
+  String get fieldOps_triggerNewNode => 'NÄR en ny nod läggs till';
+
+  @override
+  String get fieldOps_triggerRepeater => 'NÄR en ny repeater läggs till';
+
+  @override
+  String get fieldOps_triggerScheduled =>
+      'NÄR en schemalagd incheckning ska göras';
+
+  @override
+  String get fieldOps_explainConnection => 'Förklara min anslutning';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return 'Läge: $state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat =>
+      'Telefonen har en radioanslutning. Det i sig fastställer ingen rutt till dina mottagare.';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      'Ingen aktiv radioanslutning. Kontrollera Bluetooth-behörigheter, radions ström och räckvidd; USB/TCP finns under Anslut radio.';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return 'Turincheckningar som väntar på bekräftelse: $count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      'Nodernas senast sedda tider och annonserade positioner kan vara inaktuella. Ruttanalysen visar rutter som lärts från observerade försök; den hittar inte på vägar.';
+
+  @override
+  String get fieldOps_routeIntelligence => 'Ruttanalys';
+
+  @override
+  String get fieldOps_coverageIntelligence => 'Täckningsanalys';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      'Jämför registrerade observationer mellan två fältsessioner. Punkterna markerar registrerarens annonserade radiopositioner där noder hördes. De innebär inte sammanhängande täckning. RSSI/SNR-ögonblicksbilder är inte mätningar per nod.';
+
+  @override
+  String get fieldOps_captureSession => 'Samla in en session';
+
+  @override
+  String get fieldOps_refreshHistory => 'Uppdatera historik';
+
+  @override
+  String get fieldOps_noCoverageSessions =>
+      'Inga sparade täckningssessioner än.';
+
+  @override
+  String get fieldOps_sessionA => 'Session A • blågrön';
+
+  @override
+  String get fieldOps_sessionB => 'Session B • bärnsten';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A: $a unika noder • B: $b unika noder';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return 'Gemensamma: $shared • Bara A: $onlyA • Bara B: $onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat =>
+      'Att inte höra en nod under en session fastställer ingen täckningslucka. Förhållanden och observationstid skiljer sig.';
+
+  @override
+  String get fieldOps_heardTooltip =>
+      'Observation av hörd nod; inte bevis på en lyckad länk';
+
+  @override
+  String get fieldOps_noteTooltip =>
+      'Lokal anteckning vid radions annonserade koordinater; kan vara inaktuell.';
+
+  @override
+  String get bastionHome_aboutTooltip => 'Om Bastion';
+
+  @override
+  String get bastionHome_getStarted => 'KOM IGÅNG';
+
+  @override
+  String get bastionHome_getStartedHint =>
+      'Anslut din radio och verifiera ditt första meddelande';
+
+  @override
+  String get bastionHome_planYourTrip => 'PLANERA DIN TUR';
+
+  @override
+  String get bastionHome_tripActive => 'Tur aktiv';
+
+  @override
+  String get bastionHome_tripStopped => 'Tur stoppad';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • $contacts kontakter • $unread olästa meddelanden';
+  }
+
+  @override
+  String get bastionHome_checkInOk => 'CHECKA IN: JAG MÅR BRA';
+
+  @override
+  String get bastionHome_checkInHint =>
+      'Granska kontakter och meddelande innan du skickar. Följ kvittenser i fältloggen.';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return 'Senaste incheckning: $summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => 'ANSLUT RADIO';
+
+  @override
+  String get bastionHome_connectRadioHint =>
+      'MeshCore-anslutningar via Bluetooth, USB och TCP';
+
+  @override
+  String get bastionHome_liveDiagnostics => 'LIVEDIAGNOSTIK';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint =>
+      'Radiohälsa, signal, enhet och ramverktyg';
+
+  @override
+  String get bastionHome_meshDiscovery => 'MESH-UPPTÄCKT';
+
+  @override
+  String get bastionHome_meshDiscoveryHint =>
+      'Hitta noder och granska meshnätet omkring dig';
+
+  @override
+  String get bastionHome_fieldOpsHint =>
+      'Turöversikt, beredskap, fältlogg, automatiseringar och täckningsjämförelse';
+
+  @override
+  String get bastionHome_fieldTools => 'BASTION FÄLTVERKTYG';
+
+  @override
+  String get bastionHome_statusActive => 'AKTIV';
+
+  @override
+  String get bastionHome_consoleOnline => 'FÄLTKONSOL ONLINE';
+
+  @override
+  String get bastionHome_consoleReady => 'FÄLTKONSOL REDO';
+
+  @override
+  String get bastionHome_consoleHint =>
+      'Anslut en radio för att aktivera livepanelen.';
+
+  @override
+  String bastionHome_battery(String value) {
+    return 'BAT $value';
+  }
+
+  @override
+  String get bastionTools_title => 'Fältverktyg';
+
+  @override
+  String get bastionTools_backup => 'KRYPTERAD SÄKERHETSKOPIA';
+
+  @override
+  String get bastionTools_backupHint =>
+      'Spara inställningar, kontakter och nycklar, med valfri chatthistorik';
+
+  @override
+  String get bastionTools_fieldOpsHint =>
+      'Incheckningar, beredskap, fältlogg, automatiseringar och jämförelser';
+
+  @override
+  String get bastionTools_mapHint =>
+      'Livekarta, insamlingssessioner, offlinekartverktyg och regioner';
+
+  @override
+  String get bastionTools_pathAnalysis => 'VÄGANALYS';
+
+  @override
+  String get bastionTools_pathHint => 'Rutter, upptäckt och väganalys';
+
+  @override
+  String get bastionTools_repeaterHint =>
+      'Status, inloggning, telemetri, grannar och administration';
+
+  @override
+  String get bastionTools_statsHint =>
+      'Live-antal i meshnätet och kontaktaktivitet';
+
+  @override
+  String get bastionTools_diagnostics => 'DIAGNOSTIK';
+
+  @override
+  String get bastionTools_diagnosticsHint =>
+      'Radiohälsa, enhetsinformation, råa ramar och export';
+
+  @override
+  String get bastionTools_about => 'OM + TACK';
+
+  @override
+  String get bastionTools_aboutHint =>
+      'Bastion-version, oberoendeförklaring och licenser för öppen källkod';
+
+  @override
+  String get bastionAbout_title => 'Om + Tack';
+
+  @override
+  String get bastionAbout_intro =>
+      'En oberoende community-app för MeshCore-nätverk. Bastion är inte en officiell MeshCore-app, och att communityresurser ingår innebär inget partnerskap eller stöd.';
+
+  @override
+  String get bastionAbout_version => 'VERSION';
+
+  @override
+  String get bastionAbout_openSource => 'GRUND I ÖPPEN KÄLLKOD';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'Bastion bygger på och modifierar öppen källkod från MeshCore Open under MIT-licensen. Arbetet med täckningsflödet krediterar även, där det är tillämpligt, den MIT-licensierade MeshMapper Flutter App.';
+
+  @override
+  String get bastionAbout_community => 'COMMUNITYN FÖRST';
+
+  @override
+  String get bastionAbout_communityBody =>
+      'Resurser från tredjepartsskapare förblir respektive skapares egendom. Inget ägarskap eller partnerskap antyds.';
+
+  @override
+  String get bastionAbout_legalese =>
+      'Bastion • Oberoende MeshCore-följeslagare';
+
+  @override
+  String get bastionAbout_licenses => 'LICENSER FÖR ÖPPEN KÄLLKOD';
+
+  @override
+  String get bastionSetup_title => 'Kom igång med Bastion';
+
+  @override
+  String get bastionSetup_intro =>
+      'Anslut, välj en kontakt och verifiera sedan ett meddelande. Du kan när som helst återvända till guiden från panelen.';
+
+  @override
+  String get bastionSetup_step1 => '1. Anslut din MeshCore-radio';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return 'Ansluten till $device via $transport.';
+  }
+
+  @override
+  String get bastionSetup_noRadio => 'Ingen radio ansluten än.';
+
+  @override
+  String get bastionSetup_step1Power =>
+      'Slå på en MeshCore-följeslagarradio. Öppna Anslut radio och välj Bluetooth, USB eller TCP. Tillåt de behörigheter som begärs för din anslutning.';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      'Om Bluetooth-sökningen är tom, kontrollera att Bluetooth är på och att Bastion har behörigheten Enheter i närheten i Androids appinställningar. Följ eventuella ytterligare behörighetsfrågor från skannern.';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => 'Anslutningsdiagnostik';
+
+  @override
+  String get bastionSetup_step2 => '2. Välj en chattkontakt';
+
+  @override
+  String get bastionSetup_step2Body =>
+      'Be en partner i närheten med kompatibla MeshCore-radioinställningar att annonsera sin nod. Välj en känd chattkontakt nedan; repeatrar hanteras separat.';
+
+  @override
+  String get bastionSetup_noContacts =>
+      'Inga chattkontakter tillgängliga. Anslut din radio och öppna Mesh-upptäckt.';
+
+  @override
+  String get bastionSetup_testRecipient => 'Testmottagare';
+
+  @override
+  String get bastionSetup_meshDiscovery => 'Mesh-upptäckt';
+
+  @override
+  String get bastionSetup_step3 => '3. Skicka och verifiera ett meddelande';
+
+  @override
+  String get bastionSetup_step3Body =>
+      'Öppna chatten, skriv ett kort testmeddelande, granska mottagaren och tryck på Skicka. Kom tillbaka hit för att se det senaste utgående meddelandet som registrerats sedan guiden öppnades.';
+
+  @override
+  String get bastionSetup_openTestChat => 'Öppna testchatt';
+
+  @override
+  String get bastionSetup_connectFirst =>
+      'Anslut din radio för att öppna testchatten.';
+
+  @override
+  String get bastionSetup_chooseRecipient => 'Välj en mottagare först.';
+
+  @override
+  String get bastionSetup_noTestMessage =>
+      'Inget utgående testmeddelande registrerat under den här guidesessionen.';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return 'Senaste meddelande: $status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      'Be din partner bekräfta mottagandet eller svara. En registrerad kvittens bevisar inte att det lästs. Kontrollera anslutning och mottagare igen om ett meddelande misslyckas.';
+
+  @override
+  String get bastionSetup_step4 => '4. Förbered dig för fältet';
+
+  @override
+  String get bastionSetup_step4Body =>
+      'Planera dina turkontakter och granska nedladdade kartområden. Botläge och fältautomatiseringar är av från början; fältautomatiseringar körs bara medan appen är aktiv.';
+
+  @override
+  String get bastionSetup_tripTools => 'Tur- och beredskapsverktyg';
+
+  @override
+  String get bastionDiag_title => 'Diagnostik';
+
+  @override
+  String get bastionDiag_export => 'Exportera diagnostik';
+
+  @override
+  String get bastionDiag_channels => 'KANALER';
+
+  @override
+  String get bastionDiag_radio => 'RADIO';
+
+  @override
+  String get bastionDiag_frequency => 'Frekvens';
+
+  @override
+  String get bastionDiag_bandwidth => 'Bandbredd';
+
+  @override
+  String get bastionDiag_spreadingFactor => 'Spridningsfaktor';
+
+  @override
+  String get bastionDiag_codingRate => 'Kodningsgrad';
+
+  @override
+  String get bastionDiag_txPower => 'Sändeffekt';
+
+  @override
+  String get bastionDiag_noiseFloor => 'Brusgolv';
+
+  @override
+  String get bastionDiag_device => 'ENHET';
+
+  @override
+  String get bastionDiag_name => 'Namn';
+
+  @override
+  String get bastionDiag_manufacturer => 'Tillverkare';
+
+  @override
+  String get bastionDiag_firmware => 'Firmware';
+
+  @override
+  String get bastionDiag_battery => 'Batteri';
+
+  @override
+  String get bastionDiag_transport => 'Anslutning';
+
+  @override
+  String get bastionDiag_deepTools => 'AVANCERADE VERKTYG';
+
+  @override
+  String get bastionDiag_liveStats => 'LIVE RADIOSTATISTIK';
+
+  @override
+  String get bastionDiag_liveStatsHint => 'Brus, RSSI, SNR och sändtid';
+
+  @override
+  String get bastionDiag_frameDebug => 'RAM- / BLE-FELSÖKNING';
+
+  @override
+  String get bastionDiag_frameDebugHint =>
+      'Granska avkodade och råa mottagna ramar';
+
+  @override
+  String get bastionDiag_appLog => 'APPENS FELSÖKNINGSLOGG';
+
+  @override
+  String get bastionDiag_appLogHint => 'Granska appens diagnostikhändelser';
+
+  @override
+  String get bastionDiag_online => 'RADIO ONLINE';
+
+  @override
+  String get bastionDiag_offline => 'RADIO OFFLINE';
+
+  @override
+  String get bastionDiag_offlineHint =>
+      'Anslut en MeshCore-följeslagare för att fylla livediagnostiken.';
+
+  @override
+  String get coverage_title => 'Täckningsinsamling';
+
+  @override
+  String get coverage_leaveBlocked =>
+      'Stoppa och spara sessionen innan du lämnar.';
+
+  @override
+  String get coverage_savedSessions => 'SPARADE SESSIONER';
+
+  @override
+  String get coverage_caveat =>
+      'RSSI/SNR är ögonblicksbilder från radion och kan tillhöra ett annat paket. Positioner är radions annonserade koordinater, inte telefonens GPS eller bevis på täckning. Cyan: registrerare; bärnsten: annonserad nod. Ingen interpolering görs.';
+
+  @override
+  String get coverage_captureActive => 'INSAMLING AKTIV';
+
+  @override
+  String get coverage_fieldSession => 'FÄLTTÄCKNINGSSESSION';
+
+  @override
+  String get coverage_connectedBody =>
+      'Bastion registrerar nyss hörda noder under sessionen, inklusive ruttdata, nod-/platsmetadata och radions närmaste tillgängliga RSSI/SNR-ögonblicksbild.';
+
+  @override
+  String get coverage_disconnectedBody =>
+      'Anslut en radio innan du startar. Täckningsinsamlingen registrerar liveobservationer i meshnätet från den anslutna följeslagarradion.';
+
+  @override
+  String get coverage_observations => 'OBSERVATIONER';
+
+  @override
+  String get coverage_uniqueNodes => 'UNIKA NODER';
+
+  @override
+  String get coverage_elapsed => 'FÖRFLUTEN TID';
+
+  @override
+  String get coverage_radioConnected => 'RADIO ANSLUTEN';
+
+  @override
+  String get coverage_noRadio => 'INGEN RADIO';
+
+  @override
+  String get coverage_gpsReady => 'RADIO-GPS REDO';
+
+  @override
+  String get coverage_noGps => 'INGEN RADIO-GPS';
+
+  @override
+  String get coverage_stopSave => 'STOPPA + SPARA SESSION';
+
+  @override
+  String get coverage_start => 'STARTA TÄCKNINGSSESSION';
+
+  @override
+  String get coverage_exportJson => 'EXPORTERA JSON';
+
+  @override
+  String get coverage_exportCsv => 'EXPORTERA CSV';
+
+  @override
+  String get coverage_liveObservations => 'LIVEOBSERVATIONER';
+
+  @override
+  String get coverage_waiting => 'VÄNTAR PÅ MESHAKTIVITET';
+
+  @override
+  String get coverage_waitingBody =>
+      'Starta en session så visas nyss hörda aktiva noder här. RSSI/SNR-värden är radioögonblicksbilder och kan inte alltid knytas till ett specifikt paket.';
+
+  @override
+  String get coverage_signalNa => 'signal saknas';
+
+  @override
+  String get coverage_snrNa => 'SNR saknas';
+
+  @override
+  String get coverage_gpsUnavailable => 'radio-GPS ej tillgänglig';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return 'Väg: $path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => 'flood';
+
+  @override
+  String get coverage_pathDirect => 'direkt';
+
+  @override
+  String get coverage_shareSubject => 'Bastion-täckningssession';
+
+  @override
+  String get coverage_shareText => 'Bastion-export av täckningsinsamling';
+
+  @override
+  String get coverage_historyTitle => 'Sparade täckningssessioner';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return 'Sessionerna kunde inte laddas: $error';
+  }
+
+  @override
+  String get coverage_deleteTitle => 'Radera sparad session?';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count observationer tas bort från den här enheten.',
+      one: '1 observation tas bort från den här enheten.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return 'Sessionen kunde inte raderas: $error';
+  }
+
+  @override
+  String get coverage_retention =>
+      'De 20 senaste slutförda sessionerna behålls. Dela sessioner du vill spara. Avbrutna insamlingar kan öppnas igen nedan.';
+
+  @override
+  String get coverage_noSessions =>
+      'Inga sparade sessioner än. Stoppa en insamling för att spara den.';
+
+  @override
+  String get coverage_interrupted => 'Avbruten insamling';
+
+  @override
+  String get coverage_saved => 'Sparad';
+
+  @override
+  String get coverage_deleteTooltip => 'Radera session';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return 'Exporten misslyckades: $error';
+  }
+
+  @override
+  String get coverage_sessionTitle => 'Täckningssession';
+
+  @override
+  String get coverage_shareJson => 'Dela JSON';
+
+  @override
+  String get coverage_shareCsv => 'Dela CSV';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi dBm • SNR $snr dB • ögonblicksbildens ålder $age ms';
+  }
+
+  @override
+  String get coverage_unknown => 'okänd';
+
+  @override
+  String coverage_pathValue(String path) {
+    return 'väg $path';
+  }
+
+  @override
+  String get coverage_recorder => 'Registrerare';
+
+  @override
+  String get coverage_noCoordinates =>
+      'Inga användbara koordinater i den här sessionen. Observationerna finns kvar nedan.';
+
+  @override
+  String get coverage_osmAttribution =>
+      '© OpenStreetMap-bidragsgivare • onlinebaskarta';
+
+  @override
+  String get fieldStats_title => 'FÄLTANALYS';
+
+  @override
+  String get fieldStats_snapshot => 'LIVE ÖGONBLICKSBILD AV MESHNÄTET';
+
+  @override
+  String get fieldStats_headline => 'Vad Bastion vet just nu.';
+
+  @override
+  String get fieldStats_body =>
+      'Räknarna beräknas från den anslutna MeshCore-kontakttabellen, platser, vägar och tidsstämplar för senast sedd.';
+
+  @override
+  String get fieldStats_total => 'TOTALT';
+
+  @override
+  String get fieldStats_chatNodes => 'CHATTNODER';
+
+  @override
+  String get fieldStats_rooms => 'RUM';
+
+  @override
+  String get fieldStats_sensors => 'SENSORER';
+
+  @override
+  String get fieldStats_located => 'MED PLATS';
+
+  @override
+  String get fieldStats_favorites => 'FAVORITER';
+
+  @override
+  String get fieldStats_routeSnapshot => 'ÖGONBLICKSBILD AV RUTTER';
+
+  @override
+  String get fieldStats_routed => 'DIRIGERADE';
+
+  @override
+  String get fieldStats_direct => 'DIREKTA';
+
+  @override
+  String get fieldStats_flood => 'FLOOD';
+
+  @override
+  String get fieldStats_pathIntel => 'VÄGANALYS';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'Bastions ruttanalys använder sparade vägförsök, antal hopp, lyckade/misslyckade, restid och ruttviktning för att visa inlärda rutter.';
+
+  @override
+  String get fieldStats_coverageSessions => 'TÄCKNINGSSESSIONER';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      'Täckningsinsamlingen sparar nu fältsessioner, återställer avbrutet arbete, exporterar observationer och kartlägger registrerade täckningspunkter. RSSI/SNR är fortfarande närmaste tillgängliga radioögonblicksbild.';
+
+  @override
+  String get mapHub_title => 'BASTION FÄLTKARTA';
+
+  @override
+  String get mapHub_intro =>
+      'Livekartor, offlineområden, regionala profiler och Bastions fälttäckningssessioner.';
+
+  @override
+  String get mapHub_captureHint => 'Starta och stoppa en fälttäckningssession';
+
+  @override
+  String get mapHub_badgeNew => 'NY';
+
+  @override
+  String get mapHub_liveMap => 'LIVE MESHKARTA';
+
+  @override
+  String get mapHub_liveMapHint =>
+      'Noder, repeatrar, positioner, rutter och kartverktyg';
+
+  @override
+  String get mapHub_badgeLive => 'LIVE';
+
+  @override
+  String get mapHub_offlinePacks => 'OFFLINEKARTPAKET';
+
+  @override
+  String get mapHub_offlinePacksHint =>
+      'Cacha kartrutor för turer och områden utan täckning';
+
+  @override
+  String get mapHub_badgeOffline => 'OFFLINE';
+
+  @override
+  String get mapHub_regions => 'REGIONPROFILER';
+
+  @override
+  String get mapHub_regionsHint =>
+      'Hantera och hämta regionala meshdefinitioner';
+
+  @override
+  String get mapHub_badgeRegions => 'REGIONER';
+
+  @override
+  String get routes_title => 'Ruttanalys';
+
+  @override
+  String get routes_headline => 'Se hur trafiken rör sig genom meshnätet.';
+
+  @override
+  String get routes_body =>
+      'Bastion rangordnar sparade rutter med hjälp av väghistorik som redan lärts från verkliga meddelandeförsök och upptäckter.';
+
+  @override
+  String get routes_routes => 'RUTTER';
+
+  @override
+  String get routes_success => 'LYCKADE';
+
+  @override
+  String get routes_failed => 'MISSLYCKADE';
+
+  @override
+  String get routes_routeMap => 'RUTTKARTA';
+
+  @override
+  String get routes_routeMapHint => 'Granska noder och vägar';
+
+  @override
+  String get routes_discover => 'UPPTÄCK';
+
+  @override
+  String get routes_discoverHint => 'Hitta nya rutter';
+
+  @override
+  String get routes_learned => 'INLÄRDA RUTTER';
+
+  @override
+  String get routes_none => 'INGEN RUTTHISTORIK ÄN';
+
+  @override
+  String get routes_noneBody =>
+      'Använd meshnätet som vanligt eller kör en upptäckt. Bastion visar inlärda rutter här när väghistorik blir tillgänglig.';
+
+  @override
+  String get routes_direct => 'DIREKT';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count rutter',
+      one: '1 rutt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return 'BÄST  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  vikt $weight  •  $success lyckade / $fail misslyckade';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return 'Snabbaste kända: $ms ms';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return 'Flood: $success lyckade / $fail misslyckade';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => 'REPEATERSTYRNING';
+
+  @override
+  String get repeaterTools_headline =>
+      'Hantera infrastrukturen bakom ditt meshnät.';
+
+  @override
+  String get repeaterTools_body =>
+      'Välj en upptäckt repeater för att logga in och öppna dess befintliga MeshCore-verktyg för status, telemetri, grannar, inställningar och CLI.';
+
+  @override
+  String get repeaterTools_discovered => 'UPPTÄCKTA';
+
+  @override
+  String get repeaterTools_tools => 'VERKTYG';
+
+  @override
+  String get repeaterTools_available => 'TILLGÄNGLIGA REPEATRAR';
+
+  @override
+  String get repeaterTools_unnamed => 'Namnlös repeater';
+
+  @override
+  String get repeaterTools_statusTelemetry => 'STATUS + TELEMETRI';
+
+  @override
+  String get repeaterTools_statusTelemetryBody =>
+      'Granska repeaterns hälsa och telemetri med de befintliga hanteringsverktygen.';
+
+  @override
+  String get repeaterTools_neighbors => 'GRANNAR';
+
+  @override
+  String get repeaterTools_neighborsBody =>
+      'Granska närliggande infrastruktur och relationer i meshnätet.';
+
+  @override
+  String get repeaterTools_cli => 'CLI + INSTÄLLNINGAR';
+
+  @override
+  String get repeaterTools_cliBody =>
+      'Inloggade administratörer når repeaterns befintliga CLI och konfigurationsverktyg.';
+
+  @override
+  String get repeaterTools_empty =>
+      'Inga repeatrar upptäckta än. Anslut en radio och upptäck meshnätet först.';
+
+  @override
+  String get notification_fieldAlertTitle => 'Bastion fältvarning';
+
+  @override
+  String get notification_checkInReminderTitle =>
+      'Bastion påminnelse om incheckning';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return 'Ingen incheckning på $minutes minuter på $trip. Öppna Bastion för att checka in.';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return '$name har inte hörts på $minutes minuter. Detta är inte en bekräftad nödsituation.';
+  }
+
+  @override
+  String get notification_aTripContact => 'En turkontakt';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return 'Incheckningen levererades inte till $name. Du kan skicka den igen från Tur.';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return 'SOS bekräftat av $name';
+  }
 }

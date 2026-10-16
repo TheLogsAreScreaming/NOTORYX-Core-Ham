@@ -5438,4 +5438,1691 @@ class AppLocalizationsSl extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes m $seconds s';
   }
+
+  @override
+  String get bastion_tagline => 'Komunikacija brez infrastrukture.';
+
+  @override
+  String get bastion_nodes => 'VOZLIŠČA';
+
+  @override
+  String get bastion_repeaters => 'REPETITORJI';
+
+  @override
+  String get bastion_active1h => 'AKTIVNI 1 H';
+
+  @override
+  String get bastion_mapCoverage => 'ZEMLJEVID + POKRITOST';
+
+  @override
+  String get bastion_routeIntelligence => 'ANALIZA POTI';
+
+  @override
+  String get bastion_repeaterTools => 'ORODJA ZA REPETITOR';
+
+  @override
+  String get bastion_fieldStats => 'TERENSKA STATISTIKA';
+
+  @override
+  String get bastion_fieldOps => 'TURA + TERENSKE OPERACIJE';
+
+  @override
+  String get bastion_coverageCapture => 'ZAJEM POKRITOSTI';
+
+  @override
+  String get bastion_mapAttribution =>
+      'Podatki zemljevida © sodelavci OpenStreetMap; ploščice izbranega ponudnika';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count opažanj',
+      few: '$count opažanja',
+      two: '$count opažanji',
+      one: '$count opažanje',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count edinstvenih vozlišč',
+      few: '$count edinstvena vozlišča',
+      two: '$count edinstveni vozlišči',
+      one: '$count edinstveno vozlišče',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count skokov',
+      few: '$count skoki',
+      two: '$count skoka',
+      one: '$count skok',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count minut',
+      few: '$count minute',
+      two: '$count minuti',
+      one: '$count minuta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint =>
+      'Pridržite 2 sekundi. Vsakih 5 minut pošlje vaš položaj stikom na turi, dokler se nekdo ne odzove.';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return 'Pridržite 2 sekundi. Vsakih 5 minut pošlje vaš položaj stikom na turi in na $channel, dokler se nekdo ne odzove.';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'SOS ni bil poslan: $error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return 'Potrdil(a) $name. Ponavljanje ustavljeno.';
+  }
+
+  @override
+  String get sos_waitingForRadio => 'Čakanje, da radio pošlje…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return 'Poslano $sends od $max-krat. Ponavljanje končano; odgovora še ni.';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return 'Poslano $sends od $max-krat. Naslednje ob $time.';
+  }
+
+  @override
+  String get sos_active => 'SOS AKTIVEN';
+
+  @override
+  String get sos_stop => 'USTAVI';
+
+  @override
+  String get sos_imSafe => 'NA VARNEM SEM';
+
+  @override
+  String get sos_holdSemantics => 'SOS. Pridržite za pošiljanje.';
+
+  @override
+  String get sos_keepHolding => 'DRŽITE NAPREJ…';
+
+  @override
+  String get sos_holdForSos => 'PRIDRŽITE ZA SOS';
+
+  @override
+  String get sos_blockStorage =>
+      'Najprej odpravite napako shranjevanja terenskega dnevnika.';
+
+  @override
+  String get sos_blockNotConnected =>
+      'Povežite radio MeshCore, da pošljete SOS.';
+
+  @override
+  String get sos_blockNoTarget =>
+      'Izberite stike na turi ali kanal SOS v razdelku Načrtuj turo.';
+
+  @override
+  String get checkIn_labelOk => 'V redu sem';
+
+  @override
+  String get checkIn_labelAtCamp => 'V taboru';
+
+  @override
+  String get checkIn_labelDelayed => 'Zamujam';
+
+  @override
+  String get checkIn_labelHeadingBack => 'Vračam se';
+
+  @override
+  String get checkIn_blockLoading => 'Nalaganje ture…';
+
+  @override
+  String get checkIn_blockStorage =>
+      'Pred pošiljanjem odpravite napako shranjevanja terenskega dnevnika.';
+
+  @override
+  String get checkIn_blockBusy => 'Javljanje se pošilja. Počakajte.';
+
+  @override
+  String get checkIn_blockNoContacts =>
+      'Izberite stike na turi v razdelku Načrtuj turo.';
+
+  @override
+  String get checkIn_blockRosterIncomplete =>
+      'Nekateri stiki na turi niso na voljo. Preglejte seznam.';
+
+  @override
+  String get checkIn_blockNotConnected =>
+      'Povežite radio MeshCore, da se javite.';
+
+  @override
+  String get checkIn_blockNotActive => 'Začnite turo, da omogočite javljanja.';
+
+  @override
+  String get checkIn_notSent => 'Ni poslano';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return 'Dostavljeno: $name';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return 'Dostavljeno vsem stikom ($count)';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return 'Dostavljeno $delivered od $total';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return 'Ni dostavljeno: $names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => 'Čakanje na ostale';
+
+  @override
+  String get checkIn_aContact => 'stik';
+
+  @override
+  String get checkIn_statusPending => 'Čaka';
+
+  @override
+  String get checkIn_statusSent => 'Poslano';
+
+  @override
+  String get checkIn_statusDelivered => 'Dostavljeno';
+
+  @override
+  String get checkIn_statusFailed => 'Ni uspelo';
+
+  @override
+  String get checkIn_explainPending =>
+      'Lokalno v čakalni vrsti. To ne potrjuje radijskega oddajanja ali prejema.';
+
+  @override
+  String get checkIn_explainSent =>
+      'Radio je sprejel pošiljanje. Potrdilo o dostavi ni bilo zabeleženo.';
+
+  @override
+  String get checkIn_explainDelivered =>
+      'Aplikacija je zabeležila potrdilo o dostavi. To ne dokazuje, da je oseba sporočilo prebrala.';
+
+  @override
+  String get checkIn_explainFailed =>
+      'Ni potrjene dostave. Preverite radijsko povezavo, dosegljivost prejemnika in zgodovino ponovnih poskusov.';
+
+  @override
+  String get checkIn_explainUnknown =>
+      'Stanje dostave ni na voljo. Ne predpostavljajte, da je sporočilo prispelo.';
+
+  @override
+  String get tripBrief_heading => 'BASTION • Povzetek ture MeshCore';
+
+  @override
+  String tripBrief_trip(String name) {
+    return 'Tura: $name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return 'Stanje: $status';
+  }
+
+  @override
+  String get tripBrief_active => 'Aktivna';
+
+  @override
+  String get tripBrief_stopped => 'Ustavljena';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return 'Stiki: $names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => 'Ni izbranih';
+
+  @override
+  String get tripBrief_unavailableContact =>
+      'Nedosegljiv stik (preglejte seznam)';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return 'Dejavnost zamuja po: $minutes min (ta telefon opozori, ko stik utihne)';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return 'Opomnik za javljanje: $value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return 'vsakih $minutes min brez javljanja';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return 'Možnosti javljanja: $choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return 'Položaj radia v javljanjih: $value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale => 'Vključen; morda zastarel';
+
+  @override
+  String tripBrief_battery(String value) {
+    return 'Baterija radia v javljanjih: $value';
+  }
+
+  @override
+  String get tripBrief_included => 'Vključena';
+
+  @override
+  String get tripBrief_off => 'Izklop.';
+
+  @override
+  String get tripBrief_review =>
+      'Pred pošiljanjem javljanja preglejte prejemnike in sporočilo.';
+
+  @override
+  String get tripBrief_noProof =>
+      'V čakalni vrsti ali poslano ne dokazuje dostave. Potrdilo ne dokazuje, da je bilo prebrano.';
+
+  @override
+  String get tripBrief_overdueMeaning =>
+      'Zamuda pomeni, da ni nedavne dejavnosti stika; to ni potrjena nujna situacija.';
+
+  @override
+  String get tripBrief_automations =>
+      'Terenske avtomatizacije delujejo samo, ko je aplikacija aktivna. Dogovorite se za ločen načrt za primer izgubljenega stika.';
+
+  @override
+  String get tripBrief_sharesOnly =>
+      'Ta povzetek samo deli informacije; ne pošlje radijskega sporočila in ne začne ture.';
+
+  @override
+  String get fieldOps_title => 'Terenske operacije Bastion';
+
+  @override
+  String get fieldOps_tabTrip => 'TURA';
+
+  @override
+  String get fieldOps_tabReady => 'PRIPRAVLJENOST';
+
+  @override
+  String get fieldOps_tabLog => 'DNEVNIK';
+
+  @override
+  String get fieldOps_tabAuto => 'AVTO';
+
+  @override
+  String get fieldOps_tabCoverage => 'POKRITOST';
+
+  @override
+  String get fieldOps_tabConnection => 'POVEZAVA';
+
+  @override
+  String get fieldOps_diagnostics => 'Diagnostika';
+
+  @override
+  String get fieldOps_storageLoadError =>
+      'Terenskih podatkov ni bilo mogoče naložiti. Shranjeni podatki so ohranjeni; avtomatizacije ostajajo izklopljene.';
+
+  @override
+  String get fieldOps_storageSaveError =>
+      'Terenskih podatkov ni bilo mogoče shraniti. Avtomatizacije ustavljene; obstoječi shranjeni podatki so ohranjeni.';
+
+  @override
+  String get fieldOps_regionHint =>
+      'Izberite območje in ravni povečave v razdelku Zemljevidi brez povezave.';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • povečava $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return 'Območja zemljevida ni bilo mogoče preveriti: $error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tura aktivna • $count stikov',
+      few: 'Tura aktivna • $count stiki',
+      two: 'Tura aktivna • $count stika',
+      one: 'Tura aktivna • $count stik',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped =>
+      'Tura je ustavljena. Začnite jo, ko boste pripravljeni.';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return 'Opomnik za javljanje ob $time';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return 'Predolgo tiho: $names';
+  }
+
+  @override
+  String get fieldOps_planTrip => 'Načrtuj turo';
+
+  @override
+  String get fieldOps_endTrip => 'Končaj turo';
+
+  @override
+  String get fieldOps_startTrip => 'Začni turo';
+
+  @override
+  String get fieldOps_tripBrief => 'Povzetek ture';
+
+  @override
+  String get fieldOps_connectRadio => 'Poveži radio';
+
+  @override
+  String get fieldOps_previewedCheckIns => 'Javljanja s predogledom';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      'Izberite stanje, preglejte dejanske prejemnike in sporočilo ter nato pošljite. V čakalni vrsti ne pomeni dostavljeno.';
+
+  @override
+  String get fieldOps_tripRoster => 'Seznam ture';
+
+  @override
+  String get fieldOps_rosterEmpty =>
+      'V razdelku Načrtuj turo izberite do šest znanih stikov za klepet.';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      '»Nazadnje slišan« je dokaz pretekle dejavnosti. Ne potrjuje trenutne dosegljivosti. Oznake zamude pomenijo, da ni nedavne dejavnosti stika, ne pa potrjene nujne situacije.';
+
+  @override
+  String get fieldOps_offlineMaps => 'Zemljevidi brez povezave';
+
+  @override
+  String get fieldOps_checkingTiles => 'Preverjanje shranjenih ploščic…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ploščic v predpomnilniku.',
+      few: '$count ploščice v predpomnilniku.',
+      two: '$count ploščici v predpomnilniku.',
+      one: '$count ploščica v predpomnilniku.',
+    );
+    return '$_temp0 To ne zagotavlja, da je pokrita celotna pot.';
+  }
+
+  @override
+  String get fieldOps_downloadAreas =>
+      'Prenesi / preglej območja brez povezave';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return 'Zadnje javljanje, $time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name: $status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => 'Stik';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Znova pošlji $count nedostavljenim',
+      few: 'Znova pošlji $count nedostavljenim',
+      two: 'Znova pošlji $count nedostavljenima',
+      one: 'Znova pošlji $count nedostavljenemu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable => 'Izbrani stik ni na voljo';
+
+  @override
+  String get fieldOps_memberUnavailableHint =>
+      'Pred pošiljanjem preglejte to turo.';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return 'Zadnja dejavnost pred $minutes min';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return 'Zadnja dejavnost pred $minutes min • zamuja';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded =>
+      'V tem dnevniku ni zabeleženega javljanja.';
+
+  @override
+  String get fieldOps_tripMap => 'Zemljevid ture';
+
+  @override
+  String get fieldOps_tripMapEmpty =>
+      'Nobeden od izbranih stikov še ni oddal koordinat.';
+
+  @override
+  String get fieldOps_lastPositions => 'Nazadnje oddani položaji';
+
+  @override
+  String get fieldOps_positionsCaveat =>
+      'Položaji so morda zastareli. Ta zemljevid ne sledi GPS-u telefona in ne dokazuje, da so člani trenutno tukaj.';
+
+  @override
+  String get fieldOps_briefPreviewTitle => 'Predogled povzetka ture';
+
+  @override
+  String get fieldOps_briefPreviewHint =>
+      'Vsebuje imena ture in stikov. Pred deljenjem preglejte. Koordinate, ključi in zgodovina sporočil so izpuščeni.';
+
+  @override
+  String get fieldOps_shareBrief => 'Deli povzetek';
+
+  @override
+  String get fieldOps_briefSubject => 'Povzetek ture Bastion';
+
+  @override
+  String get fieldOps_tripName => 'Ime ture';
+
+  @override
+  String get fieldOps_defaultTripName => 'Moja tura';
+
+  @override
+  String get fieldOps_includePosition => 'Vključi oddani položaj radia';
+
+  @override
+  String get fieldOps_includePositionHint =>
+      'Morda zastarel; deljenje je privzeto izklopljeno.';
+
+  @override
+  String get fieldOps_includeBattery => 'Vključi baterijo radia';
+
+  @override
+  String get fieldOps_overdueLabel => 'Opozori me, ko je stik tiho dlje kot';
+
+  @override
+  String get fieldOps_reminderLabel => 'Opomni me na javljanje';
+
+  @override
+  String get fieldOps_reminderHelper =>
+      'Obvestilo na telefonu, tudi ko je Bastion zaprt.';
+
+  @override
+  String get fieldOps_reminderOff => 'Izklop.';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Po $count minutah brez javljanja',
+      few: 'Po $count minutah brez javljanja',
+      two: 'Po $count minutah brez javljanja',
+      one: 'Po $count minuti brez javljanja',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'SOS gre tudi na kanal';
+
+  @override
+  String get fieldOps_sosChannelNone => 'Brez';
+
+  @override
+  String get fieldOps_selectContacts =>
+      'Izberite do šest znanih stikov za klepet';
+
+  @override
+  String get fieldOps_sendCheckInTitle => 'Pošljem javljanje?';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return 'Za: $names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint =>
+      'Uporablja običajna neposredna sporočila. Dostava se bo spremljala v terenskem dnevniku.';
+
+  @override
+  String get fieldOps_send => 'Pošlji';
+
+  @override
+  String get fieldOps_beforeYouLeave => 'Pred odhodom';
+
+  @override
+  String get fieldOps_radioConnected => 'Radio povezan';
+
+  @override
+  String get fieldOps_connectHint =>
+      'Povežite se prek Bluetootha, USB ali TCP.';
+
+  @override
+  String get fieldOps_radioBattery => 'Baterija radia';
+
+  @override
+  String get fieldOps_batteryUnknown => 'Neznano; preverite radio.';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent % • napolnite za načrtovano turo.';
+  }
+
+  @override
+  String get fieldOps_tripContacts => 'Stiki na turi';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return 'Na voljo $available/$selected. Preverite, ali imajo združljive radie in kanale.';
+  }
+
+  @override
+  String get fieldOps_offlineArea => 'Izbrano območje zemljevida brez povezave';
+
+  @override
+  String get fieldOps_checkingFiles => 'Preverjanje lokalnih datotek…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return 'Na voljo datotek ploščic: $available/$expected; manjka: $missing. To je posnetek stanja; pred odhodom odprite območje brez povezave.';
+  }
+
+  @override
+  String get fieldOps_locationChoice => 'Deljenje lokacije';
+
+  @override
+  String get fieldOps_locationOptedIn =>
+      'Vklopljeno: koordinate, ki jih odda radio, so morda zastarele.';
+
+  @override
+  String get fieldOps_locationOff =>
+      'Deljenje je izklopljeno. Vaša javljanja ne vsebujejo koordinat.';
+
+  @override
+  String get fieldOps_automationAvailability =>
+      'Razpoložljivost avtomatizacije';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      'Deluje samo, ko je ta aplikacija aktivna. Spanje, zaprtje ali izguba radia lahko preprečijo načrtovana dejanja.';
+
+  @override
+  String get fieldOps_readinessCaveat =>
+      'Preverjanja pripravljenosti so svetovalna; ne dokazujejo dosega radia in ne zagotavljajo dostave sporočil.';
+
+  @override
+  String get fieldOps_radio => 'Radio';
+
+  @override
+  String get fieldOps_refreshChecks => 'Osveži preverjanja';
+
+  @override
+  String get fieldOps_searchLog => 'Iskanje v terenskem dnevniku';
+
+  @override
+  String get fieldOps_kindAll => 'Vse';
+
+  @override
+  String get fieldOps_kindCheckIn => 'Javljanje';
+
+  @override
+  String get fieldOps_kindReceived => 'Prejeto';
+
+  @override
+  String get fieldOps_kindNote => 'Opomba';
+
+  @override
+  String get fieldOps_kindDeadZone => 'Mrtva cona';
+
+  @override
+  String get fieldOps_kindRadio => 'Radio';
+
+  @override
+  String get fieldOps_kindAutomation => 'Avtomatizacija';
+
+  @override
+  String get fieldOps_kindMissed => 'Zamujeno';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => 'Tura';
+
+  @override
+  String get fieldOps_kindOverdue => 'Zamuja';
+
+  @override
+  String get fieldOps_addNote => 'Dodaj opombo';
+
+  @override
+  String get fieldOps_exportJson => 'Izvozi JSON';
+
+  @override
+  String get fieldOps_deleteLog => 'Izbriši dnevnik';
+
+  @override
+  String get fieldOps_logSubject => 'Terenski dnevnik Bastion';
+
+  @override
+  String get fieldOps_logCaveat =>
+      'Shranjeno lokalno, do 1000 vnosov. Izvozi lahko vsebujejo ključe stikov, sporočila in lokacije; pred deljenjem preglejte.';
+
+  @override
+  String get fieldOps_noEntries => 'Ni ustreznih vnosov.';
+
+  @override
+  String get fieldOps_tripUnspecified => 'Tura ni navedena';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status: $explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return 'Zabeležen oddani položaj radia $latitude, $longitude (morda zastarel)';
+  }
+
+  @override
+  String get fieldOps_noteTitle => 'Terensko opažanje';
+
+  @override
+  String get fieldOps_noteLabel => 'Kaj ste opazili?';
+
+  @override
+  String get fieldOps_deadZone => 'Prijavljena mrtva cona';
+
+  @override
+  String get fieldOps_deadZoneHint =>
+      'Vaše opažanje, ne preverjena napoved pokritosti.';
+
+  @override
+  String get fieldOps_savePosition => 'Shrani oddani položaj radia';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • morda zastarel; ni GPS telefona';
+  }
+
+  @override
+  String get fieldOps_noPosition => 'Ni uporabnih oddanih koordinat';
+
+  @override
+  String get fieldOps_deleteLogTitle => 'Izbrišem terenski dnevnik?';
+
+  @override
+  String get fieldOps_deleteLogBody =>
+      'S tem odstranite vse shranjene vnose v tem telefonu. Nastavitve ture ostanejo.';
+
+  @override
+  String get fieldOps_localAutomations => 'Lokalne avtomatizacije';
+
+  @override
+  String get fieldOps_enableForTrip => 'Omogoči za to turo';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      'Po vsakem ponovnem zagonu aplikacije so izklopljene. Pravila delujejo samo, ko je aplikacija aktivna. Zamujena načrtovana dejanja se prikažejo v terenskem dnevniku in se nikoli ne izvedejo naknadno v nizu. Samodejna javljanja so omejena na en paket na 10 minut.';
+
+  @override
+  String get fieldOps_openBotMode => 'Odpri način bota Bastion';
+
+  @override
+  String get fieldOps_ruleEnabled => 'Pravilo omogočeno';
+
+  @override
+  String get fieldOps_dryRun => 'Poskusni zagon';
+
+  @override
+  String get fieldOps_dryRunHint =>
+      'Zabeleži dejanje brez pošiljanja ali obveščanja.';
+
+  @override
+  String get fieldOps_then => 'POTEM';
+
+  @override
+  String get fieldOps_actionLog => 'Zapiši v terenski dnevnik';
+
+  @override
+  String get fieldOps_actionNotify => 'Pokaži lokalno obvestilo';
+
+  @override
+  String get fieldOps_actionCheckIn => 'Pošlji »I\'m OK« stikom na turi';
+
+  @override
+  String get fieldOps_batteryThreshold => 'Baterija na ali pod';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return 'Naslednje: $time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => 'Naslednje: ni načrtovano';
+
+  @override
+  String get fieldOps_previewInLog => 'Predogled v dnevniku';
+
+  @override
+  String get fieldOps_allowNotifications => 'Dovoli obvestila';
+
+  @override
+  String get fieldOps_triggerReconnect => 'KO se radio znova poveže';
+
+  @override
+  String get fieldOps_triggerDisconnect => 'KO se radio prekine';
+
+  @override
+  String get fieldOps_triggerLowBattery => 'KO baterija radia prestopi prag';
+
+  @override
+  String get fieldOps_triggerNewNode => 'KO je dodano novo vozlišče';
+
+  @override
+  String get fieldOps_triggerRepeater => 'KO je dodan nov repetitor';
+
+  @override
+  String get fieldOps_triggerScheduled => 'KO je na vrsti načrtovano javljanje';
+
+  @override
+  String get fieldOps_explainConnection => 'Razloži mojo povezavo';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return 'Stanje: $state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat =>
+      'Telefon ima povezavo z radiem. To samo po sebi ne zagotavlja poti do vaših prejemnikov.';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      'Ni aktivne radijske povezave. Preverite dovoljenja za Bluetooth, napajanje in doseg radia; USB/TCP sta na voljo v razdelku Poveži radio.';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return 'Javljanja ture, ki čakajo na potrditev: $count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      'Časi zadnje zaznave in oddani položaji vozlišč so morda zastareli. Analiza poti prikazuje poti, naučene iz opaženih poskusov; poti si ne izmišljuje.';
+
+  @override
+  String get fieldOps_routeIntelligence => 'Analiza poti';
+
+  @override
+  String get fieldOps_coverageIntelligence => 'Analiza pokritosti';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      'Primerjajte zabeležena opažanja dveh terenskih sej. Pike označujejo oddane položaje radia snemalca, kjer so bila slišana vozlišča. Ne pomenijo neprekinjene pokritosti. Posnetki RSSI/SNR niso meritve za posamezna vozlišča.';
+
+  @override
+  String get fieldOps_captureSession => 'Zajemi sejo';
+
+  @override
+  String get fieldOps_refreshHistory => 'Osveži zgodovino';
+
+  @override
+  String get fieldOps_noCoverageSessions => 'Shranjenih sej pokritosti še ni.';
+
+  @override
+  String get fieldOps_sessionA => 'Seja A • modrozelena';
+
+  @override
+  String get fieldOps_sessionB => 'Seja B • jantarna';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A: edinstvena vozlišča $a • B: edinstvena vozlišča $b';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return 'Skupna: $shared • Samo A: $onlyA • Samo B: $onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat =>
+      'Če vozlišča v eni seji ni slišati, to ne potrjuje mrtve cone. Pogoji in trajanje opazovanja se razlikujejo.';
+
+  @override
+  String get fieldOps_heardTooltip =>
+      'Opažanje slišanega vozlišča; ni dokaz uspešne povezave';
+
+  @override
+  String get fieldOps_noteTooltip =>
+      'Lokalna opomba pri koordinatah, ki jih je oddal radio; morda zastarela.';
+
+  @override
+  String get bastionHome_aboutTooltip => 'O aplikaciji Bastion';
+
+  @override
+  String get bastionHome_getStarted => 'ZAČNITE';
+
+  @override
+  String get bastionHome_getStartedHint =>
+      'Povežite radio in preverite prvo sporočilo';
+
+  @override
+  String get bastionHome_planYourTrip => 'NAČRTUJTE TURO';
+
+  @override
+  String get bastionHome_tripActive => 'Tura aktivna';
+
+  @override
+  String get bastionHome_tripStopped => 'Tura ustavljena';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • stiki: $contacts • neprebrana: $unread';
+  }
+
+  @override
+  String get bastionHome_checkInOk => 'JAVLJANJE: V REDU SEM';
+
+  @override
+  String get bastionHome_checkInHint =>
+      'Pred pošiljanjem preglejte stike in sporočilo. Potrdila spremljajte v terenskem dnevniku.';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return 'Zadnje javljanje: $summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => 'POVEŽI RADIO';
+
+  @override
+  String get bastionHome_connectRadioHint =>
+      'Povezave MeshCore prek Bluetootha, USB in TCP';
+
+  @override
+  String get bastionHome_liveDiagnostics => 'DIAGNOSTIKA V ŽIVO';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint =>
+      'Stanje radia, signal, naprava in orodja za okvirje';
+
+  @override
+  String get bastionHome_meshDiscovery => 'ODKRIVANJE OMREŽJA';
+
+  @override
+  String get bastionHome_meshDiscoveryHint =>
+      'Poiščite vozlišča in raziščite omrežje okoli sebe';
+
+  @override
+  String get bastionHome_fieldOpsHint =>
+      'Povzetek ture, pripravljenost, terenski dnevnik, avtomatizacije in primerjava pokritosti';
+
+  @override
+  String get bastionHome_fieldTools => 'TERENSKA ORODJA BASTION';
+
+  @override
+  String get bastionHome_statusActive => 'AKTIVNO';
+
+  @override
+  String get bastionHome_consoleOnline => 'TERENSKA KONZOLA POVEZANA';
+
+  @override
+  String get bastionHome_consoleReady => 'TERENSKA KONZOLA PRIPRAVLJENA';
+
+  @override
+  String get bastionHome_consoleHint =>
+      'Povežite radio, da vklopite nadzorno ploščo v živo.';
+
+  @override
+  String bastionHome_battery(String value) {
+    return 'BAT $value';
+  }
+
+  @override
+  String get bastionTools_title => 'Terenska orodja';
+
+  @override
+  String get bastionTools_backup => 'ŠIFRIRANA VARNOSTNA KOPIJA';
+
+  @override
+  String get bastionTools_backupHint =>
+      'Shranite nastavitve, stike in ključe, po želji z zgodovino klepetov';
+
+  @override
+  String get bastionTools_fieldOpsHint =>
+      'Javljanja, pripravljenost, terenski dnevnik, avtomatizacije in primerjave';
+
+  @override
+  String get bastionTools_mapHint =>
+      'Zemljevid v živo, seje zajema, orodja za zemljevide brez povezave in regije';
+
+  @override
+  String get bastionTools_pathAnalysis => 'ANALIZA POTI';
+
+  @override
+  String get bastionTools_pathHint => 'Poti, odkrivanje in analiza poti';
+
+  @override
+  String get bastionTools_repeaterHint =>
+      'Stanje, prijava, telemetrija, sosedje in upravljanje';
+
+  @override
+  String get bastionTools_statsHint =>
+      'Števci omrežja v živo in dejavnost stikov';
+
+  @override
+  String get bastionTools_diagnostics => 'DIAGNOSTIKA';
+
+  @override
+  String get bastionTools_diagnosticsHint =>
+      'Stanje radia, podatki o napravi, surovi okvirji in izvoz';
+
+  @override
+  String get bastionTools_about => 'O APLIKACIJI + ZAHVALE';
+
+  @override
+  String get bastionTools_aboutHint =>
+      'Različica Bastion, izjava o neodvisnosti in odprtokodne licence';
+
+  @override
+  String get bastionAbout_title => 'O aplikaciji + Zahvale';
+
+  @override
+  String get bastionAbout_intro =>
+      'Neodvisna skupnostna spremljevalna aplikacija za omrežja MeshCore. Bastion ni uradna aplikacija MeshCore in vključitev virov skupnosti ne pomeni partnerstva ali podpore.';
+
+  @override
+  String get bastionAbout_version => 'RAZLIČICA';
+
+  @override
+  String get bastionAbout_openSource => 'ODPRTOKODNA OSNOVA';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'Bastion temelji na odprti kodi MeshCore Open z licenco MIT in jo spreminja. Delo na poteku pokritosti priznava tudi, kjer je primerno, aplikacijo MeshMapper Flutter App z licenco MIT.';
+
+  @override
+  String get bastionAbout_community => 'SKUPNOST NA PRVEM MESTU';
+
+  @override
+  String get bastionAbout_communityBody =>
+      'Viri tretjih ustvarjalcev ostajajo last njihovih ustvarjalcev. Lastništvo ali partnerstvo ni implicirano.';
+
+  @override
+  String get bastionAbout_legalese =>
+      'Bastion • Neodvisni spremljevalec MeshCore';
+
+  @override
+  String get bastionAbout_licenses => 'ODPRTOKODNE LICENCE';
+
+  @override
+  String get bastionSetup_title => 'Začetek z aplikacijo Bastion';
+
+  @override
+  String get bastionSetup_intro =>
+      'Povežite se, izberite stik in nato preverite sporočilo. K temu vodniku se lahko kadar koli vrnete z nadzorne plošče.';
+
+  @override
+  String get bastionSetup_step1 => '1. Povežite radio MeshCore';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return 'Povezano z $device prek $transport.';
+  }
+
+  @override
+  String get bastionSetup_noRadio => 'Radio še ni povezan.';
+
+  @override
+  String get bastionSetup_step1Power =>
+      'Vklopite spremljevalni radio MeshCore. Odprite Poveži radio in izberite Bluetooth, USB ali TCP. Dovolite dovoljenja, zahtevana za izbrano povezavo.';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      'Če je iskanje Bluetooth prazno, preverite, ali je Bluetooth vklopljen in ali ima Bastion dovoljenje Naprave v bližini v nastavitvah aplikacij Android. Sledite morebitnim dodatnim zahtevam za dovoljenja, ki jih prikaže iskalnik.';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => 'Diagnostika povezave';
+
+  @override
+  String get bastionSetup_step2 => '2. Izberite stik za klepet';
+
+  @override
+  String get bastionSetup_step2Body =>
+      'Prosite bližnjega partnerja z združljivimi nastavitvami radia MeshCore, naj oglasi svoje vozlišče. Spodaj izberite znan stik za klepet; repetitorji se upravljajo ločeno.';
+
+  @override
+  String get bastionSetup_noContacts =>
+      'Ni razpoložljivih stikov za klepet. Povežite radio in odprite Odkrivanje omrežja.';
+
+  @override
+  String get bastionSetup_testRecipient => 'Testni prejemnik';
+
+  @override
+  String get bastionSetup_meshDiscovery => 'Odkrivanje omrežja';
+
+  @override
+  String get bastionSetup_step3 => '3. Pošljite in preverite sporočilo';
+
+  @override
+  String get bastionSetup_step3Body =>
+      'Odprite klepet, napišite kratko testno sporočilo, preglejte prejemnika in tapnite Pošlji. Vrnite se sem, da vidite zadnje odhodno sporočilo, zabeleženo od odprtja vodnika.';
+
+  @override
+  String get bastionSetup_openTestChat => 'Odpri testni klepet';
+
+  @override
+  String get bastionSetup_connectFirst =>
+      'Povežite radio, da odprete testni klepet.';
+
+  @override
+  String get bastionSetup_chooseRecipient => 'Najprej izberite prejemnika.';
+
+  @override
+  String get bastionSetup_noTestMessage =>
+      'V tej seji vodnika ni zabeleženega odhodnega testnega sporočila.';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return 'Zadnje sporočilo: $status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      'Prosite partnerja, naj potrdi prejem ali odgovori. Zabeleženo potrdilo ne dokazuje, da je sporočilo prebral. Če sporočilo ne uspe, znova preverite povezavo in prejemnika.';
+
+  @override
+  String get bastionSetup_step4 => '4. Pripravite se na teren';
+
+  @override
+  String get bastionSetup_step4Body =>
+      'Načrtujte stike na turi in preglejte prenesena območja zemljevidov. Način bota in terenske avtomatizacije so na začetku izklopljeni; terenske avtomatizacije delujejo samo, ko je aplikacija aktivna.';
+
+  @override
+  String get bastionSetup_tripTools => 'Orodja za turo in pripravljenost';
+
+  @override
+  String get bastionDiag_title => 'Diagnostika';
+
+  @override
+  String get bastionDiag_export => 'Izvozi diagnostiko';
+
+  @override
+  String get bastionDiag_channels => 'KANALI';
+
+  @override
+  String get bastionDiag_radio => 'RADIO';
+
+  @override
+  String get bastionDiag_frequency => 'Frekvenca';
+
+  @override
+  String get bastionDiag_bandwidth => 'Pasovna širina';
+
+  @override
+  String get bastionDiag_spreadingFactor => 'Faktor razširjanja';
+
+  @override
+  String get bastionDiag_codingRate => 'Kodno razmerje';
+
+  @override
+  String get bastionDiag_txPower => 'Oddajna moč';
+
+  @override
+  String get bastionDiag_noiseFloor => 'Raven šuma';
+
+  @override
+  String get bastionDiag_device => 'NAPRAVA';
+
+  @override
+  String get bastionDiag_name => 'Ime';
+
+  @override
+  String get bastionDiag_manufacturer => 'Proizvajalec';
+
+  @override
+  String get bastionDiag_firmware => 'Vdelana programska oprema';
+
+  @override
+  String get bastionDiag_battery => 'Baterija';
+
+  @override
+  String get bastionDiag_transport => 'Povezava';
+
+  @override
+  String get bastionDiag_deepTools => 'NAPREDNA ORODJA';
+
+  @override
+  String get bastionDiag_liveStats => 'STATISTIKA RADIA V ŽIVO';
+
+  @override
+  String get bastionDiag_liveStatsHint => 'Šum, RSSI, SNR in čas oddajanja';
+
+  @override
+  String get bastionDiag_frameDebug => 'RAZHROŠČEVANJE OKVIRJEV / BLE';
+
+  @override
+  String get bastionDiag_frameDebugHint =>
+      'Raziščite dekodirane in surove prejete okvirje';
+
+  @override
+  String get bastionDiag_appLog => 'DNEVNIK RAZHROŠČEVANJA APLIKACIJE';
+
+  @override
+  String get bastionDiag_appLogHint =>
+      'Preglejte diagnostične dogodke aplikacije';
+
+  @override
+  String get bastionDiag_online => 'RADIO POVEZAN';
+
+  @override
+  String get bastionDiag_offline => 'RADIO NI POVEZAN';
+
+  @override
+  String get bastionDiag_offlineHint =>
+      'Povežite spremljevalca MeshCore, da napolnite diagnostiko v živo.';
+
+  @override
+  String get coverage_title => 'Zajem pokritosti';
+
+  @override
+  String get coverage_leaveBlocked => 'Pred odhodom ustavite in shranite sejo.';
+
+  @override
+  String get coverage_savedSessions => 'SHRANJENE SEJE';
+
+  @override
+  String get coverage_caveat =>
+      'RSSI/SNR so posnetki radia in morda pripadajo drugemu paketu. Položaji so koordinate, ki jih je oddal radio, ne GPS telefona ali dokaz pokritosti. Cian: snemalec; jantarna: oddano vozlišče. Interpolacija se ne izvaja.';
+
+  @override
+  String get coverage_captureActive => 'ZAJEM AKTIVEN';
+
+  @override
+  String get coverage_fieldSession => 'TERENSKA SEJA POKRITOSTI';
+
+  @override
+  String get coverage_connectedBody =>
+      'Bastion med to sejo beleži na novo slišana vozlišča, vključno s podatki o poti, metapodatki vozlišča/lokacije in najbližjim razpoložljivim posnetkom RSSI/SNR radia.';
+
+  @override
+  String get coverage_disconnectedBody =>
+      'Pred začetkom povežite radio. Zajem pokritosti beleži opažanja omrežja v živo iz povezanega spremljevalnega radia.';
+
+  @override
+  String get coverage_observations => 'OPAŽANJA';
+
+  @override
+  String get coverage_uniqueNodes => 'EDINSTVENA VOZLIŠČA';
+
+  @override
+  String get coverage_elapsed => 'PRETEKLO';
+
+  @override
+  String get coverage_radioConnected => 'RADIO POVEZAN';
+
+  @override
+  String get coverage_noRadio => 'NI RADIA';
+
+  @override
+  String get coverage_gpsReady => 'GPS RADIA PRIPRAVLJEN';
+
+  @override
+  String get coverage_noGps => 'NI GPS RADIA';
+
+  @override
+  String get coverage_stopSave => 'USTAVI + SHRANI SEJO';
+
+  @override
+  String get coverage_start => 'ZAČNI SEJO POKRITOSTI';
+
+  @override
+  String get coverage_exportJson => 'IZVOZI JSON';
+
+  @override
+  String get coverage_exportCsv => 'IZVOZI CSV';
+
+  @override
+  String get coverage_liveObservations => 'OPAŽANJA V ŽIVO';
+
+  @override
+  String get coverage_waiting => 'ČAKANJE NA DEJAVNOST OMREŽJA';
+
+  @override
+  String get coverage_waitingBody =>
+      'Začnite sejo in na novo slišana aktivna vozlišča se bodo prikazala tukaj. Vrednosti RSSI/SNR so posnetki radia in jih ni vedno mogoče nedvoumno pripisati določenemu paketu.';
+
+  @override
+  String get coverage_signalNa => 'signal n/a';
+
+  @override
+  String get coverage_snrNa => 'SNR n/a';
+
+  @override
+  String get coverage_gpsUnavailable => 'GPS radia ni na voljo';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return 'Pot: $path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => 'flood';
+
+  @override
+  String get coverage_pathDirect => 'neposredno';
+
+  @override
+  String get coverage_shareSubject => 'Seja pokritosti Bastion';
+
+  @override
+  String get coverage_shareText => 'Izvoz zajema pokritosti Bastion';
+
+  @override
+  String get coverage_historyTitle => 'Shranjene seje pokritosti';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return 'Sej ni bilo mogoče naložiti: $error';
+  }
+
+  @override
+  String get coverage_deleteTitle => 'Izbrišem shranjeno sejo?';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count opažanj bo odstranjenih s te naprave.',
+      few: '$count opažanja bodo odstranjena s te naprave.',
+      two: '$count opažanji bosta odstranjeni s te naprave.',
+      one: '$count opažanje bo odstranjeno s te naprave.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return 'Seje ni bilo mogoče izbrisati: $error';
+  }
+
+  @override
+  String get coverage_retention =>
+      'Ohrani se 20 najnovejših dokončanih sej. Delite seje, ki jih želite obdržati. Prekinjene zajeme lahko znova odprete spodaj.';
+
+  @override
+  String get coverage_noSessions =>
+      'Shranjenih sej še ni. Ustavite zajem, da ga shranite.';
+
+  @override
+  String get coverage_interrupted => 'Prekinjen zajem';
+
+  @override
+  String get coverage_saved => 'Shranjeno';
+
+  @override
+  String get coverage_deleteTooltip => 'Izbriši sejo';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return 'Izvoz ni uspel: $error';
+  }
+
+  @override
+  String get coverage_sessionTitle => 'Seja pokritosti';
+
+  @override
+  String get coverage_shareJson => 'Deli JSON';
+
+  @override
+  String get coverage_shareCsv => 'Deli CSV';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi dBm • SNR $snr dB • starost posnetka $age ms';
+  }
+
+  @override
+  String get coverage_unknown => 'neznano';
+
+  @override
+  String coverage_pathValue(String path) {
+    return 'pot $path';
+  }
+
+  @override
+  String get coverage_recorder => 'Snemalec';
+
+  @override
+  String get coverage_noCoordinates =>
+      'V tej seji ni uporabnih koordinat. Opažanja ostajajo na voljo spodaj.';
+
+  @override
+  String get coverage_osmAttribution =>
+      '© sodelavci OpenStreetMap • spletni osnovni zemljevid';
+
+  @override
+  String get fieldStats_title => 'TERENSKA ANALIZA';
+
+  @override
+  String get fieldStats_snapshot => 'POSNETEK OMREŽJA V ŽIVO';
+
+  @override
+  String get fieldStats_headline => 'Kaj Bastion ve ta trenutek.';
+
+  @override
+  String get fieldStats_body =>
+      'Ti števci so izračunani iz tabele stikov povezanega MeshCore, lokacij, poti in časov zadnje zaznave.';
+
+  @override
+  String get fieldStats_total => 'SKUPAJ';
+
+  @override
+  String get fieldStats_chatNodes => 'VOZLIŠČA ZA KLEPET';
+
+  @override
+  String get fieldStats_rooms => 'SOBE';
+
+  @override
+  String get fieldStats_sensors => 'SENZORJI';
+
+  @override
+  String get fieldStats_located => 'Z LOKACIJO';
+
+  @override
+  String get fieldStats_favorites => 'PRILJUBLJENI';
+
+  @override
+  String get fieldStats_routeSnapshot => 'POSNETEK POTI';
+
+  @override
+  String get fieldStats_routed => 'S POTJO';
+
+  @override
+  String get fieldStats_direct => 'NEPOSREDNO';
+
+  @override
+  String get fieldStats_flood => 'FLOOD';
+
+  @override
+  String get fieldStats_pathIntel => 'ANALIZA POTI';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'Analiza poti v Bastion uporablja shranjene poskuse poti, število skokov, uspehe/neuspehe, čas potovanja in uteži poti za prikaz naučenih poti.';
+
+  @override
+  String get fieldStats_coverageSessions => 'SEJE POKRITOSTI';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      'Zajem pokritosti zdaj shranjuje terenske seje, obnovi prekinjeno delo, izvaža opažanja in na zemljevidu prikaže zabeležene točke pokritosti. RSSI/SNR ostajata najbližji razpoložljivi posnetek radia.';
+
+  @override
+  String get mapHub_title => 'TERENSKI ZEMLJEVID BASTION';
+
+  @override
+  String get mapHub_intro =>
+      'Zemljevidi v živo, območja brez povezave, regionalni profili in terenske seje pokritosti Bastion.';
+
+  @override
+  String get mapHub_captureHint =>
+      'Začnite in ustavite terensko sejo pokritosti';
+
+  @override
+  String get mapHub_badgeNew => 'NOVO';
+
+  @override
+  String get mapHub_liveMap => 'ZEMLJEVID OMREŽJA V ŽIVO';
+
+  @override
+  String get mapHub_liveMapHint =>
+      'Vozlišča, repetitorji, položaji, poti in orodja zemljevida';
+
+  @override
+  String get mapHub_badgeLive => 'V ŽIVO';
+
+  @override
+  String get mapHub_offlinePacks => 'PAKETI ZEMLJEVIDOV BREZ POVEZAVE';
+
+  @override
+  String get mapHub_offlinePacksHint =>
+      'Predpomnite ploščice zemljevida za ture in območja brez signala';
+
+  @override
+  String get mapHub_badgeOffline => 'BREZ POVEZAVE';
+
+  @override
+  String get mapHub_regions => 'PROFILI REGIJ';
+
+  @override
+  String get mapHub_regionsHint =>
+      'Upravljajte in pridobite regionalne definicije omrežja';
+
+  @override
+  String get mapHub_badgeRegions => 'REGIJE';
+
+  @override
+  String get routes_title => 'Analiza poti';
+
+  @override
+  String get routes_headline => 'Poglejte, kako promet potuje skozi omrežje.';
+
+  @override
+  String get routes_body =>
+      'Bastion razvršča shranjene poti z zgodovino poti, ki se je že naučil iz resničnih poskusov sporočil in odkrivanj.';
+
+  @override
+  String get routes_routes => 'POTI';
+
+  @override
+  String get routes_success => 'USPEHI';
+
+  @override
+  String get routes_failed => 'NEUSPEHI';
+
+  @override
+  String get routes_routeMap => 'ZEMLJEVID POTI';
+
+  @override
+  String get routes_routeMapHint => 'Raziščite vozlišča in poti';
+
+  @override
+  String get routes_discover => 'ODKRIJ';
+
+  @override
+  String get routes_discoverHint => 'Poiščite nove poti';
+
+  @override
+  String get routes_learned => 'NAUČENE POTI';
+
+  @override
+  String get routes_none => 'ZGODOVINE POTI ŠE NI';
+
+  @override
+  String get routes_noneBody =>
+      'Uporabljajte omrežje kot običajno ali zaženite odkrivanje. Bastion bo tukaj prikazal naučene poti, ko bo na voljo zgodovina poti.';
+
+  @override
+  String get routes_direct => 'NEPOSREDNO';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count poti',
+      few: '$count poti',
+      two: '$count poti',
+      one: '$count pot',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return 'NAJBOLJŠA  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  utež $weight  •  uspehi: $success / neuspehi: $fail';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return 'Najhitrejša znana: $ms ms';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return 'Flood: uspehi: $success / neuspehi: $fail';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => 'UPRAVLJANJE REPETITORJEV';
+
+  @override
+  String get repeaterTools_headline =>
+      'Upravljajte infrastrukturo za vašim omrežjem.';
+
+  @override
+  String get repeaterTools_body =>
+      'Izberite odkrit repetitor, da se prijavite in odprete njegova obstoječa orodja MeshCore za stanje, telemetrijo, sosede, nastavitve in CLI.';
+
+  @override
+  String get repeaterTools_discovered => 'ODKRITI';
+
+  @override
+  String get repeaterTools_tools => 'ORODJA';
+
+  @override
+  String get repeaterTools_available => 'RAZPOLOŽLJIVI REPETITORJI';
+
+  @override
+  String get repeaterTools_unnamed => 'Neimenovan repetitor';
+
+  @override
+  String get repeaterTools_statusTelemetry => 'STANJE + TELEMETRIJA';
+
+  @override
+  String get repeaterTools_statusTelemetryBody =>
+      'Preverite stanje in telemetrijo repetitorja z obstoječimi orodji za upravljanje.';
+
+  @override
+  String get repeaterTools_neighbors => 'SOSEDJE';
+
+  @override
+  String get repeaterTools_neighborsBody =>
+      'Raziščite sosednjo infrastrukturo in odnose v omrežju.';
+
+  @override
+  String get repeaterTools_cli => 'CLI + NASTAVITVE';
+
+  @override
+  String get repeaterTools_cliBody =>
+      'Prijavljeni skrbniki lahko dostopajo do obstoječega CLI repetitorja in orodij za nastavitve.';
+
+  @override
+  String get repeaterTools_empty =>
+      'Repetitorji še niso bili odkriti. Povežite radio in najprej raziščite omrežje.';
+
+  @override
+  String get notification_fieldAlertTitle => 'Terensko opozorilo Bastion';
+
+  @override
+  String get notification_checkInReminderTitle =>
+      'Opomnik za javljanje Bastion';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return 'Že $minutes min ni javljanja na turi $trip. Odprite Bastion, da se javite.';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return '$name se ni oglasil(a) že $minutes min. To ni potrjena nujna situacija.';
+  }
+
+  @override
+  String get notification_aTripContact => 'Stik na turi';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return 'Javljanje ni bilo dostavljeno: $name. Znova ga lahko pošljete na zavihku Tura.';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return 'SOS potrdil(a) $name';
+  }
 }

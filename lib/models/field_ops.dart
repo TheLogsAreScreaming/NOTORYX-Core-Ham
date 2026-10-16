@@ -1,4 +1,11 @@
 import 'dart:convert';
+import 'dart:ui' show Locale;
+
+import '../l10n/app_localizations.dart';
+
+/// English strings, for text that isn't shown in the app's language (the
+/// Field Log) and for callers without a BuildContext.
+final AppLocalizations _en = lookupAppLocalizations(const Locale('en'));
 
 enum FieldTrigger {
   reconnect,
@@ -11,29 +18,48 @@ enum FieldTrigger {
 
 enum FieldAction { log, notify, checkIn }
 
+/// Check-in statuses as the radio sends them. Never translated: recipients
+/// see these words, whatever language the sender's app uses.
+const checkInLabels = ["I'm OK", 'At Camp', 'Delayed', 'Heading Back'];
+
 /// A local summary: never includes message history, public keys or coordinates.
-String tripBrief(TripPlan trip, Map<String, String> contactNames) {
+String tripBrief(
+  TripPlan trip,
+  Map<String, String> contactNames, {
+  AppLocalizations? l10n,
+}) {
+  final t = l10n ?? _en;
   final roster = trip.members.map(
-    (key) => contactNames[key] ?? 'Unavailable contact (review roster)',
+    (key) => contactNames[key] ?? t.tripBrief_unavailableContact,
   );
   return [
-    'BASTION • MeshCore Trip Brief',
-    'Communication without infrastructure.',
+    t.tripBrief_heading,
+    t.bastion_tagline,
     '',
-    'Trip: ${trip.name}',
-    'Status: ${trip.active ? 'Active' : 'Stopped'}',
-    'Contacts: ${roster.isEmpty ? 'None selected' : roster.join(', ')}',
-    'Activity overdue after: ${trip.overdueMinutes} minutes (this phone alerts when a contact goes quiet)',
-    'Check-in reminder: ${trip.reminderMinutes == 0 ? 'Off' : 'every ${trip.reminderMinutes} minutes without a check-in'}',
-    'Check-in choices: I’m OK • At Camp • Delayed • Heading Back',
-    'Radio position in check-ins: ${trip.shareLocation ? 'Included; may be stale' : 'Off'}',
-    'Radio battery in check-ins: ${trip.shareBattery ? 'Included' : 'Off'}',
+    t.tripBrief_trip(trip.name),
+    t.tripBrief_status(trip.active ? t.tripBrief_active : t.tripBrief_stopped),
+    t.tripBrief_contacts(
+      roster.isEmpty ? t.tripBrief_noneSelected : roster.join(', '),
+    ),
+    t.tripBrief_overdueAfter(trip.overdueMinutes),
+    t.tripBrief_reminder(
+      trip.reminderMinutes == 0
+          ? t.tripBrief_off
+          : t.tripBrief_reminderEvery(trip.reminderMinutes),
+    ),
+    t.tripBrief_choices(checkInLabels.join(' • ')),
+    t.tripBrief_position(
+      trip.shareLocation ? t.tripBrief_includedMayBeStale : t.tripBrief_off,
+    ),
+    t.tripBrief_battery(
+      trip.shareBattery ? t.tripBrief_included : t.tripBrief_off,
+    ),
     '',
-    'Review recipients and message before sending a check-in.',
-    'Queued or sent does not prove delivery. An acknowledgment does not prove it was read.',
-    'Overdue means no recent contact activity; it is not a confirmed emergency.',
-    'Field automations run only while the app is active. Agree on a separate plan for missed contact.',
-    'This brief shares information only; it does not send a radio message or start a trip.',
+    t.tripBrief_review,
+    t.tripBrief_noProof,
+    t.tripBrief_overdueMeaning,
+    t.tripBrief_automations,
+    t.tripBrief_sharesOnly,
   ].join('\n');
 }
 
@@ -45,18 +71,18 @@ String? checkInUnavailableReason({
   required bool busy,
   required int selectedContacts,
   required int availableContacts,
+  AppLocalizations? l10n,
 }) {
-  if (!ready) return 'Loading your trip…';
-  if (storageError) {
-    return 'Resolve the Field Log storage error before sending.';
-  }
-  if (busy) return 'A check-in is being sent. Please wait.';
-  if (selectedContacts == 0) return 'Choose trip contacts in Plan trip.';
+  final t = l10n ?? _en;
+  if (!ready) return t.checkIn_blockLoading;
+  if (storageError) return t.checkIn_blockStorage;
+  if (busy) return t.checkIn_blockBusy;
+  if (selectedContacts == 0) return t.checkIn_blockNoContacts;
   if (availableContacts != selectedContacts) {
-    return 'Some trip contacts are unavailable. Review your roster.';
+    return t.checkIn_blockRosterIncomplete;
   }
-  if (!connected) return 'Connect your MeshCore radio to check in.';
-  if (!active) return 'Start your trip to enable check-ins.';
+  if (!connected) return t.checkIn_blockNotConnected;
+  if (!active) return t.checkIn_blockNotActive;
   return null;
 }
 
@@ -322,17 +348,28 @@ ScheduleState scheduleState(FieldRule rule, DateTime now) {
       : ScheduleState.due;
 }
 
-String explainMessageStatus(String status) => switch (status) {
-  'pending' =>
-    'Queued locally. This does not confirm radio transmission or receipt.',
-  'sent' =>
-    'The radio accepted the send. No delivery acknowledgment has been recorded.',
-  'delivered' =>
-    'The app recorded a delivery acknowledgment. It does not prove the person read it.',
-  'failed' =>
-    'No confirmed delivery. Check radio connection, recipient reachability and retry history.',
-  _ => 'Delivery state is unavailable. Do not assume this message arrived.',
-};
+String explainMessageStatus(String status, {AppLocalizations? l10n}) {
+  final t = l10n ?? _en;
+  return switch (status) {
+    'pending' => t.checkIn_explainPending,
+    'sent' => t.checkIn_explainSent,
+    'delivered' => t.checkIn_explainDelivered,
+    'failed' => t.checkIn_explainFailed,
+    _ => t.checkIn_explainUnknown,
+  };
+}
+
+/// A short name for a message status, or [status] itself if unknown.
+String messageStatusLabel(String status, {AppLocalizations? l10n}) {
+  final t = l10n ?? _en;
+  return switch (status) {
+    'pending' => t.checkIn_statusPending,
+    'sent' => t.checkIn_statusSent,
+    'delivered' => t.checkIn_statusDelivered,
+    'failed' => t.checkIn_statusFailed,
+    _ => status,
+  };
+}
 
 /// Time between SOS repeats; keeps an emergency from flooding the mesh.
 const sosRepeatInterval = Duration(minutes: 5);
@@ -385,15 +422,15 @@ String? sosUnavailableReason({
   required int selectedContacts,
   required int availableContacts,
   required bool hasChannel,
+  AppLocalizations? l10n,
 }) {
-  if (!ready) return 'Loading your trip…';
-  if (storageError) return 'Resolve the Field Log storage error first.';
-  if (!connected) return 'Connect your MeshCore radio to send an SOS.';
-  if (availableContacts == 0 && !hasChannel) {
-    return 'Choose trip contacts or an SOS channel in Plan trip.';
-  }
+  final t = l10n ?? _en;
+  if (!ready) return t.checkIn_blockLoading;
+  if (storageError) return t.sos_blockStorage;
+  if (!connected) return t.sos_blockNotConnected;
+  if (availableContacts == 0 && !hasChannel) return t.sos_blockNoTarget;
   if (availableContacts != selectedContacts && !hasChannel) {
-    return 'Some trip contacts are unavailable. Review your roster.';
+    return t.checkIn_blockRosterIncomplete;
   }
   return null;
 }
@@ -497,17 +534,24 @@ class CheckInDelivery {
   ];
   bool get waiting => statuses.values.any((s) => s == 'pending' || s == 'sent');
 
-  String get headline {
-    if (total == 0) return 'Not sent';
+  /// The summary in English, as the Field Log records it.
+  String get headline => headlineIn(_en);
+
+  String headlineIn(AppLocalizations t) {
+    if (total == 0) return t.checkIn_notSent;
     if (delivered == total) {
       return total == 1
-          ? 'Delivered to ${names.values.first}'
-          : 'Delivered to all $total contacts';
+          ? t.checkIn_deliveredToOne(names.values.first)
+          : t.checkIn_deliveredToAll(total);
     }
-    final failed = failedKeys.map((k) => names[k] ?? 'a contact').toList();
-    final parts = ['Delivered to $delivered of $total'];
-    if (failed.isNotEmpty) parts.add('Not delivered: ${failed.join(', ')}');
-    if (waiting) parts.add('Waiting for the rest');
+    final failed = failedKeys
+        .map((k) => names[k] ?? t.checkIn_aContact)
+        .toList();
+    final parts = [t.checkIn_deliveredSome('$delivered', '$total')];
+    if (failed.isNotEmpty) {
+      parts.add(t.checkIn_notDeliveredTo(failed.join(', ')));
+    }
+    if (waiting) parts.add(t.checkIn_waitingForRest);
     return parts.join(' • ');
   }
 

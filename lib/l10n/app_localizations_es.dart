@@ -5460,4 +5460,1683 @@ class AppLocalizationsEs extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes min $seconds s';
   }
+
+  @override
+  String get bastion_tagline => 'Comunicación sin infraestructura.';
+
+  @override
+  String get bastion_nodes => 'NODOS';
+
+  @override
+  String get bastion_repeaters => 'REPETIDORES';
+
+  @override
+  String get bastion_active1h => 'ACTIVOS 1 H';
+
+  @override
+  String get bastion_mapCoverage => 'MAPA + COBERTURA';
+
+  @override
+  String get bastion_routeIntelligence => 'INTELIGENCIA DE RUTAS';
+
+  @override
+  String get bastion_repeaterTools => 'HERRAMIENTAS DE REPETIDOR';
+
+  @override
+  String get bastion_fieldStats => 'ESTADÍSTICAS DE CAMPO';
+
+  @override
+  String get bastion_fieldOps => 'SALIDA + OPERACIONES DE CAMPO';
+
+  @override
+  String get bastion_coverageCapture => 'CAPTURA DE COBERTURA';
+
+  @override
+  String get bastion_mapAttribution =>
+      'Datos del mapa © colaboradores de OpenStreetMap; teselas del proveedor seleccionado';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count observaciones',
+      one: '1 observación',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nodos únicos',
+      one: '1 nodo único',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count saltos',
+      one: '1 salto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count minutos',
+      one: '1 minuto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint =>
+      'Mantén pulsado 2 segundos. Envía tu posición a tus contactos de la salida cada 5 minutos hasta que alguien responda.';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return 'Mantén pulsado 2 segundos. Envía tu posición a tus contactos de la salida y a $channel cada 5 minutos hasta que alguien responda.';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'SOS no enviado: $error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return 'Confirmado por $name. Repeticiones detenidas.';
+  }
+
+  @override
+  String get sos_waitingForRadio => 'Esperando a que la radio envíe…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return 'Enviado $sends de $max veces. Repeticiones terminadas; aún sin respuesta.';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return 'Enviado $sends de $max veces. Siguiente a las $time.';
+  }
+
+  @override
+  String get sos_active => 'SOS ACTIVO';
+
+  @override
+  String get sos_stop => 'DETENER';
+
+  @override
+  String get sos_imSafe => 'ESTOY A SALVO';
+
+  @override
+  String get sos_holdSemantics => 'SOS. Mantén pulsado para enviar.';
+
+  @override
+  String get sos_keepHolding => 'SIGUE PULSANDO…';
+
+  @override
+  String get sos_holdForSos => 'MANTÉN PARA SOS';
+
+  @override
+  String get sos_blockStorage =>
+      'Primero resuelve el error de almacenamiento del registro de campo.';
+
+  @override
+  String get sos_blockNotConnected =>
+      'Conecta tu radio MeshCore para enviar un SOS.';
+
+  @override
+  String get sos_blockNoTarget =>
+      'Elige contactos de la salida o un canal SOS en Planificar salida.';
+
+  @override
+  String get checkIn_labelOk => 'Estoy bien';
+
+  @override
+  String get checkIn_labelAtCamp => 'En el campamento';
+
+  @override
+  String get checkIn_labelDelayed => 'Con retraso';
+
+  @override
+  String get checkIn_labelHeadingBack => 'De regreso';
+
+  @override
+  String get checkIn_blockLoading => 'Cargando tu salida…';
+
+  @override
+  String get checkIn_blockStorage =>
+      'Resuelve el error de almacenamiento del registro de campo antes de enviar.';
+
+  @override
+  String get checkIn_blockBusy =>
+      'Se está enviando un aviso. Espera, por favor.';
+
+  @override
+  String get checkIn_blockNoContacts =>
+      'Elige contactos de la salida en Planificar salida.';
+
+  @override
+  String get checkIn_blockRosterIncomplete =>
+      'Algunos contactos de la salida no están disponibles. Revisa tu lista.';
+
+  @override
+  String get checkIn_blockNotConnected =>
+      'Conecta tu radio MeshCore para enviar un aviso.';
+
+  @override
+  String get checkIn_blockNotActive =>
+      'Inicia tu salida para activar los avisos.';
+
+  @override
+  String get checkIn_notSent => 'No enviado';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return 'Entregado a $name';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return 'Entregado a los $count contactos';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return 'Entregado a $delivered de $total';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return 'No entregado: $names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => 'Esperando al resto';
+
+  @override
+  String get checkIn_aContact => 'un contacto';
+
+  @override
+  String get checkIn_statusPending => 'Pendiente';
+
+  @override
+  String get checkIn_statusSent => 'Enviado';
+
+  @override
+  String get checkIn_statusDelivered => 'Entregado';
+
+  @override
+  String get checkIn_statusFailed => 'Fallido';
+
+  @override
+  String get checkIn_explainPending =>
+      'En cola localmente. Esto no confirma la transmisión por radio ni la recepción.';
+
+  @override
+  String get checkIn_explainSent =>
+      'La radio aceptó el envío. No se ha registrado ninguna confirmación de entrega.';
+
+  @override
+  String get checkIn_explainDelivered =>
+      'La app registró una confirmación de entrega. No prueba que la persona lo haya leído.';
+
+  @override
+  String get checkIn_explainFailed =>
+      'Sin entrega confirmada. Revisa la conexión de radio, la accesibilidad del destinatario y el historial de reintentos.';
+
+  @override
+  String get checkIn_explainUnknown =>
+      'El estado de entrega no está disponible. No des por hecho que este mensaje llegó.';
+
+  @override
+  String get tripBrief_heading => 'BASTION • Resumen de salida MeshCore';
+
+  @override
+  String tripBrief_trip(String name) {
+    return 'Salida: $name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return 'Estado: $status';
+  }
+
+  @override
+  String get tripBrief_active => 'Activa';
+
+  @override
+  String get tripBrief_stopped => 'Detenida';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return 'Contactos: $names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => 'Ninguno seleccionado';
+
+  @override
+  String get tripBrief_unavailableContact =>
+      'Contacto no disponible (revisa la lista)';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return 'Actividad atrasada tras: $minutes minutos (este teléfono avisa cuando un contacto queda en silencio)';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return 'Recordatorio de aviso: $value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return 'cada $minutes minutos sin aviso';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return 'Opciones de aviso: $choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return 'Posición de radio en los avisos: $value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale =>
+      'Incluida; puede estar desactualizada';
+
+  @override
+  String tripBrief_battery(String value) {
+    return 'Batería de la radio en los avisos: $value';
+  }
+
+  @override
+  String get tripBrief_included => 'Incluida';
+
+  @override
+  String get tripBrief_off => 'Desactivada';
+
+  @override
+  String get tripBrief_review =>
+      'Revisa los destinatarios y el mensaje antes de enviar un aviso.';
+
+  @override
+  String get tripBrief_noProof =>
+      'En cola o enviado no prueba la entrega. Una confirmación no prueba que se haya leído.';
+
+  @override
+  String get tripBrief_overdueMeaning =>
+      'Atrasado significa sin actividad reciente del contacto; no es una emergencia confirmada.';
+
+  @override
+  String get tripBrief_automations =>
+      'Las automatizaciones de campo solo funcionan mientras la app está activa. Acordad un plan aparte por si se pierde el contacto.';
+
+  @override
+  String get tripBrief_sharesOnly =>
+      'Este resumen solo comparte información; no envía un mensaje de radio ni inicia una salida.';
+
+  @override
+  String get fieldOps_title => 'Operaciones de campo de Bastion';
+
+  @override
+  String get fieldOps_tabTrip => 'SALIDA';
+
+  @override
+  String get fieldOps_tabReady => 'LISTO';
+
+  @override
+  String get fieldOps_tabLog => 'REGISTRO';
+
+  @override
+  String get fieldOps_tabAuto => 'AUTO';
+
+  @override
+  String get fieldOps_tabCoverage => 'COBERTURA';
+
+  @override
+  String get fieldOps_tabConnection => 'CONEXIÓN';
+
+  @override
+  String get fieldOps_diagnostics => 'Diagnóstico';
+
+  @override
+  String get fieldOps_storageLoadError =>
+      'No se pudieron cargar los datos de campo. Los datos guardados se conservaron; las automatizaciones siguen desactivadas.';
+
+  @override
+  String get fieldOps_storageSaveError =>
+      'No se pudieron guardar los datos de campo. Automatizaciones detenidas; los datos ya guardados se conservan.';
+
+  @override
+  String get fieldOps_regionHint =>
+      'Selecciona un área y niveles de zoom en Mapas sin conexión.';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • zoom $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return 'No se pudo verificar el área del mapa: $error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Salida activa • $count contactos',
+      one: 'Salida activa • 1 contacto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped =>
+      'Salida detenida. Iníciala cuando estés listo.';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return 'Recordatorio de aviso a las $time';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return 'En silencio demasiado tiempo: $names';
+  }
+
+  @override
+  String get fieldOps_planTrip => 'Planificar salida';
+
+  @override
+  String get fieldOps_endTrip => 'Terminar salida';
+
+  @override
+  String get fieldOps_startTrip => 'Iniciar salida';
+
+  @override
+  String get fieldOps_tripBrief => 'Resumen de salida';
+
+  @override
+  String get fieldOps_connectRadio => 'Conectar radio';
+
+  @override
+  String get fieldOps_previewedCheckIns => 'Avisos con vista previa';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      'Elige un estado, revisa los destinatarios reales y el mensaje y luego envía. En cola no significa entregado.';
+
+  @override
+  String get fieldOps_tripRoster => 'Lista de la salida';
+
+  @override
+  String get fieldOps_rosterEmpty =>
+      'Elige hasta seis contactos de chat conocidos en Planificar salida.';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      '«Oído por última vez» es prueba de actividad pasada. No establece la accesibilidad actual. Las marcas de atraso significan sin actividad reciente del contacto, no una emergencia confirmada.';
+
+  @override
+  String get fieldOps_offlineMaps => 'Mapas sin conexión';
+
+  @override
+  String get fieldOps_checkingTiles => 'Comprobando teselas guardadas…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count teselas guardadas.',
+      one: '1 tesela guardada.',
+    );
+    return '$_temp0 Esto no garantiza que toda tu ruta esté cubierta.';
+  }
+
+  @override
+  String get fieldOps_downloadAreas => 'Descargar / revisar áreas sin conexión';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return 'Último aviso, $time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name: $status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => 'Contacto';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Reenviar a $count no entregados',
+      one: 'Reenviar a 1 no entregado',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable =>
+      'Contacto seleccionado no disponible';
+
+  @override
+  String get fieldOps_memberUnavailableHint =>
+      'Revisa esta salida antes de enviar.';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return 'Última actividad hace $minutes min';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return 'Última actividad hace $minutes min • atrasado';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded =>
+      'No hay ningún aviso registrado en este registro.';
+
+  @override
+  String get fieldOps_tripMap => 'Mapa de la salida';
+
+  @override
+  String get fieldOps_tripMapEmpty =>
+      'Ningún contacto seleccionado ha anunciado coordenadas todavía.';
+
+  @override
+  String get fieldOps_lastPositions => 'Últimas posiciones anunciadas';
+
+  @override
+  String get fieldOps_positionsCaveat =>
+      'Las posiciones pueden estar desactualizadas. Este mapa no sigue el GPS del teléfono ni prueba que los miembros estén aquí ahora.';
+
+  @override
+  String get fieldOps_briefPreviewTitle => 'Vista previa del resumen de salida';
+
+  @override
+  String get fieldOps_briefPreviewHint =>
+      'Incluye nombres de la salida y de los contactos. Revísalo antes de compartirlo. Se omiten coordenadas, claves e historial de mensajes.';
+
+  @override
+  String get fieldOps_shareBrief => 'Compartir resumen';
+
+  @override
+  String get fieldOps_briefSubject => 'Resumen de salida de Bastion';
+
+  @override
+  String get fieldOps_tripName => 'Nombre de la salida';
+
+  @override
+  String get fieldOps_defaultTripName => 'Mi salida';
+
+  @override
+  String get fieldOps_includePosition =>
+      'Incluir la posición anunciada por la radio';
+
+  @override
+  String get fieldOps_includePositionHint =>
+      'Puede estar desactualizada; compartir está desactivado por defecto.';
+
+  @override
+  String get fieldOps_includeBattery => 'Incluir batería de la radio';
+
+  @override
+  String get fieldOps_overdueLabel =>
+      'Avisarme cuando un contacto esté en silencio durante';
+
+  @override
+  String get fieldOps_reminderLabel => 'Recordarme enviar un aviso';
+
+  @override
+  String get fieldOps_reminderHelper =>
+      'Una notificación del teléfono, aunque Bastion esté cerrado.';
+
+  @override
+  String get fieldOps_reminderOff => 'Desactivado';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tras $count minutos sin aviso',
+      one: 'Tras 1 minuto sin aviso',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'El SOS también va al canal';
+
+  @override
+  String get fieldOps_sosChannelNone => 'Ninguno';
+
+  @override
+  String get fieldOps_selectContacts =>
+      'Selecciona hasta seis contactos de chat conocidos';
+
+  @override
+  String get fieldOps_sendCheckInTitle => '¿Enviar aviso?';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return 'Para: $names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint =>
+      'Usa envíos normales de mensajes directos. La entrega se seguirá en el registro de campo.';
+
+  @override
+  String get fieldOps_send => 'Enviar';
+
+  @override
+  String get fieldOps_beforeYouLeave => 'Antes de salir';
+
+  @override
+  String get fieldOps_radioConnected => 'Radio conectada';
+
+  @override
+  String get fieldOps_connectHint => 'Conecta por Bluetooth, USB o TCP.';
+
+  @override
+  String get fieldOps_radioBattery => 'Batería de la radio';
+
+  @override
+  String get fieldOps_batteryUnknown => 'Desconocida; revisa la radio.';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent % • cárgala para la salida prevista.';
+  }
+
+  @override
+  String get fieldOps_tripContacts => 'Contactos de la salida';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return '$available/$selected disponibles. Comprueba que tengan radios y canales compatibles.';
+  }
+
+  @override
+  String get fieldOps_offlineArea => 'Área de mapa sin conexión seleccionada';
+
+  @override
+  String get fieldOps_checkingFiles => 'Comprobando archivos locales…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return '$available/$expected archivos de teselas disponibles; faltan $missing. Es una instantánea; abre el área sin conexión antes de salir.';
+  }
+
+  @override
+  String get fieldOps_locationChoice => 'Compartir ubicación';
+
+  @override
+  String get fieldOps_locationOptedIn =>
+      'Activado: las coordenadas anunciadas por la radio pueden estar desactualizadas.';
+
+  @override
+  String get fieldOps_locationOff =>
+      'Compartir está desactivado. Tus avisos omiten las coordenadas.';
+
+  @override
+  String get fieldOps_automationAvailability =>
+      'Disponibilidad de automatizaciones';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      'Solo funciona mientras esta app está activa. La suspensión, el cierre o la pérdida de la radio pueden impedir las acciones programadas.';
+
+  @override
+  String get fieldOps_readinessCaveat =>
+      'Las comprobaciones son orientativas; no prueban el alcance de radio ni garantizan la entrega de mensajes.';
+
+  @override
+  String get fieldOps_radio => 'Radio';
+
+  @override
+  String get fieldOps_refreshChecks => 'Actualizar comprobaciones';
+
+  @override
+  String get fieldOps_searchLog => 'Buscar en el registro de campo';
+
+  @override
+  String get fieldOps_kindAll => 'Todo';
+
+  @override
+  String get fieldOps_kindCheckIn => 'Aviso';
+
+  @override
+  String get fieldOps_kindReceived => 'Recibido';
+
+  @override
+  String get fieldOps_kindNote => 'Nota';
+
+  @override
+  String get fieldOps_kindDeadZone => 'Zona sin cobertura';
+
+  @override
+  String get fieldOps_kindRadio => 'Radio';
+
+  @override
+  String get fieldOps_kindAutomation => 'Automatización';
+
+  @override
+  String get fieldOps_kindMissed => 'Perdido';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => 'Salida';
+
+  @override
+  String get fieldOps_kindOverdue => 'Atrasado';
+
+  @override
+  String get fieldOps_addNote => 'Añadir nota';
+
+  @override
+  String get fieldOps_exportJson => 'Exportar JSON';
+
+  @override
+  String get fieldOps_deleteLog => 'Eliminar registro';
+
+  @override
+  String get fieldOps_logSubject => 'Registro de campo de Bastion';
+
+  @override
+  String get fieldOps_logCaveat =>
+      'Guardado localmente, hasta 1000 entradas. Las exportaciones pueden contener claves de contactos, mensajes y ubicaciones; revísalas antes de compartir.';
+
+  @override
+  String get fieldOps_noEntries => 'No hay entradas que coincidan.';
+
+  @override
+  String get fieldOps_tripUnspecified => 'Salida no especificada';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status: $explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return 'Posición anunciada por la radio registrada $latitude, $longitude (puede estar desactualizada)';
+  }
+
+  @override
+  String get fieldOps_noteTitle => 'Observación de campo';
+
+  @override
+  String get fieldOps_noteLabel => '¿Qué observaste?';
+
+  @override
+  String get fieldOps_deadZone => 'Zona sin cobertura reportada';
+
+  @override
+  String get fieldOps_deadZoneHint =>
+      'Tu observación, no una predicción de cobertura verificada.';
+
+  @override
+  String get fieldOps_savePosition =>
+      'Guardar la posición anunciada por la radio';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • puede estar desactualizada; no es GPS del teléfono';
+  }
+
+  @override
+  String get fieldOps_noPosition => 'No hay coordenadas anunciadas utilizables';
+
+  @override
+  String get fieldOps_deleteLogTitle => '¿Eliminar el registro de campo?';
+
+  @override
+  String get fieldOps_deleteLogBody =>
+      'Esto elimina todas las entradas guardadas en este teléfono. Se conservan los ajustes de la salida.';
+
+  @override
+  String get fieldOps_localAutomations => 'Automatizaciones locales';
+
+  @override
+  String get fieldOps_enableForTrip => 'Activar para esta salida';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      'Se desactivan tras cada reinicio de la app. Las reglas solo funcionan mientras la app está activa. Las acciones programadas perdidas aparecen en el registro de campo y nunca se repiten en ráfaga. Los avisos automáticos se limitan a un lote cada 10 minutos.';
+
+  @override
+  String get fieldOps_openBotMode => 'Abrir el modo bot de Bastion';
+
+  @override
+  String get fieldOps_ruleEnabled => 'Regla activada';
+
+  @override
+  String get fieldOps_dryRun => 'Simulación';
+
+  @override
+  String get fieldOps_dryRunHint =>
+      'Registrar la acción sin enviar ni notificar.';
+
+  @override
+  String get fieldOps_then => 'ENTONCES';
+
+  @override
+  String get fieldOps_actionLog => 'Escribir en el registro de campo';
+
+  @override
+  String get fieldOps_actionNotify => 'Mostrar notificación local';
+
+  @override
+  String get fieldOps_actionCheckIn =>
+      'Enviar «I\'m OK» a los contactos de la salida';
+
+  @override
+  String get fieldOps_batteryThreshold => 'Batería igual o inferior a';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return 'Próximo: $time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => 'Próximo: no programado';
+
+  @override
+  String get fieldOps_previewInLog => 'Vista previa en el registro';
+
+  @override
+  String get fieldOps_allowNotifications => 'Permitir notificaciones';
+
+  @override
+  String get fieldOps_triggerReconnect => 'CUANDO la radio se reconecte';
+
+  @override
+  String get fieldOps_triggerDisconnect => 'CUANDO la radio se desconecte';
+
+  @override
+  String get fieldOps_triggerLowBattery =>
+      'CUANDO la batería de la radio cruce el umbral';
+
+  @override
+  String get fieldOps_triggerNewNode => 'CUANDO se añada un nodo nuevo';
+
+  @override
+  String get fieldOps_triggerRepeater => 'CUANDO se añada un repetidor nuevo';
+
+  @override
+  String get fieldOps_triggerScheduled => 'CUANDO toque un aviso programado';
+
+  @override
+  String get fieldOps_explainConnection => 'Explicar mi conexión';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return 'Estado: $state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat =>
+      'El teléfono tiene conexión con la radio. Eso por sí solo no establece una ruta hacia tus destinatarios.';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      'No hay conexión de radio activa. Revisa los permisos de Bluetooth, la alimentación y el alcance de la radio; USB/TCP están disponibles en Conectar radio.';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return 'Avisos de la salida pendientes de confirmación: $count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      'Las horas de última vista y las posiciones anunciadas de los nodos pueden estar desactualizadas. La inteligencia de rutas muestra rutas aprendidas de intentos observados; no inventa caminos.';
+
+  @override
+  String get fieldOps_routeIntelligence => 'Inteligencia de rutas';
+
+  @override
+  String get fieldOps_coverageIntelligence => 'Inteligencia de cobertura';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      'Compara las observaciones registradas entre dos sesiones de campo. Los puntos marcan las posiciones anunciadas por la radio del registrador donde se oyeron nodos. No implican cobertura continua. Las instantáneas RSSI/SNR no son mediciones por nodo.';
+
+  @override
+  String get fieldOps_captureSession => 'Capturar una sesión';
+
+  @override
+  String get fieldOps_refreshHistory => 'Actualizar historial';
+
+  @override
+  String get fieldOps_noCoverageSessions =>
+      'Aún no hay sesiones de cobertura guardadas.';
+
+  @override
+  String get fieldOps_sessionA => 'Sesión A • verde azulado';
+
+  @override
+  String get fieldOps_sessionB => 'Sesión B • ámbar';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A: $a nodos únicos • B: $b nodos únicos';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return 'Compartidos: $shared • Solo A: $onlyA • Solo B: $onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat =>
+      'No oír un nodo durante una sesión no establece una zona sin cobertura. Las condiciones y la duración de la observación varían.';
+
+  @override
+  String get fieldOps_heardTooltip =>
+      'Observación de nodo oído; no prueba un enlace correcto';
+
+  @override
+  String get fieldOps_noteTooltip =>
+      'Nota local en coordenadas anunciadas por la radio; puede estar desactualizada.';
+
+  @override
+  String get bastionHome_aboutTooltip => 'Acerca de Bastion';
+
+  @override
+  String get bastionHome_getStarted => 'EMPEZAR';
+
+  @override
+  String get bastionHome_getStartedHint =>
+      'Conecta tu radio y verifica tu primer mensaje';
+
+  @override
+  String get bastionHome_planYourTrip => 'PLANIFICA TU SALIDA';
+
+  @override
+  String get bastionHome_tripActive => 'Salida activa';
+
+  @override
+  String get bastionHome_tripStopped => 'Salida detenida';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • $contacts contactos • $unread mensajes sin leer';
+  }
+
+  @override
+  String get bastionHome_checkInOk => 'AVISO: ESTOY BIEN';
+
+  @override
+  String get bastionHome_checkInHint =>
+      'Revisa los contactos y el mensaje antes de enviar. Sigue las confirmaciones en el registro de campo.';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return 'Último aviso: $summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => 'CONECTAR RADIO';
+
+  @override
+  String get bastionHome_connectRadioHint =>
+      'Conexiones MeshCore por Bluetooth, USB y TCP';
+
+  @override
+  String get bastionHome_liveDiagnostics => 'DIAGNÓSTICO EN VIVO';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint =>
+      'Estado de la radio, señal, dispositivo y herramientas de tramas';
+
+  @override
+  String get bastionHome_meshDiscovery => 'DESCUBRIMIENTO DE MALLA';
+
+  @override
+  String get bastionHome_meshDiscoveryHint =>
+      'Encuentra nodos e inspecciona la malla a tu alrededor';
+
+  @override
+  String get bastionHome_fieldOpsHint =>
+      'Resumen de salida, preparación, registro de campo, automatizaciones y comparación de cobertura';
+
+  @override
+  String get bastionHome_fieldTools => 'HERRAMIENTAS DE CAMPO BASTION';
+
+  @override
+  String get bastionHome_statusActive => 'ACTIVO';
+
+  @override
+  String get bastionHome_consoleOnline => 'CONSOLA DE CAMPO EN LÍNEA';
+
+  @override
+  String get bastionHome_consoleReady => 'CONSOLA DE CAMPO LISTA';
+
+  @override
+  String get bastionHome_consoleHint =>
+      'Conecta una radio para activar el panel en vivo.';
+
+  @override
+  String bastionHome_battery(String value) {
+    return 'BAT $value';
+  }
+
+  @override
+  String get bastionTools_title => 'Herramientas de campo';
+
+  @override
+  String get bastionTools_backup => 'COPIA CIFRADA';
+
+  @override
+  String get bastionTools_backupHint =>
+      'Guarda ajustes, contactos y claves, con historial de chat opcional';
+
+  @override
+  String get bastionTools_fieldOpsHint =>
+      'Avisos, preparación, registro de campo, automatizaciones y comparaciones';
+
+  @override
+  String get bastionTools_mapHint =>
+      'Mapa en vivo, sesiones de captura, herramientas de mapas sin conexión y regiones';
+
+  @override
+  String get bastionTools_pathAnalysis => 'ANÁLISIS DE RUTAS';
+
+  @override
+  String get bastionTools_pathHint =>
+      'Rutas, descubrimiento e inteligencia de caminos';
+
+  @override
+  String get bastionTools_repeaterHint =>
+      'Estado, inicio de sesión, telemetría, vecinos y administración';
+
+  @override
+  String get bastionTools_statsHint =>
+      'Recuentos de la malla en vivo y actividad de contactos';
+
+  @override
+  String get bastionTools_diagnostics => 'DIAGNÓSTICO';
+
+  @override
+  String get bastionTools_diagnosticsHint =>
+      'Estado de la radio, información del dispositivo, tramas en bruto y exportación';
+
+  @override
+  String get bastionTools_about => 'ACERCA DE + CRÉDITOS';
+
+  @override
+  String get bastionTools_aboutHint =>
+      'Versión de Bastion, declaración de independencia y licencias de código abierto';
+
+  @override
+  String get bastionAbout_title => 'Acerca de + Créditos';
+
+  @override
+  String get bastionAbout_intro =>
+      'Una app comunitaria independiente para redes MeshCore. Bastion no es una app oficial de MeshCore y la inclusión de recursos de la comunidad no implica asociación ni respaldo.';
+
+  @override
+  String get bastionAbout_version => 'VERSIÓN';
+
+  @override
+  String get bastionAbout_openSource => 'BASE DE CÓDIGO ABIERTO';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'Bastion se basa en el código abierto de MeshCore Open bajo la licencia MIT y lo modifica. El trabajo del flujo de cobertura también da crédito a la MeshMapper Flutter App con licencia MIT cuando corresponde.';
+
+  @override
+  String get bastionAbout_community => 'LA COMUNIDAD PRIMERO';
+
+  @override
+  String get bastionAbout_communityBody =>
+      'Los recursos de creadores externos siguen siendo propiedad de sus respectivos creadores. No se implica propiedad ni asociación.';
+
+  @override
+  String get bastionAbout_legalese =>
+      'Bastion • Compañero independiente de MeshCore';
+
+  @override
+  String get bastionAbout_licenses => 'LICENCIAS DE CÓDIGO ABIERTO';
+
+  @override
+  String get bastionSetup_title => 'Primeros pasos con Bastion';
+
+  @override
+  String get bastionSetup_intro =>
+      'Conecta, elige un contacto y luego verifica un mensaje. Puedes volver a esta guía desde el panel en cualquier momento.';
+
+  @override
+  String get bastionSetup_step1 => '1. Conecta tu radio MeshCore';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return 'Conectado a $device mediante $transport.';
+  }
+
+  @override
+  String get bastionSetup_noRadio => 'Aún no hay ninguna radio conectada.';
+
+  @override
+  String get bastionSetup_step1Power =>
+      'Enciende una radio compañera MeshCore. Abre Conectar radio y elige Bluetooth, USB o TCP. Concede los permisos solicitados para la conexión elegida.';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      'Si la búsqueda Bluetooth está vacía, comprueba que Bluetooth está activado y que Bastion tiene el permiso de Dispositivos cercanos en los ajustes de apps de Android. Sigue cualquier otra solicitud de permisos que muestre el escáner.';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => 'Diagnóstico de conexión';
+
+  @override
+  String get bastionSetup_step2 => '2. Elige un contacto de chat';
+
+  @override
+  String get bastionSetup_step2Body =>
+      'Pide a un compañero cercano con ajustes de radio MeshCore compatibles que anuncie su nodo. Elige abajo un contacto de chat conocido; los repetidores se gestionan aparte.';
+
+  @override
+  String get bastionSetup_noContacts =>
+      'No hay contactos de chat disponibles. Conecta tu radio y abre Descubrimiento de malla.';
+
+  @override
+  String get bastionSetup_testRecipient => 'Destinatario de prueba';
+
+  @override
+  String get bastionSetup_meshDiscovery => 'Descubrimiento de malla';
+
+  @override
+  String get bastionSetup_step3 => '3. Envía y verifica un mensaje';
+
+  @override
+  String get bastionSetup_step3Body =>
+      'Abre el chat, escribe un mensaje de prueba corto, revisa el destinatario y toca Enviar. Vuelve aquí para ver el último mensaje saliente registrado desde que abriste esta guía.';
+
+  @override
+  String get bastionSetup_openTestChat => 'Abrir chat de prueba';
+
+  @override
+  String get bastionSetup_connectFirst =>
+      'Conecta tu radio para abrir el chat de prueba.';
+
+  @override
+  String get bastionSetup_chooseRecipient => 'Primero elige un destinatario.';
+
+  @override
+  String get bastionSetup_noTestMessage =>
+      'No se ha registrado ningún mensaje de prueba saliente en esta sesión de la guía.';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return 'Último mensaje: $status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      'Pide a tu compañero que confirme la recepción o responda. Una confirmación registrada no prueba que lo haya leído. Revisa la conexión y el destinatario si un mensaje falla.';
+
+  @override
+  String get bastionSetup_step4 => '4. Prepárate para el campo';
+
+  @override
+  String get bastionSetup_step4Body =>
+      'Planifica los contactos de tu salida y revisa las áreas de mapa descargadas. El modo bot y las automatizaciones de campo empiezan desactivados; las automatizaciones de campo solo funcionan mientras la app está activa.';
+
+  @override
+  String get bastionSetup_tripTools => 'Herramientas de salida y preparación';
+
+  @override
+  String get bastionDiag_title => 'Diagnóstico';
+
+  @override
+  String get bastionDiag_export => 'Exportar diagnóstico';
+
+  @override
+  String get bastionDiag_channels => 'CANALES';
+
+  @override
+  String get bastionDiag_radio => 'RADIO';
+
+  @override
+  String get bastionDiag_frequency => 'Frecuencia';
+
+  @override
+  String get bastionDiag_bandwidth => 'Ancho de banda';
+
+  @override
+  String get bastionDiag_spreadingFactor => 'Factor de dispersión';
+
+  @override
+  String get bastionDiag_codingRate => 'Tasa de codificación';
+
+  @override
+  String get bastionDiag_txPower => 'Potencia de TX';
+
+  @override
+  String get bastionDiag_noiseFloor => 'Nivel de ruido';
+
+  @override
+  String get bastionDiag_device => 'DISPOSITIVO';
+
+  @override
+  String get bastionDiag_name => 'Nombre';
+
+  @override
+  String get bastionDiag_manufacturer => 'Fabricante';
+
+  @override
+  String get bastionDiag_firmware => 'Firmware';
+
+  @override
+  String get bastionDiag_battery => 'Batería';
+
+  @override
+  String get bastionDiag_transport => 'Transporte';
+
+  @override
+  String get bastionDiag_deepTools => 'HERRAMIENTAS AVANZADAS';
+
+  @override
+  String get bastionDiag_liveStats => 'ESTADÍSTICAS DE RADIO EN VIVO';
+
+  @override
+  String get bastionDiag_liveStatsHint =>
+      'Ruido, RSSI, SNR y tiempo en el aire';
+
+  @override
+  String get bastionDiag_frameDebug => 'DEPURACIÓN DE TRAMAS / BLE';
+
+  @override
+  String get bastionDiag_frameDebugHint =>
+      'Inspecciona tramas recibidas decodificadas y en bruto';
+
+  @override
+  String get bastionDiag_appLog => 'REGISTRO DE DEPURACIÓN DE LA APP';
+
+  @override
+  String get bastionDiag_appLogHint =>
+      'Revisa los eventos de diagnóstico de la aplicación';
+
+  @override
+  String get bastionDiag_online => 'RADIO EN LÍNEA';
+
+  @override
+  String get bastionDiag_offline => 'RADIO DESCONECTADA';
+
+  @override
+  String get bastionDiag_offlineHint =>
+      'Conecta un compañero MeshCore para rellenar el diagnóstico en vivo.';
+
+  @override
+  String get coverage_title => 'Captura de cobertura';
+
+  @override
+  String get coverage_leaveBlocked =>
+      'Detén y guarda la sesión antes de salir.';
+
+  @override
+  String get coverage_savedSessions => 'SESIONES GUARDADAS';
+
+  @override
+  String get coverage_caveat =>
+      'RSSI/SNR son instantáneas de la radio y pueden pertenecer a otro paquete. Las posiciones son coordenadas anunciadas por la radio, no GPS del teléfono ni prueba de cobertura. Cian: registrador; ámbar: nodo anunciado. No se realiza interpolación.';
+
+  @override
+  String get coverage_captureActive => 'CAPTURA ACTIVA';
+
+  @override
+  String get coverage_fieldSession => 'SESIÓN DE COBERTURA DE CAMPO';
+
+  @override
+  String get coverage_connectedBody =>
+      'Bastion registra los nodos recién oídos durante esta sesión, incluidos datos de ruta, metadatos de nodo/ubicación y la instantánea RSSI/SNR de la radio más cercana disponible.';
+
+  @override
+  String get coverage_disconnectedBody =>
+      'Conecta una radio antes de empezar. La captura de cobertura registra observaciones de la malla en vivo desde la radio compañera conectada.';
+
+  @override
+  String get coverage_observations => 'OBSERVACIONES';
+
+  @override
+  String get coverage_uniqueNodes => 'NODOS ÚNICOS';
+
+  @override
+  String get coverage_elapsed => 'TRANSCURRIDO';
+
+  @override
+  String get coverage_radioConnected => 'RADIO CONECTADA';
+
+  @override
+  String get coverage_noRadio => 'SIN RADIO';
+
+  @override
+  String get coverage_gpsReady => 'GPS DE RADIO LISTO';
+
+  @override
+  String get coverage_noGps => 'SIN GPS DE RADIO';
+
+  @override
+  String get coverage_stopSave => 'DETENER + GUARDAR SESIÓN';
+
+  @override
+  String get coverage_start => 'INICIAR SESIÓN DE COBERTURA';
+
+  @override
+  String get coverage_exportJson => 'EXPORTAR JSON';
+
+  @override
+  String get coverage_exportCsv => 'EXPORTAR CSV';
+
+  @override
+  String get coverage_liveObservations => 'OBSERVACIONES EN VIVO';
+
+  @override
+  String get coverage_waiting => 'ESPERANDO ACTIVIDAD DE LA MALLA';
+
+  @override
+  String get coverage_waitingBody =>
+      'Inicia una sesión y los nodos activos recién oídos aparecerán aquí. Los valores RSSI/SNR son instantáneas de la radio y no siempre pueden atribuirse a un paquete concreto.';
+
+  @override
+  String get coverage_signalNa => 'señal n/d';
+
+  @override
+  String get coverage_snrNa => 'SNR n/d';
+
+  @override
+  String get coverage_gpsUnavailable => 'GPS de radio no disponible';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return 'Ruta: $path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => 'inundación';
+
+  @override
+  String get coverage_pathDirect => 'directa';
+
+  @override
+  String get coverage_shareSubject => 'Sesión de cobertura de Bastion';
+
+  @override
+  String get coverage_shareText =>
+      'Exportación de captura de cobertura de Bastion';
+
+  @override
+  String get coverage_historyTitle => 'Sesiones de cobertura guardadas';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return 'No se pudieron cargar las sesiones: $error';
+  }
+
+  @override
+  String get coverage_deleteTitle => '¿Eliminar la sesión guardada?';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Se eliminarán $count observaciones de este dispositivo.',
+      one: 'Se eliminará 1 observación de este dispositivo.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return 'No se pudo eliminar la sesión: $error';
+  }
+
+  @override
+  String get coverage_retention =>
+      'Se conservan las 20 sesiones completadas más recientes. Comparte las sesiones que quieras conservar. Las capturas interrumpidas pueden reabrirse abajo.';
+
+  @override
+  String get coverage_noSessions =>
+      'Aún no hay sesiones guardadas. Detén una captura para guardarla.';
+
+  @override
+  String get coverage_interrupted => 'Captura interrumpida';
+
+  @override
+  String get coverage_saved => 'Guardada';
+
+  @override
+  String get coverage_deleteTooltip => 'Eliminar sesión';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return 'Error al exportar: $error';
+  }
+
+  @override
+  String get coverage_sessionTitle => 'Sesión de cobertura';
+
+  @override
+  String get coverage_shareJson => 'Compartir JSON';
+
+  @override
+  String get coverage_shareCsv => 'Compartir CSV';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi dBm • SNR $snr dB • antigüedad de la instantánea $age ms';
+  }
+
+  @override
+  String get coverage_unknown => 'desconocida';
+
+  @override
+  String coverage_pathValue(String path) {
+    return 'ruta $path';
+  }
+
+  @override
+  String get coverage_recorder => 'Registrador';
+
+  @override
+  String get coverage_noCoordinates =>
+      'No hay coordenadas utilizables en esta sesión. Las observaciones siguen disponibles abajo.';
+
+  @override
+  String get coverage_osmAttribution =>
+      '© colaboradores de OpenStreetMap • mapa base en línea';
+
+  @override
+  String get fieldStats_title => 'INTELIGENCIA DE CAMPO';
+
+  @override
+  String get fieldStats_snapshot => 'INSTANTÁNEA DE LA MALLA EN VIVO';
+
+  @override
+  String get fieldStats_headline => 'Lo que Bastion sabe ahora mismo.';
+
+  @override
+  String get fieldStats_body =>
+      'Estos contadores se calculan a partir de la tabla de contactos de MeshCore conectada, ubicaciones, rutas y marcas de tiempo de última vista.';
+
+  @override
+  String get fieldStats_total => 'TOTAL';
+
+  @override
+  String get fieldStats_chatNodes => 'NODOS DE CHAT';
+
+  @override
+  String get fieldStats_rooms => 'SALAS';
+
+  @override
+  String get fieldStats_sensors => 'SENSORES';
+
+  @override
+  String get fieldStats_located => 'UBICADOS';
+
+  @override
+  String get fieldStats_favorites => 'FAVORITOS';
+
+  @override
+  String get fieldStats_routeSnapshot => 'INSTANTÁNEA DE RUTAS';
+
+  @override
+  String get fieldStats_routed => 'ENRUTADOS';
+
+  @override
+  String get fieldStats_direct => 'DIRECTOS';
+
+  @override
+  String get fieldStats_flood => 'INUNDACIÓN';
+
+  @override
+  String get fieldStats_pathIntel => 'INTELIGENCIA DE CAMINOS';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'La inteligencia de rutas de Bastion usa intentos de ruta guardados, número de saltos, éxitos/fallos, tiempo de viaje y ponderación de rutas para mostrar rutas aprendidas.';
+
+  @override
+  String get fieldStats_coverageSessions => 'SESIONES DE COBERTURA';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      'La captura de cobertura ahora guarda sesiones de campo, restaura el trabajo interrumpido, exporta observaciones y mapea los puntos de cobertura registrados. RSSI/SNR siguen siendo la instantánea de radio más cercana disponible.';
+
+  @override
+  String get mapHub_title => 'MAPA DE CAMPO BASTION';
+
+  @override
+  String get mapHub_intro =>
+      'Mapas en vivo, áreas sin conexión, perfiles regionales y sesiones de cobertura de campo de Bastion.';
+
+  @override
+  String get mapHub_captureHint =>
+      'Inicia y detén una sesión de cobertura de campo';
+
+  @override
+  String get mapHub_badgeNew => 'NUEVO';
+
+  @override
+  String get mapHub_liveMap => 'MAPA DE MALLA EN VIVO';
+
+  @override
+  String get mapHub_liveMapHint =>
+      'Nodos, repetidores, posiciones, rutas y herramientas de mapa';
+
+  @override
+  String get mapHub_badgeLive => 'EN VIVO';
+
+  @override
+  String get mapHub_offlinePacks => 'PAQUETES DE MAPAS SIN CONEXIÓN';
+
+  @override
+  String get mapHub_offlinePacksHint =>
+      'Guarda teselas de mapa para salidas y zonas sin servicio';
+
+  @override
+  String get mapHub_badgeOffline => 'SIN CONEXIÓN';
+
+  @override
+  String get mapHub_regions => 'PERFILES DE REGIÓN';
+
+  @override
+  String get mapHub_regionsHint =>
+      'Gestiona y obtén definiciones regionales de malla';
+
+  @override
+  String get mapHub_badgeRegions => 'REGIONES';
+
+  @override
+  String get routes_title => 'Inteligencia de rutas';
+
+  @override
+  String get routes_headline => 'Mira cómo se mueve el tráfico por la malla.';
+
+  @override
+  String get routes_body =>
+      'Bastion clasifica las rutas guardadas usando el historial de caminos ya aprendido de intentos reales de mensajes y descubrimientos.';
+
+  @override
+  String get routes_routes => 'RUTAS';
+
+  @override
+  String get routes_success => 'ÉXITO';
+
+  @override
+  String get routes_failed => 'FALLIDAS';
+
+  @override
+  String get routes_routeMap => 'MAPA DE RUTAS';
+
+  @override
+  String get routes_routeMapHint => 'Inspecciona nodos y caminos';
+
+  @override
+  String get routes_discover => 'DESCUBRIR';
+
+  @override
+  String get routes_discoverHint => 'Encuentra rutas nuevas';
+
+  @override
+  String get routes_learned => 'RUTAS APRENDIDAS';
+
+  @override
+  String get routes_none => 'AÚN NO HAY HISTORIAL DE RUTAS';
+
+  @override
+  String get routes_noneBody =>
+      'Usa la malla con normalidad o ejecuta un descubrimiento. Bastion mostrará aquí las rutas aprendidas a medida que haya historial de caminos.';
+
+  @override
+  String get routes_direct => 'DIRECTA';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count rutas',
+      one: '1 ruta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return 'MEJOR  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  peso $weight  •  $success éxitos / $fail fallos';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return 'Más rápida conocida: $ms ms';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return 'Inundación: $success éxitos / $fail fallos';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => 'CONTROL DE REPETIDORES';
+
+  @override
+  String get repeaterTools_headline =>
+      'Gestiona la infraestructura detrás de tu malla.';
+
+  @override
+  String get repeaterTools_body =>
+      'Selecciona un repetidor descubierto para autenticarte y abrir sus herramientas MeshCore de estado, telemetría, vecinos, ajustes y CLI.';
+
+  @override
+  String get repeaterTools_discovered => 'DESCUBIERTOS';
+
+  @override
+  String get repeaterTools_tools => 'HERRAMIENTAS';
+
+  @override
+  String get repeaterTools_available => 'REPETIDORES DISPONIBLES';
+
+  @override
+  String get repeaterTools_unnamed => 'Repetidor sin nombre';
+
+  @override
+  String get repeaterTools_statusTelemetry => 'ESTADO + TELEMETRÍA';
+
+  @override
+  String get repeaterTools_statusTelemetryBody =>
+      'Inspecciona el estado y la telemetría del repetidor con las herramientas de gestión existentes.';
+
+  @override
+  String get repeaterTools_neighbors => 'VECINOS';
+
+  @override
+  String get repeaterTools_neighborsBody =>
+      'Inspecciona la infraestructura vecina y las relaciones de la malla.';
+
+  @override
+  String get repeaterTools_cli => 'CLI + AJUSTES';
+
+  @override
+  String get repeaterTools_cliBody =>
+      'Los administradores autenticados pueden acceder a la CLI del repetidor y a las herramientas de configuración existentes.';
+
+  @override
+  String get repeaterTools_empty =>
+      'Aún no se han descubierto repetidores. Conecta una radio y descubre la malla primero.';
+
+  @override
+  String get notification_fieldAlertTitle => 'Alerta de campo de Bastion';
+
+  @override
+  String get notification_checkInReminderTitle =>
+      'Recordatorio de aviso de Bastion';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return 'Sin aviso desde hace $minutes minutos en $trip. Abre Bastion para enviar un aviso.';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return 'No se sabe nada de $name desde hace $minutes minutos. No es una emergencia confirmada.';
+  }
+
+  @override
+  String get notification_aTripContact => 'Un contacto de la salida';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return 'Aviso no entregado a $name. Puedes reenviarlo desde Salida.';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return 'SOS confirmado por $name';
+  }
 }

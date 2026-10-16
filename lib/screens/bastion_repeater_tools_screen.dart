@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../widgets/repeater_login_dialog.dart';
 import 'repeater_hub_screen.dart';
@@ -38,14 +39,18 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
     final repeaters = connector.contacts
         .where((c) => c.type == advTypeRepeater)
         .toList();
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: Color(0xFFE4E6DF),
-        title: const Text(
-          'REPEATER TOOLS',
-          style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.3),
+        title: Text(
+          l10n.bastion_repeaterTools,
+          style: const TextStyle(
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.3,
+          ),
         ),
       ),
       body: ListView(
@@ -58,31 +63,31 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: _cyan.withValues(alpha: .45)),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'REPEATER COMMAND',
-                  style: TextStyle(
+                  l10n.repeaterTools_heroLabel,
+                  style: const TextStyle(
                     color: _cyan,
                     fontSize: 12,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1.4,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'Manage the infrastructure behind your mesh.',
-                  style: TextStyle(
+                  l10n.repeaterTools_headline,
+                  style: const TextStyle(
                     color: Color(0xFFE4E6DF),
                     fontSize: 21,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Text(
-                  'Select a discovered repeater to authenticate and open its existing MeshCore status, telemetry, neighbors, settings and CLI tools.',
-                  style: TextStyle(color: Color(0xFFCED8D2), height: 1.4),
+                  l10n.repeaterTools_body,
+                  style: const TextStyle(color: Color(0xFFCED8D2), height: 1.4),
                 ),
               ],
             ),
@@ -90,15 +95,18 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
           const SizedBox(height: 18),
           Row(
             children: [
-              _Stat(label: 'DISCOVERED', value: '${repeaters.length}'),
+              _Stat(
+                label: l10n.repeaterTools_discovered,
+                value: '${repeaters.length}',
+              ),
               const SizedBox(width: 10),
-              const _Stat(label: 'TOOLS', value: '5+'),
+              _Stat(label: l10n.repeaterTools_tools, value: '5+'),
             ],
           ),
           const SizedBox(height: 20),
-          const Text(
-            'AVAILABLE REPEATERS',
-            style: TextStyle(
+          Text(
+            l10n.repeaterTools_available,
+            style: const TextStyle(
               color: _cyan,
               fontSize: 12,
               fontWeight: FontWeight.w900,
@@ -137,7 +145,9 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  r.name.isEmpty ? 'Unnamed repeater' : r.name,
+                                  r.name.isEmpty
+                                      ? l10n.repeaterTools_unnamed
+                                      : r.name,
                                   style: const TextStyle(
                                     color: Color(0xFFE4E6DF),
                                     fontWeight: FontWeight.w800,
@@ -163,24 +173,22 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
               ),
             ),
           const SizedBox(height: 12),
-          const _Capability(
+          _Capability(
             icon: Icons.monitor_heart_rounded,
-            title: 'STATUS + TELEMETRY',
-            body:
-                'Inspect repeater health and telemetry using the existing management stack.',
+            title: l10n.repeaterTools_statusTelemetry,
+            body: l10n.repeaterTools_statusTelemetryBody,
           ),
           const SizedBox(height: 10),
-          const _Capability(
+          _Capability(
             icon: Icons.hub_rounded,
-            title: 'NEIGHBORS',
-            body: 'Inspect neighboring infrastructure and mesh relationships.',
+            title: l10n.repeaterTools_neighbors,
+            body: l10n.repeaterTools_neighborsBody,
           ),
           const SizedBox(height: 10),
-          const _Capability(
+          _Capability(
             icon: Icons.terminal_rounded,
-            title: 'CLI + SETTINGS',
-            body:
-                'Authenticated administrators can reach the existing repeater CLI and configuration tools.',
+            title: l10n.repeaterTools_cli,
+            body: l10n.repeaterTools_cliBody,
           ),
         ],
       ),
@@ -237,14 +245,14 @@ class _EmptyRepeaters extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       border: Border.all(color: const Color(0xFF36474E)),
     ),
-    child: const Row(
+    child: Row(
       children: [
-        Icon(Icons.portable_wifi_off_rounded, color: Color(0xFF8AB6AA)),
-        SizedBox(width: 12),
+        const Icon(Icons.portable_wifi_off_rounded, color: Color(0xFF8AB6AA)),
+        const SizedBox(width: 12),
         Expanded(
           child: Text(
-            'No repeaters discovered yet. Connect a radio and discover the mesh first.',
-            style: TextStyle(color: Color(0xFFCED8D2), height: 1.35),
+            context.l10n.repeaterTools_empty,
+            style: const TextStyle(color: Color(0xFFCED8D2), height: 1.35),
           ),
         ),
       ],

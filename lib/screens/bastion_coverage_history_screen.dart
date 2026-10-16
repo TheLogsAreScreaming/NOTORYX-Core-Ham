@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:share_plus/share_plus.dart';
+import '../l10n/l10n.dart';
 import '../services/coverage_capture_service.dart';
-
-const coverageCaveat =
-    'RSSI/SNR are radio snapshots and may belong to another packet. Positions are radio-advertised coordinates, not phone GPS or proof of coverage. Cyan: recorder; amber: advertised node. No interpolation is performed.';
 
 class BastionCoverageHistoryScreen extends StatefulWidget {
   final CoverageCaptureService capture;
@@ -27,7 +25,7 @@ class _HistoryState extends State<BastionCoverageHistoryScreen> {
     try {
       await widget.capture.loadHistory();
     } catch (e) {
-      error = 'Could not load sessions: $e';
+      if (mounted) error = context.l10n.coverage_loadFailed('$e');
     }
     if (mounted) setState(() => loading = false);
   }
@@ -36,18 +34,18 @@ class _HistoryState extends State<BastionCoverageHistoryScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete saved session?'),
+        title: Text(context.l10n.coverage_deleteTitle),
         content: Text(
-          '${session.observations.length} observations will be removed from this device.',
+          context.l10n.coverage_deleteBody(session.observations.length),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.common_cancel),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
+            child: Text(context.l10n.common_delete),
           ),
         ],
       ),
@@ -56,30 +54,26 @@ class _HistoryState extends State<BastionCoverageHistoryScreen> {
     try {
       await widget.capture.deleteSession(session.id);
     } catch (e) {
-      error = 'Could not delete session: $e';
+      if (mounted) error = context.l10n.coverage_deleteFailed('$e');
     }
     if (mounted) setState(() {});
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Saved coverage sessions')),
+    appBar: AppBar(title: Text(context.l10n.coverage_historyTitle)),
     body: loading
         ? const Center(child: CircularProgressIndicator())
         : ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              const Text(
-                'The newest 20 completed sessions are retained. Share sessions you want to keep. Interrupted captures can be reopened below.',
-              ),
+              Text(context.l10n.coverage_retention),
               if (error ?? widget.capture.loadWarning case final String warning)
                 Text(warning),
               if (widget.capture.history.isEmpty)
-                const Padding(
-                  padding: EdgeInsets.all(24),
-                  child: Text(
-                    'No saved sessions yet. Stop a capture to save it.',
-                  ),
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Text(context.l10n.coverage_noSessions),
                 ),
               for (final session in widget.capture.history)
                 Card(
@@ -89,10 +83,10 @@ class _HistoryState extends State<BastionCoverageHistoryScreen> {
                       session.startedAt.toLocal().toString().split('.').first,
                     ),
                     subtitle: Text(
-                      '${session.observations.length} observations • ${session.endedAt == null ? 'Interrupted capture' : 'Saved'}',
+                      '${context.l10n.bastion_observationsCount(session.observations.length)} • ${session.endedAt == null ? context.l10n.coverage_interrupted : context.l10n.coverage_saved}',
                     ),
                     trailing: IconButton(
-                      tooltip: 'Delete session',
+                      tooltip: context.l10n.coverage_deleteTooltip,
                       icon: const Icon(Icons.delete_outline),
                       onPressed: () => _delete(session),
                     ),
@@ -124,29 +118,29 @@ class _SessionScreen extends StatelessWidget {
       if (!context.mounted) return;
       await SharePlus.instance.share(
         ShareParams(
-          subject: 'Bastion coverage session',
-          text: coverageCaveat,
+          subject: context.l10n.coverage_shareSubject,
+          text: context.l10n.coverage_caveat,
           files: [XFile(path)],
         ),
       );
     } catch (e) {
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Export failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.l10n.coverage_exportFailed('$e'))),
+        );
       }
     }
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Coverage session')),
+    appBar: AppBar(title: Text(context.l10n.coverage_sessionTitle)),
     body: ListView(
       padding: const EdgeInsets.all(16),
       children: [
         Text(session.startedAt.toLocal().toString()),
         Text(
-          '${session.observations.length} observations • ${session.observations.map((o) => o.nodeKey).toSet().length} unique nodes',
+          '${context.l10n.bastion_observationsCount(session.observations.length)} • ${context.l10n.bastion_uniqueNodesCount(session.observations.map((o) => o.nodeKey).toSet().length)}',
         ),
         Wrap(
           spacing: 12,
@@ -154,25 +148,25 @@ class _SessionScreen extends StatelessWidget {
             OutlinedButton.icon(
               onPressed: () => _share(context, false),
               icon: const Icon(Icons.share),
-              label: const Text('Share JSON'),
+              label: Text(context.l10n.coverage_shareJson),
             ),
             OutlinedButton.icon(
               onPressed: () => _share(context, true),
               icon: const Icon(Icons.table_view),
-              label: const Text('Share CSV'),
+              label: Text(context.l10n.coverage_shareCsv),
             ),
           ],
         ),
         CoverageSessionMap(observations: session.observations),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 12),
-          child: Text(coverageCaveat),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: Text(context.l10n.coverage_caveat),
         ),
         for (final o in session.observations.reversed)
           ListTile(
             title: Text(o.nodeName),
             subtitle: Text(
-              '${o.timestamp.toLocal()}\n${o.rssiDbm ?? '—'} dBm • SNR ${o.snrDb ?? '—'} dB • snapshot age ${o.radioSnapshotAgeMs ?? 'unknown'} ms\n${o.nodeType} • ${o.transport} • path ${o.pathLength}',
+              '${o.timestamp.toLocal()}\n${context.l10n.coverage_snapshotDetail('${o.rssiDbm ?? '—'}', '${o.snrDb ?? '—'}', '${o.radioSnapshotAgeMs ?? context.l10n.coverage_unknown}')}\n${o.nodeType} • ${o.transport} • ${context.l10n.coverage_pathValue('${o.pathLength}')}',
             ),
           ),
       ],
@@ -204,7 +198,7 @@ class CoverageSessionMap extends StatelessWidget {
             height: 32,
             child: Tooltip(
               message:
-                  '${recorder ? 'Recorder' : o.nodeName}: ${o.timestamp.toLocal()}',
+                  '${recorder ? context.l10n.coverage_recorder : o.nodeName}: ${o.timestamp.toLocal()}',
               child: Icon(
                 recorder ? Icons.my_location : Icons.cell_tower,
                 color: recorder ? const Color(0xFF8AB6AA) : Colors.amber,
@@ -218,11 +212,9 @@ class CoverageSessionMap extends StatelessWidget {
       add(o.nodeLatitude, o.nodeLongitude, false);
     }
     if (markers.isEmpty) {
-      return const Padding(
-        padding: EdgeInsets.all(24),
-        child: Text(
-          'No usable coordinates in this session. Observations remain available below.',
-        ),
+      return Padding(
+        padding: const EdgeInsets.all(24),
+        child: Text(context.l10n.coverage_noCoordinates),
       );
     }
     return SizedBox(
@@ -238,8 +230,8 @@ class CoverageSessionMap extends StatelessWidget {
             userAgentPackageName: 'com.bastionmesh.bastion',
           ),
           MarkerLayer(markers: markers),
-          const SimpleAttributionWidget(
-            source: Text('© OpenStreetMap contributors • online basemap'),
+          SimpleAttributionWidget(
+            source: Text(context.l10n.coverage_osmAttribution),
           ),
         ],
       ),

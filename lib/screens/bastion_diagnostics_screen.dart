@@ -7,6 +7,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../l10n/l10n.dart';
 import 'app_debug_log_screen.dart';
 import 'ble_debug_log_screen.dart';
 import 'companion_radio_stats_screen.dart';
@@ -84,16 +85,17 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     final c = context.watch<MeshCoreConnector>();
     final s = c.latestRadioStats;
     final repeaters = c.contacts.where((x) => x.type == advTypeRepeater).length;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: Color(0xFFE4E6DF),
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'BASTION',
               style: TextStyle(
                 color: _cyan,
@@ -102,12 +104,15 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                 letterSpacing: 1.7,
               ),
             ),
-            Text('Diagnostics', style: TextStyle(fontWeight: FontWeight.w900)),
+            Text(
+              l10n.bastionDiag_title,
+              style: const TextStyle(fontWeight: FontWeight.w900),
+            ),
           ],
         ),
         actions: [
           IconButton(
-            tooltip: 'Export diagnostics',
+            tooltip: l10n.bastionDiag_export,
             onPressed: () => _export(context, c),
             icon: const Icon(Icons.ios_share_rounded),
           ),
@@ -116,28 +121,35 @@ class BastionDiagnosticsScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(18, 10, 18, 28),
         children: [
-          _statusCard(c),
+          _statusCard(context, c),
           const SizedBox(height: 12),
           Row(
             children: [
-              Expanded(child: _metric('NODES', '${c.contacts.length}')),
+              Expanded(
+                child: _metric(l10n.bastion_nodes, '${c.contacts.length}'),
+              ),
               const SizedBox(width: 8),
-              Expanded(child: _metric('REPEATERS', '$repeaters')),
+              Expanded(child: _metric(l10n.bastion_repeaters, '$repeaters')),
               const SizedBox(width: 8),
-              Expanded(child: _metric('CHANNELS', '${c.channels.length}')),
+              Expanded(
+                child: _metric(
+                  l10n.bastionDiag_channels,
+                  '${c.channels.length}',
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 18),
-          _section('RADIO', [
-            _row('Frequency', _mhz(c.currentFreqHz)),
+          _section(l10n.bastionDiag_radio, [
+            _row(l10n.bastionDiag_frequency, _mhz(c.currentFreqHz)),
             _row(
-              'Bandwidth',
+              l10n.bastionDiag_bandwidth,
               c.currentBwHz == null ? '—' : '${c.currentBwHz} Hz',
             ),
-            _row('Spreading factor', _value(c.currentSf)),
-            _row('Coding rate', _value(c.currentCr)),
+            _row(l10n.bastionDiag_spreadingFactor, _value(c.currentSf)),
+            _row(l10n.bastionDiag_codingRate, _value(c.currentCr)),
             _row(
-              'TX power',
+              l10n.bastionDiag_txPower,
               c.currentTxPower == null ? '—' : '${c.currentTxPower} dBm',
             ),
             _row('RSSI', s == null ? '—' : '${s.lastRssiDbm} dBm'),
@@ -145,15 +157,21 @@ class BastionDiagnosticsScreen extends StatelessWidget {
               'SNR',
               s == null ? '—' : '${s.lastSnrDb.toStringAsFixed(1)} dB',
             ),
-            _row('Noise floor', s == null ? '—' : '${s.noiseFloorDbm} dBm'),
+            _row(
+              l10n.bastionDiag_noiseFloor,
+              s == null ? '—' : '${s.noiseFloorDbm} dBm',
+            ),
           ]),
           const SizedBox(height: 12),
-          _section('DEVICE', [
-            _row('Name', c.deviceDisplayName),
-            _row('Manufacturer', _value(c.manufacturerName)),
-            _row('Firmware', _value(c.firmwareVersionString)),
-            _row('Battery', _battery(c.batteryMillivolts)),
-            _row('Transport', c.activeTransport.name.toUpperCase()),
+          _section(l10n.bastionDiag_device, [
+            _row(l10n.bastionDiag_name, c.deviceDisplayName),
+            _row(l10n.bastionDiag_manufacturer, _value(c.manufacturerName)),
+            _row(l10n.bastionDiag_firmware, _value(c.firmwareVersionString)),
+            _row(l10n.bastionDiag_battery, _battery(c.batteryMillivolts)),
+            _row(
+              l10n.bastionDiag_transport,
+              c.activeTransport.name.toUpperCase(),
+            ),
             _row(
               'GPS',
               c.selfLatitude == null || c.selfLongitude == null
@@ -162,9 +180,9 @@ class BastionDiagnosticsScreen extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 18),
-          const Text(
-            'DEEP TOOLS',
-            style: TextStyle(
+          Text(
+            l10n.bastionDiag_deepTools,
+            style: const TextStyle(
               color: _cyan,
               fontSize: 11,
               fontWeight: FontWeight.w900,
@@ -175,24 +193,24 @@ class BastionDiagnosticsScreen extends StatelessWidget {
           _nav(
             context,
             Icons.monitor_heart_rounded,
-            'LIVE RADIO STATS',
-            'Noise, RSSI, SNR and airtime',
+            l10n.bastionDiag_liveStats,
+            l10n.bastionDiag_liveStatsHint,
             const CompanionRadioStatsScreen(),
           ),
           const SizedBox(height: 8),
           _nav(
             context,
             Icons.data_object_rounded,
-            'FRAME / BLE DEBUG',
-            'Inspect decoded and raw received frames',
+            l10n.bastionDiag_frameDebug,
+            l10n.bastionDiag_frameDebugHint,
             const BleDebugLogScreen(),
           ),
           const SizedBox(height: 8),
           _nav(
             context,
             Icons.bug_report_outlined,
-            'APP DEBUG LOG',
-            'Review application diagnostic events',
+            l10n.bastionDiag_appLog,
+            l10n.bastionDiag_appLogHint,
             const AppDebugLogScreen(),
           ),
         ],
@@ -200,7 +218,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     );
   }
 
-  Widget _statusCard(MeshCoreConnector c) => Container(
+  Widget _statusCard(BuildContext context, MeshCoreConnector c) => Container(
     padding: const EdgeInsets.all(18),
     decoration: BoxDecoration(
       color: _panel,
@@ -229,7 +247,9 @@ class BastionDiagnosticsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                c.isConnected ? 'RADIO ONLINE' : 'RADIO OFFLINE',
+                c.isConnected
+                    ? context.l10n.bastionDiag_online
+                    : context.l10n.bastionDiag_offline,
                 style: const TextStyle(
                   color: Color(0xFFE4E6DF),
                   fontSize: 18,
@@ -240,7 +260,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
               Text(
                 c.isConnected
                     ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}'
-                    : 'Connect a MeshCore companion to populate live diagnostics.',
+                    : context.l10n.bastionDiag_offlineHint,
                 style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
               ),
             ],

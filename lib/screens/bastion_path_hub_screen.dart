@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../models/path_history.dart';
 import '../services/path_history_service.dart';
@@ -50,16 +51,17 @@ class BastionPathHubScreen extends StatelessWidget {
       0,
       (sum, e) => sum + e.paths.fold<int>(0, (s, p) => s + p.failureCount),
     );
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: Color(0xFFE4E6DF),
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'BASTION',
               style: TextStyle(
                 color: _cyan,
@@ -69,8 +71,8 @@ class BastionPathHubScreen extends StatelessWidget {
               ),
             ),
             Text(
-              'Route Intelligence',
-              style: TextStyle(fontWeight: FontWeight.w900),
+              l10n.routes_title,
+              style: const TextStyle(fontWeight: FontWeight.w900),
             ),
           ],
         ),
@@ -85,31 +87,31 @@ class BastionPathHubScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: _cyan.withValues(alpha: .45)),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'ROUTE INTELLIGENCE',
-                  style: TextStyle(
+                  l10n.bastion_routeIntelligence,
+                  style: const TextStyle(
                     color: _cyan,
                     fontSize: 12,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1.4,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'See how traffic moves through the mesh.',
-                  style: TextStyle(
+                  l10n.routes_headline,
+                  style: const TextStyle(
                     color: Color(0xFFE4E6DF),
                     fontSize: 21,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Text(
-                  'Bastion ranks saved routes using the path history already learned from real message attempts and discoveries.',
-                  style: TextStyle(color: Color(0xFFCED8D2), height: 1.4),
+                  l10n.routes_body,
+                  style: const TextStyle(color: Color(0xFFCED8D2), height: 1.4),
                 ),
               ],
             ),
@@ -118,19 +120,25 @@ class BastionPathHubScreen extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _Metric(label: 'NODES', value: '${entries.length}'),
+                child: _Metric(
+                  label: l10n.bastion_nodes,
+                  value: '${entries.length}',
+                ),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: _Metric(label: 'ROUTES', value: '$routeCount'),
+                child: _Metric(label: l10n.routes_routes, value: '$routeCount'),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: _Metric(label: 'SUCCESS', value: '$successful'),
+                child: _Metric(
+                  label: l10n.routes_success,
+                  value: '$successful',
+                ),
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: _Metric(label: 'FAILED', value: '$failed'),
+                child: _Metric(label: l10n.routes_failed, value: '$failed'),
               ),
             ],
           ),
@@ -140,8 +148,8 @@ class BastionPathHubScreen extends StatelessWidget {
               Expanded(
                 child: _PathAction(
                   icon: Icons.map_rounded,
-                  title: 'ROUTE MAP',
-                  subtitle: 'Inspect nodes and paths',
+                  title: l10n.routes_routeMap,
+                  subtitle: l10n.routes_routeMapHint,
                   onTap: () => Navigator.of(
                     context,
                   ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
@@ -151,8 +159,8 @@ class BastionPathHubScreen extends StatelessWidget {
               Expanded(
                 child: _PathAction(
                   icon: Icons.radar_rounded,
-                  title: 'DISCOVER',
-                  subtitle: 'Find fresh routes',
+                  title: l10n.routes_discover,
+                  subtitle: l10n.routes_discoverHint,
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => const DiscoveryScreen()),
                   ),
@@ -161,9 +169,9 @@ class BastionPathHubScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          const Text(
-            'LEARNED ROUTES',
-            style: TextStyle(
+          Text(
+            l10n.routes_learned,
+            style: const TextStyle(
               color: _cyan,
               fontSize: 11,
               fontWeight: FontWeight.w900,
@@ -172,11 +180,10 @@ class BastionPathHubScreen extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           if (entries.isEmpty)
-            const _InfoPanel(
+            _InfoPanel(
               icon: Icons.alt_route_rounded,
-              title: 'NO ROUTE HISTORY YET',
-              body:
-                  'Use the mesh normally or run discovery. Bastion will surface learned routes here as path history becomes available.',
+              title: l10n.routes_none,
+              body: l10n.routes_noneBody,
             )
           else
             ...entries.map((entry) => _ContactRouteCard(entry: entry)),
@@ -210,8 +217,8 @@ class _ContactRouteCard extends StatelessWidget {
   final _ContactRoutes entry;
   const _ContactRouteCard({required this.entry});
 
-  String _path(PathRecord path) {
-    if (path.pathBytes.isEmpty) return 'DIRECT';
+  String _path(BuildContext context, PathRecord path) {
+    if (path.pathBytes.isEmpty) return context.l10n.routes_direct;
     return path.pathBytes
         .map((b) => b.toRadixString(16).padLeft(2, '0').toUpperCase())
         .join(' › ');
@@ -219,6 +226,7 @@ class _ContactRouteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final best = entry.paths.isEmpty ? null : entry.paths.first;
     final fastest = entry.paths
         .where((p) => p.tripTimeMs > 0)
@@ -252,7 +260,7 @@ class _ContactRouteCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '${entry.paths.length} route${entry.paths.length == 1 ? '' : 's'}',
+                l10n.routes_routeCount(entry.paths.length),
                 style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
               ),
             ],
@@ -260,7 +268,7 @@ class _ContactRouteCard extends StatelessWidget {
           if (best != null) ...[
             const SizedBox(height: 10),
             Text(
-              'BEST  ${_path(best)}',
+              l10n.routes_best(_path(context, best)),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
@@ -271,21 +279,29 @@ class _ContactRouteCard extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             Text(
-              '${best.hopCount} hop${best.hopCount == 1 ? '' : 's'}  •  weight ${best.routeWeight.toStringAsFixed(1)}  •  ${best.successCount} success / ${best.failureCount} fail',
+              l10n.routes_bestDetail(
+                l10n.bastion_hopsCount(best.hopCount),
+                best.routeWeight.toStringAsFixed(1),
+                '${best.successCount}',
+                '${best.failureCount}',
+              ),
               style: const TextStyle(color: Color(0xFFB3BDC5), fontSize: 11.5),
             ),
           ],
           if (fastest != null) ...[
             const SizedBox(height: 4),
             Text(
-              'Fastest known: ${fastest.tripTimeMs} ms',
+              l10n.routes_fastest('${fastest.tripTimeMs}'),
               style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
             ),
           ],
           if (entry.flood != null) ...[
             const SizedBox(height: 4),
             Text(
-              'Flood: ${entry.flood!.successCount} success / ${entry.flood!.failureCount} fail',
+              l10n.routes_flood(
+                '${entry.flood!.successCount}',
+                '${entry.flood!.failureCount}',
+              ),
               style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
             ),
           ],

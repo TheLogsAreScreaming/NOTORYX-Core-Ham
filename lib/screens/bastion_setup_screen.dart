@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../models/field_ops.dart';
 import 'bastion_diagnostics_screen.dart';
@@ -73,63 +74,59 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
               .toList();
     messages?.sort((a, b) => b.timestamp.compareTo(a.timestamp));
     final latest = messages == null || messages.isEmpty ? null : messages.first;
+    final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: const Text('Get started with Bastion')),
+      appBar: AppBar(title: Text(l10n.bastionSetup_title)),
       body: ListView(
         padding: const EdgeInsets.all(12),
         children: [
-          const Padding(
-            padding: EdgeInsets.all(8),
-            child: Text(
-              'Connect, choose a contact, then verify a message. You can return to this guide from the dashboard at any time.',
-            ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Text(l10n.bastionSetup_intro),
           ),
-          _step('1. Connect your MeshCore radio', Icons.radio_outlined, [
+          _step(l10n.bastionSetup_step1, Icons.radio_outlined, [
             Text(
               radio.isConnected
-                  ? 'Connected to ${radio.deviceDisplayName} using ${radio.activeTransport.name.toUpperCase()}.'
-                  : 'No radio connected yet.',
+                  ? l10n.bastionSetup_connectedTo(
+                      radio.deviceDisplayName,
+                      radio.activeTransport.name.toUpperCase(),
+                    )
+                  : l10n.bastionSetup_noRadio,
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Power on a MeshCore companion radio. Open Connect radio and choose Bluetooth, USB or TCP. Allow the permissions requested for your chosen connection.',
-            ),
-            const Text(
-              'If Bluetooth discovery is empty, check Bluetooth is enabled and Bastion has Nearby devices permission in Android app settings. Follow any additional permission prompt shown by the scanner.',
-            ),
+            Text(l10n.bastionSetup_step1Power),
+            Text(l10n.bastionSetup_step1Bluetooth),
             Wrap(
               spacing: 8,
               children: [
                 FilledButton.icon(
                   onPressed: () => _open(const ScannerScreen()),
                   icon: const Icon(Icons.bluetooth_searching),
-                  label: const Text('Connect radio'),
+                  label: Text(l10n.fieldOps_connectRadio),
                 ),
                 TextButton(
                   onPressed: () => _open(const BastionDiagnosticsScreen()),
-                  child: const Text('Connection diagnostics'),
+                  child: Text(l10n.bastionSetup_connectionDiagnostics),
                 ),
               ],
             ),
           ]),
-          _step('2. Choose a chat contact', Icons.person_outline, [
-            const Text(
-              'Ask a nearby partner with compatible MeshCore radio settings to advertise their node. Choose a known chat contact below; repeaters are managed separately.',
-            ),
+          _step(l10n.bastionSetup_step2, Icons.person_outline, [
+            Text(l10n.bastionSetup_step2Body),
             if (radio.isLoadingContacts) const LinearProgressIndicator(),
             if (contacts.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 12),
-                child: Text(
-                  'No chat contacts available. Connect your radio and open Mesh discovery.',
-                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Text(l10n.bastionSetup_noContacts),
               )
             else
               DropdownButtonFormField<String>(
                 key: ValueKey(selected?.publicKeyHex),
                 initialValue: selected?.publicKeyHex,
                 isExpanded: true,
-                decoration: const InputDecoration(labelText: 'Test recipient'),
+                decoration: InputDecoration(
+                  labelText: l10n.bastionSetup_testRecipient,
+                ),
                 items: contacts
                     .map(
                       (c) => DropdownMenuItem(
@@ -145,49 +142,47 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
                   ? () => _open(const DiscoveryScreen())
                   : null,
               icon: const Icon(Icons.radar),
-              label: const Text('Mesh discovery'),
+              label: Text(l10n.bastionSetup_meshDiscovery),
             ),
           ]),
-          _step('3. Send and verify a message', Icons.mark_chat_read_outlined, [
-            const Text(
-              'Open chat, write a short test message, review the recipient and tap Send. Return here to see the latest outgoing message recorded since opening this guide.',
-            ),
+          _step(l10n.bastionSetup_step3, Icons.mark_chat_read_outlined, [
+            Text(l10n.bastionSetup_step3Body),
             const SizedBox(height: 12),
             FilledButton.icon(
               onPressed: radio.isConnected && target != null
                   ? () => _open(ChatScreen(contact: target))
                   : null,
               icon: const Icon(Icons.chat_bubble_outline),
-              label: const Text('Open test chat'),
+              label: Text(l10n.bastionSetup_openTestChat),
             ),
             if (!radio.isConnected)
-              const Text('Connect your radio to open test chat.')
+              Text(l10n.bastionSetup_connectFirst)
             else if (selected == null)
-              const Text('Choose a recipient first.'),
+              Text(l10n.bastionSetup_chooseRecipient),
             const SizedBox(height: 12),
             if (latest == null)
-              const Text(
-                'No outgoing test message recorded in this guide session.',
-              )
+              Text(l10n.bastionSetup_noTestMessage)
             else ...[
               Text(
-                'Latest message: ${latest.status.name.toUpperCase()} • ${latest.timestamp.toLocal()}',
+                l10n.bastionSetup_latestMessage(
+                  messageStatusLabel(
+                    latest.status.name,
+                    l10n: l10n,
+                  ).toUpperCase(),
+                  '${latest.timestamp.toLocal()}',
+                ),
               ),
-              Text(explainMessageStatus(latest.status.name)),
+              Text(explainMessageStatus(latest.status.name, l10n: l10n)),
             ],
             const SizedBox(height: 8),
-            const Text(
-              'Ask your partner to confirm receipt or reply. A recorded acknowledgment does not prove they read it. Recheck the connection and recipient if a message fails.',
-            ),
+            Text(l10n.bastionSetup_confirmReceipt),
           ]),
-          _step('4. Prepare for the field', Icons.backpack_outlined, [
-            const Text(
-              'Plan your trip contacts and inspect downloaded map areas. Bot Mode and field automations start off; field automations run only while the app is active.',
-            ),
+          _step(l10n.bastionSetup_step4, Icons.backpack_outlined, [
+            Text(l10n.bastionSetup_step4Body),
             TextButton.icon(
               onPressed: () => _open(const BastionFieldOpsScreen()),
               icon: const Icon(Icons.checklist),
-              label: const Text('Trip and readiness tools'),
+              label: Text(l10n.bastionSetup_tripTools),
             ),
           ]),
         ],

@@ -5206,4 +5206,1599 @@ class AppLocalizationsJa extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes分 $seconds秒';
   }
+
+  @override
+  String get bastion_tagline => 'インフラに頼らない通信。';
+
+  @override
+  String get bastion_nodes => 'ノード';
+
+  @override
+  String get bastion_repeaters => 'リピーター';
+
+  @override
+  String get bastion_active1h => '1時間以内に活動';
+
+  @override
+  String get bastion_mapCoverage => 'マップ + カバレッジ';
+
+  @override
+  String get bastion_routeIntelligence => 'ルート分析';
+
+  @override
+  String get bastion_repeaterTools => 'リピーターツール';
+
+  @override
+  String get bastion_fieldStats => 'フィールド統計';
+
+  @override
+  String get bastion_fieldOps => '行程 + フィールド運用';
+
+  @override
+  String get bastion_coverageCapture => 'カバレッジ記録';
+
+  @override
+  String get bastion_mapAttribution =>
+      '地図データ © OpenStreetMap 貢献者、タイルは選択したプロバイダー';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count件の観測',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '固有ノード$count個',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countホップ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count分',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint => '2秒間長押しします。誰かが応答するまで、5分ごとに行程の連絡先へ位置を送信します。';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return '2秒間長押しします。誰かが応答するまで、5分ごとに行程の連絡先と$channelへ位置を送信します。';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'SOSを送信できませんでした: $error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return '$nameが確認しました。再送を停止しました。';
+  }
+
+  @override
+  String get sos_waitingForRadio => '無線機の送信を待っています…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return '$max回中$sends回送信しました。再送は終了しましたが、まだ応答はありません。';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return '$max回中$sends回送信しました。次回は$timeです。';
+  }
+
+  @override
+  String get sos_active => 'SOS発信中';
+
+  @override
+  String get sos_stop => '停止';
+
+  @override
+  String get sos_imSafe => '無事です';
+
+  @override
+  String get sos_holdSemantics => 'SOS。長押しで送信します。';
+
+  @override
+  String get sos_keepHolding => 'そのまま押し続けて…';
+
+  @override
+  String get sos_holdForSos => '長押しでSOS';
+
+  @override
+  String get sos_blockStorage => '先にフィールドログの保存エラーを解決してください。';
+
+  @override
+  String get sos_blockNotConnected => 'SOSを送信するには MeshCore 無線機を接続してください。';
+
+  @override
+  String get sos_blockNoTarget => '「行程を計画」で行程の連絡先またはSOSチャンネルを選んでください。';
+
+  @override
+  String get checkIn_labelOk => '無事です';
+
+  @override
+  String get checkIn_labelAtCamp => 'キャンプ地にいます';
+
+  @override
+  String get checkIn_labelDelayed => '遅れています';
+
+  @override
+  String get checkIn_labelHeadingBack => '帰路についています';
+
+  @override
+  String get checkIn_blockLoading => '行程を読み込み中…';
+
+  @override
+  String get checkIn_blockStorage => '送信する前にフィールドログの保存エラーを解決してください。';
+
+  @override
+  String get checkIn_blockBusy => 'チェックインを送信中です。お待ちください。';
+
+  @override
+  String get checkIn_blockNoContacts => '「行程を計画」で行程の連絡先を選んでください。';
+
+  @override
+  String get checkIn_blockRosterIncomplete =>
+      '一部の行程の連絡先が利用できません。メンバーを確認してください。';
+
+  @override
+  String get checkIn_blockNotConnected => 'チェックインするには MeshCore 無線機を接続してください。';
+
+  @override
+  String get checkIn_blockNotActive => 'チェックインを有効にするには行程を開始してください。';
+
+  @override
+  String get checkIn_notSent => '未送信';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return '$nameに配信済み';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return '$count件すべての連絡先に配信済み';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return '$total件中$delivered件に配信済み';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return '未配信: $names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => '残りを待っています';
+
+  @override
+  String get checkIn_aContact => '連絡先';
+
+  @override
+  String get checkIn_statusPending => '保留中';
+
+  @override
+  String get checkIn_statusSent => '送信済み';
+
+  @override
+  String get checkIn_statusDelivered => '配信済み';
+
+  @override
+  String get checkIn_statusFailed => '失敗';
+
+  @override
+  String get checkIn_explainPending => '端末内でキューに入っています。無線送信や受信を確認したものではありません。';
+
+  @override
+  String get checkIn_explainSent => '無線機が送信を受け付けました。配信確認はまだ記録されていません。';
+
+  @override
+  String get checkIn_explainDelivered => 'アプリが配信確認を記録しました。相手が読んだことの証明ではありません。';
+
+  @override
+  String get checkIn_explainFailed =>
+      '配信は確認されていません。無線接続、受信者への到達性、再送履歴を確認してください。';
+
+  @override
+  String get checkIn_explainUnknown => '配信状態が不明です。このメッセージが届いたとは考えないでください。';
+
+  @override
+  String get tripBrief_heading => 'BASTION • MeshCore 行程概要';
+
+  @override
+  String tripBrief_trip(String name) {
+    return '行程: $name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return '状態: $status';
+  }
+
+  @override
+  String get tripBrief_active => '進行中';
+
+  @override
+  String get tripBrief_stopped => '停止中';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return '連絡先: $names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => '未選択';
+
+  @override
+  String get tripBrief_unavailableContact => '利用できない連絡先(メンバーを確認)';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return '活動の遅延とみなすまで: $minutes分(連絡先が静かになるとこの端末が通知します)';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return 'チェックインのリマインダー: $value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return 'チェックインがないまま$minutes分ごと';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return 'チェックインの選択肢: $choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return 'チェックインに含める無線機の位置: $value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale => '含める(古い可能性あり)';
+
+  @override
+  String tripBrief_battery(String value) {
+    return 'チェックインに含める無線機のバッテリー: $value';
+  }
+
+  @override
+  String get tripBrief_included => '含める';
+
+  @override
+  String get tripBrief_off => 'オフ';
+
+  @override
+  String get tripBrief_review => 'チェックインを送信する前に受信者とメッセージを確認してください。';
+
+  @override
+  String get tripBrief_noProof => 'キュー登録や送信済みは配信の証明ではありません。確認応答は既読の証明ではありません。';
+
+  @override
+  String get tripBrief_overdueMeaning =>
+      '遅延とは最近の連絡先の活動がないことを意味し、緊急事態が確認されたわけではありません。';
+
+  @override
+  String get tripBrief_automations =>
+      'フィールド自動化はアプリが動作している間だけ実行されます。連絡が取れない場合の別の計画を決めておいてください。';
+
+  @override
+  String get tripBrief_sharesOnly => 'この概要は情報を共有するだけで、無線メッセージの送信や行程の開始は行いません。';
+
+  @override
+  String get fieldOps_title => 'Bastion フィールド運用';
+
+  @override
+  String get fieldOps_tabTrip => '行程';
+
+  @override
+  String get fieldOps_tabReady => '準備';
+
+  @override
+  String get fieldOps_tabLog => 'ログ';
+
+  @override
+  String get fieldOps_tabAuto => '自動';
+
+  @override
+  String get fieldOps_tabCoverage => 'カバレッジ';
+
+  @override
+  String get fieldOps_tabConnection => '接続';
+
+  @override
+  String get fieldOps_diagnostics => '診断';
+
+  @override
+  String get fieldOps_storageLoadError =>
+      'フィールドデータを読み込めませんでした。保存済みデータは保持され、自動化はオフのままです。';
+
+  @override
+  String get fieldOps_storageSaveError =>
+      'フィールドデータを保存できませんでした。自動化を停止しました。既存の保存データは保持されます。';
+
+  @override
+  String get fieldOps_regionHint => '「オフライン地図」でエリアとズームレベルを選んでください。';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • ズーム $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return '地図エリアを確認できませんでした: $error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '行程進行中 • 連絡先$count件',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped => '行程は停止中です。準備ができたら開始してください。';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return '$timeにチェックインのリマインダー';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return '長時間応答なし: $names';
+  }
+
+  @override
+  String get fieldOps_planTrip => '行程を計画';
+
+  @override
+  String get fieldOps_endTrip => '行程を終了';
+
+  @override
+  String get fieldOps_startTrip => '行程を開始';
+
+  @override
+  String get fieldOps_tripBrief => '行程概要';
+
+  @override
+  String get fieldOps_connectRadio => '無線機を接続';
+
+  @override
+  String get fieldOps_previewedCheckIns => 'プレビュー付きチェックイン';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      '状態を選び、実際の受信者とメッセージを確認してから送信します。キュー登録は配信済みを意味しません。';
+
+  @override
+  String get fieldOps_tripRoster => '行程メンバー';
+
+  @override
+  String get fieldOps_rosterEmpty => '「行程を計画」で既知のチャット連絡先を最大6件選んでください。';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      '最終受信は過去の活動の証拠です。現在の到達性を示すものではありません。遅延バッジは最近の連絡先の活動がないことを示し、緊急事態が確認されたわけではありません。';
+
+  @override
+  String get fieldOps_offlineMaps => 'オフライン地図';
+
+  @override
+  String get fieldOps_checkingTiles => '保存済みタイルを確認中…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'キャッシュ済みタイル$count枚。',
+    );
+    return '$_temp0ルート全体がカバーされている保証はありません。';
+  }
+
+  @override
+  String get fieldOps_downloadAreas => 'オフラインエリアをダウンロード/確認';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return '最後のチェックイン、$time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name: $status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => '連絡先';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '未配信の$count件に再送',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable => '選択した連絡先は利用できません';
+
+  @override
+  String get fieldOps_memberUnavailableHint => '送信する前にこの行程を確認してください。';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return '最終活動 $minutes分前';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return '最終活動 $minutes分前 • 遅延';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded => 'このログにチェックインの記録はありません。';
+
+  @override
+  String get fieldOps_tripMap => '行程マップ';
+
+  @override
+  String get fieldOps_tripMapEmpty => '選択した連絡先はまだ座標を発信していません。';
+
+  @override
+  String get fieldOps_lastPositions => '最後に発信された位置';
+
+  @override
+  String get fieldOps_positionsCaveat =>
+      '位置は古い可能性があります。この地図は端末のGPSを追跡せず、メンバーが今ここにいることを証明しません。';
+
+  @override
+  String get fieldOps_briefPreviewTitle => '行程概要のプレビュー';
+
+  @override
+  String get fieldOps_briefPreviewHint =>
+      '行程名と連絡先名が含まれます。共有する前に確認してください。座標、鍵、メッセージ履歴は含まれません。';
+
+  @override
+  String get fieldOps_shareBrief => '概要を共有';
+
+  @override
+  String get fieldOps_briefSubject => 'Bastion 行程概要';
+
+  @override
+  String get fieldOps_tripName => '行程名';
+
+  @override
+  String get fieldOps_defaultTripName => '私の行程';
+
+  @override
+  String get fieldOps_includePosition => '無線機が発信した位置を含める';
+
+  @override
+  String get fieldOps_includePositionHint => '古い可能性があります。共有は既定でオフです。';
+
+  @override
+  String get fieldOps_includeBattery => '無線機のバッテリーを含める';
+
+  @override
+  String get fieldOps_overdueLabel => '連絡先が応答しない時間がこれを超えたら通知';
+
+  @override
+  String get fieldOps_reminderLabel => 'チェックインを通知';
+
+  @override
+  String get fieldOps_reminderHelper => 'Bastion を閉じていても端末に通知します。';
+
+  @override
+  String get fieldOps_reminderOff => 'オフ';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'チェックインがないまま$count分後',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'SOSの送信先チャンネル';
+
+  @override
+  String get fieldOps_sosChannelNone => 'なし';
+
+  @override
+  String get fieldOps_selectContacts => '既知のチャット連絡先を最大6件選択';
+
+  @override
+  String get fieldOps_sendCheckInTitle => 'チェックインを送信しますか?';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return '宛先: $names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint =>
+      '通常のダイレクトメッセージで送信します。配信状況はフィールドログで追跡されます。';
+
+  @override
+  String get fieldOps_send => '送信';
+
+  @override
+  String get fieldOps_beforeYouLeave => '出発前に';
+
+  @override
+  String get fieldOps_radioConnected => '無線機接続済み';
+
+  @override
+  String get fieldOps_connectHint => 'Bluetooth、USB、TCPで接続します。';
+
+  @override
+  String get fieldOps_radioBattery => '無線機のバッテリー';
+
+  @override
+  String get fieldOps_batteryUnknown => '不明。無線機を確認してください。';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent% • 予定の行程に向けて充電してください。';
+  }
+
+  @override
+  String get fieldOps_tripContacts => '行程の連絡先';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return '$available/$selected件が利用可能。互換性のある無線機とチャンネルがあるか確認してください。';
+  }
+
+  @override
+  String get fieldOps_offlineArea => '選択したオフライン地図エリア';
+
+  @override
+  String get fieldOps_checkingFiles => 'ローカルファイルを確認中…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return 'タイルファイル$available/$expected件が利用可能、$missing件が不足。これはスナップショットです。出発前にオフラインでエリアを開いてください。';
+  }
+
+  @override
+  String get fieldOps_locationChoice => '位置情報の共有';
+
+  @override
+  String get fieldOps_locationOptedIn => 'オン: 無線機が発信した座標は古い可能性があります。';
+
+  @override
+  String get fieldOps_locationOff => '共有はオフです。チェックインに座標は含まれません。';
+
+  @override
+  String get fieldOps_automationAvailability => '自動化の可用性';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      'このアプリが動作している間だけ実行されます。スリープ、終了、無線機の切断によって予定の操作が実行されないことがあります。';
+
+  @override
+  String get fieldOps_readinessCaveat =>
+      '準備チェックは参考情報です。無線の到達範囲を証明したり、メッセージの配信を保証したりするものではありません。';
+
+  @override
+  String get fieldOps_radio => '無線機';
+
+  @override
+  String get fieldOps_refreshChecks => 'チェックを更新';
+
+  @override
+  String get fieldOps_searchLog => 'フィールドログを検索';
+
+  @override
+  String get fieldOps_kindAll => 'すべて';
+
+  @override
+  String get fieldOps_kindCheckIn => 'チェックイン';
+
+  @override
+  String get fieldOps_kindReceived => '受信';
+
+  @override
+  String get fieldOps_kindNote => 'メモ';
+
+  @override
+  String get fieldOps_kindDeadZone => '圏外エリア';
+
+  @override
+  String get fieldOps_kindRadio => '無線';
+
+  @override
+  String get fieldOps_kindAutomation => '自動化';
+
+  @override
+  String get fieldOps_kindMissed => '未実行';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => '行程';
+
+  @override
+  String get fieldOps_kindOverdue => '遅延';
+
+  @override
+  String get fieldOps_addNote => 'メモを追加';
+
+  @override
+  String get fieldOps_exportJson => 'JSONをエクスポート';
+
+  @override
+  String get fieldOps_deleteLog => 'ログを削除';
+
+  @override
+  String get fieldOps_logSubject => 'Bastion フィールドログ';
+
+  @override
+  String get fieldOps_logCaveat =>
+      '端末内に最大1,000件保存されます。エクスポートには連絡先の鍵、メッセージ、位置が含まれる場合があります。共有前に確認してください。';
+
+  @override
+  String get fieldOps_noEntries => '一致する項目はありません。';
+
+  @override
+  String get fieldOps_tripUnspecified => '行程未指定';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status: $explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return '記録された無線機の発信位置 $latitude, $longitude(古い可能性あり)';
+  }
+
+  @override
+  String get fieldOps_noteTitle => 'フィールド観察';
+
+  @override
+  String get fieldOps_noteLabel => '何を観察しましたか?';
+
+  @override
+  String get fieldOps_deadZone => '圏外エリアを報告';
+
+  @override
+  String get fieldOps_deadZoneHint => 'あなたの観察であり、検証済みのカバレッジ予測ではありません。';
+
+  @override
+  String get fieldOps_savePosition => '無線機が発信した位置を保存';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • 古い可能性あり、端末のGPSではありません';
+  }
+
+  @override
+  String get fieldOps_noPosition => '使用できる発信座標がありません';
+
+  @override
+  String get fieldOps_deleteLogTitle => 'フィールドログを削除しますか?';
+
+  @override
+  String get fieldOps_deleteLogBody => 'この端末に保存されたすべての項目が削除されます。行程の設定は保持されます。';
+
+  @override
+  String get fieldOps_localAutomations => 'ローカル自動化';
+
+  @override
+  String get fieldOps_enableForTrip => 'この行程で有効にする';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      'アプリを再起動するたびにオフになります。ルールはアプリが動作している間だけ実行されます。実行されなかった予定の操作はフィールドログに表示され、まとめて再実行されることはありません。自動チェックインは10分ごとに1回までに制限されます。';
+
+  @override
+  String get fieldOps_openBotMode => 'Bastion ボットモードを開く';
+
+  @override
+  String get fieldOps_ruleEnabled => 'ルール有効';
+
+  @override
+  String get fieldOps_dryRun => 'テスト実行';
+
+  @override
+  String get fieldOps_dryRunHint => '送信や通知をせずに操作を記録します。';
+
+  @override
+  String get fieldOps_then => '実行内容';
+
+  @override
+  String get fieldOps_actionLog => 'フィールドログに記録';
+
+  @override
+  String get fieldOps_actionNotify => 'ローカル通知を表示';
+
+  @override
+  String get fieldOps_actionCheckIn => '行程の連絡先に「I\'m OK」を送信';
+
+  @override
+  String get fieldOps_batteryThreshold => 'バッテリーがこの値以下';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return '次回: $time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => '次回: 予定なし';
+
+  @override
+  String get fieldOps_previewInLog => 'ログでプレビュー';
+
+  @override
+  String get fieldOps_allowNotifications => '通知を許可';
+
+  @override
+  String get fieldOps_triggerReconnect => '無線機が再接続したとき';
+
+  @override
+  String get fieldOps_triggerDisconnect => '無線機が切断したとき';
+
+  @override
+  String get fieldOps_triggerLowBattery => '無線機のバッテリーがしきい値を超えたとき';
+
+  @override
+  String get fieldOps_triggerNewNode => '新しいノードが追加されたとき';
+
+  @override
+  String get fieldOps_triggerRepeater => '新しいリピーターが追加されたとき';
+
+  @override
+  String get fieldOps_triggerScheduled => '予定のチェックイン時刻になったとき';
+
+  @override
+  String get fieldOps_explainConnection => '接続について説明';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return '状態: $state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat =>
+      '端末は無線機に接続しています。それだけで受信者へのルートが確立されているわけではありません。';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      '有効な無線接続がありません。Bluetoothの権限、無線機の電源と到達範囲を確認してください。USB/TCPは「無線機を接続」から利用できます。';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return '確認待ちの行程チェックイン: $count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      'ノードの最終確認時刻や発信位置は古い可能性があります。ルート分析は観測された試行から学習したルートを表示し、経路を推測で作ることはありません。';
+
+  @override
+  String get fieldOps_routeIntelligence => 'ルート分析';
+
+  @override
+  String get fieldOps_coverageIntelligence => 'カバレッジ分析';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      '2つのフィールドセッションの観測記録を比較します。点はノードが受信された時点の記録者の無線機発信位置を示します。連続したカバレッジを意味するものではありません。RSSI/SNRのスナップショットはノードごとの測定値ではありません。';
+
+  @override
+  String get fieldOps_captureSession => 'セッションを記録';
+
+  @override
+  String get fieldOps_refreshHistory => '履歴を更新';
+
+  @override
+  String get fieldOps_noCoverageSessions => '保存されたカバレッジセッションはまだありません。';
+
+  @override
+  String get fieldOps_sessionA => 'セッションA • ティール';
+
+  @override
+  String get fieldOps_sessionB => 'セッションB • アンバー';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A: 固有ノード$a個 • B: 固有ノード$b個';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return '共通: $shared • Aのみ: $onlyA • Bのみ: $onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat =>
+      'あるセッションでノードを受信できなくても、圏外エリアとは断定できません。条件や観測時間は異なります。';
+
+  @override
+  String get fieldOps_heardTooltip => '受信したノードの観測。リンク成功の証明ではありません';
+
+  @override
+  String get fieldOps_noteTooltip => '無線機が発信した座標でのローカルメモ。古い可能性があります。';
+
+  @override
+  String get bastionHome_aboutTooltip => 'Bastion について';
+
+  @override
+  String get bastionHome_getStarted => 'はじめに';
+
+  @override
+  String get bastionHome_getStartedHint => '無線機を接続して最初のメッセージを確認します';
+
+  @override
+  String get bastionHome_planYourTrip => '行程を計画';
+
+  @override
+  String get bastionHome_tripActive => '行程進行中';
+
+  @override
+  String get bastionHome_tripStopped => '行程停止中';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • 連絡先$contacts件 • 未読メッセージ$unread件';
+  }
+
+  @override
+  String get bastionHome_checkInOk => 'チェックイン: 無事です';
+
+  @override
+  String get bastionHome_checkInHint =>
+      '送信前に連絡先とメッセージを確認してください。確認応答はフィールドログで追跡できます。';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return '最後のチェックイン: $summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => '無線機を接続';
+
+  @override
+  String get bastionHome_connectRadioHint => 'Bluetooth、USB、TCPによる MeshCore 接続';
+
+  @override
+  String get bastionHome_liveDiagnostics => 'ライブ診断';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint => '無線機の状態、信号、デバイス、フレームツール';
+
+  @override
+  String get bastionHome_meshDiscovery => 'メッシュ探索';
+
+  @override
+  String get bastionHome_meshDiscoveryHint => '周囲のノードを見つけてメッシュを調べます';
+
+  @override
+  String get bastionHome_fieldOpsHint => '行程概要、準備、フィールドログ、自動化、カバレッジ比較';
+
+  @override
+  String get bastionHome_fieldTools => 'BASTION フィールドツール';
+
+  @override
+  String get bastionHome_statusActive => '有効';
+
+  @override
+  String get bastionHome_consoleOnline => 'フィールドコンソール オンライン';
+
+  @override
+  String get bastionHome_consoleReady => 'フィールドコンソール 準備完了';
+
+  @override
+  String get bastionHome_consoleHint => '無線機を接続するとライブダッシュボードが表示されます。';
+
+  @override
+  String bastionHome_battery(String value) {
+    return '電池 $value';
+  }
+
+  @override
+  String get bastionTools_title => 'フィールドツール';
+
+  @override
+  String get bastionTools_backup => '暗号化バックアップ';
+
+  @override
+  String get bastionTools_backupHint => '設定、連絡先、鍵を保存。チャット履歴も任意で保存できます';
+
+  @override
+  String get bastionTools_fieldOpsHint => 'チェックイン、準備、フィールドログ、自動化、比較';
+
+  @override
+  String get bastionTools_mapHint => 'ライブマップ、記録セッション、オフライン地図ツール、地域';
+
+  @override
+  String get bastionTools_pathAnalysis => '経路分析';
+
+  @override
+  String get bastionTools_pathHint => 'ルート、探索、経路分析';
+
+  @override
+  String get bastionTools_repeaterHint => '状態、ログイン、テレメトリー、近隣、管理';
+
+  @override
+  String get bastionTools_statsHint => 'メッシュのライブ集計と連絡先の活動';
+
+  @override
+  String get bastionTools_diagnostics => '診断';
+
+  @override
+  String get bastionTools_diagnosticsHint => '無線機の状態、デバイス情報、生フレーム、エクスポート';
+
+  @override
+  String get bastionTools_about => '情報 + クレジット';
+
+  @override
+  String get bastionTools_aboutHint => 'Bastion のバージョン、独立性に関する声明、オープンソースライセンス';
+
+  @override
+  String get bastionAbout_title => '情報 + クレジット';
+
+  @override
+  String get bastionAbout_intro =>
+      'MeshCore ネットワーク向けの独立したコミュニティ製コンパニオンアプリです。Bastion は MeshCore の公式アプリではなく、コミュニティのリソースを掲載していても提携や推奨を意味するものではありません。';
+
+  @override
+  String get bastionAbout_version => 'バージョン';
+
+  @override
+  String get bastionAbout_openSource => 'オープンソースの基盤';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'Bastion は MIT ライセンスの MeshCore Open のオープンソースコードをもとに作られ、それを改変しています。カバレッジ機能の作業では、該当する場合に MIT ライセンスの MeshMapper Flutter App のクレジットも記載しています。';
+
+  @override
+  String get bastionAbout_community => 'コミュニティ第一';
+
+  @override
+  String get bastionAbout_communityBody =>
+      '第三者のクリエイターのリソースは、それぞれのクリエイターに帰属します。所有権や提携を意味するものではありません。';
+
+  @override
+  String get bastionAbout_legalese => 'Bastion • 独立した MeshCore コンパニオン';
+
+  @override
+  String get bastionAbout_licenses => 'オープンソースライセンス';
+
+  @override
+  String get bastionSetup_title => 'Bastion をはじめる';
+
+  @override
+  String get bastionSetup_intro =>
+      '接続し、連絡先を選び、メッセージを確認します。このガイドにはダッシュボードからいつでも戻れます。';
+
+  @override
+  String get bastionSetup_step1 => '1. MeshCore 無線機を接続';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return '$transportで$deviceに接続しました。';
+  }
+
+  @override
+  String get bastionSetup_noRadio => 'まだ無線機が接続されていません。';
+
+  @override
+  String get bastionSetup_step1Power =>
+      'MeshCore コンパニオン無線機の電源を入れます。「無線機を接続」を開き、Bluetooth、USB、TCPのいずれかを選びます。選んだ接続に必要な権限を許可してください。';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      'Bluetoothの検索結果が空の場合は、Bluetoothがオンになっていること、Android のアプリ設定で Bastion に「付近のデバイス」の権限があることを確認してください。スキャナーが表示する追加の権限リクエストにも従ってください。';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => '接続の診断';
+
+  @override
+  String get bastionSetup_step2 => '2. チャット連絡先を選ぶ';
+
+  @override
+  String get bastionSetup_step2Body =>
+      '互換性のある MeshCore 無線設定を持つ近くのパートナーに、ノードをアドバタイズしてもらいます。下から既知のチャット連絡先を選んでください。リピーターは別に管理します。';
+
+  @override
+  String get bastionSetup_noContacts =>
+      '利用できるチャット連絡先がありません。無線機を接続して「メッシュ探索」を開いてください。';
+
+  @override
+  String get bastionSetup_testRecipient => 'テストの受信者';
+
+  @override
+  String get bastionSetup_meshDiscovery => 'メッシュ探索';
+
+  @override
+  String get bastionSetup_step3 => '3. メッセージを送信して確認';
+
+  @override
+  String get bastionSetup_step3Body =>
+      'チャットを開き、短いテストメッセージを書き、受信者を確認して「送信」をタップします。ここに戻ると、このガイドを開いてから記録された最新の送信メッセージを確認できます。';
+
+  @override
+  String get bastionSetup_openTestChat => 'テストチャットを開く';
+
+  @override
+  String get bastionSetup_connectFirst => 'テストチャットを開くには無線機を接続してください。';
+
+  @override
+  String get bastionSetup_chooseRecipient => 'まず受信者を選んでください。';
+
+  @override
+  String get bastionSetup_noTestMessage =>
+      'このガイドのセッションでは送信したテストメッセージの記録がありません。';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return '最新のメッセージ: $status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      'パートナーに受信の確認か返信を頼んでください。確認応答の記録は既読の証明ではありません。メッセージが失敗した場合は、接続と受信者を確認し直してください。';
+
+  @override
+  String get bastionSetup_step4 => '4. フィールドに備える';
+
+  @override
+  String get bastionSetup_step4Body =>
+      '行程の連絡先を計画し、ダウンロードした地図エリアを確認します。ボットモードとフィールド自動化は最初はオフで、フィールド自動化はアプリが動作している間だけ実行されます。';
+
+  @override
+  String get bastionSetup_tripTools => '行程と準備のツール';
+
+  @override
+  String get bastionDiag_title => '診断';
+
+  @override
+  String get bastionDiag_export => '診断をエクスポート';
+
+  @override
+  String get bastionDiag_channels => 'チャンネル';
+
+  @override
+  String get bastionDiag_radio => '無線';
+
+  @override
+  String get bastionDiag_frequency => '周波数';
+
+  @override
+  String get bastionDiag_bandwidth => '帯域幅';
+
+  @override
+  String get bastionDiag_spreadingFactor => '拡散率';
+
+  @override
+  String get bastionDiag_codingRate => '符号化率';
+
+  @override
+  String get bastionDiag_txPower => '送信出力';
+
+  @override
+  String get bastionDiag_noiseFloor => 'ノイズフロア';
+
+  @override
+  String get bastionDiag_device => 'デバイス';
+
+  @override
+  String get bastionDiag_name => '名前';
+
+  @override
+  String get bastionDiag_manufacturer => 'メーカー';
+
+  @override
+  String get bastionDiag_firmware => 'ファームウェア';
+
+  @override
+  String get bastionDiag_battery => 'バッテリー';
+
+  @override
+  String get bastionDiag_transport => '接続方式';
+
+  @override
+  String get bastionDiag_deepTools => '詳細ツール';
+
+  @override
+  String get bastionDiag_liveStats => 'ライブ無線統計';
+
+  @override
+  String get bastionDiag_liveStatsHint => 'ノイズ、RSSI、SNR、送信時間';
+
+  @override
+  String get bastionDiag_frameDebug => 'フレーム / BLE デバッグ';
+
+  @override
+  String get bastionDiag_frameDebugHint => 'デコード済みおよび生の受信フレームを調べます';
+
+  @override
+  String get bastionDiag_appLog => 'アプリのデバッグログ';
+
+  @override
+  String get bastionDiag_appLogHint => 'アプリの診断イベントを確認します';
+
+  @override
+  String get bastionDiag_online => '無線機オンライン';
+
+  @override
+  String get bastionDiag_offline => '無線機オフライン';
+
+  @override
+  String get bastionDiag_offlineHint => 'MeshCore コンパニオンを接続するとライブ診断が表示されます。';
+
+  @override
+  String get coverage_title => 'カバレッジ記録';
+
+  @override
+  String get coverage_leaveBlocked => '離れる前にセッションを停止して保存してください。';
+
+  @override
+  String get coverage_savedSessions => '保存済みセッション';
+
+  @override
+  String get coverage_caveat =>
+      'RSSI/SNRは無線機のスナップショットで、別のパケットのものかもしれません。位置は無線機が発信した座標で、端末のGPSでもカバレッジの証明でもありません。シアン: 記録者、アンバー: 発信ノード。補間は行いません。';
+
+  @override
+  String get coverage_captureActive => '記録中';
+
+  @override
+  String get coverage_fieldSession => 'フィールドカバレッジセッション';
+
+  @override
+  String get coverage_connectedBody =>
+      'Bastion はこのセッション中に新たに受信したノードを記録します。ルートデータ、ノード/位置のメタデータ、最も近い無線機のRSSI/SNRスナップショットを含みます。';
+
+  @override
+  String get coverage_disconnectedBody =>
+      '開始する前に無線機を接続してください。カバレッジ記録は接続中のコンパニオン無線機からメッシュの観測をリアルタイムで記録します。';
+
+  @override
+  String get coverage_observations => '観測';
+
+  @override
+  String get coverage_uniqueNodes => '固有ノード';
+
+  @override
+  String get coverage_elapsed => '経過時間';
+
+  @override
+  String get coverage_radioConnected => '無線機接続済み';
+
+  @override
+  String get coverage_noRadio => '無線機なし';
+
+  @override
+  String get coverage_gpsReady => '無線機GPS準備完了';
+
+  @override
+  String get coverage_noGps => '無線機GPSなし';
+
+  @override
+  String get coverage_stopSave => '停止 + セッションを保存';
+
+  @override
+  String get coverage_start => 'カバレッジセッションを開始';
+
+  @override
+  String get coverage_exportJson => 'JSONをエクスポート';
+
+  @override
+  String get coverage_exportCsv => 'CSVをエクスポート';
+
+  @override
+  String get coverage_liveObservations => 'ライブ観測';
+
+  @override
+  String get coverage_waiting => 'メッシュの活動を待機中';
+
+  @override
+  String get coverage_waitingBody =>
+      'セッションを開始すると、新たに受信したアクティブなノードがここに表示されます。RSSI/SNRの値は無線機のスナップショットで、特定のパケットに一意に結び付けられるとは限りません。';
+
+  @override
+  String get coverage_signalNa => '信号 なし';
+
+  @override
+  String get coverage_snrNa => 'SNR なし';
+
+  @override
+  String get coverage_gpsUnavailable => '無線機GPSが利用できません';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return '経路: $path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => 'フラッド';
+
+  @override
+  String get coverage_pathDirect => '直接';
+
+  @override
+  String get coverage_shareSubject => 'Bastion カバレッジセッション';
+
+  @override
+  String get coverage_shareText => 'Bastion カバレッジ記録のエクスポート';
+
+  @override
+  String get coverage_historyTitle => '保存済みカバレッジセッション';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return 'セッションを読み込めませんでした: $error';
+  }
+
+  @override
+  String get coverage_deleteTitle => '保存済みセッションを削除しますか?';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count件の観測がこの端末から削除されます。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return 'セッションを削除できませんでした: $error';
+  }
+
+  @override
+  String get coverage_retention =>
+      '完了した最新20件のセッションが保持されます。残したいセッションは共有してください。中断された記録は下から再度開けます。';
+
+  @override
+  String get coverage_noSessions => '保存済みセッションはまだありません。記録を停止すると保存されます。';
+
+  @override
+  String get coverage_interrupted => '中断された記録';
+
+  @override
+  String get coverage_saved => '保存済み';
+
+  @override
+  String get coverage_deleteTooltip => 'セッションを削除';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return 'エクスポートに失敗しました: $error';
+  }
+
+  @override
+  String get coverage_sessionTitle => 'カバレッジセッション';
+
+  @override
+  String get coverage_shareJson => 'JSONを共有';
+
+  @override
+  String get coverage_shareCsv => 'CSVを共有';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi dBm • SNR $snr dB • スナップショット経過 $age ms';
+  }
+
+  @override
+  String get coverage_unknown => '不明';
+
+  @override
+  String coverage_pathValue(String path) {
+    return '経路 $path';
+  }
+
+  @override
+  String get coverage_recorder => '記録者';
+
+  @override
+  String get coverage_noCoordinates =>
+      'このセッションには使用できる座標がありません。観測は下に引き続き表示されます。';
+
+  @override
+  String get coverage_osmAttribution => '© OpenStreetMap 貢献者 • オンライン背景地図';
+
+  @override
+  String get fieldStats_title => 'フィールド分析';
+
+  @override
+  String get fieldStats_snapshot => 'メッシュのライブスナップショット';
+
+  @override
+  String get fieldStats_headline => '今 Bastion が把握していること。';
+
+  @override
+  String get fieldStats_body =>
+      'これらの集計は、接続中の MeshCore の連絡先テーブル、位置、経路、最終確認時刻から計算されます。';
+
+  @override
+  String get fieldStats_total => '合計';
+
+  @override
+  String get fieldStats_chatNodes => 'チャットノード';
+
+  @override
+  String get fieldStats_rooms => 'ルーム';
+
+  @override
+  String get fieldStats_sensors => 'センサー';
+
+  @override
+  String get fieldStats_located => '位置あり';
+
+  @override
+  String get fieldStats_favorites => 'お気に入り';
+
+  @override
+  String get fieldStats_routeSnapshot => 'ルートのスナップショット';
+
+  @override
+  String get fieldStats_routed => 'ルートあり';
+
+  @override
+  String get fieldStats_direct => '直接';
+
+  @override
+  String get fieldStats_flood => 'フラッド';
+
+  @override
+  String get fieldStats_pathIntel => '経路分析';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'Bastion のルート分析は、保存された経路の試行、ホップ数、成功/失敗、所要時間、ルートの重み付けを使って学習済みルートを表示します。';
+
+  @override
+  String get fieldStats_coverageSessions => 'カバレッジセッション';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      'カバレッジ記録はフィールドセッションの保存、中断した作業の復元、観測のエクスポート、記録したカバレッジ地点の地図表示に対応しました。RSSI/SNRは引き続き最も近い無線機のスナップショットです。';
+
+  @override
+  String get mapHub_title => 'BASTION フィールドマップ';
+
+  @override
+  String get mapHub_intro =>
+      'ライブマップ、オフラインエリア、地域プロファイル、Bastion のフィールドカバレッジセッション。';
+
+  @override
+  String get mapHub_captureHint => 'フィールドカバレッジセッションを開始・停止';
+
+  @override
+  String get mapHub_badgeNew => '新機能';
+
+  @override
+  String get mapHub_liveMap => 'ライブメッシュマップ';
+
+  @override
+  String get mapHub_liveMapHint => 'ノード、リピーター、位置、ルート、地図ツール';
+
+  @override
+  String get mapHub_badgeLive => 'ライブ';
+
+  @override
+  String get mapHub_offlinePacks => 'オフライン地図パック';
+
+  @override
+  String get mapHub_offlinePacksHint => '行程や圏外エリア向けに地図タイルをキャッシュ';
+
+  @override
+  String get mapHub_badgeOffline => 'オフライン';
+
+  @override
+  String get mapHub_regions => '地域プロファイル';
+
+  @override
+  String get mapHub_regionsHint => '地域のメッシュ定義を管理・取得';
+
+  @override
+  String get mapHub_badgeRegions => '地域';
+
+  @override
+  String get routes_title => 'ルート分析';
+
+  @override
+  String get routes_headline => 'メッシュ内のトラフィックの流れを確認します。';
+
+  @override
+  String get routes_body =>
+      'Bastion は、実際のメッセージ送信や探索から学習済みの経路履歴を使って保存済みルートを順位付けします。';
+
+  @override
+  String get routes_routes => 'ルート';
+
+  @override
+  String get routes_success => '成功';
+
+  @override
+  String get routes_failed => '失敗';
+
+  @override
+  String get routes_routeMap => 'ルートマップ';
+
+  @override
+  String get routes_routeMapHint => 'ノードと経路を調べる';
+
+  @override
+  String get routes_discover => '探索';
+
+  @override
+  String get routes_discoverHint => '新しいルートを見つける';
+
+  @override
+  String get routes_learned => '学習済みルート';
+
+  @override
+  String get routes_none => 'ルート履歴はまだありません';
+
+  @override
+  String get routes_noneBody =>
+      '通常どおりメッシュを使うか探索を実行してください。経路履歴が得られると、学習済みルートがここに表示されます。';
+
+  @override
+  String get routes_direct => '直接';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countルート',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return '最適  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  重み $weight  •  成功 $success / 失敗 $fail';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return '既知の最速: $ms ms';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return 'フラッド: 成功 $success / 失敗 $fail';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => 'リピーター管理';
+
+  @override
+  String get repeaterTools_headline => 'メッシュを支えるインフラを管理します。';
+
+  @override
+  String get repeaterTools_body =>
+      '検出したリピーターを選んで認証し、既存の MeshCore の状態、テレメトリー、近隣、設定、CLIツールを開きます。';
+
+  @override
+  String get repeaterTools_discovered => '検出済み';
+
+  @override
+  String get repeaterTools_tools => 'ツール';
+
+  @override
+  String get repeaterTools_available => '利用可能なリピーター';
+
+  @override
+  String get repeaterTools_unnamed => '名前のないリピーター';
+
+  @override
+  String get repeaterTools_statusTelemetry => '状態 + テレメトリー';
+
+  @override
+  String get repeaterTools_statusTelemetryBody =>
+      '既存の管理機能でリピーターの状態とテレメトリーを確認します。';
+
+  @override
+  String get repeaterTools_neighbors => '近隣';
+
+  @override
+  String get repeaterTools_neighborsBody => '近隣のインフラとメッシュの関係を調べます。';
+
+  @override
+  String get repeaterTools_cli => 'CLI + 設定';
+
+  @override
+  String get repeaterTools_cliBody => '認証済みの管理者は既存のリピーターCLIと設定ツールを利用できます。';
+
+  @override
+  String get repeaterTools_empty =>
+      'リピーターはまだ検出されていません。無線機を接続して、まずメッシュを探索してください。';
+
+  @override
+  String get notification_fieldAlertTitle => 'Bastion フィールドアラート';
+
+  @override
+  String get notification_checkInReminderTitle => 'Bastion チェックインのリマインダー';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return '$tripで$minutes分間チェックインがありません。Bastion を開いてチェックインしてください。';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return '$nameから$minutes分間応答がありません。緊急事態が確認されたわけではありません。';
+  }
+
+  @override
+  String get notification_aTripContact => '行程の連絡先';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return '$nameへのチェックインが配信されませんでした。「行程」から再送できます。';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return '$nameがSOSを確認しました';
+  }
 }

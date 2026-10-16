@@ -5449,4 +5449,1678 @@ class AppLocalizationsHu extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes per $seconds sekünd\n\n(Note: The original text appears to be a placeholder format rather than a complete sentence. The translation reflects the literal structure while preserving the placeholders as requested.)';
   }
+
+  @override
+  String get bastion_tagline => 'Kommunikáció infrastruktúra nélkül.';
+
+  @override
+  String get bastion_nodes => 'CSOMÓPONTOK';
+
+  @override
+  String get bastion_repeaters => 'ISMÉTLŐK';
+
+  @override
+  String get bastion_active1h => 'AKTÍV 1 ÓRA';
+
+  @override
+  String get bastion_mapCoverage => 'TÉRKÉP + LEFEDETTSÉG';
+
+  @override
+  String get bastion_routeIntelligence => 'ÚTVONALELEMZÉS';
+
+  @override
+  String get bastion_repeaterTools => 'ISMÉTLŐESZKÖZÖK';
+
+  @override
+  String get bastion_fieldStats => 'TEREPI STATISZTIKA';
+
+  @override
+  String get bastion_fieldOps => 'TÚRA + TEREPI MŰVELETEK';
+
+  @override
+  String get bastion_coverageCapture => 'LEFEDETTSÉGRÖGZÍTÉS';
+
+  @override
+  String get bastion_mapAttribution =>
+      'Térképadatok © OpenStreetMap-közreműködők; csempék a választott szolgáltatótól';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count megfigyelés',
+      one: '1 megfigyelés',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count egyedi csomópont',
+      one: '1 egyedi csomópont',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ugrás',
+      one: '1 ugrás',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count perc',
+      one: '1 perc',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint =>
+      'Tartsa nyomva 2 másodpercig. 5 percenként elküldi a pozícióját a túrakapcsolatainak, amíg valaki nem válaszol.';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return 'Tartsa nyomva 2 másodpercig. 5 percenként elküldi a pozícióját a túrakapcsolatainak és a(z) $channel csatornának, amíg valaki nem válaszol.';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'Az SOS nem lett elküldve: $error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return '$name visszaigazolta. Az ismétlések leálltak.';
+  }
+
+  @override
+  String get sos_waitingForRadio => 'Várakozás a rádió küldésére…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return 'Elküldve $sends/$max alkalommal. Az ismétlések befejeződtek; még nincs válasz.';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return 'Elküldve $sends/$max alkalommal. Következő: $time.';
+  }
+
+  @override
+  String get sos_active => 'SOS AKTÍV';
+
+  @override
+  String get sos_stop => 'LEÁLLÍTÁS';
+
+  @override
+  String get sos_imSafe => 'BIZTONSÁGBAN VAGYOK';
+
+  @override
+  String get sos_holdSemantics => 'SOS. Tartsa nyomva a küldéshez.';
+
+  @override
+  String get sos_keepHolding => 'TARTSA TOVÁBB…';
+
+  @override
+  String get sos_holdForSos => 'TARTSA NYOMVA AZ SOS-HEZ';
+
+  @override
+  String get sos_blockStorage =>
+      'Előbb hárítsa el a terepnapló tárolási hibáját.';
+
+  @override
+  String get sos_blockNotConnected =>
+      'Csatlakoztassa MeshCore rádióját az SOS küldéséhez.';
+
+  @override
+  String get sos_blockNoTarget =>
+      'Válasszon túrakapcsolatokat vagy SOS-csatornát a Túra tervezése menüben.';
+
+  @override
+  String get checkIn_labelOk => 'Jól vagyok';
+
+  @override
+  String get checkIn_labelAtCamp => 'A táborban';
+
+  @override
+  String get checkIn_labelDelayed => 'Késésben';
+
+  @override
+  String get checkIn_labelHeadingBack => 'Visszafelé tartok';
+
+  @override
+  String get checkIn_blockLoading => 'A túra betöltése…';
+
+  @override
+  String get checkIn_blockStorage =>
+      'Küldés előtt hárítsa el a terepnapló tárolási hibáját.';
+
+  @override
+  String get checkIn_blockBusy =>
+      'Egy bejelentkezés küldése folyamatban. Kérjük, várjon.';
+
+  @override
+  String get checkIn_blockNoContacts =>
+      'Válasszon túrakapcsolatokat a Túra tervezése menüben.';
+
+  @override
+  String get checkIn_blockRosterIncomplete =>
+      'Néhány túrakapcsolat nem érhető el. Ellenőrizze a listát.';
+
+  @override
+  String get checkIn_blockNotConnected =>
+      'Csatlakoztassa MeshCore rádióját a bejelentkezéshez.';
+
+  @override
+  String get checkIn_blockNotActive =>
+      'Indítsa el a túrát a bejelentkezések engedélyezéséhez.';
+
+  @override
+  String get checkIn_notSent => 'Nincs elküldve';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return 'Kézbesítve neki: $name';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return 'Kézbesítve mind a(z) $count kapcsolatnak';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return 'Kézbesítve $delivered/$total kapcsolatnak';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return 'Nincs kézbesítve: $names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => 'Várakozás a többiekre';
+
+  @override
+  String get checkIn_aContact => 'egy kapcsolat';
+
+  @override
+  String get checkIn_statusPending => 'Függőben';
+
+  @override
+  String get checkIn_statusSent => 'Elküldve';
+
+  @override
+  String get checkIn_statusDelivered => 'Kézbesítve';
+
+  @override
+  String get checkIn_statusFailed => 'Sikertelen';
+
+  @override
+  String get checkIn_explainPending =>
+      'Helyben sorba állítva. Ez nem igazolja a rádióadást vagy a vételt.';
+
+  @override
+  String get checkIn_explainSent =>
+      'A rádió elfogadta a küldést. Kézbesítési visszaigazolás nem érkezett.';
+
+  @override
+  String get checkIn_explainDelivered =>
+      'Az alkalmazás kézbesítési visszaigazolást rögzített. Ez nem bizonyítja, hogy a címzett el is olvasta.';
+
+  @override
+  String get checkIn_explainFailed =>
+      'Nincs megerősített kézbesítés. Ellenőrizze a rádiókapcsolatot, a címzett elérhetőségét és az újrapróbálkozások előzményeit.';
+
+  @override
+  String get checkIn_explainUnknown =>
+      'A kézbesítési állapot nem érhető el. Ne feltételezze, hogy az üzenet megérkezett.';
+
+  @override
+  String get tripBrief_heading => 'BASTION • MeshCore túraösszefoglaló';
+
+  @override
+  String tripBrief_trip(String name) {
+    return 'Túra: $name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return 'Állapot: $status';
+  }
+
+  @override
+  String get tripBrief_active => 'Aktív';
+
+  @override
+  String get tripBrief_stopped => 'Leállítva';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return 'Kapcsolatok: $names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => 'Nincs kiválasztva';
+
+  @override
+  String get tripBrief_unavailableContact =>
+      'Nem elérhető kapcsolat (ellenőrizze a listát)';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return 'Az aktivitás késik ennyi után: $minutes perc (ez a telefon figyelmeztet, ha egy kapcsolat elhallgat)';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return 'Bejelentkezési emlékeztető: $value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return '$minutes percenként bejelentkezés nélkül';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return 'Bejelentkezési lehetőségek: $choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return 'Rádiópozíció a bejelentkezésekben: $value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale => 'Benne van; elavult lehet';
+
+  @override
+  String tripBrief_battery(String value) {
+    return 'Rádióakkumulátor a bejelentkezésekben: $value';
+  }
+
+  @override
+  String get tripBrief_included => 'Benne van';
+
+  @override
+  String get tripBrief_off => 'Ki';
+
+  @override
+  String get tripBrief_review =>
+      'Bejelentkezés küldése előtt ellenőrizze a címzetteket és az üzenetet.';
+
+  @override
+  String get tripBrief_noProof =>
+      'A sorba állítás vagy elküldés nem bizonyítja a kézbesítést. A visszaigazolás nem bizonyítja, hogy elolvasták.';
+
+  @override
+  String get tripBrief_overdueMeaning =>
+      'A késés azt jelenti, hogy nincs friss kapcsolati aktivitás; ez nem megerősített vészhelyzet.';
+
+  @override
+  String get tripBrief_automations =>
+      'A terepi automatizálások csak akkor futnak, ha az alkalmazás aktív. Egyezzenek meg külön tervben elmaradt kapcsolat esetére.';
+
+  @override
+  String get tripBrief_sharesOnly =>
+      'Ez az összefoglaló csak információt oszt meg; nem küld rádióüzenetet és nem indít túrát.';
+
+  @override
+  String get fieldOps_title => 'Bastion terepi műveletek';
+
+  @override
+  String get fieldOps_tabTrip => 'TÚRA';
+
+  @override
+  String get fieldOps_tabReady => 'KÉSZ';
+
+  @override
+  String get fieldOps_tabLog => 'NAPLÓ';
+
+  @override
+  String get fieldOps_tabAuto => 'AUTO';
+
+  @override
+  String get fieldOps_tabCoverage => 'LEFEDETTSÉG';
+
+  @override
+  String get fieldOps_tabConnection => 'KAPCSOLAT';
+
+  @override
+  String get fieldOps_diagnostics => 'Diagnosztika';
+
+  @override
+  String get fieldOps_storageLoadError =>
+      'A terepi adatokat nem sikerült betölteni. A mentett adatok megmaradtak; az automatizálások kikapcsolva maradnak.';
+
+  @override
+  String get fieldOps_storageSaveError =>
+      'A terepi adatokat nem sikerült menteni. Az automatizálások leálltak; a meglévő mentett adatok megmaradnak.';
+
+  @override
+  String get fieldOps_regionHint =>
+      'Válasszon területet és nagyítási szinteket az Offline térképek menüben.';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • nagyítás $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return 'A térképterületet nem sikerült ellenőrizni: $error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Túra aktív • $count kapcsolat',
+      one: 'Túra aktív • 1 kapcsolat',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped =>
+      'A túra le van állítva. Indítsa el, ha készen áll.';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return 'Bejelentkezési emlékeztető ekkor: $time';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return 'Túl régóta hallgat: $names';
+  }
+
+  @override
+  String get fieldOps_planTrip => 'Túra tervezése';
+
+  @override
+  String get fieldOps_endTrip => 'Túra befejezése';
+
+  @override
+  String get fieldOps_startTrip => 'Túra indítása';
+
+  @override
+  String get fieldOps_tripBrief => 'Túraösszefoglaló';
+
+  @override
+  String get fieldOps_connectRadio => 'Rádió csatlakoztatása';
+
+  @override
+  String get fieldOps_previewedCheckIns => 'Előnézetes bejelentkezések';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      'Válasszon állapotot, ellenőrizze a tényleges címzetteket és az üzenetet, majd küldje el. A sorba állítás nem jelent kézbesítést.';
+
+  @override
+  String get fieldOps_tripRoster => 'Túralista';
+
+  @override
+  String get fieldOps_rosterEmpty =>
+      'Válasszon legfeljebb hat ismert csevegőkapcsolatot a Túra tervezése menüben.';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      'A „legutóbb hallott” korábbi aktivitást bizonyít. Nem igazolja a jelenlegi elérhetőséget. A késés jelzései friss kapcsolati aktivitás hiányát jelentik, nem megerősített vészhelyzetet.';
+
+  @override
+  String get fieldOps_offlineMaps => 'Offline térképek';
+
+  @override
+  String get fieldOps_checkingTiles => 'Mentett csempék ellenőrzése…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count gyorsítótárazott csempe.',
+      one: '1 gyorsítótárazott csempe.',
+    );
+    return '$_temp0 Ez nem garantálja, hogy a teljes útvonal le van fedve.';
+  }
+
+  @override
+  String get fieldOps_downloadAreas =>
+      'Offline területek letöltése / ellenőrzése';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return 'Utolsó bejelentkezés, $time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name: $status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => 'Kapcsolat';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Újraküldés $count kézbesítetlennek',
+      one: 'Újraküldés 1 kézbesítetlennek',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable =>
+      'A kiválasztott kapcsolat nem érhető el';
+
+  @override
+  String get fieldOps_memberUnavailableHint =>
+      'Küldés előtt ellenőrizze ezt a túrát.';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return 'Utolsó aktivitás $minutes perce';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return 'Utolsó aktivitás $minutes perce • késik';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded =>
+      'Ebben a naplóban nincs rögzített bejelentkezés.';
+
+  @override
+  String get fieldOps_tripMap => 'Túratérkép';
+
+  @override
+  String get fieldOps_tripMapEmpty =>
+      'Egyik kiválasztott kapcsolat sem sugárzott még koordinátákat.';
+
+  @override
+  String get fieldOps_lastPositions => 'Utoljára sugárzott pozíciók';
+
+  @override
+  String get fieldOps_positionsCaveat =>
+      'A pozíciók elavultak lehetnek. Ez a térkép nem követi a telefon GPS-ét, és nem bizonyítja, hogy a tagok most itt vannak.';
+
+  @override
+  String get fieldOps_briefPreviewTitle => 'Túraösszefoglaló előnézete';
+
+  @override
+  String get fieldOps_briefPreviewHint =>
+      'Tartalmazza a túra és a kapcsolatok nevét. Megosztás előtt ellenőrizze. A koordináták, kulcsok és üzenetelőzmények kimaradnak.';
+
+  @override
+  String get fieldOps_shareBrief => 'Összefoglaló megosztása';
+
+  @override
+  String get fieldOps_briefSubject => 'Bastion túraösszefoglaló';
+
+  @override
+  String get fieldOps_tripName => 'Túra neve';
+
+  @override
+  String get fieldOps_defaultTripName => 'Saját túra';
+
+  @override
+  String get fieldOps_includePosition => 'Sugárzott rádiópozíció hozzáadása';
+
+  @override
+  String get fieldOps_includePositionHint =>
+      'Elavult lehet; a megosztás alapértelmezetten ki van kapcsolva.';
+
+  @override
+  String get fieldOps_includeBattery => 'Rádióakkumulátor hozzáadása';
+
+  @override
+  String get fieldOps_overdueLabel =>
+      'Figyelmeztessen, ha egy kapcsolat ennyi ideje hallgat';
+
+  @override
+  String get fieldOps_reminderLabel => 'Emlékeztessen a bejelentkezésre';
+
+  @override
+  String get fieldOps_reminderHelper =>
+      'Telefonos értesítés, akkor is, ha a Bastion be van zárva.';
+
+  @override
+  String get fieldOps_reminderOff => 'Ki';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count perc bejelentkezés nélkül után',
+      one: '1 perc bejelentkezés nélkül után',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'Az SOS erre a csatornára is megy';
+
+  @override
+  String get fieldOps_sosChannelNone => 'Nincs';
+
+  @override
+  String get fieldOps_selectContacts =>
+      'Válasszon legfeljebb hat ismert csevegőkapcsolatot';
+
+  @override
+  String get fieldOps_sendCheckInTitle => 'Elküldi a bejelentkezést?';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return 'Címzett: $names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint =>
+      'Normál közvetlen üzeneteket használ. A kézbesítés a terepnaplóban követhető.';
+
+  @override
+  String get fieldOps_send => 'Küldés';
+
+  @override
+  String get fieldOps_beforeYouLeave => 'Indulás előtt';
+
+  @override
+  String get fieldOps_radioConnected => 'Rádió csatlakoztatva';
+
+  @override
+  String get fieldOps_connectHint =>
+      'Csatlakozzon Bluetooth, USB vagy TCP kapcsolaton.';
+
+  @override
+  String get fieldOps_radioBattery => 'Rádióakkumulátor';
+
+  @override
+  String get fieldOps_batteryUnknown => 'Ismeretlen; ellenőrizze a rádiót.';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent% • töltse fel a tervezett túrához.';
+  }
+
+  @override
+  String get fieldOps_tripContacts => 'Túrakapcsolatok';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return '$available/$selected elérhető. Ellenőrizze, hogy kompatibilis rádióik és csatornáik vannak-e.';
+  }
+
+  @override
+  String get fieldOps_offlineArea => 'Kiválasztott offline térképterület';
+
+  @override
+  String get fieldOps_checkingFiles => 'Helyi fájlok ellenőrzése…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return '$available/$expected csempefájl érhető el; $missing hiányzik. Ez pillanatkép; indulás előtt nyissa meg a területet offline.';
+  }
+
+  @override
+  String get fieldOps_locationChoice => 'Helymegosztás';
+
+  @override
+  String get fieldOps_locationOptedIn =>
+      'Bekapcsolva: a rádió által sugárzott koordináták elavultak lehetnek.';
+
+  @override
+  String get fieldOps_locationOff =>
+      'A megosztás ki van kapcsolva. A bejelentkezései nem tartalmaznak koordinátákat.';
+
+  @override
+  String get fieldOps_automationAvailability => 'Az automatizálás elérhetősége';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      'Csak akkor fut, ha ez az alkalmazás aktív. Alvó mód, bezárás vagy a rádió elvesztése megakadályozhatja az ütemezett műveleteket.';
+
+  @override
+  String get fieldOps_readinessCaveat =>
+      'A felkészültségi ellenőrzések tájékoztató jellegűek; nem bizonyítják a rádió hatótávolságát és nem garantálják a kézbesítést.';
+
+  @override
+  String get fieldOps_radio => 'Rádió';
+
+  @override
+  String get fieldOps_refreshChecks => 'Ellenőrzések frissítése';
+
+  @override
+  String get fieldOps_searchLog => 'Keresés a terepnaplóban';
+
+  @override
+  String get fieldOps_kindAll => 'Mind';
+
+  @override
+  String get fieldOps_kindCheckIn => 'Bejelentkezés';
+
+  @override
+  String get fieldOps_kindReceived => 'Fogadott';
+
+  @override
+  String get fieldOps_kindNote => 'Jegyzet';
+
+  @override
+  String get fieldOps_kindDeadZone => 'Holtzóna';
+
+  @override
+  String get fieldOps_kindRadio => 'Rádió';
+
+  @override
+  String get fieldOps_kindAutomation => 'Automatizálás';
+
+  @override
+  String get fieldOps_kindMissed => 'Elmaradt';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => 'Túra';
+
+  @override
+  String get fieldOps_kindOverdue => 'Késik';
+
+  @override
+  String get fieldOps_addNote => 'Jegyzet hozzáadása';
+
+  @override
+  String get fieldOps_exportJson => 'JSON exportálása';
+
+  @override
+  String get fieldOps_deleteLog => 'Napló törlése';
+
+  @override
+  String get fieldOps_logSubject => 'Bastion terepnapló';
+
+  @override
+  String get fieldOps_logCaveat =>
+      'Helyben tárolva, legfeljebb 1000 bejegyzés. Az exportok kapcsolati kulcsokat, üzeneteket és helyeket tartalmazhatnak; megosztás előtt ellenőrizze.';
+
+  @override
+  String get fieldOps_noEntries => 'Nincs egyező bejegyzés.';
+
+  @override
+  String get fieldOps_tripUnspecified => 'Nem megadott túra';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status: $explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return 'Rögzített sugárzott rádiópozíció $latitude, $longitude (elavult lehet)';
+  }
+
+  @override
+  String get fieldOps_noteTitle => 'Terepi megfigyelés';
+
+  @override
+  String get fieldOps_noteLabel => 'Mit figyelt meg?';
+
+  @override
+  String get fieldOps_deadZone => 'Jelentett holtzóna';
+
+  @override
+  String get fieldOps_deadZoneHint =>
+      'Az Ön megfigyelése, nem ellenőrzött lefedettségi előrejelzés.';
+
+  @override
+  String get fieldOps_savePosition => 'Sugárzott rádiópozíció mentése';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • elavult lehet; nem a telefon GPS-e';
+  }
+
+  @override
+  String get fieldOps_noPosition => 'Nincs használható sugárzott koordináta';
+
+  @override
+  String get fieldOps_deleteLogTitle => 'Törli a terepnaplót?';
+
+  @override
+  String get fieldOps_deleteLogBody =>
+      'Ez eltávolítja az összes mentett bejegyzést erről a telefonról. A túrabeállítások megmaradnak.';
+
+  @override
+  String get fieldOps_localAutomations => 'Helyi automatizálások';
+
+  @override
+  String get fieldOps_enableForTrip => 'Engedélyezés ehhez a túrához';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      'Minden alkalmazás-újraindítás után kikapcsol. A szabályok csak akkor futnak, ha az alkalmazás aktív. Az elmaradt ütemezett műveletek megjelennek a terepnaplóban, és soha nem pótlódnak egyszerre. Az automatikus bejelentkezések 10 percenként egy körre korlátozódnak.';
+
+  @override
+  String get fieldOps_openBotMode => 'Bastion botmód megnyitása';
+
+  @override
+  String get fieldOps_ruleEnabled => 'Szabály engedélyezve';
+
+  @override
+  String get fieldOps_dryRun => 'Próbafuttatás';
+
+  @override
+  String get fieldOps_dryRunHint =>
+      'A művelet rögzítése küldés és értesítés nélkül.';
+
+  @override
+  String get fieldOps_then => 'AKKOR';
+
+  @override
+  String get fieldOps_actionLog => 'Írás a terepnaplóba';
+
+  @override
+  String get fieldOps_actionNotify => 'Helyi értesítés megjelenítése';
+
+  @override
+  String get fieldOps_actionCheckIn => '„I\'m OK” küldése a túrakapcsolatoknak';
+
+  @override
+  String get fieldOps_batteryThreshold => 'Akkumulátor ennyi vagy kevesebb';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return 'Következő: $time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => 'Következő: nincs ütemezve';
+
+  @override
+  String get fieldOps_previewInLog => 'Előnézet a naplóban';
+
+  @override
+  String get fieldOps_allowNotifications => 'Értesítések engedélyezése';
+
+  @override
+  String get fieldOps_triggerReconnect => 'HA a rádió újracsatlakozik';
+
+  @override
+  String get fieldOps_triggerDisconnect => 'HA a rádió leválik';
+
+  @override
+  String get fieldOps_triggerLowBattery =>
+      'HA a rádióakkumulátor átlépi a küszöböt';
+
+  @override
+  String get fieldOps_triggerNewNode => 'HA új csomópont kerül hozzáadásra';
+
+  @override
+  String get fieldOps_triggerRepeater => 'HA új ismétlő kerül hozzáadásra';
+
+  @override
+  String get fieldOps_triggerScheduled =>
+      'HA esedékes egy ütemezett bejelentkezés';
+
+  @override
+  String get fieldOps_explainConnection => 'Kapcsolatom magyarázata';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return 'Állapot: $state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat =>
+      'A telefonnak van rádiókapcsolata. Ez önmagában nem biztosít útvonalat a címzettekhez.';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      'Nincs aktív rádiókapcsolat. Ellenőrizze a Bluetooth-engedélyeket, a rádió tápellátását és hatótávolságát; USB/TCP a Rádió csatlakoztatása menüben érhető el.';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return 'Visszaigazolásra váró túrabejelentkezések: $count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      'A csomópontok utoljára látott időpontjai és sugárzott pozíciói elavultak lehetnek. Az útvonalelemzés megfigyelt kísérletekből tanult útvonalakat mutat; nem talál ki utakat.';
+
+  @override
+  String get fieldOps_routeIntelligence => 'Útvonalelemzés';
+
+  @override
+  String get fieldOps_coverageIntelligence => 'Lefedettségelemzés';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      'Hasonlítsa össze két terepi munkamenet rögzített megfigyeléseit. A pontok a rögzítő sugárzott rádiópozícióit jelölik, ahol csomópontokat hallott. Nem jelentenek folyamatos lefedettséget. Az RSSI/SNR pillanatképek nem csomópontonkénti mérések.';
+
+  @override
+  String get fieldOps_captureSession => 'Munkamenet rögzítése';
+
+  @override
+  String get fieldOps_refreshHistory => 'Előzmények frissítése';
+
+  @override
+  String get fieldOps_noCoverageSessions =>
+      'Még nincs mentett lefedettségi munkamenet.';
+
+  @override
+  String get fieldOps_sessionA => 'A munkamenet • kékeszöld';
+
+  @override
+  String get fieldOps_sessionB => 'B munkamenet • borostyán';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A: $a egyedi csomópont • B: $b egyedi csomópont';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return 'Közös: $shared • Csak A: $onlyA • Csak B: $onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat =>
+      'Ha egy csomópont nem hallható egy munkamenetben, az nem igazol holtzónát. A körülmények és a megfigyelés időtartama eltérnek.';
+
+  @override
+  String get fieldOps_heardTooltip =>
+      'Hallott csomópont megfigyelése; nem bizonyítja a sikeres kapcsolatot';
+
+  @override
+  String get fieldOps_noteTooltip =>
+      'Helyi jegyzet a rádió által sugárzott koordinátáknál; elavult lehet.';
+
+  @override
+  String get bastionHome_aboutTooltip => 'A Bastionról';
+
+  @override
+  String get bastionHome_getStarted => 'ELSŐ LÉPÉSEK';
+
+  @override
+  String get bastionHome_getStartedHint =>
+      'Csatlakoztassa a rádiót, és ellenőrizze az első üzenetét';
+
+  @override
+  String get bastionHome_planYourTrip => 'TERVEZZE MEG A TÚRÁT';
+
+  @override
+  String get bastionHome_tripActive => 'Túra aktív';
+
+  @override
+  String get bastionHome_tripStopped => 'Túra leállítva';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • $contacts kapcsolat • $unread olvasatlan üzenet';
+  }
+
+  @override
+  String get bastionHome_checkInOk => 'BEJELENTKEZÉS: JÓL VAGYOK';
+
+  @override
+  String get bastionHome_checkInHint =>
+      'Küldés előtt ellenőrizze a kapcsolatokat és az üzenetet. A visszaigazolásokat a terepnaplóban követheti.';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return 'Utolsó bejelentkezés: $summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => 'RÁDIÓ CSATLAKOZTATÁSA';
+
+  @override
+  String get bastionHome_connectRadioHint =>
+      'MeshCore-kapcsolatok Bluetooth, USB és TCP útján';
+
+  @override
+  String get bastionHome_liveDiagnostics => 'ÉLŐ DIAGNOSZTIKA';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint =>
+      'Rádióállapot, jel, eszköz és keretkezelő eszközök';
+
+  @override
+  String get bastionHome_meshDiscovery => 'HÁLÓZATFELDERÍTÉS';
+
+  @override
+  String get bastionHome_meshDiscoveryHint =>
+      'Keressen csomópontokat, és vizsgálja meg a környező hálózatot';
+
+  @override
+  String get bastionHome_fieldOpsHint =>
+      'Túraösszefoglaló, felkészültség, terepnapló, automatizálások és lefedettség-összehasonlítás';
+
+  @override
+  String get bastionHome_fieldTools => 'BASTION TEREPI ESZKÖZÖK';
+
+  @override
+  String get bastionHome_statusActive => 'AKTÍV';
+
+  @override
+  String get bastionHome_consoleOnline => 'TEREPI KONZOL ONLINE';
+
+  @override
+  String get bastionHome_consoleReady => 'TEREPI KONZOL KÉSZ';
+
+  @override
+  String get bastionHome_consoleHint =>
+      'Csatlakoztasson egy rádiót az élő irányítópult bekapcsolásához.';
+
+  @override
+  String bastionHome_battery(String value) {
+    return 'AKKU $value';
+  }
+
+  @override
+  String get bastionTools_title => 'Terepi eszközök';
+
+  @override
+  String get bastionTools_backup => 'TITKOSÍTOTT BIZTONSÁGI MENTÉS';
+
+  @override
+  String get bastionTools_backupHint =>
+      'Beállítások, kapcsolatok és kulcsok mentése, opcionálisan csevegési előzményekkel';
+
+  @override
+  String get bastionTools_fieldOpsHint =>
+      'Bejelentkezések, felkészültség, terepnapló, automatizálások és összehasonlítások';
+
+  @override
+  String get bastionTools_mapHint =>
+      'Élő térkép, rögzítési munkamenetek, offline térképeszközök és régiók';
+
+  @override
+  String get bastionTools_pathAnalysis => 'ÚTELEMZÉS';
+
+  @override
+  String get bastionTools_pathHint => 'Útvonalak, felderítés és útelemzés';
+
+  @override
+  String get bastionTools_repeaterHint =>
+      'Állapot, bejelentkezés, telemetria, szomszédok és adminisztráció';
+
+  @override
+  String get bastionTools_statsHint =>
+      'Élő hálózati számok és kapcsolati aktivitás';
+
+  @override
+  String get bastionTools_diagnostics => 'DIAGNOSZTIKA';
+
+  @override
+  String get bastionTools_diagnosticsHint =>
+      'Rádióállapot, eszközinformációk, nyers keretek és exportálás';
+
+  @override
+  String get bastionTools_about => 'NÉVJEGY + KÖSZÖNET';
+
+  @override
+  String get bastionTools_aboutHint =>
+      'Bastion-verzió, függetlenségi nyilatkozat és nyílt forráskódú licencek';
+
+  @override
+  String get bastionAbout_title => 'Névjegy + Köszönet';
+
+  @override
+  String get bastionAbout_intro =>
+      'Független közösségi kísérőalkalmazás MeshCore-hálózatokhoz. A Bastion nem hivatalos MeshCore-alkalmazás, és a közösségi források szerepeltetése nem jelent partnerséget vagy jóváhagyást.';
+
+  @override
+  String get bastionAbout_version => 'VERZIÓ';
+
+  @override
+  String get bastionAbout_openSource => 'NYÍLT FORRÁSKÓDÚ ALAP';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'A Bastion a MeshCore Open MIT-licences nyílt forráskódjára épül, és azt módosítja. A lefedettségi munkafolyamat ahol releváns, a MIT-licences MeshMapper Flutter App érdemeit is elismeri.';
+
+  @override
+  String get bastionAbout_community => 'A KÖZÖSSÉG AZ ELSŐ';
+
+  @override
+  String get bastionAbout_communityBody =>
+      'A harmadik féltől származó alkotói források alkotóik tulajdonában maradnak. Sem tulajdonjog, sem partnerség nem értendő bele.';
+
+  @override
+  String get bastionAbout_legalese => 'Bastion • Független MeshCore-kísérő';
+
+  @override
+  String get bastionAbout_licenses => 'NYÍLT FORRÁSKÓDÚ LICENCEK';
+
+  @override
+  String get bastionSetup_title => 'Első lépések a Bastionnal';
+
+  @override
+  String get bastionSetup_intro =>
+      'Csatlakozzon, válasszon kapcsolatot, majd ellenőrizzen egy üzenetet. Az irányítópultról bármikor visszatérhet ehhez az útmutatóhoz.';
+
+  @override
+  String get bastionSetup_step1 => '1. Csatlakoztassa MeshCore rádióját';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return 'Csatlakozva: $device, kapcsolat: $transport.';
+  }
+
+  @override
+  String get bastionSetup_noRadio => 'Még nincs csatlakoztatott rádió.';
+
+  @override
+  String get bastionSetup_step1Power =>
+      'Kapcsoljon be egy MeshCore kísérőrádiót. Nyissa meg a Rádió csatlakoztatása menüt, és válassza a Bluetooth, USB vagy TCP lehetőséget. Engedélyezze a választott kapcsolathoz kért engedélyeket.';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      'Ha a Bluetooth-keresés üres, ellenőrizze, hogy a Bluetooth be van-e kapcsolva, és hogy a Bastion rendelkezik-e a Közeli eszközök engedéllyel az Android alkalmazásbeállításaiban. Kövesse a szkenner által megjelenített további engedélykéréseket.';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => 'Kapcsolatdiagnosztika';
+
+  @override
+  String get bastionSetup_step2 => '2. Válasszon csevegőkapcsolatot';
+
+  @override
+  String get bastionSetup_step2Body =>
+      'Kérjen meg egy közeli partnert, akinek kompatibilisek a MeshCore rádióbeállításai, hogy hirdesse meg a csomópontját. Válasszon alább egy ismert csevegőkapcsolatot; az ismétlőket külön kezelheti.';
+
+  @override
+  String get bastionSetup_noContacts =>
+      'Nincs elérhető csevegőkapcsolat. Csatlakoztassa a rádiót, és nyissa meg a Hálózatfelderítést.';
+
+  @override
+  String get bastionSetup_testRecipient => 'Tesztcímzett';
+
+  @override
+  String get bastionSetup_meshDiscovery => 'Hálózatfelderítés';
+
+  @override
+  String get bastionSetup_step3 => '3. Küldjön és ellenőrizzen egy üzenetet';
+
+  @override
+  String get bastionSetup_step3Body =>
+      'Nyissa meg a csevegést, írjon egy rövid tesztüzenetet, ellenőrizze a címzettet, és koppintson a Küldés gombra. Térjen vissza ide, hogy lássa az útmutató megnyitása óta rögzített legutóbbi kimenő üzenetet.';
+
+  @override
+  String get bastionSetup_openTestChat => 'Tesztcsevegés megnyitása';
+
+  @override
+  String get bastionSetup_connectFirst =>
+      'Csatlakoztassa a rádiót a tesztcsevegés megnyitásához.';
+
+  @override
+  String get bastionSetup_chooseRecipient => 'Előbb válasszon címzettet.';
+
+  @override
+  String get bastionSetup_noTestMessage =>
+      'Ebben az útmutató-munkamenetben nem rögzült kimenő tesztüzenet.';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return 'Legutóbbi üzenet: $status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      'Kérje meg partnerét, hogy igazolja vissza a vételt vagy válaszoljon. A rögzített visszaigazolás nem bizonyítja, hogy elolvasta. Ha egy üzenet sikertelen, ellenőrizze újra a kapcsolatot és a címzettet.';
+
+  @override
+  String get bastionSetup_step4 => '4. Készüljön fel a terepre';
+
+  @override
+  String get bastionSetup_step4Body =>
+      'Tervezze meg túrakapcsolatait, és ellenőrizze a letöltött térképterületeket. A botmód és a terepi automatizálások kezdetben ki vannak kapcsolva; a terepi automatizálások csak akkor futnak, ha az alkalmazás aktív.';
+
+  @override
+  String get bastionSetup_tripTools => 'Túra- és felkészültségi eszközök';
+
+  @override
+  String get bastionDiag_title => 'Diagnosztika';
+
+  @override
+  String get bastionDiag_export => 'Diagnosztika exportálása';
+
+  @override
+  String get bastionDiag_channels => 'CSATORNÁK';
+
+  @override
+  String get bastionDiag_radio => 'RÁDIÓ';
+
+  @override
+  String get bastionDiag_frequency => 'Frekvencia';
+
+  @override
+  String get bastionDiag_bandwidth => 'Sávszélesség';
+
+  @override
+  String get bastionDiag_spreadingFactor => 'Szórási tényező';
+
+  @override
+  String get bastionDiag_codingRate => 'Kódolási arány';
+
+  @override
+  String get bastionDiag_txPower => 'Adóteljesítmény';
+
+  @override
+  String get bastionDiag_noiseFloor => 'Zajszint';
+
+  @override
+  String get bastionDiag_device => 'ESZKÖZ';
+
+  @override
+  String get bastionDiag_name => 'Név';
+
+  @override
+  String get bastionDiag_manufacturer => 'Gyártó';
+
+  @override
+  String get bastionDiag_firmware => 'Firmware';
+
+  @override
+  String get bastionDiag_battery => 'Akkumulátor';
+
+  @override
+  String get bastionDiag_transport => 'Kapcsolat';
+
+  @override
+  String get bastionDiag_deepTools => 'HALADÓ ESZKÖZÖK';
+
+  @override
+  String get bastionDiag_liveStats => 'ÉLŐ RÁDIÓSTATISZTIKA';
+
+  @override
+  String get bastionDiag_liveStatsHint => 'Zaj, RSSI, SNR és adásidő';
+
+  @override
+  String get bastionDiag_frameDebug => 'KERET- / BLE-HIBAKERESÉS';
+
+  @override
+  String get bastionDiag_frameDebugHint =>
+      'Dekódolt és nyers fogadott keretek vizsgálata';
+
+  @override
+  String get bastionDiag_appLog => 'ALKALMAZÁS HIBAKERESÉSI NAPLÓ';
+
+  @override
+  String get bastionDiag_appLogHint =>
+      'Az alkalmazás diagnosztikai eseményeinek áttekintése';
+
+  @override
+  String get bastionDiag_online => 'RÁDIÓ ONLINE';
+
+  @override
+  String get bastionDiag_offline => 'RÁDIÓ OFFLINE';
+
+  @override
+  String get bastionDiag_offlineHint =>
+      'Csatlakoztasson egy MeshCore kísérőt az élő diagnosztika feltöltéséhez.';
+
+  @override
+  String get coverage_title => 'Lefedettségrögzítés';
+
+  @override
+  String get coverage_leaveBlocked =>
+      'Kilépés előtt állítsa le és mentse a munkamenetet.';
+
+  @override
+  String get coverage_savedSessions => 'MENTETT MUNKAMENETEK';
+
+  @override
+  String get coverage_caveat =>
+      'Az RSSI/SNR rádiós pillanatképek, és egy másik csomaghoz is tartozhatnak. A pozíciók a rádió által sugárzott koordináták, nem a telefon GPS-e és nem a lefedettség bizonyítékai. Cián: rögzítő; borostyán: sugárzott csomópont. Interpoláció nem történik.';
+
+  @override
+  String get coverage_captureActive => 'RÖGZÍTÉS AKTÍV';
+
+  @override
+  String get coverage_fieldSession => 'TEREPI LEFEDETTSÉGI MUNKAMENET';
+
+  @override
+  String get coverage_connectedBody =>
+      'A Bastion rögzíti a munkamenet során újonnan hallott csomópontokat, beleértve az útvonaladatokat, a csomópont-/helymetaadatokat és a rádió legközelebbi elérhető RSSI/SNR pillanatképét.';
+
+  @override
+  String get coverage_disconnectedBody =>
+      'Indítás előtt csatlakoztasson egy rádiót. A lefedettségrögzítés a csatlakoztatott kísérőrádió élő hálózati megfigyeléseit rögzíti.';
+
+  @override
+  String get coverage_observations => 'MEGFIGYELÉSEK';
+
+  @override
+  String get coverage_uniqueNodes => 'EGYEDI CSOMÓPONTOK';
+
+  @override
+  String get coverage_elapsed => 'ELTELT';
+
+  @override
+  String get coverage_radioConnected => 'RÁDIÓ CSATLAKOZTATVA';
+
+  @override
+  String get coverage_noRadio => 'NINCS RÁDIÓ';
+
+  @override
+  String get coverage_gpsReady => 'RÁDIÓ GPS KÉSZ';
+
+  @override
+  String get coverage_noGps => 'NINCS RÁDIÓ GPS';
+
+  @override
+  String get coverage_stopSave => 'LEÁLLÍTÁS + MENTÉS';
+
+  @override
+  String get coverage_start => 'LEFEDETTSÉGI MUNKAMENET INDÍTÁSA';
+
+  @override
+  String get coverage_exportJson => 'JSON EXPORTÁLÁSA';
+
+  @override
+  String get coverage_exportCsv => 'CSV EXPORTÁLÁSA';
+
+  @override
+  String get coverage_liveObservations => 'ÉLŐ MEGFIGYELÉSEK';
+
+  @override
+  String get coverage_waiting => 'HÁLÓZATI AKTIVITÁSRA VÁR';
+
+  @override
+  String get coverage_waitingBody =>
+      'Indítson munkamenetet, és az újonnan hallott aktív csomópontok itt jelennek meg. Az RSSI/SNR értékek rádiós pillanatképek, és nem mindig rendelhetők egyértelműen egy adott csomaghoz.';
+
+  @override
+  String get coverage_signalNa => 'jel n/a';
+
+  @override
+  String get coverage_snrNa => 'SNR n/a';
+
+  @override
+  String get coverage_gpsUnavailable => 'rádió GPS nem érhető el';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return 'Út: $path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => 'flood';
+
+  @override
+  String get coverage_pathDirect => 'közvetlen';
+
+  @override
+  String get coverage_shareSubject => 'Bastion lefedettségi munkamenet';
+
+  @override
+  String get coverage_shareText => 'Bastion lefedettségrögzítési export';
+
+  @override
+  String get coverage_historyTitle => 'Mentett lefedettségi munkamenetek';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return 'A munkameneteket nem sikerült betölteni: $error';
+  }
+
+  @override
+  String get coverage_deleteTitle => 'Törli a mentett munkamenetet?';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count megfigyelés törlődik erről az eszközről.',
+      one: '1 megfigyelés törlődik erről az eszközről.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return 'A munkamenetet nem sikerült törölni: $error';
+  }
+
+  @override
+  String get coverage_retention =>
+      'A legutóbbi 20 befejezett munkamenet marad meg. Ossza meg azokat, amelyeket meg szeretne tartani. A megszakított rögzítések alább újra megnyithatók.';
+
+  @override
+  String get coverage_noSessions =>
+      'Még nincs mentett munkamenet. Állítson le egy rögzítést a mentéshez.';
+
+  @override
+  String get coverage_interrupted => 'Megszakított rögzítés';
+
+  @override
+  String get coverage_saved => 'Mentve';
+
+  @override
+  String get coverage_deleteTooltip => 'Munkamenet törlése';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return 'Az exportálás sikertelen: $error';
+  }
+
+  @override
+  String get coverage_sessionTitle => 'Lefedettségi munkamenet';
+
+  @override
+  String get coverage_shareJson => 'JSON megosztása';
+
+  @override
+  String get coverage_shareCsv => 'CSV megosztása';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi dBm • SNR $snr dB • pillanatkép kora $age ms';
+  }
+
+  @override
+  String get coverage_unknown => 'ismeretlen';
+
+  @override
+  String coverage_pathValue(String path) {
+    return 'út $path';
+  }
+
+  @override
+  String get coverage_recorder => 'Rögzítő';
+
+  @override
+  String get coverage_noCoordinates =>
+      'Ebben a munkamenetben nincsenek használható koordináták. A megfigyelések alább továbbra is elérhetők.';
+
+  @override
+  String get coverage_osmAttribution =>
+      '© OpenStreetMap-közreműködők • online alaptérkép';
+
+  @override
+  String get fieldStats_title => 'TEREPI ELEMZÉS';
+
+  @override
+  String get fieldStats_snapshot => 'ÉLŐ HÁLÓZATI PILLANATKÉP';
+
+  @override
+  String get fieldStats_headline => 'Amit a Bastion most tud.';
+
+  @override
+  String get fieldStats_body =>
+      'Ezek a számlálók a csatlakoztatott MeshCore kapcsolattáblájából, a helyekből, az utakból és az utoljára látott időbélyegekből számolódnak.';
+
+  @override
+  String get fieldStats_total => 'ÖSSZESEN';
+
+  @override
+  String get fieldStats_chatNodes => 'CSEVEGŐ CSOMÓPONTOK';
+
+  @override
+  String get fieldStats_rooms => 'SZOBÁK';
+
+  @override
+  String get fieldStats_sensors => 'ÉRZÉKELŐK';
+
+  @override
+  String get fieldStats_located => 'HELLYEL';
+
+  @override
+  String get fieldStats_favorites => 'KEDVENCEK';
+
+  @override
+  String get fieldStats_routeSnapshot => 'ÚTVONAL-PILLANATKÉP';
+
+  @override
+  String get fieldStats_routed => 'ÚTVONALAS';
+
+  @override
+  String get fieldStats_direct => 'KÖZVETLEN';
+
+  @override
+  String get fieldStats_flood => 'FLOOD';
+
+  @override
+  String get fieldStats_pathIntel => 'ÚTELEMZÉS';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'A Bastion útvonalelemzése mentett útkísérleteket, ugrásszámokat, sikereket/hibákat, átfutási időt és útvonalsúlyozást használ a tanult útvonalak megjelenítéséhez.';
+
+  @override
+  String get fieldStats_coverageSessions => 'LEFEDETTSÉGI MUNKAMENETEK';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      'A lefedettségrögzítés mostantól menti a terepi munkameneteket, visszaállítja a megszakított munkát, exportálja a megfigyeléseket és térképre viszi a rögzített lefedettségi pontokat. Az RSSI/SNR továbbra is a legközelebbi elérhető rádiós pillanatkép.';
+
+  @override
+  String get mapHub_title => 'BASTION TEREPI TÉRKÉP';
+
+  @override
+  String get mapHub_intro =>
+      'Élő térképek, offline területek, regionális profilok és Bastion terepi lefedettségi munkamenetek.';
+
+  @override
+  String get mapHub_captureHint =>
+      'Terepi lefedettségi munkamenet indítása és leállítása';
+
+  @override
+  String get mapHub_badgeNew => 'ÚJ';
+
+  @override
+  String get mapHub_liveMap => 'ÉLŐ HÁLÓZATI TÉRKÉP';
+
+  @override
+  String get mapHub_liveMapHint =>
+      'Csomópontok, ismétlők, pozíciók, útvonalak és térképeszközök';
+
+  @override
+  String get mapHub_badgeLive => 'ÉLŐ';
+
+  @override
+  String get mapHub_offlinePacks => 'OFFLINE TÉRKÉPCSOMAGOK';
+
+  @override
+  String get mapHub_offlinePacksHint =>
+      'Térképcsempék gyorsítótárazása túrákhoz és lefedetlen területekhez';
+
+  @override
+  String get mapHub_badgeOffline => 'OFFLINE';
+
+  @override
+  String get mapHub_regions => 'RÉGIÓPROFILOK';
+
+  @override
+  String get mapHub_regionsHint =>
+      'Regionális hálózati definíciók kezelése és letöltése';
+
+  @override
+  String get mapHub_badgeRegions => 'RÉGIÓK';
+
+  @override
+  String get routes_title => 'Útvonalelemzés';
+
+  @override
+  String get routes_headline =>
+      'Nézze meg, hogyan halad a forgalom a hálózaton.';
+
+  @override
+  String get routes_body =>
+      'A Bastion a valós üzenetküldési kísérletekből és felderítésekből már megtanult útelőzmények alapján rangsorolja a mentett útvonalakat.';
+
+  @override
+  String get routes_routes => 'ÚTVONALAK';
+
+  @override
+  String get routes_success => 'SIKERES';
+
+  @override
+  String get routes_failed => 'SIKERTELEN';
+
+  @override
+  String get routes_routeMap => 'ÚTVONALTÉRKÉP';
+
+  @override
+  String get routes_routeMapHint => 'Csomópontok és utak vizsgálata';
+
+  @override
+  String get routes_discover => 'FELDERÍTÉS';
+
+  @override
+  String get routes_discoverHint => 'Új útvonalak keresése';
+
+  @override
+  String get routes_learned => 'TANULT ÚTVONALAK';
+
+  @override
+  String get routes_none => 'MÉG NINCS ÚTVONAL-ELŐZMÉNY';
+
+  @override
+  String get routes_noneBody =>
+      'Használja a hálózatot a szokásos módon, vagy indítson felderítést. A Bastion itt jeleníti meg a tanult útvonalakat, amint útelőzmények állnak rendelkezésre.';
+
+  @override
+  String get routes_direct => 'KÖZVETLEN';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count útvonal',
+      one: '1 útvonal',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return 'LEGJOBB  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  súly $weight  •  $success sikeres / $fail sikertelen';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return 'Leggyorsabb ismert: $ms ms';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return 'Flood: $success sikeres / $fail sikertelen';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => 'ISMÉTLŐ-IRÁNYÍTÁS';
+
+  @override
+  String get repeaterTools_headline =>
+      'Kezelje a hálózata mögötti infrastruktúrát.';
+
+  @override
+  String get repeaterTools_body =>
+      'Válasszon egy felderített ismétlőt a bejelentkezéshez, és nyissa meg meglévő MeshCore-eszközeit: állapot, telemetria, szomszédok, beállítások és CLI.';
+
+  @override
+  String get repeaterTools_discovered => 'FELDERÍTVE';
+
+  @override
+  String get repeaterTools_tools => 'ESZKÖZÖK';
+
+  @override
+  String get repeaterTools_available => 'ELÉRHETŐ ISMÉTLŐK';
+
+  @override
+  String get repeaterTools_unnamed => 'Névtelen ismétlő';
+
+  @override
+  String get repeaterTools_statusTelemetry => 'ÁLLAPOT + TELEMETRIA';
+
+  @override
+  String get repeaterTools_statusTelemetryBody =>
+      'Az ismétlő állapotának és telemetriájának vizsgálata a meglévő kezelőeszközökkel.';
+
+  @override
+  String get repeaterTools_neighbors => 'SZOMSZÉDOK';
+
+  @override
+  String get repeaterTools_neighborsBody =>
+      'Szomszédos infrastruktúra és hálózati kapcsolatok vizsgálata.';
+
+  @override
+  String get repeaterTools_cli => 'CLI + BEÁLLÍTÁSOK';
+
+  @override
+  String get repeaterTools_cliBody =>
+      'A bejelentkezett rendszergazdák elérik az ismétlő meglévő CLI-jét és konfigurációs eszközeit.';
+
+  @override
+  String get repeaterTools_empty =>
+      'Még nincs felderített ismétlő. Csatlakoztasson egy rádiót, és előbb derítse fel a hálózatot.';
+
+  @override
+  String get notification_fieldAlertTitle => 'Bastion terepi riasztás';
+
+  @override
+  String get notification_checkInReminderTitle =>
+      'Bastion bejelentkezési emlékeztető';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return '$minutes perce nincs bejelentkezés a(z) $trip túrán. Nyissa meg a Bastiont a bejelentkezéshez.';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return '$name $minutes perce nem hallatott magáról. Ez nem megerősített vészhelyzet.';
+  }
+
+  @override
+  String get notification_aTripContact => 'Egy túrakapcsolat';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return 'A bejelentkezés nem lett kézbesítve neki: $name. A Túra lapon újraküldheti.';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return '$name visszaigazolta az SOS-t';
+  }
 }

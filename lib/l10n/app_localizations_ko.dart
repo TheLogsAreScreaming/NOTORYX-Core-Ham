@@ -5215,4 +5215,1601 @@ class AppLocalizationsKo extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes분 $seconds초';
   }
+
+  @override
+  String get bastion_tagline => '인프라 없이도 통신을.';
+
+  @override
+  String get bastion_nodes => '노드';
+
+  @override
+  String get bastion_repeaters => '리피터';
+
+  @override
+  String get bastion_active1h => '1시간 내 활동';
+
+  @override
+  String get bastion_mapCoverage => '지도 + 커버리지';
+
+  @override
+  String get bastion_routeIntelligence => '경로 분석';
+
+  @override
+  String get bastion_repeaterTools => '리피터 도구';
+
+  @override
+  String get bastion_fieldStats => '현장 통계';
+
+  @override
+  String get bastion_fieldOps => '여정 + 현장 운영';
+
+  @override
+  String get bastion_coverageCapture => '커버리지 기록';
+
+  @override
+  String get bastion_mapAttribution =>
+      '지도 데이터 © OpenStreetMap 기여자, 타일은 선택한 제공업체';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '관측 $count건',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '고유 노드 $count개',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count홉',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count분',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint => '2초간 길게 누르세요. 누군가 응답할 때까지 5분마다 여정 연락처에 위치를 보냅니다.';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return '2초간 길게 누르세요. 누군가 응답할 때까지 5분마다 여정 연락처와 $channel에 위치를 보냅니다.';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'SOS를 보내지 못했습니다: $error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return '$name 님이 확인했습니다. 반복 전송을 중지했습니다.';
+  }
+
+  @override
+  String get sos_waitingForRadio => '무전기가 전송하기를 기다리는 중…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return '$max회 중 $sends회 전송했습니다. 반복 전송이 끝났지만 아직 응답이 없습니다.';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return '$max회 중 $sends회 전송했습니다. 다음 전송: $time.';
+  }
+
+  @override
+  String get sos_active => 'SOS 발신 중';
+
+  @override
+  String get sos_stop => '중지';
+
+  @override
+  String get sos_imSafe => '안전합니다';
+
+  @override
+  String get sos_holdSemantics => 'SOS. 길게 눌러 보내기.';
+
+  @override
+  String get sos_keepHolding => '계속 누르세요…';
+
+  @override
+  String get sos_holdForSos => '길게 눌러 SOS';
+
+  @override
+  String get sos_blockStorage => '먼저 현장 로그 저장 오류를 해결하세요.';
+
+  @override
+  String get sos_blockNotConnected => 'SOS를 보내려면 MeshCore 무전기를 연결하세요.';
+
+  @override
+  String get sos_blockNoTarget => '여정 계획에서 여정 연락처나 SOS 채널을 선택하세요.';
+
+  @override
+  String get checkIn_labelOk => '괜찮아요';
+
+  @override
+  String get checkIn_labelAtCamp => '캠프에 있어요';
+
+  @override
+  String get checkIn_labelDelayed => '늦어지고 있어요';
+
+  @override
+  String get checkIn_labelHeadingBack => '돌아가는 중이에요';
+
+  @override
+  String get checkIn_blockLoading => '여정을 불러오는 중…';
+
+  @override
+  String get checkIn_blockStorage => '보내기 전에 현장 로그 저장 오류를 해결하세요.';
+
+  @override
+  String get checkIn_blockBusy => '체크인을 보내는 중입니다. 잠시 기다려 주세요.';
+
+  @override
+  String get checkIn_blockNoContacts => '여정 계획에서 여정 연락처를 선택하세요.';
+
+  @override
+  String get checkIn_blockRosterIncomplete =>
+      '일부 여정 연락처를 사용할 수 없습니다. 명단을 확인하세요.';
+
+  @override
+  String get checkIn_blockNotConnected => '체크인하려면 MeshCore 무전기를 연결하세요.';
+
+  @override
+  String get checkIn_blockNotActive => '체크인을 사용하려면 여정을 시작하세요.';
+
+  @override
+  String get checkIn_notSent => '보내지 않음';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return '$name 님에게 전달됨';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return '연락처 $count명 모두에게 전달됨';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return '$total명 중 $delivered명에게 전달됨';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return '전달 안 됨: $names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => '나머지를 기다리는 중';
+
+  @override
+  String get checkIn_aContact => '연락처';
+
+  @override
+  String get checkIn_statusPending => '대기 중';
+
+  @override
+  String get checkIn_statusSent => '보냄';
+
+  @override
+  String get checkIn_statusDelivered => '전달됨';
+
+  @override
+  String get checkIn_statusFailed => '실패';
+
+  @override
+  String get checkIn_explainPending =>
+      '기기에서 대기열에 있습니다. 무선 전송이나 수신을 확인한 것이 아닙니다.';
+
+  @override
+  String get checkIn_explainSent => '무전기가 전송을 받아들였습니다. 전달 확인은 아직 기록되지 않았습니다.';
+
+  @override
+  String get checkIn_explainDelivered => '앱이 전달 확인을 기록했습니다. 상대가 읽었다는 증거는 아닙니다.';
+
+  @override
+  String get checkIn_explainFailed =>
+      '전달이 확인되지 않았습니다. 무선 연결, 수신자 도달 가능성, 재시도 기록을 확인하세요.';
+
+  @override
+  String get checkIn_explainUnknown =>
+      '전달 상태를 알 수 없습니다. 이 메시지가 도착했다고 가정하지 마세요.';
+
+  @override
+  String get tripBrief_heading => 'BASTION • MeshCore 여정 요약';
+
+  @override
+  String tripBrief_trip(String name) {
+    return '여정: $name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return '상태: $status';
+  }
+
+  @override
+  String get tripBrief_active => '진행 중';
+
+  @override
+  String get tripBrief_stopped => '중지됨';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return '연락처: $names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => '선택 안 함';
+
+  @override
+  String get tripBrief_unavailableContact => '사용할 수 없는 연락처(명단 확인)';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return '활동 지연 기준: $minutes분(연락처가 조용해지면 이 휴대폰이 알립니다)';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return '체크인 알림: $value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return '체크인 없이 $minutes분마다';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return '체크인 선택지: $choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return '체크인에 포함할 무전기 위치: $value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale => '포함, 오래된 정보일 수 있음';
+
+  @override
+  String tripBrief_battery(String value) {
+    return '체크인에 포함할 무전기 배터리: $value';
+  }
+
+  @override
+  String get tripBrief_included => '포함';
+
+  @override
+  String get tripBrief_off => '끔';
+
+  @override
+  String get tripBrief_review => '체크인을 보내기 전에 수신자와 메시지를 확인하세요.';
+
+  @override
+  String get tripBrief_noProof =>
+      '대기열 등록이나 전송은 전달의 증거가 아닙니다. 확인 응답은 읽었다는 증거가 아닙니다.';
+
+  @override
+  String get tripBrief_overdueMeaning =>
+      '지연은 최근 연락처 활동이 없다는 뜻이며, 확인된 긴급 상황이 아닙니다.';
+
+  @override
+  String get tripBrief_automations =>
+      '현장 자동화는 앱이 활성 상태일 때만 실행됩니다. 연락이 끊겼을 때를 대비한 별도 계획을 정해 두세요.';
+
+  @override
+  String get tripBrief_sharesOnly =>
+      '이 요약은 정보만 공유하며, 무선 메시지를 보내거나 여정을 시작하지 않습니다.';
+
+  @override
+  String get fieldOps_title => 'Bastion 현장 운영';
+
+  @override
+  String get fieldOps_tabTrip => '여정';
+
+  @override
+  String get fieldOps_tabReady => '준비';
+
+  @override
+  String get fieldOps_tabLog => '로그';
+
+  @override
+  String get fieldOps_tabAuto => '자동';
+
+  @override
+  String get fieldOps_tabCoverage => '커버리지';
+
+  @override
+  String get fieldOps_tabConnection => '연결';
+
+  @override
+  String get fieldOps_diagnostics => '진단';
+
+  @override
+  String get fieldOps_storageLoadError =>
+      '현장 데이터를 불러올 수 없습니다. 저장된 데이터는 유지되었고 자동화는 꺼진 상태로 유지됩니다.';
+
+  @override
+  String get fieldOps_storageSaveError =>
+      '현장 데이터를 저장할 수 없습니다. 자동화가 중지되었고 기존 저장 데이터는 유지됩니다.';
+
+  @override
+  String get fieldOps_regionHint => '오프라인 지도에서 지역과 확대 수준을 선택하세요.';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • 확대 $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return '지도 지역을 확인할 수 없습니다: $error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '여정 진행 중 • 연락처 $count명',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped => '여정이 중지되었습니다. 준비되면 시작하세요.';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return '$time에 체크인 알림';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return '너무 오래 조용함: $names';
+  }
+
+  @override
+  String get fieldOps_planTrip => '여정 계획';
+
+  @override
+  String get fieldOps_endTrip => '여정 종료';
+
+  @override
+  String get fieldOps_startTrip => '여정 시작';
+
+  @override
+  String get fieldOps_tripBrief => '여정 요약';
+
+  @override
+  String get fieldOps_connectRadio => '무전기 연결';
+
+  @override
+  String get fieldOps_previewedCheckIns => '미리 보기 체크인';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      '상태를 고르고 실제 수신자와 메시지를 확인한 뒤 보내세요. 대기열 등록은 전달을 의미하지 않습니다.';
+
+  @override
+  String get fieldOps_tripRoster => '여정 명단';
+
+  @override
+  String get fieldOps_rosterEmpty => '여정 계획에서 알려진 채팅 연락처를 최대 6명까지 선택하세요.';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      '마지막 수신은 과거 활동의 증거입니다. 현재 도달 가능성을 뜻하지 않습니다. 지연 배지는 최근 연락처 활동이 없다는 뜻이며 확인된 긴급 상황이 아닙니다.';
+
+  @override
+  String get fieldOps_offlineMaps => '오프라인 지도';
+
+  @override
+  String get fieldOps_checkingTiles => '저장된 타일 확인 중…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '캐시된 타일 $count개.',
+    );
+    return '$_temp0 전체 경로가 포함된다는 보장은 없습니다.';
+  }
+
+  @override
+  String get fieldOps_downloadAreas => '오프라인 지역 다운로드/확인';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return '마지막 체크인, $time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name: $status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => '연락처';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '전달되지 않은 $count명에게 다시 보내기',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable => '선택한 연락처를 사용할 수 없음';
+
+  @override
+  String get fieldOps_memberUnavailableHint => '보내기 전에 이 여정을 확인하세요.';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return '마지막 활동 $minutes분 전';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return '마지막 활동 $minutes분 전 • 지연';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded => '이 로그에 기록된 체크인이 없습니다.';
+
+  @override
+  String get fieldOps_tripMap => '여정 지도';
+
+  @override
+  String get fieldOps_tripMapEmpty => '선택한 연락처가 아직 좌표를 알리지 않았습니다.';
+
+  @override
+  String get fieldOps_lastPositions => '마지막으로 알린 위치';
+
+  @override
+  String get fieldOps_positionsCaveat =>
+      '위치는 오래된 정보일 수 있습니다. 이 지도는 휴대폰 GPS를 추적하지 않으며 구성원이 지금 이곳에 있음을 증명하지 않습니다.';
+
+  @override
+  String get fieldOps_briefPreviewTitle => '여정 요약 미리 보기';
+
+  @override
+  String get fieldOps_briefPreviewHint =>
+      '여정 이름과 연락처 이름이 포함됩니다. 공유하기 전에 확인하세요. 좌표, 키, 메시지 기록은 제외됩니다.';
+
+  @override
+  String get fieldOps_shareBrief => '요약 공유';
+
+  @override
+  String get fieldOps_briefSubject => 'Bastion 여정 요약';
+
+  @override
+  String get fieldOps_tripName => '여정 이름';
+
+  @override
+  String get fieldOps_defaultTripName => '내 여정';
+
+  @override
+  String get fieldOps_includePosition => '무전기가 알린 위치 포함';
+
+  @override
+  String get fieldOps_includePositionHint =>
+      '오래된 정보일 수 있으며, 공유는 기본적으로 꺼져 있습니다.';
+
+  @override
+  String get fieldOps_includeBattery => '무전기 배터리 포함';
+
+  @override
+  String get fieldOps_overdueLabel => '연락처가 이 시간 동안 조용하면 알림';
+
+  @override
+  String get fieldOps_reminderLabel => '체크인 알림 받기';
+
+  @override
+  String get fieldOps_reminderHelper => 'Bastion이 닫혀 있어도 휴대폰 알림을 보냅니다.';
+
+  @override
+  String get fieldOps_reminderOff => '끔';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '체크인 없이 $count분 후',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'SOS를 함께 보낼 채널';
+
+  @override
+  String get fieldOps_sosChannelNone => '없음';
+
+  @override
+  String get fieldOps_selectContacts => '알려진 채팅 연락처를 최대 6명까지 선택';
+
+  @override
+  String get fieldOps_sendCheckInTitle => '체크인을 보낼까요?';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return '받는 사람: $names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint =>
+      '일반 다이렉트 메시지로 보냅니다. 전달 상태는 현장 로그에서 추적됩니다.';
+
+  @override
+  String get fieldOps_send => '보내기';
+
+  @override
+  String get fieldOps_beforeYouLeave => '출발 전에';
+
+  @override
+  String get fieldOps_radioConnected => '무전기 연결됨';
+
+  @override
+  String get fieldOps_connectHint => 'Bluetooth, USB 또는 TCP로 연결하세요.';
+
+  @override
+  String get fieldOps_radioBattery => '무전기 배터리';
+
+  @override
+  String get fieldOps_batteryUnknown => '알 수 없음. 무전기를 확인하세요.';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent% • 계획한 여정에 맞게 충전하세요.';
+  }
+
+  @override
+  String get fieldOps_tripContacts => '여정 연락처';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return '$available/$selected명 사용 가능. 호환되는 무전기와 채널이 있는지 확인하세요.';
+  }
+
+  @override
+  String get fieldOps_offlineArea => '선택한 오프라인 지도 지역';
+
+  @override
+  String get fieldOps_checkingFiles => '로컬 파일 확인 중…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return '타일 파일 $available/$expected개 사용 가능, $missing개 누락. 스냅샷일 뿐이니 출발 전에 오프라인으로 지역을 열어 보세요.';
+  }
+
+  @override
+  String get fieldOps_locationChoice => '위치 공유';
+
+  @override
+  String get fieldOps_locationOptedIn => '켜짐: 무전기가 알린 좌표는 오래된 정보일 수 있습니다.';
+
+  @override
+  String get fieldOps_locationOff => '공유가 꺼져 있습니다. 체크인에 좌표가 포함되지 않습니다.';
+
+  @override
+  String get fieldOps_automationAvailability => '자동화 사용 가능 여부';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      '이 앱이 활성 상태일 때만 실행됩니다. 절전, 종료, 무전기 연결 끊김으로 예약된 작업이 실행되지 않을 수 있습니다.';
+
+  @override
+  String get fieldOps_readinessCaveat =>
+      '준비 점검은 참고용입니다. 무선 범위를 증명하거나 메시지 전달을 보장하지 않습니다.';
+
+  @override
+  String get fieldOps_radio => '무전기';
+
+  @override
+  String get fieldOps_refreshChecks => '점검 새로고침';
+
+  @override
+  String get fieldOps_searchLog => '현장 로그 검색';
+
+  @override
+  String get fieldOps_kindAll => '전체';
+
+  @override
+  String get fieldOps_kindCheckIn => '체크인';
+
+  @override
+  String get fieldOps_kindReceived => '수신';
+
+  @override
+  String get fieldOps_kindNote => '메모';
+
+  @override
+  String get fieldOps_kindDeadZone => '음영 지역';
+
+  @override
+  String get fieldOps_kindRadio => '무전';
+
+  @override
+  String get fieldOps_kindAutomation => '자동화';
+
+  @override
+  String get fieldOps_kindMissed => '누락';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => '여정';
+
+  @override
+  String get fieldOps_kindOverdue => '지연';
+
+  @override
+  String get fieldOps_addNote => '메모 추가';
+
+  @override
+  String get fieldOps_exportJson => 'JSON 내보내기';
+
+  @override
+  String get fieldOps_deleteLog => '로그 삭제';
+
+  @override
+  String get fieldOps_logSubject => 'Bastion 현장 로그';
+
+  @override
+  String get fieldOps_logCaveat =>
+      '기기에 최대 1,000개 항목이 저장됩니다. 내보낸 파일에는 연락처 키, 메시지, 위치가 포함될 수 있으니 공유 전에 확인하세요.';
+
+  @override
+  String get fieldOps_noEntries => '일치하는 항목이 없습니다.';
+
+  @override
+  String get fieldOps_tripUnspecified => '여정 미지정';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status: $explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return '기록된 무전기 알림 위치 $latitude, $longitude(오래된 정보일 수 있음)';
+  }
+
+  @override
+  String get fieldOps_noteTitle => '현장 관찰';
+
+  @override
+  String get fieldOps_noteLabel => '무엇을 관찰했나요?';
+
+  @override
+  String get fieldOps_deadZone => '음영 지역 보고';
+
+  @override
+  String get fieldOps_deadZoneHint => '사용자의 관찰이며, 검증된 커버리지 예측이 아닙니다.';
+
+  @override
+  String get fieldOps_savePosition => '무전기가 알린 위치 저장';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • 오래된 정보일 수 있음, 휴대폰 GPS 아님';
+  }
+
+  @override
+  String get fieldOps_noPosition => '사용할 수 있는 알림 좌표가 없습니다';
+
+  @override
+  String get fieldOps_deleteLogTitle => '현장 로그를 삭제할까요?';
+
+  @override
+  String get fieldOps_deleteLogBody => '이 휴대폰에 저장된 모든 항목이 삭제됩니다. 여정 설정은 유지됩니다.';
+
+  @override
+  String get fieldOps_localAutomations => '로컬 자동화';
+
+  @override
+  String get fieldOps_enableForTrip => '이 여정에서 사용';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      '앱을 다시 시작할 때마다 꺼집니다. 규칙은 앱이 활성 상태일 때만 실행됩니다. 누락된 예약 작업은 현장 로그에 표시되며 한꺼번에 다시 실행되지 않습니다. 자동 체크인은 10분에 한 번으로 제한됩니다.';
+
+  @override
+  String get fieldOps_openBotMode => 'Bastion 봇 모드 열기';
+
+  @override
+  String get fieldOps_ruleEnabled => '규칙 사용';
+
+  @override
+  String get fieldOps_dryRun => '테스트 실행';
+
+  @override
+  String get fieldOps_dryRunHint => '전송이나 알림 없이 작업을 기록합니다.';
+
+  @override
+  String get fieldOps_then => '실행';
+
+  @override
+  String get fieldOps_actionLog => '현장 로그에 기록';
+
+  @override
+  String get fieldOps_actionNotify => '로컬 알림 표시';
+
+  @override
+  String get fieldOps_actionCheckIn => '여정 연락처에 \'I\'m OK\' 보내기';
+
+  @override
+  String get fieldOps_batteryThreshold => '배터리가 이 값 이하일 때';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return '다음 예정: $time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => '다음 예정: 예약 없음';
+
+  @override
+  String get fieldOps_previewInLog => '로그에서 미리 보기';
+
+  @override
+  String get fieldOps_allowNotifications => '알림 허용';
+
+  @override
+  String get fieldOps_triggerReconnect => '무전기가 다시 연결될 때';
+
+  @override
+  String get fieldOps_triggerDisconnect => '무전기 연결이 끊길 때';
+
+  @override
+  String get fieldOps_triggerLowBattery => '무전기 배터리가 기준을 넘을 때';
+
+  @override
+  String get fieldOps_triggerNewNode => '새 노드가 추가될 때';
+
+  @override
+  String get fieldOps_triggerRepeater => '새 리피터가 추가될 때';
+
+  @override
+  String get fieldOps_triggerScheduled => '예약된 체크인 시간이 될 때';
+
+  @override
+  String get fieldOps_explainConnection => '내 연결 설명';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return '상태: $state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat =>
+      '휴대폰이 무전기에 연결되어 있습니다. 그것만으로 수신자까지의 경로가 확보되지는 않습니다.';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      '활성 무선 연결이 없습니다. Bluetooth 권한, 무전기 전원과 범위를 확인하세요. USB/TCP는 무전기 연결에서 사용할 수 있습니다.';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return '확인을 기다리는 여정 체크인: $count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      '노드의 마지막 확인 시각과 알린 위치는 오래된 정보일 수 있습니다. 경로 분석은 관측된 시도에서 학습한 경로를 보여 주며, 경로를 만들어 내지 않습니다.';
+
+  @override
+  String get fieldOps_routeIntelligence => '경로 분석';
+
+  @override
+  String get fieldOps_coverageIntelligence => '커버리지 분석';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      '두 현장 세션의 관측 기록을 비교합니다. 점은 노드가 수신된 기록자의 무전기 알림 위치를 표시합니다. 연속적인 커버리지를 의미하지 않습니다. RSSI/SNR 스냅샷은 노드별 측정값이 아닙니다.';
+
+  @override
+  String get fieldOps_captureSession => '세션 기록';
+
+  @override
+  String get fieldOps_refreshHistory => '기록 새로고침';
+
+  @override
+  String get fieldOps_noCoverageSessions => '저장된 커버리지 세션이 아직 없습니다.';
+
+  @override
+  String get fieldOps_sessionA => '세션 A • 청록색';
+
+  @override
+  String get fieldOps_sessionB => '세션 B • 호박색';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A: 고유 노드 $a개 • B: 고유 노드 $b개';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return '공통: $shared • A만: $onlyA • B만: $onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat =>
+      '한 세션에서 노드가 수신되지 않았다고 음영 지역이라고 단정할 수 없습니다. 조건과 관측 시간이 다릅니다.';
+
+  @override
+  String get fieldOps_heardTooltip => '수신된 노드 관측. 연결 성공의 증거가 아닙니다';
+
+  @override
+  String get fieldOps_noteTooltip => '무전기가 알린 좌표의 로컬 메모. 오래된 정보일 수 있습니다.';
+
+  @override
+  String get bastionHome_aboutTooltip => 'Bastion 정보';
+
+  @override
+  String get bastionHome_getStarted => '시작하기';
+
+  @override
+  String get bastionHome_getStartedHint => '무전기를 연결하고 첫 메시지를 확인하세요';
+
+  @override
+  String get bastionHome_planYourTrip => '여정 계획하기';
+
+  @override
+  String get bastionHome_tripActive => '여정 진행 중';
+
+  @override
+  String get bastionHome_tripStopped => '여정 중지됨';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • 연락처 $contacts명 • 읽지 않은 메시지 $unread개';
+  }
+
+  @override
+  String get bastionHome_checkInOk => '체크인: 괜찮아요';
+
+  @override
+  String get bastionHome_checkInHint =>
+      '보내기 전에 연락처와 메시지를 확인하세요. 확인 응답은 현장 로그에서 추적하세요.';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return '마지막 체크인: $summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => '무전기 연결';
+
+  @override
+  String get bastionHome_connectRadioHint => 'Bluetooth, USB, TCP MeshCore 연결';
+
+  @override
+  String get bastionHome_liveDiagnostics => '실시간 진단';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint => '무전기 상태, 신호, 기기, 프레임 도구';
+
+  @override
+  String get bastionHome_meshDiscovery => '메시 탐색';
+
+  @override
+  String get bastionHome_meshDiscoveryHint => '주변 노드를 찾고 메시를 살펴보세요';
+
+  @override
+  String get bastionHome_fieldOpsHint => '여정 요약, 준비, 현장 로그, 자동화, 커버리지 비교';
+
+  @override
+  String get bastionHome_fieldTools => 'BASTION 현장 도구';
+
+  @override
+  String get bastionHome_statusActive => '사용 중';
+
+  @override
+  String get bastionHome_consoleOnline => '현장 콘솔 온라인';
+
+  @override
+  String get bastionHome_consoleReady => '현장 콘솔 준비됨';
+
+  @override
+  String get bastionHome_consoleHint => '무전기를 연결하면 실시간 대시보드가 표시됩니다.';
+
+  @override
+  String bastionHome_battery(String value) {
+    return '배터리 $value';
+  }
+
+  @override
+  String get bastionTools_title => '현장 도구';
+
+  @override
+  String get bastionTools_backup => '암호화 백업';
+
+  @override
+  String get bastionTools_backupHint => '설정, 연락처, 키를 저장하고 채팅 기록도 선택적으로 저장';
+
+  @override
+  String get bastionTools_fieldOpsHint => '체크인, 준비, 현장 로그, 자동화, 비교';
+
+  @override
+  String get bastionTools_mapHint => '실시간 지도, 기록 세션, 오프라인 지도 도구, 지역';
+
+  @override
+  String get bastionTools_pathAnalysis => '경로 분석';
+
+  @override
+  String get bastionTools_pathHint => '경로, 탐색, 경로 분석';
+
+  @override
+  String get bastionTools_repeaterHint => '상태, 로그인, 원격 측정, 이웃, 관리';
+
+  @override
+  String get bastionTools_statsHint => '실시간 메시 집계와 연락처 활동';
+
+  @override
+  String get bastionTools_diagnostics => '진단';
+
+  @override
+  String get bastionTools_diagnosticsHint => '무전기 상태, 기기 정보, 원시 프레임, 내보내기';
+
+  @override
+  String get bastionTools_about => '정보 + 크레딧';
+
+  @override
+  String get bastionTools_aboutHint => 'Bastion 버전, 독립성 고지, 오픈 소스 라이선스';
+
+  @override
+  String get bastionAbout_title => '정보 + 크레딧';
+
+  @override
+  String get bastionAbout_intro =>
+      'MeshCore 네트워크를 위한 독립 커뮤니티 동반 앱입니다. Bastion은 MeshCore 공식 앱이 아니며, 커뮤니티 자료를 포함한다고 해서 제휴나 보증을 의미하지 않습니다.';
+
+  @override
+  String get bastionAbout_version => '버전';
+
+  @override
+  String get bastionAbout_openSource => '오픈 소스 기반';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'Bastion은 MIT 라이선스의 MeshCore Open 오픈 소스 코드를 기반으로 만들어졌으며 이를 수정합니다. 커버리지 기능 작업은 해당되는 경우 MIT 라이선스의 MeshMapper Flutter App도 함께 밝힙니다.';
+
+  @override
+  String get bastionAbout_community => '커뮤니티 우선';
+
+  @override
+  String get bastionAbout_communityBody =>
+      '제3자 제작자의 자료는 각 제작자의 소유로 남습니다. 소유권이나 제휴를 의미하지 않습니다.';
+
+  @override
+  String get bastionAbout_legalese => 'Bastion • 독립 MeshCore 동반 앱';
+
+  @override
+  String get bastionAbout_licenses => '오픈 소스 라이선스';
+
+  @override
+  String get bastionSetup_title => 'Bastion 시작하기';
+
+  @override
+  String get bastionSetup_intro =>
+      '연결하고, 연락처를 고른 다음, 메시지를 확인하세요. 대시보드에서 언제든 이 안내로 돌아올 수 있습니다.';
+
+  @override
+  String get bastionSetup_step1 => '1. MeshCore 무전기 연결';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return '$transport(으)로 $device에 연결되었습니다.';
+  }
+
+  @override
+  String get bastionSetup_noRadio => '아직 연결된 무전기가 없습니다.';
+
+  @override
+  String get bastionSetup_step1Power =>
+      'MeshCore 동반 무전기를 켜세요. 무전기 연결을 열고 Bluetooth, USB 또는 TCP를 선택하세요. 선택한 연결에 필요한 권한을 허용하세요.';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      'Bluetooth 검색 결과가 비어 있으면 Bluetooth가 켜져 있는지, Android 앱 설정에서 Bastion에 근처 기기 권한이 있는지 확인하세요. 스캐너가 표시하는 추가 권한 요청도 따르세요.';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => '연결 진단';
+
+  @override
+  String get bastionSetup_step2 => '2. 채팅 연락처 선택';
+
+  @override
+  String get bastionSetup_step2Body =>
+      '호환되는 MeshCore 무선 설정을 가진 근처의 동료에게 노드를 알려 달라고 요청하세요. 아래에서 알려진 채팅 연락처를 고르세요. 리피터는 따로 관리합니다.';
+
+  @override
+  String get bastionSetup_noContacts =>
+      '사용할 수 있는 채팅 연락처가 없습니다. 무전기를 연결하고 메시 탐색을 여세요.';
+
+  @override
+  String get bastionSetup_testRecipient => '테스트 수신자';
+
+  @override
+  String get bastionSetup_meshDiscovery => '메시 탐색';
+
+  @override
+  String get bastionSetup_step3 => '3. 메시지 보내고 확인하기';
+
+  @override
+  String get bastionSetup_step3Body =>
+      '채팅을 열고 짧은 테스트 메시지를 쓴 뒤 수신자를 확인하고 보내기를 누르세요. 여기로 돌아오면 이 안내를 연 뒤 기록된 최신 발신 메시지를 볼 수 있습니다.';
+
+  @override
+  String get bastionSetup_openTestChat => '테스트 채팅 열기';
+
+  @override
+  String get bastionSetup_connectFirst => '테스트 채팅을 열려면 무전기를 연결하세요.';
+
+  @override
+  String get bastionSetup_chooseRecipient => '먼저 수신자를 선택하세요.';
+
+  @override
+  String get bastionSetup_noTestMessage => '이번 안내 세션에 기록된 발신 테스트 메시지가 없습니다.';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return '최신 메시지: $status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      '동료에게 수신 확인이나 답장을 요청하세요. 기록된 확인 응답은 읽었다는 증거가 아닙니다. 메시지가 실패하면 연결과 수신자를 다시 확인하세요.';
+
+  @override
+  String get bastionSetup_step4 => '4. 현장 준비';
+
+  @override
+  String get bastionSetup_step4Body =>
+      '여정 연락처를 계획하고 다운로드한 지도 지역을 확인하세요. 봇 모드와 현장 자동화는 처음에는 꺼져 있으며, 현장 자동화는 앱이 활성 상태일 때만 실행됩니다.';
+
+  @override
+  String get bastionSetup_tripTools => '여정 및 준비 도구';
+
+  @override
+  String get bastionDiag_title => '진단';
+
+  @override
+  String get bastionDiag_export => '진단 내보내기';
+
+  @override
+  String get bastionDiag_channels => '채널';
+
+  @override
+  String get bastionDiag_radio => '무선';
+
+  @override
+  String get bastionDiag_frequency => '주파수';
+
+  @override
+  String get bastionDiag_bandwidth => '대역폭';
+
+  @override
+  String get bastionDiag_spreadingFactor => '확산 계수';
+
+  @override
+  String get bastionDiag_codingRate => '부호율';
+
+  @override
+  String get bastionDiag_txPower => '송신 출력';
+
+  @override
+  String get bastionDiag_noiseFloor => '잡음 레벨';
+
+  @override
+  String get bastionDiag_device => '기기';
+
+  @override
+  String get bastionDiag_name => '이름';
+
+  @override
+  String get bastionDiag_manufacturer => '제조사';
+
+  @override
+  String get bastionDiag_firmware => '펌웨어';
+
+  @override
+  String get bastionDiag_battery => '배터리';
+
+  @override
+  String get bastionDiag_transport => '연결 방식';
+
+  @override
+  String get bastionDiag_deepTools => '고급 도구';
+
+  @override
+  String get bastionDiag_liveStats => '실시간 무선 통계';
+
+  @override
+  String get bastionDiag_liveStatsHint => '잡음, RSSI, SNR, 송출 시간';
+
+  @override
+  String get bastionDiag_frameDebug => '프레임 / BLE 디버그';
+
+  @override
+  String get bastionDiag_frameDebugHint => '디코딩된 수신 프레임과 원시 프레임 살펴보기';
+
+  @override
+  String get bastionDiag_appLog => '앱 디버그 로그';
+
+  @override
+  String get bastionDiag_appLogHint => '앱 진단 이벤트 검토';
+
+  @override
+  String get bastionDiag_online => '무전기 온라인';
+
+  @override
+  String get bastionDiag_offline => '무전기 오프라인';
+
+  @override
+  String get bastionDiag_offlineHint => 'MeshCore 동반 기기를 연결하면 실시간 진단이 표시됩니다.';
+
+  @override
+  String get coverage_title => '커버리지 기록';
+
+  @override
+  String get coverage_leaveBlocked => '나가기 전에 세션을 중지하고 저장하세요.';
+
+  @override
+  String get coverage_savedSessions => '저장된 세션';
+
+  @override
+  String get coverage_caveat =>
+      'RSSI/SNR은 무전기 스냅샷이며 다른 패킷의 값일 수 있습니다. 위치는 무전기가 알린 좌표로, 휴대폰 GPS나 커버리지의 증거가 아닙니다. 청록: 기록자, 호박색: 알린 노드. 보간은 하지 않습니다.';
+
+  @override
+  String get coverage_captureActive => '기록 중';
+
+  @override
+  String get coverage_fieldSession => '현장 커버리지 세션';
+
+  @override
+  String get coverage_connectedBody =>
+      'Bastion은 이 세션 동안 새로 수신된 노드를 기록합니다. 경로 데이터, 노드/위치 메타데이터, 가장 가까운 무전기 RSSI/SNR 스냅샷을 포함합니다.';
+
+  @override
+  String get coverage_disconnectedBody =>
+      '시작하기 전에 무전기를 연결하세요. 커버리지 기록은 연결된 동반 무전기에서 실시간 메시 관측을 기록합니다.';
+
+  @override
+  String get coverage_observations => '관측';
+
+  @override
+  String get coverage_uniqueNodes => '고유 노드';
+
+  @override
+  String get coverage_elapsed => '경과 시간';
+
+  @override
+  String get coverage_radioConnected => '무전기 연결됨';
+
+  @override
+  String get coverage_noRadio => '무전기 없음';
+
+  @override
+  String get coverage_gpsReady => '무전기 GPS 준비됨';
+
+  @override
+  String get coverage_noGps => '무전기 GPS 없음';
+
+  @override
+  String get coverage_stopSave => '중지 + 세션 저장';
+
+  @override
+  String get coverage_start => '커버리지 세션 시작';
+
+  @override
+  String get coverage_exportJson => 'JSON 내보내기';
+
+  @override
+  String get coverage_exportCsv => 'CSV 내보내기';
+
+  @override
+  String get coverage_liveObservations => '실시간 관측';
+
+  @override
+  String get coverage_waiting => '메시 활동 대기 중';
+
+  @override
+  String get coverage_waitingBody =>
+      '세션을 시작하면 새로 수신된 활성 노드가 여기에 표시됩니다. RSSI/SNR 값은 무전기 스냅샷이며 항상 특정 패킷과 정확히 연결되지는 않습니다.';
+
+  @override
+  String get coverage_signalNa => '신호 없음';
+
+  @override
+  String get coverage_snrNa => 'SNR 없음';
+
+  @override
+  String get coverage_gpsUnavailable => '무전기 GPS 사용 불가';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return '경로: $path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => '플러드';
+
+  @override
+  String get coverage_pathDirect => '직접';
+
+  @override
+  String get coverage_shareSubject => 'Bastion 커버리지 세션';
+
+  @override
+  String get coverage_shareText => 'Bastion 커버리지 기록 내보내기';
+
+  @override
+  String get coverage_historyTitle => '저장된 커버리지 세션';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return '세션을 불러올 수 없습니다: $error';
+  }
+
+  @override
+  String get coverage_deleteTitle => '저장된 세션을 삭제할까요?';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '관측 $count건이 이 기기에서 삭제됩니다.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return '세션을 삭제할 수 없습니다: $error';
+  }
+
+  @override
+  String get coverage_retention =>
+      '완료된 최신 세션 20개가 보관됩니다. 보관하려는 세션은 공유하세요. 중단된 기록은 아래에서 다시 열 수 있습니다.';
+
+  @override
+  String get coverage_noSessions => '저장된 세션이 아직 없습니다. 기록을 중지하면 저장됩니다.';
+
+  @override
+  String get coverage_interrupted => '중단된 기록';
+
+  @override
+  String get coverage_saved => '저장됨';
+
+  @override
+  String get coverage_deleteTooltip => '세션 삭제';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return '내보내기 실패: $error';
+  }
+
+  @override
+  String get coverage_sessionTitle => '커버리지 세션';
+
+  @override
+  String get coverage_shareJson => 'JSON 공유';
+
+  @override
+  String get coverage_shareCsv => 'CSV 공유';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi dBm • SNR $snr dB • 스냅샷 경과 $age ms';
+  }
+
+  @override
+  String get coverage_unknown => '알 수 없음';
+
+  @override
+  String coverage_pathValue(String path) {
+    return '경로 $path';
+  }
+
+  @override
+  String get coverage_recorder => '기록자';
+
+  @override
+  String get coverage_noCoordinates =>
+      '이 세션에는 사용할 수 있는 좌표가 없습니다. 관측은 아래에서 계속 볼 수 있습니다.';
+
+  @override
+  String get coverage_osmAttribution => '© OpenStreetMap 기여자 • 온라인 기본 지도';
+
+  @override
+  String get fieldStats_title => '현장 분석';
+
+  @override
+  String get fieldStats_snapshot => '실시간 메시 스냅샷';
+
+  @override
+  String get fieldStats_headline => '지금 Bastion이 알고 있는 것.';
+
+  @override
+  String get fieldStats_body =>
+      '이 집계는 연결된 MeshCore 연락처 표, 위치, 경로, 마지막 확인 시각을 바탕으로 계산됩니다.';
+
+  @override
+  String get fieldStats_total => '전체';
+
+  @override
+  String get fieldStats_chatNodes => '채팅 노드';
+
+  @override
+  String get fieldStats_rooms => '룸';
+
+  @override
+  String get fieldStats_sensors => '센서';
+
+  @override
+  String get fieldStats_located => '위치 있음';
+
+  @override
+  String get fieldStats_favorites => '즐겨찾기';
+
+  @override
+  String get fieldStats_routeSnapshot => '경로 스냅샷';
+
+  @override
+  String get fieldStats_routed => '경로 있음';
+
+  @override
+  String get fieldStats_direct => '직접';
+
+  @override
+  String get fieldStats_flood => '플러드';
+
+  @override
+  String get fieldStats_pathIntel => '경로 분석';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'Bastion의 경로 분석은 저장된 경로 시도, 홉 수, 성공/실패, 이동 시간, 경로 가중치를 사용해 학습된 경로를 보여 줍니다.';
+
+  @override
+  String get fieldStats_coverageSessions => '커버리지 세션';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      '커버리지 기록은 이제 현장 세션을 저장하고, 중단된 작업을 복원하고, 관측을 내보내고, 기록된 커버리지 지점을 지도에 표시합니다. RSSI/SNR은 여전히 가장 가까운 무전기 스냅샷입니다.';
+
+  @override
+  String get mapHub_title => 'BASTION 현장 지도';
+
+  @override
+  String get mapHub_intro => '실시간 지도, 오프라인 지역, 지역 프로필, Bastion 현장 커버리지 세션.';
+
+  @override
+  String get mapHub_captureHint => '현장 커버리지 세션 시작 및 중지';
+
+  @override
+  String get mapHub_badgeNew => '새 기능';
+
+  @override
+  String get mapHub_liveMap => '실시간 메시 지도';
+
+  @override
+  String get mapHub_liveMapHint => '노드, 리피터, 위치, 경로, 지도 도구';
+
+  @override
+  String get mapHub_badgeLive => '실시간';
+
+  @override
+  String get mapHub_offlinePacks => '오프라인 지도 팩';
+
+  @override
+  String get mapHub_offlinePacksHint => '여정과 서비스 불가 지역을 위해 지도 타일 캐시';
+
+  @override
+  String get mapHub_badgeOffline => '오프라인';
+
+  @override
+  String get mapHub_regions => '지역 프로필';
+
+  @override
+  String get mapHub_regionsHint => '지역 메시 정의 관리 및 가져오기';
+
+  @override
+  String get mapHub_badgeRegions => '지역';
+
+  @override
+  String get routes_title => '경로 분석';
+
+  @override
+  String get routes_headline => '메시에서 트래픽이 어떻게 흐르는지 확인하세요.';
+
+  @override
+  String get routes_body =>
+      'Bastion은 실제 메시지 시도와 탐색에서 이미 학습한 경로 기록으로 저장된 경로의 순위를 매깁니다.';
+
+  @override
+  String get routes_routes => '경로';
+
+  @override
+  String get routes_success => '성공';
+
+  @override
+  String get routes_failed => '실패';
+
+  @override
+  String get routes_routeMap => '경로 지도';
+
+  @override
+  String get routes_routeMapHint => '노드와 경로 살펴보기';
+
+  @override
+  String get routes_discover => '탐색';
+
+  @override
+  String get routes_discoverHint => '새 경로 찾기';
+
+  @override
+  String get routes_learned => '학습된 경로';
+
+  @override
+  String get routes_none => '아직 경로 기록이 없습니다';
+
+  @override
+  String get routes_noneBody =>
+      '평소처럼 메시를 사용하거나 탐색을 실행하세요. 경로 기록이 생기면 학습된 경로가 여기에 표시됩니다.';
+
+  @override
+  String get routes_direct => '직접';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '경로 $count개',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return '최적  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  가중치 $weight  •  성공 $success / 실패 $fail';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return '알려진 최단 시간: $ms ms';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return '플러드: 성공 $success / 실패 $fail';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => '리피터 관리';
+
+  @override
+  String get repeaterTools_headline => '메시를 받치는 인프라를 관리하세요.';
+
+  @override
+  String get repeaterTools_body =>
+      '발견된 리피터를 선택해 인증하고, 기존 MeshCore 상태, 원격 측정, 이웃, 설정, CLI 도구를 여세요.';
+
+  @override
+  String get repeaterTools_discovered => '발견됨';
+
+  @override
+  String get repeaterTools_tools => '도구';
+
+  @override
+  String get repeaterTools_available => '사용 가능한 리피터';
+
+  @override
+  String get repeaterTools_unnamed => '이름 없는 리피터';
+
+  @override
+  String get repeaterTools_statusTelemetry => '상태 + 원격 측정';
+
+  @override
+  String get repeaterTools_statusTelemetryBody =>
+      '기존 관리 도구로 리피터 상태와 원격 측정을 확인합니다.';
+
+  @override
+  String get repeaterTools_neighbors => '이웃';
+
+  @override
+  String get repeaterTools_neighborsBody => '이웃 인프라와 메시 관계를 살펴봅니다.';
+
+  @override
+  String get repeaterTools_cli => 'CLI + 설정';
+
+  @override
+  String get repeaterTools_cliBody => '인증된 관리자는 기존 리피터 CLI와 구성 도구를 사용할 수 있습니다.';
+
+  @override
+  String get repeaterTools_empty => '아직 발견된 리피터가 없습니다. 무전기를 연결하고 먼저 메시를 탐색하세요.';
+
+  @override
+  String get notification_fieldAlertTitle => 'Bastion 현장 알림';
+
+  @override
+  String get notification_checkInReminderTitle => 'Bastion 체크인 알림';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return '$trip에서 $minutes분 동안 체크인이 없습니다. Bastion을 열어 체크인하세요.';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return '$name 님이 $minutes분 동안 소식이 없습니다. 확인된 긴급 상황은 아닙니다.';
+  }
+
+  @override
+  String get notification_aTripContact => '여정 연락처';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return '$name 님에게 체크인이 전달되지 않았습니다. 여정에서 다시 보낼 수 있습니다.';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return '$name 님이 SOS를 확인했습니다';
+  }
 }

@@ -4,6 +4,7 @@ import 'bastion_coverage_history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import '../l10n/l10n.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../services/coverage_capture_service.dart';
@@ -86,10 +87,11 @@ class _BastionCoverageCaptureScreenState
         ? await _capture.exportCsv()
         : await _capture.exportJson();
     if (!mounted) return;
+    final l10n = context.l10n;
     await SharePlus.instance.share(
       ShareParams(
-        subject: 'Bastion Coverage Session',
-        text: 'Bastion coverage capture export',
+        subject: l10n.coverage_shareSubject,
+        text: l10n.coverage_shareText,
         files: [XFile(path)],
       ),
     );
@@ -114,16 +116,15 @@ class _BastionCoverageCaptureScreenState
     final observations = _capture.observations;
     final hasGps =
         connector.selfLatitude != null && connector.selfLongitude != null;
+    final l10n = context.l10n;
 
     return PopScope(
       canPop: !_capture.recording && !_busy,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Stop and save the session before leaving.'),
-            ),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(l10n.coverage_leaveBlocked)));
         }
       },
       child: Scaffold(
@@ -131,10 +132,10 @@ class _BastionCoverageCaptureScreenState
         appBar: AppBar(
           backgroundColor: bg,
           foregroundColor: Color(0xFFE4E6DF),
-          title: const Column(
+          title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'BASTION',
                 style: TextStyle(
                   color: cyan,
@@ -144,8 +145,8 @@ class _BastionCoverageCaptureScreenState
                 ),
               ),
               Text(
-                'Coverage Capture',
-                style: TextStyle(fontWeight: FontWeight.w900),
+                l10n.coverage_title,
+                style: const TextStyle(fontWeight: FontWeight.w900),
               ),
             ],
           ),
@@ -162,11 +163,11 @@ class _BastionCoverageCaptureScreenState
                 ),
               ),
               icon: const Icon(Icons.history),
-              label: const Text('SAVED SESSIONS'),
+              label: Text(l10n.coverage_savedSessions),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 12),
-              child: Text(coverageCaveat),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Text(l10n.coverage_caveat),
             ),
             Container(
               padding: const EdgeInsets.all(18),
@@ -191,8 +192,8 @@ class _BastionCoverageCaptureScreenState
                       Expanded(
                         child: Text(
                           _capture.recording
-                              ? 'CAPTURE ACTIVE'
-                              : 'FIELD COVERAGE SESSION',
+                              ? l10n.coverage_captureActive
+                              : l10n.coverage_fieldSession,
                           style: const TextStyle(
                             color: Color(0xFFE4E6DF),
                             fontSize: 20,
@@ -205,8 +206,8 @@ class _BastionCoverageCaptureScreenState
                   const SizedBox(height: 10),
                   Text(
                     connector.isConnected
-                        ? 'Bastion records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.'
-                        : 'Connect a radio before starting. Coverage capture records live mesh observations from the connected companion radio.',
+                        ? l10n.coverage_connectedBody
+                        : l10n.coverage_disconnectedBody,
                     style: const TextStyle(
                       color: Color(0xFFADBEB7),
                       height: 1.45,
@@ -220,20 +221,20 @@ class _BastionCoverageCaptureScreenState
               children: [
                 Expanded(
                   child: _Stat(
-                    label: 'OBSERVATIONS',
+                    label: l10n.coverage_observations,
                     value: '${observations.length}',
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: _Stat(
-                    label: 'UNIQUE NODES',
+                    label: l10n.coverage_uniqueNodes,
                     value: '${_capture.uniqueNodes}',
                   ),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: _Stat(label: 'ELAPSED', value: _elapsed),
+                  child: _Stat(label: l10n.coverage_elapsed, value: _elapsed),
                 ),
               ],
             ),
@@ -244,8 +245,8 @@ class _BastionCoverageCaptureScreenState
                   child: _Status(
                     icon: Icons.radio_rounded,
                     label: connector.isConnected
-                        ? 'RADIO CONNECTED'
-                        : 'NO RADIO',
+                        ? l10n.coverage_radioConnected
+                        : l10n.coverage_noRadio,
                     active: connector.isConnected,
                   ),
                 ),
@@ -253,7 +254,9 @@ class _BastionCoverageCaptureScreenState
                 Expanded(
                   child: _Status(
                     icon: Icons.my_location_rounded,
-                    label: hasGps ? 'RADIO GPS READY' : 'NO RADIO GPS',
+                    label: hasGps
+                        ? l10n.coverage_gpsReady
+                        : l10n.coverage_noGps,
                     active: hasGps,
                   ),
                 ),
@@ -280,8 +283,8 @@ class _BastionCoverageCaptureScreenState
               ),
               label: Text(
                 _capture.recording
-                    ? 'STOP + SAVE SESSION'
-                    : 'START COVERAGE SESSION',
+                    ? l10n.coverage_stopSave
+                    : l10n.coverage_start,
                 style: const TextStyle(fontWeight: FontWeight.w900),
               ),
             ),
@@ -293,7 +296,7 @@ class _BastionCoverageCaptureScreenState
                     child: OutlinedButton.icon(
                       onPressed: () => _export('json'),
                       icon: const Icon(Icons.data_object_rounded),
-                      label: const Text('EXPORT JSON'),
+                      label: Text(l10n.coverage_exportJson),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -301,7 +304,7 @@ class _BastionCoverageCaptureScreenState
                     child: OutlinedButton.icon(
                       onPressed: () => _export('csv'),
                       icon: const Icon(Icons.table_view_rounded),
-                      label: const Text('EXPORT CSV'),
+                      label: Text(l10n.coverage_exportCsv),
                     ),
                   ),
                 ],
@@ -310,9 +313,9 @@ class _BastionCoverageCaptureScreenState
             if (observations.isNotEmpty)
               CoverageSessionMap(observations: observations),
             const SizedBox(height: 22),
-            const Text(
-              'LIVE OBSERVATIONS',
-              style: TextStyle(
+            Text(
+              l10n.coverage_liveObservations,
+              style: const TextStyle(
                 color: cyan,
                 fontSize: 11,
                 fontWeight: FontWeight.w900,
@@ -321,11 +324,10 @@ class _BastionCoverageCaptureScreenState
             ),
             const SizedBox(height: 10),
             if (observations.isEmpty)
-              const _Info(
+              _Info(
                 icon: Icons.sensors_rounded,
-                title: 'WAITING FOR MESH ACTIVITY',
-                body:
-                    'Start a session and newly heard active nodes will appear here. RSSI/SNR values are radio snapshots and may not always be uniquely attributable to a specific packet.',
+                title: l10n.coverage_waiting,
+                body: l10n.coverage_waitingBody,
               )
             else
               ...observations.reversed
@@ -435,17 +437,18 @@ class _ObservationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final signal = observation.rssiDbm == null
-        ? 'signal n/a'
+        ? l10n.coverage_signalNa
         : '${observation.rssiDbm} dBm';
     final snr = observation.snrDb == null
-        ? 'SNR n/a'
+        ? l10n.coverage_snrNa
         : 'SNR ${observation.snrDb!.toStringAsFixed(1)} dB';
     final location =
         observation.recorderLatitude != null &&
             observation.recorderLongitude != null
         ? '${observation.recorderLatitude!.toStringAsFixed(5)}, ${observation.recorderLongitude!.toStringAsFixed(5)}'
-        : 'radio GPS unavailable';
+        : l10n.coverage_gpsUnavailable;
 
     return Container(
       padding: const EdgeInsets.all(13),
@@ -480,11 +483,14 @@ class _ObservationTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  'Path: ${observation.pathLength < 0
-                      ? 'flood'
-                      : observation.pathLength == 0
-                      ? 'direct'
-                      : '${observation.pathLength} hop'}  •  $location',
+                  l10n.coverage_pathLine(
+                    observation.pathLength < 0
+                        ? l10n.coverage_pathFlood
+                        : observation.pathLength == 0
+                        ? l10n.coverage_pathDirect
+                        : l10n.bastion_hopsCount(observation.pathLength),
+                    location,
+                  ),
                   style: const TextStyle(
                     color: Color(0xFF7F8B94),
                     fontSize: 10.5,

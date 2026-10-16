@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../l10n/l10n.dart';
 
 class BastionFieldStatsScreen extends StatelessWidget {
   const BastionFieldStatsScreen({super.key});
@@ -30,15 +31,19 @@ class BastionFieldStatsScreen extends StatelessWidget {
         .length;
     final direct = contacts.where((c) => c.pathLength == 0).length;
     final flood = contacts.where((c) => c.pathLength < 0).length;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: Color(0xFFE4E6DF),
-        title: const Text(
-          'FIELD INTELLIGENCE',
-          style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.2),
+        title: Text(
+          l10n.fieldStats_title,
+          style: const TextStyle(
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.2,
+          ),
         ),
       ),
       body: ListView(
@@ -51,66 +56,66 @@ class BastionFieldStatsScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: _cyan.withValues(alpha: .45)),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'LIVE MESH SNAPSHOT',
-                  style: TextStyle(
+                  l10n.fieldStats_snapshot,
+                  style: const TextStyle(
                     color: _cyan,
                     fontSize: 12,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1.4,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
-                  'What Bastion knows right now.',
-                  style: TextStyle(
+                  l10n.fieldStats_headline,
+                  style: const TextStyle(
                     color: Color(0xFFE4E6DF),
                     fontSize: 21,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Text(
-                  'These counters are calculated from the connected MeshCore contact table, locations, paths and last-seen timestamps.',
-                  style: TextStyle(color: Color(0xFFCED8D2), height: 1.4),
+                  l10n.fieldStats_body,
+                  style: const TextStyle(color: Color(0xFFCED8D2), height: 1.4),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 16),
           _grid([
-            ['TOTAL', '${contacts.length}'],
-            ['ACTIVE 1H', '$recent'],
-            ['REPEATERS', '$repeaters'],
-            ['CHAT NODES', '$chats'],
-            ['ROOMS', '$rooms'],
-            ['SENSORS', '$sensors'],
-            ['LOCATED', '$located'],
-            ['FAVORITES', '$favorites'],
+            [l10n.fieldStats_total, '${contacts.length}'],
+            [l10n.bastion_active1h, '$recent'],
+            [l10n.bastion_repeaters, '$repeaters'],
+            [l10n.fieldStats_chatNodes, '$chats'],
+            [l10n.fieldStats_rooms, '$rooms'],
+            [l10n.fieldStats_sensors, '$sensors'],
+            [l10n.fieldStats_located, '$located'],
+            [l10n.fieldStats_favorites, '$favorites'],
           ]),
           const SizedBox(height: 18),
-          const _Title('ROUTE SNAPSHOT'),
+          _Title(l10n.fieldStats_routeSnapshot),
           const SizedBox(height: 8),
           _grid([
-            ['ROUTED', '$routed'],
-            ['DIRECT', '$direct'],
-            ['FLOOD', '$flood'],
+            [l10n.fieldStats_routed, '$routed'],
+            [l10n.fieldStats_direct, '$direct'],
+            [l10n.fieldStats_flood, '$flood'],
             ['GPS', '$located'],
           ]),
           const SizedBox(height: 18),
-          const _Panel(
+          _Panel(
             Icons.route_rounded,
-            'PATH INTELLIGENCE',
-            'Bastion’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.',
+            l10n.fieldStats_pathIntel,
+            l10n.fieldStats_pathIntelBody,
           ),
           const SizedBox(height: 10),
-          const _Panel(
+          _Panel(
             Icons.map_rounded,
-            'COVERAGE SESSIONS',
-            'Coverage Capture now saves field sessions, restores interrupted work, exports observations and maps recorded coverage points. RSSI/SNR remain the nearest available radio snapshot.',
+            l10n.fieldStats_coverageSessions,
+            l10n.fieldStats_coverageSessionsBody,
           ),
         ],
       ),
