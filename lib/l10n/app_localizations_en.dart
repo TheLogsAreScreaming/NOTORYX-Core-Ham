@@ -434,7 +434,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common_interval => 'Interval';
 
   @override
-  String get scanner_title => 'Bastion';
+  String get scanner_title => 'Connect Radio';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -624,7 +624,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get device_meshcore => 'MeshCore';
 
   @override
-  String get settings_title => 'Settings';
+  String get settings_title => 'Bastion Settings';
 
   @override
   String get settings_deviceInfo => 'Device Info';
@@ -901,11 +901,12 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get settings_aboutLegalese => '2026 MeshCore Open Source Project';
+  String get settings_aboutLegalese =>
+      'Bastion • Built with open-source MeshCore Open components';
 
   @override
   String get settings_aboutDescription =>
-      'An open-source Flutter client for MeshCore LoRa mesh networking devices.';
+      'Bastion is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.';
 
   @override
   String get settings_aboutOpenMeteoAttribution =>
@@ -1329,7 +1330,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'App debug logging disabled';
 
   @override
-  String get contacts_title => 'Contacts';
+  String get contacts_title => 'Nodes';
 
   @override
   String get contacts_noContacts => 'No contacts yet';
@@ -1500,7 +1501,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contact_teleEnvSubtitle => 'Allow sharing environment sensor data';
 
   @override
-  String get channels_title => 'Channels';
+  String get channels_title => 'Chats & Channels';
 
   @override
   String get channels_noChannelsConfigured => 'No channels configured';
@@ -4602,7 +4603,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Copying advert to Clipboard failed.';
 
   @override
-  String get notification_activityTitle => 'MeshCore Activity';
+  String get notification_activityTitle => 'Bastion Activity';
 
   @override
   String notification_messagesCount(int count) {
@@ -5012,7 +5013,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get translation_systemLanguage => 'System language';
 
   @override
-  String get background_serviceTitle => 'MeshCore running';
+  String get background_serviceTitle => 'Bastion running';
 
   @override
   String get background_serviceText => 'Keeping BLE connected';

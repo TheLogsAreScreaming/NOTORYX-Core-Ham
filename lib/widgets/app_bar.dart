@@ -13,6 +13,7 @@ class AppBarTitle extends StatelessWidget {
   final bool indicators;
   final bool showBatteryIndicator;
   final bool subtitle;
+
   const AppBarTitle(
     this.title, {
     this.leading,
@@ -27,15 +28,13 @@ class AppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
     final selfName = connector.selfName;
+    const cyan = Color(0xFF8AB6AA);
 
     return LayoutBuilder(
       builder: (context, constraints) {
         final availableWidth = constraints.hasBoundedWidth
             ? constraints.maxWidth
             : MediaQuery.sizeOf(context).width;
-        final compact = availableWidth < 170;
-        final showSubtitle =
-            !compact && connector.isConnected && selfName != null && subtitle;
         final showBattery = showBatteryIndicator && availableWidth >= 60;
         final showSnr = availableWidth >= 110;
         final showIndicators = (showBattery || showSnr) && indicators;
@@ -49,11 +48,24 @@ class AppBarTitle extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  const Text(
+                    'BASTION',
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: cyan,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 1.7,
+                    ),
+                  ),
                   Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
-                  if (showSubtitle)
+                  if (subtitle && connector.isConnected && selfName != null)
                     Text(
                       selfName,
-                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                      style: const TextStyle(
+                        fontSize: 11,
+                        color: Color(0xFFADBEB7),
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

@@ -64,10 +64,12 @@ class MessageUrlImageHelper {
 
     final pyxMatch = _pyxPattern.firstMatch(trimmed);
     if (pyxMatch != null) {
-      return _extractFromUrl(
-        _trimBoundary(pyxMatch.group(0)!),
-        RegExp(r'''<img[^>]+src=["']([^"']+)["']''', caseSensitive: false),
-      );
+      final uri = Uri.tryParse(_trimBoundary(pyxMatch.group(0)!));
+      final id = uri?.queryParameters['i'];
+      if (id == null || !RegExp(r'^[A-Za-z0-9_-]+$').hasMatch(id)) {
+        return null;
+      }
+      return 'https://pyx.li/i/$id.jpg';
     }
 
     final ipfsUrlMatch = _ipfsUrlPattern.firstMatch(trimmed);

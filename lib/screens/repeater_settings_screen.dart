@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../connector/meshcore_connector.dart';
@@ -11,6 +13,7 @@ import '../services/repeater_command_service.dart';
 import '../services/storage_service.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/us_bandwidth_notice.dart';
 import '../widgets/routing_sheet.dart';
 import '../utils/keys.dart';
 import '../helpers/snack_bar_builder.dart';
@@ -1219,7 +1222,10 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
                 ),
-                onChanged: (_) => _markChanged(_SettingField.radio),
+                onChanged: (_) {
+                  setState(() {});
+                  _markChanged(_SettingField.radio);
+                },
               ),
               const SizedBox(height: 12),
               Row(
@@ -1264,6 +1270,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                 },
               ),
               const SizedBox(height: 12),
+              if (double.tryParse(_freqController.text) case final double mhz)
+                if (mhz >= 902 && mhz <= 928 && _bandwidth != null)
+                  UsBandwidthNotice(bandwidthHz: _bandwidth!),
               DropdownButtonFormField<int>(
                 initialValue: _spreadingFactor,
                 decoration: InputDecoration(

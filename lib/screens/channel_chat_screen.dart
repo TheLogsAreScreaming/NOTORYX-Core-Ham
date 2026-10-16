@@ -1763,6 +1763,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         border: Border(top: BorderSide(color: scheme.outlineVariant, width: 1)),
       ),
       child: SafeArea(
+        top: false,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

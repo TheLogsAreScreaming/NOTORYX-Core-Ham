@@ -15,7 +15,7 @@ import '../widgets/device_tile.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
 import '../helpers/snack_bar_builder.dart';
-import 'messages_screen.dart';
+import 'channels_screen.dart';
 import 'tcp_screen.dart';
 import 'usb_screen.dart';
 
@@ -50,8 +50,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
           !_changedNavigation) {
         _changedNavigation = true;
         if (mounted) {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const MessagesScreen()),
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const ChannelsScreen(hideBackButton: true),
+            ),
           );
         }
       }

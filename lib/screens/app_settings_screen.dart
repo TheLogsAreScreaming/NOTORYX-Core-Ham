@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,7 @@ import '../widgets/mesh_ui.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../helpers/snack_bar_builder.dart';
 import 'map_cache_screen.dart';
+import 'bot_settings_screen.dart';
 
 class AppSettingsScreen extends StatelessWidget {
   /// Scrolls the image-message settings into view once, on first build.
@@ -59,6 +61,19 @@ class AppSettingsScreen extends StatelessWidget {
                     return ListView(
                       padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
                       children: [
+                        ListTile(
+                          leading: const Icon(Icons.smart_toy_outlined),
+                          title: const Text('Bastion Bot Mode'),
+                          subtitle: const Text(
+                            'Local auto replies, commands and keyword rules',
+                          ),
+                          trailing: const Icon(Icons.chevron_right),
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => const BotSettingsScreen(),
+                            ),
+                          ),
+                        ),
                         // APPEARANCE
                         SectionHeader(context.l10n.appSettings_appearance),
                         MeshCard(

@@ -233,6 +233,8 @@ class MeshCoreConnector extends ChangeNotifier {
 
   final StreamController<Uint8List> _receivedFramesController =
       StreamController<Uint8List>.broadcast();
+  final StreamController<Message> _receivedDirectMessagesController =
+      StreamController<Message>.broadcast();
 
   Uint8List? _selfPublicKey;
   String? _selfName;
@@ -492,6 +494,10 @@ class MeshCoreConnector extends ChangeNotifier {
   bool get isLoadingChannels => _isLoadingChannels;
   bool get hasLoadedChannels => _hasLoadedChannels;
   Stream<Uint8List> get receivedFrames => _receivedFramesController.stream;
+
+  /// Fresh direct-message events; cached history and reconnect sync are excluded.
+  Stream<Message> get receivedDirectMessages =>
+      _receivedDirectMessagesController.stream;
   Uint8List? get selfPublicKey => _selfPublicKey;
   String get selfPublicKeyHex => pubKeyToHex(_selfPublicKey ?? Uint8List(0));
 
@@ -5456,6 +5462,11 @@ class MeshCoreConnector extends ChangeNotifier {
 
   Future<void> _handleIncomingMessage(Uint8List frame) async {
     if (_selfPublicKey == null) return;
+    final fromBacklog =
+        _pendingInitialQueuedMessageSync ||
+        _pendingInitialContactsSync ||
+        _deferQueuedContactMessagesUntilContacts ||
+        _isProcessingDeferredQueuedContactMessages;
 
     // If we're syncing the queued messages, advance the queue immediately
     // before any potentially long async work (like translation/notifications).
@@ -5527,6 +5538,12 @@ class MeshCoreConnector extends ChangeNotifier {
       _addMessage(message.senderKeyHex, message);
       _maybeIncrementContactUnread(message);
       notifyListeners();
+      if (!fromBacklog &&
+          !message.isOutgoing &&
+          !message.isCli &&
+          !_receivedDirectMessagesController.isClosed) {
+        _receivedDirectMessagesController.add(message);
+      }
 
       // Show notification for new incoming message (run async with translation)
       if (!message.isOutgoing &&
@@ -7146,6 +7163,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _radioStatsPollTimer?.cancel();
     radioStatsNotifier.dispose();
     _receivedFramesController.close();
+    _receivedDirectMessagesController.close();
     _usbManager.dispose();
     _tcpConnector.dispose();
 

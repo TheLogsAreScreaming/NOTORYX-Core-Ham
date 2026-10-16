@@ -901,7 +901,7 @@ abstract class AppLocalizations {
   /// No description provided for @scanner_title.
   ///
   /// In en, this message translates to:
-  /// **'Bastion'**
+  /// **'Connect Radio'**
   String get scanner_title;
 
   /// No description provided for @connectionChoiceUsbLabel.
@@ -1237,7 +1237,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_title.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
+  /// **'Bastion Settings'**
   String get settings_title;
 
   /// No description provided for @settings_deviceInfo.
@@ -1747,13 +1747,13 @@ abstract class AppLocalizations {
   /// No description provided for @settings_aboutLegalese.
   ///
   /// In en, this message translates to:
-  /// **'2026 MeshCore Open Source Project'**
+  /// **'Bastion • Built with open-source MeshCore Open components'**
   String get settings_aboutLegalese;
 
   /// No description provided for @settings_aboutDescription.
   ///
   /// In en, this message translates to:
-  /// **'An open-source Flutter client for MeshCore LoRa mesh networking devices.'**
+  /// **'Bastion is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.'**
   String get settings_aboutDescription;
 
   /// No description provided for @settings_aboutOpenMeteoAttribution.
@@ -2515,7 +2515,7 @@ abstract class AppLocalizations {
   /// No description provided for @contacts_title.
   ///
   /// In en, this message translates to:
-  /// **'Contacts'**
+  /// **'Nodes'**
   String get contacts_title;
 
   /// No description provided for @contacts_noContacts.
@@ -2809,7 +2809,7 @@ abstract class AppLocalizations {
   /// No description provided for @channels_title.
   ///
   /// In en, this message translates to:
-  /// **'Channels'**
+  /// **'Chats & Channels'**
   String get channels_title;
 
   /// No description provided for @channels_noChannelsConfigured.
@@ -8077,7 +8077,7 @@ abstract class AppLocalizations {
   /// No description provided for @notification_activityTitle.
   ///
   /// In en, this message translates to:
-  /// **'MeshCore Activity'**
+  /// **'Bastion Activity'**
   String get notification_activityTitle;
 
   /// No description provided for @notification_messagesCount.
@@ -8749,7 +8749,7 @@ abstract class AppLocalizations {
   /// No description provided for @background_serviceTitle.
   ///
   /// In en, this message translates to:
-  /// **'MeshCore running'**
+  /// **'Bastion running'**
   String get background_serviceTitle;
 
   /// No description provided for @background_serviceText.

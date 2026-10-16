@@ -12,7 +12,7 @@ import '../utils/platform_info.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/mesh_ui.dart';
 import '../helpers/snack_bar_builder.dart';
-import 'messages_screen.dart';
+import 'channels_screen.dart';
 import 'usb_screen.dart';
 
 class TcpScreen extends StatefulWidget {
@@ -58,7 +58,9 @@ class _TcpScreenState extends State<TcpScreen> {
         );
         _navigatedToChannels = true;
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const MessagesScreen()),
+          MaterialPageRoute(
+            builder: (_) => const ChannelsScreen(hideBackButton: true),
+          ),
         );
       }
     };
