@@ -10,6 +10,23 @@ void main() {
     expect(payload, [reqTypeGetAccessList, 0, 0, 0, 9, 8, 7, 6]);
   });
 
+  test('paged payload sets the flag and start index', () {
+    final payload = buildGetAccessListPayload(
+      Uint8List.fromList([1, 2, 3, 4]),
+      start: 25,
+    );
+    expect(payload, [reqTypeGetAccessList, accessListPaged, 25, 0, 1, 2, 3, 4]);
+  });
+
+  test('parses a paged reply header and its entries', () {
+    final page = parsePagedAccessListResponse(
+      Uint8List.fromList([25, 30, 1, 2, 3, 4, 5, 6, 2]),
+    );
+    expect(page.start, 25);
+    expect(page.total, 30);
+    expect(page.entries.single.role, AclRole.readWrite);
+  });
+
   test('parses 7-byte entries and drops a trailing partial one', () {
     final data = Uint8List.fromList([
       1, 2, 3, 4, 5, 6, 0x03, // admin

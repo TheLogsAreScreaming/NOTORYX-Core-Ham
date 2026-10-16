@@ -13,10 +13,14 @@ import 'package:meshcore_open/services/repeater_command_service.dart';
 // Answers a binary request the way repeater firmware does: RESP_CODE_SENT
 // with a tag, then a binary response carrying the same tag.
 class _FakeRadio extends MeshCoreConnector {
-  _FakeRadio({this.reply, this.answer = true});
+  _FakeRadio({this.reply, this.answer = true, this.respond});
 
   final Uint8List? reply;
   final bool answer;
+
+  /// Reply data for a request payload, or null for no answer; overrides
+  /// [reply] and [answer].
+  final Uint8List? Function(Uint8List payload)? respond;
   final List<Uint8List> sent = [];
   final List<bool> pathResults = [];
   final _frames = StreamController<Uint8List>.broadcast();
@@ -55,14 +59,15 @@ class _FakeRadio extends MeshCoreConnector {
     bool waitForGenericAck = false,
   }) async {
     sent.add(frame);
-    if (!answer) return;
-    const tag = [0x11, 0x22, 0x33, 0x44];
+    final data = respond != null ? respond!(frame.sublist(33)) : reply;
+    if (respond == null && !answer || data == null) return;
+    final tag = [0x11, 0x22, 0x33, sent.length];
     scheduleMicrotask(() {
       // An unrelated binary response with another tag must be ignored.
       _frames.add(Uint8List.fromList([pushCodeBinaryResponse, 0, 9, 9, 9, 9]));
       _frames.add(Uint8List.fromList([respCodeSent, 0, ...tag, 0, 0, 0, 0]));
       _frames.add(
-        Uint8List.fromList([pushCodeBinaryResponse, 0, ...tag, ...reply!]),
+        Uint8List.fromList([pushCodeBinaryResponse, 0, ...tag, ...data]),
       );
     });
   }
@@ -96,6 +101,10 @@ final _node = Contact(
   lastSeen: DateTime(2026, 10, 15),
 );
 
+Uint8List _entries(int from, int count) => Uint8List.fromList([
+  for (var i = from; i < from + count; i++) ...[i, 0, 0, 0, 0, 0, 3],
+]);
+
 void main() {
   test('fetch sends the request and parses the tagged reply', () async {
     final radio = _FakeRadio(
@@ -103,12 +112,49 @@ void main() {
     );
     final service = AccessControlService(radio, _FakeCommands(radio, 'OK'));
 
-    final entries = await service.fetch(_node);
+    final result = await service.fetch(_node);
 
-    expect(entries.map((e) => e.role), [AclRole.admin, AclRole.readOnly]);
+    expect(result.complete, isTrue);
+    expect(result.entries.map((e) => e.role), [
+      AclRole.admin,
+      AclRole.readOnly,
+    ]);
     expect(radio.sent.single[0], cmdSendBinaryReq);
     expect(radio.sent.single.sublist(33, 37), [reqTypeGetAccessList, 0, 0, 0]);
     expect(radio.pathResults, [true]);
+  });
+
+  test('a full first reply is followed by paged requests', () async {
+    final pagedStarts = <int>[];
+    final radio = _FakeRadio(
+      respond: (payload) {
+        if (payload[1] == 0) return _entries(0, 25); // plain v1.18 request
+        pagedStarts.add(payload[2]);
+        final start = payload[2];
+        final count = start + 24 <= 30 ? 24 : 30 - start;
+        return Uint8List.fromList([start, 30, ..._entries(start, count)]);
+      },
+    );
+    final service = AccessControlService(radio, _FakeCommands(radio, 'OK'));
+
+    final result = await service.fetch(_node);
+
+    expect(result.complete, isTrue);
+    expect(result.entries, hasLength(30));
+    expect(result.entries.last.keyPrefix.first, 29);
+    expect(pagedStarts, [25]);
+  });
+
+  test('without paging firmware a full list is marked incomplete', () async {
+    final radio = _FakeRadio(
+      respond: (payload) => payload[1] == 0 ? _entries(0, 25) : null,
+    );
+    final service = AccessControlService(radio, _FakeCommands(radio, 'OK'));
+
+    final result = await service.fetch(_node);
+
+    expect(result.complete, isFalse);
+    expect(result.entries, hasLength(25));
   });
 
   test('fetch times out and records a failed path', () async {

@@ -445,8 +445,14 @@ abstract class AppLocalizations {
   /// No description provided for @accessControl_unknownKeyNote.
   ///
   /// In en, this message translates to:
-  /// **'This node isn\'t in your contacts, so its role can only be removed, not changed.'**
+  /// **'Not in your contacts. Changing its role needs newer node firmware; removing it always works.'**
   String get accessControl_unknownKeyNote;
+
+  /// No description provided for @accessControl_prefixUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.'**
+  String get accessControl_prefixUnsupported;
 
   /// No description provided for @accessControl_empty.
   ///
@@ -475,7 +481,7 @@ abstract class AppLocalizations {
   /// No description provided for @accessControl_maybeIncomplete.
   ///
   /// In en, this message translates to:
-  /// **'The list is full for one reply and may be missing entries.'**
+  /// **'This node sent one full page and its firmware can\'t send more, so some entries may be missing.'**
   String get accessControl_maybeIncomplete;
 
   /// No description provided for @accessControl_saved.

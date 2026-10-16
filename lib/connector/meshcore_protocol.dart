@@ -910,10 +910,49 @@ Uint8List buildSendBinaryReq(Uint8List repeaterPubKey, {Uint8List? payload}) {
 /// mean the list was cut short.
 const int maxAccessListEntriesPerReply = 25;
 
-/// Payload for REQ_TYPE_GET_ACCESS_LIST (admin only). Bytes 1-2 must be zero
-/// on v1.18 firmware; [nonce] keeps repeated requests from being deduplicated.
-Uint8List buildGetAccessListPayload(Uint8List nonce) {
-  return Uint8List.fromList([reqTypeGetAccessList, 0x00, 0x00, 0x00, ...nonce]);
+/// GET_ACCESS_LIST query flag for a paged reply (newer firmware only).
+const int accessListPaged = 0x01;
+
+/// Payload for REQ_TYPE_GET_ACCESS_LIST (admin only); [nonce] keeps repeated
+/// requests from being deduplicated. Without [start] this is the plain v1.18
+/// request (bytes 1-2 zero). With [start] it asks for a paged reply from that
+/// entry, which firmware without paging ignores (no reply).
+Uint8List buildGetAccessListPayload(Uint8List nonce, {int? start}) {
+  return Uint8List.fromList([
+    reqTypeGetAccessList,
+    start == null ? 0x00 : accessListPaged,
+    start ?? 0x00,
+    0x00,
+    ...nonce,
+  ]);
+}
+
+/// One page of a paged access-list reply.
+class AccessListPage {
+  /// Index of the first entry in this page.
+  final int start;
+
+  /// Number of entries the node lists in total.
+  final int total;
+  final List<AclEntry> entries;
+
+  const AccessListPage({
+    required this.start,
+    required this.total,
+    required this.entries,
+  });
+}
+
+/// Parses a paged access-list reply: start index, total count, then entries.
+AccessListPage parsePagedAccessListResponse(Uint8List data) {
+  if (data.length < 2) {
+    return const AccessListPage(start: 0, total: 0, entries: []);
+  }
+  return AccessListPage(
+    start: data[0],
+    total: data[1],
+    entries: parseAccessListResponse(Uint8List.sublistView(data, 2)),
+  );
 }
 
 /// Parses an access-list reply (the data after the response tag): 6-byte
@@ -937,7 +976,9 @@ List<AclEntry> parseAccessListResponse(Uint8List data) {
 
 /// CLI command that gives [publicKey] the [role] on a repeater or room
 /// server. [AclRole.guest] removes the entry, which also works with a key
-/// prefix; any other role needs the full 32-byte key on v1.18 firmware.
+/// prefix. Any other role needs the full 32-byte key on v1.18 firmware;
+/// newer firmware also accepts a prefix of at least 6 bytes for an existing
+/// entry.
 String buildSetPermCommand(Uint8List publicKey, AclRole role) =>
     'setperm ${pubKeyToHex(publicKey)} ${role.value}';
 

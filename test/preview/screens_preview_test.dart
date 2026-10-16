@@ -193,12 +193,15 @@ class _PreviewAclService extends AccessControlService {
   );
 
   @override
-  Future<List<AclEntry>> fetch(Contact node) async => [
-    _e(_key(99), AclRole.admin),
-    _e(_contacts[0].publicKey, AclRole.admin),
-    _e(_contacts[1].publicKey, AclRole.readWrite),
-    _e(_key(77), AclRole.readOnly),
-  ];
+  Future<AccessListResult> fetch(Contact node) async => AccessListResult(
+    complete: true,
+    entries: [
+      _e(_key(99), AclRole.admin),
+      _e(_contacts[0].publicKey, AclRole.admin),
+      _e(_contacts[1].publicKey, AclRole.readWrite),
+      _e(_key(77), AclRole.readOnly),
+    ],
+  );
 }
 
 Future<void> _loadFonts() async {

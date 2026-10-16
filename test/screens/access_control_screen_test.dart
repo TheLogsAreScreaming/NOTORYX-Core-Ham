@@ -51,7 +51,8 @@ class _FakeService extends AccessControlService {
   final List<(Uint8List, AclRole)> changes = [];
 
   @override
-  Future<List<AclEntry>> fetch(Contact node) async => entries;
+  Future<AccessListResult> fetch(Contact node) async =>
+      AccessListResult(entries: entries, complete: true);
 
   @override
   Future<void> setRole(Contact node, Uint8List publicKey, AclRole role) async {
@@ -119,7 +120,8 @@ void main() {
 
     await tester.tap(find.text('Unknown node'));
     await tester.pumpAndSettle();
-    expect(find.text('Admin'), findsNothing); // no role change without a key
+    // Role changes are offered by prefix (newer firmware), with a note.
+    expect(find.textContaining('Not in your contacts'), findsOneWidget);
     await tester.tap(find.text('Remove access'));
     await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(FilledButton, 'Remove access'));
@@ -127,6 +129,22 @@ void main() {
 
     expect(service.changes.single.$1, unknown.keyPrefix);
     expect(service.changes.single.$2, AclRole.guest);
+  });
+
+  testWidgets('changes an unknown entry\'s role by its prefix', (tester) async {
+    final connector = _Connector();
+    final unknown = _entryFor(_key(42), AclRole.readOnly);
+    final service = _FakeService(connector, [unknown]);
+    await tester.pumpWidget(_app(connector, _repeater, service));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Unknown node'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Admin'));
+    await tester.pumpAndSettle();
+
+    expect(service.changes.single.$1, unknown.keyPrefix);
+    expect(service.changes.single.$2, AclRole.admin);
   });
 
   testWidgets('adds a contact; room servers only offer admin', (tester) async {

@@ -51,6 +51,7 @@ class _AccessControlScreenState extends State<AccessControlScreen> {
   RepeaterCommandService? _ownCommands;
   late final AccessControlService _service;
   List<AclEntry>? _entries;
+  bool _complete = true;
   bool _loading = false;
   bool _busy = false;
   bool _timedOut = false;
@@ -88,9 +89,12 @@ class _AccessControlScreenState extends State<AccessControlScreen> {
       _timedOut = false;
     });
     try {
-      final entries = await _service.fetch(widget.node);
+      final result = await _service.fetch(widget.node);
       if (!mounted) return;
-      setState(() => _entries = entries);
+      setState(() {
+        _entries = result.entries;
+        _complete = result.complete;
+      });
     } on TimeoutException {
       if (!mounted) return;
       setState(() => _timedOut = true);
@@ -152,9 +156,15 @@ class _AccessControlScreenState extends State<AccessControlScreen> {
       await _load();
     } on AccessControlException catch (e) {
       if (!mounted) return;
+      // Firmware before prefix support refuses role changes by key prefix.
+      final prefixRefused = key.length < 32 && role != AclRole.guest;
       showDismissibleSnackBar(
         context,
-        content: Text(l10n.accessControl_failed(e.reply)),
+        content: Text(
+          prefixRefused
+              ? l10n.accessControl_prefixUnsupported
+              : l10n.accessControl_failed(e.reply),
+        ),
         backgroundColor: Theme.of(context).colorScheme.error,
       );
     } catch (e) {
@@ -205,58 +215,65 @@ class _AccessControlScreenState extends State<AccessControlScreen> {
   void _showEntrySheet(_ResolvedEntry e) {
     final l10n = context.l10n;
     final scheme = Theme.of(context).colorScheme;
-    final fullKey = e.fullKey;
+    // Without the full key, newer firmware still accepts the 6-byte prefix.
+    final key = e.fullKey ?? e.entry.keyPrefix;
     showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
+      isScrollControlled: true,
       builder: (sheetContext) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 8),
-              child: Text(
-                _nameFor(e),
-                style: Theme.of(sheetContext).textTheme.titleMedium,
-              ),
-            ),
-            if (fullKey == null)
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 8),
                 child: Text(
-                  l10n.accessControl_unknownKeyNote,
-                  style: TextStyle(color: scheme.onSurfaceVariant),
+                  _nameFor(e),
+                  style: Theme.of(sheetContext).textTheme.titleMedium,
                 ),
-              )
-            else if (_roles.length > 1)
-              for (final role in _roles)
-                ListTile(
-                  minTileHeight: 56,
-                  title: Text(_roleLabel(role)),
-                  trailing: role == e.entry.role
-                      ? Icon(Icons.check, color: scheme.primary)
-                      : null,
-                  selected: role == e.entry.role,
-                  onTap: () {
-                    Navigator.pop(sheetContext);
-                    if (role != e.entry.role) _apply(fullKey, role);
-                  },
-                ),
-            ListTile(
-              minTileHeight: 56,
-              leading: Icon(Icons.person_remove_outlined, color: scheme.error),
-              title: Text(
-                l10n.accessControl_remove,
-                style: TextStyle(color: scheme.error),
               ),
-              onTap: () {
-                Navigator.pop(sheetContext);
-                _confirmRemove(e);
-              },
-            ),
-            const SizedBox(height: 8),
-          ],
+              if (e.fullKey == null)
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 8),
+                  child: Text(
+                    l10n.accessControl_unknownKeyNote,
+                    style: TextStyle(color: scheme.onSurfaceVariant),
+                  ),
+                ),
+              if (_roles.length > 1)
+                for (final role in _roles)
+                  ListTile(
+                    minTileHeight: 56,
+                    title: Text(_roleLabel(role)),
+                    trailing: role == e.entry.role
+                        ? Icon(Icons.check, color: scheme.primary)
+                        : null,
+                    selected: role == e.entry.role,
+                    onTap: () {
+                      Navigator.pop(sheetContext);
+                      if (role != e.entry.role) _apply(key, role);
+                    },
+                  ),
+              ListTile(
+                minTileHeight: 56,
+                leading: Icon(
+                  Icons.person_remove_outlined,
+                  color: scheme.error,
+                ),
+                title: Text(
+                  l10n.accessControl_remove,
+                  style: TextStyle(color: scheme.error),
+                ),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _confirmRemove(e);
+                },
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
         ),
       ),
     );
@@ -349,8 +366,7 @@ class _AccessControlScreenState extends State<AccessControlScreen> {
     final connector = context.watch<MeshCoreConnector>();
     final resolved = _resolve(connector);
     final entries = _entries;
-    final maybeIncomplete =
-        entries != null && entries.length >= maxAccessListEntriesPerReply;
+    final maybeIncomplete = entries != null && !_complete;
 
     Widget body;
     if (entries == null && _loading) {
