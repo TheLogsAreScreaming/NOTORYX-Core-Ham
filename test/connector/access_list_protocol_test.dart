@@ -40,6 +40,14 @@ void main() {
     expect(entries[1].role, AclRole.readOnly);
   });
 
+  test('zero padding after the entries is not read as entries', () {
+    final data = Uint8List.fromList([
+      1, 2, 3, 4, 5, 6, 3, // admin
+      ...List.filled(14, 0), // cipher block padding
+    ]);
+    expect(parseAccessListResponse(data), hasLength(1));
+  });
+
   test('entry matches keys that start with its prefix', () {
     final entry = AclEntry(
       keyPrefix: Uint8List.fromList([1, 2, 3, 4, 5, 6]),

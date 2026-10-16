@@ -128,10 +128,10 @@ void main() {
     final pagedStarts = <int>[];
     final radio = _FakeRadio(
       respond: (payload) {
-        if (payload[1] == 0) return _entries(0, 25); // plain v1.18 request
+        if (payload[1] == 0) return _entries(0, 22); // plain request
         pagedStarts.add(payload[2]);
         final start = payload[2];
-        final count = start + 24 <= 30 ? 24 : 30 - start;
+        final count = start + 22 <= 30 ? 22 : 30 - start;
         return Uint8List.fromList([start, 30, ..._entries(start, count)]);
       },
     );
@@ -142,19 +142,19 @@ void main() {
     expect(result.complete, isTrue);
     expect(result.entries, hasLength(30));
     expect(result.entries.last.keyPrefix.first, 29);
-    expect(pagedStarts, [25]);
+    expect(pagedStarts, [22]);
   });
 
   test('without paging firmware a full list is marked incomplete', () async {
     final radio = _FakeRadio(
-      respond: (payload) => payload[1] == 0 ? _entries(0, 25) : null,
+      respond: (payload) => payload[1] == 0 ? _entries(0, 22) : null,
     );
     final service = AccessControlService(radio, _FakeCommands(radio, 'OK'));
 
     final result = await service.fetch(_node);
 
     expect(result.complete, isFalse);
-    expect(result.entries, hasLength(25));
+    expect(result.entries, hasLength(22));
   });
 
   test('fetch times out and records a failed path', () async {

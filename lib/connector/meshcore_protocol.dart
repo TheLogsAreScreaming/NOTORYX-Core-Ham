@@ -905,10 +905,12 @@ Uint8List buildSendBinaryReq(Uint8List repeaterPubKey, {Uint8List? payload}) {
   return writer.toBytes();
 }
 
-/// Most access-list entries a repeater or room server fits in one reply:
-/// 7 bytes each in a 184-byte payload after the 4-byte tag. A full reply may
-/// mean the list was cut short.
-const int maxAccessListEntriesPerReply = 25;
+/// Most access-list entries that reach the app in one reply. The companion
+/// forwards the reply padded to the 16-byte cipher block in a frame of at
+/// most 176 bytes, so tag plus data must fit 160 bytes: 22 entries of 7.
+/// v1.18 repeaters send up to 25, so a list of 23 or more never arrives on
+/// stock firmware. A reply with 22 entries may mean the list continues.
+const int maxAccessListEntriesPerReply = 22;
 
 /// GET_ACCESS_LIST query flag for a paged reply (newer firmware only).
 const int accessListPaged = 0x01;
@@ -956,12 +958,15 @@ AccessListPage parsePagedAccessListResponse(Uint8List data) {
 }
 
 /// Parses an access-list reply (the data after the response tag): 6-byte
-/// key prefix plus one permission byte per entry. A trailing partial entry
-/// is ignored.
+/// key prefix plus one permission byte per entry. Trailing padding and a
+/// partial entry are ignored.
 List<AclEntry> parseAccessListResponse(Uint8List data) {
   const entrySize = AclEntry.keyPrefixLength + 1;
   final entries = <AclEntry>[];
   for (var ofs = 0; ofs + entrySize <= data.length; ofs += entrySize) {
+    // Nodes never list an entry without permissions, so a zero permission
+    // byte is the cipher padding the companion forwards after the entries.
+    if (data[ofs + AclEntry.keyPrefixLength] == 0) continue;
     entries.add(
       AclEntry(
         keyPrefix: Uint8List.fromList(

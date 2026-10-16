@@ -61,12 +61,19 @@ class AccessControlService {
     }
 
     while (true) {
-      final AccessListPage page;
-      try {
-        page = parsePagedAccessListResponse(
-          await _request(node, selection, entries.length),
-        );
-      } on TimeoutException {
+      AccessListPage? page;
+      // A lost page is retried once; firmware without paging never answers,
+      // so after that the list is reported as incomplete.
+      for (var attempt = 0; attempt < 2 && page == null; attempt++) {
+        try {
+          page = parsePagedAccessListResponse(
+            await _request(node, selection, entries.length),
+          );
+        } on TimeoutException {
+          // fall through to the retry
+        }
+      }
+      if (page == null) {
         return AccessListResult(entries: entries, complete: false);
       }
       entries.addAll(page.entries);
@@ -122,13 +129,39 @@ class AccessControlService {
   /// Gives [publicKey] the [role] on [node]; [AclRole.guest] removes it.
   /// Throws [AccessControlException] if the node refuses.
   Future<void> setRole(Contact node, Uint8List publicKey, AclRole role) async {
-    final response = await _commands.sendCommand(
-      node,
-      buildSetPermCommand(publicKey, role),
-    );
+    // RepeaterCommandService doesn't read the radio itself: whoever sends a
+    // command must hand it the node's text replies.
+    final replies = _connector.receivedFrames.listen((frame) {
+      if (frame.isEmpty ||
+          (frame[0] != respCodeContactMsgRecv &&
+              frame[0] != respCodeContactMsgRecvV3)) {
+        return;
+      }
+      final parsed = parseContactMessageText(frame);
+      if (parsed == null || !_isFrom(node, parsed.senderPrefix)) return;
+      _commands.handleResponse(node, parsed.text);
+    });
+    final String response;
+    try {
+      response = await _commands.sendCommand(
+        node,
+        buildSetPermCommand(publicKey, role),
+      );
+    } finally {
+      await replies.cancel();
+    }
     final text = response.trim();
     if (!text.toLowerCase().startsWith('ok')) {
       throw AccessControlException(text);
     }
+  }
+
+  static bool _isFrom(Contact node, Uint8List senderPrefix) {
+    final key = node.publicKey;
+    if (senderPrefix.length < 6 || key.length < 6) return false;
+    for (var i = 0; i < 6; i++) {
+      if (senderPrefix[i] != key[i]) return false;
+    }
+    return true;
   }
 }
