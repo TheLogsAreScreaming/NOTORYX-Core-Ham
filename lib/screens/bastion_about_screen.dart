@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import '../l10n/l10n.dart';
 
 class BastionAboutScreen extends StatelessWidget {
   const BastionAboutScreen({super.key});
@@ -10,15 +11,16 @@ class BastionAboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: Color(0xFFE4E6DF),
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'BASTION',
               style: TextStyle(
                 color: _cyan,
@@ -28,8 +30,8 @@ class BastionAboutScreen extends StatelessWidget {
               ),
             ),
             Text(
-              'About + Credits',
-              style: TextStyle(fontWeight: FontWeight.w900),
+              l10n.bastionAbout_title,
+              style: const TextStyle(fontWeight: FontWeight.w900),
             ),
           ],
         ),
@@ -44,12 +46,12 @@ class BastionAboutScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: _cyan.withValues(alpha: .45)),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.fort_rounded, color: _cyan, size: 38),
-                SizedBox(height: 12),
-                Text(
+                const Icon(Icons.fort_rounded, color: _cyan, size: 38),
+                const SizedBox(height: 12),
+                const Text(
                   'BASTION',
                   style: TextStyle(
                     color: Color(0xFFE4E6DF),
@@ -58,11 +60,14 @@ class BastionAboutScreen extends StatelessWidget {
                     letterSpacing: 2,
                   ),
                 ),
-                SizedBox(height: 4),
-                SizedBox(height: 14),
+                const SizedBox(height: 4),
+                const SizedBox(height: 14),
                 Text(
-                  'An independent community companion app for MeshCore networks. Bastion is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.',
-                  style: TextStyle(color: Color(0xFFCED8D2), height: 1.45),
+                  l10n.bastionAbout_intro,
+                  style: const TextStyle(
+                    color: Color(0xFFCED8D2),
+                    height: 1.45,
+                  ),
                 ),
               ],
             ),
@@ -72,23 +77,23 @@ class BastionAboutScreen extends StatelessWidget {
             future: PackageInfo.fromPlatform(),
             builder: (context, snapshot) => _infoPanel(
               Icons.info_outline_rounded,
-              'VERSION',
+              l10n.bastionAbout_version,
               snapshot.hasData
                   ? '${snapshot.data!.version} (${snapshot.data!.buildNumber})'
-                  : 'Loading…',
+                  : l10n.common_loading,
             ),
           ),
           const SizedBox(height: 12),
           _infoPanel(
             Icons.code_rounded,
-            'OPEN SOURCE FOUNDATION',
-            'Bastion is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.',
+            l10n.bastionAbout_openSource,
+            l10n.bastionAbout_openSourceBody,
           ),
           const SizedBox(height: 12),
           _infoPanel(
             Icons.groups_rounded,
-            'COMMUNITY FIRST',
-            'Third-party creator resources remain the property of their respective creators. No ownership or partnership is implied.',
+            l10n.bastionAbout_community,
+            l10n.bastionAbout_communityBody,
           ),
           const SizedBox(height: 18),
           FilledButton.icon(
@@ -100,12 +105,12 @@ class BastionAboutScreen extends StatelessWidget {
             onPressed: () => showLicensePage(
               context: context,
               applicationName: 'Bastion',
-              applicationLegalese: 'Bastion • Independent MeshCore companion',
+              applicationLegalese: l10n.bastionAbout_legalese,
             ),
             icon: const Icon(Icons.description_outlined),
-            label: const Text(
-              'OPEN SOURCE LICENSES',
-              style: TextStyle(fontWeight: FontWeight.w900),
+            label: Text(
+              l10n.bastionAbout_licenses,
+              style: const TextStyle(fontWeight: FontWeight.w900),
             ),
           ),
         ],

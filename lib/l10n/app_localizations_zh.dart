@@ -5098,4 +5098,1760 @@ class AppLocalizationsZh extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes 分 $seconds 秒';
   }
+
+  @override
+  String get bastion_tagline => '无需基础设施的通信。';
+
+  @override
+  String get bastion_nodes => '节点';
+
+  @override
+  String get bastion_repeaters => '中继器';
+
+  @override
+  String get bastion_active1h => '1 小时内活跃';
+
+  @override
+  String get bastion_mapCoverage => '地图 + 覆盖';
+
+  @override
+  String get bastion_routeIntelligence => '路由分析';
+
+  @override
+  String get bastion_repeaterTools => '中继器工具';
+
+  @override
+  String get bastion_fieldStats => '野外统计';
+
+  @override
+  String get bastion_fieldOps => '行程 + 野外行动';
+
+  @override
+  String get bastion_coverageCapture => '覆盖记录';
+
+  @override
+  String get bastion_mapAttribution => '地图数据 © OpenStreetMap 贡献者；图块来自所选提供商';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 条观测',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个唯一节点',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 跳',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 分钟',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint => '按住 2 秒。每 5 分钟向你的行程联系人发送你的位置，直到有人回复。';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return '按住 2 秒。每 5 分钟向你的行程联系人和 $channel 发送你的位置，直到有人回复。';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'SOS 未发送：$error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return '$name 已确认。已停止重复发送。';
+  }
+
+  @override
+  String get sos_waitingForRadio => '正在等待电台发送…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return '已发送 $sends/$max 次。重复发送已结束；尚无回复。';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return '已发送 $sends/$max 次。下次发送：$time。';
+  }
+
+  @override
+  String get sos_active => 'SOS 进行中';
+
+  @override
+  String get sos_stop => '停止';
+
+  @override
+  String get sos_imSafe => '我已安全';
+
+  @override
+  String get sos_holdSemantics => 'SOS。按住发送。';
+
+  @override
+  String get sos_keepHolding => '继续按住…';
+
+  @override
+  String get sos_holdForSos => '按住发送 SOS';
+
+  @override
+  String get sos_blockStorage => '请先解决野外日志的存储错误。';
+
+  @override
+  String get sos_blockNotConnected => '请连接 MeshCore 电台以发送 SOS。';
+
+  @override
+  String get sos_blockNoTarget => '请在“规划行程”中选择行程联系人或 SOS 频道。';
+
+  @override
+  String get checkIn_labelOk => '我很好';
+
+  @override
+  String get checkIn_labelAtCamp => '已到营地';
+
+  @override
+  String get checkIn_labelDelayed => '有延误';
+
+  @override
+  String get checkIn_labelHeadingBack => '正在返回';
+
+  @override
+  String get checkIn_blockLoading => '正在加载行程…';
+
+  @override
+  String get checkIn_blockStorage => '发送前请先解决野外日志的存储错误。';
+
+  @override
+  String get checkIn_blockBusy => '正在发送报到。请稍候。';
+
+  @override
+  String get checkIn_blockNoContacts => '请在“规划行程”中选择行程联系人。';
+
+  @override
+  String get checkIn_blockRosterIncomplete => '部分行程联系人不可用。请检查名单。';
+
+  @override
+  String get checkIn_blockNotConnected => '请连接 MeshCore 电台以报到。';
+
+  @override
+  String get checkIn_blockNotActive => '开始行程后才能报到。';
+
+  @override
+  String get checkIn_notSent => '未发送';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return '已送达 $name';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return '已送达全部 $count 位联系人';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return '已送达 $delivered/$total';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return '未送达：$names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => '正在等待其余联系人';
+
+  @override
+  String get checkIn_aContact => '一位联系人';
+
+  @override
+  String get checkIn_statusPending => '待处理';
+
+  @override
+  String get checkIn_statusSent => '已发送';
+
+  @override
+  String get checkIn_statusDelivered => '已送达';
+
+  @override
+  String get checkIn_statusFailed => '失败';
+
+  @override
+  String get checkIn_explainPending => '已在本地排队。这并不确认电台已发射或对方已接收。';
+
+  @override
+  String get checkIn_explainSent => '电台已接受发送。尚未记录送达确认。';
+
+  @override
+  String get checkIn_explainDelivered => '应用已记录送达确认。这并不能证明对方已阅读。';
+
+  @override
+  String get checkIn_explainFailed => '未确认送达。请检查电台连接、收件人可达性和重试记录。';
+
+  @override
+  String get checkIn_explainUnknown => '送达状态不可用。不要认为这条消息已经送达。';
+
+  @override
+  String get tripBrief_heading => 'BASTION • MeshCore 行程简报';
+
+  @override
+  String tripBrief_trip(String name) {
+    return '行程：$name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return '状态：$status';
+  }
+
+  @override
+  String get tripBrief_active => '进行中';
+
+  @override
+  String get tripBrief_stopped => '已停止';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return '联系人：$names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => '未选择';
+
+  @override
+  String get tripBrief_unavailableContact => '联系人不可用（请检查名单）';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return '活动超时判定：$minutes 分钟（联系人沉默时本手机会提醒）';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return '报到提醒：$value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return '每 $minutes 分钟未报到时提醒';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return '报到选项：$choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return '报到中的电台位置：$value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale => '包含；可能已过时';
+
+  @override
+  String tripBrief_battery(String value) {
+    return '报到中的电台电量：$value';
+  }
+
+  @override
+  String get tripBrief_included => '包含';
+
+  @override
+  String get tripBrief_off => '关闭';
+
+  @override
+  String get tripBrief_review => '发送报到前，请检查收件人和消息内容。';
+
+  @override
+  String get tripBrief_noProof => '已排队或已发送不代表已送达。确认回执不代表已阅读。';
+
+  @override
+  String get tripBrief_overdueMeaning => '超时表示联系人近期没有活动；这不是已确认的紧急情况。';
+
+  @override
+  String get tripBrief_automations => '野外自动化仅在应用处于活动状态时运行。请另外约定失联时的应对计划。';
+
+  @override
+  String get tripBrief_sharesOnly => '本简报仅用于分享信息；它不会发送电台消息，也不会开始行程。';
+
+  @override
+  String get fieldOps_title => 'Bastion 野外行动';
+
+  @override
+  String get fieldOps_tabTrip => '行程';
+
+  @override
+  String get fieldOps_tabReady => '准备';
+
+  @override
+  String get fieldOps_tabLog => '日志';
+
+  @override
+  String get fieldOps_tabAuto => '自动';
+
+  @override
+  String get fieldOps_tabCoverage => '覆盖';
+
+  @override
+  String get fieldOps_tabConnection => '连接';
+
+  @override
+  String get fieldOps_diagnostics => '诊断';
+
+  @override
+  String get fieldOps_storageLoadError => '无法加载野外数据。已保存的数据仍保留；自动化保持关闭。';
+
+  @override
+  String get fieldOps_storageSaveError => '无法保存野外数据。自动化已停止；已有的保存数据仍保留。';
+
+  @override
+  String get fieldOps_regionHint => '请在“离线地图”中选择区域和缩放级别。';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • 缩放 $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return '无法验证地图区域：$error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '行程进行中 • $count 位联系人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped => '行程已停止。准备好后再开始。';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return '$time 报到提醒';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return '沉默过久：$names';
+  }
+
+  @override
+  String get fieldOps_planTrip => '规划行程';
+
+  @override
+  String get fieldOps_endTrip => '结束行程';
+
+  @override
+  String get fieldOps_startTrip => '开始行程';
+
+  @override
+  String get fieldOps_tripBrief => '行程简报';
+
+  @override
+  String get fieldOps_connectRadio => '连接电台';
+
+  @override
+  String get fieldOps_previewedCheckIns => '可预览的报到';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      '选择一个状态，检查实际收件人和消息，然后发送。已排队不代表已送达。';
+
+  @override
+  String get fieldOps_tripRoster => '行程名单';
+
+  @override
+  String get fieldOps_rosterEmpty => '请在“规划行程”中选择最多六位已知聊天联系人。';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      '“上次收到”只是过去活动的证据，不能确定当前可达。超时标记表示联系人近期没有活动，并非已确认的紧急情况。';
+
+  @override
+  String get fieldOps_offlineMaps => '离线地图';
+
+  @override
+  String get fieldOps_checkingTiles => '正在检查已保存的图块…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已缓存 $count 个图块。',
+    );
+    return '$_temp0这并不保证你的整条路线都已覆盖。';
+  }
+
+  @override
+  String get fieldOps_downloadAreas => '下载/检查离线区域';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return '上次报到，$time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name：$status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => '联系人';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '重新发送给 $count 位未送达的联系人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable => '所选联系人不可用';
+
+  @override
+  String get fieldOps_memberUnavailableHint => '发送前请检查此行程。';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return '上次活动于 $minutes 分钟前';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return '上次活动于 $minutes 分钟前 • 超时';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded => '此日志中没有报到记录。';
+
+  @override
+  String get fieldOps_tripMap => '行程地图';
+
+  @override
+  String get fieldOps_tripMapEmpty => '所选联系人尚未广播坐标。';
+
+  @override
+  String get fieldOps_lastPositions => '最近广播的位置';
+
+  @override
+  String get fieldOps_positionsCaveat => '位置可能已过时。此地图不追踪手机 GPS，也不能证明成员此刻在此处。';
+
+  @override
+  String get fieldOps_briefPreviewTitle => '预览行程简报';
+
+  @override
+  String get fieldOps_briefPreviewHint => '包含行程和联系人名称。分享前请检查。坐标、密钥和消息记录均已省略。';
+
+  @override
+  String get fieldOps_shareBrief => '分享简报';
+
+  @override
+  String get fieldOps_briefSubject => 'Bastion 行程简报';
+
+  @override
+  String get fieldOps_tripName => '行程名称';
+
+  @override
+  String get fieldOps_defaultTripName => '我的行程';
+
+  @override
+  String get fieldOps_includePosition => '包含电台广播的位置';
+
+  @override
+  String get fieldOps_includePositionHint => '可能已过时；默认不分享。';
+
+  @override
+  String get fieldOps_includeBattery => '包含电台电量';
+
+  @override
+  String get fieldOps_overdueLabel => '联系人沉默超过此时长时提醒我';
+
+  @override
+  String get fieldOps_reminderLabel => '提醒我报到';
+
+  @override
+  String get fieldOps_reminderHelper => '即使 Bastion 已关闭，也会发送手机通知。';
+
+  @override
+  String get fieldOps_reminderOff => '关闭';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 分钟未报到后',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'SOS 同时发送到频道';
+
+  @override
+  String get fieldOps_sosChannelNone => '无';
+
+  @override
+  String get fieldOps_selectContacts => '选择最多六位已知聊天联系人';
+
+  @override
+  String get fieldOps_sendCheckInTitle => '发送报到？';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return '收件人：$names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint => '使用普通私信发送。送达情况将记录在野外日志中。';
+
+  @override
+  String get fieldOps_send => '发送';
+
+  @override
+  String get fieldOps_beforeYouLeave => '出发前';
+
+  @override
+  String get fieldOps_radioConnected => '电台已连接';
+
+  @override
+  String get fieldOps_connectHint => '通过蓝牙、USB 或 TCP 连接。';
+
+  @override
+  String get fieldOps_radioBattery => '电台电量';
+
+  @override
+  String get fieldOps_batteryUnknown => '未知；请检查电台。';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent% • 请为计划的行程充电。';
+  }
+
+  @override
+  String get fieldOps_tripContacts => '行程联系人';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return '$available/$selected 可用。请确认他们有兼容的电台和频道。';
+  }
+
+  @override
+  String get fieldOps_offlineArea => '所选离线地图区域';
+
+  @override
+  String get fieldOps_checkingFiles => '正在检查本地文件…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return '$available/$expected 个图块文件可用；缺少 $missing 个。这只是快照；出发前请离线打开该区域。';
+  }
+
+  @override
+  String get fieldOps_locationChoice => '位置分享';
+
+  @override
+  String get fieldOps_locationOptedIn => '已开启：电台广播的坐标可能已过时。';
+
+  @override
+  String get fieldOps_locationOff => '分享已关闭。你的报到不含坐标。';
+
+  @override
+  String get fieldOps_automationAvailability => '自动化可用性';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      '仅在本应用处于活动状态时运行。休眠、关闭应用或电台断开可能导致计划操作无法执行。';
+
+  @override
+  String get fieldOps_readinessCaveat => '准备检查仅供参考；不能证明电台覆盖范围，也不保证消息送达。';
+
+  @override
+  String get fieldOps_radio => '电台';
+
+  @override
+  String get fieldOps_refreshChecks => '刷新检查';
+
+  @override
+  String get fieldOps_searchLog => '搜索野外日志';
+
+  @override
+  String get fieldOps_kindAll => '全部';
+
+  @override
+  String get fieldOps_kindCheckIn => '报到';
+
+  @override
+  String get fieldOps_kindReceived => '已接收';
+
+  @override
+  String get fieldOps_kindNote => '备注';
+
+  @override
+  String get fieldOps_kindDeadZone => '盲区';
+
+  @override
+  String get fieldOps_kindRadio => '电台';
+
+  @override
+  String get fieldOps_kindAutomation => '自动化';
+
+  @override
+  String get fieldOps_kindMissed => '已错过';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => '行程';
+
+  @override
+  String get fieldOps_kindOverdue => '超时';
+
+  @override
+  String get fieldOps_addNote => '添加备注';
+
+  @override
+  String get fieldOps_exportJson => '导出 JSON';
+
+  @override
+  String get fieldOps_deleteLog => '删除日志';
+
+  @override
+  String get fieldOps_logSubject => 'Bastion 野外日志';
+
+  @override
+  String get fieldOps_logCaveat =>
+      '本地存储，最多 1,000 条。导出内容可能包含联系人密钥、消息和位置；分享前请检查。';
+
+  @override
+  String get fieldOps_noEntries => '没有匹配的条目。';
+
+  @override
+  String get fieldOps_tripUnspecified => '未指定行程';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status：$explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return '已记录电台广播位置 $latitude, $longitude（可能已过时）';
+  }
+
+  @override
+  String get fieldOps_noteTitle => '野外观察';
+
+  @override
+  String get fieldOps_noteLabel => '你观察到了什么？';
+
+  @override
+  String get fieldOps_deadZone => '报告盲区';
+
+  @override
+  String get fieldOps_deadZoneHint => '这是你的观察，不是经过验证的覆盖预测。';
+
+  @override
+  String get fieldOps_savePosition => '保存电台广播的位置';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • 可能已过时；不是手机 GPS';
+  }
+
+  @override
+  String get fieldOps_noPosition => '没有可用的广播坐标';
+
+  @override
+  String get fieldOps_deleteLogTitle => '删除野外日志？';
+
+  @override
+  String get fieldOps_deleteLogBody => '这将删除此手机上保存的所有条目。行程设置会保留。';
+
+  @override
+  String get fieldOps_localAutomations => '本地自动化';
+
+  @override
+  String get fieldOps_enableForTrip => '为此行程启用';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      '每次重启应用后都会关闭。规则仅在应用处于活动状态时运行。错过的计划操作会出现在野外日志中，绝不会集中补发。自动报到限制为每 10 分钟一批。';
+
+  @override
+  String get fieldOps_openBotMode => '打开 Bastion 机器人模式';
+
+  @override
+  String get fieldOps_ruleEnabled => '规则已启用';
+
+  @override
+  String get fieldOps_dryRun => '试运行';
+
+  @override
+  String get fieldOps_dryRunHint => '只记录操作，不发送也不通知。';
+
+  @override
+  String get fieldOps_then => '则';
+
+  @override
+  String get fieldOps_actionLog => '写入野外日志';
+
+  @override
+  String get fieldOps_actionNotify => '显示本地通知';
+
+  @override
+  String get fieldOps_actionCheckIn => '向行程联系人发送“I\'m OK”';
+
+  @override
+  String get fieldOps_batteryThreshold => '电量不高于';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return '下次：$time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => '下次：未安排';
+
+  @override
+  String get fieldOps_previewInLog => '在日志中预览';
+
+  @override
+  String get fieldOps_allowNotifications => '允许通知';
+
+  @override
+  String get fieldOps_triggerReconnect => '当电台重新连接时';
+
+  @override
+  String get fieldOps_triggerDisconnect => '当电台断开时';
+
+  @override
+  String get fieldOps_triggerLowBattery => '当电台电量越过阈值时';
+
+  @override
+  String get fieldOps_triggerNewNode => '当添加新节点时';
+
+  @override
+  String get fieldOps_triggerRepeater => '当添加新中继器时';
+
+  @override
+  String get fieldOps_triggerScheduled => '当计划的报到到期时';
+
+  @override
+  String get fieldOps_explainConnection => '解释我的连接';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return '状态：$state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat => '手机已与电台连接。仅凭这一点并不能建立通往收件人的路由。';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      '没有活动的电台连接。请检查蓝牙权限、电台电源和覆盖范围；也可在“连接电台”中使用 USB/TCP。';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return '等待确认的行程报到：$count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      '节点的最后可见时间和广播位置可能已过时。路由分析显示从观察到的尝试中学到的路由；它不会凭空编造路径。';
+
+  @override
+  String get fieldOps_routeIntelligence => '路由分析';
+
+  @override
+  String get fieldOps_coverageIntelligence => '覆盖分析';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      '比较两次野外会话记录的观测。圆点标记记录者在收到节点时电台广播的位置。它们并不代表连续覆盖。RSSI/SNR 快照不是逐节点测量值。';
+
+  @override
+  String get fieldOps_captureSession => '记录会话';
+
+  @override
+  String get fieldOps_refreshHistory => '刷新历史';
+
+  @override
+  String get fieldOps_noCoverageSessions => '尚无保存的覆盖会话。';
+
+  @override
+  String get fieldOps_sessionA => '会话 A • 青绿色';
+
+  @override
+  String get fieldOps_sessionB => '会话 B • 琥珀色';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A：$a 个唯一节点 • B：$b 个唯一节点';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return '共有：$shared • 仅 A：$onlyA • 仅 B：$onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat => '某次会话中没收到某个节点，不能断定是盲区。条件和观测时长各不相同。';
+
+  @override
+  String get fieldOps_heardTooltip => '收到的节点观测；不能证明链路成功';
+
+  @override
+  String get fieldOps_noteTooltip => '位于电台广播坐标处的本地备注；可能已过时。';
+
+  @override
+  String get bastionHome_aboutTooltip => '关于 Bastion';
+
+  @override
+  String get bastionHome_getStarted => '开始使用';
+
+  @override
+  String get bastionHome_getStartedHint => '连接你的电台并验证第一条消息';
+
+  @override
+  String get bastionHome_planYourTrip => '规划你的行程';
+
+  @override
+  String get bastionHome_tripActive => '行程进行中';
+
+  @override
+  String get bastionHome_tripStopped => '行程已停止';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • $contacts 位联系人 • $unread 条未读消息';
+  }
+
+  @override
+  String get bastionHome_checkInOk => '报到：我很好';
+
+  @override
+  String get bastionHome_checkInHint => '发送前请检查联系人和消息。可在野外日志中跟踪确认回执。';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return '上次报到：$summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => '连接电台';
+
+  @override
+  String get bastionHome_connectRadioHint => '通过蓝牙、USB 和 TCP 连接 MeshCore';
+
+  @override
+  String get bastionHome_liveDiagnostics => '实时诊断';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint => '电台状态、信号、设备和帧工具';
+
+  @override
+  String get bastionHome_meshDiscovery => '网状网络发现';
+
+  @override
+  String get bastionHome_meshDiscoveryHint => '查找节点并查看你周围的网状网络';
+
+  @override
+  String get bastionHome_fieldOpsHint => '行程简报、准备、野外日志、自动化和覆盖对比';
+
+  @override
+  String get bastionHome_fieldTools => 'BASTION 野外工具';
+
+  @override
+  String get bastionHome_statusActive => '可用';
+
+  @override
+  String get bastionHome_consoleOnline => '野外控制台在线';
+
+  @override
+  String get bastionHome_consoleReady => '野外控制台就绪';
+
+  @override
+  String get bastionHome_consoleHint => '连接电台即可启用实时面板。';
+
+  @override
+  String bastionHome_battery(String value) {
+    return '电量 $value';
+  }
+
+  @override
+  String get bastionTools_title => '野外工具';
+
+  @override
+  String get bastionTools_backup => '加密备份';
+
+  @override
+  String get bastionTools_backupHint => '保存设置、联系人和密钥，可选包含聊天记录';
+
+  @override
+  String get bastionTools_fieldOpsHint => '报到、准备、野外日志、自动化和对比';
+
+  @override
+  String get bastionTools_mapHint => '实时地图、记录会话、离线地图工具和区域';
+
+  @override
+  String get bastionTools_pathAnalysis => '路径分析';
+
+  @override
+  String get bastionTools_pathHint => '路由、发现和路径分析';
+
+  @override
+  String get bastionTools_repeaterHint => '状态、登录、遥测、邻居和管理';
+
+  @override
+  String get bastionTools_statsHint => '实时网络计数和联系人活动';
+
+  @override
+  String get bastionTools_diagnostics => '诊断';
+
+  @override
+  String get bastionTools_diagnosticsHint => '电台状态、设备信息、原始帧和导出';
+
+  @override
+  String get bastionTools_about => '关于 + 致谢';
+
+  @override
+  String get bastionTools_aboutHint => 'Bastion 版本、独立性声明和开源许可证';
+
+  @override
+  String get bastionAbout_title => '关于 + 致谢';
+
+  @override
+  String get bastionAbout_intro =>
+      '一款面向 MeshCore 网络的独立社区配套应用。Bastion 不是 MeshCore 官方应用，收录社区资源也不代表合作或认可。';
+
+  @override
+  String get bastionAbout_version => '版本';
+
+  @override
+  String get bastionAbout_openSource => '开源基础';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'Bastion 基于 MIT 许可证下的 MeshCore Open 开源代码构建并对其进行了修改。覆盖功能相关工作也在适用时致谢采用 MIT 许可证的 MeshMapper Flutter App。';
+
+  @override
+  String get bastionAbout_community => '社区优先';
+
+  @override
+  String get bastionAbout_communityBody => '第三方创作者的资源仍归各自创作者所有。不代表任何所有权或合作关系。';
+
+  @override
+  String get bastionAbout_legalese => 'Bastion • 独立的 MeshCore 配套应用';
+
+  @override
+  String get bastionAbout_licenses => '开源许可证';
+
+  @override
+  String get bastionSetup_title => 'Bastion 入门';
+
+  @override
+  String get bastionSetup_intro => '连接、选择联系人，然后验证一条消息。你可以随时从仪表板返回本指南。';
+
+  @override
+  String get bastionSetup_step1 => '1. 连接你的 MeshCore 电台';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return '已通过 $transport 连接到 $device。';
+  }
+
+  @override
+  String get bastionSetup_noRadio => '尚未连接电台。';
+
+  @override
+  String get bastionSetup_step1Power =>
+      '打开 MeshCore 配套电台。打开“连接电台”，选择蓝牙、USB 或 TCP。授予所选连接方式需要的权限。';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      '如果蓝牙搜索为空，请检查蓝牙是否已开启，以及 Bastion 是否在 Android 应用设置中拥有“附近的设备”权限。并按扫描器显示的其他权限提示操作。';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => '连接诊断';
+
+  @override
+  String get bastionSetup_step2 => '2. 选择聊天联系人';
+
+  @override
+  String get bastionSetup_step2Body =>
+      '请附近使用兼容 MeshCore 电台设置的同伴广播其节点。在下方选择一位已知聊天联系人；中继器需单独管理。';
+
+  @override
+  String get bastionSetup_noContacts => '没有可用的聊天联系人。请连接电台并打开“网状网络发现”。';
+
+  @override
+  String get bastionSetup_testRecipient => '测试收件人';
+
+  @override
+  String get bastionSetup_meshDiscovery => '网状网络发现';
+
+  @override
+  String get bastionSetup_step3 => '3. 发送并验证消息';
+
+  @override
+  String get bastionSetup_step3Body =>
+      '打开聊天，写一条简短的测试消息，检查收件人后点按“发送”。返回此处可查看自打开本指南以来记录的最新发出消息。';
+
+  @override
+  String get bastionSetup_openTestChat => '打开测试聊天';
+
+  @override
+  String get bastionSetup_connectFirst => '连接电台后才能打开测试聊天。';
+
+  @override
+  String get bastionSetup_chooseRecipient => '请先选择收件人。';
+
+  @override
+  String get bastionSetup_noTestMessage => '本次指南会话中没有记录发出的测试消息。';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return '最新消息：$status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      '请同伴确认收到或回复。记录的确认回执并不能证明对方已阅读。如果消息失败，请重新检查连接和收件人。';
+
+  @override
+  String get bastionSetup_step4 => '4. 为野外做好准备';
+
+  @override
+  String get bastionSetup_step4Body =>
+      '规划行程联系人并检查已下载的地图区域。机器人模式和野外自动化默认关闭；野外自动化仅在应用处于活动状态时运行。';
+
+  @override
+  String get bastionSetup_tripTools => '行程与准备工具';
+
+  @override
+  String get bastionDiag_title => '诊断';
+
+  @override
+  String get bastionDiag_export => '导出诊断';
+
+  @override
+  String get bastionDiag_channels => '频道';
+
+  @override
+  String get bastionDiag_radio => '电台';
+
+  @override
+  String get bastionDiag_frequency => '频率';
+
+  @override
+  String get bastionDiag_bandwidth => '带宽';
+
+  @override
+  String get bastionDiag_spreadingFactor => '扩频因子';
+
+  @override
+  String get bastionDiag_codingRate => '编码率';
+
+  @override
+  String get bastionDiag_txPower => '发射功率';
+
+  @override
+  String get bastionDiag_noiseFloor => '底噪';
+
+  @override
+  String get bastionDiag_device => '设备';
+
+  @override
+  String get bastionDiag_name => '名称';
+
+  @override
+  String get bastionDiag_manufacturer => '制造商';
+
+  @override
+  String get bastionDiag_firmware => '固件';
+
+  @override
+  String get bastionDiag_battery => '电量';
+
+  @override
+  String get bastionDiag_transport => '连接方式';
+
+  @override
+  String get bastionDiag_deepTools => '高级工具';
+
+  @override
+  String get bastionDiag_liveStats => '实时电台统计';
+
+  @override
+  String get bastionDiag_liveStatsHint => '噪声、RSSI、SNR 和空中时间';
+
+  @override
+  String get bastionDiag_frameDebug => '帧 / BLE 调试';
+
+  @override
+  String get bastionDiag_frameDebugHint => '查看已解码和原始的接收帧';
+
+  @override
+  String get bastionDiag_appLog => '应用调试日志';
+
+  @override
+  String get bastionDiag_appLogHint => '查看应用诊断事件';
+
+  @override
+  String get bastionDiag_online => '电台在线';
+
+  @override
+  String get bastionDiag_offline => '电台离线';
+
+  @override
+  String get bastionDiag_offlineHint => '连接 MeshCore 配套设备以显示实时诊断。';
+
+  @override
+  String get coverage_title => '覆盖记录';
+
+  @override
+  String get coverage_leaveBlocked => '离开前请停止并保存会话。';
+
+  @override
+  String get coverage_savedSessions => '已保存的会话';
+
+  @override
+  String get coverage_caveat =>
+      'RSSI/SNR 是电台快照，可能属于另一个数据包。位置是电台广播的坐标，不是手机 GPS，也不能证明覆盖。青色：记录者；琥珀色：广播的节点。不进行插值。';
+
+  @override
+  String get coverage_captureActive => '正在记录';
+
+  @override
+  String get coverage_fieldSession => '野外覆盖会话';
+
+  @override
+  String get coverage_connectedBody =>
+      'Bastion 会记录本次会话中新收到的节点，包括路由数据、节点/位置元数据，以及最接近的电台 RSSI/SNR 快照。';
+
+  @override
+  String get coverage_disconnectedBody => '开始前请连接电台。覆盖记录会从已连接的配套电台记录实时网状网络观测。';
+
+  @override
+  String get coverage_observations => '观测';
+
+  @override
+  String get coverage_uniqueNodes => '唯一节点';
+
+  @override
+  String get coverage_elapsed => '已用时间';
+
+  @override
+  String get coverage_radioConnected => '电台已连接';
+
+  @override
+  String get coverage_noRadio => '无电台';
+
+  @override
+  String get coverage_gpsReady => '电台 GPS 就绪';
+
+  @override
+  String get coverage_noGps => '无电台 GPS';
+
+  @override
+  String get coverage_stopSave => '停止 + 保存会话';
+
+  @override
+  String get coverage_start => '开始覆盖会话';
+
+  @override
+  String get coverage_exportJson => '导出 JSON';
+
+  @override
+  String get coverage_exportCsv => '导出 CSV';
+
+  @override
+  String get coverage_liveObservations => '实时观测';
+
+  @override
+  String get coverage_waiting => '等待网络活动';
+
+  @override
+  String get coverage_waitingBody =>
+      '开始会话后，新收到的活跃节点会显示在这里。RSSI/SNR 值是电台快照，不一定能唯一对应到某个数据包。';
+
+  @override
+  String get coverage_signalNa => '信号 不可用';
+
+  @override
+  String get coverage_snrNa => 'SNR 不可用';
+
+  @override
+  String get coverage_gpsUnavailable => '电台 GPS 不可用';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return '路径：$path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => '泛洪';
+
+  @override
+  String get coverage_pathDirect => '直连';
+
+  @override
+  String get coverage_shareSubject => 'Bastion 覆盖会话';
+
+  @override
+  String get coverage_shareText => 'Bastion 覆盖记录导出';
+
+  @override
+  String get coverage_historyTitle => '已保存的覆盖会话';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return '无法加载会话：$error';
+  }
+
+  @override
+  String get coverage_deleteTitle => '删除已保存的会话？';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '将从此设备删除 $count 条观测。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return '无法删除会话：$error';
+  }
+
+  @override
+  String get coverage_retention => '保留最近完成的 20 个会话。请分享你想保留的会话。中断的记录可在下方重新打开。';
+
+  @override
+  String get coverage_noSessions => '尚无保存的会话。停止记录即可保存。';
+
+  @override
+  String get coverage_interrupted => '中断的记录';
+
+  @override
+  String get coverage_saved => '已保存';
+
+  @override
+  String get coverage_deleteTooltip => '删除会话';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return '导出失败：$error';
+  }
+
+  @override
+  String get coverage_sessionTitle => '覆盖会话';
+
+  @override
+  String get coverage_shareJson => '分享 JSON';
+
+  @override
+  String get coverage_shareCsv => '分享 CSV';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi dBm • SNR $snr dB • 快照时长 $age ms';
+  }
+
+  @override
+  String get coverage_unknown => '未知';
+
+  @override
+  String coverage_pathValue(String path) {
+    return '路径 $path';
+  }
+
+  @override
+  String get coverage_recorder => '记录者';
+
+  @override
+  String get coverage_noCoordinates => '此会话中没有可用坐标。观测仍可在下方查看。';
+
+  @override
+  String get coverage_osmAttribution => '© OpenStreetMap 贡献者 • 在线底图';
+
+  @override
+  String get fieldStats_title => '野外情报';
+
+  @override
+  String get fieldStats_snapshot => '实时网络快照';
+
+  @override
+  String get fieldStats_headline => 'Bastion 此刻掌握的情况。';
+
+  @override
+  String get fieldStats_body => '这些计数根据已连接 MeshCore 的联系人表、位置、路径和最后可见时间计算。';
+
+  @override
+  String get fieldStats_total => '总计';
+
+  @override
+  String get fieldStats_chatNodes => '聊天节点';
+
+  @override
+  String get fieldStats_rooms => '房间';
+
+  @override
+  String get fieldStats_sensors => '传感器';
+
+  @override
+  String get fieldStats_located => '有位置';
+
+  @override
+  String get fieldStats_favorites => '收藏';
+
+  @override
+  String get fieldStats_routeSnapshot => '路由快照';
+
+  @override
+  String get fieldStats_routed => '有路由';
+
+  @override
+  String get fieldStats_direct => '直连';
+
+  @override
+  String get fieldStats_flood => '泛洪';
+
+  @override
+  String get fieldStats_pathIntel => '路径分析';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'Bastion 的路由分析利用已保存的路径尝试、跳数、成功/失败、往返时间和路由权重来呈现学到的路由。';
+
+  @override
+  String get fieldStats_coverageSessions => '覆盖会话';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      '覆盖记录现在可以保存野外会话、恢复中断的工作、导出观测并在地图上标出记录的覆盖点。RSSI/SNR 仍是最接近的电台快照。';
+
+  @override
+  String get mapHub_title => 'BASTION 野外地图';
+
+  @override
+  String get mapHub_intro => '实时地图、离线区域、区域配置和 Bastion 野外覆盖会话。';
+
+  @override
+  String get mapHub_captureHint => '开始和停止野外覆盖会话';
+
+  @override
+  String get mapHub_badgeNew => '新';
+
+  @override
+  String get mapHub_liveMap => '实时网络地图';
+
+  @override
+  String get mapHub_liveMapHint => '节点、中继器、位置、路由和地图工具';
+
+  @override
+  String get mapHub_badgeLive => '实时';
+
+  @override
+  String get mapHub_offlinePacks => '离线地图包';
+
+  @override
+  String get mapHub_offlinePacksHint => '为行程和无信号区域缓存地图图块';
+
+  @override
+  String get mapHub_badgeOffline => '离线';
+
+  @override
+  String get mapHub_regions => '区域配置';
+
+  @override
+  String get mapHub_regionsHint => '管理和获取区域网络定义';
+
+  @override
+  String get mapHub_badgeRegions => '区域';
+
+  @override
+  String get routes_title => '路由分析';
+
+  @override
+  String get routes_headline => '了解流量如何在网状网络中传递。';
+
+  @override
+  String get routes_body => 'Bastion 根据从真实消息尝试和发现中学到的路径历史，对已保存的路由进行排序。';
+
+  @override
+  String get routes_routes => '路由';
+
+  @override
+  String get routes_success => '成功';
+
+  @override
+  String get routes_failed => '失败';
+
+  @override
+  String get routes_routeMap => '路由地图';
+
+  @override
+  String get routes_routeMapHint => '查看节点和路径';
+
+  @override
+  String get routes_discover => '发现';
+
+  @override
+  String get routes_discoverHint => '寻找新路由';
+
+  @override
+  String get routes_learned => '已学到的路由';
+
+  @override
+  String get routes_none => '尚无路由历史';
+
+  @override
+  String get routes_noneBody => '照常使用网状网络或运行发现。一旦有了路径历史，Bastion 会在此显示学到的路由。';
+
+  @override
+  String get routes_direct => '直连';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 条路由',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return '最佳  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  权重 $weight  •  成功 $success / 失败 $fail';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return '已知最快：$ms ms';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return '泛洪：成功 $success / 失败 $fail';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => '中继器管理';
+
+  @override
+  String get repeaterTools_headline => '管理支撑你网状网络的基础设施。';
+
+  @override
+  String get repeaterTools_body =>
+      '选择一个已发现的中继器进行认证，并打开其现有的 MeshCore 状态、遥测、邻居、设置和 CLI 工具。';
+
+  @override
+  String get repeaterTools_discovered => '已发现';
+
+  @override
+  String get repeaterTools_tools => '工具';
+
+  @override
+  String get repeaterTools_available => '可用的中继器';
+
+  @override
+  String get repeaterTools_unnamed => '未命名中继器';
+
+  @override
+  String get repeaterTools_statusTelemetry => '状态 + 遥测';
+
+  @override
+  String get repeaterTools_statusTelemetryBody => '使用现有管理工具查看中继器状态和遥测。';
+
+  @override
+  String get repeaterTools_neighbors => '邻居';
+
+  @override
+  String get repeaterTools_neighborsBody => '查看相邻的基础设施和网络关系。';
+
+  @override
+  String get repeaterTools_cli => 'CLI + 设置';
+
+  @override
+  String get repeaterTools_cliBody => '已认证的管理员可以使用现有的中继器 CLI 和配置工具。';
+
+  @override
+  String get repeaterTools_empty => '尚未发现中继器。请先连接电台并探索网状网络。';
+
+  @override
+  String get notification_fieldAlertTitle => 'Bastion 野外警报';
+
+  @override
+  String get notification_checkInReminderTitle => 'Bastion 报到提醒';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return '$trip 已有 $minutes 分钟未报到。打开 Bastion 进行报到。';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return '已有 $minutes 分钟没有收到 $name 的消息。这不是已确认的紧急情况。';
+  }
+
+  @override
+  String get notification_aTripContact => '一位行程联系人';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return '报到未送达 $name。你可以在“行程”中重新发送。';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return '$name 已确认 SOS';
+  }
+
+  @override
+  String get settings_batterySaver => '省电模式';
+
+  @override
+  String get settings_batterySaverOn =>
+      '已开启：每 10 分钟读取电台电量，每 5 分钟读取 GPS，统计最多每分钟一次，行程检查每 1–2 分钟一次。消息、警报和 SOS 不受影响。';
+
+  @override
+  String get settings_batterySaverOff =>
+      '降低电台和行程的检查频率，节省手机和电台电量。消息、警报和 SOS 不受影响。';
+
+  @override
+  String get settings_readAloud => '朗读新消息';
+
+  @override
+  String get settings_readAloudHelper =>
+      '仅在 Bastion 打开时。已静音的频道不会朗读。任何消息也可以从其菜单中朗读。';
+
+  @override
+  String get settings_readAloudOff => '关闭';
+
+  @override
+  String get settings_readAloudDirect => '私信';
+
+  @override
+  String get settings_readAloudAll => '私信和频道消息';
+
+  @override
+  String get chat_readAloud => '朗读';
+
+  @override
+  String get messageSearch_title => '搜索消息';
+
+  @override
+  String get messageSearch_intro => '搜索此手机上保存的所有私信和频道消息。';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return '没有包含“$query”的消息。';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 条匹配',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return '显示最新的 $count 条匹配';
+  }
+
+  @override
+  String get shortcuts_checkIn => '报到';
+
+  @override
+  String get shortcuts_trip => '行程';
+
+  @override
+  String get shortcuts_chats => '聊天';
+
+  @override
+  String get shortcuts_map => '地图';
+
+  @override
+  String get sensor_liveUpdates => '实时更新';
+
+  @override
+  String get sensor_intro => '让传感器在读数变化时自动发送，而不必每次询问。需要以读取权限登录。';
+
+  @override
+  String get sensor_watch => '监视变化';
+
+  @override
+  String get sensor_loadFirst => '请先加载遥测数据，再选择读数。';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return '正在监视 $readings，直到 $time。';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return '正在监视 $readings，直到 $time • 区域 $region。';
+  }
+
+  @override
+  String get sensor_noChanges => '尚未报告任何变化。';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return '上次更新 $time • 已收到 $count 条';
+  }
+
+  @override
+  String get sensor_stop => '停止实时更新';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return '已在此处停止；传感器未确认，将在时间到期后停止。$error';
+  }
+
+  @override
+  String get sensor_dialogBody => '传感器大约每分钟检查一次，当所选读数的变化超过阈值时发送更新。';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label（通道 $channel）';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label（通道 $channel）：$value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label（通道 $channel）±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return '变化 $delta 时更新';
+  }
+
+  @override
+  String get sensor_changeThreshold => '更改阈值';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return '传感器最多可监视 $max 字节的读数（已用 $used）。';
+  }
+
+  @override
+  String get sensor_for => '时长';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 小时',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => '开始';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return '$label阈值';
+  }
+
+  @override
+  String get sensor_typeTemperature => '温度';
+
+  @override
+  String get sensor_typeHumidity => '湿度';
+
+  @override
+  String get sensor_typePressure => '气压';
+
+  @override
+  String get sensor_typeVoltage => '电压';
+
+  @override
+  String get sensor_typeCurrent => '电流';
+
+  @override
+  String get sensor_typeLight => '光照';
+
+  @override
+  String get sensor_typeConcentration => '浓度';
+
+  @override
+  String get sensor_typePercentage => '百分比';
+
+  @override
+  String get sensor_typeAnalogInput => '模拟输入';
+
+  @override
+  String get sensor_typeAltitude => '海拔';
 }

@@ -16,6 +16,12 @@ class FieldOpsService extends ChangeNotifier {
   final MeshCoreConnector connector;
   FieldOpsService(this.connector);
   static const _key = 'bastion_field_ops_v1';
+
+  /// [error] values, which the app shows in the user's language.
+  static const loadErrorText =
+      'Field data could not be loaded. Saved data was retained; automations remain off.';
+  static const saveErrorText =
+      'Field data could not be saved. Automations stopped; existing stored data is retained.';
   TripPlan trip = const TripPlan();
   List<FieldRule> rules = [
     for (final t in FieldTrigger.values) FieldRule(id: t.name, trigger: t),
@@ -234,8 +240,7 @@ class FieldOpsService extends ChangeNotifier {
         _lastAutoSend = DateTime.tryParse(j['lastAutoSend'] as String? ?? '');
       }
     } catch (_) {
-      error =
-          'Field data could not be loaded. Saved data was retained; automations remain off.';
+      error = loadErrorText;
     }
     if (_disposed) return;
     // Trips never resume after a restart, so neither does their reminder.
@@ -273,8 +278,7 @@ class FieldOpsService extends ChangeNotifier {
       await write;
       return true;
     } catch (_) {
-      error =
-          'Field data could not be saved. Automations stopped; existing stored data is retained.';
+      error = saveErrorText;
       automationEnabled = false;
       _notify();
       return false;
@@ -328,9 +332,10 @@ class FieldOpsService extends ChangeNotifier {
     }
     final from = lastCheckInAt ?? tripStartedAt ?? DateTime.now();
     reminderAt = from.add(Duration(minutes: minutes));
-    final ok = await NotificationService().scheduleCheckInReminder(
+    final notifications = NotificationService();
+    final ok = await notifications.scheduleCheckInReminder(
       reminderAt!,
-      'No check-in for $minutes minutes on ${trip.name}. Open Bastion to check in.',
+      notifications.l10n.notification_checkInReminderBody(minutes, trip.name),
     );
     if (!ok) {
       await record(
@@ -382,7 +387,14 @@ class FieldOpsService extends ChangeNotifier {
       final text =
           '${name ?? 'A trip contact'} not heard from in ${trip.overdueMinutes} minutes. This is not a confirmed emergency.';
       await record('overdue', text, contactKey: key);
-      final shown = await NotificationService().showFieldAlert(text);
+      final notifications = NotificationService();
+      final t = notifications.l10n;
+      final shown = await notifications.showFieldAlert(
+        t.notification_overdueBody(
+          name ?? t.notification_aTripContact,
+          trip.overdueMinutes,
+        ),
+      );
       if (!shown) {
         await record(
           'missed',
@@ -599,9 +611,10 @@ class FieldOpsService extends ChangeNotifier {
           contactKey: message.senderKeyHex,
         ),
       );
+      final notifications = NotificationService();
       unawaited(
-        NotificationService().showFieldAlert(
-          'SOS acknowledged by ${sos.acknowledgedBy}',
+        notifications.showFieldAlert(
+          notifications.l10n.notification_sosAcknowledged(sos.acknowledgedBy!),
         ),
       );
       _notify();
@@ -718,7 +731,12 @@ class FieldOpsService extends ChangeNotifier {
       final text =
           'Check-in not delivered to $name. You can resend it from Trip.';
       unawaited(record('check-in', text));
-      unawaited(NotificationService().showFieldAlert(text));
+      final notifications = NotificationService();
+      unawaited(
+        notifications.showFieldAlert(
+          notifications.l10n.notification_checkInNotDelivered(name),
+        ),
+      );
     }
     final delivery = latestDelivery;
     if (delivery != null &&

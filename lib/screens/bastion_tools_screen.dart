@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../l10n/l10n.dart';
 
 import 'antenna_coverage_screen.dart';
 import 'bastion_about_screen.dart';
@@ -19,16 +20,17 @@ class BastionToolsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: const Color(0xFFE4E6DF),
         titleSpacing: 16,
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'BASTION',
               style: TextStyle(
                 color: _cyan,
@@ -38,8 +40,8 @@ class BastionToolsScreen extends StatelessWidget {
               ),
             ),
             Text(
-              'Field Tools',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+              l10n.bastionTools_title,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
             ),
           ],
         ),
@@ -52,8 +54,8 @@ class BastionToolsScreen extends StatelessWidget {
             _tool(
               context,
               Icons.lock_outline,
-              'ENCRYPTED BACKUP',
-              'Save settings, contacts and keys with optional chat history',
+              l10n.bastionTools_backup,
+              l10n.bastionTools_backupHint,
               () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -65,8 +67,8 @@ class BastionToolsScreen extends StatelessWidget {
             _tool(
               context,
               Icons.backpack_outlined,
-              'TRIP + FIELD OPERATIONS',
-              'Check-ins, readiness, Field Log, automations and comparisons',
+              l10n.bastion_fieldOps,
+              l10n.bastionTools_fieldOpsHint,
               () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -78,8 +80,8 @@ class BastionToolsScreen extends StatelessWidget {
             _tool(
               context,
               Icons.map_rounded,
-              'MAP + COVERAGE',
-              'Live map, capture sessions, offline map tools and regions',
+              l10n.bastion_mapCoverage,
+              l10n.bastionTools_mapHint,
               () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const BastionMapHubScreen()),
@@ -89,8 +91,8 @@ class BastionToolsScreen extends StatelessWidget {
             _tool(
               context,
               Icons.route_rounded,
-              'PATH ANALYSIS',
-              'Routes, discovery and path intelligence',
+              l10n.bastionTools_pathAnalysis,
+              l10n.bastionTools_pathHint,
               () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const BastionPathHubScreen()),
@@ -100,8 +102,8 @@ class BastionToolsScreen extends StatelessWidget {
             _tool(
               context,
               Icons.cell_tower_rounded,
-              'REPEATER TOOLS',
-              'Status, login, telemetry, neighbors and administration',
+              l10n.bastion_repeaterTools,
+              l10n.bastionTools_repeaterHint,
               () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -113,8 +115,8 @@ class BastionToolsScreen extends StatelessWidget {
             _tool(
               context,
               Icons.analytics_rounded,
-              'FIELD STATS',
-              'Live mesh counts and contact activity',
+              l10n.bastion_fieldStats,
+              l10n.bastionTools_statsHint,
               () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -139,8 +141,8 @@ class BastionToolsScreen extends StatelessWidget {
             _tool(
               context,
               Icons.monitor_heart_rounded,
-              'DIAGNOSTICS',
-              'Radio health, device information, raw frames and export',
+              l10n.bastionTools_diagnostics,
+              l10n.bastionTools_diagnosticsHint,
               () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -152,8 +154,8 @@ class BastionToolsScreen extends StatelessWidget {
             _tool(
               context,
               Icons.info_outline_rounded,
-              'ABOUT + CREDITS',
-              'Bastion version, independence statement and open-source licenses',
+              l10n.bastionTools_about,
+              l10n.bastionTools_aboutHint,
               () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const BastionAboutScreen()),

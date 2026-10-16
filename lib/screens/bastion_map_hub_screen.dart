@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../l10n/l10n.dart';
 import 'map_screen.dart';
 import 'map_cache_screen.dart';
 import 'region_management_screen.dart';
@@ -17,9 +18,9 @@ class BastionMapHubScreen extends StatelessWidget {
       backgroundColor: _bg,
       foregroundColor: Color(0xFFE4E6DF),
       surfaceTintColor: Colors.transparent,
-      title: const Text(
-        'BASTION FIELD MAP',
-        style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.2),
+      title: Text(
+        context.l10n.mapHub_title,
+        style: const TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.2),
       ),
     ),
     body: SafeArea(
@@ -34,17 +35,17 @@ class BastionMapHubScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: _cyan.withValues(alpha: .42)),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Icon(Icons.map_rounded, color: _cyan, size: 30),
-                    SizedBox(width: 12),
+                    const Icon(Icons.map_rounded, color: _cyan, size: 30),
+                    const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        'MAP + COVERAGE',
-                        style: TextStyle(
+                        context.l10n.bastion_mapCoverage,
+                        style: const TextStyle(
                           color: Color(0xFFE4E6DF),
                           fontSize: 21,
                           fontWeight: FontWeight.w900,
@@ -54,10 +55,10 @@ class BastionMapHubScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
-                  'Live maps, offline areas, regional profiles and Bastion field coverage sessions.',
-                  style: TextStyle(color: _muted, height: 1.45),
+                  context.l10n.mapHub_intro,
+                  style: const TextStyle(color: _muted, height: 1.45),
                 ),
               ],
             ),
@@ -65,9 +66,9 @@ class BastionMapHubScreen extends StatelessWidget {
           const SizedBox(height: 18),
           _MapAction(
             icon: Icons.radio_button_checked,
-            title: 'COVERAGE CAPTURE',
-            subtitle: 'Start and stop a field coverage session',
-            badge: 'NEW',
+            title: context.l10n.bastion_coverageCapture,
+            subtitle: context.l10n.mapHub_captureHint,
+            badge: context.l10n.mapHub_badgeNew,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => const BastionCoverageCaptureScreen(),
@@ -77,9 +78,9 @@ class BastionMapHubScreen extends StatelessWidget {
           const SizedBox(height: 12),
           _MapAction(
             icon: Icons.public_rounded,
-            title: 'LIVE MESH MAP',
-            subtitle: 'Nodes, repeaters, positions, routes and map tools',
-            badge: 'LIVE',
+            title: context.l10n.mapHub_liveMap,
+            subtitle: context.l10n.mapHub_liveMapHint,
+            badge: context.l10n.mapHub_badgeLive,
             onTap: () => Navigator.of(
               context,
             ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
@@ -87,9 +88,9 @@ class BastionMapHubScreen extends StatelessWidget {
           const SizedBox(height: 12),
           _MapAction(
             icon: Icons.offline_pin_rounded,
-            title: 'OFFLINE MAP PACKS',
-            subtitle: 'Cache map tiles for trips and no-service areas',
-            badge: 'OFFLINE',
+            title: context.l10n.mapHub_offlinePacks,
+            subtitle: context.l10n.mapHub_offlinePacksHint,
+            badge: context.l10n.mapHub_badgeOffline,
             onTap: () => Navigator.of(
               context,
             ).push(MaterialPageRoute(builder: (_) => const MapCacheScreen())),
@@ -97,9 +98,9 @@ class BastionMapHubScreen extends StatelessWidget {
           const SizedBox(height: 12),
           _MapAction(
             icon: Icons.hub_rounded,
-            title: 'REGION PROFILES',
-            subtitle: 'Manage and fetch regional mesh definitions',
-            badge: 'REGIONS',
+            title: context.l10n.mapHub_regions,
+            subtitle: context.l10n.mapHub_regionsHint,
+            badge: context.l10n.mapHub_badgeRegions,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => const RegionManagementScreen()),
             ),

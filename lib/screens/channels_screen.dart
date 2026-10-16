@@ -120,7 +120,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
           actions: [
             IconButton(
               key: const ValueKey('open-message-search'),
-              tooltip: 'Search messages',
+              tooltip: context.l10n.messageSearch_title,
               icon: const Icon(Icons.manage_search),
               onPressed: () => Navigator.push(
                 context,

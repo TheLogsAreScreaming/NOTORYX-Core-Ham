@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../l10n/l10n.dart';
 import '../models/field_ops.dart';
 import '../services/field_ops_service.dart';
 
@@ -18,7 +19,17 @@ class SosPanel extends StatelessWidget {
     context.watch<MeshCoreConnector>();
     final ops = context.watch<FieldOpsService>();
     if (ops.sos.active) return _ActiveSos(ops: ops);
-    final reason = ops.sosUnavailable;
+    final l10n = context.l10n;
+    final reason = sosUnavailableReason(
+      ready: ops.ready,
+      storageError: ops.error != null,
+      connected: ops.connector.isConnected,
+      selectedContacts: ops.trip.members.length,
+      availableContacts: ops.members.length,
+      hasChannel: ops.sosChannel != null,
+      l10n: l10n,
+    );
+    final channel = ops.sosChannel;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -30,7 +41,9 @@ class SosPanel extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           reason ??
-              'Hold 2 seconds. Sends your position to your trip contacts${ops.sosChannel == null ? '' : ' and ${ops.sosChannel!.name}'} every 5 minutes until someone replies.',
+              (channel == null
+                  ? l10n.sos_holdHint
+                  : l10n.sos_holdHintChannel(channel.name)),
           style: const TextStyle(color: _muted, fontSize: 12),
         ),
       ],
@@ -39,10 +52,11 @@ class SosPanel extends StatelessWidget {
 
   Future<void> _start(BuildContext context, FieldOpsService ops) async {
     final messenger = ScaffoldMessenger.of(context);
+    final l10n = context.l10n;
     try {
       await ops.startSos();
     } catch (e) {
-      messenger.showSnackBar(SnackBar(content: Text('SOS not sent: $e')));
+      messenger.showSnackBar(SnackBar(content: Text(l10n.sos_notSent('$e'))));
     }
   }
 }
@@ -53,19 +67,22 @@ class _ActiveSos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final sos = ops.sos;
     final next = sos.nextSendAt;
     final String status;
-    if (sos.acknowledgedBy != null) {
-      status = 'Acknowledged by ${sos.acknowledgedBy}. Repeats stopped.';
+    if (sos.acknowledgedBy case final by?) {
+      status = l10n.sos_acknowledged(by);
     } else if (sos.sends == 0) {
-      status = 'Waiting for the radio to send…';
+      status = l10n.sos_waitingForRadio;
     } else if (next == null) {
-      status =
-          'Sent ${sos.sends} of $sosMaxSends times. Repeats finished; no reply yet.';
+      status = l10n.sos_repeatsFinished(sos.sends, sosMaxSends);
     } else {
-      status =
-          'Sent ${sos.sends} of $sosMaxSends times. Next at ${TimeOfDay.fromDateTime(next).format(context)}.';
+      status = l10n.sos_nextAt(
+        sos.sends,
+        sosMaxSends,
+        TimeOfDay.fromDateTime(next).format(context),
+      );
     }
     return Container(
       key: const ValueKey('sos-active'),
@@ -78,13 +95,13 @@ class _ActiveSos extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.sos_rounded, color: _red),
-              SizedBox(width: 8),
+              const Icon(Icons.sos_rounded, color: _red),
+              const SizedBox(width: 8),
               Text(
-                'SOS ACTIVE',
-                style: TextStyle(
+                l10n.sos_active,
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 1,
@@ -100,14 +117,14 @@ class _ActiveSos extends StatelessWidget {
               Expanded(
                 child: OutlinedButton(
                   onPressed: () => ops.stopSos(),
-                  child: const Text('STOP'),
+                  child: Text(l10n.sos_stop),
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: FilledButton(
                   onPressed: () => ops.stopSos(allClear: true),
-                  child: const Text("I'M SAFE"),
+                  child: Text(l10n.sos_imSafe),
                 ),
               ),
             ],
@@ -171,7 +188,7 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
     return Semantics(
       button: true,
       enabled: widget.enabled,
-      label: 'SOS. Hold to send.',
+      label: context.l10n.sos_holdSemantics,
       onLongPress: widget.enabled ? widget.onConfirmed : null,
       excludeSemantics: true,
       // Raw pointer events: a gesture recognizer would cancel the hold when
@@ -216,7 +233,9 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          _hold.value > 0 ? 'KEEP HOLDING…' : 'HOLD FOR SOS',
+                          _hold.value > 0
+                              ? context.l10n.sos_keepHolding
+                              : context.l10n.sos_holdForSos,
                           style: TextStyle(
                             color: widget.enabled ? Colors.white : _muted,
                             fontWeight: FontWeight.w900,

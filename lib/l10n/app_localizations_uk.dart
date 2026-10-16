@@ -5474,4 +5474,1893 @@ class AppLocalizationsUk extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes хв $seconds с';
   }
+
+  @override
+  String get bastion_tagline => 'Зв\'язок без інфраструктури.';
+
+  @override
+  String get bastion_nodes => 'ВУЗЛИ';
+
+  @override
+  String get bastion_repeaters => 'РЕТРАНСЛЯТОРИ';
+
+  @override
+  String get bastion_active1h => 'АКТИВНІ 1 ГОД';
+
+  @override
+  String get bastion_mapCoverage => 'МАПА + ПОКРИТТЯ';
+
+  @override
+  String get bastion_routeIntelligence => 'АНАЛІЗ МАРШРУТІВ';
+
+  @override
+  String get bastion_repeaterTools => 'ІНСТРУМЕНТИ РЕТРАНСЛЯТОРА';
+
+  @override
+  String get bastion_fieldStats => 'ПОЛЬОВА СТАТИСТИКА';
+
+  @override
+  String get bastion_fieldOps => 'ПОХІД + ПОЛЬОВІ ОПЕРАЦІЇ';
+
+  @override
+  String get bastion_coverageCapture => 'ЗАПИС ПОКРИТТЯ';
+
+  @override
+  String get bastion_mapAttribution =>
+      'Дані мапи © учасники OpenStreetMap; тайли вибраного постачальника';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count спостереження',
+      many: '$count спостережень',
+      few: '$count спостереження',
+      one: '$count спостереження',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count унікального вузла',
+      many: '$count унікальних вузлів',
+      few: '$count унікальні вузли',
+      one: '$count унікальний вузол',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count переходу',
+      many: '$count переходів',
+      few: '$count переходи',
+      one: '$count перехід',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count хвилини',
+      many: '$count хвилин',
+      few: '$count хвилини',
+      one: '$count хвилина',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint =>
+      'Утримуйте 2 секунди. Надсилає ваше місцезнаходження контактам походу кожні 5 хвилин, доки хтось не відповість.';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return 'Утримуйте 2 секунди. Надсилає ваше місцезнаходження контактам походу та в $channel кожні 5 хвилин, доки хтось не відповість.';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'SOS не надіслано: $error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return 'Підтверджено: $name. Повтори зупинено.';
+  }
+
+  @override
+  String get sos_waitingForRadio => 'Очікування надсилання радіостанцією…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return 'Надіслано $sends з $max разів. Повтори завершено; відповіді ще немає.';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return 'Надіслано $sends з $max разів. Наступне о $time.';
+  }
+
+  @override
+  String get sos_active => 'SOS АКТИВНИЙ';
+
+  @override
+  String get sos_stop => 'СТОП';
+
+  @override
+  String get sos_imSafe => 'Я В БЕЗПЕЦІ';
+
+  @override
+  String get sos_holdSemantics => 'SOS. Утримуйте, щоб надіслати.';
+
+  @override
+  String get sos_keepHolding => 'ПРОДОВЖУЙТЕ УТРИМУВАТИ…';
+
+  @override
+  String get sos_holdForSos => 'УТРИМУЙТЕ ДЛЯ SOS';
+
+  @override
+  String get sos_blockStorage =>
+      'Спершу усуньте помилку зберігання польового журналу.';
+
+  @override
+  String get sos_blockNotConnected =>
+      'Під\'єднайте радіостанцію MeshCore, щоб надіслати SOS.';
+
+  @override
+  String get sos_blockNoTarget =>
+      'Виберіть контакти походу або канал SOS у розділі «Спланувати похід».';
+
+  @override
+  String get checkIn_labelOk => 'Усе гаразд';
+
+  @override
+  String get checkIn_labelAtCamp => 'У таборі';
+
+  @override
+  String get checkIn_labelDelayed => 'Затримуюсь';
+
+  @override
+  String get checkIn_labelHeadingBack => 'Повертаюсь';
+
+  @override
+  String get checkIn_blockLoading => 'Завантаження походу…';
+
+  @override
+  String get checkIn_blockStorage =>
+      'Перед надсиланням усуньте помилку зберігання польового журналу.';
+
+  @override
+  String get checkIn_blockBusy => 'Позначка надсилається. Зачекайте.';
+
+  @override
+  String get checkIn_blockNoContacts =>
+      'Виберіть контакти походу в розділі «Спланувати похід».';
+
+  @override
+  String get checkIn_blockRosterIncomplete =>
+      'Деякі контакти походу недоступні. Перевірте список.';
+
+  @override
+  String get checkIn_blockNotConnected =>
+      'Під\'єднайте радіостанцію MeshCore, щоб позначитися.';
+
+  @override
+  String get checkIn_blockNotActive => 'Почніть похід, щоб увімкнути позначки.';
+
+  @override
+  String get checkIn_notSent => 'Не надіслано';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return 'Доставлено: $name';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return 'Доставлено всім контактам ($count)';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return 'Доставлено $delivered з $total';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return 'Не доставлено: $names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => 'Очікування решти';
+
+  @override
+  String get checkIn_aContact => 'контакт';
+
+  @override
+  String get checkIn_statusPending => 'Очікує';
+
+  @override
+  String get checkIn_statusSent => 'Надіслано';
+
+  @override
+  String get checkIn_statusDelivered => 'Доставлено';
+
+  @override
+  String get checkIn_statusFailed => 'Помилка';
+
+  @override
+  String get checkIn_explainPending =>
+      'У локальній черзі. Це не підтверджує ні радіопередачу, ні отримання.';
+
+  @override
+  String get checkIn_explainSent =>
+      'Радіостанція прийняла надсилання. Підтвердження доставки не зареєстровано.';
+
+  @override
+  String get checkIn_explainDelivered =>
+      'Застосунок зареєстрував підтвердження доставки. Це не доводить, що людина його прочитала.';
+
+  @override
+  String get checkIn_explainFailed =>
+      'Доставку не підтверджено. Перевірте радіозв\'язок, досяжність отримувача та історію повторів.';
+
+  @override
+  String get checkIn_explainUnknown =>
+      'Стан доставки недоступний. Не вважайте, що повідомлення дійшло.';
+
+  @override
+  String get tripBrief_heading => 'BASTION • Зведення походу MeshCore';
+
+  @override
+  String tripBrief_trip(String name) {
+    return 'Похід: $name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return 'Стан: $status';
+  }
+
+  @override
+  String get tripBrief_active => 'Активний';
+
+  @override
+  String get tripBrief_stopped => 'Зупинений';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return 'Контакти: $names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => 'Не вибрано';
+
+  @override
+  String get tripBrief_unavailableContact =>
+      'Недоступний контакт (перевірте список)';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return 'Активність прострочена через: $minutes хв (цей телефон попереджає, коли контакт замовкає)';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return 'Нагадування про позначку: $value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return 'кожні $minutes хв без позначки';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return 'Варіанти позначки: $choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return 'Місцезнаходження радіостанції в позначках: $value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale => 'Додано; може бути застарілим';
+
+  @override
+  String tripBrief_battery(String value) {
+    return 'Заряд радіостанції в позначках: $value';
+  }
+
+  @override
+  String get tripBrief_included => 'Додано';
+
+  @override
+  String get tripBrief_off => 'Вимк.';
+
+  @override
+  String get tripBrief_review =>
+      'Перевірте отримувачів і повідомлення перед надсиланням позначки.';
+
+  @override
+  String get tripBrief_noProof =>
+      '«У черзі» чи «надіслано» не доводить доставку. Підтвердження не доводить прочитання.';
+
+  @override
+  String get tripBrief_overdueMeaning =>
+      'Прострочено означає відсутність нещодавньої активності контакту; це не підтверджена надзвичайна ситуація.';
+
+  @override
+  String get tripBrief_automations =>
+      'Польові автоматизації працюють лише тоді, коли застосунок активний. Домовтеся про окремий план на випадок втрати зв\'язку.';
+
+  @override
+  String get tripBrief_sharesOnly =>
+      'Це зведення лише передає інформацію; воно не надсилає радіоповідомлення й не починає похід.';
+
+  @override
+  String get fieldOps_title => 'Польові операції Bastion';
+
+  @override
+  String get fieldOps_tabTrip => 'ПОХІД';
+
+  @override
+  String get fieldOps_tabReady => 'ГОТОВНІСТЬ';
+
+  @override
+  String get fieldOps_tabLog => 'ЖУРНАЛ';
+
+  @override
+  String get fieldOps_tabAuto => 'АВТО';
+
+  @override
+  String get fieldOps_tabCoverage => 'ПОКРИТТЯ';
+
+  @override
+  String get fieldOps_tabConnection => 'ЗВ\'ЯЗОК';
+
+  @override
+  String get fieldOps_diagnostics => 'Діагностика';
+
+  @override
+  String get fieldOps_storageLoadError =>
+      'Не вдалося завантажити польові дані. Збережені дані залишено; автоматизації лишаються вимкненими.';
+
+  @override
+  String get fieldOps_storageSaveError =>
+      'Не вдалося зберегти польові дані. Автоматизації зупинено; раніше збережені дані залишено.';
+
+  @override
+  String get fieldOps_regionHint =>
+      'Виберіть область і рівні масштабу в розділі «Офлайн-мапи».';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • масштаб $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return 'Не вдалося перевірити область мапи: $error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Похід активний • $count контакту',
+      many: 'Похід активний • $count контактів',
+      few: 'Похід активний • $count контакти',
+      one: 'Похід активний • $count контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped =>
+      'Похід зупинено. Почніть його, коли будете готові.';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return 'Нагадування про позначку о $time';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return 'Надто довго мовчать: $names';
+  }
+
+  @override
+  String get fieldOps_planTrip => 'Спланувати похід';
+
+  @override
+  String get fieldOps_endTrip => 'Завершити похід';
+
+  @override
+  String get fieldOps_startTrip => 'Почати похід';
+
+  @override
+  String get fieldOps_tripBrief => 'Зведення походу';
+
+  @override
+  String get fieldOps_connectRadio => 'Під\'єднати радіостанцію';
+
+  @override
+  String get fieldOps_previewedCheckIns => 'Позначки з попереднім переглядом';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      'Виберіть статус, перевірте фактичних отримувачів і повідомлення, потім надішліть. «У черзі» не означає «доставлено».';
+
+  @override
+  String get fieldOps_tripRoster => 'Склад походу';
+
+  @override
+  String get fieldOps_rosterEmpty =>
+      'Виберіть до шести відомих контактів чату в розділі «Спланувати похід».';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      '«Востаннє чути» — свідчення минулої активності. Це не підтверджує поточну досяжність. Позначки прострочення означають відсутність нещодавньої активності контакту, а не підтверджену надзвичайну ситуацію.';
+
+  @override
+  String get fieldOps_offlineMaps => 'Офлайн-мапи';
+
+  @override
+  String get fieldOps_checkingTiles => 'Перевірка збережених тайлів…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count тайла в кеші.',
+      many: '$count тайлів у кеші.',
+      few: '$count тайли в кеші.',
+      one: '$count тайл у кеші.',
+    );
+    return '$_temp0 Це не гарантує покриття всього маршруту.';
+  }
+
+  @override
+  String get fieldOps_downloadAreas =>
+      'Завантажити / перевірити офлайн-області';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return 'Остання позначка, $time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name: $status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => 'Контакт';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Надіслати повторно $count недоставленим',
+      many: 'Надіслати повторно $count недоставленим',
+      few: 'Надіслати повторно $count недоставленим',
+      one: 'Надіслати повторно $count недоставленому',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable => 'Вибраний контакт недоступний';
+
+  @override
+  String get fieldOps_memberUnavailableHint =>
+      'Перевірте похід перед надсиланням.';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return 'Остання активність $minutes хв тому';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return 'Остання активність $minutes хв тому • прострочено';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded => 'У цьому журналі немає позначок.';
+
+  @override
+  String get fieldOps_tripMap => 'Мапа походу';
+
+  @override
+  String get fieldOps_tripMapEmpty =>
+      'Вибрані контакти ще не передали координати.';
+
+  @override
+  String get fieldOps_lastPositions => 'Останні передані місцезнаходження';
+
+  @override
+  String get fieldOps_positionsCaveat =>
+      'Місцезнаходження можуть бути застарілими. Ця мапа не відстежує GPS телефона й не доводить, що учасники зараз тут.';
+
+  @override
+  String get fieldOps_briefPreviewTitle =>
+      'Попередній перегляд зведення походу';
+
+  @override
+  String get fieldOps_briefPreviewHint =>
+      'Містить назви походу й імена контактів. Перевірте перед поширенням. Координати, ключі та історію повідомлень вилучено.';
+
+  @override
+  String get fieldOps_shareBrief => 'Поділитися зведенням';
+
+  @override
+  String get fieldOps_briefSubject => 'Зведення походу Bastion';
+
+  @override
+  String get fieldOps_tripName => 'Назва походу';
+
+  @override
+  String get fieldOps_defaultTripName => 'Мій похід';
+
+  @override
+  String get fieldOps_includePosition =>
+      'Додавати передане місцезнаходження радіостанції';
+
+  @override
+  String get fieldOps_includePositionHint =>
+      'Може бути застарілим; за замовчуванням передавання вимкнено.';
+
+  @override
+  String get fieldOps_includeBattery => 'Додавати заряд радіостанції';
+
+  @override
+  String get fieldOps_overdueLabel =>
+      'Попереджати, якщо контакт мовчить довше ніж';
+
+  @override
+  String get fieldOps_reminderLabel => 'Нагадувати про позначку';
+
+  @override
+  String get fieldOps_reminderHelper =>
+      'Сповіщення на телефоні, навіть якщо Bastion закрито.';
+
+  @override
+  String get fieldOps_reminderOff => 'Вимк.';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Через $count хвилини без позначки',
+      many: 'Через $count хвилин без позначки',
+      few: 'Через $count хвилини без позначки',
+      one: 'Через $count хвилину без позначки',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'SOS також надсилається в канал';
+
+  @override
+  String get fieldOps_sosChannelNone => 'Немає';
+
+  @override
+  String get fieldOps_selectContacts =>
+      'Виберіть до шести відомих контактів чату';
+
+  @override
+  String get fieldOps_sendCheckInTitle => 'Надіслати позначку?';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return 'Кому: $names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint =>
+      'Використовуються звичайні особисті повідомлення. Доставку відстежуватиме польовий журнал.';
+
+  @override
+  String get fieldOps_send => 'Надіслати';
+
+  @override
+  String get fieldOps_beforeYouLeave => 'Перед виходом';
+
+  @override
+  String get fieldOps_radioConnected => 'Радіостанцію під\'єднано';
+
+  @override
+  String get fieldOps_connectHint =>
+      'Під\'єднайтеся через Bluetooth, USB або TCP.';
+
+  @override
+  String get fieldOps_radioBattery => 'Заряд радіостанції';
+
+  @override
+  String get fieldOps_batteryUnknown => 'Невідомо; перевірте радіостанцію.';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent% • зарядіть для запланованого походу.';
+  }
+
+  @override
+  String get fieldOps_tripContacts => 'Контакти походу';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return 'Доступно $available/$selected. Переконайтеся, що вони мають сумісні радіостанції та канали.';
+  }
+
+  @override
+  String get fieldOps_offlineArea => 'Вибрана офлайн-область мапи';
+
+  @override
+  String get fieldOps_checkingFiles => 'Перевірка локальних файлів…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return 'Доступно файлів тайлів: $available/$expected; бракує: $missing. Це знімок; відкрийте область офлайн перед виходом.';
+  }
+
+  @override
+  String get fieldOps_locationChoice => 'Передавання місцезнаходження';
+
+  @override
+  String get fieldOps_locationOptedIn =>
+      'Увімкнено: передані радіостанцією координати можуть бути застарілими.';
+
+  @override
+  String get fieldOps_locationOff =>
+      'Передавання вимкнено. Ваші позначки не містять координат.';
+
+  @override
+  String get fieldOps_automationAvailability => 'Доступність автоматизацій';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      'Працює лише тоді, коли застосунок активний. Сон, закриття або втрата радіостанції можуть завадити запланованим діям.';
+
+  @override
+  String get fieldOps_readinessCaveat =>
+      'Перевірки готовності мають рекомендаційний характер; вони не доводять дальність зв\'язку й не гарантують доставку.';
+
+  @override
+  String get fieldOps_radio => 'Радіо';
+
+  @override
+  String get fieldOps_refreshChecks => 'Оновити перевірки';
+
+  @override
+  String get fieldOps_searchLog => 'Пошук у польовому журналі';
+
+  @override
+  String get fieldOps_kindAll => 'Усі';
+
+  @override
+  String get fieldOps_kindCheckIn => 'Позначка';
+
+  @override
+  String get fieldOps_kindReceived => 'Отримано';
+
+  @override
+  String get fieldOps_kindNote => 'Нотатка';
+
+  @override
+  String get fieldOps_kindDeadZone => 'Мертва зона';
+
+  @override
+  String get fieldOps_kindRadio => 'Радіо';
+
+  @override
+  String get fieldOps_kindAutomation => 'Автоматизація';
+
+  @override
+  String get fieldOps_kindMissed => 'Пропущено';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => 'Похід';
+
+  @override
+  String get fieldOps_kindOverdue => 'Прострочено';
+
+  @override
+  String get fieldOps_addNote => 'Додати нотатку';
+
+  @override
+  String get fieldOps_exportJson => 'Експорт JSON';
+
+  @override
+  String get fieldOps_deleteLog => 'Видалити журнал';
+
+  @override
+  String get fieldOps_logSubject => 'Польовий журнал Bastion';
+
+  @override
+  String get fieldOps_logCaveat =>
+      'Зберігається локально, до 1000 записів. Експорт може містити ключі контактів, повідомлення та місцезнаходження; перевірте перед поширенням.';
+
+  @override
+  String get fieldOps_noEntries => 'Немає відповідних записів.';
+
+  @override
+  String get fieldOps_tripUnspecified => 'Похід не вказано';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status: $explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return 'Записане передане місцезнаходження радіостанції $latitude, $longitude (може бути застарілим)';
+  }
+
+  @override
+  String get fieldOps_noteTitle => 'Польове спостереження';
+
+  @override
+  String get fieldOps_noteLabel => 'Що ви спостерігали?';
+
+  @override
+  String get fieldOps_deadZone => 'Позначена мертва зона';
+
+  @override
+  String get fieldOps_deadZoneHint =>
+      'Ваше спостереження, а не перевірений прогноз покриття.';
+
+  @override
+  String get fieldOps_savePosition =>
+      'Зберегти передане місцезнаходження радіостанції';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • може бути застарілим; не GPS телефона';
+  }
+
+  @override
+  String get fieldOps_noPosition => 'Немає придатних переданих координат';
+
+  @override
+  String get fieldOps_deleteLogTitle => 'Видалити польовий журнал?';
+
+  @override
+  String get fieldOps_deleteLogBody =>
+      'Буде видалено всі збережені записи на цьому телефоні. Налаштування походу збережуться.';
+
+  @override
+  String get fieldOps_localAutomations => 'Локальні автоматизації';
+
+  @override
+  String get fieldOps_enableForTrip => 'Увімкнути для цього походу';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      'Вимикаються після кожного перезапуску застосунку. Правила працюють лише тоді, коли застосунок активний. Пропущені заплановані дії з\'являються в польовому журналі й ніколи не виконуються пакетом заднім числом. Автоматичні позначки обмежено однією партією на 10 хвилин.';
+
+  @override
+  String get fieldOps_openBotMode => 'Відкрити режим бота Bastion';
+
+  @override
+  String get fieldOps_ruleEnabled => 'Правило ввімкнено';
+
+  @override
+  String get fieldOps_dryRun => 'Пробний запуск';
+
+  @override
+  String get fieldOps_dryRunHint => 'Записати дію без надсилання й сповіщень.';
+
+  @override
+  String get fieldOps_then => 'ТОДІ';
+
+  @override
+  String get fieldOps_actionLog => 'Записати в польовий журнал';
+
+  @override
+  String get fieldOps_actionNotify => 'Показати локальне сповіщення';
+
+  @override
+  String get fieldOps_actionCheckIn => 'Надіслати «I\'m OK» контактам походу';
+
+  @override
+  String get fieldOps_batteryThreshold => 'Заряд не вище';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return 'Наступне: $time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => 'Наступне: не заплановано';
+
+  @override
+  String get fieldOps_previewInLog => 'Попередній перегляд у журналі';
+
+  @override
+  String get fieldOps_allowNotifications => 'Дозволити сповіщення';
+
+  @override
+  String get fieldOps_triggerReconnect => 'КОЛИ радіостанція перепідключається';
+
+  @override
+  String get fieldOps_triggerDisconnect => 'КОЛИ радіостанція від\'єднується';
+
+  @override
+  String get fieldOps_triggerLowBattery =>
+      'КОЛИ заряд радіостанції перетинає поріг';
+
+  @override
+  String get fieldOps_triggerNewNode => 'КОЛИ додано новий вузол';
+
+  @override
+  String get fieldOps_triggerRepeater => 'КОЛИ додано новий ретранслятор';
+
+  @override
+  String get fieldOps_triggerScheduled =>
+      'КОЛИ настає час запланованої позначки';
+
+  @override
+  String get fieldOps_explainConnection => 'Пояснити моє підключення';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return 'Стан: $state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat =>
+      'Телефон під\'єднано до радіостанції. Само по собі це не забезпечує маршрут до ваших отримувачів.';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      'Немає активного радіопідключення. Перевірте дозволи Bluetooth, живлення й дальність радіостанції; USB/TCP доступні в розділі «Під\'єднати радіостанцію».';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return 'Позначки походу, що очікують підтвердження: $count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      'Час останньої появи й передані місцезнаходження вузлів можуть бути застарілими. Аналіз маршрутів показує маршрути, вивчені з помічених спроб; він не вигадує шляхи.';
+
+  @override
+  String get fieldOps_routeIntelligence => 'Аналіз маршрутів';
+
+  @override
+  String get fieldOps_coverageIntelligence => 'Аналіз покриття';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      'Порівнюйте записані спостереження двох польових сесій. Точки позначають передані місцезнаходження радіостанції, що записувала, де було чути вузли. Вони не означають безперервного покриття. Знімки RSSI/SNR — це не вимірювання для кожного вузла.';
+
+  @override
+  String get fieldOps_captureSession => 'Записати сесію';
+
+  @override
+  String get fieldOps_refreshHistory => 'Оновити історію';
+
+  @override
+  String get fieldOps_noCoverageSessions =>
+      'Збережених сесій покриття ще немає.';
+
+  @override
+  String get fieldOps_sessionA => 'Сесія A • бірюзовий';
+
+  @override
+  String get fieldOps_sessionB => 'Сесія B • бурштиновий';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A: унікальних вузлів $a • B: унікальних вузлів $b';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return 'Спільні: $shared • Лише A: $onlyA • Лише B: $onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat =>
+      'Якщо вузол не чути в одній сесії, це не доводить мертву зону. Умови й тривалість спостереження відрізняються.';
+
+  @override
+  String get fieldOps_heardTooltip =>
+      'Спостереження почутого вузла; не доказ успішного зв\'язку';
+
+  @override
+  String get fieldOps_noteTooltip =>
+      'Локальна нотатка в переданих координатах радіостанції; може бути застарілою.';
+
+  @override
+  String get bastionHome_aboutTooltip => 'Про Bastion';
+
+  @override
+  String get bastionHome_getStarted => 'ПОЧАТИ';
+
+  @override
+  String get bastionHome_getStartedHint =>
+      'Під\'єднайте радіостанцію й перевірте перше повідомлення';
+
+  @override
+  String get bastionHome_planYourTrip => 'СПЛАНУЙТЕ ПОХІД';
+
+  @override
+  String get bastionHome_tripActive => 'Похід активний';
+
+  @override
+  String get bastionHome_tripStopped => 'Похід зупинено';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • контактів: $contacts • непрочитаних: $unread';
+  }
+
+  @override
+  String get bastionHome_checkInOk => 'ПОЗНАЧИТИСЯ: УСЕ ГАРАЗД';
+
+  @override
+  String get bastionHome_checkInHint =>
+      'Перевірте контакти й повідомлення перед надсиланням. Стежте за підтвердженнями в польовому журналі.';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return 'Остання позначка: $summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => 'ПІД\'ЄДНАТИ РАДІОСТАНЦІЮ';
+
+  @override
+  String get bastionHome_connectRadioHint =>
+      'Підключення MeshCore через Bluetooth, USB і TCP';
+
+  @override
+  String get bastionHome_liveDiagnostics => 'ДІАГНОСТИКА НАЖИВО';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint =>
+      'Стан радіостанції, сигнал, пристрій та інструменти кадрів';
+
+  @override
+  String get bastionHome_meshDiscovery => 'ВИЯВЛЕННЯ МЕРЕЖІ';
+
+  @override
+  String get bastionHome_meshDiscoveryHint =>
+      'Знаходьте вузли й досліджуйте мережу навколо себе';
+
+  @override
+  String get bastionHome_fieldOpsHint =>
+      'Зведення походу, готовність, польовий журнал, автоматизації та порівняння покриття';
+
+  @override
+  String get bastionHome_fieldTools => 'ПОЛЬОВІ ІНСТРУМЕНТИ BASTION';
+
+  @override
+  String get bastionHome_statusActive => 'АКТИВНО';
+
+  @override
+  String get bastionHome_consoleOnline => 'ПОЛЬОВА КОНСОЛЬ У МЕРЕЖІ';
+
+  @override
+  String get bastionHome_consoleReady => 'ПОЛЬОВА КОНСОЛЬ ГОТОВА';
+
+  @override
+  String get bastionHome_consoleHint =>
+      'Під\'єднайте радіостанцію, щоб увімкнути панель наживо.';
+
+  @override
+  String bastionHome_battery(String value) {
+    return 'БАТ $value';
+  }
+
+  @override
+  String get bastionTools_title => 'Польові інструменти';
+
+  @override
+  String get bastionTools_backup => 'ЗАШИФРОВАНА РЕЗЕРВНА КОПІЯ';
+
+  @override
+  String get bastionTools_backupHint =>
+      'Збережіть налаштування, контакти й ключі, за бажанням з історією чатів';
+
+  @override
+  String get bastionTools_fieldOpsHint =>
+      'Позначки, готовність, польовий журнал, автоматизації та порівняння';
+
+  @override
+  String get bastionTools_mapHint =>
+      'Мапа наживо, сесії запису, інструменти офлайн-мап і регіони';
+
+  @override
+  String get bastionTools_pathAnalysis => 'АНАЛІЗ ШЛЯХІВ';
+
+  @override
+  String get bastionTools_pathHint => 'Маршрути, виявлення та аналіз шляхів';
+
+  @override
+  String get bastionTools_repeaterHint =>
+      'Стан, вхід, телеметрія, сусіди й адміністрування';
+
+  @override
+  String get bastionTools_statsHint =>
+      'Лічильники мережі наживо й активність контактів';
+
+  @override
+  String get bastionTools_diagnostics => 'ДІАГНОСТИКА';
+
+  @override
+  String get bastionTools_diagnosticsHint =>
+      'Стан радіостанції, відомості про пристрій, сирі кадри й експорт';
+
+  @override
+  String get bastionTools_about => 'ПРО ЗАСТОСУНОК + ПОДЯКИ';
+
+  @override
+  String get bastionTools_aboutHint =>
+      'Версія Bastion, заява про незалежність і ліцензії відкритого ПЗ';
+
+  @override
+  String get bastionAbout_title => 'Про застосунок + Подяки';
+
+  @override
+  String get bastionAbout_intro =>
+      'Незалежний громадський застосунок-компаньйон для мереж MeshCore. Bastion не є офіційним застосунком MeshCore, а додавання ресурсів спільноти не означає партнерства чи схвалення.';
+
+  @override
+  String get bastionAbout_version => 'ВЕРСІЯ';
+
+  @override
+  String get bastionAbout_openSource => 'ОСНОВА З ВІДКРИТИМ КОДОМ';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'Bastion створено на основі відкритого коду MeshCore Open за ліцензією MIT, який він змінює. Робота над сценарієм покриття також відзначає, де це доречно, застосунок MeshMapper Flutter App за ліцензією MIT.';
+
+  @override
+  String get bastionAbout_community => 'СПІЛЬНОТА ПОНАД УСЕ';
+
+  @override
+  String get bastionAbout_communityBody =>
+      'Ресурси сторонніх авторів залишаються власністю їхніх авторів. Право власності чи партнерство не маються на увазі.';
+
+  @override
+  String get bastionAbout_legalese =>
+      'Bastion • Незалежний компаньйон MeshCore';
+
+  @override
+  String get bastionAbout_licenses => 'ЛІЦЕНЗІЇ ВІДКРИТОГО ПЗ';
+
+  @override
+  String get bastionSetup_title => 'Початок роботи з Bastion';
+
+  @override
+  String get bastionSetup_intro =>
+      'Під\'єднайтеся, виберіть контакт, потім перевірте повідомлення. Повернутися до цього посібника можна з панелі будь-коли.';
+
+  @override
+  String get bastionSetup_step1 => '1. Під\'єднайте радіостанцію MeshCore';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return 'Під\'єднано до $device через $transport.';
+  }
+
+  @override
+  String get bastionSetup_noRadio => 'Радіостанцію ще не під\'єднано.';
+
+  @override
+  String get bastionSetup_step1Power =>
+      'Увімкніть радіостанцію-компаньйон MeshCore. Відкрийте «Під\'єднати радіостанцію» й виберіть Bluetooth, USB або TCP. Надайте дозволи, запитані для вибраного підключення.';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      'Якщо пошук Bluetooth нічого не знаходить, переконайтеся, що Bluetooth увімкнено і Bastion має дозвіл «Пристрої поблизу» в налаштуваннях застосунків Android. Виконайте всі додаткові запити дозволів, які показує сканер.';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => 'Діагностика підключення';
+
+  @override
+  String get bastionSetup_step2 => '2. Виберіть контакт чату';
+
+  @override
+  String get bastionSetup_step2Body =>
+      'Попросіть партнера поблизу із сумісними налаштуваннями радіостанції MeshCore оголосити свій вузол. Виберіть нижче відомий контакт чату; ретранслятори налаштовуються окремо.';
+
+  @override
+  String get bastionSetup_noContacts =>
+      'Немає доступних контактів чату. Під\'єднайте радіостанцію й відкрийте «Виявлення мережі».';
+
+  @override
+  String get bastionSetup_testRecipient => 'Тестовий отримувач';
+
+  @override
+  String get bastionSetup_meshDiscovery => 'Виявлення мережі';
+
+  @override
+  String get bastionSetup_step3 => '3. Надішліть і перевірте повідомлення';
+
+  @override
+  String get bastionSetup_step3Body =>
+      'Відкрийте чат, напишіть коротке тестове повідомлення, перевірте отримувача й натисніть «Надіслати». Поверніться сюди, щоб побачити останнє вихідне повідомлення, записане з моменту відкриття посібника.';
+
+  @override
+  String get bastionSetup_openTestChat => 'Відкрити тестовий чат';
+
+  @override
+  String get bastionSetup_connectFirst =>
+      'Під\'єднайте радіостанцію, щоб відкрити тестовий чат.';
+
+  @override
+  String get bastionSetup_chooseRecipient => 'Спершу виберіть отримувача.';
+
+  @override
+  String get bastionSetup_noTestMessage =>
+      'У цій сесії посібника вихідних тестових повідомлень не записано.';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return 'Останнє повідомлення: $status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      'Попросіть партнера підтвердити отримання або відповісти. Записане підтвердження не доводить прочитання. Якщо повідомлення не дійшло, перевірте підключення й отримувача ще раз.';
+
+  @override
+  String get bastionSetup_step4 => '4. Підготуйтеся до виходу';
+
+  @override
+  String get bastionSetup_step4Body =>
+      'Сплануйте контакти походу й перевірте завантажені області мап. Режим бота й польові автоматизації спочатку вимкнені; польові автоматизації працюють лише тоді, коли застосунок активний.';
+
+  @override
+  String get bastionSetup_tripTools => 'Інструменти походу й готовності';
+
+  @override
+  String get bastionDiag_title => 'Діагностика';
+
+  @override
+  String get bastionDiag_export => 'Експортувати діагностику';
+
+  @override
+  String get bastionDiag_channels => 'КАНАЛИ';
+
+  @override
+  String get bastionDiag_radio => 'РАДІО';
+
+  @override
+  String get bastionDiag_frequency => 'Частота';
+
+  @override
+  String get bastionDiag_bandwidth => 'Смуга';
+
+  @override
+  String get bastionDiag_spreadingFactor => 'Коефіцієнт розширення';
+
+  @override
+  String get bastionDiag_codingRate => 'Швидкість кодування';
+
+  @override
+  String get bastionDiag_txPower => 'Потужність передавання';
+
+  @override
+  String get bastionDiag_noiseFloor => 'Рівень шуму';
+
+  @override
+  String get bastionDiag_device => 'ПРИСТРІЙ';
+
+  @override
+  String get bastionDiag_name => 'Ім\'я';
+
+  @override
+  String get bastionDiag_manufacturer => 'Виробник';
+
+  @override
+  String get bastionDiag_firmware => 'Прошивка';
+
+  @override
+  String get bastionDiag_battery => 'Батарея';
+
+  @override
+  String get bastionDiag_transport => 'Підключення';
+
+  @override
+  String get bastionDiag_deepTools => 'РОЗШИРЕНІ ІНСТРУМЕНТИ';
+
+  @override
+  String get bastionDiag_liveStats => 'СТАТИСТИКА РАДІО НАЖИВО';
+
+  @override
+  String get bastionDiag_liveStatsHint => 'Шум, RSSI, SNR та ефірний час';
+
+  @override
+  String get bastionDiag_frameDebug => 'НАЛАГОДЖЕННЯ КАДРІВ / BLE';
+
+  @override
+  String get bastionDiag_frameDebugHint =>
+      'Досліджуйте декодовані та сирі отримані кадри';
+
+  @override
+  String get bastionDiag_appLog => 'ЖУРНАЛ НАЛАГОДЖЕННЯ ЗАСТОСУНКУ';
+
+  @override
+  String get bastionDiag_appLogHint =>
+      'Переглядайте діагностичні події застосунку';
+
+  @override
+  String get bastionDiag_online => 'РАДІО В МЕРЕЖІ';
+
+  @override
+  String get bastionDiag_offline => 'РАДІО НЕ В МЕРЕЖІ';
+
+  @override
+  String get bastionDiag_offlineHint =>
+      'Під\'єднайте компаньйон MeshCore, щоб заповнити діагностику наживо.';
+
+  @override
+  String get coverage_title => 'Запис покриття';
+
+  @override
+  String get coverage_leaveBlocked =>
+      'Зупиніть і збережіть сесію перед виходом.';
+
+  @override
+  String get coverage_savedSessions => 'ЗБЕРЕЖЕНІ СЕСІЇ';
+
+  @override
+  String get coverage_caveat =>
+      'RSSI/SNR — знімки радіостанції й можуть стосуватися іншого пакета. Місцезнаходження — це координати, передані радіостанцією, а не GPS телефона й не доказ покриття. Блакитний: записувач; бурштиновий: переданий вузол. Інтерполяція не виконується.';
+
+  @override
+  String get coverage_captureActive => 'ЗАПИС АКТИВНИЙ';
+
+  @override
+  String get coverage_fieldSession => 'ПОЛЬОВА СЕСІЯ ПОКРИТТЯ';
+
+  @override
+  String get coverage_connectedBody =>
+      'Bastion записує вперше почуті в цій сесії вузли, зокрема дані маршруту, метадані вузла/місцезнаходження й найближчий доступний знімок RSSI/SNR радіостанції.';
+
+  @override
+  String get coverage_disconnectedBody =>
+      'Перед початком під\'єднайте радіостанцію. Запис покриття зберігає спостереження мережі наживо з під\'єднаної радіостанції-компаньйона.';
+
+  @override
+  String get coverage_observations => 'СПОСТЕРЕЖЕННЯ';
+
+  @override
+  String get coverage_uniqueNodes => 'УНІКАЛЬНІ ВУЗЛИ';
+
+  @override
+  String get coverage_elapsed => 'МИНУЛО';
+
+  @override
+  String get coverage_radioConnected => 'РАДІО ПІД\'ЄДНАНО';
+
+  @override
+  String get coverage_noRadio => 'НЕМАЄ РАДІО';
+
+  @override
+  String get coverage_gpsReady => 'GPS РАДІО ГОТОВИЙ';
+
+  @override
+  String get coverage_noGps => 'НЕМАЄ GPS РАДІО';
+
+  @override
+  String get coverage_stopSave => 'СТОП + ЗБЕРЕГТИ СЕСІЮ';
+
+  @override
+  String get coverage_start => 'ПОЧАТИ СЕСІЮ ПОКРИТТЯ';
+
+  @override
+  String get coverage_exportJson => 'ЕКСПОРТ JSON';
+
+  @override
+  String get coverage_exportCsv => 'ЕКСПОРТ CSV';
+
+  @override
+  String get coverage_liveObservations => 'СПОСТЕРЕЖЕННЯ НАЖИВО';
+
+  @override
+  String get coverage_waiting => 'ОЧІКУВАННЯ АКТИВНОСТІ МЕРЕЖІ';
+
+  @override
+  String get coverage_waitingBody =>
+      'Почніть сесію, і тут з\'являться вперше почуті активні вузли. Значення RSSI/SNR — знімки радіостанції, і їх не завжди можна однозначно віднести до конкретного пакета.';
+
+  @override
+  String get coverage_signalNa => 'сигнал н/д';
+
+  @override
+  String get coverage_snrNa => 'SNR н/д';
+
+  @override
+  String get coverage_gpsUnavailable => 'GPS радіостанції недоступний';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return 'Шлях: $path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => 'flood';
+
+  @override
+  String get coverage_pathDirect => 'напряму';
+
+  @override
+  String get coverage_shareSubject => 'Сесія покриття Bastion';
+
+  @override
+  String get coverage_shareText => 'Експорт запису покриття Bastion';
+
+  @override
+  String get coverage_historyTitle => 'Збережені сесії покриття';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return 'Не вдалося завантажити сесії: $error';
+  }
+
+  @override
+  String get coverage_deleteTitle => 'Видалити збережену сесію?';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count спостереження буде видалено з цього пристрою.',
+      many: '$count спостережень буде видалено з цього пристрою.',
+      few: '$count спостереження буде видалено з цього пристрою.',
+      one: '$count спостереження буде видалено з цього пристрою.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return 'Не вдалося видалити сесію: $error';
+  }
+
+  @override
+  String get coverage_retention =>
+      'Зберігаються 20 останніх завершених сесій. Поділіться сесіями, які хочете зберегти. Перервані записи можна відкрити знову нижче.';
+
+  @override
+  String get coverage_noSessions =>
+      'Збережених сесій ще немає. Зупиніть запис, щоб зберегти його.';
+
+  @override
+  String get coverage_interrupted => 'Перерваний запис';
+
+  @override
+  String get coverage_saved => 'Збережено';
+
+  @override
+  String get coverage_deleteTooltip => 'Видалити сесію';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return 'Помилка експорту: $error';
+  }
+
+  @override
+  String get coverage_sessionTitle => 'Сесія покриття';
+
+  @override
+  String get coverage_shareJson => 'Поділитися JSON';
+
+  @override
+  String get coverage_shareCsv => 'Поділитися CSV';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi дБм • SNR $snr дБ • вік знімка $age мс';
+  }
+
+  @override
+  String get coverage_unknown => 'невідомо';
+
+  @override
+  String coverage_pathValue(String path) {
+    return 'шлях $path';
+  }
+
+  @override
+  String get coverage_recorder => 'Записувач';
+
+  @override
+  String get coverage_noCoordinates =>
+      'У цій сесії немає придатних координат. Спостереження й надалі доступні нижче.';
+
+  @override
+  String get coverage_osmAttribution =>
+      '© учасники OpenStreetMap • онлайн-підкладка';
+
+  @override
+  String get fieldStats_title => 'ПОЛЬОВА АНАЛІТИКА';
+
+  @override
+  String get fieldStats_snapshot => 'ЗНІМОК МЕРЕЖІ НАЖИВО';
+
+  @override
+  String get fieldStats_headline => 'Що Bastion знає просто зараз.';
+
+  @override
+  String get fieldStats_body =>
+      'Ці лічильники обчислюються за таблицею контактів під\'єднаного MeshCore, місцезнаходженнями, шляхами й часом останньої появи.';
+
+  @override
+  String get fieldStats_total => 'УСЬОГО';
+
+  @override
+  String get fieldStats_chatNodes => 'ВУЗЛИ ЧАТУ';
+
+  @override
+  String get fieldStats_rooms => 'КІМНАТИ';
+
+  @override
+  String get fieldStats_sensors => 'ДАТЧИКИ';
+
+  @override
+  String get fieldStats_located => 'З МІСЦЕЗНАХОДЖЕННЯМ';
+
+  @override
+  String get fieldStats_favorites => 'ОБРАНЕ';
+
+  @override
+  String get fieldStats_routeSnapshot => 'ЗНІМОК МАРШРУТІВ';
+
+  @override
+  String get fieldStats_routed => 'З МАРШРУТОМ';
+
+  @override
+  String get fieldStats_direct => 'НАПРЯМУ';
+
+  @override
+  String get fieldStats_flood => 'FLOOD';
+
+  @override
+  String get fieldStats_pathIntel => 'АНАЛІЗ ШЛЯХІВ';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'Аналіз маршрутів Bastion використовує збережені спроби шляхів, кількість переходів, успіхи/невдачі, час проходження й ваги маршрутів, щоб показувати вивчені маршрути.';
+
+  @override
+  String get fieldStats_coverageSessions => 'СЕСІЇ ПОКРИТТЯ';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      'Запис покриття тепер зберігає польові сесії, відновлює перервану роботу, експортує спостереження й наносить записані точки покриття на мапу. RSSI/SNR залишаються найближчим доступним знімком радіостанції.';
+
+  @override
+  String get mapHub_title => 'ПОЛЬОВА МАПА BASTION';
+
+  @override
+  String get mapHub_intro =>
+      'Мапи наживо, офлайн-області, регіональні профілі та польові сесії покриття Bastion.';
+
+  @override
+  String get mapHub_captureHint => 'Почати й зупинити польову сесію покриття';
+
+  @override
+  String get mapHub_badgeNew => 'НОВЕ';
+
+  @override
+  String get mapHub_liveMap => 'МАПА МЕРЕЖІ НАЖИВО';
+
+  @override
+  String get mapHub_liveMapHint =>
+      'Вузли, ретранслятори, місцезнаходження, маршрути й інструменти мапи';
+
+  @override
+  String get mapHub_badgeLive => 'НАЖИВО';
+
+  @override
+  String get mapHub_offlinePacks => 'ПАКЕТИ ОФЛАЙН-МАП';
+
+  @override
+  String get mapHub_offlinePacksHint =>
+      'Кешуйте тайли мап для походів і місць без зв\'язку';
+
+  @override
+  String get mapHub_badgeOffline => 'ОФЛАЙН';
+
+  @override
+  String get mapHub_regions => 'ПРОФІЛІ РЕГІОНІВ';
+
+  @override
+  String get mapHub_regionsHint =>
+      'Керуйте регіональними визначеннями мережі й завантажуйте їх';
+
+  @override
+  String get mapHub_badgeRegions => 'РЕГІОНИ';
+
+  @override
+  String get routes_title => 'Аналіз маршрутів';
+
+  @override
+  String get routes_headline => 'Подивіться, як трафік рухається мережею.';
+
+  @override
+  String get routes_body =>
+      'Bastion ранжує збережені маршрути за історією шляхів, уже вивченою з реальних спроб надсилання повідомлень і виявлення.';
+
+  @override
+  String get routes_routes => 'МАРШРУТИ';
+
+  @override
+  String get routes_success => 'УСПІХИ';
+
+  @override
+  String get routes_failed => 'НЕВДАЧІ';
+
+  @override
+  String get routes_routeMap => 'МАПА МАРШРУТІВ';
+
+  @override
+  String get routes_routeMapHint => 'Досліджуйте вузли й шляхи';
+
+  @override
+  String get routes_discover => 'ВИЯВИТИ';
+
+  @override
+  String get routes_discoverHint => 'Знайти нові маршрути';
+
+  @override
+  String get routes_learned => 'ВИВЧЕНІ МАРШРУТИ';
+
+  @override
+  String get routes_none => 'ІСТОРІЇ МАРШРУТІВ ЩЕ НЕМАЄ';
+
+  @override
+  String get routes_noneBody =>
+      'Користуйтеся мережею як зазвичай або запустіть виявлення. Bastion покаже тут вивчені маршрути, коли з\'явиться історія шляхів.';
+
+  @override
+  String get routes_direct => 'НАПРЯМУ';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count маршруту',
+      many: '$count маршрутів',
+      few: '$count маршрути',
+      one: '$count маршрут',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return 'НАЙКРАЩИЙ  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  вага $weight  •  успіхів: $success / невдач: $fail';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return 'Найшвидший відомий: $ms мс';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return 'Flood: успіхів: $success / невдач: $fail';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => 'КЕРУВАННЯ РЕТРАНСЛЯТОРАМИ';
+
+  @override
+  String get repeaterTools_headline => 'Керуйте інфраструктурою своєї мережі.';
+
+  @override
+  String get repeaterTools_body =>
+      'Виберіть виявлений ретранслятор, щоб увійти й відкрити його наявні інструменти MeshCore: стан, телеметрію, сусідів, налаштування й CLI.';
+
+  @override
+  String get repeaterTools_discovered => 'ВИЯВЛЕНО';
+
+  @override
+  String get repeaterTools_tools => 'ІНСТРУМЕНТИ';
+
+  @override
+  String get repeaterTools_available => 'ДОСТУПНІ РЕТРАНСЛЯТОРИ';
+
+  @override
+  String get repeaterTools_unnamed => 'Ретранслятор без назви';
+
+  @override
+  String get repeaterTools_statusTelemetry => 'СТАН + ТЕЛЕМЕТРІЯ';
+
+  @override
+  String get repeaterTools_statusTelemetryBody =>
+      'Перевіряйте стан і телеметрію ретранслятора наявними інструментами керування.';
+
+  @override
+  String get repeaterTools_neighbors => 'СУСІДИ';
+
+  @override
+  String get repeaterTools_neighborsBody =>
+      'Досліджуйте сусідню інфраструктуру й зв\'язки в мережі.';
+
+  @override
+  String get repeaterTools_cli => 'CLI + НАЛАШТУВАННЯ';
+
+  @override
+  String get repeaterTools_cliBody =>
+      'Адміністратори, що увійшли, мають доступ до наявного CLI ретранслятора й інструментів налаштування.';
+
+  @override
+  String get repeaterTools_empty =>
+      'Ретранслятори ще не виявлено. Під\'єднайте радіостанцію й спершу дослідіть мережу.';
+
+  @override
+  String get notification_fieldAlertTitle => 'Польове сповіщення Bastion';
+
+  @override
+  String get notification_checkInReminderTitle =>
+      'Нагадування Bastion про позначку';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return 'Немає позначки вже $minutes хв у поході «$trip». Відкрийте Bastion, щоб позначитися.';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return '$name не виходить на зв\'язок $minutes хв. Це не підтверджена надзвичайна ситуація.';
+  }
+
+  @override
+  String get notification_aTripContact => 'Контакт походу';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return 'Позначку не доставлено: $name. Її можна надіслати повторно на вкладці «Похід».';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return 'SOS підтверджено: $name';
+  }
+
+  @override
+  String get settings_batterySaver => 'Економія заряду';
+
+  @override
+  String get settings_batterySaverOn =>
+      'Увімк.: заряд радіостанції кожні 10 хв, GPS кожні 5 хв, статистика не частіше разу на хвилину, перевірки походу кожні 1–2 хв. Повідомлення, сповіщення й SOS не змінюються.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Рідше перевіряти радіостанцію й похід, щоб заощадити заряд телефона й радіостанції. Повідомлення, сповіщення й SOS не змінюються.';
+
+  @override
+  String get settings_readAloud => 'Читати нові повідомлення вголос';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Поки Bastion відкрито. Канали без звуку не озвучуються. Будь-яке повідомлення можна прочитати вголос з його меню.';
+
+  @override
+  String get settings_readAloudOff => 'Вимк.';
+
+  @override
+  String get settings_readAloudDirect => 'Особисті повідомлення';
+
+  @override
+  String get settings_readAloudAll =>
+      'Особисті повідомлення й повідомлення каналів';
+
+  @override
+  String get chat_readAloud => 'Прочитати вголос';
+
+  @override
+  String get messageSearch_title => 'Пошук повідомлень';
+
+  @override
+  String get messageSearch_intro =>
+      'Шукайте в усіх особистих повідомленнях і повідомленнях каналів, збережених на цьому телефоні.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Жодне повідомлення не містить «$query».';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count збігу',
+      many: '$count збігів',
+      few: '$count збіги',
+      one: '$count збіг',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'Показано останні збіги ($count)';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Позначитися';
+
+  @override
+  String get shortcuts_trip => 'Похід';
+
+  @override
+  String get shortcuts_chats => 'Чати';
+
+  @override
+  String get shortcuts_map => 'Мапа';
+
+  @override
+  String get sensor_liveUpdates => 'Оновлення наживо';
+
+  @override
+  String get sensor_intro =>
+      'Нехай датчик сам надсилає показники, коли вони змінюються, а не на запит щоразу. Потрібен вхід із правом читання.';
+
+  @override
+  String get sensor_watch => 'Стежити за змінами';
+
+  @override
+  String get sensor_loadFirst =>
+      'Спершу завантажте телеметрію, щоб вибрати показники.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Відстежується: $readings до $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Відстежується: $readings до $time • регіон $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Змін поки не надходило.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Останнє оновлення $time • отримано: $count';
+  }
+
+  @override
+  String get sensor_stop => 'Зупинити оновлення наживо';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Зупинено тут; датчик не підтвердив і припинить надсилання, коли мине час. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'Датчик перевіряє показники приблизно раз на хвилину й надсилає оновлення, коли вибраний показник змінюється більше за поріг.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (канал $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (канал $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (канал $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Оновлювати при зміні на $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Змінити поріг';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'Датчик може відстежувати до $max байт показників (зайнято: $used).';
+  }
+
+  @override
+  String get sensor_for => 'Тривалість';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count години',
+      many: '$count годин',
+      few: '$count години',
+      one: '$count година',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Почати';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return 'Поріг: $label';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Температура';
+
+  @override
+  String get sensor_typeHumidity => 'Вологість';
+
+  @override
+  String get sensor_typePressure => 'Тиск';
+
+  @override
+  String get sensor_typeVoltage => 'Напруга';
+
+  @override
+  String get sensor_typeCurrent => 'Струм';
+
+  @override
+  String get sensor_typeLight => 'Освітленість';
+
+  @override
+  String get sensor_typeConcentration => 'Концентрація';
+
+  @override
+  String get sensor_typePercentage => 'Відсоток';
+
+  @override
+  String get sensor_typeAnalogInput => 'Аналоговий вхід';
+
+  @override
+  String get sensor_typeAltitude => 'Висота';
 }

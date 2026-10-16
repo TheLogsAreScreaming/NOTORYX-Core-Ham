@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
+import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/contact.dart';
 import 'package:meshcore_open/models/message.dart';
 import 'package:meshcore_open/screens/bastion_setup_screen.dart';
@@ -34,7 +35,11 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider<MeshCoreConnector>.value(
         value: radio,
-        child: const MaterialApp(home: BastionSetupScreen()),
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: BastionSetupScreen(),
+        ),
       ),
     );
     expect(find.text('No radio connected yet.'), findsOneWidget);
@@ -72,7 +77,11 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider<MeshCoreConnector>.value(
         value: radio,
-        child: const MaterialApp(home: BastionSetupScreen()),
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: BastionSetupScreen(),
+        ),
       ),
     );
     await tester.scrollUntilVisible(

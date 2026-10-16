@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
+import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/channel.dart';
 import 'package:meshcore_open/models/contact.dart';
 import 'package:meshcore_open/models/field_ops.dart';
@@ -239,7 +240,11 @@ void main() {
         ChangeNotifierProvider<MeshCoreConnector>.value(value: radio),
         ChangeNotifierProvider<FieldOpsService>.value(value: ops),
       ],
-      child: const MaterialApp(home: Scaffold(body: SosPanel())),
+      child: const MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: Scaffold(body: SosPanel()),
+      ),
     );
 
     testWidgets('a tap does not send; a 2 second hold does', (tester) async {

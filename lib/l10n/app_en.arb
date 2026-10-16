@@ -3080,5 +3080,1192 @@
         "type": "String"
       }
     }
-  }
+  },
+  "bastion_tagline": "Communication without infrastructure.",
+  "bastion_nodes": "NODES",
+  "bastion_repeaters": "REPEATERS",
+  "bastion_active1h": "ACTIVE 1H",
+  "bastion_mapCoverage": "MAP + COVERAGE",
+  "bastion_routeIntelligence": "ROUTE INTELLIGENCE",
+  "bastion_repeaterTools": "REPEATER TOOLS",
+  "bastion_fieldStats": "FIELD STATS",
+  "bastion_fieldOps": "TRIP + FIELD OPERATIONS",
+  "bastion_coverageCapture": "COVERAGE CAPTURE",
+  "bastion_mapAttribution": "Map data © OpenStreetMap contributors; tiles by selected provider",
+  "bastion_observationsCount": "{count, plural, =1{1 observation} other{{count} observations}}",
+  "@bastion_observationsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bastion_uniqueNodesCount": "{count, plural, =1{1 unique node} other{{count} unique nodes}}",
+  "@bastion_uniqueNodesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bastion_hopsCount": "{count, plural, =1{1 hop} other{{count} hops}}",
+  "@bastion_hopsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bastion_minutesCount": "{count, plural, =1{1 minute} other{{count} minutes}}",
+  "@bastion_minutesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sos_holdHint": "Hold 2 seconds. Sends your position to your trip contacts every 5 minutes until someone replies.",
+  "sos_holdHintChannel": "Hold 2 seconds. Sends your position to your trip contacts and {channel} every 5 minutes until someone replies.",
+  "@sos_holdHintChannel": {
+    "placeholders": {
+      "channel": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_notSent": "SOS not sent: {error}",
+  "@sos_notSent": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_acknowledged": "Acknowledged by {name}. Repeats stopped.",
+  "@sos_acknowledged": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_waitingForRadio": "Waiting for the radio to send…",
+  "sos_repeatsFinished": "Sent {sends} of {max} times. Repeats finished; no reply yet.",
+  "@sos_repeatsFinished": {
+    "placeholders": {
+      "sends": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "sos_nextAt": "Sent {sends} of {max} times. Next at {time}.",
+  "@sos_nextAt": {
+    "placeholders": {
+      "sends": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sos_active": "SOS ACTIVE",
+  "sos_stop": "STOP",
+  "sos_imSafe": "I'M SAFE",
+  "sos_holdSemantics": "SOS. Hold to send.",
+  "sos_keepHolding": "KEEP HOLDING…",
+  "sos_holdForSos": "HOLD FOR SOS",
+  "sos_blockStorage": "Resolve the Field Log storage error first.",
+  "sos_blockNotConnected": "Connect your MeshCore radio to send an SOS.",
+  "sos_blockNoTarget": "Choose trip contacts or an SOS channel in Plan trip.",
+  "checkIn_labelOk": "I'm OK",
+  "checkIn_labelAtCamp": "At Camp",
+  "checkIn_labelDelayed": "Delayed",
+  "checkIn_labelHeadingBack": "Heading Back",
+  "checkIn_blockLoading": "Loading your trip…",
+  "checkIn_blockStorage": "Resolve the Field Log storage error before sending.",
+  "checkIn_blockBusy": "A check-in is being sent. Please wait.",
+  "checkIn_blockNoContacts": "Choose trip contacts in Plan trip.",
+  "checkIn_blockRosterIncomplete": "Some trip contacts are unavailable. Review your roster.",
+  "checkIn_blockNotConnected": "Connect your MeshCore radio to check in.",
+  "checkIn_blockNotActive": "Start your trip to enable check-ins.",
+  "checkIn_notSent": "Not sent",
+  "checkIn_deliveredToOne": "Delivered to {name}",
+  "@checkIn_deliveredToOne": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "checkIn_deliveredToAll": "Delivered to all {count} contacts",
+  "@checkIn_deliveredToAll": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "checkIn_deliveredSome": "Delivered to {delivered} of {total}",
+  "@checkIn_deliveredSome": {
+    "placeholders": {
+      "delivered": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "checkIn_notDeliveredTo": "Not delivered: {names}",
+  "@checkIn_notDeliveredTo": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "checkIn_waitingForRest": "Waiting for the rest",
+  "checkIn_aContact": "a contact",
+  "checkIn_statusPending": "Pending",
+  "checkIn_statusSent": "Sent",
+  "checkIn_statusDelivered": "Delivered",
+  "checkIn_statusFailed": "Failed",
+  "checkIn_explainPending": "Queued locally. This does not confirm radio transmission or receipt.",
+  "checkIn_explainSent": "The radio accepted the send. No delivery acknowledgment has been recorded.",
+  "checkIn_explainDelivered": "The app recorded a delivery acknowledgment. It does not prove the person read it.",
+  "checkIn_explainFailed": "No confirmed delivery. Check radio connection, recipient reachability and retry history.",
+  "checkIn_explainUnknown": "Delivery state is unavailable. Do not assume this message arrived.",
+  "tripBrief_heading": "BASTION • MeshCore Trip Brief",
+  "tripBrief_trip": "Trip: {name}",
+  "@tripBrief_trip": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tripBrief_status": "Status: {status}",
+  "@tripBrief_status": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "tripBrief_active": "Active",
+  "tripBrief_stopped": "Stopped",
+  "tripBrief_contacts": "Contacts: {names}",
+  "@tripBrief_contacts": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "tripBrief_noneSelected": "None selected",
+  "tripBrief_unavailableContact": "Unavailable contact (review roster)",
+  "tripBrief_overdueAfter": "Activity overdue after: {minutes} minutes (this phone alerts when a contact goes quiet)",
+  "@tripBrief_overdueAfter": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "tripBrief_reminder": "Check-in reminder: {value}",
+  "@tripBrief_reminder": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "tripBrief_reminderEvery": "every {minutes} minutes without a check-in",
+  "@tripBrief_reminderEvery": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "tripBrief_choices": "Check-in choices: {choices}",
+  "@tripBrief_choices": {
+    "placeholders": {
+      "choices": {
+        "type": "String"
+      }
+    }
+  },
+  "tripBrief_position": "Radio position in check-ins: {value}",
+  "@tripBrief_position": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "tripBrief_includedMayBeStale": "Included; may be stale",
+  "tripBrief_battery": "Radio battery in check-ins: {value}",
+  "@tripBrief_battery": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "tripBrief_included": "Included",
+  "tripBrief_off": "Off",
+  "tripBrief_review": "Review recipients and message before sending a check-in.",
+  "tripBrief_noProof": "Queued or sent does not prove delivery. An acknowledgment does not prove it was read.",
+  "tripBrief_overdueMeaning": "Overdue means no recent contact activity; it is not a confirmed emergency.",
+  "tripBrief_automations": "Field automations run only while the app is active. Agree on a separate plan for missed contact.",
+  "tripBrief_sharesOnly": "This brief shares information only; it does not send a radio message or start a trip.",
+  "fieldOps_title": "Bastion Field Operations",
+  "fieldOps_tabTrip": "TRIP",
+  "fieldOps_tabReady": "READY",
+  "fieldOps_tabLog": "LOG",
+  "fieldOps_tabAuto": "AUTO",
+  "fieldOps_tabCoverage": "COVERAGE",
+  "fieldOps_tabConnection": "CONNECTION",
+  "fieldOps_diagnostics": "Diagnostics",
+  "fieldOps_storageLoadError": "Field data could not be loaded. Saved data was retained; automations remain off.",
+  "fieldOps_storageSaveError": "Field data could not be saved. Automations stopped; existing stored data is retained.",
+  "fieldOps_regionHint": "Select an area and zoom levels in Offline maps.",
+  "fieldOps_regionLabel": "{source} • zoom {minZoom}–{maxZoom}",
+  "@fieldOps_regionLabel": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      },
+      "minZoom": {
+        "type": "String"
+      },
+      "maxZoom": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_mapVerifyFailed": "Map area could not be verified: {error}",
+  "@fieldOps_mapVerifyFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_tripActive": "{count, plural, =1{Trip active • 1 contact} other{Trip active • {count} contacts}}",
+  "@fieldOps_tripActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldOps_tripStopped": "Trip stopped. Start it when you are ready.",
+  "fieldOps_reminderAt": "Check-in reminder at {time}",
+  "@fieldOps_reminderAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_quietTooLong": "Quiet too long: {names}",
+  "@fieldOps_quietTooLong": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_planTrip": "Plan trip",
+  "fieldOps_endTrip": "End trip",
+  "fieldOps_startTrip": "Start trip",
+  "fieldOps_tripBrief": "Trip brief",
+  "fieldOps_connectRadio": "Connect radio",
+  "fieldOps_previewedCheckIns": "Previewed check-ins",
+  "fieldOps_previewedCheckInsHint": "Choose a status, review the actual recipients and message, then send. Queued does not mean delivered.",
+  "fieldOps_tripRoster": "Trip roster",
+  "fieldOps_rosterEmpty": "Choose up to six known chat contacts in Plan trip.",
+  "fieldOps_rosterCaveat": "Last heard is evidence of past activity. It does not establish current reachability. Overdue badges mean no recent contact activity, not a confirmed emergency.",
+  "fieldOps_offlineMaps": "Offline maps",
+  "fieldOps_checkingTiles": "Checking saved tiles…",
+  "fieldOps_cachedTiles": "{count, plural, =1{1 cached tile.} other{{count} cached tiles.}} This does not guarantee your entire route is covered.",
+  "@fieldOps_cachedTiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldOps_downloadAreas": "Download / inspect offline areas",
+  "fieldOps_lastCheckIn": "Last check-in, {time}",
+  "@fieldOps_lastCheckIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_deliveryChip": "{name}: {status}",
+  "@fieldOps_deliveryChip": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_contactFallback": "Contact",
+  "fieldOps_resendFailed": "{count, plural, =1{Resend to 1 not delivered} other{Resend to {count} not delivered}}",
+  "@fieldOps_resendFailed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldOps_memberUnavailable": "Selected contact unavailable",
+  "fieldOps_memberUnavailableHint": "Review this trip before sending.",
+  "fieldOps_lastActivity": "Last activity {minutes}m ago",
+  "@fieldOps_lastActivity": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldOps_lastActivityOverdue": "Last activity {minutes}m ago • overdue",
+  "@fieldOps_lastActivityOverdue": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldOps_noCheckInRecorded": "No check-in recorded in this log.",
+  "fieldOps_tripMap": "Trip map",
+  "fieldOps_tripMapEmpty": "No selected contacts have advertised coordinates yet.",
+  "fieldOps_lastPositions": "Last advertised positions",
+  "fieldOps_positionsCaveat": "Positions can be stale. This map does not track phone GPS or prove members are currently here.",
+  "fieldOps_briefPreviewTitle": "Preview Trip Brief",
+  "fieldOps_briefPreviewHint": "Includes trip and contact names. Review before sharing. Coordinates, keys and message history are omitted.",
+  "fieldOps_shareBrief": "Share brief",
+  "fieldOps_briefSubject": "Bastion Trip Brief",
+  "fieldOps_tripName": "Trip name",
+  "fieldOps_defaultTripName": "My trip",
+  "fieldOps_includePosition": "Include advertised radio position",
+  "fieldOps_includePositionHint": "May be stale; sharing is off by default.",
+  "fieldOps_includeBattery": "Include radio battery",
+  "fieldOps_overdueLabel": "Alert me when a contact is quiet for",
+  "fieldOps_reminderLabel": "Remind me to check in",
+  "fieldOps_reminderHelper": "A phone notification, even if Bastion is closed.",
+  "fieldOps_reminderOff": "Off",
+  "fieldOps_reminderAfter": "{count, plural, =1{After 1 minute without one} other{After {count} minutes without one}}",
+  "@fieldOps_reminderAfter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldOps_sosChannelLabel": "SOS also goes to channel",
+  "fieldOps_sosChannelNone": "None",
+  "fieldOps_selectContacts": "Select up to six known chat contacts",
+  "fieldOps_sendCheckInTitle": "Send check-in?",
+  "fieldOps_recipients": "To: {names}",
+  "@fieldOps_recipients": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_sendCheckInHint": "This uses normal direct-message sends. Delivery will be tracked in Field Log.",
+  "fieldOps_send": "Send",
+  "fieldOps_beforeYouLeave": "Before you leave",
+  "fieldOps_radioConnected": "Radio connected",
+  "fieldOps_connectHint": "Connect with Bluetooth, USB or TCP.",
+  "fieldOps_radioBattery": "Radio battery",
+  "fieldOps_batteryUnknown": "Unknown; inspect the radio.",
+  "fieldOps_batteryDetail": "{percent}% • charge for your planned trip.",
+  "@fieldOps_batteryDetail": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_tripContacts": "Trip contacts",
+  "fieldOps_tripContactsDetail": "{available}/{selected} available. Check they have compatible radios and channels.",
+  "@fieldOps_tripContactsDetail": {
+    "placeholders": {
+      "available": {
+        "type": "String"
+      },
+      "selected": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_offlineArea": "Selected offline map area",
+  "fieldOps_checkingFiles": "Checking local files…",
+  "fieldOps_regionStatus": "{available}/{expected} tile files available; {missing} missing. This is a snapshot; open the area offline before leaving.",
+  "@fieldOps_regionStatus": {
+    "placeholders": {
+      "available": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "missing": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_locationChoice": "Location-sharing choice",
+  "fieldOps_locationOptedIn": "Opted in: radio advertised coordinates may be stale.",
+  "fieldOps_locationOff": "Sharing is off. Your check-ins omit coordinates.",
+  "fieldOps_automationAvailability": "Automation availability",
+  "fieldOps_automationAvailabilityDetail": "Runs only while this app is active. Sleep, closure or loss of radio can prevent scheduled actions.",
+  "fieldOps_readinessCaveat": "Readiness checks are advisory; they do not prove radio range or guarantee message delivery.",
+  "fieldOps_radio": "Radio",
+  "fieldOps_refreshChecks": "Refresh checks",
+  "fieldOps_searchLog": "Search Field Log",
+  "fieldOps_kindAll": "All",
+  "fieldOps_kindCheckIn": "Check-in",
+  "fieldOps_kindReceived": "Received",
+  "fieldOps_kindNote": "Note",
+  "fieldOps_kindDeadZone": "Dead zone",
+  "fieldOps_kindRadio": "Radio",
+  "fieldOps_kindAutomation": "Automation",
+  "fieldOps_kindMissed": "Missed",
+  "fieldOps_kindSos": "SOS",
+  "fieldOps_kindTrip": "Trip",
+  "fieldOps_kindOverdue": "Overdue",
+  "fieldOps_addNote": "Add note",
+  "fieldOps_exportJson": "Export JSON",
+  "fieldOps_deleteLog": "Delete log",
+  "fieldOps_logSubject": "Bastion Field Log",
+  "fieldOps_logCaveat": "Stored locally, up to 1,000 entries. Exports may contain contact keys, messages and locations; review before sharing.",
+  "fieldOps_noEntries": "No matching entries.",
+  "fieldOps_tripUnspecified": "Trip unspecified",
+  "fieldOps_entryStatus": "{status}: {explanation}",
+  "@fieldOps_entryStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      },
+      "explanation": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_entryPosition": "Recorded radio-advertised position {latitude}, {longitude} (may be stale)",
+  "@fieldOps_entryPosition": {
+    "placeholders": {
+      "latitude": {
+        "type": "String"
+      },
+      "longitude": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_noteTitle": "Field observation",
+  "fieldOps_noteLabel": "What did you observe?",
+  "fieldOps_deadZone": "Reported dead zone",
+  "fieldOps_deadZoneHint": "Your observation, not a verified coverage prediction.",
+  "fieldOps_savePosition": "Save radio-advertised position",
+  "fieldOps_positionDetail": "{latitude}, {longitude} • may be stale; not phone GPS",
+  "@fieldOps_positionDetail": {
+    "placeholders": {
+      "latitude": {
+        "type": "String"
+      },
+      "longitude": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_noPosition": "No usable advertised coordinates",
+  "fieldOps_deleteLogTitle": "Delete Field Log?",
+  "fieldOps_deleteLogBody": "This removes all saved entries on this phone. Trip settings are kept.",
+  "fieldOps_localAutomations": "Local automations",
+  "fieldOps_enableForTrip": "Enable for this trip",
+  "fieldOps_automationsCaveat": "Starts off after every app restart. Rules run only while the app is active. Missed scheduled actions appear in Field Log and are never replayed in a burst. Automatic check-ins are limited to one batch per 10 minutes.",
+  "fieldOps_openBotMode": "Open Bastion Bot Mode",
+  "fieldOps_ruleEnabled": "Rule enabled",
+  "fieldOps_dryRun": "Dry run",
+  "fieldOps_dryRunHint": "Record the action without sending or notifying.",
+  "fieldOps_then": "THEN",
+  "fieldOps_actionLog": "Write to Field Log",
+  "fieldOps_actionNotify": "Show local notification",
+  "fieldOps_actionCheckIn": "Send I'm OK to trip contacts",
+  "fieldOps_batteryThreshold": "Battery at or below",
+  "fieldOps_nextDue": "Next due: {time}",
+  "@fieldOps_nextDue": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_nextDueNone": "Next due: not scheduled",
+  "fieldOps_previewInLog": "Preview in log",
+  "fieldOps_allowNotifications": "Allow notifications",
+  "fieldOps_triggerReconnect": "WHEN radio reconnects",
+  "fieldOps_triggerDisconnect": "WHEN radio disconnects",
+  "fieldOps_triggerLowBattery": "WHEN radio battery crosses threshold",
+  "fieldOps_triggerNewNode": "WHEN a new node is added",
+  "fieldOps_triggerRepeater": "WHEN a new repeater is added",
+  "fieldOps_triggerScheduled": "WHEN a scheduled check-in is due",
+  "fieldOps_explainConnection": "Explain my connection",
+  "fieldOps_connectionState": "State: {state} • {transport}",
+  "@fieldOps_connectionState": {
+    "placeholders": {
+      "state": {
+        "type": "String"
+      },
+      "transport": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_connectedCaveat": "The phone has a radio connection. That alone does not establish a route to your recipients.",
+  "fieldOps_disconnectedHint": "No active radio connection. Check Bluetooth permissions, radio power and range; USB/TCP are available from Connect radio.",
+  "fieldOps_awaitingConfirmation": "Trip check-ins awaiting confirmation: {count}",
+  "@fieldOps_awaitingConfirmation": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldOps_staleCaveat": "Node last-seen times and advertised positions can be stale. Route intelligence shows routes learned from observed attempts; it does not invent paths.",
+  "fieldOps_routeIntelligence": "Route intelligence",
+  "fieldOps_coverageIntelligence": "Coverage intelligence",
+  "fieldOps_coverageIntelligenceHint": "Compare recorded observations between two field sessions. Dots mark recorder radio-advertised positions where nodes were heard. They do not imply continuous coverage. RSSI/SNR snapshots are not per-node measurements.",
+  "fieldOps_captureSession": "Capture a session",
+  "fieldOps_refreshHistory": "Refresh history",
+  "fieldOps_noCoverageSessions": "No saved coverage sessions yet.",
+  "fieldOps_sessionA": "Session A • teal",
+  "fieldOps_sessionB": "Session B • amber",
+  "fieldOps_uniqueCompare": "A: {a} unique nodes • B: {b} unique nodes",
+  "@fieldOps_uniqueCompare": {
+    "placeholders": {
+      "a": {
+        "type": "String"
+      },
+      "b": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_overlap": "Shared: {shared} • Only A: {onlyA} • Only B: {onlyB}",
+  "@fieldOps_overlap": {
+    "placeholders": {
+      "shared": {
+        "type": "String"
+      },
+      "onlyA": {
+        "type": "String"
+      },
+      "onlyB": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldOps_compareCaveat": "Not hearing a node during one session does not establish a dead zone. Conditions and observation duration differ.",
+  "fieldOps_heardTooltip": "Heard-node observation; not proof of a successful link",
+  "fieldOps_noteTooltip": "Local note at radio-advertised coordinates; may be stale.",
+  "bastionHome_aboutTooltip": "About Bastion",
+  "bastionHome_getStarted": "GET STARTED",
+  "bastionHome_getStartedHint": "Connect your radio and verify your first message",
+  "bastionHome_planYourTrip": "PLAN YOUR TRIP",
+  "bastionHome_tripActive": "Trip active",
+  "bastionHome_tripStopped": "Trip stopped",
+  "bastionHome_tripSummary": "{state} • {contacts} contacts • {unread} unread messages",
+  "@bastionHome_tripSummary": {
+    "placeholders": {
+      "state": {
+        "type": "String"
+      },
+      "contacts": {
+        "type": "String"
+      },
+      "unread": {
+        "type": "String"
+      }
+    }
+  },
+  "bastionHome_checkInOk": "CHECK IN: I'M OK",
+  "bastionHome_checkInHint": "Review contacts and message before sending. Track acknowledgements in Field Log.",
+  "bastionHome_lastCheckIn": "Last check-in: {summary}",
+  "@bastionHome_lastCheckIn": {
+    "placeholders": {
+      "summary": {
+        "type": "String"
+      }
+    }
+  },
+  "bastionHome_connectRadio": "CONNECT RADIO",
+  "bastionHome_connectRadioHint": "Bluetooth, USB and TCP MeshCore connections",
+  "bastionHome_liveDiagnostics": "LIVE DIAGNOSTICS",
+  "bastionHome_liveDiagnosticsHint": "Radio health, signal, device and frame tools",
+  "bastionHome_meshDiscovery": "MESH DISCOVERY",
+  "bastionHome_meshDiscoveryHint": "Find nodes and inspect the mesh around you",
+  "bastionHome_fieldOpsHint": "Trip brief, readiness, Field Log, automations and coverage comparison",
+  "bastionHome_fieldTools": "BASTION FIELD TOOLS",
+  "bastionHome_statusActive": "ACTIVE",
+  "bastionHome_consoleOnline": "FIELD CONSOLE ONLINE",
+  "bastionHome_consoleReady": "FIELD CONSOLE READY",
+  "bastionHome_consoleHint": "Connect a radio to light up the live dashboard.",
+  "bastionHome_battery": "BAT {value}",
+  "@bastionHome_battery": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "bastionTools_title": "Field Tools",
+  "bastionTools_backup": "ENCRYPTED BACKUP",
+  "bastionTools_backupHint": "Save settings, contacts and keys with optional chat history",
+  "bastionTools_fieldOpsHint": "Check-ins, readiness, Field Log, automations and comparisons",
+  "bastionTools_mapHint": "Live map, capture sessions, offline map tools and regions",
+  "bastionTools_pathAnalysis": "PATH ANALYSIS",
+  "bastionTools_pathHint": "Routes, discovery and path intelligence",
+  "bastionTools_repeaterHint": "Status, login, telemetry, neighbors and administration",
+  "bastionTools_statsHint": "Live mesh counts and contact activity",
+  "bastionTools_diagnostics": "DIAGNOSTICS",
+  "bastionTools_diagnosticsHint": "Radio health, device information, raw frames and export",
+  "bastionTools_about": "ABOUT + CREDITS",
+  "bastionTools_aboutHint": "Bastion version, independence statement and open-source licenses",
+  "bastionAbout_title": "About + Credits",
+  "bastionAbout_intro": "An independent community companion app for MeshCore networks. Bastion is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.",
+  "bastionAbout_version": "VERSION",
+  "bastionAbout_openSource": "OPEN SOURCE FOUNDATION",
+  "bastionAbout_openSourceBody": "Bastion is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.",
+  "bastionAbout_community": "COMMUNITY FIRST",
+  "bastionAbout_communityBody": "Third-party creator resources remain the property of their respective creators. No ownership or partnership is implied.",
+  "bastionAbout_legalese": "Bastion • Independent MeshCore companion",
+  "bastionAbout_licenses": "OPEN SOURCE LICENSES",
+  "bastionSetup_title": "Get started with Bastion",
+  "bastionSetup_intro": "Connect, choose a contact, then verify a message. You can return to this guide from the dashboard at any time.",
+  "bastionSetup_step1": "1. Connect your MeshCore radio",
+  "bastionSetup_connectedTo": "Connected to {device} using {transport}.",
+  "@bastionSetup_connectedTo": {
+    "placeholders": {
+      "device": {
+        "type": "String"
+      },
+      "transport": {
+        "type": "String"
+      }
+    }
+  },
+  "bastionSetup_noRadio": "No radio connected yet.",
+  "bastionSetup_step1Power": "Power on a MeshCore companion radio. Open Connect radio and choose Bluetooth, USB or TCP. Allow the permissions requested for your chosen connection.",
+  "bastionSetup_step1Bluetooth": "If Bluetooth discovery is empty, check Bluetooth is enabled and Bastion has Nearby devices permission in Android app settings. Follow any additional permission prompt shown by the scanner.",
+  "bastionSetup_connectionDiagnostics": "Connection diagnostics",
+  "bastionSetup_step2": "2. Choose a chat contact",
+  "bastionSetup_step2Body": "Ask a nearby partner with compatible MeshCore radio settings to advertise their node. Choose a known chat contact below; repeaters are managed separately.",
+  "bastionSetup_noContacts": "No chat contacts available. Connect your radio and open Mesh discovery.",
+  "bastionSetup_testRecipient": "Test recipient",
+  "bastionSetup_meshDiscovery": "Mesh discovery",
+  "bastionSetup_step3": "3. Send and verify a message",
+  "bastionSetup_step3Body": "Open chat, write a short test message, review the recipient and tap Send. Return here to see the latest outgoing message recorded since opening this guide.",
+  "bastionSetup_openTestChat": "Open test chat",
+  "bastionSetup_connectFirst": "Connect your radio to open test chat.",
+  "bastionSetup_chooseRecipient": "Choose a recipient first.",
+  "bastionSetup_noTestMessage": "No outgoing test message recorded in this guide session.",
+  "bastionSetup_latestMessage": "Latest message: {status} • {time}",
+  "@bastionSetup_latestMessage": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "bastionSetup_confirmReceipt": "Ask your partner to confirm receipt or reply. A recorded acknowledgment does not prove they read it. Recheck the connection and recipient if a message fails.",
+  "bastionSetup_step4": "4. Prepare for the field",
+  "bastionSetup_step4Body": "Plan your trip contacts and inspect downloaded map areas. Bot Mode and field automations start off; field automations run only while the app is active.",
+  "bastionSetup_tripTools": "Trip and readiness tools",
+  "bastionDiag_title": "Diagnostics",
+  "bastionDiag_export": "Export diagnostics",
+  "bastionDiag_channels": "CHANNELS",
+  "bastionDiag_radio": "RADIO",
+  "bastionDiag_frequency": "Frequency",
+  "bastionDiag_bandwidth": "Bandwidth",
+  "bastionDiag_spreadingFactor": "Spreading factor",
+  "bastionDiag_codingRate": "Coding rate",
+  "bastionDiag_txPower": "TX power",
+  "bastionDiag_noiseFloor": "Noise floor",
+  "bastionDiag_device": "DEVICE",
+  "bastionDiag_name": "Name",
+  "bastionDiag_manufacturer": "Manufacturer",
+  "bastionDiag_firmware": "Firmware",
+  "bastionDiag_battery": "Battery",
+  "bastionDiag_transport": "Transport",
+  "bastionDiag_deepTools": "DEEP TOOLS",
+  "bastionDiag_liveStats": "LIVE RADIO STATS",
+  "bastionDiag_liveStatsHint": "Noise, RSSI, SNR and airtime",
+  "bastionDiag_frameDebug": "FRAME / BLE DEBUG",
+  "bastionDiag_frameDebugHint": "Inspect decoded and raw received frames",
+  "bastionDiag_appLog": "APP DEBUG LOG",
+  "bastionDiag_appLogHint": "Review application diagnostic events",
+  "bastionDiag_online": "RADIO ONLINE",
+  "bastionDiag_offline": "RADIO OFFLINE",
+  "bastionDiag_offlineHint": "Connect a MeshCore companion to populate live diagnostics.",
+  "coverage_title": "Coverage Capture",
+  "coverage_leaveBlocked": "Stop and save the session before leaving.",
+  "coverage_savedSessions": "SAVED SESSIONS",
+  "coverage_caveat": "RSSI/SNR are radio snapshots and may belong to another packet. Positions are radio-advertised coordinates, not phone GPS or proof of coverage. Cyan: recorder; amber: advertised node. No interpolation is performed.",
+  "coverage_captureActive": "CAPTURE ACTIVE",
+  "coverage_fieldSession": "FIELD COVERAGE SESSION",
+  "coverage_connectedBody": "Bastion records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.",
+  "coverage_disconnectedBody": "Connect a radio before starting. Coverage capture records live mesh observations from the connected companion radio.",
+  "coverage_observations": "OBSERVATIONS",
+  "coverage_uniqueNodes": "UNIQUE NODES",
+  "coverage_elapsed": "ELAPSED",
+  "coverage_radioConnected": "RADIO CONNECTED",
+  "coverage_noRadio": "NO RADIO",
+  "coverage_gpsReady": "RADIO GPS READY",
+  "coverage_noGps": "NO RADIO GPS",
+  "coverage_stopSave": "STOP + SAVE SESSION",
+  "coverage_start": "START COVERAGE SESSION",
+  "coverage_exportJson": "EXPORT JSON",
+  "coverage_exportCsv": "EXPORT CSV",
+  "coverage_liveObservations": "LIVE OBSERVATIONS",
+  "coverage_waiting": "WAITING FOR MESH ACTIVITY",
+  "coverage_waitingBody": "Start a session and newly heard active nodes will appear here. RSSI/SNR values are radio snapshots and may not always be uniquely attributable to a specific packet.",
+  "coverage_signalNa": "signal n/a",
+  "coverage_snrNa": "SNR n/a",
+  "coverage_gpsUnavailable": "radio GPS unavailable",
+  "coverage_pathLine": "Path: {path}  •  {location}",
+  "@coverage_pathLine": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      },
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "coverage_pathFlood": "flood",
+  "coverage_pathDirect": "direct",
+  "coverage_shareSubject": "Bastion Coverage Session",
+  "coverage_shareText": "Bastion coverage capture export",
+  "coverage_historyTitle": "Saved coverage sessions",
+  "coverage_loadFailed": "Could not load sessions: {error}",
+  "@coverage_loadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "coverage_deleteTitle": "Delete saved session?",
+  "coverage_deleteBody": "{count, plural, =1{1 observation will be removed from this device.} other{{count} observations will be removed from this device.}}",
+  "@coverage_deleteBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coverage_deleteFailed": "Could not delete session: {error}",
+  "@coverage_deleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "coverage_retention": "The newest 20 completed sessions are retained. Share sessions you want to keep. Interrupted captures can be reopened below.",
+  "coverage_noSessions": "No saved sessions yet. Stop a capture to save it.",
+  "coverage_interrupted": "Interrupted capture",
+  "coverage_saved": "Saved",
+  "coverage_deleteTooltip": "Delete session",
+  "coverage_exportFailed": "Export failed: {error}",
+  "@coverage_exportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "coverage_sessionTitle": "Coverage session",
+  "coverage_shareJson": "Share JSON",
+  "coverage_shareCsv": "Share CSV",
+  "coverage_snapshotDetail": "{rssi} dBm • SNR {snr} dB • snapshot age {age} ms",
+  "@coverage_snapshotDetail": {
+    "placeholders": {
+      "rssi": {
+        "type": "String"
+      },
+      "snr": {
+        "type": "String"
+      },
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "coverage_unknown": "unknown",
+  "coverage_pathValue": "path {path}",
+  "@coverage_pathValue": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "coverage_recorder": "Recorder",
+  "coverage_noCoordinates": "No usable coordinates in this session. Observations remain available below.",
+  "coverage_osmAttribution": "© OpenStreetMap contributors • online basemap",
+  "fieldStats_title": "FIELD INTELLIGENCE",
+  "fieldStats_snapshot": "LIVE MESH SNAPSHOT",
+  "fieldStats_headline": "What Bastion knows right now.",
+  "fieldStats_body": "These counters are calculated from the connected MeshCore contact table, locations, paths and last-seen timestamps.",
+  "fieldStats_total": "TOTAL",
+  "fieldStats_chatNodes": "CHAT NODES",
+  "fieldStats_rooms": "ROOMS",
+  "fieldStats_sensors": "SENSORS",
+  "fieldStats_located": "LOCATED",
+  "fieldStats_favorites": "FAVORITES",
+  "fieldStats_routeSnapshot": "ROUTE SNAPSHOT",
+  "fieldStats_routed": "ROUTED",
+  "fieldStats_direct": "DIRECT",
+  "fieldStats_flood": "FLOOD",
+  "fieldStats_pathIntel": "PATH INTELLIGENCE",
+  "fieldStats_pathIntelBody": "Bastion’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.",
+  "fieldStats_coverageSessions": "COVERAGE SESSIONS",
+  "fieldStats_coverageSessionsBody": "Coverage Capture now saves field sessions, restores interrupted work, exports observations and maps recorded coverage points. RSSI/SNR remain the nearest available radio snapshot.",
+  "mapHub_title": "BASTION FIELD MAP",
+  "mapHub_intro": "Live maps, offline areas, regional profiles and Bastion field coverage sessions.",
+  "mapHub_captureHint": "Start and stop a field coverage session",
+  "mapHub_badgeNew": "NEW",
+  "mapHub_liveMap": "LIVE MESH MAP",
+  "mapHub_liveMapHint": "Nodes, repeaters, positions, routes and map tools",
+  "mapHub_badgeLive": "LIVE",
+  "mapHub_offlinePacks": "OFFLINE MAP PACKS",
+  "mapHub_offlinePacksHint": "Cache map tiles for trips and no-service areas",
+  "mapHub_badgeOffline": "OFFLINE",
+  "mapHub_regions": "REGION PROFILES",
+  "mapHub_regionsHint": "Manage and fetch regional mesh definitions",
+  "mapHub_badgeRegions": "REGIONS",
+  "routes_title": "Route Intelligence",
+  "routes_headline": "See how traffic moves through the mesh.",
+  "routes_body": "Bastion ranks saved routes using the path history already learned from real message attempts and discoveries.",
+  "routes_routes": "ROUTES",
+  "routes_success": "SUCCESS",
+  "routes_failed": "FAILED",
+  "routes_routeMap": "ROUTE MAP",
+  "routes_routeMapHint": "Inspect nodes and paths",
+  "routes_discover": "DISCOVER",
+  "routes_discoverHint": "Find fresh routes",
+  "routes_learned": "LEARNED ROUTES",
+  "routes_none": "NO ROUTE HISTORY YET",
+  "routes_noneBody": "Use the mesh normally or run discovery. Bastion will surface learned routes here as path history becomes available.",
+  "routes_direct": "DIRECT",
+  "routes_routeCount": "{count, plural, =1{1 route} other{{count} routes}}",
+  "@routes_routeCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "routes_best": "BEST  {path}",
+  "@routes_best": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "routes_bestDetail": "{hops}  •  weight {weight}  •  {success} success / {fail} fail",
+  "@routes_bestDetail": {
+    "placeholders": {
+      "hops": {
+        "type": "String"
+      },
+      "weight": {
+        "type": "String"
+      },
+      "success": {
+        "type": "String"
+      },
+      "fail": {
+        "type": "String"
+      }
+    }
+  },
+  "routes_fastest": "Fastest known: {ms} ms",
+  "@routes_fastest": {
+    "placeholders": {
+      "ms": {
+        "type": "String"
+      }
+    }
+  },
+  "routes_flood": "Flood: {success} success / {fail} fail",
+  "@routes_flood": {
+    "placeholders": {
+      "success": {
+        "type": "String"
+      },
+      "fail": {
+        "type": "String"
+      }
+    }
+  },
+  "repeaterTools_heroLabel": "REPEATER COMMAND",
+  "repeaterTools_headline": "Manage the infrastructure behind your mesh.",
+  "repeaterTools_body": "Select a discovered repeater to authenticate and open its existing MeshCore status, telemetry, neighbors, settings and CLI tools.",
+  "repeaterTools_discovered": "DISCOVERED",
+  "repeaterTools_tools": "TOOLS",
+  "repeaterTools_available": "AVAILABLE REPEATERS",
+  "repeaterTools_unnamed": "Unnamed repeater",
+  "repeaterTools_statusTelemetry": "STATUS + TELEMETRY",
+  "repeaterTools_statusTelemetryBody": "Inspect repeater health and telemetry using the existing management stack.",
+  "repeaterTools_neighbors": "NEIGHBORS",
+  "repeaterTools_neighborsBody": "Inspect neighboring infrastructure and mesh relationships.",
+  "repeaterTools_cli": "CLI + SETTINGS",
+  "repeaterTools_cliBody": "Authenticated administrators can reach the existing repeater CLI and configuration tools.",
+  "repeaterTools_empty": "No repeaters discovered yet. Connect a radio and discover the mesh first.",
+  "notification_fieldAlertTitle": "Bastion Field Alert",
+  "notification_checkInReminderTitle": "Bastion check-in reminder",
+  "notification_checkInReminderBody": "No check-in for {minutes} minutes on {trip}. Open Bastion to check in.",
+  "@notification_checkInReminderBody": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "trip": {
+        "type": "String"
+      }
+    }
+  },
+  "notification_overdueBody": "{name} not heard from in {minutes} minutes. This is not a confirmed emergency.",
+  "@notification_overdueBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notification_aTripContact": "A trip contact",
+  "notification_checkInNotDelivered": "Check-in not delivered to {name}. You can resend it from Trip.",
+  "@notification_checkInNotDelivered": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notification_sosAcknowledged": "SOS acknowledged by {name}",
+  "@notification_sosAcknowledged": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_batterySaver": "Battery saver",
+  "settings_batterySaverOn": "On: radio battery every 10 min, GPS every 5 min, stats at most once a minute, trip checks every 1–2 min. Messages, alerts and SOS are unchanged.",
+  "settings_batterySaverOff": "Check the radio and trip less often to save phone and radio battery. Messages, alerts and SOS are unchanged.",
+  "settings_readAloud": "Read new messages aloud",
+  "settings_readAloudHelper": "While Bastion is open. Muted channels stay quiet. Any message can also be read from its menu.",
+  "settings_readAloudOff": "Off",
+  "settings_readAloudDirect": "Direct messages",
+  "settings_readAloudAll": "Direct and channel messages",
+  "chat_readAloud": "Read aloud",
+  "messageSearch_title": "Search messages",
+  "messageSearch_intro": "Search every direct and channel message saved on this phone.",
+  "messageSearch_noResults": "No messages contain \"{query}\".",
+  "@messageSearch_noResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "messageSearch_count": "{count, plural, =1{1 match} other{{count} matches}}",
+  "@messageSearch_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "messageSearch_capped": "Showing the newest {count} matches",
+  "@messageSearch_capped": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shortcuts_checkIn": "Check in",
+  "shortcuts_trip": "Trip",
+  "shortcuts_chats": "Chats",
+  "shortcuts_map": "Map",
+  "sensor_liveUpdates": "Live updates",
+  "sensor_intro": "Have the sensor send readings by itself when they change, instead of asking each time. Needs a login with read access.",
+  "sensor_watch": "Watch for changes",
+  "sensor_loadFirst": "Load telemetry first to choose readings.",
+  "sensor_watching": "Watching {readings} until {time}.",
+  "@sensor_watching": {
+    "placeholders": {
+      "readings": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_watchingRegion": "Watching {readings} until {time} • region {region}.",
+  "@sensor_watchingRegion": {
+    "placeholders": {
+      "readings": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      },
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_noChanges": "No changes reported yet.",
+  "sensor_lastUpdate": "Last update {time} • {count} received",
+  "@sensor_lastUpdate": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sensor_stop": "Stop live updates",
+  "sensor_stopUnconfirmed": "Stopped here; the sensor did not confirm and will stop when the time runs out. {error}",
+  "@sensor_stopUnconfirmed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_dialogBody": "The sensor checks about once a minute and sends an update when a chosen reading changes by more than its threshold.",
+  "sensor_readingTitle": "{label} (ch {channel})",
+  "@sensor_readingTitle": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "channel": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_readingValue": "{label} (ch {channel}): {value}",
+  "@sensor_readingValue": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "channel": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_watchItem": "{label} (ch {channel}) ±{delta}",
+  "@sensor_watchItem": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "channel": {
+        "type": "String"
+      },
+      "delta": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_updateOn": "Update on a change of {delta}",
+  "@sensor_updateOn": {
+    "placeholders": {
+      "delta": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_changeThreshold": "Change threshold",
+  "sensor_capacity": "The sensor can watch up to {max} bytes of readings ({used} used).",
+  "@sensor_capacity": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      },
+      "used": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_for": "For",
+  "sensor_hours": "{count, plural, =1{1 hour} other{{count} hours}}",
+  "@sensor_hours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sensor_start": "Start",
+  "sensor_thresholdTitle": "{label} threshold",
+  "@sensor_thresholdTitle": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_typeTemperature": "Temperature",
+  "sensor_typeHumidity": "Humidity",
+  "sensor_typePressure": "Pressure",
+  "sensor_typeVoltage": "Voltage",
+  "sensor_typeCurrent": "Current",
+  "sensor_typeLight": "Light",
+  "sensor_typeConcentration": "Concentration",
+  "sensor_typePercentage": "Percentage",
+  "sensor_typeAnalogInput": "Analog input",
+  "sensor_typeAltitude": "Altitude"
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
@@ -57,7 +58,11 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider.value(
         value: settings,
-        child: const MaterialApp(home: Scaffold(body: BatterySaverCard())),
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(body: BatterySaverCard()),
+        ),
       ),
     );
     expect(

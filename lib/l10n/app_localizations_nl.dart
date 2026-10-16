@@ -5438,4 +5438,1868 @@ class AppLocalizationsNl extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes m $seconds s';
   }
+
+  @override
+  String get bastion_tagline => 'Communicatie zonder infrastructuur.';
+
+  @override
+  String get bastion_nodes => 'NODES';
+
+  @override
+  String get bastion_repeaters => 'REPEATERS';
+
+  @override
+  String get bastion_active1h => 'ACTIEF 1 U';
+
+  @override
+  String get bastion_mapCoverage => 'KAART + DEKKING';
+
+  @override
+  String get bastion_routeIntelligence => 'ROUTE-INZICHT';
+
+  @override
+  String get bastion_repeaterTools => 'REPEATERTOOLS';
+
+  @override
+  String get bastion_fieldStats => 'VELDSTATISTIEKEN';
+
+  @override
+  String get bastion_fieldOps => 'TOCHT + VELDOPERATIES';
+
+  @override
+  String get bastion_coverageCapture => 'DEKKINGSOPNAME';
+
+  @override
+  String get bastion_mapAttribution =>
+      'Kaartgegevens © OpenStreetMap-bijdragers; tegels van de gekozen aanbieder';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count waarnemingen',
+      one: '1 waarneming',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count unieke nodes',
+      one: '1 unieke node',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hops',
+      one: '1 hop',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count minuten',
+      one: '1 minuut',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint =>
+      'Houd 2 seconden ingedrukt. Stuurt je positie elke 5 minuten naar je tochtcontacten tot iemand antwoordt.';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return 'Houd 2 seconden ingedrukt. Stuurt je positie elke 5 minuten naar je tochtcontacten en $channel tot iemand antwoordt.';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'SOS niet verzonden: $error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return 'Bevestigd door $name. Herhalingen gestopt.';
+  }
+
+  @override
+  String get sos_waitingForRadio => 'Wachten tot de radio verzendt…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return '$sends van $max keer verzonden. Herhalingen klaar; nog geen antwoord.';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return '$sends van $max keer verzonden. Volgende om $time.';
+  }
+
+  @override
+  String get sos_active => 'SOS ACTIEF';
+
+  @override
+  String get sos_stop => 'STOP';
+
+  @override
+  String get sos_imSafe => 'IK BEN VEILIG';
+
+  @override
+  String get sos_holdSemantics => 'SOS. Ingedrukt houden om te verzenden.';
+
+  @override
+  String get sos_keepHolding => 'BLIJF VASTHOUDEN…';
+
+  @override
+  String get sos_holdForSos => 'VASTHOUDEN VOOR SOS';
+
+  @override
+  String get sos_blockStorage =>
+      'Los eerst de opslagfout van het veldlogboek op.';
+
+  @override
+  String get sos_blockNotConnected =>
+      'Verbind je MeshCore-radio om een SOS te sturen.';
+
+  @override
+  String get sos_blockNoTarget =>
+      'Kies tochtcontacten of een SOS-kanaal in Tocht plannen.';
+
+  @override
+  String get checkIn_labelOk => 'Alles goed';
+
+  @override
+  String get checkIn_labelAtCamp => 'In het kamp';
+
+  @override
+  String get checkIn_labelDelayed => 'Vertraagd';
+
+  @override
+  String get checkIn_labelHeadingBack => 'Op de terugweg';
+
+  @override
+  String get checkIn_blockLoading => 'Je tocht wordt geladen…';
+
+  @override
+  String get checkIn_blockStorage =>
+      'Los de opslagfout van het veldlogboek op voordat je verzendt.';
+
+  @override
+  String get checkIn_blockBusy =>
+      'Er wordt een check-in verzonden. Even wachten.';
+
+  @override
+  String get checkIn_blockNoContacts => 'Kies tochtcontacten in Tocht plannen.';
+
+  @override
+  String get checkIn_blockRosterIncomplete =>
+      'Sommige tochtcontacten zijn niet beschikbaar. Controleer je lijst.';
+
+  @override
+  String get checkIn_blockNotConnected =>
+      'Verbind je MeshCore-radio om in te checken.';
+
+  @override
+  String get checkIn_blockNotActive =>
+      'Start je tocht om check-ins in te schakelen.';
+
+  @override
+  String get checkIn_notSent => 'Niet verzonden';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return 'Afgeleverd bij $name';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return 'Afgeleverd bij alle $count contacten';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return 'Afgeleverd bij $delivered van $total';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return 'Niet afgeleverd: $names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => 'Wachten op de rest';
+
+  @override
+  String get checkIn_aContact => 'een contact';
+
+  @override
+  String get checkIn_statusPending => 'In afwachting';
+
+  @override
+  String get checkIn_statusSent => 'Verzonden';
+
+  @override
+  String get checkIn_statusDelivered => 'Afgeleverd';
+
+  @override
+  String get checkIn_statusFailed => 'Mislukt';
+
+  @override
+  String get checkIn_explainPending =>
+      'Lokaal in de wachtrij. Dit bevestigt geen radio-uitzending of ontvangst.';
+
+  @override
+  String get checkIn_explainSent =>
+      'De radio heeft het bericht aangenomen. Er is geen afleverbevestiging vastgelegd.';
+
+  @override
+  String get checkIn_explainDelivered =>
+      'De app heeft een afleverbevestiging vastgelegd. Dit bewijst niet dat de persoon het heeft gelezen.';
+
+  @override
+  String get checkIn_explainFailed =>
+      'Geen bevestigde aflevering. Controleer de radioverbinding, de bereikbaarheid van de ontvanger en de herhaalgeschiedenis.';
+
+  @override
+  String get checkIn_explainUnknown =>
+      'Afleverstatus is niet beschikbaar. Ga er niet van uit dat dit bericht is aangekomen.';
+
+  @override
+  String get tripBrief_heading => 'BASTION • MeshCore-tochtoverzicht';
+
+  @override
+  String tripBrief_trip(String name) {
+    return 'Tocht: $name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return 'Status: $status';
+  }
+
+  @override
+  String get tripBrief_active => 'Actief';
+
+  @override
+  String get tripBrief_stopped => 'Gestopt';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return 'Contacten: $names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => 'Geen geselecteerd';
+
+  @override
+  String get tripBrief_unavailableContact =>
+      'Niet-beschikbaar contact (controleer de lijst)';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return 'Activiteit te laat na: $minutes minuten (deze telefoon waarschuwt als een contact stil wordt)';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return 'Check-inherinnering: $value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return 'elke $minutes minuten zonder check-in';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return 'Check-inkeuzes: $choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return 'Radiopositie in check-ins: $value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale => 'Inbegrepen; mogelijk verouderd';
+
+  @override
+  String tripBrief_battery(String value) {
+    return 'Radiobatterij in check-ins: $value';
+  }
+
+  @override
+  String get tripBrief_included => 'Inbegrepen';
+
+  @override
+  String get tripBrief_off => 'Uit';
+
+  @override
+  String get tripBrief_review =>
+      'Controleer ontvangers en bericht voordat je een check-in verstuurt.';
+
+  @override
+  String get tripBrief_noProof =>
+      'In de wachtrij of verzonden bewijst geen aflevering. Een bevestiging bewijst niet dat het is gelezen.';
+
+  @override
+  String get tripBrief_overdueMeaning =>
+      'Te laat betekent geen recente contactactiviteit; het is geen bevestigd noodgeval.';
+
+  @override
+  String get tripBrief_automations =>
+      'Veldautomatiseringen werken alleen zolang de app actief is. Spreek een apart plan af voor gemist contact.';
+
+  @override
+  String get tripBrief_sharesOnly =>
+      'Dit overzicht deelt alleen informatie; het verstuurt geen radiobericht en start geen tocht.';
+
+  @override
+  String get fieldOps_title => 'Bastion-veldoperaties';
+
+  @override
+  String get fieldOps_tabTrip => 'TOCHT';
+
+  @override
+  String get fieldOps_tabReady => 'KLAAR';
+
+  @override
+  String get fieldOps_tabLog => 'LOGBOEK';
+
+  @override
+  String get fieldOps_tabAuto => 'AUTO';
+
+  @override
+  String get fieldOps_tabCoverage => 'DEKKING';
+
+  @override
+  String get fieldOps_tabConnection => 'VERBINDING';
+
+  @override
+  String get fieldOps_diagnostics => 'Diagnose';
+
+  @override
+  String get fieldOps_storageLoadError =>
+      'Veldgegevens konden niet worden geladen. Opgeslagen gegevens zijn bewaard; automatiseringen blijven uit.';
+
+  @override
+  String get fieldOps_storageSaveError =>
+      'Veldgegevens konden niet worden opgeslagen. Automatiseringen gestopt; bestaande opgeslagen gegevens blijven bewaard.';
+
+  @override
+  String get fieldOps_regionHint =>
+      'Kies een gebied en zoomniveaus in Offline kaarten.';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • zoom $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return 'Kaartgebied kon niet worden gecontroleerd: $error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tocht actief • $count contacten',
+      one: 'Tocht actief • 1 contact',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped =>
+      'Tocht gestopt. Start hem als je klaar bent.';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return 'Check-inherinnering om $time';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return 'Te lang stil: $names';
+  }
+
+  @override
+  String get fieldOps_planTrip => 'Tocht plannen';
+
+  @override
+  String get fieldOps_endTrip => 'Tocht beëindigen';
+
+  @override
+  String get fieldOps_startTrip => 'Tocht starten';
+
+  @override
+  String get fieldOps_tripBrief => 'Tochtoverzicht';
+
+  @override
+  String get fieldOps_connectRadio => 'Radio verbinden';
+
+  @override
+  String get fieldOps_previewedCheckIns => 'Check-ins met voorbeeld';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      'Kies een status, controleer de echte ontvangers en het bericht en verstuur dan. In de wachtrij betekent niet afgeleverd.';
+
+  @override
+  String get fieldOps_tripRoster => 'Tochtlijst';
+
+  @override
+  String get fieldOps_rosterEmpty =>
+      'Kies tot zes bekende chatcontacten in Tocht plannen.';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      '\'Laatst gehoord\' is bewijs van eerdere activiteit. Het bewijst geen huidige bereikbaarheid. Te-laat-badges betekenen geen recente contactactiviteit, geen bevestigd noodgeval.';
+
+  @override
+  String get fieldOps_offlineMaps => 'Offline kaarten';
+
+  @override
+  String get fieldOps_checkingTiles => 'Opgeslagen tegels controleren…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tegels in cache.',
+      one: '1 tegel in cache.',
+    );
+    return '$_temp0 Dit garandeert niet dat je hele route gedekt is.';
+  }
+
+  @override
+  String get fieldOps_downloadAreas => 'Offline gebieden downloaden / bekijken';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return 'Laatste check-in, $time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name: $status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => 'Contact';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Opnieuw sturen naar $count niet afgeleverd',
+      one: 'Opnieuw sturen naar 1 niet afgeleverd',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable =>
+      'Geselecteerd contact niet beschikbaar';
+
+  @override
+  String get fieldOps_memberUnavailableHint =>
+      'Controleer deze tocht voordat je verzendt.';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return 'Laatste activiteit $minutes min geleden';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return 'Laatste activiteit $minutes min geleden • te laat';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded =>
+      'Geen check-in vastgelegd in dit logboek.';
+
+  @override
+  String get fieldOps_tripMap => 'Tochtkaart';
+
+  @override
+  String get fieldOps_tripMapEmpty =>
+      'Nog geen geselecteerde contacten hebben coördinaten uitgezonden.';
+
+  @override
+  String get fieldOps_lastPositions => 'Laatst uitgezonden posities';
+
+  @override
+  String get fieldOps_positionsCaveat =>
+      'Posities kunnen verouderd zijn. Deze kaart volgt geen telefoon-gps en bewijst niet dat leden nu hier zijn.';
+
+  @override
+  String get fieldOps_briefPreviewTitle => 'Voorbeeld tochtoverzicht';
+
+  @override
+  String get fieldOps_briefPreviewHint =>
+      'Bevat tocht- en contactnamen. Controleer voor het delen. Coördinaten, sleutels en berichtgeschiedenis zijn weggelaten.';
+
+  @override
+  String get fieldOps_shareBrief => 'Overzicht delen';
+
+  @override
+  String get fieldOps_briefSubject => 'Bastion-tochtoverzicht';
+
+  @override
+  String get fieldOps_tripName => 'Tochtnaam';
+
+  @override
+  String get fieldOps_defaultTripName => 'Mijn tocht';
+
+  @override
+  String get fieldOps_includePosition => 'Uitgezonden radiopositie meesturen';
+
+  @override
+  String get fieldOps_includePositionHint =>
+      'Kan verouderd zijn; delen staat standaard uit.';
+
+  @override
+  String get fieldOps_includeBattery => 'Radiobatterij meesturen';
+
+  @override
+  String get fieldOps_overdueLabel =>
+      'Waarschuw me als een contact stil is gedurende';
+
+  @override
+  String get fieldOps_reminderLabel => 'Herinner me eraan in te checken';
+
+  @override
+  String get fieldOps_reminderHelper =>
+      'Een telefoonmelding, ook als Bastion gesloten is.';
+
+  @override
+  String get fieldOps_reminderOff => 'Uit';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Na $count minuten zonder check-in',
+      one: 'Na 1 minuut zonder check-in',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'SOS gaat ook naar kanaal';
+
+  @override
+  String get fieldOps_sosChannelNone => 'Geen';
+
+  @override
+  String get fieldOps_selectContacts => 'Kies tot zes bekende chatcontacten';
+
+  @override
+  String get fieldOps_sendCheckInTitle => 'Check-in versturen?';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return 'Aan: $names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint =>
+      'Dit gebruikt gewone directe berichten. De aflevering wordt gevolgd in het veldlogboek.';
+
+  @override
+  String get fieldOps_send => 'Versturen';
+
+  @override
+  String get fieldOps_beforeYouLeave => 'Voordat je vertrekt';
+
+  @override
+  String get fieldOps_radioConnected => 'Radio verbonden';
+
+  @override
+  String get fieldOps_connectHint => 'Verbind via Bluetooth, USB of TCP.';
+
+  @override
+  String get fieldOps_radioBattery => 'Radiobatterij';
+
+  @override
+  String get fieldOps_batteryUnknown => 'Onbekend; controleer de radio.';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent% • laad op voor je geplande tocht.';
+  }
+
+  @override
+  String get fieldOps_tripContacts => 'Tochtcontacten';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return '$available/$selected beschikbaar. Controleer of ze compatibele radio\'s en kanalen hebben.';
+  }
+
+  @override
+  String get fieldOps_offlineArea => 'Geselecteerd offline kaartgebied';
+
+  @override
+  String get fieldOps_checkingFiles => 'Lokale bestanden controleren…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return '$available/$expected tegelbestanden beschikbaar; $missing ontbreken. Dit is een momentopname; open het gebied offline voordat je vertrekt.';
+  }
+
+  @override
+  String get fieldOps_locationChoice => 'Locatie delen';
+
+  @override
+  String get fieldOps_locationOptedIn =>
+      'Ingeschakeld: door de radio uitgezonden coördinaten kunnen verouderd zijn.';
+
+  @override
+  String get fieldOps_locationOff =>
+      'Delen staat uit. Je check-ins bevatten geen coördinaten.';
+
+  @override
+  String get fieldOps_automationAvailability =>
+      'Beschikbaarheid van automatisering';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      'Werkt alleen zolang deze app actief is. Slaapstand, afsluiten of verlies van de radio kan geplande acties verhinderen.';
+
+  @override
+  String get fieldOps_readinessCaveat =>
+      'Gereedheidscontroles zijn adviserend; ze bewijzen geen radiobereik en garanderen geen aflevering.';
+
+  @override
+  String get fieldOps_radio => 'Radio';
+
+  @override
+  String get fieldOps_refreshChecks => 'Controles vernieuwen';
+
+  @override
+  String get fieldOps_searchLog => 'Veldlogboek doorzoeken';
+
+  @override
+  String get fieldOps_kindAll => 'Alles';
+
+  @override
+  String get fieldOps_kindCheckIn => 'Check-in';
+
+  @override
+  String get fieldOps_kindReceived => 'Ontvangen';
+
+  @override
+  String get fieldOps_kindNote => 'Notitie';
+
+  @override
+  String get fieldOps_kindDeadZone => 'Dode zone';
+
+  @override
+  String get fieldOps_kindRadio => 'Radio';
+
+  @override
+  String get fieldOps_kindAutomation => 'Automatisering';
+
+  @override
+  String get fieldOps_kindMissed => 'Gemist';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => 'Tocht';
+
+  @override
+  String get fieldOps_kindOverdue => 'Te laat';
+
+  @override
+  String get fieldOps_addNote => 'Notitie toevoegen';
+
+  @override
+  String get fieldOps_exportJson => 'JSON exporteren';
+
+  @override
+  String get fieldOps_deleteLog => 'Logboek verwijderen';
+
+  @override
+  String get fieldOps_logSubject => 'Bastion-veldlogboek';
+
+  @override
+  String get fieldOps_logCaveat =>
+      'Lokaal opgeslagen, tot 1.000 items. Exports kunnen contactsleutels, berichten en locaties bevatten; controleer voor het delen.';
+
+  @override
+  String get fieldOps_noEntries => 'Geen overeenkomende items.';
+
+  @override
+  String get fieldOps_tripUnspecified => 'Tocht niet opgegeven';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status: $explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return 'Vastgelegde uitgezonden radiopositie $latitude, $longitude (mogelijk verouderd)';
+  }
+
+  @override
+  String get fieldOps_noteTitle => 'Veldwaarneming';
+
+  @override
+  String get fieldOps_noteLabel => 'Wat heb je waargenomen?';
+
+  @override
+  String get fieldOps_deadZone => 'Gemelde dode zone';
+
+  @override
+  String get fieldOps_deadZoneHint =>
+      'Jouw waarneming, geen gecontroleerde dekkingsvoorspelling.';
+
+  @override
+  String get fieldOps_savePosition => 'Uitgezonden radiopositie opslaan';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • mogelijk verouderd; geen telefoon-gps';
+  }
+
+  @override
+  String get fieldOps_noPosition => 'Geen bruikbare uitgezonden coördinaten';
+
+  @override
+  String get fieldOps_deleteLogTitle => 'Veldlogboek verwijderen?';
+
+  @override
+  String get fieldOps_deleteLogBody =>
+      'Dit verwijdert alle opgeslagen items op deze telefoon. Tochtinstellingen blijven behouden.';
+
+  @override
+  String get fieldOps_localAutomations => 'Lokale automatiseringen';
+
+  @override
+  String get fieldOps_enableForTrip => 'Inschakelen voor deze tocht';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      'Staat uit na elke herstart van de app. Regels werken alleen zolang de app actief is. Gemiste geplande acties verschijnen in het veldlogboek en worden nooit in een reeks ingehaald. Automatische check-ins zijn beperkt tot één ronde per 10 minuten.';
+
+  @override
+  String get fieldOps_openBotMode => 'Bastion-botmodus openen';
+
+  @override
+  String get fieldOps_ruleEnabled => 'Regel ingeschakeld';
+
+  @override
+  String get fieldOps_dryRun => 'Proefdraaien';
+
+  @override
+  String get fieldOps_dryRunHint =>
+      'De actie vastleggen zonder te verzenden of te melden.';
+
+  @override
+  String get fieldOps_then => 'DAN';
+
+  @override
+  String get fieldOps_actionLog => 'Naar veldlogboek schrijven';
+
+  @override
+  String get fieldOps_actionNotify => 'Lokale melding tonen';
+
+  @override
+  String get fieldOps_actionCheckIn => '\'I\'m OK\' naar tochtcontacten sturen';
+
+  @override
+  String get fieldOps_batteryThreshold => 'Batterij op of onder';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return 'Volgende: $time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => 'Volgende: niet gepland';
+
+  @override
+  String get fieldOps_previewInLog => 'Voorbeeld in logboek';
+
+  @override
+  String get fieldOps_allowNotifications => 'Meldingen toestaan';
+
+  @override
+  String get fieldOps_triggerReconnect => 'ALS de radio opnieuw verbindt';
+
+  @override
+  String get fieldOps_triggerDisconnect =>
+      'ALS de radio de verbinding verbreekt';
+
+  @override
+  String get fieldOps_triggerLowBattery =>
+      'ALS de radiobatterij de drempel passeert';
+
+  @override
+  String get fieldOps_triggerNewNode => 'ALS er een nieuwe node bijkomt';
+
+  @override
+  String get fieldOps_triggerRepeater => 'ALS er een nieuwe repeater bijkomt';
+
+  @override
+  String get fieldOps_triggerScheduled =>
+      'ALS een geplande check-in aan de beurt is';
+
+  @override
+  String get fieldOps_explainConnection => 'Mijn verbinding uitleggen';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return 'Status: $state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat =>
+      'De telefoon heeft een radioverbinding. Dat alleen bewijst geen route naar je ontvangers.';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      'Geen actieve radioverbinding. Controleer Bluetooth-machtigingen, voeding en bereik van de radio; USB/TCP zijn beschikbaar via Radio verbinden.';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return 'Tocht-check-ins die op bevestiging wachten: $count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      'Laatst-gezien-tijden en uitgezonden posities van nodes kunnen verouderd zijn. Route-inzicht toont routes die zijn geleerd uit waargenomen pogingen; het verzint geen paden.';
+
+  @override
+  String get fieldOps_routeIntelligence => 'Route-inzicht';
+
+  @override
+  String get fieldOps_coverageIntelligence => 'Dekkingsinzicht';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      'Vergelijk vastgelegde waarnemingen tussen twee veldsessies. Punten markeren uitgezonden radioposities van de opnemer waar nodes werden gehoord. Ze impliceren geen doorlopende dekking. RSSI/SNR-momentopnamen zijn geen metingen per node.';
+
+  @override
+  String get fieldOps_captureSession => 'Sessie opnemen';
+
+  @override
+  String get fieldOps_refreshHistory => 'Geschiedenis vernieuwen';
+
+  @override
+  String get fieldOps_noCoverageSessions =>
+      'Nog geen opgeslagen dekkingssessies.';
+
+  @override
+  String get fieldOps_sessionA => 'Sessie A • blauwgroen';
+
+  @override
+  String get fieldOps_sessionB => 'Sessie B • amber';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A: $a unieke nodes • B: $b unieke nodes';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return 'Gedeeld: $shared • Alleen A: $onlyA • Alleen B: $onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat =>
+      'Een node niet horen tijdens één sessie bewijst geen dode zone. Omstandigheden en duur van de waarneming verschillen.';
+
+  @override
+  String get fieldOps_heardTooltip =>
+      'Waarneming van een gehoorde node; geen bewijs van een geslaagde verbinding';
+
+  @override
+  String get fieldOps_noteTooltip =>
+      'Lokale notitie op uitgezonden radiocoördinaten; mogelijk verouderd.';
+
+  @override
+  String get bastionHome_aboutTooltip => 'Over Bastion';
+
+  @override
+  String get bastionHome_getStarted => 'AAN DE SLAG';
+
+  @override
+  String get bastionHome_getStartedHint =>
+      'Verbind je radio en controleer je eerste bericht';
+
+  @override
+  String get bastionHome_planYourTrip => 'PLAN JE TOCHT';
+
+  @override
+  String get bastionHome_tripActive => 'Tocht actief';
+
+  @override
+  String get bastionHome_tripStopped => 'Tocht gestopt';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • $contacts contacten • $unread ongelezen berichten';
+  }
+
+  @override
+  String get bastionHome_checkInOk => 'INCHECKEN: ALLES GOED';
+
+  @override
+  String get bastionHome_checkInHint =>
+      'Controleer contacten en bericht voor het verzenden. Volg bevestigingen in het veldlogboek.';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return 'Laatste check-in: $summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => 'RADIO VERBINDEN';
+
+  @override
+  String get bastionHome_connectRadioHint =>
+      'MeshCore-verbindingen via Bluetooth, USB en TCP';
+
+  @override
+  String get bastionHome_liveDiagnostics => 'LIVE DIAGNOSE';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint =>
+      'Radiostatus, signaal, apparaat en frametools';
+
+  @override
+  String get bastionHome_meshDiscovery => 'MESH VERKENNEN';
+
+  @override
+  String get bastionHome_meshDiscoveryHint =>
+      'Vind nodes en bekijk het mesh om je heen';
+
+  @override
+  String get bastionHome_fieldOpsHint =>
+      'Tochtoverzicht, gereedheid, veldlogboek, automatiseringen en dekkingsvergelijking';
+
+  @override
+  String get bastionHome_fieldTools => 'BASTION-VELDTOOLS';
+
+  @override
+  String get bastionHome_statusActive => 'ACTIEF';
+
+  @override
+  String get bastionHome_consoleOnline => 'VELDCONSOLE ONLINE';
+
+  @override
+  String get bastionHome_consoleReady => 'VELDCONSOLE GEREED';
+
+  @override
+  String get bastionHome_consoleHint =>
+      'Verbind een radio om het live dashboard te activeren.';
+
+  @override
+  String bastionHome_battery(String value) {
+    return 'BAT $value';
+  }
+
+  @override
+  String get bastionTools_title => 'Veldtools';
+
+  @override
+  String get bastionTools_backup => 'VERSLEUTELDE BACK-UP';
+
+  @override
+  String get bastionTools_backupHint =>
+      'Sla instellingen, contacten en sleutels op, optioneel met chatgeschiedenis';
+
+  @override
+  String get bastionTools_fieldOpsHint =>
+      'Check-ins, gereedheid, veldlogboek, automatiseringen en vergelijkingen';
+
+  @override
+  String get bastionTools_mapHint =>
+      'Live kaart, opnamesessies, offline kaarttools en regio\'s';
+
+  @override
+  String get bastionTools_pathAnalysis => 'PADANALYSE';
+
+  @override
+  String get bastionTools_pathHint => 'Routes, verkenning en padinzicht';
+
+  @override
+  String get bastionTools_repeaterHint =>
+      'Status, inloggen, telemetrie, buren en beheer';
+
+  @override
+  String get bastionTools_statsHint =>
+      'Live meshtellingen en contactactiviteit';
+
+  @override
+  String get bastionTools_diagnostics => 'DIAGNOSE';
+
+  @override
+  String get bastionTools_diagnosticsHint =>
+      'Radiostatus, apparaatinformatie, ruwe frames en export';
+
+  @override
+  String get bastionTools_about => 'OVER + DANKWOORD';
+
+  @override
+  String get bastionTools_aboutHint =>
+      'Bastion-versie, onafhankelijkheidsverklaring en opensourcelicenties';
+
+  @override
+  String get bastionAbout_title => 'Over + Dankwoord';
+
+  @override
+  String get bastionAbout_intro =>
+      'Een onafhankelijke community-app voor MeshCore-netwerken. Bastion is geen officiële MeshCore-app en het opnemen van communitybronnen impliceert geen samenwerking of goedkeuring.';
+
+  @override
+  String get bastionAbout_version => 'VERSIE';
+
+  @override
+  String get bastionAbout_openSource => 'OPENSOURCEBASIS';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'Bastion is gebouwd op en wijzigt opensourcecode van MeshCore Open onder de MIT-licentie. Het werk aan de dekkingsworkflow vermeldt waar van toepassing ook de MIT-gelicentieerde MeshMapper Flutter App.';
+
+  @override
+  String get bastionAbout_community => 'COMMUNITY VOOROP';
+
+  @override
+  String get bastionAbout_communityBody =>
+      'Bronnen van externe makers blijven eigendom van hun respectieve makers. Er wordt geen eigendom of samenwerking geïmpliceerd.';
+
+  @override
+  String get bastionAbout_legalese =>
+      'Bastion • Onafhankelijke MeshCore-companion';
+
+  @override
+  String get bastionAbout_licenses => 'OPENSOURCELICENTIES';
+
+  @override
+  String get bastionSetup_title => 'Aan de slag met Bastion';
+
+  @override
+  String get bastionSetup_intro =>
+      'Verbind, kies een contact en controleer dan een bericht. Je kunt altijd via het dashboard terugkeren naar deze gids.';
+
+  @override
+  String get bastionSetup_step1 => '1. Verbind je MeshCore-radio';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return 'Verbonden met $device via $transport.';
+  }
+
+  @override
+  String get bastionSetup_noRadio => 'Nog geen radio verbonden.';
+
+  @override
+  String get bastionSetup_step1Power =>
+      'Zet een MeshCore-companionradio aan. Open Radio verbinden en kies Bluetooth, USB of TCP. Sta de machtigingen toe die voor je verbinding worden gevraagd.';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      'Als het zoeken via Bluetooth leeg blijft, controleer dan of Bluetooth aan staat en of Bastion de machtiging Apparaten in de buurt heeft in de Android-appinstellingen. Volg eventuele extra machtigingsvragen van de scanner.';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => 'Verbindingsdiagnose';
+
+  @override
+  String get bastionSetup_step2 => '2. Kies een chatcontact';
+
+  @override
+  String get bastionSetup_step2Body =>
+      'Vraag een partner in de buurt met compatibele MeshCore-radio-instellingen om zijn node aan te kondigen. Kies hieronder een bekend chatcontact; repeaters worden apart beheerd.';
+
+  @override
+  String get bastionSetup_noContacts =>
+      'Geen chatcontacten beschikbaar. Verbind je radio en open Mesh verkennen.';
+
+  @override
+  String get bastionSetup_testRecipient => 'Testontvanger';
+
+  @override
+  String get bastionSetup_meshDiscovery => 'Mesh verkennen';
+
+  @override
+  String get bastionSetup_step3 => '3. Verstuur en controleer een bericht';
+
+  @override
+  String get bastionSetup_step3Body =>
+      'Open de chat, schrijf een kort testbericht, controleer de ontvanger en tik op Versturen. Kom hier terug om het nieuwste uitgaande bericht te zien dat sinds het openen van deze gids is vastgelegd.';
+
+  @override
+  String get bastionSetup_openTestChat => 'Testchat openen';
+
+  @override
+  String get bastionSetup_connectFirst =>
+      'Verbind je radio om de testchat te openen.';
+
+  @override
+  String get bastionSetup_chooseRecipient => 'Kies eerst een ontvanger.';
+
+  @override
+  String get bastionSetup_noTestMessage =>
+      'Geen uitgaand testbericht vastgelegd in deze gidssessie.';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return 'Nieuwste bericht: $status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      'Vraag je partner de ontvangst te bevestigen of te antwoorden. Een vastgelegde bevestiging bewijst niet dat het is gelezen. Controleer verbinding en ontvanger opnieuw als een bericht mislukt.';
+
+  @override
+  String get bastionSetup_step4 => '4. Bereid je voor op het veld';
+
+  @override
+  String get bastionSetup_step4Body =>
+      'Plan je tochtcontacten en bekijk gedownloade kaartgebieden. Botmodus en veldautomatiseringen staan eerst uit; veldautomatiseringen werken alleen zolang de app actief is.';
+
+  @override
+  String get bastionSetup_tripTools => 'Tocht- en gereedheidstools';
+
+  @override
+  String get bastionDiag_title => 'Diagnose';
+
+  @override
+  String get bastionDiag_export => 'Diagnose exporteren';
+
+  @override
+  String get bastionDiag_channels => 'KANALEN';
+
+  @override
+  String get bastionDiag_radio => 'RADIO';
+
+  @override
+  String get bastionDiag_frequency => 'Frequentie';
+
+  @override
+  String get bastionDiag_bandwidth => 'Bandbreedte';
+
+  @override
+  String get bastionDiag_spreadingFactor => 'Spreidingsfactor';
+
+  @override
+  String get bastionDiag_codingRate => 'Coderingsratio';
+
+  @override
+  String get bastionDiag_txPower => 'Zendvermogen';
+
+  @override
+  String get bastionDiag_noiseFloor => 'Ruisvloer';
+
+  @override
+  String get bastionDiag_device => 'APPARAAT';
+
+  @override
+  String get bastionDiag_name => 'Naam';
+
+  @override
+  String get bastionDiag_manufacturer => 'Fabrikant';
+
+  @override
+  String get bastionDiag_firmware => 'Firmware';
+
+  @override
+  String get bastionDiag_battery => 'Batterij';
+
+  @override
+  String get bastionDiag_transport => 'Verbinding';
+
+  @override
+  String get bastionDiag_deepTools => 'GEAVANCEERDE TOOLS';
+
+  @override
+  String get bastionDiag_liveStats => 'LIVE RADIOSTATISTIEKEN';
+
+  @override
+  String get bastionDiag_liveStatsHint => 'Ruis, RSSI, SNR en zendtijd';
+
+  @override
+  String get bastionDiag_frameDebug => 'FRAME- / BLE-DEBUG';
+
+  @override
+  String get bastionDiag_frameDebugHint =>
+      'Gedecodeerde en ruwe ontvangen frames bekijken';
+
+  @override
+  String get bastionDiag_appLog => 'APP-DEBUGLOG';
+
+  @override
+  String get bastionDiag_appLogHint =>
+      'Diagnostische gebeurtenissen van de app bekijken';
+
+  @override
+  String get bastionDiag_online => 'RADIO ONLINE';
+
+  @override
+  String get bastionDiag_offline => 'RADIO OFFLINE';
+
+  @override
+  String get bastionDiag_offlineHint =>
+      'Verbind een MeshCore-companion om de live diagnose te vullen.';
+
+  @override
+  String get coverage_title => 'Dekkingsopname';
+
+  @override
+  String get coverage_leaveBlocked =>
+      'Stop en sla de sessie op voordat je weggaat.';
+
+  @override
+  String get coverage_savedSessions => 'OPGESLAGEN SESSIES';
+
+  @override
+  String get coverage_caveat =>
+      'RSSI/SNR zijn radiomomentopnamen en kunnen bij een ander pakket horen. Posities zijn door de radio uitgezonden coördinaten, geen telefoon-gps en geen bewijs van dekking. Cyaan: opnemer; amber: uitgezonden node. Er wordt niet geïnterpoleerd.';
+
+  @override
+  String get coverage_captureActive => 'OPNAME ACTIEF';
+
+  @override
+  String get coverage_fieldSession => 'VELDDEKKINGSSESSIE';
+
+  @override
+  String get coverage_connectedBody =>
+      'Bastion legt tijdens deze sessie nieuw gehoorde nodes vast, inclusief routegegevens, node-/locatiemetadata en de dichtstbijzijnde beschikbare RSSI/SNR-momentopname van de radio.';
+
+  @override
+  String get coverage_disconnectedBody =>
+      'Verbind een radio voordat je begint. Dekkingsopname legt live meshwaarnemingen vast van de verbonden companionradio.';
+
+  @override
+  String get coverage_observations => 'WAARNEMINGEN';
+
+  @override
+  String get coverage_uniqueNodes => 'UNIEKE NODES';
+
+  @override
+  String get coverage_elapsed => 'VERSTREKEN';
+
+  @override
+  String get coverage_radioConnected => 'RADIO VERBONDEN';
+
+  @override
+  String get coverage_noRadio => 'GEEN RADIO';
+
+  @override
+  String get coverage_gpsReady => 'RADIO-GPS GEREED';
+
+  @override
+  String get coverage_noGps => 'GEEN RADIO-GPS';
+
+  @override
+  String get coverage_stopSave => 'STOPPEN + SESSIE OPSLAAN';
+
+  @override
+  String get coverage_start => 'DEKKINGSSESSIE STARTEN';
+
+  @override
+  String get coverage_exportJson => 'JSON EXPORTEREN';
+
+  @override
+  String get coverage_exportCsv => 'CSV EXPORTEREN';
+
+  @override
+  String get coverage_liveObservations => 'LIVE WAARNEMINGEN';
+
+  @override
+  String get coverage_waiting => 'WACHTEN OP MESHACTIVITEIT';
+
+  @override
+  String get coverage_waitingBody =>
+      'Start een sessie en nieuw gehoorde actieve nodes verschijnen hier. RSSI/SNR-waarden zijn radiomomentopnamen en zijn niet altijd eenduidig aan een bepaald pakket toe te wijzen.';
+
+  @override
+  String get coverage_signalNa => 'signaal n.v.t.';
+
+  @override
+  String get coverage_snrNa => 'SNR n.v.t.';
+
+  @override
+  String get coverage_gpsUnavailable => 'radio-gps niet beschikbaar';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return 'Pad: $path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => 'flood';
+
+  @override
+  String get coverage_pathDirect => 'direct';
+
+  @override
+  String get coverage_shareSubject => 'Bastion-dekkingssessie';
+
+  @override
+  String get coverage_shareText => 'Bastion-export van dekkingsopname';
+
+  @override
+  String get coverage_historyTitle => 'Opgeslagen dekkingssessies';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return 'Sessies konden niet worden geladen: $error';
+  }
+
+  @override
+  String get coverage_deleteTitle => 'Opgeslagen sessie verwijderen?';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count waarnemingen worden van dit apparaat verwijderd.',
+      one: '1 waarneming wordt van dit apparaat verwijderd.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return 'Sessie kon niet worden verwijderd: $error';
+  }
+
+  @override
+  String get coverage_retention =>
+      'De nieuwste 20 voltooide sessies worden bewaard. Deel sessies die je wilt houden. Onderbroken opnamen kunnen hieronder opnieuw worden geopend.';
+
+  @override
+  String get coverage_noSessions =>
+      'Nog geen opgeslagen sessies. Stop een opname om hem op te slaan.';
+
+  @override
+  String get coverage_interrupted => 'Onderbroken opname';
+
+  @override
+  String get coverage_saved => 'Opgeslagen';
+
+  @override
+  String get coverage_deleteTooltip => 'Sessie verwijderen';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return 'Exporteren mislukt: $error';
+  }
+
+  @override
+  String get coverage_sessionTitle => 'Dekkingssessie';
+
+  @override
+  String get coverage_shareJson => 'JSON delen';
+
+  @override
+  String get coverage_shareCsv => 'CSV delen';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi dBm • SNR $snr dB • leeftijd momentopname $age ms';
+  }
+
+  @override
+  String get coverage_unknown => 'onbekend';
+
+  @override
+  String coverage_pathValue(String path) {
+    return 'pad $path';
+  }
+
+  @override
+  String get coverage_recorder => 'Opnemer';
+
+  @override
+  String get coverage_noCoordinates =>
+      'Geen bruikbare coördinaten in deze sessie. De waarnemingen blijven hieronder beschikbaar.';
+
+  @override
+  String get coverage_osmAttribution =>
+      '© OpenStreetMap-bijdragers • online basiskaart';
+
+  @override
+  String get fieldStats_title => 'VELDINZICHT';
+
+  @override
+  String get fieldStats_snapshot => 'LIVE MESH-MOMENTOPNAME';
+
+  @override
+  String get fieldStats_headline => 'Wat Bastion nu weet.';
+
+  @override
+  String get fieldStats_body =>
+      'Deze tellers worden berekend uit de contactentabel van de verbonden MeshCore-radio, locaties, paden en laatst-gezien-tijdstempels.';
+
+  @override
+  String get fieldStats_total => 'TOTAAL';
+
+  @override
+  String get fieldStats_chatNodes => 'CHATNODES';
+
+  @override
+  String get fieldStats_rooms => 'RUIMTES';
+
+  @override
+  String get fieldStats_sensors => 'SENSOREN';
+
+  @override
+  String get fieldStats_located => 'MET LOCATIE';
+
+  @override
+  String get fieldStats_favorites => 'FAVORIETEN';
+
+  @override
+  String get fieldStats_routeSnapshot => 'ROUTE-MOMENTOPNAME';
+
+  @override
+  String get fieldStats_routed => 'GEROUTEERD';
+
+  @override
+  String get fieldStats_direct => 'DIRECT';
+
+  @override
+  String get fieldStats_flood => 'FLOOD';
+
+  @override
+  String get fieldStats_pathIntel => 'PADINZICHT';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'Het route-inzicht van Bastion gebruikt opgeslagen padpogingen, aantallen hops, geslaagd/mislukt, reistijd en routeweging om geleerde routes te tonen.';
+
+  @override
+  String get fieldStats_coverageSessions => 'DEKKINGSSESSIES';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      'Dekkingsopname slaat nu veldsessies op, herstelt onderbroken werk, exporteert waarnemingen en zet vastgelegde dekkingspunten op de kaart. RSSI/SNR blijven de dichtstbijzijnde beschikbare radiomomentopname.';
+
+  @override
+  String get mapHub_title => 'BASTION-VELDKAART';
+
+  @override
+  String get mapHub_intro =>
+      'Live kaarten, offline gebieden, regionale profielen en Bastion-velddekkingssessies.';
+
+  @override
+  String get mapHub_captureHint => 'Een velddekkingssessie starten en stoppen';
+
+  @override
+  String get mapHub_badgeNew => 'NIEUW';
+
+  @override
+  String get mapHub_liveMap => 'LIVE MESHKAART';
+
+  @override
+  String get mapHub_liveMapHint =>
+      'Nodes, repeaters, posities, routes en kaarttools';
+
+  @override
+  String get mapHub_badgeLive => 'LIVE';
+
+  @override
+  String get mapHub_offlinePacks => 'OFFLINE KAARTPAKKETTEN';
+
+  @override
+  String get mapHub_offlinePacksHint =>
+      'Kaarttegels cachen voor tochten en gebieden zonder bereik';
+
+  @override
+  String get mapHub_badgeOffline => 'OFFLINE';
+
+  @override
+  String get mapHub_regions => 'REGIOPROFIELEN';
+
+  @override
+  String get mapHub_regionsHint =>
+      'Regionale meshdefinities beheren en ophalen';
+
+  @override
+  String get mapHub_badgeRegions => 'REGIO\'S';
+
+  @override
+  String get routes_title => 'Route-inzicht';
+
+  @override
+  String get routes_headline => 'Zie hoe verkeer door het mesh beweegt.';
+
+  @override
+  String get routes_body =>
+      'Bastion rangschikt opgeslagen routes met de padgeschiedenis die al is geleerd uit echte berichtpogingen en verkenningen.';
+
+  @override
+  String get routes_routes => 'ROUTES';
+
+  @override
+  String get routes_success => 'GESLAAGD';
+
+  @override
+  String get routes_failed => 'MISLUKT';
+
+  @override
+  String get routes_routeMap => 'ROUTEKAART';
+
+  @override
+  String get routes_routeMapHint => 'Nodes en paden bekijken';
+
+  @override
+  String get routes_discover => 'VERKENNEN';
+
+  @override
+  String get routes_discoverHint => 'Nieuwe routes vinden';
+
+  @override
+  String get routes_learned => 'GELEERDE ROUTES';
+
+  @override
+  String get routes_none => 'NOG GEEN ROUTEGESCHIEDENIS';
+
+  @override
+  String get routes_noneBody =>
+      'Gebruik het mesh normaal of start een verkenning. Bastion toont hier geleerde routes zodra er padgeschiedenis beschikbaar is.';
+
+  @override
+  String get routes_direct => 'DIRECT';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count routes',
+      one: '1 route',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return 'BESTE  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  gewicht $weight  •  $success geslaagd / $fail mislukt';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return 'Snelste bekende: $ms ms';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return 'Flood: $success geslaagd / $fail mislukt';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => 'REPEATERBEHEER';
+
+  @override
+  String get repeaterTools_headline =>
+      'Beheer de infrastructuur achter je mesh.';
+
+  @override
+  String get repeaterTools_body =>
+      'Kies een gevonden repeater om in te loggen en de bestaande MeshCore-tools voor status, telemetrie, buren, instellingen en CLI te openen.';
+
+  @override
+  String get repeaterTools_discovered => 'GEVONDEN';
+
+  @override
+  String get repeaterTools_tools => 'TOOLS';
+
+  @override
+  String get repeaterTools_available => 'BESCHIKBARE REPEATERS';
+
+  @override
+  String get repeaterTools_unnamed => 'Naamloze repeater';
+
+  @override
+  String get repeaterTools_statusTelemetry => 'STATUS + TELEMETRIE';
+
+  @override
+  String get repeaterTools_statusTelemetryBody =>
+      'Repeaterstatus en telemetrie bekijken met de bestaande beheertools.';
+
+  @override
+  String get repeaterTools_neighbors => 'BUREN';
+
+  @override
+  String get repeaterTools_neighborsBody =>
+      'Naburige infrastructuur en meshrelaties bekijken.';
+
+  @override
+  String get repeaterTools_cli => 'CLI + INSTELLINGEN';
+
+  @override
+  String get repeaterTools_cliBody =>
+      'Ingelogde beheerders kunnen de bestaande repeater-CLI en configuratietools gebruiken.';
+
+  @override
+  String get repeaterTools_empty =>
+      'Nog geen repeaters gevonden. Verbind een radio en verken eerst het mesh.';
+
+  @override
+  String get notification_fieldAlertTitle => 'Bastion-veldwaarschuwing';
+
+  @override
+  String get notification_checkInReminderTitle => 'Bastion-check-inherinnering';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return 'Al $minutes minuten geen check-in op $trip. Open Bastion om in te checken.';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return '$name al $minutes minuten niet gehoord. Dit is geen bevestigd noodgeval.';
+  }
+
+  @override
+  String get notification_aTripContact => 'Een tochtcontact';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return 'Check-in niet afgeleverd bij $name. Je kunt hem opnieuw sturen vanuit Tocht.';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return 'SOS bevestigd door $name';
+  }
+
+  @override
+  String get settings_batterySaver => 'Batterijbesparing';
+
+  @override
+  String get settings_batterySaverOn =>
+      'Aan: radiobatterij elke 10 min, gps elke 5 min, statistieken hooguit eens per minuut, tochtcontroles elke 1–2 min. Berichten, waarschuwingen en SOS blijven ongewijzigd.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Controleer de radio en de tocht minder vaak om telefoon- en radiobatterij te sparen. Berichten, waarschuwingen en SOS blijven ongewijzigd.';
+
+  @override
+  String get settings_readAloud => 'Nieuwe berichten voorlezen';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Zolang Bastion open is. Gedempte kanalen blijven stil. Elk bericht kan ook via het menu worden voorgelezen.';
+
+  @override
+  String get settings_readAloudOff => 'Uit';
+
+  @override
+  String get settings_readAloudDirect => 'Directe berichten';
+
+  @override
+  String get settings_readAloudAll => 'Directe en kanaalberichten';
+
+  @override
+  String get chat_readAloud => 'Voorlezen';
+
+  @override
+  String get messageSearch_title => 'Berichten zoeken';
+
+  @override
+  String get messageSearch_intro =>
+      'Doorzoek alle directe en kanaalberichten die op deze telefoon zijn opgeslagen.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Geen berichten bevatten \'$query\'.';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count resultaten',
+      one: '1 resultaat',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'De nieuwste $count resultaten worden getoond';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Inchecken';
+
+  @override
+  String get shortcuts_trip => 'Tocht';
+
+  @override
+  String get shortcuts_chats => 'Chats';
+
+  @override
+  String get shortcuts_map => 'Kaart';
+
+  @override
+  String get sensor_liveUpdates => 'Live updates';
+
+  @override
+  String get sensor_intro =>
+      'Laat de sensor metingen zelf sturen wanneer ze veranderen, in plaats van elke keer te vragen. Vereist een login met leestoegang.';
+
+  @override
+  String get sensor_watch => 'Op wijzigingen letten';
+
+  @override
+  String get sensor_loadFirst =>
+      'Laad eerst de telemetrie om metingen te kiezen.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return '$readings gevolgd tot $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return '$readings gevolgd tot $time • regio $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Nog geen wijzigingen gemeld.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Laatste update $time • $count ontvangen';
+  }
+
+  @override
+  String get sensor_stop => 'Live updates stoppen';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Hier gestopt; de sensor heeft niet bevestigd en stopt als de tijd om is. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'De sensor controleert ongeveer eens per minuut en stuurt een update als een gekozen meting meer verandert dan de drempel.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (kanaal $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (kanaal $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (kanaal $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Update bij een verandering van $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Drempel wijzigen';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'De sensor kan tot $max bytes aan metingen volgen ($used gebruikt).';
+  }
+
+  @override
+  String get sensor_for => 'Duur';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count uur',
+      one: '1 uur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Starten';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return 'Drempel voor $label';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Temperatuur';
+
+  @override
+  String get sensor_typeHumidity => 'Luchtvochtigheid';
+
+  @override
+  String get sensor_typePressure => 'Luchtdruk';
+
+  @override
+  String get sensor_typeVoltage => 'Spanning';
+
+  @override
+  String get sensor_typeCurrent => 'Stroom';
+
+  @override
+  String get sensor_typeLight => 'Licht';
+
+  @override
+  String get sensor_typeConcentration => 'Concentratie';
+
+  @override
+  String get sensor_typePercentage => 'Percentage';
+
+  @override
+  String get sensor_typeAnalogInput => 'Analoge ingang';
+
+  @override
+  String get sensor_typeAltitude => 'Hoogte';
 }

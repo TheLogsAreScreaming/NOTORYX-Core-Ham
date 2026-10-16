@@ -9297,6 +9297,3015 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{minutes} m {seconds} s'**
   String imageSend_minutesSecondsValue(String minutes, String seconds);
+
+  /// No description provided for @bastion_tagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Communication without infrastructure.'**
+  String get bastion_tagline;
+
+  /// No description provided for @bastion_nodes.
+  ///
+  /// In en, this message translates to:
+  /// **'NODES'**
+  String get bastion_nodes;
+
+  /// No description provided for @bastion_repeaters.
+  ///
+  /// In en, this message translates to:
+  /// **'REPEATERS'**
+  String get bastion_repeaters;
+
+  /// No description provided for @bastion_active1h.
+  ///
+  /// In en, this message translates to:
+  /// **'ACTIVE 1H'**
+  String get bastion_active1h;
+
+  /// No description provided for @bastion_mapCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'MAP + COVERAGE'**
+  String get bastion_mapCoverage;
+
+  /// No description provided for @bastion_routeIntelligence.
+  ///
+  /// In en, this message translates to:
+  /// **'ROUTE INTELLIGENCE'**
+  String get bastion_routeIntelligence;
+
+  /// No description provided for @bastion_repeaterTools.
+  ///
+  /// In en, this message translates to:
+  /// **'REPEATER TOOLS'**
+  String get bastion_repeaterTools;
+
+  /// No description provided for @bastion_fieldStats.
+  ///
+  /// In en, this message translates to:
+  /// **'FIELD STATS'**
+  String get bastion_fieldStats;
+
+  /// No description provided for @bastion_fieldOps.
+  ///
+  /// In en, this message translates to:
+  /// **'TRIP + FIELD OPERATIONS'**
+  String get bastion_fieldOps;
+
+  /// No description provided for @bastion_coverageCapture.
+  ///
+  /// In en, this message translates to:
+  /// **'COVERAGE CAPTURE'**
+  String get bastion_coverageCapture;
+
+  /// No description provided for @bastion_mapAttribution.
+  ///
+  /// In en, this message translates to:
+  /// **'Map data © OpenStreetMap contributors; tiles by selected provider'**
+  String get bastion_mapAttribution;
+
+  /// No description provided for @bastion_observationsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 observation} other{{count} observations}}'**
+  String bastion_observationsCount(int count);
+
+  /// No description provided for @bastion_uniqueNodesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 unique node} other{{count} unique nodes}}'**
+  String bastion_uniqueNodesCount(int count);
+
+  /// No description provided for @bastion_hopsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 hop} other{{count} hops}}'**
+  String bastion_hopsCount(int count);
+
+  /// No description provided for @bastion_minutesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 minute} other{{count} minutes}}'**
+  String bastion_minutesCount(int count);
+
+  /// No description provided for @sos_holdHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold 2 seconds. Sends your position to your trip contacts every 5 minutes until someone replies.'**
+  String get sos_holdHint;
+
+  /// No description provided for @sos_holdHintChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold 2 seconds. Sends your position to your trip contacts and {channel} every 5 minutes until someone replies.'**
+  String sos_holdHintChannel(String channel);
+
+  /// No description provided for @sos_notSent.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS not sent: {error}'**
+  String sos_notSent(String error);
+
+  /// No description provided for @sos_acknowledged.
+  ///
+  /// In en, this message translates to:
+  /// **'Acknowledged by {name}. Repeats stopped.'**
+  String sos_acknowledged(String name);
+
+  /// No description provided for @sos_waitingForRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for the radio to send…'**
+  String get sos_waitingForRadio;
+
+  /// No description provided for @sos_repeatsFinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent {sends} of {max} times. Repeats finished; no reply yet.'**
+  String sos_repeatsFinished(int sends, int max);
+
+  /// No description provided for @sos_nextAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent {sends} of {max} times. Next at {time}.'**
+  String sos_nextAt(int sends, int max, String time);
+
+  /// No description provided for @sos_active.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS ACTIVE'**
+  String get sos_active;
+
+  /// No description provided for @sos_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'STOP'**
+  String get sos_stop;
+
+  /// No description provided for @sos_imSafe.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'M SAFE'**
+  String get sos_imSafe;
+
+  /// No description provided for @sos_holdSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS. Hold to send.'**
+  String get sos_holdSemantics;
+
+  /// No description provided for @sos_keepHolding.
+  ///
+  /// In en, this message translates to:
+  /// **'KEEP HOLDING…'**
+  String get sos_keepHolding;
+
+  /// No description provided for @sos_holdForSos.
+  ///
+  /// In en, this message translates to:
+  /// **'HOLD FOR SOS'**
+  String get sos_holdForSos;
+
+  /// No description provided for @sos_blockStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolve the Field Log storage error first.'**
+  String get sos_blockStorage;
+
+  /// No description provided for @sos_blockNotConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your MeshCore radio to send an SOS.'**
+  String get sos_blockNotConnected;
+
+  /// No description provided for @sos_blockNoTarget.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose trip contacts or an SOS channel in Plan trip.'**
+  String get sos_blockNoTarget;
+
+  /// No description provided for @checkIn_labelOk.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m OK'**
+  String get checkIn_labelOk;
+
+  /// No description provided for @checkIn_labelAtCamp.
+  ///
+  /// In en, this message translates to:
+  /// **'At Camp'**
+  String get checkIn_labelAtCamp;
+
+  /// No description provided for @checkIn_labelDelayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delayed'**
+  String get checkIn_labelDelayed;
+
+  /// No description provided for @checkIn_labelHeadingBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Heading Back'**
+  String get checkIn_labelHeadingBack;
+
+  /// No description provided for @checkIn_blockLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading your trip…'**
+  String get checkIn_blockLoading;
+
+  /// No description provided for @checkIn_blockStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolve the Field Log storage error before sending.'**
+  String get checkIn_blockStorage;
+
+  /// No description provided for @checkIn_blockBusy.
+  ///
+  /// In en, this message translates to:
+  /// **'A check-in is being sent. Please wait.'**
+  String get checkIn_blockBusy;
+
+  /// No description provided for @checkIn_blockNoContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose trip contacts in Plan trip.'**
+  String get checkIn_blockNoContacts;
+
+  /// No description provided for @checkIn_blockRosterIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Some trip contacts are unavailable. Review your roster.'**
+  String get checkIn_blockRosterIncomplete;
+
+  /// No description provided for @checkIn_blockNotConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your MeshCore radio to check in.'**
+  String get checkIn_blockNotConnected;
+
+  /// No description provided for @checkIn_blockNotActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your trip to enable check-ins.'**
+  String get checkIn_blockNotActive;
+
+  /// No description provided for @checkIn_notSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sent'**
+  String get checkIn_notSent;
+
+  /// No description provided for @checkIn_deliveredToOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered to {name}'**
+  String checkIn_deliveredToOne(String name);
+
+  /// No description provided for @checkIn_deliveredToAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered to all {count} contacts'**
+  String checkIn_deliveredToAll(int count);
+
+  /// No description provided for @checkIn_deliveredSome.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered to {delivered} of {total}'**
+  String checkIn_deliveredSome(String delivered, String total);
+
+  /// No description provided for @checkIn_notDeliveredTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Not delivered: {names}'**
+  String checkIn_notDeliveredTo(String names);
+
+  /// No description provided for @checkIn_waitingForRest.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for the rest'**
+  String get checkIn_waitingForRest;
+
+  /// No description provided for @checkIn_aContact.
+  ///
+  /// In en, this message translates to:
+  /// **'a contact'**
+  String get checkIn_aContact;
+
+  /// No description provided for @checkIn_statusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get checkIn_statusPending;
+
+  /// No description provided for @checkIn_statusSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get checkIn_statusSent;
+
+  /// No description provided for @checkIn_statusDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get checkIn_statusDelivered;
+
+  /// No description provided for @checkIn_statusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get checkIn_statusFailed;
+
+  /// No description provided for @checkIn_explainPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued locally. This does not confirm radio transmission or receipt.'**
+  String get checkIn_explainPending;
+
+  /// No description provided for @checkIn_explainSent.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio accepted the send. No delivery acknowledgment has been recorded.'**
+  String get checkIn_explainSent;
+
+  /// No description provided for @checkIn_explainDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'The app recorded a delivery acknowledgment. It does not prove the person read it.'**
+  String get checkIn_explainDelivered;
+
+  /// No description provided for @checkIn_explainFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmed delivery. Check radio connection, recipient reachability and retry history.'**
+  String get checkIn_explainFailed;
+
+  /// No description provided for @checkIn_explainUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery state is unavailable. Do not assume this message arrived.'**
+  String get checkIn_explainUnknown;
+
+  /// No description provided for @tripBrief_heading.
+  ///
+  /// In en, this message translates to:
+  /// **'BASTION • MeshCore Trip Brief'**
+  String get tripBrief_heading;
+
+  /// No description provided for @tripBrief_trip.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip: {name}'**
+  String tripBrief_trip(String name);
+
+  /// No description provided for @tripBrief_status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status: {status}'**
+  String tripBrief_status(String status);
+
+  /// No description provided for @tripBrief_active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get tripBrief_active;
+
+  /// No description provided for @tripBrief_stopped.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopped'**
+  String get tripBrief_stopped;
+
+  /// No description provided for @tripBrief_contacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts: {names}'**
+  String tripBrief_contacts(String names);
+
+  /// No description provided for @tripBrief_noneSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'None selected'**
+  String get tripBrief_noneSelected;
+
+  /// No description provided for @tripBrief_unavailableContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable contact (review roster)'**
+  String get tripBrief_unavailableContact;
+
+  /// No description provided for @tripBrief_overdueAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity overdue after: {minutes} minutes (this phone alerts when a contact goes quiet)'**
+  String tripBrief_overdueAfter(int minutes);
+
+  /// No description provided for @tripBrief_reminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in reminder: {value}'**
+  String tripBrief_reminder(String value);
+
+  /// No description provided for @tripBrief_reminderEvery.
+  ///
+  /// In en, this message translates to:
+  /// **'every {minutes} minutes without a check-in'**
+  String tripBrief_reminderEvery(int minutes);
+
+  /// No description provided for @tripBrief_choices.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in choices: {choices}'**
+  String tripBrief_choices(String choices);
+
+  /// No description provided for @tripBrief_position.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio position in check-ins: {value}'**
+  String tripBrief_position(String value);
+
+  /// No description provided for @tripBrief_includedMayBeStale.
+  ///
+  /// In en, this message translates to:
+  /// **'Included; may be stale'**
+  String get tripBrief_includedMayBeStale;
+
+  /// No description provided for @tripBrief_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio battery in check-ins: {value}'**
+  String tripBrief_battery(String value);
+
+  /// No description provided for @tripBrief_included.
+  ///
+  /// In en, this message translates to:
+  /// **'Included'**
+  String get tripBrief_included;
+
+  /// No description provided for @tripBrief_off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get tripBrief_off;
+
+  /// No description provided for @tripBrief_review.
+  ///
+  /// In en, this message translates to:
+  /// **'Review recipients and message before sending a check-in.'**
+  String get tripBrief_review;
+
+  /// No description provided for @tripBrief_noProof.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued or sent does not prove delivery. An acknowledgment does not prove it was read.'**
+  String get tripBrief_noProof;
+
+  /// No description provided for @tripBrief_overdueMeaning.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue means no recent contact activity; it is not a confirmed emergency.'**
+  String get tripBrief_overdueMeaning;
+
+  /// No description provided for @tripBrief_automations.
+  ///
+  /// In en, this message translates to:
+  /// **'Field automations run only while the app is active. Agree on a separate plan for missed contact.'**
+  String get tripBrief_automations;
+
+  /// No description provided for @tripBrief_sharesOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'This brief shares information only; it does not send a radio message or start a trip.'**
+  String get tripBrief_sharesOnly;
+
+  /// No description provided for @fieldOps_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion Field Operations'**
+  String get fieldOps_title;
+
+  /// No description provided for @fieldOps_tabTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'TRIP'**
+  String get fieldOps_tabTrip;
+
+  /// No description provided for @fieldOps_tabReady.
+  ///
+  /// In en, this message translates to:
+  /// **'READY'**
+  String get fieldOps_tabReady;
+
+  /// No description provided for @fieldOps_tabLog.
+  ///
+  /// In en, this message translates to:
+  /// **'LOG'**
+  String get fieldOps_tabLog;
+
+  /// No description provided for @fieldOps_tabAuto.
+  ///
+  /// In en, this message translates to:
+  /// **'AUTO'**
+  String get fieldOps_tabAuto;
+
+  /// No description provided for @fieldOps_tabCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'COVERAGE'**
+  String get fieldOps_tabCoverage;
+
+  /// No description provided for @fieldOps_tabConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'CONNECTION'**
+  String get fieldOps_tabConnection;
+
+  /// No description provided for @fieldOps_diagnostics.
+  ///
+  /// In en, this message translates to:
+  /// **'Diagnostics'**
+  String get fieldOps_diagnostics;
+
+  /// No description provided for @fieldOps_storageLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Field data could not be loaded. Saved data was retained; automations remain off.'**
+  String get fieldOps_storageLoadError;
+
+  /// No description provided for @fieldOps_storageSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Field data could not be saved. Automations stopped; existing stored data is retained.'**
+  String get fieldOps_storageSaveError;
+
+  /// No description provided for @fieldOps_regionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select an area and zoom levels in Offline maps.'**
+  String get fieldOps_regionHint;
+
+  /// No description provided for @fieldOps_regionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{source} • zoom {minZoom}–{maxZoom}'**
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom);
+
+  /// No description provided for @fieldOps_mapVerifyFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Map area could not be verified: {error}'**
+  String fieldOps_mapVerifyFailed(String error);
+
+  /// No description provided for @fieldOps_tripActive.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Trip active • 1 contact} other{Trip active • {count} contacts}}'**
+  String fieldOps_tripActive(int count);
+
+  /// No description provided for @fieldOps_tripStopped.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip stopped. Start it when you are ready.'**
+  String get fieldOps_tripStopped;
+
+  /// No description provided for @fieldOps_reminderAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in reminder at {time}'**
+  String fieldOps_reminderAt(String time);
+
+  /// No description provided for @fieldOps_quietTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet too long: {names}'**
+  String fieldOps_quietTooLong(String names);
+
+  /// No description provided for @fieldOps_planTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan trip'**
+  String get fieldOps_planTrip;
+
+  /// No description provided for @fieldOps_endTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'End trip'**
+  String get fieldOps_endTrip;
+
+  /// No description provided for @fieldOps_startTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Start trip'**
+  String get fieldOps_startTrip;
+
+  /// No description provided for @fieldOps_tripBrief.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip brief'**
+  String get fieldOps_tripBrief;
+
+  /// No description provided for @fieldOps_connectRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect radio'**
+  String get fieldOps_connectRadio;
+
+  /// No description provided for @fieldOps_previewedCheckIns.
+  ///
+  /// In en, this message translates to:
+  /// **'Previewed check-ins'**
+  String get fieldOps_previewedCheckIns;
+
+  /// No description provided for @fieldOps_previewedCheckInsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a status, review the actual recipients and message, then send. Queued does not mean delivered.'**
+  String get fieldOps_previewedCheckInsHint;
+
+  /// No description provided for @fieldOps_tripRoster.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip roster'**
+  String get fieldOps_tripRoster;
+
+  /// No description provided for @fieldOps_rosterEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose up to six known chat contacts in Plan trip.'**
+  String get fieldOps_rosterEmpty;
+
+  /// No description provided for @fieldOps_rosterCaveat.
+  ///
+  /// In en, this message translates to:
+  /// **'Last heard is evidence of past activity. It does not establish current reachability. Overdue badges mean no recent contact activity, not a confirmed emergency.'**
+  String get fieldOps_rosterCaveat;
+
+  /// No description provided for @fieldOps_offlineMaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline maps'**
+  String get fieldOps_offlineMaps;
+
+  /// No description provided for @fieldOps_checkingTiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking saved tiles…'**
+  String get fieldOps_checkingTiles;
+
+  /// No description provided for @fieldOps_cachedTiles.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 cached tile.} other{{count} cached tiles.}} This does not guarantee your entire route is covered.'**
+  String fieldOps_cachedTiles(int count);
+
+  /// No description provided for @fieldOps_downloadAreas.
+  ///
+  /// In en, this message translates to:
+  /// **'Download / inspect offline areas'**
+  String get fieldOps_downloadAreas;
+
+  /// No description provided for @fieldOps_lastCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Last check-in, {time}'**
+  String fieldOps_lastCheckIn(String time);
+
+  /// No description provided for @fieldOps_deliveryChip.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}: {status}'**
+  String fieldOps_deliveryChip(String name, String status);
+
+  /// No description provided for @fieldOps_contactFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get fieldOps_contactFallback;
+
+  /// No description provided for @fieldOps_resendFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Resend to 1 not delivered} other{Resend to {count} not delivered}}'**
+  String fieldOps_resendFailed(int count);
+
+  /// No description provided for @fieldOps_memberUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected contact unavailable'**
+  String get fieldOps_memberUnavailable;
+
+  /// No description provided for @fieldOps_memberUnavailableHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Review this trip before sending.'**
+  String get fieldOps_memberUnavailableHint;
+
+  /// No description provided for @fieldOps_lastActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Last activity {minutes}m ago'**
+  String fieldOps_lastActivity(int minutes);
+
+  /// No description provided for @fieldOps_lastActivityOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Last activity {minutes}m ago • overdue'**
+  String fieldOps_lastActivityOverdue(int minutes);
+
+  /// No description provided for @fieldOps_noCheckInRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'No check-in recorded in this log.'**
+  String get fieldOps_noCheckInRecorded;
+
+  /// No description provided for @fieldOps_tripMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip map'**
+  String get fieldOps_tripMap;
+
+  /// No description provided for @fieldOps_tripMapEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No selected contacts have advertised coordinates yet.'**
+  String get fieldOps_tripMapEmpty;
+
+  /// No description provided for @fieldOps_lastPositions.
+  ///
+  /// In en, this message translates to:
+  /// **'Last advertised positions'**
+  String get fieldOps_lastPositions;
+
+  /// No description provided for @fieldOps_positionsCaveat.
+  ///
+  /// In en, this message translates to:
+  /// **'Positions can be stale. This map does not track phone GPS or prove members are currently here.'**
+  String get fieldOps_positionsCaveat;
+
+  /// No description provided for @fieldOps_briefPreviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview Trip Brief'**
+  String get fieldOps_briefPreviewTitle;
+
+  /// No description provided for @fieldOps_briefPreviewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Includes trip and contact names. Review before sharing. Coordinates, keys and message history are omitted.'**
+  String get fieldOps_briefPreviewHint;
+
+  /// No description provided for @fieldOps_shareBrief.
+  ///
+  /// In en, this message translates to:
+  /// **'Share brief'**
+  String get fieldOps_shareBrief;
+
+  /// No description provided for @fieldOps_briefSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion Trip Brief'**
+  String get fieldOps_briefSubject;
+
+  /// No description provided for @fieldOps_tripName.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip name'**
+  String get fieldOps_tripName;
+
+  /// No description provided for @fieldOps_defaultTripName.
+  ///
+  /// In en, this message translates to:
+  /// **'My trip'**
+  String get fieldOps_defaultTripName;
+
+  /// No description provided for @fieldOps_includePosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Include advertised radio position'**
+  String get fieldOps_includePosition;
+
+  /// No description provided for @fieldOps_includePositionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'May be stale; sharing is off by default.'**
+  String get fieldOps_includePositionHint;
+
+  /// No description provided for @fieldOps_includeBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'Include radio battery'**
+  String get fieldOps_includeBattery;
+
+  /// No description provided for @fieldOps_overdueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert me when a contact is quiet for'**
+  String get fieldOps_overdueLabel;
+
+  /// No description provided for @fieldOps_reminderLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind me to check in'**
+  String get fieldOps_reminderLabel;
+
+  /// No description provided for @fieldOps_reminderHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'A phone notification, even if Bastion is closed.'**
+  String get fieldOps_reminderHelper;
+
+  /// No description provided for @fieldOps_reminderOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get fieldOps_reminderOff;
+
+  /// No description provided for @fieldOps_reminderAfter.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{After 1 minute without one} other{After {count} minutes without one}}'**
+  String fieldOps_reminderAfter(int count);
+
+  /// No description provided for @fieldOps_sosChannelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS also goes to channel'**
+  String get fieldOps_sosChannelLabel;
+
+  /// No description provided for @fieldOps_sosChannelNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get fieldOps_sosChannelNone;
+
+  /// No description provided for @fieldOps_selectContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Select up to six known chat contacts'**
+  String get fieldOps_selectContacts;
+
+  /// No description provided for @fieldOps_sendCheckInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send check-in?'**
+  String get fieldOps_sendCheckInTitle;
+
+  /// No description provided for @fieldOps_recipients.
+  ///
+  /// In en, this message translates to:
+  /// **'To: {names}'**
+  String fieldOps_recipients(String names);
+
+  /// No description provided for @fieldOps_sendCheckInHint.
+  ///
+  /// In en, this message translates to:
+  /// **'This uses normal direct-message sends. Delivery will be tracked in Field Log.'**
+  String get fieldOps_sendCheckInHint;
+
+  /// No description provided for @fieldOps_send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get fieldOps_send;
+
+  /// No description provided for @fieldOps_beforeYouLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you leave'**
+  String get fieldOps_beforeYouLeave;
+
+  /// No description provided for @fieldOps_radioConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio connected'**
+  String get fieldOps_radioConnected;
+
+  /// No description provided for @fieldOps_connectHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with Bluetooth, USB or TCP.'**
+  String get fieldOps_connectHint;
+
+  /// No description provided for @fieldOps_radioBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio battery'**
+  String get fieldOps_radioBattery;
+
+  /// No description provided for @fieldOps_batteryUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown; inspect the radio.'**
+  String get fieldOps_batteryUnknown;
+
+  /// No description provided for @fieldOps_batteryDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% • charge for your planned trip.'**
+  String fieldOps_batteryDetail(String percent);
+
+  /// No description provided for @fieldOps_tripContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip contacts'**
+  String get fieldOps_tripContacts;
+
+  /// No description provided for @fieldOps_tripContactsDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{available}/{selected} available. Check they have compatible radios and channels.'**
+  String fieldOps_tripContactsDetail(String available, String selected);
+
+  /// No description provided for @fieldOps_offlineArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected offline map area'**
+  String get fieldOps_offlineArea;
+
+  /// No description provided for @fieldOps_checkingFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking local files…'**
+  String get fieldOps_checkingFiles;
+
+  /// No description provided for @fieldOps_regionStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'{available}/{expected} tile files available; {missing} missing. This is a snapshot; open the area offline before leaving.'**
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  );
+
+  /// No description provided for @fieldOps_locationChoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Location-sharing choice'**
+  String get fieldOps_locationChoice;
+
+  /// No description provided for @fieldOps_locationOptedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Opted in: radio advertised coordinates may be stale.'**
+  String get fieldOps_locationOptedIn;
+
+  /// No description provided for @fieldOps_locationOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing is off. Your check-ins omit coordinates.'**
+  String get fieldOps_locationOff;
+
+  /// No description provided for @fieldOps_automationAvailability.
+  ///
+  /// In en, this message translates to:
+  /// **'Automation availability'**
+  String get fieldOps_automationAvailability;
+
+  /// No description provided for @fieldOps_automationAvailabilityDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Runs only while this app is active. Sleep, closure or loss of radio can prevent scheduled actions.'**
+  String get fieldOps_automationAvailabilityDetail;
+
+  /// No description provided for @fieldOps_readinessCaveat.
+  ///
+  /// In en, this message translates to:
+  /// **'Readiness checks are advisory; they do not prove radio range or guarantee message delivery.'**
+  String get fieldOps_readinessCaveat;
+
+  /// No description provided for @fieldOps_radio.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio'**
+  String get fieldOps_radio;
+
+  /// No description provided for @fieldOps_refreshChecks.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh checks'**
+  String get fieldOps_refreshChecks;
+
+  /// No description provided for @fieldOps_searchLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Field Log'**
+  String get fieldOps_searchLog;
+
+  /// No description provided for @fieldOps_kindAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get fieldOps_kindAll;
+
+  /// No description provided for @fieldOps_kindCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in'**
+  String get fieldOps_kindCheckIn;
+
+  /// No description provided for @fieldOps_kindReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get fieldOps_kindReceived;
+
+  /// No description provided for @fieldOps_kindNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get fieldOps_kindNote;
+
+  /// No description provided for @fieldOps_kindDeadZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Dead zone'**
+  String get fieldOps_kindDeadZone;
+
+  /// No description provided for @fieldOps_kindRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio'**
+  String get fieldOps_kindRadio;
+
+  /// No description provided for @fieldOps_kindAutomation.
+  ///
+  /// In en, this message translates to:
+  /// **'Automation'**
+  String get fieldOps_kindAutomation;
+
+  /// No description provided for @fieldOps_kindMissed.
+  ///
+  /// In en, this message translates to:
+  /// **'Missed'**
+  String get fieldOps_kindMissed;
+
+  /// No description provided for @fieldOps_kindSos.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS'**
+  String get fieldOps_kindSos;
+
+  /// No description provided for @fieldOps_kindTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip'**
+  String get fieldOps_kindTrip;
+
+  /// No description provided for @fieldOps_kindOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue'**
+  String get fieldOps_kindOverdue;
+
+  /// No description provided for @fieldOps_addNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Add note'**
+  String get fieldOps_addNote;
+
+  /// No description provided for @fieldOps_exportJson.
+  ///
+  /// In en, this message translates to:
+  /// **'Export JSON'**
+  String get fieldOps_exportJson;
+
+  /// No description provided for @fieldOps_deleteLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete log'**
+  String get fieldOps_deleteLog;
+
+  /// No description provided for @fieldOps_logSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion Field Log'**
+  String get fieldOps_logSubject;
+
+  /// No description provided for @fieldOps_logCaveat.
+  ///
+  /// In en, this message translates to:
+  /// **'Stored locally, up to 1,000 entries. Exports may contain contact keys, messages and locations; review before sharing.'**
+  String get fieldOps_logCaveat;
+
+  /// No description provided for @fieldOps_noEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching entries.'**
+  String get fieldOps_noEntries;
+
+  /// No description provided for @fieldOps_tripUnspecified.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip unspecified'**
+  String get fieldOps_tripUnspecified;
+
+  /// No description provided for @fieldOps_entryStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'{status}: {explanation}'**
+  String fieldOps_entryStatus(String status, String explanation);
+
+  /// No description provided for @fieldOps_entryPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded radio-advertised position {latitude}, {longitude} (may be stale)'**
+  String fieldOps_entryPosition(String latitude, String longitude);
+
+  /// No description provided for @fieldOps_noteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Field observation'**
+  String get fieldOps_noteTitle;
+
+  /// No description provided for @fieldOps_noteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What did you observe?'**
+  String get fieldOps_noteLabel;
+
+  /// No description provided for @fieldOps_deadZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported dead zone'**
+  String get fieldOps_deadZone;
+
+  /// No description provided for @fieldOps_deadZoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your observation, not a verified coverage prediction.'**
+  String get fieldOps_deadZoneHint;
+
+  /// No description provided for @fieldOps_savePosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Save radio-advertised position'**
+  String get fieldOps_savePosition;
+
+  /// No description provided for @fieldOps_positionDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{latitude}, {longitude} • may be stale; not phone GPS'**
+  String fieldOps_positionDetail(String latitude, String longitude);
+
+  /// No description provided for @fieldOps_noPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'No usable advertised coordinates'**
+  String get fieldOps_noPosition;
+
+  /// No description provided for @fieldOps_deleteLogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Field Log?'**
+  String get fieldOps_deleteLogTitle;
+
+  /// No description provided for @fieldOps_deleteLogBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This removes all saved entries on this phone. Trip settings are kept.'**
+  String get fieldOps_deleteLogBody;
+
+  /// No description provided for @fieldOps_localAutomations.
+  ///
+  /// In en, this message translates to:
+  /// **'Local automations'**
+  String get fieldOps_localAutomations;
+
+  /// No description provided for @fieldOps_enableForTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable for this trip'**
+  String get fieldOps_enableForTrip;
+
+  /// No description provided for @fieldOps_automationsCaveat.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts off after every app restart. Rules run only while the app is active. Missed scheduled actions appear in Field Log and are never replayed in a burst. Automatic check-ins are limited to one batch per 10 minutes.'**
+  String get fieldOps_automationsCaveat;
+
+  /// No description provided for @fieldOps_openBotMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Bastion Bot Mode'**
+  String get fieldOps_openBotMode;
+
+  /// No description provided for @fieldOps_ruleEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Rule enabled'**
+  String get fieldOps_ruleEnabled;
+
+  /// No description provided for @fieldOps_dryRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Dry run'**
+  String get fieldOps_dryRun;
+
+  /// No description provided for @fieldOps_dryRunHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Record the action without sending or notifying.'**
+  String get fieldOps_dryRunHint;
+
+  /// No description provided for @fieldOps_then.
+  ///
+  /// In en, this message translates to:
+  /// **'THEN'**
+  String get fieldOps_then;
+
+  /// No description provided for @fieldOps_actionLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Write to Field Log'**
+  String get fieldOps_actionLog;
+
+  /// No description provided for @fieldOps_actionNotify.
+  ///
+  /// In en, this message translates to:
+  /// **'Show local notification'**
+  String get fieldOps_actionNotify;
+
+  /// No description provided for @fieldOps_actionCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Send I\'m OK to trip contacts'**
+  String get fieldOps_actionCheckIn;
+
+  /// No description provided for @fieldOps_batteryThreshold.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery at or below'**
+  String get fieldOps_batteryThreshold;
+
+  /// No description provided for @fieldOps_nextDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Next due: {time}'**
+  String fieldOps_nextDue(String time);
+
+  /// No description provided for @fieldOps_nextDueNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Next due: not scheduled'**
+  String get fieldOps_nextDueNone;
+
+  /// No description provided for @fieldOps_previewInLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview in log'**
+  String get fieldOps_previewInLog;
+
+  /// No description provided for @fieldOps_allowNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications'**
+  String get fieldOps_allowNotifications;
+
+  /// No description provided for @fieldOps_triggerReconnect.
+  ///
+  /// In en, this message translates to:
+  /// **'WHEN radio reconnects'**
+  String get fieldOps_triggerReconnect;
+
+  /// No description provided for @fieldOps_triggerDisconnect.
+  ///
+  /// In en, this message translates to:
+  /// **'WHEN radio disconnects'**
+  String get fieldOps_triggerDisconnect;
+
+  /// No description provided for @fieldOps_triggerLowBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'WHEN radio battery crosses threshold'**
+  String get fieldOps_triggerLowBattery;
+
+  /// No description provided for @fieldOps_triggerNewNode.
+  ///
+  /// In en, this message translates to:
+  /// **'WHEN a new node is added'**
+  String get fieldOps_triggerNewNode;
+
+  /// No description provided for @fieldOps_triggerRepeater.
+  ///
+  /// In en, this message translates to:
+  /// **'WHEN a new repeater is added'**
+  String get fieldOps_triggerRepeater;
+
+  /// No description provided for @fieldOps_triggerScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'WHEN a scheduled check-in is due'**
+  String get fieldOps_triggerScheduled;
+
+  /// No description provided for @fieldOps_explainConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Explain my connection'**
+  String get fieldOps_explainConnection;
+
+  /// No description provided for @fieldOps_connectionState.
+  ///
+  /// In en, this message translates to:
+  /// **'State: {state} • {transport}'**
+  String fieldOps_connectionState(String state, String transport);
+
+  /// No description provided for @fieldOps_connectedCaveat.
+  ///
+  /// In en, this message translates to:
+  /// **'The phone has a radio connection. That alone does not establish a route to your recipients.'**
+  String get fieldOps_connectedCaveat;
+
+  /// No description provided for @fieldOps_disconnectedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'No active radio connection. Check Bluetooth permissions, radio power and range; USB/TCP are available from Connect radio.'**
+  String get fieldOps_disconnectedHint;
+
+  /// No description provided for @fieldOps_awaitingConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip check-ins awaiting confirmation: {count}'**
+  String fieldOps_awaitingConfirmation(int count);
+
+  /// No description provided for @fieldOps_staleCaveat.
+  ///
+  /// In en, this message translates to:
+  /// **'Node last-seen times and advertised positions can be stale. Route intelligence shows routes learned from observed attempts; it does not invent paths.'**
+  String get fieldOps_staleCaveat;
+
+  /// No description provided for @fieldOps_routeIntelligence.
+  ///
+  /// In en, this message translates to:
+  /// **'Route intelligence'**
+  String get fieldOps_routeIntelligence;
+
+  /// No description provided for @fieldOps_coverageIntelligence.
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage intelligence'**
+  String get fieldOps_coverageIntelligence;
+
+  /// No description provided for @fieldOps_coverageIntelligenceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare recorded observations between two field sessions. Dots mark recorder radio-advertised positions where nodes were heard. They do not imply continuous coverage. RSSI/SNR snapshots are not per-node measurements.'**
+  String get fieldOps_coverageIntelligenceHint;
+
+  /// No description provided for @fieldOps_captureSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Capture a session'**
+  String get fieldOps_captureSession;
+
+  /// No description provided for @fieldOps_refreshHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh history'**
+  String get fieldOps_refreshHistory;
+
+  /// No description provided for @fieldOps_noCoverageSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved coverage sessions yet.'**
+  String get fieldOps_noCoverageSessions;
+
+  /// No description provided for @fieldOps_sessionA.
+  ///
+  /// In en, this message translates to:
+  /// **'Session A • teal'**
+  String get fieldOps_sessionA;
+
+  /// No description provided for @fieldOps_sessionB.
+  ///
+  /// In en, this message translates to:
+  /// **'Session B • amber'**
+  String get fieldOps_sessionB;
+
+  /// No description provided for @fieldOps_uniqueCompare.
+  ///
+  /// In en, this message translates to:
+  /// **'A: {a} unique nodes • B: {b} unique nodes'**
+  String fieldOps_uniqueCompare(String a, String b);
+
+  /// No description provided for @fieldOps_overlap.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared: {shared} • Only A: {onlyA} • Only B: {onlyB}'**
+  String fieldOps_overlap(String shared, String onlyA, String onlyB);
+
+  /// No description provided for @fieldOps_compareCaveat.
+  ///
+  /// In en, this message translates to:
+  /// **'Not hearing a node during one session does not establish a dead zone. Conditions and observation duration differ.'**
+  String get fieldOps_compareCaveat;
+
+  /// No description provided for @fieldOps_heardTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard-node observation; not proof of a successful link'**
+  String get fieldOps_heardTooltip;
+
+  /// No description provided for @fieldOps_noteTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Local note at radio-advertised coordinates; may be stale.'**
+  String get fieldOps_noteTooltip;
+
+  /// No description provided for @bastionHome_aboutTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'About Bastion'**
+  String get bastionHome_aboutTooltip;
+
+  /// No description provided for @bastionHome_getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'GET STARTED'**
+  String get bastionHome_getStarted;
+
+  /// No description provided for @bastionHome_getStartedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio and verify your first message'**
+  String get bastionHome_getStartedHint;
+
+  /// No description provided for @bastionHome_planYourTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'PLAN YOUR TRIP'**
+  String get bastionHome_planYourTrip;
+
+  /// No description provided for @bastionHome_tripActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip active'**
+  String get bastionHome_tripActive;
+
+  /// No description provided for @bastionHome_tripStopped.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip stopped'**
+  String get bastionHome_tripStopped;
+
+  /// No description provided for @bastionHome_tripSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{state} • {contacts} contacts • {unread} unread messages'**
+  String bastionHome_tripSummary(String state, String contacts, String unread);
+
+  /// No description provided for @bastionHome_checkInOk.
+  ///
+  /// In en, this message translates to:
+  /// **'CHECK IN: I\'M OK'**
+  String get bastionHome_checkInOk;
+
+  /// No description provided for @bastionHome_checkInHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Review contacts and message before sending. Track acknowledgements in Field Log.'**
+  String get bastionHome_checkInHint;
+
+  /// No description provided for @bastionHome_lastCheckIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Last check-in: {summary}'**
+  String bastionHome_lastCheckIn(String summary);
+
+  /// No description provided for @bastionHome_connectRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'CONNECT RADIO'**
+  String get bastionHome_connectRadio;
+
+  /// No description provided for @bastionHome_connectRadioHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth, USB and TCP MeshCore connections'**
+  String get bastionHome_connectRadioHint;
+
+  /// No description provided for @bastionHome_liveDiagnostics.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE DIAGNOSTICS'**
+  String get bastionHome_liveDiagnostics;
+
+  /// No description provided for @bastionHome_liveDiagnosticsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio health, signal, device and frame tools'**
+  String get bastionHome_liveDiagnosticsHint;
+
+  /// No description provided for @bastionHome_meshDiscovery.
+  ///
+  /// In en, this message translates to:
+  /// **'MESH DISCOVERY'**
+  String get bastionHome_meshDiscovery;
+
+  /// No description provided for @bastionHome_meshDiscoveryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Find nodes and inspect the mesh around you'**
+  String get bastionHome_meshDiscoveryHint;
+
+  /// No description provided for @bastionHome_fieldOpsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip brief, readiness, Field Log, automations and coverage comparison'**
+  String get bastionHome_fieldOpsHint;
+
+  /// No description provided for @bastionHome_fieldTools.
+  ///
+  /// In en, this message translates to:
+  /// **'BASTION FIELD TOOLS'**
+  String get bastionHome_fieldTools;
+
+  /// No description provided for @bastionHome_statusActive.
+  ///
+  /// In en, this message translates to:
+  /// **'ACTIVE'**
+  String get bastionHome_statusActive;
+
+  /// No description provided for @bastionHome_consoleOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'FIELD CONSOLE ONLINE'**
+  String get bastionHome_consoleOnline;
+
+  /// No description provided for @bastionHome_consoleReady.
+  ///
+  /// In en, this message translates to:
+  /// **'FIELD CONSOLE READY'**
+  String get bastionHome_consoleReady;
+
+  /// No description provided for @bastionHome_consoleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a radio to light up the live dashboard.'**
+  String get bastionHome_consoleHint;
+
+  /// No description provided for @bastionHome_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'BAT {value}'**
+  String bastionHome_battery(String value);
+
+  /// No description provided for @bastionTools_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Field Tools'**
+  String get bastionTools_title;
+
+  /// No description provided for @bastionTools_backup.
+  ///
+  /// In en, this message translates to:
+  /// **'ENCRYPTED BACKUP'**
+  String get bastionTools_backup;
+
+  /// No description provided for @bastionTools_backupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Save settings, contacts and keys with optional chat history'**
+  String get bastionTools_backupHint;
+
+  /// No description provided for @bastionTools_fieldOpsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-ins, readiness, Field Log, automations and comparisons'**
+  String get bastionTools_fieldOpsHint;
+
+  /// No description provided for @bastionTools_mapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Live map, capture sessions, offline map tools and regions'**
+  String get bastionTools_mapHint;
+
+  /// No description provided for @bastionTools_pathAnalysis.
+  ///
+  /// In en, this message translates to:
+  /// **'PATH ANALYSIS'**
+  String get bastionTools_pathAnalysis;
+
+  /// No description provided for @bastionTools_pathHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Routes, discovery and path intelligence'**
+  String get bastionTools_pathHint;
+
+  /// No description provided for @bastionTools_repeaterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Status, login, telemetry, neighbors and administration'**
+  String get bastionTools_repeaterHint;
+
+  /// No description provided for @bastionTools_statsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Live mesh counts and contact activity'**
+  String get bastionTools_statsHint;
+
+  /// No description provided for @bastionTools_diagnostics.
+  ///
+  /// In en, this message translates to:
+  /// **'DIAGNOSTICS'**
+  String get bastionTools_diagnostics;
+
+  /// No description provided for @bastionTools_diagnosticsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio health, device information, raw frames and export'**
+  String get bastionTools_diagnosticsHint;
+
+  /// No description provided for @bastionTools_about.
+  ///
+  /// In en, this message translates to:
+  /// **'ABOUT + CREDITS'**
+  String get bastionTools_about;
+
+  /// No description provided for @bastionTools_aboutHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion version, independence statement and open-source licenses'**
+  String get bastionTools_aboutHint;
+
+  /// No description provided for @bastionAbout_title.
+  ///
+  /// In en, this message translates to:
+  /// **'About + Credits'**
+  String get bastionAbout_title;
+
+  /// No description provided for @bastionAbout_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'An independent community companion app for MeshCore networks. Bastion is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.'**
+  String get bastionAbout_intro;
+
+  /// No description provided for @bastionAbout_version.
+  ///
+  /// In en, this message translates to:
+  /// **'VERSION'**
+  String get bastionAbout_version;
+
+  /// No description provided for @bastionAbout_openSource.
+  ///
+  /// In en, this message translates to:
+  /// **'OPEN SOURCE FOUNDATION'**
+  String get bastionAbout_openSource;
+
+  /// No description provided for @bastionAbout_openSourceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.'**
+  String get bastionAbout_openSourceBody;
+
+  /// No description provided for @bastionAbout_community.
+  ///
+  /// In en, this message translates to:
+  /// **'COMMUNITY FIRST'**
+  String get bastionAbout_community;
+
+  /// No description provided for @bastionAbout_communityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Third-party creator resources remain the property of their respective creators. No ownership or partnership is implied.'**
+  String get bastionAbout_communityBody;
+
+  /// No description provided for @bastionAbout_legalese.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion • Independent MeshCore companion'**
+  String get bastionAbout_legalese;
+
+  /// No description provided for @bastionAbout_licenses.
+  ///
+  /// In en, this message translates to:
+  /// **'OPEN SOURCE LICENSES'**
+  String get bastionAbout_licenses;
+
+  /// No description provided for @bastionSetup_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started with Bastion'**
+  String get bastionSetup_title;
+
+  /// No description provided for @bastionSetup_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect, choose a contact, then verify a message. You can return to this guide from the dashboard at any time.'**
+  String get bastionSetup_intro;
+
+  /// No description provided for @bastionSetup_step1.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Connect your MeshCore radio'**
+  String get bastionSetup_step1;
+
+  /// No description provided for @bastionSetup_connectedTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected to {device} using {transport}.'**
+  String bastionSetup_connectedTo(String device, String transport);
+
+  /// No description provided for @bastionSetup_noRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'No radio connected yet.'**
+  String get bastionSetup_noRadio;
+
+  /// No description provided for @bastionSetup_step1Power.
+  ///
+  /// In en, this message translates to:
+  /// **'Power on a MeshCore companion radio. Open Connect radio and choose Bluetooth, USB or TCP. Allow the permissions requested for your chosen connection.'**
+  String get bastionSetup_step1Power;
+
+  /// No description provided for @bastionSetup_step1Bluetooth.
+  ///
+  /// In en, this message translates to:
+  /// **'If Bluetooth discovery is empty, check Bluetooth is enabled and Bastion has Nearby devices permission in Android app settings. Follow any additional permission prompt shown by the scanner.'**
+  String get bastionSetup_step1Bluetooth;
+
+  /// No description provided for @bastionSetup_connectionDiagnostics.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection diagnostics'**
+  String get bastionSetup_connectionDiagnostics;
+
+  /// No description provided for @bastionSetup_step2.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Choose a chat contact'**
+  String get bastionSetup_step2;
+
+  /// No description provided for @bastionSetup_step2Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a nearby partner with compatible MeshCore radio settings to advertise their node. Choose a known chat contact below; repeaters are managed separately.'**
+  String get bastionSetup_step2Body;
+
+  /// No description provided for @bastionSetup_noContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'No chat contacts available. Connect your radio and open Mesh discovery.'**
+  String get bastionSetup_noContacts;
+
+  /// No description provided for @bastionSetup_testRecipient.
+  ///
+  /// In en, this message translates to:
+  /// **'Test recipient'**
+  String get bastionSetup_testRecipient;
+
+  /// No description provided for @bastionSetup_meshDiscovery.
+  ///
+  /// In en, this message translates to:
+  /// **'Mesh discovery'**
+  String get bastionSetup_meshDiscovery;
+
+  /// No description provided for @bastionSetup_step3.
+  ///
+  /// In en, this message translates to:
+  /// **'3. Send and verify a message'**
+  String get bastionSetup_step3;
+
+  /// No description provided for @bastionSetup_step3Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Open chat, write a short test message, review the recipient and tap Send. Return here to see the latest outgoing message recorded since opening this guide.'**
+  String get bastionSetup_step3Body;
+
+  /// No description provided for @bastionSetup_openTestChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Open test chat'**
+  String get bastionSetup_openTestChat;
+
+  /// No description provided for @bastionSetup_connectFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio to open test chat.'**
+  String get bastionSetup_connectFirst;
+
+  /// No description provided for @bastionSetup_chooseRecipient.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a recipient first.'**
+  String get bastionSetup_chooseRecipient;
+
+  /// No description provided for @bastionSetup_noTestMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No outgoing test message recorded in this guide session.'**
+  String get bastionSetup_noTestMessage;
+
+  /// No description provided for @bastionSetup_latestMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest message: {status} • {time}'**
+  String bastionSetup_latestMessage(String status, String time);
+
+  /// No description provided for @bastionSetup_confirmReceipt.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask your partner to confirm receipt or reply. A recorded acknowledgment does not prove they read it. Recheck the connection and recipient if a message fails.'**
+  String get bastionSetup_confirmReceipt;
+
+  /// No description provided for @bastionSetup_step4.
+  ///
+  /// In en, this message translates to:
+  /// **'4. Prepare for the field'**
+  String get bastionSetup_step4;
+
+  /// No description provided for @bastionSetup_step4Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan your trip contacts and inspect downloaded map areas. Bot Mode and field automations start off; field automations run only while the app is active.'**
+  String get bastionSetup_step4Body;
+
+  /// No description provided for @bastionSetup_tripTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip and readiness tools'**
+  String get bastionSetup_tripTools;
+
+  /// No description provided for @bastionDiag_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Diagnostics'**
+  String get bastionDiag_title;
+
+  /// No description provided for @bastionDiag_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export diagnostics'**
+  String get bastionDiag_export;
+
+  /// No description provided for @bastionDiag_channels.
+  ///
+  /// In en, this message translates to:
+  /// **'CHANNELS'**
+  String get bastionDiag_channels;
+
+  /// No description provided for @bastionDiag_radio.
+  ///
+  /// In en, this message translates to:
+  /// **'RADIO'**
+  String get bastionDiag_radio;
+
+  /// No description provided for @bastionDiag_frequency.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency'**
+  String get bastionDiag_frequency;
+
+  /// No description provided for @bastionDiag_bandwidth.
+  ///
+  /// In en, this message translates to:
+  /// **'Bandwidth'**
+  String get bastionDiag_bandwidth;
+
+  /// No description provided for @bastionDiag_spreadingFactor.
+  ///
+  /// In en, this message translates to:
+  /// **'Spreading factor'**
+  String get bastionDiag_spreadingFactor;
+
+  /// No description provided for @bastionDiag_codingRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Coding rate'**
+  String get bastionDiag_codingRate;
+
+  /// No description provided for @bastionDiag_txPower.
+  ///
+  /// In en, this message translates to:
+  /// **'TX power'**
+  String get bastionDiag_txPower;
+
+  /// No description provided for @bastionDiag_noiseFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise floor'**
+  String get bastionDiag_noiseFloor;
+
+  /// No description provided for @bastionDiag_device.
+  ///
+  /// In en, this message translates to:
+  /// **'DEVICE'**
+  String get bastionDiag_device;
+
+  /// No description provided for @bastionDiag_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get bastionDiag_name;
+
+  /// No description provided for @bastionDiag_manufacturer.
+  ///
+  /// In en, this message translates to:
+  /// **'Manufacturer'**
+  String get bastionDiag_manufacturer;
+
+  /// No description provided for @bastionDiag_firmware.
+  ///
+  /// In en, this message translates to:
+  /// **'Firmware'**
+  String get bastionDiag_firmware;
+
+  /// No description provided for @bastionDiag_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get bastionDiag_battery;
+
+  /// No description provided for @bastionDiag_transport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get bastionDiag_transport;
+
+  /// No description provided for @bastionDiag_deepTools.
+  ///
+  /// In en, this message translates to:
+  /// **'DEEP TOOLS'**
+  String get bastionDiag_deepTools;
+
+  /// No description provided for @bastionDiag_liveStats.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE RADIO STATS'**
+  String get bastionDiag_liveStats;
+
+  /// No description provided for @bastionDiag_liveStatsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise, RSSI, SNR and airtime'**
+  String get bastionDiag_liveStatsHint;
+
+  /// No description provided for @bastionDiag_frameDebug.
+  ///
+  /// In en, this message translates to:
+  /// **'FRAME / BLE DEBUG'**
+  String get bastionDiag_frameDebug;
+
+  /// No description provided for @bastionDiag_frameDebugHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Inspect decoded and raw received frames'**
+  String get bastionDiag_frameDebugHint;
+
+  /// No description provided for @bastionDiag_appLog.
+  ///
+  /// In en, this message translates to:
+  /// **'APP DEBUG LOG'**
+  String get bastionDiag_appLog;
+
+  /// No description provided for @bastionDiag_appLogHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Review application diagnostic events'**
+  String get bastionDiag_appLogHint;
+
+  /// No description provided for @bastionDiag_online.
+  ///
+  /// In en, this message translates to:
+  /// **'RADIO ONLINE'**
+  String get bastionDiag_online;
+
+  /// No description provided for @bastionDiag_offline.
+  ///
+  /// In en, this message translates to:
+  /// **'RADIO OFFLINE'**
+  String get bastionDiag_offline;
+
+  /// No description provided for @bastionDiag_offlineHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a MeshCore companion to populate live diagnostics.'**
+  String get bastionDiag_offlineHint;
+
+  /// No description provided for @coverage_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage Capture'**
+  String get coverage_title;
+
+  /// No description provided for @coverage_leaveBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop and save the session before leaving.'**
+  String get coverage_leaveBlocked;
+
+  /// No description provided for @coverage_savedSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'SAVED SESSIONS'**
+  String get coverage_savedSessions;
+
+  /// No description provided for @coverage_caveat.
+  ///
+  /// In en, this message translates to:
+  /// **'RSSI/SNR are radio snapshots and may belong to another packet. Positions are radio-advertised coordinates, not phone GPS or proof of coverage. Cyan: recorder; amber: advertised node. No interpolation is performed.'**
+  String get coverage_caveat;
+
+  /// No description provided for @coverage_captureActive.
+  ///
+  /// In en, this message translates to:
+  /// **'CAPTURE ACTIVE'**
+  String get coverage_captureActive;
+
+  /// No description provided for @coverage_fieldSession.
+  ///
+  /// In en, this message translates to:
+  /// **'FIELD COVERAGE SESSION'**
+  String get coverage_fieldSession;
+
+  /// No description provided for @coverage_connectedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.'**
+  String get coverage_connectedBody;
+
+  /// No description provided for @coverage_disconnectedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a radio before starting. Coverage capture records live mesh observations from the connected companion radio.'**
+  String get coverage_disconnectedBody;
+
+  /// No description provided for @coverage_observations.
+  ///
+  /// In en, this message translates to:
+  /// **'OBSERVATIONS'**
+  String get coverage_observations;
+
+  /// No description provided for @coverage_uniqueNodes.
+  ///
+  /// In en, this message translates to:
+  /// **'UNIQUE NODES'**
+  String get coverage_uniqueNodes;
+
+  /// No description provided for @coverage_elapsed.
+  ///
+  /// In en, this message translates to:
+  /// **'ELAPSED'**
+  String get coverage_elapsed;
+
+  /// No description provided for @coverage_radioConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'RADIO CONNECTED'**
+  String get coverage_radioConnected;
+
+  /// No description provided for @coverage_noRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'NO RADIO'**
+  String get coverage_noRadio;
+
+  /// No description provided for @coverage_gpsReady.
+  ///
+  /// In en, this message translates to:
+  /// **'RADIO GPS READY'**
+  String get coverage_gpsReady;
+
+  /// No description provided for @coverage_noGps.
+  ///
+  /// In en, this message translates to:
+  /// **'NO RADIO GPS'**
+  String get coverage_noGps;
+
+  /// No description provided for @coverage_stopSave.
+  ///
+  /// In en, this message translates to:
+  /// **'STOP + SAVE SESSION'**
+  String get coverage_stopSave;
+
+  /// No description provided for @coverage_start.
+  ///
+  /// In en, this message translates to:
+  /// **'START COVERAGE SESSION'**
+  String get coverage_start;
+
+  /// No description provided for @coverage_exportJson.
+  ///
+  /// In en, this message translates to:
+  /// **'EXPORT JSON'**
+  String get coverage_exportJson;
+
+  /// No description provided for @coverage_exportCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'EXPORT CSV'**
+  String get coverage_exportCsv;
+
+  /// No description provided for @coverage_liveObservations.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE OBSERVATIONS'**
+  String get coverage_liveObservations;
+
+  /// No description provided for @coverage_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'WAITING FOR MESH ACTIVITY'**
+  String get coverage_waiting;
+
+  /// No description provided for @coverage_waitingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a session and newly heard active nodes will appear here. RSSI/SNR values are radio snapshots and may not always be uniquely attributable to a specific packet.'**
+  String get coverage_waitingBody;
+
+  /// No description provided for @coverage_signalNa.
+  ///
+  /// In en, this message translates to:
+  /// **'signal n/a'**
+  String get coverage_signalNa;
+
+  /// No description provided for @coverage_snrNa.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR n/a'**
+  String get coverage_snrNa;
+
+  /// No description provided for @coverage_gpsUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'radio GPS unavailable'**
+  String get coverage_gpsUnavailable;
+
+  /// No description provided for @coverage_pathLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Path: {path}  •  {location}'**
+  String coverage_pathLine(String path, String location);
+
+  /// No description provided for @coverage_pathFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'flood'**
+  String get coverage_pathFlood;
+
+  /// No description provided for @coverage_pathDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'direct'**
+  String get coverage_pathDirect;
+
+  /// No description provided for @coverage_shareSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion Coverage Session'**
+  String get coverage_shareSubject;
+
+  /// No description provided for @coverage_shareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion coverage capture export'**
+  String get coverage_shareText;
+
+  /// No description provided for @coverage_historyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved coverage sessions'**
+  String get coverage_historyTitle;
+
+  /// No description provided for @coverage_loadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load sessions: {error}'**
+  String coverage_loadFailed(String error);
+
+  /// No description provided for @coverage_deleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete saved session?'**
+  String get coverage_deleteTitle;
+
+  /// No description provided for @coverage_deleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 observation will be removed from this device.} other{{count} observations will be removed from this device.}}'**
+  String coverage_deleteBody(int count);
+
+  /// No description provided for @coverage_deleteFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not delete session: {error}'**
+  String coverage_deleteFailed(String error);
+
+  /// No description provided for @coverage_retention.
+  ///
+  /// In en, this message translates to:
+  /// **'The newest 20 completed sessions are retained. Share sessions you want to keep. Interrupted captures can be reopened below.'**
+  String get coverage_retention;
+
+  /// No description provided for @coverage_noSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved sessions yet. Stop a capture to save it.'**
+  String get coverage_noSessions;
+
+  /// No description provided for @coverage_interrupted.
+  ///
+  /// In en, this message translates to:
+  /// **'Interrupted capture'**
+  String get coverage_interrupted;
+
+  /// No description provided for @coverage_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get coverage_saved;
+
+  /// No description provided for @coverage_deleteTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete session'**
+  String get coverage_deleteTooltip;
+
+  /// No description provided for @coverage_exportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Export failed: {error}'**
+  String coverage_exportFailed(String error);
+
+  /// No description provided for @coverage_sessionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage session'**
+  String get coverage_sessionTitle;
+
+  /// No description provided for @coverage_shareJson.
+  ///
+  /// In en, this message translates to:
+  /// **'Share JSON'**
+  String get coverage_shareJson;
+
+  /// No description provided for @coverage_shareCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Share CSV'**
+  String get coverage_shareCsv;
+
+  /// No description provided for @coverage_snapshotDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{rssi} dBm • SNR {snr} dB • snapshot age {age} ms'**
+  String coverage_snapshotDetail(String rssi, String snr, String age);
+
+  /// No description provided for @coverage_unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'unknown'**
+  String get coverage_unknown;
+
+  /// No description provided for @coverage_pathValue.
+  ///
+  /// In en, this message translates to:
+  /// **'path {path}'**
+  String coverage_pathValue(String path);
+
+  /// No description provided for @coverage_recorder.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorder'**
+  String get coverage_recorder;
+
+  /// No description provided for @coverage_noCoordinates.
+  ///
+  /// In en, this message translates to:
+  /// **'No usable coordinates in this session. Observations remain available below.'**
+  String get coverage_noCoordinates;
+
+  /// No description provided for @coverage_osmAttribution.
+  ///
+  /// In en, this message translates to:
+  /// **'© OpenStreetMap contributors • online basemap'**
+  String get coverage_osmAttribution;
+
+  /// No description provided for @fieldStats_title.
+  ///
+  /// In en, this message translates to:
+  /// **'FIELD INTELLIGENCE'**
+  String get fieldStats_title;
+
+  /// No description provided for @fieldStats_snapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE MESH SNAPSHOT'**
+  String get fieldStats_snapshot;
+
+  /// No description provided for @fieldStats_headline.
+  ///
+  /// In en, this message translates to:
+  /// **'What Bastion knows right now.'**
+  String get fieldStats_headline;
+
+  /// No description provided for @fieldStats_body.
+  ///
+  /// In en, this message translates to:
+  /// **'These counters are calculated from the connected MeshCore contact table, locations, paths and last-seen timestamps.'**
+  String get fieldStats_body;
+
+  /// No description provided for @fieldStats_total.
+  ///
+  /// In en, this message translates to:
+  /// **'TOTAL'**
+  String get fieldStats_total;
+
+  /// No description provided for @fieldStats_chatNodes.
+  ///
+  /// In en, this message translates to:
+  /// **'CHAT NODES'**
+  String get fieldStats_chatNodes;
+
+  /// No description provided for @fieldStats_rooms.
+  ///
+  /// In en, this message translates to:
+  /// **'ROOMS'**
+  String get fieldStats_rooms;
+
+  /// No description provided for @fieldStats_sensors.
+  ///
+  /// In en, this message translates to:
+  /// **'SENSORS'**
+  String get fieldStats_sensors;
+
+  /// No description provided for @fieldStats_located.
+  ///
+  /// In en, this message translates to:
+  /// **'LOCATED'**
+  String get fieldStats_located;
+
+  /// No description provided for @fieldStats_favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'FAVORITES'**
+  String get fieldStats_favorites;
+
+  /// No description provided for @fieldStats_routeSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'ROUTE SNAPSHOT'**
+  String get fieldStats_routeSnapshot;
+
+  /// No description provided for @fieldStats_routed.
+  ///
+  /// In en, this message translates to:
+  /// **'ROUTED'**
+  String get fieldStats_routed;
+
+  /// No description provided for @fieldStats_direct.
+  ///
+  /// In en, this message translates to:
+  /// **'DIRECT'**
+  String get fieldStats_direct;
+
+  /// No description provided for @fieldStats_flood.
+  ///
+  /// In en, this message translates to:
+  /// **'FLOOD'**
+  String get fieldStats_flood;
+
+  /// No description provided for @fieldStats_pathIntel.
+  ///
+  /// In en, this message translates to:
+  /// **'PATH INTELLIGENCE'**
+  String get fieldStats_pathIntel;
+
+  /// No description provided for @fieldStats_pathIntelBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.'**
+  String get fieldStats_pathIntelBody;
+
+  /// No description provided for @fieldStats_coverageSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'COVERAGE SESSIONS'**
+  String get fieldStats_coverageSessions;
+
+  /// No description provided for @fieldStats_coverageSessionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage Capture now saves field sessions, restores interrupted work, exports observations and maps recorded coverage points. RSSI/SNR remain the nearest available radio snapshot.'**
+  String get fieldStats_coverageSessionsBody;
+
+  /// No description provided for @mapHub_title.
+  ///
+  /// In en, this message translates to:
+  /// **'BASTION FIELD MAP'**
+  String get mapHub_title;
+
+  /// No description provided for @mapHub_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Live maps, offline areas, regional profiles and Bastion field coverage sessions.'**
+  String get mapHub_intro;
+
+  /// No description provided for @mapHub_captureHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Start and stop a field coverage session'**
+  String get mapHub_captureHint;
+
+  /// No description provided for @mapHub_badgeNew.
+  ///
+  /// In en, this message translates to:
+  /// **'NEW'**
+  String get mapHub_badgeNew;
+
+  /// No description provided for @mapHub_liveMap.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE MESH MAP'**
+  String get mapHub_liveMap;
+
+  /// No description provided for @mapHub_liveMapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Nodes, repeaters, positions, routes and map tools'**
+  String get mapHub_liveMapHint;
+
+  /// No description provided for @mapHub_badgeLive.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE'**
+  String get mapHub_badgeLive;
+
+  /// No description provided for @mapHub_offlinePacks.
+  ///
+  /// In en, this message translates to:
+  /// **'OFFLINE MAP PACKS'**
+  String get mapHub_offlinePacks;
+
+  /// No description provided for @mapHub_offlinePacksHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Cache map tiles for trips and no-service areas'**
+  String get mapHub_offlinePacksHint;
+
+  /// No description provided for @mapHub_badgeOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'OFFLINE'**
+  String get mapHub_badgeOffline;
+
+  /// No description provided for @mapHub_regions.
+  ///
+  /// In en, this message translates to:
+  /// **'REGION PROFILES'**
+  String get mapHub_regions;
+
+  /// No description provided for @mapHub_regionsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage and fetch regional mesh definitions'**
+  String get mapHub_regionsHint;
+
+  /// No description provided for @mapHub_badgeRegions.
+  ///
+  /// In en, this message translates to:
+  /// **'REGIONS'**
+  String get mapHub_badgeRegions;
+
+  /// No description provided for @routes_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Route Intelligence'**
+  String get routes_title;
+
+  /// No description provided for @routes_headline.
+  ///
+  /// In en, this message translates to:
+  /// **'See how traffic moves through the mesh.'**
+  String get routes_headline;
+
+  /// No description provided for @routes_body.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion ranks saved routes using the path history already learned from real message attempts and discoveries.'**
+  String get routes_body;
+
+  /// No description provided for @routes_routes.
+  ///
+  /// In en, this message translates to:
+  /// **'ROUTES'**
+  String get routes_routes;
+
+  /// No description provided for @routes_success.
+  ///
+  /// In en, this message translates to:
+  /// **'SUCCESS'**
+  String get routes_success;
+
+  /// No description provided for @routes_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'FAILED'**
+  String get routes_failed;
+
+  /// No description provided for @routes_routeMap.
+  ///
+  /// In en, this message translates to:
+  /// **'ROUTE MAP'**
+  String get routes_routeMap;
+
+  /// No description provided for @routes_routeMapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Inspect nodes and paths'**
+  String get routes_routeMapHint;
+
+  /// No description provided for @routes_discover.
+  ///
+  /// In en, this message translates to:
+  /// **'DISCOVER'**
+  String get routes_discover;
+
+  /// No description provided for @routes_discoverHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Find fresh routes'**
+  String get routes_discoverHint;
+
+  /// No description provided for @routes_learned.
+  ///
+  /// In en, this message translates to:
+  /// **'LEARNED ROUTES'**
+  String get routes_learned;
+
+  /// No description provided for @routes_none.
+  ///
+  /// In en, this message translates to:
+  /// **'NO ROUTE HISTORY YET'**
+  String get routes_none;
+
+  /// No description provided for @routes_noneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the mesh normally or run discovery. Bastion will surface learned routes here as path history becomes available.'**
+  String get routes_noneBody;
+
+  /// No description provided for @routes_direct.
+  ///
+  /// In en, this message translates to:
+  /// **'DIRECT'**
+  String get routes_direct;
+
+  /// No description provided for @routes_routeCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 route} other{{count} routes}}'**
+  String routes_routeCount(int count);
+
+  /// No description provided for @routes_best.
+  ///
+  /// In en, this message translates to:
+  /// **'BEST  {path}'**
+  String routes_best(String path);
+
+  /// No description provided for @routes_bestDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{hops}  •  weight {weight}  •  {success} success / {fail} fail'**
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  );
+
+  /// No description provided for @routes_fastest.
+  ///
+  /// In en, this message translates to:
+  /// **'Fastest known: {ms} ms'**
+  String routes_fastest(String ms);
+
+  /// No description provided for @routes_flood.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood: {success} success / {fail} fail'**
+  String routes_flood(String success, String fail);
+
+  /// No description provided for @repeaterTools_heroLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'REPEATER COMMAND'**
+  String get repeaterTools_heroLabel;
+
+  /// No description provided for @repeaterTools_headline.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage the infrastructure behind your mesh.'**
+  String get repeaterTools_headline;
+
+  /// No description provided for @repeaterTools_body.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a discovered repeater to authenticate and open its existing MeshCore status, telemetry, neighbors, settings and CLI tools.'**
+  String get repeaterTools_body;
+
+  /// No description provided for @repeaterTools_discovered.
+  ///
+  /// In en, this message translates to:
+  /// **'DISCOVERED'**
+  String get repeaterTools_discovered;
+
+  /// No description provided for @repeaterTools_tools.
+  ///
+  /// In en, this message translates to:
+  /// **'TOOLS'**
+  String get repeaterTools_tools;
+
+  /// No description provided for @repeaterTools_available.
+  ///
+  /// In en, this message translates to:
+  /// **'AVAILABLE REPEATERS'**
+  String get repeaterTools_available;
+
+  /// No description provided for @repeaterTools_unnamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unnamed repeater'**
+  String get repeaterTools_unnamed;
+
+  /// No description provided for @repeaterTools_statusTelemetry.
+  ///
+  /// In en, this message translates to:
+  /// **'STATUS + TELEMETRY'**
+  String get repeaterTools_statusTelemetry;
+
+  /// No description provided for @repeaterTools_statusTelemetryBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Inspect repeater health and telemetry using the existing management stack.'**
+  String get repeaterTools_statusTelemetryBody;
+
+  /// No description provided for @repeaterTools_neighbors.
+  ///
+  /// In en, this message translates to:
+  /// **'NEIGHBORS'**
+  String get repeaterTools_neighbors;
+
+  /// No description provided for @repeaterTools_neighborsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Inspect neighboring infrastructure and mesh relationships.'**
+  String get repeaterTools_neighborsBody;
+
+  /// No description provided for @repeaterTools_cli.
+  ///
+  /// In en, this message translates to:
+  /// **'CLI + SETTINGS'**
+  String get repeaterTools_cli;
+
+  /// No description provided for @repeaterTools_cliBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Authenticated administrators can reach the existing repeater CLI and configuration tools.'**
+  String get repeaterTools_cliBody;
+
+  /// No description provided for @repeaterTools_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No repeaters discovered yet. Connect a radio and discover the mesh first.'**
+  String get repeaterTools_empty;
+
+  /// No description provided for @notification_fieldAlertTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion Field Alert'**
+  String get notification_fieldAlertTitle;
+
+  /// No description provided for @notification_checkInReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bastion check-in reminder'**
+  String get notification_checkInReminderTitle;
+
+  /// No description provided for @notification_checkInReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'No check-in for {minutes} minutes on {trip}. Open Bastion to check in.'**
+  String notification_checkInReminderBody(int minutes, String trip);
+
+  /// No description provided for @notification_overdueBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} not heard from in {minutes} minutes. This is not a confirmed emergency.'**
+  String notification_overdueBody(String name, int minutes);
+
+  /// No description provided for @notification_aTripContact.
+  ///
+  /// In en, this message translates to:
+  /// **'A trip contact'**
+  String get notification_aTripContact;
+
+  /// No description provided for @notification_checkInNotDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-in not delivered to {name}. You can resend it from Trip.'**
+  String notification_checkInNotDelivered(String name);
+
+  /// No description provided for @notification_sosAcknowledged.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS acknowledged by {name}'**
+  String notification_sosAcknowledged(String name);
+
+  /// No description provided for @settings_batterySaver.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery saver'**
+  String get settings_batterySaver;
+
+  /// No description provided for @settings_batterySaverOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On: radio battery every 10 min, GPS every 5 min, stats at most once a minute, trip checks every 1–2 min. Messages, alerts and SOS are unchanged.'**
+  String get settings_batterySaverOn;
+
+  /// No description provided for @settings_batterySaverOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the radio and trip less often to save phone and radio battery. Messages, alerts and SOS are unchanged.'**
+  String get settings_batterySaverOff;
+
+  /// No description provided for @settings_readAloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Read new messages aloud'**
+  String get settings_readAloud;
+
+  /// No description provided for @settings_readAloudHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'While Bastion is open. Muted channels stay quiet. Any message can also be read from its menu.'**
+  String get settings_readAloudHelper;
+
+  /// No description provided for @settings_readAloudOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get settings_readAloudOff;
+
+  /// No description provided for @settings_readAloudDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct messages'**
+  String get settings_readAloudDirect;
+
+  /// No description provided for @settings_readAloudAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct and channel messages'**
+  String get settings_readAloudAll;
+
+  /// No description provided for @chat_readAloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Read aloud'**
+  String get chat_readAloud;
+
+  /// No description provided for @messageSearch_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Search messages'**
+  String get messageSearch_title;
+
+  /// No description provided for @messageSearch_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Search every direct and channel message saved on this phone.'**
+  String get messageSearch_intro;
+
+  /// No description provided for @messageSearch_noResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages contain \"{query}\".'**
+  String messageSearch_noResults(String query);
+
+  /// No description provided for @messageSearch_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 match} other{{count} matches}}'**
+  String messageSearch_count(int count);
+
+  /// No description provided for @messageSearch_capped.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing the newest {count} matches'**
+  String messageSearch_capped(int count);
+
+  /// No description provided for @shortcuts_checkIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check in'**
+  String get shortcuts_checkIn;
+
+  /// No description provided for @shortcuts_trip.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip'**
+  String get shortcuts_trip;
+
+  /// No description provided for @shortcuts_chats.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get shortcuts_chats;
+
+  /// No description provided for @shortcuts_map.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get shortcuts_map;
+
+  /// No description provided for @sensor_liveUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Live updates'**
+  String get sensor_liveUpdates;
+
+  /// No description provided for @sensor_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Have the sensor send readings by itself when they change, instead of asking each time. Needs a login with read access.'**
+  String get sensor_intro;
+
+  /// No description provided for @sensor_watch.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch for changes'**
+  String get sensor_watch;
+
+  /// No description provided for @sensor_loadFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Load telemetry first to choose readings.'**
+  String get sensor_loadFirst;
+
+  /// No description provided for @sensor_watching.
+  ///
+  /// In en, this message translates to:
+  /// **'Watching {readings} until {time}.'**
+  String sensor_watching(String readings, String time);
+
+  /// No description provided for @sensor_watchingRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Watching {readings} until {time} • region {region}.'**
+  String sensor_watchingRegion(String readings, String time, String region);
+
+  /// No description provided for @sensor_noChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'No changes reported yet.'**
+  String get sensor_noChanges;
+
+  /// No description provided for @sensor_lastUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Last update {time} • {count} received'**
+  String sensor_lastUpdate(String time, int count);
+
+  /// No description provided for @sensor_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop live updates'**
+  String get sensor_stop;
+
+  /// No description provided for @sensor_stopUnconfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopped here; the sensor did not confirm and will stop when the time runs out. {error}'**
+  String sensor_stopUnconfirmed(String error);
+
+  /// No description provided for @sensor_dialogBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The sensor checks about once a minute and sends an update when a chosen reading changes by more than its threshold.'**
+  String get sensor_dialogBody;
+
+  /// No description provided for @sensor_readingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} (ch {channel})'**
+  String sensor_readingTitle(String label, String channel);
+
+  /// No description provided for @sensor_readingValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} (ch {channel}): {value}'**
+  String sensor_readingValue(String label, String channel, String value);
+
+  /// No description provided for @sensor_watchItem.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} (ch {channel}) ±{delta}'**
+  String sensor_watchItem(String label, String channel, String delta);
+
+  /// No description provided for @sensor_updateOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Update on a change of {delta}'**
+  String sensor_updateOn(String delta);
+
+  /// No description provided for @sensor_changeThreshold.
+  ///
+  /// In en, this message translates to:
+  /// **'Change threshold'**
+  String get sensor_changeThreshold;
+
+  /// No description provided for @sensor_capacity.
+  ///
+  /// In en, this message translates to:
+  /// **'The sensor can watch up to {max} bytes of readings ({used} used).'**
+  String sensor_capacity(int max, String used);
+
+  /// No description provided for @sensor_for.
+  ///
+  /// In en, this message translates to:
+  /// **'For'**
+  String get sensor_for;
+
+  /// No description provided for @sensor_hours.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 hour} other{{count} hours}}'**
+  String sensor_hours(int count);
+
+  /// No description provided for @sensor_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get sensor_start;
+
+  /// No description provided for @sensor_thresholdTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} threshold'**
+  String sensor_thresholdTitle(String label);
+
+  /// No description provided for @sensor_typeTemperature.
+  ///
+  /// In en, this message translates to:
+  /// **'Temperature'**
+  String get sensor_typeTemperature;
+
+  /// No description provided for @sensor_typeHumidity.
+  ///
+  /// In en, this message translates to:
+  /// **'Humidity'**
+  String get sensor_typeHumidity;
+
+  /// No description provided for @sensor_typePressure.
+  ///
+  /// In en, this message translates to:
+  /// **'Pressure'**
+  String get sensor_typePressure;
+
+  /// No description provided for @sensor_typeVoltage.
+  ///
+  /// In en, this message translates to:
+  /// **'Voltage'**
+  String get sensor_typeVoltage;
+
+  /// No description provided for @sensor_typeCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get sensor_typeCurrent;
+
+  /// No description provided for @sensor_typeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get sensor_typeLight;
+
+  /// No description provided for @sensor_typeConcentration.
+  ///
+  /// In en, this message translates to:
+  /// **'Concentration'**
+  String get sensor_typeConcentration;
+
+  /// No description provided for @sensor_typePercentage.
+  ///
+  /// In en, this message translates to:
+  /// **'Percentage'**
+  String get sensor_typePercentage;
+
+  /// No description provided for @sensor_typeAnalogInput.
+  ///
+  /// In en, this message translates to:
+  /// **'Analog input'**
+  String get sensor_typeAnalogInput;
+
+  /// No description provided for @sensor_typeAltitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Altitude'**
+  String get sensor_typeAltitude;
 }
 
 class _AppLocalizationsDelegate

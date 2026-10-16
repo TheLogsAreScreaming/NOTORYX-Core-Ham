@@ -30,6 +30,9 @@ class NotificationService {
 
   AppLocalizations get _l10n => lookupAppLocalizations(_locale);
 
+  /// Strings in the app's language, for services that build notification text.
+  AppLocalizations get l10n => _l10n;
+
   String _logSafe(String value) {
     final sanitized = value.replaceAll(RegExp(r'[\x00-\x1F\x7F]'), ' ');
     return Uri.encodeComponent(sanitized);
@@ -157,7 +160,7 @@ class NotificationService {
     try {
       await _notifications.show(
         id: 73001,
-        title: 'Bastion Field Alert',
+        title: _l10n.notification_fieldAlertTitle,
         body: message,
         notificationDetails: const NotificationDetails(
           android: AndroidNotificationDetails(
@@ -200,7 +203,7 @@ class NotificationService {
     try {
       await _notifications.zonedSchedule(
         id: _checkInReminderId,
-        title: 'Bastion check-in reminder',
+        title: _l10n.notification_checkInReminderTitle,
         body: message,
         scheduledDate: tz.TZDateTime.from(at.toUtc(), tz.UTC),
         notificationDetails: _fieldDetails,

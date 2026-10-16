@@ -5437,4 +5437,1889 @@ class AppLocalizationsSk extends AppLocalizations {
   String imageSend_minutesSecondsValue(String minutes, String seconds) {
     return '$minutes min $seconds s';
   }
+
+  @override
+  String get bastion_tagline => 'Komunikácia bez infraštruktúry.';
+
+  @override
+  String get bastion_nodes => 'UZLY';
+
+  @override
+  String get bastion_repeaters => 'OPAKOVAČE';
+
+  @override
+  String get bastion_active1h => 'AKTÍVNE 1 H';
+
+  @override
+  String get bastion_mapCoverage => 'MAPA + POKRYTIE';
+
+  @override
+  String get bastion_routeIntelligence => 'ANALÝZA TRÁS';
+
+  @override
+  String get bastion_repeaterTools => 'NÁSTROJE OPAKOVAČA';
+
+  @override
+  String get bastion_fieldStats => 'TERÉNNE ŠTATISTIKY';
+
+  @override
+  String get bastion_fieldOps => 'TÚRA + TERÉNNE OPERÁCIE';
+
+  @override
+  String get bastion_coverageCapture => 'ZÁZNAM POKRYTIA';
+
+  @override
+  String get bastion_mapAttribution =>
+      'Mapové údaje © prispievatelia OpenStreetMap; dlaždice od zvoleného poskytovateľa';
+
+  @override
+  String bastion_observationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pozorovaní',
+      many: '$count pozorovania',
+      few: '$count pozorovania',
+      one: '1 pozorovanie',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_uniqueNodesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count jedinečných uzlov',
+      many: '$count jedinečného uzla',
+      few: '$count jedinečné uzly',
+      one: '1 jedinečný uzol',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_hopsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count skokov',
+      many: '$count skoku',
+      few: '$count skoky',
+      one: '1 skok',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String bastion_minutesCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count minút',
+      many: '$count minúty',
+      few: '$count minúty',
+      one: '1 minúta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sos_holdHint =>
+      'Podržte 2 sekundy. Každých 5 minút posiela vašu polohu kontaktom túry, kým niekto neodpovie.';
+
+  @override
+  String sos_holdHintChannel(String channel) {
+    return 'Podržte 2 sekundy. Každých 5 minút posiela vašu polohu kontaktom túry a do $channel, kým niekto neodpovie.';
+  }
+
+  @override
+  String sos_notSent(String error) {
+    return 'SOS nebolo odoslané: $error';
+  }
+
+  @override
+  String sos_acknowledged(String name) {
+    return 'Potvrdil(a) $name. Opakovanie zastavené.';
+  }
+
+  @override
+  String get sos_waitingForRadio => 'Čaká sa, kým rádio odošle…';
+
+  @override
+  String sos_repeatsFinished(int sends, int max) {
+    return 'Odoslané $sends z $max-krát. Opakovanie skončilo; zatiaľ bez odpovede.';
+  }
+
+  @override
+  String sos_nextAt(int sends, int max, String time) {
+    return 'Odoslané $sends z $max-krát. Ďalšie o $time.';
+  }
+
+  @override
+  String get sos_active => 'SOS AKTÍVNE';
+
+  @override
+  String get sos_stop => 'ZASTAVIŤ';
+
+  @override
+  String get sos_imSafe => 'SOM V BEZPEČÍ';
+
+  @override
+  String get sos_holdSemantics => 'SOS. Podržte na odoslanie.';
+
+  @override
+  String get sos_keepHolding => 'DRŽTE ĎALEJ…';
+
+  @override
+  String get sos_holdForSos => 'PODRŽTE PRE SOS';
+
+  @override
+  String get sos_blockStorage =>
+      'Najprv odstráňte chybu ukladania terénneho denníka.';
+
+  @override
+  String get sos_blockNotConnected =>
+      'Pripojte svoje rádio MeshCore na odoslanie SOS.';
+
+  @override
+  String get sos_blockNoTarget =>
+      'Vyberte kontakty túry alebo kanál SOS v časti Naplánovať túru.';
+
+  @override
+  String get checkIn_labelOk => 'Som v poriadku';
+
+  @override
+  String get checkIn_labelAtCamp => 'V tábore';
+
+  @override
+  String get checkIn_labelDelayed => 'Meškám';
+
+  @override
+  String get checkIn_labelHeadingBack => 'Vraciam sa';
+
+  @override
+  String get checkIn_blockLoading => 'Načítava sa túra…';
+
+  @override
+  String get checkIn_blockStorage =>
+      'Pred odoslaním odstráňte chybu ukladania terénneho denníka.';
+
+  @override
+  String get checkIn_blockBusy => 'Odosiela sa hlásenie. Počkajte.';
+
+  @override
+  String get checkIn_blockNoContacts =>
+      'Vyberte kontakty túry v časti Naplánovať túru.';
+
+  @override
+  String get checkIn_blockRosterIncomplete =>
+      'Niektoré kontakty túry nie sú dostupné. Skontrolujte zoznam.';
+
+  @override
+  String get checkIn_blockNotConnected =>
+      'Pripojte svoje rádio MeshCore na nahlásenie sa.';
+
+  @override
+  String get checkIn_blockNotActive => 'Spustite túru, aby ste zapli hlásenia.';
+
+  @override
+  String get checkIn_notSent => 'Neodoslané';
+
+  @override
+  String checkIn_deliveredToOne(String name) {
+    return 'Doručené: $name';
+  }
+
+  @override
+  String checkIn_deliveredToAll(int count) {
+    return 'Doručené všetkým kontaktom ($count)';
+  }
+
+  @override
+  String checkIn_deliveredSome(String delivered, String total) {
+    return 'Doručené $delivered z $total';
+  }
+
+  @override
+  String checkIn_notDeliveredTo(String names) {
+    return 'Nedoručené: $names';
+  }
+
+  @override
+  String get checkIn_waitingForRest => 'Čaká sa na ostatných';
+
+  @override
+  String get checkIn_aContact => 'kontakt';
+
+  @override
+  String get checkIn_statusPending => 'Čaká';
+
+  @override
+  String get checkIn_statusSent => 'Odoslané';
+
+  @override
+  String get checkIn_statusDelivered => 'Doručené';
+
+  @override
+  String get checkIn_statusFailed => 'Zlyhalo';
+
+  @override
+  String get checkIn_explainPending =>
+      'Lokálne vo fronte. Nepotvrdzuje to rádiový prenos ani príjem.';
+
+  @override
+  String get checkIn_explainSent =>
+      'Rádio prijalo odoslanie. Nebolo zaznamenané žiadne potvrdenie doručenia.';
+
+  @override
+  String get checkIn_explainDelivered =>
+      'Aplikácia zaznamenala potvrdenie doručenia. Nedokazuje to, že si ho osoba prečítala.';
+
+  @override
+  String get checkIn_explainFailed =>
+      'Žiadne potvrdené doručenie. Skontrolujte rádiové spojenie, dostupnosť príjemcu a históriu opakovaní.';
+
+  @override
+  String get checkIn_explainUnknown =>
+      'Stav doručenia nie je dostupný. Nepredpokladajte, že správa dorazila.';
+
+  @override
+  String get tripBrief_heading => 'BASTION • Prehľad túry MeshCore';
+
+  @override
+  String tripBrief_trip(String name) {
+    return 'Túra: $name';
+  }
+
+  @override
+  String tripBrief_status(String status) {
+    return 'Stav: $status';
+  }
+
+  @override
+  String get tripBrief_active => 'Aktívna';
+
+  @override
+  String get tripBrief_stopped => 'Zastavená';
+
+  @override
+  String tripBrief_contacts(String names) {
+    return 'Kontakty: $names';
+  }
+
+  @override
+  String get tripBrief_noneSelected => 'Žiadne vybrané';
+
+  @override
+  String get tripBrief_unavailableContact =>
+      'Nedostupný kontakt (skontrolujte zoznam)';
+
+  @override
+  String tripBrief_overdueAfter(int minutes) {
+    return 'Aktivita mešká po: $minutes min (tento telefón upozorní, keď kontakt stíchne)';
+  }
+
+  @override
+  String tripBrief_reminder(String value) {
+    return 'Pripomienka hlásenia: $value';
+  }
+
+  @override
+  String tripBrief_reminderEvery(int minutes) {
+    return 'každých $minutes min bez hlásenia';
+  }
+
+  @override
+  String tripBrief_choices(String choices) {
+    return 'Možnosti hlásenia: $choices';
+  }
+
+  @override
+  String tripBrief_position(String value) {
+    return 'Poloha rádia v hláseniach: $value';
+  }
+
+  @override
+  String get tripBrief_includedMayBeStale => 'Zahrnutá; môže byť zastaraná';
+
+  @override
+  String tripBrief_battery(String value) {
+    return 'Batéria rádia v hláseniach: $value';
+  }
+
+  @override
+  String get tripBrief_included => 'Zahrnutá';
+
+  @override
+  String get tripBrief_off => 'Vyp.';
+
+  @override
+  String get tripBrief_review =>
+      'Pred odoslaním hlásenia skontrolujte príjemcov a správu.';
+
+  @override
+  String get tripBrief_noProof =>
+      'Vo fronte alebo odoslané nedokazuje doručenie. Potvrdenie nedokazuje, že bolo prečítané.';
+
+  @override
+  String get tripBrief_overdueMeaning =>
+      'Meškanie znamená žiadnu nedávnu aktivitu kontaktu; nie je to potvrdená núdzová situácia.';
+
+  @override
+  String get tripBrief_automations =>
+      'Terénne automatizácie fungujú iba vtedy, keď je aplikácia aktívna. Dohodnite si samostatný plán pre prípad straty kontaktu.';
+
+  @override
+  String get tripBrief_sharesOnly =>
+      'Tento prehľad iba zdieľa informácie; neodosiela rádiovú správu ani nespúšťa túru.';
+
+  @override
+  String get fieldOps_title => 'Terénne operácie Bastion';
+
+  @override
+  String get fieldOps_tabTrip => 'TÚRA';
+
+  @override
+  String get fieldOps_tabReady => 'PRIPRAVENOSŤ';
+
+  @override
+  String get fieldOps_tabLog => 'DENNÍK';
+
+  @override
+  String get fieldOps_tabAuto => 'AUTO';
+
+  @override
+  String get fieldOps_tabCoverage => 'POKRYTIE';
+
+  @override
+  String get fieldOps_tabConnection => 'SPOJENIE';
+
+  @override
+  String get fieldOps_diagnostics => 'Diagnostika';
+
+  @override
+  String get fieldOps_storageLoadError =>
+      'Terénne údaje sa nepodarilo načítať. Uložené údaje zostali zachované; automatizácie zostávajú vypnuté.';
+
+  @override
+  String get fieldOps_storageSaveError =>
+      'Terénne údaje sa nepodarilo uložiť. Automatizácie zastavené; existujúce uložené údaje zostávajú zachované.';
+
+  @override
+  String get fieldOps_regionHint =>
+      'Vyberte oblasť a úrovne priblíženia v časti Offline mapy.';
+
+  @override
+  String fieldOps_regionLabel(String source, String minZoom, String maxZoom) {
+    return '$source • priblíženie $minZoom–$maxZoom';
+  }
+
+  @override
+  String fieldOps_mapVerifyFailed(String error) {
+    return 'Oblasť mapy sa nepodarilo overiť: $error';
+  }
+
+  @override
+  String fieldOps_tripActive(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Túra aktívna • $count kontaktov',
+      many: 'Túra aktívna • $count kontaktu',
+      few: 'Túra aktívna • $count kontakty',
+      one: 'Túra aktívna • 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_tripStopped =>
+      'Túra je zastavená. Spustite ju, keď budete pripravení.';
+
+  @override
+  String fieldOps_reminderAt(String time) {
+    return 'Pripomienka hlásenia o $time';
+  }
+
+  @override
+  String fieldOps_quietTooLong(String names) {
+    return 'Príliš dlho ticho: $names';
+  }
+
+  @override
+  String get fieldOps_planTrip => 'Naplánovať túru';
+
+  @override
+  String get fieldOps_endTrip => 'Ukončiť túru';
+
+  @override
+  String get fieldOps_startTrip => 'Spustiť túru';
+
+  @override
+  String get fieldOps_tripBrief => 'Prehľad túry';
+
+  @override
+  String get fieldOps_connectRadio => 'Pripojiť rádio';
+
+  @override
+  String get fieldOps_previewedCheckIns => 'Hlásenia s náhľadom';
+
+  @override
+  String get fieldOps_previewedCheckInsHint =>
+      'Vyberte stav, skontrolujte skutočných príjemcov a správu a potom odošlite. Vo fronte neznamená doručené.';
+
+  @override
+  String get fieldOps_tripRoster => 'Zoznam túry';
+
+  @override
+  String get fieldOps_rosterEmpty =>
+      'Vyberte až šesť známych kontaktov četu v časti Naplánovať túru.';
+
+  @override
+  String get fieldOps_rosterCaveat =>
+      '„Naposledy počutý“ je dôkaz minulej aktivity. Nepotvrdzuje súčasnú dostupnosť. Označenia meškania znamenajú žiadnu nedávnu aktivitu kontaktu, nie potvrdenú núdzovú situáciu.';
+
+  @override
+  String get fieldOps_offlineMaps => 'Offline mapy';
+
+  @override
+  String get fieldOps_checkingTiles => 'Kontrolujú sa uložené dlaždice…';
+
+  @override
+  String fieldOps_cachedTiles(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count dlaždíc vo vyrovnávacej pamäti.',
+      many: '$count dlaždice vo vyrovnávacej pamäti.',
+      few: '$count dlaždice vo vyrovnávacej pamäti.',
+      one: '1 dlaždica vo vyrovnávacej pamäti.',
+    );
+    return '$_temp0 Nezaručuje to, že je pokrytá celá trasa.';
+  }
+
+  @override
+  String get fieldOps_downloadAreas =>
+      'Stiahnuť / skontrolovať offline oblasti';
+
+  @override
+  String fieldOps_lastCheckIn(String time) {
+    return 'Posledné hlásenie, $time';
+  }
+
+  @override
+  String fieldOps_deliveryChip(String name, String status) {
+    return '$name: $status';
+  }
+
+  @override
+  String get fieldOps_contactFallback => 'Kontakt';
+
+  @override
+  String fieldOps_resendFailed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Znova odoslať $count nedoručeným',
+      many: 'Znova odoslať $count nedoručeným',
+      few: 'Znova odoslať $count nedoručeným',
+      one: 'Znova odoslať 1 nedoručenému',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_memberUnavailable => 'Vybraný kontakt nie je dostupný';
+
+  @override
+  String get fieldOps_memberUnavailableHint =>
+      'Pred odoslaním skontrolujte túto túru.';
+
+  @override
+  String fieldOps_lastActivity(int minutes) {
+    return 'Posledná aktivita pred $minutes min';
+  }
+
+  @override
+  String fieldOps_lastActivityOverdue(int minutes) {
+    return 'Posledná aktivita pred $minutes min • mešká';
+  }
+
+  @override
+  String get fieldOps_noCheckInRecorded =>
+      'V tomto denníku nie je zaznamenané žiadne hlásenie.';
+
+  @override
+  String get fieldOps_tripMap => 'Mapa túry';
+
+  @override
+  String get fieldOps_tripMapEmpty =>
+      'Žiadny vybraný kontakt zatiaľ nevysielal súradnice.';
+
+  @override
+  String get fieldOps_lastPositions => 'Naposledy vysielané polohy';
+
+  @override
+  String get fieldOps_positionsCaveat =>
+      'Polohy môžu byť zastarané. Táto mapa nesleduje GPS telefónu a nedokazuje, že členovia sú teraz tu.';
+
+  @override
+  String get fieldOps_briefPreviewTitle => 'Náhľad prehľadu túry';
+
+  @override
+  String get fieldOps_briefPreviewHint =>
+      'Obsahuje názvy túry a kontaktov. Pred zdieľaním skontrolujte. Súradnice, kľúče a história správ sú vynechané.';
+
+  @override
+  String get fieldOps_shareBrief => 'Zdieľať prehľad';
+
+  @override
+  String get fieldOps_briefSubject => 'Prehľad túry Bastion';
+
+  @override
+  String get fieldOps_tripName => 'Názov túry';
+
+  @override
+  String get fieldOps_defaultTripName => 'Moja túra';
+
+  @override
+  String get fieldOps_includePosition => 'Pridať vysielanú polohu rádia';
+
+  @override
+  String get fieldOps_includePositionHint =>
+      'Môže byť zastaraná; zdieľanie je predvolene vypnuté.';
+
+  @override
+  String get fieldOps_includeBattery => 'Pridať batériu rádia';
+
+  @override
+  String get fieldOps_overdueLabel => 'Upozorniť ma, keď kontakt mlčí';
+
+  @override
+  String get fieldOps_reminderLabel => 'Pripomínať mi hlásenie';
+
+  @override
+  String get fieldOps_reminderHelper =>
+      'Upozornenie v telefóne, aj keď je Bastion zatvorený.';
+
+  @override
+  String get fieldOps_reminderOff => 'Vyp.';
+
+  @override
+  String fieldOps_reminderAfter(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Po $count minútach bez hlásenia',
+      many: 'Po $count minúty bez hlásenia',
+      few: 'Po $count minútach bez hlásenia',
+      one: 'Po 1 minúte bez hlásenia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldOps_sosChannelLabel => 'SOS ide aj do kanála';
+
+  @override
+  String get fieldOps_sosChannelNone => 'Žiadny';
+
+  @override
+  String get fieldOps_selectContacts =>
+      'Vyberte až šesť známych kontaktov četu';
+
+  @override
+  String get fieldOps_sendCheckInTitle => 'Odoslať hlásenie?';
+
+  @override
+  String fieldOps_recipients(String names) {
+    return 'Komu: $names';
+  }
+
+  @override
+  String get fieldOps_sendCheckInHint =>
+      'Používa bežné priame správy. Doručenie sa bude sledovať v terénnom denníku.';
+
+  @override
+  String get fieldOps_send => 'Odoslať';
+
+  @override
+  String get fieldOps_beforeYouLeave => 'Pred odchodom';
+
+  @override
+  String get fieldOps_radioConnected => 'Rádio pripojené';
+
+  @override
+  String get fieldOps_connectHint =>
+      'Pripojte sa cez Bluetooth, USB alebo TCP.';
+
+  @override
+  String get fieldOps_radioBattery => 'Batéria rádia';
+
+  @override
+  String get fieldOps_batteryUnknown => 'Neznáma; skontrolujte rádio.';
+
+  @override
+  String fieldOps_batteryDetail(String percent) {
+    return '$percent % • nabite na plánovanú túru.';
+  }
+
+  @override
+  String get fieldOps_tripContacts => 'Kontakty túry';
+
+  @override
+  String fieldOps_tripContactsDetail(String available, String selected) {
+    return 'Dostupné $available/$selected. Skontrolujte, či majú kompatibilné rádiá a kanály.';
+  }
+
+  @override
+  String get fieldOps_offlineArea => 'Vybraná offline oblasť mapy';
+
+  @override
+  String get fieldOps_checkingFiles => 'Kontrolujú sa miestne súbory…';
+
+  @override
+  String fieldOps_regionStatus(
+    String available,
+    String expected,
+    String missing,
+  ) {
+    return 'Dostupné súbory dlaždíc: $available/$expected; chýba $missing. Je to snímka; pred odchodom otvorte oblasť offline.';
+  }
+
+  @override
+  String get fieldOps_locationChoice => 'Zdieľanie polohy';
+
+  @override
+  String get fieldOps_locationOptedIn =>
+      'Zapnuté: súradnice vysielané rádiom môžu byť zastarané.';
+
+  @override
+  String get fieldOps_locationOff =>
+      'Zdieľanie je vypnuté. Vaše hlásenia neobsahujú súradnice.';
+
+  @override
+  String get fieldOps_automationAvailability => 'Dostupnosť automatizácie';
+
+  @override
+  String get fieldOps_automationAvailabilityDetail =>
+      'Funguje iba vtedy, keď je aplikácia aktívna. Spánok, zatvorenie alebo strata rádia môžu zabrániť plánovaným akciám.';
+
+  @override
+  String get fieldOps_readinessCaveat =>
+      'Kontroly pripravenosti sú orientačné; nedokazujú dosah rádia ani nezaručujú doručenie správ.';
+
+  @override
+  String get fieldOps_radio => 'Rádio';
+
+  @override
+  String get fieldOps_refreshChecks => 'Obnoviť kontroly';
+
+  @override
+  String get fieldOps_searchLog => 'Hľadať v terénnom denníku';
+
+  @override
+  String get fieldOps_kindAll => 'Všetko';
+
+  @override
+  String get fieldOps_kindCheckIn => 'Hlásenie';
+
+  @override
+  String get fieldOps_kindReceived => 'Prijaté';
+
+  @override
+  String get fieldOps_kindNote => 'Poznámka';
+
+  @override
+  String get fieldOps_kindDeadZone => 'Mŕtva zóna';
+
+  @override
+  String get fieldOps_kindRadio => 'Rádio';
+
+  @override
+  String get fieldOps_kindAutomation => 'Automatizácia';
+
+  @override
+  String get fieldOps_kindMissed => 'Zmeškané';
+
+  @override
+  String get fieldOps_kindSos => 'SOS';
+
+  @override
+  String get fieldOps_kindTrip => 'Túra';
+
+  @override
+  String get fieldOps_kindOverdue => 'Mešká';
+
+  @override
+  String get fieldOps_addNote => 'Pridať poznámku';
+
+  @override
+  String get fieldOps_exportJson => 'Exportovať JSON';
+
+  @override
+  String get fieldOps_deleteLog => 'Odstrániť denník';
+
+  @override
+  String get fieldOps_logSubject => 'Terénny denník Bastion';
+
+  @override
+  String get fieldOps_logCaveat =>
+      'Uložené lokálne, najviac 1 000 záznamov. Exporty môžu obsahovať kľúče kontaktov, správy a polohy; pred zdieľaním skontrolujte.';
+
+  @override
+  String get fieldOps_noEntries => 'Žiadne zodpovedajúce záznamy.';
+
+  @override
+  String get fieldOps_tripUnspecified => 'Túra neuvedená';
+
+  @override
+  String fieldOps_entryStatus(String status, String explanation) {
+    return '$status: $explanation';
+  }
+
+  @override
+  String fieldOps_entryPosition(String latitude, String longitude) {
+    return 'Zaznamenaná vysielaná poloha rádia $latitude, $longitude (môže byť zastaraná)';
+  }
+
+  @override
+  String get fieldOps_noteTitle => 'Terénne pozorovanie';
+
+  @override
+  String get fieldOps_noteLabel => 'Čo ste pozorovali?';
+
+  @override
+  String get fieldOps_deadZone => 'Nahlásená mŕtva zóna';
+
+  @override
+  String get fieldOps_deadZoneHint =>
+      'Vaše pozorovanie, nie overená predpoveď pokrytia.';
+
+  @override
+  String get fieldOps_savePosition => 'Uložiť vysielanú polohu rádia';
+
+  @override
+  String fieldOps_positionDetail(String latitude, String longitude) {
+    return '$latitude, $longitude • môže byť zastaraná; nie GPS telefónu';
+  }
+
+  @override
+  String get fieldOps_noPosition => 'Žiadne použiteľné vysielané súradnice';
+
+  @override
+  String get fieldOps_deleteLogTitle => 'Odstrániť terénny denník?';
+
+  @override
+  String get fieldOps_deleteLogBody =>
+      'Odstráni všetky uložené záznamy v tomto telefóne. Nastavenia túry zostanú zachované.';
+
+  @override
+  String get fieldOps_localAutomations => 'Miestne automatizácie';
+
+  @override
+  String get fieldOps_enableForTrip => 'Zapnúť pre túto túru';
+
+  @override
+  String get fieldOps_automationsCaveat =>
+      'Po každom reštarte aplikácie sú vypnuté. Pravidlá fungujú iba vtedy, keď je aplikácia aktívna. Zmeškané plánované akcie sa zobrazia v terénnom denníku a nikdy sa nedobiehajú naraz. Automatické hlásenia sú obmedzené na jednu dávku za 10 minút.';
+
+  @override
+  String get fieldOps_openBotMode => 'Otvoriť režim bota Bastion';
+
+  @override
+  String get fieldOps_ruleEnabled => 'Pravidlo zapnuté';
+
+  @override
+  String get fieldOps_dryRun => 'Skúšobný beh';
+
+  @override
+  String get fieldOps_dryRunHint =>
+      'Zaznamenať akciu bez odoslania alebo upozornenia.';
+
+  @override
+  String get fieldOps_then => 'POTOM';
+
+  @override
+  String get fieldOps_actionLog => 'Zapísať do terénneho denníka';
+
+  @override
+  String get fieldOps_actionNotify => 'Zobraziť miestne upozornenie';
+
+  @override
+  String get fieldOps_actionCheckIn => 'Poslať „I\'m OK“ kontaktom túry';
+
+  @override
+  String get fieldOps_batteryThreshold => 'Batéria na úrovni alebo pod';
+
+  @override
+  String fieldOps_nextDue(String time) {
+    return 'Ďalšie: $time';
+  }
+
+  @override
+  String get fieldOps_nextDueNone => 'Ďalšie: nenaplánované';
+
+  @override
+  String get fieldOps_previewInLog => 'Náhľad v denníku';
+
+  @override
+  String get fieldOps_allowNotifications => 'Povoliť upozornenia';
+
+  @override
+  String get fieldOps_triggerReconnect => 'KEĎ sa rádio znova pripojí';
+
+  @override
+  String get fieldOps_triggerDisconnect => 'KEĎ sa rádio odpojí';
+
+  @override
+  String get fieldOps_triggerLowBattery => 'KEĎ batéria rádia prekročí prah';
+
+  @override
+  String get fieldOps_triggerNewNode => 'KEĎ pribudne nový uzol';
+
+  @override
+  String get fieldOps_triggerRepeater => 'KEĎ pribudne nový opakovač';
+
+  @override
+  String get fieldOps_triggerScheduled => 'KEĎ je na rade plánované hlásenie';
+
+  @override
+  String get fieldOps_explainConnection => 'Vysvetliť moje spojenie';
+
+  @override
+  String fieldOps_connectionState(String state, String transport) {
+    return 'Stav: $state • $transport';
+  }
+
+  @override
+  String get fieldOps_connectedCaveat =>
+      'Telefón má spojenie s rádiom. Samo osebe to nezaisťuje trasu k vašim príjemcom.';
+
+  @override
+  String get fieldOps_disconnectedHint =>
+      'Žiadne aktívne rádiové spojenie. Skontrolujte povolenia Bluetooth, napájanie a dosah rádia; USB/TCP sú dostupné v časti Pripojiť rádio.';
+
+  @override
+  String fieldOps_awaitingConfirmation(int count) {
+    return 'Hlásenia túry čakajúce na potvrdenie: $count';
+  }
+
+  @override
+  String get fieldOps_staleCaveat =>
+      'Časy posledného videnia a vysielané polohy uzlov môžu byť zastarané. Analýza trás zobrazuje trasy naučené z pozorovaných pokusov; nevymýšľa cesty.';
+
+  @override
+  String get fieldOps_routeIntelligence => 'Analýza trás';
+
+  @override
+  String get fieldOps_coverageIntelligence => 'Analýza pokrytia';
+
+  @override
+  String get fieldOps_coverageIntelligenceHint =>
+      'Porovnajte zaznamenané pozorovania z dvoch terénnych relácií. Body označujú vysielané polohy rádia zapisovateľa, kde boli počuť uzly. Neznamenajú súvislé pokrytie. Snímky RSSI/SNR nie sú merania pre jednotlivé uzly.';
+
+  @override
+  String get fieldOps_captureSession => 'Zaznamenať reláciu';
+
+  @override
+  String get fieldOps_refreshHistory => 'Obnoviť históriu';
+
+  @override
+  String get fieldOps_noCoverageSessions =>
+      'Zatiaľ žiadne uložené relácie pokrytia.';
+
+  @override
+  String get fieldOps_sessionA => 'Relácia A • tyrkysová';
+
+  @override
+  String get fieldOps_sessionB => 'Relácia B • jantárová';
+
+  @override
+  String fieldOps_uniqueCompare(String a, String b) {
+    return 'A: jedinečné uzly $a • B: jedinečné uzly $b';
+  }
+
+  @override
+  String fieldOps_overlap(String shared, String onlyA, String onlyB) {
+    return 'Spoločné: $shared • Iba A: $onlyA • Iba B: $onlyB';
+  }
+
+  @override
+  String get fieldOps_compareCaveat =>
+      'Ak uzol nepočuť počas jednej relácie, nepotvrdzuje to mŕtvu zónu. Podmienky a dĺžka pozorovania sa líšia.';
+
+  @override
+  String get fieldOps_heardTooltip =>
+      'Pozorovanie počutého uzla; nie je dôkazom úspešného spojenia';
+
+  @override
+  String get fieldOps_noteTooltip =>
+      'Miestna poznámka pri súradniciach vysielaných rádiom; môže byť zastaraná.';
+
+  @override
+  String get bastionHome_aboutTooltip => 'O aplikácii Bastion';
+
+  @override
+  String get bastionHome_getStarted => 'ZAČÍNAME';
+
+  @override
+  String get bastionHome_getStartedHint =>
+      'Pripojte rádio a overte svoju prvú správu';
+
+  @override
+  String get bastionHome_planYourTrip => 'NAPLÁNUJTE SI TÚRU';
+
+  @override
+  String get bastionHome_tripActive => 'Túra aktívna';
+
+  @override
+  String get bastionHome_tripStopped => 'Túra zastavená';
+
+  @override
+  String bastionHome_tripSummary(String state, String contacts, String unread) {
+    return '$state • kontakty: $contacts • neprečítané: $unread';
+  }
+
+  @override
+  String get bastionHome_checkInOk => 'HLÁSENIE: SOM V PORIADKU';
+
+  @override
+  String get bastionHome_checkInHint =>
+      'Pred odoslaním skontrolujte kontakty a správu. Potvrdenia sledujte v terénnom denníku.';
+
+  @override
+  String bastionHome_lastCheckIn(String summary) {
+    return 'Posledné hlásenie: $summary';
+  }
+
+  @override
+  String get bastionHome_connectRadio => 'PRIPOJIŤ RÁDIO';
+
+  @override
+  String get bastionHome_connectRadioHint =>
+      'Pripojenia MeshCore cez Bluetooth, USB a TCP';
+
+  @override
+  String get bastionHome_liveDiagnostics => 'ŽIVÁ DIAGNOSTIKA';
+
+  @override
+  String get bastionHome_liveDiagnosticsHint =>
+      'Stav rádia, signál, zariadenie a nástroje rámcov';
+
+  @override
+  String get bastionHome_meshDiscovery => 'OBJAVOVANIE SIETE';
+
+  @override
+  String get bastionHome_meshDiscoveryHint =>
+      'Nájdite uzly a preskúmajte sieť okolo seba';
+
+  @override
+  String get bastionHome_fieldOpsHint =>
+      'Prehľad túry, pripravenosť, terénny denník, automatizácie a porovnanie pokrytia';
+
+  @override
+  String get bastionHome_fieldTools => 'TERÉNNE NÁSTROJE BASTION';
+
+  @override
+  String get bastionHome_statusActive => 'AKTÍVNE';
+
+  @override
+  String get bastionHome_consoleOnline => 'TERÉNNA KONZOLA ONLINE';
+
+  @override
+  String get bastionHome_consoleReady => 'TERÉNNA KONZOLA PRIPRAVENÁ';
+
+  @override
+  String get bastionHome_consoleHint =>
+      'Pripojte rádio, aby sa zapol živý prehľad.';
+
+  @override
+  String bastionHome_battery(String value) {
+    return 'BAT $value';
+  }
+
+  @override
+  String get bastionTools_title => 'Terénne nástroje';
+
+  @override
+  String get bastionTools_backup => 'ŠIFROVANÁ ZÁLOHA';
+
+  @override
+  String get bastionTools_backupHint =>
+      'Uložte nastavenia, kontakty a kľúče, voliteľne s históriou četu';
+
+  @override
+  String get bastionTools_fieldOpsHint =>
+      'Hlásenia, pripravenosť, terénny denník, automatizácie a porovnania';
+
+  @override
+  String get bastionTools_mapHint =>
+      'Živá mapa, relácie záznamu, nástroje offline máp a regióny';
+
+  @override
+  String get bastionTools_pathAnalysis => 'ANALÝZA CIEST';
+
+  @override
+  String get bastionTools_pathHint => 'Trasy, objavovanie a analýza ciest';
+
+  @override
+  String get bastionTools_repeaterHint =>
+      'Stav, prihlásenie, telemetria, susedia a správa';
+
+  @override
+  String get bastionTools_statsHint =>
+      'Živé počty v sieti a aktivita kontaktov';
+
+  @override
+  String get bastionTools_diagnostics => 'DIAGNOSTIKA';
+
+  @override
+  String get bastionTools_diagnosticsHint =>
+      'Stav rádia, informácie o zariadení, surové rámce a export';
+
+  @override
+  String get bastionTools_about => 'O APLIKÁCII + POĎAKOVANIA';
+
+  @override
+  String get bastionTools_aboutHint =>
+      'Verzia Bastion, vyhlásenie o nezávislosti a licencie open source';
+
+  @override
+  String get bastionAbout_title => 'O aplikácii + Poďakovania';
+
+  @override
+  String get bastionAbout_intro =>
+      'Nezávislá komunitná sprievodná aplikácia pre siete MeshCore. Bastion nie je oficiálna aplikácia MeshCore a zahrnutie komunitných zdrojov neznamená partnerstvo ani podporu.';
+
+  @override
+  String get bastionAbout_version => 'VERZIA';
+
+  @override
+  String get bastionAbout_openSource => 'ZÁKLAD OPEN SOURCE';
+
+  @override
+  String get bastionAbout_openSourceBody =>
+      'Bastion je postavený na otvorenom kóde MeshCore Open pod licenciou MIT a upravuje ho. Práca na postupe pokrytia uvádza aj, kde je to vhodné, aplikáciu MeshMapper Flutter App s licenciou MIT.';
+
+  @override
+  String get bastionAbout_community => 'KOMUNITA NA PRVOM MIESTE';
+
+  @override
+  String get bastionAbout_communityBody =>
+      'Zdroje tretích tvorcov zostávajú majetkom ich príslušných tvorcov. Nevyplýva z toho vlastníctvo ani partnerstvo.';
+
+  @override
+  String get bastionAbout_legalese => 'Bastion • Nezávislý sprievodca MeshCore';
+
+  @override
+  String get bastionAbout_licenses => 'LICENCIE OPEN SOURCE';
+
+  @override
+  String get bastionSetup_title => 'Začíname s Bastion';
+
+  @override
+  String get bastionSetup_intro =>
+      'Pripojte sa, vyberte kontakt a potom overte správu. K tomuto sprievodcovi sa môžete kedykoľvek vrátiť z prehľadu.';
+
+  @override
+  String get bastionSetup_step1 => '1. Pripojte svoje rádio MeshCore';
+
+  @override
+  String bastionSetup_connectedTo(String device, String transport) {
+    return 'Pripojené k $device cez $transport.';
+  }
+
+  @override
+  String get bastionSetup_noRadio => 'Zatiaľ nie je pripojené žiadne rádio.';
+
+  @override
+  String get bastionSetup_step1Power =>
+      'Zapnite sprievodné rádio MeshCore. Otvorte Pripojiť rádio a vyberte Bluetooth, USB alebo TCP. Povoľte oprávnenia požadované pre zvolené pripojenie.';
+
+  @override
+  String get bastionSetup_step1Bluetooth =>
+      'Ak je vyhľadávanie Bluetooth prázdne, skontrolujte, či je Bluetooth zapnutý a či má Bastion oprávnenie Zariadenia v okolí v nastaveniach aplikácií Androidu. Postupujte podľa ďalších žiadostí o oprávnenia, ktoré zobrazí skener.';
+
+  @override
+  String get bastionSetup_connectionDiagnostics => 'Diagnostika pripojenia';
+
+  @override
+  String get bastionSetup_step2 => '2. Vyberte kontakt četu';
+
+  @override
+  String get bastionSetup_step2Body =>
+      'Požiadajte partnera v okolí s kompatibilnými nastaveniami rádia MeshCore, aby oznámil svoj uzol. Nižšie vyberte známy kontakt četu; opakovače sa spravujú samostatne.';
+
+  @override
+  String get bastionSetup_noContacts =>
+      'Nie sú dostupné žiadne kontakty četu. Pripojte rádio a otvorte Objavovanie siete.';
+
+  @override
+  String get bastionSetup_testRecipient => 'Testovací príjemca';
+
+  @override
+  String get bastionSetup_meshDiscovery => 'Objavovanie siete';
+
+  @override
+  String get bastionSetup_step3 => '3. Odošlite a overte správu';
+
+  @override
+  String get bastionSetup_step3Body =>
+      'Otvorte čet, napíšte krátku testovaciu správu, skontrolujte príjemcu a ťuknite na Odoslať. Vráťte sa sem a uvidíte najnovšiu odchádzajúcu správu zaznamenanú od otvorenia sprievodcu.';
+
+  @override
+  String get bastionSetup_openTestChat => 'Otvoriť testovací čet';
+
+  @override
+  String get bastionSetup_connectFirst =>
+      'Pripojte rádio, aby ste otvorili testovací čet.';
+
+  @override
+  String get bastionSetup_chooseRecipient => 'Najprv vyberte príjemcu.';
+
+  @override
+  String get bastionSetup_noTestMessage =>
+      'V tejto relácii sprievodcu nebola zaznamenaná žiadna odchádzajúca testovacia správa.';
+
+  @override
+  String bastionSetup_latestMessage(String status, String time) {
+    return 'Najnovšia správa: $status • $time';
+  }
+
+  @override
+  String get bastionSetup_confirmReceipt =>
+      'Požiadajte partnera, aby potvrdil prijatie alebo odpovedal. Zaznamenané potvrdenie nedokazuje, že správu prečítal. Ak správa zlyhá, znova skontrolujte pripojenie a príjemcu.';
+
+  @override
+  String get bastionSetup_step4 => '4. Pripravte sa do terénu';
+
+  @override
+  String get bastionSetup_step4Body =>
+      'Naplánujte kontakty túry a skontrolujte stiahnuté oblasti máp. Režim bota a terénne automatizácie sú na začiatku vypnuté; terénne automatizácie fungujú iba vtedy, keď je aplikácia aktívna.';
+
+  @override
+  String get bastionSetup_tripTools => 'Nástroje túry a pripravenosti';
+
+  @override
+  String get bastionDiag_title => 'Diagnostika';
+
+  @override
+  String get bastionDiag_export => 'Exportovať diagnostiku';
+
+  @override
+  String get bastionDiag_channels => 'KANÁLY';
+
+  @override
+  String get bastionDiag_radio => 'RÁDIO';
+
+  @override
+  String get bastionDiag_frequency => 'Frekvencia';
+
+  @override
+  String get bastionDiag_bandwidth => 'Šírka pásma';
+
+  @override
+  String get bastionDiag_spreadingFactor => 'Rozptylový faktor';
+
+  @override
+  String get bastionDiag_codingRate => 'Kódovací pomer';
+
+  @override
+  String get bastionDiag_txPower => 'Vysielací výkon';
+
+  @override
+  String get bastionDiag_noiseFloor => 'Úroveň šumu';
+
+  @override
+  String get bastionDiag_device => 'ZARIADENIE';
+
+  @override
+  String get bastionDiag_name => 'Názov';
+
+  @override
+  String get bastionDiag_manufacturer => 'Výrobca';
+
+  @override
+  String get bastionDiag_firmware => 'Firmvér';
+
+  @override
+  String get bastionDiag_battery => 'Batéria';
+
+  @override
+  String get bastionDiag_transport => 'Pripojenie';
+
+  @override
+  String get bastionDiag_deepTools => 'POKROČILÉ NÁSTROJE';
+
+  @override
+  String get bastionDiag_liveStats => 'ŽIVÉ ŠTATISTIKY RÁDIA';
+
+  @override
+  String get bastionDiag_liveStatsHint => 'Šum, RSSI, SNR a čas vysielania';
+
+  @override
+  String get bastionDiag_frameDebug => 'LADENIE RÁMCOV / BLE';
+
+  @override
+  String get bastionDiag_frameDebugHint =>
+      'Preskúmajte dekódované a surové prijaté rámce';
+
+  @override
+  String get bastionDiag_appLog => 'LADIACI DENNÍK APLIKÁCIE';
+
+  @override
+  String get bastionDiag_appLogHint =>
+      'Prezrite si diagnostické udalosti aplikácie';
+
+  @override
+  String get bastionDiag_online => 'RÁDIO ONLINE';
+
+  @override
+  String get bastionDiag_offline => 'RÁDIO OFFLINE';
+
+  @override
+  String get bastionDiag_offlineHint =>
+      'Pripojte sprievodcu MeshCore, aby sa naplnila živá diagnostika.';
+
+  @override
+  String get coverage_title => 'Záznam pokrytia';
+
+  @override
+  String get coverage_leaveBlocked =>
+      'Pred odchodom reláciu zastavte a uložte.';
+
+  @override
+  String get coverage_savedSessions => 'ULOŽENÉ RELÁCIE';
+
+  @override
+  String get coverage_caveat =>
+      'RSSI/SNR sú snímky rádia a môžu patriť inému paketu. Polohy sú súradnice vysielané rádiom, nie GPS telefónu ani dôkaz pokrytia. Azúrová: zapisovateľ; jantárová: vysielaný uzol. Interpolácia sa nevykonáva.';
+
+  @override
+  String get coverage_captureActive => 'ZÁZNAM AKTÍVNY';
+
+  @override
+  String get coverage_fieldSession => 'TERÉNNA RELÁCIA POKRYTIA';
+
+  @override
+  String get coverage_connectedBody =>
+      'Bastion počas tejto relácie zaznamenáva novo počuté uzly vrátane údajov o trase, metadát uzla/polohy a najbližšej dostupnej snímky RSSI/SNR rádia.';
+
+  @override
+  String get coverage_disconnectedBody =>
+      'Pred spustením pripojte rádio. Záznam pokrytia zaznamenáva živé pozorovania siete z pripojeného sprievodného rádia.';
+
+  @override
+  String get coverage_observations => 'POZOROVANIA';
+
+  @override
+  String get coverage_uniqueNodes => 'JEDINEČNÉ UZLY';
+
+  @override
+  String get coverage_elapsed => 'UPLYNULO';
+
+  @override
+  String get coverage_radioConnected => 'RÁDIO PRIPOJENÉ';
+
+  @override
+  String get coverage_noRadio => 'ŽIADNE RÁDIO';
+
+  @override
+  String get coverage_gpsReady => 'GPS RÁDIA PRIPRAVENÉ';
+
+  @override
+  String get coverage_noGps => 'ŽIADNE GPS RÁDIA';
+
+  @override
+  String get coverage_stopSave => 'ZASTAVIŤ + ULOŽIŤ RELÁCIU';
+
+  @override
+  String get coverage_start => 'SPUSTIŤ RELÁCIU POKRYTIA';
+
+  @override
+  String get coverage_exportJson => 'EXPORTOVAŤ JSON';
+
+  @override
+  String get coverage_exportCsv => 'EXPORTOVAŤ CSV';
+
+  @override
+  String get coverage_liveObservations => 'ŽIVÉ POZOROVANIA';
+
+  @override
+  String get coverage_waiting => 'ČAKÁ SA NA AKTIVITU SIETE';
+
+  @override
+  String get coverage_waitingBody =>
+      'Spustite reláciu a novo počuté aktívne uzly sa zobrazia tu. Hodnoty RSSI/SNR sú snímky rádia a nie vždy sa dajú jednoznačne priradiť konkrétnemu paketu.';
+
+  @override
+  String get coverage_signalNa => 'signál n/a';
+
+  @override
+  String get coverage_snrNa => 'SNR n/a';
+
+  @override
+  String get coverage_gpsUnavailable => 'GPS rádia nedostupné';
+
+  @override
+  String coverage_pathLine(String path, String location) {
+    return 'Cesta: $path  •  $location';
+  }
+
+  @override
+  String get coverage_pathFlood => 'flood';
+
+  @override
+  String get coverage_pathDirect => 'priama';
+
+  @override
+  String get coverage_shareSubject => 'Relácia pokrytia Bastion';
+
+  @override
+  String get coverage_shareText => 'Export záznamu pokrytia Bastion';
+
+  @override
+  String get coverage_historyTitle => 'Uložené relácie pokrytia';
+
+  @override
+  String coverage_loadFailed(String error) {
+    return 'Relácie sa nepodarilo načítať: $error';
+  }
+
+  @override
+  String get coverage_deleteTitle => 'Odstrániť uloženú reláciu?';
+
+  @override
+  String coverage_deleteBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pozorovaní sa odstráni z tohto zariadenia.',
+      many: '$count pozorovania sa odstráni z tohto zariadenia.',
+      few: '$count pozorovania sa odstránia z tohto zariadenia.',
+      one: '1 pozorovanie sa odstráni z tohto zariadenia.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String coverage_deleteFailed(String error) {
+    return 'Reláciu sa nepodarilo odstrániť: $error';
+  }
+
+  @override
+  String get coverage_retention =>
+      'Uchováva sa 20 najnovších dokončených relácií. Zdieľajte relácie, ktoré si chcete ponechať. Prerušené záznamy možno znova otvoriť nižšie.';
+
+  @override
+  String get coverage_noSessions =>
+      'Zatiaľ žiadne uložené relácie. Zastavte záznam, aby sa uložil.';
+
+  @override
+  String get coverage_interrupted => 'Prerušený záznam';
+
+  @override
+  String get coverage_saved => 'Uložené';
+
+  @override
+  String get coverage_deleteTooltip => 'Odstrániť reláciu';
+
+  @override
+  String coverage_exportFailed(String error) {
+    return 'Export zlyhal: $error';
+  }
+
+  @override
+  String get coverage_sessionTitle => 'Relácia pokrytia';
+
+  @override
+  String get coverage_shareJson => 'Zdieľať JSON';
+
+  @override
+  String get coverage_shareCsv => 'Zdieľať CSV';
+
+  @override
+  String coverage_snapshotDetail(String rssi, String snr, String age) {
+    return '$rssi dBm • SNR $snr dB • vek snímky $age ms';
+  }
+
+  @override
+  String get coverage_unknown => 'neznámy';
+
+  @override
+  String coverage_pathValue(String path) {
+    return 'cesta $path';
+  }
+
+  @override
+  String get coverage_recorder => 'Zapisovateľ';
+
+  @override
+  String get coverage_noCoordinates =>
+      'V tejto relácii nie sú použiteľné súradnice. Pozorovania zostávajú dostupné nižšie.';
+
+  @override
+  String get coverage_osmAttribution =>
+      '© prispievatelia OpenStreetMap • online podkladová mapa';
+
+  @override
+  String get fieldStats_title => 'TERÉNNA ANALÝZA';
+
+  @override
+  String get fieldStats_snapshot => 'ŽIVÁ SNÍMKA SIETE';
+
+  @override
+  String get fieldStats_headline => 'Čo Bastion práve vie.';
+
+  @override
+  String get fieldStats_body =>
+      'Tieto počítadlá sa počítajú z tabuľky kontaktov pripojeného MeshCore, polôh, ciest a časov posledného videnia.';
+
+  @override
+  String get fieldStats_total => 'SPOLU';
+
+  @override
+  String get fieldStats_chatNodes => 'UZLY ČETU';
+
+  @override
+  String get fieldStats_rooms => 'MIESTNOSTI';
+
+  @override
+  String get fieldStats_sensors => 'SENZORY';
+
+  @override
+  String get fieldStats_located => 'S POLOHOU';
+
+  @override
+  String get fieldStats_favorites => 'OBĽÚBENÉ';
+
+  @override
+  String get fieldStats_routeSnapshot => 'SNÍMKA TRÁS';
+
+  @override
+  String get fieldStats_routed => 'S TRASOU';
+
+  @override
+  String get fieldStats_direct => 'PRIAME';
+
+  @override
+  String get fieldStats_flood => 'FLOOD';
+
+  @override
+  String get fieldStats_pathIntel => 'ANALÝZA CIEST';
+
+  @override
+  String get fieldStats_pathIntelBody =>
+      'Analýza trás v Bastion využíva uložené pokusy o cesty, počty skokov, úspechy/zlyhania, čas prechodu a váženie trás na zobrazenie naučených trás.';
+
+  @override
+  String get fieldStats_coverageSessions => 'RELÁCIE POKRYTIA';
+
+  @override
+  String get fieldStats_coverageSessionsBody =>
+      'Záznam pokrytia teraz ukladá terénne relácie, obnovuje prerušenú prácu, exportuje pozorovania a zobrazuje zaznamenané body pokrytia na mape. RSSI/SNR zostávajú najbližšou dostupnou snímkou rádia.';
+
+  @override
+  String get mapHub_title => 'TERÉNNA MAPA BASTION';
+
+  @override
+  String get mapHub_intro =>
+      'Živé mapy, offline oblasti, regionálne profily a terénne relácie pokrytia Bastion.';
+
+  @override
+  String get mapHub_captureHint =>
+      'Spustiť a zastaviť terénnu reláciu pokrytia';
+
+  @override
+  String get mapHub_badgeNew => 'NOVÉ';
+
+  @override
+  String get mapHub_liveMap => 'ŽIVÁ MAPA SIETE';
+
+  @override
+  String get mapHub_liveMapHint =>
+      'Uzly, opakovače, polohy, trasy a nástroje mapy';
+
+  @override
+  String get mapHub_badgeLive => 'NAŽIVO';
+
+  @override
+  String get mapHub_offlinePacks => 'BALÍKY OFFLINE MÁP';
+
+  @override
+  String get mapHub_offlinePacksHint =>
+      'Uložte dlaždice máp pre túry a oblasti bez signálu';
+
+  @override
+  String get mapHub_badgeOffline => 'OFFLINE';
+
+  @override
+  String get mapHub_regions => 'PROFILY REGIÓNOV';
+
+  @override
+  String get mapHub_regionsHint =>
+      'Spravujte a sťahujte regionálne definície siete';
+
+  @override
+  String get mapHub_badgeRegions => 'REGIÓNY';
+
+  @override
+  String get routes_title => 'Analýza trás';
+
+  @override
+  String get routes_headline => 'Pozrite sa, ako sa prevádzka pohybuje sieťou.';
+
+  @override
+  String get routes_body =>
+      'Bastion zoraďuje uložené trasy podľa histórie ciest, ktorú sa už naučil zo skutočných pokusov o správy a objavovanie.';
+
+  @override
+  String get routes_routes => 'TRASY';
+
+  @override
+  String get routes_success => 'ÚSPECHY';
+
+  @override
+  String get routes_failed => 'ZLYHANIA';
+
+  @override
+  String get routes_routeMap => 'MAPA TRÁS';
+
+  @override
+  String get routes_routeMapHint => 'Preskúmajte uzly a cesty';
+
+  @override
+  String get routes_discover => 'OBJAVIŤ';
+
+  @override
+  String get routes_discoverHint => 'Nájdite nové trasy';
+
+  @override
+  String get routes_learned => 'NAUČENÉ TRASY';
+
+  @override
+  String get routes_none => 'ZATIAĽ ŽIADNA HISTÓRIA TRÁS';
+
+  @override
+  String get routes_noneBody =>
+      'Používajte sieť ako zvyčajne alebo spustite objavovanie. Bastion tu zobrazí naučené trasy, keď bude k dispozícii história ciest.';
+
+  @override
+  String get routes_direct => 'PRIAMA';
+
+  @override
+  String routes_routeCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count trás',
+      many: '$count trasy',
+      few: '$count trasy',
+      one: '1 trasa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_best(String path) {
+    return 'NAJLEPŠIA  $path';
+  }
+
+  @override
+  String routes_bestDetail(
+    String hops,
+    String weight,
+    String success,
+    String fail,
+  ) {
+    return '$hops  •  váha $weight  •  úspechy: $success / zlyhania: $fail';
+  }
+
+  @override
+  String routes_fastest(String ms) {
+    return 'Najrýchlejšia známa: $ms ms';
+  }
+
+  @override
+  String routes_flood(String success, String fail) {
+    return 'Flood: úspechy: $success / zlyhania: $fail';
+  }
+
+  @override
+  String get repeaterTools_heroLabel => 'OVLÁDANIE OPAKOVAČOV';
+
+  @override
+  String get repeaterTools_headline =>
+      'Spravujte infraštruktúru za vašou sieťou.';
+
+  @override
+  String get repeaterTools_body =>
+      'Vyberte objavený opakovač, prihláste sa a otvorte jeho existujúce nástroje MeshCore pre stav, telemetriu, susedov, nastavenia a CLI.';
+
+  @override
+  String get repeaterTools_discovered => 'OBJAVENÉ';
+
+  @override
+  String get repeaterTools_tools => 'NÁSTROJE';
+
+  @override
+  String get repeaterTools_available => 'DOSTUPNÉ OPAKOVAČE';
+
+  @override
+  String get repeaterTools_unnamed => 'Nepomenovaný opakovač';
+
+  @override
+  String get repeaterTools_statusTelemetry => 'STAV + TELEMETRIA';
+
+  @override
+  String get repeaterTools_statusTelemetryBody =>
+      'Kontrolujte stav a telemetriu opakovača pomocou existujúcich nástrojov správy.';
+
+  @override
+  String get repeaterTools_neighbors => 'SUSEDIA';
+
+  @override
+  String get repeaterTools_neighborsBody =>
+      'Preskúmajte susednú infraštruktúru a vzťahy v sieti.';
+
+  @override
+  String get repeaterTools_cli => 'CLI + NASTAVENIA';
+
+  @override
+  String get repeaterTools_cliBody =>
+      'Prihlásení správcovia majú prístup k existujúcemu CLI opakovača a nástrojom konfigurácie.';
+
+  @override
+  String get repeaterTools_empty =>
+      'Zatiaľ neboli objavené žiadne opakovače. Pripojte rádio a najprv preskúmajte sieť.';
+
+  @override
+  String get notification_fieldAlertTitle => 'Terénne upozornenie Bastion';
+
+  @override
+  String get notification_checkInReminderTitle =>
+      'Pripomienka hlásenia Bastion';
+
+  @override
+  String notification_checkInReminderBody(int minutes, String trip) {
+    return 'Už $minutes min bez hlásenia na túre $trip. Otvorte Bastion a nahláste sa.';
+  }
+
+  @override
+  String notification_overdueBody(String name, int minutes) {
+    return '$name sa neozval(a) $minutes min. Nie je to potvrdená núdzová situácia.';
+  }
+
+  @override
+  String get notification_aTripContact => 'Kontakt túry';
+
+  @override
+  String notification_checkInNotDelivered(String name) {
+    return 'Hlásenie nebolo doručené: $name. Môžete ho znova odoslať na karte Túra.';
+  }
+
+  @override
+  String notification_sosAcknowledged(String name) {
+    return 'SOS potvrdil(a) $name';
+  }
+
+  @override
+  String get settings_batterySaver => 'Šetrič batérie';
+
+  @override
+  String get settings_batterySaverOn =>
+      'Zapnuté: batéria rádia každých 10 min, GPS každých 5 min, štatistiky najviac raz za minútu, kontroly túry každé 1–2 min. Správy, upozornenia a SOS sa nemenia.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Kontrolovať rádio a túru menej často a šetriť batériu telefónu aj rádia. Správy, upozornenia a SOS sa nemenia.';
+
+  @override
+  String get settings_readAloud => 'Čítať nové správy nahlas';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Kým je Bastion otvorený. Stlmené kanály zostávajú ticho. Každú správu možno prečítať aj z jej ponuky.';
+
+  @override
+  String get settings_readAloudOff => 'Vyp.';
+
+  @override
+  String get settings_readAloudDirect => 'Priame správy';
+
+  @override
+  String get settings_readAloudAll => 'Priame správy a správy kanálov';
+
+  @override
+  String get chat_readAloud => 'Prečítať nahlas';
+
+  @override
+  String get messageSearch_title => 'Hľadať v správach';
+
+  @override
+  String get messageSearch_intro =>
+      'Hľadajte vo všetkých priamych správach a správach kanálov uložených v tomto telefóne.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Žiadna správa neobsahuje „$query“.';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count výsledkov',
+      many: '$count výsledku',
+      few: '$count výsledky',
+      one: '1 výsledok',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'Zobrazuje sa najnovších $count výsledkov';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Nahlásiť sa';
+
+  @override
+  String get shortcuts_trip => 'Túra';
+
+  @override
+  String get shortcuts_chats => 'Čety';
+
+  @override
+  String get shortcuts_map => 'Mapa';
+
+  @override
+  String get sensor_liveUpdates => 'Živé aktualizácie';
+
+  @override
+  String get sensor_intro =>
+      'Nech senzor sám posiela hodnoty, keď sa zmenia, namiesto opakovaného pýtania. Vyžaduje prihlásenie s prístupom na čítanie.';
+
+  @override
+  String get sensor_watch => 'Sledovať zmeny';
+
+  @override
+  String get sensor_loadFirst =>
+      'Najprv načítajte telemetriu, aby ste mohli vybrať hodnoty.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Sleduje sa: $readings do $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Sleduje sa: $readings do $time • región $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Zatiaľ neboli nahlásené žiadne zmeny.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Posledná aktualizácia $time • prijaté: $count';
+  }
+
+  @override
+  String get sensor_stop => 'Zastaviť živé aktualizácie';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Zastavené tu; senzor nepotvrdil a prestane, keď uplynie čas. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'Senzor kontroluje približne raz za minútu a pošle aktualizáciu, keď sa vybraná hodnota zmení viac než jej prah.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (kanál $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (kanál $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (kanál $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Aktualizovať pri zmene o $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Zmeniť prah';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'Senzor môže sledovať najviac $max bajtov hodnôt (použité: $used).';
+  }
+
+  @override
+  String get sensor_for => 'Na';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hodín',
+      many: '$count hodiny',
+      few: '$count hodiny',
+      one: '1 hodinu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Spustiť';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return 'Prah: $label';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Teplota';
+
+  @override
+  String get sensor_typeHumidity => 'Vlhkosť';
+
+  @override
+  String get sensor_typePressure => 'Tlak';
+
+  @override
+  String get sensor_typeVoltage => 'Napätie';
+
+  @override
+  String get sensor_typeCurrent => 'Prúd';
+
+  @override
+  String get sensor_typeLight => 'Svetlo';
+
+  @override
+  String get sensor_typeConcentration => 'Koncentrácia';
+
+  @override
+  String get sensor_typePercentage => 'Percento';
+
+  @override
+  String get sensor_typeAnalogInput => 'Analógový vstup';
+
+  @override
+  String get sensor_typeAltitude => 'Nadmorská výška';
 }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../l10n/l10n.dart';
 import '../services/field_ops_service.dart';
 import '../models/field_ops.dart';
 import 'bastion_about_screen.dart';
@@ -29,6 +30,7 @@ class BastionHomeScreen extends StatelessWidget {
     final c = context.watch<MeshCoreConnector>();
     final stats = c.latestRadioStats;
     final ops = context.watch<FieldOpsService>();
+    final l10n = context.l10n;
     final checkInReason = checkInUnavailableReason(
       ready: ops.ready,
       storageError: ops.error != null,
@@ -37,6 +39,7 @@ class BastionHomeScreen extends StatelessWidget {
       busy: ops.busy,
       selectedContacts: ops.trip.members.length,
       availableContacts: ops.members.length,
+      l10n: l10n,
     );
     final repeaters = c.contacts.where((x) => x.type == advTypeRepeater).length;
     final active = c.contacts
@@ -65,11 +68,11 @@ class BastionHomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 14),
-                const Expanded(
+                Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'BASTION',
                         style: TextStyle(
                           color: Color(0xFFE4E6DF),
@@ -79,14 +82,14 @@ class BastionHomeScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Communication without infrastructure.',
-                        style: TextStyle(
+                        l10n.bastion_tagline,
+                        style: const TextStyle(
                           color: _cyan,
                           fontSize: 12,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'MeshCore',
                         style: TextStyle(color: _cyan, fontSize: 12),
                       ),
@@ -94,7 +97,7 @@ class BastionHomeScreen extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  tooltip: 'About Bastion',
+                  tooltip: l10n.bastionHome_aboutTooltip,
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) => const BastionAboutScreen(),
@@ -110,8 +113,8 @@ class BastionHomeScreen extends StatelessWidget {
             const SizedBox(height: 22),
             _ActionCard(
               icon: Icons.explore_outlined,
-              title: 'GET STARTED',
-              subtitle: 'Connect your radio and verify your first message',
+              title: l10n.bastionHome_getStarted,
+              subtitle: l10n.bastionHome_getStartedHint,
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const BastionSetupScreen()),
               ),
@@ -121,19 +124,32 @@ class BastionHomeScreen extends StatelessWidget {
             const SizedBox(height: 12),
             Row(
               children: [
-                Expanded(child: _metric('NODES', '${c.contacts.length}')),
+                Expanded(
+                  child: _metric(l10n.bastion_nodes, '${c.contacts.length}'),
+                ),
                 const SizedBox(width: 8),
-                Expanded(child: _metric('ACTIVE 1H', '$active')),
+                Expanded(child: _metric(l10n.bastion_active1h, '$active')),
                 const SizedBox(width: 8),
-                Expanded(child: _metric('REPEATERS', '$repeaters')),
+                Expanded(child: _metric(l10n.bastion_repeaters, '$repeaters')),
               ],
             ),
             const SizedBox(height: 12),
             _ActionCard(
               icon: Icons.backpack_outlined,
-              title: ops.trip.active ? ops.trip.name : 'PLAN YOUR TRIP',
-              subtitle:
-                  '${ops.trip.active ? "Trip active" : "Trip stopped"} • ${ops.members.length} contacts • ${c.getTotalUnreadCount()} unread messages${ops.overdueNames.isEmpty ? '' : ' • Quiet too long: ${ops.overdueNames.join(', ')}'}',
+              title: ops.trip.active
+                  ? ops.trip.name
+                  : l10n.bastionHome_planYourTrip,
+              subtitle: [
+                l10n.bastionHome_tripSummary(
+                  ops.trip.active
+                      ? l10n.bastionHome_tripActive
+                      : l10n.bastionHome_tripStopped,
+                  '${ops.members.length}',
+                  '${c.getTotalUnreadCount()}',
+                ),
+                if (ops.overdueNames.isNotEmpty)
+                  l10n.fieldOps_quietTooLong(ops.overdueNames.join(', ')),
+              ].join(' • '),
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => const BastionFieldOpsScreen(),
@@ -151,17 +167,19 @@ class BastionHomeScreen extends StatelessWidget {
                     )
                   : null,
               icon: const Icon(Icons.check_circle_outline),
-              label: const Padding(
-                padding: EdgeInsets.all(12),
-                child: Text("CHECK IN: I'M OK"),
+              label: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Text(l10n.bastionHome_checkInOk),
               ),
             ),
             const SizedBox(height: 4),
             Text(
               checkInReason ??
                   (ops.latestDelivery == null
-                      ? 'Review contacts and message before sending. Track acknowledgements in Field Log.'
-                      : 'Last check-in: ${ops.latestDelivery!.headline}'),
+                      ? l10n.bastionHome_checkInHint
+                      : l10n.bastionHome_lastCheckIn(
+                          ops.latestDelivery!.headlineIn(l10n),
+                        )),
               style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
             ),
             const SizedBox(height: 12),
@@ -170,8 +188,8 @@ class BastionHomeScreen extends StatelessWidget {
             if (!c.isConnected)
               _ActionCard(
                 icon: Icons.bluetooth_searching_rounded,
-                title: 'CONNECT RADIO',
-                subtitle: 'Bluetooth, USB and TCP MeshCore connections',
+                title: l10n.bastionHome_connectRadio,
+                subtitle: l10n.bastionHome_connectRadioHint,
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => const ScannerScreen()),
                 ),
@@ -179,8 +197,8 @@ class BastionHomeScreen extends StatelessWidget {
             else
               _ActionCard(
                 icon: Icons.monitor_heart_rounded,
-                title: 'LIVE DIAGNOSTICS',
-                subtitle: 'Radio health, signal, device and frame tools',
+                title: l10n.bastionHome_liveDiagnostics,
+                subtitle: l10n.bastionHome_liveDiagnosticsHint,
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (_) => const BastionDiagnosticsScreen(),
@@ -190,8 +208,8 @@ class BastionHomeScreen extends StatelessWidget {
             const SizedBox(height: 12),
             _ActionCard(
               icon: Icons.radar_rounded,
-              title: 'MESH DISCOVERY',
-              subtitle: 'Find nodes and inspect the mesh around you',
+              title: l10n.bastionHome_meshDiscovery,
+              subtitle: l10n.bastionHome_meshDiscoveryHint,
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const DiscoveryScreen()),
               ),
@@ -199,9 +217,8 @@ class BastionHomeScreen extends StatelessWidget {
             const SizedBox(height: 12),
             _ActionCard(
               icon: Icons.backpack_outlined,
-              title: 'TRIP + FIELD OPERATIONS',
-              subtitle:
-                  'Trip brief, readiness, Field Log, automations and coverage comparison',
+              title: l10n.bastion_fieldOps,
+              subtitle: l10n.bastionHome_fieldOpsHint,
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => const BastionFieldOpsScreen(),
@@ -209,9 +226,9 @@ class BastionHomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 22),
-            const Text(
-              'BASTION FIELD TOOLS',
-              style: TextStyle(
+            Text(
+              l10n.bastionHome_fieldTools,
+              style: const TextStyle(
                 color: _cyan,
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
@@ -224,8 +241,8 @@ class BastionHomeScreen extends StatelessWidget {
                 Expanded(
                   child: _ToolTile(
                     icon: Icons.map_rounded,
-                    label: 'MAP + COVERAGE',
-                    status: 'ACTIVE',
+                    label: l10n.bastion_mapCoverage,
+                    status: l10n.bastionHome_statusActive,
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => const BastionMapHubScreen(),
@@ -237,8 +254,8 @@ class BastionHomeScreen extends StatelessWidget {
                 Expanded(
                   child: _ToolTile(
                     icon: Icons.route_rounded,
-                    label: 'ROUTE INTELLIGENCE',
-                    status: 'ACTIVE',
+                    label: l10n.bastion_routeIntelligence,
+                    status: l10n.bastionHome_statusActive,
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => const BastionPathHubScreen(),
@@ -254,8 +271,8 @@ class BastionHomeScreen extends StatelessWidget {
                 Expanded(
                   child: _ToolTile(
                     icon: Icons.cell_tower_rounded,
-                    label: 'REPEATER TOOLS',
-                    status: 'ACTIVE',
+                    label: l10n.bastion_repeaterTools,
+                    status: l10n.bastionHome_statusActive,
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => const BastionRepeaterToolsScreen(),
@@ -267,8 +284,8 @@ class BastionHomeScreen extends StatelessWidget {
                 Expanded(
                   child: _ToolTile(
                     icon: Icons.analytics_rounded,
-                    label: 'FIELD STATS',
-                    status: 'ACTIVE',
+                    label: l10n.bastion_fieldStats,
+                    status: l10n.bastionHome_statusActive,
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => const BastionFieldStatsScreen(),
@@ -301,6 +318,7 @@ class BastionHomeScreen extends StatelessWidget {
     MeshCoreConnector c,
     dynamic stats,
   ) {
+    final l10n = context.l10n;
     final battery = c.batteryMillivolts == null
         ? '—'
         : '${(c.batteryMillivolts! / 1000).toStringAsFixed(2)}V';
@@ -344,8 +362,8 @@ class BastionHomeScreen extends StatelessWidget {
                   children: [
                     Text(
                       c.isConnected
-                          ? 'FIELD CONSOLE ONLINE'
-                          : 'FIELD CONSOLE READY',
+                          ? l10n.bastionHome_consoleOnline
+                          : l10n.bastionHome_consoleReady,
                       style: const TextStyle(
                         color: Color(0xFFE4E6DF),
                         fontSize: 18,
@@ -356,7 +374,7 @@ class BastionHomeScreen extends StatelessWidget {
                     Text(
                       c.isConnected
                           ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}'
-                          : 'Connect a radio to light up the live dashboard.',
+                          : l10n.bastionHome_consoleHint,
                       style: const TextStyle(
                         color: Color(0xFFADBEB7),
                         fontSize: 12,
@@ -392,7 +410,7 @@ class BastionHomeScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'BAT $battery',
+                  l10n.bastionHome_battery(battery),
                   style: const TextStyle(
                     color: _cyan,
                     fontSize: 11.5,
