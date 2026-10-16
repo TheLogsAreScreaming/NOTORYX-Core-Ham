@@ -5,6 +5,8 @@ import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 
+import '../models/coverage_sweep.dart';
+
 typedef ElevationDataSource =
     Future<List<double?>> Function(List<LatLng> points);
 
@@ -343,6 +345,77 @@ class LineOfSightService {
       obstructions: obstructions,
       usedKFactor: kFactor,
       frequencyMHz: frequencyMHz,
+    );
+  }
+
+  /// The refraction factor used for [frequencyMHz] (4/3 when unknown).
+  static double kFactorForFrequency(double? frequencyMHz) =>
+      _kFactorForFrequency(frequencyMHz);
+
+  /// Where a radio at [receiverHeightMeters] could have line of sight to an
+  /// antenna [antennaHeightMeters] above [origin], along [bearings] rays out
+  /// to [radiusMeters]. Needs terrain data (online, then cached for a day).
+  Future<CoverageResult> analyzeCoverage(
+    LatLng origin, {
+    required double antennaHeightMeters,
+    required double radiusMeters,
+    double receiverHeightMeters = 1.5,
+    double? frequencyMHz,
+    int bearings = 36,
+    int samples = 30,
+  }) async {
+    final rays = sweepPoints(
+      origin,
+      radiusMeters: radiusMeters,
+      bearings: bearings,
+      samples: samples,
+    );
+    final all = [origin, for (final r in rays) ...r];
+    final heights = <double?>[];
+    // The elevation service takes at most 100 points per request.
+    for (var i = 0; i < all.length; i += 100) {
+      heights.addAll(
+        await _getElevations(all.sublist(i, min(i + 100, all.length))),
+      );
+    }
+    final ground = heights.first;
+    if (ground == null) {
+      return CoverageResult(
+        origin: origin,
+        antennaHeightMeters: antennaHeightMeters,
+        radiusMeters: radiusMeters,
+        rays: const [],
+        error: errorElevationUnavailable,
+      );
+    }
+    final kFactor = _kFactorForFrequency(frequencyMHz);
+    final distances = [
+      for (var i = 1; i <= samples; i++) radiusMeters * i / samples,
+    ];
+    final out = <CoverageRay>[];
+    for (var b = 0; b < rays.length; b++) {
+      final start = 1 + b * samples;
+      out.add(
+        CoverageRay(
+          bearing: 360.0 * b / bearings,
+          points: rays[b],
+          distances: distances,
+          visible: visibleAlongRay(
+            originGroundMeters: ground,
+            antennaHeightMeters: antennaHeightMeters,
+            distances: distances,
+            terrain: heights.sublist(start, start + samples),
+            receiverHeightMeters: receiverHeightMeters,
+            kFactor: kFactor,
+          ),
+        ),
+      );
+    }
+    return CoverageResult(
+      origin: origin,
+      antennaHeightMeters: antennaHeightMeters,
+      radiusMeters: radiusMeters,
+      rays: out,
     );
   }
 

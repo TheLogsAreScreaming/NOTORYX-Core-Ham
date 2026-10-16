@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'antenna_coverage_screen.dart';
 import 'bastion_about_screen.dart';
 import 'encrypted_backup_screen.dart';
 import 'bastion_field_ops_screen.dart';
@@ -118,6 +119,19 @@ class BastionToolsScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (_) => const BastionFieldStatsScreen(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _tool(
+              context,
+              Icons.cell_tower,
+              'ANTENNA COVERAGE',
+              'Estimate where an antenna can reach over the terrain',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const AntennaCoverageScreen(),
                 ),
               ),
             ),
