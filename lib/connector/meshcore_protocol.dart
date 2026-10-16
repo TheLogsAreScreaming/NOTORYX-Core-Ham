@@ -217,6 +217,7 @@ const int cmdSendAnonReq = 57;
 const int cmdSetAutoAddConfig = 58;
 const int cmdGetAutoAddConfig = 59;
 const int cmdSetPathHashMode = 61;
+const int cmdRunCliCommand = 66; // v14+: run a CLI command on the companion
 
 // Flood Corridor commands (usrflo/MeshCore feature/flood-corridor only;
 // stock firmware replies RESP_CODE_ERR / ERR_CODE_UNSUPPORTED_CMD).
@@ -273,6 +274,7 @@ const int respCodeChannelInfo = 18;
 const int respCodeCustomVars = 21;
 const int respCodeAutoAddConfig = 25;
 const int respCodeStats = 24;
+const int respCodeCliReply = 29; // v14+: reply to cmdRunCliCommand
 const int respCodeProposeCorridor = 30;
 const int respCodeCorridorRegion = 31;
 
@@ -986,6 +988,27 @@ List<AclEntry> parseAccessListResponse(Uint8List data) {
 /// entry.
 String buildSetPermCommand(Uint8List publicKey, AclRole role) =>
     'setperm ${pubKeyToHex(publicKey)} ${role.value}';
+
+/// Firmware version code from which the companion has a text CLI
+/// ([cmdRunCliCommand]).
+const int minFirmwareVerCodeForCompanionCli = 14;
+
+/// Runs [command] on the connected companion's CLI; it answers with
+/// [respCodeCliReply] followed by the reply text.
+Uint8List buildRunCliCommandFrame(String command) {
+  return Uint8List.fromList([cmdRunCliCommand, ...utf8.encode(command)]);
+}
+
+/// The value part of a CLI "get" reply ("> value" -> "value").
+String cliReplyValue(String reply) {
+  final text = reply.trim();
+  return text.startsWith('>') ? text.substring(1).trim() : text;
+}
+
+/// Whether a CLI reply says the command doesn't exist on this firmware or
+/// board (for example the wifi.* commands on boards without WiFi).
+bool isUnknownCliCommandReply(String reply) =>
+    reply.trim().toLowerCase().endsWith('unknown command');
 
 Uint8List buildSendControlDataFrame(Uint8List payload) {
   final writer = BufferWriter();

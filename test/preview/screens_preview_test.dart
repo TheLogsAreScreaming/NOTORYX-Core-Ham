@@ -20,6 +20,8 @@ import 'package:meshcore_open/models/message.dart';
 import 'package:meshcore_open/screens/access_control_screen.dart';
 import 'package:meshcore_open/screens/channel_chat_screen.dart';
 import 'package:meshcore_open/screens/channels_screen.dart';
+import 'package:meshcore_open/screens/companion_cli_screen.dart';
+import 'package:meshcore_open/screens/wifi_settings_screen.dart';
 import 'package:meshcore_open/screens/chat_screen.dart';
 import 'package:meshcore_open/screens/contacts_screen.dart';
 import 'package:meshcore_open/screens/messages_screen.dart';
@@ -287,6 +289,18 @@ void main() {
         service: _PreviewAclService(context.read<MeshCoreConnector>()),
       ),
     ),
+    'wifi': () => WifiSettingsScreen(
+      run: (c) async =>
+          const {
+            'get wifi.enabled': '> 1',
+            'get wifi.ssid': '> Basecamp',
+            'get wifi.status': '> connected',
+            'get wifi.ip': '> 192.168.4.20',
+          }[c] ??
+          '> ok',
+    ),
+    'companion_cli': () =>
+        CompanionCliScreen(run: (c) async => 'v1.18.0 (Build: 15-Oct-2026)'),
   };
 
   setUpAll(() async {

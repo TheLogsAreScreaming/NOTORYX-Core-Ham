@@ -218,6 +218,98 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get companionCli_title => 'Command line';
+
+  @override
+  String get companionCli_tileSubtitle => 'Run commands on your radio';
+
+  @override
+  String get companionCli_warning =>
+      'Commands run on your connected radio and can change its settings or restart it.';
+
+  @override
+  String get companionCli_hint => 'Type a command, e.g. ver';
+
+  @override
+  String get companionCli_send => 'Run command';
+
+  @override
+  String get companionCli_noReply => 'No reply. The radio may be restarting.';
+
+  @override
+  String get companionCli_empty =>
+      'Try one of the commands above, or type your own.';
+
+  @override
+  String get wifi_title => 'WiFi';
+
+  @override
+  String get wifi_tileSubtitle => 'Connect your radio to a WiFi network';
+
+  @override
+  String get wifi_unsupported =>
+      'This radio\'s firmware doesn\'t include WiFi.';
+
+  @override
+  String get wifi_enabled => 'Use WiFi';
+
+  @override
+  String get wifi_status => 'Status';
+
+  @override
+  String get wifi_connected => 'Connected';
+
+  @override
+  String wifi_connectedIp(String ip) {
+    return 'Connected · $ip';
+  }
+
+  @override
+  String get wifi_disconnected => 'Not connected';
+
+  @override
+  String get wifi_network => 'Network name (SSID)';
+
+  @override
+  String get wifi_password => 'Password';
+
+  @override
+  String get wifi_passwordKeep => 'Leave blank to keep the current password';
+
+  @override
+  String get wifi_save => 'Save';
+
+  @override
+  String get wifi_forget => 'Forget network';
+
+  @override
+  String get wifi_forgetConfirm =>
+      'Remove the saved network and password from the radio?';
+
+  @override
+  String get wifi_rebootNeeded =>
+      'Saved. Restart the radio to apply WiFi changes.';
+
+  @override
+  String get wifi_rebootNow => 'Restart radio';
+
+  @override
+  String get wifi_rebootConfirm =>
+      'Restart the radio now? The app will disconnect and you\'ll need to reconnect.';
+
+  @override
+  String get wifi_loadFailed =>
+      'Couldn\'t read the WiFi settings from the radio.';
+
+  @override
+  String get wifi_retry => 'Try again';
+
+  @override
+  String wifi_saveFailed(String reply) {
+    return 'The radio didn\'t accept the change: $reply';
+  }
+
+  @override
   String get accessControl_refresh => 'Refresh';
 
   @override
