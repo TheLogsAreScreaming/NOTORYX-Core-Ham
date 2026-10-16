@@ -145,6 +145,9 @@ class FieldEntry {
   final String? tripName;
   final double? latitude;
   final double? longitude;
+
+  /// Groups the per-contact entries of one check-in send.
+  final String? batch;
   const FieldEntry({
     required this.id,
     required this.at,
@@ -156,6 +159,7 @@ class FieldEntry {
     this.tripName,
     this.latitude,
     this.longitude,
+    this.batch,
   });
   FieldEntry withStatus(String value) => FieldEntry(
     id: id,
@@ -168,6 +172,7 @@ class FieldEntry {
     tripName: tripName,
     latitude: latitude,
     longitude: longitude,
+    batch: batch,
   );
   Map<String, dynamic> toJson() => {
     'id': id,
@@ -180,6 +185,7 @@ class FieldEntry {
     'tripName': tripName,
     'latitude': latitude,
     'longitude': longitude,
+    if (batch != null) 'batch': batch,
   };
   factory FieldEntry.fromJson(Map<String, dynamic> j) => FieldEntry(
     id: j['id'] as String,
@@ -192,6 +198,7 @@ class FieldEntry {
     tripName: j['tripName'] as String?,
     latitude: (j['latitude'] as num?)?.toDouble(),
     longitude: (j['longitude'] as num?)?.toDouble(),
+    batch: j['batch'] as String?,
   );
 }
 
@@ -459,3 +466,83 @@ List<String> overdueMembers({
       : heard;
   return now.difference(since) >= overdue;
 }).toList();
+
+/// Where one check-in stands, per trip contact.
+class CheckInDelivery {
+  final String batch;
+  final DateTime at;
+
+  /// The check-in message, without the recipient prefix.
+  final String text;
+
+  /// Latest status per contact key (a resend replaces the earlier one).
+  final Map<String, String> statuses;
+
+  /// Contact names by key, as logged.
+  final Map<String, String> names;
+
+  const CheckInDelivery({
+    required this.batch,
+    required this.at,
+    required this.text,
+    required this.statuses,
+    required this.names,
+  });
+
+  int get total => statuses.length;
+  int get delivered => statuses.values.where((s) => s == 'delivered').length;
+  List<String> get failedKeys => [
+    for (final e in statuses.entries)
+      if (e.value == 'failed') e.key,
+  ];
+  bool get waiting => statuses.values.any((s) => s == 'pending' || s == 'sent');
+
+  String get headline {
+    if (total == 0) return 'Not sent';
+    if (delivered == total) {
+      return total == 1
+          ? 'Delivered to ${names.values.first}'
+          : 'Delivered to all $total contacts';
+    }
+    final failed = failedKeys.map((k) => names[k] ?? 'a contact').toList();
+    final parts = ['Delivered to $delivered of $total'];
+    if (failed.isNotEmpty) parts.add('Not delivered: ${failed.join(', ')}');
+    if (waiting) parts.add('Waiting for the rest');
+    return parts.join(' • ');
+  }
+
+  /// Builds the delivery for the newest check-in batch in [entries] (newest
+  /// first, as the Field Log keeps them), or null if there is none.
+  static CheckInDelivery? latest(List<FieldEntry> entries) {
+    final first = entries
+        .where((e) => e.kind == 'check-in' && e.batch != null)
+        .firstOrNull;
+    if (first == null) return null;
+    final batch = entries.where(
+      (e) => e.batch == first.batch && e.contactKey != null,
+    );
+    final statuses = <String, String>{};
+    final names = <String, String>{};
+    String? text;
+    DateTime at = first.at;
+    // Oldest first, so a resend's status replaces the original's.
+    for (final e in batch.toList().reversed) {
+      statuses[e.contactKey!] = e.status ?? 'failed';
+      final split = e.text.indexOf(': ');
+      if (split > 0) {
+        names[e.contactKey!] = e.text.substring(0, split);
+        if (e.text.contains('[Bastion Check-in] ')) {
+          text ??= e.text.substring(split + 2);
+        }
+      }
+      if (e.at.isBefore(at)) at = e.at;
+    }
+    return CheckInDelivery(
+      batch: first.batch!,
+      at: at,
+      text: text ?? '',
+      statuses: statuses,
+      names: names,
+    );
+  }
+}
