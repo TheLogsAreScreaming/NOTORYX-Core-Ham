@@ -27,6 +27,7 @@ import 'package:meshcore_open/screens/contacts_screen.dart';
 import 'package:meshcore_open/screens/bastion_home_screen.dart';
 import 'package:meshcore_open/screens/bastion_tools_screen.dart';
 import 'package:meshcore_open/screens/settings_screen.dart';
+import 'package:meshcore_open/services/sensor_subscription_service.dart';
 import 'package:meshcore_open/services/access_control_service.dart';
 import 'package:meshcore_open/services/app_debug_log_service.dart';
 import 'package:meshcore_open/services/app_settings_service.dart';
@@ -251,6 +252,9 @@ Widget _app(Widget home, ThemeMode mode) {
     providers: [
       ChangeNotifierProvider<MeshCoreConnector>.value(value: connector),
       ChangeNotifierProvider(create: (_) => FieldOpsService(connector)),
+      ChangeNotifierProvider(
+        create: (_) => SensorSubscriptionService(connector),
+      ),
       ChangeNotifierProvider(create: (_) => BotService(connector)),
       ChangeNotifierProvider.value(value: settings),
       ChangeNotifierProvider(create: (_) => MessageRetryService()),
