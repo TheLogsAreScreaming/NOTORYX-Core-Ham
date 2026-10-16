@@ -340,6 +340,330 @@ abstract class AppLocalizations {
   /// **'Radio stats'**
   String get radioOverview_stats;
 
+  /// No description provided for @accessControl_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Access control'**
+  String get accessControl_title;
+
+  /// No description provided for @accessControl_hubSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who can log in without the password'**
+  String get accessControl_hubSubtitle;
+
+  /// No description provided for @accessControl_explainRepeater.
+  ///
+  /// In en, this message translates to:
+  /// **'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.'**
+  String get accessControl_explainRepeater;
+
+  /// No description provided for @accessControl_explainRoom.
+  ///
+  /// In en, this message translates to:
+  /// **'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.'**
+  String get accessControl_explainRoom;
+
+  /// No description provided for @accessControl_roleReadOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Read only'**
+  String get accessControl_roleReadOnly;
+
+  /// No description provided for @accessControl_roleReadWrite.
+  ///
+  /// In en, this message translates to:
+  /// **'Read & write'**
+  String get accessControl_roleReadWrite;
+
+  /// No description provided for @accessControl_roleAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin'**
+  String get accessControl_roleAdmin;
+
+  /// No description provided for @accessControl_you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get accessControl_you;
+
+  /// No description provided for @accessControl_unknownNode.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown node'**
+  String get accessControl_unknownNode;
+
+  /// No description provided for @accessControl_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get accessControl_add;
+
+  /// No description provided for @accessControl_addTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to access list'**
+  String get accessControl_addTitle;
+
+  /// No description provided for @accessControl_pickContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a contact'**
+  String get accessControl_pickContact;
+
+  /// No description provided for @accessControl_noContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'No contacts to add. Nodes appear here once you have heard their advert.'**
+  String get accessControl_noContacts;
+
+  /// No description provided for @accessControl_changeRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Change role'**
+  String get accessControl_changeRole;
+
+  /// No description provided for @accessControl_remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove access'**
+  String get accessControl_remove;
+
+  /// No description provided for @accessControl_removeConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name} from the access list? They will need the password to log in.'**
+  String accessControl_removeConfirm(String name);
+
+  /// No description provided for @accessControl_removeSelfWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This is you. If you remove yourself you will need the admin password to manage this node again.'**
+  String get accessControl_removeSelfWarning;
+
+  /// No description provided for @accessControl_unknownKeyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Not in your contacts. Changing its role needs newer node firmware; removing it always works.'**
+  String get accessControl_unknownKeyNote;
+
+  /// No description provided for @accessControl_prefixUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.'**
+  String get accessControl_prefixUnsupported;
+
+  /// No description provided for @accessControl_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nobody is on the access list'**
+  String get accessControl_empty;
+
+  /// No description provided for @accessControl_emptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add people so they can log in without the password.'**
+  String get accessControl_emptyHint;
+
+  /// No description provided for @accessControl_loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Asking the node for its access list…'**
+  String get accessControl_loading;
+
+  /// No description provided for @accessControl_timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The node didn\'t answer. Check the path and try again.'**
+  String get accessControl_timeout;
+
+  /// No description provided for @accessControl_maybeIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'This node sent one full page and its firmware can\'t send more, so some entries may be missing.'**
+  String get accessControl_maybeIncomplete;
+
+  /// No description provided for @accessControl_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Access list updated'**
+  String get accessControl_saved;
+
+  /// No description provided for @accessControl_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'The node refused the change: {reply}'**
+  String accessControl_failed(String reply);
+
+  /// No description provided for @companionCli_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Command line'**
+  String get companionCli_title;
+
+  /// No description provided for @companionCli_tileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Run commands on your radio'**
+  String get companionCli_tileSubtitle;
+
+  /// No description provided for @companionCli_warning.
+  ///
+  /// In en, this message translates to:
+  /// **'Commands run on your connected radio and can change its settings or restart it.'**
+  String get companionCli_warning;
+
+  /// No description provided for @companionCli_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a command, e.g. ver'**
+  String get companionCli_hint;
+
+  /// No description provided for @companionCli_send.
+  ///
+  /// In en, this message translates to:
+  /// **'Run command'**
+  String get companionCli_send;
+
+  /// No description provided for @companionCli_noReply.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply. The radio may be restarting.'**
+  String get companionCli_noReply;
+
+  /// No description provided for @companionCli_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Try one of the commands above, or type your own.'**
+  String get companionCli_empty;
+
+  /// No description provided for @wifi_title.
+  ///
+  /// In en, this message translates to:
+  /// **'WiFi'**
+  String get wifi_title;
+
+  /// No description provided for @wifi_tileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio to a WiFi network'**
+  String get wifi_tileSubtitle;
+
+  /// No description provided for @wifi_unsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This radio\'s firmware doesn\'t include WiFi.'**
+  String get wifi_unsupported;
+
+  /// No description provided for @wifi_enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Use WiFi'**
+  String get wifi_enabled;
+
+  /// No description provided for @wifi_status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get wifi_status;
+
+  /// No description provided for @wifi_connected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get wifi_connected;
+
+  /// No description provided for @wifi_connectedIp.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected · {ip}'**
+  String wifi_connectedIp(String ip);
+
+  /// No description provided for @wifi_disconnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not connected'**
+  String get wifi_disconnected;
+
+  /// No description provided for @wifi_network.
+  ///
+  /// In en, this message translates to:
+  /// **'Network name (SSID)'**
+  String get wifi_network;
+
+  /// No description provided for @wifi_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get wifi_password;
+
+  /// No description provided for @wifi_passwordKeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave blank to keep the current password'**
+  String get wifi_passwordKeep;
+
+  /// No description provided for @wifi_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get wifi_save;
+
+  /// No description provided for @wifi_forget.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget network'**
+  String get wifi_forget;
+
+  /// No description provided for @wifi_forgetConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove the saved network and password from the radio?'**
+  String get wifi_forgetConfirm;
+
+  /// No description provided for @wifi_rebootNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved. Restart the radio to apply WiFi changes.'**
+  String get wifi_rebootNeeded;
+
+  /// No description provided for @wifi_rebootNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart radio'**
+  String get wifi_rebootNow;
+
+  /// No description provided for @wifi_rebootConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart the radio now? The app will disconnect and you\'ll need to reconnect.'**
+  String get wifi_rebootConfirm;
+
+  /// No description provided for @wifi_loadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t read the WiFi settings from the radio.'**
+  String get wifi_loadFailed;
+
+  /// No description provided for @wifi_retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get wifi_retry;
+
+  /// No description provided for @wifi_saveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio didn\'t accept the change: {reply}'**
+  String wifi_saveFailed(String reply);
+
+  /// No description provided for @accessControl_refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get accessControl_refresh;
+
   /// No description provided for @common_cancel.
   ///
   /// In en, this message translates to:

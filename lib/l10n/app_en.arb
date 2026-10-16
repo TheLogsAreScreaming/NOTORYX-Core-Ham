@@ -66,6 +66,80 @@
   },
   "radioOverview_sendAdvert": "Send advert",
   "radioOverview_stats": "Radio stats",
+  "accessControl_title": "Access control",
+  "accessControl_hubSubtitle": "Who can log in without the password",
+  "accessControl_explainRepeater": "People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.",
+  "accessControl_explainRoom": "Admins on this list log in without a password and can manage the room. Room members join with the room password instead.",
+  "accessControl_roleReadOnly": "Read only",
+  "accessControl_roleReadWrite": "Read & write",
+  "accessControl_roleAdmin": "Admin",
+  "accessControl_you": "You",
+  "accessControl_unknownNode": "Unknown node",
+  "accessControl_add": "Add",
+  "accessControl_addTitle": "Add to access list",
+  "accessControl_pickContact": "Choose a contact",
+  "accessControl_noContacts": "No contacts to add. Nodes appear here once you have heard their advert.",
+  "accessControl_changeRole": "Change role",
+  "accessControl_remove": "Remove access",
+  "accessControl_removeConfirm": "Remove {name} from the access list? They will need the password to log in.",
+  "@accessControl_removeConfirm": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "accessControl_removeSelfWarning": "This is you. If you remove yourself you will need the admin password to manage this node again.",
+  "accessControl_unknownKeyNote": "Not in your contacts. Changing its role needs newer node firmware; removing it always works.",
+  "accessControl_prefixUnsupported": "This node's firmware can't change the role of someone who isn't in your contacts. You can still remove them.",
+  "accessControl_empty": "Nobody is on the access list",
+  "accessControl_emptyHint": "Add people so they can log in without the password.",
+  "accessControl_loading": "Asking the node for its access list…",
+  "accessControl_timeout": "The node didn't answer. Check the path and try again.",
+  "accessControl_maybeIncomplete": "This node sent one full page and its firmware can't send more, so some entries may be missing.",
+  "accessControl_saved": "Access list updated",
+  "accessControl_failed": "The node refused the change: {reply}",
+  "@accessControl_failed": {
+    "placeholders": {
+      "reply": {"type": "String"}
+    }
+  },
+  "companionCli_title": "Command line",
+  "companionCli_tileSubtitle": "Run commands on your radio",
+  "companionCli_warning": "Commands run on your connected radio and can change its settings or restart it.",
+  "companionCli_hint": "Type a command, e.g. ver",
+  "companionCli_send": "Run command",
+  "companionCli_noReply": "No reply. The radio may be restarting.",
+  "companionCli_empty": "Try one of the commands above, or type your own.",
+  "wifi_title": "WiFi",
+  "wifi_tileSubtitle": "Connect your radio to a WiFi network",
+  "wifi_unsupported": "This radio's firmware doesn't include WiFi.",
+  "wifi_enabled": "Use WiFi",
+  "wifi_status": "Status",
+  "wifi_connected": "Connected",
+  "wifi_connectedIp": "Connected · {ip}",
+  "@wifi_connectedIp": {
+    "placeholders": {
+      "ip": {"type": "String"}
+    }
+  },
+  "wifi_disconnected": "Not connected",
+  "wifi_network": "Network name (SSID)",
+  "wifi_password": "Password",
+  "wifi_passwordKeep": "Leave blank to keep the current password",
+  "wifi_save": "Save",
+  "wifi_forget": "Forget network",
+  "wifi_forgetConfirm": "Remove the saved network and password from the radio?",
+  "wifi_rebootNeeded": "Saved. Restart the radio to apply WiFi changes.",
+  "wifi_rebootNow": "Restart radio",
+  "wifi_rebootConfirm": "Restart the radio now? The app will disconnect and you'll need to reconnect.",
+  "wifi_loadFailed": "Couldn't read the WiFi settings from the radio.",
+  "wifi_retry": "Try again",
+  "wifi_saveFailed": "The radio didn't accept the change: {reply}",
+  "@wifi_saveFailed": {
+    "placeholders": {
+      "reply": {"type": "String"}
+    }
+  },
+  "accessControl_refresh": "Refresh",
   "common_cancel": "Cancel",
   "common_ok": "OK",
   "common_connect": "Connect",

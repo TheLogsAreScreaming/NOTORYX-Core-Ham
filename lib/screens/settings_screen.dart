@@ -25,6 +25,8 @@ import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/main_tab_navigation.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../widgets/radio_overview_card.dart';
+import 'companion_cli_screen.dart';
+import 'wifi_settings_screen.dart';
 import 'region_management_screen.dart';
 
 /// Convert device coding-rate value (1-4 on some firmware, 5-8 on others)
@@ -531,6 +533,32 @@ class _SettingsScreenState extends State<SettingsScreen>
               : null,
         ),
         const Divider(height: 1, indent: 16),
+        // The companion CLI (firmware v14+) also carries settings with no
+        // dedicated protocol command, such as WiFi.
+        if (connector.supportsCompanionCli) ...[
+          _tappableTile(
+            context,
+            icon: Icons.wifi,
+            title: l10n.wifi_title,
+            subtitle: l10n.wifi_tileSubtitle,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const WifiSettingsScreen()),
+            ),
+          ),
+          const Divider(height: 1, indent: 16),
+          _tappableTile(
+            context,
+            icon: Icons.terminal,
+            title: l10n.companionCli_title,
+            subtitle: l10n.companionCli_tileSubtitle,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CompanionCliScreen()),
+            ),
+          ),
+          const Divider(height: 1, indent: 16),
+        ],
         _tappableTile(
           context,
           icon: Icons.route_outlined,
