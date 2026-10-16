@@ -1,0 +1,5 @@
+• Unsent messages are kept as drafts
+• Share your position or a contact from the message box
+• Optionally delete old channel messages automatically
+• Antenna coverage tool: see where an antenna can reach
+• SOS, check-in reminders and delivery, live sensor updates, search, read aloud and battery saver from rc.6
