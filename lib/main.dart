@@ -13,6 +13,7 @@ import 'utils/platform_info.dart';
 import 'connector/meshcore_connector.dart';
 import 'models/image_codec_support.dart';
 import 'screens/bastion_home_screen.dart';
+import 'services/app_shortcuts.dart';
 import 'services/image_chunk_transport.dart';
 import 'services/image_codec_service.dart';
 import 'services/image_codec_settings_store.dart';
@@ -246,6 +247,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   Timer? _imageSweepTimer;
   late final BotService _botService;
   late final FieldOpsService _fieldOps;
+  final _navigatorKey = GlobalKey<NavigatorState>();
   @override
   void initState() {
     super.initState();
@@ -253,6 +255,13 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_botService.load());
     _fieldOps = FieldOpsService(widget.connector);
     unawaited(_fieldOps.load());
+    if (PlatformInfo.isMobile) {
+      unawaited(
+        AppShortcuts(_navigatorKey).install().catchError((Object e) {
+          debugPrint('App shortcuts unavailable: $e');
+        }),
+      );
+    }
     WidgetsBinding.instance.addObserver(this);
     _imageSweepTimer = Timer.periodic(
       _kImageSweepInterval,
@@ -314,6 +323,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       child: Consumer<AppSettingsService>(
         builder: (context, settingsService, child) {
           return MaterialApp(
+            navigatorKey: _navigatorKey,
             title: 'Bastion',
             debugShowCheckedModeBanner: false,
             localizationsDelegates: const [
