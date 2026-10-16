@@ -31,7 +31,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>MeshCore needs Bluetooth to communicate with LoRa mesh devices</string>
+	<string>Bastion uses Bluetooth to talk to your MeshCore LoRa radio.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera to scan QR codes for joining communities.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

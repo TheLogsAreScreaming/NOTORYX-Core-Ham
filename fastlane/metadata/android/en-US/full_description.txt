@@ -1,0 +1,32 @@
+Bastion turns your phone and a MeshCore LoRa radio into a field communicator that works without cell service, Wi-Fi or the internet. Messages hop radio to radio across the mesh.
+
+Messaging
+• Direct and channel messages over the mesh, with delivery status
+• Search every saved conversation
+• Read messages aloud, hands-free
+• Area-limited channel messages that stay within a radius of you (needs flood-corridor firmware)
+
+Trips and safety
+• Plan a trip with up to six contacts
+• Check in ("I'm OK", "At Camp", "Delayed", "Heading Back") and see who it reached, with a one-tap resend
+• Check-in reminders, even when the app is closed
+• Alerts when a trip contact goes quiet too long
+• Hold-to-send SOS with your radio's position, repeating until someone replies
+• Field Log of everything sent and received
+
+Maps and coverage
+• Live mesh map and offline map packs
+• Coverage capture: record, resume and export field sessions
+• Route and field intelligence
+
+Your radios
+• Connect over Bluetooth, USB or TCP
+• Radio overview, stats, battery and LoRa settings
+• Repeater and room server tools: login, status, neighbors, telemetry, command line and access control
+• Live sensor updates when readings change
+• Command line on your own radio and, with permission, a trusted contact's
+• Battery saver
+
+Bastion needs a radio running MeshCore firmware. Overdue alerts, check-ins and SOS depend on radio range and the mesh; they are not a replacement for an emergency service or satellite messenger.
+
+Bastion is open source and builds on the MeshCore Open project.

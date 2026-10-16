@@ -109,6 +109,10 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(enableMessageTracing: value));
   }
 
+  Future<void> setReadAloudIncoming(String value) async {
+    await updateSettings(_settings.copyWith(readAloudIncoming: value));
+  }
+
   Future<void> setMapCacheBounds(Map<String, double>? value) async {
     await updateSettings(_settings.copyWith(mapCacheBounds: value));
   }
@@ -275,6 +279,10 @@ class AppSettingsService extends ChangeNotifier {
 
   Future<void> setTcpServerPort(int value) async {
     await updateSettings(_settings.copyWith(tcpServerPort: value));
+  }
+
+  Future<void> setBatterySaver(bool value) async {
+    await updateSettings(_settings.copyWith(batterySaver: value));
   }
 
   Future<void> setJumpToOldestUnread(bool value) async {

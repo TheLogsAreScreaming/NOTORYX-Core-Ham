@@ -56,6 +56,30 @@ class FieldOpsService extends ChangeNotifier {
   final Set<String> _overdue = {};
   Timer? _watchTimer;
 
+  /// Battery saver checks automations and overdue contacts less often. SOS
+  /// repeats keep their own timing.
+  bool batterySaver = false;
+  Duration get tickInterval => Duration(seconds: batterySaver ? 60 : 15);
+  Duration get watchInterval => Duration(seconds: batterySaver ? 120 : 30);
+
+  void setBatterySaver(bool on) {
+    if (on == batterySaver) return;
+    batterySaver = on;
+    if (_disposed || !ready) return;
+    if (_timer != null && foreground) {
+      _timer!.cancel();
+      _timer = Timer.periodic(tickInterval, (_) => unawaited(tick()));
+    }
+    if (_watchTimer != null) {
+      _watchTimer!.cancel();
+      _watchTimer = Timer.periodic(
+        watchInterval,
+        (_) => unawaited(watchTick()),
+      );
+    }
+    _notify();
+  }
+
   /// Names of trip contacts currently overdue.
   List<String> get overdueNames => members
       .where((c) => _overdue.contains(c.publicKeyHex))
@@ -226,10 +250,7 @@ class FieldOpsService extends ChangeNotifier {
     _primeNodes();
     connector.addListener(_changed);
     _messages = connector.receivedDirectMessages.listen(_incoming);
-    _timer = Timer.periodic(
-      const Duration(seconds: 15),
-      (_) => unawaited(tick()),
-    );
+    _timer = Timer.periodic(tickInterval, (_) => unawaited(tick()));
     _notify();
   }
 
@@ -283,10 +304,7 @@ class FieldOpsService extends ChangeNotifier {
     _overdue.clear();
     _snapshotSeen();
     _watchTimer?.cancel();
-    _watchTimer = Timer.periodic(
-      const Duration(seconds: 30),
-      (_) => unawaited(watchTick()),
-    );
+    _watchTimer = Timer.periodic(watchInterval, (_) => unawaited(watchTick()));
     await record('trip', 'Started ${trip.name}');
     await _scheduleReminder();
     _notify();
@@ -761,10 +779,7 @@ class FieldOpsService extends ChangeNotifier {
       _timer?.cancel();
     } else if (!_disposed) {
       _timer?.cancel();
-      _timer = Timer.periodic(
-        const Duration(seconds: 15),
-        (_) => unawaited(tick()),
-      );
+      _timer = Timer.periodic(tickInterval, (_) => unawaited(tick()));
       unawaited(tick());
     }
     _notify();

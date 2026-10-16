@@ -89,6 +89,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
               children: [
                 RadioOverviewCard(connector: connector),
+                const BatterySaverCard(),
 
                 // IDENTITY section
                 MeshCard(
@@ -109,6 +110,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   padding: EdgeInsets.zero,
                   child: _buildLocationCardContent(context, connector),
                 ),
+
+                // READ ALOUD
+                const ReadAloudCard(),
 
                 // APP SETTINGS
                 SectionHeader(l10n.settings_appSettings),
@@ -2226,4 +2230,67 @@ class _RadioSettingsSnapshot {
     codingRate,
     txPowerDbm,
   );
+}
+
+/// Settings' battery saver switch.
+class BatterySaverCard extends StatelessWidget {
+  const BatterySaverCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    final on = settings.settings.batterySaver;
+    return MeshCard(
+      padding: EdgeInsets.zero,
+      child: SwitchListTile(
+        key: const ValueKey('battery-saver'),
+        secondary: Icon(on ? Icons.battery_saver : Icons.battery_std_outlined),
+        title: const Text('Battery saver'),
+        subtitle: Text(
+          on
+              ? 'On: radio battery every 10 min, GPS every 5 min, stats at most once a minute, trip checks every 1–2 min. Messages, alerts and SOS are unchanged.'
+              : 'Check the radio and trip less often to save phone and radio battery. Messages, alerts and SOS are unchanged.',
+        ),
+        value: on,
+        onChanged: settings.setBatterySaver,
+      ),
+    );
+  }
+}
+
+/// Settings' choice of which incoming messages are read aloud.
+class ReadAloudCard extends StatelessWidget {
+  const ReadAloudCard({super.key});
+
+  static const _choices = {
+    'off': 'Off',
+    'direct': 'Direct messages',
+    'all': 'Direct and channel messages',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    return MeshCard(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+      child: DropdownButtonFormField<String>(
+        key: const ValueKey('read-aloud'),
+        initialValue: settings.settings.readAloudIncoming,
+        decoration: const InputDecoration(
+          labelText: 'Read new messages aloud',
+          helperText:
+              'While Bastion is open. Muted channels stay quiet. Any message can also be read from its menu.',
+          helperMaxLines: 3,
+          icon: Icon(Icons.record_voice_over_outlined),
+        ),
+        items: [
+          for (final e in _choices.entries)
+            DropdownMenuItem(value: e.key, child: Text(e.value)),
+        ],
+        onChanged: (v) {
+          if (v != null) settings.setReadAloudIncoming(v);
+        },
+      ),
+    );
+  }
 }
