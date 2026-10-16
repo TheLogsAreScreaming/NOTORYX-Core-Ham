@@ -2302,7 +2302,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.volume_up_outlined),
-              title: const Text('Read aloud'),
+              title: Text(context.l10n.chat_readAloud),
               onTap: () {
                 Navigator.pop(sheetContext);
                 unawaited(

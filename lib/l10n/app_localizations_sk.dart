@@ -7124,4 +7124,202 @@ class AppLocalizationsSk extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return 'SOS potvrdil(a) $name';
   }
+
+  @override
+  String get settings_batterySaver => 'Šetrič batérie';
+
+  @override
+  String get settings_batterySaverOn =>
+      'Zapnuté: batéria rádia každých 10 min, GPS každých 5 min, štatistiky najviac raz za minútu, kontroly túry každé 1–2 min. Správy, upozornenia a SOS sa nemenia.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Kontrolovať rádio a túru menej často a šetriť batériu telefónu aj rádia. Správy, upozornenia a SOS sa nemenia.';
+
+  @override
+  String get settings_readAloud => 'Čítať nové správy nahlas';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Kým je Bastion otvorený. Stlmené kanály zostávajú ticho. Každú správu možno prečítať aj z jej ponuky.';
+
+  @override
+  String get settings_readAloudOff => 'Vyp.';
+
+  @override
+  String get settings_readAloudDirect => 'Priame správy';
+
+  @override
+  String get settings_readAloudAll => 'Priame správy a správy kanálov';
+
+  @override
+  String get chat_readAloud => 'Prečítať nahlas';
+
+  @override
+  String get messageSearch_title => 'Hľadať v správach';
+
+  @override
+  String get messageSearch_intro =>
+      'Hľadajte vo všetkých priamych správach a správach kanálov uložených v tomto telefóne.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Žiadna správa neobsahuje „$query“.';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count výsledkov',
+      many: '$count výsledku',
+      few: '$count výsledky',
+      one: '1 výsledok',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'Zobrazuje sa najnovších $count výsledkov';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Nahlásiť sa';
+
+  @override
+  String get shortcuts_trip => 'Túra';
+
+  @override
+  String get shortcuts_chats => 'Čety';
+
+  @override
+  String get shortcuts_map => 'Mapa';
+
+  @override
+  String get sensor_liveUpdates => 'Živé aktualizácie';
+
+  @override
+  String get sensor_intro =>
+      'Nech senzor sám posiela hodnoty, keď sa zmenia, namiesto opakovaného pýtania. Vyžaduje prihlásenie s prístupom na čítanie.';
+
+  @override
+  String get sensor_watch => 'Sledovať zmeny';
+
+  @override
+  String get sensor_loadFirst =>
+      'Najprv načítajte telemetriu, aby ste mohli vybrať hodnoty.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Sleduje sa: $readings do $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Sleduje sa: $readings do $time • región $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Zatiaľ neboli nahlásené žiadne zmeny.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Posledná aktualizácia $time • prijaté: $count';
+  }
+
+  @override
+  String get sensor_stop => 'Zastaviť živé aktualizácie';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Zastavené tu; senzor nepotvrdil a prestane, keď uplynie čas. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'Senzor kontroluje približne raz za minútu a pošle aktualizáciu, keď sa vybraná hodnota zmení viac než jej prah.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (kanál $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (kanál $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (kanál $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Aktualizovať pri zmene o $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Zmeniť prah';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'Senzor môže sledovať najviac $max bajtov hodnôt (použité: $used).';
+  }
+
+  @override
+  String get sensor_for => 'Na';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hodín',
+      many: '$count hodiny',
+      few: '$count hodiny',
+      one: '1 hodinu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Spustiť';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return 'Prah: $label';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Teplota';
+
+  @override
+  String get sensor_typeHumidity => 'Vlhkosť';
+
+  @override
+  String get sensor_typePressure => 'Tlak';
+
+  @override
+  String get sensor_typeVoltage => 'Napätie';
+
+  @override
+  String get sensor_typeCurrent => 'Prúd';
+
+  @override
+  String get sensor_typeLight => 'Svetlo';
+
+  @override
+  String get sensor_typeConcentration => 'Koncentrácia';
+
+  @override
+  String get sensor_typePercentage => 'Percento';
+
+  @override
+  String get sensor_typeAnalogInput => 'Analógový vstup';
+
+  @override
+  String get sensor_typeAltitude => 'Nadmorská výška';
 }

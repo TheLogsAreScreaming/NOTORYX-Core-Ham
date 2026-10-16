@@ -7129,4 +7129,198 @@ class AppLocalizationsBg extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return 'SOS потвърден от $name';
   }
+
+  @override
+  String get settings_batterySaver => 'Пестене на батерията';
+
+  @override
+  String get settings_batterySaverOn =>
+      'Вкл.: батерия на радиостанцията на всеки 10 мин, GPS на всеки 5 мин, статистика най-много веднъж в минута, проверки на похода на всеки 1–2 мин. Съобщенията, предупрежденията и SOS не се променят.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Проверявайте радиостанцията и похода по-рядко, за да пестите батерията на телефона и радиостанцията. Съобщенията, предупрежденията и SOS не се променят.';
+
+  @override
+  String get settings_readAloud => 'Четене на нови съобщения на глас';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Докато Bastion е отворен. Заглушените канали остават тихи. Всяко съобщение може да се прочете и от менюто му.';
+
+  @override
+  String get settings_readAloudOff => 'Изкл.';
+
+  @override
+  String get settings_readAloudDirect => 'Директни съобщения';
+
+  @override
+  String get settings_readAloudAll => 'Директни съобщения и съобщения в канали';
+
+  @override
+  String get chat_readAloud => 'Прочети на глас';
+
+  @override
+  String get messageSearch_title => 'Търсене в съобщенията';
+
+  @override
+  String get messageSearch_intro =>
+      'Търсете във всички директни съобщения и съобщения в канали, запазени на този телефон.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Няма съобщения, съдържащи „$query“.';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count съвпадения',
+      one: '1 съвпадение',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'Показани са най-новите $count съвпадения';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Отметка';
+
+  @override
+  String get shortcuts_trip => 'Поход';
+
+  @override
+  String get shortcuts_chats => 'Чатове';
+
+  @override
+  String get shortcuts_map => 'Карта';
+
+  @override
+  String get sensor_liveUpdates => 'Актуализации на живо';
+
+  @override
+  String get sensor_intro =>
+      'Нека сензорът сам изпраща показания, когато се променят, вместо да питате всеки път. Изисква вход с право за четене.';
+
+  @override
+  String get sensor_watch => 'Следене за промени';
+
+  @override
+  String get sensor_loadFirst =>
+      'Първо заредете телеметрията, за да изберете показания.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Следят се $readings до $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Следят се $readings до $time • регион $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Все още няма отчетени промени.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Последна актуализация $time • получени: $count';
+  }
+
+  @override
+  String get sensor_stop => 'Спиране на актуализациите на живо';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Спряно тук; сензорът не потвърди и ще спре, когато времето изтече. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'Сензорът проверява около веднъж в минута и изпраща актуализация, когато избрано показание се промени повече от прага си.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (канал $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (канал $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (канал $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Актуализиране при промяна с $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Промяна на прага';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'Сензорът може да следи до $max байта показания (използвани: $used).';
+  }
+
+  @override
+  String get sensor_for => 'За';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count часа',
+      one: '1 час',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Старт';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return 'Праг за $label';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Температура';
+
+  @override
+  String get sensor_typeHumidity => 'Влажност';
+
+  @override
+  String get sensor_typePressure => 'Налягане';
+
+  @override
+  String get sensor_typeVoltage => 'Напрежение';
+
+  @override
+  String get sensor_typeCurrent => 'Ток';
+
+  @override
+  String get sensor_typeLight => 'Осветеност';
+
+  @override
+  String get sensor_typeConcentration => 'Концентрация';
+
+  @override
+  String get sensor_typePercentage => 'Процент';
+
+  @override
+  String get sensor_typeAnalogInput => 'Аналогов вход';
+
+  @override
+  String get sensor_typeAltitude => 'Надморска височина';
 }

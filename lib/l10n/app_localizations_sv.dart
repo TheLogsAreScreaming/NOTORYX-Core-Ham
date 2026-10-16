@@ -7076,4 +7076,198 @@ class AppLocalizationsSv extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return 'SOS bekräftat av $name';
   }
+
+  @override
+  String get settings_batterySaver => 'Batterisparläge';
+
+  @override
+  String get settings_batterySaverOn =>
+      'På: radiobatteri var 10:e min, GPS var 5:e min, statistik högst en gång per minut, turkontroller var 1–2 min. Meddelanden, varningar och SOS påverkas inte.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Kontrollera radion och turen mer sällan för att spara telefonens och radions batteri. Meddelanden, varningar och SOS påverkas inte.';
+
+  @override
+  String get settings_readAloud => 'Läs upp nya meddelanden';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Medan Bastion är öppet. Tystade kanaler förblir tysta. Alla meddelanden kan också läsas upp från sin meny.';
+
+  @override
+  String get settings_readAloudOff => 'Av';
+
+  @override
+  String get settings_readAloudDirect => 'Direktmeddelanden';
+
+  @override
+  String get settings_readAloudAll => 'Direkt- och kanalmeddelanden';
+
+  @override
+  String get chat_readAloud => 'Läs upp';
+
+  @override
+  String get messageSearch_title => 'Sök i meddelanden';
+
+  @override
+  String get messageSearch_intro =>
+      'Sök i alla direkt- och kanalmeddelanden som sparats på den här telefonen.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Inga meddelanden innehåller ”$query”.';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count träffar',
+      one: '1 träff',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'Visar de $count senaste träffarna';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Checka in';
+
+  @override
+  String get shortcuts_trip => 'Tur';
+
+  @override
+  String get shortcuts_chats => 'Chattar';
+
+  @override
+  String get shortcuts_map => 'Karta';
+
+  @override
+  String get sensor_liveUpdates => 'Liveuppdateringar';
+
+  @override
+  String get sensor_intro =>
+      'Låt sensorn skicka mätvärden själv när de ändras, i stället för att fråga varje gång. Kräver inloggning med läsbehörighet.';
+
+  @override
+  String get sensor_watch => 'Bevaka ändringar';
+
+  @override
+  String get sensor_loadFirst =>
+      'Ladda telemetrin först för att välja mätvärden.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Bevakar $readings till $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Bevakar $readings till $time • region $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Inga ändringar rapporterade än.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Senaste uppdatering $time • $count mottagna';
+  }
+
+  @override
+  String get sensor_stop => 'Stoppa liveuppdateringar';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Stoppad här; sensorn bekräftade inte och slutar när tiden går ut. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'Sensorn kontrollerar ungefär en gång i minuten och skickar en uppdatering när ett valt mätvärde ändras mer än sin tröskel.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (kanal $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (kanal $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (kanal $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Uppdatera vid en ändring på $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Ändra tröskel';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'Sensorn kan bevaka upp till $max byte mätvärden ($used använda).';
+  }
+
+  @override
+  String get sensor_for => 'Under';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count timmar',
+      one: '1 timme',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Starta';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return 'Tröskel för $label';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Temperatur';
+
+  @override
+  String get sensor_typeHumidity => 'Luftfuktighet';
+
+  @override
+  String get sensor_typePressure => 'Lufttryck';
+
+  @override
+  String get sensor_typeVoltage => 'Spänning';
+
+  @override
+  String get sensor_typeCurrent => 'Ström';
+
+  @override
+  String get sensor_typeLight => 'Ljus';
+
+  @override
+  String get sensor_typeConcentration => 'Koncentration';
+
+  @override
+  String get sensor_typePercentage => 'Procent';
+
+  @override
+  String get sensor_typeAnalogInput => 'Analog ingång';
+
+  @override
+  String get sensor_typeAltitude => 'Höjd';
 }

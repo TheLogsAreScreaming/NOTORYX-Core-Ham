@@ -251,6 +251,8 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final FieldOpsService _fieldOps;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
+  AppShortcuts? _shortcuts;
+  String? _shortcutLanguage;
   late final SensorSubscriptionService _sensorSubscriptions;
   @override
   void initState() {
@@ -263,8 +265,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _applyBatterySaver();
     widget.appSettingsService.addListener(_applyBatterySaver);
     if (PlatformInfo.isMobile) {
+      final shortcuts = _shortcuts = AppShortcuts(_navigatorKey);
       unawaited(
-        AppShortcuts(_navigatorKey).install().catchError((Object e) {
+        shortcuts.install().catchError((Object e) {
           debugPrint('App shortcuts unavailable: $e');
         }),
       );
@@ -358,6 +361,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
             builder: (context, child) {
               final locale = Localizations.localeOf(context);
               NotificationService().setLocale(locale);
+              _relabelShortcuts(locale);
               return AnnotatedRegion<SystemUiOverlayStyle>(
                 value: _systemUiOverlayStyle(context),
                 child: child ?? const SizedBox.shrink(),
@@ -369,6 +373,19 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
           );
         },
       ),
+    );
+  }
+
+  void _relabelShortcuts(Locale locale) {
+    final shortcuts = _shortcuts;
+    if (shortcuts == null || locale.languageCode == _shortcutLanguage) return;
+    _shortcutLanguage = locale.languageCode;
+    unawaited(
+      shortcuts.setLabels(lookupAppLocalizations(locale)).catchError((
+        Object e,
+      ) {
+        debugPrint('App shortcuts not retitled: $e');
+      }),
     );
   }
 

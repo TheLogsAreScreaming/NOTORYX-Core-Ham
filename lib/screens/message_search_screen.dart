@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../l10n/l10n.dart';
 import '../models/message_search.dart';
 import 'channel_chat_screen.dart';
 import 'chat_screen.dart';
@@ -70,6 +71,7 @@ class _MessageSearchScreenState extends State<MessageSearchScreen> {
   @override
   Widget build(BuildContext context) {
     final words = queryWords(_searched);
+    final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(
         title: TextField(
@@ -77,8 +79,8 @@ class _MessageSearchScreenState extends State<MessageSearchScreen> {
           controller: _controller,
           autofocus: true,
           textInputAction: TextInputAction.search,
-          decoration: const InputDecoration(
-            hintText: 'Search messages',
+          decoration: InputDecoration(
+            hintText: l10n.messageSearch_title,
             border: InputBorder.none,
           ),
           onChanged: _changed,
@@ -95,11 +97,9 @@ class _MessageSearchScreenState extends State<MessageSearchScreen> {
             : null,
       ),
       body: words.isEmpty
-          ? const _Hint(
-              'Search every direct and channel message saved on this phone.',
-            )
+          ? _Hint(l10n.messageSearch_intro)
           : _hits.isEmpty
-          ? _Hint('No messages contain "$_searched".')
+          ? _Hint(l10n.messageSearch_noResults(_searched))
           : ListView.separated(
               itemCount: _hits.length + 1,
               separatorBuilder: (_, _) => const Divider(height: 1),
@@ -109,8 +109,8 @@ class _MessageSearchScreenState extends State<MessageSearchScreen> {
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
                     child: Text(
                       _hits.length >= 200
-                          ? 'Showing the newest 200 matches'
-                          : '${_hits.length} ${_hits.length == 1 ? 'match' : 'matches'}',
+                          ? l10n.messageSearch_capped(200)
+                          : l10n.messageSearch_count(_hits.length),
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                   );

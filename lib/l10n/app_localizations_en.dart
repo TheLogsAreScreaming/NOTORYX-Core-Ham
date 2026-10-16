@@ -7032,4 +7032,197 @@ class AppLocalizationsEn extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return 'SOS acknowledged by $name';
   }
+
+  @override
+  String get settings_batterySaver => 'Battery saver';
+
+  @override
+  String get settings_batterySaverOn =>
+      'On: radio battery every 10 min, GPS every 5 min, stats at most once a minute, trip checks every 1–2 min. Messages, alerts and SOS are unchanged.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Check the radio and trip less often to save phone and radio battery. Messages, alerts and SOS are unchanged.';
+
+  @override
+  String get settings_readAloud => 'Read new messages aloud';
+
+  @override
+  String get settings_readAloudHelper =>
+      'While Bastion is open. Muted channels stay quiet. Any message can also be read from its menu.';
+
+  @override
+  String get settings_readAloudOff => 'Off';
+
+  @override
+  String get settings_readAloudDirect => 'Direct messages';
+
+  @override
+  String get settings_readAloudAll => 'Direct and channel messages';
+
+  @override
+  String get chat_readAloud => 'Read aloud';
+
+  @override
+  String get messageSearch_title => 'Search messages';
+
+  @override
+  String get messageSearch_intro =>
+      'Search every direct and channel message saved on this phone.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'No messages contain \"$query\".';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count matches',
+      one: '1 match',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'Showing the newest $count matches';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Check in';
+
+  @override
+  String get shortcuts_trip => 'Trip';
+
+  @override
+  String get shortcuts_chats => 'Chats';
+
+  @override
+  String get shortcuts_map => 'Map';
+
+  @override
+  String get sensor_liveUpdates => 'Live updates';
+
+  @override
+  String get sensor_intro =>
+      'Have the sensor send readings by itself when they change, instead of asking each time. Needs a login with read access.';
+
+  @override
+  String get sensor_watch => 'Watch for changes';
+
+  @override
+  String get sensor_loadFirst => 'Load telemetry first to choose readings.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Watching $readings until $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Watching $readings until $time • region $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'No changes reported yet.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Last update $time • $count received';
+  }
+
+  @override
+  String get sensor_stop => 'Stop live updates';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Stopped here; the sensor did not confirm and will stop when the time runs out. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'The sensor checks about once a minute and sends an update when a chosen reading changes by more than its threshold.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (ch $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (ch $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (ch $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Update on a change of $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Change threshold';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'The sensor can watch up to $max bytes of readings ($used used).';
+  }
+
+  @override
+  String get sensor_for => 'For';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hours',
+      one: '1 hour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Start';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return '$label threshold';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Temperature';
+
+  @override
+  String get sensor_typeHumidity => 'Humidity';
+
+  @override
+  String get sensor_typePressure => 'Pressure';
+
+  @override
+  String get sensor_typeVoltage => 'Voltage';
+
+  @override
+  String get sensor_typeCurrent => 'Current';
+
+  @override
+  String get sensor_typeLight => 'Light';
+
+  @override
+  String get sensor_typeConcentration => 'Concentration';
+
+  @override
+  String get sensor_typePercentage => 'Percentage';
+
+  @override
+  String get sensor_typeAnalogInput => 'Analog input';
+
+  @override
+  String get sensor_typeAltitude => 'Altitude';
 }

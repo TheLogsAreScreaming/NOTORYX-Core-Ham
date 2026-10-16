@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/cayenne_lpp.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../models/sensor_subscription.dart';
 import '../services/sensor_subscription_service.dart';
@@ -21,6 +24,7 @@ class SensorLiveCard extends StatelessWidget {
     final service = context.watch<SensorSubscriptionService>();
     final sub = service.subscriptionFor(sensor);
     final theme = Theme.of(context);
+    final l10n = context.l10n;
     return Card(
       key: const ValueKey('sensor-live-card'),
       child: Padding(
@@ -28,39 +32,55 @@ class SensorLiveCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Live updates', style: theme.textTheme.titleMedium),
+            Text(l10n.sensor_liveUpdates, style: theme.textTheme.titleMedium),
             const SizedBox(height: 6),
             if (sub == null) ...[
-              const Text(
-                'Have the sensor send readings by itself when they change, instead of asking each time. Needs a login with read access.',
-              ),
+              Text(l10n.sensor_intro),
               const SizedBox(height: 8),
               FilledButton.icon(
                 onPressed: watchOptions(current).isEmpty
                     ? null
                     : () => _subscribe(context, service),
                 icon: const Icon(Icons.sensors),
-                label: const Text('Watch for changes'),
+                label: Text(l10n.sensor_watch),
               ),
               if (watchOptions(current).isEmpty)
-                const Padding(
-                  padding: EdgeInsets.only(top: 6),
-                  child: Text('Load telemetry first to choose readings.'),
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(l10n.sensor_loadFirst),
                 ),
             ] else ...[
               Text(
-                'Watching ${sub.readings.map(describeWatch).join(', ')} until ${TimeOfDay.fromDateTime(sub.expiresAt).format(context)}${sub.scope.isEmpty ? '' : ' • region ${sub.scope}'}.',
+                sub.scope.isEmpty
+                    ? l10n.sensor_watching(
+                        sub.readings
+                            .map((r) => describeWatch(r, l10n: l10n))
+                            .join(', '),
+                        TimeOfDay.fromDateTime(sub.expiresAt).format(context),
+                      )
+                    : l10n.sensor_watchingRegion(
+                        sub.readings
+                            .map((r) => describeWatch(r, l10n: l10n))
+                            .join(', '),
+                        TimeOfDay.fromDateTime(sub.expiresAt).format(context),
+                        sub.scope,
+                      ),
               ),
               const SizedBox(height: 8),
               if (sub.pushes.isEmpty)
-                const Text('No changes reported yet.')
+                Text(l10n.sensor_noChanges)
               else ...[
                 Text(
-                  'Last update ${TimeOfDay.fromDateTime(sub.pushes.first.receivedAt).format(context)} • ${sub.pushes.length} received',
+                  l10n.sensor_lastUpdate(
+                    TimeOfDay.fromDateTime(
+                      sub.pushes.first.receivedAt,
+                    ).format(context),
+                    sub.pushes.length,
+                  ),
                   style: theme.textTheme.bodySmall,
                 ),
                 for (final r in sub.pushes.first.readings)
-                  if (describeReading(r) case final text?)
+                  if (describeReading(r, l10n: l10n) case final text?)
                     Text(
                       text,
                       key: ValueKey('live-${r['channel']}-${r['type']}'),
@@ -69,7 +89,7 @@ class SensorLiveCard extends StatelessWidget {
               const SizedBox(height: 8),
               OutlinedButton(
                 onPressed: () => _unsubscribe(context, service),
-                child: const Text('Stop live updates'),
+                child: Text(l10n.sensor_stop),
               ),
             ],
           ],
@@ -104,15 +124,12 @@ class SensorLiveCard extends StatelessWidget {
     SensorSubscriptionService service,
   ) async {
     final messenger = ScaffoldMessenger.of(context);
+    final l10n = context.l10n;
     try {
       await service.unsubscribe(sensor);
     } catch (e) {
       messenger.showSnackBar(
-        SnackBar(
-          content: Text(
-            'Stopped here; the sensor did not confirm and will stop when the time runs out. $e',
-          ),
-        ),
+        SnackBar(content: Text(l10n.sensor_stopUnconfirmed('$e'))),
       );
     }
   }
@@ -132,15 +149,51 @@ List<WatchedReading> watchOptions(List<Map<String, dynamic>>? current) {
   return out;
 }
 
-String describeWatch(WatchedReading r) =>
-    '${r.spec.label.toLowerCase()} (ch ${r.channel}) ±${_num(r.minDelta)}${r.spec.unit.isEmpty ? '' : ' ${r.spec.unit}'}';
+final AppLocalizations _en = lookupAppLocalizations(const Locale('en'));
+
+/// The reading type's name in [t]'s language.
+String readingLabel(int type, AppLocalizations t) => switch (type) {
+  CayenneLpp.lppTemperature => t.sensor_typeTemperature,
+  CayenneLpp.lppRelativeHumidity => t.sensor_typeHumidity,
+  CayenneLpp.lppBarometricPressure => t.sensor_typePressure,
+  CayenneLpp.lppVoltage => t.sensor_typeVoltage,
+  CayenneLpp.lppCurrent => t.sensor_typeCurrent,
+  CayenneLpp.lppLuminosity => t.sensor_typeLight,
+  CayenneLpp.lppConcentration => t.sensor_typeConcentration,
+  CayenneLpp.lppPercentage => t.sensor_typePercentage,
+  CayenneLpp.lppAnalogInput => t.sensor_typeAnalogInput,
+  CayenneLpp.lppAltitude => t.sensor_typeAltitude,
+  _ => watchableTypes[type]?.label ?? '$type',
+};
+
+String _withUnit(num v, LppSpec spec) =>
+    '${_num(v)}${spec.unit.isEmpty ? '' : ' ${spec.unit}'}';
+
+/// "temperature (ch 2) ±0.5 °C".
+String describeWatch(WatchedReading r, {AppLocalizations? l10n}) {
+  final t = l10n ?? _en;
+  final label = readingLabel(r.type, t);
+  // English reads the name mid-sentence in lower case; other languages
+  // keep the word's own case (German nouns stay capitalised).
+  return t.sensor_watchItem(
+    t.localeName == 'en' ? label.toLowerCase() : label,
+    '${r.channel}',
+    _withUnit(r.minDelta, r.spec),
+  );
+}
 
 /// "Temperature (ch 2): 21.5 °C", or null for readings we don't label.
-String? describeReading(Map<String, dynamic> r) {
-  final spec = watchableTypes[r['type']];
+String? describeReading(Map<String, dynamic> r, {AppLocalizations? l10n}) {
+  final t = l10n ?? _en;
+  final type = r['type'];
+  final spec = watchableTypes[type];
   final value = r['value'];
   if (spec == null || value is! num) return null;
-  return '${spec.label} (ch ${r['channel']}): ${_num(value)}${spec.unit.isEmpty ? '' : ' ${spec.unit}'}';
+  return t.sensor_readingValue(
+    readingLabel(type as int, t),
+    '${r['channel']}',
+    _withUnit(value, spec),
+  );
 }
 
 String _num(num v) => v == v.roundToDouble()
@@ -170,8 +223,9 @@ class _WatchDialogState extends State<_WatchDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return AlertDialog(
-      title: const Text('Watch for changes'),
+      title: Text(l10n.sensor_watch),
       content: SizedBox(
         width: 420,
         child: SingleChildScrollView(
@@ -179,22 +233,25 @@ class _WatchDialogState extends State<_WatchDialog> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'The sensor checks about once a minute and sends an update when a chosen reading changes by more than its threshold.',
-              ),
+              Text(l10n.sensor_dialogBody),
               for (var i = 0; i < _options.length; i++)
                 CheckboxListTile(
                   contentPadding: EdgeInsets.zero,
                   value: _chosen.contains(i),
                   title: Text(
-                    '${_options[i].spec.label} (ch ${_options[i].channel})',
+                    l10n.sensor_readingTitle(
+                      readingLabel(_options[i].type, l10n),
+                      '${_options[i].channel}',
+                    ),
                   ),
                   subtitle: Text(
-                    'Update on a change of ${_num(_options[i].minDelta)} ${_options[i].spec.unit}',
+                    l10n.sensor_updateOn(
+                      _withUnit(_options[i].minDelta, _options[i].spec),
+                    ),
                   ),
                   secondary: _chosen.contains(i)
                       ? IconButton(
-                          tooltip: 'Change threshold',
+                          tooltip: l10n.sensor_changeThreshold,
                           icon: const Icon(Icons.tune),
                           onPressed: () => _editDelta(i),
                         )
@@ -209,15 +266,18 @@ class _WatchDialogState extends State<_WatchDialog> {
                   }),
                 ),
               Text(
-                'The sensor can watch up to $maxMinDeltaBytes bytes of readings ($_bytes used).',
+                l10n.sensor_capacity(maxMinDeltaBytes, '$_bytes'),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               DropdownButtonFormField<int>(
                 initialValue: _hours,
-                decoration: const InputDecoration(labelText: 'For'),
+                decoration: InputDecoration(labelText: l10n.sensor_for),
                 items: [
                   for (final h in subscriptionHours)
-                    DropdownMenuItem(value: h, child: Text('$h hours')),
+                    DropdownMenuItem(
+                      value: h,
+                      child: Text(l10n.sensor_hours(h)),
+                    ),
                 ],
                 onChanged: (v) => setState(() => _hours = v ?? _hours),
               ),
@@ -228,7 +288,7 @@ class _WatchDialogState extends State<_WatchDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(l10n.common_cancel),
         ),
         FilledButton(
           onPressed: _chosen.isEmpty
@@ -239,7 +299,7 @@ class _WatchDialogState extends State<_WatchDialog> {
                     for (final i in _chosen.toList()..sort()) _options[i],
                   ], _hours),
                 ),
-          child: const Text('Start'),
+          child: Text(l10n.sensor_start),
         ),
       ],
     );
@@ -247,11 +307,14 @@ class _WatchDialogState extends State<_WatchDialog> {
 
   Future<void> _editDelta(int i) async {
     final option = _options[i];
+    final l10n = context.l10n;
     final controller = TextEditingController(text: _num(option.minDelta));
     final value = await showDialog<double>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('${option.spec.label} threshold'),
+        title: Text(
+          l10n.sensor_thresholdTitle(readingLabel(option.type, l10n)),
+        ),
         content: TextField(
           controller: controller,
           autofocus: true,
@@ -261,12 +324,12 @@ class _WatchDialogState extends State<_WatchDialog> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(l10n.common_cancel),
           ),
           FilledButton(
             onPressed: () =>
                 Navigator.pop(context, double.tryParse(controller.text)),
-            child: const Text('Save'),
+            child: Text(l10n.common_save),
           ),
         ],
       ),

@@ -7123,4 +7123,198 @@ class AppLocalizationsHu extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return '$name visszaigazolta az SOS-t';
   }
+
+  @override
+  String get settings_batterySaver => 'Energiatakarékos mód';
+
+  @override
+  String get settings_batterySaverOn =>
+      'Be: rádióakkumulátor 10 percenként, GPS 5 percenként, statisztika legfeljebb percenként egyszer, túraellenőrzés 1–2 percenként. Az üzenetek, riasztások és az SOS változatlanok.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'A rádió és a túra ritkább ellenőrzése a telefon és a rádió akkumulátorának kímélésére. Az üzenetek, riasztások és az SOS változatlanok.';
+
+  @override
+  String get settings_readAloud => 'Új üzenetek felolvasása';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Amíg a Bastion nyitva van. A némított csatornák csendben maradnak. Bármely üzenet felolvasható a menüjéből is.';
+
+  @override
+  String get settings_readAloudOff => 'Ki';
+
+  @override
+  String get settings_readAloudDirect => 'Közvetlen üzenetek';
+
+  @override
+  String get settings_readAloudAll => 'Közvetlen és csatornaüzenetek';
+
+  @override
+  String get chat_readAloud => 'Felolvasás';
+
+  @override
+  String get messageSearch_title => 'Keresés az üzenetekben';
+
+  @override
+  String get messageSearch_intro =>
+      'Keresés az ezen a telefonon mentett összes közvetlen és csatornaüzenetben.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Egyik üzenet sem tartalmazza ezt: „$query”.';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count találat',
+      one: '1 találat',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'A legújabb $count találat látható';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Bejelentkezés';
+
+  @override
+  String get shortcuts_trip => 'Túra';
+
+  @override
+  String get shortcuts_chats => 'Csevegések';
+
+  @override
+  String get shortcuts_map => 'Térkép';
+
+  @override
+  String get sensor_liveUpdates => 'Élő frissítések';
+
+  @override
+  String get sensor_intro =>
+      'Az érzékelő magától küldje a méréseket, amikor változnak, ahelyett hogy minden alkalommal le kellene kérdezni. Olvasási jogú bejelentkezés szükséges.';
+
+  @override
+  String get sensor_watch => 'Változások figyelése';
+
+  @override
+  String get sensor_loadFirst =>
+      'Előbb töltse be a telemetriát a mérések kiválasztásához.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Figyelt: $readings, eddig: $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Figyelt: $readings, eddig: $time • régió: $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Még nem érkezett változás.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Utolsó frissítés $time • $count érkezett';
+  }
+
+  @override
+  String get sensor_stop => 'Élő frissítések leállítása';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Itt leállítva; az érzékelő nem igazolta vissza, és az idő lejártával áll le. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'Az érzékelő nagyjából percenként ellenőriz, és frissítést küld, ha egy kiválasztott mérés a küszöbénél jobban változik.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label ($channel. csatorna)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label ($channel. csatorna): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label ($channel. csatorna) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Frissítés $delta változásnál';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Küszöb módosítása';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'Az érzékelő legfeljebb $max bájtnyi mérést figyelhet ($used foglalt).';
+  }
+
+  @override
+  String get sensor_for => 'Időtartam';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count óra',
+      one: '1 óra',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Indítás';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return '$label küszöb';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Hőmérséklet';
+
+  @override
+  String get sensor_typeHumidity => 'Páratartalom';
+
+  @override
+  String get sensor_typePressure => 'Légnyomás';
+
+  @override
+  String get sensor_typeVoltage => 'Feszültség';
+
+  @override
+  String get sensor_typeCurrent => 'Áramerősség';
+
+  @override
+  String get sensor_typeLight => 'Fény';
+
+  @override
+  String get sensor_typeConcentration => 'Koncentráció';
+
+  @override
+  String get sensor_typePercentage => 'Százalék';
+
+  @override
+  String get sensor_typeAnalogInput => 'Analóg bemenet';
+
+  @override
+  String get sensor_typeAltitude => 'Magasság';
 }

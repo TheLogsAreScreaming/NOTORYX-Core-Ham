@@ -23,6 +23,12 @@ const _bastionPrefixes = [
   'mapHub_',
   'routes_',
   'repeaterTools_',
+  'messageSearch_',
+  'shortcuts_',
+  'sensor_',
+  'settings_batterySaver',
+  'settings_readAloud',
+  'chat_readAloud',
 ];
 
 Map<String, dynamic> _arb(String locale) =>

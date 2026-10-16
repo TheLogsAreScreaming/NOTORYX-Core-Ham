@@ -12012,6 +12012,300 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'SOS acknowledged by {name}'**
   String notification_sosAcknowledged(String name);
+
+  /// No description provided for @settings_batterySaver.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery saver'**
+  String get settings_batterySaver;
+
+  /// No description provided for @settings_batterySaverOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On: radio battery every 10 min, GPS every 5 min, stats at most once a minute, trip checks every 1–2 min. Messages, alerts and SOS are unchanged.'**
+  String get settings_batterySaverOn;
+
+  /// No description provided for @settings_batterySaverOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the radio and trip less often to save phone and radio battery. Messages, alerts and SOS are unchanged.'**
+  String get settings_batterySaverOff;
+
+  /// No description provided for @settings_readAloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Read new messages aloud'**
+  String get settings_readAloud;
+
+  /// No description provided for @settings_readAloudHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'While Bastion is open. Muted channels stay quiet. Any message can also be read from its menu.'**
+  String get settings_readAloudHelper;
+
+  /// No description provided for @settings_readAloudOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get settings_readAloudOff;
+
+  /// No description provided for @settings_readAloudDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct messages'**
+  String get settings_readAloudDirect;
+
+  /// No description provided for @settings_readAloudAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct and channel messages'**
+  String get settings_readAloudAll;
+
+  /// No description provided for @chat_readAloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Read aloud'**
+  String get chat_readAloud;
+
+  /// No description provided for @messageSearch_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Search messages'**
+  String get messageSearch_title;
+
+  /// No description provided for @messageSearch_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Search every direct and channel message saved on this phone.'**
+  String get messageSearch_intro;
+
+  /// No description provided for @messageSearch_noResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No messages contain \"{query}\".'**
+  String messageSearch_noResults(String query);
+
+  /// No description provided for @messageSearch_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 match} other{{count} matches}}'**
+  String messageSearch_count(int count);
+
+  /// No description provided for @messageSearch_capped.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing the newest {count} matches'**
+  String messageSearch_capped(int count);
+
+  /// No description provided for @shortcuts_checkIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Check in'**
+  String get shortcuts_checkIn;
+
+  /// No description provided for @shortcuts_trip.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip'**
+  String get shortcuts_trip;
+
+  /// No description provided for @shortcuts_chats.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get shortcuts_chats;
+
+  /// No description provided for @shortcuts_map.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get shortcuts_map;
+
+  /// No description provided for @sensor_liveUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Live updates'**
+  String get sensor_liveUpdates;
+
+  /// No description provided for @sensor_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Have the sensor send readings by itself when they change, instead of asking each time. Needs a login with read access.'**
+  String get sensor_intro;
+
+  /// No description provided for @sensor_watch.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch for changes'**
+  String get sensor_watch;
+
+  /// No description provided for @sensor_loadFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Load telemetry first to choose readings.'**
+  String get sensor_loadFirst;
+
+  /// No description provided for @sensor_watching.
+  ///
+  /// In en, this message translates to:
+  /// **'Watching {readings} until {time}.'**
+  String sensor_watching(String readings, String time);
+
+  /// No description provided for @sensor_watchingRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Watching {readings} until {time} • region {region}.'**
+  String sensor_watchingRegion(String readings, String time, String region);
+
+  /// No description provided for @sensor_noChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'No changes reported yet.'**
+  String get sensor_noChanges;
+
+  /// No description provided for @sensor_lastUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Last update {time} • {count} received'**
+  String sensor_lastUpdate(String time, int count);
+
+  /// No description provided for @sensor_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop live updates'**
+  String get sensor_stop;
+
+  /// No description provided for @sensor_stopUnconfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopped here; the sensor did not confirm and will stop when the time runs out. {error}'**
+  String sensor_stopUnconfirmed(String error);
+
+  /// No description provided for @sensor_dialogBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The sensor checks about once a minute and sends an update when a chosen reading changes by more than its threshold.'**
+  String get sensor_dialogBody;
+
+  /// No description provided for @sensor_readingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} (ch {channel})'**
+  String sensor_readingTitle(String label, String channel);
+
+  /// No description provided for @sensor_readingValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} (ch {channel}): {value}'**
+  String sensor_readingValue(String label, String channel, String value);
+
+  /// No description provided for @sensor_watchItem.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} (ch {channel}) ±{delta}'**
+  String sensor_watchItem(String label, String channel, String delta);
+
+  /// No description provided for @sensor_updateOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Update on a change of {delta}'**
+  String sensor_updateOn(String delta);
+
+  /// No description provided for @sensor_changeThreshold.
+  ///
+  /// In en, this message translates to:
+  /// **'Change threshold'**
+  String get sensor_changeThreshold;
+
+  /// No description provided for @sensor_capacity.
+  ///
+  /// In en, this message translates to:
+  /// **'The sensor can watch up to {max} bytes of readings ({used} used).'**
+  String sensor_capacity(int max, String used);
+
+  /// No description provided for @sensor_for.
+  ///
+  /// In en, this message translates to:
+  /// **'For'**
+  String get sensor_for;
+
+  /// No description provided for @sensor_hours.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 hour} other{{count} hours}}'**
+  String sensor_hours(int count);
+
+  /// No description provided for @sensor_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get sensor_start;
+
+  /// No description provided for @sensor_thresholdTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} threshold'**
+  String sensor_thresholdTitle(String label);
+
+  /// No description provided for @sensor_typeTemperature.
+  ///
+  /// In en, this message translates to:
+  /// **'Temperature'**
+  String get sensor_typeTemperature;
+
+  /// No description provided for @sensor_typeHumidity.
+  ///
+  /// In en, this message translates to:
+  /// **'Humidity'**
+  String get sensor_typeHumidity;
+
+  /// No description provided for @sensor_typePressure.
+  ///
+  /// In en, this message translates to:
+  /// **'Pressure'**
+  String get sensor_typePressure;
+
+  /// No description provided for @sensor_typeVoltage.
+  ///
+  /// In en, this message translates to:
+  /// **'Voltage'**
+  String get sensor_typeVoltage;
+
+  /// No description provided for @sensor_typeCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get sensor_typeCurrent;
+
+  /// No description provided for @sensor_typeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get sensor_typeLight;
+
+  /// No description provided for @sensor_typeConcentration.
+  ///
+  /// In en, this message translates to:
+  /// **'Concentration'**
+  String get sensor_typeConcentration;
+
+  /// No description provided for @sensor_typePercentage.
+  ///
+  /// In en, this message translates to:
+  /// **'Percentage'**
+  String get sensor_typePercentage;
+
+  /// No description provided for @sensor_typeAnalogInput.
+  ///
+  /// In en, this message translates to:
+  /// **'Analog input'**
+  String get sensor_typeAnalogInput;
+
+  /// No description provided for @sensor_typeAltitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Altitude'**
+  String get sensor_typeAltitude;
 }
 
 class _AppLocalizationsDelegate

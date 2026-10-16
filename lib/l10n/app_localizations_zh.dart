@@ -6666,4 +6666,192 @@ class AppLocalizationsZh extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return '$name 已确认 SOS';
   }
+
+  @override
+  String get settings_batterySaver => '省电模式';
+
+  @override
+  String get settings_batterySaverOn =>
+      '已开启：每 10 分钟读取电台电量，每 5 分钟读取 GPS，统计最多每分钟一次，行程检查每 1–2 分钟一次。消息、警报和 SOS 不受影响。';
+
+  @override
+  String get settings_batterySaverOff =>
+      '降低电台和行程的检查频率，节省手机和电台电量。消息、警报和 SOS 不受影响。';
+
+  @override
+  String get settings_readAloud => '朗读新消息';
+
+  @override
+  String get settings_readAloudHelper =>
+      '仅在 Bastion 打开时。已静音的频道不会朗读。任何消息也可以从其菜单中朗读。';
+
+  @override
+  String get settings_readAloudOff => '关闭';
+
+  @override
+  String get settings_readAloudDirect => '私信';
+
+  @override
+  String get settings_readAloudAll => '私信和频道消息';
+
+  @override
+  String get chat_readAloud => '朗读';
+
+  @override
+  String get messageSearch_title => '搜索消息';
+
+  @override
+  String get messageSearch_intro => '搜索此手机上保存的所有私信和频道消息。';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return '没有包含“$query”的消息。';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 条匹配',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return '显示最新的 $count 条匹配';
+  }
+
+  @override
+  String get shortcuts_checkIn => '报到';
+
+  @override
+  String get shortcuts_trip => '行程';
+
+  @override
+  String get shortcuts_chats => '聊天';
+
+  @override
+  String get shortcuts_map => '地图';
+
+  @override
+  String get sensor_liveUpdates => '实时更新';
+
+  @override
+  String get sensor_intro => '让传感器在读数变化时自动发送，而不必每次询问。需要以读取权限登录。';
+
+  @override
+  String get sensor_watch => '监视变化';
+
+  @override
+  String get sensor_loadFirst => '请先加载遥测数据，再选择读数。';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return '正在监视 $readings，直到 $time。';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return '正在监视 $readings，直到 $time • 区域 $region。';
+  }
+
+  @override
+  String get sensor_noChanges => '尚未报告任何变化。';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return '上次更新 $time • 已收到 $count 条';
+  }
+
+  @override
+  String get sensor_stop => '停止实时更新';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return '已在此处停止；传感器未确认，将在时间到期后停止。$error';
+  }
+
+  @override
+  String get sensor_dialogBody => '传感器大约每分钟检查一次，当所选读数的变化超过阈值时发送更新。';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label（通道 $channel）';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label（通道 $channel）：$value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label（通道 $channel）±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return '变化 $delta 时更新';
+  }
+
+  @override
+  String get sensor_changeThreshold => '更改阈值';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return '传感器最多可监视 $max 字节的读数（已用 $used）。';
+  }
+
+  @override
+  String get sensor_for => '时长';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 小时',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => '开始';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return '$label阈值';
+  }
+
+  @override
+  String get sensor_typeTemperature => '温度';
+
+  @override
+  String get sensor_typeHumidity => '湿度';
+
+  @override
+  String get sensor_typePressure => '气压';
+
+  @override
+  String get sensor_typeVoltage => '电压';
+
+  @override
+  String get sensor_typeCurrent => '电流';
+
+  @override
+  String get sensor_typeLight => '光照';
+
+  @override
+  String get sensor_typeConcentration => '浓度';
+
+  @override
+  String get sensor_typePercentage => '百分比';
+
+  @override
+  String get sensor_typeAnalogInput => '模拟输入';
+
+  @override
+  String get sensor_typeAltitude => '海拔';
 }

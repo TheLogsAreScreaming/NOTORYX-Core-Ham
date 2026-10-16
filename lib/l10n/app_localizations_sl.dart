@@ -7125,4 +7125,203 @@ class AppLocalizationsSl extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return 'SOS potrdil(a) $name';
   }
+
+  @override
+  String get settings_batterySaver => 'Varčevanje z baterijo';
+
+  @override
+  String get settings_batterySaverOn =>
+      'Vklopljeno: baterija radia vsakih 10 min, GPS vsakih 5 min, statistika največ enkrat na minuto, preverjanja ture vsakih 1–2 min. Sporočila, opozorila in SOS ostanejo nespremenjeni.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Redkeje preverjaj radio in turo, da prihraniš baterijo telefona in radia. Sporočila, opozorila in SOS ostanejo nespremenjeni.';
+
+  @override
+  String get settings_readAloud => 'Glasno beri nova sporočila';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Ko je Bastion odprt. Utišani kanali ostanejo tihi. Vsako sporočilo lahko preberete tudi iz njegovega menija.';
+
+  @override
+  String get settings_readAloudOff => 'Izklop.';
+
+  @override
+  String get settings_readAloudDirect => 'Neposredna sporočila';
+
+  @override
+  String get settings_readAloudAll =>
+      'Neposredna sporočila in sporočila kanalov';
+
+  @override
+  String get chat_readAloud => 'Preberi na glas';
+
+  @override
+  String get messageSearch_title => 'Iskanje sporočil';
+
+  @override
+  String get messageSearch_intro =>
+      'Iščite po vseh neposrednih sporočilih in sporočilih kanalov, shranjenih v tem telefonu.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Nobeno sporočilo ne vsebuje »$query«.';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count zadetkov',
+      few: '$count zadetki',
+      two: '$count zadetka',
+      one: '$count zadetek',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'Prikazanih je najnovejših $count zadetkov';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Javi se';
+
+  @override
+  String get shortcuts_trip => 'Tura';
+
+  @override
+  String get shortcuts_chats => 'Klepeti';
+
+  @override
+  String get shortcuts_map => 'Zemljevid';
+
+  @override
+  String get sensor_liveUpdates => 'Posodobitve v živo';
+
+  @override
+  String get sensor_intro =>
+      'Naj senzor sam pošilja meritve, ko se spremenijo, namesto da vsakič sprašujete. Zahteva prijavo z dostopom za branje.';
+
+  @override
+  String get sensor_watch => 'Spremljaj spremembe';
+
+  @override
+  String get sensor_loadFirst =>
+      'Najprej naložite telemetrijo, da izberete meritve.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Spremljano: $readings do $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Spremljano: $readings do $time • regija $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Sprememb še ni bilo sporočenih.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Zadnja posodobitev $time • prejeto: $count';
+  }
+
+  @override
+  String get sensor_stop => 'Ustavi posodobitve v živo';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Ustavljeno tukaj; senzor ni potrdil in se bo ustavil, ko poteče čas. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'Senzor preverja približno enkrat na minuto in pošlje posodobitev, ko se izbrana meritev spremeni bolj kot njen prag.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (kanal $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (kanal $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (kanal $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Posodobi ob spremembi za $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Spremeni prag';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'Senzor lahko spremlja do $max bajtov meritev (porabljeno: $used).';
+  }
+
+  @override
+  String get sensor_for => 'Za';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ur',
+      few: '$count ure',
+      two: '$count uri',
+      one: '$count uro',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Začni';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return 'Prag: $label';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Temperatura';
+
+  @override
+  String get sensor_typeHumidity => 'Vlažnost';
+
+  @override
+  String get sensor_typePressure => 'Tlak';
+
+  @override
+  String get sensor_typeVoltage => 'Napetost';
+
+  @override
+  String get sensor_typeCurrent => 'Tok';
+
+  @override
+  String get sensor_typeLight => 'Svetloba';
+
+  @override
+  String get sensor_typeConcentration => 'Koncentracija';
+
+  @override
+  String get sensor_typePercentage => 'Odstotek';
+
+  @override
+  String get sensor_typeAnalogInput => 'Analogni vhod';
+
+  @override
+  String get sensor_typeAltitude => 'Nadmorska višina';
 }

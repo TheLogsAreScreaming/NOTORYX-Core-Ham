@@ -6812,4 +6812,194 @@ class AppLocalizationsKo extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return '$name 님이 SOS를 확인했습니다';
   }
+
+  @override
+  String get settings_batterySaver => '배터리 절약';
+
+  @override
+  String get settings_batterySaverOn =>
+      '켜짐: 무전기 배터리 10분마다, GPS 5분마다, 통계는 최대 1분에 한 번, 여정 점검은 1–2분마다. 메시지, 알림, SOS는 그대로입니다.';
+
+  @override
+  String get settings_batterySaverOff =>
+      '무전기와 여정을 덜 자주 확인해 휴대폰과 무전기 배터리를 아낍니다. 메시지, 알림, SOS는 그대로입니다.';
+
+  @override
+  String get settings_readAloud => '새 메시지 소리 내어 읽기';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Bastion이 열려 있는 동안만. 음소거한 채널은 읽지 않습니다. 각 메시지의 메뉴에서도 읽을 수 있습니다.';
+
+  @override
+  String get settings_readAloudOff => '끔';
+
+  @override
+  String get settings_readAloudDirect => '다이렉트 메시지';
+
+  @override
+  String get settings_readAloudAll => '다이렉트 및 채널 메시지';
+
+  @override
+  String get chat_readAloud => '소리 내어 읽기';
+
+  @override
+  String get messageSearch_title => '메시지 검색';
+
+  @override
+  String get messageSearch_intro => '이 휴대폰에 저장된 모든 다이렉트 및 채널 메시지를 검색합니다.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return '\'$query\'이(가) 포함된 메시지가 없습니다.';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count건 일치',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return '최신 일치 항목 $count건 표시 중';
+  }
+
+  @override
+  String get shortcuts_checkIn => '체크인';
+
+  @override
+  String get shortcuts_trip => '여정';
+
+  @override
+  String get shortcuts_chats => '채팅';
+
+  @override
+  String get shortcuts_map => '지도';
+
+  @override
+  String get sensor_liveUpdates => '실시간 업데이트';
+
+  @override
+  String get sensor_intro =>
+      '매번 요청하는 대신 값이 바뀌면 센서가 직접 보내도록 합니다. 읽기 권한으로 로그인해야 합니다.';
+
+  @override
+  String get sensor_watch => '변화 감시';
+
+  @override
+  String get sensor_loadFirst => '감시할 값을 고르려면 먼저 원격 측정을 불러오세요.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return '$time까지 $readings 감시 중.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return '$time까지 $readings 감시 중 • 지역 $region.';
+  }
+
+  @override
+  String get sensor_noChanges => '아직 보고된 변화가 없습니다.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return '마지막 업데이트 $time • $count건 수신';
+  }
+
+  @override
+  String get sensor_stop => '실시간 업데이트 중지';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return '여기서 중지했습니다. 센서가 확인하지 않았으며 시간이 끝나면 멈춥니다. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      '센서는 약 1분마다 확인하고, 선택한 값이 기준보다 크게 바뀌면 업데이트를 보냅니다.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label(ch $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label(ch $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label(ch $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return '$delta 변하면 업데이트';
+  }
+
+  @override
+  String get sensor_changeThreshold => '기준 변경';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return '센서는 최대 $max바이트의 값을 감시할 수 있습니다($used 사용 중).';
+  }
+
+  @override
+  String get sensor_for => '기간';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count시간',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => '시작';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return '$label 기준';
+  }
+
+  @override
+  String get sensor_typeTemperature => '온도';
+
+  @override
+  String get sensor_typeHumidity => '습도';
+
+  @override
+  String get sensor_typePressure => '기압';
+
+  @override
+  String get sensor_typeVoltage => '전압';
+
+  @override
+  String get sensor_typeCurrent => '전류';
+
+  @override
+  String get sensor_typeLight => '조도';
+
+  @override
+  String get sensor_typeConcentration => '농도';
+
+  @override
+  String get sensor_typePercentage => '백분율';
+
+  @override
+  String get sensor_typeAnalogInput => '아날로그 입력';
+
+  @override
+  String get sensor_typeAltitude => '고도';
 }

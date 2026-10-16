@@ -2240,16 +2240,15 @@ class BatterySaverCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final settings = context.watch<AppSettingsService>();
     final on = settings.settings.batterySaver;
+    final l10n = context.l10n;
     return MeshCard(
       padding: EdgeInsets.zero,
       child: SwitchListTile(
         key: const ValueKey('battery-saver'),
         secondary: Icon(on ? Icons.battery_saver : Icons.battery_std_outlined),
-        title: const Text('Battery saver'),
+        title: Text(l10n.settings_batterySaver),
         subtitle: Text(
-          on
-              ? 'On: radio battery every 10 min, GPS every 5 min, stats at most once a minute, trip checks every 1–2 min. Messages, alerts and SOS are unchanged.'
-              : 'Check the radio and trip less often to save phone and radio battery. Messages, alerts and SOS are unchanged.',
+          on ? l10n.settings_batterySaverOn : l10n.settings_batterySaverOff,
         ),
         value: on,
         onChanged: settings.setBatterySaver,
@@ -2262,29 +2261,28 @@ class BatterySaverCard extends StatelessWidget {
 class ReadAloudCard extends StatelessWidget {
   const ReadAloudCard({super.key});
 
-  static const _choices = {
-    'off': 'Off',
-    'direct': 'Direct messages',
-    'all': 'Direct and channel messages',
-  };
-
   @override
   Widget build(BuildContext context) {
     final settings = context.watch<AppSettingsService>();
+    final l10n = context.l10n;
+    final choices = {
+      'off': l10n.settings_readAloudOff,
+      'direct': l10n.settings_readAloudDirect,
+      'all': l10n.settings_readAloudAll,
+    };
     return MeshCard(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
       child: DropdownButtonFormField<String>(
         key: const ValueKey('read-aloud'),
         initialValue: settings.settings.readAloudIncoming,
-        decoration: const InputDecoration(
-          labelText: 'Read new messages aloud',
-          helperText:
-              'While Bastion is open. Muted channels stay quiet. Any message can also be read from its menu.',
+        decoration: InputDecoration(
+          labelText: l10n.settings_readAloud,
+          helperText: l10n.settings_readAloudHelper,
           helperMaxLines: 3,
-          icon: Icon(Icons.record_voice_over_outlined),
+          icon: const Icon(Icons.record_voice_over_outlined),
         ),
         items: [
-          for (final e in _choices.entries)
+          for (final e in choices.entries)
             DropdownMenuItem(value: e.key, child: Text(e.value)),
         ],
         onChanged: (v) {

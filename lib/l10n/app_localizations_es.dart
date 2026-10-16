@@ -7139,4 +7139,198 @@ class AppLocalizationsEs extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return 'SOS confirmado por $name';
   }
+
+  @override
+  String get settings_batterySaver => 'Ahorro de batería';
+
+  @override
+  String get settings_batterySaverOn =>
+      'Activado: batería de la radio cada 10 min, GPS cada 5 min, estadísticas como máximo una vez por minuto, comprobaciones de la salida cada 1–2 min. Mensajes, alertas y SOS no cambian.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Comprueba la radio y la salida con menos frecuencia para ahorrar batería del teléfono y de la radio. Mensajes, alertas y SOS no cambian.';
+
+  @override
+  String get settings_readAloud => 'Leer en voz alta los mensajes nuevos';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Mientras Bastion esté abierto. Los canales silenciados no se leen. Cualquier mensaje también puede leerse desde su menú.';
+
+  @override
+  String get settings_readAloudOff => 'Desactivado';
+
+  @override
+  String get settings_readAloudDirect => 'Mensajes directos';
+
+  @override
+  String get settings_readAloudAll => 'Mensajes directos y de canal';
+
+  @override
+  String get chat_readAloud => 'Leer en voz alta';
+
+  @override
+  String get messageSearch_title => 'Buscar mensajes';
+
+  @override
+  String get messageSearch_intro =>
+      'Busca en todos los mensajes directos y de canal guardados en este teléfono.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Ningún mensaje contiene «$query».';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count coincidencias',
+      one: '1 coincidencia',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'Se muestran las $count coincidencias más recientes';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Enviar aviso';
+
+  @override
+  String get shortcuts_trip => 'Salida';
+
+  @override
+  String get shortcuts_chats => 'Chats';
+
+  @override
+  String get shortcuts_map => 'Mapa';
+
+  @override
+  String get sensor_liveUpdates => 'Actualizaciones en vivo';
+
+  @override
+  String get sensor_intro =>
+      'Haz que el sensor envíe las lecturas por sí mismo cuando cambien, en lugar de preguntar cada vez. Requiere iniciar sesión con acceso de lectura.';
+
+  @override
+  String get sensor_watch => 'Vigilar cambios';
+
+  @override
+  String get sensor_loadFirst =>
+      'Carga primero la telemetría para elegir lecturas.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Vigilando $readings hasta las $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Vigilando $readings hasta las $time • región $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Aún no se han notificado cambios.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Última actualización $time • $count recibidas';
+  }
+
+  @override
+  String get sensor_stop => 'Detener actualizaciones en vivo';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Detenido aquí; el sensor no lo confirmó y se detendrá cuando acabe el tiempo. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'El sensor comprueba aproximadamente una vez por minuto y envía una actualización cuando una lectura elegida cambia más que su umbral.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (canal $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (canal $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (canal $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Actualizar con un cambio de $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Cambiar umbral';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'El sensor puede vigilar hasta $max bytes de lecturas ($used usados).';
+  }
+
+  @override
+  String get sensor_for => 'Durante';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count horas',
+      one: '1 hora',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Iniciar';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return 'Umbral de $label';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Temperatura';
+
+  @override
+  String get sensor_typeHumidity => 'Humedad';
+
+  @override
+  String get sensor_typePressure => 'Presión';
+
+  @override
+  String get sensor_typeVoltage => 'Tensión';
+
+  @override
+  String get sensor_typeCurrent => 'Corriente';
+
+  @override
+  String get sensor_typeLight => 'Luz';
+
+  @override
+  String get sensor_typeConcentration => 'Concentración';
+
+  @override
+  String get sensor_typePercentage => 'Porcentaje';
+
+  @override
+  String get sensor_typeAnalogInput => 'Entrada analógica';
+
+  @override
+  String get sensor_typeAltitude => 'Altitud';
 }

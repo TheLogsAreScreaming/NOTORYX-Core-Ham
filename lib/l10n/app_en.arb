@@ -4090,5 +4090,182 @@
         "type": "String"
       }
     }
-  }
+  },
+  "settings_batterySaver": "Battery saver",
+  "settings_batterySaverOn": "On: radio battery every 10 min, GPS every 5 min, stats at most once a minute, trip checks every 1–2 min. Messages, alerts and SOS are unchanged.",
+  "settings_batterySaverOff": "Check the radio and trip less often to save phone and radio battery. Messages, alerts and SOS are unchanged.",
+  "settings_readAloud": "Read new messages aloud",
+  "settings_readAloudHelper": "While Bastion is open. Muted channels stay quiet. Any message can also be read from its menu.",
+  "settings_readAloudOff": "Off",
+  "settings_readAloudDirect": "Direct messages",
+  "settings_readAloudAll": "Direct and channel messages",
+  "chat_readAloud": "Read aloud",
+  "messageSearch_title": "Search messages",
+  "messageSearch_intro": "Search every direct and channel message saved on this phone.",
+  "messageSearch_noResults": "No messages contain \"{query}\".",
+  "@messageSearch_noResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "messageSearch_count": "{count, plural, =1{1 match} other{{count} matches}}",
+  "@messageSearch_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "messageSearch_capped": "Showing the newest {count} matches",
+  "@messageSearch_capped": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shortcuts_checkIn": "Check in",
+  "shortcuts_trip": "Trip",
+  "shortcuts_chats": "Chats",
+  "shortcuts_map": "Map",
+  "sensor_liveUpdates": "Live updates",
+  "sensor_intro": "Have the sensor send readings by itself when they change, instead of asking each time. Needs a login with read access.",
+  "sensor_watch": "Watch for changes",
+  "sensor_loadFirst": "Load telemetry first to choose readings.",
+  "sensor_watching": "Watching {readings} until {time}.",
+  "@sensor_watching": {
+    "placeholders": {
+      "readings": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_watchingRegion": "Watching {readings} until {time} • region {region}.",
+  "@sensor_watchingRegion": {
+    "placeholders": {
+      "readings": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      },
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_noChanges": "No changes reported yet.",
+  "sensor_lastUpdate": "Last update {time} • {count} received",
+  "@sensor_lastUpdate": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sensor_stop": "Stop live updates",
+  "sensor_stopUnconfirmed": "Stopped here; the sensor did not confirm and will stop when the time runs out. {error}",
+  "@sensor_stopUnconfirmed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_dialogBody": "The sensor checks about once a minute and sends an update when a chosen reading changes by more than its threshold.",
+  "sensor_readingTitle": "{label} (ch {channel})",
+  "@sensor_readingTitle": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "channel": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_readingValue": "{label} (ch {channel}): {value}",
+  "@sensor_readingValue": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "channel": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_watchItem": "{label} (ch {channel}) ±{delta}",
+  "@sensor_watchItem": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "channel": {
+        "type": "String"
+      },
+      "delta": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_updateOn": "Update on a change of {delta}",
+  "@sensor_updateOn": {
+    "placeholders": {
+      "delta": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_changeThreshold": "Change threshold",
+  "sensor_capacity": "The sensor can watch up to {max} bytes of readings ({used} used).",
+  "@sensor_capacity": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      },
+      "used": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_for": "For",
+  "sensor_hours": "{count, plural, =1{1 hour} other{{count} hours}}",
+  "@sensor_hours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sensor_start": "Start",
+  "sensor_thresholdTitle": "{label} threshold",
+  "@sensor_thresholdTitle": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "sensor_typeTemperature": "Temperature",
+  "sensor_typeHumidity": "Humidity",
+  "sensor_typePressure": "Pressure",
+  "sensor_typeVoltage": "Voltage",
+  "sensor_typeCurrent": "Current",
+  "sensor_typeLight": "Light",
+  "sensor_typeConcentration": "Concentration",
+  "sensor_typePercentage": "Percentage",
+  "sensor_typeAnalogInput": "Analog input",
+  "sensor_typeAltitude": "Altitude"
 }

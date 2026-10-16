@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
@@ -113,7 +114,11 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider<MeshCoreConnector>.value(
         value: radio,
-        child: const MaterialApp(home: MessageSearchScreen()),
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: MessageSearchScreen(),
+        ),
       ),
     );
     expect(find.textContaining('Search every direct'), findsOneWidget);

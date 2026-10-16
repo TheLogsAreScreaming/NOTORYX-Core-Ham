@@ -7169,4 +7169,202 @@ class AppLocalizationsRu extends AppLocalizations {
   String notification_sosAcknowledged(String name) {
     return 'SOS подтверждён: $name';
   }
+
+  @override
+  String get settings_batterySaver => 'Экономия заряда';
+
+  @override
+  String get settings_batterySaverOn =>
+      'Вкл.: заряд радиостанции каждые 10 мин, GPS каждые 5 мин, статистика не чаще раза в минуту, проверки похода каждые 1–2 мин. Сообщения, оповещения и SOS не меняются.';
+
+  @override
+  String get settings_batterySaverOff =>
+      'Реже проверять радиостанцию и поход, чтобы экономить заряд телефона и радиостанции. Сообщения, оповещения и SOS не меняются.';
+
+  @override
+  String get settings_readAloud => 'Читать новые сообщения вслух';
+
+  @override
+  String get settings_readAloudHelper =>
+      'Пока Bastion открыт. Каналы без звука не озвучиваются. Любое сообщение можно прочитать вслух из его меню.';
+
+  @override
+  String get settings_readAloudOff => 'Выкл.';
+
+  @override
+  String get settings_readAloudDirect => 'Личные сообщения';
+
+  @override
+  String get settings_readAloudAll => 'Личные сообщения и сообщения каналов';
+
+  @override
+  String get chat_readAloud => 'Прочитать вслух';
+
+  @override
+  String get messageSearch_title => 'Поиск сообщений';
+
+  @override
+  String get messageSearch_intro =>
+      'Ищите во всех личных сообщениях и сообщениях каналов, сохранённых на этом телефоне.';
+
+  @override
+  String messageSearch_noResults(String query) {
+    return 'Ни одно сообщение не содержит «$query».';
+  }
+
+  @override
+  String messageSearch_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count совпадения',
+      many: '$count совпадений',
+      few: '$count совпадения',
+      one: '$count совпадение',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String messageSearch_capped(int count) {
+    return 'Показаны последние совпадения ($count)';
+  }
+
+  @override
+  String get shortcuts_checkIn => 'Отметиться';
+
+  @override
+  String get shortcuts_trip => 'Поход';
+
+  @override
+  String get shortcuts_chats => 'Чаты';
+
+  @override
+  String get shortcuts_map => 'Карта';
+
+  @override
+  String get sensor_liveUpdates => 'Обновления в реальном времени';
+
+  @override
+  String get sensor_intro =>
+      'Пусть датчик сам отправляет показания при их изменении, а не по запросу каждый раз. Нужен вход с правом чтения.';
+
+  @override
+  String get sensor_watch => 'Следить за изменениями';
+
+  @override
+  String get sensor_loadFirst =>
+      'Сначала загрузите телеметрию, чтобы выбрать показания.';
+
+  @override
+  String sensor_watching(String readings, String time) {
+    return 'Отслеживается: $readings до $time.';
+  }
+
+  @override
+  String sensor_watchingRegion(String readings, String time, String region) {
+    return 'Отслеживается: $readings до $time • регион $region.';
+  }
+
+  @override
+  String get sensor_noChanges => 'Изменений пока не поступало.';
+
+  @override
+  String sensor_lastUpdate(String time, int count) {
+    return 'Последнее обновление $time • получено: $count';
+  }
+
+  @override
+  String get sensor_stop => 'Остановить обновления';
+
+  @override
+  String sensor_stopUnconfirmed(String error) {
+    return 'Остановлено здесь; датчик не подтвердил и прекратит отправку по истечении времени. $error';
+  }
+
+  @override
+  String get sensor_dialogBody =>
+      'Датчик проверяет показания примерно раз в минуту и отправляет обновление, когда выбранное показание меняется больше порога.';
+
+  @override
+  String sensor_readingTitle(String label, String channel) {
+    return '$label (канал $channel)';
+  }
+
+  @override
+  String sensor_readingValue(String label, String channel, String value) {
+    return '$label (канал $channel): $value';
+  }
+
+  @override
+  String sensor_watchItem(String label, String channel, String delta) {
+    return '$label (канал $channel) ±$delta';
+  }
+
+  @override
+  String sensor_updateOn(String delta) {
+    return 'Обновлять при изменении на $delta';
+  }
+
+  @override
+  String get sensor_changeThreshold => 'Изменить порог';
+
+  @override
+  String sensor_capacity(int max, String used) {
+    return 'Датчик может отслеживать до $max байт показаний (занято: $used).';
+  }
+
+  @override
+  String get sensor_for => 'Длительность';
+
+  @override
+  String sensor_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count часа',
+      many: '$count часов',
+      few: '$count часа',
+      one: '$count час',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sensor_start => 'Начать';
+
+  @override
+  String sensor_thresholdTitle(String label) {
+    return 'Порог: $label';
+  }
+
+  @override
+  String get sensor_typeTemperature => 'Температура';
+
+  @override
+  String get sensor_typeHumidity => 'Влажность';
+
+  @override
+  String get sensor_typePressure => 'Давление';
+
+  @override
+  String get sensor_typeVoltage => 'Напряжение';
+
+  @override
+  String get sensor_typeCurrent => 'Ток';
+
+  @override
+  String get sensor_typeLight => 'Освещённость';
+
+  @override
+  String get sensor_typeConcentration => 'Концентрация';
+
+  @override
+  String get sensor_typePercentage => 'Процент';
+
+  @override
+  String get sensor_typeAnalogInput => 'Аналоговый вход';
+
+  @override
+  String get sensor_typeAltitude => 'Высота';
 }
