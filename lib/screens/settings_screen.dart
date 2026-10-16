@@ -10,6 +10,7 @@ import '../storage/region_store.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/radio_settings.dart';
+import '../widgets/regional_preset_banner.dart';
 import '../widgets/us_bandwidth_notice.dart';
 import '../services/app_settings_service.dart';
 import '../services/app_debug_log_service.dart';
@@ -90,6 +91,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
               children: [
                 RadioOverviewCard(connector: connector),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  child: RegionalPresetBanner(),
+                ),
+                const MeshCard(
+                  padding: EdgeInsets.zero,
+                  child: RegionalPresetTile(),
+                ),
                 const BatterySaverCard(),
                 const ChannelRetentionCard(),
 

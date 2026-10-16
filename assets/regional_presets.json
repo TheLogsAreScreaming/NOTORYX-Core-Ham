@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "about": "Radio settings agreed by local MeshCore meshes. Bastion checks this file (from the dev branch on GitHub) and offers to apply an area's settings. To add or change an area, open a pull request; give a source in the notes.",
+  "regions": [
+    {
+      "id": "us-philadelphia",
+      "name": "Philadelphia",
+      "center": [39.9526, -75.1652],
+      "radiusKm": 100,
+      "frequencyMHz": 919.5,
+      "bandwidthKHz": 500,
+      "spreadingFactor": 10,
+      "codingRate": 5,
+      "pathHashBytes": 2,
+      "updated": "2026-10-17",
+      "notes": "The Philadelphia-area mesh is moving to these settings. Check with your local group before switching."
+    }
+  ]
+}
