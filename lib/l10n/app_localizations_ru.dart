@@ -4778,11 +4778,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Данные карты экспортированы из meshcore-open';
+      'Данные карты экспортированы из Bastion';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'meshcore-open экспорт данных карты GPX';
+      'Bastion экспорт данных карты GPX';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Ближайшие ретрансляторы';

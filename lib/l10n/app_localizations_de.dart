@@ -4768,11 +4768,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'GPX-Kartendaten aus meshcore-open exportiert';
+      'GPX-Kartendaten aus Bastion exportiert';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'GPX-Kartendaten aus meshcore-open exportieren';
+      'GPX-Kartendaten aus Bastion exportieren';
 
   @override
   String get snrIndicator_nearByRepeaters => 'In der Nähe befindliche Repeater';

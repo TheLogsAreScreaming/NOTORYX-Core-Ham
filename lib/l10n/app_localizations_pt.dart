@@ -4760,11 +4760,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Dados do mapa exportados do meshcore-open';
+      'Dados do mapa exportados do Bastion';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'meshcore-open exportação de dados de mapa GPX';
+      'Bastion exportação de dados de mapa GPX';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Repetidores Próximos';

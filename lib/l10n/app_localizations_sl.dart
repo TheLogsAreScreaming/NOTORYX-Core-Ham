@@ -4742,12 +4742,11 @@ class AppLocalizationsSl extends AppLocalizations {
   String get settings_gpxExportAllContacts => 'Lokacije vseh stikov';
 
   @override
-  String get settings_gpxExportShareText =>
-      'Podatki kart izvoženi iz meshcore-open';
+  String get settings_gpxExportShareText => 'Podatki kart izvoženi iz Bastion';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'meshcore-open izvoz podatkov GPX karte';
+      'Bastion izvoz podatkov GPX karte';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Bližnji ponovitelji';

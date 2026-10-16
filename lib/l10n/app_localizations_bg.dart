@@ -4760,11 +4760,11 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Картинни данни изнесени от meshcore-open';
+      'Картинни данни изнесени от Bastion';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'meshcore-open износ на данни за карта в формат GPX';
+      'Bastion износ на данни за карта в формат GPX';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Близки повторители';

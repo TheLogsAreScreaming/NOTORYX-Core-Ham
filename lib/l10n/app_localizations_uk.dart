@@ -4770,12 +4770,11 @@ class AppLocalizationsUk extends AppLocalizations {
   String get settings_gpxExportAllContacts => 'Усі місця контактів';
 
   @override
-  String get settings_gpxExportShareText =>
-      'Дані карти експортовані з meshcore-open';
+  String get settings_gpxExportShareText => 'Дані карти експортовані з Bastion';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'експорт даних карти meshcore-open у форматі GPX';
+      'експорт даних карти Bastion у форматі GPX';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Найближчі ретранслятори';

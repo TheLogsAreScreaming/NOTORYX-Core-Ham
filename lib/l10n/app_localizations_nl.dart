@@ -4745,11 +4745,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Kaartgegevens geëxporteerd uit meshcore-open';
+      'Kaartgegevens geëxporteerd uit Bastion';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'meshcore-open GPX kaartgegevens exporteren';
+      'Bastion GPX kaartgegevens exporteren';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Nabije herhalingseenheden';

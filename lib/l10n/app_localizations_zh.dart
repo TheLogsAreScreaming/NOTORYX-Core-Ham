@@ -4444,10 +4444,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_gpxExportAllContacts => '所有联系人位置';
 
   @override
-  String get settings_gpxExportShareText => '来自 MeshCore Open 的地图数据导出';
+  String get settings_gpxExportShareText => '来自 Bastion 的地图数据导出';
 
   @override
-  String get settings_gpxExportShareSubject => 'MeshCore Open GPX 地图数据导出';
+  String get settings_gpxExportShareSubject => 'Bastion GPX 地图数据导出';
 
   @override
   String get snrIndicator_nearByRepeaters => '附近的重复器';

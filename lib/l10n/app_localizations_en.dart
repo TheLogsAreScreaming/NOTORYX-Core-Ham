@@ -4691,12 +4691,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_gpxExportAllContacts => 'All contacts locations';
 
   @override
-  String get settings_gpxExportShareText =>
-      'Map data exported from meshcore-open';
+  String get settings_gpxExportShareText => 'Map data exported from Bastion';
 
   @override
-  String get settings_gpxExportShareSubject =>
-      'meshcore-open GPX map data export';
+  String get settings_gpxExportShareSubject => 'Bastion GPX map data export';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Nearby Repeaters';

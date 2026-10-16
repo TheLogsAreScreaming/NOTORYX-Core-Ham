@@ -4756,11 +4756,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'A térképadatok a meshcore-openből exportálva';
+      'A térképadatok a Bastionből exportálva';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'meshcore-open GPX térképadatok exportálása';
+      'Bastion GPX térképadatok exportálása';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Közeli átjátszók';
