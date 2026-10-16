@@ -90,11 +90,12 @@ void main() {
       expect(ops.entries.first.status, 'pending');
       expect(radio.sent.single.text, isNot(contains('Radio advert')));
       radio.sent[0] = radio.sent[0].copyWith(status: MessageStatus.delivered);
+      FieldEntry sentEntry() =>
+          ops.entries.firstWhere((e) => e.messageId != null);
       // Connector notifications are intentionally debounced by 50 ms.
       final acknowledged = Completer<void>();
       void observe() {
-        if (ops.entries.first.status == 'delivered' &&
-            !acknowledged.isCompleted) {
+        if (sentEntry().status == 'delivered' && !acknowledged.isCompleted) {
           acknowledged.complete();
         }
       }
@@ -103,7 +104,8 @@ void main() {
       radio.changed();
       try {
         await acknowledged.future.timeout(const Duration(seconds: 2));
-        expect(ops.entries.first.status, 'delivered');
+        expect(sentEntry().status, 'delivered');
+        expect(ops.entries.first.text, 'Delivered to Trail partner.');
       } finally {
         ops.removeListener(observe);
       }

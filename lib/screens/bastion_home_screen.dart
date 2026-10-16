@@ -159,7 +159,9 @@ class BastionHomeScreen extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               checkInReason ??
-                  'Review contacts and message before sending. Track acknowledgements in Field Log.',
+                  (ops.latestDelivery == null
+                      ? 'Review contacts and message before sending. Track acknowledgements in Field Log.'
+                      : 'Last check-in: ${ops.latestDelivery!.headline}'),
               style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
             ),
             const SizedBox(height: 12),

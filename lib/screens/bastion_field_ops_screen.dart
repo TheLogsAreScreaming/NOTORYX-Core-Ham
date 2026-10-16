@@ -257,6 +257,10 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
         ],
       ),
       if (ops.busy) const LinearProgressIndicator(),
+      if (ops.latestDelivery case final delivery?) ...[
+        const SizedBox(height: 12),
+        _deliveryView(ops, delivery),
+      ],
     ]),
     _card('Trip roster', [
       if (ops.trip.members.isEmpty)
@@ -286,6 +290,50 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
       ),
     ]),
   ]);
+
+  Widget _deliveryView(FieldOpsService ops, CheckInDelivery delivery) {
+    final failed = delivery.failedKeys.length;
+    return Column(
+      key: const ValueKey('check-in-delivery'),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Last check-in, ${TimeOfDay.fromDateTime(delivery.at).format(context)}',
+          style: const TextStyle(fontWeight: FontWeight.w700),
+        ),
+        Text(delivery.headline),
+        const SizedBox(height: 6),
+        Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          children: [
+            for (final MapEntry(:key, :value) in delivery.statuses.entries)
+              Chip(
+                avatar: Icon(switch (value) {
+                  'delivered' => Icons.done_all,
+                  'failed' => Icons.error_outline,
+                  _ => Icons.schedule,
+                }, size: 18),
+                label: Text('${delivery.names[key] ?? 'Contact'}: $value'),
+              ),
+          ],
+        ),
+        if (failed > 0)
+          TextButton.icon(
+            onPressed:
+                _checkInReason(ops, context.read<MeshCoreConnector>()) == null
+                ? () => _perform(ops.resendCheckIn)
+                : null,
+            icon: const Icon(Icons.replay),
+            label: Text(
+              failed == 1
+                  ? 'Resend to 1 not delivered'
+                  : 'Resend to $failed not delivered',
+            ),
+          ),
+      ],
+    );
+  }
 
   String? _checkInReason(FieldOpsService ops, MeshCoreConnector radio) =>
       checkInUnavailableReason(

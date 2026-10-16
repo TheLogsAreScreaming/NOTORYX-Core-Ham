@@ -383,6 +383,7 @@ class FieldOpsService extends ChangeNotifier {
     String? status,
     double? latitude,
     double? longitude,
+    String? batch,
   }) async {
     if (!ready || _disposed || error != null) return;
     final now = DateTime.now();
@@ -399,6 +400,7 @@ class FieldOpsService extends ChangeNotifier {
         tripName: trip.name,
         latitude: latitude,
         longitude: longitude,
+        batch: batch,
       ),
     );
     if (_entries.length > 1000) _entries.removeRange(1000, _entries.length);
@@ -428,7 +430,28 @@ class FieldOpsService extends ChangeNotifier {
     battery: trip.shareBattery ? connector.batteryPercent : null,
   );
 
-  Future<void> sendCheckIn(String text, {bool automatic = false}) async {
+  /// Where the newest check-in stands with each trip contact.
+  CheckInDelivery? get latestDelivery => CheckInDelivery.latest(_entries);
+  String? _announcedBatch;
+
+  /// Sends the newest check-in again, unchanged, to the contacts it did not
+  /// reach. The results join that check-in's delivery.
+  Future<void> resendCheckIn() async {
+    final delivery = latestDelivery;
+    if (delivery == null || delivery.failedKeys.isEmpty) return;
+    await sendCheckIn(
+      delivery.text,
+      only: delivery.failedKeys,
+      batch: delivery.batch,
+    );
+  }
+
+  Future<void> sendCheckIn(
+    String text, {
+    bool automatic = false,
+    List<String>? only,
+    String? batch,
+  }) async {
     if (!ready ||
         error != null ||
         busy ||
@@ -443,13 +466,21 @@ class FieldOpsService extends ChangeNotifier {
         !text.startsWith('[Bastion Check-in] ')) {
       throw ArgumentError('Invalid field check-in.');
     }
-    final targets = members.where((c) => c.type == advTypeChat).toList();
-    if (targets.isEmpty || targets.length != trip.members.length) {
+    final targets = members
+        .where(
+          (c) =>
+              c.type == advTypeChat &&
+              (only == null || only.contains(c.publicKeyHex)),
+        )
+        .toList();
+    if (targets.isEmpty ||
+        targets.length != (only?.length ?? trip.members.length)) {
       throw StateError(
         'Some selected contacts are unavailable. Review the trip roster.',
       );
     }
     final now = DateTime.now();
+    final batchId = batch ?? '${now.microsecondsSinceEpoch}';
     if (automatic &&
         _lastAutoSend != null &&
         now.difference(_lastAutoSend!) < const Duration(minutes: 10)) {
@@ -502,6 +533,7 @@ class FieldOpsService extends ChangeNotifier {
               '${contact.name}: no queued message was recorded.',
               contactKey: contact.publicKeyHex,
               status: 'failed',
+              batch: batchId,
             );
             continue;
           }
@@ -513,6 +545,7 @@ class FieldOpsService extends ChangeNotifier {
             contactKey: contact.publicKeyHex,
             messageId: message.messageId,
             status: message.status.name,
+            batch: batchId,
           );
         } catch (e) {
           await record(
@@ -520,6 +553,7 @@ class FieldOpsService extends ChangeNotifier {
             '${contact.name}: send could not be confirmed: $e',
             contactKey: contact.publicKeyHex,
             status: 'failed',
+            batch: batchId,
           );
         }
       }
@@ -631,6 +665,7 @@ class FieldOpsService extends ChangeNotifier {
       }
     }
     var changed = false;
+    final failedTo = <String>[];
     for (var i = 0; i < _entries.length; i++) {
       final entry = _entries[i];
       if (entry.messageId == null || entry.contactKey == null) continue;
@@ -644,12 +679,37 @@ class FieldOpsService extends ChangeNotifier {
           if (message.status.name != entry.status) {
             _entries[i] = entry.withStatus(message.status.name);
             changed = true;
+            if (entry.kind == 'check-in' &&
+                entry.batch != null &&
+                message.status == MessageStatus.failed) {
+              failedTo.add(contact.name);
+            }
           }
         }
       }
     }
-    if (changed) unawaited(_save());
+    if (changed) {
+      unawaited(_save());
+      _deliveryChanged(failedTo);
+    }
     _notify();
+  }
+
+  void _deliveryChanged(List<String> failedTo) {
+    for (final name in failedTo) {
+      final text =
+          'Check-in not delivered to $name. You can resend it from Trip.';
+      unawaited(record('check-in', text));
+      unawaited(NotificationService().showFieldAlert(text));
+    }
+    final delivery = latestDelivery;
+    if (delivery != null &&
+        delivery.total > 0 &&
+        delivery.delivered == delivery.total &&
+        _announcedBatch != delivery.batch) {
+      _announcedBatch = delivery.batch;
+      unawaited(record('check-in', '${delivery.headline}.'));
+    }
   }
 
   Future<void> configureRule(FieldRule value) async {
