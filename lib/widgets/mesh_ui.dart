@@ -353,7 +353,15 @@ class RouteChip extends StatelessWidget {
   final bool isDirect;
   final int? hops;
 
-  const RouteChip({super.key, required this.isDirect, this.hops});
+  /// Bytes per hop in the path (1–3 on MeshCore v1.11+), shown as "2B".
+  final int? hashBytes;
+
+  const RouteChip({
+    super.key,
+    required this.isDirect,
+    this.hops,
+    this.hashBytes,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -363,6 +371,9 @@ class RouteChip extends StatelessWidget {
               ? 'DIRECT'
               : '$hops HOP${hops == 1 ? '' : 'S'}')
         : 'FLOOD';
+    final size = hashBytes != null && hops != null && hops! > 0
+        ? ' · ${hashBytes}B'
+        : '';
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
@@ -380,7 +391,7 @@ class RouteChip extends StatelessWidget {
           ),
           const SizedBox(width: 3),
           Text(
-            label,
+            '$label$size',
             style: MeshTheme.accentLabel(
               color: scheme.onSurfaceVariant,
               fontSize: 8.5,
