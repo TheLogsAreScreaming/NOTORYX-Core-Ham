@@ -1,0 +1,6 @@
+• Hold-to-send SOS that repeats until a trip contact replies
+• Check-in reminders and alerts when a contact goes quiet
+• See who each check-in reached, and resend to the rest
+• Live sensor updates, message search, read aloud, battery saver
+• App icon shortcuts: Check in, Trip, Chats, Map
+• Allow trusted contacts to use your radio's command line

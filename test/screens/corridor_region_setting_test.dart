@@ -77,6 +77,8 @@ void main() {
     await _settle(tester);
 
     expect(find.text('#corridor (default)'), findsOneWidget);
+    await tester.ensureVisible(find.text('Corridor region'));
+    await tester.pump();
     await tester.tap(find.text('Corridor region'));
     await _settle(tester);
 
@@ -86,6 +88,8 @@ void main() {
     expect(connector.sentRegions, ['bc-south']);
     expect(find.text('#bc-south'), findsOneWidget);
 
+    await tester.ensureVisible(find.text('Corridor region'));
+    await tester.pump();
     await tester.tap(find.text('Corridor region'));
     await _settle(tester);
     await tester.tap(find.text('Use default'));

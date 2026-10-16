@@ -1,7 +1,7 @@
 name: meshcore_open
 description: "Bastion"
 publish_to: 'none'
-version: 10.0.0-rc.5+56
+version: 10.0.0-rc.6+57
 
 environment:
   sdk: ^3.9.2
@@ -55,6 +55,7 @@ dependencies:
   convert: ^3.1.2
   flutter_onnxruntime: ^1.8.3
   flutter_tts: ^4.2.5
+  quick_actions: ^1.1.1
 
 hooks:
   user_defines:
@@ -97,6 +98,9 @@ flutter_launcher_icons:
   remove_alpha_ios: true
   adaptive_icon_background: "#182126"
   adaptive_icon_foreground: "branding/bastion-icon.png"
+  macos:
+    generate: true
+    image_path: "branding/bastion-icon.png"
 
 build_pipe:
   workflows:

@@ -30,6 +30,7 @@ import '../helpers/snack_bar_builder.dart';
 import '../utils/main_tab_navigation.dart';
 import '../widgets/quick_switch_bar.dart';
 import 'channel_chat_screen.dart';
+import 'message_search_screen.dart';
 import 'community_qr_scanner_screen.dart';
 import 'settings_screen.dart';
 
@@ -117,6 +118,17 @@ class _ChannelsScreenState extends State<ChannelsScreen>
           automaticallyImplyLeading: !isTab,
           bottom: const SyncProgressAppBarBottom(),
           actions: [
+            IconButton(
+              key: const ValueKey('open-message-search'),
+              tooltip: 'Search messages',
+              icon: const Icon(Icons.manage_search),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (_) => const MessageSearchScreen(),
+                ),
+              ),
+            ),
             PopupMenuButton(
               // onTap handlers run after the menu route pops, so they must
               // capture the screen's context — not the itemBuilder's menu
