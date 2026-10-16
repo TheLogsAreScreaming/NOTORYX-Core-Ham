@@ -13,6 +13,7 @@ import 'repeater_status_screen.dart';
 import 'repeater_cli_screen.dart';
 import 'repeater_settings_screen.dart';
 import 'telemetry_screen.dart';
+import 'access_control_screen.dart';
 import 'neighbors_screen.dart';
 
 class RepeaterHubScreen extends StatelessWidget {
@@ -271,6 +272,22 @@ class RepeaterHubScreen extends StatelessWidget {
                         repeater: repeater,
                         password: password,
                       ),
+                    ),
+                  );
+                },
+              ),
+              _HubActionTile(
+                index: 5,
+                icon: Icons.admin_panel_settings_outlined,
+                title: l10n.accessControl_title,
+                subtitle: l10n.accessControl_hubSubtitle,
+                accentColor: MeshPalette.accent,
+                onTap: () {
+                  HapticFeedback.selectionClick();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AccessControlScreen(node: repeater),
                     ),
                   );
                 },

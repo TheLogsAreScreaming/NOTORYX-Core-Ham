@@ -1,0 +1,63 @@
+# mcsim topology for access_control_sim_test.dart: one app-driven companion
+# that hears a repeater and a room server directly.
+#
+#   ./target/release/mcsim run <path>/access_control_topology.yaml
+#
+# Companion (tcp 9310) <-> ACL-Repeater, ACL-Room (mcsim sets admin password "admin")
+
+defaults:
+  node:
+    radio:
+      frequency_hz: 910525000
+      bandwidth_hz: 62500
+      spreading_factor: 7
+      coding_rate: 5
+      tx_power_dbm: 20
+
+nodes:
+  - name: "Companion"
+    location:
+      lat: 49.2500
+      lon: -123.1000
+    firmware:
+      type: Companion
+      uart_port: 9310
+    agent:
+      direct:
+        enabled: false
+      channel:
+        enabled: false
+
+  - name: "ACL-Repeater"
+    location:
+      lat: 49.2510
+      lon: -123.1010
+    firmware:
+      type: Repeater
+
+  - name: "ACL-Room"
+    location:
+      lat: 49.2490
+      lon: -123.0990
+    firmware:
+      type: RoomServer
+
+edges:
+  - from: "Companion"
+    to: "ACL-Repeater"
+    mean_snr_db_at20dbm: 18.0
+  - from: "ACL-Repeater"
+    to: "Companion"
+    mean_snr_db_at20dbm: 18.0
+  - from: "Companion"
+    to: "ACL-Room"
+    mean_snr_db_at20dbm: 18.0
+  - from: "ACL-Room"
+    to: "Companion"
+    mean_snr_db_at20dbm: 18.0
+  - from: "ACL-Repeater"
+    to: "ACL-Room"
+    mean_snr_db_at20dbm: 18.0
+  - from: "ACL-Room"
+    to: "ACL-Repeater"
+    mean_snr_db_at20dbm: 18.0

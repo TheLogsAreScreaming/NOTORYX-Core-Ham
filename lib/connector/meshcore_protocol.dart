@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/widgets.dart';
 
+import '../models/access_control.dart';
 import '../models/flood_corridor.dart';
 
 // Buffer Reader - sequential binary data reader with pointer tracking
@@ -905,6 +906,88 @@ Uint8List buildSendBinaryReq(Uint8List repeaterPubKey, {Uint8List? payload}) {
   }
   return writer.toBytes();
 }
+
+/// Most access-list entries that reach the app in one reply. The companion
+/// forwards the reply padded to the 16-byte cipher block in a frame of at
+/// most 176 bytes, so tag plus data must fit 160 bytes: 22 entries of 7.
+/// v1.18 repeaters send up to 25, so a list of 23 or more never arrives on
+/// stock firmware. A reply with 22 entries may mean the list continues.
+const int maxAccessListEntriesPerReply = 22;
+
+/// GET_ACCESS_LIST query flag for a paged reply (newer firmware only).
+const int accessListPaged = 0x01;
+
+/// Payload for REQ_TYPE_GET_ACCESS_LIST (admin only); [nonce] keeps repeated
+/// requests from being deduplicated. Without [start] this is the plain v1.18
+/// request (bytes 1-2 zero). With [start] it asks for a paged reply from that
+/// entry, which firmware without paging ignores (no reply).
+Uint8List buildGetAccessListPayload(Uint8List nonce, {int? start}) {
+  return Uint8List.fromList([
+    reqTypeGetAccessList,
+    start == null ? 0x00 : accessListPaged,
+    start ?? 0x00,
+    0x00,
+    ...nonce,
+  ]);
+}
+
+/// One page of a paged access-list reply.
+class AccessListPage {
+  /// Index of the first entry in this page.
+  final int start;
+
+  /// Number of entries the node lists in total.
+  final int total;
+  final List<AclEntry> entries;
+
+  const AccessListPage({
+    required this.start,
+    required this.total,
+    required this.entries,
+  });
+}
+
+/// Parses a paged access-list reply: start index, total count, then entries.
+AccessListPage parsePagedAccessListResponse(Uint8List data) {
+  if (data.length < 2) {
+    return const AccessListPage(start: 0, total: 0, entries: []);
+  }
+  return AccessListPage(
+    start: data[0],
+    total: data[1],
+    entries: parseAccessListResponse(Uint8List.sublistView(data, 2)),
+  );
+}
+
+/// Parses an access-list reply (the data after the response tag): 6-byte
+/// key prefix plus one permission byte per entry. Trailing padding and a
+/// partial entry are ignored.
+List<AclEntry> parseAccessListResponse(Uint8List data) {
+  const entrySize = AclEntry.keyPrefixLength + 1;
+  final entries = <AclEntry>[];
+  for (var ofs = 0; ofs + entrySize <= data.length; ofs += entrySize) {
+    // Nodes never list an entry without permissions, so a zero permission
+    // byte is the cipher padding the companion forwards after the entries.
+    if (data[ofs + AclEntry.keyPrefixLength] == 0) continue;
+    entries.add(
+      AclEntry(
+        keyPrefix: Uint8List.fromList(
+          data.sublist(ofs, ofs + AclEntry.keyPrefixLength),
+        ),
+        permissions: data[ofs + AclEntry.keyPrefixLength],
+      ),
+    );
+  }
+  return entries;
+}
+
+/// CLI command that gives [publicKey] the [role] on a repeater or room
+/// server. [AclRole.guest] removes the entry, which also works with a key
+/// prefix. Any other role needs the full 32-byte key on v1.18 firmware;
+/// newer firmware also accepts a prefix of at least 6 bytes for an existing
+/// entry.
+String buildSetPermCommand(Uint8List publicKey, AclRole role) =>
+    'setperm ${pubKeyToHex(publicKey)} ${role.value}';
 
 /// Firmware version code from which the companion has a text CLI
 /// ([cmdRunCliCommand]).

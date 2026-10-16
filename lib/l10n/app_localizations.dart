@@ -340,6 +340,162 @@ abstract class AppLocalizations {
   /// **'Radio stats'**
   String get radioOverview_stats;
 
+  /// No description provided for @accessControl_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Access control'**
+  String get accessControl_title;
+
+  /// No description provided for @accessControl_hubSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who can log in without the password'**
+  String get accessControl_hubSubtitle;
+
+  /// No description provided for @accessControl_explainRepeater.
+  ///
+  /// In en, this message translates to:
+  /// **'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.'**
+  String get accessControl_explainRepeater;
+
+  /// No description provided for @accessControl_explainRoom.
+  ///
+  /// In en, this message translates to:
+  /// **'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.'**
+  String get accessControl_explainRoom;
+
+  /// No description provided for @accessControl_roleReadOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Read only'**
+  String get accessControl_roleReadOnly;
+
+  /// No description provided for @accessControl_roleReadWrite.
+  ///
+  /// In en, this message translates to:
+  /// **'Read & write'**
+  String get accessControl_roleReadWrite;
+
+  /// No description provided for @accessControl_roleAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin'**
+  String get accessControl_roleAdmin;
+
+  /// No description provided for @accessControl_you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get accessControl_you;
+
+  /// No description provided for @accessControl_unknownNode.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown node'**
+  String get accessControl_unknownNode;
+
+  /// No description provided for @accessControl_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get accessControl_add;
+
+  /// No description provided for @accessControl_addTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to access list'**
+  String get accessControl_addTitle;
+
+  /// No description provided for @accessControl_pickContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a contact'**
+  String get accessControl_pickContact;
+
+  /// No description provided for @accessControl_noContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'No contacts to add. Nodes appear here once you have heard their advert.'**
+  String get accessControl_noContacts;
+
+  /// No description provided for @accessControl_changeRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Change role'**
+  String get accessControl_changeRole;
+
+  /// No description provided for @accessControl_remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove access'**
+  String get accessControl_remove;
+
+  /// No description provided for @accessControl_removeConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name} from the access list? They will need the password to log in.'**
+  String accessControl_removeConfirm(String name);
+
+  /// No description provided for @accessControl_removeSelfWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This is you. If you remove yourself you will need the admin password to manage this node again.'**
+  String get accessControl_removeSelfWarning;
+
+  /// No description provided for @accessControl_unknownKeyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Not in your contacts. Changing its role needs newer node firmware; removing it always works.'**
+  String get accessControl_unknownKeyNote;
+
+  /// No description provided for @accessControl_prefixUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.'**
+  String get accessControl_prefixUnsupported;
+
+  /// No description provided for @accessControl_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nobody is on the access list'**
+  String get accessControl_empty;
+
+  /// No description provided for @accessControl_emptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add people so they can log in without the password.'**
+  String get accessControl_emptyHint;
+
+  /// No description provided for @accessControl_loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Asking the node for its access list…'**
+  String get accessControl_loading;
+
+  /// No description provided for @accessControl_timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The node didn\'t answer. Check the path and try again.'**
+  String get accessControl_timeout;
+
+  /// No description provided for @accessControl_maybeIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'This node sent one full page and its firmware can\'t send more, so some entries may be missing.'**
+  String get accessControl_maybeIncomplete;
+
+  /// No description provided for @accessControl_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Access list updated'**
+  String get accessControl_saved;
+
+  /// No description provided for @accessControl_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'The node refused the change: {reply}'**
+  String accessControl_failed(String reply);
+
   /// No description provided for @companionCli_title.
   ///
   /// In en, this message translates to:
@@ -501,6 +657,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The radio didn\'t accept the change: {reply}'**
   String wifi_saveFailed(String reply);
+
+  /// No description provided for @accessControl_refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get accessControl_refresh;
 
   /// No description provided for @common_cancel.
   ///
