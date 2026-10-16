@@ -1,0 +1,4 @@
+• Path graph: see how messages reach you, with the busiest repeaters
+• Better identification of repeaters on short (1-byte) paths
+• Hop chips show the path size, e.g. "8 HOPS · 3B"
+• Mac: fixes scrambled text on some Intel Macs

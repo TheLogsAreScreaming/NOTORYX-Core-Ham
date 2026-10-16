@@ -30,6 +30,10 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<!-- Impeller scrambles text on some Intel Macs (UHD 630 + Radeon Pro
+	     5300M); the Skia renderer draws it correctly. -->
+	<key>FLTEnableImpeller</key>
+	<false/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Bastion uses Bluetooth to talk to your MeshCore LoRa radio.</string>
 	<key>NSCameraUsageDescription</key>
