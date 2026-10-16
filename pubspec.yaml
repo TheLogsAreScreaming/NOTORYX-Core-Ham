@@ -97,6 +97,9 @@ flutter_launcher_icons:
   remove_alpha_ios: true
   adaptive_icon_background: "#182126"
   adaptive_icon_foreground: "branding/bastion-icon.png"
+  macos:
+    generate: true
+    image_path: "branding/bastion-icon.png"
 
 build_pipe:
   workflows:
