@@ -7,6 +7,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../storage/draft_store.dart';
 import '../utils/app_logger.dart';
 import '../utils/platform_info.dart';
 
@@ -25,6 +26,7 @@ import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
 import '../models/message.dart';
 import '../models/translation_support.dart';
+import '../services/read_aloud_service.dart';
 import '../services/app_settings_service.dart';
 import '../services/chat_text_scale_service.dart';
 import '../services/path_history_service.dart';
@@ -83,9 +85,18 @@ class _ChatScreenState extends State<ChatScreen> {
   String? _unreadDividerMessageId;
   DateTime? _lastTextSendAt;
 
+  late final DraftKeeper _draft = DraftKeeper(
+    _textController,
+    DraftStore.contactKey(
+      context.read<MeshCoreConnector>().selfPublicKeyHex,
+      widget.contact.publicKeyHex,
+    ),
+  );
+
   @override
   void initState() {
     super.initState();
+    _draft.attach();
     _textFieldFocusNode.addListener(_onTextFieldFocusChange);
     _scrollController.onScrollNearTop = _loadOlderMessages;
     _scrollController.showJumpToBottom.addListener(_clearDividerAtBottom);
@@ -178,6 +189,7 @@ class _ChatScreenState extends State<ChatScreen> {
     _scrollController.showJumpToBottom.removeListener(_clearDividerAtBottom);
     _textFieldFocusNode.removeListener(_onTextFieldFocusChange);
     _textFieldFocusNode.dispose();
+    _draft.dispose();
     _textController.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -1249,6 +1261,19 @@ class _ChatScreenState extends State<ChatScreen> {
               onTap: () {
                 Navigator.pop(sheetContext);
                 _copyMessageText(message.text);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.volume_up_outlined),
+              title: const Text('Read aloud'),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                unawaited(
+                  context.read<ReadAloudService>().read(
+                    message.isOutgoing ? 'You' : contact.name,
+                    message.text,
+                  ),
+                );
               },
             ),
             if (canTranslateMessage)

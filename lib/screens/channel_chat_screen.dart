@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart' hide TextDirection;
 import 'package:provider/provider.dart';
 
+import '../storage/draft_store.dart';
 import '../connector/meshcore_connector.dart';
 import '../models/community.dart';
 import '../storage/community_store.dart';
@@ -28,6 +29,7 @@ import '../models/channel_message.dart';
 import '../models/flood_corridor.dart';
 import '../models/image_codec_support.dart' show aeicRatePointForUi;
 import '../models/translation_support.dart';
+import '../services/read_aloud_service.dart';
 import '../services/app_settings_service.dart';
 import '../services/chat_text_scale_service.dart';
 import '../services/image_chunk_transport.dart';
@@ -106,9 +108,18 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   late DateFormat _hmFormat;
   late DateFormat _mdFormat;
 
+  late final DraftKeeper _draft = DraftKeeper(
+    _textController,
+    DraftStore.channelKey(
+      context.read<MeshCoreConnector>().selfPublicKeyHex,
+      widget.channel.index,
+    ),
+  );
+
   @override
   void initState() {
     super.initState();
+    _draft.attach();
     _textFieldFocusNode.addListener(_onTextFieldFocusChange);
     _scrollController.onScrollNearTop = _loadOlderMessages;
     _scrollController.showJumpToBottom.addListener(_clearDividerAtBottom);
@@ -206,6 +217,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     _scrollController.showJumpToBottom.removeListener(_clearDividerAtBottom);
     _textFieldFocusNode.removeListener(_onTextFieldFocusChange);
     _textFieldFocusNode.dispose();
+    _draft.dispose();
     _textController.dispose();
     _scrollController.dispose();
     super.dispose();
@@ -2297,6 +2309,19 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               onTap: () {
                 Navigator.pop(sheetContext);
                 _copyMessageText(message.text);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.volume_up_outlined),
+              title: const Text('Read aloud'),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                unawaited(
+                  context.read<ReadAloudService>().read(
+                    message.isOutgoing ? 'You' : message.senderName,
+                    message.text,
+                  ),
+                );
               },
             ),
             if (canTranslateMessage)
