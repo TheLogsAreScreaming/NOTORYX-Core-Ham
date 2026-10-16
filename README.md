@@ -1,89 +1,95 @@
-# BCS Connect MeshCore
+# Bastion
 
-Open-source Flutter client for MeshCore LoRa mesh networking, maintained by **BackCountrySignal**.
+Open-source Flutter client for [MeshCore](https://github.com/meshcore-dev/MeshCore) LoRa mesh networking.
 
 ## Overview
 
-**BCS Connect MeshCore** is a cross-platform MeshCore client focused on reliable off-grid communication, field usability, emergency communications, and a clean user experience. It communicates with compatible MeshCore LoRa devices through Bluetooth Low Energy (BLE), USB, or TCP and supports peer-to-peer messaging, public channels, maps, node management, and repeater tools.
+**Bastion** is a cross-platform MeshCore client built for reliable off-grid communication. It connects to MeshCore companion radios over Bluetooth Low Energy (BLE), USB, or TCP and supports direct messages, channels, maps, node management, and repeater and room server administration.
 
-**Website:** [backcountrysignal.org](https://backcountrysignal.org/)  
-**Repository:** [backcountrysignal/BCS-Connect-MeshCore](https://github.com/backcountrysignal/BCS-Connect-MeshCore)
+**Repository:** [BastionMeshApp/Bastion-Meshcore-BCS](https://github.com/BastionMeshApp/Bastion-Meshcore-BCS)
 
 ### Project Direction
 
-BCS Connect is being developed with an emphasis on:
+Bastion is being developed with an emphasis on:
 
-- Reliable field and backcountry operation
-- Simple, low-distraction controls
+- Reliable off-grid field operation
+- Simple, low-distraction controls that work outdoors
 - Offline-friendly tools and mapping
 - Mesh diagnostics and network visibility
 - Emergency and community communications
-- Automation, including optional bot / auto-responder capabilities
 - Privacy and open-source development
 
-> **Upstream credit:** BCS Connect MeshCore is derived from the open-source [MeshCore Open](https://github.com/zjs81/meshcore-open) project. We appreciate the work of its developers and the broader MeshCore community. BCS Connect maintains its own branding, enhancements, and development direction while retaining applicable upstream licensing and attribution.
+> **Upstream credit:** Bastion is derived from the open-source [MeshCore Open](https://github.com/zjs81/meshcore-open) project. We appreciate the work of its developers and the broader MeshCore community. Bastion maintains its own branding, enhancements, and development direction while retaining applicable upstream licensing and attribution.
 
 ## Screenshots
 
 <table>
   <tr>
-    <td><img src="docs/screenshots/contacts.jpg" width="200"/><br/><p align="center"><b>Contacts</b></p></td>
-    <td><img src="docs/screenshots/chat1.jpg" width="200"/><br/><p align="center"><b>Chat</b></p></td>
-    <td><img src="docs/screenshots/chat2.jpg" width="200"/><br/><p align="center"><b>Reactions</b></p></td>
-    <td><img src="docs/screenshots/map.jpg" width="200"/><br/><p align="center"><b>Map</b></p></td>
-    <td><img src="docs/screenshots/channels.jpg" width="200"/><br/><p align="center"><b>Channels</b></p></td>
+    <td><img src="docs/screenshots/messages.png" width="200"/><br/><p align="center"><b>Messages</b></p></td>
+    <td><img src="docs/screenshots/nodes.png" width="200"/><br/><p align="center"><b>Nodes</b></p></td>
+    <td><img src="docs/screenshots/channel_chat.png" width="200"/><br/><p align="center"><b>Channel chat</b></p></td>
+    <td><img src="docs/screenshots/radio.png" width="200"/><br/><p align="center"><b>Radio</b></p></td>
   </tr>
 </table>
 
+## Download
+
+There is no store release yet. Every push to `dev` and every pull request builds an Android (ARM64) APK:
+
+1. Open [Actions → Build Bastion APK](https://github.com/BastionMeshApp/Bastion-Meshcore-BCS/actions/workflows/build-apk.yml) and pick the latest successful run.
+2. Download **Bastion-Android-ARM64** from the run's *Artifacts* section (requires a GitHub login; kept for 30 days).
+3. Unzip it and install `Bastion-arm64-v8a.apk`, allowing installs from that source when Android asks.
+
 ## Features
 
-### Core Functionality
+### Messaging
 
+- **Messages home**: Direct conversations and channels in one list, newest first, with filters, search, and unread counts
 - **Direct Messaging**: Private encrypted conversations with individual contacts
-- **Public Channels**: Broadcast messages to channel subscribers on the mesh network
-- **Contact Management**: Organize contacts, track last seen times, and manage conversation history
-- **Contact Groups**: Create custom groups to organize your mesh network contacts
-- **Message Reactions**: React to messages with emoji responses
-- **Message Replies**: Thread conversations with inline reply functionality
+- **Channels**: Public, hashtag, and private channels, including region-scoped channels
+- **Area-limited channel messages** *(experimental)*: Keep a channel message within a radius of you, on radios running flood-corridor firmware
+- **Reactions and Replies**: React with emoji and reply inline
+- **Images over LoRa**: Send compressed images on channels (optional)
+- **Translation**: Optional on-device message translation
 
-### Mesh Network
+### Nodes and Mesh Network
 
+- **Nodes list**: People, repeaters, room servers, and sensors with hop count and last heard
 - **Path Visualization**: View routing paths and signal quality for each contact
 - **Route Management**: Manual path overriding and automatic route rotation
-- **Signal Metrics**: Real-time SNR (Signal-to-Noise Ratio) tracking
 - **Node Discovery**: Automatic detection of nearby mesh nodes
-- **Repeater Support**: Connect to and manage repeater nodes for extended range
+- **Line of Sight**: Terrain profile between two points
 
-### Map & Location
+### Map and Location
 
-- **Live Map View**: Real-time visualization of mesh network nodes on an interactive map
-- **Node Filtering**: Filter by node type (chat, repeater, sensor) and time range
+- **Live Map View**: Mesh nodes on an interactive map
+- **Node Filtering**: Filter by node type and time range
 - **Location Sharing**: Share GPS coordinates and custom markers with contacts
-- **Offline Maps**: Download map tiles for offline use in remote areas (with [StadiaMaps](https://stadiamaps.com/pricing/) Free Subscription API-Key)
-- **MGRS Coordinates**: Support for Military Grid Reference System coordinate format
+- **Offline Maps**: Download map tiles for offline use (with a [StadiaMaps](https://stadiamaps.com/pricing/) free API key)
+- **MGRS Coordinates**: Military Grid Reference System coordinate format
 
-### Device Management
+### Radio
 
-- **BLE, USB, TCP Connection**: Scan and connect to MeshCore devices via Bluetooth, USB or TCP
-- **Device Settings**: Configure radio parameters, power settings, and network options
-- **Battery Monitoring**: Real-time battery status with chemistry-specific voltage curves
-- **Firmware Updates**: Over-the-air firmware updates via BLE (coming soon)
+- **Radio tab**: Connected radio at a glance (battery, firmware, frequency and LoRa settings) with Send advert and Radio stats
+- **BLE, USB, TCP Connection**: Connect to MeshCore companions over Bluetooth, USB, or TCP
+- **Radio Settings**: Frequency, power, spreading factor, bandwidth, coding rate, and regions
+- **Battery Monitoring**: Chemistry-specific voltage curves
 
-### Repeater Hub
+### Repeater and Room Server Hub
 
-- **CLI Access**: Full command-line interface to repeater nodes
+- **CLI Access**: Full command-line interface to repeaters and room servers
 - **Settings Management**: Configure repeater behavior, power limits, and network settings
-- **Statistics Dashboard**: View repeater traffic, connected clients, and system health
-- **Remote Management**: Administer repeaters from anywhere on the mesh network
+- **Status and Neighbors**: Traffic, connected clients, neighbors, and system health
+- **Remote Management**: Administer nodes from anywhere on the mesh
 
 ## Technical Details
 
 ### Architecture
 
-- **Framework**: Flutter 3.38.5 / Dart 3.10.4
-- **State Management**: Provider pattern with ChangeNotifier
+- **Framework**: Flutter (current stable, 3.47+)
+- **State Management**: Provider with ChangeNotifier
 - **BLE Protocol**: Nordic UART Service (NUS) over Bluetooth Low Energy
-- **Storage**: Local SQLite database for messages and contact data
+- **Storage**: Local storage for messages, contacts, and settings
 - **Encryption**: End-to-end encryption for private messages using the MeshCore protocol
 
 ### Platform Support
@@ -93,10 +99,10 @@ BCS Connect is being developed with an emphasis on:
 | BLE companion      | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
 | USB companion      | ✅                | 🚧        | ✅   | ✅      | ✅    | ✅                                |
 | TCP companion      | ✅                | 🚧        | ✅   | ✅      | ✅    | ❌<br>(requires websocket bridge) |
-| Core Functionality | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
-| Mesh Network       | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
-| Map & Location     | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
-| Device Management  | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
+| Messaging          | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
+| Nodes and Mesh     | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
+| Map and Location   | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
+| Radio              | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
 | Repeater Hub       | ✅                | ✅        | ✅   | ✅      | ✅    | ✅                                |
 
 ### Dependencies
@@ -107,7 +113,6 @@ BCS Connect is being developed with an emphasis on:
 | provider | State management |
 | shared_preferences | Local key-value storage (scoped per device) |
 | flutter_map | Interactive map display |
-| latlong2 | Geographic coordinate handling |
 | flutter_local_notifications | Background notification support |
 | pointycastle | Cryptographic operations |
 | llamadart | On-device LLM message translation |
@@ -117,7 +122,7 @@ BCS Connect is being developed with an emphasis on:
 
 ### Prerequisites
 
-- Flutter SDK 3.38.5 or later
+- Flutter SDK, current stable (3.47 or later)
 - Android Studio / Xcode (for mobile development)
 - A MeshCore-compatible LoRa device
 
@@ -126,8 +131,8 @@ BCS Connect is being developed with an emphasis on:
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/backcountrysignal/BCS-Connect-MeshCore.git
-   cd BCS-Connect-MeshCore
+   git clone https://github.com/BastionMeshApp/Bastion-Meshcore-BCS.git
+   cd Bastion-Meshcore-BCS
    ```
 
 2. **Install dependencies**
@@ -160,32 +165,24 @@ flutter build ios --release
 
 ```
 lib/
-├── main.dart                    # App entry point
+├── main.dart                     # App entry point
 ├── connector/
-│   ├── meshcore_connector.dart  # BLE communication & state management
-│   ├── meshcore_protocol.dart   # Protocol definitions & frame parsing
-│   └── meshcore_uuids.dart      # Device names and IDs (add prefixes here!)
+│   ├── meshcore_connector.dart   # Radio connection & state management
+│   ├── meshcore_protocol.dart    # Protocol definitions & frame parsing
+│   └── meshcore_uuids.dart       # Device names and IDs (add prefixes here!)
 ├── screens/
-│   ├── scanner_screen.dart      # Device scanning (home screen)
-│   ├── contacts_screen.dart     # Contact list
-│   ├── chat_screen.dart         # Direct messaging
-│   ├── channels_screen.dart     # Public channels
-│   ├── map_screen.dart          # Network visualization map
-│   ├── settings_screen.dart     # Device settings
-│   └── repeater_hub_screen.dart # Repeater management
-├── models/
-│   ├── contact.dart             # Contact data model
-│   ├── message.dart             # Message data structure
-│   └── channel.dart             # Channel definitions
-├── services/
-│   ├── notification_service.dart      # Push notifications
-│   ├── message_retry_service.dart     # Automatic message retry
-│   ├── background_service.dart        # Background BLE connection
-│   └── map_tile_cache_service.dart    # Offline map storage
-└── storage/
-    ├── message_store.dart       # Message persistence
-    ├── contact_store.dart       # Contact database
-    └── unread_store.dart        # Unread message tracking
+│   ├── scanner_screen.dart       # Device scanning (start screen)
+│   ├── messages_screen.dart      # Messages home: chats and channels
+│   ├── contacts_screen.dart      # Nodes list
+│   ├── chat_screen.dart          # Direct messaging
+│   ├── channel_chat_screen.dart  # Channel messaging
+│   ├── map_screen.dart           # Network map
+│   ├── settings_screen.dart      # Radio tab
+│   └── repeater_hub_screen.dart  # Repeater / room server management
+├── models/                       # Contacts, messages, channels, ...
+├── services/                     # Notifications, retries, background, map cache, ...
+├── theme/mesh_theme.dart         # Colors, type, and shared styles
+└── storage/                      # Message, contact, and unread persistence
 ```
 
 ## BLE Protocol
@@ -208,7 +205,6 @@ Devices are discovered by scanning for BLE advertisements with known MeshCore de
 
 New device prefixes can be added in `lib/connector/meshcore_uuids.dart`.
 
-
 ### Message Format
 
 Messages are transmitted as binary frames using a custom protocol optimized for LoRa transmission. See `meshcore_protocol.dart` for frame structure definitions.
@@ -218,18 +214,18 @@ Messages are transmitted as binary frames using a custom protocol optimized for 
 ### App Settings
 
 - **Theme**: System default, light, or dark mode
-- **Language**: Use one of 15 languages (English, Chinese, French, Spanish, Portuguese, German, Dutch, Polish, Swedish, Italian, Slovak, Slovene, Bulgarian, Russian, Ukrainian)
+- **Language**: 18 languages (English, Bulgarian, Chinese, Dutch, French, German, Hungarian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Slovak, Slovene, Spanish, Swedish, Ukrainian)
 - **Notifications**: Configurable for messages, channels, and node advertisements
 - **Battery Chemistry**: Support for NMC, LiFePO4, and LiPo battery types
 - **Message Retry**: Automatic retry with configurable path clearing
 
 ### Device Settings
 
-- **Radio Power**: Transmit power adjustment (10-30 dBm)
+- **Radio Power**: Transmit power adjustment
 - **Frequency**: LoRa frequency configuration
 - **Bandwidth**: Channel bandwidth selection
 - **Spreading Factor**: Range vs. speed trade-off
-- **Network ID**: Mesh network identifier
+- **Regions**: Region scopes for flood traffic
 
 ## Contributing
 
@@ -238,7 +234,7 @@ This is an open-source project. Contributions are welcome!
 ### Development Guidelines
 
 - Follow the Flutter style guide
-- Use Material 3 design components
+- Use Material 3 design components and the shared theme in `lib/theme/mesh_theme.dart`
 - Write clear commit messages
 - Test on both Android and iOS before submitting PRs
 
@@ -248,17 +244,15 @@ This is an open-source project. Contributions are welcome!
 - Use `const` constructors where possible
 - Keep functions small and focused
 - Avoid premature abstractions
-- Run dart format on all changes before submitting
+- Run `dart format` on all changes before submitting
 
 ## Support
 
-For issues, questions, compatibility reports, or feature requests, please use the [BCS Connect MeshCore GitHub Issues](https://github.com/backcountrysignal/BCS-Connect-MeshCore/issues) page.
-
-For BackCountrySignal project information and resources, visit [backcountrysignal.org](https://backcountrysignal.org/).
+For issues, questions, compatibility reports, or feature requests, please use the [Bastion GitHub Issues](https://github.com/BastionMeshApp/Bastion-Meshcore-BCS/issues) page.
 
 ## License and Upstream Attribution
 
-BCS Connect MeshCore is based on open-source upstream software. This project is intended to retain and comply with all applicable upstream license, copyright, and attribution requirements.
+Bastion is based on open-source upstream software. This project is intended to retain and comply with all applicable upstream license, copyright, and attribution requirements.
 
 See the repository's license and source files for complete licensing information. The upstream MeshCore Open project is available at [zjs81/meshcore-open](https://github.com/zjs81/meshcore-open).
 

@@ -8,7 +8,7 @@
     }
   },
   "@@locale": "nl",
-  "appTitle": "MeshCore Open",
+  "appTitle": "Bastion",
   "nav_contacts": "Contacten",
   "nav_channels": "Kanalen",
   "nav_map": "Kaart",
@@ -54,7 +54,7 @@
       }
     }
   },
-  "scanner_title": "MeshCore Open",
+  "scanner_title": "Bastion",
   "scanner_scanning": "Scannen naar apparaten...",
   "scanner_connecting": "Verbinden...",
   "scanner_disconnecting": "Verbinding verbreken...",
@@ -127,7 +127,7 @@
   "settings_appDebugLog": "Debuglog van de app",
   "settings_appDebugLogSubtitle": "Toepassingsdebugberichten",
   "settings_about": "Over",
-  "settings_aboutVersion": "MeshCore Open versie {version}",
+  "settings_aboutVersion": "Bastion versie {version}",
   "@settings_aboutVersion": {
     "placeholders": {
       "version": {
@@ -1789,8 +1789,8 @@
   "settings_gpxExportRepeatersRoom": "Repeater- en kamer servers locaties",
   "settings_gpxExportChat": "Locaties van metgezellen",
   "settings_gpxExportAllContacts": "Alle contactlocaties",
-  "settings_gpxExportShareText": "Kaartgegevens geëxporteerd uit meshcore-open",
-  "settings_gpxExportShareSubject": "meshcore-open GPX kaartgegevens exporteren",
+  "settings_gpxExportShareText": "Kaartgegevens geëxporteerd uit Bastion",
+  "settings_gpxExportShareSubject": "Bastion GPX kaartgegevens exporteren",
   "pathTrace_someHopsNoLocation": "Een of meer van de hops ontbreken een locatie!",
   "map_removeLast": "Verwijder Laatste",
   "pathTrace_clearTooltip": "Weg wissen",

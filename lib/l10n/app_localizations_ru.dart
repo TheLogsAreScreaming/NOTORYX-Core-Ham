@@ -9,7 +9,7 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get appTitle => 'MeshCore Open';
+  String get appTitle => 'Bastion';
 
   @override
   String get nav_contacts => 'Контакты';
@@ -434,7 +434,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get common_interval => 'Интервал';
 
   @override
-  String get scanner_title => 'MeshCore Open';
+  String get scanner_title => 'Bastion';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -912,7 +912,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'MeshCore Open v$version';
+    return 'Bastion v$version';
   }
 
   @override
@@ -4778,11 +4778,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Данные карты экспортированы из meshcore-open';
+      'Данные карты экспортированы из Bastion';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'meshcore-open экспорт данных карты GPX';
+      'Bastion экспорт данных карты GPX';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Ближайшие ретрансляторы';

@@ -1,6 +1,6 @@
 {
-    "name": "meshcore_open",
-    "short_name": "meshcore_open",
+    "name": "Bastion",
+    "short_name": "Bastion",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

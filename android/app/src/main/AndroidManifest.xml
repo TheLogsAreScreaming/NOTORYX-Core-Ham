@@ -22,9 +22,9 @@
     <uses-feature android:name="android.hardware.usb.host" android:required="false"/>
 
     <application
-        android:label="MeshCore Open"
+        android:label="Bastion"
         android:name="${applicationName}"
-        android:icon="@drawable/bastion_launcher_color">
+        android:icon="@mipmap/ic_launcher">
         <service
             android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
             android:exported="false"

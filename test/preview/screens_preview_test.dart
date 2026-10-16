@@ -77,7 +77,7 @@ final _contacts = [
 
 final _channels = [
   Channel(index: 0, name: 'Public', psk: Uint8List(16)),
-  Channel(index: 1, name: '#backcountry', psk: Uint8List(16)),
+  Channel(index: 1, name: '#trailhead', psk: Uint8List(16)),
   Channel(index: 2, name: '#sar-north', psk: Uint8List(16)),
 ];
 
@@ -321,7 +321,7 @@ void main() {
         .setMockMethodCallHandler(
           const MethodChannel('dev.fluttercommunity.plus/package_info'),
           (call) async => {
-            'appName': 'BCS Connect',
+            'appName': 'Bastion',
             'packageName': 'preview',
             'version': '0.0.0',
             'buildNumber': '0',

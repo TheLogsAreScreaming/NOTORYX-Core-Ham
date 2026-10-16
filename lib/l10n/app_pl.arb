@@ -8,7 +8,7 @@
     }
   },
   "@@locale": "pl",
-  "appTitle": "MeshCore Open",
+  "appTitle": "Bastion",
   "nav_contacts": "Kontakty",
   "nav_channels": "Kanały",
   "nav_map": "Mapa",
@@ -127,7 +127,7 @@
   "settings_appDebugLog": "Dziennik debugowania aplikacji",
   "settings_appDebugLogSubtitle": "Komunikaty debugowania aplikacji",
   "settings_about": "O aplikacji",
-  "settings_aboutVersion": "MeshCore Open w wersji {version}",
+  "settings_aboutVersion": "Bastion w wersji {version}",
   "@settings_aboutVersion": {
     "placeholders": {
       "version": {
@@ -1827,8 +1827,8 @@
   "settings_gpxExportAllContacts": "Wszystkie lokalizacje kontaktów",
   "settings_gpxExportNoContacts": "Brak kontaktów do wyeksportowania.",
   "settings_gpxExportChat": "Lokalizacje towarzyszy",
-  "settings_gpxExportShareText": "Dane mapy wyeksportowane z meshcore-open",
-  "settings_gpxExportShareSubject": "Eksport danych mapy GPX meshcore-open",
+  "settings_gpxExportShareText": "Dane mapy wyeksportowane z Bastion",
+  "settings_gpxExportShareSubject": "Eksport danych mapy GPX Bastion",
   "pathTrace_someHopsNoLocation": "Jeden lub więcej z chmieli nie ma określonej lokalizacji!",
   "map_pathTraceCancelled": "Śledzenie ścieżki anulowano.",
   "map_runTrace": "Uruchom ślad ścieżki",

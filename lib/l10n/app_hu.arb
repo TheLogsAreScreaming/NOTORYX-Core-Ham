@@ -1,6 +1,6 @@
 {
   "@@locale": "hu",
-  "appTitle": "MeshCore Open",
+  "appTitle": "Bastion",
   "nav_contacts": "Kapcsolatok",
   "nav_channels": "Csatornák",
   "nav_map": "Térkép",
@@ -48,7 +48,7 @@
       }
     }
   },
-  "scanner_title": "MeshCore Open",
+  "scanner_title": "Bastion",
   "connectionChoiceUsbLabel": "USB",
   "connectionChoiceBluetoothLabel": "Bluetooth",
   "connectionChoiceTcpLabel": "TCP",
@@ -190,7 +190,7 @@
   "settings_appDebugLog": "Alkalmazás hibakeresési naplója",
   "settings_appDebugLogSubtitle": "Alkalmazás hibakeresési üzenetei",
   "settings_about": "Körülbelül",
-  "settings_aboutVersion": "MeshCore Open v{version}",
+  "settings_aboutVersion": "Bastion v{version}",
   "@settings_aboutVersion": {
     "placeholders": {
       "version": {
@@ -2116,8 +2116,8 @@
   "settings_gpxExportRepeatersRoom": "Repeater és szobaszerver helyei",
   "settings_gpxExportChat": "Társ helyek",
   "settings_gpxExportAllContacts": "Minden kapcsolattartó hely",
-  "settings_gpxExportShareText": "A térképadatok a meshcore-openből exportálva",
-  "settings_gpxExportShareSubject": "meshcore-open GPX térképadatok exportálása",
+  "settings_gpxExportShareText": "A térképadatok a Bastionből exportálva",
+  "settings_gpxExportShareSubject": "Bastion GPX térképadatok exportálása",
   "snrIndicator_nearByRepeaters": "Közeli átjátszók",
   "snrIndicator_lastSeen": "Utoljára látott",
   "contactsSettings_title": "Névjegyek beállításai",

@@ -9,7 +9,7 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'MeshCore Open';
+  String get appTitle => 'Bastion';
 
   @override
   String get nav_contacts => '連絡先';
@@ -434,7 +434,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get common_interval => '間隔';
 
   @override
-  String get scanner_title => 'MeshCore Open';
+  String get scanner_title => 'Bastion';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -879,7 +879,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'MeshCore Open v$version';
+    return 'Bastion v$version';
   }
 
   @override
@@ -4541,11 +4541,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settings_gpxExportAllContacts => 'すべての連絡先場所';
 
   @override
-  String get settings_gpxExportShareText => 'meshcore-openからエクスポートされた地図データ';
+  String get settings_gpxExportShareText => 'Bastionからエクスポートされた地図データ';
 
   @override
-  String get settings_gpxExportShareSubject =>
-      'meshcore-open GPX形式の地図データのエクスポート';
+  String get settings_gpxExportShareSubject => 'Bastion GPX形式の地図データのエクスポート';
 
   @override
   String get snrIndicator_nearByRepeaters => '近くのリピータ';

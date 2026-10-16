@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "MeshCore Open",
+  "appTitle": "Bastion",
   "nav_contacts": "Contacts",
   "nav_channels": "Channels",
   "nav_map": "Map",
@@ -193,7 +193,7 @@
   },
   "common_autoRefresh": "Autorefresh",
   "common_interval": "Interval",
-  "scanner_title": "MeshCore Open",
+  "scanner_title": "Bastion",
   "connectionChoiceUsbLabel": "USB",
   "connectionChoiceBluetoothLabel": "Bluetooth",
   "connectionChoiceTcpLabel": "TCP",
@@ -375,7 +375,7 @@
   "settings_appDebugLog": "App Debug Log",
   "settings_appDebugLogSubtitle": "Application debug messages",
   "settings_about": "About",
-  "settings_aboutVersion": "MeshCore Open v{version}",
+  "settings_aboutVersion": "Bastion v{version}",
   "@settings_aboutVersion": {
     "placeholders": {
       "version": {
@@ -2648,8 +2648,8 @@
   "settings_gpxExportRepeatersRoom": "Repeater & room server locations",
   "settings_gpxExportChat": "Companion locations",
   "settings_gpxExportAllContacts": "All contacts locations",
-  "settings_gpxExportShareText": "Map data exported from meshcore-open",
-  "settings_gpxExportShareSubject": "meshcore-open GPX map data export",
+  "settings_gpxExportShareText": "Map data exported from Bastion",
+  "settings_gpxExportShareSubject": "Bastion GPX map data export",
   "snrIndicator_nearByRepeaters": "Nearby Repeaters",
   "snrIndicator_lastSeen": "Last seen",
   "contactsSettings_title": "Contacts settings",
