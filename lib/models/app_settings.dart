@@ -119,6 +119,9 @@ class AppSettings {
   final String tcpServerAddress;
   final int tcpServerPort;
   final bool jumpToOldestUnread;
+
+  /// Slows the app's routine radio polling and background checks.
+  final bool batterySaver;
   final bool imageMessagesEnabled;
 
   /// Whether a received image is decoded as soon as it is reassembled.
@@ -221,6 +224,7 @@ class AppSettings {
     this.tcpServerAddress = '',
     this.tcpServerPort = 0,
     this.jumpToOldestUnread = false,
+    this.batterySaver = false,
     this.imageMessagesEnabled = false,
     this.imageProcessAutomatically = false,
     this.imageCodecEnabled = false,
@@ -296,6 +300,7 @@ class AppSettings {
       'tcp_server_address': tcpServerAddress,
       'tcp_server_port': tcpServerPort,
       'jump_to_oldest_unread': jumpToOldestUnread,
+      'battery_saver': batterySaver,
       'image_messages_enabled': imageMessagesEnabled,
       'image_process_automatically': imageProcessAutomatically,
       'image_codec_enabled': imageCodecEnabled,
@@ -394,6 +399,7 @@ class AppSettings {
       tcpServerAddress: json['tcp_server_address'] as String? ?? '',
       tcpServerPort: json['tcp_server_port'] as int? ?? 0,
       jumpToOldestUnread: json['jump_to_oldest_unread'] as bool? ?? false,
+      batterySaver: json['battery_saver'] as bool? ?? false,
       imageMessagesEnabled: json['image_messages_enabled'] as bool? ?? false,
       imageProcessAutomatically:
           json['image_process_automatically'] as bool? ?? false,
@@ -507,6 +513,7 @@ class AppSettings {
     String? tcpServerAddress,
     int? tcpServerPort,
     bool? jumpToOldestUnread,
+    bool? batterySaver,
     bool? imageMessagesEnabled,
     bool? imageProcessAutomatically,
     bool? imageCodecEnabled,
@@ -581,6 +588,7 @@ class AppSettings {
       tcpServerAddress: tcpServerAddress ?? this.tcpServerAddress,
       tcpServerPort: tcpServerPort ?? this.tcpServerPort,
       jumpToOldestUnread: jumpToOldestUnread ?? this.jumpToOldestUnread,
+      batterySaver: batterySaver ?? this.batterySaver,
       imageMessagesEnabled: imageMessagesEnabled ?? this.imageMessagesEnabled,
       imageProcessAutomatically:
           imageProcessAutomatically ?? this.imageProcessAutomatically,

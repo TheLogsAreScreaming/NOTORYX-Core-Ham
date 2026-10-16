@@ -89,6 +89,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
               children: [
                 RadioOverviewCard(connector: connector),
+                const BatterySaverCard(),
 
                 // IDENTITY section
                 MeshCard(
@@ -2226,4 +2227,30 @@ class _RadioSettingsSnapshot {
     codingRate,
     txPowerDbm,
   );
+}
+
+/// Settings' battery saver switch.
+class BatterySaverCard extends StatelessWidget {
+  const BatterySaverCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    final on = settings.settings.batterySaver;
+    return MeshCard(
+      padding: EdgeInsets.zero,
+      child: SwitchListTile(
+        key: const ValueKey('battery-saver'),
+        secondary: Icon(on ? Icons.battery_saver : Icons.battery_std_outlined),
+        title: const Text('Battery saver'),
+        subtitle: Text(
+          on
+              ? 'On: radio battery every 10 min, GPS every 5 min, stats at most once a minute, trip checks every 1–2 min. Messages, alerts and SOS are unchanged.'
+              : 'Check the radio and trip less often to save phone and radio battery. Messages, alerts and SOS are unchanged.',
+        ),
+        value: on,
+        onChanged: settings.setBatterySaver,
+      ),
+    );
+  }
 }

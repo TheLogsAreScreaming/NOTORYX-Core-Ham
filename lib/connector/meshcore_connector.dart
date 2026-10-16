@@ -2984,9 +2984,40 @@ class MeshCoreConnector extends ChangeNotifier {
     await sendFrame(buildGetBattAndStorageFrame());
   }
 
+  bool _batterySaver = false;
+  bool get batterySaver => _batterySaver;
+
+  /// Battery saver: poll the radio's battery every 10 minutes instead of 2,
+  /// its GPS position every 5 minutes instead of 1, and radio stats at most
+  /// once a minute. Messages and adverts still arrive as they happen.
+  void setBatterySaver(bool on) {
+    if (on == _batterySaver) return;
+    _batterySaver = on;
+    if (isConnected) {
+      _startBatteryPolling();
+      if (_gpsLocationPollTimer != null) {
+        _stopGpsLocationPolling();
+        _startGpsLocationPolling();
+      }
+      if (_radioStatsPollTimer != null) _startRadioStatsPolling();
+    }
+    notifyListeners();
+  }
+
+  @visibleForTesting
+  Duration get batteryPollInterval =>
+      _batterySaver ? const Duration(minutes: 10) : _batteryPollInterval;
+  @visibleForTesting
+  Duration get gpsLocationPollInterval =>
+      _batterySaver ? const Duration(minutes: 5) : _gpsLocationPollInterval;
+  @visibleForTesting
+  Duration get radioStatsPollInterval => Duration(
+    seconds: _batterySaver && _pollingInterval < 60 ? 60 : _pollingInterval,
+  );
+
   void _startBatteryPolling() {
     _batteryPollTimer?.cancel();
-    _batteryPollTimer = Timer.periodic(_batteryPollInterval, (timer) {
+    _batteryPollTimer = Timer.periodic(batteryPollInterval, (timer) {
       if (!isConnected) {
         timer.cancel();
         return;
@@ -3004,7 +3035,7 @@ class MeshCoreConnector extends ChangeNotifier {
   /// No-op if already running. Triggered when the radio reports `gps=1`.
   void _startGpsLocationPolling() {
     if (_gpsLocationPollTimer != null) return;
-    _gpsLocationPollTimer = Timer.periodic(_gpsLocationPollInterval, (timer) {
+    _gpsLocationPollTimer = Timer.periodic(gpsLocationPollInterval, (timer) {
       if (!isConnected) {
         timer.cancel();
         _gpsLocationPollTimer = null;
@@ -3028,9 +3059,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void _startRadioStatsPolling() {
     _radioStatsPollTimer?.cancel();
-    _radioStatsPollTimer = Timer.periodic(Duration(seconds: _pollingInterval), (
-      _,
-    ) {
+    _radioStatsPollTimer = Timer.periodic(radioStatsPollInterval, (_) {
       if (!isConnected) {
         _stopRadioStatsPolling();
         return;
