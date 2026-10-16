@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart' hide TextDirection;
 import 'package:provider/provider.dart';
 
+import '../storage/draft_store.dart';
 import '../connector/meshcore_connector.dart';
 import '../models/community.dart';
 import '../storage/community_store.dart';
@@ -106,9 +107,18 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   late DateFormat _hmFormat;
   late DateFormat _mdFormat;
 
+  late final DraftKeeper _draft = DraftKeeper(
+    _textController,
+    DraftStore.channelKey(
+      context.read<MeshCoreConnector>().selfPublicKeyHex,
+      widget.channel.index,
+    ),
+  );
+
   @override
   void initState() {
     super.initState();
+    _draft.attach();
     _textFieldFocusNode.addListener(_onTextFieldFocusChange);
     _scrollController.onScrollNearTop = _loadOlderMessages;
     _scrollController.showJumpToBottom.addListener(_clearDividerAtBottom);
@@ -206,6 +216,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     _scrollController.showJumpToBottom.removeListener(_clearDividerAtBottom);
     _textFieldFocusNode.removeListener(_onTextFieldFocusChange);
     _textFieldFocusNode.dispose();
+    _draft.dispose();
     _textController.dispose();
     _scrollController.dispose();
     super.dispose();
