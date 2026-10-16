@@ -1,0 +1,70 @@
+name: Bastion macOS Release
+
+# Builds a universal (Intel x86_64 + Apple silicon) Bastion.app and attaches
+# it to a GitHub pre-release. The app is ad-hoc signed, not notarized: the
+# first launch needs Open Anyway in System Settings → Privacy & Security.
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to create or add the macOS build to (e.g. v10.0.0-rc.6)
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  macos:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.6'
+          channel: stable
+          cache: true
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Test
+        run: flutter test
+      - name: Build universal macOS app
+        run: flutter build macos --release
+      - name: Check the app runs on Intel and Apple silicon
+        run: |
+          APP=build/macos/Build/Products/Release/Bastion.app
+          test -d "$APP"
+          ARCHS=$(lipo -archs "$APP/Contents/MacOS/Bastion")
+          echo "Architectures: $ARCHS"
+          case "$ARCHS" in *x86_64*) ;; *) echo "No Intel (x86_64) slice"; exit 1;; esac
+          case "$ARCHS" in *arm64*) ;; *) echo "No Apple silicon (arm64) slice"; exit 1;; esac
+          # Every bundled framework and library must also include Intel code.
+          find "$APP/Contents/Frameworks" -type f -perm -u+x | while read -r f; do
+            if file "$f" | grep -q "Mach-O" && ! lipo -archs "$f" | grep -q x86_64; then
+              echo "Missing x86_64 in $f"; exit 1
+            fi
+          done
+      - name: Sign ad hoc and package
+        run: |
+          APP=build/macos/Build/Products/Release/Bastion.app
+          codesign --force --deep --sign - "$APP"
+          codesign --verify --deep --strict "$APP"
+          VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d+ -f1)
+          mkdir -p dist
+          ditto -c -k --keepParent "$APP" "dist/Bastion-$VERSION-macOS-universal.zip"
+          cd dist
+          shasum -a 256 *.zip > SHA256SUMS-macOS.txt
+          cat SHA256SUMS-macOS.txt
+      - name: Attach to pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          if ! gh release view "$TAG" > /dev/null 2>&1; then
+            gh release create "$TAG" --prerelease --target "$GITHUB_SHA" \
+              --title "Bastion ${TAG#v}" \
+              --notes "Pre-release. See the attached files."
+          fi
+          gh release upload "$TAG" dist/* --clobber
