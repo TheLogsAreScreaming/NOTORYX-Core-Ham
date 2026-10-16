@@ -235,6 +235,9 @@ class MeshCoreConnector extends ChangeNotifier {
       StreamController<Uint8List>.broadcast();
   final StreamController<Message> _receivedDirectMessagesController =
       StreamController<Message>.broadcast();
+  final StreamController<ReceivedChannelMessage>
+  _receivedChannelMessagesController =
+      StreamController<ReceivedChannelMessage>.broadcast();
 
   Uint8List? _selfPublicKey;
   String? _selfName;
@@ -498,6 +501,10 @@ class MeshCoreConnector extends ChangeNotifier {
   /// Fresh direct-message events; cached history and reconnect sync are excluded.
   Stream<Message> get receivedDirectMessages =>
       _receivedDirectMessagesController.stream;
+
+  /// Incoming channel messages on channels that aren't muted.
+  Stream<ReceivedChannelMessage> get receivedChannelMessages =>
+      _receivedChannelMessagesController.stream;
   Uint8List? get selfPublicKey => _selfPublicKey;
   String get selfPublicKeyHex => pubKeyToHex(_selfPublicKey ?? Uint8List(0));
 
@@ -5928,13 +5935,18 @@ class MeshCoreConnector extends ChangeNotifier {
     final channelIndex = message.channelIndex;
     if (channelIndex == null) return;
 
+    final label = channelName ?? _channelDisplayName(channelIndex);
+    if (_appSettingsService!.isChannelMuted(label)) return;
+    if (!_receivedChannelMessagesController.isClosed) {
+      _receivedChannelMessagesController.add(
+        ReceivedChannelMessage(message, label),
+      );
+    }
+
     final settings = _appSettingsService!.settings;
     if (!settings.notificationsEnabled || !settings.notifyOnNewChannelMessage) {
       return;
     }
-
-    final label = channelName ?? _channelDisplayName(channelIndex);
-    if (_appSettingsService!.isChannelMuted(label)) return;
 
     // Reuse translation result only if completed and non-empty; else use original text
     final resolvedText =
@@ -7212,6 +7224,7 @@ class MeshCoreConnector extends ChangeNotifier {
     radioStatsNotifier.dispose();
     _receivedFramesController.close();
     _receivedDirectMessagesController.close();
+    _receivedChannelMessagesController.close();
     _usbManager.dispose();
     _tcpConnector.dispose();
 
@@ -7886,4 +7899,11 @@ class BlockedRemoteCommand {
     required this.command,
     required this.at,
   });
+}
+
+/// An incoming channel message with the channel's display name.
+class ReceivedChannelMessage {
+  final ChannelMessage message;
+  final String channelName;
+  const ReceivedChannelMessage(this.message, this.channelName);
 }

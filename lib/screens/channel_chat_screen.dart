@@ -28,6 +28,7 @@ import '../models/channel_message.dart';
 import '../models/flood_corridor.dart';
 import '../models/image_codec_support.dart' show aeicRatePointForUi;
 import '../models/translation_support.dart';
+import '../services/read_aloud_service.dart';
 import '../services/app_settings_service.dart';
 import '../services/chat_text_scale_service.dart';
 import '../services/image_chunk_transport.dart';
@@ -2297,6 +2298,19 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               onTap: () {
                 Navigator.pop(sheetContext);
                 _copyMessageText(message.text);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.volume_up_outlined),
+              title: const Text('Read aloud'),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                unawaited(
+                  context.read<ReadAloudService>().read(
+                    message.isOutgoing ? 'You' : message.senderName,
+                    message.text,
+                  ),
+                );
               },
             ),
             if (canTranslateMessage)

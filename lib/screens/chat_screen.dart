@@ -25,6 +25,7 @@ import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
 import '../models/message.dart';
 import '../models/translation_support.dart';
+import '../services/read_aloud_service.dart';
 import '../services/app_settings_service.dart';
 import '../services/chat_text_scale_service.dart';
 import '../services/path_history_service.dart';
@@ -1249,6 +1250,19 @@ class _ChatScreenState extends State<ChatScreen> {
               onTap: () {
                 Navigator.pop(sheetContext);
                 _copyMessageText(message.text);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.volume_up_outlined),
+              title: const Text('Read aloud'),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                unawaited(
+                  context.read<ReadAloudService>().read(
+                    message.isOutgoing ? 'You' : contact.name,
+                    message.text,
+                  ),
+                );
               },
             ),
             if (canTranslateMessage)

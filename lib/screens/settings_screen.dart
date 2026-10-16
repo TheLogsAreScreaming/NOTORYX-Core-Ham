@@ -110,6 +110,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: _buildLocationCardContent(context, connector),
                 ),
 
+                // READ ALOUD
+                const ReadAloudCard(),
+
                 // APP SETTINGS
                 SectionHeader(l10n.settings_appSettings),
                 MeshCard(
@@ -2226,4 +2229,41 @@ class _RadioSettingsSnapshot {
     codingRate,
     txPowerDbm,
   );
+}
+
+/// Settings' choice of which incoming messages are read aloud.
+class ReadAloudCard extends StatelessWidget {
+  const ReadAloudCard({super.key});
+
+  static const _choices = {
+    'off': 'Off',
+    'direct': 'Direct messages',
+    'all': 'Direct and channel messages',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    return MeshCard(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+      child: DropdownButtonFormField<String>(
+        key: const ValueKey('read-aloud'),
+        initialValue: settings.settings.readAloudIncoming,
+        decoration: const InputDecoration(
+          labelText: 'Read new messages aloud',
+          helperText:
+              'While Bastion is open. Muted channels stay quiet. Any message can also be read from its menu.',
+          helperMaxLines: 3,
+          icon: Icon(Icons.record_voice_over_outlined),
+        ),
+        items: [
+          for (final e in _choices.entries)
+            DropdownMenuItem(value: e.key, child: Text(e.value)),
+        ],
+        onChanged: (v) {
+          if (v != null) settings.setReadAloudIncoming(v);
+        },
+      ),
+    );
+  }
 }
