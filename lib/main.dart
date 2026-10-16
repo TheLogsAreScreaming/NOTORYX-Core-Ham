@@ -253,6 +253,8 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_botService.load());
     _fieldOps = FieldOpsService(widget.connector);
     unawaited(_fieldOps.load());
+    _applyBatterySaver();
+    widget.appSettingsService.addListener(_applyBatterySaver);
     WidgetsBinding.instance.addObserver(this);
     _imageSweepTimer = Timer.periodic(
       _kImageSweepInterval,
@@ -263,6 +265,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     _botService.dispose();
+    widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
     _imageSweepTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
@@ -346,6 +349,12 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         },
       ),
     );
+  }
+
+  void _applyBatterySaver() {
+    final on = widget.appSettingsService.settings.batterySaver;
+    widget.connector.setBatterySaver(on);
+    _fieldOps.setBatterySaver(on);
   }
 
   ThemeMode _themeModeFromSetting(String value) {
