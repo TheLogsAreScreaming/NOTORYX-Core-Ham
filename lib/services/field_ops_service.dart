@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../models/channel.dart';
 import '../models/contact.dart';
 import '../models/field_ops.dart';
 import '../models/message.dart';
@@ -33,6 +34,12 @@ class FieldOpsService extends ChangeNotifier {
   DateTime? _lastAutoSend;
   Timer? _timer;
   StreamSubscription<Message>? _messages;
+
+  /// The SOS for this app session. It has its own timer so repeats continue
+  /// while the app is in the background (as long as the OS keeps it running).
+  SosState sos = SosState.idle;
+  Timer? _sosTimer;
+  bool _sosSending = false;
   Future<void> _writes = Future<void>.value();
 
   List<Contact> get members => connector.contacts
@@ -45,6 +52,125 @@ class FieldOpsService extends ChangeNotifier {
             c.publicKeyHex != connector.selfPublicKeyHex,
       )
       .toList();
+
+  /// The channel an SOS also goes to, if one is configured and still exists.
+  Channel? get sosChannel {
+    for (final channel in connector.channels) {
+      if (channel.index == trip.sosChannel && !channel.isEmpty) return channel;
+    }
+    return null;
+  }
+
+  String? get sosUnavailable => sosUnavailableReason(
+    ready: ready,
+    storageError: error != null,
+    connected: connector.isConnected,
+    selectedContacts: trip.members.length,
+    availableContacts: members.length,
+    hasChannel: sosChannel != null,
+  );
+
+  /// Starts an SOS: sends now to the trip contacts and the SOS channel, then
+  /// repeats every [sosRepeatInterval] until acknowledged, stopped, or
+  /// [sosMaxSends] transmissions. Works without an active trip.
+  Future<void> startSos() async {
+    final reason = sosUnavailable;
+    if (reason != null) throw StateError(reason);
+    if (sos.active) return;
+    sos = SosState(active: true, startedAt: DateTime.now());
+    await record('sos', 'SOS started.');
+    _sosTimer?.cancel();
+    _sosTimer = Timer.periodic(
+      const Duration(seconds: 15),
+      (_) => unawaited(sosTick()),
+    );
+    await sosTick();
+  }
+
+  /// Stops the SOS. With [allClear] the recipients are told the sender is
+  /// safe (one transmission, no repeats).
+  Future<void> stopSos({bool allClear = false}) async {
+    if (!sos.active) return;
+    _sosTimer?.cancel();
+    _sosTimer = null;
+    sos = SosState.idle;
+    await record(
+      'sos',
+      allClear ? 'SOS stopped; all clear sent.' : 'SOS stopped.',
+    );
+    if (allClear && connector.isConnected) {
+      await _sendSosText(sosAllClearText(DateTime.now()), 'All clear');
+    }
+    _notify();
+  }
+
+  /// Sends the SOS when one is due. Called by the SOS timer.
+  @visibleForTesting
+  Future<void> sosTick() async {
+    if (_disposed || !sos.active || _sosSending) return;
+    final now = DateTime.now();
+    // A disconnected radio retries on the next tick instead of using a send.
+    if (!sos.dueAt(now) || !connector.isConnected) return;
+    _sosSending = true;
+    sos = sos.sent(now);
+    _notify();
+    try {
+      final text = sosText(
+        now,
+        latitude: connector.selfLatitude,
+        longitude: connector.selfLongitude,
+        battery: connector.batteryPercent,
+      );
+      await _sendSosText(text, 'SOS ${sos.sends}/$sosMaxSends');
+      if (sos.active && sos.sends >= sosMaxSends) {
+        await record(
+          'sos',
+          'SOS repeats finished after $sosMaxSends sends. The SOS stays shown until you stop it.',
+        );
+      }
+    } finally {
+      _sosSending = false;
+      _notify();
+    }
+  }
+
+  Future<void> _sendSosText(String text, String label) async {
+    for (final contact in members.where((c) => c.type == advTypeChat)) {
+      final before = connector
+          .getMessages(contact)
+          .map((m) => m.messageId)
+          .toSet();
+      try {
+        await connector.sendMessage(contact, text);
+        final added = connector
+            .getMessages(contact)
+            .where((m) => m.isOutgoing && !before.contains(m.messageId))
+            .toList();
+        await record(
+          'sos',
+          '${contact.name}: $label',
+          contactKey: contact.publicKeyHex,
+          messageId: added.isEmpty ? null : added.last.messageId,
+          status: added.isEmpty ? 'failed' : added.last.status.name,
+        );
+      } catch (e) {
+        await record(
+          'sos',
+          '${contact.name}: $label could not be sent: $e',
+          contactKey: contact.publicKeyHex,
+          status: 'failed',
+        );
+      }
+    }
+    final channel = sosChannel;
+    if (channel == null) return;
+    try {
+      await connector.sendChannelMessage(channel, text);
+      await record('sos', '${channel.name}: $label sent to channel');
+    } catch (e) {
+      await record('sos', '${channel.name}: $label could not be sent: $e');
+    }
+  }
 
   Future<void> load() async {
     try {
@@ -294,6 +420,29 @@ class FieldOpsService extends ChangeNotifier {
   }
 
   void _incoming(Message message) {
+    // A reply from a trip contact acknowledges an SOS, trip or no trip.
+    if (sos.active &&
+        sos.acknowledgedBy == null &&
+        trip.members.contains(message.senderKeyHex)) {
+      final name = members
+          .where((c) => c.publicKeyHex == message.senderKeyHex)
+          .map((c) => c.name)
+          .firstOrNull;
+      sos = sos.acknowledged(name ?? 'a trip contact');
+      unawaited(
+        record(
+          'sos',
+          'SOS acknowledged by ${sos.acknowledgedBy}: ${message.text}',
+          contactKey: message.senderKeyHex,
+        ),
+      );
+      unawaited(
+        NotificationService().showFieldAlert(
+          'SOS acknowledged by ${sos.acknowledgedBy}',
+        ),
+      );
+      _notify();
+    }
     if (!trip.active ||
         !foreground ||
         !trip.members.contains(message.senderKeyHex) ||
@@ -503,6 +652,7 @@ class FieldOpsService extends ChangeNotifier {
   void dispose() {
     _disposed = true;
     _timer?.cancel();
+    _sosTimer?.cancel();
     _messages?.cancel();
     connector.removeListener(_changed);
     super.dispose();

@@ -440,6 +440,10 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     final selected = ops.trip.members.toSet();
     var location = ops.trip.shareLocation, battery = ops.trip.shareBattery;
     var overdue = ops.trip.overdueMinutes;
+    final channels = ops.connector.channels.where((c) => !c.isEmpty).toList();
+    var sosChannel = channels.any((c) => c.index == ops.trip.sosChannel)
+        ? ops.trip.sosChannel
+        : -1;
     await showDialog<void>(
       context: context,
       builder: (dialogContext) => StatefulBuilder(
@@ -487,6 +491,20 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                       if (v != null) setDialogState(() => overdue = v);
                     },
                   ),
+                  DropdownButtonFormField<int>(
+                    initialValue: sosChannel,
+                    decoration: const InputDecoration(
+                      labelText: 'SOS also goes to channel',
+                    ),
+                    items: [
+                      const DropdownMenuItem(value: -1, child: Text('None')),
+                      for (final c in channels)
+                        DropdownMenuItem(value: c.index, child: Text(c.name)),
+                    ],
+                    onChanged: (v) {
+                      if (v != null) setDialogState(() => sosChannel = v);
+                    },
+                  ),
                   const SizedBox(height: 12),
                   const Text('Select up to six known chat contacts'),
                   for (final c in ops.eligibleContacts)
@@ -518,6 +536,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                         ? 'My trip'
                         : name.text.trim(),
                     members: selected.toList(),
+                    sosChannel: sosChannel,
                     shareLocation: location,
                     shareBattery: battery,
                     overdueMinutes: overdue,
