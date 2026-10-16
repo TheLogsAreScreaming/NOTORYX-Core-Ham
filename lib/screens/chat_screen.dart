@@ -17,6 +17,8 @@ import '../helpers/cyr2lat.dart';
 import '../helpers/message_url_image_helper.dart';
 import '../helpers/path_helper.dart';
 import '../helpers/reaction_helper.dart';
+import '../helpers/share_links.dart';
+import '../widgets/share_in_chat.dart';
 import '../widgets/message_status_icon.dart';
 import '../widgets/empty_state.dart';
 import '../helpers/chat_scroll_controller.dart';
@@ -496,6 +498,22 @@ class _ChatScreenState extends State<ChatScreen> {
     connector.setContactUnreadCount(widget.contact.publicKeyHex, count);
   }
 
+  /// Puts a position or contact link in the message box to review and send.
+  Future<void> _shareIntoComposer(
+    String action,
+    MeshCoreConnector connector,
+  ) async {
+    final text = action == 'position'
+        ? myPositionMessage(connector)
+        : await pickContactToShare(context);
+    if (text == null || !mounted) return;
+    _textController.value = TextEditingValue(
+      text: text,
+      selection: TextSelection.collapsed(offset: text.length),
+    );
+    _textFieldFocusNode.requestFocus();
+  }
+
   Widget _buildInputBar(MeshCoreConnector connector) {
     final maxBytes = maxContactMessageBytes();
     final scheme = Theme.of(context).colorScheme;
@@ -518,6 +536,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 tooltip: context.l10n.chat_selectSendAction,
                 onSelected: (action) {
                   if (action == 'gif') _showGifPicker(context);
+                  if (action == 'position' || action == 'contact') {
+                    _shareIntoComposer(action, connector);
+                  }
                 },
                 itemBuilder: (context) => [
                   PopupMenuItem(
@@ -527,6 +548,37 @@ class _ChatScreenState extends State<ChatScreen> {
                         const Icon(Icons.gif_box),
                         const SizedBox(width: 12),
                         Text(context.l10n.chat_sendGif),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'position',
+                    enabled: myPositionMessage(connector) != null,
+                    child: const Row(
+                      children: [
+                        Icon(Icons.my_location),
+                        SizedBox(width: 12),
+                        Flexible(
+                          child: Text(
+                            'Share my position',
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'contact',
+                    child: Row(
+                      children: [
+                        Icon(Icons.contact_page_outlined),
+                        SizedBox(width: 12),
+                        Flexible(
+                          child: Text(
+                            'Share a contact',
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -1577,6 +1629,9 @@ class _MessageBubble extends StatelessWidget {
                               textScale,
                               senderName,
                             )
+                          else if (parseContactLink(message.text)
+                              case final link?)
+                            ContactLinkCard(link: link, textColor: textColor)
                           else if (gifId != null)
                             Stack(
                               children: [

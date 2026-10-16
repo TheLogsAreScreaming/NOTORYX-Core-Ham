@@ -37,6 +37,8 @@ import '../services/image_codec_service.dart';
 import '../services/received_image_store.dart';
 import '../services/translation_service.dart';
 import '../utils/lora_airtime.dart';
+import '../helpers/share_links.dart';
+import '../widgets/share_in_chat.dart';
 import '../widgets/received_image_message.dart';
 import '../widgets/byte_count_input.dart';
 import '../widgets/empty_state.dart';
@@ -719,6 +721,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             textScale,
                             message.senderName,
                           )
+                        else if (parseContactLink(message.text)
+                            case final link?)
+                          ContactLinkCard(link: link, textColor: textColor)
                         else if (gifId != null)
                           Stack(
                             children: [
@@ -1757,6 +1762,22 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
+  /// Puts a position or contact link in the message box to review and send.
+  Future<void> _shareIntoComposer(
+    String action,
+    MeshCoreConnector connector,
+  ) async {
+    final text = action == 'position'
+        ? myPositionMessage(connector)
+        : await pickContactToShare(context);
+    if (text == null || !mounted) return;
+    _textController.value = TextEditingValue(
+      text: text,
+      selection: TextSelection.collapsed(offset: text.length),
+    );
+    _textFieldFocusNode.requestFocus();
+  }
+
   Widget _buildInputBar() {
     final connector = context.watch<MeshCoreConnector>();
     final corridor = _activeCorridor(connector);
@@ -1767,7 +1788,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         settings.imageMessagesEnabled && !imageCodecDownloading;
     final showCorridorAction = connector.floodCorridorSupported == true;
     final menuItemCount =
-        1 + (showImageAction ? 1 : 0) + (showCorridorAction ? 1 : 0);
+        3 + (showImageAction ? 1 : 0) + (showCorridorAction ? 1 : 0);
     final scheme = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
@@ -1812,6 +1833,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                         case 'corridor':
                           _showCorridorPicker(connector);
                           break;
+                        case 'position':
+                        case 'contact':
+                          _shareIntoComposer(action, connector);
+                          break;
                       }
                     },
                     itemBuilder: (context) => [
@@ -1822,6 +1847,37 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             const Icon(Icons.gif_box),
                             const SizedBox(width: 12),
                             Text(context.l10n.chat_sendGif),
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem(
+                        value: 'position',
+                        enabled: myPositionMessage(connector) != null,
+                        child: const Row(
+                          children: [
+                            Icon(Icons.my_location),
+                            SizedBox(width: 12),
+                            Flexible(
+                              child: Text(
+                                'Share my position',
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const PopupMenuItem(
+                        value: 'contact',
+                        child: Row(
+                          children: [
+                            Icon(Icons.contact_page_outlined),
+                            SizedBox(width: 12),
+                            Flexible(
+                              child: Text(
+                                'Share a contact',
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
                           ],
                         ),
                       ),
