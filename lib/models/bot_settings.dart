@@ -127,8 +127,7 @@ class BotSettings {
     awayMessage:
         json['awayMessage'] as String? ??
         "I'm away. Your message was received by Bastion.",
-    info:
-        json['info'] as String? ?? 'Bastion',
+    info: json['info'] as String? ?? 'Bastion',
     checkIn: json['checkIn'] as String? ?? 'No check-in status configured.',
     cooldownSeconds: (json['cooldownSeconds'] as int? ?? 300).clamp(60, 3600),
     repliesPerMinute: (json['repliesPerMinute'] as int? ?? 3).clamp(1, 6),
