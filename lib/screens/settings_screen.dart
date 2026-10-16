@@ -10,6 +10,7 @@ import '../storage/region_store.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/radio_settings.dart';
+import '../widgets/us_bandwidth_notice.dart';
 import '../services/app_settings_service.dart';
 import '../services/app_debug_log_service.dart';
 import '../theme/mesh_theme.dart';
@@ -21,9 +22,6 @@ import 'app_debug_log_screen.dart';
 import 'ble_debug_log_screen.dart';
 import '../widgets/radio_stats_entry.dart';
 import '../widgets/sync_progress_overlay.dart';
-import '../utils/disconnect_navigation_mixin.dart';
-import '../utils/main_tab_navigation.dart';
-import '../widgets/quick_switch_bar.dart';
 import '../widgets/radio_overview_card.dart';
 import 'companion_cli_screen.dart';
 import 'wifi_settings_screen.dart';
@@ -45,17 +43,13 @@ int _toDeviceCodingRate(int uiCr, int? deviceCr) {
 }
 
 class SettingsScreen extends StatefulWidget {
-  /// Shown as the Radio tab: no back button, and the bottom bar below.
-  final bool asTab;
-
-  const SettingsScreen({super.key, this.asTab = false});
+  const SettingsScreen({super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen>
-    with DisconnectNavigationMixin {
+class _SettingsScreenState extends State<SettingsScreen> {
   bool _showBatteryVoltage = false;
   bool _deviceInfoExpanded = false;
   String _appVersion = '';
@@ -77,23 +71,16 @@ class _SettingsScreenState extends State<SettingsScreen>
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final scaffold = Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: AppBarTitle(
-          widget.asTab ? l10n.nav_radio : l10n.settings_title,
+          l10n.settings_title,
           indicators: false,
           subtitle: false,
         ),
-        centerTitle: !widget.asTab,
-        automaticallyImplyLeading: !widget.asTab,
+        centerTitle: true,
         bottom: const SyncProgressAppBarBottom(),
       ),
-      bottomNavigationBar: widget.asTab
-          ? const SafeArea(
-              top: false,
-              child: QuickSwitchBar(current: MainTab.radio),
-            )
-          : null,
       body: SafeArea(
         top: false,
         child: Consumer<MeshCoreConnector>(
@@ -101,10 +88,9 @@ class _SettingsScreenState extends State<SettingsScreen>
             return ListView(
               padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
               children: [
-                if (widget.asTab) RadioOverviewCard(connector: connector),
+                RadioOverviewCard(connector: connector),
 
                 // IDENTITY section
-                if (!widget.asTab) SectionHeader(l10n.settings_deviceInfo),
                 MeshCard(
                   padding: EdgeInsets.zero,
                   child: _buildIdentityCardContent(context, connector),
@@ -182,15 +168,6 @@ class _SettingsScreenState extends State<SettingsScreen>
         ),
       ),
     );
-    if (!widget.asTab) return scaffold;
-
-    // As a tab this is a root screen: go back to the scanner on disconnect
-    // and don't let the back gesture leave the connected app.
-    final connector = context.watch<MeshCoreConnector>();
-    if (!checkConnectionAndNavigate(connector)) {
-      return const SizedBox.shrink();
-    }
-    return PopScope(canPop: !connector.isConnected, child: scaffold);
   }
 
   Widget _buildNavTileContent(
@@ -254,40 +231,16 @@ class _SettingsScreenState extends State<SettingsScreen>
             child: Row(
               children: [
                 Expanded(
-                  // On the Radio tab the overview card above already shows
-                  // the name and status, so this row only opens the details.
-                  child: widget.asTab
-                      ? Text(
-                          l10n.settings_deviceInfo,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: scheme.onSurface,
-                          ),
-                        )
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              connector.deviceDisplayName,
-                              style: MeshTheme.mono(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: scheme.onSurface,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            StatusChip(
-                              label: connector.isConnected
-                                  ? l10n.common_connected
-                                  : l10n.common_disconnected,
-                              color: connector.isConnected
-                                  ? MeshPalette.signal
-                                  : scheme.onSurfaceVariant,
-                              pulse: connector.isConnected,
-                            ),
-                          ],
-                        ),
+                  // The overview card above already shows the name and
+                  // status, so this row only opens the details.
+                  child: Text(
+                    l10n.settings_deviceInfo,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: scheme.onSurface,
+                    ),
+                  ),
                 ),
                 AnimatedRotation(
                   turns: _deviceInfoExpanded ? 0.5 : 0,
@@ -2110,6 +2063,10 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
                 }
               },
             ),
+            if (double.tryParse(_frequencyController.text)
+                case final double mhz)
+              if (mhz >= 902 && mhz <= 928)
+                UsBandwidthNotice(bandwidthHz: _bandwidth.hz),
             const SizedBox(height: 16),
             DropdownButtonFormField<LoRaSpreadingFactor>(
               initialValue: _spreadingFactor,

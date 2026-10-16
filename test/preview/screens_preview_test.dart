@@ -24,11 +24,14 @@ import 'package:meshcore_open/screens/companion_cli_screen.dart';
 import 'package:meshcore_open/screens/wifi_settings_screen.dart';
 import 'package:meshcore_open/screens/chat_screen.dart';
 import 'package:meshcore_open/screens/contacts_screen.dart';
-import 'package:meshcore_open/screens/messages_screen.dart';
+import 'package:meshcore_open/screens/bastion_home_screen.dart';
+import 'package:meshcore_open/screens/bastion_tools_screen.dart';
 import 'package:meshcore_open/screens/settings_screen.dart';
 import 'package:meshcore_open/services/access_control_service.dart';
 import 'package:meshcore_open/services/app_debug_log_service.dart';
 import 'package:meshcore_open/services/app_settings_service.dart';
+import 'package:meshcore_open/services/bot_service.dart';
+import 'package:meshcore_open/services/field_ops_service.dart';
 import 'package:meshcore_open/services/chat_text_scale_service.dart';
 import 'package:meshcore_open/services/image_codec_service.dart';
 import 'package:meshcore_open/services/map_tile_cache_service.dart';
@@ -241,13 +244,14 @@ Future<void> _loadFonts() async {
 }
 
 Widget _app(Widget home, ThemeMode mode) {
+  final connector = _PreviewConnector();
   final settings = AppSettingsService();
   final storage = StorageService();
   return MultiProvider(
     providers: [
-      ChangeNotifierProvider<MeshCoreConnector>(
-        create: (_) => _PreviewConnector(),
-      ),
+      ChangeNotifierProvider<MeshCoreConnector>.value(value: connector),
+      ChangeNotifierProvider(create: (_) => FieldOpsService(connector)),
+      ChangeNotifierProvider(create: (_) => BotService(connector)),
       ChangeNotifierProvider.value(value: settings),
       ChangeNotifierProvider(create: (_) => MessageRetryService()),
       ChangeNotifierProvider(create: (_) => PathHistoryService(storage)),
@@ -277,12 +281,13 @@ Widget _app(Widget home, ThemeMode mode) {
 void main() {
   final out = Platform.environment['PREVIEW_OUT'];
   final screens = <String, Widget Function()>{
-    'messages': () => const MessagesScreen(),
+    'home': () => const BastionHomeScreen(),
+    'tools': () => const BastionToolsScreen(),
     'contacts': () => const ContactsScreen(hideBackButton: true),
     'channels': () => const ChannelsScreen(),
     'channel_chat': () => ChannelChatScreen(channel: _channels[1]),
     'dm_chat': () => ChatScreen(contact: _contacts[0]),
-    'radio': () => const SettingsScreen(asTab: true),
+    'settings': () => const SettingsScreen(),
     'access_control': () => Builder(
       builder: (context) => AccessControlScreen(
         node: _contacts[2],

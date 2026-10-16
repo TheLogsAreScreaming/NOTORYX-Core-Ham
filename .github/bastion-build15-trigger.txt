@@ -1,0 +1,1 @@
+Bastion Build 15 rebuild trigger after field intelligence compile fix.

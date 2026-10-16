@@ -27,12 +27,17 @@ import '../widgets/sync_progress_overlay.dart';
 import '../widgets/unread_badge.dart';
 import '../helpers/gif_helper.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../utils/main_tab_navigation.dart';
+import '../widgets/quick_switch_bar.dart';
 import 'channel_chat_screen.dart';
 import 'community_qr_scanner_screen.dart';
 import 'settings_screen.dart';
 
 class ChannelsScreen extends StatefulWidget {
-  const ChannelsScreen({super.key});
+  /// Shown as the CHATS tab: no back button, and the bottom bar below.
+  final bool hideBackButton;
+
+  const ChannelsScreen({super.key, this.hideBackButton = false});
 
   @override
   State<ChannelsScreen> createState() => _ChannelsScreenState();
@@ -100,11 +105,16 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       return const SizedBox.shrink();
     }
 
+    final isTab = widget.hideBackButton;
     return PopScope(
+      // As a tab this is a root screen: the back gesture doesn't leave the
+      // connected app.
+      canPop: !isTab || !connector.isConnected,
       child: Scaffold(
         appBar: AppBar(
           title: AppBarTitle(context.l10n.channels_title),
           centerTitle: true,
+          automaticallyImplyLeading: !isTab,
           bottom: const SyncProgressAppBarBottom(),
           actions: [
             PopupMenuButton(
@@ -326,6 +336,12 @@ class _ChannelsScreenState extends State<ChannelsScreen>
           tooltip: context.l10n.channels_addChannel,
           child: const Icon(Icons.add),
         ),
+        bottomNavigationBar: isTab
+            ? const SafeArea(
+                top: false,
+                child: QuickSwitchBar(current: MainTab.chats),
+              )
+            : null,
       ),
     );
   }
