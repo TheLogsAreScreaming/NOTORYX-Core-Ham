@@ -13,6 +13,7 @@ import 'utils/platform_info.dart';
 import 'connector/meshcore_connector.dart';
 import 'models/image_codec_support.dart';
 import 'screens/bastion_home_screen.dart';
+import 'services/read_aloud_service.dart';
 import 'services/app_shortcuts.dart';
 import 'services/sensor_subscription_service.dart';
 import 'services/image_chunk_transport.dart';
@@ -248,6 +249,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   Timer? _imageSweepTimer;
   late final BotService _botService;
   late final FieldOpsService _fieldOps;
+  late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
   late final SensorSubscriptionService _sensorSubscriptions;
   @override
@@ -257,6 +259,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_botService.load());
     _fieldOps = FieldOpsService(widget.connector);
     unawaited(_fieldOps.load());
+    _readAloud = ReadAloudService(widget.connector, widget.appSettingsService);
     _applyBatterySaver();
     widget.appSettingsService.addListener(_applyBatterySaver);
     if (PlatformInfo.isMobile) {
@@ -279,6 +282,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _botService.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
+    _readAloud.dispose();
     _sensorSubscriptions.dispose();
     _imageSweepTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
@@ -289,6 +293,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     _fieldOps.setForeground(state == AppLifecycleState.resumed);
+    _readAloud.foreground = state == AppLifecycleState.resumed;
     widget.receivedImageStore.setForeground(state == AppLifecycleState.resumed);
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.hidden) {
@@ -312,6 +317,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       providers: [
         ChangeNotifierProvider.value(value: _botService),
         ChangeNotifierProvider.value(value: _fieldOps),
+        Provider.value(value: _readAloud),
         ChangeNotifierProvider.value(value: _sensorSubscriptions),
         ChangeNotifierProvider.value(value: connector),
         ChangeNotifierProvider.value(value: widget.retryService),

@@ -90,6 +90,10 @@ class AppSettings {
   final bool mapShowMarkers;
   final bool mapShowGuessedLocations;
   final bool enableMessageTracing;
+
+  /// Which incoming messages are spoken aloud while the app is open:
+  /// 'off', 'direct' or 'all'.
+  final String readAloudIncoming;
   final Map<String, double>? mapCacheBounds;
   final int mapCacheMinZoom;
   final int mapCacheMaxZoom;
@@ -195,6 +199,7 @@ class AppSettings {
     this.mapShowMarkers = true,
     this.mapShowGuessedLocations = true,
     this.enableMessageTracing = true,
+    this.readAloudIncoming = 'off',
     this.mapCacheBounds,
     this.mapCacheMinZoom = 10,
     this.mapCacheMaxZoom = 15,
@@ -270,6 +275,7 @@ class AppSettings {
       'map_show_markers': mapShowMarkers,
       'map_show_guessed_locations': mapShowGuessedLocations,
       'enable_message_tracing': enableMessageTracing,
+      'read_aloud_incoming': readAloudIncoming,
       'map_cache_bounds': mapCacheBounds,
       'map_cache_min_zoom': mapCacheMinZoom,
       'map_cache_max_zoom': mapCacheMaxZoom,
@@ -348,6 +354,10 @@ class AppSettings {
       mapShowGuessedLocations:
           json['map_show_guessed_locations'] as bool? ?? true,
       enableMessageTracing: json['enable_message_tracing'] as bool? ?? true,
+      readAloudIncoming:
+          const ['off', 'direct', 'all'].contains(json['read_aloud_incoming'])
+          ? json['read_aloud_incoming'] as String
+          : 'off',
       mapCacheBounds: (json['map_cache_bounds'] as Map?)?.map(
         (key, value) => MapEntry(key.toString(), (value as num).toDouble()),
       ),
@@ -484,6 +494,7 @@ class AppSettings {
     bool? mapShowMarkers,
     bool? mapShowGuessedLocations,
     bool? enableMessageTracing,
+    String? readAloudIncoming,
     Object? mapCacheBounds = _unset,
     int? mapCacheMinZoom,
     int? mapCacheMaxZoom,
@@ -544,6 +555,7 @@ class AppSettings {
       mapShowGuessedLocations:
           mapShowGuessedLocations ?? this.mapShowGuessedLocations,
       enableMessageTracing: enableMessageTracing ?? this.enableMessageTracing,
+      readAloudIncoming: readAloudIncoming ?? this.readAloudIncoming,
       mapCacheBounds: mapCacheBounds == _unset
           ? this.mapCacheBounds
           : mapCacheBounds as Map<String, double>?,
