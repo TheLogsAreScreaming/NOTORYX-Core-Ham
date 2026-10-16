@@ -1,16 +1,16 @@
-# Privacy Policy for MeshCore Open
+# Privacy Policy for Bastion
 
 **Last Updated:** August 23, 2026
 
 ## Introduction
 
-MeshCore Open ("the App") is an open-source Flutter application for communicating with MeshCore LoRa mesh networking devices. This Privacy Policy explains how the App handles your information.
+Bastion ("the App") is an open-source Flutter application for communicating with MeshCore LoRa mesh networking devices. This Privacy Policy explains how the App handles your information.
 
 ## Data Collection
 
 ### Data We Do NOT Collect
 
-MeshCore Open does **not**:
+Bastion does **not**:
 - Collect personal information for the developer
 - Track your usage or behavior
 - Use analytics services
@@ -31,7 +31,7 @@ The App stores the following data **locally on your device**:
 - **Debug Logs**: Optional BLE and app debug logs (if enabled by user)
 - **Cached Map Tiles**: Offline map data for the mapping feature
 
-This locally stored data is not transmitted to the MeshCore Open developer. Some features may send specific data to third-party services as described in the Third-Party Services section.
+This locally stored data is not transmitted to the Bastion developer. Some features may send specific data to third-party services as described in the Third-Party Services section.
 
 ## Permissions
 
@@ -46,7 +46,7 @@ These permissions are used solely to discover and communicate with MeshCore hard
 ### Location Permission
 - **ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION**
 
-Required by Android for BLE scanning on Android 11 and below. MeshCore Open does not use the phone's GPS to determine your location. Location data shown in the App comes from MeshCore devices and mesh advertisements. Location data may also be optionally shared over the mesh network if you choose to enable location sharing features.
+Required by Android for BLE scanning on Android 11 and below. Bastion does not use the phone's GPS to determine your location. Location data shown in the App comes from MeshCore devices and mesh advertisements. Location data may also be optionally shared over the mesh network if you choose to enable location sharing features.
 
 ### Internet Permission
 - **INTERNET**
@@ -106,7 +106,7 @@ The App does not knowingly collect any personal information from children under 
 
 ## Open Source
 
-MeshCore Open is open-source software. You can review the complete source code to verify these privacy practices at [the project repository].
+Bastion is open-source software. You can review the complete source code to verify these privacy practices at [the project repository].
 
 ## Changes to This Policy
 
@@ -118,4 +118,4 @@ If you have questions about this Privacy Policy or the App's privacy practices, 
 
 ---
 
-**Summary**: MeshCore Open does not use the phone's GPS for location, does not include analytics, and does not collect personal information for the developer. Some optional features communicate with third-party services, including map tile providers, Open-Meteo for LOS elevation lookups, Hugging Face for model downloads, and Giphy for GIF search.
+**Summary**: Bastion does not use the phone's GPS for location, does not include analytics, and does not collect personal information for the developer. Some optional features communicate with third-party services, including map tile providers, Open-Meteo for LOS elevation lookups, Hugging Face for model downloads, and Giphy for GIF search.

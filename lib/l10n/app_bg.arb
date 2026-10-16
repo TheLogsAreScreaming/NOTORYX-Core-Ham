@@ -8,7 +8,7 @@
     }
   },
   "@@locale": "bg",
-  "appTitle": "MeshCore Open",
+  "appTitle": "Bastion",
   "nav_contacts": "Контакти",
   "nav_channels": "Канали",
   "nav_map": "Карта",
@@ -127,7 +127,7 @@
   "settings_appDebugLog": "Лог на отстраняване на грешки на приложението",
   "settings_appDebugLogSubtitle": "Съобщения за отстраняване на грешки на приложението",
   "settings_about": "За нас",
-  "settings_aboutVersion": "MeshCore Open, версия {version}",
+  "settings_aboutVersion": "Bastion, версия {version}",
   "@settings_aboutVersion": {
     "placeholders": {
       "version": {

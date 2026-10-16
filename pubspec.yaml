@@ -135,10 +135,11 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "mesh-icon.png"
+  # Bastion castle; the square and foreground are derived from bastion-icon.png.
+  image_path: "assets/branding/bastion-icon-square.png"
   remove_alpha_ios: true
-  adaptive_icon_background: "#9F9D95"
-  adaptive_icon_foreground: "assets/icons/ic_foreground.png"
+  adaptive_icon_background: "#121E23"
+  adaptive_icon_foreground: "assets/branding/bastion-icon-foreground.png"
 
   # To add assets to your application, add an assets section, like this:
   # assets:

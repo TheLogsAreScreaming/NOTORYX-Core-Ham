@@ -8,7 +8,7 @@
     }
   },
   "@@locale": "sv",
-  "appTitle": "MeshCore Open",
+  "appTitle": "Bastion",
   "nav_contacts": "Kontakter",
   "nav_channels": "Kanaler",
   "nav_map": "Karta",
@@ -127,7 +127,7 @@
   "settings_appDebugLog": "Appens felsökningslogg",
   "settings_appDebugLogSubtitle": "Felsökningsmeddelanden från appen",
   "settings_about": "Om",
-  "settings_aboutVersion": "MeshCore Open version {version}",
+  "settings_aboutVersion": "Bastion version {version}",
   "@settings_aboutVersion": {
     "placeholders": {
       "version": {
