@@ -17,6 +17,7 @@ import '../models/flood_corridor.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';
 import '../models/translation_support.dart';
+import '../helpers/share_links.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/cyr2lat.dart';
 import '../helpers/smaz.dart';
@@ -3236,6 +3237,24 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
 
     await sendFrame(buildGetContactsFrame(since: since));
+  }
+
+  /// Adds a contact shared as a [ContactLink]. Its route is unknown until it
+  /// is heard, so the first message to it floods.
+  Future<void> addContactFromLink(ContactLink link) async {
+    if (!isConnected) throw StateError('Connect your radio first.');
+    await sendFrame(
+      buildUpdateContactPathFrame(
+        link.publicKey,
+        Uint8List(0),
+        0xFF, // OUT_PATH_UNKNOWN
+        type: link.type,
+        name: link.name,
+      ),
+      expectsGenericAck: true,
+      waitForGenericAck: true,
+    );
+    await refreshContacts();
   }
 
   Future<void> refreshContacts() async {
