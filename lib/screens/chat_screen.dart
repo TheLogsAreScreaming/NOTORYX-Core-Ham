@@ -32,6 +32,7 @@ import '../services/translation_service.dart';
 import '../widgets/chat_zoom_wrapper.dart';
 import '../widgets/byte_count_input.dart';
 import 'channel_message_path_screen.dart';
+import 'repeater_cli_screen.dart';
 import 'map_screen.dart';
 import '../widgets/emoji_picker.dart';
 import '../widgets/gif_message.dart';
@@ -248,6 +249,17 @@ class _ChatScreenState extends State<ChatScreen> {
                               TelemetryScreen(contact: widget.contact),
                         ),
                       );
+                    case 'remoteCli':
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RepeaterCliScreen(
+                            repeater: contact,
+                            password: '',
+                            companion: true,
+                          ),
+                        ),
+                      );
                     case 'clearChat':
                       _confirmClearChat(context, connector);
                   }
@@ -283,6 +295,17 @@ class _ChatScreenState extends State<ChatScreen> {
                       ],
                     ),
                   ),
+                  if (contact.type == advTypeChat)
+                    const PopupMenuItem(
+                      value: 'remoteCli',
+                      child: Row(
+                        children: [
+                          Icon(Icons.terminal, size: 20),
+                          SizedBox(width: 12),
+                          Text('Command line on their radio'),
+                        ],
+                      ),
+                    ),
                   PopupMenuItem(
                     value: 'settings',
                     child: Row(
@@ -902,6 +925,10 @@ class _ChatScreenState extends State<ChatScreen> {
     bool teleBaseEnabled = contact.teleBaseEnabled;
     bool teleLocEnabled = contact.teleLocEnabled;
     bool teleEnvEnabled = contact.teleEnvEnabled;
+    bool remoteCliAllowed = contact.remoteCliAllowed;
+    final blocked = connector.blockedRemoteCommands
+        .where((b) => b.contactKey == contact.publicKeyHex)
+        .firstOrNull;
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -1037,6 +1064,30 @@ class _ChatScreenState extends State<ChatScreen> {
                     setDialogState(() => teleEnvEnabled = value);
                   },
                 ),
+                if (contact.type == advTypeChat) ...[
+                  const Divider(height: 8),
+                  SwitchListTile(
+                    key: const ValueKey('remote-cli-switch'),
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text('Allow remote command line'),
+                    subtitle: Text(
+                      blocked == null
+                          ? 'Lets this contact run any command on your radio, including changing its settings. MeshCore v1.18+.'
+                          : 'Lets this contact run any command on your radio. Last blocked: "${blocked.command}".',
+                    ),
+                    value: remoteCliAllowed,
+                    onChanged: (value) async {
+                      if (value &&
+                          !await confirmRemoteCliPermission(
+                            context,
+                            contact.name,
+                          )) {
+                        return;
+                      }
+                      setDialogState(() => remoteCliAllowed = value);
+                    },
+                  ),
+                ],
               ],
             ),
           ),
@@ -1048,6 +1099,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   teleBase: teleBaseEnabled,
                   teleLoc: teleLocEnabled,
                   teleEnv: teleEnvEnabled,
+                  remoteCli: contact.type == advTypeChat
+                      ? remoteCliAllowed
+                      : null,
                 );
                 Navigator.pop(context);
               },
@@ -1861,4 +1915,31 @@ Color _colorForName(String name) {
     h = (h * 31 + c) & 0x7fffffff;
   }
   return hues[h % hues.length];
+}
+
+/// Asks before giving [name] full control of this radio's command line.
+Future<bool> confirmRemoteCliPermission(
+  BuildContext context,
+  String name,
+) async {
+  final ok = await showDialog<bool>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: const Text('Allow remote command line?'),
+      content: Text(
+        '$name will be able to run any command on your radio over the mesh: change its name, radio settings and passwords, or reboot it. Only allow people you trust.',
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context, false),
+          child: const Text('Cancel'),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.pop(context, true),
+          child: const Text('Allow'),
+        ),
+      ],
+    ),
+  );
+  return ok == true;
 }

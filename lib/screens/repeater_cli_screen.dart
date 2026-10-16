@@ -16,10 +16,15 @@ class RepeaterCliScreen extends StatefulWidget {
   final Contact repeater;
   final String password;
 
+  /// Another companion radio rather than a repeater: commands go out as
+  /// remote CLI commands, which run only if that radio allows us.
+  final bool companion;
+
   const RepeaterCliScreen({
     super.key,
     required this.repeater,
     required this.password,
+    this.companion = false,
   });
 
   @override
@@ -47,11 +52,24 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
     {'labelKey': 'clock sync', 'command': 'clock sync'},
   ];
 
+  /// Repeater-only commands (neighbors, discovery, advert) are left out for
+  /// companion radios.
+  static const _companionQuickCommands = {
+    'getName',
+    'getRadio',
+    'getTx',
+    'version',
+    'clock',
+  };
+
   @override
   void initState() {
     super.initState();
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
-    _commandService = RepeaterCommandService(connector);
+    _commandService = RepeaterCommandService(
+      connector,
+      txtType: widget.companion ? txtTypeCliCommand : txtTypeCliData,
+    );
     _setupMessageListener();
   }
 
@@ -126,6 +144,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
       final frame = buildSendCliCommandFrame(
         widget.repeater.publicKey,
         command,
+        txtType: widget.companion ? txtTypeCliCommand : txtTypeCliData,
       );
       DebugFrameViewer.showFrameDebug(
         context,
@@ -264,7 +283,11 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
       backgroundColor: MeshPalette.bg,
       appBar: AppBar(
         backgroundColor: MeshPalette.bg1,
-        title: Text(l10n.repeater_cliTitle),
+        title: Text(
+          widget.companion
+              ? 'Command line: ${repeater.name}'
+              : l10n.repeater_cliTitle,
+        ),
         centerTitle: true,
         actions: [
           IconButton(
@@ -314,6 +337,17 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
       ),
       body: Column(
         children: [
+          if (widget.companion)
+            Container(
+              key: const ValueKey('companion-cli-note'),
+              width: double.infinity,
+              color: MeshPalette.bg1,
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+              child: Text(
+                'Runs on ${repeater.name}\'s radio only if they allowed you remote command line (MeshCore v1.18+). No reply means it was blocked or didn\'t arrive.',
+                style: const TextStyle(color: MeshPalette.ink3, fontSize: 12),
+              ),
+            ),
           // Quick commands bar
           Container(
             color: MeshPalette.bg1,
@@ -321,26 +355,33 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: _quickCommands.map((cmd) {
-                  final label = _quickCommandLabel(cmd['labelKey']!);
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 6),
-                    child: ActionChip(
-                      label: Text(
-                        label,
-                        style: MeshTheme.mono(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: MeshPalette.accent,
+                children: _quickCommands
+                    .where(
+                      (cmd) =>
+                          !widget.companion ||
+                          _companionQuickCommands.contains(cmd['labelKey']),
+                    )
+                    .map((cmd) {
+                      final label = _quickCommandLabel(cmd['labelKey']!);
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 6),
+                        child: ActionChip(
+                          label: Text(
+                            label,
+                            style: MeshTheme.mono(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                              color: MeshPalette.accent,
+                            ),
+                          ),
+                          backgroundColor: MeshPalette.accentBg,
+                          side: const BorderSide(color: MeshPalette.accentLine),
+                          visualDensity: VisualDensity.compact,
+                          onPressed: () => _useQuickCommand(cmd['command']!),
                         ),
-                      ),
-                      backgroundColor: MeshPalette.accentBg,
-                      side: const BorderSide(color: MeshPalette.accentLine),
-                      visualDensity: VisualDensity.compact,
-                      onPressed: () => _useQuickCommand(cmd['command']!),
-                    ),
-                  );
-                }).toList(),
+                      );
+                    })
+                    .toList(),
               ),
             ),
           ),

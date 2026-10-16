@@ -14,7 +14,11 @@ class RepeaterCommandService {
 
   static const int maxRetries = 5;
 
-  RepeaterCommandService(this._connector);
+  /// [txtTypeCliData] for repeaters and room servers (after login), or
+  /// [txtTypeCliCommand] for another companion radio that allows us.
+  final int txtType;
+
+  RepeaterCommandService(this._connector, {this.txtType = txtTypeCliData});
 
   /// Send a CLI command to a repeater with automatic retries
   /// Returns a future that completes when a response is received or after max retries
@@ -77,6 +81,7 @@ class RepeaterCommandService {
         framedCommand,
         attempt: attempt,
         timestampSeconds: timestampSeconds,
+        txtType: txtType,
       );
       final responseBytes = frame.length > maxFrameSize
           ? frame.length

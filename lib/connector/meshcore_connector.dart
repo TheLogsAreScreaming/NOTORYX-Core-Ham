@@ -3330,6 +3330,7 @@ class MeshCoreConnector extends ChangeNotifier {
     bool? teleBase,
     bool? teleLoc,
     bool? teleEnv,
+    bool? remoteCli,
   }) async {
     if (!isConnected) return;
     final latestContact =
@@ -3353,6 +3354,11 @@ class MeshCoreConnector extends ChangeNotifier {
         ? (teleEnv
               ? (updatedFlags | contactFlagTeleEnv)
               : (updatedFlags & ~contactFlagTeleEnv))
+        : updatedFlags;
+    updatedFlags = remoteCli != null
+        ? (remoteCli
+              ? (updatedFlags | contactFlagRemoteCli)
+              : (updatedFlags & ~contactFlagRemoteCli))
         : updatedFlags;
 
     final encodedPathLen = _encodePathLenForCurrentMode(
@@ -5600,6 +5606,10 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  @visibleForTesting
+  Message? parseContactMessageForTest(Uint8List frame) =>
+      _parseContactMessage(frame);
+
   Message? _parseContactMessage(Uint8List frame) {
     if (frame.isEmpty) {
       appLogger.warn('Received empty frame, ignoring');
@@ -5653,6 +5663,16 @@ class MeshCoreConnector extends ChangeNotifier {
       final isPlain =
           shiftedType == txtTypePlain || rawType == txtTypePlain || isSigned;
       final isCli = shiftedType == txtTypeCliData || rawType == txtTypeCliData;
+      if (shiftedType == txtTypeCliCommand || rawType == txtTypeCliCommand) {
+        // Our radio only passes a remote command up when it refused to run
+        // it: the sender lacks the remote command line permission.
+        final from = contacts.cast<Contact?>().firstWhere(
+          (c) => c != null && _matchesPrefix(c.publicKey, senderPrefix),
+          orElse: () => null,
+        );
+        _blockedRemoteCommand(from, msgText);
+        return null;
+      }
       if (!isPlain && !isCli) {
         appLogger.warn(
           'Unknown message type received: txtType=$txtType, shifted=$shiftedType, raw=$rawType',
@@ -5694,6 +5714,34 @@ class MeshCoreConnector extends ChangeNotifier {
       appLogger.warn('Error parsing contact direct message: $e');
       return null;
     }
+  }
+
+  /// Recent commands our radio refused to run, newest first.
+  final List<BlockedRemoteCommand> blockedRemoteCommands = [];
+
+  void _blockedRemoteCommand(Contact? from, String command) {
+    // Strip the optional "NN|" request tag the sender's app adds.
+    final text = command.length > 3 && command[2] == '|'
+        ? command.substring(3)
+        : command;
+    final name = from?.name ?? 'An unknown contact';
+    blockedRemoteCommands.insert(
+      0,
+      BlockedRemoteCommand(
+        contactKey: from?.publicKeyHex,
+        name: name,
+        command: text,
+        at: DateTime.now(),
+      ),
+    );
+    if (blockedRemoteCommands.length > 20) blockedRemoteCommands.removeLast();
+    appLogger.warn('Blocked remote command from $name: $text');
+    unawaited(
+      _notificationService.showFieldAlert(
+        '$name tried to run "$text" on your radio. Blocked: they don\'t have remote command line permission.',
+      ),
+    );
+    notifyListeners();
   }
 
   bool _matchesPrefix(Uint8List fullKey, Uint8List prefix) {
@@ -7823,5 +7871,19 @@ class _PendingCommandAck {
     required this.commandCode,
     this.channelSendQueueId,
     this.completer,
+  });
+}
+
+/// A command another radio sent us that our radio refused to run.
+class BlockedRemoteCommand {
+  final String? contactKey;
+  final String name;
+  final String command;
+  final DateTime at;
+  const BlockedRemoteCommand({
+    required this.contactKey,
+    required this.name,
+    required this.command,
+    required this.at,
   });
 }
