@@ -7,6 +7,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../storage/draft_store.dart';
 import '../utils/app_logger.dart';
 import '../utils/platform_info.dart';
 
@@ -84,9 +85,18 @@ class _ChatScreenState extends State<ChatScreen> {
   String? _unreadDividerMessageId;
   DateTime? _lastTextSendAt;
 
+  late final DraftKeeper _draft = DraftKeeper(
+    _textController,
+    DraftStore.contactKey(
+      context.read<MeshCoreConnector>().selfPublicKeyHex,
+      widget.contact.publicKeyHex,
+    ),
+  );
+
   @override
   void initState() {
     super.initState();
+    _draft.attach();
     _textFieldFocusNode.addListener(_onTextFieldFocusChange);
     _scrollController.onScrollNearTop = _loadOlderMessages;
     _scrollController.showJumpToBottom.addListener(_clearDividerAtBottom);
@@ -179,6 +189,7 @@ class _ChatScreenState extends State<ChatScreen> {
     _scrollController.showJumpToBottom.removeListener(_clearDividerAtBottom);
     _textFieldFocusNode.removeListener(_onTextFieldFocusChange);
     _textFieldFocusNode.dispose();
+    _draft.dispose();
     _textController.dispose();
     _scrollController.dispose();
     super.dispose();
