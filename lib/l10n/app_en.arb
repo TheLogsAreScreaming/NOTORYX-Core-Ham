@@ -66,6 +66,43 @@
   },
   "radioOverview_sendAdvert": "Send advert",
   "radioOverview_stats": "Radio stats",
+  "companionCli_title": "Command line",
+  "companionCli_tileSubtitle": "Run commands on your radio",
+  "companionCli_warning": "Commands run on your connected radio and can change its settings or restart it.",
+  "companionCli_hint": "Type a command, e.g. ver",
+  "companionCli_send": "Run command",
+  "companionCli_noReply": "No reply. The radio may be restarting.",
+  "companionCli_empty": "Try one of the commands above, or type your own.",
+  "wifi_title": "WiFi",
+  "wifi_tileSubtitle": "Connect your radio to a WiFi network",
+  "wifi_unsupported": "This radio's firmware doesn't include WiFi.",
+  "wifi_enabled": "Use WiFi",
+  "wifi_status": "Status",
+  "wifi_connected": "Connected",
+  "wifi_connectedIp": "Connected · {ip}",
+  "@wifi_connectedIp": {
+    "placeholders": {
+      "ip": {"type": "String"}
+    }
+  },
+  "wifi_disconnected": "Not connected",
+  "wifi_network": "Network name (SSID)",
+  "wifi_password": "Password",
+  "wifi_passwordKeep": "Leave blank to keep the current password",
+  "wifi_save": "Save",
+  "wifi_forget": "Forget network",
+  "wifi_forgetConfirm": "Remove the saved network and password from the radio?",
+  "wifi_rebootNeeded": "Saved. Restart the radio to apply WiFi changes.",
+  "wifi_rebootNow": "Restart radio",
+  "wifi_rebootConfirm": "Restart the radio now? The app will disconnect and you'll need to reconnect.",
+  "wifi_loadFailed": "Couldn't read the WiFi settings from the radio.",
+  "wifi_retry": "Try again",
+  "wifi_saveFailed": "The radio didn't accept the change: {reply}",
+  "@wifi_saveFailed": {
+    "placeholders": {
+      "reply": {"type": "String"}
+    }
+  },
   "common_cancel": "Cancel",
   "common_ok": "OK",
   "common_connect": "Connect",

@@ -340,6 +340,168 @@ abstract class AppLocalizations {
   /// **'Radio stats'**
   String get radioOverview_stats;
 
+  /// No description provided for @companionCli_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Command line'**
+  String get companionCli_title;
+
+  /// No description provided for @companionCli_tileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Run commands on your radio'**
+  String get companionCli_tileSubtitle;
+
+  /// No description provided for @companionCli_warning.
+  ///
+  /// In en, this message translates to:
+  /// **'Commands run on your connected radio and can change its settings or restart it.'**
+  String get companionCli_warning;
+
+  /// No description provided for @companionCli_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a command, e.g. ver'**
+  String get companionCli_hint;
+
+  /// No description provided for @companionCli_send.
+  ///
+  /// In en, this message translates to:
+  /// **'Run command'**
+  String get companionCli_send;
+
+  /// No description provided for @companionCli_noReply.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply. The radio may be restarting.'**
+  String get companionCli_noReply;
+
+  /// No description provided for @companionCli_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Try one of the commands above, or type your own.'**
+  String get companionCli_empty;
+
+  /// No description provided for @wifi_title.
+  ///
+  /// In en, this message translates to:
+  /// **'WiFi'**
+  String get wifi_title;
+
+  /// No description provided for @wifi_tileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio to a WiFi network'**
+  String get wifi_tileSubtitle;
+
+  /// No description provided for @wifi_unsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This radio\'s firmware doesn\'t include WiFi.'**
+  String get wifi_unsupported;
+
+  /// No description provided for @wifi_enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Use WiFi'**
+  String get wifi_enabled;
+
+  /// No description provided for @wifi_status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get wifi_status;
+
+  /// No description provided for @wifi_connected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get wifi_connected;
+
+  /// No description provided for @wifi_connectedIp.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected · {ip}'**
+  String wifi_connectedIp(String ip);
+
+  /// No description provided for @wifi_disconnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not connected'**
+  String get wifi_disconnected;
+
+  /// No description provided for @wifi_network.
+  ///
+  /// In en, this message translates to:
+  /// **'Network name (SSID)'**
+  String get wifi_network;
+
+  /// No description provided for @wifi_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get wifi_password;
+
+  /// No description provided for @wifi_passwordKeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave blank to keep the current password'**
+  String get wifi_passwordKeep;
+
+  /// No description provided for @wifi_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get wifi_save;
+
+  /// No description provided for @wifi_forget.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget network'**
+  String get wifi_forget;
+
+  /// No description provided for @wifi_forgetConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove the saved network and password from the radio?'**
+  String get wifi_forgetConfirm;
+
+  /// No description provided for @wifi_rebootNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved. Restart the radio to apply WiFi changes.'**
+  String get wifi_rebootNeeded;
+
+  /// No description provided for @wifi_rebootNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart radio'**
+  String get wifi_rebootNow;
+
+  /// No description provided for @wifi_rebootConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart the radio now? The app will disconnect and you\'ll need to reconnect.'**
+  String get wifi_rebootConfirm;
+
+  /// No description provided for @wifi_loadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t read the WiFi settings from the radio.'**
+  String get wifi_loadFailed;
+
+  /// No description provided for @wifi_retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get wifi_retry;
+
+  /// No description provided for @wifi_saveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio didn\'t accept the change: {reply}'**
+  String wifi_saveFailed(String reply);
+
   /// No description provided for @common_cancel.
   ///
   /// In en, this message translates to:
