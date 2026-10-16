@@ -14,6 +14,7 @@ import 'connector/meshcore_connector.dart';
 import 'models/image_codec_support.dart';
 import 'screens/bastion_home_screen.dart';
 import 'services/app_shortcuts.dart';
+import 'services/sensor_subscription_service.dart';
 import 'services/image_chunk_transport.dart';
 import 'services/image_codec_service.dart';
 import 'services/image_codec_settings_store.dart';
@@ -248,6 +249,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final BotService _botService;
   late final FieldOpsService _fieldOps;
   final _navigatorKey = GlobalKey<NavigatorState>();
+  late final SensorSubscriptionService _sensorSubscriptions;
   @override
   void initState() {
     super.initState();
@@ -262,6 +264,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         }),
       );
     }
+    _sensorSubscriptions = SensorSubscriptionService(widget.connector);
     WidgetsBinding.instance.addObserver(this);
     _imageSweepTimer = Timer.periodic(
       _kImageSweepInterval,
@@ -273,6 +276,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   void dispose() {
     _botService.dispose();
     _fieldOps.dispose();
+    _sensorSubscriptions.dispose();
     _imageSweepTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
@@ -305,6 +309,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       providers: [
         ChangeNotifierProvider.value(value: _botService),
         ChangeNotifierProvider.value(value: _fieldOps),
+        ChangeNotifierProvider.value(value: _sensorSubscriptions),
         ChangeNotifierProvider.value(value: connector),
         ChangeNotifierProvider.value(value: widget.retryService),
         ChangeNotifierProvider.value(value: widget.pathHistoryService),

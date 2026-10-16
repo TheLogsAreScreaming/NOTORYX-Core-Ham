@@ -21,6 +21,7 @@ import '../widgets/sync_progress_overlay.dart';
 import '../widgets/telemetry_location_map.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/sensor_live_card.dart';
 
 class TelemetryScreen extends StatefulWidget {
   final Contact contact;
@@ -49,6 +50,9 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
   RepeaterCommandService? _commandService;
   PathSelection? _pendingStatusSelection;
   List<Map<String, dynamic>>? _parsedTelemetry;
+
+  /// The same read, one entry per reading with its LPP type.
+  List<Map<String, dynamic>>? _rawReadings;
   final TextEditingController _autoRefreshIntervalController =
       TextEditingController(text: '$_autoRefreshDefaultIntervalSeconds');
   final TextEditingController _autoRefreshQuantityController =
@@ -157,6 +161,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
 
   void _handleTelemetryResponse(Uint8List frame) {
     final parsedTelemetry = CayenneLpp.parseByChannel(frame);
+    _rawReadings = CayenneLpp.parse(frame);
     final batteryMv = _extractTelemetryBatteryMillivolts(parsedTelemetry);
     if (batteryMv != null) {
       final connector = Provider.of<MeshCoreConnector>(context, listen: false);
@@ -404,6 +409,8 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
                     entry['channel'],
                     isImperialUnits,
                   ),
+              if (widget.contact.type == advTypeSensor)
+                SensorLiveCard(sensor: widget.contact, current: _rawReadings),
               _buildAutoRefreshCard(),
             ],
           ),
