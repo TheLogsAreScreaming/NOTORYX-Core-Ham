@@ -284,7 +284,7 @@ Widget _app(Widget home, ThemeMode mode) {
   return MultiProvider(
     providers: [
       ChangeNotifierProvider<MeshCoreConnector>.value(value: connector),
-      ChangeNotifierProvider(create: (_) => FieldOpsService(connector)),
+      ChangeNotifierProvider(create: (_) => FieldOpsService(connector)..load()),
       ChangeNotifierProvider(
         create: (_) => SensorSubscriptionService(connector),
       ),
