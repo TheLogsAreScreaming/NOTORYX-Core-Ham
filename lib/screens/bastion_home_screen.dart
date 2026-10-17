@@ -19,6 +19,7 @@ import 'discovery_screen.dart';
 import 'scanner_screen.dart';
 import 'bastion_setup_screen.dart';
 import '../widgets/sos_panel.dart';
+import '../widgets/quick_trip_setup.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../utils/main_tab_navigation.dart';
 
@@ -164,13 +165,11 @@ class BastionHomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             FilledButton.icon(
-              onPressed: checkInReason == null
-                  ? () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            const BastionFieldOpsScreen(initialCheckIn: true),
-                      ),
-                    )
+              key: const ValueKey('home-check-in'),
+              // Only a missing radio or loading blocks this; missing
+              // contacts or a stopped trip are sorted out on tap.
+              onPressed: hardBlockReason(ops) == null
+                  ? () => _checkIn(context, ops)
                   : null,
               icon: const Icon(Icons.check_circle_outline),
               label: Padding(
@@ -180,12 +179,17 @@ class BastionHomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              checkInReason ??
-                  (ops.latestDelivery == null
-                      ? l10n.bastionHome_checkInHint
-                      : l10n.bastionHome_lastCheckIn(
-                          ops.latestDelivery!.headlineIn(l10n),
-                        )),
+              hardBlockReason(ops) ??
+                  (!hasCheckInContacts(ops)
+                      ? 'Tap to choose who gets your check-ins.'
+                      : !ops.trip.active
+                      ? 'Tap to start your trip and check in.'
+                      : checkInReason ??
+                            (ops.latestDelivery == null
+                                ? l10n.bastionHome_checkInHint
+                                : l10n.bastionHome_lastCheckIn(
+                                    ops.latestDelivery!.headlineIn(l10n),
+                                  ))),
               style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
             ),
             const SizedBox(height: 12),
@@ -424,6 +428,29 @@ class BastionHomeScreen extends StatelessWidget {
             ),
           ],
         ],
+      ),
+    );
+  }
+
+  /// Check in, first choosing recipients and starting the trip if needed.
+  Future<void> _checkIn(BuildContext context, FieldOpsService ops) async {
+    final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    if (!hasCheckInContacts(ops)) {
+      final saved = await showQuickTripSetup(context, ops, forSos: false);
+      if (!saved || !hasCheckInContacts(ops)) return;
+    }
+    if (!ops.trip.active) {
+      try {
+        await ops.startTrip();
+      } catch (e) {
+        messenger.showSnackBar(SnackBar(content: Text('$e')));
+        return;
+      }
+    }
+    await navigator.push(
+      MaterialPageRoute<void>(
+        builder: (_) => const BastionFieldOpsScreen(initialCheckIn: true),
       ),
     );
   }

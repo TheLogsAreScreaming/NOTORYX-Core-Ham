@@ -6,6 +6,7 @@ import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../models/field_ops.dart';
 import '../services/field_ops_service.dart';
+import 'quick_trip_setup.dart';
 
 const _red = Color(0xFFD9534F);
 Color get _muted => MeshPalette.ink3;
@@ -21,15 +22,9 @@ class SosPanel extends StatelessWidget {
     final ops = context.watch<FieldOpsService>();
     if (ops.sos.active) return _ActiveSos(ops: ops);
     final l10n = context.l10n;
-    final reason = sosUnavailableReason(
-      ready: ops.ready,
-      storageError: ops.error != null,
-      connected: ops.connector.isConnected,
-      selectedContacts: ops.trip.members.length,
-      availableContacts: ops.members.length,
-      hasChannel: ops.sosChannel != null,
-      l10n: l10n,
-    );
+    // Only a missing radio or loading blocks the button. With nobody to
+    // send to yet, the hold asks who should get it, then sends.
+    final reason = hardBlockReason(ops);
     final channel = ops.sosChannel;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -42,7 +37,9 @@ class SosPanel extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           reason ??
-              (channel == null
+              (!hasSosTarget(ops)
+                  ? "Hold 2 seconds. You'll choose who gets it, then it sends."
+                  : channel == null
                   ? l10n.sos_holdHint
                   : l10n.sos_holdHintChannel(channel.name)),
           style: TextStyle(color: _muted, fontSize: 12),
@@ -54,6 +51,10 @@ class SosPanel extends StatelessWidget {
   Future<void> _start(BuildContext context, FieldOpsService ops) async {
     final messenger = ScaffoldMessenger.of(context);
     final l10n = context.l10n;
+    if (!hasSosTarget(ops)) {
+      final saved = await showQuickTripSetup(context, ops, forSos: true);
+      if (!saved || !hasSosTarget(ops)) return;
+    }
     try {
       await ops.startSos();
     } catch (e) {
