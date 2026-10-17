@@ -6,6 +6,7 @@ import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../services/field_ops_service.dart';
 import '../models/field_ops.dart';
+import '../widgets/regional_preset_banner.dart';
 import 'bastion_about_screen.dart';
 import 'bastion_field_ops_screen.dart';
 import 'bastion_diagnostics_screen.dart';
@@ -111,6 +112,7 @@ class BastionHomeScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 22),
+            const RegionalPresetBanner(),
             _ActionCard(
               icon: Icons.explore_outlined,
               title: l10n.bastionHome_getStarted,

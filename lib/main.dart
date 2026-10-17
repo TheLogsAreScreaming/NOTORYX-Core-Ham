@@ -13,6 +13,7 @@ import 'utils/platform_info.dart';
 import 'connector/meshcore_connector.dart';
 import 'models/image_codec_support.dart';
 import 'screens/bastion_home_screen.dart';
+import 'services/regional_preset_service.dart';
 import 'services/read_aloud_service.dart';
 import 'services/app_shortcuts.dart';
 import 'services/sensor_subscription_service.dart';
@@ -250,6 +251,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   Timer? _channelPruneTimer;
   late final BotService _botService;
   late final FieldOpsService _fieldOps;
+  late final RegionalPresetService _regionalPresets;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
   AppShortcuts? _shortcuts;
@@ -262,6 +264,8 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_botService.load());
     _fieldOps = FieldOpsService(widget.connector);
     unawaited(_fieldOps.load());
+    _regionalPresets = RegionalPresetService(widget.connector);
+    unawaited(_regionalPresets.start());
     _readAloud = ReadAloudService(widget.connector, widget.appSettingsService);
     _applyBatterySaver();
     widget.appSettingsService.addListener(_applyBatterySaver);
@@ -291,6 +295,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _botService.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
+    _regionalPresets.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
     _imageSweepTimer?.cancel();
@@ -327,6 +332,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       providers: [
         ChangeNotifierProvider.value(value: _botService),
         ChangeNotifierProvider.value(value: _fieldOps),
+        ChangeNotifierProvider<RegionalPresetService?>.value(
+          value: _regionalPresets,
+        ),
         Provider.value(value: _readAloud),
         ChangeNotifierProvider.value(value: _sensorSubscriptions),
         ChangeNotifierProvider.value(value: connector),

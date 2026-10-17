@@ -81,6 +81,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/fonts/
+    - assets/regional_presets.json
   fonts:
     - family: Inter
       fonts:
