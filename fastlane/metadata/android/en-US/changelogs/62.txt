@@ -1,0 +1,2 @@
+• Check-in and SOS now work from a fresh install: the first tap asks who should get them, then sends
+• Hints under the buttons say what a tap will do
