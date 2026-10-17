@@ -41,7 +41,7 @@ class QuickSwitchBar extends StatelessWidget {
       if (onSelected != null) {
         onSelected!(tab);
       } else if (tab != current) {
-        switchMainTab(context, tab);
+        switchMainTab(context, tab, from: current);
       }
     }
 
@@ -85,6 +85,11 @@ class QuickSwitchBar extends StatelessWidget {
                 selectedIndex: current.index,
                 onDestinationSelected: handleDestination,
                 destinations: [
+                  const NavigationDestination(
+                    icon: Icon(Icons.shield_outlined),
+                    selectedIcon: Icon(Icons.shield),
+                    label: 'HOME',
+                  ),
                   NavigationDestination(
                     icon: _buildIconWithBadge(
                       const Icon(Icons.hub_outlined),
