@@ -309,6 +309,18 @@ class MeshCoreConnector extends ChangeNotifier {
   bool _bleInitialSyncStarted = false;
   bool _webInitialHandshakeRequestSent = false;
   bool _preserveContactsOnRefresh = false;
+
+  /// Contact sync watchdog: keys received in this sync, how many times the
+  /// request was re-sent after silence, and whether the last sync gave up.
+  final Set<String> _contactSyncSeen = {};
+  Timer? _contactSyncWatchdog;
+  int _contactSyncRetries = 0;
+  int? _contactSyncSince;
+  bool _contactSyncStalled = false;
+
+  /// Silence that counts as a stalled contact sync.
+  @visibleForTesting
+  static Duration contactSyncSilence = const Duration(seconds: 20);
   bool _autoAddUsers = false;
   bool _autoAddRepeaters = false;
   bool _autoAddRoomServers = false;
@@ -585,6 +597,80 @@ class MeshCoreConnector extends ChangeNotifier {
   int get maxContacts => _maxContacts;
   int get maxChannels => _maxChannels;
   Set<String> get knownContactKeys => Set.unmodifiable(_knownContactKeys);
+
+  /// True when the last contact sync got no answer from the radio and gave
+  /// up; saved contacts are still shown.
+  bool get contactSyncStalled => _contactSyncStalled;
+
+  /// Asks the radio for its contacts again after a stalled sync.
+  Future<void> retryContactSync() => getContacts(preserveExisting: true);
+
+  void _armContactSyncWatchdog() {
+    _contactSyncWatchdog?.cancel();
+    _contactSyncWatchdog = Timer(contactSyncSilence, _onContactSyncSilent);
+  }
+
+  void _onContactSyncSilent() {
+    if (!_isLoadingContacts) return;
+    if (isConnected && _contactSyncRetries == 0) {
+      _contactSyncRetries++;
+      appLogger.warn(
+        'Contact sync silent for ${contactSyncSilence.inSeconds}s; asking again',
+        tag: 'Connector',
+      );
+      _armContactSyncWatchdog();
+      unawaited(
+        sendFrame(buildGetContactsFrame(since: _contactSyncSince)).catchError((
+          Object e,
+        ) {
+          appLogger.warn('Contact sync retry failed: $e', tag: 'Connector');
+        }),
+      );
+      return;
+    }
+    appLogger.warn(
+      'Contact sync gave up after no answer; keeping saved contacts',
+      tag: 'Connector',
+    );
+    _finishContactSync(stalled: true);
+  }
+
+  /// Ends a contact sync, completed by END_OF_CONTACTS or abandoned after
+  /// silence, and lets anything waiting on contacts continue.
+  void _finishContactSync({required bool stalled}) {
+    _contactSyncWatchdog?.cancel();
+    _contactSyncWatchdog = null;
+    // A complete full sync replaces the list: drop contacts the radio no
+    // longer has. A stalled or partial sync keeps everything.
+    if (!stalled &&
+        !_preserveContactsOnRefresh &&
+        !_contactSyncUsesSinceFilter &&
+        _contactSyncSeen.isNotEmpty) {
+      _contacts.removeWhere((c) => !_contactSyncSeen.contains(c.publicKeyHex));
+    }
+    _contactSyncSeen.clear();
+    _contactSyncStalled = stalled;
+    _isLoadingContacts = false;
+    _hasLoadedContacts = true;
+    _preserveContactsOnRefresh = false;
+    _contactSyncUsesSinceFilter = false;
+    unawaited(updateKnownDiscovered());
+    notifyListeners();
+    if (!stalled) unawaited(_persistContacts());
+    if (PlatformInfo.isWeb &&
+        _activeTransport == MeshCoreTransportType.bluetooth &&
+        _isSyncingChannels &&
+        !_channelSyncInFlight) {
+      unawaited(_requestNextChannel());
+    }
+    if (_deferQueuedContactMessagesUntilContacts) {
+      unawaited(_processDeferredQueuedContactMessages());
+    } else if (_pendingQueueSync) {
+      _pendingQueueSync = false;
+      unawaited(syncQueuedMessages(force: true));
+    }
+  }
+
   double? get contactSyncProgress {
     final total = _contactSyncTotal;
     if (!_isLoadingContacts || total == null || total <= 0) return null;
@@ -2777,6 +2863,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _contactSyncTotal = null;
     _contactSyncReceived = 0;
     _contactSyncUsesSinceFilter = false;
+    _contactSyncWatchdog?.cancel();
+    _contactSyncWatchdog = null;
+    _contactSyncSeen.clear();
     _isLoadingContacts = false;
     _hasLoadedContacts = false;
     _isLoadingChannels = false;
@@ -3285,10 +3374,13 @@ class MeshCoreConnector extends ChangeNotifier {
     _contactSyncTotal = null;
     _contactSyncReceived = 0;
     _contactSyncUsesSinceFilter = since != null;
-    if (!preserveExisting) {
-      _hasLoadedContacts = false;
-      _contacts.clear();
-    }
+    _contactSyncSince = since;
+    _contactSyncRetries = 0;
+    _contactSyncStalled = false;
+    _contactSyncSeen.clear();
+    // Saved contacts stay visible during the sync; a complete sync replaces
+    // them at END_OF_CONTACTS instead of blanking the list up front.
+    _armContactSyncWatchdog();
     notifyListeners();
 
     await sendFrame(buildGetContactsFrame(since: since));
@@ -4547,6 +4639,14 @@ class MeshCoreConnector extends ChangeNotifier {
     await getChannels(force: true);
   }
 
+  @visibleForTesting
+  void handleFrameForTest(List<int> data) => _handleFrame(data);
+
+  @visibleForTesting
+  void debugSetContacts(List<Contact> contacts) => _contacts
+    ..clear()
+    ..addAll(contacts);
+
   void _handleFrame(List<int> data) {
     if (data.isEmpty) return;
     _lastRxBeforeFrame = _lastRxTime;
@@ -4572,10 +4672,9 @@ class MeshCoreConnector extends ChangeNotifier {
         break;
       case respCodeContactsStart:
         debugPrint('Got CONTACTS_START');
-        if (!_preserveContactsOnRefresh) {
-          _contacts.clear();
-        }
+        _contactSyncSeen.clear();
         _isLoadingContacts = true;
+        _armContactSyncWatchdog();
         _contactSyncReceived = 0;
         // Firmware v3+ includes total contacts after CONTACTS_START.
         // Incremental sync reports total contacts, not filtered result count.
@@ -4606,25 +4705,7 @@ class MeshCoreConnector extends ChangeNotifier {
         break;
       case respCodeEndOfContacts:
         debugPrint('Got END_OF_CONTACTS');
-        _isLoadingContacts = false;
-        _hasLoadedContacts = true;
-        _preserveContactsOnRefresh = false;
-        _contactSyncUsesSinceFilter = false;
-        unawaited(updateKnownDiscovered());
-        notifyListeners();
-        unawaited(_persistContacts());
-        if (PlatformInfo.isWeb &&
-            _activeTransport == MeshCoreTransportType.bluetooth &&
-            _isSyncingChannels &&
-            !_channelSyncInFlight) {
-          unawaited(_requestNextChannel());
-        }
-        if (_deferQueuedContactMessagesUntilContacts) {
-          unawaited(_processDeferredQueuedContactMessages());
-        } else if (_pendingQueueSync) {
-          _pendingQueueSync = false;
-          unawaited(syncQueuedMessages(force: true));
-        }
+        _finishContactSync(stalled: false);
         break;
       case respCodeContactMsgRecv:
       case respCodeContactMsgRecvV3:
@@ -5300,6 +5381,8 @@ class MeshCoreConnector extends ChangeNotifier {
     if (contactTmp != null) {
       if (isContact && _isLoadingContacts) {
         _contactSyncReceived++;
+        _contactSyncSeen.add(contactTmp.publicKeyHex);
+        _armContactSyncWatchdog();
       }
       if (listEquals(contactTmp.publicKey, _selfPublicKey)) {
         appLogger.info(

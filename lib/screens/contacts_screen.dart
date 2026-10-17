@@ -451,7 +451,13 @@ class _ContactsScreenState extends State<ContactsScreen>
             ),
           ],
         ),
-        body: _buildContactsBody(context, connector),
+        body: Column(
+          children: [
+            if (connector.contactSyncStalled)
+              _ContactSyncStalledBanner(connector: connector),
+            Expanded(child: _buildContactsBody(context, connector)),
+          ],
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => _showAddContactSheet(context),
           child: const Icon(Icons.person_add),
@@ -1754,6 +1760,42 @@ class _ContactTileEntrance extends StatelessWidget {
         isFavorite: isFavorite,
         onTap: onTap,
         onLongPress: onLongPress,
+      ),
+    );
+  }
+}
+
+/// Shown when the radio didn't answer a contact sync.
+class _ContactSyncStalledBanner extends StatelessWidget {
+  final MeshCoreConnector connector;
+  const _ContactSyncStalledBanner({required this.connector});
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Material(
+      key: const ValueKey('contact-sync-stalled'),
+      color: scheme.errorContainer,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+        child: Row(
+          children: [
+            Icon(Icons.sync_problem, color: scheme.onErrorContainer),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                "The radio didn't send its contact list. Showing saved contacts.",
+                style: TextStyle(color: scheme.onErrorContainer),
+              ),
+            ),
+            TextButton(
+              onPressed: connector.isConnected
+                  ? () => connector.retryContactSync()
+                  : null,
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
       ),
     );
   }
