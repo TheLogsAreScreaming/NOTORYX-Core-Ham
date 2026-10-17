@@ -18,6 +18,8 @@ import 'discovery_screen.dart';
 import 'scanner_screen.dart';
 import 'bastion_setup_screen.dart';
 import '../widgets/sos_panel.dart';
+import '../widgets/quick_switch_bar.dart';
+import '../utils/main_tab_navigation.dart';
 
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
@@ -49,6 +51,7 @@ class BastionHomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: _bg,
+      bottomNavigationBar: const QuickSwitchBar(current: MainTab.home),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 22, 20, 28),
