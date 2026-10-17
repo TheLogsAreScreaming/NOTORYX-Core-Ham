@@ -1,0 +1,3 @@
+• Local mesh settings: get told when your area uses different radio settings (e.g. Philadelphia's new 919.500 MHz preset) and apply them in one tap
+• Nodes no longer hang if the radio doesn't send its contact list; saved contacts stay visible with a Retry option
+• Radio frequency shows correctly (911 MHz, not 0.911)
