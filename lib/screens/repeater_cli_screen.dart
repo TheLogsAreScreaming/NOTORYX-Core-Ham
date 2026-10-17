@@ -345,7 +345,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
               padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
               child: Text(
                 'Runs on ${repeater.name}\'s radio only if they allowed you remote command line (MeshCore v1.18+). No reply means it was blocked or didn\'t arrive.',
-                style: const TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
               ),
             ),
           // Quick commands bar
@@ -375,7 +375,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                             ),
                           ),
                           backgroundColor: MeshPalette.accentBg,
-                          side: const BorderSide(color: MeshPalette.accentLine),
+                          side: BorderSide(color: MeshPalette.accentLine),
                           visualDensity: VisualDensity.compact,
                           onPressed: () => _useQuickCommand(cmd['command']!),
                         ),
@@ -452,19 +452,15 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(MeshRadii.pill),
-                          borderSide: const BorderSide(
-                            color: MeshPalette.line2,
-                          ),
+                          borderSide: BorderSide(color: MeshPalette.line2),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(MeshRadii.pill),
-                          borderSide: const BorderSide(
-                            color: MeshPalette.line2,
-                          ),
+                          borderSide: BorderSide(color: MeshPalette.line2),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(MeshRadii.pill),
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: MeshPalette.accent,
                             width: 1.5,
                           ),
@@ -477,7 +473,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                   const SizedBox(width: 6),
                   Material(
                     color: MeshPalette.accent.withValues(alpha: 0.15),
-                    shape: const CircleBorder(
+                    shape: CircleBorder(
                       side: BorderSide(color: MeshPalette.accentLine),
                     ),
                     child: InkWell(
@@ -486,7 +482,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                         HapticFeedback.lightImpact();
                         _sendCommand();
                       },
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.all(10),
                         child: Icon(
                           Icons.send,
@@ -511,7 +507,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.terminal, size: 48, color: MeshPalette.ink4),
+          Icon(Icons.terminal, size: 48, color: MeshPalette.ink4),
           const SizedBox(height: 12),
           Text(
             l10n.repeater_noCommandsSent,
@@ -520,7 +516,7 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
           const SizedBox(height: 4),
           Text(
             l10n.repeater_typeCommandOrUseQuick,
-            style: const TextStyle(fontSize: 12, color: MeshPalette.ink4),
+            style: TextStyle(fontSize: 12, color: MeshPalette.ink4),
           ),
         ],
       ),

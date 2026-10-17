@@ -111,7 +111,7 @@ class _BleDebugLogScreenState extends State<BleDebugLogScreen> {
                               ? entries.length
                               : rawEntries.length,
                           separatorBuilder: (_, _) =>
-                              const Divider(height: 1, color: MeshPalette.line),
+                              Divider(height: 1, color: MeshPalette.line),
                           itemBuilder: (context, index) {
                             if (showingFrames) {
                               final entry = entries[index];
@@ -215,7 +215,7 @@ class _BleDebugLogScreenState extends State<BleDebugLogScreen> {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Icon(
+                                    Icon(
                                       Icons.download,
                                       size: 18,
                                       color: MeshPalette.signal,
@@ -261,7 +261,7 @@ class _BleDebugLogScreenState extends State<BleDebugLogScreen> {
                       : Center(
                           child: Text(
                             context.l10n.debugLog_noBleActivity,
-                            style: const TextStyle(color: MeshPalette.ink3),
+                            style: TextStyle(color: MeshPalette.ink3),
                           ),
                         ),
                 ),

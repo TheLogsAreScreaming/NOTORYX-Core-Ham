@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import '../l10n/l10n.dart';
 
@@ -15,9 +16,9 @@ import 'bastion_repeater_tools_screen.dart';
 class BastionToolsScreen extends StatelessWidget {
   const BastionToolsScreen({super.key});
 
-  static const _cyan = Color(0xFF8AB6AA);
-  static const _bg = Color(0xFF182126);
-  static const _panel = Color(0xFF202D33);
+  static Color get _cyan => MeshPalette.accent;
+  static Color get _bg => MeshPalette.bg;
+  static Color get _panel => MeshPalette.bg2;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,12 @@ class BastionToolsScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: const Color(0xFFE4E6DF),
+        foregroundColor: MeshPalette.ink,
         titleSpacing: 16,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'BASTION',
               style: TextStyle(
                 color: _cyan,
@@ -216,8 +217,8 @@ class BastionToolsScreen extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
-                        color: Color(0xFFE4E6DF),
+                      style: TextStyle(
+                        color: MeshPalette.ink,
                         fontWeight: FontWeight.w900,
                         letterSpacing: .4,
                       ),
@@ -225,8 +226,8 @@ class BastionToolsScreen extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      style: const TextStyle(
-                        color: Color(0xFFADBEB7),
+                      style: TextStyle(
+                        color: MeshPalette.ink3,
                         fontSize: 12.5,
                         height: 1.35,
                       ),
@@ -234,7 +235,7 @@ class BastionToolsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right_rounded, color: _cyan),
+              Icon(Icons.chevron_right_rounded, color: _cyan),
             ],
           ),
         ),

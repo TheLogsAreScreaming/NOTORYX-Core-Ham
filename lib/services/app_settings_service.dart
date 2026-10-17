@@ -285,6 +285,10 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(channelMessageRetentionDays: days));
   }
 
+  Future<void> setAppTheme(String id) async {
+    await updateSettings(_settings.copyWith(appTheme: id));
+  }
+
   Future<void> setBatterySaver(bool value) async {
     await updateSettings(_settings.copyWith(batterySaver: value));
   }

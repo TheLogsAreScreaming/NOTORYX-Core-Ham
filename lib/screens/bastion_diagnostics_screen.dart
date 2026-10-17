@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -15,9 +16,9 @@ import 'companion_radio_stats_screen.dart';
 class BastionDiagnosticsScreen extends StatelessWidget {
   const BastionDiagnosticsScreen({super.key});
 
-  static const _cyan = Color(0xFF8AB6AA);
-  static const _bg = Color(0xFF182126);
-  static const _panel = Color(0xFF202D33);
+  static Color get _cyan => MeshPalette.accent;
+  static Color get _bg => MeshPalette.bg;
+  static Color get _panel => MeshPalette.bg2;
 
   String _value(Object? value) => value == null ? '—' : '$value';
 
@@ -93,11 +94,11 @@ class BastionDiagnosticsScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Color(0xFFE4E6DF),
+        foregroundColor: MeshPalette.ink,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'BASTION',
               style: TextStyle(
                 color: _cyan,
@@ -184,7 +185,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
           const SizedBox(height: 18),
           Text(
             l10n.bastionDiag_deepTools,
-            style: const TextStyle(
+            style: TextStyle(
               color: _cyan,
               fontSize: 11,
               fontWeight: FontWeight.w900,
@@ -252,8 +253,8 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                 c.isConnected
                     ? context.l10n.bastionDiag_online
                     : context.l10n.bastionDiag_offline,
-                style: const TextStyle(
-                  color: Color(0xFFE4E6DF),
+                style: TextStyle(
+                  color: MeshPalette.ink,
                   fontSize: 18,
                   fontWeight: FontWeight.w900,
                 ),
@@ -263,7 +264,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                 c.isConnected
                     ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}'
                     : context.l10n.bastionDiag_offlineHint,
-                style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
+                style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
               ),
             ],
           ),
@@ -277,13 +278,13 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     decoration: BoxDecoration(
       color: _panel,
       borderRadius: BorderRadius.circular(14),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Column(
       children: [
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             color: _cyan,
             fontSize: 18,
             fontWeight: FontWeight.w900,
@@ -292,8 +293,8 @@ class BastionDiagnosticsScreen extends StatelessWidget {
         const SizedBox(height: 3),
         Text(
           label,
-          style: const TextStyle(
-            color: Color(0xFFADBEB7),
+          style: TextStyle(
+            color: MeshPalette.ink3,
             fontSize: 9,
             fontWeight: FontWeight.w800,
           ),
@@ -307,14 +308,14 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     decoration: BoxDecoration(
       color: _panel,
       borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             color: _cyan,
             fontSize: 11,
             fontWeight: FontWeight.w900,
@@ -334,7 +335,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
         Expanded(
           child: Text(
             label,
-            style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
+            style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
           ),
         ),
         const SizedBox(width: 12),
@@ -342,8 +343,8 @@ class BastionDiagnosticsScreen extends StatelessWidget {
           child: Text(
             value,
             textAlign: TextAlign.right,
-            style: const TextStyle(
-              color: Color(0xFFE4E6DF),
+            style: TextStyle(
+              color: MeshPalette.ink,
               fontSize: 12,
               fontWeight: FontWeight.w700,
             ),
@@ -378,23 +379,20 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
-                      color: Color(0xFFE4E6DF),
+                    style: TextStyle(
+                      color: MeshPalette.ink,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                   const SizedBox(height: 2),
                   Text(
                     subtitle,
-                    style: const TextStyle(
-                      color: Color(0xFFADBEB7),
-                      fontSize: 11.5,
-                    ),
+                    style: TextStyle(color: MeshPalette.ink3, fontSize: 11.5),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded, color: _cyan),
+            Icon(Icons.chevron_right_rounded, color: _cyan),
           ],
         ),
       ),

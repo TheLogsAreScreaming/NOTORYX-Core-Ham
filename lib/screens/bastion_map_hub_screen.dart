@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import '../l10n/l10n.dart';
 import 'map_screen.dart';
@@ -7,16 +8,16 @@ import 'bastion_coverage_capture_screen.dart';
 
 class BastionMapHubScreen extends StatelessWidget {
   const BastionMapHubScreen({super.key});
-  static const _cyan = Color(0xFF8AB6AA),
-      _bg = Color(0xFF182126),
-      _panel = Color(0xFF202D33),
-      _muted = Color(0xFFADBEB7);
+  static Color get _cyan => MeshPalette.accent;
+  static Color get _bg => MeshPalette.bg;
+  static Color get _panel => MeshPalette.bg2;
+  static Color get _muted => MeshPalette.ink3;
   @override
   Widget build(BuildContext context) => Scaffold(
     backgroundColor: _bg,
     appBar: AppBar(
       backgroundColor: _bg,
-      foregroundColor: Color(0xFFE4E6DF),
+      foregroundColor: MeshPalette.ink,
       surfaceTintColor: Colors.transparent,
       title: Text(
         context.l10n.mapHub_title,
@@ -40,13 +41,13 @@ class BastionMapHubScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.map_rounded, color: _cyan, size: 30),
+                    Icon(Icons.map_rounded, color: _cyan, size: 30),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         context.l10n.bastion_mapCoverage,
-                        style: const TextStyle(
-                          color: Color(0xFFE4E6DF),
+                        style: TextStyle(
+                          color: MeshPalette.ink,
                           fontSize: 21,
                           fontWeight: FontWeight.w900,
                           letterSpacing: .7,
@@ -58,7 +59,7 @@ class BastionMapHubScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text(
                   context.l10n.mapHub_intro,
-                  style: const TextStyle(color: _muted, height: 1.45),
+                  style: TextStyle(color: _muted, height: 1.45),
                 ),
               ],
             ),
@@ -124,7 +125,7 @@ class _MapAction extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Material(
-    color: const Color(0xFF202D33),
+    color: MeshPalette.bg2,
     borderRadius: BorderRadius.circular(16),
     child: InkWell(
       borderRadius: BorderRadius.circular(16),
@@ -132,7 +133,7 @@ class _MapAction extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFF36474E)),
+          border: Border.all(color: MeshPalette.line),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -156,8 +157,8 @@ class _MapAction extends StatelessWidget {
                       Expanded(
                         child: Text(
                           title,
-                          style: const TextStyle(
-                            color: Color(0xFFE4E6DF),
+                          style: TextStyle(
+                            color: MeshPalette.ink,
                             fontWeight: FontWeight.w800,
                             letterSpacing: .4,
                           ),
@@ -176,7 +177,7 @@ class _MapAction extends StatelessWidget {
                         ),
                         child: Text(
                           badge,
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: BastionMapHubScreen._cyan,
                             fontSize: 9,
                             fontWeight: FontWeight.w900,
@@ -189,7 +190,7 @@ class _MapAction extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: BastionMapHubScreen._muted,
                       fontSize: 12.5,
                     ),
@@ -198,10 +199,7 @@ class _MapAction extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            const Icon(
-              Icons.chevron_right_rounded,
-              color: BastionMapHubScreen._cyan,
-            ),
+            Icon(Icons.chevron_right_rounded, color: BastionMapHubScreen._cyan),
           ],
         ),
       ),

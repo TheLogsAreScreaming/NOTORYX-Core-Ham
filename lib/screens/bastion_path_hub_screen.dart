@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,9 +13,9 @@ import 'map_screen.dart';
 class BastionPathHubScreen extends StatelessWidget {
   const BastionPathHubScreen({super.key});
 
-  static const _cyan = Color(0xFF8AB6AA);
-  static const _bg = Color(0xFF182126);
-  static const _panel = Color(0xFF202D33);
+  static Color get _cyan => MeshPalette.accent;
+  static Color get _bg => MeshPalette.bg;
+  static Color get _panel => MeshPalette.bg2;
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +58,11 @@ class BastionPathHubScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Color(0xFFE4E6DF),
+        foregroundColor: MeshPalette.ink,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'BASTION',
               style: TextStyle(
                 color: _cyan,
@@ -92,7 +93,7 @@ class BastionPathHubScreen extends StatelessWidget {
               children: [
                 Text(
                   l10n.bastion_routeIntelligence,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: _cyan,
                     fontSize: 12,
                     fontWeight: FontWeight.w900,
@@ -102,8 +103,8 @@ class BastionPathHubScreen extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   l10n.routes_headline,
-                  style: const TextStyle(
-                    color: Color(0xFFE4E6DF),
+                  style: TextStyle(
+                    color: MeshPalette.ink,
                     fontSize: 21,
                     fontWeight: FontWeight.w800,
                   ),
@@ -111,7 +112,7 @@ class BastionPathHubScreen extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   l10n.routes_body,
-                  style: const TextStyle(color: Color(0xFFCED8D2), height: 1.4),
+                  style: TextStyle(color: MeshPalette.ink2, height: 1.4),
                 ),
               ],
             ),
@@ -171,7 +172,7 @@ class BastionPathHubScreen extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             l10n.routes_learned,
-            style: const TextStyle(
+            style: TextStyle(
               color: _cyan,
               fontSize: 11,
               fontWeight: FontWeight.w900,
@@ -239,29 +240,29 @@ class _ContactRouteCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFF1C272D),
+        color: MeshPalette.bg1,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFF36474E)),
+        border: Border.all(color: MeshPalette.line),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const Icon(Icons.hub_rounded, color: Color(0xFF8AB6AA), size: 20),
+              Icon(Icons.hub_rounded, color: MeshPalette.accent, size: 20),
               const SizedBox(width: 9),
               Expanded(
                 child: Text(
                   entry.contact.name,
-                  style: const TextStyle(
-                    color: Color(0xFFE4E6DF),
+                  style: TextStyle(
+                    color: MeshPalette.ink,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
               ),
               Text(
                 l10n.routes_routeCount(entry.paths.length),
-                style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
+                style: TextStyle(color: MeshPalette.ink3, fontSize: 11),
               ),
             ],
           ),
@@ -271,8 +272,8 @@ class _ContactRouteCard extends StatelessWidget {
               l10n.routes_best(_path(context, best)),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: Color(0xFF8AB6AA),
+              style: TextStyle(
+                color: MeshPalette.accent,
                 fontSize: 11,
                 fontWeight: FontWeight.w800,
               ),
@@ -292,7 +293,7 @@ class _ContactRouteCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               l10n.routes_fastest('${fastest.tripTimeMs}'),
-              style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 11),
             ),
           ],
           if (entry.flood != null) ...[
@@ -302,7 +303,7 @@ class _ContactRouteCard extends StatelessWidget {
                 '${entry.flood!.successCount}',
                 '${entry.flood!.failureCount}',
               ),
-              style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 11),
             ),
           ],
         ],
@@ -320,16 +321,16 @@ class _Metric extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 11),
     decoration: BoxDecoration(
-      color: const Color(0xFF202D33),
+      color: MeshPalette.bg2,
       borderRadius: BorderRadius.circular(13),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Column(
       children: [
         Text(
           value,
-          style: const TextStyle(
-            color: Color(0xFF8AB6AA),
+          style: TextStyle(
+            color: MeshPalette.accent,
             fontWeight: FontWeight.w900,
             fontSize: 16,
           ),
@@ -337,8 +338,8 @@ class _Metric extends StatelessWidget {
         const SizedBox(height: 3),
         Text(
           label,
-          style: const TextStyle(
-            color: Color(0xFFADBEB7),
+          style: TextStyle(
+            color: MeshPalette.ink3,
             fontSize: 8.5,
             fontWeight: FontWeight.w800,
           ),
@@ -363,7 +364,7 @@ class _PathAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-    color: const Color(0xFF202D33),
+    color: MeshPalette.bg2,
     borderRadius: BorderRadius.circular(16),
     child: InkWell(
       borderRadius: BorderRadius.circular(16),
@@ -371,25 +372,25 @@ class _PathAction extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFF36474E)),
+          border: Border.all(color: MeshPalette.line),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(icon, color: const Color(0xFF8AB6AA)),
+            Icon(icon, color: MeshPalette.accent),
             const SizedBox(height: 9),
             Text(
               title,
-              style: const TextStyle(
-                color: Color(0xFFE4E6DF),
+              style: TextStyle(
+                color: MeshPalette.ink,
                 fontWeight: FontWeight.w800,
               ),
             ),
             const SizedBox(height: 3),
             Text(
               subtitle,
-              style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 11),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 11),
             ),
           ],
         ),
@@ -413,14 +414,14 @@ class _InfoPanel extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: const Color(0xFF1C272D),
+      color: MeshPalette.bg1,
       borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: const Color(0xFF8AB6AA)),
+        Icon(icon, color: MeshPalette.accent),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -428,15 +429,15 @@ class _InfoPanel extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  color: Color(0xFFE4E6DF),
+                style: TextStyle(
+                  color: MeshPalette.ink,
                   fontWeight: FontWeight.w800,
                 ),
               ),
               const SizedBox(height: 5),
               Text(
                 body,
-                style: const TextStyle(color: Color(0xFFADBEB7), height: 1.4),
+                style: TextStyle(color: MeshPalette.ink3, height: 1.4),
               ),
             ],
           ),

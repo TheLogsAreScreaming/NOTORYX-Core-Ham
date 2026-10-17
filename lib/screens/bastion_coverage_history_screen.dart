@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -78,7 +79,7 @@ class _HistoryState extends State<BastionCoverageHistoryScreen> {
               for (final session in widget.capture.history)
                 Card(
                   child: ListTile(
-                    leading: const Icon(Icons.route, color: Color(0xFF8AB6AA)),
+                    leading: Icon(Icons.route, color: MeshPalette.accent),
                     title: Text(
                       session.startedAt.toLocal().toString().split('.').first,
                     ),
@@ -201,7 +202,7 @@ class CoverageSessionMap extends StatelessWidget {
                   '${recorder ? context.l10n.coverage_recorder : o.nodeName}: ${o.timestamp.toLocal()}',
               child: Icon(
                 recorder ? Icons.my_location : Icons.cell_tower,
-                color: recorder ? const Color(0xFF8AB6AA) : Colors.amber,
+                color: recorder ? MeshPalette.accent : Colors.amber,
               ),
             ),
           ),

@@ -202,7 +202,7 @@ class _ConnectedChip extends StatelessWidget {
           Container(
             width: 8,
             height: 8,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: MeshPalette.signal,
             ),

@@ -75,6 +75,13 @@ void main() {
     final connector = _FakeConnector(supported: true);
     await tester.pumpWidget(_app(connector));
     await _settle(tester);
+    // Settings is a long, lazily built list: scroll the setting into view.
+    await tester.scrollUntilVisible(
+      find.text('Corridor region'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pump();
 
     expect(find.text('#corridor (default)'), findsOneWidget);
     await tester.ensureVisible(find.text('Corridor region'));

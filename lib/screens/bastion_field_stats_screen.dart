@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../connector/meshcore_connector.dart';
@@ -7,9 +8,9 @@ import '../l10n/l10n.dart';
 class BastionFieldStatsScreen extends StatelessWidget {
   const BastionFieldStatsScreen({super.key});
 
-  static const _cyan = Color(0xFF8AB6AA);
-  static const _bg = Color(0xFF182126);
-  static const _panel = Color(0xFF202D33);
+  static Color get _cyan => MeshPalette.accent;
+  static Color get _bg => MeshPalette.bg;
+  static Color get _panel => MeshPalette.bg2;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class BastionFieldStatsScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Color(0xFFE4E6DF),
+        foregroundColor: MeshPalette.ink,
         title: Text(
           l10n.fieldStats_title,
           style: const TextStyle(
@@ -61,7 +62,7 @@ class BastionFieldStatsScreen extends StatelessWidget {
               children: [
                 Text(
                   l10n.fieldStats_snapshot,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: _cyan,
                     fontSize: 12,
                     fontWeight: FontWeight.w900,
@@ -71,8 +72,8 @@ class BastionFieldStatsScreen extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   l10n.fieldStats_headline,
-                  style: const TextStyle(
-                    color: Color(0xFFE4E6DF),
+                  style: TextStyle(
+                    color: MeshPalette.ink,
                     fontSize: 21,
                     fontWeight: FontWeight.w800,
                   ),
@@ -80,7 +81,7 @@ class BastionFieldStatsScreen extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   l10n.fieldStats_body,
-                  style: const TextStyle(color: Color(0xFFCED8D2), height: 1.4),
+                  style: TextStyle(color: MeshPalette.ink2, height: 1.4),
                 ),
               ],
             ),
@@ -137,9 +138,9 @@ class BastionFieldStatsScreen extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.all(13),
           decoration: BoxDecoration(
-            color: const Color(0xFF1C272D),
+            color: MeshPalette.bg1,
             borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: const Color(0xFF36474E)),
+            border: Border.all(color: MeshPalette.line),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,15 +148,15 @@ class BastionFieldStatsScreen extends StatelessWidget {
             children: [
               Text(
                 values[i][1],
-                style: const TextStyle(
-                  color: Color(0xFFE4E6DF),
+                style: TextStyle(
+                  color: MeshPalette.ink,
                   fontSize: 24,
                   fontWeight: FontWeight.w900,
                 ),
               ),
               Text(
                 values[i][0],
-                style: const TextStyle(
+                style: TextStyle(
                   color: _cyan,
                   fontSize: 9,
                   fontWeight: FontWeight.w900,
@@ -177,8 +178,8 @@ class _Title extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Text(
     text,
-    style: const TextStyle(
-      color: Color(0xFF8AB6AA),
+    style: TextStyle(
+      color: MeshPalette.accent,
       fontSize: 11,
       fontWeight: FontWeight.w900,
       letterSpacing: 1.3,
@@ -196,14 +197,14 @@ class _Panel extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: const Color(0xFF1C272D),
+      color: MeshPalette.bg1,
       borderRadius: BorderRadius.circular(15),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: const Color(0xFF8AB6AA)),
+        Icon(icon, color: MeshPalette.accent),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -211,15 +212,15 @@ class _Panel extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  color: Color(0xFFE4E6DF),
+                style: TextStyle(
+                  color: MeshPalette.ink,
                   fontWeight: FontWeight.w800,
                 ),
               ),
               const SizedBox(height: 5),
               Text(
                 body,
-                style: const TextStyle(color: Color(0xFFADBEB7), height: 1.4),
+                style: TextStyle(color: MeshPalette.ink3, height: 1.4),
               ),
             ],
           ),

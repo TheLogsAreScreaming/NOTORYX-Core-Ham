@@ -60,7 +60,7 @@ class AppDebugLogScreen extends StatelessWidget {
                 ? ListView.separated(
                     itemCount: entries.length,
                     separatorBuilder: (_, _) =>
-                        const Divider(height: 1, color: MeshPalette.line),
+                        Divider(height: 1, color: MeshPalette.line),
                     itemBuilder: (context, index) {
                       final entry = entries[index];
                       return Container(
@@ -118,7 +118,7 @@ class AppDebugLogScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.bug_report_outlined,
                           size: 64,
                           color: MeshPalette.ink3,
@@ -126,7 +126,7 @@ class AppDebugLogScreen extends StatelessWidget {
                         const SizedBox(height: 16),
                         Text(
                           context.l10n.debugLog_noEntries,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                             color: MeshPalette.ink3,
                           ),
@@ -134,7 +134,7 @@ class AppDebugLogScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         Text(
                           context.l10n.debugLog_enableInSettings,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12,
                             color: MeshPalette.ink3,
                           ),
@@ -162,23 +162,15 @@ class AppDebugLogScreen extends StatelessWidget {
   Widget _buildLevelIcon(BuildContext context, AppDebugLogLevel level) {
     switch (level) {
       case AppDebugLogLevel.info:
-        return const Icon(
-          Icons.info_outline,
-          size: 18,
-          color: MeshPalette.accent,
-        );
+        return Icon(Icons.info_outline, size: 18, color: MeshPalette.accent);
       case AppDebugLogLevel.warning:
-        return const Icon(
+        return Icon(
           Icons.warning_amber_outlined,
           size: 18,
           color: MeshPalette.warn,
         );
       case AppDebugLogLevel.error:
-        return const Icon(
-          Icons.error_outline,
-          size: 18,
-          color: MeshPalette.alert,
-        );
+        return Icon(Icons.error_outline, size: 18, color: MeshPalette.alert);
     }
   }
 }

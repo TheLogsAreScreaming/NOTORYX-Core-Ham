@@ -2601,7 +2601,7 @@ class _RegionSelectDialogState extends State<_RegionSelectDialog> {
                     ),
                     title: Text(regions[index]),
                     trailing: selected
-                        ? const Icon(Icons.check, color: MeshPalette.accent)
+                        ? Icon(Icons.check, color: MeshPalette.accent)
                         : null,
                     tileColor: selected ? MeshPalette.accentBg : null,
                     onTap: () {

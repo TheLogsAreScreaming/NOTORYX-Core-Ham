@@ -245,7 +245,7 @@ class AvatarCircle extends StatelessWidget {
 
   static final _punctuation = RegExp(r'\p{P}', unicode: true);
 
-  static const _hues = [
+  static final _hues = [
     MeshPalette.accent,
     MeshPalette.magenta,
     MeshPalette.signal,

@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,9 +23,9 @@ import '../widgets/sos_panel.dart';
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
 
-  static const _cyan = Color(0xFF8AB6AA);
-  static const _bg = Color(0xFF182126);
-  static const _panel = Color(0xFF202D33);
+  static Color get _cyan => MeshPalette.accent;
+  static Color get _bg => MeshPalette.bg;
+  static Color get _panel => MeshPalette.bg2;
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +63,9 @@ class BastionHomeScreen extends StatelessWidget {
                     border: Border.all(color: _cyan, width: 2),
                     borderRadius: BorderRadius.circular(14),
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.fort_rounded,
-                    color: Color(0xFFE4E6DF),
+                    color: MeshPalette.ink,
                     size: 31,
                   ),
                 ),
@@ -73,10 +74,10 @@ class BastionHomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'BASTION',
                         style: TextStyle(
-                          color: Color(0xFFE4E6DF),
+                          color: MeshPalette.ink,
                           fontSize: 28,
                           fontWeight: FontWeight.w900,
                           letterSpacing: 2.4,
@@ -84,13 +85,13 @@ class BastionHomeScreen extends StatelessWidget {
                       ),
                       Text(
                         l10n.bastion_tagline,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: _cyan,
                           fontSize: 12,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
-                      const Text(
+                      Text(
                         'MeshCore',
                         style: TextStyle(color: _cyan, fontSize: 12),
                       ),
@@ -104,9 +105,9 @@ class BastionHomeScreen extends StatelessWidget {
                       builder: (_) => const BastionAboutScreen(),
                     ),
                   ),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.info_outline_rounded,
-                    color: Color(0xFFADBEB7),
+                    color: MeshPalette.ink3,
                   ),
                 ),
               ],
@@ -182,7 +183,7 @@ class BastionHomeScreen extends StatelessWidget {
                       : l10n.bastionHome_lastCheckIn(
                           ops.latestDelivery!.headlineIn(l10n),
                         )),
-              style: const TextStyle(color: Color(0xFFADBEB7), fontSize: 12),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
             ),
             const SizedBox(height: 12),
             const SosPanel(),
@@ -230,7 +231,7 @@ class BastionHomeScreen extends StatelessWidget {
             const SizedBox(height: 22),
             Text(
               l10n.bastionHome_fieldTools,
-              style: const TextStyle(
+              style: TextStyle(
                 color: _cyan,
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
@@ -298,11 +299,11 @@ class BastionHomeScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
-            const Center(
+            Center(
               child: Text(
                 'BASTION',
                 style: TextStyle(
-                  color: Color(0xFF8EA39C),
+                  color: MeshPalette.ink4,
                   fontSize: 10,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.3,
@@ -335,7 +336,7 @@ class BastionHomeScreen extends StatelessWidget {
         border: Border.all(
           color: c.isConnected
               ? _cyan.withValues(alpha: .55)
-              : const Color(0xFF36474E),
+              : MeshPalette.line,
         ),
       ),
       child: Column(
@@ -366,8 +367,8 @@ class BastionHomeScreen extends StatelessWidget {
                       c.isConnected
                           ? l10n.bastionHome_consoleOnline
                           : l10n.bastionHome_consoleReady,
-                      style: const TextStyle(
-                        color: Color(0xFFE4E6DF),
+                      style: TextStyle(
+                        color: MeshPalette.ink,
                         fontSize: 18,
                         fontWeight: FontWeight.w900,
                       ),
@@ -377,10 +378,7 @@ class BastionHomeScreen extends StatelessWidget {
                       c.isConnected
                           ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}'
                           : l10n.bastionHome_consoleHint,
-                      style: const TextStyle(
-                        color: Color(0xFFADBEB7),
-                        fontSize: 12,
-                      ),
+                      style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
                     ),
                   ],
                 ),
@@ -390,22 +388,22 @@ class BastionHomeScreen extends StatelessWidget {
                 height: 9,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: c.isConnected ? _cyan : const Color(0xFF62787D),
+                  color: c.isConnected ? _cyan : MeshPalette.line3,
                 ),
               ),
             ],
           ),
           if (c.isConnected) ...[
             const SizedBox(height: 14),
-            const Divider(color: Color(0xFF36474E), height: 1),
+            Divider(color: MeshPalette.line, height: 1),
             const SizedBox(height: 12),
             Row(
               children: [
                 Expanded(
                   child: Text(
                     signal,
-                    style: const TextStyle(
-                      color: Color(0xFFCED8D2),
+                    style: TextStyle(
+                      color: MeshPalette.ink2,
                       fontSize: 11.5,
                       fontWeight: FontWeight.w700,
                     ),
@@ -413,7 +411,7 @@ class BastionHomeScreen extends StatelessWidget {
                 ),
                 Text(
                   l10n.bastionHome_battery(battery),
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: _cyan,
                     fontSize: 11.5,
                     fontWeight: FontWeight.w900,
@@ -432,13 +430,13 @@ class BastionHomeScreen extends StatelessWidget {
     decoration: BoxDecoration(
       color: _panel,
       borderRadius: BorderRadius.circular(13),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Column(
       children: [
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             color: _cyan,
             fontSize: 17,
             fontWeight: FontWeight.w900,
@@ -448,8 +446,8 @@ class BastionHomeScreen extends StatelessWidget {
         Text(
           label,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Color(0xFFADBEB7),
+          style: TextStyle(
+            color: MeshPalette.ink3,
             fontSize: 11,
             fontWeight: FontWeight.w800,
           ),
@@ -472,7 +470,7 @@ class _ActionCard extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Material(
-    color: const Color(0xFF202D33),
+    color: MeshPalette.bg2,
     borderRadius: BorderRadius.circular(16),
     child: InkWell(
       borderRadius: BorderRadius.circular(16),
@@ -480,7 +478,7 @@ class _ActionCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xFF36474E)),
+          border: Border.all(color: MeshPalette.line),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -489,10 +487,10 @@ class _ActionCard extends StatelessWidget {
               width: 46,
               height: 46,
               decoration: BoxDecoration(
-                color: const Color(0xFF8AB6AA).withValues(alpha: .12),
+                color: MeshPalette.accent.withValues(alpha: .12),
                 borderRadius: BorderRadius.circular(13),
               ),
-              child: Icon(icon, color: const Color(0xFF8AB6AA)),
+              child: Icon(icon, color: MeshPalette.accent),
             ),
             const SizedBox(width: 14),
             Expanded(
@@ -501,8 +499,8 @@ class _ActionCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
-                      color: Color(0xFFE4E6DF),
+                    style: TextStyle(
+                      color: MeshPalette.ink,
                       fontWeight: FontWeight.w800,
                       letterSpacing: .5,
                     ),
@@ -510,15 +508,12 @@ class _ActionCard extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     subtitle,
-                    style: const TextStyle(
-                      color: Color(0xFFADBEB7),
-                      fontSize: 12.5,
-                    ),
+                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.chevron_right_rounded, color: Color(0xFF8AB6AA)),
+            Icon(Icons.chevron_right_rounded, color: MeshPalette.accent),
           ],
         ),
       ),
@@ -539,7 +534,7 @@ class _ToolTile extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Material(
-    color: const Color(0xFF202D33),
+    color: MeshPalette.bg2,
     borderRadius: BorderRadius.circular(16),
     child: InkWell(
       onTap: onTap,
@@ -548,19 +543,19 @@ class _ToolTile extends StatelessWidget {
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFF36474E)),
+          border: Border.all(color: MeshPalette.line),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Icon(icon, color: const Color(0xFF8AB6AA)),
+                Icon(icon, color: MeshPalette.accent),
                 const Spacer(),
                 Text(
                   status,
-                  style: const TextStyle(
-                    color: Color(0xFF8AB6AA),
+                  style: TextStyle(
+                    color: MeshPalette.accent,
                     fontSize: 8,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1,
@@ -571,8 +566,8 @@ class _ToolTile extends StatelessWidget {
             const SizedBox(height: 18),
             Text(
               label,
-              style: const TextStyle(
-                color: Color(0xFFE4E6DF),
+              style: TextStyle(
+                color: MeshPalette.ink,
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
               ),

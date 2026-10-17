@@ -604,9 +604,7 @@ class _MapCacheScreenState extends State<MapCacheScreen> {
                         OutlinedButton(
                           style: OutlinedButton.styleFrom(
                             foregroundColor: MeshPalette.alert,
-                            side: const BorderSide(
-                              color: MeshPalette.alertLine,
-                            ),
+                            side: BorderSide(color: MeshPalette.alertLine),
                           ),
                           onPressed: _isDownloading ? null : _clearCache,
                           child: Text(l10n.mapCache_clearCacheButton),
