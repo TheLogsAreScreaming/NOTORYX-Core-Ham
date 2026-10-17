@@ -1142,13 +1142,14 @@ class _MapScreenState extends State<MapScreen> {
   /// Estimates the free-space maximum LoRa range in km from the connected
   /// device's current radio parameters.  Returns null if parameters are unknown.
   double? _estimateLoRaRangeKm(MeshCoreConnector connector) {
-    final freqHz = connector.currentFreqHz;
+    final freqMHz = radioFrequencyMHz(connector.currentFreqHz);
     final bwHz = connector.currentBwHz;
     final sf = connector.currentSf;
     final txPower = connector.currentTxPower;
-    if (freqHz == null || bwHz == null || sf == null || txPower == null) {
+    if (freqMHz == null || bwHz == null || sf == null || txPower == null) {
       return null;
     }
+    final freqHz = freqMHz * 1e6;
     // LoRa receiver sensitivity = thermal noise + NF + required demod SNR
     const noiseFigureDb = 6.0;
     final thermalNoiseDbm = -174.0 + 10 * log(bwHz.toDouble()) / ln10;
@@ -1157,8 +1158,7 @@ class _MapScreenState extends State<MapScreen> {
     // FSPL at max range equals link budget:
     //   FSPL = 20*log10(d_m) + 20*log10(f_hz) - 147.55
     final linkBudgetDb = txPower.toDouble() - sensitivityDbm;
-    final exponent =
-        (linkBudgetDb + 147.55 - 20 * log(freqHz.toDouble()) / ln10) / 20;
+    final exponent = (linkBudgetDb + 147.55 - 20 * log(freqHz) / ln10) / 20;
     return pow(10, exponent) / 1000;
   }
 

@@ -1285,3 +1285,11 @@ String? parseCorridorRegionFrame(Uint8List frame) {
     allowMalformed: true,
   );
 }
+
+/// The radio's frequency in MHz from its reported value, or null when
+/// unknown. MeshCore radios report kHz (911000 = 911 MHz); values that are
+/// clearly Hz (10 MHz or more) are accepted too.
+double? radioFrequencyMHz(int? reported) {
+  if (reported == null || reported <= 0) return null;
+  return reported >= 10000000 ? reported / 1e6 : reported / 1e3;
+}

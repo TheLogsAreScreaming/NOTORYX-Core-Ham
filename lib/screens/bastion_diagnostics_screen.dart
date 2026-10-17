@@ -21,8 +21,10 @@ class BastionDiagnosticsScreen extends StatelessWidget {
 
   String _value(Object? value) => value == null ? '—' : '$value';
 
-  String _mhz(int? hz) =>
-      hz == null ? '—' : '${(hz / 1000000).toStringAsFixed(4)} MHz';
+  String _mhz(int? reported) {
+    final mhz = radioFrequencyMHz(reported);
+    return mhz == null ? '—' : '${mhz.toStringAsFixed(4)} MHz';
+  }
 
   String _battery(int? mv) =>
       mv == null ? '—' : '${(mv / 1000).toStringAsFixed(2)} V';
