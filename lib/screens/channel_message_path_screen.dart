@@ -1516,9 +1516,9 @@ class _ChannelMessagePathMapScreenState
           ),
           clipBehavior: Clip.antiAlias,
           child: DefaultTextStyle(
-            style: const TextStyle(color: MeshPalette.ink),
+            style: TextStyle(color: MeshPalette.ink),
             child: IconTheme(
-              data: const IconThemeData(color: MeshPalette.ink),
+              data: IconThemeData(color: MeshPalette.ink),
               child: TextButtonTheme(
                 data: TextButtonThemeData(
                   style: TextButton.styleFrom(foregroundColor: MeshPalette.ink),

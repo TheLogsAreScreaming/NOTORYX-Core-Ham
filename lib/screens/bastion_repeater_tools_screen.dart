@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../connector/meshcore_connector.dart';
@@ -9,8 +10,8 @@ import 'repeater_hub_screen.dart';
 
 class BastionRepeaterToolsScreen extends StatelessWidget {
   const BastionRepeaterToolsScreen({super.key});
-  static const _cyan = Color(0xFF8AB6AA);
-  static const _bg = Color(0xFF182126);
+  static Color get _cyan => MeshPalette.accent;
+  static Color get _bg => MeshPalette.bg;
 
   void _login(BuildContext context, Contact repeater) {
     showDialog<void>(
@@ -44,7 +45,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Color(0xFFE4E6DF),
+        foregroundColor: MeshPalette.ink,
         title: Text(
           l10n.bastion_repeaterTools,
           style: const TextStyle(
@@ -59,7 +60,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: const Color(0xFF202D33),
+              color: MeshPalette.bg2,
               borderRadius: BorderRadius.circular(18),
               border: Border.all(color: _cyan.withValues(alpha: .45)),
             ),
@@ -68,7 +69,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
               children: [
                 Text(
                   l10n.repeaterTools_heroLabel,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: _cyan,
                     fontSize: 12,
                     fontWeight: FontWeight.w900,
@@ -78,8 +79,8 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   l10n.repeaterTools_headline,
-                  style: const TextStyle(
-                    color: Color(0xFFE4E6DF),
+                  style: TextStyle(
+                    color: MeshPalette.ink,
                     fontSize: 21,
                     fontWeight: FontWeight.w800,
                   ),
@@ -87,7 +88,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   l10n.repeaterTools_body,
-                  style: const TextStyle(color: Color(0xFFCED8D2), height: 1.4),
+                  style: TextStyle(color: MeshPalette.ink2, height: 1.4),
                 ),
               ],
             ),
@@ -106,7 +107,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             l10n.repeaterTools_available,
-            style: const TextStyle(
+            style: TextStyle(
               color: _cyan,
               fontSize: 12,
               fontWeight: FontWeight.w900,
@@ -121,7 +122,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
               (r) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Material(
-                  color: const Color(0xFF202D33),
+                  color: MeshPalette.bg2,
                   borderRadius: BorderRadius.circular(15),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(15),
@@ -130,11 +131,11 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: const Color(0xFF36474E)),
+                        border: Border.all(color: MeshPalette.line),
                       ),
                       child: Row(
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.cell_tower_rounded,
                             color: _cyan,
                             size: 28,
@@ -148,23 +149,23 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
                                   r.name.isEmpty
                                       ? l10n.repeaterTools_unnamed
                                       : r.name,
-                                  style: const TextStyle(
-                                    color: Color(0xFFE4E6DF),
+                                  style: TextStyle(
+                                    color: MeshPalette.ink,
                                     fontWeight: FontWeight.w800,
                                   ),
                                 ),
                                 const SizedBox(height: 3),
                                 Text(
                                   r.shortPubKeyHex,
-                                  style: const TextStyle(
-                                    color: Color(0xFFADBEB7),
+                                  style: TextStyle(
+                                    color: MeshPalette.ink3,
                                     fontSize: 11,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          const Icon(Icons.login_rounded, color: _cyan),
+                          Icon(Icons.login_rounded, color: _cyan),
                         ],
                       ),
                     ),
@@ -205,25 +206,25 @@ class _Stat extends StatelessWidget {
     child: Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFF1C272D),
+        color: MeshPalette.bg1,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFF36474E)),
+        border: Border.all(color: MeshPalette.line),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             value,
-            style: const TextStyle(
-              color: Color(0xFF8AB6AA),
+            style: TextStyle(
+              color: MeshPalette.accent,
               fontSize: 24,
               fontWeight: FontWeight.w900,
             ),
           ),
           Text(
             label,
-            style: const TextStyle(
-              color: Color(0xFFADBEB7),
+            style: TextStyle(
+              color: MeshPalette.ink3,
               fontSize: 9,
               fontWeight: FontWeight.w800,
               letterSpacing: 1,
@@ -241,18 +242,18 @@ class _EmptyRepeaters extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(18),
     decoration: BoxDecoration(
-      color: const Color(0xFF1C272D),
+      color: MeshPalette.bg1,
       borderRadius: BorderRadius.circular(15),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Row(
       children: [
-        const Icon(Icons.portable_wifi_off_rounded, color: Color(0xFF8AB6AA)),
+        Icon(Icons.portable_wifi_off_rounded, color: MeshPalette.accent),
         const SizedBox(width: 12),
         Expanded(
           child: Text(
             context.l10n.repeaterTools_empty,
-            style: const TextStyle(color: Color(0xFFCED8D2), height: 1.35),
+            style: TextStyle(color: MeshPalette.ink2, height: 1.35),
           ),
         ),
       ],
@@ -273,14 +274,14 @@ class _Capability extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(15),
     decoration: BoxDecoration(
-      color: const Color(0xFF1C272D),
+      color: MeshPalette.bg1,
       borderRadius: BorderRadius.circular(15),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: const Color(0xFF8AB6AA)),
+        Icon(icon, color: MeshPalette.accent),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -288,15 +289,15 @@ class _Capability extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  color: Color(0xFFE4E6DF),
+                style: TextStyle(
+                  color: MeshPalette.ink,
                   fontWeight: FontWeight.w800,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 body,
-                style: const TextStyle(color: Color(0xFFADBEB7), height: 1.35),
+                style: TextStyle(color: MeshPalette.ink3, height: 1.35),
               ),
             ],
           ),

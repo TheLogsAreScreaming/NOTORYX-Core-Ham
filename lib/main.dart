@@ -354,6 +354,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       ],
       child: Consumer<AppSettingsService>(
         builder: (context, settingsService, child) {
+          final palette = _applyTheme(settingsService.settings.appTheme);
           return MaterialApp(
             navigatorKey: _navigatorKey,
             title: 'Bastion',
@@ -368,11 +369,11 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
             locale: _localeFromSetting(
               settingsService.settings.languageOverride,
             ),
-            theme: MeshTheme.light(),
-            darkTheme: MeshTheme.dark(),
-            themeMode: _themeModeFromSetting(
-              settingsService.settings.themeMode,
-            ),
+            theme: MeshTheme.forPalette(palette),
+            darkTheme: MeshTheme.forPalette(palette),
+            themeMode: palette.brightness == Brightness.dark
+                ? ThemeMode.dark
+                : ThemeMode.light,
             builder: (context, child) {
               final locale = Localizations.localeOf(context);
               NotificationService().setLocale(locale);
@@ -410,15 +411,25 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _fieldOps.setBatterySaver(on);
   }
 
-  ThemeMode _themeModeFromSetting(String value) {
-    switch (value) {
-      case 'light':
-        return ThemeMode.light;
-      case 'dark':
-        return ThemeMode.dark;
-      default:
-        return ThemeMode.system;
+  /// Points [MeshPalette] at the chosen theme. Screens read the palette
+  /// directly, so after a switch every widget is rebuilt once, in place, so
+  /// nothing (open screens, scroll position) is lost.
+  BastionPalette _applyTheme(String id) {
+    final palette = BastionTheme.fromId(id).palette;
+    if (!identical(MeshPalette.current, palette)) {
+      MeshPalette.current = palette;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final root = WidgetsBinding.instance.rootElement;
+        if (root == null) return;
+        void mark(Element e) {
+          e.markNeedsBuild();
+          e.visitChildren(mark);
+        }
+
+        mark(root);
+      });
     }
+    return palette;
   }
 
   SystemUiOverlayStyle _systemUiOverlayStyle(BuildContext context) {

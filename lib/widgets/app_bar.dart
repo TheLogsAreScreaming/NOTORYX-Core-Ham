@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/widgets/battery_indicator.dart';
@@ -28,7 +29,7 @@ class AppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
     final selfName = connector.selfName;
-    const cyan = Color(0xFF8AB6AA);
+    final cyan = MeshPalette.accent;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -48,7 +49,7 @@ class AppBarTitle extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
+                  Text(
                     'BASTION',
                     maxLines: 1,
                     style: TextStyle(
@@ -62,10 +63,7 @@ class AppBarTitle extends StatelessWidget {
                   if (subtitle && connector.isConnected && selfName != null)
                     Text(
                       selfName,
-                      style: const TextStyle(
-                        fontSize: 11,
-                        color: Color(0xFFADBEB7),
-                      ),
+                      style: TextStyle(fontSize: 11, color: MeshPalette.ink3),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

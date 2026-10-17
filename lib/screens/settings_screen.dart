@@ -11,6 +11,7 @@ import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/radio_settings.dart';
 import '../widgets/regional_preset_banner.dart';
+import '../widgets/theme_picker.dart';
 import '../widgets/us_bandwidth_notice.dart';
 import '../services/app_settings_service.dart';
 import '../services/app_debug_log_service.dart';
@@ -100,6 +101,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: RegionalPresetTile(),
                 ),
                 const BatterySaverCard(),
+                const MeshCard(
+                  padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          'Theme',
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      ThemePicker(),
+                    ],
+                  ),
+                ),
                 const ChannelRetentionCard(),
 
                 // IDENTITY section

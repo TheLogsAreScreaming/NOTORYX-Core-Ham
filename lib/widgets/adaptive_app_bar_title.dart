@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 
 class AdaptiveAppBarTitle extends StatelessWidget {
@@ -7,14 +8,14 @@ class AdaptiveAppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cyan = Color(0xFF8AB6AA);
+    final cyan = MeshPalette.accent;
     return LayoutBuilder(
       builder: (context, constraints) => SizedBox(
         width: constraints.maxWidth,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
+            Text(
               'BASTION',
               maxLines: 1,
               style: TextStyle(

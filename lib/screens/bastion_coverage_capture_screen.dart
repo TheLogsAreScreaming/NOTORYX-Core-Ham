@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'bastion_coverage_history_screen.dart';
 
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -19,9 +20,9 @@ class BastionCoverageCaptureScreen extends StatefulWidget {
 
 class _BastionCoverageCaptureScreenState
     extends State<BastionCoverageCaptureScreen> {
-  static const cyan = Color(0xFF8AB6AA);
-  static const bg = Color(0xFF182126);
-  static const panel = Color(0xFF202D33);
+  static Color get cyan => MeshPalette.accent;
+  static Color get bg => MeshPalette.bg;
+  static Color get panel => MeshPalette.bg2;
 
   final CoverageCaptureService _capture = CoverageCaptureService();
   MeshCoreConnector? _connector;
@@ -131,11 +132,11 @@ class _BastionCoverageCaptureScreenState
         backgroundColor: bg,
         appBar: AppBar(
           backgroundColor: bg,
-          foregroundColor: Color(0xFFE4E6DF),
+          foregroundColor: MeshPalette.ink,
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'BASTION',
                 style: TextStyle(
                   color: cyan,
@@ -194,8 +195,8 @@ class _BastionCoverageCaptureScreenState
                           _capture.recording
                               ? l10n.coverage_captureActive
                               : l10n.coverage_fieldSession,
-                          style: const TextStyle(
-                            color: Color(0xFFE4E6DF),
+                          style: TextStyle(
+                            color: MeshPalette.ink,
                             fontSize: 20,
                             fontWeight: FontWeight.w900,
                           ),
@@ -208,10 +209,7 @@ class _BastionCoverageCaptureScreenState
                     connector.isConnected
                         ? l10n.coverage_connectedBody
                         : l10n.coverage_disconnectedBody,
-                    style: const TextStyle(
-                      color: Color(0xFFADBEB7),
-                      height: 1.45,
-                    ),
+                    style: TextStyle(color: MeshPalette.ink3, height: 1.45),
                   ),
                 ],
               ),
@@ -315,7 +313,7 @@ class _BastionCoverageCaptureScreenState
             const SizedBox(height: 22),
             Text(
               l10n.coverage_liveObservations,
-              style: const TextStyle(
+              style: TextStyle(
                 color: cyan,
                 fontSize: 11,
                 fontWeight: FontWeight.w900,
@@ -355,17 +353,17 @@ class _Stat extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(12),
     decoration: BoxDecoration(
-      color: const Color(0xFF202D33),
+      color: MeshPalette.bg2,
       borderRadius: BorderRadius.circular(14),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           label,
-          style: const TextStyle(
-            color: Color(0xFFADBEB7),
+          style: TextStyle(
+            color: MeshPalette.ink3,
             fontSize: 9,
             fontWeight: FontWeight.w800,
           ),
@@ -373,8 +371,8 @@ class _Stat extends StatelessWidget {
         const SizedBox(height: 5),
         Text(
           value,
-          style: const TextStyle(
-            color: Color(0xFF8AB6AA),
+          style: TextStyle(
+            color: MeshPalette.accent,
             fontSize: 15,
             fontWeight: FontWeight.w900,
           ),
@@ -399,12 +397,12 @@ class _Status extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
     decoration: BoxDecoration(
-      color: const Color(0xFF1C272D),
+      color: MeshPalette.bg1,
       borderRadius: BorderRadius.circular(12),
       border: Border.all(
         color: active
-            ? const Color(0xFF8AB6AA).withValues(alpha: .45)
-            : const Color(0xFF36474E),
+            ? MeshPalette.accent.withValues(alpha: .45)
+            : MeshPalette.line,
       ),
     ),
     child: Row(
@@ -412,7 +410,7 @@ class _Status extends StatelessWidget {
         Icon(
           icon,
           size: 17,
-          color: active ? const Color(0xFF8AB6AA) : const Color(0xFF697680),
+          color: active ? MeshPalette.accent : const Color(0xFF697680),
         ),
         const SizedBox(width: 7),
         Expanded(
@@ -453,14 +451,14 @@ class _ObservationTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        color: const Color(0xFF1C272D),
+        color: MeshPalette.bg1,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFF36474E)),
+        border: Border.all(color: MeshPalette.line),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.cell_tower_rounded, color: Color(0xFF8AB6AA)),
+          Icon(Icons.cell_tower_rounded, color: MeshPalette.accent),
           const SizedBox(width: 11),
           Expanded(
             child: Column(
@@ -468,8 +466,8 @@ class _ObservationTile extends StatelessWidget {
               children: [
                 Text(
                   observation.nodeName,
-                  style: const TextStyle(
-                    color: Color(0xFFE4E6DF),
+                  style: TextStyle(
+                    color: MeshPalette.ink,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
@@ -516,14 +514,14 @@ class _Info extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(15),
     decoration: BoxDecoration(
-      color: const Color(0xFF1C272D),
+      color: MeshPalette.bg1,
       borderRadius: BorderRadius.circular(15),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: const Color(0xFF8AB6AA)),
+        Icon(icon, color: MeshPalette.accent),
         const SizedBox(width: 11),
         Expanded(
           child: Column(
@@ -531,16 +529,16 @@ class _Info extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  color: Color(0xFFE4E6DF),
+                style: TextStyle(
+                  color: MeshPalette.ink,
                   fontWeight: FontWeight.w800,
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 body,
-                style: const TextStyle(
-                  color: Color(0xFFADBEB7),
+                style: TextStyle(
+                  color: MeshPalette.ink3,
                   fontSize: 12.5,
                   height: 1.4,
                 ),

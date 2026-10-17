@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,7 +8,7 @@ import '../models/field_ops.dart';
 import '../services/field_ops_service.dart';
 
 const _red = Color(0xFFD9534F);
-const _muted = Color(0xFFADBEB7);
+Color get _muted => MeshPalette.ink3;
 
 /// The home screen's SOS control: a hold-to-send button while idle, and a
 /// status banner with Stop while an SOS is active.
@@ -44,7 +45,7 @@ class SosPanel extends StatelessWidget {
               (channel == null
                   ? l10n.sos_holdHint
                   : l10n.sos_holdHintChannel(channel.name)),
-          style: const TextStyle(color: _muted, fontSize: 12),
+          style: TextStyle(color: _muted, fontSize: 12),
         ),
       ],
     );

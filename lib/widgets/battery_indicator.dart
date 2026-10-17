@@ -17,13 +17,13 @@ BatteryUi batteryUiForPercent(int? percent) {
   final p = percent.clamp(0, 100);
 
   return switch (p) {
-    <= 5 => const BatteryUi(Icons.battery_alert, MeshPalette.alert),
-    <= 15 => const BatteryUi(Icons.battery_0_bar, MeshPalette.alert),
-    <= 30 => const BatteryUi(Icons.battery_1_bar, MeshPalette.warn),
-    <= 45 => const BatteryUi(Icons.battery_2_bar, MeshPalette.warn),
+    <= 5 => BatteryUi(Icons.battery_alert, MeshPalette.alert),
+    <= 15 => BatteryUi(Icons.battery_0_bar, MeshPalette.alert),
+    <= 30 => BatteryUi(Icons.battery_1_bar, MeshPalette.warn),
+    <= 45 => BatteryUi(Icons.battery_2_bar, MeshPalette.warn),
     <= 60 => const BatteryUi(Icons.battery_3_bar, null),
     <= 80 => const BatteryUi(Icons.battery_5_bar, null),
-    _ => const BatteryUi(Icons.battery_full, MeshPalette.signal),
+    _ => BatteryUi(Icons.battery_full, MeshPalette.signal),
   };
 }
 

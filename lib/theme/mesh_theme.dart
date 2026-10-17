@@ -1,60 +1,49 @@
 import 'package:flutter/material.dart';
 
-/// Bastion palette: charcoal surfaces, muted teal and warm ivory.
+import 'bastion_themes.dart';
+
+export 'bastion_themes.dart';
+
+/// Bastion palette: the colors of the theme chosen in Settings. Read these
+/// at build time (they are not constants) so a theme switch repaints.
 class MeshPalette {
   MeshPalette._();
 
-  // Surfaces shared with the map overlays and navigation.
-  static const bg = Color(0xFF182126);
-  static const bg1 = Color(0xFF1C272D);
-  static const bg2 = Color(0xFF202D33);
-  static const bg3 = Color(0xFF28373E);
-  static const bg4 = Color(0xFF36474E);
+  /// The palette in use; set from settings before the app builds.
+  static BastionPalette current = BastionTheme.fallback.palette;
 
-  // Lines — lifted for clearer element separation on the near-black surface
-  static const line = Color(0xFF36474E);
-  static const line2 = Color(0xFF455B61);
-  static const line3 = Color(0xFF62787D);
-
-  // Ink — muted tones brightened for readable secondary/tertiary text in dark
-  static const ink = Color(0xFFE4E6DF);
-  static const ink2 = Color(0xFFCED8D2);
-  static const ink3 = Color(0xFFADBEB7);
-  static const ink4 = Color(0xFF8EA39C);
-
-  // Signal-quality green (used only for SNR coloring, not UI chrome)
-  static const signal = Color(0xFF93B99D);
-  static const signalDim = Color(0xFF6F9B7B);
-
-  // Warn
-  static const warn = Color(0xFFD6B77C);
-  static const warnDim = Color(0xFFB89459);
-  static const warnBg = Color(0x1FD6B77C);
-  static const warnLine = Color(0x66D6B77C);
-
-  // Alert
-  static const alert = Color(0xFFDB8D85);
-  static const alertBg = Color(0x1FDB8D85);
-  static const alertLine = Color(0x66DB8D85);
-
-  // Accent: muted teal, the app's primary accent. Text on it uses [onAccent].
-  static const accent = Color(0xFF8AB6AA);
-  static const accentDim = Color(0xFF5E9485);
-  static const accentBg = Color(0x298AB6AA);
-  static const accentLine = Color(0x808AB6AA);
-  static const onAccent = Color(
-    0xFF182126,
-  ); // = bg, dark text on the teal accent
-
-  // Magenta
-  static const magenta = Color(0xFFB7A3BA);
-  static const magentaBg = Color(0x1CB7A3BA);
-  static const magentaLine = Color(0x47B7A3BA);
-
-  // Me bubble (dusk blue)
-  static const me = Color(0xFF304C49);
-  static const meBorder = Color(0xFF6D978C);
-  static const meInk = Color(0xFFE4E6DF);
+  static Color get bg => current.bg;
+  static Color get bg1 => current.bg1;
+  static Color get bg2 => current.bg2;
+  static Color get bg3 => current.bg3;
+  static Color get bg4 => current.bg4;
+  static Color get line => current.line;
+  static Color get line2 => current.line2;
+  static Color get line3 => current.line3;
+  static Color get ink => current.ink;
+  static Color get ink2 => current.ink2;
+  static Color get ink3 => current.ink3;
+  static Color get ink4 => current.ink4;
+  static Color get signal => current.signal;
+  static Color get signalDim => current.signalDim;
+  static Color get warn => current.warn;
+  static Color get warnDim => current.warnDim;
+  static Color get warnBg => current.warnBg;
+  static Color get warnLine => current.warnLine;
+  static Color get alert => current.alert;
+  static Color get alertBg => current.alertBg;
+  static Color get alertLine => current.alertLine;
+  static Color get accent => current.accent;
+  static Color get accentDim => current.accentDim;
+  static Color get accentBg => current.accentBg;
+  static Color get accentLine => current.accentLine;
+  static Color get onAccent => current.onAccent;
+  static Color get magenta => current.magenta;
+  static Color get magentaBg => current.magentaBg;
+  static Color get magentaLine => current.magentaLine;
+  static Color get me => current.me;
+  static Color get meBorder => current.meBorder;
+  static Color get meInk => current.meInk;
 
   // ── Light variant (used when user explicitly picks light theme)
   static const lightBg = Color(0xFFF1F1E9);
@@ -164,73 +153,58 @@ class MeshRadii {
 class MeshTheme {
   MeshTheme._();
 
-  static ThemeData dark() {
-    const scheme = ColorScheme.dark(
-      primary: MeshPalette.accent,
-      onPrimary: MeshPalette.bg,
-      primaryContainer: Color(0xFF304C49),
-      onPrimaryContainer: MeshPalette.ink,
-      secondary: MeshPalette.warn,
-      onSecondary: MeshPalette.bg,
-      secondaryContainer: Color(0xFF514635),
-      onSecondaryContainer: MeshPalette.ink,
-      tertiary: MeshPalette.warn,
-      onTertiary: Color(0xFF0B1220),
-      tertiaryContainer: Color(0xFF78350F),
-      onTertiaryContainer: Colors.white,
-      error: MeshPalette.alert,
-      onError: MeshPalette.bg,
-      errorContainer: Color(0xFF7F1D1D),
-      onErrorContainer: Colors.white,
-      surface: MeshPalette.bg,
-      onSurface: MeshPalette.ink,
-      surfaceContainerLowest: MeshPalette.bg,
-      surfaceContainerLow: MeshPalette.bg1,
-      surfaceContainer: MeshPalette.bg1,
-      surfaceContainerHigh: MeshPalette.bg2,
-      surfaceContainerHighest: MeshPalette.bg3,
-      onSurfaceVariant: MeshPalette.ink2,
-      outline: MeshPalette.line2,
-      outlineVariant: MeshPalette.line,
+  /// The current theme if it's dark, otherwise Blaze.
+  static ThemeData dark() => forPalette(
+    MeshPalette.current.brightness == Brightness.dark
+        ? MeshPalette.current
+        : BastionTheme.blaze.palette,
+  );
+
+  /// The current theme if it's light, otherwise Alpine day.
+  static ThemeData light() => forPalette(
+    MeshPalette.current.brightness == Brightness.light
+        ? MeshPalette.current
+        : BastionTheme.alpineDay.palette,
+  );
+
+  /// Material theme for one of the Bastion palettes.
+  static ThemeData forPalette(BastionPalette p) {
+    final isDark = p.brightness == Brightness.dark;
+    final scheme = ColorScheme(
+      brightness: p.brightness,
+      primary: p.accent,
+      onPrimary: p.onAccent,
+      primaryContainer: p.primaryContainer,
+      onPrimaryContainer: p.ink,
+      secondary: p.warn,
+      onSecondary: p.bg,
+      secondaryContainer: p.secondaryContainer,
+      onSecondaryContainer: p.ink,
+      tertiary: p.warn,
+      onTertiary: isDark ? p.bg : Colors.white,
+      tertiaryContainer: p.secondaryContainer,
+      onTertiaryContainer: p.ink,
+      error: p.alert,
+      onError: isDark ? p.bg : Colors.white,
+      errorContainer: Color.alphaBlend(p.alert.withAlpha(0x40), p.bg2),
+      onErrorContainer: p.ink,
+      surface: p.bg,
+      onSurface: p.ink,
+      surfaceContainerLowest: p.bg,
+      surfaceContainerLow: p.bg1,
+      surfaceContainer: p.bg1,
+      surfaceContainerHigh: p.bg2,
+      surfaceContainerHighest: p.bg3,
+      onSurfaceVariant: p.ink2,
+      outline: p.line2,
+      outlineVariant: p.line,
       shadow: Colors.black,
       scrim: Colors.black54,
-      inverseSurface: MeshPalette.ink,
-      onInverseSurface: MeshPalette.bg,
-      inversePrimary: MeshPalette.accentDim,
+      inverseSurface: p.ink,
+      onInverseSurface: p.bg,
+      inversePrimary: p.accentDim,
     );
-    return _build(scheme, Brightness.dark);
-  }
-
-  static ThemeData light() {
-    const scheme = ColorScheme.light(
-      primary: MeshPalette.lightAccent,
-      onPrimary: Colors.white,
-      primaryContainer: Color(0xFFD6E5DC),
-      onPrimaryContainer: Color(0xFF243D34),
-      secondary: Color(0xFF75603C),
-      onSecondary: Colors.white,
-      secondaryContainer: Color(0xFFE9DFC9),
-      onSecondaryContainer: Color(0xFF413421),
-      tertiary: Color(0xFF9A5B16),
-      onTertiary: Colors.white,
-      tertiaryContainer: Color(0xFFF8E3C9),
-      onTertiaryContainer: Color(0xFF4A2A05),
-      error: Color(0xFFB53D2F),
-      onError: Colors.white,
-      errorContainer: Color(0xFFF6D9D4),
-      onErrorContainer: Color(0xFF5C1A12),
-      surface: MeshPalette.lightBg,
-      onSurface: MeshPalette.lightInk,
-      surfaceContainerLowest: MeshPalette.lightBg,
-      surfaceContainerLow: MeshPalette.lightBg1,
-      surfaceContainer: MeshPalette.lightBg1,
-      surfaceContainerHigh: MeshPalette.lightBg2,
-      surfaceContainerHighest: Color(0xFFD2DAE1),
-      onSurfaceVariant: MeshPalette.lightInk2,
-      outline: MeshPalette.lightLine,
-      outlineVariant: Color(0xFFD8DEE5),
-    );
-    return _build(scheme, Brightness.light);
+    return _build(scheme, p.brightness);
   }
 
   static ThemeData _build(ColorScheme scheme, Brightness brightness) {

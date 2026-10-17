@@ -86,7 +86,7 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
           ),
         ),
         // Corner brackets on top
-        const ScannerCornerOverlay(
+        ScannerCornerOverlay(
           scanWindowSize: 250,
           borderColor: MeshPalette.accent,
           borderWidth: 2,
@@ -109,7 +109,7 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
                 ),
                 child: Text(
                   context.l10n.community_scanInstructions,
-                  style: const TextStyle(color: MeshPalette.ink2, fontSize: 13),
+                  style: TextStyle(color: MeshPalette.ink2, fontSize: 13),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -196,11 +196,7 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
             MeshCard(
               child: Row(
                 children: [
-                  const Icon(
-                    Icons.groups,
-                    color: MeshPalette.magenta,
-                    size: 32,
-                  ),
+                  Icon(Icons.groups, color: MeshPalette.magenta, size: 32),
                   const SizedBox(width: 14),
                   Expanded(
                     child: Column(

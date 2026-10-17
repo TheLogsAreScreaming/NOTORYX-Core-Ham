@@ -305,8 +305,8 @@ Widget _app(Widget home, ThemeMode mode) {
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: MeshTheme.light(),
-      darkTheme: MeshTheme.dark(),
+      theme: MeshTheme.forPalette(MeshPalette.current),
+      darkTheme: MeshTheme.forPalette(MeshPalette.current),
       themeMode: mode,
       locale: switch (Platform.environment['PREVIEW_LOCALE']) {
         final code? => Locale(code),
@@ -351,6 +351,10 @@ void main() {
   };
 
   setUpAll(() async {
+    // PREVIEW_THEME=topo_night (etc.) renders that theme; Blaze by default.
+    MeshPalette.current = BastionTheme.fromId(
+      Platform.environment['PREVIEW_THEME'],
+    ).palette;
     if (out != null) await _loadFonts();
   });
 

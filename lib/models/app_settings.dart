@@ -127,6 +127,9 @@ class AppSettings {
   /// Slows the app's routine radio polling and background checks.
   final bool batterySaver;
 
+  /// The chosen color theme's id (see BastionTheme); Blaze by default.
+  final String appTheme;
+
   /// Channel messages older than this many days are deleted; 0 keeps them.
   final int channelMessageRetentionDays;
   final bool imageMessagesEnabled;
@@ -233,6 +236,7 @@ class AppSettings {
     this.tcpServerPort = 0,
     this.jumpToOldestUnread = false,
     this.batterySaver = false,
+    this.appTheme = 'blaze',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
     this.imageProcessAutomatically = false,
@@ -311,6 +315,7 @@ class AppSettings {
       'tcp_server_port': tcpServerPort,
       'jump_to_oldest_unread': jumpToOldestUnread,
       'battery_saver': batterySaver,
+      'app_theme': appTheme,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
       'image_process_automatically': imageProcessAutomatically,
@@ -415,6 +420,7 @@ class AppSettings {
       tcpServerPort: json['tcp_server_port'] as int? ?? 0,
       jumpToOldestUnread: json['jump_to_oldest_unread'] as bool? ?? false,
       batterySaver: json['battery_saver'] as bool? ?? false,
+      appTheme: json['app_theme'] as String? ?? 'blaze',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
             json['channel_message_retention_days'],
@@ -536,6 +542,7 @@ class AppSettings {
     int? tcpServerPort,
     bool? jumpToOldestUnread,
     bool? batterySaver,
+    String? appTheme,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
     bool? imageProcessAutomatically,
@@ -613,6 +620,7 @@ class AppSettings {
       tcpServerPort: tcpServerPort ?? this.tcpServerPort,
       jumpToOldestUnread: jumpToOldestUnread ?? this.jumpToOldestUnread,
       batterySaver: batterySaver ?? this.batterySaver,
+      appTheme: appTheme ?? this.appTheme,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,
       imageMessagesEnabled: imageMessagesEnabled ?? this.imageMessagesEnabled,

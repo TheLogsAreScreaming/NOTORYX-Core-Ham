@@ -32,9 +32,9 @@ class QuickSwitchBar extends StatelessWidget {
     final channelsUnreadCount = connector.getTotalChannelsUnreadCount();
     final background = highContrast
         ? MapPalette.panelDark
-        : const Color(0xF2182126);
-    const cyan = MeshPalette.accent;
-    const muted = MeshPalette.ink3;
+        : MeshPalette.bg.withAlpha(0xF2);
+    final cyan = MeshPalette.accent;
+    final muted = MeshPalette.ink3;
 
     void handleDestination(int index) {
       final tab = MainTab.values[index];

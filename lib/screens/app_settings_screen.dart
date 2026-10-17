@@ -15,6 +15,7 @@ import '../services/map_tile_cache_service.dart';
 import '../services/notification_service.dart';
 import '../services/translation_service.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/theme_picker.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/sync_progress_overlay.dart';
@@ -189,26 +190,7 @@ class AppSettingsScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              SegmentedButton<String>(
-                segments: [
-                  ButtonSegment(
-                    value: 'system',
-                    label: Text(context.l10n.appSettings_themeSystem),
-                  ),
-                  ButtonSegment(
-                    value: 'light',
-                    label: Text(context.l10n.appSettings_themeLight),
-                  ),
-                  ButtonSegment(
-                    value: 'dark',
-                    label: Text(context.l10n.appSettings_themeDark),
-                  ),
-                ],
-                selected: {settingsService.settings.themeMode},
-                onSelectionChanged: (selection) {
-                  settingsService.setThemeMode(selection.first);
-                },
-              ),
+              const ThemePicker(),
             ],
           ),
         ),

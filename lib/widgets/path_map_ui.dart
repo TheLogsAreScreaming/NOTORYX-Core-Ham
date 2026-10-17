@@ -14,7 +14,7 @@ import '../theme/mesh_theme.dart';
 enum PathViewMode { single, combined }
 
 const Color kPrimaryPathColor = Colors.blueAccent;
-const List<Color> kAlternatePathColors = [
+final List<Color> kAlternatePathColors = [
   Color(0xFF8B5CF6), // purple
   MeshPalette.signal, // green
   MeshPalette.warn, // amber

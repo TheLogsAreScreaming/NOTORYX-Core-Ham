@@ -1,3 +1,4 @@
+import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../l10n/l10n.dart';
@@ -5,9 +6,9 @@ import '../l10n/l10n.dart';
 class BastionAboutScreen extends StatelessWidget {
   const BastionAboutScreen({super.key});
 
-  static const _cyan = Color(0xFF8AB6AA);
-  static const _bg = Color(0xFF182126);
-  static const _panel = Color(0xFF202D33);
+  static Color get _cyan => MeshPalette.accent;
+  static Color get _bg => MeshPalette.bg;
+  static Color get _panel => MeshPalette.bg2;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +17,11 @@ class BastionAboutScreen extends StatelessWidget {
       backgroundColor: _bg,
       appBar: AppBar(
         backgroundColor: _bg,
-        foregroundColor: Color(0xFFE4E6DF),
+        foregroundColor: MeshPalette.ink,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'BASTION',
               style: TextStyle(
                 color: _cyan,
@@ -49,12 +50,12 @@ class BastionAboutScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(Icons.fort_rounded, color: _cyan, size: 38),
+                Icon(Icons.fort_rounded, color: _cyan, size: 38),
                 const SizedBox(height: 12),
-                const Text(
+                Text(
                   'BASTION',
                   style: TextStyle(
-                    color: Color(0xFFE4E6DF),
+                    color: MeshPalette.ink,
                     fontSize: 28,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 2,
@@ -64,10 +65,7 @@ class BastionAboutScreen extends StatelessWidget {
                 const SizedBox(height: 14),
                 Text(
                   l10n.bastionAbout_intro,
-                  style: const TextStyle(
-                    color: Color(0xFFCED8D2),
-                    height: 1.45,
-                  ),
+                  style: TextStyle(color: MeshPalette.ink2, height: 1.45),
                 ),
               ],
             ),
@@ -123,7 +121,7 @@ class BastionAboutScreen extends StatelessWidget {
     decoration: BoxDecoration(
       color: _panel,
       borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: const Color(0xFF36474E)),
+      border: Border.all(color: MeshPalette.line),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,15 +134,15 @@ class BastionAboutScreen extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  color: Color(0xFFE4E6DF),
+                style: TextStyle(
+                  color: MeshPalette.ink,
                   fontWeight: FontWeight.w900,
                 ),
               ),
               const SizedBox(height: 5),
               Text(
                 body,
-                style: const TextStyle(color: Color(0xFFADBEB7), height: 1.4),
+                style: TextStyle(color: MeshPalette.ink3, height: 1.4),
               ),
             ],
           ),
