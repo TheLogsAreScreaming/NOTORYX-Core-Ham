@@ -1,4 +1,6 @@
-# Bastion
+# NOTORYX Core
+
+> **NOTORYX rebrand in progress:** This project is transitioning to **NOTORYX Core**, part of the **NOTORYX** off-grid communications family. **No Towers. No Limits.** Existing releases, package identifiers and documentation may still use Bastion until migration is tested. This project remains independent of the underlying radio protocol projects.
 
 **Off-grid messaging, check-ins and SOS over your MeshCore LoRa radio.**
 
