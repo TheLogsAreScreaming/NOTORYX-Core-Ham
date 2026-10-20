@@ -25,8 +25,7 @@ class InboundSpamPolicy {
     final events = _recent.putIfAbsent(senderKey, () => <DateTime>[]);
     events.removeWhere(
       (event) =>
-          receivedAt.difference(event) >= window ||
-          event.isAfter(receivedAt),
+          receivedAt.difference(event) >= window || event.isAfter(receivedAt),
     );
     if (events.length >= maxMessagesPerWindow) {
       return SpamDecision.rateLimited;
