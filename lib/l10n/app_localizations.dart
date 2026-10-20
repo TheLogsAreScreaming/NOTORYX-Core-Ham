@@ -12306,6 +12306,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Altitude'**
   String get sensor_typeAltitude;
+
+  /// No description provided for @setupWizard_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio'**
+  String get setupWizard_title;
+
+  /// No description provided for @setupWizard_choose.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Choose a connection'**
+  String get setupWizard_choose;
+
+  /// No description provided for @setupWizard_prepare.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Prepare your radio'**
+  String get setupWizard_prepare;
+
+  /// No description provided for @setupWizard_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.'**
+  String get setupWizard_intro;
+
+  /// No description provided for @setupWizard_bluetooth.
+  ///
+  /// In en, this message translates to:
+  /// **'Wireless connection to a nearby compatible radio.'**
+  String get setupWizard_bluetooth;
+
+  /// No description provided for @setupWizard_noBluetooth.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.'**
+  String get setupWizard_noBluetooth;
+
+  /// No description provided for @setupWizard_usb.
+  ///
+  /// In en, this message translates to:
+  /// **'A wired connection using a USB data cable.'**
+  String get setupWizard_usb;
+
+  /// No description provided for @setupWizard_noUsb.
+  ///
+  /// In en, this message translates to:
+  /// **'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.'**
+  String get setupWizard_noUsb;
+
+  /// No description provided for @setupWizard_bluetoothSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.'**
+  String get setupWizard_bluetoothSteps;
+
+  /// No description provided for @setupWizard_usbSteps.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.'**
+  String get setupWizard_usbSteps;
+
+  /// No description provided for @setupWizard_firmwareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Check compatibility before changing firmware'**
+  String get setupWizard_firmwareTitle;
+
+  /// No description provided for @setupWizard_firmware.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.'**
+  String get setupWizard_firmware;
+
+  /// No description provided for @setupWizard_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.'**
+  String get setupWizard_settings;
+
+  /// No description provided for @setupWizard_openBluetooth.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Bluetooth devices'**
+  String get setupWizard_openBluetooth;
+
+  /// No description provided for @setupWizard_openUsb.
+  ///
+  /// In en, this message translates to:
+  /// **'Open USB devices'**
+  String get setupWizard_openUsb;
+
+  /// No description provided for @setupWizard_change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change connection type'**
+  String get setupWizard_change;
+
+  /// No description provided for @setupWizard_later.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up later'**
+  String get setupWizard_later;
+
+  /// No description provided for @setupWizard_bluetoothError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.'**
+  String get setupWizard_bluetoothError;
+
+  /// No description provided for @setupWizard_scanError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.'**
+  String get setupWizard_scanError;
+
+  /// No description provided for @setupWizard_usbError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.'**
+  String get setupWizard_usbError;
 }
 
 class _AppLocalizationsDelegate

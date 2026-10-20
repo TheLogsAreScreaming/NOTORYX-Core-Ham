@@ -10,7 +10,7 @@ import 'bastion_diagnostics_screen.dart';
 import 'bastion_field_ops_screen.dart';
 import 'chat_screen.dart';
 import 'discovery_screen.dart';
-import 'scanner_screen.dart';
+import 'connection_setup_screen.dart';
 
 class BastionSetupScreen extends StatefulWidget {
   const BastionSetupScreen({super.key});
@@ -100,7 +100,9 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
               spacing: 8,
               children: [
                 FilledButton.icon(
-                  onPressed: () => _open(const ScannerScreen()),
+                  onPressed: radio.isConnected
+                      ? null
+                      : () => openConnectionSetup(context),
                   icon: const Icon(Icons.bluetooth_searching),
                   label: Text(l10n.fieldOps_connectRadio),
                 ),

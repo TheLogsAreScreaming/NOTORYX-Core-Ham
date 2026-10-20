@@ -7333,4 +7333,76 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => 'Altitud';
+
+  @override
+  String get setupWizard_title => 'Connect your radio';
+
+  @override
+  String get setupWizard_choose => '1. Choose a connection';
+
+  @override
+  String get setupWizard_prepare => '2. Prepare your radio';
+
+  @override
+  String get setupWizard_intro =>
+      'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.';
+
+  @override
+  String get setupWizard_bluetooth =>
+      'Wireless connection to a nearby compatible radio.';
+
+  @override
+  String get setupWizard_noBluetooth =>
+      'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.';
+
+  @override
+  String get setupWizard_usb => 'A wired connection using a USB data cable.';
+
+  @override
+  String get setupWizard_noUsb =>
+      'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.';
+
+  @override
+  String get setupWizard_bluetoothSteps =>
+      'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.';
+
+  @override
+  String get setupWizard_usbSteps =>
+      'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.';
+
+  @override
+  String get setupWizard_firmwareTitle =>
+      'Check compatibility before changing firmware';
+
+  @override
+  String get setupWizard_firmware =>
+      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+
+  @override
+  String get setupWizard_settings =>
+      'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.';
+
+  @override
+  String get setupWizard_openBluetooth => 'Open Bluetooth devices';
+
+  @override
+  String get setupWizard_openUsb => 'Open USB devices';
+
+  @override
+  String get setupWizard_change => 'Change connection type';
+
+  @override
+  String get setupWizard_later => 'Set up later';
+
+  @override
+  String get setupWizard_bluetoothError =>
+      'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.';
+
+  @override
+  String get setupWizard_scanError =>
+      'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.';
+
+  @override
+  String get setupWizard_usbError =>
+      'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.';
 }
