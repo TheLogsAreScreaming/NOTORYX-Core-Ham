@@ -22,6 +22,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Free Android build disk
+        run: bash ci/free-android-disk.sh
+
       - name: Set up Java
         uses: actions/setup-java@v5
         with:
@@ -31,8 +34,28 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.47.6'
           channel: stable
           cache: true
+
+      - name: Install and verify Android CMake
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Install before Gradle so a transient download failure can be retried.
+          for attempt in 1 2 3; do
+            if sdkmanager --install "cmake;3.22.1" &&
+               "$ANDROID_HOME/cmake/3.22.1/bin/cmake" --version; then
+              break
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo "::error::Android CMake 3.22.1 could not be installed and verified"
+              exit 1
+            fi
+            # Discard only SDK installer staging and the failed CMake package.
+            rm -rf "$ANDROID_HOME/.temp" "$ANDROID_HOME/cmake/3.22.1"
+            sleep 10
+          done
 
       - name: Get dependencies
         run: flutter pub get
