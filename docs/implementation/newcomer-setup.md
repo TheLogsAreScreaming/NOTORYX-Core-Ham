@@ -18,7 +18,8 @@ never flashes, changes region/frequency, sends messages, or claims connectivity.
 USB already has specific permission, missing-device, busy, and timeout messages;
 those mappings are retained and tested. Unknown USB failures now offer cable,
 permission, device-selection, and competing-app recovery steps instead of raw
-exceptions. Bluetooth scan failures previously only logged; they now display
+exceptions. USB picker cancellation stays silent, but other requestPort failures
+are no longer incorrectly treated as cancellation. Bluetooth scan failures previously only logged; they now display
 recovery steps. Bluetooth connection failures also offer recovery guidance,
 while retaining raw details in diagnostic logs and existing Linux retry handling.
 

@@ -41,4 +41,27 @@ void main() {
       l10n.usbErrorUnsupported,
     );
   });
+
+  test('picker cancellation is silent but permission failures are not', () {
+    expect(
+      isUsbSelectionCancelled(StateError('No USB serial device selected')),
+      isTrue,
+    );
+    expect(
+      isUsbSelectionCancelled(
+        Exception(
+          "Failed to execute 'requestPort': No port selected by the user",
+        ),
+      ),
+      isTrue,
+    );
+    expect(
+      isUsbSelectionCancelled(
+        Exception(
+          "SecurityError: Failed to execute 'requestPort': access denied",
+        ),
+      ),
+      isFalse,
+    );
+  });
 }

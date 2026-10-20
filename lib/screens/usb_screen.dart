@@ -384,21 +384,11 @@ class _UsbScreenState extends State<UsbScreen> {
     // Cancelling the browser's serial port picker is a normal user action, not
     // an error — don't show a scary red toast (and never leak the raw
     // DOMException text).
-    if (_isUserCancelledPortPicker(error)) return;
+    if (isUsbSelectionCancelled(error)) return;
     showDismissibleSnackBar(
       context,
       content: Text(usbConnectionErrorMessage(error, context.l10n)),
       backgroundColor: Theme.of(context).colorScheme.error,
     );
-  }
-
-  bool _isUserCancelledPortPicker(Object error) {
-    if (error is StateError &&
-        error.message.contains('No USB serial device selected')) {
-      return true;
-    }
-    final text = error.toString();
-    return text.contains('No port selected by the user') ||
-        text.contains("Failed to execute 'requestPort'");
   }
 }

@@ -48,3 +48,11 @@ String usbConnectionErrorMessage(Object error, AppLocalizations l10n) {
 
   return l10n.setupWizard_usbError;
 }
+
+/// Only explicit picker cancellation is silent; permission errors need guidance.
+bool isUsbSelectionCancelled(Object error) {
+  if (error is StateError && error.message == 'No USB serial device selected') {
+    return true;
+  }
+  return error.toString().contains('No port selected by the user');
+}
