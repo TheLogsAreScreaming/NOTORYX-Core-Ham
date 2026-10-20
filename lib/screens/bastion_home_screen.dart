@@ -16,7 +16,7 @@ import 'bastion_map_hub_screen.dart';
 import 'bastion_path_hub_screen.dart';
 import 'bastion_repeater_tools_screen.dart';
 import 'discovery_screen.dart';
-import 'scanner_screen.dart';
+import 'connection_setup_screen.dart';
 import 'bastion_setup_screen.dart';
 import '../widgets/sos_panel.dart';
 import '../widgets/quick_trip_setup.dart';
@@ -200,9 +200,7 @@ class BastionHomeScreen extends StatelessWidget {
                 icon: Icons.bluetooth_searching_rounded,
                 title: l10n.bastionHome_connectRadio,
                 subtitle: l10n.bastionHome_connectRadioHint,
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const ScannerScreen()),
-                ),
+                onTap: () => openConnectionSetup(context),
               )
             else
               _ActionCard(

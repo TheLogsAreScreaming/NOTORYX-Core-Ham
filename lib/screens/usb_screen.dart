@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
+import '../services/usb_connection_error.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/app_logger.dart';
 import '../utils/platform_info.dart';
@@ -386,7 +387,7 @@ class _UsbScreenState extends State<UsbScreen> {
     if (_isUserCancelledPortPicker(error)) return;
     showDismissibleSnackBar(
       context,
-      content: Text(_friendlyErrorMessage(error)),
+      content: Text(usbConnectionErrorMessage(error, context.l10n)),
       backgroundColor: Theme.of(context).colorScheme.error,
     );
   }
@@ -399,53 +400,5 @@ class _UsbScreenState extends State<UsbScreen> {
     final text = error.toString();
     return text.contains('No port selected by the user') ||
         text.contains("Failed to execute 'requestPort'");
-  }
-
-  String _friendlyErrorMessage(Object error) {
-    final l10n = context.l10n;
-
-    if (error is PlatformException) {
-      switch (error.code) {
-        case 'usb_permission_denied':
-          return l10n.usbErrorPermissionDenied;
-        case 'usb_device_missing':
-        case 'usb_device_detached':
-          return l10n.usbErrorDeviceMissing;
-        case 'usb_invalid_port':
-          return l10n.usbErrorInvalidPort;
-        case 'usb_busy':
-          return l10n.usbErrorBusy;
-        case 'usb_not_connected':
-          return l10n.usbErrorNotConnected;
-        case 'usb_open_failed':
-        case 'usb_driver_missing':
-          return l10n.usbErrorOpenFailed;
-        case 'usb_connect_failed':
-          return l10n.usbErrorConnectFailed;
-      }
-    }
-
-    if (error is UnsupportedError) {
-      return l10n.usbErrorUnsupported;
-    }
-
-    if (error is StateError) {
-      final msg = error.message;
-      if (msg.contains('already active')) return l10n.usbErrorAlreadyActive;
-      if (msg.contains('No USB serial device selected')) {
-        return l10n.usbErrorNoDeviceSelected;
-      }
-      if (msg.contains('not open') || msg.contains('closed')) {
-        return l10n.usbErrorPortClosed;
-      }
-      if (msg.contains('Timed out')) return l10n.usbErrorConnectTimedOut;
-      if (msg.contains('Failed to open')) return l10n.usbErrorOpenFailed;
-    }
-
-    if (error is TimeoutException) {
-      return l10n.usbErrorConnectTimedOut;
-    }
-
-    return error.toString();
   }
 }

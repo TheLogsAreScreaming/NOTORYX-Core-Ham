@@ -12306,6 +12306,45 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Altitude'**
   String get sensor_typeAltitude;
+  String get setupWizard_title;
+
+  String get setupWizard_choose;
+
+  String get setupWizard_prepare;
+
+  String get setupWizard_intro;
+
+  String get setupWizard_bluetooth;
+
+  String get setupWizard_noBluetooth;
+
+  String get setupWizard_usb;
+
+  String get setupWizard_noUsb;
+
+  String get setupWizard_bluetoothSteps;
+
+  String get setupWizard_usbSteps;
+
+  String get setupWizard_firmwareTitle;
+
+  String get setupWizard_firmware;
+
+  String get setupWizard_settings;
+
+  String get setupWizard_openBluetooth;
+
+  String get setupWizard_openUsb;
+
+  String get setupWizard_change;
+
+  String get setupWizard_later;
+
+  String get setupWizard_bluetoothError;
+
+  String get setupWizard_scanError;
+
+  String get setupWizard_usbError;
 }
 
 class _AppLocalizationsDelegate

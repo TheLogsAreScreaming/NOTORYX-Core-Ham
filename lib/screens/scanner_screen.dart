@@ -224,6 +224,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
       unawaited(
         connector.startScan().catchError((e) {
           appLogger.warn('startScan error: $e', tag: 'ScannerScreen');
+          if (!mounted) return;
+          showDismissibleSnackBar(
+            context,
+            content: Text(context.l10n.setupWizard_scanError),
+          );
         }),
       );
     }
@@ -300,6 +305,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
             : null,
       );
     } catch (e) {
+      appLogger.warn('Connect failed: $e', tag: 'ScannerScreen');
       final errorText = e.toString();
       final suppressTransientLinuxConnectError =
           PlatformInfo.isLinux &&
@@ -315,7 +321,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
       if (context.mounted) {
         showDismissibleSnackBar(
           context,
-          content: Text(context.l10n.scanner_connectionFailed(e.toString())),
+          content: Text(context.l10n.setupWizard_bluetoothError),
           backgroundColor: Theme.of(context).colorScheme.error,
         );
       }
