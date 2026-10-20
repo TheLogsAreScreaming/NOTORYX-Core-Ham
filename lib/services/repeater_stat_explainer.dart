@@ -39,7 +39,9 @@ class RepeaterStatExplainer {
       if (value is! num && value is! String) continue;
       buffer.writeln('${entry.key}: $value');
     }
-    buffer.writeln('Counters may be cumulative; no packet error rate is inferred.');
+    buffer.writeln(
+      'Counters may be cumulative; no packet error rate is inferred.',
+    );
     return buffer.toString();
   }
 }
