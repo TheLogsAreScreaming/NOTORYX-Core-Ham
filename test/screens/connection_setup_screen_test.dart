@@ -113,6 +113,7 @@ void main() {
     SetupConnection? result;
     await open(tester, onResult: (value) => result = value);
     await tester.scrollUntilVisible(find.byIcon(Icons.usb), 200);
+    await tester.pumpAndSettle();
     await tester.tap(find.byIcon(Icons.usb));
     await tester.pumpAndSettle();
     await tester.scrollUntilVisible(find.byType(FilledButton), 200);
