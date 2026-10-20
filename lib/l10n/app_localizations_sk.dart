@@ -7322,6 +7322,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => 'Nadmorská výška';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 

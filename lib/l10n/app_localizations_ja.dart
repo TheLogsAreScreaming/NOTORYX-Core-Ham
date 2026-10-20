@@ -6991,6 +6991,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => '高度';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 

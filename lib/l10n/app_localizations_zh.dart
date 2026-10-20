@@ -6854,6 +6854,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => '海拔';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 

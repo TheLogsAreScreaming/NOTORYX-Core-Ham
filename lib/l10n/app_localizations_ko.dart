@@ -7002,6 +7002,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => '고도';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 

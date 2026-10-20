@@ -7302,6 +7302,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => 'Hoogte';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 

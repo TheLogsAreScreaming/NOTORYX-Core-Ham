@@ -7270,6 +7270,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => 'Höjd';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 

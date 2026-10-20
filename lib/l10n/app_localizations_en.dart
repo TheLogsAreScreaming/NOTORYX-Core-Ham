@@ -7225,6 +7225,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => 'Altitude';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 

@@ -7363,6 +7363,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => 'Висота';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 

@@ -7323,6 +7323,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => 'Надморска височина';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 

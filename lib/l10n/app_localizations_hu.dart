@@ -7317,6 +7317,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get sensor_typeAltitude => 'Magasság';
+
   @override
   String get setupWizard_title => 'Connect your radio';
 
