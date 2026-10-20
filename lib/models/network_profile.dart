@@ -18,11 +18,13 @@ class NetworkProfile {
       if (!_allowedSettings.contains(entry.key)) continue;
       final previous = current[entry.key];
       if (previous != entry.value) {
-        changes.add(NetworkSettingChange(
-          setting: entry.key,
-          previous: previous,
-          proposed: entry.value,
-        ));
+        changes.add(
+          NetworkSettingChange(
+            setting: entry.key,
+            previous: previous,
+            proposed: entry.value,
+          ),
+        );
       }
     }
     return List.unmodifiable(changes);
