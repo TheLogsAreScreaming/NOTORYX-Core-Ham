@@ -44,7 +44,7 @@ jobs:
           set -euo pipefail
           # Install before Gradle so a transient download failure can be retried.
           for attempt in 1 2 3; do
-            if sdkmanager --install "cmake;3.22.1" &&
+            if "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "cmake;3.22.1" &&
                "$ANDROID_HOME/cmake/3.22.1/bin/cmake" --version; then
               break
             fi
