@@ -54,6 +54,7 @@ void main() {
         findsOneWidget,
       );
       await tester.ensureVisible(find.byType(FilledButton));
+      await tester.pumpAndSettle();
       await tester.tap(find.byType(FilledButton));
       await tester.pumpAndSettle();
       expect(result, choice);
@@ -87,14 +88,38 @@ void main() {
     await tester.tap(find.byIcon(Icons.bluetooth));
     await tester.pumpAndSettle();
     await tester.ensureVisible(find.text('Change connection type'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Change connection type'));
     await tester.pumpAndSettle();
     expect(find.text('1. Choose a connection'), findsOneWidget);
     expect(returned, isFalse);
     await tester.ensureVisible(find.text('Set up later'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Set up later'));
     await tester.pumpAndSettle();
     expect(returned, isTrue);
     expect(result, isNull);
+  });
+
+  testWidgets('small screen and large text keep connection action reachable', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1;
+    tester.platformDispatcher.textScaleFactorTestValue = 2;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+    SetupConnection? result;
+    await open(tester, onResult: (value) => result = value);
+    await tester.scrollUntilVisible(find.byIcon(Icons.usb), 200);
+    await tester.tap(find.byIcon(Icons.usb));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.byType(FilledButton), 200);
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.byType(FilledButton));
+    await tester.pumpAndSettle();
+    expect(result, SetupConnection.usb);
   });
 }

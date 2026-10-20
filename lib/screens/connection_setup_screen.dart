@@ -52,6 +52,7 @@ class _ConnectionSetupScreenState extends State<ConnectionSetupScreen> {
       appBar: AppBar(title: Text(l10n.setupWizard_title)),
       body: SafeArea(
         child: ListView(
+          key: ValueKey(choice),
           padding: const EdgeInsets.all(20),
           children: [
             Text(
