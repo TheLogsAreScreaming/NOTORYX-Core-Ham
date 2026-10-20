@@ -2919,6 +2919,9 @@ class MeshCoreConnector extends ChangeNotifier {
 
     final delayMs = _nextReconnectDelayMs();
     _reconnectTimer = Timer(Duration(milliseconds: delayMs), () async {
+      // The scheduled timer has fired. Clear it before attempting a connection
+      // so a failed attempt can schedule the next retry.
+      _reconnectTimer = null;
       if (!_shouldAutoReconnect) return;
       if (_state == MeshCoreConnectionState.connecting ||
           _state == MeshCoreConnectionState.connected) {
