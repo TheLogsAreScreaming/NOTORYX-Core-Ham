@@ -22,7 +22,7 @@ class MqttBrokerSettings {
   String? validate() {
     final normalizedHost = host.trim();
     if (normalizedHost.isEmpty ||
-        normalizedHost.contains(RegExp(r'\\s')) ||
+        normalizedHost.contains(RegExp(r'\s')) ||
         normalizedHost.contains('/') ||
         normalizedHost.contains('@') ||
         normalizedHost.contains(':')) {
@@ -43,7 +43,7 @@ class MqttBrokerSettings {
         prefix.endsWith('/') ||
         prefix.contains('#') ||
         prefix.contains('+') ||
-        prefix.contains(RegExp(r'\\s'))) {
+        prefix.contains(RegExp(r'\s'))) {
       return 'Topic prefix must be a nonempty MQTT path without wildcards.';
     }
     return null;
