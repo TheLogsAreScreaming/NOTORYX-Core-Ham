@@ -1,8 +1,7 @@
 /// Bounded message identifier cache to prevent repeated MQTT packet handling.
 /// Message identifiers must be derived from authenticated packet metadata.
 class MqttPacketDeduplicator {
-  MqttPacketDeduplicator({this.capacity = 512})
-    : assert(capacity > 0);
+  MqttPacketDeduplicator({this.capacity = 512}) : assert(capacity > 0);
 
   final int capacity;
   final Set<String> _seen = <String>{};
