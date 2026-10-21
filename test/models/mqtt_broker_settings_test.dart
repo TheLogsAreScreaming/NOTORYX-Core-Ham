@@ -3,10 +3,7 @@ import 'package:meshcore_open/models/mqtt_broker_settings.dart';
 
 void main() {
   test('accepts a TLS broker with a plain topic prefix', () {
-    const settings = MqttBrokerSettings(
-      host: 'broker.example.org',
-      port: 8883,
-    );
+    const settings = MqttBrokerSettings(host: 'broker.example.org', port: 8883);
     expect(settings.validate(), isNull);
     expect(settings.transportLabel, 'MQTTS');
   });
