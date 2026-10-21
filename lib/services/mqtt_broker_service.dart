@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -9,15 +10,19 @@ import '../models/mqtt_broker_settings.dart';
 import '../models/mqtt_connection_diagnostics.dart';
 import '../models/mqtt_connection_policy.dart';
 import '../models/mqtt_connection_status.dart';
+import '../models/mqtt_mesh_packet.dart';
+import '../models/mqtt_packet_deduplicator.dart';
 import '../models/mqtt_reconnect_policy.dart';
 import '../models/mqtt_settings_codec.dart';
+import '../models/mqtt_topic_guard.dart';
 import 'mqtt_credentials_store.dart';
 import 'mqtt_transport.dart';
 
 /// Owns the MQTT broker session, independent of the radio connection.
 ///
 /// Broker settings live in preferences; credentials only in
-/// [MqttCredentialsStore]. Subscriptions and publishing build on this later.
+/// [MqttCredentialsStore]. While connected it subscribes to observer packet
+/// topics and emits each distinct MeshCore packet on [packets].
 class MqttBrokerService extends ChangeNotifier {
   MqttBrokerService({
     required SharedPreferences prefs,
@@ -25,6 +30,7 @@ class MqttBrokerService extends ChangeNotifier {
     required MqttTransportFactory transportFactory,
     MqttReconnectPolicy reconnectPolicy = const MqttReconnectPolicy(),
     this.maxReconnectAttempts = 8,
+    this.statsNotifyInterval = const Duration(milliseconds: 250),
   }) : _prefs = prefs,
        _credentials = credentials,
        _transportFactory = transportFactory,
@@ -33,6 +39,10 @@ class MqttBrokerService extends ChangeNotifier {
   static const _settingsKey = 'mqtt_broker_settings';
   static const _allowInsecureLocalKey = 'mqtt_allow_insecure_local_broker';
   static const _clientIdKey = 'mqtt_client_id';
+  static const _deliverChannelMessagesKey = 'mqtt_deliver_channel_messages';
+
+  /// Packets kept for the packet feed, newest first.
+  static const recentPacketLimit = 100;
 
   final SharedPreferences _prefs;
   final MqttCredentialsStore _credentials;
@@ -43,6 +53,25 @@ class MqttBrokerService extends ChangeNotifier {
 
   /// Automatic retries before giving up and showing an error.
   final int maxReconnectAttempts;
+
+  /// Packet counters update listeners at most this often, so a busy broker
+  /// doesn't rebuild the UI for every packet.
+  final Duration statsNotifyInterval;
+
+  final MqttPacketDeduplicator _deduplicator = MqttPacketDeduplicator(
+    capacity: 2048,
+  );
+  final StreamController<MqttMeshPacket> _packets =
+      StreamController<MqttMeshPacket>.broadcast();
+  final ListQueue<MqttMeshPacket> _recent = ListQueue<MqttMeshPacket>();
+  int _packetsReceived = 0;
+  int _packetsAccepted = 0;
+  int _packetsDuplicate = 0;
+  int _packetsRejected = 0;
+  String? _subscribedTopic;
+  bool _subscriptionFailed = false;
+  bool _deliverChannelMessages = false;
+  Timer? _statsNotifyTimer;
 
   MqttBrokerSettings? _settings;
   bool _allowInsecureLocalBroker = false;
@@ -65,8 +94,31 @@ class MqttBrokerService extends ChangeNotifier {
   MqttConnectionStatus get status => _status;
   int get reconnectAttempt => _reconnectAttempt;
 
+  /// Distinct MeshCore packets heard by observers, after deduplication.
+  Stream<MqttMeshPacket> get packets => _packets.stream;
+
+  /// The most recent distinct packets, newest first.
+  List<MqttMeshPacket> get recentPackets => List.unmodifiable(_recent);
+  int get packetsReceived => _packetsReceived;
+  int get packetsAccepted => _packetsAccepted;
+  int get packetsDuplicate => _packetsDuplicate;
+  int get packetsRejected => _packetsRejected;
+
+  /// The observer topic filter while subscribed.
+  String? get subscribedTopic => _subscribedTopic;
+  bool get subscriptionFailed => _subscriptionFailed;
+
+  /// Whether channel messages heard via MQTT are added to the user's
+  /// channels. Off by default; the packet feed works either way.
+  bool get deliverChannelMessages => _deliverChannelMessages;
+
   /// User-facing reason for the last failure, if any.
-  String? get errorMessage => _configurationError ?? _lastFailure?.message;
+  String? get errorMessage =>
+      _configurationError ??
+      _lastFailure?.message ??
+      (_subscriptionFailed
+          ? 'The broker refused the packet subscription.'
+          : null);
 
   bool get canConnect =>
       _settings != null &&
@@ -93,6 +145,8 @@ class MqttBrokerService extends ChangeNotifier {
       }
     }
     _allowInsecureLocalBroker = _prefs.getBool(_allowInsecureLocalKey) ?? false;
+    _deliverChannelMessages =
+        _prefs.getBool(_deliverChannelMessagesKey) ?? false;
     _username = (await _credentials.read())?.username;
     _status = _settings == null
         ? MqttConnectionStatus.notConfigured
@@ -108,6 +162,7 @@ class MqttBrokerService extends ChangeNotifier {
     bool allowInsecureLocalBroker = false,
     String username = '',
     String? password,
+    bool? deliverChannelMessages,
   }) async {
     final error = _connectionPolicy.validate(
       settings,
@@ -133,11 +188,16 @@ class MqttBrokerService extends ChangeNotifier {
     disconnect();
     await _prefs.setString(_settingsKey, jsonEncode(_codec.encode(settings)));
     await _prefs.setBool(_allowInsecureLocalKey, allowInsecureLocalBroker);
+    if (deliverChannelMessages != null) {
+      await _prefs.setBool(_deliverChannelMessagesKey, deliverChannelMessages);
+      _deliverChannelMessages = deliverChannelMessages;
+    }
     _settings = settings;
     _allowInsecureLocalBroker = allowInsecureLocalBroker;
     _username = trimmedUser.isEmpty ? null : trimmedUser;
     _configurationError = null;
     _lastFailure = null;
+    _resetPacketStats();
     _status = MqttConnectionStatus.disconnected;
     _notify();
     return null;
@@ -187,6 +247,7 @@ class MqttBrokerService extends ChangeNotifier {
     transport.onConnectionLost = () {
       if (generation != _generation || _disposed) return;
       _transport = null;
+      _subscribedTopic = null;
       _lastFailure = MqttConnectFailure.unreachable;
       _reconnectAttempt = 0;
       _scheduleReconnect(generation);
@@ -204,6 +265,7 @@ class MqttBrokerService extends ChangeNotifier {
       _lastFailure = null;
       _reconnectAttempt = 0;
       _status = MqttConnectionStatus.connected;
+      _subscribe(transport, settings, generation);
       _notify();
       return;
     }
@@ -241,14 +303,73 @@ class MqttBrokerService extends ChangeNotifier {
     });
   }
 
+  void _subscribe(
+    MqttTransport transport,
+    MqttBrokerSettings settings,
+    int generation,
+  ) {
+    final topic = MqttPacketTopics.subscriptionFor(settings);
+    if (!MqttTopicGuard.validSubscriptionTopic(topic)) return;
+    transport
+      ..onMessage = (topic, payload) {
+        if (generation == _generation && !_disposed) {
+          _handleMessage(topic, payload);
+        }
+      }
+      ..onSubscribeFailed = (_) {
+        if (generation != _generation || _disposed) return;
+        _subscriptionFailed = true;
+        _subscribedTopic = null;
+        _notify();
+      }
+      ..subscribe(topic);
+    _subscriptionFailed = false;
+    _subscribedTopic = topic;
+  }
+
+  void _handleMessage(String topic, Uint8List payload) {
+    _packetsReceived++;
+    final packet = MqttMeshPacket.tryParse(topic, payload);
+    if (packet == null) {
+      _packetsRejected++;
+    } else if (!_deduplicator.accept(packet.hash)) {
+      _packetsDuplicate++;
+    } else {
+      _packetsAccepted++;
+      _recent.addFirst(packet);
+      while (_recent.length > recentPacketLimit) {
+        _recent.removeLast();
+      }
+      _packets.add(packet);
+    }
+    _statsNotifyTimer ??= Timer(statsNotifyInterval, () {
+      _statsNotifyTimer = null;
+      _notify();
+    });
+  }
+
+  void _resetPacketStats() {
+    _deduplicator.clear();
+    _recent.clear();
+    _packetsReceived = 0;
+    _packetsAccepted = 0;
+    _packetsDuplicate = 0;
+    _packetsRejected = 0;
+  }
+
   void _abandonSession() {
     _generation++;
+    _subscribedTopic = null;
+    _subscriptionFailed = false;
     _reconnectTimer?.cancel();
     _reconnectTimer = null;
     final transport = _transport;
     _transport = null;
-    transport?.onConnectionLost = null;
-    transport?.disconnect();
+    transport
+      ?..onConnectionLost = null
+      ..onMessage = null
+      ..onSubscribeFailed = null
+      ..disconnect();
   }
 
   String _clientId() {
@@ -267,7 +388,9 @@ class MqttBrokerService extends ChangeNotifier {
   @override
   void dispose() {
     _abandonSession();
+    _statsNotifyTimer?.cancel();
     _disposed = true;
+    unawaited(_packets.close());
     super.dispose();
   }
 }

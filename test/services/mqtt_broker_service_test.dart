@@ -1,13 +1,17 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
 import 'package:meshcore_open/models/mqtt_connection_status.dart';
+import 'package:meshcore_open/models/mqtt_mesh_packet.dart';
 import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_transport.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../support/mesh_packet_fixtures.dart';
 
 class FakeTransport implements MqttTransport {
   FakeTransport(this.result);
@@ -35,6 +39,20 @@ class FakeTransport implements MqttTransport {
 
   @override
   set onConnectionLost(void Function()? callback) => lost = callback;
+
+  final List<String> subscriptions = [];
+  MqttMessageHandler? onMessageHandler;
+  void Function(String topic)? subscribeFailed;
+
+  @override
+  void subscribe(String topic) => subscriptions.add(topic);
+
+  @override
+  set onMessage(MqttMessageHandler? handler) => onMessageHandler = handler;
+
+  @override
+  set onSubscribeFailed(void Function(String topic)? callback) =>
+      subscribeFailed = callback;
 }
 
 const _settings = MqttBrokerSettings(host: 'broker.test', port: 8883);
@@ -276,5 +294,127 @@ void main() {
     expect(ids, hasLength(2));
     expect(ids.first, ids.last);
     expect(ids.first, startsWith('notoryx-'));
+  });
+
+  group('packet subscription', () {
+    final psk = Uint8List.fromList(List.generate(16, (i) => i));
+    final packet = groupTextPacket(psk: psk, text: 'Alice: hi');
+
+    Future<MqttBrokerService> connected({String region = ''}) async {
+      final service = MqttBrokerService(
+        prefs: prefs,
+        credentials: credentials,
+        transportFactory: (settings, clientId) {
+          final transport = FakeTransport(null);
+          transports.add(transport);
+          return transport;
+        },
+        statsNotifyInterval: Duration.zero,
+      );
+      await service.load();
+      await service.saveConfiguration(
+        MqttBrokerSettings(host: 'broker.test', port: 8883, region: region),
+      );
+      await service.connect();
+      return service;
+    }
+
+    test('subscribes to observer packets after connecting', () async {
+      final service = await connected(region: 'PHL');
+      expect(transports.single.subscriptions, ['meshcore/PHL/+/packets']);
+      expect(service.subscribedTopic, 'meshcore/PHL/+/packets');
+      service.disconnect();
+      expect(service.subscribedTopic, isNull);
+    });
+
+    test('emits each distinct packet once and counts the rest', () async {
+      final service = await connected();
+      final seen = <MqttMeshPacket>[];
+      service.packets.listen(seen.add);
+      final deliver = transports.single.onMessageHandler!;
+
+      deliver('meshcore/PHL/AAAA/packets', observerMessage(packet));
+      deliver(
+        'meshcore/PHL/BBBB/packets',
+        observerMessage(packet, origin: 'Valley', originId: 'BBBB'),
+      );
+      deliver('meshcore/PHL/AAAA/packets', Uint8List.fromList([1, 2, 3]));
+      await Future<void>.delayed(Duration.zero);
+
+      expect(seen, hasLength(1));
+      expect(seen.single.observerName, 'Hilltop');
+      expect(service.recentPackets, hasLength(1));
+      expect(service.packetsReceived, 3);
+      expect(service.packetsAccepted, 1);
+      expect(service.packetsDuplicate, 1);
+      expect(service.packetsRejected, 1);
+    });
+
+    test('keeps only the most recent packets', () async {
+      final service = await connected();
+      final deliver = transports.single.onMessageHandler!;
+      for (var i = 0; i < MqttBrokerService.recentPacketLimit + 5; i++) {
+        deliver(
+          'meshcore/PHL/AAAA/packets',
+          observerMessage(groupTextPacket(psk: psk, text: 'Alice: $i')),
+        );
+      }
+      expect(
+        service.recentPackets,
+        hasLength(MqttBrokerService.recentPacketLimit),
+      );
+      expect(
+        service.recentPackets.first.hash,
+        MqttMeshPacket.tryParse(
+          't',
+          observerMessage(
+            groupTextPacket(
+              psk: psk,
+              text: 'Alice: ${MqttBrokerService.recentPacketLimit + 4}',
+            ),
+          ),
+        )!.hash,
+      );
+    });
+
+    test('ignores messages from an ended session', () async {
+      final service = await connected();
+      final deliver = transports.single.onMessageHandler!;
+      service.disconnect();
+      deliver('meshcore/PHL/AAAA/packets', observerMessage(packet));
+      expect(service.packetsReceived, 0);
+    });
+
+    test('reports a refused subscription', () async {
+      final service = await connected();
+      transports.single.subscribeFailed!('meshcore/+/+/packets');
+      expect(service.subscriptionFailed, isTrue);
+      expect(service.subscribedTopic, isNull);
+      expect(service.errorMessage, contains('subscription'));
+    });
+
+    test('saving settings resets packet stats', () async {
+      final service = await connected();
+      transports.single.onMessageHandler!(
+        'meshcore/PHL/AAAA/packets',
+        observerMessage(packet),
+      );
+      await service.saveConfiguration(_settings);
+      expect(service.packetsReceived, 0);
+      expect(service.recentPackets, isEmpty);
+    });
+
+    test('persists the channel delivery choice', () async {
+      final service = build();
+      await service.load();
+      expect(service.deliverChannelMessages, isFalse);
+      await service.saveConfiguration(_settings, deliverChannelMessages: true);
+      expect(service.deliverChannelMessages, isTrue);
+      final reloaded = build();
+      await reloaded.load();
+      expect(reloaded.deliverChannelMessages, isTrue);
+      await reloaded.saveConfiguration(_settings);
+      expect(reloaded.deliverChannelMessages, isTrue);
+    });
   });
 }

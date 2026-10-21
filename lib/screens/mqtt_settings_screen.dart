@@ -13,12 +13,14 @@ class MqttSettingsResult {
     required this.allowInsecureLocalBroker,
     required this.username,
     this.password,
+    this.deliverChannelMessages = false,
   });
 
   final MqttBrokerSettings settings;
   final bool allowInsecureLocalBroker;
   final String username;
   final String? password;
+  final bool deliverChannelMessages;
 }
 
 /// Edits broker configuration and credentials. Saving is delegated to
@@ -30,6 +32,7 @@ class MqttSettingsScreen extends StatefulWidget {
     this.initialAllowInsecureLocalBroker = false,
     this.initialUsername,
     this.hasSavedPassword = false,
+    this.initialDeliverChannelMessages = false,
     this.onApply,
   });
 
@@ -37,6 +40,7 @@ class MqttSettingsScreen extends StatefulWidget {
   final bool initialAllowInsecureLocalBroker;
   final String? initialUsername;
   final bool hasSavedPassword;
+  final bool initialDeliverChannelMessages;
   final Future<String?> Function(MqttSettingsResult result)? onApply;
 
   @override
@@ -48,11 +52,13 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
   late final TextEditingController _port;
   late final TextEditingController _prefix;
   late final TextEditingController _wsPath;
+  late final TextEditingController _region;
   late final TextEditingController _username;
   final TextEditingController _password = TextEditingController();
   late bool _tls;
   late bool _webSocket;
   late bool _allowInsecureLocal;
+  late bool _deliverChannelMessages;
   bool _saving = false;
   String? _error;
 
@@ -64,10 +70,12 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
     _port = TextEditingController(text: '${settings?.port ?? 8883}');
     _prefix = TextEditingController(text: settings?.topicPrefix ?? 'meshcore');
     _wsPath = TextEditingController(text: settings?.webSocketPath ?? '/mqtt');
+    _region = TextEditingController(text: settings?.region ?? '');
     _username = TextEditingController(text: widget.initialUsername ?? '');
     _tls = settings?.useTls ?? true;
     _webSocket = settings?.useWebSocket ?? false;
     _allowInsecureLocal = widget.initialAllowInsecureLocalBroker;
+    _deliverChannelMessages = widget.initialDeliverChannelMessages;
   }
 
   @override
@@ -76,6 +84,7 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
     _port.dispose();
     _prefix.dispose();
     _wsPath.dispose();
+    _region.dispose();
     _username.dispose();
     _password.dispose();
     super.dispose();
@@ -89,6 +98,7 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
       useWebSocket: _webSocket,
       webSocketPath: _wsPath.text.trim(),
       topicPrefix: _prefix.text.trim(),
+      region: _region.text.trim().toUpperCase(),
     );
     final allowInsecure = !_tls && _allowInsecureLocal;
     var error = const MqttConnectionPolicy().validate(
@@ -103,6 +113,7 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
           allowInsecureLocalBroker: allowInsecure,
           username: _username.text.trim(),
           password: _password.text.isEmpty ? null : _password.text,
+          deliverChannelMessages: _deliverChannelMessages,
         ),
       );
       if (!mounted) return;
@@ -157,6 +168,26 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
           TextField(
             controller: _prefix,
             decoration: const InputDecoration(labelText: 'Topic prefix'),
+          ),
+          TextField(
+            controller: _region,
+            textCapitalization: TextCapitalization.characters,
+            autocorrect: false,
+            decoration: const InputDecoration(
+              labelText: 'Region (optional)',
+              helperText:
+                  'Observer region code such as PHL. Leave blank for all.',
+            ),
+          ),
+          SwitchListTile(
+            title: const Text('Add channel messages heard via MQTT'),
+            subtitle: const Text(
+              'Messages on your channels that observers heard show up in '
+              'your chats. They are not sent over your radio.',
+            ),
+            value: _deliverChannelMessages,
+            onChanged: (value) =>
+                setState(() => _deliverChannelMessages = value),
           ),
           const SizedBox(height: 16),
           TextField(

@@ -4660,6 +4660,11 @@ class MeshCoreConnector extends ChangeNotifier {
     ..clear()
     ..addAll(contacts);
 
+  @visibleForTesting
+  void debugSetChannels(List<Channel> channels) => _channels
+    ..clear()
+    ..addAll(channels);
+
   void _handleFrame(List<int> data) {
     if (data.isEmpty) return;
     _lastRxBeforeFrame = _lastRxTime;
@@ -6241,13 +6246,22 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  void _handleLogRxData(Uint8List frame) async {
+  void _handleLogRxData(Uint8List frame) {
     if (frame.length < 4) return;
-    try {
-      final reader = BufferReader(frame);
-      reader.skipBytes(3); // Skip header
+    final reader = BufferReader(frame);
+    reader.skipBytes(3); // Skip header
+    _handleRawRxPacket(reader.readRemainingBytes());
+  }
 
-      final raw = reader.readRemainingBytes();
+  /// Adds a channel message from a raw packet an MQTT observer heard.
+  ///
+  /// Unlike radio RX, a message the app already has is left alone instead of
+  /// counted as a repeat, so internet copies don't inflate RF repeat counts.
+  void ingestMqttRawPacket(Uint8List raw) =>
+      _handleRawRxPacket(raw, viaMqtt: true);
+
+  void _handleRawRxPacket(Uint8List raw, {bool viaMqtt = false}) {
+    try {
       final packet = _parseRawPacket(raw);
       if (packet == null || packet.payloadType != _payloadTypeGroupText) return;
 
@@ -6303,6 +6317,14 @@ class MeshCoreConnector extends ChangeNotifier {
             channelIndex: channel.index,
             packetHash: pktHash,
           );
+          if (viaMqtt &&
+              _findChannelRepeatIndex(
+                    _channelMessages[channel.index] ?? const [],
+                    message,
+                  ) >=
+                  0) {
+            return;
+          }
 
           _updateContactLastMessageAtByName(
             parsed.senderName,

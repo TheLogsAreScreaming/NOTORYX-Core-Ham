@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import '../models/mqtt_broker_settings.dart';
 
 /// Why a broker connection attempt failed. Never carries broker replies,
@@ -44,7 +46,18 @@ abstract class MqttTransport {
 
   /// Called when an established session drops without [disconnect].
   set onConnectionLost(void Function()? callback);
+
+  /// Subscribes at QoS 0. Call only while connected.
+  void subscribe(String topic);
+
+  /// Called for each message received on a subscribed topic.
+  set onMessage(MqttMessageHandler? handler);
+
+  /// Called when the broker refuses a subscription.
+  set onSubscribeFailed(void Function(String topic)? callback);
 }
+
+typedef MqttMessageHandler = void Function(String topic, Uint8List payload);
 
 typedef MqttTransportFactory =
     MqttTransport Function(MqttBrokerSettings settings, String clientId);

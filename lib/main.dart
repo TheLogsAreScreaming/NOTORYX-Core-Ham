@@ -11,7 +11,9 @@ import 'screens/chrome_required_screen.dart';
 import 'utils/platform_info.dart';
 
 import 'connector/meshcore_connector.dart';
+import 'connector/meshcore_protocol.dart';
 import 'models/image_codec_support.dart';
+import 'models/mqtt_mesh_packet.dart';
 import 'screens/bastion_home_screen.dart';
 import 'services/regional_preset_service.dart';
 import 'services/read_aloud_service.dart';
@@ -261,6 +263,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   String? _shortcutLanguage;
   late final SensorSubscriptionService _sensorSubscriptions;
   late final MqttBrokerService _mqtt;
+  StreamSubscription<MqttMeshPacket>? _mqttPackets;
   @override
   void initState() {
     super.initState();
@@ -288,6 +291,12 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       transportFactory: createMqttClientTransport,
     );
     unawaited(_mqtt.load());
+    _mqttPackets = _mqtt.packets.listen((packet) {
+      if (_mqtt.deliverChannelMessages &&
+          packet.payloadType == payloadTypeGRPTXT) {
+        widget.connector.ingestMqttRawPacket(packet.raw);
+      }
+    });
     WidgetsBinding.instance.addObserver(this);
     // Channel message auto-delete runs on load and then hourly.
     _channelPruneTimer = Timer.periodic(
@@ -308,6 +317,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _regionalPresets.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
+    unawaited(_mqttPackets?.cancel());
     _mqtt.dispose();
     _imageSweepTimer?.cancel();
     _channelPruneTimer?.cancel();

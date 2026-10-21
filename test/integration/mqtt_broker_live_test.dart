@@ -3,8 +3,11 @@
 //
 //   MQTT_LIVE=1 MOSQUITTO=/usr/local/sbin/mosquitto \
 //     MOSQUITTO_PASSWD=/usr/local/bin/mosquitto_passwd \
+//     MOSQUITTO_PUB=/usr/local/bin/mosquitto_pub \
 //     flutter test test/integration/mqtt_broker_live_test.dart
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
@@ -14,6 +17,8 @@ import 'package:meshcore_open/services/mqtt_client_transport.dart';
 import 'package:meshcore_open/services/mqtt_transport.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../support/mesh_packet_fixtures.dart';
 
 const _tcpPort = 18831;
 const _wsPort = 18832;
@@ -188,6 +193,67 @@ keyfile ${_dir.path}/key.pem
     skip: !enabled,
     timeout: const Timeout(Duration(minutes: 2)),
   );
+  test('receives observer packets for the configured region', () async {
+    SharedPreferences.setMockInitialValues({});
+    final service = MqttBrokerService(
+      prefs: await SharedPreferences.getInstance(),
+      credentials: MemoryMqttCredentialsStore(),
+      transportFactory: createMqttClientTransport,
+      statsNotifyInterval: Duration.zero,
+    );
+    addTearDown(service.dispose);
+    await service.load();
+    await service.saveConfiguration(
+      const MqttBrokerSettings(
+        host: '127.0.0.1',
+        port: _tcpPort,
+        useTls: false,
+        region: 'PHL',
+      ),
+      allowInsecureLocalBroker: true,
+      username: 'alice',
+      password: 's3cret',
+    );
+    await service.connect();
+    expect(service.subscribedTopic, 'meshcore/PHL/+/packets');
+    // Give the broker a moment to register the subscription.
+    await Future<void>.delayed(const Duration(milliseconds: 300));
+
+    final raw = groupTextPacket(psk: Uint8List(16), text: 'Alice: hi');
+    await _publish('meshcore/PHL/AAAA/packets', observerMessage(raw));
+    await _publish('meshcore/PHL/BBBB/packets', observerMessage(raw));
+    await _publish('meshcore/NYC/CCCC/packets', observerMessage(raw));
+    await _publish('meshcore/PHL/AAAA/status', observerMessage(raw));
+    await _waitFor(() => service.packetsReceived >= 2);
+    await Future<void>.delayed(const Duration(milliseconds: 300));
+
+    expect(service.packetsReceived, 2);
+    expect(service.packetsAccepted, 1);
+    expect(service.packetsDuplicate, 1);
+    expect(service.recentPackets.single.region, 'PHL');
+    expect(service.recentPackets.single.payloadType, 5);
+  }, skip: !enabled);
+}
+
+Future<void> _publish(String topic, Uint8List payload) async {
+  final result = await Process.run(
+    Platform.environment['MOSQUITTO_PUB'] ?? 'mosquitto_pub',
+    [
+      '-h',
+      '127.0.0.1',
+      '-p',
+      '$_tcpPort',
+      '-u',
+      'alice',
+      '-P',
+      's3cret',
+      '-t',
+      topic,
+      '-m',
+      utf8.decode(payload),
+    ],
+  );
+  expect(result.exitCode, 0, reason: '${result.stderr}');
 }
 
 Future<void> _waitFor(bool Function() condition) async {
