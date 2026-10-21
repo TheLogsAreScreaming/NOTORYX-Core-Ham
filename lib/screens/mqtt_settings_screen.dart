@@ -1,13 +1,43 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../models/mqtt_broker_settings.dart';
+import '../models/mqtt_connection_policy.dart';
 
-/// Edits broker configuration without connecting or persisting secrets.
+/// What the user entered on [MqttSettingsScreen].
+///
+/// A null [password] means "keep the saved password".
+class MqttSettingsResult {
+  const MqttSettingsResult({
+    required this.settings,
+    required this.allowInsecureLocalBroker,
+    required this.username,
+    this.password,
+  });
+
+  final MqttBrokerSettings settings;
+  final bool allowInsecureLocalBroker;
+  final String username;
+  final String? password;
+}
+
+/// Edits broker configuration and credentials. Saving is delegated to
+/// [onApply], which returns an error message or null on success.
 class MqttSettingsScreen extends StatefulWidget {
-  const MqttSettingsScreen({super.key, this.initial, this.onApply});
+  const MqttSettingsScreen({
+    super.key,
+    this.initial,
+    this.initialAllowInsecureLocalBroker = false,
+    this.initialUsername,
+    this.hasSavedPassword = false,
+    this.onApply,
+  });
 
   final MqttBrokerSettings? initial;
-  final ValueChanged<MqttBrokerSettings>? onApply;
+  final bool initialAllowInsecureLocalBroker;
+  final String? initialUsername;
+  final bool hasSavedPassword;
+  final Future<String?> Function(MqttSettingsResult result)? onApply;
 
   @override
   State<MqttSettingsScreen> createState() => _MqttSettingsScreenState();
@@ -18,8 +48,12 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
   late final TextEditingController _port;
   late final TextEditingController _prefix;
   late final TextEditingController _wsPath;
+  late final TextEditingController _username;
+  final TextEditingController _password = TextEditingController();
   late bool _tls;
   late bool _webSocket;
+  late bool _allowInsecureLocal;
+  bool _saving = false;
   String? _error;
 
   @override
@@ -30,8 +64,10 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
     _port = TextEditingController(text: '${settings?.port ?? 8883}');
     _prefix = TextEditingController(text: settings?.topicPrefix ?? 'meshcore');
     _wsPath = TextEditingController(text: settings?.webSocketPath ?? '/mqtt');
+    _username = TextEditingController(text: widget.initialUsername ?? '');
     _tls = settings?.useTls ?? true;
     _webSocket = settings?.useWebSocket ?? false;
+    _allowInsecureLocal = widget.initialAllowInsecureLocalBroker;
   }
 
   @override
@@ -40,10 +76,12 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
     _port.dispose();
     _prefix.dispose();
     _wsPath.dispose();
+    _username.dispose();
+    _password.dispose();
     super.dispose();
   }
 
-  void _apply() {
+  Future<void> _apply() async {
     final settings = MqttBrokerSettings(
       host: _host.text.trim(),
       port: int.tryParse(_port.text.trim()) ?? 0,
@@ -52,11 +90,28 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
       webSocketPath: _wsPath.text.trim(),
       topicPrefix: _prefix.text.trim(),
     );
-    final error = settings.validate();
-    setState(() => _error = error);
-    if (error != null) return;
-    widget.onApply?.call(settings);
-    Navigator.of(context).pop(settings);
+    final allowInsecure = !_tls && _allowInsecureLocal;
+    var error = const MqttConnectionPolicy().validate(
+      settings,
+      allowInsecureLocalBroker: allowInsecure,
+    );
+    if (error == null && widget.onApply != null) {
+      setState(() => _saving = true);
+      error = await widget.onApply!(
+        MqttSettingsResult(
+          settings: settings,
+          allowInsecureLocalBroker: allowInsecure,
+          username: _username.text.trim(),
+          password: _password.text.isEmpty ? null : _password.text,
+        ),
+      );
+      if (!mounted) return;
+    }
+    setState(() {
+      _saving = false;
+      _error = error;
+    });
+    if (error == null) Navigator.of(context).pop(settings);
   }
 
   @override
@@ -66,7 +121,6 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          const Text('Broker settings are not a live MQTT connection.'),
           TextField(
             controller: _host,
             decoration: const InputDecoration(labelText: 'Broker hostname'),
@@ -81,6 +135,15 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
             value: _tls,
             onChanged: (value) => setState(() => _tls = value),
           ),
+          if (!_tls)
+            SwitchListTile(
+              title: const Text('Allow cleartext to a local broker'),
+              subtitle: const Text(
+                'Only localhost, .local and private 10.x / 192.168.x hosts.',
+              ),
+              value: _allowInsecureLocal,
+              onChanged: (value) => setState(() => _allowInsecureLocal = value),
+            ),
           SwitchListTile(
             title: const Text('Use WebSocket'),
             value: _webSocket,
@@ -95,13 +158,46 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
             controller: _prefix,
             decoration: const InputDecoration(labelText: 'Topic prefix'),
           ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _username,
+            autocorrect: false,
+            decoration: const InputDecoration(labelText: 'Username (optional)'),
+          ),
+          TextField(
+            controller: _password,
+            obscureText: true,
+            autocorrect: false,
+            enableSuggestions: false,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              helperText: widget.hasSavedPassword
+                  ? 'Leave blank to keep the saved password.'
+                  : null,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            kIsWeb
+                ? 'In the browser, credentials are kept only until the page '
+                      'is closed.'
+                : 'Credentials are stored in the system keychain, never in '
+                      'app settings or logs.',
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
           if (_error != null)
-            Text(
-              _error!,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                _error!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
             ),
           const SizedBox(height: 16),
-          FilledButton(onPressed: _apply, child: const Text('Apply settings')),
+          FilledButton(
+            onPressed: _saving ? null : _apply,
+            child: const Text('Save settings'),
+          ),
         ],
       ),
     );

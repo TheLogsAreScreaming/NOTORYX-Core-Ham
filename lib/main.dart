@@ -17,6 +17,9 @@ import 'services/regional_preset_service.dart';
 import 'services/read_aloud_service.dart';
 import 'services/app_shortcuts.dart';
 import 'services/sensor_subscription_service.dart';
+import 'services/mqtt_broker_service.dart';
+import 'services/mqtt_client_transport.dart';
+import 'services/secure_mqtt_credentials_store.dart';
 import 'services/image_chunk_transport.dart';
 import 'services/image_codec_service.dart';
 import 'services/image_codec_settings_store.dart';
@@ -257,6 +260,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   AppShortcuts? _shortcuts;
   String? _shortcutLanguage;
   late final SensorSubscriptionService _sensorSubscriptions;
+  late final MqttBrokerService _mqtt;
   @override
   void initState() {
     super.initState();
@@ -278,6 +282,12 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       );
     }
     _sensorSubscriptions = SensorSubscriptionService(widget.connector);
+    _mqtt = MqttBrokerService(
+      prefs: PrefsManager.instance,
+      credentials: createMqttCredentialsStore(),
+      transportFactory: createMqttClientTransport,
+    );
+    unawaited(_mqtt.load());
     WidgetsBinding.instance.addObserver(this);
     // Channel message auto-delete runs on load and then hourly.
     _channelPruneTimer = Timer.periodic(
@@ -298,6 +308,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _regionalPresets.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
+    _mqtt.dispose();
     _imageSweepTimer?.cancel();
     _channelPruneTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
@@ -337,6 +348,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ),
         Provider.value(value: _readAloud),
         ChangeNotifierProvider.value(value: _sensorSubscriptions),
+        ChangeNotifierProvider.value(value: _mqtt),
         ChangeNotifierProvider.value(value: connector),
         ChangeNotifierProvider.value(value: widget.retryService),
         ChangeNotifierProvider.value(value: widget.pathHistoryService),
