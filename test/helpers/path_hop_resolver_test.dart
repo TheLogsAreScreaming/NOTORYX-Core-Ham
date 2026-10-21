@@ -91,6 +91,7 @@ void main() {
 
     expect(resolved.single, isNull);
   });
+
   test('unique known repeater resolves without GPS evidence', () {
     final known = Contact(
       publicKey: Uint8List(32)..first = 0xAC,
