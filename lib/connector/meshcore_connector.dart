@@ -12,6 +12,7 @@ import 'package:flutter_blue_plus_platform_interface/flutter_blue_plus_platform_
 import '../models/channel.dart';
 import '../models/channel_message.dart';
 import '../models/companion_radio_stats.dart';
+import '../models/radio_rx_packet.dart';
 import '../models/contact.dart';
 import '../models/flood_corridor.dart';
 import '../models/message.dart';
@@ -234,6 +235,8 @@ class MeshCoreConnector extends ChangeNotifier {
 
   final StreamController<Uint8List> _receivedFramesController =
       StreamController<Uint8List>.broadcast();
+  final StreamController<RadioRxPacket> _rxPacketsController =
+      StreamController<RadioRxPacket>.broadcast();
   final StreamController<Message> _receivedDirectMessagesController =
       StreamController<Message>.broadcast();
   final StreamController<ReceivedChannelMessage>
@@ -4665,6 +4668,12 @@ class MeshCoreConnector extends ChangeNotifier {
     ..clear()
     ..addAll(channels);
 
+  @visibleForTesting
+  void debugSetSelfIdentity(Uint8List publicKey, String name) {
+    _selfPublicKey = publicKey;
+    _selfName = name;
+  }
+
   void _handleFrame(List<int> data) {
     if (data.isEmpty) return;
     _lastRxBeforeFrame = _lastRxTime;
@@ -6246,11 +6255,72 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  /// Every raw packet the radio hears, for MQTT observer sharing.
+  Stream<RadioRxPacket> get rxPackets => _rxPacketsController.stream;
+
   void _handleLogRxData(Uint8List frame) {
     if (frame.length < 4) return;
     final reader = BufferReader(frame);
-    reader.skipBytes(3); // Skip header
-    _handleRawRxPacket(reader.readRemainingBytes());
+    reader.skipBytes(3); // Skip code, SNR x4, RSSI
+    final raw = reader.readRemainingBytes();
+    _handleRawRxPacket(raw);
+    if (!_rxPacketsController.hasListener) return;
+    final packet = _parseRawPacket(raw);
+    if (packet == null) return;
+    _rxPacketsController.add(
+      RadioRxPacket(
+        raw: Uint8List.fromList(raw),
+        snr: frame.buffer.asByteData(frame.offsetInBytes).getInt8(1) / 4,
+        rssi: frame.buffer.asByteData(frame.offsetInBytes).getInt8(2),
+        receivedAt: DateTime.now(),
+        fromSelf: _isOwnRxPacket(packet),
+      ),
+    );
+  }
+
+  /// Best-effort check for this radio's own traffic. Direct packets carry
+  /// only a one-byte source hash, so this can also match other nodes.
+  bool _isOwnRxPacket(_RawPacket packet) {
+    final selfKey = _selfPublicKey;
+    if (selfKey == null || selfKey.isEmpty) return false;
+    final payload = packet.payload;
+    switch (packet.payloadType) {
+      case payloadTypeADVERT:
+        if (payload.length < selfKey.length) return false;
+        for (var i = 0; i < selfKey.length; i++) {
+          if (payload[i] != selfKey[i]) return false;
+        }
+        return true;
+      case payloadTypeREQ ||
+          payloadTypeRESPONSE ||
+          payloadTypeTXTMSG ||
+          payloadTypePATH:
+        return payload.length >= 2 && payload[1] == selfKey[0];
+      case payloadTypeGRPTXT:
+        final selfName = _selfName?.trim();
+        if (selfName == null || selfName.isEmpty || payload.isEmpty) {
+          return false;
+        }
+        final encrypted = Uint8List.sublistView(payload, 1);
+        final channels = _channels.isNotEmpty ? _channels : _cachedChannels;
+        for (final channel in channels) {
+          if (channel.isEmpty ||
+              _computeChannelHash(channel.psk) != payload[0]) {
+            continue;
+          }
+          final decrypted = _decryptPayload(channel.psk, encrypted);
+          if (decrypted == null || decrypted.length < 6) continue;
+          final text = BufferReader(decrypted)
+            ..skipBytes(5); // timestamp, txt type
+          if (_splitSenderText(text.readCString()).senderName.trim() ==
+              selfName) {
+            return true;
+          }
+        }
+        return false;
+      default:
+        return false;
+    }
   }
 
   /// Adds a channel message from a raw packet an MQTT observer heard.
@@ -7463,6 +7533,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _radioStatsPollTimer?.cancel();
     radioStatsNotifier.dispose();
     _receivedFramesController.close();
+    _rxPacketsController.close();
     _receivedDirectMessagesController.close();
     _receivedChannelMessagesController.close();
     _usbManager.dispose();

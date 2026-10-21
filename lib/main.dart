@@ -14,6 +14,7 @@ import 'connector/meshcore_connector.dart';
 import 'connector/meshcore_protocol.dart';
 import 'models/image_codec_support.dart';
 import 'models/mqtt_mesh_packet.dart';
+import 'models/radio_rx_packet.dart';
 import 'screens/bastion_home_screen.dart';
 import 'services/regional_preset_service.dart';
 import 'services/read_aloud_service.dart';
@@ -264,6 +265,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final SensorSubscriptionService _sensorSubscriptions;
   late final MqttBrokerService _mqtt;
   StreamSubscription<MqttMeshPacket>? _mqttPackets;
+  StreamSubscription<RadioRxPacket>? _radioRxPackets;
   @override
   void initState() {
     super.initState();
@@ -297,6 +299,11 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         widget.connector.ingestMqttRawPacket(packet.raw);
       }
     });
+    _radioRxPackets = widget.connector.rxPackets.listen(
+      _mqtt.publishRadioPacket,
+    );
+    _syncMqttObserverIdentity();
+    widget.connector.addListener(_syncMqttObserverIdentity);
     WidgetsBinding.instance.addObserver(this);
     // Channel message auto-delete runs on load and then hourly.
     _channelPruneTimer = Timer.periodic(
@@ -318,11 +325,23 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
     unawaited(_mqttPackets?.cancel());
+    unawaited(_radioRxPackets?.cancel());
+    widget.connector.removeListener(_syncMqttObserverIdentity);
     _mqtt.dispose();
     _imageSweepTimer?.cancel();
     _channelPruneTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  void _syncMqttObserverIdentity() {
+    final connector = widget.connector;
+    _mqtt.setObserverIdentity(
+      publicKeyHex: connector.selfPublicKey == null
+          ? null
+          : connector.selfPublicKeyHex,
+      name: connector.selfName,
+    );
   }
 
   @override

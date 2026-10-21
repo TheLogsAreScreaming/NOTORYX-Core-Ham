@@ -74,6 +74,18 @@ class MqttClientTransport implements MqttTransport {
     _client.subscribe(topic, MqttQos.atMostOnce);
   }
 
+  @override
+  bool publish(String topic, Uint8List payload) {
+    final builder = MqttClientPayloadBuilder();
+    payload.forEach(builder.addByte);
+    try {
+      _client.publishMessage(topic, MqttQos.atMostOnce, builder.payload!);
+      return true;
+    } on Object {
+      return false;
+    }
+  }
+
   void _handleUpdates(List<MqttReceivedMessage<MqttMessage>> messages) {
     final handler = _onMessage;
     if (handler == null) return;

@@ -50,6 +50,10 @@ abstract class MqttTransport {
   /// Subscribes at QoS 0. Call only while connected.
   void subscribe(String topic);
 
+  /// Publishes at QoS 0 without retain. Returns false if the session can't
+  /// send right now.
+  bool publish(String topic, Uint8List payload);
+
   /// Called for each message received on a subscribed topic.
   set onMessage(MqttMessageHandler? handler);
 

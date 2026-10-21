@@ -22,6 +22,74 @@ class MqttPacketTopics {
     final region = settings.region.trim();
     return '$prefix/${region.isEmpty ? '+' : region}/+/packets';
   }
+
+  /// Where this app publishes as an observer, or null without a region.
+  static String? publishFor(MqttBrokerSettings settings, String observerKey) {
+    final region = settings.region.trim();
+    if (region.isEmpty || observerKey.isEmpty) return null;
+    return '${settings.topicPrefix.trim()}/$region/$observerKey/packets';
+  }
+}
+
+/// The parts of a raw MeshCore packet needed to classify and deduplicate it.
+class MeshPacketInfo {
+  const MeshPacketInfo._({
+    required this.routeType,
+    required this.payloadType,
+    required this.hopCount,
+    required this.payload,
+    required this.hash,
+  });
+
+  final int routeType;
+  final int payloadType;
+  final int hopCount;
+  final Uint8List payload;
+
+  /// Firmware-compatible packet hash: the first 8 bytes of
+  /// SHA-256(payload type + payload), as lowercase hex. The same packet heard
+  /// by several observers, or over several hops, has the same hash.
+  final String hash;
+
+  /// Whether the packet is source-routed rather than flooded.
+  bool get isDirect => routeType == 2 || routeType == 3;
+
+  /// Returns null if [raw] is shorter than its header and path claim.
+  static MeshPacketInfo? tryParse(Uint8List raw) {
+    if (raw.length < 2 || raw.length > meshPacketMaxBytes) return null;
+    final header = raw[0];
+    final routeType = header & 0x03;
+    var offset = 1;
+    // Transport-flood and transport-direct carry two u16 transport codes.
+    if (routeType == 0 || routeType == 3) offset += 4;
+    if (offset >= raw.length) return null;
+    final pathLenRaw = raw[offset++];
+    final hopCount = pathLenRaw == 0xFF ? 0 : pathLenRaw & 63;
+    final hashWidth = pathLenRaw == 0xFF ? 1 : ((pathLenRaw >> 6) & 0x03) + 1;
+    offset += hopCount * hashWidth;
+    if (offset > raw.length) return null;
+    final payload = Uint8List.sublistView(raw, offset);
+    final payloadType = (header >> 2) & 0x0F;
+    return MeshPacketInfo._(
+      routeType: routeType,
+      payloadType: payloadType,
+      hopCount: hopCount,
+      payload: payload,
+      hash: _packetHash(payloadType, payload),
+    );
+  }
+
+  static String _packetHash(int payloadType, Uint8List payload) {
+    final input = Uint8List(1 + payload.length)
+      ..[0] = payloadType
+      ..setRange(1, payload.length + 1, payload);
+    return crypto.sha256
+        .convert(input)
+        .bytes
+        .sublist(0, 8)
+        .map((b) => b.toRadixString(16).padLeft(2, '0'))
+        .join();
+  }
 }
 
 /// A MeshCore packet an internet observer heard on its radio and published
@@ -49,9 +117,7 @@ class MqttMeshPacket {
   final int hopCount;
   final Uint8List payload;
 
-  /// Firmware-compatible packet hash: the first 8 bytes of
-  /// SHA-256(payload type + payload), as hex. The same packet heard by
-  /// several observers, or over several hops, has the same hash.
+  /// See [MeshPacketInfo.hash].
   final String hash;
   final DateTime receivedAt;
   final String? region;
@@ -81,33 +147,19 @@ class MqttMeshPacket {
     final direction = decoded['direction'];
     if (direction != null && direction != 'rx') return null;
     final raw = _hexBytes(decoded['raw']);
-    if (raw == null || raw.length < 2 || raw.length > meshPacketMaxBytes) {
-      return null;
-    }
-
-    final header = raw[0];
-    final routeType = header & 0x03;
-    var offset = 1;
-    // Transport-flood and transport-direct carry two u16 transport codes.
-    if (routeType == 0 || routeType == 3) offset += 4;
-    if (offset >= raw.length) return null;
-    final pathLenRaw = raw[offset++];
-    final hopCount = pathLenRaw == 0xFF ? 0 : pathLenRaw & 63;
-    final hashWidth = pathLenRaw == 0xFF ? 1 : ((pathLenRaw >> 6) & 0x03) + 1;
-    offset += hopCount * hashWidth;
-    if (offset > raw.length) return null;
-    final body = Uint8List.sublistView(raw, offset);
-    final payloadType = (header >> 2) & 0x0F;
+    if (raw == null) return null;
+    final info = MeshPacketInfo.tryParse(raw);
+    if (info == null) return null;
 
     final segments = topic.split('/');
     final hasTopicIds = segments.length >= 4 && segments.last == 'packets';
     return MqttMeshPacket._(
       raw: raw,
-      routeType: routeType,
-      payloadType: payloadType,
-      hopCount: hopCount,
-      payload: body,
-      hash: _packetHash(payloadType, body),
+      routeType: info.routeType,
+      payloadType: info.payloadType,
+      hopCount: info.hopCount,
+      payload: info.payload,
+      hash: info.hash,
       receivedAt: receivedAt ?? DateTime.now(),
       region: hasTopicIds ? segments[segments.length - 3] : null,
       observerKey: _limit(
@@ -163,17 +215,5 @@ class MqttMeshPacket {
   static String? _limit(Object? value, int maxLength) {
     if (value is! String || value.isEmpty) return null;
     return value.length > maxLength ? value.substring(0, maxLength) : value;
-  }
-
-  static String _packetHash(int payloadType, Uint8List payload) {
-    final input = Uint8List(1 + payload.length)
-      ..[0] = payloadType
-      ..setRange(1, payload.length + 1, payload);
-    return crypto.sha256
-        .convert(input)
-        .bytes
-        .sublist(0, 8)
-        .map((b) => b.toRadixString(16).padLeft(2, '0'))
-        .join();
   }
 }

@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
 import 'package:meshcore_open/models/mqtt_connection_status.dart';
 import 'package:meshcore_open/models/mqtt_mesh_packet.dart';
+import 'package:meshcore_open/models/mqtt_publish_policy.dart';
+import 'package:meshcore_open/models/radio_rx_packet.dart';
 import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_transport.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
@@ -46,6 +48,16 @@ class FakeTransport implements MqttTransport {
 
   @override
   void subscribe(String topic) => subscriptions.add(topic);
+
+  final List<(String, Uint8List)> published = [];
+  bool canPublish = true;
+
+  @override
+  bool publish(String topic, Uint8List payload) {
+    if (!canPublish) return false;
+    published.add((topic, payload));
+    return true;
+  }
 
   @override
   set onMessage(MqttMessageHandler? handler) => onMessageHandler = handler;
@@ -415,6 +427,214 @@ void main() {
       expect(reloaded.deliverChannelMessages, isTrue);
       await reloaded.saveConfiguration(_settings);
       expect(reloaded.deliverChannelMessages, isTrue);
+    });
+  });
+
+  group('observer publishing', () {
+    const share = MqttPublishSettings(enabled: true);
+    const regional = MqttBrokerSettings(
+      host: 'broker.test',
+      port: 8883,
+      region: 'PHL',
+    );
+    final psk = Uint8List.fromList(List.generate(16, (i) => i));
+    final start = DateTime.utc(2026, 10, 21, 18);
+
+    RadioRxPacket heard(
+      Uint8List raw, {
+      bool fromSelf = false,
+      Duration after = Duration.zero,
+    }) => RadioRxPacket(
+      raw: raw,
+      snr: 5,
+      rssi: -90,
+      receivedAt: start.add(after),
+      fromSelf: fromSelf,
+    );
+
+    final channelPacket = groupTextPacket(psk: psk, text: 'Alice: hi');
+    final directPacket = Uint8List.fromList([0x09, 0, 0x12, 0x34, 1, 2]);
+
+    Future<MqttBrokerService> sharing({
+      MqttPublishSettings settings = share,
+      int maxPerMinute = 60,
+      bool connect = true,
+    }) async {
+      final service = MqttBrokerService(
+        prefs: prefs,
+        credentials: credentials,
+        transportFactory: (settings, clientId) {
+          final transport = FakeTransport(null);
+          transports.add(transport);
+          return transport;
+        },
+        statsNotifyInterval: Duration.zero,
+        maxPublishesPerMinute: maxPerMinute,
+      );
+      await service.load();
+      expect(
+        await service.saveConfiguration(regional, publishSettings: settings),
+        isNull,
+      );
+      service.setObserverIdentity(publicKeyHex: 'ab12cd34', name: 'Base');
+      if (connect) await service.connect();
+      return service;
+    }
+
+    test('publishes nothing by default', () async {
+      final service = build();
+      await service.load();
+      await service.saveConfiguration(regional);
+      service.setObserverIdentity(publicKeyHex: 'ab12', name: 'Base');
+      await service.connect();
+      expect(
+        service.publishRadioPacket(heard(channelPacket)),
+        MqttPublishSkip.disabled,
+      );
+      expect(transports.single.published, isEmpty);
+      expect(service.publishTopic, isNull);
+    });
+
+    test('requires a region to turn sharing on', () async {
+      final service = build();
+      await service.load();
+      expect(
+        await service.saveConfiguration(_settings, publishSettings: share),
+        contains('region'),
+      );
+      expect(service.publishSettings.enabled, isFalse);
+    });
+
+    test('publishes heard packets to its observer topic', () async {
+      final service = await sharing();
+      expect(service.publishTopic, 'meshcore/PHL/AB12CD34/packets');
+      expect(service.publishRadioPacket(heard(channelPacket)), isNull);
+      final (topic, payload) = transports.single.published.single;
+      expect(topic, 'meshcore/PHL/AB12CD34/packets');
+      final parsed = MqttMeshPacket.tryParse(topic, payload)!;
+      expect(parsed.raw, channelPacket);
+      expect(parsed.observerName, 'Base');
+      expect(parsed.observerKey, 'AB12CD34');
+      expect(service.packetsPublished, 1);
+    });
+
+    test('waits for a connection and a radio identity', () async {
+      final offline = await sharing(connect: false);
+      expect(
+        offline.publishRadioPacket(heard(channelPacket)),
+        MqttPublishSkip.notConnected,
+      );
+      final anonymous = await sharing();
+      anonymous.setObserverIdentity();
+      expect(anonymous.publishTopic, isNull);
+      expect(
+        anonymous.publishRadioPacket(heard(channelPacket)),
+        MqttPublishSkip.noTopic,
+      );
+      expect(anonymous.publishSkips[MqttPublishSkip.noTopic], 1);
+    });
+
+    test('honours the direct and own traffic switches', () async {
+      final strict = await sharing();
+      expect(
+        strict.publishRadioPacket(heard(directPacket)),
+        MqttPublishSkip.directTraffic,
+      );
+      expect(
+        strict.publishRadioPacket(heard(channelPacket, fromSelf: true)),
+        MqttPublishSkip.ownTraffic,
+      );
+      expect(transports.last.published, isEmpty);
+
+      final open = await sharing(
+        settings: const MqttPublishSettings(
+          enabled: true,
+          includeDirectTraffic: true,
+          includeOwnTraffic: true,
+        ),
+      );
+      expect(open.publishRadioPacket(heard(directPacket)), isNull);
+      expect(
+        open.publishRadioPacket(heard(channelPacket, fromSelf: true)),
+        isNull,
+      );
+      expect(transports.last.published, hasLength(2));
+    });
+
+    test('skips identical receptions but shares other paths', () async {
+      final service = await sharing();
+      expect(service.publishRadioPacket(heard(channelPacket)), isNull);
+      expect(
+        service.publishRadioPacket(heard(channelPacket)),
+        MqttPublishSkip.alreadyShared,
+      );
+      final relayed = groupTextPacket(psk: psk, text: 'Alice: hi', path: [7]);
+      expect(service.publishRadioPacket(heard(relayed)), isNull);
+      expect(service.packetsPublished, 2);
+    });
+
+    test('limits publishes per minute', () async {
+      final service = await sharing(maxPerMinute: 2);
+      Uint8List packet(int i) => groupTextPacket(psk: psk, text: 'A: $i');
+      expect(service.publishRadioPacket(heard(packet(1))), isNull);
+      expect(
+        service.publishRadioPacket(
+          heard(packet(2), after: const Duration(seconds: 10)),
+        ),
+        isNull,
+      );
+      expect(
+        service.publishRadioPacket(
+          heard(packet(3), after: const Duration(seconds: 20)),
+        ),
+        MqttPublishSkip.rateLimited,
+      );
+      expect(
+        service.publishRadioPacket(
+          heard(packet(4), after: const Duration(seconds: 61)),
+        ),
+        isNull,
+      );
+    });
+
+    test('reports a publish the session refused', () async {
+      final service = await sharing();
+      transports.single.canPublish = false;
+      expect(
+        service.publishRadioPacket(heard(channelPacket)),
+        MqttPublishSkip.notConnected,
+      );
+      expect(service.packetsPublished, 0);
+    });
+
+    test('ignores its own publishes coming back', () async {
+      final service = await sharing();
+      final deliver = transports.single.onMessageHandler!;
+      deliver(
+        'meshcore/PHL/AB12CD34/packets',
+        observerMessage(channelPacket, originId: 'AB12CD34'),
+      );
+      expect(service.packetsAccepted, 0);
+      expect(service.packetsDuplicate, 1);
+      deliver(
+        'meshcore/PHL/EEEE/packets',
+        observerMessage(channelPacket, originId: 'EEEE'),
+      );
+      expect(service.packetsAccepted, 1);
+    });
+
+    test('persists sharing settings', () async {
+      await sharing(
+        settings: const MqttPublishSettings(
+          enabled: true,
+          includeDirectTraffic: true,
+        ),
+      );
+      final reloaded = build();
+      await reloaded.load();
+      expect(reloaded.publishSettings.enabled, isTrue);
+      expect(reloaded.publishSettings.includeDirectTraffic, isTrue);
+      expect(reloaded.publishSettings.includeOwnTraffic, isFalse);
     });
   });
 }
