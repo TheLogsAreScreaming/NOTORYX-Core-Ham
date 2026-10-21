@@ -2195,6 +2195,7 @@ class MeshCoreConnector extends ChangeNotifier {
     BluetoothDevice device, {
     String? displayName,
     Future<String?> Function()? linuxPairingPinProvider,
+    bool automaticReconnect = false,
   }) async {
     if (_state == MeshCoreConnectionState.connecting ||
         _state == MeshCoreConnectionState.connected) {
@@ -2216,7 +2217,11 @@ class MeshCoreConnector extends ChangeNotifier {
     _lastDeviceId = _deviceId;
     _lastDeviceDisplayName = _deviceDisplayName;
     _manualDisconnect = false;
-    _cancelReconnectTimer();
+    // Preserve exponential backoff across automatic retries. Manual connects
+    // begin a fresh retry sequence.
+    if (!automaticReconnect) {
+      _cancelReconnectTimer();
+    }
     _bleInitialSyncStarted = false;
     if (PlatformInfo.isWeb) {
       _resetConnectionHandshakeState();
@@ -2561,6 +2566,7 @@ class MeshCoreConnector extends ChangeNotifier {
         _pendingInitialChannelSync = true;
       }
       await _startBleInitialSync();
+      _reconnectAttempts = 0;
     } catch (e) {
       _appDebugLogService?.error('Connection error: $e', tag: 'BLE Connect');
       final errorText = e.toString();
@@ -2936,7 +2942,11 @@ class MeshCoreConnector extends ChangeNotifier {
       if (device == null) return;
 
       try {
-        await connect(device, displayName: _lastDeviceDisplayName);
+        await connect(
+          device,
+          displayName: _lastDeviceDisplayName,
+          automaticReconnect: true,
+        );
       } catch (_) {
         _scheduleReconnect();
       }
