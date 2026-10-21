@@ -99,17 +99,25 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
             Wrap(
               spacing: 8,
               children: [
-                FilledButton.icon(
-                  onPressed: radio.isConnected
-                      ? null
-                      : () => openConnectionSetup(context),
-                  icon: const Icon(Icons.bluetooth_searching),
-                  label: Text(l10n.fieldOps_connectRadio),
-                ),
-                TextButton(
-                  onPressed: () => _open(const BastionDiagnosticsScreen()),
-                  child: Text(l10n.bastionSetup_connectionDiagnostics),
-                ),
+                if (radio.isConnected)
+                  FilledButton.icon(
+                    onPressed: () =>
+                        _open(const BastionDiagnosticsScreen()),
+                    icon: const Icon(Icons.check_circle_outline),
+                    label: Text(l10n.bastionSetup_connectionDiagnostics),
+                  )
+                else ...[
+                  FilledButton.icon(
+                    onPressed: () => openConnectionSetup(context),
+                    icon: const Icon(Icons.bluetooth_searching),
+                    label: Text(l10n.fieldOps_connectRadio),
+                  ),
+                  TextButton(
+                    onPressed: () =>
+                        _open(const BastionDiagnosticsScreen()),
+                    child: Text(l10n.bastionSetup_connectionDiagnostics),
+                  ),
+                ],
               ],
             ),
           ]),
