@@ -34,12 +34,15 @@ class ConnectionDashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Radio connection',
-                          style: Theme.of(context).textTheme.titleLarge),
+                      Text(
+                        'Radio connection',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
                       const SizedBox(height: 8),
                       Text(connected ? 'Connected' : connector.state.name),
                       Text('Transport: $transportName'),
-                      if (connected) Text('Device: ${connector.deviceDisplayName}'),
+                      if (connected)
+                        Text('Device: ${connector.deviceDisplayName}'),
                       if (connector.isAutoReconnectScheduled)
                         const Text('Bluetooth reconnect scheduled'),
                       const SizedBox(height: 12),
@@ -96,8 +99,10 @@ class ConnectionDashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('MQTT connection',
-                          style: Theme.of(context).textTheme.titleLarge),
+                      Text(
+                        'MQTT connection',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
                       const SizedBox(height: 8),
                       const Text('Not configured'),
                       const Text(
