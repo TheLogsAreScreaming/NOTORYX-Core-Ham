@@ -19,12 +19,14 @@ class MqttConnectionCard extends StatelessWidget {
           initialUsername: mqtt.username,
           hasSavedPassword: mqtt.hasCredentials,
           initialDeliverChannelMessages: mqtt.deliverChannelMessages,
+          initialPublishSettings: mqtt.publishSettings,
           onApply: (result) => mqtt.saveConfiguration(
             result.settings,
             allowInsecureLocalBroker: result.allowInsecureLocalBroker,
             username: result.username,
             password: result.password,
             deliverChannelMessages: result.deliverChannelMessages,
+            publishSettings: result.publishSettings,
           ),
         ),
       ),
@@ -70,6 +72,19 @@ class MqttConnectionCard extends StatelessWidget {
               Text(
                 'Retry ${mqtt.reconnectAttempt} of '
                 '${mqtt.maxReconnectAttempts}',
+              ),
+            if (mqtt.publishSettings.enabled)
+              Text(
+                mqtt.publishTopic == null
+                    ? 'Sharing waits for a radio connection'
+                    : status.isConnected
+                    ? 'Sharing on ${mqtt.publishTopic}'
+                    : 'Will share on ${mqtt.publishTopic}',
+              ),
+            if (mqtt.packetsPublished > 0 || mqtt.publishSkips.isNotEmpty)
+              Text(
+                'Shared ${mqtt.packetsPublished}, held back '
+                '${mqtt.publishSkips.values.fold(0, (a, b) => a + b)}',
               ),
             if (error != null && status != MqttConnectionStatus.connected)
               Text(

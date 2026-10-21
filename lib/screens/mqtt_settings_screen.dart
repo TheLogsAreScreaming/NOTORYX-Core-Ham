@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../models/mqtt_broker_settings.dart';
 import '../models/mqtt_connection_policy.dart';
+import '../models/mqtt_publish_policy.dart';
 
 /// What the user entered on [MqttSettingsScreen].
 ///
@@ -14,6 +15,7 @@ class MqttSettingsResult {
     required this.username,
     this.password,
     this.deliverChannelMessages = false,
+    this.publishSettings = const MqttPublishSettings(),
   });
 
   final MqttBrokerSettings settings;
@@ -21,6 +23,7 @@ class MqttSettingsResult {
   final String username;
   final String? password;
   final bool deliverChannelMessages;
+  final MqttPublishSettings publishSettings;
 }
 
 /// Edits broker configuration and credentials. Saving is delegated to
@@ -33,6 +36,7 @@ class MqttSettingsScreen extends StatefulWidget {
     this.initialUsername,
     this.hasSavedPassword = false,
     this.initialDeliverChannelMessages = false,
+    this.initialPublishSettings = const MqttPublishSettings(),
     this.onApply,
   });
 
@@ -41,6 +45,7 @@ class MqttSettingsScreen extends StatefulWidget {
   final String? initialUsername;
   final bool hasSavedPassword;
   final bool initialDeliverChannelMessages;
+  final MqttPublishSettings initialPublishSettings;
   final Future<String?> Function(MqttSettingsResult result)? onApply;
 
   @override
@@ -59,6 +64,9 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
   late bool _webSocket;
   late bool _allowInsecureLocal;
   late bool _deliverChannelMessages;
+  late bool _share;
+  late bool _shareDirect;
+  late bool _shareOwn;
   bool _saving = false;
   String? _error;
 
@@ -76,6 +84,9 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
     _webSocket = settings?.useWebSocket ?? false;
     _allowInsecureLocal = widget.initialAllowInsecureLocalBroker;
     _deliverChannelMessages = widget.initialDeliverChannelMessages;
+    _share = widget.initialPublishSettings.enabled;
+    _shareDirect = widget.initialPublishSettings.includeDirectTraffic;
+    _shareOwn = widget.initialPublishSettings.includeOwnTraffic;
   }
 
   @override
@@ -105,6 +116,9 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
       settings,
       allowInsecureLocalBroker: allowInsecure,
     );
+    if (error == null && _share && settings.region.isEmpty) {
+      error = 'Set a region to share packets as an observer.';
+    }
     if (error == null && widget.onApply != null) {
       setState(() => _saving = true);
       error = await widget.onApply!(
@@ -114,6 +128,11 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
           username: _username.text.trim(),
           password: _password.text.isEmpty ? null : _password.text,
           deliverChannelMessages: _deliverChannelMessages,
+          publishSettings: MqttPublishSettings(
+            enabled: _share,
+            includeDirectTraffic: _share && _shareDirect,
+            includeOwnTraffic: _share && _shareOwn,
+          ),
         ),
       );
       if (!mounted) return;
@@ -189,6 +208,37 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
             onChanged: (value) =>
                 setState(() => _deliverChannelMessages = value),
           ),
+          const SizedBox(height: 8),
+          Text(
+            'Sharing as an observer',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          SwitchListTile(
+            title: const Text('Share packets my radio hears'),
+            subtitle: const Text(
+              'Publishes adverts and channel traffic your radio receives, '
+              'with its public key, signal strength and region. Channel '
+              'messages stay encrypted. Needs a region.',
+            ),
+            value: _share,
+            onChanged: (value) => setState(() => _share = value),
+          ),
+          if (_share) ...[
+            SwitchListTile(
+              title: const Text('Include direct-message traffic'),
+              subtitle: const Text(
+                'Requests, replies and direct messages. Contents stay '
+                'encrypted, but this shows which nodes talk to each other.',
+              ),
+              value: _shareDirect,
+              onChanged: (value) => setState(() => _shareDirect = value),
+            ),
+            SwitchListTile(
+              title: const Text('Include my own messages and adverts'),
+              value: _shareOwn,
+              onChanged: (value) => setState(() => _shareOwn = value),
+            ),
+          ],
           const SizedBox(height: 16),
           TextField(
             controller: _username,

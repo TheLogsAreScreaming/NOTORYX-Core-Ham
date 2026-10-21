@@ -35,6 +35,9 @@ class _UnsupportedTransport implements MqttTransport {
   void subscribe(String topic) {}
 
   @override
+  bool publish(String topic, Uint8List payload) => false;
+
+  @override
   set onMessage(MqttMessageHandler? handler) {}
 
   @override
@@ -94,6 +97,18 @@ class MqttClientTransport implements MqttTransport {
   void subscribe(String topic) {
     _updates ??= _client.updates?.listen(_handleUpdates);
     _client.subscribe(topic, MqttQos.atMostOnce);
+  }
+
+  @override
+  bool publish(String topic, Uint8List payload) {
+    final builder = MqttClientPayloadBuilder();
+    payload.forEach(builder.addByte);
+    try {
+      _client.publishMessage(topic, MqttQos.atMostOnce, builder.payload!);
+      return true;
+    } on Object {
+      return false;
+    }
   }
 
   void _handleUpdates(List<MqttReceivedMessage<MqttMessage>> messages) {

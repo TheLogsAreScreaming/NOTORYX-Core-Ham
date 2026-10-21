@@ -12,6 +12,8 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
 import 'package:meshcore_open/models/mqtt_connection_status.dart';
+import 'package:meshcore_open/models/mqtt_publish_policy.dart';
+import 'package:meshcore_open/models/radio_rx_packet.dart';
 import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_client_transport.dart';
 import 'package:meshcore_open/services/mqtt_transport.dart';
@@ -232,6 +234,59 @@ keyfile ${_dir.path}/key.pem
     expect(service.packetsDuplicate, 1);
     expect(service.recentPackets.single.region, 'PHL');
     expect(service.recentPackets.single.payloadType, 5);
+  }, skip: !enabled);
+  test('shares heard packets that another subscriber receives', () async {
+    Future<MqttBrokerService> service({MqttPublishSettings? share}) async {
+      SharedPreferences.setMockInitialValues({});
+      final service = MqttBrokerService(
+        prefs: await SharedPreferences.getInstance(),
+        credentials: MemoryMqttCredentialsStore(),
+        transportFactory: createMqttClientTransport,
+        statsNotifyInterval: Duration.zero,
+      );
+      addTearDown(service.dispose);
+      await service.load();
+      await service.saveConfiguration(
+        const MqttBrokerSettings(
+          host: '127.0.0.1',
+          port: _tcpPort,
+          useTls: false,
+          region: 'PHL',
+        ),
+        allowInsecureLocalBroker: true,
+        username: 'alice',
+        password: 's3cret',
+        publishSettings: share,
+      );
+      await service.connect();
+      return service;
+    }
+
+    final observer = await service(
+      share: const MqttPublishSettings(enabled: true),
+    );
+    observer.setObserverIdentity(publicKeyHex: 'feedface', name: 'Base');
+    final listener = await service();
+    await Future<void>.delayed(const Duration(milliseconds: 300));
+
+    final raw = groupTextPacket(psk: Uint8List(16), text: 'Alice: hi');
+    expect(
+      observer.publishRadioPacket(
+        RadioRxPacket(raw: raw, snr: 8, rssi: -88, receivedAt: DateTime.now()),
+      ),
+      isNull,
+    );
+    await _waitFor(() => listener.packetsAccepted == 1);
+    final received = listener.recentPackets.single;
+    expect(received.raw, raw);
+    expect(received.observerName, 'Base');
+    expect(received.observerKey, 'FEEDFACE');
+    expect(received.region, 'PHL');
+    expect(received.rssi, -88);
+
+    // The observer hears its own publish but doesn't count it as new.
+    await _waitFor(() => observer.packetsDuplicate == 1);
+    expect(observer.packetsAccepted, 0);
   }, skip: !enabled);
 }
 

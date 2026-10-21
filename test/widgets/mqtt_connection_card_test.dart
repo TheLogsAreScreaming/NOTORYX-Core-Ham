@@ -35,6 +35,9 @@ class _Transport implements MqttTransport {
   void subscribe(String topic) {}
 
   @override
+  bool publish(String topic, Uint8List payload) => true;
+
+  @override
   set onMessage(MqttMessageHandler? handler) => deliver = handler;
 
   @override
@@ -186,5 +189,45 @@ void main() {
     expect(find.textContaining('Heard by Hilltop (PHL)'), findsOneWidget);
     expect(find.textContaining('1 hops'), findsOneWidget);
     expect(find.textContaining('SNR 7.5 · RSSI -92'), findsOneWidget);
+  });
+
+  testWidgets('turns on observer sharing from settings', (tester) async {
+    await pump(tester);
+    await tester.tap(find.text('Set up broker'));
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Broker hostname'),
+      'broker.example.org',
+    );
+    await tester.tap(find.text('Share packets my radio hears'));
+    await tester.pumpAndSettle();
+    expect(find.text('Include direct-message traffic'), findsOneWidget);
+    await tester.tap(find.text('Save settings'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Set a region to share packets as an observer.'),
+      findsOneWidget,
+    );
+
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Region (optional)'),
+      'phl',
+    );
+    await tester.tap(find.text('Save settings'));
+    await tester.pumpAndSettle();
+    expect(service.publishSettings.enabled, isTrue);
+    expect(service.publishSettings.includeDirectTraffic, isFalse);
+    expect(service.settings?.region, 'PHL');
+    expect(find.text('Sharing waits for a radio connection'), findsOneWidget);
+
+    service.setObserverIdentity(publicKeyHex: 'abcd', name: 'Base');
+    await tester.pump();
+    expect(
+      find.text('Will share on meshcore/PHL/ABCD/packets'),
+      findsOneWidget,
+    );
+    await tester.tap(find.text('Connect MQTT'));
+    await tester.pump();
+    expect(find.text('Sharing on meshcore/PHL/ABCD/packets'), findsOneWidget);
   });
 }
