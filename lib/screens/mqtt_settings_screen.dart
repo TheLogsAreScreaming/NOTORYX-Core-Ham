@@ -96,7 +96,10 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
             decoration: const InputDecoration(labelText: 'Topic prefix'),
           ),
           if (_error != null)
-            Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+            Text(
+              _error!,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
           const SizedBox(height: 16),
           FilledButton(onPressed: _apply, child: const Text('Apply settings')),
         ],
