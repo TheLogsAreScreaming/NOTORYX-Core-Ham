@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/mqtt_connection_status.dart';
+import '../screens/mqtt_packet_feed_screen.dart';
 import '../screens/mqtt_settings_screen.dart';
 import '../services/mqtt_broker_service.dart';
 
@@ -17,11 +18,13 @@ class MqttConnectionCard extends StatelessWidget {
           initialAllowInsecureLocalBroker: mqtt.allowInsecureLocalBroker,
           initialUsername: mqtt.username,
           hasSavedPassword: mqtt.hasCredentials,
+          initialDeliverChannelMessages: mqtt.deliverChannelMessages,
           onApply: (result) => mqtt.saveConfiguration(
             result.settings,
             allowInsecureLocalBroker: result.allowInsecureLocalBroker,
             username: result.username,
             password: result.password,
+            deliverChannelMessages: result.deliverChannelMessages,
           ),
         ),
       ),
@@ -55,6 +58,14 @@ class MqttConnectionCard extends StatelessWidget {
                 '(${settings.transportLabel})',
               ),
             if (mqtt.hasCredentials) Text('Signed in as ${mqtt.username}'),
+            if (mqtt.subscribedTopic != null)
+              Text('Listening on ${mqtt.subscribedTopic}'),
+            if (mqtt.packetsReceived > 0)
+              Text(
+                'Packets: ${mqtt.packetsAccepted} new, '
+                '${mqtt.packetsDuplicate} duplicate, '
+                '${mqtt.packetsRejected} invalid',
+              ),
             if (status == MqttConnectionStatus.reconnecting)
               Text(
                 'Retry ${mqtt.reconnectAttempt} of '
@@ -86,6 +97,16 @@ class MqttConnectionCard extends StatelessWidget {
                     onPressed: mqtt.canConnect ? mqtt.connect : null,
                     icon: const Icon(Icons.cloud_queue),
                     label: const Text('Connect MQTT'),
+                  ),
+                if (settings != null)
+                  OutlinedButton.icon(
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const MqttPacketFeedScreen(),
+                      ),
+                    ),
+                    icon: const Icon(Icons.list_alt),
+                    label: const Text('Packet feed'),
                   ),
                 OutlinedButton.icon(
                   onPressed: () => _openSettings(context, mqtt),

@@ -10,6 +10,7 @@ class MqttBrokerSettings {
     this.useWebSocket = false,
     this.webSocketPath = '/mqtt',
     this.topicPrefix = 'meshcore',
+    this.region = '',
   });
 
   final String host;
@@ -18,6 +19,10 @@ class MqttBrokerSettings {
   final bool useWebSocket;
   final String webSocketPath;
   final String topicPrefix;
+
+  /// Observer region (usually a 3-letter IATA code) to subscribe to, or
+  /// empty for every region under [topicPrefix].
+  final String region;
 
   String? validate() {
     final normalizedHost = host.trim();
@@ -45,6 +50,9 @@ class MqttBrokerSettings {
         prefix.contains('+') ||
         prefix.contains(RegExp(r'\s'))) {
       return 'Topic prefix must be a nonempty MQTT path without wildcards.';
+    }
+    if (region.isNotEmpty && !RegExp(r'^[A-Za-z0-9]{2,8}$').hasMatch(region)) {
+      return 'Region must be 2-8 letters or digits, such as PHL.';
     }
     return null;
   }

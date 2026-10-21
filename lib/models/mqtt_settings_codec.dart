@@ -12,6 +12,7 @@ class MqttSettingsCodec {
       'useWebSocket': settings.useWebSocket,
       'webSocketPath': settings.webSocketPath,
       'topicPrefix': settings.topicPrefix,
+      'region': settings.region,
     };
   }
 
@@ -24,6 +25,7 @@ class MqttSettingsCodec {
         useWebSocket: data['useWebSocket'] as bool? ?? false,
         webSocketPath: data['webSocketPath'] as String? ?? '/mqtt',
         topicPrefix: data['topicPrefix'] as String? ?? 'meshcore',
+        region: data['region'] as String? ?? '',
       );
       return settings.validate() == null ? settings : null;
     } on Object {

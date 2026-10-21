@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
@@ -7,6 +9,8 @@ import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:meshcore_open/widgets/mqtt_connection_card.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../support/mesh_packet_fixtures.dart';
 
 class _Transport implements MqttTransport {
   _Transport(this.result);
@@ -24,10 +28,22 @@ class _Transport implements MqttTransport {
 
   @override
   set onConnectionLost(void Function()? callback) {}
+
+  MqttMessageHandler? deliver;
+
+  @override
+  void subscribe(String topic) {}
+
+  @override
+  set onMessage(MqttMessageHandler? handler) => deliver = handler;
+
+  @override
+  set onSubscribeFailed(void Function(String topic)? callback) {}
 }
 
 void main() {
   late MqttBrokerService service;
+  _Transport? transport;
   MqttConnectFailure? result;
 
   Future<void> pump(WidgetTester tester) async {
@@ -39,7 +55,8 @@ void main() {
     service = MqttBrokerService(
       prefs: await SharedPreferences.getInstance(),
       credentials: MemoryMqttCredentialsStore(),
-      transportFactory: (_, _) => _Transport(result),
+      transportFactory: (_, _) => transport = _Transport(result),
+      statsNotifyInterval: Duration.zero,
     );
     await service.load();
     await tester.pumpWidget(
@@ -141,5 +158,33 @@ void main() {
       find.text('The broker rejected the username or password.'),
       findsOneWidget,
     );
+  });
+
+  testWidgets('shows packet counts and the packet feed', (tester) async {
+    await pump(tester);
+    await service.saveConfiguration(
+      const MqttBrokerSettings(host: 'broker.test', port: 8883, region: 'PHL'),
+    );
+    await tester.pump();
+    await tester.tap(find.text('Connect MQTT'));
+    await tester.pump();
+    expect(find.text('Listening on meshcore/PHL/+/packets'), findsOneWidget);
+
+    final raw = groupTextPacket(
+      psk: Uint8List(16),
+      text: 'Alice: hi',
+      path: [7],
+    );
+    transport!.deliver!('meshcore/PHL/AB12CD34/packets', observerMessage(raw));
+    transport!.deliver!('meshcore/PHL/EF56/packets', observerMessage(raw));
+    await tester.pump(const Duration(milliseconds: 10));
+    expect(find.text('Packets: 1 new, 1 duplicate, 0 invalid'), findsOneWidget);
+
+    await tester.tap(find.text('Packet feed'));
+    await tester.pumpAndSettle();
+    expect(find.text('Channel message · Flood'), findsOneWidget);
+    expect(find.textContaining('Heard by Hilltop (PHL)'), findsOneWidget);
+    expect(find.textContaining('1 hops'), findsOneWidget);
+    expect(find.textContaining('SNR 7.5 · RSSI -92'), findsOneWidget);
   });
 }

@@ -36,6 +36,7 @@ void main() {
         'useWebSocket',
         'webSocketPath',
         'topicPrefix',
+        'region',
       ]),
     );
   });
