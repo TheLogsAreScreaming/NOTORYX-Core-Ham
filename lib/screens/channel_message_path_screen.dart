@@ -137,8 +137,18 @@ class ChannelMessagePathScreen extends StatelessWidget {
                 ),
                 if (!hasHopDetails)
                   _buildNoHopCard(context, l10n)
-                else
+                else ...[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      '${hops.where((hop) => hop.contact != null).length} of ${hops.length} hops matched to saved contacts. '
+                      'Matches update automatically as radio contacts change.',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
                   _buildHopTimeline(context, hops, l10n),
+                ],
                 const SizedBox(height: 16),
               ],
             ),
