@@ -58,7 +58,9 @@ void showDismissibleSnackBar(
       showCloseIcon: showCloseIcon,
       closeIconColor: closeIconColor,
       duration: duration ?? const Duration(seconds: 4),
-      persist: persist,
+      // Flutter defaults action SnackBars to persistent; keep Undo actionable
+      // while ensuring transient confirmations disappear automatically.
+      persist: persist ?? false,
       animation: animation,
       onVisible: onVisible,
       dismissDirection: dismissDirection ?? DismissDirection.down,
