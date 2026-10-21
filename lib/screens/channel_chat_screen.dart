@@ -908,6 +908,13 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                   ),
                 ),
               ),
+              // Visible desktop reply control: no right-click required.
+              if (PlatformInfo.isDesktop)
+                IconButton(
+                  tooltip: context.l10n.chat_reply,
+                  icon: const Icon(Icons.reply_outlined, size: 20),
+                  onPressed: () => _setReplyingTo(message),
+                ),
             ],
           ),
           if (message.reactions.isNotEmpty) ...[
