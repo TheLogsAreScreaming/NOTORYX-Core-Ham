@@ -419,6 +419,11 @@ class ChannelMessagePathScreen extends StatelessWidget {
                   if (hop.contact != null) ...[
                     const SizedBox(height: 4),
                     Text(
+                      'Prefix match — identity is not cryptographically verified',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
                       '${l10n.contact_lastSeen}: '
                       '${MaterialLocalizations.of(context).formatMediumDate(hop.contact!.lastSeen.toLocal())}',
                       style: Theme.of(context).textTheme.bodySmall,
