@@ -416,6 +416,13 @@ class ChannelMessagePathScreen extends StatelessWidget {
                       color: scheme.onSurfaceVariant,
                     ),
                   ),
+                  if (hop.contact == null) ...[
+                    const SizedBox(height: 4),
+                    Text(
+                      'Unknown repeater: this path identifier does not uniquely identify a saved repeater. The packet does not include its full public key or location.',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
                   if (hop.contact != null) ...[
                     const SizedBox(height: 4),
                     Text(
