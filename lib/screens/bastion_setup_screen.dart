@@ -101,8 +101,7 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
               children: [
                 if (radio.isConnected)
                   FilledButton.icon(
-                    onPressed: () =>
-                        _open(const BastionDiagnosticsScreen()),
+                    onPressed: () => _open(const BastionDiagnosticsScreen()),
                     icon: const Icon(Icons.check_circle_outline),
                     label: Text(l10n.bastionSetup_connectionDiagnostics),
                   )
@@ -113,8 +112,7 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
                     label: Text(l10n.fieldOps_connectRadio),
                   ),
                   TextButton(
-                    onPressed: () =>
-                        _open(const BastionDiagnosticsScreen()),
+                    onPressed: () => _open(const BastionDiagnosticsScreen()),
                     child: Text(l10n.bastionSetup_connectionDiagnostics),
                   ),
                 ],
