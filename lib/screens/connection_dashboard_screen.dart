@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../utils/platform_info.dart';
+import '../widgets/mqtt_connection_card.dart';
 import 'scanner_screen.dart';
 import 'tcp_screen.dart';
 import 'usb_screen.dart';
 
-/// Radio and internet connection status are separate. MQTT integration is
-/// deliberately not represented as connected until a broker client exists.
+/// Radio and MQTT broker connections are shown and controlled separately.
 class ConnectionDashboardScreen extends StatelessWidget {
   const ConnectionDashboardScreen({super.key});
 
@@ -93,26 +93,7 @@ class ConnectionDashboardScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'MQTT connection',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 8),
-                      const Text('Not configured'),
-                      const Text(
-                        'MQTT broker support is not yet implemented in '
-                        'NOTORYX Core. Radio connection works independently.',
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              const MqttConnectionCard(),
             ],
           );
         },
