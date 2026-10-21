@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
 import '../utils/platform_info.dart';
+import 'connection_dashboard_screen.dart';
 import 'scanner_screen.dart';
 import 'usb_screen.dart';
 
@@ -55,6 +56,18 @@ class _ConnectionSetupScreenState extends State<ConnectionSetupScreen> {
           key: ValueKey(choice),
           padding: const EdgeInsets.all(20),
           children: [
+            if (choice == null) ...[
+              OutlinedButton.icon(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const ConnectionDashboardScreen(),
+                  ),
+                ),
+                icon: const Icon(Icons.settings_input_antenna),
+                label: const Text('View connection dashboard'),
+              ),
+              const SizedBox(height: 12),
+            ],
             Text(
               choice == null
                   ? l10n.setupWizard_choose
