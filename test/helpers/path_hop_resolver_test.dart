@@ -130,12 +130,11 @@ void main() {
       lastSeen: DateTime.utc(2026),
     );
 
-    expect(
-      PathHopResolver.resolve(
-        pathBytes: const [0xAE],
-        contacts: [chat],
-      ).single,
-      isNull,
+    final resolved = PathHopResolver.resolve(
+      pathBytes: const [0xAE],
+      contacts: [chat],
     );
+
+    expect(resolved.single, isNull);
   });
 }
