@@ -66,7 +66,7 @@ void main() {
     ]);
   });
 
-  test('falls back to the most recently seen conflict without locations', () {
+  test('leaves conflicting hash unresolved without location evidence', () {
     final older = Contact(
       publicKey: Uint8List(32)..first = 0xAA,
       name: 'Older',
@@ -89,6 +89,6 @@ void main() {
       contacts: [older, newer],
     );
 
-    expect(resolved.single?.name, 'Newer');
+    expect(resolved.single, isNull);
   });
 }

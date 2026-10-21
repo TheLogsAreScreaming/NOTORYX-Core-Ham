@@ -43,6 +43,11 @@ class PathHopResolver {
           candidatesByPrefix[PathHelper.formatHopHex(hops[index])];
       if (candidates == null || candidates.isEmpty) continue;
 
+      // A short path hash is not a unique repeater identity. When multiple
+      // contacts share the same prefix and no location evidence is available,
+      // leave the hop unresolved rather than showing an arbitrary name.
+      if (candidates.length > 1 && previousPosition == null) continue;
+
       var bestIndex = 0;
       if (previousPosition != null && candidates.length > 1) {
         double? nearestDistance;
@@ -55,6 +60,8 @@ class PathHopResolver {
             bestIndex = i;
           }
         }
+        // Without a located candidate, recency is not identity evidence.
+        if (nearestDistance == null) continue;
       }
 
       final contact = candidates.removeAt(bestIndex);
