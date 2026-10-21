@@ -35,6 +35,25 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('android/gradle/wrapper/gradle-wrapper.properties', 'android/build.gradle', 'android/settings.gradle', 'android/app/build.gradle', 'pubspec.lock') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      - name: Install and verify Android NDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          NDK_VERSION="28.2.13676358"
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          for attempt in 1 2 3; do
+            if "$SDKMANAGER" --install "ndk;$NDK_VERSION" &&
+               test -f "$ANDROID_HOME/ndk/$NDK_VERSION/source.properties"; then
+              echo "Android NDK $NDK_VERSION verified"
+              break
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo "::error::Android NDK $NDK_VERSION installation failed after 3 attempts"
+              exit 1
+            fi
+            rm -rf "$ANDROID_HOME/.temp" "$ANDROID_HOME/ndk/$NDK_VERSION"
+            sleep 10
+          done
       - run: flutter pub get
       - run: flutter build apk --release --no-pub
 
