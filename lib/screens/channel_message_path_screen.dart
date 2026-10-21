@@ -416,6 +416,22 @@ class ChannelMessagePathScreen extends StatelessWidget {
                       color: scheme.onSurfaceVariant,
                     ),
                   ),
+                  if (hop.contact != null) ...[
+                    const SizedBox(height: 4),
+                    Text(
+                      '${l10n.contact_lastSeen}: '
+                      '${MaterialLocalizations.of(context).formatMediumDate(hop.contact!.lastSeen.toLocal())}',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    const SizedBox(height: 2),
+                    SelectableText(
+                      '${l10n.map_publicKey}: ${hop.contact!.publicKeyHex}',
+                      style: MeshTheme.mono(
+                        fontSize: 10,
+                        color: scheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
