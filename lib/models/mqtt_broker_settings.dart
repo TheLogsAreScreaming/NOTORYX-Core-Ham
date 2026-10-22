@@ -1,3 +1,13 @@
+/// How the app signs in to the broker.
+enum MqttAuthMode {
+  /// Optional username and password from the keychain.
+  password,
+
+  /// A short-lived token signed by the connected radio's own key, with the
+  /// username `v1_<public key>` (meshcoretomqtt / LetsMesh style).
+  radioToken,
+}
+
 /// Validated connection settings for a future MeshCore MQTT transport.
 ///
 /// Credentials must be managed separately in secure storage. Never serialize
@@ -11,6 +21,7 @@ class MqttBrokerSettings {
     this.webSocketPath = '/mqtt',
     this.topicPrefix = 'meshcore',
     this.region = '',
+    this.authMode = MqttAuthMode.password,
   });
 
   final String host;
@@ -23,6 +34,8 @@ class MqttBrokerSettings {
   /// Observer region (usually a 3-letter IATA code) to subscribe to, or
   /// empty for every region under [topicPrefix].
   final String region;
+
+  final MqttAuthMode authMode;
 
   String? validate() {
     final normalizedHost = host.trim();

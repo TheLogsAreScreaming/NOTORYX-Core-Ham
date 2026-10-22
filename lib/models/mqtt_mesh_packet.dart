@@ -12,7 +12,7 @@ const int mqttMeshPacketMaxPayloadBytes = 4096;
 const int meshPacketMaxBytes = 255;
 
 /// Topic layout used by MeshCore observers (meshcoretomqtt):
-/// `<prefix>/<region>/<observer public key>/packets`.
+/// `<prefix>/<region>/<observer public key>/packets` and `.../status`.
 class MqttPacketTopics {
   const MqttPacketTopics._();
 
@@ -28,6 +28,14 @@ class MqttPacketTopics {
     final region = settings.region.trim();
     if (region.isEmpty || observerKey.isEmpty) return null;
     return '${settings.topicPrefix.trim()}/$region/$observerKey/packets';
+  }
+
+  /// Where this app reports its observer `online` / `offline` status, or null
+  /// without a region.
+  static String? statusFor(MqttBrokerSettings settings, String observerKey) {
+    final region = settings.region.trim();
+    if (region.isEmpty || observerKey.isEmpty) return null;
+    return '${settings.topicPrefix.trim()}/$region/$observerKey/status';
   }
 }
 

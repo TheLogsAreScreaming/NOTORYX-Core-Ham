@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/mqtt_broker_settings.dart';
 import '../models/mqtt_connection_status.dart';
 import '../screens/mqtt_packet_feed_screen.dart';
 import '../screens/mqtt_settings_screen.dart';
@@ -20,6 +21,7 @@ class MqttConnectionCard extends StatelessWidget {
           hasSavedPassword: mqtt.hasCredentials,
           initialDeliverChannelMessages: mqtt.deliverChannelMessages,
           initialPublishSettings: mqtt.publishSettings,
+          radioCanSign: mqtt.radioCanSign,
           onApply: (result) => mqtt.saveConfiguration(
             result.settings,
             allowInsecureLocalBroker: result.allowInsecureLocalBroker,
@@ -31,6 +33,29 @@ class MqttConnectionCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> _tokenLines(BuildContext context, MqttBrokerService mqtt) {
+    final username = mqtt.tokenUsername;
+    final refreshAt = mqtt.tokenRefreshAt;
+    return [
+      Text(
+        username == null
+            ? 'Signs in with a radio-signed token'
+            : 'Signs in with a radio-signed token as '
+                  '${username.substring(0, 11)}…',
+      ),
+      if (!mqtt.radioCanSign && !mqtt.waitingForRadio)
+        Text(
+          'Connect your radio to sign in',
+          style: TextStyle(color: Theme.of(context).colorScheme.error),
+        )
+      else if (refreshAt != null && mqtt.status.isConnected)
+        Text(
+          'Token renews at '
+          '${TimeOfDay.fromDateTime(refreshAt).format(context)}',
+        ),
+    ];
   }
 
   @override
@@ -59,7 +84,10 @@ class MqttConnectionCard extends StatelessWidget {
                 'Broker: ${settings.host}:${settings.port} '
                 '(${settings.transportLabel})',
               ),
-            if (mqtt.hasCredentials) Text('Signed in as ${mqtt.username}'),
+            if (mqtt.authMode == MqttAuthMode.radioToken)
+              ..._tokenLines(context, mqtt)
+            else if (mqtt.hasCredentials)
+              Text('Signed in as ${mqtt.username}'),
             if (mqtt.subscribedTopic != null)
               Text('Listening on ${mqtt.subscribedTopic}'),
             if (mqtt.packetsReceived > 0)
@@ -82,6 +110,8 @@ class MqttConnectionCard extends StatelessWidget {
                     ? 'Sharing on ${mqtt.publishTopic}'
                     : 'Will share on ${mqtt.publishTopic}',
               ),
+            if (mqtt.onlineStatusTopic != null)
+              Text('Online status on ${mqtt.onlineStatusTopic}'),
             if (mqtt.packetsPublished > 0 || mqtt.publishSkips.isNotEmpty)
               Text(
                 'Shared ${mqtt.packetsPublished}, held back '

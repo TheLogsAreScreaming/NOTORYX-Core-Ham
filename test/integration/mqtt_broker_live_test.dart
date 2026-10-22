@@ -4,7 +4,9 @@
 //   MQTT_LIVE=1 MOSQUITTO=/usr/local/sbin/mosquitto \
 //     MOSQUITTO_PASSWD=/usr/local/bin/mosquitto_passwd \
 //     MOSQUITTO_PUB=/usr/local/bin/mosquitto_pub \
+//     MOSQUITTO_SUB=/usr/local/bin/mosquitto_sub \
 //     flutter test test/integration/mqtt_broker_live_test.dart
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
@@ -12,6 +14,7 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
 import 'package:meshcore_open/models/mqtt_connection_status.dart';
+import 'package:meshcore_open/models/mqtt_observer_status.dart';
 import 'package:meshcore_open/models/mqtt_publish_policy.dart';
 import 'package:meshcore_open/models/radio_rx_packet.dart';
 import 'package:meshcore_open/services/mqtt_broker_service.dart';
@@ -288,6 +291,195 @@ keyfile ${_dir.path}/key.pem
     await _waitFor(() => observer.packetsDuplicate == 1);
     expect(observer.packetsAccepted, 0);
   }, skip: !enabled);
+  group('observer status', () {
+    const statusTopic = 'meshcore/PHL/C0FFEE01/status';
+
+    Future<MqttBrokerService> observer() async {
+      SharedPreferences.setMockInitialValues({});
+      final service = MqttBrokerService(
+        prefs: await SharedPreferences.getInstance(),
+        credentials: MemoryMqttCredentialsStore(),
+        transportFactory: createMqttClientTransport,
+        clientVersion: 'notoryx-core/livetest',
+      );
+      addTearDown(service.dispose);
+      await service.load();
+      await service.saveConfiguration(
+        const MqttBrokerSettings(
+          host: '127.0.0.1',
+          port: _tcpPort,
+          useTls: false,
+          region: 'PHL',
+        ),
+        allowInsecureLocalBroker: true,
+        username: 'alice',
+        password: 's3cret',
+        publishSettings: const MqttPublishSettings(enabled: true),
+      );
+      service.setObserverIdentity(
+        publicKeyHex: 'c0ffee01',
+        name: 'Ridge',
+        details: const MqttObserverDetails(radio: '910.525,62.5,7,5'),
+      );
+      await service.connect();
+      expect(service.status, MqttConnectionStatus.connected);
+      return service;
+    }
+
+    tearDown(() => _clearRetained(statusTopic));
+
+    test(
+      'retains online while connected and offline after disconnect',
+      () async {
+        final service = await observer();
+        final online = await _retained(statusTopic);
+        expect(online, isNotNull);
+        expect(online!.retained, isTrue);
+        expect(online.json['status'], 'online');
+        expect(online.json['origin'], 'Ridge');
+        expect(online.json['origin_id'], 'C0FFEE01');
+        expect(online.json['radio'], '910.525,62.5,7,5');
+        expect(online.json['client_version'], 'notoryx-core/livetest');
+
+        service.disconnect();
+        await Future<void>.delayed(const Duration(milliseconds: 300));
+        final offline = await _retained(statusTopic);
+        expect(offline?.retained, isTrue);
+        expect(offline?.json['status'], 'offline');
+        expect(offline?.json['origin_id'], 'C0FFEE01');
+      },
+      skip: !enabled,
+    );
+
+    test(
+      'the broker publishes the retained offline will on a dropped session',
+      () async {
+        final service = await observer();
+        final watcher = await _Subscriber.start(statusTopic);
+        addTearDown(watcher.stop);
+        final first = await watcher.next();
+        expect(first.json['status'], 'online');
+
+        // A second client with the same id takes the session over, so the
+        // broker drops the app's connection without a DISCONNECT packet.
+        final clientId = (await SharedPreferences.getInstance()).getString(
+          'mqtt_client_id',
+        )!;
+        service.setObserverIdentity(); // keep it from re-announcing
+        await watcher.next(); // the app reports the radio gone: offline
+        final intruder = createMqttClientTransport(
+          const MqttBrokerSettings(
+            host: '127.0.0.1',
+            port: _tcpPort,
+            useTls: false,
+          ),
+          clientId,
+        );
+        expect(
+          await intruder.connect(username: 'alice', password: 's3cret'),
+          isNull,
+        );
+        addTearDown(intruder.disconnect);
+
+        final will = await watcher.next();
+        expect(will.json['status'], 'offline');
+        expect(will.json['origin'], 'Ridge');
+        expect(will.json['origin_id'], 'C0FFEE01');
+        final retained = await _retained(statusTopic);
+        expect(retained?.retained, isTrue);
+        expect(retained?.json['status'], 'offline');
+        service.disconnect();
+      },
+      skip: !enabled,
+    );
+  });
+}
+
+typedef _StatusMessage = ({bool retained, Map<String, dynamic> json});
+
+_StatusMessage _parseSubLine(String line) {
+  final space = line.indexOf(' ');
+  return (
+    retained: line.substring(0, space) == '1',
+    json: jsonDecode(line.substring(space + 1)) as Map<String, dynamic>,
+  );
+}
+
+String get _sub => Platform.environment['MOSQUITTO_SUB'] ?? 'mosquitto_sub';
+
+const _brokerArgs = [
+  '-h',
+  '127.0.0.1',
+  '-p',
+  '$_tcpPort',
+  '-u',
+  'alice',
+  '-P',
+  's3cret',
+];
+
+/// The retained message on [topic], or null if there is none.
+Future<_StatusMessage?> _retained(String topic) async {
+  final result = await Process.run(_sub, [
+    ..._brokerArgs,
+    '-t',
+    topic,
+    '--retained-only',
+    '-C',
+    '1',
+    '-W',
+    '2',
+    '-F',
+    '%r %p',
+  ]);
+  final line = (result.stdout as String).trim();
+  return line.isEmpty ? null : _parseSubLine(line);
+}
+
+Future<void> _clearRetained(String topic) async {
+  if (!enabled) return;
+  await Process.run(Platform.environment['MOSQUITTO_PUB'] ?? 'mosquitto_pub', [
+    ..._brokerArgs,
+    '-t',
+    topic,
+    '-r',
+    '-n',
+  ]);
+}
+
+/// A mosquitto_sub process that reports every message on a topic.
+class _Subscriber {
+  _Subscriber._(this._process) {
+    _process.stdout
+        .transform(utf8.decoder)
+        .transform(const LineSplitter())
+        .listen((line) => _lines.add(_parseSubLine(line)));
+  }
+
+  final Process _process;
+  final StreamController<_StatusMessage> _lines = StreamController();
+  late final StreamIterator<_StatusMessage> _iterator = StreamIterator(
+    _lines.stream,
+  );
+
+  static Future<_Subscriber> start(String topic) async {
+    final process = await Process.start(_sub, [
+      ..._brokerArgs,
+      '-t',
+      topic,
+      '-F',
+      '%r %p',
+    ]);
+    return _Subscriber._(process);
+  }
+
+  Future<_StatusMessage> next() async {
+    final has = await _iterator.moveNext().timeout(const Duration(seconds: 10));
+    expect(has, isTrue);
+    return _iterator.current;
+  }
+
+  void stop() => _process.kill();
 }
 
 Future<void> _publish(String topic, Uint8List payload) async {

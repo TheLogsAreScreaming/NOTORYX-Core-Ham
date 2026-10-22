@@ -1,3 +1,5 @@
+import 'mqtt_broker_settings.dart';
+
 /// Broker choices are suggestions only, not endorsements or live services.
 /// Users must confirm their network's hostname, authentication and topics.
 class MqttBrokerPreset {
@@ -7,6 +9,9 @@ class MqttBrokerPreset {
     required this.port,
     this.tls = true,
     this.webSocket = false,
+    this.webSocketPath = '/mqtt',
+    this.authMode = MqttAuthMode.password,
+    this.note,
   });
 
   final String name;
@@ -14,6 +19,11 @@ class MqttBrokerPreset {
   final int port;
   final bool tls;
   final bool webSocket;
+  final String webSocketPath;
+  final MqttAuthMode authMode;
+
+  /// Shown under the preset so users know who runs the service.
+  final String? note;
 }
 
 class MqttBrokerPresets {
@@ -30,5 +40,37 @@ class MqttBrokerPresets {
     tls: false,
   );
 
-  static const choices = <MqttBrokerPreset>[custom, local];
+  // Settings from meshcoretomqtt's presets/letsmesh.toml: secure WebSocket on
+  // 443 at path "/", signed in with a token from the node's own key.
+  static const _letsMeshNote =
+      'LetsMesh is a community-run MeshCore packet analyzer, not part of '
+      'NOTORYX and not endorsed by it. Sharing needs your radio connected '
+      'and stays off until you turn it on.';
+
+  static const letsMeshUs = MqttBrokerPreset(
+    name: 'LetsMesh analyzer (US, community)',
+    host: 'mqtt-us-v1.letsmesh.net',
+    port: 443,
+    webSocket: true,
+    webSocketPath: '/',
+    authMode: MqttAuthMode.radioToken,
+    note: _letsMeshNote,
+  );
+
+  static const letsMeshEu = MqttBrokerPreset(
+    name: 'LetsMesh analyzer (EU, community)',
+    host: 'mqtt-eu-v1.letsmesh.net',
+    port: 443,
+    webSocket: true,
+    webSocketPath: '/',
+    authMode: MqttAuthMode.radioToken,
+    note: _letsMeshNote,
+  );
+
+  static const choices = <MqttBrokerPreset>[
+    custom,
+    local,
+    letsMeshUs,
+    letsMeshEu,
+  ];
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../models/mqtt_broker_presets.dart';
 import '../models/mqtt_broker_settings.dart';
 import '../models/mqtt_connection_policy.dart';
 import '../models/mqtt_publish_policy.dart';
@@ -37,6 +38,7 @@ class MqttSettingsScreen extends StatefulWidget {
     this.hasSavedPassword = false,
     this.initialDeliverChannelMessages = false,
     this.initialPublishSettings = const MqttPublishSettings(),
+    this.radioCanSign = false,
     this.onApply,
   });
 
@@ -46,6 +48,9 @@ class MqttSettingsScreen extends StatefulWidget {
   final bool hasSavedPassword;
   final bool initialDeliverChannelMessages;
   final MqttPublishSettings initialPublishSettings;
+
+  /// Whether a connected radio can sign tokens right now.
+  final bool radioCanSign;
   final Future<String?> Function(MqttSettingsResult result)? onApply;
 
   @override
@@ -67,6 +72,8 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
   late bool _share;
   late bool _shareDirect;
   late bool _shareOwn;
+  late MqttAuthMode _authMode;
+  MqttBrokerPreset? _preset;
   bool _saving = false;
   String? _error;
 
@@ -87,6 +94,19 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
     _share = widget.initialPublishSettings.enabled;
     _shareDirect = widget.initialPublishSettings.includeDirectTraffic;
     _shareOwn = widget.initialPublishSettings.includeOwnTraffic;
+    _authMode = settings?.authMode ?? MqttAuthMode.password;
+  }
+
+  void _applyPreset(MqttBrokerPreset preset) {
+    setState(() {
+      _preset = preset;
+      _host.text = preset.host;
+      _port.text = '${preset.port}';
+      _tls = preset.tls;
+      _webSocket = preset.webSocket;
+      _wsPath.text = preset.webSocketPath;
+      _authMode = preset.authMode;
+    });
   }
 
   @override
@@ -110,6 +130,7 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
       webSocketPath: _wsPath.text.trim(),
       topicPrefix: _prefix.text.trim(),
       region: _region.text.trim().toUpperCase(),
+      authMode: _authMode,
     );
     final allowInsecure = !_tls && _allowInsecureLocal;
     var error = const MqttConnectionPolicy().validate(
@@ -151,6 +172,26 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          DropdownButtonFormField<MqttBrokerPreset>(
+            initialValue: _preset,
+            isExpanded: true,
+            decoration: const InputDecoration(labelText: 'Start from a preset'),
+            items: [
+              for (final preset in MqttBrokerPresets.choices)
+                DropdownMenuItem(value: preset, child: Text(preset.name)),
+            ],
+            onChanged: (preset) {
+              if (preset != null) _applyPreset(preset);
+            },
+          ),
+          if (_preset?.note != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 4, bottom: 8),
+              child: Text(
+                _preset!.note!,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
           TextField(
             controller: _host,
             decoration: const InputDecoration(labelText: 'Broker hostname'),
@@ -240,32 +281,72 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
             ),
           ],
           const SizedBox(height: 16),
-          TextField(
-            controller: _username,
-            autocorrect: false,
-            decoration: const InputDecoration(labelText: 'Username (optional)'),
-          ),
-          TextField(
-            controller: _password,
-            obscureText: true,
-            autocorrect: false,
-            enableSuggestions: false,
-            decoration: InputDecoration(
-              labelText: 'Password',
-              helperText: widget.hasSavedPassword
-                  ? 'Leave blank to keep the saved password.'
-                  : null,
-            ),
+          Text('Sign-in', style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 8),
+          SegmentedButton<MqttAuthMode>(
+            segments: const [
+              ButtonSegment(
+                value: MqttAuthMode.password,
+                label: Text('Username and password'),
+              ),
+              ButtonSegment(
+                value: MqttAuthMode.radioToken,
+                label: Text('Radio-signed token'),
+              ),
+            ],
+            selected: {_authMode},
+            onSelectionChanged: (selection) =>
+                setState(() => _authMode = selection.first),
           ),
           const SizedBox(height: 8),
-          Text(
-            kIsWeb
-                ? 'In the browser, credentials are kept only until the page '
-                      'is closed.'
-                : 'Credentials are stored in the system keychain, never in '
-                      'app settings or logs.',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
+          if (_authMode == MqttAuthMode.radioToken) ...[
+            const Text(
+              'Your radio signs a one-hour sign-in token with its own key, '
+              'and the app renews it before it runs out. The key never '
+              'leaves the radio. The username is v1_ and your radio\'s '
+              'public key.',
+            ),
+            const SizedBox(height: 4),
+            Text(
+              widget.radioCanSign
+                  ? 'Radio connected: ready to sign in.'
+                  : 'Connect your radio to sign in. MQTT waits for it.',
+              style: TextStyle(
+                color: widget.radioCanSign
+                    ? null
+                    : Theme.of(context).colorScheme.error,
+              ),
+            ),
+          ] else ...[
+            TextField(
+              controller: _username,
+              autocorrect: false,
+              decoration: const InputDecoration(
+                labelText: 'Username (optional)',
+              ),
+            ),
+            TextField(
+              controller: _password,
+              obscureText: true,
+              autocorrect: false,
+              enableSuggestions: false,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                helperText: widget.hasSavedPassword
+                    ? 'Leave blank to keep the saved password.'
+                    : null,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              kIsWeb
+                  ? 'In the browser, credentials are kept only until the page '
+                        'is closed.'
+                  : 'Credentials are stored in the system keychain, never in '
+                        'app settings or logs.',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
           if (_error != null)
             Padding(
               padding: const EdgeInsets.only(top: 8),

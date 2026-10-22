@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +15,7 @@ import 'connector/meshcore_connector.dart';
 import 'connector/meshcore_protocol.dart';
 import 'models/image_codec_support.dart';
 import 'models/mqtt_mesh_packet.dart';
+import 'models/mqtt_observer_status.dart';
 import 'models/radio_rx_packet.dart';
 import 'screens/bastion_home_screen.dart';
 import 'services/regional_preset_service.dart';
@@ -295,6 +297,11 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       networkMonitor: ConnectivityNetworkMonitor(),
     );
     unawaited(_mqtt.load());
+    unawaited(
+      PackageInfo.fromPlatform()
+          .then((info) => _mqtt.clientVersion = 'notoryx-core/${info.version}')
+          .catchError((Object _) => _mqtt.clientVersion),
+    );
     _mqttPackets = _mqtt.packets.listen((packet) {
       if (_mqtt.deliverChannelMessages &&
           packet.payloadType == payloadTypeGRPTXT) {
@@ -343,6 +350,20 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
           ? null
           : connector.selfPublicKeyHex,
       name: connector.selfName,
+      details: MqttObserverDetails(
+        radio: MqttObserverDetails.radioFrom(
+          freqHz: connector.currentFreqHz,
+          bwHz: connector.currentBwHz,
+          sf: connector.currentSf,
+          cr: connector.currentCr,
+        ),
+        model: connector.manufacturerName,
+        firmwareVersion: connector.firmwareVersionString,
+      ),
+    );
+    // Token sign-in asks the radio to sign; its private key stays there.
+    _mqtt.setRadioSigner(
+      connector.isConnected ? connector.signWithRadio : null,
     );
   }
 

@@ -18,11 +18,17 @@ class _Transport implements MqttTransport {
 
   final MqttConnectFailure? result;
 
+  String? username;
+
   @override
   Future<MqttConnectFailure?> connect({
     String? username,
     String? password,
-  }) async => result;
+    MqttWill? will,
+  }) async {
+    this.username = username;
+    return result;
+  }
 
   @override
   void disconnect() {}
@@ -36,7 +42,7 @@ class _Transport implements MqttTransport {
   void subscribe(String topic) {}
 
   @override
-  bool publish(String topic, Uint8List payload) => true;
+  bool publish(String topic, Uint8List payload, {bool retain = false}) => true;
 
   @override
   set onMessage(MqttMessageHandler? handler) => deliver = handler;
@@ -231,6 +237,56 @@ void main() {
     await tester.tap(find.text('Connect MQTT'));
     await tester.pump();
     expect(find.text('Sharing on meshcore/PHL/ABCD/packets'), findsOneWidget);
+  });
+
+  testWidgets('sets up LetsMesh with radio-token sign-in', (tester) async {
+    await pump(tester);
+    transport = null;
+    await tester.tap(find.text('Set up broker'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Start from a preset'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('LetsMesh analyzer (US, community)').last);
+    await tester.pumpAndSettle();
+    expect(find.textContaining('not endorsed by it'), findsOneWidget);
+    expect(find.widgetWithText(TextField, 'Password'), findsNothing);
+    expect(
+      find.text('Connect your radio to sign in. MQTT waits for it.'),
+      findsOneWidget,
+    );
+    await tester.tap(find.text('Save settings'));
+    await tester.pumpAndSettle();
+
+    final settings = service.settings!;
+    expect(settings.host, 'mqtt-us-v1.letsmesh.net');
+    expect(settings.port, 443);
+    expect(settings.useTls, isTrue);
+    expect(settings.useWebSocket, isTrue);
+    expect(settings.webSocketPath, '/');
+    expect(settings.authMode, MqttAuthMode.radioToken);
+    expect(find.text('Signs in with a radio-signed token'), findsOneWidget);
+    expect(find.text('Connect your radio to sign in'), findsOneWidget);
+
+    await tester.tap(find.text('Connect MQTT'));
+    await tester.pump();
+    expect(transport, isNull);
+    expect(
+      find.text('Connect your radio to sign in with its key.'),
+      findsOneWidget,
+    );
+
+    service.setObserverIdentity(publicKeyHex: 'ab12cd34ef', name: 'Base');
+    service.setRadioSigner((_) async => Uint8List(64));
+    await tester.pump();
+    await tester.pump();
+    expect(find.text('Connected'), findsOneWidget);
+    expect(transport?.username, 'v1_AB12CD34EF');
+    expect(
+      find.text('Signs in with a radio-signed token as v1_AB12CD34…'),
+      findsOneWidget,
+    );
+    expect(find.textContaining('Token renews at'), findsOneWidget);
+    service.disconnect();
   });
 
   testWidgets('shows when MQTT is waiting for a network', (tester) async {
