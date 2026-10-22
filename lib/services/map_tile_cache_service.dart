@@ -107,8 +107,7 @@ class MapRasterSourceCatalog {
   static const MapRasterSourceDefinition osmDarkHC = MapRasterSourceDefinition(
     id: 'osm_darkHC',
     label: 'OpenStreetMap Dark High Contrast',
-    description:
-        'Standard OpenStreetMap tiles with an inverted high contrast dark filter',
+    description: 'Standard OpenStreetMap tiles with an inverted high contrast dark filter',
   );
   static const MapRasterSourceDefinition stamenTerrain =
       MapRasterSourceDefinition(

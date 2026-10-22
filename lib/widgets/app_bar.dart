@@ -1,4 +1,5 @@
 import '../theme/mesh_theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/widgets/battery_indicator.dart';

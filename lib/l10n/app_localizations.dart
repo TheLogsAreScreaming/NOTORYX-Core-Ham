@@ -12456,6 +12456,810 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.'**
   String get setupWizard_usbError;
+
+  /// No description provided for @connections_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections'**
+  String get connections_title;
+
+  /// No description provided for @connections_radioTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio connection'**
+  String get connections_radioTitle;
+
+  /// No description provided for @connections_bluetoothOffNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth is off. Turn it on to reconnect; the app will retry once it is back.'**
+  String get connections_bluetoothOffNotice;
+
+  /// No description provided for @connections_transport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get connections_transport;
+
+  /// No description provided for @connections_lastError.
+  ///
+  /// In en, this message translates to:
+  /// **'Last error: {error}'**
+  String connections_lastError(String error);
+
+  /// No description provided for @connections_disconnectRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnect radio'**
+  String get connections_disconnectRadio;
+
+  /// No description provided for @connections_reconnectTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Reconnect to {name}'**
+  String connections_reconnectTo(String name);
+
+  /// No description provided for @connections_forgetRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget radio'**
+  String get connections_forgetRadio;
+
+  /// No description provided for @connections_connectAnother.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect another radio'**
+  String get connections_connectAnother;
+
+  /// No description provided for @connections_usbSerial.
+  ///
+  /// In en, this message translates to:
+  /// **'USB serial'**
+  String get connections_usbSerial;
+
+  /// No description provided for @connections_tcpIp.
+  ///
+  /// In en, this message translates to:
+  /// **'TCP/IP'**
+  String get connections_tcpIp;
+
+  /// No description provided for @connections_device.
+  ///
+  /// In en, this message translates to:
+  /// **'Device'**
+  String get connections_device;
+
+  /// No description provided for @connections_publicKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Public key'**
+  String get connections_publicKey;
+
+  /// No description provided for @connections_firmware.
+  ///
+  /// In en, this message translates to:
+  /// **'Firmware'**
+  String get connections_firmware;
+
+  /// No description provided for @connections_firmwareProtocol.
+  ///
+  /// In en, this message translates to:
+  /// **'protocol v{code}'**
+  String connections_firmwareProtocol(String code);
+
+  /// No description provided for @connections_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get connections_battery;
+
+  /// No description provided for @connections_lastRx.
+  ///
+  /// In en, this message translates to:
+  /// **'Last RX'**
+  String get connections_lastRx;
+
+  /// No description provided for @connections_reconnectFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not reconnect to the radio'**
+  String get connections_reconnectFailed;
+
+  /// No description provided for @connections_statusBluetoothOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth is off'**
+  String get connections_statusBluetoothOff;
+
+  /// No description provided for @connections_statusConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get connections_statusConnected;
+
+  /// No description provided for @connections_statusConnecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting…'**
+  String get connections_statusConnecting;
+
+  /// No description provided for @connections_statusDisconnecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnecting…'**
+  String get connections_statusDisconnecting;
+
+  /// No description provided for @connections_statusScanning.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanning for radios…'**
+  String get connections_statusScanning;
+
+  /// No description provided for @connections_statusReconnectingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Reconnecting soon…'**
+  String get connections_statusReconnectingSoon;
+
+  /// No description provided for @connections_statusNotConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not connected'**
+  String get connections_statusNotConnected;
+
+  /// No description provided for @mqtt_cardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'MQTT connection'**
+  String get mqtt_cardTitle;
+
+  /// No description provided for @mqtt_statusNotConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Not configured'**
+  String get mqtt_statusNotConfigured;
+
+  /// No description provided for @mqtt_statusDisconnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnected'**
+  String get mqtt_statusDisconnected;
+
+  /// No description provided for @mqtt_statusConnecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting'**
+  String get mqtt_statusConnecting;
+
+  /// No description provided for @mqtt_statusConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected'**
+  String get mqtt_statusConnected;
+
+  /// No description provided for @mqtt_statusReconnecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Reconnecting'**
+  String get mqtt_statusReconnecting;
+
+  /// No description provided for @mqtt_statusError.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection error'**
+  String get mqtt_statusError;
+
+  /// No description provided for @mqtt_broker.
+  ///
+  /// In en, this message translates to:
+  /// **'Broker: {host}:{port} ({transport})'**
+  String mqtt_broker(String host, int port, String transport);
+
+  /// No description provided for @mqtt_tokenSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in with a radio-signed token'**
+  String get mqtt_tokenSignIn;
+
+  /// No description provided for @mqtt_tokenSignInAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in with a radio-signed token as {username}…'**
+  String mqtt_tokenSignInAs(String username);
+
+  /// No description provided for @mqtt_connectRadioToSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio to sign in'**
+  String get mqtt_connectRadioToSignIn;
+
+  /// No description provided for @mqtt_tokenRenewsAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Token renews at {time}'**
+  String mqtt_tokenRenewsAt(String time);
+
+  /// No description provided for @mqtt_signedInAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {username}'**
+  String mqtt_signedInAs(String username);
+
+  /// No description provided for @mqtt_listeningOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening on {topic}'**
+  String mqtt_listeningOn(String topic);
+
+  /// No description provided for @mqtt_packetCounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Packets: {accepted} new, {duplicate} duplicate, {invalid} invalid'**
+  String mqtt_packetCounts(int accepted, int duplicate, int invalid);
+
+  /// No description provided for @mqtt_retryCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry {attempt} of {max}'**
+  String mqtt_retryCount(int attempt, int max);
+
+  /// No description provided for @mqtt_sharingWaitsForRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing waits for a radio connection'**
+  String get mqtt_sharingWaitsForRadio;
+
+  /// No description provided for @mqtt_sharingOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing on {topic}'**
+  String mqtt_sharingOn(String topic);
+
+  /// No description provided for @mqtt_willShareOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Will share on {topic}'**
+  String mqtt_willShareOn(String topic);
+
+  /// No description provided for @mqtt_onlineStatusOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Online status on {topic}'**
+  String mqtt_onlineStatusOn(String topic);
+
+  /// No description provided for @mqtt_sharedCounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared {shared}, held back {held}'**
+  String mqtt_sharedCounts(int shared, int held);
+
+  /// No description provided for @mqtt_addBrokerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a broker to bridge MeshCore traffic over the internet. Radio connection works independently.'**
+  String get mqtt_addBrokerHint;
+
+  /// No description provided for @mqtt_disconnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnect MQTT'**
+  String get mqtt_disconnect;
+
+  /// No description provided for @mqtt_connect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect MQTT'**
+  String get mqtt_connect;
+
+  /// No description provided for @mqtt_packetFeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Packet feed'**
+  String get mqtt_packetFeed;
+
+  /// No description provided for @mqtt_setUpBroker.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up broker'**
+  String get mqtt_setUpBroker;
+
+  /// No description provided for @mqtt_brokerSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Broker settings'**
+  String get mqtt_brokerSettings;
+
+  /// No description provided for @mqtt_settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'MQTT broker settings'**
+  String get mqtt_settingsTitle;
+
+  /// No description provided for @mqtt_presetLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Start from a preset'**
+  String get mqtt_presetLabel;
+
+  /// No description provided for @mqtt_presetCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom broker'**
+  String get mqtt_presetCustom;
+
+  /// No description provided for @mqtt_presetLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Local broker (configure address)'**
+  String get mqtt_presetLocal;
+
+  /// No description provided for @mqtt_presetLetsMeshUs.
+  ///
+  /// In en, this message translates to:
+  /// **'LetsMesh analyzer (US, community)'**
+  String get mqtt_presetLetsMeshUs;
+
+  /// No description provided for @mqtt_presetLetsMeshEu.
+  ///
+  /// In en, this message translates to:
+  /// **'LetsMesh analyzer (EU, community)'**
+  String get mqtt_presetLetsMeshEu;
+
+  /// No description provided for @mqtt_presetLetsMeshNote.
+  ///
+  /// In en, this message translates to:
+  /// **'LetsMesh is a community-run MeshCore packet analyzer, not part of NOTORYX and not endorsed by it. Sharing needs your radio connected and stays off until you turn it on.'**
+  String get mqtt_presetLetsMeshNote;
+
+  /// No description provided for @mqtt_hostname.
+  ///
+  /// In en, this message translates to:
+  /// **'Broker hostname'**
+  String get mqtt_hostname;
+
+  /// No description provided for @mqtt_port.
+  ///
+  /// In en, this message translates to:
+  /// **'Port'**
+  String get mqtt_port;
+
+  /// No description provided for @mqtt_useTls.
+  ///
+  /// In en, this message translates to:
+  /// **'Use TLS'**
+  String get mqtt_useTls;
+
+  /// No description provided for @mqtt_allowCleartext.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow cleartext to a local broker'**
+  String get mqtt_allowCleartext;
+
+  /// No description provided for @mqtt_allowCleartextHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only localhost, .local and private 10.x / 192.168.x hosts.'**
+  String get mqtt_allowCleartextHint;
+
+  /// No description provided for @mqtt_useWebSocket.
+  ///
+  /// In en, this message translates to:
+  /// **'Use WebSocket'**
+  String get mqtt_useWebSocket;
+
+  /// No description provided for @mqtt_webSocketPath.
+  ///
+  /// In en, this message translates to:
+  /// **'WebSocket path'**
+  String get mqtt_webSocketPath;
+
+  /// No description provided for @mqtt_topicPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic prefix'**
+  String get mqtt_topicPrefix;
+
+  /// No description provided for @mqtt_region.
+  ///
+  /// In en, this message translates to:
+  /// **'Region (optional)'**
+  String get mqtt_region;
+
+  /// No description provided for @mqtt_regionHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Observer region code such as PHL. Leave blank for all.'**
+  String get mqtt_regionHelp;
+
+  /// No description provided for @mqtt_deliverChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Add channel messages heard via MQTT'**
+  String get mqtt_deliverChannel;
+
+  /// No description provided for @mqtt_deliverChannelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages on your channels that observers heard show up in your chats. They are not sent over your radio.'**
+  String get mqtt_deliverChannelHint;
+
+  /// No description provided for @mqtt_sharingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing as an observer'**
+  String get mqtt_sharingTitle;
+
+  /// No description provided for @mqtt_share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share packets my radio hears'**
+  String get mqtt_share;
+
+  /// No description provided for @mqtt_shareHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Publishes adverts and channel traffic your radio receives, with its public key, signal strength and region. Channel messages stay encrypted. Needs a region.'**
+  String get mqtt_shareHint;
+
+  /// No description provided for @mqtt_shareDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Include direct-message traffic'**
+  String get mqtt_shareDirect;
+
+  /// No description provided for @mqtt_shareDirectHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests, replies and direct messages. Contents stay encrypted, but this shows which nodes talk to each other.'**
+  String get mqtt_shareDirectHint;
+
+  /// No description provided for @mqtt_shareOwn.
+  ///
+  /// In en, this message translates to:
+  /// **'Include my own messages and adverts'**
+  String get mqtt_shareOwn;
+
+  /// No description provided for @mqtt_signInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-in'**
+  String get mqtt_signInTitle;
+
+  /// No description provided for @mqtt_authPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Username and password'**
+  String get mqtt_authPassword;
+
+  /// No description provided for @mqtt_authToken.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio-signed token'**
+  String get mqtt_authToken;
+
+  /// No description provided for @mqtt_tokenExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio signs a one-hour sign-in token with its own key, and the app renews it before it runs out. The key never leaves the radio. The username is v1_ and your radio\'s public key.'**
+  String get mqtt_tokenExplain;
+
+  /// No description provided for @mqtt_radioReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio connected: ready to sign in.'**
+  String get mqtt_radioReady;
+
+  /// No description provided for @mqtt_radioNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio to sign in. MQTT waits for it.'**
+  String get mqtt_radioNeeded;
+
+  /// No description provided for @mqtt_username.
+  ///
+  /// In en, this message translates to:
+  /// **'Username (optional)'**
+  String get mqtt_username;
+
+  /// No description provided for @mqtt_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get mqtt_password;
+
+  /// No description provided for @mqtt_keepPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave blank to keep the saved password.'**
+  String get mqtt_keepPassword;
+
+  /// No description provided for @mqtt_credentialsWeb.
+  ///
+  /// In en, this message translates to:
+  /// **'In the browser, credentials are kept only until the page is closed.'**
+  String get mqtt_credentialsWeb;
+
+  /// No description provided for @mqtt_credentialsKeychain.
+  ///
+  /// In en, this message translates to:
+  /// **'Credentials are stored in the system keychain, never in app settings or logs.'**
+  String get mqtt_credentialsKeychain;
+
+  /// No description provided for @mqtt_saveSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Save settings'**
+  String get mqtt_saveSettings;
+
+  /// No description provided for @mqtt_feedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'MQTT packet feed'**
+  String get mqtt_feedTitle;
+
+  /// No description provided for @mqtt_feedConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to a broker to see packets from observers.'**
+  String get mqtt_feedConnect;
+
+  /// No description provided for @mqtt_feedWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for packets on {topic}'**
+  String mqtt_feedWaiting(String topic);
+
+  /// No description provided for @mqtt_feedUnknownObserver.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown observer'**
+  String get mqtt_feedUnknownObserver;
+
+  /// No description provided for @mqtt_feedHeardBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard by {observer}'**
+  String mqtt_feedHeardBy(String observer);
+
+  /// No description provided for @mqtt_feedHopsBytes.
+  ///
+  /// In en, this message translates to:
+  /// **'{hops} hops · {bytes} bytes'**
+  String mqtt_feedHopsBytes(int hops, int bytes);
+
+  /// No description provided for @mqtt_packetRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Request'**
+  String get mqtt_packetRequest;
+
+  /// No description provided for @mqtt_packetResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'Response'**
+  String get mqtt_packetResponse;
+
+  /// No description provided for @mqtt_packetDirectMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct message'**
+  String get mqtt_packetDirectMessage;
+
+  /// No description provided for @mqtt_packetAck.
+  ///
+  /// In en, this message translates to:
+  /// **'Ack'**
+  String get mqtt_packetAck;
+
+  /// No description provided for @mqtt_packetAdvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Advert'**
+  String get mqtt_packetAdvert;
+
+  /// No description provided for @mqtt_packetChannelMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel message'**
+  String get mqtt_packetChannelMessage;
+
+  /// No description provided for @mqtt_packetChannelData.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel data'**
+  String get mqtt_packetChannelData;
+
+  /// No description provided for @mqtt_packetAnonymousRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous request'**
+  String get mqtt_packetAnonymousRequest;
+
+  /// No description provided for @mqtt_packetPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Path'**
+  String get mqtt_packetPath;
+
+  /// No description provided for @mqtt_packetTrace.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace'**
+  String get mqtt_packetTrace;
+
+  /// No description provided for @mqtt_packetMultipart.
+  ///
+  /// In en, this message translates to:
+  /// **'Multipart'**
+  String get mqtt_packetMultipart;
+
+  /// No description provided for @mqtt_packetControl.
+  ///
+  /// In en, this message translates to:
+  /// **'Control'**
+  String get mqtt_packetControl;
+
+  /// No description provided for @mqtt_packetType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type {type}'**
+  String mqtt_packetType(int type);
+
+  /// No description provided for @mqtt_routeTransportFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport flood'**
+  String get mqtt_routeTransportFlood;
+
+  /// No description provided for @mqtt_routeFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood'**
+  String get mqtt_routeFlood;
+
+  /// No description provided for @mqtt_routeDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct'**
+  String get mqtt_routeDirect;
+
+  /// No description provided for @mqtt_routeTransportDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport direct'**
+  String get mqtt_routeTransportDirect;
+
+  /// No description provided for @mqtt_noticeInvalidHost.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a hostname or IPv4 address without a scheme or port.'**
+  String get mqtt_noticeInvalidHost;
+
+  /// No description provided for @mqtt_noticeInvalidPort.
+  ///
+  /// In en, this message translates to:
+  /// **'Port must be between 1 and 65535.'**
+  String get mqtt_noticeInvalidPort;
+
+  /// No description provided for @mqtt_noticeInvalidWebSocketPath.
+  ///
+  /// In en, this message translates to:
+  /// **'WebSocket path must begin with / and contain no query or fragment.'**
+  String get mqtt_noticeInvalidWebSocketPath;
+
+  /// No description provided for @mqtt_noticeInvalidTopicPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic prefix must be a nonempty MQTT path without wildcards.'**
+  String get mqtt_noticeInvalidTopicPrefix;
+
+  /// No description provided for @mqtt_noticeInvalidRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Region must be 2-8 letters or digits, such as PHL.'**
+  String get mqtt_noticeInvalidRegion;
+
+  /// No description provided for @mqtt_noticeTlsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'TLS is required unless insecure local broker access is explicitly enabled.'**
+  String get mqtt_noticeTlsRequired;
+
+  /// No description provided for @mqtt_noticeCleartextLocalOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Cleartext MQTT is restricted to explicitly approved local hosts.'**
+  String get mqtt_noticeCleartextLocalOnly;
+
+  /// No description provided for @mqtt_noticeRegionNeededToShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a region to share packets as an observer.'**
+  String get mqtt_noticeRegionNeededToShare;
+
+  /// No description provided for @mqtt_noticePasswordNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the password for {username}.'**
+  String mqtt_noticePasswordNeeded(String username);
+
+  /// No description provided for @mqtt_noticeNoNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'No network connection. MQTT reconnects when it is back.'**
+  String get mqtt_noticeNoNetwork;
+
+  /// No description provided for @mqtt_noticeSubscriptionRefused.
+  ///
+  /// In en, this message translates to:
+  /// **'The broker refused the packet subscription.'**
+  String get mqtt_noticeSubscriptionRefused;
+
+  /// No description provided for @mqtt_noticeBadCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'The broker rejected the username or password.'**
+  String get mqtt_noticeBadCredentials;
+
+  /// No description provided for @mqtt_noticeNotAuthorized.
+  ///
+  /// In en, this message translates to:
+  /// **'This account is not authorized on the broker.'**
+  String get mqtt_noticeNotAuthorized;
+
+  /// No description provided for @mqtt_noticeConnectionRefused.
+  ///
+  /// In en, this message translates to:
+  /// **'The broker refused the connection.'**
+  String get mqtt_noticeConnectionRefused;
+
+  /// No description provided for @mqtt_noticeUnreachable.
+  ///
+  /// In en, this message translates to:
+  /// **'The broker could not be reached.'**
+  String get mqtt_noticeUnreachable;
+
+  /// No description provided for @mqtt_noticeTlsFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The secure (TLS) connection could not be established.'**
+  String get mqtt_noticeTlsFailed;
+
+  /// No description provided for @mqtt_noticeWebSocketOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'This platform only supports MQTT over WebSocket.'**
+  String get mqtt_noticeWebSocketOnly;
+
+  /// No description provided for @mqtt_noticeRadioNotConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio to sign in with its key.'**
+  String get mqtt_noticeRadioNotConnected;
+
+  /// No description provided for @mqtt_noticeSigningUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This radio\'s firmware does not support signing with its key.'**
+  String get mqtt_noticeSigningUnsupported;
+
+  /// No description provided for @mqtt_noticeSigningTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio did not answer the signing request. Its firmware may not support signing.'**
+  String get mqtt_noticeSigningTimeout;
+
+  /// No description provided for @mqtt_noticeSigningTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'The data is too long for the radio to sign.'**
+  String get mqtt_noticeSigningTooLong;
+
+  /// No description provided for @mqtt_noticeSigningRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio refused to sign the data.'**
+  String get mqtt_noticeSigningRejected;
 }
 
 class _AppLocalizationsDelegate

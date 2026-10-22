@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/scheduler.dart';
+
 import '../connector/meshcore_protocol.dart';
 
 class BleDebugLogEntry {

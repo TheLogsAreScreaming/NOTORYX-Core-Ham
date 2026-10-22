@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
+import '../l10n/mqtt_l10n.dart';
 import '../models/mqtt_broker_presets.dart';
 import '../models/mqtt_broker_settings.dart';
 import '../models/mqtt_connection_policy.dart';
+import '../models/mqtt_notice.dart';
 import '../models/mqtt_publish_policy.dart';
 
 /// What the user entered on [MqttSettingsScreen].
@@ -28,7 +31,7 @@ class MqttSettingsResult {
 }
 
 /// Edits broker configuration and credentials. Saving is delegated to
-/// [onApply], which returns an error message or null on success.
+/// [onApply], which returns why it failed or null on success.
 class MqttSettingsScreen extends StatefulWidget {
   const MqttSettingsScreen({
     super.key,
@@ -51,7 +54,7 @@ class MqttSettingsScreen extends StatefulWidget {
 
   /// Whether a connected radio can sign tokens right now.
   final bool radioCanSign;
-  final Future<String?> Function(MqttSettingsResult result)? onApply;
+  final Future<MqttNotice?> Function(MqttSettingsResult result)? onApply;
 
   @override
   State<MqttSettingsScreen> createState() => _MqttSettingsScreenState();
@@ -75,7 +78,7 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
   late MqttAuthMode _authMode;
   MqttBrokerPreset? _preset;
   bool _saving = false;
-  String? _error;
+  MqttNotice? _error;
 
   @override
   void initState() {
@@ -133,12 +136,12 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
       authMode: _authMode,
     );
     final allowInsecure = !_tls && _allowInsecureLocal;
-    var error = const MqttConnectionPolicy().validate(
+    var error = const MqttConnectionPolicy().check(
       settings,
       allowInsecureLocalBroker: allowInsecure,
     );
     if (error == null && _share && settings.region.isEmpty) {
-      error = 'Set a region to share packets as an observer.';
+      error = const MqttNotice(MqttNoticeKind.regionNeededToShare);
     }
     if (error == null && widget.onApply != null) {
       setState(() => _saving = true);
@@ -167,131 +170,125 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: const Text('MQTT broker settings')),
+      appBar: AppBar(title: Text(l10n.mqtt_settingsTitle)),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           DropdownButtonFormField<MqttBrokerPreset>(
             initialValue: _preset,
             isExpanded: true,
-            decoration: const InputDecoration(labelText: 'Start from a preset'),
+            decoration: InputDecoration(labelText: l10n.mqtt_presetLabel),
             items: [
               for (final preset in MqttBrokerPresets.choices)
-                DropdownMenuItem(value: preset, child: Text(preset.name)),
+                DropdownMenuItem(
+                  value: preset,
+                  child: Text(l10n.mqttPresetName(preset)),
+                ),
             ],
             onChanged: (preset) {
               if (preset != null) _applyPreset(preset);
             },
           ),
-          if (_preset?.note != null)
+          if (_preset != null && l10n.mqttPresetNote(_preset!) != null)
             Padding(
               padding: const EdgeInsets.only(top: 4, bottom: 8),
               child: Text(
-                _preset!.note!,
+                l10n.mqttPresetNote(_preset!)!,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
           TextField(
             controller: _host,
-            decoration: const InputDecoration(labelText: 'Broker hostname'),
+            decoration: InputDecoration(labelText: l10n.mqtt_hostname),
           ),
           TextField(
             controller: _port,
             keyboardType: TextInputType.number,
-            decoration: const InputDecoration(labelText: 'Port'),
+            decoration: InputDecoration(labelText: l10n.mqtt_port),
           ),
           SwitchListTile(
-            title: const Text('Use TLS'),
+            title: Text(l10n.mqtt_useTls),
             value: _tls,
             onChanged: (value) => setState(() => _tls = value),
           ),
           if (!_tls)
             SwitchListTile(
-              title: const Text('Allow cleartext to a local broker'),
-              subtitle: const Text(
-                'Only localhost, .local and private 10.x / 192.168.x hosts.',
-              ),
+              title: Text(l10n.mqtt_allowCleartext),
+              subtitle: Text(l10n.mqtt_allowCleartextHint),
               value: _allowInsecureLocal,
               onChanged: (value) => setState(() => _allowInsecureLocal = value),
             ),
           SwitchListTile(
-            title: const Text('Use WebSocket'),
+            title: Text(l10n.mqtt_useWebSocket),
             value: _webSocket,
             onChanged: (value) => setState(() => _webSocket = value),
           ),
           if (_webSocket)
             TextField(
               controller: _wsPath,
-              decoration: const InputDecoration(labelText: 'WebSocket path'),
+              decoration: InputDecoration(labelText: l10n.mqtt_webSocketPath),
             ),
           TextField(
             controller: _prefix,
-            decoration: const InputDecoration(labelText: 'Topic prefix'),
+            decoration: InputDecoration(labelText: l10n.mqtt_topicPrefix),
           ),
           TextField(
             controller: _region,
             textCapitalization: TextCapitalization.characters,
             autocorrect: false,
-            decoration: const InputDecoration(
-              labelText: 'Region (optional)',
-              helperText:
-                  'Observer region code such as PHL. Leave blank for all.',
+            decoration: InputDecoration(
+              labelText: l10n.mqtt_region,
+              helperText: l10n.mqtt_regionHelp,
             ),
           ),
           SwitchListTile(
-            title: const Text('Add channel messages heard via MQTT'),
-            subtitle: const Text(
-              'Messages on your channels that observers heard show up in '
-              'your chats. They are not sent over your radio.',
-            ),
+            title: Text(l10n.mqtt_deliverChannel),
+            subtitle: Text(l10n.mqtt_deliverChannelHint),
             value: _deliverChannelMessages,
             onChanged: (value) =>
                 setState(() => _deliverChannelMessages = value),
           ),
           const SizedBox(height: 8),
           Text(
-            'Sharing as an observer',
+            l10n.mqtt_sharingTitle,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           SwitchListTile(
-            title: const Text('Share packets my radio hears'),
-            subtitle: const Text(
-              'Publishes adverts and channel traffic your radio receives, '
-              'with its public key, signal strength and region. Channel '
-              'messages stay encrypted. Needs a region.',
-            ),
+            title: Text(l10n.mqtt_share),
+            subtitle: Text(l10n.mqtt_shareHint),
             value: _share,
             onChanged: (value) => setState(() => _share = value),
           ),
           if (_share) ...[
             SwitchListTile(
-              title: const Text('Include direct-message traffic'),
-              subtitle: const Text(
-                'Requests, replies and direct messages. Contents stay '
-                'encrypted, but this shows which nodes talk to each other.',
-              ),
+              title: Text(l10n.mqtt_shareDirect),
+              subtitle: Text(l10n.mqtt_shareDirectHint),
               value: _shareDirect,
               onChanged: (value) => setState(() => _shareDirect = value),
             ),
             SwitchListTile(
-              title: const Text('Include my own messages and adverts'),
+              title: Text(l10n.mqtt_shareOwn),
               value: _shareOwn,
               onChanged: (value) => setState(() => _shareOwn = value),
             ),
           ],
           const SizedBox(height: 16),
-          Text('Sign-in', style: Theme.of(context).textTheme.titleMedium),
+          Text(
+            l10n.mqtt_signInTitle,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
           const SizedBox(height: 8),
           SegmentedButton<MqttAuthMode>(
-            segments: const [
+            segments: [
               ButtonSegment(
                 value: MqttAuthMode.password,
-                label: Text('Username and password'),
+                label: Text(l10n.mqtt_authPassword),
               ),
               ButtonSegment(
                 value: MqttAuthMode.radioToken,
-                label: Text('Radio-signed token'),
+                label: Text(l10n.mqtt_authToken),
               ),
             ],
             selected: {_authMode},
@@ -300,17 +297,12 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
           ),
           const SizedBox(height: 8),
           if (_authMode == MqttAuthMode.radioToken) ...[
-            const Text(
-              'Your radio signs a one-hour sign-in token with its own key, '
-              'and the app renews it before it runs out. The key never '
-              'leaves the radio. The username is v1_ and your radio\'s '
-              'public key.',
-            ),
+            Text(l10n.mqtt_tokenExplain),
             const SizedBox(height: 4),
             Text(
               widget.radioCanSign
-                  ? 'Radio connected: ready to sign in.'
-                  : 'Connect your radio to sign in. MQTT waits for it.',
+                  ? l10n.mqtt_radioReady
+                  : l10n.mqtt_radioNeeded,
               style: TextStyle(
                 color: widget.radioCanSign
                     ? null
@@ -321,9 +313,7 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
             TextField(
               controller: _username,
               autocorrect: false,
-              decoration: const InputDecoration(
-                labelText: 'Username (optional)',
-              ),
+              decoration: InputDecoration(labelText: l10n.mqtt_username),
             ),
             TextField(
               controller: _password,
@@ -331,19 +321,15 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
               autocorrect: false,
               enableSuggestions: false,
               decoration: InputDecoration(
-                labelText: 'Password',
+                labelText: l10n.mqtt_password,
                 helperText: widget.hasSavedPassword
-                    ? 'Leave blank to keep the saved password.'
+                    ? l10n.mqtt_keepPassword
                     : null,
               ),
             ),
             const SizedBox(height: 8),
             Text(
-              kIsWeb
-                  ? 'In the browser, credentials are kept only until the page '
-                        'is closed.'
-                  : 'Credentials are stored in the system keychain, never in '
-                        'app settings or logs.',
+              kIsWeb ? l10n.mqtt_credentialsWeb : l10n.mqtt_credentialsKeychain,
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
@@ -351,14 +337,14 @@ class _MqttSettingsScreenState extends State<MqttSettingsScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Text(
-                _error!,
+                l10n.mqttNotice(_error!),
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             ),
           const SizedBox(height: 16),
           FilledButton(
             onPressed: _saving ? null : _apply,
-            child: const Text('Save settings'),
+            child: Text(l10n.mqtt_saveSettings),
           ),
         ],
       ),

@@ -490,9 +490,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         color: MeshPalette.magenta,
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.surfaceContainerLow,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surfaceContainerLow,
                           width: 2,
                         ),
                       ),
@@ -538,9 +538,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     const SizedBox(height: 2),
                     Text(
                       subtitle,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: scheme.onSurfaceVariant,
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall
+                          ?.copyWith(color: scheme.onSurfaceVariant),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -1184,9 +1183,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           sheetContext.l10n.community_hashtagPrivacyHint,
                           style: TextStyle(
                             fontSize: 12,
-                            color: Theme.of(
-                              sheetContext,
-                            ).colorScheme.onSurfaceVariant,
+                            color: Theme.of(sheetContext)
+                                .colorScheme
+                                .onSurfaceVariant,
                             fontStyle: FontStyle.italic,
                           ),
                         ),
@@ -1833,9 +1832,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             sheetContext.l10n.community_noCommunities,
                             style: TextStyle(
                               fontSize: 16,
-                              color: Theme.of(
-                                sheetContext,
-                              ).colorScheme.onSurfaceVariant,
+                              color: Theme.of(sheetContext)
+                                  .colorScheme
+                                  .onSurfaceVariant,
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -1873,9 +1872,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             ),
                             style: TextStyle(
                               fontSize: 12,
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.onSurfaceVariant,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
                             ),
                           ),
                           trailing: PopupMenuButton<String>(
@@ -1906,17 +1905,17 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                   children: [
                                     Icon(
                                       Icons.exit_to_app,
-                                      color: Theme.of(
-                                        context,
-                                      ).colorScheme.error,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .error,
                                     ),
                                     const SizedBox(width: 12),
                                     Text(
                                       context.l10n.community_delete,
                                       style: TextStyle(
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.error,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .error,
                                       ),
                                     ),
                                   ],

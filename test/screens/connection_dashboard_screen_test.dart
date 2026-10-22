@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/models/saved_radio.dart';
 import 'package:meshcore_open/screens/connection_dashboard_screen.dart';
@@ -67,8 +68,10 @@ void main() {
   Future<void> pumpCard(WidgetTester tester) => tester.pumpWidget(
     ChangeNotifierProvider<MeshCoreConnector>.value(
       value: connector,
-      child: const MaterialApp(
-        home: Scaffold(
+      child: MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: const Scaffold(
           body: SingleChildScrollView(child: RadioConnectionCard()),
         ),
       ),
@@ -202,7 +205,11 @@ void main() {
             ChangeNotifierProvider<MeshCoreConnector>.value(value: connector),
             ChangeNotifierProvider<MqttBrokerService>.value(value: mqtt),
           ],
-          child: const MaterialApp(home: ConnectionDashboardScreen()),
+          child: MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: const ConnectionDashboardScreen(),
+          ),
         ),
       );
       await tester.pump();

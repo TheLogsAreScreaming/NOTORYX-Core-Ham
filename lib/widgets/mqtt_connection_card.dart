@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../l10n/l10n.dart';
+import '../l10n/mqtt_l10n.dart';
 import '../models/mqtt_broker_settings.dart';
 import '../models/mqtt_connection_status.dart';
 import '../screens/mqtt_packet_feed_screen.dart';
@@ -36,24 +38,25 @@ class MqttConnectionCard extends StatelessWidget {
   }
 
   List<Widget> _tokenLines(BuildContext context, MqttBrokerService mqtt) {
+    final l10n = context.l10n;
     final username = mqtt.tokenUsername;
     final refreshAt = mqtt.tokenRefreshAt;
     return [
       Text(
         username == null
-            ? 'Signs in with a radio-signed token'
-            : 'Signs in with a radio-signed token as '
-                  '${username.substring(0, 11)}…',
+            ? l10n.mqtt_tokenSignIn
+            : l10n.mqtt_tokenSignInAs(username.substring(0, 11)),
       ),
       if (!mqtt.radioCanSign && !mqtt.waitingForRadio)
         Text(
-          'Connect your radio to sign in',
+          l10n.mqtt_connectRadioToSignIn,
           style: TextStyle(color: Theme.of(context).colorScheme.error),
         )
       else if (refreshAt != null && mqtt.status.isConnected)
         Text(
-          'Token renews at '
-          '${TimeOfDay.fromDateTime(refreshAt).format(context)}',
+          l10n.mqtt_tokenRenewsAt(
+            TimeOfDay.fromDateTime(refreshAt).format(context),
+          ),
         ),
     ];
   }
@@ -66,7 +69,8 @@ class MqttConnectionCard extends StatelessWidget {
     final busy =
         status == MqttConnectionStatus.connecting ||
         status == MqttConnectionStatus.reconnecting;
-    final error = mqtt.errorMessage;
+    final l10n = context.l10n;
+    final error = mqtt.errorNotice;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -74,59 +78,64 @@ class MqttConnectionCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'MQTT connection',
+              l10n.mqtt_cardTitle,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
-            Text(status.label),
+            Text(l10n.mqttStatus(status)),
             if (settings != null)
               Text(
-                'Broker: ${settings.host}:${settings.port} '
-                '(${settings.transportLabel})',
+                l10n.mqtt_broker(
+                  settings.host,
+                  settings.port,
+                  settings.transportLabel,
+                ),
               ),
             if (mqtt.authMode == MqttAuthMode.radioToken)
               ..._tokenLines(context, mqtt)
             else if (mqtt.hasCredentials)
-              Text('Signed in as ${mqtt.username}'),
+              Text(l10n.mqtt_signedInAs(mqtt.username!)),
             if (mqtt.subscribedTopic != null)
-              Text('Listening on ${mqtt.subscribedTopic}'),
+              Text(l10n.mqtt_listeningOn(mqtt.subscribedTopic!)),
             if (mqtt.packetsReceived > 0)
               Text(
-                'Packets: ${mqtt.packetsAccepted} new, '
-                '${mqtt.packetsDuplicate} duplicate, '
-                '${mqtt.packetsRejected} invalid',
+                l10n.mqtt_packetCounts(
+                  mqtt.packetsAccepted,
+                  mqtt.packetsDuplicate,
+                  mqtt.packetsRejected,
+                ),
               ),
             if (status == MqttConnectionStatus.reconnecting &&
                 !mqtt.waitingForNetwork)
               Text(
-                'Retry ${mqtt.reconnectAttempt} of '
-                '${mqtt.maxReconnectAttempts}',
+                l10n.mqtt_retryCount(
+                  mqtt.reconnectAttempt,
+                  mqtt.maxReconnectAttempts,
+                ),
               ),
             if (mqtt.publishSettings.enabled)
               Text(
                 mqtt.publishTopic == null
-                    ? 'Sharing waits for a radio connection'
+                    ? l10n.mqtt_sharingWaitsForRadio
                     : status.isConnected
-                    ? 'Sharing on ${mqtt.publishTopic}'
-                    : 'Will share on ${mqtt.publishTopic}',
+                    ? l10n.mqtt_sharingOn(mqtt.publishTopic!)
+                    : l10n.mqtt_willShareOn(mqtt.publishTopic!),
               ),
             if (mqtt.onlineStatusTopic != null)
-              Text('Online status on ${mqtt.onlineStatusTopic}'),
+              Text(l10n.mqtt_onlineStatusOn(mqtt.onlineStatusTopic!)),
             if (mqtt.packetsPublished > 0 || mqtt.publishSkips.isNotEmpty)
               Text(
-                'Shared ${mqtt.packetsPublished}, held back '
-                '${mqtt.publishSkips.values.fold(0, (a, b) => a + b)}',
+                l10n.mqtt_sharedCounts(
+                  mqtt.packetsPublished,
+                  mqtt.publishSkips.values.fold(0, (a, b) => a + b),
+                ),
               ),
             if (error != null && status != MqttConnectionStatus.connected)
               Text(
-                error,
+                l10n.mqttNotice(error),
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
-            if (settings == null)
-              const Text(
-                'Add a broker to bridge MeshCore traffic over the internet. '
-                'Radio connection works independently.',
-              ),
+            if (settings == null) Text(l10n.mqtt_addBrokerHint),
             const SizedBox(height: 12),
             Wrap(
               spacing: 8,
@@ -136,13 +145,15 @@ class MqttConnectionCard extends StatelessWidget {
                   OutlinedButton.icon(
                     onPressed: mqtt.disconnect,
                     icon: const Icon(Icons.cloud_off),
-                    label: Text(busy ? 'Cancel' : 'Disconnect MQTT'),
+                    label: Text(
+                      busy ? l10n.common_cancel : l10n.mqtt_disconnect,
+                    ),
                   )
                 else if (settings != null)
                   FilledButton.icon(
                     onPressed: mqtt.canConnect ? mqtt.connect : null,
                     icon: const Icon(Icons.cloud_queue),
-                    label: const Text('Connect MQTT'),
+                    label: Text(l10n.mqtt_connect),
                   ),
                 if (settings != null)
                   OutlinedButton.icon(
@@ -152,13 +163,15 @@ class MqttConnectionCard extends StatelessWidget {
                       ),
                     ),
                     icon: const Icon(Icons.list_alt),
-                    label: const Text('Packet feed'),
+                    label: Text(l10n.mqtt_packetFeed),
                   ),
                 OutlinedButton.icon(
                   onPressed: () => _openSettings(context, mqtt),
                   icon: const Icon(Icons.settings),
                   label: Text(
-                    settings == null ? 'Set up broker' : 'Broker settings',
+                    settings == null
+                        ? l10n.mqtt_setUpBroker
+                        : l10n.mqtt_brokerSettings,
                   ),
                 ),
               ],

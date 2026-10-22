@@ -1,18 +1,29 @@
 import 'mqtt_broker_settings.dart';
+import 'mqtt_notice.dart';
 
 /// Prevents accidental cleartext broker connections by default.
 class MqttConnectionPolicy {
   const MqttConnectionPolicy();
 
+  /// English text of [check], or null if the connection is allowed.
   String? validate(
     MqttBrokerSettings settings, {
     bool allowInsecureLocalBroker = false,
+  }) => check(
+    settings,
+    allowInsecureLocalBroker: allowInsecureLocalBroker,
+  )?.english;
+
+  /// Why [settings] may not be used, or null if they may.
+  MqttNotice? check(
+    MqttBrokerSettings settings, {
+    bool allowInsecureLocalBroker = false,
   }) {
-    final error = settings.validate();
+    final error = settings.check();
     if (error != null) return error;
     if (settings.useTls) return null;
     if (!allowInsecureLocalBroker) {
-      return 'TLS is required unless insecure local broker access is explicitly enabled.';
+      return const MqttNotice(MqttNoticeKind.tlsRequired);
     }
     final host = settings.host.trim().toLowerCase();
     if (host == 'localhost' ||
@@ -22,6 +33,6 @@ class MqttConnectionPolicy {
         host.startsWith('10.')) {
       return null;
     }
-    return 'Cleartext MQTT is restricted to explicitly approved local hosts.';
+    return const MqttNotice(MqttNoticeKind.cleartextLocalOnly);
   }
 }

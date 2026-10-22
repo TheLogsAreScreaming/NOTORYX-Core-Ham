@@ -1,6 +1,8 @@
 import '../theme/mesh_theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
 import '../l10n/l10n.dart';
 
 class BastionAboutScreen extends StatelessWidget {

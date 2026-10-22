@@ -14,8 +14,12 @@
   "messages_filterWithUnread": "{label} · {count}",
   "@messages_filterWithUnread": {
     "placeholders": {
-      "label": {"type": "String"},
-      "count": {"type": "int"}
+      "label": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
     }
   },
   "messages_search": "Search messages",
@@ -31,20 +35,26 @@
   "messages_you": "You: {text}",
   "@messages_you": {
     "placeholders": {
-      "text": {"type": "String"}
+      "text": {
+        "type": "String"
+      }
     }
   },
   "messages_yesterday": "Yesterday",
   "messages_unreadCount": "{count} unread",
   "@messages_unreadCount": {
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "radioStatus_connectedVia": "Connected over {transport}",
   "@radioStatus_connectedVia": {
     "placeholders": {
-      "transport": {"type": "String"}
+      "transport": {
+        "type": "String"
+      }
     }
   },
   "radioStatus_bluetooth": "Bluetooth",
@@ -53,7 +63,9 @@
   "radioStatus_battery": "Battery {percent}%",
   "@radioStatus_battery": {
     "placeholders": {
-      "percent": {"type": "int"}
+      "percent": {
+        "type": "int"
+      }
     }
   },
   "radioStatus_openRadio": "Open radio details",
@@ -61,7 +73,9 @@
   "radioOverview_firmware": "Firmware {version}",
   "@radioOverview_firmware": {
     "placeholders": {
-      "version": {"type": "String"}
+      "version": {
+        "type": "String"
+      }
     }
   },
   "radioOverview_sendAdvert": "Send advert",
@@ -84,7 +98,9 @@
   "accessControl_removeConfirm": "Remove {name} from the access list? They will need the password to log in.",
   "@accessControl_removeConfirm": {
     "placeholders": {
-      "name": {"type": "String"}
+      "name": {
+        "type": "String"
+      }
     }
   },
   "accessControl_removeSelfWarning": "This is you. If you remove yourself you will need the admin password to manage this node again.",
@@ -99,7 +115,9 @@
   "accessControl_failed": "The node refused the change: {reply}",
   "@accessControl_failed": {
     "placeholders": {
-      "reply": {"type": "String"}
+      "reply": {
+        "type": "String"
+      }
     }
   },
   "companionCli_title": "Command line",
@@ -118,7 +136,9 @@
   "wifi_connectedIp": "Connected · {ip}",
   "@wifi_connectedIp": {
     "placeholders": {
-      "ip": {"type": "String"}
+      "ip": {
+        "type": "String"
+      }
     }
   },
   "wifi_disconnected": "Not connected",
@@ -136,7 +156,9 @@
   "wifi_saveFailed": "The radio didn't accept the change: {reply}",
   "@wifi_saveFailed": {
     "placeholders": {
-      "reply": {"type": "String"}
+      "reply": {
+        "type": "String"
+      }
     }
   },
   "accessControl_refresh": "Refresh",
@@ -4298,5 +4320,293 @@
   "setupWizard_later": "Set up later",
   "setupWizard_bluetoothError": "Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.",
   "setupWizard_scanError": "Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.",
-  "setupWizard_usbError": "Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again."
+  "setupWizard_usbError": "Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.",
+  "connections_title": "Connections",
+  "connections_radioTitle": "Radio connection",
+  "connections_bluetoothOffNotice": "Bluetooth is off. Turn it on to reconnect; the app will retry once it is back.",
+  "connections_transport": "Transport",
+  "connections_lastError": "Last error: {error}",
+  "@connections_lastError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "connections_disconnectRadio": "Disconnect radio",
+  "connections_reconnectTo": "Reconnect to {name}",
+  "@connections_reconnectTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "connections_forgetRadio": "Forget radio",
+  "connections_connectAnother": "Connect another radio",
+  "connections_usbSerial": "USB serial",
+  "connections_tcpIp": "TCP/IP",
+  "connections_device": "Device",
+  "connections_publicKey": "Public key",
+  "connections_firmware": "Firmware",
+  "connections_firmwareProtocol": "protocol v{code}",
+  "@connections_firmwareProtocol": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "connections_battery": "Battery",
+  "connections_lastRx": "Last RX",
+  "connections_reconnectFailed": "Could not reconnect to the radio",
+  "connections_statusBluetoothOff": "Bluetooth is off",
+  "connections_statusConnected": "Connected",
+  "connections_statusConnecting": "Connecting…",
+  "connections_statusDisconnecting": "Disconnecting…",
+  "connections_statusScanning": "Scanning for radios…",
+  "connections_statusReconnectingSoon": "Reconnecting soon…",
+  "connections_statusNotConnected": "Not connected",
+  "mqtt_cardTitle": "MQTT connection",
+  "mqtt_statusNotConfigured": "Not configured",
+  "mqtt_statusDisconnected": "Disconnected",
+  "mqtt_statusConnecting": "Connecting",
+  "mqtt_statusConnected": "Connected",
+  "mqtt_statusReconnecting": "Reconnecting",
+  "mqtt_statusError": "Connection error",
+  "mqtt_broker": "Broker: {host}:{port} ({transport})",
+  "@mqtt_broker": {
+    "placeholders": {
+      "host": {
+        "type": "String"
+      },
+      "port": {
+        "type": "int"
+      },
+      "transport": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_tokenSignIn": "Signs in with a radio-signed token",
+  "mqtt_tokenSignInAs": "Signs in with a radio-signed token as {username}…",
+  "@mqtt_tokenSignInAs": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_connectRadioToSignIn": "Connect your radio to sign in",
+  "mqtt_tokenRenewsAt": "Token renews at {time}",
+  "@mqtt_tokenRenewsAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_signedInAs": "Signed in as {username}",
+  "@mqtt_signedInAs": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_listeningOn": "Listening on {topic}",
+  "@mqtt_listeningOn": {
+    "placeholders": {
+      "topic": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_packetCounts": "Packets: {accepted} new, {duplicate} duplicate, {invalid} invalid",
+  "@mqtt_packetCounts": {
+    "placeholders": {
+      "accepted": {
+        "type": "int"
+      },
+      "duplicate": {
+        "type": "int"
+      },
+      "invalid": {
+        "type": "int"
+      }
+    }
+  },
+  "mqtt_retryCount": "Retry {attempt} of {max}",
+  "@mqtt_retryCount": {
+    "placeholders": {
+      "attempt": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "mqtt_sharingWaitsForRadio": "Sharing waits for a radio connection",
+  "mqtt_sharingOn": "Sharing on {topic}",
+  "@mqtt_sharingOn": {
+    "placeholders": {
+      "topic": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_willShareOn": "Will share on {topic}",
+  "@mqtt_willShareOn": {
+    "placeholders": {
+      "topic": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_onlineStatusOn": "Online status on {topic}",
+  "@mqtt_onlineStatusOn": {
+    "placeholders": {
+      "topic": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_sharedCounts": "Shared {shared}, held back {held}",
+  "@mqtt_sharedCounts": {
+    "placeholders": {
+      "shared": {
+        "type": "int"
+      },
+      "held": {
+        "type": "int"
+      }
+    }
+  },
+  "mqtt_addBrokerHint": "Add a broker to bridge MeshCore traffic over the internet. Radio connection works independently.",
+  "mqtt_disconnect": "Disconnect MQTT",
+  "mqtt_connect": "Connect MQTT",
+  "mqtt_packetFeed": "Packet feed",
+  "mqtt_setUpBroker": "Set up broker",
+  "mqtt_brokerSettings": "Broker settings",
+  "mqtt_settingsTitle": "MQTT broker settings",
+  "mqtt_presetLabel": "Start from a preset",
+  "mqtt_presetCustom": "Custom broker",
+  "mqtt_presetLocal": "Local broker (configure address)",
+  "mqtt_presetLetsMeshUs": "LetsMesh analyzer (US, community)",
+  "mqtt_presetLetsMeshEu": "LetsMesh analyzer (EU, community)",
+  "mqtt_presetLetsMeshNote": "LetsMesh is a community-run MeshCore packet analyzer, not part of NOTORYX and not endorsed by it. Sharing needs your radio connected and stays off until you turn it on.",
+  "mqtt_hostname": "Broker hostname",
+  "mqtt_port": "Port",
+  "mqtt_useTls": "Use TLS",
+  "mqtt_allowCleartext": "Allow cleartext to a local broker",
+  "mqtt_allowCleartextHint": "Only localhost, .local and private 10.x / 192.168.x hosts.",
+  "mqtt_useWebSocket": "Use WebSocket",
+  "mqtt_webSocketPath": "WebSocket path",
+  "mqtt_topicPrefix": "Topic prefix",
+  "mqtt_region": "Region (optional)",
+  "mqtt_regionHelp": "Observer region code such as PHL. Leave blank for all.",
+  "mqtt_deliverChannel": "Add channel messages heard via MQTT",
+  "mqtt_deliverChannelHint": "Messages on your channels that observers heard show up in your chats. They are not sent over your radio.",
+  "mqtt_sharingTitle": "Sharing as an observer",
+  "mqtt_share": "Share packets my radio hears",
+  "mqtt_shareHint": "Publishes adverts and channel traffic your radio receives, with its public key, signal strength and region. Channel messages stay encrypted. Needs a region.",
+  "mqtt_shareDirect": "Include direct-message traffic",
+  "mqtt_shareDirectHint": "Requests, replies and direct messages. Contents stay encrypted, but this shows which nodes talk to each other.",
+  "mqtt_shareOwn": "Include my own messages and adverts",
+  "mqtt_signInTitle": "Sign-in",
+  "mqtt_authPassword": "Username and password",
+  "mqtt_authToken": "Radio-signed token",
+  "mqtt_tokenExplain": "Your radio signs a one-hour sign-in token with its own key, and the app renews it before it runs out. The key never leaves the radio. The username is v1_ and your radio's public key.",
+  "mqtt_radioReady": "Radio connected: ready to sign in.",
+  "mqtt_radioNeeded": "Connect your radio to sign in. MQTT waits for it.",
+  "mqtt_username": "Username (optional)",
+  "mqtt_password": "Password",
+  "mqtt_keepPassword": "Leave blank to keep the saved password.",
+  "mqtt_credentialsWeb": "In the browser, credentials are kept only until the page is closed.",
+  "mqtt_credentialsKeychain": "Credentials are stored in the system keychain, never in app settings or logs.",
+  "mqtt_saveSettings": "Save settings",
+  "mqtt_feedTitle": "MQTT packet feed",
+  "mqtt_feedConnect": "Connect to a broker to see packets from observers.",
+  "mqtt_feedWaiting": "Waiting for packets on {topic}",
+  "@mqtt_feedWaiting": {
+    "placeholders": {
+      "topic": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_feedUnknownObserver": "Unknown observer",
+  "mqtt_feedHeardBy": "Heard by {observer}",
+  "@mqtt_feedHeardBy": {
+    "placeholders": {
+      "observer": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_feedHopsBytes": "{hops} hops · {bytes} bytes",
+  "@mqtt_feedHopsBytes": {
+    "placeholders": {
+      "hops": {
+        "type": "int"
+      },
+      "bytes": {
+        "type": "int"
+      }
+    }
+  },
+  "mqtt_packetRequest": "Request",
+  "mqtt_packetResponse": "Response",
+  "mqtt_packetDirectMessage": "Direct message",
+  "mqtt_packetAck": "Ack",
+  "mqtt_packetAdvert": "Advert",
+  "mqtt_packetChannelMessage": "Channel message",
+  "mqtt_packetChannelData": "Channel data",
+  "mqtt_packetAnonymousRequest": "Anonymous request",
+  "mqtt_packetPath": "Path",
+  "mqtt_packetTrace": "Trace",
+  "mqtt_packetMultipart": "Multipart",
+  "mqtt_packetControl": "Control",
+  "mqtt_packetType": "Type {type}",
+  "@mqtt_packetType": {
+    "placeholders": {
+      "type": {
+        "type": "int"
+      }
+    }
+  },
+  "mqtt_routeTransportFlood": "Transport flood",
+  "mqtt_routeFlood": "Flood",
+  "mqtt_routeDirect": "Direct",
+  "mqtt_routeTransportDirect": "Transport direct",
+  "mqtt_noticeInvalidHost": "Enter a hostname or IPv4 address without a scheme or port.",
+  "mqtt_noticeInvalidPort": "Port must be between 1 and 65535.",
+  "mqtt_noticeInvalidWebSocketPath": "WebSocket path must begin with / and contain no query or fragment.",
+  "mqtt_noticeInvalidTopicPrefix": "Topic prefix must be a nonempty MQTT path without wildcards.",
+  "mqtt_noticeInvalidRegion": "Region must be 2-8 letters or digits, such as PHL.",
+  "mqtt_noticeTlsRequired": "TLS is required unless insecure local broker access is explicitly enabled.",
+  "mqtt_noticeCleartextLocalOnly": "Cleartext MQTT is restricted to explicitly approved local hosts.",
+  "mqtt_noticeRegionNeededToShare": "Set a region to share packets as an observer.",
+  "mqtt_noticePasswordNeeded": "Enter the password for {username}.",
+  "@mqtt_noticePasswordNeeded": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "mqtt_noticeNoNetwork": "No network connection. MQTT reconnects when it is back.",
+  "mqtt_noticeSubscriptionRefused": "The broker refused the packet subscription.",
+  "mqtt_noticeBadCredentials": "The broker rejected the username or password.",
+  "mqtt_noticeNotAuthorized": "This account is not authorized on the broker.",
+  "mqtt_noticeConnectionRefused": "The broker refused the connection.",
+  "mqtt_noticeUnreachable": "The broker could not be reached.",
+  "mqtt_noticeTlsFailed": "The secure (TLS) connection could not be established.",
+  "mqtt_noticeWebSocketOnly": "This platform only supports MQTT over WebSocket.",
+  "mqtt_noticeRadioNotConnected": "Connect your radio to sign in with its key.",
+  "mqtt_noticeSigningUnsupported": "This radio's firmware does not support signing with its key.",
+  "mqtt_noticeSigningTimeout": "The radio did not answer the signing request. Its firmware may not support signing.",
+  "mqtt_noticeSigningTooLong": "The data is too long for the radio to sign.",
+  "mqtt_noticeSigningRejected": "The radio refused to sign the data."
 }

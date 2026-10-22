@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
+
 import '../models/app_settings.dart';
 import '../models/image_codec_support.dart';
 import '../models/translation_support.dart';

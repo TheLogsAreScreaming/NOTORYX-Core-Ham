@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+
 import '../models/message.dart';
 import '../models/translation_support.dart';
 import '../helpers/smaz.dart';

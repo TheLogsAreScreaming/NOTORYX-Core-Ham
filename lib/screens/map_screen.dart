@@ -4014,9 +4014,8 @@ class MarkerPayload {
 /// `m:<lat>,<lon>|<label>|<flags>` and return a [MarkerPayload].
 MarkerPayload? parseMarkerText(String text) {
   final trimmed = text.trim();
-  final match = RegExp(
-    r'm:([\-0-9.]+),([\-0-9.]+)\|([^|]*)\|(.*)',
-  ).firstMatch(trimmed);
+  final match = RegExp(r'm:([\-0-9.]+),([\-0-9.]+)\|([^|]*)\|(.*)')
+      .firstMatch(trimmed);
   if (match == null) return null;
   final lat = double.tryParse(match.group(1) ?? '');
   final lon = double.tryParse(match.group(2) ?? '');

@@ -151,9 +151,8 @@ class MessageUrlImageHelper {
       final value = pattern.firstMatch(response.body)?.group(1);
       if (value == null || value.isEmpty) return null;
 
-      final imageUrl = Uri.parse(
-        pageUrl,
-      ).resolve(value.replaceAll('&amp;', '&'));
+      final imageUrl = Uri.parse(pageUrl)
+          .resolve(value.replaceAll('&amp;', '&'));
       return imageUrl.scheme == 'http' || imageUrl.scheme == 'https'
           ? imageUrl.toString()
           : null;
@@ -184,9 +183,8 @@ class MessageUrlImageHelper {
 
   static Future<bool> _tryLoadImage(String imageUrl) async {
     final completer = Completer<bool>();
-    final stream = CachedNetworkImageProvider(
-      imageUrl,
-    ).resolve(const ImageConfiguration());
+    final stream = CachedNetworkImageProvider(imageUrl)
+        .resolve(const ImageConfiguration());
 
     late final ImageStreamListener listener;
     listener = ImageStreamListener(

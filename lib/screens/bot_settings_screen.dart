@@ -14,9 +14,8 @@ class BotSettingsScreen extends StatelessWidget {
       await context.read<BotService>().save(settings);
     } on ArgumentError catch (error) {
       if (context.mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(error.message.toString())));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(error.message.toString())));
       }
     }
   }
@@ -36,8 +35,7 @@ class BotSettingsScreen extends StatelessWidget {
           controller: controller,
           maxLines: 3,
           decoration: const InputDecoration(
-            helperText:
-                'Short replies save mesh airtime. Maximum 140 bytes including bot label.',
+            helperText: 'Short replies save mesh airtime. Maximum 140 bytes including bot label.',
             helperMaxLines: 3,
           ),
         ),

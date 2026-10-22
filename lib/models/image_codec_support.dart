@@ -588,8 +588,7 @@ final List<ImageCodecModelSpec> imageCodecPresetModels = [
       ImageCodecModelAsset(
         role: ImageCodecAssetRole.decoderGraph,
         fileName: 'aeic_decoder_qdq_conv_pct.onnx',
-        sourceUrl:
-            'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_decoder_qdq_conv_pct.onnx?download=true',
+        sourceUrl: 'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_decoder_qdq_conv_pct.onnx?download=true',
         sizeBytes: 3066597,
         sha256:
             'fa1ca65c52ecb9e1ec43c05ef792ac8b95ecab21dcb6ab89a825b4dad6a5a571',
@@ -597,8 +596,7 @@ final List<ImageCodecModelSpec> imageCodecPresetModels = [
       ImageCodecModelAsset(
         role: ImageCodecAssetRole.decoderWeights,
         fileName: 'aeic_decoder_qdq_conv_pct.onnx.data',
-        sourceUrl:
-            'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_decoder_qdq_conv_pct.onnx.data?download=true',
+        sourceUrl: 'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_decoder_qdq_conv_pct.onnx.data?download=true',
         sizeBytes: 872896480,
         sha256:
             'f7714df0ec8cc495be1fb4bad3be0458c186c8a61d87b8487f2e8e6b84b8242a',
@@ -606,8 +604,7 @@ final List<ImageCodecModelSpec> imageCodecPresetModels = [
       ImageCodecModelAsset(
         role: ImageCodecAssetRole.entropyGraph,
         fileName: 'aeic_entropy_side_fp32_op17.onnx',
-        sourceUrl:
-            'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_entropy_side_fp32_op17.onnx?download=true',
+        sourceUrl: 'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_entropy_side_fp32_op17.onnx?download=true',
         sizeBytes: 67262167,
         sha256:
             'b7b55b0f6a8a02ec2e8f6e85820c064c741c870c226d276c78df45e83ca1a9d6',
@@ -617,8 +614,7 @@ final List<ImageCodecModelSpec> imageCodecPresetModels = [
       ImageCodecModelAsset(
         role: ImageCodecAssetRole.entropyDecodeGraph,
         fileName: 'aeic_entropy_decode_fp32_op17.onnx',
-        sourceUrl:
-            'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_entropy_decode_fp32_op17.onnx?download=true',
+        sourceUrl: 'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_entropy_decode_fp32_op17.onnx?download=true',
         sizeBytes: 60509540,
         sha256:
             'efcbbc4829a0029f487f17b7b52373c6af339d7f74a6417463981d0778d6d444',
@@ -626,8 +622,7 @@ final List<ImageCodecModelSpec> imageCodecPresetModels = [
       ImageCodecModelAsset(
         role: ImageCodecAssetRole.cdfTables,
         fileName: 'aeic_cdf_ft32.bin',
-        sourceUrl:
-            'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_cdf_ft32.bin?download=true',
+        sourceUrl: 'https://huggingface.co/zjs81/aeic-se-onnx/resolve/main/aeic_cdf_ft32.bin?download=true',
         sizeBytes: 813648,
         sha256:
             '4089fde2af16c340642a5c857be42f6d0f21caf71dd5b4f32d62efcd41c77bd5',
