@@ -33,7 +33,7 @@ class BastionToolsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'BASTION',
+              'NOTORYX',
               style: TextStyle(
                 color: _cyan,
                 fontSize: 10,

@@ -1,8 +1,8 @@
-# Bastion field validation
+# NOTORYX Core field validation
 
 This test build preserves the original MeshCore feature suite and adds Trip Mode,
 previewed check-ins, Field Log, local automations, coverage comparison and a calmer
-palette. The dashboard displays BASTION, Communication without infrastructure.,
+palette. The dashboard displays NOTORYX, Communication without infrastructure.,
 and MeshCore. It shows unread messages and trip state, and opens a check-in preview.
 
 Offline readiness checks the selected map rectangle and zoom range against the
@@ -19,7 +19,7 @@ from heard-node observations. Logs preserve trip names and can be searched by tr
 A heard node does not prove a successful bidirectional link. No interpolated
 coverage heatmap or range guarantee is provided.
 
-Bot Mode ignores Bastion check-in messages, preventing automatic replies from
+Bot Mode ignores `[Bastion Check-in]` messages, preventing automatic replies from
 creating needless traffic. Trip activity and the automation master switch never
 resume silently after restart. Automations run only while the app is active;
 missed schedules never create catch-up transmission bursts.
@@ -44,7 +44,7 @@ Do not mark these passed without real-device evidence.
 
 | Scenario | Required observation |
 | --- | --- |
-| Upgrade existing Bastion | Saved contacts/settings/history remain. If signing rejects the upgrade, retain installation/data and record the exact error. |
+| Upgrade existing Bastion install | Saved contacts/settings/history remain. If signing rejects the upgrade, retain installation/data and record the exact error. |
 | BLE disconnect/reconnect | Accurate dashboard state; no send while disconnected; initial contact load does not trigger a new-node flood. |
 | USB removal/reconnect | No crash; accurate connection state; stopped recipient batch is logged. |
 | TCP outage/reconnect | Accurate state and message status, with no false acknowledgement. |

@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = Bastion
+PRODUCT_NAME = NOTORYX Core
 
 // The application's bundle identifier
 PRODUCT_BUNDLE_IDENTIFIER = com.bastionmesh.bastion
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2026 Bastion contributors. MIT License.
+PRODUCT_COPYRIGHT = Copyright © 2026 NOTORYX Core contributors. MIT License.

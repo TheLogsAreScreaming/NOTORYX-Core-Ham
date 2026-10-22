@@ -9,7 +9,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'Bastion';
+  String get appTitle => 'NOTORYX Core';
 
   @override
   String get nav_contacts => '联系人';
@@ -872,7 +872,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'Bastion v$version';
+    return 'NOTORYX Core v$version';
   }
 
   @override
@@ -4444,10 +4444,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_gpxExportAllContacts => '所有联系人位置';
 
   @override
-  String get settings_gpxExportShareText => '来自 Bastion 的地图数据导出';
+  String get settings_gpxExportShareText => '来自 NOTORYX Core 的地图数据导出';
 
   @override
-  String get settings_gpxExportShareSubject => 'Bastion GPX 地图数据导出';
+  String get settings_gpxExportShareSubject => 'NOTORYX Core GPX 地图数据导出';
 
   @override
   String get snrIndicator_nearByRepeaters => '附近的重复器';
@@ -5320,7 +5320,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get checkIn_explainUnknown => '送达状态不可用。不要认为这条消息已经送达。';
 
   @override
-  String get tripBrief_heading => 'BASTION • MeshCore 行程简报';
+  String get tripBrief_heading => 'NOTORYX • MeshCore 行程简报';
 
   @override
   String tripBrief_trip(String name) {
@@ -5404,7 +5404,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tripBrief_sharesOnly => '本简报仅用于分享信息；它不会发送电台消息，也不会开始行程。';
 
   @override
-  String get fieldOps_title => 'Bastion 野外行动';
+  String get fieldOps_title => 'NOTORYX Core 野外行动';
 
   @override
   String get fieldOps_tabTrip => '行程';
@@ -5584,7 +5584,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_shareBrief => '分享简报';
 
   @override
-  String get fieldOps_briefSubject => 'Bastion 行程简报';
+  String get fieldOps_briefSubject => 'NOTORYX Core 行程简报';
 
   @override
   String get fieldOps_tripName => '行程名称';
@@ -5608,7 +5608,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_reminderLabel => '提醒我报到';
 
   @override
-  String get fieldOps_reminderHelper => '即使 Bastion 已关闭，也会发送手机通知。';
+  String get fieldOps_reminderHelper => '即使 NOTORYX Core 已关闭，也会发送手机通知。';
 
   @override
   String get fieldOps_reminderOff => '关闭';
@@ -5760,7 +5760,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_deleteLog => '删除日志';
 
   @override
-  String get fieldOps_logSubject => 'Bastion 野外日志';
+  String get fieldOps_logSubject => 'NOTORYX Core 野外日志';
 
   @override
   String get fieldOps_logCaveat =>
@@ -5822,7 +5822,7 @@ class AppLocalizationsZh extends AppLocalizations {
       '每次重启应用后都会关闭。规则仅在应用处于活动状态时运行。错过的计划操作会出现在野外日志中，绝不会集中补发。自动报到限制为每 10 分钟一批。';
 
   @override
-  String get fieldOps_openBotMode => '打开 Bastion 机器人模式';
+  String get fieldOps_openBotMode => '打开 NOTORYX 机器人模式';
 
   @override
   String get fieldOps_ruleEnabled => '规则已启用';
@@ -5949,7 +5949,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_noteTooltip => '位于电台广播坐标处的本地备注；可能已过时。';
 
   @override
-  String get bastionHome_aboutTooltip => '关于 Bastion';
+  String get bastionHome_aboutTooltip => '关于 NOTORYX Core';
 
   @override
   String get bastionHome_getStarted => '开始使用';
@@ -6004,7 +6004,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bastionHome_fieldOpsHint => '行程简报、准备、野外日志、自动化和覆盖对比';
 
   @override
-  String get bastionHome_fieldTools => 'BASTION 野外工具';
+  String get bastionHome_fieldTools => 'NOTORYX 野外工具';
 
   @override
   String get bastionHome_statusActive => '可用';
@@ -6060,14 +6060,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bastionTools_about => '关于 + 致谢';
 
   @override
-  String get bastionTools_aboutHint => 'Bastion 版本、独立性声明和开源许可证';
+  String get bastionTools_aboutHint => 'NOTORYX Core 版本、独立性声明和开源许可证';
 
   @override
   String get bastionAbout_title => '关于 + 致谢';
 
   @override
   String get bastionAbout_intro =>
-      '一款面向 MeshCore 网络的独立社区配套应用。Bastion 不是 MeshCore 官方应用，收录社区资源也不代表合作或认可。';
+      '一款面向 MeshCore 网络的独立社区配套应用。NOTORYX Core 不是 MeshCore 官方应用，收录社区资源也不代表合作或认可。';
 
   @override
   String get bastionAbout_version => '版本';
@@ -6077,7 +6077,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'Bastion 基于 MIT 许可证下的 MeshCore Open 开源代码构建并对其进行了修改。覆盖功能相关工作也在适用时致谢采用 MIT 许可证的 MeshMapper Flutter App。';
+      'NOTORYX Core 基于 MIT 许可证下的 MeshCore Open 开源代码构建并对其进行了修改。覆盖功能相关工作也在适用时致谢采用 MIT 许可证的 MeshMapper Flutter App。';
 
   @override
   String get bastionAbout_community => '社区优先';
@@ -6086,13 +6086,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bastionAbout_communityBody => '第三方创作者的资源仍归各自创作者所有。不代表任何所有权或合作关系。';
 
   @override
-  String get bastionAbout_legalese => 'Bastion • 独立的 MeshCore 配套应用';
+  String get bastionAbout_legalese => 'NOTORYX Core • 独立的 MeshCore 配套应用';
 
   @override
   String get bastionAbout_licenses => '开源许可证';
 
   @override
-  String get bastionSetup_title => 'Bastion 入门';
+  String get bastionSetup_title => 'NOTORYX Core 入门';
 
   @override
   String get bastionSetup_intro => '连接、选择联系人，然后验证一条消息。你可以随时从仪表板返回本指南。';
@@ -6114,7 +6114,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      '如果蓝牙搜索为空，请检查蓝牙是否已开启，以及 Bastion 是否在 Android 应用设置中拥有“附近的设备”权限。并按扫描器显示的其他权限提示操作。';
+      '如果蓝牙搜索为空，请检查蓝牙是否已开启，以及 NOTORYX Core 是否在 Android 应用设置中拥有“附近的设备”权限。并按扫描器显示的其他权限提示操作。';
 
   @override
   String get bastionSetup_connectionDiagnostics => '连接诊断';
@@ -6272,7 +6272,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'Bastion 会记录本次会话中新收到的节点，包括路由数据、节点/位置元数据，以及最接近的电台 RSSI/SNR 快照。';
+      'NOTORYX Core 会记录本次会话中新收到的节点，包括路由数据、节点/位置元数据，以及最接近的电台 RSSI/SNR 快照。';
 
   @override
   String get coverage_disconnectedBody => '开始前请连接电台。覆盖记录会从已连接的配套电台记录实时网状网络观测。';
@@ -6341,10 +6341,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get coverage_pathDirect => '直连';
 
   @override
-  String get coverage_shareSubject => 'Bastion 覆盖会话';
+  String get coverage_shareSubject => 'NOTORYX Core 覆盖会话';
 
   @override
-  String get coverage_shareText => 'Bastion 覆盖记录导出';
+  String get coverage_shareText => 'NOTORYX Core 覆盖记录导出';
 
   @override
   String get coverage_historyTitle => '已保存的覆盖会话';
@@ -6430,7 +6430,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldStats_snapshot => '实时网络快照';
 
   @override
-  String get fieldStats_headline => 'Bastion 此刻掌握的情况。';
+  String get fieldStats_headline => 'NOTORYX Core 此刻掌握的情况。';
 
   @override
   String get fieldStats_body => '这些计数根据已连接 MeshCore 的联系人表、位置、路径和最后可见时间计算。';
@@ -6470,7 +6470,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'Bastion 的路由分析利用已保存的路径尝试、跳数、成功/失败、往返时间和路由权重来呈现学到的路由。';
+      'NOTORYX Core 的路由分析利用已保存的路径尝试、跳数、成功/失败、往返时间和路由权重来呈现学到的路由。';
 
   @override
   String get fieldStats_coverageSessions => '覆盖会话';
@@ -6480,10 +6480,10 @@ class AppLocalizationsZh extends AppLocalizations {
       '覆盖记录现在可以保存野外会话、恢复中断的工作、导出观测并在地图上标出记录的覆盖点。RSSI/SNR 仍是最接近的电台快照。';
 
   @override
-  String get mapHub_title => 'BASTION 野外地图';
+  String get mapHub_title => 'NOTORYX 野外地图';
 
   @override
-  String get mapHub_intro => '实时地图、离线区域、区域配置和 Bastion 野外覆盖会话。';
+  String get mapHub_intro => '实时地图、离线区域、区域配置和 NOTORYX Core 野外覆盖会话。';
 
   @override
   String get mapHub_captureHint => '开始和停止野外覆盖会话';
@@ -6525,7 +6525,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get routes_headline => '了解流量如何在网状网络中传递。';
 
   @override
-  String get routes_body => 'Bastion 根据从真实消息尝试和发现中学到的路径历史，对已保存的路由进行排序。';
+  String get routes_body => 'NOTORYX Core 根据从真实消息尝试和发现中学到的路径历史，对已保存的路由进行排序。';
 
   @override
   String get routes_routes => '路由';
@@ -6555,7 +6555,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get routes_none => '尚无路由历史';
 
   @override
-  String get routes_noneBody => '照常使用网状网络或运行发现。一旦有了路径历史，Bastion 会在此显示学到的路由。';
+  String get routes_noneBody =>
+      '照常使用网状网络或运行发现。一旦有了路径历史，NOTORYX Core 会在此显示学到的路由。';
 
   @override
   String get routes_direct => '直连';
@@ -6639,14 +6640,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get repeaterTools_empty => '尚未发现中继器。请先连接电台并探索网状网络。';
 
   @override
-  String get notification_fieldAlertTitle => 'Bastion 野外警报';
+  String get notification_fieldAlertTitle => 'NOTORYX 野外警报';
 
   @override
-  String get notification_checkInReminderTitle => 'Bastion 报到提醒';
+  String get notification_checkInReminderTitle => 'NOTORYX Core 报到提醒';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return '$trip 已有 $minutes 分钟未报到。打开 Bastion 进行报到。';
+    return '$trip 已有 $minutes 分钟未报到。打开 NOTORYX Core 进行报到。';
   }
 
   @override
@@ -6683,7 +6684,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      '仅在 Bastion 打开时。已静音的频道不会朗读。任何消息也可以从其菜单中朗读。';
+      '仅在 NOTORYX Core 打开时。已静音的频道不会朗读。任何消息也可以从其菜单中朗读。';
 
   @override
   String get settings_readAloudOff => '关闭';

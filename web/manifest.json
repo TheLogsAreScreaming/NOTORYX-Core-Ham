@@ -1,6 +1,6 @@
 {
-    "name": "Bastion",
-    "short_name": "Bastion",
+    "name": "NOTORYX Core",
+    "short_name": "NOTORYX",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

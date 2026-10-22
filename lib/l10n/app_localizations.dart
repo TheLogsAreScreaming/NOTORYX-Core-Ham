@@ -133,7 +133,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Bastion'**
+  /// **'NOTORYX Core'**
   String get appTitle;
 
   /// No description provided for @nav_contacts.
@@ -1237,7 +1237,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_title.
   ///
   /// In en, this message translates to:
-  /// **'Bastion Settings'**
+  /// **'NOTORYX Core Settings'**
   String get settings_title;
 
   /// No description provided for @settings_deviceInfo.
@@ -1741,19 +1741,19 @@ abstract class AppLocalizations {
   /// No description provided for @settings_aboutVersion.
   ///
   /// In en, this message translates to:
-  /// **'Bastion v{version}'**
+  /// **'NOTORYX Core v{version}'**
   String settings_aboutVersion(String version);
 
   /// No description provided for @settings_aboutLegalese.
   ///
   /// In en, this message translates to:
-  /// **'Bastion • Built with open-source MeshCore Open components'**
+  /// **'NOTORYX Core • Built with open-source MeshCore Open components'**
   String get settings_aboutLegalese;
 
   /// No description provided for @settings_aboutDescription.
   ///
   /// In en, this message translates to:
-  /// **'Bastion is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.'**
+  /// **'NOTORYX Core is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.'**
   String get settings_aboutDescription;
 
   /// No description provided for @settings_aboutOpenMeteoAttribution.
@@ -8077,7 +8077,7 @@ abstract class AppLocalizations {
   /// No description provided for @notification_activityTitle.
   ///
   /// In en, this message translates to:
-  /// **'Bastion Activity'**
+  /// **'NOTORYX Core Activity'**
   String get notification_activityTitle;
 
   /// No description provided for @notification_messagesCount.
@@ -8191,13 +8191,13 @@ abstract class AppLocalizations {
   /// No description provided for @settings_gpxExportShareText.
   ///
   /// In en, this message translates to:
-  /// **'Map data exported from Bastion'**
+  /// **'Map data exported from NOTORYX Core'**
   String get settings_gpxExportShareText;
 
   /// No description provided for @settings_gpxExportShareSubject.
   ///
   /// In en, this message translates to:
-  /// **'Bastion GPX map data export'**
+  /// **'NOTORYX Core GPX map data export'**
   String get settings_gpxExportShareSubject;
 
   /// No description provided for @snrIndicator_nearByRepeaters.
@@ -8749,7 +8749,7 @@ abstract class AppLocalizations {
   /// No description provided for @background_serviceTitle.
   ///
   /// In en, this message translates to:
-  /// **'Bastion running'**
+  /// **'NOTORYX Core running'**
   String get background_serviceTitle;
 
   /// No description provided for @background_serviceText.
@@ -9649,7 +9649,7 @@ abstract class AppLocalizations {
   /// No description provided for @tripBrief_heading.
   ///
   /// In en, this message translates to:
-  /// **'BASTION • MeshCore Trip Brief'**
+  /// **'NOTORYX • MeshCore Trip Brief'**
   String get tripBrief_heading;
 
   /// No description provided for @tripBrief_trip.
@@ -9781,7 +9781,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_title.
   ///
   /// In en, this message translates to:
-  /// **'Bastion Field Operations'**
+  /// **'NOTORYX Core Field Operations'**
   String get fieldOps_title;
 
   /// No description provided for @fieldOps_tabTrip.
@@ -10063,7 +10063,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_briefSubject.
   ///
   /// In en, this message translates to:
-  /// **'Bastion Trip Brief'**
+  /// **'NOTORYX Core Trip Brief'**
   String get fieldOps_briefSubject;
 
   /// No description provided for @fieldOps_tripName.
@@ -10111,7 +10111,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_reminderHelper.
   ///
   /// In en, this message translates to:
-  /// **'A phone notification, even if Bastion is closed.'**
+  /// **'A phone notification, even if NOTORYX Core is closed.'**
   String get fieldOps_reminderHelper;
 
   /// No description provided for @fieldOps_reminderOff.
@@ -10379,7 +10379,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_logSubject.
   ///
   /// In en, this message translates to:
-  /// **'Bastion Field Log'**
+  /// **'NOTORYX Core Field Log'**
   String get fieldOps_logSubject;
 
   /// No description provided for @fieldOps_logCaveat.
@@ -10487,7 +10487,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_openBotMode.
   ///
   /// In en, this message translates to:
-  /// **'Open Bastion Bot Mode'**
+  /// **'Open NOTORYX Bot Mode'**
   String get fieldOps_openBotMode;
 
   /// No description provided for @fieldOps_ruleEnabled.
@@ -10715,7 +10715,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_aboutTooltip.
   ///
   /// In en, this message translates to:
-  /// **'About Bastion'**
+  /// **'About NOTORYX Core'**
   String get bastionHome_aboutTooltip;
 
   /// No description provided for @bastionHome_getStarted.
@@ -10817,7 +10817,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_fieldTools.
   ///
   /// In en, this message translates to:
-  /// **'BASTION FIELD TOOLS'**
+  /// **'NOTORYX FIELD TOOLS'**
   String get bastionHome_fieldTools;
 
   /// No description provided for @bastionHome_statusActive.
@@ -10925,7 +10925,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionTools_aboutHint.
   ///
   /// In en, this message translates to:
-  /// **'Bastion version, independence statement and open-source licenses'**
+  /// **'NOTORYX Core version, independence statement and open-source licenses'**
   String get bastionTools_aboutHint;
 
   /// No description provided for @bastionAbout_title.
@@ -10937,7 +10937,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionAbout_intro.
   ///
   /// In en, this message translates to:
-  /// **'An independent community companion app for MeshCore networks. Bastion is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.'**
+  /// **'An independent community companion app for MeshCore networks. NOTORYX Core is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.'**
   String get bastionAbout_intro;
 
   /// No description provided for @bastionAbout_version.
@@ -10955,7 +10955,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionAbout_openSourceBody.
   ///
   /// In en, this message translates to:
-  /// **'Bastion is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.'**
+  /// **'NOTORYX Core is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.'**
   String get bastionAbout_openSourceBody;
 
   /// No description provided for @bastionAbout_community.
@@ -10973,7 +10973,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionAbout_legalese.
   ///
   /// In en, this message translates to:
-  /// **'Bastion • Independent MeshCore companion'**
+  /// **'NOTORYX Core • Independent MeshCore companion'**
   String get bastionAbout_legalese;
 
   /// No description provided for @bastionAbout_licenses.
@@ -10985,7 +10985,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionSetup_title.
   ///
   /// In en, this message translates to:
-  /// **'Get started with Bastion'**
+  /// **'Get started with NOTORYX Core'**
   String get bastionSetup_title;
 
   /// No description provided for @bastionSetup_intro.
@@ -11021,7 +11021,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionSetup_step1Bluetooth.
   ///
   /// In en, this message translates to:
-  /// **'If Bluetooth discovery is empty, check Bluetooth is enabled and Bastion has Nearby devices permission in Android app settings. Follow any additional permission prompt shown by the scanner.'**
+  /// **'If Bluetooth discovery is empty, check Bluetooth is enabled and NOTORYX Core has Nearby devices permission in Android app settings. Follow any additional permission prompt shown by the scanner.'**
   String get bastionSetup_step1Bluetooth;
 
   /// No description provided for @bastionSetup_connectionDiagnostics.
@@ -11321,7 +11321,7 @@ abstract class AppLocalizations {
   /// No description provided for @coverage_connectedBody.
   ///
   /// In en, this message translates to:
-  /// **'Bastion records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.'**
+  /// **'NOTORYX Core records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.'**
   String get coverage_connectedBody;
 
   /// No description provided for @coverage_disconnectedBody.
@@ -11453,13 +11453,13 @@ abstract class AppLocalizations {
   /// No description provided for @coverage_shareSubject.
   ///
   /// In en, this message translates to:
-  /// **'Bastion Coverage Session'**
+  /// **'NOTORYX Core Coverage Session'**
   String get coverage_shareSubject;
 
   /// No description provided for @coverage_shareText.
   ///
   /// In en, this message translates to:
-  /// **'Bastion coverage capture export'**
+  /// **'NOTORYX Core coverage capture export'**
   String get coverage_shareText;
 
   /// No description provided for @coverage_historyTitle.
@@ -11597,7 +11597,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldStats_headline.
   ///
   /// In en, this message translates to:
-  /// **'What Bastion knows right now.'**
+  /// **'What NOTORYX Core knows right now.'**
   String get fieldStats_headline;
 
   /// No description provided for @fieldStats_body.
@@ -11675,7 +11675,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldStats_pathIntelBody.
   ///
   /// In en, this message translates to:
-  /// **'Bastion’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.'**
+  /// **'NOTORYX Core’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.'**
   String get fieldStats_pathIntelBody;
 
   /// No description provided for @fieldStats_coverageSessions.
@@ -11693,13 +11693,13 @@ abstract class AppLocalizations {
   /// No description provided for @mapHub_title.
   ///
   /// In en, this message translates to:
-  /// **'BASTION FIELD MAP'**
+  /// **'NOTORYX FIELD MAP'**
   String get mapHub_title;
 
   /// No description provided for @mapHub_intro.
   ///
   /// In en, this message translates to:
-  /// **'Live maps, offline areas, regional profiles and Bastion field coverage sessions.'**
+  /// **'Live maps, offline areas, regional profiles and NOTORYX Core field coverage sessions.'**
   String get mapHub_intro;
 
   /// No description provided for @mapHub_captureHint.
@@ -11783,7 +11783,7 @@ abstract class AppLocalizations {
   /// No description provided for @routes_body.
   ///
   /// In en, this message translates to:
-  /// **'Bastion ranks saved routes using the path history already learned from real message attempts and discoveries.'**
+  /// **'NOTORYX Core ranks saved routes using the path history already learned from real message attempts and discoveries.'**
   String get routes_body;
 
   /// No description provided for @routes_routes.
@@ -11843,7 +11843,7 @@ abstract class AppLocalizations {
   /// No description provided for @routes_noneBody.
   ///
   /// In en, this message translates to:
-  /// **'Use the mesh normally or run discovery. Bastion will surface learned routes here as path history becomes available.'**
+  /// **'Use the mesh normally or run discovery. NOTORYX Core will surface learned routes here as path history becomes available.'**
   String get routes_noneBody;
 
   /// No description provided for @routes_direct.
@@ -11974,19 +11974,19 @@ abstract class AppLocalizations {
   /// No description provided for @notification_fieldAlertTitle.
   ///
   /// In en, this message translates to:
-  /// **'Bastion Field Alert'**
+  /// **'NOTORYX Field Alert'**
   String get notification_fieldAlertTitle;
 
   /// No description provided for @notification_checkInReminderTitle.
   ///
   /// In en, this message translates to:
-  /// **'Bastion check-in reminder'**
+  /// **'NOTORYX Core check-in reminder'**
   String get notification_checkInReminderTitle;
 
   /// No description provided for @notification_checkInReminderBody.
   ///
   /// In en, this message translates to:
-  /// **'No check-in for {minutes} minutes on {trip}. Open Bastion to check in.'**
+  /// **'No check-in for {minutes} minutes on {trip}. Open NOTORYX Core to check in.'**
   String notification_checkInReminderBody(int minutes, String trip);
 
   /// No description provided for @notification_overdueBody.
@@ -12040,7 +12040,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_readAloudHelper.
   ///
   /// In en, this message translates to:
-  /// **'While Bastion is open. Muted channels stay quiet. Any message can also be read from its menu.'**
+  /// **'While NOTORYX Core is open. Muted channels stay quiet. Any message can also be read from its menu.'**
   String get settings_readAloudHelper;
 
   /// No description provided for @settings_readAloudOff.

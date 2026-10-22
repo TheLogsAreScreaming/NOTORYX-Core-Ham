@@ -22,7 +22,7 @@ class BastionAboutScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'BASTION',
+              'NOTORYX',
               style: TextStyle(
                 color: _cyan,
                 fontSize: 10,
@@ -53,7 +53,7 @@ class BastionAboutScreen extends StatelessWidget {
                 Icon(Icons.fort_rounded, color: _cyan, size: 38),
                 const SizedBox(height: 12),
                 Text(
-                  'BASTION',
+                  'NOTORYX',
                   style: TextStyle(
                     color: MeshPalette.ink,
                     fontSize: 28,
@@ -102,7 +102,7 @@ class BastionAboutScreen extends StatelessWidget {
             ),
             onPressed: () => showLicensePage(
               context: context,
-              applicationName: 'Bastion',
+              applicationName: 'NOTORYX Core',
               applicationLegalese: l10n.bastionAbout_legalese,
             ),
             icon: const Icon(Icons.description_outlined),

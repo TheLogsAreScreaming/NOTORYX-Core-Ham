@@ -79,7 +79,7 @@ class BastionHomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'BASTION',
+                        'NOTORYX',
                         style: TextStyle(
                           color: MeshPalette.ink,
                           fontSize: 28,
@@ -306,7 +306,7 @@ class BastionHomeScreen extends StatelessWidget {
             const SizedBox(height: 24),
             Center(
               child: Text(
-                'BASTION',
+                'NOTORYX CORE',
                 style: TextStyle(
                   color: MeshPalette.ink4,
                   fontSize: 10,

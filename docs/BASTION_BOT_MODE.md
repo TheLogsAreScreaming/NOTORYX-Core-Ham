@@ -1,8 +1,8 @@
-# Bastion MeshCore Bot Mode
+# NOTORYX Core MeshCore Bot Mode
 
-This test build adds a local auto responder to the complete Bastion app from branch `bastion`. It preserves the approved Bastion launcher icon, Android package `com.bastionmesh.bastion`, home dashboard, field tools, coverage capture/history, field stats, diagnostics, map/path hubs, repeater tools, messaging, and BLE/USB/TCP connections.
+This test build adds a local auto responder to the complete Bastion app (now NOTORYX Core) from branch `bastion`. It preserves the approved Bastion launcher icon, Android package `com.bastionmesh.bastion`, home dashboard, field tools, coverage capture/history, field stats, diagnostics, map/path hubs, repeater tools, messaging, and BLE/USB/TCP connections.
 
-App Settings → Bastion Bot Mode provides a master toggle (off by default), an away
+App Settings → NOTORYX Bot Mode provides a master toggle (off by default), an away
 auto-responder, individually enabled commands, exact/keyword reply rules,
 per-contact rules and an optional contact allowlist. Built-ins include `!ping`,
 `!status`, `!battery`, `!help`, `!info`, `!checkin` and `!repeater`.

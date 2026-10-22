@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>Bastion</string>
+	<string>NOTORYX Core</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
@@ -35,7 +35,7 @@
 	<key>FLTEnableImpeller</key>
 	<false/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Bastion uses Bluetooth to talk to your MeshCore LoRa radio.</string>
+	<string>NOTORYX Core uses Bluetooth to talk to your MeshCore LoRa radio.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera to scan QR codes for joining communities.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

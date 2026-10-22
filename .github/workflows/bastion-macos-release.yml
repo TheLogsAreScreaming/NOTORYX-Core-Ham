@@ -1,6 +1,6 @@
-name: Bastion macOS Release
+name: NOTORYX Core macOS Release
 
-# Builds a universal (Intel x86_64 + Apple silicon) Bastion.app and attaches
+# Builds a universal (Intel x86_64 + Apple silicon) NOTORYX Core.app and attaches
 # it to a GitHub pre-release. The app is ad-hoc signed, not notarized: the
 # first launch needs Open Anyway in System Settings → Privacy & Security.
 on:
@@ -34,9 +34,9 @@ jobs:
         run: flutter build macos --release
       - name: Check the app runs on Intel and Apple silicon
         run: |
-          APP=build/macos/Build/Products/Release/Bastion.app
+          APP="build/macos/Build/Products/Release/NOTORYX Core.app"
           test -d "$APP"
-          ARCHS=$(lipo -archs "$APP/Contents/MacOS/Bastion")
+          ARCHS=$(lipo -archs "$APP/Contents/MacOS/NOTORYX Core")
           echo "Architectures: $ARCHS"
           case "$ARCHS" in *x86_64*) ;; *) echo "No Intel (x86_64) slice"; exit 1;; esac
           case "$ARCHS" in *arm64*) ;; *) echo "No Apple silicon (arm64) slice"; exit 1;; esac
@@ -51,12 +51,12 @@ jobs:
           done
       - name: Sign ad hoc and package
         run: |
-          APP=build/macos/Build/Products/Release/Bastion.app
+          APP="build/macos/Build/Products/Release/NOTORYX Core.app"
           codesign --force --deep --sign - "$APP"
           codesign --verify --deep --strict "$APP"
           VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d+ -f1)
           mkdir -p dist
-          ditto -c -k --keepParent "$APP" "dist/Bastion-$VERSION-macOS-universal.zip"
+          ditto -c -k --keepParent "$APP" "dist/NOTORYX-Core-$VERSION-macOS-universal.zip"
           cd dist
           shasum -a 256 *.zip > SHA256SUMS-macOS.txt
           cat SHA256SUMS-macOS.txt
@@ -67,7 +67,7 @@ jobs:
         run: |
           if ! gh release view "$TAG" > /dev/null 2>&1; then
             gh release create "$TAG" --prerelease --target "$GITHUB_SHA" \
-              --title "Bastion ${TAG#v}" \
+              --title "NOTORYX Core ${TAG#v}" \
               --notes "Pre-release. See the attached files."
           fi
           gh release upload "$TAG" dist/* --clobber

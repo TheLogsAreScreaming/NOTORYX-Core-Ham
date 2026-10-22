@@ -9,7 +9,7 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get appTitle => 'Bastion';
+  String get appTitle => 'NOTORYX Core';
 
   @override
   String get nav_contacts => 'Kontakte';
@@ -435,7 +435,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get common_interval => 'Intervall';
 
   @override
-  String get scanner_title => 'Bastion';
+  String get scanner_title => 'NOTORYX Core';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -911,7 +911,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'Bastion v$version';
+    return 'NOTORYX Core v$version';
   }
 
   @override
@@ -4768,11 +4768,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'GPX-Kartendaten aus Bastion exportiert';
+      'GPX-Kartendaten aus NOTORYX Core exportiert';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'GPX-Kartendaten aus Bastion exportieren';
+      'GPX-Kartendaten aus NOTORYX Core exportieren';
 
   @override
   String get snrIndicator_nearByRepeaters => 'In der Nähe befindliche Repeater';
@@ -5710,7 +5710,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Zustellstatus nicht verfügbar. Geh nicht davon aus, dass diese Nachricht angekommen ist.';
 
   @override
-  String get tripBrief_heading => 'BASTION • MeshCore-Tourübersicht';
+  String get tripBrief_heading => 'NOTORYX • MeshCore-Tourübersicht';
 
   @override
   String tripBrief_trip(String name) {
@@ -5800,7 +5800,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Diese Übersicht teilt nur Informationen; sie sendet keine Funknachricht und startet keine Tour.';
 
   @override
-  String get fieldOps_title => 'Bastion-Feldeinsatz';
+  String get fieldOps_title => 'NOTORYX-Core-Feldeinsatz';
 
   @override
   String get fieldOps_tabTrip => 'TOUR';
@@ -5994,7 +5994,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get fieldOps_shareBrief => 'Übersicht teilen';
 
   @override
-  String get fieldOps_briefSubject => 'Bastion-Tourübersicht';
+  String get fieldOps_briefSubject => 'NOTORYX-Core-Tourübersicht';
 
   @override
   String get fieldOps_tripName => 'Tourname';
@@ -6020,7 +6020,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get fieldOps_reminderHelper =>
-      'Eine Telefonbenachrichtigung, auch wenn Bastion geschlossen ist.';
+      'Eine Telefonbenachrichtigung, auch wenn NOTORYX Core geschlossen ist.';
 
   @override
   String get fieldOps_reminderOff => 'Aus';
@@ -6179,7 +6179,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get fieldOps_deleteLog => 'Protokoll löschen';
 
   @override
-  String get fieldOps_logSubject => 'Bastion-Feldprotokoll';
+  String get fieldOps_logSubject => 'NOTORYX-Core-Feldprotokoll';
 
   @override
   String get fieldOps_logCaveat =>
@@ -6243,7 +6243,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Nach jedem App-Neustart aus. Regeln laufen nur, solange die App aktiv ist. Verpasste geplante Aktionen erscheinen im Feldprotokoll und werden nie gesammelt nachgeholt. Automatische Check-ins sind auf einen Durchgang pro 10 Minuten begrenzt.';
 
   @override
-  String get fieldOps_openBotMode => 'Bastion-Bot-Modus öffnen';
+  String get fieldOps_openBotMode => 'NOTORYX-Bot-Modus öffnen';
 
   @override
   String get fieldOps_ruleEnabled => 'Regel aktiviert';
@@ -6380,7 +6380,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Lokale Notiz an gesendeten Funkkoordinaten; evtl. veraltet.';
 
   @override
-  String get bastionHome_aboutTooltip => 'Über Bastion';
+  String get bastionHome_aboutTooltip => 'Über NOTORYX Core';
 
   @override
   String get bastionHome_getStarted => 'LOSLEGEN';
@@ -6441,7 +6441,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Tourübersicht, Bereitschaft, Feldprotokoll, Automatisierungen und Abdeckungsvergleich';
 
   @override
-  String get bastionHome_fieldTools => 'BASTION-FELDWERKZEUGE';
+  String get bastionHome_fieldTools => 'NOTORYX-FELDWERKZEUGE';
 
   @override
   String get bastionHome_statusActive => 'AKTIV';
@@ -6504,14 +6504,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get bastionTools_aboutHint =>
-      'Bastion-Version, Unabhängigkeitserklärung und Open-Source-Lizenzen';
+      'NOTORYX-Core-Version, Unabhängigkeitserklärung und Open-Source-Lizenzen';
 
   @override
   String get bastionAbout_title => 'Info + Danksagungen';
 
   @override
   String get bastionAbout_intro =>
-      'Eine unabhängige Community-Begleit-App für MeshCore-Netze. Bastion ist keine offizielle MeshCore-App, und die Aufnahme von Community-Ressourcen bedeutet keine Partnerschaft oder Billigung.';
+      'Eine unabhängige Community-Begleit-App für MeshCore-Netze. NOTORYX Core ist keine offizielle MeshCore-App, und die Aufnahme von Community-Ressourcen bedeutet keine Partnerschaft oder Billigung.';
 
   @override
   String get bastionAbout_version => 'VERSION';
@@ -6521,7 +6521,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'Bastion basiert auf Open-Source-Code von MeshCore Open unter der MIT-Lizenz und verändert ihn. Die Arbeit am Abdeckungsablauf würdigt außerdem, wo zutreffend, die MIT-lizenzierte MeshMapper Flutter App.';
+      'NOTORYX Core basiert auf Open-Source-Code von MeshCore Open unter der MIT-Lizenz und verändert ihn. Die Arbeit am Abdeckungsablauf würdigt außerdem, wo zutreffend, die MIT-lizenzierte MeshMapper Flutter App.';
 
   @override
   String get bastionAbout_community => 'COMMUNITY ZUERST';
@@ -6532,13 +6532,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get bastionAbout_legalese =>
-      'Bastion • Unabhängiger MeshCore-Begleiter';
+      'NOTORYX Core • Unabhängiger MeshCore-Begleiter';
 
   @override
   String get bastionAbout_licenses => 'OPEN-SOURCE-LIZENZEN';
 
   @override
-  String get bastionSetup_title => 'Erste Schritte mit Bastion';
+  String get bastionSetup_title => 'Erste Schritte mit NOTORYX Core';
 
   @override
   String get bastionSetup_intro =>
@@ -6561,7 +6561,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Wenn die Bluetooth-Suche leer ist, prüfe, ob Bluetooth aktiviert ist und Bastion in den Android-App-Einstellungen die Berechtigung „Geräte in der Nähe“ hat. Folge allen weiteren Berechtigungsanfragen des Scanners.';
+      'Wenn die Bluetooth-Suche leer ist, prüfe, ob Bluetooth aktiviert ist und NOTORYX Core in den Android-App-Einstellungen die Berechtigung „Geräte in der Nähe“ hat. Folge allen weiteren Berechtigungsanfragen des Scanners.';
 
   @override
   String get bastionSetup_connectionDiagnostics => 'Verbindungsdiagnose';
@@ -6725,7 +6725,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'Bastion erfasst in dieser Sitzung neu gehörte Knoten, einschließlich Routendaten, Knoten-/Standort-Metadaten und der nächstgelegenen verfügbaren RSSI/SNR-Momentaufnahme des Funkgeräts.';
+      'NOTORYX Core erfasst in dieser Sitzung neu gehörte Knoten, einschließlich Routendaten, Knoten-/Standort-Metadaten und der nächstgelegenen verfügbaren RSSI/SNR-Momentaufnahme des Funkgeräts.';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6795,10 +6795,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get coverage_pathDirect => 'direkt';
 
   @override
-  String get coverage_shareSubject => 'Bastion-Abdeckungssitzung';
+  String get coverage_shareSubject => 'NOTORYX-Core-Abdeckungssitzung';
 
   @override
-  String get coverage_shareText => 'Bastion-Export der Abdeckungserfassung';
+  String get coverage_shareText =>
+      'NOTORYX-Core-Export der Abdeckungserfassung';
 
   @override
   String get coverage_historyTitle => 'Gespeicherte Abdeckungssitzungen';
@@ -6889,7 +6890,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get fieldStats_snapshot => 'LIVE-MESH-MOMENTAUFNAHME';
 
   @override
-  String get fieldStats_headline => 'Was Bastion gerade weiß.';
+  String get fieldStats_headline => 'Was NOTORYX Core gerade weiß.';
 
   @override
   String get fieldStats_body =>
@@ -6930,7 +6931,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'Die Routenanalyse von Bastion nutzt gespeicherte Pfadversuche, Hop-Zahlen, Erfolg/Fehlschlag, Laufzeit und Routengewichtung, um gelernte Routen anzuzeigen.';
+      'Die Routenanalyse von NOTORYX Core nutzt gespeicherte Pfadversuche, Hop-Zahlen, Erfolg/Fehlschlag, Laufzeit und Routengewichtung, um gelernte Routen anzuzeigen.';
 
   @override
   String get fieldStats_coverageSessions => 'ABDECKUNGSSITZUNGEN';
@@ -6940,11 +6941,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Die Abdeckungserfassung speichert jetzt Feldsitzungen, stellt unterbrochene Arbeit wieder her, exportiert Beobachtungen und kartiert erfasste Abdeckungspunkte. RSSI/SNR bleiben die nächstgelegene verfügbare Funk-Momentaufnahme.';
 
   @override
-  String get mapHub_title => 'BASTION-FELDKARTE';
+  String get mapHub_title => 'NOTORYX-FELDKARTE';
 
   @override
   String get mapHub_intro =>
-      'Live-Karten, Offline-Gebiete, regionale Profile und Bastion-Abdeckungssitzungen.';
+      'Live-Karten, Offline-Gebiete, regionale Profile und NOTORYX-Core-Abdeckungssitzungen.';
 
   @override
   String get mapHub_captureHint =>
@@ -6992,7 +6993,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'Bastion ordnet gespeicherte Routen anhand des Pfadverlaufs, der bereits aus echten Nachrichtenversuchen und Erkundungen gelernt wurde.';
+      'NOTORYX Core ordnet gespeicherte Routen anhand des Pfadverlaufs, der bereits aus echten Nachrichtenversuchen und Erkundungen gelernt wurde.';
 
   @override
   String get routes_routes => 'ROUTEN';
@@ -7023,7 +7024,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get routes_noneBody =>
-      'Nutze das Mesh normal oder starte eine Erkundung. Bastion zeigt hier gelernte Routen an, sobald Pfadverlauf verfügbar ist.';
+      'Nutze das Mesh normal oder starte eine Erkundung. NOTORYX Core zeigt hier gelernte Routen an, sobald Pfadverlauf verfügbar ist.';
 
   @override
   String get routes_direct => 'DIREKT';
@@ -7113,14 +7114,15 @@ class AppLocalizationsDe extends AppLocalizations {
       'Noch keine Repeater gefunden. Verbinde ein Funkgerät und erkunde zuerst das Mesh.';
 
   @override
-  String get notification_fieldAlertTitle => 'Bastion-Feldwarnung';
+  String get notification_fieldAlertTitle => 'NOTORYX-Feldwarnung';
 
   @override
-  String get notification_checkInReminderTitle => 'Bastion-Check-in-Erinnerung';
+  String get notification_checkInReminderTitle =>
+      'NOTORYX-Core-Check-in-Erinnerung';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return 'Seit $minutes Minuten kein Check-in auf $trip. Öffne Bastion, um einzuchecken.';
+    return 'Seit $minutes Minuten kein Check-in auf $trip. Öffne NOTORYX Core, um einzuchecken.';
   }
 
   @override
@@ -7157,7 +7159,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'Solange Bastion geöffnet ist. Stummgeschaltete Kanäle bleiben still. Jede Nachricht kann auch über ihr Menü vorgelesen werden.';
+      'Solange NOTORYX Core geöffnet ist. Stummgeschaltete Kanäle bleiben still. Jede Nachricht kann auch über ihr Menü vorgelesen werden.';
 
   @override
   String get settings_readAloudOff => 'Aus';
