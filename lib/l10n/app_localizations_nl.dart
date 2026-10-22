@@ -7397,48 +7397,48 @@ class AppLocalizationsNl extends AppLocalizations {
       'Kon niet via USB verbinden. Controleer de datakabel en het gekozen apparaat, sta USB-toegang toe en sluit andere seriële apps. Sluit de kabel opnieuw aan en probeer het nog eens.';
 
   @override
-  String get connections_title => 'Connections';
+  String get connections_title => 'Verbindingen';
 
   @override
-  String get connections_radioTitle => 'Radio connection';
+  String get connections_radioTitle => 'Radioverbinding';
 
   @override
   String get connections_bluetoothOffNotice =>
-      'Bluetooth is off. Turn it on to reconnect; the app will retry once it is back.';
+      'Bluetooth staat uit. Zet het aan om opnieuw te verbinden; de app probeert het opnieuw zodra het terug is.';
 
   @override
-  String get connections_transport => 'Transport';
+  String get connections_transport => 'Verbindingstype';
 
   @override
   String connections_lastError(String error) {
-    return 'Last error: $error';
+    return 'Laatste fout: $error';
   }
 
   @override
-  String get connections_disconnectRadio => 'Disconnect radio';
+  String get connections_disconnectRadio => 'Radio loskoppelen';
 
   @override
   String connections_reconnectTo(String name) {
-    return 'Reconnect to $name';
+    return 'Opnieuw verbinden met $name';
   }
 
   @override
-  String get connections_forgetRadio => 'Forget radio';
+  String get connections_forgetRadio => 'Radio vergeten';
 
   @override
-  String get connections_connectAnother => 'Connect another radio';
+  String get connections_connectAnother => 'Andere radio verbinden';
 
   @override
-  String get connections_usbSerial => 'USB serial';
+  String get connections_usbSerial => 'USB-serieel';
 
   @override
   String get connections_tcpIp => 'TCP/IP';
 
   @override
-  String get connections_device => 'Device';
+  String get connections_device => 'Apparaat';
 
   @override
-  String get connections_publicKey => 'Public key';
+  String get connections_publicKey => 'Publieke sleutel';
 
   @override
   String get connections_firmware => 'Firmware';
@@ -7449,55 +7449,56 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get connections_battery => 'Battery';
+  String get connections_battery => 'Batterij';
 
   @override
-  String get connections_lastRx => 'Last RX';
+  String get connections_lastRx => 'Laatste ontvangst';
 
   @override
-  String get connections_reconnectFailed => 'Could not reconnect to the radio';
+  String get connections_reconnectFailed =>
+      'Kon niet opnieuw met de radio verbinden';
 
   @override
-  String get connections_statusBluetoothOff => 'Bluetooth is off';
+  String get connections_statusBluetoothOff => 'Bluetooth staat uit';
 
   @override
-  String get connections_statusConnected => 'Connected';
+  String get connections_statusConnected => 'Verbonden';
 
   @override
-  String get connections_statusConnecting => 'Connecting…';
+  String get connections_statusConnecting => 'Verbinden…';
 
   @override
-  String get connections_statusDisconnecting => 'Disconnecting…';
+  String get connections_statusDisconnecting => 'Loskoppelen…';
 
   @override
-  String get connections_statusScanning => 'Scanning for radios…';
+  String get connections_statusScanning => 'Zoeken naar radio\'s…';
 
   @override
-  String get connections_statusReconnectingSoon => 'Reconnecting soon…';
+  String get connections_statusReconnectingSoon => 'Zo opnieuw verbinden…';
 
   @override
-  String get connections_statusNotConnected => 'Not connected';
+  String get connections_statusNotConnected => 'Niet verbonden';
 
   @override
-  String get mqtt_cardTitle => 'MQTT connection';
+  String get mqtt_cardTitle => 'MQTT-verbinding';
 
   @override
-  String get mqtt_statusNotConfigured => 'Not configured';
+  String get mqtt_statusNotConfigured => 'Niet ingesteld';
 
   @override
-  String get mqtt_statusDisconnected => 'Disconnected';
+  String get mqtt_statusDisconnected => 'Losgekoppeld';
 
   @override
-  String get mqtt_statusConnecting => 'Connecting';
+  String get mqtt_statusConnecting => 'Verbinden';
 
   @override
-  String get mqtt_statusConnected => 'Connected';
+  String get mqtt_statusConnected => 'Verbonden';
 
   @override
-  String get mqtt_statusReconnecting => 'Reconnecting';
+  String get mqtt_statusReconnecting => 'Opnieuw verbinden';
 
   @override
-  String get mqtt_statusError => 'Connection error';
+  String get mqtt_statusError => 'Verbindingsfout';
 
   @override
   String mqtt_broker(String host, int port, String transport) {
@@ -7505,223 +7506,225 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get mqtt_tokenSignIn => 'Signs in with a radio-signed token';
+  String get mqtt_tokenSignIn =>
+      'Logt in met een door de radio ondertekend token';
 
   @override
   String mqtt_tokenSignInAs(String username) {
-    return 'Signs in with a radio-signed token as $username…';
+    return 'Logt in met een door de radio ondertekend token als $username…';
   }
 
   @override
-  String get mqtt_connectRadioToSignIn => 'Connect your radio to sign in';
+  String get mqtt_connectRadioToSignIn => 'Verbind je radio om in te loggen';
 
   @override
   String mqtt_tokenRenewsAt(String time) {
-    return 'Token renews at $time';
+    return 'Token wordt vernieuwd om $time';
   }
 
   @override
   String mqtt_signedInAs(String username) {
-    return 'Signed in as $username';
+    return 'Ingelogd als $username';
   }
 
   @override
   String mqtt_listeningOn(String topic) {
-    return 'Listening on $topic';
+    return 'Luistert op $topic';
   }
 
   @override
   String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
-    return 'Packets: $accepted new, $duplicate duplicate, $invalid invalid';
+    return 'Pakketten: $accepted nieuw, $duplicate dubbel, $invalid ongeldig';
   }
 
   @override
   String mqtt_retryCount(int attempt, int max) {
-    return 'Retry $attempt of $max';
+    return 'Poging $attempt van $max';
   }
 
   @override
-  String get mqtt_sharingWaitsForRadio =>
-      'Sharing waits for a radio connection';
+  String get mqtt_sharingWaitsForRadio => 'Delen wacht op een radioverbinding';
 
   @override
   String mqtt_sharingOn(String topic) {
-    return 'Sharing on $topic';
+    return 'Deelt op $topic';
   }
 
   @override
   String mqtt_willShareOn(String topic) {
-    return 'Will share on $topic';
+    return 'Gaat delen op $topic';
   }
 
   @override
   String mqtt_onlineStatusOn(String topic) {
-    return 'Online status on $topic';
+    return 'Onlinestatus op $topic';
   }
 
   @override
   String mqtt_sharedCounts(int shared, int held) {
-    return 'Shared $shared, held back $held';
+    return 'Gedeeld $shared, tegengehouden $held';
   }
 
   @override
   String get mqtt_addBrokerHint =>
-      'Add a broker to bridge MeshCore traffic over the internet. Radio connection works independently.';
+      'Voeg een broker toe om MeshCore-verkeer via internet te verbinden. De radioverbinding werkt los daarvan.';
 
   @override
-  String get mqtt_disconnect => 'Disconnect MQTT';
+  String get mqtt_disconnect => 'MQTT loskoppelen';
 
   @override
-  String get mqtt_connect => 'Connect MQTT';
+  String get mqtt_connect => 'MQTT verbinden';
 
   @override
-  String get mqtt_packetFeed => 'Packet feed';
+  String get mqtt_packetFeed => 'Pakketfeed';
 
   @override
-  String get mqtt_setUpBroker => 'Set up broker';
+  String get mqtt_setUpBroker => 'Broker instellen';
 
   @override
-  String get mqtt_brokerSettings => 'Broker settings';
+  String get mqtt_brokerSettings => 'Brokerinstellingen';
 
   @override
-  String get mqtt_settingsTitle => 'MQTT broker settings';
+  String get mqtt_settingsTitle => 'MQTT-brokerinstellingen';
 
   @override
-  String get mqtt_presetLabel => 'Start from a preset';
+  String get mqtt_presetLabel => 'Beginnen met een voorinstelling';
 
   @override
-  String get mqtt_presetCustom => 'Custom broker';
+  String get mqtt_presetCustom => 'Eigen broker';
 
   @override
-  String get mqtt_presetLocal => 'Local broker (configure address)';
+  String get mqtt_presetLocal => 'Lokale broker (adres invullen)';
 
   @override
-  String get mqtt_presetLetsMeshUs => 'LetsMesh analyzer (US, community)';
+  String get mqtt_presetLetsMeshUs => 'LetsMesh-analyzer (VS, community)';
 
   @override
-  String get mqtt_presetLetsMeshEu => 'LetsMesh analyzer (EU, community)';
+  String get mqtt_presetLetsMeshEu => 'LetsMesh-analyzer (EU, community)';
 
   @override
   String get mqtt_presetLetsMeshNote =>
-      'LetsMesh is a community-run MeshCore packet analyzer, not part of NOTORYX and not endorsed by it. Sharing needs your radio connected and stays off until you turn it on.';
+      'LetsMesh is een door de community beheerde MeshCore-pakketanalyzer, geen onderdeel van NOTORYX en niet door NOTORYX aanbevolen. Delen heeft je radio verbonden nodig en blijft uit tot je het aanzet.';
 
   @override
-  String get mqtt_hostname => 'Broker hostname';
+  String get mqtt_hostname => 'Hostnaam van de broker';
 
   @override
-  String get mqtt_port => 'Port';
+  String get mqtt_port => 'Poort';
 
   @override
-  String get mqtt_useTls => 'Use TLS';
+  String get mqtt_useTls => 'TLS gebruiken';
 
   @override
-  String get mqtt_allowCleartext => 'Allow cleartext to a local broker';
+  String get mqtt_allowCleartext =>
+      'Onversleuteld naar een lokale broker toestaan';
 
   @override
   String get mqtt_allowCleartextHint =>
-      'Only localhost, .local and private 10.x / 192.168.x hosts.';
+      'Alleen localhost, .local en privéhosts 10.x / 192.168.x.';
 
   @override
-  String get mqtt_useWebSocket => 'Use WebSocket';
+  String get mqtt_useWebSocket => 'WebSocket gebruiken';
 
   @override
-  String get mqtt_webSocketPath => 'WebSocket path';
+  String get mqtt_webSocketPath => 'WebSocket-pad';
 
   @override
-  String get mqtt_topicPrefix => 'Topic prefix';
+  String get mqtt_topicPrefix => 'Topicprefix';
 
   @override
-  String get mqtt_region => 'Region (optional)';
+  String get mqtt_region => 'Regio (optioneel)';
 
   @override
   String get mqtt_regionHelp =>
-      'Observer region code such as PHL. Leave blank for all.';
+      'Regiocode van de waarnemer, bijv. PHL. Laat leeg voor alle.';
 
   @override
-  String get mqtt_deliverChannel => 'Add channel messages heard via MQTT';
+  String get mqtt_deliverChannel => 'Kanaalberichten via MQTT toevoegen';
 
   @override
   String get mqtt_deliverChannelHint =>
-      'Messages on your channels that observers heard show up in your chats. They are not sent over your radio.';
+      'Berichten in je kanalen die waarnemers hoorden, verschijnen in je chats. Ze worden niet via je radio verzonden.';
 
   @override
-  String get mqtt_sharingTitle => 'Sharing as an observer';
+  String get mqtt_sharingTitle => 'Delen als waarnemer';
 
   @override
-  String get mqtt_share => 'Share packets my radio hears';
+  String get mqtt_share => 'Pakketten delen die mijn radio hoort';
 
   @override
   String get mqtt_shareHint =>
-      'Publishes adverts and channel traffic your radio receives, with its public key, signal strength and region. Channel messages stay encrypted. Needs a region.';
+      'Publiceert adverts en kanaalverkeer die je radio ontvangt, met de publieke sleutel, signaalsterkte en regio. Kanaalberichten blijven versleuteld. Vereist een regio.';
 
   @override
-  String get mqtt_shareDirect => 'Include direct-message traffic';
+  String get mqtt_shareDirect => 'Verkeer van directe berichten meenemen';
 
   @override
   String get mqtt_shareDirectHint =>
-      'Requests, replies and direct messages. Contents stay encrypted, but this shows which nodes talk to each other.';
+      'Verzoeken, antwoorden en directe berichten. De inhoud blijft versleuteld, maar dit toont welke nodes met elkaar praten.';
 
   @override
-  String get mqtt_shareOwn => 'Include my own messages and adverts';
+  String get mqtt_shareOwn => 'Mijn eigen berichten en adverts meenemen';
 
   @override
-  String get mqtt_signInTitle => 'Sign-in';
+  String get mqtt_signInTitle => 'Inloggen';
 
   @override
-  String get mqtt_authPassword => 'Username and password';
+  String get mqtt_authPassword => 'Gebruikersnaam en wachtwoord';
 
   @override
-  String get mqtt_authToken => 'Radio-signed token';
+  String get mqtt_authToken => 'Door de radio ondertekend token';
 
   @override
   String get mqtt_tokenExplain =>
-      'Your radio signs a one-hour sign-in token with its own key, and the app renews it before it runs out. The key never leaves the radio. The username is v1_ and your radio\'s public key.';
+      'Je radio ondertekent met zijn eigen sleutel een inlogtoken van een uur, en de app vernieuwt het voordat het verloopt. De sleutel verlaat de radio nooit. De gebruikersnaam is v1_ gevolgd door de publieke sleutel van je radio.';
 
   @override
-  String get mqtt_radioReady => 'Radio connected: ready to sign in.';
+  String get mqtt_radioReady => 'Radio verbonden: klaar om in te loggen.';
 
   @override
   String get mqtt_radioNeeded =>
-      'Connect your radio to sign in. MQTT waits for it.';
+      'Verbind je radio om in te loggen. MQTT wacht erop.';
 
   @override
-  String get mqtt_username => 'Username (optional)';
+  String get mqtt_username => 'Gebruikersnaam (optioneel)';
 
   @override
-  String get mqtt_password => 'Password';
+  String get mqtt_password => 'Wachtwoord';
 
   @override
-  String get mqtt_keepPassword => 'Leave blank to keep the saved password.';
+  String get mqtt_keepPassword =>
+      'Laat leeg om het opgeslagen wachtwoord te houden.';
 
   @override
   String get mqtt_credentialsWeb =>
-      'In the browser, credentials are kept only until the page is closed.';
+      'In de browser worden inloggegevens alleen bewaard tot de pagina sluit.';
 
   @override
   String get mqtt_credentialsKeychain =>
-      'Credentials are stored in the system keychain, never in app settings or logs.';
+      'Inloggegevens worden in de sleutelhanger van het systeem bewaard, nooit in app-instellingen of logs.';
 
   @override
-  String get mqtt_saveSettings => 'Save settings';
+  String get mqtt_saveSettings => 'Instellingen opslaan';
 
   @override
-  String get mqtt_feedTitle => 'MQTT packet feed';
+  String get mqtt_feedTitle => 'MQTT-pakketfeed';
 
   @override
   String get mqtt_feedConnect =>
-      'Connect to a broker to see packets from observers.';
+      'Verbind met een broker om pakketten van waarnemers te zien.';
 
   @override
   String mqtt_feedWaiting(String topic) {
-    return 'Waiting for packets on $topic';
+    return 'Wachten op pakketten op $topic';
   }
 
   @override
-  String get mqtt_feedUnknownObserver => 'Unknown observer';
+  String get mqtt_feedUnknownObserver => 'Onbekende waarnemer';
 
   @override
   String mqtt_feedHeardBy(String observer) {
-    return 'Heard by $observer';
+    return 'Gehoord door $observer';
   }
 
   @override
@@ -7730,40 +7733,40 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get mqtt_packetRequest => 'Request';
+  String get mqtt_packetRequest => 'Verzoek';
 
   @override
-  String get mqtt_packetResponse => 'Response';
+  String get mqtt_packetResponse => 'Antwoord';
 
   @override
-  String get mqtt_packetDirectMessage => 'Direct message';
+  String get mqtt_packetDirectMessage => 'Direct bericht';
 
   @override
-  String get mqtt_packetAck => 'Ack';
+  String get mqtt_packetAck => 'Bevestiging';
 
   @override
   String get mqtt_packetAdvert => 'Advert';
 
   @override
-  String get mqtt_packetChannelMessage => 'Channel message';
+  String get mqtt_packetChannelMessage => 'Kanaalbericht';
 
   @override
-  String get mqtt_packetChannelData => 'Channel data';
+  String get mqtt_packetChannelData => 'Kanaaldata';
 
   @override
-  String get mqtt_packetAnonymousRequest => 'Anonymous request';
+  String get mqtt_packetAnonymousRequest => 'Anoniem verzoek';
 
   @override
-  String get mqtt_packetPath => 'Path';
+  String get mqtt_packetPath => 'Pad';
 
   @override
   String get mqtt_packetTrace => 'Trace';
 
   @override
-  String get mqtt_packetMultipart => 'Multipart';
+  String get mqtt_packetMultipart => 'Meerdelig';
 
   @override
-  String get mqtt_packetControl => 'Control';
+  String get mqtt_packetControl => 'Besturing';
 
   @override
   String mqtt_packetType(int type) {
@@ -7771,7 +7774,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get mqtt_routeTransportFlood => 'Transport flood';
+  String get mqtt_routeTransportFlood => 'Transport-flood';
 
   @override
   String get mqtt_routeFlood => 'Flood';
@@ -7780,92 +7783,93 @@ class AppLocalizationsNl extends AppLocalizations {
   String get mqtt_routeDirect => 'Direct';
 
   @override
-  String get mqtt_routeTransportDirect => 'Transport direct';
+  String get mqtt_routeTransportDirect => 'Transport-direct';
 
   @override
   String get mqtt_noticeInvalidHost =>
-      'Enter a hostname or IPv4 address without a scheme or port.';
+      'Voer een hostnaam of IPv4-adres in zonder schema of poort.';
 
   @override
-  String get mqtt_noticeInvalidPort => 'Port must be between 1 and 65535.';
+  String get mqtt_noticeInvalidPort =>
+      'De poort moet tussen 1 en 65535 liggen.';
 
   @override
   String get mqtt_noticeInvalidWebSocketPath =>
-      'WebSocket path must begin with / and contain no query or fragment.';
+      'Het WebSocket-pad moet met / beginnen en mag geen query of fragment bevatten.';
 
   @override
   String get mqtt_noticeInvalidTopicPrefix =>
-      'Topic prefix must be a nonempty MQTT path without wildcards.';
+      'De topicprefix moet een niet-leeg MQTT-pad zonder jokertekens zijn.';
 
   @override
   String get mqtt_noticeInvalidRegion =>
-      'Region must be 2-8 letters or digits, such as PHL.';
+      'De regio moet 2 tot 8 letters of cijfers zijn, zoals PHL.';
 
   @override
   String get mqtt_noticeTlsRequired =>
-      'TLS is required unless insecure local broker access is explicitly enabled.';
+      'TLS is verplicht, tenzij onveilige toegang tot een lokale broker uitdrukkelijk is toegestaan.';
 
   @override
   String get mqtt_noticeCleartextLocalOnly =>
-      'Cleartext MQTT is restricted to explicitly approved local hosts.';
+      'Onversleutelde MQTT is alleen toegestaan voor uitdrukkelijk goedgekeurde lokale hosts.';
 
   @override
   String get mqtt_noticeRegionNeededToShare =>
-      'Set a region to share packets as an observer.';
+      'Stel een regio in om pakketten als waarnemer te delen.';
 
   @override
   String mqtt_noticePasswordNeeded(String username) {
-    return 'Enter the password for $username.';
+    return 'Voer het wachtwoord in voor $username.';
   }
 
   @override
   String get mqtt_noticeNoNetwork =>
-      'No network connection. MQTT reconnects when it is back.';
+      'Geen netwerkverbinding. MQTT verbindt opnieuw zodra die terug is.';
 
   @override
   String get mqtt_noticeSubscriptionRefused =>
-      'The broker refused the packet subscription.';
+      'De broker weigerde het pakketabonnement.';
 
   @override
   String get mqtt_noticeBadCredentials =>
-      'The broker rejected the username or password.';
+      'De broker weigerde de gebruikersnaam of het wachtwoord.';
 
   @override
   String get mqtt_noticeNotAuthorized =>
-      'This account is not authorized on the broker.';
+      'Dit account is niet gemachtigd op de broker.';
 
   @override
   String get mqtt_noticeConnectionRefused =>
-      'The broker refused the connection.';
+      'De broker weigerde de verbinding.';
 
   @override
-  String get mqtt_noticeUnreachable => 'The broker could not be reached.';
+  String get mqtt_noticeUnreachable => 'De broker was niet bereikbaar.';
 
   @override
   String get mqtt_noticeTlsFailed =>
-      'The secure (TLS) connection could not be established.';
+      'De beveiligde (TLS-)verbinding kon niet worden opgezet.';
 
   @override
   String get mqtt_noticeWebSocketOnly =>
-      'This platform only supports MQTT over WebSocket.';
+      'Dit platform ondersteunt MQTT alleen via WebSocket.';
 
   @override
   String get mqtt_noticeRadioNotConnected =>
-      'Connect your radio to sign in with its key.';
+      'Verbind je radio om met zijn sleutel in te loggen.';
 
   @override
   String get mqtt_noticeSigningUnsupported =>
-      'This radio\'s firmware does not support signing with its key.';
+      'De firmware van deze radio kan niet ondertekenen met zijn sleutel.';
 
   @override
   String get mqtt_noticeSigningTimeout =>
-      'The radio did not answer the signing request. Its firmware may not support signing.';
+      'De radio reageerde niet op het ondertekenverzoek. Zijn firmware ondersteunt ondertekenen mogelijk niet.';
 
   @override
   String get mqtt_noticeSigningTooLong =>
-      'The data is too long for the radio to sign.';
+      'De gegevens zijn te lang voor de radio om te ondertekenen.';
 
   @override
   String get mqtt_noticeSigningRejected =>
-      'The radio refused to sign the data.';
+      'De radio weigerde de gegevens te ondertekenen.';
 }
