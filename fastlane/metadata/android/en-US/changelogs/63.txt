@@ -1,0 +1,4 @@
+• Now NOTORYX Core: same app, new name. Your data and settings carry over
+• MQTT: connect to a broker over TLS or WebSocket, see packets from internet observers, and optionally share what your radio hears
+• Connections dashboard: radio name, firmware, battery and signal, Bluetooth off/on handling, and reconnect to your last radio
+• Steadier Bluetooth reconnects, check-in and SOS set up on first use, clearer packet-path repeaters, spam filter

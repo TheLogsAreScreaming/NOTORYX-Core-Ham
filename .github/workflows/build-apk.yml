@@ -1,4 +1,4 @@
-name: Build Bastion APK
+name: Build NOTORYX Core APK
 
 # Installable Android build for testing: every push to dev and every PR
 # produces a downloadable "Bastion-Android-ARM64" artifact (Actions run page,
@@ -67,15 +67,15 @@ jobs:
         shell: bash
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/Bastion-arm64-v8a.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/NOTORYX-Core-arm64-v8a.apk
           cd dist
-          sha256sum Bastion-arm64-v8a.apk > SHA256SUMS.txt
+          sha256sum NOTORYX-Core-arm64-v8a.apk > SHA256SUMS.txt
           ls -lh
 
       - name: Upload Android artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Bastion-Android-ARM64
+          name: NOTORYX-Core-Android-ARM64
           path: dist/
           if-no-files-found: error
           retention-days: 30
