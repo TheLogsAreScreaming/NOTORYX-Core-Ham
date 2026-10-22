@@ -1,6 +1,12 @@
+<p align="center">
+  <img src="branding/notoryx-icon.png" width="120" alt="NOTORYX app icon">
+</p>
+
 # NOTORYX Core
 
-> **NOTORYX rebrand in progress:** This project is transitioning to **NOTORYX Core**, part of the **NOTORYX** off-grid communications family. **No Towers. No Limits.** The app was previously named Bastion; its package identifiers, Android signing key and Android release file names still use the old name so existing installs keep updating and keep their data. This project remains independent of the underlying radio protocol projects.
+Part of the **NOTORYX** off-grid communications family. **No Towers. No Limits.**
+
+> NOTORYX Core was previously named Bastion. Its package ID (`com.bastionmesh.bastion`) and Android signing key are unchanged, so existing installs update in place and keep their data.
 
 **Off-grid messaging, check-ins and SOS over your MeshCore LoRa radio.**
 
@@ -12,7 +18,7 @@ NOTORYX Core turns your phone or computer and a [MeshCore](https://meshcore.io/)
   <img src="docs/screenshots/path_graph.png" width="230" alt="Path graph showing how messages reach you">
 </p>
 
-> NOTORYX Core is a pre-release. It is tested in automated tests and a mesh simulator but not yet on a wide range of phones and radios. It is not a replacement for an emergency service or a satellite messenger. Please [report issues](../../issues).
+> NOTORYX Core is a pre-release. It is tested in automated tests and a mesh simulator but not yet on a wide range of phones and radios. MQTT bridging and LetsMesh sign-in are new and still need wider real-world testing. It is not a replacement for an emergency service or a satellite messenger. Please [report issues](../../issues).
 
 ## Download
 
@@ -20,7 +26,7 @@ Get the latest build from **[Releases](../../releases)**. Each release lists wha
 
 | Platform | File | Notes |
 |---|---|---|
-| Android (ARM64 phones) | `Bastion-…-android-arm64.apk` | Signed with the existing release key |
+| Android (ARM64 phones) | `NOTORYX-Core-…-arm64-v8a.apk` | Signed with the existing release key |
 | macOS (Intel and Apple silicon, macOS 14+) | `NOTORYX-Core-…-macOS-universal.zip` | Not notarized by Apple (see below) |
 
 iOS, Windows, Linux and web builds compile in CI but aren't released yet.
@@ -43,14 +49,14 @@ iOS, Windows, Linux and web builds compile in CI but aren't released yet.
    - You do this once for each new version.
 4. Allow Bluetooth when asked.
 
-Each release includes `SHA256SUMS` files if you want to check your download (`shasum -a 256 <file>`).
+Each release includes `SHA256SUMS-Android.txt` and `SHA256SUMS-macOS.txt` if you want to check your download (`shasum -a 256 <file>`).
 
 ## Getting started
 
-1. **Connect your radio.** On the home screen, tap **Get started**, or go to **Connect radio**. NOTORYX Core connects over Bluetooth, USB or TCP to a radio running MeshCore companion firmware.
+1. **Connect your radio.** On the home screen, tap **Get started**, or go to **Connect radio**. NOTORYX Core connects over Bluetooth, USB or TCP to a radio running MeshCore companion firmware, and reconnects to your last radio on its own.
 2. **Say hello.** Open **Chats** and send a message on a channel, or open someone in **Nodes** to message them directly.
 3. **Choose who gets your check-ins and SOS.** Tap **Check in: I'm OK** or hold **SOS**. The first time, NOTORYX Core asks who should get them. You can change this anytime in **Plan your trip**.
-4. **Pick a look.** **Settings → Theme** offers Blaze (default), Topo night, Red light and Alpine day.
+4. **Pick a look.** **Settings → Theme** offers Blaze (default), Topo night, Red light and Alpine day (plus Halloween in 10.0.0-rc.H only).
 
 The **HOME** tab at the bottom always brings you back to the Field Console, where check-in and SOS live.
 
@@ -76,9 +82,17 @@ The **HOME** tab at the bottom always brings you back to the Field Console, wher
 - Live mesh map with offline map packs.
 - **Path graph:** every path you've heard, drawn as flows from far repeaters to you, with the busiest repeaters ranked. Short (1-byte) hops are matched to a specific repeater using longer paths.
 - **Antenna coverage:** see where an antenna at a chosen height could reach over the terrain.
-- Line-of-sight checks, coverage capture sessions you can record and export, and route intelligence.
+- Line-of-sight checks, coverage capture sessions you can record and export, and route intelligence (which handles 1-, 2- and 3-byte hop IDs).
+
+### MQTT bridge (optional)
+- **Connect to an MQTT broker** over TLS or secure WebSocket to see MeshCore traffic from beyond radio range. Broker passwords are kept in the system keychain, never in plain settings.
+- **Live packet feed** of what arrives over MQTT. Channel messages that reached you only over the internet are marked **via MQTT**, and never count as radio repeats.
+- **Observer sharing** sends what your radio hears to the broker, in the community `meshcoretomqtt` format. It's off until you turn it on, and direct messages and your own traffic each need a separate opt-in.
+- **LetsMesh-style brokers:** sign in with a token signed by your radio, so its private key never leaves it. US and EU LetsMesh presets are included; they're community services, not part of NOTORYX.
+- Reconnects on its own when your network comes back.
 
 ### Your radios
+- **Connections dashboard** (from **Connect radio**): radio and MQTT status side by side, device and firmware details, and a clear prompt when Bluetooth is off.
 - Radio overview with battery, firmware and LoRa settings, plus live radio stats and a noise-floor chart.
 - **Local mesh settings:** NOTORYX Core knows the settings that local meshes have agreed on (for example Philadelphia's 919.500 MHz preset). It tells you when your radio doesn't match, and switches it after you confirm. See [adding your area](#add-your-areas-mesh-settings).
 - Repeater and room-server tools: login, status, neighbors, telemetry, command line and **access control**.
@@ -88,7 +102,8 @@ The **HOME** tab at the bottom always brings you back to the Field Console, wher
 
 ### Look and feel
 - Four themes: **Blaze**, **Topo night**, **Red light** (keeps your night vision) and **Alpine day** (for bright sun). All are checked for readable contrast.
-- Available in 17 languages. Some of the newest screens are in English only for now.
+- **Halloween** (pumpkin, toxic green and haunted purple) is available in 10.0.0-rc.H only. It goes away in the next release, and the app switches back to Blaze on its own.
+- Available in 17 languages. A few screens (bot settings and the local mesh settings banner) are still in English only.
 
 <p align="center">
   <img src="docs/screenshots/home_red_light.png" width="200" alt="Red light theme">
@@ -133,6 +148,7 @@ Release builds:
 
 ```bash
 flutter build apk --release --target-platform android-arm64
+flutter build appbundle --release   # Google Play
 flutter build macos --release
 ```
 
@@ -150,7 +166,7 @@ flutter test
 
 - `lib/connector/`: MeshCore protocol and the Bluetooth, USB and TCP transports
 - `lib/screens/`: app screens
-- `lib/services/`: field ops, coverage, routing, notifications and other services
+- `lib/services/`: field ops, coverage, routing, MQTT, notifications and other services
 - `lib/models/`, `lib/storage/`: data and persistence
 - `lib/theme/`: themes and colors
 - `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`)
