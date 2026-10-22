@@ -208,7 +208,7 @@ class BotSettingsScreen extends StatelessWidget {
     builder: (context, service, connector, _) {
       final settings = service.settings;
       return Scaffold(
-        appBar: AppBar(title: const Text('Bastion Bot Mode')),
+        appBar: AppBar(title: const Text('NOTORYX Bot Mode')),
         body: ListView(
           padding: const EdgeInsets.all(16),
           children: [
@@ -229,7 +229,7 @@ class BotSettingsScreen extends StatelessWidget {
                   : null,
             ),
             const Text(
-              'Free and local. Runs while Bastion is running and connected to the radio. Phone sleep or app closure can stop replies. Cached messages and reconnect backlog are ignored. Replies use the normal send queue.',
+              'Free and local. Runs while NOTORYX Core is running and connected to the radio. Phone sleep or app closure can stop replies. Cached messages and reconnect backlog are ignored. Replies use the normal send queue.',
             ),
             if (service.error != null)
               Padding(

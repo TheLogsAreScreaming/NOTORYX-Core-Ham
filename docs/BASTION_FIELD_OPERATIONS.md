@@ -1,6 +1,6 @@
 # Bastion Field Operations test build
 
-Adds Trip Mode, previewed check-ins, local Field Log, trip readiness, observed coverage-session comparisons, connection explanations and opt-in local automations. Preserves the original Bastion feature suite and Bot Mode. Changes the app and original castle icon to charcoal, muted teal and warm ivory.
+Adds Trip Mode, previewed check-ins, local Field Log, trip readiness, observed coverage-session comparisons, connection explanations and opt-in local automations. Preserves the original Bastion (now NOTORYX Core) feature suite and Bot Mode. Changes the app and original castle icon to charcoal, muted teal and warm ivory.
 
 Trip contacts are restricted to up to six known chat contacts. Position and battery sharing start off. Check-ins use existing message/retry handling; Field Log distinguishes pending, sent, delivered and failed. Acknowledgment does not prove a person read the message. Contact activity badges are not emergency conclusions. Positions are radio advertisements and may be stale; no phone GPS is invented.
 

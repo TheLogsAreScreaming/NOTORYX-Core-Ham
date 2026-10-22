@@ -9,7 +9,7 @@ class AppLocalizationsHu extends AppLocalizations {
   AppLocalizationsHu([String locale = 'hu']) : super(locale);
 
   @override
-  String get appTitle => 'Bastion';
+  String get appTitle => 'NOTORYX Core';
 
   @override
   String get nav_contacts => 'Kapcsolatok';
@@ -434,7 +434,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get common_interval => 'Intervallum';
 
   @override
-  String get scanner_title => 'Bastion';
+  String get scanner_title => 'NOTORYX Core';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -906,7 +906,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'Bastion v$version';
+    return 'NOTORYX Core v$version';
   }
 
   @override
@@ -4756,11 +4756,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'A térképadatok a Bastionből exportálva';
+      'A térképadatok a NOTORYX Core-ból exportálva';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'Bastion GPX térképadatok exportálása';
+      'NOTORYX Core GPX térképadatok exportálása';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Közeli átjátszók';
@@ -5691,7 +5691,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'A kézbesítési állapot nem érhető el. Ne feltételezze, hogy az üzenet megérkezett.';
 
   @override
-  String get tripBrief_heading => 'BASTION • MeshCore túraösszefoglaló';
+  String get tripBrief_heading => 'NOTORYX • MeshCore túraösszefoglaló';
 
   @override
   String tripBrief_trip(String name) {
@@ -5781,7 +5781,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Ez az összefoglaló csak információt oszt meg; nem küld rádióüzenetet és nem indít túrát.';
 
   @override
-  String get fieldOps_title => 'Bastion terepi műveletek';
+  String get fieldOps_title => 'NOTORYX Core terepi műveletek';
 
   @override
   String get fieldOps_tabTrip => 'TÚRA';
@@ -5976,7 +5976,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldOps_shareBrief => 'Összefoglaló megosztása';
 
   @override
-  String get fieldOps_briefSubject => 'Bastion túraösszefoglaló';
+  String get fieldOps_briefSubject => 'NOTORYX Core túraösszefoglaló';
 
   @override
   String get fieldOps_tripName => 'Túra neve';
@@ -6003,7 +6003,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get fieldOps_reminderHelper =>
-      'Telefonos értesítés, akkor is, ha a Bastion be van zárva.';
+      'Telefonos értesítés, akkor is, ha a NOTORYX Core be van zárva.';
 
   @override
   String get fieldOps_reminderOff => 'Ki';
@@ -6162,7 +6162,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldOps_deleteLog => 'Napló törlése';
 
   @override
-  String get fieldOps_logSubject => 'Bastion terepnapló';
+  String get fieldOps_logSubject => 'NOTORYX Core terepnapló';
 
   @override
   String get fieldOps_logCaveat =>
@@ -6226,7 +6226,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Minden alkalmazás-újraindítás után kikapcsol. A szabályok csak akkor futnak, ha az alkalmazás aktív. Az elmaradt ütemezett műveletek megjelennek a terepnaplóban, és soha nem pótlódnak egyszerre. Az automatikus bejelentkezések 10 percenként egy körre korlátozódnak.';
 
   @override
-  String get fieldOps_openBotMode => 'Bastion botmód megnyitása';
+  String get fieldOps_openBotMode => 'NOTORYX botmód megnyitása';
 
   @override
   String get fieldOps_ruleEnabled => 'Szabály engedélyezve';
@@ -6361,7 +6361,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Helyi jegyzet a rádió által sugárzott koordinátáknál; elavult lehet.';
 
   @override
-  String get bastionHome_aboutTooltip => 'A Bastionról';
+  String get bastionHome_aboutTooltip => 'A NOTORYX Core-ról';
 
   @override
   String get bastionHome_getStarted => 'ELSŐ LÉPÉSEK';
@@ -6422,7 +6422,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Túraösszefoglaló, felkészültség, terepnapló, automatizálások és lefedettség-összehasonlítás';
 
   @override
-  String get bastionHome_fieldTools => 'BASTION TEREPI ESZKÖZÖK';
+  String get bastionHome_fieldTools => 'NOTORYX TEREPI ESZKÖZÖK';
 
   @override
   String get bastionHome_statusActive => 'AKTÍV';
@@ -6486,14 +6486,14 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get bastionTools_aboutHint =>
-      'Bastion-verzió, függetlenségi nyilatkozat és nyílt forráskódú licencek';
+      'NOTORYX-Core-verzió, függetlenségi nyilatkozat és nyílt forráskódú licencek';
 
   @override
   String get bastionAbout_title => 'Névjegy + Köszönet';
 
   @override
   String get bastionAbout_intro =>
-      'Független közösségi kísérőalkalmazás MeshCore-hálózatokhoz. A Bastion nem hivatalos MeshCore-alkalmazás, és a közösségi források szerepeltetése nem jelent partnerséget vagy jóváhagyást.';
+      'Független közösségi kísérőalkalmazás MeshCore-hálózatokhoz. A NOTORYX Core nem hivatalos MeshCore-alkalmazás, és a közösségi források szerepeltetése nem jelent partnerséget vagy jóváhagyást.';
 
   @override
   String get bastionAbout_version => 'VERZIÓ';
@@ -6503,7 +6503,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'A Bastion a MeshCore Open MIT-licences nyílt forráskódjára épül, és azt módosítja. A lefedettségi munkafolyamat ahol releváns, a MIT-licences MeshMapper Flutter App érdemeit is elismeri.';
+      'A NOTORYX Core a MeshCore Open MIT-licences nyílt forráskódjára épül, és azt módosítja. A lefedettségi munkafolyamat ahol releváns, a MIT-licences MeshMapper Flutter App érdemeit is elismeri.';
 
   @override
   String get bastionAbout_community => 'A KÖZÖSSÉG AZ ELSŐ';
@@ -6513,13 +6513,14 @@ class AppLocalizationsHu extends AppLocalizations {
       'A harmadik féltől származó alkotói források alkotóik tulajdonában maradnak. Sem tulajdonjog, sem partnerség nem értendő bele.';
 
   @override
-  String get bastionAbout_legalese => 'Bastion • Független MeshCore-kísérő';
+  String get bastionAbout_legalese =>
+      'NOTORYX Core • Független MeshCore-kísérő';
 
   @override
   String get bastionAbout_licenses => 'NYÍLT FORRÁSKÓDÚ LICENCEK';
 
   @override
-  String get bastionSetup_title => 'Első lépések a Bastionnal';
+  String get bastionSetup_title => 'Első lépések a NOTORYX Core-ral';
 
   @override
   String get bastionSetup_intro =>
@@ -6542,7 +6543,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Ha a Bluetooth-keresés üres, ellenőrizze, hogy a Bluetooth be van-e kapcsolva, és hogy a Bastion rendelkezik-e a Közeli eszközök engedéllyel az Android alkalmazásbeállításaiban. Kövesse a szkenner által megjelenített további engedélykéréseket.';
+      'Ha a Bluetooth-keresés üres, ellenőrizze, hogy a Bluetooth be van-e kapcsolva, és hogy a NOTORYX Core rendelkezik-e a Közeli eszközök engedéllyel az Android alkalmazásbeállításaiban. Kövesse a szkenner által megjelenített további engedélykéréseket.';
 
   @override
   String get bastionSetup_connectionDiagnostics => 'Kapcsolatdiagnosztika';
@@ -6707,7 +6708,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'A Bastion rögzíti a munkamenet során újonnan hallott csomópontokat, beleértve az útvonaladatokat, a csomópont-/helymetaadatokat és a rádió legközelebbi elérhető RSSI/SNR pillanatképét.';
+      'A NOTORYX Core rögzíti a munkamenet során újonnan hallott csomópontokat, beleértve az útvonaladatokat, a csomópont-/helymetaadatokat és a rádió legközelebbi elérhető RSSI/SNR pillanatképét.';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6777,10 +6778,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get coverage_pathDirect => 'közvetlen';
 
   @override
-  String get coverage_shareSubject => 'Bastion lefedettségi munkamenet';
+  String get coverage_shareSubject => 'NOTORYX Core lefedettségi munkamenet';
 
   @override
-  String get coverage_shareText => 'Bastion lefedettségrögzítési export';
+  String get coverage_shareText => 'NOTORYX Core lefedettségrögzítési export';
 
   @override
   String get coverage_historyTitle => 'Mentett lefedettségi munkamenetek';
@@ -6871,7 +6872,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldStats_snapshot => 'ÉLŐ HÁLÓZATI PILLANATKÉP';
 
   @override
-  String get fieldStats_headline => 'Amit a Bastion most tud.';
+  String get fieldStats_headline => 'Amit a NOTORYX Core most tud.';
 
   @override
   String get fieldStats_body =>
@@ -6912,7 +6913,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'A Bastion útvonalelemzése mentett útkísérleteket, ugrásszámokat, sikereket/hibákat, átfutási időt és útvonalsúlyozást használ a tanult útvonalak megjelenítéséhez.';
+      'A NOTORYX Core útvonalelemzése mentett útkísérleteket, ugrásszámokat, sikereket/hibákat, átfutási időt és útvonalsúlyozást használ a tanult útvonalak megjelenítéséhez.';
 
   @override
   String get fieldStats_coverageSessions => 'LEFEDETTSÉGI MUNKAMENETEK';
@@ -6922,11 +6923,11 @@ class AppLocalizationsHu extends AppLocalizations {
       'A lefedettségrögzítés mostantól menti a terepi munkameneteket, visszaállítja a megszakított munkát, exportálja a megfigyeléseket és térképre viszi a rögzített lefedettségi pontokat. Az RSSI/SNR továbbra is a legközelebbi elérhető rádiós pillanatkép.';
 
   @override
-  String get mapHub_title => 'BASTION TEREPI TÉRKÉP';
+  String get mapHub_title => 'NOTORYX TEREPI TÉRKÉP';
 
   @override
   String get mapHub_intro =>
-      'Élő térképek, offline területek, regionális profilok és Bastion terepi lefedettségi munkamenetek.';
+      'Élő térképek, offline területek, regionális profilok és NOTORYX Core terepi lefedettségi munkamenetek.';
 
   @override
   String get mapHub_captureHint =>
@@ -6974,7 +6975,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'A Bastion a valós üzenetküldési kísérletekből és felderítésekből már megtanult útelőzmények alapján rangsorolja a mentett útvonalakat.';
+      'A NOTORYX Core a valós üzenetküldési kísérletekből és felderítésekből már megtanult útelőzmények alapján rangsorolja a mentett útvonalakat.';
 
   @override
   String get routes_routes => 'ÚTVONALAK';
@@ -7005,7 +7006,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get routes_noneBody =>
-      'Használja a hálózatot a szokásos módon, vagy indítson felderítést. A Bastion itt jeleníti meg a tanult útvonalakat, amint útelőzmények állnak rendelkezésre.';
+      'Használja a hálózatot a szokásos módon, vagy indítson felderítést. A NOTORYX Core itt jeleníti meg a tanult útvonalakat, amint útelőzmények állnak rendelkezésre.';
 
   @override
   String get routes_direct => 'KÖZVETLEN';
@@ -7095,15 +7096,15 @@ class AppLocalizationsHu extends AppLocalizations {
       'Még nincs felderített ismétlő. Csatlakoztasson egy rádiót, és előbb derítse fel a hálózatot.';
 
   @override
-  String get notification_fieldAlertTitle => 'Bastion terepi riasztás';
+  String get notification_fieldAlertTitle => 'NOTORYX terepi riasztás';
 
   @override
   String get notification_checkInReminderTitle =>
-      'Bastion bejelentkezési emlékeztető';
+      'NOTORYX Core bejelentkezési emlékeztető';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return '$minutes perce nincs bejelentkezés a(z) $trip túrán. Nyissa meg a Bastiont a bejelentkezéshez.';
+    return '$minutes perce nincs bejelentkezés a(z) $trip túrán. Nyissa meg a NOTORYX Core-t a bejelentkezéshez.';
   }
 
   @override
@@ -7140,7 +7141,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'Amíg a Bastion nyitva van. A némított csatornák csendben maradnak. Bármely üzenet felolvasható a menüjéből is.';
+      'Amíg a NOTORYX Core nyitva van. A némított csatornák csendben maradnak. Bármely üzenet felolvasható a menüjéből is.';
 
   @override
   String get settings_readAloudOff => 'Ki';

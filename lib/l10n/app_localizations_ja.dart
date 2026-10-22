@@ -9,7 +9,7 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'Bastion';
+  String get appTitle => 'NOTORYX Core';
 
   @override
   String get nav_contacts => '連絡先';
@@ -434,7 +434,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get common_interval => '間隔';
 
   @override
-  String get scanner_title => 'Bastion';
+  String get scanner_title => 'NOTORYX Core';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -879,7 +879,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'Bastion v$version';
+    return 'NOTORYX Core v$version';
   }
 
   @override
@@ -4541,10 +4541,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settings_gpxExportAllContacts => 'すべての連絡先場所';
 
   @override
-  String get settings_gpxExportShareText => 'Bastionからエクスポートされた地図データ';
+  String get settings_gpxExportShareText => 'NOTORYX Coreからエクスポートされた地図データ';
 
   @override
-  String get settings_gpxExportShareSubject => 'Bastion GPX形式の地図データのエクスポート';
+  String get settings_gpxExportShareSubject =>
+      'NOTORYX Core GPX形式の地図データのエクスポート';
 
   @override
   String get snrIndicator_nearByRepeaters => '近くのリピータ';
@@ -5431,7 +5432,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get checkIn_explainUnknown => '配信状態が不明です。このメッセージが届いたとは考えないでください。';
 
   @override
-  String get tripBrief_heading => 'BASTION • MeshCore 行程概要';
+  String get tripBrief_heading => 'NOTORYX • MeshCore 行程概要';
 
   @override
   String tripBrief_trip(String name) {
@@ -5517,7 +5518,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get tripBrief_sharesOnly => 'この概要は情報を共有するだけで、無線メッセージの送信や行程の開始は行いません。';
 
   @override
-  String get fieldOps_title => 'Bastion フィールド運用';
+  String get fieldOps_title => 'NOTORYX Core フィールド運用';
 
   @override
   String get fieldOps_tabTrip => '行程';
@@ -5701,7 +5702,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_shareBrief => '概要を共有';
 
   @override
-  String get fieldOps_briefSubject => 'Bastion 行程概要';
+  String get fieldOps_briefSubject => 'NOTORYX Core 行程概要';
 
   @override
   String get fieldOps_tripName => '行程名';
@@ -5725,7 +5726,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_reminderLabel => 'チェックインを通知';
 
   @override
-  String get fieldOps_reminderHelper => 'Bastion を閉じていても端末に通知します。';
+  String get fieldOps_reminderHelper => 'NOTORYX Core を閉じていても端末に通知します。';
 
   @override
   String get fieldOps_reminderOff => 'オフ';
@@ -5879,7 +5880,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_deleteLog => 'ログを削除';
 
   @override
-  String get fieldOps_logSubject => 'Bastion フィールドログ';
+  String get fieldOps_logSubject => 'NOTORYX Core フィールドログ';
 
   @override
   String get fieldOps_logCaveat =>
@@ -5941,7 +5942,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'アプリを再起動するたびにオフになります。ルールはアプリが動作している間だけ実行されます。実行されなかった予定の操作はフィールドログに表示され、まとめて再実行されることはありません。自動チェックインは10分ごとに1回までに制限されます。';
 
   @override
-  String get fieldOps_openBotMode => 'Bastion ボットモードを開く';
+  String get fieldOps_openBotMode => 'NOTORYX ボットモードを開く';
 
   @override
   String get fieldOps_ruleEnabled => 'ルール有効';
@@ -6070,7 +6071,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_noteTooltip => '無線機が発信した座標でのローカルメモ。古い可能性があります。';
 
   @override
-  String get bastionHome_aboutTooltip => 'Bastion について';
+  String get bastionHome_aboutTooltip => 'NOTORYX Core について';
 
   @override
   String get bastionHome_getStarted => 'はじめに';
@@ -6126,7 +6127,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get bastionHome_fieldOpsHint => '行程概要、準備、フィールドログ、自動化、カバレッジ比較';
 
   @override
-  String get bastionHome_fieldTools => 'BASTION フィールドツール';
+  String get bastionHome_fieldTools => 'NOTORYX フィールドツール';
 
   @override
   String get bastionHome_statusActive => '有効';
@@ -6182,14 +6183,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String get bastionTools_about => '情報 + クレジット';
 
   @override
-  String get bastionTools_aboutHint => 'Bastion のバージョン、独立性に関する声明、オープンソースライセンス';
+  String get bastionTools_aboutHint =>
+      'NOTORYX Core のバージョン、独立性に関する声明、オープンソースライセンス';
 
   @override
   String get bastionAbout_title => '情報 + クレジット';
 
   @override
   String get bastionAbout_intro =>
-      'MeshCore ネットワーク向けの独立したコミュニティ製コンパニオンアプリです。Bastion は MeshCore の公式アプリではなく、コミュニティのリソースを掲載していても提携や推奨を意味するものではありません。';
+      'MeshCore ネットワーク向けの独立したコミュニティ製コンパニオンアプリです。NOTORYX Core は MeshCore の公式アプリではなく、コミュニティのリソースを掲載していても提携や推奨を意味するものではありません。';
 
   @override
   String get bastionAbout_version => 'バージョン';
@@ -6199,7 +6201,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'Bastion は MIT ライセンスの MeshCore Open のオープンソースコードをもとに作られ、それを改変しています。カバレッジ機能の作業では、該当する場合に MIT ライセンスの MeshMapper Flutter App のクレジットも記載しています。';
+      'NOTORYX Core は MIT ライセンスの MeshCore Open のオープンソースコードをもとに作られ、それを改変しています。カバレッジ機能の作業では、該当する場合に MIT ライセンスの MeshMapper Flutter App のクレジットも記載しています。';
 
   @override
   String get bastionAbout_community => 'コミュニティ第一';
@@ -6209,13 +6211,13 @@ class AppLocalizationsJa extends AppLocalizations {
       '第三者のクリエイターのリソースは、それぞれのクリエイターに帰属します。所有権や提携を意味するものではありません。';
 
   @override
-  String get bastionAbout_legalese => 'Bastion • 独立した MeshCore コンパニオン';
+  String get bastionAbout_legalese => 'NOTORYX Core • 独立した MeshCore コンパニオン';
 
   @override
   String get bastionAbout_licenses => 'オープンソースライセンス';
 
   @override
-  String get bastionSetup_title => 'Bastion をはじめる';
+  String get bastionSetup_title => 'NOTORYX Core をはじめる';
 
   @override
   String get bastionSetup_intro =>
@@ -6238,7 +6240,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Bluetoothの検索結果が空の場合は、Bluetoothがオンになっていること、Android のアプリ設定で Bastion に「付近のデバイス」の権限があることを確認してください。スキャナーが表示する追加の権限リクエストにも従ってください。';
+      'Bluetoothの検索結果が空の場合は、Bluetoothがオンになっていること、Android のアプリ設定で NOTORYX Core に「付近のデバイス」の権限があることを確認してください。スキャナーが表示する追加の権限リクエストにも従ってください。';
 
   @override
   String get bastionSetup_connectionDiagnostics => '接続の診断';
@@ -6398,7 +6400,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'Bastion はこのセッション中に新たに受信したノードを記録します。ルートデータ、ノード/位置のメタデータ、最も近い無線機のRSSI/SNRスナップショットを含みます。';
+      'NOTORYX Core はこのセッション中に新たに受信したノードを記録します。ルートデータ、ノード/位置のメタデータ、最も近い無線機のRSSI/SNRスナップショットを含みます。';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6468,10 +6470,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get coverage_pathDirect => '直接';
 
   @override
-  String get coverage_shareSubject => 'Bastion カバレッジセッション';
+  String get coverage_shareSubject => 'NOTORYX Core カバレッジセッション';
 
   @override
-  String get coverage_shareText => 'Bastion カバレッジ記録のエクスポート';
+  String get coverage_shareText => 'NOTORYX Core カバレッジ記録のエクスポート';
 
   @override
   String get coverage_historyTitle => '保存済みカバレッジセッション';
@@ -6559,7 +6561,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldStats_snapshot => 'メッシュのライブスナップショット';
 
   @override
-  String get fieldStats_headline => '今 Bastion が把握していること。';
+  String get fieldStats_headline => '今 NOTORYX Core が把握していること。';
 
   @override
   String get fieldStats_body =>
@@ -6600,7 +6602,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'Bastion のルート分析は、保存された経路の試行、ホップ数、成功/失敗、所要時間、ルートの重み付けを使って学習済みルートを表示します。';
+      'NOTORYX Core のルート分析は、保存された経路の試行、ホップ数、成功/失敗、所要時間、ルートの重み付けを使って学習済みルートを表示します。';
 
   @override
   String get fieldStats_coverageSessions => 'カバレッジセッション';
@@ -6610,11 +6612,11 @@ class AppLocalizationsJa extends AppLocalizations {
       'カバレッジ記録はフィールドセッションの保存、中断した作業の復元、観測のエクスポート、記録したカバレッジ地点の地図表示に対応しました。RSSI/SNRは引き続き最も近い無線機のスナップショットです。';
 
   @override
-  String get mapHub_title => 'BASTION フィールドマップ';
+  String get mapHub_title => 'NOTORYX フィールドマップ';
 
   @override
   String get mapHub_intro =>
-      'ライブマップ、オフラインエリア、地域プロファイル、Bastion のフィールドカバレッジセッション。';
+      'ライブマップ、オフラインエリア、地域プロファイル、NOTORYX Core のフィールドカバレッジセッション。';
 
   @override
   String get mapHub_captureHint => 'フィールドカバレッジセッションを開始・停止';
@@ -6657,7 +6659,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'Bastion は、実際のメッセージ送信や探索から学習済みの経路履歴を使って保存済みルートを順位付けします。';
+      'NOTORYX Core は、実際のメッセージ送信や探索から学習済みの経路履歴を使って保存済みルートを順位付けします。';
 
   @override
   String get routes_routes => 'ルート';
@@ -6774,14 +6776,14 @@ class AppLocalizationsJa extends AppLocalizations {
       'リピーターはまだ検出されていません。無線機を接続して、まずメッシュを探索してください。';
 
   @override
-  String get notification_fieldAlertTitle => 'Bastion フィールドアラート';
+  String get notification_fieldAlertTitle => 'NOTORYX フィールドアラート';
 
   @override
-  String get notification_checkInReminderTitle => 'Bastion チェックインのリマインダー';
+  String get notification_checkInReminderTitle => 'NOTORYX Core チェックインのリマインダー';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return '$tripで$minutes分間チェックインがありません。Bastion を開いてチェックインしてください。';
+    return '$tripで$minutes分間チェックインがありません。NOTORYX Core を開いてチェックインしてください。';
   }
 
   @override
@@ -6818,7 +6820,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'Bastion を開いている間だけ。ミュートしたチャンネルは読み上げません。各メッセージのメニューからも読み上げできます。';
+      'NOTORYX Core を開いている間だけ。ミュートしたチャンネルは読み上げません。各メッセージのメニューからも読み上げできます。';
 
   @override
   String get settings_readAloudOff => 'オフ';

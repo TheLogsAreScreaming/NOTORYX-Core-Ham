@@ -64,7 +64,7 @@ class AppSettingsScreen extends StatelessWidget {
                       children: [
                         ListTile(
                           leading: const Icon(Icons.smart_toy_outlined),
-                          title: const Text('Bastion Bot Mode'),
+                          title: const Text('NOTORYX Bot Mode'),
                           subtitle: const Text(
                             'Local auto replies, commands and keyword rules',
                           ),

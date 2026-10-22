@@ -372,7 +372,7 @@ void main() {
         .setMockMethodCallHandler(
           const MethodChannel('dev.fluttercommunity.plus/package_info'),
           (call) async => {
-            'appName': 'Bastion',
+            'appName': 'NOTORYX Core',
             'packageName': 'preview',
             'version': '0.0.0',
             'buildNumber': '0',

@@ -34,7 +34,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     final s = c.latestRadioStats;
     final now = DateTime.now().toIso8601String();
     final lines = <String>[
-      'Bastion Diagnostics',
+      'NOTORYX Core Diagnostics',
       'Generated: $now',
       '',
       'Connection',
@@ -76,8 +76,8 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     if (!context.mounted) return;
     await SharePlus.instance.share(
       ShareParams(
-        subject: 'Bastion Diagnostics',
-        text: 'Bastion diagnostics export',
+        subject: 'NOTORYX Core Diagnostics',
+        text: 'NOTORYX Core diagnostics export',
         files: [XFile(file.path)],
       ),
     );
@@ -99,7 +99,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'BASTION',
+              'NOTORYX',
               style: TextStyle(
                 color: _cyan,
                 fontSize: 10,

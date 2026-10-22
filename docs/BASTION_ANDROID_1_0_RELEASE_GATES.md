@@ -1,4 +1,4 @@
-# Bastion Android 1.0 release gates
+# NOTORYX Core Android 1.0 release gates
 
 This document is a release checklist, not a claim that the app has passed device testing.
 
@@ -14,16 +14,16 @@ Android ARM64 is the first production target. iOS/desktop and optional observer/
 - [ ] Path selection, route scoring and message retry tests succeed.
 - [ ] BLE, USB and TCP transport tests succeed.
 - [ ] Launcher and adaptive icon resources are present in the APK.
-- [ ] App label is Bastion and launcher activity resolves correctly.
+- [ ] App label is NOTORYX and launcher activity resolves correctly.
 - [ ] Version code increases for each distributed update.
-- [ ] Release APK is signed with the permanent Bastion signing key (not the Android debug key).
+- [ ] Release APK is signed with the permanent release signing key, the original Bastion key, not the Android debug key.
 - [ ] Record the release commit, artifact SHA-256 and signing certificate fingerprint.
 
 ## Gate B — physical-device smoke tests
 
 Record the Android version, phone model, radio model, radio firmware, transport and pass/fail for each case.
 
-- [ ] Fresh install opens without crashing and displays the approved Bastion icon.
+- [ ] Fresh install opens without crashing and displays the approved NOTORYX Core icon.
 - [ ] Upgrade from a previous build preserves messages, contacts, settings and coverage sessions when signed with the same key.
 - [ ] BLE scan, connect, disconnect, reconnect and permission denial/recovery.
 - [ ] USB connection, cable unplug/replug and permission denial/recovery on a supported phone.
@@ -43,7 +43,7 @@ Record the Android version, phone model, radio model, radio firmware, transport 
 Each needs at least two radios; note which ones.
 
 - [ ] **SOS:** a tap does nothing, and a 2-second hold sends to the trip contacts and SOS channel. A repeat goes out 5 minutes later, including with the screen locked and the app in the background. A reply from a trip contact stops repeats and notifies. "I'm safe" sends one all clear.
-- [ ] **Check-in reminder:** set it to 30 minutes, start a trip, then force-close Bastion. The notification arrives, possibly a few minutes late, and moves forward after each check-in.
+- [ ] **Check-in reminder:** set it to 30 minutes, start a trip, then force-close NOTORYX Core. The notification arrives, possibly a few minutes late, and moves forward after each check-in.
 - [ ] **Overdue alert:** with the contact's radio off, one alert arrives after the set time. Turning that radio back on (advert or message) clears it.
 - [ ] **Check-in delivery:** the headline and chips match reality. With one recipient out of range, they show as not delivered and an alert fires. Resend reaches only them.
 - [ ] **Remote command line (v1.18+ companions):** a command from a contact without permission is blocked and alerts. After allowing them, `get name` from their phone gets a reply.

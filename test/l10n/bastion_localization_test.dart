@@ -52,8 +52,8 @@ void main() {
   test('the app name and safety wording survive translation', () {
     for (final locale in AppLocalizations.supportedLocales) {
       final t = lookupAppLocalizations(locale);
-      expect(t.tripBrief_heading, contains('BASTION'));
-      expect(t.fieldOps_title, contains('Bastion'));
+      expect(t.tripBrief_heading, contains('NOTORYX'));
+      expect(t.fieldOps_title, contains('NOTORYX'));
       expect(t.sos_active, contains('SOS'));
     }
   });

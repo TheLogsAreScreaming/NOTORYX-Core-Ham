@@ -137,7 +137,7 @@ class _BastionCoverageCaptureScreenState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'BASTION',
+                'NOTORYX',
                 style: TextStyle(
                   color: cyan,
                   fontSize: 10,

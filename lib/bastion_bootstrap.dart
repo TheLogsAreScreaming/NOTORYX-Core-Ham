@@ -14,7 +14,7 @@ class BastionBootstrapApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bastion',
+      title: 'NOTORYX Core',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -56,7 +56,7 @@ class BastionStartupScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  'BASTION',
+                  'NOTORYX',
                   style: TextStyle(
                     fontSize: 34,
                     fontWeight: FontWeight.w800,

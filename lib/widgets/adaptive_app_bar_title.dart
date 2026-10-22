@@ -16,7 +16,7 @@ class AdaptiveAppBarTitle extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'BASTION',
+              'NOTORYX',
               maxLines: 1,
               style: TextStyle(
                 color: cyan,

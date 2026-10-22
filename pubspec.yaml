@@ -1,5 +1,5 @@
 name: meshcore_open
-description: "Bastion"
+description: "NOTORYX Core: an independent MeshCore LoRa companion app"
 publish_to: 'none'
 version: 10.0.0-rc.11+62
 

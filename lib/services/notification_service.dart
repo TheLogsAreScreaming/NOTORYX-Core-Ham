@@ -73,7 +73,7 @@ class NotificationService {
       requestSoundPermission: true,
     );
     const windowsSettings = WindowsInitializationSettings(
-      appName: 'Bastion',
+      appName: 'NOTORYX Core',
       appUserModelId: 'org.meshcore.open.app',
       guid: 'e7ea8f85-72f5-4f36-91f6-038f740ccf86',
     );
@@ -165,7 +165,7 @@ class NotificationService {
         notificationDetails: const NotificationDetails(
           android: AndroidNotificationDetails(
             'bastion_field',
-            'Bastion Field Alerts',
+            'NOTORYX Field Alerts',
             channelDescription: 'Opt-in trip automation alerts',
             importance: Importance.defaultImportance,
             priority: Priority.defaultPriority,
@@ -184,7 +184,7 @@ class NotificationService {
   static const _fieldDetails = NotificationDetails(
     android: AndroidNotificationDetails(
       'bastion_field',
-      'Bastion Field Alerts',
+      'NOTORYX Field Alerts',
       channelDescription: 'Opt-in trip automation alerts',
       importance: Importance.defaultImportance,
       priority: Priority.defaultPriority,

@@ -68,8 +68,8 @@ class BotSettings {
     this.enabled = false,
     this.awayEnabled = true,
     this.shareLocation = false,
-    this.awayMessage = "I'm away. Your message was received by Bastion.",
-    this.info = 'Bastion',
+    this.awayMessage = "I'm away. Your message was received by NOTORYX Core.",
+    this.info = 'NOTORYX Core',
     this.checkIn = 'No check-in status configured.',
     this.cooldownSeconds = 300,
     this.repliesPerMinute = 3,
@@ -126,8 +126,8 @@ class BotSettings {
     shareLocation: json['shareLocation'] as bool? ?? false,
     awayMessage:
         json['awayMessage'] as String? ??
-        "I'm away. Your message was received by Bastion.",
-    info: json['info'] as String? ?? 'Bastion',
+        "I'm away. Your message was received by NOTORYX Core.",
+    info: json['info'] as String? ?? 'NOTORYX Core',
     checkIn: json['checkIn'] as String? ?? 'No check-in status configured.',
     cooldownSeconds: (json['cooldownSeconds'] as int? ?? 300).clamp(60, 3600),
     repliesPerMinute: (json['repliesPerMinute'] as int? ?? 3).clamp(1, 6),
