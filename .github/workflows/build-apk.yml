@@ -1,8 +1,10 @@
 name: Build NOTORYX Core APK
 
 # Installable Android build for testing: every push to dev and every PR
-# produces a downloadable "Bastion-Android-ARM64" artifact (Actions run page,
-# Artifacts section). Not a store release.
+# produces a downloadable "NOTORYX-Core-Android-ARM64" artifact (Actions run
+# page, Artifacts section). Pushes to dev and manual runs also produce
+# "NOTORYX-Core-Android-AAB" for Google Play. Both are debug-signed here and
+# must be re-signed with the release key on the maintainer's Mac.
 on:
   push:
     branches:
@@ -79,3 +81,25 @@ jobs:
           path: dist/
           if-no-files-found: error
           retention-days: 30
+
+      - name: Build release app bundle
+        if: github.event_name != 'pull_request'
+        run: flutter build appbundle --release --no-pub
+
+      - name: Prepare app bundle artifact
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          mkdir -p dist-aab
+          cp build/app/outputs/bundle/release/app-release.aab dist-aab/NOTORYX-Core.aab
+          cd dist-aab
+          sha256sum NOTORYX-Core.aab > SHA256SUMS.txt
+          ls -lh
+
+      - name: Upload app bundle artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: NOTORYX-Core-Android-AAB
+          path: dist-aab/
+          if-no-files-found: error
