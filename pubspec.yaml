@@ -99,13 +99,18 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "branding/bastion-icon.png"
+  image_path: "branding/notoryx-icon.png"
   remove_alpha_ios: true
-  adaptive_icon_background: "#182126"
-  adaptive_icon_foreground: "branding/bastion-icon.png"
+  adaptive_icon_background: "#150F0D"
+  adaptive_icon_foreground: "branding/notoryx-icon-foreground.png"
   macos:
     generate: true
-    image_path: "branding/bastion-icon.png"
+    image_path: "branding/notoryx-icon-macos.png"
+  web:
+    generate: true
+    image_path: "branding/notoryx-icon.png"
+    background_color: "#150F0D"
+    theme_color: "#FF9A3C"
 
 build_pipe:
   workflows:
