@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../services/app_settings_service.dart';
 import '../theme/mesh_theme.dart';
 
-/// The four Bastion themes as tappable swatches; the choice applies at once.
+/// The Bastion themes as tappable swatches; the choice applies at once.
 class ThemePicker extends StatelessWidget {
   const ThemePicker({super.key});
 
@@ -14,7 +14,11 @@ class ThemePicker extends StatelessWidget {
     final selected = BastionTheme.fromId(settings.settings.appTheme);
     return LayoutBuilder(
       builder: (context, constraints) {
-        final columns = constraints.maxWidth >= 560 ? 4 : 2;
+        final columns = constraints.maxWidth >= 720
+            ? BastionTheme.values.length
+            : constraints.maxWidth >= 560
+            ? 3
+            : 2;
         const gap = 10.0;
         final width = (constraints.maxWidth - gap * (columns - 1)) / columns;
         return Wrap(
