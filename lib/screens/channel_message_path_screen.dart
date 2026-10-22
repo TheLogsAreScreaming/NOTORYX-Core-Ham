@@ -59,7 +59,10 @@ class ChannelMessagePathScreen extends StatelessWidget {
           hashByteWidth,
           resolveFromEnd: !message.isOutgoing,
         );
-        final hasHopDetails = primaryPath.isNotEmpty;
+        // A via-MQTT message carries the observer's path, not one from this
+        // radio, so its hops are not shown.
+        final viaMqtt = message.viaMqtt;
+        final hasHopDetails = !viaMqtt && primaryPath.isNotEmpty;
 
         // Convert observed path byte length to hop count using the packet width.
         // Legacy messages fall back to the current connector width.
@@ -79,7 +82,9 @@ class ChannelMessagePathScreen extends StatelessWidget {
           effectiveHopCount,
           l10n,
         );
-        final extraPaths = _otherPaths(primaryPath, message.pathVariants);
+        final extraPaths = viaMqtt
+            ? const <Uint8List>[]
+            : _otherPaths(primaryPath, message.pathVariants);
         return Scaffold(
           appBar: AppBar(
             title: AdaptiveAppBarTitle(l10n.channelPath_title),
@@ -87,18 +92,20 @@ class ChannelMessagePathScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.radar_outlined),
                 tooltip: l10n.channelPath_viewMap,
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PathTraceMapScreen(
-                      title: context.l10n.contacts_repeaterPathTrace,
-                      path: primaryPath,
-                      flipPathAround: true,
-                      reversePathAround: false,
-                      pathHashByteWidth: hashByteWidth,
-                    ),
-                  ),
-                ),
+                onPressed: viaMqtt
+                    ? null
+                    : () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PathTraceMapScreen(
+                            title: context.l10n.contacts_repeaterPathTrace,
+                            path: primaryPath,
+                            flipPathAround: true,
+                            reversePathAround: false,
+                            pathHashByteWidth: hashByteWidth,
+                          ),
+                        ),
+                      ),
               ),
               IconButton(
                 icon: const Icon(Icons.map_outlined),
@@ -135,7 +142,9 @@ class ChannelMessagePathScreen extends StatelessWidget {
                   l10n.channelPath_repeaterHops,
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 ),
-                if (!hasHopDetails)
+                if (viaMqtt)
+                  _buildViaMqttCard(context, l10n)
+                else if (!hasHopDetails)
                   _buildNoHopCard(context, l10n)
                 else ...[
                   Padding(
@@ -165,7 +174,7 @@ class ChannelMessagePathScreen extends StatelessWidget {
   }) {
     final l10n = context.l10n;
     final scheme = Theme.of(context).colorScheme;
-    final routeChip = effectiveHopCount == null
+    final routeChip = effectiveHopCount == null || message.viaMqtt
         ? null
         : effectiveHopCount < 0
         ? const RouteChip(isDirect: false)
@@ -208,13 +217,21 @@ class ChannelMessagePathScreen extends StatelessWidget {
               message.repeatCount.toString(),
               scheme: scheme,
             ),
-          _buildDetailRow(
-            context,
-            l10n.channelPath_pathLabelTitle,
-            _formatPathLabel(effectiveHopCount, l10n),
-            scheme: scheme,
-          ),
-          if (observedLabel != null)
+          if (message.viaMqtt)
+            _buildDetailRow(
+              context,
+              l10n.channelPath_sourceLabel,
+              l10n.channelPath_sourceMqtt,
+              scheme: scheme,
+            )
+          else
+            _buildDetailRow(
+              context,
+              l10n.channelPath_pathLabelTitle,
+              _formatPathLabel(effectiveHopCount, l10n),
+              scheme: scheme,
+            ),
+          if (observedLabel != null && !message.viaMqtt)
             _buildDetailRow(
               context,
               l10n.channelPath_observedLabel,
@@ -299,6 +316,26 @@ class ChannelMessagePathScreen extends StatelessWidget {
           Expanded(
             child: Text(
               l10n.channelPath_noHopDetails,
+              style: TextStyle(color: scheme.onSurfaceVariant),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildViaMqttCard(BuildContext context, AppLocalizations l10n) {
+    final scheme = Theme.of(context).colorScheme;
+    return MeshCard(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      padding: const EdgeInsets.all(14),
+      child: Row(
+        children: [
+          Icon(Icons.cloud_outlined, size: 20, color: scheme.onSurfaceVariant),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              l10n.channelPath_viaMqttNoRfPath,
               style: TextStyle(color: scheme.onSurfaceVariant),
             ),
           ),

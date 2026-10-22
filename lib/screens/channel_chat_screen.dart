@@ -55,6 +55,7 @@ import '../widgets/radio_stats_entry.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/translated_message_content.dart';
 import '../widgets/unread_divider.dart';
+import '../widgets/via_mqtt_label.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
 import 'app_settings_screen.dart';
@@ -812,7 +813,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                               buildTextContent(),
                             ],
                           ),
-                        if (enableTracing && displayPath.isNotEmpty) ...[
+                        if (enableTracing &&
+                            displayPath.isNotEmpty &&
+                            !message.viaMqtt) ...[
                           const SizedBox(height: 3),
                           Padding(
                             padding: gifId != null
@@ -879,6 +882,17 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                     fontSize: 10 * textScale,
                                     color: metaColor,
                                   ),
+                                ),
+                              ],
+                              if (message.viaMqtt) ...[
+                                const SizedBox(width: 6),
+                                ViaMqttLabel(
+                                  // onSurfaceVariant keeps 4.5:1 on incoming
+                                  // bubbles in every theme.
+                                  color: isOutgoing
+                                      ? metaColor
+                                      : scheme.onSurfaceVariant,
+                                  textScale: textScale,
                                 ),
                               ],
                               if (isOutgoing) ...[

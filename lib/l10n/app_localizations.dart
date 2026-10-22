@@ -2854,6 +2854,18 @@ abstract class AppLocalizations {
   /// **'via {path}'**
   String channels_via(String path);
 
+  /// Small label on a channel message that reached the app only over MQTT, not over the user's radio.
+  ///
+  /// In en, this message translates to:
+  /// **'via MQTT'**
+  String get channels_viaMqtt;
+
+  /// Screen reader label for the via MQTT marker on a channel message.
+  ///
+  /// In en, this message translates to:
+  /// **'Received via MQTT, not heard by your radio'**
+  String get channels_viaMqttSemantics;
+
   /// No description provided for @channels_private.
   ///
   /// In en, this message translates to:
@@ -7147,6 +7159,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hop details are not provided for this packet.'**
   String get channelPath_noHopDetails;
+
+  /// No description provided for @channelPath_sourceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get channelPath_sourceLabel;
+
+  /// No description provided for @channelPath_sourceMqtt.
+  ///
+  /// In en, this message translates to:
+  /// **'MQTT'**
+  String get channelPath_sourceMqtt;
+
+  /// No description provided for @channelPath_viaMqttNoRfPath.
+  ///
+  /// In en, this message translates to:
+  /// **'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.'**
+  String get channelPath_viaMqttNoRfPath;
 
   /// No description provided for @channelPath_messageDetails.
   ///

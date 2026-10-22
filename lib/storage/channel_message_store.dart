@@ -120,6 +120,7 @@ class ChannelMessageStore {
       'replyToSenderName': msg.replyToSenderName,
       'replyToText': msg.replyToText,
       'reactions': msg.reactions,
+      'viaMqtt': msg.viaMqtt,
     };
   }
 
@@ -203,6 +204,7 @@ class ChannelMessageStore {
             ),
           ) ??
           {},
+      viaMqtt: (json['viaMqtt'] as bool?) ?? false,
     );
   }
 

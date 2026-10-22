@@ -1490,6 +1490,13 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get channels_viaMqtt => 'via MQTT';
+
+  @override
+  String get channels_viaMqttSemantics =>
+      'Received via MQTT, not heard by your radio';
+
+  @override
   String get channels_private => '사립';
 
   @override
@@ -3921,6 +3928,16 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get channelPath_noHopDetails => '이 패키지에 대한 자세한 정보는 제공되지 않습니다.';
+
+  @override
+  String get channelPath_sourceLabel => 'Source';
+
+  @override
+  String get channelPath_sourceMqtt => 'MQTT';
+
+  @override
+  String get channelPath_viaMqttNoRfPath =>
+      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
 
   @override
   String get channelPath_messageDetails => '메시지 세부 정보';
