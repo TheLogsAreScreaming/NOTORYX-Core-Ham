@@ -8,11 +8,13 @@ import 'package:pointycastle/export.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_blue_plus_platform_interface/flutter_blue_plus_platform_interface.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/channel.dart';
 import '../models/channel_message.dart';
 import '../models/companion_radio_stats.dart';
 import '../models/radio_rx_packet.dart';
+import '../models/saved_radio.dart';
 import '../models/contact.dart';
 import '../models/flood_corridor.dart';
 import '../models/message.dart';
@@ -55,6 +57,7 @@ import '../storage/contact_discovery_store.dart';
 import '../storage/contact_settings_store.dart';
 import '../storage/contact_store.dart';
 import '../storage/message_store.dart';
+import '../storage/prefs_manager.dart';
 import '../storage/unread_store.dart';
 import '../utils/app_logger.dart';
 import '../utils/battery_utils.dart';
@@ -230,6 +233,19 @@ class MeshCoreConnector extends ChangeNotifier {
   final ValueNotifier<CompanionRadioStats?> radioStatsNotifier =
       ValueNotifier<CompanionRadioStats?>(null);
   int _reconnectAttempts = 0;
+  StreamSubscription<BluetoothAdapterState>? _adapterStateSubscription;
+  BluetoothAdapterState _adapterState = BluetoothAdapterState.unknown;
+  // Set when Bluetooth went off while a BLE link was up, connecting or about
+  // to retry, so exactly one reconnect is scheduled when it comes back.
+  bool _resumeBleWhenAdapterOn = false;
+  // Bumped by every BLE connect and every disconnect. A connect attempt that
+  // sees a newer generation after an await was superseded and must stop.
+  int _connectGeneration = 0;
+  Future<void>? _disconnectInFlight;
+  String? _lastConnectionError;
+  double? _lastRxSnr;
+  int? _lastRxRssi;
+  DateTime? _lastRxSignalAt;
   bool _notifyListenersDirty = false;
   static const Duration _notifyListenersDebounce = Duration(milliseconds: 50);
 
@@ -455,6 +471,48 @@ class MeshCoreConnector extends ChangeNotifier {
       _activeTransport == MeshCoreTransportType.usb;
   bool get isAutoReconnectScheduled =>
       _shouldAutoReconnect && (_reconnectTimer?.isActive ?? false);
+
+  /// Whether the Bluetooth adapter is known to be off (or turning off).
+  /// False while the adapter state is unknown, e.g. on web or before the
+  /// first platform report.
+  bool get isBluetoothOff =>
+      _adapterState == BluetoothAdapterState.off ||
+      _adapterState == BluetoothAdapterState.turningOff;
+
+  /// Human-readable cause of the last failed or dropped radio connection.
+  /// Cleared when a connection succeeds.
+  String? get lastConnectionError => _lastConnectionError;
+
+  /// SNR (dB) of the last packet the radio heard, from LOG_RX_DATA.
+  double? get lastRxSnr => _lastRxSnr;
+
+  /// RSSI (dBm) of the last packet the radio heard, from LOG_RX_DATA.
+  int? get lastRxRssi => _lastRxRssi;
+  DateTime? get lastRxSignalAt => _lastRxSignalAt;
+
+  /// Public key prefix (first 6 bytes, hex) of the connected radio.
+  String? get selfPublicKeyPrefixHex {
+    final key = _selfPublicKey;
+    if (key == null || key.isEmpty) return null;
+    return pubKeyToHex(key.sublist(0, key.length < 6 ? key.length : 6));
+  }
+
+  /// The last radio this app connected to, or null. Never secrets: only the
+  /// transport and its address.
+  SavedRadio? get savedRadio {
+    final prefs = _prefsOrNull;
+    return prefs == null ? null : SavedRadio.load(prefs);
+  }
+
+  /// Replaces the platform BLE link steps (connect, MTU, discovery, notify)
+  /// in tests, so connection bookkeeping can run without a radio.
+  @visibleForTesting
+  Future<void> Function(BluetoothDevice device)? debugBleLinkOverride;
+
+  /// Replaces the platform BLE disconnect in tests.
+  @visibleForTesting
+  Future<void> Function(BluetoothDevice device)? debugBleUnlinkOverride;
+
   String? get activeTcpEndpoint => _tcpConnector.activeEndpoint;
   bool get isTcpTransportConnected =>
       _state == MeshCoreConnectionState.connected &&
@@ -1269,6 +1327,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _timeoutPredictionService = timeoutPredictionService;
     _usbManager.setDebugLogService(_appDebugLogService);
     _tcpConnector.setDebugLogService(_appDebugLogService);
+    _watchBluetoothAdapter();
 
     // Initialize notification service
     _notificationService.initialize();
@@ -1945,6 +2004,8 @@ class MeshCoreConnector extends ChangeNotifier {
     required String portName,
     int baudRate = 115200,
   }) async {
+    final pendingDisconnect = _disconnectInFlight;
+    if (pendingDisconnect != null) await pendingDisconnect;
     if (_state == MeshCoreConnectionState.connecting ||
         _state == MeshCoreConnectionState.connected) {
       _appDebugLogService?.warn(
@@ -2037,14 +2098,19 @@ class MeshCoreConnector extends ChangeNotifier {
       _appDebugLogService?.info('connectUsb: syncing time…', tag: 'USB');
       await syncTime();
       _appDebugLogService?.info('connectUsb: complete', tag: 'USB');
+      _lastConnectionError = null;
+      unawaited(_rememberRadio(SavedRadioTransport.usb, portName));
     } catch (error) {
       _appDebugLogService?.error('USB connection error: $error', tag: 'USB');
+      _lastConnectionError = describeConnectionError(error);
       await disconnect(manual: false);
       rethrow;
     }
   }
 
   Future<void> connectTcp({required String host, required int port}) async {
+    final pendingDisconnect = _disconnectInFlight;
+    if (pendingDisconnect != null) await pendingDisconnect;
     if (_state == MeshCoreConnectionState.connecting ||
         _state == MeshCoreConnectionState.connected) {
       _appDebugLogService?.warn(
@@ -2140,6 +2206,8 @@ class MeshCoreConnector extends ChangeNotifier {
       }
 
       await syncTime();
+      _lastConnectionError = null;
+      unawaited(_rememberRadio(SavedRadioTransport.tcp, '$host:$port'));
     } catch (error) {
       _appDebugLogService?.error('TCP connection error: $error', tag: 'TCP');
       final tcpConnectCancelledBeforeHandshake =
@@ -2156,6 +2224,7 @@ class MeshCoreConnector extends ChangeNotifier {
         );
         return;
       }
+      _lastConnectionError = describeConnectionError(error);
       await disconnect(manual: false);
       rethrow;
     }
@@ -2200,17 +2269,36 @@ class MeshCoreConnector extends ChangeNotifier {
     Future<String?> Function()? linuxPairingPinProvider,
     bool automaticReconnect = false,
   }) async {
+    final targetId = device.remoteId.toString();
+    final pendingDisconnect = _disconnectInFlight;
+    if (pendingDisconnect != null) await pendingDisconnect;
     if (_state == MeshCoreConnectionState.connecting ||
         _state == MeshCoreConnectionState.connected) {
-      return;
+      final sameTarget =
+          _activeTransport == MeshCoreTransportType.bluetooth &&
+          _deviceId == targetId;
+      // A retry timer must never replace a live link, and asking for the
+      // device that is already connecting or connected is a no-op.
+      if (sameTarget || automaticReconnect) return;
+      _appDebugLogService?.info(
+        'Replacing $_state ${_activeTransport.name} link ($_deviceId) with $targetId',
+        tag: 'BLE Connect',
+      );
+      await disconnect();
+      // Another request may have claimed the radio while the old link closed.
+      if (_state == MeshCoreConnectionState.connecting ||
+          _state == MeshCoreConnectionState.connected) {
+        return;
+      }
     }
 
+    final generation = ++_connectGeneration;
     _activeTransport = MeshCoreTransportType.bluetooth;
 
     await stopScan();
     _setState(MeshCoreConnectionState.connecting);
     _device = device;
-    _deviceId = device.remoteId.toString();
+    _deviceId = targetId;
     if (displayName != null && displayName.trim().isNotEmpty) {
       _deviceDisplayName = displayName.trim();
     } else if (device.platformName.isNotEmpty) {
@@ -2238,340 +2326,42 @@ class MeshCoreConnector extends ChangeNotifier {
         'Starting connect to $connectLabel',
         tag: 'BLE Connect',
       );
-      await _connectionSubscription?.cancel();
-      _connectionSubscription = null;
-      await _notifySubscription?.cancel();
-      _notifySubscription = null;
-      _connectionSubscription = device.connectionState.listen((state) {
-        if (state == BluetoothConnectionState.disconnected && isConnected) {
-          _handleDisconnection();
-        }
-      });
-
-      if (PlatformInfo.isLinux) {
-        final remoteId = device.remoteId.str;
-        _appDebugLogService?.info(
-          'Linux pre-connect BlueZ disconnect for $remoteId',
-          tag: 'BLE Connect',
-        );
-        await _linuxBlePairingService.disconnectDevice(
-          remoteId,
-          onLog: (message) {
-            _appDebugLogService?.info(message, tag: 'BLE Pair');
-          },
-        );
-      }
-
-      final connectTimeout = PlatformInfo.isLinux
-          ? const Duration(seconds: 6)
-          : const Duration(seconds: 15);
-      _appDebugLogService?.info(
-        'device.connect timeout set to ${connectTimeout.inSeconds}s',
-        tag: 'BLE Connect',
-      );
-      if (PlatformInfo.isLinux) {
-        Future<void> attemptConnect() {
-          return device
-              .connect(
-                timeout: connectTimeout,
-                mtu: null,
-                license: License.nonprofit,
-              )
-              .timeout(
-                connectTimeout + const Duration(seconds: 2),
-                onTimeout: () {
-                  throw TimeoutException(
-                    'Linux connect hard-timeout after ${connectTimeout.inSeconds + 2}s',
-                  );
-                },
-              );
-        }
-
-        try {
-          await attemptConnect();
-        } catch (error) {
-          _appDebugLogService?.error(
-            'device.connect() failure: $error',
-            tag: 'BLE Connect',
-          );
-          final remoteId = device.remoteId.str;
-          _appDebugLogService?.warn(
-            'Linux immediate retry: forcing BlueZ disconnect before second connect attempt',
-            tag: 'BLE Connect',
-          );
-          await _linuxBlePairingService.disconnectDevice(
-            remoteId,
-            onLog: (message) {
-              _appDebugLogService?.info(message, tag: 'BLE Pair');
-            },
-          );
-          await Future<void>.delayed(const Duration(milliseconds: 700));
-          try {
-            await attemptConnect();
-            _appDebugLogService?.info(
-              'Linux immediate retry connect succeeded',
-              tag: 'BLE Connect',
-            );
-          } catch (retryError, retryStackTrace) {
-            Object finalConnectError = retryError;
-            StackTrace finalConnectStackTrace = retryStackTrace;
-            final retryErrorText = retryError.toString().toLowerCase();
-            final isAbortByLocal = retryErrorText.contains(
-              'le-connection-abort-by-local',
-            );
-            var recoveredOnThirdAttempt = false;
-            if (isAbortByLocal) {
-              _appDebugLogService?.warn(
-                'Linux immediate retry aborted by local stack; waiting and retrying once more',
-                tag: 'BLE Connect',
-              );
-              await Future<void>.delayed(const Duration(milliseconds: 1200));
-              try {
-                await attemptConnect();
-                _appDebugLogService?.info(
-                  'Linux third-attempt connect succeeded after local abort',
-                  tag: 'BLE Connect',
-                );
-                recoveredOnThirdAttempt = true;
-              } catch (thirdError, thirdStackTrace) {
-                finalConnectError = thirdError;
-                finalConnectStackTrace = thirdStackTrace;
-                _appDebugLogService?.error(
-                  'device.connect() third-attempt failure: $thirdError',
-                  tag: 'BLE Connect',
-                );
-              }
-            }
-            if (!recoveredOnThirdAttempt) {
-              final recoveredByPairing = await _recoverLinuxConnectFailure(
-                device,
-                attemptConnect: attemptConnect,
-                onRequestPin: linuxPairingPinProvider,
-              );
-              if (recoveredByPairing) {
-                _appDebugLogService?.info(
-                  'Linux connect succeeded after pairing/trust recovery',
-                  tag: 'BLE Connect',
-                );
-              } else {
-                _appDebugLogService?.error(
-                  'device.connect() retry failure: $finalConnectError',
-                  tag: 'BLE Connect',
-                );
-                Error.throwWithStackTrace(
-                  _wrapLinuxConnectStageError(finalConnectError),
-                  finalConnectStackTrace,
-                );
-              }
-            }
-          }
-        }
+      final link = debugBleLinkOverride;
+      if (link != null) {
+        await link(device);
       } else {
-        Future<void> attemptConnect() {
-          return device.connect(
-            timeout: connectTimeout,
-            mtu: null,
-            license: License.nonprofit,
-          );
-        }
-
-        // A previous app session (e.g. killed from the iOS app switcher) can
-        // leave the OS holding a stale link to the peripheral. Clear it before
-        // connecting so the fresh attempt doesn't race the stale handle.
-        if (!PlatformInfo.isWeb && device.isConnected) {
-          _appDebugLogService?.warn(
-            'Device reports an existing connection before connect; clearing stale link',
-            tag: 'BLE Connect',
-          );
-          try {
-            await device.disconnect(queue: false);
-          } catch (cleanupError) {
-            _appDebugLogService?.warn(
-              'Stale-link cleanup disconnect failed (continuing): $cleanupError',
-              tag: 'BLE Connect',
-            );
-          }
-        }
-
-        try {
-          await attemptConnect();
-        } catch (error) {
-          _appDebugLogService?.error(
-            'device.connect() failure: $error',
-            tag: 'BLE Connect',
-          );
-          if (PlatformInfo.isWeb ||
-              !shouldRetryBleConnectAfterError(error.toString())) {
-            rethrow;
-          }
-          // Fast (non-timeout) failures are usually a stale connection left by
-          // a previous session; clean up and retry once before surfacing.
-          _appDebugLogService?.warn(
-            'Retrying connect once after clearing possible stale connection',
-            tag: 'BLE Connect',
-          );
-          try {
-            await device.disconnect(queue: false);
-          } catch (cleanupError) {
-            _appDebugLogService?.warn(
-              'Pre-retry cleanup disconnect failed (continuing): $cleanupError',
-              tag: 'BLE Connect',
-            );
-          }
-          await Future<void>.delayed(const Duration(milliseconds: 500));
-          try {
-            await attemptConnect();
-            _appDebugLogService?.info(
-              'Retry connect succeeded after stale-connection cleanup',
-              tag: 'BLE Connect',
-            );
-          } catch (retryError) {
-            _appDebugLogService?.error(
-              'device.connect() retry failure: $retryError',
-              tag: 'BLE Connect',
-            );
-            rethrow;
-          }
-        }
-      }
-
-      if (PlatformInfo.isLinux) {
-        await _ensureLinuxBleBond(
+        await _openBleLink(
           device,
-          onRequestPin: linuxPairingPinProvider,
+          generation,
+          linuxPairingPinProvider: linuxPairingPinProvider,
         );
       }
-
-      // Request larger MTU only where the platform path supports it.
-      if (!PlatformInfo.isWeb && !PlatformInfo.isLinux) {
-        try {
-          final mtu = await device.requestMtu(185);
-          _appDebugLogService?.info('MTU set to: $mtu', tag: 'BLE Connect');
-        } catch (e) {
-          _appDebugLogService?.warn(
-            'MTU request failed: $e, using default',
-            tag: 'BLE Connect',
-          );
-        }
-      } else if (PlatformInfo.isLinux) {
-        _appDebugLogService?.info(
-          'Skipping MTU request on Linux; flutter_blue_plus only supports requestMtu on Android',
-          tag: 'BLE Connect',
-        );
-      }
-
-      late final List<BluetoothService> services;
-      try {
-        services = await device.discoverServices();
-      } catch (error) {
-        _appDebugLogService?.error(
-          'service discovery failure: $error',
-          tag: 'BLE Connect',
-        );
-        if (PlatformInfo.isWeb &&
-            error.toString().contains('GATT Server is disconnected')) {
-          // Chrome Web Bluetooth intermittently disconnects between connect()
-          // and service discovery; retry once to recover that transient state.
-          _appDebugLogService?.warn(
-            'retrying service discovery after transient web disconnect',
-            tag: 'BLE Connect',
-          );
-          await Future<void>.delayed(const Duration(milliseconds: 300));
-          await device.connect(
-            timeout: const Duration(seconds: 15),
-            mtu: null,
-            license: License.nonprofit,
-          );
-          services = await device.discoverServices();
-        } else {
-          rethrow;
-        }
-      }
-
-      BluetoothService? uartService;
-      for (var service in services) {
-        if (service.uuid.toString().toLowerCase() == MeshCoreUuids.service) {
-          uartService = service;
-          break;
-        }
-      }
-
-      if (uartService == null) {
-        throw Exception("MeshCore UART service not found");
-      }
-
-      for (var characteristic in uartService.characteristics) {
-        String uuid = characteristic.uuid.toString().toLowerCase();
-        if (uuid == MeshCoreUuids.rxCharacteristic) {
-          _rxCharacteristic = characteristic;
-        } else if (uuid == MeshCoreUuids.txCharacteristic) {
-          _txCharacteristic = characteristic;
-        }
-      }
-
-      if (_rxCharacteristic == null || _txCharacteristic == null) {
-        throw Exception("MeshCore characteristics not found");
-      }
-
-      if (PlatformInfo.isWeb) {
-        _appDebugLogService?.info(
-          'Starting setNotifyValue(true)',
-          tag: 'BLE Connect',
-        );
-        _appDebugLogService?.info(
-          'Web: Calling setNotifyValue(true) without awaiting',
-          tag: 'BLE Connect',
-        );
-        unawaited(() async {
-          try {
-            await _txCharacteristic!.setNotifyValue(true);
-          } catch (error) {
-            _appDebugLogService?.warn(
-              'notify failure (web, ignored): $error',
-              tag: 'BLE Connect',
-            );
-            _appDebugLogService?.warn(
-              'Web setNotifyValue error (ignoring): $error',
-              tag: 'BLE Connect',
-            );
-          }
-        }());
-        _appDebugLogService?.info(
-          'setNotifyValue(true) configuration completed',
-          tag: 'BLE Connect',
-        );
-      } else {
-        bool notifySet = false;
-        for (int attempt = 0; attempt < 3 && !notifySet; attempt++) {
-          try {
-            if (attempt > 0) {
-              await Future.delayed(Duration(milliseconds: 500 * attempt));
-            }
-            await _txCharacteristic!.setNotifyValue(true);
-            notifySet = true;
-          } catch (e) {
-            _appDebugLogService?.warn('notify failure: $e', tag: 'BLE Connect');
-            _appDebugLogService?.warn(
-              'setNotifyValue attempt ${attempt + 1}/3 failed: $e',
-              tag: 'BLE Connect',
-            );
-            if (attempt == 2) rethrow;
-          }
-        }
-      }
-      _notifySubscription = _txCharacteristic!.onValueReceived.listen(
-        _handleFrame,
-      );
+      _throwIfConnectSuperseded(generation);
 
       _setState(MeshCoreConnectionState.connected);
+      _lastConnectionError = null;
+      unawaited(_rememberRadio(SavedRadioTransport.bluetooth, targetId));
       if (_shouldGateInitialChannelSync) {
         _hasReceivedDeviceInfo = false;
         _pendingInitialChannelSync = true;
       }
-      await _startBleInitialSync();
+      if (link == null) await _startBleInitialSync();
       _reconnectAttempts = 0;
     } catch (e) {
+      if (e is _ConnectSuperseded || generation != _connectGeneration) {
+        // A newer connect or a disconnect owns the connection state now; only
+        // make sure this attempt's link does not linger next to it.
+        _appDebugLogService?.info(
+          'Connect to $targetId superseded; dropping its link',
+          tag: 'BLE Connect',
+        );
+        await _dropSupersededBleLink(device);
+        return;
+      }
       _appDebugLogService?.error('Connection error: $e', tag: 'BLE Connect');
+      _lastConnectionError = isBluetoothOff
+          ? 'Bluetooth is off'
+          : describeConnectionError(e);
       final errorText = e.toString();
       final lowerErrorText = errorText.toLowerCase();
       final isLinuxPairingFailure =
@@ -2615,6 +2405,371 @@ class MeshCoreConnector extends ChangeNotifier {
       }
       rethrow;
     }
+  }
+
+  /// Opens the platform BLE link to [device]: connect, MTU, service
+  /// discovery and notifications. Throws [_ConnectSuperseded] as soon as a
+  /// newer connect or a disconnect replaces attempt [generation].
+  Future<void> _openBleLink(
+    BluetoothDevice device,
+    int generation, {
+    Future<String?> Function()? linuxPairingPinProvider,
+  }) async {
+    await _connectionSubscription?.cancel();
+    _connectionSubscription = null;
+    await _notifySubscription?.cancel();
+    _notifySubscription = null;
+    _throwIfConnectSuperseded(generation);
+    _connectionSubscription = device.connectionState.listen((state) {
+      if (state == BluetoothConnectionState.disconnected &&
+          isConnected &&
+          _deviceId == device.remoteId.toString()) {
+        _handleDisconnection();
+      }
+    });
+
+    if (PlatformInfo.isLinux) {
+      final remoteId = device.remoteId.str;
+      _appDebugLogService?.info(
+        'Linux pre-connect BlueZ disconnect for $remoteId',
+        tag: 'BLE Connect',
+      );
+      await _linuxBlePairingService.disconnectDevice(
+        remoteId,
+        onLog: (message) {
+          _appDebugLogService?.info(message, tag: 'BLE Pair');
+        },
+      );
+    }
+
+    final connectTimeout = PlatformInfo.isLinux
+        ? const Duration(seconds: 6)
+        : const Duration(seconds: 15);
+    _appDebugLogService?.info(
+      'device.connect timeout set to ${connectTimeout.inSeconds}s',
+      tag: 'BLE Connect',
+    );
+    if (PlatformInfo.isLinux) {
+      Future<void> attemptConnect() {
+        return device
+            .connect(
+              timeout: connectTimeout,
+              mtu: null,
+              license: License.nonprofit,
+            )
+            .timeout(
+              connectTimeout + const Duration(seconds: 2),
+              onTimeout: () {
+                throw TimeoutException(
+                  'Linux connect hard-timeout after ${connectTimeout.inSeconds + 2}s',
+                );
+              },
+            );
+      }
+
+      try {
+        await attemptConnect();
+      } catch (error) {
+        _appDebugLogService?.error(
+          'device.connect() failure: $error',
+          tag: 'BLE Connect',
+        );
+        final remoteId = device.remoteId.str;
+        _appDebugLogService?.warn(
+          'Linux immediate retry: forcing BlueZ disconnect before second connect attempt',
+          tag: 'BLE Connect',
+        );
+        await _linuxBlePairingService.disconnectDevice(
+          remoteId,
+          onLog: (message) {
+            _appDebugLogService?.info(message, tag: 'BLE Pair');
+          },
+        );
+        await Future<void>.delayed(const Duration(milliseconds: 700));
+        try {
+          await attemptConnect();
+          _appDebugLogService?.info(
+            'Linux immediate retry connect succeeded',
+            tag: 'BLE Connect',
+          );
+        } catch (retryError, retryStackTrace) {
+          Object finalConnectError = retryError;
+          StackTrace finalConnectStackTrace = retryStackTrace;
+          final retryErrorText = retryError.toString().toLowerCase();
+          final isAbortByLocal = retryErrorText.contains(
+            'le-connection-abort-by-local',
+          );
+          var recoveredOnThirdAttempt = false;
+          if (isAbortByLocal) {
+            _appDebugLogService?.warn(
+              'Linux immediate retry aborted by local stack; waiting and retrying once more',
+              tag: 'BLE Connect',
+            );
+            await Future<void>.delayed(const Duration(milliseconds: 1200));
+            try {
+              await attemptConnect();
+              _appDebugLogService?.info(
+                'Linux third-attempt connect succeeded after local abort',
+                tag: 'BLE Connect',
+              );
+              recoveredOnThirdAttempt = true;
+            } catch (thirdError, thirdStackTrace) {
+              finalConnectError = thirdError;
+              finalConnectStackTrace = thirdStackTrace;
+              _appDebugLogService?.error(
+                'device.connect() third-attempt failure: $thirdError',
+                tag: 'BLE Connect',
+              );
+            }
+          }
+          if (!recoveredOnThirdAttempt) {
+            final recoveredByPairing = await _recoverLinuxConnectFailure(
+              device,
+              attemptConnect: attemptConnect,
+              onRequestPin: linuxPairingPinProvider,
+            );
+            if (recoveredByPairing) {
+              _appDebugLogService?.info(
+                'Linux connect succeeded after pairing/trust recovery',
+                tag: 'BLE Connect',
+              );
+            } else {
+              _appDebugLogService?.error(
+                'device.connect() retry failure: $finalConnectError',
+                tag: 'BLE Connect',
+              );
+              Error.throwWithStackTrace(
+                _wrapLinuxConnectStageError(finalConnectError),
+                finalConnectStackTrace,
+              );
+            }
+          }
+        }
+      }
+    } else {
+      Future<void> attemptConnect() {
+        return device.connect(
+          timeout: connectTimeout,
+          mtu: null,
+          license: License.nonprofit,
+        );
+      }
+
+      // A previous app session (e.g. killed from the iOS app switcher) can
+      // leave the OS holding a stale link to the peripheral. Clear it before
+      // connecting so the fresh attempt doesn't race the stale handle.
+      if (!PlatformInfo.isWeb && device.isConnected) {
+        _appDebugLogService?.warn(
+          'Device reports an existing connection before connect; clearing stale link',
+          tag: 'BLE Connect',
+        );
+        try {
+          await device.disconnect(queue: false);
+        } catch (cleanupError) {
+          _appDebugLogService?.warn(
+            'Stale-link cleanup disconnect failed (continuing): $cleanupError',
+            tag: 'BLE Connect',
+          );
+        }
+      }
+
+      try {
+        await attemptConnect();
+      } catch (error) {
+        _appDebugLogService?.error(
+          'device.connect() failure: $error',
+          tag: 'BLE Connect',
+        );
+        if (PlatformInfo.isWeb ||
+            !shouldRetryBleConnectAfterError(error.toString())) {
+          rethrow;
+        }
+        // Fast (non-timeout) failures are usually a stale connection left by
+        // a previous session; clean up and retry once before surfacing.
+        _appDebugLogService?.warn(
+          'Retrying connect once after clearing possible stale connection',
+          tag: 'BLE Connect',
+        );
+        try {
+          await device.disconnect(queue: false);
+        } catch (cleanupError) {
+          _appDebugLogService?.warn(
+            'Pre-retry cleanup disconnect failed (continuing): $cleanupError',
+            tag: 'BLE Connect',
+          );
+        }
+        await Future<void>.delayed(const Duration(milliseconds: 500));
+        try {
+          await attemptConnect();
+          _appDebugLogService?.info(
+            'Retry connect succeeded after stale-connection cleanup',
+            tag: 'BLE Connect',
+          );
+        } catch (retryError) {
+          _appDebugLogService?.error(
+            'device.connect() retry failure: $retryError',
+            tag: 'BLE Connect',
+          );
+          rethrow;
+        }
+      }
+    }
+
+    _throwIfConnectSuperseded(generation);
+    if (PlatformInfo.isLinux) {
+      await _ensureLinuxBleBond(device, onRequestPin: linuxPairingPinProvider);
+    }
+
+    // Request larger MTU only where the platform path supports it.
+    if (!PlatformInfo.isWeb && !PlatformInfo.isLinux) {
+      try {
+        final mtu = await device.requestMtu(185);
+        _appDebugLogService?.info('MTU set to: $mtu', tag: 'BLE Connect');
+      } catch (e) {
+        _appDebugLogService?.warn(
+          'MTU request failed: $e, using default',
+          tag: 'BLE Connect',
+        );
+      }
+    } else if (PlatformInfo.isLinux) {
+      _appDebugLogService?.info(
+        'Skipping MTU request on Linux; flutter_blue_plus only supports requestMtu on Android',
+        tag: 'BLE Connect',
+      );
+    }
+
+    late final List<BluetoothService> services;
+    try {
+      services = await device.discoverServices();
+    } catch (error) {
+      _appDebugLogService?.error(
+        'service discovery failure: $error',
+        tag: 'BLE Connect',
+      );
+      if (PlatformInfo.isWeb &&
+          error.toString().contains('GATT Server is disconnected')) {
+        // Chrome Web Bluetooth intermittently disconnects between connect()
+        // and service discovery; retry once to recover that transient state.
+        _appDebugLogService?.warn(
+          'retrying service discovery after transient web disconnect',
+          tag: 'BLE Connect',
+        );
+        await Future<void>.delayed(const Duration(milliseconds: 300));
+        await device.connect(
+          timeout: const Duration(seconds: 15),
+          mtu: null,
+          license: License.nonprofit,
+        );
+        services = await device.discoverServices();
+      } else {
+        rethrow;
+      }
+    }
+
+    _throwIfConnectSuperseded(generation);
+    BluetoothService? uartService;
+    for (var service in services) {
+      if (service.uuid.toString().toLowerCase() == MeshCoreUuids.service) {
+        uartService = service;
+        break;
+      }
+    }
+
+    if (uartService == null) {
+      throw Exception("MeshCore UART service not found");
+    }
+
+    for (var characteristic in uartService.characteristics) {
+      String uuid = characteristic.uuid.toString().toLowerCase();
+      if (uuid == MeshCoreUuids.rxCharacteristic) {
+        _rxCharacteristic = characteristic;
+      } else if (uuid == MeshCoreUuids.txCharacteristic) {
+        _txCharacteristic = characteristic;
+      }
+    }
+
+    if (_rxCharacteristic == null || _txCharacteristic == null) {
+      throw Exception("MeshCore characteristics not found");
+    }
+
+    if (PlatformInfo.isWeb) {
+      _appDebugLogService?.info(
+        'Starting setNotifyValue(true)',
+        tag: 'BLE Connect',
+      );
+      _appDebugLogService?.info(
+        'Web: Calling setNotifyValue(true) without awaiting',
+        tag: 'BLE Connect',
+      );
+      unawaited(() async {
+        try {
+          await _txCharacteristic!.setNotifyValue(true);
+        } catch (error) {
+          _appDebugLogService?.warn(
+            'notify failure (web, ignored): $error',
+            tag: 'BLE Connect',
+          );
+          _appDebugLogService?.warn(
+            'Web setNotifyValue error (ignoring): $error',
+            tag: 'BLE Connect',
+          );
+        }
+      }());
+      _appDebugLogService?.info(
+        'setNotifyValue(true) configuration completed',
+        tag: 'BLE Connect',
+      );
+    } else {
+      bool notifySet = false;
+      for (int attempt = 0; attempt < 3 && !notifySet; attempt++) {
+        try {
+          if (attempt > 0) {
+            await Future.delayed(Duration(milliseconds: 500 * attempt));
+          }
+          await _txCharacteristic!.setNotifyValue(true);
+          notifySet = true;
+        } catch (e) {
+          _appDebugLogService?.warn('notify failure: $e', tag: 'BLE Connect');
+          _appDebugLogService?.warn(
+            'setNotifyValue attempt ${attempt + 1}/3 failed: $e',
+            tag: 'BLE Connect',
+          );
+          if (attempt == 2) rethrow;
+        }
+      }
+    }
+    _throwIfConnectSuperseded(generation);
+    _notifySubscription = _txCharacteristic!.onValueReceived.listen(
+      _handleFrame,
+    );
+  }
+
+  void _throwIfConnectSuperseded(int generation) {
+    if (generation != _connectGeneration) throw const _ConnectSuperseded();
+  }
+
+  /// Disconnects a superseded attempt's device unless the current connection
+  /// is to that same device.
+  Future<void> _dropSupersededBleLink(BluetoothDevice device) async {
+    final stillCurrent =
+        _deviceId == device.remoteId.toString() &&
+        _state != MeshCoreConnectionState.disconnected;
+    if (stillCurrent) return;
+    try {
+      await _unlinkBleDevice(device);
+    } catch (error) {
+      _appDebugLogService?.warn(
+        'Superseded link cleanup failed (ignored): $error',
+        tag: 'BLE Connect',
+      );
+    }
+  }
+
+  Future<void> _unlinkBleDevice(BluetoothDevice device) {
+    final unlink = debugBleUnlinkOverride;
+    if (unlink != null) return unlink(device);
+    // Skip queued BLE operations so disconnect doesn't get stuck behind them.
+    return device.disconnect(queue: false);
   }
 
   Future<bool> _recoverLinuxConnectFailure(
@@ -2900,8 +3055,172 @@ class MeshCoreConnector extends ChangeNotifier {
 
   bool get _shouldAutoReconnect =>
       !_manualDisconnect &&
+      !isBluetoothOff &&
       _lastDeviceId != null &&
       _activeTransport == MeshCoreTransportType.bluetooth;
+
+  SharedPreferences? get _prefsOrNull {
+    try {
+      return PrefsManager.instance;
+    } on StateError {
+      return null;
+    }
+  }
+
+  void _watchBluetoothAdapter() {
+    if (PlatformInfo.isWeb || _adapterStateSubscription != null) return;
+    _adapterStateSubscription = FlutterBluePlus.adapterState.listen(
+      handleAdapterState,
+      onError: (Object error) {
+        _appDebugLogService?.warn(
+          'Bluetooth adapter state unavailable: $error',
+          tag: 'BLE',
+        );
+      },
+    );
+  }
+
+  /// Reacts to the Bluetooth adapter turning off or on. While it is off no
+  /// reconnect is attempted; when it comes back after dropping a BLE link,
+  /// one reconnect is scheduled through the normal backoff.
+  @visibleForTesting
+  void handleAdapterState(BluetoothAdapterState adapterState) {
+    final wasOff = isBluetoothOff;
+    _adapterState = adapterState;
+    if (isBluetoothOff && !wasOff) {
+      final bleActive =
+          _activeTransport == MeshCoreTransportType.bluetooth &&
+          (_state == MeshCoreConnectionState.connected ||
+              _state == MeshCoreConnectionState.connecting ||
+              (_reconnectTimer?.isActive ?? false));
+      _resumeBleWhenAdapterOn =
+          bleActive && !_manualDisconnect && _lastDeviceId != null;
+      // Keep the attempt count so the retry after power-on continues the
+      // existing backoff instead of starting a fresh burst.
+      _reconnectTimer?.cancel();
+      _reconnectTimer = null;
+      _appDebugLogService?.warn(
+        'Bluetooth adapter is $adapterState; pausing reconnects',
+        tag: 'BLE',
+      );
+      if (_activeTransport == MeshCoreTransportType.bluetooth &&
+          _state != MeshCoreConnectionState.disconnected) {
+        _lastConnectionError = 'Bluetooth is off';
+      }
+      if (_activeTransport == MeshCoreTransportType.bluetooth && isConnected) {
+        _handleDisconnection();
+      }
+      notifyListeners();
+    } else if (!isBluetoothOff && wasOff) {
+      if (_lastConnectionError == 'Bluetooth is off') {
+        _lastConnectionError = null;
+      }
+      notifyListeners();
+    }
+    // Resume only once the adapter is fully on, not while turning on.
+    if (adapterState == BluetoothAdapterState.on && _resumeBleWhenAdapterOn) {
+      _resumeBleWhenAdapterOn = false;
+      if (_state == MeshCoreConnectionState.disconnected) {
+        _scheduleReconnect();
+        notifyListeners();
+      }
+    }
+  }
+
+  /// Turns a transport exception into a short message for the dashboard.
+  @visibleForTesting
+  static String describeConnectionError(Object error) {
+    var text = error.toString();
+    for (final prefix in const [
+      'Exception: ',
+      'Bad state: ',
+      'StateError: ',
+      'TimeoutException: ',
+      'FlutterBluePlusException: ',
+    ]) {
+      if (text.startsWith(prefix)) text = text.substring(prefix.length);
+    }
+    final lower = text.toLowerCase();
+    if (lower.contains('timed out') || lower.contains('timeout')) {
+      if (lower.contains('self_info')) {
+        return 'The radio did not answer. Check that it runs MeshCore '
+            'companion firmware.';
+      }
+      return 'Timed out. Check that the radio is on and in range.';
+    }
+    if (lower.contains('uart service not found') ||
+        lower.contains('characteristics not found')) {
+      return 'This device is not a MeshCore companion radio.';
+    }
+    if (lower.contains('bluetooth adapter not available') ||
+        lower.contains('bluetooth must be turned on') ||
+        lower.contains('adapter is off')) {
+      return 'Bluetooth is off';
+    }
+    if (lower.contains('pairing')) {
+      return 'Bluetooth pairing failed. Try again and check the PIN.';
+    }
+    if (lower.contains('connection refused') ||
+        lower.contains('failed host lookup') ||
+        lower.contains('network is unreachable')) {
+      return 'Could not reach the radio over the network.';
+    }
+    text = text.trim();
+    if (text.length > 160) text = '${text.substring(0, 157)}...';
+    return text.isEmpty ? 'Connection failed' : text;
+  }
+
+  Future<void> _rememberRadio(SavedRadioTransport transport, String address) {
+    final prefs = _prefsOrNull;
+    if (prefs == null || address.trim().isEmpty) return Future.value();
+    // Web BLE and Web Serial devices can't be reopened from a stored id.
+    if (PlatformInfo.isWeb && transport != SavedRadioTransport.tcp) {
+      return Future.value();
+    }
+    final name = _selfName?.trim().isNotEmpty == true
+        ? _selfName!.trim()
+        : (_deviceDisplayName?.trim().isNotEmpty == true
+              ? _deviceDisplayName!.trim()
+              : address);
+    return SavedRadio(
+      transport: transport,
+      address: address.trim(),
+      name: name,
+    ).save(prefs).catchError((Object error) {
+      _appDebugLogService?.warn(
+        'Saving last radio failed: $error',
+        tag: 'Connection',
+      );
+    });
+  }
+
+  /// Forgets the saved radio so the dashboard stops offering it.
+  Future<void> forgetSavedRadio() async {
+    final prefs = _prefsOrNull;
+    if (prefs == null) return;
+    await SavedRadio.clear(prefs);
+    notifyListeners();
+  }
+
+  /// Connects to the saved radio, and only that one. Does nothing when no
+  /// radio is saved.
+  Future<void> reconnectSavedRadio() async {
+    final saved = savedRadio;
+    if (saved == null) return;
+    switch (saved.transport) {
+      case SavedRadioTransport.bluetooth:
+        await connect(
+          BluetoothDevice.fromId(saved.address),
+          displayName: saved.name,
+        );
+      case SavedRadioTransport.usb:
+        await connectUsb(portName: saved.address);
+      case SavedRadioTransport.tcp:
+        final endpoint = SavedRadio.parseTcp(saved.address);
+        if (endpoint == null) return;
+        await connectTcp(host: endpoint.host, port: endpoint.port);
+    }
+  }
 
   bool get _shouldGateInitialChannelSync =>
       _activeTransport == MeshCoreTransportType.usb ||
@@ -2959,8 +3278,28 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> disconnect({
     bool manual = true,
     bool skipBleDeviceDisconnect = false,
+  }) {
+    final inFlight = _disconnectInFlight;
+    if (inFlight != null) return inFlight;
+    if (_state == MeshCoreConnectionState.disconnecting) return Future.value();
+    // Any connect attempt still awaiting the platform is now stale.
+    _connectGeneration++;
+    late final Future<void> run;
+    run =
+        _disconnect(
+          manual: manual,
+          skipBleDeviceDisconnect: skipBleDeviceDisconnect,
+        ).whenComplete(() {
+          if (identical(_disconnectInFlight, run)) _disconnectInFlight = null;
+        });
+    _disconnectInFlight = run;
+    return run;
+  }
+
+  Future<void> _disconnect({
+    required bool manual,
+    required bool skipBleDeviceDisconnect,
   }) async {
-    if (_state == MeshCoreConnectionState.disconnecting) return;
     final transportAtDisconnect = _activeTransport;
     final transportLabel = switch (transportAtDisconnect) {
       MeshCoreTransportType.bluetooth => 'BLE',
@@ -3019,8 +3358,8 @@ class MeshCoreConnector extends ChangeNotifier {
 
     if (!skipBleDeviceDisconnect) {
       try {
-        // Skip queued BLE operations so disconnect doesn't get stuck behind them.
-        await _device?.disconnect(queue: false);
+        final device = _device;
+        if (device != null) await _unlinkBleDevice(device);
       } catch (e) {
         _appDebugLogService?.warn('Disconnect error: $e', tag: 'BLE Connect');
       }
@@ -3053,6 +3392,9 @@ class MeshCoreConnector extends ChangeNotifier {
     _floodCorridorProbePending = false;
     _corridorRegion = null;
     _batteryMillivolts = null;
+    _lastRxSnr = null;
+    _lastRxRssi = null;
+    _lastRxSignalAt = null;
     _repeaterBatterySnapshots.clear();
     _batteryRequested = false;
     _awaitingSelfInfo = false;
@@ -6263,6 +6605,11 @@ class MeshCoreConnector extends ChangeNotifier {
     final reader = BufferReader(frame);
     reader.skipBytes(3); // Skip code, SNR x4, RSSI
     final raw = reader.readRemainingBytes();
+    final signal = frame.buffer.asByteData(frame.offsetInBytes);
+    _lastRxSnr = signal.getInt8(1) / 4;
+    _lastRxRssi = signal.getInt8(2);
+    _lastRxSignalAt = DateTime.now();
+    markNotifyDirty();
     _handleRawRxPacket(raw);
     if (!_rxPacketsController.hasListener) return;
     final packet = _parseRawPacket(raw);
@@ -6270,8 +6617,8 @@ class MeshCoreConnector extends ChangeNotifier {
     _rxPacketsController.add(
       RadioRxPacket(
         raw: Uint8List.fromList(raw),
-        snr: frame.buffer.asByteData(frame.offsetInBytes).getInt8(1) / 4,
-        rssi: frame.buffer.asByteData(frame.offsetInBytes).getInt8(2),
+        snr: _lastRxSnr!,
+        rssi: _lastRxRssi!,
         receivedAt: DateTime.now(),
         fromSelf: _isOwnRxPacket(packet),
       ),
@@ -7521,6 +7868,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
   @override
   void dispose() {
+    _adapterStateSubscription?.cancel();
     _scanSubscription?.cancel();
     _isScanningSubscription?.cancel();
     _connectionSubscription?.cancel();
@@ -8223,4 +8571,10 @@ class ReceivedChannelMessage {
   final ChannelMessage message;
   final String channelName;
   const ReceivedChannelMessage(this.message, this.channelName);
+}
+
+/// Thrown inside a BLE connect attempt that a newer connect or a disconnect
+/// replaced while it awaited the platform.
+class _ConnectSuperseded implements Exception {
+  const _ConnectSuperseded();
 }
