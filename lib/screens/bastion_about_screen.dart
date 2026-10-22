@@ -1,4 +1,5 @@
 import '../theme/mesh_theme.dart';
+import '../widgets/notoryx_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../l10n/l10n.dart';
@@ -50,7 +51,7 @@ class BastionAboutScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.fort_rounded, color: _cyan, size: 38),
+                const NotoryxLogo(size: 48),
                 const SizedBox(height: 12),
                 Text(
                   'NOTORYX',

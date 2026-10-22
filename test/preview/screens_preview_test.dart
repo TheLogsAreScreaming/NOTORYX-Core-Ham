@@ -47,10 +47,16 @@ import 'package:meshcore_open/services/translation_service.dart';
 import 'package:meshcore_open/services/ui_view_state_service.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
 import 'package:meshcore_open/theme/mesh_theme.dart';
+import 'package:meshcore_open/screens/connection_dashboard_screen.dart';
+import 'package:meshcore_open/services/mqtt_broker_service.dart';
+import 'package:meshcore_open/services/mqtt_client_transport.dart';
+import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final _now = DateTime(2026, 10, 14, 9, 30);
+// Anchored to today so time-filtered screens (path graph) have data in range.
+final _today = DateTime.now();
+final _now = DateTime(_today.year, _today.month, _today.day, 9, 30);
 
 Uint8List _key(int seed) =>
     Uint8List.fromList(List.generate(32, (i) => (seed * 37 + i * 11) & 0xFF));
@@ -292,6 +298,13 @@ Widget _app(Widget home, ThemeMode mode) {
       ChangeNotifierProvider.value(value: settings),
       ChangeNotifierProvider(create: (_) => MessageRetryService()),
       ChangeNotifierProvider(create: (_) => PathHistoryService(storage)),
+      ChangeNotifierProvider(
+        create: (_) => MqttBrokerService(
+          prefs: PrefsManager.instance,
+          credentials: MemoryMqttCredentialsStore(),
+          transportFactory: createMqttClientTransport,
+        )..load(),
+      ),
       ChangeNotifierProvider(create: (_) => AppDebugLogService()),
       ChangeNotifierProvider(create: (_) => ChatTextScaleService()),
       ChangeNotifierProvider(create: (_) => TranslationService(settings)),
@@ -330,6 +343,7 @@ void main() {
     'channel_chat': () => ChannelChatScreen(channel: _channels[1]),
     'dm_chat': () => ChatScreen(contact: _contacts[0]),
     'settings': () => const SettingsScreen(),
+    'connections': () => const ConnectionDashboardScreen(),
     'access_control': () => Builder(
       builder: (context) => AccessControlScreen(
         node: _contacts[2],
@@ -393,6 +407,13 @@ void main() {
         for (var i = 0; i < 10; i++) {
           await tester.pump(const Duration(milliseconds: 100));
         }
+        // Asset images decode off the fake clock, so wait for them for real.
+        await tester.runAsync(() async {
+          for (final element in find.byType(Image).evaluate()) {
+            await precacheImage((element.widget as Image).image, element);
+          }
+        });
+        await tester.pump();
         await tester.runAsync(() async {
           final ro =
               boundary.currentContext!.findRenderObject()!

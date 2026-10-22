@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widgets/notoryx_logo.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   FlutterError.onError = (details) {
@@ -42,18 +44,7 @@ class BastionStartupScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 112,
-                  height: 112,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xFF18D7D0),
-                      width: 5,
-                    ),
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: const Icon(Icons.fort, size: 64, color: Colors.white),
-                ),
+                const NotoryxLogo(size: 112),
                 const SizedBox(height: 24),
                 const Text(
                   'NOTORYX',

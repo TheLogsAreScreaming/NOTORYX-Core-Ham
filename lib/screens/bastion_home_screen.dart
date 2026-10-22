@@ -1,4 +1,5 @@
 import '../theme/mesh_theme.dart';
+import '../widgets/notoryx_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,19 +61,7 @@ class BastionHomeScreen extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-                  width: 52,
-                  height: 52,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: _cyan, width: 2),
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                  child: Icon(
-                    Icons.fort_rounded,
-                    color: MeshPalette.ink,
-                    size: 31,
-                  ),
-                ),
+                const NotoryxLogo(size: 52),
                 const SizedBox(width: 14),
                 Expanded(
                   child: Column(
