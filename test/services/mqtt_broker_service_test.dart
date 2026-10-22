@@ -10,6 +10,7 @@ import 'package:meshcore_open/models/mqtt_publish_policy.dart';
 import 'package:meshcore_open/models/radio_rx_packet.dart';
 import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_transport.dart';
+import 'package:meshcore_open/services/network_monitor.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -637,4 +638,157 @@ void main() {
       expect(reloaded.publishSettings.includeOwnTraffic, isFalse);
     });
   });
+
+  group('network changes', () {
+    late StreamController<NetworkStatus> network;
+    const wifi = NetworkStatus({'wifi'});
+    const mobile = NetworkStatus({'mobile'});
+
+    setUp(() => network = StreamController<NetworkStatus>.broadcast());
+    tearDown(() => network.close());
+
+    MqttBrokerService watching(NetworkStatus initial) => MqttBrokerService(
+      prefs: prefs,
+      credentials: credentials,
+      transportFactory: (settings, clientId) {
+        final transport = FakeTransport(
+          results.isEmpty ? null : results.removeAt(0),
+        );
+        transports.add(transport);
+        return transport;
+      },
+      networkMonitor: _FakeNetworkMonitor(initial, network.stream),
+    );
+
+    Future<void> change(NetworkStatus status) async {
+      network.add(status);
+      await Future<void>.delayed(Duration.zero);
+      await Future<void>.delayed(Duration.zero);
+    }
+
+    test('waits for a network before connecting', () async {
+      final service = watching(NetworkStatus.offline);
+      await service.load();
+      await service.saveConfiguration(_settings);
+      await service.connect();
+      expect(transports, isEmpty);
+      expect(service.status, MqttConnectionStatus.reconnecting);
+      expect(service.waitingForNetwork, isTrue);
+      expect(service.errorMessage, contains('No network'));
+
+      await change(wifi);
+      expect(transports, hasLength(1));
+      expect(service.status, MqttConnectionStatus.connected);
+      expect(service.waitingForNetwork, isFalse);
+    });
+
+    test('drops the session offline and resumes when back', () async {
+      final service = watching(wifi);
+      await service.load();
+      await service.saveConfiguration(_settings);
+      await service.connect();
+      expect(service.status, MqttConnectionStatus.connected);
+
+      await change(NetworkStatus.offline);
+      expect(transports.single.disconnected, isTrue);
+      expect(service.waitingForNetwork, isTrue);
+
+      await change(wifi);
+      expect(transports, hasLength(2));
+      expect(service.status, MqttConnectionStatus.connected);
+      expect(service.reconnectAttempt, 0);
+    });
+
+    test('spends no retries while offline', () {
+      fakeAsync((async) {
+        results = [MqttConnectFailure.unreachable];
+        final service = watching(wifi);
+        service.load();
+        async.flushMicrotasks();
+        service.saveConfiguration(_settings);
+        async.flushMicrotasks();
+        service.connect();
+        async.flushMicrotasks();
+        expect(service.status, MqttConnectionStatus.reconnecting);
+        expect(service.reconnectAttempt, 1);
+
+        network.add(NetworkStatus.offline);
+        async.flushMicrotasks();
+        async.elapse(const Duration(minutes: 10));
+        expect(transports, hasLength(1));
+        expect(service.waitingForNetwork, isTrue);
+        expect(service.reconnectAttempt, 0);
+
+        network.add(wifi);
+        async.flushMicrotasks();
+        expect(transports, hasLength(2));
+        expect(service.status, MqttConnectionStatus.connected);
+      });
+    });
+
+    test('reconnects at once when the active network is lost', () async {
+      final service = watching(wifi);
+      await service.load();
+      await service.saveConfiguration(_settings);
+      await service.connect();
+
+      await change(const NetworkStatus({'wifi', 'mobile'}));
+      expect(transports, hasLength(1), reason: 'gaining a network is fine');
+
+      await change(mobile);
+      expect(transports, hasLength(2));
+      expect(transports.first.disconnected, isTrue);
+      expect(service.status, MqttConnectionStatus.connected);
+    });
+
+    test('stays down after a manual disconnect', () async {
+      final service = watching(wifi);
+      await service.load();
+      await service.saveConfiguration(_settings);
+      await service.connect();
+      service.disconnect();
+      await change(NetworkStatus.offline);
+      await change(wifi);
+      expect(transports, hasLength(1));
+      expect(service.status, MqttConnectionStatus.disconnected);
+    });
+
+    test(
+      'does not retry rejected credentials when the network returns',
+      () async {
+        results = [MqttConnectFailure.badCredentials];
+        final service = watching(wifi);
+        await service.load();
+        await service.saveConfiguration(_settings);
+        await service.connect();
+        expect(service.status, MqttConnectionStatus.error);
+        await change(NetworkStatus.offline);
+        await change(wifi);
+        expect(transports, hasLength(1));
+        expect(service.status, MqttConnectionStatus.error);
+      },
+    );
+
+    test('detects a lost interface', () {
+      expect(mobile.lostInterfaceSince(wifi), isTrue);
+      expect(
+        const NetworkStatus({'wifi', 'mobile'}).lostInterfaceSince(wifi),
+        isFalse,
+      );
+      expect(wifi.lostInterfaceSince(wifi), isFalse);
+      expect(NetworkStatus.offline.available, isFalse);
+    });
+  });
+}
+
+class _FakeNetworkMonitor implements NetworkMonitor {
+  _FakeNetworkMonitor(this._initial, this.changes);
+
+  final NetworkStatus _initial;
+
+  @override
+  final Stream<NetworkStatus> changes;
+
+  @override
+  Future<NetworkStatus> current() async => _initial;
 }

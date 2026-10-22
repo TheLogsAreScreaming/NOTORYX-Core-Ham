@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
 import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_transport.dart';
+import 'package:meshcore_open/services/network_monitor.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:meshcore_open/widgets/mqtt_connection_card.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +50,7 @@ void main() {
   _Transport? transport;
   MqttConnectFailure? result;
 
-  Future<void> pump(WidgetTester tester) async {
+  Future<void> pump(WidgetTester tester, {NetworkMonitor? network}) async {
     // Tall enough that the whole settings form is built.
     tester.view.physicalSize = const Size(800, 2400);
     tester.view.devicePixelRatio = 1;
@@ -60,6 +61,7 @@ void main() {
       credentials: MemoryMqttCredentialsStore(),
       transportFactory: (_, _) => transport = _Transport(result),
       statsNotifyInterval: Duration.zero,
+      networkMonitor: network,
     );
     await service.load();
     await tester.pumpWidget(
@@ -230,4 +232,29 @@ void main() {
     await tester.pump();
     expect(find.text('Sharing on meshcore/PHL/ABCD/packets'), findsOneWidget);
   });
+
+  testWidgets('shows when MQTT is waiting for a network', (tester) async {
+    await pump(tester, network: _OfflineMonitor());
+    await service.saveConfiguration(
+      const MqttBrokerSettings(host: 'broker.test', port: 8883),
+    );
+    await tester.pump();
+    await tester.tap(find.text('Connect MQTT'));
+    await tester.pump();
+    expect(find.text('Reconnecting'), findsOneWidget);
+    expect(
+      find.text('No network connection. MQTT reconnects when it is back.'),
+      findsOneWidget,
+    );
+    expect(find.textContaining('Retry'), findsNothing);
+    expect(find.text('Cancel'), findsOneWidget);
+  });
+}
+
+class _OfflineMonitor implements NetworkMonitor {
+  @override
+  Future<NetworkStatus> current() async => NetworkStatus.offline;
+
+  @override
+  Stream<NetworkStatus> get changes => const Stream.empty();
 }

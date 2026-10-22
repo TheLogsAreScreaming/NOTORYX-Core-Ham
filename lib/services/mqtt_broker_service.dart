@@ -20,6 +20,7 @@ import '../models/mqtt_topic_guard.dart';
 import '../models/radio_rx_packet.dart';
 import 'mqtt_credentials_store.dart';
 import 'mqtt_transport.dart';
+import 'network_monitor.dart';
 
 /// Owns the MQTT broker session, independent of the radio connection.
 ///
@@ -36,7 +37,9 @@ class MqttBrokerService extends ChangeNotifier {
     this.maxReconnectAttempts = 8,
     this.statsNotifyInterval = const Duration(milliseconds: 250),
     this.maxPublishesPerMinute = 60,
-  }) : _prefs = prefs,
+    NetworkMonitor? networkMonitor,
+  }) : _networkMonitor = networkMonitor,
+       _prefs = prefs,
        _credentials = credentials,
        _transportFactory = transportFactory,
        _reconnectPolicy = reconnectPolicy;
@@ -53,6 +56,9 @@ class MqttBrokerService extends ChangeNotifier {
   static const recentPacketLimit = 100;
 
   final SharedPreferences _prefs;
+  final NetworkMonitor? _networkMonitor;
+  StreamSubscription<NetworkStatus>? _networkChanges;
+  NetworkStatus _network = const NetworkStatus({'unknown'});
   final MqttCredentialsStore _credentials;
   final MqttTransportFactory _transportFactory;
   final MqttReconnectPolicy _reconnectPolicy;
@@ -222,8 +228,18 @@ class MqttBrokerService extends ChangeNotifier {
     return null;
   }
 
+  /// Whether a session is wanted but paused until a network comes back.
+  bool get waitingForNetwork =>
+      !_network.available &&
+      !_manuallyDisconnected &&
+      _settings != null &&
+      _status == MqttConnectionStatus.reconnecting;
+
   /// User-facing reason for the last failure, if any.
   String? get errorMessage =>
+      (waitingForNetwork
+          ? 'No network connection. MQTT reconnects when it is back.'
+          : null) ??
       _configurationError ??
       _lastFailure?.message ??
       (_subscriptionFailed
@@ -246,6 +262,11 @@ class MqttBrokerService extends ChangeNotifier {
   );
 
   Future<void> load() async {
+    final monitor = _networkMonitor;
+    if (monitor != null && _networkChanges == null) {
+      _network = await monitor.current();
+      _networkChanges = monitor.changes.listen(_onNetworkChanged);
+    }
     final raw = _prefs.getString(_settingsKey);
     if (raw != null) {
       try {
@@ -337,7 +358,51 @@ class MqttBrokerService extends ChangeNotifier {
     if (!canConnect) return;
     _manuallyDisconnected = false;
     _reconnectAttempt = 0;
+    if (!_network.available) {
+      _waitForNetwork();
+      return;
+    }
     await _attempt(MqttConnectionStatus.connecting);
+  }
+
+  void _waitForNetwork() {
+    _abandonSession();
+    _reconnectAttempt = 0;
+    _status = MqttConnectionStatus.reconnecting;
+    _notify();
+  }
+
+  void _onNetworkChanged(NetworkStatus network) {
+    final previous = _network;
+    _network = network;
+    if (_disposed || _manuallyDisconnected || _settings == null) {
+      _notify();
+      return;
+    }
+    if (!network.available) {
+      // Sockets are gone; don't spend retries until a network is back.
+      if (_status != MqttConnectionStatus.error ||
+          _lastFailure?.retryable == true) {
+        _waitForNetwork();
+      }
+      return;
+    }
+    final resume =
+        !previous.available &&
+        (_status == MqttConnectionStatus.reconnecting ||
+            (_status == MqttConnectionStatus.error &&
+                _lastFailure?.retryable == true));
+    final switched =
+        previous.available &&
+        network.lostInterfaceSince(previous) &&
+        (_status == MqttConnectionStatus.connected ||
+            _status == MqttConnectionStatus.reconnecting);
+    if (resume || switched) {
+      _reconnectAttempt = 0;
+      unawaited(_attempt(MqttConnectionStatus.reconnecting));
+    } else {
+      _notify();
+    }
   }
 
   /// Ends the session and stops automatic reconnects.
@@ -409,12 +474,15 @@ class MqttBrokerService extends ChangeNotifier {
   }
 
   void _scheduleReconnect(int generation) {
+    if (!_network.available && !_manuallyDisconnected && _settings != null) {
+      _waitForNetwork();
+      return;
+    }
     final shouldRetry =
         _reconnectAttempt < maxReconnectAttempts &&
         _reconnectPolicy.shouldRetry(
           manuallyDisconnected: _manuallyDisconnected,
-          // TODO: feed real connectivity events once a network monitor exists.
-          networkAvailable: true,
+          networkAvailable: _network.available,
           configured: _settings != null,
         );
     if (!shouldRetry) {
@@ -528,6 +596,7 @@ class MqttBrokerService extends ChangeNotifier {
 
   @override
   void dispose() {
+    unawaited(_networkChanges?.cancel());
     _abandonSession();
     _statsNotifyTimer?.cancel();
     _disposed = true;

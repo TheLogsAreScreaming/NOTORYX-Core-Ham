@@ -68,7 +68,8 @@ class MqttConnectionCard extends StatelessWidget {
                 '${mqtt.packetsDuplicate} duplicate, '
                 '${mqtt.packetsRejected} invalid',
               ),
-            if (status == MqttConnectionStatus.reconnecting)
+            if (status == MqttConnectionStatus.reconnecting &&
+                !mqtt.waitingForNetwork)
               Text(
                 'Retry ${mqtt.reconnectAttempt} of '
                 '${mqtt.maxReconnectAttempts}',
