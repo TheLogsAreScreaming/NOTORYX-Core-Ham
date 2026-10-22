@@ -15,7 +15,7 @@ These are the steps that need the maintainer's own accounts. Everything the repo
    - At least 2 phone screenshots. `docs/screenshots/` has candidates.
 
    Both graphics are rendered from `branding/notoryx-icon-source.png`. The other files in `branding/` are the outputs: the full-bleed icon, the Android adaptive foreground, the macOS tile and the feature graphic.
-5. Privacy policy URL: publish `docs/PRIVACY_POLICY.md`, for example on backcountrysignal.org, and paste the link.
+5. Privacy policy URL: publish `docs/PRIVACY_POLICY.md` on a public page (for example GitHub Pages on the releases repo) and paste the link.
 6. **Data safety:**
    - Location is used on the device for maps and positions. It's shared over the mesh only when the user sends it, and with an MQTT broker only if observer sharing is on.
    - No ads, no analytics.
