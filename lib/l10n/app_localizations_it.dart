@@ -1552,6 +1552,13 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get channels_viaMqtt => 'via MQTT';
+
+  @override
+  String get channels_viaMqttSemantics =>
+      'Received via MQTT, not heard by your radio';
+
+  @override
   String get channels_private => 'Privato';
 
   @override
@@ -4108,6 +4115,16 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get channelPath_noHopDetails =>
       'I dettagli relativi a questo pacchetto non sono forniti.';
+
+  @override
+  String get channelPath_sourceLabel => 'Source';
+
+  @override
+  String get channelPath_sourceMqtt => 'MQTT';
+
+  @override
+  String get channelPath_viaMqttNoRfPath =>
+      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
 
   @override
   String get channelPath_messageDetails => 'Dettagli messaggio';

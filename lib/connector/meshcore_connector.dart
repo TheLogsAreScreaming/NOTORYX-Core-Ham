@@ -6733,6 +6733,7 @@ class MeshCoreConnector extends ChangeNotifier {
             pathBytes: packet.pathBytes,
             channelIndex: channel.index,
             packetHash: pktHash,
+            viaMqtt: viaMqtt,
           );
           if (viaMqtt &&
               _findChannelRepeatIndex(
@@ -7502,9 +7503,11 @@ class MeshCoreConnector extends ChangeNotifier {
           pathVariants: message.pathVariants,
           channelIndex: message.channelIndex,
           messageId: message.messageId,
+          packetHash: message.packetHash,
           replyToMessageId: originalMessage.messageId,
           replyToSenderName: originalMessage.senderName,
           replyToText: originalMessage.text,
+          viaMqtt: message.viaMqtt,
         );
       }
     }
@@ -7514,6 +7517,21 @@ class MeshCoreConnector extends ChangeNotifier {
     if (existingIndex >= 0) {
       isNew = false;
       final existing = messages[existingIndex];
+      if (existing.viaMqtt && !processedMessage.viaMqtt) {
+        // First RF copy of a message only seen via MQTT: the radio has now
+        // heard it, so drop the flag and take the radio's own path. This is
+        // the first reception over RF, not a repeat.
+        messages[existingIndex] = existing.copyWith(
+          viaMqtt: false,
+          pathLength: processedMessage.pathLength,
+          pathHashWidth: processedMessage.pathHashWidth,
+          pathBytes: processedMessage.pathBytes,
+          pathVariants: processedMessage.pathVariants,
+          packetHash: existing.packetHash ?? processedMessage.packetHash,
+        );
+        _channelMessageStore.saveChannelMessages(channelIndex, messages);
+        return false;
+      }
       final mergedPathBytes = _selectPreferredPathBytes(
         existing.pathBytes,
         processedMessage.pathBytes,

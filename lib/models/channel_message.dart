@@ -52,6 +52,12 @@ class ChannelMessage {
   final String? replyToText;
   final Map<String, List<String?>> reactions;
 
+  /// Whether this message reached the app only through an MQTT observer.
+  ///
+  /// Cleared once the companion radio hears the same packet over RF, so a
+  /// flagged message has no RF path from the user's own radio.
+  final bool viaMqtt;
+
   ChannelMessage({
     this.senderKey,
     required this.senderName,
@@ -77,6 +83,7 @@ class ChannelMessage {
     this.replyToSenderName,
     this.replyToText,
     Map<String, List<String?>>? reactions,
+    this.viaMqtt = false,
   }) : messageId =
            messageId ??
            '${timestamp.millisecondsSinceEpoch}_${senderName.hashCode}_${text.hashCode}',
@@ -108,6 +115,7 @@ class ChannelMessage {
     MessageTranslationStatus? translationStatus,
     Object? translationModelId = _unset,
     Map<String, List<String?>>? reactions,
+    bool? viaMqtt,
   }) {
     return ChannelMessage(
       senderKey: senderKey,
@@ -142,6 +150,7 @@ class ChannelMessage {
       replyToSenderName: replyToSenderName ?? this.replyToSenderName,
       replyToText: replyToText ?? this.replyToText,
       reactions: reactions ?? this.reactions,
+      viaMqtt: viaMqtt ?? this.viaMqtt,
     );
   }
 

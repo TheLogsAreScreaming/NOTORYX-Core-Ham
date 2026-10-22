@@ -712,6 +712,14 @@
       }
     }
   },
+  "channels_viaMqtt": "via MQTT",
+  "@channels_viaMqtt": {
+    "description": "Small label on a channel message that reached the app only over MQTT, not over the user's radio."
+  },
+  "channels_viaMqttSemantics": "Received via MQTT, not heard by your radio",
+  "@channels_viaMqttSemantics": {
+    "description": "Screen reader label for the via MQTT marker on a channel message."
+  },
   "channels_private": "Private",
   "channels_editChannel": "Edit channel",
   "channels_muteChannel": "Mute channel",
@@ -2148,6 +2156,9 @@
   "channelPath_otherObservedPaths": "Other Observed Paths",
   "channelPath_repeaterHops": "Repeater Hops",
   "channelPath_noHopDetails": "Hop details are not provided for this packet.",
+  "channelPath_sourceLabel": "Source",
+  "channelPath_sourceMqtt": "MQTT",
+  "channelPath_viaMqttNoRfPath": "This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.",
   "channelPath_messageDetails": "Message Details",
   "channelPath_senderLabel": "Sender",
   "channelPath_timeLabel": "Time",

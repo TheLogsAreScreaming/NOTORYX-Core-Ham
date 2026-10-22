@@ -63,6 +63,49 @@ void main() {
     expect(connector.getChannelMessages(channel).single.repeatCount, 1);
   });
 
+  test('flags a message first heard via MQTT', () {
+    connector.ingestMqttRawPacket(
+      groupTextPacket(psk: psk, text: 'Alice: summit', path: [3]),
+    );
+    final message = connector.getChannelMessages(channel).single;
+    expect(message.viaMqtt, isTrue);
+    expect(message.repeatCount, 0);
+  });
+
+  test('radio copy after MQTT clears the flag without counting a repeat', () {
+    connector.ingestMqttRawPacket(
+      groupTextPacket(psk: psk, text: 'Alice: summit', path: [3, 4]),
+    );
+    radioRx(groupTextPacket(psk: psk, text: 'Alice: summit', path: [7]));
+    var message = connector.getChannelMessages(channel).single;
+    expect(message.viaMqtt, isFalse);
+    expect(message.repeatCount, 0);
+    // The observer's path is replaced by the radio's own.
+    expect(message.pathBytes, [7]);
+    expect(message.pathVariants, [
+      [7],
+    ]);
+
+    radioRx(groupTextPacket(psk: psk, text: 'Alice: summit', path: [7, 8]));
+    message = connector.getChannelMessages(channel).single;
+    expect(message.viaMqtt, isFalse);
+    expect(message.repeatCount, 1);
+  });
+
+  test('MQTT copy after radio leaves the message unflagged', () {
+    final raw = groupTextPacket(psk: psk, text: 'Alice: summit');
+    radioRx(raw);
+    connector.ingestMqttRawPacket(raw);
+    final message = connector.getChannelMessages(channel).single;
+    expect(message.viaMqtt, isFalse);
+    expect(message.repeatCount, 0);
+  });
+
+  test('radio-only messages are never flagged', () {
+    radioRx(groupTextPacket(psk: psk, text: 'Alice: summit'));
+    expect(connector.getChannelMessages(channel).single.viaMqtt, isFalse);
+  });
+
   test('ignores garbage without throwing', () {
     connector.ingestMqttRawPacket(Uint8List.fromList([0x15]));
     connector.ingestMqttRawPacket(Uint8List.fromList([0x15, 0x3F, 1]));
