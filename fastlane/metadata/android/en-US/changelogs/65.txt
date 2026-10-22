@@ -1,0 +1,2 @@
+• Halloween theme for this release only: pumpkin orange, toxic green and haunted purple. Pick it in Settings → Theme
+• Route Intelligence now shows routes through 2-byte repeater IDs correctly, one ID per hop
