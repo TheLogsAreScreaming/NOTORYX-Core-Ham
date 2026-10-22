@@ -198,6 +198,44 @@ enum BastionTheme {
       primaryContainer: Color(0xFFCFE6DA),
       secondaryContainer: Color(0xFFF3E3C3),
     ),
+  ),
+
+  /// Seasonal theme for the Halloween 2026 release only. Remove this entry
+  /// in the next release; anyone who chose it falls back to [fallback]
+  /// through [fromId].
+  halloween(
+    'halloween',
+    'Halloween',
+    'Pumpkin, toxic green and haunted purple. This release only',
+    BastionPalette(
+      brightness: Brightness.dark,
+      bg: Color(0xFF0D0A12),
+      bg1: Color(0xFF130F1A),
+      bg2: Color(0xFF18131F),
+      bg3: Color(0xFF211A2B),
+      bg4: Color(0xFF2C2338),
+      line: Color(0xFF2C2338),
+      line2: Color(0xFF3E3350),
+      line3: Color(0xFF5A4D6E),
+      ink: Color(0xFFF4EDE4),
+      ink2: Color(0xFFDCD2C6),
+      ink3: Color(0xFFB5A9BD),
+      ink4: Color(0xFF9C90A6),
+      signal: Color(0xFFA6F04A),
+      signalDim: Color(0xFF7FC236),
+      warn: Color(0xFFFFC94A),
+      warnDim: Color(0xFFCC9F35),
+      alert: Color(0xFFFF5C5C),
+      accent: Color(0xFFFF7A1A),
+      accentDim: Color(0xFFC75A0E),
+      onAccent: Color(0xFF261000),
+      magenta: Color(0xFFB98CFF),
+      me: Color(0xFF2A1A3D),
+      meBorder: Color(0xFF8E5BD9),
+      meInk: Color(0xFFF4EDE4),
+      primaryContainer: Color(0xFF4A2410),
+      secondaryContainer: Color(0xFF2E1F4A),
+    ),
   );
 
   const BastionTheme(this.id, this.label, this.description, this.palette);
