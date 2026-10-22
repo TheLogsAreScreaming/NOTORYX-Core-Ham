@@ -21,25 +21,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get nav_map => '地图';
 
   @override
-  String get nav_messages => 'Messages';
+  String get nav_messages => '消息';
 
   @override
-  String get nav_nodes => 'Nodes';
+  String get nav_nodes => '节点';
 
   @override
-  String get nav_radio => 'Radio';
+  String get nav_radio => '电台';
 
   @override
-  String get messages_title => 'Messages';
+  String get messages_title => '消息';
 
   @override
-  String get messages_filterAll => 'All';
+  String get messages_filterAll => '全部';
 
   @override
-  String get messages_filterDirect => 'Direct';
+  String get messages_filterDirect => '私信';
 
   @override
-  String get messages_filterChannels => 'Channels';
+  String get messages_filterChannels => '频道';
 
   @override
   String messages_filterWithUnread(String label, int count) {
@@ -47,56 +47,55 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get messages_search => 'Search messages';
+  String get messages_search => '搜索消息';
 
   @override
-  String get messages_searchHint => 'Search conversations';
+  String get messages_searchHint => '搜索对话';
 
   @override
-  String get messages_closeSearch => 'Close search';
+  String get messages_closeSearch => '关闭搜索';
 
   @override
-  String get messages_manageChannels => 'Manage channels';
+  String get messages_manageChannels => '管理频道';
 
   @override
-  String get messages_new => 'New';
+  String get messages_new => '新建';
 
   @override
-  String get messages_newDirect => 'Message a node';
+  String get messages_newDirect => '给节点发消息';
 
   @override
-  String get messages_newChannel => 'Add or join a channel';
+  String get messages_newChannel => '添加或加入频道';
 
   @override
-  String get messages_empty => 'No conversations yet';
+  String get messages_empty => '还没有对话';
 
   @override
-  String get messages_emptyHint =>
-      'Messages from nodes and channels show up here.';
+  String get messages_emptyHint => '来自节点和频道的消息会显示在这里。';
 
   @override
-  String get messages_noMatches => 'No conversations match your search';
+  String get messages_noMatches => '没有与搜索匹配的对话';
 
   @override
   String messages_you(String text) {
-    return 'You: $text';
+    return '你：$text';
   }
 
   @override
-  String get messages_yesterday => 'Yesterday';
+  String get messages_yesterday => '昨天';
 
   @override
   String messages_unreadCount(int count) {
-    return '$count unread';
+    return '$count 条未读';
   }
 
   @override
   String radioStatus_connectedVia(String transport) {
-    return 'Connected over $transport';
+    return '通过 $transport 连接';
   }
 
   @override
-  String get radioStatus_bluetooth => 'Bluetooth';
+  String get radioStatus_bluetooth => '蓝牙';
 
   @override
   String get radioStatus_usb => 'USB';
@@ -106,211 +105,198 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String radioStatus_battery(int percent) {
-    return 'Battery $percent%';
+    return '电池 $percent%';
   }
 
   @override
-  String get radioStatus_openRadio => 'Open radio details';
+  String get radioStatus_openRadio => '打开电台详情';
 
   @override
-  String get radioOverview_battery => 'Battery';
+  String get radioOverview_battery => '电池';
 
   @override
   String radioOverview_firmware(String version) {
-    return 'Firmware $version';
+    return '固件 $version';
   }
 
   @override
-  String get radioOverview_sendAdvert => 'Send advert';
+  String get radioOverview_sendAdvert => '发送广播';
 
   @override
-  String get radioOverview_stats => 'Radio stats';
+  String get radioOverview_stats => '电台统计';
 
   @override
-  String get accessControl_title => 'Access control';
+  String get accessControl_title => '访问控制';
 
   @override
-  String get accessControl_hubSubtitle => 'Who can log in without the password';
+  String get accessControl_hubSubtitle => '谁可以免密码登录';
 
   @override
   String get accessControl_explainRepeater =>
-      'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.';
+      '列表中的成员无需密码即可登录。管理员可以更改设置；“只读”和“读写”还会获得完整遥测数据。';
 
   @override
-  String get accessControl_explainRoom =>
-      'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.';
+  String get accessControl_explainRoom => '列表中的管理员无需密码即可登录并管理房间。房间成员则使用房间密码加入。';
 
   @override
-  String get accessControl_roleReadOnly => 'Read only';
+  String get accessControl_roleReadOnly => '只读';
 
   @override
-  String get accessControl_roleReadWrite => 'Read & write';
+  String get accessControl_roleReadWrite => '读写';
 
   @override
-  String get accessControl_roleAdmin => 'Admin';
+  String get accessControl_roleAdmin => '管理员';
 
   @override
-  String get accessControl_you => 'You';
+  String get accessControl_you => '你';
 
   @override
-  String get accessControl_unknownNode => 'Unknown node';
+  String get accessControl_unknownNode => '未知节点';
 
   @override
-  String get accessControl_add => 'Add';
+  String get accessControl_add => '添加';
 
   @override
-  String get accessControl_addTitle => 'Add to access list';
+  String get accessControl_addTitle => '添加到访问列表';
 
   @override
-  String get accessControl_pickContact => 'Choose a contact';
+  String get accessControl_pickContact => '选择联系人';
 
   @override
-  String get accessControl_noContacts =>
-      'No contacts to add. Nodes appear here once you have heard their advert.';
+  String get accessControl_noContacts => '没有可添加的联系人。收到节点的广播后，它们会显示在这里。';
 
   @override
-  String get accessControl_changeRole => 'Change role';
+  String get accessControl_changeRole => '更改角色';
 
   @override
-  String get accessControl_remove => 'Remove access';
+  String get accessControl_remove => '移除访问权限';
 
   @override
   String accessControl_removeConfirm(String name) {
-    return 'Remove $name from the access list? They will need the password to log in.';
+    return '要将 $name 从访问列表中移除吗？之后登录需要密码。';
   }
 
   @override
-  String get accessControl_removeSelfWarning =>
-      'This is you. If you remove yourself you will need the admin password to manage this node again.';
+  String get accessControl_removeSelfWarning => '这是你自己。移除自己后，需要管理员密码才能再次管理此节点。';
 
   @override
-  String get accessControl_unknownKeyNote =>
-      'Not in your contacts. Changing its role needs newer node firmware; removing it always works.';
+  String get accessControl_unknownKeyNote => '不在你的联系人中。更改其角色需要更新的节点固件；移除始终可用。';
 
   @override
   String get accessControl_prefixUnsupported =>
-      'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.';
+      '该节点的固件无法更改不在你联系人中的成员角色。你仍可以将其移除。';
 
   @override
-  String get accessControl_empty => 'Nobody is on the access list';
+  String get accessControl_empty => '访问列表为空';
 
   @override
-  String get accessControl_emptyHint =>
-      'Add people so they can log in without the password.';
+  String get accessControl_emptyHint => '添加成员后，他们无需密码即可登录。';
 
   @override
-  String get accessControl_loading => 'Asking the node for its access list…';
+  String get accessControl_loading => '正在向节点获取访问列表…';
 
   @override
-  String get accessControl_timeout =>
-      'The node didn\'t answer. Check the path and try again.';
+  String get accessControl_timeout => '节点没有响应。请检查路径后重试。';
 
   @override
   String get accessControl_maybeIncomplete =>
-      'This node sent one full page and its firmware can\'t send more, so some entries may be missing.';
+      '该节点发送了一整页，但其固件无法发送更多，因此可能缺少部分条目。';
 
   @override
-  String get accessControl_saved => 'Access list updated';
+  String get accessControl_saved => '访问列表已更新';
 
   @override
   String accessControl_failed(String reply) {
-    return 'The node refused the change: $reply';
+    return '节点拒绝了此更改：$reply';
   }
 
   @override
-  String get companionCli_title => 'Command line';
+  String get companionCli_title => '命令行';
 
   @override
-  String get companionCli_tileSubtitle => 'Run commands on your radio';
+  String get companionCli_tileSubtitle => '在电台上运行命令';
 
   @override
-  String get companionCli_warning =>
-      'Commands run on your connected radio and can change its settings or restart it.';
+  String get companionCli_warning => '命令会在已连接的电台上运行，可能更改其设置或使其重启。';
 
   @override
-  String get companionCli_hint => 'Type a command, e.g. ver';
+  String get companionCli_hint => '输入命令，例如 ver';
 
   @override
-  String get companionCli_send => 'Run command';
+  String get companionCli_send => '运行命令';
 
   @override
-  String get companionCli_noReply => 'No reply. The radio may be restarting.';
+  String get companionCli_noReply => '无响应。电台可能正在重启。';
 
   @override
-  String get companionCli_empty =>
-      'Try one of the commands above, or type your own.';
+  String get companionCli_empty => '试试上面的命令，或输入你自己的命令。';
 
   @override
-  String get wifi_title => 'WiFi';
+  String get wifi_title => 'Wi‑Fi';
 
   @override
-  String get wifi_tileSubtitle => 'Connect your radio to a WiFi network';
+  String get wifi_tileSubtitle => '将电台连接到 Wi‑Fi 网络';
 
   @override
-  String get wifi_unsupported =>
-      'This radio\'s firmware doesn\'t include WiFi.';
+  String get wifi_unsupported => '此电台的固件不支持 Wi‑Fi。';
 
   @override
-  String get wifi_enabled => 'Use WiFi';
+  String get wifi_enabled => '使用 Wi‑Fi';
 
   @override
-  String get wifi_status => 'Status';
+  String get wifi_status => '状态';
 
   @override
-  String get wifi_connected => 'Connected';
+  String get wifi_connected => '已连接';
 
   @override
   String wifi_connectedIp(String ip) {
-    return 'Connected · $ip';
+    return '已连接 · $ip';
   }
 
   @override
-  String get wifi_disconnected => 'Not connected';
+  String get wifi_disconnected => '未连接';
 
   @override
-  String get wifi_network => 'Network name (SSID)';
+  String get wifi_network => '网络名称 (SSID)';
 
   @override
-  String get wifi_password => 'Password';
+  String get wifi_password => '密码';
 
   @override
-  String get wifi_passwordKeep => 'Leave blank to keep the current password';
+  String get wifi_passwordKeep => '留空以保留当前密码';
 
   @override
-  String get wifi_save => 'Save';
+  String get wifi_save => '保存';
 
   @override
-  String get wifi_forget => 'Forget network';
+  String get wifi_forget => '忘记网络';
 
   @override
-  String get wifi_forgetConfirm =>
-      'Remove the saved network and password from the radio?';
+  String get wifi_forgetConfirm => '要从电台中删除已保存的网络和密码吗？';
 
   @override
-  String get wifi_rebootNeeded =>
-      'Saved. Restart the radio to apply WiFi changes.';
+  String get wifi_rebootNeeded => '已保存。重启电台以应用 Wi‑Fi 更改。';
 
   @override
-  String get wifi_rebootNow => 'Restart radio';
+  String get wifi_rebootNow => '重启电台';
 
   @override
-  String get wifi_rebootConfirm =>
-      'Restart the radio now? The app will disconnect and you\'ll need to reconnect.';
+  String get wifi_rebootConfirm => '现在重启电台吗？应用会断开连接，你需要重新连接。';
 
   @override
-  String get wifi_loadFailed =>
-      'Couldn\'t read the WiFi settings from the radio.';
+  String get wifi_loadFailed => '无法从电台读取 Wi‑Fi 设置。';
 
   @override
-  String get wifi_retry => 'Try again';
+  String get wifi_retry => '重试';
 
   @override
   String wifi_saveFailed(String reply) {
-    return 'The radio didn\'t accept the change: $reply';
+    return '电台未接受此更改：$reply';
   }
 
   @override
-  String get accessControl_refresh => 'Refresh';
+  String get accessControl_refresh => '刷新';
 
   @override
   String get common_cancel => '取消';
@@ -403,10 +389,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get messageStatus_repeated => '多次听到';
 
   @override
-  String get urlImage_enable => 'Enable URL images';
+  String get urlImage_enable => '启用 URL 图片';
 
   @override
-  String get urlImage_possible => 'Possible URL image; enable it in Settings.';
+  String get urlImage_possible => '可能是 URL 图片；请在设置中启用。';
 
   @override
   String get common_reboot => '重启';
@@ -655,27 +641,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_regionSettingsSubtitle => '管理已存储的区域';
 
   @override
-  String get settings_corridorRegion => 'Corridor region';
+  String get settings_corridorRegion => '走廊区域';
 
   @override
-  String get settings_corridorRegionDefault => '#corridor (default)';
+  String get settings_corridorRegionDefault => '#corridor（默认）';
 
   @override
   String get settings_corridorRegionHelp =>
-      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+      '泛洪走廊数据包会标记此区域。没有走廊固件的转发节点只有在允许此区域时才会转发它们。留空则使用默认标签 #corridor。';
 
   @override
-  String get settings_corridorRegionHint => 'Region name';
+  String get settings_corridorRegionHint => '区域名称';
 
   @override
-  String get settings_corridorRegionUseDefault => 'Use default';
+  String get settings_corridorRegionUseDefault => '使用默认值';
 
   @override
-  String get settings_corridorRegionUpdated => 'Corridor region updated';
+  String get settings_corridorRegionUpdated => '走廊区域已更新';
 
   @override
-  String get settings_corridorRegionFailed =>
-      'Couldn\'t update the corridor region';
+  String get settings_corridorRegionFailed => '无法更新走廊区域';
 
   @override
   String get settings_regionManagement_screenTitle => '区域管理';
@@ -1473,11 +1458,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get channels_viaMqtt => 'via MQTT';
+  String get channels_viaMqtt => '来自 MQTT';
 
   @override
-  String get channels_viaMqttSemantics =>
-      'Received via MQTT, not heard by your radio';
+  String get channels_viaMqttSemantics => '通过 MQTT 收到，你的电台未接收到';
 
   @override
   String get channels_private => '私有';
@@ -1733,31 +1717,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_sendGif => '发送 GIF';
 
   @override
-  String get chat_limitToArea => 'Limit to an area';
+  String get chat_limitToArea => '限制在一个区域内';
 
   @override
-  String get chat_limitToAreaTitle => 'Only send within…';
+  String get chat_limitToAreaTitle => '仅在以下范围内发送…';
 
   @override
   String get chat_limitToAreaHelp =>
-      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+      '带有泛洪走廊固件的转发节点只在此区域内转发消息。其他转发节点会丢弃它，除非它们允许你的走廊区域。';
 
   @override
   String chat_limitToAreaRadius(int km) {
-    return '$km km of you';
+    return '你周围 $km 公里';
   }
 
   @override
   String chat_limitToAreaActive(int km) {
-    return 'Only within $km km of you';
+    return '仅限你周围 $km 公里内';
   }
 
   @override
-  String get chat_limitToAreaOff => 'No limit';
+  String get chat_limitToAreaOff => '不限制';
 
   @override
-  String get chat_limitToAreaNeedsPosition =>
-      'Set your radio\'s position to limit messages to an area.';
+  String get chat_limitToAreaNeedsPosition => '设置电台位置后才能将消息限制在某个区域。';
 
   @override
   String get chat_sendImageLora => '通过 MeshCore 发送图片';
@@ -1778,7 +1761,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_me => '我';
 
   @override
-  String get reaction_report => 'Emoji Reactions';
+  String get reaction_report => '表情回应';
 
   @override
   String get emojiCategorySmileys => '表情';
@@ -2224,59 +2207,52 @@ class AppLocalizationsZh extends AppLocalizations {
   String get map_setAsMyLocation => '设置为我的位置';
 
   @override
-  String get floodCorridor_title => 'Flood Corridor';
+  String get floodCorridor_title => '泛洪走廊';
 
   @override
-  String get floodCorridor_previewToHere => 'Preview flood corridor to here';
+  String get floodCorridor_previewToHere => '预览到此处的泛洪走廊';
 
   @override
-  String get floodCorridor_requesting => 'Asking your radio for a corridor…';
+  String get floodCorridor_requesting => '正在向电台请求走廊…';
 
   @override
-  String get floodCorridor_unsupported =>
-      'Your radio\'s firmware doesn\'t support flood corridors.';
+  String get floodCorridor_unsupported => '你的电台固件不支持泛洪走廊。';
 
   @override
-  String get floodCorridor_noProposal =>
-      'Your radio couldn\'t propose a corridor. Make sure it has a position set.';
+  String get floodCorridor_noProposal => '电台无法提出走廊。请确认已设置位置。';
 
   @override
   String floodCorridor_circleCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count circles',
-      one: '1 circle',
+      other: '$count 个圆',
     );
     return '$_temp0';
   }
 
   @override
   String floodCorridor_repeatersInside(int inside, int total) {
-    return '$inside of $total known repeaters inside';
+    return '$total 个已知转发节点中有 $inside 个在内';
   }
 
   @override
-  String get floodCorridor_straightLine =>
-      'Straight line: no known repeaters along the way';
+  String get floodCorridor_straightLine => '直线：沿途没有已知的转发节点';
 
   @override
-  String get floodCorridor_followsRepeaters => 'Follows your known repeaters';
+  String get floodCorridor_followsRepeaters => '沿着已知的转发节点';
 
   @override
-  String get floodCorridor_horizonLimited =>
-      'Known repeaters don\'t reach the target; the rest is a straight line';
+  String get floodCorridor_horizonLimited => '已知转发节点无法到达目标；其余部分为直线';
 
   @override
-  String get floodCorridor_thinStretch =>
-      'Part of the corridor has few known repeaters';
+  String get floodCorridor_thinStretch => '走廊的一部分已知转发节点很少';
 
   @override
-  String get floodCorridor_moreCoverage => 'Require more repeater coverage';
+  String get floodCorridor_moreCoverage => '要求更多转发节点覆盖';
 
   @override
-  String get floodCorridor_previewNote =>
-      'Preview only. Repeaters without corridor firmware don\'t apply corridors.';
+  String get floodCorridor_previewNote => '仅为预览。没有走廊固件的转发节点不会应用走廊。';
 
   @override
   String get map_pinLabel => '标签';
@@ -3846,14 +3822,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channelPath_noHopDetails => '此数据包未提供详细信息';
 
   @override
-  String get channelPath_sourceLabel => 'Source';
+  String get channelPath_sourceLabel => '来源';
 
   @override
   String get channelPath_sourceMqtt => 'MQTT';
 
   @override
   String get channelPath_viaMqttNoRfPath =>
-      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
+      '此消息通过 MQTT 到达。你的电台没有收到它，因此没有来自你电台的无线路径。';
 
   @override
   String get channelPath_messageDetails => '消息详情';
@@ -6874,74 +6850,69 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sensor_typeAltitude => '海拔';
 
   @override
-  String get setupWizard_title => 'Connect your radio';
+  String get setupWizard_title => '连接你的电台';
 
   @override
-  String get setupWizard_choose => '1. Choose a connection';
+  String get setupWizard_choose => '1. 选择连接方式';
 
   @override
-  String get setupWizard_prepare => '2. Prepare your radio';
+  String get setupWizard_prepare => '2. 准备电台';
 
   @override
-  String get setupWizard_intro =>
-      'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.';
+  String get setupWizard_intro => '选择这部手机或电脑如何连接你的电台。电台通过网状网络传递消息。';
 
   @override
-  String get setupWizard_bluetooth =>
-      'Wireless connection to a nearby compatible radio.';
+  String get setupWizard_bluetooth => '无线连接附近的兼容电台。';
 
   @override
-  String get setupWizard_noBluetooth =>
-      'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.';
+  String get setupWizard_noBluetooth => '此浏览器不支持蓝牙。请使用原生应用或受支持的 USB 连接。';
 
   @override
-  String get setupWizard_usb => 'A wired connection using a USB data cable.';
+  String get setupWizard_usb => '使用 USB 数据线的有线连接。';
 
   @override
   String get setupWizard_noUsb =>
-      'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.';
+      '此处无法使用 USB 串口。请使用受支持的桌面或 Android 应用，或支持 Web Serial 的 Chrome。';
 
   @override
   String get setupWizard_bluetoothSteps =>
-      'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.';
+      '打开电台并放在附近。开启蓝牙并允许应用使用。关闭其他连接到电台的应用，然后打开设备列表并扫描。';
 
   @override
   String get setupWizard_usbSteps =>
-      'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.';
+      '用 USB 数据线连接已开机的电台；仅充电线无法使用。关闭其他串口应用。打开 USB 设备列表，选择你的电台，如有提示请允许访问。';
 
   @override
-  String get setupWizard_firmwareTitle =>
-      'Check compatibility before changing firmware';
+  String get setupWizard_firmwareTitle => '更换固件前请先确认兼容性';
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      '你的电台需要支持所选连接方式的 MeshCore companion 固件。支持情况因板卡和固件版本而异；有 USB 接口并不代表支持 USB 串口。请查看你的板卡和已安装版本的说明。转发节点或房间服务器固件不是 companion。连接失败本身并不意味着需要重新刷写固件。';
 
   @override
   String get setupWizard_settings =>
-      'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.';
+      '本向导不会刷写固件，也不会更改电台设置。连接后，请在设置中配置区域、频率和高级选项。更改设置前请先与本地网状网络确认。';
 
   @override
-  String get setupWizard_openBluetooth => 'Open Bluetooth devices';
+  String get setupWizard_openBluetooth => '打开蓝牙设备';
 
   @override
-  String get setupWizard_openUsb => 'Open USB devices';
+  String get setupWizard_openUsb => '打开 USB 设备';
 
   @override
-  String get setupWizard_change => 'Change connection type';
+  String get setupWizard_change => '更改连接方式';
 
   @override
-  String get setupWizard_later => 'Set up later';
+  String get setupWizard_later => '稍后设置';
 
   @override
   String get setupWizard_bluetoothError =>
-      'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.';
+      '无法连接电台。请保持电台开机并靠近，检查蓝牙权限并关闭其他已连接的应用，然后重新扫描。';
 
   @override
-  String get setupWizard_scanError =>
-      'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.';
+  String get setupWizard_scanError => '无法扫描电台。请开启蓝牙，并在系统设置中允许蓝牙或附近设备权限，然后重新扫描。';
 
   @override
   String get setupWizard_usbError =>
-      'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.';
+      '无法通过 USB 连接。请检查数据线和所选设备，允许 USB 访问，并关闭其他串口应用。重新插入数据线后重试。';
 }
