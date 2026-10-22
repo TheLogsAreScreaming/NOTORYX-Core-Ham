@@ -15,7 +15,9 @@ permissions:
 
 jobs:
   macos:
-    runs-on: macos-latest
+    runs-on: macos-15-intel
+    # Pin an Intel macOS image instead of the moving macos-latest ARM64 image.
+    # Flutter's macOS release build must still pass both architecture checks.
     timeout-minutes: 60
     steps:
       - name: Checkout
