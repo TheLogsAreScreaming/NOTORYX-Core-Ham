@@ -13,7 +13,7 @@ import 'notification_service.dart';
 
 /// Where the shared list lives; the app also bundles a copy.
 const regionalPresetsUrl =
-    'https://raw.githubusercontent.com/BastionMeshApp/Bastion-Meshcore-BCS/dev/assets/regional_presets.json';
+    'https://raw.githubusercontent.com/BastionMeshApp/notoryx-core/dev/assets/regional_presets.json';
 
 /// Keeps the list of local mesh radio settings up to date, works out which
 /// area the radio is in, and offers that area's settings when the radio
