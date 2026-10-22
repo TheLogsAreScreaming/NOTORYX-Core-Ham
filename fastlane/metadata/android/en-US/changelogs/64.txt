@@ -1,0 +1,4 @@
+• New NOTORYX app icon
+• MQTT: share to LetsMesh-style observer brokers, signed in with your radio's own key (the key never leaves the radio)
+• Chat messages that arrived only over MQTT are marked "via MQTT"
+• The MQTT screens and the Connections dashboard are now translated, along with 140 other strings, in all 17 languages
