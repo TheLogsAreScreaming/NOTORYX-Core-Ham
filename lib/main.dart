@@ -22,6 +22,7 @@ import 'services/app_shortcuts.dart';
 import 'services/sensor_subscription_service.dart';
 import 'services/mqtt_broker_service.dart';
 import 'services/mqtt_client_transport.dart';
+import 'services/network_monitor.dart';
 import 'services/secure_mqtt_credentials_store.dart';
 import 'services/image_chunk_transport.dart';
 import 'services/image_codec_service.dart';
@@ -291,6 +292,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       prefs: PrefsManager.instance,
       credentials: createMqttCredentialsStore(),
       transportFactory: createMqttClientTransport,
+      networkMonitor: ConnectivityNetworkMonitor(),
     );
     unawaited(_mqtt.load());
     _mqttPackets = _mqtt.packets.listen((packet) {
