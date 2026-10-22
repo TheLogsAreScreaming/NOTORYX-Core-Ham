@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:meshcore_open/utils/app_logger.dart';
 
 import '../connector/meshcore_protocol.dart';
@@ -32,7 +31,8 @@ class CayenneLpp {
   static const int lppGps =
       136; // 3 byte lon/lat 0.0001 °, 3 bytes alt 0.01 meter
   static const int lppSwitch = 142; // 1 byte, 0/1
-  static const int lppPolyline = 240; // 1 byte size, 1 byte delta factor, 3 byte lon/lat 0.0001° * factor, n (size-8) bytes deltas
+  static const int lppPolyline =
+      240; // 1 byte size, 1 byte delta factor, 3 byte lon/lat 0.0001° * factor, n (size-8) bytes deltas
 
   final BufferWriter _writer = BufferWriter();
 

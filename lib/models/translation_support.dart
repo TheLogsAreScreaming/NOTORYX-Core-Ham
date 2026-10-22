@@ -118,7 +118,8 @@ final List<TranslationModelRecord> translationPresetModels = [
   TranslationModelRecord(
     id: 'hy-mt1.5-1.8b-q4_k_m',
     name: 'HY-MT1.5-1.8B-Q4_K_M.gguf',
-    sourceUrl: 'https://huggingface.co/tencent/HY-MT1.5-1.8B-GGUF/resolve/main/HY-MT1.5-1.8B-Q4_K_M.gguf?download=true',
+    sourceUrl:
+        'https://huggingface.co/tencent/HY-MT1.5-1.8B-GGUF/resolve/main/HY-MT1.5-1.8B-Q4_K_M.gguf?download=true',
     localPath: '',
     downloadedAt: DateTime.fromMillisecondsSinceEpoch(0),
     fileSizeBytes: 0,
@@ -126,7 +127,8 @@ final List<TranslationModelRecord> translationPresetModels = [
   TranslationModelRecord(
     id: 'hy-mt1.5-1.8b-q6_k',
     name: 'HY-MT1.5-1.8B-Q6_K.gguf',
-    sourceUrl: 'https://huggingface.co/tencent/HY-MT1.5-1.8B-GGUF/resolve/main/HY-MT1.5-1.8B-Q6_K.gguf?download=true',
+    sourceUrl:
+        'https://huggingface.co/tencent/HY-MT1.5-1.8B-GGUF/resolve/main/HY-MT1.5-1.8B-Q6_K.gguf?download=true',
     localPath: '',
     downloadedAt: DateTime.fromMillisecondsSinceEpoch(0),
     fileSizeBytes: 0,

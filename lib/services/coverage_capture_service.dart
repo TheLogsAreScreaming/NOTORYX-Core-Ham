@@ -131,7 +131,8 @@ class CoverageCaptureSession {
       );
 
   Map<String, dynamic> toJson() => {
-    'signal_note': 'RSSI/SNR are radio snapshots, not per-node or per-packet measurements. Recorder position is the radio advertised position, not phone GPS.',
+    'signal_note':
+        'RSSI/SNR are radio snapshots, not per-node or per-packet measurements. Recorder position is the radio advertised position, not phone GPS.',
     'id': id,
     'started_at': startedAt.toIso8601String(),
     'ended_at': endedAt?.toIso8601String(),
@@ -169,7 +170,8 @@ class CoverageCaptureService extends ChangeNotifier {
           ),
         );
       } catch (_) {
-        loadWarning = 'A damaged saved session could not be opened. Its stored data has been retained.';
+        loadWarning =
+            'A damaged saved session could not be opened. Its stored data has been retained.';
       }
     }
     // Recover interrupted captures as read-only sessions; never silently resume.
@@ -183,7 +185,8 @@ class CoverageCaptureService extends ChangeNotifier {
           _history.insert(0, recovered);
         }
       } catch (_) {
-        loadWarning = 'An interrupted session could not be recovered. Its stored data has been retained.';
+        loadWarning =
+            'An interrupted session could not be recovered. Its stored data has been retained.';
       }
     }
     notifyListeners();

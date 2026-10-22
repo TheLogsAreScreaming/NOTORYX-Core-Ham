@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
 import 'package:crypto/crypto.dart';
-
 import '../models/contact.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';

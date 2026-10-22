@@ -1,7 +1,5 @@
 import '../theme/mesh_theme.dart';
-
 import 'package:flutter/material.dart';
-
 import '../l10n/l10n.dart';
 
 import 'antenna_coverage_screen.dart';

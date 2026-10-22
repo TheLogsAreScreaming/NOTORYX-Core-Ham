@@ -5,9 +5,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-
 import 'l10n/app_localizations.dart';
-
 import 'package:provider/provider.dart';
 
 import 'screens/chrome_required_screen.dart';

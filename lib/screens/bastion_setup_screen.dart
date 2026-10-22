@@ -23,9 +23,9 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
   final _openedAt = DateTime.now();
   String? _contactKey;
 
-  Future<void> _open(Widget screen) =>
-      Navigator.of(context)
-          .push<void>(MaterialPageRoute(builder: (_) => screen));
+  Future<void> _open(Widget screen) => Navigator.of(
+    context,
+  ).push<void>(MaterialPageRoute(builder: (_) => screen));
 
   Widget _step(String title, IconData icon, List<Widget> children) => Card(
     child: Padding(

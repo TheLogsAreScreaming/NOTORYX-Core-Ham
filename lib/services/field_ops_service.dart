@@ -447,7 +447,8 @@ class FieldOpsService extends ChangeNotifier {
   String exportLog() => const JsonEncoder.withIndent('  ').convert({
     'schema': 1,
     'trip': trip.toJson(),
-    'note': 'Radio advertised positions may be stale. Queued and sent messages do not prove delivery.',
+    'note':
+        'Radio advertised positions may be stale. Queued and sent messages do not prove delivery.',
     'entries': _entries.map((e) => e.toJson()).toList(),
   });
 

@@ -179,8 +179,9 @@ class _RegionManagementScreenState extends State<RegionManagementScreen> {
                               TextButton(
                                 style: alreadyExists
                                     ? TextButton.styleFrom(
-                                        foregroundColor: Theme.of(context)
-                                            .disabledColor,
+                                        foregroundColor: Theme.of(
+                                          context,
+                                        ).disabledColor,
                                       )
                                     : null,
                                 onPressed: () {

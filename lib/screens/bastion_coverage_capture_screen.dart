@@ -1,13 +1,10 @@
 import 'dart:async';
-
 import 'bastion_coverage_history_screen.dart';
 
 import '../theme/mesh_theme.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-
 import '../l10n/l10n.dart';
 
 import '../connector/meshcore_connector.dart';

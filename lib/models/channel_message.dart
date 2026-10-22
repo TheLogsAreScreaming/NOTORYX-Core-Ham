@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import '../connector/meshcore_protocol.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/smaz.dart';

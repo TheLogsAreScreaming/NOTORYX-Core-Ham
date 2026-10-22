@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import 'app_logger.dart';

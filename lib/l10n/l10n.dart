@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-
 import 'app_localizations.dart';
 
 extension LocalizationExtension on BuildContext {

@@ -59,8 +59,9 @@ void switchMainTab(
       navigator.popUntil((route) => route.isFirst);
     case MainTab.tools:
     case MainTab.settings:
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => screenFor(tab)));
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (_) => screenFor(tab)));
     case MainTab.nodes:
     case MainTab.chats:
     case MainTab.map:

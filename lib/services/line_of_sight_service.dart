@@ -7,9 +7,8 @@ import 'package:latlong2/latlong.dart';
 
 import '../models/coverage_sweep.dart';
 
-typedef ElevationDataSource = Future<List<double?>> Function(
-  List<LatLng> points,
-);
+typedef ElevationDataSource =
+    Future<List<double?>> Function(List<LatLng> points);
 
 class LineOfSightSample {
   final double distanceMeters;

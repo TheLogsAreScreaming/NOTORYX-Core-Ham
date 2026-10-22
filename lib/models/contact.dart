@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:meshcore_open/utils/app_logger.dart';
 
 import '../connector/meshcore_protocol.dart';

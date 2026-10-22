@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
-
 import 'dart:io' show Platform;
-
 import 'browser_detection.dart';
 
 /// Utility class to safely check the current platform across web and native.

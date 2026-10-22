@@ -1,7 +1,5 @@
 import '../theme/mesh_theme.dart';
-
 import 'package:flutter/material.dart';
-
 import '../l10n/l10n.dart';
 import 'map_screen.dart';
 import 'map_cache_screen.dart';
@@ -84,9 +82,9 @@ class BastionMapHubScreen extends StatelessWidget {
             title: context.l10n.mapHub_liveMap,
             subtitle: context.l10n.mapHub_liveMapHint,
             badge: context.l10n.mapHub_badgeLive,
-            onTap: () =>
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => const MapScreen())),
+            onTap: () => Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
           ),
           const SizedBox(height: 12),
           _MapAction(

@@ -1,5 +1,4 @@
 import '../theme/mesh_theme.dart';
-
 import 'package:flutter/material.dart';
 
 class AdaptiveAppBarTitle extends StatelessWidget {

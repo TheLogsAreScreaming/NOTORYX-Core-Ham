@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-
 import '../models/contact.dart';
 import '../models/path_history.dart';
 import '../models/path_selection.dart';

@@ -72,8 +72,9 @@ class SensorLiveCard extends StatelessWidget {
               else ...[
                 Text(
                   l10n.sensor_lastUpdate(
-                    TimeOfDay.fromDateTime(sub.pushes.first.receivedAt)
-                        .format(context),
+                    TimeOfDay.fromDateTime(
+                      sub.pushes.first.receivedAt,
+                    ).format(context),
                     sub.pushes.length,
                   ),
                   style: theme.textTheme.bodySmall,

@@ -2109,8 +2109,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   readOnly: true,
                   controller: _pubKeyController,
                   style: TextStyle(
-                    color: Theme.of(context).textTheme.headlineSmall?.color
-                        ?.withValues(alpha: 0.6),
+                    color: Theme.of(
+                      context,
+                    ).textTheme.headlineSmall?.color?.withValues(alpha: 0.6),
                   ),
                   decoration: InputDecoration(
                     labelText: l10n.repeater_pubKey,

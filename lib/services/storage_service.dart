@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import '../models/delivery_observation.dart';
 import '../models/path_history.dart';
 import '../storage/prefs_manager.dart';
