@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../helpers/path_helper.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../models/path_history.dart';
@@ -220,9 +221,10 @@ class _ContactRouteCard extends StatelessWidget {
 
   String _path(BuildContext context, PathRecord path) {
     if (path.pathBytes.isEmpty) return context.l10n.routes_direct;
-    return path.pathBytes
-        .map((b) => b.toRadixString(16).padLeft(2, '0').toUpperCase())
-        .join(' › ');
+    return PathHelper.splitPathBytes(
+      path.pathBytes,
+      path.hashByteWidth,
+    ).map(PathHelper.formatHopHex).join(' › ');
   }
 
   @override
