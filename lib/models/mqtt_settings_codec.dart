@@ -13,6 +13,7 @@ class MqttSettingsCodec {
       'webSocketPath': settings.webSocketPath,
       'topicPrefix': settings.topicPrefix,
       'region': settings.region,
+      'authMode': settings.authMode.name,
     };
   }
 
@@ -26,6 +27,10 @@ class MqttSettingsCodec {
         webSocketPath: data['webSocketPath'] as String? ?? '/mqtt',
         topicPrefix: data['topicPrefix'] as String? ?? 'meshcore',
         region: data['region'] as String? ?? '',
+        authMode: MqttAuthMode.values.firstWhere(
+          (mode) => mode.name == data['authMode'],
+          orElse: () => MqttAuthMode.password,
+        ),
       );
       return settings.validate() == null ? settings : null;
     } on Object {

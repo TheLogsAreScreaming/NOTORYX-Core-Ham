@@ -7,11 +7,14 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
+import '../connector/radio_signing.dart';
+import '../models/mqtt_auth_token.dart';
 import '../models/mqtt_broker_settings.dart';
 import '../models/mqtt_connection_diagnostics.dart';
 import '../models/mqtt_connection_policy.dart';
 import '../models/mqtt_connection_status.dart';
 import '../models/mqtt_mesh_packet.dart';
+import '../models/mqtt_observer_status.dart';
 import '../models/mqtt_packet_deduplicator.dart';
 import '../models/mqtt_publish_policy.dart';
 import '../models/mqtt_reconnect_policy.dart';
@@ -27,7 +30,12 @@ import 'network_monitor.dart';
 /// Broker settings live in preferences; credentials only in
 /// [MqttCredentialsStore]. While connected it subscribes to observer packet
 /// topics and emits each distinct MeshCore packet on [packets]; if the user
-/// opts in, it also publishes packets the radio hears as an observer.
+/// opts in, it also publishes packets the radio hears as an observer, with a
+/// retained `online` status and a matching retained `offline` last will.
+///
+/// In [MqttAuthMode.radioToken] it signs in with a short-lived token signed by
+/// the connected radio (see [setRadioSigner]); the radio's private key never
+/// enters the app.
 class MqttBrokerService extends ChangeNotifier {
   MqttBrokerService({
     required SharedPreferences prefs,
@@ -38,7 +46,12 @@ class MqttBrokerService extends ChangeNotifier {
     this.statsNotifyInterval = const Duration(milliseconds: 250),
     this.maxPublishesPerMinute = 60,
     NetworkMonitor? networkMonitor,
+    this.clientVersion = 'notoryx-core',
+    MqttTokenRefreshPolicy tokenPolicy = const MqttTokenRefreshPolicy(),
+    DateTime Function() clock = DateTime.now,
   }) : _networkMonitor = networkMonitor,
+       _tokenPolicy = tokenPolicy,
+       _clock = clock,
        _prefs = prefs,
        _credentials = credentials,
        _transportFactory = transportFactory,
@@ -75,6 +88,23 @@ class MqttBrokerService extends ChangeNotifier {
   /// Upper bound on observer publishes, so a busy channel can't flood the
   /// broker.
   final int maxPublishesPerMinute;
+
+  /// Sent as `client_version` in status messages and `client` in tokens,
+  /// like meshcoretomqtt's `meshcoretomqtt/<version>`.
+  String clientVersion;
+  final MqttTokenRefreshPolicy _tokenPolicy;
+  final DateTime Function() _clock;
+  MqttTokenSigner? _radioSigner;
+  String? _token;
+  String? _tokenKey;
+  DateTime? _tokenIssuedAt;
+  Timer? _tokenRefreshTimer;
+  String? _authError;
+  bool _waitingForRadio = false;
+  MqttObserverDetails _observerDetails = const MqttObserverDetails();
+  // The status topic registered as this session's last will, if any.
+  String? _sessionStatusTopic;
+  bool _statusOnline = false;
   final MqttPublishPolicy _publishPolicy = const MqttPublishPolicy();
   MqttPublishSettings _publishSettings = const MqttPublishSettings();
   String? _observerKey;
@@ -162,16 +192,164 @@ class MqttBrokerService extends ChangeNotifier {
         : null;
   }
 
+  MqttAuthMode get authMode => _settings?.authMode ?? MqttAuthMode.password;
+
+  /// The username a radio-signed token signs in with, once the radio's key
+  /// is known.
+  String? get tokenUsername {
+    final key = _observerKey;
+    return authMode == MqttAuthMode.radioToken && key != null
+        ? MeshCoreAuthToken.usernameFor(key)
+        : null;
+  }
+
+  /// When the current radio-signed token expires and is due for renewal.
+  DateTime? get tokenExpiresAt =>
+      _token == null ? null : _tokenIssuedAt?.add(_tokenPolicy.lifetime);
+  DateTime? get tokenRefreshAt => _token == null || _tokenIssuedAt == null
+      ? null
+      : _tokenPolicy.refreshAt(_tokenIssuedAt!);
+
+  /// Whether token sign-in is waiting for the radio to connect.
+  bool get waitingForRadio => _waitingForRadio;
+
+  /// Whether a radio is connected that can sign tokens.
+  bool get radioCanSign => _radioSigner != null && _observerKey != null;
+
+  /// The status topic while a retained `online` status is published there.
+  String? get onlineStatusTopic => _statusOnline ? _sessionStatusTopic : null;
+
   /// The connected radio's identity, used as the observer key and name.
-  void setObserverIdentity({String? publicKeyHex, String? name}) {
+  void setObserverIdentity({
+    String? publicKeyHex,
+    String? name,
+    MqttObserverDetails details = const MqttObserverDetails(),
+  }) {
     final key = publicKeyHex == null || publicKeyHex.isEmpty
         ? null
         : publicKeyHex.toUpperCase();
-    if (key == _observerKey && name == _observerName) return;
+    if (key == _observerKey &&
+        name == _observerName &&
+        details == _observerDetails) {
+      return;
+    }
+    final keyChanged = key != _observerKey;
+    // A token signed for another radio can't sign this one in.
+    final tokenStale = key != null && _tokenKey != null && _tokenKey != key;
     _observerKey = key;
     _observerName = name;
+    _observerDetails = details;
+    if (tokenStale) _clearToken();
+    _syncStatus(keyChanged: keyChanged, tokenStale: tokenStale);
     _notify();
   }
+
+  /// Signs token sign-in data with the connected radio's key, or null while
+  /// no radio is connected. A waiting token sign-in starts once one is.
+  void setRadioSigner(MqttTokenSigner? signer) {
+    // Tear-offs of the same method compare equal, so repeated syncs are cheap.
+    if (signer == _radioSigner) return;
+    final hadSigner = _radioSigner != null;
+    _radioSigner = signer;
+    if (signer != null && !hadSigner) _resumeWaitingForRadio();
+    _notify();
+  }
+
+  void _resumeWaitingForRadio() {
+    if (!_waitingForRadio || _manuallyDisconnected || _disposed) return;
+    if (_radioSigner == null || _observerKey == null) return;
+    _reconnectAttempt = 0;
+    unawaited(_attempt(MqttConnectionStatus.connecting));
+  }
+
+  void _clearToken() {
+    _token = null;
+    _tokenKey = null;
+    _tokenIssuedAt = null;
+  }
+
+  String? _statusTopicFor(MqttBrokerSettings settings) {
+    final key = _observerKey;
+    if (!_publishSettings.enabled || key == null) return null;
+    final topic = MqttPacketTopics.statusFor(settings, key);
+    return topic != null && MqttTopicGuard.validPublishTopic(topic)
+        ? topic
+        : null;
+  }
+
+  Uint8List _statusPayload(MqttObserverPresence presence) =>
+      encodeObserverStatus(
+        presence,
+        at: _clock(),
+        origin: _observerName ?? _observerKey!.substring(0, 8),
+        originId: _observerKey!,
+        clientVersion: clientVersion,
+        details: _observerDetails,
+      );
+
+  /// Keeps the retained status in step with the radio while connected: a
+  /// radio that goes away is reported offline, and a new status topic (or a
+  /// new key for token sign-in) needs a new session with a matching will.
+  void _syncStatus({bool keyChanged = false, bool tokenStale = false}) {
+    final transport = _transport;
+    final settings = _settings;
+    if (transport == null ||
+        settings == null ||
+        _status != MqttConnectionStatus.connected) {
+      if (keyChanged) _resumeWaitingForRadio();
+      return;
+    }
+    final topic = _statusTopicFor(settings);
+    final session = _sessionStatusTopic;
+    final tokenForOldKey =
+        settings.authMode == MqttAuthMode.radioToken && tokenStale;
+    if (topic == session && !tokenForOldKey) {
+      if (topic != null && !_statusOnline) {
+        _statusOnline = transport.publish(
+          topic,
+          _statusPayload(MqttObserverPresence.online),
+          retain: true,
+        );
+      }
+      return;
+    }
+    if (topic == null && !tokenForOldKey) {
+      // The radio went away: say so, but keep the session and its will.
+      _publishOffline();
+      return;
+    }
+    _publishOffline();
+    _reconnectAttempt = 0;
+    unawaited(_attempt(MqttConnectionStatus.reconnecting));
+  }
+
+  /// Replaces the retained `online` status with `offline` before a clean
+  /// disconnect, which doesn't trigger the broker's last will.
+  void _publishOffline() {
+    final transport = _transport;
+    final topic = _sessionStatusTopic;
+    if (transport == null || topic == null || !_statusOnline) return;
+    if (_observerKey != null) {
+      transport.publish(
+        topic,
+        _statusPayload(MqttObserverPresence.offline),
+        retain: true,
+      );
+    } else {
+      // No identity left to describe; reuse the registered will's shape.
+      final will = _sessionWill;
+      if (will != null) {
+        transport.publish(
+          topic,
+          Uint8List.fromList(utf8.encode(will.payload)),
+          retain: true,
+        );
+      }
+    }
+    _statusOnline = false;
+  }
+
+  MqttWill? _sessionWill;
 
   /// Publishes a packet the radio heard if the user's sharing settings allow
   /// it. Returns why it was skipped, or null if it was published.
@@ -241,6 +419,12 @@ class MqttBrokerService extends ChangeNotifier {
           ? 'No network connection. MQTT reconnects when it is back.'
           : null) ??
       _configurationError ??
+      (_waitingForRadio
+          ? const RadioSigningException(
+              RadioSigningFailure.notConnected,
+            ).message
+          : null) ??
+      _authError ??
       _lastFailure?.message ??
       (_subscriptionFailed
           ? 'The broker refused the packet subscription.'
@@ -311,8 +495,13 @@ class MqttBrokerService extends ChangeNotifier {
       return 'Set a region to share packets as an observer.';
     }
 
-    final trimmedUser = username.trim();
-    if (trimmedUser.isEmpty) {
+    // Radio-token sign-in uses no stored credentials; keep any saved ones
+    // for switching back.
+    final usesToken = settings.authMode == MqttAuthMode.radioToken;
+    final trimmedUser = usesToken ? (_username ?? '') : username.trim();
+    if (usesToken) {
+      // Nothing to save.
+    } else if (trimmedUser.isEmpty) {
       await _credentials.clear();
     } else {
       final newPassword =
@@ -346,7 +535,10 @@ class MqttBrokerService extends ChangeNotifier {
     _allowInsecureLocalBroker = allowInsecureLocalBroker;
     _username = trimmedUser.isEmpty ? null : trimmedUser;
     _configurationError = null;
+    _authError = null;
+    _waitingForRadio = false;
     _lastFailure = null;
+    _clearToken();
     _resetPacketStats();
     _status = MqttConnectionStatus.disconnected;
     _notify();
@@ -408,6 +600,8 @@ class MqttBrokerService extends ChangeNotifier {
   /// Ends the session and stops automatic reconnects.
   void disconnect() {
     _manuallyDisconnected = true;
+    _waitingForRadio = false;
+    _publishOffline();
     _abandonSession();
     _reconnectAttempt = 0;
     if (_settings != null && _status != MqttConnectionStatus.disconnected) {
@@ -433,10 +627,25 @@ class MqttBrokerService extends ChangeNotifier {
     }
 
     _status = pendingStatus;
+    _waitingForRadio = false;
+    _authError = null;
     _notify();
 
-    final credentials = await _credentials.read();
+    final ({String username, String password})? credentials;
+    if (settings.authMode == MqttAuthMode.radioToken) {
+      credentials = await _tokenCredentials(settings, generation);
+      if (credentials == null) return;
+    } else {
+      credentials = await _credentials.read();
+    }
     if (generation != _generation || _disposed) return;
+    final statusTopic = _statusTopicFor(settings);
+    final will = statusTopic == null
+        ? null
+        : MqttWill(
+            topic: statusTopic,
+            payload: utf8.decode(_statusPayload(MqttObserverPresence.offline)),
+          );
     final transport = _transport = _transportFactory(settings, _clientId());
     transport.onConnectionLost = () {
       if (generation != _generation || _disposed) return;
@@ -450,6 +659,7 @@ class MqttBrokerService extends ChangeNotifier {
     final failure = await transport.connect(
       username: credentials?.username,
       password: credentials?.password,
+      will: will,
     );
     if (generation != _generation || _disposed) {
       if (failure == null) transport.disconnect();
@@ -460,8 +670,26 @@ class MqttBrokerService extends ChangeNotifier {
       _reconnectAttempt = 0;
       _status = MqttConnectionStatus.connected;
       _subscribe(transport, settings, generation);
+      if (statusTopic != null) {
+        _sessionStatusTopic = statusTopic;
+        _sessionWill = will;
+        _statusOnline = transport.publish(
+          statusTopic,
+          _statusPayload(MqttObserverPresence.online),
+          retain: true,
+        );
+      }
+      if (settings.authMode == MqttAuthMode.radioToken) {
+        _scheduleTokenRefresh(generation);
+      }
       _notify();
       return;
+    }
+    if (settings.authMode == MqttAuthMode.radioToken &&
+        (failure == MqttConnectFailure.badCredentials ||
+            failure == MqttConnectFailure.notAuthorized)) {
+      // Never retry a refused token; sign a fresh one next time.
+      _clearToken();
     }
     _transport = null;
     _lastFailure = failure;
@@ -471,6 +699,109 @@ class MqttBrokerService extends ChangeNotifier {
       _status = MqttConnectionStatus.error;
       _notify();
     }
+  }
+
+  /// A fresh or still-valid radio-signed token, or null if signing can't
+  /// happen now (the status then says why).
+  Future<({String username, String password})?> _tokenCredentials(
+    MqttBrokerSettings settings,
+    int generation,
+  ) async {
+    final key = _observerKey;
+    final signer = _radioSigner;
+    if (key == null || signer == null) {
+      _waitForRadio();
+      return null;
+    }
+    final now = _clock();
+    final issuedAt = _tokenIssuedAt;
+    final cached = _token;
+    if (cached != null &&
+        _tokenKey == key &&
+        issuedAt != null &&
+        _tokenPolicy.isFresh(issuedAt, now)) {
+      return (username: MeshCoreAuthToken.usernameFor(key), password: cached);
+    }
+    try {
+      final token = await _signToken(settings, key, signer, now);
+      if (generation != _generation || _disposed) return null;
+      return (username: MeshCoreAuthToken.usernameFor(key), password: token);
+    } on RadioSigningException catch (error) {
+      if (generation != _generation || _disposed) return null;
+      if (error.failure == RadioSigningFailure.notConnected) {
+        _waitForRadio();
+      } else {
+        _authError = error.message;
+        _status = MqttConnectionStatus.error;
+        _notify();
+      }
+      return null;
+    }
+  }
+
+  Future<String> _signToken(
+    MqttBrokerSettings settings,
+    String key,
+    MqttTokenSigner signer,
+    DateTime now,
+  ) async {
+    final token = await MeshCoreAuthToken.create(
+      publicKeyHex: key,
+      issuedAt: now,
+      sign: signer,
+      lifetime: _tokenPolicy.lifetime,
+      audience: settings.host.trim(),
+      client: clientVersion,
+    );
+    _token = token;
+    _tokenKey = key;
+    _tokenIssuedAt = now;
+    return token;
+  }
+
+  void _waitForRadio() {
+    _abandonSession();
+    _waitingForRadio = true;
+    _status = MqttConnectionStatus.error;
+    _notify();
+  }
+
+  void _scheduleTokenRefresh(int generation, {Duration? after}) {
+    _tokenRefreshTimer?.cancel();
+    final issuedAt = _tokenIssuedAt;
+    if (issuedAt == null) return;
+    final delay = after ?? _tokenPolicy.delayUntilRefresh(issuedAt, _clock());
+    _tokenRefreshTimer = Timer(delay, () {
+      if (generation != _generation || _disposed) return;
+      unawaited(_renewToken(generation));
+    });
+  }
+
+  /// Signs a new token before the current one expires, then swaps to a new
+  /// session with it. The current session stays up until the new token is
+  /// ready; if signing fails it tries again after a short delay.
+  Future<void> _renewToken(int generation) async {
+    final settings = _settings;
+    final key = _observerKey;
+    final signer = _radioSigner;
+    if (settings == null) return;
+    if (key == null || signer == null) {
+      _scheduleTokenRefresh(generation, after: _tokenPolicy.retryDelay);
+      _notify();
+      return;
+    }
+    try {
+      await _signToken(settings, key, signer, _clock());
+    } on RadioSigningException {
+      if (generation != _generation || _disposed) return;
+      _scheduleTokenRefresh(generation, after: _tokenPolicy.retryDelay);
+      return;
+    }
+    if (generation != _generation || _disposed) return;
+    // A clean disconnect leaves the last will unsent, and the new session
+    // publishes `online` again.
+    _reconnectAttempt = 0;
+    await _attempt(MqttConnectionStatus.reconnecting);
   }
 
   void _scheduleReconnect(int generation) {
@@ -572,6 +903,11 @@ class MqttBrokerService extends ChangeNotifier {
     _subscriptionFailed = false;
     _reconnectTimer?.cancel();
     _reconnectTimer = null;
+    _tokenRefreshTimer?.cancel();
+    _tokenRefreshTimer = null;
+    _sessionStatusTopic = null;
+    _sessionWill = null;
+    _statusOnline = false;
     final transport = _transport;
     _transport = null;
     transport
@@ -597,6 +933,7 @@ class MqttBrokerService extends ChangeNotifier {
   @override
   void dispose() {
     unawaited(_networkChanges?.cancel());
+    _publishOffline();
     _abandonSession();
     _statsNotifyTimer?.cancel();
     _disposed = true;

@@ -20,6 +20,7 @@ import '../models/flood_corridor.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';
 import '../models/translation_support.dart';
+import 'radio_signing.dart';
 import '../helpers/share_links.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/cyr2lat.dart';
@@ -379,6 +380,12 @@ class MeshCoreConnector extends ChangeNotifier {
   // beyond the optional two-character prefix the firmware echoes back.
   Future<void> _cliLock = Future.value();
   int _cliPrefixCounter = 0;
+  // CMD_SIGN_* keeps one buffer on the radio, so signings never overlap.
+  Future<void> _signLock = Future.value();
+
+  /// Receives sign frames instead of the radio link, for tests.
+  @visibleForTesting
+  Future<void> Function(Uint8List frame)? debugSignFrameWriter;
   static const Duration _commandAckTimeout = Duration(seconds: 5);
   Map<String, String>? _currentCustomVars;
 
@@ -4756,6 +4763,101 @@ class MeshCoreConnector extends ChangeNotifier {
     try {
       await sendFrame(buildRunCliCommandFrame('$prefix|$command'));
       return await reply.future.timeout(timeout);
+    } finally {
+      await subscription.cancel();
+      done.complete();
+    }
+  }
+
+  /// Signs [data] with the radio's own Ed25519 key via CMD_SIGN_START,
+  /// CMD_SIGN_DATA and CMD_SIGN_FINISH, and returns the 64-byte signature.
+  /// The private key never leaves the radio. Each reply must arrive within
+  /// [timeout]. Throws [RadioSigningException].
+  Future<Uint8List> signWithRadio(
+    Uint8List data, {
+    Duration timeout = const Duration(seconds: 5),
+  }) async {
+    final writer = debugSignFrameWriter;
+    if (writer == null && !isConnected) {
+      throw const RadioSigningException(RadioSigningFailure.notConnected);
+    }
+    final previous = _signLock;
+    final done = Completer<void>();
+    _signLock = done.future;
+    await previous;
+
+    final replies = <Uint8List>[];
+    Completer<void>? arrived;
+    final subscription = receivedFrames.listen((frame) {
+      if (frame.isEmpty) return;
+      final code = frame[0];
+      if (code == respCodeOk ||
+          code == respCodeErr ||
+          code == respCodeSignStart ||
+          code == respCodeSignature) {
+        replies.add(frame);
+        arrived?.complete();
+        arrived = null;
+      }
+    });
+    // Start and finish answer with their own codes; an OK seen while waiting
+    // for them belongs to an earlier command.
+    Future<Uint8List> reply({required bool acceptOk}) async {
+      while (true) {
+        while (replies.isEmpty) {
+          final wait = arrived = Completer<void>();
+          await wait.future.timeout(
+            timeout,
+            onTimeout: () =>
+                throw const RadioSigningException(RadioSigningFailure.timeout),
+          );
+        }
+        final frame = replies.removeAt(0);
+        if (frame[0] != respCodeOk || acceptOk) return frame;
+      }
+    }
+
+    Never fail(Uint8List frame) {
+      final unsupported =
+          frame[0] == respCodeErr &&
+          frame.length > 1 &&
+          frame[1] == errCodeUnsupportedCmd;
+      throw RadioSigningException(
+        unsupported
+            ? RadioSigningFailure.unsupported
+            : RadioSigningFailure.rejected,
+      );
+    }
+
+    try {
+      Future<void> send(Uint8List frame, {bool expectsAck = false}) async {
+        if (writer != null) return writer(frame);
+        try {
+          await sendFrame(frame, expectsGenericAck: expectsAck);
+        } on Exception {
+          throw const RadioSigningException(RadioSigningFailure.notConnected);
+        }
+      }
+
+      await send(buildSignStartFrame());
+      final start = await reply(acceptOk: false);
+      final maxLength = parseSignStartFrame(start);
+      if (maxLength == null) fail(start);
+      if (data.length > maxLength) {
+        throw const RadioSigningException(RadioSigningFailure.tooLong);
+      }
+      for (var at = 0; at < data.length; at += signDataChunkSize) {
+        final end = math.min(at + signDataChunkSize, data.length);
+        await send(
+          buildSignDataFrame(Uint8List.sublistView(data, at, end)),
+          expectsAck: true,
+        );
+        final ack = await reply(acceptOk: true);
+        if (ack[0] != respCodeOk) fail(ack);
+      }
+      await send(buildSignFinishFrame());
+      final finish = await reply(acceptOk: false);
+      return parseSignatureFrame(finish) ?? fail(finish);
     } finally {
       await subscription.cancel();
       done.complete();

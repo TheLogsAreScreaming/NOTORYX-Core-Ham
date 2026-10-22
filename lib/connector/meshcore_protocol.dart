@@ -219,6 +219,12 @@ const int cmdGetAutoAddConfig = 59;
 const int cmdSetPathHashMode = 61;
 const int cmdRunCliCommand = 66; // v14+: run a CLI command on the companion
 
+// Signing with the radio's own key (companion_radio CMD_SIGN_*). The private
+// key never leaves the radio; only the data and the signature cross the link.
+const int cmdSignStart = 33;
+const int cmdSignData = 34;
+const int cmdSignFinish = 35;
+
 // Flood Corridor commands (usrflo/MeshCore feature/flood-corridor only;
 // stock firmware replies RESP_CODE_ERR / ERR_CODE_UNSUPPORTED_CMD).
 const int cmdSendChannelTxtMsgCorridor = 53;
@@ -281,6 +287,8 @@ const int respCodeStats = 24;
 const int respCodeCliReply = 29; // v14+: reply to cmdRunCliCommand
 const int respCodeProposeCorridor = 30;
 const int respCodeCorridorRegion = 31;
+const int respCodeSignStart = 19; // reply to cmdSignStart: [reserved, u32 max]
+const int respCodeSignature = 20; // reply to cmdSignFinish: 64-byte signature
 
 const int errCodeUnsupportedCmd = 1;
 
@@ -1003,6 +1011,33 @@ const int minFirmwareVerCodeForCompanionCli = 14;
 
 /// Runs [command] on the connected companion's CLI; it answers with
 /// [respCodeCliReply] followed by the reply text.
+/// Largest chunk sent per [cmdSignData] frame. The firmware's frame limit is
+/// 176 bytes; this leaves headroom for every transport.
+const int signDataChunkSize = 128;
+
+Uint8List buildSignStartFrame() => Uint8List.fromList([cmdSignStart]);
+
+Uint8List buildSignDataFrame(List<int> chunk) =>
+    Uint8List.fromList([cmdSignData, ...chunk]);
+
+Uint8List buildSignFinishFrame() => Uint8List.fromList([cmdSignFinish]);
+
+/// The largest data length a [respCodeSignStart] frame allows, or null if
+/// [frame] is not one.
+int? parseSignStartFrame(Uint8List frame) {
+  if (frame.length < 6 || frame[0] != respCodeSignStart) return null;
+  return ByteData.sublistView(frame, 2, 6).getUint32(0, Endian.little);
+}
+
+/// The Ed25519 signature in a [respCodeSignature] frame, or null if [frame]
+/// is not one.
+Uint8List? parseSignatureFrame(Uint8List frame) {
+  if (frame.length < 1 + signatureSize || frame[0] != respCodeSignature) {
+    return null;
+  }
+  return Uint8List.fromList(frame.sublist(1, 1 + signatureSize));
+}
+
 Uint8List buildRunCliCommandFrame(String command) {
   return Uint8List.fromList([cmdRunCliCommand, ...utf8.encode(command)]);
 }

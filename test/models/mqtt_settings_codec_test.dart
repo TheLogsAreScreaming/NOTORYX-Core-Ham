@@ -37,7 +37,32 @@ void main() {
         'webSocketPath',
         'topicPrefix',
         'region',
+        'authMode',
       ]),
+    );
+  });
+
+  test('round-trips the auth mode and defaults to password', () {
+    const settings = MqttBrokerSettings(
+      host: 'broker.test',
+      port: 443,
+      authMode: MqttAuthMode.radioToken,
+    );
+    expect(
+      codec.decode(codec.encode(settings))?.authMode,
+      MqttAuthMode.radioToken,
+    );
+    expect(
+      codec.decode({'host': 'broker.test', 'port': 8883})?.authMode,
+      MqttAuthMode.password,
+    );
+    expect(
+      codec.decode({
+        'host': 'b.test',
+        'port': 1,
+        'authMode': 'bogus',
+      })?.authMode,
+      MqttAuthMode.password,
     );
   });
 

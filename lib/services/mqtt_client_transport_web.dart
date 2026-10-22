@@ -23,6 +23,7 @@ class _UnsupportedTransport implements MqttTransport {
   Future<MqttConnectFailure?> connect({
     String? username,
     String? password,
+    MqttWill? will,
   }) async => MqttConnectFailure.unsupportedTransport;
 
   @override
@@ -35,7 +36,7 @@ class _UnsupportedTransport implements MqttTransport {
   void subscribe(String topic) {}
 
   @override
-  bool publish(String topic, Uint8List payload) => false;
+  bool publish(String topic, Uint8List payload, {bool retain = false}) => false;
 
   @override
   set onMessage(MqttMessageHandler? handler) {}
@@ -100,11 +101,16 @@ class MqttClientTransport implements MqttTransport {
   }
 
   @override
-  bool publish(String topic, Uint8List payload) {
+  bool publish(String topic, Uint8List payload, {bool retain = false}) {
     final builder = MqttClientPayloadBuilder();
     payload.forEach(builder.addByte);
     try {
-      _client.publishMessage(topic, MqttQos.atMostOnce, builder.payload!);
+      _client.publishMessage(
+        topic,
+        MqttQos.atMostOnce,
+        builder.payload!,
+        retain: retain,
+      );
       return true;
     } on Object {
       return false;
@@ -128,7 +134,15 @@ class MqttClientTransport implements MqttTransport {
   Future<MqttConnectFailure?> connect({
     String? username,
     String? password,
+    MqttWill? will,
   }) async {
+    if (will != null) {
+      final message = _client.connectionMessage!
+          .withWillTopic(will.topic)
+          .withWillMessage(will.payload)
+          .withWillQos(MqttQos.atMostOnce);
+      if (will.retain) message.withWillRetain();
+    }
     try {
       await _client.connect(username, password);
     } on NoConnectionException {

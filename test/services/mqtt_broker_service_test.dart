@@ -1,11 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:meshcore_open/connector/radio_signing.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
 import 'package:meshcore_open/models/mqtt_connection_status.dart';
 import 'package:meshcore_open/models/mqtt_mesh_packet.dart';
+import 'package:meshcore_open/models/mqtt_observer_status.dart';
 import 'package:meshcore_open/models/mqtt_publish_policy.dart';
 import 'package:meshcore_open/models/radio_rx_packet.dart';
 import 'package:meshcore_open/services/mqtt_broker_service.dart';
@@ -23,6 +26,7 @@ class FakeTransport implements MqttTransport {
   Completer<void>? gate;
   String? username;
   String? password;
+  MqttWill? will;
   bool disconnected = false;
   void Function()? lost;
 
@@ -30,9 +34,11 @@ class FakeTransport implements MqttTransport {
   Future<MqttConnectFailure?> connect({
     String? username,
     String? password,
+    MqttWill? will,
   }) async {
     this.username = username;
     this.password = password;
+    this.will = will;
     await gate?.future;
     return result;
   }
@@ -51,12 +57,13 @@ class FakeTransport implements MqttTransport {
   void subscribe(String topic) => subscriptions.add(topic);
 
   final List<(String, Uint8List)> published = [];
+  final List<(String, Uint8List)> retained = [];
   bool canPublish = true;
 
   @override
-  bool publish(String topic, Uint8List payload) {
+  bool publish(String topic, Uint8List payload, {bool retain = false}) {
     if (!canPublish) return false;
-    published.add((topic, payload));
+    (retain ? retained : published).add((topic, payload));
     return true;
   }
 
@@ -636,6 +643,357 @@ void main() {
       expect(reloaded.publishSettings.enabled, isTrue);
       expect(reloaded.publishSettings.includeDirectTraffic, isTrue);
       expect(reloaded.publishSettings.includeOwnTraffic, isFalse);
+    });
+  });
+
+  group('observer status', () {
+    const regional = MqttBrokerSettings(
+      host: 'broker.test',
+      port: 8883,
+      region: 'PHL',
+    );
+    const key = 'AB12CD34';
+    const statusTopic = 'meshcore/PHL/AB12CD34/status';
+
+    Map<String, dynamic> decode(Object payload) =>
+        jsonDecode(
+              payload is String ? payload : utf8.decode(payload as Uint8List),
+            )
+            as Map<String, dynamic>;
+
+    Future<MqttBrokerService> connected({bool share = true}) async {
+      final service = MqttBrokerService(
+        prefs: prefs,
+        credentials: credentials,
+        transportFactory: (settings, clientId) {
+          final transport = FakeTransport(null);
+          transports.add(transport);
+          return transport;
+        },
+        clientVersion: 'notoryx-core/test',
+        clock: () => DateTime.utc(2026, 10, 21, 18),
+      );
+      await service.load();
+      await service.saveConfiguration(
+        regional,
+        publishSettings: MqttPublishSettings(enabled: share),
+      );
+      service.setObserverIdentity(
+        publicKeyHex: 'ab12cd34',
+        name: 'Base',
+        details: const MqttObserverDetails(
+          radio: '910.525,62.5,7,5',
+          model: 'Heltec V3',
+          firmwareVersion: 'v1.9.0',
+        ),
+      );
+      await service.connect();
+      return service;
+    }
+
+    test(
+      'publishes retained online and sets a matching offline will',
+      () async {
+        final service = await connected();
+        final transport = transports.single;
+        expect(transport.will?.topic, statusTopic);
+        expect(transport.will?.retain, isTrue);
+        final will = decode(transport.will!.payload);
+        expect(will['status'], 'offline');
+        expect(will['origin'], 'Base');
+        expect(will['origin_id'], key);
+
+        expect(transport.retained, hasLength(1));
+        expect(transport.retained.single.$1, statusTopic);
+        expect(decode(transport.retained.single.$2), {
+          'status': 'online',
+          'timestamp': '2026-10-21T18:00:00.000Z',
+          'origin': 'Base',
+          'origin_id': key,
+          'radio': '910.525,62.5,7,5',
+          'model': 'Heltec V3',
+          'firmware_version': 'v1.9.0',
+          'client_version': 'notoryx-core/test',
+        });
+        expect(service.onlineStatusTopic, statusTopic);
+        // Packets are never retained.
+        expect(transport.published, isEmpty);
+      },
+    );
+
+    test('sends no status or will without sharing', () async {
+      final service = await connected(share: false);
+      expect(transports.single.will, isNull);
+      expect(transports.single.retained, isEmpty);
+      expect(service.onlineStatusTopic, isNull);
+    });
+
+    test('replaces online with offline on a clean disconnect', () async {
+      final service = await connected();
+      final transport = transports.single;
+      service.disconnect();
+      expect(transport.retained, hasLength(2));
+      expect(transport.retained.last.$1, statusTopic);
+      expect(decode(transport.retained.last.$2)['status'], 'offline');
+      expect(transport.disconnected, isTrue);
+      expect(service.onlineStatusTopic, isNull);
+    });
+
+    test(
+      'reports the radio leaving and returning without reconnecting',
+      () async {
+        final service = await connected();
+        final transport = transports.single;
+        service.setObserverIdentity();
+        expect(decode(transport.retained.last.$2)['status'], 'offline');
+        expect(decode(transport.retained.last.$2)['origin_id'], key);
+        expect(service.onlineStatusTopic, isNull);
+
+        service.setObserverIdentity(publicKeyHex: key, name: 'Base');
+        expect(transports, hasLength(1));
+        expect(decode(transport.retained.last.$2)['status'], 'online');
+        expect(service.onlineStatusTopic, statusTopic);
+      },
+    );
+
+    test('reconnects with a new will for a different radio', () async {
+      final service = await connected();
+      service.setObserverIdentity(publicKeyHex: 'ffee0011', name: 'Other');
+      await pumpEventQueue();
+      expect(decode(transports.first.retained.last.$2)['status'], 'offline');
+      expect(transports, hasLength(2));
+      expect(transports.last.will?.topic, 'meshcore/PHL/FFEE0011/status');
+      expect(service.onlineStatusTopic, 'meshcore/PHL/FFEE0011/status');
+    });
+  });
+
+  group('radio token sign-in', () {
+    const tokenSettings = MqttBrokerSettings(
+      host: 'broker.test',
+      port: 8883,
+      authMode: MqttAuthMode.radioToken,
+    );
+    const key =
+        '4852B69364572B52EFA1B6BB3E6D0ABED4F389A1CBFBB60A9BBA2CCE649CAF0E';
+    final start = DateTime.utc(2026, 10, 21, 18);
+    late List<Uint8List> signed;
+    late int signatureByte;
+
+    Future<Uint8List> signer(Uint8List data) async {
+      signed.add(data);
+      return Uint8List(64)..fillRange(0, 64, signatureByte++);
+    }
+
+    setUp(() {
+      signed = [];
+      signatureByte = 0x11;
+    });
+
+    MqttBrokerService tokenService(DateTime Function() clock) =>
+        MqttBrokerService(
+          prefs: prefs,
+          credentials: credentials,
+          transportFactory: (settings, clientId) {
+            final transport = FakeTransport(
+              results.isEmpty ? null : results.removeAt(0),
+            );
+            transports.add(transport);
+            return transport;
+          },
+          clientVersion: 'notoryx-core/test',
+          clock: clock,
+        );
+
+    Map<String, dynamic> claimsOf(String token) =>
+        jsonDecode(
+              utf8.decode(
+                base64Url.decode(base64Url.normalize(token.split('.')[1])),
+              ),
+            )
+            as Map<String, dynamic>;
+
+    test(
+      'waits for the radio, then signs in with a radio-signed token',
+      () async {
+        final service = tokenService(() => start);
+        await service.load();
+        expect(
+          await service.saveConfiguration(
+            tokenSettings,
+            username: 'ignored',
+            password: 'ignored',
+          ),
+          isNull,
+        );
+        expect(await credentials.read(), isNull);
+
+        await service.connect();
+        expect(transports, isEmpty);
+        expect(service.waitingForRadio, isTrue);
+        expect(service.status, MqttConnectionStatus.error);
+        expect(service.errorMessage, contains('Connect your radio'));
+
+        service.setObserverIdentity(publicKeyHex: key.toLowerCase());
+        expect(transports, isEmpty);
+        service.setRadioSigner(signer);
+        await pumpEventQueue();
+
+        expect(service.status, MqttConnectionStatus.connected);
+        expect(service.waitingForRadio, isFalse);
+        final transport = transports.single;
+        expect(transport.username, 'v1_$key');
+        expect(service.tokenUsername, 'v1_$key');
+        final token = transport.password!;
+        final parts = token.split('.');
+        expect(parts, hasLength(3));
+        expect(signed.single, ascii.encode('${parts[0]}.${parts[1]}'));
+        expect(parts[2], '11' * 64);
+        final claims = claimsOf(token);
+        expect(claims['publicKey'], key);
+        expect(claims['aud'], 'broker.test');
+        expect(claims['client'], 'notoryx-core/test');
+        expect(claims['iat'], start.millisecondsSinceEpoch ~/ 1000);
+        expect(claims['exp'], claims['iat'] + 3600);
+        expect(service.tokenExpiresAt, start.add(const Duration(hours: 1)));
+        expect(service.tokenRefreshAt, start.add(const Duration(minutes: 55)));
+      },
+    );
+
+    test('reports firmware that cannot sign and does not retry', () async {
+      final service = tokenService(() => start);
+      await service.load();
+      await service.saveConfiguration(tokenSettings);
+      service.setObserverIdentity(publicKeyHex: key);
+      service.setRadioSigner(
+        (_) async =>
+            throw const RadioSigningException(RadioSigningFailure.unsupported),
+      );
+      await service.connect();
+      expect(transports, isEmpty);
+      expect(service.status, MqttConnectionStatus.error);
+      expect(service.waitingForRadio, isFalse);
+      expect(service.errorMessage, contains('does not support signing'));
+    });
+
+    test('renews the token five minutes before expiry and reconnects', () {
+      fakeAsync((async) {
+        final service = tokenService(() => start.add(async.elapsed));
+        service.load();
+        service.saveConfiguration(tokenSettings);
+        async.flushMicrotasks();
+        service.setObserverIdentity(publicKeyHex: key);
+        service.setRadioSigner(signer);
+        service.connect();
+        async.flushMicrotasks();
+        expect(transports, hasLength(1));
+
+        async.elapse(const Duration(minutes: 54, seconds: 59));
+        expect(transports, hasLength(1));
+        expect(signed, hasLength(1));
+
+        async.elapse(const Duration(seconds: 1));
+        expect(signed, hasLength(2));
+        expect(transports, hasLength(2));
+        expect(transports.first.disconnected, isTrue);
+        expect(service.status, MqttConnectionStatus.connected);
+        expect(transports.last.password, isNot(transports.first.password));
+        expect(transports.last.password, endsWith('12' * 64));
+        expect(
+          claimsOf(transports.last.password!)['iat'],
+          start.add(const Duration(minutes: 55)).millisecondsSinceEpoch ~/ 1000,
+        );
+        expect(service.tokenRefreshAt, start.add(const Duration(minutes: 110)));
+
+        async.elapse(const Duration(minutes: 55));
+        expect(transports, hasLength(3));
+        service.disconnect();
+      });
+    });
+
+    test('keeps the session and retries renewal while the radio is away', () {
+      fakeAsync((async) {
+        final service = tokenService(() => start.add(async.elapsed));
+        service.load();
+        service.saveConfiguration(tokenSettings);
+        async.flushMicrotasks();
+        service.setObserverIdentity(publicKeyHex: key);
+        service.setRadioSigner(signer);
+        service.connect();
+        async.flushMicrotasks();
+
+        service.setRadioSigner(null);
+        async.elapse(const Duration(minutes: 56));
+        expect(transports, hasLength(1));
+        expect(transports.single.disconnected, isFalse);
+        expect(service.status, MqttConnectionStatus.connected);
+
+        service.setRadioSigner(signer);
+        async.elapse(const Duration(minutes: 1));
+        expect(transports, hasLength(2));
+        expect(signed, hasLength(2));
+        service.disconnect();
+      });
+    });
+
+    test('reuses a fresh token after a dropped connection', () {
+      fakeAsync((async) {
+        final service = tokenService(() => start.add(async.elapsed));
+        service.load();
+        service.saveConfiguration(tokenSettings);
+        async.flushMicrotasks();
+        service.setObserverIdentity(publicKeyHex: key);
+        service.setRadioSigner(signer);
+        service.connect();
+        async.flushMicrotasks();
+
+        async.elapse(const Duration(minutes: 10));
+        transports.single.lost!();
+        async.elapse(const Duration(seconds: 1));
+        expect(transports, hasLength(2));
+        expect(signed, hasLength(1));
+        expect(transports.last.password, transports.first.password);
+        service.disconnect();
+      });
+    });
+
+    test('keeps the session when the same radio reconnects', () async {
+      final service = tokenService(() => start);
+      await service.load();
+      await service.saveConfiguration(tokenSettings);
+      service.setObserverIdentity(publicKeyHex: key);
+      service.setRadioSigner(signer);
+      await service.connect();
+      expect(transports, hasLength(1));
+
+      service.setRadioSigner(null);
+      service.setObserverIdentity();
+      service.setObserverIdentity(publicKeyHex: key);
+      service.setRadioSigner(signer);
+      await pumpEventQueue();
+      expect(transports, hasLength(1));
+      expect(signed, hasLength(1));
+
+      service.setObserverIdentity(publicKeyHex: 'ffee0011');
+      await pumpEventQueue();
+      expect(transports, hasLength(2));
+      expect(transports.last.username, 'v1_FFEE0011');
+      expect(signed, hasLength(2));
+    });
+
+    test('signs a new token after the broker refuses one', () async {
+      results = [MqttConnectFailure.notAuthorized];
+      final service = tokenService(() => start);
+      await service.load();
+      await service.saveConfiguration(tokenSettings);
+      service.setObserverIdentity(publicKeyHex: key);
+      service.setRadioSigner(signer);
+      await service.connect();
+      expect(service.status, MqttConnectionStatus.error);
+      expect(transports, hasLength(1));
+
+      await service.connect();
+      expect(signed, hasLength(2));
+      expect(service.status, MqttConnectionStatus.connected);
     });
   });
 

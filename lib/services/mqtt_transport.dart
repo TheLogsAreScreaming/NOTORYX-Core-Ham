@@ -35,11 +35,32 @@ extension MqttConnectFailureInfo on MqttConnectFailure {
   bool get retryable => this == MqttConnectFailure.unreachable;
 }
 
+/// A message the broker publishes for us if the session drops without a
+/// clean disconnect (MQTT last will).
+class MqttWill {
+  const MqttWill({
+    required this.topic,
+    required this.payload,
+    this.retain = true,
+  });
+
+  final String topic;
+
+  /// UTF-8 text; MQTT 3.1.1 will messages are strings in mqtt_client.
+  final String payload;
+  final bool retain;
+}
+
 /// One broker session. Implementations wrap a concrete MQTT client so the
 /// service can be tested without a network.
 abstract class MqttTransport {
-  /// Connects and returns null on success, or why it failed.
-  Future<MqttConnectFailure?> connect({String? username, String? password});
+  /// Connects and returns null on success, or why it failed. A [will] is
+  /// registered with the broker as part of the connection.
+  Future<MqttConnectFailure?> connect({
+    String? username,
+    String? password,
+    MqttWill? will,
+  });
 
   /// Closes the session. Does not trigger [onConnectionLost].
   void disconnect();
@@ -50,9 +71,9 @@ abstract class MqttTransport {
   /// Subscribes at QoS 0. Call only while connected.
   void subscribe(String topic);
 
-  /// Publishes at QoS 0 without retain. Returns false if the session can't
-  /// send right now.
-  bool publish(String topic, Uint8List payload);
+  /// Publishes at QoS 0, retained only if [retain]. Returns false if the
+  /// session can't send right now.
+  bool publish(String topic, Uint8List payload, {bool retain = false});
 
   /// Called for each message received on a subscribed topic.
   set onMessage(MqttMessageHandler? handler);
