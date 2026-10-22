@@ -7419,4 +7419,477 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get setupWizard_usbError =>
       'Povezava prek USB ni uspela. Preverite podatkovni kabel in izbrano napravo, dovolite dostop do USB in zaprite druge serijske aplikacije. Znova priključite kabel in poskusite še enkrat.';
+
+  @override
+  String get connections_title => 'Povezave';
+
+  @override
+  String get connections_radioTitle => 'Povezava z radiem';
+
+  @override
+  String get connections_bluetoothOffNotice =>
+      'Bluetooth je izklopljen. Vklopite ga za ponovno povezavo; aplikacija bo poskusila znova, ko bo spet vklopljen.';
+
+  @override
+  String get connections_transport => 'Vrsta povezave';
+
+  @override
+  String connections_lastError(String error) {
+    return 'Zadnja napaka: $error';
+  }
+
+  @override
+  String get connections_disconnectRadio => 'Prekini radio';
+
+  @override
+  String connections_reconnectTo(String name) {
+    return 'Znova poveži z $name';
+  }
+
+  @override
+  String get connections_forgetRadio => 'Pozabi radio';
+
+  @override
+  String get connections_connectAnother => 'Poveži drug radio';
+
+  @override
+  String get connections_usbSerial => 'Serijski USB';
+
+  @override
+  String get connections_tcpIp => 'TCP/IP';
+
+  @override
+  String get connections_device => 'Naprava';
+
+  @override
+  String get connections_publicKey => 'Javni ključ';
+
+  @override
+  String get connections_firmware => 'Strojna programska oprema';
+
+  @override
+  String connections_firmwareProtocol(String code) {
+    return 'protokol v$code';
+  }
+
+  @override
+  String get connections_battery => 'Baterija';
+
+  @override
+  String get connections_lastRx => 'Zadnji sprejem';
+
+  @override
+  String get connections_reconnectFailed =>
+      'Ponovna povezava z radiem ni uspela';
+
+  @override
+  String get connections_statusBluetoothOff => 'Bluetooth je izklopljen';
+
+  @override
+  String get connections_statusConnected => 'Povezano';
+
+  @override
+  String get connections_statusConnecting => 'Povezovanje…';
+
+  @override
+  String get connections_statusDisconnecting => 'Prekinjanje…';
+
+  @override
+  String get connections_statusScanning => 'Iskanje radiev…';
+
+  @override
+  String get connections_statusReconnectingSoon => 'Kmalu ponovna povezava…';
+
+  @override
+  String get connections_statusNotConnected => 'Ni povezano';
+
+  @override
+  String get mqtt_cardTitle => 'Povezava MQTT';
+
+  @override
+  String get mqtt_statusNotConfigured => 'Ni nastavljeno';
+
+  @override
+  String get mqtt_statusDisconnected => 'Prekinjeno';
+
+  @override
+  String get mqtt_statusConnecting => 'Povezovanje';
+
+  @override
+  String get mqtt_statusConnected => 'Povezano';
+
+  @override
+  String get mqtt_statusReconnecting => 'Ponovno povezovanje';
+
+  @override
+  String get mqtt_statusError => 'Napaka povezave';
+
+  @override
+  String mqtt_broker(String host, int port, String transport) {
+    return 'Posrednik: $host:$port ($transport)';
+  }
+
+  @override
+  String get mqtt_tokenSignIn => 'Prijava z žetonom, ki ga podpiše radio';
+
+  @override
+  String mqtt_tokenSignInAs(String username) {
+    return 'Prijava z žetonom, ki ga podpiše radio, kot $username…';
+  }
+
+  @override
+  String get mqtt_connectRadioToSignIn => 'Povežite radio za prijavo';
+
+  @override
+  String mqtt_tokenRenewsAt(String time) {
+    return 'Žeton se obnovi ob $time';
+  }
+
+  @override
+  String mqtt_signedInAs(String username) {
+    return 'Prijavljeni kot $username';
+  }
+
+  @override
+  String mqtt_listeningOn(String topic) {
+    return 'Poslušanje na $topic';
+  }
+
+  @override
+  String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
+    return 'Paketi: novi $accepted, podvojeni $duplicate, neveljavni $invalid';
+  }
+
+  @override
+  String mqtt_retryCount(int attempt, int max) {
+    return 'Poskus $attempt od $max';
+  }
+
+  @override
+  String get mqtt_sharingWaitsForRadio => 'Deljenje čaka na povezavo z radiem';
+
+  @override
+  String mqtt_sharingOn(String topic) {
+    return 'Deljenje na $topic';
+  }
+
+  @override
+  String mqtt_willShareOn(String topic) {
+    return 'Delilo bo na $topic';
+  }
+
+  @override
+  String mqtt_onlineStatusOn(String topic) {
+    return 'Stanje povezave na $topic';
+  }
+
+  @override
+  String mqtt_sharedCounts(int shared, int held) {
+    return 'Deljeno $shared, zadržano $held';
+  }
+
+  @override
+  String get mqtt_addBrokerHint =>
+      'Dodajte posrednika za povezovanje prometa MeshCore prek interneta. Povezava z radiem deluje neodvisno.';
+
+  @override
+  String get mqtt_disconnect => 'Prekini MQTT';
+
+  @override
+  String get mqtt_connect => 'Poveži MQTT';
+
+  @override
+  String get mqtt_packetFeed => 'Tok paketov';
+
+  @override
+  String get mqtt_setUpBroker => 'Nastavi posrednika';
+
+  @override
+  String get mqtt_brokerSettings => 'Nastavitve posrednika';
+
+  @override
+  String get mqtt_settingsTitle => 'Nastavitve posrednika MQTT';
+
+  @override
+  String get mqtt_presetLabel => 'Začni s predlogo';
+
+  @override
+  String get mqtt_presetCustom => 'Lasten posrednik';
+
+  @override
+  String get mqtt_presetLocal => 'Lokalni posrednik (vnesite naslov)';
+
+  @override
+  String get mqtt_presetLetsMeshUs => 'Analizator LetsMesh (ZDA, skupnost)';
+
+  @override
+  String get mqtt_presetLetsMeshEu => 'Analizator LetsMesh (EU, skupnost)';
+
+  @override
+  String get mqtt_presetLetsMeshNote =>
+      'LetsMesh je analizator paketov MeshCore, ki ga vodi skupnost; ni del NOTORYX in ga NOTORYX ne podpira. Deljenje potrebuje povezan radio in ostane izklopljeno, dokler ga ne vklopite.';
+
+  @override
+  String get mqtt_hostname => 'Ime gostitelja posrednika';
+
+  @override
+  String get mqtt_port => 'Vrata';
+
+  @override
+  String get mqtt_useTls => 'Uporabi TLS';
+
+  @override
+  String get mqtt_allowCleartext =>
+      'Dovoli nešifrirano povezavo z lokalnim posrednikom';
+
+  @override
+  String get mqtt_allowCleartextHint =>
+      'Samo localhost, .local in zasebni gostitelji 10.x / 192.168.x.';
+
+  @override
+  String get mqtt_useWebSocket => 'Uporabi WebSocket';
+
+  @override
+  String get mqtt_webSocketPath => 'Pot WebSocket';
+
+  @override
+  String get mqtt_topicPrefix => 'Predpona teme';
+
+  @override
+  String get mqtt_region => 'Regija (neobvezno)';
+
+  @override
+  String get mqtt_regionHelp =>
+      'Koda regije opazovalca, npr. PHL. Pustite prazno za vse.';
+
+  @override
+  String get mqtt_deliverChannel =>
+      'Dodajaj sporočila kanalov, prejeta prek MQTT';
+
+  @override
+  String get mqtt_deliverChannelHint =>
+      'Sporočila v vaših kanalih, ki so jih slišali opazovalci, se prikažejo v klepetih. Niso poslana prek vašega radia.';
+
+  @override
+  String get mqtt_sharingTitle => 'Deljenje kot opazovalec';
+
+  @override
+  String get mqtt_share => 'Deli pakete, ki jih sliši moj radio';
+
+  @override
+  String get mqtt_shareHint =>
+      'Objavlja oznanila in promet kanalov, ki jih radio sprejme, z njegovim javnim ključem, močjo signala in regijo. Sporočila kanalov ostanejo šifrirana. Zahteva regijo.';
+
+  @override
+  String get mqtt_shareDirect => 'Vključi promet neposrednih sporočil';
+
+  @override
+  String get mqtt_shareDirectHint =>
+      'Zahteve, odgovori in neposredna sporočila. Vsebina ostane šifrirana, vendar se vidi, katera vozlišča se pogovarjajo.';
+
+  @override
+  String get mqtt_shareOwn => 'Vključi moja sporočila in oznanila';
+
+  @override
+  String get mqtt_signInTitle => 'Prijava';
+
+  @override
+  String get mqtt_authPassword => 'Uporabniško ime in geslo';
+
+  @override
+  String get mqtt_authToken => 'Žeton, ki ga podpiše radio';
+
+  @override
+  String get mqtt_tokenExplain =>
+      'Radio z lastnim ključem podpiše enourni žeton za prijavo, aplikacija pa ga obnovi pred iztekom. Ključ nikoli ne zapusti radia. Uporabniško ime je v1_ in javni ključ vašega radia.';
+
+  @override
+  String get mqtt_radioReady => 'Radio povezan: pripravljen na prijavo.';
+
+  @override
+  String get mqtt_radioNeeded => 'Povežite radio za prijavo. MQTT ga čaka.';
+
+  @override
+  String get mqtt_username => 'Uporabniško ime (neobvezno)';
+
+  @override
+  String get mqtt_password => 'Geslo';
+
+  @override
+  String get mqtt_keepPassword =>
+      'Pustite prazno, da ohranite shranjeno geslo.';
+
+  @override
+  String get mqtt_credentialsWeb =>
+      'V brskalniku se poverilnice hranijo le, dokler je stran odprta.';
+
+  @override
+  String get mqtt_credentialsKeychain =>
+      'Poverilnice se hranijo v sistemski verigi ključev, nikoli v nastavitvah aplikacije ali dnevnikih.';
+
+  @override
+  String get mqtt_saveSettings => 'Shrani nastavitve';
+
+  @override
+  String get mqtt_feedTitle => 'Tok paketov MQTT';
+
+  @override
+  String get mqtt_feedConnect =>
+      'Povežite se s posrednikom, da vidite pakete opazovalcev.';
+
+  @override
+  String mqtt_feedWaiting(String topic) {
+    return 'Čakanje na pakete na $topic';
+  }
+
+  @override
+  String get mqtt_feedUnknownObserver => 'Neznan opazovalec';
+
+  @override
+  String mqtt_feedHeardBy(String observer) {
+    return 'Slišal $observer';
+  }
+
+  @override
+  String mqtt_feedHopsBytes(int hops, int bytes) {
+    return 'Skoki: $hops · bajti: $bytes';
+  }
+
+  @override
+  String get mqtt_packetRequest => 'Zahteva';
+
+  @override
+  String get mqtt_packetResponse => 'Odgovor';
+
+  @override
+  String get mqtt_packetDirectMessage => 'Neposredno sporočilo';
+
+  @override
+  String get mqtt_packetAck => 'Potrditev';
+
+  @override
+  String get mqtt_packetAdvert => 'Oznanilo';
+
+  @override
+  String get mqtt_packetChannelMessage => 'Sporočilo kanala';
+
+  @override
+  String get mqtt_packetChannelData => 'Podatki kanala';
+
+  @override
+  String get mqtt_packetAnonymousRequest => 'Anonimna zahteva';
+
+  @override
+  String get mqtt_packetPath => 'Pot';
+
+  @override
+  String get mqtt_packetTrace => 'Sledenje';
+
+  @override
+  String get mqtt_packetMultipart => 'Večdelni';
+
+  @override
+  String get mqtt_packetControl => 'Upravljanje';
+
+  @override
+  String mqtt_packetType(int type) {
+    return 'Vrsta $type';
+  }
+
+  @override
+  String get mqtt_routeTransportFlood => 'Flood s transportom';
+
+  @override
+  String get mqtt_routeFlood => 'Flood';
+
+  @override
+  String get mqtt_routeDirect => 'Neposredna';
+
+  @override
+  String get mqtt_routeTransportDirect => 'Neposredna s transportom';
+
+  @override
+  String get mqtt_noticeInvalidHost =>
+      'Vnesite ime gostitelja ali naslov IPv4 brez sheme in vrat.';
+
+  @override
+  String get mqtt_noticeInvalidPort => 'Vrata morajo biti med 1 in 65535.';
+
+  @override
+  String get mqtt_noticeInvalidWebSocketPath =>
+      'Pot WebSocket se mora začeti z / in ne sme vsebovati poizvedbe ali fragmenta.';
+
+  @override
+  String get mqtt_noticeInvalidTopicPrefix =>
+      'Predpona teme mora biti neprazna pot MQTT brez nadomestnih znakov.';
+
+  @override
+  String get mqtt_noticeInvalidRegion =>
+      'Regija mora imeti 2–8 črk ali številk, npr. PHL.';
+
+  @override
+  String get mqtt_noticeTlsRequired =>
+      'TLS je obvezen, razen če je nevaren dostop do lokalnega posrednika izrecno dovoljen.';
+
+  @override
+  String get mqtt_noticeCleartextLocalOnly =>
+      'Nešifriran MQTT je dovoljen samo za izrecno odobrene lokalne gostitelje.';
+
+  @override
+  String get mqtt_noticeRegionNeededToShare =>
+      'Nastavite regijo za deljenje paketov kot opazovalec.';
+
+  @override
+  String mqtt_noticePasswordNeeded(String username) {
+    return 'Vnesite geslo za $username.';
+  }
+
+  @override
+  String get mqtt_noticeNoNetwork =>
+      'Ni omrežne povezave. MQTT se bo znova povezal, ko bo spet na voljo.';
+
+  @override
+  String get mqtt_noticeSubscriptionRefused =>
+      'Posrednik je zavrnil naročnino na pakete.';
+
+  @override
+  String get mqtt_noticeBadCredentials =>
+      'Posrednik je zavrnil uporabniško ime ali geslo.';
+
+  @override
+  String get mqtt_noticeNotAuthorized =>
+      'Ta račun na posredniku nima pooblastil.';
+
+  @override
+  String get mqtt_noticeConnectionRefused => 'Posrednik je zavrnil povezavo.';
+
+  @override
+  String get mqtt_noticeUnreachable => 'Posrednik ni dosegljiv.';
+
+  @override
+  String get mqtt_noticeTlsFailed =>
+      'Varne povezave (TLS) ni bilo mogoče vzpostaviti.';
+
+  @override
+  String get mqtt_noticeWebSocketOnly =>
+      'Ta platforma podpira MQTT samo prek WebSocket.';
+
+  @override
+  String get mqtt_noticeRadioNotConnected =>
+      'Povežite radio za prijavo z njegovim ključem.';
+
+  @override
+  String get mqtt_noticeSigningUnsupported =>
+      'Strojna programska oprema tega radia ne podpira podpisovanja z njegovim ključem.';
+
+  @override
+  String get mqtt_noticeSigningTimeout =>
+      'Radio se ni odzval na zahtevo za podpis. Njegova strojna programska oprema morda ne podpira podpisovanja.';
+
+  @override
+  String get mqtt_noticeSigningTooLong =>
+      'Podatki so predolgi, da bi jih radio podpisal.';
+
+  @override
+  String get mqtt_noticeSigningRejected => 'Radio je zavrnil podpis podatkov.';
 }

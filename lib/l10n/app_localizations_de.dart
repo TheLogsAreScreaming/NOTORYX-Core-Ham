@@ -7434,4 +7434,483 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get setupWizard_usbError =>
       'USB-Verbindung fehlgeschlagen. Prüfe das Datenkabel und das gewählte Gerät, erlaube den USB-Zugriff und schließe andere serielle Apps. Stecke das Kabel neu ein und versuche es erneut.';
+
+  @override
+  String get connections_title => 'Verbindungen';
+
+  @override
+  String get connections_radioTitle => 'Funkverbindung';
+
+  @override
+  String get connections_bluetoothOffNotice =>
+      'Bluetooth ist aus. Schalte es ein, um neu zu verbinden; die App versucht es erneut, sobald es wieder an ist.';
+
+  @override
+  String get connections_transport => 'Verbindungsart';
+
+  @override
+  String connections_lastError(String error) {
+    return 'Letzter Fehler: $error';
+  }
+
+  @override
+  String get connections_disconnectRadio => 'Funkgerät trennen';
+
+  @override
+  String connections_reconnectTo(String name) {
+    return 'Neu verbinden mit $name';
+  }
+
+  @override
+  String get connections_forgetRadio => 'Funkgerät vergessen';
+
+  @override
+  String get connections_connectAnother => 'Anderes Funkgerät verbinden';
+
+  @override
+  String get connections_usbSerial => 'USB-Seriell';
+
+  @override
+  String get connections_tcpIp => 'TCP/IP';
+
+  @override
+  String get connections_device => 'Gerät';
+
+  @override
+  String get connections_publicKey => 'Öffentlicher Schlüssel';
+
+  @override
+  String get connections_firmware => 'Firmware';
+
+  @override
+  String connections_firmwareProtocol(String code) {
+    return 'Protokoll v$code';
+  }
+
+  @override
+  String get connections_battery => 'Akku';
+
+  @override
+  String get connections_lastRx => 'Letzter Empfang';
+
+  @override
+  String get connections_reconnectFailed =>
+      'Neuverbindung mit dem Funkgerät fehlgeschlagen';
+
+  @override
+  String get connections_statusBluetoothOff => 'Bluetooth ist aus';
+
+  @override
+  String get connections_statusConnected => 'Verbunden';
+
+  @override
+  String get connections_statusConnecting => 'Verbinde…';
+
+  @override
+  String get connections_statusDisconnecting => 'Trenne…';
+
+  @override
+  String get connections_statusScanning => 'Suche nach Funkgeräten…';
+
+  @override
+  String get connections_statusReconnectingSoon => 'Neuverbindung gleich…';
+
+  @override
+  String get connections_statusNotConnected => 'Nicht verbunden';
+
+  @override
+  String get mqtt_cardTitle => 'MQTT-Verbindung';
+
+  @override
+  String get mqtt_statusNotConfigured => 'Nicht eingerichtet';
+
+  @override
+  String get mqtt_statusDisconnected => 'Getrennt';
+
+  @override
+  String get mqtt_statusConnecting => 'Verbinde';
+
+  @override
+  String get mqtt_statusConnected => 'Verbunden';
+
+  @override
+  String get mqtt_statusReconnecting => 'Verbinde neu';
+
+  @override
+  String get mqtt_statusError => 'Verbindungsfehler';
+
+  @override
+  String mqtt_broker(String host, int port, String transport) {
+    return 'Broker: $host:$port ($transport)';
+  }
+
+  @override
+  String get mqtt_tokenSignIn => 'Anmeldung mit vom Funkgerät signiertem Token';
+
+  @override
+  String mqtt_tokenSignInAs(String username) {
+    return 'Anmeldung mit vom Funkgerät signiertem Token als $username…';
+  }
+
+  @override
+  String get mqtt_connectRadioToSignIn =>
+      'Verbinde dein Funkgerät, um dich anzumelden';
+
+  @override
+  String mqtt_tokenRenewsAt(String time) {
+    return 'Token wird um $time erneuert';
+  }
+
+  @override
+  String mqtt_signedInAs(String username) {
+    return 'Angemeldet als $username';
+  }
+
+  @override
+  String mqtt_listeningOn(String topic) {
+    return 'Empfange auf $topic';
+  }
+
+  @override
+  String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
+    return 'Pakete: $accepted neu, $duplicate doppelt, $invalid ungültig';
+  }
+
+  @override
+  String mqtt_retryCount(int attempt, int max) {
+    return 'Versuch $attempt von $max';
+  }
+
+  @override
+  String get mqtt_sharingWaitsForRadio =>
+      'Teilen wartet auf eine Funkverbindung';
+
+  @override
+  String mqtt_sharingOn(String topic) {
+    return 'Teile auf $topic';
+  }
+
+  @override
+  String mqtt_willShareOn(String topic) {
+    return 'Wird auf $topic teilen';
+  }
+
+  @override
+  String mqtt_onlineStatusOn(String topic) {
+    return 'Online-Status auf $topic';
+  }
+
+  @override
+  String mqtt_sharedCounts(int shared, int held) {
+    return 'Geteilt $shared, zurückgehalten $held';
+  }
+
+  @override
+  String get mqtt_addBrokerHint =>
+      'Füge einen Broker hinzu, um MeshCore-Verkehr über das Internet zu verbinden. Die Funkverbindung funktioniert unabhängig davon.';
+
+  @override
+  String get mqtt_disconnect => 'MQTT trennen';
+
+  @override
+  String get mqtt_connect => 'MQTT verbinden';
+
+  @override
+  String get mqtt_packetFeed => 'Paket-Feed';
+
+  @override
+  String get mqtt_setUpBroker => 'Broker einrichten';
+
+  @override
+  String get mqtt_brokerSettings => 'Broker-Einstellungen';
+
+  @override
+  String get mqtt_settingsTitle => 'MQTT-Broker-Einstellungen';
+
+  @override
+  String get mqtt_presetLabel => 'Mit einer Vorlage beginnen';
+
+  @override
+  String get mqtt_presetCustom => 'Eigener Broker';
+
+  @override
+  String get mqtt_presetLocal => 'Lokaler Broker (Adresse eintragen)';
+
+  @override
+  String get mqtt_presetLetsMeshUs => 'LetsMesh-Analyzer (USA, Community)';
+
+  @override
+  String get mqtt_presetLetsMeshEu => 'LetsMesh-Analyzer (EU, Community)';
+
+  @override
+  String get mqtt_presetLetsMeshNote =>
+      'LetsMesh ist ein von der Community betriebener MeshCore-Paketanalyzer, kein Teil von NOTORYX und nicht von NOTORYX empfohlen. Teilen braucht ein verbundenes Funkgerät und bleibt aus, bis du es einschaltest.';
+
+  @override
+  String get mqtt_hostname => 'Broker-Hostname';
+
+  @override
+  String get mqtt_port => 'Port';
+
+  @override
+  String get mqtt_useTls => 'TLS verwenden';
+
+  @override
+  String get mqtt_allowCleartext => 'Klartext zu einem lokalen Broker erlauben';
+
+  @override
+  String get mqtt_allowCleartextHint =>
+      'Nur localhost, .local und private 10.x- / 192.168.x-Hosts.';
+
+  @override
+  String get mqtt_useWebSocket => 'WebSocket verwenden';
+
+  @override
+  String get mqtt_webSocketPath => 'WebSocket-Pfad';
+
+  @override
+  String get mqtt_topicPrefix => 'Topic-Präfix';
+
+  @override
+  String get mqtt_region => 'Region (optional)';
+
+  @override
+  String get mqtt_regionHelp =>
+      'Regionscode des Beobachters, z. B. PHL. Leer lassen für alle.';
+
+  @override
+  String get mqtt_deliverChannel =>
+      'Über MQTT gehörte Kanalnachrichten hinzufügen';
+
+  @override
+  String get mqtt_deliverChannelHint =>
+      'Nachrichten in deinen Kanälen, die Beobachter gehört haben, erscheinen in deinen Chats. Sie werden nicht über dein Funkgerät gesendet.';
+
+  @override
+  String get mqtt_sharingTitle => 'Als Beobachter teilen';
+
+  @override
+  String get mqtt_share => 'Pakete teilen, die mein Funkgerät hört';
+
+  @override
+  String get mqtt_shareHint =>
+      'Veröffentlicht Adverts und Kanalverkehr, die dein Funkgerät empfängt, mit seinem öffentlichen Schlüssel, der Signalstärke und der Region. Kanalnachrichten bleiben verschlüsselt. Braucht eine Region.';
+
+  @override
+  String get mqtt_shareDirect => 'Direktnachrichten-Verkehr einschließen';
+
+  @override
+  String get mqtt_shareDirectHint =>
+      'Anfragen, Antworten und Direktnachrichten. Die Inhalte bleiben verschlüsselt, aber es zeigt, welche Knoten miteinander kommunizieren.';
+
+  @override
+  String get mqtt_shareOwn =>
+      'Meine eigenen Nachrichten und Adverts einschließen';
+
+  @override
+  String get mqtt_signInTitle => 'Anmeldung';
+
+  @override
+  String get mqtt_authPassword => 'Benutzername und Passwort';
+
+  @override
+  String get mqtt_authToken => 'Vom Funkgerät signiertes Token';
+
+  @override
+  String get mqtt_tokenExplain =>
+      'Dein Funkgerät signiert mit seinem eigenen Schlüssel ein einstündiges Anmeldetoken, und die App erneuert es, bevor es abläuft. Der Schlüssel verlässt das Funkgerät nie. Der Benutzername ist v1_ plus der öffentliche Schlüssel deines Funkgeräts.';
+
+  @override
+  String get mqtt_radioReady => 'Funkgerät verbunden: bereit zur Anmeldung.';
+
+  @override
+  String get mqtt_radioNeeded =>
+      'Verbinde dein Funkgerät, um dich anzumelden. MQTT wartet darauf.';
+
+  @override
+  String get mqtt_username => 'Benutzername (optional)';
+
+  @override
+  String get mqtt_password => 'Passwort';
+
+  @override
+  String get mqtt_keepPassword =>
+      'Leer lassen, um das gespeicherte Passwort zu behalten.';
+
+  @override
+  String get mqtt_credentialsWeb =>
+      'Im Browser werden Zugangsdaten nur behalten, bis die Seite geschlossen wird.';
+
+  @override
+  String get mqtt_credentialsKeychain =>
+      'Zugangsdaten werden im Schlüsselbund des Systems gespeichert, nie in App-Einstellungen oder Logs.';
+
+  @override
+  String get mqtt_saveSettings => 'Einstellungen speichern';
+
+  @override
+  String get mqtt_feedTitle => 'MQTT-Paket-Feed';
+
+  @override
+  String get mqtt_feedConnect =>
+      'Verbinde dich mit einem Broker, um Pakete von Beobachtern zu sehen.';
+
+  @override
+  String mqtt_feedWaiting(String topic) {
+    return 'Warte auf Pakete auf $topic';
+  }
+
+  @override
+  String get mqtt_feedUnknownObserver => 'Unbekannter Beobachter';
+
+  @override
+  String mqtt_feedHeardBy(String observer) {
+    return 'Gehört von $observer';
+  }
+
+  @override
+  String mqtt_feedHopsBytes(int hops, int bytes) {
+    return '$hops Hops · $bytes Bytes';
+  }
+
+  @override
+  String get mqtt_packetRequest => 'Anfrage';
+
+  @override
+  String get mqtt_packetResponse => 'Antwort';
+
+  @override
+  String get mqtt_packetDirectMessage => 'Direktnachricht';
+
+  @override
+  String get mqtt_packetAck => 'Bestätigung';
+
+  @override
+  String get mqtt_packetAdvert => 'Advert';
+
+  @override
+  String get mqtt_packetChannelMessage => 'Kanalnachricht';
+
+  @override
+  String get mqtt_packetChannelData => 'Kanaldaten';
+
+  @override
+  String get mqtt_packetAnonymousRequest => 'Anonyme Anfrage';
+
+  @override
+  String get mqtt_packetPath => 'Pfad';
+
+  @override
+  String get mqtt_packetTrace => 'Trace';
+
+  @override
+  String get mqtt_packetMultipart => 'Mehrteilig';
+
+  @override
+  String get mqtt_packetControl => 'Steuerung';
+
+  @override
+  String mqtt_packetType(int type) {
+    return 'Typ $type';
+  }
+
+  @override
+  String get mqtt_routeTransportFlood => 'Transport-Flood';
+
+  @override
+  String get mqtt_routeFlood => 'Flood';
+
+  @override
+  String get mqtt_routeDirect => 'Direkt';
+
+  @override
+  String get mqtt_routeTransportDirect => 'Transport-Direkt';
+
+  @override
+  String get mqtt_noticeInvalidHost =>
+      'Gib einen Hostnamen oder eine IPv4-Adresse ohne Schema oder Port ein.';
+
+  @override
+  String get mqtt_noticeInvalidPort =>
+      'Der Port muss zwischen 1 und 65535 liegen.';
+
+  @override
+  String get mqtt_noticeInvalidWebSocketPath =>
+      'Der WebSocket-Pfad muss mit / beginnen und darf keine Query oder kein Fragment enthalten.';
+
+  @override
+  String get mqtt_noticeInvalidTopicPrefix =>
+      'Das Topic-Präfix muss ein nicht leerer MQTT-Pfad ohne Platzhalter sein.';
+
+  @override
+  String get mqtt_noticeInvalidRegion =>
+      'Die Region muss aus 2–8 Buchstaben oder Ziffern bestehen, z. B. PHL.';
+
+  @override
+  String get mqtt_noticeTlsRequired =>
+      'TLS ist Pflicht, außer der unsichere Zugriff auf einen lokalen Broker ist ausdrücklich erlaubt.';
+
+  @override
+  String get mqtt_noticeCleartextLocalOnly =>
+      'Klartext-MQTT ist nur für ausdrücklich erlaubte lokale Hosts möglich.';
+
+  @override
+  String get mqtt_noticeRegionNeededToShare =>
+      'Lege eine Region fest, um Pakete als Beobachter zu teilen.';
+
+  @override
+  String mqtt_noticePasswordNeeded(String username) {
+    return 'Gib das Passwort für $username ein.';
+  }
+
+  @override
+  String get mqtt_noticeNoNetwork =>
+      'Keine Netzwerkverbindung. MQTT verbindet sich neu, sobald sie wieder da ist.';
+
+  @override
+  String get mqtt_noticeSubscriptionRefused =>
+      'Der Broker hat das Paket-Abonnement abgelehnt.';
+
+  @override
+  String get mqtt_noticeBadCredentials =>
+      'Der Broker hat Benutzername oder Passwort abgelehnt.';
+
+  @override
+  String get mqtt_noticeNotAuthorized =>
+      'Dieses Konto ist auf dem Broker nicht berechtigt.';
+
+  @override
+  String get mqtt_noticeConnectionRefused =>
+      'Der Broker hat die Verbindung abgelehnt.';
+
+  @override
+  String get mqtt_noticeUnreachable => 'Der Broker war nicht erreichbar.';
+
+  @override
+  String get mqtt_noticeTlsFailed =>
+      'Die sichere (TLS-)Verbindung konnte nicht aufgebaut werden.';
+
+  @override
+  String get mqtt_noticeWebSocketOnly =>
+      'Diese Plattform unterstützt MQTT nur über WebSocket.';
+
+  @override
+  String get mqtt_noticeRadioNotConnected =>
+      'Verbinde dein Funkgerät, um dich mit seinem Schlüssel anzumelden.';
+
+  @override
+  String get mqtt_noticeSigningUnsupported =>
+      'Die Firmware dieses Funkgeräts kann nicht mit seinem Schlüssel signieren.';
+
+  @override
+  String get mqtt_noticeSigningTimeout =>
+      'Das Funkgerät hat auf die Signieranfrage nicht geantwortet. Seine Firmware unterstützt das Signieren möglicherweise nicht.';
+
+  @override
+  String get mqtt_noticeSigningTooLong =>
+      'Die Daten sind zu lang, als dass das Funkgerät sie signieren könnte.';
+
+  @override
+  String get mqtt_noticeSigningRejected =>
+      'Das Funkgerät hat das Signieren der Daten abgelehnt.';
 }

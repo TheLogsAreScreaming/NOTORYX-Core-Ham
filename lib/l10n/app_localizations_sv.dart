@@ -7363,4 +7363,477 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get setupWizard_usbError =>
       'Kunde inte ansluta via USB. Kontrollera datakabeln och vald enhet, tillåt USB-åtkomst och stäng andra seriella appar. Anslut kabeln igen och försök på nytt.';
+
+  @override
+  String get connections_title => 'Anslutningar';
+
+  @override
+  String get connections_radioTitle => 'Radioanslutning';
+
+  @override
+  String get connections_bluetoothOffNotice =>
+      'Bluetooth är avstängt. Slå på det för att ansluta igen; appen försöker igen när det är tillbaka.';
+
+  @override
+  String get connections_transport => 'Anslutningssätt';
+
+  @override
+  String connections_lastError(String error) {
+    return 'Senaste fel: $error';
+  }
+
+  @override
+  String get connections_disconnectRadio => 'Koppla från radion';
+
+  @override
+  String connections_reconnectTo(String name) {
+    return 'Anslut igen till $name';
+  }
+
+  @override
+  String get connections_forgetRadio => 'Glöm radion';
+
+  @override
+  String get connections_connectAnother => 'Anslut en annan radio';
+
+  @override
+  String get connections_usbSerial => 'USB-seriell';
+
+  @override
+  String get connections_tcpIp => 'TCP/IP';
+
+  @override
+  String get connections_device => 'Enhet';
+
+  @override
+  String get connections_publicKey => 'Publik nyckel';
+
+  @override
+  String get connections_firmware => 'Firmware';
+
+  @override
+  String connections_firmwareProtocol(String code) {
+    return 'protokoll v$code';
+  }
+
+  @override
+  String get connections_battery => 'Batteri';
+
+  @override
+  String get connections_lastRx => 'Senast mottaget';
+
+  @override
+  String get connections_reconnectFailed =>
+      'Kunde inte ansluta igen till radion';
+
+  @override
+  String get connections_statusBluetoothOff => 'Bluetooth är avstängt';
+
+  @override
+  String get connections_statusConnected => 'Ansluten';
+
+  @override
+  String get connections_statusConnecting => 'Ansluter…';
+
+  @override
+  String get connections_statusDisconnecting => 'Kopplar från…';
+
+  @override
+  String get connections_statusScanning => 'Söker efter radioenheter…';
+
+  @override
+  String get connections_statusReconnectingSoon => 'Ansluter igen snart…';
+
+  @override
+  String get connections_statusNotConnected => 'Inte ansluten';
+
+  @override
+  String get mqtt_cardTitle => 'MQTT-anslutning';
+
+  @override
+  String get mqtt_statusNotConfigured => 'Inte konfigurerad';
+
+  @override
+  String get mqtt_statusDisconnected => 'Frånkopplad';
+
+  @override
+  String get mqtt_statusConnecting => 'Ansluter';
+
+  @override
+  String get mqtt_statusConnected => 'Ansluten';
+
+  @override
+  String get mqtt_statusReconnecting => 'Ansluter igen';
+
+  @override
+  String get mqtt_statusError => 'Anslutningsfel';
+
+  @override
+  String mqtt_broker(String host, int port, String transport) {
+    return 'Broker: $host:$port ($transport)';
+  }
+
+  @override
+  String get mqtt_tokenSignIn => 'Loggar in med en token signerad av radion';
+
+  @override
+  String mqtt_tokenSignInAs(String username) {
+    return 'Loggar in med en token signerad av radion som $username…';
+  }
+
+  @override
+  String get mqtt_connectRadioToSignIn => 'Anslut radion för att logga in';
+
+  @override
+  String mqtt_tokenRenewsAt(String time) {
+    return 'Token förnyas kl. $time';
+  }
+
+  @override
+  String mqtt_signedInAs(String username) {
+    return 'Inloggad som $username';
+  }
+
+  @override
+  String mqtt_listeningOn(String topic) {
+    return 'Lyssnar på $topic';
+  }
+
+  @override
+  String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
+    return 'Paket: $accepted nya, $duplicate dubbletter, $invalid ogiltiga';
+  }
+
+  @override
+  String mqtt_retryCount(int attempt, int max) {
+    return 'Försök $attempt av $max';
+  }
+
+  @override
+  String get mqtt_sharingWaitsForRadio =>
+      'Delning väntar på en radioanslutning';
+
+  @override
+  String mqtt_sharingOn(String topic) {
+    return 'Delar på $topic';
+  }
+
+  @override
+  String mqtt_willShareOn(String topic) {
+    return 'Kommer att dela på $topic';
+  }
+
+  @override
+  String mqtt_onlineStatusOn(String topic) {
+    return 'Onlinestatus på $topic';
+  }
+
+  @override
+  String mqtt_sharedCounts(int shared, int held) {
+    return 'Delade $shared, kvarhållna $held';
+  }
+
+  @override
+  String get mqtt_addBrokerHint =>
+      'Lägg till en broker för att koppla MeshCore-trafik över internet. Radioanslutningen fungerar oberoende av den.';
+
+  @override
+  String get mqtt_disconnect => 'Koppla från MQTT';
+
+  @override
+  String get mqtt_connect => 'Anslut MQTT';
+
+  @override
+  String get mqtt_packetFeed => 'Paketflöde';
+
+  @override
+  String get mqtt_setUpBroker => 'Konfigurera broker';
+
+  @override
+  String get mqtt_brokerSettings => 'Brokerinställningar';
+
+  @override
+  String get mqtt_settingsTitle => 'MQTT-brokerinställningar';
+
+  @override
+  String get mqtt_presetLabel => 'Börja från en förinställning';
+
+  @override
+  String get mqtt_presetCustom => 'Egen broker';
+
+  @override
+  String get mqtt_presetLocal => 'Lokal broker (ange adress)';
+
+  @override
+  String get mqtt_presetLetsMeshUs => 'LetsMesh-analysator (USA, community)';
+
+  @override
+  String get mqtt_presetLetsMeshEu => 'LetsMesh-analysator (EU, community)';
+
+  @override
+  String get mqtt_presetLetsMeshNote =>
+      'LetsMesh är en communitydriven paketanalysator för MeshCore, inte en del av NOTORYX och inte rekommenderad av NOTORYX. Delning kräver att radion är ansluten och är av tills du slår på den.';
+
+  @override
+  String get mqtt_hostname => 'Brokerns värdnamn';
+
+  @override
+  String get mqtt_port => 'Port';
+
+  @override
+  String get mqtt_useTls => 'Använd TLS';
+
+  @override
+  String get mqtt_allowCleartext => 'Tillåt okrypterat till en lokal broker';
+
+  @override
+  String get mqtt_allowCleartextHint =>
+      'Bara localhost, .local och privata 10.x- / 192.168.x-värdar.';
+
+  @override
+  String get mqtt_useWebSocket => 'Använd WebSocket';
+
+  @override
+  String get mqtt_webSocketPath => 'WebSocket-sökväg';
+
+  @override
+  String get mqtt_topicPrefix => 'Topic-prefix';
+
+  @override
+  String get mqtt_region => 'Region (valfritt)';
+
+  @override
+  String get mqtt_regionHelp =>
+      'Observatörens regionkod, t.ex. PHL. Lämna tomt för alla.';
+
+  @override
+  String get mqtt_deliverChannel => 'Lägg till kanalmeddelanden hörda via MQTT';
+
+  @override
+  String get mqtt_deliverChannelHint =>
+      'Meddelanden i dina kanaler som observatörer har hört visas i dina chattar. De skickas inte via din radio.';
+
+  @override
+  String get mqtt_sharingTitle => 'Dela som observatör';
+
+  @override
+  String get mqtt_share => 'Dela paket som min radio hör';
+
+  @override
+  String get mqtt_shareHint =>
+      'Publicerar adverts och kanaltrafik som radion tar emot, med dess publika nyckel, signalstyrka och region. Kanalmeddelanden förblir krypterade. Kräver en region.';
+
+  @override
+  String get mqtt_shareDirect => 'Ta med trafik från direktmeddelanden';
+
+  @override
+  String get mqtt_shareDirectHint =>
+      'Förfrågningar, svar och direktmeddelanden. Innehållet förblir krypterat, men det visar vilka noder som pratar med varandra.';
+
+  @override
+  String get mqtt_shareOwn => 'Ta med mina egna meddelanden och adverts';
+
+  @override
+  String get mqtt_signInTitle => 'Inloggning';
+
+  @override
+  String get mqtt_authPassword => 'Användarnamn och lösenord';
+
+  @override
+  String get mqtt_authToken => 'Token signerad av radion';
+
+  @override
+  String get mqtt_tokenExplain =>
+      'Radion signerar en inloggningstoken som gäller en timme med sin egen nyckel, och appen förnyar den innan den går ut. Nyckeln lämnar aldrig radion. Användarnamnet är v1_ följt av radions publika nyckel.';
+
+  @override
+  String get mqtt_radioReady => 'Radio ansluten: redo att logga in.';
+
+  @override
+  String get mqtt_radioNeeded =>
+      'Anslut radion för att logga in. MQTT väntar på den.';
+
+  @override
+  String get mqtt_username => 'Användarnamn (valfritt)';
+
+  @override
+  String get mqtt_password => 'Lösenord';
+
+  @override
+  String get mqtt_keepPassword =>
+      'Lämna tomt för att behålla det sparade lösenordet.';
+
+  @override
+  String get mqtt_credentialsWeb =>
+      'I webbläsaren sparas inloggningsuppgifter bara tills sidan stängs.';
+
+  @override
+  String get mqtt_credentialsKeychain =>
+      'Inloggningsuppgifter lagras i systemets nyckelring, aldrig i appinställningar eller loggar.';
+
+  @override
+  String get mqtt_saveSettings => 'Spara inställningar';
+
+  @override
+  String get mqtt_feedTitle => 'MQTT-paketflöde';
+
+  @override
+  String get mqtt_feedConnect =>
+      'Anslut till en broker för att se paket från observatörer.';
+
+  @override
+  String mqtt_feedWaiting(String topic) {
+    return 'Väntar på paket på $topic';
+  }
+
+  @override
+  String get mqtt_feedUnknownObserver => 'Okänd observatör';
+
+  @override
+  String mqtt_feedHeardBy(String observer) {
+    return 'Hört av $observer';
+  }
+
+  @override
+  String mqtt_feedHopsBytes(int hops, int bytes) {
+    return '$hops hopp · $bytes byte';
+  }
+
+  @override
+  String get mqtt_packetRequest => 'Förfrågan';
+
+  @override
+  String get mqtt_packetResponse => 'Svar';
+
+  @override
+  String get mqtt_packetDirectMessage => 'Direktmeddelande';
+
+  @override
+  String get mqtt_packetAck => 'Kvittens';
+
+  @override
+  String get mqtt_packetAdvert => 'Advert';
+
+  @override
+  String get mqtt_packetChannelMessage => 'Kanalmeddelande';
+
+  @override
+  String get mqtt_packetChannelData => 'Kanaldata';
+
+  @override
+  String get mqtt_packetAnonymousRequest => 'Anonym förfrågan';
+
+  @override
+  String get mqtt_packetPath => 'Väg';
+
+  @override
+  String get mqtt_packetTrace => 'Spårning';
+
+  @override
+  String get mqtt_packetMultipart => 'Flerdelad';
+
+  @override
+  String get mqtt_packetControl => 'Styrning';
+
+  @override
+  String mqtt_packetType(int type) {
+    return 'Typ $type';
+  }
+
+  @override
+  String get mqtt_routeTransportFlood => 'Transport-flood';
+
+  @override
+  String get mqtt_routeFlood => 'Flood';
+
+  @override
+  String get mqtt_routeDirect => 'Direkt';
+
+  @override
+  String get mqtt_routeTransportDirect => 'Transport-direkt';
+
+  @override
+  String get mqtt_noticeInvalidHost =>
+      'Ange ett värdnamn eller en IPv4-adress utan schema eller port.';
+
+  @override
+  String get mqtt_noticeInvalidPort => 'Porten måste vara mellan 1 och 65535.';
+
+  @override
+  String get mqtt_noticeInvalidWebSocketPath =>
+      'WebSocket-sökvägen måste börja med / och får inte innehålla query eller fragment.';
+
+  @override
+  String get mqtt_noticeInvalidTopicPrefix =>
+      'Topic-prefixet måste vara en icke-tom MQTT-sökväg utan jokertecken.';
+
+  @override
+  String get mqtt_noticeInvalidRegion =>
+      'Regionen måste vara 2–8 bokstäver eller siffror, t.ex. PHL.';
+
+  @override
+  String get mqtt_noticeTlsRequired =>
+      'TLS krävs om inte osäker åtkomst till en lokal broker uttryckligen är tillåten.';
+
+  @override
+  String get mqtt_noticeCleartextLocalOnly =>
+      'Okrypterad MQTT är begränsad till uttryckligen godkända lokala värdar.';
+
+  @override
+  String get mqtt_noticeRegionNeededToShare =>
+      'Ange en region för att dela paket som observatör.';
+
+  @override
+  String mqtt_noticePasswordNeeded(String username) {
+    return 'Ange lösenordet för $username.';
+  }
+
+  @override
+  String get mqtt_noticeNoNetwork =>
+      'Ingen nätverksanslutning. MQTT ansluter igen när den är tillbaka.';
+
+  @override
+  String get mqtt_noticeSubscriptionRefused =>
+      'Brokern nekade paketprenumerationen.';
+
+  @override
+  String get mqtt_noticeBadCredentials =>
+      'Brokern avvisade användarnamnet eller lösenordet.';
+
+  @override
+  String get mqtt_noticeNotAuthorized =>
+      'Kontot har inte behörighet på brokern.';
+
+  @override
+  String get mqtt_noticeConnectionRefused => 'Brokern nekade anslutningen.';
+
+  @override
+  String get mqtt_noticeUnreachable => 'Brokern gick inte att nå.';
+
+  @override
+  String get mqtt_noticeTlsFailed =>
+      'Den säkra (TLS-)anslutningen kunde inte upprättas.';
+
+  @override
+  String get mqtt_noticeWebSocketOnly =>
+      'Den här plattformen stöder bara MQTT över WebSocket.';
+
+  @override
+  String get mqtt_noticeRadioNotConnected =>
+      'Anslut radion för att logga in med dess nyckel.';
+
+  @override
+  String get mqtt_noticeSigningUnsupported =>
+      'Radions firmware stöder inte signering med dess nyckel.';
+
+  @override
+  String get mqtt_noticeSigningTimeout =>
+      'Radion svarade inte på signeringsförfrågan. Dess firmware kanske inte stöder signering.';
+
+  @override
+  String get mqtt_noticeSigningTooLong =>
+      'Datan är för lång för att radion ska kunna signera den.';
+
+  @override
+  String get mqtt_noticeSigningRejected => 'Radion vägrade signera datan.';
 }

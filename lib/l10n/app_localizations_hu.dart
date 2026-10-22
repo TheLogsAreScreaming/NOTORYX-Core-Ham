@@ -7412,4 +7412,483 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get setupWizard_usbError =>
       'Nem sikerült USB-n csatlakozni. Ellenőrizze az adatkábelt és a kiválasztott eszközt, engedélyezze az USB-hozzáférést, és zárja be a többi soros alkalmazást. Csatlakoztassa újra a kábelt, és próbálja újra.';
+
+  @override
+  String get connections_title => 'Kapcsolatok';
+
+  @override
+  String get connections_radioTitle => 'Rádiókapcsolat';
+
+  @override
+  String get connections_bluetoothOffNotice =>
+      'A Bluetooth ki van kapcsolva. Kapcsolja be az újracsatlakozáshoz; az alkalmazás újrapróbálja, amint visszatér.';
+
+  @override
+  String get connections_transport => 'Kapcsolat típusa';
+
+  @override
+  String connections_lastError(String error) {
+    return 'Utolsó hiba: $error';
+  }
+
+  @override
+  String get connections_disconnectRadio => 'Rádió leválasztása';
+
+  @override
+  String connections_reconnectTo(String name) {
+    return 'Újracsatlakozás ehhez: $name';
+  }
+
+  @override
+  String get connections_forgetRadio => 'Rádió elfelejtése';
+
+  @override
+  String get connections_connectAnother => 'Másik rádió csatlakoztatása';
+
+  @override
+  String get connections_usbSerial => 'USB-soros';
+
+  @override
+  String get connections_tcpIp => 'TCP/IP';
+
+  @override
+  String get connections_device => 'Eszköz';
+
+  @override
+  String get connections_publicKey => 'Nyilvános kulcs';
+
+  @override
+  String get connections_firmware => 'Firmware';
+
+  @override
+  String connections_firmwareProtocol(String code) {
+    return 'protokoll v$code';
+  }
+
+  @override
+  String get connections_battery => 'Akkumulátor';
+
+  @override
+  String get connections_lastRx => 'Utolsó vétel';
+
+  @override
+  String get connections_reconnectFailed =>
+      'Nem sikerült újracsatlakozni a rádióhoz';
+
+  @override
+  String get connections_statusBluetoothOff => 'A Bluetooth ki van kapcsolva';
+
+  @override
+  String get connections_statusConnected => 'Csatlakoztatva';
+
+  @override
+  String get connections_statusConnecting => 'Csatlakozás…';
+
+  @override
+  String get connections_statusDisconnecting => 'Leválasztás…';
+
+  @override
+  String get connections_statusScanning => 'Rádiók keresése…';
+
+  @override
+  String get connections_statusReconnectingSoon => 'Hamarosan újracsatlakozik…';
+
+  @override
+  String get connections_statusNotConnected => 'Nincs csatlakoztatva';
+
+  @override
+  String get mqtt_cardTitle => 'MQTT-kapcsolat';
+
+  @override
+  String get mqtt_statusNotConfigured => 'Nincs beállítva';
+
+  @override
+  String get mqtt_statusDisconnected => 'Leválasztva';
+
+  @override
+  String get mqtt_statusConnecting => 'Csatlakozás';
+
+  @override
+  String get mqtt_statusConnected => 'Csatlakoztatva';
+
+  @override
+  String get mqtt_statusReconnecting => 'Újracsatlakozás';
+
+  @override
+  String get mqtt_statusError => 'Kapcsolódási hiba';
+
+  @override
+  String mqtt_broker(String host, int port, String transport) {
+    return 'Bróker: $host:$port ($transport)';
+  }
+
+  @override
+  String get mqtt_tokenSignIn => 'Rádió által aláírt tokennel jelentkezik be';
+
+  @override
+  String mqtt_tokenSignInAs(String username) {
+    return 'Rádió által aláírt tokennel jelentkezik be mint $username…';
+  }
+
+  @override
+  String get mqtt_connectRadioToSignIn =>
+      'Csatlakoztassa a rádiót a bejelentkezéshez';
+
+  @override
+  String mqtt_tokenRenewsAt(String time) {
+    return 'A token megújul: $time';
+  }
+
+  @override
+  String mqtt_signedInAs(String username) {
+    return 'Bejelentkezve mint $username';
+  }
+
+  @override
+  String mqtt_listeningOn(String topic) {
+    return 'Figyelés: $topic';
+  }
+
+  @override
+  String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
+    return 'Csomagok: $accepted új, $duplicate ismétlődő, $invalid érvénytelen';
+  }
+
+  @override
+  String mqtt_retryCount(int attempt, int max) {
+    return 'Próbálkozás: $attempt/$max';
+  }
+
+  @override
+  String get mqtt_sharingWaitsForRadio => 'A megosztás rádiókapcsolatra vár';
+
+  @override
+  String mqtt_sharingOn(String topic) {
+    return 'Megosztás itt: $topic';
+  }
+
+  @override
+  String mqtt_willShareOn(String topic) {
+    return 'Itt fog megosztani: $topic';
+  }
+
+  @override
+  String mqtt_onlineStatusOn(String topic) {
+    return 'Online állapot itt: $topic';
+  }
+
+  @override
+  String mqtt_sharedCounts(int shared, int held) {
+    return 'Megosztva: $shared, visszatartva: $held';
+  }
+
+  @override
+  String get mqtt_addBrokerHint =>
+      'Adjon hozzá egy brókert, hogy a MeshCore-forgalmat az interneten át összekösse. A rádiókapcsolat ettől függetlenül működik.';
+
+  @override
+  String get mqtt_disconnect => 'MQTT leválasztása';
+
+  @override
+  String get mqtt_connect => 'MQTT csatlakoztatása';
+
+  @override
+  String get mqtt_packetFeed => 'Csomagfolyam';
+
+  @override
+  String get mqtt_setUpBroker => 'Bróker beállítása';
+
+  @override
+  String get mqtt_brokerSettings => 'Bróker beállításai';
+
+  @override
+  String get mqtt_settingsTitle => 'MQTT-bróker beállításai';
+
+  @override
+  String get mqtt_presetLabel => 'Kezdés egy előbeállításból';
+
+  @override
+  String get mqtt_presetCustom => 'Egyéni bróker';
+
+  @override
+  String get mqtt_presetLocal => 'Helyi bróker (cím megadása)';
+
+  @override
+  String get mqtt_presetLetsMeshUs => 'LetsMesh-elemző (USA, közösségi)';
+
+  @override
+  String get mqtt_presetLetsMeshEu => 'LetsMesh-elemző (EU, közösségi)';
+
+  @override
+  String get mqtt_presetLetsMeshNote =>
+      'A LetsMesh egy közösség által üzemeltetett MeshCore-csomagelemző; nem része a NOTORYX-nek, és a NOTORYX nem ajánlja. A megosztáshoz csatlakoztatott rádió kell, és addig ki van kapcsolva, amíg be nem kapcsolja.';
+
+  @override
+  String get mqtt_hostname => 'A bróker gazdagépneve';
+
+  @override
+  String get mqtt_port => 'Port';
+
+  @override
+  String get mqtt_useTls => 'TLS használata';
+
+  @override
+  String get mqtt_allowCleartext =>
+      'Titkosítatlan kapcsolat engedélyezése helyi brókerhez';
+
+  @override
+  String get mqtt_allowCleartextHint =>
+      'Csak localhost, .local és privát 10.x / 192.168.x gazdagépek.';
+
+  @override
+  String get mqtt_useWebSocket => 'WebSocket használata';
+
+  @override
+  String get mqtt_webSocketPath => 'WebSocket-útvonal';
+
+  @override
+  String get mqtt_topicPrefix => 'Topic-előtag';
+
+  @override
+  String get mqtt_region => 'Régió (nem kötelező)';
+
+  @override
+  String get mqtt_regionHelp =>
+      'A megfigyelő régiókódja, pl. PHL. Hagyja üresen az összeshez.';
+
+  @override
+  String get mqtt_deliverChannel =>
+      'MQTT-n érkezett csatornaüzenetek hozzáadása';
+
+  @override
+  String get mqtt_deliverChannelHint =>
+      'A csatornáiban a megfigyelők által hallott üzenetek megjelennek a csevegésekben. Ezeket nem küldi a rádiója.';
+
+  @override
+  String get mqtt_sharingTitle => 'Megosztás megfigyelőként';
+
+  @override
+  String get mqtt_share => 'A rádióm által hallott csomagok megosztása';
+
+  @override
+  String get mqtt_shareHint =>
+      'Közzéteszi a rádió által vett hirdetéseket és csatornaforgalmat a nyilvános kulcsával, a jelerősséggel és a régióval. A csatornaüzenetek titkosítva maradnak. Régió szükséges.';
+
+  @override
+  String get mqtt_shareDirect => 'Közvetlen üzenetek forgalmának bevonása';
+
+  @override
+  String get mqtt_shareDirectHint =>
+      'Kérések, válaszok és közvetlen üzenetek. A tartalom titkosítva marad, de látszik, mely csomópontok beszélnek egymással.';
+
+  @override
+  String get mqtt_shareOwn => 'Saját üzeneteim és hirdetéseim bevonása';
+
+  @override
+  String get mqtt_signInTitle => 'Bejelentkezés';
+
+  @override
+  String get mqtt_authPassword => 'Felhasználónév és jelszó';
+
+  @override
+  String get mqtt_authToken => 'Rádió által aláírt token';
+
+  @override
+  String get mqtt_tokenExplain =>
+      'A rádió a saját kulcsával aláír egy egy óráig érvényes bejelentkezési tokent, az alkalmazás pedig lejárat előtt megújítja. A kulcs sosem hagyja el a rádiót. A felhasználónév v1_ és a rádió nyilvános kulcsa.';
+
+  @override
+  String get mqtt_radioReady =>
+      'A rádió csatlakoztatva: kész a bejelentkezésre.';
+
+  @override
+  String get mqtt_radioNeeded =>
+      'Csatlakoztassa a rádiót a bejelentkezéshez. Az MQTT vár rá.';
+
+  @override
+  String get mqtt_username => 'Felhasználónév (nem kötelező)';
+
+  @override
+  String get mqtt_password => 'Jelszó';
+
+  @override
+  String get mqtt_keepPassword =>
+      'Hagyja üresen a mentett jelszó megtartásához.';
+
+  @override
+  String get mqtt_credentialsWeb =>
+      'A böngészőben a hitelesítő adatok csak az oldal bezárásáig maradnak meg.';
+
+  @override
+  String get mqtt_credentialsKeychain =>
+      'A hitelesítő adatok a rendszer kulcskarikájában tárolódnak, soha nem az alkalmazás beállításaiban vagy a naplókban.';
+
+  @override
+  String get mqtt_saveSettings => 'Beállítások mentése';
+
+  @override
+  String get mqtt_feedTitle => 'MQTT-csomagfolyam';
+
+  @override
+  String get mqtt_feedConnect =>
+      'Csatlakozzon egy brókerhez a megfigyelők csomagjainak megtekintéséhez.';
+
+  @override
+  String mqtt_feedWaiting(String topic) {
+    return 'Csomagokra vár itt: $topic';
+  }
+
+  @override
+  String get mqtt_feedUnknownObserver => 'Ismeretlen megfigyelő';
+
+  @override
+  String mqtt_feedHeardBy(String observer) {
+    return 'Hallotta: $observer';
+  }
+
+  @override
+  String mqtt_feedHopsBytes(int hops, int bytes) {
+    return '$hops ugrás · $bytes bájt';
+  }
+
+  @override
+  String get mqtt_packetRequest => 'Kérés';
+
+  @override
+  String get mqtt_packetResponse => 'Válasz';
+
+  @override
+  String get mqtt_packetDirectMessage => 'Közvetlen üzenet';
+
+  @override
+  String get mqtt_packetAck => 'Nyugta';
+
+  @override
+  String get mqtt_packetAdvert => 'Hirdetés';
+
+  @override
+  String get mqtt_packetChannelMessage => 'Csatornaüzenet';
+
+  @override
+  String get mqtt_packetChannelData => 'Csatornaadat';
+
+  @override
+  String get mqtt_packetAnonymousRequest => 'Névtelen kérés';
+
+  @override
+  String get mqtt_packetPath => 'Útvonal';
+
+  @override
+  String get mqtt_packetTrace => 'Nyomkövetés';
+
+  @override
+  String get mqtt_packetMultipart => 'Többrészes';
+
+  @override
+  String get mqtt_packetControl => 'Vezérlés';
+
+  @override
+  String mqtt_packetType(int type) {
+    return '$type. típus';
+  }
+
+  @override
+  String get mqtt_routeTransportFlood => 'Transzport flood';
+
+  @override
+  String get mqtt_routeFlood => 'Flood';
+
+  @override
+  String get mqtt_routeDirect => 'Közvetlen';
+
+  @override
+  String get mqtt_routeTransportDirect => 'Transzport közvetlen';
+
+  @override
+  String get mqtt_noticeInvalidHost =>
+      'Adjon meg egy gazdagépnevet vagy IPv4-címet séma és port nélkül.';
+
+  @override
+  String get mqtt_noticeInvalidPort =>
+      'A portnak 1 és 65535 között kell lennie.';
+
+  @override
+  String get mqtt_noticeInvalidWebSocketPath =>
+      'A WebSocket-útvonalnak /-rel kell kezdődnie, és nem tartalmazhat lekérdezést vagy töredéket.';
+
+  @override
+  String get mqtt_noticeInvalidTopicPrefix =>
+      'A topic-előtagnak nem üres, helyettesítő karakterek nélküli MQTT-útvonalnak kell lennie.';
+
+  @override
+  String get mqtt_noticeInvalidRegion =>
+      'A régió 2–8 betű vagy számjegy lehet, pl. PHL.';
+
+  @override
+  String get mqtt_noticeTlsRequired =>
+      'A TLS kötelező, kivéve ha a helyi bróker nem biztonságos elérése kifejezetten engedélyezett.';
+
+  @override
+  String get mqtt_noticeCleartextLocalOnly =>
+      'A titkosítatlan MQTT csak kifejezetten jóváhagyott helyi gazdagépekhez engedélyezett.';
+
+  @override
+  String get mqtt_noticeRegionNeededToShare =>
+      'Állítson be régiót a csomagok megfigyelőként való megosztásához.';
+
+  @override
+  String mqtt_noticePasswordNeeded(String username) {
+    return 'Adja meg $username jelszavát.';
+  }
+
+  @override
+  String get mqtt_noticeNoNetwork =>
+      'Nincs hálózati kapcsolat. Az MQTT újracsatlakozik, amint visszatér.';
+
+  @override
+  String get mqtt_noticeSubscriptionRefused =>
+      'A bróker elutasította a csomag-előfizetést.';
+
+  @override
+  String get mqtt_noticeBadCredentials =>
+      'A bróker elutasította a felhasználónevet vagy a jelszót.';
+
+  @override
+  String get mqtt_noticeNotAuthorized =>
+      'Ennek a fióknak nincs jogosultsága a brókeren.';
+
+  @override
+  String get mqtt_noticeConnectionRefused =>
+      'A bróker elutasította a kapcsolatot.';
+
+  @override
+  String get mqtt_noticeUnreachable => 'A bróker nem érhető el.';
+
+  @override
+  String get mqtt_noticeTlsFailed =>
+      'Nem sikerült létrehozni a biztonságos (TLS) kapcsolatot.';
+
+  @override
+  String get mqtt_noticeWebSocketOnly =>
+      'Ez a platform csak WebSocketen keresztül támogatja az MQTT-t.';
+
+  @override
+  String get mqtt_noticeRadioNotConnected =>
+      'Csatlakoztassa a rádiót, hogy a kulcsával jelentkezhessen be.';
+
+  @override
+  String get mqtt_noticeSigningUnsupported =>
+      'A rádió firmware-je nem támogatja a kulcsával való aláírást.';
+
+  @override
+  String get mqtt_noticeSigningTimeout =>
+      'A rádió nem válaszolt az aláírási kérésre. Lehet, hogy a firmware-je nem támogatja az aláírást.';
+
+  @override
+  String get mqtt_noticeSigningTooLong =>
+      'Az adat túl hosszú ahhoz, hogy a rádió aláírja.';
+
+  @override
+  String get mqtt_noticeSigningRejected =>
+      'A rádió megtagadta az adat aláírását.';
 }

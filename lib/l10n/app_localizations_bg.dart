@@ -7418,4 +7418,478 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get setupWizard_usbError =>
       'Неуспешно свързване чрез USB. Проверете кабела за данни и избраното устройство, разрешете USB достъп и затворете другите серийни приложения. Свържете кабела отново и опитайте пак.';
+
+  @override
+  String get connections_title => 'Връзки';
+
+  @override
+  String get connections_radioTitle => 'Връзка с радиото';
+
+  @override
+  String get connections_bluetoothOffNotice =>
+      'Bluetooth е изключен. Включете го, за да се свържете отново; приложението ще опита пак, когато се върне.';
+
+  @override
+  String get connections_transport => 'Вид връзка';
+
+  @override
+  String connections_lastError(String error) {
+    return 'Последна грешка: $error';
+  }
+
+  @override
+  String get connections_disconnectRadio => 'Прекъсни радиото';
+
+  @override
+  String connections_reconnectTo(String name) {
+    return 'Свържи отново с $name';
+  }
+
+  @override
+  String get connections_forgetRadio => 'Забрави радиото';
+
+  @override
+  String get connections_connectAnother => 'Свържи друго радио';
+
+  @override
+  String get connections_usbSerial => 'USB сериен';
+
+  @override
+  String get connections_tcpIp => 'TCP/IP';
+
+  @override
+  String get connections_device => 'Устройство';
+
+  @override
+  String get connections_publicKey => 'Публичен ключ';
+
+  @override
+  String get connections_firmware => 'Фърмуер';
+
+  @override
+  String connections_firmwareProtocol(String code) {
+    return 'протокол v$code';
+  }
+
+  @override
+  String get connections_battery => 'Батерия';
+
+  @override
+  String get connections_lastRx => 'Последно приемане';
+
+  @override
+  String get connections_reconnectFailed =>
+      'Неуспешно повторно свързване с радиото';
+
+  @override
+  String get connections_statusBluetoothOff => 'Bluetooth е изключен';
+
+  @override
+  String get connections_statusConnected => 'Свързано';
+
+  @override
+  String get connections_statusConnecting => 'Свързване…';
+
+  @override
+  String get connections_statusDisconnecting => 'Прекъсване…';
+
+  @override
+  String get connections_statusScanning => 'Търсене на радиа…';
+
+  @override
+  String get connections_statusReconnectingSoon =>
+      'Повторно свързване след малко…';
+
+  @override
+  String get connections_statusNotConnected => 'Няма връзка';
+
+  @override
+  String get mqtt_cardTitle => 'MQTT връзка';
+
+  @override
+  String get mqtt_statusNotConfigured => 'Не е настроено';
+
+  @override
+  String get mqtt_statusDisconnected => 'Прекъснато';
+
+  @override
+  String get mqtt_statusConnecting => 'Свързване';
+
+  @override
+  String get mqtt_statusConnected => 'Свързано';
+
+  @override
+  String get mqtt_statusReconnecting => 'Повторно свързване';
+
+  @override
+  String get mqtt_statusError => 'Грешка при свързване';
+
+  @override
+  String mqtt_broker(String host, int port, String transport) {
+    return 'Брокер: $host:$port ($transport)';
+  }
+
+  @override
+  String get mqtt_tokenSignIn => 'Влиза с токен, подписан от радиото';
+
+  @override
+  String mqtt_tokenSignInAs(String username) {
+    return 'Влиза с токен, подписан от радиото, като $username…';
+  }
+
+  @override
+  String get mqtt_connectRadioToSignIn => 'Свържете радиото, за да влезете';
+
+  @override
+  String mqtt_tokenRenewsAt(String time) {
+    return 'Токенът се подновява в $time';
+  }
+
+  @override
+  String mqtt_signedInAs(String username) {
+    return 'Влязъл като $username';
+  }
+
+  @override
+  String mqtt_listeningOn(String topic) {
+    return 'Слуша на $topic';
+  }
+
+  @override
+  String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
+    return 'Пакети: $accepted нови, $duplicate дублирани, $invalid невалидни';
+  }
+
+  @override
+  String mqtt_retryCount(int attempt, int max) {
+    return 'Опит $attempt от $max';
+  }
+
+  @override
+  String get mqtt_sharingWaitsForRadio => 'Споделянето чака връзка с радиото';
+
+  @override
+  String mqtt_sharingOn(String topic) {
+    return 'Споделя на $topic';
+  }
+
+  @override
+  String mqtt_willShareOn(String topic) {
+    return 'Ще споделя на $topic';
+  }
+
+  @override
+  String mqtt_onlineStatusOn(String topic) {
+    return 'Онлайн статус на $topic';
+  }
+
+  @override
+  String mqtt_sharedCounts(int shared, int held) {
+    return 'Споделени $shared, задържани $held';
+  }
+
+  @override
+  String get mqtt_addBrokerHint =>
+      'Добавете брокер, за да свързвате трафика на MeshCore през интернет. Връзката с радиото работи независимо.';
+
+  @override
+  String get mqtt_disconnect => 'Прекъсни MQTT';
+
+  @override
+  String get mqtt_connect => 'Свържи MQTT';
+
+  @override
+  String get mqtt_packetFeed => 'Поток пакети';
+
+  @override
+  String get mqtt_setUpBroker => 'Настрой брокер';
+
+  @override
+  String get mqtt_brokerSettings => 'Настройки на брокера';
+
+  @override
+  String get mqtt_settingsTitle => 'Настройки на MQTT брокера';
+
+  @override
+  String get mqtt_presetLabel => 'Започни от шаблон';
+
+  @override
+  String get mqtt_presetCustom => 'Собствен брокер';
+
+  @override
+  String get mqtt_presetLocal => 'Локален брокер (въведете адрес)';
+
+  @override
+  String get mqtt_presetLetsMeshUs => 'Анализатор LetsMesh (САЩ, общност)';
+
+  @override
+  String get mqtt_presetLetsMeshEu => 'Анализатор LetsMesh (ЕС, общност)';
+
+  @override
+  String get mqtt_presetLetsMeshNote =>
+      'LetsMesh е анализатор на пакети за MeshCore, поддържан от общността; не е част от NOTORYX и не е одобрен от NOTORYX. Споделянето изисква свързано радио и остава изключено, докато не го включите.';
+
+  @override
+  String get mqtt_hostname => 'Име на хоста на брокера';
+
+  @override
+  String get mqtt_port => 'Порт';
+
+  @override
+  String get mqtt_useTls => 'Използвай TLS';
+
+  @override
+  String get mqtt_allowCleartext =>
+      'Разреши некриптирана връзка с локален брокер';
+
+  @override
+  String get mqtt_allowCleartextHint =>
+      'Само localhost, .local и частни хостове 10.x / 192.168.x.';
+
+  @override
+  String get mqtt_useWebSocket => 'Използвай WebSocket';
+
+  @override
+  String get mqtt_webSocketPath => 'Път за WebSocket';
+
+  @override
+  String get mqtt_topicPrefix => 'Префикс на темата';
+
+  @override
+  String get mqtt_region => 'Регион (по избор)';
+
+  @override
+  String get mqtt_regionHelp =>
+      'Код на региона на наблюдателя, напр. PHL. Оставете празно за всички.';
+
+  @override
+  String get mqtt_deliverChannel =>
+      'Добавяй съобщения от канали, получени чрез MQTT';
+
+  @override
+  String get mqtt_deliverChannelHint =>
+      'Съобщенията във вашите канали, чути от наблюдатели, се появяват в чатовете. Не се изпращат през радиото ви.';
+
+  @override
+  String get mqtt_sharingTitle => 'Споделяне като наблюдател';
+
+  @override
+  String get mqtt_share => 'Споделяй пакетите, които радиото ми чува';
+
+  @override
+  String get mqtt_shareHint =>
+      'Публикува обявяванията и трафика на каналите, които радиото приема, с неговия публичен ключ, силата на сигнала и региона. Съобщенията в каналите остават криптирани. Нужен е регион.';
+
+  @override
+  String get mqtt_shareDirect => 'Включи трафика на лични съобщения';
+
+  @override
+  String get mqtt_shareDirectHint =>
+      'Заявки, отговори и лични съобщения. Съдържанието остава криптирано, но се вижда кои възли общуват помежду си.';
+
+  @override
+  String get mqtt_shareOwn => 'Включи моите собствени съобщения и обявявания';
+
+  @override
+  String get mqtt_signInTitle => 'Вход';
+
+  @override
+  String get mqtt_authPassword => 'Потребителско име и парола';
+
+  @override
+  String get mqtt_authToken => 'Токен, подписан от радиото';
+
+  @override
+  String get mqtt_tokenExplain =>
+      'Радиото подписва със собствения си ключ токен за вход, валиден един час, а приложението го подновява преди изтичане. Ключът никога не напуска радиото. Потребителското име е v1_ и публичният ключ на радиото.';
+
+  @override
+  String get mqtt_radioReady => 'Радиото е свързано: готово за вход.';
+
+  @override
+  String get mqtt_radioNeeded =>
+      'Свържете радиото, за да влезете. MQTT го чака.';
+
+  @override
+  String get mqtt_username => 'Потребителско име (по избор)';
+
+  @override
+  String get mqtt_password => 'Парола';
+
+  @override
+  String get mqtt_keepPassword =>
+      'Оставете празно, за да запазите текущата парола.';
+
+  @override
+  String get mqtt_credentialsWeb =>
+      'В браузъра данните за вход се пазят само докато страницата е отворена.';
+
+  @override
+  String get mqtt_credentialsKeychain =>
+      'Данните за вход се пазят в системния ключодържател, никога в настройките на приложението или в логовете.';
+
+  @override
+  String get mqtt_saveSettings => 'Запази настройките';
+
+  @override
+  String get mqtt_feedTitle => 'Поток пакети от MQTT';
+
+  @override
+  String get mqtt_feedConnect =>
+      'Свържете се с брокер, за да виждате пакети от наблюдатели.';
+
+  @override
+  String mqtt_feedWaiting(String topic) {
+    return 'Изчакване на пакети на $topic';
+  }
+
+  @override
+  String get mqtt_feedUnknownObserver => 'Непознат наблюдател';
+
+  @override
+  String mqtt_feedHeardBy(String observer) {
+    return 'Чуто от $observer';
+  }
+
+  @override
+  String mqtt_feedHopsBytes(int hops, int bytes) {
+    return 'Скокове: $hops · байта: $bytes';
+  }
+
+  @override
+  String get mqtt_packetRequest => 'Заявка';
+
+  @override
+  String get mqtt_packetResponse => 'Отговор';
+
+  @override
+  String get mqtt_packetDirectMessage => 'Лично съобщение';
+
+  @override
+  String get mqtt_packetAck => 'Потвърждение';
+
+  @override
+  String get mqtt_packetAdvert => 'Обявяване';
+
+  @override
+  String get mqtt_packetChannelMessage => 'Съобщение в канал';
+
+  @override
+  String get mqtt_packetChannelData => 'Данни на канал';
+
+  @override
+  String get mqtt_packetAnonymousRequest => 'Анонимна заявка';
+
+  @override
+  String get mqtt_packetPath => 'Маршрут';
+
+  @override
+  String get mqtt_packetTrace => 'Проследяване';
+
+  @override
+  String get mqtt_packetMultipart => 'Многочастен';
+
+  @override
+  String get mqtt_packetControl => 'Управление';
+
+  @override
+  String mqtt_packetType(int type) {
+    return 'Тип $type';
+  }
+
+  @override
+  String get mqtt_routeTransportFlood => 'Flood с транспорт';
+
+  @override
+  String get mqtt_routeFlood => 'Flood';
+
+  @override
+  String get mqtt_routeDirect => 'Директен';
+
+  @override
+  String get mqtt_routeTransportDirect => 'Директен с транспорт';
+
+  @override
+  String get mqtt_noticeInvalidHost =>
+      'Въведете име на хост или IPv4 адрес без схема и порт.';
+
+  @override
+  String get mqtt_noticeInvalidPort => 'Портът трябва да е между 1 и 65535.';
+
+  @override
+  String get mqtt_noticeInvalidWebSocketPath =>
+      'Пътят за WebSocket трябва да започва с / и да не съдържа заявка или фрагмент.';
+
+  @override
+  String get mqtt_noticeInvalidTopicPrefix =>
+      'Префиксът на темата трябва да е непразен MQTT път без заместващи символи.';
+
+  @override
+  String get mqtt_noticeInvalidRegion =>
+      'Регионът трябва да е от 2 до 8 букви или цифри, напр. PHL.';
+
+  @override
+  String get mqtt_noticeTlsRequired =>
+      'TLS е задължителен, освен ако несигурният достъп до локален брокер е изрично разрешен.';
+
+  @override
+  String get mqtt_noticeCleartextLocalOnly =>
+      'Некриптиран MQTT е позволен само за изрично одобрени локални хостове.';
+
+  @override
+  String get mqtt_noticeRegionNeededToShare =>
+      'Задайте регион, за да споделяте пакети като наблюдател.';
+
+  @override
+  String mqtt_noticePasswordNeeded(String username) {
+    return 'Въведете паролата за $username.';
+  }
+
+  @override
+  String get mqtt_noticeNoNetwork =>
+      'Няма мрежа. MQTT ще се свърже отново, когато тя се върне.';
+
+  @override
+  String get mqtt_noticeSubscriptionRefused =>
+      'Брокерът отказа абонамента за пакети.';
+
+  @override
+  String get mqtt_noticeBadCredentials =>
+      'Брокерът отхвърли потребителското име или паролата.';
+
+  @override
+  String get mqtt_noticeNotAuthorized => 'Този акаунт няма права на брокера.';
+
+  @override
+  String get mqtt_noticeConnectionRefused => 'Брокерът отказа връзката.';
+
+  @override
+  String get mqtt_noticeUnreachable => 'Брокерът е недостъпен.';
+
+  @override
+  String get mqtt_noticeTlsFailed =>
+      'Неуспешно установяване на защитена (TLS) връзка.';
+
+  @override
+  String get mqtt_noticeWebSocketOnly =>
+      'Тази платформа поддържа MQTT само през WebSocket.';
+
+  @override
+  String get mqtt_noticeRadioNotConnected =>
+      'Свържете радиото, за да влезете с неговия ключ.';
+
+  @override
+  String get mqtt_noticeSigningUnsupported =>
+      'Фърмуерът на това радио не поддържа подписване с неговия ключ.';
+
+  @override
+  String get mqtt_noticeSigningTimeout =>
+      'Радиото не отговори на заявката за подпис. Възможно е фърмуерът му да не поддържа подписване.';
+
+  @override
+  String get mqtt_noticeSigningTooLong =>
+      'Данните са твърде дълги, за да ги подпише радиото.';
+
+  @override
+  String get mqtt_noticeSigningRejected => 'Радиото отказа да подпише данните.';
 }

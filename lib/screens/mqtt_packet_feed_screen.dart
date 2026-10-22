@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../l10n/l10n.dart';
+import '../l10n/mqtt_l10n.dart';
 import '../models/mqtt_mesh_packet.dart';
 import '../services/mqtt_broker_service.dart';
 
@@ -12,16 +14,17 @@ class MqttPacketFeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final mqtt = context.watch<MqttBrokerService>();
     final packets = mqtt.recentPackets;
+    final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: const Text('MQTT packet feed')),
+      appBar: AppBar(title: Text(l10n.mqtt_feedTitle)),
       body: packets.isEmpty
           ? Center(
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: Text(
                   mqtt.subscribedTopic == null
-                      ? 'Connect to a broker to see packets from observers.'
-                      : 'Waiting for packets on ${mqtt.subscribedTopic}',
+                      ? l10n.mqtt_feedConnect
+                      : l10n.mqtt_feedWaiting(mqtt.subscribedTopic!),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -43,10 +46,11 @@ class _PacketTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final observer =
         packet.observerName ??
         (packet.observerKey == null
-            ? 'Unknown observer'
+            ? l10n.mqtt_feedUnknownObserver
             : packet.observerKey!.substring(
                 0,
                 packet.observerKey!.length.clamp(0, 8),
@@ -57,12 +61,17 @@ class _PacketTile extends StatelessWidget {
     ].join(' · ');
     final time = TimeOfDay.fromDateTime(packet.receivedAt).format(context);
     return ListTile(
-      title: Text('${packet.payloadTypeLabel} · ${packet.routeLabel}'),
+      title: Text(
+        '${l10n.mqttPacketType(packet.payloadType)} · '
+        '${l10n.mqttRoute(packet.routeType)}',
+      ),
       subtitle: Text(
         [
-          'Heard by $observer${packet.region == null ? '' : ' (${packet.region})'}',
-          '${packet.hopCount} hops · ${packet.raw.length} bytes'
-              '${signal.isEmpty ? '' : ' · $signal'}',
+          l10n.mqtt_feedHeardBy(
+            packet.region == null ? observer : '$observer (${packet.region})',
+          ),
+          l10n.mqtt_feedHopsBytes(packet.hopCount, packet.raw.length) +
+              (signal.isEmpty ? '' : ' · $signal'),
         ].join('\n'),
       ),
       trailing: Text(time),

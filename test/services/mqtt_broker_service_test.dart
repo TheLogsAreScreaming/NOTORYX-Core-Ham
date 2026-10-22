@@ -8,6 +8,7 @@ import 'package:meshcore_open/connector/radio_signing.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
 import 'package:meshcore_open/models/mqtt_connection_status.dart';
 import 'package:meshcore_open/models/mqtt_mesh_packet.dart';
+import 'package:meshcore_open/models/mqtt_notice.dart';
 import 'package:meshcore_open/models/mqtt_observer_status.dart';
 import 'package:meshcore_open/models/mqtt_publish_policy.dart';
 import 'package:meshcore_open/models/radio_rx_packet.dart';
@@ -508,7 +509,7 @@ void main() {
       await service.load();
       expect(
         await service.saveConfiguration(_settings, publishSettings: share),
-        contains('region'),
+        const MqttNotice(MqttNoticeKind.regionNeededToShare),
       );
       expect(service.publishSettings.enabled, isFalse);
     });

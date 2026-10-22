@@ -7415,4 +7415,478 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get setupWizard_usbError =>
       'Cez USB sa nepodarilo pripojiť. Skontrolujte dátový kábel a vybrané zariadenie, povoľte prístup k USB a zavrite ostatné sériové aplikácie. Znova pripojte kábel a skúste to znova.';
+
+  @override
+  String get connections_title => 'Pripojenia';
+
+  @override
+  String get connections_radioTitle => 'Pripojenie rádia';
+
+  @override
+  String get connections_bluetoothOffNotice =>
+      'Bluetooth je vypnutý. Zapnite ho, aby ste sa mohli znova pripojiť; aplikácia to skúsi znova, keď bude opäť zapnutý.';
+
+  @override
+  String get connections_transport => 'Spôsob pripojenia';
+
+  @override
+  String connections_lastError(String error) {
+    return 'Posledná chyba: $error';
+  }
+
+  @override
+  String get connections_disconnectRadio => 'Odpojiť rádio';
+
+  @override
+  String connections_reconnectTo(String name) {
+    return 'Znova pripojiť k $name';
+  }
+
+  @override
+  String get connections_forgetRadio => 'Zabudnúť rádio';
+
+  @override
+  String get connections_connectAnother => 'Pripojiť iné rádio';
+
+  @override
+  String get connections_usbSerial => 'USB sériové';
+
+  @override
+  String get connections_tcpIp => 'TCP/IP';
+
+  @override
+  String get connections_device => 'Zariadenie';
+
+  @override
+  String get connections_publicKey => 'Verejný kľúč';
+
+  @override
+  String get connections_firmware => 'Firmvér';
+
+  @override
+  String connections_firmwareProtocol(String code) {
+    return 'protokol v$code';
+  }
+
+  @override
+  String get connections_battery => 'Batéria';
+
+  @override
+  String get connections_lastRx => 'Posledný príjem';
+
+  @override
+  String get connections_reconnectFailed =>
+      'K rádiu sa nepodarilo znova pripojiť';
+
+  @override
+  String get connections_statusBluetoothOff => 'Bluetooth je vypnutý';
+
+  @override
+  String get connections_statusConnected => 'Pripojené';
+
+  @override
+  String get connections_statusConnecting => 'Pripája sa…';
+
+  @override
+  String get connections_statusDisconnecting => 'Odpája sa…';
+
+  @override
+  String get connections_statusScanning => 'Hľadajú sa rádiá…';
+
+  @override
+  String get connections_statusReconnectingSoon => 'Čoskoro sa znova pripojí…';
+
+  @override
+  String get connections_statusNotConnected => 'Nepripojené';
+
+  @override
+  String get mqtt_cardTitle => 'Pripojenie MQTT';
+
+  @override
+  String get mqtt_statusNotConfigured => 'Nenastavené';
+
+  @override
+  String get mqtt_statusDisconnected => 'Odpojené';
+
+  @override
+  String get mqtt_statusConnecting => 'Pripája sa';
+
+  @override
+  String get mqtt_statusConnected => 'Pripojené';
+
+  @override
+  String get mqtt_statusReconnecting => 'Znova sa pripája';
+
+  @override
+  String get mqtt_statusError => 'Chyba pripojenia';
+
+  @override
+  String mqtt_broker(String host, int port, String transport) {
+    return 'Broker: $host:$port ($transport)';
+  }
+
+  @override
+  String get mqtt_tokenSignIn => 'Prihlasuje sa tokenom podpísaným rádiom';
+
+  @override
+  String mqtt_tokenSignInAs(String username) {
+    return 'Prihlasuje sa tokenom podpísaným rádiom ako $username…';
+  }
+
+  @override
+  String get mqtt_connectRadioToSignIn =>
+      'Pripojte rádio, aby ste sa prihlásili';
+
+  @override
+  String mqtt_tokenRenewsAt(String time) {
+    return 'Token sa obnoví o $time';
+  }
+
+  @override
+  String mqtt_signedInAs(String username) {
+    return 'Prihlásené ako $username';
+  }
+
+  @override
+  String mqtt_listeningOn(String topic) {
+    return 'Počúva na $topic';
+  }
+
+  @override
+  String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
+    return 'Pakety: nové $accepted, duplicitné $duplicate, neplatné $invalid';
+  }
+
+  @override
+  String mqtt_retryCount(int attempt, int max) {
+    return 'Pokus $attempt z $max';
+  }
+
+  @override
+  String get mqtt_sharingWaitsForRadio => 'Zdieľanie čaká na pripojenie rádia';
+
+  @override
+  String mqtt_sharingOn(String topic) {
+    return 'Zdieľa na $topic';
+  }
+
+  @override
+  String mqtt_willShareOn(String topic) {
+    return 'Bude zdieľať na $topic';
+  }
+
+  @override
+  String mqtt_onlineStatusOn(String topic) {
+    return 'Stav online na $topic';
+  }
+
+  @override
+  String mqtt_sharedCounts(int shared, int held) {
+    return 'Zdieľané $shared, zadržané $held';
+  }
+
+  @override
+  String get mqtt_addBrokerHint =>
+      'Pridajte broker na prepojenie prevádzky MeshCore cez internet. Pripojenie rádia funguje nezávisle.';
+
+  @override
+  String get mqtt_disconnect => 'Odpojiť MQTT';
+
+  @override
+  String get mqtt_connect => 'Pripojiť MQTT';
+
+  @override
+  String get mqtt_packetFeed => 'Prúd paketov';
+
+  @override
+  String get mqtt_setUpBroker => 'Nastaviť broker';
+
+  @override
+  String get mqtt_brokerSettings => 'Nastavenia brokera';
+
+  @override
+  String get mqtt_settingsTitle => 'Nastavenia brokera MQTT';
+
+  @override
+  String get mqtt_presetLabel => 'Začať zo šablóny';
+
+  @override
+  String get mqtt_presetCustom => 'Vlastný broker';
+
+  @override
+  String get mqtt_presetLocal => 'Miestny broker (zadajte adresu)';
+
+  @override
+  String get mqtt_presetLetsMeshUs => 'Analyzátor LetsMesh (USA, komunita)';
+
+  @override
+  String get mqtt_presetLetsMeshEu => 'Analyzátor LetsMesh (EÚ, komunita)';
+
+  @override
+  String get mqtt_presetLetsMeshNote =>
+      'LetsMesh je komunitou prevádzkovaný analyzátor paketov MeshCore; nie je súčasťou NOTORYX a NOTORYX ho neschvaľuje. Zdieľanie vyžaduje pripojené rádio a zostáva vypnuté, kým ho nezapnete.';
+
+  @override
+  String get mqtt_hostname => 'Názov hostiteľa brokera';
+
+  @override
+  String get mqtt_port => 'Port';
+
+  @override
+  String get mqtt_useTls => 'Použiť TLS';
+
+  @override
+  String get mqtt_allowCleartext =>
+      'Povoliť nešifrované pripojenie k miestnemu brokeru';
+
+  @override
+  String get mqtt_allowCleartextHint =>
+      'Iba localhost, .local a súkromní hostitelia 10.x / 192.168.x.';
+
+  @override
+  String get mqtt_useWebSocket => 'Použiť WebSocket';
+
+  @override
+  String get mqtt_webSocketPath => 'Cesta WebSocket';
+
+  @override
+  String get mqtt_topicPrefix => 'Predpona témy';
+
+  @override
+  String get mqtt_region => 'Región (voliteľné)';
+
+  @override
+  String get mqtt_regionHelp =>
+      'Kód regiónu pozorovateľa, napr. PHL. Nechajte prázdne pre všetky.';
+
+  @override
+  String get mqtt_deliverChannel =>
+      'Pridávať správy z kanálov prijaté cez MQTT';
+
+  @override
+  String get mqtt_deliverChannelHint =>
+      'Správy vo vašich kanáloch, ktoré počuli pozorovatelia, sa zobrazia v chatoch. Neposielajú sa cez vaše rádio.';
+
+  @override
+  String get mqtt_sharingTitle => 'Zdieľanie ako pozorovateľ';
+
+  @override
+  String get mqtt_share => 'Zdieľať pakety, ktoré počuje moje rádio';
+
+  @override
+  String get mqtt_shareHint =>
+      'Zverejňuje ohlásenia a prevádzku kanálov, ktoré rádio prijíma, s jeho verejným kľúčom, silou signálu a regiónom. Správy v kanáloch zostávajú šifrované. Vyžaduje región.';
+
+  @override
+  String get mqtt_shareDirect => 'Zahrnúť prevádzku priamych správ';
+
+  @override
+  String get mqtt_shareDirectHint =>
+      'Požiadavky, odpovede a priame správy. Obsah zostáva šifrovaný, ale ukazuje, ktoré uzly spolu komunikujú.';
+
+  @override
+  String get mqtt_shareOwn => 'Zahrnúť moje vlastné správy a ohlásenia';
+
+  @override
+  String get mqtt_signInTitle => 'Prihlásenie';
+
+  @override
+  String get mqtt_authPassword => 'Používateľské meno a heslo';
+
+  @override
+  String get mqtt_authToken => 'Token podpísaný rádiom';
+
+  @override
+  String get mqtt_tokenExplain =>
+      'Rádio podpíše vlastným kľúčom prihlasovací token platný hodinu a aplikácia ho obnoví pred vypršaním. Kľúč nikdy neopustí rádio. Používateľské meno je v1_ a verejný kľúč vášho rádia.';
+
+  @override
+  String get mqtt_radioReady => 'Rádio pripojené: pripravené na prihlásenie.';
+
+  @override
+  String get mqtt_radioNeeded =>
+      'Pripojte rádio, aby ste sa prihlásili. MQTT naň čaká.';
+
+  @override
+  String get mqtt_username => 'Používateľské meno (voliteľné)';
+
+  @override
+  String get mqtt_password => 'Heslo';
+
+  @override
+  String get mqtt_keepPassword =>
+      'Nechajte prázdne, ak chcete ponechať uložené heslo.';
+
+  @override
+  String get mqtt_credentialsWeb =>
+      'V prehliadači sa prihlasovacie údaje uchovávajú len do zatvorenia stránky.';
+
+  @override
+  String get mqtt_credentialsKeychain =>
+      'Prihlasovacie údaje sa ukladajú do systémovej kľúčenky, nikdy do nastavení aplikácie ani do záznamov.';
+
+  @override
+  String get mqtt_saveSettings => 'Uložiť nastavenia';
+
+  @override
+  String get mqtt_feedTitle => 'Prúd paketov MQTT';
+
+  @override
+  String get mqtt_feedConnect =>
+      'Pripojte sa k brokeru, aby ste videli pakety od pozorovateľov.';
+
+  @override
+  String mqtt_feedWaiting(String topic) {
+    return 'Čaká sa na pakety na $topic';
+  }
+
+  @override
+  String get mqtt_feedUnknownObserver => 'Neznámy pozorovateľ';
+
+  @override
+  String mqtt_feedHeardBy(String observer) {
+    return 'Počul $observer';
+  }
+
+  @override
+  String mqtt_feedHopsBytes(int hops, int bytes) {
+    return 'Skoky: $hops · bajty: $bytes';
+  }
+
+  @override
+  String get mqtt_packetRequest => 'Požiadavka';
+
+  @override
+  String get mqtt_packetResponse => 'Odpoveď';
+
+  @override
+  String get mqtt_packetDirectMessage => 'Priama správa';
+
+  @override
+  String get mqtt_packetAck => 'Potvrdenie';
+
+  @override
+  String get mqtt_packetAdvert => 'Ohlásenie';
+
+  @override
+  String get mqtt_packetChannelMessage => 'Správa kanála';
+
+  @override
+  String get mqtt_packetChannelData => 'Dáta kanála';
+
+  @override
+  String get mqtt_packetAnonymousRequest => 'Anonymná požiadavka';
+
+  @override
+  String get mqtt_packetPath => 'Trasa';
+
+  @override
+  String get mqtt_packetTrace => 'Sledovanie';
+
+  @override
+  String get mqtt_packetMultipart => 'Viacdielny';
+
+  @override
+  String get mqtt_packetControl => 'Riadenie';
+
+  @override
+  String mqtt_packetType(int type) {
+    return 'Typ $type';
+  }
+
+  @override
+  String get mqtt_routeTransportFlood => 'Flood s transportom';
+
+  @override
+  String get mqtt_routeFlood => 'Flood';
+
+  @override
+  String get mqtt_routeDirect => 'Priama';
+
+  @override
+  String get mqtt_routeTransportDirect => 'Priama s transportom';
+
+  @override
+  String get mqtt_noticeInvalidHost =>
+      'Zadajte názov hostiteľa alebo adresu IPv4 bez schémy a portu.';
+
+  @override
+  String get mqtt_noticeInvalidPort => 'Port musí byť od 1 do 65535.';
+
+  @override
+  String get mqtt_noticeInvalidWebSocketPath =>
+      'Cesta WebSocket musí začínať znakom / a nesmie obsahovať dopyt ani fragment.';
+
+  @override
+  String get mqtt_noticeInvalidTopicPrefix =>
+      'Predpona témy musí byť neprázdna cesta MQTT bez zástupných znakov.';
+
+  @override
+  String get mqtt_noticeInvalidRegion =>
+      'Región musí mať 2 až 8 písmen alebo číslic, napr. PHL.';
+
+  @override
+  String get mqtt_noticeTlsRequired =>
+      'TLS je povinné, pokiaľ nie je výslovne povolený nezabezpečený prístup k miestnemu brokeru.';
+
+  @override
+  String get mqtt_noticeCleartextLocalOnly =>
+      'Nešifrované MQTT je povolené iba pre výslovne schválených miestnych hostiteľov.';
+
+  @override
+  String get mqtt_noticeRegionNeededToShare =>
+      'Nastavte región, aby ste mohli zdieľať pakety ako pozorovateľ.';
+
+  @override
+  String mqtt_noticePasswordNeeded(String username) {
+    return 'Zadajte heslo pre $username.';
+  }
+
+  @override
+  String get mqtt_noticeNoNetwork =>
+      'Žiadne pripojenie k sieti. MQTT sa znova pripojí, keď sa obnoví.';
+
+  @override
+  String get mqtt_noticeSubscriptionRefused => 'Broker odmietol odber paketov.';
+
+  @override
+  String get mqtt_noticeBadCredentials =>
+      'Broker odmietol používateľské meno alebo heslo.';
+
+  @override
+  String get mqtt_noticeNotAuthorized =>
+      'Tento účet nemá na brokeri oprávnenie.';
+
+  @override
+  String get mqtt_noticeConnectionRefused => 'Broker odmietol pripojenie.';
+
+  @override
+  String get mqtt_noticeUnreachable => 'Broker je nedostupný.';
+
+  @override
+  String get mqtt_noticeTlsFailed =>
+      'Zabezpečené (TLS) pripojenie sa nepodarilo nadviazať.';
+
+  @override
+  String get mqtt_noticeWebSocketOnly =>
+      'Táto platforma podporuje MQTT iba cez WebSocket.';
+
+  @override
+  String get mqtt_noticeRadioNotConnected =>
+      'Pripojte rádio, aby ste sa prihlásili jeho kľúčom.';
+
+  @override
+  String get mqtt_noticeSigningUnsupported =>
+      'Firmvér tohto rádia nepodporuje podpisovanie jeho kľúčom.';
+
+  @override
+  String get mqtt_noticeSigningTimeout =>
+      'Rádio neodpovedalo na žiadosť o podpis. Jeho firmvér možno podpisovanie nepodporuje.';
+
+  @override
+  String get mqtt_noticeSigningTooLong =>
+      'Dáta sú príliš dlhé na to, aby ich rádio podpísalo.';
+
+  @override
+  String get mqtt_noticeSigningRejected => 'Rádio odmietlo podpísať dáta.';
 }

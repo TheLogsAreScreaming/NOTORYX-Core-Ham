@@ -1,3 +1,5 @@
+import '../models/mqtt_notice.dart';
+
 /// Why the radio could not sign data with its own key.
 enum RadioSigningFailure {
   notConnected,
@@ -13,18 +15,15 @@ class RadioSigningException implements Exception {
 
   final RadioSigningFailure failure;
 
-  String get message => switch (failure) {
-    RadioSigningFailure.notConnected =>
-      'Connect your radio to sign in with its key.',
-    RadioSigningFailure.unsupported =>
-      "This radio's firmware does not support signing with its key.",
-    RadioSigningFailure.timeout =>
-      'The radio did not answer the signing request. Its firmware may not '
-          'support signing.',
-    RadioSigningFailure.tooLong =>
-      'The data is too long for the radio to sign.',
-    RadioSigningFailure.rejected => 'The radio refused to sign the data.',
-  };
+  MqttNotice get notice => MqttNotice(switch (failure) {
+    RadioSigningFailure.notConnected => MqttNoticeKind.radioNotConnected,
+    RadioSigningFailure.unsupported => MqttNoticeKind.signingUnsupported,
+    RadioSigningFailure.timeout => MqttNoticeKind.signingTimeout,
+    RadioSigningFailure.tooLong => MqttNoticeKind.signingTooLong,
+    RadioSigningFailure.rejected => MqttNoticeKind.signingRejected,
+  });
+
+  String get message => notice.english;
 
   /// Whether trying again later could help, for example after the radio
   /// reconnects. Unsupported firmware won't fix itself.

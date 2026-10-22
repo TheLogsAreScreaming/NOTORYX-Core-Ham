@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/mqtt_broker_settings.dart';
 import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_transport.dart';
@@ -73,8 +74,10 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider.value(
         value: service,
-        child: const MaterialApp(
-          home: Scaffold(
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: const Scaffold(
             body: SingleChildScrollView(child: MqttConnectionCard()),
           ),
         ),
@@ -304,6 +307,45 @@ void main() {
     );
     expect(find.textContaining('Retry'), findsNothing);
     expect(find.text('Cancel'), findsOneWidget);
+  });
+
+  testWidgets("renders in the user's language", (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    service = MqttBrokerService(
+      prefs: await SharedPreferences.getInstance(),
+      credentials: MemoryMqttCredentialsStore(),
+      transportFactory: (_, _) => _Transport(MqttConnectFailure.badCredentials),
+      statsNotifyInterval: Duration.zero,
+    );
+    await service.load();
+    await tester.pumpWidget(
+      ChangeNotifierProvider.value(
+        value: service,
+        child: MaterialApp(
+          locale: const Locale('de'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: const Scaffold(
+            body: SingleChildScrollView(child: MqttConnectionCard()),
+          ),
+        ),
+      ),
+    );
+    expect(find.text('MQTT-Verbindung'), findsOneWidget);
+    expect(find.text('Nicht eingerichtet'), findsOneWidget);
+    expect(find.text('Broker einrichten'), findsOneWidget);
+
+    await service.saveConfiguration(
+      const MqttBrokerSettings(host: 'broker.test', port: 8883),
+    );
+    await tester.pump();
+    await tester.tap(find.text('MQTT verbinden'));
+    await tester.pump();
+    expect(find.text('Verbindungsfehler'), findsOneWidget);
+    expect(
+      find.text('Der Broker hat Benutzername oder Passwort abgelehnt.'),
+      findsOneWidget,
+    );
   });
 }
 

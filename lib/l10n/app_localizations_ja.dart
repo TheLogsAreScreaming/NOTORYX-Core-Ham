@@ -7064,4 +7064,459 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get setupWizard_usbError =>
       'USBで接続できませんでした。データケーブルと選んだデバイスを確認し、USBアクセスを許可し、他のシリアルアプリを閉じてください。ケーブルを挿し直して再試行してください。';
+
+  @override
+  String get connections_title => '接続';
+
+  @override
+  String get connections_radioTitle => '無線機の接続';
+
+  @override
+  String get connections_bluetoothOffNotice =>
+      'Bluetoothがオフです。再接続するにはオンにしてください。オンに戻るとアプリが再試行します。';
+
+  @override
+  String get connections_transport => '接続方法';
+
+  @override
+  String connections_lastError(String error) {
+    return '前回のエラー: $error';
+  }
+
+  @override
+  String get connections_disconnectRadio => '無線機を切断';
+
+  @override
+  String connections_reconnectTo(String name) {
+    return '$name に再接続';
+  }
+
+  @override
+  String get connections_forgetRadio => '無線機を削除';
+
+  @override
+  String get connections_connectAnother => '別の無線機を接続';
+
+  @override
+  String get connections_usbSerial => 'USBシリアル';
+
+  @override
+  String get connections_tcpIp => 'TCP/IP';
+
+  @override
+  String get connections_device => 'デバイス';
+
+  @override
+  String get connections_publicKey => '公開鍵';
+
+  @override
+  String get connections_firmware => 'ファームウェア';
+
+  @override
+  String connections_firmwareProtocol(String code) {
+    return 'プロトコル v$code';
+  }
+
+  @override
+  String get connections_battery => 'バッテリー';
+
+  @override
+  String get connections_lastRx => '最終受信';
+
+  @override
+  String get connections_reconnectFailed => '無線機に再接続できませんでした';
+
+  @override
+  String get connections_statusBluetoothOff => 'Bluetoothがオフです';
+
+  @override
+  String get connections_statusConnected => '接続済み';
+
+  @override
+  String get connections_statusConnecting => '接続中…';
+
+  @override
+  String get connections_statusDisconnecting => '切断中…';
+
+  @override
+  String get connections_statusScanning => '無線機を検索中…';
+
+  @override
+  String get connections_statusReconnectingSoon => 'まもなく再接続…';
+
+  @override
+  String get connections_statusNotConnected => '未接続';
+
+  @override
+  String get mqtt_cardTitle => 'MQTT接続';
+
+  @override
+  String get mqtt_statusNotConfigured => '未設定';
+
+  @override
+  String get mqtt_statusDisconnected => '切断';
+
+  @override
+  String get mqtt_statusConnecting => '接続中';
+
+  @override
+  String get mqtt_statusConnected => '接続済み';
+
+  @override
+  String get mqtt_statusReconnecting => '再接続中';
+
+  @override
+  String get mqtt_statusError => '接続エラー';
+
+  @override
+  String mqtt_broker(String host, int port, String transport) {
+    return 'ブローカー: $host:$port（$transport）';
+  }
+
+  @override
+  String get mqtt_tokenSignIn => '無線機が署名したトークンでサインイン';
+
+  @override
+  String mqtt_tokenSignInAs(String username) {
+    return '無線機が署名したトークンで $username… としてサインイン';
+  }
+
+  @override
+  String get mqtt_connectRadioToSignIn => 'サインインするには無線機を接続してください';
+
+  @override
+  String mqtt_tokenRenewsAt(String time) {
+    return 'トークンは $time に更新されます';
+  }
+
+  @override
+  String mqtt_signedInAs(String username) {
+    return '$username としてサインイン中';
+  }
+
+  @override
+  String mqtt_listeningOn(String topic) {
+    return '$topic を受信中';
+  }
+
+  @override
+  String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
+    return 'パケット: 新規 $accepted、重複 $duplicate、無効 $invalid';
+  }
+
+  @override
+  String mqtt_retryCount(int attempt, int max) {
+    return '再試行 $attempt/$max';
+  }
+
+  @override
+  String get mqtt_sharingWaitsForRadio => '共有は無線機の接続を待っています';
+
+  @override
+  String mqtt_sharingOn(String topic) {
+    return '$topic に共有中';
+  }
+
+  @override
+  String mqtt_willShareOn(String topic) {
+    return '$topic に共有予定';
+  }
+
+  @override
+  String mqtt_onlineStatusOn(String topic) {
+    return 'オンライン状態を $topic に送信';
+  }
+
+  @override
+  String mqtt_sharedCounts(int shared, int held) {
+    return '共有 $shared、保留 $held';
+  }
+
+  @override
+  String get mqtt_addBrokerHint =>
+      'ブローカーを追加すると、MeshCoreのトラフィックをインターネット経由でつなげます。無線機の接続はそれとは別に動作します。';
+
+  @override
+  String get mqtt_disconnect => 'MQTTを切断';
+
+  @override
+  String get mqtt_connect => 'MQTTに接続';
+
+  @override
+  String get mqtt_packetFeed => 'パケットフィード';
+
+  @override
+  String get mqtt_setUpBroker => 'ブローカーを設定';
+
+  @override
+  String get mqtt_brokerSettings => 'ブローカー設定';
+
+  @override
+  String get mqtt_settingsTitle => 'MQTTブローカー設定';
+
+  @override
+  String get mqtt_presetLabel => 'プリセットから始める';
+
+  @override
+  String get mqtt_presetCustom => 'カスタムブローカー';
+
+  @override
+  String get mqtt_presetLocal => 'ローカルブローカー（アドレスを設定）';
+
+  @override
+  String get mqtt_presetLetsMeshUs => 'LetsMeshアナライザー（米国、コミュニティ）';
+
+  @override
+  String get mqtt_presetLetsMeshEu => 'LetsMeshアナライザー（EU、コミュニティ）';
+
+  @override
+  String get mqtt_presetLetsMeshNote =>
+      'LetsMeshはコミュニティが運営するMeshCoreパケットアナライザーで、NOTORYXの一部ではなく、NOTORYXが推奨するものでもありません。共有には無線機の接続が必要で、オンにするまでオフのままです。';
+
+  @override
+  String get mqtt_hostname => 'ブローカーのホスト名';
+
+  @override
+  String get mqtt_port => 'ポート';
+
+  @override
+  String get mqtt_useTls => 'TLSを使用';
+
+  @override
+  String get mqtt_allowCleartext => 'ローカルブローカーへの平文通信を許可';
+
+  @override
+  String get mqtt_allowCleartextHint =>
+      'localhost、.local、プライベートな 10.x / 192.168.x ホストのみ。';
+
+  @override
+  String get mqtt_useWebSocket => 'WebSocketを使用';
+
+  @override
+  String get mqtt_webSocketPath => 'WebSocketパス';
+
+  @override
+  String get mqtt_topicPrefix => 'トピックの接頭辞';
+
+  @override
+  String get mqtt_region => '地域（任意）';
+
+  @override
+  String get mqtt_regionHelp => '観測者の地域コード（例: PHL）。空欄ですべて。';
+
+  @override
+  String get mqtt_deliverChannel => 'MQTTで受信したチャンネルメッセージを追加';
+
+  @override
+  String get mqtt_deliverChannelHint =>
+      '観測者が受信した、参加中チャンネルのメッセージがチャットに表示されます。無線機からは送信されません。';
+
+  @override
+  String get mqtt_sharingTitle => '観測者として共有';
+
+  @override
+  String get mqtt_share => '無線機が受信したパケットを共有';
+
+  @override
+  String get mqtt_shareHint =>
+      '無線機が受信したアドバートとチャンネルのトラフィックを、公開鍵・信号強度・地域とともに公開します。チャンネルメッセージは暗号化されたままです。地域の設定が必要です。';
+
+  @override
+  String get mqtt_shareDirect => 'ダイレクトメッセージのトラフィックを含める';
+
+  @override
+  String get mqtt_shareDirectHint =>
+      'リクエスト、応答、ダイレクトメッセージ。内容は暗号化されたままですが、どのノード同士が通信しているかがわかります。';
+
+  @override
+  String get mqtt_shareOwn => '自分のメッセージとアドバートを含める';
+
+  @override
+  String get mqtt_signInTitle => 'サインイン';
+
+  @override
+  String get mqtt_authPassword => 'ユーザー名とパスワード';
+
+  @override
+  String get mqtt_authToken => '無線機が署名したトークン';
+
+  @override
+  String get mqtt_tokenExplain =>
+      '無線機が自身の鍵で1時間有効なサインイントークンに署名し、アプリが期限前に更新します。鍵が無線機の外に出ることはありません。ユーザー名は v1_ と無線機の公開鍵です。';
+
+  @override
+  String get mqtt_radioReady => '無線機接続済み: サインインできます。';
+
+  @override
+  String get mqtt_radioNeeded => 'サインインするには無線機を接続してください。MQTTは接続を待っています。';
+
+  @override
+  String get mqtt_username => 'ユーザー名（任意）';
+
+  @override
+  String get mqtt_password => 'パスワード';
+
+  @override
+  String get mqtt_keepPassword => '保存済みのパスワードを使う場合は空欄のままにしてください。';
+
+  @override
+  String get mqtt_credentialsWeb => 'ブラウザーでは、認証情報はページを閉じるまでしか保持されません。';
+
+  @override
+  String get mqtt_credentialsKeychain =>
+      '認証情報はシステムのキーチェーンに保存され、アプリの設定やログには保存されません。';
+
+  @override
+  String get mqtt_saveSettings => '設定を保存';
+
+  @override
+  String get mqtt_feedTitle => 'MQTTパケットフィード';
+
+  @override
+  String get mqtt_feedConnect => 'ブローカーに接続すると観測者のパケットが表示されます。';
+
+  @override
+  String mqtt_feedWaiting(String topic) {
+    return '$topic のパケットを待っています';
+  }
+
+  @override
+  String get mqtt_feedUnknownObserver => '不明な観測者';
+
+  @override
+  String mqtt_feedHeardBy(String observer) {
+    return '受信: $observer';
+  }
+
+  @override
+  String mqtt_feedHopsBytes(int hops, int bytes) {
+    return '$hopsホップ · $bytesバイト';
+  }
+
+  @override
+  String get mqtt_packetRequest => 'リクエスト';
+
+  @override
+  String get mqtt_packetResponse => '応答';
+
+  @override
+  String get mqtt_packetDirectMessage => 'ダイレクトメッセージ';
+
+  @override
+  String get mqtt_packetAck => '確認応答';
+
+  @override
+  String get mqtt_packetAdvert => 'アドバート';
+
+  @override
+  String get mqtt_packetChannelMessage => 'チャンネルメッセージ';
+
+  @override
+  String get mqtt_packetChannelData => 'チャンネルデータ';
+
+  @override
+  String get mqtt_packetAnonymousRequest => '匿名リクエスト';
+
+  @override
+  String get mqtt_packetPath => '経路';
+
+  @override
+  String get mqtt_packetTrace => 'トレース';
+
+  @override
+  String get mqtt_packetMultipart => 'マルチパート';
+
+  @override
+  String get mqtt_packetControl => '制御';
+
+  @override
+  String mqtt_packetType(int type) {
+    return 'タイプ $type';
+  }
+
+  @override
+  String get mqtt_routeTransportFlood => 'トランスポート付きフラッド';
+
+  @override
+  String get mqtt_routeFlood => 'フラッド';
+
+  @override
+  String get mqtt_routeDirect => 'ダイレクト';
+
+  @override
+  String get mqtt_routeTransportDirect => 'トランスポート付きダイレクト';
+
+  @override
+  String get mqtt_noticeInvalidHost => 'スキームやポートを含まないホスト名またはIPv4アドレスを入力してください。';
+
+  @override
+  String get mqtt_noticeInvalidPort => 'ポートは1〜65535の範囲で指定してください。';
+
+  @override
+  String get mqtt_noticeInvalidWebSocketPath =>
+      'WebSocketパスは / で始め、クエリやフラグメントを含めないでください。';
+
+  @override
+  String get mqtt_noticeInvalidTopicPrefix =>
+      'トピックの接頭辞は、ワイルドカードを含まない空でないMQTTパスにしてください。';
+
+  @override
+  String get mqtt_noticeInvalidRegion => '地域は2〜8文字の英数字にしてください（例: PHL）。';
+
+  @override
+  String get mqtt_noticeTlsRequired =>
+      'ローカルブローカーへの安全でないアクセスを明示的に許可しない限り、TLSが必要です。';
+
+  @override
+  String get mqtt_noticeCleartextLocalOnly => '平文のMQTTは、明示的に許可したローカルホストに限られます。';
+
+  @override
+  String get mqtt_noticeRegionNeededToShare => '観測者としてパケットを共有するには地域を設定してください。';
+
+  @override
+  String mqtt_noticePasswordNeeded(String username) {
+    return '$username のパスワードを入力してください。';
+  }
+
+  @override
+  String get mqtt_noticeNoNetwork => 'ネットワークに接続されていません。回復するとMQTTが再接続します。';
+
+  @override
+  String get mqtt_noticeSubscriptionRefused => 'ブローカーがパケットの購読を拒否しました。';
+
+  @override
+  String get mqtt_noticeBadCredentials => 'ブローカーがユーザー名またはパスワードを拒否しました。';
+
+  @override
+  String get mqtt_noticeNotAuthorized => 'このアカウントにはブローカーの権限がありません。';
+
+  @override
+  String get mqtt_noticeConnectionRefused => 'ブローカーが接続を拒否しました。';
+
+  @override
+  String get mqtt_noticeUnreachable => 'ブローカーに接続できませんでした。';
+
+  @override
+  String get mqtt_noticeTlsFailed => '安全な（TLS）接続を確立できませんでした。';
+
+  @override
+  String get mqtt_noticeWebSocketOnly =>
+      'このプラットフォームはWebSocket経由のMQTTのみ対応しています。';
+
+  @override
+  String get mqtt_noticeRadioNotConnected => '無線機の鍵でサインインするには無線機を接続してください。';
+
+  @override
+  String get mqtt_noticeSigningUnsupported =>
+      'この無線機のファームウェアは自身の鍵による署名に対応していません。';
+
+  @override
+  String get mqtt_noticeSigningTimeout =>
+      '無線機が署名リクエストに応答しませんでした。ファームウェアが署名に対応していない可能性があります。';
+
+  @override
+  String get mqtt_noticeSigningTooLong => 'データが長すぎて無線機で署名できません。';
+
+  @override
+  String get mqtt_noticeSigningRejected => '無線機がデータへの署名を拒否しました。';
 }

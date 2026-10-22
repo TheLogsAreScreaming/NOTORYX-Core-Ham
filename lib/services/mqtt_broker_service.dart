@@ -14,6 +14,7 @@ import '../models/mqtt_connection_diagnostics.dart';
 import '../models/mqtt_connection_policy.dart';
 import '../models/mqtt_connection_status.dart';
 import '../models/mqtt_mesh_packet.dart';
+import '../models/mqtt_notice.dart';
 import '../models/mqtt_observer_status.dart';
 import '../models/mqtt_packet_deduplicator.dart';
 import '../models/mqtt_publish_policy.dart';
@@ -99,7 +100,7 @@ class MqttBrokerService extends ChangeNotifier {
   String? _tokenKey;
   DateTime? _tokenIssuedAt;
   Timer? _tokenRefreshTimer;
-  String? _authError;
+  MqttNotice? _authError;
   bool _waitingForRadio = false;
   MqttObserverDetails _observerDetails = const MqttObserverDetails();
   // The status topic registered as this session's last will, if any.
@@ -138,7 +139,7 @@ class MqttBrokerService extends ChangeNotifier {
   String? _username;
   MqttConnectionStatus _status = MqttConnectionStatus.notConfigured;
   MqttConnectFailure? _lastFailure;
-  String? _configurationError;
+  MqttNotice? _configurationError;
   int _reconnectAttempt = 0;
   bool _manuallyDisconnected = true;
   MqttTransport? _transport;
@@ -413,22 +414,21 @@ class MqttBrokerService extends ChangeNotifier {
       _settings != null &&
       _status == MqttConnectionStatus.reconnecting;
 
-  /// User-facing reason for the last failure, if any.
-  String? get errorMessage =>
-      (waitingForNetwork
-          ? 'No network connection. MQTT reconnects when it is back.'
-          : null) ??
+  /// Reason for the last failure, if any, for the UI to localize.
+  MqttNotice? get errorNotice =>
+      (waitingForNetwork ? const MqttNotice(MqttNoticeKind.noNetwork) : null) ??
       _configurationError ??
       (_waitingForRadio
-          ? const RadioSigningException(
-              RadioSigningFailure.notConnected,
-            ).message
+          ? const MqttNotice(MqttNoticeKind.radioNotConnected)
           : null) ??
       _authError ??
-      _lastFailure?.message ??
+      _lastFailure?.notice ??
       (_subscriptionFailed
-          ? 'The broker refused the packet subscription.'
+          ? const MqttNotice(MqttNoticeKind.subscriptionRefused)
           : null);
+
+  /// English text of [errorNotice], for logs and diagnostics.
+  String? get errorMessage => errorNotice?.english;
 
   bool get canConnect =>
       _settings != null &&
@@ -477,7 +477,7 @@ class MqttBrokerService extends ChangeNotifier {
   /// Validates and stores broker settings and credentials, ending any
   /// current session. An empty [username] removes saved credentials; a null
   /// [password] keeps the saved password for the same account.
-  Future<String?> saveConfiguration(
+  Future<MqttNotice?> saveConfiguration(
     MqttBrokerSettings settings, {
     bool allowInsecureLocalBroker = false,
     String username = '',
@@ -485,14 +485,14 @@ class MqttBrokerService extends ChangeNotifier {
     bool? deliverChannelMessages,
     MqttPublishSettings? publishSettings,
   }) async {
-    final error = _connectionPolicy.validate(
+    final error = _connectionPolicy.check(
       settings,
       allowInsecureLocalBroker: allowInsecureLocalBroker,
     );
     if (error != null) return error;
     if ((publishSettings ?? _publishSettings).enabled &&
         settings.region.trim().isEmpty) {
-      return 'Set a region to share packets as an observer.';
+      return const MqttNotice(MqttNoticeKind.regionNeededToShare);
     }
 
     // Radio-token sign-in uses no stored credentials; keep any saved ones
@@ -510,7 +510,7 @@ class MqttBrokerService extends ChangeNotifier {
               ? (await _credentials.read())?.password
               : null);
       if (newPassword == null || newPassword.isEmpty) {
-        return 'Enter the password for $trimmedUser.';
+        return MqttNotice(MqttNoticeKind.passwordNeeded, trimmedUser);
       }
       await _credentials.save(username: trimmedUser, password: newPassword);
     }
@@ -616,7 +616,7 @@ class MqttBrokerService extends ChangeNotifier {
     _abandonSession();
     final generation = _generation;
 
-    _configurationError = _connectionPolicy.validate(
+    _configurationError = _connectionPolicy.check(
       settings,
       allowInsecureLocalBroker: _allowInsecureLocalBroker,
     );
@@ -731,7 +731,7 @@ class MqttBrokerService extends ChangeNotifier {
       if (error.failure == RadioSigningFailure.notConnected) {
         _waitForRadio();
       } else {
-        _authError = error.message;
+        _authError = error.notice;
         _status = MqttConnectionStatus.error;
         _notify();
       }
