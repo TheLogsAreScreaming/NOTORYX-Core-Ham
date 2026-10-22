@@ -6917,475 +6917,447 @@ class AppLocalizationsZh extends AppLocalizations {
       '无法通过 USB 连接。请检查数据线和所选设备，允许 USB 访问，并关闭其他串口应用。重新插入数据线后重试。';
 
   @override
-  String get connections_title => 'Connections';
+  String get connections_title => '连接';
 
   @override
-  String get connections_radioTitle => 'Radio connection';
+  String get connections_radioTitle => '电台连接';
 
   @override
-  String get connections_bluetoothOffNotice =>
-      'Bluetooth is off. Turn it on to reconnect; the app will retry once it is back.';
+  String get connections_bluetoothOffNotice => '蓝牙已关闭。打开蓝牙以重新连接；蓝牙恢复后应用会自动重试。';
 
   @override
-  String get connections_transport => 'Transport';
+  String get connections_transport => '连接方式';
 
   @override
   String connections_lastError(String error) {
-    return 'Last error: $error';
+    return '上次错误：$error';
   }
 
   @override
-  String get connections_disconnectRadio => 'Disconnect radio';
+  String get connections_disconnectRadio => '断开电台';
 
   @override
   String connections_reconnectTo(String name) {
-    return 'Reconnect to $name';
+    return '重新连接到 $name';
   }
 
   @override
-  String get connections_forgetRadio => 'Forget radio';
+  String get connections_forgetRadio => '忘记电台';
 
   @override
-  String get connections_connectAnother => 'Connect another radio';
+  String get connections_connectAnother => '连接其他电台';
 
   @override
-  String get connections_usbSerial => 'USB serial';
+  String get connections_usbSerial => 'USB 串口';
 
   @override
   String get connections_tcpIp => 'TCP/IP';
 
   @override
-  String get connections_device => 'Device';
+  String get connections_device => '设备';
 
   @override
-  String get connections_publicKey => 'Public key';
+  String get connections_publicKey => '公钥';
 
   @override
-  String get connections_firmware => 'Firmware';
+  String get connections_firmware => '固件';
 
   @override
   String connections_firmwareProtocol(String code) {
-    return 'protocol v$code';
+    return '协议 v$code';
   }
 
   @override
-  String get connections_battery => 'Battery';
+  String get connections_battery => '电池';
 
   @override
-  String get connections_lastRx => 'Last RX';
+  String get connections_lastRx => '最近接收';
 
   @override
-  String get connections_reconnectFailed => 'Could not reconnect to the radio';
+  String get connections_reconnectFailed => '无法重新连接电台';
 
   @override
-  String get connections_statusBluetoothOff => 'Bluetooth is off';
+  String get connections_statusBluetoothOff => '蓝牙已关闭';
 
   @override
-  String get connections_statusConnected => 'Connected';
+  String get connections_statusConnected => '已连接';
 
   @override
-  String get connections_statusConnecting => 'Connecting…';
+  String get connections_statusConnecting => '正在连接…';
 
   @override
-  String get connections_statusDisconnecting => 'Disconnecting…';
+  String get connections_statusDisconnecting => '正在断开…';
 
   @override
-  String get connections_statusScanning => 'Scanning for radios…';
+  String get connections_statusScanning => '正在搜索电台…';
 
   @override
-  String get connections_statusReconnectingSoon => 'Reconnecting soon…';
+  String get connections_statusReconnectingSoon => '即将重新连接…';
 
   @override
-  String get connections_statusNotConnected => 'Not connected';
+  String get connections_statusNotConnected => '未连接';
 
   @override
-  String get mqtt_cardTitle => 'MQTT connection';
+  String get mqtt_cardTitle => 'MQTT 连接';
 
   @override
-  String get mqtt_statusNotConfigured => 'Not configured';
+  String get mqtt_statusNotConfigured => '未配置';
 
   @override
-  String get mqtt_statusDisconnected => 'Disconnected';
+  String get mqtt_statusDisconnected => '已断开';
 
   @override
-  String get mqtt_statusConnecting => 'Connecting';
+  String get mqtt_statusConnecting => '正在连接';
 
   @override
-  String get mqtt_statusConnected => 'Connected';
+  String get mqtt_statusConnected => '已连接';
 
   @override
-  String get mqtt_statusReconnecting => 'Reconnecting';
+  String get mqtt_statusReconnecting => '正在重新连接';
 
   @override
-  String get mqtt_statusError => 'Connection error';
+  String get mqtt_statusError => '连接错误';
 
   @override
   String mqtt_broker(String host, int port, String transport) {
-    return 'Broker: $host:$port ($transport)';
+    return '代理服务器：$host:$port（$transport）';
   }
 
   @override
-  String get mqtt_tokenSignIn => 'Signs in with a radio-signed token';
+  String get mqtt_tokenSignIn => '使用电台签名的令牌登录';
 
   @override
   String mqtt_tokenSignInAs(String username) {
-    return 'Signs in with a radio-signed token as $username…';
+    return '使用电台签名的令牌以 $username… 登录';
   }
 
   @override
-  String get mqtt_connectRadioToSignIn => 'Connect your radio to sign in';
+  String get mqtt_connectRadioToSignIn => '连接电台后才能登录';
 
   @override
   String mqtt_tokenRenewsAt(String time) {
-    return 'Token renews at $time';
+    return '令牌将于 $time 续期';
   }
 
   @override
   String mqtt_signedInAs(String username) {
-    return 'Signed in as $username';
+    return '已登录为 $username';
   }
 
   @override
   String mqtt_listeningOn(String topic) {
-    return 'Listening on $topic';
+    return '正在监听 $topic';
   }
 
   @override
   String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
-    return 'Packets: $accepted new, $duplicate duplicate, $invalid invalid';
+    return '数据包：新 $accepted，重复 $duplicate，无效 $invalid';
   }
 
   @override
   String mqtt_retryCount(int attempt, int max) {
-    return 'Retry $attempt of $max';
+    return '第 $attempt 次重试，共 $max 次';
   }
 
   @override
-  String get mqtt_sharingWaitsForRadio =>
-      'Sharing waits for a radio connection';
+  String get mqtt_sharingWaitsForRadio => '共享正在等待电台连接';
 
   @override
   String mqtt_sharingOn(String topic) {
-    return 'Sharing on $topic';
+    return '正在共享到 $topic';
   }
 
   @override
   String mqtt_willShareOn(String topic) {
-    return 'Will share on $topic';
+    return '将共享到 $topic';
   }
 
   @override
   String mqtt_onlineStatusOn(String topic) {
-    return 'Online status on $topic';
+    return '在线状态发布到 $topic';
   }
 
   @override
   String mqtt_sharedCounts(int shared, int held) {
-    return 'Shared $shared, held back $held';
+    return '已共享 $shared，已保留 $held';
   }
 
   @override
-  String get mqtt_addBrokerHint =>
-      'Add a broker to bridge MeshCore traffic over the internet. Radio connection works independently.';
+  String get mqtt_addBrokerHint => '添加代理服务器，通过互联网桥接 MeshCore 流量。电台连接独立工作。';
 
   @override
-  String get mqtt_disconnect => 'Disconnect MQTT';
+  String get mqtt_disconnect => '断开 MQTT';
 
   @override
-  String get mqtt_connect => 'Connect MQTT';
+  String get mqtt_connect => '连接 MQTT';
 
   @override
-  String get mqtt_packetFeed => 'Packet feed';
+  String get mqtt_packetFeed => '数据包流';
 
   @override
-  String get mqtt_setUpBroker => 'Set up broker';
+  String get mqtt_setUpBroker => '设置代理服务器';
 
   @override
-  String get mqtt_brokerSettings => 'Broker settings';
+  String get mqtt_brokerSettings => '代理服务器设置';
 
   @override
-  String get mqtt_settingsTitle => 'MQTT broker settings';
+  String get mqtt_settingsTitle => 'MQTT 代理服务器设置';
 
   @override
-  String get mqtt_presetLabel => 'Start from a preset';
+  String get mqtt_presetLabel => '从预设开始';
 
   @override
-  String get mqtt_presetCustom => 'Custom broker';
+  String get mqtt_presetCustom => '自定义代理服务器';
 
   @override
-  String get mqtt_presetLocal => 'Local broker (configure address)';
+  String get mqtt_presetLocal => '本地代理服务器（填写地址）';
 
   @override
-  String get mqtt_presetLetsMeshUs => 'LetsMesh analyzer (US, community)';
+  String get mqtt_presetLetsMeshUs => 'LetsMesh 分析器（美国，社区）';
 
   @override
-  String get mqtt_presetLetsMeshEu => 'LetsMesh analyzer (EU, community)';
+  String get mqtt_presetLetsMeshEu => 'LetsMesh 分析器（欧盟，社区）';
 
   @override
   String get mqtt_presetLetsMeshNote =>
-      'LetsMesh is a community-run MeshCore packet analyzer, not part of NOTORYX and not endorsed by it. Sharing needs your radio connected and stays off until you turn it on.';
+      'LetsMesh 是由社区运营的 MeshCore 数据包分析器，不属于 NOTORYX，也未获 NOTORYX 认可。共享需要连接电台，并在你开启前一直保持关闭。';
 
   @override
-  String get mqtt_hostname => 'Broker hostname';
+  String get mqtt_hostname => '代理服务器主机名';
 
   @override
-  String get mqtt_port => 'Port';
+  String get mqtt_port => '端口';
 
   @override
-  String get mqtt_useTls => 'Use TLS';
+  String get mqtt_useTls => '使用 TLS';
 
   @override
-  String get mqtt_allowCleartext => 'Allow cleartext to a local broker';
+  String get mqtt_allowCleartext => '允许以明文连接本地代理服务器';
 
   @override
   String get mqtt_allowCleartextHint =>
-      'Only localhost, .local and private 10.x / 192.168.x hosts.';
+      '仅限 localhost、.local 以及私有 10.x / 192.168.x 主机。';
 
   @override
-  String get mqtt_useWebSocket => 'Use WebSocket';
+  String get mqtt_useWebSocket => '使用 WebSocket';
 
   @override
-  String get mqtt_webSocketPath => 'WebSocket path';
+  String get mqtt_webSocketPath => 'WebSocket 路径';
 
   @override
-  String get mqtt_topicPrefix => 'Topic prefix';
+  String get mqtt_topicPrefix => '主题前缀';
 
   @override
-  String get mqtt_region => 'Region (optional)';
+  String get mqtt_region => '区域（可选）';
 
   @override
-  String get mqtt_regionHelp =>
-      'Observer region code such as PHL. Leave blank for all.';
+  String get mqtt_regionHelp => '观察者的区域代码，例如 PHL。留空表示全部。';
 
   @override
-  String get mqtt_deliverChannel => 'Add channel messages heard via MQTT';
+  String get mqtt_deliverChannel => '添加通过 MQTT 收到的频道消息';
 
   @override
-  String get mqtt_deliverChannelHint =>
-      'Messages on your channels that observers heard show up in your chats. They are not sent over your radio.';
+  String get mqtt_deliverChannelHint => '观察者听到的你所在频道的消息会显示在聊天中。这些消息不会通过你的电台发送。';
 
   @override
-  String get mqtt_sharingTitle => 'Sharing as an observer';
+  String get mqtt_sharingTitle => '作为观察者共享';
 
   @override
-  String get mqtt_share => 'Share packets my radio hears';
+  String get mqtt_share => '共享我的电台收到的数据包';
 
   @override
   String get mqtt_shareHint =>
-      'Publishes adverts and channel traffic your radio receives, with its public key, signal strength and region. Channel messages stay encrypted. Needs a region.';
+      '发布你的电台接收到的广播和频道流量，附带其公钥、信号强度和区域。频道消息仍保持加密。需要设置区域。';
 
   @override
-  String get mqtt_shareDirect => 'Include direct-message traffic';
+  String get mqtt_shareDirect => '包含私信流量';
 
   @override
-  String get mqtt_shareDirectHint =>
-      'Requests, replies and direct messages. Contents stay encrypted, but this shows which nodes talk to each other.';
+  String get mqtt_shareDirectHint => '请求、回复和私信。内容仍保持加密，但会显示哪些节点在相互通信。';
 
   @override
-  String get mqtt_shareOwn => 'Include my own messages and adverts';
+  String get mqtt_shareOwn => '包含我自己的消息和广播';
 
   @override
-  String get mqtt_signInTitle => 'Sign-in';
+  String get mqtt_signInTitle => '登录';
 
   @override
-  String get mqtt_authPassword => 'Username and password';
+  String get mqtt_authPassword => '用户名和密码';
 
   @override
-  String get mqtt_authToken => 'Radio-signed token';
+  String get mqtt_authToken => '电台签名的令牌';
 
   @override
   String get mqtt_tokenExplain =>
-      'Your radio signs a one-hour sign-in token with its own key, and the app renews it before it runs out. The key never leaves the radio. The username is v1_ and your radio\'s public key.';
+      '你的电台会用自己的密钥签署一个有效期一小时的登录令牌，应用会在过期前续期。密钥永远不会离开电台。用户名为 v1_ 加上电台的公钥。';
 
   @override
-  String get mqtt_radioReady => 'Radio connected: ready to sign in.';
+  String get mqtt_radioReady => '电台已连接：可以登录。';
 
   @override
-  String get mqtt_radioNeeded =>
-      'Connect your radio to sign in. MQTT waits for it.';
+  String get mqtt_radioNeeded => '连接电台后才能登录。MQTT 正在等待。';
 
   @override
-  String get mqtt_username => 'Username (optional)';
+  String get mqtt_username => '用户名（可选）';
 
   @override
-  String get mqtt_password => 'Password';
+  String get mqtt_password => '密码';
 
   @override
-  String get mqtt_keepPassword => 'Leave blank to keep the saved password.';
+  String get mqtt_keepPassword => '留空以保留已保存的密码。';
 
   @override
-  String get mqtt_credentialsWeb =>
-      'In the browser, credentials are kept only until the page is closed.';
+  String get mqtt_credentialsWeb => '在浏览器中，凭据只保留到页面关闭为止。';
 
   @override
-  String get mqtt_credentialsKeychain =>
-      'Credentials are stored in the system keychain, never in app settings or logs.';
+  String get mqtt_credentialsKeychain => '凭据存储在系统钥匙串中，绝不会存入应用设置或日志。';
 
   @override
-  String get mqtt_saveSettings => 'Save settings';
+  String get mqtt_saveSettings => '保存设置';
 
   @override
-  String get mqtt_feedTitle => 'MQTT packet feed';
+  String get mqtt_feedTitle => 'MQTT 数据包流';
 
   @override
-  String get mqtt_feedConnect =>
-      'Connect to a broker to see packets from observers.';
+  String get mqtt_feedConnect => '连接到代理服务器以查看观察者的数据包。';
 
   @override
   String mqtt_feedWaiting(String topic) {
-    return 'Waiting for packets on $topic';
+    return '正在等待 $topic 上的数据包';
   }
 
   @override
-  String get mqtt_feedUnknownObserver => 'Unknown observer';
+  String get mqtt_feedUnknownObserver => '未知观察者';
 
   @override
   String mqtt_feedHeardBy(String observer) {
-    return 'Heard by $observer';
+    return '由 $observer 接收';
   }
 
   @override
   String mqtt_feedHopsBytes(int hops, int bytes) {
-    return '$hops hops · $bytes bytes';
+    return '$hops 跳 · $bytes 字节';
   }
 
   @override
-  String get mqtt_packetRequest => 'Request';
+  String get mqtt_packetRequest => '请求';
 
   @override
-  String get mqtt_packetResponse => 'Response';
+  String get mqtt_packetResponse => '响应';
 
   @override
-  String get mqtt_packetDirectMessage => 'Direct message';
+  String get mqtt_packetDirectMessage => '私信';
 
   @override
-  String get mqtt_packetAck => 'Ack';
+  String get mqtt_packetAck => '确认';
 
   @override
-  String get mqtt_packetAdvert => 'Advert';
+  String get mqtt_packetAdvert => '广播';
 
   @override
-  String get mqtt_packetChannelMessage => 'Channel message';
+  String get mqtt_packetChannelMessage => '频道消息';
 
   @override
-  String get mqtt_packetChannelData => 'Channel data';
+  String get mqtt_packetChannelData => '频道数据';
 
   @override
-  String get mqtt_packetAnonymousRequest => 'Anonymous request';
+  String get mqtt_packetAnonymousRequest => '匿名请求';
 
   @override
-  String get mqtt_packetPath => 'Path';
+  String get mqtt_packetPath => '路径';
 
   @override
-  String get mqtt_packetTrace => 'Trace';
+  String get mqtt_packetTrace => '追踪';
 
   @override
-  String get mqtt_packetMultipart => 'Multipart';
+  String get mqtt_packetMultipart => '多部分';
 
   @override
-  String get mqtt_packetControl => 'Control';
+  String get mqtt_packetControl => '控制';
 
   @override
   String mqtt_packetType(int type) {
-    return 'Type $type';
+    return '类型 $type';
   }
 
   @override
-  String get mqtt_routeTransportFlood => 'Transport flood';
+  String get mqtt_routeTransportFlood => '传输泛洪';
 
   @override
-  String get mqtt_routeFlood => 'Flood';
+  String get mqtt_routeFlood => '泛洪';
 
   @override
-  String get mqtt_routeDirect => 'Direct';
+  String get mqtt_routeDirect => '直达';
 
   @override
-  String get mqtt_routeTransportDirect => 'Transport direct';
+  String get mqtt_routeTransportDirect => '传输直达';
 
   @override
-  String get mqtt_noticeInvalidHost =>
-      'Enter a hostname or IPv4 address without a scheme or port.';
+  String get mqtt_noticeInvalidHost => '请输入不含协议和端口的主机名或 IPv4 地址。';
 
   @override
-  String get mqtt_noticeInvalidPort => 'Port must be between 1 and 65535.';
+  String get mqtt_noticeInvalidPort => '端口必须在 1 到 65535 之间。';
 
   @override
   String get mqtt_noticeInvalidWebSocketPath =>
-      'WebSocket path must begin with / and contain no query or fragment.';
+      'WebSocket 路径必须以 / 开头，且不能包含查询或片段。';
 
   @override
-  String get mqtt_noticeInvalidTopicPrefix =>
-      'Topic prefix must be a nonempty MQTT path without wildcards.';
+  String get mqtt_noticeInvalidTopicPrefix => '主题前缀必须是不含通配符的非空 MQTT 路径。';
 
   @override
-  String get mqtt_noticeInvalidRegion =>
-      'Region must be 2-8 letters or digits, such as PHL.';
+  String get mqtt_noticeInvalidRegion => '区域必须为 2 到 8 个字母或数字，例如 PHL。';
 
   @override
-  String get mqtt_noticeTlsRequired =>
-      'TLS is required unless insecure local broker access is explicitly enabled.';
+  String get mqtt_noticeTlsRequired => '除非明确允许不安全地访问本地代理服务器，否则必须使用 TLS。';
 
   @override
-  String get mqtt_noticeCleartextLocalOnly =>
-      'Cleartext MQTT is restricted to explicitly approved local hosts.';
+  String get mqtt_noticeCleartextLocalOnly => '明文 MQTT 仅限明确批准的本地主机。';
 
   @override
-  String get mqtt_noticeRegionNeededToShare =>
-      'Set a region to share packets as an observer.';
+  String get mqtt_noticeRegionNeededToShare => '请设置区域，才能作为观察者共享数据包。';
 
   @override
   String mqtt_noticePasswordNeeded(String username) {
-    return 'Enter the password for $username.';
+    return '请输入 $username 的密码。';
   }
 
   @override
-  String get mqtt_noticeNoNetwork =>
-      'No network connection. MQTT reconnects when it is back.';
+  String get mqtt_noticeNoNetwork => '没有网络连接。网络恢复后 MQTT 会重新连接。';
 
   @override
-  String get mqtt_noticeSubscriptionRefused =>
-      'The broker refused the packet subscription.';
+  String get mqtt_noticeSubscriptionRefused => '代理服务器拒绝了数据包订阅。';
 
   @override
-  String get mqtt_noticeBadCredentials =>
-      'The broker rejected the username or password.';
+  String get mqtt_noticeBadCredentials => '代理服务器拒绝了用户名或密码。';
 
   @override
-  String get mqtt_noticeNotAuthorized =>
-      'This account is not authorized on the broker.';
+  String get mqtt_noticeNotAuthorized => '此账户在代理服务器上没有授权。';
 
   @override
-  String get mqtt_noticeConnectionRefused =>
-      'The broker refused the connection.';
+  String get mqtt_noticeConnectionRefused => '代理服务器拒绝了连接。';
 
   @override
-  String get mqtt_noticeUnreachable => 'The broker could not be reached.';
+  String get mqtt_noticeUnreachable => '无法连接到代理服务器。';
 
   @override
-  String get mqtt_noticeTlsFailed =>
-      'The secure (TLS) connection could not be established.';
+  String get mqtt_noticeTlsFailed => '无法建立安全 (TLS) 连接。';
 
   @override
-  String get mqtt_noticeWebSocketOnly =>
-      'This platform only supports MQTT over WebSocket.';
+  String get mqtt_noticeWebSocketOnly => '此平台仅支持通过 WebSocket 使用 MQTT。';
 
   @override
-  String get mqtt_noticeRadioNotConnected =>
-      'Connect your radio to sign in with its key.';
+  String get mqtt_noticeRadioNotConnected => '连接电台后才能用其密钥登录。';
 
   @override
-  String get mqtt_noticeSigningUnsupported =>
-      'This radio\'s firmware does not support signing with its key.';
+  String get mqtt_noticeSigningUnsupported => '此电台的固件不支持用其密钥签名。';
 
   @override
-  String get mqtt_noticeSigningTimeout =>
-      'The radio did not answer the signing request. Its firmware may not support signing.';
+  String get mqtt_noticeSigningTimeout => '电台没有响应签名请求。其固件可能不支持签名。';
 
   @override
-  String get mqtt_noticeSigningTooLong =>
-      'The data is too long for the radio to sign.';
+  String get mqtt_noticeSigningTooLong => '数据太长，电台无法签名。';
 
   @override
-  String get mqtt_noticeSigningRejected =>
-      'The radio refused to sign the data.';
+  String get mqtt_noticeSigningRejected => '电台拒绝签署数据。';
 }
