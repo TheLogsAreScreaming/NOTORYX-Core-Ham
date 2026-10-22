@@ -7465,107 +7465,109 @@ class AppLocalizationsPl extends AppLocalizations {
       'Nie udało się połączyć przez USB. Sprawdź kabel danych i wybrane urządzenie, zezwól na dostęp USB i zamknij inne aplikacje szeregowe. Podłącz kabel ponownie i spróbuj jeszcze raz.';
 
   @override
-  String get connections_title => 'Connections';
+  String get connections_title => 'Połączenia';
 
   @override
-  String get connections_radioTitle => 'Radio connection';
+  String get connections_radioTitle => 'Połączenie z radiem';
 
   @override
   String get connections_bluetoothOffNotice =>
-      'Bluetooth is off. Turn it on to reconnect; the app will retry once it is back.';
+      'Bluetooth jest wyłączony. Włącz go, aby połączyć się ponownie; aplikacja spróbuje znowu, gdy wróci.';
 
   @override
-  String get connections_transport => 'Transport';
+  String get connections_transport => 'Rodzaj połączenia';
 
   @override
   String connections_lastError(String error) {
-    return 'Last error: $error';
+    return 'Ostatni błąd: $error';
   }
 
   @override
-  String get connections_disconnectRadio => 'Disconnect radio';
+  String get connections_disconnectRadio => 'Rozłącz radio';
 
   @override
   String connections_reconnectTo(String name) {
-    return 'Reconnect to $name';
+    return 'Połącz ponownie z $name';
   }
 
   @override
-  String get connections_forgetRadio => 'Forget radio';
+  String get connections_forgetRadio => 'Zapomnij radio';
 
   @override
-  String get connections_connectAnother => 'Connect another radio';
+  String get connections_connectAnother => 'Połącz inne radio';
 
   @override
-  String get connections_usbSerial => 'USB serial';
+  String get connections_usbSerial => 'USB szeregowe';
 
   @override
   String get connections_tcpIp => 'TCP/IP';
 
   @override
-  String get connections_device => 'Device';
+  String get connections_device => 'Urządzenie';
 
   @override
-  String get connections_publicKey => 'Public key';
+  String get connections_publicKey => 'Klucz publiczny';
 
   @override
   String get connections_firmware => 'Firmware';
 
   @override
   String connections_firmwareProtocol(String code) {
-    return 'protocol v$code';
+    return 'protokół v$code';
   }
 
   @override
-  String get connections_battery => 'Battery';
+  String get connections_battery => 'Bateria';
 
   @override
-  String get connections_lastRx => 'Last RX';
+  String get connections_lastRx => 'Ostatni odbiór';
 
   @override
-  String get connections_reconnectFailed => 'Could not reconnect to the radio';
+  String get connections_reconnectFailed =>
+      'Nie udało się ponownie połączyć z radiem';
 
   @override
-  String get connections_statusBluetoothOff => 'Bluetooth is off';
+  String get connections_statusBluetoothOff => 'Bluetooth jest wyłączony';
 
   @override
-  String get connections_statusConnected => 'Connected';
+  String get connections_statusConnected => 'Połączono';
 
   @override
-  String get connections_statusConnecting => 'Connecting…';
+  String get connections_statusConnecting => 'Łączenie…';
 
   @override
-  String get connections_statusDisconnecting => 'Disconnecting…';
+  String get connections_statusDisconnecting => 'Rozłączanie…';
 
   @override
-  String get connections_statusScanning => 'Scanning for radios…';
+  String get connections_statusScanning => 'Szukanie radiów…';
 
   @override
-  String get connections_statusReconnectingSoon => 'Reconnecting soon…';
+  String get connections_statusReconnectingSoon =>
+      'Za chwilę ponowne łączenie…';
 
   @override
-  String get connections_statusNotConnected => 'Not connected';
+  String get connections_statusNotConnected => 'Nie połączono';
 
   @override
-  String get mqtt_cardTitle => 'MQTT connection';
+  String get mqtt_cardTitle => 'Połączenie MQTT';
 
   @override
-  String get mqtt_statusNotConfigured => 'Not configured';
+  String get mqtt_statusNotConfigured => 'Nie skonfigurowano';
 
   @override
-  String get mqtt_statusDisconnected => 'Disconnected';
+  String get mqtt_statusDisconnected => 'Rozłączono';
 
   @override
-  String get mqtt_statusConnecting => 'Connecting';
+  String get mqtt_statusConnecting => 'Łączenie';
 
   @override
-  String get mqtt_statusConnected => 'Connected';
+  String get mqtt_statusConnected => 'Połączono';
 
   @override
-  String get mqtt_statusReconnecting => 'Reconnecting';
+  String get mqtt_statusReconnecting => 'Ponowne łączenie';
 
   @override
-  String get mqtt_statusError => 'Connection error';
+  String get mqtt_statusError => 'Błąd połączenia';
 
   @override
   String mqtt_broker(String host, int port, String transport) {
@@ -7573,367 +7575,367 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get mqtt_tokenSignIn => 'Signs in with a radio-signed token';
+  String get mqtt_tokenSignIn => 'Logowanie tokenem podpisanym przez radio';
 
   @override
   String mqtt_tokenSignInAs(String username) {
-    return 'Signs in with a radio-signed token as $username…';
+    return 'Logowanie tokenem podpisanym przez radio jako $username…';
   }
 
   @override
-  String get mqtt_connectRadioToSignIn => 'Connect your radio to sign in';
+  String get mqtt_connectRadioToSignIn => 'Połącz radio, aby się zalogować';
 
   @override
   String mqtt_tokenRenewsAt(String time) {
-    return 'Token renews at $time';
+    return 'Token odnowi się o $time';
   }
 
   @override
   String mqtt_signedInAs(String username) {
-    return 'Signed in as $username';
+    return 'Zalogowano jako $username';
   }
 
   @override
   String mqtt_listeningOn(String topic) {
-    return 'Listening on $topic';
+    return 'Nasłuch na $topic';
   }
 
   @override
   String mqtt_packetCounts(int accepted, int duplicate, int invalid) {
-    return 'Packets: $accepted new, $duplicate duplicate, $invalid invalid';
+    return 'Pakiety: nowe $accepted, duplikaty $duplicate, nieprawidłowe $invalid';
   }
 
   @override
   String mqtt_retryCount(int attempt, int max) {
-    return 'Retry $attempt of $max';
+    return 'Próba $attempt z $max';
   }
 
   @override
   String get mqtt_sharingWaitsForRadio =>
-      'Sharing waits for a radio connection';
+      'Udostępnianie czeka na połączenie z radiem';
 
   @override
   String mqtt_sharingOn(String topic) {
-    return 'Sharing on $topic';
+    return 'Udostępnianie na $topic';
   }
 
   @override
   String mqtt_willShareOn(String topic) {
-    return 'Will share on $topic';
+    return 'Będzie udostępniać na $topic';
   }
 
   @override
   String mqtt_onlineStatusOn(String topic) {
-    return 'Online status on $topic';
+    return 'Status online na $topic';
   }
 
   @override
   String mqtt_sharedCounts(int shared, int held) {
-    return 'Shared $shared, held back $held';
+    return 'Udostępnione: $shared, wstrzymane: $held';
   }
 
   @override
   String get mqtt_addBrokerHint =>
-      'Add a broker to bridge MeshCore traffic over the internet. Radio connection works independently.';
+      'Dodaj brokera, aby łączyć ruch MeshCore przez internet. Połączenie z radiem działa niezależnie.';
 
   @override
-  String get mqtt_disconnect => 'Disconnect MQTT';
+  String get mqtt_disconnect => 'Rozłącz MQTT';
 
   @override
-  String get mqtt_connect => 'Connect MQTT';
+  String get mqtt_connect => 'Połącz MQTT';
 
   @override
-  String get mqtt_packetFeed => 'Packet feed';
+  String get mqtt_packetFeed => 'Strumień pakietów';
 
   @override
-  String get mqtt_setUpBroker => 'Set up broker';
+  String get mqtt_setUpBroker => 'Skonfiguruj brokera';
 
   @override
-  String get mqtt_brokerSettings => 'Broker settings';
+  String get mqtt_brokerSettings => 'Ustawienia brokera';
 
   @override
-  String get mqtt_settingsTitle => 'MQTT broker settings';
+  String get mqtt_settingsTitle => 'Ustawienia brokera MQTT';
 
   @override
-  String get mqtt_presetLabel => 'Start from a preset';
+  String get mqtt_presetLabel => 'Zacznij od szablonu';
 
   @override
-  String get mqtt_presetCustom => 'Custom broker';
+  String get mqtt_presetCustom => 'Własny broker';
 
   @override
-  String get mqtt_presetLocal => 'Local broker (configure address)';
+  String get mqtt_presetLocal => 'Lokalny broker (podaj adres)';
 
   @override
-  String get mqtt_presetLetsMeshUs => 'LetsMesh analyzer (US, community)';
+  String get mqtt_presetLetsMeshUs => 'Analizator LetsMesh (USA, społeczność)';
 
   @override
-  String get mqtt_presetLetsMeshEu => 'LetsMesh analyzer (EU, community)';
+  String get mqtt_presetLetsMeshEu => 'Analizator LetsMesh (UE, społeczność)';
 
   @override
   String get mqtt_presetLetsMeshNote =>
-      'LetsMesh is a community-run MeshCore packet analyzer, not part of NOTORYX and not endorsed by it. Sharing needs your radio connected and stays off until you turn it on.';
+      'LetsMesh to prowadzony przez społeczność analizator pakietów MeshCore; nie jest częścią NOTORYX ani nie jest przez NOTORYX polecany. Udostępnianie wymaga połączonego radia i pozostaje wyłączone, dopóki go nie włączysz.';
 
   @override
-  String get mqtt_hostname => 'Broker hostname';
+  String get mqtt_hostname => 'Nazwa hosta brokera';
 
   @override
   String get mqtt_port => 'Port';
 
   @override
-  String get mqtt_useTls => 'Use TLS';
+  String get mqtt_useTls => 'Używaj TLS';
 
   @override
-  String get mqtt_allowCleartext => 'Allow cleartext to a local broker';
+  String get mqtt_allowCleartext =>
+      'Zezwól na nieszyfrowane połączenie z lokalnym brokerem';
 
   @override
   String get mqtt_allowCleartextHint =>
-      'Only localhost, .local and private 10.x / 192.168.x hosts.';
+      'Tylko localhost, .local i prywatne hosty 10.x / 192.168.x.';
 
   @override
-  String get mqtt_useWebSocket => 'Use WebSocket';
+  String get mqtt_useWebSocket => 'Używaj WebSocket';
 
   @override
-  String get mqtt_webSocketPath => 'WebSocket path';
+  String get mqtt_webSocketPath => 'Ścieżka WebSocket';
 
   @override
-  String get mqtt_topicPrefix => 'Topic prefix';
+  String get mqtt_topicPrefix => 'Prefiks tematu';
 
   @override
-  String get mqtt_region => 'Region (optional)';
+  String get mqtt_region => 'Region (opcjonalnie)';
 
   @override
   String get mqtt_regionHelp =>
-      'Observer region code such as PHL. Leave blank for all.';
+      'Kod regionu obserwatora, np. PHL. Zostaw puste dla wszystkich.';
 
   @override
-  String get mqtt_deliverChannel => 'Add channel messages heard via MQTT';
+  String get mqtt_deliverChannel =>
+      'Dodawaj wiadomości z kanałów odebrane przez MQTT';
 
   @override
   String get mqtt_deliverChannelHint =>
-      'Messages on your channels that observers heard show up in your chats. They are not sent over your radio.';
+      'Wiadomości z Twoich kanałów usłyszane przez obserwatorów pojawią się w czatach. Nie są wysyłane przez Twoje radio.';
 
   @override
-  String get mqtt_sharingTitle => 'Sharing as an observer';
+  String get mqtt_sharingTitle => 'Udostępnianie jako obserwator';
 
   @override
-  String get mqtt_share => 'Share packets my radio hears';
+  String get mqtt_share => 'Udostępniaj pakiety, które słyszy moje radio';
 
   @override
   String get mqtt_shareHint =>
-      'Publishes adverts and channel traffic your radio receives, with its public key, signal strength and region. Channel messages stay encrypted. Needs a region.';
+      'Publikuje ogłoszenia i ruch kanałów odbierany przez radio, z jego kluczem publicznym, siłą sygnału i regionem. Wiadomości z kanałów pozostają zaszyfrowane. Wymaga regionu.';
 
   @override
-  String get mqtt_shareDirect => 'Include direct-message traffic';
+  String get mqtt_shareDirect => 'Uwzględnij ruch wiadomości bezpośrednich';
 
   @override
   String get mqtt_shareDirectHint =>
-      'Requests, replies and direct messages. Contents stay encrypted, but this shows which nodes talk to each other.';
+      'Żądania, odpowiedzi i wiadomości bezpośrednie. Treść pozostaje zaszyfrowana, ale widać, które węzły ze sobą rozmawiają.';
 
   @override
-  String get mqtt_shareOwn => 'Include my own messages and adverts';
+  String get mqtt_shareOwn => 'Uwzględnij moje własne wiadomości i ogłoszenia';
 
   @override
-  String get mqtt_signInTitle => 'Sign-in';
+  String get mqtt_signInTitle => 'Logowanie';
 
   @override
-  String get mqtt_authPassword => 'Username and password';
+  String get mqtt_authPassword => 'Nazwa użytkownika i hasło';
 
   @override
-  String get mqtt_authToken => 'Radio-signed token';
+  String get mqtt_authToken => 'Token podpisany przez radio';
 
   @override
   String get mqtt_tokenExplain =>
-      'Your radio signs a one-hour sign-in token with its own key, and the app renews it before it runs out. The key never leaves the radio. The username is v1_ and your radio\'s public key.';
+      'Radio podpisuje własnym kluczem godzinny token logowania, a aplikacja odnawia go przed wygaśnięciem. Klucz nigdy nie opuszcza radia. Nazwa użytkownika to v1_ i klucz publiczny radia.';
 
   @override
-  String get mqtt_radioReady => 'Radio connected: ready to sign in.';
+  String get mqtt_radioReady => 'Radio połączone: gotowe do logowania.';
 
   @override
   String get mqtt_radioNeeded =>
-      'Connect your radio to sign in. MQTT waits for it.';
+      'Połącz radio, aby się zalogować. MQTT na nie czeka.';
 
   @override
-  String get mqtt_username => 'Username (optional)';
+  String get mqtt_username => 'Nazwa użytkownika (opcjonalnie)';
 
   @override
-  String get mqtt_password => 'Password';
+  String get mqtt_password => 'Hasło';
 
   @override
-  String get mqtt_keepPassword => 'Leave blank to keep the saved password.';
+  String get mqtt_keepPassword => 'Zostaw puste, aby zachować zapisane hasło.';
 
   @override
   String get mqtt_credentialsWeb =>
-      'In the browser, credentials are kept only until the page is closed.';
+      'W przeglądarce dane logowania są przechowywane tylko do zamknięcia strony.';
 
   @override
   String get mqtt_credentialsKeychain =>
-      'Credentials are stored in the system keychain, never in app settings or logs.';
+      'Dane logowania są przechowywane w systemowym pęku kluczy, nigdy w ustawieniach aplikacji ani w logach.';
 
   @override
-  String get mqtt_saveSettings => 'Save settings';
+  String get mqtt_saveSettings => 'Zapisz ustawienia';
 
   @override
-  String get mqtt_feedTitle => 'MQTT packet feed';
+  String get mqtt_feedTitle => 'Strumień pakietów MQTT';
 
   @override
   String get mqtt_feedConnect =>
-      'Connect to a broker to see packets from observers.';
+      'Połącz się z brokerem, aby zobaczyć pakiety od obserwatorów.';
 
   @override
   String mqtt_feedWaiting(String topic) {
-    return 'Waiting for packets on $topic';
+    return 'Czekanie na pakiety na $topic';
   }
 
   @override
-  String get mqtt_feedUnknownObserver => 'Unknown observer';
+  String get mqtt_feedUnknownObserver => 'Nieznany obserwator';
 
   @override
   String mqtt_feedHeardBy(String observer) {
-    return 'Heard by $observer';
+    return 'Odebrane przez $observer';
   }
 
   @override
   String mqtt_feedHopsBytes(int hops, int bytes) {
-    return '$hops hops · $bytes bytes';
+    return 'Przeskoki: $hops · bajty: $bytes';
   }
 
   @override
-  String get mqtt_packetRequest => 'Request';
+  String get mqtt_packetRequest => 'Żądanie';
 
   @override
-  String get mqtt_packetResponse => 'Response';
+  String get mqtt_packetResponse => 'Odpowiedź';
 
   @override
-  String get mqtt_packetDirectMessage => 'Direct message';
+  String get mqtt_packetDirectMessage => 'Wiadomość bezpośrednia';
 
   @override
-  String get mqtt_packetAck => 'Ack';
+  String get mqtt_packetAck => 'Potwierdzenie';
 
   @override
-  String get mqtt_packetAdvert => 'Advert';
+  String get mqtt_packetAdvert => 'Ogłoszenie';
 
   @override
-  String get mqtt_packetChannelMessage => 'Channel message';
+  String get mqtt_packetChannelMessage => 'Wiadomość kanału';
 
   @override
-  String get mqtt_packetChannelData => 'Channel data';
+  String get mqtt_packetChannelData => 'Dane kanału';
 
   @override
-  String get mqtt_packetAnonymousRequest => 'Anonymous request';
+  String get mqtt_packetAnonymousRequest => 'Żądanie anonimowe';
 
   @override
-  String get mqtt_packetPath => 'Path';
+  String get mqtt_packetPath => 'Ścieżka';
 
   @override
-  String get mqtt_packetTrace => 'Trace';
+  String get mqtt_packetTrace => 'Śledzenie';
 
   @override
-  String get mqtt_packetMultipart => 'Multipart';
+  String get mqtt_packetMultipart => 'Wieloczęściowy';
 
   @override
-  String get mqtt_packetControl => 'Control';
+  String get mqtt_packetControl => 'Sterowanie';
 
   @override
   String mqtt_packetType(int type) {
-    return 'Type $type';
+    return 'Typ $type';
   }
 
   @override
-  String get mqtt_routeTransportFlood => 'Transport flood';
+  String get mqtt_routeTransportFlood => 'Flood z transportem';
 
   @override
   String get mqtt_routeFlood => 'Flood';
 
   @override
-  String get mqtt_routeDirect => 'Direct';
+  String get mqtt_routeDirect => 'Bezpośrednia';
 
   @override
-  String get mqtt_routeTransportDirect => 'Transport direct';
+  String get mqtt_routeTransportDirect => 'Bezpośrednia z transportem';
 
   @override
   String get mqtt_noticeInvalidHost =>
-      'Enter a hostname or IPv4 address without a scheme or port.';
+      'Podaj nazwę hosta lub adres IPv4 bez schematu i portu.';
 
   @override
-  String get mqtt_noticeInvalidPort => 'Port must be between 1 and 65535.';
+  String get mqtt_noticeInvalidPort => 'Port musi być z zakresu od 1 do 65535.';
 
   @override
   String get mqtt_noticeInvalidWebSocketPath =>
-      'WebSocket path must begin with / and contain no query or fragment.';
+      'Ścieżka WebSocket musi zaczynać się od / i nie może zawierać zapytania ani fragmentu.';
 
   @override
   String get mqtt_noticeInvalidTopicPrefix =>
-      'Topic prefix must be a nonempty MQTT path without wildcards.';
+      'Prefiks tematu musi być niepustą ścieżką MQTT bez symboli wieloznacznych.';
 
   @override
   String get mqtt_noticeInvalidRegion =>
-      'Region must be 2-8 letters or digits, such as PHL.';
+      'Region musi mieć od 2 do 8 liter lub cyfr, np. PHL.';
 
   @override
   String get mqtt_noticeTlsRequired =>
-      'TLS is required unless insecure local broker access is explicitly enabled.';
+      'TLS jest wymagany, chyba że wyraźnie zezwolono na niezabezpieczony dostęp do lokalnego brokera.';
 
   @override
   String get mqtt_noticeCleartextLocalOnly =>
-      'Cleartext MQTT is restricted to explicitly approved local hosts.';
+      'Nieszyfrowane MQTT jest dozwolone tylko dla wyraźnie zatwierdzonych hostów lokalnych.';
 
   @override
   String get mqtt_noticeRegionNeededToShare =>
-      'Set a region to share packets as an observer.';
+      'Ustaw region, aby udostępniać pakiety jako obserwator.';
 
   @override
   String mqtt_noticePasswordNeeded(String username) {
-    return 'Enter the password for $username.';
+    return 'Podaj hasło dla $username.';
   }
 
   @override
   String get mqtt_noticeNoNetwork =>
-      'No network connection. MQTT reconnects when it is back.';
+      'Brak połączenia z siecią. MQTT połączy się ponownie, gdy wróci.';
 
   @override
   String get mqtt_noticeSubscriptionRefused =>
-      'The broker refused the packet subscription.';
+      'Broker odrzucił subskrypcję pakietów.';
 
   @override
   String get mqtt_noticeBadCredentials =>
-      'The broker rejected the username or password.';
+      'Broker odrzucił nazwę użytkownika lub hasło.';
 
   @override
   String get mqtt_noticeNotAuthorized =>
-      'This account is not authorized on the broker.';
+      'To konto nie ma uprawnień na brokerze.';
 
   @override
-  String get mqtt_noticeConnectionRefused =>
-      'The broker refused the connection.';
+  String get mqtt_noticeConnectionRefused => 'Broker odrzucił połączenie.';
 
   @override
-  String get mqtt_noticeUnreachable => 'The broker could not be reached.';
+  String get mqtt_noticeUnreachable => 'Nie udało się połączyć z brokerem.';
 
   @override
   String get mqtt_noticeTlsFailed =>
-      'The secure (TLS) connection could not be established.';
+      'Nie udało się nawiązać bezpiecznego połączenia (TLS).';
 
   @override
   String get mqtt_noticeWebSocketOnly =>
-      'This platform only supports MQTT over WebSocket.';
+      'Ta platforma obsługuje MQTT tylko przez WebSocket.';
 
   @override
   String get mqtt_noticeRadioNotConnected =>
-      'Connect your radio to sign in with its key.';
+      'Połącz radio, aby zalogować się jego kluczem.';
 
   @override
   String get mqtt_noticeSigningUnsupported =>
-      'This radio\'s firmware does not support signing with its key.';
+      'Firmware tego radia nie obsługuje podpisywania jego kluczem.';
 
   @override
   String get mqtt_noticeSigningTimeout =>
-      'The radio did not answer the signing request. Its firmware may not support signing.';
+      'Radio nie odpowiedziało na żądanie podpisu. Jego firmware może nie obsługiwać podpisywania.';
 
   @override
   String get mqtt_noticeSigningTooLong =>
-      'The data is too long for the radio to sign.';
+      'Dane są zbyt długie, aby radio mogło je podpisać.';
 
   @override
-  String get mqtt_noticeSigningRejected =>
-      'The radio refused to sign the data.';
+  String get mqtt_noticeSigningRejected => 'Radio odmówiło podpisania danych.';
 }
