@@ -21,7 +21,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get nav_map => 'Kaart';
 
   @override
-  String get nav_messages => 'Messages';
+  String get nav_messages => 'Berichten';
 
   @override
   String get nav_nodes => 'Nodes';
@@ -30,16 +30,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get nav_radio => 'Radio';
 
   @override
-  String get messages_title => 'Messages';
+  String get messages_title => 'Berichten';
 
   @override
-  String get messages_filterAll => 'All';
+  String get messages_filterAll => 'Alle';
 
   @override
   String get messages_filterDirect => 'Direct';
 
   @override
-  String get messages_filterChannels => 'Channels';
+  String get messages_filterChannels => 'Kanalen';
 
   @override
   String messages_filterWithUnread(String label, int count) {
@@ -47,52 +47,53 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get messages_search => 'Search messages';
+  String get messages_search => 'Berichten zoeken';
 
   @override
-  String get messages_searchHint => 'Search conversations';
+  String get messages_searchHint => 'Gesprekken zoeken';
 
   @override
-  String get messages_closeSearch => 'Close search';
+  String get messages_closeSearch => 'Zoeken sluiten';
 
   @override
-  String get messages_manageChannels => 'Manage channels';
+  String get messages_manageChannels => 'Kanalen beheren';
 
   @override
-  String get messages_new => 'New';
+  String get messages_new => 'Nieuw';
 
   @override
-  String get messages_newDirect => 'Message a node';
+  String get messages_newDirect => 'Bericht naar een node';
 
   @override
-  String get messages_newChannel => 'Add or join a channel';
+  String get messages_newChannel => 'Kanaal toevoegen of deelnemen';
 
   @override
-  String get messages_empty => 'No conversations yet';
+  String get messages_empty => 'Nog geen gesprekken';
 
   @override
   String get messages_emptyHint =>
-      'Messages from nodes and channels show up here.';
+      'Berichten van nodes en kanalen verschijnen hier.';
 
   @override
-  String get messages_noMatches => 'No conversations match your search';
+  String get messages_noMatches =>
+      'Geen gesprekken komen overeen met je zoekopdracht';
 
   @override
   String messages_you(String text) {
-    return 'You: $text';
+    return 'Jij: $text';
   }
 
   @override
-  String get messages_yesterday => 'Yesterday';
+  String get messages_yesterday => 'Gisteren';
 
   @override
   String messages_unreadCount(int count) {
-    return '$count unread';
+    return '$count ongelezen';
   }
 
   @override
   String radioStatus_connectedVia(String transport) {
-    return 'Connected over $transport';
+    return 'Verbonden via $transport';
   }
 
   @override
@@ -102,18 +103,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get radioStatus_usb => 'USB';
 
   @override
-  String get radioStatus_tcp => 'Wi‑Fi (TCP)';
+  String get radioStatus_tcp => 'Wifi (TCP)';
 
   @override
   String radioStatus_battery(int percent) {
-    return 'Battery $percent%';
+    return 'Batterij $percent%';
   }
 
   @override
-  String get radioStatus_openRadio => 'Open radio details';
+  String get radioStatus_openRadio => 'Radiodetails openen';
 
   @override
-  String get radioOverview_battery => 'Battery';
+  String get radioOverview_battery => 'Batterij';
 
   @override
   String radioOverview_firmware(String version) {
@@ -121,196 +122,197 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get radioOverview_sendAdvert => 'Send advert';
+  String get radioOverview_sendAdvert => 'Advert versturen';
 
   @override
-  String get radioOverview_stats => 'Radio stats';
+  String get radioOverview_stats => 'Radiostatistieken';
 
   @override
-  String get accessControl_title => 'Access control';
+  String get accessControl_title => 'Toegangsbeheer';
 
   @override
-  String get accessControl_hubSubtitle => 'Who can log in without the password';
+  String get accessControl_hubSubtitle => 'Wie zonder wachtwoord kan inloggen';
 
   @override
   String get accessControl_explainRepeater =>
-      'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.';
+      'Mensen op deze lijst loggen in zonder wachtwoord. Beheerders kunnen instellingen wijzigen; Alleen lezen en Lezen en schrijven krijgen ook de volledige telemetrie.';
 
   @override
   String get accessControl_explainRoom =>
-      'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.';
+      'Beheerders op deze lijst loggen in zonder wachtwoord en kunnen de ruimte beheren. Leden van de ruimte doen mee met het ruimtewachtwoord.';
 
   @override
-  String get accessControl_roleReadOnly => 'Read only';
+  String get accessControl_roleReadOnly => 'Alleen lezen';
 
   @override
-  String get accessControl_roleReadWrite => 'Read & write';
+  String get accessControl_roleReadWrite => 'Lezen en schrijven';
 
   @override
-  String get accessControl_roleAdmin => 'Admin';
+  String get accessControl_roleAdmin => 'Beheerder';
 
   @override
-  String get accessControl_you => 'You';
+  String get accessControl_you => 'Jij';
 
   @override
-  String get accessControl_unknownNode => 'Unknown node';
+  String get accessControl_unknownNode => 'Onbekende node';
 
   @override
-  String get accessControl_add => 'Add';
+  String get accessControl_add => 'Toevoegen';
 
   @override
-  String get accessControl_addTitle => 'Add to access list';
+  String get accessControl_addTitle => 'Toevoegen aan toegangslijst';
 
   @override
-  String get accessControl_pickContact => 'Choose a contact';
+  String get accessControl_pickContact => 'Kies een contact';
 
   @override
   String get accessControl_noContacts =>
-      'No contacts to add. Nodes appear here once you have heard their advert.';
+      'Geen contacten om toe te voegen. Nodes verschijnen hier zodra je hun advert hebt ontvangen.';
 
   @override
-  String get accessControl_changeRole => 'Change role';
+  String get accessControl_changeRole => 'Rol wijzigen';
 
   @override
-  String get accessControl_remove => 'Remove access';
+  String get accessControl_remove => 'Toegang intrekken';
 
   @override
   String accessControl_removeConfirm(String name) {
-    return 'Remove $name from the access list? They will need the password to log in.';
+    return '$name van de toegangslijst verwijderen? Om in te loggen is dan het wachtwoord nodig.';
   }
 
   @override
   String get accessControl_removeSelfWarning =>
-      'This is you. If you remove yourself you will need the admin password to manage this node again.';
+      'Dit ben jij. Als je jezelf verwijdert, heb je het beheerderswachtwoord nodig om deze node weer te beheren.';
 
   @override
   String get accessControl_unknownKeyNote =>
-      'Not in your contacts. Changing its role needs newer node firmware; removing it always works.';
+      'Niet in je contacten. De rol wijzigen vereist nieuwere node-firmware; verwijderen werkt altijd.';
 
   @override
   String get accessControl_prefixUnsupported =>
-      'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.';
+      'De firmware van deze node kan de rol van iemand buiten je contacten niet wijzigen. Verwijderen kan nog wel.';
 
   @override
-  String get accessControl_empty => 'Nobody is on the access list';
+  String get accessControl_empty => 'Er staat niemand op de toegangslijst';
 
   @override
   String get accessControl_emptyHint =>
-      'Add people so they can log in without the password.';
+      'Voeg mensen toe zodat ze zonder wachtwoord kunnen inloggen.';
 
   @override
-  String get accessControl_loading => 'Asking the node for its access list…';
+  String get accessControl_loading => 'Toegangslijst opvragen bij de node…';
 
   @override
   String get accessControl_timeout =>
-      'The node didn\'t answer. Check the path and try again.';
+      'De node antwoordde niet. Controleer het pad en probeer het opnieuw.';
 
   @override
   String get accessControl_maybeIncomplete =>
-      'This node sent one full page and its firmware can\'t send more, so some entries may be missing.';
+      'Deze node stuurde één volle pagina en zijn firmware kan niet meer sturen, dus er kunnen items ontbreken.';
 
   @override
-  String get accessControl_saved => 'Access list updated';
+  String get accessControl_saved => 'Toegangslijst bijgewerkt';
 
   @override
   String accessControl_failed(String reply) {
-    return 'The node refused the change: $reply';
+    return 'De node weigerde de wijziging: $reply';
   }
 
   @override
-  String get companionCli_title => 'Command line';
+  String get companionCli_title => 'Opdrachtregel';
 
   @override
-  String get companionCli_tileSubtitle => 'Run commands on your radio';
+  String get companionCli_tileSubtitle => 'Commando\'s uitvoeren op je radio';
 
   @override
   String get companionCli_warning =>
-      'Commands run on your connected radio and can change its settings or restart it.';
+      'Commando\'s draaien op je verbonden radio en kunnen de instellingen wijzigen of de radio herstarten.';
 
   @override
-  String get companionCli_hint => 'Type a command, e.g. ver';
+  String get companionCli_hint => 'Typ een commando, bijv. ver';
 
   @override
-  String get companionCli_send => 'Run command';
+  String get companionCli_send => 'Commando uitvoeren';
 
   @override
-  String get companionCli_noReply => 'No reply. The radio may be restarting.';
+  String get companionCli_noReply =>
+      'Geen antwoord. De radio start mogelijk opnieuw op.';
 
   @override
   String get companionCli_empty =>
-      'Try one of the commands above, or type your own.';
+      'Probeer een van de commando\'s hierboven of typ je eigen commando.';
 
   @override
-  String get wifi_title => 'WiFi';
+  String get wifi_title => 'Wifi';
 
   @override
-  String get wifi_tileSubtitle => 'Connect your radio to a WiFi network';
+  String get wifi_tileSubtitle => 'Verbind je radio met een wifinetwerk';
 
   @override
-  String get wifi_unsupported =>
-      'This radio\'s firmware doesn\'t include WiFi.';
+  String get wifi_unsupported => 'De firmware van deze radio bevat geen wifi.';
 
   @override
-  String get wifi_enabled => 'Use WiFi';
+  String get wifi_enabled => 'Wifi gebruiken';
 
   @override
   String get wifi_status => 'Status';
 
   @override
-  String get wifi_connected => 'Connected';
+  String get wifi_connected => 'Verbonden';
 
   @override
   String wifi_connectedIp(String ip) {
-    return 'Connected · $ip';
+    return 'Verbonden · $ip';
   }
 
   @override
-  String get wifi_disconnected => 'Not connected';
+  String get wifi_disconnected => 'Niet verbonden';
 
   @override
-  String get wifi_network => 'Network name (SSID)';
+  String get wifi_network => 'Netwerknaam (SSID)';
 
   @override
-  String get wifi_password => 'Password';
+  String get wifi_password => 'Wachtwoord';
 
   @override
-  String get wifi_passwordKeep => 'Leave blank to keep the current password';
+  String get wifi_passwordKeep =>
+      'Laat leeg om het huidige wachtwoord te houden';
 
   @override
-  String get wifi_save => 'Save';
+  String get wifi_save => 'Opslaan';
 
   @override
-  String get wifi_forget => 'Forget network';
+  String get wifi_forget => 'Netwerk vergeten';
 
   @override
   String get wifi_forgetConfirm =>
-      'Remove the saved network and password from the radio?';
+      'Het opgeslagen netwerk en wachtwoord van de radio verwijderen?';
 
   @override
   String get wifi_rebootNeeded =>
-      'Saved. Restart the radio to apply WiFi changes.';
+      'Opgeslagen. Herstart de radio om de wifi-wijzigingen toe te passen.';
 
   @override
-  String get wifi_rebootNow => 'Restart radio';
+  String get wifi_rebootNow => 'Radio herstarten';
 
   @override
   String get wifi_rebootConfirm =>
-      'Restart the radio now? The app will disconnect and you\'ll need to reconnect.';
+      'Radio nu herstarten? De app verbreekt de verbinding en je moet opnieuw verbinden.';
 
   @override
   String get wifi_loadFailed =>
-      'Couldn\'t read the WiFi settings from the radio.';
+      'Kon de wifi-instellingen niet van de radio lezen.';
 
   @override
-  String get wifi_retry => 'Try again';
+  String get wifi_retry => 'Opnieuw proberen';
 
   @override
   String wifi_saveFailed(String reply) {
-    return 'The radio didn\'t accept the change: $reply';
+    return 'De radio accepteerde de wijziging niet: $reply';
   }
 
   @override
-  String get accessControl_refresh => 'Refresh';
+  String get accessControl_refresh => 'Vernieuwen';
 
   @override
   String get common_cancel => 'Annuleren';
@@ -403,10 +405,11 @@ class AppLocalizationsNl extends AppLocalizations {
   String get messageStatus_repeated => 'Hearsay, herhaald';
 
   @override
-  String get urlImage_enable => 'Enable URL images';
+  String get urlImage_enable => 'URL-afbeeldingen inschakelen';
 
   @override
-  String get urlImage_possible => 'Possible URL image; enable it in Settings.';
+  String get urlImage_possible =>
+      'Mogelijke URL-afbeelding; schakel dit in bij Instellingen.';
 
   @override
   String get common_reboot => 'Herstarten';
@@ -671,27 +674,27 @@ class AppLocalizationsNl extends AppLocalizations {
       'Beheer van opgeslagen regio\'s';
 
   @override
-  String get settings_corridorRegion => 'Corridor region';
+  String get settings_corridorRegion => 'Corridorregio';
 
   @override
-  String get settings_corridorRegionDefault => '#corridor (default)';
+  String get settings_corridorRegionDefault => '#corridor (standaard)';
 
   @override
   String get settings_corridorRegionHelp =>
-      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+      'Flood-corridorpakketten worden gemarkeerd met deze regio. Repeaters zonder corridorfirmware sturen ze alleen door als ze deze regio toestaan. Laat leeg voor de standaardtag #corridor.';
 
   @override
-  String get settings_corridorRegionHint => 'Region name';
+  String get settings_corridorRegionHint => 'Regionaam';
 
   @override
-  String get settings_corridorRegionUseDefault => 'Use default';
+  String get settings_corridorRegionUseDefault => 'Standaard gebruiken';
 
   @override
-  String get settings_corridorRegionUpdated => 'Corridor region updated';
+  String get settings_corridorRegionUpdated => 'Corridorregio bijgewerkt';
 
   @override
   String get settings_corridorRegionFailed =>
-      'Couldn\'t update the corridor region';
+      'Kon de corridorregio niet bijwerken';
 
   @override
   String get settings_regionManagement_screenTitle => 'Regionale Bestuur';
@@ -1545,7 +1548,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get channels_viaMqttSemantics =>
-      'Received via MQTT, not heard by your radio';
+      'Ontvangen via MQTT, niet gehoord door je radio';
 
   @override
   String get channels_private => 'Privé';
@@ -1809,31 +1812,31 @@ class AppLocalizationsNl extends AppLocalizations {
   String get chat_sendGif => 'GIF verzenden';
 
   @override
-  String get chat_limitToArea => 'Limit to an area';
+  String get chat_limitToArea => 'Beperken tot een gebied';
 
   @override
-  String get chat_limitToAreaTitle => 'Only send within…';
+  String get chat_limitToAreaTitle => 'Alleen verzenden binnen…';
 
   @override
   String get chat_limitToAreaHelp =>
-      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+      'Repeaters met flood-corridorfirmware sturen het bericht alleen binnen dit gebied door. Andere repeaters laten het vallen, tenzij ze jouw corridorregio toestaan.';
 
   @override
   String chat_limitToAreaRadius(int km) {
-    return '$km km of you';
+    return '$km km rond jou';
   }
 
   @override
   String chat_limitToAreaActive(int km) {
-    return 'Only within $km km of you';
+    return 'Alleen binnen $km km van jou';
   }
 
   @override
-  String get chat_limitToAreaOff => 'No limit';
+  String get chat_limitToAreaOff => 'Geen limiet';
 
   @override
   String get chat_limitToAreaNeedsPosition =>
-      'Set your radio\'s position to limit messages to an area.';
+      'Stel de positie van je radio in om berichten tot een gebied te beperken.';
 
   @override
   String get chat_sendImageLora => 'Afbeelding verzenden via MeshCore';
@@ -1854,7 +1857,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get chat_me => 'Mijn';
 
   @override
-  String get reaction_report => 'Emoji Reactions';
+  String get reaction_report => 'Emoji-reacties';
 
   @override
   String get emojiCategorySmileys => 'Emoji\'s';
@@ -2319,59 +2322,59 @@ class AppLocalizationsNl extends AppLocalizations {
   String get map_setAsMyLocation => 'Stel dit in als mijn locatie';
 
   @override
-  String get floodCorridor_title => 'Flood Corridor';
+  String get floodCorridor_title => 'Flood-corridor';
 
   @override
-  String get floodCorridor_previewToHere => 'Preview flood corridor to here';
+  String get floodCorridor_previewToHere => 'Flood-corridor tot hier bekijken';
 
   @override
-  String get floodCorridor_requesting => 'Asking your radio for a corridor…';
+  String get floodCorridor_requesting => 'Corridor opvragen bij je radio…';
 
   @override
   String get floodCorridor_unsupported =>
-      'Your radio\'s firmware doesn\'t support flood corridors.';
+      'De firmware van je radio ondersteunt geen flood-corridors.';
 
   @override
   String get floodCorridor_noProposal =>
-      'Your radio couldn\'t propose a corridor. Make sure it has a position set.';
+      'Je radio kon geen corridor voorstellen. Zorg dat er een positie is ingesteld.';
 
   @override
   String floodCorridor_circleCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count circles',
-      one: '1 circle',
+      other: '$count cirkels',
+      one: '1 cirkel',
     );
     return '$_temp0';
   }
 
   @override
   String floodCorridor_repeatersInside(int inside, int total) {
-    return '$inside of $total known repeaters inside';
+    return '$inside van $total bekende repeaters binnen';
   }
 
   @override
   String get floodCorridor_straightLine =>
-      'Straight line: no known repeaters along the way';
+      'Rechte lijn: geen bekende repeaters onderweg';
 
   @override
-  String get floodCorridor_followsRepeaters => 'Follows your known repeaters';
+  String get floodCorridor_followsRepeaters => 'Volgt je bekende repeaters';
 
   @override
   String get floodCorridor_horizonLimited =>
-      'Known repeaters don\'t reach the target; the rest is a straight line';
+      'Bekende repeaters reiken niet tot het doel; de rest is een rechte lijn';
 
   @override
   String get floodCorridor_thinStretch =>
-      'Part of the corridor has few known repeaters';
+      'Een deel van de corridor heeft weinig bekende repeaters';
 
   @override
-  String get floodCorridor_moreCoverage => 'Require more repeater coverage';
+  String get floodCorridor_moreCoverage => 'Meer repeaterdekking vereisen';
 
   @override
   String get floodCorridor_previewNote =>
-      'Preview only. Repeaters without corridor firmware don\'t apply corridors.';
+      'Alleen voorbeeld. Repeaters zonder corridorfirmware passen geen corridors toe.';
 
   @override
   String get map_pinLabel => 'Label vastzetten';
@@ -4096,14 +4099,14 @@ class AppLocalizationsNl extends AppLocalizations {
       'De details van de pakket zijn niet verstrekt.';
 
   @override
-  String get channelPath_sourceLabel => 'Source';
+  String get channelPath_sourceLabel => 'Bron';
 
   @override
   String get channelPath_sourceMqtt => 'MQTT';
 
   @override
   String get channelPath_viaMqttNoRfPath =>
-      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
+      'Dit bericht kwam binnen via MQTT. Je radio heeft het niet gehoord, dus er is geen radiopad vanaf je radio.';
 
   @override
   String get channelPath_messageDetails => 'Details Bericht';
@@ -7322,74 +7325,74 @@ class AppLocalizationsNl extends AppLocalizations {
   String get sensor_typeAltitude => 'Hoogte';
 
   @override
-  String get setupWizard_title => 'Connect your radio';
+  String get setupWizard_title => 'Verbind je radio';
 
   @override
-  String get setupWizard_choose => '1. Choose a connection';
+  String get setupWizard_choose => '1. Kies een verbinding';
 
   @override
-  String get setupWizard_prepare => '2. Prepare your radio';
+  String get setupWizard_prepare => '2. Bereid je radio voor';
 
   @override
   String get setupWizard_intro =>
-      'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.';
+      'Kies hoe deze telefoon of computer met je radio verbindt. De radio draagt berichten over het mesh.';
 
   @override
   String get setupWizard_bluetooth =>
-      'Wireless connection to a nearby compatible radio.';
+      'Draadloze verbinding met een compatibele radio in de buurt.';
 
   @override
   String get setupWizard_noBluetooth =>
-      'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.';
+      'Bluetooth is niet beschikbaar in deze browser. Gebruik de native app of een ondersteunde USB-verbinding.';
 
   @override
-  String get setupWizard_usb => 'A wired connection using a USB data cable.';
+  String get setupWizard_usb => 'Bekabelde verbinding met een USB-datakabel.';
 
   @override
   String get setupWizard_noUsb =>
-      'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.';
+      'USB-serieel is hier niet beschikbaar. Gebruik een ondersteunde desktop- of Android-app, of Chrome met Web Serial.';
 
   @override
   String get setupWizard_bluetoothSteps =>
-      'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.';
+      'Zet je radio aan en houd hem dichtbij. Schakel Bluetooth in en geef de app toestemming. Sluit andere apps die met de radio verbonden zijn, open de apparatenlijst en zoek.';
 
   @override
   String get setupWizard_usbSteps =>
-      'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.';
+      'Sluit een ingeschakelde radio aan met een USB-datakabel; een laadkabel werkt niet. Sluit andere seriële apps. Open de USB-apparatenlijst, kies je radio en sta toegang toe als daarom wordt gevraagd.';
 
   @override
   String get setupWizard_firmwareTitle =>
-      'Check compatibility before changing firmware';
+      'Controleer compatibiliteit voordat je firmware wijzigt';
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      'Je radio heeft MeshCore-companionfirmware nodig die de gekozen verbinding ondersteunt. Ondersteuning verschilt per board en firmwarebuild; een USB-poort alleen betekent nog geen USB-serieel-ondersteuning. Raadpleeg de instructies voor jouw board en geïnstalleerde build. Repeater- of room-serverfirmware is geen companion. Een mislukte verbinding betekent niet vanzelf dat je opnieuw moet flashen.';
 
   @override
   String get setupWizard_settings =>
-      'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.';
+      'Deze gids flasht geen firmware en wijzigt geen radio-instellingen. Gebruik na het verbinden Instellingen voor regio, frequentie en geavanceerde opties. Stem instellingen af met je lokale mesh voordat je ze wijzigt.';
 
   @override
-  String get setupWizard_openBluetooth => 'Open Bluetooth devices';
+  String get setupWizard_openBluetooth => 'Bluetooth-apparaten openen';
 
   @override
-  String get setupWizard_openUsb => 'Open USB devices';
+  String get setupWizard_openUsb => 'USB-apparaten openen';
 
   @override
-  String get setupWizard_change => 'Change connection type';
+  String get setupWizard_change => 'Verbindingstype wijzigen';
 
   @override
-  String get setupWizard_later => 'Set up later';
+  String get setupWizard_later => 'Later instellen';
 
   @override
   String get setupWizard_bluetoothError =>
-      'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.';
+      'Kon geen verbinding maken met de radio. Houd hem aan en dichtbij, controleer de Bluetooth-machtigingen en sluit andere verbonden apps. Zoek daarna opnieuw.';
 
   @override
   String get setupWizard_scanError =>
-      'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.';
+      'Kon niet naar radio\'s zoeken. Zet Bluetooth aan en sta toegang tot Bluetooth of Apparaten in de buurt toe in de systeeminstellingen, en zoek opnieuw.';
 
   @override
   String get setupWizard_usbError =>
-      'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.';
+      'Kon niet via USB verbinden. Controleer de datakabel en het gekozen apparaat, sta USB-toegang toe en sluit andere seriële apps. Sluit de kabel opnieuw aan en probeer het nog eens.';
 }

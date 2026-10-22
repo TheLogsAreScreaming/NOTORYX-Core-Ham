@@ -21,25 +21,25 @@ class AppLocalizationsSk extends AppLocalizations {
   String get nav_map => 'Mapa';
 
   @override
-  String get nav_messages => 'Messages';
+  String get nav_messages => 'Správy';
 
   @override
-  String get nav_nodes => 'Nodes';
+  String get nav_nodes => 'Uzly';
 
   @override
-  String get nav_radio => 'Radio';
+  String get nav_radio => 'Rádio';
 
   @override
-  String get messages_title => 'Messages';
+  String get messages_title => 'Správy';
 
   @override
-  String get messages_filterAll => 'All';
+  String get messages_filterAll => 'Všetky';
 
   @override
-  String get messages_filterDirect => 'Direct';
+  String get messages_filterDirect => 'Priame';
 
   @override
-  String get messages_filterChannels => 'Channels';
+  String get messages_filterChannels => 'Kanály';
 
   @override
   String messages_filterWithUnread(String label, int count) {
@@ -47,52 +47,52 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get messages_search => 'Search messages';
+  String get messages_search => 'Hľadať správy';
 
   @override
-  String get messages_searchHint => 'Search conversations';
+  String get messages_searchHint => 'Hľadať konverzácie';
 
   @override
-  String get messages_closeSearch => 'Close search';
+  String get messages_closeSearch => 'Zavrieť hľadanie';
 
   @override
-  String get messages_manageChannels => 'Manage channels';
+  String get messages_manageChannels => 'Spravovať kanály';
 
   @override
-  String get messages_new => 'New';
+  String get messages_new => 'Nová';
 
   @override
-  String get messages_newDirect => 'Message a node';
+  String get messages_newDirect => 'Napísať uzlu';
 
   @override
-  String get messages_newChannel => 'Add or join a channel';
+  String get messages_newChannel => 'Pridať kanál alebo sa pripojiť';
 
   @override
-  String get messages_empty => 'No conversations yet';
+  String get messages_empty => 'Zatiaľ žiadne konverzácie';
 
   @override
   String get messages_emptyHint =>
-      'Messages from nodes and channels show up here.';
+      'Tu sa zobrazujú správy od uzlov a z kanálov.';
 
   @override
-  String get messages_noMatches => 'No conversations match your search';
+  String get messages_noMatches => 'Hľadaniu nezodpovedajú žiadne konverzácie';
 
   @override
   String messages_you(String text) {
-    return 'You: $text';
+    return 'Vy: $text';
   }
 
   @override
-  String get messages_yesterday => 'Yesterday';
+  String get messages_yesterday => 'Včera';
 
   @override
   String messages_unreadCount(int count) {
-    return '$count unread';
+    return 'Neprečítané: $count';
   }
 
   @override
   String radioStatus_connectedVia(String transport) {
-    return 'Connected over $transport';
+    return 'Pripojené cez $transport';
   }
 
   @override
@@ -106,211 +106,211 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String radioStatus_battery(int percent) {
-    return 'Battery $percent%';
+    return 'Batéria $percent %';
   }
 
   @override
-  String get radioStatus_openRadio => 'Open radio details';
+  String get radioStatus_openRadio => 'Otvoriť podrobnosti rádia';
 
   @override
-  String get radioOverview_battery => 'Battery';
+  String get radioOverview_battery => 'Batéria';
 
   @override
   String radioOverview_firmware(String version) {
-    return 'Firmware $version';
+    return 'Firmvér $version';
   }
 
   @override
-  String get radioOverview_sendAdvert => 'Send advert';
+  String get radioOverview_sendAdvert => 'Odoslať ohlásenie';
 
   @override
-  String get radioOverview_stats => 'Radio stats';
+  String get radioOverview_stats => 'Štatistiky rádia';
 
   @override
-  String get accessControl_title => 'Access control';
+  String get accessControl_title => 'Riadenie prístupu';
 
   @override
-  String get accessControl_hubSubtitle => 'Who can log in without the password';
+  String get accessControl_hubSubtitle => 'Kto sa môže prihlásiť bez hesla';
 
   @override
   String get accessControl_explainRepeater =>
-      'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.';
+      'Ľudia z tohto zoznamu sa prihlasujú bez hesla. Správcovia môžu meniť nastavenia; Iba čítanie a Čítanie a zápis dostávajú aj úplnú telemetriu.';
 
   @override
   String get accessControl_explainRoom =>
-      'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.';
+      'Správcovia z tohto zoznamu sa prihlasujú bez hesla a môžu spravovať miestnosť. Členovia miestnosti sa pripájajú heslom miestnosti.';
 
   @override
-  String get accessControl_roleReadOnly => 'Read only';
+  String get accessControl_roleReadOnly => 'Iba čítanie';
 
   @override
-  String get accessControl_roleReadWrite => 'Read & write';
+  String get accessControl_roleReadWrite => 'Čítanie a zápis';
 
   @override
-  String get accessControl_roleAdmin => 'Admin';
+  String get accessControl_roleAdmin => 'Správca';
 
   @override
-  String get accessControl_you => 'You';
+  String get accessControl_you => 'Vy';
 
   @override
-  String get accessControl_unknownNode => 'Unknown node';
+  String get accessControl_unknownNode => 'Neznámy uzol';
 
   @override
-  String get accessControl_add => 'Add';
+  String get accessControl_add => 'Pridať';
 
   @override
-  String get accessControl_addTitle => 'Add to access list';
+  String get accessControl_addTitle => 'Pridať do zoznamu prístupu';
 
   @override
-  String get accessControl_pickContact => 'Choose a contact';
+  String get accessControl_pickContact => 'Vyberte kontakt';
 
   @override
   String get accessControl_noContacts =>
-      'No contacts to add. Nodes appear here once you have heard their advert.';
+      'Žiadne kontakty na pridanie. Uzly sa tu zobrazia, keď prijmete ich ohlásenie.';
 
   @override
-  String get accessControl_changeRole => 'Change role';
+  String get accessControl_changeRole => 'Zmeniť rolu';
 
   @override
-  String get accessControl_remove => 'Remove access';
+  String get accessControl_remove => 'Odobrať prístup';
 
   @override
   String accessControl_removeConfirm(String name) {
-    return 'Remove $name from the access list? They will need the password to log in.';
+    return 'Odstrániť $name zo zoznamu prístupu? Na prihlásenie bude potrebné heslo.';
   }
 
   @override
   String get accessControl_removeSelfWarning =>
-      'This is you. If you remove yourself you will need the admin password to manage this node again.';
+      'Toto ste vy. Ak sa odstránite, na opätovnú správu tohto uzla budete potrebovať heslo správcu.';
 
   @override
   String get accessControl_unknownKeyNote =>
-      'Not in your contacts. Changing its role needs newer node firmware; removing it always works.';
+      'Nie je vo vašich kontaktoch. Zmena roly vyžaduje novší firmvér uzla; odstránenie funguje vždy.';
 
   @override
   String get accessControl_prefixUnsupported =>
-      'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.';
+      'Firmvér tohto uzla nedokáže zmeniť rolu niekoho, kto nie je vo vašich kontaktoch. Stále ho môžete odstrániť.';
 
   @override
-  String get accessControl_empty => 'Nobody is on the access list';
+  String get accessControl_empty => 'Zoznam prístupu je prázdny';
 
   @override
   String get accessControl_emptyHint =>
-      'Add people so they can log in without the password.';
+      'Pridajte ľudí, aby sa mohli prihlásiť bez hesla.';
 
   @override
-  String get accessControl_loading => 'Asking the node for its access list…';
+  String get accessControl_loading => 'Žiadam od uzla zoznam prístupu…';
 
   @override
   String get accessControl_timeout =>
-      'The node didn\'t answer. Check the path and try again.';
+      'Uzol neodpovedal. Skontrolujte trasu a skúste to znova.';
 
   @override
   String get accessControl_maybeIncomplete =>
-      'This node sent one full page and its firmware can\'t send more, so some entries may be missing.';
+      'Uzol poslal jednu plnú stranu a jeho firmvér nedokáže poslať viac, takže niektoré položky môžu chýbať.';
 
   @override
-  String get accessControl_saved => 'Access list updated';
+  String get accessControl_saved => 'Zoznam prístupu aktualizovaný';
 
   @override
   String accessControl_failed(String reply) {
-    return 'The node refused the change: $reply';
+    return 'Uzol zmenu odmietol: $reply';
   }
 
   @override
-  String get companionCli_title => 'Command line';
+  String get companionCli_title => 'Príkazový riadok';
 
   @override
-  String get companionCli_tileSubtitle => 'Run commands on your radio';
+  String get companionCli_tileSubtitle => 'Spúšťajte príkazy na rádiu';
 
   @override
   String get companionCli_warning =>
-      'Commands run on your connected radio and can change its settings or restart it.';
+      'Príkazy sa spúšťajú na pripojenom rádiu a môžu zmeniť jeho nastavenia alebo ho reštartovať.';
 
   @override
-  String get companionCli_hint => 'Type a command, e.g. ver';
+  String get companionCli_hint => 'Zadajte príkaz, napr. ver';
 
   @override
-  String get companionCli_send => 'Run command';
+  String get companionCli_send => 'Spustiť príkaz';
 
   @override
-  String get companionCli_noReply => 'No reply. The radio may be restarting.';
+  String get companionCli_noReply =>
+      'Žiadna odpoveď. Rádio sa možno reštartuje.';
 
   @override
   String get companionCli_empty =>
-      'Try one of the commands above, or type your own.';
+      'Skúste jeden z príkazov vyššie alebo zadajte vlastný.';
 
   @override
-  String get wifi_title => 'WiFi';
+  String get wifi_title => 'Wi‑Fi';
 
   @override
-  String get wifi_tileSubtitle => 'Connect your radio to a WiFi network';
+  String get wifi_tileSubtitle => 'Pripojte rádio k sieti Wi‑Fi';
 
   @override
-  String get wifi_unsupported =>
-      'This radio\'s firmware doesn\'t include WiFi.';
+  String get wifi_unsupported => 'Firmvér tohto rádia nepodporuje Wi‑Fi.';
 
   @override
-  String get wifi_enabled => 'Use WiFi';
+  String get wifi_enabled => 'Používať Wi‑Fi';
 
   @override
-  String get wifi_status => 'Status';
+  String get wifi_status => 'Stav';
 
   @override
-  String get wifi_connected => 'Connected';
+  String get wifi_connected => 'Pripojené';
 
   @override
   String wifi_connectedIp(String ip) {
-    return 'Connected · $ip';
+    return 'Pripojené · $ip';
   }
 
   @override
-  String get wifi_disconnected => 'Not connected';
+  String get wifi_disconnected => 'Nepripojené';
 
   @override
-  String get wifi_network => 'Network name (SSID)';
+  String get wifi_network => 'Názov siete (SSID)';
 
   @override
-  String get wifi_password => 'Password';
+  String get wifi_password => 'Heslo';
 
   @override
-  String get wifi_passwordKeep => 'Leave blank to keep the current password';
+  String get wifi_passwordKeep =>
+      'Nechajte prázdne, ak chcete ponechať aktuálne heslo';
 
   @override
-  String get wifi_save => 'Save';
+  String get wifi_save => 'Uložiť';
 
   @override
-  String get wifi_forget => 'Forget network';
+  String get wifi_forget => 'Zabudnúť sieť';
 
   @override
-  String get wifi_forgetConfirm =>
-      'Remove the saved network and password from the radio?';
+  String get wifi_forgetConfirm => 'Odstrániť z rádia uloženú sieť a heslo?';
 
   @override
   String get wifi_rebootNeeded =>
-      'Saved. Restart the radio to apply WiFi changes.';
+      'Uložené. Reštartujte rádio, aby sa zmeny Wi‑Fi prejavili.';
 
   @override
-  String get wifi_rebootNow => 'Restart radio';
+  String get wifi_rebootNow => 'Reštartovať rádio';
 
   @override
   String get wifi_rebootConfirm =>
-      'Restart the radio now? The app will disconnect and you\'ll need to reconnect.';
+      'Reštartovať rádio teraz? Aplikácia sa odpojí a budete sa musieť znova pripojiť.';
 
   @override
   String get wifi_loadFailed =>
-      'Couldn\'t read the WiFi settings from the radio.';
+      'Nastavenia Wi‑Fi sa z rádia nepodarilo načítať.';
 
   @override
-  String get wifi_retry => 'Try again';
+  String get wifi_retry => 'Skúsiť znova';
 
   @override
   String wifi_saveFailed(String reply) {
-    return 'The radio didn\'t accept the change: $reply';
+    return 'Rádio zmenu neprijalo: $reply';
   }
 
   @override
-  String get accessControl_refresh => 'Refresh';
+  String get accessControl_refresh => 'Obnoviť';
 
   @override
   String get common_cancel => 'Zrušiť';
@@ -403,10 +403,11 @@ class AppLocalizationsSk extends AppLocalizations {
   String get messageStatus_repeated => 'Slyšal som to opakovane';
 
   @override
-  String get urlImage_enable => 'Enable URL images';
+  String get urlImage_enable => 'Povoliť obrázky z URL';
 
   @override
-  String get urlImage_possible => 'Possible URL image; enable it in Settings.';
+  String get urlImage_possible =>
+      'Možný obrázok z URL; povoľte ho v Nastaveniach.';
 
   @override
   String get common_reboot => 'Restartovať';
@@ -672,27 +673,27 @@ class AppLocalizationsSk extends AppLocalizations {
   String get settings_regionSettingsSubtitle => 'Zohľať uložené regiony';
 
   @override
-  String get settings_corridorRegion => 'Corridor region';
+  String get settings_corridorRegion => 'Región koridoru';
 
   @override
-  String get settings_corridorRegionDefault => '#corridor (default)';
+  String get settings_corridorRegionDefault => '#corridor (predvolený)';
 
   @override
   String get settings_corridorRegionHelp =>
-      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+      'Pakety flood koridoru sa označujú týmto regiónom. Opakovače bez firmvéru koridoru ich posielajú ďalej iba vtedy, ak tento región povoľujú. Nechajte prázdne pre predvolenú značku #corridor.';
 
   @override
-  String get settings_corridorRegionHint => 'Region name';
+  String get settings_corridorRegionHint => 'Názov regiónu';
 
   @override
-  String get settings_corridorRegionUseDefault => 'Use default';
+  String get settings_corridorRegionUseDefault => 'Použiť predvolený';
 
   @override
-  String get settings_corridorRegionUpdated => 'Corridor region updated';
+  String get settings_corridorRegionUpdated => 'Región koridoru aktualizovaný';
 
   @override
   String get settings_corridorRegionFailed =>
-      'Couldn\'t update the corridor region';
+      'Región koridoru sa nepodarilo aktualizovať';
 
   @override
   String get settings_regionManagement_screenTitle => 'Regiónne vedenie';
@@ -1539,11 +1540,11 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get channels_viaMqtt => 'via MQTT';
+  String get channels_viaMqtt => 'cez MQTT';
 
   @override
   String get channels_viaMqttSemantics =>
-      'Received via MQTT, not heard by your radio';
+      'Prijaté cez MQTT, vaše rádio to nepočulo';
 
   @override
   String get channels_private => 'Osobné';
@@ -1807,31 +1808,31 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chat_sendGif => 'Odoslať GIF';
 
   @override
-  String get chat_limitToArea => 'Limit to an area';
+  String get chat_limitToArea => 'Obmedziť na oblasť';
 
   @override
-  String get chat_limitToAreaTitle => 'Only send within…';
+  String get chat_limitToAreaTitle => 'Posielať iba v rámci…';
 
   @override
   String get chat_limitToAreaHelp =>
-      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+      'Opakovače s firmvérom flood koridoru posielajú správu ďalej iba v tejto oblasti. Ostatné opakovače ju zahodia, pokiaľ nepovoľujú váš región koridoru.';
 
   @override
   String chat_limitToAreaRadius(int km) {
-    return '$km km of you';
+    return '$km km od vás';
   }
 
   @override
   String chat_limitToAreaActive(int km) {
-    return 'Only within $km km of you';
+    return 'Iba do $km km od vás';
   }
 
   @override
-  String get chat_limitToAreaOff => 'No limit';
+  String get chat_limitToAreaOff => 'Bez obmedzenia';
 
   @override
   String get chat_limitToAreaNeedsPosition =>
-      'Set your radio\'s position to limit messages to an area.';
+      'Nastavte polohu rádia, aby ste mohli obmedziť správy na oblasť.';
 
   @override
   String get chat_sendImageLora => 'Odoslať obrázok cez MeshCore';
@@ -1852,7 +1853,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chat_me => 'Mne';
 
   @override
-  String get reaction_report => 'Emoji Reactions';
+  String get reaction_report => 'Reakcie emoji';
 
   @override
   String get emojiCategorySmileys => 'Emoji';
@@ -2322,59 +2323,61 @@ class AppLocalizationsSk extends AppLocalizations {
   String get map_setAsMyLocation => 'Nastavte ako moju polohu';
 
   @override
-  String get floodCorridor_title => 'Flood Corridor';
+  String get floodCorridor_title => 'Flood koridor';
 
   @override
-  String get floodCorridor_previewToHere => 'Preview flood corridor to here';
+  String get floodCorridor_previewToHere => 'Náhľad flood koridoru sem';
 
   @override
-  String get floodCorridor_requesting => 'Asking your radio for a corridor…';
+  String get floodCorridor_requesting => 'Žiadam rádio o koridor…';
 
   @override
   String get floodCorridor_unsupported =>
-      'Your radio\'s firmware doesn\'t support flood corridors.';
+      'Firmvér vášho rádia nepodporuje flood koridory.';
 
   @override
   String get floodCorridor_noProposal =>
-      'Your radio couldn\'t propose a corridor. Make sure it has a position set.';
+      'Rádio nedokázalo navrhnúť koridor. Uistite sa, že má nastavenú polohu.';
 
   @override
   String floodCorridor_circleCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count circles',
-      one: '1 circle',
+      other: '$count kruhov',
+      few: '$count kruhy',
+      one: '1 kruh',
     );
     return '$_temp0';
   }
 
   @override
   String floodCorridor_repeatersInside(int inside, int total) {
-    return '$inside of $total known repeaters inside';
+    return '$inside z $total známych opakovačov vnútri';
   }
 
   @override
   String get floodCorridor_straightLine =>
-      'Straight line: no known repeaters along the way';
+      'Priamka: po ceste nie sú žiadne známe opakovače';
 
   @override
-  String get floodCorridor_followsRepeaters => 'Follows your known repeaters';
+  String get floodCorridor_followsRepeaters => 'Sleduje vaše známe opakovače';
 
   @override
   String get floodCorridor_horizonLimited =>
-      'Known repeaters don\'t reach the target; the rest is a straight line';
+      'Známe opakovače nedosiahnu cieľ; zvyšok je priamka';
 
   @override
   String get floodCorridor_thinStretch =>
-      'Part of the corridor has few known repeaters';
+      'Časť koridoru má málo známych opakovačov';
 
   @override
-  String get floodCorridor_moreCoverage => 'Require more repeater coverage';
+  String get floodCorridor_moreCoverage =>
+      'Vyžadovať väčšie pokrytie opakovačmi';
 
   @override
   String get floodCorridor_previewNote =>
-      'Preview only. Repeaters without corridor firmware don\'t apply corridors.';
+      'Iba náhľad. Opakovače bez firmvéru koridoru koridory neuplatňujú.';
 
   @override
   String get map_pinLabel => 'Označka upozornenia';
@@ -4097,14 +4100,14 @@ class AppLocalizationsSk extends AppLocalizations {
       'Podrobnosti o balíčku zatiaľ nie sú dostupné.';
 
   @override
-  String get channelPath_sourceLabel => 'Source';
+  String get channelPath_sourceLabel => 'Zdroj';
 
   @override
   String get channelPath_sourceMqtt => 'MQTT';
 
   @override
   String get channelPath_viaMqttNoRfPath =>
-      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
+      'Táto správa prišla cez MQTT. Vaše rádio ju nepočulo, takže neexistuje rádiová trasa z vášho rádia.';
 
   @override
   String get channelPath_messageDetails => 'Podrobnosti o zprávach';
@@ -7342,74 +7345,74 @@ class AppLocalizationsSk extends AppLocalizations {
   String get sensor_typeAltitude => 'Nadmorská výška';
 
   @override
-  String get setupWizard_title => 'Connect your radio';
+  String get setupWizard_title => 'Pripojte rádio';
 
   @override
-  String get setupWizard_choose => '1. Choose a connection';
+  String get setupWizard_choose => '1. Vyberte pripojenie';
 
   @override
-  String get setupWizard_prepare => '2. Prepare your radio';
+  String get setupWizard_prepare => '2. Pripravte rádio';
 
   @override
   String get setupWizard_intro =>
-      'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.';
+      'Vyberte, ako sa tento telefón alebo počítač pripojí k rádiu. Rádio prenáša správy cez sieť mesh.';
 
   @override
   String get setupWizard_bluetooth =>
-      'Wireless connection to a nearby compatible radio.';
+      'Bezdrôtové pripojenie ku kompatibilnému rádiu v blízkosti.';
 
   @override
   String get setupWizard_noBluetooth =>
-      'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.';
+      'Bluetooth nie je v tomto prehliadači dostupný. Použite natívnu aplikáciu alebo podporované USB pripojenie.';
 
   @override
-  String get setupWizard_usb => 'A wired connection using a USB data cable.';
+  String get setupWizard_usb => 'Káblové pripojenie dátovým USB káblom.';
 
   @override
   String get setupWizard_noUsb =>
-      'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.';
+      'USB sériové rozhranie tu nie je dostupné. Použite podporovanú aplikáciu pre počítač alebo Android, prípadne Chrome s Web Serial.';
 
   @override
   String get setupWizard_bluetoothSteps =>
-      'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.';
+      'Zapnite rádio a majte ho blízko. Zapnite Bluetooth a povoľte aplikácii jeho použitie. Zavrite ostatné aplikácie pripojené k rádiu, otvorte zoznam zariadení a vyhľadajte.';
 
   @override
   String get setupWizard_usbSteps =>
-      'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.';
+      'Pripojte zapnuté rádio dátovým USB káblom; kábel iba na nabíjanie nebude fungovať. Zavrite ostatné sériové aplikácie. Otvorte zoznam USB zariadení, vyberte rádio a povoľte prístup, ak sa zobrazí výzva.';
 
   @override
   String get setupWizard_firmwareTitle =>
-      'Check compatibility before changing firmware';
+      'Pred zmenou firmvéru skontrolujte kompatibilitu';
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      'Rádio potrebuje firmvér MeshCore companion, ktorý podporuje zvolené pripojenie. Podpora sa líši podľa dosky a zostavy firmvéru; samotný USB konektor ešte neznamená podporu USB sériového rozhrania. Pozrite si pokyny pre svoju dosku a nainštalovanú zostavu. Firmvér opakovača alebo servera miestnosti nie je companion. Neúspešné pripojenie samo osebe neznamená, že treba firmvér nahrať znova.';
 
   @override
   String get setupWizard_settings =>
-      'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.';
+      'Tento sprievodca nenahráva firmvér ani nemení nastavenia rádia. Po pripojení použite Nastavenia pre región, frekvenciu a pokročilé možnosti. Pred zmenou nastavení sa dohodnite s miestnou sieťou mesh.';
 
   @override
-  String get setupWizard_openBluetooth => 'Open Bluetooth devices';
+  String get setupWizard_openBluetooth => 'Otvoriť zariadenia Bluetooth';
 
   @override
-  String get setupWizard_openUsb => 'Open USB devices';
+  String get setupWizard_openUsb => 'Otvoriť zariadenia USB';
 
   @override
-  String get setupWizard_change => 'Change connection type';
+  String get setupWizard_change => 'Zmeniť typ pripojenia';
 
   @override
-  String get setupWizard_later => 'Set up later';
+  String get setupWizard_later => 'Nastaviť neskôr';
 
   @override
   String get setupWizard_bluetoothError =>
-      'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.';
+      'K rádiu sa nepodarilo pripojiť. Majte ho zapnuté a blízko, skontrolujte povolenia Bluetooth a zavrite ostatné pripojené aplikácie. Potom hľadajte znova.';
 
   @override
   String get setupWizard_scanError =>
-      'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.';
+      'Rádiá sa nepodarilo vyhľadať. Zapnite Bluetooth a v systémových nastaveniach povoľte prístup k Bluetooth alebo zariadeniam v okolí, potom hľadajte znova.';
 
   @override
   String get setupWizard_usbError =>
-      'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.';
+      'Cez USB sa nepodarilo pripojiť. Skontrolujte dátový kábel a vybrané zariadenie, povoľte prístup k USB a zavrite ostatné sériové aplikácie. Znova pripojte kábel a skúste to znova.';
 }

@@ -21,25 +21,25 @@ class AppLocalizationsBg extends AppLocalizations {
   String get nav_map => 'Карта';
 
   @override
-  String get nav_messages => 'Messages';
+  String get nav_messages => 'Съобщения';
 
   @override
-  String get nav_nodes => 'Nodes';
+  String get nav_nodes => 'Възли';
 
   @override
-  String get nav_radio => 'Radio';
+  String get nav_radio => 'Радио';
 
   @override
-  String get messages_title => 'Messages';
+  String get messages_title => 'Съобщения';
 
   @override
-  String get messages_filterAll => 'All';
+  String get messages_filterAll => 'Всички';
 
   @override
-  String get messages_filterDirect => 'Direct';
+  String get messages_filterDirect => 'Лични';
 
   @override
-  String get messages_filterChannels => 'Channels';
+  String get messages_filterChannels => 'Канали';
 
   @override
   String messages_filterWithUnread(String label, int count) {
@@ -47,52 +47,52 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get messages_search => 'Search messages';
+  String get messages_search => 'Търсене в съобщенията';
 
   @override
-  String get messages_searchHint => 'Search conversations';
+  String get messages_searchHint => 'Търсене в разговорите';
 
   @override
-  String get messages_closeSearch => 'Close search';
+  String get messages_closeSearch => 'Затвори търсенето';
 
   @override
-  String get messages_manageChannels => 'Manage channels';
+  String get messages_manageChannels => 'Управление на канали';
 
   @override
-  String get messages_new => 'New';
+  String get messages_new => 'Ново';
 
   @override
-  String get messages_newDirect => 'Message a node';
+  String get messages_newDirect => 'Съобщение до възел';
 
   @override
-  String get messages_newChannel => 'Add or join a channel';
+  String get messages_newChannel => 'Добавяне или присъединяване към канал';
 
   @override
-  String get messages_empty => 'No conversations yet';
+  String get messages_empty => 'Все още няма разговори';
 
   @override
   String get messages_emptyHint =>
-      'Messages from nodes and channels show up here.';
+      'Тук се показват съобщения от възли и канали.';
 
   @override
-  String get messages_noMatches => 'No conversations match your search';
+  String get messages_noMatches => 'Няма разговори, отговарящи на търсенето';
 
   @override
   String messages_you(String text) {
-    return 'You: $text';
+    return 'Вие: $text';
   }
 
   @override
-  String get messages_yesterday => 'Yesterday';
+  String get messages_yesterday => 'Вчера';
 
   @override
   String messages_unreadCount(int count) {
-    return '$count unread';
+    return '$count непрочетени';
   }
 
   @override
   String radioStatus_connectedVia(String transport) {
-    return 'Connected over $transport';
+    return 'Свързано чрез $transport';
   }
 
   @override
@@ -106,211 +106,213 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String radioStatus_battery(int percent) {
-    return 'Battery $percent%';
+    return 'Батерия $percent%';
   }
 
   @override
-  String get radioStatus_openRadio => 'Open radio details';
+  String get radioStatus_openRadio => 'Отвори данните за радиото';
 
   @override
-  String get radioOverview_battery => 'Battery';
+  String get radioOverview_battery => 'Батерия';
 
   @override
   String radioOverview_firmware(String version) {
-    return 'Firmware $version';
+    return 'Фърмуер $version';
   }
 
   @override
-  String get radioOverview_sendAdvert => 'Send advert';
+  String get radioOverview_sendAdvert => 'Изпрати обявяване';
 
   @override
-  String get radioOverview_stats => 'Radio stats';
+  String get radioOverview_stats => 'Статистика на радиото';
 
   @override
-  String get accessControl_title => 'Access control';
+  String get accessControl_title => 'Контрол на достъпа';
 
   @override
-  String get accessControl_hubSubtitle => 'Who can log in without the password';
+  String get accessControl_hubSubtitle => 'Кой може да влиза без парола';
 
   @override
   String get accessControl_explainRepeater =>
-      'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.';
+      'Хората в този списък влизат без парола. Администраторите могат да променят настройките; „Само четене“ и „Четене и запис“ получават и пълната телеметрия.';
 
   @override
   String get accessControl_explainRoom =>
-      'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.';
+      'Администраторите в този списък влизат без парола и могат да управляват стаята. Членовете на стаята влизат с паролата на стаята.';
 
   @override
-  String get accessControl_roleReadOnly => 'Read only';
+  String get accessControl_roleReadOnly => 'Само четене';
 
   @override
-  String get accessControl_roleReadWrite => 'Read & write';
+  String get accessControl_roleReadWrite => 'Четене и запис';
 
   @override
-  String get accessControl_roleAdmin => 'Admin';
+  String get accessControl_roleAdmin => 'Администратор';
 
   @override
-  String get accessControl_you => 'You';
+  String get accessControl_you => 'Вие';
 
   @override
-  String get accessControl_unknownNode => 'Unknown node';
+  String get accessControl_unknownNode => 'Непознат възел';
 
   @override
-  String get accessControl_add => 'Add';
+  String get accessControl_add => 'Добави';
 
   @override
-  String get accessControl_addTitle => 'Add to access list';
+  String get accessControl_addTitle => 'Добавяне в списъка за достъп';
 
   @override
-  String get accessControl_pickContact => 'Choose a contact';
+  String get accessControl_pickContact => 'Изберете контакт';
 
   @override
   String get accessControl_noContacts =>
-      'No contacts to add. Nodes appear here once you have heard their advert.';
+      'Няма контакти за добавяне. Възлите се появяват тук, след като получите тяхното обявяване.';
 
   @override
-  String get accessControl_changeRole => 'Change role';
+  String get accessControl_changeRole => 'Промяна на ролята';
 
   @override
-  String get accessControl_remove => 'Remove access';
+  String get accessControl_remove => 'Премахни достъпа';
 
   @override
   String accessControl_removeConfirm(String name) {
-    return 'Remove $name from the access list? They will need the password to log in.';
+    return 'Да се премахне ли $name от списъка за достъп? За влизане ще е нужна паролата.';
   }
 
   @override
   String get accessControl_removeSelfWarning =>
-      'This is you. If you remove yourself you will need the admin password to manage this node again.';
+      'Това сте вие. Ако се премахнете, ще ви трябва администраторската парола, за да управлявате този възел отново.';
 
   @override
   String get accessControl_unknownKeyNote =>
-      'Not in your contacts. Changing its role needs newer node firmware; removing it always works.';
+      'Не е в контактите ви. Промяната на ролята изисква по-нов фърмуер на възела; премахването винаги работи.';
 
   @override
   String get accessControl_prefixUnsupported =>
-      'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.';
+      'Фърмуерът на този възел не може да промени ролята на човек, който не е в контактите ви. Все пак можете да го премахнете.';
 
   @override
-  String get accessControl_empty => 'Nobody is on the access list';
+  String get accessControl_empty => 'Списъкът за достъп е празен';
 
   @override
   String get accessControl_emptyHint =>
-      'Add people so they can log in without the password.';
+      'Добавете хора, за да влизат без парола.';
 
   @override
-  String get accessControl_loading => 'Asking the node for its access list…';
+  String get accessControl_loading =>
+      'Изисква се списъкът за достъп от възела…';
 
   @override
   String get accessControl_timeout =>
-      'The node didn\'t answer. Check the path and try again.';
+      'Възелът не отговори. Проверете маршрута и опитайте отново.';
 
   @override
   String get accessControl_maybeIncomplete =>
-      'This node sent one full page and its firmware can\'t send more, so some entries may be missing.';
+      'Възелът изпрати една пълна страница, а фърмуерът му не може да изпрати повече, затова може да липсват записи.';
 
   @override
-  String get accessControl_saved => 'Access list updated';
+  String get accessControl_saved => 'Списъкът за достъп е обновен';
 
   @override
   String accessControl_failed(String reply) {
-    return 'The node refused the change: $reply';
+    return 'Възелът отказа промяната: $reply';
   }
 
   @override
-  String get companionCli_title => 'Command line';
+  String get companionCli_title => 'Команден ред';
 
   @override
-  String get companionCli_tileSubtitle => 'Run commands on your radio';
+  String get companionCli_tileSubtitle => 'Изпълнявайте команди на радиото си';
 
   @override
   String get companionCli_warning =>
-      'Commands run on your connected radio and can change its settings or restart it.';
+      'Командите се изпълняват на свързаното радио и могат да променят настройките му или да го рестартират.';
 
   @override
-  String get companionCli_hint => 'Type a command, e.g. ver';
+  String get companionCli_hint => 'Въведете команда, напр. ver';
 
   @override
-  String get companionCli_send => 'Run command';
+  String get companionCli_send => 'Изпълни командата';
 
   @override
-  String get companionCli_noReply => 'No reply. The radio may be restarting.';
+  String get companionCli_noReply =>
+      'Няма отговор. Радиото може да се рестартира.';
 
   @override
   String get companionCli_empty =>
-      'Try one of the commands above, or type your own.';
+      'Опитайте някоя от командите по-горе или въведете своя.';
 
   @override
-  String get wifi_title => 'WiFi';
+  String get wifi_title => 'Wi‑Fi';
 
   @override
-  String get wifi_tileSubtitle => 'Connect your radio to a WiFi network';
+  String get wifi_tileSubtitle => 'Свържете радиото си с Wi‑Fi мрежа';
 
   @override
-  String get wifi_unsupported =>
-      'This radio\'s firmware doesn\'t include WiFi.';
+  String get wifi_unsupported => 'Фърмуерът на това радио не поддържа Wi‑Fi.';
 
   @override
-  String get wifi_enabled => 'Use WiFi';
+  String get wifi_enabled => 'Използвай Wi‑Fi';
 
   @override
-  String get wifi_status => 'Status';
+  String get wifi_status => 'Състояние';
 
   @override
-  String get wifi_connected => 'Connected';
+  String get wifi_connected => 'Свързано';
 
   @override
   String wifi_connectedIp(String ip) {
-    return 'Connected · $ip';
+    return 'Свързано · $ip';
   }
 
   @override
-  String get wifi_disconnected => 'Not connected';
+  String get wifi_disconnected => 'Няма връзка';
 
   @override
-  String get wifi_network => 'Network name (SSID)';
+  String get wifi_network => 'Име на мрежата (SSID)';
 
   @override
-  String get wifi_password => 'Password';
+  String get wifi_password => 'Парола';
 
   @override
-  String get wifi_passwordKeep => 'Leave blank to keep the current password';
+  String get wifi_passwordKeep =>
+      'Оставете празно, за да запазите текущата парола';
 
   @override
-  String get wifi_save => 'Save';
+  String get wifi_save => 'Запази';
 
   @override
-  String get wifi_forget => 'Forget network';
+  String get wifi_forget => 'Забрави мрежата';
 
   @override
   String get wifi_forgetConfirm =>
-      'Remove the saved network and password from the radio?';
+      'Да се премахнат ли запазената мрежа и парола от радиото?';
 
   @override
   String get wifi_rebootNeeded =>
-      'Saved. Restart the radio to apply WiFi changes.';
+      'Запазено. Рестартирайте радиото, за да приложите промените по Wi‑Fi.';
 
   @override
-  String get wifi_rebootNow => 'Restart radio';
+  String get wifi_rebootNow => 'Рестартирай радиото';
 
   @override
   String get wifi_rebootConfirm =>
-      'Restart the radio now? The app will disconnect and you\'ll need to reconnect.';
+      'Да се рестартира ли радиото сега? Приложението ще прекъсне връзката и ще трябва да се свържете отново.';
 
   @override
   String get wifi_loadFailed =>
-      'Couldn\'t read the WiFi settings from the radio.';
+      'Неуспешно четене на Wi‑Fi настройките от радиото.';
 
   @override
-  String get wifi_retry => 'Try again';
+  String get wifi_retry => 'Опитай отново';
 
   @override
   String wifi_saveFailed(String reply) {
-    return 'The radio didn\'t accept the change: $reply';
+    return 'Радиото не прие промяната: $reply';
   }
 
   @override
-  String get accessControl_refresh => 'Refresh';
+  String get accessControl_refresh => 'Опресни';
 
   @override
   String get common_cancel => 'Отказ';
@@ -403,10 +405,11 @@ class AppLocalizationsBg extends AppLocalizations {
   String get messageStatus_repeated => 'Повторно чуто';
 
   @override
-  String get urlImage_enable => 'Enable URL images';
+  String get urlImage_enable => 'Включи изображения от URL';
 
   @override
-  String get urlImage_possible => 'Possible URL image; enable it in Settings.';
+  String get urlImage_possible =>
+      'Възможно изображение от URL; включете го в Настройки.';
 
   @override
   String get common_reboot => 'Рестартирай';
@@ -673,27 +676,27 @@ class AppLocalizationsBg extends AppLocalizations {
       'Управляне на хранилищни региони';
 
   @override
-  String get settings_corridorRegion => 'Corridor region';
+  String get settings_corridorRegion => 'Регион на коридора';
 
   @override
-  String get settings_corridorRegionDefault => '#corridor (default)';
+  String get settings_corridorRegionDefault => '#corridor (по подразбиране)';
 
   @override
   String get settings_corridorRegionHelp =>
-      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+      'Пакетите за flood коридор се маркират с този регион. Повторителите без фърмуер за коридори ги препращат само ако разрешават този регион. Оставете празно за етикета по подразбиране #corridor.';
 
   @override
-  String get settings_corridorRegionHint => 'Region name';
+  String get settings_corridorRegionHint => 'Име на региона';
 
   @override
-  String get settings_corridorRegionUseDefault => 'Use default';
+  String get settings_corridorRegionUseDefault => 'По подразбиране';
 
   @override
-  String get settings_corridorRegionUpdated => 'Corridor region updated';
+  String get settings_corridorRegionUpdated => 'Регионът на коридора е обновен';
 
   @override
   String get settings_corridorRegionFailed =>
-      'Couldn\'t update the corridor region';
+      'Неуспешно обновяване на региона на коридора';
 
   @override
   String get settings_regionManagement_screenTitle => 'Регионално управление';
@@ -1556,11 +1559,11 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get channels_viaMqtt => 'via MQTT';
+  String get channels_viaMqtt => 'чрез MQTT';
 
   @override
   String get channels_viaMqttSemantics =>
-      'Received via MQTT, not heard by your radio';
+      'Получено чрез MQTT, не е чуто от вашето радио';
 
   @override
   String get channels_private => 'Частен';
@@ -1824,31 +1827,31 @@ class AppLocalizationsBg extends AppLocalizations {
   String get chat_sendGif => 'Изпрати GIF';
 
   @override
-  String get chat_limitToArea => 'Limit to an area';
+  String get chat_limitToArea => 'Ограничаване до район';
 
   @override
-  String get chat_limitToAreaTitle => 'Only send within…';
+  String get chat_limitToAreaTitle => 'Изпращане само в рамките на…';
 
   @override
   String get chat_limitToAreaHelp =>
-      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+      'Повторителите с фърмуер за flood коридори препредават съобщението само в този район. Другите повторители го отхвърлят, освен ако не разрешават вашия регион на коридора.';
 
   @override
   String chat_limitToAreaRadius(int km) {
-    return '$km km of you';
+    return '$km км около вас';
   }
 
   @override
   String chat_limitToAreaActive(int km) {
-    return 'Only within $km km of you';
+    return 'Само в радиус $km км от вас';
   }
 
   @override
-  String get chat_limitToAreaOff => 'No limit';
+  String get chat_limitToAreaOff => 'Без ограничение';
 
   @override
   String get chat_limitToAreaNeedsPosition =>
-      'Set your radio\'s position to limit messages to an area.';
+      'Задайте позицията на радиото, за да ограничавате съобщенията до район.';
 
   @override
   String get chat_sendImageLora => 'Изпращане на изображение чрез MeshCore';
@@ -1869,7 +1872,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get chat_me => 'Аз';
 
   @override
-  String get reaction_report => 'Emoji Reactions';
+  String get reaction_report => 'Реакции с емоджи';
 
   @override
   String get emojiCategorySmileys => 'Емотикони';
@@ -2337,59 +2340,61 @@ class AppLocalizationsBg extends AppLocalizations {
   String get map_setAsMyLocation => 'Задайте като моя местоположение';
 
   @override
-  String get floodCorridor_title => 'Flood Corridor';
+  String get floodCorridor_title => 'Flood коридор';
 
   @override
-  String get floodCorridor_previewToHere => 'Preview flood corridor to here';
+  String get floodCorridor_previewToHere => 'Преглед на flood коридор дотук';
 
   @override
-  String get floodCorridor_requesting => 'Asking your radio for a corridor…';
+  String get floodCorridor_requesting => 'Изисква се коридор от радиото…';
 
   @override
   String get floodCorridor_unsupported =>
-      'Your radio\'s firmware doesn\'t support flood corridors.';
+      'Фърмуерът на радиото ви не поддържа flood коридори.';
 
   @override
   String get floodCorridor_noProposal =>
-      'Your radio couldn\'t propose a corridor. Make sure it has a position set.';
+      'Радиото не успя да предложи коридор. Уверете се, че има зададена позиция.';
 
   @override
   String floodCorridor_circleCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count circles',
-      one: '1 circle',
+      other: '$count кръга',
+      one: '1 кръг',
     );
     return '$_temp0';
   }
 
   @override
   String floodCorridor_repeatersInside(int inside, int total) {
-    return '$inside of $total known repeaters inside';
+    return '$inside от $total познати повторители вътре';
   }
 
   @override
   String get floodCorridor_straightLine =>
-      'Straight line: no known repeaters along the way';
+      'Права линия: няма познати повторители по пътя';
 
   @override
-  String get floodCorridor_followsRepeaters => 'Follows your known repeaters';
+  String get floodCorridor_followsRepeaters =>
+      'Следва познатите ви повторители';
 
   @override
   String get floodCorridor_horizonLimited =>
-      'Known repeaters don\'t reach the target; the rest is a straight line';
+      'Познатите повторители не достигат целта; останалото е права линия';
 
   @override
   String get floodCorridor_thinStretch =>
-      'Part of the corridor has few known repeaters';
+      'Част от коридора има малко познати повторители';
 
   @override
-  String get floodCorridor_moreCoverage => 'Require more repeater coverage';
+  String get floodCorridor_moreCoverage =>
+      'Изисквай повече покритие с повторители';
 
   @override
   String get floodCorridor_previewNote =>
-      'Preview only. Repeaters without corridor firmware don\'t apply corridors.';
+      'Само преглед. Повторителите без фърмуер за коридори не прилагат коридори.';
 
   @override
   String get map_pinLabel => 'Етикет на пина';
@@ -4116,14 +4121,14 @@ class AppLocalizationsBg extends AppLocalizations {
       'Детайлите за пакета не са предоставени.';
 
   @override
-  String get channelPath_sourceLabel => 'Source';
+  String get channelPath_sourceLabel => 'Източник';
 
   @override
   String get channelPath_sourceMqtt => 'MQTT';
 
   @override
   String get channelPath_viaMqttNoRfPath =>
-      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
+      'Това съобщение пристигна чрез MQTT. Вашето радио не го е чуло, затова няма радиомаршрут от вашето радио.';
 
   @override
   String get channelPath_messageDetails => 'Подробности на съобщението';
@@ -7343,74 +7348,74 @@ class AppLocalizationsBg extends AppLocalizations {
   String get sensor_typeAltitude => 'Надморска височина';
 
   @override
-  String get setupWizard_title => 'Connect your radio';
+  String get setupWizard_title => 'Свържете радиото';
 
   @override
-  String get setupWizard_choose => '1. Choose a connection';
+  String get setupWizard_choose => '1. Изберете връзка';
 
   @override
-  String get setupWizard_prepare => '2. Prepare your radio';
+  String get setupWizard_prepare => '2. Подгответе радиото';
 
   @override
   String get setupWizard_intro =>
-      'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.';
+      'Изберете как този телефон или компютър ще се свързва с радиото. Радиото пренася съобщенията през мрежата.';
 
   @override
   String get setupWizard_bluetooth =>
-      'Wireless connection to a nearby compatible radio.';
+      'Безжична връзка със съвместимо радио наблизо.';
 
   @override
   String get setupWizard_noBluetooth =>
-      'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.';
+      'Bluetooth не е наличен в този браузър. Използвайте приложението или поддържана USB връзка.';
 
   @override
-  String get setupWizard_usb => 'A wired connection using a USB data cable.';
+  String get setupWizard_usb => 'Кабелна връзка чрез USB кабел за данни.';
 
   @override
   String get setupWizard_noUsb =>
-      'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.';
+      'USB серийната връзка не е налична тук. Използвайте поддържано приложение за компютър или Android, или Chrome с Web Serial.';
 
   @override
   String get setupWizard_bluetoothSteps =>
-      'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.';
+      'Включете радиото и го дръжте наблизо. Включете Bluetooth и разрешете на приложението да го използва. Затворете другите приложения, свързани с радиото, отворете списъка с устройства и потърсете.';
 
   @override
   String get setupWizard_usbSteps =>
-      'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.';
+      'Свържете включено радио с USB кабел за данни; кабел само за зареждане няма да работи. Затворете другите серийни приложения. Отворете списъка с USB устройства, изберете радиото и разрешете достъп, ако бъдете попитани.';
 
   @override
   String get setupWizard_firmwareTitle =>
-      'Check compatibility before changing firmware';
+      'Проверете съвместимостта, преди да сменяте фърмуера';
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      'Радиото ви се нуждае от фърмуер MeshCore companion, който поддържа избраната връзка. Поддръжката зависи от платката и версията на фърмуера; наличието на USB порт само по себе си не гарантира поддръжка на USB сериен порт. Проверете инструкциите за вашата платка и инсталираната версия. Фърмуерът на повторител или сървър за стая не е companion. Неуспешната връзка сама по себе си не означава, че трябва да препрограмирате.';
 
   @override
   String get setupWizard_settings =>
-      'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.';
+      'Този помощник не препрограмира фърмуера и не променя настройките на радиото. След свързване използвайте Настройки за регион, честота и разширени опции. Съгласувайте настройките с местната мрежа, преди да ги променяте.';
 
   @override
-  String get setupWizard_openBluetooth => 'Open Bluetooth devices';
+  String get setupWizard_openBluetooth => 'Отвори Bluetooth устройствата';
 
   @override
-  String get setupWizard_openUsb => 'Open USB devices';
+  String get setupWizard_openUsb => 'Отвори USB устройствата';
 
   @override
-  String get setupWizard_change => 'Change connection type';
+  String get setupWizard_change => 'Промяна на типа връзка';
 
   @override
-  String get setupWizard_later => 'Set up later';
+  String get setupWizard_later => 'Настройка по-късно';
 
   @override
   String get setupWizard_bluetoothError =>
-      'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.';
+      'Неуспешно свързване с радиото. Дръжте го включено и наблизо, проверете разрешенията за Bluetooth и затворете другите свързани приложения. След това потърсете отново.';
 
   @override
   String get setupWizard_scanError =>
-      'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.';
+      'Неуспешно търсене на радиа. Включете Bluetooth и разрешете достъп до Bluetooth или устройства наблизо в системните настройки, след което потърсете отново.';
 
   @override
   String get setupWizard_usbError =>
-      'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.';
+      'Неуспешно свързване чрез USB. Проверете кабела за данни и избраното устройство, разрешете USB достъп и затворете другите серийни приложения. Свържете кабела отново и опитайте пак.';
 }

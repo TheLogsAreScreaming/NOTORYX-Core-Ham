@@ -21,25 +21,25 @@ class AppLocalizationsKo extends AppLocalizations {
   String get nav_map => '지도';
 
   @override
-  String get nav_messages => 'Messages';
+  String get nav_messages => '메시지';
 
   @override
-  String get nav_nodes => 'Nodes';
+  String get nav_nodes => '노드';
 
   @override
-  String get nav_radio => 'Radio';
+  String get nav_radio => '무전기';
 
   @override
-  String get messages_title => 'Messages';
+  String get messages_title => '메시지';
 
   @override
-  String get messages_filterAll => 'All';
+  String get messages_filterAll => '전체';
 
   @override
-  String get messages_filterDirect => 'Direct';
+  String get messages_filterDirect => '개인';
 
   @override
-  String get messages_filterChannels => 'Channels';
+  String get messages_filterChannels => '채널';
 
   @override
   String messages_filterWithUnread(String label, int count) {
@@ -47,56 +47,55 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get messages_search => 'Search messages';
+  String get messages_search => '메시지 검색';
 
   @override
-  String get messages_searchHint => 'Search conversations';
+  String get messages_searchHint => '대화 검색';
 
   @override
-  String get messages_closeSearch => 'Close search';
+  String get messages_closeSearch => '검색 닫기';
 
   @override
-  String get messages_manageChannels => 'Manage channels';
+  String get messages_manageChannels => '채널 관리';
 
   @override
-  String get messages_new => 'New';
+  String get messages_new => '새로 만들기';
 
   @override
-  String get messages_newDirect => 'Message a node';
+  String get messages_newDirect => '노드에 메시지 보내기';
 
   @override
-  String get messages_newChannel => 'Add or join a channel';
+  String get messages_newChannel => '채널 추가 또는 참여';
 
   @override
-  String get messages_empty => 'No conversations yet';
+  String get messages_empty => '아직 대화가 없습니다';
 
   @override
-  String get messages_emptyHint =>
-      'Messages from nodes and channels show up here.';
+  String get messages_emptyHint => '노드와 채널의 메시지가 여기에 표시됩니다.';
 
   @override
-  String get messages_noMatches => 'No conversations match your search';
+  String get messages_noMatches => '검색과 일치하는 대화가 없습니다';
 
   @override
   String messages_you(String text) {
-    return 'You: $text';
+    return '나: $text';
   }
 
   @override
-  String get messages_yesterday => 'Yesterday';
+  String get messages_yesterday => '어제';
 
   @override
   String messages_unreadCount(int count) {
-    return '$count unread';
+    return '읽지 않음 $count개';
   }
 
   @override
   String radioStatus_connectedVia(String transport) {
-    return 'Connected over $transport';
+    return '$transport(으)로 연결됨';
   }
 
   @override
-  String get radioStatus_bluetooth => 'Bluetooth';
+  String get radioStatus_bluetooth => '블루투스';
 
   @override
   String get radioStatus_usb => 'USB';
@@ -106,211 +105,202 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String radioStatus_battery(int percent) {
-    return 'Battery $percent%';
+    return '배터리 $percent%';
   }
 
   @override
-  String get radioStatus_openRadio => 'Open radio details';
+  String get radioStatus_openRadio => '무전기 세부정보 열기';
 
   @override
-  String get radioOverview_battery => 'Battery';
+  String get radioOverview_battery => '배터리';
 
   @override
   String radioOverview_firmware(String version) {
-    return 'Firmware $version';
+    return '펌웨어 $version';
   }
 
   @override
-  String get radioOverview_sendAdvert => 'Send advert';
+  String get radioOverview_sendAdvert => '광고 보내기';
 
   @override
-  String get radioOverview_stats => 'Radio stats';
+  String get radioOverview_stats => '무전기 통계';
 
   @override
-  String get accessControl_title => 'Access control';
+  String get accessControl_title => '접근 제어';
 
   @override
-  String get accessControl_hubSubtitle => 'Who can log in without the password';
+  String get accessControl_hubSubtitle => '비밀번호 없이 로그인할 수 있는 사람';
 
   @override
   String get accessControl_explainRepeater =>
-      'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.';
+      '이 목록의 사람은 비밀번호 없이 로그인합니다. 관리자는 설정을 변경할 수 있고, 읽기 전용과 읽기 및 쓰기는 전체 텔레메트리도 받습니다.';
 
   @override
   String get accessControl_explainRoom =>
-      'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.';
+      '이 목록의 관리자는 비밀번호 없이 로그인하고 방을 관리할 수 있습니다. 방 구성원은 방 비밀번호로 참여합니다.';
 
   @override
-  String get accessControl_roleReadOnly => 'Read only';
+  String get accessControl_roleReadOnly => '읽기 전용';
 
   @override
-  String get accessControl_roleReadWrite => 'Read & write';
+  String get accessControl_roleReadWrite => '읽기 및 쓰기';
 
   @override
-  String get accessControl_roleAdmin => 'Admin';
+  String get accessControl_roleAdmin => '관리자';
 
   @override
-  String get accessControl_you => 'You';
+  String get accessControl_you => '나';
 
   @override
-  String get accessControl_unknownNode => 'Unknown node';
+  String get accessControl_unknownNode => '알 수 없는 노드';
 
   @override
-  String get accessControl_add => 'Add';
+  String get accessControl_add => '추가';
 
   @override
-  String get accessControl_addTitle => 'Add to access list';
+  String get accessControl_addTitle => '접근 목록에 추가';
 
   @override
-  String get accessControl_pickContact => 'Choose a contact';
+  String get accessControl_pickContact => '연락처 선택';
 
   @override
   String get accessControl_noContacts =>
-      'No contacts to add. Nodes appear here once you have heard their advert.';
+      '추가할 연락처가 없습니다. 노드의 광고를 수신하면 여기에 표시됩니다.';
 
   @override
-  String get accessControl_changeRole => 'Change role';
+  String get accessControl_changeRole => '역할 변경';
 
   @override
-  String get accessControl_remove => 'Remove access';
+  String get accessControl_remove => '접근 권한 제거';
 
   @override
   String accessControl_removeConfirm(String name) {
-    return 'Remove $name from the access list? They will need the password to log in.';
+    return '$name을(를) 접근 목록에서 제거할까요? 로그인하려면 비밀번호가 필요합니다.';
   }
 
   @override
   String get accessControl_removeSelfWarning =>
-      'This is you. If you remove yourself you will need the admin password to manage this node again.';
+      '본인입니다. 자신을 제거하면 이 노드를 다시 관리하려면 관리자 비밀번호가 필요합니다.';
 
   @override
   String get accessControl_unknownKeyNote =>
-      'Not in your contacts. Changing its role needs newer node firmware; removing it always works.';
+      '연락처에 없습니다. 역할을 바꾸려면 최신 노드 펌웨어가 필요하며, 제거는 항상 가능합니다.';
 
   @override
   String get accessControl_prefixUnsupported =>
-      'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.';
+      '이 노드의 펌웨어는 연락처에 없는 사람의 역할을 변경할 수 없습니다. 제거는 계속 가능합니다.';
 
   @override
-  String get accessControl_empty => 'Nobody is on the access list';
+  String get accessControl_empty => '접근 목록이 비어 있습니다';
 
   @override
-  String get accessControl_emptyHint =>
-      'Add people so they can log in without the password.';
+  String get accessControl_emptyHint => '사람을 추가하면 비밀번호 없이 로그인할 수 있습니다.';
 
   @override
-  String get accessControl_loading => 'Asking the node for its access list…';
+  String get accessControl_loading => '노드에 접근 목록을 요청하는 중…';
 
   @override
-  String get accessControl_timeout =>
-      'The node didn\'t answer. Check the path and try again.';
+  String get accessControl_timeout => '노드가 응답하지 않았습니다. 경로를 확인하고 다시 시도하세요.';
 
   @override
   String get accessControl_maybeIncomplete =>
-      'This node sent one full page and its firmware can\'t send more, so some entries may be missing.';
+      '이 노드는 한 페이지를 모두 보냈지만 펌웨어가 더 보낼 수 없어 일부 항목이 빠졌을 수 있습니다.';
 
   @override
-  String get accessControl_saved => 'Access list updated';
+  String get accessControl_saved => '접근 목록을 업데이트했습니다';
 
   @override
   String accessControl_failed(String reply) {
-    return 'The node refused the change: $reply';
+    return '노드가 변경을 거부했습니다: $reply';
   }
 
   @override
-  String get companionCli_title => 'Command line';
+  String get companionCli_title => '명령줄';
 
   @override
-  String get companionCli_tileSubtitle => 'Run commands on your radio';
+  String get companionCli_tileSubtitle => '무전기에서 명령 실행';
 
   @override
-  String get companionCli_warning =>
-      'Commands run on your connected radio and can change its settings or restart it.';
+  String get companionCli_warning => '명령은 연결된 무전기에서 실행되며 설정을 바꾸거나 재시작할 수 있습니다.';
 
   @override
-  String get companionCli_hint => 'Type a command, e.g. ver';
+  String get companionCli_hint => '명령 입력 (예: ver)';
 
   @override
-  String get companionCli_send => 'Run command';
+  String get companionCli_send => '명령 실행';
 
   @override
-  String get companionCli_noReply => 'No reply. The radio may be restarting.';
+  String get companionCli_noReply => '응답이 없습니다. 무전기가 재시작 중일 수 있습니다.';
 
   @override
-  String get companionCli_empty =>
-      'Try one of the commands above, or type your own.';
+  String get companionCli_empty => '위의 명령을 사용하거나 직접 입력하세요.';
 
   @override
-  String get wifi_title => 'WiFi';
+  String get wifi_title => 'Wi‑Fi';
 
   @override
-  String get wifi_tileSubtitle => 'Connect your radio to a WiFi network';
+  String get wifi_tileSubtitle => '무전기를 Wi‑Fi 네트워크에 연결';
 
   @override
-  String get wifi_unsupported =>
-      'This radio\'s firmware doesn\'t include WiFi.';
+  String get wifi_unsupported => '이 무전기의 펌웨어에는 Wi‑Fi가 없습니다.';
 
   @override
-  String get wifi_enabled => 'Use WiFi';
+  String get wifi_enabled => 'Wi‑Fi 사용';
 
   @override
-  String get wifi_status => 'Status';
+  String get wifi_status => '상태';
 
   @override
-  String get wifi_connected => 'Connected';
+  String get wifi_connected => '연결됨';
 
   @override
   String wifi_connectedIp(String ip) {
-    return 'Connected · $ip';
+    return '연결됨 · $ip';
   }
 
   @override
-  String get wifi_disconnected => 'Not connected';
+  String get wifi_disconnected => '연결되지 않음';
 
   @override
-  String get wifi_network => 'Network name (SSID)';
+  String get wifi_network => '네트워크 이름 (SSID)';
 
   @override
-  String get wifi_password => 'Password';
+  String get wifi_password => '비밀번호';
 
   @override
-  String get wifi_passwordKeep => 'Leave blank to keep the current password';
+  String get wifi_passwordKeep => '현재 비밀번호를 유지하려면 비워 두세요';
 
   @override
-  String get wifi_save => 'Save';
+  String get wifi_save => '저장';
 
   @override
-  String get wifi_forget => 'Forget network';
+  String get wifi_forget => '네트워크 삭제';
 
   @override
-  String get wifi_forgetConfirm =>
-      'Remove the saved network and password from the radio?';
+  String get wifi_forgetConfirm => '저장된 네트워크와 비밀번호를 무전기에서 삭제할까요?';
 
   @override
-  String get wifi_rebootNeeded =>
-      'Saved. Restart the radio to apply WiFi changes.';
+  String get wifi_rebootNeeded => '저장했습니다. Wi‑Fi 변경을 적용하려면 무전기를 재시작하세요.';
 
   @override
-  String get wifi_rebootNow => 'Restart radio';
+  String get wifi_rebootNow => '무전기 재시작';
 
   @override
-  String get wifi_rebootConfirm =>
-      'Restart the radio now? The app will disconnect and you\'ll need to reconnect.';
+  String get wifi_rebootConfirm => '지금 무전기를 재시작할까요? 앱 연결이 끊어지며 다시 연결해야 합니다.';
 
   @override
-  String get wifi_loadFailed =>
-      'Couldn\'t read the WiFi settings from the radio.';
+  String get wifi_loadFailed => '무전기에서 Wi‑Fi 설정을 읽지 못했습니다.';
 
   @override
-  String get wifi_retry => 'Try again';
+  String get wifi_retry => '다시 시도';
 
   @override
   String wifi_saveFailed(String reply) {
-    return 'The radio didn\'t accept the change: $reply';
+    return '무전기가 변경을 받아들이지 않았습니다: $reply';
   }
 
   @override
-  String get accessControl_refresh => 'Refresh';
+  String get accessControl_refresh => '새로고침';
 
   @override
   String get common_cancel => '취소';
@@ -403,10 +393,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get messageStatus_repeated => '반복 수신됨';
 
   @override
-  String get urlImage_enable => 'Enable URL images';
+  String get urlImage_enable => 'URL 이미지 사용';
 
   @override
-  String get urlImage_possible => 'Possible URL image; enable it in Settings.';
+  String get urlImage_possible => 'URL 이미지일 수 있습니다. 설정에서 사용하도록 하세요.';
 
   @override
   String get common_reboot => '재부팅';
@@ -658,27 +648,26 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settings_regionSettingsSubtitle => '저장된 지역 관리';
 
   @override
-  String get settings_corridorRegion => 'Corridor region';
+  String get settings_corridorRegion => '코리도 지역';
 
   @override
-  String get settings_corridorRegionDefault => '#corridor (default)';
+  String get settings_corridorRegionDefault => '#corridor (기본값)';
 
   @override
   String get settings_corridorRegionHelp =>
-      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+      '플러드 코리도 패킷에는 이 지역이 태그됩니다. 코리도 펌웨어가 없는 리피터는 이 지역을 허용할 때만 전달합니다. 비워 두면 기본 태그 #corridor를 사용합니다.';
 
   @override
-  String get settings_corridorRegionHint => 'Region name';
+  String get settings_corridorRegionHint => '지역 이름';
 
   @override
-  String get settings_corridorRegionUseDefault => 'Use default';
+  String get settings_corridorRegionUseDefault => '기본값 사용';
 
   @override
-  String get settings_corridorRegionUpdated => 'Corridor region updated';
+  String get settings_corridorRegionUpdated => '코리도 지역을 업데이트했습니다';
 
   @override
-  String get settings_corridorRegionFailed =>
-      'Couldn\'t update the corridor region';
+  String get settings_corridorRegionFailed => '코리도 지역을 업데이트하지 못했습니다';
 
   @override
   String get settings_regionManagement_screenTitle => '지역 관리';
@@ -1490,11 +1479,10 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get channels_viaMqtt => 'via MQTT';
+  String get channels_viaMqtt => 'MQTT 경유';
 
   @override
-  String get channels_viaMqttSemantics =>
-      'Received via MQTT, not heard by your radio';
+  String get channels_viaMqttSemantics => 'MQTT로 수신됨, 내 무전기는 듣지 못함';
 
   @override
   String get channels_private => '사립';
@@ -1750,31 +1738,30 @@ class AppLocalizationsKo extends AppLocalizations {
   String get chat_sendGif => 'GIF 보내기';
 
   @override
-  String get chat_limitToArea => 'Limit to an area';
+  String get chat_limitToArea => '지역으로 제한';
 
   @override
-  String get chat_limitToAreaTitle => 'Only send within…';
+  String get chat_limitToAreaTitle => '다음 범위 안에서만 보내기…';
 
   @override
   String get chat_limitToAreaHelp =>
-      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+      '플러드 코리도 펌웨어가 있는 리피터는 이 지역 안에서만 메시지를 중계합니다. 다른 리피터는 내 코리도 지역을 허용하지 않으면 메시지를 버립니다.';
 
   @override
   String chat_limitToAreaRadius(int km) {
-    return '$km km of you';
+    return '내 주변 ${km}km';
   }
 
   @override
   String chat_limitToAreaActive(int km) {
-    return 'Only within $km km of you';
+    return '내 주변 ${km}km 이내만';
   }
 
   @override
-  String get chat_limitToAreaOff => 'No limit';
+  String get chat_limitToAreaOff => '제한 없음';
 
   @override
-  String get chat_limitToAreaNeedsPosition =>
-      'Set your radio\'s position to limit messages to an area.';
+  String get chat_limitToAreaNeedsPosition => '메시지를 지역으로 제한하려면 무전기 위치를 설정하세요.';
 
   @override
   String get chat_sendImageLora => 'MeshCore를 통해 이미지 보내기';
@@ -1795,7 +1782,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get chat_me => '나';
 
   @override
-  String get reaction_report => 'Emoji Reactions';
+  String get reaction_report => '이모지 반응';
 
   @override
   String get emojiCategorySmileys => '이모티콘';
@@ -2249,59 +2236,55 @@ class AppLocalizationsKo extends AppLocalizations {
   String get map_setAsMyLocation => '내 위치로 설정';
 
   @override
-  String get floodCorridor_title => 'Flood Corridor';
+  String get floodCorridor_title => '플러드 코리도';
 
   @override
-  String get floodCorridor_previewToHere => 'Preview flood corridor to here';
+  String get floodCorridor_previewToHere => '여기까지 플러드 코리도 미리보기';
 
   @override
-  String get floodCorridor_requesting => 'Asking your radio for a corridor…';
+  String get floodCorridor_requesting => '무전기에 코리도를 요청하는 중…';
 
   @override
-  String get floodCorridor_unsupported =>
-      'Your radio\'s firmware doesn\'t support flood corridors.';
+  String get floodCorridor_unsupported => '무전기 펌웨어가 플러드 코리도를 지원하지 않습니다.';
 
   @override
   String get floodCorridor_noProposal =>
-      'Your radio couldn\'t propose a corridor. Make sure it has a position set.';
+      '무전기가 코리도를 제안하지 못했습니다. 위치가 설정되어 있는지 확인하세요.';
 
   @override
   String floodCorridor_circleCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count circles',
-      one: '1 circle',
+      other: '원 $count개',
     );
     return '$_temp0';
   }
 
   @override
   String floodCorridor_repeatersInside(int inside, int total) {
-    return '$inside of $total known repeaters inside';
+    return '알려진 리피터 $total개 중 $inside개가 안쪽에 있음';
   }
 
   @override
-  String get floodCorridor_straightLine =>
-      'Straight line: no known repeaters along the way';
+  String get floodCorridor_straightLine => '직선: 경로상에 알려진 리피터가 없습니다';
 
   @override
-  String get floodCorridor_followsRepeaters => 'Follows your known repeaters';
+  String get floodCorridor_followsRepeaters => '알려진 리피터를 따라갑니다';
 
   @override
   String get floodCorridor_horizonLimited =>
-      'Known repeaters don\'t reach the target; the rest is a straight line';
+      '알려진 리피터가 목적지까지 닿지 않습니다. 나머지는 직선입니다';
 
   @override
-  String get floodCorridor_thinStretch =>
-      'Part of the corridor has few known repeaters';
+  String get floodCorridor_thinStretch => '코리도 일부 구간에 알려진 리피터가 적습니다';
 
   @override
-  String get floodCorridor_moreCoverage => 'Require more repeater coverage';
+  String get floodCorridor_moreCoverage => '더 많은 리피터 커버리지 요구';
 
   @override
   String get floodCorridor_previewNote =>
-      'Preview only. Repeaters without corridor firmware don\'t apply corridors.';
+      '미리보기 전용입니다. 코리도 펌웨어가 없는 리피터는 코리도를 적용하지 않습니다.';
 
   @override
   String get map_pinLabel => '핀 라벨';
@@ -3930,14 +3913,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String get channelPath_noHopDetails => '이 패키지에 대한 자세한 정보는 제공되지 않습니다.';
 
   @override
-  String get channelPath_sourceLabel => 'Source';
+  String get channelPath_sourceLabel => '출처';
 
   @override
   String get channelPath_sourceMqtt => 'MQTT';
 
   @override
   String get channelPath_viaMqttNoRfPath =>
-      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
+      '이 메시지는 MQTT로 도착했습니다. 내 무전기가 수신하지 않았으므로 내 무전기로부터의 무선 경로가 없습니다.';
 
   @override
   String get channelPath_messageDetails => '메시지 세부 정보';
@@ -7022,74 +7005,72 @@ class AppLocalizationsKo extends AppLocalizations {
   String get sensor_typeAltitude => '고도';
 
   @override
-  String get setupWizard_title => 'Connect your radio';
+  String get setupWizard_title => '무전기 연결';
 
   @override
-  String get setupWizard_choose => '1. Choose a connection';
+  String get setupWizard_choose => '1. 연결 방식 선택';
 
   @override
-  String get setupWizard_prepare => '2. Prepare your radio';
+  String get setupWizard_prepare => '2. 무전기 준비';
 
   @override
   String get setupWizard_intro =>
-      'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.';
+      '이 휴대폰이나 컴퓨터를 무전기에 연결할 방법을 선택하세요. 무전기가 메시 네트워크로 메시지를 전달합니다.';
 
   @override
-  String get setupWizard_bluetooth =>
-      'Wireless connection to a nearby compatible radio.';
+  String get setupWizard_bluetooth => '근처의 호환 무전기에 무선으로 연결합니다.';
 
   @override
   String get setupWizard_noBluetooth =>
-      'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.';
+      '이 브라우저에서는 블루투스를 사용할 수 없습니다. 네이티브 앱이나 지원되는 USB 연결을 사용하세요.';
 
   @override
-  String get setupWizard_usb => 'A wired connection using a USB data cable.';
+  String get setupWizard_usb => 'USB 데이터 케이블을 사용한 유선 연결입니다.';
 
   @override
   String get setupWizard_noUsb =>
-      'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.';
+      '여기서는 USB 시리얼을 사용할 수 없습니다. 지원되는 데스크톱 또는 Android 앱이나 Web Serial을 지원하는 Chrome을 사용하세요.';
 
   @override
   String get setupWizard_bluetoothSteps =>
-      'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.';
+      '무전기 전원을 켜고 가까이 두세요. 블루투스를 켜고 앱에 사용 권한을 허용하세요. 무전기에 연결된 다른 앱을 닫고 기기 목록을 열어 검색하세요.';
 
   @override
   String get setupWizard_usbSteps =>
-      'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.';
+      '전원이 켜진 무전기를 USB 데이터 케이블로 연결하세요. 충전 전용 케이블은 작동하지 않습니다. 다른 시리얼 앱을 닫으세요. USB 기기 목록을 열어 무전기를 선택하고, 요청되면 접근을 허용하세요.';
 
   @override
-  String get setupWizard_firmwareTitle =>
-      'Check compatibility before changing firmware';
+  String get setupWizard_firmwareTitle => '펌웨어를 바꾸기 전에 호환성 확인';
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      '무전기에는 선택한 연결 방식을 지원하는 MeshCore 컴패니언 펌웨어가 필요합니다. 지원 여부는 보드와 펌웨어 빌드에 따라 다르며, USB 포트가 있다고 해서 USB 시리얼이 지원되는 것은 아닙니다. 사용 중인 보드와 설치된 빌드의 안내를 확인하세요. 리피터나 룸 서버 펌웨어는 컴패니언이 아닙니다. 연결 실패만으로 펌웨어를 다시 써야 한다는 뜻은 아닙니다.';
 
   @override
   String get setupWizard_settings =>
-      'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.';
+      '이 안내는 펌웨어를 쓰거나 무전기 설정을 바꾸지 않습니다. 연결 후 설정에서 지역, 주파수, 고급 옵션을 지정하세요. 바꾸기 전에 지역 메시와 설정을 확인하세요.';
 
   @override
-  String get setupWizard_openBluetooth => 'Open Bluetooth devices';
+  String get setupWizard_openBluetooth => '블루투스 기기 열기';
 
   @override
-  String get setupWizard_openUsb => 'Open USB devices';
+  String get setupWizard_openUsb => 'USB 기기 열기';
 
   @override
-  String get setupWizard_change => 'Change connection type';
+  String get setupWizard_change => '연결 방식 변경';
 
   @override
-  String get setupWizard_later => 'Set up later';
+  String get setupWizard_later => '나중에 설정';
 
   @override
   String get setupWizard_bluetoothError =>
-      'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.';
+      '무전기에 연결하지 못했습니다. 전원을 켠 채 가까이 두고, 블루투스 권한을 확인하고, 연결된 다른 앱을 닫은 다음 다시 검색하세요.';
 
   @override
   String get setupWizard_scanError =>
-      'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.';
+      '무전기를 검색하지 못했습니다. 블루투스를 켜고 시스템 설정에서 블루투스 또는 주변 기기 접근을 허용한 다음 다시 검색하세요.';
 
   @override
   String get setupWizard_usbError =>
-      'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.';
+      'USB로 연결하지 못했습니다. 데이터 케이블과 선택한 기기를 확인하고, USB 접근을 허용하고, 다른 시리얼 앱을 닫으세요. 케이블을 다시 연결하고 다시 시도하세요.';
 }

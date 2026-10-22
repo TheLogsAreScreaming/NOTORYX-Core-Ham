@@ -21,25 +21,25 @@ class AppLocalizationsDe extends AppLocalizations {
   String get nav_map => 'Karte';
 
   @override
-  String get nav_messages => 'Messages';
+  String get nav_messages => 'Nachrichten';
 
   @override
-  String get nav_nodes => 'Nodes';
+  String get nav_nodes => 'Knoten';
 
   @override
-  String get nav_radio => 'Radio';
+  String get nav_radio => 'Funk';
 
   @override
-  String get messages_title => 'Messages';
+  String get messages_title => 'Nachrichten';
 
   @override
-  String get messages_filterAll => 'All';
+  String get messages_filterAll => 'Alle';
 
   @override
-  String get messages_filterDirect => 'Direct';
+  String get messages_filterDirect => 'Direkt';
 
   @override
-  String get messages_filterChannels => 'Channels';
+  String get messages_filterChannels => 'Kanäle';
 
   @override
   String messages_filterWithUnread(String label, int count) {
@@ -47,52 +47,53 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get messages_search => 'Search messages';
+  String get messages_search => 'Nachrichten durchsuchen';
 
   @override
-  String get messages_searchHint => 'Search conversations';
+  String get messages_searchHint => 'Unterhaltungen durchsuchen';
 
   @override
-  String get messages_closeSearch => 'Close search';
+  String get messages_closeSearch => 'Suche schließen';
 
   @override
-  String get messages_manageChannels => 'Manage channels';
+  String get messages_manageChannels => 'Kanäle verwalten';
 
   @override
-  String get messages_new => 'New';
+  String get messages_new => 'Neu';
 
   @override
-  String get messages_newDirect => 'Message a node';
+  String get messages_newDirect => 'Einem Knoten schreiben';
 
   @override
-  String get messages_newChannel => 'Add or join a channel';
+  String get messages_newChannel => 'Kanal hinzufügen oder beitreten';
 
   @override
-  String get messages_empty => 'No conversations yet';
+  String get messages_empty => 'Noch keine Unterhaltungen';
 
   @override
   String get messages_emptyHint =>
-      'Messages from nodes and channels show up here.';
+      'Nachrichten von Knoten und Kanälen erscheinen hier.';
 
   @override
-  String get messages_noMatches => 'No conversations match your search';
+  String get messages_noMatches =>
+      'Keine Unterhaltungen passen zu deiner Suche';
 
   @override
   String messages_you(String text) {
-    return 'You: $text';
+    return 'Du: $text';
   }
 
   @override
-  String get messages_yesterday => 'Yesterday';
+  String get messages_yesterday => 'Gestern';
 
   @override
   String messages_unreadCount(int count) {
-    return '$count unread';
+    return '$count ungelesen';
   }
 
   @override
   String radioStatus_connectedVia(String transport) {
-    return 'Connected over $transport';
+    return 'Verbunden über $transport';
   }
 
   @override
@@ -102,18 +103,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get radioStatus_usb => 'USB';
 
   @override
-  String get radioStatus_tcp => 'Wi‑Fi (TCP)';
+  String get radioStatus_tcp => 'WLAN (TCP)';
 
   @override
   String radioStatus_battery(int percent) {
-    return 'Battery $percent%';
+    return 'Akku $percent %';
   }
 
   @override
-  String get radioStatus_openRadio => 'Open radio details';
+  String get radioStatus_openRadio => 'Funkgerätdetails öffnen';
 
   @override
-  String get radioOverview_battery => 'Battery';
+  String get radioOverview_battery => 'Akku';
 
   @override
   String radioOverview_firmware(String version) {
@@ -121,196 +122,201 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get radioOverview_sendAdvert => 'Send advert';
+  String get radioOverview_sendAdvert => 'Advert senden';
 
   @override
-  String get radioOverview_stats => 'Radio stats';
+  String get radioOverview_stats => 'Funkstatistik';
 
   @override
-  String get accessControl_title => 'Access control';
+  String get accessControl_title => 'Zugriffskontrolle';
 
   @override
-  String get accessControl_hubSubtitle => 'Who can log in without the password';
+  String get accessControl_hubSubtitle =>
+      'Wer sich ohne Passwort anmelden kann';
 
   @override
   String get accessControl_explainRepeater =>
-      'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.';
+      'Personen auf dieser Liste melden sich ohne Passwort an. Admins können Einstellungen ändern; Nur lesen und Lesen & Schreiben erhalten zusätzlich die vollständige Telemetrie.';
 
   @override
   String get accessControl_explainRoom =>
-      'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.';
+      'Admins auf dieser Liste melden sich ohne Passwort an und können den Raum verwalten. Raummitglieder treten stattdessen mit dem Raumpasswort bei.';
 
   @override
-  String get accessControl_roleReadOnly => 'Read only';
+  String get accessControl_roleReadOnly => 'Nur lesen';
 
   @override
-  String get accessControl_roleReadWrite => 'Read & write';
+  String get accessControl_roleReadWrite => 'Lesen & Schreiben';
 
   @override
   String get accessControl_roleAdmin => 'Admin';
 
   @override
-  String get accessControl_you => 'You';
+  String get accessControl_you => 'Du';
 
   @override
-  String get accessControl_unknownNode => 'Unknown node';
+  String get accessControl_unknownNode => 'Unbekannter Knoten';
 
   @override
-  String get accessControl_add => 'Add';
+  String get accessControl_add => 'Hinzufügen';
 
   @override
-  String get accessControl_addTitle => 'Add to access list';
+  String get accessControl_addTitle => 'Zur Zugriffsliste hinzufügen';
 
   @override
-  String get accessControl_pickContact => 'Choose a contact';
+  String get accessControl_pickContact => 'Kontakt auswählen';
 
   @override
   String get accessControl_noContacts =>
-      'No contacts to add. Nodes appear here once you have heard their advert.';
+      'Keine Kontakte zum Hinzufügen. Knoten erscheinen hier, sobald du ihr Advert empfangen hast.';
 
   @override
-  String get accessControl_changeRole => 'Change role';
+  String get accessControl_changeRole => 'Rolle ändern';
 
   @override
-  String get accessControl_remove => 'Remove access';
+  String get accessControl_remove => 'Zugriff entfernen';
 
   @override
   String accessControl_removeConfirm(String name) {
-    return 'Remove $name from the access list? They will need the password to log in.';
+    return '$name von der Zugriffsliste entfernen? Zum Anmelden wird dann das Passwort benötigt.';
   }
 
   @override
   String get accessControl_removeSelfWarning =>
-      'This is you. If you remove yourself you will need the admin password to manage this node again.';
+      'Das bist du. Wenn du dich selbst entfernst, brauchst du das Admin-Passwort, um diesen Knoten wieder zu verwalten.';
 
   @override
   String get accessControl_unknownKeyNote =>
-      'Not in your contacts. Changing its role needs newer node firmware; removing it always works.';
+      'Nicht in deinen Kontakten. Zum Ändern der Rolle ist neuere Knoten-Firmware nötig; Entfernen funktioniert immer.';
 
   @override
   String get accessControl_prefixUnsupported =>
-      'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.';
+      'Die Firmware dieses Knotens kann die Rolle von jemandem, der nicht in deinen Kontakten ist, nicht ändern. Entfernen ist weiterhin möglich.';
 
   @override
-  String get accessControl_empty => 'Nobody is on the access list';
+  String get accessControl_empty => 'Niemand steht auf der Zugriffsliste';
 
   @override
   String get accessControl_emptyHint =>
-      'Add people so they can log in without the password.';
+      'Füge Personen hinzu, damit sie sich ohne Passwort anmelden können.';
 
   @override
-  String get accessControl_loading => 'Asking the node for its access list…';
+  String get accessControl_loading =>
+      'Zugriffsliste wird vom Knoten abgefragt…';
 
   @override
   String get accessControl_timeout =>
-      'The node didn\'t answer. Check the path and try again.';
+      'Der Knoten hat nicht geantwortet. Prüfe den Pfad und versuche es erneut.';
 
   @override
   String get accessControl_maybeIncomplete =>
-      'This node sent one full page and its firmware can\'t send more, so some entries may be missing.';
+      'Dieser Knoten hat eine volle Seite gesendet und seine Firmware kann nicht mehr senden, daher fehlen möglicherweise Einträge.';
 
   @override
-  String get accessControl_saved => 'Access list updated';
+  String get accessControl_saved => 'Zugriffsliste aktualisiert';
 
   @override
   String accessControl_failed(String reply) {
-    return 'The node refused the change: $reply';
+    return 'Der Knoten hat die Änderung abgelehnt: $reply';
   }
 
   @override
-  String get companionCli_title => 'Command line';
+  String get companionCli_title => 'Kommandozeile';
 
   @override
-  String get companionCli_tileSubtitle => 'Run commands on your radio';
+  String get companionCli_tileSubtitle =>
+      'Befehle auf deinem Funkgerät ausführen';
 
   @override
   String get companionCli_warning =>
-      'Commands run on your connected radio and can change its settings or restart it.';
+      'Befehle laufen auf deinem verbundenen Funkgerät und können seine Einstellungen ändern oder es neu starten.';
 
   @override
-  String get companionCli_hint => 'Type a command, e.g. ver';
+  String get companionCli_hint => 'Befehl eingeben, z. B. ver';
 
   @override
-  String get companionCli_send => 'Run command';
+  String get companionCli_send => 'Befehl ausführen';
 
   @override
-  String get companionCli_noReply => 'No reply. The radio may be restarting.';
+  String get companionCli_noReply =>
+      'Keine Antwort. Das Funkgerät startet möglicherweise neu.';
 
   @override
   String get companionCli_empty =>
-      'Try one of the commands above, or type your own.';
+      'Probiere einen der Befehle oben oder gib einen eigenen ein.';
 
   @override
-  String get wifi_title => 'WiFi';
+  String get wifi_title => 'WLAN';
 
   @override
-  String get wifi_tileSubtitle => 'Connect your radio to a WiFi network';
+  String get wifi_tileSubtitle => 'Verbinde dein Funkgerät mit einem WLAN';
 
   @override
   String get wifi_unsupported =>
-      'This radio\'s firmware doesn\'t include WiFi.';
+      'Die Firmware dieses Funkgeräts enthält kein WLAN.';
 
   @override
-  String get wifi_enabled => 'Use WiFi';
+  String get wifi_enabled => 'WLAN verwenden';
 
   @override
   String get wifi_status => 'Status';
 
   @override
-  String get wifi_connected => 'Connected';
+  String get wifi_connected => 'Verbunden';
 
   @override
   String wifi_connectedIp(String ip) {
-    return 'Connected · $ip';
+    return 'Verbunden · $ip';
   }
 
   @override
-  String get wifi_disconnected => 'Not connected';
+  String get wifi_disconnected => 'Nicht verbunden';
 
   @override
-  String get wifi_network => 'Network name (SSID)';
+  String get wifi_network => 'Netzwerkname (SSID)';
 
   @override
-  String get wifi_password => 'Password';
+  String get wifi_password => 'Passwort';
 
   @override
-  String get wifi_passwordKeep => 'Leave blank to keep the current password';
+  String get wifi_passwordKeep =>
+      'Leer lassen, um das aktuelle Passwort zu behalten';
 
   @override
-  String get wifi_save => 'Save';
+  String get wifi_save => 'Speichern';
 
   @override
-  String get wifi_forget => 'Forget network';
+  String get wifi_forget => 'Netzwerk vergessen';
 
   @override
   String get wifi_forgetConfirm =>
-      'Remove the saved network and password from the radio?';
+      'Gespeichertes Netzwerk und Passwort vom Funkgerät entfernen?';
 
   @override
   String get wifi_rebootNeeded =>
-      'Saved. Restart the radio to apply WiFi changes.';
+      'Gespeichert. Starte das Funkgerät neu, um die WLAN-Änderungen zu übernehmen.';
 
   @override
-  String get wifi_rebootNow => 'Restart radio';
+  String get wifi_rebootNow => 'Funkgerät neu starten';
 
   @override
   String get wifi_rebootConfirm =>
-      'Restart the radio now? The app will disconnect and you\'ll need to reconnect.';
+      'Funkgerät jetzt neu starten? Die App trennt die Verbindung und du musst dich neu verbinden.';
 
   @override
   String get wifi_loadFailed =>
-      'Couldn\'t read the WiFi settings from the radio.';
+      'Die WLAN-Einstellungen konnten nicht vom Funkgerät gelesen werden.';
 
   @override
-  String get wifi_retry => 'Try again';
+  String get wifi_retry => 'Erneut versuchen';
 
   @override
   String wifi_saveFailed(String reply) {
-    return 'The radio didn\'t accept the change: $reply';
+    return 'Das Funkgerät hat die Änderung nicht angenommen: $reply';
   }
 
   @override
-  String get accessControl_refresh => 'Refresh';
+  String get accessControl_refresh => 'Aktualisieren';
 
   @override
   String get common_cancel => 'Abbrechen';
@@ -676,27 +682,27 @@ class AppLocalizationsDe extends AppLocalizations {
       'Gespeicherte Regionen verwalten';
 
   @override
-  String get settings_corridorRegion => 'Corridor region';
+  String get settings_corridorRegion => 'Korridor-Region';
 
   @override
-  String get settings_corridorRegionDefault => '#corridor (default)';
+  String get settings_corridorRegionDefault => '#corridor (Standard)';
 
   @override
   String get settings_corridorRegionHelp =>
-      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+      'Flood-Korridor-Pakete werden mit dieser Region markiert. Repeater ohne Korridor-Firmware leiten sie nur weiter, wenn sie diese Region erlauben. Leer lassen für den Standard-Tag #corridor.';
 
   @override
-  String get settings_corridorRegionHint => 'Region name';
+  String get settings_corridorRegionHint => 'Regionsname';
 
   @override
-  String get settings_corridorRegionUseDefault => 'Use default';
+  String get settings_corridorRegionUseDefault => 'Standard verwenden';
 
   @override
-  String get settings_corridorRegionUpdated => 'Corridor region updated';
+  String get settings_corridorRegionUpdated => 'Korridor-Region aktualisiert';
 
   @override
   String get settings_corridorRegionFailed =>
-      'Couldn\'t update the corridor region';
+      'Korridor-Region konnte nicht aktualisiert werden';
 
   @override
   String get settings_regionManagement_screenTitle => 'Regions-Verwaltung';
@@ -1551,11 +1557,11 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get channels_viaMqtt => 'via MQTT';
+  String get channels_viaMqtt => 'über MQTT';
 
   @override
   String get channels_viaMqttSemantics =>
-      'Received via MQTT, not heard by your radio';
+      'Über MQTT empfangen, nicht von deinem Funkgerät gehört';
 
   @override
   String get channels_private => 'Privat';
@@ -1824,31 +1830,31 @@ class AppLocalizationsDe extends AppLocalizations {
   String get chat_sendGif => 'GIF senden';
 
   @override
-  String get chat_limitToArea => 'Limit to an area';
+  String get chat_limitToArea => 'Auf ein Gebiet begrenzen';
 
   @override
-  String get chat_limitToAreaTitle => 'Only send within…';
+  String get chat_limitToAreaTitle => 'Nur senden innerhalb von…';
 
   @override
   String get chat_limitToAreaHelp =>
-      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+      'Repeater mit Flood-Corridor-Firmware leiten die Nachricht nur innerhalb dieses Gebiets weiter. Andere Repeater verwerfen sie, außer sie erlauben deine Korridor-Region.';
 
   @override
   String chat_limitToAreaRadius(int km) {
-    return '$km km of you';
+    return '$km km um dich';
   }
 
   @override
   String chat_limitToAreaActive(int km) {
-    return 'Only within $km km of you';
+    return 'Nur im Umkreis von $km km';
   }
 
   @override
-  String get chat_limitToAreaOff => 'No limit';
+  String get chat_limitToAreaOff => 'Keine Begrenzung';
 
   @override
   String get chat_limitToAreaNeedsPosition =>
-      'Set your radio\'s position to limit messages to an area.';
+      'Lege die Position deines Funkgeräts fest, um Nachrichten auf ein Gebiet zu begrenzen.';
 
   @override
   String get chat_sendImageLora => 'Bild über MeshCore senden';
@@ -1869,7 +1875,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get chat_me => 'Ich';
 
   @override
-  String get reaction_report => 'Emoji Reactions';
+  String get reaction_report => 'Emoji-Reaktionen';
 
   @override
   String get emojiCategorySmileys => 'Emoticons';
@@ -2335,59 +2341,62 @@ class AppLocalizationsDe extends AppLocalizations {
   String get map_setAsMyLocation => 'Als meine aktuelle Position festlegen';
 
   @override
-  String get floodCorridor_title => 'Flood Corridor';
+  String get floodCorridor_title => 'Flood-Korridor';
 
   @override
-  String get floodCorridor_previewToHere => 'Preview flood corridor to here';
+  String get floodCorridor_previewToHere =>
+      'Flood-Korridor bis hierher anzeigen';
 
   @override
-  String get floodCorridor_requesting => 'Asking your radio for a corridor…';
+  String get floodCorridor_requesting =>
+      'Korridor wird beim Funkgerät angefragt…';
 
   @override
   String get floodCorridor_unsupported =>
-      'Your radio\'s firmware doesn\'t support flood corridors.';
+      'Die Firmware deines Funkgeräts unterstützt keine Flood-Korridore.';
 
   @override
   String get floodCorridor_noProposal =>
-      'Your radio couldn\'t propose a corridor. Make sure it has a position set.';
+      'Dein Funkgerät konnte keinen Korridor vorschlagen. Stelle sicher, dass eine Position gesetzt ist.';
 
   @override
   String floodCorridor_circleCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count circles',
-      one: '1 circle',
+      other: '$count Kreise',
+      one: '1 Kreis',
     );
     return '$_temp0';
   }
 
   @override
   String floodCorridor_repeatersInside(int inside, int total) {
-    return '$inside of $total known repeaters inside';
+    return '$inside von $total bekannten Repeatern innerhalb';
   }
 
   @override
   String get floodCorridor_straightLine =>
-      'Straight line: no known repeaters along the way';
+      'Gerade Linie: keine bekannten Repeater auf dem Weg';
 
   @override
-  String get floodCorridor_followsRepeaters => 'Follows your known repeaters';
+  String get floodCorridor_followsRepeaters =>
+      'Folgt deinen bekannten Repeatern';
 
   @override
   String get floodCorridor_horizonLimited =>
-      'Known repeaters don\'t reach the target; the rest is a straight line';
+      'Bekannte Repeater reichen nicht bis zum Ziel; der Rest ist eine gerade Linie';
 
   @override
   String get floodCorridor_thinStretch =>
-      'Part of the corridor has few known repeaters';
+      'Ein Teil des Korridors hat wenige bekannte Repeater';
 
   @override
-  String get floodCorridor_moreCoverage => 'Require more repeater coverage';
+  String get floodCorridor_moreCoverage => 'Mehr Repeater-Abdeckung verlangen';
 
   @override
   String get floodCorridor_previewNote =>
-      'Preview only. Repeaters without corridor firmware don\'t apply corridors.';
+      'Nur Vorschau. Repeater ohne Korridor-Firmware wenden keine Korridore an.';
 
   @override
   String get map_pinLabel => 'Pin-Beschriftung';
@@ -4117,14 +4126,14 @@ class AppLocalizationsDe extends AppLocalizations {
       'Die Detailangaben für dieses Paket sind nicht verfügbar.';
 
   @override
-  String get channelPath_sourceLabel => 'Source';
+  String get channelPath_sourceLabel => 'Quelle';
 
   @override
   String get channelPath_sourceMqtt => 'MQTT';
 
   @override
   String get channelPath_viaMqttNoRfPath =>
-      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
+      'Diese Nachricht kam über MQTT. Dein Funkgerät hat sie nicht empfangen, daher gibt es keinen Funkpfad von deinem Funkgerät.';
 
   @override
   String get channelPath_messageDetails => 'Nachrichtendetails';
@@ -7355,74 +7364,74 @@ class AppLocalizationsDe extends AppLocalizations {
   String get sensor_typeAltitude => 'Höhe';
 
   @override
-  String get setupWizard_title => 'Connect your radio';
+  String get setupWizard_title => 'Funkgerät verbinden';
 
   @override
-  String get setupWizard_choose => '1. Choose a connection';
+  String get setupWizard_choose => '1. Verbindung wählen';
 
   @override
-  String get setupWizard_prepare => '2. Prepare your radio';
+  String get setupWizard_prepare => '2. Funkgerät vorbereiten';
 
   @override
   String get setupWizard_intro =>
-      'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.';
+      'Wähle, wie sich dieses Telefon oder dieser Computer mit deinem Funkgerät verbindet. Das Funkgerät überträgt Nachrichten über das Mesh.';
 
   @override
   String get setupWizard_bluetooth =>
-      'Wireless connection to a nearby compatible radio.';
+      'Drahtlose Verbindung zu einem kompatiblen Funkgerät in der Nähe.';
 
   @override
   String get setupWizard_noBluetooth =>
-      'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.';
+      'Bluetooth ist in diesem Browser nicht verfügbar. Nutze die native App oder eine unterstützte USB-Verbindung.';
 
   @override
-  String get setupWizard_usb => 'A wired connection using a USB data cable.';
+  String get setupWizard_usb => 'Kabelverbindung über ein USB-Datenkabel.';
 
   @override
   String get setupWizard_noUsb =>
-      'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.';
+      'USB-Seriell ist hier nicht verfügbar. Nutze eine unterstützte Desktop- oder Android-App oder Chrome mit Web Serial.';
 
   @override
   String get setupWizard_bluetoothSteps =>
-      'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.';
+      'Schalte dein Funkgerät ein und halte es in der Nähe. Aktiviere Bluetooth und erlaube der App den Zugriff. Schließe andere mit dem Funkgerät verbundene Apps, öffne dann die Geräteliste und suche.';
 
   @override
   String get setupWizard_usbSteps =>
-      'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.';
+      'Verbinde ein eingeschaltetes Funkgerät mit einem USB-Datenkabel; ein reines Ladekabel funktioniert nicht. Schließe andere serielle Apps. Öffne die USB-Geräteliste, wähle dein Funkgerät und erlaube den Zugriff, falls gefragt.';
 
   @override
   String get setupWizard_firmwareTitle =>
-      'Check compatibility before changing firmware';
+      'Vor dem Firmware-Wechsel die Kompatibilität prüfen';
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      'Dein Funkgerät braucht MeshCore-Companion-Firmware, die die gewählte Verbindung unterstützt. Die Unterstützung hängt von Board und Firmware-Build ab; eine USB-Buchse allein bedeutet noch keine USB-Seriell-Unterstützung. Prüfe die Anleitung für dein genaues Board und den installierten Build. Repeater- oder Room-Server-Firmware ist kein Companion. Eine fehlgeschlagene Verbindung heißt nicht automatisch, dass du neu flashen musst.';
 
   @override
   String get setupWizard_settings =>
-      'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.';
+      'Diese Anleitung flasht keine Firmware und ändert keine Funkeinstellungen. Nutze nach dem Verbinden die Einstellungen für Region, Frequenz und erweiterte Optionen. Stimme Einstellungen mit deinem lokalen Mesh ab, bevor du sie änderst.';
 
   @override
-  String get setupWizard_openBluetooth => 'Open Bluetooth devices';
+  String get setupWizard_openBluetooth => 'Bluetooth-Geräte öffnen';
 
   @override
-  String get setupWizard_openUsb => 'Open USB devices';
+  String get setupWizard_openUsb => 'USB-Geräte öffnen';
 
   @override
-  String get setupWizard_change => 'Change connection type';
+  String get setupWizard_change => 'Verbindungsart ändern';
 
   @override
-  String get setupWizard_later => 'Set up later';
+  String get setupWizard_later => 'Später einrichten';
 
   @override
   String get setupWizard_bluetoothError =>
-      'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.';
+      'Verbindung zum Funkgerät fehlgeschlagen. Lass es eingeschaltet und in der Nähe, prüfe die Bluetooth-Berechtigungen und schließe andere verbundene Apps. Suche dann erneut.';
 
   @override
   String get setupWizard_scanError =>
-      'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.';
+      'Suche nach Funkgeräten fehlgeschlagen. Schalte Bluetooth ein und erlaube in den Systemeinstellungen den Zugriff auf Bluetooth bzw. Geräte in der Nähe, dann suche erneut.';
 
   @override
   String get setupWizard_usbError =>
-      'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.';
+      'USB-Verbindung fehlgeschlagen. Prüfe das Datenkabel und das gewählte Gerät, erlaube den USB-Zugriff und schließe andere serielle Apps. Stecke das Kabel neu ein und versuche es erneut.';
 }

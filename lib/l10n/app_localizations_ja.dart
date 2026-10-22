@@ -21,25 +21,25 @@ class AppLocalizationsJa extends AppLocalizations {
   String get nav_map => '地図';
 
   @override
-  String get nav_messages => 'Messages';
+  String get nav_messages => 'メッセージ';
 
   @override
-  String get nav_nodes => 'Nodes';
+  String get nav_nodes => 'ノード';
 
   @override
-  String get nav_radio => 'Radio';
+  String get nav_radio => '無線機';
 
   @override
-  String get messages_title => 'Messages';
+  String get messages_title => 'メッセージ';
 
   @override
-  String get messages_filterAll => 'All';
+  String get messages_filterAll => 'すべて';
 
   @override
-  String get messages_filterDirect => 'Direct';
+  String get messages_filterDirect => 'ダイレクト';
 
   @override
-  String get messages_filterChannels => 'Channels';
+  String get messages_filterChannels => 'チャンネル';
 
   @override
   String messages_filterWithUnread(String label, int count) {
@@ -47,52 +47,51 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get messages_search => 'Search messages';
+  String get messages_search => 'メッセージを検索';
 
   @override
-  String get messages_searchHint => 'Search conversations';
+  String get messages_searchHint => '会話を検索';
 
   @override
-  String get messages_closeSearch => 'Close search';
+  String get messages_closeSearch => '検索を閉じる';
 
   @override
-  String get messages_manageChannels => 'Manage channels';
+  String get messages_manageChannels => 'チャンネルを管理';
 
   @override
-  String get messages_new => 'New';
+  String get messages_new => '新規';
 
   @override
-  String get messages_newDirect => 'Message a node';
+  String get messages_newDirect => 'ノードにメッセージ';
 
   @override
-  String get messages_newChannel => 'Add or join a channel';
+  String get messages_newChannel => 'チャンネルを追加または参加';
 
   @override
-  String get messages_empty => 'No conversations yet';
+  String get messages_empty => 'まだ会話はありません';
 
   @override
-  String get messages_emptyHint =>
-      'Messages from nodes and channels show up here.';
+  String get messages_emptyHint => 'ノードやチャンネルからのメッセージがここに表示されます。';
 
   @override
-  String get messages_noMatches => 'No conversations match your search';
+  String get messages_noMatches => '検索に一致する会話はありません';
 
   @override
   String messages_you(String text) {
-    return 'You: $text';
+    return 'あなた: $text';
   }
 
   @override
-  String get messages_yesterday => 'Yesterday';
+  String get messages_yesterday => '昨日';
 
   @override
   String messages_unreadCount(int count) {
-    return '$count unread';
+    return '未読 $count 件';
   }
 
   @override
   String radioStatus_connectedVia(String transport) {
-    return 'Connected over $transport';
+    return '$transport で接続中';
   }
 
   @override
@@ -106,211 +105,203 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String radioStatus_battery(int percent) {
-    return 'Battery $percent%';
+    return 'バッテリー $percent%';
   }
 
   @override
-  String get radioStatus_openRadio => 'Open radio details';
+  String get radioStatus_openRadio => '無線機の詳細を開く';
 
   @override
-  String get radioOverview_battery => 'Battery';
+  String get radioOverview_battery => 'バッテリー';
 
   @override
   String radioOverview_firmware(String version) {
-    return 'Firmware $version';
+    return 'ファームウェア $version';
   }
 
   @override
-  String get radioOverview_sendAdvert => 'Send advert';
+  String get radioOverview_sendAdvert => 'アドバートを送信';
 
   @override
-  String get radioOverview_stats => 'Radio stats';
+  String get radioOverview_stats => '無線機の統計';
 
   @override
-  String get accessControl_title => 'Access control';
+  String get accessControl_title => 'アクセス制御';
 
   @override
-  String get accessControl_hubSubtitle => 'Who can log in without the password';
+  String get accessControl_hubSubtitle => 'パスワードなしでログインできる人';
 
   @override
   String get accessControl_explainRepeater =>
-      'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.';
+      'このリストの人はパスワードなしでログインします。管理者は設定を変更でき、「読み取り専用」と「読み書き」は完全なテレメトリーも受け取ります。';
 
   @override
   String get accessControl_explainRoom =>
-      'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.';
+      'このリストの管理者はパスワードなしでログインし、ルームを管理できます。ルームのメンバーはルームのパスワードで参加します。';
 
   @override
-  String get accessControl_roleReadOnly => 'Read only';
+  String get accessControl_roleReadOnly => '読み取り専用';
 
   @override
-  String get accessControl_roleReadWrite => 'Read & write';
+  String get accessControl_roleReadWrite => '読み書き';
 
   @override
-  String get accessControl_roleAdmin => 'Admin';
+  String get accessControl_roleAdmin => '管理者';
 
   @override
-  String get accessControl_you => 'You';
+  String get accessControl_you => 'あなた';
 
   @override
-  String get accessControl_unknownNode => 'Unknown node';
+  String get accessControl_unknownNode => '不明なノード';
 
   @override
-  String get accessControl_add => 'Add';
+  String get accessControl_add => '追加';
 
   @override
-  String get accessControl_addTitle => 'Add to access list';
+  String get accessControl_addTitle => 'アクセスリストに追加';
 
   @override
-  String get accessControl_pickContact => 'Choose a contact';
+  String get accessControl_pickContact => '連絡先を選択';
 
   @override
   String get accessControl_noContacts =>
-      'No contacts to add. Nodes appear here once you have heard their advert.';
+      '追加できる連絡先がありません。ノードはアドバートを受信するとここに表示されます。';
 
   @override
-  String get accessControl_changeRole => 'Change role';
+  String get accessControl_changeRole => 'ロールを変更';
 
   @override
-  String get accessControl_remove => 'Remove access';
+  String get accessControl_remove => 'アクセスを削除';
 
   @override
   String accessControl_removeConfirm(String name) {
-    return 'Remove $name from the access list? They will need the password to log in.';
+    return '$name をアクセスリストから削除しますか？ログインにパスワードが必要になります。';
   }
 
   @override
   String get accessControl_removeSelfWarning =>
-      'This is you. If you remove yourself you will need the admin password to manage this node again.';
+      'これはあなた自身です。自分を削除すると、このノードを再び管理するには管理者パスワードが必要になります。';
 
   @override
   String get accessControl_unknownKeyNote =>
-      'Not in your contacts. Changing its role needs newer node firmware; removing it always works.';
+      '連絡先にありません。ロールの変更には新しいノードファームウェアが必要です。削除はいつでもできます。';
 
   @override
   String get accessControl_prefixUnsupported =>
-      'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.';
+      'このノードのファームウェアでは、連絡先にない人のロールを変更できません。削除は可能です。';
 
   @override
-  String get accessControl_empty => 'Nobody is on the access list';
+  String get accessControl_empty => 'アクセスリストは空です';
 
   @override
-  String get accessControl_emptyHint =>
-      'Add people so they can log in without the password.';
+  String get accessControl_emptyHint => '追加した人はパスワードなしでログインできます。';
 
   @override
-  String get accessControl_loading => 'Asking the node for its access list…';
+  String get accessControl_loading => 'ノードにアクセスリストを問い合わせています…';
 
   @override
-  String get accessControl_timeout =>
-      'The node didn\'t answer. Check the path and try again.';
+  String get accessControl_timeout => 'ノードが応答しませんでした。経路を確認して再試行してください。';
 
   @override
   String get accessControl_maybeIncomplete =>
-      'This node sent one full page and its firmware can\'t send more, so some entries may be missing.';
+      'このノードは1ページ分を送信しましたが、ファームウェアがそれ以上送れないため、一部の項目が欠けている可能性があります。';
 
   @override
-  String get accessControl_saved => 'Access list updated';
+  String get accessControl_saved => 'アクセスリストを更新しました';
 
   @override
   String accessControl_failed(String reply) {
-    return 'The node refused the change: $reply';
+    return 'ノードが変更を拒否しました: $reply';
   }
 
   @override
-  String get companionCli_title => 'Command line';
+  String get companionCli_title => 'コマンドライン';
 
   @override
-  String get companionCli_tileSubtitle => 'Run commands on your radio';
+  String get companionCli_tileSubtitle => '無線機でコマンドを実行';
 
   @override
   String get companionCli_warning =>
-      'Commands run on your connected radio and can change its settings or restart it.';
+      'コマンドは接続中の無線機で実行され、設定を変更したり再起動したりすることがあります。';
 
   @override
-  String get companionCli_hint => 'Type a command, e.g. ver';
+  String get companionCli_hint => 'コマンドを入力（例: ver）';
 
   @override
-  String get companionCli_send => 'Run command';
+  String get companionCli_send => 'コマンドを実行';
 
   @override
-  String get companionCli_noReply => 'No reply. The radio may be restarting.';
+  String get companionCli_noReply => '応答がありません。無線機が再起動中かもしれません。';
 
   @override
-  String get companionCli_empty =>
-      'Try one of the commands above, or type your own.';
+  String get companionCli_empty => '上のコマンドを試すか、自分で入力してください。';
 
   @override
-  String get wifi_title => 'WiFi';
+  String get wifi_title => 'Wi‑Fi';
 
   @override
-  String get wifi_tileSubtitle => 'Connect your radio to a WiFi network';
+  String get wifi_tileSubtitle => '無線機をWi‑Fiネットワークに接続';
 
   @override
-  String get wifi_unsupported =>
-      'This radio\'s firmware doesn\'t include WiFi.';
+  String get wifi_unsupported => 'この無線機のファームウェアにはWi‑Fi機能がありません。';
 
   @override
-  String get wifi_enabled => 'Use WiFi';
+  String get wifi_enabled => 'Wi‑Fiを使用';
 
   @override
-  String get wifi_status => 'Status';
+  String get wifi_status => '状態';
 
   @override
-  String get wifi_connected => 'Connected';
+  String get wifi_connected => '接続済み';
 
   @override
   String wifi_connectedIp(String ip) {
-    return 'Connected · $ip';
+    return '接続済み · $ip';
   }
 
   @override
-  String get wifi_disconnected => 'Not connected';
+  String get wifi_disconnected => '未接続';
 
   @override
-  String get wifi_network => 'Network name (SSID)';
+  String get wifi_network => 'ネットワーク名 (SSID)';
 
   @override
-  String get wifi_password => 'Password';
+  String get wifi_password => 'パスワード';
 
   @override
-  String get wifi_passwordKeep => 'Leave blank to keep the current password';
+  String get wifi_passwordKeep => '現在のパスワードを使う場合は空欄のままにしてください';
 
   @override
-  String get wifi_save => 'Save';
+  String get wifi_save => '保存';
 
   @override
-  String get wifi_forget => 'Forget network';
+  String get wifi_forget => 'ネットワークを削除';
 
   @override
-  String get wifi_forgetConfirm =>
-      'Remove the saved network and password from the radio?';
+  String get wifi_forgetConfirm => '保存したネットワークとパスワードを無線機から削除しますか？';
 
   @override
-  String get wifi_rebootNeeded =>
-      'Saved. Restart the radio to apply WiFi changes.';
+  String get wifi_rebootNeeded => '保存しました。Wi‑Fiの変更を反映するには無線機を再起動してください。';
 
   @override
-  String get wifi_rebootNow => 'Restart radio';
+  String get wifi_rebootNow => '無線機を再起動';
 
   @override
-  String get wifi_rebootConfirm =>
-      'Restart the radio now? The app will disconnect and you\'ll need to reconnect.';
+  String get wifi_rebootConfirm => '今すぐ無線機を再起動しますか？アプリの接続が切れ、再接続が必要になります。';
 
   @override
-  String get wifi_loadFailed =>
-      'Couldn\'t read the WiFi settings from the radio.';
+  String get wifi_loadFailed => '無線機からWi‑Fi設定を読み取れませんでした。';
 
   @override
-  String get wifi_retry => 'Try again';
+  String get wifi_retry => '再試行';
 
   @override
   String wifi_saveFailed(String reply) {
-    return 'The radio didn\'t accept the change: $reply';
+    return '無線機が変更を受け付けませんでした: $reply';
   }
 
   @override
-  String get accessControl_refresh => 'Refresh';
+  String get accessControl_refresh => '更新';
 
   @override
   String get common_cancel => 'キャンセル';
@@ -403,10 +394,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get messageStatus_repeated => '何度も聞いた';
 
   @override
-  String get urlImage_enable => 'Enable URL images';
+  String get urlImage_enable => 'URL画像を有効にする';
 
   @override
-  String get urlImage_possible => 'Possible URL image; enable it in Settings.';
+  String get urlImage_possible => 'URL画像の可能性があります。設定で有効にしてください。';
 
   @override
   String get common_reboot => '再起動';
@@ -658,27 +649,26 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settings_regionSettingsSubtitle => '保存された領域の管理';
 
   @override
-  String get settings_corridorRegion => 'Corridor region';
+  String get settings_corridorRegion => 'コリドー地域';
 
   @override
-  String get settings_corridorRegionDefault => '#corridor (default)';
+  String get settings_corridorRegionDefault => '#corridor（デフォルト）';
 
   @override
   String get settings_corridorRegionHelp =>
-      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+      'フラッドコリドーのパケットにはこの地域がタグ付けされます。コリドー対応ファームウェアのないリピーターは、この地域を許可している場合にのみ転送します。空欄にするとデフォルトのタグ #corridor を使います。';
 
   @override
-  String get settings_corridorRegionHint => 'Region name';
+  String get settings_corridorRegionHint => '地域名';
 
   @override
-  String get settings_corridorRegionUseDefault => 'Use default';
+  String get settings_corridorRegionUseDefault => 'デフォルトを使用';
 
   @override
-  String get settings_corridorRegionUpdated => 'Corridor region updated';
+  String get settings_corridorRegionUpdated => 'コリドー地域を更新しました';
 
   @override
-  String get settings_corridorRegionFailed =>
-      'Couldn\'t update the corridor region';
+  String get settings_corridorRegionFailed => 'コリドー地域を更新できませんでした';
 
   @override
   String get settings_regionManagement_screenTitle => '地域管理';
@@ -1487,11 +1477,10 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get channels_viaMqtt => 'via MQTT';
+  String get channels_viaMqtt => 'MQTT経由';
 
   @override
-  String get channels_viaMqttSemantics =>
-      'Received via MQTT, not heard by your radio';
+  String get channels_viaMqttSemantics => 'MQTT経由で受信、無線機では受信していません';
 
   @override
   String get channels_private => '非公開';
@@ -1747,31 +1736,31 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_sendGif => 'GIF を送信';
 
   @override
-  String get chat_limitToArea => 'Limit to an area';
+  String get chat_limitToArea => 'エリアを限定';
 
   @override
-  String get chat_limitToAreaTitle => 'Only send within…';
+  String get chat_limitToAreaTitle => '送信範囲を限定…';
 
   @override
   String get chat_limitToAreaHelp =>
-      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+      'フラッドコリドー対応ファームウェアのリピーターは、このエリア内でのみメッセージを中継します。他のリピーターは、あなたのコリドー地域を許可していない限り破棄します。';
 
   @override
   String chat_limitToAreaRadius(int km) {
-    return '$km km of you';
+    return '半径${km}km';
   }
 
   @override
   String chat_limitToAreaActive(int km) {
-    return 'Only within $km km of you';
+    return '半径${km}km以内のみ';
   }
 
   @override
-  String get chat_limitToAreaOff => 'No limit';
+  String get chat_limitToAreaOff => '制限なし';
 
   @override
   String get chat_limitToAreaNeedsPosition =>
-      'Set your radio\'s position to limit messages to an area.';
+      'メッセージをエリアに限定するには、無線機の位置を設定してください。';
 
   @override
   String get chat_sendImageLora => 'MeshCore経由で画像を送信';
@@ -1792,7 +1781,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_me => '私';
 
   @override
-  String get reaction_report => 'Emoji Reactions';
+  String get reaction_report => '絵文字リアクション';
 
   @override
   String get emojiCategorySmileys => '顔文字';
@@ -2245,59 +2234,54 @@ class AppLocalizationsJa extends AppLocalizations {
   String get map_setAsMyLocation => '現在地として設定';
 
   @override
-  String get floodCorridor_title => 'Flood Corridor';
+  String get floodCorridor_title => 'フラッドコリドー';
 
   @override
-  String get floodCorridor_previewToHere => 'Preview flood corridor to here';
+  String get floodCorridor_previewToHere => 'ここまでのフラッドコリドーをプレビュー';
 
   @override
-  String get floodCorridor_requesting => 'Asking your radio for a corridor…';
+  String get floodCorridor_requesting => '無線機にコリドーを問い合わせています…';
 
   @override
-  String get floodCorridor_unsupported =>
-      'Your radio\'s firmware doesn\'t support flood corridors.';
+  String get floodCorridor_unsupported => '無線機のファームウェアはフラッドコリドーに対応していません。';
 
   @override
   String get floodCorridor_noProposal =>
-      'Your radio couldn\'t propose a corridor. Make sure it has a position set.';
+      '無線機がコリドーを提案できませんでした。位置が設定されているか確認してください。';
 
   @override
   String floodCorridor_circleCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count circles',
-      one: '1 circle',
+      other: '$count個の円',
     );
     return '$_temp0';
   }
 
   @override
   String floodCorridor_repeatersInside(int inside, int total) {
-    return '$inside of $total known repeaters inside';
+    return '既知のリピーター$total台中$inside台が範囲内';
   }
 
   @override
-  String get floodCorridor_straightLine =>
-      'Straight line: no known repeaters along the way';
+  String get floodCorridor_straightLine => '直線: 途中に既知のリピーターがありません';
 
   @override
-  String get floodCorridor_followsRepeaters => 'Follows your known repeaters';
+  String get floodCorridor_followsRepeaters => '既知のリピーターに沿っています';
 
   @override
-  String get floodCorridor_horizonLimited =>
-      'Known repeaters don\'t reach the target; the rest is a straight line';
+  String get floodCorridor_horizonLimited => '既知のリピーターは目的地まで届きません。残りは直線です';
 
   @override
-  String get floodCorridor_thinStretch =>
-      'Part of the corridor has few known repeaters';
+  String get floodCorridor_thinStretch => 'コリドーの一部に既知のリピーターが少ない区間があります';
 
   @override
-  String get floodCorridor_moreCoverage => 'Require more repeater coverage';
+  String get floodCorridor_moreCoverage => 'より多くのリピーターカバーを必須にする';
 
   @override
   String get floodCorridor_previewNote =>
-      'Preview only. Repeaters without corridor firmware don\'t apply corridors.';
+      'プレビューのみ。コリドー対応ファームウェアのないリピーターはコリドーを適用しません。';
 
   @override
   String get map_pinLabel => 'ピンラベル';
@@ -3920,14 +3904,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channelPath_noHopDetails => 'このパッケージに関する詳細な情報は提供されていません。';
 
   @override
-  String get channelPath_sourceLabel => 'Source';
+  String get channelPath_sourceLabel => '受信元';
 
   @override
   String get channelPath_sourceMqtt => 'MQTT';
 
   @override
   String get channelPath_viaMqttNoRfPath =>
-      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
+      'このメッセージはMQTT経由で届きました。あなたの無線機は受信していないため、無線機からの電波経路はありません。';
 
   @override
   String get channelPath_messageDetails => 'メッセージの詳細';
@@ -7012,74 +6996,72 @@ class AppLocalizationsJa extends AppLocalizations {
   String get sensor_typeAltitude => '高度';
 
   @override
-  String get setupWizard_title => 'Connect your radio';
+  String get setupWizard_title => '無線機を接続';
 
   @override
-  String get setupWizard_choose => '1. Choose a connection';
+  String get setupWizard_choose => '1. 接続方法を選ぶ';
 
   @override
-  String get setupWizard_prepare => '2. Prepare your radio';
+  String get setupWizard_prepare => '2. 無線機を準備する';
 
   @override
   String get setupWizard_intro =>
-      'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.';
+      'このスマートフォンやパソコンを無線機にどう接続するか選んでください。無線機がメッシュでメッセージを運びます。';
 
   @override
-  String get setupWizard_bluetooth =>
-      'Wireless connection to a nearby compatible radio.';
+  String get setupWizard_bluetooth => '近くの対応無線機にワイヤレスで接続します。';
 
   @override
   String get setupWizard_noBluetooth =>
-      'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.';
+      'このブラウザではBluetoothを使えません。ネイティブアプリか対応するUSB接続を使ってください。';
 
   @override
-  String get setupWizard_usb => 'A wired connection using a USB data cable.';
+  String get setupWizard_usb => 'USBデータケーブルによる有線接続。';
 
   @override
   String get setupWizard_noUsb =>
-      'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.';
+      'ここではUSBシリアルを使えません。対応するデスクトップまたはAndroidアプリ、もしくはWeb Serial対応のChromeを使ってください。';
 
   @override
   String get setupWizard_bluetoothSteps =>
-      'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.';
+      '無線機の電源を入れて近くに置きます。Bluetoothをオンにしてアプリの使用を許可します。無線機に接続している他のアプリを閉じ、デバイス一覧を開いてスキャンします。';
 
   @override
   String get setupWizard_usbSteps =>
-      'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.';
+      '電源の入った無線機をUSBデータケーブルで接続します。充電専用ケーブルは使えません。他のシリアルアプリを閉じます。USBデバイス一覧を開いて無線機を選び、求められたらアクセスを許可します。';
 
   @override
-  String get setupWizard_firmwareTitle =>
-      'Check compatibility before changing firmware';
+  String get setupWizard_firmwareTitle => 'ファームウェアを変更する前に互換性を確認';
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      '無線機には、選んだ接続方法に対応したMeshCoreコンパニオンファームウェアが必要です。対応状況はボードやファームウェアのビルドによって異なり、USBポートがあってもUSBシリアルに対応しているとは限りません。お使いのボードとインストール済みのビルドの説明を確認してください。リピーターやルームサーバーのファームウェアはコンパニオンではありません。接続に失敗しただけで書き直しが必要とは限りません。';
 
   @override
   String get setupWizard_settings =>
-      'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.';
+      'このガイドはファームウェアの書き込みや無線機の設定変更を行いません。接続後、地域・周波数・詳細オプションは設定から変更してください。変更前に地元のメッシュと設定を確認してください。';
 
   @override
-  String get setupWizard_openBluetooth => 'Open Bluetooth devices';
+  String get setupWizard_openBluetooth => 'Bluetoothデバイスを開く';
 
   @override
-  String get setupWizard_openUsb => 'Open USB devices';
+  String get setupWizard_openUsb => 'USBデバイスを開く';
 
   @override
-  String get setupWizard_change => 'Change connection type';
+  String get setupWizard_change => '接続方法を変更';
 
   @override
-  String get setupWizard_later => 'Set up later';
+  String get setupWizard_later => 'あとで設定';
 
   @override
   String get setupWizard_bluetoothError =>
-      'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.';
+      '無線機に接続できませんでした。電源を入れたまま近くに置き、Bluetoothの権限を確認し、接続中の他のアプリを閉じてから、もう一度スキャンしてください。';
 
   @override
   String get setupWizard_scanError =>
-      'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.';
+      '無線機をスキャンできませんでした。Bluetoothをオンにし、システム設定でBluetoothまたは付近のデバイスへのアクセスを許可してから、もう一度スキャンしてください。';
 
   @override
   String get setupWizard_usbError =>
-      'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.';
+      'USBで接続できませんでした。データケーブルと選んだデバイスを確認し、USBアクセスを許可し、他のシリアルアプリを閉じてください。ケーブルを挿し直して再試行してください。';
 }

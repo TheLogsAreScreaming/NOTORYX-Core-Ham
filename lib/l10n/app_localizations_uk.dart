@@ -21,25 +21,25 @@ class AppLocalizationsUk extends AppLocalizations {
   String get nav_map => 'Карта';
 
   @override
-  String get nav_messages => 'Messages';
+  String get nav_messages => 'Повідомлення';
 
   @override
-  String get nav_nodes => 'Nodes';
+  String get nav_nodes => 'Вузли';
 
   @override
-  String get nav_radio => 'Radio';
+  String get nav_radio => 'Радіо';
 
   @override
-  String get messages_title => 'Messages';
+  String get messages_title => 'Повідомлення';
 
   @override
-  String get messages_filterAll => 'All';
+  String get messages_filterAll => 'Усі';
 
   @override
-  String get messages_filterDirect => 'Direct';
+  String get messages_filterDirect => 'Особисті';
 
   @override
-  String get messages_filterChannels => 'Channels';
+  String get messages_filterChannels => 'Канали';
 
   @override
   String messages_filterWithUnread(String label, int count) {
@@ -47,52 +47,52 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get messages_search => 'Search messages';
+  String get messages_search => 'Пошук повідомлень';
 
   @override
-  String get messages_searchHint => 'Search conversations';
+  String get messages_searchHint => 'Пошук розмов';
 
   @override
-  String get messages_closeSearch => 'Close search';
+  String get messages_closeSearch => 'Закрити пошук';
 
   @override
-  String get messages_manageChannels => 'Manage channels';
+  String get messages_manageChannels => 'Керувати каналами';
 
   @override
-  String get messages_new => 'New';
+  String get messages_new => 'Нове';
 
   @override
-  String get messages_newDirect => 'Message a node';
+  String get messages_newDirect => 'Написати вузлу';
 
   @override
-  String get messages_newChannel => 'Add or join a channel';
+  String get messages_newChannel => 'Додати канал або приєднатися';
 
   @override
-  String get messages_empty => 'No conversations yet';
+  String get messages_empty => 'Поки що немає розмов';
 
   @override
   String get messages_emptyHint =>
-      'Messages from nodes and channels show up here.';
+      'Тут з\'являються повідомлення від вузлів і каналів.';
 
   @override
-  String get messages_noMatches => 'No conversations match your search';
+  String get messages_noMatches => 'Немає розмов за вашим запитом';
 
   @override
   String messages_you(String text) {
-    return 'You: $text';
+    return 'Ви: $text';
   }
 
   @override
-  String get messages_yesterday => 'Yesterday';
+  String get messages_yesterday => 'Учора';
 
   @override
   String messages_unreadCount(int count) {
-    return '$count unread';
+    return 'Непрочитаних: $count';
   }
 
   @override
   String radioStatus_connectedVia(String transport) {
-    return 'Connected over $transport';
+    return 'Підключено через $transport';
   }
 
   @override
@@ -106,211 +106,212 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String radioStatus_battery(int percent) {
-    return 'Battery $percent%';
+    return 'Батарея $percent%';
   }
 
   @override
-  String get radioStatus_openRadio => 'Open radio details';
+  String get radioStatus_openRadio => 'Відкрити відомості про радіо';
 
   @override
-  String get radioOverview_battery => 'Battery';
+  String get radioOverview_battery => 'Батарея';
 
   @override
   String radioOverview_firmware(String version) {
-    return 'Firmware $version';
+    return 'Прошивка $version';
   }
 
   @override
-  String get radioOverview_sendAdvert => 'Send advert';
+  String get radioOverview_sendAdvert => 'Надіслати оголошення';
 
   @override
-  String get radioOverview_stats => 'Radio stats';
+  String get radioOverview_stats => 'Статистика радіо';
 
   @override
-  String get accessControl_title => 'Access control';
+  String get accessControl_title => 'Керування доступом';
 
   @override
-  String get accessControl_hubSubtitle => 'Who can log in without the password';
+  String get accessControl_hubSubtitle => 'Хто може входити без пароля';
 
   @override
   String get accessControl_explainRepeater =>
-      'People on this list log in without a password. Admins can change settings; Read only and Read & write also get full telemetry.';
+      'Люди з цього списку входять без пароля. Адміністратори можуть змінювати налаштування; «Лише читання» та «Читання й запис» також отримують повну телеметрію.';
 
   @override
   String get accessControl_explainRoom =>
-      'Admins on this list log in without a password and can manage the room. Room members join with the room password instead.';
+      'Адміністратори з цього списку входять без пароля й можуть керувати кімнатою. Учасники кімнати входять за паролем кімнати.';
 
   @override
-  String get accessControl_roleReadOnly => 'Read only';
+  String get accessControl_roleReadOnly => 'Лише читання';
 
   @override
-  String get accessControl_roleReadWrite => 'Read & write';
+  String get accessControl_roleReadWrite => 'Читання й запис';
 
   @override
-  String get accessControl_roleAdmin => 'Admin';
+  String get accessControl_roleAdmin => 'Адміністратор';
 
   @override
-  String get accessControl_you => 'You';
+  String get accessControl_you => 'Ви';
 
   @override
-  String get accessControl_unknownNode => 'Unknown node';
+  String get accessControl_unknownNode => 'Невідомий вузол';
 
   @override
-  String get accessControl_add => 'Add';
+  String get accessControl_add => 'Додати';
 
   @override
-  String get accessControl_addTitle => 'Add to access list';
+  String get accessControl_addTitle => 'Додати до списку доступу';
 
   @override
-  String get accessControl_pickContact => 'Choose a contact';
+  String get accessControl_pickContact => 'Виберіть контакт';
 
   @override
   String get accessControl_noContacts =>
-      'No contacts to add. Nodes appear here once you have heard their advert.';
+      'Немає контактів для додавання. Вузли з\'являються тут після того, як ви отримаєте їхнє оголошення.';
 
   @override
-  String get accessControl_changeRole => 'Change role';
+  String get accessControl_changeRole => 'Змінити роль';
 
   @override
-  String get accessControl_remove => 'Remove access';
+  String get accessControl_remove => 'Прибрати доступ';
 
   @override
   String accessControl_removeConfirm(String name) {
-    return 'Remove $name from the access list? They will need the password to log in.';
+    return 'Прибрати $name зі списку доступу? Для входу знадобиться пароль.';
   }
 
   @override
   String get accessControl_removeSelfWarning =>
-      'This is you. If you remove yourself you will need the admin password to manage this node again.';
+      'Це ви. Якщо ви приберете себе, для керування вузлом знадобиться пароль адміністратора.';
 
   @override
   String get accessControl_unknownKeyNote =>
-      'Not in your contacts. Changing its role needs newer node firmware; removing it always works.';
+      'Немає у ваших контактах. Для зміни ролі потрібна новіша прошивка вузла; видалення працює завжди.';
 
   @override
   String get accessControl_prefixUnsupported =>
-      'This node\'s firmware can\'t change the role of someone who isn\'t in your contacts. You can still remove them.';
+      'Прошивка цього вузла не може змінити роль того, кого немає у ваших контактах. Видалити його все одно можна.';
 
   @override
-  String get accessControl_empty => 'Nobody is on the access list';
+  String get accessControl_empty => 'Список доступу порожній';
 
   @override
   String get accessControl_emptyHint =>
-      'Add people so they can log in without the password.';
+      'Додайте людей, щоб вони могли входити без пароля.';
 
   @override
-  String get accessControl_loading => 'Asking the node for its access list…';
+  String get accessControl_loading => 'Запитуємо список доступу у вузла…';
 
   @override
   String get accessControl_timeout =>
-      'The node didn\'t answer. Check the path and try again.';
+      'Вузол не відповів. Перевірте маршрут і спробуйте ще раз.';
 
   @override
   String get accessControl_maybeIncomplete =>
-      'This node sent one full page and its firmware can\'t send more, so some entries may be missing.';
+      'Вузол надіслав одну повну сторінку, а його прошивка не може надіслати більше, тож деяких записів може бракувати.';
 
   @override
-  String get accessControl_saved => 'Access list updated';
+  String get accessControl_saved => 'Список доступу оновлено';
 
   @override
   String accessControl_failed(String reply) {
-    return 'The node refused the change: $reply';
+    return 'Вузол відхилив зміну: $reply';
   }
 
   @override
-  String get companionCli_title => 'Command line';
+  String get companionCli_title => 'Командний рядок';
 
   @override
-  String get companionCli_tileSubtitle => 'Run commands on your radio';
+  String get companionCli_tileSubtitle => 'Виконувати команди на радіо';
 
   @override
   String get companionCli_warning =>
-      'Commands run on your connected radio and can change its settings or restart it.';
+      'Команди виконуються на підключеному радіо й можуть змінити його налаштування або перезавантажити його.';
 
   @override
-  String get companionCli_hint => 'Type a command, e.g. ver';
+  String get companionCli_hint => 'Введіть команду, наприклад ver';
 
   @override
-  String get companionCli_send => 'Run command';
+  String get companionCli_send => 'Виконати команду';
 
   @override
-  String get companionCli_noReply => 'No reply. The radio may be restarting.';
+  String get companionCli_noReply =>
+      'Немає відповіді. Можливо, радіо перезавантажується.';
 
   @override
   String get companionCli_empty =>
-      'Try one of the commands above, or type your own.';
+      'Спробуйте одну з команд вище або введіть власну.';
 
   @override
-  String get wifi_title => 'WiFi';
+  String get wifi_title => 'Wi‑Fi';
 
   @override
-  String get wifi_tileSubtitle => 'Connect your radio to a WiFi network';
+  String get wifi_tileSubtitle => 'Підключити радіо до мережі Wi‑Fi';
 
   @override
-  String get wifi_unsupported =>
-      'This radio\'s firmware doesn\'t include WiFi.';
+  String get wifi_unsupported => 'Прошивка цього радіо не підтримує Wi‑Fi.';
 
   @override
-  String get wifi_enabled => 'Use WiFi';
+  String get wifi_enabled => 'Використовувати Wi‑Fi';
 
   @override
-  String get wifi_status => 'Status';
+  String get wifi_status => 'Стан';
 
   @override
-  String get wifi_connected => 'Connected';
+  String get wifi_connected => 'Підключено';
 
   @override
   String wifi_connectedIp(String ip) {
-    return 'Connected · $ip';
+    return 'Підключено · $ip';
   }
 
   @override
-  String get wifi_disconnected => 'Not connected';
+  String get wifi_disconnected => 'Не підключено';
 
   @override
-  String get wifi_network => 'Network name (SSID)';
+  String get wifi_network => 'Назва мережі (SSID)';
 
   @override
-  String get wifi_password => 'Password';
+  String get wifi_password => 'Пароль';
 
   @override
-  String get wifi_passwordKeep => 'Leave blank to keep the current password';
+  String get wifi_passwordKeep =>
+      'Залиште порожнім, щоб зберегти поточний пароль';
 
   @override
-  String get wifi_save => 'Save';
+  String get wifi_save => 'Зберегти';
 
   @override
-  String get wifi_forget => 'Forget network';
+  String get wifi_forget => 'Забути мережу';
 
   @override
   String get wifi_forgetConfirm =>
-      'Remove the saved network and password from the radio?';
+      'Видалити збережену мережу й пароль із радіо?';
 
   @override
   String get wifi_rebootNeeded =>
-      'Saved. Restart the radio to apply WiFi changes.';
+      'Збережено. Перезавантажте радіо, щоб застосувати зміни Wi‑Fi.';
 
   @override
-  String get wifi_rebootNow => 'Restart radio';
+  String get wifi_rebootNow => 'Перезавантажити радіо';
 
   @override
   String get wifi_rebootConfirm =>
-      'Restart the radio now? The app will disconnect and you\'ll need to reconnect.';
+      'Перезавантажити радіо зараз? Застосунок від\'єднається, і потрібно буде підключитися знову.';
 
   @override
   String get wifi_loadFailed =>
-      'Couldn\'t read the WiFi settings from the radio.';
+      'Не вдалося прочитати налаштування Wi‑Fi з радіо.';
 
   @override
-  String get wifi_retry => 'Try again';
+  String get wifi_retry => 'Повторити';
 
   @override
   String wifi_saveFailed(String reply) {
-    return 'The radio didn\'t accept the change: $reply';
+    return 'Радіо не прийняло зміну: $reply';
   }
 
   @override
-  String get accessControl_refresh => 'Refresh';
+  String get accessControl_refresh => 'Оновити';
 
   @override
   String get common_cancel => 'Скасувати';
@@ -403,10 +404,11 @@ class AppLocalizationsUk extends AppLocalizations {
   String get messageStatus_repeated => 'Почув неодноразово';
 
   @override
-  String get urlImage_enable => 'Enable URL images';
+  String get urlImage_enable => 'Увімкнути зображення за URL';
 
   @override
-  String get urlImage_possible => 'Possible URL image; enable it in Settings.';
+  String get urlImage_possible =>
+      'Можливо, зображення за URL; увімкніть це в Налаштуваннях.';
 
   @override
   String get common_reboot => 'Перезавантажити';
@@ -672,27 +674,27 @@ class AppLocalizationsUk extends AppLocalizations {
   String get settings_regionSettingsSubtitle => 'Управляти збережених регіонів';
 
   @override
-  String get settings_corridorRegion => 'Corridor region';
+  String get settings_corridorRegion => 'Регіон коридору';
 
   @override
-  String get settings_corridorRegionDefault => '#corridor (default)';
+  String get settings_corridorRegionDefault => '#corridor (типово)';
 
   @override
   String get settings_corridorRegionHelp =>
-      'Flood corridor packets are tagged with this region. Repeaters without corridor firmware forward them only if they allow this region. Leave empty for the default #corridor tag.';
+      'Пакети flood-коридору позначаються цим регіоном. Ретранслятори без прошивки коридорів пересилають їх, лише якщо дозволяють цей регіон. Залиште порожнім для типової мітки #corridor.';
 
   @override
-  String get settings_corridorRegionHint => 'Region name';
+  String get settings_corridorRegionHint => 'Назва регіону';
 
   @override
-  String get settings_corridorRegionUseDefault => 'Use default';
+  String get settings_corridorRegionUseDefault => 'Типовий';
 
   @override
-  String get settings_corridorRegionUpdated => 'Corridor region updated';
+  String get settings_corridorRegionUpdated => 'Регіон коридору оновлено';
 
   @override
   String get settings_corridorRegionFailed =>
-      'Couldn\'t update the corridor region';
+      'Не вдалося оновити регіон коридору';
 
   @override
   String get settings_regionManagement_screenTitle => 'Рégіональний управління';
@@ -1545,11 +1547,11 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get channels_viaMqtt => 'via MQTT';
+  String get channels_viaMqtt => 'через MQTT';
 
   @override
   String get channels_viaMqttSemantics =>
-      'Received via MQTT, not heard by your radio';
+      'Отримано через MQTT, ваше радіо його не чуло';
 
   @override
   String get channels_private => 'Приватний';
@@ -1812,31 +1814,31 @@ class AppLocalizationsUk extends AppLocalizations {
   String get chat_sendGif => 'Надіслати GIF';
 
   @override
-  String get chat_limitToArea => 'Limit to an area';
+  String get chat_limitToArea => 'Обмежити областю';
 
   @override
-  String get chat_limitToAreaTitle => 'Only send within…';
+  String get chat_limitToAreaTitle => 'Надсилати лише в межах…';
 
   @override
   String get chat_limitToAreaHelp =>
-      'Repeaters with flood corridor firmware only relay the message inside this area. Other repeaters drop it unless they allow your corridor region.';
+      'Ретранслятори з прошивкою flood-коридорів передають повідомлення лише в цій області. Інші ретранслятори відкидають його, якщо не дозволяють ваш регіон коридору.';
 
   @override
   String chat_limitToAreaRadius(int km) {
-    return '$km km of you';
+    return '$km км від вас';
   }
 
   @override
   String chat_limitToAreaActive(int km) {
-    return 'Only within $km km of you';
+    return 'Лише в радіусі $km км від вас';
   }
 
   @override
-  String get chat_limitToAreaOff => 'No limit';
+  String get chat_limitToAreaOff => 'Без обмеження';
 
   @override
   String get chat_limitToAreaNeedsPosition =>
-      'Set your radio\'s position to limit messages to an area.';
+      'Задайте координати радіо, щоб обмежувати повідомлення областю.';
 
   @override
   String get chat_sendImageLora => 'Надіслати зображення через MeshCore';
@@ -1857,7 +1859,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get chat_me => 'Я';
 
   @override
-  String get reaction_report => 'Emoji Reactions';
+  String get reaction_report => 'Реакції емодзі';
 
   @override
   String get emojiCategorySmileys => 'Емодзі';
@@ -2328,59 +2330,63 @@ class AppLocalizationsUk extends AppLocalizations {
   String get map_setAsMyLocation => 'Встановити мою геопозицію';
 
   @override
-  String get floodCorridor_title => 'Flood Corridor';
+  String get floodCorridor_title => 'Flood-коридор';
 
   @override
-  String get floodCorridor_previewToHere => 'Preview flood corridor to here';
+  String get floodCorridor_previewToHere => 'Переглянути flood-коридор досюди';
 
   @override
-  String get floodCorridor_requesting => 'Asking your radio for a corridor…';
+  String get floodCorridor_requesting => 'Запитуємо коридор у радіо…';
 
   @override
   String get floodCorridor_unsupported =>
-      'Your radio\'s firmware doesn\'t support flood corridors.';
+      'Прошивка вашого радіо не підтримує flood-коридори.';
 
   @override
   String get floodCorridor_noProposal =>
-      'Your radio couldn\'t propose a corridor. Make sure it has a position set.';
+      'Радіо не змогло запропонувати коридор. Переконайтеся, що в нього задано координати.';
 
   @override
   String floodCorridor_circleCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count circles',
-      one: '1 circle',
+      other: '$count кола',
+      many: '$count кіл',
+      few: '$count кола',
+      one: '1 коло',
     );
     return '$_temp0';
   }
 
   @override
   String floodCorridor_repeatersInside(int inside, int total) {
-    return '$inside of $total known repeaters inside';
+    return 'Усередині $inside з $total відомих ретрансляторів';
   }
 
   @override
   String get floodCorridor_straightLine =>
-      'Straight line: no known repeaters along the way';
+      'Пряма лінія: на шляху немає відомих ретрансляторів';
 
   @override
-  String get floodCorridor_followsRepeaters => 'Follows your known repeaters';
+  String get floodCorridor_followsRepeaters =>
+      'Проходить відомими ретрансляторами';
 
   @override
   String get floodCorridor_horizonLimited =>
-      'Known repeaters don\'t reach the target; the rest is a straight line';
+      'Відомі ретранслятори не сягають цілі; решта — пряма лінія';
 
   @override
   String get floodCorridor_thinStretch =>
-      'Part of the corridor has few known repeaters';
+      'На частині коридору мало відомих ретрансляторів';
 
   @override
-  String get floodCorridor_moreCoverage => 'Require more repeater coverage';
+  String get floodCorridor_moreCoverage =>
+      'Вимагати більшого покриття ретрансляторами';
 
   @override
   String get floodCorridor_previewNote =>
-      'Preview only. Repeaters without corridor firmware don\'t apply corridors.';
+      'Лише попередній перегляд. Ретранслятори без прошивки коридорів їх не застосовують.';
 
   @override
   String get map_pinLabel => 'Мітка піна';
@@ -4111,14 +4117,14 @@ class AppLocalizationsUk extends AppLocalizations {
       'Деталі відправки не надані для цього пакету.';
 
   @override
-  String get channelPath_sourceLabel => 'Source';
+  String get channelPath_sourceLabel => 'Джерело';
 
   @override
   String get channelPath_sourceMqtt => 'MQTT';
 
   @override
   String get channelPath_viaMqttNoRfPath =>
-      'This message arrived via MQTT. Your radio has not heard it, so there is no RF path from your radio.';
+      'Це повідомлення надійшло через MQTT. Ваше радіо його не чуло, тому радіомаршруту від вашого радіо немає.';
 
   @override
   String get channelPath_messageDetails => 'Деталі повідомлення';
@@ -7383,74 +7389,75 @@ class AppLocalizationsUk extends AppLocalizations {
   String get sensor_typeAltitude => 'Висота';
 
   @override
-  String get setupWizard_title => 'Connect your radio';
+  String get setupWizard_title => 'Підключіть радіо';
 
   @override
-  String get setupWizard_choose => '1. Choose a connection';
+  String get setupWizard_choose => '1. Виберіть підключення';
 
   @override
-  String get setupWizard_prepare => '2. Prepare your radio';
+  String get setupWizard_prepare => '2. Підготуйте радіо';
 
   @override
   String get setupWizard_intro =>
-      'Choose how this phone or computer will connect to your radio. The radio carries messages over the mesh.';
+      'Виберіть, як цей телефон або комп\'ютер підключатиметься до радіо. Радіо передає повідомлення mesh-мережею.';
 
   @override
   String get setupWizard_bluetooth =>
-      'Wireless connection to a nearby compatible radio.';
+      'Бездротове підключення до сумісного радіо поблизу.';
 
   @override
   String get setupWizard_noBluetooth =>
-      'Bluetooth is unavailable in this browser. Use the native app or a supported USB connection.';
+      'Bluetooth недоступний у цьому браузері. Використайте нативний застосунок або підтримуване USB-підключення.';
 
   @override
-  String get setupWizard_usb => 'A wired connection using a USB data cable.';
+  String get setupWizard_usb =>
+      'Дротове підключення USB-кабелем для передавання даних.';
 
   @override
   String get setupWizard_noUsb =>
-      'USB serial is unavailable here. Use a supported desktop or Android app, or Chrome with Web Serial.';
+      'USB-serial тут недоступний. Використайте підтримуваний застосунок для комп\'ютера чи Android або Chrome з Web Serial.';
 
   @override
   String get setupWizard_bluetoothSteps =>
-      'Power on your radio and keep it nearby. Enable Bluetooth and allow the app permission to use it. Close other apps connected to the radio, then open the device list and scan.';
+      'Увімкніть радіо й тримайте його поруч. Увімкніть Bluetooth і дозвольте застосунку його використовувати. Закрийте інші застосунки, підключені до радіо, відкрийте список пристроїв і почніть пошук.';
 
   @override
   String get setupWizard_usbSteps =>
-      'Connect a powered radio with a USB data cable; a charge-only cable will not work. Close other serial apps. Open the USB device list, select your radio, and allow access if prompted.';
+      'Підключіть увімкнене радіо USB-кабелем для передавання даних; кабель лише для заряджання не підійде. Закрийте інші застосунки для послідовного порту. Відкрийте список USB-пристроїв, виберіть радіо й дозвольте доступ, якщо з\'явиться запит.';
 
   @override
   String get setupWizard_firmwareTitle =>
-      'Check compatibility before changing firmware';
+      'Перевірте сумісність перед зміною прошивки';
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      'Радіо потрібна прошивка MeshCore companion із підтримкою вибраного підключення. Підтримка залежить від плати й збірки прошивки; наявність USB-роз\'єму ще не означає підтримки USB-serial. Перевірте інструкції для вашої плати та встановленої збірки. Прошивка ретранслятора чи кімнатного сервера не є companion. Невдале підключення саме по собі не означає, що потрібно перепрошивати.';
 
   @override
   String get setupWizard_settings =>
-      'This guide does not flash firmware or change radio settings. After connecting, use Settings for region, frequency, and advanced options. Confirm settings with your local mesh before changing them.';
+      'Цей майстер не прошиває радіо й не змінює його налаштування. Після підключення використовуйте Налаштування для регіону, частоти й додаткових параметрів. Узгодьте налаштування з вашою локальною mesh-мережею, перш ніж їх змінювати.';
 
   @override
-  String get setupWizard_openBluetooth => 'Open Bluetooth devices';
+  String get setupWizard_openBluetooth => 'Відкрити пристрої Bluetooth';
 
   @override
-  String get setupWizard_openUsb => 'Open USB devices';
+  String get setupWizard_openUsb => 'Відкрити пристрої USB';
 
   @override
-  String get setupWizard_change => 'Change connection type';
+  String get setupWizard_change => 'Змінити тип підключення';
 
   @override
-  String get setupWizard_later => 'Set up later';
+  String get setupWizard_later => 'Налаштувати пізніше';
 
   @override
   String get setupWizard_bluetoothError =>
-      'Could not connect to the radio. Keep it powered and nearby, check Bluetooth permissions, and close other connected apps. Then scan and try again.';
+      'Не вдалося підключитися до радіо. Тримайте його ввімкненим і поруч, перевірте дозволи Bluetooth і закрийте інші підключені застосунки. Потім повторіть пошук.';
 
   @override
   String get setupWizard_scanError =>
-      'Could not scan for radios. Turn on Bluetooth and allow Bluetooth or Nearby devices access in system settings, then try scanning again.';
+      'Не вдалося знайти радіо. Увімкніть Bluetooth і дозвольте доступ до Bluetooth або пристроїв поблизу в налаштуваннях системи, потім повторіть пошук.';
 
   @override
   String get setupWizard_usbError =>
-      'Could not connect over USB. Check the data cable and selected device, allow USB access, and close other serial apps. Reconnect the cable and try again.';
+      'Не вдалося підключитися через USB. Перевірте кабель для передавання даних і вибраний пристрій, дозвольте доступ до USB і закрийте інші застосунки для послідовного порту. Перепідключіть кабель і спробуйте ще раз.';
 }
