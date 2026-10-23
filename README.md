@@ -22,7 +22,7 @@ NOTORYX Core turns your phone or computer and a [MeshCore](https://meshcore.io/)
 
 ## Download
 
-Get the latest build from **[Releases](../../releases)**. Each release lists what changed.
+Get the latest build from **[NOTORYX Core releases](https://github.com/TheLogsAreScreaming/notoryx-core-releases/releases)**. Each release lists what changed.
 
 | Platform | File | Notes |
 |---|---|---|
