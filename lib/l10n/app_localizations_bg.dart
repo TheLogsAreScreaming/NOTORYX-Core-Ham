@@ -7892,4 +7892,78 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get mqtt_noticeSigningRejected => 'Радиото отказа да подпише данните.';
+
+  @override
+  String get scanner_signalStrong => 'Силен';
+
+  @override
+  String get scanner_signalGood => 'Добър';
+
+  @override
+  String get scanner_signalFair => 'Среден';
+
+  @override
+  String get scanner_signalWeak => 'Слаб';
+
+  @override
+  String get scanner_nearbyRadios => 'Радиа наблизо';
+
+  @override
+  String get scanner_lastRadio => 'Последно радио';
+
+  @override
+  String get scanner_reconnect => 'Свържи отново';
+
+  @override
+  String get scanner_tcpHint => 'Радио с Wi‑Fi фърмуер във вашата мрежа.';
+
+  @override
+  String get scanner_otherWays => 'Други начини за свързване';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count радиа наблизо',
+      one: '1 радио наблизо',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Търсене на радиа…';
+
+  @override
+  String get scanner_findTitle => 'Намерете радиото си';
+
+  @override
+  String get scanner_heroHint =>
+      'Включете радиото и го дръжте на няколко метра. Нужен е фърмуер MeshCore companion.';
+
+  @override
+  String get scanner_tipsTitle => 'Не виждате радиото си?';
+
+  @override
+  String get scanner_tipPower => 'Проверете дали е включено и активно.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Нужен е фърмуер MeshCore companion. Ретранслаторите и стайните сървъри не се показват тук.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Радиото се свързва само с едно устройство наведнъж. Изключете го от други телефони или компютри.';
+
+  @override
+  String get connections_internetBridge => 'Интернет мост';
+
+  @override
+  String get connections_noRadio => 'Няма радио';
+
+  @override
+  String get connections_radioSettings => 'Настройки на радиото';
+
+  @override
+  String get connections_viewDashboard => 'Преглед на връзките';
 }

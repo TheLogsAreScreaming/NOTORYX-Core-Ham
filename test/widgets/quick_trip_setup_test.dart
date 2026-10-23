@@ -113,7 +113,7 @@ void main() {
       await tester.pump();
     }
     expect(ops.trip.members, [radio.sam.publicKeyHex]);
-    expect(radio.sent.single.text, startsWith('[Bastion SOS]'));
+    expect(radio.sent.single.text, startsWith('[NOTORYX SOS]'));
     expect(ops.sos.active, isTrue);
     ops.dispose();
     await radio.stream.close();

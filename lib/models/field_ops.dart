@@ -20,6 +20,23 @@ enum FieldAction { log, notify, checkIn }
 
 /// Check-in statuses as the radio sends them. Never translated: recipients
 /// see these words, whatever language the sender's app uses.
+/// Tag that opens every check-in this app sends.
+const checkInTag = '[NOTORYX Check-in]';
+
+/// Tag that opens every SOS and all-clear this app sends.
+const sosTag = '[NOTORYX SOS]';
+
+/// Tags sent by releases from before the NOTORYX rename. People on those
+/// versions still send them, so incoming text is matched against both.
+const legacyCheckInTag = '[Bastion Check-in]';
+const legacySosTag = '[Bastion SOS]';
+
+/// Whether [text] is a check-in from this app or an older Bastion release.
+bool isCheckInText(String text) {
+  final t = text.trimLeft();
+  return t.startsWith(checkInTag) || t.startsWith(legacyCheckInTag);
+}
+
 const checkInLabels = ["I'm OK", 'At Camp', 'Delayed', 'Heading Back'];
 
 /// A local summary: never includes message history, public keys or coordinates.
@@ -321,7 +338,7 @@ String checkInText(
       .toIso8601String()
       .substring(0, 16)
       .replaceFirst('T', ' ');
-  var text = '[Bastion Check-in] $label | $stamp UTC';
+  var text = '$checkInTag $label | $stamp UTC';
   if (usablePosition(latitude, longitude)) {
     text +=
         ' | Radio advert ${latitude!.toStringAsFixed(4)},${longitude!.toStringAsFixed(4)} (may be stale)';
@@ -390,7 +407,7 @@ String sosText(
       .toIso8601String()
       .substring(0, 16)
       .replaceFirst('T', ' ');
-  var text = '[Bastion SOS] Need help | $stamp UTC';
+  var text = '$sosTag Need help | $stamp UTC';
   if (usablePosition(latitude, longitude)) {
     text +=
         ' | Radio advert ${latitude!.toStringAsFixed(4)},${longitude!.toStringAsFixed(4)} (may be stale)';
@@ -411,7 +428,7 @@ String sosAllClearText(DateTime at) {
       .toIso8601String()
       .substring(0, 16)
       .replaceFirst('T', ' ');
-  return '[Bastion SOS] All clear | $stamp UTC';
+  return '$sosTag All clear | $stamp UTC';
 }
 
 /// Why an SOS can't be sent right now, or null when it can.
@@ -575,7 +592,8 @@ class CheckInDelivery {
       final split = e.text.indexOf(': ');
       if (split > 0) {
         names[e.contactKey!] = e.text.substring(0, split);
-        if (e.text.contains('[Bastion Check-in] ')) {
+        if (e.text.contains('$checkInTag ') ||
+            e.text.contains('$legacyCheckInTag ')) {
           text ??= e.text.substring(split + 2);
         }
       }

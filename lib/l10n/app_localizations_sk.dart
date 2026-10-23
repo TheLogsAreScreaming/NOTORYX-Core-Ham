@@ -7889,4 +7889,79 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get mqtt_noticeSigningRejected => 'Rádio odmietlo podpísať dáta.';
+
+  @override
+  String get scanner_signalStrong => 'Silný';
+
+  @override
+  String get scanner_signalGood => 'Dobrý';
+
+  @override
+  String get scanner_signalFair => 'Priemerný';
+
+  @override
+  String get scanner_signalWeak => 'Slabý';
+
+  @override
+  String get scanner_nearbyRadios => 'Rádiá v blízkosti';
+
+  @override
+  String get scanner_lastRadio => 'Posledné rádio';
+
+  @override
+  String get scanner_reconnect => 'Znova pripojiť';
+
+  @override
+  String get scanner_tcpHint => 'Rádio s firmvérom Wi‑Fi vo vašej sieti.';
+
+  @override
+  String get scanner_otherWays => 'Iné spôsoby pripojenia';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count rádií v blízkosti',
+      few: '$count rádiá v blízkosti',
+      one: '1 rádio v blízkosti',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Hľadajú sa rádiá…';
+
+  @override
+  String get scanner_findTitle => 'Nájdite svoje rádio';
+
+  @override
+  String get scanner_heroHint =>
+      'Zapnite rádio a majte ho do pár metrov. Potrebuje firmvér MeshCore companion.';
+
+  @override
+  String get scanner_tipsTitle => 'Nevidíte svoje rádio?';
+
+  @override
+  String get scanner_tipPower => 'Skontrolujte, či je zapnuté a aktívne.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Potrebuje firmvér MeshCore companion. Opakovače a izbové servery sa tu nezobrazujú.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Rádio sa pripája naraz len k jednému zariadeniu. Odpojte ho od iných telefónov či počítačov.';
+
+  @override
+  String get connections_internetBridge => 'Internetový most';
+
+  @override
+  String get connections_noRadio => 'Žiadne rádio';
+
+  @override
+  String get connections_radioSettings => 'Nastavenia rádia';
+
+  @override
+  String get connections_viewDashboard => 'Zobraziť prehľad pripojení';
 }

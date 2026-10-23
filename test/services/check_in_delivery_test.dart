@@ -71,7 +71,7 @@ FieldEntry _entry(
   id: id,
   at: DateTime.utc(2026, 10, 16, 9),
   kind: 'check-in',
-  text: '$name: [Bastion Check-in] I\'m OK | 2026-10-16 09:00 UTC',
+  text: '$name: [NOTORYX Check-in] I\'m OK | 2026-10-16 09:00 UTC',
   contactKey: key,
   status: status,
   batch: batch,
@@ -93,7 +93,12 @@ void main() {
       expect(d.batch, 'b2');
       expect(d.statuses, {'a': 'delivered', 'b': 'delivered'});
       expect(d.headline, 'Delivered to all 2 contacts');
-      expect(d.text, startsWith('[Bastion Check-in] '));
+      expect(d.text, startsWith('[NOTORYX Check-in] '));
+    });
+    test('still reads check-ins logged before the NOTORYX rename', () {
+      expect(isCheckInText("[Bastion Check-in] I'm OK"), isTrue);
+      expect(isCheckInText("[NOTORYX Check-in] I'm OK"), isTrue);
+      expect(isCheckInText('Bastion check in later'), isFalse);
     });
     test('names who it did not reach', () {
       final d = CheckInDelivery.latest([

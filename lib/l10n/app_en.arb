@@ -4608,5 +4608,33 @@
   "mqtt_noticeSigningUnsupported": "This radio's firmware does not support signing with its key.",
   "mqtt_noticeSigningTimeout": "The radio did not answer the signing request. Its firmware may not support signing.",
   "mqtt_noticeSigningTooLong": "The data is too long for the radio to sign.",
-  "mqtt_noticeSigningRejected": "The radio refused to sign the data."
+  "mqtt_noticeSigningRejected": "The radio refused to sign the data.",
+  "scanner_signalStrong": "Strong",
+  "scanner_signalGood": "Good",
+  "scanner_signalFair": "Fair",
+  "scanner_signalWeak": "Weak",
+  "scanner_nearbyRadios": "Nearby radios",
+  "scanner_lastRadio": "Last radio",
+  "scanner_reconnect": "Reconnect",
+  "scanner_tcpHint": "A radio with Wi‑Fi firmware on your network.",
+  "scanner_otherWays": "Other ways to connect",
+  "scanner_radiosFound": "{count, plural, =1{1 radio nearby} other{{count} radios nearby}}",
+  "@scanner_radiosFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "scanner_searchingTitle": "Looking for radios…",
+  "scanner_findTitle": "Find your radio",
+  "scanner_heroHint": "Turn your radio on and keep it within a few meters. It needs MeshCore companion firmware.",
+  "scanner_tipsTitle": "Can't see your radio?",
+  "scanner_tipPower": "Check that it's switched on and awake.",
+  "scanner_tipFirmware": "It needs MeshCore companion firmware. Repeaters and room servers don't show up here.",
+  "scanner_tipOtherDevice": "A radio connects to one device at a time. Disconnect it from other phones or computers.",
+  "connections_internetBridge": "Internet bridge",
+  "connections_noRadio": "No radio",
+  "connections_radioSettings": "Radio settings",
+  "connections_viewDashboard": "View connection dashboard"
 }

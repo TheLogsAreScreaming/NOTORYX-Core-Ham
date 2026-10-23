@@ -492,8 +492,7 @@ class FieldOpsService extends ChangeNotifier {
         'An active trip, running app and radio connection are required.',
       );
     }
-    if (utf8.encode(text).length > 140 ||
-        !text.startsWith('[Bastion Check-in] ')) {
+    if (utf8.encode(text).length > 140 || !text.startsWith('$checkInTag ')) {
       throw ArgumentError('Invalid field check-in.');
     }
     final targets = members

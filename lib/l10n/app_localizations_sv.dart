@@ -7836,4 +7836,78 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get mqtt_noticeSigningRejected => 'Radion vägrade signera datan.';
+
+  @override
+  String get scanner_signalStrong => 'Stark';
+
+  @override
+  String get scanner_signalGood => 'Bra';
+
+  @override
+  String get scanner_signalFair => 'Medel';
+
+  @override
+  String get scanner_signalWeak => 'Svag';
+
+  @override
+  String get scanner_nearbyRadios => 'Radioenheter i närheten';
+
+  @override
+  String get scanner_lastRadio => 'Senaste radio';
+
+  @override
+  String get scanner_reconnect => 'Anslut igen';
+
+  @override
+  String get scanner_tcpHint => 'En radio med Wi‑Fi-firmware i ditt nätverk.';
+
+  @override
+  String get scanner_otherWays => 'Andra sätt att ansluta';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count radioenheter i närheten',
+      one: '1 radio i närheten',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Letar efter radioenheter…';
+
+  @override
+  String get scanner_findTitle => 'Hitta din radio';
+
+  @override
+  String get scanner_heroHint =>
+      'Slå på radion och håll den inom några meter. Den behöver MeshCore companion-firmware.';
+
+  @override
+  String get scanner_tipsTitle => 'Ser du inte din radio?';
+
+  @override
+  String get scanner_tipPower => 'Kontrollera att den är påslagen och vaken.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Den behöver MeshCore companion-firmware. Repeatrar och rumsservrar visas inte här.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'En radio ansluter till en enhet i taget. Koppla bort den från andra telefoner eller datorer.';
+
+  @override
+  String get connections_internetBridge => 'Internetbrygga';
+
+  @override
+  String get connections_noRadio => 'Ingen radio';
+
+  @override
+  String get connections_radioSettings => 'Radioinställningar';
+
+  @override
+  String get connections_viewDashboard => 'Visa anslutningsöversikt';
 }

@@ -125,7 +125,9 @@ void main() {
 
     final scannerContext = tester.element(find.byType(ScannerScreen));
     final scannerL10n = AppLocalizations.of(scannerContext);
-    await tester.tap(find.byTooltip(scannerL10n.connectionChoiceTcpLabel));
+    final tcpTile = find.text(scannerL10n.radioStatus_tcp);
+    await tester.ensureVisible(tcpTile);
+    await tester.tap(tcpTile);
     await tester.pumpAndSettle();
     expect(find.byType(TcpScreen), findsOneWidget);
 

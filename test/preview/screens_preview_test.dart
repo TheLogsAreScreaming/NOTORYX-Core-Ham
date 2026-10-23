@@ -52,6 +52,8 @@ import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_client_transport.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:meshcore_open/screens/scanner_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Anchored to today so time-filtered screens (path graph) have data in range.
@@ -175,6 +177,14 @@ class _PreviewConnector extends MeshCoreConnector {
   @override
   bool get isConnected => true;
   @override
+  MeshCoreConnectionState get state => MeshCoreConnectionState.connected;
+  @override
+  int? get batteryMillivolts => 4050;
+  @override
+  double? get lastRxSnr => 7.25;
+  @override
+  int? get lastRxRssi => -92;
+  @override
   Future<List<ChannelMessage>> loadFullChannelHistory(Channel channel) async =>
       channel.index == 1 ? _pathHistory() : const [];
   @override
@@ -229,6 +239,35 @@ class _PreviewConnector extends MeshCoreConnector {
   }) async {}
 }
 
+/// Mid-scan, with three radios heard at different strengths.
+class _PreviewScanConnector extends _PreviewConnector {
+  @override
+  bool get isConnected => false;
+  @override
+  MeshCoreConnectionState get state => MeshCoreConnectionState.scanning;
+  @override
+  List<ScanResult> get scanResults => [
+    _scan('MeshCore-Trail Lead', 'CF57FC24-9872-0AFC-7DEC-E36A387DE23D', -48),
+    _scan('MeshCore-Ridge Base', '7A10B2C3-1F4E-4D21-9A0B-5C6D7E8F9012', -71),
+    _scan('MeshCore-Cabin Relay', 'E2B4C6D8-0A1C-4E3F-8B2D-4F6A8C0E2B44', -88),
+  ];
+}
+
+ScanResult _scan(String name, String id, int rssi) => ScanResult(
+  device: BluetoothDevice.fromId(id),
+  advertisementData: AdvertisementData(
+    advName: name,
+    txPowerLevel: null,
+    appearance: null,
+    connectable: true,
+    manufacturerData: const {},
+    serviceData: const {},
+    serviceUuids: const [],
+  ),
+  rssi: rssi,
+  timeStamp: _now,
+);
+
 class _PreviewAclService extends AccessControlService {
   _PreviewAclService(MeshCoreConnector c) : super(c, RepeaterCommandService(c));
 
@@ -260,8 +299,15 @@ Future<void> _loadFonts() async {
   }
 
   final sdk = Platform.environment['FLUTTER_ROOT']!;
-  await load('Inter', ['assets/fonts/Inter.ttf']);
-  await load('JetBrains Mono', ['assets/fonts/JetBrainsMono.ttf']);
+  // Every static weight file of a family, e.g. Inter-Bold.ttf.
+  List<String> fontFiles(String prefix) => Directory('assets/fonts')
+      .listSync()
+      .whereType<File>()
+      .map((f) => f.path)
+      .where((p) => p.split('/').last.startsWith(prefix) && p.endsWith('.ttf'))
+      .toList();
+  await load('Inter', fontFiles('Inter-'));
+  await load('JetBrains Mono', fontFiles('JetBrainsMono-'));
   await load('MaterialIcons', [
     '$sdk/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf',
   ]);
@@ -344,6 +390,10 @@ void main() {
     'dm_chat': () => ChatScreen(contact: _contacts[0]),
     'settings': () => const SettingsScreen(),
     'connections': () => const ConnectionDashboardScreen(),
+    'scanner': () => ChangeNotifierProvider<MeshCoreConnector>.value(
+      value: _PreviewScanConnector(),
+      child: const ScannerScreen(),
+    ),
     'access_control': () => Builder(
       builder: (context) => AccessControlScreen(
         node: _contacts[2],

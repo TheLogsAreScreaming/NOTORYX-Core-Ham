@@ -84,12 +84,12 @@ void main() {
     test('carries position and battery when known', () {
       expect(
         sosText(at, latitude: 35.12346, longitude: -80.5, battery: 64),
-        '[Bastion SOS] Need help | 2026-10-16 14:05 UTC | Radio advert 35.1235,-80.5000 (may be stale) | Battery 64%',
+        '[NOTORYX SOS] Need help | 2026-10-16 14:05 UTC | Radio advert 35.1235,-80.5000 (may be stale) | Battery 64%',
       );
       expect(sosText(at), contains('No position'));
       expect(
         sosAllClearText(at),
-        '[Bastion SOS] All clear | 2026-10-16 14:05 UTC',
+        '[NOTORYX SOS] All clear | 2026-10-16 14:05 UTC',
       );
     });
     test('repeats every five minutes, at most twelve times', () {
@@ -160,10 +160,10 @@ void main() {
       await ops.startSos();
       expect(ops.sos.active, true);
       expect(ops.sos.sends, 1);
-      expect(radio.sent.single.text, startsWith('[Bastion SOS] Need help'));
+      expect(radio.sent.single.text, startsWith('[NOTORYX SOS] Need help'));
       expect(
         radio.channelSends.single,
-        startsWith('#search-team: [Bastion SOS]'),
+        startsWith('#search-team: [NOTORYX SOS]'),
       );
       expect(ops.entries.where((e) => e.kind == 'sos'), hasLength(3));
       // Not due again until the repeat interval passes.
@@ -196,7 +196,7 @@ void main() {
       await ops.startSos();
       await ops.stopSos(allClear: true);
       expect(ops.sos.active, false);
-      expect(radio.sent.last.text, startsWith('[Bastion SOS] All clear'));
+      expect(radio.sent.last.text, startsWith('[NOTORYX SOS] All clear'));
       expect(radio.channelSends.last, contains('All clear'));
       expect(radio.sent, hasLength(2));
     });

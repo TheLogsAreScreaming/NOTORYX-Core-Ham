@@ -7920,4 +7920,78 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get mqtt_noticeSigningRejected =>
       'La radio ha rifiutato di firmare i dati.';
+
+  @override
+  String get scanner_signalStrong => 'Forte';
+
+  @override
+  String get scanner_signalGood => 'Buono';
+
+  @override
+  String get scanner_signalFair => 'Discreto';
+
+  @override
+  String get scanner_signalWeak => 'Debole';
+
+  @override
+  String get scanner_nearbyRadios => 'Radio nelle vicinanze';
+
+  @override
+  String get scanner_lastRadio => 'Ultima radio';
+
+  @override
+  String get scanner_reconnect => 'Riconnetti';
+
+  @override
+  String get scanner_tcpHint => 'Una radio con firmware Wi‑Fi sulla tua rete.';
+
+  @override
+  String get scanner_otherWays => 'Altri modi per connettersi';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count radio nelle vicinanze',
+      one: '1 radio nelle vicinanze',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Ricerca radio…';
+
+  @override
+  String get scanner_findTitle => 'Trova la tua radio';
+
+  @override
+  String get scanner_heroHint =>
+      'Accendi la radio e tienila a pochi metri. Serve il firmware MeshCore companion.';
+
+  @override
+  String get scanner_tipsTitle => 'Non vedi la tua radio?';
+
+  @override
+  String get scanner_tipPower => 'Controlla che sia accesa e attiva.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Serve il firmware MeshCore companion. Ripetitori e room server non compaiono qui.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Una radio si collega a un solo dispositivo alla volta. Scollegala da altri telefoni o computer.';
+
+  @override
+  String get connections_internetBridge => 'Ponte Internet';
+
+  @override
+  String get connections_noRadio => 'Nessuna radio';
+
+  @override
+  String get connections_radioSettings => 'Impostazioni radio';
+
+  @override
+  String get connections_viewDashboard => 'Apri il pannello connessioni';
 }

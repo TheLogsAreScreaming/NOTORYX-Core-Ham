@@ -226,9 +226,11 @@ void main() {
         expect(card.width, lessThanOrEqualTo(320));
       }
       expect(find.textContaining('Reconnect to A radio'), findsOneWidget);
-      // The transport buttons wrap onto more than one line at phone width.
+      // The transport tiles stack at phone width, below the MQTT card.
+      await tester.scrollUntilVisible(find.textContaining('(TCP)'), 200);
+      expect(tester.takeException(), isNull);
       final bluetooth = tester.getTopLeft(find.text('Bluetooth').last);
-      final tcp = tester.getTopLeft(find.text('TCP/IP'));
+      final tcp = tester.getTopLeft(find.textContaining('(TCP)'));
       expect(tcp.dy, greaterThan(bluetooth.dy));
     });
 

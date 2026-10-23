@@ -7528,4 +7528,77 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get mqtt_noticeSigningRejected => '무전기가 데이터 서명을 거부했습니다.';
+
+  @override
+  String get scanner_signalStrong => '강함';
+
+  @override
+  String get scanner_signalGood => '좋음';
+
+  @override
+  String get scanner_signalFair => '보통';
+
+  @override
+  String get scanner_signalWeak => '약함';
+
+  @override
+  String get scanner_nearbyRadios => '주변 무전기';
+
+  @override
+  String get scanner_lastRadio => '최근 무전기';
+
+  @override
+  String get scanner_reconnect => '다시 연결';
+
+  @override
+  String get scanner_tcpHint => '네트워크에 있는 Wi‑Fi 펌웨어 무전기.';
+
+  @override
+  String get scanner_otherWays => '다른 연결 방법';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '주변 무전기 $count대',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => '무전기를 찾는 중…';
+
+  @override
+  String get scanner_findTitle => '무전기 찾기';
+
+  @override
+  String get scanner_heroHint =>
+      '무전기를 켜고 몇 미터 안에 두세요. MeshCore companion 펌웨어가 필요합니다.';
+
+  @override
+  String get scanner_tipsTitle => '무전기가 보이지 않나요?';
+
+  @override
+  String get scanner_tipPower => '전원이 켜져 있고 깨어 있는지 확인하세요.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'MeshCore companion 펌웨어가 필요합니다. 리피터와 룸 서버는 여기에 표시되지 않습니다.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      '무전기는 한 번에 한 기기에만 연결됩니다. 다른 휴대폰이나 컴퓨터에서 연결을 끊으세요.';
+
+  @override
+  String get connections_internetBridge => '인터넷 브리지';
+
+  @override
+  String get connections_noRadio => '무전기 없음';
+
+  @override
+  String get connections_radioSettings => '무전기 설정';
+
+  @override
+  String get connections_viewDashboard => '연결 대시보드 보기';
 }

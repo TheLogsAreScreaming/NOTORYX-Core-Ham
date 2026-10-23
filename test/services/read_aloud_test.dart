@@ -75,6 +75,11 @@ void main() {
       'Check-in. At Camp. 2026-10-16 14:05 UTC',
     );
     expect(spokenText('[Bastion SOS] Need help'), startsWith('S O S. Need'));
+    expect(spokenText('[NOTORYX SOS] Need help'), startsWith('S O S. Need'));
+    expect(
+      spokenText('[NOTORYX Check-in] At Camp'),
+      startsWith('Check-in. At Camp'),
+    );
     expect(spokenText('map at https://x.example/a?b=1 ok'), 'map at a link ok');
     expect(spokenText('   '), isNull);
     expect(spokenText('x' * 400)!.length, 301);

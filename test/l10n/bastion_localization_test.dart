@@ -70,10 +70,10 @@ void main() {
     final at = DateTime.utc(2026, 10, 16, 12);
     expect(
       checkInText(checkInLabels[0], at),
-      startsWith('[Bastion Check-in] '),
+      startsWith('[NOTORYX Check-in] '),
     );
-    expect(sosText(at), startsWith('[Bastion SOS] Need help'));
-    expect(sosAllClearText(at), startsWith('[Bastion SOS] All clear'));
+    expect(sosText(at), startsWith('[NOTORYX SOS] Need help'));
+    expect(sosAllClearText(at), startsWith('[NOTORYX SOS] All clear'));
   });
 
   test('check-in reasons follow the given language', () {

@@ -160,9 +160,9 @@ void main() {
     final context = tester.element(find.byType(ScannerScreen));
     final l10n = AppLocalizations.of(context);
     if (PlatformInfo.supportsUsbSerial) {
-      expect(find.byTooltip(l10n.connectionChoiceUsbLabel), findsOneWidget);
+      expect(find.text(l10n.connections_usbSerial), findsOneWidget);
     } else {
-      expect(find.byTooltip(l10n.connectionChoiceUsbLabel), findsNothing);
+      expect(find.text(l10n.connections_usbSerial), findsNothing);
     }
 
     // ScannerScreen.dispose() schedules disconnect work that debounces notify.
@@ -190,12 +190,15 @@ void main() {
     final l10n = AppLocalizations.of(context);
     expect(find.text(l10n.scanner_scan), findsWidgets);
 
-    if (PlatformInfo.supportsUsbSerial) {
-      expect(find.byTooltip(l10n.connectionChoiceUsbLabel), findsOneWidget);
-    }
+    // The USB and Wi-Fi tiles sit below the radio list; scroll down to them.
     if (!PlatformInfo.isWeb) {
-      expect(find.byTooltip(l10n.connectionChoiceTcpLabel), findsOneWidget);
+      await tester.scrollUntilVisible(find.text(l10n.radioStatus_tcp), 200);
+      expect(find.text(l10n.radioStatus_tcp), findsOneWidget);
     }
+    if (PlatformInfo.supportsUsbSerial) {
+      expect(find.text(l10n.connections_usbSerial), findsOneWidget);
+    }
+    expect(tester.takeException(), isNull);
 
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(milliseconds: 60));

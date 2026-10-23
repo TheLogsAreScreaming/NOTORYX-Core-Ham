@@ -44,8 +44,11 @@ String? spokenText(String text) {
     return null;
   }
   t = t
-      .replaceFirst(RegExp(r'^\[Bastion SOS\]\s*'), 'S O S. ')
-      .replaceFirst(RegExp(r'^\[Bastion Check-in\]\s*'), 'Check-in. ')
+      .replaceFirst(RegExp(r'^\[(?:NOTORYX|Bastion) SOS\]\s*'), 'S O S. ')
+      .replaceFirst(
+        RegExp(r'^\[(?:NOTORYX|Bastion) Check-in\]\s*'),
+        'Check-in. ',
+      )
       .replaceAll(RegExp(r'https?://\S+'), 'a link')
       .replaceAll(' | ', '. ');
   if (t.length > 300) t = '${t.substring(0, 300)}…';

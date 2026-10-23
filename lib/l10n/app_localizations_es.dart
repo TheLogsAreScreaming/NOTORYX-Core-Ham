@@ -7909,4 +7909,78 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get mqtt_noticeSigningRejected =>
       'La radio se negó a firmar los datos.';
+
+  @override
+  String get scanner_signalStrong => 'Fuerte';
+
+  @override
+  String get scanner_signalGood => 'Buena';
+
+  @override
+  String get scanner_signalFair => 'Regular';
+
+  @override
+  String get scanner_signalWeak => 'Débil';
+
+  @override
+  String get scanner_nearbyRadios => 'Radios cercanas';
+
+  @override
+  String get scanner_lastRadio => 'Última radio';
+
+  @override
+  String get scanner_reconnect => 'Reconectar';
+
+  @override
+  String get scanner_tcpHint => 'Una radio con firmware Wi‑Fi en tu red.';
+
+  @override
+  String get scanner_otherWays => 'Otras formas de conectar';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count radios cerca',
+      one: '1 radio cerca',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Buscando radios…';
+
+  @override
+  String get scanner_findTitle => 'Encuentra tu radio';
+
+  @override
+  String get scanner_heroHint =>
+      'Enciende tu radio y mantenla a pocos metros. Necesita firmware MeshCore companion.';
+
+  @override
+  String get scanner_tipsTitle => '¿No ves tu radio?';
+
+  @override
+  String get scanner_tipPower => 'Comprueba que esté encendida y activa.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Necesita firmware MeshCore companion. Los repetidores y servidores de sala no aparecen aquí.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Una radio se conecta a un solo dispositivo a la vez. Desconéctala de otros teléfonos u ordenadores.';
+
+  @override
+  String get connections_internetBridge => 'Puente a internet';
+
+  @override
+  String get connections_noRadio => 'Sin radio';
+
+  @override
+  String get connections_radioSettings => 'Ajustes de radio';
+
+  @override
+  String get connections_viewDashboard => 'Ver panel de conexiones';
 }

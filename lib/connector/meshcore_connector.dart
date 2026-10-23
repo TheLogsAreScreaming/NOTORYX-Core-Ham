@@ -1872,7 +1872,7 @@ class MeshCoreConnector extends ChangeNotifier {
         ..clear()
         ..addAll(results);
       _mergeLinuxSystemScanResults();
-      notifyListeners();
+      _scheduleScanNotify();
     });
 
     try {
@@ -1963,6 +1963,20 @@ class MeshCoreConnector extends ChangeNotifier {
       }
       _scanResults.add(result);
     }
+  }
+
+  /// Longest a fresh scan result waits before listeners hear about it.
+  /// Radios advertise many times a second; notifying on each one rebuilt
+  /// every screen listening to the connector and made the UI flicker.
+  static const scanNotifyInterval = Duration(milliseconds: 300);
+  Timer? _scanNotifyTimer;
+
+  void _scheduleScanNotify() {
+    if (_scanNotifyTimer?.isActive ?? false) return;
+    _scanNotifyTimer = Timer(scanNotifyInterval, () {
+      _scanNotifyTimer = null;
+      notifyListeners();
+    });
   }
 
   Future<void> stopScan() async {
@@ -7990,6 +8004,7 @@ class MeshCoreConnector extends ChangeNotifier {
   void dispose() {
     _adapterStateSubscription?.cancel();
     _scanSubscription?.cancel();
+    _scanNotifyTimer?.cancel();
     _isScanningSubscription?.cancel();
     _connectionSubscription?.cancel();
     _usbFrameSubscription?.cancel();

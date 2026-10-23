@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/screens/connection_setup_screen.dart';
+import 'package:meshcore_open/widgets/connect_ui.dart';
 
 void main() {
   Future<void> open(
@@ -63,8 +64,9 @@ void main() {
 
   testWidgets('unsupported connections stay disabled', (tester) async {
     await open(tester, bluetooth: false, usb: false);
-    for (final tile in tester.widgetList<ListTile>(find.byType(ListTile))) {
-      expect(tile.enabled, isFalse);
+    final tiles = tester.widgetList<TransportTile>(find.byType(TransportTile));
+    expect(tiles, hasLength(2));
+    for (final tile in tiles) {
       expect(tile.onTap, isNull);
     }
     expect(find.byType(FilledButton), findsNothing);

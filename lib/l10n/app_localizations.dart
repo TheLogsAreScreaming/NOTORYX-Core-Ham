@@ -13260,6 +13260,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The radio refused to sign the data.'**
   String get mqtt_noticeSigningRejected;
+
+  /// No description provided for @scanner_signalStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong'**
+  String get scanner_signalStrong;
+
+  /// No description provided for @scanner_signalGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get scanner_signalGood;
+
+  /// No description provided for @scanner_signalFair.
+  ///
+  /// In en, this message translates to:
+  /// **'Fair'**
+  String get scanner_signalFair;
+
+  /// No description provided for @scanner_signalWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak'**
+  String get scanner_signalWeak;
+
+  /// No description provided for @scanner_nearbyRadios.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby radios'**
+  String get scanner_nearbyRadios;
+
+  /// No description provided for @scanner_lastRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Last radio'**
+  String get scanner_lastRadio;
+
+  /// No description provided for @scanner_reconnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Reconnect'**
+  String get scanner_reconnect;
+
+  /// No description provided for @scanner_tcpHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A radio with Wi‑Fi firmware on your network.'**
+  String get scanner_tcpHint;
+
+  /// No description provided for @scanner_otherWays.
+  ///
+  /// In en, this message translates to:
+  /// **'Other ways to connect'**
+  String get scanner_otherWays;
+
+  /// No description provided for @scanner_radiosFound.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 radio nearby} other{{count} radios nearby}}'**
+  String scanner_radiosFound(int count);
+
+  /// No description provided for @scanner_searchingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for radios…'**
+  String get scanner_searchingTitle;
+
+  /// No description provided for @scanner_findTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find your radio'**
+  String get scanner_findTitle;
+
+  /// No description provided for @scanner_heroHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn your radio on and keep it within a few meters. It needs MeshCore companion firmware.'**
+  String get scanner_heroHint;
+
+  /// No description provided for @scanner_tipsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t see your radio?'**
+  String get scanner_tipsTitle;
+
+  /// No description provided for @scanner_tipPower.
+  ///
+  /// In en, this message translates to:
+  /// **'Check that it\'s switched on and awake.'**
+  String get scanner_tipPower;
+
+  /// No description provided for @scanner_tipFirmware.
+  ///
+  /// In en, this message translates to:
+  /// **'It needs MeshCore companion firmware. Repeaters and room servers don\'t show up here.'**
+  String get scanner_tipFirmware;
+
+  /// No description provided for @scanner_tipOtherDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'A radio connects to one device at a time. Disconnect it from other phones or computers.'**
+  String get scanner_tipOtherDevice;
+
+  /// No description provided for @connections_internetBridge.
+  ///
+  /// In en, this message translates to:
+  /// **'Internet bridge'**
+  String get connections_internetBridge;
+
+  /// No description provided for @connections_noRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'No radio'**
+  String get connections_noRadio;
+
+  /// No description provided for @connections_radioSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio settings'**
+  String get connections_radioSettings;
+
+  /// No description provided for @connections_viewDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'View connection dashboard'**
+  String get connections_viewDashboard;
 }
 
 class _AppLocalizationsDelegate

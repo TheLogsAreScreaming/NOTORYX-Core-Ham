@@ -7790,4 +7790,78 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get mqtt_noticeSigningRejected =>
       'The radio refused to sign the data.';
+
+  @override
+  String get scanner_signalStrong => 'Strong';
+
+  @override
+  String get scanner_signalGood => 'Good';
+
+  @override
+  String get scanner_signalFair => 'Fair';
+
+  @override
+  String get scanner_signalWeak => 'Weak';
+
+  @override
+  String get scanner_nearbyRadios => 'Nearby radios';
+
+  @override
+  String get scanner_lastRadio => 'Last radio';
+
+  @override
+  String get scanner_reconnect => 'Reconnect';
+
+  @override
+  String get scanner_tcpHint => 'A radio with Wi‑Fi firmware on your network.';
+
+  @override
+  String get scanner_otherWays => 'Other ways to connect';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count radios nearby',
+      one: '1 radio nearby',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Looking for radios…';
+
+  @override
+  String get scanner_findTitle => 'Find your radio';
+
+  @override
+  String get scanner_heroHint =>
+      'Turn your radio on and keep it within a few meters. It needs MeshCore companion firmware.';
+
+  @override
+  String get scanner_tipsTitle => 'Can\'t see your radio?';
+
+  @override
+  String get scanner_tipPower => 'Check that it\'s switched on and awake.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'It needs MeshCore companion firmware. Repeaters and room servers don\'t show up here.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'A radio connects to one device at a time. Disconnect it from other phones or computers.';
+
+  @override
+  String get connections_internetBridge => 'Internet bridge';
+
+  @override
+  String get connections_noRadio => 'No radio';
+
+  @override
+  String get connections_radioSettings => 'Radio settings';
+
+  @override
+  String get connections_viewDashboard => 'View connection dashboard';
 }
