@@ -11,9 +11,10 @@ import '../models/regional_preset.dart';
 import '../storage/prefs_manager.dart';
 import 'notification_service.dart';
 
-/// Where the shared list lives; the app also bundles a copy.
+/// Where the shared list lives; the app also bundles a copy. It is in the
+/// public releases repository because this source repository is private.
 const regionalPresetsUrl =
-    'https://raw.githubusercontent.com/TheLogsAreScreaming/notoryx-core/dev/assets/regional_presets.json';
+    'https://raw.githubusercontent.com/TheLogsAreScreaming/notoryx-core-releases/main/regional_presets.json';
 
 /// Keeps the list of local mesh radio settings up to date, works out which
 /// area the radio is in, and offers that area's settings when the radio

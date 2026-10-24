@@ -113,9 +113,9 @@ The **HOME** tab at the bottom always brings you back to the Field Console, wher
 
 ## Add your area's mesh settings
 
-When a local mesh agrees on new radio settings, NOTORYX Core can offer them to everyone nearby. The list lives in [`assets/regional_presets.json`](assets/regional_presets.json). NOTORYX Core bundles a copy and checks GitHub for updates every 12 hours.
+When a local mesh agrees on new radio settings, NOTORYX Core can offer them to everyone nearby. The live list is [`regional_presets.json` in notoryx-core-releases](https://github.com/TheLogsAreScreaming/notoryx-core-releases/blob/main/regional_presets.json), which NOTORYX Core checks every 12 hours. The app also bundles a copy, [`assets/regional_presets.json`](assets/regional_presets.json), for first launch and offline use; update it to match the live list before each release.
 
-To add or update an area, open a pull request that edits that file. Each entry has:
+To add or update an area, [open an issue in notoryx-core-releases](https://github.com/TheLogsAreScreaming/notoryx-core-releases/issues/new). Each entry has:
 
 ```json
 {
