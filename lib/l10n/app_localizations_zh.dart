@@ -7360,4 +7360,75 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get mqtt_noticeSigningRejected => '电台拒绝签署数据。';
+
+  @override
+  String get scanner_signalStrong => '强';
+
+  @override
+  String get scanner_signalGood => '良好';
+
+  @override
+  String get scanner_signalFair => '一般';
+
+  @override
+  String get scanner_signalWeak => '弱';
+
+  @override
+  String get scanner_nearbyRadios => '附近的电台';
+
+  @override
+  String get scanner_lastRadio => '上次使用的电台';
+
+  @override
+  String get scanner_reconnect => '重新连接';
+
+  @override
+  String get scanner_tcpHint => '你网络中带 Wi‑Fi 固件的电台。';
+
+  @override
+  String get scanner_otherWays => '其他连接方式';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '附近有 $count 台电台',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => '正在查找电台…';
+
+  @override
+  String get scanner_findTitle => '找到你的电台';
+
+  @override
+  String get scanner_heroHint => '打开电台并放在几米范围内。需要 MeshCore companion 固件。';
+
+  @override
+  String get scanner_tipsTitle => '看不到你的电台？';
+
+  @override
+  String get scanner_tipPower => '确认电台已开机并处于唤醒状态。';
+
+  @override
+  String get scanner_tipFirmware =>
+      '需要 MeshCore companion 固件。中继器和房间服务器不会显示在这里。';
+
+  @override
+  String get scanner_tipOtherDevice => '电台一次只能连接一台设备。请先断开它与其他手机或电脑的连接。';
+
+  @override
+  String get connections_internetBridge => '互联网桥接';
+
+  @override
+  String get connections_noRadio => '没有电台';
+
+  @override
+  String get connections_radioSettings => '电台设置';
+
+  @override
+  String get connections_viewDashboard => '查看连接面板';
 }

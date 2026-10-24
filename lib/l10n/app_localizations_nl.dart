@@ -7872,4 +7872,78 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get mqtt_noticeSigningRejected =>
       'De radio weigerde de gegevens te ondertekenen.';
+
+  @override
+  String get scanner_signalStrong => 'Sterk';
+
+  @override
+  String get scanner_signalGood => 'Goed';
+
+  @override
+  String get scanner_signalFair => 'Matig';
+
+  @override
+  String get scanner_signalWeak => 'Zwak';
+
+  @override
+  String get scanner_nearbyRadios => 'Radio\'s in de buurt';
+
+  @override
+  String get scanner_lastRadio => 'Laatste radio';
+
+  @override
+  String get scanner_reconnect => 'Opnieuw verbinden';
+
+  @override
+  String get scanner_tcpHint => 'Een radio met wifi-firmware op je netwerk.';
+
+  @override
+  String get scanner_otherWays => 'Andere manieren om te verbinden';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count radio\'s in de buurt',
+      one: '1 radio in de buurt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Radio\'s zoeken…';
+
+  @override
+  String get scanner_findTitle => 'Vind je radio';
+
+  @override
+  String get scanner_heroHint =>
+      'Zet je radio aan en houd hem binnen een paar meter. Hij heeft MeshCore-companionfirmware nodig.';
+
+  @override
+  String get scanner_tipsTitle => 'Zie je je radio niet?';
+
+  @override
+  String get scanner_tipPower => 'Controleer of hij aanstaat en actief is.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Hij heeft MeshCore-companionfirmware nodig. Repeaters en roomservers verschijnen hier niet.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Een radio verbindt met één apparaat tegelijk. Koppel hem los van andere telefoons of computers.';
+
+  @override
+  String get connections_internetBridge => 'Internetbrug';
+
+  @override
+  String get connections_noRadio => 'Geen radio';
+
+  @override
+  String get connections_radioSettings => 'Radio-instellingen';
+
+  @override
+  String get connections_viewDashboard => 'Verbindingsoverzicht bekijken';
 }

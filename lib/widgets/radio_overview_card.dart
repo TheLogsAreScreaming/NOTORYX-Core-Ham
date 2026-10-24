@@ -9,34 +9,34 @@ import 'battery_indicator.dart';
 import 'mesh_ui.dart';
 import 'radio_stats_entry.dart';
 
+/// "910.525 MHz · SF7 · BW62.5 · CR5 · 22 dBm", or null before the radio
+/// has reported its settings.
+String? radioSettingsLine(MeshCoreConnector connector) {
+  final freq = radioFrequencyMHz(connector.currentFreqHz);
+  final bw = connector.currentBwHz;
+  final sf = connector.currentSf;
+  final cr = connector.currentCr;
+  final tx = connector.currentTxPower;
+  if (freq == null) return null;
+  String trim(double v) => v
+      .toStringAsFixed(3)
+      .replaceFirst(RegExp(r'0+$'), '')
+      .replaceFirst(RegExp(r'\.$'), '');
+  return [
+    '${trim(freq)}\u00A0MHz',
+    if (sf != null) 'SF$sf',
+    if (bw != null) 'BW${trim(bw / 1000)}',
+    if (cr != null) 'CR$cr',
+    if (tx != null) '$tx\u00A0dBm',
+  ].join(' · '); // Units stay attached to their numbers when wrapping.
+}
+
 /// Top of the Radio tab: the connected radio's identity, battery and radio
 /// parameters, plus the two actions people reach for most.
 class RadioOverviewCard extends StatelessWidget {
   final MeshCoreConnector connector;
 
   const RadioOverviewCard({super.key, required this.connector});
-
-  /// "910.525 MHz · SF7 · BW62.5 · CR5 · 22 dBm", or null before the radio
-  /// has reported its settings.
-  String? _radioLine() {
-    final freq = radioFrequencyMHz(connector.currentFreqHz);
-    final bw = connector.currentBwHz;
-    final sf = connector.currentSf;
-    final cr = connector.currentCr;
-    final tx = connector.currentTxPower;
-    if (freq == null) return null;
-    String trim(double v) => v
-        .toStringAsFixed(3)
-        .replaceFirst(RegExp(r'0+$'), '')
-        .replaceFirst(RegExp(r'\.$'), '');
-    return [
-      '${trim(freq)}\u00A0MHz',
-      if (sf != null) 'SF$sf',
-      if (bw != null) 'BW${trim(bw / 1000)}',
-      if (cr != null) 'CR$cr',
-      if (tx != null) '$tx\u00A0dBm',
-    ].join(' · '); // Units stay attached to their numbers when wrapping.
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class RadioOverviewCard extends StatelessWidget {
     final percent = connector.batteryPercent;
     final battery = batteryUiForPercent(percent);
     final firmware = connector.firmwareVersionString;
-    final radioLine = _radioLine();
+    final radioLine = radioSettingsLine(connector);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -87,14 +87,44 @@ flutter:
     - assets/fonts/
     - assets/regional_presets.json
   fonts:
+    # Static weights cut from the Inter and JetBrains Mono variable fonts.
+    # Flutter fakes bold on a variable font's default instance, so each
+    # weight the app uses needs its own file.
     - family: Inter
       fonts:
-        - asset: assets/fonts/Inter.ttf
-        - asset: assets/fonts/InterItalic.ttf
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Inter-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Inter-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Inter-RegularItalic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Inter-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Inter-BoldItalic.ttf
+          weight: 700
           style: italic
     - family: JetBrains Mono
       fonts:
-        - asset: assets/fonts/JetBrainsMono.ttf
+        - asset: assets/fonts/JetBrainsMono-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/JetBrainsMono-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/JetBrainsMono-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/JetBrainsMono-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/JetBrainsMono-ExtraBold.ttf
+          weight: 800
 
 flutter_launcher_icons:
   android: true

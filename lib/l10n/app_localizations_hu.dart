@@ -7891,4 +7891,80 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get mqtt_noticeSigningRejected =>
       'A rádió megtagadta az adat aláírását.';
+
+  @override
+  String get scanner_signalStrong => 'Erős';
+
+  @override
+  String get scanner_signalGood => 'Jó';
+
+  @override
+  String get scanner_signalFair => 'Közepes';
+
+  @override
+  String get scanner_signalWeak => 'Gyenge';
+
+  @override
+  String get scanner_nearbyRadios => 'Közeli rádiók';
+
+  @override
+  String get scanner_lastRadio => 'Utolsó rádió';
+
+  @override
+  String get scanner_reconnect => 'Újracsatlakozás';
+
+  @override
+  String get scanner_tcpHint =>
+      'Wi‑Fi firmware-rel működő rádió a hálózatodon.';
+
+  @override
+  String get scanner_otherWays => 'Más csatlakozási módok';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count rádió a közelben',
+      one: '1 rádió a közelben',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Rádiók keresése…';
+
+  @override
+  String get scanner_findTitle => 'Keresd meg a rádiódat';
+
+  @override
+  String get scanner_heroHint =>
+      'Kapcsold be a rádiót, és tartsd néhány méteren belül. MeshCore companion firmware kell hozzá.';
+
+  @override
+  String get scanner_tipsTitle => 'Nem látod a rádiódat?';
+
+  @override
+  String get scanner_tipPower =>
+      'Ellenőrizd, hogy be van-e kapcsolva és aktív-e.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'MeshCore companion firmware kell hozzá. Az átjátszók és szobaszerverek itt nem jelennek meg.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Egy rádió egyszerre csak egy eszközhöz csatlakozik. Válaszd le más telefonokról vagy számítógépekről.';
+
+  @override
+  String get connections_internetBridge => 'Internethíd';
+
+  @override
+  String get connections_noRadio => 'Nincs rádió';
+
+  @override
+  String get connections_radioSettings => 'Rádióbeállítások';
+
+  @override
+  String get connections_viewDashboard => 'Kapcsolatok áttekintése';
 }

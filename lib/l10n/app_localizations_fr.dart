@@ -7934,4 +7934,79 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get mqtt_noticeSigningRejected =>
       'La radio a refusé de signer les données.';
+
+  @override
+  String get scanner_signalStrong => 'Fort';
+
+  @override
+  String get scanner_signalGood => 'Bon';
+
+  @override
+  String get scanner_signalFair => 'Moyen';
+
+  @override
+  String get scanner_signalWeak => 'Faible';
+
+  @override
+  String get scanner_nearbyRadios => 'Radios à proximité';
+
+  @override
+  String get scanner_lastRadio => 'Dernière radio';
+
+  @override
+  String get scanner_reconnect => 'Reconnecter';
+
+  @override
+  String get scanner_tcpHint =>
+      'Une radio avec un firmware Wi‑Fi sur votre réseau.';
+
+  @override
+  String get scanner_otherWays => 'Autres moyens de connexion';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count radios à proximité',
+      one: '1 radio à proximité',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Recherche de radios…';
+
+  @override
+  String get scanner_findTitle => 'Trouvez votre radio';
+
+  @override
+  String get scanner_heroHint =>
+      'Allumez votre radio et gardez-la à quelques mètres. Elle doit avoir le firmware MeshCore companion.';
+
+  @override
+  String get scanner_tipsTitle => 'Vous ne voyez pas votre radio ?';
+
+  @override
+  String get scanner_tipPower => 'Vérifiez qu’elle est allumée et active.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Elle doit avoir le firmware MeshCore companion. Les répéteurs et serveurs de salon n’apparaissent pas ici.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Une radio ne se connecte qu’à un appareil à la fois. Déconnectez-la des autres téléphones ou ordinateurs.';
+
+  @override
+  String get connections_internetBridge => 'Pont Internet';
+
+  @override
+  String get connections_noRadio => 'Aucune radio';
+
+  @override
+  String get connections_radioSettings => 'Réglages radio';
+
+  @override
+  String get connections_viewDashboard => 'Voir le tableau des connexions';
 }

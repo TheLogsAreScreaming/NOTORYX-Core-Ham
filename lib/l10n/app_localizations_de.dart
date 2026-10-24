@@ -7913,4 +7913,79 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get mqtt_noticeSigningRejected =>
       'Das Funkgerät hat das Signieren der Daten abgelehnt.';
+
+  @override
+  String get scanner_signalStrong => 'Stark';
+
+  @override
+  String get scanner_signalGood => 'Gut';
+
+  @override
+  String get scanner_signalFair => 'Mittel';
+
+  @override
+  String get scanner_signalWeak => 'Schwach';
+
+  @override
+  String get scanner_nearbyRadios => 'Funkgeräte in der Nähe';
+
+  @override
+  String get scanner_lastRadio => 'Letztes Funkgerät';
+
+  @override
+  String get scanner_reconnect => 'Neu verbinden';
+
+  @override
+  String get scanner_tcpHint =>
+      'Ein Funkgerät mit WLAN-Firmware in deinem Netzwerk.';
+
+  @override
+  String get scanner_otherWays => 'Andere Verbindungswege';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Funkgeräte in der Nähe',
+      one: '1 Funkgerät in der Nähe',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Suche nach Funkgeräten…';
+
+  @override
+  String get scanner_findTitle => 'Finde dein Funkgerät';
+
+  @override
+  String get scanner_heroHint =>
+      'Schalte dein Funkgerät ein und halte es in wenigen Metern Nähe. Es braucht MeshCore-Companion-Firmware.';
+
+  @override
+  String get scanner_tipsTitle => 'Funkgerät nicht zu sehen?';
+
+  @override
+  String get scanner_tipPower => 'Prüfe, ob es eingeschaltet und aktiv ist.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Es braucht MeshCore-Companion-Firmware. Repeater und Room-Server erscheinen hier nicht.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Ein Funkgerät verbindet sich immer nur mit einem Gerät. Trenne es von anderen Telefonen oder Computern.';
+
+  @override
+  String get connections_internetBridge => 'Internet-Brücke';
+
+  @override
+  String get connections_noRadio => 'Kein Funkgerät';
+
+  @override
+  String get connections_radioSettings => 'Funkeinstellungen';
+
+  @override
+  String get connections_viewDashboard => 'Verbindungsübersicht anzeigen';
 }

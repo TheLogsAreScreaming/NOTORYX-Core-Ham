@@ -7892,4 +7892,78 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get mqtt_noticeSigningRejected =>
       'O rádio se recusou a assinar os dados.';
+
+  @override
+  String get scanner_signalStrong => 'Forte';
+
+  @override
+  String get scanner_signalGood => 'Bom';
+
+  @override
+  String get scanner_signalFair => 'Razoável';
+
+  @override
+  String get scanner_signalWeak => 'Fraco';
+
+  @override
+  String get scanner_nearbyRadios => 'Rádios por perto';
+
+  @override
+  String get scanner_lastRadio => 'Último rádio';
+
+  @override
+  String get scanner_reconnect => 'Reconectar';
+
+  @override
+  String get scanner_tcpHint => 'Um rádio com firmware Wi‑Fi na sua rede.';
+
+  @override
+  String get scanner_otherWays => 'Outras formas de conectar';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count rádios por perto',
+      one: '1 rádio por perto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Procurando rádios…';
+
+  @override
+  String get scanner_findTitle => 'Encontre seu rádio';
+
+  @override
+  String get scanner_heroHint =>
+      'Ligue seu rádio e mantenha-o a poucos metros. Ele precisa do firmware MeshCore companion.';
+
+  @override
+  String get scanner_tipsTitle => 'Não vê seu rádio?';
+
+  @override
+  String get scanner_tipPower => 'Verifique se ele está ligado e ativo.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Ele precisa do firmware MeshCore companion. Repetidores e servidores de sala não aparecem aqui.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Um rádio se conecta a um dispositivo por vez. Desconecte-o de outros celulares ou computadores.';
+
+  @override
+  String get connections_internetBridge => 'Ponte de internet';
+
+  @override
+  String get connections_noRadio => 'Nenhum rádio';
+
+  @override
+  String get connections_radioSettings => 'Configurações do rádio';
+
+  @override
+  String get connections_viewDashboard => 'Ver painel de conexões';
 }

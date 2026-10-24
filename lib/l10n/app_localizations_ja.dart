@@ -7519,4 +7519,77 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get mqtt_noticeSigningRejected => '無線機がデータへの署名を拒否しました。';
+
+  @override
+  String get scanner_signalStrong => '強い';
+
+  @override
+  String get scanner_signalGood => '良好';
+
+  @override
+  String get scanner_signalFair => '普通';
+
+  @override
+  String get scanner_signalWeak => '弱い';
+
+  @override
+  String get scanner_nearbyRadios => '近くの無線機';
+
+  @override
+  String get scanner_lastRadio => '前回の無線機';
+
+  @override
+  String get scanner_reconnect => '再接続';
+
+  @override
+  String get scanner_tcpHint => 'ネットワーク上の Wi‑Fi ファームウェア搭載無線機。';
+
+  @override
+  String get scanner_otherWays => 'その他の接続方法';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '近くの無線機 $count台',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => '無線機を探しています…';
+
+  @override
+  String get scanner_findTitle => '無線機を探す';
+
+  @override
+  String get scanner_heroHint =>
+      '無線機の電源を入れ、数メートル以内に置いてください。MeshCore companion ファームウェアが必要です。';
+
+  @override
+  String get scanner_tipsTitle => '無線機が表示されませんか？';
+
+  @override
+  String get scanner_tipPower => '電源が入っていて起動しているか確認してください。';
+
+  @override
+  String get scanner_tipFirmware =>
+      'MeshCore companion ファームウェアが必要です。リピーターとルームサーバーはここに表示されません。';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      '無線機は一度に1台の端末にしか接続できません。ほかのスマートフォンやパソコンから切断してください。';
+
+  @override
+  String get connections_internetBridge => 'インターネットブリッジ';
+
+  @override
+  String get connections_noRadio => '無線機なし';
+
+  @override
+  String get connections_radioSettings => '無線設定';
+
+  @override
+  String get connections_viewDashboard => '接続ダッシュボードを表示';
 }

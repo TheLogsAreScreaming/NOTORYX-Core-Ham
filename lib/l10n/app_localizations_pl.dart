@@ -7938,4 +7938,80 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get mqtt_noticeSigningRejected => 'Radio odmówiło podpisania danych.';
+
+  @override
+  String get scanner_signalStrong => 'Silny';
+
+  @override
+  String get scanner_signalGood => 'Dobry';
+
+  @override
+  String get scanner_signalFair => 'Średni';
+
+  @override
+  String get scanner_signalWeak => 'Słaby';
+
+  @override
+  String get scanner_nearbyRadios => 'Radia w pobliżu';
+
+  @override
+  String get scanner_lastRadio => 'Ostatnie radio';
+
+  @override
+  String get scanner_reconnect => 'Połącz ponownie';
+
+  @override
+  String get scanner_tcpHint => 'Radio z oprogramowaniem Wi‑Fi w twojej sieci.';
+
+  @override
+  String get scanner_otherWays => 'Inne sposoby połączenia';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count radia w pobliżu',
+      many: '$count radiów w pobliżu',
+      few: '$count radia w pobliżu',
+      one: '1 radio w pobliżu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Szukanie radiów…';
+
+  @override
+  String get scanner_findTitle => 'Znajdź swoje radio';
+
+  @override
+  String get scanner_heroHint =>
+      'Włącz radio i trzymaj je w odległości kilku metrów. Potrzebuje oprogramowania MeshCore companion.';
+
+  @override
+  String get scanner_tipsTitle => 'Nie widzisz swojego radia?';
+
+  @override
+  String get scanner_tipPower => 'Sprawdź, czy jest włączone i aktywne.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Potrzebuje oprogramowania MeshCore companion. Przemienniki i serwery pokojów nie pojawiają się tutaj.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Radio łączy się naraz tylko z jednym urządzeniem. Odłącz je od innych telefonów lub komputerów.';
+
+  @override
+  String get connections_internetBridge => 'Most internetowy';
+
+  @override
+  String get connections_noRadio => 'Brak radia';
+
+  @override
+  String get connections_radioSettings => 'Ustawienia radia';
+
+  @override
+  String get connections_viewDashboard => 'Pokaż panel połączeń';
 }

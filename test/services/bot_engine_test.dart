@@ -28,6 +28,9 @@ void main() {
 
   test('field check-ins never trigger automatic bot replies', () {
     expect(reply(text: '[Bastion Check-in] I am OK'), isNull);
+    expect(reply(text: '[NOTORYX Check-in] I am OK'), isNull);
+    expect(reply(text: '[Bastion Bot] pong'), isNull);
+    expect(reply(text: '[NOTORYX Bot] pong'), isNull);
   });
 
   test('master switch defaults off', () {

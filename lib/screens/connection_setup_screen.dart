@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
 import '../utils/platform_info.dart';
+import '../widgets/connect_ui.dart';
 import 'connection_dashboard_screen.dart';
 import 'scanner_screen.dart';
 import 'usb_screen.dart';
@@ -64,7 +65,7 @@ class _ConnectionSetupScreenState extends State<ConnectionSetupScreen> {
                   ),
                 ),
                 icon: const Icon(Icons.settings_input_antenna),
-                label: const Text('View connection dashboard'),
+                label: Text(l10n.connections_viewDashboard),
               ),
               const SizedBox(height: 12),
             ],
@@ -78,28 +79,23 @@ class _ConnectionSetupScreenState extends State<ConnectionSetupScreen> {
             if (choice == null) ...[
               Text(l10n.setupWizard_intro),
               const SizedBox(height: 16),
-              ListTile(
-                enabled: widget.supportsBluetooth,
-                leading: const Icon(Icons.bluetooth),
-                title: Text(l10n.connectionChoiceBluetoothLabel),
-                subtitle: Text(
-                  widget.supportsBluetooth
-                      ? l10n.setupWizard_bluetooth
-                      : l10n.setupWizard_noBluetooth,
-                ),
+              TransportTile(
+                icon: Icons.bluetooth,
+                title: l10n.connectionChoiceBluetoothLabel,
+                subtitle: widget.supportsBluetooth
+                    ? l10n.setupWizard_bluetooth
+                    : l10n.setupWizard_noBluetooth,
                 onTap: widget.supportsBluetooth
                     ? () => setState(() => _choice = SetupConnection.bluetooth)
                     : null,
               ),
-              ListTile(
-                enabled: widget.supportsUsb,
-                leading: const Icon(Icons.usb),
-                title: Text(l10n.connectionChoiceUsbLabel),
-                subtitle: Text(
-                  widget.supportsUsb
-                      ? l10n.setupWizard_usb
-                      : l10n.setupWizard_noUsb,
-                ),
+              const SizedBox(height: 10),
+              TransportTile(
+                icon: Icons.usb,
+                title: l10n.connectionChoiceUsbLabel,
+                subtitle: widget.supportsUsb
+                    ? l10n.setupWizard_usb
+                    : l10n.setupWizard_noUsb,
                 onTap: widget.supportsUsb
                     ? () => setState(() => _choice = SetupConnection.usb)
                     : null,

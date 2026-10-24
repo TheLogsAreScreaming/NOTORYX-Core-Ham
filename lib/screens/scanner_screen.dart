@@ -6,13 +6,14 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../models/saved_radio.dart';
 import '../l10n/l10n.dart';
 import '../services/linux_ble_error_classifier.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/app_logger.dart';
 import '../widgets/adaptive_app_bar_title.dart';
+import '../widgets/connect_ui.dart';
 import '../widgets/device_tile.dart';
-import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
 import '../helpers/snack_bar_builder.dart';
 import 'channels_screen.dart';
@@ -91,6 +92,18 @@ class _ScannerScreenState extends State<ScannerScreen> {
     super.dispose();
   }
 
+  /// Every radio seen since this screen opened, in the order first found.
+  /// Kept across rescans so the list doesn't blank out and refill (the
+  /// connector clears its own list each time a scan starts).
+  final Map<String, ScanResult> _seen = {};
+
+  List<ScanResult> _mergeResults(List<ScanResult> latest) {
+    for (final result in latest) {
+      _seen[result.device.remoteId.str] = result;
+    }
+    return _seen.values.toList(growable: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     final canPop = Navigator.of(context).canPop();
@@ -108,102 +121,58 @@ class _ScannerScreenState extends State<ScannerScreen> {
         title: AdaptiveAppBarTitle(context.l10n.scanner_title),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        actions: [
-          if (PlatformInfo.supportsUsbSerial)
-            IconButton(
-              icon: const Icon(Icons.usb),
-              tooltip: context.l10n.connectionChoiceUsbLabel,
-              onPressed: () {
-                appLogger.info(
-                  'USB selected, opening UsbScreen',
-                  tag: 'ScannerScreen',
-                );
-                Navigator.of(
-                  context,
-                ).push(MaterialPageRoute(builder: (_) => const UsbScreen()));
-              },
-            ),
-          if (!PlatformInfo.isWeb)
-            IconButton(
-              icon: const Icon(Icons.lan),
-              tooltip: context.l10n.connectionChoiceTcpLabel,
-              onPressed: () {
-                Navigator.of(
-                  context,
-                ).push(MaterialPageRoute(builder: (_) => const TcpScreen()));
-              },
-            ),
-        ],
       ),
       body: SafeArea(
         top: false,
         child: Consumer<MeshCoreConnector>(
           builder: (context, connector, child) {
-            return Column(
-              children: [
-                // Bluetooth off warning — slides in/out with AnimatedSize
-                AnimatedSize(
-                  duration: const Duration(milliseconds: 250),
-                  curve: Curves.easeInOut,
-                  child: _bluetoothState == BluetoothAdapterState.off
-                      ? _BluetoothOffBanner(
-                          onEnable: PlatformInfo.isAndroid
-                              ? () => FlutterBluePlus.turnOn()
-                              : null,
-                        )
-                      : const SizedBox.shrink(),
+            final results = _mergeResults(connector.scanResults);
+            return Align(
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 720),
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
+                  children: [
+                    _ScanHero(
+                      connector: connector,
+                      bluetoothOff:
+                          _bluetoothState == BluetoothAdapterState.off,
+                      found: results.length,
+                      onToggleScan: () {
+                        HapticFeedback.lightImpact();
+                        _toggleScan(connector);
+                      },
+                      onEnableBluetooth: PlatformInfo.isAndroid
+                          ? () => FlutterBluePlus.turnOn()
+                          : null,
+                    ),
+                    ..._savedRadioSection(context, connector, results),
+                    const SizedBox(height: 22),
+                    ConsoleKicker(
+                      context.l10n.scanner_nearbyRadios,
+                      trailing: results.isEmpty
+                          ? null
+                          : Text(
+                              '${results.length}',
+                              style: MeshTheme.mono(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: MeshPalette.ink3,
+                              ),
+                            ),
+                    ),
+                    if (results.isEmpty)
+                      const _ScanTips()
+                    else
+                      ..._deviceTiles(context, connector, results),
+                    ..._otherTransports(context),
+                  ],
                 ),
-
-                // Connection status header
-                _ConnectionStatusHeader(connector: connector),
-
-                // Device list
-                Expanded(child: _buildDeviceList(context, connector)),
-              ],
+              ),
             );
           },
         ),
-      ),
-      floatingActionButton: Consumer<MeshCoreConnector>(
-        builder: (context, connector, child) {
-          final isScanning =
-              connector.state == MeshCoreConnectionState.scanning;
-          final isBluetoothOff = _bluetoothState == BluetoothAdapterState.off;
-
-          return FloatingActionButton.extended(
-            heroTag: 'scanner_ble_action',
-            onPressed: isBluetoothOff
-                ? null
-                : () {
-                    HapticFeedback.lightImpact();
-                    _toggleScan(connector);
-                  },
-            icon: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 220),
-              transitionBuilder: (child, anim) =>
-                  ScaleTransition(scale: anim, child: child),
-              child: isScanning
-                  ? SizedBox(
-                      key: const ValueKey('scanning'),
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      ),
-                    )
-                  : const Icon(
-                      Icons.bluetooth_searching,
-                      key: ValueKey('idle'),
-                    ),
-            ),
-            label: Text(
-              isScanning
-                  ? context.l10n.scanner_stop
-                  : context.l10n.scanner_scan,
-            ),
-          );
-        },
       ),
     );
   }
@@ -234,52 +203,146 @@ class _ScannerScreenState extends State<ScannerScreen> {
     }
   }
 
-  Widget _buildDeviceList(BuildContext context, MeshCoreConnector connector) {
-    if (connector.scanResults.isEmpty) {
-      final isBluetoothOff = _bluetoothState == BluetoothAdapterState.off;
-      final isScanning = connector.state == MeshCoreConnectionState.scanning;
-      return EmptyState(
-        icon: isBluetoothOff ? Icons.bluetooth_disabled : Icons.bluetooth,
-        title: isBluetoothOff
-            ? context.l10n.scanner_bluetoothOff
-            : isScanning
-            ? context.l10n.scanner_searchingDevices
-            : context.l10n.scanner_tapToScan,
-        subtitle: isBluetoothOff
-            ? context.l10n.scanner_bluetoothOffMessage
-            : null,
-        action: (isBluetoothOff || isScanning)
-            ? null
-            : FilledButton.icon(
-                onPressed: () {
-                  HapticFeedback.lightImpact();
-                  _toggleScan(connector);
-                },
-                icon: const Icon(Icons.bluetooth_searching),
-                label: Text(context.l10n.scanner_scan),
-              ),
-      );
+  /// "Last radio" card with a one-tap reconnect, for a Bluetooth radio this
+  /// device has connected to before that isn't already in the scan list.
+  List<Widget> _savedRadioSection(
+    BuildContext context,
+    MeshCoreConnector connector,
+    List<ScanResult> results,
+  ) {
+    final saved = connector.savedRadio;
+    if (saved == null ||
+        saved.transport != SavedRadioTransport.bluetooth ||
+        PlatformInfo.isWeb ||
+        connector.isConnected ||
+        results.any((r) => r.device.remoteId.str == saved.address)) {
+      return const [];
     }
+    final busy =
+        connector.state == MeshCoreConnectionState.connecting ||
+        _bluetoothState == BluetoothAdapterState.off;
+    final connecting = _connectingDeviceId == saved.address;
+    return [
+      const SizedBox(height: 22),
+      ConsoleKicker(context.l10n.scanner_lastRadio),
+      ConsolePanel(
+        padding: const EdgeInsets.all(14),
+        child: Row(
+          children: [
+            Icon(Icons.history_rounded, color: MeshPalette.accent),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                DeviceTile.friendlyName(saved.name),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: MeshPalette.ink,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            FilledButton.tonalIcon(
+              onPressed: busy ? null : () => _reconnectSaved(connector),
+              icon: connecting
+                  ? const SizedBox.square(
+                      dimension: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.refresh_rounded, size: 18),
+              label: Text(context.l10n.scanner_reconnect),
+            ),
+          ],
+        ),
+      ),
+    ];
+  }
 
+  Future<void> _reconnectSaved(MeshCoreConnector connector) async {
+    final saved = connector.savedRadio;
+    if (saved == null) return;
+    setState(() => _connectingDeviceId = saved.address);
+    final messenger = ScaffoldMessenger.of(context);
+    final failed = context.l10n.setupWizard_bluetoothError;
+    try {
+      if (connector.state == MeshCoreConnectionState.scanning) {
+        await connector.stopScan();
+      }
+      await connector.reconnectSavedRadio();
+    } catch (e) {
+      appLogger.warn('Reconnect failed: $e', tag: 'ScannerScreen');
+      messenger.showSnackBar(SnackBar(content: Text(failed)));
+    } finally {
+      if (mounted) setState(() => _connectingDeviceId = null);
+    }
+  }
+
+  List<Widget> _deviceTiles(
+    BuildContext context,
+    MeshCoreConnector connector,
+    List<ScanResult> results,
+  ) {
     final isConnecting = connector.state == MeshCoreConnectionState.connecting;
-    return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(0, 8, 0, 96),
-      itemCount: connector.scanResults.length,
-      itemBuilder: (context, index) {
-        final result = connector.scanResults[index];
-        final deviceId = result.device.remoteId.toString();
-        return ListEntrance(
-          index: index,
-          child: DeviceTile(
-            scanResult: result,
-            isConnecting: isConnecting && _connectingDeviceId == deviceId,
-            onTap: isConnecting
-                ? null
-                : () => _connectToDevice(context, connector, result),
+    return [
+      for (var i = 0; i < results.length; i++)
+        Padding(
+          // Keyed by radio so a tile keeps its state (and only plays its
+          // entrance once) as signal readings update.
+          key: ValueKey(results[i].device.remoteId.str),
+          padding: const EdgeInsets.only(bottom: 10),
+          child: ListEntrance(
+            index: i,
+            child: DeviceTile(
+              scanResult: results[i],
+              isConnecting:
+                  isConnecting &&
+                  _connectingDeviceId == results[i].device.remoteId.str,
+              onTap: isConnecting
+                  ? null
+                  : () => _connectToDevice(context, connector, results[i]),
+            ),
           ),
-        );
-      },
-    );
+        ),
+    ];
+  }
+
+  /// USB and Wi-Fi alternatives, replacing the old unlabeled app-bar icons.
+  List<Widget> _otherTransports(BuildContext context) {
+    final l10n = context.l10n;
+    final tiles = [
+      if (PlatformInfo.supportsUsbSerial)
+        TransportTile(
+          icon: Icons.usb_rounded,
+          title: l10n.connections_usbSerial,
+          subtitle: l10n.setupWizard_usb,
+          onTap: () {
+            appLogger.info(
+              'USB selected, opening UsbScreen',
+              tag: 'ScannerScreen',
+            );
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => const UsbScreen()));
+          },
+        ),
+      if (!PlatformInfo.isWeb)
+        TransportTile(
+          icon: Icons.wifi_rounded,
+          title: l10n.radioStatus_tcp,
+          subtitle: l10n.scanner_tcpHint,
+          onTap: () => Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (_) => const TcpScreen())),
+        ),
+    ];
+    if (tiles.isEmpty) return const [];
+    return [
+      const SizedBox(height: 22),
+      ConsoleKicker(l10n.scanner_otherWays),
+      ResponsiveTilePair(children: tiles),
+    ];
   }
 
   Future<void> _connectToDevice(
@@ -423,108 +486,182 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
 // ── Private sub-widgets ────────────────────────────────────────────────────
 
-/// Bluetooth-off warning banner — styled as an alert MeshCard.
-class _BluetoothOffBanner extends StatelessWidget {
-  final VoidCallback? onEnable;
+/// Top of the screen: a radar that ripples while scanning, what's happening
+/// in plain words, and the one button that matters right now.
+class _ScanHero extends StatelessWidget {
+  const _ScanHero({
+    required this.connector,
+    required this.bluetoothOff,
+    required this.found,
+    required this.onToggleScan,
+    required this.onEnableBluetooth,
+  });
 
-  const _BluetoothOffBanner({this.onEnable});
+  final MeshCoreConnector connector;
+  final bool bluetoothOff;
+  final int found;
+  final VoidCallback onToggleScan;
+  final VoidCallback? onEnableBluetooth;
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return MeshCard(
-      color: scheme.error.withValues(alpha: 0.08),
-      borderColor: scheme.error.withValues(alpha: 0.35),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      child: Row(
-        children: [
-          Icon(Icons.bluetooth_disabled, size: 20, color: scheme.error),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  context.l10n.scanner_bluetoothOff,
-                  style: TextStyle(
-                    color: scheme.error,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13.5,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  context.l10n.scanner_bluetoothOffMessage,
-                  style: TextStyle(
-                    color: scheme.error.withValues(alpha: 0.8),
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
+    final l10n = context.l10n;
+    final state = connector.state;
+    final scanning = state == MeshCoreConnectionState.scanning;
+    final connecting = state == MeshCoreConnectionState.connecting;
+
+    final Color color;
+    final IconData icon;
+    final String title;
+    if (bluetoothOff) {
+      color = MeshPalette.alert;
+      icon = Icons.bluetooth_disabled_rounded;
+      title = l10n.scanner_bluetoothOff;
+    } else if (connecting) {
+      color = MeshPalette.warn;
+      icon = Icons.bluetooth_connected_rounded;
+      title = l10n.scanner_connecting;
+    } else if (found > 0) {
+      color = scanning ? MeshPalette.accent : MeshPalette.signal;
+      icon = Icons.bluetooth_searching_rounded;
+      title = l10n.scanner_radiosFound(found);
+    } else {
+      color = MeshPalette.accent;
+      icon = Icons.bluetooth_searching_rounded;
+      title = scanning ? l10n.scanner_searchingTitle : l10n.scanner_findTitle;
+    }
+    final subtitle = bluetoothOff
+        ? l10n.scanner_bluetoothOffMessage
+        : l10n.scanner_heroHint;
+
+    final Widget? action;
+    if (bluetoothOff) {
+      action = onEnableBluetooth == null
+          ? null
+          : FilledButton.icon(
+              onPressed: onEnableBluetooth,
+              icon: const Icon(Icons.bluetooth_rounded),
+              label: Text(l10n.scanner_enableBluetooth),
+            );
+    } else {
+      action = FilledButton.icon(
+        key: const ValueKey('scanner-scan-button'),
+        onPressed: connecting ? null : onToggleScan,
+        icon: Icon(
+          scanning ? Icons.stop_rounded : Icons.bluetooth_searching_rounded,
+        ),
+        label: Text(scanning ? l10n.scanner_stop : l10n.scanner_scan),
+      );
+    }
+
+    final radar = RadarPulse(
+      active: scanning || connecting,
+      icon: icon,
+      color: color,
+    );
+    final text = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            color: MeshPalette.ink,
+            fontSize: 22,
+            fontWeight: FontWeight.w800,
+            height: 1.15,
           ),
-          if (onEnable != null) ...[
-            const SizedBox(width: 8),
-            TextButton(
-              onPressed: onEnable,
-              child: Text(context.l10n.scanner_enableBluetooth),
-            ),
-          ],
+        ),
+        const SizedBox(height: 6),
+        Text(
+          subtitle,
+          style: TextStyle(
+            color: MeshPalette.ink2,
+            fontSize: 13.5,
+            height: 1.4,
+          ),
+        ),
+        if (action != null) ...[
+          const SizedBox(height: 14),
+          SizedBox(height: 46, child: action),
         ],
+      ],
+    );
+
+    return ConsolePanel(
+      borderColor: color.withValues(alpha: 0.45),
+      child: Semantics(
+        liveRegion: true,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth < 420) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(child: radar),
+                  const SizedBox(height: 14),
+                  text,
+                ],
+              );
+            }
+            return Row(
+              children: [
+                radar,
+                const SizedBox(width: 20),
+                Expanded(child: text),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-/// Connection status header with AnimatedSwitcher between states.
-class _ConnectionStatusHeader extends StatelessWidget {
-  final MeshCoreConnector connector;
-
-  const _ConnectionStatusHeader({required this.connector});
+/// Shown when no radio has turned up yet: the usual reasons why.
+class _ScanTips extends StatelessWidget {
+  const _ScanTips();
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final scheme = Theme.of(context).colorScheme;
-
-    final (String label, Color color, bool pulse) = switch (connector.state) {
-      MeshCoreConnectionState.scanning => (
-        l10n.scanner_scanning,
-        MeshPalette.accent,
-        true,
+    Widget tip(IconData icon, String text) => Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, size: 18, color: MeshPalette.accent),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: MeshPalette.ink2,
+                fontSize: 13,
+                height: 1.35,
+              ),
+            ),
+          ),
+        ],
       ),
-      MeshCoreConnectionState.connecting => (
-        l10n.scanner_connecting,
-        MeshPalette.warn,
-        true,
-      ),
-      MeshCoreConnectionState.connected => (
-        l10n.scanner_connectedTo(connector.deviceDisplayName),
-        MeshPalette.signal,
-        false,
-      ),
-      MeshCoreConnectionState.disconnecting => (
-        l10n.scanner_disconnecting,
-        MeshPalette.warn,
-        true,
-      ),
-      MeshCoreConnectionState.disconnected => (
-        l10n.scanner_notConnected,
-        scheme.onSurfaceVariant,
-        false,
-      ),
-    };
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
-        child: Align(
-          key: ValueKey(connector.state),
-          alignment: Alignment.centerLeft,
-          child: StatusChip(label: label, color: color, pulse: pulse),
-        ),
+    );
+    return ConsolePanel(
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.scanner_tipsTitle,
+            style: TextStyle(
+              color: MeshPalette.ink,
+              fontSize: 14.5,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          tip(Icons.power_settings_new_rounded, l10n.scanner_tipPower),
+          tip(Icons.memory_rounded, l10n.scanner_tipFirmware),
+          tip(Icons.phonelink_erase_rounded, l10n.scanner_tipOtherDevice),
+        ],
       ),
     );
   }

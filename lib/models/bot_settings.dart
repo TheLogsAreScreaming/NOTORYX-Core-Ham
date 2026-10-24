@@ -1,6 +1,10 @@
 import 'dart:convert';
 
-const botPrefix = '[Bastion Bot] ';
+const botPrefix = '[NOTORYX Bot] ';
+
+/// Bot prefixes older releases sent; their replies are never answered, so
+/// two bots can't keep replying to each other.
+const legacyBotPrefixes = ['[Bastion Bot]', '[BCS Bot]'];
 const botCommands = <String>[
   '!ping',
   '!status',

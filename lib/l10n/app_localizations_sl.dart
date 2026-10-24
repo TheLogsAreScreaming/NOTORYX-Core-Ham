@@ -7892,4 +7892,81 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get mqtt_noticeSigningRejected => 'Radio je zavrnil podpis podatkov.';
+
+  @override
+  String get scanner_signalStrong => 'Močan';
+
+  @override
+  String get scanner_signalGood => 'Dober';
+
+  @override
+  String get scanner_signalFair => 'Srednji';
+
+  @override
+  String get scanner_signalWeak => 'Šibek';
+
+  @override
+  String get scanner_nearbyRadios => 'Radii v bližini';
+
+  @override
+  String get scanner_lastRadio => 'Zadnji radio';
+
+  @override
+  String get scanner_reconnect => 'Ponovno poveži';
+
+  @override
+  String get scanner_tcpHint =>
+      'Radio z Wi‑Fi strojno programsko opremo v vašem omrežju.';
+
+  @override
+  String get scanner_otherWays => 'Drugi načini povezave';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count radiev v bližini',
+      few: '$count radii v bližini',
+      two: '$count radia v bližini',
+      one: '1 radio v bližini',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Iskanje radiev…';
+
+  @override
+  String get scanner_findTitle => 'Poiščite svoj radio';
+
+  @override
+  String get scanner_heroHint =>
+      'Vklopite radio in ga imejte nekaj metrov stran. Potrebuje MeshCore companion strojno programsko opremo.';
+
+  @override
+  String get scanner_tipsTitle => 'Ne vidite svojega radia?';
+
+  @override
+  String get scanner_tipPower => 'Preverite, ali je vklopljen in aktiven.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Potrebuje MeshCore companion strojno programsko opremo. Repetitorji in strežniki sob tukaj niso prikazani.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Radio se hkrati poveže le z eno napravo. Odklopite ga od drugih telefonov ali računalnikov.';
+
+  @override
+  String get connections_internetBridge => 'Internetni most';
+
+  @override
+  String get connections_noRadio => 'Ni radia';
+
+  @override
+  String get connections_radioSettings => 'Nastavitve radia';
+
+  @override
+  String get connections_viewDashboard => 'Prikaži pregled povezav';
 }

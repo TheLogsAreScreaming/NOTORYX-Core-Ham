@@ -4,13 +4,11 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
-import 'mesh_ui.dart';
-import 'signal_ui.dart';
+import 'connect_ui.dart';
 
-/// A MeshCard-based row for displaying a scanned BLE device.
-/// Shows an AvatarCircle (router icon, deterministic hue from device name),
-/// device name, mono MAC address, mono RSSI dBm, and SignalBars on the right.
-/// While connecting, shows a small progress ring instead of signal bars.
+/// One radio found by a Bluetooth scan: its name, signal strength (bars, a
+/// word and dBm), ID, and a Connect button. While connecting, the card is
+/// outlined in the accent color and shows a progress ring instead.
 class DeviceTile extends StatelessWidget {
   final ScanResult scanResult;
   final VoidCallback? onTap;
@@ -23,93 +21,170 @@ class DeviceTile extends StatelessWidget {
     this.isConnecting = false,
   });
 
+  /// "MeshCore-Trail Lead" reads as "Trail Lead"; other names are unchanged.
+  static String friendlyName(String advertisedName) {
+    const prefix = 'MeshCore-';
+    if (advertisedName.startsWith(prefix) &&
+        advertisedName.length > prefix.length) {
+      return advertisedName.substring(prefix.length);
+    }
+    return advertisedName;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final device = scanResult.device;
     final rssi = scanResult.rssi;
     final name = device.platformName.isNotEmpty
         ? device.platformName
         : scanResult.advertisementData.advName;
     final displayName = name.isNotEmpty
-        ? name
-        : context.l10n.common_unknownDevice;
-    final mac = device.remoteId.toString();
-    final scheme = Theme.of(context).colorScheme;
+        ? friendlyName(name)
+        : l10n.common_unknownDevice;
+    final id = device.remoteId.toString();
+    final quality = bleSignalQuality(rssi);
+    final qualityColor = bleSignalColor(quality);
+    final tap = onTap == null
+        ? null
+        : () {
+            HapticFeedback.selectionClick();
+            onTap!();
+          };
 
-    final tier = rssi >= -60
-        ? 0
-        : rssi >= -70
-        ? 1
-        : rssi >= -80
-        ? 2
-        : rssi >= -90
-        ? 3
-        : 4;
-    final signalUi = signalUiForStrengthTier(tier);
-
-    return MeshCard(
-      onTap: onTap == null
-          ? null
-          : () {
-              HapticFeedback.selectionClick();
-              onTap!();
-            },
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      child: Row(
-        children: [
-          AvatarCircle(name: displayName, size: 42, icon: Icons.router),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+    return Semantics(
+      button: tap != null,
+      label: '$displayName, ${bleSignalQualityLabel(l10n, quality)}',
+      excludeSemantics: true,
+      onTap: tap,
+      child: Material(
+        color: isConnecting ? MeshPalette.accentBg : MeshPalette.bg2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(
+            color: isConnecting ? MeshPalette.accentLine : MeshPalette.line,
+          ),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: tap,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
+            child: Row(
               children: [
-                Text(
-                  displayName,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: scheme.onSurface,
+                Container(
+                  width: 46,
+                  height: 46,
+                  decoration: BoxDecoration(
+                    color: MeshPalette.accentBg,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: MeshPalette.accentLine),
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  mac,
-                  style: MeshTheme.mono(
-                    fontSize: 11,
-                    color: scheme.onSurfaceVariant,
+                  child: Icon(
+                    Icons.settings_input_antenna_rounded,
+                    color: MeshPalette.accent,
+                    size: 22,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                 ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        displayName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: MeshPalette.ink,
+                          fontSize: 15.5,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      if (isConnecting)
+                        Text(
+                          l10n.scanner_connecting,
+                          style: TextStyle(
+                            color: MeshPalette.accent,
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )
+                      else
+                        Row(
+                          children: [
+                            BleSignalBars(quality: quality),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                rssi == 0
+                                    ? bleSignalQualityLabel(l10n, quality)
+                                    : '${bleSignalQualityLabel(l10n, quality)} · $rssi dBm',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style:
+                                    MeshTheme.mono(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                      color: qualityColor,
+                                    ).copyWith(
+                                      fontFeatures: const [
+                                        FontFeature.tabularFigures(),
+                                      ],
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      const SizedBox(height: 4),
+                      Text(
+                        id,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: MeshTheme.mono(
+                          fontSize: 10,
+                          color: MeshPalette.ink4,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 12),
+                if (isConnecting)
+                  SizedBox.square(
+                    dimension: 22,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.5,
+                      color: MeshPalette.accent,
+                    ),
+                  )
+                else
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: tap == null ? MeshPalette.bg3 : MeshPalette.accent,
+                      borderRadius: BorderRadius.circular(MeshRadii.pill),
+                    ),
+                    child: Text(
+                      l10n.common_connect,
+                      style: TextStyle(
+                        color: tap == null
+                            ? MeshPalette.ink3
+                            : MeshPalette.onAccent,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
-          const SizedBox(width: 12),
-          if (isConnecting)
-            SizedBox(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: scheme.primary,
-              ),
-            )
-          else
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Icon(signalUi.icon, size: 16, color: signalUi.color),
-                const SizedBox(height: 3),
-                Text(
-                  '$rssi dBm',
-                  style: MeshTheme.mono(fontSize: 10, color: signalUi.color),
-                ),
-              ],
-            ),
-        ],
+        ),
       ),
     );
   }

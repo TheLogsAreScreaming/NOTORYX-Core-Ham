@@ -1,4 +1,5 @@
 import '../models/bot_settings.dart';
+import '../models/field_ops.dart';
 
 /// Deterministic local policy; no radio, UI, network or background dependency.
 class BotEngine {
@@ -34,8 +35,8 @@ class BotEngine {
         age < const Duration(seconds: -30) ||
         text.trim().isEmpty ||
         text.trimLeft().startsWith(botPrefix.trim()) ||
-        text.trimLeft().startsWith('[BCS Bot]') ||
-        text.trimLeft().startsWith('[Bastion Check-in]') ||
+        legacyBotPrefixes.any(text.trimLeft().startsWith) ||
+        isCheckInText(text) ||
         (settings.allowedSenders.isNotEmpty &&
             !settings.allowedSenders.contains(sender))) {
       return null;

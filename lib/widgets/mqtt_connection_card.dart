@@ -8,6 +8,8 @@ import '../models/mqtt_connection_status.dart';
 import '../screens/mqtt_packet_feed_screen.dart';
 import '../screens/mqtt_settings_screen.dart';
 import '../services/mqtt_broker_service.dart';
+import '../theme/mesh_theme.dart';
+import 'connect_ui.dart';
 
 /// Live MQTT broker status with connect, disconnect and settings controls.
 class MqttConnectionCard extends StatelessWidget {
@@ -71,18 +73,66 @@ class MqttConnectionCard extends StatelessWidget {
         status == MqttConnectionStatus.reconnecting;
     final l10n = context.l10n;
     final error = mqtt.errorNotice;
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
+    final statusColor = status.isConnected
+        ? MeshPalette.signal
+        : busy
+        ? MeshPalette.warn
+        : error != null
+        ? MeshPalette.alert
+        : MeshPalette.ink3;
+    return ConsolePanel(
+      borderColor: statusColor.withValues(alpha: 0.45),
+      child: DefaultTextStyle.merge(
+        style: TextStyle(color: MeshPalette.ink2, fontSize: 13, height: 1.45),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              l10n.mqtt_cardTitle,
-              style: Theme.of(context).textTheme.titleLarge,
+            Row(
+              children: [
+                Container(
+                  width: 46,
+                  height: 46,
+                  decoration: BoxDecoration(
+                    color: statusColor.withValues(alpha: 0.14),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(
+                      color: statusColor.withValues(alpha: 0.5),
+                    ),
+                  ),
+                  child: Icon(
+                    status.isConnected
+                        ? Icons.cloud_done_rounded
+                        : Icons.cloud_outlined,
+                    color: statusColor,
+                  ),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.mqtt_cardTitle,
+                        style: TextStyle(
+                          color: MeshPalette.ink,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        l10n.mqttStatus(status),
+                        style: TextStyle(
+                          color: statusColor,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
-            Text(l10n.mqttStatus(status)),
+            const SizedBox(height: 12),
             if (settings != null)
               Text(
                 l10n.mqtt_broker(

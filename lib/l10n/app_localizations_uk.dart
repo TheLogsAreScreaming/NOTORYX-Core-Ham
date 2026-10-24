@@ -7936,4 +7936,78 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get mqtt_noticeSigningRejected =>
       'Радіо відмовилося підписувати дані.';
+
+  @override
+  String get scanner_signalStrong => 'Сильний';
+
+  @override
+  String get scanner_signalGood => 'Добрий';
+
+  @override
+  String get scanner_signalFair => 'Середній';
+
+  @override
+  String get scanner_signalWeak => 'Слабкий';
+
+  @override
+  String get scanner_nearbyRadios => 'Радіо поблизу';
+
+  @override
+  String get scanner_lastRadio => 'Останнє радіо';
+
+  @override
+  String get scanner_reconnect => 'Перепідключити';
+
+  @override
+  String get scanner_tcpHint => 'Радіо з прошивкою Wi‑Fi у вашій мережі.';
+
+  @override
+  String get scanner_otherWays => 'Інші способи підключення';
+
+  @override
+  String scanner_radiosFound(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count радіо поблизу',
+      one: '1 радіо поблизу',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get scanner_searchingTitle => 'Пошук радіо…';
+
+  @override
+  String get scanner_findTitle => 'Знайдіть своє радіо';
+
+  @override
+  String get scanner_heroHint =>
+      'Увімкніть радіо й тримайте його за кілька метрів. Потрібна прошивка MeshCore companion.';
+
+  @override
+  String get scanner_tipsTitle => 'Не бачите свого радіо?';
+
+  @override
+  String get scanner_tipPower => 'Перевірте, що воно увімкнене й активне.';
+
+  @override
+  String get scanner_tipFirmware =>
+      'Потрібна прошивка MeshCore companion. Ретранслятори й кімнатні сервери тут не показуються.';
+
+  @override
+  String get scanner_tipOtherDevice =>
+      'Радіо підключається лише до одного пристрою одночасно. Від’єднайте його від інших телефонів чи комп’ютерів.';
+
+  @override
+  String get connections_internetBridge => 'Інтернет-міст';
+
+  @override
+  String get connections_noRadio => 'Немає радіо';
+
+  @override
+  String get connections_radioSettings => 'Налаштування радіо';
+
+  @override
+  String get connections_viewDashboard => 'Відкрити панель підключень';
 }
