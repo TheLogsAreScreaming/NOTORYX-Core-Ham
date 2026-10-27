@@ -9,6 +9,8 @@ import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/contact.dart';
 import 'package:meshcore_open/screens/contacts_screen.dart';
 import 'package:meshcore_open/services/ui_view_state_service.dart';
+import 'package:meshcore_open/storage/prefs_manager.dart';
+import 'package:meshcore_open/theme/mesh_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,9 +20,13 @@ class _Radio extends MeshCoreConnector {
   final responses = StreamController<Uint8List>.broadcast();
   Completer<void>? acknowledgement;
   int refreshes = 0;
+  String selfKey = '';
+  bool connected = true;
 
   @override
-  bool get isConnected => true;
+  bool get isConnected => connected;
+  @override
+  String get selfPublicKeyHex => selfKey;
   @override
   bool get isLoadingContacts => false;
   @override
@@ -47,8 +53,18 @@ void main() {
   const key = '9cd8fcf22a47333b591d96a2b848b73f457b1bb1a3ea2453a885f9e5787765b1';
   const link = 'meshcore://contact/add?name=Ridge+Repeater&public_key=$key&type=2';
 
-  setUp(() {
+  setUpAll(() async {
+    if (const bool.fromEnvironment('CAPTURE_PREVIEW')) {
+      final fonts = FontLoader('Inter')
+        ..addFont(rootBundle.load('assets/fonts/Inter-Regular.ttf'));
+      await fonts.load();
+    }
+  });
+
+  setUp(() async {
     SharedPreferences.setMockInitialValues({});
+    PrefsManager.reset();
+    await PrefsManager.initialize();
     radio = _Radio();
     viewState = UiViewStateService();
   });
@@ -66,10 +82,11 @@ void main() {
           ChangeNotifierProvider<MeshCoreConnector>.value(value: radio),
           ChangeNotifierProvider<UiViewStateService>.value(value: viewState),
         ],
-        child: const MaterialApp(
+        child: MaterialApp(
+          theme: MeshTheme.dark(),
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          home: ContactsScreen(),
+          home: const ContactsScreen(),
         ),
       ),
     );
@@ -125,6 +142,27 @@ void main() {
     expect(find.text('Add contact'), findsNothing);
     expect(radio.frames, isEmpty);
     expect(radio.known.single.path, [7]);
+  });
+
+  testWidgets('local identity cannot be added', (tester) async {
+    radio.selfKey = key;
+    await paste(tester, link);
+    expect(find.text('This is you.'), findsOneWidget);
+    expect(find.text('Add contact'), findsNothing);
+    expect(radio.frames, isEmpty);
+  });
+
+  testWidgets('disconnect disables the preview add action', (tester) async {
+    await paste(tester, link);
+    radio.connected = false;
+    radio.notifyListeners();
+    await tester.pumpAndSettle();
+    expect(radio.frames, isEmpty);
+    // The screen may navigate away on disconnect; any surviving preview
+    // must not offer an enabled radio operation.
+    for (final button in tester.widgetList<FilledButton>(find.byType(FilledButton))) {
+      expect(button.onPressed, isNull);
+    }
   });
 
   testWidgets('closing the preview sends nothing', (tester) async {
