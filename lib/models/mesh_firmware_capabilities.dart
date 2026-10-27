@@ -33,10 +33,11 @@ class MeshFirmwareCapabilities {
   MeshFirmwareCapabilities withVerifiedStatus(
     MeshExtension extension,
     MeshExtensionStatus status,
-  ) =>
-      MeshFirmwareCapabilities(
-        firmwareName: firmwareName,
-        firmwareVersion: firmwareVersion,
-        extensions: {...extensions, extension: status},
-      );
+  ) {
+    return MeshFirmwareCapabilities(
+      firmwareName: firmwareName,
+      firmwareVersion: firmwareVersion,
+      extensions: {...extensions, extension: status},
+    );
+  }
 }
