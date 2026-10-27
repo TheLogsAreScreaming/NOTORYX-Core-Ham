@@ -97,13 +97,13 @@ class ContactLinkCard extends StatefulWidget {
 
 class _ContactLinkCardState extends State<ContactLinkCard> {
   bool _adding = false;
-  bool _added = false;
+  String? _addedPublicKeyHex;
 
   @override
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
     final link = widget.link;
-    final known = _added || connector.contacts.any(
+    final known = _addedPublicKeyHex == link.publicKeyHex || connector.contacts.any(
       (c) => c.publicKeyHex.toLowerCase() == link.publicKeyHex.toLowerCase(),
     );
     final mine =
@@ -154,16 +154,17 @@ class _ContactLinkCardState extends State<ContactLinkCard> {
 
   Future<void> _add() async {
     final messenger = ScaffoldMessenger.of(context);
+    final link = widget.link;
     setState(() => _adding = true);
     try {
-      await context.read<MeshCoreConnector>().addContactFromLink(widget.link);
-      if (mounted) setState(() => _added = true);
+      await context.read<MeshCoreConnector>().addContactFromLink(link);
+      if (mounted) setState(() => _addedPublicKeyHex = link.publicKeyHex);
       messenger.showSnackBar(
-        SnackBar(content: Text('Added ${widget.link.name}.')),
+        SnackBar(content: Text('Added ${link.name}.')),
       );
     } catch (e) {
       messenger.showSnackBar(
-        SnackBar(content: Text('Could not add ${widget.link.name}: $e')),
+        SnackBar(content: Text('Could not add ${link.name}: $e')),
       );
     } finally {
       if (mounted) setState(() => _adding = false);

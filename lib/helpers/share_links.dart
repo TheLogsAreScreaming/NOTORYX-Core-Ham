@@ -37,8 +37,10 @@ String contactLinkFor(Contact contact) => Uri(
 ContactLink? parseContactLink(String text) {
   final match = RegExp(r'meshcore://contact/add\?\S+').firstMatch(text);
   if (match == null) return null;
+  final candidate = match.group(0)!;
+  if (RegExp(r'%(?![0-9a-fA-F]{2})').hasMatch(candidate)) return null;
   try {
-    final uri = Uri.parse(match.group(0)!);
+    final uri = Uri.parse(candidate);
     if (uri.scheme != 'meshcore' ||
         uri.host != 'contact' ||
         uri.path != '/add' ||

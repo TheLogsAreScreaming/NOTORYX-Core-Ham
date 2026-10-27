@@ -146,5 +146,7 @@ void main() {
     expect(find.text('Added Jo.'), findsOneWidget);
     expect(find.text('Add contact'), findsNothing);
     expect(find.text('Already in your contacts.'), findsOneWidget);
+    await show(_contact('Next contact', 4));
+    expect(find.text('Add contact'), findsOneWidget);
   });
 }
