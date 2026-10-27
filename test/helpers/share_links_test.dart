@@ -76,6 +76,29 @@ void main() {
     );
   });
 
+  test('preserves every documented type and encoded contact name', () {
+    for (final type in [advTypeChat, advTypeRepeater, advTypeRoom, advTypeSensor]) {
+      final contact = _contact('Ridge + #2 & café', 0xAB, type: type);
+      final parsed = parseContactLink(contactLinkFor(contact))!;
+      expect(parsed.type, type);
+      expect(parsed.name, contact.name);
+      expect(parsed.publicKey, contact.publicKey);
+    }
+  });
+
+  test('defaults only missing type and name, never malformed values', () {
+    final base = 'meshcore://contact/add?public_key=${'a' * 64}';
+    expect(parseContactLink(base)!.type, advTypeChat);
+    expect(parseContactLink(base)!.name, 'Unnamed contact');
+    for (final suffix in [
+      '&type=', '&type=nope', '&type=0', '&type=5', '&type=1&type=2',
+      '&public_key=${'b' * 64}', '&name=A&name=B', '&name=%FF',
+      '&name=%ZZ', '#fragment',
+    ]) {
+      expect(parseContactLink('$base$suffix'), isNull, reason: suffix);
+    }
+  });
+
   test('a shared position is the map marker the app already shows', () {
     final text = positionMarker(35.123456, -80.5, 'Trail|Lead position');
     final poi = parseMarkerText(text)!;
@@ -121,5 +144,7 @@ void main() {
     await tester.pump();
     expect(radio.frames, hasLength(1));
     expect(find.text('Added Jo.'), findsOneWidget);
+    expect(find.text('Add contact'), findsNothing);
+    expect(find.text('Already in your contacts.'), findsOneWidget);
   });
 }

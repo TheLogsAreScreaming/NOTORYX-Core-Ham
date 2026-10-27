@@ -97,12 +97,13 @@ class ContactLinkCard extends StatefulWidget {
 
 class _ContactLinkCardState extends State<ContactLinkCard> {
   bool _adding = false;
+  bool _added = false;
 
   @override
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
     final link = widget.link;
-    final known = connector.contacts.any(
+    final known = _added || connector.contacts.any(
       (c) => c.publicKeyHex.toLowerCase() == link.publicKeyHex.toLowerCase(),
     );
     final mine =
@@ -156,6 +157,7 @@ class _ContactLinkCardState extends State<ContactLinkCard> {
     setState(() => _adding = true);
     try {
       await context.read<MeshCoreConnector>().addContactFromLink(widget.link);
+      if (mounted) setState(() => _added = true);
       messenger.showSnackBar(
         SnackBar(content: Text('Added ${widget.link.name}.')),
       );
