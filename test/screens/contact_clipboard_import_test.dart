@@ -63,7 +63,6 @@ void main() {
     binding.defaultTestTimeout = const Timeout(Duration(seconds: 30));
   }
   String? clipboardText;
-  late FlutterLocalNotificationsPlatform notifications;
   late _Radio radio;
   late UiViewStateService viewState;
   const key =
@@ -73,7 +72,6 @@ void main() {
 
   setUp(() async {
     clipboardText = null;
-    notifications = FlutterLocalNotificationsPlatform.instance;
     FlutterLocalNotificationsPlatform.instance = _Notifications();
     // Awaiting a real platform clipboard response in testWidgets can deadlock:
     // the test's fake async clock does not advance while waiting for it.
@@ -109,7 +107,6 @@ void main() {
     radio.dispose();
     viewState.dispose();
     PrefsManager.reset();
-    FlutterLocalNotificationsPlatform.instance = notifications;
     binding.defaultBinaryMessenger.setMockMethodCallHandler(
       SystemChannels.platform,
       null,
