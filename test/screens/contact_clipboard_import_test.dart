@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/l10n/app_localizations.dart';
@@ -13,6 +15,13 @@ import 'package:meshcore_open/storage/prefs_manager.dart';
 import 'package:meshcore_open/theme/mesh_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+// Installing a platform fake keeps screen startup away from native notification
+// services, including D-Bus on Linux and permission prompts on desktop.
+class _Notifications extends FlutterLocalNotificationsPlatform {
+  @override
+  Future<void> cancel({required int id}) async {}
+}
 
 class _Radio extends MeshCoreConnector {
   final frames = <Uint8List>[];
@@ -49,6 +58,12 @@ class _Radio extends MeshCoreConnector {
 }
 
 void main() {
+  final binding = TestWidgetsFlutterBinding.ensureInitialized();
+  if (binding is AutomatedTestWidgetsFlutterBinding) {
+    binding.defaultTestTimeout = const Timeout(Duration(seconds: 30));
+  }
+  String? clipboardText;
+  late FlutterLocalNotificationsPlatform notifications;
   late _Radio radio;
   late UiViewStateService viewState;
   const key =
@@ -57,6 +72,31 @@ void main() {
       'meshcore://contact/add?name=Ridge+Repeater&public_key=$key&type=2';
 
   setUp(() async {
+    clipboardText = null;
+    notifications = FlutterLocalNotificationsPlatform.instance;
+    FlutterLocalNotificationsPlatform.instance = _Notifications();
+    // Awaiting a real platform clipboard response in testWidgets can deadlock:
+    // the test's fake async clock does not advance while waiting for it.
+    binding.defaultBinaryMessenger.setMockMethodCallHandler(
+      SystemChannels.platform,
+      (call) {
+        switch (call.method) {
+          case 'Clipboard.setData':
+            clipboardText = (call.arguments as Map)['text'] as String?;
+            return SynchronousFuture<Object?>(null);
+          case 'Clipboard.getData':
+            return SynchronousFuture<Object?>(
+              clipboardText == null ? null : {'text': clipboardText},
+            );
+          case 'Clipboard.hasStrings':
+            return SynchronousFuture<Object?>({
+              'value': clipboardText?.isNotEmpty ?? false,
+            });
+          default:
+            return SynchronousFuture<Object?>(null);
+        }
+      },
+    );
     SharedPreferences.setMockInitialValues({});
     PrefsManager.reset();
     await PrefsManager.initialize();
@@ -68,6 +108,19 @@ void main() {
     await radio.responses.close();
     radio.dispose();
     viewState.dispose();
+    PrefsManager.reset();
+    FlutterLocalNotificationsPlatform.instance = notifications;
+    binding.defaultBinaryMessenger.setMockMethodCallHandler(
+      SystemChannels.platform,
+      null,
+    );
+  });
+
+  testWidgets('clipboard starts empty and round-trips text', (tester) async {
+    expect(await Clipboard.getData(Clipboard.kTextPlain), isNull);
+    await Clipboard.setData(const ClipboardData(text: link));
+    expect((await Clipboard.getData(Clipboard.kTextPlain))?.text, link);
+    expect(await Clipboard.hasStrings(), isTrue);
   });
 
   Future<void> paste(WidgetTester tester, String text) async {
