@@ -87,9 +87,11 @@ void main() {
     );
     await Clipboard.setData(ClipboardData(text: text));
     await tester.tap(find.byTooltip('More options'));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
     await tester.tap(find.text('Add Contact from Clipboard'));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
   }
 
   testWidgets(
