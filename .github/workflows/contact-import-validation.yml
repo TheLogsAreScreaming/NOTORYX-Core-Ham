@@ -27,4 +27,9 @@ jobs:
             test/helpers/share_links_test.dart
             test/screens/contact_clipboard_import_test.dart
       - run: flutter analyze --fatal-infos --fatal-warnings
-      - run: flutter test test/helpers/share_links_test.dart test/screens/contact_clipboard_import_test.dart --reporter expanded
+      - run: flutter test test/helpers/share_links_test.dart test/screens/contact_clipboard_import_test.dart --reporter expanded --update-goldens --dart-define=CAPTURE_PREVIEW=true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contact-import-preview
+          path: test/screens/goldens/contact-import-preview.png

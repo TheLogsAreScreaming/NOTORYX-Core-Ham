@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -86,6 +85,9 @@ void main() {
     await paste(tester, link);
     expect(find.text('Ridge Repeater'), findsOneWidget);
     expect(radio.frames, isEmpty);
+    if (const bool.fromEnvironment('CAPTURE_PREVIEW')) {
+      await expectLater(find.byType(AlertDialog), matchesGoldenFile('goldens/contact-import-preview.png'));
+    }
     await tester.tap(find.text('Add contact'));
     await tester.pump();
     expect(radio.frames.single[0], cmdAddUpdateContact);
