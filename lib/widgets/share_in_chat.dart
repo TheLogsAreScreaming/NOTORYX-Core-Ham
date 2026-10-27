@@ -103,9 +103,12 @@ class _ContactLinkCardState extends State<ContactLinkCard> {
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
     final link = widget.link;
-    final known = _addedPublicKeyHex == link.publicKeyHex || connector.contacts.any(
-      (c) => c.publicKeyHex.toLowerCase() == link.publicKeyHex.toLowerCase(),
-    );
+    final known =
+        _addedPublicKeyHex == link.publicKeyHex ||
+        connector.contacts.any(
+          (c) =>
+              c.publicKeyHex.toLowerCase() == link.publicKeyHex.toLowerCase(),
+        );
     final mine =
         connector.selfPublicKeyHex.toLowerCase() ==
         link.publicKeyHex.toLowerCase();
@@ -159,9 +162,7 @@ class _ContactLinkCardState extends State<ContactLinkCard> {
     try {
       await context.read<MeshCoreConnector>().addContactFromLink(link);
       if (mounted) setState(() => _addedPublicKeyHex = link.publicKeyHex);
-      messenger.showSnackBar(
-        SnackBar(content: Text('Added ${link.name}.')),
-      );
+      messenger.showSnackBar(SnackBar(content: Text('Added ${link.name}.')));
     } catch (e) {
       messenger.showSnackBar(
         SnackBar(content: Text('Could not add ${link.name}: $e')),

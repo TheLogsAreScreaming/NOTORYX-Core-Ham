@@ -300,22 +300,23 @@ class _ContactsScreenState extends State<ContactsScreen>
       // particular, never replace an existing contact's name or route.
       await showDialog<void>(
         context: context,
-        builder: (dialogContext) => ChangeNotifierProvider<MeshCoreConnector>.value(
-          value: connector,
-          child: AlertDialog(
-            title: Text(context.l10n.contacts_addContactFromClipboard),
-            content: ContactLinkCard(
-              link: link,
-              textColor: Theme.of(dialogContext).colorScheme.onSurface,
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(dialogContext),
-                child: Text(context.l10n.common_close),
+        builder: (dialogContext) =>
+            ChangeNotifierProvider<MeshCoreConnector>.value(
+              value: connector,
+              child: AlertDialog(
+                title: Text(context.l10n.contacts_addContactFromClipboard),
+                content: ContactLinkCard(
+                  link: link,
+                  textColor: Theme.of(dialogContext).colorScheme.onSurface,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(dialogContext),
+                    child: Text(context.l10n.common_close),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
+            ),
       );
       return;
     }

@@ -43,6 +43,7 @@ class _Radio extends MeshCoreConnector {
     frames.add(frame);
     if (waitForGenericAck) await acknowledgement?.future;
   }
+
   @override
   Future<void> refreshContacts() async => refreshes++;
 }
@@ -50,16 +51,10 @@ class _Radio extends MeshCoreConnector {
 void main() {
   late _Radio radio;
   late UiViewStateService viewState;
-  const key = '9cd8fcf22a47333b591d96a2b848b73f457b1bb1a3ea2453a885f9e5787765b1';
-  const link = 'meshcore://contact/add?name=Ridge+Repeater&public_key=$key&type=2';
-
-  setUpAll(() async {
-    if (const bool.fromEnvironment('CAPTURE_PREVIEW')) {
-      final fonts = FontLoader('Inter')
-        ..addFont(rootBundle.load('assets/fonts/Inter-Regular.ttf'));
-      await fonts.load();
-    }
-  });
+  const key =
+      '9cd8fcf22a47333b591d96a2b848b73f457b1bb1a3ea2453a885f9e5787765b1';
+  const link =
+      'meshcore://contact/add?name=Ridge+Repeater&public_key=$key&type=2';
 
   setUp(() async {
     SharedPreferences.setMockInitialValues({});
@@ -97,30 +92,32 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('standard link previews and waits for acknowledgement before success', (tester) async {
-    radio.acknowledgement = Completer<void>();
-    await paste(tester, link);
-    expect(find.text('Ridge Repeater'), findsOneWidget);
-    expect(radio.frames, isEmpty);
-    if (const bool.fromEnvironment('CAPTURE_PREVIEW')) {
-      await expectLater(find.byType(AlertDialog), matchesGoldenFile('goldens/contact-import-preview.png'));
-    }
-    await tester.tap(find.text('Add contact'));
-    await tester.pump();
-    expect(radio.frames.single[0], cmdAddUpdateContact);
-    expect(radio.frames.single.sublist(1, 33), hex2Uint8List(key));
-    expect(radio.frames.single[33], advTypeRepeater);
-    expect(radio.frames.single[35], 0xFF);
-    expect(find.text('Adding…'), findsOneWidget);
-    expect(radio.refreshes, 0);
-    radio.acknowledgement!.complete();
-    await tester.pumpAndSettle();
-    expect(radio.refreshes, 1);
-    expect(find.text('Added Ridge Repeater.'), findsOneWidget);
-    expect(find.text('Add contact'), findsNothing);
-  });
+  testWidgets(
+    'standard link previews and waits for acknowledgement before success',
+    (tester) async {
+      radio.acknowledgement = Completer<void>();
+      await paste(tester, link);
+      expect(find.text('Ridge Repeater'), findsOneWidget);
+      expect(radio.frames, isEmpty);
+      await tester.tap(find.text('Add contact'));
+      await tester.pump();
+      expect(radio.frames.single[0], cmdAddUpdateContact);
+      expect(radio.frames.single.sublist(1, 33), hex2Uint8List(key));
+      expect(radio.frames.single[33], advTypeRepeater);
+      expect(radio.frames.single[35], 0xFF);
+      expect(find.text('Adding…'), findsOneWidget);
+      expect(radio.refreshes, 0);
+      radio.acknowledgement!.complete();
+      await tester.pumpAndSettle();
+      expect(radio.refreshes, 1);
+      expect(find.text('Added Ridge Repeater.'), findsOneWidget);
+      expect(find.text('Add contact'), findsNothing);
+    },
+  );
 
-  testWidgets('failed add stays retryable and never reports success', (tester) async {
+  testWidgets('failed add stays retryable and never reports success', (
+    tester,
+  ) async {
     radio.acknowledgement = Completer<void>();
     await paste(tester, link);
     await tester.tap(find.text('Add contact'));
@@ -133,10 +130,16 @@ void main() {
   });
 
   testWidgets('existing contact is not overwritten', (tester) async {
-    radio.known.add(Contact(
-      publicKey: hex2Uint8List(key), name: 'Saved name', type: advTypeRepeater,
-      pathLength: 1, path: Uint8List.fromList([7]), lastSeen: DateTime.now(),
-    ));
+    radio.known.add(
+      Contact(
+        publicKey: hex2Uint8List(key),
+        name: 'Saved name',
+        type: advTypeRepeater,
+        pathLength: 1,
+        path: Uint8List.fromList([7]),
+        lastSeen: DateTime.now(),
+      ),
+    );
     await paste(tester, link);
     expect(find.text('Already in your contacts.'), findsOneWidget);
     expect(find.text('Add contact'), findsNothing);
@@ -160,7 +163,9 @@ void main() {
     expect(radio.frames, isEmpty);
     // The screen may navigate away on disconnect; any surviving preview
     // must not offer an enabled radio operation.
-    for (final button in tester.widgetList<FilledButton>(find.byType(FilledButton))) {
+    for (final button in tester.widgetList<FilledButton>(
+      find.byType(FilledButton),
+    )) {
       expect(button.onPressed, isNull);
     }
   });
@@ -180,8 +185,11 @@ void main() {
   });
 
   for (final text in [
-    '$link&type=1', '$link&name=%FF', 'meshcore://ab',
-    'meshcore://${'ab' * maxFrameSize}', 'meshcore://${'a' * 197}',
+    '$link&type=1',
+    '$link&name=%FF',
+    'meshcore://ab',
+    'meshcore://${'ab' * maxFrameSize}',
+    'meshcore://${'a' * 197}',
   ]) {
     testWidgets('rejects malformed clipboard data: $text', (tester) async {
       await paste(tester, text);

@@ -77,7 +77,12 @@ void main() {
   });
 
   test('preserves every documented type and encoded contact name', () {
-    for (final type in [advTypeChat, advTypeRepeater, advTypeRoom, advTypeSensor]) {
+    for (final type in [
+      advTypeChat,
+      advTypeRepeater,
+      advTypeRoom,
+      advTypeSensor,
+    ]) {
       final contact = _contact('Ridge + #2 & café', 0xAB, type: type);
       final parsed = parseContactLink(contactLinkFor(contact))!;
       expect(parsed.type, type);
@@ -91,9 +96,16 @@ void main() {
     expect(parseContactLink(base)!.type, advTypeChat);
     expect(parseContactLink(base)!.name, 'Unnamed contact');
     for (final suffix in [
-      '&type=', '&type=nope', '&type=0', '&type=5', '&type=1&type=2',
-      '&public_key=${'b' * 64}', '&name=A&name=B', '&name=%FF',
-      '&name=%ZZ', '#fragment',
+      '&type=',
+      '&type=nope',
+      '&type=0',
+      '&type=5',
+      '&type=1&type=2',
+      '&public_key=${'b' * 64}',
+      '&name=A&name=B',
+      '&name=%FF',
+      '&name=%ZZ',
+      '#fragment',
     ]) {
       expect(parseContactLink('$base$suffix'), isNull, reason: suffix);
     }
