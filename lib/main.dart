@@ -50,6 +50,7 @@ import 'storage/prefs_manager.dart';
 import 'theme/mesh_theme.dart';
 import 'utils/app_logger.dart';
 import 'widgets/image_send_codec_binding.dart';
+import 'services/direct_repeater_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -261,6 +262,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final BotService _botService;
   late final FieldOpsService _fieldOps;
   late final RegionalPresetService _regionalPresets;
+  late final DirectRepeaterService _directRepeaters;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
   AppShortcuts? _shortcuts;
@@ -278,6 +280,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_fieldOps.load());
     _regionalPresets = RegionalPresetService(widget.connector);
     unawaited(_regionalPresets.start());
+    _directRepeaters = DirectRepeaterService(widget.connector);
     _readAloud = ReadAloudService(widget.connector, widget.appSettingsService);
     _applyBatterySaver();
     widget.appSettingsService.addListener(_applyBatterySaver);
@@ -331,6 +334,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
     _regionalPresets.dispose();
+    _directRepeaters.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
     unawaited(_mqttPackets?.cancel());
@@ -395,6 +399,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       providers: [
         ChangeNotifierProvider.value(value: _botService),
         ChangeNotifierProvider.value(value: _fieldOps),
+        ChangeNotifierProvider<DirectRepeaterService?>.value(
+          value: _directRepeaters,
+        ),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,
         ),

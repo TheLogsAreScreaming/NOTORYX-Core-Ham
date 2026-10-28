@@ -3757,5 +3757,12 @@
   "connections_internetBridge": "インターネットブリッジ",
   "connections_noRadio": "無線機なし",
   "connections_radioSettings": "無線設定",
-  "connections_viewDashboard": "接続ダッシュボードを表示"
+  "connections_viewDashboard": "接続ダッシュボードを表示",
+  "routes_nearbyTitle": "近くの最適なリピーター",
+  "routes_nearbyEmptyTitle": "まだリピーターを受信していません",
+  "routes_nearbyEmpty": "無線機が直接受信したリピーターが、通信を受けるたびに強い順にここへ表示されます。直近1時間が対象です。",
+  "routes_unknownRepeater": "不明なリピーター",
+  "routes_nearbyDetail": "{count, plural, other{{count}回受信}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{たった今} other{{minutes}分前}}",
+  "routes_via": "経由: {names}"
 }

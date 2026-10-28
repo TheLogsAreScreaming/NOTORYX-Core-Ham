@@ -7431,4 +7431,42 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => '查看连接面板';
+
+  @override
+  String get routes_nearbyTitle => '附近最佳中继器';
+
+  @override
+  String get routes_nearbyEmptyTitle => '尚未听到中继器';
+
+  @override
+  String get routes_nearbyEmpty => '电台直接听到的中继器会随着收到流量按信号从强到弱显示在这里。列表涵盖最近一小时。';
+
+  @override
+  String get routes_unknownRepeater => '未知中继器';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已听到 $count 次',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes 分钟前',
+      zero: '刚刚',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return '经由 $names';
+  }
 }

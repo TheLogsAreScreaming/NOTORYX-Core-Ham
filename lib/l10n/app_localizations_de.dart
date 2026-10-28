@@ -7988,4 +7988,45 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Verbindungsübersicht anzeigen';
+
+  @override
+  String get routes_nearbyTitle => 'BESTE REPEATER IN DEINER NÄHE';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Noch keine Repeater gehört';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'Repeater, die dein Funkgerät direkt hört, erscheinen hier, die stärksten zuerst, sobald es Verkehr empfängt. Die Liste umfasst die letzte Stunde.';
+
+  @override
+  String get routes_unknownRepeater => 'Unbekannter Repeater';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count-mal gehört',
+      one: 'einmal gehört',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'vor $minutes Min.',
+      one: 'vor 1 Min.',
+      zero: 'gerade eben',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'über $names';
+  }
 }

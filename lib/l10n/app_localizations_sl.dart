@@ -7969,4 +7969,47 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Prikaži pregled povezav';
+
+  @override
+  String get routes_nearbyTitle => 'NAJBOLJŠI REPETITORJI V BLIŽINI';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Repetitorjev še ni slišati';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'Repetitorji, ki jih radio sliši neposredno, se pojavijo tukaj, najmočnejši najprej, ko sprejema promet. Seznam zajema zadnjo uro.';
+
+  @override
+  String get routes_unknownRepeater => 'Neznan repetitor';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'slišan $count-krat',
+      few: 'slišan $count-krat',
+      two: 'slišan dvakrat',
+      one: 'slišan enkrat',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'pred $minutes min',
+      one: 'pred 1 min',
+      zero: 'pravkar',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'prek $names';
+  }
 }

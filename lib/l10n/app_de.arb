@@ -3757,5 +3757,12 @@
   "connections_internetBridge": "Internet-Brücke",
   "connections_noRadio": "Kein Funkgerät",
   "connections_radioSettings": "Funkeinstellungen",
-  "connections_viewDashboard": "Verbindungsübersicht anzeigen"
+  "connections_viewDashboard": "Verbindungsübersicht anzeigen",
+  "routes_nearbyTitle": "BESTE REPEATER IN DEINER NÄHE",
+  "routes_nearbyEmptyTitle": "Noch keine Repeater gehört",
+  "routes_nearbyEmpty": "Repeater, die dein Funkgerät direkt hört, erscheinen hier, die stärksten zuerst, sobald es Verkehr empfängt. Die Liste umfasst die letzte Stunde.",
+  "routes_unknownRepeater": "Unbekannter Repeater",
+  "routes_nearbyDetail": "{count, plural, =1{einmal gehört} other{{count}-mal gehört}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{gerade eben} =1{vor 1 Min.} other{vor {minutes} Min.}}",
+  "routes_via": "über {names}"
 }

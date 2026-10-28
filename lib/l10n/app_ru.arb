@@ -2926,5 +2926,12 @@
   "connections_internetBridge": "Интернет-мост",
   "connections_noRadio": "Нет радио",
   "connections_radioSettings": "Настройки радио",
-  "connections_viewDashboard": "Открыть панель подключений"
+  "connections_viewDashboard": "Открыть панель подключений",
+  "routes_nearbyTitle": "ЛУЧШИЕ РЕТРАНСЛЯТОРЫ РЯДОМ",
+  "routes_nearbyEmptyTitle": "Ретрансляторы ещё не слышны",
+  "routes_nearbyEmpty": "Ретрансляторы, которые радио слышит напрямую, появляются здесь, начиная с самых сильных, по мере приёма трафика. Список охватывает последний час.",
+  "routes_unknownRepeater": "Неизвестный ретранслятор",
+  "routes_nearbyDetail": "{count, plural, =1{слышен 1 раз} other{слышен раз: {count}}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{только что} =1{1 мин назад} other{{minutes} мин назад}}",
+  "routes_via": "через {names}"
 }

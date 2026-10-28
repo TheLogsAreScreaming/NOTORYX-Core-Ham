@@ -13386,6 +13386,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View connection dashboard'**
   String get connections_viewDashboard;
+
+  /// No description provided for @routes_nearbyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'BEST REPEATERS NEAR YOU'**
+  String get routes_nearbyTitle;
+
+  /// No description provided for @routes_nearbyEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No repeaters heard yet'**
+  String get routes_nearbyEmptyTitle;
+
+  /// No description provided for @routes_nearbyEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeaters your radio hears directly show up here, strongest first, as it receives traffic. The list covers the last hour.'**
+  String get routes_nearbyEmpty;
+
+  /// No description provided for @routes_unknownRepeater.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown repeater'**
+  String get routes_unknownRepeater;
+
+  /// No description provided for @routes_nearbyDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{heard once} other{heard {count} times}} · {ago}'**
+  String routes_nearbyDetail(int count, String ago);
+
+  /// No description provided for @routes_minutesAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes, plural, =0{just now} =1{1 min ago} other{{minutes} min ago}}'**
+  String routes_minutesAgo(int minutes);
+
+  /// No description provided for @routes_via.
+  ///
+  /// In en, this message translates to:
+  /// **'via {names}'**
+  String routes_via(String names);
 }
 
 class _AppLocalizationsDelegate

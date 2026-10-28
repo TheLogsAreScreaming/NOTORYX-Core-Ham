@@ -3661,5 +3661,12 @@
   "connections_internetBridge": "Internethíd",
   "connections_noRadio": "Nincs rádió",
   "connections_radioSettings": "Rádióbeállítások",
-  "connections_viewDashboard": "Kapcsolatok áttekintése"
+  "connections_viewDashboard": "Kapcsolatok áttekintése",
+  "routes_nearbyTitle": "LEGJOBB KÖZELI ÁTJÁTSZÓK",
+  "routes_nearbyEmptyTitle": "Még nem hallatszik átjátszó",
+  "routes_nearbyEmpty": "A rádió által közvetlenül hallott átjátszók itt jelennek meg, a legerősebb elöl, ahogy forgalmat fogad. A lista az utolsó órát mutatja.",
+  "routes_unknownRepeater": "Ismeretlen átjátszó",
+  "routes_nearbyDetail": "{count, plural, =1{egyszer hallva} other{{count} alkalommal hallva}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{épp most} =1{1 perce} other{{minutes} perce}}",
+  "routes_via": "ezen át: {names}"
 }

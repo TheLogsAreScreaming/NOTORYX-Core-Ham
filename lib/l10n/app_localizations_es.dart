@@ -7983,4 +7983,45 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Ver panel de conexiones';
+
+  @override
+  String get routes_nearbyTitle => 'MEJORES REPETIDORES CERCA';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Aún no se ha oído ningún repetidor';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'Los repetidores que tu radio oye directamente aparecen aquí, los más fuertes primero, a medida que recibe tráfico. La lista cubre la última hora.';
+
+  @override
+  String get routes_unknownRepeater => 'Repetidor desconocido';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'oído $count veces',
+      one: 'oído una vez',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'hace $minutes min',
+      one: 'hace 1 min',
+      zero: 'ahora mismo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'vía $names';
+  }
 }

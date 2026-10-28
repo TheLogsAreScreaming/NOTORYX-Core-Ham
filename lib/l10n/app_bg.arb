@@ -3623,5 +3623,12 @@
   "connections_internetBridge": "Интернет мост",
   "connections_noRadio": "Няма радио",
   "connections_radioSettings": "Настройки на радиото",
-  "connections_viewDashboard": "Преглед на връзките"
+  "connections_viewDashboard": "Преглед на връзките",
+  "routes_nearbyTitle": "НАЙ-ДОБРИ РЕТРАНСЛАТОРИ НАБЛИЗО",
+  "routes_nearbyEmptyTitle": "Още не са чути ретранслатори",
+  "routes_nearbyEmpty": "Ретранслаторите, които радиото чува директно, се появяват тук, най-силните първи, докато приема трафик. Списъкът обхваща последния час.",
+  "routes_unknownRepeater": "Неизвестен ретранслатор",
+  "routes_nearbyDetail": "{count, plural, =1{чут веднъж} other{чут {count} пъти}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{току-що} =1{преди 1 мин} other{преди {minutes} мин}}",
+  "routes_via": "през {names}"
 }

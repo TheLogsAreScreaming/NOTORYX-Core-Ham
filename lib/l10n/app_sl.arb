@@ -3623,5 +3623,12 @@
   "connections_internetBridge": "Internetni most",
   "connections_noRadio": "Ni radia",
   "connections_radioSettings": "Nastavitve radia",
-  "connections_viewDashboard": "Prikaži pregled povezav"
+  "connections_viewDashboard": "Prikaži pregled povezav",
+  "routes_nearbyTitle": "NAJBOLJŠI REPETITORJI V BLIŽINI",
+  "routes_nearbyEmptyTitle": "Repetitorjev še ni slišati",
+  "routes_nearbyEmpty": "Repetitorji, ki jih radio sliši neposredno, se pojavijo tukaj, najmočnejši najprej, ko sprejema promet. Seznam zajema zadnjo uro.",
+  "routes_unknownRepeater": "Neznan repetitor",
+  "routes_nearbyDetail": "{count, plural, =1{slišan enkrat} two{slišan dvakrat} few{slišan {count}-krat} other{slišan {count}-krat}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{pravkar} =1{pred 1 min} other{pred {minutes} min}}",
+  "routes_via": "prek {names}"
 }

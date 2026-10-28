@@ -3623,5 +3623,12 @@
   "connections_internetBridge": "Internetbrug",
   "connections_noRadio": "Geen radio",
   "connections_radioSettings": "Radio-instellingen",
-  "connections_viewDashboard": "Verbindingsoverzicht bekijken"
+  "connections_viewDashboard": "Verbindingsoverzicht bekijken",
+  "routes_nearbyTitle": "BESTE REPEATERS IN DE BUURT",
+  "routes_nearbyEmptyTitle": "Nog geen repeaters gehoord",
+  "routes_nearbyEmpty": "Repeaters die je radio rechtstreeks hoort, verschijnen hier, de sterkste eerst, zodra hij verkeer ontvangt. De lijst beslaat het afgelopen uur.",
+  "routes_unknownRepeater": "Onbekende repeater",
+  "routes_nearbyDetail": "{count, plural, =1{één keer gehoord} other{{count} keer gehoord}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{zojuist} =1{1 min geleden} other{{minutes} min geleden}}",
+  "routes_via": "via {names}"
 }

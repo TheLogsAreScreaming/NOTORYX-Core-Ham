@@ -3623,5 +3623,12 @@
   "connections_internetBridge": "Ponte de internet",
   "connections_noRadio": "Nenhum rádio",
   "connections_radioSettings": "Configurações do rádio",
-  "connections_viewDashboard": "Ver painel de conexões"
+  "connections_viewDashboard": "Ver painel de conexões",
+  "routes_nearbyTitle": "MELHORES REPETIDORES PERTO",
+  "routes_nearbyEmptyTitle": "Nenhum repetidor ouvido ainda",
+  "routes_nearbyEmpty": "Os repetidores que seu rádio ouve diretamente aparecem aqui, os mais fortes primeiro, conforme ele recebe tráfego. A lista cobre a última hora.",
+  "routes_unknownRepeater": "Repetidor desconhecido",
+  "routes_nearbyDetail": "{count, plural, =1{ouvido uma vez} other{ouvido {count} vezes}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{agora mesmo} =1{há 1 min} other{há {minutes} min}}",
+  "routes_via": "via {names}"
 }

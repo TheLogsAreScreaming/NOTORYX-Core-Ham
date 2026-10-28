@@ -7946,4 +7946,45 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Verbindingsoverzicht bekijken';
+
+  @override
+  String get routes_nearbyTitle => 'BESTE REPEATERS IN DE BUURT';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Nog geen repeaters gehoord';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'Repeaters die je radio rechtstreeks hoort, verschijnen hier, de sterkste eerst, zodra hij verkeer ontvangt. De lijst beslaat het afgelopen uur.';
+
+  @override
+  String get routes_unknownRepeater => 'Onbekende repeater';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count keer gehoord',
+      one: 'één keer gehoord',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes min geleden',
+      one: '1 min geleden',
+      zero: 'zojuist',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'via $names';
+  }
 }

@@ -3757,5 +3757,12 @@
   "connections_internetBridge": "Pont Internet",
   "connections_noRadio": "Aucune radio",
   "connections_radioSettings": "Réglages radio",
-  "connections_viewDashboard": "Voir le tableau des connexions"
+  "connections_viewDashboard": "Voir le tableau des connexions",
+  "routes_nearbyTitle": "MEILLEURS RÉPÉTEURS PROCHES",
+  "routes_nearbyEmptyTitle": "Aucun répéteur entendu pour l’instant",
+  "routes_nearbyEmpty": "Les répéteurs que votre radio entend directement apparaissent ici, les plus forts d’abord, au fil du trafic reçu. La liste couvre la dernière heure.",
+  "routes_unknownRepeater": "Répéteur inconnu",
+  "routes_nearbyDetail": "{count, plural, =1{entendu une fois} other{entendu {count} fois}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{à l’instant} =1{il y a 1 min} other{il y a {minutes} min}}",
+  "routes_via": "via {names}"
 }

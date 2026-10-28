@@ -3623,5 +3623,12 @@
   "connections_internetBridge": "Internetbrygga",
   "connections_noRadio": "Ingen radio",
   "connections_radioSettings": "Radioinställningar",
-  "connections_viewDashboard": "Visa anslutningsöversikt"
+  "connections_viewDashboard": "Visa anslutningsöversikt",
+  "routes_nearbyTitle": "BÄSTA REPEATRAR NÄRA DIG",
+  "routes_nearbyEmptyTitle": "Inga repeatrar hörda än",
+  "routes_nearbyEmpty": "Repeatrar som radion hör direkt visas här, starkast först, allteftersom den tar emot trafik. Listan gäller den senaste timmen.",
+  "routes_unknownRepeater": "Okänd repeater",
+  "routes_nearbyDetail": "{count, plural, =1{hörd en gång} other{hörd {count} gånger}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{nyss} =1{för 1 min sedan} other{för {minutes} min sedan}}",
+  "routes_via": "via {names}"
 }

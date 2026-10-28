@@ -7967,4 +7967,45 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Kapcsolatok áttekintése';
+
+  @override
+  String get routes_nearbyTitle => 'LEGJOBB KÖZELI ÁTJÁTSZÓK';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Még nem hallatszik átjátszó';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'A rádió által közvetlenül hallott átjátszók itt jelennek meg, a legerősebb elöl, ahogy forgalmat fogad. A lista az utolsó órát mutatja.';
+
+  @override
+  String get routes_unknownRepeater => 'Ismeretlen átjátszó';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count alkalommal hallva',
+      one: 'egyszer hallva',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes perce',
+      one: '1 perce',
+      zero: 'épp most',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'ezen át: $names';
+  }
 }

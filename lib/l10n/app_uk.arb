@@ -3603,5 +3603,12 @@
   "connections_internetBridge": "Інтернет-міст",
   "connections_noRadio": "Немає радіо",
   "connections_radioSettings": "Налаштування радіо",
-  "connections_viewDashboard": "Відкрити панель підключень"
+  "connections_viewDashboard": "Відкрити панель підключень",
+  "routes_nearbyTitle": "НАЙКРАЩІ РЕТРАНСЛЯТОРИ ПОРУЧ",
+  "routes_nearbyEmptyTitle": "Ретранслятори ще не чути",
+  "routes_nearbyEmpty": "Ретранслятори, які радіо чує напряму, з’являються тут, починаючи з найсильніших, у міру приймання трафіку. Список охоплює останню годину.",
+  "routes_unknownRepeater": "Невідомий ретранслятор",
+  "routes_nearbyDetail": "{count, plural, =1{чути 1 раз} other{чути разів: {count}}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{щойно} =1{1 хв тому} other{{minutes} хв тому}}",
+  "routes_via": "через {names}"
 }

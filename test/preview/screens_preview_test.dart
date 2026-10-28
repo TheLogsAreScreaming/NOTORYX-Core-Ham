@@ -52,6 +52,9 @@ import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_client_transport.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:provider/provider.dart';
+import 'package:meshcore_open/models/radio_rx_packet.dart';
+import 'package:meshcore_open/screens/bastion_path_hub_screen.dart';
+import 'package:meshcore_open/services/direct_repeater_service.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:meshcore_open/screens/scanner_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -390,6 +393,35 @@ void main() {
     'dm_chat': () => ChatScreen(contact: _contacts[0]),
     'settings': () => const SettingsScreen(),
     'connections': () => const ConnectionDashboardScreen(),
+    'routes': () => Builder(
+      builder: (context) {
+        final heard = DirectRepeaterService(context.read<MeshCoreConnector>());
+        final now = DateTime.now();
+        Uint8List flood(int lastHop) =>
+            Uint8List.fromList([(5 << 2) | 1, 1, lastHop, 1, 2, 3]);
+        for (final (hop, snr, mins) in const [
+          (0x6F, 9.5, 1),
+          (0x6F, 8.0, 3),
+          (0x6F, 10.25, 6),
+          (0x94, 3.5, 12),
+          (0x94, 2.0, 20),
+          (0x5A, -6.5, 30),
+        ]) {
+          heard.record(
+            RadioRxPacket(
+              raw: flood(hop),
+              snr: snr,
+              rssi: -100,
+              receivedAt: now.subtract(Duration(minutes: mins)),
+            ),
+          );
+        }
+        return ChangeNotifierProvider<DirectRepeaterService?>.value(
+          value: heard,
+          child: const BastionPathHubScreen(),
+        );
+      },
+    ),
     'scanner': () => ChangeNotifierProvider<MeshCoreConnector>.value(
       value: _PreviewScanConnector(),
       child: const ScannerScreen(),

@@ -3661,5 +3661,12 @@
   "connections_internetBridge": "Most internetowy",
   "connections_noRadio": "Brak radia",
   "connections_radioSettings": "Ustawienia radia",
-  "connections_viewDashboard": "Pokaż panel połączeń"
+  "connections_viewDashboard": "Pokaż panel połączeń",
+  "routes_nearbyTitle": "NAJLEPSZE PRZEMIENNIKI W POBLIŻU",
+  "routes_nearbyEmptyTitle": "Nie usłyszano jeszcze przemienników",
+  "routes_nearbyEmpty": "Przemienniki, które radio słyszy bezpośrednio, pojawiają się tu od najsilniejszego, w miarę odbierania ruchu. Lista obejmuje ostatnią godzinę.",
+  "routes_unknownRepeater": "Nieznany przemiennik",
+  "routes_nearbyDetail": "{count, plural, =1{usłyszany raz} few{usłyszany {count} razy} many{usłyszany {count} razy} other{usłyszany {count} razy}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{przed chwilą} =1{1 min temu} other{{minutes} min temu}}",
+  "routes_via": "przez {names}"
 }

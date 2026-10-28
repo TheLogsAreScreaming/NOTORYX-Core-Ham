@@ -7966,4 +7966,45 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Преглед на връзките';
+
+  @override
+  String get routes_nearbyTitle => 'НАЙ-ДОБРИ РЕТРАНСЛАТОРИ НАБЛИЗО';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Още не са чути ретранслатори';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'Ретранслаторите, които радиото чува директно, се появяват тук, най-силните първи, докато приема трафик. Списъкът обхваща последния час.';
+
+  @override
+  String get routes_unknownRepeater => 'Неизвестен ретранслатор';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'чут $count пъти',
+      one: 'чут веднъж',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'преди $minutes мин',
+      one: 'преди 1 мин',
+      zero: 'току-що',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'през $names';
+  }
 }

@@ -7964,4 +7964,46 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Zobraziť prehľad pripojení';
+
+  @override
+  String get routes_nearbyTitle => 'NAJLEPŠIE OPAKOVAČE V OKOLÍ';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Zatiaľ nepočuť žiadne opakovače';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'Opakovače, ktoré rádio počuje priamo, sa tu zobrazia od najsilnejšieho, keď prijíma prevádzku. Zoznam pokrýva poslednú hodinu.';
+
+  @override
+  String get routes_unknownRepeater => 'Neznámy opakovač';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'počutý $count-krát',
+      few: 'počutý $count-krát',
+      one: 'počutý raz',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'pred $minutes min',
+      one: 'pred 1 min',
+      zero: 'práve teraz',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'cez $names';
+  }
 }
