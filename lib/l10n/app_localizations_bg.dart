@@ -7966,4 +7966,64 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Преглед на връзките';
+
+  @override
+  String get channelDirectory_title => 'Каталог на канали';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Намерете публични хаштаг канали наблизо';
+
+  @override
+  String get channelDirectory_search => 'Търсене на канали или места';
+
+  @override
+  String get channelDirectory_nearYou => 'Наблизо';
+
+  @override
+  String get channelDirectory_all => 'Всички канали';
+
+  @override
+  String get channelDirectory_catAll => 'Всички';
+
+  @override
+  String get channelDirectory_catEmergency => 'Спешни';
+
+  @override
+  String get channelDirectory_catLocal => 'Местни';
+
+  @override
+  String get channelDirectory_catGeneral => 'Общи';
+
+  @override
+  String get channelDirectory_catInterest => 'Интереси';
+
+  @override
+  String get channelDirectory_catTest => 'Тестови';
+
+  @override
+  String get channelDirectory_join => 'Присъедини се';
+
+  @override
+  String get channelDirectory_joined => 'Присъединен';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Няма канали, отговарящи на търсенето.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Свържете радиото си, за да се присъединявате към канали.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Всички слотове за канали на радиото са заети. Първо премахнете канал.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Каналът не можа да бъде добавен. Опитайте отново.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Липсва канал? Всеки може да предложи такъв, като редактира общия списък в GitHub.';
 }

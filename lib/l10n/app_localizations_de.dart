@@ -7988,4 +7988,64 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Verbindungsübersicht anzeigen';
+
+  @override
+  String get channelDirectory_title => 'Kanalverzeichnis';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Öffentliche Hashtag-Kanäle in deiner Nähe finden';
+
+  @override
+  String get channelDirectory_search => 'Kanäle oder Orte suchen';
+
+  @override
+  String get channelDirectory_nearYou => 'In deiner Nähe';
+
+  @override
+  String get channelDirectory_all => 'Alle Kanäle';
+
+  @override
+  String get channelDirectory_catAll => 'Alle';
+
+  @override
+  String get channelDirectory_catEmergency => 'Notfall';
+
+  @override
+  String get channelDirectory_catLocal => 'Lokal';
+
+  @override
+  String get channelDirectory_catGeneral => 'Allgemein';
+
+  @override
+  String get channelDirectory_catInterest => 'Interessen';
+
+  @override
+  String get channelDirectory_catTest => 'Test';
+
+  @override
+  String get channelDirectory_join => 'Beitreten';
+
+  @override
+  String get channelDirectory_joined => 'Beigetreten';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Keine Kanäle passen zu deiner Suche.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Verbinde dein Funkgerät, um Kanälen beizutreten.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Alle Kanalplätze deines Funkgeräts sind belegt. Entferne zuerst einen Kanal.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Kanal konnte nicht hinzugefügt werden. Versuche es erneut.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Fehlt ein Kanal? Jeder kann einen vorschlagen, indem er die gemeinsame Liste auf GitHub bearbeitet.';
 }
