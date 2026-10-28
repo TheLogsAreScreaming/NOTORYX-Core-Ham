@@ -7592,4 +7592,60 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => '接続ダッシュボードを表示';
+
+  @override
+  String get channelDirectory_title => 'チャンネル一覧';
+
+  @override
+  String get channelDirectory_subtitle => '近くの公開ハッシュタグチャンネルを探す';
+
+  @override
+  String get channelDirectory_search => 'チャンネルや地名を検索';
+
+  @override
+  String get channelDirectory_nearYou => '近くのチャンネル';
+
+  @override
+  String get channelDirectory_all => 'すべてのチャンネル';
+
+  @override
+  String get channelDirectory_catAll => 'すべて';
+
+  @override
+  String get channelDirectory_catEmergency => '緊急';
+
+  @override
+  String get channelDirectory_catLocal => '地域';
+
+  @override
+  String get channelDirectory_catGeneral => '一般';
+
+  @override
+  String get channelDirectory_catInterest => '趣味';
+
+  @override
+  String get channelDirectory_catTest => 'テスト';
+
+  @override
+  String get channelDirectory_join => '参加';
+
+  @override
+  String get channelDirectory_joined => '参加済み';
+
+  @override
+  String get channelDirectory_noMatches => '検索に一致するチャンネルはありません。';
+
+  @override
+  String get channelDirectory_connectFirst => 'チャンネルに参加するには無線機を接続してください。';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      '無線機のチャンネル枠がすべて使用中です。先にチャンネルを削除してください。';
+
+  @override
+  String get channelDirectory_joinFailed => 'チャンネルを追加できませんでした。もう一度お試しください。';
+
+  @override
+  String get channelDirectory_addHint =>
+      'チャンネルが見つかりませんか？GitHub の共有リストを編集すれば誰でも提案できます。';
 }

@@ -8010,4 +8010,63 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Відкрити панель підключень';
+
+  @override
+  String get channelDirectory_title => 'Каталог каналів';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Знайдіть публічні хештег-канали поруч';
+
+  @override
+  String get channelDirectory_search => 'Пошук каналів або місць';
+
+  @override
+  String get channelDirectory_nearYou => 'Поруч із вами';
+
+  @override
+  String get channelDirectory_all => 'Усі канали';
+
+  @override
+  String get channelDirectory_catAll => 'Усі';
+
+  @override
+  String get channelDirectory_catEmergency => 'Екстрені';
+
+  @override
+  String get channelDirectory_catLocal => 'Місцеві';
+
+  @override
+  String get channelDirectory_catGeneral => 'Загальні';
+
+  @override
+  String get channelDirectory_catInterest => 'Інтереси';
+
+  @override
+  String get channelDirectory_catTest => 'Тестові';
+
+  @override
+  String get channelDirectory_join => 'Приєднатися';
+
+  @override
+  String get channelDirectory_joined => 'Приєднано';
+
+  @override
+  String get channelDirectory_noMatches => 'Немає каналів за вашим запитом.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Підключіть радіо, щоб приєднуватися до каналів.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Усі слоти каналів на радіо зайняті. Спочатку видаліть канал.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Не вдалося додати канал. Спробуйте ще раз.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Бракує каналу? Будь-хто може запропонувати його, відредагувавши спільний список на GitHub.';
 }

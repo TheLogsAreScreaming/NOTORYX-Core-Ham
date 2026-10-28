@@ -7967,4 +7967,64 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Kapcsolatok áttekintése';
+
+  @override
+  String get channelDirectory_title => 'Csatornakönyvtár';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Nyilvános hashtag-csatornák a közeledben';
+
+  @override
+  String get channelDirectory_search => 'Csatornák vagy helyek keresése';
+
+  @override
+  String get channelDirectory_nearYou => 'A közeledben';
+
+  @override
+  String get channelDirectory_all => 'Összes csatorna';
+
+  @override
+  String get channelDirectory_catAll => 'Összes';
+
+  @override
+  String get channelDirectory_catEmergency => 'Vészhelyzet';
+
+  @override
+  String get channelDirectory_catLocal => 'Helyi';
+
+  @override
+  String get channelDirectory_catGeneral => 'Általános';
+
+  @override
+  String get channelDirectory_catInterest => 'Érdeklődés';
+
+  @override
+  String get channelDirectory_catTest => 'Teszt';
+
+  @override
+  String get channelDirectory_join => 'Csatlakozás';
+
+  @override
+  String get channelDirectory_joined => 'Csatlakozva';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Egy csatorna sem felel meg a keresésnek.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Csatlakoztasd a rádiót a csatornákhoz való csatlakozáshoz.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'A rádió összes csatornahelye foglalt. Előbb távolíts el egy csatornát.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Nem sikerült hozzáadni a csatornát. Próbáld újra.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Hiányzik egy csatorna? Bárki javasolhat egyet a közös lista GitHubon való szerkesztésével.';
 }

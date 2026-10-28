@@ -7969,4 +7969,63 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Prikaži pregled povezav';
+
+  @override
+  String get channelDirectory_title => 'Imenik kanalov';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Poiščite javne kanale s ključnikom v bližini';
+
+  @override
+  String get channelDirectory_search => 'Iskanje kanalov ali krajev';
+
+  @override
+  String get channelDirectory_nearYou => 'V bližini';
+
+  @override
+  String get channelDirectory_all => 'Vsi kanali';
+
+  @override
+  String get channelDirectory_catAll => 'Vsi';
+
+  @override
+  String get channelDirectory_catEmergency => 'Nujni';
+
+  @override
+  String get channelDirectory_catLocal => 'Lokalni';
+
+  @override
+  String get channelDirectory_catGeneral => 'Splošni';
+
+  @override
+  String get channelDirectory_catInterest => 'Interesi';
+
+  @override
+  String get channelDirectory_catTest => 'Testni';
+
+  @override
+  String get channelDirectory_join => 'Pridruži se';
+
+  @override
+  String get channelDirectory_joined => 'Pridružen';
+
+  @override
+  String get channelDirectory_noMatches => 'Iskanju ne ustreza noben kanal.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Povežite radio, da se lahko pridružite kanalom.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Vsa mesta za kanale na radiu so zasedena. Najprej odstranite kanal.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Kanala ni bilo mogoče dodati. Poskusite znova.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Manjka kanal? Vsak ga lahko predlaga z urejanjem skupnega seznama na GitHubu.';
 }

@@ -7910,4 +7910,63 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Visa anslutningsöversikt';
+
+  @override
+  String get channelDirectory_title => 'Kanalkatalog';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Hitta offentliga hashtaggkanaler nära dig';
+
+  @override
+  String get channelDirectory_search => 'Sök kanaler eller platser';
+
+  @override
+  String get channelDirectory_nearYou => 'Nära dig';
+
+  @override
+  String get channelDirectory_all => 'Alla kanaler';
+
+  @override
+  String get channelDirectory_catAll => 'Alla';
+
+  @override
+  String get channelDirectory_catEmergency => 'Nödläge';
+
+  @override
+  String get channelDirectory_catLocal => 'Lokalt';
+
+  @override
+  String get channelDirectory_catGeneral => 'Allmänt';
+
+  @override
+  String get channelDirectory_catInterest => 'Intressen';
+
+  @override
+  String get channelDirectory_catTest => 'Test';
+
+  @override
+  String get channelDirectory_join => 'Gå med';
+
+  @override
+  String get channelDirectory_joined => 'Med';
+
+  @override
+  String get channelDirectory_noMatches => 'Inga kanaler matchar sökningen.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Anslut radion för att gå med i kanaler.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Alla kanalplatser på radion används. Ta bort en kanal först.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Kunde inte lägga till kanalen. Försök igen.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Saknas en kanal? Vem som helst kan föreslå en genom att redigera den delade listan på GitHub.';
 }

@@ -7994,4 +7994,64 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Apri il pannello connessioni';
+
+  @override
+  String get channelDirectory_title => 'Elenco canali';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Trova canali hashtag pubblici vicino a te';
+
+  @override
+  String get channelDirectory_search => 'Cerca canali o luoghi';
+
+  @override
+  String get channelDirectory_nearYou => 'Vicino a te';
+
+  @override
+  String get channelDirectory_all => 'Tutti i canali';
+
+  @override
+  String get channelDirectory_catAll => 'Tutti';
+
+  @override
+  String get channelDirectory_catEmergency => 'Emergenza';
+
+  @override
+  String get channelDirectory_catLocal => 'Locali';
+
+  @override
+  String get channelDirectory_catGeneral => 'Generali';
+
+  @override
+  String get channelDirectory_catInterest => 'Interessi';
+
+  @override
+  String get channelDirectory_catTest => 'Test';
+
+  @override
+  String get channelDirectory_join => 'Unisciti';
+
+  @override
+  String get channelDirectory_joined => 'Unito';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Nessun canale corrisponde alla ricerca.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Collega la radio per unirti ai canali.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Tutti gli slot canale della radio sono occupati. Rimuovi prima un canale.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Impossibile aggiungere il canale. Riprova.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Manca un canale? Chiunque può suggerirlo modificando l’elenco condiviso su GitHub.';
 }

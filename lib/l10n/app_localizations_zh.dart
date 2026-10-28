@@ -7431,4 +7431,58 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => '查看连接面板';
+
+  @override
+  String get channelDirectory_title => '频道目录';
+
+  @override
+  String get channelDirectory_subtitle => '查找附近的公开话题频道';
+
+  @override
+  String get channelDirectory_search => '搜索频道或地点';
+
+  @override
+  String get channelDirectory_nearYou => '你附近';
+
+  @override
+  String get channelDirectory_all => '所有频道';
+
+  @override
+  String get channelDirectory_catAll => '全部';
+
+  @override
+  String get channelDirectory_catEmergency => '紧急';
+
+  @override
+  String get channelDirectory_catLocal => '本地';
+
+  @override
+  String get channelDirectory_catGeneral => '综合';
+
+  @override
+  String get channelDirectory_catInterest => '兴趣';
+
+  @override
+  String get channelDirectory_catTest => '测试';
+
+  @override
+  String get channelDirectory_join => '加入';
+
+  @override
+  String get channelDirectory_joined => '已加入';
+
+  @override
+  String get channelDirectory_noMatches => '没有符合搜索的频道。';
+
+  @override
+  String get channelDirectory_connectFirst => '连接电台后才能加入频道。';
+
+  @override
+  String get channelDirectory_slotsFull => '电台的频道位已全部占用。请先删除一个频道。';
+
+  @override
+  String get channelDirectory_joinFailed => '无法添加频道，请重试。';
+
+  @override
+  String get channelDirectory_addHint => '缺少频道？任何人都可以在 GitHub 上编辑共享列表来推荐。';
 }
