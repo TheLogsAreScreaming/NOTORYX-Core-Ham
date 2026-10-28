@@ -7967,4 +7967,117 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Kapcsolatok áttekintése';
+
+  @override
+  String get prefixTool_title => 'Átjátszó-azonosítók';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Ki használ egy azonosítót, melyek ütköznek, és szabadok egy új átjátszóhoz';
+
+  @override
+  String get prefixTool_width => 'Útvonal-azonosító mérete';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes bájt';
+  }
+
+  @override
+  String get prefixTool_includeCompanions =>
+      'Companion eszközök és érzékelők is';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '$nodes ismert csomópont · $used foglalt azonosító · $shared közös';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '$space-ból $free szabad azonosító';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Azonosító keresése, pl. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Egy ismert csomópont sem használja: $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count csomópont használja: $id',
+      one: '1 csomópont használja: $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Közös azonosítók';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Az ezeken átmenő útvonalak egyformának látszanak, hacsak a háló nem használ hosszabb azonosítókat.';
+
+  @override
+  String get prefixTool_noShared =>
+      'Nincs közös azonosító az ismert csomópontok között.';
+
+  @override
+  String get prefixTool_free => 'Szabad azonosítók';
+
+  @override
+  String get prefixTool_shuffle => 'További javaslatok';
+
+  @override
+  String get prefixTool_makeKey => 'Kulcs készítése';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Csak a rádió által hallott csomópontok alapján. Egy itt szabad azonosító még tartozhat olyan átjátszóhoz, amelyet nem hallottál.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return 'A(z) $id azonosítót már használja: $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Szabad azonosító választása';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Kulcs a(z) $id azonosítóhoz';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Keresés… $tries kulcs kipróbálva';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Nyilvános kulcs';
+
+  @override
+  String get keyGen_privateKey => 'Privát kulcs';
+
+  @override
+  String get keyGen_copy => 'Másolás';
+
+  @override
+  String get keyGen_copied => 'Másolva';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Tartsd titokban a privát kulcsot. Aki birtokolja, ennek a csomópontnak adhatja ki magát.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Átjátszóhoz: nyisd meg a beállításait, illeszd be privát kulcsként, és mentsd. A companion rádiókhoz kulcsimportot engedő firmware kell.';
+
+  @override
+  String get keyGen_tryAgain => 'Újabb készítése';
 }

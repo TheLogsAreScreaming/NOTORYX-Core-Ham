@@ -8013,4 +8013,115 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Открыть панель подключений';
+
+  @override
+  String get prefixTool_title => 'ID ретрансляторов';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Кто использует ID, какие ID совпадают и свободные ID для нового ретранслятора';
+
+  @override
+  String get prefixTool_width => 'Размер ID маршрута';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes байт';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Учитывать компаньоны и датчики';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return 'Известно узлов: $nodes · занято ID: $used · общих: $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return 'Свободно ID: $free из $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Найти ID, например 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Ни один известный узел не использует $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$id используют узлов: $count',
+      one: '$id использует 1 узел',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Общие ID';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Маршруты через эти ID выглядят одинаково, если сеть не использует более длинные ID.';
+
+  @override
+  String get prefixTool_noShared => 'Среди известных узлов нет общих ID.';
+
+  @override
+  String get prefixTool_free => 'Свободные ID';
+
+  @override
+  String get prefixTool_shuffle => 'Ещё варианты';
+
+  @override
+  String get prefixTool_makeKey => 'Создать ключ';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Только по узлам, которые слышало ваше радио. Свободный здесь ID может принадлежать ретранслятору, которого вы не слышали.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id уже использует $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Выбрать свободный ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Ключ для ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Поиск… проверено ключей: $tries';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Открытый ключ';
+
+  @override
+  String get keyGen_privateKey => 'Закрытый ключ';
+
+  @override
+  String get keyGen_copy => 'Копировать';
+
+  @override
+  String get keyGen_copied => 'Скопировано';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Храните закрытый ключ в секрете. Тот, у кого он есть, может выдавать себя за этот узел.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Для ретранслятора: откройте его настройки, вставьте как закрытый ключ и сохраните. Радио-компаньонам нужна прошивка с разрешённым импортом ключа.';
+
+  @override
+  String get keyGen_tryAgain => 'Создать ещё';
 }

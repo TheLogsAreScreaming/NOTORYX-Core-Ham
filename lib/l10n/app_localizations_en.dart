@@ -7864,4 +7864,115 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'View connection dashboard';
+
+  @override
+  String get prefixTool_title => 'Repeater IDs';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Who uses an ID, which IDs clash, and free ones for a new repeater';
+
+  @override
+  String get prefixTool_width => 'Path ID size';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes-byte';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Include companions and sensors';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '$nodes nodes known · $used IDs in use · $shared shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '$free of $space IDs free';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Look up an ID, e.g. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'No known node uses $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nodes use $id',
+      one: '1 node uses $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Shared IDs';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Paths through these IDs look the same unless the mesh uses longer IDs.';
+
+  @override
+  String get prefixTool_noShared => 'No shared IDs among the nodes you know.';
+
+  @override
+  String get prefixTool_free => 'Free IDs';
+
+  @override
+  String get prefixTool_shuffle => 'More suggestions';
+
+  @override
+  String get prefixTool_makeKey => 'Make a key';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Based only on nodes your radio has heard. A free ID here may still belong to a repeater you haven\'t heard.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id is already used by $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Pick a free ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Key for ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Searching… $tries keys tried';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Public key';
+
+  @override
+  String get keyGen_privateKey => 'Private key';
+
+  @override
+  String get keyGen_copy => 'Copy';
+
+  @override
+  String get keyGen_copied => 'Copied';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Keep the private key secret. Anyone who has it can pose as this node.';
+
+  @override
+  String get keyGen_howToUse =>
+      'To use it on a repeater, open the repeater\'s settings, paste it as the private key and save. Companion radios need firmware that allows key import.';
+
+  @override
+  String get keyGen_tryAgain => 'Make another';
 }

@@ -7994,4 +7994,115 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Apri il pannello connessioni';
+
+  @override
+  String get prefixTool_title => 'ID dei ripetitori';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Chi usa un ID, quali ID coincidono e ID liberi per un nuovo ripetitore';
+
+  @override
+  String get prefixTool_width => 'Dimensione ID percorso';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes byte';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Includi companion e sensori';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '$nodes nodi noti · $used ID in uso · $shared condivisi';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '$free ID liberi su $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Cerca un ID, es. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Nessun nodo noto usa $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nodi usano $id',
+      one: '1 nodo usa $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'ID condivisi';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'I percorsi tramite questi ID sembrano uguali, a meno che la rete usi ID più lunghi.';
+
+  @override
+  String get prefixTool_noShared => 'Nessun ID condiviso tra i nodi noti.';
+
+  @override
+  String get prefixTool_free => 'ID liberi';
+
+  @override
+  String get prefixTool_shuffle => 'Altri suggerimenti';
+
+  @override
+  String get prefixTool_makeKey => 'Crea una chiave';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Solo in base ai nodi sentiti dalla radio. Un ID libero qui potrebbe appartenere a un ripetitore che non hai sentito.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id è già usato da $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Scegli un ID libero';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Chiave per l’ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Ricerca… $tries chiavi provate';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Chiave pubblica';
+
+  @override
+  String get keyGen_privateKey => 'Chiave privata';
+
+  @override
+  String get keyGen_copy => 'Copia';
+
+  @override
+  String get keyGen_copied => 'Copiato';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Tieni segreta la chiave privata. Chi la possiede può spacciarsi per questo nodo.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Per un ripetitore: apri le sue impostazioni, incollala come chiave privata e salva. Le radio companion richiedono firmware che consenta l’importazione delle chiavi.';
+
+  @override
+  String get keyGen_tryAgain => 'Creane un’altra';
 }

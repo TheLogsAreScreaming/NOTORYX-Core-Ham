@@ -52,6 +52,7 @@ import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_client_transport.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:provider/provider.dart';
+import 'package:meshcore_open/screens/prefix_tool_screen.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:meshcore_open/screens/scanner_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -390,6 +391,7 @@ void main() {
     'dm_chat': () => ChatScreen(contact: _contacts[0]),
     'settings': () => const SettingsScreen(),
     'connections': () => const ConnectionDashboardScreen(),
+    'prefix_tool': () => const PrefixToolScreen(),
     'scanner': () => ChangeNotifierProvider<MeshCoreConnector>.value(
       value: _PreviewScanConnector(),
       child: const ScannerScreen(),
