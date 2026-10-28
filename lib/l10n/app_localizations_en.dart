@@ -7864,4 +7864,108 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'View connection dashboard';
+
+  @override
+  String get regionSetup_title => 'Region setup';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Place this repeater in your area\'s region tree';
+
+  @override
+  String get regionSetup_intro =>
+      'Regions keep a message within an area instead of flooding the whole mesh. A repeater only forwards a region\'s messages if it carries that region, so give it its own region and every region above it.';
+
+  @override
+  String get regionSetup_where => 'Where is the repeater?';
+
+  @override
+  String get regionSetup_tree => 'Region tree';
+
+  @override
+  String get regionSetup_custom => 'Custom';
+
+  @override
+  String get regionSetup_region => 'Most local region';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'From: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Regions, broadest first';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '\"$name\" isn\'t a valid region name. Use lowercase letters, digits and hyphens, up to 29 characters.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'A repeater can carry at most $max regions.';
+  }
+
+  @override
+  String get regionSetup_options => 'Options';
+
+  @override
+  String get regionSetup_setDefault => 'Make the most local region the default';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'The repeater\'s own adverts stay in that region.';
+
+  @override
+  String get regionSetup_legacy => 'Firmware 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Adds region allowf after each region. Not needed on 1.15 or newer.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Stop forwarding messages without a region';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Only turn this on once your whole area uses regions, or messages from older apps won\'t get through.';
+
+  @override
+  String get regionSetup_commands => 'Commands';
+
+  @override
+  String get regionSetup_copyAll => 'Copy all';
+
+  @override
+  String get regionSetup_copied => 'Copied';
+
+  @override
+  String get regionSetup_pickFirst => 'Pick a region to see the commands.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Send to $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'To send these, log in to the repeater and open Region setup from its menu, or paste them into its command line.';
+
+  @override
+  String get regionSetup_noReply => 'No reply. Stopped here.';
+
+  @override
+  String get regionSetup_addToMine => 'Add these regions to my list';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count regions added to your list',
+      one: '1 region added to your list',
+    );
+    return '$_temp0';
+  }
 }

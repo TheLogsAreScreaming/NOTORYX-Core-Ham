@@ -7592,4 +7592,104 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => '接続ダッシュボードを表示';
+
+  @override
+  String get regionSetup_title => 'リージョン設定';
+
+  @override
+  String get regionSetup_hubSubtitle => 'このリピーターを地域のリージョンツリーに配置';
+
+  @override
+  String get regionSetup_intro =>
+      'リージョンを使うと、メッシュ全体にフラッドせず、メッセージを一定の範囲内に留められます。リピーターはそのリージョンを持っている場合だけ転送するので、自分のリージョンとその上位すべてを設定してください。';
+
+  @override
+  String get regionSetup_where => 'リピーターの場所は？';
+
+  @override
+  String get regionSetup_tree => 'リージョンツリー';
+
+  @override
+  String get regionSetup_custom => 'カスタム';
+
+  @override
+  String get regionSetup_region => '最も狭いリージョン';
+
+  @override
+  String regionSetup_source(String source) {
+    return '出典: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'リージョン（広い順）';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '「$name」は有効なリージョン名ではありません。小文字、数字、ハイフンで29文字以内にしてください。';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'リピーターに設定できるリージョンは最大$max個です。';
+  }
+
+  @override
+  String get regionSetup_options => 'オプション';
+
+  @override
+  String get regionSetup_setDefault => '最も狭いリージョンを既定にする';
+
+  @override
+  String get regionSetup_setDefaultBody => 'リピーター自身のアドバートはそのリージョン内に留まります。';
+
+  @override
+  String get regionSetup_legacy => 'ファームウェア 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      '各リージョンの後に region allowf を追加します。1.15以降は不要です。';
+
+  @override
+  String get regionSetup_denyUnscoped => 'リージョンなしのメッセージを転送しない';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      '地域全体がリージョンを使うようになってから有効にしてください。そうしないと古いアプリからのメッセージが届きません。';
+
+  @override
+  String get regionSetup_commands => 'コマンド';
+
+  @override
+  String get regionSetup_copyAll => 'すべてコピー';
+
+  @override
+  String get regionSetup_copied => 'コピーしました';
+
+  @override
+  String get regionSetup_pickFirst => 'リージョンを選ぶとコマンドが表示されます。';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return '$name に送信';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      '送信するには、リピーターにログインしてメニューからリージョン設定を開くか、コマンドラインに貼り付けてください。';
+
+  @override
+  String get regionSetup_noReply => '応答なし。ここで停止しました。';
+
+  @override
+  String get regionSetup_addToMine => 'これらのリージョンをリストに追加';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'リストに$count件のリージョンを追加しました',
+    );
+    return '$_temp0';
+  }
 }

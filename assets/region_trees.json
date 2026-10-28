@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "about": "Example MeshCore region trees for the Region setup helper. Each region names its parent; a repeater carries its region and every region above it. To add your area's tree, open a pull request and give a source.",
+  "trees": [
+    {
+      "id": "pnw",
+      "name": "Pacific Northwest",
+      "source": "CascadiaMesh region guide, cascadiamesh.org/regions",
+      "regions": [
+        { "name": "west", "label": "Entire mesh" },
+        { "name": "pnw", "parent": "west", "label": "Pacific Northwest" },
+        { "name": "wa", "parent": "pnw", "label": "Washington" },
+        { "name": "or", "parent": "pnw", "label": "Oregon" },
+        { "name": "id", "parent": "pnw", "label": "Idaho" },
+        { "name": "mt", "parent": "pnw", "label": "Montana" },
+        { "name": "bc", "parent": "pnw", "label": "British Columbia" },
+        { "name": "w-wa", "parent": "wa", "label": "Western Washington" },
+        { "name": "e-wa", "parent": "wa", "label": "Eastern Washington" },
+        { "name": "sea", "parent": "w-wa", "label": "Seattle" },
+        { "name": "geg", "parent": "e-wa", "label": "Spokane" },
+        { "name": "pdx", "parent": "or", "label": "Portland" }
+      ]
+    }
+  ]
+}

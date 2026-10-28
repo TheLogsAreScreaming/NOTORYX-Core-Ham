@@ -8014,4 +8014,110 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Pokaż panel połączeń';
+
+  @override
+  String get regionSetup_title => 'Konfiguracja regionów';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Umieść ten przemiennik w drzewie regionów twojej okolicy';
+
+  @override
+  String get regionSetup_intro =>
+      'Regiony zatrzymują wiadomość w danym obszarze zamiast zalewać całą sieć. Przemiennik przekazuje wiadomości regionu tylko wtedy, gdy ma ten region, więc nadaj mu jego region i wszystkie regiony powyżej.';
+
+  @override
+  String get regionSetup_where => 'Gdzie jest przemiennik?';
+
+  @override
+  String get regionSetup_tree => 'Drzewo regionów';
+
+  @override
+  String get regionSetup_custom => 'Własne';
+
+  @override
+  String get regionSetup_region => 'Najbardziej lokalny region';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Źródło: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Regiony, od najszerszego';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '„$name” nie jest prawidłową nazwą regionu. Użyj małych liter, cyfr i łączników, do 29 znaków.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Przemiennik może mieć najwyżej $max regionów.';
+  }
+
+  @override
+  String get regionSetup_options => 'Opcje';
+
+  @override
+  String get regionSetup_setDefault =>
+      'Ustaw najbardziej lokalny region jako domyślny';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Własne ogłoszenia przemiennika zostają w tym regionie.';
+
+  @override
+  String get regionSetup_legacy => 'Oprogramowanie 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Dodaje region allowf po każdym regionie. Niepotrzebne od 1.15.';
+
+  @override
+  String get regionSetup_denyUnscoped => 'Nie przekazuj wiadomości bez regionu';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Włącz dopiero, gdy cała okolica używa regionów, inaczej wiadomości ze starszych aplikacji nie dotrą.';
+
+  @override
+  String get regionSetup_commands => 'Polecenia';
+
+  @override
+  String get regionSetup_copyAll => 'Kopiuj wszystko';
+
+  @override
+  String get regionSetup_copied => 'Skopiowano';
+
+  @override
+  String get regionSetup_pickFirst => 'Wybierz region, aby zobaczyć polecenia.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Wyślij do $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Aby je wysłać, zaloguj się do przemiennika i otwórz Konfiguracja regionów z jego menu albo wklej je w jego wiersz poleceń.';
+
+  @override
+  String get regionSetup_noReply => 'Brak odpowiedzi. Zatrzymano tutaj.';
+
+  @override
+  String get regionSetup_addToMine => 'Dodaj te regiony do mojej listy';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Dodano $count regionu do listy',
+      many: 'Dodano $count regionów do listy',
+      few: 'Dodano $count regiony do listy',
+      one: 'Dodano 1 region do listy',
+    );
+    return '$_temp0';
+  }
 }

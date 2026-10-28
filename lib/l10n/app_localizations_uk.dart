@@ -8010,4 +8010,108 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Відкрити панель підключень';
+
+  @override
+  String get regionSetup_title => 'Налаштування регіонів';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Помістити ретранслятор у дерево регіонів вашої місцевості';
+
+  @override
+  String get regionSetup_intro =>
+      'Регіони утримують повідомлення в межах області, а не розсилають його всією мережею. Ретранслятор передає повідомлення регіону, лише якщо цей регіон у нього задано, тож задайте йому його регіон і всі регіони вище.';
+
+  @override
+  String get regionSetup_where => 'Де стоїть ретранслятор?';
+
+  @override
+  String get regionSetup_tree => 'Дерево регіонів';
+
+  @override
+  String get regionSetup_custom => 'Власне';
+
+  @override
+  String get regionSetup_region => 'Найлокальніший регіон';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Джерело: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Регіони, від найширшого';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '«$name» — неприпустима назва регіону. Використовуйте малі латинські літери, цифри й дефіси, до 29 символів.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Ретранслятору можна задати щонайбільше $max регіонів.';
+  }
+
+  @override
+  String get regionSetup_options => 'Параметри';
+
+  @override
+  String get regionSetup_setDefault => 'Зробити найлокальніший регіон основним';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Власні оголошення ретранслятора залишаться в цьому регіоні.';
+
+  @override
+  String get regionSetup_legacy => 'Прошивка 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Додає region allowf після кожного регіону. Не потрібно з 1.15.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Не передавати повідомлення без регіону';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Вмикайте лише тоді, коли вся місцевість використовує регіони, інакше повідомлення зі старих застосунків не пройдуть.';
+
+  @override
+  String get regionSetup_commands => 'Команди';
+
+  @override
+  String get regionSetup_copyAll => 'Копіювати все';
+
+  @override
+  String get regionSetup_copied => 'Скопійовано';
+
+  @override
+  String get regionSetup_pickFirst => 'Виберіть регіон, щоб побачити команди.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Надіслати на $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Щоб надіслати їх, увійдіть у ретранслятор і відкрийте «Налаштування регіонів» у його меню або вставте їх у його командний рядок.';
+
+  @override
+  String get regionSetup_noReply => 'Немає відповіді. Зупинено тут.';
+
+  @override
+  String get regionSetup_addToMine => 'Додати ці регіони до мого списку';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'До списку додано регіонів: $count',
+      one: 'До списку додано 1 регіон',
+    );
+    return '$_temp0';
+  }
 }
