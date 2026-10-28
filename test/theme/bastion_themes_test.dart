@@ -21,7 +21,8 @@ void main() {
     expect(BastionTheme.fromId(null), BastionTheme.blaze);
     expect(BastionTheme.fromId('nope'), BastionTheme.blaze);
     expect(BastionTheme.fromId('topo_night'), BastionTheme.topoNight);
-    expect(BastionTheme.fromId('halloween'), BastionTheme.halloween);
+    // The rc.H-only Halloween theme is gone; people who picked it get Blaze.
+    expect(BastionTheme.fromId('halloween'), BastionTheme.blaze);
     final saved = AppSettings().copyWith(appTheme: 'alpine_day');
     expect(AppSettings.fromJson(saved.toJson()).appTheme, 'alpine_day');
   });
@@ -79,28 +80,5 @@ void main() {
     await tester.tap(find.byKey(const ValueKey('theme-red_light')));
     await tester.pumpAndSettle();
     expect(settings.settings.appTheme, 'red_light');
-  });
-
-  testWidgets('the seasonal Halloween theme sits with the others', (
-    tester,
-  ) async {
-    SharedPreferences.setMockInitialValues({});
-    PrefsManager.reset();
-    await PrefsManager.initialize();
-    final settings = AppSettingsService();
-    await settings.loadSettings();
-    await tester.pumpWidget(
-      ChangeNotifierProvider.value(
-        value: settings,
-        child: const MaterialApp(
-          home: Scaffold(body: SingleChildScrollView(child: ThemePicker())),
-        ),
-      ),
-    );
-    expect(find.text('Halloween'), findsOneWidget);
-    await tester.tap(find.byKey(const ValueKey('theme-halloween')));
-    await tester.pumpAndSettle();
-    expect(settings.settings.appTheme, 'halloween');
-    expect(BastionTheme.halloween.palette.accent, const Color(0xFFFF7A1A));
   });
 }

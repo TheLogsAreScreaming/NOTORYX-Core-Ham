@@ -1,0 +1,5 @@
+• New Connect Radio and Connections screens: radar scan, signal strength in words, one-tap reconnect, USB and Wi-Fi tiles
+• Sharper text: bold and heavy text now uses real font weights instead of a smeared fake bold
+• Less flicker while scanning for radios
+• Check-ins, SOS and bot replies are now tagged NOTORYX (older Bastion tags are still understood)
+• The Halloween theme is gone; if you were using it, the app switches back to Blaze
