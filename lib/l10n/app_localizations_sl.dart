@@ -7969,4 +7969,65 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Prikaži pregled povezav';
+
+  @override
+  String get trackLog_title => 'Dnevnik poti';
+
+  @override
+  String get trackLog_subtitle => 'Snemajte sled iz GPS-a radia';
+
+  @override
+  String get trackLog_recording => 'Snemanje';
+
+  @override
+  String get trackLog_notRecording => 'Ne snema';
+
+  @override
+  String get trackLog_noGps =>
+      'Radio ne sporoča položaja GPS. Dnevnik poti potrebuje radio z vklopljenim GPS-om.';
+
+  @override
+  String get trackLog_start => 'Začni snemanje';
+
+  @override
+  String get trackLog_stop => 'Ustavi snemanje';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Uporablja položaj, ki ga radio sporoča približno enkrat na minuto, ko je NOTORYX Core odprt. Točka se doda po premiku 25 m ali vsakih 15 minut, ko mirujete.';
+
+  @override
+  String get trackLog_snap => 'Zaokroži položaje na približno 100 m';
+
+  @override
+  String get trackLog_snapBody => 'Za zasebnost, ko delite pot.';
+
+  @override
+  String get trackLog_saved => 'Shranjene poti';
+
+  @override
+  String get trackLog_none => 'Še ni poti.';
+
+  @override
+  String get trackLog_export => 'Izvozi kot GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Poti ni bilo mogoče izvoziti.';
+
+  @override
+  String get trackLog_deleteTitle => 'Izbrišem to pot?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Odstranjena bo iz te naprave. Izvožene datoteke GPX ostanejo.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · točk: $points';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Pot NOTORYX $when';
+  }
 }

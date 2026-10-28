@@ -7988,4 +7988,67 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Verbindungsübersicht anzeigen';
+
+  @override
+  String get trackLog_title => 'Streckenaufzeichnung';
+
+  @override
+  String get trackLog_subtitle =>
+      'Eine Spur aus dem GPS deines Funkgeräts aufzeichnen';
+
+  @override
+  String get trackLog_recording => 'Aufzeichnung läuft';
+
+  @override
+  String get trackLog_notRecording => 'Keine Aufzeichnung';
+
+  @override
+  String get trackLog_noGps =>
+      'Dein Funkgerät meldet keine GPS-Position. Die Aufzeichnung braucht ein Funkgerät mit eingeschaltetem GPS.';
+
+  @override
+  String get trackLog_start => 'Aufzeichnung starten';
+
+  @override
+  String get trackLog_stop => 'Aufzeichnung beenden';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Nutzt die Position, die dein Funkgerät etwa einmal pro Minute meldet, solange NOTORYX Core geöffnet ist. Ein Punkt kommt nach 25 m Bewegung hinzu, oder alle 15 Minuten, wenn du stehst.';
+
+  @override
+  String get trackLog_snap => 'Positionen auf etwa 100 m runden';
+
+  @override
+  String get trackLog_snapBody =>
+      'Für mehr Privatsphäre beim Teilen einer Strecke.';
+
+  @override
+  String get trackLog_saved => 'Gespeicherte Strecken';
+
+  @override
+  String get trackLog_none => 'Noch keine Strecken.';
+
+  @override
+  String get trackLog_export => 'Als GPX exportieren';
+
+  @override
+  String get trackLog_exportFailed => 'Strecke konnte nicht exportiert werden.';
+
+  @override
+  String get trackLog_deleteTitle => 'Diese Strecke löschen?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Sie wird von diesem Gerät entfernt. Exportierte GPX-Dateien bleiben erhalten.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points Punkte';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX-Strecke $when';
+  }
 }

@@ -7966,4 +7966,65 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Преглед на връзките';
+
+  @override
+  String get trackLog_title => 'Дневник на маршрута';
+
+  @override
+  String get trackLog_subtitle => 'Записвайте следа по GPS на радиото';
+
+  @override
+  String get trackLog_recording => 'Записва се';
+
+  @override
+  String get trackLog_notRecording => 'Не се записва';
+
+  @override
+  String get trackLog_noGps =>
+      'Радиото не подава GPS позиция. Дневникът на маршрута изисква радио с включен GPS.';
+
+  @override
+  String get trackLog_start => 'Започни запис';
+
+  @override
+  String get trackLog_stop => 'Спри записа';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Използва позицията, която радиото подава приблизително веднъж в минута, докато NOTORYX Core е отворено. Точка се добавя след преместване с 25 м или на всеки 15 минути на място.';
+
+  @override
+  String get trackLog_snap => 'Закръгляй позициите до около 100 м';
+
+  @override
+  String get trackLog_snapBody => 'За поверителност, когато споделяте маршрут.';
+
+  @override
+  String get trackLog_saved => 'Запазени маршрути';
+
+  @override
+  String get trackLog_none => 'Още няма маршрути.';
+
+  @override
+  String get trackLog_export => 'Експорт като GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Маршрутът не можа да бъде експортиран.';
+
+  @override
+  String get trackLog_deleteTitle => 'Да се изтрие ли маршрутът?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Ще бъде премахнат от това устройство. Експортираните GPX файлове не се засягат.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km км · $duration · $points точки';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Маршрут NOTORYX $when';
+  }
 }

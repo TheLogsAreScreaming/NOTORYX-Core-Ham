@@ -8014,4 +8014,65 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Pokaż panel połączeń';
+
+  @override
+  String get trackLog_title => 'Dziennik trasy';
+
+  @override
+  String get trackLog_subtitle => 'Zapisuj ślad z GPS radia';
+
+  @override
+  String get trackLog_recording => 'Nagrywanie';
+
+  @override
+  String get trackLog_notRecording => 'Brak nagrywania';
+
+  @override
+  String get trackLog_noGps =>
+      'Radio nie podaje pozycji GPS. Dziennik trasy wymaga radia z włączonym GPS.';
+
+  @override
+  String get trackLog_start => 'Zacznij nagrywać';
+
+  @override
+  String get trackLog_stop => 'Zatrzymaj nagrywanie';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Używa pozycji podawanej przez radio, mniej więcej raz na minutę, gdy NOTORYX Core jest otwarty. Punkt jest dodawany po przejściu 25 m lub co 15 minut na postoju.';
+
+  @override
+  String get trackLog_snap => 'Zaokrąglaj pozycje do ok. 100 m';
+
+  @override
+  String get trackLog_snapBody => 'Dla prywatności przy udostępnianiu trasy.';
+
+  @override
+  String get trackLog_saved => 'Zapisane trasy';
+
+  @override
+  String get trackLog_none => 'Brak tras.';
+
+  @override
+  String get trackLog_export => 'Eksportuj jako GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Nie udało się wyeksportować trasy.';
+
+  @override
+  String get trackLog_deleteTitle => 'Usunąć tę trasę?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Zostanie usunięta z tego urządzenia. Wyeksportowane pliki GPX pozostaną.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · punkty: $points';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Trasa NOTORYX $when';
+  }
 }

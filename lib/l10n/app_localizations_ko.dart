@@ -7601,4 +7601,64 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => '연결 대시보드 보기';
+
+  @override
+  String get trackLog_title => '트랙 기록';
+
+  @override
+  String get trackLog_subtitle => '무전기 GPS로 이동 경로 기록';
+
+  @override
+  String get trackLog_recording => '기록 중';
+
+  @override
+  String get trackLog_notRecording => '기록 안 함';
+
+  @override
+  String get trackLog_noGps =>
+      '무전기가 GPS 위치를 보내지 않습니다. 트랙 기록에는 GPS가 켜진 무전기가 필요합니다.';
+
+  @override
+  String get trackLog_start => '기록 시작';
+
+  @override
+  String get trackLog_stop => '기록 중지';
+
+  @override
+  String get trackLog_howItWorks =>
+      'NOTORYX Core가 열려 있는 동안 무전기가 약 1분마다 보내는 위치를 사용합니다. 25 m 이동하거나, 멈춰 있으면 15분마다 지점이 추가됩니다.';
+
+  @override
+  String get trackLog_snap => '위치를 약 100 m로 반올림';
+
+  @override
+  String get trackLog_snapBody => '트랙을 공유할 때 개인정보 보호용.';
+
+  @override
+  String get trackLog_saved => '저장된 트랙';
+
+  @override
+  String get trackLog_none => '아직 트랙이 없습니다.';
+
+  @override
+  String get trackLog_export => 'GPX로 내보내기';
+
+  @override
+  String get trackLog_exportFailed => '트랙을 내보내지 못했습니다.';
+
+  @override
+  String get trackLog_deleteTitle => '이 트랙을 삭제할까요?';
+
+  @override
+  String get trackLog_deleteBody => '이 기기에서 삭제됩니다. 내보낸 GPX 파일은 영향을 받지 않습니다.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · 지점 $points개';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX 트랙 $when';
+  }
 }

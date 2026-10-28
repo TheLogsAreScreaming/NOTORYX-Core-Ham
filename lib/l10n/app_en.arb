@@ -4636,5 +4636,43 @@
   "connections_internetBridge": "Internet bridge",
   "connections_noRadio": "No radio",
   "connections_radioSettings": "Radio settings",
-  "connections_viewDashboard": "View connection dashboard"
+  "connections_viewDashboard": "View connection dashboard",
+  "trackLog_title": "Track log",
+  "trackLog_subtitle": "Record a breadcrumb trail from your radio's GPS",
+  "trackLog_recording": "Recording",
+  "trackLog_notRecording": "Not recording",
+  "trackLog_noGps": "Your radio isn't reporting a GPS position. The track log needs a radio with GPS turned on.",
+  "trackLog_start": "Start recording",
+  "trackLog_stop": "Stop recording",
+  "trackLog_howItWorks": "Uses the position your radio reports, about once a minute, while NOTORYX Core is open. A point is added after you move 25 m, or every 15 minutes when you stay put.",
+  "trackLog_snap": "Round positions to about 100 m",
+  "trackLog_snapBody": "For privacy when you share a track.",
+  "trackLog_saved": "Saved tracks",
+  "trackLog_none": "No tracks yet.",
+  "trackLog_export": "Export as GPX",
+  "trackLog_exportFailed": "Could not export the track.",
+  "trackLog_deleteTitle": "Delete this track?",
+  "trackLog_deleteBody": "It's removed from this device. Exported GPX files aren't affected.",
+  "trackLog_stats": "{km} km · {duration} · {points} points",
+  "@trackLog_stats": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      },
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "trackLog_gpxName": "NOTORYX track {when}",
+  "@trackLog_gpxName": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  }
 }

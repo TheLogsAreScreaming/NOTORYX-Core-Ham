@@ -7983,4 +7983,65 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Ver panel de conexiones';
+
+  @override
+  String get trackLog_title => 'Registro de ruta';
+
+  @override
+  String get trackLog_subtitle => 'Graba un rastro con el GPS de tu radio';
+
+  @override
+  String get trackLog_recording => 'Grabando';
+
+  @override
+  String get trackLog_notRecording => 'Sin grabar';
+
+  @override
+  String get trackLog_noGps =>
+      'Tu radio no informa una posición GPS. El registro de ruta necesita una radio con el GPS activado.';
+
+  @override
+  String get trackLog_start => 'Empezar a grabar';
+
+  @override
+  String get trackLog_stop => 'Detener grabación';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Usa la posición que informa tu radio, aproximadamente una vez por minuto, mientras NOTORYX Core está abierta. Se añade un punto al moverte 25 m, o cada 15 minutos si no te mueves.';
+
+  @override
+  String get trackLog_snap => 'Redondear posiciones a unos 100 m';
+
+  @override
+  String get trackLog_snapBody => 'Por privacidad al compartir una ruta.';
+
+  @override
+  String get trackLog_saved => 'Rutas guardadas';
+
+  @override
+  String get trackLog_none => 'Aún no hay rutas.';
+
+  @override
+  String get trackLog_export => 'Exportar como GPX';
+
+  @override
+  String get trackLog_exportFailed => 'No se pudo exportar la ruta.';
+
+  @override
+  String get trackLog_deleteTitle => '¿Eliminar esta ruta?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Se quita de este dispositivo. Los archivos GPX exportados no se ven afectados.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points puntos';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Ruta NOTORYX $when';
+  }
 }

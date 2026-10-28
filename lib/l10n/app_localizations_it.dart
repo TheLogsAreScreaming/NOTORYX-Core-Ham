@@ -7994,4 +7994,66 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => 'Apri il pannello connessioni';
+
+  @override
+  String get trackLog_title => 'Registro percorso';
+
+  @override
+  String get trackLog_subtitle => 'Registra una traccia dal GPS della radio';
+
+  @override
+  String get trackLog_recording => 'Registrazione in corso';
+
+  @override
+  String get trackLog_notRecording => 'Nessuna registrazione';
+
+  @override
+  String get trackLog_noGps =>
+      'La radio non fornisce una posizione GPS. Il registro percorso richiede una radio con GPS attivo.';
+
+  @override
+  String get trackLog_start => 'Avvia registrazione';
+
+  @override
+  String get trackLog_stop => 'Ferma registrazione';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Usa la posizione fornita dalla radio, circa una volta al minuto, mentre NOTORYX Core è aperta. Un punto viene aggiunto dopo 25 m di spostamento, oppure ogni 15 minuti se resti fermo.';
+
+  @override
+  String get trackLog_snap => 'Arrotonda le posizioni a circa 100 m';
+
+  @override
+  String get trackLog_snapBody =>
+      'Per la privacy quando condividi un percorso.';
+
+  @override
+  String get trackLog_saved => 'Percorsi salvati';
+
+  @override
+  String get trackLog_none => 'Ancora nessun percorso.';
+
+  @override
+  String get trackLog_export => 'Esporta come GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Impossibile esportare il percorso.';
+
+  @override
+  String get trackLog_deleteTitle => 'Eliminare questo percorso?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Viene rimosso da questo dispositivo. I file GPX esportati non cambiano.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points punti';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Percorso NOTORYX $when';
+  }
 }

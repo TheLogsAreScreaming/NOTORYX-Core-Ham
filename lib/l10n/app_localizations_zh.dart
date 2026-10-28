@@ -7431,4 +7431,63 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get connections_viewDashboard => '查看连接面板';
+
+  @override
+  String get trackLog_title => '轨迹记录';
+
+  @override
+  String get trackLog_subtitle => '用电台的 GPS 记录行进轨迹';
+
+  @override
+  String get trackLog_recording => '正在记录';
+
+  @override
+  String get trackLog_notRecording => '未在记录';
+
+  @override
+  String get trackLog_noGps => '你的电台没有报告 GPS 位置。轨迹记录需要开启 GPS 的电台。';
+
+  @override
+  String get trackLog_start => '开始记录';
+
+  @override
+  String get trackLog_stop => '停止记录';
+
+  @override
+  String get trackLog_howItWorks =>
+      '在 NOTORYX Core 打开期间，使用电台大约每分钟报告一次的位置。移动 25 米后添加一个点，静止时每 15 分钟添加一个点。';
+
+  @override
+  String get trackLog_snap => '将位置取整到约 100 米';
+
+  @override
+  String get trackLog_snapBody => '分享轨迹时保护隐私。';
+
+  @override
+  String get trackLog_saved => '已保存的轨迹';
+
+  @override
+  String get trackLog_none => '还没有轨迹。';
+
+  @override
+  String get trackLog_export => '导出为 GPX';
+
+  @override
+  String get trackLog_exportFailed => '无法导出轨迹。';
+
+  @override
+  String get trackLog_deleteTitle => '删除此轨迹？';
+
+  @override
+  String get trackLog_deleteBody => '它将从此设备上删除。已导出的 GPX 文件不受影响。';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km 公里 · $duration · $points 个点';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX 轨迹 $when';
+  }
 }
