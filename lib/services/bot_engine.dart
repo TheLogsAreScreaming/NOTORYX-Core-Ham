@@ -15,6 +15,7 @@ class BotEngine {
     required DateTime timestamp,
     required DateTime now,
     required Map<String, String> commandResponses,
+    Map<String, String? Function(String args)> argCommands = const {},
     bool eligible = true,
   }) {
     _seen.removeWhere((_, time) => now.difference(time).inMinutes > 10);
@@ -55,6 +56,15 @@ class BotEngine {
     if (settings.commands.contains(command) ||
         (command == '!where' && settings.shareLocation)) {
       response = commandResponses[command];
+    }
+    // Commands that take an argument, like "!dice 2d6", match on the first
+    // word; the rest are exact matches so "!ping now" stays unanswered.
+    if (response == null) {
+      final words = command.split(RegExp(r'\s+'));
+      final handler = argCommands[words.first];
+      if (handler != null && settings.commands.contains(words.first)) {
+        response = handler(words.skip(1).join(' '));
+      }
     }
     if (response == null) {
       for (final rule in settings.rules) {

@@ -1,17 +1,24 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../models/bot_replies.dart';
 import '../models/bot_settings.dart';
 import '../models/message.dart';
 import '../storage/prefs_manager.dart';
 import 'bot_engine.dart';
+import 'weather_service.dart';
 
 class BotService extends ChangeNotifier {
   final MeshCoreConnector connector;
+
+  /// Source for `!weather`; without it the command says it's unavailable.
+  final WeatherService? weather;
+  final math.Random _random = math.Random();
   final BotEngine _engine = BotEngine();
   StreamSubscription<Message>? _subscription;
   BotSettings _settings = BotSettings();
@@ -22,7 +29,7 @@ class BotService extends ChangeNotifier {
   Future<void> _writes = Future<void>.value();
   final List<String> _activity = [];
 
-  BotService(this.connector);
+  BotService(this.connector, {this.weather});
 
   BotSettings get settings => _settings;
   bool get ready => _ready;
@@ -96,7 +103,7 @@ class BotService extends ChangeNotifier {
     return next;
   }
 
-  Map<String, String> _responses() {
+  Map<String, String> _responses(Message message, WeatherNow? weatherNow) {
     final commands = [
       ..._settings.commands,
       if (_settings.shareLocation) '!where',
@@ -132,6 +139,14 @@ class BotService extends ChangeNotifier {
       '!repeater':
           '${connector.contacts.where((c) => c.type == advTypeRepeater).length} known repeaters; '
           '${connector.directRepeaters.length} in direct-repeater history. Availability is not guaranteed.',
+      '!sun': hasLocation
+          ? sunReply(latitude, longitude, DateTime.now())
+          : 'Sun times need the radio\u2019s GPS position.',
+      '!moon': moonReply(DateTime.now()),
+      '!weather':
+          weatherNow?.reply(DateTime.now()) ??
+          'Weather unavailable: needs the radio\u2019s GPS and phone internet.',
+      '!trace': traceReply(message.pathBytes, message.pathLength),
       if (_settings.shareLocation)
         '!where': hasLocation
             ? 'Radio advertised location (may be stale): ${latitude.toStringAsFixed(5)}, ${longitude.toStringAsFixed(5)}'
@@ -146,6 +161,13 @@ class BotService extends ChangeNotifier {
     final contact = connector.getContactByPubKeyHex(message.senderKeyHex);
     final radioKey = connector.selfPublicKeyHex;
     final revision = _revision;
+    // Only !weather needs the network; fetch before the synchronous engine.
+    final wantsWeather =
+        message.text.trim().toLowerCase() == '!weather' &&
+        _settings.enabled &&
+        _settings.commands.contains('!weather');
+    final weatherNow = wantsWeather ? await weather?.weather() : null;
+    if (_disposed) return;
     final response = _engine.reply(
       settings: _settings,
       messageId: '${connector.selfPublicKeyHex}:${message.messageId}',
@@ -153,7 +175,11 @@ class BotService extends ChangeNotifier {
       text: message.text,
       timestamp: message.timestamp,
       now: DateTime.now(),
-      commandResponses: _responses(),
+      commandResponses: _responses(message, weatherNow),
+      argCommands: {
+        '!dice': (args) =>
+            rollDice(args, _random) ?? 'Try !dice, !dice 20 or !dice 2d6.',
+      },
       eligible:
           !message.isOutgoing &&
           !message.isCli &&
