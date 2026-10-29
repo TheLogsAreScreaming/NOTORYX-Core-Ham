@@ -9,7 +9,7 @@ import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/main_tab_navigation.dart';
 
-/// Bastion's bottom bar: Nodes, Chats and Map switch tabs; More (tools
+/// Bastion's bottom bar: Chats, Nodes and Map switch tabs; More (tools
 /// and settings) opens as a page on top.
 class QuickSwitchBar extends StatelessWidget {
   /// The tab whose screen hosts this bar.
@@ -35,8 +35,7 @@ class QuickSwitchBar extends StatelessWidget {
     final background = highContrast
         ? MapPalette.panelDark
         : MeshPalette.bg.withAlpha(0xF2);
-    final cyan = MeshPalette.accent;
-    final muted = MeshPalette.ink3;
+    final muted = MeshPalette.ink4;
     final l10n = context.l10n;
 
     void handleDestination(int index) {
@@ -52,7 +51,7 @@ class QuickSwitchBar extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ClipRRect(
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
+        borderRadius: BorderRadius.zero,
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
           child: DecoratedBox(
@@ -67,11 +66,11 @@ class QuickSwitchBar extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 surfaceTintColor: Colors.transparent,
                 shadowColor: Colors.transparent,
-                indicatorColor: cyan.withValues(alpha: .18),
+                indicatorColor: Colors.transparent,
                 labelTextStyle: WidgetStateProperty.resolveWith((states) {
                   final selected = states.contains(WidgetState.selected);
                   return TextStyle(
-                    color: selected ? cyan : muted,
+                    color: selected ? MeshPalette.ink : muted,
                     fontSize: 11.5,
                     fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                   );
@@ -79,42 +78,42 @@ class QuickSwitchBar extends StatelessWidget {
                 iconTheme: WidgetStateProperty.resolveWith((states) {
                   final selected = states.contains(WidgetState.selected);
                   return IconThemeData(
-                    color: selected ? cyan : muted,
+                    color: selected ? MeshPalette.ink : muted,
                     size: 22,
                   );
                 }),
               ),
               child: NavigationBar(
-                height: 64,
+                height: 58,
                 selectedIndex: current.index,
                 onDestinationSelected: handleDestination,
                 destinations: [
                   NavigationDestination(
-                    icon: const Icon(Icons.shield_outlined),
-                    selectedIcon: const Icon(Icons.shield),
+                    icon: const Icon(Icons.speed_outlined),
+                    selectedIcon: const Icon(Icons.speed_rounded),
                     label: l10n.nav_home,
                   ),
                   NavigationDestination(
                     icon: _buildIconWithBadge(
-                      const Icon(Icons.hub_outlined),
-                      contactsUnreadCount,
-                    ),
-                    selectedIcon: _buildIconWithBadge(
-                      const Icon(Icons.hub_rounded),
-                      contactsUnreadCount,
-                    ),
-                    label: l10n.nav_nodes,
-                  ),
-                  NavigationDestination(
-                    icon: _buildIconWithBadge(
-                      const Icon(Icons.forum_outlined),
+                      const Icon(Icons.chat_bubble_outline_rounded),
                       channelsUnreadCount,
                     ),
                     selectedIcon: _buildIconWithBadge(
-                      const Icon(Icons.forum_rounded),
+                      const Icon(Icons.chat_bubble_rounded),
                       channelsUnreadCount,
                     ),
                     label: l10n.nav_chats,
+                  ),
+                  NavigationDestination(
+                    icon: _buildIconWithBadge(
+                      const Icon(Icons.cell_tower_outlined),
+                      contactsUnreadCount,
+                    ),
+                    selectedIcon: _buildIconWithBadge(
+                      const Icon(Icons.cell_tower_rounded),
+                      contactsUnreadCount,
+                    ),
+                    label: l10n.nav_nodes,
                   ),
                   NavigationDestination(
                     icon: const Icon(Icons.map_outlined),

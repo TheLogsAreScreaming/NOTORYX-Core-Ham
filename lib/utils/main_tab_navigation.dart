@@ -11,8 +11,8 @@ import 'route_transitions.dart';
 enum MainTab {
   /// The Field Console (check-in, SOS): the app's first screen.
   home,
-  nodes,
   chats,
+  nodes,
   map,
 
   /// Tools and Settings. Opens on top of the current tab rather than

@@ -306,7 +306,7 @@ class MeshTheme {
           elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.pill),
+            borderRadius: BorderRadius.circular(MeshRadii.xs),
           ),
           textStyle: const TextStyle(
             fontFamily: MeshFonts.sans,
@@ -322,7 +322,7 @@ class MeshTheme {
           side: BorderSide(color: scheme.outline),
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.pill),
+            borderRadius: BorderRadius.circular(MeshRadii.xs),
           ),
         ),
       ),
@@ -331,7 +331,7 @@ class MeshTheme {
           foregroundColor: scheme.primary,
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.pill),
+            borderRadius: BorderRadius.circular(MeshRadii.xs),
           ),
         ),
       ),
@@ -521,7 +521,7 @@ class MeshTheme {
           foregroundColor: scheme.onPrimary,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.pill),
+            borderRadius: BorderRadius.circular(MeshRadii.xs),
           ),
           textStyle: const TextStyle(
             fontFamily: MeshFonts.sans,
