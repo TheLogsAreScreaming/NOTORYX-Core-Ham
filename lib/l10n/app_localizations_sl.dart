@@ -8395,4 +8395,234 @@ class AppLocalizationsSl extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'Repetitor $id';
   }
+
+  @override
+  String get coverageHex_title => 'Šesterokotniki pokritosti';
+
+  @override
+  String get coverageHex_toolSubtitle =>
+      'Kartirajte, kje radio sliši omrežje, in to delite';
+
+  @override
+  String get coverageHex_mapCoverage => 'Kartiraj pokritost';
+
+  @override
+  String get coverageHex_statusOff =>
+      'Izklopljeno. Vklopite med vožnjo ali hojo, da kartirate, kje radio sliši omrežje.';
+
+  @override
+  String get coverageHex_waitingGps => 'Čakanje na GPS…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'Natančnost GPS $meters m: pregroba, ni snemanja.';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return 'Snemanje. Natančnost GPS $meters m.';
+  }
+
+  @override
+  String get coverageHex_hexagons => 'Šesterokotniki';
+
+  @override
+  String get coverageHex_samples => 'Vzorci';
+
+  @override
+  String get coverageHex_privacyNote =>
+      'Uporablja GPS telefona, dokler je to stikalo vklopljeno. Delijo se le ID-ji šesterokotnikov (približno 0,9 km), nikoli točen položaj.';
+
+  @override
+  String get coverageHex_uploadSection => 'Nalaganje na zemljevide pokritosti';
+
+  @override
+  String get coverageHex_wifiOnly => 'Nalagaj samo prek Wi-Fi';
+
+  @override
+  String get coverageHex_wifiOnlyHint =>
+      'Vzorci čakajo v telefonu (do 7 dni) na Wi-Fi.';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return 'čaka: $count';
+  }
+
+  @override
+  String get coverageHex_addMap => 'Dodaj zemljevid pokritosti';
+
+  @override
+  String get coverageHex_addMapHint =>
+      'Katera koli končna točka HTTPS, ki sprejema pokritost.';
+
+  @override
+  String get coverageHex_uploadNow => 'Naloži zdaj';
+
+  @override
+  String get coverageHex_mapDialogTitle => 'Zemljevid pokritosti';
+
+  @override
+  String get coverageHex_nameMissing => 'Poimenujte jo.';
+
+  @override
+  String get coverageHex_url => 'URL za nalaganje';
+
+  @override
+  String get coverageHex_urlInvalid => 'Biti mora URL https://.';
+
+  @override
+  String get coverageHex_apiKey => 'Ključ API (neobvezno)';
+
+  @override
+  String get coverageHex_apiKeyHint => 'Pošlje se kot X-API-Key.';
+
+  @override
+  String get coverageHex_format => 'Oblika';
+
+  @override
+  String get coverageHex_formatHex => 'ID-ji šesterokotnikov (NOTORYX)';
+
+  @override
+  String get coverageHex_formatMeshMapper => 'Združljivo z MeshMapper';
+
+  @override
+  String get coverageHex_privacy => 'Zasebnost';
+
+  @override
+  String get coverageHex_privacyLive => 'V živo';
+
+  @override
+  String get coverageHex_privacyDelayed => 'Zakasnitev 3 h';
+
+  @override
+  String get coverageHex_privacyAnonymous => 'Anonimno, 24 h';
+
+  @override
+  String get coverageHex_privacyLiveHint => 'Poslano v približno 15 minutah.';
+
+  @override
+  String get coverageHex_privacyDelayedHint =>
+      'Zadržano 3 ure, da zemljevid ne pokaže, kje ste zdaj.';
+
+  @override
+  String get coverageHex_privacyAnonymousHint =>
+      'Zadržano 24 ur, samo z datumom in brez podpisa, da nalaganj ni mogoče povezati.';
+
+  @override
+  String get coverageHex_uploadsOn => 'Nalaganje vklopljeno';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return 'Poslane celice: $count ob $time.';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return 'Zemljevid je odgovoril $code; ponovni poskus sledi.';
+  }
+
+  @override
+  String get coverageHex_unreachable =>
+      'Zemljevid ni dosegljiv; ponovni poskus sledi.';
+
+  @override
+  String get coverageHex_noPermission => 'Dovoljenje za lokacijo ni bilo dano.';
+
+  @override
+  String get coverageHex_noGps => 'GPS ni na voljo.';
+
+  @override
+  String get coverageHex_loadFailed =>
+      'Shranjene pokritosti ni mogoče prebrati; začne se znova.';
+
+  @override
+  String get mqttExtra_wifiOnly => 'Poveži samo prek Wi-Fi';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return 'Paketov čaka na nalaganje: $count (hranjeni do 72 ur).';
+  }
+
+  @override
+  String get mqttExtra_add => 'Dodaj drug posrednik';
+
+  @override
+  String get mqttExtra_addBody =>
+      'Deli, kar radio sliši, z dodatnim posrednikom MQTT poleg glavnega. Samo nalaga, paketov nikoli ne vrača v aplikacijo.';
+
+  @override
+  String get mqttExtra_separateKey => 'Uporabi ločen ključ';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      'Prijavi se s ključem, ustvarjenim na tem telefonu, namesto s ključem radia, zato posrednik nalaganj ne more povezati z vašim radiom.';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return 'Odstranim $name?';
+  }
+
+  @override
+  String get mqttExtra_removeBody =>
+      'Prekine povezavo in pozabi nastavitve, geslo, ključ in čakajoče pakete.';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return 'Prijavi se z lastnim ključem: $key…';
+  }
+
+  @override
+  String get botWx_title => 'Objavljaj vremenska opozorila v kanalu';
+
+  @override
+  String get botWx_body =>
+      'Vsakih 10 minut preveri ameriško National Weather Service za resna in skrajna opozorila na GPS-položaju radia (zaokroženem na približno 1 km) in vsako novo objavi enkrat. Potrebuje internet na telefonu.';
+
+  @override
+  String get botWx_channel => 'Objavi v kanalu';
+
+  @override
+  String get botWx_moderate => 'Vključi zmerna opozorila';
+
+  @override
+  String get botWx_moderateHint => 'Obvestila in opozorila. Več sporočil.';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return 'Nazadnje preverjeno $time.';
+  }
+
+  @override
+  String get botWx_noPosition => 'Radio še ni sporočil položaja GPS.';
+
+  @override
+  String get botWx_noChannel => 'Izberite kanal za opozorila.';
+
+  @override
+  String get botWx_channelGone => 'Izbrani kanal ne obstaja več.';
+
+  @override
+  String botWx_httpError(String code) {
+    return 'Vremenska služba je odgovorila $code.';
+  }
+
+  @override
+  String get botWx_unreachable => 'Vremenska služba ni dosegljiva.';
+
+  @override
+  String get botCmd_sun => 'Sončni vzhod in zahod na položaju GPS radia.';
+
+  @override
+  String get botCmd_moon => 'Lunina mena in osvetljenost.';
+
+  @override
+  String get botCmd_weather =>
+      'Trenutno vreme pri radiu (Open-Meteo). Pošlje položaj, zaokrožen na približno 1 km.';
+
+  @override
+  String get botCmd_dice => 'Vrže kocke: !dice, !dice 20 ali !dice 2d6.';
+
+  @override
+  String get botCmd_trace =>
+      'Navede repetitorje, prek katerih je prišlo sporočilo.';
 }

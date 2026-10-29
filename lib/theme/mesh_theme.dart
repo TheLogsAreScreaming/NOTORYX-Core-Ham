@@ -367,7 +367,7 @@ class MeshTheme {
           color: scheme.onSurfaceVariant,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.pill),
+          borderRadius: BorderRadius.circular(MeshRadii.xs),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       ),

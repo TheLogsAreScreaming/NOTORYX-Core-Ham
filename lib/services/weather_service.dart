@@ -8,6 +8,15 @@ import '../connector/meshcore_connector.dart';
 import '../models/bot_replies.dart';
 import '../storage/prefs_manager.dart';
 
+/// Why the last alert check didn't run, for the screen to word.
+enum WeatherAlertProblem {
+  noPosition,
+  noChannel,
+  channelGone,
+  rejected,
+  unreachable,
+}
+
 /// A National Weather Service alert worth posting to the mesh.
 class NwsAlert {
   /// Stable key: the same event ending at the same time is one alert, even
@@ -146,13 +155,17 @@ class WeatherService extends ChangeNotifier {
   Timer? _timer;
   Future<void>? _checking;
   DateTime? _lastCheck;
-  String? _lastError;
+  WeatherAlertProblem? _problem;
+  int? _problemCode;
   bool _disposed = false;
 
   WeatherNow? get current => _current;
   WeatherAlertSettings get settings => _settings;
   DateTime? get lastCheck => _lastCheck;
-  String? get lastError => _lastError;
+  WeatherAlertProblem? get problem => _problem;
+
+  /// The HTTP status when [problem] is [WeatherAlertProblem.rejected].
+  int? get problemCode => _problemCode;
 
   /// The radio's position rounded to two decimals (about 1 km), or null
   /// when it hasn't reported one.
@@ -248,18 +261,18 @@ class WeatherService extends ChangeNotifier {
     final pos = position;
     final channelIndex = _settings.channelIndex;
     if (pos == null) {
-      _setStatus('The radio hasn’t reported a GPS position yet.');
+      _setStatus(WeatherAlertProblem.noPosition);
       return;
     }
     if (channelIndex == null) {
-      _setStatus('Choose a channel to post alerts to.');
+      _setStatus(WeatherAlertProblem.noChannel);
       return;
     }
     final channel = connector.channels
         .where((c) => c.index == channelIndex && !c.isEmpty)
         .firstOrNull;
     if (channel == null) {
-      _setStatus('The chosen channel no longer exists.');
+      _setStatus(WeatherAlertProblem.channelGone);
       return;
     }
     List<NwsAlert> alerts;
@@ -278,7 +291,7 @@ class WeatherService extends ChangeNotifier {
           )
           .timeout(const Duration(seconds: 15));
       if (res.statusCode != 200) {
-        _setStatus('Weather Service answered ${res.statusCode}.');
+        _setStatus(WeatherAlertProblem.rejected, code: res.statusCode);
         return;
       }
       alerts = parseNwsAlerts(
@@ -286,7 +299,7 @@ class WeatherService extends ChangeNotifier {
         includeModerate: _settings.includeModerate,
       );
     } catch (_) {
-      _setStatus('Couldn’t reach the Weather Service.');
+      _setStatus(WeatherAlertProblem.unreachable);
       return;
     }
     final now = _now();
@@ -307,8 +320,9 @@ class WeatherService extends ChangeNotifier {
     _setStatus(null);
   }
 
-  void _setStatus(String? error) {
-    _lastError = error;
+  void _setStatus(WeatherAlertProblem? problem, {int? code}) {
+    _problem = problem;
+    _problemCode = code;
     _lastCheck ??= _now();
     _notify();
   }

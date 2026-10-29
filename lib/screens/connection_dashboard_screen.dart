@@ -374,8 +374,8 @@ class _StatTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
       decoration: BoxDecoration(
-        color: MeshPalette.bg3,
-        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: MeshPalette.line),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -517,8 +517,9 @@ class _ExtraBrokers extends StatelessWidget {
                 0,
               ),
               child: Text(
-                'Signs in with its own key: '
-                '${uploaders.ownPublicKey(u.id)!.substring(0, 8)}\u2026',
+                context.l10n.mqttExtra_ownKey(
+                  uploaders.ownPublicKey(u.id)!.substring(0, 8),
+                ),
                 style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
               ),
             ),
@@ -530,7 +531,7 @@ class _ExtraBrokers extends StatelessWidget {
             child: TextButton.icon(
               onPressed: () => _add(context, uploaders),
               icon: const Icon(Icons.add_rounded),
-              label: const Text('Add another broker'),
+              label: Text(context.l10n.mqttExtra_add),
             ),
           ),
         ],
@@ -548,27 +549,21 @@ class _ExtraBrokers extends StatelessWidget {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) => AlertDialog(
-          title: const Text('Add another broker'),
+          title: Text(context.l10n.mqttExtra_add),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
-                'Shares what your radio hears with one more MQTT broker, '
-                'beside your main one. It only uploads; it never feeds '
-                'packets back into the app.',
-              ),
+              Text(context.l10n.mqttExtra_addBody),
               TextField(
                 controller: name,
-                decoration: const InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(
+                  labelText: context.l10n.settings_infoName,
+                ),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text('Use a separate key'),
-                subtitle: const Text(
-                  'Signs in with a key made on this phone instead of the '
-                  'radio\u2019s, so this broker can\u2019t tie uploads to '
-                  'your radio.',
-                ),
+                title: Text(context.l10n.mqttExtra_separateKey),
+                subtitle: Text(context.l10n.mqttExtra_separateKeyHint),
                 value: separate,
                 onChanged: (v) => setState(() => separate = v),
               ),
@@ -577,11 +572,11 @@ class _ExtraBrokers extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: const Text('Cancel'),
+              child: Text(context.l10n.common_cancel),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
-              child: const Text('Add'),
+              child: Text(context.l10n.common_add),
             ),
           ],
         ),
@@ -601,19 +596,16 @@ class _ExtraBrokers extends StatelessWidget {
     final ok = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Remove ${u.name}?'),
-        content: const Text(
-          'Disconnects and forgets its settings, password, key and any '
-          'packets still waiting to upload.',
-        ),
+        title: Text(context.l10n.mqttExtra_removeTitle(u.name)),
+        content: Text(context.l10n.mqttExtra_removeBody),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(context.l10n.common_cancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Remove'),
+            child: Text(context.l10n.common_remove),
           ),
         ],
       ),

@@ -8395,4 +8395,235 @@ class AppLocalizationsHu extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'Átjátszó $id';
   }
+
+  @override
+  String get coverageHex_title => 'Lefedettségi hatszögek';
+
+  @override
+  String get coverageHex_toolSubtitle =>
+      'Térképezze fel, hol hallja a rádió a hálózatot, és ossza meg';
+
+  @override
+  String get coverageHex_mapCoverage => 'Lefedettség térképezése';
+
+  @override
+  String get coverageHex_statusOff =>
+      'Kikapcsolva. Kapcsolja be vezetés vagy séta közben, hogy feltérképezze, hol hallja a rádió a hálózatot.';
+
+  @override
+  String get coverageHex_waitingGps => 'Várakozás GPS-re…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'GPS-pontosság $meters m: túl pontatlan, nincs rögzítés.';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return 'Rögzítés. GPS-pontosság $meters m.';
+  }
+
+  @override
+  String get coverageHex_hexagons => 'Hatszögek';
+
+  @override
+  String get coverageHex_samples => 'Minták';
+
+  @override
+  String get coverageHex_privacyNote =>
+      'A telefon GPS-ét használja, amíg ez a kapcsoló be van kapcsolva. Csak a hatszögazonosítók (kb. 0,9 km) kerülnek megosztásra, a pontos helyzete soha.';
+
+  @override
+  String get coverageHex_uploadSection => 'Feltöltés lefedettségi térképekre';
+
+  @override
+  String get coverageHex_wifiOnly => 'Feltöltés csak Wi-Fi-n';
+
+  @override
+  String get coverageHex_wifiOnlyHint =>
+      'A minták a telefonon várnak (legfeljebb 7 napig) a Wi-Fi-re.';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return '$count várakozik';
+  }
+
+  @override
+  String get coverageHex_addMap => 'Lefedettségi térkép hozzáadása';
+
+  @override
+  String get coverageHex_addMapHint =>
+      'Bármely HTTPS-végpont, amely fogad lefedettségi feltöltést.';
+
+  @override
+  String get coverageHex_uploadNow => 'Feltöltés most';
+
+  @override
+  String get coverageHex_mapDialogTitle => 'Lefedettségi térkép';
+
+  @override
+  String get coverageHex_nameMissing => 'Adjon neki nevet.';
+
+  @override
+  String get coverageHex_url => 'Feltöltési URL';
+
+  @override
+  String get coverageHex_urlInvalid => 'https:// URL-nek kell lennie.';
+
+  @override
+  String get coverageHex_apiKey => 'API-kulcs (nem kötelező)';
+
+  @override
+  String get coverageHex_apiKeyHint => 'X-API-Key fejlécként küldve.';
+
+  @override
+  String get coverageHex_format => 'Formátum';
+
+  @override
+  String get coverageHex_formatHex => 'Hatszögazonosítók (NOTORYX)';
+
+  @override
+  String get coverageHex_formatMeshMapper => 'MeshMapper-kompatibilis';
+
+  @override
+  String get coverageHex_privacy => 'Adatvédelem';
+
+  @override
+  String get coverageHex_privacyLive => 'Élő';
+
+  @override
+  String get coverageHex_privacyDelayed => '3 órás késleltetés';
+
+  @override
+  String get coverageHex_privacyAnonymous => 'Névtelen, 24 óra';
+
+  @override
+  String get coverageHex_privacyLiveHint => 'Kb. 15 percen belül elküldve.';
+
+  @override
+  String get coverageHex_privacyDelayedHint =>
+      '3 órán át visszatartva, hogy a térkép ne mutassa, hol van most.';
+
+  @override
+  String get coverageHex_privacyAnonymousHint =>
+      '24 órán át visszatartva, csak dátummal és aláírás nélkül, így a feltöltések nem köthetők össze.';
+
+  @override
+  String get coverageHex_uploadsOn => 'Feltöltés bekapcsolva';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return '$count cella elküldve, $time.';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return 'A térkép válasza: $code; újrapróbálja.';
+  }
+
+  @override
+  String get coverageHex_unreachable => 'A térkép nem érhető el; újrapróbálja.';
+
+  @override
+  String get coverageHex_noPermission =>
+      'A helymeghatározási engedély nincs megadva.';
+
+  @override
+  String get coverageHex_noGps => 'A GPS nem érhető el.';
+
+  @override
+  String get coverageHex_loadFailed =>
+      'A mentett lefedettség nem olvasható; újrakezdés.';
+
+  @override
+  String get mqttExtra_wifiOnly => 'Csatlakozás csak Wi-Fi-n';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return '$count csomag vár feltöltésre (legfeljebb 72 óráig tárolva).';
+  }
+
+  @override
+  String get mqttExtra_add => 'Másik bróker hozzáadása';
+
+  @override
+  String get mqttExtra_addBody =>
+      'Megosztja a rádió által hallottakat még egy MQTT-brókerrel a fő mellett. Csak feltölt, sosem küld csomagot vissza az alkalmazásba.';
+
+  @override
+  String get mqttExtra_separateKey => 'Külön kulcs használata';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      'A rádióé helyett ezen a telefonon készült kulccsal jelentkezik be, így a bróker nem kötheti a feltöltéseket a rádiójához.';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return 'Eltávolítja: $name?';
+  }
+
+  @override
+  String get mqttExtra_removeBody =>
+      'Bontja a kapcsolatot, és elfelejti a beállításokat, jelszót, kulcsot és a várakozó csomagokat.';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return 'Saját kulccsal jelentkezik be: $key…';
+  }
+
+  @override
+  String get botWx_title => 'Időjárási riasztások közzététele csatornán';
+
+  @override
+  String get botWx_body =>
+      '10 percenként lekéri az amerikai Nemzeti Meteorológiai Szolgálat súlyos és szélsőséges figyelmeztetéseit a rádió GPS-helyén (kb. 1 km-re kerekítve), és minden újat egyszer közzétesz. Internet szükséges a telefonon.';
+
+  @override
+  String get botWx_channel => 'Közzététel csatornán';
+
+  @override
+  String get botWx_moderate => 'Mérsékelt riasztások is';
+
+  @override
+  String get botWx_moderateHint =>
+      'Tájékoztatók és figyelmeztetések is. Több üzenet.';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return 'Utolsó ellenőrzés: $time.';
+  }
+
+  @override
+  String get botWx_noPosition => 'A rádió még nem jelentett GPS-helyet.';
+
+  @override
+  String get botWx_noChannel => 'Válasszon csatornát a riasztásokhoz.';
+
+  @override
+  String get botWx_channelGone => 'A kiválasztott csatorna már nem létezik.';
+
+  @override
+  String botWx_httpError(String code) {
+    return 'Az időjárási szolgálat válasza: $code.';
+  }
+
+  @override
+  String get botWx_unreachable => 'Az időjárási szolgálat nem érhető el.';
+
+  @override
+  String get botCmd_sun => 'Napkelte és napnyugta a rádió GPS-helyén.';
+
+  @override
+  String get botCmd_moon => 'Holdfázis és megvilágítottság.';
+
+  @override
+  String get botCmd_weather =>
+      'Aktuális időjárás a rádiónál (Open-Meteo). A helyet kb. 1 km-re kerekítve küldi.';
+
+  @override
+  String get botCmd_dice => 'Kockadobás: !dice, !dice 20 vagy !dice 2d6.';
+
+  @override
+  String get botCmd_trace =>
+      'Felsorolja az átjátszókat, amelyeken az üzenet érkezett.';
 }

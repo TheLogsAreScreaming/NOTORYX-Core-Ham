@@ -123,7 +123,7 @@ void main() {
       );
       await service.checkAlerts();
       expect(radio.sent, isEmpty);
-      expect(service.lastError, contains('GPS'));
+      expect(service.problem, WeatherAlertProblem.noPosition);
     });
   });
 }

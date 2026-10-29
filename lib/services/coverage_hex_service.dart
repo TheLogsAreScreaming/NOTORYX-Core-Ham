@@ -20,6 +20,29 @@ import '../utils/keys.dart';
 import '../utils/platform_info.dart';
 import 'network_monitor.dart';
 
+/// Why mapping stopped or saved data was dropped, for the screen to word.
+enum CoverageProblem { noPermission, noGps, loadFailed }
+
+/// How the last upload to a map went.
+sealed class CoverageUploadStatus {
+  const CoverageUploadStatus();
+}
+
+class CoverageUploadSent extends CoverageUploadStatus {
+  final int cells;
+  final DateTime at;
+  const CoverageUploadSent(this.cells, this.at);
+}
+
+class CoverageUploadRejected extends CoverageUploadStatus {
+  final int statusCode;
+  const CoverageUploadRejected(this.statusCode);
+}
+
+class CoverageUploadUnreachable extends CoverageUploadStatus {
+  const CoverageUploadUnreachable();
+}
+
 /// Turns positions into coverage cells and back.
 abstract class CellIndexer {
   String cellOf(double lat, double lon);
@@ -141,10 +164,10 @@ class CoverageHexService extends ChangeNotifier {
   CoverageGrid _grid = CoverageGrid();
   final Map<String, Set<String>> _sent = {};
   List<CoverageTarget> _targets = [];
-  final Map<String, String> _targetStatus = {};
+  final Map<String, CoverageUploadStatus> _targetStatus = {};
   bool _wifiOnly = true;
   bool _mapping = false;
-  String? _error;
+  CoverageProblem? _problem;
   PositionFix? _fix;
   StreamSubscription<PositionFix>? _fixSub;
   StreamSubscription<RadioRxPacket>? _rxSub;
@@ -155,7 +178,7 @@ class CoverageHexService extends ChangeNotifier {
 
   bool get mapping => _mapping;
   bool get wifiOnly => _wifiOnly;
-  String? get error => _error;
+  CoverageProblem? get problem => _problem;
   PositionFix? get fix => _fix;
   List<CoverageTarget> get targets => List.unmodifiable(_targets);
   CellIndexer get indexer => _indexer;
@@ -165,7 +188,7 @@ class CoverageHexService extends ChangeNotifier {
   int get sampleCount => _grid.samples.length;
 
   /// Last upload result for [targetId], or null before the first try.
-  String? statusOf(String targetId) => _targetStatus[targetId];
+  CoverageUploadStatus? statusOf(String targetId) => _targetStatus[targetId];
 
   /// Samples [target] will get once they're due.
   int pendingFor(CoverageTarget target) {
@@ -195,7 +218,7 @@ class CoverageHexService extends ChangeNotifier {
         );
       }
     } catch (_) {
-      _error = 'Saved coverage couldn’t be read; starting fresh.';
+      _problem = CoverageProblem.loadFailed;
     }
     _uploadTimer = Timer.periodic(uploadEvery, (_) => unawaited(upload()));
     _notify();
@@ -205,7 +228,7 @@ class CoverageHexService extends ChangeNotifier {
   Future<void> setMapping(bool on) async {
     if (on == _mapping) return;
     _mapping = on;
-    _error = null;
+    _problem = null;
     if (on) {
       _fixSub = _fixes().listen(
         (fix) {
@@ -213,7 +236,9 @@ class CoverageHexService extends ChangeNotifier {
           _notify();
         },
         onError: (Object e) {
-          _error = e is StateError ? e.message : 'GPS isn’t available.';
+          _problem = e is StateError
+              ? CoverageProblem.noPermission
+              : CoverageProblem.noGps;
           unawaited(setMapping(false));
         },
       );
@@ -353,18 +378,14 @@ class CoverageHexService extends ChangeNotifier {
           .timeout(const Duration(seconds: 10));
       final ok = res.statusCode >= 200 && res.statusCode < 300;
       _targetStatus[target.id] = ok
-          ? 'Sent ${batch.length} cells at ${_clock(_now())}.'
-          : 'The map answered ${res.statusCode}; will retry.';
+          ? CoverageUploadSent(batch.length, _now())
+          : CoverageUploadRejected(res.statusCode);
       return ok;
     } catch (_) {
-      _targetStatus[target.id] = 'Couldn’t reach the map; will retry.';
+      _targetStatus[target.id] = const CoverageUploadUnreachable();
       return false;
     }
   }
-
-  static String _clock(DateTime t) =>
-      '${t.hour.toString().padLeft(2, '0')}:'
-      '${t.minute.toString().padLeft(2, '0')}';
 
   SimpleKeyPair? _keyPair;
 

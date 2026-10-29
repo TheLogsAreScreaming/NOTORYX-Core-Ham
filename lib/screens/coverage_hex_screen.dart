@@ -5,24 +5,45 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n.dart';
 import '../models/coverage_hex.dart';
 import '../services/coverage_hex_service.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
 
-String _privacyLabel(CoveragePrivacy p) => switch (p) {
-  CoveragePrivacy.live => 'Live',
-  CoveragePrivacy.delayed => 'Delayed 3 h',
-  CoveragePrivacy.anonymous => 'Anonymous, 24 h',
+String _privacyLabel(AppLocalizations t, CoveragePrivacy p) => switch (p) {
+  CoveragePrivacy.live => t.coverageHex_privacyLive,
+  CoveragePrivacy.delayed => t.coverageHex_privacyDelayed,
+  CoveragePrivacy.anonymous => t.coverageHex_privacyAnonymous,
 };
 
-String _privacyHint(CoveragePrivacy p) => switch (p) {
-  CoveragePrivacy.live => 'Sent within about 15 minutes.',
-  CoveragePrivacy.delayed =>
-    'Held 3 hours so the map can’t show where you are now.',
-  CoveragePrivacy.anonymous =>
-    'Held 24 hours, dated by day only, and unsigned so uploads can’t be linked.',
+String _privacyHint(AppLocalizations t, CoveragePrivacy p) => switch (p) {
+  CoveragePrivacy.live => t.coverageHex_privacyLiveHint,
+  CoveragePrivacy.delayed => t.coverageHex_privacyDelayedHint,
+  CoveragePrivacy.anonymous => t.coverageHex_privacyAnonymousHint,
 };
+
+String _problemText(AppLocalizations t, CoverageProblem p) => switch (p) {
+  CoverageProblem.noPermission => t.coverageHex_noPermission,
+  CoverageProblem.noGps => t.coverageHex_noGps,
+  CoverageProblem.loadFailed => t.coverageHex_loadFailed,
+};
+
+String? _uploadText(BuildContext context, CoverageUploadStatus? s) {
+  final t = context.l10n;
+  return switch (s) {
+    null => null,
+    CoverageUploadSent(:final cells, :final at) => t.coverageHex_sent(
+      '$cells',
+      TimeOfDay.fromDateTime(at.toLocal()).format(context),
+    ),
+    CoverageUploadRejected(:final statusCode) => t.coverageHex_httpError(
+      '$statusCode',
+    ),
+    CoverageUploadUnreachable() => t.coverageHex_unreachable,
+  };
+}
 
 /// Coverage mapping: credit what the radio hears to hexagons on the map and
 /// share them with coverage maps.
@@ -32,18 +53,20 @@ class CoverageHexScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final service = context.watch<CoverageHexService>();
+    final t = context.l10n;
     final fix = service.fix;
-    final status =
-        service.error ??
-        (!service.mapping
-            ? 'Off. Turn on while you drive or walk to map where your radio hears the mesh.'
-            : fix == null
-            ? 'Waiting for GPS…'
-            : fix.accuracyMeters > maxFixAccuracyMeters
-            ? 'GPS accuracy ${fix.accuracyMeters.round()} m: too rough, not recording.'
-            : 'Recording. GPS accuracy ${fix.accuracyMeters.round()} m.');
+    final problem = service.problem;
+    final status = problem != null
+        ? _problemText(t, problem)
+        : !service.mapping
+        ? t.coverageHex_statusOff
+        : fix == null
+        ? t.coverageHex_waitingGps
+        : fix.accuracyMeters > maxFixAccuracyMeters
+        ? t.coverageHex_gpsTooRough('${fix.accuracyMeters.round()}')
+        : t.coverageHex_recording('${fix.accuracyMeters.round()}');
     return Scaffold(
-      appBar: AppBar(title: const Text('Coverage hexagons')),
+      appBar: AppBar(title: Text(t.coverageHex_title)),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(
           MeshSpace.lg,
@@ -59,9 +82,9 @@ class CoverageHexScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: Text(
-                        'Map coverage',
+                        t.coverageHex_mapCoverage,
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w700,
@@ -83,22 +106,20 @@ class CoverageHexScreen extends StatelessWidget {
                     Expanded(
                       child: MeshStat(
                         value: '${service.cells.length}',
-                        label: 'Hexagons',
+                        label: t.coverageHex_hexagons,
                       ),
                     ),
                     Expanded(
                       child: MeshStat(
                         value: '${service.sampleCount}',
-                        label: 'Samples',
+                        label: t.coverageHex_samples,
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: MeshSpace.md),
                 Text(
-                  'Uses the phone’s GPS while this screen’s switch is on. '
-                  'Only hexagon IDs (about 0.9 km across) are shared, never '
-                  'your exact position.',
+                  t.coverageHex_privacyNote,
                   style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
                 ),
               ],
@@ -108,8 +129,8 @@ class CoverageHexScreen extends StatelessWidget {
             const SizedBox(height: MeshSpace.md),
             _HexMap(service: service),
           ],
-          const SectionHeader(
-            'Upload to coverage maps',
+          SectionHeader(
+            t.coverageHex_uploadSection,
             padding: EdgeInsets.fromLTRB(
               MeshSpace.xs,
               MeshSpace.xl,
@@ -120,10 +141,8 @@ class CoverageHexScreen extends StatelessWidget {
           MeshGroup(
             children: [
               SwitchListTile(
-                title: const Text('Upload on Wi-Fi only'),
-                subtitle: const Text(
-                  'Samples wait on the phone (up to 7 days) until Wi-Fi.',
-                ),
+                title: Text(t.coverageHex_wifiOnly),
+                subtitle: Text(t.coverageHex_wifiOnlyHint),
                 value: service.wifiOnly,
                 onChanged: (v) => unawaited(service.setWifiOnly(v)),
               ),
@@ -134,16 +153,18 @@ class CoverageHexScreen extends StatelessWidget {
                       : Icons.cloud_off_outlined,
                   title: t.name,
                   subtitle: [
-                    _privacyLabel(t.privacy),
-                    '${service.pendingFor(t)} waiting',
-                    ?service.statusOf(t.id),
+                    _privacyLabel(context.l10n, t.privacy),
+                    context.l10n.coverageHex_waiting(
+                      '${service.pendingFor(t)}',
+                    ),
+                    ?_uploadText(context, service.statusOf(t.id)),
                   ].join(' · '),
                   onTap: () => _editTarget(context, service, t),
                 ),
               MeshNavRow(
                 icon: Icons.add_rounded,
-                title: 'Add a coverage map',
-                subtitle: 'Any HTTPS endpoint that accepts coverage uploads.',
+                title: t.coverageHex_addMap,
+                subtitle: t.coverageHex_addMapHint,
                 onTap: () => _editTarget(context, service, null),
               ),
             ],
@@ -153,7 +174,7 @@ class CoverageHexScreen extends StatelessWidget {
             OutlinedButton.icon(
               onPressed: () => unawaited(service.upload()),
               icon: const Icon(Icons.upload_rounded),
-              label: const Text('Upload now'),
+              label: Text(t.coverageHex_uploadNow),
             ),
           ],
         ],
@@ -276,11 +297,14 @@ class _TargetDialogState extends State<_TargetDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final t = context.l10n;
     final urlOk = CoverageTarget.isValidUrl(_url.text);
     final nameOk = _name.text.trim().isNotEmpty;
     return AlertDialog(
       title: Text(
-        widget.existing == null ? 'Add a coverage map' : 'Coverage map',
+        widget.existing == null
+            ? t.coverageHex_addMap
+            : t.coverageHex_mapDialogTitle,
       ),
       content: SingleChildScrollView(
         child: Column(
@@ -289,8 +313,8 @@ class _TargetDialogState extends State<_TargetDialog> {
             TextField(
               controller: _name,
               decoration: InputDecoration(
-                labelText: 'Name',
-                errorText: _tried && !nameOk ? 'Give it a name.' : null,
+                labelText: t.settings_infoName,
+                errorText: _tried && !nameOk ? t.coverageHex_nameMissing : null,
               ),
               onChanged: (_) => setState(() {}),
             ),
@@ -298,32 +322,32 @@ class _TargetDialogState extends State<_TargetDialog> {
               controller: _url,
               keyboardType: TextInputType.url,
               decoration: InputDecoration(
-                labelText: 'Upload URL',
+                labelText: t.coverageHex_url,
                 hintText: 'https://',
-                errorText: _tried && !urlOk ? 'Must be an https:// URL.' : null,
+                errorText: _tried && !urlOk ? t.coverageHex_urlInvalid : null,
               ),
               onChanged: (_) => setState(() {}),
             ),
             TextField(
               controller: _key,
-              decoration: const InputDecoration(
-                labelText: 'API key (optional)',
-                helperText: 'Sent as X-API-Key.',
+              decoration: InputDecoration(
+                labelText: t.coverageHex_apiKey,
+                helperText: t.coverageHex_apiKeyHint,
               ),
             ),
             const SizedBox(height: MeshSpace.md),
             DropdownButtonFormField<CoverageFormat>(
               isExpanded: true,
               initialValue: _format,
-              decoration: const InputDecoration(labelText: 'Format'),
-              items: const [
+              decoration: InputDecoration(labelText: t.coverageHex_format),
+              items: [
                 DropdownMenuItem(
                   value: CoverageFormat.hexagons,
-                  child: Text('Hexagon IDs (NOTORYX)'),
+                  child: Text(t.coverageHex_formatHex),
                 ),
                 DropdownMenuItem(
                   value: CoverageFormat.meshMapper,
-                  child: Text('MeshMapper-compatible'),
+                  child: Text(t.coverageHex_formatMeshMapper),
                 ),
               ],
               onChanged: (v) => setState(() => _format = v ?? _format),
@@ -333,19 +357,19 @@ class _TargetDialogState extends State<_TargetDialog> {
               isExpanded: true,
               initialValue: _privacy,
               decoration: InputDecoration(
-                labelText: 'Privacy',
-                helperText: _privacyHint(_privacy),
+                labelText: t.coverageHex_privacy,
+                helperText: _privacyHint(t, _privacy),
                 helperMaxLines: 3,
               ),
               items: [
                 for (final p in CoveragePrivacy.values)
-                  DropdownMenuItem(value: p, child: Text(_privacyLabel(p))),
+                  DropdownMenuItem(value: p, child: Text(_privacyLabel(t, p))),
               ],
               onChanged: (v) => setState(() => _privacy = v ?? _privacy),
             ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text('Uploads on'),
+              title: Text(t.coverageHex_uploadsOn),
               value: _enabled,
               onChanged: (v) => setState(() => _enabled = v),
             ),
@@ -357,11 +381,14 @@ class _TargetDialogState extends State<_TargetDialog> {
           TextButton(
             onPressed: () =>
                 Navigator.pop(context, const _TargetEdit(delete: true)),
-            child: Text('Remove', style: TextStyle(color: MeshPalette.alert)),
+            child: Text(
+              t.common_remove,
+              style: TextStyle(color: MeshPalette.alert),
+            ),
           ),
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: Text(t.common_cancel),
         ),
         FilledButton(
           onPressed: () {
@@ -384,7 +411,7 @@ class _TargetDialogState extends State<_TargetDialog> {
               ),
             );
           },
-          child: const Text('Save'),
+          child: Text(t.common_save),
         ),
       ],
     );
