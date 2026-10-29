@@ -9,6 +9,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   flutter_onnxruntime
   flutter_secure_storage_windows
   flutter_tts
+  geolocator_windows
   share_plus
   url_launcher_windows
 )
@@ -16,6 +17,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
   flserial
   flutter_local_notifications_windows
+  h3_flutter
   jni
 )
 
