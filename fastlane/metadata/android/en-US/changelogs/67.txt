@@ -1,0 +1,8 @@
+• Cleaner, calmer look: new Home, Chats and More screens, five tabs, sentence case
+• Channel directory: find and join public channels near you
+• Track log with GPX export; best repeaters near you; route hops named
+• Repeater IDs and Region setup tools for repeater owners
+• Paste MeshCore contact links from the clipboard
+• New Connect Radio screen, sharper text, less flicker
+• SOS is easier to see in the light theme and buzzes when it sends
+• Check-ins and SOS are tagged NOTORYX
