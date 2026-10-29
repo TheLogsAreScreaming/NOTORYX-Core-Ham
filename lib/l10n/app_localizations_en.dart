@@ -8138,4 +8138,66 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get trackLog_title => 'Track log';
+
+  @override
+  String get trackLog_subtitle =>
+      'Record a breadcrumb trail from your radio\'s GPS';
+
+  @override
+  String get trackLog_recording => 'Recording';
+
+  @override
+  String get trackLog_notRecording => 'Not recording';
+
+  @override
+  String get trackLog_noGps =>
+      'Your radio isn\'t reporting a GPS position. The track log needs a radio with GPS turned on.';
+
+  @override
+  String get trackLog_start => 'Start recording';
+
+  @override
+  String get trackLog_stop => 'Stop recording';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Uses the position your radio reports, about once a minute, while NOTORYX Core is open. A point is added after you move 25 m, or every 15 minutes when you stay put.';
+
+  @override
+  String get trackLog_snap => 'Round positions to about 100 m';
+
+  @override
+  String get trackLog_snapBody => 'For privacy when you share a track.';
+
+  @override
+  String get trackLog_saved => 'Saved tracks';
+
+  @override
+  String get trackLog_none => 'No tracks yet.';
+
+  @override
+  String get trackLog_export => 'Export as GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Could not export the track.';
+
+  @override
+  String get trackLog_deleteTitle => 'Delete this track?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'It\'s removed from this device. Exported GPX files aren\'t affected.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points points';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX track $when';
+  }
 }

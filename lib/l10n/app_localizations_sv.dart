@@ -8186,4 +8186,65 @@ class AppLocalizationsSv extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get trackLog_title => 'Spårlogg';
+
+  @override
+  String get trackLog_subtitle => 'Spela in ett spår från radions GPS';
+
+  @override
+  String get trackLog_recording => 'Spelar in';
+
+  @override
+  String get trackLog_notRecording => 'Spelar inte in';
+
+  @override
+  String get trackLog_noGps =>
+      'Radion rapporterar ingen GPS-position. Spårloggen behöver en radio med GPS påslagen.';
+
+  @override
+  String get trackLog_start => 'Starta inspelning';
+
+  @override
+  String get trackLog_stop => 'Stoppa inspelning';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Använder positionen som radion rapporterar, ungefär en gång i minuten, medan NOTORYX Core är öppen. En punkt läggs till när du rört dig 25 m, eller var 15:e minut när du står still.';
+
+  @override
+  String get trackLog_snap => 'Avrunda positioner till cirka 100 m';
+
+  @override
+  String get trackLog_snapBody => 'För integriteten när du delar ett spår.';
+
+  @override
+  String get trackLog_saved => 'Sparade spår';
+
+  @override
+  String get trackLog_none => 'Inga spår ännu.';
+
+  @override
+  String get trackLog_export => 'Exportera som GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Kunde inte exportera spåret.';
+
+  @override
+  String get trackLog_deleteTitle => 'Ta bort spåret?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Det tas bort från den här enheten. Exporterade GPX-filer påverkas inte.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points punkter';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX-spår $when';
+  }
 }

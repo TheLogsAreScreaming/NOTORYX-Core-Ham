@@ -7855,4 +7855,63 @@ class AppLocalizationsJa extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get trackLog_title => 'トラックログ';
+
+  @override
+  String get trackLog_subtitle => '無線機のGPSで移動の軌跡を記録';
+
+  @override
+  String get trackLog_recording => '記録中';
+
+  @override
+  String get trackLog_notRecording => '記録していません';
+
+  @override
+  String get trackLog_noGps => '無線機がGPS位置を送っていません。トラックログにはGPSをオンにした無線機が必要です。';
+
+  @override
+  String get trackLog_start => '記録を開始';
+
+  @override
+  String get trackLog_stop => '記録を停止';
+
+  @override
+  String get trackLog_howItWorks =>
+      'NOTORYX Core を開いている間、無線機が約1分ごとに送る位置を使います。25 m 移動するか、止まっている間は15分ごとに点が追加されます。';
+
+  @override
+  String get trackLog_snap => '位置を約100 mに丸める';
+
+  @override
+  String get trackLog_snapBody => 'トラックを共有するときのプライバシー保護のため。';
+
+  @override
+  String get trackLog_saved => '保存したトラック';
+
+  @override
+  String get trackLog_none => 'まだトラックはありません。';
+
+  @override
+  String get trackLog_export => 'GPXで書き出す';
+
+  @override
+  String get trackLog_exportFailed => 'トラックを書き出せませんでした。';
+
+  @override
+  String get trackLog_deleteTitle => 'このトラックを削除しますか？';
+
+  @override
+  String get trackLog_deleteBody => 'この端末から削除されます。書き出したGPXファイルには影響しません。';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points点';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX トラック $when';
+  }
 }

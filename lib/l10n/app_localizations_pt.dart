@@ -8244,4 +8244,66 @@ class AppLocalizationsPt extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get trackLog_title => 'Registro de trajeto';
+
+  @override
+  String get trackLog_subtitle => 'Grave um rastro com o GPS do seu rádio';
+
+  @override
+  String get trackLog_recording => 'Gravando';
+
+  @override
+  String get trackLog_notRecording => 'Sem gravação';
+
+  @override
+  String get trackLog_noGps =>
+      'Seu rádio não está informando uma posição GPS. O registro de trajeto precisa de um rádio com GPS ligado.';
+
+  @override
+  String get trackLog_start => 'Começar a gravar';
+
+  @override
+  String get trackLog_stop => 'Parar de gravar';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Usa a posição informada pelo rádio, cerca de uma vez por minuto, enquanto o NOTORYX Core está aberto. Um ponto é adicionado após você se mover 25 m, ou a cada 15 minutos parado.';
+
+  @override
+  String get trackLog_snap => 'Arredondar posições para cerca de 100 m';
+
+  @override
+  String get trackLog_snapBody =>
+      'Para privacidade ao compartilhar um trajeto.';
+
+  @override
+  String get trackLog_saved => 'Trajetos salvos';
+
+  @override
+  String get trackLog_none => 'Nenhum trajeto ainda.';
+
+  @override
+  String get trackLog_export => 'Exportar como GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Não foi possível exportar o trajeto.';
+
+  @override
+  String get trackLog_deleteTitle => 'Excluir este trajeto?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Ele é removido deste dispositivo. Arquivos GPX exportados não são afetados.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points pontos';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Trajeto NOTORYX $when';
+  }
 }

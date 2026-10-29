@@ -8239,4 +8239,65 @@ class AppLocalizationsSk extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get trackLog_title => 'Záznam trasy';
+
+  @override
+  String get trackLog_subtitle => 'Zaznamenajte stopu z GPS rádia';
+
+  @override
+  String get trackLog_recording => 'Nahráva sa';
+
+  @override
+  String get trackLog_notRecording => 'Nenahráva sa';
+
+  @override
+  String get trackLog_noGps =>
+      'Rádio nehlási polohu GPS. Záznam trasy potrebuje rádio so zapnutým GPS.';
+
+  @override
+  String get trackLog_start => 'Spustiť záznam';
+
+  @override
+  String get trackLog_stop => 'Zastaviť záznam';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Používa polohu, ktorú rádio hlási približne raz za minútu, kým je NOTORYX Core otvorený. Bod sa pridá po presune o 25 m alebo každých 15 minút na mieste.';
+
+  @override
+  String get trackLog_snap => 'Zaokrúhľovať polohy na približne 100 m';
+
+  @override
+  String get trackLog_snapBody => 'Kvôli súkromiu pri zdieľaní trasy.';
+
+  @override
+  String get trackLog_saved => 'Uložené trasy';
+
+  @override
+  String get trackLog_none => 'Zatiaľ žiadne trasy.';
+
+  @override
+  String get trackLog_export => 'Exportovať ako GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Trasu sa nepodarilo exportovať.';
+
+  @override
+  String get trackLog_deleteTitle => 'Odstrániť túto trasu?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Odstráni sa z tohto zariadenia. Exportované súbory GPX zostanú.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · body: $points';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Trasa NOTORYX $when';
+  }
 }

@@ -13824,6 +13824,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count, plural, =1{1 region added to your list} other{{count} regions added to your list}}'**
   String regionSetup_addedToMine(int count);
+
+  /// No description provided for @trackLog_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Track log'**
+  String get trackLog_title;
+
+  /// No description provided for @trackLog_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Record a breadcrumb trail from your radio\'s GPS'**
+  String get trackLog_subtitle;
+
+  /// No description provided for @trackLog_recording.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording'**
+  String get trackLog_recording;
+
+  /// No description provided for @trackLog_notRecording.
+  ///
+  /// In en, this message translates to:
+  /// **'Not recording'**
+  String get trackLog_notRecording;
+
+  /// No description provided for @trackLog_noGps.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio isn\'t reporting a GPS position. The track log needs a radio with GPS turned on.'**
+  String get trackLog_noGps;
+
+  /// No description provided for @trackLog_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start recording'**
+  String get trackLog_start;
+
+  /// No description provided for @trackLog_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop recording'**
+  String get trackLog_stop;
+
+  /// No description provided for @trackLog_howItWorks.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses the position your radio reports, about once a minute, while NOTORYX Core is open. A point is added after you move 25 m, or every 15 minutes when you stay put.'**
+  String get trackLog_howItWorks;
+
+  /// No description provided for @trackLog_snap.
+  ///
+  /// In en, this message translates to:
+  /// **'Round positions to about 100 m'**
+  String get trackLog_snap;
+
+  /// No description provided for @trackLog_snapBody.
+  ///
+  /// In en, this message translates to:
+  /// **'For privacy when you share a track.'**
+  String get trackLog_snapBody;
+
+  /// No description provided for @trackLog_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved tracks'**
+  String get trackLog_saved;
+
+  /// No description provided for @trackLog_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No tracks yet.'**
+  String get trackLog_none;
+
+  /// No description provided for @trackLog_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export as GPX'**
+  String get trackLog_export;
+
+  /// No description provided for @trackLog_exportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not export the track.'**
+  String get trackLog_exportFailed;
+
+  /// No description provided for @trackLog_deleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this track?'**
+  String get trackLog_deleteTitle;
+
+  /// No description provided for @trackLog_deleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s removed from this device. Exported GPX files aren\'t affected.'**
+  String get trackLog_deleteBody;
+
+  /// No description provided for @trackLog_stats.
+  ///
+  /// In en, this message translates to:
+  /// **'{km} km · {duration} · {points} points'**
+  String trackLog_stats(String km, String duration, int points);
+
+  /// No description provided for @trackLog_gpxName.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTORYX track {when}'**
+  String trackLog_gpxName(String when);
 }
 
 class _AppLocalizationsDelegate

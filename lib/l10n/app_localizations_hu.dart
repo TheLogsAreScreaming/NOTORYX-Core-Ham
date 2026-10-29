@@ -8246,4 +8246,66 @@ class AppLocalizationsHu extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get trackLog_title => 'Útvonalnapló';
+
+  @override
+  String get trackLog_subtitle => 'Rögzíts nyomvonalat a rádió GPS-éből';
+
+  @override
+  String get trackLog_recording => 'Rögzítés folyamatban';
+
+  @override
+  String get trackLog_notRecording => 'Nincs rögzítés';
+
+  @override
+  String get trackLog_noGps =>
+      'A rádió nem jelent GPS-pozíciót. Az útvonalnaplóhoz bekapcsolt GPS-ű rádió kell.';
+
+  @override
+  String get trackLog_start => 'Rögzítés indítása';
+
+  @override
+  String get trackLog_stop => 'Rögzítés leállítása';
+
+  @override
+  String get trackLog_howItWorks =>
+      'A rádió által nagyjából percenként jelentett pozíciót használja, amíg a NOTORYX Core nyitva van. 25 m elmozdulás után vagy egy helyben 15 percenként kerül be új pont.';
+
+  @override
+  String get trackLog_snap => 'Pozíciók kerekítése kb. 100 m-re';
+
+  @override
+  String get trackLog_snapBody =>
+      'Adatvédelem miatt, ha megosztasz egy útvonalat.';
+
+  @override
+  String get trackLog_saved => 'Mentett útvonalak';
+
+  @override
+  String get trackLog_none => 'Még nincs útvonal.';
+
+  @override
+  String get trackLog_export => 'Exportálás GPX-ként';
+
+  @override
+  String get trackLog_exportFailed => 'Az útvonalat nem sikerült exportálni.';
+
+  @override
+  String get trackLog_deleteTitle => 'Törlöd ezt az útvonalat?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Eltűnik erről az eszközről. Az exportált GPX-fájlok megmaradnak.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points pont';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX útvonal $when';
+  }
 }

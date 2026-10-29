@@ -52,6 +52,9 @@ import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_client_transport.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:provider/provider.dart';
+import 'package:meshcore_open/models/track_log.dart';
+import 'package:meshcore_open/screens/track_log_screen.dart';
+import 'package:meshcore_open/services/track_log_service.dart';
 import 'package:meshcore_open/screens/region_setup_screen.dart';
 import 'package:meshcore_open/screens/prefix_tool_screen.dart';
 import 'package:http/http.dart' as http;
@@ -278,6 +281,34 @@ ScanResult _scan(String name, String id, int rssi) => ScanResult(
   timeStamp: _now,
 );
 
+/// A short loop walk, for the track log preview.
+Track _sampleTrack() {
+  final start = _now.subtract(const Duration(hours: 2));
+  const route = [
+    (47.6205, -122.3493),
+    (47.6221, -122.3471),
+    (47.6240, -122.3460),
+    (47.6262, -122.3478),
+    (47.6270, -122.3512),
+    (47.6255, -122.3540),
+    (47.6231, -122.3546),
+    (47.6212, -122.3525),
+  ];
+  return Track(
+    id: 'sample',
+    started: start,
+    ended: start.add(const Duration(minutes: 74)),
+    points: [
+      for (var i = 0; i < route.length; i++)
+        TrackPoint(
+          at: start.add(Duration(minutes: i * 10)),
+          lat: route[i].$1,
+          lon: route[i].$2,
+        ),
+    ],
+  );
+}
+
 class _PreviewAclService extends AccessControlService {
   _PreviewAclService(MeshCoreConnector c) : super(c, RepeaterCommandService(c));
 
@@ -400,6 +431,16 @@ void main() {
     'dm_chat': () => ChatScreen(contact: _contacts[0]),
     'settings': () => const SettingsScreen(),
     'connections': () => const ConnectionDashboardScreen(),
+    'track_log': () => Builder(
+      builder: (context) {
+        final log = TrackLogService(context.read<MeshCoreConnector>())
+          ..tracks = [_sampleTrack()];
+        return ChangeNotifierProvider<TrackLogService>.value(
+          value: log,
+          child: const TrackLogScreen(),
+        );
+      },
+    ),
     'region_setup': () => RegionSetupScreen(
       loadTrees: () async =>
           File('assets/region_trees.json').readAsStringSync(),

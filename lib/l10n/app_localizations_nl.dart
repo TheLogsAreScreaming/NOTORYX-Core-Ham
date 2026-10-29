@@ -8223,4 +8223,65 @@ class AppLocalizationsNl extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get trackLog_title => 'Routelogboek';
+
+  @override
+  String get trackLog_subtitle => 'Leg een spoor vast met de gps van je radio';
+
+  @override
+  String get trackLog_recording => 'Bezig met opnemen';
+
+  @override
+  String get trackLog_notRecording => 'Niet aan het opnemen';
+
+  @override
+  String get trackLog_noGps =>
+      'Je radio meldt geen gps-positie. Het routelogboek heeft een radio met ingeschakelde gps nodig.';
+
+  @override
+  String get trackLog_start => 'Opname starten';
+
+  @override
+  String get trackLog_stop => 'Opname stoppen';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Gebruikt de positie die je radio ongeveer eens per minuut meldt, zolang NOTORYX Core open is. Er komt een punt bij na 25 m verplaatsing, of elke 15 minuten als je stilstaat.';
+
+  @override
+  String get trackLog_snap => 'Posities afronden op ongeveer 100 m';
+
+  @override
+  String get trackLog_snapBody => 'Voor privacy als je een route deelt.';
+
+  @override
+  String get trackLog_saved => 'Opgeslagen routes';
+
+  @override
+  String get trackLog_none => 'Nog geen routes.';
+
+  @override
+  String get trackLog_export => 'Exporteren als GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Route kon niet worden geëxporteerd.';
+
+  @override
+  String get trackLog_deleteTitle => 'Deze route verwijderen?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Hij wordt van dit apparaat verwijderd. Geëxporteerde GPX-bestanden blijven bestaan.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points punten';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX-route $when';
+  }
 }

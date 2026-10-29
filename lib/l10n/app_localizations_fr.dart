@@ -8288,4 +8288,67 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get trackLog_title => 'Journal de trajet';
+
+  @override
+  String get trackLog_subtitle =>
+      'Enregistrer une trace avec le GPS de votre radio';
+
+  @override
+  String get trackLog_recording => 'Enregistrement';
+
+  @override
+  String get trackLog_notRecording => 'Pas d’enregistrement';
+
+  @override
+  String get trackLog_noGps =>
+      'Votre radio ne donne pas de position GPS. Le journal de trajet nécessite une radio avec le GPS activé.';
+
+  @override
+  String get trackLog_start => 'Démarrer l’enregistrement';
+
+  @override
+  String get trackLog_stop => 'Arrêter l’enregistrement';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Utilise la position fournie par votre radio, environ une fois par minute, tant que NOTORYX Core est ouverte. Un point est ajouté après 25 m de déplacement, ou toutes les 15 minutes à l’arrêt.';
+
+  @override
+  String get trackLog_snap => 'Arrondir les positions à environ 100 m';
+
+  @override
+  String get trackLog_snapBody =>
+      'Pour la confidentialité quand vous partagez un trajet.';
+
+  @override
+  String get trackLog_saved => 'Trajets enregistrés';
+
+  @override
+  String get trackLog_none => 'Aucun trajet pour l’instant.';
+
+  @override
+  String get trackLog_export => 'Exporter en GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Impossible d’exporter le trajet.';
+
+  @override
+  String get trackLog_deleteTitle => 'Supprimer ce trajet ?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Il est retiré de cet appareil. Les fichiers GPX exportés ne sont pas concernés.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points points';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Trajet NOTORYX $when';
+  }
 }

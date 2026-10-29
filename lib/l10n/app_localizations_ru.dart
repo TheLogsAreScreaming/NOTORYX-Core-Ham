@@ -8286,4 +8286,65 @@ class AppLocalizationsRu extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get trackLog_title => 'Журнал маршрута';
+
+  @override
+  String get trackLog_subtitle => 'Записывайте трек по GPS радио';
+
+  @override
+  String get trackLog_recording => 'Идёт запись';
+
+  @override
+  String get trackLog_notRecording => 'Запись не ведётся';
+
+  @override
+  String get trackLog_noGps =>
+      'Радио не сообщает GPS-позицию. Для журнала маршрута нужно радио с включённым GPS.';
+
+  @override
+  String get trackLog_start => 'Начать запись';
+
+  @override
+  String get trackLog_stop => 'Остановить запись';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Использует позицию, которую радио сообщает примерно раз в минуту, пока NOTORYX Core открыт. Точка добавляется после перемещения на 25 м или каждые 15 минут на месте.';
+
+  @override
+  String get trackLog_snap => 'Округлять позиции примерно до 100 м';
+
+  @override
+  String get trackLog_snapBody => 'Для конфиденциальности при отправке трека.';
+
+  @override
+  String get trackLog_saved => 'Сохранённые треки';
+
+  @override
+  String get trackLog_none => 'Треков пока нет.';
+
+  @override
+  String get trackLog_export => 'Экспорт в GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Не удалось экспортировать трек.';
+
+  @override
+  String get trackLog_deleteTitle => 'Удалить этот трек?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Он будет удалён с этого устройства. Экспортированные GPX-файлы не затрагиваются.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km км · $duration · точек: $points';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Трек NOTORYX $when';
+  }
 }
