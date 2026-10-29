@@ -8,6 +8,7 @@ import 'antenna_hunt_screen.dart';
 import 'bastion_about_screen.dart';
 import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
+import 'field_guide_screen.dart';
 import 'bastion_field_ops_screen.dart';
 import 'bastion_diagnostics_screen.dart';
 import 'bastion_field_stats_screen.dart';
@@ -56,6 +57,12 @@ class BastionToolsScreen extends StatelessWidget {
               title: l10n.bastionTools_backup,
               subtitle: l10n.bastionTools_backupHint,
               onTap: () => open(const EncryptedBackupScreen()),
+            ),
+            InstrumentRow(
+              icon: Icons.menu_book_outlined,
+              title: l10n.guide_title,
+              subtitle: l10n.guide_subtitle,
+              onTap: () => open(const FieldGuideScreen()),
             ),
             InstrumentRow(
               icon: Icons.info_outline_rounded,

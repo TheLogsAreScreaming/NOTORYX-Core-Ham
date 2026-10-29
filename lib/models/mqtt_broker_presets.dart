@@ -67,10 +67,22 @@ class MqttBrokerPresets {
     note: _letsMeshNote,
   );
 
+  // Settings from meshrank.net/meshcoretomqtt/meshrank.toml: TLS on 8883,
+  // no sign-in; packets go under the node's own key and region code.
+  static const meshRank = MqttBrokerPreset(
+    name: 'MeshRank (community)',
+    host: 'meshrank.net',
+    port: 8883,
+    note:
+        'MeshRank is a community-run MeshCore network ranking, not part '
+        'of NOTORYX and not endorsed by it.',
+  );
+
   static const choices = <MqttBrokerPreset>[
     custom,
     local,
     letsMeshUs,
     letsMeshEu,
+    meshRank,
   ];
 }

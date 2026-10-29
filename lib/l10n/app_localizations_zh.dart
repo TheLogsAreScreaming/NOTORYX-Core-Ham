@@ -8209,4 +8209,159 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get analyzer_hopLookupHint =>
       '中继器 ID 不在联系人中时，向分析器查询其名称。只发送短 ID。名称以“?”结尾表示多个中继器共用该 ID。';
+
+  @override
+  String discovered_tray(int count) {
+    return '附近收到的频道：$count';
+  }
+
+  @override
+  String get discovered_title => '附近收到，未加入';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return '收到 $count 次 · 最近 $time';
+  }
+
+  @override
+  String get discovered_ignore => '忽略';
+
+  @override
+  String get discovered_ignoreAll => '全部忽略';
+
+  @override
+  String get discovered_joinAll => '全部加入';
+
+  @override
+  String get discovered_explainer =>
+      '这些是频道目录中电台收到过流量的公开频道。每个都已用其密钥解密消息确认。已忽略的频道保持隐藏。';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank（社区）';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank 是社区运营的 MeshCore 网络排名，不属于 NOTORYX，也未获其认可。无需登录：只有在你开启共享后，数据包才会以电台的密钥和地区代码共享。';
+
+  @override
+  String get pathFilter_title => '路径宽度过滤器';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      '需要支持转发规则的中继器固件（mikecarper/MeshCore）。官方 MeshCore 固件会拒绝这些命令。';
+
+  @override
+  String get pathFilter_width => '路径宽度';
+
+  @override
+  String get pathFilter_anyWidth => '任意宽度';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return '$n 字节路径';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 或 3 字节（2+）';
+
+  @override
+  String get pathFilter_path => '适用于';
+
+  @override
+  String get pathFilter_radio => '无线泛洪';
+
+  @override
+  String get pathFilter_bridge => '网桥';
+
+  @override
+  String get pathFilter_cross => '交叉';
+
+  @override
+  String get pathFilter_bridgeCross => '网桥和交叉';
+
+  @override
+  String get pathFilter_limit => '限速而非丢弃';
+
+  @override
+  String get pathFilter_limitOn => '每分钟最多转发设定数量。';
+
+  @override
+  String get pathFilter_drop => '匹配的泛洪将被丢弃。';
+
+  @override
+  String get pathFilter_perMinute => '每分钟';
+
+  @override
+  String get pathFilter_rateInvalid => '请输入 1 到 65534。';
+
+  @override
+  String get pathFilter_reviewNote => '这只会填入命令行。请检查后再点发送。可先用“get fr”查看现有规则。';
+
+  @override
+  String get pathFilter_useCommand => '使用命令';
+
+  @override
+  String get settings_linkPreviews => '链接预览';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      '显示消息中链接的标题。默认关闭：获取页面会让该网站得知你的 IP 地址。';
+
+  @override
+  String get guide_title => '野外指南';
+
+  @override
+  String get guide_subtitle => '基础、寒冷天气电池、太阳能和天线';
+
+  @override
+  String get guide_secMesh => '加入网状网络';
+
+  @override
+  String get guide_mesh1 =>
+      '手机通过蓝牙、USB 或 Wi-Fi 连接电台；电台通过 LoRa 连接网状网络。没有手机信号也能收发消息。';
+
+  @override
+  String get guide_mesh2 => '中继器转发消息，每次中继为一跳。跳数越少，送达越快越可靠。';
+
+  @override
+  String get guide_mesh3 => '消息尽量简短，避免刷屏繁忙频道：每条消息都占用共享的发射时间。';
+
+  @override
+  String get guide_secCold => '寒冷天气的电池';
+
+  @override
+  String get guide_cold1 => '不要在冰点以下（0 °C）给锂电池充电，会造成永久损坏。';
+
+  @override
+  String get guide_cold2 => '把电台放在外套内。寒冷会降低容量，电池回暖后会恢复。';
+
+  @override
+  String get guide_cold3 => '寒冷地区的固定站点，磷酸铁锂比锂离子更耐寒；加热或保温箱对两者都有帮助。';
+
+  @override
+  String get guide_secSolar => '中继器太阳能';
+
+  @override
+  String get guide_solar1 => '中继器功耗很低，但电池板和电池要按冬季最暗的一周配置，而不是夏天。';
+
+  @override
+  String get guide_solar2 => '电池板朝向赤道，冬季倾角要大；避免积雪和遮挡。';
+
+  @override
+  String get guide_secAntenna => '天线与摆放';
+
+  @override
+  String get guide_ant1 => '高度胜过功率：架高几米的电台比放在桌上的覆盖远得多。';
+
+  @override
+  String get guide_ant2 => '天线保持垂直、远离金属，并使用适合你频段的天线（例如欧洲 868 MHz）。';
+
+  @override
+  String get guide_secMore => '了解更多';
+
+  @override
+  String get guide_moreMeshcore => '官方 MeshCore 项目';
+
+  @override
+  String get guide_moreCascadia => '社区指南：入门、驾车测绘、区域、太阳能';
 }

@@ -51,6 +51,8 @@ import '../l10n/l10n.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../widgets/unread_divider.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/link_preview_card.dart';
+import '../services/link_preview.dart';
 import '../widgets/mesh_ui.dart';
 import 'telemetry_screen.dart';
 
@@ -1532,7 +1534,18 @@ class _MessageBubble extends StatelessWidget {
         ? message.originalText
         : (translatedDisplayText != messageText ? messageText : null);
 
-    Widget buildTextContent() {
+    // A plain read: this runs from item builders, where select isn't
+    // allowed, and bubbles rebuild often enough to pick up a toggle.
+    final previewLink =
+        Provider.of<AppSettingsService?>(
+              context,
+              listen: false,
+            )?.settings.linkPreviews ==
+            true
+        ? firstLink(message.text)
+        : null;
+
+    Widget buildPlainText() {
       return Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -1552,6 +1565,19 @@ class _MessageBubble extends StatelessWidget {
               onSecondaryTap: PlatformInfo.isDesktop ? onLongPress : null,
             ),
           ),
+        ],
+      );
+    }
+
+    Widget buildTextContent() {
+      final text = buildPlainText();
+      if (previewLink == null) return text;
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          text,
+          LinkPreviewCard(url: previewLink),
         ],
       );
     }

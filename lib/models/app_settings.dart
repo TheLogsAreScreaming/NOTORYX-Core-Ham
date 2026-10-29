@@ -131,6 +131,10 @@ class AppSettings {
   /// 'slow'. Battery saver overrides it when on.
   final String refreshRate;
 
+  /// Fetch a preview for the first link in a message. Off by default:
+  /// fetching tells the site your IP address.
+  final bool linkPreviews;
+
   /// The chosen color theme's id (see BastionTheme); Blaze by default.
   final String appTheme;
 
@@ -241,6 +245,7 @@ class AppSettings {
     this.jumpToOldestUnread = false,
     this.batterySaver = false,
     this.refreshRate = 'normal',
+    this.linkPreviews = false,
     this.appTheme = 'blaze',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
@@ -321,6 +326,7 @@ class AppSettings {
       'jump_to_oldest_unread': jumpToOldestUnread,
       'battery_saver': batterySaver,
       'refresh_rate': refreshRate,
+      'link_previews': linkPreviews,
       'app_theme': appTheme,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
@@ -427,6 +433,7 @@ class AppSettings {
       jumpToOldestUnread: json['jump_to_oldest_unread'] as bool? ?? false,
       batterySaver: json['battery_saver'] as bool? ?? false,
       refreshRate: json['refresh_rate'] as String? ?? 'normal',
+      linkPreviews: json['link_previews'] as bool? ?? false,
       appTheme: json['app_theme'] as String? ?? 'blaze',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
@@ -550,6 +557,7 @@ class AppSettings {
     bool? jumpToOldestUnread,
     bool? batterySaver,
     String? refreshRate,
+    bool? linkPreviews,
     String? appTheme,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
@@ -629,6 +637,7 @@ class AppSettings {
       jumpToOldestUnread: jumpToOldestUnread ?? this.jumpToOldestUnread,
       batterySaver: batterySaver ?? this.batterySaver,
       refreshRate: refreshRate ?? this.refreshRate,
+      linkPreviews: linkPreviews ?? this.linkPreviews,
       appTheme: appTheme ?? this.appTheme,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,

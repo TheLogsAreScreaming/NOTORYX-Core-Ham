@@ -54,6 +54,7 @@ import 'widgets/image_send_codec_binding.dart';
 import 'services/direct_repeater_service.dart';
 import 'services/mqtt_uploaders_service.dart';
 import 'services/coverage_hex_service.dart';
+import 'services/channel_discovery_service.dart';
 import 'services/corescope.dart';
 import 'services/track_log_service.dart';
 import 'services/weather_service.dart';
@@ -271,6 +272,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final RegionalPresetService _regionalPresets;
   late final DirectRepeaterService _directRepeaters;
   late final TrackLogService _trackLog;
+  late final ChannelDiscoveryService _channelDiscovery;
   late final AnalyzerService _analyzer;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
@@ -296,6 +298,8 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_regionalPresets.start());
     _directRepeaters = DirectRepeaterService(widget.connector);
     _trackLog = TrackLogService(widget.connector);
+    _channelDiscovery = ChannelDiscoveryService(widget.connector);
+    unawaited(_channelDiscovery.load());
     _analyzer = AnalyzerService()..load();
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
@@ -381,6 +385,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _regionalPresets.dispose();
     _directRepeaters.dispose();
     _trackLog.dispose();
+    _channelDiscovery.dispose();
     _analyzer.dispose();
     _coverageHex.dispose();
     _readAloud.dispose();
@@ -473,6 +478,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
           value: _directRepeaters,
         ),
         ChangeNotifierProvider.value(value: _trackLog),
+        ChangeNotifierProvider<ChannelDiscoveryService?>.value(
+          value: _channelDiscovery,
+        ),
         ChangeNotifierProvider<AnalyzerService?>.value(value: _analyzer),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(

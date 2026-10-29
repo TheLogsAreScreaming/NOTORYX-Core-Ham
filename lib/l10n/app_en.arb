@@ -5145,5 +5145,77 @@
   "analyzer_reset": "Default",
   "analyzer_hint": "Used to check which observers heard your messages. A check sends only the packet ID.",
   "analyzer_hopLookup": "Name unknown repeaters online",
-  "analyzer_hopLookupHint": "When a repeater ID isn’t in your contacts, ask the analyzer for its name. Sends the short IDs only. A name ending in “?” means several repeaters share that ID."
+  "analyzer_hopLookupHint": "When a repeater ID isn’t in your contacts, ask the analyzer for its name. Sends the short IDs only. A name ending in “?” means several repeaters share that ID.",
+  "discovered_tray": "Channels heard nearby: {count}",
+  "@discovered_tray": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discovered_title": "Heard nearby, not joined",
+  "discovered_heard": "Heard {count}× · last {time}",
+  "@discovered_heard": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "discovered_ignore": "Ignore",
+  "discovered_ignoreAll": "Ignore all",
+  "discovered_joinAll": "Join all",
+  "discovered_explainer": "These are public channels from the channel directory that your radio has heard traffic on. Each was confirmed by decrypting a message with its key. Ignored channels stay hidden.",
+  "mqtt_presetMeshRank": "MeshRank (community)",
+  "mqtt_presetMeshRankNote": "MeshRank is a community-run MeshCore network ranking, not part of NOTORYX and not endorsed by it. No sign-in: packets are shared under your radio’s key and region code, and only once you turn sharing on.",
+  "pathFilter_title": "Path-width filter",
+  "pathFilter_firmwareNote": "Needs repeater firmware with forwarding rules (mikecarper/MeshCore). Official MeshCore firmware rejects these commands.",
+  "pathFilter_width": "Path width",
+  "pathFilter_anyWidth": "Any width",
+  "pathFilter_bytes": "{n}-byte paths",
+  "@pathFilter_bytes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "pathFilter_twoOrMore": "2 or 3 bytes (2+)",
+  "pathFilter_path": "Applies to",
+  "pathFilter_radio": "Radio floods",
+  "pathFilter_bridge": "Bridge",
+  "pathFilter_cross": "Crossover",
+  "pathFilter_bridgeCross": "Bridge and crossover",
+  "pathFilter_limit": "Limit instead of drop",
+  "pathFilter_limitOn": "Forwards up to a set number per minute.",
+  "pathFilter_drop": "Matching floods are dropped, not forwarded.",
+  "pathFilter_perMinute": "Per minute",
+  "pathFilter_rateInvalid": "Enter 1 to 65534.",
+  "pathFilter_reviewNote": "This only fills in the command line. Check it, then press Send. Use “get fr” first to see existing rules.",
+  "pathFilter_useCommand": "Use command",
+  "settings_linkPreviews": "Link previews",
+  "settings_linkPreviewsHint": "Shows the title of a link in a message. Off by default: fetching the page tells that site your IP address.",
+  "guide_title": "Field guide",
+  "guide_subtitle": "Basics, cold-weather batteries, solar and antennas",
+  "guide_secMesh": "Getting on the mesh",
+  "guide_mesh1": "Your phone talks to your radio over Bluetooth, USB or Wi-Fi; the radio talks to the mesh over LoRa. Messages still work with no phone signal.",
+  "guide_mesh2": "Repeaters pass messages along; each relay is a hop. Fewer hops means faster, more reliable delivery.",
+  "guide_mesh3": "Keep messages short and avoid flooding busy channels: every message uses shared airtime.",
+  "guide_secCold": "Batteries in the cold",
+  "guide_cold1": "Don’t charge lithium batteries below freezing (0 °C / 32 °F): it damages them permanently.",
+  "guide_cold2": "Carry the radio inside your jacket. Cold cuts capacity, but it comes back once the battery warms up.",
+  "guide_cold3": "For fixed sites in cold climates, LiFePO4 copes better than lithium-ion; a heated or insulated box helps either.",
+  "guide_secSolar": "Solar for repeaters",
+  "guide_solar1": "A repeater uses very little power, but size the panel and battery for your darkest winter week, not a summer day.",
+  "guide_solar2": "Face the panel toward the equator and tilt it steeply in winter; keep snow and shade off it.",
+  "guide_secAntenna": "Antennas and placement",
+  "guide_ant1": "Height beats power: a radio a few metres up reaches far more than one on a desk.",
+  "guide_ant2": "Keep the antenna vertical and clear of metal, and use one made for your band (for example 915 MHz in North America).",
+  "guide_secMore": "Learn more",
+  "guide_moreMeshcore": "The official MeshCore project",
+  "guide_moreCascadia": "Community guides: getting started, wardriving, regions, solar"
 }
