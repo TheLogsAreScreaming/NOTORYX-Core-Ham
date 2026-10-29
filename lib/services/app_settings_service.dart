@@ -293,6 +293,10 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(batterySaver: value));
   }
 
+  Future<void> setSignChannelPosts(bool value) async {
+    await updateSettings(_settings.copyWith(signChannelPosts: value));
+  }
+
   Future<void> setJumpToOldestUnread(bool value) async {
     await updateSettings(_settings.copyWith(jumpToOldestUnread: value));
   }

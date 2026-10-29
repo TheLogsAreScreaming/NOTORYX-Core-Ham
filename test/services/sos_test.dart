@@ -71,6 +71,7 @@ class _Radio extends MeshCoreConnector {
     String? originalText,
     String? translatedLanguageCode,
     String? translationModelId,
+    bool sign = false,
   }) async {
     channelSends.add('${channel.name}: $text');
   }

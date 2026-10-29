@@ -34,11 +34,14 @@ import '../services/image_chunk_transport.dart'
     show
         ImageChunkOutcome,
         ImageChunkTransport,
+        ParsedChannelData,
         buildSendChannelDataFrame,
         dataTypeAeicImage,
         outPathUnknown,
+        parseChannelDataFrame,
         respCodeChannelDataRecv,
         senderPrefixFromKey;
+import '../services/signed_posts.dart';
 import '../services/image_codec_service.dart';
 import '../services/message_retry_service.dart';
 import '../services/path_history_service.dart';
@@ -4200,12 +4203,15 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  /// Sends [text] on [channel]. With [sign], or with signing every post
+  /// turned on in Settings, a signature packet follows it.
   Future<void> sendChannelMessage(
     Channel channel,
     String text, {
     String? originalText,
     String? translatedLanguageCode,
     String? translationModelId,
+    bool sign = false,
   }) async {
     if (!isConnected || text.isEmpty) return;
 
@@ -4266,14 +4272,97 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
 
     final outboundText = prepareChannelOutboundText(channel.index, text);
+    final timestamp = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+    final signing =
+        (sign || (_appSettingsService?.settings.signChannelPosts ?? false)) &&
+        canSignPosts;
     await _runScopedChannelSend(() async {
       await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
       await _sendFrameAndWaitForCommandAck(
-        buildSendChannelTextMsgFrame(channel.index, outboundText),
+        buildSendChannelTextMsgFrame(
+          channel.index,
+          outboundText,
+          timestamp: timestamp,
+        ),
         channelSendQueueId: message.messageId,
         expectsGenericAck: true,
       );
+      if (signing) {
+        await _sendPostSignature(
+          channel.index,
+          message.messageId,
+          outboundText,
+          timestamp,
+        );
+      }
     }, region: getChannelRegion(channel.index));
+  }
+
+  /// Whether this radio can sign channel posts: it carries channel data,
+  /// its key is known, and its name reaches receivers unchanged.
+  bool get canSignPosts =>
+      supportsChannelData &&
+      selfPublicKey?.length == 32 &&
+      canSignAs(selfName ?? '');
+
+  /// Signs the text just sent and sends the signature as one GRP_DATA
+  /// packet. The signature covers the text as receivers will display it.
+  /// A failure only costs the signature: the text has already gone.
+  Future<void> _sendPostSignature(
+    int channelIndex,
+    String messageId,
+    String wireText,
+    int timestamp,
+  ) async {
+    final key = Uint8List.fromList(selfPublicKey!);
+    final shown = Smaz.tryDecodePrefixed(wireText) ?? wireText;
+    try {
+      final signature = await signWithRadio(
+        signedPostInput(
+          timestamp: timestamp,
+          senderName: selfName!,
+          text: shown,
+        ),
+      );
+      final payload = SignedPostPayload(
+        publicKey: key,
+        timestamp: timestamp,
+        signature: signature,
+      );
+      await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
+      await _sendFrameAndWaitForCommandAck(
+        buildSendChannelDataFrame(
+          channelIndex: channelIndex,
+          dataType: dataTypeSignedPost,
+          payload: payload.encode(),
+        ),
+        // Code 62 must not be enrolled in the generic-ack queue.
+        expectsGenericAck: false,
+      );
+      _updateChannelMessage(
+        channelIndex,
+        messageId,
+        (m) => m.copyWith(signature: ChannelSignature.valid, signerKey: key),
+      );
+    } catch (e) {
+      appLogger.warn('Post signature not sent: $e');
+    }
+  }
+
+  /// Replaces the message [messageId] on [channelIndex] with [change] of it
+  /// and saves the channel.
+  void _updateChannelMessage(
+    int channelIndex,
+    String messageId,
+    ChannelMessage Function(ChannelMessage) change,
+  ) {
+    final messages = _channelMessages[channelIndex];
+    if (messages == null) return;
+    final i = messages.lastIndexWhere((m) => m.messageId == messageId);
+    if (i < 0) return;
+    messages[i] = change(messages[i]);
+    unawaited(_channelMessageStore.saveChannelMessages(channelIndex, messages));
+    notifyListeners();
   }
 
   /// Sends a channel text that corridor-aware repeaters forward only inside
@@ -5216,6 +5305,13 @@ class MeshCoreConnector extends ChangeNotifier {
         // ONCE, before any async work.
         if (_isSyncingQueuedMessages) {
           _handleQueuedMessageReceived();
+        }
+        // Post signatures are checked whatever the image setting says.
+        final channelData = parseChannelDataFrame(frame);
+        if (channelData?.dataType == dataTypeSignedPost) {
+          _lastChannelMsgRxTime = DateTime.now();
+          unawaited(_handlePostSignature(channelData!));
+          break;
         }
         // Advance the sync state machine ALWAYS (above), but only reassemble
         // when the feature is actually on. Without this the "disabled" feature
@@ -6698,6 +6794,9 @@ class MeshCoreConnector extends ChangeNotifier {
       _maybeIncrementChannelUnread(message, isNew: isNew);
       notifyListeners();
       if (isNew && !message.isOutgoing) {
+        unawaited(_claimHeldSignature(message));
+      }
+      if (isNew && !message.isOutgoing) {
         final msg = message; // capture for closure
         unawaited(() async {
           final translationResult = await translateChannelMessage(
@@ -6710,6 +6809,97 @@ class MeshCoreConnector extends ChangeNotifier {
       _handleQueuedMessageReceived();
     } else if (_isSyncingQueuedMessages) {
       _handleQueuedMessageReceived();
+    }
+  }
+
+  final PendingSignatures _heldSignatures = PendingSignatures();
+
+  /// Matches a signature packet to its text, or holds it until the text
+  /// arrives. The text it signs is the newest unsigned incoming post on
+  /// that channel with the same timestamp that it verifies against.
+  Future<void> _handlePostSignature(ParsedChannelData data) async {
+    final payload = SignedPostPayload.decode(data.payload);
+    if (payload == null) return;
+    final channel = data.channelIndex;
+    final candidates = [
+      for (final m in (_channelMessages[channel] ?? const <ChannelMessage>[]))
+        if (!m.isOutgoing &&
+            m.timestamp.millisecondsSinceEpoch ~/ 1000 == payload.timestamp)
+          m,
+    ];
+    if (candidates.isEmpty) {
+      _heldSignatures.add(channel, payload, DateTime.now());
+      return;
+    }
+    // A repeat of a signature already applied changes nothing.
+    if (candidates.any(
+      (m) =>
+          m.signature != ChannelSignature.none &&
+          listEquals(m.signerKey, payload.publicKey),
+    )) {
+      return;
+    }
+    for (final m in candidates.reversed) {
+      if (m.signature != ChannelSignature.none) continue;
+      if (await verifySignedPost(
+        payload,
+        senderName: m.senderName,
+        text: m.text,
+      )) {
+        _updateChannelMessage(
+          channel,
+          m.messageId,
+          (m) => m.copyWith(
+            signature: ChannelSignature.valid,
+            signerKey: payload.publicKey,
+          ),
+        );
+        return;
+      }
+    }
+    // It names a post we have but signs something else: the post was
+    // changed on the way, or it isn't the sender's.
+    final unsigned = candidates.where(
+      (m) => m.signature == ChannelSignature.none,
+    );
+    if (unsigned.length == 1) {
+      _updateChannelMessage(
+        channel,
+        unsigned.single.messageId,
+        (m) => m.copyWith(
+          signature: ChannelSignature.invalid,
+          signerKey: payload.publicKey,
+        ),
+      );
+    }
+  }
+
+  /// Applies a held signature to [message] when one was waiting for it.
+  Future<void> _claimHeldSignature(ChannelMessage message) async {
+    final channel = message.channelIndex;
+    if (channel == null) return;
+    final held = _heldSignatures.candidates(
+      channel,
+      message.timestamp.millisecondsSinceEpoch ~/ 1000,
+      DateTime.now(),
+    );
+    for (final payload in held) {
+      if (await verifySignedPost(
+        payload,
+        senderName: message.senderName,
+        text: message.text,
+      )) {
+        _heldSignatures.remove(payload);
+        _updateChannelMessage(
+          channel,
+          message.messageId,
+          (m) => m.copyWith(
+            signature: ChannelSignature.valid,
+            signerKey: payload.publicKey,
+          ),
+        );
+        return;
+      }
     }
   }
 

@@ -51,6 +51,7 @@ class _FakeConnector extends MeshCoreConnector {
     String? originalText,
     String? translatedLanguageCode,
     String? translationModelId,
+    bool sign = false,
   }) async => plainSends.add(text);
 
   @override

@@ -32,6 +32,7 @@ class _Radio extends MeshCoreConnector {
     String? originalText,
     String? translatedLanguageCode,
     String? translationModelId,
+    bool sign = false,
   }) async => sent.add(text);
 }
 
