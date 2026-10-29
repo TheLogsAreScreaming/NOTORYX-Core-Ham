@@ -13,6 +13,11 @@ const botCommands = <String>[
   '!info',
   '!checkin',
   '!repeater',
+  '!sun',
+  '!moon',
+  '!weather',
+  '!dice',
+  '!trace',
 ];
 
 class BotRule {

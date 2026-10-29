@@ -5,6 +5,17 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../models/bot_settings.dart';
 import '../services/bot_service.dart';
+import '../services/weather_service.dart';
+
+/// What the newer commands do, shown under their switches.
+const _commandHints = {
+  '!sun': 'Sunrise and sunset at the radio\u2019s GPS position.',
+  '!moon': 'Moon phase and how much is lit.',
+  '!weather':
+      'Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.',
+  '!dice': 'Rolls dice: !dice, !dice 20 or !dice 2d6.',
+  '!trace': 'Lists the repeaters the sender\u2019s message came through.',
+};
 
 class BotSettingsScreen extends StatelessWidget {
   const BotSettingsScreen({super.key});
@@ -284,6 +295,9 @@ class BotSettingsScreen extends StatelessWidget {
             for (final command in botCommands)
               SwitchListTile(
                 title: Text(command),
+                subtitle: _commandHints[command] == null
+                    ? null
+                    : Text(_commandHints[command]!),
                 value: settings.commands.contains(command),
                 onChanged: (value) {
                   final commands = {...settings.commands};
@@ -304,6 +318,8 @@ class BotSettingsScreen extends StatelessWidget {
               onChanged: (value) =>
                   _save(context, settings.copyWith(shareLocation: value)),
             ),
+            const Divider(),
+            const _WeatherAlertsSection(),
             const Divider(),
             ListTile(
               title: const Text('Custom commands and keyword rules'),
@@ -421,4 +437,77 @@ class BotSettingsScreen extends StatelessWidget {
       );
     },
   );
+}
+
+/// Posts National Weather Service warnings for the radio's area to a
+/// channel. US only, since it uses the NWS feed.
+class _WeatherAlertsSection extends StatelessWidget {
+  const _WeatherAlertsSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final weather = context.watch<WeatherService?>();
+    if (weather == null) return const SizedBox.shrink();
+    final connector = context.watch<MeshCoreConnector>();
+    final settings = weather.settings;
+    final channels = connector.channels.where((c) => !c.isEmpty).toList();
+    final selected = channels.any((c) => c.index == settings.channelIndex)
+        ? settings.channelIndex
+        : null;
+    final checked = weather.lastCheck;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SwitchListTile(
+          key: const ValueKey('weather-alerts'),
+          title: const Text('Post weather alerts to a channel'),
+          subtitle: const Text(
+            'Checks the US National Weather Service every 10 minutes for '
+            'severe and extreme warnings at the radio\u2019s GPS position '
+            '(rounded to about 1 km), and posts each new one once. Needs '
+            'phone internet.',
+          ),
+          value: settings.enabled,
+          onChanged: (value) =>
+              weather.saveSettings(settings.copyWith(enabled: value)),
+        ),
+        if (settings.enabled) ...[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: DropdownButtonFormField<int>(
+              key: const ValueKey('weather-alerts-channel'),
+              isExpanded: true,
+              initialValue: selected,
+              decoration: const InputDecoration(labelText: 'Post to channel'),
+              items: [
+                for (final c in channels)
+                  DropdownMenuItem(
+                    value: c.index,
+                    child: Text(c.name.isEmpty ? 'Channel ${c.index}' : c.name),
+                  ),
+              ],
+              onChanged: (index) =>
+                  weather.saveSettings(settings.copyWith(channelIndex: index)),
+            ),
+          ),
+          SwitchListTile(
+            title: const Text('Include moderate alerts'),
+            subtitle: const Text('Advisories as well as warnings. Busier.'),
+            value: settings.includeModerate,
+            onChanged: (value) =>
+                weather.saveSettings(settings.copyWith(includeModerate: value)),
+          ),
+          if (weather.lastError != null || checked != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: Text(
+                weather.lastError ??
+                    'Last checked ${TimeOfDay.fromDateTime(checked!.toLocal()).format(context)}.',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+        ],
+      ],
+    );
+  }
 }

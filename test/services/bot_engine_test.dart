@@ -200,4 +200,21 @@ void main() {
       6,
     );
   });
+
+  test('argument commands match on the first word only when enabled', () {
+    String? roll(String text, {Set<String>? commands}) => BotEngine().reply(
+      settings: BotSettings(enabled: true, commands: commands),
+      messageId: text,
+      sender: 'alice',
+      text: text,
+      timestamp: now,
+      now: now,
+      commandResponses: {'!ping': 'Pong'},
+      argCommands: {'!dice': (args) => 'rolled [$args]'},
+    );
+    expect(roll('!dice 2d6'), endsWith('rolled [2d6]'));
+    expect(roll('!DICE'), endsWith('rolled []'));
+    expect(roll('!dice 2d6', commands: {'!ping'}), isNull);
+    expect(roll('!ping now'), isNull);
+  });
 }
