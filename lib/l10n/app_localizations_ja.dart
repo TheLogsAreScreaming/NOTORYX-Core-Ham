@@ -6423,10 +6423,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get coverage_noRadio => '無線機なし';
 
   @override
-  String get coverage_gpsReady => '無線機GPS準備完了';
+  String get coverage_gpsReady => '無線機gps準備完了';
 
   @override
-  String get coverage_noGps => '無線機GPSなし';
+  String get coverage_noGps => '無線機gpsなし';
 
   @override
   String get coverage_stopSave => '停止 + セッションを保存';
@@ -6435,10 +6435,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get coverage_start => 'カバレッジセッションを開始';
 
   @override
-  String get coverage_exportJson => 'JSONをエクスポート';
+  String get coverage_exportJson => 'Jsonをエクスポート';
 
   @override
-  String get coverage_exportCsv => 'CSVをエクスポート';
+  String get coverage_exportCsv => 'Csvをエクスポート';
 
   @override
   String get coverage_liveObservations => 'ライブ観測';

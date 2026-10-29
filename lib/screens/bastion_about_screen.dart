@@ -19,24 +19,7 @@ class BastionAboutScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: MeshPalette.ink,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'NOTORYX',
-              style: TextStyle(
-                color: _cyan,
-                fontSize: 10,
-                fontWeight: FontWeight.w900,
-                letterSpacing: 1.7,
-              ),
-            ),
-            Text(
-              l10n.bastionAbout_title,
-              style: const TextStyle(fontWeight: FontWeight.w900),
-            ),
-          ],
-        ),
+        title: Text(l10n.bastionAbout_title),
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(18, 10, 18, 28),

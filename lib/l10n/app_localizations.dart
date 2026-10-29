@@ -9385,7 +9385,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastion_coverageCapture.
   ///
   /// In en, this message translates to:
-  /// **'COVERAGE CAPTURE'**
+  /// **'Coverage capture'**
   String get bastion_coverageCapture;
 
   /// No description provided for @bastion_mapAttribution.
@@ -9817,37 +9817,37 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_tabTrip.
   ///
   /// In en, this message translates to:
-  /// **'TRIP'**
+  /// **'Trip'**
   String get fieldOps_tabTrip;
 
   /// No description provided for @fieldOps_tabReady.
   ///
   /// In en, this message translates to:
-  /// **'READY'**
+  /// **'Ready'**
   String get fieldOps_tabReady;
 
   /// No description provided for @fieldOps_tabLog.
   ///
   /// In en, this message translates to:
-  /// **'LOG'**
+  /// **'Log'**
   String get fieldOps_tabLog;
 
   /// No description provided for @fieldOps_tabAuto.
   ///
   /// In en, this message translates to:
-  /// **'AUTO'**
+  /// **'Auto'**
   String get fieldOps_tabAuto;
 
   /// No description provided for @fieldOps_tabCoverage.
   ///
   /// In en, this message translates to:
-  /// **'COVERAGE'**
+  /// **'Coverage'**
   String get fieldOps_tabCoverage;
 
   /// No description provided for @fieldOps_tabConnection.
   ///
   /// In en, this message translates to:
-  /// **'CONNECTION'**
+  /// **'Connection'**
   String get fieldOps_tabConnection;
 
   /// No description provided for @fieldOps_diagnostics.
@@ -10541,7 +10541,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_then.
   ///
   /// In en, this message translates to:
-  /// **'THEN'**
+  /// **'Then'**
   String get fieldOps_then;
 
   /// No description provided for @fieldOps_actionLog.
@@ -10973,13 +10973,13 @@ abstract class AppLocalizations {
   /// No description provided for @bastionAbout_version.
   ///
   /// In en, this message translates to:
-  /// **'VERSION'**
+  /// **'Version'**
   String get bastionAbout_version;
 
   /// No description provided for @bastionAbout_openSource.
   ///
   /// In en, this message translates to:
-  /// **'OPEN SOURCE FOUNDATION'**
+  /// **'Open source foundation'**
   String get bastionAbout_openSource;
 
   /// No description provided for @bastionAbout_openSourceBody.
@@ -10991,7 +10991,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionAbout_community.
   ///
   /// In en, this message translates to:
-  /// **'COMMUNITY FIRST'**
+  /// **'Community first'**
   String get bastionAbout_community;
 
   /// No description provided for @bastionAbout_communityBody.
@@ -11009,7 +11009,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionAbout_licenses.
   ///
   /// In en, this message translates to:
-  /// **'OPEN SOURCE LICENSES'**
+  /// **'Open source licenses'**
   String get bastionAbout_licenses;
 
   /// No description provided for @bastionSetup_title.
@@ -11171,13 +11171,13 @@ abstract class AppLocalizations {
   /// No description provided for @bastionDiag_channels.
   ///
   /// In en, this message translates to:
-  /// **'CHANNELS'**
+  /// **'Channels'**
   String get bastionDiag_channels;
 
   /// No description provided for @bastionDiag_radio.
   ///
   /// In en, this message translates to:
-  /// **'RADIO'**
+  /// **'Radio'**
   String get bastionDiag_radio;
 
   /// No description provided for @bastionDiag_frequency.
@@ -11219,7 +11219,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionDiag_device.
   ///
   /// In en, this message translates to:
-  /// **'DEVICE'**
+  /// **'Device'**
   String get bastionDiag_device;
 
   /// No description provided for @bastionDiag_name.
@@ -11255,13 +11255,13 @@ abstract class AppLocalizations {
   /// No description provided for @bastionDiag_deepTools.
   ///
   /// In en, this message translates to:
-  /// **'DEEP TOOLS'**
+  /// **'Deep tools'**
   String get bastionDiag_deepTools;
 
   /// No description provided for @bastionDiag_liveStats.
   ///
   /// In en, this message translates to:
-  /// **'LIVE RADIO STATS'**
+  /// **'Live radio stats'**
   String get bastionDiag_liveStats;
 
   /// No description provided for @bastionDiag_liveStatsHint.
@@ -11273,7 +11273,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionDiag_frameDebug.
   ///
   /// In en, this message translates to:
-  /// **'FRAME / BLE DEBUG'**
+  /// **'Frame / BLE debug'**
   String get bastionDiag_frameDebug;
 
   /// No description provided for @bastionDiag_frameDebugHint.
@@ -11285,7 +11285,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionDiag_appLog.
   ///
   /// In en, this message translates to:
-  /// **'APP DEBUG LOG'**
+  /// **'App debug log'**
   String get bastionDiag_appLog;
 
   /// No description provided for @bastionDiag_appLogHint.
@@ -11297,13 +11297,13 @@ abstract class AppLocalizations {
   /// No description provided for @bastionDiag_online.
   ///
   /// In en, this message translates to:
-  /// **'RADIO ONLINE'**
+  /// **'Radio online'**
   String get bastionDiag_online;
 
   /// No description provided for @bastionDiag_offline.
   ///
   /// In en, this message translates to:
-  /// **'RADIO OFFLINE'**
+  /// **'Radio offline'**
   String get bastionDiag_offline;
 
   /// No description provided for @bastionDiag_offlineHint.
@@ -11327,7 +11327,7 @@ abstract class AppLocalizations {
   /// No description provided for @coverage_savedSessions.
   ///
   /// In en, this message translates to:
-  /// **'SAVED SESSIONS'**
+  /// **'Saved sessions'**
   String get coverage_savedSessions;
 
   /// No description provided for @coverage_caveat.
@@ -11339,13 +11339,13 @@ abstract class AppLocalizations {
   /// No description provided for @coverage_captureActive.
   ///
   /// In en, this message translates to:
-  /// **'CAPTURE ACTIVE'**
+  /// **'Capture active'**
   String get coverage_captureActive;
 
   /// No description provided for @coverage_fieldSession.
   ///
   /// In en, this message translates to:
-  /// **'FIELD COVERAGE SESSION'**
+  /// **'Field coverage session'**
   String get coverage_fieldSession;
 
   /// No description provided for @coverage_connectedBody.
@@ -11363,79 +11363,79 @@ abstract class AppLocalizations {
   /// No description provided for @coverage_observations.
   ///
   /// In en, this message translates to:
-  /// **'OBSERVATIONS'**
+  /// **'Observations'**
   String get coverage_observations;
 
   /// No description provided for @coverage_uniqueNodes.
   ///
   /// In en, this message translates to:
-  /// **'UNIQUE NODES'**
+  /// **'Unique nodes'**
   String get coverage_uniqueNodes;
 
   /// No description provided for @coverage_elapsed.
   ///
   /// In en, this message translates to:
-  /// **'ELAPSED'**
+  /// **'Elapsed'**
   String get coverage_elapsed;
 
   /// No description provided for @coverage_radioConnected.
   ///
   /// In en, this message translates to:
-  /// **'RADIO CONNECTED'**
+  /// **'Radio connected'**
   String get coverage_radioConnected;
 
   /// No description provided for @coverage_noRadio.
   ///
   /// In en, this message translates to:
-  /// **'NO RADIO'**
+  /// **'No radio'**
   String get coverage_noRadio;
 
   /// No description provided for @coverage_gpsReady.
   ///
   /// In en, this message translates to:
-  /// **'RADIO GPS READY'**
+  /// **'Radio GPS ready'**
   String get coverage_gpsReady;
 
   /// No description provided for @coverage_noGps.
   ///
   /// In en, this message translates to:
-  /// **'NO RADIO GPS'**
+  /// **'No radio GPS'**
   String get coverage_noGps;
 
   /// No description provided for @coverage_stopSave.
   ///
   /// In en, this message translates to:
-  /// **'STOP + SAVE SESSION'**
+  /// **'Stop + save session'**
   String get coverage_stopSave;
 
   /// No description provided for @coverage_start.
   ///
   /// In en, this message translates to:
-  /// **'START COVERAGE SESSION'**
+  /// **'Start coverage session'**
   String get coverage_start;
 
   /// No description provided for @coverage_exportJson.
   ///
   /// In en, this message translates to:
-  /// **'EXPORT JSON'**
+  /// **'Export JSON'**
   String get coverage_exportJson;
 
   /// No description provided for @coverage_exportCsv.
   ///
   /// In en, this message translates to:
-  /// **'EXPORT CSV'**
+  /// **'Export CSV'**
   String get coverage_exportCsv;
 
   /// No description provided for @coverage_liveObservations.
   ///
   /// In en, this message translates to:
-  /// **'LIVE OBSERVATIONS'**
+  /// **'Live observations'**
   String get coverage_liveObservations;
 
   /// No description provided for @coverage_waiting.
   ///
   /// In en, this message translates to:
-  /// **'WAITING FOR MESH ACTIVITY'**
+  /// **'Waiting for mesh activity'**
   String get coverage_waiting;
 
   /// No description provided for @coverage_waitingBody.
@@ -11615,13 +11615,13 @@ abstract class AppLocalizations {
   /// No description provided for @fieldStats_title.
   ///
   /// In en, this message translates to:
-  /// **'FIELD INTELLIGENCE'**
+  /// **'Field intelligence'**
   String get fieldStats_title;
 
   /// No description provided for @fieldStats_snapshot.
   ///
   /// In en, this message translates to:
-  /// **'LIVE MESH SNAPSHOT'**
+  /// **'Live mesh snapshot'**
   String get fieldStats_snapshot;
 
   /// No description provided for @fieldStats_headline.
@@ -11639,67 +11639,67 @@ abstract class AppLocalizations {
   /// No description provided for @fieldStats_total.
   ///
   /// In en, this message translates to:
-  /// **'TOTAL'**
+  /// **'Total'**
   String get fieldStats_total;
 
   /// No description provided for @fieldStats_chatNodes.
   ///
   /// In en, this message translates to:
-  /// **'CHAT NODES'**
+  /// **'Chat nodes'**
   String get fieldStats_chatNodes;
 
   /// No description provided for @fieldStats_rooms.
   ///
   /// In en, this message translates to:
-  /// **'ROOMS'**
+  /// **'Rooms'**
   String get fieldStats_rooms;
 
   /// No description provided for @fieldStats_sensors.
   ///
   /// In en, this message translates to:
-  /// **'SENSORS'**
+  /// **'Sensors'**
   String get fieldStats_sensors;
 
   /// No description provided for @fieldStats_located.
   ///
   /// In en, this message translates to:
-  /// **'LOCATED'**
+  /// **'Located'**
   String get fieldStats_located;
 
   /// No description provided for @fieldStats_favorites.
   ///
   /// In en, this message translates to:
-  /// **'FAVORITES'**
+  /// **'Favorites'**
   String get fieldStats_favorites;
 
   /// No description provided for @fieldStats_routeSnapshot.
   ///
   /// In en, this message translates to:
-  /// **'ROUTE SNAPSHOT'**
+  /// **'Route snapshot'**
   String get fieldStats_routeSnapshot;
 
   /// No description provided for @fieldStats_routed.
   ///
   /// In en, this message translates to:
-  /// **'ROUTED'**
+  /// **'Routed'**
   String get fieldStats_routed;
 
   /// No description provided for @fieldStats_direct.
   ///
   /// In en, this message translates to:
-  /// **'DIRECT'**
+  /// **'Direct'**
   String get fieldStats_direct;
 
   /// No description provided for @fieldStats_flood.
   ///
   /// In en, this message translates to:
-  /// **'FLOOD'**
+  /// **'Flood'**
   String get fieldStats_flood;
 
   /// No description provided for @fieldStats_pathIntel.
   ///
   /// In en, this message translates to:
-  /// **'PATH INTELLIGENCE'**
+  /// **'Path intelligence'**
   String get fieldStats_pathIntel;
 
   /// No description provided for @fieldStats_pathIntelBody.
@@ -11711,7 +11711,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldStats_coverageSessions.
   ///
   /// In en, this message translates to:
-  /// **'COVERAGE SESSIONS'**
+  /// **'Coverage sessions'**
   String get fieldStats_coverageSessions;
 
   /// No description provided for @fieldStats_coverageSessionsBody.
@@ -11723,7 +11723,7 @@ abstract class AppLocalizations {
   /// No description provided for @mapHub_title.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX FIELD MAP'**
+  /// **'NOTORYX field map'**
   String get mapHub_title;
 
   /// No description provided for @mapHub_intro.
@@ -11747,7 +11747,7 @@ abstract class AppLocalizations {
   /// No description provided for @mapHub_liveMap.
   ///
   /// In en, this message translates to:
-  /// **'LIVE MESH MAP'**
+  /// **'Live mesh map'**
   String get mapHub_liveMap;
 
   /// No description provided for @mapHub_liveMapHint.
@@ -11765,7 +11765,7 @@ abstract class AppLocalizations {
   /// No description provided for @mapHub_offlinePacks.
   ///
   /// In en, this message translates to:
-  /// **'OFFLINE MAP PACKS'**
+  /// **'Offline map packs'**
   String get mapHub_offlinePacks;
 
   /// No description provided for @mapHub_offlinePacksHint.
@@ -11783,7 +11783,7 @@ abstract class AppLocalizations {
   /// No description provided for @mapHub_regions.
   ///
   /// In en, this message translates to:
-  /// **'REGION PROFILES'**
+  /// **'Region profiles'**
   String get mapHub_regions;
 
   /// No description provided for @mapHub_regionsHint.
@@ -11920,7 +11920,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterTools_heroLabel.
   ///
   /// In en, this message translates to:
-  /// **'REPEATER COMMAND'**
+  /// **'Repeater command'**
   String get repeaterTools_heroLabel;
 
   /// No description provided for @repeaterTools_headline.
@@ -11938,19 +11938,19 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterTools_discovered.
   ///
   /// In en, this message translates to:
-  /// **'DISCOVERED'**
+  /// **'Discovered'**
   String get repeaterTools_discovered;
 
   /// No description provided for @repeaterTools_tools.
   ///
   /// In en, this message translates to:
-  /// **'TOOLS'**
+  /// **'Tools'**
   String get repeaterTools_tools;
 
   /// No description provided for @repeaterTools_available.
   ///
   /// In en, this message translates to:
-  /// **'AVAILABLE REPEATERS'**
+  /// **'Available repeaters'**
   String get repeaterTools_available;
 
   /// No description provided for @repeaterTools_unnamed.
@@ -11962,7 +11962,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterTools_statusTelemetry.
   ///
   /// In en, this message translates to:
-  /// **'STATUS + TELEMETRY'**
+  /// **'Status + telemetry'**
   String get repeaterTools_statusTelemetry;
 
   /// No description provided for @repeaterTools_statusTelemetryBody.
@@ -11974,7 +11974,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterTools_neighbors.
   ///
   /// In en, this message translates to:
-  /// **'NEIGHBORS'**
+  /// **'Neighbors'**
   String get repeaterTools_neighbors;
 
   /// No description provided for @repeaterTools_neighborsBody.
@@ -11986,7 +11986,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeaterTools_cli.
   ///
   /// In en, this message translates to:
-  /// **'CLI + SETTINGS'**
+  /// **'CLI + settings'**
   String get repeaterTools_cli;
 
   /// No description provided for @repeaterTools_cliBody.

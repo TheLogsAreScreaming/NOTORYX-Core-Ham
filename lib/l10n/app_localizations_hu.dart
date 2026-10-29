@@ -5500,7 +5500,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bastion_fieldOps => 'Túra + terepi műveletek';
 
   @override
-  String get bastion_coverageCapture => 'LEFEDETTSÉGRÖGZÍTÉS';
+  String get bastion_coverageCapture => 'Lefedettségrögzítés';
 
   @override
   String get bastion_mapAttribution =>
@@ -5806,22 +5806,22 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldOps_title => 'NOTORYX Core terepi műveletek';
 
   @override
-  String get fieldOps_tabTrip => 'TÚRA';
+  String get fieldOps_tabTrip => 'Túra';
 
   @override
-  String get fieldOps_tabReady => 'KÉSZ';
+  String get fieldOps_tabReady => 'Kész';
 
   @override
-  String get fieldOps_tabLog => 'NAPLÓ';
+  String get fieldOps_tabLog => 'Napló';
 
   @override
-  String get fieldOps_tabAuto => 'AUTO';
+  String get fieldOps_tabAuto => 'Auto';
 
   @override
-  String get fieldOps_tabCoverage => 'LEFEDETTSÉG';
+  String get fieldOps_tabCoverage => 'Lefedettség';
 
   @override
-  String get fieldOps_tabConnection => 'KAPCSOLAT';
+  String get fieldOps_tabConnection => 'Kapcsolat';
 
   @override
   String get fieldOps_diagnostics => 'Diagnosztika';
@@ -6261,7 +6261,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'A művelet rögzítése küldés és értesítés nélkül.';
 
   @override
-  String get fieldOps_then => 'AKKOR';
+  String get fieldOps_then => 'Akkor';
 
   @override
   String get fieldOps_actionLog => 'Írás a terepnaplóba';
@@ -6518,17 +6518,17 @@ class AppLocalizationsHu extends AppLocalizations {
       'Független közösségi kísérőalkalmazás MeshCore-hálózatokhoz. A NOTORYX Core nem hivatalos MeshCore-alkalmazás, és a közösségi források szerepeltetése nem jelent partnerséget vagy jóváhagyást.';
 
   @override
-  String get bastionAbout_version => 'VERZIÓ';
+  String get bastionAbout_version => 'Verzió';
 
   @override
-  String get bastionAbout_openSource => 'NYÍLT FORRÁSKÓDÚ ALAP';
+  String get bastionAbout_openSource => 'Nyílt forráskódú alap';
 
   @override
   String get bastionAbout_openSourceBody =>
       'A NOTORYX Core a MeshCore Open MIT-licences nyílt forráskódjára épül, és azt módosítja. A lefedettségi munkafolyamat ahol releváns, a MIT-licences MeshMapper Flutter App érdemeit is elismeri.';
 
   @override
-  String get bastionAbout_community => 'A KÖZÖSSÉG AZ ELSŐ';
+  String get bastionAbout_community => 'A közösség az első';
 
   @override
   String get bastionAbout_communityBody =>
@@ -6539,7 +6539,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'NOTORYX Core • Független MeshCore-kísérő';
 
   @override
-  String get bastionAbout_licenses => 'NYÍLT FORRÁSKÓDÚ LICENCEK';
+  String get bastionAbout_licenses => 'Nyílt forráskódú licencek';
 
   @override
   String get bastionSetup_title => 'Első lépések a NOTORYX Core-ral';
@@ -6634,10 +6634,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bastionDiag_export => 'Diagnosztika exportálása';
 
   @override
-  String get bastionDiag_channels => 'CSATORNÁK';
+  String get bastionDiag_channels => 'Csatornák';
 
   @override
-  String get bastionDiag_radio => 'RÁDIÓ';
+  String get bastionDiag_radio => 'Rádió';
 
   @override
   String get bastionDiag_frequency => 'Frekvencia';
@@ -6658,7 +6658,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bastionDiag_noiseFloor => 'Zajszint';
 
   @override
-  String get bastionDiag_device => 'ESZKÖZ';
+  String get bastionDiag_device => 'Eszköz';
 
   @override
   String get bastionDiag_name => 'Név';
@@ -6676,33 +6676,33 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bastionDiag_transport => 'Kapcsolat';
 
   @override
-  String get bastionDiag_deepTools => 'HALADÓ ESZKÖZÖK';
+  String get bastionDiag_deepTools => 'Haladó eszközök';
 
   @override
-  String get bastionDiag_liveStats => 'ÉLŐ RÁDIÓSTATISZTIKA';
+  String get bastionDiag_liveStats => 'Élő rádióstatisztika';
 
   @override
   String get bastionDiag_liveStatsHint => 'Zaj, RSSI, SNR és adásidő';
 
   @override
-  String get bastionDiag_frameDebug => 'KERET- / BLE-HIBAKERESÉS';
+  String get bastionDiag_frameDebug => 'Keret- / BLE-hibakeresés';
 
   @override
   String get bastionDiag_frameDebugHint =>
       'Dekódolt és nyers fogadott keretek vizsgálata';
 
   @override
-  String get bastionDiag_appLog => 'ALKALMAZÁS HIBAKERESÉSI NAPLÓ';
+  String get bastionDiag_appLog => 'Alkalmazás hibakeresési napló';
 
   @override
   String get bastionDiag_appLogHint =>
       'Az alkalmazás diagnosztikai eseményeinek áttekintése';
 
   @override
-  String get bastionDiag_online => 'RÁDIÓ ONLINE';
+  String get bastionDiag_online => 'Rádió online';
 
   @override
-  String get bastionDiag_offline => 'RÁDIÓ OFFLINE';
+  String get bastionDiag_offline => 'Rádió offline';
 
   @override
   String get bastionDiag_offlineHint =>
@@ -6716,17 +6716,17 @@ class AppLocalizationsHu extends AppLocalizations {
       'Kilépés előtt állítsa le és mentse a munkamenetet.';
 
   @override
-  String get coverage_savedSessions => 'MENTETT MUNKAMENETEK';
+  String get coverage_savedSessions => 'Mentett munkamenetek';
 
   @override
   String get coverage_caveat =>
       'Az RSSI/SNR rádiós pillanatképek, és egy másik csomaghoz is tartozhatnak. A pozíciók a rádió által sugárzott koordináták, nem a telefon GPS-e és nem a lefedettség bizonyítékai. Cián: rögzítő; borostyán: sugárzott csomópont. Interpoláció nem történik.';
 
   @override
-  String get coverage_captureActive => 'RÖGZÍTÉS AKTÍV';
+  String get coverage_captureActive => 'Rögzítés aktív';
 
   @override
-  String get coverage_fieldSession => 'TEREPI LEFEDETTSÉGI MUNKAMENET';
+  String get coverage_fieldSession => 'Terepi lefedettségi munkamenet';
 
   @override
   String get coverage_connectedBody =>
@@ -6737,43 +6737,43 @@ class AppLocalizationsHu extends AppLocalizations {
       'Indítás előtt csatlakoztasson egy rádiót. A lefedettségrögzítés a csatlakoztatott kísérőrádió élő hálózati megfigyeléseit rögzíti.';
 
   @override
-  String get coverage_observations => 'MEGFIGYELÉSEK';
+  String get coverage_observations => 'Megfigyelések';
 
   @override
-  String get coverage_uniqueNodes => 'EGYEDI CSOMÓPONTOK';
+  String get coverage_uniqueNodes => 'Egyedi csomópontok';
 
   @override
-  String get coverage_elapsed => 'ELTELT';
+  String get coverage_elapsed => 'Eltelt';
 
   @override
-  String get coverage_radioConnected => 'RÁDIÓ CSATLAKOZTATVA';
+  String get coverage_radioConnected => 'Rádió csatlakoztatva';
 
   @override
-  String get coverage_noRadio => 'NINCS RÁDIÓ';
+  String get coverage_noRadio => 'Nincs rádió';
 
   @override
-  String get coverage_gpsReady => 'RÁDIÓ GPS KÉSZ';
+  String get coverage_gpsReady => 'Rádió GPS kész';
 
   @override
-  String get coverage_noGps => 'NINCS RÁDIÓ GPS';
+  String get coverage_noGps => 'Nincs rádió GPS';
 
   @override
-  String get coverage_stopSave => 'LEÁLLÍTÁS + MENTÉS';
+  String get coverage_stopSave => 'Leállítás + mentés';
 
   @override
-  String get coverage_start => 'LEFEDETTSÉGI MUNKAMENET INDÍTÁSA';
+  String get coverage_start => 'Lefedettségi munkamenet indítása';
 
   @override
-  String get coverage_exportJson => 'JSON EXPORTÁLÁSA';
+  String get coverage_exportJson => 'JSON exportálása';
 
   @override
-  String get coverage_exportCsv => 'CSV EXPORTÁLÁSA';
+  String get coverage_exportCsv => 'CSV exportálása';
 
   @override
-  String get coverage_liveObservations => 'ÉLŐ MEGFIGYELÉSEK';
+  String get coverage_liveObservations => 'Élő megfigyelések';
 
   @override
-  String get coverage_waiting => 'HÁLÓZATI AKTIVITÁSRA VÁR';
+  String get coverage_waiting => 'Hálózati aktivitásra vár';
 
   @override
   String get coverage_waitingBody =>
@@ -6888,10 +6888,10 @@ class AppLocalizationsHu extends AppLocalizations {
       '© OpenStreetMap-közreműködők • online alaptérkép';
 
   @override
-  String get fieldStats_title => 'TEREPI ELEMZÉS';
+  String get fieldStats_title => 'Terepi elemzés';
 
   @override
-  String get fieldStats_snapshot => 'ÉLŐ HÁLÓZATI PILLANATKÉP';
+  String get fieldStats_snapshot => 'Élő hálózati pillanatkép';
 
   @override
   String get fieldStats_headline => 'Amit a NOTORYX Core most tud.';
@@ -6901,51 +6901,51 @@ class AppLocalizationsHu extends AppLocalizations {
       'Ezek a számlálók a csatlakoztatott MeshCore kapcsolattáblájából, a helyekből, az utakból és az utoljára látott időbélyegekből számolódnak.';
 
   @override
-  String get fieldStats_total => 'ÖSSZESEN';
+  String get fieldStats_total => 'Összesen';
 
   @override
-  String get fieldStats_chatNodes => 'CSEVEGŐ CSOMÓPONTOK';
+  String get fieldStats_chatNodes => 'Csevegő csomópontok';
 
   @override
-  String get fieldStats_rooms => 'SZOBÁK';
+  String get fieldStats_rooms => 'Szobák';
 
   @override
-  String get fieldStats_sensors => 'ÉRZÉKELŐK';
+  String get fieldStats_sensors => 'Érzékelők';
 
   @override
-  String get fieldStats_located => 'HELLYEL';
+  String get fieldStats_located => 'Hellyel';
 
   @override
-  String get fieldStats_favorites => 'KEDVENCEK';
+  String get fieldStats_favorites => 'Kedvencek';
 
   @override
-  String get fieldStats_routeSnapshot => 'ÚTVONAL-PILLANATKÉP';
+  String get fieldStats_routeSnapshot => 'Útvonal-pillanatkép';
 
   @override
-  String get fieldStats_routed => 'ÚTVONALAS';
+  String get fieldStats_routed => 'Útvonalas';
 
   @override
-  String get fieldStats_direct => 'KÖZVETLEN';
+  String get fieldStats_direct => 'Közvetlen';
 
   @override
-  String get fieldStats_flood => 'FLOOD';
+  String get fieldStats_flood => 'Flood';
 
   @override
-  String get fieldStats_pathIntel => 'ÚTELEMZÉS';
+  String get fieldStats_pathIntel => 'Útelemzés';
 
   @override
   String get fieldStats_pathIntelBody =>
       'A NOTORYX Core útvonalelemzése mentett útkísérleteket, ugrásszámokat, sikereket/hibákat, átfutási időt és útvonalsúlyozást használ a tanult útvonalak megjelenítéséhez.';
 
   @override
-  String get fieldStats_coverageSessions => 'LEFEDETTSÉGI MUNKAMENETEK';
+  String get fieldStats_coverageSessions => 'Lefedettségi munkamenetek';
 
   @override
   String get fieldStats_coverageSessionsBody =>
       'A lefedettségrögzítés mostantól menti a terepi munkameneteket, visszaállítja a megszakított munkát, exportálja a megfigyeléseket és térképre viszi a rögzített lefedettségi pontokat. Az RSSI/SNR továbbra is a legközelebbi elérhető rádiós pillanatkép.';
 
   @override
-  String get mapHub_title => 'NOTORYX TEREPI TÉRKÉP';
+  String get mapHub_title => 'NOTORYX terepi térkép';
 
   @override
   String get mapHub_intro =>
@@ -6959,7 +6959,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get mapHub_badgeNew => 'ÚJ';
 
   @override
-  String get mapHub_liveMap => 'ÉLŐ HÁLÓZATI TÉRKÉP';
+  String get mapHub_liveMap => 'Élő hálózati térkép';
 
   @override
   String get mapHub_liveMapHint =>
@@ -6969,7 +6969,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get mapHub_badgeLive => 'ÉLŐ';
 
   @override
-  String get mapHub_offlinePacks => 'OFFLINE TÉRKÉPCSOMAGOK';
+  String get mapHub_offlinePacks => 'Offline térképcsomagok';
 
   @override
   String get mapHub_offlinePacksHint =>
@@ -6979,7 +6979,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get mapHub_badgeOffline => 'OFFLINE';
 
   @override
-  String get mapHub_regions => 'RÉGIÓPROFILOK';
+  String get mapHub_regions => 'Régióprofilok';
 
   @override
   String get mapHub_regionsHint =>
@@ -7070,7 +7070,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'ISMÉTLŐ-IRÁNYÍTÁS';
+  String get repeaterTools_heroLabel => 'Ismétlő-irányítás';
 
   @override
   String get repeaterTools_headline =>
@@ -7081,33 +7081,33 @@ class AppLocalizationsHu extends AppLocalizations {
       'Válasszon egy felderített ismétlőt a bejelentkezéshez, és nyissa meg meglévő MeshCore-eszközeit: állapot, telemetria, szomszédok, beállítások és CLI.';
 
   @override
-  String get repeaterTools_discovered => 'FELDERÍTVE';
+  String get repeaterTools_discovered => 'Felderítve';
 
   @override
-  String get repeaterTools_tools => 'ESZKÖZÖK';
+  String get repeaterTools_tools => 'Eszközök';
 
   @override
-  String get repeaterTools_available => 'ELÉRHETŐ ISMÉTLŐK';
+  String get repeaterTools_available => 'Elérhető ismétlők';
 
   @override
   String get repeaterTools_unnamed => 'Névtelen ismétlő';
 
   @override
-  String get repeaterTools_statusTelemetry => 'ÁLLAPOT + TELEMETRIA';
+  String get repeaterTools_statusTelemetry => 'Állapot + telemetria';
 
   @override
   String get repeaterTools_statusTelemetryBody =>
       'Az ismétlő állapotának és telemetriájának vizsgálata a meglévő kezelőeszközökkel.';
 
   @override
-  String get repeaterTools_neighbors => 'SZOMSZÉDOK';
+  String get repeaterTools_neighbors => 'Szomszédok';
 
   @override
   String get repeaterTools_neighborsBody =>
       'Szomszédos infrastruktúra és hálózati kapcsolatok vizsgálata.';
 
   @override
-  String get repeaterTools_cli => 'CLI + BEÁLLÍTÁSOK';
+  String get repeaterTools_cli => 'CLI + beállítások';
 
   @override
   String get repeaterTools_cliBody =>

@@ -126,10 +126,10 @@ void main() {
     radio.changed();
     await tester.pumpAndSettle();
     await tester.scrollUntilVisible(
-      find.textContaining('Latest message: SENT'),
+      find.textContaining('Latest message: Sent'),
       100,
     );
-    expect(find.textContaining('Latest message: SENT'), findsOneWidget);
+    expect(find.textContaining('Latest message: Sent'), findsOneWidget);
     expect(find.textContaining('No delivery acknowledgment'), findsOneWidget);
     await tester.pumpWidget(const SizedBox());
     radio.dispose();

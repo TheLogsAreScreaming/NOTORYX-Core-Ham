@@ -5486,7 +5486,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get bastion_fieldOps => 'Túra + terénne operácie';
 
   @override
-  String get bastion_coverageCapture => 'ZÁZNAM POKRYTIA';
+  String get bastion_coverageCapture => 'Záznam pokrytia';
 
   @override
   String get bastion_mapAttribution =>
@@ -5798,22 +5798,22 @@ class AppLocalizationsSk extends AppLocalizations {
   String get fieldOps_title => 'Terénne operácie NOTORYX Core';
 
   @override
-  String get fieldOps_tabTrip => 'TÚRA';
+  String get fieldOps_tabTrip => 'Túra';
 
   @override
-  String get fieldOps_tabReady => 'PRIPRAVENOSŤ';
+  String get fieldOps_tabReady => 'Pripravenosť';
 
   @override
-  String get fieldOps_tabLog => 'DENNÍK';
+  String get fieldOps_tabLog => 'Denník';
 
   @override
-  String get fieldOps_tabAuto => 'AUTO';
+  String get fieldOps_tabAuto => 'Auto';
 
   @override
-  String get fieldOps_tabCoverage => 'POKRYTIE';
+  String get fieldOps_tabCoverage => 'Pokrytie';
 
   @override
-  String get fieldOps_tabConnection => 'SPOJENIE';
+  String get fieldOps_tabConnection => 'Spojenie';
 
   @override
   String get fieldOps_diagnostics => 'Diagnostika';
@@ -6259,7 +6259,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'Zaznamenať akciu bez odoslania alebo upozornenia.';
 
   @override
-  String get fieldOps_then => 'POTOM';
+  String get fieldOps_then => 'Potom';
 
   @override
   String get fieldOps_actionLog => 'Zapísať do terénneho denníka';
@@ -6514,17 +6514,17 @@ class AppLocalizationsSk extends AppLocalizations {
       'Nezávislá komunitná sprievodná aplikácia pre siete MeshCore. NOTORYX Core nie je oficiálna aplikácia MeshCore a zahrnutie komunitných zdrojov neznamená partnerstvo ani podporu.';
 
   @override
-  String get bastionAbout_version => 'VERZIA';
+  String get bastionAbout_version => 'Verzia';
 
   @override
-  String get bastionAbout_openSource => 'ZÁKLAD OPEN SOURCE';
+  String get bastionAbout_openSource => 'Základ open source';
 
   @override
   String get bastionAbout_openSourceBody =>
       'NOTORYX Core je postavený na otvorenom kóde MeshCore Open pod licenciou MIT a upravuje ho. Práca na postupe pokrytia uvádza aj, kde je to vhodné, aplikáciu MeshMapper Flutter App s licenciou MIT.';
 
   @override
-  String get bastionAbout_community => 'KOMUNITA NA PRVOM MIESTE';
+  String get bastionAbout_community => 'Komunita na prvom mieste';
 
   @override
   String get bastionAbout_communityBody =>
@@ -6535,7 +6535,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'NOTORYX Core • Nezávislý sprievodca MeshCore';
 
   @override
-  String get bastionAbout_licenses => 'LICENCIE OPEN SOURCE';
+  String get bastionAbout_licenses => 'Licencie open source';
 
   @override
   String get bastionSetup_title => 'Začíname s NOTORYX Core';
@@ -6630,10 +6630,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String get bastionDiag_export => 'Exportovať diagnostiku';
 
   @override
-  String get bastionDiag_channels => 'KANÁLY';
+  String get bastionDiag_channels => 'Kanály';
 
   @override
-  String get bastionDiag_radio => 'RÁDIO';
+  String get bastionDiag_radio => 'Rádio';
 
   @override
   String get bastionDiag_frequency => 'Frekvencia';
@@ -6654,7 +6654,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get bastionDiag_noiseFloor => 'Úroveň šumu';
 
   @override
-  String get bastionDiag_device => 'ZARIADENIE';
+  String get bastionDiag_device => 'Zariadenie';
 
   @override
   String get bastionDiag_name => 'Názov';
@@ -6672,33 +6672,33 @@ class AppLocalizationsSk extends AppLocalizations {
   String get bastionDiag_transport => 'Pripojenie';
 
   @override
-  String get bastionDiag_deepTools => 'POKROČILÉ NÁSTROJE';
+  String get bastionDiag_deepTools => 'Pokročilé nástroje';
 
   @override
-  String get bastionDiag_liveStats => 'ŽIVÉ ŠTATISTIKY RÁDIA';
+  String get bastionDiag_liveStats => 'Živé štatistiky rádia';
 
   @override
   String get bastionDiag_liveStatsHint => 'Šum, RSSI, SNR a čas vysielania';
 
   @override
-  String get bastionDiag_frameDebug => 'LADENIE RÁMCOV / BLE';
+  String get bastionDiag_frameDebug => 'Ladenie rámcov / BLE';
 
   @override
   String get bastionDiag_frameDebugHint =>
       'Preskúmajte dekódované a surové prijaté rámce';
 
   @override
-  String get bastionDiag_appLog => 'LADIACI DENNÍK APLIKÁCIE';
+  String get bastionDiag_appLog => 'Ladiaci denník aplikácie';
 
   @override
   String get bastionDiag_appLogHint =>
       'Prezrite si diagnostické udalosti aplikácie';
 
   @override
-  String get bastionDiag_online => 'RÁDIO ONLINE';
+  String get bastionDiag_online => 'Rádio online';
 
   @override
-  String get bastionDiag_offline => 'RÁDIO OFFLINE';
+  String get bastionDiag_offline => 'Rádio offline';
 
   @override
   String get bastionDiag_offlineHint =>
@@ -6712,17 +6712,17 @@ class AppLocalizationsSk extends AppLocalizations {
       'Pred odchodom reláciu zastavte a uložte.';
 
   @override
-  String get coverage_savedSessions => 'ULOŽENÉ RELÁCIE';
+  String get coverage_savedSessions => 'Uložené relácie';
 
   @override
   String get coverage_caveat =>
       'RSSI/SNR sú snímky rádia a môžu patriť inému paketu. Polohy sú súradnice vysielané rádiom, nie GPS telefónu ani dôkaz pokrytia. Azúrová: zapisovateľ; jantárová: vysielaný uzol. Interpolácia sa nevykonáva.';
 
   @override
-  String get coverage_captureActive => 'ZÁZNAM AKTÍVNY';
+  String get coverage_captureActive => 'Záznam aktívny';
 
   @override
-  String get coverage_fieldSession => 'TERÉNNA RELÁCIA POKRYTIA';
+  String get coverage_fieldSession => 'Terénna relácia pokrytia';
 
   @override
   String get coverage_connectedBody =>
@@ -6733,43 +6733,43 @@ class AppLocalizationsSk extends AppLocalizations {
       'Pred spustením pripojte rádio. Záznam pokrytia zaznamenáva živé pozorovania siete z pripojeného sprievodného rádia.';
 
   @override
-  String get coverage_observations => 'POZOROVANIA';
+  String get coverage_observations => 'Pozorovania';
 
   @override
-  String get coverage_uniqueNodes => 'JEDINEČNÉ UZLY';
+  String get coverage_uniqueNodes => 'Jedinečné uzly';
 
   @override
-  String get coverage_elapsed => 'UPLYNULO';
+  String get coverage_elapsed => 'Uplynulo';
 
   @override
-  String get coverage_radioConnected => 'RÁDIO PRIPOJENÉ';
+  String get coverage_radioConnected => 'Rádio pripojené';
 
   @override
-  String get coverage_noRadio => 'ŽIADNE RÁDIO';
+  String get coverage_noRadio => 'Žiadne rádio';
 
   @override
-  String get coverage_gpsReady => 'GPS RÁDIA PRIPRAVENÉ';
+  String get coverage_gpsReady => 'GPS rádia pripravené';
 
   @override
-  String get coverage_noGps => 'ŽIADNE GPS RÁDIA';
+  String get coverage_noGps => 'Žiadne GPS rádia';
 
   @override
-  String get coverage_stopSave => 'ZASTAVIŤ + ULOŽIŤ RELÁCIU';
+  String get coverage_stopSave => 'Zastaviť + uložiť reláciu';
 
   @override
-  String get coverage_start => 'SPUSTIŤ RELÁCIU POKRYTIA';
+  String get coverage_start => 'Spustiť reláciu pokrytia';
 
   @override
-  String get coverage_exportJson => 'EXPORTOVAŤ JSON';
+  String get coverage_exportJson => 'Exportovať JSON';
 
   @override
-  String get coverage_exportCsv => 'EXPORTOVAŤ CSV';
+  String get coverage_exportCsv => 'Exportovať CSV';
 
   @override
-  String get coverage_liveObservations => 'ŽIVÉ POZOROVANIA';
+  String get coverage_liveObservations => 'Živé pozorovania';
 
   @override
-  String get coverage_waiting => 'ČAKÁ SA NA AKTIVITU SIETE';
+  String get coverage_waiting => 'Čaká sa na aktivitu siete';
 
   @override
   String get coverage_waitingBody =>
@@ -6886,10 +6886,10 @@ class AppLocalizationsSk extends AppLocalizations {
       '© prispievatelia OpenStreetMap • online podkladová mapa';
 
   @override
-  String get fieldStats_title => 'TERÉNNA ANALÝZA';
+  String get fieldStats_title => 'Terénna analýza';
 
   @override
-  String get fieldStats_snapshot => 'ŽIVÁ SNÍMKA SIETE';
+  String get fieldStats_snapshot => 'Živá snímka siete';
 
   @override
   String get fieldStats_headline => 'Čo NOTORYX Core práve vie.';
@@ -6899,51 +6899,51 @@ class AppLocalizationsSk extends AppLocalizations {
       'Tieto počítadlá sa počítajú z tabuľky kontaktov pripojeného MeshCore, polôh, ciest a časov posledného videnia.';
 
   @override
-  String get fieldStats_total => 'SPOLU';
+  String get fieldStats_total => 'Spolu';
 
   @override
-  String get fieldStats_chatNodes => 'UZLY ČETU';
+  String get fieldStats_chatNodes => 'Uzly četu';
 
   @override
-  String get fieldStats_rooms => 'MIESTNOSTI';
+  String get fieldStats_rooms => 'Miestnosti';
 
   @override
-  String get fieldStats_sensors => 'SENZORY';
+  String get fieldStats_sensors => 'Senzory';
 
   @override
-  String get fieldStats_located => 'S POLOHOU';
+  String get fieldStats_located => 'S polohou';
 
   @override
-  String get fieldStats_favorites => 'OBĽÚBENÉ';
+  String get fieldStats_favorites => 'Obľúbené';
 
   @override
-  String get fieldStats_routeSnapshot => 'SNÍMKA TRÁS';
+  String get fieldStats_routeSnapshot => 'Snímka trás';
 
   @override
-  String get fieldStats_routed => 'S TRASOU';
+  String get fieldStats_routed => 'S trasou';
 
   @override
-  String get fieldStats_direct => 'PRIAME';
+  String get fieldStats_direct => 'Priame';
 
   @override
-  String get fieldStats_flood => 'FLOOD';
+  String get fieldStats_flood => 'Flood';
 
   @override
-  String get fieldStats_pathIntel => 'ANALÝZA CIEST';
+  String get fieldStats_pathIntel => 'Analýza ciest';
 
   @override
   String get fieldStats_pathIntelBody =>
       'Analýza trás v NOTORYX Core využíva uložené pokusy o cesty, počty skokov, úspechy/zlyhania, čas prechodu a váženie trás na zobrazenie naučených trás.';
 
   @override
-  String get fieldStats_coverageSessions => 'RELÁCIE POKRYTIA';
+  String get fieldStats_coverageSessions => 'Relácie pokrytia';
 
   @override
   String get fieldStats_coverageSessionsBody =>
       'Záznam pokrytia teraz ukladá terénne relácie, obnovuje prerušenú prácu, exportuje pozorovania a zobrazuje zaznamenané body pokrytia na mape. RSSI/SNR zostávajú najbližšou dostupnou snímkou rádia.';
 
   @override
-  String get mapHub_title => 'TERÉNNA MAPA NOTORYX';
+  String get mapHub_title => 'Terénna mapa NOTORYX';
 
   @override
   String get mapHub_intro =>
@@ -6957,7 +6957,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get mapHub_badgeNew => 'NOVÉ';
 
   @override
-  String get mapHub_liveMap => 'ŽIVÁ MAPA SIETE';
+  String get mapHub_liveMap => 'Živá mapa siete';
 
   @override
   String get mapHub_liveMapHint =>
@@ -6967,7 +6967,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get mapHub_badgeLive => 'NAŽIVO';
 
   @override
-  String get mapHub_offlinePacks => 'BALÍKY OFFLINE MÁP';
+  String get mapHub_offlinePacks => 'Balíky offline máp';
 
   @override
   String get mapHub_offlinePacksHint =>
@@ -6977,7 +6977,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get mapHub_badgeOffline => 'OFFLINE';
 
   @override
-  String get mapHub_regions => 'PROFILY REGIÓNOV';
+  String get mapHub_regions => 'Profily regiónov';
 
   @override
   String get mapHub_regionsHint =>
@@ -7069,7 +7069,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'OVLÁDANIE OPAKOVAČOV';
+  String get repeaterTools_heroLabel => 'Ovládanie opakovačov';
 
   @override
   String get repeaterTools_headline =>
@@ -7080,33 +7080,33 @@ class AppLocalizationsSk extends AppLocalizations {
       'Vyberte objavený opakovač, prihláste sa a otvorte jeho existujúce nástroje MeshCore pre stav, telemetriu, susedov, nastavenia a CLI.';
 
   @override
-  String get repeaterTools_discovered => 'OBJAVENÉ';
+  String get repeaterTools_discovered => 'Objavené';
 
   @override
-  String get repeaterTools_tools => 'NÁSTROJE';
+  String get repeaterTools_tools => 'Nástroje';
 
   @override
-  String get repeaterTools_available => 'DOSTUPNÉ OPAKOVAČE';
+  String get repeaterTools_available => 'Dostupné opakovače';
 
   @override
   String get repeaterTools_unnamed => 'Nepomenovaný opakovač';
 
   @override
-  String get repeaterTools_statusTelemetry => 'STAV + TELEMETRIA';
+  String get repeaterTools_statusTelemetry => 'Stav + telemetria';
 
   @override
   String get repeaterTools_statusTelemetryBody =>
       'Kontrolujte stav a telemetriu opakovača pomocou existujúcich nástrojov správy.';
 
   @override
-  String get repeaterTools_neighbors => 'SUSEDIA';
+  String get repeaterTools_neighbors => 'Susedia';
 
   @override
   String get repeaterTools_neighborsBody =>
       'Preskúmajte susednú infraštruktúru a vzťahy v sieti.';
 
   @override
-  String get repeaterTools_cli => 'CLI + NASTAVENIA';
+  String get repeaterTools_cli => 'CLI + nastavenia';
 
   @override
   String get repeaterTools_cliBody =>

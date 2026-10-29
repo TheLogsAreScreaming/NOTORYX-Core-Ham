@@ -19,10 +19,7 @@ class BastionMapHubScreen extends StatelessWidget {
       backgroundColor: _bg,
       foregroundColor: MeshPalette.ink,
       surfaceTintColor: Colors.transparent,
-      title: Text(
-        context.l10n.mapHub_title,
-        style: const TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1.2),
-      ),
+      title: Text(context.l10n.mapHub_title),
     ),
     body: SafeArea(
       top: false,

@@ -1127,7 +1127,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
         for (final status in ['pending', 'sent', 'delivered', 'failed'])
           ListTile(
             contentPadding: EdgeInsets.zero,
-            title: Text(messageStatusLabel(status, l10n: _l10n).toUpperCase()),
+            title: Text(messageStatusLabel(status, l10n: _l10n)),
             subtitle: Text(explainMessageStatus(status, l10n: _l10n)),
           ),
         Text(_l10n.fieldOps_staleCaveat),

@@ -1,5 +1,6 @@
 import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -165,6 +166,8 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
   void _status(AnimationStatus status) {
     if (status == AnimationStatus.completed) {
       _hold.reset();
+      // A firm buzz says it fired, for someone not looking at the screen.
+      HapticFeedback.heavyImpact();
       widget.onConfirmed();
     }
   }
@@ -187,6 +190,15 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
   @override
   Widget build(BuildContext context) {
     final color = widget.enabled ? _red : _red.withValues(alpha: .35);
+    // A faint red track reads as disabled on a light background, so light
+    // themes get a solid track with a darker fill sweeping across it; the
+    // white label keeps its contrast either way.
+    final light = MeshPalette.current.brightness == Brightness.light;
+    // Darkened 15% so white text clears 4.5:1 (about 5.2:1).
+    final track = light
+        ? Color.lerp(color, Colors.black, .15)!
+        : color.withValues(alpha: .25);
+    final fill = light ? Color.lerp(color, Colors.black, .35)! : color;
     return Semantics(
       button: true,
       enabled: widget.enabled,
@@ -199,6 +211,7 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
         onPointerDown: widget.enabled
             ? (e) {
                 _start = e.position;
+                HapticFeedback.lightImpact();
                 _hold.forward();
               }
             : null,
@@ -218,10 +231,10 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
             borderRadius: BorderRadius.circular(28),
             child: Stack(
               children: [
-                Container(height: 56, color: color.withValues(alpha: .25)),
+                Container(height: 56, color: track),
                 FractionallySizedBox(
                   widthFactor: _hold.value,
-                  child: Container(height: 56, color: color),
+                  child: Container(height: 56, color: fill),
                 ),
                 SizedBox(
                   height: 56,

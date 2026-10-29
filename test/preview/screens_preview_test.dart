@@ -5,6 +5,7 @@
 // PREVIEW_LOCALE=de (for example) renders a translation.
 // PREVIEW_ONLY=home,tools renders just those screens; PREVIEW_HEIGHT=2400
 // renders taller than a phone screen, for reviewing long screens whole.
+// PREVIEW_TEXT_SCALE=1.5 renders with the system text size turned up.
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -419,6 +420,18 @@ Widget _app(Widget home, ThemeMode mode) {
       },
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      builder: (context, child) {
+        final scale = double.tryParse(
+          Platform.environment['PREVIEW_TEXT_SCALE'] ?? '',
+        );
+        if (scale == null) return child!;
+        return MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(scale)),
+          child: child!,
+        );
+      },
       home: home,
     ),
   );
