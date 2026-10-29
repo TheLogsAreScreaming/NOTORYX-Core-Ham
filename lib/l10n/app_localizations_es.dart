@@ -8756,4 +8756,67 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'El ahorro de batería está activado y marca el ritmo (batería cada 10 minutos).';
+
+  @override
+  String get reach_check => 'Comprobar alcance en observadores';
+
+  @override
+  String get reach_title => 'Alcance en observadores';
+
+  @override
+  String get reach_noHash =>
+      'Aún no se puede consultar este mensaje: ningún repetidor lo ha devuelto a tu radio, así que se desconoce su ID de paquete.';
+
+  @override
+  String get reach_unreachable =>
+      'No se pudo contactar con el analizador. Revisa la conexión a internet o su dirección en Ajustes.';
+
+  @override
+  String get reach_none =>
+      'Ningún observador lo ha oído aún. Los observadores suben los datos poco después, vuelve a comprobarlo en un minuto.';
+
+  @override
+  String get reach_observers => 'observadores';
+
+  @override
+  String get reach_maxHops => 'saltos máx.';
+
+  @override
+  String get reach_bestSnr => 'mejor SNR';
+
+  @override
+  String reach_hops(int count) {
+    return 'a $count saltos';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Del analizador en línea: observadores que oyeron y subieron este paquete.';
+
+  @override
+  String get reach_checkAgain => 'Comprobar otra vez';
+
+  @override
+  String get analyzer_title => 'Analizador en línea';
+
+  @override
+  String get analyzer_url => 'Dirección del analizador';
+
+  @override
+  String get analyzer_urlHint =>
+      'Un analizador CoreScope (https://). Usa el de tu región.';
+
+  @override
+  String get analyzer_reset => 'Predeterminado';
+
+  @override
+  String get analyzer_hint =>
+      'Sirve para comprobar qué observadores oyeron tus mensajes. Solo se envía el ID del paquete.';
+
+  @override
+  String get analyzer_hopLookup => 'Nombrar repetidores desconocidos en línea';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Si un ID de repetidor no está en tus contactos, se pide su nombre al analizador. Solo se envían los ID cortos. Un nombre con «?» indica que varios repetidores comparten ese ID.';
 }

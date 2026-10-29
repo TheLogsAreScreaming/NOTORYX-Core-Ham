@@ -8716,4 +8716,67 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'Batterijbesparing staat aan en bepaalt het tempo (accu elke 10 minuten).';
+
+  @override
+  String get reach_check => 'Bereik bij waarnemers controleren';
+
+  @override
+  String get reach_title => 'Bereik bij waarnemers';
+
+  @override
+  String get reach_noHash =>
+      'Dit bericht kan nog niet worden opgezocht: geen repeater heeft het teruggestuurd naar je radio, dus de pakket-ID is onbekend.';
+
+  @override
+  String get reach_unreachable =>
+      'Analyser niet bereikbaar. Controleer je internetverbinding of het analyseradres in Instellingen.';
+
+  @override
+  String get reach_none =>
+      'Nog geen waarnemer heeft het gehoord. Waarnemers uploaden kort na ontvangst, controleer over een minuut opnieuw.';
+
+  @override
+  String get reach_observers => 'waarnemers';
+
+  @override
+  String get reach_maxHops => 'max. hops';
+
+  @override
+  String get reach_bestSnr => 'beste SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count hops verder';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Van de online analyser: waarnemers die dit pakket hoorden en uploadden.';
+
+  @override
+  String get reach_checkAgain => 'Opnieuw';
+
+  @override
+  String get analyzer_title => 'Online analyser';
+
+  @override
+  String get analyzer_url => 'Analyseradres';
+
+  @override
+  String get analyzer_urlHint =>
+      'Een CoreScope-analyser (https://). Gebruik die voor jouw regio.';
+
+  @override
+  String get analyzer_reset => 'Standaard';
+
+  @override
+  String get analyzer_hint =>
+      'Hiermee controleer je welke waarnemers je berichten hoorden. Er wordt alleen de pakket-ID verstuurd.';
+
+  @override
+  String get analyzer_hopLookup => 'Onbekende repeaters online benoemen';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Staat een repeater-ID niet in je contacten, dan vraagt de app de naam aan de analyser. Alleen de korte ID’s worden verstuurd. Een naam met “?” betekent dat meerdere repeaters die ID delen.';
 }

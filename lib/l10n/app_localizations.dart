@@ -14646,6 +14646,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Battery saver is on, so it sets the pace (battery every 10 minutes).'**
   String get settings_refreshSaverOn;
+
+  /// No description provided for @reach_check.
+  ///
+  /// In en, this message translates to:
+  /// **'Check observer reach'**
+  String get reach_check;
+
+  /// No description provided for @reach_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Observer reach'**
+  String get reach_title;
+
+  /// No description provided for @reach_noHash.
+  ///
+  /// In en, this message translates to:
+  /// **'This message can’t be looked up yet: no repeater has echoed it back to your radio, so its packet ID isn’t known.'**
+  String get reach_noHash;
+
+  /// No description provided for @reach_unreachable.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t reach the analyzer. Check your internet connection or the analyzer address in Settings.'**
+  String get reach_unreachable;
+
+  /// No description provided for @reach_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No observer has heard it yet. Observers upload a little after hearing a packet, so check again in a minute.'**
+  String get reach_none;
+
+  /// No description provided for @reach_observers.
+  ///
+  /// In en, this message translates to:
+  /// **'observers'**
+  String get reach_observers;
+
+  /// No description provided for @reach_maxHops.
+  ///
+  /// In en, this message translates to:
+  /// **'max hops'**
+  String get reach_maxHops;
+
+  /// No description provided for @reach_bestSnr.
+  ///
+  /// In en, this message translates to:
+  /// **'best SNR'**
+  String get reach_bestSnr;
+
+  /// No description provided for @reach_hops.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hops away'**
+  String reach_hops(int count);
+
+  /// No description provided for @reach_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'From the online analyzer: observers that heard this packet and uploaded it.'**
+  String get reach_explainer;
+
+  /// No description provided for @reach_checkAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Check again'**
+  String get reach_checkAgain;
+
+  /// No description provided for @analyzer_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Online analyzer'**
+  String get analyzer_title;
+
+  /// No description provided for @analyzer_url.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyzer address'**
+  String get analyzer_url;
+
+  /// No description provided for @analyzer_urlHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A CoreScope analyzer (https://). Use the one that covers your region.'**
+  String get analyzer_urlHint;
+
+  /// No description provided for @analyzer_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get analyzer_reset;
+
+  /// No description provided for @analyzer_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Used to check which observers heard your messages. A check sends only the packet ID.'**
+  String get analyzer_hint;
+
+  /// No description provided for @analyzer_hopLookup.
+  ///
+  /// In en, this message translates to:
+  /// **'Name unknown repeaters online'**
+  String get analyzer_hopLookup;
+
+  /// No description provided for @analyzer_hopLookupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When a repeater ID isn’t in your contacts, ask the analyzer for its name. Sends the short IDs only. A name ending in “?” means several repeaters share that ID.'**
+  String get analyzer_hopLookupHint;
 }
 
 class _AppLocalizationsDelegate

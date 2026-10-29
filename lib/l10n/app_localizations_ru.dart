@@ -8780,4 +8780,67 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'Включена экономия батареи, она задаёт темп (батарея каждые 10 минут).';
+
+  @override
+  String get reach_check => 'Проверить охват наблюдателями';
+
+  @override
+  String get reach_title => 'Охват наблюдателями';
+
+  @override
+  String get reach_noHash =>
+      'Это сообщение пока нельзя проверить: ни один ретранслятор не вернул его на ваше радио, поэтому ID пакета неизвестен.';
+
+  @override
+  String get reach_unreachable =>
+      'Анализатор недоступен. Проверьте интернет или адрес анализатора в настройках.';
+
+  @override
+  String get reach_none =>
+      'Пока ни один наблюдатель его не услышал. Наблюдатели загружают данные чуть позже, проверьте через минуту.';
+
+  @override
+  String get reach_observers => 'наблюдатели';
+
+  @override
+  String get reach_maxHops => 'макс. хопов';
+
+  @override
+  String get reach_bestSnr => 'лучший SNR';
+
+  @override
+  String reach_hops(int count) {
+    return 'через $count хопов';
+  }
+
+  @override
+  String get reach_explainer =>
+      'С онлайн-анализатора: наблюдатели, услышавшие и загрузившие этот пакет.';
+
+  @override
+  String get reach_checkAgain => 'Проверить снова';
+
+  @override
+  String get analyzer_title => 'Онлайн-анализатор';
+
+  @override
+  String get analyzer_url => 'Адрес анализатора';
+
+  @override
+  String get analyzer_urlHint =>
+      'Анализатор CoreScope (https://). Используйте тот, что покрывает ваш регион.';
+
+  @override
+  String get analyzer_reset => 'По умолчанию';
+
+  @override
+  String get analyzer_hint =>
+      'Для проверки, какие наблюдатели услышали ваши сообщения. Передаётся только ID пакета.';
+
+  @override
+  String get analyzer_hopLookup => 'Имена неизвестных ретрансляторов онлайн';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Если ID ретранслятора нет в контактах, имя запрашивается у анализатора. Передаются только короткие ID. Имя с «?» означает, что ID общий у нескольких ретрансляторов.';
 }

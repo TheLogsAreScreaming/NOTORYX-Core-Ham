@@ -8788,4 +8788,67 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'Oszczędzanie baterii jest włączone i wyznacza tempo (bateria co 10 minut).';
+
+  @override
+  String get reach_check => 'Sprawdź zasięg u obserwatorów';
+
+  @override
+  String get reach_title => 'Zasięg u obserwatorów';
+
+  @override
+  String get reach_noHash =>
+      'Tej wiadomości nie da się jeszcze sprawdzić: żaden przemiennik nie odesłał jej do radia, więc ID pakietu jest nieznane.';
+
+  @override
+  String get reach_unreachable =>
+      'Brak połączenia z analizatorem. Sprawdź internet lub adres analizatora w ustawieniach.';
+
+  @override
+  String get reach_none =>
+      'Żaden obserwator jeszcze tego nie usłyszał. Obserwatorzy wysyłają dane chwilę po odbiorze, sprawdź ponownie za minutę.';
+
+  @override
+  String get reach_observers => 'obserwatorzy';
+
+  @override
+  String get reach_maxHops => 'maks. skoki';
+
+  @override
+  String get reach_bestSnr => 'najlepszy SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count skoków dalej';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Z analizatora online: obserwatorzy, którzy usłyszeli i wysłali ten pakiet.';
+
+  @override
+  String get reach_checkAgain => 'Sprawdź ponownie';
+
+  @override
+  String get analyzer_title => 'Analizator online';
+
+  @override
+  String get analyzer_url => 'Adres analizatora';
+
+  @override
+  String get analyzer_urlHint =>
+      'Analizator CoreScope (https://). Użyj tego dla swojego regionu.';
+
+  @override
+  String get analyzer_reset => 'Domyślny';
+
+  @override
+  String get analyzer_hint =>
+      'Służy do sprawdzania, którzy obserwatorzy usłyszeli wiadomości. Wysyłane jest tylko ID pakietu.';
+
+  @override
+  String get analyzer_hopLookup => 'Nazwy nieznanych przemienników online';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Gdy ID przemiennika nie ma w kontaktach, nazwa jest pobierana z analizatora. Wysyłane są tylko krótkie ID. Nazwa z „?” oznacza, że kilka przemienników ma to ID.';
 }

@@ -8339,4 +8339,64 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get settings_refreshSaverOn => '배터리 절약이 켜져 있어 그 주기를 따릅니다(배터리 10분마다).';
+
+  @override
+  String get reach_check => '관측자 도달 확인';
+
+  @override
+  String get reach_title => '관측자 도달';
+
+  @override
+  String get reach_noHash =>
+      '아직 이 메시지를 조회할 수 없습니다. 어떤 리피터도 무전기로 되돌려 보내지 않아 패킷 ID를 모릅니다.';
+
+  @override
+  String get reach_unreachable =>
+      '분석기에 연결할 수 없습니다. 인터넷 연결이나 설정의 분석기 주소를 확인하세요.';
+
+  @override
+  String get reach_none =>
+      '아직 어떤 관측자도 듣지 못했습니다. 관측자는 수신 후 조금 뒤 업로드하므로 1분 뒤 다시 확인하세요.';
+
+  @override
+  String get reach_observers => '관측자';
+
+  @override
+  String get reach_maxHops => '최대 홉';
+
+  @override
+  String get reach_bestSnr => '최고 SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count홉 거리';
+  }
+
+  @override
+  String get reach_explainer => '온라인 분석기 기준: 이 패킷을 듣고 업로드한 관측자.';
+
+  @override
+  String get reach_checkAgain => '다시 확인';
+
+  @override
+  String get analyzer_title => '온라인 분석기';
+
+  @override
+  String get analyzer_url => '분석기 주소';
+
+  @override
+  String get analyzer_urlHint => 'CoreScope 분석기(https://). 내 지역을 담당하는 것을 쓰세요.';
+
+  @override
+  String get analyzer_reset => '기본값';
+
+  @override
+  String get analyzer_hint => '어떤 관측자가 메시지를 들었는지 확인하는 데 씁니다. 패킷 ID만 보냅니다.';
+
+  @override
+  String get analyzer_hopLookup => '알 수 없는 리피터 이름 온라인 조회';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      '리피터 ID가 연락처에 없으면 분석기에 이름을 묻습니다. 짧은 ID만 보냅니다. 이름 끝의 “?”는 여러 리피터가 그 ID를 함께 쓴다는 뜻입니다.';
 }
