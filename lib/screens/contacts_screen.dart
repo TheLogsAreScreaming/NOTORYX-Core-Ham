@@ -32,6 +32,8 @@ import '../widgets/room_login_dialog.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/unread_badge.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../helpers/share_links.dart';
+import '../widgets/share_in_chat.dart';
 import 'chat_screen.dart';
 import 'discovery_screen.dart';
 import 'repeater_hub_screen.dart';
@@ -281,6 +283,7 @@ class _ContactsScreenState extends State<ContactsScreen>
   Future<void> _contactImport() async {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     final clipboardData = await Clipboard.getData('text/plain');
+    if (!mounted) return;
     if (clipboardData == null || clipboardData.text == null) {
       if (mounted) {
         showDismissibleSnackBar(
@@ -291,7 +294,33 @@ class _ContactsScreenState extends State<ContactsScreen>
       return;
     }
     final text = clipboardData.text!.trim();
-    if (!text.startsWith('meshcore://')) {
+    final link = parseContactLink(text);
+    if (link != null) {
+      // Preview the identity and reuse chat's explicit Add action. In
+      // particular, never replace an existing contact's name or route.
+      await showDialog<void>(
+        context: context,
+        builder: (dialogContext) =>
+            ChangeNotifierProvider<MeshCoreConnector>.value(
+              value: connector,
+              child: AlertDialog(
+                title: Text(context.l10n.contacts_addContactFromClipboard),
+                content: ContactLinkCard(
+                  link: link,
+                  textColor: Theme.of(dialogContext).colorScheme.onSurface,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(dialogContext),
+                    child: Text(context.l10n.common_close),
+                  ),
+                ],
+              ),
+            ),
+      );
+      return;
+    }
+    if (!RegExp(r'^meshcore://[0-9a-fA-F]+$').hasMatch(text)) {
       if (mounted) {
         showDismissibleSnackBar(
           context,
@@ -304,6 +333,9 @@ class _ContactsScreenState extends State<ContactsScreen>
     final Uint8List importContactFrame;
     try {
       final bytes = hex2Uint8List(hexString);
+      if (bytes.length < 98 || bytes.length + 1 > maxFrameSize) {
+        throw const FormatException('Invalid contact advertisement size');
+      }
       importContactFrame = buildImportContactFrame(bytes);
     } catch (e) {
       if (mounted) {
@@ -354,7 +386,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.person_add_rounded),
                       const SizedBox(width: 8),
-                      Text(context.l10n.discoveredContacts_Title),
+                      Flexible(
+                        child: Text(context.l10n.discoveredContacts_Title),
+                      ),
                     ],
                   ),
                   onTap: () => Navigator.push(
@@ -369,7 +403,11 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.paste),
                       const SizedBox(width: 8),
-                      Text(context.l10n.contacts_addContactFromClipboard),
+                      Flexible(
+                        child: Text(
+                          context.l10n.contacts_addContactFromClipboard,
+                        ),
+                      ),
                     ],
                   ),
                   onTap: () => _contactImport(),
@@ -380,7 +418,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.connect_without_contact),
                       const SizedBox(width: 8),
-                      Text(context.l10n.contacts_zeroHopAdvert),
+                      Flexible(
+                        child: Text(context.l10n.contacts_zeroHopAdvert),
+                      ),
                     ],
                   ),
                   onTap: () => {
@@ -396,7 +436,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.cell_tower),
                       const SizedBox(width: 8),
-                      Text(context.l10n.contacts_floodAdvert),
+                      Flexible(child: Text(context.l10n.contacts_floodAdvert)),
                     ],
                   ),
                   onTap: () => {
@@ -412,7 +452,11 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.copy),
                       const SizedBox(width: 8),
-                      Text(context.l10n.contacts_copyAdvertToClipboard),
+                      Flexible(
+                        child: Text(
+                          context.l10n.contacts_copyAdvertToClipboard,
+                        ),
+                      ),
                     ],
                   ),
                   onTap: () => _contactExport(Uint8List.fromList([])),
@@ -426,7 +470,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                         color: Theme.of(context).colorScheme.error,
                       ),
                       const SizedBox(width: 8),
-                      Text(context.l10n.common_disconnect),
+                      Flexible(child: Text(context.l10n.common_disconnect)),
                     ],
                   ),
                   onTap: () => _disconnect(context, connector),
@@ -436,7 +480,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.settings),
                       const SizedBox(width: 8),
-                      Text(context.l10n.settings_title),
+                      Flexible(child: Text(context.l10n.settings_title)),
                     ],
                   ),
                   onTap: () => Navigator.push(

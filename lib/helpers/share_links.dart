@@ -37,22 +37,39 @@ String contactLinkFor(Contact contact) => Uri(
 ContactLink? parseContactLink(String text) {
   final match = RegExp(r'meshcore://contact/add\?\S+').firstMatch(text);
   if (match == null) return null;
-  final Uri uri;
+  final candidate = match.group(0)!;
+  if (RegExp(r'%(?![0-9a-fA-F]{2})').hasMatch(candidate)) return null;
   try {
-    uri = Uri.parse(match.group(0)!);
+    final uri = Uri.parse(candidate);
+    if (uri.scheme != 'meshcore' ||
+        uri.host != 'contact' ||
+        uri.path != '/add' ||
+        uri.hasFragment) {
+      return null;
+    }
+    final params = uri.queryParametersAll;
+    // Ambiguous identity fields must not silently select one of two values.
+    for (final field in ['name', 'public_key', 'type']) {
+      if (params[field] != null && params[field]!.length != 1) return null;
+    }
+    final key = uri.queryParameters['public_key'] ?? '';
+    if (!RegExp(r'^[0-9a-fA-F]{64}$').hasMatch(key)) return null;
+    final rawType = uri.queryParameters['type'];
+    // Keep the existing companion default only when type is absent.
+    if (rawType != null && !RegExp(r'^[1-4]$').hasMatch(rawType)) {
+      return null;
+    }
+    final type = rawType == null ? advTypeChat : int.parse(rawType);
+    final name = (uri.queryParameters['name'] ?? '').trim();
+    return ContactLink(
+      name.isEmpty ? 'Unnamed contact' : name,
+      hex2Uint8List(key),
+      type,
+    );
   } on FormatException {
+    // Query decoding can fail too (bad percent escapes or invalid UTF-8).
     return null;
   }
-  final key = uri.queryParameters['public_key'] ?? '';
-  if (!RegExp(r'^[0-9a-fA-F]{64}$').hasMatch(key)) return null;
-  final type = int.tryParse(uri.queryParameters['type'] ?? '1') ?? 1;
-  if (type < advTypeChat || type > advTypeSensor) return null;
-  final name = (uri.queryParameters['name'] ?? '').trim();
-  return ContactLink(
-    name.isEmpty ? 'Unnamed contact' : name,
-    hex2Uint8List(key),
-    type,
-  );
 }
 
 /// The app's map-marker message (`m:<lat>,<lon>|<label>|`), which chats
