@@ -14646,6 +14646,294 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Battery saver is on, so it sets the pace (battery every 10 minutes).'**
   String get settings_refreshSaverOn;
+
+  /// No description provided for @discovered_tray.
+  ///
+  /// In en, this message translates to:
+  /// **'Channels heard nearby: {count}'**
+  String discovered_tray(int count);
+
+  /// No description provided for @discovered_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard nearby, not joined'**
+  String get discovered_title;
+
+  /// No description provided for @discovered_heard.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard {count}× · last {time}'**
+  String discovered_heard(int count, String time);
+
+  /// No description provided for @discovered_ignore.
+  ///
+  /// In en, this message translates to:
+  /// **'Ignore'**
+  String get discovered_ignore;
+
+  /// No description provided for @discovered_ignoreAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Ignore all'**
+  String get discovered_ignoreAll;
+
+  /// No description provided for @discovered_joinAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Join all'**
+  String get discovered_joinAll;
+
+  /// No description provided for @discovered_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'These are public channels from the channel directory that your radio has heard traffic on. Each was confirmed by decrypting a message with its key. Ignored channels stay hidden.'**
+  String get discovered_explainer;
+
+  /// No description provided for @mqtt_presetMeshRank.
+  ///
+  /// In en, this message translates to:
+  /// **'MeshRank (community)'**
+  String get mqtt_presetMeshRank;
+
+  /// No description provided for @mqtt_presetMeshRankNote.
+  ///
+  /// In en, this message translates to:
+  /// **'MeshRank is a community-run MeshCore network ranking, not part of NOTORYX and not endorsed by it. No sign-in: packets are shared under your radio’s key and region code, and only once you turn sharing on.'**
+  String get mqtt_presetMeshRankNote;
+
+  /// No description provided for @pathFilter_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Path-width filter'**
+  String get pathFilter_title;
+
+  /// No description provided for @pathFilter_firmwareNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs repeater firmware with forwarding rules (mikecarper/MeshCore). Official MeshCore firmware rejects these commands.'**
+  String get pathFilter_firmwareNote;
+
+  /// No description provided for @pathFilter_width.
+  ///
+  /// In en, this message translates to:
+  /// **'Path width'**
+  String get pathFilter_width;
+
+  /// No description provided for @pathFilter_anyWidth.
+  ///
+  /// In en, this message translates to:
+  /// **'Any width'**
+  String get pathFilter_anyWidth;
+
+  /// No description provided for @pathFilter_bytes.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}-byte paths'**
+  String pathFilter_bytes(int n);
+
+  /// No description provided for @pathFilter_twoOrMore.
+  ///
+  /// In en, this message translates to:
+  /// **'2 or 3 bytes (2+)'**
+  String get pathFilter_twoOrMore;
+
+  /// No description provided for @pathFilter_path.
+  ///
+  /// In en, this message translates to:
+  /// **'Applies to'**
+  String get pathFilter_path;
+
+  /// No description provided for @pathFilter_radio.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio floods'**
+  String get pathFilter_radio;
+
+  /// No description provided for @pathFilter_bridge.
+  ///
+  /// In en, this message translates to:
+  /// **'Bridge'**
+  String get pathFilter_bridge;
+
+  /// No description provided for @pathFilter_cross.
+  ///
+  /// In en, this message translates to:
+  /// **'Crossover'**
+  String get pathFilter_cross;
+
+  /// No description provided for @pathFilter_bridgeCross.
+  ///
+  /// In en, this message translates to:
+  /// **'Bridge and crossover'**
+  String get pathFilter_bridgeCross;
+
+  /// No description provided for @pathFilter_limit.
+  ///
+  /// In en, this message translates to:
+  /// **'Limit instead of drop'**
+  String get pathFilter_limit;
+
+  /// No description provided for @pathFilter_limitOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Forwards up to a set number per minute.'**
+  String get pathFilter_limitOn;
+
+  /// No description provided for @pathFilter_drop.
+  ///
+  /// In en, this message translates to:
+  /// **'Matching floods are dropped, not forwarded.'**
+  String get pathFilter_drop;
+
+  /// No description provided for @pathFilter_perMinute.
+  ///
+  /// In en, this message translates to:
+  /// **'Per minute'**
+  String get pathFilter_perMinute;
+
+  /// No description provided for @pathFilter_rateInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 1 to 65534.'**
+  String get pathFilter_rateInvalid;
+
+  /// No description provided for @pathFilter_reviewNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This only fills in the command line. Check it, then press Send. Use “get fr” first to see existing rules.'**
+  String get pathFilter_reviewNote;
+
+  /// No description provided for @pathFilter_useCommand.
+  ///
+  /// In en, this message translates to:
+  /// **'Use command'**
+  String get pathFilter_useCommand;
+
+  /// No description provided for @settings_linkPreviews.
+  ///
+  /// In en, this message translates to:
+  /// **'Link previews'**
+  String get settings_linkPreviews;
+
+  /// No description provided for @settings_linkPreviewsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows the title of a link in a message. Off by default: fetching the page tells that site your IP address.'**
+  String get settings_linkPreviewsHint;
+
+  /// No description provided for @guide_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Field guide'**
+  String get guide_title;
+
+  /// No description provided for @guide_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Basics, cold-weather batteries, solar and antennas'**
+  String get guide_subtitle;
+
+  /// No description provided for @guide_secMesh.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting on the mesh'**
+  String get guide_secMesh;
+
+  /// No description provided for @guide_mesh1.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone talks to your radio over Bluetooth, USB or Wi-Fi; the radio talks to the mesh over LoRa. Messages still work with no phone signal.'**
+  String get guide_mesh1;
+
+  /// No description provided for @guide_mesh2.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeaters pass messages along; each relay is a hop. Fewer hops means faster, more reliable delivery.'**
+  String get guide_mesh2;
+
+  /// No description provided for @guide_mesh3.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep messages short and avoid flooding busy channels: every message uses shared airtime.'**
+  String get guide_mesh3;
+
+  /// No description provided for @guide_secCold.
+  ///
+  /// In en, this message translates to:
+  /// **'Batteries in the cold'**
+  String get guide_secCold;
+
+  /// No description provided for @guide_cold1.
+  ///
+  /// In en, this message translates to:
+  /// **'Don’t charge lithium batteries below freezing (0 °C / 32 °F): it damages them permanently.'**
+  String get guide_cold1;
+
+  /// No description provided for @guide_cold2.
+  ///
+  /// In en, this message translates to:
+  /// **'Carry the radio inside your jacket. Cold cuts capacity, but it comes back once the battery warms up.'**
+  String get guide_cold2;
+
+  /// No description provided for @guide_cold3.
+  ///
+  /// In en, this message translates to:
+  /// **'For fixed sites in cold climates, LiFePO4 copes better than lithium-ion; a heated or insulated box helps either.'**
+  String get guide_cold3;
+
+  /// No description provided for @guide_secSolar.
+  ///
+  /// In en, this message translates to:
+  /// **'Solar for repeaters'**
+  String get guide_secSolar;
+
+  /// No description provided for @guide_solar1.
+  ///
+  /// In en, this message translates to:
+  /// **'A repeater uses very little power, but size the panel and battery for your darkest winter week, not a summer day.'**
+  String get guide_solar1;
+
+  /// No description provided for @guide_solar2.
+  ///
+  /// In en, this message translates to:
+  /// **'Face the panel toward the equator and tilt it steeply in winter; keep snow and shade off it.'**
+  String get guide_solar2;
+
+  /// No description provided for @guide_secAntenna.
+  ///
+  /// In en, this message translates to:
+  /// **'Antennas and placement'**
+  String get guide_secAntenna;
+
+  /// No description provided for @guide_ant1.
+  ///
+  /// In en, this message translates to:
+  /// **'Height beats power: a radio a few metres up reaches far more than one on a desk.'**
+  String get guide_ant1;
+
+  /// No description provided for @guide_ant2.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the antenna vertical and clear of metal, and use one made for your band (for example 915 MHz in North America).'**
+  String get guide_ant2;
+
+  /// No description provided for @guide_secMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn more'**
+  String get guide_secMore;
+
+  /// No description provided for @guide_moreMeshcore.
+  ///
+  /// In en, this message translates to:
+  /// **'The official MeshCore project'**
+  String get guide_moreMeshcore;
+
+  /// No description provided for @guide_moreCascadia.
+  ///
+  /// In en, this message translates to:
+  /// **'Community guides: getting started, wardriving, regions, solar'**
+  String get guide_moreCascadia;
 }
 
 class _AppLocalizationsDelegate

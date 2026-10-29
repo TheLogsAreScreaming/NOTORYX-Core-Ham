@@ -8737,4 +8737,172 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'Пестенето на батерия е включено и то определя темпото (батерия на 10 минути).';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Канали, чути наблизо: $count';
+  }
+
+  @override
+  String get discovered_title => 'Чути наблизо, неприсъединени';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return 'Чут $count× · последно $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Пренебрегване';
+
+  @override
+  String get discovered_ignoreAll => 'Пренебрегване на всички';
+
+  @override
+  String get discovered_joinAll => 'Присъединяване към всички';
+
+  @override
+  String get discovered_explainer =>
+      'Това са публични канали от указателя, по които радиото ви е чуло трафик. Всеки е потвърден чрез дешифриране на съобщение с ключа му. Пренебрегнатите остават скрити.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (общност)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank е класация на мрежи MeshCore от общността, не е част от NOTORYX и не е одобрена от него. Без вход: пакетите се споделят с ключа и регионалния код на радиото, само след като включите споделянето.';
+
+  @override
+  String get pathFilter_title => 'Филтър по ширина на пътя';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Изисква фърмуер на ретранслатора с правила за препращане (mikecarper/MeshCore). Официалният фърмуер MeshCore отхвърля тези команди.';
+
+  @override
+  String get pathFilter_width => 'Ширина на пътя';
+
+  @override
+  String get pathFilter_anyWidth => 'Всяка ширина';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return 'Пътища от $n байта';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 или 3 байта (2+)';
+
+  @override
+  String get pathFilter_path => 'Прилага се за';
+
+  @override
+  String get pathFilter_radio => 'Радио заливания';
+
+  @override
+  String get pathFilter_bridge => 'Мост';
+
+  @override
+  String get pathFilter_cross => 'Кросоувър';
+
+  @override
+  String get pathFilter_bridgeCross => 'Мост и кросоувър';
+
+  @override
+  String get pathFilter_limit => 'Ограничаване вместо отхвърляне';
+
+  @override
+  String get pathFilter_limitOn => 'Препраща до зададен брой на минута.';
+
+  @override
+  String get pathFilter_drop =>
+      'Съвпадащите заливания се отхвърлят, не се препращат.';
+
+  @override
+  String get pathFilter_perMinute => 'На минута';
+
+  @override
+  String get pathFilter_rateInvalid => 'Въведете от 1 до 65534.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Това само попълва командния ред. Проверете го и натиснете Изпращане. Първо използвайте „get fr“, за да видите правилата.';
+
+  @override
+  String get pathFilter_useCommand => 'Използване на командата';
+
+  @override
+  String get settings_linkPreviews => 'Визуализация на връзки';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Показва заглавието на връзка в съобщение. Изключено по подразбиране: зареждането на страницата разкрива IP адреса ви пред сайта.';
+
+  @override
+  String get guide_title => 'Полево ръководство';
+
+  @override
+  String get guide_subtitle =>
+      'Основи, батерии в студ, слънчева енергия и антени';
+
+  @override
+  String get guide_secMesh => 'Влизане в мрежата';
+
+  @override
+  String get guide_mesh1 =>
+      'Телефонът говори с радиото през Bluetooth, USB или Wi-Fi; радиото говори с мрежата през LoRa. Съобщенията работят и без мобилен сигнал.';
+
+  @override
+  String get guide_mesh2 =>
+      'Ретранслаторите предават съобщенията; всяко препредаване е скок. По-малко скокове означава по-бърза и надеждна доставка.';
+
+  @override
+  String get guide_mesh3 =>
+      'Пишете кратко и не заливайте натоварени канали: всяко съобщение използва общо ефирно време.';
+
+  @override
+  String get guide_secCold => 'Батерии в студа';
+
+  @override
+  String get guide_cold1 =>
+      'Не зареждайте литиеви батерии под нулата (0 °C): това ги поврежда трайно.';
+
+  @override
+  String get guide_cold2 =>
+      'Носете радиото под якето. Студът намалява капацитета, но той се връща, щом батерията се затопли.';
+
+  @override
+  String get guide_cold3 =>
+      'За постоянни места в студен климат LiFePO4 се справя по-добре от литиево-йонните; отоплена или изолирана кутия помага и на двете.';
+
+  @override
+  String get guide_secSolar => 'Слънчева енергия за ретранслатори';
+
+  @override
+  String get guide_solar1 =>
+      'Ретранслаторът ползва много малко енергия, но оразмерете панела и батерията за най-тъмната зимна седмица, а не за летен ден.';
+
+  @override
+  String get guide_solar2 =>
+      'Насочете панела към екватора и го наклонете стръмно през зимата; пазете го от сняг и сянка.';
+
+  @override
+  String get guide_secAntenna => 'Антени и разположение';
+
+  @override
+  String get guide_ant1 =>
+      'Височината е по-важна от мощността: радио на няколко метра височина стига много по-далеч от такова на бюро.';
+
+  @override
+  String get guide_ant2 =>
+      'Дръжте антената вертикално и далеч от метал и използвайте антена за вашата честота (напр. 868 MHz в Европа).';
+
+  @override
+  String get guide_secMore => 'Научете повече';
+
+  @override
+  String get guide_moreMeshcore => 'Официалният проект MeshCore';
+
+  @override
+  String get guide_moreCascadia =>
+      'Ръководства от общността: начало, картографиране, региони, слънце';
 }

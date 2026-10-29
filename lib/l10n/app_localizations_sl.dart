@@ -8739,4 +8739,171 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'Varčevanje z baterijo je vklopljeno in določa tempo (baterija vsakih 10 minut).';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Kanali, slišani v bližini: $count';
+  }
+
+  @override
+  String get discovered_title => 'Slišano v bližini, ne pridruženo';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return 'Slišano $count× · nazadnje $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Prezri';
+
+  @override
+  String get discovered_ignoreAll => 'Prezri vse';
+
+  @override
+  String get discovered_joinAll => 'Pridruži se vsem';
+
+  @override
+  String get discovered_explainer =>
+      'To so javni kanali iz imenika, na katerih je radio slišal promet. Vsak je potrjen z dešifriranjem sporočila z njegovim ključem. Prezrti ostanejo skriti.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (skupnost)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank je skupnostna lestvica omrežij MeshCore, ni del NOTORYX in je ta ne priporoča. Brez prijave: paketi se delijo pod ključem in regijsko kodo radia, šele ko vklopite deljenje.';
+
+  @override
+  String get pathFilter_title => 'Filter širine poti';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Potrebuje vdelano programsko opremo repetitorja s pravili posredovanja (mikecarper/MeshCore). Uradna MeshCore jih zavrne.';
+
+  @override
+  String get pathFilter_width => 'Širina poti';
+
+  @override
+  String get pathFilter_anyWidth => 'Katera koli širina';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return 'Poti z $n bajti';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 ali 3 bajti (2+)';
+
+  @override
+  String get pathFilter_path => 'Velja za';
+
+  @override
+  String get pathFilter_radio => 'Radijske poplave';
+
+  @override
+  String get pathFilter_bridge => 'Most';
+
+  @override
+  String get pathFilter_cross => 'Prehod';
+
+  @override
+  String get pathFilter_bridgeCross => 'Most in prehod';
+
+  @override
+  String get pathFilter_limit => 'Omeji namesto zavrzi';
+
+  @override
+  String get pathFilter_limitOn =>
+      'Posreduje do nastavljenega števila na minuto.';
+
+  @override
+  String get pathFilter_drop => 'Ujemajoče poplave se zavržejo.';
+
+  @override
+  String get pathFilter_perMinute => 'Na minuto';
+
+  @override
+  String get pathFilter_rateInvalid => 'Vnesite od 1 do 65534.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'To samo izpolni ukazno vrstico. Preverite jo in pritisnite Pošlji. Najprej z »get fr« preverite pravila.';
+
+  @override
+  String get pathFilter_useCommand => 'Uporabi ukaz';
+
+  @override
+  String get settings_linkPreviews => 'Predogledi povezav';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Prikaže naslov povezave v sporočilu. Privzeto izklopljeno: nalaganje strani spletnemu mestu razkrije vaš IP.';
+
+  @override
+  String get guide_title => 'Terenski vodnik';
+
+  @override
+  String get guide_subtitle => 'Osnove, baterije v mrazu, sonce in antene';
+
+  @override
+  String get guide_secMesh => 'Vstop v omrežje';
+
+  @override
+  String get guide_mesh1 =>
+      'Telefon se z radiem poveže prek Bluetootha, USB ali Wi-Fi; radio z omrežjem prek LoRa. Sporočila delujejo tudi brez signala.';
+
+  @override
+  String get guide_mesh2 =>
+      'Repetitorji posredujejo sporočila; vsako posredovanje je skok. Manj skokov pomeni hitrejšo in zanesljivejšo dostavo.';
+
+  @override
+  String get guide_mesh3 =>
+      'Pišite na kratko in ne preplavljajte zasedenih kanalov: vsako sporočilo porabi skupen čas oddajanja.';
+
+  @override
+  String get guide_secCold => 'Baterije v mrazu';
+
+  @override
+  String get guide_cold1 =>
+      'Litijevih baterij ne polnite pod lediščem (0 °C): to jih trajno poškoduje.';
+
+  @override
+  String get guide_cold2 =>
+      'Radio nosite pod jakno. Mraz zmanjša zmogljivost, ki se vrne, ko se baterija ogreje.';
+
+  @override
+  String get guide_cold3 =>
+      'Za stalne lokacije v mrzlem podnebju je LiFePO4 boljša od litij-ionske; ogrevana ali izolirana omarica pomaga obema.';
+
+  @override
+  String get guide_secSolar => 'Sonce za repetitorje';
+
+  @override
+  String get guide_solar1 =>
+      'Repetitor porabi zelo malo, a ploščo in baterijo dimenzionirajte za najtemnejši zimski teden, ne za poletni dan.';
+
+  @override
+  String get guide_solar2 =>
+      'Ploščo obrnite proti ekvatorju in jo pozimi strmo nagnite; obvarujte jo snega in sence.';
+
+  @override
+  String get guide_secAntenna => 'Antene in postavitev';
+
+  @override
+  String get guide_ant1 =>
+      'Višina premaga moč: radio nekaj metrov višje seže veliko dlje kot na mizi.';
+
+  @override
+  String get guide_ant2 =>
+      'Anteno imejte navpično in stran od kovine ter uporabite takšno za svoj pas (npr. 868 MHz v Evropi).';
+
+  @override
+  String get guide_secMore => 'Več o tem';
+
+  @override
+  String get guide_moreMeshcore => 'Uradni projekt MeshCore';
+
+  @override
+  String get guide_moreCascadia =>
+      'Skupnostni vodniki: začetek, wardriving, regije, sonce';
 }

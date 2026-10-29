@@ -130,6 +130,7 @@ class AppSettings {
   /// How often routine radio status is refreshed: 'fast', 'normal' or
   /// 'slow'. Battery saver overrides it when on.
   final String refreshRate;
+
   /// Fetch a preview for the first link in a message. Off by default:
   /// fetching tells the site your IP address.
   final bool linkPreviews;

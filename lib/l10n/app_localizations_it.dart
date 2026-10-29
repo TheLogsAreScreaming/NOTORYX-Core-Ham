@@ -8764,4 +8764,170 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'Il risparmio batteria è attivo e detta il ritmo (batteria ogni 10 minuti).';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Canali sentiti nelle vicinanze: $count';
+  }
+
+  @override
+  String get discovered_title => 'Sentiti vicino, non uniti';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return 'Sentito $count× · ultimo $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Ignora';
+
+  @override
+  String get discovered_ignoreAll => 'Ignora tutti';
+
+  @override
+  String get discovered_joinAll => 'Unisciti a tutti';
+
+  @override
+  String get discovered_explainer =>
+      'Sono canali pubblici dell’elenco su cui la radio ha sentito traffico. Ognuno è confermato decifrando un messaggio con la sua chiave. Quelli ignorati restano nascosti.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (comunità)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank è una classifica comunitaria delle reti MeshCore, non fa parte di NOTORYX e non è approvata da esso. Senza accesso: i pacchetti sono condivisi con la chiave e il codice regione della radio, solo dopo aver attivato la condivisione.';
+
+  @override
+  String get pathFilter_title => 'Filtro larghezza percorso';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Richiede un firmware del ripetitore con regole di inoltro (mikecarper/MeshCore). Il firmware ufficiale MeshCore rifiuta questi comandi.';
+
+  @override
+  String get pathFilter_width => 'Larghezza percorso';
+
+  @override
+  String get pathFilter_anyWidth => 'Qualsiasi larghezza';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return 'Percorsi da $n byte';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 o 3 byte (2+)';
+
+  @override
+  String get pathFilter_path => 'Si applica a';
+
+  @override
+  String get pathFilter_radio => 'Flood radio';
+
+  @override
+  String get pathFilter_bridge => 'Bridge';
+
+  @override
+  String get pathFilter_cross => 'Incrocio';
+
+  @override
+  String get pathFilter_bridgeCross => 'Bridge e incrocio';
+
+  @override
+  String get pathFilter_limit => 'Limita invece di scartare';
+
+  @override
+  String get pathFilter_limitOn => 'Inoltra fino a un numero fisso al minuto.';
+
+  @override
+  String get pathFilter_drop => 'I flood corrispondenti vengono scartati.';
+
+  @override
+  String get pathFilter_perMinute => 'Al minuto';
+
+  @override
+  String get pathFilter_rateInvalid => 'Inserisci da 1 a 65534.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Compila solo la riga di comando. Controllala, poi premi Invia. Usa prima «get fr» per vedere le regole.';
+
+  @override
+  String get pathFilter_useCommand => 'Usa comando';
+
+  @override
+  String get settings_linkPreviews => 'Anteprime dei link';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Mostra il titolo di un link in un messaggio. Disattivato di default: caricare la pagina rivela il tuo IP al sito.';
+
+  @override
+  String get guide_title => 'Guida da campo';
+
+  @override
+  String get guide_subtitle => 'Basi, batterie al freddo, solare e antenne';
+
+  @override
+  String get guide_secMesh => 'Entrare nella rete';
+
+  @override
+  String get guide_mesh1 =>
+      'Il telefono parla con la radio via Bluetooth, USB o Wi-Fi; la radio parla con la rete via LoRa. I messaggi funzionano anche senza campo.';
+
+  @override
+  String get guide_mesh2 =>
+      'I ripetitori inoltrano i messaggi; ogni inoltro è un salto. Meno salti, consegna più rapida e affidabile.';
+
+  @override
+  String get guide_mesh3 =>
+      'Messaggi brevi e niente flood sui canali affollati: ogni messaggio usa tempo d’aria condiviso.';
+
+  @override
+  String get guide_secCold => 'Batterie al freddo';
+
+  @override
+  String get guide_cold1 =>
+      'Non caricare batterie al litio sotto zero (0 °C): si danneggiano per sempre.';
+
+  @override
+  String get guide_cold2 =>
+      'Tieni la radio dentro la giacca. Il freddo riduce la capacità, che torna quando la batteria si scalda.';
+
+  @override
+  String get guide_cold3 =>
+      'Per siti fissi in climi freddi, le LiFePO4 resistono meglio delle litio-ione; una scatola isolata o riscaldata aiuta entrambe.';
+
+  @override
+  String get guide_secSolar => 'Solare per ripetitori';
+
+  @override
+  String get guide_solar1 =>
+      'Un ripetitore consuma pochissimo, ma dimensiona pannello e batteria per la settimana invernale più buia, non per un giorno estivo.';
+
+  @override
+  String get guide_solar2 =>
+      'Orienta il pannello verso l’equatore, molto inclinato d’inverno; tienilo libero da neve e ombra.';
+
+  @override
+  String get guide_secAntenna => 'Antenne e posizionamento';
+
+  @override
+  String get guide_ant1 =>
+      'L’altezza conta più della potenza: una radio a qualche metro arriva molto più lontano di una sulla scrivania.';
+
+  @override
+  String get guide_ant2 =>
+      'Tieni l’antenna verticale e lontana dal metallo, e usane una per la tua banda (per esempio 868 MHz in Europa).';
+
+  @override
+  String get guide_secMore => 'Scopri di più';
+
+  @override
+  String get guide_moreMeshcore => 'Il progetto ufficiale MeshCore';
+
+  @override
+  String get guide_moreCascadia =>
+      'Guide della comunità: primi passi, wardriving, regioni, solare';
 }

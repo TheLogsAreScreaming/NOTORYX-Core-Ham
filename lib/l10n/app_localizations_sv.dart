@@ -8678,4 +8678,171 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'Batterisparläget är på och styr takten (batteri var 10:e minut).';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Kanaler hörda i närheten: $count';
+  }
+
+  @override
+  String get discovered_title => 'Hörda i närheten, inte anslutna';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return 'Hörd $count× · senast $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Ignorera';
+
+  @override
+  String get discovered_ignoreAll => 'Ignorera alla';
+
+  @override
+  String get discovered_joinAll => 'Gå med i alla';
+
+  @override
+  String get discovered_explainer =>
+      'Det här är offentliga kanaler från kanalkatalogen som radion har hört trafik på. Var och en bekräftades genom att ett meddelande dekrypterades med dess nyckel. Ignorerade kanaler förblir dolda.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (community)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank är en communitydriven rankning av MeshCore-nät, inte en del av NOTORYX och inte rekommenderad av det. Ingen inloggning: paket delas under radions nyckel och regionkod, först när du slår på delning.';
+
+  @override
+  String get pathFilter_title => 'Filter för vägbredd';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Kräver repeaterfirmware med vidarebefordringsregler (mikecarper/MeshCore). Officiell MeshCore-firmware avvisar dessa kommandon.';
+
+  @override
+  String get pathFilter_width => 'Vägbredd';
+
+  @override
+  String get pathFilter_anyWidth => 'Valfri bredd';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return 'Vägar med $n byte';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 eller 3 byte (2+)';
+
+  @override
+  String get pathFilter_path => 'Gäller för';
+
+  @override
+  String get pathFilter_radio => 'Radioflöden';
+
+  @override
+  String get pathFilter_bridge => 'Brygga';
+
+  @override
+  String get pathFilter_cross => 'Övergång';
+
+  @override
+  String get pathFilter_bridgeCross => 'Brygga och övergång';
+
+  @override
+  String get pathFilter_limit => 'Begränsa i stället för att släppa';
+
+  @override
+  String get pathFilter_limitOn =>
+      'Vidarebefordrar upp till ett visst antal per minut.';
+
+  @override
+  String get pathFilter_drop => 'Matchande flöden släpps.';
+
+  @override
+  String get pathFilter_perMinute => 'Per minut';
+
+  @override
+  String get pathFilter_rateInvalid => 'Ange 1 till 65534.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Detta fyller bara i kommandoraden. Kontrollera och tryck på Skicka. Använd först ”get fr” för att se reglerna.';
+
+  @override
+  String get pathFilter_useCommand => 'Använd kommando';
+
+  @override
+  String get settings_linkPreviews => 'Länkförhandsvisningar';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Visar titeln på en länk i ett meddelande. Av som standard: att hämta sidan visar webbplatsen din IP-adress.';
+
+  @override
+  String get guide_title => 'Fälthandbok';
+
+  @override
+  String get guide_subtitle => 'Grunder, batterier i kyla, sol och antenner';
+
+  @override
+  String get guide_secMesh => 'Kom med i meshen';
+
+  @override
+  String get guide_mesh1 =>
+      'Telefonen pratar med radion via Bluetooth, USB eller Wi-Fi; radion med meshen via LoRa. Meddelanden fungerar utan mobiltäckning.';
+
+  @override
+  String get guide_mesh2 =>
+      'Repeatrar skickar vidare meddelanden; varje vidaresändning är ett hopp. Färre hopp ger snabbare och säkrare leverans.';
+
+  @override
+  String get guide_mesh3 =>
+      'Håll meddelanden korta och översvämma inte fulla kanaler: varje meddelande använder delad sändtid.';
+
+  @override
+  String get guide_secCold => 'Batterier i kyla';
+
+  @override
+  String get guide_cold1 =>
+      'Ladda inte litiumbatterier under fryspunkten (0 °C): det skadar dem permanent.';
+
+  @override
+  String get guide_cold2 =>
+      'Bär radion innanför jackan. Kyla sänker kapaciteten, som kommer tillbaka när batteriet blir varmt.';
+
+  @override
+  String get guide_cold3 =>
+      'För fasta platser i kallt klimat klarar LiFePO4 sig bättre än litiumjon; en uppvärmd eller isolerad låda hjälper båda.';
+
+  @override
+  String get guide_secSolar => 'Sol för repeatrar';
+
+  @override
+  String get guide_solar1 =>
+      'En repeater drar mycket lite, men dimensionera panel och batteri för din mörkaste vintervecka, inte en sommardag.';
+
+  @override
+  String get guide_solar2 =>
+      'Rikta panelen mot ekvatorn och luta den brant på vintern; håll den fri från snö och skugga.';
+
+  @override
+  String get guide_secAntenna => 'Antenner och placering';
+
+  @override
+  String get guide_ant1 =>
+      'Höjd slår effekt: en radio några meter upp når mycket längre än en på skrivbordet.';
+
+  @override
+  String get guide_ant2 =>
+      'Håll antennen lodrät och borta från metall, och använd en för ditt band (till exempel 868 MHz i Europa).';
+
+  @override
+  String get guide_secMore => 'Läs mer';
+
+  @override
+  String get guide_moreMeshcore => 'Det officiella MeshCore-projektet';
+
+  @override
+  String get guide_moreCascadia =>
+      'Communityguider: kom igång, wardriving, regioner, sol';
 }

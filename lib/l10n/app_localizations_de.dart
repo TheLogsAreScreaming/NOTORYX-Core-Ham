@@ -8764,4 +8764,173 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'Der Akkusparmodus ist an und bestimmt das Tempo (Akku alle 10 Minuten).';
+
+  @override
+  String discovered_tray(int count) {
+    return 'In der Nähe gehörte Kanäle: $count';
+  }
+
+  @override
+  String get discovered_title => 'In der Nähe gehört, nicht beigetreten';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return '$count× gehört · zuletzt $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Ignorieren';
+
+  @override
+  String get discovered_ignoreAll => 'Alle ignorieren';
+
+  @override
+  String get discovered_joinAll => 'Allen beitreten';
+
+  @override
+  String get discovered_explainer =>
+      'Das sind öffentliche Kanäle aus dem Kanalverzeichnis, auf denen dein Funkgerät Verkehr gehört hat. Jeder wurde durch Entschlüsseln einer Nachricht bestätigt. Ignorierte Kanäle bleiben ausgeblendet.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (Community)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank ist eine von der Community betriebene MeshCore-Netzwerkrangliste, kein Teil von NOTORYX und nicht von ihm empfohlen. Ohne Anmeldung: Pakete werden unter dem Schlüssel und Regionscode deines Funkgeräts geteilt, erst wenn du das Teilen einschaltest.';
+
+  @override
+  String get pathFilter_title => 'Pfadbreiten-Filter';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Braucht Repeater-Firmware mit Weiterleitungsregeln (mikecarper/MeshCore). Die offizielle MeshCore-Firmware lehnt diese Befehle ab.';
+
+  @override
+  String get pathFilter_width => 'Pfadbreite';
+
+  @override
+  String get pathFilter_anyWidth => 'Jede Breite';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return '$n-Byte-Pfade';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 oder 3 Byte (2+)';
+
+  @override
+  String get pathFilter_path => 'Gilt für';
+
+  @override
+  String get pathFilter_radio => 'Funk-Floods';
+
+  @override
+  String get pathFilter_bridge => 'Brücke';
+
+  @override
+  String get pathFilter_cross => 'Übergang';
+
+  @override
+  String get pathFilter_bridgeCross => 'Brücke und Übergang';
+
+  @override
+  String get pathFilter_limit => 'Begrenzen statt verwerfen';
+
+  @override
+  String get pathFilter_limitOn =>
+      'Leitet bis zu einer festen Anzahl pro Minute weiter.';
+
+  @override
+  String get pathFilter_drop =>
+      'Passende Floods werden verworfen, nicht weitergeleitet.';
+
+  @override
+  String get pathFilter_perMinute => 'Pro Minute';
+
+  @override
+  String get pathFilter_rateInvalid => 'Gib 1 bis 65534 ein.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Das füllt nur die Befehlszeile aus. Prüfe sie und tippe dann auf Senden. Mit „get fr“ siehst du vorher bestehende Regeln.';
+
+  @override
+  String get pathFilter_useCommand => 'Befehl übernehmen';
+
+  @override
+  String get settings_linkPreviews => 'Linkvorschauen';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Zeigt den Titel eines Links in einer Nachricht. Standardmäßig aus: Das Abrufen der Seite verrät der Website deine IP-Adresse.';
+
+  @override
+  String get guide_title => 'Feldhandbuch';
+
+  @override
+  String get guide_subtitle =>
+      'Grundlagen, Akkus bei Kälte, Solar und Antennen';
+
+  @override
+  String get guide_secMesh => 'Ins Mesh kommen';
+
+  @override
+  String get guide_mesh1 =>
+      'Dein Telefon spricht per Bluetooth, USB oder WLAN mit dem Funkgerät; das Funkgerät per LoRa mit dem Mesh. Nachrichten gehen auch ohne Mobilfunk.';
+
+  @override
+  String get guide_mesh2 =>
+      'Repeater reichen Nachrichten weiter; jede Weitergabe ist ein Hop. Weniger Hops heißt schneller und zuverlässiger.';
+
+  @override
+  String get guide_mesh3 =>
+      'Halte Nachrichten kurz und flute keine vollen Kanäle: Jede Nachricht nutzt gemeinsame Sendezeit.';
+
+  @override
+  String get guide_secCold => 'Akkus bei Kälte';
+
+  @override
+  String get guide_cold1 =>
+      'Lade Lithium-Akkus nicht unter dem Gefrierpunkt (0 °C): Das schädigt sie dauerhaft.';
+
+  @override
+  String get guide_cold2 =>
+      'Trag das Funkgerät in der Jacke. Kälte senkt die Kapazität, die zurückkommt, sobald der Akku warm ist.';
+
+  @override
+  String get guide_cold3 =>
+      'Für feste Standorte in kaltem Klima kommt LiFePO4 besser zurecht als Lithium-Ionen; eine beheizte oder isolierte Box hilft beiden.';
+
+  @override
+  String get guide_secSolar => 'Solar für Repeater';
+
+  @override
+  String get guide_solar1 =>
+      'Ein Repeater braucht sehr wenig Strom, doch plane Panel und Akku für deine dunkelste Winterwoche, nicht für einen Sommertag.';
+
+  @override
+  String get guide_solar2 =>
+      'Richte das Panel zum Äquator aus und neige es im Winter steil; halte Schnee und Schatten fern.';
+
+  @override
+  String get guide_secAntenna => 'Antennen und Standort';
+
+  @override
+  String get guide_ant1 =>
+      'Höhe schlägt Leistung: Ein Funkgerät ein paar Meter höher reicht viel weiter als eines auf dem Tisch.';
+
+  @override
+  String get guide_ant2 =>
+      'Halte die Antenne senkrecht und fern von Metall und nutze eine für dein Band (z. B. 868 MHz in Europa).';
+
+  @override
+  String get guide_secMore => 'Mehr erfahren';
+
+  @override
+  String get guide_moreMeshcore => 'Das offizielle MeshCore-Projekt';
+
+  @override
+  String get guide_moreCascadia =>
+      'Community-Anleitungen: Einstieg, Wardriving, Regionen, Solar';
 }

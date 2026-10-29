@@ -8327,4 +8327,164 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get settings_refreshSaverOn =>
       'バッテリーセーバーがオンのため、そちらの間隔になります（バッテリーは 10 分ごと）。';
+
+  @override
+  String discovered_tray(int count) {
+    return '近くで受信したチャンネル：$count';
+  }
+
+  @override
+  String get discovered_title => '近くで受信、未参加';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return '$count 回受信・最終 $time';
+  }
+
+  @override
+  String get discovered_ignore => '無視';
+
+  @override
+  String get discovered_ignoreAll => 'すべて無視';
+
+  @override
+  String get discovered_joinAll => 'すべて参加';
+
+  @override
+  String get discovered_explainer =>
+      'チャンネルディレクトリにある公開チャンネルで、無線機が通信を受信したものです。いずれもキーでメッセージを復号して確認済みです。無視したチャンネルは表示されません。';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank（コミュニティ）';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank はコミュニティ運営の MeshCore ネットワークランキングで、NOTORYX の一部ではなく、推奨もしていません。サインイン不要：共有をオンにした後に限り、無線機のキーと地域コードでパケットが共有されます。';
+
+  @override
+  String get pathFilter_title => 'パス幅フィルター';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      '転送ルール対応のリピーターファームウェア（mikecarper/MeshCore）が必要です。公式 MeshCore ファームウェアはこのコマンドを拒否します。';
+
+  @override
+  String get pathFilter_width => 'パス幅';
+
+  @override
+  String get pathFilter_anyWidth => '任意の幅';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return '$n バイトのパス';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 または 3 バイト（2+）';
+
+  @override
+  String get pathFilter_path => '適用対象';
+
+  @override
+  String get pathFilter_radio => '無線フラッド';
+
+  @override
+  String get pathFilter_bridge => 'ブリッジ';
+
+  @override
+  String get pathFilter_cross => 'クロスオーバー';
+
+  @override
+  String get pathFilter_bridgeCross => 'ブリッジとクロスオーバー';
+
+  @override
+  String get pathFilter_limit => '破棄ではなく制限';
+
+  @override
+  String get pathFilter_limitOn => '1 分あたり決まった数まで転送します。';
+
+  @override
+  String get pathFilter_drop => '一致するフラッドは転送されず破棄されます。';
+
+  @override
+  String get pathFilter_perMinute => '1 分あたり';
+
+  @override
+  String get pathFilter_rateInvalid => '1〜65534 を入力してください。';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'コマンド欄に入力するだけです。確認してから送信してください。先に「get fr」で既存のルールを確認できます。';
+
+  @override
+  String get pathFilter_useCommand => 'コマンドを使用';
+
+  @override
+  String get settings_linkPreviews => 'リンクプレビュー';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'メッセージ内のリンクのタイトルを表示します。既定はオフ：ページを取得するとそのサイトに IP アドレスが伝わります。';
+
+  @override
+  String get guide_title => 'フィールドガイド';
+
+  @override
+  String get guide_subtitle => '基本、寒冷時のバッテリー、ソーラー、アンテナ';
+
+  @override
+  String get guide_secMesh => 'メッシュに参加する';
+
+  @override
+  String get guide_mesh1 =>
+      'スマートフォンは Bluetooth・USB・Wi-Fi で無線機と、無線機は LoRa でメッシュと通信します。携帯の電波がなくてもメッセージは届きます。';
+
+  @override
+  String get guide_mesh2 =>
+      'リピーターがメッセージを中継し、1 回の中継が 1 ホップです。ホップが少ないほど速く確実に届きます。';
+
+  @override
+  String get guide_mesh3 =>
+      'メッセージは短く、混雑したチャンネルに送りすぎないでください。どのメッセージも共有の送信時間を使います。';
+
+  @override
+  String get guide_secCold => '寒冷時のバッテリー';
+
+  @override
+  String get guide_cold1 => '氷点下（0 °C）でリチウム電池を充電しないでください。永久に劣化します。';
+
+  @override
+  String get guide_cold2 => '無線機は上着の内側に。寒さで容量は減りますが、温まれば戻ります。';
+
+  @override
+  String get guide_cold3 =>
+      '寒冷地の固定設置では、リチウムイオンより LiFePO4 が適しています。断熱・加温ボックスはどちらにも有効です。';
+
+  @override
+  String get guide_secSolar => 'リピーターのソーラー';
+
+  @override
+  String get guide_solar1 =>
+      'リピーターの消費電力はごく小さいですが、パネルと電池は夏の日ではなく冬の最も暗い 1 週間に合わせて選びます。';
+
+  @override
+  String get guide_solar2 => 'パネルは赤道側に向け、冬は急角度に。雪や影がかからないようにします。';
+
+  @override
+  String get guide_secAntenna => 'アンテナと設置場所';
+
+  @override
+  String get guide_ant1 => '出力より高さ。数メートル高い無線機は机の上より遥かに遠くまで届きます。';
+
+  @override
+  String get guide_ant2 => 'アンテナは垂直に、金属から離し、使う周波数帯用のもの（例：日本は 920 MHz）を使います。';
+
+  @override
+  String get guide_secMore => '詳しく知る';
+
+  @override
+  String get guide_moreMeshcore => '公式 MeshCore プロジェクト';
+
+  @override
+  String get guide_moreCascadia => 'コミュニティガイド：入門、ウォードライビング、地域、ソーラー';
 }
