@@ -374,8 +374,8 @@ class _StatTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
       decoration: BoxDecoration(
-        color: MeshPalette.bg3,
-        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: MeshPalette.line),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
