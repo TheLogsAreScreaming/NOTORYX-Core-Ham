@@ -624,7 +624,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get device_meshcore => 'MeshCore';
 
   @override
-  String get settings_title => 'NOTORYX Core Settings';
+  String get settings_title => 'Settings';
 
   @override
   String get settings_deviceInfo => 'Device Info';
@@ -5399,28 +5399,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bastion_tagline => 'Communication without infrastructure.';
 
   @override
-  String get bastion_nodes => 'NODES';
+  String get bastion_nodes => 'Nodes';
 
   @override
-  String get bastion_repeaters => 'REPEATERS';
+  String get bastion_repeaters => 'Repeaters';
 
   @override
-  String get bastion_active1h => 'ACTIVE 1H';
+  String get bastion_active1h => 'Active 1h';
 
   @override
-  String get bastion_mapCoverage => 'MAP + COVERAGE';
+  String get bastion_mapCoverage => 'Map + coverage';
 
   @override
-  String get bastion_routeIntelligence => 'ROUTE INTELLIGENCE';
+  String get bastion_routeIntelligence => 'Route intelligence';
 
   @override
-  String get bastion_repeaterTools => 'REPEATER TOOLS';
+  String get bastion_repeaterTools => 'Repeater tools';
 
   @override
-  String get bastion_fieldStats => 'FIELD STATS';
+  String get bastion_fieldStats => 'Field stats';
 
   @override
-  String get bastion_fieldOps => 'TRIP + FIELD OPERATIONS';
+  String get bastion_fieldOps => 'Trip + field operations';
 
   @override
   String get bastion_coverageCapture => 'COVERAGE CAPTURE';
@@ -6297,14 +6297,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bastionHome_aboutTooltip => 'About NOTORYX Core';
 
   @override
-  String get bastionHome_getStarted => 'GET STARTED';
+  String get bastionHome_getStarted => 'Get started';
 
   @override
   String get bastionHome_getStartedHint =>
       'Connect your radio and verify your first message';
 
   @override
-  String get bastionHome_planYourTrip => 'PLAN YOUR TRIP';
+  String get bastionHome_planYourTrip => 'Plan your trip';
 
   @override
   String get bastionHome_tripActive => 'Trip active';
@@ -6318,7 +6318,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_checkInOk => 'CHECK IN: I\'M OK';
+  String get bastionHome_checkInOk => 'Check in: I\'m OK';
 
   @override
   String get bastionHome_checkInHint =>
@@ -6330,21 +6330,21 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_connectRadio => 'CONNECT RADIO';
+  String get bastionHome_connectRadio => 'Connect radio';
 
   @override
   String get bastionHome_connectRadioHint =>
       'Bluetooth, USB and TCP MeshCore connections';
 
   @override
-  String get bastionHome_liveDiagnostics => 'LIVE DIAGNOSTICS';
+  String get bastionHome_liveDiagnostics => 'Live diagnostics';
 
   @override
   String get bastionHome_liveDiagnosticsHint =>
       'Radio health, signal, device and frame tools';
 
   @override
-  String get bastionHome_meshDiscovery => 'MESH DISCOVERY';
+  String get bastionHome_meshDiscovery => 'Mesh discovery';
 
   @override
   String get bastionHome_meshDiscoveryHint =>
@@ -6355,16 +6355,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'Trip brief, readiness, Field Log, automations and coverage comparison';
 
   @override
-  String get bastionHome_fieldTools => 'NOTORYX FIELD TOOLS';
+  String get bastionHome_fieldTools => 'Field tools';
 
   @override
   String get bastionHome_statusActive => 'ACTIVE';
 
   @override
-  String get bastionHome_consoleOnline => 'FIELD CONSOLE ONLINE';
+  String get bastionHome_consoleOnline => 'Field console online';
 
   @override
-  String get bastionHome_consoleReady => 'FIELD CONSOLE READY';
+  String get bastionHome_consoleReady => 'Field console ready';
 
   @override
   String get bastionHome_consoleHint =>
@@ -6372,7 +6372,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String bastionHome_battery(String value) {
-    return 'BAT $value';
+    return 'Battery $value';
   }
 
   @override
@@ -8241,4 +8241,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String routes_via(String names) {
     return 'via $names';
   }
+
+  @override
+  String get nav_home => 'Home';
+
+  @override
+  String get nav_chats => 'Chats';
+
+  @override
+  String get nav_tools => 'Tools';
+
+  @override
+  String get nav_settings => 'Settings';
 }

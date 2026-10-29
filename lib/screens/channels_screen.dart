@@ -287,12 +287,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                 ChannelSortOption.manual &&
                             viewState.channelsSearchText.isEmpty)
                       ? ReorderableListView.builder(
-                          padding: const EdgeInsets.only(
-                            left: 0,
-                            right: 0,
-                            top: 8,
-                            bottom: 88,
-                          ),
+                          padding: const EdgeInsets.only(bottom: 88),
                           buildDefaultDragHandles: false,
                           itemCount: filteredChannels.length,
                           onReorderItem: (oldIndex, newIndex) {
@@ -321,12 +316,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           },
                         )
                       : ListView.builder(
-                          padding: const EdgeInsets.only(
-                            left: 0,
-                            right: 0,
-                            top: 8,
-                            bottom: 88,
-                          ),
+                          padding: const EdgeInsets.only(bottom: 88),
                           itemCount: filteredChannels.length,
                           itemBuilder: (context, index) {
                             final channel = filteredChannels[index];
@@ -435,10 +425,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     return ListEntrance(
       key: ValueKey('channel_entrance_${channel.index}'),
       index: dragIndex ?? listIndex,
-      child: MeshCard(
+      child: InkWell(
         key: ValueKey('channel_${channel.index}'),
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         onTap: () {
           HapticFeedback.selectionClick();
           final unread = connector.getUnreadCountForChannelIndex(channel.index);
@@ -453,12 +441,15 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             ),
           );
         },
-        onLongPress: () => _showChannelActions(
-          this.context,
-          connector,
-          channelMessageStore,
-          channel,
-        ),
+        onLongPress: () {
+          HapticFeedback.selectionClick();
+          _showChannelActions(
+            this.context,
+            connector,
+            channelMessageStore,
+            channel,
+          );
+        },
         onSecondaryTap: PlatformInfo.isDesktop
             ? () => _showChannelActions(
                 this.context,
@@ -467,148 +458,157 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                 channel,
               )
             : null,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Leading avatar with optional community badge
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                AvatarCircle(
-                  name: channelLabel,
-                  size: 42,
-                  color: iconColor,
-                  icon: icon,
-                ),
-                if (isCommunityChannel)
-                  Positioned(
-                    right: -2,
-                    bottom: -2,
-                    child: Container(
-                      width: 16,
-                      height: 16,
-                      decoration: BoxDecoration(
-                        color: MeshPalette.magenta,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.surfaceContainerLow,
-                          width: 2,
-                        ),
-                      ),
-                      child: const Icon(
-                        Icons.people,
-                        size: 8,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-              ],
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: MeshSpace.lg,
+            vertical: MeshSpace.md,
+          ),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: MeshPalette.line.withValues(alpha: 0.5),
+              ),
             ),
-            const SizedBox(width: 12),
-            // Title + subtitle + ch chip
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Leading avatar with optional community badge
+              Stack(
+                clipBehavior: Clip.none,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          channelLabel,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w500),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        'CH ${channel.index}',
-                        style: MeshTheme.mono(
-                          fontSize: 11,
-                          color: scheme.onSurfaceVariant.withValues(alpha: 0.7),
-                        ),
-                      ),
-                    ],
+                  AvatarCircle(
+                    name: channelLabel,
+                    size: 42,
+                    color: iconColor,
+                    icon: icon,
                   ),
-                  if (subtitle.isNotEmpty) ...[
-                    const SizedBox(height: 2),
-                    Text(
-                      subtitle,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: scheme.onSurfaceVariant,
+                  if (isCommunityChannel)
+                    Positioned(
+                      right: -2,
+                      bottom: -2,
+                      child: Container(
+                        width: 16,
+                        height: 16,
+                        decoration: BoxDecoration(
+                          color: MeshPalette.magenta,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.surfaceContainerLow,
+                            width: 2,
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.people,
+                          size: 8,
+                          color: Colors.white,
+                        ),
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                  if (lastPreview.isNotEmpty) ...[
-                    const SizedBox(height: 2),
-                    Text(
-                      lastPreview,
-                      style: MeshTheme.mono(
-                        fontSize: 11.5,
-                        color: scheme.onSurfaceVariant,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
                 ],
               ),
-            ),
-            const SizedBox(width: 8),
-            // Right side: time + unread badge + muted + drag handle
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (lastTime != null)
-                  Text(
-                    _relativeTime(lastTime),
-                    style: MeshTheme.mono(
-                      fontSize: 11,
-                      color: scheme.onSurfaceVariant,
-                    ),
-                  ),
-                const SizedBox(height: 4),
-                Row(
+              const SizedBox(width: 12),
+              // Title + subtitle + ch chip
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (isMuted) ...[
-                      Icon(
-                        Icons.notifications_off,
-                        size: 14,
-                        color: scheme.onSurfaceVariant,
+                    Text(
+                      channelLabel,
+                      style: TextStyle(
+                        color: scheme.onSurface,
+                        fontSize: 15.5,
+                        fontWeight: unreadCount > 0
+                            ? FontWeight.w700
+                            : FontWeight.w600,
                       ),
-                      const SizedBox(width: 4),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    if (subtitle.isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        subtitle,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: scheme.onSurfaceVariant,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ],
-                    if (unreadCount > 0) UnreadBadge(count: unreadCount),
+                    if (lastPreview.isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        lastPreview,
+                        style: TextStyle(
+                          fontSize: 13.5,
+                          color: unreadCount > 0
+                              ? MeshPalette.ink2
+                              : MeshPalette.ink3,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ],
                 ),
-              ],
-            ),
-            if (showDragHandle && dragIndex != null) ...[
-              const SizedBox(width: 4),
-              ReorderableDragStartListener(
-                index: dragIndex,
-                // Top-aligned with the "CH n" / time line. Bottom padding keeps
-                // a comfortable drag target without pushing the icon down.
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
-                  child: Icon(
-                    Icons.drag_handle,
-                    size: 18,
-                    color: scheme.onSurfaceVariant,
+              ),
+              const SizedBox(width: 8),
+              // Right side: time + unread badge + muted + drag handle
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (lastTime != null)
+                    Text(
+                      _relativeTime(lastTime),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: unreadCount > 0
+                            ? MeshPalette.accent
+                            : MeshPalette.ink3,
+                        fontFeatures: const [FontFeature.tabularFigures()],
+                      ),
+                    ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (isMuted) ...[
+                        Icon(
+                          Icons.notifications_off,
+                          size: 14,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                        const SizedBox(width: 4),
+                      ],
+                      if (unreadCount > 0) UnreadBadge(count: unreadCount),
+                    ],
+                  ),
+                ],
+              ),
+              if (showDragHandle && dragIndex != null) ...[
+                const SizedBox(width: 4),
+                ReorderableDragStartListener(
+                  index: dragIndex,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: MeshSpace.sm,
+                      vertical: MeshSpace.md,
+                    ),
+                    child: Icon(
+                      Icons.drag_indicator_rounded,
+                      size: 18,
+                      color: MeshPalette.ink4.withValues(alpha: 0.6),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

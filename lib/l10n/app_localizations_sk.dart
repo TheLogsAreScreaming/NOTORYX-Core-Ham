@@ -5462,28 +5462,28 @@ class AppLocalizationsSk extends AppLocalizations {
   String get bastion_tagline => 'Komunikácia bez infraštruktúry.';
 
   @override
-  String get bastion_nodes => 'UZLY';
+  String get bastion_nodes => 'Uzly';
 
   @override
-  String get bastion_repeaters => 'OPAKOVAČE';
+  String get bastion_repeaters => 'Opakovače';
 
   @override
-  String get bastion_active1h => 'AKTÍVNE 1 H';
+  String get bastion_active1h => 'Aktívne 1 h';
 
   @override
-  String get bastion_mapCoverage => 'MAPA + POKRYTIE';
+  String get bastion_mapCoverage => 'Mapa + pokrytie';
 
   @override
-  String get bastion_routeIntelligence => 'ANALÝZA TRÁS';
+  String get bastion_routeIntelligence => 'Analýza trás';
 
   @override
-  String get bastion_repeaterTools => 'NÁSTROJE OPAKOVAČA';
+  String get bastion_repeaterTools => 'Nástroje opakovača';
 
   @override
-  String get bastion_fieldStats => 'TERÉNNE ŠTATISTIKY';
+  String get bastion_fieldStats => 'Terénne štatistiky';
 
   @override
-  String get bastion_fieldOps => 'TÚRA + TERÉNNE OPERÁCIE';
+  String get bastion_fieldOps => 'Túra + terénne operácie';
 
   @override
   String get bastion_coverageCapture => 'ZÁZNAM POKRYTIA';
@@ -6382,14 +6382,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String get bastionHome_aboutTooltip => 'O aplikácii NOTORYX Core';
 
   @override
-  String get bastionHome_getStarted => 'ZAČÍNAME';
+  String get bastionHome_getStarted => 'Začíname';
 
   @override
   String get bastionHome_getStartedHint =>
       'Pripojte rádio a overte svoju prvú správu';
 
   @override
-  String get bastionHome_planYourTrip => 'NAPLÁNUJTE SI TÚRU';
+  String get bastionHome_planYourTrip => 'Naplánujte si túru';
 
   @override
   String get bastionHome_tripActive => 'Túra aktívna';
@@ -6403,7 +6403,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_checkInOk => 'HLÁSENIE: SOM V PORIADKU';
+  String get bastionHome_checkInOk => 'Hlásenie: som v poriadku';
 
   @override
   String get bastionHome_checkInHint =>
@@ -6415,21 +6415,21 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_connectRadio => 'PRIPOJIŤ RÁDIO';
+  String get bastionHome_connectRadio => 'Pripojiť rádio';
 
   @override
   String get bastionHome_connectRadioHint =>
       'Pripojenia MeshCore cez Bluetooth, USB a TCP';
 
   @override
-  String get bastionHome_liveDiagnostics => 'ŽIVÁ DIAGNOSTIKA';
+  String get bastionHome_liveDiagnostics => 'Živá diagnostika';
 
   @override
   String get bastionHome_liveDiagnosticsHint =>
       'Stav rádia, signál, zariadenie a nástroje rámcov';
 
   @override
-  String get bastionHome_meshDiscovery => 'OBJAVOVANIE SIETE';
+  String get bastionHome_meshDiscovery => 'Objavovanie siete';
 
   @override
   String get bastionHome_meshDiscoveryHint =>
@@ -6440,16 +6440,16 @@ class AppLocalizationsSk extends AppLocalizations {
       'Prehľad túry, pripravenosť, terénny denník, automatizácie a porovnanie pokrytia';
 
   @override
-  String get bastionHome_fieldTools => 'TERÉNNE NÁSTROJE NOTORYX';
+  String get bastionHome_fieldTools => 'Terénne nástroje NOTORYX';
 
   @override
   String get bastionHome_statusActive => 'AKTÍVNE';
 
   @override
-  String get bastionHome_consoleOnline => 'TERÉNNA KONZOLA ONLINE';
+  String get bastionHome_consoleOnline => 'Terénna konzola online';
 
   @override
-  String get bastionHome_consoleReady => 'TERÉNNA KONZOLA PRIPRAVENÁ';
+  String get bastionHome_consoleReady => 'Terénna konzola pripravená';
 
   @override
   String get bastionHome_consoleHint =>
@@ -6457,7 +6457,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String bastionHome_battery(String value) {
-    return 'BAT $value';
+    return 'Bat $value';
   }
 
   @override
@@ -8342,4 +8342,16 @@ class AppLocalizationsSk extends AppLocalizations {
   String routes_via(String names) {
     return 'cez $names';
   }
+
+  @override
+  String get nav_home => 'Domov';
+
+  @override
+  String get nav_chats => 'Čety';
+
+  @override
+  String get nav_tools => 'Nástroje';
+
+  @override
+  String get nav_settings => 'Nastavenia';
 }

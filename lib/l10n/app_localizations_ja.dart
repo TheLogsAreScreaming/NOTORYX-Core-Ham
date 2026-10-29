@@ -7953,4 +7953,16 @@ class AppLocalizationsJa extends AppLocalizations {
   String routes_via(String names) {
     return '経由: $names';
   }
+
+  @override
+  String get nav_home => 'ホーム';
+
+  @override
+  String get nav_chats => 'チャット';
+
+  @override
+  String get nav_tools => 'ツール';
+
+  @override
+  String get nav_settings => '設定';
 }

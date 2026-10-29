@@ -8,6 +8,7 @@ import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../services/field_ops_service.dart';
 import '../models/field_ops.dart';
+import '../widgets/mesh_ui.dart';
 import '../widgets/regional_preset_banner.dart';
 import 'bastion_about_screen.dart';
 import 'bastion_field_ops_screen.dart';
@@ -26,10 +27,6 @@ import '../utils/main_tab_navigation.dart';
 
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
-
-  static Color get _cyan => MeshPalette.accent;
-  static Color get _bg => MeshPalette.bg;
-  static Color get _panel => MeshPalette.bg2;
 
   @override
   Widget build(BuildContext context) {
@@ -51,18 +48,25 @@ class BastionHomeScreen extends StatelessWidget {
     final active = c.contacts
         .where((x) => DateTime.now().difference(x.lastSeen).inMinutes <= 60)
         .length;
+    void open(Widget screen) =>
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
 
     return Scaffold(
-      backgroundColor: _bg,
+      backgroundColor: MeshPalette.bg,
       bottomNavigationBar: const QuickSwitchBar(current: MainTab.home),
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(20, 22, 20, 28),
+          padding: const EdgeInsets.fromLTRB(
+            MeshSpace.lg,
+            MeshSpace.lg,
+            MeshSpace.lg,
+            MeshSpace.xxl,
+          ),
           children: [
             Row(
               children: [
-                const NotoryxLogo(size: 52),
-                const SizedBox(width: 14),
+                const NotoryxLogo(size: 40),
+                const SizedBox(width: MeshSpace.md),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,33 +75,21 @@ class BastionHomeScreen extends StatelessWidget {
                         'NOTORYX',
                         style: TextStyle(
                           color: MeshPalette.ink,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 2.4,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 1.2,
                         ),
                       ),
                       Text(
                         l10n.bastion_tagline,
-                        style: TextStyle(
-                          color: _cyan,
-                          fontSize: 12,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                      Text(
-                        'MeshCore',
-                        style: TextStyle(color: _cyan, fontSize: 12),
+                        style: TextStyle(color: MeshPalette.ink3, fontSize: 13),
                       ),
                     ],
                   ),
                 ),
                 IconButton(
                   tooltip: l10n.bastionHome_aboutTooltip,
-                  onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const BastionAboutScreen(),
-                    ),
-                  ),
+                  onPressed: () => open(const BastionAboutScreen()),
                   icon: Icon(
                     Icons.info_outline_rounded,
                     color: MeshPalette.ink3,
@@ -105,68 +97,35 @@ class BastionHomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 22),
+            const SizedBox(height: MeshSpace.xl),
             const RegionalPresetBanner(),
-            _ActionCard(
-              icon: Icons.explore_outlined,
-              title: l10n.bastionHome_getStarted,
-              subtitle: l10n.bastionHome_getStartedHint,
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const BastionSetupScreen()),
-              ),
+            _StatusCard(
+              connector: c,
+              stats: stats,
+              repeaters: repeaters,
+              active: active,
             ),
-            const SizedBox(height: 12),
-            _connectionCard(context, c, stats),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: _metric(l10n.bastion_nodes, '${c.contacts.length}'),
-                ),
-                const SizedBox(width: 8),
-                Expanded(child: _metric(l10n.bastion_active1h, '$active')),
-                const SizedBox(width: 8),
-                Expanded(child: _metric(l10n.bastion_repeaters, '$repeaters')),
-              ],
-            ),
-            const SizedBox(height: 12),
-            _ActionCard(
-              icon: Icons.backpack_outlined,
-              title: ops.trip.active
-                  ? ops.trip.name
-                  : l10n.bastionHome_planYourTrip,
-              subtitle: [
-                l10n.bastionHome_tripSummary(
-                  ops.trip.active
-                      ? l10n.bastionHome_tripActive
-                      : l10n.bastionHome_tripStopped,
-                  '${ops.members.length}',
-                  '${c.getTotalUnreadCount()}',
-                ),
-                if (ops.overdueNames.isNotEmpty)
-                  l10n.fieldOps_quietTooLong(ops.overdueNames.join(', ')),
-              ].join(' • '),
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => const BastionFieldOpsScreen(),
+            const SizedBox(height: MeshSpace.lg),
+            SizedBox(
+              height: 52,
+              child: FilledButton.icon(
+                key: const ValueKey('home-check-in'),
+                // Only a missing radio or loading blocks this; missing
+                // contacts or a stopped trip are sorted out on tap.
+                onPressed: hardBlockReason(ops) == null
+                    ? () => _checkIn(context, ops)
+                    : null,
+                icon: const Icon(Icons.check_circle_outline),
+                label: Text(
+                  l10n.bastionHome_checkInOk,
+                  style: const TextStyle(
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 12),
-            FilledButton.icon(
-              key: const ValueKey('home-check-in'),
-              // Only a missing radio or loading blocks this; missing
-              // contacts or a stopped trip are sorted out on tap.
-              onPressed: hardBlockReason(ops) == null
-                  ? () => _checkIn(context, ops)
-                  : null,
-              icon: const Icon(Icons.check_circle_outline),
-              label: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Text(l10n.bastionHome_checkInOk),
-              ),
-            ),
-            const SizedBox(height: 4),
+            const SizedBox(height: MeshSpace.sm),
             Text(
               hardBlockReason(ops) ??
                   (!hasCheckInContacts(ops)
@@ -179,242 +138,92 @@ class BastionHomeScreen extends StatelessWidget {
                                 : l10n.bastionHome_lastCheckIn(
                                     ops.latestDelivery!.headlineIn(l10n),
                                   ))),
-              style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: MeshSpace.md),
             const SosPanel(),
-            const SizedBox(height: 18),
-            if (!c.isConnected)
-              _ActionCard(
-                icon: Icons.bluetooth_searching_rounded,
-                title: l10n.bastionHome_connectRadio,
-                subtitle: l10n.bastionHome_connectRadioHint,
-                onTap: () => openConnectionSetup(context),
-              )
-            else
-              _ActionCard(
-                icon: Icons.monitor_heart_rounded,
-                title: l10n.bastionHome_liveDiagnostics,
-                subtitle: l10n.bastionHome_liveDiagnosticsHint,
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const BastionDiagnosticsScreen(),
-                  ),
+            const SizedBox(height: MeshSpace.xl),
+            MeshGroup(
+              children: [
+                MeshNavRow(
+                  icon: Icons.backpack_outlined,
+                  title: ops.trip.active
+                      ? ops.trip.name
+                      : l10n.bastionHome_planYourTrip,
+                  subtitle: [
+                    l10n.bastionHome_tripSummary(
+                      ops.trip.active
+                          ? l10n.bastionHome_tripActive
+                          : l10n.bastionHome_tripStopped,
+                      '${ops.members.length}',
+                      '${c.getTotalUnreadCount()}',
+                    ),
+                    if (ops.overdueNames.isNotEmpty)
+                      l10n.fieldOps_quietTooLong(ops.overdueNames.join(', ')),
+                  ].join(' • '),
+                  iconColor: ops.trip.active ? MeshPalette.accent : null,
+                  onTap: () => open(const BastionFieldOpsScreen()),
                 ),
-              ),
-            const SizedBox(height: 12),
-            _ActionCard(
-              icon: Icons.radar_rounded,
-              title: l10n.bastionHome_meshDiscovery,
-              subtitle: l10n.bastionHome_meshDiscoveryHint,
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const DiscoveryScreen()),
-              ),
-            ),
-            const SizedBox(height: 12),
-            _ActionCard(
-              icon: Icons.backpack_outlined,
-              title: l10n.bastion_fieldOps,
-              subtitle: l10n.bastionHome_fieldOpsHint,
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => const BastionFieldOpsScreen(),
+                MeshNavRow(
+                  icon: Icons.explore_outlined,
+                  title: l10n.bastionHome_getStarted,
+                  subtitle: l10n.bastionHome_getStartedHint,
+                  onTap: () => open(const BastionSetupScreen()),
                 ),
-              ),
+              ],
             ),
-            const SizedBox(height: 22),
-            Text(
+            SectionHeader(
               l10n.bastionHome_fieldTools,
-              style: TextStyle(
-                color: _cyan,
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 1.4,
+              padding: const EdgeInsets.fromLTRB(
+                MeshSpace.xs,
+                MeshSpace.xl,
+                MeshSpace.xs,
+                MeshSpace.sm,
               ),
             ),
-            const SizedBox(height: 10),
-            Row(
+            MeshGroup(
               children: [
-                Expanded(
-                  child: _ToolTile(
-                    icon: Icons.map_rounded,
-                    label: l10n.bastion_mapCoverage,
-                    status: l10n.bastionHome_statusActive,
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const BastionMapHubScreen(),
-                      ),
-                    ),
+                if (c.isConnected)
+                  MeshNavRow(
+                    icon: Icons.monitor_heart_outlined,
+                    title: l10n.bastionHome_liveDiagnostics,
+                    subtitle: l10n.bastionHome_liveDiagnosticsHint,
+                    onTap: () => open(const BastionDiagnosticsScreen()),
                   ),
+                MeshNavRow(
+                  icon: Icons.radar_rounded,
+                  title: l10n.bastionHome_meshDiscovery,
+                  subtitle: l10n.bastionHome_meshDiscoveryHint,
+                  onTap: () => open(const DiscoveryScreen()),
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: _ToolTile(
-                    icon: Icons.route_rounded,
-                    label: l10n.bastion_routeIntelligence,
-                    status: l10n.bastionHome_statusActive,
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const BastionPathHubScreen(),
-                      ),
-                    ),
-                  ),
+                MeshNavRow(
+                  icon: Icons.map_outlined,
+                  title: l10n.bastion_mapCoverage,
+                  subtitle: l10n.bastionTools_mapHint,
+                  onTap: () => open(const BastionMapHubScreen()),
                 ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Expanded(
-                  child: _ToolTile(
-                    icon: Icons.cell_tower_rounded,
-                    label: l10n.bastion_repeaterTools,
-                    status: l10n.bastionHome_statusActive,
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const BastionRepeaterToolsScreen(),
-                      ),
-                    ),
-                  ),
+                MeshNavRow(
+                  icon: Icons.route_rounded,
+                  title: l10n.bastion_routeIntelligence,
+                  subtitle: l10n.bastionTools_pathHint,
+                  onTap: () => open(const BastionPathHubScreen()),
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: _ToolTile(
-                    icon: Icons.analytics_rounded,
-                    label: l10n.bastion_fieldStats,
-                    status: l10n.bastionHome_statusActive,
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const BastionFieldStatsScreen(),
-                      ),
-                    ),
-                  ),
+                MeshNavRow(
+                  icon: Icons.cell_tower_rounded,
+                  title: l10n.bastion_repeaterTools,
+                  subtitle: l10n.bastionTools_repeaterHint,
+                  onTap: () => open(const BastionRepeaterToolsScreen()),
                 ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            Center(
-              child: Text(
-                'NOTORYX CORE',
-                style: TextStyle(
-                  color: MeshPalette.ink4,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 1.3,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _connectionCard(
-    BuildContext context,
-    MeshCoreConnector c,
-    dynamic stats,
-  ) {
-    final l10n = context.l10n;
-    final battery = c.batteryMillivolts == null
-        ? '—'
-        : '${(c.batteryMillivolts! / 1000).toStringAsFixed(2)}V';
-    final signal = stats == null
-        ? 'RSSI —  •  SNR —'
-        : 'RSSI ${stats.lastRssiDbm}  •  SNR ${stats.lastSnrDb.toStringAsFixed(1)}';
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: _panel,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: c.isConnected
-              ? _cyan.withValues(alpha: .55)
-              : MeshPalette.line,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: _cyan.withValues(alpha: .12),
-                  borderRadius: BorderRadius.circular(13),
-                ),
-                child: Icon(
-                  c.isConnected
-                      ? Icons.radio_rounded
-                      : Icons.portable_wifi_off_rounded,
-                  color: _cyan,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      c.isConnected
-                          ? l10n.bastionHome_consoleOnline
-                          : l10n.bastionHome_consoleReady,
-                      style: TextStyle(
-                        color: MeshPalette.ink,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    const SizedBox(height: 3),
-                    Text(
-                      c.isConnected
-                          ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}'
-                          : l10n.bastionHome_consoleHint,
-                      style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 9,
-                height: 9,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: c.isConnected ? _cyan : MeshPalette.line3,
-                ),
-              ),
-            ],
-          ),
-          if (c.isConnected) ...[
-            const SizedBox(height: 14),
-            Divider(color: MeshPalette.line, height: 1),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    signal,
-                    style: TextStyle(
-                      color: MeshPalette.ink2,
-                      fontSize: 11.5,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                Text(
-                  l10n.bastionHome_battery(battery),
-                  style: TextStyle(
-                    color: _cyan,
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.w900,
-                  ),
+                MeshNavRow(
+                  icon: Icons.analytics_outlined,
+                  title: l10n.bastion_fieldStats,
+                  subtitle: l10n.bastionTools_statsHint,
+                  onTap: () => open(const BastionFieldStatsScreen()),
                 ),
               ],
             ),
           ],
-        ],
+        ),
       ),
     );
   }
@@ -441,157 +250,159 @@ class BastionHomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  Widget _metric(String label, String value) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 11),
-    decoration: BoxDecoration(
-      color: _panel,
-      borderRadius: BorderRadius.circular(13),
-      border: Border.all(color: MeshPalette.line),
-    ),
-    child: Column(
-      children: [
-        Text(
-          value,
-          style: TextStyle(
-            color: _cyan,
-            fontSize: 17,
-            fontWeight: FontWeight.w900,
-          ),
-        ),
-        const SizedBox(height: 3),
-        Text(
-          label,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: MeshPalette.ink3,
-            fontSize: 11,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-      ],
-    ),
-  );
 }
 
-class _ActionCard extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-  const _ActionCard({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
+/// The radio at a glance: who you're connected to, how, and what it hears.
+/// Disconnected, it becomes the way to connect one.
+class _StatusCard extends StatelessWidget {
+  final MeshCoreConnector connector;
+  final dynamic stats;
+  final int repeaters;
+  final int active;
+
+  const _StatusCard({
+    required this.connector,
+    required this.stats,
+    required this.repeaters,
+    required this.active,
   });
+
+  static String _transport(MeshCoreTransportType t) => switch (t) {
+    MeshCoreTransportType.bluetooth => 'Bluetooth',
+    MeshCoreTransportType.usb => 'USB',
+    MeshCoreTransportType.tcp => 'TCP',
+  };
+
   @override
-  Widget build(BuildContext context) => Material(
-    color: MeshPalette.bg2,
-    borderRadius: BorderRadius.circular(16),
-    child: InkWell(
-      borderRadius: BorderRadius.circular(16),
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          border: Border.all(color: MeshPalette.line),
-          borderRadius: BorderRadius.circular(16),
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final c = connector;
+    final online = c.isConnected;
+    final details = <String>[
+      if (c.batteryMillivolts != null)
+        l10n.bastionHome_battery(
+          '${(c.batteryMillivolts! / 1000).toStringAsFixed(2)} V',
         ),
-        child: Row(
-          children: [
-            Container(
-              width: 46,
-              height: 46,
-              decoration: BoxDecoration(
-                color: MeshPalette.accent.withValues(alpha: .12),
-                borderRadius: BorderRadius.circular(13),
-              ),
-              child: Icon(icon, color: MeshPalette.accent),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: MeshPalette.ink,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: .5,
-                    ),
-                  ),
-                  const SizedBox(height: 3),
-                  Text(
-                    subtitle,
-                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
-                  ),
-                ],
-              ),
-            ),
-            Icon(Icons.chevron_right_rounded, color: MeshPalette.accent),
-          ],
-        ),
+      if (stats != null) 'RSSI ${stats.lastRssiDbm}',
+      if (stats != null) 'SNR ${stats.lastSnrDb.toStringAsFixed(1)}',
+    ];
+    return Container(
+      padding: const EdgeInsets.all(MeshSpace.lg),
+      decoration: BoxDecoration(
+        color: MeshPalette.bg2,
+        borderRadius: BorderRadius.circular(MeshRadii.lg),
       ),
-    ),
-  );
-}
-
-class _ToolTile extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String status;
-  final VoidCallback? onTap;
-  const _ToolTile({
-    required this.icon,
-    required this.label,
-    required this.status,
-    this.onTap,
-  });
-  @override
-  Widget build(BuildContext context) => Material(
-    color: MeshPalette.bg2,
-    borderRadius: BorderRadius.circular(16),
-    child: InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: MeshPalette.line),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: online ? MeshPalette.accentBg : MeshPalette.bg3,
+                  borderRadius: BorderRadius.circular(MeshRadii.md),
+                ),
+                child: Icon(
+                  online
+                      ? Icons.radio_rounded
+                      : Icons.portable_wifi_off_rounded,
+                  color: online ? MeshPalette.accent : MeshPalette.ink3,
+                ),
+              ),
+              const SizedBox(width: MeshSpace.md),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      online
+                          ? c.deviceDisplayName
+                          : l10n.bastionHome_consoleReady,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: MeshPalette.ink,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    if (online)
+                      Row(
+                        children: [
+                          PulseDot(color: MeshPalette.signal, size: 7),
+                          const SizedBox(width: 6),
+                          Flexible(
+                            child: Text(
+                              '${l10n.common_connected} · ${_transport(c.activeTransport)}',
+                              style: TextStyle(
+                                color: MeshPalette.ink3,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    else
+                      Text(
+                        l10n.bastionHome_consoleHint,
+                        style: TextStyle(color: MeshPalette.ink3, fontSize: 13),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          if (online) ...[
+            const SizedBox(height: MeshSpace.lg),
             Row(
               children: [
-                Icon(icon, color: MeshPalette.accent),
-                const Spacer(),
-                Text(
-                  status,
-                  style: TextStyle(
-                    color: MeshPalette.accent,
-                    fontSize: 8,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1,
+                Expanded(
+                  child: MeshStat(
+                    value: '${c.contacts.length}',
+                    label: l10n.bastion_nodes,
                   ),
+                ),
+                Expanded(
+                  child: MeshStat(
+                    value: '$repeaters',
+                    label: l10n.bastion_repeaters,
+                  ),
+                ),
+                // Zero recent activity says nothing; leave the space empty.
+                Expanded(
+                  child: active > 0
+                      ? MeshStat(value: '$active', label: l10n.bastion_active1h)
+                      : const SizedBox.shrink(),
                 ),
               ],
             ),
-            const SizedBox(height: 18),
-            Text(
-              label,
-              style: TextStyle(
-                color: MeshPalette.ink,
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
+            if (details.isNotEmpty) ...[
+              const SizedBox(height: MeshSpace.md),
+              Text(
+                details.join('  ·  '),
+                style: TextStyle(
+                  color: MeshPalette.ink3,
+                  fontSize: 12.5,
+                  fontFeatures: const [FontFeature.tabularFigures()],
+                ),
+              ),
+            ],
+          ] else ...[
+            const SizedBox(height: MeshSpace.lg),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.tonalIcon(
+                onPressed: () => openConnectionSetup(context),
+                icon: const Icon(Icons.bluetooth_searching_rounded),
+                label: Text(l10n.bastionHome_connectRadio),
               ),
             ),
           ],
-        ),
+        ],
       ),
-    ),
-  );
+    );
+  }
 }

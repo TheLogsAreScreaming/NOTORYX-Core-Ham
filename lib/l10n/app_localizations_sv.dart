@@ -5435,28 +5435,28 @@ class AppLocalizationsSv extends AppLocalizations {
   String get bastion_tagline => 'Kommunikation utan infrastruktur.';
 
   @override
-  String get bastion_nodes => 'NODER';
+  String get bastion_nodes => 'Noder';
 
   @override
-  String get bastion_repeaters => 'REPEATRAR';
+  String get bastion_repeaters => 'Repeatrar';
 
   @override
-  String get bastion_active1h => 'AKTIVA 1 H';
+  String get bastion_active1h => 'Aktiva 1 h';
 
   @override
-  String get bastion_mapCoverage => 'KARTA + TÄCKNING';
+  String get bastion_mapCoverage => 'Karta + täckning';
 
   @override
-  String get bastion_routeIntelligence => 'RUTTANALYS';
+  String get bastion_routeIntelligence => 'Ruttanalys';
 
   @override
-  String get bastion_repeaterTools => 'REPEATERVERKTYG';
+  String get bastion_repeaterTools => 'Repeaterverktyg';
 
   @override
-  String get bastion_fieldStats => 'FÄLTSTATISTIK';
+  String get bastion_fieldStats => 'Fältstatistik';
 
   @override
-  String get bastion_fieldOps => 'TUR + FÄLTARBETE';
+  String get bastion_fieldOps => 'Tur + fältarbete';
 
   @override
   String get bastion_coverageCapture => 'TÄCKNINGSINSAMLING';
@@ -6340,14 +6340,14 @@ class AppLocalizationsSv extends AppLocalizations {
   String get bastionHome_aboutTooltip => 'Om NOTORYX Core';
 
   @override
-  String get bastionHome_getStarted => 'KOM IGÅNG';
+  String get bastionHome_getStarted => 'Kom igång';
 
   @override
   String get bastionHome_getStartedHint =>
       'Anslut din radio och verifiera ditt första meddelande';
 
   @override
-  String get bastionHome_planYourTrip => 'PLANERA DIN TUR';
+  String get bastionHome_planYourTrip => 'Planera din tur';
 
   @override
   String get bastionHome_tripActive => 'Tur aktiv';
@@ -6361,7 +6361,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_checkInOk => 'CHECKA IN: JAG MÅR BRA';
+  String get bastionHome_checkInOk => 'Checka in: jag mår bra';
 
   @override
   String get bastionHome_checkInHint =>
@@ -6373,21 +6373,21 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_connectRadio => 'ANSLUT RADIO';
+  String get bastionHome_connectRadio => 'Anslut radio';
 
   @override
   String get bastionHome_connectRadioHint =>
       'MeshCore-anslutningar via Bluetooth, USB och TCP';
 
   @override
-  String get bastionHome_liveDiagnostics => 'LIVEDIAGNOSTIK';
+  String get bastionHome_liveDiagnostics => 'Livediagnostik';
 
   @override
   String get bastionHome_liveDiagnosticsHint =>
       'Radiohälsa, signal, enhet och ramverktyg';
 
   @override
-  String get bastionHome_meshDiscovery => 'MESH-UPPTÄCKT';
+  String get bastionHome_meshDiscovery => 'Mesh-upptäckt';
 
   @override
   String get bastionHome_meshDiscoveryHint =>
@@ -6398,16 +6398,16 @@ class AppLocalizationsSv extends AppLocalizations {
       'Turöversikt, beredskap, fältlogg, automatiseringar och täckningsjämförelse';
 
   @override
-  String get bastionHome_fieldTools => 'NOTORYX FÄLTVERKTYG';
+  String get bastionHome_fieldTools => 'NOTORYX fältverktyg';
 
   @override
   String get bastionHome_statusActive => 'AKTIV';
 
   @override
-  String get bastionHome_consoleOnline => 'FÄLTKONSOL ONLINE';
+  String get bastionHome_consoleOnline => 'Fältkonsol online';
 
   @override
-  String get bastionHome_consoleReady => 'FÄLTKONSOL REDO';
+  String get bastionHome_consoleReady => 'Fältkonsol redo';
 
   @override
   String get bastionHome_consoleHint =>
@@ -6415,7 +6415,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String bastionHome_battery(String value) {
-    return 'BAT $value';
+    return 'Bat $value';
   }
 
   @override
@@ -8288,4 +8288,16 @@ class AppLocalizationsSv extends AppLocalizations {
   String routes_via(String names) {
     return 'via $names';
   }
+
+  @override
+  String get nav_home => 'Hem';
+
+  @override
+  String get nav_chats => 'Chattar';
+
+  @override
+  String get nav_tools => 'Verktyg';
+
+  @override
+  String get nav_settings => 'Inställningar';
 }

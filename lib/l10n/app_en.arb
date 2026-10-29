@@ -306,7 +306,7 @@
   "scanner_bluetoothWebUnsupported": "Bluetooth isn't available in the browser. Connect over USB instead.",
   "device_quickSwitch": "Quick switch",
   "device_meshcore": "MeshCore",
-  "settings_title": "NOTORYX Core Settings",
+  "settings_title": "Settings",
   "settings_deviceInfo": "Device Info",
   "settings_appSettings": "App Settings",
   "settings_appSettingsSubtitle": "Notifications, messaging, and map preferences",
@@ -3115,14 +3115,14 @@
     }
   },
   "bastion_tagline": "Communication without infrastructure.",
-  "bastion_nodes": "NODES",
-  "bastion_repeaters": "REPEATERS",
-  "bastion_active1h": "ACTIVE 1H",
-  "bastion_mapCoverage": "MAP + COVERAGE",
-  "bastion_routeIntelligence": "ROUTE INTELLIGENCE",
-  "bastion_repeaterTools": "REPEATER TOOLS",
-  "bastion_fieldStats": "FIELD STATS",
-  "bastion_fieldOps": "TRIP + FIELD OPERATIONS",
+  "bastion_nodes": "Nodes",
+  "bastion_repeaters": "Repeaters",
+  "bastion_active1h": "Active 1h",
+  "bastion_mapCoverage": "Map + coverage",
+  "bastion_routeIntelligence": "Route intelligence",
+  "bastion_repeaterTools": "Repeater tools",
+  "bastion_fieldStats": "Field stats",
+  "bastion_fieldOps": "Trip + field operations",
   "bastion_coverageCapture": "COVERAGE CAPTURE",
   "bastion_mapAttribution": "Map data © OpenStreetMap contributors; tiles by selected provider",
   "bastion_observationsCount": "{count, plural, =1{1 observation} other{{count} observations}}",
@@ -3723,9 +3723,9 @@
   "fieldOps_heardTooltip": "Heard-node observation; not proof of a successful link",
   "fieldOps_noteTooltip": "Local note at radio-advertised coordinates; may be stale.",
   "bastionHome_aboutTooltip": "About NOTORYX Core",
-  "bastionHome_getStarted": "GET STARTED",
+  "bastionHome_getStarted": "Get started",
   "bastionHome_getStartedHint": "Connect your radio and verify your first message",
-  "bastionHome_planYourTrip": "PLAN YOUR TRIP",
+  "bastionHome_planYourTrip": "Plan your trip",
   "bastionHome_tripActive": "Trip active",
   "bastionHome_tripStopped": "Trip stopped",
   "bastionHome_tripSummary": "{state} • {contacts} contacts • {unread} unread messages",
@@ -3742,7 +3742,7 @@
       }
     }
   },
-  "bastionHome_checkInOk": "CHECK IN: I'M OK",
+  "bastionHome_checkInOk": "Check in: I'm OK",
   "bastionHome_checkInHint": "Review contacts and message before sending. Track acknowledgements in Field Log.",
   "bastionHome_lastCheckIn": "Last check-in: {summary}",
   "@bastionHome_lastCheckIn": {
@@ -3752,19 +3752,19 @@
       }
     }
   },
-  "bastionHome_connectRadio": "CONNECT RADIO",
+  "bastionHome_connectRadio": "Connect radio",
   "bastionHome_connectRadioHint": "Bluetooth, USB and TCP MeshCore connections",
-  "bastionHome_liveDiagnostics": "LIVE DIAGNOSTICS",
+  "bastionHome_liveDiagnostics": "Live diagnostics",
   "bastionHome_liveDiagnosticsHint": "Radio health, signal, device and frame tools",
-  "bastionHome_meshDiscovery": "MESH DISCOVERY",
+  "bastionHome_meshDiscovery": "Mesh discovery",
   "bastionHome_meshDiscoveryHint": "Find nodes and inspect the mesh around you",
   "bastionHome_fieldOpsHint": "Trip brief, readiness, Field Log, automations and coverage comparison",
-  "bastionHome_fieldTools": "NOTORYX FIELD TOOLS",
+  "bastionHome_fieldTools": "Field tools",
   "bastionHome_statusActive": "ACTIVE",
-  "bastionHome_consoleOnline": "FIELD CONSOLE ONLINE",
-  "bastionHome_consoleReady": "FIELD CONSOLE READY",
+  "bastionHome_consoleOnline": "Field console online",
+  "bastionHome_consoleReady": "Field console ready",
   "bastionHome_consoleHint": "Connect a radio to light up the live dashboard.",
-  "bastionHome_battery": "BAT {value}",
+  "bastionHome_battery": "Battery {value}",
   "@bastionHome_battery": {
     "placeholders": {
       "value": {
@@ -4884,5 +4884,21 @@
         "type": "String"
       }
     }
+  },
+  "nav_home": "Home",
+  "nav_chats": "Chats",
+  "nav_tools": "Tools",
+  "nav_settings": "Settings",
+  "@nav_home": {
+    "description": "Bottom bar tab: home screen"
+  },
+  "@nav_chats": {
+    "description": "Bottom bar tab: chats and channels"
+  },
+  "@nav_tools": {
+    "description": "Bottom bar tab: field tools"
+  },
+  "@nav_settings": {
+    "description": "Bottom bar tab: settings"
   }
 }

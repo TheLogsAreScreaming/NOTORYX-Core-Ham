@@ -5463,28 +5463,28 @@ class AppLocalizationsNl extends AppLocalizations {
   String get bastion_tagline => 'Communicatie zonder infrastructuur.';
 
   @override
-  String get bastion_nodes => 'NODES';
+  String get bastion_nodes => 'Nodes';
 
   @override
-  String get bastion_repeaters => 'REPEATERS';
+  String get bastion_repeaters => 'Repeaters';
 
   @override
-  String get bastion_active1h => 'ACTIEF 1 U';
+  String get bastion_active1h => 'Actief 1 u';
 
   @override
-  String get bastion_mapCoverage => 'KAART + DEKKING';
+  String get bastion_mapCoverage => 'Kaart + dekking';
 
   @override
-  String get bastion_routeIntelligence => 'ROUTE-INZICHT';
+  String get bastion_routeIntelligence => 'Route-inzicht';
 
   @override
-  String get bastion_repeaterTools => 'REPEATERTOOLS';
+  String get bastion_repeaterTools => 'Repeatertools';
 
   @override
-  String get bastion_fieldStats => 'VELDSTATISTIEKEN';
+  String get bastion_fieldStats => 'Veldstatistieken';
 
   @override
-  String get bastion_fieldOps => 'TOCHT + VELDOPERATIES';
+  String get bastion_fieldOps => 'Tocht + veldoperaties';
 
   @override
   String get bastion_coverageCapture => 'DEKKINGSOPNAME';
@@ -6371,14 +6371,14 @@ class AppLocalizationsNl extends AppLocalizations {
   String get bastionHome_aboutTooltip => 'Over NOTORYX Core';
 
   @override
-  String get bastionHome_getStarted => 'AAN DE SLAG';
+  String get bastionHome_getStarted => 'Aan de slag';
 
   @override
   String get bastionHome_getStartedHint =>
       'Verbind je radio en controleer je eerste bericht';
 
   @override
-  String get bastionHome_planYourTrip => 'PLAN JE TOCHT';
+  String get bastionHome_planYourTrip => 'Plan je tocht';
 
   @override
   String get bastionHome_tripActive => 'Tocht actief';
@@ -6392,7 +6392,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_checkInOk => 'INCHECKEN: ALLES GOED';
+  String get bastionHome_checkInOk => 'Inchecken: alles goed';
 
   @override
   String get bastionHome_checkInHint =>
@@ -6404,21 +6404,21 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_connectRadio => 'RADIO VERBINDEN';
+  String get bastionHome_connectRadio => 'Radio verbinden';
 
   @override
   String get bastionHome_connectRadioHint =>
       'MeshCore-verbindingen via Bluetooth, USB en TCP';
 
   @override
-  String get bastionHome_liveDiagnostics => 'LIVE DIAGNOSE';
+  String get bastionHome_liveDiagnostics => 'Live diagnose';
 
   @override
   String get bastionHome_liveDiagnosticsHint =>
       'Radiostatus, signaal, apparaat en frametools';
 
   @override
-  String get bastionHome_meshDiscovery => 'MESH VERKENNEN';
+  String get bastionHome_meshDiscovery => 'Mesh verkennen';
 
   @override
   String get bastionHome_meshDiscoveryHint =>
@@ -6429,16 +6429,16 @@ class AppLocalizationsNl extends AppLocalizations {
       'Tochtoverzicht, gereedheid, veldlogboek, automatiseringen en dekkingsvergelijking';
 
   @override
-  String get bastionHome_fieldTools => 'NOTORYX-VELDTOOLS';
+  String get bastionHome_fieldTools => 'NOTORYX-veldtools';
 
   @override
   String get bastionHome_statusActive => 'ACTIEF';
 
   @override
-  String get bastionHome_consoleOnline => 'VELDCONSOLE ONLINE';
+  String get bastionHome_consoleOnline => 'Veldconsole online';
 
   @override
-  String get bastionHome_consoleReady => 'VELDCONSOLE GEREED';
+  String get bastionHome_consoleReady => 'Veldconsole gereed';
 
   @override
   String get bastionHome_consoleHint =>
@@ -6446,7 +6446,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String bastionHome_battery(String value) {
-    return 'BAT $value';
+    return 'Bat $value';
   }
 
   @override
@@ -8325,4 +8325,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String routes_via(String names) {
     return 'via $names';
   }
+
+  @override
+  String get nav_home => 'Start';
+
+  @override
+  String get nav_chats => 'Chats';
+
+  @override
+  String get nav_tools => 'Tools';
+
+  @override
+  String get nav_settings => 'Instellingen';
 }

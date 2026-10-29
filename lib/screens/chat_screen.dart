@@ -219,17 +219,36 @@ class _ChatScreenState extends State<ChatScreen> {
                   behavior: HitTestBehavior.opaque,
                   onTap: () =>
                       ContactRoutingSheet.show(context, contact: contact),
+                  // Opens the routing sheet; a quiet route label with a
+                  // chevron reads as tappable without a link underline.
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6),
-                    child: Text(
-                      pathLabel,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.normal,
-                        decoration: TextDecoration.underline,
-                        decorationStyle: TextDecorationStyle.dotted,
-                      ),
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.alt_route_rounded,
+                          size: 13,
+                          color: MeshPalette.ink3,
+                        ),
+                        const SizedBox(width: 4),
+                        Flexible(
+                          child: Text(
+                            pathLabel,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 12.5,
+                              fontWeight: FontWeight.w500,
+                              color: MeshPalette.ink3,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.expand_more_rounded,
+                          size: 16,
+                          color: MeshPalette.ink3,
+                        ),
+                      ],
                     ),
                   ),
                 ),

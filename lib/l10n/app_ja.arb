@@ -3855,5 +3855,9 @@
   "routes_unknownRepeater": "不明なリピーター",
   "routes_nearbyDetail": "{count, plural, other{{count}回受信}} · {ago}",
   "routes_minutesAgo": "{minutes, plural, =0{たった今} other{{minutes}分前}}",
-  "routes_via": "経由: {names}"
+  "routes_via": "経由: {names}",
+  "nav_home": "ホーム",
+  "nav_chats": "チャット",
+  "nav_tools": "ツール",
+  "nav_settings": "設定"
 }
