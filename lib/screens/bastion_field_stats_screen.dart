@@ -39,13 +39,7 @@ class BastionFieldStatsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: MeshPalette.ink,
-        title: Text(
-          l10n.fieldStats_title,
-          style: const TextStyle(
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.2,
-          ),
-        ),
+        title: Text(l10n.fieldStats_title),
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(18, 10, 18, 28),
@@ -60,15 +54,7 @@ class BastionFieldStatsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  l10n.fieldStats_snapshot,
-                  style: TextStyle(
-                    color: _cyan,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.4,
-                  ),
-                ),
+                Text(l10n.fieldStats_snapshot, style: MeshTheme.sectionTitle()),
                 const SizedBox(height: 8),
                 Text(
                   l10n.fieldStats_headline,
@@ -176,15 +162,8 @@ class _Title extends StatelessWidget {
   const _Title(this.text);
 
   @override
-  Widget build(BuildContext context) => Text(
-    text,
-    style: TextStyle(
-      color: MeshPalette.accent,
-      fontSize: 11,
-      fontWeight: FontWeight.w900,
-      letterSpacing: 1.3,
-    ),
-  );
+  Widget build(BuildContext context) =>
+      Text(text, style: MeshTheme.sectionTitle());
 }
 
 class _Panel extends StatelessWidget {

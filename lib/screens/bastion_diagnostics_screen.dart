@@ -95,24 +95,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: MeshPalette.ink,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'NOTORYX',
-              style: TextStyle(
-                color: _cyan,
-                fontSize: 10,
-                fontWeight: FontWeight.w900,
-                letterSpacing: 1.7,
-              ),
-            ),
-            Text(
-              l10n.bastionDiag_title,
-              style: const TextStyle(fontWeight: FontWeight.w900),
-            ),
-          ],
-        ),
+        title: Text(l10n.bastionDiag_title),
         actions: [
           IconButton(
             tooltip: l10n.bastionDiag_export,
@@ -183,15 +166,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 18),
-          Text(
-            l10n.bastionDiag_deepTools,
-            style: TextStyle(
-              color: _cyan,
-              fontSize: 11,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 1.3,
-            ),
-          ),
+          Text(l10n.bastionDiag_deepTools, style: MeshTheme.sectionTitle()),
           const SizedBox(height: 8),
           _nav(
             context,
@@ -313,15 +288,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: TextStyle(
-            color: _cyan,
-            fontSize: 11,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.3,
-          ),
-        ),
+        Text(title, style: MeshTheme.sectionTitle()),
         const SizedBox(height: 8),
         ...children,
       ],

@@ -589,7 +589,6 @@ class _ScanHero extends StatelessWidget {
     );
 
     return ConsolePanel(
-      borderColor: color.withValues(alpha: 0.45),
       child: Semantics(
         liveRegion: true,
         child: LayoutBuilder(

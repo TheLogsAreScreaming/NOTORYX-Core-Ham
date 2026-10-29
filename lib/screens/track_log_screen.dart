@@ -111,7 +111,6 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
             children: [
               ConsolePanel(
-                borderColor: statusColor.withValues(alpha: 0.45),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

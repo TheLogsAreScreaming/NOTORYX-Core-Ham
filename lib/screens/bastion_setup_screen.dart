@@ -173,10 +173,7 @@ class _BastionSetupScreenState extends State<BastionSetupScreen> {
             else ...[
               Text(
                 l10n.bastionSetup_latestMessage(
-                  messageStatusLabel(
-                    latest.status.name,
-                    l10n: l10n,
-                  ).toUpperCase(),
+                  messageStatusLabel(latest.status.name, l10n: l10n),
                   '${latest.timestamp.toLocal()}',
                 ),
               ),

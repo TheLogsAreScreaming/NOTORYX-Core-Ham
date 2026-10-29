@@ -5504,7 +5504,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get bastion_fieldOps => 'Saída + operações de campo';
 
   @override
-  String get bastion_coverageCapture => 'CAPTURA DE COBERTURA';
+  String get bastion_coverageCapture => 'Captura de cobertura';
 
   @override
   String get bastion_mapAttribution =>
@@ -5810,22 +5810,22 @@ class AppLocalizationsPt extends AppLocalizations {
   String get fieldOps_title => 'Operações de campo NOTORYX Core';
 
   @override
-  String get fieldOps_tabTrip => 'SAÍDA';
+  String get fieldOps_tabTrip => 'Saída';
 
   @override
-  String get fieldOps_tabReady => 'PRONTO';
+  String get fieldOps_tabReady => 'Pronto';
 
   @override
-  String get fieldOps_tabLog => 'REGISTO';
+  String get fieldOps_tabLog => 'Registo';
 
   @override
-  String get fieldOps_tabAuto => 'AUTO';
+  String get fieldOps_tabAuto => 'Auto';
 
   @override
-  String get fieldOps_tabCoverage => 'COBERTURA';
+  String get fieldOps_tabCoverage => 'Cobertura';
 
   @override
-  String get fieldOps_tabConnection => 'LIGAÇÃO';
+  String get fieldOps_tabConnection => 'Ligação';
 
   @override
   String get fieldOps_diagnostics => 'Diagnóstico';
@@ -6263,7 +6263,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get fieldOps_dryRunHint => 'Registar a ação sem enviar nem notificar.';
 
   @override
-  String get fieldOps_then => 'ENTÃO';
+  String get fieldOps_then => 'Então';
 
   @override
   String get fieldOps_actionLog => 'Escrever no registo de campo';
@@ -6523,17 +6523,17 @@ class AppLocalizationsPt extends AppLocalizations {
       'Uma app comunitária independente para redes MeshCore. O NOTORYX Core não é uma app oficial MeshCore e a inclusão de recursos da comunidade não implica parceria nem aprovação.';
 
   @override
-  String get bastionAbout_version => 'VERSÃO';
+  String get bastionAbout_version => 'Versão';
 
   @override
-  String get bastionAbout_openSource => 'BASE DE CÓDIGO ABERTO';
+  String get bastionAbout_openSource => 'Base de código aberto';
 
   @override
   String get bastionAbout_openSourceBody =>
       'O NOTORYX Core é construído a partir do código aberto MeshCore Open sob a licença MIT, que modifica. O trabalho no fluxo de cobertura também credita, quando aplicável, a MeshMapper Flutter App com licença MIT.';
 
   @override
-  String get bastionAbout_community => 'A COMUNIDADE PRIMEIRO';
+  String get bastionAbout_community => 'A comunidade primeiro';
 
   @override
   String get bastionAbout_communityBody =>
@@ -6544,7 +6544,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'NOTORYX Core • Companheiro MeshCore independente';
 
   @override
-  String get bastionAbout_licenses => 'LICENÇAS DE CÓDIGO ABERTO';
+  String get bastionAbout_licenses => 'Licenças de código aberto';
 
   @override
   String get bastionSetup_title => 'Começar com o NOTORYX Core';
@@ -6640,10 +6640,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get bastionDiag_export => 'Exportar diagnóstico';
 
   @override
-  String get bastionDiag_channels => 'CANAIS';
+  String get bastionDiag_channels => 'Canais';
 
   @override
-  String get bastionDiag_radio => 'RÁDIO';
+  String get bastionDiag_radio => 'Rádio';
 
   @override
   String get bastionDiag_frequency => 'Frequência';
@@ -6664,7 +6664,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get bastionDiag_noiseFloor => 'Nível de ruído';
 
   @override
-  String get bastionDiag_device => 'DISPOSITIVO';
+  String get bastionDiag_device => 'Dispositivo';
 
   @override
   String get bastionDiag_name => 'Nome';
@@ -6682,33 +6682,33 @@ class AppLocalizationsPt extends AppLocalizations {
   String get bastionDiag_transport => 'Transporte';
 
   @override
-  String get bastionDiag_deepTools => 'FERRAMENTAS AVANÇADAS';
+  String get bastionDiag_deepTools => 'Ferramentas avançadas';
 
   @override
-  String get bastionDiag_liveStats => 'ESTATÍSTICAS DE RÁDIO EM DIRETO';
+  String get bastionDiag_liveStats => 'Estatísticas de rádio em direto';
 
   @override
   String get bastionDiag_liveStatsHint => 'Ruído, RSSI, SNR e tempo no ar';
 
   @override
-  String get bastionDiag_frameDebug => 'DEPURAÇÃO DE TRAMAS / BLE';
+  String get bastionDiag_frameDebug => 'Depuração de tramas / BLE';
 
   @override
   String get bastionDiag_frameDebugHint =>
       'Inspecione tramas recebidas descodificadas e em bruto';
 
   @override
-  String get bastionDiag_appLog => 'REGISTO DE DEPURAÇÃO DA APP';
+  String get bastionDiag_appLog => 'Registo de depuração da app';
 
   @override
   String get bastionDiag_appLogHint =>
       'Reveja eventos de diagnóstico da aplicação';
 
   @override
-  String get bastionDiag_online => 'RÁDIO ONLINE';
+  String get bastionDiag_online => 'Rádio online';
 
   @override
-  String get bastionDiag_offline => 'RÁDIO OFFLINE';
+  String get bastionDiag_offline => 'Rádio offline';
 
   @override
   String get bastionDiag_offlineHint =>
@@ -6721,17 +6721,17 @@ class AppLocalizationsPt extends AppLocalizations {
   String get coverage_leaveBlocked => 'Pare e guarde a sessão antes de sair.';
 
   @override
-  String get coverage_savedSessions => 'SESSÕES GUARDADAS';
+  String get coverage_savedSessions => 'Sessões guardadas';
 
   @override
   String get coverage_caveat =>
       'RSSI/SNR são instantâneos do rádio e podem pertencer a outro pacote. As posições são coordenadas anunciadas pelo rádio, não GPS do telemóvel nem prova de cobertura. Ciano: registador; âmbar: nó anunciado. Não é feita interpolação.';
 
   @override
-  String get coverage_captureActive => 'CAPTURA ATIVA';
+  String get coverage_captureActive => 'Captura ativa';
 
   @override
-  String get coverage_fieldSession => 'SESSÃO DE COBERTURA DE CAMPO';
+  String get coverage_fieldSession => 'Sessão de cobertura de campo';
 
   @override
   String get coverage_connectedBody =>
@@ -6742,43 +6742,43 @@ class AppLocalizationsPt extends AppLocalizations {
       'Ligue um rádio antes de começar. A captura de cobertura regista observações da malha em direto a partir do rádio companheiro ligado.';
 
   @override
-  String get coverage_observations => 'OBSERVAÇÕES';
+  String get coverage_observations => 'Observações';
 
   @override
-  String get coverage_uniqueNodes => 'NÓS ÚNICOS';
+  String get coverage_uniqueNodes => 'Nós únicos';
 
   @override
-  String get coverage_elapsed => 'DECORRIDO';
+  String get coverage_elapsed => 'Decorrido';
 
   @override
-  String get coverage_radioConnected => 'RÁDIO LIGADO';
+  String get coverage_radioConnected => 'Rádio ligado';
 
   @override
-  String get coverage_noRadio => 'SEM RÁDIO';
+  String get coverage_noRadio => 'Sem rádio';
 
   @override
-  String get coverage_gpsReady => 'GPS DO RÁDIO PRONTO';
+  String get coverage_gpsReady => 'GPS do rádio pronto';
 
   @override
-  String get coverage_noGps => 'SEM GPS DO RÁDIO';
+  String get coverage_noGps => 'Sem GPS do rádio';
 
   @override
-  String get coverage_stopSave => 'PARAR + GUARDAR SESSÃO';
+  String get coverage_stopSave => 'Parar + guardar sessão';
 
   @override
-  String get coverage_start => 'INICIAR SESSÃO DE COBERTURA';
+  String get coverage_start => 'Iniciar sessão de cobertura';
 
   @override
-  String get coverage_exportJson => 'EXPORTAR JSON';
+  String get coverage_exportJson => 'Exportar JSON';
 
   @override
-  String get coverage_exportCsv => 'EXPORTAR CSV';
+  String get coverage_exportCsv => 'Exportar CSV';
 
   @override
-  String get coverage_liveObservations => 'OBSERVAÇÕES EM DIRETO';
+  String get coverage_liveObservations => 'Observações em direto';
 
   @override
-  String get coverage_waiting => 'À ESPERA DE ATIVIDADE DA MALHA';
+  String get coverage_waiting => 'À espera de atividade da malha';
 
   @override
   String get coverage_waitingBody =>
@@ -6894,10 +6894,10 @@ class AppLocalizationsPt extends AppLocalizations {
       '© colaboradores do OpenStreetMap • mapa base online';
 
   @override
-  String get fieldStats_title => 'INTELIGÊNCIA DE CAMPO';
+  String get fieldStats_title => 'Inteligência de campo';
 
   @override
-  String get fieldStats_snapshot => 'INSTANTÂNEO DA MALHA EM DIRETO';
+  String get fieldStats_snapshot => 'Instantâneo da malha em direto';
 
   @override
   String get fieldStats_headline => 'O que o NOTORYX Core sabe neste momento.';
@@ -6907,51 +6907,51 @@ class AppLocalizationsPt extends AppLocalizations {
       'Estes contadores são calculados a partir da tabela de contactos MeshCore ligada, localizações, caminhos e marcas temporais de última visualização.';
 
   @override
-  String get fieldStats_total => 'TOTAL';
+  String get fieldStats_total => 'Total';
 
   @override
-  String get fieldStats_chatNodes => 'NÓS DE CHAT';
+  String get fieldStats_chatNodes => 'Nós de chat';
 
   @override
-  String get fieldStats_rooms => 'SALAS';
+  String get fieldStats_rooms => 'Salas';
 
   @override
-  String get fieldStats_sensors => 'SENSORES';
+  String get fieldStats_sensors => 'Sensores';
 
   @override
-  String get fieldStats_located => 'LOCALIZADOS';
+  String get fieldStats_located => 'Localizados';
 
   @override
-  String get fieldStats_favorites => 'FAVORITOS';
+  String get fieldStats_favorites => 'Favoritos';
 
   @override
-  String get fieldStats_routeSnapshot => 'INSTANTÂNEO DE ROTAS';
+  String get fieldStats_routeSnapshot => 'Instantâneo de rotas';
 
   @override
-  String get fieldStats_routed => 'ENCAMINHADOS';
+  String get fieldStats_routed => 'Encaminhados';
 
   @override
-  String get fieldStats_direct => 'DIRETOS';
+  String get fieldStats_direct => 'Diretos';
 
   @override
-  String get fieldStats_flood => 'INUNDAÇÃO';
+  String get fieldStats_flood => 'Inundação';
 
   @override
-  String get fieldStats_pathIntel => 'INTELIGÊNCIA DE CAMINHOS';
+  String get fieldStats_pathIntel => 'Inteligência de caminhos';
 
   @override
   String get fieldStats_pathIntelBody =>
       'A inteligência de rotas do NOTORYX Core usa tentativas de caminho guardadas, número de saltos, sucesso/falha, tempo de viagem e ponderação de rotas para mostrar rotas aprendidas.';
 
   @override
-  String get fieldStats_coverageSessions => 'SESSÕES DE COBERTURA';
+  String get fieldStats_coverageSessions => 'Sessões de cobertura';
 
   @override
   String get fieldStats_coverageSessionsBody =>
       'A captura de cobertura agora guarda sessões de campo, restaura trabalho interrompido, exporta observações e mapeia os pontos de cobertura registados. RSSI/SNR continuam a ser o instantâneo de rádio mais próximo disponível.';
 
   @override
-  String get mapHub_title => 'MAPA DE CAMPO NOTORYX';
+  String get mapHub_title => 'Mapa de campo NOTORYX';
 
   @override
   String get mapHub_intro =>
@@ -6965,7 +6965,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get mapHub_badgeNew => 'NOVO';
 
   @override
-  String get mapHub_liveMap => 'MAPA DA MALHA EM DIRETO';
+  String get mapHub_liveMap => 'Mapa da malha em direto';
 
   @override
   String get mapHub_liveMapHint =>
@@ -6975,7 +6975,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get mapHub_badgeLive => 'DIRETO';
 
   @override
-  String get mapHub_offlinePacks => 'PACOTES DE MAPAS OFFLINE';
+  String get mapHub_offlinePacks => 'Pacotes de mapas offline';
 
   @override
   String get mapHub_offlinePacksHint =>
@@ -6985,7 +6985,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get mapHub_badgeOffline => 'OFFLINE';
 
   @override
-  String get mapHub_regions => 'PERFIS DE REGIÃO';
+  String get mapHub_regions => 'Perfis de região';
 
   @override
   String get mapHub_regionsHint =>
@@ -7075,7 +7075,7 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'COMANDO DE REPETIDORES';
+  String get repeaterTools_heroLabel => 'Comando de repetidores';
 
   @override
   String get repeaterTools_headline =>
@@ -7086,33 +7086,33 @@ class AppLocalizationsPt extends AppLocalizations {
       'Selecione um repetidor descoberto para se autenticar e abrir as ferramentas MeshCore existentes de estado, telemetria, vizinhos, definições e CLI.';
 
   @override
-  String get repeaterTools_discovered => 'DESCOBERTOS';
+  String get repeaterTools_discovered => 'Descobertos';
 
   @override
-  String get repeaterTools_tools => 'FERRAMENTAS';
+  String get repeaterTools_tools => 'Ferramentas';
 
   @override
-  String get repeaterTools_available => 'REPETIDORES DISPONÍVEIS';
+  String get repeaterTools_available => 'Repetidores disponíveis';
 
   @override
   String get repeaterTools_unnamed => 'Repetidor sem nome';
 
   @override
-  String get repeaterTools_statusTelemetry => 'ESTADO + TELEMETRIA';
+  String get repeaterTools_statusTelemetry => 'Estado + telemetria';
 
   @override
   String get repeaterTools_statusTelemetryBody =>
       'Inspecione o estado e a telemetria do repetidor com as ferramentas de gestão existentes.';
 
   @override
-  String get repeaterTools_neighbors => 'VIZINHOS';
+  String get repeaterTools_neighbors => 'Vizinhos';
 
   @override
   String get repeaterTools_neighborsBody =>
       'Inspecione a infraestrutura vizinha e as relações da malha.';
 
   @override
-  String get repeaterTools_cli => 'CLI + DEFINIÇÕES';
+  String get repeaterTools_cli => 'CLI + definições';
 
   @override
   String get repeaterTools_cliBody =>

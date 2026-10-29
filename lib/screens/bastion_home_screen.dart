@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import '../theme/mesh_theme.dart';
 import '../widgets/notoryx_logo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -113,7 +116,10 @@ class BastionHomeScreen extends StatelessWidget {
                 // Only a missing radio or loading blocks this; missing
                 // contacts or a stopped trip are sorted out on tap.
                 onPressed: hardBlockReason(ops) == null
-                    ? () => _checkIn(context, ops)
+                    ? () {
+                        HapticFeedback.selectionClick();
+                        unawaited(_checkIn(context, ops));
+                      }
                     : null,
                 icon: const Icon(Icons.check_circle_outline),
                 label: Text(

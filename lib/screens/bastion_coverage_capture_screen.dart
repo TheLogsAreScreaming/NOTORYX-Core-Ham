@@ -133,24 +133,7 @@ class _BastionCoverageCaptureScreenState
         appBar: AppBar(
           backgroundColor: bg,
           foregroundColor: MeshPalette.ink,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'NOTORYX',
-                style: TextStyle(
-                  color: cyan,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 1.7,
-                ),
-              ),
-              Text(
-                l10n.coverage_title,
-                style: const TextStyle(fontWeight: FontWeight.w900),
-              ),
-            ],
-          ),
+          title: Text(l10n.coverage_title),
         ),
         body: ListView(
           padding: const EdgeInsets.all(18),
@@ -313,12 +296,7 @@ class _BastionCoverageCaptureScreenState
             const SizedBox(height: 22),
             Text(
               l10n.coverage_liveObservations,
-              style: TextStyle(
-                color: cyan,
-                fontSize: 11,
-                fontWeight: FontWeight.w900,
-                letterSpacing: 1.3,
-              ),
+              style: MeshTheme.sectionTitle(),
             ),
             const SizedBox(height: 10),
             if (observations.isEmpty)

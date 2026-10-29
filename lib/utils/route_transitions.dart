@@ -6,6 +6,7 @@ Route<T> buildQuickSwitchRoute<T>(Widget page) {
     transitionDuration: const Duration(milliseconds: 220),
     reverseTransitionDuration: const Duration(milliseconds: 200),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      if (MediaQuery.disableAnimationsOf(context)) return child;
       // Pure crossfade — no positional slide, so the shared top chrome
       // (app bar + Contacts/Channels toggle) stays rock-steady while switching.
       return FadeTransition(

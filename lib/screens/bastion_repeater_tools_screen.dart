@@ -46,13 +46,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: MeshPalette.ink,
-        title: Text(
-          l10n.bastion_repeaterTools,
-          style: const TextStyle(
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.3,
-          ),
-        ),
+        title: Text(l10n.bastion_repeaterTools),
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(18, 10, 18, 28),
@@ -69,12 +63,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
               children: [
                 Text(
                   l10n.repeaterTools_heroLabel,
-                  style: TextStyle(
-                    color: _cyan,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.4,
-                  ),
+                  style: MeshTheme.sectionTitle(),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -105,15 +94,7 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          Text(
-            l10n.repeaterTools_available,
-            style: TextStyle(
-              color: _cyan,
-              fontSize: 12,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 1.3,
-            ),
-          ),
+          Text(l10n.repeaterTools_available, style: MeshTheme.sectionTitle()),
           const SizedBox(height: 10),
           if (repeaters.isEmpty)
             const _EmptyRepeaters()

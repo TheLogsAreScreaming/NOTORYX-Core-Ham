@@ -647,6 +647,7 @@ class _ListEntranceState extends State<ListEntrance>
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.disableAnimationsOf(context)) return widget.child;
     return FadeTransition(
       opacity: _curve,
       child: SlideTransition(

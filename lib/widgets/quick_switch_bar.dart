@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -40,6 +41,7 @@ class QuickSwitchBar extends StatelessWidget {
 
     void handleDestination(int index) {
       final tab = MainTab.values[index];
+      if (tab != current) HapticFeedback.selectionClick();
       if (onSelected != null) {
         onSelected!(tab);
       } else if (tab != current) {

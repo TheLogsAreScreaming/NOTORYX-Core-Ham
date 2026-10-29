@@ -231,7 +231,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                       ),
                       const SizedBox(width: 6),
                       StatusChip(
-                        label: contact.typeLabel(context.l10n).toUpperCase(),
+                        label: contact.typeLabel(context.l10n),
                         color: _avatarColor(contact.type),
                         icon: _avatarIcon(contact.type),
                       ),
