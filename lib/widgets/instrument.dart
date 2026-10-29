@@ -284,7 +284,13 @@ class InstrumentButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(MeshRadii.xs),
           ),
-          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          // A style here replaces the theme's, so the family is restated.
+          textStyle: const TextStyle(
+            fontFamily: MeshFonts.sans,
+            fontFamilyFallback: MeshFonts.sansFallback,
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );
