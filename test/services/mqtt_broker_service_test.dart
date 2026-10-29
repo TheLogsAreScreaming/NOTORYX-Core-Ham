@@ -527,6 +527,67 @@ void main() {
       expect(service.packetsPublished, 1);
     });
 
+    // Backlogged packets older than 72 hours are dropped, so these use the
+    // real clock rather than the fixed test date.
+    RadioRxPacket fresh(Uint8List raw) =>
+        RadioRxPacket(raw: raw, snr: 5, rssi: -90, receivedAt: DateTime.now());
+
+    test('queues packets while offline and backfills them in order', () async {
+      final service = await sharing();
+      // The connection drops; the session is still wanted.
+      transports.single.lost!();
+      expect(
+        service.publishRadioPacket(fresh(channelPacket)),
+        MqttPublishSkip.notConnected,
+      );
+      service.publishRadioPacket(fresh(directPacket));
+      // Direct traffic isn't shared by default, so only one waits.
+      expect(service.backlogLength, 1);
+      // It reconnects on its own after a second, then drains the backlog.
+      await Future<void>.delayed(const Duration(milliseconds: 3600));
+      expect(service.status, MqttConnectionStatus.connected);
+      expect(service.backlogLength, 0);
+      final (topic, payload) = transports.last.published.single;
+      expect(MqttMeshPacket.tryParse(topic, payload)!.raw, channelPacket);
+      service.dispose();
+    });
+
+    test('a manual disconnect stops queuing', () async {
+      final service = await sharing();
+      service.disconnect();
+      service.publishRadioPacket(heard(channelPacket));
+      expect(service.backlogLength, 0);
+      service.dispose();
+    });
+
+    test('the backlog survives a restart', () async {
+      final store = _MemoryBacklog();
+      final made = <FakeTransport>[];
+      MqttBrokerService make() => MqttBrokerService(
+        prefs: prefs,
+        credentials: credentials,
+        transportFactory: (settings, clientId) {
+          final t = FakeTransport(null);
+          made.add(t);
+          return t;
+        },
+        backlogStore: store,
+      );
+      final first = make();
+      await first.load();
+      await first.saveConfiguration(regional, publishSettings: share);
+      first.setObserverIdentity(publicKeyHex: 'ab12cd34', name: 'Base');
+      await first.connect();
+      made.last.lost!();
+      first.publishRadioPacket(fresh(channelPacket));
+      first.dispose();
+      await Future<void>.delayed(Duration.zero);
+      final second = make();
+      await second.load();
+      expect(second.backlogLength, 1);
+      second.dispose();
+    });
+
     test('waits for a connection and a radio identity', () async {
       final offline = await sharing(connect: false);
       expect(
@@ -1025,6 +1086,48 @@ void main() {
       await Future<void>.delayed(Duration.zero);
     }
 
+    test('Wi-Fi only treats mobile data as no network', () async {
+      final service = watching(mobile);
+      await service.load();
+      await service.saveConfiguration(_settings);
+      await service.setWifiOnly(true);
+      await service.connect();
+      expect(transports, isEmpty);
+      expect(service.waitingForNetwork, isTrue);
+
+      await change(wifi);
+      expect(service.status, MqttConnectionStatus.connected);
+
+      await change(mobile);
+      expect(transports.single.disconnected, isTrue);
+
+      await service.setWifiOnly(false);
+      await Future<void>.delayed(Duration.zero);
+      expect(transports, hasLength(2));
+      service.dispose();
+    });
+
+    test('namespaced brokers keep separate settings', () async {
+      final extra = MqttBrokerService(
+        prefs: prefs,
+        credentials: credentials,
+        transportFactory: (settings, clientId) => FakeTransport(null),
+        namespace: 'x1',
+        uploadOnly: true,
+      );
+      await extra.load();
+      await extra.saveConfiguration(_settings);
+      final main = watching(wifi);
+      await main.load();
+      expect(main.status, MqttConnectionStatus.notConfigured);
+      expect(
+        prefs.getKeys().where((k) => k.startsWith('mqtt_x_x1__')),
+        isNotEmpty,
+      );
+      extra.dispose();
+      main.dispose();
+    });
+
     test('waits for a network before connecting', () async {
       final service = watching(NetworkStatus.offline);
       await service.load();
@@ -1150,4 +1253,12 @@ class _FakeNetworkMonitor implements NetworkMonitor {
 
   @override
   Future<NetworkStatus> current() async => _initial;
+}
+
+class _MemoryBacklog implements MqttBacklogStore {
+  String? data;
+  @override
+  Future<String?> read() async => data;
+  @override
+  Future<void> write(String d) async => data = d;
 }

@@ -13,7 +13,21 @@ import 'connect_ui.dart';
 
 /// Live MQTT broker status with connect, disconnect and settings controls.
 class MqttConnectionCard extends StatelessWidget {
-  const MqttConnectionCard({super.key});
+  const MqttConnectionCard({
+    super.key,
+    this.service,
+    this.title,
+    this.onRemove,
+  });
+
+  /// The broker to show; the app's main broker when null.
+  final MqttBrokerService? service;
+
+  /// Heading in place of the default "MQTT connection".
+  final String? title;
+
+  /// Shows a Remove button, for extra upload brokers.
+  final VoidCallback? onRemove;
 
   void _openSettings(BuildContext context, MqttBrokerService mqtt) {
     Navigator.of(context).push(
@@ -65,7 +79,17 @@ class MqttConnectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mqtt = context.watch<MqttBrokerService>();
+    final own = service;
+    if (own == null) {
+      return _card(context, context.watch<MqttBrokerService>());
+    }
+    return ListenableBuilder(
+      listenable: own,
+      builder: (context, _) => _card(context, own),
+    );
+  }
+
+  Widget _card(BuildContext context, MqttBrokerService mqtt) {
     final status = mqtt.status;
     final settings = mqtt.settings;
     final busy =
@@ -111,7 +135,7 @@ class MqttConnectionCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        l10n.mqtt_cardTitle,
+                        title ?? l10n.mqtt_cardTitle,
                         style: TextStyle(
                           color: MeshPalette.ink,
                           fontSize: 18,
@@ -184,7 +208,24 @@ class MqttConnectionCard extends StatelessWidget {
                 l10n.mqttNotice(error),
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
+            if (mqtt.backlogLength > 0)
+              Text(
+                '${mqtt.backlogLength} packets waiting to upload '
+                '(kept up to 72 hours).',
+              ),
             if (settings == null) Text(l10n.mqtt_addBrokerHint),
+            // A plain Row: a ListTile here would paint under the panel.
+            if (settings != null)
+              Row(
+                children: [
+                  const Expanded(child: Text('Connect on Wi-Fi only')),
+                  Switch(
+                    key: const ValueKey('mqtt-wifi-only'),
+                    value: mqtt.wifiOnly,
+                    onChanged: (v) => mqtt.setWifiOnly(v),
+                  ),
+                ],
+              ),
             const SizedBox(height: 12),
             Wrap(
               spacing: 8,
@@ -204,7 +245,7 @@ class MqttConnectionCard extends StatelessWidget {
                     icon: const Icon(Icons.cloud_queue),
                     label: Text(l10n.mqtt_connect),
                   ),
-                if (settings != null)
+                if (settings != null && !mqtt.uploadOnly)
                   OutlinedButton.icon(
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute<void>(
@@ -223,6 +264,15 @@ class MqttConnectionCard extends StatelessWidget {
                         : l10n.mqtt_brokerSettings,
                   ),
                 ),
+                if (onRemove != null)
+                  TextButton.icon(
+                    onPressed: onRemove,
+                    icon: Icon(Icons.delete_outline, color: MeshPalette.alert),
+                    label: Text(
+                      'Remove',
+                      style: TextStyle(color: MeshPalette.alert),
+                    ),
+                  ),
               ],
             ),
           ],

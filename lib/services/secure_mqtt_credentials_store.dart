@@ -7,24 +7,35 @@ import 'mqtt_credentials_store.dart';
 ///
 /// Web has no OS-backed secret store (flutter_secure_storage falls back to
 /// localStorage there), so web keeps credentials in memory for the session.
-MqttCredentialsStore createMqttCredentialsStore() {
+///
+/// A non-empty [namespace] keeps another broker's credentials apart from
+/// the main broker's.
+MqttCredentialsStore createMqttCredentialsStore({String namespace = ''}) {
   if (kIsWeb) return MemoryMqttCredentialsStore();
-  return SecureMqttCredentialsStore();
+  return SecureMqttCredentialsStore(namespace: namespace);
 }
 
 /// Keychain / Keystore / libsecret / Credential Manager backed credentials.
 class SecureMqttCredentialsStore implements MqttCredentialsStore {
-  SecureMqttCredentialsStore({FlutterSecureStorage? storage})
-    : _storage =
-          storage ??
-          const FlutterSecureStorage(
-            // The data protection keychain needs keychain-access-groups,
-            // which ad-hoc signed macOS builds can't carry.
-            mOptions: MacOsOptions(usesDataProtectionKeychain: false),
-          );
+  SecureMqttCredentialsStore({
+    FlutterSecureStorage? storage,
+    String namespace = '',
+  }) : _usernameKey = namespace.isEmpty
+           ? 'mqtt_broker_username'
+           : 'mqtt_x_${namespace}__username',
+       _passwordKey = namespace.isEmpty
+           ? 'mqtt_broker_password'
+           : 'mqtt_x_${namespace}__password',
+       _storage =
+           storage ??
+           const FlutterSecureStorage(
+             // The data protection keychain needs keychain-access-groups,
+             // which ad-hoc signed macOS builds can't carry.
+             mOptions: MacOsOptions(usesDataProtectionKeychain: false),
+           );
 
-  static const _usernameKey = 'mqtt_broker_username';
-  static const _passwordKey = 'mqtt_broker_password';
+  final String _usernameKey;
+  final String _passwordKey;
 
   final FlutterSecureStorage _storage;
 
