@@ -210,7 +210,8 @@ class FieldOpsService extends ChangeNotifier {
     final channel = sosChannel;
     if (channel == null) return;
     try {
-      await connector.sendChannelMessage(channel, text);
+      // Signed, so listeners can tell the SOS is really from this radio.
+      await connector.sendChannelMessage(channel, text, sign: true);
       await record('sos', '${channel.name}: $label sent to channel');
     } catch (e) {
       await record('sos', '${channel.name}: $label could not be sent: $e');

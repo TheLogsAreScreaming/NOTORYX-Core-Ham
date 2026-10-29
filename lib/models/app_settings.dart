@@ -135,6 +135,10 @@ class AppSettings {
   /// fetching tells the site your IP address.
   final bool linkPreviews;
 
+  /// Signs every channel post, not only SOS. Each signature is one extra
+  /// packet on air.
+  final bool signChannelPosts;
+
   /// The chosen color theme's id (see BastionTheme); Blaze by default.
   final String appTheme;
 
@@ -246,6 +250,7 @@ class AppSettings {
     this.batterySaver = false,
     this.refreshRate = 'normal',
     this.linkPreviews = false,
+    this.signChannelPosts = false,
     this.appTheme = 'blaze',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
@@ -327,6 +332,7 @@ class AppSettings {
       'battery_saver': batterySaver,
       'refresh_rate': refreshRate,
       'link_previews': linkPreviews,
+      'sign_channel_posts': signChannelPosts,
       'app_theme': appTheme,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
@@ -434,6 +440,7 @@ class AppSettings {
       batterySaver: json['battery_saver'] as bool? ?? false,
       refreshRate: json['refresh_rate'] as String? ?? 'normal',
       linkPreviews: json['link_previews'] as bool? ?? false,
+      signChannelPosts: json['sign_channel_posts'] as bool? ?? false,
       appTheme: json['app_theme'] as String? ?? 'blaze',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
@@ -558,6 +565,7 @@ class AppSettings {
     bool? batterySaver,
     String? refreshRate,
     bool? linkPreviews,
+    bool? signChannelPosts,
     String? appTheme,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
@@ -638,6 +646,7 @@ class AppSettings {
       batterySaver: batterySaver ?? this.batterySaver,
       refreshRate: refreshRate ?? this.refreshRate,
       linkPreviews: linkPreviews ?? this.linkPreviews,
+      signChannelPosts: signChannelPosts ?? this.signChannelPosts,
       appTheme: appTheme ?? this.appTheme,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,

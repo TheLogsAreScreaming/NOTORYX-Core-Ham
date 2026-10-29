@@ -121,6 +121,9 @@ class ChannelMessageStore {
       'replyToText': msg.replyToText,
       'reactions': msg.reactions,
       'viaMqtt': msg.viaMqtt,
+      if (msg.signature != ChannelSignature.none)
+        'signature': msg.signature.name,
+      if (msg.signerKey != null) 'signerKey': base64Encode(msg.signerKey!),
     };
   }
 
@@ -205,6 +208,13 @@ class ChannelMessageStore {
           ) ??
           {},
       viaMqtt: (json['viaMqtt'] as bool?) ?? false,
+      signature: ChannelSignature.values.firstWhere(
+        (v) => v.name == json['signature'],
+        orElse: () => ChannelSignature.none,
+      ),
+      signerKey: json['signerKey'] is String
+          ? Uint8List.fromList(base64Decode(json['signerKey'] as String))
+          : null,
     );
   }
 

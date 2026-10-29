@@ -3899,5 +3899,12 @@
   "guide_ant2": "Håll antennen lodrät och borta från metall, och använd en för ditt band (till exempel 868 MHz i Europa).",
   "guide_secMore": "Läs mer",
   "guide_moreMeshcore": "Det officiella MeshCore-projektet",
-  "guide_moreCascadia": "Communityguider: kom igång, wardriving, regioner, sol"
+  "guide_moreCascadia": "Communityguider: kom igång, wardriving, regioner, sol",
+  "post_signed": "Signerat",
+  "post_unverified": "Ej bekräftat",
+  "post_signedKnown": "Signerat av {name}, en av dina kontakter.",
+  "post_signedUnknownKey": "Signerat, men inte av någon av dina kontakter. Lägg till avsändaren som kontakt för att se vem det är.",
+  "post_unverifiedHint": "Med inlägget kom en signatur som inte stämmer. Det kan ha ändrats på vägen eller inte vara från den det påstår.",
+  "settings_signPosts": "Signera alla mina kanalinlägg",
+  "settings_signPostsHint": "Ett SOS i en kanal signeras alltid. Detta signerar varje inlägg så att andra NOTORYX-användare ser att det verkligen är du. Varje signatur är ett extra paket i luften."
 }

@@ -3899,5 +3899,12 @@
   "guide_ant2": "Anténu majte zvislo a ďalej od kovu a použite takú pre vaše pásmo (napr. 868 MHz v Európe).",
   "guide_secMore": "Viac informácií",
   "guide_moreMeshcore": "Oficiálny projekt MeshCore",
-  "guide_moreCascadia": "Komunitné návody: začíname, wardriving, regióny, solár"
+  "guide_moreCascadia": "Komunitné návody: začíname, wardriving, regióny, solár",
+  "post_signed": "Podpísané",
+  "post_unverified": "Neoverené",
+  "post_signedKnown": "Podpísal {name}, jeden z vašich kontaktov.",
+  "post_signedUnknownKey": "Podpísané, ale nie žiadnym z vašich kontaktov. Pridajte odosielateľa do kontaktov a uvidíte, kto to je.",
+  "post_unverifiedHint": "S príspevkom prišiel podpis, ktorý nesedí. Mohol sa cestou zmeniť alebo nie je od toho, kto tvrdí.",
+  "settings_signPosts": "Podpisovať všetky moje príspevky v kanáloch",
+  "settings_signPostsHint": "SOS v kanáli je vždy podpísané. Toto podpíše každý príspevok, aby ostatní používatelia NOTORYX videli, že ste to naozaj vy. Každý podpis je jeden paket navyše vo vysielaní."
 }

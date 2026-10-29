@@ -9017,4 +9017,31 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get guide_moreCascadia =>
       'Poradniki społeczności: start, wardriving, regiony, słońce';
+
+  @override
+  String get post_signed => 'Podpisane';
+
+  @override
+  String get post_unverified => 'Niezweryfikowane';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Podpisane przez $name, jeden z twoich kontaktów.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Podpisane, ale nie przez żaden z twoich kontaktów. Dodaj nadawcę do kontaktów, aby zobaczyć, kto to.';
+
+  @override
+  String get post_unverifiedHint =>
+      'Z wiadomością przyszedł podpis, który do niej nie pasuje. Mogła zostać zmieniona po drodze lub nie pochodzi od podanej osoby.';
+
+  @override
+  String get settings_signPosts =>
+      'Podpisuj wszystkie moje wiadomości na kanałach';
+
+  @override
+  String get settings_signPostsHint =>
+      'SOS na kanale jest zawsze podpisany. To podpisuje każdą wiadomość, aby inni użytkownicy NOTORYX wiedzieli, że to naprawdę ty. Każdy podpis to jeden dodatkowy pakiet w eterze.';
 }

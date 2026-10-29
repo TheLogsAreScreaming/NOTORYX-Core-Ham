@@ -8558,4 +8558,30 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get guide_moreCascadia => '커뮤니티 가이드: 시작하기, 워드라이빙, 지역, 태양광';
+
+  @override
+  String get post_signed => '서명됨';
+
+  @override
+  String get post_unverified => '미확인';
+
+  @override
+  String post_signedKnown(String name) {
+    return '연락처의 $name 님이 서명했습니다.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      '서명은 있지만 연락처에 있는 사람이 아닙니다. 보낸 사람을 연락처에 추가하면 누구인지 알 수 있습니다.';
+
+  @override
+  String get post_unverifiedHint =>
+      '이 게시물에 서명이 있었지만 일치하지 않습니다. 도중에 바뀌었거나 말한 사람이 보낸 것이 아닐 수 있습니다.';
+
+  @override
+  String get settings_signPosts => '모든 채널 게시물에 서명';
+
+  @override
+  String get settings_signPostsHint =>
+      '채널의 SOS는 항상 서명됩니다. 이 설정은 모든 게시물에 서명해 다른 NOTORYX 사용자가 정말 본인임을 알 수 있게 합니다. 서명마다 패킷이 하나 더 전송됩니다.';
 }

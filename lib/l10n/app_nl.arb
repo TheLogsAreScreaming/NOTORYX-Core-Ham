@@ -3899,5 +3899,12 @@
   "guide_ant2": "Houd de antenne verticaal en weg van metaal, en gebruik er een voor jouw band (bijvoorbeeld 868 MHz in Europa).",
   "guide_secMore": "Meer weten",
   "guide_moreMeshcore": "Het officiële MeshCore-project",
-  "guide_moreCascadia": "Communitygidsen: aan de slag, wardriving, regio’s, zon"
+  "guide_moreCascadia": "Communitygidsen: aan de slag, wardriving, regio’s, zon",
+  "post_signed": "Ondertekend",
+  "post_unverified": "Niet bevestigd",
+  "post_signedKnown": "Ondertekend door {name}, een van je contacten.",
+  "post_signedUnknownKey": "Ondertekend, maar niet door een van je contacten. Voeg de afzender toe als contact om te zien wie het is.",
+  "post_unverifiedHint": "Er kwam een handtekening mee die niet klopt. Het bericht is onderweg misschien veranderd, of komt niet van wie het zegt.",
+  "settings_signPosts": "Al mijn kanaalberichten ondertekenen",
+  "settings_signPostsHint": "Een SOS op een kanaal wordt altijd ondertekend. Dit ondertekent elk bericht, zodat andere NOTORYX-gebruikers zien dat het echt van jou is. Elke handtekening is één extra pakket in de lucht."
 }

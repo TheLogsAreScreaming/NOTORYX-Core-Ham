@@ -4033,5 +4033,12 @@
   "guide_ant2": "Tieni l’antenna verticale e lontana dal metallo, e usane una per la tua banda (per esempio 868 MHz in Europa).",
   "guide_secMore": "Scopri di più",
   "guide_moreMeshcore": "Il progetto ufficiale MeshCore",
-  "guide_moreCascadia": "Guide della comunità: primi passi, wardriving, regioni, solare"
+  "guide_moreCascadia": "Guide della comunità: primi passi, wardriving, regioni, solare",
+  "post_signed": "Firmato",
+  "post_unverified": "Non verificato",
+  "post_signedKnown": "Firmato da {name}, uno dei tuoi contatti.",
+  "post_signedUnknownKey": "Firmato, ma non da uno dei tuoi contatti. Aggiungi il mittente ai contatti per sapere chi è.",
+  "post_unverifiedHint": "Con questo messaggio è arrivata una firma che non corrisponde. Potrebbe essere stato modificato lungo il percorso o non provenire da chi dice.",
+  "settings_signPosts": "Firma tutti i miei messaggi nei canali",
+  "settings_signPostsHint": "Un SOS su un canale è sempre firmato. Così ogni messaggio viene firmato e gli altri utenti NOTORYX sanno che sei davvero tu. Ogni firma è un pacchetto in più in onda."
 }

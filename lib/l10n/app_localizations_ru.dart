@@ -9009,4 +9009,30 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get guide_moreCascadia =>
       'Руководства сообщества: начало, вардрайвинг, регионы, солнце';
+
+  @override
+  String get post_signed => 'Подписано';
+
+  @override
+  String get post_unverified => 'Не подтверждено';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Подписано контактом $name.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Подписано, но не вашим контактом. Добавьте отправителя в контакты, чтобы увидеть, кто это.';
+
+  @override
+  String get post_unverifiedHint =>
+      'К сообщению пришла подпись, но она не совпадает. Возможно, его изменили по пути или оно не от того, кто указан.';
+
+  @override
+  String get settings_signPosts => 'Подписывать все мои сообщения в каналах';
+
+  @override
+  String get settings_signPostsHint =>
+      'SOS в канале всегда подписывается. Эта настройка подписывает каждое сообщение, чтобы другие пользователи NOTORYX видели, что это действительно вы. Каждая подпись — ещё один пакет в эфире.';
 }

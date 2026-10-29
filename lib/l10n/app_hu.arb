@@ -3937,5 +3937,12 @@
   "guide_ant2": "Tartsa az antennát függőlegesen, fémtől távol, és a sávjához valót használjon (pl. 868 MHz Európában).",
   "guide_secMore": "További információ",
   "guide_moreMeshcore": "A hivatalos MeshCore projekt",
-  "guide_moreCascadia": "Közösségi útmutatók: kezdés, wardriving, régiók, napelem"
+  "guide_moreCascadia": "Közösségi útmutatók: kezdés, wardriving, régiók, napelem",
+  "post_signed": "Aláírt",
+  "post_unverified": "Nem ellenőrzött",
+  "post_signedKnown": "Aláírta: {name}, az egyik névjegye.",
+  "post_signedUnknownKey": "Aláírt, de nem az egyik névjegye írta alá. Vegye fel a feladót névjegyként, hogy lássa, ki az.",
+  "post_unverifiedHint": "A bejegyzéssel aláírás érkezett, de nem egyezik. Lehet, hogy útközben megváltozott, vagy nem attól származik, akitől állítja.",
+  "settings_signPosts": "Minden csatornabejegyzésem aláírása",
+  "settings_signPostsHint": "A csatornára küldött SOS mindig aláírt. Ez minden bejegyzést aláír, így más NOTORYX-felhasználók láthatják, hogy valóban Ön az. Minden aláírás egy további csomag az éterben."
 }

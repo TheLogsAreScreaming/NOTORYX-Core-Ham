@@ -3937,5 +3937,12 @@
   "guide_ant2": "Trzymaj antenę pionowo, z dala od metalu, i używaj takiej na swoje pasmo (np. 868 MHz w Europie).",
   "guide_secMore": "Dowiedz się więcej",
   "guide_moreMeshcore": "Oficjalny projekt MeshCore",
-  "guide_moreCascadia": "Poradniki społeczności: start, wardriving, regiony, słońce"
+  "guide_moreCascadia": "Poradniki społeczności: start, wardriving, regiony, słońce",
+  "post_signed": "Podpisane",
+  "post_unverified": "Niezweryfikowane",
+  "post_signedKnown": "Podpisane przez {name}, jeden z twoich kontaktów.",
+  "post_signedUnknownKey": "Podpisane, ale nie przez żaden z twoich kontaktów. Dodaj nadawcę do kontaktów, aby zobaczyć, kto to.",
+  "post_unverifiedHint": "Z wiadomością przyszedł podpis, który do niej nie pasuje. Mogła zostać zmieniona po drodze lub nie pochodzi od podanej osoby.",
+  "settings_signPosts": "Podpisuj wszystkie moje wiadomości na kanałach",
+  "settings_signPostsHint": "SOS na kanale jest zawsze podpisany. To podpisuje każdą wiadomość, aby inni użytkownicy NOTORYX wiedzieli, że to naprawdę ty. Każdy podpis to jeden dodatkowy pakiet w eterze."
 }

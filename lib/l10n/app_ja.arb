@@ -4033,5 +4033,12 @@
   "guide_ant2": "アンテナは垂直に、金属から離し、使う周波数帯用のもの（例：日本は 920 MHz）を使います。",
   "guide_secMore": "詳しく知る",
   "guide_moreMeshcore": "公式 MeshCore プロジェクト",
-  "guide_moreCascadia": "コミュニティガイド：入門、ウォードライビング、地域、ソーラー"
+  "guide_moreCascadia": "コミュニティガイド：入門、ウォードライビング、地域、ソーラー",
+  "post_signed": "署名済み",
+  "post_unverified": "未確認",
+  "post_signedKnown": "連絡先の {name} が署名しました。",
+  "post_signedUnknownKey": "署名はありますが、連絡先の誰でもありません。送信者を連絡先に追加すると誰かが分かります。",
+  "post_unverifiedHint": "この投稿には署名が付いていましたが一致しません。途中で変更されたか、名乗っている人からではない可能性があります。",
+  "settings_signPosts": "すべてのチャンネル投稿に署名",
+  "settings_signPostsHint": "チャンネルの SOS は常に署名されます。これをオンにするとすべての投稿に署名し、他の NOTORYX ユーザーが本当にあなたからだと分かります。署名ごとに 1 パケット送信が増えます。"
 }

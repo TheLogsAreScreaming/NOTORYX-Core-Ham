@@ -8985,4 +8985,30 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get guide_moreCascadia =>
       'Guías de la comunidad: primeros pasos, wardriving, regiones, solar';
+
+  @override
+  String get post_signed => 'Firmado';
+
+  @override
+  String get post_unverified => 'Sin verificar';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Firmado por $name, uno de tus contactos.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Firmado, pero no por ninguno de tus contactos. Añade al remitente como contacto para saber quién es.';
+
+  @override
+  String get post_unverifiedHint =>
+      'Con este mensaje llegó una firma que no coincide. Puede que se modificara por el camino o que no sea de quien dice.';
+
+  @override
+  String get settings_signPosts => 'Firmar todos mis mensajes de canal';
+
+  @override
+  String get settings_signPostsHint =>
+      'Un SOS en un canal siempre se firma. Esto firma cada mensaje para que otros usuarios de NOTORYX sepan que eres tú. Cada firma es un paquete más en el aire.';
 }

@@ -20,6 +20,7 @@ class _Radio extends MeshCoreConnector {
   final stream = StreamController<Message>.broadcast();
   final sent = <Message>[];
   final channelSends = <String>[];
+  var signedSends = 0;
   final person = Contact(
     publicKey: Uint8List.fromList(List.filled(32, 7)),
     name: 'Trail partner',
@@ -71,8 +72,10 @@ class _Radio extends MeshCoreConnector {
     String? originalText,
     String? translatedLanguageCode,
     String? translationModelId,
+    bool sign = false,
   }) async {
     channelSends.add('${channel.name}: $text');
+    if (sign) signedSends++;
   }
 }
 
@@ -166,6 +169,8 @@ void main() {
         startsWith('#search-team: [NOTORYX SOS]'),
       );
       expect(ops.entries.where((e) => e.kind == 'sos'), hasLength(3));
+      // The channel SOS asks to be signed; the tag text stays as it was.
+      expect(radio.signedSends, 1);
       // Not due again until the repeat interval passes.
       await ops.sosTick();
       expect(radio.sent, hasLength(1));

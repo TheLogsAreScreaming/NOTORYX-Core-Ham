@@ -8968,4 +8968,30 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get guide_moreCascadia =>
       'Guias da comunidade: começar, wardriving, regiões, solar';
+
+  @override
+  String get post_signed => 'Assinado';
+
+  @override
+  String get post_unverified => 'Não verificado';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Assinado por $name, um dos seus contactos.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Assinado, mas não por nenhum dos seus contactos. Adicione o remetente aos contactos para ver quem é.';
+
+  @override
+  String get post_unverifiedHint =>
+      'Veio uma assinatura com esta mensagem que não corresponde. Pode ter sido alterada pelo caminho ou não ser de quem diz.';
+
+  @override
+  String get settings_signPosts => 'Assinar todas as minhas mensagens de canal';
+
+  @override
+  String get settings_signPostsHint =>
+      'Um SOS num canal é sempre assinado. Isto assina todas as mensagens para que outros utilizadores NOTORYX saibam que é mesmo você. Cada assinatura é mais um pacote no ar.';
 }

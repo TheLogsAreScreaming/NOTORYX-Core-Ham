@@ -8958,4 +8958,31 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get guide_moreCascadia =>
       'Komunitné návody: začíname, wardriving, regióny, solár';
+
+  @override
+  String get post_signed => 'Podpísané';
+
+  @override
+  String get post_unverified => 'Neoverené';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Podpísal $name, jeden z vašich kontaktov.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Podpísané, ale nie žiadnym z vašich kontaktov. Pridajte odosielateľa do kontaktov a uvidíte, kto to je.';
+
+  @override
+  String get post_unverifiedHint =>
+      'S príspevkom prišiel podpis, ktorý nesedí. Mohol sa cestou zmeniť alebo nie je od toho, kto tvrdí.';
+
+  @override
+  String get settings_signPosts =>
+      'Podpisovať všetky moje príspevky v kanáloch';
+
+  @override
+  String get settings_signPostsHint =>
+      'SOS v kanáli je vždy podpísané. Toto podpíše každý príspevok, aby ostatní používatelia NOTORYX videli, že ste to naozaj vy. Každý podpis je jeden paket navyše vo vysielaní.';
 }

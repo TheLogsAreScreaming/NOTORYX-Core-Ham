@@ -8996,4 +8996,30 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get guide_moreCascadia =>
       'Community-Anleitungen: Einstieg, Wardriving, Regionen, Solar';
+
+  @override
+  String get post_signed => 'Signiert';
+
+  @override
+  String get post_unverified => 'Nicht bestätigt';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Signiert von $name, einem deiner Kontakte.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Signiert, aber von keinem deiner Kontakte. Füge den Absender als Kontakt hinzu, um zu sehen, wer es ist.';
+
+  @override
+  String get post_unverifiedHint =>
+      'Mit diesem Beitrag kam eine Signatur, die nicht passt. Der Beitrag wurde vielleicht unterwegs verändert oder stammt nicht vom angegebenen Absender.';
+
+  @override
+  String get settings_signPosts => 'Alle meine Kanalbeiträge signieren';
+
+  @override
+  String get settings_signPostsHint =>
+      'Ein SOS im Kanal wird immer signiert. Damit wird jeder Beitrag signiert, sodass andere NOTORYX-Nutzer sehen, dass er wirklich von dir ist. Jede Signatur ist ein zusätzliches Paket auf Sendung.';
 }

@@ -3899,5 +3899,12 @@
   "guide_ant2": "Anteno imejte navpično in stran od kovine ter uporabite takšno za svoj pas (npr. 868 MHz v Evropi).",
   "guide_secMore": "Več o tem",
   "guide_moreMeshcore": "Uradni projekt MeshCore",
-  "guide_moreCascadia": "Skupnostni vodniki: začetek, wardriving, regije, sonce"
+  "guide_moreCascadia": "Skupnostni vodniki: začetek, wardriving, regije, sonce",
+  "post_signed": "Podpisano",
+  "post_unverified": "Nepreverjeno",
+  "post_signedKnown": "Podpisal {name}, eden od vaših stikov.",
+  "post_signedUnknownKey": "Podpisano, vendar ne s strani vaših stikov. Dodajte pošiljatelja med stike, da vidite, kdo je.",
+  "post_unverifiedHint": "S sporočilom je prišel podpis, ki se ne ujema. Morda je bilo spremenjeno na poti ali ni od navedenega pošiljatelja.",
+  "settings_signPosts": "Podpiši vsa moja sporočila v kanalih",
+  "settings_signPostsHint": "SOS v kanalu je vedno podpisan. To podpiše vsako sporočilo, da drugi uporabniki NOTORYX vidijo, da ste res vi. Vsak podpis je en dodaten paket v etru."
 }

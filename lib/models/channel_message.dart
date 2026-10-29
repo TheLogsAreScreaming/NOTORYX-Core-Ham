@@ -24,6 +24,11 @@ class Repeat {
       repeaterKey != null ? pubKeyToHex(repeaterKey!) : null;
 }
 
+/// Whether a channel post came with a NOTORYX signature, and whether it
+/// checked out. Most posts are [none]: signing is optional and other apps
+/// never sign.
+enum ChannelSignature { none, valid, invalid }
+
 class ChannelMessage {
   static const Object _unset = Object();
 
@@ -58,6 +63,12 @@ class ChannelMessage {
   /// flagged message has no RF path from the user's own radio.
   final bool viaMqtt;
 
+  /// The signature check for this post, and the key that signed it when
+  /// one did. Whether that key belongs to a contact is decided when shown,
+  /// so adding the contact later upgrades the badge.
+  final ChannelSignature signature;
+  final Uint8List? signerKey;
+
   ChannelMessage({
     this.senderKey,
     required this.senderName,
@@ -84,6 +95,8 @@ class ChannelMessage {
     this.replyToText,
     Map<String, List<String?>>? reactions,
     this.viaMqtt = false,
+    this.signature = ChannelSignature.none,
+    this.signerKey,
   }) : messageId =
            messageId ??
            '${timestamp.millisecondsSinceEpoch}_${senderName.hashCode}_${text.hashCode}',
@@ -116,6 +129,8 @@ class ChannelMessage {
     Object? translationModelId = _unset,
     Map<String, List<String?>>? reactions,
     bool? viaMqtt,
+    ChannelSignature? signature,
+    Uint8List? signerKey,
   }) {
     return ChannelMessage(
       senderKey: senderKey,
@@ -151,6 +166,8 @@ class ChannelMessage {
       replyToText: replyToText ?? this.replyToText,
       reactions: reactions ?? this.reactions,
       viaMqtt: viaMqtt ?? this.viaMqtt,
+      signature: signature ?? this.signature,
+      signerKey: signerKey ?? this.signerKey,
     );
   }
 

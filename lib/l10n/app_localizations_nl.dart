@@ -8947,4 +8947,30 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get guide_moreCascadia =>
       'Communitygidsen: aan de slag, wardriving, regio’s, zon';
+
+  @override
+  String get post_signed => 'Ondertekend';
+
+  @override
+  String get post_unverified => 'Niet bevestigd';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Ondertekend door $name, een van je contacten.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Ondertekend, maar niet door een van je contacten. Voeg de afzender toe als contact om te zien wie het is.';
+
+  @override
+  String get post_unverifiedHint =>
+      'Er kwam een handtekening mee die niet klopt. Het bericht is onderweg misschien veranderd, of komt niet van wie het zegt.';
+
+  @override
+  String get settings_signPosts => 'Al mijn kanaalberichten ondertekenen';
+
+  @override
+  String get settings_signPostsHint =>
+      'Een SOS op een kanaal wordt altijd ondertekend. Dit ondertekent elk bericht, zodat andere NOTORYX-gebruikers zien dat het echt van jou is. Elke handtekening is één extra pakket in de lucht.';
 }

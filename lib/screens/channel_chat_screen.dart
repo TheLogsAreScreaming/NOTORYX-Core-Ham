@@ -56,6 +56,8 @@ import '../widgets/sync_progress_overlay.dart';
 import '../widgets/translated_message_content.dart';
 import '../widgets/unread_divider.dart';
 import '../widgets/via_mqtt_label.dart';
+import '../widgets/signature_label.dart';
+import '../services/signed_posts.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/link_preview_card.dart';
 import '../services/link_preview.dart';
@@ -580,6 +582,13 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final scheme = Theme.of(context).colorScheme;
     final gifId = GifHelper.parseGif(message.text);
     final poi = parseMarkerText(message.text);
+    final signature = message.signature == ChannelSignature.none
+        ? null
+        : signatureBadgeFor(
+            message,
+            context.read<MeshCoreConnector>().contacts,
+            selfKey: context.read<MeshCoreConnector>().selfPublicKey,
+          );
     final translatedDisplayText =
         message.translatedText != null &&
             message.translatedText!.trim().isNotEmpty
@@ -894,6 +903,17 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                     fontSize: 10 * textScale,
                                     color: metaColor,
                                   ),
+                                ),
+                              ],
+                              if (signature != null) ...[
+                                const SizedBox(width: 6),
+                                SignatureLabel(
+                                  badge: signature.badge,
+                                  signer: signature.signer,
+                                  color: isOutgoing
+                                      ? metaColor
+                                      : scheme.onSurfaceVariant,
+                                  textScale: textScale,
                                 ),
                               ],
                               if (message.viaMqtt) ...[
