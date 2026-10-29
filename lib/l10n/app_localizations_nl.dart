@@ -7948,6 +7948,66 @@ class AppLocalizationsNl extends AppLocalizations {
   String get connections_viewDashboard => 'Verbindingsoverzicht bekijken';
 
   @override
+  String get channelDirectory_title => 'Kanalengids';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Vind openbare hashtagkanalen in je buurt';
+
+  @override
+  String get channelDirectory_search => 'Kanalen of plaatsen zoeken';
+
+  @override
+  String get channelDirectory_nearYou => 'In je buurt';
+
+  @override
+  String get channelDirectory_all => 'Alle kanalen';
+
+  @override
+  String get channelDirectory_catAll => 'Alle';
+
+  @override
+  String get channelDirectory_catEmergency => 'Noodgevallen';
+
+  @override
+  String get channelDirectory_catLocal => 'Lokaal';
+
+  @override
+  String get channelDirectory_catGeneral => 'Algemeen';
+
+  @override
+  String get channelDirectory_catInterest => 'Interesses';
+
+  @override
+  String get channelDirectory_catTest => 'Testen';
+
+  @override
+  String get channelDirectory_join => 'Deelnemen';
+
+  @override
+  String get channelDirectory_joined => 'Deelgenomen';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Geen kanalen gevonden voor je zoekopdracht.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Verbind je radio om kanalen te volgen.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Alle kanaalplaatsen van je radio zijn in gebruik. Verwijder eerst een kanaal.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Kanaal kon niet worden toegevoegd. Probeer het opnieuw.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Mist er een kanaal? Iedereen kan er een voorstellen door de gedeelde lijst op GitHub te bewerken.';
+
+  @override
   String get prefixTool_title => 'Repeater-ID’s';
 
   @override

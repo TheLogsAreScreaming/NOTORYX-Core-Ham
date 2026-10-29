@@ -8015,6 +8015,65 @@ class AppLocalizationsRu extends AppLocalizations {
   String get connections_viewDashboard => 'Открыть панель подключений';
 
   @override
+  String get channelDirectory_title => 'Каталог каналов';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Найдите публичные хештег-каналы рядом с вами';
+
+  @override
+  String get channelDirectory_search => 'Поиск каналов или мест';
+
+  @override
+  String get channelDirectory_nearYou => 'Рядом с вами';
+
+  @override
+  String get channelDirectory_all => 'Все каналы';
+
+  @override
+  String get channelDirectory_catAll => 'Все';
+
+  @override
+  String get channelDirectory_catEmergency => 'Экстренные';
+
+  @override
+  String get channelDirectory_catLocal => 'Местные';
+
+  @override
+  String get channelDirectory_catGeneral => 'Общие';
+
+  @override
+  String get channelDirectory_catInterest => 'Интересы';
+
+  @override
+  String get channelDirectory_catTest => 'Тестовые';
+
+  @override
+  String get channelDirectory_join => 'Подключиться';
+
+  @override
+  String get channelDirectory_joined => 'Подключён';
+
+  @override
+  String get channelDirectory_noMatches => 'Нет каналов по вашему запросу.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Подключите радио, чтобы присоединяться к каналам.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Все слоты каналов на радио заняты. Сначала удалите канал.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Не удалось добавить канал. Попробуйте ещё раз.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Нет нужного канала? Любой может предложить его, отредактировав общий список на GitHub.';
+
+  @override
   String get prefixTool_title => 'ID ретрансляторов';
 
   @override

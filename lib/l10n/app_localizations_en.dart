@@ -7866,6 +7866,65 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connections_viewDashboard => 'View connection dashboard';
 
   @override
+  String get channelDirectory_title => 'Channel directory';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Find public hashtag channels near you';
+
+  @override
+  String get channelDirectory_search => 'Search channels or places';
+
+  @override
+  String get channelDirectory_nearYou => 'Near you';
+
+  @override
+  String get channelDirectory_all => 'All channels';
+
+  @override
+  String get channelDirectory_catAll => 'All';
+
+  @override
+  String get channelDirectory_catEmergency => 'Emergency';
+
+  @override
+  String get channelDirectory_catLocal => 'Local';
+
+  @override
+  String get channelDirectory_catGeneral => 'General';
+
+  @override
+  String get channelDirectory_catInterest => 'Interests';
+
+  @override
+  String get channelDirectory_catTest => 'Testing';
+
+  @override
+  String get channelDirectory_join => 'Join';
+
+  @override
+  String get channelDirectory_joined => 'Joined';
+
+  @override
+  String get channelDirectory_noMatches => 'No channels match your search.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Connect your radio to join channels.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'All channel slots on your radio are in use. Remove a channel first.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Could not add the channel. Try again.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Missing a channel? Anyone can suggest one by editing the shared list on GitHub.';
+
+  @override
   String get prefixTool_title => 'Repeater IDs';
 
   @override

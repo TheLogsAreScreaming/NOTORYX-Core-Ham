@@ -53,6 +53,10 @@ import 'package:meshcore_open/services/mqtt_client_transport.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:provider/provider.dart';
 import 'package:meshcore_open/screens/prefix_tool_screen.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+import 'package:meshcore_open/screens/channel_directory_screen.dart';
+import 'package:meshcore_open/services/channel_directory_service.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:meshcore_open/screens/scanner_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -175,6 +179,10 @@ List<ChannelMessage> _pathHistory() {
 }
 
 class _PreviewConnector extends MeshCoreConnector {
+  @override
+  double? get selfLatitude => 47.62;
+  @override
+  double? get selfLongitude => -122.35;
   @override
   bool get isConnected => true;
   @override
@@ -392,6 +400,13 @@ void main() {
     'settings': () => const SettingsScreen(),
     'connections': () => const ConnectionDashboardScreen(),
     'prefix_tool': () => const PrefixToolScreen(),
+    'channel_directory': () => ChannelDirectoryScreen(
+      service: ChannelDirectoryService(
+        httpClient: MockClient((_) async => http.Response('', 503)),
+        loadBundled: () async =>
+            File('assets/channel_directory.json').readAsStringSync(),
+      ),
+    ),
     'scanner': () => ChangeNotifierProvider<MeshCoreConnector>.value(
       value: _PreviewScanConnector(),
       child: const ScannerScreen(),

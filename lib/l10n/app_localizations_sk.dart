@@ -7966,6 +7966,65 @@ class AppLocalizationsSk extends AppLocalizations {
   String get connections_viewDashboard => 'Zobraziť prehľad pripojení';
 
   @override
+  String get channelDirectory_title => 'Adresár kanálov';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Nájdite verejné hashtagové kanály vo svojom okolí';
+
+  @override
+  String get channelDirectory_search => 'Hľadať kanály alebo miesta';
+
+  @override
+  String get channelDirectory_nearYou => 'Vo vašom okolí';
+
+  @override
+  String get channelDirectory_all => 'Všetky kanály';
+
+  @override
+  String get channelDirectory_catAll => 'Všetky';
+
+  @override
+  String get channelDirectory_catEmergency => 'Núdzové';
+
+  @override
+  String get channelDirectory_catLocal => 'Miestne';
+
+  @override
+  String get channelDirectory_catGeneral => 'Všeobecné';
+
+  @override
+  String get channelDirectory_catInterest => 'Záujmy';
+
+  @override
+  String get channelDirectory_catTest => 'Testovacie';
+
+  @override
+  String get channelDirectory_join => 'Pripojiť sa';
+
+  @override
+  String get channelDirectory_joined => 'Pripojené';
+
+  @override
+  String get channelDirectory_noMatches => 'Hľadaniu nezodpovedá žiadny kanál.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Pripojte rádio, aby ste sa mohli pripájať ku kanálom.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Všetky sloty kanálov v rádiu sú obsadené. Najprv odstráňte kanál.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Kanál sa nepodarilo pridať. Skúste to znova.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Chýba kanál? Ktokoľvek ho môže navrhnúť úpravou zdieľaného zoznamu na GitHube.';
+
+  @override
   String get prefixTool_title => 'ID opakovačov';
 
   @override

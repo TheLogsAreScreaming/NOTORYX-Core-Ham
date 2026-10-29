@@ -13387,6 +13387,114 @@ abstract class AppLocalizations {
   /// **'View connection dashboard'**
   String get connections_viewDashboard;
 
+  /// No description provided for @channelDirectory_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel directory'**
+  String get channelDirectory_title;
+
+  /// No description provided for @channelDirectory_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find public hashtag channels near you'**
+  String get channelDirectory_subtitle;
+
+  /// No description provided for @channelDirectory_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search channels or places'**
+  String get channelDirectory_search;
+
+  /// No description provided for @channelDirectory_nearYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Near you'**
+  String get channelDirectory_nearYou;
+
+  /// No description provided for @channelDirectory_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All channels'**
+  String get channelDirectory_all;
+
+  /// No description provided for @channelDirectory_catAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get channelDirectory_catAll;
+
+  /// No description provided for @channelDirectory_catEmergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency'**
+  String get channelDirectory_catEmergency;
+
+  /// No description provided for @channelDirectory_catLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Local'**
+  String get channelDirectory_catLocal;
+
+  /// No description provided for @channelDirectory_catGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get channelDirectory_catGeneral;
+
+  /// No description provided for @channelDirectory_catInterest.
+  ///
+  /// In en, this message translates to:
+  /// **'Interests'**
+  String get channelDirectory_catInterest;
+
+  /// No description provided for @channelDirectory_catTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Testing'**
+  String get channelDirectory_catTest;
+
+  /// No description provided for @channelDirectory_join.
+  ///
+  /// In en, this message translates to:
+  /// **'Join'**
+  String get channelDirectory_join;
+
+  /// No description provided for @channelDirectory_joined.
+  ///
+  /// In en, this message translates to:
+  /// **'Joined'**
+  String get channelDirectory_joined;
+
+  /// No description provided for @channelDirectory_noMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'No channels match your search.'**
+  String get channelDirectory_noMatches;
+
+  /// No description provided for @channelDirectory_connectFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio to join channels.'**
+  String get channelDirectory_connectFirst;
+
+  /// No description provided for @channelDirectory_slotsFull.
+  ///
+  /// In en, this message translates to:
+  /// **'All channel slots on your radio are in use. Remove a channel first.'**
+  String get channelDirectory_slotsFull;
+
+  /// No description provided for @channelDirectory_joinFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not add the channel. Try again.'**
+  String get channelDirectory_joinFailed;
+
+  /// No description provided for @channelDirectory_addHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing a channel? Anyone can suggest one by editing the shared list on GitHub.'**
+  String get channelDirectory_addHint;
+
   /// No description provided for @prefixTool_title.
   ///
   /// In en, this message translates to:

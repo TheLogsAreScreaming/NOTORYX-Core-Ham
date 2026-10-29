@@ -7985,6 +7985,66 @@ class AppLocalizationsEs extends AppLocalizations {
   String get connections_viewDashboard => 'Ver panel de conexiones';
 
   @override
+  String get channelDirectory_title => 'Directorio de canales';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Encuentra canales públicos con hashtag cerca de ti';
+
+  @override
+  String get channelDirectory_search => 'Buscar canales o lugares';
+
+  @override
+  String get channelDirectory_nearYou => 'Cerca de ti';
+
+  @override
+  String get channelDirectory_all => 'Todos los canales';
+
+  @override
+  String get channelDirectory_catAll => 'Todos';
+
+  @override
+  String get channelDirectory_catEmergency => 'Emergencia';
+
+  @override
+  String get channelDirectory_catLocal => 'Local';
+
+  @override
+  String get channelDirectory_catGeneral => 'General';
+
+  @override
+  String get channelDirectory_catInterest => 'Intereses';
+
+  @override
+  String get channelDirectory_catTest => 'Pruebas';
+
+  @override
+  String get channelDirectory_join => 'Unirse';
+
+  @override
+  String get channelDirectory_joined => 'Unido';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Ningún canal coincide con tu búsqueda.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Conecta tu radio para unirte a canales.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Todas las ranuras de canal de tu radio están en uso. Elimina un canal primero.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'No se pudo añadir el canal. Inténtalo de nuevo.';
+
+  @override
+  String get channelDirectory_addHint =>
+      '¿Falta un canal? Cualquiera puede sugerirlo editando la lista compartida en GitHub.';
+
+  @override
   String get prefixTool_title => 'IDs de repetidores';
 
   @override

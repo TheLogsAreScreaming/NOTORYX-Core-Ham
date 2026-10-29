@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "about": "Public MeshCore hashtag channels, shown in NOTORYX Core's channel directory. The app bundles a copy and checks the public notoryx-core-releases repository for updates. To add a channel, open a pull request. Pacific Northwest entries come from the CascadiaMesh channel list (cascadiamesh.org/channels).",
+  "channels": [
+    { "name": "#test", "category": "test", "description": "Can anyone hear me? Connectivity checks." },
+    { "name": "#testing", "category": "test", "description": "Another common channel for range and reach checks." },
+    { "name": "#emergency", "category": "emergency", "description": "Urgent emergency traffic only." },
+    { "name": "#sar", "category": "emergency", "description": "Search and rescue coordination." },
+    { "name": "#emcomm", "category": "emergency", "description": "Emergency communications and preparedness." },
+    { "name": "#hamradio", "category": "interest", "description": "Amateur radio talk." },
+    { "name": "#weather", "category": "general", "description": "Weather reports and alerts." },
+    { "name": "#events", "category": "general", "description": "Meetups and local gatherings." },
+    { "name": "#tech", "category": "interest", "description": "Technical discussion: radios, antennas, firmware." },
+    { "name": "#hiking", "category": "interest", "description": "Trails, trips and conditions." },
+    { "name": "#camping", "category": "interest", "description": "Camping and backcountry trips." },
+
+    { "name": "#pnw", "category": "local", "description": "Pacific Northwest discussion.", "area": { "name": "Pacific Northwest", "center": [46.5, -122.0], "radiusKm": 550 } },
+    { "name": "#washington", "category": "local", "description": "Statewide chat for Washington.", "area": { "name": "Washington", "center": [47.4, -120.5], "radiusKm": 330 } },
+    { "name": "#oregon", "category": "local", "description": "Statewide chat for Oregon.", "area": { "name": "Oregon", "center": [44.0, -120.5], "radiusKm": 330 } },
+    { "name": "#bc", "category": "local", "description": "Province-wide chat for British Columbia.", "area": { "name": "British Columbia", "center": [50.0, -123.5], "radiusKm": 450 } },
+    { "name": "#seattle", "category": "local", "description": "Seattle area chat.", "area": { "name": "Seattle", "center": [47.6062, -122.3321], "radiusKm": 50 } },
+    { "name": "#tacoma", "category": "local", "description": "Tacoma area chat.", "area": { "name": "Tacoma", "center": [47.2529, -122.4443], "radiusKm": 35 } },
+    { "name": "#bham", "category": "local", "description": "Bellingham area chat.", "area": { "name": "Bellingham", "center": [48.7519, -122.4787], "radiusKm": 40 } },
+    { "name": "#pdx", "category": "local", "description": "Portland area chat.", "area": { "name": "Portland", "center": [45.5152, -122.6784], "radiusKm": 50 } },
+    { "name": "#salem", "category": "local", "description": "Salem area chat.", "area": { "name": "Salem", "center": [44.9429, -123.0351], "radiusKm": 35 } },
+    { "name": "#eugene", "category": "local", "description": "Eugene area chat.", "area": { "name": "Eugene", "center": [44.0521, -123.0868], "radiusKm": 40 } },
+    { "name": "#vancouver", "category": "local", "description": "Vancouver, BC area chat.", "area": { "name": "Vancouver, BC", "center": [49.2827, -123.1207], "radiusKm": 45 } },
+    { "name": "#victoria", "category": "local", "description": "Victoria, BC area chat.", "area": { "name": "Victoria, BC", "center": [48.4284, -123.3656], "radiusKm": 35 } },
+    { "name": "#olypen", "category": "local", "description": "Olympic Peninsula chat.", "area": { "name": "Olympic Peninsula", "center": [47.8, -123.6], "radiusKm": 90 } },
+    { "name": "#vanisle", "category": "local", "description": "Vancouver Island chat.", "area": { "name": "Vancouver Island", "center": [49.6, -125.5], "radiusKm": 250 } },
+    { "name": "#central-oregon", "category": "local", "description": "Central Oregon chat.", "area": { "name": "Central Oregon", "center": [44.06, -121.31], "radiusKm": 100 } },
+    { "name": "#wvmesh", "category": "local", "description": "Willamette Valley mesh.", "area": { "name": "Willamette Valley", "center": [44.6, -123.1], "radiusKm": 110 } },
+    { "name": "#washcoares", "category": "emergency", "description": "Washington County (OR) ARES coordination.", "area": { "name": "Washington County, OR", "center": [45.52, -123.0], "radiusKm": 40 } }
+  ]
+}
