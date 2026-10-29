@@ -8118,4 +8118,109 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get keyGen_tryAgain => 'Nog een maken';
+
+  @override
+  String get regionSetup_title => 'Regio’s instellen';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Plaats deze repeater in de regioboom van je gebied';
+
+  @override
+  String get regionSetup_intro =>
+      'Regio’s houden een bericht binnen een gebied in plaats van het hele mesh te overspoelen. Een repeater stuurt berichten van een regio alleen door als hij die regio draagt, dus geef hem zijn eigen regio en alle regio’s erboven.';
+
+  @override
+  String get regionSetup_where => 'Waar staat de repeater?';
+
+  @override
+  String get regionSetup_tree => 'Regioboom';
+
+  @override
+  String get regionSetup_custom => 'Aangepast';
+
+  @override
+  String get regionSetup_region => 'Meest lokale regio';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Bron: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Regio’s, breedste eerst';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '\"$name\" is geen geldige regionaam. Gebruik kleine letters, cijfers en koppeltekens, maximaal 29 tekens.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Een repeater kan maximaal $max regio’s dragen.';
+  }
+
+  @override
+  String get regionSetup_options => 'Opties';
+
+  @override
+  String get regionSetup_setDefault => 'Meest lokale regio als standaard';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'De eigen adverts van de repeater blijven in die regio.';
+
+  @override
+  String get regionSetup_legacy => 'Firmware 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Voegt region allowf toe na elke regio. Niet nodig vanaf 1.15.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Berichten zonder regio niet meer doorsturen';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Zet dit pas aan als je hele gebied regio’s gebruikt, anders komen berichten van oudere apps niet door.';
+
+  @override
+  String get regionSetup_commands => 'Opdrachten';
+
+  @override
+  String get regionSetup_copyAll => 'Alles kopiëren';
+
+  @override
+  String get regionSetup_copied => 'Gekopieerd';
+
+  @override
+  String get regionSetup_pickFirst =>
+      'Kies een regio om de opdrachten te zien.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Naar $name sturen';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Log in op de repeater en open Regio’s instellen in zijn menu om ze te sturen, of plak ze in zijn opdrachtregel.';
+
+  @override
+  String get regionSetup_noReply => 'Geen antwoord. Hier gestopt.';
+
+  @override
+  String get regionSetup_addToMine => 'Deze regio’s aan mijn lijst toevoegen';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count regio’s aan je lijst toegevoegd',
+      one: '1 regio aan je lijst toegevoegd',
+    );
+    return '$_temp0';
+  }
 }

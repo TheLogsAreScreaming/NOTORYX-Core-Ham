@@ -8181,4 +8181,111 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get keyGen_tryAgain => 'En créer une autre';
+
+  @override
+  String get regionSetup_title => 'Configurer les régions';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Placer ce répéteur dans l’arbre de régions de votre secteur';
+
+  @override
+  String get regionSetup_intro =>
+      'Les régions gardent un message dans une zone au lieu d’inonder tout le maillage. Un répéteur ne relaie les messages d’une région que s’il la porte : donnez-lui sa région et toutes celles au-dessus.';
+
+  @override
+  String get regionSetup_where => 'Où se trouve le répéteur ?';
+
+  @override
+  String get regionSetup_tree => 'Arbre de régions';
+
+  @override
+  String get regionSetup_custom => 'Personnalisé';
+
+  @override
+  String get regionSetup_region => 'Région la plus locale';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Source : $source';
+  }
+
+  @override
+  String get regionSetup_customLabel =>
+      'Régions, de la plus large à la plus locale';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '« $name » n’est pas un nom de région valide. Utilisez des minuscules, chiffres et tirets, 29 caractères maximum.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Un répéteur peut porter au plus $max régions.';
+  }
+
+  @override
+  String get regionSetup_options => 'Options';
+
+  @override
+  String get regionSetup_setDefault =>
+      'Définir la région la plus locale par défaut';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Les annonces du répéteur restent dans cette région.';
+
+  @override
+  String get regionSetup_legacy => 'Firmware 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Ajoute region allowf après chaque région. Inutile à partir de 1.15.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Ne plus relayer les messages sans région';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'À n’activer que lorsque tout votre secteur utilise les régions, sinon les messages des anciennes applis ne passeront pas.';
+
+  @override
+  String get regionSetup_commands => 'Commandes';
+
+  @override
+  String get regionSetup_copyAll => 'Tout copier';
+
+  @override
+  String get regionSetup_copied => 'Copié';
+
+  @override
+  String get regionSetup_pickFirst =>
+      'Choisissez une région pour voir les commandes.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Envoyer à $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Pour les envoyer, connectez-vous au répéteur et ouvrez Configurer les régions depuis son menu, ou collez-les dans sa ligne de commande.';
+
+  @override
+  String get regionSetup_noReply => 'Pas de réponse. Arrêt ici.';
+
+  @override
+  String get regionSetup_addToMine => 'Ajouter ces régions à ma liste';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count régions ajoutées à votre liste',
+      one: '1 région ajoutée à votre liste',
+    );
+    return '$_temp0';
+  }
 }

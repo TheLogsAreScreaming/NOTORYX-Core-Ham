@@ -7766,4 +7766,104 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get keyGen_tryAgain => '하나 더 만들기';
+
+  @override
+  String get regionSetup_title => '지역 설정';
+
+  @override
+  String get regionSetup_hubSubtitle => '이 리피터를 지역 트리에 배치';
+
+  @override
+  String get regionSetup_intro =>
+      '지역을 쓰면 메시 전체에 플러딩하지 않고 메시지를 한 지역 안에 머물게 할 수 있습니다. 리피터는 해당 지역을 가지고 있을 때만 그 지역의 메시지를 전달하므로, 자신의 지역과 그 위의 모든 지역을 지정하세요.';
+
+  @override
+  String get regionSetup_where => '리피터 위치는?';
+
+  @override
+  String get regionSetup_tree => '지역 트리';
+
+  @override
+  String get regionSetup_custom => '직접 입력';
+
+  @override
+  String get regionSetup_region => '가장 좁은 지역';
+
+  @override
+  String regionSetup_source(String source) {
+    return '출처: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => '지역 (넓은 순서)';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '\"$name\"은(는) 올바른 지역 이름이 아닙니다. 소문자, 숫자, 하이픈으로 29자 이내여야 합니다.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return '리피터는 최대 $max개의 지역을 가질 수 있습니다.';
+  }
+
+  @override
+  String get regionSetup_options => '옵션';
+
+  @override
+  String get regionSetup_setDefault => '가장 좁은 지역을 기본값으로';
+
+  @override
+  String get regionSetup_setDefaultBody => '리피터의 자체 알림이 그 지역 안에 머뭅니다.';
+
+  @override
+  String get regionSetup_legacy => '펌웨어 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      '각 지역 뒤에 region allowf를 추가합니다. 1.15 이상에서는 필요 없습니다.';
+
+  @override
+  String get regionSetup_denyUnscoped => '지역 없는 메시지 전달 중지';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      '지역 전체가 지역 기능을 쓸 때만 켜세요. 그렇지 않으면 이전 앱의 메시지가 전달되지 않습니다.';
+
+  @override
+  String get regionSetup_commands => '명령';
+
+  @override
+  String get regionSetup_copyAll => '모두 복사';
+
+  @override
+  String get regionSetup_copied => '복사됨';
+
+  @override
+  String get regionSetup_pickFirst => '지역을 선택하면 명령이 표시됩니다.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return '$name에 보내기';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      '보내려면 리피터에 로그인한 뒤 메뉴에서 지역 설정을 열거나, 명령줄에 붙여 넣으세요.';
+
+  @override
+  String get regionSetup_noReply => '응답 없음. 여기서 중단했습니다.';
+
+  @override
+  String get regionSetup_addToMine => '이 지역을 내 목록에 추가';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '내 목록에 지역 $count개 추가됨',
+    );
+    return '$_temp0';
+  }
 }

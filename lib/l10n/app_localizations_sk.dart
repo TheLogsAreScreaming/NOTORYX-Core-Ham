@@ -8135,4 +8135,108 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get keyGen_tryAgain => 'Vytvoriť ďalší';
+
+  @override
+  String get regionSetup_title => 'Nastavenie regiónov';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Zaradiť tento opakovač do stromu regiónov vašej oblasti';
+
+  @override
+  String get regionSetup_intro =>
+      'Regióny držia správu v oblasti namiesto zaplavenia celej siete. Opakovač preposiela správy regiónu, len ak má tento región, preto mu dajte jeho región a všetky nad ním.';
+
+  @override
+  String get regionSetup_where => 'Kde je opakovač?';
+
+  @override
+  String get regionSetup_tree => 'Strom regiónov';
+
+  @override
+  String get regionSetup_custom => 'Vlastné';
+
+  @override
+  String get regionSetup_region => 'Najmiestnejší región';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Zdroj: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Regióny, od najširšieho';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '„$name“ nie je platný názov regiónu. Použite malé písmená, číslice a pomlčky, najviac 29 znakov.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Opakovač môže mať najviac $max regiónov.';
+  }
+
+  @override
+  String get regionSetup_options => 'Možnosti';
+
+  @override
+  String get regionSetup_setDefault => 'Najmiestnejší región ako predvolený';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Vlastné oznámenia opakovača zostanú v tomto regióne.';
+
+  @override
+  String get regionSetup_legacy => 'Firmvér 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Pridá region allowf za každý región. Od 1.15 netreba.';
+
+  @override
+  String get regionSetup_denyUnscoped => 'Nepreposielať správy bez regiónu';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Zapnite až vtedy, keď celá oblasť používa regióny, inak správy zo starších aplikácií neprejdú.';
+
+  @override
+  String get regionSetup_commands => 'Príkazy';
+
+  @override
+  String get regionSetup_copyAll => 'Kopírovať všetko';
+
+  @override
+  String get regionSetup_copied => 'Skopírované';
+
+  @override
+  String get regionSetup_pickFirst => 'Vyberte región, aby ste videli príkazy.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Odoslať do $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Na odoslanie sa prihláste do opakovača a otvorte Nastavenie regiónov z jeho ponuky, alebo ich vložte do jeho príkazového riadka.';
+
+  @override
+  String get regionSetup_noReply => 'Bez odpovede. Zastavené tu.';
+
+  @override
+  String get regionSetup_addToMine => 'Pridať tieto regióny do môjho zoznamu';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Do zoznamu pridaných $count regiónov',
+      few: 'Do zoznamu pridané $count regióny',
+      one: 'Do zoznamu pridaný 1 región',
+    );
+    return '$_temp0';
+  }
 }

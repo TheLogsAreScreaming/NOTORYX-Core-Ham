@@ -8081,4 +8081,109 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get keyGen_tryAgain => 'Skapa en till';
+
+  @override
+  String get regionSetup_title => 'Ställ in regioner';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Placera repeatern i regionträdet för ditt område';
+
+  @override
+  String get regionSetup_intro =>
+      'Regioner håller ett meddelande inom ett område i stället för att översvämma hela meshet. En repeater vidarebefordrar bara en regions meddelanden om den bär regionen, så ge den sin egen region och alla regioner ovanför.';
+
+  @override
+  String get regionSetup_where => 'Var står repeatern?';
+
+  @override
+  String get regionSetup_tree => 'Regionträd';
+
+  @override
+  String get regionSetup_custom => 'Anpassat';
+
+  @override
+  String get regionSetup_region => 'Mest lokal region';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Källa: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Regioner, bredast först';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '\"$name\" är inte ett giltigt regionnamn. Använd gemener, siffror och bindestreck, högst 29 tecken.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'En repeater kan bära högst $max regioner.';
+  }
+
+  @override
+  String get regionSetup_options => 'Alternativ';
+
+  @override
+  String get regionSetup_setDefault =>
+      'Gör den mest lokala regionen till standard';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Repeaterns egna adverts stannar i den regionen.';
+
+  @override
+  String get regionSetup_legacy => 'Firmware 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Lägger till region allowf efter varje region. Behövs inte från 1.15.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Sluta vidarebefordra meddelanden utan region';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Slå bara på detta när hela området använder regioner, annars kommer meddelanden från äldre appar inte fram.';
+
+  @override
+  String get regionSetup_commands => 'Kommandon';
+
+  @override
+  String get regionSetup_copyAll => 'Kopiera alla';
+
+  @override
+  String get regionSetup_copied => 'Kopierat';
+
+  @override
+  String get regionSetup_pickFirst => 'Välj en region för att se kommandona.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Skicka till $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Logga in på repeatern och öppna Ställ in regioner i dess meny för att skicka, eller klistra in dem på dess kommandorad.';
+
+  @override
+  String get regionSetup_noReply => 'Inget svar. Stoppade här.';
+
+  @override
+  String get regionSetup_addToMine => 'Lägg till regionerna i min lista';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count regioner tillagda i din lista',
+      one: '1 region tillagd i din lista',
+    );
+    return '$_temp0';
+  }
 }

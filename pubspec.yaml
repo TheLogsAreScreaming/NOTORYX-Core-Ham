@@ -86,6 +86,7 @@ flutter:
     - assets/icons/
     - assets/fonts/
     - assets/regional_presets.json
+    - assets/region_trees.json
     - assets/channel_directory.json
   fonts:
     # Static weights cut from the Inter and JetBrains Mono variable fonts.

@@ -7590,4 +7590,101 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get keyGen_tryAgain => '再生成一个';
+
+  @override
+  String get regionSetup_title => '区域设置';
+
+  @override
+  String get regionSetup_hubSubtitle => '把这台中继器放进本地区的区域树';
+
+  @override
+  String get regionSetup_intro =>
+      '区域能让消息留在某个范围内，而不是泛洪整个网络。中继器只有带有某个区域时才会转发该区域的消息，所以要给它设置自身区域及其上所有区域。';
+
+  @override
+  String get regionSetup_where => '中继器在哪里？';
+
+  @override
+  String get regionSetup_tree => '区域树';
+
+  @override
+  String get regionSetup_custom => '自定义';
+
+  @override
+  String get regionSetup_region => '最小的区域';
+
+  @override
+  String regionSetup_source(String source) {
+    return '来源：$source';
+  }
+
+  @override
+  String get regionSetup_customLabel => '区域（从大到小）';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '“$name”不是有效的区域名。请使用小写字母、数字和连字符，最多 29 个字符。';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return '一台中继器最多可设置 $max 个区域。';
+  }
+
+  @override
+  String get regionSetup_options => '选项';
+
+  @override
+  String get regionSetup_setDefault => '把最小的区域设为默认';
+
+  @override
+  String get regionSetup_setDefaultBody => '中继器自己的广播会留在该区域内。';
+
+  @override
+  String get regionSetup_legacy => '固件 1.14';
+
+  @override
+  String get regionSetup_legacyBody => '在每个区域后添加 region allowf。1.15 及以上不需要。';
+
+  @override
+  String get regionSetup_denyUnscoped => '停止转发没有区域的消息';
+
+  @override
+  String get regionSetup_denyUnscopedBody => '只有在整个地区都使用区域后才开启，否则旧版应用的消息将无法通过。';
+
+  @override
+  String get regionSetup_commands => '命令';
+
+  @override
+  String get regionSetup_copyAll => '全部复制';
+
+  @override
+  String get regionSetup_copied => '已复制';
+
+  @override
+  String get regionSetup_pickFirst => '选择一个区域即可查看命令。';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return '发送到 $name';
+  }
+
+  @override
+  String get regionSetup_howToSend => '要发送这些命令，请登录中继器并从其菜单打开区域设置，或把命令粘贴到它的命令行。';
+
+  @override
+  String get regionSetup_noReply => '没有回复，已在此停止。';
+
+  @override
+  String get regionSetup_addToMine => '把这些区域加入我的列表';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已将 $count 个区域加入你的列表',
+    );
+    return '$_temp0';
+  }
 }

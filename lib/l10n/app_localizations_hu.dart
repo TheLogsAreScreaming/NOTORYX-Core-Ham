@@ -8140,4 +8140,110 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get keyGen_tryAgain => 'Újabb készítése';
+
+  @override
+  String get regionSetup_title => 'Régiók beállítása';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Az átjátszó elhelyezése a környék régiófájában';
+
+  @override
+  String get regionSetup_intro =>
+      'A régiók egy területen tartják az üzenetet, ahelyett hogy elárasztanák az egész hálót. Az átjátszó csak akkor továbbítja egy régió üzeneteit, ha hordozza azt a régiót, ezért add meg neki a saját régióját és az összes fölötte lévőt.';
+
+  @override
+  String get regionSetup_where => 'Hol van az átjátszó?';
+
+  @override
+  String get regionSetup_tree => 'Régiófa';
+
+  @override
+  String get regionSetup_custom => 'Egyéni';
+
+  @override
+  String get regionSetup_region => 'Leghelyibb régió';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Forrás: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Régiók, a legtágabbtól';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return 'A(z) „$name” nem érvényes régiónév. Használj kisbetűket, számokat és kötőjelet, legfeljebb 29 karaktert.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Egy átjátszó legfeljebb $max régiót hordozhat.';
+  }
+
+  @override
+  String get regionSetup_options => 'Beállítások';
+
+  @override
+  String get regionSetup_setDefault =>
+      'A leghelyibb régió legyen az alapértelmezett';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Az átjátszó saját hirdetései ebben a régióban maradnak.';
+
+  @override
+  String get regionSetup_legacy => '1.14-es firmware';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Minden régió után region allowf parancsot ad. 1.15-től nem kell.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Ne továbbítsa a régió nélküli üzeneteket';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Csak akkor kapcsold be, ha az egész környék régiókat használ, különben a régebbi alkalmazások üzenetei nem jutnak át.';
+
+  @override
+  String get regionSetup_commands => 'Parancsok';
+
+  @override
+  String get regionSetup_copyAll => 'Összes másolása';
+
+  @override
+  String get regionSetup_copied => 'Másolva';
+
+  @override
+  String get regionSetup_pickFirst =>
+      'Válassz régiót a parancsok megtekintéséhez.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Küldés ide: $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'A küldéshez jelentkezz be az átjátszóba, és nyisd meg a menüjében a Régiók beállítása pontot, vagy illeszd be a parancsokat a parancssorába.';
+
+  @override
+  String get regionSetup_noReply => 'Nincs válasz. Itt megállt.';
+
+  @override
+  String get regionSetup_addToMine => 'Ezek a régiók kerüljenek a listámra';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count régió hozzáadva a listádhoz',
+      one: '1 régió hozzáadva a listádhoz',
+    );
+    return '$_temp0';
+  }
 }

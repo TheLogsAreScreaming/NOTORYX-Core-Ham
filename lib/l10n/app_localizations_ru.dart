@@ -8183,4 +8183,107 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get keyGen_tryAgain => 'Создать ещё';
+
+  @override
+  String get regionSetup_title => 'Настройка регионов';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Поместить ретранслятор в дерево регионов вашей местности';
+
+  @override
+  String get regionSetup_intro =>
+      'Регионы удерживают сообщение в пределах области, а не рассылают его по всей сети. Ретранслятор передаёт сообщения региона, только если этот регион у него задан, поэтому задайте ему его регион и все регионы выше.';
+
+  @override
+  String get regionSetup_where => 'Где находится ретранслятор?';
+
+  @override
+  String get regionSetup_tree => 'Дерево регионов';
+
+  @override
+  String get regionSetup_custom => 'Своё';
+
+  @override
+  String get regionSetup_region => 'Самый местный регион';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Источник: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Регионы, от самого широкого';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '«$name» — недопустимое имя региона. Используйте строчные латинские буквы, цифры и дефисы, до 29 символов.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Ретранслятору можно задать не более $max регионов.';
+  }
+
+  @override
+  String get regionSetup_options => 'Параметры';
+
+  @override
+  String get regionSetup_setDefault => 'Сделать самый местный регион основным';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Собственные объявления ретранслятора останутся в этом регионе.';
+
+  @override
+  String get regionSetup_legacy => 'Прошивка 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Добавляет region allowf после каждого региона. Не нужно начиная с 1.15.';
+
+  @override
+  String get regionSetup_denyUnscoped => 'Не передавать сообщения без региона';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Включайте, только когда вся местность использует регионы, иначе сообщения из старых приложений не пройдут.';
+
+  @override
+  String get regionSetup_commands => 'Команды';
+
+  @override
+  String get regionSetup_copyAll => 'Копировать всё';
+
+  @override
+  String get regionSetup_copied => 'Скопировано';
+
+  @override
+  String get regionSetup_pickFirst => 'Выберите регион, чтобы увидеть команды.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Отправить на $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Чтобы отправить их, войдите в ретранслятор и откройте «Настройка регионов» в его меню или вставьте их в его командную строку.';
+
+  @override
+  String get regionSetup_noReply => 'Нет ответа. Остановлено здесь.';
+
+  @override
+  String get regionSetup_addToMine => 'Добавить эти регионы в мой список';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'В список добавлено регионов: $count',
+      one: 'В список добавлен 1 регион',
+    );
+    return '$_temp0';
+  }
 }

@@ -11,6 +11,7 @@ import 'package:meshcore_open/storage/region_store.dart';
 import 'package:meshcore_open/theme/mesh_theme.dart';
 import 'package:meshcore_open/widgets/mesh_ui.dart';
 import 'package:provider/provider.dart';
+import 'region_setup_screen.dart';
 
 Future<void> pushRegionManagementScreen(BuildContext context) {
   return Navigator.push(
@@ -60,6 +61,16 @@ class _RegionManagementScreenState extends State<RegionManagementScreen> {
         title: Text(l10n.settings_regionManagement_screenTitle),
         centerTitle: true,
         actions: [
+          IconButton(
+            tooltip: l10n.regionSetup_title,
+            icon: const Icon(Icons.account_tree_outlined),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (_) => const RegionSetupScreen(),
+              ),
+            ),
+          ),
           IconButton(
             tooltip: l10n.settings_regionAddRegion,
             icon: const Icon(Icons.add),

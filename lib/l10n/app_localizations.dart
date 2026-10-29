@@ -13662,6 +13662,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Make another'**
   String get keyGen_tryAgain;
+
+  /// No description provided for @regionSetup_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Region setup'**
+  String get regionSetup_title;
+
+  /// No description provided for @regionSetup_hubSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Place this repeater in your area\'s region tree'**
+  String get regionSetup_hubSubtitle;
+
+  /// No description provided for @regionSetup_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Regions keep a message within an area instead of flooding the whole mesh. A repeater only forwards a region\'s messages if it carries that region, so give it its own region and every region above it.'**
+  String get regionSetup_intro;
+
+  /// No description provided for @regionSetup_where.
+  ///
+  /// In en, this message translates to:
+  /// **'Where is the repeater?'**
+  String get regionSetup_where;
+
+  /// No description provided for @regionSetup_tree.
+  ///
+  /// In en, this message translates to:
+  /// **'Region tree'**
+  String get regionSetup_tree;
+
+  /// No description provided for @regionSetup_custom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get regionSetup_custom;
+
+  /// No description provided for @regionSetup_region.
+  ///
+  /// In en, this message translates to:
+  /// **'Most local region'**
+  String get regionSetup_region;
+
+  /// No description provided for @regionSetup_source.
+  ///
+  /// In en, this message translates to:
+  /// **'From: {source}'**
+  String regionSetup_source(String source);
+
+  /// No description provided for @regionSetup_customLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Regions, broadest first'**
+  String get regionSetup_customLabel;
+
+  /// No description provided for @regionSetup_invalidName.
+  ///
+  /// In en, this message translates to:
+  /// **'\"{name}\" isn\'t a valid region name. Use lowercase letters, digits and hyphens, up to 29 characters.'**
+  String regionSetup_invalidName(String name);
+
+  /// No description provided for @regionSetup_tooMany.
+  ///
+  /// In en, this message translates to:
+  /// **'A repeater can carry at most {max} regions.'**
+  String regionSetup_tooMany(int max);
+
+  /// No description provided for @regionSetup_options.
+  ///
+  /// In en, this message translates to:
+  /// **'Options'**
+  String get regionSetup_options;
+
+  /// No description provided for @regionSetup_setDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Make the most local region the default'**
+  String get regionSetup_setDefault;
+
+  /// No description provided for @regionSetup_setDefaultBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The repeater\'s own adverts stay in that region.'**
+  String get regionSetup_setDefaultBody;
+
+  /// No description provided for @regionSetup_legacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Firmware 1.14'**
+  String get regionSetup_legacy;
+
+  /// No description provided for @regionSetup_legacyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Adds region allowf after each region. Not needed on 1.15 or newer.'**
+  String get regionSetup_legacyBody;
+
+  /// No description provided for @regionSetup_denyUnscoped.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop forwarding messages without a region'**
+  String get regionSetup_denyUnscoped;
+
+  /// No description provided for @regionSetup_denyUnscopedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Only turn this on once your whole area uses regions, or messages from older apps won\'t get through.'**
+  String get regionSetup_denyUnscopedBody;
+
+  /// No description provided for @regionSetup_commands.
+  ///
+  /// In en, this message translates to:
+  /// **'Commands'**
+  String get regionSetup_commands;
+
+  /// No description provided for @regionSetup_copyAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy all'**
+  String get regionSetup_copyAll;
+
+  /// No description provided for @regionSetup_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get regionSetup_copied;
+
+  /// No description provided for @regionSetup_pickFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a region to see the commands.'**
+  String get regionSetup_pickFirst;
+
+  /// No description provided for @regionSetup_sendTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to {name}'**
+  String regionSetup_sendTo(String name);
+
+  /// No description provided for @regionSetup_howToSend.
+  ///
+  /// In en, this message translates to:
+  /// **'To send these, log in to the repeater and open Region setup from its menu, or paste them into its command line.'**
+  String get regionSetup_howToSend;
+
+  /// No description provided for @regionSetup_noReply.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply. Stopped here.'**
+  String get regionSetup_noReply;
+
+  /// No description provided for @regionSetup_addToMine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add these regions to my list'**
+  String get regionSetup_addToMine;
+
+  /// No description provided for @regionSetup_addedToMine.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 region added to your list} other{{count} regions added to your list}}'**
+  String regionSetup_addedToMine(int count);
 }
 
 class _AppLocalizationsDelegate

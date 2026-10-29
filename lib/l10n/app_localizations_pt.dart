@@ -8138,4 +8138,110 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get keyGen_tryAgain => 'Criar outra';
+
+  @override
+  String get regionSetup_title => 'Configurar regiões';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Coloque este repetidor na árvore de regiões da sua área';
+
+  @override
+  String get regionSetup_intro =>
+      'As regiões mantêm uma mensagem dentro de uma área em vez de inundar toda a malha. Um repetidor só retransmite mensagens de uma região se tiver essa região, então dê a ele a própria região e todas acima dela.';
+
+  @override
+  String get regionSetup_where => 'Onde fica o repetidor?';
+
+  @override
+  String get regionSetup_tree => 'Árvore de regiões';
+
+  @override
+  String get regionSetup_custom => 'Personalizado';
+
+  @override
+  String get regionSetup_region => 'Região mais local';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Fonte: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel =>
+      'Regiões, da mais ampla para a mais local';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '\"$name\" não é um nome de região válido. Use letras minúsculas, números e hífens, até 29 caracteres.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Um repetidor pode ter no máximo $max regiões.';
+  }
+
+  @override
+  String get regionSetup_options => 'Opções';
+
+  @override
+  String get regionSetup_setDefault => 'Usar a região mais local como padrão';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Os anúncios do próprio repetidor ficam nessa região.';
+
+  @override
+  String get regionSetup_legacy => 'Firmware 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Adiciona region allowf após cada região. Não é preciso na 1.15 ou mais nova.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Parar de retransmitir mensagens sem região';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Ative só quando toda a sua área usar regiões, senão mensagens de apps antigos não passarão.';
+
+  @override
+  String get regionSetup_commands => 'Comandos';
+
+  @override
+  String get regionSetup_copyAll => 'Copiar tudo';
+
+  @override
+  String get regionSetup_copied => 'Copiado';
+
+  @override
+  String get regionSetup_pickFirst =>
+      'Escolha uma região para ver os comandos.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Enviar para $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Para enviá-los, entre no repetidor e abra Configurar regiões no menu dele, ou cole-os na linha de comando.';
+
+  @override
+  String get regionSetup_noReply => 'Sem resposta. Parou aqui.';
+
+  @override
+  String get regionSetup_addToMine => 'Adicionar estas regiões à minha lista';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count regiões adicionadas à sua lista',
+      one: '1 região adicionada à sua lista',
+    );
+    return '$_temp0';
+  }
 }

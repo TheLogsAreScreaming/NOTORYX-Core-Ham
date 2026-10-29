@@ -4753,5 +4753,67 @@
   "keyGen_copied": "Copied",
   "keyGen_secretWarning": "Keep the private key secret. Anyone who has it can pose as this node.",
   "keyGen_howToUse": "To use it on a repeater, open the repeater's settings, paste it as the private key and save. Companion radios need firmware that allows key import.",
-  "keyGen_tryAgain": "Make another"
+  "keyGen_tryAgain": "Make another",
+  "regionSetup_title": "Region setup",
+  "regionSetup_hubSubtitle": "Place this repeater in your area's region tree",
+  "regionSetup_intro": "Regions keep a message within an area instead of flooding the whole mesh. A repeater only forwards a region's messages if it carries that region, so give it its own region and every region above it.",
+  "regionSetup_where": "Where is the repeater?",
+  "regionSetup_tree": "Region tree",
+  "regionSetup_custom": "Custom",
+  "regionSetup_region": "Most local region",
+  "regionSetup_source": "From: {source}",
+  "@regionSetup_source": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "regionSetup_customLabel": "Regions, broadest first",
+  "regionSetup_invalidName": "\"{name}\" isn't a valid region name. Use lowercase letters, digits and hyphens, up to 29 characters.",
+  "@regionSetup_invalidName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "regionSetup_tooMany": "A repeater can carry at most {max} regions.",
+  "@regionSetup_tooMany": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "regionSetup_options": "Options",
+  "regionSetup_setDefault": "Make the most local region the default",
+  "regionSetup_setDefaultBody": "The repeater's own adverts stay in that region.",
+  "regionSetup_legacy": "Firmware 1.14",
+  "regionSetup_legacyBody": "Adds region allowf after each region. Not needed on 1.15 or newer.",
+  "regionSetup_denyUnscoped": "Stop forwarding messages without a region",
+  "regionSetup_denyUnscopedBody": "Only turn this on once your whole area uses regions, or messages from older apps won't get through.",
+  "regionSetup_commands": "Commands",
+  "regionSetup_copyAll": "Copy all",
+  "regionSetup_copied": "Copied",
+  "regionSetup_pickFirst": "Pick a region to see the commands.",
+  "regionSetup_sendTo": "Send to {name}",
+  "@regionSetup_sendTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "regionSetup_howToSend": "To send these, log in to the repeater and open Region setup from its menu, or paste them into its command line.",
+  "regionSetup_noReply": "No reply. Stopped here.",
+  "regionSetup_addToMine": "Add these regions to my list",
+  "regionSetup_addedToMine": "{count, plural, =1{1 region added to your list} other{{count} regions added to your list}}",
+  "@regionSetup_addedToMine": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
