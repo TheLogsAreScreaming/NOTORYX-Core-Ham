@@ -18,7 +18,6 @@ class BastionDiagnosticsScreen extends StatelessWidget {
 
   static Color get _cyan => MeshPalette.accent;
   static Color get _bg => MeshPalette.bg;
-  static Color get _panel => MeshPalette.bg2;
 
   String _value(Object? value) => value == null ? '—' : '$value';
 
@@ -199,9 +198,8 @@ class BastionDiagnosticsScreen extends StatelessWidget {
   Widget _statusCard(BuildContext context, MeshCoreConnector c) => Container(
     padding: const EdgeInsets.all(18),
     decoration: BoxDecoration(
-      color: _panel,
-      borderRadius: BorderRadius.circular(18),
-      border: Border.all(color: _cyan.withValues(alpha: .45)),
+      border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Row(
       children: [
@@ -251,9 +249,8 @@ class BastionDiagnosticsScreen extends StatelessWidget {
   Widget _metric(String label, String value) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
     decoration: BoxDecoration(
-      color: _panel,
-      borderRadius: BorderRadius.circular(14),
       border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Column(
       children: [
@@ -281,9 +278,8 @@ class BastionDiagnosticsScreen extends StatelessWidget {
   Widget _section(String title, List<Widget> children) => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: _panel,
-      borderRadius: BorderRadius.circular(16),
       border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,10 +324,10 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     String subtitle,
     Widget screen,
   ) => Material(
-    color: _panel,
-    borderRadius: BorderRadius.circular(14),
+    color: Colors.transparent,
+    borderRadius: BorderRadius.circular(MeshRadii.xs),
     child: InkWell(
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
       onTap: () =>
           Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen)),
       child: Padding(

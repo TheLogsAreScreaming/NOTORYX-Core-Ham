@@ -9,7 +9,6 @@ class BastionAboutScreen extends StatelessWidget {
 
   static Color get _cyan => MeshPalette.accent;
   static Color get _bg => MeshPalette.bg;
-  static Color get _panel => MeshPalette.bg2;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +26,8 @@ class BastionAboutScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: _panel,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: _cyan.withValues(alpha: .45)),
+              border: Border.all(color: MeshPalette.line),
+              borderRadius: BorderRadius.circular(MeshRadii.xs),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,9 +101,8 @@ class BastionAboutScreen extends StatelessWidget {
   Widget _infoPanel(IconData icon, String title, String body) => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: _panel,
-      borderRadius: BorderRadius.circular(16),
       border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,

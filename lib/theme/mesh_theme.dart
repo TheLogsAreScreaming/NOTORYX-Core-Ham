@@ -263,14 +263,14 @@ class MeshTheme {
         ),
         iconTheme: IconThemeData(color: scheme.onSurface),
       ),
-      // Cards sit on the raised surface without an outline; the low
-      // container is too close to the background in the dark themes.
+      // Field-instrument cards: no fill, a hairline outline, squared off.
       cardTheme: CardThemeData(
-        color: scheme.surfaceContainerHigh,
+        color: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          side: BorderSide(color: scheme.outlineVariant),
+          borderRadius: BorderRadius.circular(MeshRadii.xs),
         ),
         margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 0),
       ),

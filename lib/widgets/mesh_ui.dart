@@ -45,8 +45,8 @@ class SectionHeader extends StatelessWidget {
   }
 }
 
-/// Raised surface card with press feedback. The standard container for
-/// grouped content and tappable list entries. Borderless unless
+/// Hairline-outlined container with press feedback, squared off in the
+/// field-instrument style: no fill unless [color] asks for one, and
 /// [borderColor] marks a state such as selected or error.
 class MeshCard extends StatelessWidget {
   final Widget child;
@@ -69,22 +69,19 @@ class MeshCard extends StatelessWidget {
     this.margin = const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
     this.color,
     this.borderColor,
-    this.radius = MeshRadii.md,
+    this.radius = MeshRadii.xs,
   });
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
     final shape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(radius),
-      side: borderColor == null
-          ? BorderSide.none
-          : BorderSide(color: borderColor!),
+      side: BorderSide(color: borderColor ?? MeshPalette.line),
     );
     return Padding(
       padding: margin,
       child: Material(
-        color: color ?? scheme.surfaceContainerHigh,
+        color: color ?? Colors.transparent,
         shape: shape,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -691,8 +688,11 @@ class MeshGroup extends StatelessWidget {
     return Padding(
       padding: margin,
       child: Material(
-        color: MeshPalette.bg2,
-        borderRadius: BorderRadius.circular(MeshRadii.lg),
+        color: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: MeshPalette.line),
+          borderRadius: BorderRadius.circular(MeshRadii.xs),
+        ),
         clipBehavior: Clip.antiAlias,
         child: Column(mainAxisSize: MainAxisSize.min, children: rows),
       ),
