@@ -50,7 +50,11 @@ class MqttBrokerService extends ChangeNotifier {
     this.clientVersion = 'notoryx-core',
     MqttTokenRefreshPolicy tokenPolicy = const MqttTokenRefreshPolicy(),
     DateTime Function() clock = DateTime.now,
+    this.namespace = '',
+    this.uploadOnly = false,
+    MqttBacklogStore? backlogStore,
   }) : _networkMonitor = networkMonitor,
+       _backlogStore = backlogStore,
        _tokenPolicy = tokenPolicy,
        _clock = clock,
        _prefs = prefs,
@@ -65,6 +69,23 @@ class MqttBrokerService extends ChangeNotifier {
   static const _publishEnabledKey = 'mqtt_publish_enabled';
   static const _publishDirectKey = 'mqtt_publish_direct_traffic';
   static const _publishOwnKey = 'mqtt_publish_own_traffic';
+  static const _wifiOnlyKey = 'mqtt_wifi_only';
+
+  /// Packets kept for sharing while the broker is unreachable, and how
+  /// long they're worth backfilling.
+  static const backlogLimit = 20000;
+  static const backlogMaxAge = Duration(hours: 72);
+
+  /// Separates this broker's saved settings from others'; empty for the
+  /// main broker, so existing settings keep their keys.
+  final String namespace;
+
+  /// Upload-only brokers share what the radio hears but subscribe to
+  /// nothing, so they never feed packets back into the app.
+  final bool uploadOnly;
+
+  String _key(String base) =>
+      namespace.isEmpty ? base : 'mqtt_x_${namespace}__$base';
 
   /// Packets kept for the packet feed, newest first.
   static const recentPacketLimit = 100;
@@ -73,6 +94,12 @@ class MqttBrokerService extends ChangeNotifier {
   final NetworkMonitor? _networkMonitor;
   StreamSubscription<NetworkStatus>? _networkChanges;
   NetworkStatus _network = const NetworkStatus({'unknown'});
+  NetworkStatus _rawNetwork = const NetworkStatus({'unknown'});
+  bool _wifiOnly = false;
+  final MqttBacklogStore? _backlogStore;
+  final ListQueue<RadioRxPacket> _backlog = ListQueue<RadioRxPacket>();
+  Timer? _backlogDrainTimer;
+  Timer? _backlogSaveTimer;
   final MqttCredentialsStore _credentials;
   final MqttTransportFactory _transportFactory;
   final MqttReconnectPolicy _reconnectPolicy;
@@ -356,6 +383,12 @@ class MqttBrokerService extends ChangeNotifier {
   /// it. Returns why it was skipped, or null if it was published.
   MqttPublishSkip? publishRadioPacket(RadioRxPacket packet) {
     final skip = _publish(packet);
+    // Queue while a session is wanted, not after the user disconnected.
+    if (skip == MqttPublishSkip.notConnected &&
+        _settings != null &&
+        !_manuallyDisconnected) {
+      _enqueue(packet);
+    }
     if (skip == null) {
       _packetsPublished++;
     } else if (skip != MqttPublishSkip.disabled) {
@@ -367,12 +400,6 @@ class MqttBrokerService extends ChangeNotifier {
 
   MqttPublishSkip? _publish(RadioRxPacket packet) {
     if (!_publishSettings.enabled) return MqttPublishSkip.disabled;
-    final transport = _transport;
-    if (transport == null || _status != MqttConnectionStatus.connected) {
-      return MqttPublishSkip.notConnected;
-    }
-    final topic = publishTopic;
-    if (topic == null) return MqttPublishSkip.noTopic;
     final info = MeshPacketInfo.tryParse(packet.raw);
     if (info == null) return MqttPublishSkip.invalid;
     final skip = _publishPolicy.check(
@@ -381,6 +408,12 @@ class MqttBrokerService extends ChangeNotifier {
       settings: _publishSettings,
     );
     if (skip != null) return skip;
+    final transport = _transport;
+    if (transport == null || _status != MqttConnectionStatus.connected) {
+      return MqttPublishSkip.notConnected;
+    }
+    final topic = publishTopic;
+    if (topic == null) return MqttPublishSkip.noTopic;
     final receptionId = crypto.sha256.convert(packet.raw).toString();
     if (!_publishedReceptions.accept(receptionId)) {
       return MqttPublishSkip.alreadyShared;
@@ -448,10 +481,16 @@ class MqttBrokerService extends ChangeNotifier {
   Future<void> load() async {
     final monitor = _networkMonitor;
     if (monitor != null && _networkChanges == null) {
-      _network = await monitor.current();
-      _networkChanges = monitor.changes.listen(_onNetworkChanged);
+      _rawNetwork = await monitor.current();
+      _networkChanges = monitor.changes.listen((status) {
+        _rawNetwork = status;
+        _onNetworkChanged(_effective(status));
+      });
     }
-    final raw = _prefs.getString(_settingsKey);
+    _wifiOnly = _prefs.getBool(_key(_wifiOnlyKey)) ?? false;
+    _network = _effective(_rawNetwork);
+    await _loadBacklog();
+    final raw = _prefs.getString(_key(_settingsKey));
     if (raw != null) {
       try {
         _settings = _codec.decode(jsonDecode(raw) as Map<String, dynamic>);
@@ -459,13 +498,14 @@ class MqttBrokerService extends ChangeNotifier {
         _settings = null;
       }
     }
-    _allowInsecureLocalBroker = _prefs.getBool(_allowInsecureLocalKey) ?? false;
+    _allowInsecureLocalBroker =
+        _prefs.getBool(_key(_allowInsecureLocalKey)) ?? false;
     _deliverChannelMessages =
-        _prefs.getBool(_deliverChannelMessagesKey) ?? false;
+        _prefs.getBool(_key(_deliverChannelMessagesKey)) ?? false;
     _publishSettings = MqttPublishSettings(
-      enabled: _prefs.getBool(_publishEnabledKey) ?? false,
-      includeDirectTraffic: _prefs.getBool(_publishDirectKey) ?? false,
-      includeOwnTraffic: _prefs.getBool(_publishOwnKey) ?? false,
+      enabled: _prefs.getBool(_key(_publishEnabledKey)) ?? false,
+      includeDirectTraffic: _prefs.getBool(_key(_publishDirectKey)) ?? false,
+      includeOwnTraffic: _prefs.getBool(_key(_publishOwnKey)) ?? false,
     );
     _username = (await _credentials.read())?.username;
     _status = _settings == null
@@ -516,19 +556,31 @@ class MqttBrokerService extends ChangeNotifier {
     }
 
     disconnect();
-    await _prefs.setString(_settingsKey, jsonEncode(_codec.encode(settings)));
-    await _prefs.setBool(_allowInsecureLocalKey, allowInsecureLocalBroker);
+    await _prefs.setString(
+      _key(_settingsKey),
+      jsonEncode(_codec.encode(settings)),
+    );
+    await _prefs.setBool(
+      _key(_allowInsecureLocalKey),
+      allowInsecureLocalBroker,
+    );
     if (deliverChannelMessages != null) {
-      await _prefs.setBool(_deliverChannelMessagesKey, deliverChannelMessages);
+      await _prefs.setBool(
+        _key(_deliverChannelMessagesKey),
+        deliverChannelMessages,
+      );
       _deliverChannelMessages = deliverChannelMessages;
     }
     if (publishSettings != null) {
-      await _prefs.setBool(_publishEnabledKey, publishSettings.enabled);
+      await _prefs.setBool(_key(_publishEnabledKey), publishSettings.enabled);
       await _prefs.setBool(
-        _publishDirectKey,
+        _key(_publishDirectKey),
         publishSettings.includeDirectTraffic,
       );
-      await _prefs.setBool(_publishOwnKey, publishSettings.includeOwnTraffic);
+      await _prefs.setBool(
+        _key(_publishOwnKey),
+        publishSettings.includeOwnTraffic,
+      );
       _publishSettings = publishSettings;
     }
     _settings = settings;
@@ -669,7 +721,8 @@ class MqttBrokerService extends ChangeNotifier {
       _lastFailure = null;
       _reconnectAttempt = 0;
       _status = MqttConnectionStatus.connected;
-      _subscribe(transport, settings, generation);
+      if (!uploadOnly) _subscribe(transport, settings, generation);
+      _scheduleBacklogDrain();
       if (statusTopic != null) {
         _sessionStatusTopic = statusTopic;
         _sessionWill = will;
@@ -918,11 +971,11 @@ class MqttBrokerService extends ChangeNotifier {
   }
 
   String _clientId() {
-    final existing = _prefs.getString(_clientIdKey);
+    final existing = _prefs.getString(_key(_clientIdKey));
     if (existing != null) return existing;
     final id =
         'notoryx-${const Uuid().v4().replaceAll('-', '').substring(0, 12)}';
-    unawaited(_prefs.setString(_clientIdKey, id));
+    unawaited(_prefs.setString(_key(_clientIdKey), id));
     return id;
   }
 
@@ -930,8 +983,127 @@ class MqttBrokerService extends ChangeNotifier {
     if (!_disposed) notifyListeners();
   }
 
+  /// Whether this broker only connects over Wi-Fi (or Ethernet).
+  bool get wifiOnly => _wifiOnly;
+
+  /// Packets waiting to be shared once the broker is reachable again.
+  int get backlogLength => _backlog.length;
+
+  Future<void> setWifiOnly(bool value) async {
+    if (value == _wifiOnly) return;
+    _wifiOnly = value;
+    await _prefs.setBool(_key(_wifiOnlyKey), value);
+    _onNetworkChanged(_effective(_rawNetwork));
+  }
+
+  /// With Wi-Fi only on, mobile data counts as no network at all, so the
+  /// usual pause-and-resume handles it.
+  NetworkStatus _effective(NetworkStatus status) {
+    if (!_wifiOnly) return status;
+    return NetworkStatus({
+      for (final kind in status.kinds)
+        if (kind == 'wifi' || kind == 'ethernet' || kind == 'unknown') kind,
+    });
+  }
+
+  void _enqueue(RadioRxPacket packet) {
+    final cutoff = _clock().subtract(backlogMaxAge);
+    while (_backlog.isNotEmpty &&
+        (_backlog.length >= backlogLimit ||
+            _backlog.first.receivedAt.isBefore(cutoff))) {
+      _backlog.removeFirst();
+    }
+    _backlog.addLast(packet);
+    _scheduleBacklogSave();
+  }
+
+  /// Sends queued packets, oldest first, within the publish rate limit;
+  /// what's left goes out on the next tick.
+  void _scheduleBacklogDrain() {
+    _backlogDrainTimer?.cancel();
+    if (_backlog.isEmpty) return;
+    _backlogDrainTimer = Timer(const Duration(seconds: 2), _drainBacklog);
+  }
+
+  void _drainBacklog() {
+    if (_disposed || _status != MqttConnectionStatus.connected) return;
+    final cutoff = _clock().subtract(backlogMaxAge);
+    while (_backlog.isNotEmpty) {
+      final packet = _backlog.first;
+      if (packet.receivedAt.isBefore(cutoff)) {
+        _backlog.removeFirst();
+        continue;
+      }
+      final skip = _publish(packet);
+      if (skip == MqttPublishSkip.notConnected) break;
+      if (skip == MqttPublishSkip.rateLimited) {
+        _backlogDrainTimer = Timer(const Duration(seconds: 15), _drainBacklog);
+        break;
+      }
+      _backlog.removeFirst();
+      if (skip == null) _packetsPublished++;
+    }
+    _scheduleBacklogSave();
+    _scheduleStatsNotify();
+  }
+
+  void _scheduleBacklogSave() {
+    if (_backlogStore == null) return;
+    _backlogSaveTimer ??= Timer(const Duration(seconds: 30), () {
+      _backlogSaveTimer = null;
+      unawaited(_saveBacklog());
+    });
+  }
+
+  Future<void> _saveBacklog() async {
+    final store = _backlogStore;
+    if (store == null) return;
+    try {
+      await store.write(
+        jsonEncode([
+          for (final p in _backlog)
+            {
+              'raw': base64Encode(p.raw),
+              'snr': p.snr,
+              'rssi': p.rssi,
+              'at': p.receivedAt.toIso8601String(),
+              'self': p.fromSelf,
+            },
+        ]),
+      );
+    } catch (_) {
+      // Kept in memory; the next save retries.
+    }
+  }
+
+  Future<void> _loadBacklog() async {
+    final store = _backlogStore;
+    if (store == null) return;
+    try {
+      final data = await store.read();
+      if (data == null) return;
+      final cutoff = _clock().subtract(backlogMaxAge);
+      for (final row in jsonDecode(data) as List) {
+        final m = row as Map<String, dynamic>;
+        final packet = RadioRxPacket(
+          raw: base64Decode(m['raw'] as String),
+          snr: (m['snr'] as num).toDouble(),
+          rssi: m['rssi'] as int,
+          receivedAt: DateTime.parse(m['at'] as String),
+          fromSelf: m['self'] as bool? ?? false,
+        );
+        if (!packet.receivedAt.isBefore(cutoff)) _backlog.addLast(packet);
+      }
+    } catch (_) {
+      _backlog.clear();
+    }
+  }
+
   @override
   void dispose() {
+    _backlogDrainTimer?.cancel();
+    _backlogSaveTimer?.cancel();
+    unawaited(_saveBacklog());
     unawaited(_networkChanges?.cancel());
     _publishOffline();
     _abandonSession();
@@ -940,4 +1112,10 @@ class MqttBrokerService extends ChangeNotifier {
     unawaited(_packets.close());
     super.dispose();
   }
+}
+
+/// Where an MQTT broker's offline backlog survives app restarts.
+abstract class MqttBacklogStore {
+  Future<String?> read();
+  Future<void> write(String data);
 }
