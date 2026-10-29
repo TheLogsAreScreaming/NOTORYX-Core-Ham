@@ -3855,5 +3855,9 @@
   "routes_unknownRepeater": "알 수 없는 리피터",
   "routes_nearbyDetail": "{count, plural, other{{count}회 수신}} · {ago}",
   "routes_minutesAgo": "{minutes, plural, =0{방금} other{{minutes}분 전}}",
-  "routes_via": "경유: {names}"
+  "routes_via": "경유: {names}",
+  "nav_home": "홈",
+  "nav_chats": "채팅",
+  "nav_tools": "도구",
+  "nav_settings": "설정"
 }

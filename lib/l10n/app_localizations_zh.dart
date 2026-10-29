@@ -7784,4 +7784,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String routes_via(String names) {
     return '经由 $names';
   }
+
+  @override
+  String get nav_home => '首页';
+
+  @override
+  String get nav_chats => '聊天';
+
+  @override
+  String get nav_tools => '工具';
+
+  @override
+  String get nav_settings => '设置';
 }

@@ -149,6 +149,18 @@ class MeshRadii {
   static const pill = 999.0;
 }
 
+/// Spacing scale. Pick from these instead of one-off gaps so screens share
+/// one rhythm.
+class MeshSpace {
+  MeshSpace._();
+  static const xs = 4.0;
+  static const sm = 8.0;
+  static const md = 12.0;
+  static const lg = 16.0;
+  static const xl = 24.0;
+  static const xxl = 32.0;
+}
+
 /// Shared helpers exposed via [MeshTheme.of].
 class MeshTheme {
   MeshTheme._();
@@ -250,9 +262,6 @@ class MeshTheme {
           color: scheme.onSurface,
         ),
         iconTheme: IconThemeData(color: scheme.onSurface),
-        shape: Border(
-          bottom: BorderSide(color: scheme.outlineVariant, width: 1),
-        ),
       ),
       cardTheme: CardThemeData(
         color: scheme.surfaceContainerLow,
@@ -569,6 +578,19 @@ class MeshTheme {
       fontWeight: FontWeight.w700,
       letterSpacing: 0.6,
       color: color,
+    );
+  }
+
+  /// Section title: sentence case, quiet, and never the accent color, so
+  /// the accent stays free for actions and live status.
+  static TextStyle sectionTitle({Color? color}) {
+    return TextStyle(
+      fontFamily: MeshFonts.sans,
+      fontFamilyFallback: MeshFonts.sansFallback,
+      fontSize: 13.5,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.1,
+      color: color ?? MeshPalette.ink3,
     );
   }
 

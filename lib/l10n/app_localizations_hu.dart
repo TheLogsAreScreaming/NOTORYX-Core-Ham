@@ -5476,28 +5476,28 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bastion_tagline => 'Kommunikáció infrastruktúra nélkül.';
 
   @override
-  String get bastion_nodes => 'CSOMÓPONTOK';
+  String get bastion_nodes => 'Csomópontok';
 
   @override
-  String get bastion_repeaters => 'ISMÉTLŐK';
+  String get bastion_repeaters => 'Ismétlők';
 
   @override
-  String get bastion_active1h => 'AKTÍV 1 ÓRA';
+  String get bastion_active1h => 'Aktív 1 óra';
 
   @override
-  String get bastion_mapCoverage => 'TÉRKÉP + LEFEDETTSÉG';
+  String get bastion_mapCoverage => 'Térkép + lefedettség';
 
   @override
-  String get bastion_routeIntelligence => 'ÚTVONALELEMZÉS';
+  String get bastion_routeIntelligence => 'Útvonalelemzés';
 
   @override
-  String get bastion_repeaterTools => 'ISMÉTLŐESZKÖZÖK';
+  String get bastion_repeaterTools => 'Ismétlőeszközök';
 
   @override
-  String get bastion_fieldStats => 'TEREPI STATISZTIKA';
+  String get bastion_fieldStats => 'Terepi statisztika';
 
   @override
-  String get bastion_fieldOps => 'TÚRA + TEREPI MŰVELETEK';
+  String get bastion_fieldOps => 'Túra + terepi műveletek';
 
   @override
   String get bastion_coverageCapture => 'LEFEDETTSÉGRÖGZÍTÉS';
@@ -6386,14 +6386,14 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bastionHome_aboutTooltip => 'A NOTORYX Core-ról';
 
   @override
-  String get bastionHome_getStarted => 'ELSŐ LÉPÉSEK';
+  String get bastionHome_getStarted => 'Első lépések';
 
   @override
   String get bastionHome_getStartedHint =>
       'Csatlakoztassa a rádiót, és ellenőrizze az első üzenetét';
 
   @override
-  String get bastionHome_planYourTrip => 'TERVEZZE MEG A TÚRÁT';
+  String get bastionHome_planYourTrip => 'Tervezze meg a túrát';
 
   @override
   String get bastionHome_tripActive => 'Túra aktív';
@@ -6407,7 +6407,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_checkInOk => 'BEJELENTKEZÉS: JÓL VAGYOK';
+  String get bastionHome_checkInOk => 'Bejelentkezés: jól vagyok';
 
   @override
   String get bastionHome_checkInHint =>
@@ -6419,21 +6419,21 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_connectRadio => 'RÁDIÓ CSATLAKOZTATÁSA';
+  String get bastionHome_connectRadio => 'Rádió csatlakoztatása';
 
   @override
   String get bastionHome_connectRadioHint =>
       'MeshCore-kapcsolatok Bluetooth, USB és TCP útján';
 
   @override
-  String get bastionHome_liveDiagnostics => 'ÉLŐ DIAGNOSZTIKA';
+  String get bastionHome_liveDiagnostics => 'Élő diagnosztika';
 
   @override
   String get bastionHome_liveDiagnosticsHint =>
       'Rádióállapot, jel, eszköz és keretkezelő eszközök';
 
   @override
-  String get bastionHome_meshDiscovery => 'HÁLÓZATFELDERÍTÉS';
+  String get bastionHome_meshDiscovery => 'Hálózatfelderítés';
 
   @override
   String get bastionHome_meshDiscoveryHint =>
@@ -6444,16 +6444,16 @@ class AppLocalizationsHu extends AppLocalizations {
       'Túraösszefoglaló, felkészültség, terepnapló, automatizálások és lefedettség-összehasonlítás';
 
   @override
-  String get bastionHome_fieldTools => 'NOTORYX TEREPI ESZKÖZÖK';
+  String get bastionHome_fieldTools => 'NOTORYX terepi eszközök';
 
   @override
   String get bastionHome_statusActive => 'AKTÍV';
 
   @override
-  String get bastionHome_consoleOnline => 'TEREPI KONZOL ONLINE';
+  String get bastionHome_consoleOnline => 'Terepi konzol online';
 
   @override
-  String get bastionHome_consoleReady => 'TEREPI KONZOL KÉSZ';
+  String get bastionHome_consoleReady => 'Terepi konzol kész';
 
   @override
   String get bastionHome_consoleHint =>
@@ -6461,7 +6461,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String bastionHome_battery(String value) {
-    return 'AKKU $value';
+    return 'Akku $value';
   }
 
   @override
@@ -8349,4 +8349,16 @@ class AppLocalizationsHu extends AppLocalizations {
   String routes_via(String names) {
     return 'ezen át: $names';
   }
+
+  @override
+  String get nav_home => 'Kezdőlap';
+
+  @override
+  String get nav_chats => 'Csevegések';
+
+  @override
+  String get nav_tools => 'Eszközök';
+
+  @override
+  String get nav_settings => 'Beállítások';
 }

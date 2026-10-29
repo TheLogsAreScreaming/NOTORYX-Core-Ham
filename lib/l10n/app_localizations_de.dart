@@ -5500,28 +5500,28 @@ class AppLocalizationsDe extends AppLocalizations {
   String get bastion_tagline => 'Kommunikation ohne Infrastruktur.';
 
   @override
-  String get bastion_nodes => 'KNOTEN';
+  String get bastion_nodes => 'Knoten';
 
   @override
-  String get bastion_repeaters => 'REPEATER';
+  String get bastion_repeaters => 'Repeater';
 
   @override
-  String get bastion_active1h => 'AKTIV 1 STD.';
+  String get bastion_active1h => 'Aktiv 1 Std.';
 
   @override
-  String get bastion_mapCoverage => 'KARTE + ABDECKUNG';
+  String get bastion_mapCoverage => 'Karte + Abdeckung';
 
   @override
-  String get bastion_routeIntelligence => 'ROUTENANALYSE';
+  String get bastion_routeIntelligence => 'Routenanalyse';
 
   @override
-  String get bastion_repeaterTools => 'REPEATER-WERKZEUGE';
+  String get bastion_repeaterTools => 'Repeater-Werkzeuge';
 
   @override
-  String get bastion_fieldStats => 'FELDSTATISTIK';
+  String get bastion_fieldStats => 'Feldstatistik';
 
   @override
-  String get bastion_fieldOps => 'TOUR + FELDEINSATZ';
+  String get bastion_fieldOps => 'Tour + Feldeinsatz';
 
   @override
   String get bastion_coverageCapture => 'ABDECKUNGSERFASSUNG';
@@ -6409,14 +6409,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get bastionHome_aboutTooltip => 'Über NOTORYX Core';
 
   @override
-  String get bastionHome_getStarted => 'LOSLEGEN';
+  String get bastionHome_getStarted => 'Loslegen';
 
   @override
   String get bastionHome_getStartedHint =>
       'Verbinde dein Funkgerät und prüfe deine erste Nachricht';
 
   @override
-  String get bastionHome_planYourTrip => 'PLANE DEINE TOUR';
+  String get bastionHome_planYourTrip => 'Plane deine Tour';
 
   @override
   String get bastionHome_tripActive => 'Tour aktiv';
@@ -6430,7 +6430,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_checkInOk => 'EINCHECKEN: MIR GEHT\'S GUT';
+  String get bastionHome_checkInOk => 'Einchecken: mir geht\'s gut';
 
   @override
   String get bastionHome_checkInHint =>
@@ -6442,21 +6442,21 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_connectRadio => 'FUNKGERÄT VERBINDEN';
+  String get bastionHome_connectRadio => 'Funkgerät verbinden';
 
   @override
   String get bastionHome_connectRadioHint =>
       'MeshCore-Verbindungen über Bluetooth, USB und TCP';
 
   @override
-  String get bastionHome_liveDiagnostics => 'LIVE-DIAGNOSE';
+  String get bastionHome_liveDiagnostics => 'Live-Diagnose';
 
   @override
   String get bastionHome_liveDiagnosticsHint =>
       'Funkzustand, Signal, Gerät und Frame-Werkzeuge';
 
   @override
-  String get bastionHome_meshDiscovery => 'MESH-ERKUNDUNG';
+  String get bastionHome_meshDiscovery => 'Mesh-Erkundung';
 
   @override
   String get bastionHome_meshDiscoveryHint =>
@@ -6467,16 +6467,16 @@ class AppLocalizationsDe extends AppLocalizations {
       'Tourübersicht, Bereitschaft, Feldprotokoll, Automatisierungen und Abdeckungsvergleich';
 
   @override
-  String get bastionHome_fieldTools => 'NOTORYX-FELDWERKZEUGE';
+  String get bastionHome_fieldTools => 'NOTORYX-Feldwerkzeuge';
 
   @override
   String get bastionHome_statusActive => 'AKTIV';
 
   @override
-  String get bastionHome_consoleOnline => 'FELDKONSOLE ONLINE';
+  String get bastionHome_consoleOnline => 'Feldkonsole online';
 
   @override
-  String get bastionHome_consoleReady => 'FELDKONSOLE BEREIT';
+  String get bastionHome_consoleReady => 'Feldkonsole bereit';
 
   @override
   String get bastionHome_consoleHint =>
@@ -6484,7 +6484,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String bastionHome_battery(String value) {
-    return 'AKKU $value';
+    return 'Akku $value';
   }
 
   @override
@@ -8371,4 +8371,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String routes_via(String names) {
     return 'über $names';
   }
+
+  @override
+  String get nav_home => 'Start';
+
+  @override
+  String get nav_chats => 'Chats';
+
+  @override
+  String get nav_tools => 'Werkzeuge';
+
+  @override
+  String get nav_settings => 'Einstellungen';
 }

@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/main_tab_navigation.dart';
 
-/// Bastion's bottom bar: NODES, CHATS and MAP switch tabs; TOOLS and
-/// SETTINGS open as pages on top.
+/// Bastion's bottom bar: Nodes, Chats and Map switch tabs; Tools and
+/// Settings open as pages on top.
 class QuickSwitchBar extends StatelessWidget {
   /// The tab whose screen hosts this bar.
   final MainTab current;
@@ -35,6 +36,7 @@ class QuickSwitchBar extends StatelessWidget {
         : MeshPalette.bg.withAlpha(0xF2);
     final cyan = MeshPalette.accent;
     final muted = MeshPalette.ink3;
+    final l10n = context.l10n;
 
     void handleDestination(int index) {
       final tab = MainTab.values[index];
@@ -55,7 +57,7 @@ class QuickSwitchBar extends StatelessWidget {
             decoration: BoxDecoration(
               color: background,
               border: Border(
-                top: BorderSide(color: cyan.withValues(alpha: .45), width: 1),
+                top: BorderSide(color: MeshPalette.line, width: 1),
               ),
             ),
             child: NavigationBarTheme(
@@ -68,8 +70,8 @@ class QuickSwitchBar extends StatelessWidget {
                   final selected = states.contains(WidgetState.selected);
                   return TextStyle(
                     color: selected ? cyan : muted,
-                    fontSize: 10.5,
-                    fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+                    fontSize: 11.5,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                   );
                 }),
                 iconTheme: WidgetStateProperty.resolveWith((states) {
@@ -85,10 +87,10 @@ class QuickSwitchBar extends StatelessWidget {
                 selectedIndex: current.index,
                 onDestinationSelected: handleDestination,
                 destinations: [
-                  const NavigationDestination(
-                    icon: Icon(Icons.shield_outlined),
-                    selectedIcon: Icon(Icons.shield),
-                    label: 'HOME',
+                  NavigationDestination(
+                    icon: const Icon(Icons.shield_outlined),
+                    selectedIcon: const Icon(Icons.shield),
+                    label: l10n.nav_home,
                   ),
                   NavigationDestination(
                     icon: _buildIconWithBadge(
@@ -99,7 +101,7 @@ class QuickSwitchBar extends StatelessWidget {
                       const Icon(Icons.hub_rounded),
                       contactsUnreadCount,
                     ),
-                    label: 'NODES',
+                    label: l10n.nav_nodes,
                   ),
                   NavigationDestination(
                     icon: _buildIconWithBadge(
@@ -110,22 +112,22 @@ class QuickSwitchBar extends StatelessWidget {
                       const Icon(Icons.forum_rounded),
                       channelsUnreadCount,
                     ),
-                    label: 'CHATS',
+                    label: l10n.nav_chats,
                   ),
-                  const NavigationDestination(
-                    icon: Icon(Icons.map_outlined),
-                    selectedIcon: Icon(Icons.map_rounded),
-                    label: 'MAP',
+                  NavigationDestination(
+                    icon: const Icon(Icons.map_outlined),
+                    selectedIcon: const Icon(Icons.map_rounded),
+                    label: l10n.nav_map,
                   ),
-                  const NavigationDestination(
-                    icon: Icon(Icons.construction_outlined),
-                    selectedIcon: Icon(Icons.construction_rounded),
-                    label: 'TOOLS',
+                  NavigationDestination(
+                    icon: const Icon(Icons.construction_outlined),
+                    selectedIcon: const Icon(Icons.construction_rounded),
+                    label: l10n.nav_tools,
                   ),
-                  const NavigationDestination(
-                    icon: Icon(Icons.tune_outlined),
-                    selectedIcon: Icon(Icons.tune_rounded),
-                    label: 'SETTINGS',
+                  NavigationDestination(
+                    icon: const Icon(Icons.tune_outlined),
+                    selectedIcon: const Icon(Icons.tune_rounded),
+                    label: l10n.nav_settings,
                   ),
                 ],
               ),

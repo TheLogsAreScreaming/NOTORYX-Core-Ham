@@ -1237,7 +1237,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_title.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core Settings'**
+  /// **'Settings'**
   String get settings_title;
 
   /// No description provided for @settings_deviceInfo.
@@ -9337,49 +9337,49 @@ abstract class AppLocalizations {
   /// No description provided for @bastion_nodes.
   ///
   /// In en, this message translates to:
-  /// **'NODES'**
+  /// **'Nodes'**
   String get bastion_nodes;
 
   /// No description provided for @bastion_repeaters.
   ///
   /// In en, this message translates to:
-  /// **'REPEATERS'**
+  /// **'Repeaters'**
   String get bastion_repeaters;
 
   /// No description provided for @bastion_active1h.
   ///
   /// In en, this message translates to:
-  /// **'ACTIVE 1H'**
+  /// **'Active 1h'**
   String get bastion_active1h;
 
   /// No description provided for @bastion_mapCoverage.
   ///
   /// In en, this message translates to:
-  /// **'MAP + COVERAGE'**
+  /// **'Map + coverage'**
   String get bastion_mapCoverage;
 
   /// No description provided for @bastion_routeIntelligence.
   ///
   /// In en, this message translates to:
-  /// **'ROUTE INTELLIGENCE'**
+  /// **'Route intelligence'**
   String get bastion_routeIntelligence;
 
   /// No description provided for @bastion_repeaterTools.
   ///
   /// In en, this message translates to:
-  /// **'REPEATER TOOLS'**
+  /// **'Repeater tools'**
   String get bastion_repeaterTools;
 
   /// No description provided for @bastion_fieldStats.
   ///
   /// In en, this message translates to:
-  /// **'FIELD STATS'**
+  /// **'Field stats'**
   String get bastion_fieldStats;
 
   /// No description provided for @bastion_fieldOps.
   ///
   /// In en, this message translates to:
-  /// **'TRIP + FIELD OPERATIONS'**
+  /// **'Trip + field operations'**
   String get bastion_fieldOps;
 
   /// No description provided for @bastion_coverageCapture.
@@ -10751,7 +10751,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_getStarted.
   ///
   /// In en, this message translates to:
-  /// **'GET STARTED'**
+  /// **'Get started'**
   String get bastionHome_getStarted;
 
   /// No description provided for @bastionHome_getStartedHint.
@@ -10763,7 +10763,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_planYourTrip.
   ///
   /// In en, this message translates to:
-  /// **'PLAN YOUR TRIP'**
+  /// **'Plan your trip'**
   String get bastionHome_planYourTrip;
 
   /// No description provided for @bastionHome_tripActive.
@@ -10787,7 +10787,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_checkInOk.
   ///
   /// In en, this message translates to:
-  /// **'CHECK IN: I\'M OK'**
+  /// **'Check in: I\'m OK'**
   String get bastionHome_checkInOk;
 
   /// No description provided for @bastionHome_checkInHint.
@@ -10805,7 +10805,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_connectRadio.
   ///
   /// In en, this message translates to:
-  /// **'CONNECT RADIO'**
+  /// **'Connect radio'**
   String get bastionHome_connectRadio;
 
   /// No description provided for @bastionHome_connectRadioHint.
@@ -10817,7 +10817,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_liveDiagnostics.
   ///
   /// In en, this message translates to:
-  /// **'LIVE DIAGNOSTICS'**
+  /// **'Live diagnostics'**
   String get bastionHome_liveDiagnostics;
 
   /// No description provided for @bastionHome_liveDiagnosticsHint.
@@ -10829,7 +10829,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_meshDiscovery.
   ///
   /// In en, this message translates to:
-  /// **'MESH DISCOVERY'**
+  /// **'Mesh discovery'**
   String get bastionHome_meshDiscovery;
 
   /// No description provided for @bastionHome_meshDiscoveryHint.
@@ -10847,7 +10847,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_fieldTools.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX FIELD TOOLS'**
+  /// **'Field tools'**
   String get bastionHome_fieldTools;
 
   /// No description provided for @bastionHome_statusActive.
@@ -10859,13 +10859,13 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_consoleOnline.
   ///
   /// In en, this message translates to:
-  /// **'FIELD CONSOLE ONLINE'**
+  /// **'Field console online'**
   String get bastionHome_consoleOnline;
 
   /// No description provided for @bastionHome_consoleReady.
   ///
   /// In en, this message translates to:
-  /// **'FIELD CONSOLE READY'**
+  /// **'Field console ready'**
   String get bastionHome_consoleReady;
 
   /// No description provided for @bastionHome_consoleHint.
@@ -10877,7 +10877,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_battery.
   ///
   /// In en, this message translates to:
-  /// **'BAT {value}'**
+  /// **'Battery {value}'**
   String bastionHome_battery(String value);
 
   /// No description provided for @bastionTools_title.
@@ -13974,6 +13974,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'via {names}'**
   String routes_via(String names);
+
+  /// Bottom bar tab: home screen
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get nav_home;
+
+  /// Bottom bar tab: chats and channels
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get nav_chats;
+
+  /// Bottom bar tab: field tools
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get nav_tools;
+
+  /// Bottom bar tab: settings
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get nav_settings;
 }
 
 class _AppLocalizationsDelegate

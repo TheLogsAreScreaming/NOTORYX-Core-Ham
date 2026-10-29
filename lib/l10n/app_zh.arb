@@ -3726,5 +3726,9 @@
   "routes_unknownRepeater": "未知中继器",
   "routes_nearbyDetail": "{count, plural, other{已听到 {count} 次}} · {ago}",
   "routes_minutesAgo": "{minutes, plural, =0{刚刚} other{{minutes} 分钟前}}",
-  "routes_via": "经由 {names}"
+  "routes_via": "经由 {names}",
+  "nav_home": "首页",
+  "nav_chats": "聊天",
+  "nav_tools": "工具",
+  "nav_settings": "设置"
 }

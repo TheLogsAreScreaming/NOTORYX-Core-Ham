@@ -5499,28 +5499,28 @@ class AppLocalizationsIt extends AppLocalizations {
   String get bastion_tagline => 'Comunicazione senza infrastruttura.';
 
   @override
-  String get bastion_nodes => 'NODI';
+  String get bastion_nodes => 'Nodi';
 
   @override
-  String get bastion_repeaters => 'RIPETITORI';
+  String get bastion_repeaters => 'Ripetitori';
 
   @override
-  String get bastion_active1h => 'ATTIVI 1 H';
+  String get bastion_active1h => 'Attivi 1 h';
 
   @override
-  String get bastion_mapCoverage => 'MAPPA + COPERTURA';
+  String get bastion_mapCoverage => 'Mappa + copertura';
 
   @override
-  String get bastion_routeIntelligence => 'ANALISI DEI PERCORSI';
+  String get bastion_routeIntelligence => 'Analisi dei percorsi';
 
   @override
-  String get bastion_repeaterTools => 'STRUMENTI RIPETITORE';
+  String get bastion_repeaterTools => 'Strumenti ripetitore';
 
   @override
-  String get bastion_fieldStats => 'STATISTICHE SUL CAMPO';
+  String get bastion_fieldStats => 'Statistiche sul campo';
 
   @override
-  String get bastion_fieldOps => 'USCITA + OPERAZIONI SUL CAMPO';
+  String get bastion_fieldOps => 'Uscita + operazioni sul campo';
 
   @override
   String get bastion_coverageCapture => 'RILEVAMENTO COPERTURA';
@@ -6413,14 +6413,14 @@ class AppLocalizationsIt extends AppLocalizations {
   String get bastionHome_aboutTooltip => 'Informazioni su NOTORYX Core';
 
   @override
-  String get bastionHome_getStarted => 'INIZIA';
+  String get bastionHome_getStarted => 'Inizia';
 
   @override
   String get bastionHome_getStartedHint =>
       'Collega la radio e verifica il tuo primo messaggio';
 
   @override
-  String get bastionHome_planYourTrip => 'PIANIFICA LA TUA USCITA';
+  String get bastionHome_planYourTrip => 'Pianifica la tua uscita';
 
   @override
   String get bastionHome_tripActive => 'Uscita attiva';
@@ -6434,7 +6434,7 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_checkInOk => 'CHECK-IN: STO BENE';
+  String get bastionHome_checkInOk => 'Check-in: sto bene';
 
   @override
   String get bastionHome_checkInHint =>
@@ -6446,21 +6446,21 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_connectRadio => 'COLLEGA RADIO';
+  String get bastionHome_connectRadio => 'Collega radio';
 
   @override
   String get bastionHome_connectRadioHint =>
       'Connessioni MeshCore via Bluetooth, USB e TCP';
 
   @override
-  String get bastionHome_liveDiagnostics => 'DIAGNOSTICA IN TEMPO REALE';
+  String get bastionHome_liveDiagnostics => 'Diagnostica in tempo reale';
 
   @override
   String get bastionHome_liveDiagnosticsHint =>
       'Stato della radio, segnale, dispositivo e strumenti per i frame';
 
   @override
-  String get bastionHome_meshDiscovery => 'SCOPERTA DELLA RETE MESH';
+  String get bastionHome_meshDiscovery => 'Scoperta della rete mesh';
 
   @override
   String get bastionHome_meshDiscoveryHint =>
@@ -6471,16 +6471,16 @@ class AppLocalizationsIt extends AppLocalizations {
       'Riepilogo uscita, preparazione, registro di campo, automazioni e confronto della copertura';
 
   @override
-  String get bastionHome_fieldTools => 'STRUMENTI DA CAMPO NOTORYX';
+  String get bastionHome_fieldTools => 'Strumenti da campo NOTORYX';
 
   @override
   String get bastionHome_statusActive => 'ATTIVO';
 
   @override
-  String get bastionHome_consoleOnline => 'CONSOLE DA CAMPO ONLINE';
+  String get bastionHome_consoleOnline => 'Console da campo online';
 
   @override
-  String get bastionHome_consoleReady => 'CONSOLE DA CAMPO PRONTA';
+  String get bastionHome_consoleReady => 'Console da campo pronta';
 
   @override
   String get bastionHome_consoleHint =>
@@ -6488,7 +6488,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String bastionHome_battery(String value) {
-    return 'BAT $value';
+    return 'Bat $value';
   }
 
   @override
@@ -8373,4 +8373,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String routes_via(String names) {
     return 'tramite $names';
   }
+
+  @override
+  String get nav_home => 'Home';
+
+  @override
+  String get nav_chats => 'Chat';
+
+  @override
+  String get nav_tools => 'Strumenti';
+
+  @override
+  String get nav_settings => 'Impostazioni';
 }

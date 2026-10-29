@@ -7965,4 +7965,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String routes_via(String names) {
     return '경유: $names';
   }
+
+  @override
+  String get nav_home => '홈';
+
+  @override
+  String get nav_chats => '채팅';
+
+  @override
+  String get nav_tools => '도구';
+
+  @override
+  String get nav_settings => '설정';
 }

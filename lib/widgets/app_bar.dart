@@ -29,7 +29,6 @@ class AppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final connector = context.watch<MeshCoreConnector>();
     final selfName = connector.selfName;
-    final cyan = MeshPalette.accent;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -49,21 +48,15 @@ class AppBarTitle extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    'NOTORYX',
-                    maxLines: 1,
-                    style: TextStyle(
-                      color: cyan,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 1.7,
-                    ),
-                  ),
                   Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
                   if (subtitle && connector.isConnected && selfName != null)
                     Text(
                       selfName,
-                      style: TextStyle(fontSize: 11, color: MeshPalette.ink3),
+                      style: TextStyle(
+                        fontSize: 12.5,
+                        fontWeight: FontWeight.w500,
+                        color: MeshPalette.ink3,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

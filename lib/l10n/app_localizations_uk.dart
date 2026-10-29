@@ -5503,28 +5503,28 @@ class AppLocalizationsUk extends AppLocalizations {
   String get bastion_tagline => 'Зв\'язок без інфраструктури.';
 
   @override
-  String get bastion_nodes => 'ВУЗЛИ';
+  String get bastion_nodes => 'Вузли';
 
   @override
-  String get bastion_repeaters => 'РЕТРАНСЛЯТОРИ';
+  String get bastion_repeaters => 'Ретранслятори';
 
   @override
-  String get bastion_active1h => 'АКТИВНІ 1 ГОД';
+  String get bastion_active1h => 'Активні 1 год';
 
   @override
-  String get bastion_mapCoverage => 'МАПА + ПОКРИТТЯ';
+  String get bastion_mapCoverage => 'Мапа + покриття';
 
   @override
-  String get bastion_routeIntelligence => 'АНАЛІЗ МАРШРУТІВ';
+  String get bastion_routeIntelligence => 'Аналіз маршрутів';
 
   @override
-  String get bastion_repeaterTools => 'ІНСТРУМЕНТИ РЕТРАНСЛЯТОРА';
+  String get bastion_repeaterTools => 'Інструменти ретранслятора';
 
   @override
-  String get bastion_fieldStats => 'ПОЛЬОВА СТАТИСТИКА';
+  String get bastion_fieldStats => 'Польова статистика';
 
   @override
-  String get bastion_fieldOps => 'ПОХІД + ПОЛЬОВІ ОПЕРАЦІЇ';
+  String get bastion_fieldOps => 'Похід + польові операції';
 
   @override
   String get bastion_coverageCapture => 'ЗАПИС ПОКРИТТЯ';
@@ -6427,14 +6427,14 @@ class AppLocalizationsUk extends AppLocalizations {
   String get bastionHome_aboutTooltip => 'Про NOTORYX Core';
 
   @override
-  String get bastionHome_getStarted => 'ПОЧАТИ';
+  String get bastionHome_getStarted => 'Почати';
 
   @override
   String get bastionHome_getStartedHint =>
       'Під\'єднайте радіостанцію й перевірте перше повідомлення';
 
   @override
-  String get bastionHome_planYourTrip => 'СПЛАНУЙТЕ ПОХІД';
+  String get bastionHome_planYourTrip => 'Сплануйте похід';
 
   @override
   String get bastionHome_tripActive => 'Похід активний';
@@ -6448,7 +6448,7 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_checkInOk => 'ПОЗНАЧИТИСЯ: УСЕ ГАРАЗД';
+  String get bastionHome_checkInOk => 'Позначитися: усе гаразд';
 
   @override
   String get bastionHome_checkInHint =>
@@ -6460,21 +6460,21 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get bastionHome_connectRadio => 'ПІД\'ЄДНАТИ РАДІОСТАНЦІЮ';
+  String get bastionHome_connectRadio => 'Під\'єднати радіостанцію';
 
   @override
   String get bastionHome_connectRadioHint =>
       'Підключення MeshCore через Bluetooth, USB і TCP';
 
   @override
-  String get bastionHome_liveDiagnostics => 'ДІАГНОСТИКА НАЖИВО';
+  String get bastionHome_liveDiagnostics => 'Діагностика наживо';
 
   @override
   String get bastionHome_liveDiagnosticsHint =>
       'Стан радіостанції, сигнал, пристрій та інструменти кадрів';
 
   @override
-  String get bastionHome_meshDiscovery => 'ВИЯВЛЕННЯ МЕРЕЖІ';
+  String get bastionHome_meshDiscovery => 'Виявлення мережі';
 
   @override
   String get bastionHome_meshDiscoveryHint =>
@@ -6485,16 +6485,16 @@ class AppLocalizationsUk extends AppLocalizations {
       'Зведення походу, готовність, польовий журнал, автоматизації та порівняння покриття';
 
   @override
-  String get bastionHome_fieldTools => 'ПОЛЬОВІ ІНСТРУМЕНТИ NOTORYX';
+  String get bastionHome_fieldTools => 'Польові інструменти NOTORYX';
 
   @override
   String get bastionHome_statusActive => 'АКТИВНО';
 
   @override
-  String get bastionHome_consoleOnline => 'ПОЛЬОВА КОНСОЛЬ У МЕРЕЖІ';
+  String get bastionHome_consoleOnline => 'Польова консоль у мережі';
 
   @override
-  String get bastionHome_consoleReady => 'ПОЛЬОВА КОНСОЛЬ ГОТОВА';
+  String get bastionHome_consoleReady => 'Польова консоль готова';
 
   @override
   String get bastionHome_consoleHint =>
@@ -6502,7 +6502,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String bastionHome_battery(String value) {
-    return 'БАТ $value';
+    return 'Бат $value';
   }
 
   @override
@@ -8387,4 +8387,16 @@ class AppLocalizationsUk extends AppLocalizations {
   String routes_via(String names) {
     return 'через $names';
   }
+
+  @override
+  String get nav_home => 'Головна';
+
+  @override
+  String get nav_chats => 'Чати';
+
+  @override
+  String get nav_tools => 'Інструменти';
+
+  @override
+  String get nav_settings => 'Налаштування';
 }

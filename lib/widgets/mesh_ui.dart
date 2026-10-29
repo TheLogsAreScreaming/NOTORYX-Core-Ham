@@ -8,9 +8,10 @@ import '../theme/mesh_theme.dart';
 /// Building blocks used across all screens so the app reads as one product:
 /// [SectionHeader], [MeshCard], [StatusChip], [StatTile], [AvatarCircle],
 /// [SignalBars], [RouteChip], [PulseDot], [BottomSheetHeader] +
-/// [showMeshSheet], [ErrorRetryCard], and [ListEntrance].
+/// [showMeshSheet], [ErrorRetryCard], [ListEntrance], [MeshGroup],
+/// [MeshNavRow] and [MeshStat].
 
-/// Small-caps mono section label, optionally with a trailing widget.
+/// Sentence-case section title, optionally with a trailing widget.
 class SectionHeader extends StatelessWidget {
   final String label;
   final Widget? trailing;
@@ -32,8 +33,8 @@ class SectionHeader extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              label.toUpperCase(),
-              style: MeshTheme.accentLabel(color: scheme.onSurfaceVariant),
+              label,
+              style: MeshTheme.sectionTitle(color: scheme.onSurfaceVariant),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -652,6 +653,151 @@ class _ListEntranceState extends State<ListEntrance>
         ).animate(_curve),
         child: widget.child,
       ),
+    );
+  }
+}
+
+/// Borderless group of rows on a raised surface, split by inset dividers.
+/// Use it for lists of related destinations instead of one card per row.
+class MeshGroup extends StatelessWidget {
+  final List<Widget> children;
+  final EdgeInsetsGeometry margin;
+
+  const MeshGroup({
+    super.key,
+    required this.children,
+    this.margin = EdgeInsets.zero,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final rows = <Widget>[];
+    for (var i = 0; i < children.length; i++) {
+      if (i > 0) {
+        rows.add(
+          Divider(
+            height: 1,
+            indent: 64,
+            color: MeshPalette.line.withValues(alpha: 0.6),
+          ),
+        );
+      }
+      rows.add(children[i]);
+    }
+    return Padding(
+      padding: margin,
+      child: Material(
+        color: MeshPalette.bg2,
+        borderRadius: BorderRadius.circular(MeshRadii.lg),
+        clipBehavior: Clip.antiAlias,
+        child: Column(mainAxisSize: MainAxisSize.min, children: rows),
+      ),
+    );
+  }
+}
+
+/// A tappable row for a [MeshGroup]: neutral icon tile, title, optional
+/// subtitle and a chevron. Neutral on purpose; the accent is for actions.
+class MeshNavRow extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String? subtitle;
+  final VoidCallback? onTap;
+  final Widget? trailing;
+  final Color? iconColor;
+
+  const MeshNavRow({
+    super.key,
+    required this.icon,
+    required this.title,
+    this.subtitle,
+    this.onTap,
+    this.trailing,
+    this.iconColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: MeshSpace.lg,
+          vertical: MeshSpace.md,
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: MeshPalette.bg3,
+                borderRadius: BorderRadius.circular(MeshRadii.sm),
+              ),
+              child: Icon(icon, size: 20, color: iconColor ?? MeshPalette.ink2),
+            ),
+            const SizedBox(width: MeshSpace.md),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: MeshPalette.ink,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  if (subtitle != null && subtitle!.isNotEmpty) ...[
+                    const SizedBox(height: 2),
+                    Text(
+                      subtitle!,
+                      style: TextStyle(color: MeshPalette.ink3, fontSize: 13),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            const SizedBox(width: MeshSpace.sm),
+            trailing ??
+                Icon(
+                  Icons.chevron_right_rounded,
+                  color: MeshPalette.ink4,
+                  size: 20,
+                ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// An inline number with a label under it, for summaries inside a card.
+class MeshStat extends StatelessWidget {
+  final String value;
+  final String label;
+
+  const MeshStat({super.key, required this.value, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          value,
+          style: TextStyle(
+            color: MeshPalette.ink,
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            fontFeatures: const [FontFeature.tabularFigures()],
+          ),
+        ),
+        Text(label, style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5)),
+      ],
     );
   }
 }
