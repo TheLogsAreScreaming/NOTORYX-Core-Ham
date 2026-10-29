@@ -7828,4 +7828,223 @@ class AppLocalizationsZh extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return '中继器 $id';
   }
+
+  @override
+  String get coverageHex_title => '覆盖六边形';
+
+  @override
+  String get coverageHex_toolSubtitle => '绘制电台能收到网状网络的位置并分享';
+
+  @override
+  String get coverageHex_mapCoverage => '记录覆盖';
+
+  @override
+  String get coverageHex_statusOff => '已关闭。驾车或步行时打开，记录电台能收到网状网络的位置。';
+
+  @override
+  String get coverageHex_waitingGps => '正在等待 GPS…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'GPS 精度 $meters 米：太粗略，不记录。';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return '正在记录。GPS 精度 $meters 米。';
+  }
+
+  @override
+  String get coverageHex_hexagons => '六边形';
+
+  @override
+  String get coverageHex_samples => '样本';
+
+  @override
+  String get coverageHex_privacyNote =>
+      '开关打开时使用手机 GPS。只共享六边形 ID（约 0.9 公里），绝不共享你的确切位置。';
+
+  @override
+  String get coverageHex_uploadSection => '上传到覆盖地图';
+
+  @override
+  String get coverageHex_wifiOnly => '仅在 Wi-Fi 下上传';
+
+  @override
+  String get coverageHex_wifiOnlyHint => '样本在手机上等待 Wi-Fi（最多 7 天）。';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return '$count 个等待中';
+  }
+
+  @override
+  String get coverageHex_addMap => '添加覆盖地图';
+
+  @override
+  String get coverageHex_addMapHint => '任何接受覆盖数据上传的 HTTPS 地址。';
+
+  @override
+  String get coverageHex_uploadNow => '立即上传';
+
+  @override
+  String get coverageHex_mapDialogTitle => '覆盖地图';
+
+  @override
+  String get coverageHex_nameMissing => '请命名。';
+
+  @override
+  String get coverageHex_url => '上传 URL';
+
+  @override
+  String get coverageHex_urlInvalid => '必须是 https:// 网址。';
+
+  @override
+  String get coverageHex_apiKey => 'API 密钥（可选）';
+
+  @override
+  String get coverageHex_apiKeyHint => '作为 X-API-Key 发送。';
+
+  @override
+  String get coverageHex_format => '格式';
+
+  @override
+  String get coverageHex_formatHex => '六边形 ID（NOTORYX）';
+
+  @override
+  String get coverageHex_formatMeshMapper => '兼容 MeshMapper';
+
+  @override
+  String get coverageHex_privacy => '隐私';
+
+  @override
+  String get coverageHex_privacyLive => '实时';
+
+  @override
+  String get coverageHex_privacyDelayed => '延迟 3 小时';
+
+  @override
+  String get coverageHex_privacyAnonymous => '匿名，24 小时';
+
+  @override
+  String get coverageHex_privacyLiveHint => '约 15 分钟内发送。';
+
+  @override
+  String get coverageHex_privacyDelayedHint => '保留 3 小时，地图不会显示你的当前位置。';
+
+  @override
+  String get coverageHex_privacyAnonymousHint => '保留 24 小时，仅标注日期且不签名，上传之间无法关联。';
+
+  @override
+  String get coverageHex_uploadsOn => '开启上传';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return '已于 $time 发送 $count 个单元。';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return '地图返回 $code；将重试。';
+  }
+
+  @override
+  String get coverageHex_unreachable => '无法连接地图；将重试。';
+
+  @override
+  String get coverageHex_noPermission => '未授予位置权限。';
+
+  @override
+  String get coverageHex_noGps => 'GPS 不可用。';
+
+  @override
+  String get coverageHex_loadFailed => '无法读取已保存的覆盖数据；重新开始。';
+
+  @override
+  String get mqttExtra_wifiOnly => '仅在 Wi-Fi 下连接';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return '$count 个数据包等待上传（最多保留 72 小时）。';
+  }
+
+  @override
+  String get mqttExtra_add => '添加另一个代理';
+
+  @override
+  String get mqttExtra_addBody =>
+      '将电台收到的内容再分享给一个 MQTT 代理（主代理之外）。它只上传，不会把数据包传回应用。';
+
+  @override
+  String get mqttExtra_separateKey => '使用单独的密钥';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      '使用在本手机上生成的密钥登录，而不是电台的密钥，这样该代理无法将上传与你的电台关联。';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return '移除 $name？';
+  }
+
+  @override
+  String get mqttExtra_removeBody => '断开连接并清除其设置、密码、密钥及等待上传的数据包。';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return '使用自己的密钥登录：$key…';
+  }
+
+  @override
+  String get botWx_title => '将天气预警发布到频道';
+
+  @override
+  String get botWx_body =>
+      '每 10 分钟查询美国国家气象局在电台 GPS 位置（约取整到 1 公里）的严重和极端预警，每条新预警发布一次。需要手机联网。';
+
+  @override
+  String get botWx_channel => '发布到频道';
+
+  @override
+  String get botWx_moderate => '包括中等预警';
+
+  @override
+  String get botWx_moderateHint => '包括提示和预警。消息更多。';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return '上次检查 $time。';
+  }
+
+  @override
+  String get botWx_noPosition => '电台尚未报告 GPS 位置。';
+
+  @override
+  String get botWx_noChannel => '请选择发布预警的频道。';
+
+  @override
+  String get botWx_channelGone => '所选频道已不存在。';
+
+  @override
+  String botWx_httpError(String code) {
+    return '气象服务返回 $code。';
+  }
+
+  @override
+  String get botWx_unreachable => '无法连接气象服务。';
+
+  @override
+  String get botCmd_sun => '电台 GPS 位置的日出和日落。';
+
+  @override
+  String get botCmd_moon => '月相和照亮比例。';
+
+  @override
+  String get botCmd_weather => '电台处的当前天气（Open-Meteo）。发送约取整到 1 公里的位置。';
+
+  @override
+  String get botCmd_dice => '掷骰子：!dice、!dice 20 或 !dice 2d6。';
+
+  @override
+  String get botCmd_trace => '列出发送者消息经过的中继器。';
 }

@@ -14058,6 +14058,396 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Repeater {id}'**
   String routes_repeaterWithId(String id);
+
+  /// No description provided for @coverageHex_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage hexagons'**
+  String get coverageHex_title;
+
+  /// No description provided for @coverageHex_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Map where your radio hears the mesh and share it'**
+  String get coverageHex_toolSubtitle;
+
+  /// No description provided for @coverageHex_mapCoverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Map coverage'**
+  String get coverageHex_mapCoverage;
+
+  /// No description provided for @coverageHex_statusOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off. Turn on while you drive or walk to map where your radio hears the mesh.'**
+  String get coverageHex_statusOff;
+
+  /// No description provided for @coverageHex_waitingGps.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for GPS…'**
+  String get coverageHex_waitingGps;
+
+  /// No description provided for @coverageHex_gpsTooRough.
+  ///
+  /// In en, this message translates to:
+  /// **'GPS accuracy {meters} m: too rough, not recording.'**
+  String coverageHex_gpsTooRough(String meters);
+
+  /// No description provided for @coverageHex_recording.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording. GPS accuracy {meters} m.'**
+  String coverageHex_recording(String meters);
+
+  /// No description provided for @coverageHex_hexagons.
+  ///
+  /// In en, this message translates to:
+  /// **'Hexagons'**
+  String get coverageHex_hexagons;
+
+  /// No description provided for @coverageHex_samples.
+  ///
+  /// In en, this message translates to:
+  /// **'Samples'**
+  String get coverageHex_samples;
+
+  /// No description provided for @coverageHex_privacyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses the phone’s GPS while this switch is on. Only hexagon IDs (about 0.9 km across) are shared, never your exact position.'**
+  String get coverageHex_privacyNote;
+
+  /// No description provided for @coverageHex_uploadSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload to coverage maps'**
+  String get coverageHex_uploadSection;
+
+  /// No description provided for @coverageHex_wifiOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload on Wi-Fi only'**
+  String get coverageHex_wifiOnly;
+
+  /// No description provided for @coverageHex_wifiOnlyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Samples wait on the phone (up to 7 days) until Wi-Fi.'**
+  String get coverageHex_wifiOnlyHint;
+
+  /// No description provided for @coverageHex_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} waiting'**
+  String coverageHex_waiting(String count);
+
+  /// No description provided for @coverageHex_addMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a coverage map'**
+  String get coverageHex_addMap;
+
+  /// No description provided for @coverageHex_addMapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Any HTTPS endpoint that accepts coverage uploads.'**
+  String get coverageHex_addMapHint;
+
+  /// No description provided for @coverageHex_uploadNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload now'**
+  String get coverageHex_uploadNow;
+
+  /// No description provided for @coverageHex_mapDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Coverage map'**
+  String get coverageHex_mapDialogTitle;
+
+  /// No description provided for @coverageHex_nameMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Give it a name.'**
+  String get coverageHex_nameMissing;
+
+  /// No description provided for @coverageHex_url.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload URL'**
+  String get coverageHex_url;
+
+  /// No description provided for @coverageHex_urlInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Must be an https:// URL.'**
+  String get coverageHex_urlInvalid;
+
+  /// No description provided for @coverageHex_apiKey.
+  ///
+  /// In en, this message translates to:
+  /// **'API key (optional)'**
+  String get coverageHex_apiKey;
+
+  /// No description provided for @coverageHex_apiKeyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent as X-API-Key.'**
+  String get coverageHex_apiKeyHint;
+
+  /// No description provided for @coverageHex_format.
+  ///
+  /// In en, this message translates to:
+  /// **'Format'**
+  String get coverageHex_format;
+
+  /// No description provided for @coverageHex_formatHex.
+  ///
+  /// In en, this message translates to:
+  /// **'Hexagon IDs (NOTORYX)'**
+  String get coverageHex_formatHex;
+
+  /// No description provided for @coverageHex_formatMeshMapper.
+  ///
+  /// In en, this message translates to:
+  /// **'MeshMapper-compatible'**
+  String get coverageHex_formatMeshMapper;
+
+  /// No description provided for @coverageHex_privacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get coverageHex_privacy;
+
+  /// No description provided for @coverageHex_privacyLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get coverageHex_privacyLive;
+
+  /// No description provided for @coverageHex_privacyDelayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delayed 3 h'**
+  String get coverageHex_privacyDelayed;
+
+  /// No description provided for @coverageHex_privacyAnonymous.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous, 24 h'**
+  String get coverageHex_privacyAnonymous;
+
+  /// No description provided for @coverageHex_privacyLiveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent within about 15 minutes.'**
+  String get coverageHex_privacyLiveHint;
+
+  /// No description provided for @coverageHex_privacyDelayedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Held 3 hours so the map can’t show where you are now.'**
+  String get coverageHex_privacyDelayedHint;
+
+  /// No description provided for @coverageHex_privacyAnonymousHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Held 24 hours, dated by day only, and unsigned so uploads can’t be linked.'**
+  String get coverageHex_privacyAnonymousHint;
+
+  /// No description provided for @coverageHex_uploadsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploads on'**
+  String get coverageHex_uploadsOn;
+
+  /// No description provided for @coverageHex_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent {count} cells at {time}.'**
+  String coverageHex_sent(String count, String time);
+
+  /// No description provided for @coverageHex_httpError.
+  ///
+  /// In en, this message translates to:
+  /// **'The map answered {code}; will retry.'**
+  String coverageHex_httpError(String code);
+
+  /// No description provided for @coverageHex_unreachable.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t reach the map; will retry.'**
+  String get coverageHex_unreachable;
+
+  /// No description provided for @coverageHex_noPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission was not granted.'**
+  String get coverageHex_noPermission;
+
+  /// No description provided for @coverageHex_noGps.
+  ///
+  /// In en, this message translates to:
+  /// **'GPS isn’t available.'**
+  String get coverageHex_noGps;
+
+  /// No description provided for @coverageHex_loadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved coverage couldn’t be read; starting fresh.'**
+  String get coverageHex_loadFailed;
+
+  /// No description provided for @mqttExtra_wifiOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect on Wi-Fi only'**
+  String get mqttExtra_wifiOnly;
+
+  /// No description provided for @mqttExtra_backlog.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} packets waiting to upload (kept up to 72 hours).'**
+  String mqttExtra_backlog(String count);
+
+  /// No description provided for @mqttExtra_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add another broker'**
+  String get mqttExtra_add;
+
+  /// No description provided for @mqttExtra_addBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Shares what your radio hears with one more MQTT broker, beside your main one. It only uploads; it never feeds packets back into the app.'**
+  String get mqttExtra_addBody;
+
+  /// No description provided for @mqttExtra_separateKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a separate key'**
+  String get mqttExtra_separateKey;
+
+  /// No description provided for @mqttExtra_separateKeyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in with a key made on this phone instead of the radio’s, so this broker can’t tie uploads to your radio.'**
+  String get mqttExtra_separateKeyHint;
+
+  /// No description provided for @mqttExtra_removeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}?'**
+  String mqttExtra_removeTitle(String name);
+
+  /// No description provided for @mqttExtra_removeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Disconnects and forgets its settings, password, key and any packets still waiting to upload.'**
+  String get mqttExtra_removeBody;
+
+  /// No description provided for @mqttExtra_ownKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Signs in with its own key: {key}…'**
+  String mqttExtra_ownKey(String key);
+
+  /// No description provided for @botWx_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Post weather alerts to a channel'**
+  String get botWx_title;
+
+  /// No description provided for @botWx_body.
+  ///
+  /// In en, this message translates to:
+  /// **'Checks the US National Weather Service every 10 minutes for severe and extreme warnings at the radio’s GPS position (rounded to about 1 km), and posts each new one once. Needs phone internet.'**
+  String get botWx_body;
+
+  /// No description provided for @botWx_channel.
+  ///
+  /// In en, this message translates to:
+  /// **'Post to channel'**
+  String get botWx_channel;
+
+  /// No description provided for @botWx_moderate.
+  ///
+  /// In en, this message translates to:
+  /// **'Include moderate alerts'**
+  String get botWx_moderate;
+
+  /// No description provided for @botWx_moderateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Advisories as well as warnings. Busier.'**
+  String get botWx_moderateHint;
+
+  /// No description provided for @botWx_lastChecked.
+  ///
+  /// In en, this message translates to:
+  /// **'Last checked {time}.'**
+  String botWx_lastChecked(String time);
+
+  /// No description provided for @botWx_noPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio hasn’t reported a GPS position yet.'**
+  String get botWx_noPosition;
+
+  /// No description provided for @botWx_noChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a channel to post alerts to.'**
+  String get botWx_noChannel;
+
+  /// No description provided for @botWx_channelGone.
+  ///
+  /// In en, this message translates to:
+  /// **'The chosen channel no longer exists.'**
+  String get botWx_channelGone;
+
+  /// No description provided for @botWx_httpError.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather Service answered {code}.'**
+  String botWx_httpError(String code);
+
+  /// No description provided for @botWx_unreachable.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t reach the Weather Service.'**
+  String get botWx_unreachable;
+
+  /// No description provided for @botCmd_sun.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise and sunset at the radio’s GPS position.'**
+  String get botCmd_sun;
+
+  /// No description provided for @botCmd_moon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon phase and how much is lit.'**
+  String get botCmd_moon;
+
+  /// No description provided for @botCmd_weather.
+  ///
+  /// In en, this message translates to:
+  /// **'Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.'**
+  String get botCmd_weather;
+
+  /// No description provided for @botCmd_dice.
+  ///
+  /// In en, this message translates to:
+  /// **'Rolls dice: !dice, !dice 20 or !dice 2d6.'**
+  String get botCmd_dice;
+
+  /// No description provided for @botCmd_trace.
+  ///
+  /// In en, this message translates to:
+  /// **'Lists the repeaters the sender’s message came through.'**
+  String get botCmd_trace;
 }
 
 class _AppLocalizationsDelegate

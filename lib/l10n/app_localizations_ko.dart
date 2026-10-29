@@ -8009,4 +8009,226 @@ class AppLocalizationsKo extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return '리피터 $id';
   }
+
+  @override
+  String get coverageHex_title => '커버리지 육각형';
+
+  @override
+  String get coverageHex_toolSubtitle => '무전기가 메시를 수신하는 곳을 지도로 만들고 공유';
+
+  @override
+  String get coverageHex_mapCoverage => '커버리지 기록';
+
+  @override
+  String get coverageHex_statusOff =>
+      '꺼짐. 운전하거나 걸을 때 켜면 무전기가 메시를 수신하는 곳을 기록합니다.';
+
+  @override
+  String get coverageHex_waitingGps => 'GPS 대기 중…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'GPS 정확도 ${meters}m: 너무 부정확하여 기록하지 않습니다.';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return '기록 중. GPS 정확도 ${meters}m.';
+  }
+
+  @override
+  String get coverageHex_hexagons => '육각형';
+
+  @override
+  String get coverageHex_samples => '샘플';
+
+  @override
+  String get coverageHex_privacyNote =>
+      '이 스위치가 켜져 있는 동안 휴대폰 GPS를 사용합니다. 육각형 ID(약 0.9km)만 공유되며 정확한 위치는 공유되지 않습니다.';
+
+  @override
+  String get coverageHex_uploadSection => '커버리지 지도로 업로드';
+
+  @override
+  String get coverageHex_wifiOnly => 'Wi-Fi에서만 업로드';
+
+  @override
+  String get coverageHex_wifiOnlyHint => '샘플은 Wi-Fi가 될 때까지 휴대폰에서 대기합니다(최대 7일).';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return '$count개 대기 중';
+  }
+
+  @override
+  String get coverageHex_addMap => '커버리지 지도 추가';
+
+  @override
+  String get coverageHex_addMapHint => '커버리지 업로드를 받는 HTTPS 엔드포인트.';
+
+  @override
+  String get coverageHex_uploadNow => '지금 업로드';
+
+  @override
+  String get coverageHex_mapDialogTitle => '커버리지 지도';
+
+  @override
+  String get coverageHex_nameMissing => '이름을 입력하세요.';
+
+  @override
+  String get coverageHex_url => '업로드 URL';
+
+  @override
+  String get coverageHex_urlInvalid => 'https:// URL이어야 합니다.';
+
+  @override
+  String get coverageHex_apiKey => 'API 키(선택)';
+
+  @override
+  String get coverageHex_apiKeyHint => 'X-API-Key로 전송됩니다.';
+
+  @override
+  String get coverageHex_format => '형식';
+
+  @override
+  String get coverageHex_formatHex => '육각형 ID(NOTORYX)';
+
+  @override
+  String get coverageHex_formatMeshMapper => 'MeshMapper 호환';
+
+  @override
+  String get coverageHex_privacy => '개인정보';
+
+  @override
+  String get coverageHex_privacyLive => '실시간';
+
+  @override
+  String get coverageHex_privacyDelayed => '3시간 지연';
+
+  @override
+  String get coverageHex_privacyAnonymous => '익명, 24시간';
+
+  @override
+  String get coverageHex_privacyLiveHint => '약 15분 이내에 전송됩니다.';
+
+  @override
+  String get coverageHex_privacyDelayedHint => '지도에 현재 위치가 표시되지 않도록 3시간 보류합니다.';
+
+  @override
+  String get coverageHex_privacyAnonymousHint =>
+      '24시간 보류하고 날짜만 표시하며 서명하지 않아 업로드를 서로 연결할 수 없습니다.';
+
+  @override
+  String get coverageHex_uploadsOn => '업로드 켜기';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return '$time에 셀 $count개를 보냈습니다.';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return '지도가 $code로 응답했습니다. 다시 시도합니다.';
+  }
+
+  @override
+  String get coverageHex_unreachable => '지도에 연결할 수 없습니다. 다시 시도합니다.';
+
+  @override
+  String get coverageHex_noPermission => '위치 권한이 허용되지 않았습니다.';
+
+  @override
+  String get coverageHex_noGps => 'GPS를 사용할 수 없습니다.';
+
+  @override
+  String get coverageHex_loadFailed => '저장된 커버리지를 읽을 수 없어 새로 시작합니다.';
+
+  @override
+  String get mqttExtra_wifiOnly => 'Wi-Fi에서만 연결';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return '업로드 대기 중인 패킷 $count개(최대 72시간 보관).';
+  }
+
+  @override
+  String get mqttExtra_add => '다른 브로커 추가';
+
+  @override
+  String get mqttExtra_addBody =>
+      '무전기가 수신한 내용을 기본 브로커 외에 MQTT 브로커 하나에 더 공유합니다. 업로드만 하며 앱으로 패킷을 되돌리지 않습니다.';
+
+  @override
+  String get mqttExtra_separateKey => '별도 키 사용';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      '무전기 키 대신 이 휴대폰에서 만든 키로 로그인하므로 이 브로커는 업로드를 무전기와 연결할 수 없습니다.';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return '$name을(를) 삭제할까요?';
+  }
+
+  @override
+  String get mqttExtra_removeBody => '연결을 끊고 설정, 비밀번호, 키, 대기 중인 패킷을 삭제합니다.';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return '자체 키로 로그인: $key…';
+  }
+
+  @override
+  String get botWx_title => '기상 경보를 채널에 게시';
+
+  @override
+  String get botWx_body =>
+      '10분마다 미국 국립기상청에서 무전기 GPS 위치(약 1km로 반올림)의 심각·극단 경보를 확인하고 새 경보를 한 번씩 게시합니다. 휴대폰 인터넷이 필요합니다.';
+
+  @override
+  String get botWx_channel => '게시할 채널';
+
+  @override
+  String get botWx_moderate => '중간 수준 경보 포함';
+
+  @override
+  String get botWx_moderateHint => '주의보와 경보 모두. 메시지가 늘어납니다.';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return '마지막 확인 $time.';
+  }
+
+  @override
+  String get botWx_noPosition => '무전기가 아직 GPS 위치를 보고하지 않았습니다.';
+
+  @override
+  String get botWx_noChannel => '경보를 게시할 채널을 선택하세요.';
+
+  @override
+  String get botWx_channelGone => '선택한 채널이 더 이상 없습니다.';
+
+  @override
+  String botWx_httpError(String code) {
+    return '기상 서비스가 $code로 응답했습니다.';
+  }
+
+  @override
+  String get botWx_unreachable => '기상 서비스에 연결할 수 없습니다.';
+
+  @override
+  String get botCmd_sun => '무전기 GPS 위치의 일출과 일몰.';
+
+  @override
+  String get botCmd_moon => '달의 위상과 밝은 비율.';
+
+  @override
+  String get botCmd_weather =>
+      '무전기 위치의 현재 날씨(Open-Meteo). 약 1km로 반올림한 위치를 보냅니다.';
+
+  @override
+  String get botCmd_dice => '주사위 굴리기: !dice, !dice 20, !dice 2d6.';
+
+  @override
+  String get botCmd_trace => '보낸 사람의 메시지가 거친 리피터를 보여 줍니다.';
 }

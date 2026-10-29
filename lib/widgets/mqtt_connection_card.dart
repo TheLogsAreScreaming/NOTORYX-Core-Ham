@@ -209,16 +209,13 @@ class MqttConnectionCard extends StatelessWidget {
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             if (mqtt.backlogLength > 0)
-              Text(
-                '${mqtt.backlogLength} packets waiting to upload '
-                '(kept up to 72 hours).',
-              ),
+              Text(l10n.mqttExtra_backlog('${mqtt.backlogLength}')),
             if (settings == null) Text(l10n.mqtt_addBrokerHint),
             // A plain Row: a ListTile here would paint under the panel.
             if (settings != null)
               Row(
                 children: [
-                  const Expanded(child: Text('Connect on Wi-Fi only')),
+                  Expanded(child: Text(l10n.mqttExtra_wifiOnly)),
                   Switch(
                     key: const ValueKey('mqtt-wifi-only'),
                     value: mqtt.wifiOnly,
@@ -269,7 +266,7 @@ class MqttConnectionCard extends StatelessWidget {
                     onPressed: onRemove,
                     icon: Icon(Icons.delete_outline, color: MeshPalette.alert),
                     label: Text(
-                      'Remove',
+                      l10n.common_remove,
                       style: TextStyle(color: MeshPalette.alert),
                     ),
                   ),

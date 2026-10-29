@@ -8408,4 +8408,238 @@ class AppLocalizationsEs extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'Repetidor $id';
   }
+
+  @override
+  String get coverageHex_title => 'Hexágonos de cobertura';
+
+  @override
+  String get coverageHex_toolSubtitle =>
+      'Mapea dónde tu radio oye la malla y compártelo';
+
+  @override
+  String get coverageHex_mapCoverage => 'Mapear cobertura';
+
+  @override
+  String get coverageHex_statusOff =>
+      'Apagado. Actívalo mientras conduces o caminas para mapear dónde tu radio oye la malla.';
+
+  @override
+  String get coverageHex_waitingGps => 'Esperando GPS…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'Precisión GPS $meters m: demasiado imprecisa, sin grabar.';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return 'Grabando. Precisión GPS $meters m.';
+  }
+
+  @override
+  String get coverageHex_hexagons => 'Hexágonos';
+
+  @override
+  String get coverageHex_samples => 'Muestras';
+
+  @override
+  String get coverageHex_privacyNote =>
+      'Usa el GPS del teléfono mientras este interruptor está activado. Solo se comparten ID de hexágonos (unos 0,9 km), nunca tu posición exacta.';
+
+  @override
+  String get coverageHex_uploadSection => 'Subir a mapas de cobertura';
+
+  @override
+  String get coverageHex_wifiOnly => 'Subir solo con Wi-Fi';
+
+  @override
+  String get coverageHex_wifiOnlyHint =>
+      'Las muestras esperan en el teléfono (hasta 7 días) hasta haber Wi-Fi.';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return '$count en espera';
+  }
+
+  @override
+  String get coverageHex_addMap => 'Añadir un mapa de cobertura';
+
+  @override
+  String get coverageHex_addMapHint =>
+      'Cualquier endpoint HTTPS que acepte cobertura.';
+
+  @override
+  String get coverageHex_uploadNow => 'Subir ahora';
+
+  @override
+  String get coverageHex_mapDialogTitle => 'Mapa de cobertura';
+
+  @override
+  String get coverageHex_nameMissing => 'Ponle un nombre.';
+
+  @override
+  String get coverageHex_url => 'URL de subida';
+
+  @override
+  String get coverageHex_urlInvalid => 'Debe ser una URL https://.';
+
+  @override
+  String get coverageHex_apiKey => 'Clave API (opcional)';
+
+  @override
+  String get coverageHex_apiKeyHint => 'Se envía como X-API-Key.';
+
+  @override
+  String get coverageHex_format => 'Formato';
+
+  @override
+  String get coverageHex_formatHex => 'ID de hexágonos (NOTORYX)';
+
+  @override
+  String get coverageHex_formatMeshMapper => 'Compatible con MeshMapper';
+
+  @override
+  String get coverageHex_privacy => 'Privacidad';
+
+  @override
+  String get coverageHex_privacyLive => 'En vivo';
+
+  @override
+  String get coverageHex_privacyDelayed => 'Retrasado 3 h';
+
+  @override
+  String get coverageHex_privacyAnonymous => 'Anónimo, 24 h';
+
+  @override
+  String get coverageHex_privacyLiveHint => 'Se envía en unos 15 minutos.';
+
+  @override
+  String get coverageHex_privacyDelayedHint =>
+      'Se retiene 3 horas para que el mapa no muestre dónde estás ahora.';
+
+  @override
+  String get coverageHex_privacyAnonymousHint =>
+      'Se retiene 24 horas, solo con fecha y sin firma para que no se puedan vincular.';
+
+  @override
+  String get coverageHex_uploadsOn => 'Subidas activadas';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return 'Enviadas $count celdas a las $time.';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return 'El mapa respondió $code; se reintentará.';
+  }
+
+  @override
+  String get coverageHex_unreachable =>
+      'No se pudo contactar con el mapa; se reintentará.';
+
+  @override
+  String get coverageHex_noPermission =>
+      'No se concedió el permiso de ubicación.';
+
+  @override
+  String get coverageHex_noGps => 'El GPS no está disponible.';
+
+  @override
+  String get coverageHex_loadFailed =>
+      'No se pudo leer la cobertura guardada; se empieza de cero.';
+
+  @override
+  String get mqttExtra_wifiOnly => 'Conectar solo con Wi-Fi';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return '$count paquetes esperando subir (se guardan hasta 72 horas).';
+  }
+
+  @override
+  String get mqttExtra_add => 'Añadir otro bróker';
+
+  @override
+  String get mqttExtra_addBody =>
+      'Comparte lo que oye tu radio con otro bróker MQTT además del principal. Solo sube datos; nunca devuelve paquetes a la app.';
+
+  @override
+  String get mqttExtra_separateKey => 'Usar una clave aparte';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      'Inicia sesión con una clave creada en este teléfono en lugar de la de la radio, para que el bróker no pueda vincular las subidas a tu radio.';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return '¿Quitar $name?';
+  }
+
+  @override
+  String get mqttExtra_removeBody =>
+      'Desconecta y olvida su configuración, contraseña, clave y los paquetes pendientes.';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return 'Inicia sesión con su propia clave: $key…';
+  }
+
+  @override
+  String get botWx_title => 'Publicar alertas meteorológicas en un canal';
+
+  @override
+  String get botWx_body =>
+      'Consulta cada 10 minutos el Servicio Meteorológico Nacional de EE. UU. en busca de avisos graves y extremos en la posición GPS de la radio (redondeada a 1 km) y publica cada nuevo una vez. Necesita internet en el teléfono.';
+
+  @override
+  String get botWx_channel => 'Publicar en el canal';
+
+  @override
+  String get botWx_moderate => 'Incluir alertas moderadas';
+
+  @override
+  String get botWx_moderateHint => 'Avisos además de alertas. Más mensajes.';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return 'Última comprobación $time.';
+  }
+
+  @override
+  String get botWx_noPosition =>
+      'La radio aún no ha informado de su posición GPS.';
+
+  @override
+  String get botWx_noChannel => 'Elige un canal para las alertas.';
+
+  @override
+  String get botWx_channelGone => 'El canal elegido ya no existe.';
+
+  @override
+  String botWx_httpError(String code) {
+    return 'El servicio meteorológico respondió $code.';
+  }
+
+  @override
+  String get botWx_unreachable =>
+      'No se pudo contactar con el servicio meteorológico.';
+
+  @override
+  String get botCmd_sun =>
+      'Salida y puesta del sol en la posición GPS de la radio.';
+
+  @override
+  String get botCmd_moon => 'Fase lunar y cuánto está iluminada.';
+
+  @override
+  String get botCmd_weather =>
+      'Tiempo actual en la radio (Open-Meteo). Envía la posición redondeada a 1 km.';
+
+  @override
+  String get botCmd_dice => 'Tira dados: !dice, !dice 20 o !dice 2d6.';
+
+  @override
+  String get botCmd_trace =>
+      'Enumera los repetidores por los que pasó el mensaje.';
 }
