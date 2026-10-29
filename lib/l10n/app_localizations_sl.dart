@@ -8625,4 +8625,67 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Navede repetitorje, prek katerih je prišlo sporočilo.';
+
+  @override
+  String get reach_check => 'Preveri doseg pri opazovalcih';
+
+  @override
+  String get reach_title => 'Doseg pri opazovalcih';
+
+  @override
+  String get reach_noHash =>
+      'Tega sporočila še ni mogoče poiskati: noben repetitor ga ni vrnil vašemu radiu, zato ID paketa ni znan.';
+
+  @override
+  String get reach_unreachable =>
+      'Analizator ni dosegljiv. Preverite internet ali naslov analizatorja v nastavitvah.';
+
+  @override
+  String get reach_none =>
+      'Še noben opazovalec ga ni slišal. Opazovalci naložijo malo po sprejemu, preverite čez minuto.';
+
+  @override
+  String get reach_observers => 'opazovalci';
+
+  @override
+  String get reach_maxHops => 'najv. skokov';
+
+  @override
+  String get reach_bestSnr => 'najboljši SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count skokov stran';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Iz spletnega analizatorja: opazovalci, ki so paket slišali in naložili.';
+
+  @override
+  String get reach_checkAgain => 'Ponovno';
+
+  @override
+  String get analyzer_title => 'Spletni analizator';
+
+  @override
+  String get analyzer_url => 'Naslov analizatorja';
+
+  @override
+  String get analyzer_urlHint =>
+      'Analizator CoreScope (https://). Uporabite tistega za svojo regijo.';
+
+  @override
+  String get analyzer_reset => 'Privzeto';
+
+  @override
+  String get analyzer_hint =>
+      'Za preverjanje, kateri opazovalci so slišali vaša sporočila. Pošlje se le ID paketa.';
+
+  @override
+  String get analyzer_hopLookup => 'Imena neznanih repetitorjev na spletu';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Če ID repetitorja ni v stikih, se ime pridobi iz analizatorja. Pošljejo se le kratki ID-ji. Ime z »?« pomeni, da si ID deli več repetitorjev.';
 }

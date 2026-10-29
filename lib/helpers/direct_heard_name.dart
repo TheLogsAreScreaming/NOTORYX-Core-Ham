@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:latlong2/latlong.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../services/corescope.dart';
 import 'path_hop_resolver.dart';
 
 /// The name of a node heard directly, from its ID (a hop prefix or a full
@@ -34,3 +35,18 @@ String? directHeardName(MeshCoreConnector connector, String id) {
 /// The short ID shown for a directly heard node: its first two bytes.
 String directHeardShortId(String id) =>
     id.length > 6 ? id.substring(0, 4).toUpperCase() : id.toUpperCase();
+
+/// A heard node's name from this radio's contacts, else from the online
+/// analyzer when hop lookup is on ("?" when several repeaters share the
+/// ID), else null.
+String? heardNameWithOnline(
+  MeshCoreConnector connector,
+  AnalyzerService? analyzer,
+  String id,
+) {
+  final local = directHeardName(connector, id);
+  if (local != null) return local;
+  final online = analyzer?.hopName(directHeardShortId(id));
+  if (online == null) return null;
+  return online.ambiguous ? '${online.name}?' : online.name;
+}

@@ -8623,4 +8623,67 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Изброява ретранслаторите, през които е минало съобщението.';
+
+  @override
+  String get reach_check => 'Проверка на обхвата при наблюдатели';
+
+  @override
+  String get reach_title => 'Обхват при наблюдатели';
+
+  @override
+  String get reach_noHash =>
+      'Това съобщение още не може да се провери: никой ретранслатор не го е върнал към радиото ви, затова ID на пакета не е известен.';
+
+  @override
+  String get reach_unreachable =>
+      'Анализаторът е недостъпен. Проверете интернет връзката или адреса на анализатора в Настройки.';
+
+  @override
+  String get reach_none =>
+      'Още никой наблюдател не го е чул. Наблюдателите качват малко след като чуят пакет, проверете пак след минута.';
+
+  @override
+  String get reach_observers => 'наблюдатели';
+
+  @override
+  String get reach_maxHops => 'макс. скокове';
+
+  @override
+  String get reach_bestSnr => 'най-добър SNR';
+
+  @override
+  String reach_hops(int count) {
+    return 'на $count скока';
+  }
+
+  @override
+  String get reach_explainer =>
+      'От онлайн анализатора: наблюдатели, чули и качили този пакет.';
+
+  @override
+  String get reach_checkAgain => 'Нова проверка';
+
+  @override
+  String get analyzer_title => 'Онлайн анализатор';
+
+  @override
+  String get analyzer_url => 'Адрес на анализатора';
+
+  @override
+  String get analyzer_urlHint =>
+      'Анализатор CoreScope (https://). Използвайте този за вашия регион.';
+
+  @override
+  String get analyzer_reset => 'По подразбиране';
+
+  @override
+  String get analyzer_hint =>
+      'Използва се за проверка кои наблюдатели са чули съобщенията ви. Проверката изпраща само ID на пакета.';
+
+  @override
+  String get analyzer_hopLookup => 'Имена на непознати ретранслатори онлайн';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Когато ID на ретранслатор не е в контактите ви, анализаторът се пита за името му. Изпраща само кратките ID. Име с „?“ означава, че няколко ретранслатора споделят ID.';
 }

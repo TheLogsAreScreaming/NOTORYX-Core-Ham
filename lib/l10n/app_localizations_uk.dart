@@ -8663,4 +8663,67 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Показує ретранслятори, через які пройшло повідомлення.';
+
+  @override
+  String get reach_check => 'Перевірити охоплення спостерігачами';
+
+  @override
+  String get reach_title => 'Охоплення спостерігачами';
+
+  @override
+  String get reach_noHash =>
+      'Це повідомлення поки не можна перевірити: жоден ретранслятор не повернув його на радіо, тож ID пакета невідомий.';
+
+  @override
+  String get reach_unreachable =>
+      'Аналізатор недоступний. Перевірте інтернет або адресу аналізатора в налаштуваннях.';
+
+  @override
+  String get reach_none =>
+      'Поки жоден спостерігач його не почув. Спостерігачі завантажують трохи згодом, перевірте за хвилину.';
+
+  @override
+  String get reach_observers => 'спостерігачі';
+
+  @override
+  String get reach_maxHops => 'макс. хопів';
+
+  @override
+  String get reach_bestSnr => 'найкращий SNR';
+
+  @override
+  String reach_hops(int count) {
+    return 'через $count хопів';
+  }
+
+  @override
+  String get reach_explainer =>
+      'З онлайн-аналізатора: спостерігачі, які почули й завантажили цей пакет.';
+
+  @override
+  String get reach_checkAgain => 'Перевірити знову';
+
+  @override
+  String get analyzer_title => 'Онлайн-аналізатор';
+
+  @override
+  String get analyzer_url => 'Адреса аналізатора';
+
+  @override
+  String get analyzer_urlHint =>
+      'Аналізатор CoreScope (https://). Використовуйте той, що покриває ваш регіон.';
+
+  @override
+  String get analyzer_reset => 'Типово';
+
+  @override
+  String get analyzer_hint =>
+      'Для перевірки, які спостерігачі почули ваші повідомлення. Надсилається лише ID пакета.';
+
+  @override
+  String get analyzer_hopLookup => 'Назви невідомих ретрансляторів онлайн';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Якщо ID ретранслятора немає в контактах, назва запитується в аналізатора. Надсилаються лише короткі ID. Назва з «?» означає, що ID спільний для кількох ретрансляторів.';
 }

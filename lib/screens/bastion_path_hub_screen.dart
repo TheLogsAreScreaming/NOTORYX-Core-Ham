@@ -10,6 +10,7 @@ import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../models/direct_repeaters.dart';
 import '../models/path_history.dart';
+import '../services/corescope.dart';
 import '../services/direct_repeater_service.dart';
 import '../services/path_history_service.dart';
 import '../theme/mesh_theme.dart';
@@ -388,6 +389,7 @@ class _BestRepeaters extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final service = context.watch<DirectRepeaterService?>();
+    final analyzer = context.watch<AnalyzerService?>();
     if (service == null) return const SizedBox.shrink();
     final best = service.best();
     final now = DateTime.now();
@@ -405,7 +407,7 @@ class _BestRepeaters extends StatelessWidget {
           for (var i = 0; i < best.length; i++)
             _BestRepeaterRow(
               rank: i + 1,
-              name: directHeardName(connector, best[i].id),
+              name: heardNameWithOnline(connector, analyzer, best[i].id),
               id: directHeardShortId(best[i].id),
               heard: best[i],
               minutesAgo: now.difference(best[i].lastHeard).inMinutes,

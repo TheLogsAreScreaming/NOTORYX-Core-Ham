@@ -8626,4 +8626,67 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Felsorolja az átjátszókat, amelyeken az üzenet érkezett.';
+
+  @override
+  String get reach_check => 'Megfigyelői elérés ellenőrzése';
+
+  @override
+  String get reach_title => 'Megfigyelői elérés';
+
+  @override
+  String get reach_noHash =>
+      'Ez az üzenet még nem kereshető: egy átjátszó sem küldte vissza a rádiónak, így a csomagazonosító ismeretlen.';
+
+  @override
+  String get reach_unreachable =>
+      'Az elemző nem érhető el. Ellenőrizze az internetet vagy az elemző címét a beállításokban.';
+
+  @override
+  String get reach_none =>
+      'Még egy megfigyelő sem hallotta. A megfigyelők kicsivel a vétel után töltenek fel, nézze meg egy perc múlva.';
+
+  @override
+  String get reach_observers => 'megfigyelő';
+
+  @override
+  String get reach_maxHops => 'max. ugrás';
+
+  @override
+  String get reach_bestSnr => 'legjobb SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count ugrásnyira';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Az online elemzőből: megfigyelők, akik hallották és feltöltötték a csomagot.';
+
+  @override
+  String get reach_checkAgain => 'Újra';
+
+  @override
+  String get analyzer_title => 'Online elemző';
+
+  @override
+  String get analyzer_url => 'Elemző címe';
+
+  @override
+  String get analyzer_urlHint =>
+      'CoreScope elemző (https://). A régiójához tartozót használja.';
+
+  @override
+  String get analyzer_reset => 'Alapértelmezett';
+
+  @override
+  String get analyzer_hint =>
+      'Annak ellenőrzésére, mely megfigyelők hallották az üzeneteit. Csak a csomagazonosítót küldi.';
+
+  @override
+  String get analyzer_hopLookup => 'Ismeretlen átjátszók nevei online';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Ha egy átjátszó-azonosító nincs a névjegyei között, az elemző megadja a nevét. Csak a rövid azonosítókat küldi. A „?” végű név azt jelenti, hogy több átjátszó osztozik az azonosítón.';
 }
