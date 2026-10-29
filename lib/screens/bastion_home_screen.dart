@@ -134,19 +134,19 @@ class BastionHomeScreen extends StatelessWidget {
               child: TacticalGlassPanel(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
                 child: ReadoutStrip([
-              Readout(volts, l10n.radioOverview_battery),
-              Readout(
-                snr == null ? '—' : snr.toStringAsFixed(1),
-                'SNR',
-                color: snr == null
-                    ? null
-                    : MeshTheme.snrColor(snr, blocked: false),
-              ),
-              Readout(
-                stats == null || !online ? '—' : '${stats.lastRssiDbm}',
-                'RSSI',
-              ),
-              Readout('${c.contacts.length}', l10n.bastion_nodes),
+                  Readout(volts, l10n.radioOverview_battery),
+                  Readout(
+                    snr == null ? '—' : snr.toStringAsFixed(1),
+                    'SNR',
+                    color: snr == null
+                        ? null
+                        : MeshTheme.snrColor(snr, blocked: false),
+                  ),
+                  Readout(
+                    stats == null || !online ? '—' : '${stats.lastRssiDbm}',
+                    'RSSI',
+                  ),
+                  Readout('${c.contacts.length}', l10n.bastion_nodes),
                 ]),
               ),
             ),
