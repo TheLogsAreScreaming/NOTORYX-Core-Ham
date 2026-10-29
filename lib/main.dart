@@ -555,7 +555,13 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   }
 
   void _applyBatterySaver() {
-    final on = widget.appSettingsService.settings.batterySaver;
+    final settings = widget.appSettingsService.settings;
+    final on = settings.batterySaver;
+    widget.connector.setPollScale(switch (settings.refreshRate) {
+      'fast' => 0.5,
+      'slow' => 3,
+      _ => 1,
+    });
     widget.connector.setBatterySaver(on);
     _fieldOps.setBatterySaver(on);
   }

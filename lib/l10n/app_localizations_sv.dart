@@ -8566,169 +8566,116 @@ class AppLocalizationsSv extends AppLocalizations {
   String get botCmd_trace => 'Listar repeatrarna som meddelandet gick via.';
 
   @override
-  String discovered_tray(int count) {
-    return 'Kanaler hörda i närheten: $count';
+  String get ping_title => 'Repeater-ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Tur och retur-tid och signal åt båda håll till en närliggande repeater';
+
+  @override
+  String get ping_noRepeaters => 'Inga kända repeatrar än';
+
+  @override
+  String get ping_choose => 'Välj en repeater';
+
+  @override
+  String get ping_avgMs => 'ms tur och retur';
+
+  @override
+  String get ping_snrThere => 'SNR där';
+
+  @override
+  String get ping_snrBack => 'SNR tillbaka';
+
+  @override
+  String get ping_loss => 'Förlorade';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Pingar $done av $total…';
   }
 
   @override
-  String get discovered_title => 'Hörda i närheten, inte anslutna';
-
-  @override
-  String discovered_heard(int count, String time) {
-    return 'Hörd $count× · senast $time';
+  String ping_start(int count) {
+    return 'Pinga $count gånger';
   }
 
   @override
-  String get discovered_ignore => 'Ignorera';
+  String get ping_results => 'Prober';
 
   @override
-  String get discovered_ignoreAll => 'Ignorera alla';
+  String get ping_noReply => 'Inget svar';
 
   @override
-  String get discovered_joinAll => 'Gå med i alla';
-
-  @override
-  String get discovered_explainer =>
-      'Det här är offentliga kanaler från kanalkatalogen som radion har hört trafik på. Var och en bekräftades genom att ett meddelande dekrypterades med dess nyckel. Ignorerade kanaler förblir dolda.';
-
-  @override
-  String get mqtt_presetMeshRank => 'MeshRank (community)';
-
-  @override
-  String get mqtt_presetMeshRankNote =>
-      'MeshRank är en communitydriven rankning av MeshCore-nät, inte en del av NOTORYX och inte rekommenderad av det. Ingen inloggning: paket delas under radions nyckel och regionkod, först när du slår på delning.';
-
-  @override
-  String get pathFilter_title => 'Filter för vägbredd';
-
-  @override
-  String get pathFilter_firmwareNote =>
-      'Kräver repeaterfirmware med vidarebefordringsregler (mikecarper/MeshCore). Officiell MeshCore-firmware avvisar dessa kommandon.';
-
-  @override
-  String get pathFilter_width => 'Vägbredd';
-
-  @override
-  String get pathFilter_anyWidth => 'Valfri bredd';
-
-  @override
-  String pathFilter_bytes(int n) {
-    return 'Vägar med $n byte';
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR där $snr';
   }
 
   @override
-  String get pathFilter_twoOrMore => '2 eller 3 byte (2+)';
+  String get ping_explainer =>
+      'Varje prob är en spårning över ett hopp: repeatern noterar hur väl den hörde dig och skickar tillbaka det. Fungerar för repeatrar som radion hör direkt.';
 
   @override
-  String get pathFilter_path => 'Gäller för';
+  String get hunt_title => 'Antennjakt';
 
   @override
-  String get pathFilter_radio => 'Radioflöden';
+  String get hunt_toolSubtitle =>
+      'Stor live-signalmätare som klickar snabbare när signalen blir starkare';
 
   @override
-  String get pathFilter_bridge => 'Brygga';
+  String get hunt_noSignal => 'Ingen signal än';
 
   @override
-  String get pathFilter_cross => 'Övergång';
+  String get hunt_noReply => 'Inget svar – flytta eller vrid antennen';
 
   @override
-  String get pathFilter_bridgeCross => 'Brygga och övergång';
+  String get hunt_heardHere => 'dB hört här';
 
   @override
-  String get pathFilter_limit => 'Begränsa i stället för att släppa';
+  String get hunt_best => 'Bästa';
 
   @override
-  String get pathFilter_limitOn =>
-      'Vidarebefordrar upp till ett visst antal per minut.';
+  String get hunt_sound => 'Klicka när den blir starkare';
 
   @override
-  String get pathFilter_drop => 'Matchande flöden släpps.';
+  String get hunt_soundHint =>
+      'Med vibration vid varje klick, så att du kan rikta utan att titta.';
 
   @override
-  String get pathFilter_perMinute => 'Per minut';
+  String get hunt_stop => 'Stoppa';
 
   @override
-  String get pathFilter_rateInvalid => 'Ange 1 till 65534.';
+  String get hunt_start => 'Börja leta';
 
   @override
-  String get pathFilter_reviewNote =>
-      'Detta fyller bara i kommandoraden. Kontrollera och tryck på Skicka. Använd först ”get fr” för att se reglerna.';
+  String get hunt_explainer =>
+      'Probar repeatern ungefär en gång per sekund. Rikta en riktantenn eller gå runt: siffran är hur väl radion hör den.';
 
   @override
-  String get pathFilter_useCommand => 'Använd kommando';
+  String get settings_refreshRate => 'Uppdateringstakt';
 
   @override
-  String get settings_linkPreviews => 'Länkförhandsvisningar';
+  String get settings_refreshFast => 'Snabb';
 
   @override
-  String get settings_linkPreviewsHint =>
-      'Visar titeln på en länk i ett meddelande. Av som standard: att hämta sidan visar webbplatsen din IP-adress.';
+  String get settings_refreshNormal => 'Normal';
 
   @override
-  String get guide_title => 'Fälthandbok';
+  String get settings_refreshSlow => 'Långsam';
 
   @override
-  String get guide_subtitle => 'Grunder, batterier i kyla, sol och antenner';
+  String get settings_refreshFastHint =>
+      'Batteri varje minut, GPS var 30:e s. Färskare värden, mer batteri.';
 
   @override
-  String get guide_secMesh => 'Kom med i meshen';
+  String get settings_refreshNormalHint =>
+      'Batteri varannan minut, GPS varje minut.';
 
   @override
-  String get guide_mesh1 =>
-      'Telefonen pratar med radion via Bluetooth, USB eller Wi-Fi; radion med meshen via LoRa. Meddelanden fungerar utan mobiltäckning.';
+  String get settings_refreshSlowHint =>
+      'Batteri var 6:e minut, GPS var 3:e. Sparar batteri.';
 
   @override
-  String get guide_mesh2 =>
-      'Repeatrar skickar vidare meddelanden; varje vidaresändning är ett hopp. Färre hopp ger snabbare och säkrare leverans.';
-
-  @override
-  String get guide_mesh3 =>
-      'Håll meddelanden korta och översvämma inte fulla kanaler: varje meddelande använder delad sändtid.';
-
-  @override
-  String get guide_secCold => 'Batterier i kyla';
-
-  @override
-  String get guide_cold1 =>
-      'Ladda inte litiumbatterier under fryspunkten (0 °C): det skadar dem permanent.';
-
-  @override
-  String get guide_cold2 =>
-      'Bär radion innanför jackan. Kyla sänker kapaciteten, som kommer tillbaka när batteriet blir varmt.';
-
-  @override
-  String get guide_cold3 =>
-      'För fasta platser i kallt klimat klarar LiFePO4 sig bättre än litiumjon; en uppvärmd eller isolerad låda hjälper båda.';
-
-  @override
-  String get guide_secSolar => 'Sol för repeatrar';
-
-  @override
-  String get guide_solar1 =>
-      'En repeater drar mycket lite, men dimensionera panel och batteri för din mörkaste vintervecka, inte en sommardag.';
-
-  @override
-  String get guide_solar2 =>
-      'Rikta panelen mot ekvatorn och luta den brant på vintern; håll den fri från snö och skugga.';
-
-  @override
-  String get guide_secAntenna => 'Antenner och placering';
-
-  @override
-  String get guide_ant1 =>
-      'Höjd slår effekt: en radio några meter upp når mycket längre än en på skrivbordet.';
-
-  @override
-  String get guide_ant2 =>
-      'Håll antennen lodrät och borta från metall, och använd en för ditt band (till exempel 868 MHz i Europa).';
-
-  @override
-  String get guide_secMore => 'Läs mer';
-
-  @override
-  String get guide_moreMeshcore => 'Det officiella MeshCore-projektet';
-
-  @override
-  String get guide_moreCascadia =>
-      'Communityguider: kom igång, wardriving, regioner, sol';
+  String get settings_refreshSaverOn =>
+      'Batterisparläget är på och styr takten (batteri var 10:e minut).';
 }

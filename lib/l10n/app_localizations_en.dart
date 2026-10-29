@@ -8519,169 +8519,116 @@ class AppLocalizationsEn extends AppLocalizations {
       'Lists the repeaters the sender’s message came through.';
 
   @override
-  String discovered_tray(int count) {
-    return 'Channels heard nearby: $count';
+  String get ping_title => 'Repeater ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Round-trip time and signal both ways to a nearby repeater';
+
+  @override
+  String get ping_noRepeaters => 'No repeaters known yet';
+
+  @override
+  String get ping_choose => 'Choose a repeater';
+
+  @override
+  String get ping_avgMs => 'ms round trip';
+
+  @override
+  String get ping_snrThere => 'SNR there';
+
+  @override
+  String get ping_snrBack => 'SNR back';
+
+  @override
+  String get ping_loss => 'Lost';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Pinging $done of $total…';
   }
 
   @override
-  String get discovered_title => 'Heard nearby, not joined';
-
-  @override
-  String discovered_heard(int count, String time) {
-    return 'Heard $count× · last $time';
+  String ping_start(int count) {
+    return 'Ping $count times';
   }
 
   @override
-  String get discovered_ignore => 'Ignore';
+  String get ping_results => 'Probes';
 
   @override
-  String get discovered_ignoreAll => 'Ignore all';
+  String get ping_noReply => 'No reply';
 
   @override
-  String get discovered_joinAll => 'Join all';
-
-  @override
-  String get discovered_explainer =>
-      'These are public channels from the channel directory that your radio has heard traffic on. Each was confirmed by decrypting a message with its key. Ignored channels stay hidden.';
-
-  @override
-  String get mqtt_presetMeshRank => 'MeshRank (community)';
-
-  @override
-  String get mqtt_presetMeshRankNote =>
-      'MeshRank is a community-run MeshCore network ranking, not part of NOTORYX and not endorsed by it. No sign-in: packets are shared under your radio’s key and region code, and only once you turn sharing on.';
-
-  @override
-  String get pathFilter_title => 'Path-width filter';
-
-  @override
-  String get pathFilter_firmwareNote =>
-      'Needs repeater firmware with forwarding rules (mikecarper/MeshCore). Official MeshCore firmware rejects these commands.';
-
-  @override
-  String get pathFilter_width => 'Path width';
-
-  @override
-  String get pathFilter_anyWidth => 'Any width';
-
-  @override
-  String pathFilter_bytes(int n) {
-    return '$n-byte paths';
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR there $snr';
   }
 
   @override
-  String get pathFilter_twoOrMore => '2 or 3 bytes (2+)';
+  String get ping_explainer =>
+      'Each probe is a one-hop path trace: the repeater notes how well it heard you and repeats it back. It works for repeaters your radio hears directly.';
 
   @override
-  String get pathFilter_path => 'Applies to';
+  String get hunt_title => 'Antenna hunt';
 
   @override
-  String get pathFilter_radio => 'Radio floods';
+  String get hunt_toolSubtitle =>
+      'A big live signal meter that clicks faster as it gets stronger';
 
   @override
-  String get pathFilter_bridge => 'Bridge';
+  String get hunt_noSignal => 'No signal yet';
 
   @override
-  String get pathFilter_cross => 'Crossover';
+  String get hunt_noReply => 'No reply — move or turn the antenna';
 
   @override
-  String get pathFilter_bridgeCross => 'Bridge and crossover';
+  String get hunt_heardHere => 'dB heard here';
 
   @override
-  String get pathFilter_limit => 'Limit instead of drop';
+  String get hunt_best => 'Best';
 
   @override
-  String get pathFilter_limitOn => 'Forwards up to a set number per minute.';
+  String get hunt_sound => 'Click as it gets stronger';
 
   @override
-  String get pathFilter_drop => 'Matching floods are dropped, not forwarded.';
+  String get hunt_soundHint =>
+      'With a vibration on each click, so you can aim without looking.';
 
   @override
-  String get pathFilter_perMinute => 'Per minute';
+  String get hunt_stop => 'Stop';
 
   @override
-  String get pathFilter_rateInvalid => 'Enter 1 to 65534.';
+  String get hunt_start => 'Start hunting';
 
   @override
-  String get pathFilter_reviewNote =>
-      'This only fills in the command line. Check it, then press Send. Use “get fr” first to see existing rules.';
+  String get hunt_explainer =>
+      'Probes the repeater about once a second. Point a directional antenna or walk around: the number is how well your radio hears it.';
 
   @override
-  String get pathFilter_useCommand => 'Use command';
+  String get settings_refreshRate => 'Radio refresh rate';
 
   @override
-  String get settings_linkPreviews => 'Link previews';
+  String get settings_refreshFast => 'Fast';
 
   @override
-  String get settings_linkPreviewsHint =>
-      'Shows the title of a link in a message. Off by default: fetching the page tells that site your IP address.';
+  String get settings_refreshNormal => 'Normal';
 
   @override
-  String get guide_title => 'Field guide';
+  String get settings_refreshSlow => 'Slow';
 
   @override
-  String get guide_subtitle =>
-      'Basics, cold-weather batteries, solar and antennas';
+  String get settings_refreshFastHint =>
+      'Battery every minute, GPS every 30 s. Fresher numbers, more battery.';
 
   @override
-  String get guide_secMesh => 'Getting on the mesh';
+  String get settings_refreshNormalHint =>
+      'Battery every 2 minutes, GPS every minute.';
 
   @override
-  String get guide_mesh1 =>
-      'Your phone talks to your radio over Bluetooth, USB or Wi-Fi; the radio talks to the mesh over LoRa. Messages still work with no phone signal.';
+  String get settings_refreshSlowHint =>
+      'Battery every 6 minutes, GPS every 3 minutes. Saves battery.';
 
   @override
-  String get guide_mesh2 =>
-      'Repeaters pass messages along; each relay is a hop. Fewer hops means faster, more reliable delivery.';
-
-  @override
-  String get guide_mesh3 =>
-      'Keep messages short and avoid flooding busy channels: every message uses shared airtime.';
-
-  @override
-  String get guide_secCold => 'Batteries in the cold';
-
-  @override
-  String get guide_cold1 =>
-      'Don’t charge lithium batteries below freezing (0 °C / 32 °F): it damages them permanently.';
-
-  @override
-  String get guide_cold2 =>
-      'Carry the radio inside your jacket. Cold cuts capacity, but it comes back once the battery warms up.';
-
-  @override
-  String get guide_cold3 =>
-      'For fixed sites in cold climates, LiFePO4 copes better than lithium-ion; a heated or insulated box helps either.';
-
-  @override
-  String get guide_secSolar => 'Solar for repeaters';
-
-  @override
-  String get guide_solar1 =>
-      'A repeater uses very little power, but size the panel and battery for your darkest winter week, not a summer day.';
-
-  @override
-  String get guide_solar2 =>
-      'Face the panel toward the equator and tilt it steeply in winter; keep snow and shade off it.';
-
-  @override
-  String get guide_secAntenna => 'Antennas and placement';
-
-  @override
-  String get guide_ant1 =>
-      'Height beats power: a radio a few metres up reaches far more than one on a desk.';
-
-  @override
-  String get guide_ant2 =>
-      'Keep the antenna vertical and clear of metal, and use one made for your band (for example 915 MHz in North America).';
-
-  @override
-  String get guide_secMore => 'Learn more';
-
-  @override
-  String get guide_moreMeshcore => 'The official MeshCore project';
-
-  @override
-  String get guide_moreCascadia =>
-      'Community guides: getting started, wardriving, regions, solar';
+  String get settings_refreshSaverOn =>
+      'Battery saver is on, so it sets the pace (battery every 10 minutes).';
 }

@@ -8665,168 +8665,117 @@ class AppLocalizationsUk extends AppLocalizations {
       'Показує ретранслятори, через які пройшло повідомлення.';
 
   @override
-  String discovered_tray(int count) {
-    return 'Канали поблизу: $count';
+  String get ping_title => 'Пінг ретранслятора';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Час туди й назад і сигнал в обидва боки до близького ретранслятора';
+
+  @override
+  String get ping_noRepeaters => 'Ретрансляторів поки немає';
+
+  @override
+  String get ping_choose => 'Виберіть ретранслятор';
+
+  @override
+  String get ping_avgMs => 'мс туди й назад';
+
+  @override
+  String get ping_snrThere => 'SNR там';
+
+  @override
+  String get ping_snrBack => 'SNR назад';
+
+  @override
+  String get ping_loss => 'Втрати';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Пінг $done з $total…';
   }
 
   @override
-  String get discovered_title => 'Чути поблизу, не приєднано';
-
-  @override
-  String discovered_heard(int count, String time) {
-    return 'Чути $count× · востаннє $time';
+  String ping_start(int count) {
+    return 'Пінг $count разів';
   }
 
   @override
-  String get discovered_ignore => 'Приховати';
+  String get ping_results => 'Зонди';
 
   @override
-  String get discovered_ignoreAll => 'Приховати всі';
+  String get ping_noReply => 'Немає відповіді';
 
   @override
-  String get discovered_joinAll => 'Приєднатися до всіх';
-
-  @override
-  String get discovered_explainer =>
-      'Це публічні канали з каталогу, у яких радіо чуло трафік. Кожен підтверджено розшифруванням повідомлення його ключем. Приховані канали не показуються.';
-
-  @override
-  String get mqtt_presetMeshRank => 'MeshRank (спільнота)';
-
-  @override
-  String get mqtt_presetMeshRankNote =>
-      'MeshRank — рейтинг мереж MeshCore від спільноти, не частина NOTORYX і не схвалений ним. Без входу: пакети передаються під ключем і кодом регіону вашого радіо, лише після ввімкнення обміну.';
-
-  @override
-  String get pathFilter_title => 'Фільтр ширини шляху';
-
-  @override
-  String get pathFilter_firmwareNote =>
-      'Потрібна прошивка ретранслятора з правилами пересилання (mikecarper/MeshCore). Офіційна прошивка MeshCore відхиляє ці команди.';
-
-  @override
-  String get pathFilter_width => 'Ширина шляху';
-
-  @override
-  String get pathFilter_anyWidth => 'Будь-яка ширина';
-
-  @override
-  String pathFilter_bytes(int n) {
-    return 'Шляхи по $n байти';
+  String ping_resultLine(String ms, String snr) {
+    return '$ms мс · SNR там $snr';
   }
 
   @override
-  String get pathFilter_twoOrMore => '2 або 3 байти (2+)';
+  String get ping_explainer =>
+      'Кожен зонд — трасування шляху на один хоп: ретранслятор фіксує, як добре вас чув, і повертає це. Працює з ретрансляторами, які радіо чує напряму.';
 
   @override
-  String get pathFilter_path => 'Застосовується до';
+  String get hunt_title => 'Пошук антеною';
 
   @override
-  String get pathFilter_radio => 'Радіорозсилки';
+  String get hunt_toolSubtitle =>
+      'Великий вимірювач сигналу, клацає частіше, коли сигнал сильнішає';
 
   @override
-  String get pathFilter_bridge => 'Міст';
+  String get hunt_noSignal => 'Сигналу поки немає';
 
   @override
-  String get pathFilter_cross => 'Перехід';
+  String get hunt_noReply =>
+      'Немає відповіді — перемістіть або поверніть антену';
 
   @override
-  String get pathFilter_bridgeCross => 'Міст і перехід';
+  String get hunt_heardHere => 'дБ чути тут';
 
   @override
-  String get pathFilter_limit => 'Обмежувати замість відкидання';
+  String get hunt_best => 'Найкращий';
 
   @override
-  String get pathFilter_limitOn => 'Пересилає до заданої кількості за хвилину.';
+  String get hunt_sound => 'Клацання при посиленні';
 
   @override
-  String get pathFilter_drop => 'Відповідні розсилки відкидаються.';
+  String get hunt_soundHint =>
+      'З вібрацією на кожне клацання, щоб наводити не дивлячись.';
 
   @override
-  String get pathFilter_perMinute => 'За хвилину';
+  String get hunt_stop => 'Стоп';
 
   @override
-  String get pathFilter_rateInvalid => 'Введіть від 1 до 65534.';
+  String get hunt_start => 'Почати пошук';
 
   @override
-  String get pathFilter_reviewNote =>
-      'Це лише заповнює командний рядок. Перевірте й натисніть «Надіслати». Спершу перегляньте правила командою «get fr».';
+  String get hunt_explainer =>
+      'Опитує ретранслятор приблизно раз на секунду. Наводьте спрямовану антену або ходіть: число показує, як добре радіо його чує.';
 
   @override
-  String get pathFilter_useCommand => 'Використати команду';
+  String get settings_refreshRate => 'Частота оновлення';
 
   @override
-  String get settings_linkPreviews => 'Попередній перегляд посилань';
+  String get settings_refreshFast => 'Швидко';
 
   @override
-  String get settings_linkPreviewsHint =>
-      'Показує заголовок посилання в повідомленні. Типово вимкнено: завантаження сторінки розкриває сайту вашу IP-адресу.';
+  String get settings_refreshNormal => 'Звичайно';
 
   @override
-  String get guide_title => 'Польовий посібник';
+  String get settings_refreshSlow => 'Повільно';
 
   @override
-  String get guide_subtitle => 'Основи, батареї на холоді, сонце й антени';
+  String get settings_refreshFastHint =>
+      'Батарея щохвилини, GPS кожні 30 с. Свіжіші дані, більша витрата.';
 
   @override
-  String get guide_secMesh => 'Підключення до мережі';
+  String get settings_refreshNormalHint =>
+      'Батарея кожні 2 хвилини, GPS щохвилини.';
 
   @override
-  String get guide_mesh1 =>
-      'Телефон зв’язаний з радіо через Bluetooth, USB або Wi-Fi; радіо з мережею — через LoRa. Повідомлення працюють і без мобільного зв’язку.';
+  String get settings_refreshSlowHint =>
+      'Батарея кожні 6 хвилин, GPS кожні 3. Економить батарею.';
 
   @override
-  String get guide_mesh2 =>
-      'Ретранслятори передають повідомлення далі; кожна передача — хоп. Менше хопів — швидше й надійніше.';
-
-  @override
-  String get guide_mesh3 =>
-      'Пишіть коротко й не засмічуйте завантажені канали: кожне повідомлення витрачає спільний ефірний час.';
-
-  @override
-  String get guide_secCold => 'Батареї на холоді';
-
-  @override
-  String get guide_cold1 =>
-      'Не заряджайте літієві батареї нижче нуля (0 °C): це незворотно їх псує.';
-
-  @override
-  String get guide_cold2 =>
-      'Носіть радіо під курткою. Холод зменшує ємність, але вона повертається, коли батарея зігріється.';
-
-  @override
-  String get guide_cold3 =>
-      'Для стаціонарних точок у холодному кліматі LiFePO4 краща за літій-іонні; утеплений чи підігріваний корпус допомагає обом.';
-
-  @override
-  String get guide_secSolar => 'Сонце для ретрансляторів';
-
-  @override
-  String get guide_solar1 =>
-      'Ретранслятор споживає дуже мало, але розраховуйте панель і батарею на найтемніший зимовий тиждень, а не на літній день.';
-
-  @override
-  String get guide_solar2 =>
-      'Спрямуйте панель до екватора й узимку ставте круто; тримайте її без снігу й тіні.';
-
-  @override
-  String get guide_secAntenna => 'Антени й розміщення';
-
-  @override
-  String get guide_ant1 =>
-      'Висота важливіша за потужність: радіо на кілька метрів вище б’є значно далі, ніж на столі.';
-
-  @override
-  String get guide_ant2 =>
-      'Тримайте антену вертикально й подалі від металу; використовуйте антену для свого діапазону (наприклад, 868 МГц у Європі).';
-
-  @override
-  String get guide_secMore => 'Детальніше';
-
-  @override
-  String get guide_moreMeshcore => 'Офіційний проєкт MeshCore';
-
-  @override
-  String get guide_moreCascadia =>
-      'Посібники спільноти: початок, вордрайвінг, регіони, сонце';
+  String get settings_refreshSaverOn =>
+      'Увімкнено економію батареї, вона задає темп (батарея кожні 10 хвилин).';
 }

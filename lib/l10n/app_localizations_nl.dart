@@ -8604,170 +8604,116 @@ class AppLocalizationsNl extends AppLocalizations {
   String get botCmd_trace => 'Toont de repeaters waarlangs het bericht kwam.';
 
   @override
-  String discovered_tray(int count) {
-    return 'Kanalen in de buurt gehoord: $count';
+  String get ping_title => 'Repeater-ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Rondetijd en signaal in beide richtingen naar een repeater in de buurt';
+
+  @override
+  String get ping_noRepeaters => 'Nog geen repeaters bekend';
+
+  @override
+  String get ping_choose => 'Kies een repeater';
+
+  @override
+  String get ping_avgMs => 'ms rondetijd';
+
+  @override
+  String get ping_snrThere => 'SNR daar';
+
+  @override
+  String get ping_snrBack => 'SNR terug';
+
+  @override
+  String get ping_loss => 'Verloren';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done van $total…';
   }
 
   @override
-  String get discovered_title => 'In de buurt gehoord, niet lid';
-
-  @override
-  String discovered_heard(int count, String time) {
-    return '$count× gehoord · laatst $time';
+  String ping_start(int count) {
+    return '$count keer pingen';
   }
 
   @override
-  String get discovered_ignore => 'Negeren';
+  String get ping_results => 'Probes';
 
   @override
-  String get discovered_ignoreAll => 'Alles negeren';
+  String get ping_noReply => 'Geen antwoord';
 
   @override
-  String get discovered_joinAll => 'Alles toevoegen';
-
-  @override
-  String get discovered_explainer =>
-      'Dit zijn openbare kanalen uit de kanaalgids waarop je radio verkeer heeft gehoord. Elk is bevestigd door een bericht met de sleutel te ontsleutelen. Genegeerde kanalen blijven verborgen.';
-
-  @override
-  String get mqtt_presetMeshRank => 'MeshRank (community)';
-
-  @override
-  String get mqtt_presetMeshRankNote =>
-      'MeshRank is een door de community beheerde MeshCore-netwerkranglijst, geen onderdeel van NOTORYX en er niet door aanbevolen. Zonder aanmelding: pakketten worden gedeeld onder de sleutel en regiocode van je radio, pas als je delen aanzet.';
-
-  @override
-  String get pathFilter_title => 'Padbreedtefilter';
-
-  @override
-  String get pathFilter_firmwareNote =>
-      'Vereist repeaterfirmware met doorstuurregels (mikecarper/MeshCore). Officiële MeshCore-firmware weigert deze opdrachten.';
-
-  @override
-  String get pathFilter_width => 'Padbreedte';
-
-  @override
-  String get pathFilter_anyWidth => 'Elke breedte';
-
-  @override
-  String pathFilter_bytes(int n) {
-    return 'Paden van $n byte';
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR daar $snr';
   }
 
   @override
-  String get pathFilter_twoOrMore => '2 of 3 byte (2+)';
+  String get ping_explainer =>
+      'Elke probe is een padtrace van één hop: de repeater noteert hoe goed hij je hoorde en stuurt dat terug. Werkt voor repeaters die je radio direct hoort.';
 
   @override
-  String get pathFilter_path => 'Geldt voor';
+  String get hunt_title => 'Antennezoeker';
 
   @override
-  String get pathFilter_radio => 'Radio-floods';
+  String get hunt_toolSubtitle =>
+      'Grote live signaalmeter die sneller klikt naarmate het sterker wordt';
 
   @override
-  String get pathFilter_bridge => 'Brug';
+  String get hunt_noSignal => 'Nog geen signaal';
 
   @override
-  String get pathFilter_cross => 'Overgang';
+  String get hunt_noReply => 'Geen antwoord — verplaats of draai de antenne';
 
   @override
-  String get pathFilter_bridgeCross => 'Brug en overgang';
+  String get hunt_heardHere => 'dB hier gehoord';
 
   @override
-  String get pathFilter_limit => 'Beperken in plaats van weggooien';
+  String get hunt_best => 'Beste';
 
   @override
-  String get pathFilter_limitOn =>
-      'Stuurt tot een vast aantal per minuut door.';
+  String get hunt_sound => 'Klikken naarmate het sterker wordt';
 
   @override
-  String get pathFilter_drop => 'Overeenkomende floods worden weggegooid.';
+  String get hunt_soundHint =>
+      'Met een trilling bij elke klik, zodat je kunt richten zonder te kijken.';
 
   @override
-  String get pathFilter_perMinute => 'Per minuut';
+  String get hunt_stop => 'Stoppen';
 
   @override
-  String get pathFilter_rateInvalid => 'Voer 1 tot 65534 in.';
+  String get hunt_start => 'Zoeken starten';
 
   @override
-  String get pathFilter_reviewNote =>
-      'Dit vult alleen de opdrachtregel in. Controleer en tik op Verzenden. Gebruik eerst “get fr” om bestaande regels te zien.';
+  String get hunt_explainer =>
+      'Peilt de repeater ongeveer elke seconde. Richt een richtantenne of loop rond: het getal is hoe goed je radio hem hoort.';
 
   @override
-  String get pathFilter_useCommand => 'Opdracht gebruiken';
+  String get settings_refreshRate => 'Verversingssnelheid';
 
   @override
-  String get settings_linkPreviews => 'Linkvoorbeelden';
+  String get settings_refreshFast => 'Snel';
 
   @override
-  String get settings_linkPreviewsHint =>
-      'Toont de titel van een link in een bericht. Standaard uit: de pagina ophalen geeft de site je IP-adres.';
+  String get settings_refreshNormal => 'Normaal';
 
   @override
-  String get guide_title => 'Veldgids';
+  String get settings_refreshSlow => 'Langzaam';
 
   @override
-  String get guide_subtitle =>
-      'Basis, accu’s in de kou, zonne-energie en antennes';
+  String get settings_refreshFastHint =>
+      'Accu elke minuut, gps elke 30 s. Versere waarden, meer verbruik.';
 
   @override
-  String get guide_secMesh => 'Op het mesh komen';
+  String get settings_refreshNormalHint =>
+      'Accu elke 2 minuten, gps elke minuut.';
 
   @override
-  String get guide_mesh1 =>
-      'Je telefoon praat via bluetooth, usb of wifi met je radio; de radio via LoRa met het mesh. Berichten werken ook zonder bereik.';
+  String get settings_refreshSlowHint =>
+      'Accu elke 6 minuten, gps elke 3 minuten. Spaart accu.';
 
   @override
-  String get guide_mesh2 =>
-      'Repeaters geven berichten door; elke doorgifte is een hop. Minder hops is sneller en betrouwbaarder.';
-
-  @override
-  String get guide_mesh3 =>
-      'Houd berichten kort en overspoel drukke kanalen niet: elk bericht gebruikt gedeelde zendtijd.';
-
-  @override
-  String get guide_secCold => 'Accu’s in de kou';
-
-  @override
-  String get guide_cold1 =>
-      'Laad lithiumaccu’s niet onder het vriespunt (0 °C): dat beschadigt ze blijvend.';
-
-  @override
-  String get guide_cold2 =>
-      'Draag de radio in je jas. Kou verlaagt de capaciteit, die terugkomt als de accu opwarmt.';
-
-  @override
-  String get guide_cold3 =>
-      'Voor vaste locaties in koude streken doet LiFePO4 het beter dan lithium-ion; een verwarmde of geïsoleerde kast helpt beide.';
-
-  @override
-  String get guide_secSolar => 'Zonne-energie voor repeaters';
-
-  @override
-  String get guide_solar1 =>
-      'Een repeater verbruikt weinig, maar kies paneel en accu voor je donkerste winterweek, niet voor een zomerdag.';
-
-  @override
-  String get guide_solar2 =>
-      'Richt het paneel naar de evenaar en zet het in de winter steil; houd sneeuw en schaduw weg.';
-
-  @override
-  String get guide_secAntenna => 'Antennes en plaatsing';
-
-  @override
-  String get guide_ant1 =>
-      'Hoogte wint van vermogen: een radio een paar meter hoger reikt veel verder dan een op een bureau.';
-
-  @override
-  String get guide_ant2 =>
-      'Houd de antenne verticaal en weg van metaal, en gebruik er een voor jouw band (bijvoorbeeld 868 MHz in Europa).';
-
-  @override
-  String get guide_secMore => 'Meer weten';
-
-  @override
-  String get guide_moreMeshcore => 'Het officiële MeshCore-project';
-
-  @override
-  String get guide_moreCascadia =>
-      'Communitygidsen: aan de slag, wardriving, regio’s, zon';
+  String get settings_refreshSaverOn =>
+      'Batterijbesparing staat aan en bepaalt het tempo (accu elke 10 minuten).';
 }

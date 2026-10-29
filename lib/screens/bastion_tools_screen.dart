@@ -4,6 +4,7 @@ import '../l10n/l10n.dart';
 import '../widgets/instrument.dart';
 
 import 'antenna_coverage_screen.dart';
+import 'antenna_hunt_screen.dart';
 import 'bastion_about_screen.dart';
 import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
@@ -16,6 +17,7 @@ import 'bastion_path_hub_screen.dart';
 import 'bastion_repeater_tools_screen.dart';
 import 'coverage_hex_screen.dart';
 import 'prefix_tool_screen.dart';
+import 'repeater_ping_screen.dart';
 import 'settings_screen.dart';
 import 'track_log_screen.dart';
 import '../utils/platform_info.dart';
@@ -131,6 +133,18 @@ class BastionToolsScreen extends StatelessWidget {
               title: l10n.bastion_repeaterTools,
               subtitle: l10n.bastionTools_repeaterHint,
               onTap: () => open(const BastionRepeaterToolsScreen()),
+            ),
+            InstrumentRow(
+              icon: Icons.network_ping,
+              title: l10n.ping_title,
+              subtitle: l10n.ping_toolSubtitle,
+              onTap: () => open(const RepeaterPingScreen()),
+            ),
+            InstrumentRow(
+              icon: Icons.track_changes,
+              title: l10n.hunt_title,
+              subtitle: l10n.hunt_toolSubtitle,
+              onTap: () => open(const AntennaHuntScreen()),
             ),
             InstrumentRow(
               icon: Icons.fingerprint,

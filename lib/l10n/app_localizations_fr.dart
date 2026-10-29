@@ -8674,169 +8674,116 @@ class AppLocalizationsFr extends AppLocalizations {
       'Liste les répéteurs par lesquels le message est passé.';
 
   @override
-  String discovered_tray(int count) {
-    return 'Canaux entendus à proximité : $count';
+  String get ping_title => 'Ping de répéteur';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Temps aller-retour et signal dans les deux sens vers un répéteur proche';
+
+  @override
+  String get ping_noRepeaters => 'Aucun répéteur connu pour l’instant';
+
+  @override
+  String get ping_choose => 'Choisir un répéteur';
+
+  @override
+  String get ping_avgMs => 'ms aller-retour';
+
+  @override
+  String get ping_snrThere => 'SNR là-bas';
+
+  @override
+  String get ping_snrBack => 'SNR retour';
+
+  @override
+  String get ping_loss => 'Perdus';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done sur $total…';
   }
 
   @override
-  String get discovered_title => 'Entendus à proximité, non rejoints';
-
-  @override
-  String discovered_heard(int count, String time) {
-    return 'Entendu $count× · dernier $time';
+  String ping_start(int count) {
+    return 'Pinguer $count fois';
   }
 
   @override
-  String get discovered_ignore => 'Ignorer';
+  String get ping_results => 'Sondes';
 
   @override
-  String get discovered_ignoreAll => 'Tout ignorer';
+  String get ping_noReply => 'Pas de réponse';
 
   @override
-  String get discovered_joinAll => 'Tout rejoindre';
-
-  @override
-  String get discovered_explainer =>
-      'Ce sont des canaux publics de l’annuaire sur lesquels votre radio a entendu du trafic. Chacun a été confirmé en déchiffrant un message avec sa clé. Les canaux ignorés restent masqués.';
-
-  @override
-  String get mqtt_presetMeshRank => 'MeshRank (communauté)';
-
-  @override
-  String get mqtt_presetMeshRankNote =>
-      'MeshRank est un classement communautaire des réseaux MeshCore, qui ne fait pas partie de NOTORYX et n’est pas approuvé par lui. Sans connexion : les paquets sont partagés sous la clé et le code de région de votre radio, uniquement une fois le partage activé.';
-
-  @override
-  String get pathFilter_title => 'Filtre de largeur de chemin';
-
-  @override
-  String get pathFilter_firmwareNote =>
-      'Nécessite un firmware de répéteur avec règles de relais (mikecarper/MeshCore). Le firmware officiel MeshCore refuse ces commandes.';
-
-  @override
-  String get pathFilter_width => 'Largeur de chemin';
-
-  @override
-  String get pathFilter_anyWidth => 'Toute largeur';
-
-  @override
-  String pathFilter_bytes(int n) {
-    return 'Chemins de $n octets';
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR là-bas $snr';
   }
 
   @override
-  String get pathFilter_twoOrMore => '2 ou 3 octets (2+)';
+  String get ping_explainer =>
+      'Chaque sonde est un traçage à un saut : le répéteur note la qualité de réception et la renvoie. Fonctionne avec les répéteurs que votre radio entend directement.';
 
   @override
-  String get pathFilter_path => 'S’applique à';
+  String get hunt_title => 'Recherche d’antenne';
 
   @override
-  String get pathFilter_radio => 'Diffusions radio';
+  String get hunt_toolSubtitle =>
+      'Grand indicateur de signal en direct qui clique plus vite quand il se renforce';
 
   @override
-  String get pathFilter_bridge => 'Pont';
+  String get hunt_noSignal => 'Pas encore de signal';
 
   @override
-  String get pathFilter_cross => 'Croisement';
+  String get hunt_noReply => 'Pas de réponse : déplacez ou tournez l’antenne';
 
   @override
-  String get pathFilter_bridgeCross => 'Pont et croisement';
+  String get hunt_heardHere => 'dB reçus ici';
 
   @override
-  String get pathFilter_limit => 'Limiter au lieu de rejeter';
+  String get hunt_best => 'Meilleur';
 
   @override
-  String get pathFilter_limitOn => 'Relaie jusqu’à un nombre fixé par minute.';
+  String get hunt_sound => 'Cliquer quand le signal se renforce';
 
   @override
-  String get pathFilter_drop => 'Les diffusions correspondantes sont rejetées.';
+  String get hunt_soundHint =>
+      'Avec une vibration à chaque clic, pour viser sans regarder.';
 
   @override
-  String get pathFilter_perMinute => 'Par minute';
+  String get hunt_stop => 'Arrêter';
 
   @override
-  String get pathFilter_rateInvalid => 'Saisissez de 1 à 65534.';
+  String get hunt_start => 'Commencer la recherche';
 
   @override
-  String get pathFilter_reviewNote =>
-      'Ceci remplit seulement la ligne de commande. Vérifiez-la, puis appuyez sur Envoyer. Utilisez d’abord « get fr » pour voir les règles.';
+  String get hunt_explainer =>
+      'Sonde le répéteur environ une fois par seconde. Orientez une antenne directive ou déplacez-vous : le nombre indique la qualité de réception.';
 
   @override
-  String get pathFilter_useCommand => 'Utiliser la commande';
+  String get settings_refreshRate => 'Fréquence d’actualisation';
 
   @override
-  String get settings_linkPreviews => 'Aperçus de liens';
+  String get settings_refreshFast => 'Rapide';
 
   @override
-  String get settings_linkPreviewsHint =>
-      'Affiche le titre d’un lien dans un message. Désactivé par défaut : charger la page révèle votre adresse IP au site.';
+  String get settings_refreshNormal => 'Normale';
 
   @override
-  String get guide_title => 'Guide de terrain';
+  String get settings_refreshSlow => 'Lente';
 
   @override
-  String get guide_subtitle =>
-      'Bases, batteries par temps froid, solaire et antennes';
+  String get settings_refreshFastHint =>
+      'Batterie chaque minute, GPS toutes les 30 s. Valeurs plus fraîches, plus de consommation.';
 
   @override
-  String get guide_secMesh => 'Rejoindre le maillage';
+  String get settings_refreshNormalHint =>
+      'Batterie toutes les 2 minutes, GPS chaque minute.';
 
   @override
-  String get guide_mesh1 =>
-      'Le téléphone parle à la radio en Bluetooth, USB ou Wi-Fi ; la radio parle au maillage en LoRa. Les messages passent même sans réseau mobile.';
+  String get settings_refreshSlowHint =>
+      'Batterie toutes les 6 minutes, GPS toutes les 3. Économise la batterie.';
 
   @override
-  String get guide_mesh2 =>
-      'Les répéteurs relaient les messages ; chaque relais est un saut. Moins de sauts, livraison plus rapide et fiable.';
-
-  @override
-  String get guide_mesh3 =>
-      'Restez bref et n’inondez pas les canaux chargés : chaque message utilise du temps d’antenne partagé.';
-
-  @override
-  String get guide_secCold => 'Batteries par temps froid';
-
-  @override
-  String get guide_cold1 =>
-      'Ne chargez pas de batterie lithium sous 0 °C : cela l’abîme définitivement.';
-
-  @override
-  String get guide_cold2 =>
-      'Gardez la radio sous votre veste. Le froid réduit la capacité, qui revient quand la batterie se réchauffe.';
-
-  @override
-  String get guide_cold3 =>
-      'Pour les sites fixes en climat froid, le LiFePO4 résiste mieux que le lithium-ion ; un boîtier isolé ou chauffé aide les deux.';
-
-  @override
-  String get guide_secSolar => 'Solaire pour répéteurs';
-
-  @override
-  String get guide_solar1 =>
-      'Un répéteur consomme très peu, mais dimensionnez panneau et batterie pour votre semaine d’hiver la plus sombre, pas un jour d’été.';
-
-  @override
-  String get guide_solar2 =>
-      'Orientez le panneau vers l’équateur, fortement incliné en hiver ; évitez neige et ombre.';
-
-  @override
-  String get guide_secAntenna => 'Antennes et emplacement';
-
-  @override
-  String get guide_ant1 =>
-      'La hauteur prime sur la puissance : une radio à quelques mètres porte bien plus loin qu’une posée sur un bureau.';
-
-  @override
-  String get guide_ant2 =>
-      'Gardez l’antenne verticale et loin du métal, et utilisez-en une faite pour votre bande (par exemple 868 MHz en Europe).';
-
-  @override
-  String get guide_secMore => 'En savoir plus';
-
-  @override
-  String get guide_moreMeshcore => 'Le projet officiel MeshCore';
-
-  @override
-  String get guide_moreCascadia =>
-      'Guides communautaires : démarrer, wardriving, régions, solaire';
+  String get settings_refreshSaverOn =>
+      'L’économiseur de batterie est activé et fixe le rythme (batterie toutes les 10 minutes).';
 }

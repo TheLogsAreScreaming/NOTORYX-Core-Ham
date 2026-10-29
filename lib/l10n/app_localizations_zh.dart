@@ -8049,157 +8049,107 @@ class AppLocalizationsZh extends AppLocalizations {
   String get botCmd_trace => '列出发送者消息经过的中继器。';
 
   @override
-  String discovered_tray(int count) {
-    return '附近收到的频道：$count';
+  String get ping_title => '中继器 Ping';
+
+  @override
+  String get ping_toolSubtitle => '到附近中继器的往返时间和双向信号';
+
+  @override
+  String get ping_noRepeaters => '尚无已知中继器';
+
+  @override
+  String get ping_choose => '选择中继器';
+
+  @override
+  String get ping_avgMs => '毫秒往返';
+
+  @override
+  String get ping_snrThere => 'SNR 对方';
+
+  @override
+  String get ping_snrBack => 'SNR 回传';
+
+  @override
+  String get ping_loss => '丢失';
+
+  @override
+  String ping_running(int done, int total) {
+    return '正在 Ping $done/$total…';
   }
 
   @override
-  String get discovered_title => '附近收到，未加入';
-
-  @override
-  String discovered_heard(int count, String time) {
-    return '收到 $count 次 · 最近 $time';
+  String ping_start(int count) {
+    return 'Ping $count 次';
   }
 
   @override
-  String get discovered_ignore => '忽略';
+  String get ping_results => '探测';
 
   @override
-  String get discovered_ignoreAll => '全部忽略';
+  String get ping_noReply => '无响应';
 
   @override
-  String get discovered_joinAll => '全部加入';
-
-  @override
-  String get discovered_explainer =>
-      '这些是频道目录中电台收到过流量的公开频道。每个都已用其密钥解密消息确认。已忽略的频道保持隐藏。';
-
-  @override
-  String get mqtt_presetMeshRank => 'MeshRank（社区）';
-
-  @override
-  String get mqtt_presetMeshRankNote =>
-      'MeshRank 是社区运营的 MeshCore 网络排名，不属于 NOTORYX，也未获其认可。无需登录：只有在你开启共享后，数据包才会以电台的密钥和地区代码共享。';
-
-  @override
-  String get pathFilter_title => '路径宽度过滤器';
-
-  @override
-  String get pathFilter_firmwareNote =>
-      '需要支持转发规则的中继器固件（mikecarper/MeshCore）。官方 MeshCore 固件会拒绝这些命令。';
-
-  @override
-  String get pathFilter_width => '路径宽度';
-
-  @override
-  String get pathFilter_anyWidth => '任意宽度';
-
-  @override
-  String pathFilter_bytes(int n) {
-    return '$n 字节路径';
+  String ping_resultLine(String ms, String snr) {
+    return '$ms 毫秒 · 对方 SNR $snr';
   }
 
   @override
-  String get pathFilter_twoOrMore => '2 或 3 字节（2+）';
+  String get ping_explainer => '每次探测都是一跳路径追踪：中继器记录收到你的信号质量并回传。适用于电台能直接收到的中继器。';
 
   @override
-  String get pathFilter_path => '适用于';
+  String get hunt_title => '天线寻向';
 
   @override
-  String get pathFilter_radio => '无线泛洪';
+  String get hunt_toolSubtitle => '信号越强点击越快的大型实时信号表';
 
   @override
-  String get pathFilter_bridge => '网桥';
+  String get hunt_noSignal => '尚无信号';
 
   @override
-  String get pathFilter_cross => '交叉';
+  String get hunt_noReply => '无响应 — 移动或转动天线';
 
   @override
-  String get pathFilter_bridgeCross => '网桥和交叉';
+  String get hunt_heardHere => 'dB（本机收到）';
 
   @override
-  String get pathFilter_limit => '限速而非丢弃';
+  String get hunt_best => '最佳';
 
   @override
-  String get pathFilter_limitOn => '每分钟最多转发设定数量。';
+  String get hunt_sound => '信号增强时点击';
 
   @override
-  String get pathFilter_drop => '匹配的泛洪将被丢弃。';
+  String get hunt_soundHint => '每次点击都会振动，不看屏幕也能对准。';
 
   @override
-  String get pathFilter_perMinute => '每分钟';
+  String get hunt_stop => '停止';
 
   @override
-  String get pathFilter_rateInvalid => '请输入 1 到 65534。';
+  String get hunt_start => '开始寻向';
 
   @override
-  String get pathFilter_reviewNote => '这只会填入命令行。请检查后再点发送。可先用“get fr”查看现有规则。';
+  String get hunt_explainer => '约每秒探测一次中继器。转动定向天线或四处走动：数值表示电台收到它的好坏。';
 
   @override
-  String get pathFilter_useCommand => '使用命令';
+  String get settings_refreshRate => '电台刷新频率';
 
   @override
-  String get settings_linkPreviews => '链接预览';
+  String get settings_refreshFast => '快';
 
   @override
-  String get settings_linkPreviewsHint =>
-      '显示消息中链接的标题。默认关闭：获取页面会让该网站得知你的 IP 地址。';
+  String get settings_refreshNormal => '正常';
 
   @override
-  String get guide_title => '野外指南';
+  String get settings_refreshSlow => '慢';
 
   @override
-  String get guide_subtitle => '基础、寒冷天气电池、太阳能和天线';
+  String get settings_refreshFastHint => '电量每分钟、GPS 每 30 秒。数值更新更快，更耗电。';
 
   @override
-  String get guide_secMesh => '加入网状网络';
+  String get settings_refreshNormalHint => '电量每 2 分钟、GPS 每分钟。';
 
   @override
-  String get guide_mesh1 =>
-      '手机通过蓝牙、USB 或 Wi-Fi 连接电台；电台通过 LoRa 连接网状网络。没有手机信号也能收发消息。';
+  String get settings_refreshSlowHint => '电量每 6 分钟、GPS 每 3 分钟。省电。';
 
   @override
-  String get guide_mesh2 => '中继器转发消息，每次中继为一跳。跳数越少，送达越快越可靠。';
-
-  @override
-  String get guide_mesh3 => '消息尽量简短，避免刷屏繁忙频道：每条消息都占用共享的发射时间。';
-
-  @override
-  String get guide_secCold => '寒冷天气的电池';
-
-  @override
-  String get guide_cold1 => '不要在冰点以下（0 °C）给锂电池充电，会造成永久损坏。';
-
-  @override
-  String get guide_cold2 => '把电台放在外套内。寒冷会降低容量，电池回暖后会恢复。';
-
-  @override
-  String get guide_cold3 => '寒冷地区的固定站点，磷酸铁锂比锂离子更耐寒；加热或保温箱对两者都有帮助。';
-
-  @override
-  String get guide_secSolar => '中继器太阳能';
-
-  @override
-  String get guide_solar1 => '中继器功耗很低，但电池板和电池要按冬季最暗的一周配置，而不是夏天。';
-
-  @override
-  String get guide_solar2 => '电池板朝向赤道，冬季倾角要大；避免积雪和遮挡。';
-
-  @override
-  String get guide_secAntenna => '天线与摆放';
-
-  @override
-  String get guide_ant1 => '高度胜过功率：架高几米的电台比放在桌上的覆盖远得多。';
-
-  @override
-  String get guide_ant2 => '天线保持垂直、远离金属，并使用适合你频段的天线（例如欧洲 868 MHz）。';
-
-  @override
-  String get guide_secMore => '了解更多';
-
-  @override
-  String get guide_moreMeshcore => '官方 MeshCore 项目';
-
-  @override
-  String get guide_moreCascadia => '社区指南：入门、驾车测绘、区域、太阳能';
+  String get settings_refreshSaverOn => '省电模式已开启，由它决定频率（电量每 10 分钟）。';
 }
