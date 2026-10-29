@@ -8624,4 +8624,118 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get botCmd_trace => 'Lista os repetidores por onde a mensagem passou.';
+
+  @override
+  String get ping_title => 'Ping a repetidor';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Tempo de ida e volta e sinal nos dois sentidos para um repetidor próximo';
+
+  @override
+  String get ping_noRepeaters => 'Ainda sem repetidores conhecidos';
+
+  @override
+  String get ping_choose => 'Escolha um repetidor';
+
+  @override
+  String get ping_avgMs => 'ms ida e volta';
+
+  @override
+  String get ping_snrThere => 'SNR lá';
+
+  @override
+  String get ping_snrBack => 'SNR de volta';
+
+  @override
+  String get ping_loss => 'Perdidos';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done de $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Fazer ping $count vezes';
+  }
+
+  @override
+  String get ping_results => 'Sondagens';
+
+  @override
+  String get ping_noReply => 'Sem resposta';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR lá $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Cada sondagem é um traçado de um salto: o repetidor regista como o ouviu e devolve. Funciona com repetidores que o rádio ouve diretamente.';
+
+  @override
+  String get hunt_title => 'Busca com antena';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Medidor de sinal grande que estala mais depressa quando fica mais forte';
+
+  @override
+  String get hunt_noSignal => 'Ainda sem sinal';
+
+  @override
+  String get hunt_noReply => 'Sem resposta — mova ou rode a antena';
+
+  @override
+  String get hunt_heardHere => 'dB ouvidos aqui';
+
+  @override
+  String get hunt_best => 'Melhor';
+
+  @override
+  String get hunt_sound => 'Estalar quando fica mais forte';
+
+  @override
+  String get hunt_soundHint =>
+      'Com vibração em cada estalo, para apontar sem olhar.';
+
+  @override
+  String get hunt_stop => 'Parar';
+
+  @override
+  String get hunt_start => 'Começar a procurar';
+
+  @override
+  String get hunt_explainer =>
+      'Sonda o repetidor cerca de uma vez por segundo. Aponte uma antena direcional ou caminhe: o número é quão bem o rádio o ouve.';
+
+  @override
+  String get settings_refreshRate => 'Frequência de atualização';
+
+  @override
+  String get settings_refreshFast => 'Rápida';
+
+  @override
+  String get settings_refreshNormal => 'Normal';
+
+  @override
+  String get settings_refreshSlow => 'Lenta';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Bateria a cada minuto, GPS a cada 30 s. Dados mais recentes, mais consumo.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Bateria a cada 2 minutos, GPS a cada minuto.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Bateria a cada 6 minutos, GPS a cada 3. Poupa bateria.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'A poupança de bateria está ligada e define o ritmo (bateria a cada 10 minutos).';
 }

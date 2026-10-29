@@ -8047,4 +8047,109 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get botCmd_trace => '列出发送者消息经过的中继器。';
+
+  @override
+  String get ping_title => '中继器 Ping';
+
+  @override
+  String get ping_toolSubtitle => '到附近中继器的往返时间和双向信号';
+
+  @override
+  String get ping_noRepeaters => '尚无已知中继器';
+
+  @override
+  String get ping_choose => '选择中继器';
+
+  @override
+  String get ping_avgMs => '毫秒往返';
+
+  @override
+  String get ping_snrThere => 'SNR 对方';
+
+  @override
+  String get ping_snrBack => 'SNR 回传';
+
+  @override
+  String get ping_loss => '丢失';
+
+  @override
+  String ping_running(int done, int total) {
+    return '正在 Ping $done/$total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Ping $count 次';
+  }
+
+  @override
+  String get ping_results => '探测';
+
+  @override
+  String get ping_noReply => '无响应';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms 毫秒 · 对方 SNR $snr';
+  }
+
+  @override
+  String get ping_explainer => '每次探测都是一跳路径追踪：中继器记录收到你的信号质量并回传。适用于电台能直接收到的中继器。';
+
+  @override
+  String get hunt_title => '天线寻向';
+
+  @override
+  String get hunt_toolSubtitle => '信号越强点击越快的大型实时信号表';
+
+  @override
+  String get hunt_noSignal => '尚无信号';
+
+  @override
+  String get hunt_noReply => '无响应 — 移动或转动天线';
+
+  @override
+  String get hunt_heardHere => 'dB（本机收到）';
+
+  @override
+  String get hunt_best => '最佳';
+
+  @override
+  String get hunt_sound => '信号增强时点击';
+
+  @override
+  String get hunt_soundHint => '每次点击都会振动，不看屏幕也能对准。';
+
+  @override
+  String get hunt_stop => '停止';
+
+  @override
+  String get hunt_start => '开始寻向';
+
+  @override
+  String get hunt_explainer => '约每秒探测一次中继器。转动定向天线或四处走动：数值表示电台收到它的好坏。';
+
+  @override
+  String get settings_refreshRate => '电台刷新频率';
+
+  @override
+  String get settings_refreshFast => '快';
+
+  @override
+  String get settings_refreshNormal => '正常';
+
+  @override
+  String get settings_refreshSlow => '慢';
+
+  @override
+  String get settings_refreshFastHint => '电量每分钟、GPS 每 30 秒。数值更新更快，更耗电。';
+
+  @override
+  String get settings_refreshNormalHint => '电量每 2 分钟、GPS 每分钟。';
+
+  @override
+  String get settings_refreshSlowHint => '电量每 6 分钟、GPS 每 3 分钟。省电。';
+
+  @override
+  String get settings_refreshSaverOn => '省电模式已开启，由它决定频率（电量每 10 分钟）。';
 }

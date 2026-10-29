@@ -8615,4 +8615,118 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get botCmd_trace => 'Vypíše opakovače, cez ktoré prišla správa.';
+
+  @override
+  String get ping_title => 'Ping opakovača';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Čas tam a späť a signál oboma smermi k blízkemu opakovaču';
+
+  @override
+  String get ping_noRepeaters => 'Zatiaľ žiadne známe opakovače';
+
+  @override
+  String get ping_choose => 'Vyberte opakovač';
+
+  @override
+  String get ping_avgMs => 'ms tam a späť';
+
+  @override
+  String get ping_snrThere => 'SNR tam';
+
+  @override
+  String get ping_snrBack => 'SNR späť';
+
+  @override
+  String get ping_loss => 'Stratené';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done z $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Ping $count-krát';
+  }
+
+  @override
+  String get ping_results => 'Sondy';
+
+  @override
+  String get ping_noReply => 'Bez odpovede';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR tam $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Každá sonda je sledovanie cesty s jedným skokom: opakovač zaznamená, ako dobre vás počul, a pošle to späť. Funguje s opakovačmi, ktoré rádio počuje priamo.';
+
+  @override
+  String get hunt_title => 'Hľadanie anténou';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Veľký merač signálu, ktorý kliká rýchlejšie pri silnejšom signáli';
+
+  @override
+  String get hunt_noSignal => 'Zatiaľ bez signálu';
+
+  @override
+  String get hunt_noReply => 'Bez odpovede — posuňte alebo otočte anténu';
+
+  @override
+  String get hunt_heardHere => 'dB počuté tu';
+
+  @override
+  String get hunt_best => 'Najlepší';
+
+  @override
+  String get hunt_sound => 'Klikanie pri silnejúcom signáli';
+
+  @override
+  String get hunt_soundHint =>
+      'S vibráciou pri každom kliknutí, aby ste mohli mieriť bez pozerania.';
+
+  @override
+  String get hunt_stop => 'Zastaviť';
+
+  @override
+  String get hunt_start => 'Začať hľadanie';
+
+  @override
+  String get hunt_explainer =>
+      'Sonduje opakovač približne raz za sekundu. Nasmerujte smerovú anténu alebo choďte: číslo ukazuje, ako dobre ho rádio počuje.';
+
+  @override
+  String get settings_refreshRate => 'Frekvencia obnovy';
+
+  @override
+  String get settings_refreshFast => 'Rýchlo';
+
+  @override
+  String get settings_refreshNormal => 'Normálne';
+
+  @override
+  String get settings_refreshSlow => 'Pomaly';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Batéria každú minútu, GPS každých 30 s. Čerstvejšie údaje, väčšia spotreba.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Batéria každé 2 minúty, GPS každú minútu.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Batéria každých 6 minút, GPS každé 3. Šetrí batériu.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Šetrič batérie je zapnutý a určuje tempo (batéria každých 10 minút).';
 }

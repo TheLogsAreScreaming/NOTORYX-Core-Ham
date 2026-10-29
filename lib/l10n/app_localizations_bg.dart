@@ -8623,4 +8623,118 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Изброява ретранслаторите, през които е минало съобщението.';
+
+  @override
+  String get ping_title => 'Пинг на ретранслатор';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Време за отиване и връщане и сигнал в двете посоки до близък ретранслатор';
+
+  @override
+  String get ping_noRepeaters => 'Още няма известни ретранслатори';
+
+  @override
+  String get ping_choose => 'Изберете ретранслатор';
+
+  @override
+  String get ping_avgMs => 'мс отиване и връщане';
+
+  @override
+  String get ping_snrThere => 'SNR там';
+
+  @override
+  String get ping_snrBack => 'SNR обратно';
+
+  @override
+  String get ping_loss => 'Загубени';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Пинг $done от $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Пинг $count пъти';
+  }
+
+  @override
+  String get ping_results => 'Проби';
+
+  @override
+  String get ping_noReply => 'Няма отговор';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms мс · SNR там $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Всяка проба е проследяване на път с един скок: ретранслаторът отбелязва колко добре ви е чул и го връща. Работи с ретранслатори, които радиото ви чува директно.';
+
+  @override
+  String get hunt_title => 'Търсене с антена';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Голям жив измервател на сигнала, който щрака по-бързо при по-силен сигнал';
+
+  @override
+  String get hunt_noSignal => 'Още няма сигнал';
+
+  @override
+  String get hunt_noReply => 'Няма отговор — преместете или завъртете антената';
+
+  @override
+  String get hunt_heardHere => 'dB чути тук';
+
+  @override
+  String get hunt_best => 'Най-добър';
+
+  @override
+  String get hunt_sound => 'Щракане при по-силен сигнал';
+
+  @override
+  String get hunt_soundHint =>
+      'С вибрация при всяко щракане, за да насочвате, без да гледате.';
+
+  @override
+  String get hunt_stop => 'Стоп';
+
+  @override
+  String get hunt_start => 'Начало на търсенето';
+
+  @override
+  String get hunt_explainer =>
+      'Проверява ретранслатора около веднъж в секунда. Насочете насочена антена или се разходете: числото показва колко добре радиото го чува.';
+
+  @override
+  String get settings_refreshRate => 'Честота на опресняване';
+
+  @override
+  String get settings_refreshFast => 'Бързо';
+
+  @override
+  String get settings_refreshNormal => 'Нормално';
+
+  @override
+  String get settings_refreshSlow => 'Бавно';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Батерия всяка минута, GPS на 30 с. По-свежи данни, повече разход.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Батерия на 2 минути, GPS всяка минута.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Батерия на 6 минути, GPS на 3 минути. Пести батерия.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Пестенето на батерия е включено и то определя темпото (батерия на 10 минути).';
 }

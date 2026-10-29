@@ -127,6 +127,10 @@ class AppSettings {
   /// Slows the app's routine radio polling and background checks.
   final bool batterySaver;
 
+  /// How often routine radio status is refreshed: 'fast', 'normal' or
+  /// 'slow'. Battery saver overrides it when on.
+  final String refreshRate;
+
   /// The chosen color theme's id (see BastionTheme); Blaze by default.
   final String appTheme;
 
@@ -236,6 +240,7 @@ class AppSettings {
     this.tcpServerPort = 0,
     this.jumpToOldestUnread = false,
     this.batterySaver = false,
+    this.refreshRate = 'normal',
     this.appTheme = 'blaze',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
@@ -315,6 +320,7 @@ class AppSettings {
       'tcp_server_port': tcpServerPort,
       'jump_to_oldest_unread': jumpToOldestUnread,
       'battery_saver': batterySaver,
+      'refresh_rate': refreshRate,
       'app_theme': appTheme,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
@@ -420,6 +426,7 @@ class AppSettings {
       tcpServerPort: json['tcp_server_port'] as int? ?? 0,
       jumpToOldestUnread: json['jump_to_oldest_unread'] as bool? ?? false,
       batterySaver: json['battery_saver'] as bool? ?? false,
+      refreshRate: json['refresh_rate'] as String? ?? 'normal',
       appTheme: json['app_theme'] as String? ?? 'blaze',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
@@ -542,6 +549,7 @@ class AppSettings {
     int? tcpServerPort,
     bool? jumpToOldestUnread,
     bool? batterySaver,
+    String? refreshRate,
     String? appTheme,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
@@ -620,6 +628,7 @@ class AppSettings {
       tcpServerPort: tcpServerPort ?? this.tcpServerPort,
       jumpToOldestUnread: jumpToOldestUnread ?? this.jumpToOldestUnread,
       batterySaver: batterySaver ?? this.batterySaver,
+      refreshRate: refreshRate ?? this.refreshRate,
       appTheme: appTheme ?? this.appTheme,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,

@@ -14448,6 +14448,204 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Lists the repeaters the sender’s message came through.'**
   String get botCmd_trace;
+
+  /// No description provided for @ping_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater ping'**
+  String get ping_title;
+
+  /// No description provided for @ping_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Round-trip time and signal both ways to a nearby repeater'**
+  String get ping_toolSubtitle;
+
+  /// No description provided for @ping_noRepeaters.
+  ///
+  /// In en, this message translates to:
+  /// **'No repeaters known yet'**
+  String get ping_noRepeaters;
+
+  /// No description provided for @ping_choose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a repeater'**
+  String get ping_choose;
+
+  /// No description provided for @ping_avgMs.
+  ///
+  /// In en, this message translates to:
+  /// **'ms round trip'**
+  String get ping_avgMs;
+
+  /// No description provided for @ping_snrThere.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR there'**
+  String get ping_snrThere;
+
+  /// No description provided for @ping_snrBack.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR back'**
+  String get ping_snrBack;
+
+  /// No description provided for @ping_loss.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost'**
+  String get ping_loss;
+
+  /// No description provided for @ping_running.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinging {done} of {total}…'**
+  String ping_running(int done, int total);
+
+  /// No description provided for @ping_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Ping {count} times'**
+  String ping_start(int count);
+
+  /// No description provided for @ping_results.
+  ///
+  /// In en, this message translates to:
+  /// **'Probes'**
+  String get ping_results;
+
+  /// No description provided for @ping_noReply.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply'**
+  String get ping_noReply;
+
+  /// No description provided for @ping_resultLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{ms} ms · SNR there {snr}'**
+  String ping_resultLine(String ms, String snr);
+
+  /// No description provided for @ping_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Each probe is a one-hop path trace: the repeater notes how well it heard you and repeats it back. It works for repeaters your radio hears directly.'**
+  String get ping_explainer;
+
+  /// No description provided for @hunt_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Antenna hunt'**
+  String get hunt_title;
+
+  /// No description provided for @hunt_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A big live signal meter that clicks faster as it gets stronger'**
+  String get hunt_toolSubtitle;
+
+  /// No description provided for @hunt_noSignal.
+  ///
+  /// In en, this message translates to:
+  /// **'No signal yet'**
+  String get hunt_noSignal;
+
+  /// No description provided for @hunt_noReply.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply — move or turn the antenna'**
+  String get hunt_noReply;
+
+  /// No description provided for @hunt_heardHere.
+  ///
+  /// In en, this message translates to:
+  /// **'dB heard here'**
+  String get hunt_heardHere;
+
+  /// No description provided for @hunt_best.
+  ///
+  /// In en, this message translates to:
+  /// **'Best'**
+  String get hunt_best;
+
+  /// No description provided for @hunt_sound.
+  ///
+  /// In en, this message translates to:
+  /// **'Click as it gets stronger'**
+  String get hunt_sound;
+
+  /// No description provided for @hunt_soundHint.
+  ///
+  /// In en, this message translates to:
+  /// **'With a vibration on each click, so you can aim without looking.'**
+  String get hunt_soundHint;
+
+  /// No description provided for @hunt_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get hunt_stop;
+
+  /// No description provided for @hunt_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start hunting'**
+  String get hunt_start;
+
+  /// No description provided for @hunt_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Probes the repeater about once a second. Point a directional antenna or walk around: the number is how well your radio hears it.'**
+  String get hunt_explainer;
+
+  /// No description provided for @settings_refreshRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio refresh rate'**
+  String get settings_refreshRate;
+
+  /// No description provided for @settings_refreshFast.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast'**
+  String get settings_refreshFast;
+
+  /// No description provided for @settings_refreshNormal.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal'**
+  String get settings_refreshNormal;
+
+  /// No description provided for @settings_refreshSlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Slow'**
+  String get settings_refreshSlow;
+
+  /// No description provided for @settings_refreshFastHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery every minute, GPS every 30 s. Fresher numbers, more battery.'**
+  String get settings_refreshFastHint;
+
+  /// No description provided for @settings_refreshNormalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery every 2 minutes, GPS every minute.'**
+  String get settings_refreshNormalHint;
+
+  /// No description provided for @settings_refreshSlowHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery every 6 minutes, GPS every 3 minutes. Saves battery.'**
+  String get settings_refreshSlowHint;
+
+  /// No description provided for @settings_refreshSaverOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery saver is on, so it sets the pace (battery every 10 minutes).'**
+  String get settings_refreshSaverOn;
 }
 
 class _AppLocalizationsDelegate
