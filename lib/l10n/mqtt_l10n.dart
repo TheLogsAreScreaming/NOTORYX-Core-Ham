@@ -75,9 +75,16 @@ extension MqttLocalizations on AppLocalizations {
     if (identical(preset, MqttBrokerPresets.letsMeshEu)) {
       return mqtt_presetLetsMeshEu;
     }
+    if (identical(preset, MqttBrokerPresets.meshRank)) {
+      return mqtt_presetMeshRank;
+    }
     return preset.name;
   }
 
   String? mqttPresetNote(MqttBrokerPreset preset) =>
-      preset.note == null ? null : mqtt_presetLetsMeshNote;
+      identical(preset, MqttBrokerPresets.meshRank)
+      ? mqtt_presetMeshRankNote
+      : preset.note == null
+      ? null
+      : mqtt_presetLetsMeshNote;
 }

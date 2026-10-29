@@ -13,6 +13,7 @@ import '../models/radio_settings.dart';
 import '../widgets/regional_preset_banner.dart';
 import '../widgets/theme_picker.dart';
 import '../widgets/us_bandwidth_notice.dart';
+import '../services/corescope.dart';
 import '../services/app_settings_service.dart';
 import '../services/app_debug_log_service.dart';
 import '../theme/mesh_theme.dart';
@@ -101,6 +102,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: RegionalPresetTile(),
                 ),
                 const BatterySaverCard(),
+                const RefreshRateCard(),
+                const AnalyzerCard(),
+                const LinkPreviewsCard(),
                 const SignPostsCard(),
                 const MeshCard(
                   padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
@@ -2287,6 +2291,111 @@ class BatterySaverCard extends StatelessWidget {
   }
 }
 
+/// The online CoreScope analyzer used for observer reach and, if turned
+/// on, naming unknown repeater IDs.
+class AnalyzerCard extends StatelessWidget {
+  const AnalyzerCard({super.key});
+
+  Future<void> _editUrl(BuildContext context, AnalyzerService analyzer) async {
+    final t = context.l10n;
+    final controller = TextEditingController(text: analyzer.url);
+    final url = await showDialog<String>(
+      context: context,
+      builder: (dialog) => StatefulBuilder(
+        builder: (dialog, setState) => AlertDialog(
+          title: Text(t.analyzer_title),
+          content: TextField(
+            controller: controller,
+            keyboardType: TextInputType.url,
+            decoration: InputDecoration(
+              labelText: t.analyzer_url,
+              helperText: t.analyzer_urlHint,
+              helperMaxLines: 3,
+              errorText: AnalyzerService.isValidUrl(controller.text)
+                  ? null
+                  : t.coverageHex_urlInvalid,
+            ),
+            onChanged: (_) => setState(() {}),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialog),
+              child: Text(t.common_cancel),
+            ),
+            TextButton(
+              onPressed: () =>
+                  Navigator.pop(dialog, AnalyzerService.defaultUrl),
+              child: Text(t.analyzer_reset),
+            ),
+            FilledButton(
+              onPressed: AnalyzerService.isValidUrl(controller.text)
+                  ? () => Navigator.pop(dialog, controller.text)
+                  : null,
+              child: Text(t.common_save),
+            ),
+          ],
+        ),
+      ),
+    );
+    controller.dispose();
+    if (url != null) await analyzer.setUrl(url);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final analyzer = context.watch<AnalyzerService?>();
+    if (analyzer == null) return const SizedBox.shrink();
+    final t = context.l10n;
+    return MeshCard(
+      padding: EdgeInsets.zero,
+      child: Column(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.travel_explore),
+            title: Text(t.analyzer_title),
+            subtitle: Text(
+              '${Uri.tryParse(analyzer.url)?.host ?? analyzer.url}\n'
+              '${t.analyzer_hint}',
+            ),
+            isThreeLine: true,
+            onTap: () => _editUrl(context, analyzer),
+          ),
+          SwitchListTile(
+            key: const ValueKey('analyzer-hop-lookup'),
+            secondary: const Icon(Icons.badge_outlined),
+            title: Text(t.analyzer_hopLookup),
+            subtitle: Text(t.analyzer_hopLookupHint),
+            value: analyzer.hopLookup,
+            onChanged: analyzer.setHopLookup,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Opt-in link previews, with the privacy trade-off spelled out.
+class LinkPreviewsCard extends StatelessWidget {
+  const LinkPreviewsCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    final l10n = context.l10n;
+    return MeshCard(
+      padding: EdgeInsets.zero,
+      child: SwitchListTile(
+        key: const ValueKey('link-previews'),
+        secondary: const Icon(Icons.link),
+        title: Text(l10n.settings_linkPreviews),
+        subtitle: Text(l10n.settings_linkPreviewsHint),
+        value: settings.settings.linkPreviews,
+        onChanged: settings.setLinkPreviews,
+      ),
+    );
+  }
+}
+
 /// Settings' switch for signing every channel post, not only SOS.
 class SignPostsCard extends StatelessWidget {
   const SignPostsCard({super.key});
@@ -2305,6 +2414,65 @@ class SignPostsCard extends StatelessWidget {
         isThreeLine: true,
         value: settings.settings.signChannelPosts,
         onChanged: settings.setSignChannelPosts,
+      ),
+    );
+  }
+}
+
+/// How often the app refreshes the radio's battery, GPS and stats.
+class RefreshRateCard extends StatelessWidget {
+  const RefreshRateCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    final rate = settings.settings.refreshRate;
+    final saver = settings.settings.batterySaver;
+    final l10n = context.l10n;
+    return MeshCard(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.settings_refreshRate,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(height: 8),
+          SegmentedButton<String>(
+            key: const ValueKey('refresh-rate'),
+            showSelectedIcon: false,
+            segments: [
+              ButtonSegment(
+                value: 'fast',
+                label: Text(l10n.settings_refreshFast),
+              ),
+              ButtonSegment(
+                value: 'normal',
+                label: Text(l10n.settings_refreshNormal),
+              ),
+              ButtonSegment(
+                value: 'slow',
+                label: Text(l10n.settings_refreshSlow),
+              ),
+            ],
+            selected: {rate},
+            onSelectionChanged: saver
+                ? null
+                : (v) => settings.setRefreshRate(v.first),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            saver
+                ? l10n.settings_refreshSaverOn
+                : switch (rate) {
+                    'fast' => l10n.settings_refreshFastHint,
+                    'slow' => l10n.settings_refreshSlowHint,
+                    _ => l10n.settings_refreshNormalHint,
+                  },
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
       ),
     );
   }

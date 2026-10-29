@@ -59,6 +59,9 @@ import '../widgets/via_mqtt_label.dart';
 import '../widgets/signature_label.dart';
 import '../services/signed_posts.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/link_preview_card.dart';
+import '../services/link_preview.dart';
+import '../widgets/observer_reach_sheet.dart';
 import '../widgets/mesh_ui.dart';
 import 'app_settings_screen.dart';
 import 'channel_message_path_screen.dart';
@@ -615,7 +618,18 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final metaColor = MeshPalette.ink3;
     const bodyFontSize = 16.0;
 
-    Widget buildTextContent() {
+    // A plain read: this runs from item builders, where select isn't
+    // allowed, and bubbles rebuild often enough to pick up a toggle.
+    final previewLink =
+        Provider.of<AppSettingsService?>(
+              context,
+              listen: false,
+            )?.settings.linkPreviews ==
+            true
+        ? firstLink(message.text)
+        : null;
+
+    Widget buildPlainText() {
       return Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -638,6 +652,19 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                   : null,
             ),
           ),
+        ],
+      );
+    }
+
+    Widget buildTextContent() {
+      final text = buildPlainText();
+      if (previewLink == null) return text;
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          text,
+          LinkPreviewCard(url: previewLink),
         ],
       );
     }
@@ -2374,6 +2401,14 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               onTap: () {
                 Navigator.pop(sheetContext);
                 _showMessagePathInfo(message);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.podcasts),
+              title: Text(context.l10n.reach_check),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                showObserverReachSheet(context, message.packetHash);
               },
             ),
             // Can't react to your own messages

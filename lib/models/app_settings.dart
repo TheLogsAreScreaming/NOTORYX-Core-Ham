@@ -127,6 +127,14 @@ class AppSettings {
   /// Slows the app's routine radio polling and background checks.
   final bool batterySaver;
 
+  /// How often routine radio status is refreshed: 'fast', 'normal' or
+  /// 'slow'. Battery saver overrides it when on.
+  final String refreshRate;
+
+  /// Fetch a preview for the first link in a message. Off by default:
+  /// fetching tells the site your IP address.
+  final bool linkPreviews;
+
   /// Signs every channel post, not only SOS. Each signature is one extra
   /// packet on air.
   final bool signChannelPosts;
@@ -240,6 +248,8 @@ class AppSettings {
     this.tcpServerPort = 0,
     this.jumpToOldestUnread = false,
     this.batterySaver = false,
+    this.refreshRate = 'normal',
+    this.linkPreviews = false,
     this.signChannelPosts = false,
     this.appTheme = 'blaze',
     this.channelMessageRetentionDays = 0,
@@ -320,6 +330,8 @@ class AppSettings {
       'tcp_server_port': tcpServerPort,
       'jump_to_oldest_unread': jumpToOldestUnread,
       'battery_saver': batterySaver,
+      'refresh_rate': refreshRate,
+      'link_previews': linkPreviews,
       'sign_channel_posts': signChannelPosts,
       'app_theme': appTheme,
       'channel_message_retention_days': channelMessageRetentionDays,
@@ -426,6 +438,8 @@ class AppSettings {
       tcpServerPort: json['tcp_server_port'] as int? ?? 0,
       jumpToOldestUnread: json['jump_to_oldest_unread'] as bool? ?? false,
       batterySaver: json['battery_saver'] as bool? ?? false,
+      refreshRate: json['refresh_rate'] as String? ?? 'normal',
+      linkPreviews: json['link_previews'] as bool? ?? false,
       signChannelPosts: json['sign_channel_posts'] as bool? ?? false,
       appTheme: json['app_theme'] as String? ?? 'blaze',
       channelMessageRetentionDays:
@@ -549,6 +563,8 @@ class AppSettings {
     int? tcpServerPort,
     bool? jumpToOldestUnread,
     bool? batterySaver,
+    String? refreshRate,
+    bool? linkPreviews,
     bool? signChannelPosts,
     String? appTheme,
     int? channelMessageRetentionDays,
@@ -628,6 +644,8 @@ class AppSettings {
       tcpServerPort: tcpServerPort ?? this.tcpServerPort,
       jumpToOldestUnread: jumpToOldestUnread ?? this.jumpToOldestUnread,
       batterySaver: batterySaver ?? this.batterySaver,
+      refreshRate: refreshRate ?? this.refreshRate,
+      linkPreviews: linkPreviews ?? this.linkPreviews,
       signChannelPosts: signChannelPosts ?? this.signChannelPosts,
       appTheme: appTheme ?? this.appTheme,
       channelMessageRetentionDays:

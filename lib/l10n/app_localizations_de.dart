@@ -8652,6 +8652,352 @@ class AppLocalizationsDe extends AppLocalizations {
   String get botCmd_trace => 'Listet die Repeater, über die die Nachricht kam.';
 
   @override
+  String get ping_title => 'Repeater-Ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Umlaufzeit und Signal in beide Richtungen zu einem nahen Repeater';
+
+  @override
+  String get ping_noRepeaters => 'Noch keine Repeater bekannt';
+
+  @override
+  String get ping_choose => 'Repeater wählen';
+
+  @override
+  String get ping_avgMs => 'ms Umlauf';
+
+  @override
+  String get ping_snrThere => 'SNR dort';
+
+  @override
+  String get ping_snrBack => 'SNR zurück';
+
+  @override
+  String get ping_loss => 'Verloren';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done von $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return '$count-mal pingen';
+  }
+
+  @override
+  String get ping_results => 'Proben';
+
+  @override
+  String get ping_noReply => 'Keine Antwort';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR dort $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Jede Probe ist eine Pfadverfolgung über einen Hop: Der Repeater notiert, wie gut er dich gehört hat, und sendet es zurück. Funktioniert mit Repeatern, die dein Funkgerät direkt hört.';
+
+  @override
+  String get hunt_title => 'Antennensuche';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Große Live-Signalanzeige, die schneller klickt, je stärker das Signal';
+
+  @override
+  String get hunt_noSignal => 'Noch kein Signal';
+
+  @override
+  String get hunt_noReply => 'Keine Antwort – bewege oder drehe die Antenne';
+
+  @override
+  String get hunt_heardHere => 'dB hier gehört';
+
+  @override
+  String get hunt_best => 'Bester';
+
+  @override
+  String get hunt_sound => 'Klicken, je stärker es wird';
+
+  @override
+  String get hunt_soundHint =>
+      'Mit Vibration bei jedem Klick, damit du ohne Hinsehen ausrichten kannst.';
+
+  @override
+  String get hunt_stop => 'Stopp';
+
+  @override
+  String get hunt_start => 'Suche starten';
+
+  @override
+  String get hunt_explainer =>
+      'Prüft den Repeater etwa einmal pro Sekunde. Richte eine Richtantenne aus oder geh herum: Die Zahl zeigt, wie gut dein Funkgerät ihn hört.';
+
+  @override
+  String get settings_refreshRate => 'Aktualisierungsrate';
+
+  @override
+  String get settings_refreshFast => 'Schnell';
+
+  @override
+  String get settings_refreshNormal => 'Normal';
+
+  @override
+  String get settings_refreshSlow => 'Langsam';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Akku jede Minute, GPS alle 30 s. Frischere Werte, mehr Akkuverbrauch.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Akku alle 2 Minuten, GPS jede Minute.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Akku alle 6 Minuten, GPS alle 3 Minuten. Spart Akku.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Der Akkusparmodus ist an und bestimmt das Tempo (Akku alle 10 Minuten).';
+
+  @override
+  String get reach_check => 'Beobachter-Reichweite prüfen';
+
+  @override
+  String get reach_title => 'Beobachter-Reichweite';
+
+  @override
+  String get reach_noHash =>
+      'Diese Nachricht lässt sich noch nicht nachschlagen: Kein Repeater hat sie an dein Funkgerät zurückgesendet, daher ist die Paket-ID unbekannt.';
+
+  @override
+  String get reach_unreachable =>
+      'Analysator nicht erreichbar. Prüfe die Internetverbindung oder die Analysator-Adresse in den Einstellungen.';
+
+  @override
+  String get reach_none =>
+      'Noch kein Beobachter hat sie gehört. Beobachter laden kurz nach dem Empfang hoch, prüfe in einer Minute erneut.';
+
+  @override
+  String get reach_observers => 'Beobachter';
+
+  @override
+  String get reach_maxHops => 'max. Hops';
+
+  @override
+  String get reach_bestSnr => 'bester SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count Hops entfernt';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Vom Online-Analysator: Beobachter, die dieses Paket gehört und hochgeladen haben.';
+
+  @override
+  String get reach_checkAgain => 'Erneut prüfen';
+
+  @override
+  String get analyzer_title => 'Online-Analysator';
+
+  @override
+  String get analyzer_url => 'Analysator-Adresse';
+
+  @override
+  String get analyzer_urlHint =>
+      'Ein CoreScope-Analysator (https://). Nimm den für deine Region.';
+
+  @override
+  String get analyzer_reset => 'Standard';
+
+  @override
+  String get analyzer_hint =>
+      'Damit wird geprüft, welche Beobachter deine Nachrichten gehört haben. Eine Prüfung sendet nur die Paket-ID.';
+
+  @override
+  String get analyzer_hopLookup => 'Unbekannte Repeater online benennen';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Wenn eine Repeater-ID nicht in deinen Kontakten ist, wird der Analysator nach dem Namen gefragt. Es werden nur die kurzen IDs gesendet. Ein Name mit „?“ bedeutet, dass sich mehrere Repeater die ID teilen.';
+
+  @override
+  String discovered_tray(int count) {
+    return 'In der Nähe gehörte Kanäle: $count';
+  }
+
+  @override
+  String get discovered_title => 'In der Nähe gehört, nicht beigetreten';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return '$count× gehört · zuletzt $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Ignorieren';
+
+  @override
+  String get discovered_ignoreAll => 'Alle ignorieren';
+
+  @override
+  String get discovered_joinAll => 'Allen beitreten';
+
+  @override
+  String get discovered_explainer =>
+      'Das sind öffentliche Kanäle aus dem Kanalverzeichnis, auf denen dein Funkgerät Verkehr gehört hat. Jeder wurde durch Entschlüsseln einer Nachricht bestätigt. Ignorierte Kanäle bleiben ausgeblendet.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (Community)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank ist eine von der Community betriebene MeshCore-Netzwerkrangliste, kein Teil von NOTORYX und nicht von ihm empfohlen. Ohne Anmeldung: Pakete werden unter dem Schlüssel und Regionscode deines Funkgeräts geteilt, erst wenn du das Teilen einschaltest.';
+
+  @override
+  String get pathFilter_title => 'Pfadbreiten-Filter';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Braucht Repeater-Firmware mit Weiterleitungsregeln (mikecarper/MeshCore). Die offizielle MeshCore-Firmware lehnt diese Befehle ab.';
+
+  @override
+  String get pathFilter_width => 'Pfadbreite';
+
+  @override
+  String get pathFilter_anyWidth => 'Jede Breite';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return '$n-Byte-Pfade';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 oder 3 Byte (2+)';
+
+  @override
+  String get pathFilter_path => 'Gilt für';
+
+  @override
+  String get pathFilter_radio => 'Funk-Floods';
+
+  @override
+  String get pathFilter_bridge => 'Brücke';
+
+  @override
+  String get pathFilter_cross => 'Übergang';
+
+  @override
+  String get pathFilter_bridgeCross => 'Brücke und Übergang';
+
+  @override
+  String get pathFilter_limit => 'Begrenzen statt verwerfen';
+
+  @override
+  String get pathFilter_limitOn =>
+      'Leitet bis zu einer festen Anzahl pro Minute weiter.';
+
+  @override
+  String get pathFilter_drop =>
+      'Passende Floods werden verworfen, nicht weitergeleitet.';
+
+  @override
+  String get pathFilter_perMinute => 'Pro Minute';
+
+  @override
+  String get pathFilter_rateInvalid => 'Gib 1 bis 65534 ein.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Das füllt nur die Befehlszeile aus. Prüfe sie und tippe dann auf Senden. Mit „get fr“ siehst du vorher bestehende Regeln.';
+
+  @override
+  String get pathFilter_useCommand => 'Befehl übernehmen';
+
+  @override
+  String get settings_linkPreviews => 'Linkvorschauen';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Zeigt den Titel eines Links in einer Nachricht. Standardmäßig aus: Das Abrufen der Seite verrät der Website deine IP-Adresse.';
+
+  @override
+  String get guide_title => 'Feldhandbuch';
+
+  @override
+  String get guide_subtitle =>
+      'Grundlagen, Akkus bei Kälte, Solar und Antennen';
+
+  @override
+  String get guide_secMesh => 'Ins Mesh kommen';
+
+  @override
+  String get guide_mesh1 =>
+      'Dein Telefon spricht per Bluetooth, USB oder WLAN mit dem Funkgerät; das Funkgerät per LoRa mit dem Mesh. Nachrichten gehen auch ohne Mobilfunk.';
+
+  @override
+  String get guide_mesh2 =>
+      'Repeater reichen Nachrichten weiter; jede Weitergabe ist ein Hop. Weniger Hops heißt schneller und zuverlässiger.';
+
+  @override
+  String get guide_mesh3 =>
+      'Halte Nachrichten kurz und flute keine vollen Kanäle: Jede Nachricht nutzt gemeinsame Sendezeit.';
+
+  @override
+  String get guide_secCold => 'Akkus bei Kälte';
+
+  @override
+  String get guide_cold1 =>
+      'Lade Lithium-Akkus nicht unter dem Gefrierpunkt (0 °C): Das schädigt sie dauerhaft.';
+
+  @override
+  String get guide_cold2 =>
+      'Trag das Funkgerät in der Jacke. Kälte senkt die Kapazität, die zurückkommt, sobald der Akku warm ist.';
+
+  @override
+  String get guide_cold3 =>
+      'Für feste Standorte in kaltem Klima kommt LiFePO4 besser zurecht als Lithium-Ionen; eine beheizte oder isolierte Box hilft beiden.';
+
+  @override
+  String get guide_secSolar => 'Solar für Repeater';
+
+  @override
+  String get guide_solar1 =>
+      'Ein Repeater braucht sehr wenig Strom, doch plane Panel und Akku für deine dunkelste Winterwoche, nicht für einen Sommertag.';
+
+  @override
+  String get guide_solar2 =>
+      'Richte das Panel zum Äquator aus und neige es im Winter steil; halte Schnee und Schatten fern.';
+
+  @override
+  String get guide_secAntenna => 'Antennen und Standort';
+
+  @override
+  String get guide_ant1 =>
+      'Höhe schlägt Leistung: Ein Funkgerät ein paar Meter höher reicht viel weiter als eines auf dem Tisch.';
+
+  @override
+  String get guide_ant2 =>
+      'Halte die Antenne senkrecht und fern von Metall und nutze eine für dein Band (z. B. 868 MHz in Europa).';
+
+  @override
+  String get guide_secMore => 'Mehr erfahren';
+
+  @override
+  String get guide_moreMeshcore => 'Das offizielle MeshCore-Projekt';
+
+  @override
+  String get guide_moreCascadia =>
+      'Community-Anleitungen: Einstieg, Wardriving, Regionen, Solar';
+
+  @override
   String get post_signed => 'Signiert';
 
   @override

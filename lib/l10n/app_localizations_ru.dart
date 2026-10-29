@@ -8668,6 +8668,349 @@ class AppLocalizationsRu extends AppLocalizations {
       'Показывает ретрансляторы, через которые прошло сообщение.';
 
   @override
+  String get ping_title => 'Пинг ретранслятора';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Время туда-обратно и сигнал в обе стороны до ближайшего ретранслятора';
+
+  @override
+  String get ping_noRepeaters => 'Ретрансляторы пока неизвестны';
+
+  @override
+  String get ping_choose => 'Выберите ретранслятор';
+
+  @override
+  String get ping_avgMs => 'мс туда-обратно';
+
+  @override
+  String get ping_snrThere => 'SNR там';
+
+  @override
+  String get ping_snrBack => 'SNR обратно';
+
+  @override
+  String get ping_loss => 'Потери';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Пинг $done из $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Пинг $count раз';
+  }
+
+  @override
+  String get ping_results => 'Зонды';
+
+  @override
+  String get ping_noReply => 'Нет ответа';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms мс · SNR там $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Каждый зонд — трассировка пути на один хоп: ретранслятор отмечает, как хорошо вас слышал, и возвращает это. Работает с ретрансляторами, которые радио слышит напрямую.';
+
+  @override
+  String get hunt_title => 'Поиск антенной';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Крупный измеритель сигнала, щёлкает чаще при усилении';
+
+  @override
+  String get hunt_noSignal => 'Сигнала пока нет';
+
+  @override
+  String get hunt_noReply => 'Нет ответа — переместите или поверните антенну';
+
+  @override
+  String get hunt_heardHere => 'дБ слышно здесь';
+
+  @override
+  String get hunt_best => 'Лучший';
+
+  @override
+  String get hunt_sound => 'Щелчки при усилении';
+
+  @override
+  String get hunt_soundHint =>
+      'С вибрацией на каждый щелчок, чтобы наводить не глядя.';
+
+  @override
+  String get hunt_stop => 'Стоп';
+
+  @override
+  String get hunt_start => 'Начать поиск';
+
+  @override
+  String get hunt_explainer =>
+      'Опрашивает ретранслятор примерно раз в секунду. Наводите направленную антенну или ходите: число показывает, как хорошо радио его слышит.';
+
+  @override
+  String get settings_refreshRate => 'Частота обновления';
+
+  @override
+  String get settings_refreshFast => 'Быстро';
+
+  @override
+  String get settings_refreshNormal => 'Обычно';
+
+  @override
+  String get settings_refreshSlow => 'Медленно';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Батарея каждую минуту, GPS каждые 30 с. Свежее данные, больше расход.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Батарея каждые 2 минуты, GPS каждую минуту.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Батарея каждые 6 минут, GPS каждые 3. Экономит батарею.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Включена экономия батареи, она задаёт темп (батарея каждые 10 минут).';
+
+  @override
+  String get reach_check => 'Проверить охват наблюдателями';
+
+  @override
+  String get reach_title => 'Охват наблюдателями';
+
+  @override
+  String get reach_noHash =>
+      'Это сообщение пока нельзя проверить: ни один ретранслятор не вернул его на ваше радио, поэтому ID пакета неизвестен.';
+
+  @override
+  String get reach_unreachable =>
+      'Анализатор недоступен. Проверьте интернет или адрес анализатора в настройках.';
+
+  @override
+  String get reach_none =>
+      'Пока ни один наблюдатель его не услышал. Наблюдатели загружают данные чуть позже, проверьте через минуту.';
+
+  @override
+  String get reach_observers => 'наблюдатели';
+
+  @override
+  String get reach_maxHops => 'макс. хопов';
+
+  @override
+  String get reach_bestSnr => 'лучший SNR';
+
+  @override
+  String reach_hops(int count) {
+    return 'через $count хопов';
+  }
+
+  @override
+  String get reach_explainer =>
+      'С онлайн-анализатора: наблюдатели, услышавшие и загрузившие этот пакет.';
+
+  @override
+  String get reach_checkAgain => 'Проверить снова';
+
+  @override
+  String get analyzer_title => 'Онлайн-анализатор';
+
+  @override
+  String get analyzer_url => 'Адрес анализатора';
+
+  @override
+  String get analyzer_urlHint =>
+      'Анализатор CoreScope (https://). Используйте тот, что покрывает ваш регион.';
+
+  @override
+  String get analyzer_reset => 'По умолчанию';
+
+  @override
+  String get analyzer_hint =>
+      'Для проверки, какие наблюдатели услышали ваши сообщения. Передаётся только ID пакета.';
+
+  @override
+  String get analyzer_hopLookup => 'Имена неизвестных ретрансляторов онлайн';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Если ID ретранслятора нет в контактах, имя запрашивается у анализатора. Передаются только короткие ID. Имя с «?» означает, что ID общий у нескольких ретрансляторов.';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Каналы рядом: $count';
+  }
+
+  @override
+  String get discovered_title => 'Слышно рядом, без подписки';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return 'Слышно $count× · последний $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Скрыть';
+
+  @override
+  String get discovered_ignoreAll => 'Скрыть все';
+
+  @override
+  String get discovered_joinAll => 'Подписаться на все';
+
+  @override
+  String get discovered_explainer =>
+      'Это публичные каналы из каталога, в которых радио слышало трафик. Каждый подтверждён расшифровкой сообщения его ключом. Скрытые каналы не показываются.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (сообщество)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank — рейтинг сетей MeshCore от сообщества, не часть NOTORYX и не одобрен им. Без входа: пакеты передаются под ключом и кодом региона вашего радио, только после включения обмена.';
+
+  @override
+  String get pathFilter_title => 'Фильтр ширины пути';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Нужна прошивка ретранслятора с правилами пересылки (mikecarper/MeshCore). Официальная прошивка MeshCore отклоняет эти команды.';
+
+  @override
+  String get pathFilter_width => 'Ширина пути';
+
+  @override
+  String get pathFilter_anyWidth => 'Любая ширина';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return 'Пути по $n байт';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 или 3 байта (2+)';
+
+  @override
+  String get pathFilter_path => 'Применяется к';
+
+  @override
+  String get pathFilter_radio => 'Радиорассылки';
+
+  @override
+  String get pathFilter_bridge => 'Мост';
+
+  @override
+  String get pathFilter_cross => 'Переход';
+
+  @override
+  String get pathFilter_bridgeCross => 'Мост и переход';
+
+  @override
+  String get pathFilter_limit => 'Ограничивать вместо отбрасывания';
+
+  @override
+  String get pathFilter_limitOn => 'Пересылает до заданного числа в минуту.';
+
+  @override
+  String get pathFilter_drop => 'Совпадающие рассылки отбрасываются.';
+
+  @override
+  String get pathFilter_perMinute => 'В минуту';
+
+  @override
+  String get pathFilter_rateInvalid => 'Введите от 1 до 65534.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Это только заполняет командную строку. Проверьте и нажмите «Отправить». Сначала посмотрите правила командой «get fr».';
+
+  @override
+  String get pathFilter_useCommand => 'Использовать команду';
+
+  @override
+  String get settings_linkPreviews => 'Предпросмотр ссылок';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Показывает заголовок ссылки в сообщении. По умолчанию выключено: загрузка страницы раскрывает сайту ваш IP-адрес.';
+
+  @override
+  String get guide_title => 'Полевое руководство';
+
+  @override
+  String get guide_subtitle => 'Основы, батареи на холоде, солнце и антенны';
+
+  @override
+  String get guide_secMesh => 'Подключение к сети';
+
+  @override
+  String get guide_mesh1 =>
+      'Телефон связан с радио по Bluetooth, USB или Wi-Fi; радио с сетью — по LoRa. Сообщения работают и без сотовой связи.';
+
+  @override
+  String get guide_mesh2 =>
+      'Ретрансляторы передают сообщения дальше; каждая передача — хоп. Меньше хопов — быстрее и надёжнее.';
+
+  @override
+  String get guide_mesh3 =>
+      'Пишите коротко и не заваливайте загруженные каналы: каждое сообщение тратит общее эфирное время.';
+
+  @override
+  String get guide_secCold => 'Батареи на холоде';
+
+  @override
+  String get guide_cold1 =>
+      'Не заряжайте литиевые батареи ниже нуля (0 °C): это необратимо их портит.';
+
+  @override
+  String get guide_cold2 =>
+      'Носите радио под курткой. Холод снижает ёмкость, но она возвращается, когда батарея согреется.';
+
+  @override
+  String get guide_cold3 =>
+      'Для стационарных точек в холодном климате LiFePO4 лучше литий-ионных; утеплённый или подогреваемый корпус помогает обоим.';
+
+  @override
+  String get guide_secSolar => 'Солнце для ретрансляторов';
+
+  @override
+  String get guide_solar1 =>
+      'Ретранслятор потребляет очень мало, но рассчитывайте панель и батарею на самую тёмную зимнюю неделю, а не на летний день.';
+
+  @override
+  String get guide_solar2 =>
+      'Направьте панель к экватору и зимой ставьте круто; держите её без снега и тени.';
+
+  @override
+  String get guide_secAntenna => 'Антенны и размещение';
+
+  @override
+  String get guide_ant1 =>
+      'Высота важнее мощности: радио на несколько метров выше бьёт гораздо дальше, чем на столе.';
+
+  @override
+  String get guide_ant2 =>
+      'Держите антенну вертикально и подальше от металла; используйте антенну для своего диапазона (например, 868 МГц в Европе).';
+
+  @override
+  String get guide_secMore => 'Подробнее';
+
+  @override
+  String get guide_moreMeshcore => 'Официальный проект MeshCore';
+
+  @override
+  String get guide_moreCascadia =>
+      'Руководства сообщества: начало, вардрайвинг, регионы, солнце';
+
+  @override
   String get post_signed => 'Подписано';
 
   @override

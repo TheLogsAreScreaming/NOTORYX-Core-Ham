@@ -8233,6 +8233,333 @@ class AppLocalizationsKo extends AppLocalizations {
   String get botCmd_trace => '보낸 사람의 메시지가 거친 리피터를 보여 줍니다.';
 
   @override
+  String get ping_title => '리피터 핑';
+
+  @override
+  String get ping_toolSubtitle => '근처 리피터와의 왕복 시간과 양방향 신호';
+
+  @override
+  String get ping_noRepeaters => '아직 알려진 리피터가 없습니다';
+
+  @override
+  String get ping_choose => '리피터 선택';
+
+  @override
+  String get ping_avgMs => 'ms 왕복';
+
+  @override
+  String get ping_snrThere => 'SNR 상대측';
+
+  @override
+  String get ping_snrBack => 'SNR 수신';
+
+  @override
+  String get ping_loss => '손실';
+
+  @override
+  String ping_running(int done, int total) {
+    return '핑 $done/$total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return '$count회 핑';
+  }
+
+  @override
+  String get ping_results => '프로브';
+
+  @override
+  String get ping_noReply => '응답 없음';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · 상대측 SNR $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      '각 프로브는 1홉 경로 추적입니다. 리피터가 수신 상태를 기록해 되돌려 보냅니다. 무전기가 직접 수신하는 리피터에서 작동합니다.';
+
+  @override
+  String get hunt_title => '안테나 헌트';
+
+  @override
+  String get hunt_toolSubtitle => '신호가 강할수록 빠르게 딸깍이는 큰 실시간 신호 계기';
+
+  @override
+  String get hunt_noSignal => '아직 신호 없음';
+
+  @override
+  String get hunt_noReply => '응답 없음 — 안테나를 옮기거나 돌려 보세요';
+
+  @override
+  String get hunt_heardHere => 'dB(이쪽 수신)';
+
+  @override
+  String get hunt_best => '최고';
+
+  @override
+  String get hunt_sound => '강해질수록 딸깍';
+
+  @override
+  String get hunt_soundHint => '딸깍할 때마다 진동하므로 화면을 보지 않고 방향을 맞출 수 있습니다.';
+
+  @override
+  String get hunt_stop => '중지';
+
+  @override
+  String get hunt_start => '헌트 시작';
+
+  @override
+  String get hunt_explainer =>
+      '약 1초마다 리피터를 탐지합니다. 지향성 안테나를 돌리거나 걸어 다니세요. 숫자는 무전기가 얼마나 잘 수신하는지입니다.';
+
+  @override
+  String get settings_refreshRate => '무전기 새로고침 빈도';
+
+  @override
+  String get settings_refreshFast => '빠름';
+
+  @override
+  String get settings_refreshNormal => '보통';
+
+  @override
+  String get settings_refreshSlow => '느림';
+
+  @override
+  String get settings_refreshFastHint =>
+      '배터리 1분마다, GPS 30초마다. 더 최신 값, 배터리 소모 증가.';
+
+  @override
+  String get settings_refreshNormalHint => '배터리 2분마다, GPS 1분마다.';
+
+  @override
+  String get settings_refreshSlowHint => '배터리 6분마다, GPS 3분마다. 배터리 절약.';
+
+  @override
+  String get settings_refreshSaverOn => '배터리 절약이 켜져 있어 그 주기를 따릅니다(배터리 10분마다).';
+
+  @override
+  String get reach_check => '관측자 도달 확인';
+
+  @override
+  String get reach_title => '관측자 도달';
+
+  @override
+  String get reach_noHash =>
+      '아직 이 메시지를 조회할 수 없습니다. 어떤 리피터도 무전기로 되돌려 보내지 않아 패킷 ID를 모릅니다.';
+
+  @override
+  String get reach_unreachable =>
+      '분석기에 연결할 수 없습니다. 인터넷 연결이나 설정의 분석기 주소를 확인하세요.';
+
+  @override
+  String get reach_none =>
+      '아직 어떤 관측자도 듣지 못했습니다. 관측자는 수신 후 조금 뒤 업로드하므로 1분 뒤 다시 확인하세요.';
+
+  @override
+  String get reach_observers => '관측자';
+
+  @override
+  String get reach_maxHops => '최대 홉';
+
+  @override
+  String get reach_bestSnr => '최고 SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count홉 거리';
+  }
+
+  @override
+  String get reach_explainer => '온라인 분석기 기준: 이 패킷을 듣고 업로드한 관측자.';
+
+  @override
+  String get reach_checkAgain => '다시 확인';
+
+  @override
+  String get analyzer_title => '온라인 분석기';
+
+  @override
+  String get analyzer_url => '분석기 주소';
+
+  @override
+  String get analyzer_urlHint => 'CoreScope 분석기(https://). 내 지역을 담당하는 것을 쓰세요.';
+
+  @override
+  String get analyzer_reset => '기본값';
+
+  @override
+  String get analyzer_hint => '어떤 관측자가 메시지를 들었는지 확인하는 데 씁니다. 패킷 ID만 보냅니다.';
+
+  @override
+  String get analyzer_hopLookup => '알 수 없는 리피터 이름 온라인 조회';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      '리피터 ID가 연락처에 없으면 분석기에 이름을 묻습니다. 짧은 ID만 보냅니다. 이름 끝의 “?”는 여러 리피터가 그 ID를 함께 쓴다는 뜻입니다.';
+
+  @override
+  String discovered_tray(int count) {
+    return '근처에서 들린 채널: $count';
+  }
+
+  @override
+  String get discovered_title => '근처에서 들림, 미참여';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return '$count회 들림 · 마지막 $time';
+  }
+
+  @override
+  String get discovered_ignore => '무시';
+
+  @override
+  String get discovered_ignoreAll => '모두 무시';
+
+  @override
+  String get discovered_joinAll => '모두 참여';
+
+  @override
+  String get discovered_explainer =>
+      '채널 디렉터리의 공개 채널 중 무전기가 트래픽을 들은 채널입니다. 각 채널은 키로 메시지를 복호화해 확인했습니다. 무시한 채널은 숨겨집니다.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank(커뮤니티)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank는 커뮤니티가 운영하는 MeshCore 네트워크 순위로, NOTORYX의 일부가 아니며 보증하지 않습니다. 로그인 없음: 공유를 켠 후에만 무전기 키와 지역 코드로 패킷이 공유됩니다.';
+
+  @override
+  String get pathFilter_title => '경로 폭 필터';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      '전달 규칙을 지원하는 리피터 펌웨어(mikecarper/MeshCore)가 필요합니다. 공식 MeshCore 펌웨어는 이 명령을 거부합니다.';
+
+  @override
+  String get pathFilter_width => '경로 폭';
+
+  @override
+  String get pathFilter_anyWidth => '모든 폭';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return '$n바이트 경로';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 또는 3바이트(2+)';
+
+  @override
+  String get pathFilter_path => '적용 대상';
+
+  @override
+  String get pathFilter_radio => '무선 플러드';
+
+  @override
+  String get pathFilter_bridge => '브리지';
+
+  @override
+  String get pathFilter_cross => '크로스오버';
+
+  @override
+  String get pathFilter_bridgeCross => '브리지와 크로스오버';
+
+  @override
+  String get pathFilter_limit => '버리는 대신 제한';
+
+  @override
+  String get pathFilter_limitOn => '분당 정해진 수까지 전달합니다.';
+
+  @override
+  String get pathFilter_drop => '일치하는 플러드는 전달하지 않고 버립니다.';
+
+  @override
+  String get pathFilter_perMinute => '분당';
+
+  @override
+  String get pathFilter_rateInvalid => '1~65534를 입력하세요.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      '명령줄만 채웁니다. 확인한 뒤 보내기를 누르세요. 먼저 “get fr”로 기존 규칙을 확인하세요.';
+
+  @override
+  String get pathFilter_useCommand => '명령 사용';
+
+  @override
+  String get settings_linkPreviews => '링크 미리보기';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      '메시지 속 링크의 제목을 보여 줍니다. 기본값은 꺼짐: 페이지를 가져오면 그 사이트에 IP 주소가 알려집니다.';
+
+  @override
+  String get guide_title => '현장 가이드';
+
+  @override
+  String get guide_subtitle => '기본, 추운 날 배터리, 태양광, 안테나';
+
+  @override
+  String get guide_secMesh => '메시에 참여하기';
+
+  @override
+  String get guide_mesh1 =>
+      '휴대폰은 블루투스·USB·Wi-Fi로 무전기와, 무전기는 LoRa로 메시와 통신합니다. 휴대폰 신호가 없어도 메시지가 됩니다.';
+
+  @override
+  String get guide_mesh2 => '리피터가 메시지를 전달하며, 한 번 중계가 1홉입니다. 홉이 적을수록 빠르고 확실합니다.';
+
+  @override
+  String get guide_mesh3 =>
+      '메시지는 짧게, 붐비는 채널에 몰아 보내지 마세요. 모든 메시지가 공유 송신 시간을 씁니다.';
+
+  @override
+  String get guide_secCold => '추울 때 배터리';
+
+  @override
+  String get guide_cold1 => '영하(0 °C)에서 리튬 배터리를 충전하지 마세요. 영구 손상됩니다.';
+
+  @override
+  String get guide_cold2 => '무전기는 재킷 안에 넣으세요. 추위에 용량이 줄지만 배터리가 따뜻해지면 돌아옵니다.';
+
+  @override
+  String get guide_cold3 =>
+      '추운 지역 고정 설치에는 리튬이온보다 LiFePO4가 낫습니다. 단열·가열 함은 둘 다에 도움이 됩니다.';
+
+  @override
+  String get guide_secSolar => '리피터용 태양광';
+
+  @override
+  String get guide_solar1 =>
+      '리피터는 전력을 거의 쓰지 않지만, 패널과 배터리는 여름날이 아닌 가장 어두운 겨울 주에 맞추세요.';
+
+  @override
+  String get guide_solar2 => '패널은 적도 쪽을 향하게, 겨울에는 가파르게 기울이고 눈과 그늘을 피하세요.';
+
+  @override
+  String get guide_secAntenna => '안테나와 설치 위치';
+
+  @override
+  String get guide_ant1 => '출력보다 높이가 중요합니다. 몇 미터 높은 무전기가 책상 위보다 훨씬 멀리 닿습니다.';
+
+  @override
+  String get guide_ant2 => '안테나는 수직으로, 금속에서 떨어뜨리고 사용 대역용(예: 한국 920 MHz)을 쓰세요.';
+
+  @override
+  String get guide_secMore => '더 알아보기';
+
+  @override
+  String get guide_moreMeshcore => '공식 MeshCore 프로젝트';
+
+  @override
+  String get guide_moreCascadia => '커뮤니티 가이드: 시작하기, 워드라이빙, 지역, 태양광';
+
+  @override
   String get post_signed => '서명됨';
 
   @override

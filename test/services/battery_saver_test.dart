@@ -36,6 +36,26 @@ void main() {
     radio.dispose();
   });
 
+  test('the refresh rate scales polling; battery saver still wins', () {
+    expect(AppSettings().refreshRate, 'normal');
+    final slow = AppSettings().copyWith(refreshRate: 'slow');
+    expect(AppSettings.fromJson(slow.toJson()).refreshRate, 'slow');
+    final radio = MeshCoreConnector();
+    radio.setPollScale(0.5);
+    expect(radio.batteryPollInterval, const Duration(minutes: 1));
+    expect(radio.gpsLocationPollInterval, const Duration(seconds: 30));
+    expect(radio.radioStatsPollInterval, const Duration(seconds: 15));
+    radio.setPollScale(3);
+    expect(radio.batteryPollInterval, const Duration(minutes: 6));
+    expect(radio.gpsLocationPollInterval, const Duration(minutes: 3));
+    // The radio stats screen's 1-second refresh isn't stretched.
+    radio.setPollingInterval(1);
+    expect(radio.radioStatsPollInterval, const Duration(seconds: 1));
+    radio.setBatterySaver(true);
+    expect(radio.batteryPollInterval, const Duration(minutes: 10));
+    radio.dispose();
+  });
+
   test('trip checks slow down; nothing else changes', () async {
     SharedPreferences.setMockInitialValues({});
     final radio = MeshCoreConnector();

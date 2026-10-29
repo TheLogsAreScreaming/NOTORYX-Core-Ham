@@ -289,8 +289,16 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(appTheme: id));
   }
 
+  Future<void> setLinkPreviews(bool value) async {
+    await updateSettings(_settings.copyWith(linkPreviews: value));
+  }
+
   Future<void> setBatterySaver(bool value) async {
     await updateSettings(_settings.copyWith(batterySaver: value));
+  }
+
+  Future<void> setRefreshRate(String value) async {
+    await updateSettings(_settings.copyWith(refreshRate: value));
   }
 
   Future<void> setSignChannelPosts(bool value) async {

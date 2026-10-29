@@ -8628,6 +8628,351 @@ class AppLocalizationsHu extends AppLocalizations {
       'Felsorolja az átjátszókat, amelyeken az üzenet érkezett.';
 
   @override
+  String get ping_title => 'Átjátszó ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Oda-vissza idő és jel mindkét irányban egy közeli átjátszóhoz';
+
+  @override
+  String get ping_noRepeaters => 'Még nincs ismert átjátszó';
+
+  @override
+  String get ping_choose => 'Válasszon átjátszót';
+
+  @override
+  String get ping_avgMs => 'ms oda-vissza';
+
+  @override
+  String get ping_snrThere => 'SNR ott';
+
+  @override
+  String get ping_snrBack => 'SNR vissza';
+
+  @override
+  String get ping_loss => 'Elveszett';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping: $done / $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return '$count ping';
+  }
+
+  @override
+  String get ping_results => 'Próbák';
+
+  @override
+  String get ping_noReply => 'Nincs válasz';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR ott $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Minden próba egyugrásos útvonalkövetés: az átjátszó feljegyzi, mennyire hallotta, és visszaküldi. Közvetlenül hallott átjátszóknál működik.';
+
+  @override
+  String get hunt_title => 'Antennakeresés';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Nagy élő jelmérő, amely erősebb jelnél gyorsabban kattog';
+
+  @override
+  String get hunt_noSignal => 'Még nincs jel';
+
+  @override
+  String get hunt_noReply =>
+      'Nincs válasz – mozdítsa vagy fordítsa az antennát';
+
+  @override
+  String get hunt_heardHere => 'dB itt hallva';
+
+  @override
+  String get hunt_best => 'Legjobb';
+
+  @override
+  String get hunt_sound => 'Kattogás erősödő jelnél';
+
+  @override
+  String get hunt_soundHint =>
+      'Minden kattanásnál rezgéssel, hogy nézés nélkül célozhasson.';
+
+  @override
+  String get hunt_stop => 'Leállítás';
+
+  @override
+  String get hunt_start => 'Keresés indítása';
+
+  @override
+  String get hunt_explainer =>
+      'Másodpercenként nagyjából egyszer szondázza az átjátszót. Irányítson irányított antennát vagy sétáljon: a szám azt mutatja, mennyire hallja a rádió.';
+
+  @override
+  String get settings_refreshRate => 'Frissítési gyakoriság';
+
+  @override
+  String get settings_refreshFast => 'Gyors';
+
+  @override
+  String get settings_refreshNormal => 'Normál';
+
+  @override
+  String get settings_refreshSlow => 'Lassú';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Akkumulátor percenként, GPS 30 mp-enként. Frissebb adatok, több fogyasztás.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Akkumulátor 2 percenként, GPS percenként.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Akkumulátor 6 percenként, GPS 3 percenként. Kíméli az akkut.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Az energiatakarékos mód be van kapcsolva, ez szabja meg az ütemet (akkumulátor 10 percenként).';
+
+  @override
+  String get reach_check => 'Megfigyelői elérés ellenőrzése';
+
+  @override
+  String get reach_title => 'Megfigyelői elérés';
+
+  @override
+  String get reach_noHash =>
+      'Ez az üzenet még nem kereshető: egy átjátszó sem küldte vissza a rádiónak, így a csomagazonosító ismeretlen.';
+
+  @override
+  String get reach_unreachable =>
+      'Az elemző nem érhető el. Ellenőrizze az internetet vagy az elemző címét a beállításokban.';
+
+  @override
+  String get reach_none =>
+      'Még egy megfigyelő sem hallotta. A megfigyelők kicsivel a vétel után töltenek fel, nézze meg egy perc múlva.';
+
+  @override
+  String get reach_observers => 'megfigyelő';
+
+  @override
+  String get reach_maxHops => 'max. ugrás';
+
+  @override
+  String get reach_bestSnr => 'legjobb SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count ugrásnyira';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Az online elemzőből: megfigyelők, akik hallották és feltöltötték a csomagot.';
+
+  @override
+  String get reach_checkAgain => 'Újra';
+
+  @override
+  String get analyzer_title => 'Online elemző';
+
+  @override
+  String get analyzer_url => 'Elemző címe';
+
+  @override
+  String get analyzer_urlHint =>
+      'CoreScope elemző (https://). A régiójához tartozót használja.';
+
+  @override
+  String get analyzer_reset => 'Alapértelmezett';
+
+  @override
+  String get analyzer_hint =>
+      'Annak ellenőrzésére, mely megfigyelők hallották az üzeneteit. Csak a csomagazonosítót küldi.';
+
+  @override
+  String get analyzer_hopLookup => 'Ismeretlen átjátszók nevei online';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Ha egy átjátszó-azonosító nincs a névjegyei között, az elemző megadja a nevét. Csak a rövid azonosítókat küldi. A „?” végű név azt jelenti, hogy több átjátszó osztozik az azonosítón.';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Közelben hallott csatornák: $count';
+  }
+
+  @override
+  String get discovered_title => 'Közelben hallott, nem csatlakozott';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return '$count× hallva · utoljára $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Mellőzés';
+
+  @override
+  String get discovered_ignoreAll => 'Összes mellőzése';
+
+  @override
+  String get discovered_joinAll => 'Csatlakozás mindhez';
+
+  @override
+  String get discovered_explainer =>
+      'Ezek a csatornakönyvtár nyilvános csatornái, amelyeken a rádió forgalmat hallott. Mindegyiket egy üzenet visszafejtése igazolta. A mellőzöttek rejtve maradnak.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (közösségi)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'A MeshRank közösségi MeshCore-hálózatrangsor, nem része a NOTORYX-nek, és az nem támogatja. Bejelentkezés nélkül: a csomagok a rádió kulcsával és régiókódjával kerülnek megosztásra, csak ha bekapcsolja a megosztást.';
+
+  @override
+  String get pathFilter_title => 'Útvonalszélesség-szűrő';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Továbbítási szabályokat ismerő átjátszó-firmware kell (mikecarper/MeshCore). A hivatalos MeshCore firmware elutasítja ezeket a parancsokat.';
+
+  @override
+  String get pathFilter_width => 'Útvonalszélesség';
+
+  @override
+  String get pathFilter_anyWidth => 'Bármilyen szélesség';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return '$n bájtos útvonalak';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 vagy 3 bájt (2+)';
+
+  @override
+  String get pathFilter_path => 'Erre vonatkozik';
+
+  @override
+  String get pathFilter_radio => 'Rádiós elárasztás';
+
+  @override
+  String get pathFilter_bridge => 'Híd';
+
+  @override
+  String get pathFilter_cross => 'Átkötés';
+
+  @override
+  String get pathFilter_bridgeCross => 'Híd és átkötés';
+
+  @override
+  String get pathFilter_limit => 'Korlátozás eldobás helyett';
+
+  @override
+  String get pathFilter_limitOn =>
+      'Percenként legfeljebb adott számút továbbít.';
+
+  @override
+  String get pathFilter_drop => 'Az egyező elárasztások eldobódnak.';
+
+  @override
+  String get pathFilter_perMinute => 'Percenként';
+
+  @override
+  String get pathFilter_rateInvalid => 'Adjon meg 1 és 65534 közötti értéket.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Ez csak kitölti a parancssort. Ellenőrizze, majd nyomja meg a Küldést. Előbb a „get fr” mutatja a meglévő szabályokat.';
+
+  @override
+  String get pathFilter_useCommand => 'Parancs használata';
+
+  @override
+  String get settings_linkPreviews => 'Hivatkozás-előnézetek';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Megjeleníti az üzenetben lévő hivatkozás címét. Alapból ki: az oldal lekérése elárulja az IP-címét a webhelynek.';
+
+  @override
+  String get guide_title => 'Terepi útmutató';
+
+  @override
+  String get guide_subtitle => 'Alapok, akkuk hidegben, napelem és antennák';
+
+  @override
+  String get guide_secMesh => 'Csatlakozás a hálózathoz';
+
+  @override
+  String get guide_mesh1 =>
+      'A telefon Bluetooth-on, USB-n vagy Wi-Fi-n beszél a rádióval; a rádió LoRán a hálózattal. Az üzenetek térerő nélkül is mennek.';
+
+  @override
+  String get guide_mesh2 =>
+      'Az átjátszók továbbadják az üzeneteket; minden továbbítás egy ugrás. Kevesebb ugrás gyorsabb, megbízhatóbb kézbesítés.';
+
+  @override
+  String get guide_mesh3 =>
+      'Írjon röviden, és ne árassza el a forgalmas csatornákat: minden üzenet közös adásidőt használ.';
+
+  @override
+  String get guide_secCold => 'Akkuk hidegben';
+
+  @override
+  String get guide_cold1 =>
+      'Ne töltse a lítiumakkut fagypont alatt (0 °C): maradandóan károsodik.';
+
+  @override
+  String get guide_cold2 =>
+      'Tartsa a rádiót a kabátja alatt. A hideg csökkenti a kapacitást, ami melegben visszatér.';
+
+  @override
+  String get guide_cold3 =>
+      'Hideg éghajlatú fix helyeken a LiFePO4 jobban bírja, mint a lítiumion; fűtött vagy szigetelt doboz mindkettőnek segít.';
+
+  @override
+  String get guide_secSolar => 'Napelem átjátszókhoz';
+
+  @override
+  String get guide_solar1 =>
+      'Az átjátszó nagyon keveset fogyaszt, de a panelt és az akkut a legsötétebb téli hétre méretezze, ne nyári napra.';
+
+  @override
+  String get guide_solar2 =>
+      'Fordítsa a panelt az Egyenlítő felé, télen meredeken döntve; tartsa távol a havat és az árnyékot.';
+
+  @override
+  String get guide_secAntenna => 'Antennák és elhelyezés';
+
+  @override
+  String get guide_ant1 =>
+      'A magasság többet ér a teljesítménynél: néhány méterrel feljebb sokkal messzebb ér a rádió, mint az asztalon.';
+
+  @override
+  String get guide_ant2 =>
+      'Tartsa az antennát függőlegesen, fémtől távol, és a sávjához valót használjon (pl. 868 MHz Európában).';
+
+  @override
+  String get guide_secMore => 'További információ';
+
+  @override
+  String get guide_moreMeshcore => 'A hivatalos MeshCore projekt';
+
+  @override
+  String get guide_moreCascadia =>
+      'Közösségi útmutatók: kezdés, wardriving, régiók, napelem';
+
+  @override
   String get post_signed => 'Aláírt';
 
   @override

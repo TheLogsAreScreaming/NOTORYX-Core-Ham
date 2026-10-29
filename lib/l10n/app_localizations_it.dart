@@ -8652,6 +8652,349 @@ class AppLocalizationsIt extends AppLocalizations {
       'Elenca i ripetitori attraverso cui è passato il messaggio.';
 
   @override
+  String get ping_title => 'Ping ripetitore';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Tempo di andata e ritorno e segnale nei due sensi verso un ripetitore vicino';
+
+  @override
+  String get ping_noRepeaters => 'Nessun ripetitore noto';
+
+  @override
+  String get ping_choose => 'Scegli un ripetitore';
+
+  @override
+  String get ping_avgMs => 'ms andata e ritorno';
+
+  @override
+  String get ping_snrThere => 'SNR là';
+
+  @override
+  String get ping_snrBack => 'SNR ritorno';
+
+  @override
+  String get ping_loss => 'Persi';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done di $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Ping $count volte';
+  }
+
+  @override
+  String get ping_results => 'Sonde';
+
+  @override
+  String get ping_noReply => 'Nessuna risposta';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR là $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Ogni sonda è un tracciamento a un salto: il ripetitore annota quanto bene ti ha sentito e lo rimanda. Funziona con i ripetitori che la radio sente direttamente.';
+
+  @override
+  String get hunt_title => 'Ricerca antenna';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Grande indicatore di segnale che ticchetta più veloce quando migliora';
+
+  @override
+  String get hunt_noSignal => 'Ancora nessun segnale';
+
+  @override
+  String get hunt_noReply => 'Nessuna risposta: sposta o ruota l’antenna';
+
+  @override
+  String get hunt_heardHere => 'dB ricevuti qui';
+
+  @override
+  String get hunt_best => 'Migliore';
+
+  @override
+  String get hunt_sound => 'Clic quando il segnale migliora';
+
+  @override
+  String get hunt_soundHint =>
+      'Con una vibrazione a ogni clic, per orientare senza guardare.';
+
+  @override
+  String get hunt_stop => 'Ferma';
+
+  @override
+  String get hunt_start => 'Avvia ricerca';
+
+  @override
+  String get hunt_explainer =>
+      'Sonda il ripetitore circa una volta al secondo. Orienta un’antenna direttiva o muoviti: il numero indica quanto bene la radio lo sente.';
+
+  @override
+  String get settings_refreshRate => 'Frequenza di aggiornamento';
+
+  @override
+  String get settings_refreshFast => 'Veloce';
+
+  @override
+  String get settings_refreshNormal => 'Normale';
+
+  @override
+  String get settings_refreshSlow => 'Lenta';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Batteria ogni minuto, GPS ogni 30 s. Dati più freschi, più consumo.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Batteria ogni 2 minuti, GPS ogni minuto.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Batteria ogni 6 minuti, GPS ogni 3. Risparmia batteria.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Il risparmio batteria è attivo e detta il ritmo (batteria ogni 10 minuti).';
+
+  @override
+  String get reach_check => 'Controlla portata osservatori';
+
+  @override
+  String get reach_title => 'Portata osservatori';
+
+  @override
+  String get reach_noHash =>
+      'Questo messaggio non è ancora consultabile: nessun ripetitore l’ha rimandato alla tua radio, quindi l’ID del pacchetto non è noto.';
+
+  @override
+  String get reach_unreachable =>
+      'Analizzatore non raggiungibile. Controlla la connessione o l’indirizzo dell’analizzatore nelle impostazioni.';
+
+  @override
+  String get reach_none =>
+      'Nessun osservatore l’ha ancora sentito. Gli osservatori caricano poco dopo, ricontrolla tra un minuto.';
+
+  @override
+  String get reach_observers => 'osservatori';
+
+  @override
+  String get reach_maxHops => 'salti max';
+
+  @override
+  String get reach_bestSnr => 'SNR migliore';
+
+  @override
+  String reach_hops(int count) {
+    return 'a $count salti';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Dall’analizzatore online: osservatori che hanno sentito e caricato questo pacchetto.';
+
+  @override
+  String get reach_checkAgain => 'Ricontrolla';
+
+  @override
+  String get analyzer_title => 'Analizzatore online';
+
+  @override
+  String get analyzer_url => 'Indirizzo analizzatore';
+
+  @override
+  String get analyzer_urlHint =>
+      'Un analizzatore CoreScope (https://). Usa quello della tua regione.';
+
+  @override
+  String get analyzer_reset => 'Predefinito';
+
+  @override
+  String get analyzer_hint =>
+      'Serve a controllare quali osservatori hanno sentito i tuoi messaggi. Invia solo l’ID del pacchetto.';
+
+  @override
+  String get analyzer_hopLookup => 'Nomina online i ripetitori sconosciuti';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Se un ID di ripetitore non è nei contatti, se ne chiede il nome all’analizzatore. Si inviano solo gli ID brevi. Un nome con «?» indica che più ripetitori condividono l’ID.';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Canali sentiti nelle vicinanze: $count';
+  }
+
+  @override
+  String get discovered_title => 'Sentiti vicino, non uniti';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return 'Sentito $count× · ultimo $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Ignora';
+
+  @override
+  String get discovered_ignoreAll => 'Ignora tutti';
+
+  @override
+  String get discovered_joinAll => 'Unisciti a tutti';
+
+  @override
+  String get discovered_explainer =>
+      'Sono canali pubblici dell’elenco su cui la radio ha sentito traffico. Ognuno è confermato decifrando un messaggio con la sua chiave. Quelli ignorati restano nascosti.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (comunità)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank è una classifica comunitaria delle reti MeshCore, non fa parte di NOTORYX e non è approvata da esso. Senza accesso: i pacchetti sono condivisi con la chiave e il codice regione della radio, solo dopo aver attivato la condivisione.';
+
+  @override
+  String get pathFilter_title => 'Filtro larghezza percorso';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Richiede un firmware del ripetitore con regole di inoltro (mikecarper/MeshCore). Il firmware ufficiale MeshCore rifiuta questi comandi.';
+
+  @override
+  String get pathFilter_width => 'Larghezza percorso';
+
+  @override
+  String get pathFilter_anyWidth => 'Qualsiasi larghezza';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return 'Percorsi da $n byte';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 o 3 byte (2+)';
+
+  @override
+  String get pathFilter_path => 'Si applica a';
+
+  @override
+  String get pathFilter_radio => 'Flood radio';
+
+  @override
+  String get pathFilter_bridge => 'Bridge';
+
+  @override
+  String get pathFilter_cross => 'Incrocio';
+
+  @override
+  String get pathFilter_bridgeCross => 'Bridge e incrocio';
+
+  @override
+  String get pathFilter_limit => 'Limita invece di scartare';
+
+  @override
+  String get pathFilter_limitOn => 'Inoltra fino a un numero fisso al minuto.';
+
+  @override
+  String get pathFilter_drop => 'I flood corrispondenti vengono scartati.';
+
+  @override
+  String get pathFilter_perMinute => 'Al minuto';
+
+  @override
+  String get pathFilter_rateInvalid => 'Inserisci da 1 a 65534.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Compila solo la riga di comando. Controllala, poi premi Invia. Usa prima «get fr» per vedere le regole.';
+
+  @override
+  String get pathFilter_useCommand => 'Usa comando';
+
+  @override
+  String get settings_linkPreviews => 'Anteprime dei link';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Mostra il titolo di un link in un messaggio. Disattivato di default: caricare la pagina rivela il tuo IP al sito.';
+
+  @override
+  String get guide_title => 'Guida da campo';
+
+  @override
+  String get guide_subtitle => 'Basi, batterie al freddo, solare e antenne';
+
+  @override
+  String get guide_secMesh => 'Entrare nella rete';
+
+  @override
+  String get guide_mesh1 =>
+      'Il telefono parla con la radio via Bluetooth, USB o Wi-Fi; la radio parla con la rete via LoRa. I messaggi funzionano anche senza campo.';
+
+  @override
+  String get guide_mesh2 =>
+      'I ripetitori inoltrano i messaggi; ogni inoltro è un salto. Meno salti, consegna più rapida e affidabile.';
+
+  @override
+  String get guide_mesh3 =>
+      'Messaggi brevi e niente flood sui canali affollati: ogni messaggio usa tempo d’aria condiviso.';
+
+  @override
+  String get guide_secCold => 'Batterie al freddo';
+
+  @override
+  String get guide_cold1 =>
+      'Non caricare batterie al litio sotto zero (0 °C): si danneggiano per sempre.';
+
+  @override
+  String get guide_cold2 =>
+      'Tieni la radio dentro la giacca. Il freddo riduce la capacità, che torna quando la batteria si scalda.';
+
+  @override
+  String get guide_cold3 =>
+      'Per siti fissi in climi freddi, le LiFePO4 resistono meglio delle litio-ione; una scatola isolata o riscaldata aiuta entrambe.';
+
+  @override
+  String get guide_secSolar => 'Solare per ripetitori';
+
+  @override
+  String get guide_solar1 =>
+      'Un ripetitore consuma pochissimo, ma dimensiona pannello e batteria per la settimana invernale più buia, non per un giorno estivo.';
+
+  @override
+  String get guide_solar2 =>
+      'Orienta il pannello verso l’equatore, molto inclinato d’inverno; tienilo libero da neve e ombra.';
+
+  @override
+  String get guide_secAntenna => 'Antenne e posizionamento';
+
+  @override
+  String get guide_ant1 =>
+      'L’altezza conta più della potenza: una radio a qualche metro arriva molto più lontano di una sulla scrivania.';
+
+  @override
+  String get guide_ant2 =>
+      'Tieni l’antenna verticale e lontana dal metallo, e usane una per la tua banda (per esempio 868 MHz in Europa).';
+
+  @override
+  String get guide_secMore => 'Scopri di più';
+
+  @override
+  String get guide_moreMeshcore => 'Il progetto ufficiale MeshCore';
+
+  @override
+  String get guide_moreCascadia =>
+      'Guide della comunità: primi passi, wardriving, regioni, solare';
+
+  @override
   String get post_signed => 'Firmato';
 
   @override

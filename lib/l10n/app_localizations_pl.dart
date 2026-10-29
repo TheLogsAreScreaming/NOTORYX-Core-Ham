@@ -8676,6 +8676,349 @@ class AppLocalizationsPl extends AppLocalizations {
       'Wyświetla przemienniki, przez które przeszła wiadomość.';
 
   @override
+  String get ping_title => 'Ping przemiennika';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Czas w obie strony i sygnał do pobliskiego przemiennika';
+
+  @override
+  String get ping_noRepeaters => 'Brak znanych przemienników';
+
+  @override
+  String get ping_choose => 'Wybierz przemiennik';
+
+  @override
+  String get ping_avgMs => 'ms w obie strony';
+
+  @override
+  String get ping_snrThere => 'SNR tam';
+
+  @override
+  String get ping_snrBack => 'SNR z powrotem';
+
+  @override
+  String get ping_loss => 'Utracone';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done z $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Pinguj $count razy';
+  }
+
+  @override
+  String get ping_results => 'Próby';
+
+  @override
+  String get ping_noReply => 'Brak odpowiedzi';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR tam $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Każda próba to śledzenie ścieżki na jeden skok: przemiennik notuje, jak dobrze cię słyszał, i odsyła to. Działa z przemiennikami słyszanymi bezpośrednio.';
+
+  @override
+  String get hunt_title => 'Szukanie anteną';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Duży miernik sygnału, który klika szybciej, gdy sygnał rośnie';
+
+  @override
+  String get hunt_noSignal => 'Brak sygnału';
+
+  @override
+  String get hunt_noReply => 'Brak odpowiedzi — przesuń lub obróć antenę';
+
+  @override
+  String get hunt_heardHere => 'dB słyszane tutaj';
+
+  @override
+  String get hunt_best => 'Najlepszy';
+
+  @override
+  String get hunt_sound => 'Klikaj wraz ze wzrostem sygnału';
+
+  @override
+  String get hunt_soundHint =>
+      'Z wibracją przy każdym kliknięciu, by celować bez patrzenia.';
+
+  @override
+  String get hunt_stop => 'Zatrzymaj';
+
+  @override
+  String get hunt_start => 'Rozpocznij szukanie';
+
+  @override
+  String get hunt_explainer =>
+      'Sonduje przemiennik mniej więcej co sekundę. Ustaw antenę kierunkową lub przejdź się: liczba pokazuje, jak dobrze radio go słyszy.';
+
+  @override
+  String get settings_refreshRate => 'Częstotliwość odświeżania';
+
+  @override
+  String get settings_refreshFast => 'Szybko';
+
+  @override
+  String get settings_refreshNormal => 'Normalnie';
+
+  @override
+  String get settings_refreshSlow => 'Wolno';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Bateria co minutę, GPS co 30 s. Świeższe dane, większe zużycie.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Bateria co 2 minuty, GPS co minutę.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Bateria co 6 minut, GPS co 3. Oszczędza baterię.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Oszczędzanie baterii jest włączone i wyznacza tempo (bateria co 10 minut).';
+
+  @override
+  String get reach_check => 'Sprawdź zasięg u obserwatorów';
+
+  @override
+  String get reach_title => 'Zasięg u obserwatorów';
+
+  @override
+  String get reach_noHash =>
+      'Tej wiadomości nie da się jeszcze sprawdzić: żaden przemiennik nie odesłał jej do radia, więc ID pakietu jest nieznane.';
+
+  @override
+  String get reach_unreachable =>
+      'Brak połączenia z analizatorem. Sprawdź internet lub adres analizatora w ustawieniach.';
+
+  @override
+  String get reach_none =>
+      'Żaden obserwator jeszcze tego nie usłyszał. Obserwatorzy wysyłają dane chwilę po odbiorze, sprawdź ponownie za minutę.';
+
+  @override
+  String get reach_observers => 'obserwatorzy';
+
+  @override
+  String get reach_maxHops => 'maks. skoki';
+
+  @override
+  String get reach_bestSnr => 'najlepszy SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count skoków dalej';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Z analizatora online: obserwatorzy, którzy usłyszeli i wysłali ten pakiet.';
+
+  @override
+  String get reach_checkAgain => 'Sprawdź ponownie';
+
+  @override
+  String get analyzer_title => 'Analizator online';
+
+  @override
+  String get analyzer_url => 'Adres analizatora';
+
+  @override
+  String get analyzer_urlHint =>
+      'Analizator CoreScope (https://). Użyj tego dla swojego regionu.';
+
+  @override
+  String get analyzer_reset => 'Domyślny';
+
+  @override
+  String get analyzer_hint =>
+      'Służy do sprawdzania, którzy obserwatorzy usłyszeli wiadomości. Wysyłane jest tylko ID pakietu.';
+
+  @override
+  String get analyzer_hopLookup => 'Nazwy nieznanych przemienników online';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Gdy ID przemiennika nie ma w kontaktach, nazwa jest pobierana z analizatora. Wysyłane są tylko krótkie ID. Nazwa z „?” oznacza, że kilka przemienników ma to ID.';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Kanały słyszane w pobliżu: $count';
+  }
+
+  @override
+  String get discovered_title => 'Słyszane w pobliżu, niedołączone';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return 'Słyszane $count× · ostatnio $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Ignoruj';
+
+  @override
+  String get discovered_ignoreAll => 'Ignoruj wszystkie';
+
+  @override
+  String get discovered_joinAll => 'Dołącz do wszystkich';
+
+  @override
+  String get discovered_explainer =>
+      'To publiczne kanały z katalogu, na których radio słyszało ruch. Każdy potwierdzono, odszyfrowując wiadomość jego kluczem. Zignorowane pozostają ukryte.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (społeczność)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank to społecznościowy ranking sieci MeshCore, niebędący częścią NOTORYX ani przez niego polecany. Bez logowania: pakiety są udostępniane pod kluczem i kodem regionu radia, dopiero po włączeniu udostępniania.';
+
+  @override
+  String get pathFilter_title => 'Filtr szerokości ścieżki';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Wymaga firmware przemiennika z regułami przekazywania (mikecarper/MeshCore). Oficjalne firmware MeshCore odrzuca te polecenia.';
+
+  @override
+  String get pathFilter_width => 'Szerokość ścieżki';
+
+  @override
+  String get pathFilter_anyWidth => 'Dowolna szerokość';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return 'Ścieżki $n-bajtowe';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 lub 3 bajty (2+)';
+
+  @override
+  String get pathFilter_path => 'Dotyczy';
+
+  @override
+  String get pathFilter_radio => 'Rozgłoszenia radiowe';
+
+  @override
+  String get pathFilter_bridge => 'Most';
+
+  @override
+  String get pathFilter_cross => 'Przejście';
+
+  @override
+  String get pathFilter_bridgeCross => 'Most i przejście';
+
+  @override
+  String get pathFilter_limit => 'Ogranicz zamiast odrzucać';
+
+  @override
+  String get pathFilter_limitOn => 'Przekazuje do ustalonej liczby na minutę.';
+
+  @override
+  String get pathFilter_drop => 'Pasujące rozgłoszenia są odrzucane.';
+
+  @override
+  String get pathFilter_perMinute => 'Na minutę';
+
+  @override
+  String get pathFilter_rateInvalid => 'Wpisz od 1 do 65534.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'To tylko wypełnia wiersz poleceń. Sprawdź go i naciśnij Wyślij. Najpierw użyj „get fr”, by zobaczyć reguły.';
+
+  @override
+  String get pathFilter_useCommand => 'Użyj polecenia';
+
+  @override
+  String get settings_linkPreviews => 'Podglądy linków';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Pokazuje tytuł linku w wiadomości. Domyślnie wyłączone: pobranie strony ujawnia witrynie Twój adres IP.';
+
+  @override
+  String get guide_title => 'Przewodnik terenowy';
+
+  @override
+  String get guide_subtitle => 'Podstawy, baterie w zimnie, słońce i anteny';
+
+  @override
+  String get guide_secMesh => 'Wejście do sieci';
+
+  @override
+  String get guide_mesh1 =>
+      'Telefon łączy się z radiem przez Bluetooth, USB lub Wi-Fi; radio z siecią przez LoRa. Wiadomości działają bez zasięgu komórkowego.';
+
+  @override
+  String get guide_mesh2 =>
+      'Przemienniki przekazują wiadomości; każde przekazanie to skok. Mniej skoków to szybsze i pewniejsze dostarczenie.';
+
+  @override
+  String get guide_mesh3 =>
+      'Pisz krótko i nie zalewaj ruchliwych kanałów: każda wiadomość zużywa wspólny czas antenowy.';
+
+  @override
+  String get guide_secCold => 'Baterie w zimnie';
+
+  @override
+  String get guide_cold1 =>
+      'Nie ładuj baterii litowych poniżej zera (0 °C): trwale je to uszkadza.';
+
+  @override
+  String get guide_cold2 =>
+      'Noś radio pod kurtką. Zimno zmniejsza pojemność, która wraca po ogrzaniu baterii.';
+
+  @override
+  String get guide_cold3 =>
+      'W stałych lokalizacjach w zimnym klimacie LiFePO4 radzi sobie lepiej niż litowo-jonowe; ogrzewana lub izolowana obudowa pomaga obu.';
+
+  @override
+  String get guide_secSolar => 'Słońce dla przemienników';
+
+  @override
+  String get guide_solar1 =>
+      'Przemiennik zużywa bardzo mało, ale dobierz panel i baterię do najciemniejszego zimowego tygodnia, nie letniego dnia.';
+
+  @override
+  String get guide_solar2 =>
+      'Skieruj panel ku równikowi i zimą ustaw go stromo; chroń przed śniegiem i cieniem.';
+
+  @override
+  String get guide_secAntenna => 'Anteny i rozmieszczenie';
+
+  @override
+  String get guide_ant1 =>
+      'Wysokość wygrywa z mocą: radio kilka metrów wyżej sięga dużo dalej niż na biurku.';
+
+  @override
+  String get guide_ant2 =>
+      'Trzymaj antenę pionowo, z dala od metalu, i używaj takiej na swoje pasmo (np. 868 MHz w Europie).';
+
+  @override
+  String get guide_secMore => 'Dowiedz się więcej';
+
+  @override
+  String get guide_moreMeshcore => 'Oficjalny projekt MeshCore';
+
+  @override
+  String get guide_moreCascadia =>
+      'Poradniki społeczności: start, wardriving, regiony, słońce';
+
+  @override
   String get post_signed => 'Podpisane';
 
   @override

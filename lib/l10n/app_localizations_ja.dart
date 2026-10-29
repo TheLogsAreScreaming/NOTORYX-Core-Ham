@@ -8221,6 +8221,335 @@ class AppLocalizationsJa extends AppLocalizations {
   String get botCmd_trace => '送信者のメッセージが経由したリピーターを一覧表示します。';
 
   @override
+  String get ping_title => 'リピーター ping';
+
+  @override
+  String get ping_toolSubtitle => '近くのリピーターとの往復時間と双方向の信号';
+
+  @override
+  String get ping_noRepeaters => '既知のリピーターはまだありません';
+
+  @override
+  String get ping_choose => 'リピーターを選択';
+
+  @override
+  String get ping_avgMs => 'ms 往復';
+
+  @override
+  String get ping_snrThere => 'SNR 先方';
+
+  @override
+  String get ping_snrBack => 'SNR 受信';
+
+  @override
+  String get ping_loss => '損失';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'ping $done/$total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return '$count 回 ping';
+  }
+
+  @override
+  String get ping_results => 'プローブ';
+
+  @override
+  String get ping_noReply => '応答なし';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · 先方 SNR $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      '各プローブは 1 ホップの経路トレースです。リピーターは受信品質を記録して送り返します。無線機が直接受信できるリピーターで使えます。';
+
+  @override
+  String get hunt_title => 'アンテナハント';
+
+  @override
+  String get hunt_toolSubtitle => '強くなるほど速くクリックする大きな信号メーター';
+
+  @override
+  String get hunt_noSignal => 'まだ信号なし';
+
+  @override
+  String get hunt_noReply => '応答なし — アンテナを動かすか向きを変えてください';
+
+  @override
+  String get hunt_heardHere => 'dB（こちらで受信）';
+
+  @override
+  String get hunt_best => '最高';
+
+  @override
+  String get hunt_sound => '強くなるほどクリック';
+
+  @override
+  String get hunt_soundHint => 'クリックごとに振動するので、画面を見ずに向きを合わせられます。';
+
+  @override
+  String get hunt_stop => '停止';
+
+  @override
+  String get hunt_start => 'ハント開始';
+
+  @override
+  String get hunt_explainer =>
+      '約 1 秒ごとにリピーターを探査します。指向性アンテナを向けるか歩き回ってください。数値は無線機の受信の良さです。';
+
+  @override
+  String get settings_refreshRate => '無線機の更新頻度';
+
+  @override
+  String get settings_refreshFast => '速い';
+
+  @override
+  String get settings_refreshNormal => '標準';
+
+  @override
+  String get settings_refreshSlow => '遅い';
+
+  @override
+  String get settings_refreshFastHint => 'バッテリーは毎分、GPS は 30 秒ごと。新しい値、電池消費は多め。';
+
+  @override
+  String get settings_refreshNormalHint => 'バッテリーは 2 分ごと、GPS は毎分。';
+
+  @override
+  String get settings_refreshSlowHint => 'バッテリーは 6 分ごと、GPS は 3 分ごと。電池を節約。';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'バッテリーセーバーがオンのため、そちらの間隔になります（バッテリーは 10 分ごと）。';
+
+  @override
+  String get reach_check => 'オブザーバー到達を確認';
+
+  @override
+  String get reach_title => 'オブザーバー到達';
+
+  @override
+  String get reach_noHash =>
+      'このメッセージはまだ調べられません。リピーターが無線機に中継し返していないため、パケット ID が不明です。';
+
+  @override
+  String get reach_unreachable =>
+      'アナライザーに接続できません。インターネット接続か、設定のアナライザーのアドレスを確認してください。';
+
+  @override
+  String get reach_none =>
+      'まだどのオブザーバーも受信していません。受信後少ししてからアップロードされるので、1 分後に再確認してください。';
+
+  @override
+  String get reach_observers => 'オブザーバー';
+
+  @override
+  String get reach_maxHops => '最大ホップ';
+
+  @override
+  String get reach_bestSnr => '最高 SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count ホップ先';
+  }
+
+  @override
+  String get reach_explainer => 'オンラインアナライザーより：このパケットを受信してアップロードしたオブザーバー。';
+
+  @override
+  String get reach_checkAgain => '再確認';
+
+  @override
+  String get analyzer_title => 'オンラインアナライザー';
+
+  @override
+  String get analyzer_url => 'アナライザーのアドレス';
+
+  @override
+  String get analyzer_urlHint =>
+      'CoreScope アナライザー（https://）。お住まいの地域をカバーするものを使います。';
+
+  @override
+  String get analyzer_reset => '既定値';
+
+  @override
+  String get analyzer_hint => 'どのオブザーバーがメッセージを受信したかの確認に使います。送るのはパケット ID だけです。';
+
+  @override
+  String get analyzer_hopLookup => '不明なリピーター名をオンラインで取得';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'リピーター ID が連絡先にない場合、アナライザーに名前を問い合わせます。送るのは短い ID だけです。名前の末尾の「?」は、その ID を複数のリピーターが共有していることを示します。';
+
+  @override
+  String discovered_tray(int count) {
+    return '近くで受信したチャンネル：$count';
+  }
+
+  @override
+  String get discovered_title => '近くで受信、未参加';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return '$count 回受信・最終 $time';
+  }
+
+  @override
+  String get discovered_ignore => '無視';
+
+  @override
+  String get discovered_ignoreAll => 'すべて無視';
+
+  @override
+  String get discovered_joinAll => 'すべて参加';
+
+  @override
+  String get discovered_explainer =>
+      'チャンネルディレクトリにある公開チャンネルで、無線機が通信を受信したものです。いずれもキーでメッセージを復号して確認済みです。無視したチャンネルは表示されません。';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank（コミュニティ）';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank はコミュニティ運営の MeshCore ネットワークランキングで、NOTORYX の一部ではなく、推奨もしていません。サインイン不要：共有をオンにした後に限り、無線機のキーと地域コードでパケットが共有されます。';
+
+  @override
+  String get pathFilter_title => 'パス幅フィルター';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      '転送ルール対応のリピーターファームウェア（mikecarper/MeshCore）が必要です。公式 MeshCore ファームウェアはこのコマンドを拒否します。';
+
+  @override
+  String get pathFilter_width => 'パス幅';
+
+  @override
+  String get pathFilter_anyWidth => '任意の幅';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return '$n バイトのパス';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 または 3 バイト（2+）';
+
+  @override
+  String get pathFilter_path => '適用対象';
+
+  @override
+  String get pathFilter_radio => '無線フラッド';
+
+  @override
+  String get pathFilter_bridge => 'ブリッジ';
+
+  @override
+  String get pathFilter_cross => 'クロスオーバー';
+
+  @override
+  String get pathFilter_bridgeCross => 'ブリッジとクロスオーバー';
+
+  @override
+  String get pathFilter_limit => '破棄ではなく制限';
+
+  @override
+  String get pathFilter_limitOn => '1 分あたり決まった数まで転送します。';
+
+  @override
+  String get pathFilter_drop => '一致するフラッドは転送されず破棄されます。';
+
+  @override
+  String get pathFilter_perMinute => '1 分あたり';
+
+  @override
+  String get pathFilter_rateInvalid => '1〜65534 を入力してください。';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'コマンド欄に入力するだけです。確認してから送信してください。先に「get fr」で既存のルールを確認できます。';
+
+  @override
+  String get pathFilter_useCommand => 'コマンドを使用';
+
+  @override
+  String get settings_linkPreviews => 'リンクプレビュー';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'メッセージ内のリンクのタイトルを表示します。既定はオフ：ページを取得するとそのサイトに IP アドレスが伝わります。';
+
+  @override
+  String get guide_title => 'フィールドガイド';
+
+  @override
+  String get guide_subtitle => '基本、寒冷時のバッテリー、ソーラー、アンテナ';
+
+  @override
+  String get guide_secMesh => 'メッシュに参加する';
+
+  @override
+  String get guide_mesh1 =>
+      'スマートフォンは Bluetooth・USB・Wi-Fi で無線機と、無線機は LoRa でメッシュと通信します。携帯の電波がなくてもメッセージは届きます。';
+
+  @override
+  String get guide_mesh2 =>
+      'リピーターがメッセージを中継し、1 回の中継が 1 ホップです。ホップが少ないほど速く確実に届きます。';
+
+  @override
+  String get guide_mesh3 =>
+      'メッセージは短く、混雑したチャンネルに送りすぎないでください。どのメッセージも共有の送信時間を使います。';
+
+  @override
+  String get guide_secCold => '寒冷時のバッテリー';
+
+  @override
+  String get guide_cold1 => '氷点下（0 °C）でリチウム電池を充電しないでください。永久に劣化します。';
+
+  @override
+  String get guide_cold2 => '無線機は上着の内側に。寒さで容量は減りますが、温まれば戻ります。';
+
+  @override
+  String get guide_cold3 =>
+      '寒冷地の固定設置では、リチウムイオンより LiFePO4 が適しています。断熱・加温ボックスはどちらにも有効です。';
+
+  @override
+  String get guide_secSolar => 'リピーターのソーラー';
+
+  @override
+  String get guide_solar1 =>
+      'リピーターの消費電力はごく小さいですが、パネルと電池は夏の日ではなく冬の最も暗い 1 週間に合わせて選びます。';
+
+  @override
+  String get guide_solar2 => 'パネルは赤道側に向け、冬は急角度に。雪や影がかからないようにします。';
+
+  @override
+  String get guide_secAntenna => 'アンテナと設置場所';
+
+  @override
+  String get guide_ant1 => '出力より高さ。数メートル高い無線機は机の上より遥かに遠くまで届きます。';
+
+  @override
+  String get guide_ant2 => 'アンテナは垂直に、金属から離し、使う周波数帯用のもの（例：日本は 920 MHz）を使います。';
+
+  @override
+  String get guide_secMore => '詳しく知る';
+
+  @override
+  String get guide_moreMeshcore => '公式 MeshCore プロジェクト';
+
+  @override
+  String get guide_moreCascadia => 'コミュニティガイド：入門、ウォードライビング、地域、ソーラー';
+
+  @override
   String get post_signed => '署名済み';
 
   @override

@@ -3531,16 +3531,40 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
   }
 
+  double _pollScale = 1;
+
+  /// Scales routine polling of battery, GPS and radio stats: 0.5 is twice
+  /// as often, 3 is a third as often. Battery saver still wins when on.
+  void setPollScale(double scale) {
+    final next = scale.clamp(0.25, 10).toDouble();
+    if (next == _pollScale) return;
+    _pollScale = next;
+    if (isConnected) {
+      _startBatteryPolling();
+      if (_gpsLocationPollTimer != null) {
+        _stopGpsLocationPolling();
+        _startGpsLocationPolling();
+      }
+      if (_radioStatsPollTimer != null) _startRadioStatsPolling();
+    }
+  }
+
   @visibleForTesting
-  Duration get batteryPollInterval =>
-      _batterySaver ? const Duration(minutes: 10) : _batteryPollInterval;
+  Duration get batteryPollInterval => _batterySaver
+      ? const Duration(minutes: 10)
+      : _batteryPollInterval * _pollScale;
   @visibleForTesting
-  Duration get gpsLocationPollInterval =>
-      _batterySaver ? const Duration(minutes: 5) : _gpsLocationPollInterval;
+  Duration get gpsLocationPollInterval => _batterySaver
+      ? const Duration(minutes: 5)
+      : _gpsLocationPollInterval * _pollScale;
   @visibleForTesting
-  Duration get radioStatsPollInterval => Duration(
-    seconds: _batterySaver && _pollingInterval < 60 ? 60 : _pollingInterval,
-  );
+  Duration get radioStatsPollInterval {
+    // The radio stats screen asks for 1 s while it's open; leave that alone.
+    final seconds = _pollingInterval < 5
+        ? _pollingInterval
+        : (_pollingInterval * _pollScale).round();
+    return Duration(seconds: _batterySaver && seconds < 60 ? 60 : seconds);
+  }
 
   void _startBatteryPolling() {
     _batteryPollTimer?.cancel();
@@ -7664,6 +7688,36 @@ class MeshCoreConnector extends ChangeNotifier {
       return null;
     }
   }
+
+  /// The channel hash of [raw] when it's a group text message, else null.
+  int? groupChannelHash(Uint8List raw) {
+    final packet = _parseRawPacket(raw);
+    if (packet == null ||
+        packet.payloadType != _payloadTypeGroupText ||
+        packet.payload.isEmpty) {
+      return null;
+    }
+    return packet.payload[0];
+  }
+
+  /// Whether [raw] is a group text message on the channel keyed by [psk]:
+  /// its channel hash matches and its MAC checks out, so a one-byte hash
+  /// collision isn't mistaken for the channel.
+  bool groupPacketMatches(Uint8List raw, Uint8List psk) {
+    final packet = _parseRawPacket(raw);
+    if (packet == null ||
+        packet.payloadType != _payloadTypeGroupText ||
+        packet.payload.isEmpty ||
+        _computeChannelHash(psk) != packet.payload[0]) {
+      return false;
+    }
+    return _decryptPayload(psk, Uint8List.sublistView(packet.payload, 1)) !=
+        null;
+  }
+
+  /// The one-byte hash group messages carry for the channel keyed by [psk].
+  static int channelHashOf(Uint8List psk) =>
+      crypto.sha256.convert(psk).bytes[0];
 
   int _computeChannelHash(Uint8List psk) {
     final digest = crypto.sha256.convert(psk).bytes;

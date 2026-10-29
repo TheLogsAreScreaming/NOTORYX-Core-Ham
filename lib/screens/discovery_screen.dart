@@ -169,34 +169,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     return ListEntrance(
       index: index,
       child: MeshCard(
-        onTap: () async {
-          try {
-            final imported = await connector.importDiscoveredContact(contact);
-            if (!context.mounted) return;
-            if (!imported) {
-              showDismissibleSnackBar(
-                context,
-                content: Text(context.l10n.contacts_contactImportFailed),
-              );
-              return;
-            }
-            showDismissibleSnackBar(
-              context,
-              content: Text(context.l10n.discoveredContacts_contactAdded),
-              action: SnackBarAction(
-                label: context.l10n.common_undo,
-                onPressed: () => connector.removeContact(contact),
-              ),
-            );
-          } catch (_) {
-            if (!context.mounted) return;
-            showDismissibleSnackBar(
-              context,
-              content: Text(context.l10n.contacts_contactImportFailed),
-            );
-          }
-        },
-        onLongPress: () => _showContactContextMenu(contact, connector),
+        onTap: () => _showContactContextMenu(contact, connector),
         onSecondaryTap: PlatformInfo.isDesktop
             ? () => _showContactContextMenu(contact, connector)
             : null,
@@ -296,10 +269,43 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                 ),
               ),
             ),
+            IconButton(
+              tooltip: context.l10n.discoveredContacts_addContact,
+              icon: const Icon(Icons.person_add_alt_1),
+              onPressed: () => _addContact(contact, connector),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _addContact(Contact contact, MeshCoreConnector connector) async {
+    try {
+      final imported = await connector.importDiscoveredContact(contact);
+      if (!mounted) return;
+      if (!imported) {
+        showDismissibleSnackBar(
+          context,
+          content: Text(context.l10n.contacts_contactImportFailed),
+        );
+        return;
+      }
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.discoveredContacts_contactAdded),
+        action: SnackBarAction(
+          label: context.l10n.common_undo,
+          onPressed: () => connector.removeContact(contact),
+        ),
+      );
+    } catch (_) {
+      if (!mounted) return;
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.contacts_contactImportFailed),
+      );
+    }
   }
 
   Future<void> _showContactContextMenu(
@@ -317,6 +323,11 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
               BottomSheetHeader(
                 title: contact.name,
                 subtitle: contact.typeLabel(l10n),
+              ),
+              ListTile(
+                leading: const Icon(Icons.person_add_alt_1),
+                title: Text(l10n.discoveredContacts_addContact),
+                onTap: () => Navigator.of(sheetContext).pop('add_contact'),
               ),
               ListTile(
                 leading: const Icon(Icons.copy),
@@ -338,6 +349,9 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     if (!mounted || action == null) return;
 
     switch (action) {
+      case 'add_contact':
+        await _addContact(contact, connector);
+        break;
       case 'copy_contact':
         if (contact.rawPacket == null) return;
         final hexString = pubKeyToHex(contact.rawPacket!);
