@@ -13494,6 +13494,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Missing a channel? Anyone can suggest one by editing the shared list on GitHub.'**
   String get channelDirectory_addHint;
+
+  /// No description provided for @prefixTool_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater IDs'**
+  String get prefixTool_title;
+
+  /// No description provided for @prefixTool_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who uses an ID, which IDs clash, and free ones for a new repeater'**
+  String get prefixTool_subtitle;
+
+  /// No description provided for @prefixTool_width.
+  ///
+  /// In en, this message translates to:
+  /// **'Path ID size'**
+  String get prefixTool_width;
+
+  /// No description provided for @prefixTool_widthBytes.
+  ///
+  /// In en, this message translates to:
+  /// **'{bytes}-byte'**
+  String prefixTool_widthBytes(int bytes);
+
+  /// No description provided for @prefixTool_includeCompanions.
+  ///
+  /// In en, this message translates to:
+  /// **'Include companions and sensors'**
+  String get prefixTool_includeCompanions;
+
+  /// No description provided for @prefixTool_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{nodes} nodes known · {used} IDs in use · {shared} shared'**
+  String prefixTool_summary(int nodes, int used, int shared);
+
+  /// No description provided for @prefixTool_freeOfSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'{free} of {space} IDs free'**
+  String prefixTool_freeOfSpace(int free, int space);
+
+  /// No description provided for @prefixTool_lookupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Look up an ID, e.g. 3D'**
+  String get prefixTool_lookupHint;
+
+  /// No description provided for @prefixTool_lookupFree.
+  ///
+  /// In en, this message translates to:
+  /// **'No known node uses {id}.'**
+  String prefixTool_lookupFree(String id);
+
+  /// No description provided for @prefixTool_lookupUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 node uses {id}} other{{count} nodes use {id}}}'**
+  String prefixTool_lookupUsed(int count, String id);
+
+  /// No description provided for @prefixTool_shared.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared IDs'**
+  String get prefixTool_shared;
+
+  /// No description provided for @prefixTool_sharedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Paths through these IDs look the same unless the mesh uses longer IDs.'**
+  String get prefixTool_sharedHint;
+
+  /// No description provided for @prefixTool_noShared.
+  ///
+  /// In en, this message translates to:
+  /// **'No shared IDs among the nodes you know.'**
+  String get prefixTool_noShared;
+
+  /// No description provided for @prefixTool_free.
+  ///
+  /// In en, this message translates to:
+  /// **'Free IDs'**
+  String get prefixTool_free;
+
+  /// No description provided for @prefixTool_shuffle.
+  ///
+  /// In en, this message translates to:
+  /// **'More suggestions'**
+  String get prefixTool_shuffle;
+
+  /// No description provided for @prefixTool_makeKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a key'**
+  String get prefixTool_makeKey;
+
+  /// No description provided for @prefixTool_onlyKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Based only on nodes your radio has heard. A free ID here may still belong to a repeater you haven\'t heard.'**
+  String get prefixTool_onlyKnown;
+
+  /// No description provided for @prefixTool_inUseWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'{id} is already used by {name}.'**
+  String prefixTool_inUseWarning(String id, String name);
+
+  /// No description provided for @prefixTool_pickFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a free ID'**
+  String get prefixTool_pickFree;
+
+  /// No description provided for @keyGen_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Key for ID {id}'**
+  String keyGen_title(String id);
+
+  /// No description provided for @keyGen_searching.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching… {tries} keys tried'**
+  String keyGen_searching(int tries);
+
+  /// No description provided for @keyGen_publicKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Public key'**
+  String get keyGen_publicKey;
+
+  /// No description provided for @keyGen_privateKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Private key'**
+  String get keyGen_privateKey;
+
+  /// No description provided for @keyGen_copy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get keyGen_copy;
+
+  /// No description provided for @keyGen_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get keyGen_copied;
+
+  /// No description provided for @keyGen_secretWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the private key secret. Anyone who has it can pose as this node.'**
+  String get keyGen_secretWarning;
+
+  /// No description provided for @keyGen_howToUse.
+  ///
+  /// In en, this message translates to:
+  /// **'To use it on a repeater, open the repeater\'s settings, paste it as the private key and save. Companion radios need firmware that allows key import.'**
+  String get keyGen_howToUse;
+
+  /// No description provided for @keyGen_tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Make another'**
+  String get keyGen_tryAgain;
 }
 
 class _AppLocalizationsDelegate

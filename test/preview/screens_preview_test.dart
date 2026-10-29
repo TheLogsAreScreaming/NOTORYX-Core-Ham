@@ -52,6 +52,7 @@ import 'package:meshcore_open/services/mqtt_broker_service.dart';
 import 'package:meshcore_open/services/mqtt_client_transport.dart';
 import 'package:meshcore_open/services/secure_mqtt_credentials_store.dart';
 import 'package:provider/provider.dart';
+import 'package:meshcore_open/screens/prefix_tool_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:meshcore_open/screens/channel_directory_screen.dart';
@@ -398,6 +399,7 @@ void main() {
     'dm_chat': () => ChatScreen(contact: _contacts[0]),
     'settings': () => const SettingsScreen(),
     'connections': () => const ConnectionDashboardScreen(),
+    'prefix_tool': () => const PrefixToolScreen(),
     'channel_directory': () => ChannelDirectoryScreen(
       service: ChannelDirectoryService(
         httpClient: MockClient((_) async => http.Response('', 503)),

@@ -8074,4 +8074,117 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get channelDirectory_addHint =>
       'Brakuje kanału? Każdy może go zaproponować, edytując wspólną listę na GitHubie.';
+
+  @override
+  String get prefixTool_title => 'ID przemienników';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Kto używa ID, które ID się pokrywają i wolne ID dla nowego przemiennika';
+
+  @override
+  String get prefixTool_width => 'Rozmiar ID ścieżki';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes B';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Uwzględnij companiony i czujniki';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return 'Znane węzły: $nodes · używane ID: $used · wspólne: $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return 'Wolne ID: $free z $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Wyszukaj ID, np. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Żaden znany węzeł nie używa $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count węzła używa $id',
+      many: '$count węzłów używa $id',
+      few: '$count węzły używają $id',
+      one: '1 węzeł używa $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Wspólne ID';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Ścieżki przez te ID wyglądają tak samo, chyba że sieć używa dłuższych ID.';
+
+  @override
+  String get prefixTool_noShared => 'Brak wspólnych ID wśród znanych węzłów.';
+
+  @override
+  String get prefixTool_free => 'Wolne ID';
+
+  @override
+  String get prefixTool_shuffle => 'Więcej propozycji';
+
+  @override
+  String get prefixTool_makeKey => 'Utwórz klucz';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Na podstawie tylko węzłów usłyszanych przez radio. Wolne tu ID może należeć do przemiennika, którego nie słyszałeś.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id jest już używane przez $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Wybierz wolne ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Klucz dla ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Szukanie… wypróbowano kluczy: $tries';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Klucz publiczny';
+
+  @override
+  String get keyGen_privateKey => 'Klucz prywatny';
+
+  @override
+  String get keyGen_copy => 'Kopiuj';
+
+  @override
+  String get keyGen_copied => 'Skopiowano';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Chroń klucz prywatny. Kto go ma, może podszyć się pod ten węzeł.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Dla przemiennika: otwórz jego ustawienia, wklej jako klucz prywatny i zapisz. Radia companion wymagają oprogramowania pozwalającego na import klucza.';
+
+  @override
+  String get keyGen_tryAgain => 'Utwórz kolejny';
 }

@@ -8026,4 +8026,116 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get channelDirectory_addHint =>
       'Falta um canal? Qualquer pessoa pode sugerir um editando a lista compartilhada no GitHub.';
+
+  @override
+  String get prefixTool_title => 'IDs dos repetidores';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Quem usa uma ID, quais IDs coincidem e IDs livres para um novo repetidor';
+
+  @override
+  String get prefixTool_width => 'Tamanho da ID de rota';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes byte(s)';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Incluir companions e sensores';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '$nodes nós conhecidos · $used IDs em uso · $shared compartilhadas';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '$free de $space IDs livres';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Procure uma ID, ex. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Nenhum nó conhecido usa $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nós usam $id',
+      one: '1 nó usa $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'IDs compartilhadas';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Rotas por essas IDs parecem iguais, a menos que a malha use IDs mais longas.';
+
+  @override
+  String get prefixTool_noShared =>
+      'Nenhuma ID compartilhada entre os nós conhecidos.';
+
+  @override
+  String get prefixTool_free => 'IDs livres';
+
+  @override
+  String get prefixTool_shuffle => 'Mais sugestões';
+
+  @override
+  String get prefixTool_makeKey => 'Criar uma chave';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Baseado apenas nos nós que seu rádio ouviu. Uma ID livre aqui ainda pode pertencer a um repetidor que você não ouviu.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id já é usada por $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Escolher uma ID livre';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Chave para a ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Procurando… $tries chaves testadas';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Chave pública';
+
+  @override
+  String get keyGen_privateKey => 'Chave privada';
+
+  @override
+  String get keyGen_copy => 'Copiar';
+
+  @override
+  String get keyGen_copied => 'Copiado';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Mantenha a chave privada em segredo. Quem a tiver pode se passar por este nó.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Para usar num repetidor, abra as configurações dele, cole como chave privada e salve. Rádios companion precisam de firmware que permita importar chaves.';
+
+  @override
+  String get keyGen_tryAgain => 'Criar outra';
 }

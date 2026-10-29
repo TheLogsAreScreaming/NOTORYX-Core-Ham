@@ -4654,5 +4654,104 @@
   "channelDirectory_connectFirst": "Connect your radio to join channels.",
   "channelDirectory_slotsFull": "All channel slots on your radio are in use. Remove a channel first.",
   "channelDirectory_joinFailed": "Could not add the channel. Try again.",
-  "channelDirectory_addHint": "Missing a channel? Anyone can suggest one by editing the shared list on GitHub."
+  "channelDirectory_addHint": "Missing a channel? Anyone can suggest one by editing the shared list on GitHub.",
+  "prefixTool_title": "Repeater IDs",
+  "prefixTool_subtitle": "Who uses an ID, which IDs clash, and free ones for a new repeater",
+  "prefixTool_width": "Path ID size",
+  "prefixTool_widthBytes": "{bytes}-byte",
+  "@prefixTool_widthBytes": {
+    "placeholders": {
+      "bytes": {
+        "type": "int"
+      }
+    }
+  },
+  "prefixTool_includeCompanions": "Include companions and sensors",
+  "prefixTool_summary": "{nodes} nodes known · {used} IDs in use · {shared} shared",
+  "@prefixTool_summary": {
+    "placeholders": {
+      "nodes": {
+        "type": "int"
+      },
+      "used": {
+        "type": "int"
+      },
+      "shared": {
+        "type": "int"
+      }
+    }
+  },
+  "prefixTool_freeOfSpace": "{free} of {space} IDs free",
+  "@prefixTool_freeOfSpace": {
+    "placeholders": {
+      "free": {
+        "type": "int"
+      },
+      "space": {
+        "type": "int"
+      }
+    }
+  },
+  "prefixTool_lookupHint": "Look up an ID, e.g. 3D",
+  "prefixTool_lookupFree": "No known node uses {id}.",
+  "@prefixTool_lookupFree": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "prefixTool_lookupUsed": "{count, plural, =1{1 node uses {id}} other{{count} nodes use {id}}}",
+  "@prefixTool_lookupUsed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "prefixTool_shared": "Shared IDs",
+  "prefixTool_sharedHint": "Paths through these IDs look the same unless the mesh uses longer IDs.",
+  "prefixTool_noShared": "No shared IDs among the nodes you know.",
+  "prefixTool_free": "Free IDs",
+  "prefixTool_shuffle": "More suggestions",
+  "prefixTool_makeKey": "Make a key",
+  "prefixTool_onlyKnown": "Based only on nodes your radio has heard. A free ID here may still belong to a repeater you haven't heard.",
+  "prefixTool_inUseWarning": "{id} is already used by {name}.",
+  "@prefixTool_inUseWarning": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "prefixTool_pickFree": "Pick a free ID",
+  "keyGen_title": "Key for ID {id}",
+  "@keyGen_title": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "keyGen_searching": "Searching… {tries} keys tried",
+  "@keyGen_searching": {
+    "placeholders": {
+      "tries": {
+        "type": "int"
+      }
+    }
+  },
+  "keyGen_publicKey": "Public key",
+  "keyGen_privateKey": "Private key",
+  "keyGen_copy": "Copy",
+  "keyGen_copied": "Copied",
+  "keyGen_secretWarning": "Keep the private key secret. Anyone who has it can pose as this node.",
+  "keyGen_howToUse": "To use it on a repeater, open the repeater's settings, paste it as the private key and save. Companion radios need firmware that allows key import.",
+  "keyGen_tryAgain": "Make another"
 }

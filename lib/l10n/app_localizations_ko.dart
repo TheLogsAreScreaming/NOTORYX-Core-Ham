@@ -7657,4 +7657,113 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get channelDirectory_addHint =>
       '찾는 채널이 없나요? GitHub의 공유 목록을 수정해 누구나 제안할 수 있습니다.';
+
+  @override
+  String get prefixTool_title => '리피터 ID';
+
+  @override
+  String get prefixTool_subtitle => 'ID를 쓰는 노드, 겹치는 ID, 새 리피터용 빈 ID 확인';
+
+  @override
+  String get prefixTool_width => '경로 ID 크기';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes바이트';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => '컴패니언과 센서 포함';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '알려진 노드 $nodes · 사용 중 ID $used · 겹침 $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '빈 ID $free / $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'ID 검색 (예: 3D)';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return '$id를 쓰는 알려진 노드가 없습니다.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$id를 쓰는 노드 $count개',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => '겹치는 ID';
+
+  @override
+  String get prefixTool_sharedHint =>
+      '메시가 더 긴 ID를 쓰지 않으면 이 ID를 거치는 경로는 구분되지 않습니다.';
+
+  @override
+  String get prefixTool_noShared => '알려진 노드 중 겹치는 ID가 없습니다.';
+
+  @override
+  String get prefixTool_free => '빈 ID';
+
+  @override
+  String get prefixTool_shuffle => '다른 추천';
+
+  @override
+  String get prefixTool_makeKey => '키 만들기';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      '무전기가 들은 노드만 기준입니다. 여기서 빈 ID도 듣지 못한 리피터가 쓰고 있을 수 있습니다.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id는 이미 $name이(가) 사용 중입니다.';
+  }
+
+  @override
+  String get prefixTool_pickFree => '빈 ID 고르기';
+
+  @override
+  String keyGen_title(String id) {
+    return 'ID $id용 키';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return '검색 중… 키 $tries개 시도';
+  }
+
+  @override
+  String get keyGen_publicKey => '공개 키';
+
+  @override
+  String get keyGen_privateKey => '개인 키';
+
+  @override
+  String get keyGen_copy => '복사';
+
+  @override
+  String get keyGen_copied => '복사됨';
+
+  @override
+  String get keyGen_secretWarning =>
+      '개인 키는 비밀로 유지하세요. 가진 사람은 이 노드로 위장할 수 있습니다.';
+
+  @override
+  String get keyGen_howToUse =>
+      '리피터에 쓰려면 리피터 설정을 열고 개인 키로 붙여 넣은 뒤 저장하세요. 컴패니언 무전기는 키 가져오기를 허용하는 펌웨어가 필요합니다.';
+
+  @override
+  String get keyGen_tryAgain => '하나 더 만들기';
 }

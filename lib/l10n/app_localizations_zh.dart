@@ -7485,4 +7485,109 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get channelDirectory_addHint => '缺少频道？任何人都可以在 GitHub 上编辑共享列表来推荐。';
+
+  @override
+  String get prefixTool_title => '中继器 ID';
+
+  @override
+  String get prefixTool_subtitle => '查看谁在用某个 ID、哪些 ID 重复，以及新中继器可用的空闲 ID';
+
+  @override
+  String get prefixTool_width => '路径 ID 长度';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes 字节';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => '包括伴侣设备和传感器';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '已知节点 $nodes · 已用 ID $used · 重复 $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '空闲 ID $free / $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => '查找 ID，例如 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return '没有已知节点使用 $id。';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个节点使用 $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => '重复的 ID';
+
+  @override
+  String get prefixTool_sharedHint => '除非网络使用更长的 ID，否则经过这些 ID 的路径无法区分。';
+
+  @override
+  String get prefixTool_noShared => '已知节点中没有重复的 ID。';
+
+  @override
+  String get prefixTool_free => '空闲 ID';
+
+  @override
+  String get prefixTool_shuffle => '更多建议';
+
+  @override
+  String get prefixTool_makeKey => '生成密钥';
+
+  @override
+  String get prefixTool_onlyKnown => '仅基于你的电台听到过的节点。这里显示空闲的 ID 仍可能被你没听到的中继器使用。';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id 已被 $name 使用。';
+  }
+
+  @override
+  String get prefixTool_pickFree => '选择空闲 ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'ID $id 的密钥';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return '正在搜索…已尝试 $tries 个密钥';
+  }
+
+  @override
+  String get keyGen_publicKey => '公钥';
+
+  @override
+  String get keyGen_privateKey => '私钥';
+
+  @override
+  String get keyGen_copy => '复制';
+
+  @override
+  String get keyGen_copied => '已复制';
+
+  @override
+  String get keyGen_secretWarning => '请妥善保管私钥。拥有私钥的人可以冒充此节点。';
+
+  @override
+  String get keyGen_howToUse => '用于中继器时，打开中继器设置，将其粘贴为私钥并保存。伴侣电台需要允许导入密钥的固件。';
+
+  @override
+  String get keyGen_tryAgain => '再生成一个';
 }

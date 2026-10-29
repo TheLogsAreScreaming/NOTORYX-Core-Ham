@@ -8023,4 +8023,116 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get channelDirectory_addHint =>
       'Chýba kanál? Ktokoľvek ho môže navrhnúť úpravou zdieľaného zoznamu na GitHube.';
+
+  @override
+  String get prefixTool_title => 'ID opakovačov';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Kto používa ID, ktoré ID sa zhodujú a voľné ID pre nový opakovač';
+
+  @override
+  String get prefixTool_width => 'Veľkosť ID cesty';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes B';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Zahrnúť companiony a senzory';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return 'Známe uzly: $nodes · použité ID: $used · zdieľané: $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return 'Voľné ID: $free z $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Vyhľadať ID, napr. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Žiadny známy uzol nepoužíva $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$id používa $count uzlov',
+      few: '$id používajú $count uzly',
+      one: '$id používa 1 uzol',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Zdieľané ID';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Cesty cez tieto ID vyzerajú rovnako, pokiaľ sieť nepoužíva dlhšie ID.';
+
+  @override
+  String get prefixTool_noShared => 'Medzi známymi uzlami nie sú zdieľané ID.';
+
+  @override
+  String get prefixTool_free => 'Voľné ID';
+
+  @override
+  String get prefixTool_shuffle => 'Ďalšie návrhy';
+
+  @override
+  String get prefixTool_makeKey => 'Vytvoriť kľúč';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Len podľa uzlov, ktoré rádio počulo. Voľné ID tu môže patriť opakovaču, ktorý ste nepočuli.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id už používa $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Vybrať voľné ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Kľúč pre ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Hľadá sa… vyskúšané kľúče: $tries';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Verejný kľúč';
+
+  @override
+  String get keyGen_privateKey => 'Súkromný kľúč';
+
+  @override
+  String get keyGen_copy => 'Kopírovať';
+
+  @override
+  String get keyGen_copied => 'Skopírované';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Súkromný kľúč držte v tajnosti. Kto ho má, môže sa vydávať za tento uzol.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Pre opakovač: otvorte jeho nastavenia, vložte ho ako súkromný kľúč a uložte. Rádiá companion potrebujú firmvér, ktorý povoľuje import kľúča.';
+
+  @override
+  String get keyGen_tryAgain => 'Vytvoriť ďalší';
 }
