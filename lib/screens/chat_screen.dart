@@ -1534,8 +1534,14 @@ class _MessageBubble extends StatelessWidget {
         ? message.originalText
         : (translatedDisplayText != messageText ? messageText : null);
 
+    // A plain read: this runs from item builders, where select isn't
+    // allowed, and bubbles rebuild often enough to pick up a toggle.
     final previewLink =
-        context.select<AppSettingsService, bool>((a) => a.settings.linkPreviews)
+        Provider.of<AppSettingsService?>(
+              context,
+              listen: false,
+            )?.settings.linkPreviews ==
+            true
         ? firstLink(message.text)
         : null;
 

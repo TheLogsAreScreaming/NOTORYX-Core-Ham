@@ -608,8 +608,14 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final metaColor = MeshPalette.ink3;
     const bodyFontSize = 16.0;
 
+    // A plain read: this runs from item builders, where select isn't
+    // allowed, and bubbles rebuild often enough to pick up a toggle.
     final previewLink =
-        context.select<AppSettingsService, bool>((a) => a.settings.linkPreviews)
+        Provider.of<AppSettingsService?>(
+              context,
+              listen: false,
+            )?.settings.linkPreviews ==
+            true
         ? firstLink(message.text)
         : null;
 
