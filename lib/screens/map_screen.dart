@@ -259,7 +259,7 @@ class _MapScreenState extends State<MapScreen> {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: _overlayPanelColor,
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshRadii.xs),
           border: Border.all(color: _overlayBorderColor),
           boxShadow: [
             BoxShadow(
@@ -270,7 +270,7 @@ class _MapScreenState extends State<MapScreen> {
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshRadii.xs),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -2056,7 +2056,7 @@ class _MapScreenState extends State<MapScreen> {
       constraints: const BoxConstraints(maxHeight: 300),
       decoration: BoxDecoration(
         color: _overlayPanelColor,
-        borderRadius: BorderRadius.circular(MeshRadii.md),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
         border: Border.all(color: _overlayBorderColor),
         boxShadow: [
           BoxShadow(
@@ -2191,7 +2191,7 @@ class _MapScreenState extends State<MapScreen> {
       padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
       decoration: BoxDecoration(
         color: _overlayPanelColor,
-        borderRadius: BorderRadius.circular(MeshRadii.md),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
         border: Border.all(color: _overlayBorderColor),
         boxShadow: [
           BoxShadow(
@@ -3626,7 +3626,7 @@ class _MapScreenState extends State<MapScreen> {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: _overlayPanelColor,
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshRadii.xs),
           border: Border.all(color: _overlayBorderColor),
           boxShadow: [
             BoxShadow(
@@ -3637,7 +3637,7 @@ class _MapScreenState extends State<MapScreen> {
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshRadii.xs),
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
