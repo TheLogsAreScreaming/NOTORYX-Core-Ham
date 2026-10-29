@@ -13,9 +13,11 @@ import 'bastion_field_stats_screen.dart';
 import 'bastion_map_hub_screen.dart';
 import 'bastion_path_hub_screen.dart';
 import 'bastion_repeater_tools_screen.dart';
+import 'coverage_hex_screen.dart';
 import 'prefix_tool_screen.dart';
 import 'settings_screen.dart';
 import 'track_log_screen.dart';
+import '../utils/platform_info.dart';
 
 /// The More tab: settings and app items as a list, then the field tools as
 /// grouped two-column grids.
@@ -112,6 +114,15 @@ class BastionToolsScreen extends StatelessWidget {
                   subtitle: l10n.tools_antennaHint,
                   onTap: () => open(const AntennaCoverageScreen()),
                 ),
+                // H3 needs a native library; the web build doesn't load one.
+                if (!PlatformInfo.isWeb)
+                  _ToolTile(
+                    icon: Icons.hexagon_outlined,
+                    title: 'Coverage hexagons',
+                    subtitle:
+                        'Map where your radio hears the mesh and share it',
+                    onTap: () => open(const CoverageHexScreen()),
+                  ),
               ],
             ),
             _GroupTitle(l10n.tools_groupRouting),
