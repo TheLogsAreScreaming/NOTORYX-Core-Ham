@@ -21,6 +21,7 @@ import 'screens/bastion_home_screen.dart';
 import 'services/regional_preset_service.dart';
 import 'services/read_aloud_service.dart';
 import 'services/app_shortcuts.dart';
+import 'services/home_widget_sync.dart';
 import 'services/sensor_subscription_service.dart';
 import 'services/mqtt_broker_service.dart';
 import 'services/mqtt_client_transport.dart';
@@ -270,6 +271,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
   AppShortcuts? _shortcuts;
+  HomeWidgetSync? _homeWidget;
   String? _shortcutLanguage;
   late final SensorSubscriptionService _sensorSubscriptions;
   late final MqttBrokerService _mqtt;
@@ -297,6 +299,17 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       unawaited(
         shortcuts.install().catchError((Object e) {
           debugPrint('App shortcuts unavailable: $e');
+        }),
+      );
+    }
+    if (PlatformInfo.isAndroid) {
+      final homeWidget = _homeWidget = HomeWidgetSync(
+        widget.connector,
+        _navigatorKey,
+      );
+      unawaited(
+        homeWidget.start().catchError((Object e) {
+          debugPrint('Home widget unavailable: $e');
         }),
       );
     }
@@ -351,6 +364,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_radioRxPackets?.cancel());
     widget.connector.removeListener(_syncMqttObserverIdentity);
     _mqtt.dispose();
+    _homeWidget?.dispose();
     _imageSweepTimer?.cancel();
     _channelPruneTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
@@ -479,6 +493,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     final shortcuts = _shortcuts;
     if (shortcuts == null || locale.languageCode == _shortcutLanguage) return;
     _shortcutLanguage = locale.languageCode;
+    _homeWidget?.setLabels(lookupAppLocalizations(locale));
     unawaited(
       shortcuts.setLabels(lookupAppLocalizations(locale)).catchError((
         Object e,
