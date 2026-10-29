@@ -59,6 +59,8 @@ dependencies:
   mqtt_client: ^10.13.0
   flutter_secure_storage: ^11.2.0
   connectivity_plus: ^7.3.1
+  h3_flutter: ^0.7.1
+  geolocator: ^14.1.2
 
 hooks:
   user_defines:

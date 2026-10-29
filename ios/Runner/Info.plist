@@ -83,5 +83,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>NOTORYX Core uses your location only while coverage mapping is on, to credit what your radio hears to a map hexagon.</string>
 </dict>
 </plist>
