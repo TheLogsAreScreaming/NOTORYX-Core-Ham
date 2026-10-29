@@ -7968,6 +7968,178 @@ class AppLocalizationsBg extends AppLocalizations {
   String get connections_viewDashboard => 'Преглед на връзките';
 
   @override
+  String get channelDirectory_title => 'Каталог на канали';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Намерете публични хаштаг канали наблизо';
+
+  @override
+  String get channelDirectory_search => 'Търсене на канали или места';
+
+  @override
+  String get channelDirectory_nearYou => 'Наблизо';
+
+  @override
+  String get channelDirectory_all => 'Всички канали';
+
+  @override
+  String get channelDirectory_catAll => 'Всички';
+
+  @override
+  String get channelDirectory_catEmergency => 'Спешни';
+
+  @override
+  String get channelDirectory_catLocal => 'Местни';
+
+  @override
+  String get channelDirectory_catGeneral => 'Общи';
+
+  @override
+  String get channelDirectory_catInterest => 'Интереси';
+
+  @override
+  String get channelDirectory_catTest => 'Тестови';
+
+  @override
+  String get channelDirectory_join => 'Присъедини се';
+
+  @override
+  String get channelDirectory_joined => 'Присъединен';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Няма канали, отговарящи на търсенето.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Свържете радиото си, за да се присъединявате към канали.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Всички слотове за канали на радиото са заети. Първо премахнете канал.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Каналът не можа да бъде добавен. Опитайте отново.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Липсва канал? Всеки може да предложи такъв, като редактира общия списък в GitHub.';
+
+  @override
+  String get prefixTool_title => 'ID на ретранслатори';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Кой използва ID, кои ID съвпадат и свободни ID за нов ретранслатор';
+
+  @override
+  String get prefixTool_width => 'Размер на ID в маршрута';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes байт';
+  }
+
+  @override
+  String get prefixTool_includeCompanions =>
+      'Включи companion устройства и сензори';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return 'Известни възли: $nodes · заети ID: $used · общи: $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return 'Свободни ID: $free от $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Търсене на ID, напр. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Нито един известен възел не използва $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count възела използват $id',
+      one: '1 възел използва $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Общи ID';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Маршрутите през тези ID изглеждат еднакво, освен ако мрежата не използва по-дълги ID.';
+
+  @override
+  String get prefixTool_noShared => 'Няма общи ID сред известните възли.';
+
+  @override
+  String get prefixTool_free => 'Свободни ID';
+
+  @override
+  String get prefixTool_shuffle => 'Още предложения';
+
+  @override
+  String get prefixTool_makeKey => 'Създай ключ';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Само по възлите, чути от радиото. Свободен тук ID може да е на ретранслатор, който не сте чули.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id вече се използва от $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Избери свободен ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Ключ за ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Търсене… изпробвани ключове: $tries';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Публичен ключ';
+
+  @override
+  String get keyGen_privateKey => 'Частен ключ';
+
+  @override
+  String get keyGen_copy => 'Копирай';
+
+  @override
+  String get keyGen_copied => 'Копирано';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Пазете частния ключ в тайна. Който го има, може да се представя за този възел.';
+
+  @override
+  String get keyGen_howToUse =>
+      'За ретранслатор: отворете настройките му, поставете го като частен ключ и запазете. Companion радиата изискват фърмуер, който позволява импорт на ключ.';
+
+  @override
+  String get keyGen_tryAgain => 'Създай друг';
+
+  @override
   String get regionSetup_title => 'Настройка на региони';
 
   @override

@@ -15,6 +15,7 @@ import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/us_bandwidth_notice.dart';
 import '../widgets/routing_sheet.dart';
+import '../models/prefix_census.dart';
 import '../utils/keys.dart';
 import '../helpers/snack_bar_builder.dart';
 
@@ -2044,8 +2045,31 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
     );
   }
 
+  /// A warning when the typed key prefix is already another known node's
+  /// path ID, so paths through both would look the same.
+  String? _prefixClash(MeshCoreConnector connector, Contact repeater) {
+    final prefix = normalizePrefixQuery(_prvKeyPrefixController.text);
+    if (prefix.length < 2) return null;
+    final width = (prefix.length ~/ 2).clamp(1, 3);
+    final census = PrefixCensus.build(
+      connector.allContactsUnfiltered.where(
+        (c) => c.publicKeyHex != repeater.publicKeyHex,
+      ),
+      bytes: width,
+      includeCompanions: true,
+    );
+    final users = census.lookup(prefix.substring(0, width * 2));
+    if (users.isEmpty) return null;
+    return context.l10n.prefixTool_inUseWarning(
+      prefix.substring(0, width * 2),
+      users.first.name,
+    );
+  }
+
   Widget _buildKeysCard() {
     final l10n = context.l10n;
+    final connector = context.watch<MeshCoreConnector>();
+    final repeater = _resolveRepeater(connector);
     return MeshCard(
       child: ExpansionTile(
         leading: const Icon(Icons.vpn_key),
@@ -2153,11 +2177,30 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                       pow(16, _prvKeyPrefixController.text.length).toInt(),
                     ),
                     helperMaxLines: 3,
+                    errorText: _prefixClash(connector, repeater),
+                    errorMaxLines: 3,
                     border: const OutlineInputBorder(),
                   ),
                 ),
               ),
-              const SizedBox(width: 48),
+              SizedBox(
+                width: 48,
+                child: IconButton(
+                  key: const ValueKey('pick-free-prefix'),
+                  icon: const Icon(Icons.auto_fix_high),
+                  tooltip: l10n.prefixTool_pickFree,
+                  onPressed: () {
+                    final census = PrefixCensus.build(
+                      connector.allContactsUnfiltered,
+                      bytes: connector.pathHashByteWidth.clamp(1, 2),
+                    );
+                    final free = census.suggestFree(1);
+                    if (free.isEmpty) return;
+                    _prvKeyPrefixController.text = free.first;
+                    setState(() {});
+                  },
+                ),
+              ),
             ],
           ),
         ],

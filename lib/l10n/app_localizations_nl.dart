@@ -7948,6 +7948,178 @@ class AppLocalizationsNl extends AppLocalizations {
   String get connections_viewDashboard => 'Verbindingsoverzicht bekijken';
 
   @override
+  String get channelDirectory_title => 'Kanalengids';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Vind openbare hashtagkanalen in je buurt';
+
+  @override
+  String get channelDirectory_search => 'Kanalen of plaatsen zoeken';
+
+  @override
+  String get channelDirectory_nearYou => 'In je buurt';
+
+  @override
+  String get channelDirectory_all => 'Alle kanalen';
+
+  @override
+  String get channelDirectory_catAll => 'Alle';
+
+  @override
+  String get channelDirectory_catEmergency => 'Noodgevallen';
+
+  @override
+  String get channelDirectory_catLocal => 'Lokaal';
+
+  @override
+  String get channelDirectory_catGeneral => 'Algemeen';
+
+  @override
+  String get channelDirectory_catInterest => 'Interesses';
+
+  @override
+  String get channelDirectory_catTest => 'Testen';
+
+  @override
+  String get channelDirectory_join => 'Deelnemen';
+
+  @override
+  String get channelDirectory_joined => 'Deelgenomen';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Geen kanalen gevonden voor je zoekopdracht.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Verbind je radio om kanalen te volgen.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Alle kanaalplaatsen van je radio zijn in gebruik. Verwijder eerst een kanaal.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Kanaal kon niet worden toegevoegd. Probeer het opnieuw.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Mist er een kanaal? Iedereen kan er een voorstellen door de gedeelde lijst op GitHub te bewerken.';
+
+  @override
+  String get prefixTool_title => 'Repeater-ID’s';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Wie een ID gebruikt, welke ID’s botsen en vrije ID’s voor een nieuwe repeater';
+
+  @override
+  String get prefixTool_width => 'Grootte van pad-ID';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes byte';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Companions en sensoren meenemen';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '$nodes nodes bekend · $used ID’s in gebruik · $shared gedeeld';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '$free van $space ID’s vrij';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Zoek een ID, bijv. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Geen bekende node gebruikt $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nodes gebruiken $id',
+      one: '1 node gebruikt $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Gedeelde ID’s';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Paden via deze ID’s lijken hetzelfde, tenzij het mesh langere ID’s gebruikt.';
+
+  @override
+  String get prefixTool_noShared =>
+      'Geen gedeelde ID’s onder de nodes die je kent.';
+
+  @override
+  String get prefixTool_free => 'Vrije ID’s';
+
+  @override
+  String get prefixTool_shuffle => 'Meer suggesties';
+
+  @override
+  String get prefixTool_makeKey => 'Sleutel maken';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Alleen gebaseerd op nodes die je radio heeft gehoord. Een vrije ID hier kan toch van een repeater zijn die je niet hebt gehoord.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id wordt al gebruikt door $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Kies een vrije ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Sleutel voor ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Zoeken… $tries sleutels geprobeerd';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Openbare sleutel';
+
+  @override
+  String get keyGen_privateKey => 'Privésleutel';
+
+  @override
+  String get keyGen_copy => 'Kopiëren';
+
+  @override
+  String get keyGen_copied => 'Gekopieerd';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Houd de privésleutel geheim. Wie hem heeft, kan zich voordoen als deze node.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Voor een repeater: open de instellingen, plak hem als privésleutel en sla op. Companion-radio’s hebben firmware nodig die sleutelimport toestaat.';
+
+  @override
+  String get keyGen_tryAgain => 'Nog een maken';
+
+  @override
   String get regionSetup_title => 'Regio’s instellen';
 
   @override

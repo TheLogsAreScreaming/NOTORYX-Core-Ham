@@ -7594,6 +7594,169 @@ class AppLocalizationsJa extends AppLocalizations {
   String get connections_viewDashboard => '接続ダッシュボードを表示';
 
   @override
+  String get channelDirectory_title => 'チャンネル一覧';
+
+  @override
+  String get channelDirectory_subtitle => '近くの公開ハッシュタグチャンネルを探す';
+
+  @override
+  String get channelDirectory_search => 'チャンネルや地名を検索';
+
+  @override
+  String get channelDirectory_nearYou => '近くのチャンネル';
+
+  @override
+  String get channelDirectory_all => 'すべてのチャンネル';
+
+  @override
+  String get channelDirectory_catAll => 'すべて';
+
+  @override
+  String get channelDirectory_catEmergency => '緊急';
+
+  @override
+  String get channelDirectory_catLocal => '地域';
+
+  @override
+  String get channelDirectory_catGeneral => '一般';
+
+  @override
+  String get channelDirectory_catInterest => '趣味';
+
+  @override
+  String get channelDirectory_catTest => 'テスト';
+
+  @override
+  String get channelDirectory_join => '参加';
+
+  @override
+  String get channelDirectory_joined => '参加済み';
+
+  @override
+  String get channelDirectory_noMatches => '検索に一致するチャンネルはありません。';
+
+  @override
+  String get channelDirectory_connectFirst => 'チャンネルに参加するには無線機を接続してください。';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      '無線機のチャンネル枠がすべて使用中です。先にチャンネルを削除してください。';
+
+  @override
+  String get channelDirectory_joinFailed => 'チャンネルを追加できませんでした。もう一度お試しください。';
+
+  @override
+  String get channelDirectory_addHint =>
+      'チャンネルが見つかりませんか？GitHub の共有リストを編集すれば誰でも提案できます。';
+
+  @override
+  String get prefixTool_title => 'リピーターID';
+
+  @override
+  String get prefixTool_subtitle => 'IDの使用者、重複しているID、新しいリピーター用の空きIDを確認';
+
+  @override
+  String get prefixTool_width => 'パスIDのサイズ';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytesバイト';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'コンパニオンとセンサーも含める';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '既知のノード $nodes · 使用中のID $used · 重複 $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '空きID $free / $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'IDを検索（例: 3D）';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return '$id を使う既知のノードはありません。';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$id を使うノード: $count台',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => '重複しているID';
+
+  @override
+  String get prefixTool_sharedHint => 'メッシュがより長いIDを使わない限り、これらのIDを通る経路は区別できません。';
+
+  @override
+  String get prefixTool_noShared => '既知のノードに重複したIDはありません。';
+
+  @override
+  String get prefixTool_free => '空きID';
+
+  @override
+  String get prefixTool_shuffle => '別の候補';
+
+  @override
+  String get prefixTool_makeKey => 'キーを作成';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      '無線機が受信したノードだけに基づきます。ここで空いているIDも、受信していないリピーターが使っている可能性があります。';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id はすでに $name が使っています。';
+  }
+
+  @override
+  String get prefixTool_pickFree => '空きIDを選ぶ';
+
+  @override
+  String keyGen_title(String id) {
+    return 'ID $id のキー';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return '検索中… $tries個のキーを試行';
+  }
+
+  @override
+  String get keyGen_publicKey => '公開鍵';
+
+  @override
+  String get keyGen_privateKey => '秘密鍵';
+
+  @override
+  String get keyGen_copy => 'コピー';
+
+  @override
+  String get keyGen_copied => 'コピーしました';
+
+  @override
+  String get keyGen_secretWarning => '秘密鍵は秘密にしてください。持っている人はこのノードになりすませます。';
+
+  @override
+  String get keyGen_howToUse =>
+      'リピーターで使うには、リピーターの設定を開き、秘密鍵として貼り付けて保存します。コンパニオン無線機にはキーのインポートを許可するファームウェアが必要です。';
+
+  @override
+  String get keyGen_tryAgain => 'もう一つ作成';
+
+  @override
   String get regionSetup_title => 'リージョン設定';
 
   @override

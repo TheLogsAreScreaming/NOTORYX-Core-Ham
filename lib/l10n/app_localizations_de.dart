@@ -7990,6 +7990,179 @@ class AppLocalizationsDe extends AppLocalizations {
   String get connections_viewDashboard => 'Verbindungsübersicht anzeigen';
 
   @override
+  String get channelDirectory_title => 'Kanalverzeichnis';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Öffentliche Hashtag-Kanäle in deiner Nähe finden';
+
+  @override
+  String get channelDirectory_search => 'Kanäle oder Orte suchen';
+
+  @override
+  String get channelDirectory_nearYou => 'In deiner Nähe';
+
+  @override
+  String get channelDirectory_all => 'Alle Kanäle';
+
+  @override
+  String get channelDirectory_catAll => 'Alle';
+
+  @override
+  String get channelDirectory_catEmergency => 'Notfall';
+
+  @override
+  String get channelDirectory_catLocal => 'Lokal';
+
+  @override
+  String get channelDirectory_catGeneral => 'Allgemein';
+
+  @override
+  String get channelDirectory_catInterest => 'Interessen';
+
+  @override
+  String get channelDirectory_catTest => 'Test';
+
+  @override
+  String get channelDirectory_join => 'Beitreten';
+
+  @override
+  String get channelDirectory_joined => 'Beigetreten';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Keine Kanäle passen zu deiner Suche.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Verbinde dein Funkgerät, um Kanälen beizutreten.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Alle Kanalplätze deines Funkgeräts sind belegt. Entferne zuerst einen Kanal.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Kanal konnte nicht hinzugefügt werden. Versuche es erneut.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Fehlt ein Kanal? Jeder kann einen vorschlagen, indem er die gemeinsame Liste auf GitHub bearbeitet.';
+
+  @override
+  String get prefixTool_title => 'Repeater-IDs';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Wer eine ID nutzt, welche IDs kollidieren und freie IDs für einen neuen Repeater';
+
+  @override
+  String get prefixTool_width => 'Größe der Pfad-ID';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes Byte';
+  }
+
+  @override
+  String get prefixTool_includeCompanions =>
+      'Companions und Sensoren einbeziehen';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '$nodes Knoten bekannt · $used IDs belegt · $shared geteilt';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '$free von $space IDs frei';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'ID nachschlagen, z. B. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Kein bekannter Knoten nutzt $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Knoten nutzen $id',
+      one: '1 Knoten nutzt $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Geteilte IDs';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Pfade über diese IDs sehen gleich aus, solange das Mesh keine längeren IDs nutzt.';
+
+  @override
+  String get prefixTool_noShared =>
+      'Keine geteilten IDs unter deinen bekannten Knoten.';
+
+  @override
+  String get prefixTool_free => 'Freie IDs';
+
+  @override
+  String get prefixTool_shuffle => 'Weitere Vorschläge';
+
+  @override
+  String get prefixTool_makeKey => 'Schlüssel erzeugen';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Nur auf Basis der Knoten, die dein Funkgerät gehört hat. Eine hier freie ID kann trotzdem zu einem Repeater gehören, den du nicht gehört hast.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id wird bereits von $name genutzt.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Freie ID wählen';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Schlüssel für ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Suche… $tries Schlüssel probiert';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Öffentlicher Schlüssel';
+
+  @override
+  String get keyGen_privateKey => 'Privater Schlüssel';
+
+  @override
+  String get keyGen_copy => 'Kopieren';
+
+  @override
+  String get keyGen_copied => 'Kopiert';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Halte den privaten Schlüssel geheim. Wer ihn hat, kann sich als dieser Knoten ausgeben.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Für einen Repeater: Öffne seine Einstellungen, füge ihn als privaten Schlüssel ein und speichere. Companion-Funkgeräte brauchen Firmware, die Schlüsselimport erlaubt.';
+
+  @override
+  String get keyGen_tryAgain => 'Noch einen erzeugen';
+
+  @override
   String get regionSetup_title => 'Regionen einrichten';
 
   @override
