@@ -599,12 +599,11 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       message.pathLength,
     );
 
-    // Bubble colors — outgoing uses MeshPalette.me / meBorder / meInk.
-    final bubbleColor = isOutgoing
-        ? MeshPalette.me
-        : scheme.surfaceContainerHigh;
-    final textColor = isOutgoing ? MeshPalette.meInk : scheme.onSurface;
-    final metaColor = textColor.withValues(alpha: 0.65);
+    // Log-style messages: no bubble fill, a rule on the speaker's side
+    // (accent for yours).
+    final ruleColor = isOutgoing ? MeshPalette.accent : MeshPalette.line3;
+    final textColor = scheme.onSurface;
+    final metaColor = MeshPalette.ink3;
     const bodyFontSize = 16.0;
 
     Widget buildTextContent() {
@@ -634,21 +633,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       );
     }
 
-    // Asymmetric radius matching chat_screen bubbles.
-    final borderRadius = isOutgoing
-        ? const BorderRadius.only(
-            topLeft: Radius.circular(MeshRadii.lg),
-            topRight: Radius.circular(MeshRadii.lg),
-            bottomLeft: Radius.circular(MeshRadii.lg),
-            bottomRight: Radius.circular(MeshRadii.xs),
-          )
-        : const BorderRadius.only(
-            topLeft: Radius.circular(MeshRadii.lg),
-            topRight: Radius.circular(MeshRadii.lg),
-            bottomLeft: Radius.circular(MeshRadii.xs),
-            bottomRight: Radius.circular(MeshRadii.lg),
-          );
-
     const maxSwipeOffset = 64.0;
     const replySwipeThreshold = 64.0;
     final messageBody = LayoutBuilder(
@@ -663,10 +647,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 : MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (!isOutgoing) ...[
-                _buildAvatar(message.senderName, textScale),
-                const SizedBox(width: 6),
-              ],
               Flexible(
                 child: GestureDetector(
                   onLongPress: () => _showMessageActions(message),
@@ -677,15 +657,20 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                     padding: gifId != null
                         ? const EdgeInsets.all(4)
                         : const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 10,
+                            horizontal: 10,
+                            vertical: 4,
                           ),
                     constraints: BoxConstraints(
-                      maxWidth: constraints.maxWidth * 0.72,
+                      maxWidth: constraints.maxWidth * 0.84,
                     ),
                     decoration: BoxDecoration(
-                      color: bubbleColor,
-                      borderRadius: borderRadius,
+                      border: isOutgoing
+                          ? Border(
+                              right: BorderSide(color: ruleColor, width: 2),
+                            )
+                          : Border(
+                              left: BorderSide(color: ruleColor, width: 2),
+                            ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -863,8 +848,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             children: [
                               Text(
                                 _formatTime(context, message.timestamp),
-                                style: TextStyle(
-                                  fontSize: 12 * textScale,
+                                style: MeshTheme.mono(
+                                  fontSize: 11.5 * textScale,
                                   color: metaColor,
                                 ),
                               ),

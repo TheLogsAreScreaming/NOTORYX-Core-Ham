@@ -1508,36 +1508,17 @@ class _MessageBubble extends StatelessWidget {
       (connector) => connector.isContactUrlImagesEnabled(sourceId),
     );
 
-    // Bubble colors — outgoing uses MeshPalette.me / meBorder / meInk.
-    final bubbleColor = isFailed
-        ? scheme.errorContainer
+    // Log-style messages: no bubble fill, a rule on the speaker's side
+    // (accent for yours), and a tint only when a send failed.
+    final bubbleColor = isFailed ? scheme.errorContainer : null;
+    final ruleColor = isFailed
+        ? scheme.error
         : isOutgoing
-        ? MeshPalette.me
-        : scheme.surfaceContainerHigh;
-    // Only a failed message gets an outline; fills carry the rest.
-    final bubbleBorder = isFailed ? scheme.error : null;
-    final textColor = isFailed
-        ? scheme.onErrorContainer
-        : isOutgoing
-        ? MeshPalette.meInk
-        : scheme.onSurface;
-    final metaColor = textColor.withValues(alpha: 0.65);
+        ? MeshPalette.accent
+        : MeshPalette.line3;
+    final textColor = isFailed ? scheme.onErrorContainer : scheme.onSurface;
+    final metaColor = MeshPalette.ink3;
     const bodyFontSize = 16.0;
-
-    // Asymmetric radius: outgoing — top-left large, others also large; outgoing bottom-right tight.
-    final borderRadius = isOutgoing
-        ? const BorderRadius.only(
-            topLeft: Radius.circular(MeshRadii.lg),
-            topRight: Radius.circular(MeshRadii.lg),
-            bottomLeft: Radius.circular(MeshRadii.lg),
-            bottomRight: Radius.circular(MeshRadii.xs),
-          )
-        : const BorderRadius.only(
-            topLeft: Radius.circular(MeshRadii.lg),
-            topRight: Radius.circular(MeshRadii.lg),
-            bottomLeft: Radius.circular(MeshRadii.xs),
-            bottomRight: Radius.circular(MeshRadii.lg),
-          );
 
     // Do not strip room-server author bytes here: the parser stores them in
     // fourByteRoomContactKey, so message.text is safe to render as-is.
@@ -1603,18 +1584,21 @@ class _MessageBubble extends StatelessWidget {
                       padding: gifId != null
                           ? const EdgeInsets.all(4)
                           : const EdgeInsets.symmetric(
-                              horizontal: 14,
-                              vertical: 10,
+                              horizontal: 10,
+                              vertical: 4,
                             ),
                       constraints: BoxConstraints(
-                        maxWidth: constraints.maxWidth * 0.72,
+                        maxWidth: constraints.maxWidth * 0.84,
                       ),
                       decoration: BoxDecoration(
                         color: bubbleColor,
-                        borderRadius: borderRadius,
-                        border: bubbleBorder == null
-                            ? null
-                            : Border.all(color: bubbleBorder, width: 1),
+                        border: isOutgoing
+                            ? Border(
+                                right: BorderSide(color: ruleColor, width: 2),
+                              )
+                            : Border(
+                                left: BorderSide(color: ruleColor, width: 2),
+                              ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1778,8 +1762,8 @@ class _MessageBubble extends StatelessWidget {
                               children: [
                                 Text(
                                   _formatTime(message.timestamp),
-                                  style: TextStyle(
-                                    fontSize: 12 * textScale,
+                                  style: MeshTheme.mono(
+                                    fontSize: 11.5 * textScale,
                                     color: metaColor,
                                   ),
                                 ),
