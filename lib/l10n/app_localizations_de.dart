@@ -8652,6 +8652,120 @@ class AppLocalizationsDe extends AppLocalizations {
   String get botCmd_trace => 'Listet die Repeater, über die die Nachricht kam.';
 
   @override
+  String get ping_title => 'Repeater-Ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Umlaufzeit und Signal in beide Richtungen zu einem nahen Repeater';
+
+  @override
+  String get ping_noRepeaters => 'Noch keine Repeater bekannt';
+
+  @override
+  String get ping_choose => 'Repeater wählen';
+
+  @override
+  String get ping_avgMs => 'ms Umlauf';
+
+  @override
+  String get ping_snrThere => 'SNR dort';
+
+  @override
+  String get ping_snrBack => 'SNR zurück';
+
+  @override
+  String get ping_loss => 'Verloren';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done von $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return '$count-mal pingen';
+  }
+
+  @override
+  String get ping_results => 'Proben';
+
+  @override
+  String get ping_noReply => 'Keine Antwort';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR dort $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Jede Probe ist eine Pfadverfolgung über einen Hop: Der Repeater notiert, wie gut er dich gehört hat, und sendet es zurück. Funktioniert mit Repeatern, die dein Funkgerät direkt hört.';
+
+  @override
+  String get hunt_title => 'Antennensuche';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Große Live-Signalanzeige, die schneller klickt, je stärker das Signal';
+
+  @override
+  String get hunt_noSignal => 'Noch kein Signal';
+
+  @override
+  String get hunt_noReply => 'Keine Antwort – bewege oder drehe die Antenne';
+
+  @override
+  String get hunt_heardHere => 'dB hier gehört';
+
+  @override
+  String get hunt_best => 'Bester';
+
+  @override
+  String get hunt_sound => 'Klicken, je stärker es wird';
+
+  @override
+  String get hunt_soundHint =>
+      'Mit Vibration bei jedem Klick, damit du ohne Hinsehen ausrichten kannst.';
+
+  @override
+  String get hunt_stop => 'Stopp';
+
+  @override
+  String get hunt_start => 'Suche starten';
+
+  @override
+  String get hunt_explainer =>
+      'Prüft den Repeater etwa einmal pro Sekunde. Richte eine Richtantenne aus oder geh herum: Die Zahl zeigt, wie gut dein Funkgerät ihn hört.';
+
+  @override
+  String get settings_refreshRate => 'Aktualisierungsrate';
+
+  @override
+  String get settings_refreshFast => 'Schnell';
+
+  @override
+  String get settings_refreshNormal => 'Normal';
+
+  @override
+  String get settings_refreshSlow => 'Langsam';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Akku jede Minute, GPS alle 30 s. Frischere Werte, mehr Akkuverbrauch.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Akku alle 2 Minuten, GPS jede Minute.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Akku alle 6 Minuten, GPS alle 3 Minuten. Spart Akku.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Der Akkusparmodus ist an und bestimmt das Tempo (Akku alle 10 Minuten).';
+
+  @override
   String get reach_check => 'Beobachter-Reichweite prüfen';
 
   @override

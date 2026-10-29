@@ -8519,6 +8519,120 @@ class AppLocalizationsEn extends AppLocalizations {
       'Lists the repeaters the sender’s message came through.';
 
   @override
+  String get ping_title => 'Repeater ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Round-trip time and signal both ways to a nearby repeater';
+
+  @override
+  String get ping_noRepeaters => 'No repeaters known yet';
+
+  @override
+  String get ping_choose => 'Choose a repeater';
+
+  @override
+  String get ping_avgMs => 'ms round trip';
+
+  @override
+  String get ping_snrThere => 'SNR there';
+
+  @override
+  String get ping_snrBack => 'SNR back';
+
+  @override
+  String get ping_loss => 'Lost';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Pinging $done of $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Ping $count times';
+  }
+
+  @override
+  String get ping_results => 'Probes';
+
+  @override
+  String get ping_noReply => 'No reply';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR there $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Each probe is a one-hop path trace: the repeater notes how well it heard you and repeats it back. It works for repeaters your radio hears directly.';
+
+  @override
+  String get hunt_title => 'Antenna hunt';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'A big live signal meter that clicks faster as it gets stronger';
+
+  @override
+  String get hunt_noSignal => 'No signal yet';
+
+  @override
+  String get hunt_noReply => 'No reply — move or turn the antenna';
+
+  @override
+  String get hunt_heardHere => 'dB heard here';
+
+  @override
+  String get hunt_best => 'Best';
+
+  @override
+  String get hunt_sound => 'Click as it gets stronger';
+
+  @override
+  String get hunt_soundHint =>
+      'With a vibration on each click, so you can aim without looking.';
+
+  @override
+  String get hunt_stop => 'Stop';
+
+  @override
+  String get hunt_start => 'Start hunting';
+
+  @override
+  String get hunt_explainer =>
+      'Probes the repeater about once a second. Point a directional antenna or walk around: the number is how well your radio hears it.';
+
+  @override
+  String get settings_refreshRate => 'Radio refresh rate';
+
+  @override
+  String get settings_refreshFast => 'Fast';
+
+  @override
+  String get settings_refreshNormal => 'Normal';
+
+  @override
+  String get settings_refreshSlow => 'Slow';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Battery every minute, GPS every 30 s. Fresher numbers, more battery.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Battery every 2 minutes, GPS every minute.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Battery every 6 minutes, GPS every 3 minutes. Saves battery.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Battery saver is on, so it sets the pace (battery every 10 minutes).';
+
+  @override
   String get reach_check => 'Check observer reach';
 
   @override

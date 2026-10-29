@@ -8668,6 +8668,120 @@ class AppLocalizationsRu extends AppLocalizations {
       'Показывает ретрансляторы, через которые прошло сообщение.';
 
   @override
+  String get ping_title => 'Пинг ретранслятора';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Время туда-обратно и сигнал в обе стороны до ближайшего ретранслятора';
+
+  @override
+  String get ping_noRepeaters => 'Ретрансляторы пока неизвестны';
+
+  @override
+  String get ping_choose => 'Выберите ретранслятор';
+
+  @override
+  String get ping_avgMs => 'мс туда-обратно';
+
+  @override
+  String get ping_snrThere => 'SNR там';
+
+  @override
+  String get ping_snrBack => 'SNR обратно';
+
+  @override
+  String get ping_loss => 'Потери';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Пинг $done из $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Пинг $count раз';
+  }
+
+  @override
+  String get ping_results => 'Зонды';
+
+  @override
+  String get ping_noReply => 'Нет ответа';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms мс · SNR там $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Каждый зонд — трассировка пути на один хоп: ретранслятор отмечает, как хорошо вас слышал, и возвращает это. Работает с ретрансляторами, которые радио слышит напрямую.';
+
+  @override
+  String get hunt_title => 'Поиск антенной';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Крупный измеритель сигнала, щёлкает чаще при усилении';
+
+  @override
+  String get hunt_noSignal => 'Сигнала пока нет';
+
+  @override
+  String get hunt_noReply => 'Нет ответа — переместите или поверните антенну';
+
+  @override
+  String get hunt_heardHere => 'дБ слышно здесь';
+
+  @override
+  String get hunt_best => 'Лучший';
+
+  @override
+  String get hunt_sound => 'Щелчки при усилении';
+
+  @override
+  String get hunt_soundHint =>
+      'С вибрацией на каждый щелчок, чтобы наводить не глядя.';
+
+  @override
+  String get hunt_stop => 'Стоп';
+
+  @override
+  String get hunt_start => 'Начать поиск';
+
+  @override
+  String get hunt_explainer =>
+      'Опрашивает ретранслятор примерно раз в секунду. Наводите направленную антенну или ходите: число показывает, как хорошо радио его слышит.';
+
+  @override
+  String get settings_refreshRate => 'Частота обновления';
+
+  @override
+  String get settings_refreshFast => 'Быстро';
+
+  @override
+  String get settings_refreshNormal => 'Обычно';
+
+  @override
+  String get settings_refreshSlow => 'Медленно';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Батарея каждую минуту, GPS каждые 30 с. Свежее данные, больше расход.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Батарея каждые 2 минуты, GPS каждую минуту.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Батарея каждые 6 минут, GPS каждые 3. Экономит батарею.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Включена экономия батареи, она задаёт темп (батарея каждые 10 минут).';
+
+  @override
   String get reach_check => 'Проверить охват наблюдателями';
 
   @override

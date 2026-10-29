@@ -8604,6 +8604,120 @@ class AppLocalizationsNl extends AppLocalizations {
   String get botCmd_trace => 'Toont de repeaters waarlangs het bericht kwam.';
 
   @override
+  String get ping_title => 'Repeater-ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Rondetijd en signaal in beide richtingen naar een repeater in de buurt';
+
+  @override
+  String get ping_noRepeaters => 'Nog geen repeaters bekend';
+
+  @override
+  String get ping_choose => 'Kies een repeater';
+
+  @override
+  String get ping_avgMs => 'ms rondetijd';
+
+  @override
+  String get ping_snrThere => 'SNR daar';
+
+  @override
+  String get ping_snrBack => 'SNR terug';
+
+  @override
+  String get ping_loss => 'Verloren';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done van $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return '$count keer pingen';
+  }
+
+  @override
+  String get ping_results => 'Probes';
+
+  @override
+  String get ping_noReply => 'Geen antwoord';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR daar $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Elke probe is een padtrace van één hop: de repeater noteert hoe goed hij je hoorde en stuurt dat terug. Werkt voor repeaters die je radio direct hoort.';
+
+  @override
+  String get hunt_title => 'Antennezoeker';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Grote live signaalmeter die sneller klikt naarmate het sterker wordt';
+
+  @override
+  String get hunt_noSignal => 'Nog geen signaal';
+
+  @override
+  String get hunt_noReply => 'Geen antwoord — verplaats of draai de antenne';
+
+  @override
+  String get hunt_heardHere => 'dB hier gehoord';
+
+  @override
+  String get hunt_best => 'Beste';
+
+  @override
+  String get hunt_sound => 'Klikken naarmate het sterker wordt';
+
+  @override
+  String get hunt_soundHint =>
+      'Met een trilling bij elke klik, zodat je kunt richten zonder te kijken.';
+
+  @override
+  String get hunt_stop => 'Stoppen';
+
+  @override
+  String get hunt_start => 'Zoeken starten';
+
+  @override
+  String get hunt_explainer =>
+      'Peilt de repeater ongeveer elke seconde. Richt een richtantenne of loop rond: het getal is hoe goed je radio hem hoort.';
+
+  @override
+  String get settings_refreshRate => 'Verversingssnelheid';
+
+  @override
+  String get settings_refreshFast => 'Snel';
+
+  @override
+  String get settings_refreshNormal => 'Normaal';
+
+  @override
+  String get settings_refreshSlow => 'Langzaam';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Accu elke minuut, gps elke 30 s. Versere waarden, meer verbruik.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Accu elke 2 minuten, gps elke minuut.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Accu elke 6 minuten, gps elke 3 minuten. Spaart accu.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Batterijbesparing staat aan en bepaalt het tempo (accu elke 10 minuten).';
+
+  @override
   String get reach_check => 'Bereik bij waarnemers controleren';
 
   @override

@@ -3528,16 +3528,40 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
   }
 
+  double _pollScale = 1;
+
+  /// Scales routine polling of battery, GPS and radio stats: 0.5 is twice
+  /// as often, 3 is a third as often. Battery saver still wins when on.
+  void setPollScale(double scale) {
+    final next = scale.clamp(0.25, 10).toDouble();
+    if (next == _pollScale) return;
+    _pollScale = next;
+    if (isConnected) {
+      _startBatteryPolling();
+      if (_gpsLocationPollTimer != null) {
+        _stopGpsLocationPolling();
+        _startGpsLocationPolling();
+      }
+      if (_radioStatsPollTimer != null) _startRadioStatsPolling();
+    }
+  }
+
   @visibleForTesting
-  Duration get batteryPollInterval =>
-      _batterySaver ? const Duration(minutes: 10) : _batteryPollInterval;
+  Duration get batteryPollInterval => _batterySaver
+      ? const Duration(minutes: 10)
+      : _batteryPollInterval * _pollScale;
   @visibleForTesting
-  Duration get gpsLocationPollInterval =>
-      _batterySaver ? const Duration(minutes: 5) : _gpsLocationPollInterval;
+  Duration get gpsLocationPollInterval => _batterySaver
+      ? const Duration(minutes: 5)
+      : _gpsLocationPollInterval * _pollScale;
   @visibleForTesting
-  Duration get radioStatsPollInterval => Duration(
-    seconds: _batterySaver && _pollingInterval < 60 ? 60 : _pollingInterval,
-  );
+  Duration get radioStatsPollInterval {
+    // The radio stats screen asks for 1 s while it's open; leave that alone.
+    final seconds = _pollingInterval < 5
+        ? _pollingInterval
+        : (_pollingInterval * _pollScale).round();
+    return Duration(seconds: _batterySaver && seconds < 60 ? 60 : seconds);
+  }
 
   void _startBatteryPolling() {
     _batteryPollTimer?.cancel();

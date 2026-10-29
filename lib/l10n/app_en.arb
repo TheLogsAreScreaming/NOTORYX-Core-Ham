@@ -5061,6 +5061,66 @@
   "botCmd_weather": "Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.",
   "botCmd_dice": "Rolls dice: !dice, !dice 20 or !dice 2d6.",
   "botCmd_trace": "Lists the repeaters the sender’s message came through.",
+  "ping_title": "Repeater ping",
+  "ping_toolSubtitle": "Round-trip time and signal both ways to a nearby repeater",
+  "ping_noRepeaters": "No repeaters known yet",
+  "ping_choose": "Choose a repeater",
+  "ping_avgMs": "ms round trip",
+  "ping_snrThere": "SNR there",
+  "ping_snrBack": "SNR back",
+  "ping_loss": "Lost",
+  "ping_running": "Pinging {done} of {total}…",
+  "@ping_running": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "ping_start": "Ping {count} times",
+  "@ping_start": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ping_results": "Probes",
+  "ping_noReply": "No reply",
+  "ping_resultLine": "{ms} ms · SNR there {snr}",
+  "@ping_resultLine": {
+    "placeholders": {
+      "ms": {
+        "type": "String"
+      },
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "ping_explainer": "Each probe is a one-hop path trace: the repeater notes how well it heard you and repeats it back. It works for repeaters your radio hears directly.",
+  "hunt_title": "Antenna hunt",
+  "hunt_toolSubtitle": "A big live signal meter that clicks faster as it gets stronger",
+  "hunt_noSignal": "No signal yet",
+  "hunt_noReply": "No reply — move or turn the antenna",
+  "hunt_heardHere": "dB heard here",
+  "hunt_best": "Best",
+  "hunt_sound": "Click as it gets stronger",
+  "hunt_soundHint": "With a vibration on each click, so you can aim without looking.",
+  "hunt_stop": "Stop",
+  "hunt_start": "Start hunting",
+  "hunt_explainer": "Probes the repeater about once a second. Point a directional antenna or walk around: the number is how well your radio hears it.",
+  "settings_refreshRate": "Radio refresh rate",
+  "settings_refreshFast": "Fast",
+  "settings_refreshNormal": "Normal",
+  "settings_refreshSlow": "Slow",
+  "settings_refreshFastHint": "Battery every minute, GPS every 30 s. Fresher numbers, more battery.",
+  "settings_refreshNormalHint": "Battery every 2 minutes, GPS every minute.",
+  "settings_refreshSlowHint": "Battery every 6 minutes, GPS every 3 minutes. Saves battery.",
+  "settings_refreshSaverOn": "Battery saver is on, so it sets the pace (battery every 10 minutes).",
   "reach_check": "Check observer reach",
   "reach_title": "Observer reach",
   "reach_noHash": "This message can’t be looked up yet: no repeater has echoed it back to your radio, so its packet ID isn’t known.",

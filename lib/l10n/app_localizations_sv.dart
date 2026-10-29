@@ -8566,6 +8566,120 @@ class AppLocalizationsSv extends AppLocalizations {
   String get botCmd_trace => 'Listar repeatrarna som meddelandet gick via.';
 
   @override
+  String get ping_title => 'Repeater-ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Tur och retur-tid och signal åt båda håll till en närliggande repeater';
+
+  @override
+  String get ping_noRepeaters => 'Inga kända repeatrar än';
+
+  @override
+  String get ping_choose => 'Välj en repeater';
+
+  @override
+  String get ping_avgMs => 'ms tur och retur';
+
+  @override
+  String get ping_snrThere => 'SNR där';
+
+  @override
+  String get ping_snrBack => 'SNR tillbaka';
+
+  @override
+  String get ping_loss => 'Förlorade';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Pingar $done av $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Pinga $count gånger';
+  }
+
+  @override
+  String get ping_results => 'Prober';
+
+  @override
+  String get ping_noReply => 'Inget svar';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR där $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Varje prob är en spårning över ett hopp: repeatern noterar hur väl den hörde dig och skickar tillbaka det. Fungerar för repeatrar som radion hör direkt.';
+
+  @override
+  String get hunt_title => 'Antennjakt';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Stor live-signalmätare som klickar snabbare när signalen blir starkare';
+
+  @override
+  String get hunt_noSignal => 'Ingen signal än';
+
+  @override
+  String get hunt_noReply => 'Inget svar – flytta eller vrid antennen';
+
+  @override
+  String get hunt_heardHere => 'dB hört här';
+
+  @override
+  String get hunt_best => 'Bästa';
+
+  @override
+  String get hunt_sound => 'Klicka när den blir starkare';
+
+  @override
+  String get hunt_soundHint =>
+      'Med vibration vid varje klick, så att du kan rikta utan att titta.';
+
+  @override
+  String get hunt_stop => 'Stoppa';
+
+  @override
+  String get hunt_start => 'Börja leta';
+
+  @override
+  String get hunt_explainer =>
+      'Probar repeatern ungefär en gång per sekund. Rikta en riktantenn eller gå runt: siffran är hur väl radion hör den.';
+
+  @override
+  String get settings_refreshRate => 'Uppdateringstakt';
+
+  @override
+  String get settings_refreshFast => 'Snabb';
+
+  @override
+  String get settings_refreshNormal => 'Normal';
+
+  @override
+  String get settings_refreshSlow => 'Långsam';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Batteri varje minut, GPS var 30:e s. Färskare värden, mer batteri.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Batteri varannan minut, GPS varje minut.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Batteri var 6:e minut, GPS var 3:e. Sparar batteri.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Batterisparläget är på och styr takten (batteri var 10:e minut).';
+
+  @override
   String get reach_check => 'Kontrollera räckvidd hos observatörer';
 
   @override

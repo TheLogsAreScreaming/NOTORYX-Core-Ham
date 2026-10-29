@@ -8676,6 +8676,120 @@ class AppLocalizationsPl extends AppLocalizations {
       'Wyświetla przemienniki, przez które przeszła wiadomość.';
 
   @override
+  String get ping_title => 'Ping przemiennika';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Czas w obie strony i sygnał do pobliskiego przemiennika';
+
+  @override
+  String get ping_noRepeaters => 'Brak znanych przemienników';
+
+  @override
+  String get ping_choose => 'Wybierz przemiennik';
+
+  @override
+  String get ping_avgMs => 'ms w obie strony';
+
+  @override
+  String get ping_snrThere => 'SNR tam';
+
+  @override
+  String get ping_snrBack => 'SNR z powrotem';
+
+  @override
+  String get ping_loss => 'Utracone';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done z $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Pinguj $count razy';
+  }
+
+  @override
+  String get ping_results => 'Próby';
+
+  @override
+  String get ping_noReply => 'Brak odpowiedzi';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR tam $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Każda próba to śledzenie ścieżki na jeden skok: przemiennik notuje, jak dobrze cię słyszał, i odsyła to. Działa z przemiennikami słyszanymi bezpośrednio.';
+
+  @override
+  String get hunt_title => 'Szukanie anteną';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Duży miernik sygnału, który klika szybciej, gdy sygnał rośnie';
+
+  @override
+  String get hunt_noSignal => 'Brak sygnału';
+
+  @override
+  String get hunt_noReply => 'Brak odpowiedzi — przesuń lub obróć antenę';
+
+  @override
+  String get hunt_heardHere => 'dB słyszane tutaj';
+
+  @override
+  String get hunt_best => 'Najlepszy';
+
+  @override
+  String get hunt_sound => 'Klikaj wraz ze wzrostem sygnału';
+
+  @override
+  String get hunt_soundHint =>
+      'Z wibracją przy każdym kliknięciu, by celować bez patrzenia.';
+
+  @override
+  String get hunt_stop => 'Zatrzymaj';
+
+  @override
+  String get hunt_start => 'Rozpocznij szukanie';
+
+  @override
+  String get hunt_explainer =>
+      'Sonduje przemiennik mniej więcej co sekundę. Ustaw antenę kierunkową lub przejdź się: liczba pokazuje, jak dobrze radio go słyszy.';
+
+  @override
+  String get settings_refreshRate => 'Częstotliwość odświeżania';
+
+  @override
+  String get settings_refreshFast => 'Szybko';
+
+  @override
+  String get settings_refreshNormal => 'Normalnie';
+
+  @override
+  String get settings_refreshSlow => 'Wolno';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Bateria co minutę, GPS co 30 s. Świeższe dane, większe zużycie.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Bateria co 2 minuty, GPS co minutę.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Bateria co 6 minut, GPS co 3. Oszczędza baterię.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Oszczędzanie baterii jest włączone i wyznacza tempo (bateria co 10 minut).';
+
+  @override
   String get reach_check => 'Sprawdź zasięg u obserwatorów';
 
   @override

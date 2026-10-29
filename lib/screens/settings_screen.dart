@@ -13,8 +13,8 @@ import '../models/radio_settings.dart';
 import '../widgets/regional_preset_banner.dart';
 import '../widgets/theme_picker.dart';
 import '../widgets/us_bandwidth_notice.dart';
-import '../services/app_settings_service.dart';
 import '../services/corescope.dart';
+import '../services/app_settings_service.dart';
 import '../services/app_debug_log_service.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/app_bar.dart';
@@ -102,6 +102,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: RegionalPresetTile(),
                 ),
                 const BatterySaverCard(),
+                const RefreshRateCard(),
                 const AnalyzerCard(),
                 const MeshCard(
                   padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
@@ -2364,6 +2365,65 @@ class AnalyzerCard extends StatelessWidget {
             subtitle: Text(t.analyzer_hopLookupHint),
             value: analyzer.hopLookup,
             onChanged: analyzer.setHopLookup,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// How often the app refreshes the radio's battery, GPS and stats.
+class RefreshRateCard extends StatelessWidget {
+  const RefreshRateCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    final rate = settings.settings.refreshRate;
+    final saver = settings.settings.batterySaver;
+    final l10n = context.l10n;
+    return MeshCard(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.settings_refreshRate,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(height: 8),
+          SegmentedButton<String>(
+            key: const ValueKey('refresh-rate'),
+            showSelectedIcon: false,
+            segments: [
+              ButtonSegment(
+                value: 'fast',
+                label: Text(l10n.settings_refreshFast),
+              ),
+              ButtonSegment(
+                value: 'normal',
+                label: Text(l10n.settings_refreshNormal),
+              ),
+              ButtonSegment(
+                value: 'slow',
+                label: Text(l10n.settings_refreshSlow),
+              ),
+            ],
+            selected: {rate},
+            onSelectionChanged: saver
+                ? null
+                : (v) => settings.setRefreshRate(v.first),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            saver
+                ? l10n.settings_refreshSaverOn
+                : switch (rate) {
+                    'fast' => l10n.settings_refreshFastHint,
+                    'slow' => l10n.settings_refreshSlowHint,
+                    _ => l10n.settings_refreshNormalHint,
+                  },
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         ],
       ),
