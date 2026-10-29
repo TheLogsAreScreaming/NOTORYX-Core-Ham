@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'tactical_glass_panel.dart';
 
 /// Presentation-only wrapper for home action controls.
@@ -9,9 +10,6 @@ class GlassActionGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TacticalGlassPanel(
-      blur: false,
-      child: child,
-    );
+    return TacticalGlassPanel(blur: false, child: child);
   }
 }
