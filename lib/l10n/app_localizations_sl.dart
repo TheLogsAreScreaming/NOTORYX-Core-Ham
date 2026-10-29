@@ -7971,6 +7971,283 @@ class AppLocalizationsSl extends AppLocalizations {
   String get connections_viewDashboard => 'Prikaži pregled povezav';
 
   @override
+  String get channelDirectory_title => 'Imenik kanalov';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Poiščite javne kanale s ključnikom v bližini';
+
+  @override
+  String get channelDirectory_search => 'Iskanje kanalov ali krajev';
+
+  @override
+  String get channelDirectory_nearYou => 'V bližini';
+
+  @override
+  String get channelDirectory_all => 'Vsi kanali';
+
+  @override
+  String get channelDirectory_catAll => 'Vsi';
+
+  @override
+  String get channelDirectory_catEmergency => 'Nujni';
+
+  @override
+  String get channelDirectory_catLocal => 'Lokalni';
+
+  @override
+  String get channelDirectory_catGeneral => 'Splošni';
+
+  @override
+  String get channelDirectory_catInterest => 'Interesi';
+
+  @override
+  String get channelDirectory_catTest => 'Testni';
+
+  @override
+  String get channelDirectory_join => 'Pridruži se';
+
+  @override
+  String get channelDirectory_joined => 'Pridružen';
+
+  @override
+  String get channelDirectory_noMatches => 'Iskanju ne ustreza noben kanal.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Povežite radio, da se lahko pridružite kanalom.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Vsa mesta za kanale na radiu so zasedena. Najprej odstranite kanal.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Kanala ni bilo mogoče dodati. Poskusite znova.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Manjka kanal? Vsak ga lahko predlaga z urejanjem skupnega seznama na GitHubu.';
+
+  @override
+  String get prefixTool_title => 'ID-ji repetitorjev';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Kdo uporablja ID, kateri ID-ji se ujemajo in prosti ID-ji za nov repetitor';
+
+  @override
+  String get prefixTool_width => 'Velikost ID poti';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes B';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Vključi companione in senzorje';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return 'Znanih vozlišč: $nodes · zasedenih ID: $used · skupnih: $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return 'Prostih ID: $free od $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Poišči ID, npr. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Noben znan vozel ne uporablja $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$id uporablja $count vozlov',
+      few: '$id uporabljajo $count vozli',
+      two: '$id uporabljata $count vozla',
+      one: '$id uporablja 1 vozel',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Skupni ID-ji';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Poti prek teh ID-jev so videti enako, razen če omrežje uporablja daljše ID-je.';
+
+  @override
+  String get prefixTool_noShared => 'Med znanimi vozlišči ni skupnih ID-jev.';
+
+  @override
+  String get prefixTool_free => 'Prosti ID-ji';
+
+  @override
+  String get prefixTool_shuffle => 'Več predlogov';
+
+  @override
+  String get prefixTool_makeKey => 'Ustvari ključ';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Le na podlagi vozlišč, ki jih je slišal radio. Prost ID tukaj lahko pripada repetitorju, ki ga niste slišali.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id že uporablja $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Izberi prost ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Ključ za ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Iskanje… preizkušenih ključev: $tries';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Javni ključ';
+
+  @override
+  String get keyGen_privateKey => 'Zasebni ključ';
+
+  @override
+  String get keyGen_copy => 'Kopiraj';
+
+  @override
+  String get keyGen_copied => 'Kopirano';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Zasebni ključ hranite v tajnosti. Kdor ga ima, se lahko predstavlja kot to vozlišče.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Za repetitor: odprite njegove nastavitve, ga prilepite kot zasebni ključ in shranite. Radii companion potrebujejo strojno programsko opremo, ki dovoljuje uvoz ključa.';
+
+  @override
+  String get keyGen_tryAgain => 'Ustvari še enega';
+
+  @override
+  String get regionSetup_title => 'Nastavitev regij';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Umestite ta repetitor v drevo regij vašega območja';
+
+  @override
+  String get regionSetup_intro =>
+      'Regije zadržijo sporočilo na območju, namesto da preplavi celotno omrežje. Repetitor posreduje sporočila regije le, če to regijo nosi, zato mu dodelite njegovo regijo in vse nad njo.';
+
+  @override
+  String get regionSetup_where => 'Kje je repetitor?';
+
+  @override
+  String get regionSetup_tree => 'Drevo regij';
+
+  @override
+  String get regionSetup_custom => 'Po meri';
+
+  @override
+  String get regionSetup_region => 'Najbolj lokalna regija';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Vir: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Regije, od najširše';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '»$name« ni veljavno ime regije. Uporabite male črke, številke in vezaje, največ 29 znakov.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Repetitor lahko nosi največ $max regij.';
+  }
+
+  @override
+  String get regionSetup_options => 'Možnosti';
+
+  @override
+  String get regionSetup_setDefault => 'Najbolj lokalna regija kot privzeta';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Lastna oznanila repetitorja ostanejo v tej regiji.';
+
+  @override
+  String get regionSetup_legacy => 'Strojna programska oprema 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Doda region allowf za vsako regijo. Od 1.15 ni potrebno.';
+
+  @override
+  String get regionSetup_denyUnscoped => 'Ne posreduj sporočil brez regije';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Vklopite šele, ko celotno območje uporablja regije, sicer sporočila iz starejših aplikacij ne bodo prišla skozi.';
+
+  @override
+  String get regionSetup_commands => 'Ukazi';
+
+  @override
+  String get regionSetup_copyAll => 'Kopiraj vse';
+
+  @override
+  String get regionSetup_copied => 'Kopirano';
+
+  @override
+  String get regionSetup_pickFirst => 'Izberite regijo, da vidite ukaze.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Pošlji na $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Za pošiljanje se prijavite v repetitor in odprite Nastavitev regij v njegovem meniju ali jih prilepite v njegovo ukazno vrstico.';
+
+  @override
+  String get regionSetup_noReply => 'Ni odgovora. Ustavljeno tukaj.';
+
+  @override
+  String get regionSetup_addToMine => 'Dodaj te regije na moj seznam';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Na seznam je dodanih $count regij',
+      few: 'Na seznam so dodane $count regije',
+      two: 'Na seznam sta dodani $count regiji',
+      one: 'Na seznam je dodana 1 regija',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get trackLog_title => 'Dnevnik poti';
 
   @override

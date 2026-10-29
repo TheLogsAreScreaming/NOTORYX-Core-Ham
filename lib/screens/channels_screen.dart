@@ -30,6 +30,7 @@ import '../helpers/snack_bar_builder.dart';
 import '../utils/main_tab_navigation.dart';
 import '../widgets/quick_switch_bar.dart';
 import 'channel_chat_screen.dart';
+import 'channel_directory_screen.dart';
 import 'message_search_screen.dart';
 import 'community_qr_scanner_screen.dart';
 import 'settings_screen.dart';
@@ -1447,6 +1448,62 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     controller: scrollController,
                     padding: const EdgeInsets.only(bottom: 24),
                     children: [
+                      MeshCard(
+                        key: const ValueKey('open-channel-directory'),
+                        margin: const EdgeInsets.fromLTRB(16, 4, 16, 10),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 12,
+                        ),
+                        color: MeshPalette.accentBg,
+                        borderColor: MeshPalette.accentLine,
+                        onTap: () {
+                          Navigator.pop(sheetContext);
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => const ChannelDirectoryScreen(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            AvatarCircle(
+                              name: 'directory',
+                              size: 38,
+                              color: MeshPalette.accent,
+                              icon: Icons.travel_explore,
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    sheetContext.l10n.channelDirectory_title,
+                                    style: Theme.of(sheetContext)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(fontWeight: FontWeight.w700),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    sheetContext.l10n.channelDirectory_subtitle,
+                                    style: Theme.of(
+                                      sheetContext,
+                                    ).textTheme.bodySmall,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Icon(
+                              Icons.chevron_right,
+                              color: MeshPalette.accent,
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                      ),
                       buildOptionCard(
                         optionIndex: 0,
                         icon: Icons.add,

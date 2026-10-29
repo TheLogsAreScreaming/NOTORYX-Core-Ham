@@ -8016,6 +8016,285 @@ class AppLocalizationsPl extends AppLocalizations {
   String get connections_viewDashboard => 'Pokaż panel połączeń';
 
   @override
+  String get channelDirectory_title => 'Katalog kanałów';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Znajdź publiczne kanały hashtagowe w pobliżu';
+
+  @override
+  String get channelDirectory_search => 'Szukaj kanałów lub miejsc';
+
+  @override
+  String get channelDirectory_nearYou => 'W pobliżu';
+
+  @override
+  String get channelDirectory_all => 'Wszystkie kanały';
+
+  @override
+  String get channelDirectory_catAll => 'Wszystkie';
+
+  @override
+  String get channelDirectory_catEmergency => 'Alarmowe';
+
+  @override
+  String get channelDirectory_catLocal => 'Lokalne';
+
+  @override
+  String get channelDirectory_catGeneral => 'Ogólne';
+
+  @override
+  String get channelDirectory_catInterest => 'Zainteresowania';
+
+  @override
+  String get channelDirectory_catTest => 'Testowe';
+
+  @override
+  String get channelDirectory_join => 'Dołącz';
+
+  @override
+  String get channelDirectory_joined => 'Dołączono';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Żaden kanał nie pasuje do wyszukiwania.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Połącz radio, aby dołączać do kanałów.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Wszystkie miejsca na kanały w radiu są zajęte. Najpierw usuń kanał.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Nie udało się dodać kanału. Spróbuj ponownie.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Brakuje kanału? Każdy może go zaproponować, edytując wspólną listę na GitHubie.';
+
+  @override
+  String get prefixTool_title => 'ID przemienników';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Kto używa ID, które ID się pokrywają i wolne ID dla nowego przemiennika';
+
+  @override
+  String get prefixTool_width => 'Rozmiar ID ścieżki';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes B';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Uwzględnij companiony i czujniki';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return 'Znane węzły: $nodes · używane ID: $used · wspólne: $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return 'Wolne ID: $free z $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Wyszukaj ID, np. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Żaden znany węzeł nie używa $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count węzła używa $id',
+      many: '$count węzłów używa $id',
+      few: '$count węzły używają $id',
+      one: '1 węzeł używa $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Wspólne ID';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Ścieżki przez te ID wyglądają tak samo, chyba że sieć używa dłuższych ID.';
+
+  @override
+  String get prefixTool_noShared => 'Brak wspólnych ID wśród znanych węzłów.';
+
+  @override
+  String get prefixTool_free => 'Wolne ID';
+
+  @override
+  String get prefixTool_shuffle => 'Więcej propozycji';
+
+  @override
+  String get prefixTool_makeKey => 'Utwórz klucz';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Na podstawie tylko węzłów usłyszanych przez radio. Wolne tu ID może należeć do przemiennika, którego nie słyszałeś.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id jest już używane przez $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Wybierz wolne ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Klucz dla ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Szukanie… wypróbowano kluczy: $tries';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Klucz publiczny';
+
+  @override
+  String get keyGen_privateKey => 'Klucz prywatny';
+
+  @override
+  String get keyGen_copy => 'Kopiuj';
+
+  @override
+  String get keyGen_copied => 'Skopiowano';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Chroń klucz prywatny. Kto go ma, może podszyć się pod ten węzeł.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Dla przemiennika: otwórz jego ustawienia, wklej jako klucz prywatny i zapisz. Radia companion wymagają oprogramowania pozwalającego na import klucza.';
+
+  @override
+  String get keyGen_tryAgain => 'Utwórz kolejny';
+
+  @override
+  String get regionSetup_title => 'Konfiguracja regionów';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Umieść ten przemiennik w drzewie regionów twojej okolicy';
+
+  @override
+  String get regionSetup_intro =>
+      'Regiony zatrzymują wiadomość w danym obszarze zamiast zalewać całą sieć. Przemiennik przekazuje wiadomości regionu tylko wtedy, gdy ma ten region, więc nadaj mu jego region i wszystkie regiony powyżej.';
+
+  @override
+  String get regionSetup_where => 'Gdzie jest przemiennik?';
+
+  @override
+  String get regionSetup_tree => 'Drzewo regionów';
+
+  @override
+  String get regionSetup_custom => 'Własne';
+
+  @override
+  String get regionSetup_region => 'Najbardziej lokalny region';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Źródło: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Regiony, od najszerszego';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '„$name” nie jest prawidłową nazwą regionu. Użyj małych liter, cyfr i łączników, do 29 znaków.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Przemiennik może mieć najwyżej $max regionów.';
+  }
+
+  @override
+  String get regionSetup_options => 'Opcje';
+
+  @override
+  String get regionSetup_setDefault =>
+      'Ustaw najbardziej lokalny region jako domyślny';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Własne ogłoszenia przemiennika zostają w tym regionie.';
+
+  @override
+  String get regionSetup_legacy => 'Oprogramowanie 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Dodaje region allowf po każdym regionie. Niepotrzebne od 1.15.';
+
+  @override
+  String get regionSetup_denyUnscoped => 'Nie przekazuj wiadomości bez regionu';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Włącz dopiero, gdy cała okolica używa regionów, inaczej wiadomości ze starszych aplikacji nie dotrą.';
+
+  @override
+  String get regionSetup_commands => 'Polecenia';
+
+  @override
+  String get regionSetup_copyAll => 'Kopiuj wszystko';
+
+  @override
+  String get regionSetup_copied => 'Skopiowano';
+
+  @override
+  String get regionSetup_pickFirst => 'Wybierz region, aby zobaczyć polecenia.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Wyślij do $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Aby je wysłać, zaloguj się do przemiennika i otwórz Konfiguracja regionów z jego menu albo wklej je w jego wiersz poleceń.';
+
+  @override
+  String get regionSetup_noReply => 'Brak odpowiedzi. Zatrzymano tutaj.';
+
+  @override
+  String get regionSetup_addToMine => 'Dodaj te regiony do mojej listy';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Dodano $count regionu do listy',
+      many: 'Dodano $count regionów do listy',
+      few: 'Dodano $count regiony do listy',
+      one: 'Dodano 1 region do listy',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get trackLog_title => 'Dziennik trasy';
 
   @override

@@ -7866,6 +7866,280 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connections_viewDashboard => 'View connection dashboard';
 
   @override
+  String get channelDirectory_title => 'Channel directory';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Find public hashtag channels near you';
+
+  @override
+  String get channelDirectory_search => 'Search channels or places';
+
+  @override
+  String get channelDirectory_nearYou => 'Near you';
+
+  @override
+  String get channelDirectory_all => 'All channels';
+
+  @override
+  String get channelDirectory_catAll => 'All';
+
+  @override
+  String get channelDirectory_catEmergency => 'Emergency';
+
+  @override
+  String get channelDirectory_catLocal => 'Local';
+
+  @override
+  String get channelDirectory_catGeneral => 'General';
+
+  @override
+  String get channelDirectory_catInterest => 'Interests';
+
+  @override
+  String get channelDirectory_catTest => 'Testing';
+
+  @override
+  String get channelDirectory_join => 'Join';
+
+  @override
+  String get channelDirectory_joined => 'Joined';
+
+  @override
+  String get channelDirectory_noMatches => 'No channels match your search.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Connect your radio to join channels.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'All channel slots on your radio are in use. Remove a channel first.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Could not add the channel. Try again.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Missing a channel? Anyone can suggest one by editing the shared list on GitHub.';
+
+  @override
+  String get prefixTool_title => 'Repeater IDs';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Who uses an ID, which IDs clash, and free ones for a new repeater';
+
+  @override
+  String get prefixTool_width => 'Path ID size';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes-byte';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Include companions and sensors';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '$nodes nodes known · $used IDs in use · $shared shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '$free of $space IDs free';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Look up an ID, e.g. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'No known node uses $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nodes use $id',
+      one: '1 node uses $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Shared IDs';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Paths through these IDs look the same unless the mesh uses longer IDs.';
+
+  @override
+  String get prefixTool_noShared => 'No shared IDs among the nodes you know.';
+
+  @override
+  String get prefixTool_free => 'Free IDs';
+
+  @override
+  String get prefixTool_shuffle => 'More suggestions';
+
+  @override
+  String get prefixTool_makeKey => 'Make a key';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Based only on nodes your radio has heard. A free ID here may still belong to a repeater you haven\'t heard.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id is already used by $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Pick a free ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Key for ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Searching… $tries keys tried';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Public key';
+
+  @override
+  String get keyGen_privateKey => 'Private key';
+
+  @override
+  String get keyGen_copy => 'Copy';
+
+  @override
+  String get keyGen_copied => 'Copied';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Keep the private key secret. Anyone who has it can pose as this node.';
+
+  @override
+  String get keyGen_howToUse =>
+      'To use it on a repeater, open the repeater\'s settings, paste it as the private key and save. Companion radios need firmware that allows key import.';
+
+  @override
+  String get keyGen_tryAgain => 'Make another';
+
+  @override
+  String get regionSetup_title => 'Region setup';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Place this repeater in your area\'s region tree';
+
+  @override
+  String get regionSetup_intro =>
+      'Regions keep a message within an area instead of flooding the whole mesh. A repeater only forwards a region\'s messages if it carries that region, so give it its own region and every region above it.';
+
+  @override
+  String get regionSetup_where => 'Where is the repeater?';
+
+  @override
+  String get regionSetup_tree => 'Region tree';
+
+  @override
+  String get regionSetup_custom => 'Custom';
+
+  @override
+  String get regionSetup_region => 'Most local region';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'From: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Regions, broadest first';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '\"$name\" isn\'t a valid region name. Use lowercase letters, digits and hyphens, up to 29 characters.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'A repeater can carry at most $max regions.';
+  }
+
+  @override
+  String get regionSetup_options => 'Options';
+
+  @override
+  String get regionSetup_setDefault => 'Make the most local region the default';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'The repeater\'s own adverts stay in that region.';
+
+  @override
+  String get regionSetup_legacy => 'Firmware 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Adds region allowf after each region. Not needed on 1.15 or newer.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Stop forwarding messages without a region';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Only turn this on once your whole area uses regions, or messages from older apps won\'t get through.';
+
+  @override
+  String get regionSetup_commands => 'Commands';
+
+  @override
+  String get regionSetup_copyAll => 'Copy all';
+
+  @override
+  String get regionSetup_copied => 'Copied';
+
+  @override
+  String get regionSetup_pickFirst => 'Pick a region to see the commands.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Send to $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'To send these, log in to the repeater and open Region setup from its menu, or paste them into its command line.';
+
+  @override
+  String get regionSetup_noReply => 'No reply. Stopped here.';
+
+  @override
+  String get regionSetup_addToMine => 'Add these regions to my list';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count regions added to your list',
+      one: '1 region added to your list',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get trackLog_title => 'Track log';
 
   @override
