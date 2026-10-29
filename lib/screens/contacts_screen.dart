@@ -386,7 +386,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.person_add_rounded),
                       const SizedBox(width: 8),
-                      Text(context.l10n.discoveredContacts_Title),
+                      Flexible(
+                        child: Text(context.l10n.discoveredContacts_Title),
+                      ),
                     ],
                   ),
                   onTap: () => Navigator.push(
@@ -401,7 +403,11 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.paste),
                       const SizedBox(width: 8),
-                      Text(context.l10n.contacts_addContactFromClipboard),
+                      Flexible(
+                        child: Text(
+                          context.l10n.contacts_addContactFromClipboard,
+                        ),
+                      ),
                     ],
                   ),
                   onTap: () => _contactImport(),
@@ -412,7 +418,9 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.connect_without_contact),
                       const SizedBox(width: 8),
-                      Text(context.l10n.contacts_zeroHopAdvert),
+                      Flexible(
+                        child: Text(context.l10n.contacts_zeroHopAdvert),
+                      ),
                     ],
                   ),
                   onTap: () => {
@@ -428,7 +436,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.cell_tower),
                       const SizedBox(width: 8),
-                      Text(context.l10n.contacts_floodAdvert),
+                      Flexible(child: Text(context.l10n.contacts_floodAdvert)),
                     ],
                   ),
                   onTap: () => {
@@ -444,7 +452,11 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.copy),
                       const SizedBox(width: 8),
-                      Text(context.l10n.contacts_copyAdvertToClipboard),
+                      Flexible(
+                        child: Text(
+                          context.l10n.contacts_copyAdvertToClipboard,
+                        ),
+                      ),
                     ],
                   ),
                   onTap: () => _contactExport(Uint8List.fromList([])),
@@ -458,7 +470,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                         color: Theme.of(context).colorScheme.error,
                       ),
                       const SizedBox(width: 8),
-                      Text(context.l10n.common_disconnect),
+                      Flexible(child: Text(context.l10n.common_disconnect)),
                     ],
                   ),
                   onTap: () => _disconnect(context, connector),
@@ -468,7 +480,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                     children: [
                       const Icon(Icons.settings),
                       const SizedBox(width: 8),
-                      Text(context.l10n.settings_title),
+                      Flexible(child: Text(context.l10n.settings_title)),
                     ],
                   ),
                   onTap: () => Navigator.push(

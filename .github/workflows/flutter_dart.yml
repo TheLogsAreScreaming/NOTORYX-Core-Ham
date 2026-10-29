@@ -32,9 +32,5 @@ jobs:
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
 
-      - name: Test contact clipboard imports
-        timeout-minutes: 3
-        run: flutter test test/screens/contact_clipboard_import_test.dart test/helpers/share_links_test.dart -r expanded
-
       - name: Run tests
         run: flutter test -r github

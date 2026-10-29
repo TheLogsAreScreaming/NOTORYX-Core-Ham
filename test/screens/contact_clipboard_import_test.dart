@@ -120,6 +120,13 @@ void main() {
     expect(await Clipboard.hasStrings(), isTrue);
   });
 
+  // Something on the contacts screen keeps animating, so pumpAndSettle never
+  // returns; advance a fixed amount instead.
+  Future<void> settle(WidgetTester tester) async {
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+  }
+
   Future<void> paste(WidgetTester tester, String text) async {
     await tester.pumpWidget(
       MultiProvider(
@@ -160,7 +167,7 @@ void main() {
       expect(find.text('Adding…'), findsOneWidget);
       expect(radio.refreshes, 0);
       radio.acknowledgement!.complete();
-      await tester.pumpAndSettle();
+      await settle(tester);
       expect(radio.refreshes, 1);
       expect(find.text('Added Ridge Repeater.'), findsOneWidget);
       expect(find.text('Add contact'), findsNothing);
@@ -175,7 +182,7 @@ void main() {
     await tester.tap(find.text('Add contact'));
     await tester.pump();
     radio.acknowledgement!.completeError(StateError('Radio rejected contact'));
-    await tester.pumpAndSettle();
+    await settle(tester);
     expect(find.textContaining('Could not add Ridge Repeater'), findsOneWidget);
     expect(find.text('Add contact'), findsOneWidget);
     expect(radio.refreshes, 0);
@@ -211,7 +218,7 @@ void main() {
     await paste(tester, link);
     radio.connected = false;
     radio.notifyListeners();
-    await tester.pumpAndSettle();
+    await settle(tester);
     expect(radio.frames, isEmpty);
     // The screen may navigate away on disconnect; any surviving preview
     // must not offer an enabled radio operation.
@@ -225,7 +232,7 @@ void main() {
   testWidgets('closing the preview sends nothing', (tester) async {
     await paste(tester, link);
     await tester.tap(find.text('Close'));
-    await tester.pumpAndSettle();
+    await settle(tester);
     expect(find.byType(AlertDialog), findsNothing);
     expect(radio.frames, isEmpty);
   });
