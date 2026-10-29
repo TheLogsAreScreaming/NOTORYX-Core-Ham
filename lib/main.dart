@@ -51,6 +51,7 @@ import 'theme/mesh_theme.dart';
 import 'utils/app_logger.dart';
 import 'widgets/image_send_codec_binding.dart';
 import 'services/direct_repeater_service.dart';
+import 'services/mqtt_uploaders_service.dart';
 import 'services/coverage_hex_service.dart';
 import 'services/track_log_service.dart';
 import 'services/weather_service.dart';
@@ -275,6 +276,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   String? _shortcutLanguage;
   late final SensorSubscriptionService _sensorSubscriptions;
   late final MqttBrokerService _mqtt;
+  late final MqttUploadersService _uploaders;
   StreamSubscription<MqttMeshPacket>? _mqttPackets;
   StreamSubscription<RadioRxPacket>? _radioRxPackets;
   @override
@@ -310,11 +312,24 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       credentials: createMqttCredentialsStore(),
       transportFactory: createMqttClientTransport,
       networkMonitor: ConnectivityNetworkMonitor(),
+      backlogStore: FileMqttBacklogStore('main'),
     );
     unawaited(_mqtt.load());
+    _uploaders = MqttUploadersService(
+      prefs: PrefsManager.instance,
+      credentials: (namespace) =>
+          createMqttCredentialsStore(namespace: namespace),
+      transportFactory: createMqttClientTransport,
+      networkMonitor: ConnectivityNetworkMonitor.new,
+    );
+    unawaited(_uploaders.load().then((_) => _syncMqttObserverIdentity()));
     unawaited(
       PackageInfo.fromPlatform()
-          .then((info) => _mqtt.clientVersion = 'notoryx-core/${info.version}')
+          .then((info) {
+            final version = 'notoryx-core/${info.version}';
+            _uploaders.clientVersion = version;
+            return _mqtt.clientVersion = version;
+          })
           .catchError((Object _) => _mqtt.clientVersion),
     );
     _mqttPackets = _mqtt.packets.listen((packet) {
@@ -323,9 +338,10 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         widget.connector.ingestMqttRawPacket(packet.raw);
       }
     });
-    _radioRxPackets = widget.connector.rxPackets.listen(
-      _mqtt.publishRadioPacket,
-    );
+    _radioRxPackets = widget.connector.rxPackets.listen((packet) {
+      _mqtt.publishRadioPacket(packet);
+      _uploaders.publishRadioPacket(packet);
+    });
     _syncMqttObserverIdentity();
     widget.connector.addListener(_syncMqttObserverIdentity);
     WidgetsBinding.instance.addObserver(this);
@@ -356,6 +372,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_radioRxPackets?.cancel());
     widget.connector.removeListener(_syncMqttObserverIdentity);
     _mqtt.dispose();
+    _uploaders.dispose();
     _imageSweepTimer?.cancel();
     _channelPruneTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
@@ -383,6 +400,25 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     // Token sign-in asks the radio to sign; its private key stays there.
     _mqtt.setRadioSigner(
       connector.isConnected ? connector.signWithRadio : null,
+    );
+    _uploaders.setRadioIdentity(
+      RadioIdentity(
+        publicKeyHex: connector.selfPublicKey == null
+            ? null
+            : connector.selfPublicKeyHex,
+        name: connector.selfName,
+        details: MqttObserverDetails(
+          radio: MqttObserverDetails.radioFrom(
+            freqHz: connector.currentFreqHz,
+            bwHz: connector.currentBwHz,
+            sf: connector.currentSf,
+            cr: connector.currentCr,
+          ),
+          model: connector.manufacturerName,
+          firmwareVersion: connector.firmwareVersionString,
+        ),
+        signer: connector.isConnected ? connector.signWithRadio : null,
+      ),
     );
   }
 
@@ -426,6 +462,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         Provider.value(value: _readAloud),
         ChangeNotifierProvider.value(value: _sensorSubscriptions),
         ChangeNotifierProvider.value(value: _mqtt),
+        ChangeNotifierProvider<MqttUploadersService?>.value(value: _uploaders),
         ChangeNotifierProvider.value(value: connector),
         ChangeNotifierProvider.value(value: widget.retryService),
         ChangeNotifierProvider.value(value: widget.pathHistoryService),

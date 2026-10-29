@@ -7,6 +7,7 @@ import '../connector/meshcore_connector.dart';
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/saved_radio.dart';
+import '../services/mqtt_uploaders_service.dart';
 import '../utils/platform_info.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/connect_ui.dart';
@@ -41,6 +42,7 @@ class ConnectionDashboardScreen extends StatelessWidget {
               const SizedBox(height: 22),
               ConsoleKicker(l10n.connections_internetBridge),
               const MqttConnectionCard(),
+              const _ExtraBrokers(),
               const SizedBox(height: 22),
               ConsoleKicker(l10n.connections_connectAnother),
               const _TransportChoices(),
@@ -483,5 +485,139 @@ class _Notice extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+/// Extra brokers that also receive what the radio hears, each with its own
+/// settings, Wi-Fi-only choice and offline backlog.
+class _ExtraBrokers extends StatelessWidget {
+  const _ExtraBrokers();
+
+  @override
+  Widget build(BuildContext context) {
+    final uploaders = context.watch<MqttUploadersService?>();
+    if (uploaders == null) return const SizedBox.shrink();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        for (final u in uploaders.uploaders) ...[
+          const SizedBox(height: MeshSpace.md),
+          MqttConnectionCard(
+            key: ValueKey('uploader-${u.id}'),
+            service: u.service,
+            title: u.name,
+            onRemove: () => _confirmRemove(context, uploaders, u),
+          ),
+          if (u.separateKey && uploaders.ownPublicKey(u.id) != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                MeshSpace.xs,
+                MeshSpace.xs,
+                MeshSpace.xs,
+                0,
+              ),
+              child: Text(
+                'Signs in with its own key: '
+                '${uploaders.ownPublicKey(u.id)!.substring(0, 8)}\u2026',
+                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+              ),
+            ),
+        ],
+        if (uploaders.uploaders.length < MqttUploadersService.maxUploaders) ...[
+          const SizedBox(height: MeshSpace.sm),
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton.icon(
+              onPressed: () => _add(context, uploaders),
+              icon: const Icon(Icons.add_rounded),
+              label: const Text('Add another broker'),
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+
+  Future<void> _add(
+    BuildContext context,
+    MqttUploadersService uploaders,
+  ) async {
+    final name = TextEditingController();
+    var separate = false;
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: const Text('Add another broker'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Shares what your radio hears with one more MQTT broker, '
+                'beside your main one. It only uploads; it never feeds '
+                'packets back into the app.',
+              ),
+              TextField(
+                controller: name,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Use a separate key'),
+                subtitle: const Text(
+                  'Signs in with a key made on this phone instead of the '
+                  'radio\u2019s, so this broker can\u2019t tie uploads to '
+                  'your radio.',
+                ),
+                value: separate,
+                onChanged: (v) => setState(() => separate = v),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Add'),
+            ),
+          ],
+        ),
+      ),
+    );
+    final text = name.text;
+    name.dispose();
+    if (ok != true) return;
+    await uploaders.add(text, separateKey: separate);
+  }
+
+  Future<void> _confirmRemove(
+    BuildContext context,
+    MqttUploadersService uploaders,
+    MqttUploader u,
+  ) async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Remove ${u.name}?'),
+        content: const Text(
+          'Disconnects and forgets its settings, password, key and any '
+          'packets still waiting to upload.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Remove'),
+          ),
+        ],
+      ),
+    );
+    if (ok == true) await uploaders.remove(u.id);
   }
 }
