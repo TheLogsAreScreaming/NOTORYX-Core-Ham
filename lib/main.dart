@@ -50,6 +50,7 @@ import 'storage/prefs_manager.dart';
 import 'theme/mesh_theme.dart';
 import 'utils/app_logger.dart';
 import 'widgets/image_send_codec_binding.dart';
+import 'services/direct_repeater_service.dart';
 import 'services/track_log_service.dart';
 
 void main() async {
@@ -262,6 +263,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final BotService _botService;
   late final FieldOpsService _fieldOps;
   late final RegionalPresetService _regionalPresets;
+  late final DirectRepeaterService _directRepeaters;
   late final TrackLogService _trackLog;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -280,6 +282,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_fieldOps.load());
     _regionalPresets = RegionalPresetService(widget.connector);
     unawaited(_regionalPresets.start());
+    _directRepeaters = DirectRepeaterService(widget.connector);
     _trackLog = TrackLogService(widget.connector);
     unawaited(_trackLog.load());
     _readAloud = ReadAloudService(widget.connector, widget.appSettingsService);
@@ -335,6 +338,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
     _regionalPresets.dispose();
+    _directRepeaters.dispose();
     _trackLog.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
@@ -400,6 +404,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       providers: [
         ChangeNotifierProvider.value(value: _botService),
         ChangeNotifierProvider.value(value: _fieldOps),
+        ChangeNotifierProvider<DirectRepeaterService?>.value(
+          value: _directRepeaters,
+        ),
         ChangeNotifierProvider.value(value: _trackLog),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,

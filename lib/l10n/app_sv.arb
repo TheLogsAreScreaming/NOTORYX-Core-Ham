@@ -3714,5 +3714,12 @@
   "trackLog_deleteTitle": "Ta bort spåret?",
   "trackLog_deleteBody": "Det tas bort från den här enheten. Exporterade GPX-filer påverkas inte.",
   "trackLog_stats": "{km} km · {duration} · {points} punkter",
-  "trackLog_gpxName": "NOTORYX-spår {when}"
+  "trackLog_gpxName": "NOTORYX-spår {when}",
+  "routes_nearbyTitle": "BÄSTA REPEATRAR NÄRA DIG",
+  "routes_nearbyEmptyTitle": "Inga repeatrar hörda än",
+  "routes_nearbyEmpty": "Repeatrar som radion hör direkt visas här, starkast först, allteftersom den tar emot trafik. Listan gäller den senaste timmen.",
+  "routes_unknownRepeater": "Okänd repeater",
+  "routes_nearbyDetail": "{count, plural, =1{hörd en gång} other{hörd {count} gånger}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{nyss} =1{för 1 min sedan} other{för {minutes} min sedan}}",
+  "routes_via": "via {names}"
 }

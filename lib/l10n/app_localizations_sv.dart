@@ -8247,4 +8247,45 @@ class AppLocalizationsSv extends AppLocalizations {
   String trackLog_gpxName(String when) {
     return 'NOTORYX-spår $when';
   }
+
+  @override
+  String get routes_nearbyTitle => 'BÄSTA REPEATRAR NÄRA DIG';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Inga repeatrar hörda än';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'Repeatrar som radion hör direkt visas här, starkast först, allteftersom den tar emot trafik. Listan gäller den senaste timmen.';
+
+  @override
+  String get routes_unknownRepeater => 'Okänd repeater';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'hörd $count gånger',
+      one: 'hörd en gång',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'för $minutes min sedan',
+      one: 'för 1 min sedan',
+      zero: 'nyss',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'via $names';
+  }
 }

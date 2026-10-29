@@ -7,12 +7,17 @@ import '../models/contact.dart';
 class PathHopResolver {
   const PathHopResolver._();
 
+  /// Farther than this from the previous hop, a candidate can't be the
+  /// repeater that relayed the message: LoRa hops rarely pass 150 km.
+  static const double defaultMaxHopKm = 150;
+
   static List<Contact?> resolve({
     required List<int> pathBytes,
     required List<Contact> contacts,
     LatLng? endpoint,
     bool resolveFromEnd = false,
     int pathHashByteWidth = 1,
+    double maxHopKm = defaultMaxHopKm,
   }) {
     final width = pathHashByteWidth.clamp(1, 4).toInt();
     final candidatesByPrefix = <String, List<Contact>>{};
@@ -49,6 +54,15 @@ class PathHopResolver {
       if (candidates.length > 1 && previousPosition == null) continue;
 
       var bestIndex = 0;
+      if (previousPosition != null && candidates.length == 1) {
+        // A lone candidate that is out of radio range is someone else's
+        // repeater with the same short ID.
+        final position = _positionOf(candidates.first);
+        if (position != null &&
+            distance(previousPosition, position) > maxHopKm * 1000) {
+          continue;
+        }
+      }
       if (previousPosition != null && candidates.length > 1) {
         double? nearestDistance;
         for (var i = 0; i < candidates.length; i++) {
@@ -62,6 +76,7 @@ class PathHopResolver {
         }
         // Without a located candidate, recency is not identity evidence.
         if (nearestDistance == null) continue;
+        if (nearestDistance > maxHopKm * 1000) continue;
       }
 
       final contact = candidates.removeAt(bestIndex);

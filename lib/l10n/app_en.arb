@@ -4853,5 +4853,36 @@
         "type": "String"
       }
     }
+  },
+  "routes_nearbyTitle": "BEST REPEATERS NEAR YOU",
+  "routes_nearbyEmptyTitle": "No repeaters heard yet",
+  "routes_nearbyEmpty": "Repeaters your radio hears directly show up here, strongest first, as it receives traffic. The list covers the last hour.",
+  "routes_unknownRepeater": "Unknown repeater",
+  "routes_nearbyDetail": "{count, plural, =1{heard once} other{heard {count} times}} · {ago}",
+  "@routes_nearbyDetail": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "routes_minutesAgo": "{minutes, plural, =0{just now} =1{1 min ago} other{{minutes} min ago}}",
+  "@routes_minutesAgo": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "routes_via": "via {names}",
+  "@routes_via": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
   }
 }

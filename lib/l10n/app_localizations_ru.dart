@@ -8347,4 +8347,45 @@ class AppLocalizationsRu extends AppLocalizations {
   String trackLog_gpxName(String when) {
     return 'Трек NOTORYX $when';
   }
+
+  @override
+  String get routes_nearbyTitle => 'ЛУЧШИЕ РЕТРАНСЛЯТОРЫ РЯДОМ';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Ретрансляторы ещё не слышны';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'Ретрансляторы, которые радио слышит напрямую, появляются здесь, начиная с самых сильных, по мере приёма трафика. Список охватывает последний час.';
+
+  @override
+  String get routes_unknownRepeater => 'Неизвестный ретранслятор';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'слышен раз: $count',
+      one: 'слышен 1 раз',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes мин назад',
+      one: '1 мин назад',
+      zero: 'только что',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'через $names';
+  }
 }

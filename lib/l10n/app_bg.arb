@@ -3714,5 +3714,12 @@
   "trackLog_deleteTitle": "Да се изтрие ли маршрутът?",
   "trackLog_deleteBody": "Ще бъде премахнат от това устройство. Експортираните GPX файлове не се засягат.",
   "trackLog_stats": "{km} км · {duration} · {points} точки",
-  "trackLog_gpxName": "Маршрут NOTORYX {when}"
+  "trackLog_gpxName": "Маршрут NOTORYX {when}",
+  "routes_nearbyTitle": "НАЙ-ДОБРИ РЕТРАНСЛАТОРИ НАБЛИЗО",
+  "routes_nearbyEmptyTitle": "Още не са чути ретранслатори",
+  "routes_nearbyEmpty": "Ретранслаторите, които радиото чува директно, се появяват тук, най-силните първи, докато приема трафик. Списъкът обхваща последния час.",
+  "routes_unknownRepeater": "Неизвестен ретранслатор",
+  "routes_nearbyDetail": "{count, plural, =1{чут веднъж} other{чут {count} пъти}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{току-що} =1{преди 1 мин} other{преди {minutes} мин}}",
+  "routes_via": "през {names}"
 }

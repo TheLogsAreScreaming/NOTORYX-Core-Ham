@@ -3719,5 +3719,12 @@
   "trackLog_deleteTitle": "删除此轨迹？",
   "trackLog_deleteBody": "它将从此设备上删除。已导出的 GPX 文件不受影响。",
   "trackLog_stats": "{km} 公里 · {duration} · {points} 个点",
-  "trackLog_gpxName": "NOTORYX 轨迹 {when}"
+  "trackLog_gpxName": "NOTORYX 轨迹 {when}",
+  "routes_nearbyTitle": "附近最佳中继器",
+  "routes_nearbyEmptyTitle": "尚未听到中继器",
+  "routes_nearbyEmpty": "电台直接听到的中继器会随着收到流量按信号从强到弱显示在这里。列表涵盖最近一小时。",
+  "routes_unknownRepeater": "未知中继器",
+  "routes_nearbyDetail": "{count, plural, other{已听到 {count} 次}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{刚刚} other{{minutes} 分钟前}}",
+  "routes_via": "经由 {names}"
 }

@@ -3848,5 +3848,12 @@
   "trackLog_deleteTitle": "Eliminare questo percorso?",
   "trackLog_deleteBody": "Viene rimosso da questo dispositivo. I file GPX esportati non cambiano.",
   "trackLog_stats": "{km} km · {duration} · {points} punti",
-  "trackLog_gpxName": "Percorso NOTORYX {when}"
+  "trackLog_gpxName": "Percorso NOTORYX {when}",
+  "routes_nearbyTitle": "MIGLIORI RIPETITORI VICINI",
+  "routes_nearbyEmptyTitle": "Nessun ripetitore sentito finora",
+  "routes_nearbyEmpty": "I ripetitori che la radio sente direttamente compaiono qui, i più forti per primi, man mano che riceve traffico. L’elenco copre l’ultima ora.",
+  "routes_unknownRepeater": "Ripetitore sconosciuto",
+  "routes_nearbyDetail": "{count, plural, =1{sentito una volta} other{sentito {count} volte}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{proprio ora} =1{1 min fa} other{{minutes} min fa}}",
+  "routes_via": "tramite {names}"
 }

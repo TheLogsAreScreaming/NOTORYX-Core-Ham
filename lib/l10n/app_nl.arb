@@ -3714,5 +3714,12 @@
   "trackLog_deleteTitle": "Deze route verwijderen?",
   "trackLog_deleteBody": "Hij wordt van dit apparaat verwijderd. Geëxporteerde GPX-bestanden blijven bestaan.",
   "trackLog_stats": "{km} km · {duration} · {points} punten",
-  "trackLog_gpxName": "NOTORYX-route {when}"
+  "trackLog_gpxName": "NOTORYX-route {when}",
+  "routes_nearbyTitle": "BESTE REPEATERS IN DE BUURT",
+  "routes_nearbyEmptyTitle": "Nog geen repeaters gehoord",
+  "routes_nearbyEmpty": "Repeaters die je radio rechtstreeks hoort, verschijnen hier, de sterkste eerst, zodra hij verkeer ontvangt. De lijst beslaat het afgelopen uur.",
+  "routes_unknownRepeater": "Onbekende repeater",
+  "routes_nearbyDetail": "{count, plural, =1{één keer gehoord} other{{count} keer gehoord}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{zojuist} =1{1 min geleden} other{{minutes} min geleden}}",
+  "routes_via": "via {names}"
 }

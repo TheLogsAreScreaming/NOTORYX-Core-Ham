@@ -3714,5 +3714,12 @@
   "trackLog_deleteTitle": "Izbrišem to pot?",
   "trackLog_deleteBody": "Odstranjena bo iz te naprave. Izvožene datoteke GPX ostanejo.",
   "trackLog_stats": "{km} km · {duration} · točk: {points}",
-  "trackLog_gpxName": "Pot NOTORYX {when}"
+  "trackLog_gpxName": "Pot NOTORYX {when}",
+  "routes_nearbyTitle": "NAJBOLJŠI REPETITORJI V BLIŽINI",
+  "routes_nearbyEmptyTitle": "Repetitorjev še ni slišati",
+  "routes_nearbyEmpty": "Repetitorji, ki jih radio sliši neposredno, se pojavijo tukaj, najmočnejši najprej, ko sprejema promet. Seznam zajema zadnjo uro.",
+  "routes_unknownRepeater": "Neznan repetitor",
+  "routes_nearbyDetail": "{count, plural, =1{slišan enkrat} two{slišan dvakrat} few{slišan {count}-krat} other{slišan {count}-krat}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{pravkar} =1{pred 1 min} other{pred {minutes} min}}",
+  "routes_via": "prek {names}"
 }

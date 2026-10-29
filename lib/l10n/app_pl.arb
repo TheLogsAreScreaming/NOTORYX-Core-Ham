@@ -3752,5 +3752,12 @@
   "trackLog_deleteTitle": "Usunąć tę trasę?",
   "trackLog_deleteBody": "Zostanie usunięta z tego urządzenia. Wyeksportowane pliki GPX pozostaną.",
   "trackLog_stats": "{km} km · {duration} · punkty: {points}",
-  "trackLog_gpxName": "Trasa NOTORYX {when}"
+  "trackLog_gpxName": "Trasa NOTORYX {when}",
+  "routes_nearbyTitle": "NAJLEPSZE PRZEMIENNIKI W POBLIŻU",
+  "routes_nearbyEmptyTitle": "Nie usłyszano jeszcze przemienników",
+  "routes_nearbyEmpty": "Przemienniki, które radio słyszy bezpośrednio, pojawiają się tu od najsilniejszego, w miarę odbierania ruchu. Lista obejmuje ostatnią godzinę.",
+  "routes_unknownRepeater": "Nieznany przemiennik",
+  "routes_nearbyDetail": "{count, plural, =1{usłyszany raz} few{usłyszany {count} razy} many{usłyszany {count} razy} other{usłyszany {count} razy}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{przed chwilą} =1{1 min temu} other{{minutes} min temu}}",
+  "routes_via": "przez {names}"
 }

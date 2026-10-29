@@ -3714,5 +3714,12 @@
   "trackLog_deleteTitle": "Odstrániť túto trasu?",
   "trackLog_deleteBody": "Odstráni sa z tohto zariadenia. Exportované súbory GPX zostanú.",
   "trackLog_stats": "{km} km · {duration} · body: {points}",
-  "trackLog_gpxName": "Trasa NOTORYX {when}"
+  "trackLog_gpxName": "Trasa NOTORYX {when}",
+  "routes_nearbyTitle": "NAJLEPŠIE OPAKOVAČE V OKOLÍ",
+  "routes_nearbyEmptyTitle": "Zatiaľ nepočuť žiadne opakovače",
+  "routes_nearbyEmpty": "Opakovače, ktoré rádio počuje priamo, sa tu zobrazia od najsilnejšieho, keď prijíma prevádzku. Zoznam pokrýva poslednú hodinu.",
+  "routes_unknownRepeater": "Neznámy opakovač",
+  "routes_nearbyDetail": "{count, plural, =1{počutý raz} few{počutý {count}-krát} other{počutý {count}-krát}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{práve teraz} =1{pred 1 min} other{pred {minutes} min}}",
+  "routes_via": "cez {names}"
 }

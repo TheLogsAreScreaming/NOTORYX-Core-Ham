@@ -1,13 +1,19 @@
-import '../theme/mesh_theme.dart';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../helpers/path_helper.dart';
+import '../helpers/path_hop_resolver.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
+import '../models/direct_repeaters.dart';
 import '../models/path_history.dart';
+import '../services/direct_repeater_service.dart';
 import '../services/path_history_service.dart';
+import '../theme/mesh_theme.dart';
 import 'discovery_screen.dart';
 import 'map_screen.dart';
 
@@ -171,6 +177,8 @@ class BastionPathHubScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
+          _BestRepeaters(connector: connector),
+          const SizedBox(height: 20),
           Text(
             l10n.routes_learned,
             style: TextStyle(
@@ -219,6 +227,23 @@ class _ContactRouteCard extends StatelessWidget {
   final _ContactRoutes entry;
   const _ContactRouteCard({required this.entry});
 
+  /// Repeater names along [path] ("?" where the ID can't be pinned to one
+  /// known repeater), or null when none are known.
+  String? _names(MeshCoreConnector connector, PathRecord path) {
+    if (path.pathBytes.isEmpty) return null;
+    final lat = connector.selfLatitude, lon = connector.selfLongitude;
+    final hops = PathHopResolver.resolve(
+      pathBytes: path.pathBytes,
+      contacts: connector.allContactsUnfiltered,
+      endpoint: lat == null || lon == null || (lat == 0 && lon == 0)
+          ? null
+          : LatLng(lat, lon),
+      pathHashByteWidth: path.hashByteWidth,
+    );
+    if (hops.every((c) => c == null)) return null;
+    return hops.map((c) => c?.name ?? '?').join(' › ');
+  }
+
   String _path(BuildContext context, PathRecord path) {
     if (path.pathBytes.isEmpty) return context.l10n.routes_direct;
     return PathHelper.splitPathBytes(
@@ -231,6 +256,9 @@ class _ContactRouteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final best = entry.paths.isEmpty ? null : entry.paths.first;
+    final names = best == null
+        ? null
+        : _names(context.read<MeshCoreConnector>(), best);
     final fastest = entry.paths
         .where((p) => p.tripTimeMs > 0)
         .fold<PathRecord?>(null, (current, p) {
@@ -280,6 +308,15 @@ class _ContactRouteCard extends StatelessWidget {
                 fontWeight: FontWeight.w800,
               ),
             ),
+            if (names != null) ...[
+              const SizedBox(height: 3),
+              Text(
+                l10n.routes_via(names),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(color: MeshPalette.ink2, fontSize: 11.5),
+              ),
+            ],
             const SizedBox(height: 5),
             Text(
               l10n.routes_bestDetail(
@@ -447,4 +484,166 @@ class _InfoPanel extends StatelessWidget {
       ],
     ),
   );
+}
+
+/// The nodes this radio hears directly, strongest and most recent first.
+class _BestRepeaters extends StatelessWidget {
+  const _BestRepeaters({required this.connector});
+
+  final MeshCoreConnector connector;
+
+  String _name(BuildContext context, String id) {
+    final bytes = Uint8List.fromList([
+      for (var i = 0; i + 1 < id.length; i += 2)
+        int.parse(id.substring(i, i + 2), radix: 16),
+    ]);
+    if (bytes.length >= 32) {
+      final key = id.toLowerCase();
+      for (final c in connector.allContactsUnfiltered) {
+        if (c.publicKeyHex.toLowerCase() == key) return c.name;
+      }
+      return context.l10n.routes_unknownRepeater;
+    }
+    final lat = connector.selfLatitude, lon = connector.selfLongitude;
+    final hop = PathHopResolver.resolve(
+      pathBytes: bytes,
+      contacts: connector.allContactsUnfiltered,
+      endpoint: lat == null || lon == null || (lat == 0 && lon == 0)
+          ? null
+          : LatLng(lat, lon),
+      pathHashByteWidth: bytes.length,
+    );
+    return hop.single?.name ?? context.l10n.routes_unknownRepeater;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final service = context.watch<DirectRepeaterService?>();
+    if (service == null) return const SizedBox.shrink();
+    final best = service.best();
+    final now = DateTime.now();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.routes_nearbyTitle,
+          style: TextStyle(
+            color: MeshPalette.accent,
+            fontSize: 11,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1.3,
+          ),
+        ),
+        const SizedBox(height: 10),
+        if (best.isEmpty)
+          _InfoPanel(
+            icon: Icons.cell_tower_rounded,
+            title: l10n.routes_nearbyEmptyTitle,
+            body: l10n.routes_nearbyEmpty,
+          )
+        else
+          for (var i = 0; i < best.length; i++)
+            _BestRepeaterRow(
+              rank: i + 1,
+              name: _name(context, best[i].id),
+              id: best[i].id.length > 6
+                  ? best[i].id.substring(0, 4)
+                  : best[i].id,
+              heard: best[i],
+              minutesAgo: now.difference(best[i].lastHeard).inMinutes,
+            ),
+      ],
+    );
+  }
+}
+
+class _BestRepeaterRow extends StatelessWidget {
+  const _BestRepeaterRow({
+    required this.rank,
+    required this.name,
+    required this.id,
+    required this.heard,
+    required this.minutesAgo,
+  });
+
+  final int rank;
+  final String name;
+  final String id;
+  final DirectHeard heard;
+  final int minutesAgo;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final snr = heard.snrAverage;
+    // SNR above ~5 dB is a solid LoRa link; below -5 dB it's marginal.
+    final color = snr >= 5
+        ? MeshPalette.signal
+        : snr >= -5
+        ? MeshPalette.warn
+        : MeshPalette.alert;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: MeshPalette.bg1,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: MeshPalette.line),
+      ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 22,
+            child: Text(
+              '$rank',
+              style: TextStyle(
+                color: MeshPalette.ink3,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: TextStyle(
+                    color: MeshPalette.ink,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  l10n.routes_nearbyDetail(
+                    heard.count,
+                    l10n.routes_minutesAgo(minutesAgo),
+                  ),
+                  style: TextStyle(color: MeshPalette.ink3, fontSize: 11.5),
+                ),
+              ],
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                'SNR ${snr.toStringAsFixed(1)} dB',
+                style: MeshTheme.mono(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: color,
+                ),
+              ),
+              Text(
+                id,
+                style: MeshTheme.mono(fontSize: 11, color: MeshPalette.ink3),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }

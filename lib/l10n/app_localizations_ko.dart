@@ -7926,4 +7926,43 @@ class AppLocalizationsKo extends AppLocalizations {
   String trackLog_gpxName(String when) {
     return 'NOTORYX 트랙 $when';
   }
+
+  @override
+  String get routes_nearbyTitle => '주변 최적 리피터';
+
+  @override
+  String get routes_nearbyEmptyTitle => '아직 들린 리피터가 없습니다';
+
+  @override
+  String get routes_nearbyEmpty =>
+      '무전기가 직접 듣는 리피터가 트래픽을 받는 대로 강한 순서로 여기에 표시됩니다. 최근 1시간이 대상입니다.';
+
+  @override
+  String get routes_unknownRepeater => '알 수 없는 리피터';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count회 수신',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes분 전',
+      zero: '방금',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return '경유: $names';
+  }
 }

@@ -8200,4 +8200,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String trackLog_gpxName(String when) {
     return 'NOTORYX track $when';
   }
+
+  @override
+  String get routes_nearbyTitle => 'BEST REPEATERS NEAR YOU';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'No repeaters heard yet';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'Repeaters your radio hears directly show up here, strongest first, as it receives traffic. The list covers the last hour.';
+
+  @override
+  String get routes_unknownRepeater => 'Unknown repeater';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'heard $count times',
+      one: 'heard once',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes min ago',
+      one: '1 min ago',
+      zero: 'just now',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'via $names';
+  }
 }

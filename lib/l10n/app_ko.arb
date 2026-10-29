@@ -3848,5 +3848,12 @@
   "trackLog_deleteTitle": "이 트랙을 삭제할까요?",
   "trackLog_deleteBody": "이 기기에서 삭제됩니다. 내보낸 GPX 파일은 영향을 받지 않습니다.",
   "trackLog_stats": "{km} km · {duration} · 지점 {points}개",
-  "trackLog_gpxName": "NOTORYX 트랙 {when}"
+  "trackLog_gpxName": "NOTORYX 트랙 {when}",
+  "routes_nearbyTitle": "주변 최적 리피터",
+  "routes_nearbyEmptyTitle": "아직 들린 리피터가 없습니다",
+  "routes_nearbyEmpty": "무전기가 직접 듣는 리피터가 트래픽을 받는 대로 강한 순서로 여기에 표시됩니다. 최근 1시간이 대상입니다.",
+  "routes_unknownRepeater": "알 수 없는 리피터",
+  "routes_nearbyDetail": "{count, plural, other{{count}회 수신}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{방금} other{{minutes}분 전}}",
+  "routes_via": "경유: {names}"
 }

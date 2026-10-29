@@ -3694,5 +3694,12 @@
   "trackLog_deleteTitle": "Видалити цей трек?",
   "trackLog_deleteBody": "Його буде видалено з цього пристрою. Експортовані GPX-файли не змінюються.",
   "trackLog_stats": "{km} км · {duration} · точок: {points}",
-  "trackLog_gpxName": "Трек NOTORYX {when}"
+  "trackLog_gpxName": "Трек NOTORYX {when}",
+  "routes_nearbyTitle": "НАЙКРАЩІ РЕТРАНСЛЯТОРИ ПОРУЧ",
+  "routes_nearbyEmptyTitle": "Ретранслятори ще не чути",
+  "routes_nearbyEmpty": "Ретранслятори, які радіо чує напряму, з’являються тут, починаючи з найсильніших, у міру приймання трафіку. Список охоплює останню годину.",
+  "routes_unknownRepeater": "Невідомий ретранслятор",
+  "routes_nearbyDetail": "{count, plural, =1{чути 1 раз} other{чути разів: {count}}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{щойно} =1{1 хв тому} other{{minutes} хв тому}}",
+  "routes_via": "через {names}"
 }

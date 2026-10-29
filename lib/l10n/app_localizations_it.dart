@@ -8332,4 +8332,45 @@ class AppLocalizationsIt extends AppLocalizations {
   String trackLog_gpxName(String when) {
     return 'Percorso NOTORYX $when';
   }
+
+  @override
+  String get routes_nearbyTitle => 'MIGLIORI RIPETITORI VICINI';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'Nessun ripetitore sentito finora';
+
+  @override
+  String get routes_nearbyEmpty =>
+      'I ripetitori che la radio sente direttamente compaiono qui, i più forti per primi, man mano che riceve traffico. L’elenco copre l’ultima ora.';
+
+  @override
+  String get routes_unknownRepeater => 'Ripetitore sconosciuto';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'sentito $count volte',
+      one: 'sentito una volta',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes min fa',
+      one: '1 min fa',
+      zero: 'proprio ora',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return 'tramite $names';
+  }
 }

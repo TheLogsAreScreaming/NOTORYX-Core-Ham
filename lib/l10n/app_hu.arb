@@ -3752,5 +3752,12 @@
   "trackLog_deleteTitle": "Törlöd ezt az útvonalat?",
   "trackLog_deleteBody": "Eltűnik erről az eszközről. Az exportált GPX-fájlok megmaradnak.",
   "trackLog_stats": "{km} km · {duration} · {points} pont",
-  "trackLog_gpxName": "NOTORYX útvonal {when}"
+  "trackLog_gpxName": "NOTORYX útvonal {when}",
+  "routes_nearbyTitle": "LEGJOBB KÖZELI ÁTJÁTSZÓK",
+  "routes_nearbyEmptyTitle": "Még nem hallatszik átjátszó",
+  "routes_nearbyEmpty": "A rádió által közvetlenül hallott átjátszók itt jelennek meg, a legerősebb elöl, ahogy forgalmat fogad. A lista az utolsó órát mutatja.",
+  "routes_unknownRepeater": "Ismeretlen átjátszó",
+  "routes_nearbyDetail": "{count, plural, =1{egyszer hallva} other{{count} alkalommal hallva}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{épp most} =1{1 perce} other{{minutes} perce}}",
+  "routes_via": "ezen át: {names}"
 }

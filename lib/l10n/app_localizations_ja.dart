@@ -7914,4 +7914,43 @@ class AppLocalizationsJa extends AppLocalizations {
   String trackLog_gpxName(String when) {
     return 'NOTORYX トラック $when';
   }
+
+  @override
+  String get routes_nearbyTitle => '近くの最適なリピーター';
+
+  @override
+  String get routes_nearbyEmptyTitle => 'まだリピーターを受信していません';
+
+  @override
+  String get routes_nearbyEmpty =>
+      '無線機が直接受信したリピーターが、通信を受けるたびに強い順にここへ表示されます。直近1時間が対象です。';
+
+  @override
+  String get routes_unknownRepeater => '不明なリピーター';
+
+  @override
+  String routes_nearbyDetail(int count, String ago) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count回受信',
+    );
+    return '$_temp0 · $ago';
+  }
+
+  @override
+  String routes_minutesAgo(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes分前',
+      zero: 'たった今',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String routes_via(String names) {
+    return '経由: $names';
+  }
 }

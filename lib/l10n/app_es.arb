@@ -3848,5 +3848,12 @@
   "trackLog_deleteTitle": "¿Eliminar esta ruta?",
   "trackLog_deleteBody": "Se quita de este dispositivo. Los archivos GPX exportados no se ven afectados.",
   "trackLog_stats": "{km} km · {duration} · {points} puntos",
-  "trackLog_gpxName": "Ruta NOTORYX {when}"
+  "trackLog_gpxName": "Ruta NOTORYX {when}",
+  "routes_nearbyTitle": "MEJORES REPETIDORES CERCA",
+  "routes_nearbyEmptyTitle": "Aún no se ha oído ningún repetidor",
+  "routes_nearbyEmpty": "Los repetidores que tu radio oye directamente aparecen aquí, los más fuertes primero, a medida que recibe tráfico. La lista cubre la última hora.",
+  "routes_unknownRepeater": "Repetidor desconocido",
+  "routes_nearbyDetail": "{count, plural, =1{oído una vez} other{oído {count} veces}} · {ago}",
+  "routes_minutesAgo": "{minutes, plural, =0{ahora mismo} =1{hace 1 min} other{hace {minutes} min}}",
+  "routes_via": "vía {names}"
 }
