@@ -24,12 +24,13 @@ import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/qr_code_display.dart';
 import '../widgets/sync_progress_overlay.dart';
-import '../widgets/unread_badge.dart';
+import '../widgets/instrument.dart';
 import '../helpers/gif_helper.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../utils/main_tab_navigation.dart';
 import '../widgets/quick_switch_bar.dart';
 import 'channel_chat_screen.dart';
+import 'chat_screen.dart';
 import 'channel_directory_screen.dart';
 import 'message_search_screen.dart';
 import 'community_qr_scanner_screen.dart';
@@ -289,6 +290,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       ? ReorderableListView.builder(
                           padding: const EdgeInsets.only(bottom: 88),
                           buildDefaultDragHandles: false,
+                          footer: _DirectChats(connector: connector),
                           itemCount: filteredChannels.length,
                           onReorderItem: (oldIndex, newIndex) {
                             final reordered = List<Channel>.from(
@@ -317,8 +319,15 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         )
                       : ListView.builder(
                           padding: const EdgeInsets.only(bottom: 88),
-                          itemCount: filteredChannels.length,
+                          // Direct chats follow the channels, but not while
+                          // searching channels.
+                          itemCount:
+                              filteredChannels.length +
+                              (viewState.channelsSearchText.isEmpty ? 1 : 0),
                           itemBuilder: (context, index) {
+                            if (index == filteredChannels.length) {
+                              return _DirectChats(connector: connector);
+                            }
                             final channel = filteredChannels[index];
                             return _buildChannelTile(
                               context,
@@ -366,7 +375,6 @@ class _ChannelsScreenState extends State<ChannelsScreen>
 
     // Determine icon and colors based on channel type
     IconData icon;
-    Color iconColor;
     final ChannelType channelType = Channel.getChannelType(
       channel,
       _communityIndex,
@@ -384,27 +392,22 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     switch (channelType) {
       case ChannelType.communityPublic:
         icon = Icons.groups;
-        iconColor = MeshPalette.magenta;
         if (community != null) {
           subtitle =
               '${context.l10n.community_publicChannel} • ${community.name}';
         }
       case ChannelType.communityHashtag:
         icon = Icons.groups;
-        iconColor = MeshPalette.magenta;
         if (community != null) {
           subtitle =
               '${context.l10n.community_hashtagChannel} • ${community.name}';
         }
       case ChannelType.public:
         icon = Icons.public;
-        iconColor = MeshPalette.signal;
       case ChannelType.hashtag:
         icon = Icons.tag;
-        iconColor = MeshPalette.accent;
       case ChannelType.private:
         icon = Icons.lock;
-        iconColor = MeshPalette.accent;
     }
 
     // Last message preview
@@ -461,53 +464,34 @@ class _ChannelsScreenState extends State<ChannelsScreen>
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: MeshSpace.lg,
-            vertical: MeshSpace.md,
+            vertical: 10,
           ),
           decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: MeshPalette.line.withValues(alpha: 0.5),
-              ),
-            ),
+            border: Border(bottom: BorderSide(color: instrumentLine)),
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Leading avatar with optional community badge
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  AvatarCircle(
-                    name: channelLabel,
-                    size: 42,
-                    color: iconColor,
-                    icon: icon,
-                  ),
-                  if (isCommunityChannel)
-                    Positioned(
-                      right: -2,
-                      bottom: -2,
-                      child: Container(
-                        width: 16,
-                        height: 16,
-                        decoration: BoxDecoration(
-                          color: MeshPalette.magenta,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.surfaceContainerLow,
-                            width: 2,
-                          ),
+              // A glyph, not an avatar: # hashtag, ◎ public, lock private.
+              SizedBox(
+                width: 22,
+                child: channelType == ChannelType.hashtag
+                    ? Text(
+                        '#',
+                        style: MeshTheme.mono(
+                          fontSize: 17,
+                          color: MeshPalette.ink3,
                         ),
-                        child: const Icon(
-                          Icons.people,
-                          size: 8,
-                          color: Colors.white,
+                      )
+                    : channelType == ChannelType.public
+                    ? Text(
+                        '\u25CE',
+                        style: MeshTheme.mono(
+                          fontSize: 16,
+                          color: MeshPalette.ink3,
                         ),
-                      ),
-                    ),
-                ],
+                      )
+                    : Icon(icon, size: 17, color: MeshPalette.ink3),
               ),
               const SizedBox(width: 12),
               // Title + subtitle + ch chip
@@ -520,10 +504,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       channelLabel,
                       style: TextStyle(
                         color: scheme.onSurface,
-                        fontSize: 15.5,
+                        fontSize: 15,
                         fontWeight: unreadCount > 0
                             ? FontWeight.w700
-                            : FontWeight.w600,
+                            : FontWeight.w500,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -544,7 +528,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       Text(
                         lastPreview,
                         style: TextStyle(
-                          fontSize: 13.5,
+                          fontSize: 13,
                           color: unreadCount > 0
                               ? MeshPalette.ink2
                               : MeshPalette.ink3,
@@ -565,12 +549,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                   if (lastTime != null)
                     Text(
                       _relativeTime(lastTime),
-                      style: TextStyle(
+                      style: MeshTheme.mono(
                         fontSize: 12,
-                        color: unreadCount > 0
-                            ? MeshPalette.accent
-                            : MeshPalette.ink3,
-                        fontFeatures: const [FontFeature.tabularFigures()],
+                        color: MeshPalette.ink3,
                       ),
                     ),
                   const SizedBox(height: 4),
@@ -585,7 +566,15 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         ),
                         const SizedBox(width: 4),
                       ],
-                      if (unreadCount > 0) UnreadBadge(count: unreadCount),
+                      if (unreadCount > 0)
+                        Text(
+                          '$unreadCount',
+                          style: MeshTheme.mono(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: MeshPalette.accent,
+                          ),
+                        ),
                     ],
                   ),
                 ],
@@ -2082,6 +2071,90 @@ class _ChannelsScreenState extends State<ChannelsScreen>
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Contacts you have a conversation with, newest first, under the channels:
+/// one list for everything you read.
+class _DirectChats extends StatelessWidget {
+  const _DirectChats({required this.connector});
+
+  final MeshCoreConnector connector;
+
+  static String _clock(DateTime t) {
+    final local = t.toLocal();
+    final now = DateTime.now();
+    if (local.year == now.year &&
+        local.month == now.month &&
+        local.day == now.day) {
+      return '${local.hour.toString().padLeft(2, '0')}:'
+          '${local.minute.toString().padLeft(2, '0')}';
+    }
+    return '${local.month}/${local.day}';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final chats = [
+      for (final c in connector.contacts)
+        if (connector.getMessages(c).isNotEmpty)
+          (contact: c, last: connector.getMessages(c).last),
+    ]..sort((a, b) => b.last.timestamp.compareTo(a.last.timestamp));
+    if (chats.isEmpty) return const SizedBox.shrink();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        InstrumentLabel(context.l10n.messages_filterDirect),
+        for (final chat in chats.take(30))
+          () {
+            final unread = connector.getUnreadCountForContact(chat.contact);
+            final hops = chat.contact.pathLength;
+            return InstrumentRow(
+              key: ValueKey('direct_${chat.contact.publicKeyHex}'),
+              title: chat.contact.name,
+              subtitle: chat.last.text,
+              onTap: () {
+                HapticFeedback.selectionClick();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ChatScreen(
+                      contact: chat.contact,
+                      initialUnreadCount: unread,
+                    ),
+                  ),
+                );
+              },
+              trailing: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    _clock(chat.last.timestamp),
+                    style: MeshTheme.mono(
+                      fontSize: 12,
+                      color: MeshPalette.ink3,
+                    ),
+                  ),
+                  Text(
+                    unread > 0
+                        ? '$unread'
+                        : hops < 0
+                        ? ''
+                        : hops == 0
+                        ? 'direct'
+                        : '$hops hop${hops == 1 ? '' : 's'}',
+                    style: MeshTheme.mono(
+                      fontSize: 12,
+                      fontWeight: unread > 0 ? FontWeight.w700 : null,
+                      color: unread > 0 ? MeshPalette.accent : MeshPalette.ink4,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }(),
+      ],
     );
   }
 }
