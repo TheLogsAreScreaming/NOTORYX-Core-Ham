@@ -3730,5 +3730,15 @@
   "nav_home": "首页",
   "nav_chats": "聊天",
   "nav_tools": "工具",
-  "nav_settings": "设置"
+  "nav_settings": "设置",
+  "nav_more": "更多",
+  "tools_groupApp": "应用与设置",
+  "tools_groupField": "野外",
+  "tools_groupMaps": "地图与覆盖",
+  "tools_groupRouting": "路由与中继器",
+  "tools_pathGraph": "路径图",
+  "tools_pathGraphHint": "消息如何到达你：所有收到的路径，以及最繁忙的中继器",
+  "tools_antenna": "天线覆盖",
+  "tools_antennaHint": "估算天线在地形上能覆盖多远",
+  "routes_repeaterWithId": "中继器 {id}"
 }

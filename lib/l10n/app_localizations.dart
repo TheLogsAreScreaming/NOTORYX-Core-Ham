@@ -10889,7 +10889,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionTools_backup.
   ///
   /// In en, this message translates to:
-  /// **'ENCRYPTED BACKUP'**
+  /// **'Encrypted backup'**
   String get bastionTools_backup;
 
   /// No description provided for @bastionTools_backupHint.
@@ -10913,7 +10913,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionTools_pathAnalysis.
   ///
   /// In en, this message translates to:
-  /// **'PATH ANALYSIS'**
+  /// **'Path analysis'**
   String get bastionTools_pathAnalysis;
 
   /// No description provided for @bastionTools_pathHint.
@@ -10937,7 +10937,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionTools_diagnostics.
   ///
   /// In en, this message translates to:
-  /// **'DIAGNOSTICS'**
+  /// **'Diagnostics'**
   String get bastionTools_diagnostics;
 
   /// No description provided for @bastionTools_diagnosticsHint.
@@ -10949,7 +10949,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionTools_about.
   ///
   /// In en, this message translates to:
-  /// **'ABOUT + CREDITS'**
+  /// **'About + credits'**
   String get bastionTools_about;
 
   /// No description provided for @bastionTools_aboutHint.
@@ -11819,25 +11819,25 @@ abstract class AppLocalizations {
   /// No description provided for @routes_routes.
   ///
   /// In en, this message translates to:
-  /// **'ROUTES'**
+  /// **'Routes'**
   String get routes_routes;
 
   /// No description provided for @routes_success.
   ///
   /// In en, this message translates to:
-  /// **'SUCCESS'**
+  /// **'Success'**
   String get routes_success;
 
   /// No description provided for @routes_failed.
   ///
   /// In en, this message translates to:
-  /// **'FAILED'**
+  /// **'Failed'**
   String get routes_failed;
 
   /// No description provided for @routes_routeMap.
   ///
   /// In en, this message translates to:
-  /// **'ROUTE MAP'**
+  /// **'Route map'**
   String get routes_routeMap;
 
   /// No description provided for @routes_routeMapHint.
@@ -11849,7 +11849,7 @@ abstract class AppLocalizations {
   /// No description provided for @routes_discover.
   ///
   /// In en, this message translates to:
-  /// **'DISCOVER'**
+  /// **'Discover'**
   String get routes_discover;
 
   /// No description provided for @routes_discoverHint.
@@ -11861,13 +11861,13 @@ abstract class AppLocalizations {
   /// No description provided for @routes_learned.
   ///
   /// In en, this message translates to:
-  /// **'LEARNED ROUTES'**
+  /// **'Learned routes'**
   String get routes_learned;
 
   /// No description provided for @routes_none.
   ///
   /// In en, this message translates to:
-  /// **'NO ROUTE HISTORY YET'**
+  /// **'No route history yet'**
   String get routes_none;
 
   /// No description provided for @routes_noneBody.
@@ -13936,7 +13936,7 @@ abstract class AppLocalizations {
   /// No description provided for @routes_nearbyTitle.
   ///
   /// In en, this message translates to:
-  /// **'BEST REPEATERS NEAR YOU'**
+  /// **'Best repeaters near you'**
   String get routes_nearbyTitle;
 
   /// No description provided for @routes_nearbyEmptyTitle.
@@ -13998,6 +13998,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get nav_settings;
+
+  /// Bottom bar tab: tools and settings
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get nav_more;
+
+  /// No description provided for @tools_groupApp.
+  ///
+  /// In en, this message translates to:
+  /// **'App & settings'**
+  String get tools_groupApp;
+
+  /// No description provided for @tools_groupField.
+  ///
+  /// In en, this message translates to:
+  /// **'In the field'**
+  String get tools_groupField;
+
+  /// No description provided for @tools_groupMaps.
+  ///
+  /// In en, this message translates to:
+  /// **'Maps & coverage'**
+  String get tools_groupMaps;
+
+  /// No description provided for @tools_groupRouting.
+  ///
+  /// In en, this message translates to:
+  /// **'Routes & repeaters'**
+  String get tools_groupRouting;
+
+  /// No description provided for @tools_pathGraph.
+  ///
+  /// In en, this message translates to:
+  /// **'Path graph'**
+  String get tools_pathGraph;
+
+  /// No description provided for @tools_pathGraphHint.
+  ///
+  /// In en, this message translates to:
+  /// **'How messages reach you: every path heard, with the busiest repeaters'**
+  String get tools_pathGraphHint;
+
+  /// No description provided for @tools_antenna.
+  ///
+  /// In en, this message translates to:
+  /// **'Antenna coverage'**
+  String get tools_antenna;
+
+  /// No description provided for @tools_antennaHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimate where an antenna can reach over the terrain'**
+  String get tools_antennaHint;
+
+  /// A repeater whose name is unknown, by its ID prefix
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater {id}'**
+  String routes_repeaterWithId(String id);
 }
 
 class _AppLocalizationsDelegate

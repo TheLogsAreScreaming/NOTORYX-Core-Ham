@@ -81,7 +81,6 @@ class MqttConnectionCard extends StatelessWidget {
         ? MeshPalette.alert
         : MeshPalette.ink3;
     return ConsolePanel(
-      borderColor: statusColor.withValues(alpha: 0.45),
       child: DefaultTextStyle.merge(
         style: TextStyle(color: MeshPalette.ink2, fontSize: 13, height: 1.45),
         child: Column(

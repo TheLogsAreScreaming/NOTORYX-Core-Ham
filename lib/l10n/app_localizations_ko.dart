@@ -7977,4 +7977,36 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get nav_settings => '설정';
+
+  @override
+  String get nav_more => '더보기';
+
+  @override
+  String get tools_groupApp => '앱 및 설정';
+
+  @override
+  String get tools_groupField => '현장';
+
+  @override
+  String get tools_groupMaps => '지도 및 커버리지';
+
+  @override
+  String get tools_groupRouting => '경로 및 리피터';
+
+  @override
+  String get tools_pathGraph => '경로 그래프';
+
+  @override
+  String get tools_pathGraphHint => '메시지가 도달하는 방식: 수신된 모든 경로와 가장 바쁜 리피터';
+
+  @override
+  String get tools_antenna => '안테나 커버리지';
+
+  @override
+  String get tools_antennaHint => '지형에서 안테나가 닿는 범위를 추정';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return '리피터 $id';
+  }
 }

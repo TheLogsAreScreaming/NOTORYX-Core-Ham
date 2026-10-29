@@ -6422,7 +6422,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get bastionTools_title => 'Fältverktyg';
 
   @override
-  String get bastionTools_backup => 'KRYPTERAD SÄKERHETSKOPIA';
+  String get bastionTools_backup => 'Krypterad säkerhetskopia';
 
   @override
   String get bastionTools_backupHint =>
@@ -6437,7 +6437,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'Livekarta, insamlingssessioner, offlinekartverktyg och regioner';
 
   @override
-  String get bastionTools_pathAnalysis => 'VÄGANALYS';
+  String get bastionTools_pathAnalysis => 'Väganalys';
 
   @override
   String get bastionTools_pathHint => 'Rutter, upptäckt och väganalys';
@@ -6451,14 +6451,14 @@ class AppLocalizationsSv extends AppLocalizations {
       'Live-antal i meshnätet och kontaktaktivitet';
 
   @override
-  String get bastionTools_diagnostics => 'DIAGNOSTIK';
+  String get bastionTools_diagnostics => 'Diagnostik';
 
   @override
   String get bastionTools_diagnosticsHint =>
       'Radiohälsa, enhetsinformation, råa ramar och export';
 
   @override
-  String get bastionTools_about => 'OM + TACK';
+  String get bastionTools_about => 'Om + tack';
 
   @override
   String get bastionTools_aboutHint =>
@@ -6951,31 +6951,31 @@ class AppLocalizationsSv extends AppLocalizations {
       'NOTORYX Core rangordnar sparade rutter med hjälp av väghistorik som redan lärts från verkliga meddelandeförsök och upptäckter.';
 
   @override
-  String get routes_routes => 'RUTTER';
+  String get routes_routes => 'Rutter';
 
   @override
-  String get routes_success => 'LYCKADE';
+  String get routes_success => 'Lyckade';
 
   @override
-  String get routes_failed => 'MISSLYCKADE';
+  String get routes_failed => 'Misslyckade';
 
   @override
-  String get routes_routeMap => 'RUTTKARTA';
+  String get routes_routeMap => 'Ruttkarta';
 
   @override
   String get routes_routeMapHint => 'Granska noder och vägar';
 
   @override
-  String get routes_discover => 'UPPTÄCK';
+  String get routes_discover => 'Upptäck';
 
   @override
   String get routes_discoverHint => 'Hitta nya rutter';
 
   @override
-  String get routes_learned => 'INLÄRDA RUTTER';
+  String get routes_learned => 'Inlärda rutter';
 
   @override
-  String get routes_none => 'INGEN RUTTHISTORIK ÄN';
+  String get routes_none => 'Ingen rutthistorik än';
 
   @override
   String get routes_noneBody =>
@@ -8249,7 +8249,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get routes_nearbyTitle => 'BÄSTA REPEATRAR NÄRA DIG';
+  String get routes_nearbyTitle => 'Bästa repeatrar nära dig';
 
   @override
   String get routes_nearbyEmptyTitle => 'Inga repeatrar hörda än';
@@ -8300,4 +8300,38 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get nav_settings => 'Inställningar';
+
+  @override
+  String get nav_more => 'Mer';
+
+  @override
+  String get tools_groupApp => 'App och inställningar';
+
+  @override
+  String get tools_groupField => 'I fält';
+
+  @override
+  String get tools_groupMaps => 'Kartor och täckning';
+
+  @override
+  String get tools_groupRouting => 'Rutter och repeatrar';
+
+  @override
+  String get tools_pathGraph => 'Väggraf';
+
+  @override
+  String get tools_pathGraphHint =>
+      'Hur meddelanden når dig: varje hörd väg, med de mest belastade repeatrarna';
+
+  @override
+  String get tools_antenna => 'Antenntäckning';
+
+  @override
+  String get tools_antennaHint =>
+      'Uppskatta hur långt en antenn når över terrängen';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'Repeater $id';
+  }
 }

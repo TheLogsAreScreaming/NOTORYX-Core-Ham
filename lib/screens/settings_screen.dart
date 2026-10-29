@@ -2041,6 +2041,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
           children: [
             DropdownButtonFormField<int>(
               key: ValueKey<int?>(_selectedPresetIndex),
+              isExpanded: true,
               initialValue: _selectedPresetIndex,
               decoration: InputDecoration(
                 labelText: l10n.settings_presets,
@@ -2302,6 +2303,7 @@ class ReadAloudCard extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
       child: DropdownButtonFormField<String>(
         key: const ValueKey('read-aloud'),
+        isExpanded: true,
         initialValue: settings.settings.readAloudIncoming,
         decoration: InputDecoration(
           labelText: l10n.settings_readAloud,

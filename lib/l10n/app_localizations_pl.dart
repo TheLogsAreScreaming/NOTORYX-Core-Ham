@@ -6512,7 +6512,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get bastionTools_title => 'Narzędzia terenowe';
 
   @override
-  String get bastionTools_backup => 'SZYFROWANA KOPIA ZAPASOWA';
+  String get bastionTools_backup => 'Szyfrowana kopia zapasowa';
 
   @override
   String get bastionTools_backupHint =>
@@ -6527,7 +6527,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'Mapa na żywo, sesje rejestracji, narzędzia map offline i regiony';
 
   @override
-  String get bastionTools_pathAnalysis => 'ANALIZA ŚCIEŻEK';
+  String get bastionTools_pathAnalysis => 'Analiza ścieżek';
 
   @override
   String get bastionTools_pathHint => 'Trasy, wykrywanie i analiza ścieżek';
@@ -6541,14 +6541,14 @@ class AppLocalizationsPl extends AppLocalizations {
       'Liczniki sieci mesh na żywo i aktywność kontaktów';
 
   @override
-  String get bastionTools_diagnostics => 'DIAGNOSTYKA';
+  String get bastionTools_diagnostics => 'Diagnostyka';
 
   @override
   String get bastionTools_diagnosticsHint =>
       'Stan radia, informacje o urządzeniu, surowe ramki i eksport';
 
   @override
-  String get bastionTools_about => 'O APLIKACJI + PODZIĘKOWANIA';
+  String get bastionTools_about => 'O aplikacji + podziękowania';
 
   @override
   String get bastionTools_aboutHint =>
@@ -7045,31 +7045,31 @@ class AppLocalizationsPl extends AppLocalizations {
       'NOTORYX Core porządkuje zapisane trasy na podstawie historii ścieżek wyuczonej już z rzeczywistych prób wysyłania wiadomości i wykrywania.';
 
   @override
-  String get routes_routes => 'TRASY';
+  String get routes_routes => 'Trasy';
 
   @override
-  String get routes_success => 'SUKCESY';
+  String get routes_success => 'Sukcesy';
 
   @override
-  String get routes_failed => 'NIEPOWODZENIA';
+  String get routes_failed => 'Niepowodzenia';
 
   @override
-  String get routes_routeMap => 'MAPA TRAS';
+  String get routes_routeMap => 'Mapa tras';
 
   @override
   String get routes_routeMapHint => 'Badaj węzły i ścieżki';
 
   @override
-  String get routes_discover => 'WYKRYJ';
+  String get routes_discover => 'Wykryj';
 
   @override
   String get routes_discoverHint => 'Znajdź nowe trasy';
 
   @override
-  String get routes_learned => 'WYUCZONE TRASY';
+  String get routes_learned => 'Wyuczone trasy';
 
   @override
-  String get routes_none => 'BRAK HISTORII TRAS';
+  String get routes_none => 'Brak historii tras';
 
   @override
   String get routes_noneBody =>
@@ -8356,7 +8356,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get routes_nearbyTitle => 'NAJLEPSZE PRZEMIENNIKI W POBLIŻU';
+  String get routes_nearbyTitle => 'Najlepsze przemienniki w pobliżu';
 
   @override
   String get routes_nearbyEmptyTitle => 'Nie usłyszano jeszcze przemienników';
@@ -8409,4 +8409,37 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get nav_settings => 'Ustawienia';
+
+  @override
+  String get nav_more => 'Więcej';
+
+  @override
+  String get tools_groupApp => 'Aplikacja i ustawienia';
+
+  @override
+  String get tools_groupField => 'W terenie';
+
+  @override
+  String get tools_groupMaps => 'Mapy i zasięg';
+
+  @override
+  String get tools_groupRouting => 'Trasy i przemienniki';
+
+  @override
+  String get tools_pathGraph => 'Graf ścieżek';
+
+  @override
+  String get tools_pathGraphHint =>
+      'Jak docierają do Ciebie wiadomości: każda usłyszana ścieżka i najbardziej obciążone przemienniki';
+
+  @override
+  String get tools_antenna => 'Zasięg anteny';
+
+  @override
+  String get tools_antennaHint => 'Oszacuj, dokąd sięga antena w terenie';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'Przemiennik $id';
+  }
 }

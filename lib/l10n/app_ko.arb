@@ -3859,5 +3859,15 @@
   "nav_home": "홈",
   "nav_chats": "채팅",
   "nav_tools": "도구",
-  "nav_settings": "설정"
+  "nav_settings": "설정",
+  "nav_more": "더보기",
+  "tools_groupApp": "앱 및 설정",
+  "tools_groupField": "현장",
+  "tools_groupMaps": "지도 및 커버리지",
+  "tools_groupRouting": "경로 및 리피터",
+  "tools_pathGraph": "경로 그래프",
+  "tools_pathGraphHint": "메시지가 도달하는 방식: 수신된 모든 경로와 가장 바쁜 리피터",
+  "tools_antenna": "안테나 커버리지",
+  "tools_antennaHint": "지형에서 안테나가 닿는 범위를 추정",
+  "routes_repeaterWithId": "리피터 {id}"
 }

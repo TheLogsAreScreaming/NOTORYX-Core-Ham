@@ -6379,7 +6379,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bastionTools_title => 'Field Tools';
 
   @override
-  String get bastionTools_backup => 'ENCRYPTED BACKUP';
+  String get bastionTools_backup => 'Encrypted backup';
 
   @override
   String get bastionTools_backupHint =>
@@ -6394,7 +6394,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Live map, capture sessions, offline map tools and regions';
 
   @override
-  String get bastionTools_pathAnalysis => 'PATH ANALYSIS';
+  String get bastionTools_pathAnalysis => 'Path analysis';
 
   @override
   String get bastionTools_pathHint => 'Routes, discovery and path intelligence';
@@ -6407,14 +6407,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bastionTools_statsHint => 'Live mesh counts and contact activity';
 
   @override
-  String get bastionTools_diagnostics => 'DIAGNOSTICS';
+  String get bastionTools_diagnostics => 'Diagnostics';
 
   @override
   String get bastionTools_diagnosticsHint =>
       'Radio health, device information, raw frames and export';
 
   @override
-  String get bastionTools_about => 'ABOUT + CREDITS';
+  String get bastionTools_about => 'About + credits';
 
   @override
   String get bastionTools_aboutHint =>
@@ -6906,31 +6906,31 @@ class AppLocalizationsEn extends AppLocalizations {
       'NOTORYX Core ranks saved routes using the path history already learned from real message attempts and discoveries.';
 
   @override
-  String get routes_routes => 'ROUTES';
+  String get routes_routes => 'Routes';
 
   @override
-  String get routes_success => 'SUCCESS';
+  String get routes_success => 'Success';
 
   @override
-  String get routes_failed => 'FAILED';
+  String get routes_failed => 'Failed';
 
   @override
-  String get routes_routeMap => 'ROUTE MAP';
+  String get routes_routeMap => 'Route map';
 
   @override
   String get routes_routeMapHint => 'Inspect nodes and paths';
 
   @override
-  String get routes_discover => 'DISCOVER';
+  String get routes_discover => 'Discover';
 
   @override
   String get routes_discoverHint => 'Find fresh routes';
 
   @override
-  String get routes_learned => 'LEARNED ROUTES';
+  String get routes_learned => 'Learned routes';
 
   @override
-  String get routes_none => 'NO ROUTE HISTORY YET';
+  String get routes_none => 'No route history yet';
 
   @override
   String get routes_noneBody =>
@@ -8202,7 +8202,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get routes_nearbyTitle => 'BEST REPEATERS NEAR YOU';
+  String get routes_nearbyTitle => 'Best repeaters near you';
 
   @override
   String get routes_nearbyEmptyTitle => 'No repeaters heard yet';
@@ -8253,4 +8253,38 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nav_settings => 'Settings';
+
+  @override
+  String get nav_more => 'More';
+
+  @override
+  String get tools_groupApp => 'App & settings';
+
+  @override
+  String get tools_groupField => 'In the field';
+
+  @override
+  String get tools_groupMaps => 'Maps & coverage';
+
+  @override
+  String get tools_groupRouting => 'Routes & repeaters';
+
+  @override
+  String get tools_pathGraph => 'Path graph';
+
+  @override
+  String get tools_pathGraphHint =>
+      'How messages reach you: every path heard, with the busiest repeaters';
+
+  @override
+  String get tools_antenna => 'Antenna coverage';
+
+  @override
+  String get tools_antennaHint =>
+      'Estimate where an antenna can reach over the terrain';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'Repeater $id';
+  }
 }

@@ -6468,7 +6468,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bastionTools_title => 'Terepi eszközök';
 
   @override
-  String get bastionTools_backup => 'TITKOSÍTOTT BIZTONSÁGI MENTÉS';
+  String get bastionTools_backup => 'Titkosított biztonsági mentés';
 
   @override
   String get bastionTools_backupHint =>
@@ -6483,7 +6483,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Élő térkép, rögzítési munkamenetek, offline térképeszközök és régiók';
 
   @override
-  String get bastionTools_pathAnalysis => 'ÚTELEMZÉS';
+  String get bastionTools_pathAnalysis => 'Útelemzés';
 
   @override
   String get bastionTools_pathHint => 'Útvonalak, felderítés és útelemzés';
@@ -6497,14 +6497,14 @@ class AppLocalizationsHu extends AppLocalizations {
       'Élő hálózati számok és kapcsolati aktivitás';
 
   @override
-  String get bastionTools_diagnostics => 'DIAGNOSZTIKA';
+  String get bastionTools_diagnostics => 'Diagnosztika';
 
   @override
   String get bastionTools_diagnosticsHint =>
       'Rádióállapot, eszközinformációk, nyers keretek és exportálás';
 
   @override
-  String get bastionTools_about => 'NÉVJEGY + KÖSZÖNET';
+  String get bastionTools_about => 'Névjegy + köszönet';
 
   @override
   String get bastionTools_aboutHint =>
@@ -7000,31 +7000,31 @@ class AppLocalizationsHu extends AppLocalizations {
       'A NOTORYX Core a valós üzenetküldési kísérletekből és felderítésekből már megtanult útelőzmények alapján rangsorolja a mentett útvonalakat.';
 
   @override
-  String get routes_routes => 'ÚTVONALAK';
+  String get routes_routes => 'Útvonalak';
 
   @override
-  String get routes_success => 'SIKERES';
+  String get routes_success => 'Sikeres';
 
   @override
-  String get routes_failed => 'SIKERTELEN';
+  String get routes_failed => 'Sikertelen';
 
   @override
-  String get routes_routeMap => 'ÚTVONALTÉRKÉP';
+  String get routes_routeMap => 'Útvonaltérkép';
 
   @override
   String get routes_routeMapHint => 'Csomópontok és utak vizsgálata';
 
   @override
-  String get routes_discover => 'FELDERÍTÉS';
+  String get routes_discover => 'Felderítés';
 
   @override
   String get routes_discoverHint => 'Új útvonalak keresése';
 
   @override
-  String get routes_learned => 'TANULT ÚTVONALAK';
+  String get routes_learned => 'Tanult útvonalak';
 
   @override
-  String get routes_none => 'MÉG NINCS ÚTVONAL-ELŐZMÉNY';
+  String get routes_none => 'Még nincs útvonal-előzmény';
 
   @override
   String get routes_noneBody =>
@@ -8310,7 +8310,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get routes_nearbyTitle => 'LEGJOBB KÖZELI ÁTJÁTSZÓK';
+  String get routes_nearbyTitle => 'Legjobb közeli átjátszók';
 
   @override
   String get routes_nearbyEmptyTitle => 'Még nem hallatszik átjátszó';
@@ -8361,4 +8361,38 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get nav_settings => 'Beállítások';
+
+  @override
+  String get nav_more => 'Továbbiak';
+
+  @override
+  String get tools_groupApp => 'Alkalmazás és beállítások';
+
+  @override
+  String get tools_groupField => 'Terepen';
+
+  @override
+  String get tools_groupMaps => 'Térképek és lefedettség';
+
+  @override
+  String get tools_groupRouting => 'Útvonalak és átjátszók';
+
+  @override
+  String get tools_pathGraph => 'Útvonalgráf';
+
+  @override
+  String get tools_pathGraphHint =>
+      'Hogyan érnek el az üzenetek: minden hallott útvonal a legforgalmasabb átjátszókkal';
+
+  @override
+  String get tools_antenna => 'Antennalefedettség';
+
+  @override
+  String get tools_antennaHint =>
+      'Becsülje meg, meddig ér el egy antenna a terepen';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'Átjátszó $id';
+  }
 }

@@ -6513,7 +6513,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bastionTools_title => 'Полевые инструменты';
 
   @override
-  String get bastionTools_backup => 'ЗАШИФРОВАННАЯ РЕЗЕРВНАЯ КОПИЯ';
+  String get bastionTools_backup => 'Зашифрованная резервная копия';
 
   @override
   String get bastionTools_backupHint =>
@@ -6528,7 +6528,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Карта в реальном времени, сессии записи, инструменты офлайн-карт и регионы';
 
   @override
-  String get bastionTools_pathAnalysis => 'АНАЛИЗ ПУТЕЙ';
+  String get bastionTools_pathAnalysis => 'Анализ путей';
 
   @override
   String get bastionTools_pathHint => 'Маршруты, обнаружение и анализ путей';
@@ -6542,14 +6542,14 @@ class AppLocalizationsRu extends AppLocalizations {
       'Счётчики сети в реальном времени и активность контактов';
 
   @override
-  String get bastionTools_diagnostics => 'ДИАГНОСТИКА';
+  String get bastionTools_diagnostics => 'Диагностика';
 
   @override
   String get bastionTools_diagnosticsHint =>
       'Состояние радиостанции, сведения об устройстве, сырые кадры и экспорт';
 
   @override
-  String get bastionTools_about => 'О ПРИЛОЖЕНИИ + БЛАГОДАРНОСТИ';
+  String get bastionTools_about => 'О приложении + благодарности';
 
   @override
   String get bastionTools_aboutHint =>
@@ -7046,31 +7046,31 @@ class AppLocalizationsRu extends AppLocalizations {
       'NOTORYX Core ранжирует сохранённые маршруты по истории путей, уже выученной из реальных попыток отправки сообщений и обнаружения.';
 
   @override
-  String get routes_routes => 'МАРШРУТЫ';
+  String get routes_routes => 'Маршруты';
 
   @override
-  String get routes_success => 'УСПЕХИ';
+  String get routes_success => 'Успехи';
 
   @override
-  String get routes_failed => 'НЕУДАЧИ';
+  String get routes_failed => 'Неудачи';
 
   @override
-  String get routes_routeMap => 'КАРТА МАРШРУТОВ';
+  String get routes_routeMap => 'Карта маршрутов';
 
   @override
   String get routes_routeMapHint => 'Изучайте узлы и пути';
 
   @override
-  String get routes_discover => 'ОБНАРУЖИТЬ';
+  String get routes_discover => 'Обнаружить';
 
   @override
   String get routes_discoverHint => 'Найти новые маршруты';
 
   @override
-  String get routes_learned => 'ВЫУЧЕННЫЕ МАРШРУТЫ';
+  String get routes_learned => 'Выученные маршруты';
 
   @override
-  String get routes_none => 'ИСТОРИИ МАРШРУТОВ ПОКА НЕТ';
+  String get routes_none => 'Истории маршрутов пока нет';
 
   @override
   String get routes_noneBody =>
@@ -8349,7 +8349,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get routes_nearbyTitle => 'ЛУЧШИЕ РЕТРАНСЛЯТОРЫ РЯДОМ';
+  String get routes_nearbyTitle => 'Лучшие ретрансляторы рядом';
 
   @override
   String get routes_nearbyEmptyTitle => 'Ретрансляторы ещё не слышны';
@@ -8400,4 +8400,38 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get nav_settings => 'Настройки';
+
+  @override
+  String get nav_more => 'Ещё';
+
+  @override
+  String get tools_groupApp => 'Приложение и настройки';
+
+  @override
+  String get tools_groupField => 'В поле';
+
+  @override
+  String get tools_groupMaps => 'Карты и покрытие';
+
+  @override
+  String get tools_groupRouting => 'Маршруты и ретрансляторы';
+
+  @override
+  String get tools_pathGraph => 'Граф путей';
+
+  @override
+  String get tools_pathGraphHint =>
+      'Как до вас доходят сообщения: все услышанные пути и самые загруженные ретрансляторы';
+
+  @override
+  String get tools_antenna => 'Покрытие антенны';
+
+  @override
+  String get tools_antennaHint =>
+      'Оцените, докуда достаёт антенна над местностью';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'Ретранслятор $id';
+  }
 }

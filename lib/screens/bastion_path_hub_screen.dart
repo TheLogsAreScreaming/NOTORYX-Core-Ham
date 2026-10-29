@@ -14,13 +14,13 @@ import '../models/path_history.dart';
 import '../services/direct_repeater_service.dart';
 import '../services/path_history_service.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/mesh_ui.dart';
 import 'discovery_screen.dart';
 import 'map_screen.dart';
 
 class BastionPathHubScreen extends StatelessWidget {
   const BastionPathHubScreen({super.key});
 
-  static Color get _cyan => MeshPalette.accent;
   static Color get _bg => MeshPalette.bg;
   static Color get _panel => MeshPalette.bg2;
 
@@ -66,129 +66,100 @@ class BastionPathHubScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: _bg,
         foregroundColor: MeshPalette.ink,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'NOTORYX',
-              style: TextStyle(
-                color: _cyan,
-                fontSize: 10,
-                fontWeight: FontWeight.w900,
-                letterSpacing: 1.7,
-              ),
-            ),
-            Text(
-              l10n.routes_title,
-              style: const TextStyle(fontWeight: FontWeight.w900),
-            ),
-          ],
-        ),
+        title: Text(l10n.routes_title),
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(18, 10, 18, 28),
+        padding: const EdgeInsets.fromLTRB(
+          MeshSpace.lg,
+          MeshSpace.sm,
+          MeshSpace.lg,
+          MeshSpace.xxl,
+        ),
         children: [
           Container(
-            padding: const EdgeInsets.all(18),
+            padding: const EdgeInsets.all(MeshSpace.lg),
             decoration: BoxDecoration(
               color: _panel,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: _cyan.withValues(alpha: .45)),
+              borderRadius: BorderRadius.circular(MeshRadii.lg),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  l10n.bastion_routeIntelligence,
-                  style: TextStyle(
-                    color: _cyan,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.4,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
                   l10n.routes_headline,
                   style: TextStyle(
                     color: MeshPalette.ink,
-                    fontSize: 21,
-                    fontWeight: FontWeight.w800,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: MeshSpace.xs),
                 Text(
                   l10n.routes_body,
-                  style: TextStyle(color: MeshPalette.ink2, height: 1.4),
+                  style: TextStyle(
+                    color: MeshPalette.ink3,
+                    fontSize: 13.5,
+                    height: 1.4,
+                  ),
                 ),
+                // Counts only mean something once routes have been learned.
+                if (routeCount > 0) ...[
+                  const SizedBox(height: MeshSpace.lg),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: MeshStat(
+                          value: '${entries.length}',
+                          label: l10n.bastion_nodes,
+                        ),
+                      ),
+                      Expanded(
+                        child: MeshStat(
+                          value: '$routeCount',
+                          label: l10n.routes_routes,
+                        ),
+                      ),
+                      Expanded(
+                        child: MeshStat(
+                          value: '$successful',
+                          label: l10n.routes_success,
+                        ),
+                      ),
+                      Expanded(
+                        child: MeshStat(
+                          value: '$failed',
+                          label: l10n.routes_failed,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ],
             ),
           ),
-          const SizedBox(height: 12),
-          Row(
+          const SizedBox(height: MeshSpace.md),
+          MeshGroup(
             children: [
-              Expanded(
-                child: _Metric(
-                  label: l10n.bastion_nodes,
-                  value: '${entries.length}',
-                ),
+              MeshNavRow(
+                icon: Icons.map_outlined,
+                title: l10n.routes_routeMap,
+                subtitle: l10n.routes_routeMapHint,
+                onTap: () => Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
               ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: _Metric(label: l10n.routes_routes, value: '$routeCount'),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: _Metric(
-                  label: l10n.routes_success,
-                  value: '$successful',
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: _Metric(label: l10n.routes_failed, value: '$failed'),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: _PathAction(
-                  icon: Icons.map_rounded,
-                  title: l10n.routes_routeMap,
-                  subtitle: l10n.routes_routeMapHint,
-                  onTap: () => Navigator.of(
-                    context,
-                  ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: _PathAction(
-                  icon: Icons.radar_rounded,
-                  title: l10n.routes_discover,
-                  subtitle: l10n.routes_discoverHint,
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const DiscoveryScreen()),
-                  ),
+              MeshNavRow(
+                icon: Icons.radar_rounded,
+                title: l10n.routes_discover,
+                subtitle: l10n.routes_discoverHint,
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const DiscoveryScreen()),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 20),
           _BestRepeaters(connector: connector),
-          const SizedBox(height: 20),
-          Text(
-            l10n.routes_learned,
-            style: TextStyle(
-              color: _cyan,
-              fontSize: 11,
-              fontWeight: FontWeight.w900,
-              letterSpacing: 1.3,
-            ),
-          ),
-          const SizedBox(height: 10),
+          _sectionTitle(l10n.routes_learned),
           if (entries.isEmpty)
             _InfoPanel(
               icon: Icons.alt_route_rounded,
@@ -201,6 +172,16 @@ class BastionPathHubScreen extends StatelessWidget {
       ),
     );
   }
+
+  static Widget _sectionTitle(String text) => SectionHeader(
+    text,
+    padding: const EdgeInsets.fromLTRB(
+      MeshSpace.xs,
+      MeshSpace.xl,
+      MeshSpace.xs,
+      MeshSpace.sm,
+    ),
+  );
 
   static double _successRate(PathRecord path) {
     final attempts = path.successCount + path.failureCount;
@@ -267,32 +248,32 @@ class _ContactRouteCard extends StatelessWidget {
         });
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: MeshSpace.sm),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: MeshPalette.bg1,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: MeshPalette.line),
+        color: MeshPalette.bg2,
+        borderRadius: BorderRadius.circular(MeshRadii.lg),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.hub_rounded, color: MeshPalette.accent, size: 20),
+              Icon(Icons.hub_outlined, color: MeshPalette.ink3, size: 20),
               const SizedBox(width: 9),
               Expanded(
                 child: Text(
                   entry.contact.name,
                   style: TextStyle(
                     color: MeshPalette.ink,
-                    fontWeight: FontWeight.w900,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               Text(
                 l10n.routes_routeCount(entry.paths.length),
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 11),
+                style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
               ),
             ],
           ),
@@ -302,10 +283,10 @@ class _ContactRouteCard extends StatelessWidget {
               l10n.routes_best(_path(context, best)),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+              style: MeshTheme.mono(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
                 color: MeshPalette.accent,
-                fontSize: 11,
-                fontWeight: FontWeight.w800,
               ),
             ),
             if (names != null) ...[
@@ -314,7 +295,7 @@ class _ContactRouteCard extends StatelessWidget {
                 l10n.routes_via(names),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(color: MeshPalette.ink2, fontSize: 11.5),
+                style: TextStyle(color: MeshPalette.ink2, fontSize: 12.5),
               ),
             ],
             const SizedBox(height: 5),
@@ -325,14 +306,14 @@ class _ContactRouteCard extends StatelessWidget {
                 '${best.successCount}',
                 '${best.failureCount}',
               ),
-              style: const TextStyle(color: Color(0xFFB3BDC5), fontSize: 11.5),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
             ),
           ],
           if (fastest != null) ...[
             const SizedBox(height: 4),
             Text(
               l10n.routes_fastest('${fastest.tripTimeMs}'),
-              style: TextStyle(color: MeshPalette.ink3, fontSize: 11),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
             ),
           ],
           if (entry.flood != null) ...[
@@ -342,100 +323,13 @@ class _ContactRouteCard extends StatelessWidget {
                 '${entry.flood!.successCount}',
                 '${entry.flood!.failureCount}',
               ),
-              style: TextStyle(color: MeshPalette.ink3, fontSize: 11),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
             ),
           ],
         ],
       ),
     );
   }
-}
-
-class _Metric extends StatelessWidget {
-  final String label;
-  final String value;
-  const _Metric({required this.label, required this.value});
-
-  @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 11),
-    decoration: BoxDecoration(
-      color: MeshPalette.bg2,
-      borderRadius: BorderRadius.circular(13),
-      border: Border.all(color: MeshPalette.line),
-    ),
-    child: Column(
-      children: [
-        Text(
-          value,
-          style: TextStyle(
-            color: MeshPalette.accent,
-            fontWeight: FontWeight.w900,
-            fontSize: 16,
-          ),
-        ),
-        const SizedBox(height: 3),
-        Text(
-          label,
-          style: TextStyle(
-            color: MeshPalette.ink3,
-            fontSize: 8.5,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-class _PathAction extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-
-  const _PathAction({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) => Material(
-    color: MeshPalette.bg2,
-    borderRadius: BorderRadius.circular(16),
-    child: InkWell(
-      borderRadius: BorderRadius.circular(16),
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          border: Border.all(color: MeshPalette.line),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, color: MeshPalette.accent),
-            const SizedBox(height: 9),
-            Text(
-              title,
-              style: TextStyle(
-                color: MeshPalette.ink,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              subtitle,
-              style: TextStyle(color: MeshPalette.ink3, fontSize: 11),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
 }
 
 class _InfoPanel extends StatelessWidget {
@@ -451,16 +345,15 @@ class _InfoPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.all(16),
+    padding: const EdgeInsets.all(MeshSpace.lg),
     decoration: BoxDecoration(
-      color: MeshPalette.bg1,
-      borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: MeshPalette.line),
+      color: MeshPalette.bg2,
+      borderRadius: BorderRadius.circular(MeshRadii.lg),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: MeshPalette.accent),
+        Icon(icon, color: MeshPalette.ink3),
         const SizedBox(width: 12),
         Expanded(
           child: Column(
@@ -470,10 +363,11 @@ class _InfoPanel extends StatelessWidget {
                 title,
                 style: TextStyle(
                   color: MeshPalette.ink,
-                  fontWeight: FontWeight.w800,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: MeshSpace.xs),
               Text(
                 body,
                 style: TextStyle(color: MeshPalette.ink3, height: 1.4),
@@ -492,7 +386,8 @@ class _BestRepeaters extends StatelessWidget {
 
   final MeshCoreConnector connector;
 
-  String _name(BuildContext context, String id) {
+  /// The repeater's name, or null when the ID can't be pinned to one.
+  String? _name(String id) {
     final bytes = Uint8List.fromList([
       for (var i = 0; i + 1 < id.length; i += 2)
         int.parse(id.substring(i, i + 2), radix: 16),
@@ -502,7 +397,7 @@ class _BestRepeaters extends StatelessWidget {
       for (final c in connector.allContactsUnfiltered) {
         if (c.publicKeyHex.toLowerCase() == key) return c.name;
       }
-      return context.l10n.routes_unknownRepeater;
+      return null;
     }
     final lat = connector.selfLatitude, lon = connector.selfLongitude;
     final hop = PathHopResolver.resolve(
@@ -513,7 +408,7 @@ class _BestRepeaters extends StatelessWidget {
           : LatLng(lat, lon),
       pathHashByteWidth: bytes.length,
     );
-    return hop.single?.name ?? context.l10n.routes_unknownRepeater;
+    return hop.single?.name;
   }
 
   @override
@@ -526,16 +421,7 @@ class _BestRepeaters extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          l10n.routes_nearbyTitle,
-          style: TextStyle(
-            color: MeshPalette.accent,
-            fontSize: 11,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.3,
-          ),
-        ),
-        const SizedBox(height: 10),
+        BastionPathHubScreen._sectionTitle(l10n.routes_nearbyTitle),
         if (best.isEmpty)
           _InfoPanel(
             icon: Icons.cell_tower_rounded,
@@ -546,7 +432,7 @@ class _BestRepeaters extends StatelessWidget {
           for (var i = 0; i < best.length; i++)
             _BestRepeaterRow(
               rank: i + 1,
-              name: _name(context, best[i].id),
+              name: _name(best[i].id),
               id: best[i].id.length > 6
                   ? best[i].id.substring(0, 4)
                   : best[i].id,
@@ -568,7 +454,9 @@ class _BestRepeaterRow extends StatelessWidget {
   });
 
   final int rank;
-  final String name;
+
+  /// Null when the repeater isn't known by name; it's shown by [id].
+  final String? name;
   final String id;
   final DirectHeard heard;
   final int minutesAgo;
@@ -584,12 +472,11 @@ class _BestRepeaterRow extends StatelessWidget {
         ? MeshPalette.warn
         : MeshPalette.alert;
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.only(bottom: MeshSpace.sm),
+      padding: const EdgeInsets.all(MeshSpace.md),
       decoration: BoxDecoration(
-        color: MeshPalette.bg1,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: MeshPalette.line),
+        color: MeshPalette.bg2,
+        borderRadius: BorderRadius.circular(MeshRadii.lg),
       ),
       child: Row(
         children: [
@@ -608,10 +495,11 @@ class _BestRepeaterRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  name ?? l10n.routes_repeaterWithId(id),
                   style: TextStyle(
                     color: MeshPalette.ink,
-                    fontWeight: FontWeight.w800,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -620,7 +508,7 @@ class _BestRepeaterRow extends StatelessWidget {
                     heard.count,
                     l10n.routes_minutesAgo(minutesAgo),
                   ),
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 11.5),
+                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
                 ),
               ],
             ),
@@ -636,10 +524,12 @@ class _BestRepeaterRow extends StatelessWidget {
                   color: color,
                 ),
               ),
-              Text(
-                id,
-                style: MeshTheme.mono(fontSize: 11, color: MeshPalette.ink3),
-              ),
+              // The title already shows the ID when the name is unknown.
+              if (name != null)
+                Text(
+                  id,
+                  style: MeshTheme.mono(fontSize: 11, color: MeshPalette.ink3),
+                ),
             ],
           ),
         ],
