@@ -3,19 +3,30 @@ import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n.dart';
 import '../models/bot_settings.dart';
 import '../services/bot_service.dart';
 import '../services/weather_service.dart';
 
 /// What the newer commands do, shown under their switches.
-const _commandHints = {
-  '!sun': 'Sunrise and sunset at the radio\u2019s GPS position.',
-  '!moon': 'Moon phase and how much is lit.',
-  '!weather':
-      'Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.',
-  '!dice': 'Rolls dice: !dice, !dice 20 or !dice 2d6.',
-  '!trace': 'Lists the repeaters the sender\u2019s message came through.',
+String? _commandHint(AppLocalizations t, String command) => switch (command) {
+  '!sun' => t.botCmd_sun,
+  '!moon' => t.botCmd_moon,
+  '!weather' => t.botCmd_weather,
+  '!dice' => t.botCmd_dice,
+  '!trace' => t.botCmd_trace,
+  _ => null,
 };
+
+String _weatherProblem(AppLocalizations t, WeatherService w) =>
+    switch (w.problem!) {
+      WeatherAlertProblem.noPosition => t.botWx_noPosition,
+      WeatherAlertProblem.noChannel => t.botWx_noChannel,
+      WeatherAlertProblem.channelGone => t.botWx_channelGone,
+      WeatherAlertProblem.rejected => t.botWx_httpError('${w.problemCode}'),
+      WeatherAlertProblem.unreachable => t.botWx_unreachable,
+    };
 
 class BotSettingsScreen extends StatelessWidget {
   const BotSettingsScreen({super.key});
@@ -295,9 +306,9 @@ class BotSettingsScreen extends StatelessWidget {
             for (final command in botCommands)
               SwitchListTile(
                 title: Text(command),
-                subtitle: _commandHints[command] == null
+                subtitle: _commandHint(context.l10n, command) == null
                     ? null
-                    : Text(_commandHints[command]!),
+                    : Text(_commandHint(context.l10n, command)!),
                 value: settings.commands.contains(command),
                 onChanged: (value) {
                   final commands = {...settings.commands};
@@ -455,18 +466,14 @@ class _WeatherAlertsSection extends StatelessWidget {
         ? settings.channelIndex
         : null;
     final checked = weather.lastCheck;
+    final t = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SwitchListTile(
           key: const ValueKey('weather-alerts'),
-          title: const Text('Post weather alerts to a channel'),
-          subtitle: const Text(
-            'Checks the US National Weather Service every 10 minutes for '
-            'severe and extreme warnings at the radio\u2019s GPS position '
-            '(rounded to about 1 km), and posts each new one once. Needs '
-            'phone internet.',
-          ),
+          title: Text(t.botWx_title),
+          subtitle: Text(t.botWx_body),
           value: settings.enabled,
           onChanged: (value) =>
               weather.saveSettings(settings.copyWith(enabled: value)),
@@ -478,12 +485,16 @@ class _WeatherAlertsSection extends StatelessWidget {
               key: const ValueKey('weather-alerts-channel'),
               isExpanded: true,
               initialValue: selected,
-              decoration: const InputDecoration(labelText: 'Post to channel'),
+              decoration: InputDecoration(labelText: t.botWx_channel),
               items: [
                 for (final c in channels)
                   DropdownMenuItem(
                     value: c.index,
-                    child: Text(c.name.isEmpty ? 'Channel ${c.index}' : c.name),
+                    child: Text(
+                      c.name.isEmpty
+                          ? t.channels_channelIndex(c.index)
+                          : c.name,
+                    ),
                   ),
               ],
               onChanged: (index) =>
@@ -491,18 +502,23 @@ class _WeatherAlertsSection extends StatelessWidget {
             ),
           ),
           SwitchListTile(
-            title: const Text('Include moderate alerts'),
-            subtitle: const Text('Advisories as well as warnings. Busier.'),
+            title: Text(t.botWx_moderate),
+            subtitle: Text(t.botWx_moderateHint),
             value: settings.includeModerate,
             onChanged: (value) =>
                 weather.saveSettings(settings.copyWith(includeModerate: value)),
           ),
-          if (weather.lastError != null || checked != null)
+          if (weather.problem != null || checked != null)
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Text(
-                weather.lastError ??
-                    'Last checked ${TimeOfDay.fromDateTime(checked!.toLocal()).format(context)}.',
+                weather.problem != null
+                    ? _weatherProblem(t, weather)
+                    : t.botWx_lastChecked(
+                        TimeOfDay.fromDateTime(
+                          checked!.toLocal(),
+                        ).format(context),
+                      ),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ),

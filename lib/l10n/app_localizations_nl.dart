@@ -8373,6 +8373,237 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String get coverageHex_title => 'Dekkingszeshoeken';
+
+  @override
+  String get coverageHex_toolSubtitle =>
+      'Breng in kaart waar je radio het mesh hoort en deel het';
+
+  @override
+  String get coverageHex_mapCoverage => 'Dekking in kaart brengen';
+
+  @override
+  String get coverageHex_statusOff =>
+      'Uit. Zet aan tijdens rijden of lopen om in kaart te brengen waar je radio het mesh hoort.';
+
+  @override
+  String get coverageHex_waitingGps => 'Wachten op gps…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'Gps-nauwkeurigheid $meters m: te grof, er wordt niet opgenomen.';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return 'Opnemen. Gps-nauwkeurigheid $meters m.';
+  }
+
+  @override
+  String get coverageHex_hexagons => 'Zeshoeken';
+
+  @override
+  String get coverageHex_samples => 'Metingen';
+
+  @override
+  String get coverageHex_privacyNote =>
+      'Gebruikt de gps van de telefoon zolang deze schakelaar aan staat. Alleen zeshoek-ID’s (ongeveer 0,9 km breed) worden gedeeld, nooit je exacte positie.';
+
+  @override
+  String get coverageHex_uploadSection => 'Uploaden naar dekkingskaarten';
+
+  @override
+  String get coverageHex_wifiOnly => 'Alleen uploaden via wifi';
+
+  @override
+  String get coverageHex_wifiOnlyHint =>
+      'Metingen wachten op de telefoon (tot 7 dagen) op wifi.';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return '$count wachtend';
+  }
+
+  @override
+  String get coverageHex_addMap => 'Dekkingskaart toevoegen';
+
+  @override
+  String get coverageHex_addMapHint =>
+      'Elk HTTPS-eindpunt dat dekkingsuploads accepteert.';
+
+  @override
+  String get coverageHex_uploadNow => 'Nu uploaden';
+
+  @override
+  String get coverageHex_mapDialogTitle => 'Dekkingskaart';
+
+  @override
+  String get coverageHex_nameMissing => 'Geef het een naam.';
+
+  @override
+  String get coverageHex_url => 'Upload-URL';
+
+  @override
+  String get coverageHex_urlInvalid => 'Moet een https://-URL zijn.';
+
+  @override
+  String get coverageHex_apiKey => 'API-sleutel (optioneel)';
+
+  @override
+  String get coverageHex_apiKeyHint => 'Verzonden als X-API-Key.';
+
+  @override
+  String get coverageHex_format => 'Formaat';
+
+  @override
+  String get coverageHex_formatHex => 'Zeshoek-ID’s (NOTORYX)';
+
+  @override
+  String get coverageHex_formatMeshMapper => 'MeshMapper-compatibel';
+
+  @override
+  String get coverageHex_privacy => 'Privacy';
+
+  @override
+  String get coverageHex_privacyLive => 'Live';
+
+  @override
+  String get coverageHex_privacyDelayed => '3 uur vertraagd';
+
+  @override
+  String get coverageHex_privacyAnonymous => 'Anoniem, 24 uur';
+
+  @override
+  String get coverageHex_privacyLiveHint =>
+      'Binnen ongeveer 15 minuten verzonden.';
+
+  @override
+  String get coverageHex_privacyDelayedHint =>
+      '3 uur vastgehouden zodat de kaart niet toont waar je nu bent.';
+
+  @override
+  String get coverageHex_privacyAnonymousHint =>
+      '24 uur vastgehouden, alleen met datum en zonder handtekening, zodat uploads niet te koppelen zijn.';
+
+  @override
+  String get coverageHex_uploadsOn => 'Uploads aan';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return '$count cellen verzonden om $time.';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return 'De kaart antwoordde $code; wordt opnieuw geprobeerd.';
+  }
+
+  @override
+  String get coverageHex_unreachable =>
+      'Kaart niet bereikbaar; wordt opnieuw geprobeerd.';
+
+  @override
+  String get coverageHex_noPermission => 'Locatietoestemming niet verleend.';
+
+  @override
+  String get coverageHex_noGps => 'Gps is niet beschikbaar.';
+
+  @override
+  String get coverageHex_loadFailed =>
+      'Opgeslagen dekking onleesbaar; er wordt opnieuw begonnen.';
+
+  @override
+  String get mqttExtra_wifiOnly => 'Alleen verbinden via wifi';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return '$count pakketten wachten op upload (tot 72 uur bewaard).';
+  }
+
+  @override
+  String get mqttExtra_add => 'Nog een broker toevoegen';
+
+  @override
+  String get mqttExtra_addBody =>
+      'Deelt wat je radio hoort met nog een MQTT-broker naast je hoofdbroker. Uploadt alleen en stuurt nooit pakketten terug naar de app.';
+
+  @override
+  String get mqttExtra_separateKey => 'Aparte sleutel gebruiken';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      'Meldt aan met een sleutel die op deze telefoon is gemaakt in plaats van die van de radio, zodat deze broker uploads niet aan je radio kan koppelen.';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return '$name verwijderen?';
+  }
+
+  @override
+  String get mqttExtra_removeBody =>
+      'Verbreekt de verbinding en vergeet instellingen, wachtwoord, sleutel en wachtende pakketten.';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return 'Meldt aan met eigen sleutel: $key…';
+  }
+
+  @override
+  String get botWx_title => 'Weerwaarschuwingen in een kanaal plaatsen';
+
+  @override
+  String get botWx_body =>
+      'Controleert elke 10 minuten bij de Amerikaanse National Weather Service op ernstige en extreme waarschuwingen op de gps-positie van de radio (afgerond op ongeveer 1 km) en plaatst elke nieuwe één keer. Vereist internet op de telefoon.';
+
+  @override
+  String get botWx_channel => 'Plaatsen in kanaal';
+
+  @override
+  String get botWx_moderate => 'Matige waarschuwingen meenemen';
+
+  @override
+  String get botWx_moderateHint => 'Adviezen én waarschuwingen. Drukker.';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return 'Laatst gecontroleerd $time.';
+  }
+
+  @override
+  String get botWx_noPosition => 'De radio heeft nog geen gps-positie gemeld.';
+
+  @override
+  String get botWx_noChannel => 'Kies een kanaal voor de waarschuwingen.';
+
+  @override
+  String get botWx_channelGone => 'Het gekozen kanaal bestaat niet meer.';
+
+  @override
+  String botWx_httpError(String code) {
+    return 'De weerdienst antwoordde $code.';
+  }
+
+  @override
+  String get botWx_unreachable => 'Weerdienst niet bereikbaar.';
+
+  @override
+  String get botCmd_sun =>
+      'Zonsopkomst en -ondergang op de gps-positie van de radio.';
+
+  @override
+  String get botCmd_moon => 'Maanfase en hoeveel verlicht is.';
+
+  @override
+  String get botCmd_weather =>
+      'Huidig weer bij de radio (Open-Meteo). Stuurt de positie, afgerond op ongeveer 1 km.';
+
+  @override
+  String get botCmd_dice => 'Gooit dobbelstenen: !dice, !dice 20 of !dice 2d6.';
+
+  @override
+  String get botCmd_trace => 'Toont de repeaters waarlangs het bericht kwam.';
+
+  @override
   String get ping_title => 'Repeater-ping';
 
   @override

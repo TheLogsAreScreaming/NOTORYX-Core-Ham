@@ -104,8 +104,8 @@ class BastionToolsScreen extends StatelessWidget {
             if (!PlatformInfo.isWeb)
               InstrumentRow(
                 icon: Icons.hexagon_outlined,
-                title: 'Coverage hexagons',
-                subtitle: 'Map where your radio hears the mesh and share it',
+                title: l10n.coverageHex_title,
+                subtitle: l10n.coverageHex_toolSubtitle,
                 onTap: () => open(const CoverageHexScreen()),
               ),
             InstrumentLabel(l10n.tools_groupRouting),

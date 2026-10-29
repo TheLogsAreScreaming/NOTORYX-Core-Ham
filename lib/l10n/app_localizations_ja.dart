@@ -7999,6 +7999,228 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get coverageHex_title => 'カバレッジ六角形';
+
+  @override
+  String get coverageHex_toolSubtitle => '無線機がメッシュを受信できる場所を地図にして共有';
+
+  @override
+  String get coverageHex_mapCoverage => 'カバレッジを記録';
+
+  @override
+  String get coverageHex_statusOff =>
+      'オフ。運転中や歩行中にオンにすると、無線機がメッシュを受信できる場所を記録します。';
+
+  @override
+  String get coverageHex_waitingGps => 'GPS を待機中…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'GPS 精度 $meters m：粗すぎるため記録しません。';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return '記録中。GPS 精度 $meters m。';
+  }
+
+  @override
+  String get coverageHex_hexagons => '六角形';
+
+  @override
+  String get coverageHex_samples => 'サンプル';
+
+  @override
+  String get coverageHex_privacyNote =>
+      'このスイッチがオンの間、スマートフォンの GPS を使います。共有されるのは六角形 ID（約 0.9 km）のみで、正確な位置は共有されません。';
+
+  @override
+  String get coverageHex_uploadSection => 'カバレッジマップへアップロード';
+
+  @override
+  String get coverageHex_wifiOnly => 'Wi-Fi 接続時のみアップロード';
+
+  @override
+  String get coverageHex_wifiOnlyHint =>
+      'サンプルは Wi-Fi になるまでスマートフォンで待機します（最大 7 日）。';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return '$count 件待機中';
+  }
+
+  @override
+  String get coverageHex_addMap => 'カバレッジマップを追加';
+
+  @override
+  String get coverageHex_addMapHint => 'カバレッジのアップロードを受け付ける HTTPS エンドポイント。';
+
+  @override
+  String get coverageHex_uploadNow => '今すぐアップロード';
+
+  @override
+  String get coverageHex_mapDialogTitle => 'カバレッジマップ';
+
+  @override
+  String get coverageHex_nameMissing => '名前を付けてください。';
+
+  @override
+  String get coverageHex_url => 'アップロード URL';
+
+  @override
+  String get coverageHex_urlInvalid => 'https:// の URL にしてください。';
+
+  @override
+  String get coverageHex_apiKey => 'API キー（任意）';
+
+  @override
+  String get coverageHex_apiKeyHint => 'X-API-Key として送信されます。';
+
+  @override
+  String get coverageHex_format => '形式';
+
+  @override
+  String get coverageHex_formatHex => '六角形 ID（NOTORYX）';
+
+  @override
+  String get coverageHex_formatMeshMapper => 'MeshMapper 互換';
+
+  @override
+  String get coverageHex_privacy => 'プライバシー';
+
+  @override
+  String get coverageHex_privacyLive => 'ライブ';
+
+  @override
+  String get coverageHex_privacyDelayed => '3 時間遅延';
+
+  @override
+  String get coverageHex_privacyAnonymous => '匿名、24 時間';
+
+  @override
+  String get coverageHex_privacyLiveHint => '約 15 分以内に送信。';
+
+  @override
+  String get coverageHex_privacyDelayedHint => '地図に現在地が表示されないよう 3 時間保留します。';
+
+  @override
+  String get coverageHex_privacyAnonymousHint =>
+      '24 時間保留し、日付のみ・署名なしで送信するため、アップロード同士を結び付けられません。';
+
+  @override
+  String get coverageHex_uploadsOn => 'アップロードを有効化';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return '$time に $count セルを送信しました。';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return '地図が $code を返しました。再試行します。';
+  }
+
+  @override
+  String get coverageHex_unreachable => '地図に接続できません。再試行します。';
+
+  @override
+  String get coverageHex_noPermission => '位置情報の許可がありません。';
+
+  @override
+  String get coverageHex_noGps => 'GPS を利用できません。';
+
+  @override
+  String get coverageHex_loadFailed => '保存済みのカバレッジを読めません。最初からやり直します。';
+
+  @override
+  String get mqttExtra_wifiOnly => 'Wi-Fi 接続時のみ接続';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return '$count 個のパケットがアップロード待ち（最大 72 時間保持）。';
+  }
+
+  @override
+  String get mqttExtra_add => '別のブローカーを追加';
+
+  @override
+  String get mqttExtra_addBody =>
+      '無線機が受信した内容を、メインとは別の MQTT ブローカーにも共有します。アップロード専用で、アプリにパケットを戻すことはありません。';
+
+  @override
+  String get mqttExtra_separateKey => '別のキーを使う';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      '無線機ではなくこのスマートフォンで作成したキーでサインインするため、このブローカーはアップロードを無線機に結び付けられません。';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return '$name を削除しますか？';
+  }
+
+  @override
+  String get mqttExtra_removeBody => '切断し、設定・パスワード・キー・送信待ちのパケットを削除します。';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return '独自のキーでサインイン：$key…';
+  }
+
+  @override
+  String get botWx_title => '気象警報をチャンネルに投稿';
+
+  @override
+  String get botWx_body =>
+      '10 分ごとに米国国立気象局で無線機の GPS 位置（約 1 km に丸め）の重大・極端な警報を確認し、新しい警報を 1 回ずつ投稿します。スマートフォンのインターネットが必要です。';
+
+  @override
+  String get botWx_channel => '投稿先チャンネル';
+
+  @override
+  String get botWx_moderate => '中程度の警報も含める';
+
+  @override
+  String get botWx_moderateHint => '注意報と警報の両方。投稿が増えます。';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return '最終確認 $time。';
+  }
+
+  @override
+  String get botWx_noPosition => '無線機はまだ GPS 位置を報告していません。';
+
+  @override
+  String get botWx_noChannel => '警報の投稿先チャンネルを選んでください。';
+
+  @override
+  String get botWx_channelGone => '選んだチャンネルはもう存在しません。';
+
+  @override
+  String botWx_httpError(String code) {
+    return '気象サービスが $code を返しました。';
+  }
+
+  @override
+  String get botWx_unreachable => '気象サービスに接続できません。';
+
+  @override
+  String get botCmd_sun => '無線機の GPS 位置の日の出と日の入り。';
+
+  @override
+  String get botCmd_moon => '月相と照らされている割合。';
+
+  @override
+  String get botCmd_weather => '無線機の現在の天気（Open-Meteo）。約 1 km に丸めた位置を送信します。';
+
+  @override
+  String get botCmd_dice => 'サイコロを振ります：!dice、!dice 20、!dice 2d6。';
+
+  @override
+  String get botCmd_trace => '送信者のメッセージが経由したリピーターを一覧表示します。';
+
+  @override
   String get ping_title => 'リピーター ping';
 
   @override

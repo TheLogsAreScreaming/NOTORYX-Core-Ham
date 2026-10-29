@@ -8336,6 +8336,236 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get coverageHex_title => 'Täckningshexagoner';
+
+  @override
+  String get coverageHex_toolSubtitle =>
+      'Kartlägg var radion hör meshen och dela det';
+
+  @override
+  String get coverageHex_mapCoverage => 'Kartlägg täckning';
+
+  @override
+  String get coverageHex_statusOff =>
+      'Av. Slå på när du kör eller går för att kartlägga var radion hör meshen.';
+
+  @override
+  String get coverageHex_waitingGps => 'Väntar på GPS…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'GPS-noggrannhet $meters m: för grov, spelar inte in.';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return 'Spelar in. GPS-noggrannhet $meters m.';
+  }
+
+  @override
+  String get coverageHex_hexagons => 'Hexagoner';
+
+  @override
+  String get coverageHex_samples => 'Prover';
+
+  @override
+  String get coverageHex_privacyNote =>
+      'Använder telefonens GPS medan reglaget är på. Endast hexagon-ID:n (cirka 0,9 km) delas, aldrig din exakta position.';
+
+  @override
+  String get coverageHex_uploadSection => 'Ladda upp till täckningskartor';
+
+  @override
+  String get coverageHex_wifiOnly => 'Ladda upp endast via Wi-Fi';
+
+  @override
+  String get coverageHex_wifiOnlyHint =>
+      'Proverna väntar i telefonen (upp till 7 dagar) på Wi-Fi.';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return '$count väntar';
+  }
+
+  @override
+  String get coverageHex_addMap => 'Lägg till täckningskarta';
+
+  @override
+  String get coverageHex_addMapHint =>
+      'Valfri HTTPS-adress som tar emot täckningsdata.';
+
+  @override
+  String get coverageHex_uploadNow => 'Ladda upp nu';
+
+  @override
+  String get coverageHex_mapDialogTitle => 'Täckningskarta';
+
+  @override
+  String get coverageHex_nameMissing => 'Ge den ett namn.';
+
+  @override
+  String get coverageHex_url => 'Uppladdnings-URL';
+
+  @override
+  String get coverageHex_urlInvalid => 'Måste vara en https://-URL.';
+
+  @override
+  String get coverageHex_apiKey => 'API-nyckel (valfri)';
+
+  @override
+  String get coverageHex_apiKeyHint => 'Skickas som X-API-Key.';
+
+  @override
+  String get coverageHex_format => 'Format';
+
+  @override
+  String get coverageHex_formatHex => 'Hexagon-ID:n (NOTORYX)';
+
+  @override
+  String get coverageHex_formatMeshMapper => 'MeshMapper-kompatibel';
+
+  @override
+  String get coverageHex_privacy => 'Integritet';
+
+  @override
+  String get coverageHex_privacyLive => 'Live';
+
+  @override
+  String get coverageHex_privacyDelayed => 'Fördröjt 3 h';
+
+  @override
+  String get coverageHex_privacyAnonymous => 'Anonymt, 24 h';
+
+  @override
+  String get coverageHex_privacyLiveHint => 'Skickas inom cirka 15 minuter.';
+
+  @override
+  String get coverageHex_privacyDelayedHint =>
+      'Hålls kvar 3 timmar så att kartan inte visar var du är nu.';
+
+  @override
+  String get coverageHex_privacyAnonymousHint =>
+      'Hålls kvar 24 timmar, daterat per dag och osignerat så att uppladdningar inte kan kopplas ihop.';
+
+  @override
+  String get coverageHex_uploadsOn => 'Uppladdning på';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return 'Skickade $count celler kl. $time.';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return 'Kartan svarade $code; försöker igen.';
+  }
+
+  @override
+  String get coverageHex_unreachable => 'Kunde inte nå kartan; försöker igen.';
+
+  @override
+  String get coverageHex_noPermission => 'Platsbehörighet beviljades inte.';
+
+  @override
+  String get coverageHex_noGps => 'GPS är inte tillgänglig.';
+
+  @override
+  String get coverageHex_loadFailed =>
+      'Sparad täckning kunde inte läsas; börjar om.';
+
+  @override
+  String get mqttExtra_wifiOnly => 'Anslut endast via Wi-Fi';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return '$count paket väntar på uppladdning (sparas i upp till 72 timmar).';
+  }
+
+  @override
+  String get mqttExtra_add => 'Lägg till en broker till';
+
+  @override
+  String get mqttExtra_addBody =>
+      'Delar det radion hör med ytterligare en MQTT-broker utöver huvudbrokern. Den laddar bara upp och skickar aldrig paket tillbaka till appen.';
+
+  @override
+  String get mqttExtra_separateKey => 'Använd en separat nyckel';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      'Loggar in med en nyckel skapad på den här telefonen i stället för radions, så att brokern inte kan koppla uppladdningar till din radio.';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return 'Ta bort $name?';
+  }
+
+  @override
+  String get mqttExtra_removeBody =>
+      'Kopplar från och glömmer inställningar, lösenord, nyckel och väntande paket.';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return 'Loggar in med egen nyckel: $key…';
+  }
+
+  @override
+  String get botWx_title => 'Publicera vädervarningar i en kanal';
+
+  @override
+  String get botWx_body =>
+      'Kontrollerar var 10:e minut den amerikanska vädertjänsten efter allvarliga och extrema varningar vid radions GPS-position (avrundad till cirka 1 km) och publicerar varje ny en gång. Kräver internet i telefonen.';
+
+  @override
+  String get botWx_channel => 'Publicera i kanal';
+
+  @override
+  String get botWx_moderate => 'Ta med måttliga varningar';
+
+  @override
+  String get botWx_moderateHint => 'Råd såväl som varningar. Fler meddelanden.';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return 'Senast kontrollerad $time.';
+  }
+
+  @override
+  String get botWx_noPosition =>
+      'Radion har inte rapporterat någon GPS-position än.';
+
+  @override
+  String get botWx_noChannel => 'Välj en kanal för varningarna.';
+
+  @override
+  String get botWx_channelGone => 'Den valda kanalen finns inte längre.';
+
+  @override
+  String botWx_httpError(String code) {
+    return 'Vädertjänsten svarade $code.';
+  }
+
+  @override
+  String get botWx_unreachable => 'Kunde inte nå vädertjänsten.';
+
+  @override
+  String get botCmd_sun =>
+      'Soluppgång och solnedgång vid radions GPS-position.';
+
+  @override
+  String get botCmd_moon => 'Månfas och hur mycket som är upplyst.';
+
+  @override
+  String get botCmd_weather =>
+      'Aktuellt väder vid radion (Open-Meteo). Skickar positionen avrundad till cirka 1 km.';
+
+  @override
+  String get botCmd_dice => 'Slår tärning: !dice, !dice 20 eller !dice 2d6.';
+
+  @override
+  String get botCmd_trace => 'Listar repeatrarna som meddelandet gick via.';
+
+  @override
   String get ping_title => 'Repeater-ping';
 
   @override

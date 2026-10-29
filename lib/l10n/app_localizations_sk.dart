@@ -8389,6 +8389,234 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String get coverageHex_title => 'Šesťuholníky pokrytia';
+
+  @override
+  String get coverageHex_toolSubtitle =>
+      'Mapujte, kde rádio počuje sieť, a zdieľajte to';
+
+  @override
+  String get coverageHex_mapCoverage => 'Mapovať pokrytie';
+
+  @override
+  String get coverageHex_statusOff =>
+      'Vypnuté. Zapnite počas jazdy alebo chôdze a zmapujte, kde rádio počuje sieť.';
+
+  @override
+  String get coverageHex_waitingGps => 'Čaká sa na GPS…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'Presnosť GPS $meters m: príliš hrubá, nezaznamenáva sa.';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return 'Zaznamenáva sa. Presnosť GPS $meters m.';
+  }
+
+  @override
+  String get coverageHex_hexagons => 'Šesťuholníky';
+
+  @override
+  String get coverageHex_samples => 'Vzorky';
+
+  @override
+  String get coverageHex_privacyNote =>
+      'Používa GPS telefónu, kým je tento prepínač zapnutý. Zdieľajú sa iba ID šesťuholníkov (asi 0,9 km), nikdy presná poloha.';
+
+  @override
+  String get coverageHex_uploadSection => 'Nahrávanie do máp pokrytia';
+
+  @override
+  String get coverageHex_wifiOnly => 'Nahrávať iba cez Wi-Fi';
+
+  @override
+  String get coverageHex_wifiOnlyHint =>
+      'Vzorky čakajú v telefóne (až 7 dní) na Wi-Fi.';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return 'čaká: $count';
+  }
+
+  @override
+  String get coverageHex_addMap => 'Pridať mapu pokrytia';
+
+  @override
+  String get coverageHex_addMapHint =>
+      'Akýkoľvek HTTPS koncový bod, ktorý prijíma pokrytie.';
+
+  @override
+  String get coverageHex_uploadNow => 'Nahrať teraz';
+
+  @override
+  String get coverageHex_mapDialogTitle => 'Mapa pokrytia';
+
+  @override
+  String get coverageHex_nameMissing => 'Pomenujte ju.';
+
+  @override
+  String get coverageHex_url => 'URL na nahrávanie';
+
+  @override
+  String get coverageHex_urlInvalid => 'Musí to byť URL https://.';
+
+  @override
+  String get coverageHex_apiKey => 'Kľúč API (voliteľný)';
+
+  @override
+  String get coverageHex_apiKeyHint => 'Odosiela sa ako X-API-Key.';
+
+  @override
+  String get coverageHex_format => 'Formát';
+
+  @override
+  String get coverageHex_formatHex => 'ID šesťuholníkov (NOTORYX)';
+
+  @override
+  String get coverageHex_formatMeshMapper => 'Kompatibilné s MeshMapper';
+
+  @override
+  String get coverageHex_privacy => 'Súkromie';
+
+  @override
+  String get coverageHex_privacyLive => 'Naživo';
+
+  @override
+  String get coverageHex_privacyDelayed => 'Oneskorené o 3 h';
+
+  @override
+  String get coverageHex_privacyAnonymous => 'Anonymne, 24 h';
+
+  @override
+  String get coverageHex_privacyLiveHint => 'Odošle sa asi do 15 minút.';
+
+  @override
+  String get coverageHex_privacyDelayedHint =>
+      'Zadržané 3 hodiny, aby mapa neukázala, kde ste teraz.';
+
+  @override
+  String get coverageHex_privacyAnonymousHint =>
+      'Zadržané 24 hodín, iba s dátumom a bez podpisu, aby sa nahrávky nedali prepojiť.';
+
+  @override
+  String get coverageHex_uploadsOn => 'Nahrávanie zapnuté';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return 'Odoslané bunky: $count o $time.';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return 'Mapa odpovedala $code; skúsi sa znova.';
+  }
+
+  @override
+  String get coverageHex_unreachable => 'Mapa je nedostupná; skúsi sa znova.';
+
+  @override
+  String get coverageHex_noPermission => 'Povolenie na polohu nebolo udelené.';
+
+  @override
+  String get coverageHex_noGps => 'GPS nie je k dispozícii.';
+
+  @override
+  String get coverageHex_loadFailed =>
+      'Uložené pokrytie sa nedá prečítať; začína sa odznova.';
+
+  @override
+  String get mqttExtra_wifiOnly => 'Pripájať iba cez Wi-Fi';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return 'Paketov čaká na nahranie: $count (uchovávajú sa až 72 hodín).';
+  }
+
+  @override
+  String get mqttExtra_add => 'Pridať ďalší broker';
+
+  @override
+  String get mqttExtra_addBody =>
+      'Zdieľa to, čo rádio počuje, s ďalším MQTT brokerom popri hlavnom. Iba nahráva, nikdy nevracia pakety do aplikácie.';
+
+  @override
+  String get mqttExtra_separateKey => 'Použiť samostatný kľúč';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      'Prihlasuje sa kľúčom vytvoreným v tomto telefóne namiesto kľúča rádia, takže broker nespojí nahrávky s vaším rádiom.';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return 'Odstrániť $name?';
+  }
+
+  @override
+  String get mqttExtra_removeBody =>
+      'Odpojí a zabudne nastavenia, heslo, kľúč a čakajúce pakety.';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return 'Prihlasuje sa vlastným kľúčom: $key…';
+  }
+
+  @override
+  String get botWx_title => 'Uverejňovať výstrahy počasia v kanáli';
+
+  @override
+  String get botWx_body =>
+      'Každých 10 minút kontroluje americkú National Weather Service na vážne a extrémne výstrahy pre GPS polohu rádia (zaokrúhlenú na asi 1 km) a každú novú uverejní raz. Potrebuje internet v telefóne.';
+
+  @override
+  String get botWx_channel => 'Uverejniť v kanáli';
+
+  @override
+  String get botWx_moderate => 'Zahrnúť mierne výstrahy';
+
+  @override
+  String get botWx_moderateHint => 'Upozornenia aj výstrahy. Viac správ.';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return 'Naposledy skontrolované $time.';
+  }
+
+  @override
+  String get botWx_noPosition => 'Rádio ešte nenahlásilo GPS polohu.';
+
+  @override
+  String get botWx_noChannel => 'Vyberte kanál pre výstrahy.';
+
+  @override
+  String get botWx_channelGone => 'Vybraný kanál už neexistuje.';
+
+  @override
+  String botWx_httpError(String code) {
+    return 'Meteorologická služba odpovedala $code.';
+  }
+
+  @override
+  String get botWx_unreachable => 'Meteorologická služba je nedostupná.';
+
+  @override
+  String get botCmd_sun => 'Východ a západ slnka na GPS polohe rádia.';
+
+  @override
+  String get botCmd_moon => 'Fáza Mesiaca a osvetlenie.';
+
+  @override
+  String get botCmd_weather =>
+      'Aktuálne počasie pri rádiu (Open-Meteo). Posiela polohu zaokrúhlenú na asi 1 km.';
+
+  @override
+  String get botCmd_dice => 'Hádže kockami: !dice, !dice 20 alebo !dice 2d6.';
+
+  @override
+  String get botCmd_trace => 'Vypíše opakovače, cez ktoré prišla správa.';
+
+  @override
   String get ping_title => 'Ping opakovača';
 
   @override

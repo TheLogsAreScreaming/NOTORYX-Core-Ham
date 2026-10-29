@@ -4923,6 +4923,144 @@
       }
     }
   },
+  "coverageHex_title": "Coverage hexagons",
+  "coverageHex_toolSubtitle": "Map where your radio hears the mesh and share it",
+  "coverageHex_mapCoverage": "Map coverage",
+  "coverageHex_statusOff": "Off. Turn on while you drive or walk to map where your radio hears the mesh.",
+  "coverageHex_waitingGps": "Waiting for GPS…",
+  "coverageHex_gpsTooRough": "GPS accuracy {meters} m: too rough, not recording.",
+  "@coverageHex_gpsTooRough": {
+    "placeholders": {
+      "meters": {
+        "type": "String"
+      }
+    }
+  },
+  "coverageHex_recording": "Recording. GPS accuracy {meters} m.",
+  "@coverageHex_recording": {
+    "placeholders": {
+      "meters": {
+        "type": "String"
+      }
+    }
+  },
+  "coverageHex_hexagons": "Hexagons",
+  "coverageHex_samples": "Samples",
+  "coverageHex_privacyNote": "Uses the phone’s GPS while this switch is on. Only hexagon IDs (about 0.9 km across) are shared, never your exact position.",
+  "coverageHex_uploadSection": "Upload to coverage maps",
+  "coverageHex_wifiOnly": "Upload on Wi-Fi only",
+  "coverageHex_wifiOnlyHint": "Samples wait on the phone (up to 7 days) until Wi-Fi.",
+  "coverageHex_waiting": "{count} waiting",
+  "@coverageHex_waiting": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "coverageHex_addMap": "Add a coverage map",
+  "coverageHex_addMapHint": "Any HTTPS endpoint that accepts coverage uploads.",
+  "coverageHex_uploadNow": "Upload now",
+  "coverageHex_mapDialogTitle": "Coverage map",
+  "coverageHex_nameMissing": "Give it a name.",
+  "coverageHex_url": "Upload URL",
+  "coverageHex_urlInvalid": "Must be an https:// URL.",
+  "coverageHex_apiKey": "API key (optional)",
+  "coverageHex_apiKeyHint": "Sent as X-API-Key.",
+  "coverageHex_format": "Format",
+  "coverageHex_formatHex": "Hexagon IDs (NOTORYX)",
+  "coverageHex_formatMeshMapper": "MeshMapper-compatible",
+  "coverageHex_privacy": "Privacy",
+  "coverageHex_privacyLive": "Live",
+  "coverageHex_privacyDelayed": "Delayed 3 h",
+  "coverageHex_privacyAnonymous": "Anonymous, 24 h",
+  "coverageHex_privacyLiveHint": "Sent within about 15 minutes.",
+  "coverageHex_privacyDelayedHint": "Held 3 hours so the map can’t show where you are now.",
+  "coverageHex_privacyAnonymousHint": "Held 24 hours, dated by day only, and unsigned so uploads can’t be linked.",
+  "coverageHex_uploadsOn": "Uploads on",
+  "coverageHex_sent": "Sent {count} cells at {time}.",
+  "@coverageHex_sent": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "coverageHex_httpError": "The map answered {code}; will retry.",
+  "@coverageHex_httpError": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "coverageHex_unreachable": "Couldn’t reach the map; will retry.",
+  "coverageHex_noPermission": "Location permission was not granted.",
+  "coverageHex_noGps": "GPS isn’t available.",
+  "coverageHex_loadFailed": "Saved coverage couldn’t be read; starting fresh.",
+  "mqttExtra_wifiOnly": "Connect on Wi-Fi only",
+  "mqttExtra_backlog": "{count} packets waiting to upload (kept up to 72 hours).",
+  "@mqttExtra_backlog": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "mqttExtra_add": "Add another broker",
+  "mqttExtra_addBody": "Shares what your radio hears with one more MQTT broker, beside your main one. It only uploads; it never feeds packets back into the app.",
+  "mqttExtra_separateKey": "Use a separate key",
+  "mqttExtra_separateKeyHint": "Signs in with a key made on this phone instead of the radio’s, so this broker can’t tie uploads to your radio.",
+  "mqttExtra_removeTitle": "Remove {name}?",
+  "@mqttExtra_removeTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "mqttExtra_removeBody": "Disconnects and forgets its settings, password, key and any packets still waiting to upload.",
+  "mqttExtra_ownKey": "Signs in with its own key: {key}…",
+  "@mqttExtra_ownKey": {
+    "placeholders": {
+      "key": {
+        "type": "String"
+      }
+    }
+  },
+  "botWx_title": "Post weather alerts to a channel",
+  "botWx_body": "Checks the US National Weather Service every 10 minutes for severe and extreme warnings at the radio’s GPS position (rounded to about 1 km), and posts each new one once. Needs phone internet.",
+  "botWx_channel": "Post to channel",
+  "botWx_moderate": "Include moderate alerts",
+  "botWx_moderateHint": "Advisories as well as warnings. Busier.",
+  "botWx_lastChecked": "Last checked {time}.",
+  "@botWx_lastChecked": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "botWx_noPosition": "The radio hasn’t reported a GPS position yet.",
+  "botWx_noChannel": "Choose a channel to post alerts to.",
+  "botWx_channelGone": "The chosen channel no longer exists.",
+  "botWx_httpError": "Weather Service answered {code}.",
+  "@botWx_httpError": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "botWx_unreachable": "Couldn’t reach the Weather Service.",
+  "botCmd_sun": "Sunrise and sunset at the radio’s GPS position.",
+  "botCmd_moon": "Moon phase and how much is lit.",
+  "botCmd_weather": "Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.",
+  "botCmd_dice": "Rolls dice: !dice, !dice 20 or !dice 2d6.",
+  "botCmd_trace": "Lists the repeaters the sender’s message came through.",
   "ping_title": "Repeater ping",
   "ping_toolSubtitle": "Round-trip time and signal both ways to a nearby repeater",
   "ping_noRepeaters": "No repeaters known yet",

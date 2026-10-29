@@ -8393,6 +8393,238 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get coverageHex_title => 'Шестоъгълници на покритието';
+
+  @override
+  String get coverageHex_toolSubtitle =>
+      'Картографирайте къде радиото чува мрежата и го споделете';
+
+  @override
+  String get coverageHex_mapCoverage => 'Картографиране на покритието';
+
+  @override
+  String get coverageHex_statusOff =>
+      'Изключено. Включете, докато карате или вървите, за да картографирате къде радиото чува мрежата.';
+
+  @override
+  String get coverageHex_waitingGps => 'Изчакване на GPS…';
+
+  @override
+  String coverageHex_gpsTooRough(String meters) {
+    return 'Точност на GPS $meters м: твърде груба, не се записва.';
+  }
+
+  @override
+  String coverageHex_recording(String meters) {
+    return 'Записва се. Точност на GPS $meters м.';
+  }
+
+  @override
+  String get coverageHex_hexagons => 'Шестоъгълници';
+
+  @override
+  String get coverageHex_samples => 'Проби';
+
+  @override
+  String get coverageHex_privacyNote =>
+      'Използва GPS на телефона, докато този превключвател е включен. Споделят се само ID на шестоъгълници (около 0,9 км), никога точното ви местоположение.';
+
+  @override
+  String get coverageHex_uploadSection => 'Качване в карти на покритието';
+
+  @override
+  String get coverageHex_wifiOnly => 'Качване само през Wi-Fi';
+
+  @override
+  String get coverageHex_wifiOnlyHint =>
+      'Пробите чакат на телефона (до 7 дни) до Wi-Fi.';
+
+  @override
+  String coverageHex_waiting(String count) {
+    return '$count чакат';
+  }
+
+  @override
+  String get coverageHex_addMap => 'Добавяне на карта на покритието';
+
+  @override
+  String get coverageHex_addMapHint =>
+      'Всеки HTTPS адрес, който приема качване на покритие.';
+
+  @override
+  String get coverageHex_uploadNow => 'Качване сега';
+
+  @override
+  String get coverageHex_mapDialogTitle => 'Карта на покритието';
+
+  @override
+  String get coverageHex_nameMissing => 'Дайте ѝ име.';
+
+  @override
+  String get coverageHex_url => 'URL за качване';
+
+  @override
+  String get coverageHex_urlInvalid => 'Трябва да е https:// URL.';
+
+  @override
+  String get coverageHex_apiKey => 'API ключ (по избор)';
+
+  @override
+  String get coverageHex_apiKeyHint => 'Изпраща се като X-API-Key.';
+
+  @override
+  String get coverageHex_format => 'Формат';
+
+  @override
+  String get coverageHex_formatHex => 'ID на шестоъгълници (NOTORYX)';
+
+  @override
+  String get coverageHex_formatMeshMapper => 'Съвместим с MeshMapper';
+
+  @override
+  String get coverageHex_privacy => 'Поверителност';
+
+  @override
+  String get coverageHex_privacyLive => 'На живо';
+
+  @override
+  String get coverageHex_privacyDelayed => 'Със закъснение 3 ч';
+
+  @override
+  String get coverageHex_privacyAnonymous => 'Анонимно, 24 ч';
+
+  @override
+  String get coverageHex_privacyLiveHint => 'Изпраща се до около 15 минути.';
+
+  @override
+  String get coverageHex_privacyDelayedHint =>
+      'Задържа се 3 часа, за да не показва картата къде сте сега.';
+
+  @override
+  String get coverageHex_privacyAnonymousHint =>
+      'Задържа се 24 часа, само с дата и без подпис, за да не могат да се свържат качванията.';
+
+  @override
+  String get coverageHex_uploadsOn => 'Качването е включено';
+
+  @override
+  String coverageHex_sent(String count, String time) {
+    return 'Изпратени $count клетки в $time.';
+  }
+
+  @override
+  String coverageHex_httpError(String code) {
+    return 'Картата отговори с $code; ще се опита отново.';
+  }
+
+  @override
+  String get coverageHex_unreachable =>
+      'Картата е недостъпна; ще се опита отново.';
+
+  @override
+  String get coverageHex_noPermission =>
+      'Разрешението за местоположение не е дадено.';
+
+  @override
+  String get coverageHex_noGps => 'GPS не е наличен.';
+
+  @override
+  String get coverageHex_loadFailed =>
+      'Запазеното покритие не може да се прочете; започва се отначало.';
+
+  @override
+  String get mqttExtra_wifiOnly => 'Свързване само през Wi-Fi';
+
+  @override
+  String mqttExtra_backlog(String count) {
+    return '$count пакета чакат качване (пазят се до 72 часа).';
+  }
+
+  @override
+  String get mqttExtra_add => 'Добавяне на друг брокер';
+
+  @override
+  String get mqttExtra_addBody =>
+      'Споделя чутото от радиото с още един MQTT брокер освен основния. Само качва; никога не връща пакети в приложението.';
+
+  @override
+  String get mqttExtra_separateKey => 'Отделен ключ';
+
+  @override
+  String get mqttExtra_separateKeyHint =>
+      'Влиза с ключ, създаден на този телефон вместо на радиото, така брокерът не може да свърже качванията с радиото ви.';
+
+  @override
+  String mqttExtra_removeTitle(String name) {
+    return 'Премахване на $name?';
+  }
+
+  @override
+  String get mqttExtra_removeBody =>
+      'Прекъсва и забравя настройките, паролата, ключа и всички пакети, чакащи качване.';
+
+  @override
+  String mqttExtra_ownKey(String key) {
+    return 'Влиза със собствен ключ: $key…';
+  }
+
+  @override
+  String get botWx_title => 'Публикуване на метеопредупреждения в канал';
+
+  @override
+  String get botWx_body =>
+      'Проверява Националната метеорологична служба на САЩ на всеки 10 минути за сериозни и екстремни предупреждения на GPS позицията на радиото (закръглена до около 1 км) и публикува всяко ново веднъж. Нужен е интернет на телефона.';
+
+  @override
+  String get botWx_channel => 'Публикуване в канал';
+
+  @override
+  String get botWx_moderate => 'Включване на умерени предупреждения';
+
+  @override
+  String get botWx_moderateHint =>
+      'Съвети, както и предупреждения. По-натоварено.';
+
+  @override
+  String botWx_lastChecked(String time) {
+    return 'Последна проверка $time.';
+  }
+
+  @override
+  String get botWx_noPosition => 'Радиото още не е съобщило GPS позиция.';
+
+  @override
+  String get botWx_noChannel => 'Изберете канал за предупрежденията.';
+
+  @override
+  String get botWx_channelGone => 'Избраният канал вече не съществува.';
+
+  @override
+  String botWx_httpError(String code) {
+    return 'Метеослужбата отговори с $code.';
+  }
+
+  @override
+  String get botWx_unreachable => 'Метеослужбата е недостъпна.';
+
+  @override
+  String get botCmd_sun => 'Изгрев и залез на GPS позицията на радиото.';
+
+  @override
+  String get botCmd_moon => 'Фаза на Луната и колко е осветена.';
+
+  @override
+  String get botCmd_weather =>
+      'Текущо време при радиото (Open-Meteo). Изпраща позицията, закръглена до около 1 км.';
+
+  @override
+  String get botCmd_dice => 'Хвърля зарове: !dice, !dice 20 или !dice 2d6.';
+
+  @override
+  String get botCmd_trace =>
+      'Изброява ретранслаторите, през които е минало съобщението.';
+
+  @override
   String get ping_title => 'Пинг на ретранслатор';
 
   @override
