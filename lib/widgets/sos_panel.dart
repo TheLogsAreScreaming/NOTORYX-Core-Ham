@@ -9,40 +9,51 @@ import '../models/field_ops.dart';
 import '../services/field_ops_service.dart';
 import 'quick_trip_setup.dart';
 
-const _red = Color(0xFFD9534F);
+Color get _red => MeshPalette.alert;
 Color get _muted => MeshPalette.ink3;
+
+/// The line under the idle SOS button: why it can't send, or who gets it.
+String sosHint(BuildContext context, FieldOpsService ops) {
+  final l10n = context.l10n;
+  final channel = ops.sosChannel;
+  return hardBlockReason(ops) ??
+      (!hasSosTarget(ops)
+          ? "Hold 2 seconds. You'll choose who gets it, then it sends."
+          : channel == null
+          ? l10n.sos_holdHint
+          : l10n.sos_holdHintChannel(channel.name));
+}
 
 /// The home screen's SOS control: a hold-to-send button while idle, and a
 /// status banner with Stop while an SOS is active.
 class SosPanel extends StatelessWidget {
-  const SosPanel({super.key});
+  /// Just the button, for a row beside Check in; the caller shows
+  /// [sosHint]. An active SOS always shows its full banner.
+  final bool compact;
+
+  const SosPanel({super.key, this.compact = false});
 
   @override
   Widget build(BuildContext context) {
     context.watch<MeshCoreConnector>();
     final ops = context.watch<FieldOpsService>();
     if (ops.sos.active) return _ActiveSos(ops: ops);
-    final l10n = context.l10n;
     // Only a missing radio or loading blocks the button. With nobody to
     // send to yet, the hold asks who should get it, then sends.
     final reason = hardBlockReason(ops);
-    final channel = ops.sosChannel;
+    final button = HoldToConfirmButton(
+      key: const ValueKey('sos-hold'),
+      enabled: reason == null,
+      onConfirmed: () => _start(context, ops),
+    );
+    if (compact) return button;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        HoldToConfirmButton(
-          key: const ValueKey('sos-hold'),
-          enabled: reason == null,
-          onConfirmed: () => _start(context, ops),
-        ),
+        button,
         const SizedBox(height: 4),
         Text(
-          reason ??
-              (!hasSosTarget(ops)
-                  ? "Hold 2 seconds. You'll choose who gets it, then it sends."
-                  : channel == null
-                  ? l10n.sos_holdHint
-                  : l10n.sos_holdHintChannel(channel.name)),
+          sosHint(context, ops),
           style: TextStyle(color: _muted, fontSize: 12),
         ),
       ],
@@ -91,8 +102,8 @@ class _ActiveSos extends StatelessWidget {
       key: const ValueKey('sos-active'),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: _red.withValues(alpha: .16),
-        borderRadius: BorderRadius.circular(16),
+        color: _red.withValues(alpha: .12),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
         border: Border.all(color: _red),
       ),
       child: Column(
@@ -100,20 +111,20 @@ class _ActiveSos extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(Icons.sos_rounded, color: _red),
+              Icon(Icons.sos_rounded, color: _red),
               const SizedBox(width: 8),
               Text(
                 l10n.sos_active,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 1,
+                style: TextStyle(
+                  color: _red,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 0.5,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 6),
-          Text(status, style: const TextStyle(color: Colors.white)),
+          Text(status, style: TextStyle(color: MeshPalette.ink)),
           const SizedBox(height: 10),
           Row(
             children: [
@@ -189,16 +200,11 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
 
   @override
   Widget build(BuildContext context) {
-    final color = widget.enabled ? _red : _red.withValues(alpha: .35);
-    // A faint red track reads as disabled on a light background, so light
-    // themes get a solid track with a darker fill sweeping across it; the
-    // white label keeps its contrast either way.
-    final light = MeshPalette.current.brightness == Brightness.light;
-    // Darkened 15% so white text clears 4.5:1 (about 5.2:1).
-    final track = light
-        ? Color.lerp(color, Colors.black, .15)!
-        : color.withValues(alpha: .25);
-    final fill = light ? Color.lerp(color, Colors.black, .35)! : color;
+    // An alert-coloured outline and label on the page, with a translucent
+    // fill sweeping across while held. Every theme's alert colour clears
+    // 4.5:1 against its page, so the label stays readable throughout.
+    final color = widget.enabled ? _red : _muted;
+    final fill = _red.withValues(alpha: .24);
     return Semantics(
       button: true,
       enabled: widget.enabled,
@@ -227,34 +233,42 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
         onPointerCancel: widget.enabled ? (_) => _cancel() : null,
         child: AnimatedBuilder(
           animation: _hold,
-          builder: (context, _) => ClipRRect(
-            borderRadius: BorderRadius.circular(28),
+          builder: (context, _) => Container(
+            height: 48,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(MeshRadii.xs),
+              border: Border.all(color: color, width: 1.2),
+            ),
+            clipBehavior: Clip.antiAlias,
             child: Stack(
               children: [
-                Container(height: 56, color: track),
                 FractionallySizedBox(
                   widthFactor: _hold.value,
-                  child: Container(height: 56, color: fill),
+                  heightFactor: 1,
+                  child: ColoredBox(color: fill),
                 ),
-                SizedBox(
-                  height: 56,
-                  child: Center(
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          Icons.sos_rounded,
-                          color: widget.enabled ? Colors.white : _muted,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          _hold.value > 0
-                              ? context.l10n.sos_keepHolding
-                              : context.l10n.sos_holdForSos,
-                          style: TextStyle(
-                            color: widget.enabled ? Colors.white : _muted,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 1,
+                        Icon(Icons.sos_rounded, size: 20, color: color),
+                        const SizedBox(width: 6),
+                        Flexible(
+                          child: Text(
+                            _hold.value > 0
+                                ? context.l10n.sos_keepHolding
+                                : context.l10n.sos_holdForSos,
+                            maxLines: 1,
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
+                            style: TextStyle(
+                              color: color,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 0.4,
+                            ),
                           ),
                         ),
                       ],

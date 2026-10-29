@@ -1,10 +1,9 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../helpers/direct_heard_name.dart';
 import '../helpers/path_helper.dart';
 import '../helpers/path_hop_resolver.dart';
 import '../l10n/l10n.dart';
@@ -386,31 +385,6 @@ class _BestRepeaters extends StatelessWidget {
 
   final MeshCoreConnector connector;
 
-  /// The repeater's name, or null when the ID can't be pinned to one.
-  String? _name(String id) {
-    final bytes = Uint8List.fromList([
-      for (var i = 0; i + 1 < id.length; i += 2)
-        int.parse(id.substring(i, i + 2), radix: 16),
-    ]);
-    if (bytes.length >= 32) {
-      final key = id.toLowerCase();
-      for (final c in connector.allContactsUnfiltered) {
-        if (c.publicKeyHex.toLowerCase() == key) return c.name;
-      }
-      return null;
-    }
-    final lat = connector.selfLatitude, lon = connector.selfLongitude;
-    final hop = PathHopResolver.resolve(
-      pathBytes: bytes,
-      contacts: connector.allContactsUnfiltered,
-      endpoint: lat == null || lon == null || (lat == 0 && lon == 0)
-          ? null
-          : LatLng(lat, lon),
-      pathHashByteWidth: bytes.length,
-    );
-    return hop.single?.name;
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -432,10 +406,8 @@ class _BestRepeaters extends StatelessWidget {
           for (var i = 0; i < best.length; i++)
             _BestRepeaterRow(
               rank: i + 1,
-              name: _name(best[i].id),
-              id: best[i].id.length > 6
-                  ? best[i].id.substring(0, 4)
-                  : best[i].id,
+              name: directHeardName(connector, best[i].id),
+              id: directHeardShortId(best[i].id),
               heard: best[i],
               minutesAgo: now.difference(best[i].lastHeard).inMinutes,
             ),
