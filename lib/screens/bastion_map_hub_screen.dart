@@ -10,7 +10,6 @@ class BastionMapHubScreen extends StatelessWidget {
   const BastionMapHubScreen({super.key});
   static Color get _cyan => MeshPalette.accent;
   static Color get _bg => MeshPalette.bg;
-  static Color get _panel => MeshPalette.bg2;
   static Color get _muted => MeshPalette.ink3;
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -29,9 +28,8 @@ class BastionMapHubScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: _panel,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: _cyan.withValues(alpha: .42)),
+              border: Border.all(color: MeshPalette.line),
+              borderRadius: BorderRadius.circular(MeshRadii.xs),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,10 +120,10 @@ class _MapAction extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Material(
-    color: MeshPalette.bg2,
-    borderRadius: BorderRadius.circular(16),
+    color: Colors.transparent,
+    borderRadius: BorderRadius.circular(MeshRadii.xs),
     child: InkWell(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(16),

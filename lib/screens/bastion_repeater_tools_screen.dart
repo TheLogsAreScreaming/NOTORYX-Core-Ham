@@ -54,9 +54,8 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: MeshPalette.bg2,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: _cyan.withValues(alpha: .45)),
+              border: Border.all(color: MeshPalette.line),
+              borderRadius: BorderRadius.circular(MeshRadii.xs),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,10 +102,10 @@ class BastionRepeaterToolsScreen extends StatelessWidget {
               (r) => Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Material(
-                  color: MeshPalette.bg2,
-                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(MeshRadii.xs),
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(MeshRadii.xs),
                     onTap: () => _login(context, r),
                     child: Container(
                       padding: const EdgeInsets.all(15),
@@ -187,9 +186,8 @@ class _Stat extends StatelessWidget {
     child: Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: MeshPalette.bg1,
-        borderRadius: BorderRadius.circular(14),
         border: Border.all(color: MeshPalette.line),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,9 +221,8 @@ class _EmptyRepeaters extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(18),
     decoration: BoxDecoration(
-      color: MeshPalette.bg1,
-      borderRadius: BorderRadius.circular(15),
       border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Row(
       children: [
@@ -255,9 +252,8 @@ class _Capability extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(15),
     decoration: BoxDecoration(
-      color: MeshPalette.bg1,
-      borderRadius: BorderRadius.circular(15),
       border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,

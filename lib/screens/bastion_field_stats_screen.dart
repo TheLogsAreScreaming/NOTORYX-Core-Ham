@@ -10,7 +10,6 @@ class BastionFieldStatsScreen extends StatelessWidget {
 
   static Color get _cyan => MeshPalette.accent;
   static Color get _bg => MeshPalette.bg;
-  static Color get _panel => MeshPalette.bg2;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +46,8 @@ class BastionFieldStatsScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: _panel,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: _cyan.withValues(alpha: .45)),
+              border: Border.all(color: MeshPalette.line),
+              borderRadius: BorderRadius.circular(MeshRadii.xs),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,9 +122,8 @@ class BastionFieldStatsScreen extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.all(13),
           decoration: BoxDecoration(
-            color: MeshPalette.bg1,
-            borderRadius: BorderRadius.circular(14),
             border: Border.all(color: MeshPalette.line),
+            borderRadius: BorderRadius.circular(MeshRadii.xs),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,9 +173,8 @@ class _Panel extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      color: MeshPalette.bg1,
-      borderRadius: BorderRadius.circular(15),
       border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,

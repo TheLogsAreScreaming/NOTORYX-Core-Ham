@@ -331,9 +331,8 @@ class _Stat extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(12),
     decoration: BoxDecoration(
-      color: MeshPalette.bg2,
-      borderRadius: BorderRadius.circular(14),
       border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -375,13 +374,8 @@ class _Status extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
     decoration: BoxDecoration(
-      color: MeshPalette.bg1,
-      borderRadius: BorderRadius.circular(12),
-      border: Border.all(
-        color: active
-            ? MeshPalette.accent.withValues(alpha: .45)
-            : MeshPalette.line,
-      ),
+      border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Row(
       children: [
@@ -429,9 +423,8 @@ class _ObservationTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        color: MeshPalette.bg1,
-        borderRadius: BorderRadius.circular(14),
         border: Border.all(color: MeshPalette.line),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -492,9 +485,8 @@ class _Info extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(15),
     decoration: BoxDecoration(
-      color: MeshPalette.bg1,
-      borderRadius: BorderRadius.circular(15),
       border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,

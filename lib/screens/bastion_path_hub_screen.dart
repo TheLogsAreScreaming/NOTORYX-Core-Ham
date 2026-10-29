@@ -21,7 +21,6 @@ class BastionPathHubScreen extends StatelessWidget {
   const BastionPathHubScreen({super.key});
 
   static Color get _bg => MeshPalette.bg;
-  static Color get _panel => MeshPalette.bg2;
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +77,8 @@ class BastionPathHubScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(MeshSpace.lg),
             decoration: BoxDecoration(
-              color: _panel,
-              borderRadius: BorderRadius.circular(MeshRadii.lg),
+              border: Border.all(color: MeshPalette.line),
+              borderRadius: BorderRadius.circular(MeshRadii.xs),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -250,8 +249,8 @@ class _ContactRouteCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: MeshSpace.sm),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: MeshPalette.bg2,
-        borderRadius: BorderRadius.circular(MeshRadii.lg),
+        border: Border.all(color: MeshPalette.line),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -346,8 +345,8 @@ class _InfoPanel extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(MeshSpace.lg),
     decoration: BoxDecoration(
-      color: MeshPalette.bg2,
-      borderRadius: BorderRadius.circular(MeshRadii.lg),
+      border: Border.all(color: MeshPalette.line),
+      borderRadius: BorderRadius.circular(MeshRadii.xs),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -447,8 +446,8 @@ class _BestRepeaterRow extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: MeshSpace.sm),
       padding: const EdgeInsets.all(MeshSpace.md),
       decoration: BoxDecoration(
-        color: MeshPalette.bg2,
-        borderRadius: BorderRadius.circular(MeshRadii.lg),
+        border: Border.all(color: MeshPalette.line),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
       ),
       child: Row(
         children: [

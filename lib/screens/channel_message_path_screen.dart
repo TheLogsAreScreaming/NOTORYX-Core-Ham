@@ -1585,9 +1585,8 @@ class _ChannelMessagePathMapScreenState
         height: cardHeight,
         child: Container(
           decoration: BoxDecoration(
-            color: MeshPalette.bg1,
-            borderRadius: BorderRadius.circular(MeshRadii.md),
-            border: Border.all(color: MeshPalette.line2),
+            border: Border.all(color: MeshPalette.line),
+            borderRadius: BorderRadius.circular(MeshRadii.xs),
           ),
           clipBehavior: Clip.antiAlias,
           child: DefaultTextStyle(

@@ -43,9 +43,8 @@ class ConsolePanel extends StatelessWidget {
     return Container(
       padding: padding,
       decoration: BoxDecoration(
-        color: MeshPalette.bg2,
-        borderRadius: BorderRadius.circular(MeshRadii.lg),
-        border: borderColor == null ? null : Border.all(color: borderColor!),
+        border: Border.all(color: borderColor ?? MeshPalette.line),
+        borderRadius: BorderRadius.circular(MeshRadii.xs),
       ),
       child: child,
     );
