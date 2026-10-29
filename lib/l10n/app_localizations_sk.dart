@@ -6464,7 +6464,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get bastionTools_title => 'Terénne nástroje';
 
   @override
-  String get bastionTools_backup => 'ŠIFROVANÁ ZÁLOHA';
+  String get bastionTools_backup => 'Šifrovaná záloha';
 
   @override
   String get bastionTools_backupHint =>
@@ -6479,7 +6479,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'Živá mapa, relácie záznamu, nástroje offline máp a regióny';
 
   @override
-  String get bastionTools_pathAnalysis => 'ANALÝZA CIEST';
+  String get bastionTools_pathAnalysis => 'Analýza ciest';
 
   @override
   String get bastionTools_pathHint => 'Trasy, objavovanie a analýza ciest';
@@ -6493,14 +6493,14 @@ class AppLocalizationsSk extends AppLocalizations {
       'Živé počty v sieti a aktivita kontaktov';
 
   @override
-  String get bastionTools_diagnostics => 'DIAGNOSTIKA';
+  String get bastionTools_diagnostics => 'Diagnostika';
 
   @override
   String get bastionTools_diagnosticsHint =>
       'Stav rádia, informácie o zariadení, surové rámce a export';
 
   @override
-  String get bastionTools_about => 'O APLIKÁCII + POĎAKOVANIA';
+  String get bastionTools_about => 'O aplikácii + poďakovania';
 
   @override
   String get bastionTools_aboutHint =>
@@ -6997,31 +6997,31 @@ class AppLocalizationsSk extends AppLocalizations {
       'NOTORYX Core zoraďuje uložené trasy podľa histórie ciest, ktorú sa už naučil zo skutočných pokusov o správy a objavovanie.';
 
   @override
-  String get routes_routes => 'TRASY';
+  String get routes_routes => 'Trasy';
 
   @override
-  String get routes_success => 'ÚSPECHY';
+  String get routes_success => 'Úspechy';
 
   @override
-  String get routes_failed => 'ZLYHANIA';
+  String get routes_failed => 'Zlyhania';
 
   @override
-  String get routes_routeMap => 'MAPA TRÁS';
+  String get routes_routeMap => 'Mapa trás';
 
   @override
   String get routes_routeMapHint => 'Preskúmajte uzly a cesty';
 
   @override
-  String get routes_discover => 'OBJAVIŤ';
+  String get routes_discover => 'Objaviť';
 
   @override
   String get routes_discoverHint => 'Nájdite nové trasy';
 
   @override
-  String get routes_learned => 'NAUČENÉ TRASY';
+  String get routes_learned => 'Naučené trasy';
 
   @override
-  String get routes_none => 'ZATIAĽ ŽIADNA HISTÓRIA TRÁS';
+  String get routes_none => 'Zatiaľ žiadna história trás';
 
   @override
   String get routes_noneBody =>
@@ -8302,7 +8302,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get routes_nearbyTitle => 'NAJLEPŠIE OPAKOVAČE V OKOLÍ';
+  String get routes_nearbyTitle => 'Najlepšie opakovače v okolí';
 
   @override
   String get routes_nearbyEmptyTitle => 'Zatiaľ nepočuť žiadne opakovače';
@@ -8354,4 +8354,37 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get nav_settings => 'Nastavenia';
+
+  @override
+  String get nav_more => 'Viac';
+
+  @override
+  String get tools_groupApp => 'Aplikácia a nastavenia';
+
+  @override
+  String get tools_groupField => 'V teréne';
+
+  @override
+  String get tools_groupMaps => 'Mapy a pokrytie';
+
+  @override
+  String get tools_groupRouting => 'Trasy a opakovače';
+
+  @override
+  String get tools_pathGraph => 'Graf ciest';
+
+  @override
+  String get tools_pathGraphHint =>
+      'Ako sa k vám dostávajú správy: každá počutá cesta s najvyťaženejšími opakovačmi';
+
+  @override
+  String get tools_antenna => 'Pokrytie antény';
+
+  @override
+  String get tools_antennaHint => 'Odhadnite, kam dosiahne anténa nad terénom';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'Opakovač $id';
+  }
 }

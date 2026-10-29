@@ -6472,7 +6472,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get bastionTools_title => 'Ferramentas de campo';
 
   @override
-  String get bastionTools_backup => 'CÓPIA DE SEGURANÇA CIFRADA';
+  String get bastionTools_backup => 'Cópia de segurança cifrada';
 
   @override
   String get bastionTools_backupHint =>
@@ -6487,7 +6487,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Mapa em direto, sessões de captura, ferramentas de mapas offline e regiões';
 
   @override
-  String get bastionTools_pathAnalysis => 'ANÁLISE DE CAMINHOS';
+  String get bastionTools_pathAnalysis => 'Análise de caminhos';
 
   @override
   String get bastionTools_pathHint =>
@@ -6502,14 +6502,14 @@ class AppLocalizationsPt extends AppLocalizations {
       'Contagens da malha em direto e atividade dos contactos';
 
   @override
-  String get bastionTools_diagnostics => 'DIAGNÓSTICO';
+  String get bastionTools_diagnostics => 'Diagnóstico';
 
   @override
   String get bastionTools_diagnosticsHint =>
       'Estado do rádio, informação do dispositivo, tramas em bruto e exportação';
 
   @override
-  String get bastionTools_about => 'ACERCA + CRÉDITOS';
+  String get bastionTools_about => 'Acerca + créditos';
 
   @override
   String get bastionTools_aboutHint =>
@@ -7005,31 +7005,31 @@ class AppLocalizationsPt extends AppLocalizations {
       'O NOTORYX Core classifica as rotas guardadas usando o histórico de caminhos já aprendido com tentativas reais de mensagens e descobertas.';
 
   @override
-  String get routes_routes => 'ROTAS';
+  String get routes_routes => 'Rotas';
 
   @override
-  String get routes_success => 'SUCESSO';
+  String get routes_success => 'Sucesso';
 
   @override
-  String get routes_failed => 'FALHADAS';
+  String get routes_failed => 'Falhadas';
 
   @override
-  String get routes_routeMap => 'MAPA DE ROTAS';
+  String get routes_routeMap => 'Mapa de rotas';
 
   @override
   String get routes_routeMapHint => 'Inspecione nós e caminhos';
 
   @override
-  String get routes_discover => 'DESCOBRIR';
+  String get routes_discover => 'Descobrir';
 
   @override
   String get routes_discoverHint => 'Encontre novas rotas';
 
   @override
-  String get routes_learned => 'ROTAS APRENDIDAS';
+  String get routes_learned => 'Rotas aprendidas';
 
   @override
-  String get routes_none => 'AINDA SEM HISTÓRICO DE ROTAS';
+  String get routes_none => 'Ainda sem histórico de rotas';
 
   @override
   String get routes_noneBody =>
@@ -8308,7 +8308,7 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get routes_nearbyTitle => 'MELHORES REPETIDORES PERTO';
+  String get routes_nearbyTitle => 'Melhores repetidores perto';
 
   @override
   String get routes_nearbyEmptyTitle => 'Nenhum repetidor ouvido ainda';
@@ -8359,4 +8359,38 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get nav_settings => 'Definições';
+
+  @override
+  String get nav_more => 'Mais';
+
+  @override
+  String get tools_groupApp => 'App e definições';
+
+  @override
+  String get tools_groupField => 'No terreno';
+
+  @override
+  String get tools_groupMaps => 'Mapas e cobertura';
+
+  @override
+  String get tools_groupRouting => 'Rotas e repetidores';
+
+  @override
+  String get tools_pathGraph => 'Grafo de caminhos';
+
+  @override
+  String get tools_pathGraphHint =>
+      'Como as mensagens chegam até si: cada caminho ouvido, com os repetidores mais ativos';
+
+  @override
+  String get tools_antenna => 'Cobertura da antena';
+
+  @override
+  String get tools_antennaHint =>
+      'Estime até onde uma antena chega sobre o terreno';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'Repetidor $id';
+  }
 }

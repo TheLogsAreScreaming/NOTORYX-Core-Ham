@@ -8,8 +8,8 @@ import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/main_tab_navigation.dart';
 
-/// Bastion's bottom bar: Nodes, Chats and Map switch tabs; Tools and
-/// Settings open as pages on top.
+/// Bastion's bottom bar: Nodes, Chats and Map switch tabs; More (tools
+/// and settings) opens as a page on top.
 class QuickSwitchBar extends StatelessWidget {
   /// The tab whose screen hosts this bar.
   final MainTab current;
@@ -120,14 +120,9 @@ class QuickSwitchBar extends StatelessWidget {
                     label: l10n.nav_map,
                   ),
                   NavigationDestination(
-                    icon: const Icon(Icons.construction_outlined),
-                    selectedIcon: const Icon(Icons.construction_rounded),
-                    label: l10n.nav_tools,
-                  ),
-                  NavigationDestination(
-                    icon: const Icon(Icons.tune_outlined),
-                    selectedIcon: const Icon(Icons.tune_rounded),
-                    label: l10n.nav_settings,
+                    icon: const Icon(Icons.grid_view_outlined),
+                    selectedIcon: const Icon(Icons.grid_view_rounded),
+                    label: l10n.nav_more,
                   ),
                 ],
               ),

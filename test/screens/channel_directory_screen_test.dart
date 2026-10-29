@@ -71,7 +71,7 @@ void main() {
     tester,
   ) async {
     await _pump(tester, _FakeConnector());
-    expect(find.text('Near you'.toUpperCase()), findsOneWidget);
+    expect(find.text('Near you'), findsOneWidget);
     final seattle = tester.getTopLeft(find.text('#seattle'));
     final emergency = tester.getTopLeft(find.text('#emergency'));
     expect(seattle.dy, lessThan(emergency.dy));

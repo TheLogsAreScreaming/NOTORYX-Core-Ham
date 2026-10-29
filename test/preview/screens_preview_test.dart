@@ -3,6 +3,8 @@
 // Skipped unless PREVIEW_OUT is set:
 //   PREVIEW_OUT=/some/dir flutter test test/preview
 // PREVIEW_LOCALE=de (for example) renders a translation.
+// PREVIEW_ONLY=home,tools renders just those screens; PREVIEW_HEIGHT=2400
+// renders taller than a phone screen, for reviewing long screens whole.
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -539,10 +541,14 @@ void main() {
         );
   });
 
+  final only = Platform.environment['PREVIEW_ONLY']?.split(',').toSet();
+  final height =
+      double.tryParse(Platform.environment['PREVIEW_HEIGHT'] ?? '') ?? 844;
   for (final mode in [ThemeMode.dark, ThemeMode.light]) {
     for (final entry in screens.entries) {
+      if (only != null && !only.contains(entry.key)) continue;
       testWidgets('${entry.key} ${mode.name}', (tester) async {
-        await tester.binding.setSurfaceSize(const Size(390, 844));
+        await tester.binding.setSurfaceSize(Size(390, height));
         tester.view.devicePixelRatio = 2;
         addTearDown(tester.view.reset);
         final boundary = GlobalKey();

@@ -6468,7 +6468,7 @@ class AppLocalizationsSl extends AppLocalizations {
   String get bastionTools_title => 'Terenska orodja';
 
   @override
-  String get bastionTools_backup => 'ŠIFRIRANA VARNOSTNA KOPIJA';
+  String get bastionTools_backup => 'Šifrirana varnostna kopija';
 
   @override
   String get bastionTools_backupHint =>
@@ -6483,7 +6483,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'Zemljevid v živo, seje zajema, orodja za zemljevide brez povezave in regije';
 
   @override
-  String get bastionTools_pathAnalysis => 'ANALIZA POTI';
+  String get bastionTools_pathAnalysis => 'Analiza poti';
 
   @override
   String get bastionTools_pathHint => 'Poti, odkrivanje in analiza poti';
@@ -6497,14 +6497,14 @@ class AppLocalizationsSl extends AppLocalizations {
       'Števci omrežja v živo in dejavnost stikov';
 
   @override
-  String get bastionTools_diagnostics => 'DIAGNOSTIKA';
+  String get bastionTools_diagnostics => 'Diagnostika';
 
   @override
   String get bastionTools_diagnosticsHint =>
       'Stanje radia, podatki o napravi, surovi okvirji in izvoz';
 
   @override
-  String get bastionTools_about => 'O APLIKACIJI + ZAHVALE';
+  String get bastionTools_about => 'O aplikaciji + zahvale';
 
   @override
   String get bastionTools_aboutHint =>
@@ -7000,31 +7000,31 @@ class AppLocalizationsSl extends AppLocalizations {
       'NOTORYX Core razvršča shranjene poti z zgodovino poti, ki se je že naučil iz resničnih poskusov sporočil in odkrivanj.';
 
   @override
-  String get routes_routes => 'POTI';
+  String get routes_routes => 'Poti';
 
   @override
-  String get routes_success => 'USPEHI';
+  String get routes_success => 'Uspehi';
 
   @override
-  String get routes_failed => 'NEUSPEHI';
+  String get routes_failed => 'Neuspehi';
 
   @override
-  String get routes_routeMap => 'ZEMLJEVID POTI';
+  String get routes_routeMap => 'Zemljevid poti';
 
   @override
   String get routes_routeMapHint => 'Raziščite vozlišča in poti';
 
   @override
-  String get routes_discover => 'ODKRIJ';
+  String get routes_discover => 'Odkrij';
 
   @override
   String get routes_discoverHint => 'Poiščite nove poti';
 
   @override
-  String get routes_learned => 'NAUČENE POTI';
+  String get routes_learned => 'Naučene poti';
 
   @override
-  String get routes_none => 'ZGODOVINE POTI ŠE NI';
+  String get routes_none => 'Zgodovine poti še ni';
 
   @override
   String get routes_noneBody =>
@@ -8309,7 +8309,7 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get routes_nearbyTitle => 'NAJBOLJŠI REPETITORJI V BLIŽINI';
+  String get routes_nearbyTitle => 'Najboljši repetitorji v bližini';
 
   @override
   String get routes_nearbyEmptyTitle => 'Repetitorjev še ni slišati';
@@ -8362,4 +8362,37 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get nav_settings => 'Nastavitve';
+
+  @override
+  String get nav_more => 'Več';
+
+  @override
+  String get tools_groupApp => 'Aplikacija in nastavitve';
+
+  @override
+  String get tools_groupField => 'Na terenu';
+
+  @override
+  String get tools_groupMaps => 'Zemljevidi in pokritost';
+
+  @override
+  String get tools_groupRouting => 'Poti in repetitorji';
+
+  @override
+  String get tools_pathGraph => 'Graf poti';
+
+  @override
+  String get tools_pathGraphHint =>
+      'Kako vas dosežejo sporočila: vsaka slišana pot z najbolj obremenjenimi repetitorji';
+
+  @override
+  String get tools_antenna => 'Pokritost antene';
+
+  @override
+  String get tools_antennaHint => 'Ocenite, kam seže antena nad terenom';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'Repetitor $id';
+  }
 }

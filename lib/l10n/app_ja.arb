@@ -3859,5 +3859,15 @@
   "nav_home": "ホーム",
   "nav_chats": "チャット",
   "nav_tools": "ツール",
-  "nav_settings": "設定"
+  "nav_settings": "設定",
+  "nav_more": "その他",
+  "tools_groupApp": "アプリと設定",
+  "tools_groupField": "フィールド",
+  "tools_groupMaps": "マップとカバレッジ",
+  "tools_groupRouting": "ルートとリピーター",
+  "tools_pathGraph": "経路グラフ",
+  "tools_pathGraphHint": "メッセージの届き方：受信したすべての経路と、最も混雑したリピーター",
+  "tools_antenna": "アンテナカバレッジ",
+  "tools_antennaHint": "地形上でアンテナが届く範囲を推定",
+  "routes_repeaterWithId": "リピーター {id}"
 }

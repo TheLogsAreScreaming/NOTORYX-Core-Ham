@@ -6453,7 +6453,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get bastionTools_title => 'Veldtools';
 
   @override
-  String get bastionTools_backup => 'VERSLEUTELDE BACK-UP';
+  String get bastionTools_backup => 'Versleutelde back-up';
 
   @override
   String get bastionTools_backupHint =>
@@ -6468,7 +6468,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Live kaart, opnamesessies, offline kaarttools en regio\'s';
 
   @override
-  String get bastionTools_pathAnalysis => 'PADANALYSE';
+  String get bastionTools_pathAnalysis => 'Padanalyse';
 
   @override
   String get bastionTools_pathHint => 'Routes, verkenning en padinzicht';
@@ -6482,14 +6482,14 @@ class AppLocalizationsNl extends AppLocalizations {
       'Live meshtellingen en contactactiviteit';
 
   @override
-  String get bastionTools_diagnostics => 'DIAGNOSE';
+  String get bastionTools_diagnostics => 'Diagnose';
 
   @override
   String get bastionTools_diagnosticsHint =>
       'Radiostatus, apparaatinformatie, ruwe frames en export';
 
   @override
-  String get bastionTools_about => 'OVER + DANKWOORD';
+  String get bastionTools_about => 'Over + dankwoord';
 
   @override
   String get bastionTools_aboutHint =>
@@ -6983,31 +6983,31 @@ class AppLocalizationsNl extends AppLocalizations {
       'NOTORYX Core rangschikt opgeslagen routes met de padgeschiedenis die al is geleerd uit echte berichtpogingen en verkenningen.';
 
   @override
-  String get routes_routes => 'ROUTES';
+  String get routes_routes => 'Routes';
 
   @override
-  String get routes_success => 'GESLAAGD';
+  String get routes_success => 'Geslaagd';
 
   @override
-  String get routes_failed => 'MISLUKT';
+  String get routes_failed => 'Mislukt';
 
   @override
-  String get routes_routeMap => 'ROUTEKAART';
+  String get routes_routeMap => 'Routekaart';
 
   @override
   String get routes_routeMapHint => 'Nodes en paden bekijken';
 
   @override
-  String get routes_discover => 'VERKENNEN';
+  String get routes_discover => 'Verkennen';
 
   @override
   String get routes_discoverHint => 'Nieuwe routes vinden';
 
   @override
-  String get routes_learned => 'GELEERDE ROUTES';
+  String get routes_learned => 'Geleerde routes';
 
   @override
-  String get routes_none => 'NOG GEEN ROUTEGESCHIEDENIS';
+  String get routes_none => 'Nog geen routegeschiedenis';
 
   @override
   String get routes_noneBody =>
@@ -8286,7 +8286,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get routes_nearbyTitle => 'BESTE REPEATERS IN DE BUURT';
+  String get routes_nearbyTitle => 'Beste repeaters in de buurt';
 
   @override
   String get routes_nearbyEmptyTitle => 'Nog geen repeaters gehoord';
@@ -8337,4 +8337,38 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get nav_settings => 'Instellingen';
+
+  @override
+  String get nav_more => 'Meer';
+
+  @override
+  String get tools_groupApp => 'App en instellingen';
+
+  @override
+  String get tools_groupField => 'In het veld';
+
+  @override
+  String get tools_groupMaps => 'Kaarten en dekking';
+
+  @override
+  String get tools_groupRouting => 'Routes en repeaters';
+
+  @override
+  String get tools_pathGraph => 'Padgrafiek';
+
+  @override
+  String get tools_pathGraphHint =>
+      'Hoe berichten je bereiken: elk gehoord pad, met de drukste repeaters';
+
+  @override
+  String get tools_antenna => 'Antennedekking';
+
+  @override
+  String get tools_antennaHint =>
+      'Schat hoe ver een antenne over het terrein reikt';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'Repeater $id';
+  }
 }

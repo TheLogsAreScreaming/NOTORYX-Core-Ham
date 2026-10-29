@@ -45,8 +45,9 @@ class SectionHeader extends StatelessWidget {
   }
 }
 
-/// Bordered surface card with press feedback. The standard container for
-/// grouped content and tappable list entries.
+/// Raised surface card with press feedback. The standard container for
+/// grouped content and tappable list entries. Borderless unless
+/// [borderColor] marks a state such as selected or error.
 class MeshCard extends StatelessWidget {
   final Widget child;
   final VoidCallback? onTap;
@@ -76,12 +77,14 @@ class MeshCard extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final shape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(radius),
-      side: BorderSide(color: borderColor ?? scheme.outlineVariant),
+      side: borderColor == null
+          ? BorderSide.none
+          : BorderSide(color: borderColor!),
     );
     return Padding(
       padding: margin,
       child: Material(
-        color: color ?? scheme.surfaceContainerLow,
+        color: color ?? scheme.surfaceContainerHigh,
         shape: shape,
         clipBehavior: Clip.antiAlias,
         child: InkWell(

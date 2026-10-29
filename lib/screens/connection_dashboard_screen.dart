@@ -89,7 +89,6 @@ class RadioConnectionCard extends StatelessWidget {
         : saved?.name ?? l10n.connections_noRadio;
 
     return ConsolePanel(
-      borderColor: statusColor.withValues(alpha: 0.45),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -381,18 +380,17 @@ class _StatTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(stat.icon, size: 14, color: MeshPalette.accent),
+              Icon(stat.icon, size: 14, color: MeshPalette.ink3),
               const SizedBox(width: 6),
               Flexible(
                 child: Text(
-                  stat.label.toUpperCase(),
+                  stat.label,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: MeshPalette.ink3,
-                    fontSize: 10.5,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 1,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),

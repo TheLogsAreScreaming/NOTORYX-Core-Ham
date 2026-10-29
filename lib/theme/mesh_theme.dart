@@ -263,13 +263,14 @@ class MeshTheme {
         ),
         iconTheme: IconThemeData(color: scheme.onSurface),
       ),
+      // Cards sit on the raised surface without an outline; the low
+      // container is too close to the background in the dark themes.
       cardTheme: CardThemeData(
-        color: scheme.surfaceContainerLow,
+        color: scheme.surfaceContainerHigh,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(MeshRadii.md),
-          side: BorderSide(color: scheme.outlineVariant, width: 1),
         ),
         margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 0),
       ),

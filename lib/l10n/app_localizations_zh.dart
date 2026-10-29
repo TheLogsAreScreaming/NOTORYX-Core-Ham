@@ -7796,4 +7796,36 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get nav_settings => '设置';
+
+  @override
+  String get nav_more => '更多';
+
+  @override
+  String get tools_groupApp => '应用与设置';
+
+  @override
+  String get tools_groupField => '野外';
+
+  @override
+  String get tools_groupMaps => '地图与覆盖';
+
+  @override
+  String get tools_groupRouting => '路由与中继器';
+
+  @override
+  String get tools_pathGraph => '路径图';
+
+  @override
+  String get tools_pathGraphHint => '消息如何到达你：所有收到的路径，以及最繁忙的中继器';
+
+  @override
+  String get tools_antenna => '天线覆盖';
+
+  @override
+  String get tools_antennaHint => '估算天线在地形上能覆盖多远';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return '中继器 $id';
+  }
 }

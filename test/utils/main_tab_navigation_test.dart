@@ -43,8 +43,8 @@ void main() {
     // Hopping between tabs replaces the tab, keeping home underneath.
     await go(tester, MainTab.nodes);
     await go(tester, MainTab.map);
-    await go(tester, MainTab.settings);
-    expect(find.text('screen:settings'), findsOneWidget);
+    await go(tester, MainTab.more);
+    expect(find.text('screen:more'), findsOneWidget);
 
     await go(tester, MainTab.home);
     expect(find.text('screen:home'), findsOneWidget);

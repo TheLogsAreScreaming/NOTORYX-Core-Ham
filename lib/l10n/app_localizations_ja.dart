@@ -7965,4 +7965,36 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get nav_settings => '設定';
+
+  @override
+  String get nav_more => 'その他';
+
+  @override
+  String get tools_groupApp => 'アプリと設定';
+
+  @override
+  String get tools_groupField => 'フィールド';
+
+  @override
+  String get tools_groupMaps => 'マップとカバレッジ';
+
+  @override
+  String get tools_groupRouting => 'ルートとリピーター';
+
+  @override
+  String get tools_pathGraph => '経路グラフ';
+
+  @override
+  String get tools_pathGraphHint => 'メッセージの届き方：受信したすべての経路と、最も混雑したリピーター';
+
+  @override
+  String get tools_antenna => 'アンテナカバレッジ';
+
+  @override
+  String get tools_antennaHint => '地形上でアンテナが届く範囲を推定';
+
+  @override
+  String routes_repeaterWithId(String id) {
+    return 'リピーター $id';
+  }
 }

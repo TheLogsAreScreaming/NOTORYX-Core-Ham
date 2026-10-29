@@ -3773,17 +3773,17 @@
     }
   },
   "bastionTools_title": "Field Tools",
-  "bastionTools_backup": "ENCRYPTED BACKUP",
+  "bastionTools_backup": "Encrypted backup",
   "bastionTools_backupHint": "Save settings, contacts and keys with optional chat history",
   "bastionTools_fieldOpsHint": "Check-ins, readiness, Field Log, automations and comparisons",
   "bastionTools_mapHint": "Live map, capture sessions, offline map tools and regions",
-  "bastionTools_pathAnalysis": "PATH ANALYSIS",
+  "bastionTools_pathAnalysis": "Path analysis",
   "bastionTools_pathHint": "Routes, discovery and path intelligence",
   "bastionTools_repeaterHint": "Status, login, telemetry, neighbors and administration",
   "bastionTools_statsHint": "Live mesh counts and contact activity",
-  "bastionTools_diagnostics": "DIAGNOSTICS",
+  "bastionTools_diagnostics": "Diagnostics",
   "bastionTools_diagnosticsHint": "Radio health, device information, raw frames and export",
-  "bastionTools_about": "ABOUT + CREDITS",
+  "bastionTools_about": "About + credits",
   "bastionTools_aboutHint": "NOTORYX Core version, independence statement and open-source licenses",
   "bastionAbout_title": "About + Credits",
   "bastionAbout_intro": "An independent community companion app for MeshCore networks. NOTORYX Core is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.",
@@ -4006,15 +4006,15 @@
   "routes_title": "Route Intelligence",
   "routes_headline": "See how traffic moves through the mesh.",
   "routes_body": "NOTORYX Core ranks saved routes using the path history already learned from real message attempts and discoveries.",
-  "routes_routes": "ROUTES",
-  "routes_success": "SUCCESS",
-  "routes_failed": "FAILED",
-  "routes_routeMap": "ROUTE MAP",
+  "routes_routes": "Routes",
+  "routes_success": "Success",
+  "routes_failed": "Failed",
+  "routes_routeMap": "Route map",
   "routes_routeMapHint": "Inspect nodes and paths",
-  "routes_discover": "DISCOVER",
+  "routes_discover": "Discover",
   "routes_discoverHint": "Find fresh routes",
-  "routes_learned": "LEARNED ROUTES",
-  "routes_none": "NO ROUTE HISTORY YET",
+  "routes_learned": "Learned routes",
+  "routes_none": "No route history yet",
   "routes_noneBody": "Use the mesh normally or run discovery. NOTORYX Core will surface learned routes here as path history becomes available.",
   "routes_direct": "DIRECT",
   "routes_routeCount": "{count, plural, =1{1 route} other{{count} routes}}",
@@ -4854,7 +4854,7 @@
       }
     }
   },
-  "routes_nearbyTitle": "BEST REPEATERS NEAR YOU",
+  "routes_nearbyTitle": "Best repeaters near you",
   "routes_nearbyEmptyTitle": "No repeaters heard yet",
   "routes_nearbyEmpty": "Repeaters your radio hears directly show up here, strongest first, as it receives traffic. The list covers the last hour.",
   "routes_unknownRepeater": "Unknown repeater",
@@ -4900,5 +4900,27 @@
   },
   "@nav_settings": {
     "description": "Bottom bar tab: settings"
+  },
+  "nav_more": "More",
+  "tools_groupApp": "App & settings",
+  "tools_groupField": "In the field",
+  "tools_groupMaps": "Maps & coverage",
+  "tools_groupRouting": "Routes & repeaters",
+  "tools_pathGraph": "Path graph",
+  "tools_pathGraphHint": "How messages reach you: every path heard, with the busiest repeaters",
+  "tools_antenna": "Antenna coverage",
+  "tools_antennaHint": "Estimate where an antenna can reach over the terrain",
+  "routes_repeaterWithId": "Repeater {id}",
+  "@nav_more": {
+    "description": "Bottom bar tab: tools and settings"
+  },
+  "@routes_repeaterWithId": {
+    "description": "A repeater whose name is unknown, by its ID prefix",
+    "placeholders": {
+      "id": {
+        "type": "String",
+        "example": "6F"
+      }
+    }
   }
 }
