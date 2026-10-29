@@ -7475,6 +7475,36 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
+  /// The channel hash of [raw] when it's a group text message, else null.
+  int? groupChannelHash(Uint8List raw) {
+    final packet = _parseRawPacket(raw);
+    if (packet == null ||
+        packet.payloadType != _payloadTypeGroupText ||
+        packet.payload.isEmpty) {
+      return null;
+    }
+    return packet.payload[0];
+  }
+
+  /// Whether [raw] is a group text message on the channel keyed by [psk]:
+  /// its channel hash matches and its MAC checks out, so a one-byte hash
+  /// collision isn't mistaken for the channel.
+  bool groupPacketMatches(Uint8List raw, Uint8List psk) {
+    final packet = _parseRawPacket(raw);
+    if (packet == null ||
+        packet.payloadType != _payloadTypeGroupText ||
+        packet.payload.isEmpty ||
+        _computeChannelHash(psk) != packet.payload[0]) {
+      return false;
+    }
+    return _decryptPayload(psk, Uint8List.sublistView(packet.payload, 1)) !=
+        null;
+  }
+
+  /// The one-byte hash group messages carry for the channel keyed by [psk].
+  static int channelHashOf(Uint8List psk) =>
+      crypto.sha256.convert(psk).bytes[0];
+
   int _computeChannelHash(Uint8List psk) {
     final digest = crypto.sha256.convert(psk).bytes;
     return digest[0];

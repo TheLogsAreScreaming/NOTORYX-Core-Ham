@@ -7,6 +7,7 @@ import '../models/contact.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/path_hash_filter_dialog.dart';
 import '../widgets/debug_frame_viewer.dart';
 import '../services/repeater_command_service.dart';
 import '../widgets/routing_sheet.dart';
@@ -202,6 +203,17 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
     });
   }
 
+  /// Drafts a path-width rule into the command field; nothing is sent.
+  Future<void> _preparePathFilter() async {
+    final command = await showDialog<String>(
+      context: context,
+      builder: (_) => const PathHashFilterDialog(),
+    );
+    if (!mounted || command == null) return;
+    _commandController.text = command;
+    _commandFocusNode.requestFocus();
+  }
+
   void _useQuickCommand(String command) {
     _commandController.text = command;
     _sendCommand();
@@ -290,6 +302,11 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
         ),
         centerTitle: true,
         actions: [
+          IconButton(
+            icon: const Icon(Icons.filter_alt_outlined),
+            tooltip: l10n.pathFilter_title,
+            onPressed: _preparePathFilter,
+          ),
           IconButton(
             icon: Icon(isFloodMode ? Icons.waves : Icons.route),
             tooltip: l10n.repeater_routingMode,

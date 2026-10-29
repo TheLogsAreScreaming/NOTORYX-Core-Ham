@@ -8615,4 +8615,170 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get botCmd_trace => 'Vypíše opakovače, cez ktoré prišla správa.';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Kanály počuté v okolí: $count';
+  }
+
+  @override
+  String get discovered_title => 'Počuté v okolí, nepripojené';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return 'Počuté $count× · naposledy $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Ignorovať';
+
+  @override
+  String get discovered_ignoreAll => 'Ignorovať všetky';
+
+  @override
+  String get discovered_joinAll => 'Pripojiť všetky';
+
+  @override
+  String get discovered_explainer =>
+      'Ide o verejné kanály z adresára, v ktorých rádio počulo prevádzku. Každý bol potvrdený dešifrovaním správy jeho kľúčom. Ignorované zostávajú skryté.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (komunita)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank je komunitný rebríček sietí MeshCore, nie je súčasťou NOTORYX a nie je ním odporúčaný. Bez prihlásenia: pakety sa zdieľajú pod kľúčom a kódom regiónu rádia, až po zapnutí zdieľania.';
+
+  @override
+  String get pathFilter_title => 'Filter šírky cesty';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Vyžaduje firmvér opakovača s pravidlami preposielania (mikecarper/MeshCore). Oficiálny firmvér MeshCore tieto príkazy odmietne.';
+
+  @override
+  String get pathFilter_width => 'Šírka cesty';
+
+  @override
+  String get pathFilter_anyWidth => 'Akákoľvek šírka';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return 'Cesty s $n bajtmi';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 alebo 3 bajty (2+)';
+
+  @override
+  String get pathFilter_path => 'Platí pre';
+
+  @override
+  String get pathFilter_radio => 'Rádiové záplavy';
+
+  @override
+  String get pathFilter_bridge => 'Most';
+
+  @override
+  String get pathFilter_cross => 'Prechod';
+
+  @override
+  String get pathFilter_bridgeCross => 'Most a prechod';
+
+  @override
+  String get pathFilter_limit => 'Obmedziť namiesto zahodenia';
+
+  @override
+  String get pathFilter_limitOn => 'Preposiela do nastaveného počtu za minútu.';
+
+  @override
+  String get pathFilter_drop => 'Zhodné záplavy sa zahadzujú.';
+
+  @override
+  String get pathFilter_perMinute => 'Za minútu';
+
+  @override
+  String get pathFilter_rateInvalid => 'Zadajte 1 až 65534.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Iba vyplní príkazový riadok. Skontrolujte ho a stlačte Odoslať. Najprv použite „get fr“ na zobrazenie pravidiel.';
+
+  @override
+  String get pathFilter_useCommand => 'Použiť príkaz';
+
+  @override
+  String get settings_linkPreviews => 'Náhľady odkazov';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Zobrazí názov odkazu v správe. Predvolene vypnuté: načítanie stránky prezradí webu vašu IP adresu.';
+
+  @override
+  String get guide_title => 'Terénna príručka';
+
+  @override
+  String get guide_subtitle => 'Základy, batérie v chlade, solár a antény';
+
+  @override
+  String get guide_secMesh => 'Pripojenie k sieti';
+
+  @override
+  String get guide_mesh1 =>
+      'Telefón komunikuje s rádiom cez Bluetooth, USB alebo Wi-Fi; rádio so sieťou cez LoRa. Správy fungujú aj bez signálu.';
+
+  @override
+  String get guide_mesh2 =>
+      'Opakovače posúvajú správy ďalej; každé preposlanie je skok. Menej skokov je rýchlejšie a spoľahlivejšie.';
+
+  @override
+  String get guide_mesh3 =>
+      'Píšte krátko a nezahlcujte rušné kanály: každá správa využíva spoločný vysielací čas.';
+
+  @override
+  String get guide_secCold => 'Batérie v chlade';
+
+  @override
+  String get guide_cold1 =>
+      'Nenabíjajte lítiové batérie pod bodom mrazu (0 °C): trvalo ich to poškodí.';
+
+  @override
+  String get guide_cold2 =>
+      'Noste rádio pod bundou. Chlad znižuje kapacitu, ktorá sa po zahriatí vráti.';
+
+  @override
+  String get guide_cold3 =>
+      'Pre pevné stanovištia v chladnom podnebí je LiFePO4 lepšia ako lítium-iónová; vyhrievaná alebo izolovaná skrinka pomôže obom.';
+
+  @override
+  String get guide_secSolar => 'Solár pre opakovače';
+
+  @override
+  String get guide_solar1 =>
+      'Opakovač spotrebuje veľmi málo, ale panel a batériu dimenzujte na najtmavší zimný týždeň, nie na letný deň.';
+
+  @override
+  String get guide_solar2 =>
+      'Otočte panel k rovníku a v zime ho strmo nakloňte; chráňte ho pred snehom a tieňom.';
+
+  @override
+  String get guide_secAntenna => 'Antény a umiestnenie';
+
+  @override
+  String get guide_ant1 =>
+      'Výška je dôležitejšia ako výkon: rádio o pár metrov vyššie dosiahne oveľa ďalej ako na stole.';
+
+  @override
+  String get guide_ant2 =>
+      'Anténu majte zvislo a ďalej od kovu a použite takú pre vaše pásmo (napr. 868 MHz v Európe).';
+
+  @override
+  String get guide_secMore => 'Viac informácií';
+
+  @override
+  String get guide_moreMeshcore => 'Oficiálny projekt MeshCore';
+
+  @override
+  String get guide_moreCascadia =>
+      'Komunitné návody: začíname, wardriving, regióny, solár';
 }

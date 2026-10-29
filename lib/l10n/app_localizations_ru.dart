@@ -8666,4 +8666,170 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Показывает ретрансляторы, через которые прошло сообщение.';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Каналы рядом: $count';
+  }
+
+  @override
+  String get discovered_title => 'Слышно рядом, без подписки';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return 'Слышно $count× · последний $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Скрыть';
+
+  @override
+  String get discovered_ignoreAll => 'Скрыть все';
+
+  @override
+  String get discovered_joinAll => 'Подписаться на все';
+
+  @override
+  String get discovered_explainer =>
+      'Это публичные каналы из каталога, в которых радио слышало трафик. Каждый подтверждён расшифровкой сообщения его ключом. Скрытые каналы не показываются.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (сообщество)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'MeshRank — рейтинг сетей MeshCore от сообщества, не часть NOTORYX и не одобрен им. Без входа: пакеты передаются под ключом и кодом региона вашего радио, только после включения обмена.';
+
+  @override
+  String get pathFilter_title => 'Фильтр ширины пути';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Нужна прошивка ретранслятора с правилами пересылки (mikecarper/MeshCore). Официальная прошивка MeshCore отклоняет эти команды.';
+
+  @override
+  String get pathFilter_width => 'Ширина пути';
+
+  @override
+  String get pathFilter_anyWidth => 'Любая ширина';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return 'Пути по $n байт';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 или 3 байта (2+)';
+
+  @override
+  String get pathFilter_path => 'Применяется к';
+
+  @override
+  String get pathFilter_radio => 'Радиорассылки';
+
+  @override
+  String get pathFilter_bridge => 'Мост';
+
+  @override
+  String get pathFilter_cross => 'Переход';
+
+  @override
+  String get pathFilter_bridgeCross => 'Мост и переход';
+
+  @override
+  String get pathFilter_limit => 'Ограничивать вместо отбрасывания';
+
+  @override
+  String get pathFilter_limitOn => 'Пересылает до заданного числа в минуту.';
+
+  @override
+  String get pathFilter_drop => 'Совпадающие рассылки отбрасываются.';
+
+  @override
+  String get pathFilter_perMinute => 'В минуту';
+
+  @override
+  String get pathFilter_rateInvalid => 'Введите от 1 до 65534.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Это только заполняет командную строку. Проверьте и нажмите «Отправить». Сначала посмотрите правила командой «get fr».';
+
+  @override
+  String get pathFilter_useCommand => 'Использовать команду';
+
+  @override
+  String get settings_linkPreviews => 'Предпросмотр ссылок';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Показывает заголовок ссылки в сообщении. По умолчанию выключено: загрузка страницы раскрывает сайту ваш IP-адрес.';
+
+  @override
+  String get guide_title => 'Полевое руководство';
+
+  @override
+  String get guide_subtitle => 'Основы, батареи на холоде, солнце и антенны';
+
+  @override
+  String get guide_secMesh => 'Подключение к сети';
+
+  @override
+  String get guide_mesh1 =>
+      'Телефон связан с радио по Bluetooth, USB или Wi-Fi; радио с сетью — по LoRa. Сообщения работают и без сотовой связи.';
+
+  @override
+  String get guide_mesh2 =>
+      'Ретрансляторы передают сообщения дальше; каждая передача — хоп. Меньше хопов — быстрее и надёжнее.';
+
+  @override
+  String get guide_mesh3 =>
+      'Пишите коротко и не заваливайте загруженные каналы: каждое сообщение тратит общее эфирное время.';
+
+  @override
+  String get guide_secCold => 'Батареи на холоде';
+
+  @override
+  String get guide_cold1 =>
+      'Не заряжайте литиевые батареи ниже нуля (0 °C): это необратимо их портит.';
+
+  @override
+  String get guide_cold2 =>
+      'Носите радио под курткой. Холод снижает ёмкость, но она возвращается, когда батарея согреется.';
+
+  @override
+  String get guide_cold3 =>
+      'Для стационарных точек в холодном климате LiFePO4 лучше литий-ионных; утеплённый или подогреваемый корпус помогает обоим.';
+
+  @override
+  String get guide_secSolar => 'Солнце для ретрансляторов';
+
+  @override
+  String get guide_solar1 =>
+      'Ретранслятор потребляет очень мало, но рассчитывайте панель и батарею на самую тёмную зимнюю неделю, а не на летний день.';
+
+  @override
+  String get guide_solar2 =>
+      'Направьте панель к экватору и зимой ставьте круто; держите её без снега и тени.';
+
+  @override
+  String get guide_secAntenna => 'Антенны и размещение';
+
+  @override
+  String get guide_ant1 =>
+      'Высота важнее мощности: радио на несколько метров выше бьёт гораздо дальше, чем на столе.';
+
+  @override
+  String get guide_ant2 =>
+      'Держите антенну вертикально и подальше от металла; используйте антенну для своего диапазона (например, 868 МГц в Европе).';
+
+  @override
+  String get guide_secMore => 'Подробнее';
+
+  @override
+  String get guide_moreMeshcore => 'Официальный проект MeshCore';
+
+  @override
+  String get guide_moreCascadia =>
+      'Руководства сообщества: начало, вардрайвинг, регионы, солнце';
 }

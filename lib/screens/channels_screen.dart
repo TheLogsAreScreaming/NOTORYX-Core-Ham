@@ -30,6 +30,8 @@ import '../helpers/snack_bar_builder.dart';
 import '../utils/main_tab_navigation.dart';
 import '../widgets/quick_switch_bar.dart';
 import 'channel_chat_screen.dart';
+import '../helpers/join_channel.dart';
+import '../services/channel_discovery_service.dart';
 import 'chat_screen.dart';
 import 'channel_directory_screen.dart';
 import 'message_search_screen.dart';
@@ -266,6 +268,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     },
                   ),
                 ),
+                const _DiscoveredTray(),
                 Expanded(
                   child: filteredChannels.isEmpty
                       ? LayoutBuilder(
@@ -2155,6 +2158,136 @@ class _DirectChats extends StatelessWidget {
             );
           }(),
       ],
+    );
+  }
+}
+
+/// Public channels heard nearby that you haven't joined, as one quiet row
+/// that opens a list to join or ignore them.
+class _DiscoveredTray extends StatelessWidget {
+  const _DiscoveredTray();
+
+  @override
+  Widget build(BuildContext context) {
+    final discovery = context.watch<ChannelDiscoveryService?>();
+    final found = discovery?.discovered ?? const [];
+    if (discovery == null || found.isEmpty) return const SizedBox.shrink();
+    final l10n = context.l10n;
+    return InstrumentRow(
+      key: const ValueKey('discovered-tray'),
+      icon: Icons.wifi_tethering,
+      title: l10n.discovered_tray(found.length),
+      subtitle: found.take(3).map((d) => d.entry.name).join(', '),
+      titleColor: MeshPalette.accent,
+      onTap: () => showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        builder: (_) => ChangeNotifierProvider.value(
+          value: discovery,
+          child: const _DiscoveredSheet(),
+        ),
+      ),
+    );
+  }
+}
+
+class _DiscoveredSheet extends StatelessWidget {
+  const _DiscoveredSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    final discovery = context.watch<ChannelDiscoveryService>();
+    final connector = context.watch<MeshCoreConnector>();
+    final found = discovery.discovered;
+    final l10n = context.l10n;
+    if (found.isEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) Navigator.of(context).maybePop();
+      });
+    }
+    return SafeArea(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.sizeOf(context).height * 0.75,
+        ),
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            InstrumentLabel(l10n.discovered_title),
+            for (final d in found)
+              InstrumentRow(
+                key: ValueKey('discovered-${d.entry.name}'),
+                title: d.entry.name,
+                subtitle: [
+                  if (d.entry.description.isNotEmpty) d.entry.description,
+                  l10n.discovered_heard(
+                    d.heard,
+                    TimeOfDay.fromDateTime(
+                      d.lastHeard.toLocal(),
+                    ).format(context),
+                  ),
+                ].join(' \u00B7 '),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                      onPressed: () => discovery.ignore([d.entry.name]),
+                      child: Text(l10n.discovered_ignore),
+                    ),
+                    FilledButton(
+                      onPressed: () =>
+                          joinHashtagChannel(context, connector, d.entry.name),
+                      child: Text(l10n.channelDirectory_join),
+                    ),
+                  ],
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.all(MeshSpace.lg),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: InstrumentButton(
+                      label: l10n.discovered_ignoreAll,
+                      onPressed: () =>
+                          discovery.ignore(found.map((d) => d.entry.name)),
+                    ),
+                  ),
+                  const SizedBox(width: MeshSpace.sm),
+                  Expanded(
+                    child: InstrumentButton(
+                      label: l10n.discovered_joinAll,
+                      onPressed: () async {
+                        for (final d in found) {
+                          if (!context.mounted) return;
+                          final ok = await joinHashtagChannel(
+                            context,
+                            connector,
+                            d.entry.name,
+                          );
+                          if (!ok) return;
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                MeshSpace.lg,
+                0,
+                MeshSpace.lg,
+                MeshSpace.lg,
+              ),
+              child: Text(
+                l10n.discovered_explainer,
+                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

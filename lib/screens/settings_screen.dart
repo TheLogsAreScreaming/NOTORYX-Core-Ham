@@ -101,6 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: RegionalPresetTile(),
                 ),
                 const BatterySaverCard(),
+                const LinkPreviewsCard(),
                 const MeshCard(
                   padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
                   child: Column(
@@ -2281,6 +2282,28 @@ class BatterySaverCard extends StatelessWidget {
         ),
         value: on,
         onChanged: settings.setBatterySaver,
+      ),
+    );
+  }
+}
+
+/// Opt-in link previews, with the privacy trade-off spelled out.
+class LinkPreviewsCard extends StatelessWidget {
+  const LinkPreviewsCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    final l10n = context.l10n;
+    return MeshCard(
+      padding: EdgeInsets.zero,
+      child: SwitchListTile(
+        key: const ValueKey('link-previews'),
+        secondary: const Icon(Icons.link),
+        title: Text(l10n.settings_linkPreviews),
+        subtitle: Text(l10n.settings_linkPreviewsHint),
+        value: settings.settings.linkPreviews,
+        onChanged: settings.setLinkPreviews,
       ),
     );
   }

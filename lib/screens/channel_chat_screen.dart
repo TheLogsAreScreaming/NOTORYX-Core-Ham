@@ -57,6 +57,8 @@ import '../widgets/translated_message_content.dart';
 import '../widgets/unread_divider.dart';
 import '../widgets/via_mqtt_label.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/link_preview_card.dart';
+import '../services/link_preview.dart';
 import '../widgets/mesh_ui.dart';
 import 'app_settings_screen.dart';
 import 'channel_message_path_screen.dart';
@@ -606,7 +608,12 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final metaColor = MeshPalette.ink3;
     const bodyFontSize = 16.0;
 
-    Widget buildTextContent() {
+    final previewLink =
+        context.select<AppSettingsService, bool>((a) => a.settings.linkPreviews)
+        ? firstLink(message.text)
+        : null;
+
+    Widget buildPlainText() {
       return Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -629,6 +636,19 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                   : null,
             ),
           ),
+        ],
+      );
+    }
+
+    Widget buildTextContent() {
+      final text = buildPlainText();
+      if (previewLink == null) return text;
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          text,
+          LinkPreviewCard(url: previewLink),
         ],
       );
     }

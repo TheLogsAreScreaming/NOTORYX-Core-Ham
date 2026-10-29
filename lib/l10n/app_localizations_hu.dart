@@ -8626,4 +8626,171 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Felsorolja az átjátszókat, amelyeken az üzenet érkezett.';
+
+  @override
+  String discovered_tray(int count) {
+    return 'Közelben hallott csatornák: $count';
+  }
+
+  @override
+  String get discovered_title => 'Közelben hallott, nem csatlakozott';
+
+  @override
+  String discovered_heard(int count, String time) {
+    return '$count× hallva · utoljára $time';
+  }
+
+  @override
+  String get discovered_ignore => 'Mellőzés';
+
+  @override
+  String get discovered_ignoreAll => 'Összes mellőzése';
+
+  @override
+  String get discovered_joinAll => 'Csatlakozás mindhez';
+
+  @override
+  String get discovered_explainer =>
+      'Ezek a csatornakönyvtár nyilvános csatornái, amelyeken a rádió forgalmat hallott. Mindegyiket egy üzenet visszafejtése igazolta. A mellőzöttek rejtve maradnak.';
+
+  @override
+  String get mqtt_presetMeshRank => 'MeshRank (közösségi)';
+
+  @override
+  String get mqtt_presetMeshRankNote =>
+      'A MeshRank közösségi MeshCore-hálózatrangsor, nem része a NOTORYX-nek, és az nem támogatja. Bejelentkezés nélkül: a csomagok a rádió kulcsával és régiókódjával kerülnek megosztásra, csak ha bekapcsolja a megosztást.';
+
+  @override
+  String get pathFilter_title => 'Útvonalszélesség-szűrő';
+
+  @override
+  String get pathFilter_firmwareNote =>
+      'Továbbítási szabályokat ismerő átjátszó-firmware kell (mikecarper/MeshCore). A hivatalos MeshCore firmware elutasítja ezeket a parancsokat.';
+
+  @override
+  String get pathFilter_width => 'Útvonalszélesség';
+
+  @override
+  String get pathFilter_anyWidth => 'Bármilyen szélesség';
+
+  @override
+  String pathFilter_bytes(int n) {
+    return '$n bájtos útvonalak';
+  }
+
+  @override
+  String get pathFilter_twoOrMore => '2 vagy 3 bájt (2+)';
+
+  @override
+  String get pathFilter_path => 'Erre vonatkozik';
+
+  @override
+  String get pathFilter_radio => 'Rádiós elárasztás';
+
+  @override
+  String get pathFilter_bridge => 'Híd';
+
+  @override
+  String get pathFilter_cross => 'Átkötés';
+
+  @override
+  String get pathFilter_bridgeCross => 'Híd és átkötés';
+
+  @override
+  String get pathFilter_limit => 'Korlátozás eldobás helyett';
+
+  @override
+  String get pathFilter_limitOn =>
+      'Percenként legfeljebb adott számút továbbít.';
+
+  @override
+  String get pathFilter_drop => 'Az egyező elárasztások eldobódnak.';
+
+  @override
+  String get pathFilter_perMinute => 'Percenként';
+
+  @override
+  String get pathFilter_rateInvalid => 'Adjon meg 1 és 65534 közötti értéket.';
+
+  @override
+  String get pathFilter_reviewNote =>
+      'Ez csak kitölti a parancssort. Ellenőrizze, majd nyomja meg a Küldést. Előbb a „get fr” mutatja a meglévő szabályokat.';
+
+  @override
+  String get pathFilter_useCommand => 'Parancs használata';
+
+  @override
+  String get settings_linkPreviews => 'Hivatkozás-előnézetek';
+
+  @override
+  String get settings_linkPreviewsHint =>
+      'Megjeleníti az üzenetben lévő hivatkozás címét. Alapból ki: az oldal lekérése elárulja az IP-címét a webhelynek.';
+
+  @override
+  String get guide_title => 'Terepi útmutató';
+
+  @override
+  String get guide_subtitle => 'Alapok, akkuk hidegben, napelem és antennák';
+
+  @override
+  String get guide_secMesh => 'Csatlakozás a hálózathoz';
+
+  @override
+  String get guide_mesh1 =>
+      'A telefon Bluetooth-on, USB-n vagy Wi-Fi-n beszél a rádióval; a rádió LoRán a hálózattal. Az üzenetek térerő nélkül is mennek.';
+
+  @override
+  String get guide_mesh2 =>
+      'Az átjátszók továbbadják az üzeneteket; minden továbbítás egy ugrás. Kevesebb ugrás gyorsabb, megbízhatóbb kézbesítés.';
+
+  @override
+  String get guide_mesh3 =>
+      'Írjon röviden, és ne árassza el a forgalmas csatornákat: minden üzenet közös adásidőt használ.';
+
+  @override
+  String get guide_secCold => 'Akkuk hidegben';
+
+  @override
+  String get guide_cold1 =>
+      'Ne töltse a lítiumakkut fagypont alatt (0 °C): maradandóan károsodik.';
+
+  @override
+  String get guide_cold2 =>
+      'Tartsa a rádiót a kabátja alatt. A hideg csökkenti a kapacitást, ami melegben visszatér.';
+
+  @override
+  String get guide_cold3 =>
+      'Hideg éghajlatú fix helyeken a LiFePO4 jobban bírja, mint a lítiumion; fűtött vagy szigetelt doboz mindkettőnek segít.';
+
+  @override
+  String get guide_secSolar => 'Napelem átjátszókhoz';
+
+  @override
+  String get guide_solar1 =>
+      'Az átjátszó nagyon keveset fogyaszt, de a panelt és az akkut a legsötétebb téli hétre méretezze, ne nyári napra.';
+
+  @override
+  String get guide_solar2 =>
+      'Fordítsa a panelt az Egyenlítő felé, télen meredeken döntve; tartsa távol a havat és az árnyékot.';
+
+  @override
+  String get guide_secAntenna => 'Antennák és elhelyezés';
+
+  @override
+  String get guide_ant1 =>
+      'A magasság többet ér a teljesítménynél: néhány méterrel feljebb sokkal messzebb ér a rádió, mint az asztalon.';
+
+  @override
+  String get guide_ant2 =>
+      'Tartsa az antennát függőlegesen, fémtől távol, és a sávjához valót használjon (pl. 868 MHz Európában).';
+
+  @override
+  String get guide_secMore => 'További információ';
+
+  @override
+  String get guide_moreMeshcore => 'A hivatalos MeshCore projekt';
+
+  @override
+  String get guide_moreCascadia =>
+      'Közösségi útmutatók: kezdés, wardriving, régiók, napelem';
 }
