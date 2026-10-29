@@ -1,0 +1,9 @@
+• New field-instrument look across the app
+• Signed SOS posts; see which observers heard you
+• Home-screen widget with Check in and SOS
+• Several MQTT brokers, Wi-Fi only option, offline queue
+• Coverage hexagons, repeater ping, antenna hunt
+• Channel bot and weather alerts
+• Discovered channels tray, link previews, field guide
+• Add button on discovered contacts
+• Refresh rate setting; translations for new screens
