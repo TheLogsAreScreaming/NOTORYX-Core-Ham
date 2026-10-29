@@ -8663,4 +8663,30 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Показує ретранслятори, через які пройшло повідомлення.';
+
+  @override
+  String get post_signed => 'Підписано';
+
+  @override
+  String get post_unverified => 'Не підтверджено';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Підписано контактом $name.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Підписано, але не вашим контактом. Додайте відправника в контакти, щоб побачити, хто це.';
+
+  @override
+  String get post_unverifiedHint =>
+      'До повідомлення прийшов підпис, але він не збігається. Можливо, його змінили дорогою або воно не від того, хто вказаний.';
+
+  @override
+  String get settings_signPosts => 'Підписувати всі мої повідомлення в каналах';
+
+  @override
+  String get settings_signPostsHint =>
+      'SOS у каналі завжди підписується. Це налаштування підписує кожне повідомлення, щоб інші користувачі NOTORYX бачили, що це справді ви. Кожен підпис — ще один пакет в ефірі.';
 }

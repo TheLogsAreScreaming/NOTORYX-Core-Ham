@@ -8672,4 +8672,30 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Liste les répéteurs par lesquels le message est passé.';
+
+  @override
+  String get post_signed => 'Signé';
+
+  @override
+  String get post_unverified => 'Non vérifié';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Signé par $name, l’un de vos contacts.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Signé, mais par aucun de vos contacts. Ajoutez l’expéditeur en contact pour savoir qui c’est.';
+
+  @override
+  String get post_unverifiedHint =>
+      'Une signature accompagnait ce message mais ne correspond pas. Il a peut-être été modifié en route, ou ne vient pas de la personne indiquée.';
+
+  @override
+  String get settings_signPosts => 'Signer tous mes messages de canal';
+
+  @override
+  String get settings_signPostsHint =>
+      'Un SOS sur un canal est toujours signé. Ceci signe chaque message pour que les autres utilisateurs de NOTORYX sachent que c’est bien vous. Chaque signature ajoute un paquet sur les ondes.';
 }

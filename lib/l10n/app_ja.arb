@@ -3934,5 +3934,12 @@
   "botCmd_moon": "月相と照らされている割合。",
   "botCmd_weather": "無線機の現在の天気（Open-Meteo）。約 1 km に丸めた位置を送信します。",
   "botCmd_dice": "サイコロを振ります：!dice、!dice 20、!dice 2d6。",
-  "botCmd_trace": "送信者のメッセージが経由したリピーターを一覧表示します。"
+  "botCmd_trace": "送信者のメッセージが経由したリピーターを一覧表示します。",
+  "post_signed": "署名済み",
+  "post_unverified": "未確認",
+  "post_signedKnown": "連絡先の {name} が署名しました。",
+  "post_signedUnknownKey": "署名はありますが、連絡先の誰でもありません。送信者を連絡先に追加すると誰かが分かります。",
+  "post_unverifiedHint": "この投稿には署名が付いていましたが一致しません。途中で変更されたか、名乗っている人からではない可能性があります。",
+  "settings_signPosts": "すべてのチャンネル投稿に署名",
+  "settings_signPostsHint": "チャンネルの SOS は常に署名されます。これをオンにするとすべての投稿に署名し、他の NOTORYX ユーザーが本当にあなたからだと分かります。署名ごとに 1 パケット送信が増えます。"
 }

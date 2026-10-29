@@ -3934,5 +3934,12 @@
   "botCmd_moon": "Fase lunar y cuánto está iluminada.",
   "botCmd_weather": "Tiempo actual en la radio (Open-Meteo). Envía la posición redondeada a 1 km.",
   "botCmd_dice": "Tira dados: !dice, !dice 20 o !dice 2d6.",
-  "botCmd_trace": "Enumera los repetidores por los que pasó el mensaje."
+  "botCmd_trace": "Enumera los repetidores por los que pasó el mensaje.",
+  "post_signed": "Firmado",
+  "post_unverified": "Sin verificar",
+  "post_signedKnown": "Firmado por {name}, uno de tus contactos.",
+  "post_signedUnknownKey": "Firmado, pero no por ninguno de tus contactos. Añade al remitente como contacto para saber quién es.",
+  "post_unverifiedHint": "Con este mensaje llegó una firma que no coincide. Puede que se modificara por el camino o que no sea de quien dice.",
+  "settings_signPosts": "Firmar todos mis mensajes de canal",
+  "settings_signPostsHint": "Un SOS en un canal siempre se firma. Esto firma cada mensaje para que otros usuarios de NOTORYX sepan que eres tú. Cada firma es un paquete más en el aire."
 }

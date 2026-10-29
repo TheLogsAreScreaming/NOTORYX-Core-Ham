@@ -95,6 +95,9 @@ void main() {
       requests = [];
       service = WeatherService(
         radio,
+        // A fixed clock: the sample alerts end on 29 Oct 2026, and expired
+        // alerts are forgotten.
+        clock: () => DateTime.utc(2026, 10, 28, 18),
         client: MockClient((req) async {
           requests.add(req.url);
           return http.Response(jsonEncode(feed), 200);

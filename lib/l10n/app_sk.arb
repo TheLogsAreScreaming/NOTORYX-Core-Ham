@@ -3800,5 +3800,12 @@
   "botCmd_moon": "Fáza Mesiaca a osvetlenie.",
   "botCmd_weather": "Aktuálne počasie pri rádiu (Open-Meteo). Posiela polohu zaokrúhlenú na asi 1 km.",
   "botCmd_dice": "Hádže kockami: !dice, !dice 20 alebo !dice 2d6.",
-  "botCmd_trace": "Vypíše opakovače, cez ktoré prišla správa."
+  "botCmd_trace": "Vypíše opakovače, cez ktoré prišla správa.",
+  "post_signed": "Podpísané",
+  "post_unverified": "Neoverené",
+  "post_signedKnown": "Podpísal {name}, jeden z vašich kontaktov.",
+  "post_signedUnknownKey": "Podpísané, ale nie žiadnym z vašich kontaktov. Pridajte odosielateľa do kontaktov a uvidíte, kto to je.",
+  "post_unverifiedHint": "S príspevkom prišiel podpis, ktorý nesedí. Mohol sa cestou zmeniť alebo nie je od toho, kto tvrdí.",
+  "settings_signPosts": "Podpisovať všetky moje príspevky v kanáloch",
+  "settings_signPostsHint": "SOS v kanáli je vždy podpísané. Toto podpíše každý príspevok, aby ostatní používatelia NOTORYX videli, že ste to naozaj vy. Každý podpis je jeden paket navyše vo vysielaní."
 }

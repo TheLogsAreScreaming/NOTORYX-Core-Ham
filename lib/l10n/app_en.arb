@@ -5060,5 +5060,19 @@
   "botCmd_moon": "Moon phase and how much is lit.",
   "botCmd_weather": "Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.",
   "botCmd_dice": "Rolls dice: !dice, !dice 20 or !dice 2d6.",
-  "botCmd_trace": "Lists the repeaters the sender’s message came through."
+  "botCmd_trace": "Lists the repeaters the sender’s message came through.",
+  "post_signed": "Signed",
+  "post_unverified": "Unverified",
+  "post_signedKnown": "Signed by {name}, one of your contacts.",
+  "@post_signedKnown": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "post_signedUnknownKey": "Signed, but not by any of your contacts. Add the sender as a contact to see who it is.",
+  "post_unverifiedHint": "A signature came with this post but didn’t match it. The post may have been changed on the way, or it may not be from who it says.",
+  "settings_signPosts": "Sign all my channel posts",
+  "settings_signPostsHint": "An SOS on a channel is always signed. This signs every post, so other NOTORYX users can tell it’s really you. Each signature is one extra packet on air."
 }

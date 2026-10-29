@@ -3934,5 +3934,12 @@
   "botCmd_moon": "Mondphase und wie viel beleuchtet ist.",
   "botCmd_weather": "Aktuelles Wetter am Funkgerät (Open-Meteo). Sendet die Position, auf etwa 1 km gerundet.",
   "botCmd_dice": "Würfelt: !dice, !dice 20 oder !dice 2d6.",
-  "botCmd_trace": "Listet die Repeater, über die die Nachricht kam."
+  "botCmd_trace": "Listet die Repeater, über die die Nachricht kam.",
+  "post_signed": "Signiert",
+  "post_unverified": "Nicht bestätigt",
+  "post_signedKnown": "Signiert von {name}, einem deiner Kontakte.",
+  "post_signedUnknownKey": "Signiert, aber von keinem deiner Kontakte. Füge den Absender als Kontakt hinzu, um zu sehen, wer es ist.",
+  "post_unverifiedHint": "Mit diesem Beitrag kam eine Signatur, die nicht passt. Der Beitrag wurde vielleicht unterwegs verändert oder stammt nicht vom angegebenen Absender.",
+  "settings_signPosts": "Alle meine Kanalbeiträge signieren",
+  "settings_signPostsHint": "Ein SOS im Kanal wird immer signiert. Damit wird jeder Beitrag signiert, sodass andere NOTORYX-Nutzer sehen, dass er wirklich von dir ist. Jede Signatur ist ein zusätzliches Paket auf Sendung."
 }

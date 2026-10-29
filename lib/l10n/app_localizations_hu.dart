@@ -8626,4 +8626,30 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Felsorolja az átjátszókat, amelyeken az üzenet érkezett.';
+
+  @override
+  String get post_signed => 'Aláírt';
+
+  @override
+  String get post_unverified => 'Nem ellenőrzött';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Aláírta: $name, az egyik névjegye.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Aláírt, de nem az egyik névjegye írta alá. Vegye fel a feladót névjegyként, hogy lássa, ki az.';
+
+  @override
+  String get post_unverifiedHint =>
+      'A bejegyzéssel aláírás érkezett, de nem egyezik. Lehet, hogy útközben megváltozott, vagy nem attól származik, akitől állítja.';
+
+  @override
+  String get settings_signPosts => 'Minden csatornabejegyzésem aláírása';
+
+  @override
+  String get settings_signPostsHint =>
+      'A csatornára küldött SOS mindig aláírt. Ez minden bejegyzést aláír, így más NOTORYX-felhasználók láthatják, hogy valóban Ön az. Minden aláírás egy további csomag az éterben.';
 }

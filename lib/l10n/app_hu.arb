@@ -3838,5 +3838,12 @@
   "botCmd_moon": "Holdfázis és megvilágítottság.",
   "botCmd_weather": "Aktuális időjárás a rádiónál (Open-Meteo). A helyet kb. 1 km-re kerekítve küldi.",
   "botCmd_dice": "Kockadobás: !dice, !dice 20 vagy !dice 2d6.",
-  "botCmd_trace": "Felsorolja az átjátszókat, amelyeken az üzenet érkezett."
+  "botCmd_trace": "Felsorolja az átjátszókat, amelyeken az üzenet érkezett.",
+  "post_signed": "Aláírt",
+  "post_unverified": "Nem ellenőrzött",
+  "post_signedKnown": "Aláírta: {name}, az egyik névjegye.",
+  "post_signedUnknownKey": "Aláírt, de nem az egyik névjegye írta alá. Vegye fel a feladót névjegyként, hogy lássa, ki az.",
+  "post_unverifiedHint": "A bejegyzéssel aláírás érkezett, de nem egyezik. Lehet, hogy útközben megváltozott, vagy nem attól származik, akitől állítja.",
+  "settings_signPosts": "Minden csatornabejegyzésem aláírása",
+  "settings_signPostsHint": "A csatornára küldött SOS mindig aláírt. Ez minden bejegyzést aláír, így más NOTORYX-felhasználók láthatják, hogy valóban Ön az. Minden aláírás egy további csomag az éterben."
 }

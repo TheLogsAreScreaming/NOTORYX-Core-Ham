@@ -8623,4 +8623,31 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Изброява ретранслаторите, през които е минало съобщението.';
+
+  @override
+  String get post_signed => 'Подписано';
+
+  @override
+  String get post_unverified => 'Непотвърдено';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Подписано от $name, един от контактите ви.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Подписано, но не от ваш контакт. Добавете подателя като контакт, за да видите кой е.';
+
+  @override
+  String get post_unverifiedHint =>
+      'С публикацията дойде подпис, но той не съвпада. Тя може да е променена по пътя или да не е от посочения подател.';
+
+  @override
+  String get settings_signPosts =>
+      'Подписване на всички мои публикации в канали';
+
+  @override
+  String get settings_signPostsHint =>
+      'SOS в канал винаги се подписва. Това подписва всяка публикация, за да виждат другите потребители на NOTORYX, че наистина сте вие. Всеки подпис е един допълнителен пакет в ефира.';
 }

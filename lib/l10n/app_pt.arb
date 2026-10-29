@@ -3800,5 +3800,12 @@
   "botCmd_moon": "Fase da Lua e quanto está iluminada.",
   "botCmd_weather": "Tempo atual no rádio (Open-Meteo). Envia a posição arredondada a cerca de 1 km.",
   "botCmd_dice": "Lança dados: !dice, !dice 20 ou !dice 2d6.",
-  "botCmd_trace": "Lista os repetidores por onde a mensagem passou."
+  "botCmd_trace": "Lista os repetidores por onde a mensagem passou.",
+  "post_signed": "Assinado",
+  "post_unverified": "Não verificado",
+  "post_signedKnown": "Assinado por {name}, um dos seus contactos.",
+  "post_signedUnknownKey": "Assinado, mas não por nenhum dos seus contactos. Adicione o remetente aos contactos para ver quem é.",
+  "post_unverifiedHint": "Veio uma assinatura com esta mensagem que não corresponde. Pode ter sido alterada pelo caminho ou não ser de quem diz.",
+  "settings_signPosts": "Assinar todas as minhas mensagens de canal",
+  "settings_signPostsHint": "Um SOS num canal é sempre assinado. Isto assina todas as mensagens para que outros utilizadores NOTORYX saibam que é mesmo você. Cada assinatura é mais um pacote no ar."
 }

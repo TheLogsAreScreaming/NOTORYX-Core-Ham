@@ -50,9 +50,7 @@ Uint8List signedPostInput({
 /// the signed name is the one receivers see. Signing a name that doesn't
 /// would always show as unverified.
 bool canSignAs(String name) =>
-    name.isNotEmpty &&
-    name.length < 50 &&
-    !RegExp(r'[:\[\]]').hasMatch(name);
+    name.isNotEmpty && name.length < 50 && !RegExp(r'[:\[\]]').hasMatch(name);
 
 /// The signature packet: `[version][public key 32][timestamp u32 LE]
 /// [signature 64]`, 101 bytes.

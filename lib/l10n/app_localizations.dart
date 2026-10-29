@@ -14448,6 +14448,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Lists the repeaters the sender’s message came through.'**
   String get botCmd_trace;
+
+  /// No description provided for @post_signed.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed'**
+  String get post_signed;
+
+  /// No description provided for @post_unverified.
+  ///
+  /// In en, this message translates to:
+  /// **'Unverified'**
+  String get post_unverified;
+
+  /// No description provided for @post_signedKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed by {name}, one of your contacts.'**
+  String post_signedKnown(String name);
+
+  /// No description provided for @post_signedUnknownKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed, but not by any of your contacts. Add the sender as a contact to see who it is.'**
+  String get post_signedUnknownKey;
+
+  /// No description provided for @post_unverifiedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A signature came with this post but didn’t match it. The post may have been changed on the way, or it may not be from who it says.'**
+  String get post_unverifiedHint;
+
+  /// No description provided for @settings_signPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign all my channel posts'**
+  String get settings_signPosts;
+
+  /// No description provided for @settings_signPostsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'An SOS on a channel is always signed. This signs every post, so other NOTORYX users can tell it’s really you. Each signature is one extra packet on air.'**
+  String get settings_signPostsHint;
 }
 
 class _AppLocalizationsDelegate

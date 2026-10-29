@@ -8219,4 +8219,30 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get botCmd_trace => '送信者のメッセージが経由したリピーターを一覧表示します。';
+
+  @override
+  String get post_signed => '署名済み';
+
+  @override
+  String get post_unverified => '未確認';
+
+  @override
+  String post_signedKnown(String name) {
+    return '連絡先の $name が署名しました。';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      '署名はありますが、連絡先の誰でもありません。送信者を連絡先に追加すると誰かが分かります。';
+
+  @override
+  String get post_unverifiedHint =>
+      'この投稿には署名が付いていましたが一致しません。途中で変更されたか、名乗っている人からではない可能性があります。';
+
+  @override
+  String get settings_signPosts => 'すべてのチャンネル投稿に署名';
+
+  @override
+  String get settings_signPostsHint =>
+      'チャンネルの SOS は常に署名されます。これをオンにするとすべての投稿に署名し、他の NOTORYX ユーザーが本当にあなたからだと分かります。署名ごとに 1 パケット送信が増えます。';
 }

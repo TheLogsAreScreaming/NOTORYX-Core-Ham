@@ -3805,5 +3805,12 @@
   "botCmd_moon": "月相和照亮比例。",
   "botCmd_weather": "电台处的当前天气（Open-Meteo）。发送约取整到 1 公里的位置。",
   "botCmd_dice": "掷骰子：!dice、!dice 20 或 !dice 2d6。",
-  "botCmd_trace": "列出发送者消息经过的中继器。"
+  "botCmd_trace": "列出发送者消息经过的中继器。",
+  "post_signed": "已签名",
+  "post_unverified": "未验证",
+  "post_signedKnown": "由你的联系人 {name} 签名。",
+  "post_signedUnknownKey": "已签名，但不是你的联系人签的。把发送者添加为联系人即可看到是谁。",
+  "post_unverifiedHint": "此消息附带的签名与内容不符。它可能在途中被改动，或并非来自所称的发送者。",
+  "settings_signPosts": "为我的所有频道消息签名",
+  "settings_signPostsHint": "频道中的 SOS 始终会签名。开启后每条消息都会签名，让其他 NOTORYX 用户确认确实是你发的。每个签名会多发送一个数据包。"
 }

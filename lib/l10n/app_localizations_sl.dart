@@ -8625,4 +8625,30 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get botCmd_trace =>
       'Navede repetitorje, prek katerih je prišlo sporočilo.';
+
+  @override
+  String get post_signed => 'Podpisano';
+
+  @override
+  String get post_unverified => 'Nepreverjeno';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Podpisal $name, eden od vaših stikov.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Podpisano, vendar ne s strani vaših stikov. Dodajte pošiljatelja med stike, da vidite, kdo je.';
+
+  @override
+  String get post_unverifiedHint =>
+      'S sporočilom je prišel podpis, ki se ne ujema. Morda je bilo spremenjeno na poti ali ni od navedenega pošiljatelja.';
+
+  @override
+  String get settings_signPosts => 'Podpiši vsa moja sporočila v kanalih';
+
+  @override
+  String get settings_signPostsHint =>
+      'SOS v kanalu je vedno podpisan. To podpiše vsako sporočilo, da drugi uporabniki NOTORYX vidijo, da ste res vi. Vsak podpis je en dodaten paket v etru.';
 }

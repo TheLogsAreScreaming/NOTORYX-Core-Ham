@@ -8047,4 +8047,28 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get botCmd_trace => '列出发送者消息经过的中继器。';
+
+  @override
+  String get post_signed => '已签名';
+
+  @override
+  String get post_unverified => '未验证';
+
+  @override
+  String post_signedKnown(String name) {
+    return '由你的联系人 $name 签名。';
+  }
+
+  @override
+  String get post_signedUnknownKey => '已签名，但不是你的联系人签的。把发送者添加为联系人即可看到是谁。';
+
+  @override
+  String get post_unverifiedHint => '此消息附带的签名与内容不符。它可能在途中被改动，或并非来自所称的发送者。';
+
+  @override
+  String get settings_signPosts => '为我的所有频道消息签名';
+
+  @override
+  String get settings_signPostsHint =>
+      '频道中的 SOS 始终会签名。开启后每条消息都会签名，让其他 NOTORYX 用户确认确实是你发的。每个签名会多发送一个数据包。';
 }

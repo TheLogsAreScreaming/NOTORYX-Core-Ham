@@ -3838,5 +3838,12 @@
   "botCmd_moon": "Faza Księżyca i stopień oświetlenia.",
   "botCmd_weather": "Bieżąca pogoda przy radiu (Open-Meteo). Wysyła pozycję zaokrągloną do ok. 1 km.",
   "botCmd_dice": "Rzut kośćmi: !dice, !dice 20 lub !dice 2d6.",
-  "botCmd_trace": "Wyświetla przemienniki, przez które przeszła wiadomość."
+  "botCmd_trace": "Wyświetla przemienniki, przez które przeszła wiadomość.",
+  "post_signed": "Podpisane",
+  "post_unverified": "Niezweryfikowane",
+  "post_signedKnown": "Podpisane przez {name}, jeden z twoich kontaktów.",
+  "post_signedUnknownKey": "Podpisane, ale nie przez żaden z twoich kontaktów. Dodaj nadawcę do kontaktów, aby zobaczyć, kto to.",
+  "post_unverifiedHint": "Z wiadomością przyszedł podpis, który do niej nie pasuje. Mogła zostać zmieniona po drodze lub nie pochodzi od podanej osoby.",
+  "settings_signPosts": "Podpisuj wszystkie moje wiadomości na kanałach",
+  "settings_signPostsHint": "SOS na kanale jest zawsze podpisany. To podpisuje każdą wiadomość, aby inni użytkownicy NOTORYX wiedzieli, że to naprawdę ty. Każdy podpis to jeden dodatkowy pakiet w eterze."
 }

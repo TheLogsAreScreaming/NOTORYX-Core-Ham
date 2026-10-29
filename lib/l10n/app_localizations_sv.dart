@@ -8564,4 +8564,30 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get botCmd_trace => 'Listar repeatrarna som meddelandet gick via.';
+
+  @override
+  String get post_signed => 'Signerat';
+
+  @override
+  String get post_unverified => 'Ej bekräftat';
+
+  @override
+  String post_signedKnown(String name) {
+    return 'Signerat av $name, en av dina kontakter.';
+  }
+
+  @override
+  String get post_signedUnknownKey =>
+      'Signerat, men inte av någon av dina kontakter. Lägg till avsändaren som kontakt för att se vem det är.';
+
+  @override
+  String get post_unverifiedHint =>
+      'Med inlägget kom en signatur som inte stämmer. Det kan ha ändrats på vägen eller inte vara från den det påstår.';
+
+  @override
+  String get settings_signPosts => 'Signera alla mina kanalinlägg';
+
+  @override
+  String get settings_signPostsHint =>
+      'Ett SOS i en kanal signeras alltid. Detta signerar varje inlägg så att andra NOTORYX-användare ser att det verkligen är du. Varje signatur är ett extra paket i luften.';
 }
