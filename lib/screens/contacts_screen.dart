@@ -25,12 +25,12 @@ import '../utils/emoji_utils.dart';
 import '../utils/main_tab_navigation.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
+import '../widgets/instrument.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../widgets/repeater_login_dialog.dart';
 import '../widgets/room_login_dialog.dart';
 import '../widgets/sync_progress_overlay.dart';
-import '../widgets/unread_badge.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../helpers/share_links.dart';
 import '../widgets/share_in_chat.dart';
@@ -1604,23 +1604,8 @@ class _ContactTile extends StatelessWidget {
     required this.onLongPress,
   });
 
-  /// Node-type avatar color per design language.
-  Color _avatarColor() {
-    switch (contact.type) {
-      case advTypeRepeater:
-        return MeshPalette.warn;
-      case advTypeRoom:
-        return MeshPalette.magenta;
-      case advTypeSensor:
-        return const Color(0xFF4ACCC4); // teal
-      default:
-        return MeshPalette
-            .accent; // chat — AvatarCircle handles deterministic hue
-    }
-  }
-
-  /// Node-type avatar icon. Returns null for chat nodes so AvatarCircle shows initials.
-  IconData? _avatarIcon() {
+  /// The glyph for this kind of node.
+  IconData _typeIcon() {
     switch (contact.type) {
       case advTypeRepeater:
         return Icons.cell_tower;
@@ -1629,7 +1614,7 @@ class _ContactTile extends StatelessWidget {
       case advTypeSensor:
         return Icons.sensors;
       default:
-        return null; // chat uses initials
+        return Icons.person_outline_rounded;
     }
   }
 
@@ -1638,32 +1623,20 @@ class _ContactTile extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final l10n = context.l10n;
     final emoji = firstEmoji(contact.name);
-    final isChat = contact.type == advTypeChat;
     final hasUnread = unreadCount > 0;
-    // One line of context: what it is, how far, when we last heard it.
+    // What it is and when we last heard it; how far sits on the right.
     final subtitle = [
       contact.typeLabel(l10n),
-      contact.pathLabel(l10n, pathHashByteWidth: pathHashByteWidth),
       _formatLastSeen(context, lastSeen),
     ].join(' · ');
 
-    final Widget avatar = emoji != null
-        ? Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: scheme.surfaceContainerHigh,
-            ),
-            alignment: Alignment.center,
-            child: Text(emoji, style: const TextStyle(fontSize: 20)),
-          )
-        : AvatarCircle(
-            name: contact.name,
-            size: 44,
-            color: isChat ? null : _avatarColor(),
-            icon: _avatarIcon(),
-          );
+    // A glyph, not an avatar: the node type, or the emoji it's named with.
+    final Widget glyph = SizedBox(
+      width: 24,
+      child: emoji != null
+          ? Text(emoji, style: const TextStyle(fontSize: 17))
+          : Icon(_typeIcon(), size: 19, color: MeshPalette.ink3),
+    );
 
     return GestureDetector(
       onSecondaryTapUp: PlatformInfo.isDesktop ? (_) => onLongPress() : null,
@@ -1672,16 +1645,16 @@ class _ContactTile extends StatelessWidget {
         onLongPress: onLongPress,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: scheme.outlineVariant)),
+            border: Border(bottom: BorderSide(color: instrumentLine)),
           ),
           child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 68),
+            constraints: const BoxConstraints(minHeight: 56),
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
               child: Row(
                 children: [
-                  avatar,
-                  const SizedBox(width: 12),
+                  glyph,
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1697,8 +1670,8 @@ class _ContactTile extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: hasUnread
                                       ? FontWeight.w700
-                                      : FontWeight.w600,
-                                  fontSize: 16,
+                                      : FontWeight.w500,
+                                  fontSize: 15,
                                   color: scheme.onSurface,
                                 ),
                               ),
@@ -1725,19 +1698,42 @@ class _ContactTile extends StatelessWidget {
                         const SizedBox(height: 2),
                         Text(
                           subtitle,
-                          maxLines: 2,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 14,
-                            color: scheme.onSurfaceVariant,
+                            fontSize: 13,
+                            color: MeshPalette.ink3,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  if (hasUnread) ...[
-                    const SizedBox(width: 10),
-                    UnreadBadge(count: unreadCount),
-                  ],
+                  const SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        contact.pathLabel(
+                          l10n,
+                          pathHashByteWidth: pathHashByteWidth,
+                        ),
+                        style: MeshTheme.mono(
+                          fontSize: 12,
+                          color: MeshPalette.ink3,
+                        ),
+                      ),
+                      if (hasUnread)
+                        Text(
+                          '$unreadCount',
+                          style: MeshTheme.mono(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: MeshPalette.accent,
+                          ),
+                        ),
+                    ],
+                  ),
                 ],
               ),
             ),

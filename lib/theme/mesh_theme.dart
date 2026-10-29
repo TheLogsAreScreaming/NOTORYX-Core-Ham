@@ -290,7 +290,7 @@ class MeshTheme {
         hoverElevation: 0,
         highlightElevation: 2,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.pill),
+          borderRadius: BorderRadius.circular(MeshRadii.sm),
         ),
         extendedTextStyle: const TextStyle(
           fontFamily: MeshFonts.sans,
