@@ -7966,6 +7966,342 @@ class AppLocalizationsSk extends AppLocalizations {
   String get connections_viewDashboard => 'Zobraziť prehľad pripojení';
 
   @override
+  String get channelDirectory_title => 'Adresár kanálov';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Nájdite verejné hashtagové kanály vo svojom okolí';
+
+  @override
+  String get channelDirectory_search => 'Hľadať kanály alebo miesta';
+
+  @override
+  String get channelDirectory_nearYou => 'Vo vašom okolí';
+
+  @override
+  String get channelDirectory_all => 'Všetky kanály';
+
+  @override
+  String get channelDirectory_catAll => 'Všetky';
+
+  @override
+  String get channelDirectory_catEmergency => 'Núdzové';
+
+  @override
+  String get channelDirectory_catLocal => 'Miestne';
+
+  @override
+  String get channelDirectory_catGeneral => 'Všeobecné';
+
+  @override
+  String get channelDirectory_catInterest => 'Záujmy';
+
+  @override
+  String get channelDirectory_catTest => 'Testovacie';
+
+  @override
+  String get channelDirectory_join => 'Pripojiť sa';
+
+  @override
+  String get channelDirectory_joined => 'Pripojené';
+
+  @override
+  String get channelDirectory_noMatches => 'Hľadaniu nezodpovedá žiadny kanál.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Pripojte rádio, aby ste sa mohli pripájať ku kanálom.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Všetky sloty kanálov v rádiu sú obsadené. Najprv odstráňte kanál.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Kanál sa nepodarilo pridať. Skúste to znova.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Chýba kanál? Ktokoľvek ho môže navrhnúť úpravou zdieľaného zoznamu na GitHube.';
+
+  @override
+  String get prefixTool_title => 'ID opakovačov';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Kto používa ID, ktoré ID sa zhodujú a voľné ID pre nový opakovač';
+
+  @override
+  String get prefixTool_width => 'Veľkosť ID cesty';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes B';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'Zahrnúť companiony a senzory';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return 'Známe uzly: $nodes · použité ID: $used · zdieľané: $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return 'Voľné ID: $free z $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Vyhľadať ID, napr. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Žiadny známy uzol nepoužíva $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$id používa $count uzlov',
+      few: '$id používajú $count uzly',
+      one: '$id používa 1 uzol',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Zdieľané ID';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Cesty cez tieto ID vyzerajú rovnako, pokiaľ sieť nepoužíva dlhšie ID.';
+
+  @override
+  String get prefixTool_noShared => 'Medzi známymi uzlami nie sú zdieľané ID.';
+
+  @override
+  String get prefixTool_free => 'Voľné ID';
+
+  @override
+  String get prefixTool_shuffle => 'Ďalšie návrhy';
+
+  @override
+  String get prefixTool_makeKey => 'Vytvoriť kľúč';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Len podľa uzlov, ktoré rádio počulo. Voľné ID tu môže patriť opakovaču, ktorý ste nepočuli.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id už používa $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Vybrať voľné ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Kľúč pre ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Hľadá sa… vyskúšané kľúče: $tries';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Verejný kľúč';
+
+  @override
+  String get keyGen_privateKey => 'Súkromný kľúč';
+
+  @override
+  String get keyGen_copy => 'Kopírovať';
+
+  @override
+  String get keyGen_copied => 'Skopírované';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Súkromný kľúč držte v tajnosti. Kto ho má, môže sa vydávať za tento uzol.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Pre opakovač: otvorte jeho nastavenia, vložte ho ako súkromný kľúč a uložte. Rádiá companion potrebujú firmvér, ktorý povoľuje import kľúča.';
+
+  @override
+  String get keyGen_tryAgain => 'Vytvoriť ďalší';
+
+  @override
+  String get regionSetup_title => 'Nastavenie regiónov';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Zaradiť tento opakovač do stromu regiónov vašej oblasti';
+
+  @override
+  String get regionSetup_intro =>
+      'Regióny držia správu v oblasti namiesto zaplavenia celej siete. Opakovač preposiela správy regiónu, len ak má tento región, preto mu dajte jeho región a všetky nad ním.';
+
+  @override
+  String get regionSetup_where => 'Kde je opakovač?';
+
+  @override
+  String get regionSetup_tree => 'Strom regiónov';
+
+  @override
+  String get regionSetup_custom => 'Vlastné';
+
+  @override
+  String get regionSetup_region => 'Najmiestnejší región';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Zdroj: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Regióny, od najširšieho';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '„$name“ nie je platný názov regiónu. Použite malé písmená, číslice a pomlčky, najviac 29 znakov.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Opakovač môže mať najviac $max regiónov.';
+  }
+
+  @override
+  String get regionSetup_options => 'Možnosti';
+
+  @override
+  String get regionSetup_setDefault => 'Najmiestnejší región ako predvolený';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Vlastné oznámenia opakovača zostanú v tomto regióne.';
+
+  @override
+  String get regionSetup_legacy => 'Firmvér 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Pridá region allowf za každý región. Od 1.15 netreba.';
+
+  @override
+  String get regionSetup_denyUnscoped => 'Nepreposielať správy bez regiónu';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Zapnite až vtedy, keď celá oblasť používa regióny, inak správy zo starších aplikácií neprejdú.';
+
+  @override
+  String get regionSetup_commands => 'Príkazy';
+
+  @override
+  String get regionSetup_copyAll => 'Kopírovať všetko';
+
+  @override
+  String get regionSetup_copied => 'Skopírované';
+
+  @override
+  String get regionSetup_pickFirst => 'Vyberte región, aby ste videli príkazy.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Odoslať do $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Na odoslanie sa prihláste do opakovača a otvorte Nastavenie regiónov z jeho ponuky, alebo ich vložte do jeho príkazového riadka.';
+
+  @override
+  String get regionSetup_noReply => 'Bez odpovede. Zastavené tu.';
+
+  @override
+  String get regionSetup_addToMine => 'Pridať tieto regióny do môjho zoznamu';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Do zoznamu pridaných $count regiónov',
+      few: 'Do zoznamu pridané $count regióny',
+      one: 'Do zoznamu pridaný 1 región',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get trackLog_title => 'Záznam trasy';
+
+  @override
+  String get trackLog_subtitle => 'Zaznamenajte stopu z GPS rádia';
+
+  @override
+  String get trackLog_recording => 'Nahráva sa';
+
+  @override
+  String get trackLog_notRecording => 'Nenahráva sa';
+
+  @override
+  String get trackLog_noGps =>
+      'Rádio nehlási polohu GPS. Záznam trasy potrebuje rádio so zapnutým GPS.';
+
+  @override
+  String get trackLog_start => 'Spustiť záznam';
+
+  @override
+  String get trackLog_stop => 'Zastaviť záznam';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Používa polohu, ktorú rádio hlási približne raz za minútu, kým je NOTORYX Core otvorený. Bod sa pridá po presune o 25 m alebo každých 15 minút na mieste.';
+
+  @override
+  String get trackLog_snap => 'Zaokrúhľovať polohy na približne 100 m';
+
+  @override
+  String get trackLog_snapBody => 'Kvôli súkromiu pri zdieľaní trasy.';
+
+  @override
+  String get trackLog_saved => 'Uložené trasy';
+
+  @override
+  String get trackLog_none => 'Zatiaľ žiadne trasy.';
+
+  @override
+  String get trackLog_export => 'Exportovať ako GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Trasu sa nepodarilo exportovať.';
+
+  @override
+  String get trackLog_deleteTitle => 'Odstrániť túto trasu?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Odstráni sa z tohto zariadenia. Exportované súbory GPX zostanú.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · body: $points';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Trasa NOTORYX $when';
+  }
+
+  @override
   String get routes_nearbyTitle => 'NAJLEPŠIE OPAKOVAČE V OKOLÍ';
 
   @override

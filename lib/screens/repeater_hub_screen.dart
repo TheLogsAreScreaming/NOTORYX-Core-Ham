@@ -15,6 +15,7 @@ import 'repeater_settings_screen.dart';
 import 'telemetry_screen.dart';
 import 'access_control_screen.dart';
 import 'neighbors_screen.dart';
+import 'region_setup_screen.dart';
 
 class RepeaterHubScreen extends StatelessWidget {
   final Contact repeater;
@@ -288,6 +289,23 @@ class RepeaterHubScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => AccessControlScreen(node: repeater),
+                    ),
+                  );
+                },
+              ),
+              _HubActionTile(
+                index: 6,
+                icon: Icons.account_tree_outlined,
+                title: l10n.regionSetup_title,
+                subtitle: l10n.regionSetup_hubSubtitle,
+                accentColor: MeshPalette.signal,
+                onTap: () {
+                  HapticFeedback.selectionClick();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          RegionSetupScreen(repeater: repeater),
                     ),
                   );
                 },

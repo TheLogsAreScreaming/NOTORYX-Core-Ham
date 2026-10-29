@@ -55,6 +55,15 @@ import 'package:provider/provider.dart';
 import 'package:meshcore_open/models/radio_rx_packet.dart';
 import 'package:meshcore_open/screens/bastion_path_hub_screen.dart';
 import 'package:meshcore_open/services/direct_repeater_service.dart';
+import 'package:meshcore_open/models/track_log.dart';
+import 'package:meshcore_open/screens/track_log_screen.dart';
+import 'package:meshcore_open/services/track_log_service.dart';
+import 'package:meshcore_open/screens/region_setup_screen.dart';
+import 'package:meshcore_open/screens/prefix_tool_screen.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+import 'package:meshcore_open/screens/channel_directory_screen.dart';
+import 'package:meshcore_open/services/channel_directory_service.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:meshcore_open/screens/scanner_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -178,6 +187,10 @@ List<ChannelMessage> _pathHistory() {
 
 class _PreviewConnector extends MeshCoreConnector {
   @override
+  double? get selfLatitude => 47.62;
+  @override
+  double? get selfLongitude => -122.35;
+  @override
   bool get isConnected => true;
   @override
   MeshCoreConnectionState get state => MeshCoreConnectionState.connected;
@@ -270,6 +283,34 @@ ScanResult _scan(String name, String id, int rssi) => ScanResult(
   rssi: rssi,
   timeStamp: _now,
 );
+
+/// A short loop walk, for the track log preview.
+Track _sampleTrack() {
+  final start = _now.subtract(const Duration(hours: 2));
+  const route = [
+    (47.6205, -122.3493),
+    (47.6221, -122.3471),
+    (47.6240, -122.3460),
+    (47.6262, -122.3478),
+    (47.6270, -122.3512),
+    (47.6255, -122.3540),
+    (47.6231, -122.3546),
+    (47.6212, -122.3525),
+  ];
+  return Track(
+    id: 'sample',
+    started: start,
+    ended: start.add(const Duration(minutes: 74)),
+    points: [
+      for (var i = 0; i < route.length; i++)
+        TrackPoint(
+          at: start.add(Duration(minutes: i * 10)),
+          lat: route[i].$1,
+          lon: route[i].$2,
+        ),
+    ],
+  );
+}
 
 class _PreviewAclService extends AccessControlService {
   _PreviewAclService(MeshCoreConnector c) : super(c, RepeaterCommandService(c));
@@ -421,6 +462,28 @@ void main() {
           child: const BastionPathHubScreen(),
         );
       },
+    ),
+    'track_log': () => Builder(
+      builder: (context) {
+        final log = TrackLogService(context.read<MeshCoreConnector>())
+          ..tracks = [_sampleTrack()];
+        return ChangeNotifierProvider<TrackLogService>.value(
+          value: log,
+          child: const TrackLogScreen(),
+        );
+      },
+    ),
+    'region_setup': () => RegionSetupScreen(
+      loadTrees: () async =>
+          File('assets/region_trees.json').readAsStringSync(),
+    ),
+    'prefix_tool': () => const PrefixToolScreen(),
+    'channel_directory': () => ChannelDirectoryScreen(
+      service: ChannelDirectoryService(
+        httpClient: MockClient((_) async => http.Response('', 503)),
+        loadBundled: () async =>
+            File('assets/channel_directory.json').readAsStringSync(),
+      ),
     ),
     'scanner': () => ChangeNotifierProvider<MeshCoreConnector>.value(
       value: _PreviewScanConnector(),

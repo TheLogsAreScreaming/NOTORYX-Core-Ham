@@ -13387,6 +13387,552 @@ abstract class AppLocalizations {
   /// **'View connection dashboard'**
   String get connections_viewDashboard;
 
+  /// No description provided for @channelDirectory_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel directory'**
+  String get channelDirectory_title;
+
+  /// No description provided for @channelDirectory_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find public hashtag channels near you'**
+  String get channelDirectory_subtitle;
+
+  /// No description provided for @channelDirectory_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search channels or places'**
+  String get channelDirectory_search;
+
+  /// No description provided for @channelDirectory_nearYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Near you'**
+  String get channelDirectory_nearYou;
+
+  /// No description provided for @channelDirectory_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All channels'**
+  String get channelDirectory_all;
+
+  /// No description provided for @channelDirectory_catAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get channelDirectory_catAll;
+
+  /// No description provided for @channelDirectory_catEmergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency'**
+  String get channelDirectory_catEmergency;
+
+  /// No description provided for @channelDirectory_catLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Local'**
+  String get channelDirectory_catLocal;
+
+  /// No description provided for @channelDirectory_catGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get channelDirectory_catGeneral;
+
+  /// No description provided for @channelDirectory_catInterest.
+  ///
+  /// In en, this message translates to:
+  /// **'Interests'**
+  String get channelDirectory_catInterest;
+
+  /// No description provided for @channelDirectory_catTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Testing'**
+  String get channelDirectory_catTest;
+
+  /// No description provided for @channelDirectory_join.
+  ///
+  /// In en, this message translates to:
+  /// **'Join'**
+  String get channelDirectory_join;
+
+  /// No description provided for @channelDirectory_joined.
+  ///
+  /// In en, this message translates to:
+  /// **'Joined'**
+  String get channelDirectory_joined;
+
+  /// No description provided for @channelDirectory_noMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'No channels match your search.'**
+  String get channelDirectory_noMatches;
+
+  /// No description provided for @channelDirectory_connectFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio to join channels.'**
+  String get channelDirectory_connectFirst;
+
+  /// No description provided for @channelDirectory_slotsFull.
+  ///
+  /// In en, this message translates to:
+  /// **'All channel slots on your radio are in use. Remove a channel first.'**
+  String get channelDirectory_slotsFull;
+
+  /// No description provided for @channelDirectory_joinFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not add the channel. Try again.'**
+  String get channelDirectory_joinFailed;
+
+  /// No description provided for @channelDirectory_addHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing a channel? Anyone can suggest one by editing the shared list on GitHub.'**
+  String get channelDirectory_addHint;
+
+  /// No description provided for @prefixTool_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater IDs'**
+  String get prefixTool_title;
+
+  /// No description provided for @prefixTool_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who uses an ID, which IDs clash, and free ones for a new repeater'**
+  String get prefixTool_subtitle;
+
+  /// No description provided for @prefixTool_width.
+  ///
+  /// In en, this message translates to:
+  /// **'Path ID size'**
+  String get prefixTool_width;
+
+  /// No description provided for @prefixTool_widthBytes.
+  ///
+  /// In en, this message translates to:
+  /// **'{bytes}-byte'**
+  String prefixTool_widthBytes(int bytes);
+
+  /// No description provided for @prefixTool_includeCompanions.
+  ///
+  /// In en, this message translates to:
+  /// **'Include companions and sensors'**
+  String get prefixTool_includeCompanions;
+
+  /// No description provided for @prefixTool_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{nodes} nodes known · {used} IDs in use · {shared} shared'**
+  String prefixTool_summary(int nodes, int used, int shared);
+
+  /// No description provided for @prefixTool_freeOfSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'{free} of {space} IDs free'**
+  String prefixTool_freeOfSpace(int free, int space);
+
+  /// No description provided for @prefixTool_lookupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Look up an ID, e.g. 3D'**
+  String get prefixTool_lookupHint;
+
+  /// No description provided for @prefixTool_lookupFree.
+  ///
+  /// In en, this message translates to:
+  /// **'No known node uses {id}.'**
+  String prefixTool_lookupFree(String id);
+
+  /// No description provided for @prefixTool_lookupUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 node uses {id}} other{{count} nodes use {id}}}'**
+  String prefixTool_lookupUsed(int count, String id);
+
+  /// No description provided for @prefixTool_shared.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared IDs'**
+  String get prefixTool_shared;
+
+  /// No description provided for @prefixTool_sharedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Paths through these IDs look the same unless the mesh uses longer IDs.'**
+  String get prefixTool_sharedHint;
+
+  /// No description provided for @prefixTool_noShared.
+  ///
+  /// In en, this message translates to:
+  /// **'No shared IDs among the nodes you know.'**
+  String get prefixTool_noShared;
+
+  /// No description provided for @prefixTool_free.
+  ///
+  /// In en, this message translates to:
+  /// **'Free IDs'**
+  String get prefixTool_free;
+
+  /// No description provided for @prefixTool_shuffle.
+  ///
+  /// In en, this message translates to:
+  /// **'More suggestions'**
+  String get prefixTool_shuffle;
+
+  /// No description provided for @prefixTool_makeKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a key'**
+  String get prefixTool_makeKey;
+
+  /// No description provided for @prefixTool_onlyKnown.
+  ///
+  /// In en, this message translates to:
+  /// **'Based only on nodes your radio has heard. A free ID here may still belong to a repeater you haven\'t heard.'**
+  String get prefixTool_onlyKnown;
+
+  /// No description provided for @prefixTool_inUseWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'{id} is already used by {name}.'**
+  String prefixTool_inUseWarning(String id, String name);
+
+  /// No description provided for @prefixTool_pickFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a free ID'**
+  String get prefixTool_pickFree;
+
+  /// No description provided for @keyGen_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Key for ID {id}'**
+  String keyGen_title(String id);
+
+  /// No description provided for @keyGen_searching.
+  ///
+  /// In en, this message translates to:
+  /// **'Searching… {tries} keys tried'**
+  String keyGen_searching(int tries);
+
+  /// No description provided for @keyGen_publicKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Public key'**
+  String get keyGen_publicKey;
+
+  /// No description provided for @keyGen_privateKey.
+  ///
+  /// In en, this message translates to:
+  /// **'Private key'**
+  String get keyGen_privateKey;
+
+  /// No description provided for @keyGen_copy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get keyGen_copy;
+
+  /// No description provided for @keyGen_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get keyGen_copied;
+
+  /// No description provided for @keyGen_secretWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the private key secret. Anyone who has it can pose as this node.'**
+  String get keyGen_secretWarning;
+
+  /// No description provided for @keyGen_howToUse.
+  ///
+  /// In en, this message translates to:
+  /// **'To use it on a repeater, open the repeater\'s settings, paste it as the private key and save. Companion radios need firmware that allows key import.'**
+  String get keyGen_howToUse;
+
+  /// No description provided for @keyGen_tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Make another'**
+  String get keyGen_tryAgain;
+
+  /// No description provided for @regionSetup_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Region setup'**
+  String get regionSetup_title;
+
+  /// No description provided for @regionSetup_hubSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Place this repeater in your area\'s region tree'**
+  String get regionSetup_hubSubtitle;
+
+  /// No description provided for @regionSetup_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Regions keep a message within an area instead of flooding the whole mesh. A repeater only forwards a region\'s messages if it carries that region, so give it its own region and every region above it.'**
+  String get regionSetup_intro;
+
+  /// No description provided for @regionSetup_where.
+  ///
+  /// In en, this message translates to:
+  /// **'Where is the repeater?'**
+  String get regionSetup_where;
+
+  /// No description provided for @regionSetup_tree.
+  ///
+  /// In en, this message translates to:
+  /// **'Region tree'**
+  String get regionSetup_tree;
+
+  /// No description provided for @regionSetup_custom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get regionSetup_custom;
+
+  /// No description provided for @regionSetup_region.
+  ///
+  /// In en, this message translates to:
+  /// **'Most local region'**
+  String get regionSetup_region;
+
+  /// No description provided for @regionSetup_source.
+  ///
+  /// In en, this message translates to:
+  /// **'From: {source}'**
+  String regionSetup_source(String source);
+
+  /// No description provided for @regionSetup_customLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Regions, broadest first'**
+  String get regionSetup_customLabel;
+
+  /// No description provided for @regionSetup_invalidName.
+  ///
+  /// In en, this message translates to:
+  /// **'\"{name}\" isn\'t a valid region name. Use lowercase letters, digits and hyphens, up to 29 characters.'**
+  String regionSetup_invalidName(String name);
+
+  /// No description provided for @regionSetup_tooMany.
+  ///
+  /// In en, this message translates to:
+  /// **'A repeater can carry at most {max} regions.'**
+  String regionSetup_tooMany(int max);
+
+  /// No description provided for @regionSetup_options.
+  ///
+  /// In en, this message translates to:
+  /// **'Options'**
+  String get regionSetup_options;
+
+  /// No description provided for @regionSetup_setDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Make the most local region the default'**
+  String get regionSetup_setDefault;
+
+  /// No description provided for @regionSetup_setDefaultBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The repeater\'s own adverts stay in that region.'**
+  String get regionSetup_setDefaultBody;
+
+  /// No description provided for @regionSetup_legacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Firmware 1.14'**
+  String get regionSetup_legacy;
+
+  /// No description provided for @regionSetup_legacyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Adds region allowf after each region. Not needed on 1.15 or newer.'**
+  String get regionSetup_legacyBody;
+
+  /// No description provided for @regionSetup_denyUnscoped.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop forwarding messages without a region'**
+  String get regionSetup_denyUnscoped;
+
+  /// No description provided for @regionSetup_denyUnscopedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Only turn this on once your whole area uses regions, or messages from older apps won\'t get through.'**
+  String get regionSetup_denyUnscopedBody;
+
+  /// No description provided for @regionSetup_commands.
+  ///
+  /// In en, this message translates to:
+  /// **'Commands'**
+  String get regionSetup_commands;
+
+  /// No description provided for @regionSetup_copyAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy all'**
+  String get regionSetup_copyAll;
+
+  /// No description provided for @regionSetup_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get regionSetup_copied;
+
+  /// No description provided for @regionSetup_pickFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a region to see the commands.'**
+  String get regionSetup_pickFirst;
+
+  /// No description provided for @regionSetup_sendTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to {name}'**
+  String regionSetup_sendTo(String name);
+
+  /// No description provided for @regionSetup_howToSend.
+  ///
+  /// In en, this message translates to:
+  /// **'To send these, log in to the repeater and open Region setup from its menu, or paste them into its command line.'**
+  String get regionSetup_howToSend;
+
+  /// No description provided for @regionSetup_noReply.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply. Stopped here.'**
+  String get regionSetup_noReply;
+
+  /// No description provided for @regionSetup_addToMine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add these regions to my list'**
+  String get regionSetup_addToMine;
+
+  /// No description provided for @regionSetup_addedToMine.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 region added to your list} other{{count} regions added to your list}}'**
+  String regionSetup_addedToMine(int count);
+
+  /// No description provided for @trackLog_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Track log'**
+  String get trackLog_title;
+
+  /// No description provided for @trackLog_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Record a breadcrumb trail from your radio\'s GPS'**
+  String get trackLog_subtitle;
+
+  /// No description provided for @trackLog_recording.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording'**
+  String get trackLog_recording;
+
+  /// No description provided for @trackLog_notRecording.
+  ///
+  /// In en, this message translates to:
+  /// **'Not recording'**
+  String get trackLog_notRecording;
+
+  /// No description provided for @trackLog_noGps.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio isn\'t reporting a GPS position. The track log needs a radio with GPS turned on.'**
+  String get trackLog_noGps;
+
+  /// No description provided for @trackLog_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start recording'**
+  String get trackLog_start;
+
+  /// No description provided for @trackLog_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop recording'**
+  String get trackLog_stop;
+
+  /// No description provided for @trackLog_howItWorks.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses the position your radio reports, about once a minute, while NOTORYX Core is open. A point is added after you move 25 m, or every 15 minutes when you stay put.'**
+  String get trackLog_howItWorks;
+
+  /// No description provided for @trackLog_snap.
+  ///
+  /// In en, this message translates to:
+  /// **'Round positions to about 100 m'**
+  String get trackLog_snap;
+
+  /// No description provided for @trackLog_snapBody.
+  ///
+  /// In en, this message translates to:
+  /// **'For privacy when you share a track.'**
+  String get trackLog_snapBody;
+
+  /// No description provided for @trackLog_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved tracks'**
+  String get trackLog_saved;
+
+  /// No description provided for @trackLog_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No tracks yet.'**
+  String get trackLog_none;
+
+  /// No description provided for @trackLog_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export as GPX'**
+  String get trackLog_export;
+
+  /// No description provided for @trackLog_exportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not export the track.'**
+  String get trackLog_exportFailed;
+
+  /// No description provided for @trackLog_deleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this track?'**
+  String get trackLog_deleteTitle;
+
+  /// No description provided for @trackLog_deleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s removed from this device. Exported GPX files aren\'t affected.'**
+  String get trackLog_deleteBody;
+
+  /// No description provided for @trackLog_stats.
+  ///
+  /// In en, this message translates to:
+  /// **'{km} km · {duration} · {points} points'**
+  String trackLog_stats(String km, String duration, int points);
+
+  /// No description provided for @trackLog_gpxName.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTORYX track {when}'**
+  String trackLog_gpxName(String when);
+
   /// No description provided for @routes_nearbyTitle.
   ///
   /// In en, this message translates to:

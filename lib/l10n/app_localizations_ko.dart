@@ -7603,6 +7603,331 @@ class AppLocalizationsKo extends AppLocalizations {
   String get connections_viewDashboard => '연결 대시보드 보기';
 
   @override
+  String get channelDirectory_title => '채널 목록';
+
+  @override
+  String get channelDirectory_subtitle => '주변의 공개 해시태그 채널 찾기';
+
+  @override
+  String get channelDirectory_search => '채널 또는 장소 검색';
+
+  @override
+  String get channelDirectory_nearYou => '내 주변';
+
+  @override
+  String get channelDirectory_all => '모든 채널';
+
+  @override
+  String get channelDirectory_catAll => '전체';
+
+  @override
+  String get channelDirectory_catEmergency => '긴급';
+
+  @override
+  String get channelDirectory_catLocal => '지역';
+
+  @override
+  String get channelDirectory_catGeneral => '일반';
+
+  @override
+  String get channelDirectory_catInterest => '관심사';
+
+  @override
+  String get channelDirectory_catTest => '테스트';
+
+  @override
+  String get channelDirectory_join => '참여';
+
+  @override
+  String get channelDirectory_joined => '참여함';
+
+  @override
+  String get channelDirectory_noMatches => '검색과 일치하는 채널이 없습니다.';
+
+  @override
+  String get channelDirectory_connectFirst => '채널에 참여하려면 무전기를 연결하세요.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      '무전기의 채널 슬롯이 모두 사용 중입니다. 먼저 채널을 삭제하세요.';
+
+  @override
+  String get channelDirectory_joinFailed => '채널을 추가하지 못했습니다. 다시 시도하세요.';
+
+  @override
+  String get channelDirectory_addHint =>
+      '찾는 채널이 없나요? GitHub의 공유 목록을 수정해 누구나 제안할 수 있습니다.';
+
+  @override
+  String get prefixTool_title => '리피터 ID';
+
+  @override
+  String get prefixTool_subtitle => 'ID를 쓰는 노드, 겹치는 ID, 새 리피터용 빈 ID 확인';
+
+  @override
+  String get prefixTool_width => '경로 ID 크기';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes바이트';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => '컴패니언과 센서 포함';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '알려진 노드 $nodes · 사용 중 ID $used · 겹침 $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '빈 ID $free / $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'ID 검색 (예: 3D)';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return '$id를 쓰는 알려진 노드가 없습니다.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$id를 쓰는 노드 $count개',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => '겹치는 ID';
+
+  @override
+  String get prefixTool_sharedHint =>
+      '메시가 더 긴 ID를 쓰지 않으면 이 ID를 거치는 경로는 구분되지 않습니다.';
+
+  @override
+  String get prefixTool_noShared => '알려진 노드 중 겹치는 ID가 없습니다.';
+
+  @override
+  String get prefixTool_free => '빈 ID';
+
+  @override
+  String get prefixTool_shuffle => '다른 추천';
+
+  @override
+  String get prefixTool_makeKey => '키 만들기';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      '무전기가 들은 노드만 기준입니다. 여기서 빈 ID도 듣지 못한 리피터가 쓰고 있을 수 있습니다.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id는 이미 $name이(가) 사용 중입니다.';
+  }
+
+  @override
+  String get prefixTool_pickFree => '빈 ID 고르기';
+
+  @override
+  String keyGen_title(String id) {
+    return 'ID $id용 키';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return '검색 중… 키 $tries개 시도';
+  }
+
+  @override
+  String get keyGen_publicKey => '공개 키';
+
+  @override
+  String get keyGen_privateKey => '개인 키';
+
+  @override
+  String get keyGen_copy => '복사';
+
+  @override
+  String get keyGen_copied => '복사됨';
+
+  @override
+  String get keyGen_secretWarning =>
+      '개인 키는 비밀로 유지하세요. 가진 사람은 이 노드로 위장할 수 있습니다.';
+
+  @override
+  String get keyGen_howToUse =>
+      '리피터에 쓰려면 리피터 설정을 열고 개인 키로 붙여 넣은 뒤 저장하세요. 컴패니언 무전기는 키 가져오기를 허용하는 펌웨어가 필요합니다.';
+
+  @override
+  String get keyGen_tryAgain => '하나 더 만들기';
+
+  @override
+  String get regionSetup_title => '지역 설정';
+
+  @override
+  String get regionSetup_hubSubtitle => '이 리피터를 지역 트리에 배치';
+
+  @override
+  String get regionSetup_intro =>
+      '지역을 쓰면 메시 전체에 플러딩하지 않고 메시지를 한 지역 안에 머물게 할 수 있습니다. 리피터는 해당 지역을 가지고 있을 때만 그 지역의 메시지를 전달하므로, 자신의 지역과 그 위의 모든 지역을 지정하세요.';
+
+  @override
+  String get regionSetup_where => '리피터 위치는?';
+
+  @override
+  String get regionSetup_tree => '지역 트리';
+
+  @override
+  String get regionSetup_custom => '직접 입력';
+
+  @override
+  String get regionSetup_region => '가장 좁은 지역';
+
+  @override
+  String regionSetup_source(String source) {
+    return '출처: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => '지역 (넓은 순서)';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '\"$name\"은(는) 올바른 지역 이름이 아닙니다. 소문자, 숫자, 하이픈으로 29자 이내여야 합니다.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return '리피터는 최대 $max개의 지역을 가질 수 있습니다.';
+  }
+
+  @override
+  String get regionSetup_options => '옵션';
+
+  @override
+  String get regionSetup_setDefault => '가장 좁은 지역을 기본값으로';
+
+  @override
+  String get regionSetup_setDefaultBody => '리피터의 자체 알림이 그 지역 안에 머뭅니다.';
+
+  @override
+  String get regionSetup_legacy => '펌웨어 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      '각 지역 뒤에 region allowf를 추가합니다. 1.15 이상에서는 필요 없습니다.';
+
+  @override
+  String get regionSetup_denyUnscoped => '지역 없는 메시지 전달 중지';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      '지역 전체가 지역 기능을 쓸 때만 켜세요. 그렇지 않으면 이전 앱의 메시지가 전달되지 않습니다.';
+
+  @override
+  String get regionSetup_commands => '명령';
+
+  @override
+  String get regionSetup_copyAll => '모두 복사';
+
+  @override
+  String get regionSetup_copied => '복사됨';
+
+  @override
+  String get regionSetup_pickFirst => '지역을 선택하면 명령이 표시됩니다.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return '$name에 보내기';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      '보내려면 리피터에 로그인한 뒤 메뉴에서 지역 설정을 열거나, 명령줄에 붙여 넣으세요.';
+
+  @override
+  String get regionSetup_noReply => '응답 없음. 여기서 중단했습니다.';
+
+  @override
+  String get regionSetup_addToMine => '이 지역을 내 목록에 추가';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '내 목록에 지역 $count개 추가됨',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get trackLog_title => '트랙 기록';
+
+  @override
+  String get trackLog_subtitle => '무전기 GPS로 이동 경로 기록';
+
+  @override
+  String get trackLog_recording => '기록 중';
+
+  @override
+  String get trackLog_notRecording => '기록 안 함';
+
+  @override
+  String get trackLog_noGps =>
+      '무전기가 GPS 위치를 보내지 않습니다. 트랙 기록에는 GPS가 켜진 무전기가 필요합니다.';
+
+  @override
+  String get trackLog_start => '기록 시작';
+
+  @override
+  String get trackLog_stop => '기록 중지';
+
+  @override
+  String get trackLog_howItWorks =>
+      'NOTORYX Core가 열려 있는 동안 무전기가 약 1분마다 보내는 위치를 사용합니다. 25 m 이동하거나, 멈춰 있으면 15분마다 지점이 추가됩니다.';
+
+  @override
+  String get trackLog_snap => '위치를 약 100 m로 반올림';
+
+  @override
+  String get trackLog_snapBody => '트랙을 공유할 때 개인정보 보호용.';
+
+  @override
+  String get trackLog_saved => '저장된 트랙';
+
+  @override
+  String get trackLog_none => '아직 트랙이 없습니다.';
+
+  @override
+  String get trackLog_export => 'GPX로 내보내기';
+
+  @override
+  String get trackLog_exportFailed => '트랙을 내보내지 못했습니다.';
+
+  @override
+  String get trackLog_deleteTitle => '이 트랙을 삭제할까요?';
+
+  @override
+  String get trackLog_deleteBody => '이 기기에서 삭제됩니다. 내보낸 GPX 파일은 영향을 받지 않습니다.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · 지점 $points개';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX 트랙 $when';
+  }
+
+  @override
   String get routes_nearbyTitle => '주변 최적 리피터';
 
   @override

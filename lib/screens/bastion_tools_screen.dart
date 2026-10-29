@@ -12,6 +12,8 @@ import 'bastion_field_stats_screen.dart';
 import 'bastion_map_hub_screen.dart';
 import 'bastion_path_hub_screen.dart';
 import 'bastion_repeater_tools_screen.dart';
+import 'prefix_tool_screen.dart';
+import 'track_log_screen.dart';
 
 class BastionToolsScreen extends StatelessWidget {
   const BastionToolsScreen({super.key});
@@ -135,6 +137,28 @@ class BastionToolsScreen extends StatelessWidget {
               () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const PathGraphScreen()),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _tool(
+              context,
+              Icons.fingerprint,
+              l10n.prefixTool_title.toUpperCase(),
+              l10n.prefixTool_subtitle,
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const PrefixToolScreen()),
+              ),
+            ),
+            const SizedBox(height: 12),
+            _tool(
+              context,
+              Icons.timeline,
+              l10n.trackLog_title.toUpperCase(),
+              l10n.trackLog_subtitle,
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const TrackLogScreen()),
               ),
             ),
             const SizedBox(height: 12),

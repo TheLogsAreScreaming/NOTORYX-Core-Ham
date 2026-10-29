@@ -8011,6 +8011,348 @@ class AppLocalizationsFr extends AppLocalizations {
   String get connections_viewDashboard => 'Voir le tableau des connexions';
 
   @override
+  String get channelDirectory_title => 'Annuaire des canaux';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Trouvez des canaux hashtag publics près de vous';
+
+  @override
+  String get channelDirectory_search => 'Rechercher des canaux ou des lieux';
+
+  @override
+  String get channelDirectory_nearYou => 'Près de vous';
+
+  @override
+  String get channelDirectory_all => 'Tous les canaux';
+
+  @override
+  String get channelDirectory_catAll => 'Tous';
+
+  @override
+  String get channelDirectory_catEmergency => 'Urgence';
+
+  @override
+  String get channelDirectory_catLocal => 'Local';
+
+  @override
+  String get channelDirectory_catGeneral => 'Général';
+
+  @override
+  String get channelDirectory_catInterest => 'Centres d’intérêt';
+
+  @override
+  String get channelDirectory_catTest => 'Tests';
+
+  @override
+  String get channelDirectory_join => 'Rejoindre';
+
+  @override
+  String get channelDirectory_joined => 'Rejoint';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Aucun canal ne correspond à votre recherche.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Connectez votre radio pour rejoindre des canaux.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Tous les emplacements de canaux de votre radio sont utilisés. Supprimez d’abord un canal.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Impossible d’ajouter le canal. Réessayez.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Un canal manque ? Tout le monde peut en proposer un en modifiant la liste partagée sur GitHub.';
+
+  @override
+  String get prefixTool_title => 'ID des répéteurs';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Qui utilise un ID, quels ID se chevauchent et des ID libres pour un nouveau répéteur';
+
+  @override
+  String get prefixTool_width => 'Taille de l’ID de chemin';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes octet(s)';
+  }
+
+  @override
+  String get prefixTool_includeCompanions =>
+      'Inclure les companions et capteurs';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '$nodes nœuds connus · $used ID utilisés · $shared partagés';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '$free ID libres sur $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Rechercher un ID, p. ex. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Aucun nœud connu n’utilise $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count nœuds utilisent $id',
+      one: '1 nœud utilise $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'ID partagés';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Les chemins passant par ces ID se ressemblent, sauf si le maillage utilise des ID plus longs.';
+
+  @override
+  String get prefixTool_noShared => 'Aucun ID partagé parmi les nœuds connus.';
+
+  @override
+  String get prefixTool_free => 'ID libres';
+
+  @override
+  String get prefixTool_shuffle => 'Autres suggestions';
+
+  @override
+  String get prefixTool_makeKey => 'Créer une clé';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Basé uniquement sur les nœuds entendus par votre radio. Un ID libre ici peut appartenir à un répéteur que vous n’avez pas entendu.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id est déjà utilisé par $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Choisir un ID libre';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Clé pour l’ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Recherche… $tries clés essayées';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Clé publique';
+
+  @override
+  String get keyGen_privateKey => 'Clé privée';
+
+  @override
+  String get keyGen_copy => 'Copier';
+
+  @override
+  String get keyGen_copied => 'Copié';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Gardez la clé privée secrète. Quiconque la possède peut se faire passer pour ce nœud.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Pour un répéteur : ouvrez ses réglages, collez-la comme clé privée et enregistrez. Les radios companion nécessitent un firmware qui autorise l’import de clé.';
+
+  @override
+  String get keyGen_tryAgain => 'En créer une autre';
+
+  @override
+  String get regionSetup_title => 'Configurer les régions';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Placer ce répéteur dans l’arbre de régions de votre secteur';
+
+  @override
+  String get regionSetup_intro =>
+      'Les régions gardent un message dans une zone au lieu d’inonder tout le maillage. Un répéteur ne relaie les messages d’une région que s’il la porte : donnez-lui sa région et toutes celles au-dessus.';
+
+  @override
+  String get regionSetup_where => 'Où se trouve le répéteur ?';
+
+  @override
+  String get regionSetup_tree => 'Arbre de régions';
+
+  @override
+  String get regionSetup_custom => 'Personnalisé';
+
+  @override
+  String get regionSetup_region => 'Région la plus locale';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Source : $source';
+  }
+
+  @override
+  String get regionSetup_customLabel =>
+      'Régions, de la plus large à la plus locale';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '« $name » n’est pas un nom de région valide. Utilisez des minuscules, chiffres et tirets, 29 caractères maximum.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Un répéteur peut porter au plus $max régions.';
+  }
+
+  @override
+  String get regionSetup_options => 'Options';
+
+  @override
+  String get regionSetup_setDefault =>
+      'Définir la région la plus locale par défaut';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Les annonces du répéteur restent dans cette région.';
+
+  @override
+  String get regionSetup_legacy => 'Firmware 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Ajoute region allowf après chaque région. Inutile à partir de 1.15.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Ne plus relayer les messages sans région';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'À n’activer que lorsque tout votre secteur utilise les régions, sinon les messages des anciennes applis ne passeront pas.';
+
+  @override
+  String get regionSetup_commands => 'Commandes';
+
+  @override
+  String get regionSetup_copyAll => 'Tout copier';
+
+  @override
+  String get regionSetup_copied => 'Copié';
+
+  @override
+  String get regionSetup_pickFirst =>
+      'Choisissez une région pour voir les commandes.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Envoyer à $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Pour les envoyer, connectez-vous au répéteur et ouvrez Configurer les régions depuis son menu, ou collez-les dans sa ligne de commande.';
+
+  @override
+  String get regionSetup_noReply => 'Pas de réponse. Arrêt ici.';
+
+  @override
+  String get regionSetup_addToMine => 'Ajouter ces régions à ma liste';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count régions ajoutées à votre liste',
+      one: '1 région ajoutée à votre liste',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get trackLog_title => 'Journal de trajet';
+
+  @override
+  String get trackLog_subtitle =>
+      'Enregistrer une trace avec le GPS de votre radio';
+
+  @override
+  String get trackLog_recording => 'Enregistrement';
+
+  @override
+  String get trackLog_notRecording => 'Pas d’enregistrement';
+
+  @override
+  String get trackLog_noGps =>
+      'Votre radio ne donne pas de position GPS. Le journal de trajet nécessite une radio avec le GPS activé.';
+
+  @override
+  String get trackLog_start => 'Démarrer l’enregistrement';
+
+  @override
+  String get trackLog_stop => 'Arrêter l’enregistrement';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Utilise la position fournie par votre radio, environ une fois par minute, tant que NOTORYX Core est ouverte. Un point est ajouté après 25 m de déplacement, ou toutes les 15 minutes à l’arrêt.';
+
+  @override
+  String get trackLog_snap => 'Arrondir les positions à environ 100 m';
+
+  @override
+  String get trackLog_snapBody =>
+      'Pour la confidentialité quand vous partagez un trajet.';
+
+  @override
+  String get trackLog_saved => 'Trajets enregistrés';
+
+  @override
+  String get trackLog_none => 'Aucun trajet pour l’instant.';
+
+  @override
+  String get trackLog_export => 'Exporter en GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Impossible d’exporter le trajet.';
+
+  @override
+  String get trackLog_deleteTitle => 'Supprimer ce trajet ?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Il est retiré de cet appareil. Les fichiers GPX exportés ne sont pas concernés.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points points';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Trajet NOTORYX $when';
+  }
+
+  @override
   String get routes_nearbyTitle => 'MEILLEURS RÉPÉTEURS PROCHES';
 
   @override

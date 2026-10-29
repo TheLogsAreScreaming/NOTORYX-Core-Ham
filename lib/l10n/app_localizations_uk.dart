@@ -8012,6 +8012,342 @@ class AppLocalizationsUk extends AppLocalizations {
   String get connections_viewDashboard => 'Відкрити панель підключень';
 
   @override
+  String get channelDirectory_title => 'Каталог каналів';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Знайдіть публічні хештег-канали поруч';
+
+  @override
+  String get channelDirectory_search => 'Пошук каналів або місць';
+
+  @override
+  String get channelDirectory_nearYou => 'Поруч із вами';
+
+  @override
+  String get channelDirectory_all => 'Усі канали';
+
+  @override
+  String get channelDirectory_catAll => 'Усі';
+
+  @override
+  String get channelDirectory_catEmergency => 'Екстрені';
+
+  @override
+  String get channelDirectory_catLocal => 'Місцеві';
+
+  @override
+  String get channelDirectory_catGeneral => 'Загальні';
+
+  @override
+  String get channelDirectory_catInterest => 'Інтереси';
+
+  @override
+  String get channelDirectory_catTest => 'Тестові';
+
+  @override
+  String get channelDirectory_join => 'Приєднатися';
+
+  @override
+  String get channelDirectory_joined => 'Приєднано';
+
+  @override
+  String get channelDirectory_noMatches => 'Немає каналів за вашим запитом.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Підключіть радіо, щоб приєднуватися до каналів.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'Усі слоти каналів на радіо зайняті. Спочатку видаліть канал.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Не вдалося додати канал. Спробуйте ще раз.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Бракує каналу? Будь-хто може запропонувати його, відредагувавши спільний список на GitHub.';
+
+  @override
+  String get prefixTool_title => 'ID ретрансляторів';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Хто використовує ID, які ID збігаються і вільні ID для нового ретранслятора';
+
+  @override
+  String get prefixTool_width => 'Розмір ID маршруту';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes байт';
+  }
+
+  @override
+  String get prefixTool_includeCompanions =>
+      'Враховувати компаньйони й датчики';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return 'Відомо вузлів: $nodes · зайнято ID: $used · спільних: $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return 'Вільно ID: $free із $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Знайти ID, наприклад 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Жоден відомий вузол не використовує $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$id використовують вузлів: $count',
+      one: '$id використовує 1 вузол',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Спільні ID';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Маршрути через ці ID виглядають однаково, якщо мережа не використовує довші ID.';
+
+  @override
+  String get prefixTool_noShared => 'Серед відомих вузлів немає спільних ID.';
+
+  @override
+  String get prefixTool_free => 'Вільні ID';
+
+  @override
+  String get prefixTool_shuffle => 'Ще варіанти';
+
+  @override
+  String get prefixTool_makeKey => 'Створити ключ';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Лише за вузлами, які чуло ваше радіо. Вільний тут ID може належати ретранслятору, якого ви не чули.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id вже використовує $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Вибрати вільний ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Ключ для ID $id';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Пошук… перевірено ключів: $tries';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Відкритий ключ';
+
+  @override
+  String get keyGen_privateKey => 'Закритий ключ';
+
+  @override
+  String get keyGen_copy => 'Копіювати';
+
+  @override
+  String get keyGen_copied => 'Скопійовано';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Зберігайте закритий ключ у таємниці. Хто його має, може видавати себе за цей вузол.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Для ретранслятора: відкрийте його налаштування, вставте як закритий ключ і збережіть. Радіо-компаньйонам потрібна прошивка з дозволеним імпортом ключа.';
+
+  @override
+  String get keyGen_tryAgain => 'Створити ще';
+
+  @override
+  String get regionSetup_title => 'Налаштування регіонів';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Помістити ретранслятор у дерево регіонів вашої місцевості';
+
+  @override
+  String get regionSetup_intro =>
+      'Регіони утримують повідомлення в межах області, а не розсилають його всією мережею. Ретранслятор передає повідомлення регіону, лише якщо цей регіон у нього задано, тож задайте йому його регіон і всі регіони вище.';
+
+  @override
+  String get regionSetup_where => 'Де стоїть ретранслятор?';
+
+  @override
+  String get regionSetup_tree => 'Дерево регіонів';
+
+  @override
+  String get regionSetup_custom => 'Власне';
+
+  @override
+  String get regionSetup_region => 'Найлокальніший регіон';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Джерело: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Регіони, від найширшого';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '«$name» — неприпустима назва регіону. Використовуйте малі латинські літери, цифри й дефіси, до 29 символів.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Ретранслятору можна задати щонайбільше $max регіонів.';
+  }
+
+  @override
+  String get regionSetup_options => 'Параметри';
+
+  @override
+  String get regionSetup_setDefault => 'Зробити найлокальніший регіон основним';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Власні оголошення ретранслятора залишаться в цьому регіоні.';
+
+  @override
+  String get regionSetup_legacy => 'Прошивка 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Додає region allowf після кожного регіону. Не потрібно з 1.15.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Не передавати повідомлення без регіону';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Вмикайте лише тоді, коли вся місцевість використовує регіони, інакше повідомлення зі старих застосунків не пройдуть.';
+
+  @override
+  String get regionSetup_commands => 'Команди';
+
+  @override
+  String get regionSetup_copyAll => 'Копіювати все';
+
+  @override
+  String get regionSetup_copied => 'Скопійовано';
+
+  @override
+  String get regionSetup_pickFirst => 'Виберіть регіон, щоб побачити команди.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Надіслати на $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'Щоб надіслати їх, увійдіть у ретранслятор і відкрийте «Налаштування регіонів» у його меню або вставте їх у його командний рядок.';
+
+  @override
+  String get regionSetup_noReply => 'Немає відповіді. Зупинено тут.';
+
+  @override
+  String get regionSetup_addToMine => 'Додати ці регіони до мого списку';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'До списку додано регіонів: $count',
+      one: 'До списку додано 1 регіон',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get trackLog_title => 'Журнал маршруту';
+
+  @override
+  String get trackLog_subtitle => 'Записуйте трек за GPS радіо';
+
+  @override
+  String get trackLog_recording => 'Іде запис';
+
+  @override
+  String get trackLog_notRecording => 'Запис не ведеться';
+
+  @override
+  String get trackLog_noGps =>
+      'Радіо не повідомляє GPS-позицію. Для журналу маршруту потрібне радіо з увімкненим GPS.';
+
+  @override
+  String get trackLog_start => 'Почати запис';
+
+  @override
+  String get trackLog_stop => 'Зупинити запис';
+
+  @override
+  String get trackLog_howItWorks =>
+      'Використовує позицію, яку радіо повідомляє приблизно раз на хвилину, поки NOTORYX Core відкритий. Точка додається після переміщення на 25 м або кожні 15 хвилин на місці.';
+
+  @override
+  String get trackLog_snap => 'Округлювати позиції приблизно до 100 м';
+
+  @override
+  String get trackLog_snapBody => 'Для конфіденційності, коли ділитеся треком.';
+
+  @override
+  String get trackLog_saved => 'Збережені треки';
+
+  @override
+  String get trackLog_none => 'Треків поки немає.';
+
+  @override
+  String get trackLog_export => 'Експорт у GPX';
+
+  @override
+  String get trackLog_exportFailed => 'Не вдалося експортувати трек.';
+
+  @override
+  String get trackLog_deleteTitle => 'Видалити цей трек?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Його буде видалено з цього пристрою. Експортовані GPX-файли не змінюються.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km км · $duration · точок: $points';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'Трек NOTORYX $when';
+  }
+
+  @override
   String get routes_nearbyTitle => 'НАЙКРАЩІ РЕТРАНСЛЯТОРИ ПОРУЧ';
 
   @override

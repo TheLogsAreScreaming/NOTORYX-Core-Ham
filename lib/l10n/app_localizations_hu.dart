@@ -7969,6 +7969,347 @@ class AppLocalizationsHu extends AppLocalizations {
   String get connections_viewDashboard => 'Kapcsolatok áttekintése';
 
   @override
+  String get channelDirectory_title => 'Csatornakönyvtár';
+
+  @override
+  String get channelDirectory_subtitle =>
+      'Nyilvános hashtag-csatornák a közeledben';
+
+  @override
+  String get channelDirectory_search => 'Csatornák vagy helyek keresése';
+
+  @override
+  String get channelDirectory_nearYou => 'A közeledben';
+
+  @override
+  String get channelDirectory_all => 'Összes csatorna';
+
+  @override
+  String get channelDirectory_catAll => 'Összes';
+
+  @override
+  String get channelDirectory_catEmergency => 'Vészhelyzet';
+
+  @override
+  String get channelDirectory_catLocal => 'Helyi';
+
+  @override
+  String get channelDirectory_catGeneral => 'Általános';
+
+  @override
+  String get channelDirectory_catInterest => 'Érdeklődés';
+
+  @override
+  String get channelDirectory_catTest => 'Teszt';
+
+  @override
+  String get channelDirectory_join => 'Csatlakozás';
+
+  @override
+  String get channelDirectory_joined => 'Csatlakozva';
+
+  @override
+  String get channelDirectory_noMatches =>
+      'Egy csatorna sem felel meg a keresésnek.';
+
+  @override
+  String get channelDirectory_connectFirst =>
+      'Csatlakoztasd a rádiót a csatornákhoz való csatlakozáshoz.';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      'A rádió összes csatornahelye foglalt. Előbb távolíts el egy csatornát.';
+
+  @override
+  String get channelDirectory_joinFailed =>
+      'Nem sikerült hozzáadni a csatornát. Próbáld újra.';
+
+  @override
+  String get channelDirectory_addHint =>
+      'Hiányzik egy csatorna? Bárki javasolhat egyet a közös lista GitHubon való szerkesztésével.';
+
+  @override
+  String get prefixTool_title => 'Átjátszó-azonosítók';
+
+  @override
+  String get prefixTool_subtitle =>
+      'Ki használ egy azonosítót, melyek ütköznek, és szabadok egy új átjátszóhoz';
+
+  @override
+  String get prefixTool_width => 'Útvonal-azonosító mérete';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes bájt';
+  }
+
+  @override
+  String get prefixTool_includeCompanions =>
+      'Companion eszközök és érzékelők is';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '$nodes ismert csomópont · $used foglalt azonosító · $shared közös';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '$space-ból $free szabad azonosító';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'Azonosító keresése, pl. 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return 'Egy ismert csomópont sem használja: $id.';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count csomópont használja: $id',
+      one: '1 csomópont használja: $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => 'Közös azonosítók';
+
+  @override
+  String get prefixTool_sharedHint =>
+      'Az ezeken átmenő útvonalak egyformának látszanak, hacsak a háló nem használ hosszabb azonosítókat.';
+
+  @override
+  String get prefixTool_noShared =>
+      'Nincs közös azonosító az ismert csomópontok között.';
+
+  @override
+  String get prefixTool_free => 'Szabad azonosítók';
+
+  @override
+  String get prefixTool_shuffle => 'További javaslatok';
+
+  @override
+  String get prefixTool_makeKey => 'Kulcs készítése';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      'Csak a rádió által hallott csomópontok alapján. Egy itt szabad azonosító még tartozhat olyan átjátszóhoz, amelyet nem hallottál.';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return 'A(z) $id azonosítót már használja: $name.';
+  }
+
+  @override
+  String get prefixTool_pickFree => 'Szabad azonosító választása';
+
+  @override
+  String keyGen_title(String id) {
+    return 'Kulcs a(z) $id azonosítóhoz';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return 'Keresés… $tries kulcs kipróbálva';
+  }
+
+  @override
+  String get keyGen_publicKey => 'Nyilvános kulcs';
+
+  @override
+  String get keyGen_privateKey => 'Privát kulcs';
+
+  @override
+  String get keyGen_copy => 'Másolás';
+
+  @override
+  String get keyGen_copied => 'Másolva';
+
+  @override
+  String get keyGen_secretWarning =>
+      'Tartsd titokban a privát kulcsot. Aki birtokolja, ennek a csomópontnak adhatja ki magát.';
+
+  @override
+  String get keyGen_howToUse =>
+      'Átjátszóhoz: nyisd meg a beállításait, illeszd be privát kulcsként, és mentsd. A companion rádiókhoz kulcsimportot engedő firmware kell.';
+
+  @override
+  String get keyGen_tryAgain => 'Újabb készítése';
+
+  @override
+  String get regionSetup_title => 'Régiók beállítása';
+
+  @override
+  String get regionSetup_hubSubtitle =>
+      'Az átjátszó elhelyezése a környék régiófájában';
+
+  @override
+  String get regionSetup_intro =>
+      'A régiók egy területen tartják az üzenetet, ahelyett hogy elárasztanák az egész hálót. Az átjátszó csak akkor továbbítja egy régió üzeneteit, ha hordozza azt a régiót, ezért add meg neki a saját régióját és az összes fölötte lévőt.';
+
+  @override
+  String get regionSetup_where => 'Hol van az átjátszó?';
+
+  @override
+  String get regionSetup_tree => 'Régiófa';
+
+  @override
+  String get regionSetup_custom => 'Egyéni';
+
+  @override
+  String get regionSetup_region => 'Leghelyibb régió';
+
+  @override
+  String regionSetup_source(String source) {
+    return 'Forrás: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'Régiók, a legtágabbtól';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return 'A(z) „$name” nem érvényes régiónév. Használj kisbetűket, számokat és kötőjelet, legfeljebb 29 karaktert.';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'Egy átjátszó legfeljebb $max régiót hordozhat.';
+  }
+
+  @override
+  String get regionSetup_options => 'Beállítások';
+
+  @override
+  String get regionSetup_setDefault =>
+      'A leghelyibb régió legyen az alapértelmezett';
+
+  @override
+  String get regionSetup_setDefaultBody =>
+      'Az átjátszó saját hirdetései ebben a régióban maradnak.';
+
+  @override
+  String get regionSetup_legacy => '1.14-es firmware';
+
+  @override
+  String get regionSetup_legacyBody =>
+      'Minden régió után region allowf parancsot ad. 1.15-től nem kell.';
+
+  @override
+  String get regionSetup_denyUnscoped =>
+      'Ne továbbítsa a régió nélküli üzeneteket';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      'Csak akkor kapcsold be, ha az egész környék régiókat használ, különben a régebbi alkalmazások üzenetei nem jutnak át.';
+
+  @override
+  String get regionSetup_commands => 'Parancsok';
+
+  @override
+  String get regionSetup_copyAll => 'Összes másolása';
+
+  @override
+  String get regionSetup_copied => 'Másolva';
+
+  @override
+  String get regionSetup_pickFirst =>
+      'Válassz régiót a parancsok megtekintéséhez.';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return 'Küldés ide: $name';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      'A küldéshez jelentkezz be az átjátszóba, és nyisd meg a menüjében a Régiók beállítása pontot, vagy illeszd be a parancsokat a parancssorába.';
+
+  @override
+  String get regionSetup_noReply => 'Nincs válasz. Itt megállt.';
+
+  @override
+  String get regionSetup_addToMine => 'Ezek a régiók kerüljenek a listámra';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count régió hozzáadva a listádhoz',
+      one: '1 régió hozzáadva a listádhoz',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get trackLog_title => 'Útvonalnapló';
+
+  @override
+  String get trackLog_subtitle => 'Rögzíts nyomvonalat a rádió GPS-éből';
+
+  @override
+  String get trackLog_recording => 'Rögzítés folyamatban';
+
+  @override
+  String get trackLog_notRecording => 'Nincs rögzítés';
+
+  @override
+  String get trackLog_noGps =>
+      'A rádió nem jelent GPS-pozíciót. Az útvonalnaplóhoz bekapcsolt GPS-ű rádió kell.';
+
+  @override
+  String get trackLog_start => 'Rögzítés indítása';
+
+  @override
+  String get trackLog_stop => 'Rögzítés leállítása';
+
+  @override
+  String get trackLog_howItWorks =>
+      'A rádió által nagyjából percenként jelentett pozíciót használja, amíg a NOTORYX Core nyitva van. 25 m elmozdulás után vagy egy helyben 15 percenként kerül be új pont.';
+
+  @override
+  String get trackLog_snap => 'Pozíciók kerekítése kb. 100 m-re';
+
+  @override
+  String get trackLog_snapBody =>
+      'Adatvédelem miatt, ha megosztasz egy útvonalat.';
+
+  @override
+  String get trackLog_saved => 'Mentett útvonalak';
+
+  @override
+  String get trackLog_none => 'Még nincs útvonal.';
+
+  @override
+  String get trackLog_export => 'Exportálás GPX-ként';
+
+  @override
+  String get trackLog_exportFailed => 'Az útvonalat nem sikerült exportálni.';
+
+  @override
+  String get trackLog_deleteTitle => 'Törlöd ezt az útvonalat?';
+
+  @override
+  String get trackLog_deleteBody =>
+      'Eltűnik erről az eszközről. Az exportált GPX-fájlok megmaradnak.';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points pont';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX útvonal $when';
+  }
+
+  @override
   String get routes_nearbyTitle => 'LEGJOBB KÖZELI ÁTJÁTSZÓK';
 
   @override

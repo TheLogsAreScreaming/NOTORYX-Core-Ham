@@ -7433,6 +7433,321 @@ class AppLocalizationsZh extends AppLocalizations {
   String get connections_viewDashboard => '查看连接面板';
 
   @override
+  String get channelDirectory_title => '频道目录';
+
+  @override
+  String get channelDirectory_subtitle => '查找附近的公开话题频道';
+
+  @override
+  String get channelDirectory_search => '搜索频道或地点';
+
+  @override
+  String get channelDirectory_nearYou => '你附近';
+
+  @override
+  String get channelDirectory_all => '所有频道';
+
+  @override
+  String get channelDirectory_catAll => '全部';
+
+  @override
+  String get channelDirectory_catEmergency => '紧急';
+
+  @override
+  String get channelDirectory_catLocal => '本地';
+
+  @override
+  String get channelDirectory_catGeneral => '综合';
+
+  @override
+  String get channelDirectory_catInterest => '兴趣';
+
+  @override
+  String get channelDirectory_catTest => '测试';
+
+  @override
+  String get channelDirectory_join => '加入';
+
+  @override
+  String get channelDirectory_joined => '已加入';
+
+  @override
+  String get channelDirectory_noMatches => '没有符合搜索的频道。';
+
+  @override
+  String get channelDirectory_connectFirst => '连接电台后才能加入频道。';
+
+  @override
+  String get channelDirectory_slotsFull => '电台的频道位已全部占用。请先删除一个频道。';
+
+  @override
+  String get channelDirectory_joinFailed => '无法添加频道，请重试。';
+
+  @override
+  String get channelDirectory_addHint => '缺少频道？任何人都可以在 GitHub 上编辑共享列表来推荐。';
+
+  @override
+  String get prefixTool_title => '中继器 ID';
+
+  @override
+  String get prefixTool_subtitle => '查看谁在用某个 ID、哪些 ID 重复，以及新中继器可用的空闲 ID';
+
+  @override
+  String get prefixTool_width => '路径 ID 长度';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytes 字节';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => '包括伴侣设备和传感器';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '已知节点 $nodes · 已用 ID $used · 重复 $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '空闲 ID $free / $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => '查找 ID，例如 3D';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return '没有已知节点使用 $id。';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个节点使用 $id',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => '重复的 ID';
+
+  @override
+  String get prefixTool_sharedHint => '除非网络使用更长的 ID，否则经过这些 ID 的路径无法区分。';
+
+  @override
+  String get prefixTool_noShared => '已知节点中没有重复的 ID。';
+
+  @override
+  String get prefixTool_free => '空闲 ID';
+
+  @override
+  String get prefixTool_shuffle => '更多建议';
+
+  @override
+  String get prefixTool_makeKey => '生成密钥';
+
+  @override
+  String get prefixTool_onlyKnown => '仅基于你的电台听到过的节点。这里显示空闲的 ID 仍可能被你没听到的中继器使用。';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id 已被 $name 使用。';
+  }
+
+  @override
+  String get prefixTool_pickFree => '选择空闲 ID';
+
+  @override
+  String keyGen_title(String id) {
+    return 'ID $id 的密钥';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return '正在搜索…已尝试 $tries 个密钥';
+  }
+
+  @override
+  String get keyGen_publicKey => '公钥';
+
+  @override
+  String get keyGen_privateKey => '私钥';
+
+  @override
+  String get keyGen_copy => '复制';
+
+  @override
+  String get keyGen_copied => '已复制';
+
+  @override
+  String get keyGen_secretWarning => '请妥善保管私钥。拥有私钥的人可以冒充此节点。';
+
+  @override
+  String get keyGen_howToUse => '用于中继器时，打开中继器设置，将其粘贴为私钥并保存。伴侣电台需要允许导入密钥的固件。';
+
+  @override
+  String get keyGen_tryAgain => '再生成一个';
+
+  @override
+  String get regionSetup_title => '区域设置';
+
+  @override
+  String get regionSetup_hubSubtitle => '把这台中继器放进本地区的区域树';
+
+  @override
+  String get regionSetup_intro =>
+      '区域能让消息留在某个范围内，而不是泛洪整个网络。中继器只有带有某个区域时才会转发该区域的消息，所以要给它设置自身区域及其上所有区域。';
+
+  @override
+  String get regionSetup_where => '中继器在哪里？';
+
+  @override
+  String get regionSetup_tree => '区域树';
+
+  @override
+  String get regionSetup_custom => '自定义';
+
+  @override
+  String get regionSetup_region => '最小的区域';
+
+  @override
+  String regionSetup_source(String source) {
+    return '来源：$source';
+  }
+
+  @override
+  String get regionSetup_customLabel => '区域（从大到小）';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '“$name”不是有效的区域名。请使用小写字母、数字和连字符，最多 29 个字符。';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return '一台中继器最多可设置 $max 个区域。';
+  }
+
+  @override
+  String get regionSetup_options => '选项';
+
+  @override
+  String get regionSetup_setDefault => '把最小的区域设为默认';
+
+  @override
+  String get regionSetup_setDefaultBody => '中继器自己的广播会留在该区域内。';
+
+  @override
+  String get regionSetup_legacy => '固件 1.14';
+
+  @override
+  String get regionSetup_legacyBody => '在每个区域后添加 region allowf。1.15 及以上不需要。';
+
+  @override
+  String get regionSetup_denyUnscoped => '停止转发没有区域的消息';
+
+  @override
+  String get regionSetup_denyUnscopedBody => '只有在整个地区都使用区域后才开启，否则旧版应用的消息将无法通过。';
+
+  @override
+  String get regionSetup_commands => '命令';
+
+  @override
+  String get regionSetup_copyAll => '全部复制';
+
+  @override
+  String get regionSetup_copied => '已复制';
+
+  @override
+  String get regionSetup_pickFirst => '选择一个区域即可查看命令。';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return '发送到 $name';
+  }
+
+  @override
+  String get regionSetup_howToSend => '要发送这些命令，请登录中继器并从其菜单打开区域设置，或把命令粘贴到它的命令行。';
+
+  @override
+  String get regionSetup_noReply => '没有回复，已在此停止。';
+
+  @override
+  String get regionSetup_addToMine => '把这些区域加入我的列表';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已将 $count 个区域加入你的列表',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get trackLog_title => '轨迹记录';
+
+  @override
+  String get trackLog_subtitle => '用电台的 GPS 记录行进轨迹';
+
+  @override
+  String get trackLog_recording => '正在记录';
+
+  @override
+  String get trackLog_notRecording => '未在记录';
+
+  @override
+  String get trackLog_noGps => '你的电台没有报告 GPS 位置。轨迹记录需要开启 GPS 的电台。';
+
+  @override
+  String get trackLog_start => '开始记录';
+
+  @override
+  String get trackLog_stop => '停止记录';
+
+  @override
+  String get trackLog_howItWorks =>
+      '在 NOTORYX Core 打开期间，使用电台大约每分钟报告一次的位置。移动 25 米后添加一个点，静止时每 15 分钟添加一个点。';
+
+  @override
+  String get trackLog_snap => '将位置取整到约 100 米';
+
+  @override
+  String get trackLog_snapBody => '分享轨迹时保护隐私。';
+
+  @override
+  String get trackLog_saved => '已保存的轨迹';
+
+  @override
+  String get trackLog_none => '还没有轨迹。';
+
+  @override
+  String get trackLog_export => '导出为 GPX';
+
+  @override
+  String get trackLog_exportFailed => '无法导出轨迹。';
+
+  @override
+  String get trackLog_deleteTitle => '删除此轨迹？';
+
+  @override
+  String get trackLog_deleteBody => '它将从此设备上删除。已导出的 GPX 文件不受影响。';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km 公里 · $duration · $points 个点';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX 轨迹 $when';
+  }
+
+  @override
   String get routes_nearbyTitle => '附近最佳中继器';
 
   @override

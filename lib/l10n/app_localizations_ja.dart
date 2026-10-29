@@ -7594,6 +7594,328 @@ class AppLocalizationsJa extends AppLocalizations {
   String get connections_viewDashboard => '接続ダッシュボードを表示';
 
   @override
+  String get channelDirectory_title => 'チャンネル一覧';
+
+  @override
+  String get channelDirectory_subtitle => '近くの公開ハッシュタグチャンネルを探す';
+
+  @override
+  String get channelDirectory_search => 'チャンネルや地名を検索';
+
+  @override
+  String get channelDirectory_nearYou => '近くのチャンネル';
+
+  @override
+  String get channelDirectory_all => 'すべてのチャンネル';
+
+  @override
+  String get channelDirectory_catAll => 'すべて';
+
+  @override
+  String get channelDirectory_catEmergency => '緊急';
+
+  @override
+  String get channelDirectory_catLocal => '地域';
+
+  @override
+  String get channelDirectory_catGeneral => '一般';
+
+  @override
+  String get channelDirectory_catInterest => '趣味';
+
+  @override
+  String get channelDirectory_catTest => 'テスト';
+
+  @override
+  String get channelDirectory_join => '参加';
+
+  @override
+  String get channelDirectory_joined => '参加済み';
+
+  @override
+  String get channelDirectory_noMatches => '検索に一致するチャンネルはありません。';
+
+  @override
+  String get channelDirectory_connectFirst => 'チャンネルに参加するには無線機を接続してください。';
+
+  @override
+  String get channelDirectory_slotsFull =>
+      '無線機のチャンネル枠がすべて使用中です。先にチャンネルを削除してください。';
+
+  @override
+  String get channelDirectory_joinFailed => 'チャンネルを追加できませんでした。もう一度お試しください。';
+
+  @override
+  String get channelDirectory_addHint =>
+      'チャンネルが見つかりませんか？GitHub の共有リストを編集すれば誰でも提案できます。';
+
+  @override
+  String get prefixTool_title => 'リピーターID';
+
+  @override
+  String get prefixTool_subtitle => 'IDの使用者、重複しているID、新しいリピーター用の空きIDを確認';
+
+  @override
+  String get prefixTool_width => 'パスIDのサイズ';
+
+  @override
+  String prefixTool_widthBytes(int bytes) {
+    return '$bytesバイト';
+  }
+
+  @override
+  String get prefixTool_includeCompanions => 'コンパニオンとセンサーも含める';
+
+  @override
+  String prefixTool_summary(int nodes, int used, int shared) {
+    return '既知のノード $nodes · 使用中のID $used · 重複 $shared';
+  }
+
+  @override
+  String prefixTool_freeOfSpace(int free, int space) {
+    return '空きID $free / $space';
+  }
+
+  @override
+  String get prefixTool_lookupHint => 'IDを検索（例: 3D）';
+
+  @override
+  String prefixTool_lookupFree(String id) {
+    return '$id を使う既知のノードはありません。';
+  }
+
+  @override
+  String prefixTool_lookupUsed(int count, String id) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$id を使うノード: $count台',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prefixTool_shared => '重複しているID';
+
+  @override
+  String get prefixTool_sharedHint => 'メッシュがより長いIDを使わない限り、これらのIDを通る経路は区別できません。';
+
+  @override
+  String get prefixTool_noShared => '既知のノードに重複したIDはありません。';
+
+  @override
+  String get prefixTool_free => '空きID';
+
+  @override
+  String get prefixTool_shuffle => '別の候補';
+
+  @override
+  String get prefixTool_makeKey => 'キーを作成';
+
+  @override
+  String get prefixTool_onlyKnown =>
+      '無線機が受信したノードだけに基づきます。ここで空いているIDも、受信していないリピーターが使っている可能性があります。';
+
+  @override
+  String prefixTool_inUseWarning(String id, String name) {
+    return '$id はすでに $name が使っています。';
+  }
+
+  @override
+  String get prefixTool_pickFree => '空きIDを選ぶ';
+
+  @override
+  String keyGen_title(String id) {
+    return 'ID $id のキー';
+  }
+
+  @override
+  String keyGen_searching(int tries) {
+    return '検索中… $tries個のキーを試行';
+  }
+
+  @override
+  String get keyGen_publicKey => '公開鍵';
+
+  @override
+  String get keyGen_privateKey => '秘密鍵';
+
+  @override
+  String get keyGen_copy => 'コピー';
+
+  @override
+  String get keyGen_copied => 'コピーしました';
+
+  @override
+  String get keyGen_secretWarning => '秘密鍵は秘密にしてください。持っている人はこのノードになりすませます。';
+
+  @override
+  String get keyGen_howToUse =>
+      'リピーターで使うには、リピーターの設定を開き、秘密鍵として貼り付けて保存します。コンパニオン無線機にはキーのインポートを許可するファームウェアが必要です。';
+
+  @override
+  String get keyGen_tryAgain => 'もう一つ作成';
+
+  @override
+  String get regionSetup_title => 'リージョン設定';
+
+  @override
+  String get regionSetup_hubSubtitle => 'このリピーターを地域のリージョンツリーに配置';
+
+  @override
+  String get regionSetup_intro =>
+      'リージョンを使うと、メッシュ全体にフラッドせず、メッセージを一定の範囲内に留められます。リピーターはそのリージョンを持っている場合だけ転送するので、自分のリージョンとその上位すべてを設定してください。';
+
+  @override
+  String get regionSetup_where => 'リピーターの場所は？';
+
+  @override
+  String get regionSetup_tree => 'リージョンツリー';
+
+  @override
+  String get regionSetup_custom => 'カスタム';
+
+  @override
+  String get regionSetup_region => '最も狭いリージョン';
+
+  @override
+  String regionSetup_source(String source) {
+    return '出典: $source';
+  }
+
+  @override
+  String get regionSetup_customLabel => 'リージョン（広い順）';
+
+  @override
+  String regionSetup_invalidName(String name) {
+    return '「$name」は有効なリージョン名ではありません。小文字、数字、ハイフンで29文字以内にしてください。';
+  }
+
+  @override
+  String regionSetup_tooMany(int max) {
+    return 'リピーターに設定できるリージョンは最大$max個です。';
+  }
+
+  @override
+  String get regionSetup_options => 'オプション';
+
+  @override
+  String get regionSetup_setDefault => '最も狭いリージョンを既定にする';
+
+  @override
+  String get regionSetup_setDefaultBody => 'リピーター自身のアドバートはそのリージョン内に留まります。';
+
+  @override
+  String get regionSetup_legacy => 'ファームウェア 1.14';
+
+  @override
+  String get regionSetup_legacyBody =>
+      '各リージョンの後に region allowf を追加します。1.15以降は不要です。';
+
+  @override
+  String get regionSetup_denyUnscoped => 'リージョンなしのメッセージを転送しない';
+
+  @override
+  String get regionSetup_denyUnscopedBody =>
+      '地域全体がリージョンを使うようになってから有効にしてください。そうしないと古いアプリからのメッセージが届きません。';
+
+  @override
+  String get regionSetup_commands => 'コマンド';
+
+  @override
+  String get regionSetup_copyAll => 'すべてコピー';
+
+  @override
+  String get regionSetup_copied => 'コピーしました';
+
+  @override
+  String get regionSetup_pickFirst => 'リージョンを選ぶとコマンドが表示されます。';
+
+  @override
+  String regionSetup_sendTo(String name) {
+    return '$name に送信';
+  }
+
+  @override
+  String get regionSetup_howToSend =>
+      '送信するには、リピーターにログインしてメニューからリージョン設定を開くか、コマンドラインに貼り付けてください。';
+
+  @override
+  String get regionSetup_noReply => '応答なし。ここで停止しました。';
+
+  @override
+  String get regionSetup_addToMine => 'これらのリージョンをリストに追加';
+
+  @override
+  String regionSetup_addedToMine(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'リストに$count件のリージョンを追加しました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get trackLog_title => 'トラックログ';
+
+  @override
+  String get trackLog_subtitle => '無線機のGPSで移動の軌跡を記録';
+
+  @override
+  String get trackLog_recording => '記録中';
+
+  @override
+  String get trackLog_notRecording => '記録していません';
+
+  @override
+  String get trackLog_noGps => '無線機がGPS位置を送っていません。トラックログにはGPSをオンにした無線機が必要です。';
+
+  @override
+  String get trackLog_start => '記録を開始';
+
+  @override
+  String get trackLog_stop => '記録を停止';
+
+  @override
+  String get trackLog_howItWorks =>
+      'NOTORYX Core を開いている間、無線機が約1分ごとに送る位置を使います。25 m 移動するか、止まっている間は15分ごとに点が追加されます。';
+
+  @override
+  String get trackLog_snap => '位置を約100 mに丸める';
+
+  @override
+  String get trackLog_snapBody => 'トラックを共有するときのプライバシー保護のため。';
+
+  @override
+  String get trackLog_saved => '保存したトラック';
+
+  @override
+  String get trackLog_none => 'まだトラックはありません。';
+
+  @override
+  String get trackLog_export => 'GPXで書き出す';
+
+  @override
+  String get trackLog_exportFailed => 'トラックを書き出せませんでした。';
+
+  @override
+  String get trackLog_deleteTitle => 'このトラックを削除しますか？';
+
+  @override
+  String get trackLog_deleteBody => 'この端末から削除されます。書き出したGPXファイルには影響しません。';
+
+  @override
+  String trackLog_stats(String km, String duration, int points) {
+    return '$km km · $duration · $points点';
+  }
+
+  @override
+  String trackLog_gpxName(String when) {
+    return 'NOTORYX トラック $when';
+  }
+
+  @override
   String get routes_nearbyTitle => '近くの最適なリピーター';
 
   @override
