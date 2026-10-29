@@ -8766,6 +8766,69 @@ class AppLocalizationsDe extends AppLocalizations {
       'Der Akkusparmodus ist an und bestimmt das Tempo (Akku alle 10 Minuten).';
 
   @override
+  String get reach_check => 'Beobachter-Reichweite prüfen';
+
+  @override
+  String get reach_title => 'Beobachter-Reichweite';
+
+  @override
+  String get reach_noHash =>
+      'Diese Nachricht lässt sich noch nicht nachschlagen: Kein Repeater hat sie an dein Funkgerät zurückgesendet, daher ist die Paket-ID unbekannt.';
+
+  @override
+  String get reach_unreachable =>
+      'Analysator nicht erreichbar. Prüfe die Internetverbindung oder die Analysator-Adresse in den Einstellungen.';
+
+  @override
+  String get reach_none =>
+      'Noch kein Beobachter hat sie gehört. Beobachter laden kurz nach dem Empfang hoch, prüfe in einer Minute erneut.';
+
+  @override
+  String get reach_observers => 'Beobachter';
+
+  @override
+  String get reach_maxHops => 'max. Hops';
+
+  @override
+  String get reach_bestSnr => 'bester SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count Hops entfernt';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Vom Online-Analysator: Beobachter, die dieses Paket gehört und hochgeladen haben.';
+
+  @override
+  String get reach_checkAgain => 'Erneut prüfen';
+
+  @override
+  String get analyzer_title => 'Online-Analysator';
+
+  @override
+  String get analyzer_url => 'Analysator-Adresse';
+
+  @override
+  String get analyzer_urlHint =>
+      'Ein CoreScope-Analysator (https://). Nimm den für deine Region.';
+
+  @override
+  String get analyzer_reset => 'Standard';
+
+  @override
+  String get analyzer_hint =>
+      'Damit wird geprüft, welche Beobachter deine Nachrichten gehört haben. Eine Prüfung sendet nur die Paket-ID.';
+
+  @override
+  String get analyzer_hopLookup => 'Unbekannte Repeater online benennen';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Wenn eine Repeater-ID nicht in deinen Kontakten ist, wird der Analysator nach dem Namen gefragt. Es werden nur die kurzen IDs gesendet. Ein Name mit „?“ bedeutet, dass sich mehrere Repeater die ID teilen.';
+
+  @override
   String discovered_tray(int count) {
     return 'In der Nähe gehörte Kanäle: $count';
   }

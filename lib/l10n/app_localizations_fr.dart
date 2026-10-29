@@ -8788,6 +8788,69 @@ class AppLocalizationsFr extends AppLocalizations {
       'L’économiseur de batterie est activé et fixe le rythme (batterie toutes les 10 minutes).';
 
   @override
+  String get reach_check => 'Vérifier la portée chez les observateurs';
+
+  @override
+  String get reach_title => 'Portée chez les observateurs';
+
+  @override
+  String get reach_noHash =>
+      'Ce message ne peut pas encore être recherché : aucun répéteur ne l’a renvoyé vers votre radio, son identifiant de paquet est donc inconnu.';
+
+  @override
+  String get reach_unreachable =>
+      'Analyseur injoignable. Vérifiez la connexion Internet ou l’adresse de l’analyseur dans les réglages.';
+
+  @override
+  String get reach_none =>
+      'Aucun observateur ne l’a encore entendu. Ils envoient leurs données peu après, revérifiez dans une minute.';
+
+  @override
+  String get reach_observers => 'observateurs';
+
+  @override
+  String get reach_maxHops => 'sauts max.';
+
+  @override
+  String get reach_bestSnr => 'meilleur SNR';
+
+  @override
+  String reach_hops(int count) {
+    return 'à $count sauts';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Depuis l’analyseur en ligne : observateurs ayant entendu et envoyé ce paquet.';
+
+  @override
+  String get reach_checkAgain => 'Revérifier';
+
+  @override
+  String get analyzer_title => 'Analyseur en ligne';
+
+  @override
+  String get analyzer_url => 'Adresse de l’analyseur';
+
+  @override
+  String get analyzer_urlHint =>
+      'Un analyseur CoreScope (https://). Utilisez celui de votre région.';
+
+  @override
+  String get analyzer_reset => 'Par défaut';
+
+  @override
+  String get analyzer_hint =>
+      'Sert à vérifier quels observateurs ont entendu vos messages. Une vérification n’envoie que l’identifiant du paquet.';
+
+  @override
+  String get analyzer_hopLookup => 'Nommer en ligne les répéteurs inconnus';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Si un identifiant de répéteur n’est pas dans vos contacts, l’analyseur fournit son nom. Seuls les identifiants courts sont envoyés. Un nom finissant par « ? » signifie que plusieurs répéteurs partagent cet identifiant.';
+
+  @override
   String discovered_tray(int count) {
     return 'Canaux entendus à proximité : $count';
   }

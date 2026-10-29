@@ -8680,6 +8680,69 @@ class AppLocalizationsSv extends AppLocalizations {
       'Batterisparläget är på och styr takten (batteri var 10:e minut).';
 
   @override
+  String get reach_check => 'Kontrollera räckvidd hos observatörer';
+
+  @override
+  String get reach_title => 'Räckvidd hos observatörer';
+
+  @override
+  String get reach_noHash =>
+      'Det här meddelandet kan inte slås upp än: ingen repeater har skickat tillbaka det till radion, så paket-ID:t är okänt.';
+
+  @override
+  String get reach_unreachable =>
+      'Kunde inte nå analysatorn. Kontrollera internet eller analysatorns adress i inställningarna.';
+
+  @override
+  String get reach_none =>
+      'Ingen observatör har hört det än. Observatörer laddar upp en stund efter, kontrollera igen om en minut.';
+
+  @override
+  String get reach_observers => 'observatörer';
+
+  @override
+  String get reach_maxHops => 'max hopp';
+
+  @override
+  String get reach_bestSnr => 'bästa SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count hopp bort';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Från onlineanalysatorn: observatörer som hörde och laddade upp paketet.';
+
+  @override
+  String get reach_checkAgain => 'Kontrollera igen';
+
+  @override
+  String get analyzer_title => 'Onlineanalysator';
+
+  @override
+  String get analyzer_url => 'Analysatoradress';
+
+  @override
+  String get analyzer_urlHint =>
+      'En CoreScope-analysator (https://). Använd den som täcker din region.';
+
+  @override
+  String get analyzer_reset => 'Standard';
+
+  @override
+  String get analyzer_hint =>
+      'Används för att se vilka observatörer som hörde dina meddelanden. Endast paket-ID:t skickas.';
+
+  @override
+  String get analyzer_hopLookup => 'Namnge okända repeatrar online';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'När ett repeater-ID inte finns bland kontakterna frågas analysatorn om namnet. Endast korta ID:n skickas. Ett namn med ”?” betyder att flera repeatrar delar ID:t.';
+
+  @override
   String discovered_tray(int count) {
     return 'Kanaler hörda i närheten: $count';
   }

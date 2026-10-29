@@ -8329,6 +8329,67 @@ class AppLocalizationsJa extends AppLocalizations {
       'バッテリーセーバーがオンのため、そちらの間隔になります（バッテリーは 10 分ごと）。';
 
   @override
+  String get reach_check => 'オブザーバー到達を確認';
+
+  @override
+  String get reach_title => 'オブザーバー到達';
+
+  @override
+  String get reach_noHash =>
+      'このメッセージはまだ調べられません。リピーターが無線機に中継し返していないため、パケット ID が不明です。';
+
+  @override
+  String get reach_unreachable =>
+      'アナライザーに接続できません。インターネット接続か、設定のアナライザーのアドレスを確認してください。';
+
+  @override
+  String get reach_none =>
+      'まだどのオブザーバーも受信していません。受信後少ししてからアップロードされるので、1 分後に再確認してください。';
+
+  @override
+  String get reach_observers => 'オブザーバー';
+
+  @override
+  String get reach_maxHops => '最大ホップ';
+
+  @override
+  String get reach_bestSnr => '最高 SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count ホップ先';
+  }
+
+  @override
+  String get reach_explainer => 'オンラインアナライザーより：このパケットを受信してアップロードしたオブザーバー。';
+
+  @override
+  String get reach_checkAgain => '再確認';
+
+  @override
+  String get analyzer_title => 'オンラインアナライザー';
+
+  @override
+  String get analyzer_url => 'アナライザーのアドレス';
+
+  @override
+  String get analyzer_urlHint =>
+      'CoreScope アナライザー（https://）。お住まいの地域をカバーするものを使います。';
+
+  @override
+  String get analyzer_reset => '既定値';
+
+  @override
+  String get analyzer_hint => 'どのオブザーバーがメッセージを受信したかの確認に使います。送るのはパケット ID だけです。';
+
+  @override
+  String get analyzer_hopLookup => '不明なリピーター名をオンラインで取得';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'リピーター ID が連絡先にない場合、アナライザーに名前を問い合わせます。送るのは短い ID だけです。名前の末尾の「?」は、その ID を複数のリピーターが共有していることを示します。';
+
+  @override
   String discovered_tray(int count) {
     return '近くで受信したチャンネル：$count';
   }

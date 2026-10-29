@@ -11,6 +11,7 @@ import '../l10n/l10n.dart';
 import '../services/field_ops_service.dart';
 import '../models/field_ops.dart';
 import '../helpers/direct_heard_name.dart';
+import '../services/corescope.dart';
 import '../services/direct_repeater_service.dart';
 import '../widgets/instrument.dart';
 import '../widgets/regional_preset_banner.dart';
@@ -160,7 +161,11 @@ class BastionHomeScreen extends StatelessWidget {
               for (final h in heard.take(3))
                 InstrumentRow(
                   title:
-                      directHeardName(c, h.id) ??
+                      heardNameWithOnline(
+                        c,
+                        context.watch<AnalyzerService?>(),
+                        h.id,
+                      ) ??
                       l10n.routes_repeaterWithId(directHeardShortId(h.id)),
                   trailing: SignalReadout(h.snrAverage),
                   onTap: () => open(const BastionPathHubScreen()),

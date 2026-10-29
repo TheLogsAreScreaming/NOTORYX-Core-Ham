@@ -8731,6 +8731,69 @@ class AppLocalizationsSk extends AppLocalizations {
       'Šetrič batérie je zapnutý a určuje tempo (batéria každých 10 minút).';
 
   @override
+  String get reach_check => 'Skontrolovať dosah u pozorovateľov';
+
+  @override
+  String get reach_title => 'Dosah u pozorovateľov';
+
+  @override
+  String get reach_noHash =>
+      'Túto správu ešte nemožno vyhľadať: žiadny opakovač ju nevrátil do rádia, takže ID paketu nie je známe.';
+
+  @override
+  String get reach_unreachable =>
+      'Analyzátor je nedostupný. Skontrolujte internet alebo adresu analyzátora v nastaveniach.';
+
+  @override
+  String get reach_none =>
+      'Zatiaľ ju nepočul žiadny pozorovateľ. Pozorovatelia nahrávajú chvíľu po príjme, skúste to o minútu.';
+
+  @override
+  String get reach_observers => 'pozorovatelia';
+
+  @override
+  String get reach_maxHops => 'max. skokov';
+
+  @override
+  String get reach_bestSnr => 'najlepší SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count skokov ďaleko';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Z online analyzátora: pozorovatelia, ktorí tento paket počuli a nahrali.';
+
+  @override
+  String get reach_checkAgain => 'Znova';
+
+  @override
+  String get analyzer_title => 'Online analyzátor';
+
+  @override
+  String get analyzer_url => 'Adresa analyzátora';
+
+  @override
+  String get analyzer_urlHint =>
+      'Analyzátor CoreScope (https://). Použite ten pre váš región.';
+
+  @override
+  String get analyzer_reset => 'Predvolené';
+
+  @override
+  String get analyzer_hint =>
+      'Slúži na kontrolu, ktorí pozorovatelia počuli vaše správy. Odošle sa iba ID paketu.';
+
+  @override
+  String get analyzer_hopLookup => 'Mená neznámych opakovačov online';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Keď ID opakovača nie je v kontaktoch, meno sa zistí z analyzátora. Odosielajú sa iba krátke ID. Meno s „?“ znamená, že ID zdieľa viac opakovačov.';
+
+  @override
   String discovered_tray(int count) {
     return 'Kanály počuté v okolí: $count';
   }

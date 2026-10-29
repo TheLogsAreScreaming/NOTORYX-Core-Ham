@@ -8740,6 +8740,69 @@ class AppLocalizationsPt extends AppLocalizations {
       'A poupança de bateria está ligada e define o ritmo (bateria a cada 10 minutos).';
 
   @override
+  String get reach_check => 'Verificar alcance nos observadores';
+
+  @override
+  String get reach_title => 'Alcance nos observadores';
+
+  @override
+  String get reach_noHash =>
+      'Ainda não é possível consultar esta mensagem: nenhum repetidor a devolveu ao rádio, por isso o ID do pacote é desconhecido.';
+
+  @override
+  String get reach_unreachable =>
+      'Não foi possível contactar o analisador. Verifique a internet ou o endereço do analisador nas definições.';
+
+  @override
+  String get reach_none =>
+      'Nenhum observador o ouviu ainda. Os observadores enviam pouco depois de ouvir, verifique de novo daqui a um minuto.';
+
+  @override
+  String get reach_observers => 'observadores';
+
+  @override
+  String get reach_maxHops => 'saltos máx.';
+
+  @override
+  String get reach_bestSnr => 'melhor SNR';
+
+  @override
+  String reach_hops(int count) {
+    return 'a $count saltos';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Do analisador online: observadores que ouviram e enviaram este pacote.';
+
+  @override
+  String get reach_checkAgain => 'Verificar de novo';
+
+  @override
+  String get analyzer_title => 'Analisador online';
+
+  @override
+  String get analyzer_url => 'Endereço do analisador';
+
+  @override
+  String get analyzer_urlHint =>
+      'Um analisador CoreScope (https://). Use o da sua região.';
+
+  @override
+  String get analyzer_reset => 'Predefinido';
+
+  @override
+  String get analyzer_hint =>
+      'Serve para verificar que observadores ouviram as mensagens. Só envia o ID do pacote.';
+
+  @override
+  String get analyzer_hopLookup => 'Nomear repetidores desconhecidos online';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Se um ID de repetidor não estiver nos contactos, pede-se o nome ao analisador. Só se enviam os ID curtos. Um nome com «?» indica que vários repetidores partilham o ID.';
+
+  @override
   String discovered_tray(int count) {
     return 'Canais ouvidos por perto: $count';
   }

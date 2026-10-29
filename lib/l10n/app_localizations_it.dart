@@ -8766,6 +8766,69 @@ class AppLocalizationsIt extends AppLocalizations {
       'Il risparmio batteria è attivo e detta il ritmo (batteria ogni 10 minuti).';
 
   @override
+  String get reach_check => 'Controlla portata osservatori';
+
+  @override
+  String get reach_title => 'Portata osservatori';
+
+  @override
+  String get reach_noHash =>
+      'Questo messaggio non è ancora consultabile: nessun ripetitore l’ha rimandato alla tua radio, quindi l’ID del pacchetto non è noto.';
+
+  @override
+  String get reach_unreachable =>
+      'Analizzatore non raggiungibile. Controlla la connessione o l’indirizzo dell’analizzatore nelle impostazioni.';
+
+  @override
+  String get reach_none =>
+      'Nessun osservatore l’ha ancora sentito. Gli osservatori caricano poco dopo, ricontrolla tra un minuto.';
+
+  @override
+  String get reach_observers => 'osservatori';
+
+  @override
+  String get reach_maxHops => 'salti max';
+
+  @override
+  String get reach_bestSnr => 'SNR migliore';
+
+  @override
+  String reach_hops(int count) {
+    return 'a $count salti';
+  }
+
+  @override
+  String get reach_explainer =>
+      'Dall’analizzatore online: osservatori che hanno sentito e caricato questo pacchetto.';
+
+  @override
+  String get reach_checkAgain => 'Ricontrolla';
+
+  @override
+  String get analyzer_title => 'Analizzatore online';
+
+  @override
+  String get analyzer_url => 'Indirizzo analizzatore';
+
+  @override
+  String get analyzer_urlHint =>
+      'Un analizzatore CoreScope (https://). Usa quello della tua regione.';
+
+  @override
+  String get analyzer_reset => 'Predefinito';
+
+  @override
+  String get analyzer_hint =>
+      'Serve a controllare quali osservatori hanno sentito i tuoi messaggi. Invia solo l’ID del pacchetto.';
+
+  @override
+  String get analyzer_hopLookup => 'Nomina online i ripetitori sconosciuti';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'Se un ID di ripetitore non è nei contatti, se ne chiede il nome all’analizzatore. Si inviano solo gli ID brevi. Un nome con «?» indica che più ripetitori condividono l’ID.';
+
+  @override
   String discovered_tray(int count) {
     return 'Canali sentiti nelle vicinanze: $count';
   }

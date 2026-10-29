@@ -5121,6 +5121,31 @@
   "settings_refreshNormalHint": "Battery every 2 minutes, GPS every minute.",
   "settings_refreshSlowHint": "Battery every 6 minutes, GPS every 3 minutes. Saves battery.",
   "settings_refreshSaverOn": "Battery saver is on, so it sets the pace (battery every 10 minutes).",
+  "reach_check": "Check observer reach",
+  "reach_title": "Observer reach",
+  "reach_noHash": "This message can’t be looked up yet: no repeater has echoed it back to your radio, so its packet ID isn’t known.",
+  "reach_unreachable": "Couldn’t reach the analyzer. Check your internet connection or the analyzer address in Settings.",
+  "reach_none": "No observer has heard it yet. Observers upload a little after hearing a packet, so check again in a minute.",
+  "reach_observers": "observers",
+  "reach_maxHops": "max hops",
+  "reach_bestSnr": "best SNR",
+  "reach_hops": "{count} hops away",
+  "@reach_hops": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reach_explainer": "From the online analyzer: observers that heard this packet and uploaded it.",
+  "reach_checkAgain": "Check again",
+  "analyzer_title": "Online analyzer",
+  "analyzer_url": "Analyzer address",
+  "analyzer_urlHint": "A CoreScope analyzer (https://). Use the one that covers your region.",
+  "analyzer_reset": "Default",
+  "analyzer_hint": "Used to check which observers heard your messages. A check sends only the packet ID.",
+  "analyzer_hopLookup": "Name unknown repeaters online",
+  "analyzer_hopLookupHint": "When a repeater ID isn’t in your contacts, ask the analyzer for its name. Sends the short IDs only. A name ending in “?” means several repeaters share that ID.",
   "discovered_tray": "Channels heard nearby: {count}",
   "@discovered_tray": {
     "placeholders": {

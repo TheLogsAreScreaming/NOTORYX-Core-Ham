@@ -55,6 +55,7 @@ import 'services/direct_repeater_service.dart';
 import 'services/mqtt_uploaders_service.dart';
 import 'services/coverage_hex_service.dart';
 import 'services/channel_discovery_service.dart';
+import 'services/corescope.dart';
 import 'services/track_log_service.dart';
 import 'services/weather_service.dart';
 
@@ -272,6 +273,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final DirectRepeaterService _directRepeaters;
   late final TrackLogService _trackLog;
   late final ChannelDiscoveryService _channelDiscovery;
+  late final AnalyzerService _analyzer;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -298,6 +300,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _trackLog = TrackLogService(widget.connector);
     _channelDiscovery = ChannelDiscoveryService(widget.connector);
     unawaited(_channelDiscovery.load());
+    _analyzer = AnalyzerService()..load();
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
     unawaited(_trackLog.load());
@@ -383,6 +386,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _directRepeaters.dispose();
     _trackLog.dispose();
     _channelDiscovery.dispose();
+    _analyzer.dispose();
     _coverageHex.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
@@ -477,6 +481,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider<ChannelDiscoveryService?>.value(
           value: _channelDiscovery,
         ),
+        ChangeNotifierProvider<AnalyzerService?>.value(value: _analyzer),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,

@@ -59,6 +59,7 @@ import '../widgets/via_mqtt_label.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/link_preview_card.dart';
 import '../services/link_preview.dart';
+import '../widgets/observer_reach_sheet.dart';
 import '../widgets/mesh_ui.dart';
 import 'app_settings_screen.dart';
 import 'channel_message_path_screen.dart';
@@ -2380,6 +2381,14 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               onTap: () {
                 Navigator.pop(sheetContext);
                 _showMessagePathInfo(message);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.podcasts),
+              title: Text(context.l10n.reach_check),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                showObserverReachSheet(context, message.packetHash);
               },
             ),
             // Can't react to your own messages

@@ -8154,6 +8154,63 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_refreshSaverOn => '省电模式已开启，由它决定频率（电量每 10 分钟）。';
 
   @override
+  String get reach_check => '检查观测站覆盖';
+
+  @override
+  String get reach_title => '观测站覆盖';
+
+  @override
+  String get reach_noHash => '暂时无法查询此消息：还没有中继器将它回传到你的电台，因此不知道数据包 ID。';
+
+  @override
+  String get reach_unreachable => '无法连接分析器。请检查网络连接或设置中的分析器地址。';
+
+  @override
+  String get reach_none => '还没有观测站收到。观测站收到后稍后才上传，请一分钟后再查。';
+
+  @override
+  String get reach_observers => '观测站';
+
+  @override
+  String get reach_maxHops => '最多跳数';
+
+  @override
+  String get reach_bestSnr => '最佳 SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count 跳之外';
+  }
+
+  @override
+  String get reach_explainer => '来自在线分析器：收到并上传此数据包的观测站。';
+
+  @override
+  String get reach_checkAgain => '再次检查';
+
+  @override
+  String get analyzer_title => '在线分析器';
+
+  @override
+  String get analyzer_url => '分析器地址';
+
+  @override
+  String get analyzer_urlHint => 'CoreScope 分析器（https://）。请使用覆盖你所在地区的那个。';
+
+  @override
+  String get analyzer_reset => '默认';
+
+  @override
+  String get analyzer_hint => '用于查看哪些观测站收到了你的消息。只发送数据包 ID。';
+
+  @override
+  String get analyzer_hopLookup => '在线识别未知中继器';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      '中继器 ID 不在联系人中时，向分析器查询其名称。只发送短 ID。名称以“?”结尾表示多个中继器共用该 ID。';
+
+  @override
   String discovered_tray(int count) {
     return '附近收到的频道：$count';
   }

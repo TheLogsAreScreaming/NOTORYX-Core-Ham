@@ -8633,6 +8633,69 @@ class AppLocalizationsEn extends AppLocalizations {
       'Battery saver is on, so it sets the pace (battery every 10 minutes).';
 
   @override
+  String get reach_check => 'Check observer reach';
+
+  @override
+  String get reach_title => 'Observer reach';
+
+  @override
+  String get reach_noHash =>
+      'This message can’t be looked up yet: no repeater has echoed it back to your radio, so its packet ID isn’t known.';
+
+  @override
+  String get reach_unreachable =>
+      'Couldn’t reach the analyzer. Check your internet connection or the analyzer address in Settings.';
+
+  @override
+  String get reach_none =>
+      'No observer has heard it yet. Observers upload a little after hearing a packet, so check again in a minute.';
+
+  @override
+  String get reach_observers => 'observers';
+
+  @override
+  String get reach_maxHops => 'max hops';
+
+  @override
+  String get reach_bestSnr => 'best SNR';
+
+  @override
+  String reach_hops(int count) {
+    return '$count hops away';
+  }
+
+  @override
+  String get reach_explainer =>
+      'From the online analyzer: observers that heard this packet and uploaded it.';
+
+  @override
+  String get reach_checkAgain => 'Check again';
+
+  @override
+  String get analyzer_title => 'Online analyzer';
+
+  @override
+  String get analyzer_url => 'Analyzer address';
+
+  @override
+  String get analyzer_urlHint =>
+      'A CoreScope analyzer (https://). Use the one that covers your region.';
+
+  @override
+  String get analyzer_reset => 'Default';
+
+  @override
+  String get analyzer_hint =>
+      'Used to check which observers heard your messages. A check sends only the packet ID.';
+
+  @override
+  String get analyzer_hopLookup => 'Name unknown repeaters online';
+
+  @override
+  String get analyzer_hopLookupHint =>
+      'When a repeater ID isn’t in your contacts, ask the analyzer for its name. Sends the short IDs only. A name ending in “?” means several repeaters share that ID.';
+
+  @override
   String discovered_tray(int count) {
     return 'Channels heard nearby: $count';
   }
