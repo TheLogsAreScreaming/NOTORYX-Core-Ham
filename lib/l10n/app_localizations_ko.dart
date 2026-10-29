@@ -8009,4 +8009,112 @@ class AppLocalizationsKo extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return '리피터 $id';
   }
+
+  @override
+  String get ping_title => '리피터 핑';
+
+  @override
+  String get ping_toolSubtitle => '근처 리피터와의 왕복 시간과 양방향 신호';
+
+  @override
+  String get ping_noRepeaters => '아직 알려진 리피터가 없습니다';
+
+  @override
+  String get ping_choose => '리피터 선택';
+
+  @override
+  String get ping_avgMs => 'ms 왕복';
+
+  @override
+  String get ping_snrThere => 'SNR 상대측';
+
+  @override
+  String get ping_snrBack => 'SNR 수신';
+
+  @override
+  String get ping_loss => '손실';
+
+  @override
+  String ping_running(int done, int total) {
+    return '핑 $done/$total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return '$count회 핑';
+  }
+
+  @override
+  String get ping_results => '프로브';
+
+  @override
+  String get ping_noReply => '응답 없음';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · 상대측 SNR $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      '각 프로브는 1홉 경로 추적입니다. 리피터가 수신 상태를 기록해 되돌려 보냅니다. 무전기가 직접 수신하는 리피터에서 작동합니다.';
+
+  @override
+  String get hunt_title => '안테나 헌트';
+
+  @override
+  String get hunt_toolSubtitle => '신호가 강할수록 빠르게 딸깍이는 큰 실시간 신호 계기';
+
+  @override
+  String get hunt_noSignal => '아직 신호 없음';
+
+  @override
+  String get hunt_noReply => '응답 없음 — 안테나를 옮기거나 돌려 보세요';
+
+  @override
+  String get hunt_heardHere => 'dB(이쪽 수신)';
+
+  @override
+  String get hunt_best => '최고';
+
+  @override
+  String get hunt_sound => '강해질수록 딸깍';
+
+  @override
+  String get hunt_soundHint => '딸깍할 때마다 진동하므로 화면을 보지 않고 방향을 맞출 수 있습니다.';
+
+  @override
+  String get hunt_stop => '중지';
+
+  @override
+  String get hunt_start => '헌트 시작';
+
+  @override
+  String get hunt_explainer =>
+      '약 1초마다 리피터를 탐지합니다. 지향성 안테나를 돌리거나 걸어 다니세요. 숫자는 무전기가 얼마나 잘 수신하는지입니다.';
+
+  @override
+  String get settings_refreshRate => '무전기 새로고침 빈도';
+
+  @override
+  String get settings_refreshFast => '빠름';
+
+  @override
+  String get settings_refreshNormal => '보통';
+
+  @override
+  String get settings_refreshSlow => '느림';
+
+  @override
+  String get settings_refreshFastHint =>
+      '배터리 1분마다, GPS 30초마다. 더 최신 값, 배터리 소모 증가.';
+
+  @override
+  String get settings_refreshNormalHint => '배터리 2분마다, GPS 1분마다.';
+
+  @override
+  String get settings_refreshSlowHint => '배터리 6분마다, GPS 3분마다. 배터리 절약.';
+
+  @override
+  String get settings_refreshSaverOn => '배터리 절약이 켜져 있어 그 주기를 따릅니다(배터리 10분마다).';
 }

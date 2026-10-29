@@ -7997,4 +7997,112 @@ class AppLocalizationsJa extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'リピーター $id';
   }
+
+  @override
+  String get ping_title => 'リピーター ping';
+
+  @override
+  String get ping_toolSubtitle => '近くのリピーターとの往復時間と双方向の信号';
+
+  @override
+  String get ping_noRepeaters => '既知のリピーターはまだありません';
+
+  @override
+  String get ping_choose => 'リピーターを選択';
+
+  @override
+  String get ping_avgMs => 'ms 往復';
+
+  @override
+  String get ping_snrThere => 'SNR 先方';
+
+  @override
+  String get ping_snrBack => 'SNR 受信';
+
+  @override
+  String get ping_loss => '損失';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'ping $done/$total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return '$count 回 ping';
+  }
+
+  @override
+  String get ping_results => 'プローブ';
+
+  @override
+  String get ping_noReply => '応答なし';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · 先方 SNR $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      '各プローブは 1 ホップの経路トレースです。リピーターは受信品質を記録して送り返します。無線機が直接受信できるリピーターで使えます。';
+
+  @override
+  String get hunt_title => 'アンテナハント';
+
+  @override
+  String get hunt_toolSubtitle => '強くなるほど速くクリックする大きな信号メーター';
+
+  @override
+  String get hunt_noSignal => 'まだ信号なし';
+
+  @override
+  String get hunt_noReply => '応答なし — アンテナを動かすか向きを変えてください';
+
+  @override
+  String get hunt_heardHere => 'dB（こちらで受信）';
+
+  @override
+  String get hunt_best => '最高';
+
+  @override
+  String get hunt_sound => '強くなるほどクリック';
+
+  @override
+  String get hunt_soundHint => 'クリックごとに振動するので、画面を見ずに向きを合わせられます。';
+
+  @override
+  String get hunt_stop => '停止';
+
+  @override
+  String get hunt_start => 'ハント開始';
+
+  @override
+  String get hunt_explainer =>
+      '約 1 秒ごとにリピーターを探査します。指向性アンテナを向けるか歩き回ってください。数値は無線機の受信の良さです。';
+
+  @override
+  String get settings_refreshRate => '無線機の更新頻度';
+
+  @override
+  String get settings_refreshFast => '速い';
+
+  @override
+  String get settings_refreshNormal => '標準';
+
+  @override
+  String get settings_refreshSlow => '遅い';
+
+  @override
+  String get settings_refreshFastHint => 'バッテリーは毎分、GPS は 30 秒ごと。新しい値、電池消費は多め。';
+
+  @override
+  String get settings_refreshNormalHint => 'バッテリーは 2 分ごと、GPS は毎分。';
+
+  @override
+  String get settings_refreshSlowHint => 'バッテリーは 6 分ごと、GPS は 3 分ごと。電池を節約。';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'バッテリーセーバーがオンのため、そちらの間隔になります（バッテリーは 10 分ごと）。';
 }

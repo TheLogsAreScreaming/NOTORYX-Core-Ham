@@ -8432,4 +8432,119 @@ class AppLocalizationsUk extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'Ретранслятор $id';
   }
+
+  @override
+  String get ping_title => 'Пінг ретранслятора';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Час туди й назад і сигнал в обидва боки до близького ретранслятора';
+
+  @override
+  String get ping_noRepeaters => 'Ретрансляторів поки немає';
+
+  @override
+  String get ping_choose => 'Виберіть ретранслятор';
+
+  @override
+  String get ping_avgMs => 'мс туди й назад';
+
+  @override
+  String get ping_snrThere => 'SNR там';
+
+  @override
+  String get ping_snrBack => 'SNR назад';
+
+  @override
+  String get ping_loss => 'Втрати';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Пінг $done з $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Пінг $count разів';
+  }
+
+  @override
+  String get ping_results => 'Зонди';
+
+  @override
+  String get ping_noReply => 'Немає відповіді';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms мс · SNR там $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Кожен зонд — трасування шляху на один хоп: ретранслятор фіксує, як добре вас чув, і повертає це. Працює з ретрансляторами, які радіо чує напряму.';
+
+  @override
+  String get hunt_title => 'Пошук антеною';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Великий вимірювач сигналу, клацає частіше, коли сигнал сильнішає';
+
+  @override
+  String get hunt_noSignal => 'Сигналу поки немає';
+
+  @override
+  String get hunt_noReply =>
+      'Немає відповіді — перемістіть або поверніть антену';
+
+  @override
+  String get hunt_heardHere => 'дБ чути тут';
+
+  @override
+  String get hunt_best => 'Найкращий';
+
+  @override
+  String get hunt_sound => 'Клацання при посиленні';
+
+  @override
+  String get hunt_soundHint =>
+      'З вібрацією на кожне клацання, щоб наводити не дивлячись.';
+
+  @override
+  String get hunt_stop => 'Стоп';
+
+  @override
+  String get hunt_start => 'Почати пошук';
+
+  @override
+  String get hunt_explainer =>
+      'Опитує ретранслятор приблизно раз на секунду. Наводьте спрямовану антену або ходіть: число показує, як добре радіо його чує.';
+
+  @override
+  String get settings_refreshRate => 'Частота оновлення';
+
+  @override
+  String get settings_refreshFast => 'Швидко';
+
+  @override
+  String get settings_refreshNormal => 'Звичайно';
+
+  @override
+  String get settings_refreshSlow => 'Повільно';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Батарея щохвилини, GPS кожні 30 с. Свіжіші дані, більша витрата.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Батарея кожні 2 хвилини, GPS щохвилини.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Батарея кожні 6 хвилин, GPS кожні 3. Економить батарею.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Увімкнено економію батареї, вона задає темп (батарея кожні 10 хвилин).';
 }

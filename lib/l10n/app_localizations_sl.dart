@@ -8395,4 +8395,118 @@ class AppLocalizationsSl extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'Repetitor $id';
   }
+
+  @override
+  String get ping_title => 'Ping repetitorja';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Čas tja in nazaj ter signal v obe smeri do bližnjega repetitorja';
+
+  @override
+  String get ping_noRepeaters => 'Še ni znanih repetitorjev';
+
+  @override
+  String get ping_choose => 'Izberite repetitor';
+
+  @override
+  String get ping_avgMs => 'ms tja in nazaj';
+
+  @override
+  String get ping_snrThere => 'SNR tam';
+
+  @override
+  String get ping_snrBack => 'SNR nazaj';
+
+  @override
+  String get ping_loss => 'Izgubljeni';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done od $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Ping $count-krat';
+  }
+
+  @override
+  String get ping_results => 'Sonde';
+
+  @override
+  String get ping_noReply => 'Ni odgovora';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR tam $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Vsaka sonda je sledenje poti z enim skokom: repetitor zabeleži, kako dobro vas je slišal, in to vrne. Deluje z repetitorji, ki jih radio sliši neposredno.';
+
+  @override
+  String get hunt_title => 'Iskanje z anteno';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Velik merilnik signala, ki klika hitreje, ko je močnejši';
+
+  @override
+  String get hunt_noSignal => 'Še ni signala';
+
+  @override
+  String get hunt_noReply => 'Ni odgovora — premaknite ali obrnite anteno';
+
+  @override
+  String get hunt_heardHere => 'dB slišano tukaj';
+
+  @override
+  String get hunt_best => 'Najboljši';
+
+  @override
+  String get hunt_sound => 'Klikaj, ko se signal krepi';
+
+  @override
+  String get hunt_soundHint =>
+      'Z vibracijo ob vsakem kliku, da lahko usmerjate brez gledanja.';
+
+  @override
+  String get hunt_stop => 'Ustavi';
+
+  @override
+  String get hunt_start => 'Začni iskanje';
+
+  @override
+  String get hunt_explainer =>
+      'Repetitor preveri približno enkrat na sekundo. Usmerite usmerjeno anteno ali se sprehodite: število pove, kako dobro ga radio sliši.';
+
+  @override
+  String get settings_refreshRate => 'Pogostost osveževanja';
+
+  @override
+  String get settings_refreshFast => 'Hitro';
+
+  @override
+  String get settings_refreshNormal => 'Običajno';
+
+  @override
+  String get settings_refreshSlow => 'Počasi';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Baterija vsako minuto, GPS vsakih 30 s. Svežejši podatki, večja poraba.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Baterija vsaki 2 minuti, GPS vsako minuto.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Baterija vsakih 6 minut, GPS vsake 3. Varčuje z baterijo.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Varčevanje z baterijo je vklopljeno in določa tempo (baterija vsakih 10 minut).';
 }

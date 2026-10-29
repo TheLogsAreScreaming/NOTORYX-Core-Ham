@@ -101,6 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: RegionalPresetTile(),
                 ),
                 const BatterySaverCard(),
+                const RefreshRateCard(),
                 const MeshCard(
                   padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
                   child: Column(
@@ -2281,6 +2282,65 @@ class BatterySaverCard extends StatelessWidget {
         ),
         value: on,
         onChanged: settings.setBatterySaver,
+      ),
+    );
+  }
+}
+
+/// How often the app refreshes the radio's battery, GPS and stats.
+class RefreshRateCard extends StatelessWidget {
+  const RefreshRateCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    final rate = settings.settings.refreshRate;
+    final saver = settings.settings.batterySaver;
+    final l10n = context.l10n;
+    return MeshCard(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.settings_refreshRate,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(height: 8),
+          SegmentedButton<String>(
+            key: const ValueKey('refresh-rate'),
+            showSelectedIcon: false,
+            segments: [
+              ButtonSegment(
+                value: 'fast',
+                label: Text(l10n.settings_refreshFast),
+              ),
+              ButtonSegment(
+                value: 'normal',
+                label: Text(l10n.settings_refreshNormal),
+              ),
+              ButtonSegment(
+                value: 'slow',
+                label: Text(l10n.settings_refreshSlow),
+              ),
+            ],
+            selected: {rate},
+            onSelectionChanged: saver
+                ? null
+                : (v) => settings.setRefreshRate(v.first),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            saver
+                ? l10n.settings_refreshSaverOn
+                : switch (rate) {
+                    'fast' => l10n.settings_refreshFastHint,
+                    'slow' => l10n.settings_refreshSlowHint,
+                    _ => l10n.settings_refreshNormalHint,
+                  },
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
       ),
     );
   }

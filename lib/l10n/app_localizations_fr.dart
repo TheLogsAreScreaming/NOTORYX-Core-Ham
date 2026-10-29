@@ -8438,4 +8438,118 @@ class AppLocalizationsFr extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'Répéteur $id';
   }
+
+  @override
+  String get ping_title => 'Ping de répéteur';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Temps aller-retour et signal dans les deux sens vers un répéteur proche';
+
+  @override
+  String get ping_noRepeaters => 'Aucun répéteur connu pour l’instant';
+
+  @override
+  String get ping_choose => 'Choisir un répéteur';
+
+  @override
+  String get ping_avgMs => 'ms aller-retour';
+
+  @override
+  String get ping_snrThere => 'SNR là-bas';
+
+  @override
+  String get ping_snrBack => 'SNR retour';
+
+  @override
+  String get ping_loss => 'Perdus';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping $done sur $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return 'Pinguer $count fois';
+  }
+
+  @override
+  String get ping_results => 'Sondes';
+
+  @override
+  String get ping_noReply => 'Pas de réponse';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR là-bas $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Chaque sonde est un traçage à un saut : le répéteur note la qualité de réception et la renvoie. Fonctionne avec les répéteurs que votre radio entend directement.';
+
+  @override
+  String get hunt_title => 'Recherche d’antenne';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Grand indicateur de signal en direct qui clique plus vite quand il se renforce';
+
+  @override
+  String get hunt_noSignal => 'Pas encore de signal';
+
+  @override
+  String get hunt_noReply => 'Pas de réponse : déplacez ou tournez l’antenne';
+
+  @override
+  String get hunt_heardHere => 'dB reçus ici';
+
+  @override
+  String get hunt_best => 'Meilleur';
+
+  @override
+  String get hunt_sound => 'Cliquer quand le signal se renforce';
+
+  @override
+  String get hunt_soundHint =>
+      'Avec une vibration à chaque clic, pour viser sans regarder.';
+
+  @override
+  String get hunt_stop => 'Arrêter';
+
+  @override
+  String get hunt_start => 'Commencer la recherche';
+
+  @override
+  String get hunt_explainer =>
+      'Sonde le répéteur environ une fois par seconde. Orientez une antenne directive ou déplacez-vous : le nombre indique la qualité de réception.';
+
+  @override
+  String get settings_refreshRate => 'Fréquence d’actualisation';
+
+  @override
+  String get settings_refreshFast => 'Rapide';
+
+  @override
+  String get settings_refreshNormal => 'Normale';
+
+  @override
+  String get settings_refreshSlow => 'Lente';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Batterie chaque minute, GPS toutes les 30 s. Valeurs plus fraîches, plus de consommation.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Batterie toutes les 2 minutes, GPS chaque minute.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Batterie toutes les 6 minutes, GPS toutes les 3. Économise la batterie.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'L’économiseur de batterie est activé et fixe le rythme (batterie toutes les 10 minutes).';
 }

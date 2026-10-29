@@ -8395,4 +8395,119 @@ class AppLocalizationsHu extends AppLocalizations {
   String routes_repeaterWithId(String id) {
     return 'Átjátszó $id';
   }
+
+  @override
+  String get ping_title => 'Átjátszó ping';
+
+  @override
+  String get ping_toolSubtitle =>
+      'Oda-vissza idő és jel mindkét irányban egy közeli átjátszóhoz';
+
+  @override
+  String get ping_noRepeaters => 'Még nincs ismert átjátszó';
+
+  @override
+  String get ping_choose => 'Válasszon átjátszót';
+
+  @override
+  String get ping_avgMs => 'ms oda-vissza';
+
+  @override
+  String get ping_snrThere => 'SNR ott';
+
+  @override
+  String get ping_snrBack => 'SNR vissza';
+
+  @override
+  String get ping_loss => 'Elveszett';
+
+  @override
+  String ping_running(int done, int total) {
+    return 'Ping: $done / $total…';
+  }
+
+  @override
+  String ping_start(int count) {
+    return '$count ping';
+  }
+
+  @override
+  String get ping_results => 'Próbák';
+
+  @override
+  String get ping_noReply => 'Nincs válasz';
+
+  @override
+  String ping_resultLine(String ms, String snr) {
+    return '$ms ms · SNR ott $snr';
+  }
+
+  @override
+  String get ping_explainer =>
+      'Minden próba egyugrásos útvonalkövetés: az átjátszó feljegyzi, mennyire hallotta, és visszaküldi. Közvetlenül hallott átjátszóknál működik.';
+
+  @override
+  String get hunt_title => 'Antennakeresés';
+
+  @override
+  String get hunt_toolSubtitle =>
+      'Nagy élő jelmérő, amely erősebb jelnél gyorsabban kattog';
+
+  @override
+  String get hunt_noSignal => 'Még nincs jel';
+
+  @override
+  String get hunt_noReply =>
+      'Nincs válasz – mozdítsa vagy fordítsa az antennát';
+
+  @override
+  String get hunt_heardHere => 'dB itt hallva';
+
+  @override
+  String get hunt_best => 'Legjobb';
+
+  @override
+  String get hunt_sound => 'Kattogás erősödő jelnél';
+
+  @override
+  String get hunt_soundHint =>
+      'Minden kattanásnál rezgéssel, hogy nézés nélkül célozhasson.';
+
+  @override
+  String get hunt_stop => 'Leállítás';
+
+  @override
+  String get hunt_start => 'Keresés indítása';
+
+  @override
+  String get hunt_explainer =>
+      'Másodpercenként nagyjából egyszer szondázza az átjátszót. Irányítson irányított antennát vagy sétáljon: a szám azt mutatja, mennyire hallja a rádió.';
+
+  @override
+  String get settings_refreshRate => 'Frissítési gyakoriság';
+
+  @override
+  String get settings_refreshFast => 'Gyors';
+
+  @override
+  String get settings_refreshNormal => 'Normál';
+
+  @override
+  String get settings_refreshSlow => 'Lassú';
+
+  @override
+  String get settings_refreshFastHint =>
+      'Akkumulátor percenként, GPS 30 mp-enként. Frissebb adatok, több fogyasztás.';
+
+  @override
+  String get settings_refreshNormalHint =>
+      'Akkumulátor 2 percenként, GPS percenként.';
+
+  @override
+  String get settings_refreshSlowHint =>
+      'Akkumulátor 6 percenként, GPS 3 percenként. Kíméli az akkut.';
+
+  @override
+  String get settings_refreshSaverOn =>
+      'Az energiatakarékos mód be van kapcsolva, ez szabja meg az ütemet (akkumulátor 10 percenként).';
 }
