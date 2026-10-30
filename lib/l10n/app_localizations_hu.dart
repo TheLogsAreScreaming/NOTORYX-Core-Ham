@@ -9078,6 +9078,18 @@ class AppLocalizationsHu extends AppLocalizations {
       'A rádió kulcsával aláírva, így a csatornán mások látják, hogy tényleg Öntől jön. Az út kontaktjai közvetlenül is megkapják.';
 
   @override
+  String get channels_regionUnknown => 'Regionális';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Elküldve a(z) $region régiónak';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Az alkalmazás által nem ismert régiónak küldve';
+
+  @override
   String get wardrive_title => 'Lefedettség-felmérés';
 
   @override

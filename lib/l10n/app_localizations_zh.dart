@@ -8463,6 +8463,17 @@ class AppLocalizationsZh extends AppLocalizations {
       '使用电台的密钥签名，频道中的其他人能确认确实是你。行程联系人仍会直接收到。';
 
   @override
+  String get channels_regionUnknown => '区域';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return '发送到区域 $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics => '发送到应用未知的区域';
+
+  @override
   String get wardrive_title => '覆盖测绘';
 
   @override

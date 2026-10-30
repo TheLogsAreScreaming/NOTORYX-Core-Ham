@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/models/channel.dart';
+import 'package:meshcore_open/models/region_scope.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -110,5 +111,47 @@ void main() {
     connector.ingestMqttRawPacket(Uint8List.fromList([0x15]));
     connector.ingestMqttRawPacket(Uint8List.fromList([0x15, 0x3F, 1]));
     expect(connector.getChannelMessages(channel), isEmpty);
+  });
+
+  /// [raw] re-sent as a region-scoped flood, with [region]'s transport code.
+  Uint8List scoped(Uint8List raw, String region) {
+    final pathLen = raw[1];
+    final payload = Uint8List.fromList(raw.sublist(2 + pathLen));
+    final code = regionTransportCode(regionKey(region), 5, payload);
+    return Uint8List.fromList([
+      0x14, // transport flood, GRP_TXT
+      code & 0xFF,
+      code >> 8,
+      0,
+      0,
+      ...raw.sublist(1),
+    ]);
+  }
+
+  test('a region-scoped post is tagged with its region', () {
+    connector.debugRegionNames = {'usa', 'us-ne', 'ct'};
+    radioRx(
+      scoped(
+        groupTextPacket(psk: psk, text: 'Alice: trail open', path: [3]),
+        'ct',
+      ),
+    );
+    final message = connector.getChannelMessages(channel).single;
+    expect(message.text, 'trail open');
+    expect(message.region, 'ct');
+  });
+
+  test('an unknown region shows as regional, an unscoped post as none', () {
+    connector.debugRegionNames = {'ct'};
+    radioRx(
+      scoped(
+        groupTextPacket(psk: psk, text: 'Alice: one', timestamp: 1760000001),
+        'elsewhere',
+      ),
+    );
+    radioRx(groupTextPacket(psk: psk, text: 'Bob: two', timestamp: 1760000002));
+    final messages = connector.getChannelMessages(channel);
+    expect(messages.firstWhere((m) => m.text == 'one').region, unknownRegion);
+    expect(messages.firstWhere((m) => m.text == 'two').region, isNull);
   });
 }

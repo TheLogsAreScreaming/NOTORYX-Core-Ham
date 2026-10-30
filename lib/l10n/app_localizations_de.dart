@@ -9102,6 +9102,18 @@ class AppLocalizationsDe extends AppLocalizations {
       'Mit dem Schlüssel deines Funkgeräts signiert, damit andere im Kanal sehen, dass es wirklich von dir ist. Reisekontakte bekommen es weiterhin direkt.';
 
   @override
+  String get channels_regionUnknown => 'Regional';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'An Region $region gesendet';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'An eine Region gesendet, die die App nicht kennt';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

@@ -9075,6 +9075,18 @@ class AppLocalizationsSl extends AppLocalizations {
       'Podpisano s ključem radia, da drugi v kanalu vidijo, da ste res vi. Stiki izleta ga še vedno prejmejo neposredno.';
 
   @override
+  String get channels_regionUnknown => 'Regionalno';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Poslano v regijo $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Poslano v regijo, ki je aplikacija ne pozna';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

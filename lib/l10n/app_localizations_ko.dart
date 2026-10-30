@@ -8660,6 +8660,17 @@ class AppLocalizationsKo extends AppLocalizations {
       '무전기 키로 서명되어 채널의 다른 사람이 정말 당신임을 알 수 있습니다. 여행 연락처는 계속 직접 받습니다.';
 
   @override
+  String get channels_regionUnknown => '지역 한정';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return '$region 지역으로 보냄';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics => '앱이 모르는 지역으로 보냄';
+
+  @override
   String get wardrive_title => '워드라이브';
 
   @override

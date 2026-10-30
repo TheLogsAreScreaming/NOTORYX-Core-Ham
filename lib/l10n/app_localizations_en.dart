@@ -8967,6 +8967,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'Signed with your radio’s key, so others on the channel can see it’s really you. Trip contacts still get it directly.';
 
   @override
+  String get channels_regionUnknown => 'Regional';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Sent to region $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Sent to a region this app doesn’t know';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

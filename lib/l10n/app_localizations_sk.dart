@@ -9065,6 +9065,18 @@ class AppLocalizationsSk extends AppLocalizations {
       'Podpísané kľúčom rádia, aby ostatní v kanáli videli, že ste to naozaj vy. Kontakty výletu ho stále dostanú priamo.';
 
   @override
+  String get channels_regionUnknown => 'Regionálne';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Odoslané do regiónu $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Odoslané do regiónu, ktorý aplikácia nepozná';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

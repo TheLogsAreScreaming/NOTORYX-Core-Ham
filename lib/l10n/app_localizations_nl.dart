@@ -9053,6 +9053,18 @@ class AppLocalizationsNl extends AppLocalizations {
       'Ondertekend met de sleutel van je radio, zodat anderen in het kanaal zien dat jij het echt bent. Reiscontacten krijgen het nog steeds direct.';
 
   @override
+  String get channels_regionUnknown => 'Regionaal';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Verzonden naar regio $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Verzonden naar een regio die de app niet kent';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

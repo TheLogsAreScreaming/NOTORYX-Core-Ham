@@ -9113,6 +9113,18 @@ class AppLocalizationsUk extends AppLocalizations {
       'Підписується ключем вашого радіо, щоб інші в каналі бачили, що це справді ви. Контакти поїздки й далі отримують його напряму.';
 
   @override
+  String get channels_regionUnknown => 'Регіональне';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Надіслано в регіон $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Надіслано в регіон, невідомий застосунку';
+
+  @override
   String get wardrive_title => 'Вардрайв';
 
   @override

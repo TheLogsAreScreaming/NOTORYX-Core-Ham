@@ -56,6 +56,7 @@ import '../widgets/radio_stats_entry.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/translated_message_content.dart';
 import '../widgets/unread_divider.dart';
+import '../widgets/region_label.dart';
 import '../widgets/via_mqtt_label.dart';
 import '../widgets/signature_label.dart';
 import '../services/signed_posts.dart';
@@ -922,6 +923,16 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                 SignatureLabel(
                                   badge: signature.badge,
                                   signer: signature.signer,
+                                  color: isOutgoing
+                                      ? metaColor
+                                      : scheme.onSurfaceVariant,
+                                  textScale: textScale,
+                                ),
+                              ],
+                              if (message.region case final region?) ...[
+                                const SizedBox(width: 6),
+                                RegionLabel(
+                                  region: region,
                                   color: isOutgoing
                                       ? metaColor
                                       : scheme.onSurfaceVariant,

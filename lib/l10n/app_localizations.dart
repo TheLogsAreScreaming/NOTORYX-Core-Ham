@@ -15223,6 +15223,24 @@ abstract class AppLocalizations {
   /// **'Signed with your radio’s key, so others on the channel can see it’s really you. Trip contacts still get it directly.'**
   String get fieldOps_checkInChannelHint;
 
+  /// No description provided for @channels_regionUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Regional'**
+  String get channels_regionUnknown;
+
+  /// No description provided for @channels_regionSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to region {region}'**
+  String channels_regionSemantics(String region);
+
+  /// No description provided for @channels_regionUnknownSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to a region this app doesn’t know'**
+  String get channels_regionUnknownSemantics;
+
   /// No description provided for @wardrive_title.
   ///
   /// In en, this message translates to:

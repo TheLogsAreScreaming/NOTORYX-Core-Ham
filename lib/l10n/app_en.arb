@@ -5262,6 +5262,16 @@
   },
   "fieldOps_checkInChannelLabel": "Check-ins also go to channel",
   "fieldOps_checkInChannelHint": "Signed with your radio’s key, so others on the channel can see it’s really you. Trip contacts still get it directly.",
+  "channels_regionUnknown": "Regional",
+  "channels_regionSemantics": "Sent to region {region}",
+  "@channels_regionSemantics": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "channels_regionUnknownSemantics": "Sent to a region this app doesn’t know",
   "wardrive_title": "Wardrive",
   "wardrive_hint": "Ping from where you are and map which repeaters hear you",
   "wardrive_start": "Start",

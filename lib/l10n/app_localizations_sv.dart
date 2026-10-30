@@ -9015,6 +9015,18 @@ class AppLocalizationsSv extends AppLocalizations {
       'Signerad med radions nyckel så att andra i kanalen ser att det verkligen är du. Resekontakterna får den fortfarande direkt.';
 
   @override
+  String get channels_regionUnknown => 'Regional';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Skickat till region $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Skickat till en region appen inte känner';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override
