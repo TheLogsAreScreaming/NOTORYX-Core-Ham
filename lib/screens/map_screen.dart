@@ -908,7 +908,7 @@ class _MapScreenState extends State<MapScreen> {
                               !visibleContacts.any(
                                 (c) =>
                                     c.publicKeyHex ==
-                                    selectedContact.publicKeyHex,
+                                    selectedContact?.publicKeyHex,
                               ))
                             selectedContact,
                         ],
