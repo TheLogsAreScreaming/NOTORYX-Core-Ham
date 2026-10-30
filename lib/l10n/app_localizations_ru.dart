@@ -9063,6 +9063,22 @@ class AppLocalizationsRu extends AppLocalizations {
       'Ретрансляторы распространяют его по всей сети. Занимает больше эфира.';
 
   @override
+  String get radioPresets_custom => 'Свои';
+
+  @override
+  String get radioPresets_search => 'Поиск пресетов';
+
+  @override
+  String get radioPresets_suggested => 'Рекомендовано для вашего региона';
+
+  @override
+  String get radioPresets_community => 'Пресеты сообщества';
+
+  @override
+  String get radioPresets_hint =>
+      'Это пресеты, которые рекомендует сообщество MeshCore. Выберите тот, что использует местная сеть. Пресет задаёт частоту, полосу, SF и CR; мощность передачи не меняется.';
+
+  @override
   String get mySensors_title => 'Датчики';
 
   @override

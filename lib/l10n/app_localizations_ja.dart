@@ -8599,6 +8599,22 @@ class AppLocalizationsJa extends AppLocalizations {
   String get advert_floodHint => 'リピーターがメッシュ全体に中継します。通信時間が多くかかります。';
 
   @override
+  String get radioPresets_custom => 'カスタム';
+
+  @override
+  String get radioPresets_search => 'プリセットを検索';
+
+  @override
+  String get radioPresets_suggested => 'お住まいの地域のおすすめ';
+
+  @override
+  String get radioPresets_community => 'コミュニティのプリセット';
+
+  @override
+  String get radioPresets_hint =>
+      'MeshCore コミュニティが推奨するプリセットです。地元のメッシュで使われているものを選んでください。周波数・帯域幅・SF・CR を設定し、送信出力は変わりません。';
+
+  @override
   String get mySensors_title => 'センサー';
 
   @override
