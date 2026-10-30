@@ -59,11 +59,17 @@ class BastionToolsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            InstrumentRow(
-              icon: Icons.lock_outline,
-              title: l10n.bastionTools_backup,
-              subtitle: l10n.bastionTools_backupHint,
-              onTap: () => open(const EncryptedBackupScreen()),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
+              child: TacticalGlassPanel(
+                blur: false,
+                child: InstrumentRow(
+                  icon: Icons.lock_outline,
+                  title: l10n.bastionTools_backup,
+                  subtitle: l10n.bastionTools_backupHint,
+                  onTap: () => open(const EncryptedBackupScreen()),
+                ),
+              ),
             ),
             InstrumentRow(
               icon: Icons.menu_book_outlined,
