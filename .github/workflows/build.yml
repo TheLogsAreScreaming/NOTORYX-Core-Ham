@@ -5,6 +5,7 @@ on:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -58,10 +59,16 @@ jobs:
       - run: flutter build apk --release --no-pub
 
   ios:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: macos-latest
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main' || startsWith(github.head_ref, 'release/')
+    runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v4
+      - name: Use Xcode 26
+        run: |
+          XCODE=$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)
+          test -n "$XCODE"
+          sudo xcode-select -s "$XCODE"
+          xcodebuild -version
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.47.6"
@@ -85,17 +92,46 @@ jobs:
       - run: flutter build linux --release --no-pub
 
   macos:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: macos-latest
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main' || startsWith(github.head_ref, 'release/')
+    runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v4
+      - name: Use Xcode 26
+        run: |
+          XCODE=$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)
+          test -n "$XCODE"
+          sudo xcode-select -s "$XCODE"
+          xcodebuild -version
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.47.6"
           channel: "stable"
           cache: true
       - run: flutter pub get
-      - run: flutter build macos --release --no-pub
+      - run: flutter build macos --release --no-pub --obfuscate --split-debug-info=build/symbols/macos
+      - name: Verify and package universal Mac candidate
+        run: |
+          set -euo pipefail
+          APP="build/macos/Build/Products/Release/NOTORYX Core.app"
+          ARCHS=$(lipo -archs "$APP/Contents/MacOS/NOTORYX Core")
+          case "$ARCHS" in *x86_64*) ;; *) exit 1;; esac
+          case "$ARCHS" in *arm64*) ;; *) exit 1;; esac
+          test "$(/usr/libexec/PlistBuddy -c 'Print :FLTEnableImpeller' "$APP/Contents/Info.plist")" = false
+          codesign --force --deep --sign - "$APP"
+          codesign --verify --deep --strict "$APP"
+          VERSION=$(sed -n 's/^version: //p' pubspec.yaml)
+          mkdir -p dist
+          ditto -c -k --keepParent "$APP" "dist/NOTORYX-Core-$VERSION-macOS-universal.zip"
+          cp -R build/symbols/macos "dist/symbols-$VERSION"
+          printf '%s\n' "$GITHUB_SHA" > dist/SOURCE_COMMIT.txt
+          cd dist
+          shasum -a 256 *.zip > SHA256SUMS-macOS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NOTORYX-Core-macOS-candidate
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
 
   web:
     runs-on: ubuntu-latest
