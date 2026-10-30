@@ -25,6 +25,7 @@ import '../widgets/mesh_ui.dart';
 import '../widgets/qr_code_display.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/instrument.dart';
+import '../widgets/glass_chat_card.dart';
 import '../helpers/gif_helper.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../utils/main_tab_navigation.dart';
@@ -2113,47 +2114,52 @@ class _DirectChats extends StatelessWidget {
           () {
             final unread = connector.getUnreadCountForContact(chat.contact);
             final hops = chat.contact.pathLength;
-            return InstrumentRow(
-              key: ValueKey('direct_${chat.contact.publicKeyHex}'),
-              title: chat.contact.name,
-              subtitle: chat.last.text,
-              onTap: () {
-                HapticFeedback.selectionClick();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => ChatScreen(
-                      contact: chat.contact,
-                      initialUnreadCount: unread,
+            return GlassChatCard(
+              unreadCount: unread,
+              child: InstrumentRow(
+                key: ValueKey('direct_${chat.contact.publicKeyHex}'),
+                title: chat.contact.name,
+                subtitle: chat.last.text,
+                onTap: () {
+                  HapticFeedback.selectionClick();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ChatScreen(
+                        contact: chat.contact,
+                        initialUnreadCount: unread,
+                      ),
                     ),
-                  ),
-                );
-              },
-              trailing: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    _clock(chat.last.timestamp),
-                    style: MeshTheme.mono(
-                      fontSize: 12,
-                      color: MeshPalette.ink3,
+                  );
+                },
+                trailing: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      _clock(chat.last.timestamp),
+                      style: MeshTheme.mono(
+                        fontSize: 12,
+                        color: MeshPalette.ink3,
+                      ),
                     ),
-                  ),
-                  Text(
-                    unread > 0
-                        ? '$unread'
-                        : hops < 0
-                        ? ''
-                        : hops == 0
-                        ? 'direct'
-                        : '$hops hop${hops == 1 ? '' : 's'}',
-                    style: MeshTheme.mono(
-                      fontSize: 12,
-                      fontWeight: unread > 0 ? FontWeight.w700 : null,
-                      color: unread > 0 ? MeshPalette.accent : MeshPalette.ink4,
+                    Text(
+                      unread > 0
+                          ? '$unread'
+                          : hops < 0
+                          ? ''
+                          : hops == 0
+                          ? 'direct'
+                          : '$hops hop${hops == 1 ? '' : 's'}',
+                      style: MeshTheme.mono(
+                        fontSize: 12,
+                        fontWeight: unread > 0 ? FontWeight.w700 : null,
+                        color: unread > 0
+                            ? MeshPalette.accent
+                            : MeshPalette.ink4,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }(),
