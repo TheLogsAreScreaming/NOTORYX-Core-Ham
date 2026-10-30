@@ -8395,4 +8395,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tools_botHint => '频道自动回复、!命令和天气警报';
+
+  @override
+  String get botChannels_title => '频道';
+
+  @override
+  String get botChannels_hint => '机器人也会在你开启的频道中回复!命令，回复发在该频道。它不会在频道中发送离开回复。';
+
+  @override
+  String get botChannels_none => '此电台还没有频道。';
 }

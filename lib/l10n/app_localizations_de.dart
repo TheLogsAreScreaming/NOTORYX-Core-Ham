@@ -9030,4 +9030,14 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Automatische Antworten, !Befehle und Wetterwarnungen in Kanälen';
+
+  @override
+  String get botChannels_title => 'Kanäle';
+
+  @override
+  String get botChannels_hint =>
+      'Der Bot beantwortet !Befehle auch in den eingeschalteten Kanälen, im selben Kanal. Abwesenheitsantworten sendet er dort nie.';
+
+  @override
+  String get botChannels_none => 'Noch keine Kanäle auf diesem Funkgerät.';
 }

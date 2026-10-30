@@ -4043,5 +4043,8 @@
   "tools_search": "Werkzeuge und Einstellungen suchen",
   "tools_noMatches": "Keine Werkzeuge passen zu deiner Suche.",
   "tools_bot": "Bot-Modus",
-  "tools_botHint": "Automatische Antworten, !Befehle und Wetterwarnungen in Kanälen"
+  "tools_botHint": "Automatische Antworten, !Befehle und Wetterwarnungen in Kanälen",
+  "botChannels_title": "Kanäle",
+  "botChannels_hint": "Der Bot beantwortet !Befehle auch in den eingeschalteten Kanälen, im selben Kanal. Abwesenheitsantworten sendet er dort nie.",
+  "botChannels_none": "Noch keine Kanäle auf diesem Funkgerät."
 }

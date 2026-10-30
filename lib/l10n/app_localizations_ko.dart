@@ -8591,4 +8591,14 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get tools_botHint => '채널 자동 응답, !명령, 기상 경보';
+
+  @override
+  String get botChannels_title => '채널';
+
+  @override
+  String get botChannels_hint =>
+      '켠 채널에서도 봇이 해당 채널에서 !명령에 답합니다. 부재 응답은 보내지 않습니다.';
+
+  @override
+  String get botChannels_none => '이 무전기에 아직 채널이 없습니다.';
 }

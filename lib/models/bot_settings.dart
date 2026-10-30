@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:crypto/crypto.dart';
 
 const botPrefix = '[NOTORYX Bot] ';
 
@@ -60,6 +63,15 @@ class BotRule {
   );
 }
 
+/// A stable id for a channel in bot settings: its key's hash, so renaming
+/// or reordering channels keeps the choice, and the key isn't stored again.
+String botChannelId(Uint8List psk) => sha256
+    .convert(psk)
+    .bytes
+    .take(8)
+    .map((b) => b.toRadixString(16).padLeft(2, '0'))
+    .join();
+
 class BotSettings {
   final bool enabled;
   final bool awayEnabled;
@@ -73,6 +85,10 @@ class BotSettings {
   final List<BotRule> rules;
   final Set<String> allowedSenders;
 
+  /// Channels where the bot answers !commands, by [botChannelId]. None by
+  /// default: the bot only answers direct messages.
+  final Set<String> channels;
+
   BotSettings({
     this.enabled = false,
     this.awayEnabled = true,
@@ -85,9 +101,11 @@ class BotSettings {
     Set<String>? commands,
     List<BotRule> rules = const [],
     Set<String> allowedSenders = const {},
+    Set<String> channels = const {},
   }) : commands = Set.unmodifiable(commands ?? botCommands.toSet()),
        rules = List.unmodifiable(rules),
-       allowedSenders = Set.unmodifiable(allowedSenders);
+       allowedSenders = Set.unmodifiable(allowedSenders),
+       channels = Set.unmodifiable(channels);
 
   BotSettings copyWith({
     bool? enabled,
@@ -101,6 +119,7 @@ class BotSettings {
     Set<String>? commands,
     List<BotRule>? rules,
     Set<String>? allowedSenders,
+    Set<String>? channels,
   }) => BotSettings(
     enabled: enabled ?? this.enabled,
     awayEnabled: awayEnabled ?? this.awayEnabled,
@@ -113,6 +132,7 @@ class BotSettings {
     commands: commands ?? this.commands,
     rules: rules ?? this.rules,
     allowedSenders: allowedSenders ?? this.allowedSenders,
+    channels: channels ?? this.channels,
   );
 
   Map<String, dynamic> toJson() => {
@@ -127,6 +147,7 @@ class BotSettings {
     'commands': commands.toList(),
     'rules': rules.map((r) => r.toJson()).toList(),
     'allowedSenders': allowedSenders.toList(),
+    'channels': channels.toList(),
   };
 
   factory BotSettings.fromJson(Map<String, dynamic> json) => BotSettings(
@@ -147,6 +168,7 @@ class BotSettings {
     allowedSenders: (json['allowedSenders'] as List? ?? [])
         .cast<String>()
         .toSet(),
+    channels: (json['channels'] as List? ?? []).cast<String>().toSet(),
   );
 }
 

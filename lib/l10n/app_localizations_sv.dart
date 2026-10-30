@@ -8942,4 +8942,14 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Autosvar, !kommandon och vädervarningar i kanaler';
+
+  @override
+  String get botChannels_title => 'Kanaler';
+
+  @override
+  String get botChannels_hint =>
+      'Boten svarar också på !kommandon i kanalerna du slår på, i samma kanal. Frånvarosvar skickas aldrig där.';
+
+  @override
+  String get botChannels_none => 'Inga kanaler på den här radion än.';
 }

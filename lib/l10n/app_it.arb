@@ -4043,5 +4043,8 @@
   "tools_search": "Cerca strumenti e impostazioni",
   "tools_noMatches": "Nessuno strumento corrisponde alla ricerca.",
   "tools_bot": "Modalità bot",
-  "tools_botHint": "Risposte automatiche, !comandi e allerte meteo nei canali"
+  "tools_botHint": "Risposte automatiche, !comandi e allerte meteo nei canali",
+  "botChannels_title": "Canali",
+  "botChannels_hint": "Il bot risponde ai !comandi anche nei canali attivati, nello stesso canale. Lì non invia mai risposte di assenza.",
+  "botChannels_none": "Nessun canale su questa radio."
 }

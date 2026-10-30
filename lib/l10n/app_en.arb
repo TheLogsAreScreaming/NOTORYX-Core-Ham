@@ -5227,5 +5227,8 @@
   "tools_search": "Search tools and settings",
   "tools_noMatches": "No tools match your search.",
   "tools_bot": "Bot Mode",
-  "tools_botHint": "Auto replies, !commands and weather alerts on channels"
+  "tools_botHint": "Auto replies, !commands and weather alerts on channels",
+  "botChannels_title": "Channels",
+  "botChannels_hint": "The bot also answers !commands in the channels you turn on, in that channel. It never sends away replies there.",
+  "botChannels_none": "No channels on this radio yet."
 }

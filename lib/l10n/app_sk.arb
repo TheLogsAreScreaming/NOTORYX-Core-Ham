@@ -3909,5 +3909,8 @@
   "tools_search": "Hľadať nástroje a nastavenia",
   "tools_noMatches": "Vyhľadávaniu nezodpovedajú žiadne nástroje.",
   "tools_bot": "Režim bota",
-  "tools_botHint": "Automatické odpovede, !príkazy a výstrahy počasia v kanáloch"
+  "tools_botHint": "Automatické odpovede, !príkazy a výstrahy počasia v kanáloch",
+  "botChannels_title": "Kanály",
+  "botChannels_hint": "Bot odpovedá na !príkazy aj v zapnutých kanáloch, v tom istom kanáli. Odpovede o neprítomnosti tam nikdy neposiela.",
+  "botChannels_none": "Na tomto rádiu zatiaľ nie sú kanály."
 }

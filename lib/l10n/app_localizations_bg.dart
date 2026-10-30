@@ -9003,4 +9003,14 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Автоматични отговори, !команди и метео предупреждения в каналите';
+
+  @override
+  String get botChannels_title => 'Канали';
+
+  @override
+  String get botChannels_hint =>
+      'Ботът отговаря и на !команди във включените канали, в същия канал. Там никога не изпраща отговор „отсъствам“.';
+
+  @override
+  String get botChannels_none => 'Все още няма канали на това радио.';
 }

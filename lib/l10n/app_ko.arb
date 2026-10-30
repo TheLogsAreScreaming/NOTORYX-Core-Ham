@@ -4043,5 +4043,8 @@
   "tools_search": "도구 및 설정 검색",
   "tools_noMatches": "검색과 일치하는 도구가 없습니다.",
   "tools_bot": "봇 모드",
-  "tools_botHint": "채널 자동 응답, !명령, 기상 경보"
+  "tools_botHint": "채널 자동 응답, !명령, 기상 경보",
+  "botChannels_title": "채널",
+  "botChannels_hint": "켠 채널에서도 봇이 해당 채널에서 !명령에 답합니다. 부재 응답은 보내지 않습니다.",
+  "botChannels_none": "이 무전기에 아직 채널이 없습니다."
 }

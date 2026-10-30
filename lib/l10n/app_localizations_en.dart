@@ -8895,4 +8895,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Auto replies, !commands and weather alerts on channels';
+
+  @override
+  String get botChannels_title => 'Channels';
+
+  @override
+  String get botChannels_hint =>
+      'The bot also answers !commands in the channels you turn on, in that channel. It never sends away replies there.';
+
+  @override
+  String get botChannels_none => 'No channels on this radio yet.';
 }
