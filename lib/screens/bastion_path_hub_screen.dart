@@ -81,8 +81,9 @@ class BastionPathHubScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(MeshSpace.lg),
               decoration: BoxDecoration(
-                border: Border.all(color: MeshPalette.line),
-                borderRadius: BorderRadius.circular(MeshRadii.xs),
+                gradient: glassFill(context),
+                border: Border.all(color: glassEdge(context)),
+                borderRadius: BorderRadius.circular(glassRadius),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,8 +255,9 @@ class _ContactRouteCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: MeshSpace.sm),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        border: Border.all(color: MeshPalette.line),
-        borderRadius: BorderRadius.circular(MeshRadii.xs),
+        gradient: glassFill(context),
+        border: Border.all(color: glassEdge(context)),
+        borderRadius: BorderRadius.circular(glassRadius),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -350,8 +352,9 @@ class _InfoPanel extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(MeshSpace.lg),
     decoration: BoxDecoration(
-      border: Border.all(color: MeshPalette.line),
-      borderRadius: BorderRadius.circular(MeshRadii.xs),
+      gradient: glassFill(context),
+      border: Border.all(color: glassEdge(context)),
+      borderRadius: BorderRadius.circular(glassRadius),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -452,8 +455,9 @@ class _BestRepeaterRow extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: MeshSpace.sm),
       padding: const EdgeInsets.all(MeshSpace.md),
       decoration: BoxDecoration(
-        border: Border.all(color: MeshPalette.line),
-        borderRadius: BorderRadius.circular(MeshRadii.xs),
+        gradient: glassFill(context),
+        border: Border.all(color: glassEdge(context)),
+        borderRadius: BorderRadius.circular(glassRadius),
       ),
       child: Row(
         children: [
