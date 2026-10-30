@@ -3677,7 +3677,6 @@
   "regionSetup_tree": "Regioboom",
   "regionSetup_custom": "Aangepast",
   "regionSetup_region": "Meest lokale regio",
-  "regionSetup_source": "Bron: {source}",
   "regionSetup_customLabel": "Regio’s, breedste eerst",
   "regionSetup_invalidName": "\"{name}\" is geen geldige regionaam. Gebruik kleine letters, cijfers en koppeltekens, maximaal 29 tekens.",
   "regionSetup_tooMany": "Een repeater kan maximaal {max} regio’s dragen.",

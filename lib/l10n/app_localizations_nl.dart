@@ -8143,11 +8143,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get regionSetup_region => 'Meest lokale regio';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Bron: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Regio’s, breedste eerst';
 
   @override

@@ -8186,11 +8186,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get regionSetup_region => 'Lokalste Region';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Quelle: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Regionen, die weiteste zuerst';
 
   @override

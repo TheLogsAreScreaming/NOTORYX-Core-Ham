@@ -3715,7 +3715,6 @@
   "regionSetup_tree": "Régiófa",
   "regionSetup_custom": "Egyéni",
   "regionSetup_region": "Leghelyibb régió",
-  "regionSetup_source": "Forrás: {source}",
   "regionSetup_customLabel": "Régiók, a legtágabbtól",
   "regionSetup_invalidName": "A(z) „{name}” nem érvényes régiónév. Használj kisbetűket, számokat és kötőjelet, legfeljebb 29 karaktert.",
   "regionSetup_tooMany": "Egy átjátszó legfeljebb {max} régiót hordozhat.",

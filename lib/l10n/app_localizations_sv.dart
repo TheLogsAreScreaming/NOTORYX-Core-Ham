@@ -8106,11 +8106,6 @@ class AppLocalizationsSv extends AppLocalizations {
   String get regionSetup_region => 'Mest lokal region';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Källa: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Regioner, bredast först';
 
   @override

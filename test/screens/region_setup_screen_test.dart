@@ -27,16 +27,16 @@ Future<void> _pump(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('picking Seattle shows its chain and commands', (tester) async {
+  testWidgets('picking a state shows its chain and commands', (tester) async {
     await _pump(tester);
     expect(find.text('Pick a region to see the commands.'), findsOneWidget);
-    await tester.tap(find.byKey(const ValueKey('region-leaf-pnw')));
+    await tester.tap(find.byKey(const ValueKey('region-leaf-us')));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('sea · Seattle').last);
+    await tester.tap(find.text('ct · Connecticut').last);
     await tester.pumpAndSettle();
-    expect(find.text('west  ›  pnw  ›  wa  ›  w-wa  ›  sea'), findsOneWidget);
-    expect(find.text('region put sea w-wa'), findsOneWidget);
-    expect(find.text('region default sea'), findsOneWidget);
+    expect(find.text('usa  ›  us-ne  ›  ct'), findsOneWidget);
+    expect(find.text('region put ct us-ne'), findsOneWidget);
+    expect(find.text('region default ct'), findsOneWidget);
     expect(find.text('region save'), findsOneWidget);
     // Without a logged-in repeater the screen explains how to send.
     expect(find.byKey(const ValueKey('region-send')), findsNothing);

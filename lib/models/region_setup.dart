@@ -19,17 +19,15 @@ class RegionNode {
   const RegionNode({required this.name, this.parent, this.label = ''});
 }
 
-/// A named hierarchy of regions, like west › pnw › wa › w-wa › sea.
+/// A named hierarchy of regions, like usa › us-ne › ct.
 class RegionTree {
   final String id;
   final String name;
-  final String source;
   final Map<String, RegionNode> regions;
 
   const RegionTree({
     required this.id,
     required this.name,
-    required this.source,
     required this.regions,
   });
 
@@ -93,7 +91,6 @@ List<RegionTree> parseRegionTrees(String source) {
         RegionTree(
           id: raw['id'] as String,
           name: raw['name'] as String,
-          source: raw['source'] as String? ?? '',
           regions: regions,
         ),
       );

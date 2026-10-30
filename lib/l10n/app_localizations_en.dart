@@ -8059,11 +8059,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get regionSetup_region => 'Most local region';
 
   @override
-  String regionSetup_source(String source) {
-    return 'From: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Regions, broadest first';
 
   @override

@@ -13705,12 +13705,6 @@ abstract class AppLocalizations {
   /// **'Most local region'**
   String get regionSetup_region;
 
-  /// No description provided for @regionSetup_source.
-  ///
-  /// In en, this message translates to:
-  /// **'From: {source}'**
-  String regionSetup_source(String source);
-
   /// No description provided for @regionSetup_customLabel.
   ///
   /// In en, this message translates to:

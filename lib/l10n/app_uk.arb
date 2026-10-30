@@ -3657,7 +3657,6 @@
   "regionSetup_tree": "Дерево регіонів",
   "regionSetup_custom": "Власне",
   "regionSetup_region": "Найлокальніший регіон",
-  "regionSetup_source": "Джерело: {source}",
   "regionSetup_customLabel": "Регіони, від найширшого",
   "regionSetup_invalidName": "«{name}» — неприпустима назва регіону. Використовуйте малі латинські літери, цифри й дефіси, до 29 символів.",
   "regionSetup_tooMany": "Ретранслятору можна задати щонайбільше {max} регіонів.",
