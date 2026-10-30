@@ -14,14 +14,13 @@ import '../services/corescope.dart';
 import '../services/direct_repeater_service.dart';
 import '../services/path_history_service.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/ember_backdrop.dart';
 import '../widgets/mesh_ui.dart';
 import 'discovery_screen.dart';
 import 'map_screen.dart';
 
 class BastionPathHubScreen extends StatelessWidget {
   const BastionPathHubScreen({super.key});
-
-  static Color get _bg => MeshPalette.bg;
 
   @override
   Widget build(BuildContext context) {
@@ -60,114 +59,119 @@ class BastionPathHubScreen extends StatelessWidget {
     );
     final l10n = context.l10n;
 
-    return Scaffold(
-      backgroundColor: _bg,
-      appBar: AppBar(
-        backgroundColor: _bg,
-        foregroundColor: MeshPalette.ink,
-        title: Text(l10n.routes_title),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(
-          MeshSpace.lg,
-          MeshSpace.sm,
-          MeshSpace.lg,
-          MeshSpace.xxl,
+    return EmberBackdrop(
+      scene: EmberScene.nodes,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          foregroundColor: MeshPalette.ink,
+          title: Text(l10n.routes_title),
         ),
-        children: [
-          Container(
-            padding: const EdgeInsets.all(MeshSpace.lg),
-            decoration: BoxDecoration(
-              border: Border.all(color: MeshPalette.line),
-              borderRadius: BorderRadius.circular(MeshRadii.xs),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.routes_headline,
-                  style: TextStyle(
-                    color: MeshPalette.ink,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700,
+        body: ListView(
+          padding: const EdgeInsets.fromLTRB(
+            MeshSpace.lg,
+            MeshSpace.sm,
+            MeshSpace.lg,
+            MeshSpace.xxl,
+          ),
+          children: [
+            Container(
+              padding: const EdgeInsets.all(MeshSpace.lg),
+              decoration: BoxDecoration(
+                border: Border.all(color: MeshPalette.line),
+                borderRadius: BorderRadius.circular(MeshRadii.xs),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.routes_headline,
+                    style: TextStyle(
+                      color: MeshPalette.ink,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
-                ),
-                const SizedBox(height: MeshSpace.xs),
-                Text(
-                  l10n.routes_body,
-                  style: TextStyle(
-                    color: MeshPalette.ink3,
-                    fontSize: 13.5,
-                    height: 1.4,
+                  const SizedBox(height: MeshSpace.xs),
+                  Text(
+                    l10n.routes_body,
+                    style: TextStyle(
+                      color: MeshPalette.ink3,
+                      fontSize: 13.5,
+                      height: 1.4,
+                    ),
                   ),
-                ),
-                // Counts only mean something once routes have been learned.
-                if (routeCount > 0) ...[
-                  const SizedBox(height: MeshSpace.lg),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: MeshStat(
-                          value: '${entries.length}',
-                          label: l10n.bastion_nodes,
+                  // Counts only mean something once routes have been learned.
+                  if (routeCount > 0) ...[
+                    const SizedBox(height: MeshSpace.lg),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: MeshStat(
+                            value: '${entries.length}',
+                            label: l10n.bastion_nodes,
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: MeshStat(
-                          value: '$routeCount',
-                          label: l10n.routes_routes,
+                        Expanded(
+                          child: MeshStat(
+                            value: '$routeCount',
+                            label: l10n.routes_routes,
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: MeshStat(
-                          value: '$successful',
-                          label: l10n.routes_success,
+                        Expanded(
+                          child: MeshStat(
+                            value: '$successful',
+                            label: l10n.routes_success,
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: MeshStat(
-                          value: '$failed',
-                          label: l10n.routes_failed,
+                        Expanded(
+                          child: MeshStat(
+                            value: '$failed',
+                            label: l10n.routes_failed,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ],
                 ],
+              ),
+            ),
+            const SizedBox(height: MeshSpace.md),
+            MeshGroup(
+              children: [
+                MeshNavRow(
+                  icon: Icons.map_outlined,
+                  title: l10n.routes_routeMap,
+                  subtitle: l10n.routes_routeMapHint,
+                  onTap: () => Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
+                ),
+                MeshNavRow(
+                  icon: Icons.radar_rounded,
+                  title: l10n.routes_discover,
+                  subtitle: l10n.routes_discoverHint,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const DiscoveryScreen()),
+                  ),
+                ),
               ],
             ),
-          ),
-          const SizedBox(height: MeshSpace.md),
-          MeshGroup(
-            children: [
-              MeshNavRow(
-                icon: Icons.map_outlined,
-                title: l10n.routes_routeMap,
-                subtitle: l10n.routes_routeMapHint,
-                onTap: () => Navigator.of(
-                  context,
-                ).push(MaterialPageRoute(builder: (_) => const MapScreen())),
-              ),
-              MeshNavRow(
-                icon: Icons.radar_rounded,
-                title: l10n.routes_discover,
-                subtitle: l10n.routes_discoverHint,
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const DiscoveryScreen()),
-                ),
-              ),
-            ],
-          ),
-          _BestRepeaters(connector: connector),
-          _sectionTitle(l10n.routes_learned),
-          if (entries.isEmpty)
-            _InfoPanel(
-              icon: Icons.alt_route_rounded,
-              title: l10n.routes_none,
-              body: l10n.routes_noneBody,
-            )
-          else
-            ...entries.map((entry) => _ContactRouteCard(entry: entry)),
-        ],
+            _BestRepeaters(connector: connector),
+            _sectionTitle(l10n.routes_learned),
+            if (entries.isEmpty)
+              _InfoPanel(
+                icon: Icons.alt_route_rounded,
+                title: l10n.routes_none,
+                body: l10n.routes_noneBody,
+              )
+            else
+              ...entries.map((entry) => _ContactRouteCard(entry: entry)),
+          ],
+        ),
       ),
     );
   }

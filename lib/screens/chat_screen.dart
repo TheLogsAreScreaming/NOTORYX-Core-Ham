@@ -18,6 +18,7 @@ import '../helpers/message_url_image_helper.dart';
 import '../helpers/path_helper.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/share_links.dart';
+import '../widgets/ember_backdrop.dart';
 import '../widgets/share_in_chat.dart';
 import '../widgets/message_status_icon.dart';
 import '../widgets/empty_state.dart';
@@ -201,200 +202,207 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Consumer2<PathHistoryService, MeshCoreConnector>(
-          builder: (context, pathService, connector, _) {
-            final contact = _resolveContact(connector);
-            final pathLabel = _currentPathLabel(contact);
+    return EmberBackdrop(
+      scene: EmberScene.chats,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          title: Consumer2<PathHistoryService, MeshCoreConnector>(
+            builder: (context, pathService, connector, _) {
+              final contact = _resolveContact(connector);
+              final pathLabel = _currentPathLabel(contact);
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  contact.name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () =>
-                      ContactRoutingSheet.show(context, contact: contact),
-                  // Opens the routing sheet; a quiet route label with a
-                  // chevron reads as tappable without a link underline.
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.alt_route_rounded,
-                          size: 13,
-                          color: MeshPalette.ink3,
-                        ),
-                        const SizedBox(width: 4),
-                        Flexible(
-                          child: Text(
-                            pathLabel,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 12.5,
-                              fontWeight: FontWeight.w500,
-                              color: MeshPalette.ink3,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    contact.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () =>
+                        ContactRoutingSheet.show(context, contact: contact),
+                    // Opens the routing sheet; a quiet route label with a
+                    // chevron reads as tappable without a link underline.
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.alt_route_rounded,
+                            size: 13,
+                            color: MeshPalette.ink3,
+                          ),
+                          const SizedBox(width: 4),
+                          Flexible(
+                            child: Text(
+                              pathLabel,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 12.5,
+                                fontWeight: FontWeight.w500,
+                                color: MeshPalette.ink3,
+                              ),
                             ),
                           ),
-                        ),
-                        Icon(
-                          Icons.expand_more_rounded,
-                          size: 16,
-                          color: MeshPalette.ink3,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-        centerTitle: false,
-        bottom: const SyncProgressAppBarBottom(),
-        actions: [
-          const RadioStatsIconButton(),
-          Consumer<MeshCoreConnector>(
-            builder: (context, connector, _) {
-              final contact = _resolveContact(connector);
-
-              return PopupMenuButton<String>(
-                icon: const Icon(Icons.more_vert),
-                onSelected: (value) {
-                  switch (value) {
-                    case 'routing':
-                      ContactRoutingSheet.show(context, contact: contact);
-                    case 'info':
-                      _showContactInfo(context);
-                    case 'settings':
-                      _showContactSettings(context);
-                    case 'telemetry':
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              TelemetryScreen(contact: widget.contact),
-                        ),
-                      );
-                    case 'remoteCli':
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RepeaterCliScreen(
-                            repeater: contact,
-                            password: '',
-                            companion: true,
+                          Icon(
+                            Icons.expand_more_rounded,
+                            size: 16,
+                            color: MeshPalette.ink3,
                           ),
-                        ),
-                      );
-                    case 'clearChat':
-                      _confirmClearChat(context, connector);
-                  }
-                },
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    value: 'routing',
-                    child: Row(
-                      children: [
-                        const Icon(Icons.route, size: 20),
-                        const SizedBox(width: 12),
-                        Text(context.l10n.routing_title),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 'info',
-                    child: Row(
-                      children: [
-                        const Icon(Icons.info_outline, size: 20),
-                        const SizedBox(width: 12),
-                        Text(context.l10n.contact_info),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 'telemetry',
-                    child: Row(
-                      children: [
-                        const Icon(Icons.bar_chart, size: 20),
-                        const SizedBox(width: 12),
-                        Text(context.l10n.contact_telemetry),
-                      ],
-                    ),
-                  ),
-                  if (contact.type == advTypeChat)
-                    const PopupMenuItem(
-                      value: 'remoteCli',
-                      child: Row(
-                        children: [
-                          Icon(Icons.terminal, size: 20),
-                          SizedBox(width: 12),
-                          Text('Command line on their radio'),
                         ],
                       ),
-                    ),
-                  PopupMenuItem(
-                    value: 'settings',
-                    child: Row(
-                      children: [
-                        const Icon(Icons.settings, size: 20),
-                        const SizedBox(width: 12),
-                        Text(context.l10n.contact_settings),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 'clearChat',
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.delete,
-                          size: 20,
-                          color: Theme.of(context).colorScheme.error,
-                        ),
-                        const SizedBox(width: 12),
-                        Text(
-                          context.l10n.contact_clearChat,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ],
               );
             },
           ),
-        ],
-      ),
-      body: Consumer<MeshCoreConnector>(
-        builder: (context, connector, child) {
-          final messages = connector.getMessages(widget.contact);
-          return Column(
-            children: [
-              Expanded(
-                child: Stack(
-                  children: [
-                    messages.isEmpty
-                        ? _buildEmptyState()
-                        : _buildMessageList(messages, connector),
-                    JumpToBottomButton(scrollController: _scrollController),
+          centerTitle: false,
+          bottom: const SyncProgressAppBarBottom(),
+          actions: [
+            const RadioStatsIconButton(),
+            Consumer<MeshCoreConnector>(
+              builder: (context, connector, _) {
+                final contact = _resolveContact(connector);
+
+                return PopupMenuButton<String>(
+                  icon: const Icon(Icons.more_vert),
+                  onSelected: (value) {
+                    switch (value) {
+                      case 'routing':
+                        ContactRoutingSheet.show(context, contact: contact);
+                      case 'info':
+                        _showContactInfo(context);
+                      case 'settings':
+                        _showContactSettings(context);
+                      case 'telemetry':
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                TelemetryScreen(contact: widget.contact),
+                          ),
+                        );
+                      case 'remoteCli':
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RepeaterCliScreen(
+                              repeater: contact,
+                              password: '',
+                              companion: true,
+                            ),
+                          ),
+                        );
+                      case 'clearChat':
+                        _confirmClearChat(context, connector);
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 'routing',
+                      child: Row(
+                        children: [
+                          const Icon(Icons.route, size: 20),
+                          const SizedBox(width: 12),
+                          Text(context.l10n.routing_title),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      value: 'info',
+                      child: Row(
+                        children: [
+                          const Icon(Icons.info_outline, size: 20),
+                          const SizedBox(width: 12),
+                          Text(context.l10n.contact_info),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      value: 'telemetry',
+                      child: Row(
+                        children: [
+                          const Icon(Icons.bar_chart, size: 20),
+                          const SizedBox(width: 12),
+                          Text(context.l10n.contact_telemetry),
+                        ],
+                      ),
+                    ),
+                    if (contact.type == advTypeChat)
+                      const PopupMenuItem(
+                        value: 'remoteCli',
+                        child: Row(
+                          children: [
+                            Icon(Icons.terminal, size: 20),
+                            SizedBox(width: 12),
+                            Text('Command line on their radio'),
+                          ],
+                        ),
+                      ),
+                    PopupMenuItem(
+                      value: 'settings',
+                      child: Row(
+                        children: [
+                          const Icon(Icons.settings, size: 20),
+                          const SizedBox(width: 12),
+                          Text(context.l10n.contact_settings),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      value: 'clearChat',
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.delete,
+                            size: 20,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            context.l10n.contact_clearChat,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.error,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
+                );
+              },
+            ),
+          ],
+        ),
+        body: Consumer<MeshCoreConnector>(
+          builder: (context, connector, child) {
+            final messages = connector.getMessages(widget.contact);
+            return Column(
+              children: [
+                Expanded(
+                  child: Stack(
+                    children: [
+                      messages.isEmpty
+                          ? _buildEmptyState()
+                          : _buildMessageList(messages, connector),
+                      JumpToBottomButton(scrollController: _scrollController),
+                    ],
+                  ),
                 ),
-              ),
-              _buildInputBar(connector),
-            ],
-          );
-        },
+                _buildInputBar(connector),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
