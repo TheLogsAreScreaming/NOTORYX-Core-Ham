@@ -3811,7 +3811,6 @@
   "regionSetup_tree": "Albero delle regioni",
   "regionSetup_custom": "Personalizzato",
   "regionSetup_region": "Regione più locale",
-  "regionSetup_source": "Fonte: {source}",
   "regionSetup_customLabel": "Regioni, dalla più ampia",
   "regionSetup_invalidName": "\"{name}\" non è un nome di regione valido. Usa minuscole, cifre e trattini, massimo 29 caratteri.",
   "regionSetup_tooMany": "Un ripetitore può avere al massimo {max} regioni.",

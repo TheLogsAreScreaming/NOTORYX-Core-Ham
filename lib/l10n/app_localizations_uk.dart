@@ -8206,11 +8206,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String get regionSetup_region => 'Найлокальніший регіон';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Джерело: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Регіони, від найширшого';
 
   @override

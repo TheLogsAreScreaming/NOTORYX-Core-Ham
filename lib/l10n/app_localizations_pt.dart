@@ -8163,11 +8163,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get regionSetup_region => 'Região mais local';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Fonte: $source';
-  }
-
-  @override
   String get regionSetup_customLabel =>
       'Regiões, da mais ampla para a mais local';
 

@@ -7,21 +7,32 @@ void main() {
   final trees = parseRegionTrees(
     File('assets/region_trees.json').readAsStringSync(),
   );
-  final pnw = trees.single;
+  final us = trees.firstWhere((t) => t.id == 'us');
 
-  test('the bundled tree walks from Seattle up to the whole mesh', () {
-    expect(pnw.chainFor('sea'), ['west', 'pnw', 'wa', 'w-wa', 'sea']);
-    expect(pnw.chainFor('west'), ['west']);
-    expect(pnw.chainFor('nope'), isEmpty);
+  test('the US tree walks from a state up to the whole country', () {
+    expect(us.chainFor('ct'), ['usa', 'us-ne', 'ct']);
+    expect(us.chainFor('usa'), ['usa']);
+    expect(us.chainFor('nope'), isEmpty);
+  });
+
+  test('the bundled trees cover every US state and Canadian province', () {
+    expect(
+      us.regions.values.where((r) => r.parent?.startsWith('us-') ?? false),
+      hasLength(51),
+    );
+    final canada = trees.firstWhere((t) => t.id == 'canada');
+    expect(
+      canada.regions.values.where((r) => r.parent == 'canada'),
+      hasLength(13),
+    );
   });
 
   test('the tree lists parents before their children', () {
-    final names = pnw.ordered().map((e) => e.$1.name).toList();
-    expect(names.first, 'west');
-    expect(names.indexOf('wa'), lessThan(names.indexOf('w-wa')));
-    expect(names.indexOf('w-wa'), lessThan(names.indexOf('sea')));
-    final depth = {for (final (n, d) in pnw.ordered()) n.name: d};
-    expect(depth['sea'], 4);
+    final names = us.ordered().map((e) => e.$1.name).toList();
+    expect(names.first, 'usa');
+    expect(names.indexOf('us-ne'), lessThan(names.indexOf('ct')));
+    final depth = {for (final (n, d) in us.ordered()) n.name: d};
+    expect(depth['ct'], 2);
   });
 
   test('a loop in the tree does not hang', () {

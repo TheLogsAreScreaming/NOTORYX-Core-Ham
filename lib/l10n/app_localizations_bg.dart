@@ -8163,11 +8163,6 @@ class AppLocalizationsBg extends AppLocalizations {
   String get regionSetup_region => 'Най-местен регион';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Източник: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Региони, от най-широкия';
 
   @override

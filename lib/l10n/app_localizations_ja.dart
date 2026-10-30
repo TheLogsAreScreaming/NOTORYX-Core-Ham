@@ -7779,11 +7779,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get regionSetup_region => '最も狭いリージョン';
 
   @override
-  String regionSetup_source(String source) {
-    return '出典: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'リージョン（広い順）';
 
   @override

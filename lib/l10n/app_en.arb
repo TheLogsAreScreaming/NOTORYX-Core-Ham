@@ -4761,14 +4761,6 @@
   "regionSetup_tree": "Region tree",
   "regionSetup_custom": "Custom",
   "regionSetup_region": "Most local region",
-  "regionSetup_source": "From: {source}",
-  "@regionSetup_source": {
-    "placeholders": {
-      "source": {
-        "type": "String"
-      }
-    }
-  },
   "regionSetup_customLabel": "Regions, broadest first",
   "regionSetup_invalidName": "\"{name}\" isn't a valid region name. Use lowercase letters, digits and hyphens, up to 29 characters.",
   "@regionSetup_invalidName": {

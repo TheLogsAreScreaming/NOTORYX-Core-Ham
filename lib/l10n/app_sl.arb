@@ -3677,7 +3677,6 @@
   "regionSetup_tree": "Drevo regij",
   "regionSetup_custom": "Po meri",
   "regionSetup_region": "Najbolj lokalna regija",
-  "regionSetup_source": "Vir: {source}",
   "regionSetup_customLabel": "Regije, od najširše",
   "regionSetup_invalidName": "»{name}« ni veljavno ime regije. Uporabite male črke, številke in vezaje, največ 29 znakov.",
   "regionSetup_tooMany": "Repetitor lahko nosi največ {max} regij.",
