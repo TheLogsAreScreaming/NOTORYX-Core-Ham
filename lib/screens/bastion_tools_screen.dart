@@ -2,7 +2,7 @@ import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import '../l10n/l10n.dart';
 import '../widgets/instrument.dart';
-import '../widgets/tactical_glass_panel.dart';
+import '../widgets/glass_action_row.dart';
 
 import 'antenna_coverage_screen.dart';
 import 'antenna_hunt_screen.dart';
@@ -23,8 +23,7 @@ import 'settings_screen.dart';
 import 'track_log_screen.dart';
 import '../utils/platform_info.dart';
 
-/// The More tab: settings and app items as a list, then the field tools as
-/// grouped two-column grids.
+/// The More tab: app settings and field tools grouped in glass action cards.
 class BastionToolsScreen extends StatelessWidget {
   const BastionToolsScreen({super.key});
 
@@ -48,118 +47,106 @@ class BastionToolsScreen extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: MeshSpace.xxl),
           children: [
             InstrumentLabel(l10n.tools_groupApp),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
-              child: TacticalGlassPanel(
-                blur: false,
-                child: InstrumentRow(
-                  icon: Icons.tune_rounded,
-                  title: l10n.settings_title,
-                  onTap: () => open(const SettingsScreen()),
-                ),
-              ),
+            GlassActionRow(
+              icon: Icons.tune_rounded,
+              title: l10n.settings_title,
+              onTap: () => open(const SettingsScreen()),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
-              child: TacticalGlassPanel(
-                blur: false,
-                child: InstrumentRow(
-                  icon: Icons.lock_outline,
-                  title: l10n.bastionTools_backup,
-                  subtitle: l10n.bastionTools_backupHint,
-                  onTap: () => open(const EncryptedBackupScreen()),
-                ),
-              ),
+            GlassActionRow(
+              icon: Icons.lock_outline,
+              title: l10n.bastionTools_backup,
+              subtitle: l10n.bastionTools_backupHint,
+              onTap: () => open(const EncryptedBackupScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.menu_book_outlined,
               title: l10n.guide_title,
               subtitle: l10n.guide_subtitle,
               onTap: () => open(const FieldGuideScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.info_outline_rounded,
               title: l10n.bastionTools_about,
               subtitle: l10n.bastionTools_aboutHint,
               onTap: () => open(const BastionAboutScreen()),
             ),
             InstrumentLabel(l10n.tools_groupField),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.backpack_outlined,
               title: l10n.bastion_fieldOps,
               subtitle: l10n.bastionTools_fieldOpsHint,
               onTap: () => open(const BastionFieldOpsScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.analytics_outlined,
               title: l10n.bastion_fieldStats,
               subtitle: l10n.bastionTools_statsHint,
               onTap: () => open(const BastionFieldStatsScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.timeline,
               title: l10n.trackLog_title,
               subtitle: l10n.trackLog_subtitle,
               onTap: () => open(const TrackLogScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.monitor_heart_outlined,
               title: l10n.bastionTools_diagnostics,
               subtitle: l10n.bastionTools_diagnosticsHint,
               onTap: () => open(const BastionDiagnosticsScreen()),
             ),
             InstrumentLabel(l10n.tools_groupMaps),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.map_outlined,
               title: l10n.bastion_mapCoverage,
               subtitle: l10n.bastionTools_mapHint,
               onTap: () => open(const BastionMapHubScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.cell_tower,
               title: l10n.tools_antenna,
               subtitle: l10n.tools_antennaHint,
               onTap: () => open(const AntennaCoverageScreen()),
             ),
             if (!PlatformInfo.isWeb)
-              InstrumentRow(
+              GlassActionRow(
                 icon: Icons.hexagon_outlined,
                 title: l10n.coverageHex_title,
                 subtitle: l10n.coverageHex_toolSubtitle,
                 onTap: () => open(const CoverageHexScreen()),
               ),
             InstrumentLabel(l10n.tools_groupRouting),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.route_rounded,
               title: l10n.bastionTools_pathAnalysis,
               subtitle: l10n.bastionTools_pathHint,
               onTap: () => open(const BastionPathHubScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.account_tree_outlined,
               title: l10n.tools_pathGraph,
               subtitle: l10n.tools_pathGraphHint,
               onTap: () => open(const PathGraphScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.cell_tower_rounded,
               title: l10n.bastion_repeaterTools,
               subtitle: l10n.bastionTools_repeaterHint,
               onTap: () => open(const BastionRepeaterToolsScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.network_ping,
               title: l10n.ping_title,
               subtitle: l10n.ping_toolSubtitle,
               onTap: () => open(const RepeaterPingScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.track_changes,
               title: l10n.hunt_title,
               subtitle: l10n.hunt_toolSubtitle,
               onTap: () => open(const AntennaHuntScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.fingerprint,
               title: l10n.prefixTool_title,
               subtitle: l10n.prefixTool_subtitle,
