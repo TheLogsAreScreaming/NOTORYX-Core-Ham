@@ -9019,4 +9019,9 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'Un SOS su un canale è sempre firmato. Così ogni messaggio viene firmato e gli altri utenti NOTORYX sanno che sei davvero tu. Ogni firma è un pacchetto in più in onda.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }

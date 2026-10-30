@@ -8997,4 +8997,9 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'A csatornára küldött SOS mindig aláírt. Ez minden bejegyzést aláír, így más NOTORYX-felhasználók láthatják, hogy valóban Ön az. Minden aláírás egy további csomag az éterben.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }

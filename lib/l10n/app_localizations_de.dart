@@ -9022,4 +9022,9 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'Ein SOS im Kanal wird immer signiert. Damit wird jeder Beitrag signiert, sodass andere NOTORYX-Nutzer sehen, dass er wirklich von dir ist. Jede Signatur ist ein zusätzliches Paket auf Sendung.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }

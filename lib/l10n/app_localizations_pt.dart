@@ -8994,4 +8994,9 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'Um SOS num canal é sempre assinado. Isto assina todas as mensagens para que outros utilizadores NOTORYX saibam que é mesmo você. Cada assinatura é mais um pacote no ar.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }

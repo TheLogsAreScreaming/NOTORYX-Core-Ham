@@ -8574,4 +8574,9 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'チャンネルの SOS は常に署名されます。これをオンにするとすべての投稿に署名し、他の NOTORYX ユーザーが本当にあなたからだと分かります。署名ごとに 1 パケット送信が増えます。';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }

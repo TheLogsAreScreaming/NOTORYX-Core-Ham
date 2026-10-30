@@ -8985,4 +8985,9 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'SOS v kanáli je vždy podpísané. Toto podpíše každý príspevok, aby ostatní používatelia NOTORYX videli, že ste to naozaj vy. Každý podpis je jeden paket navyše vo vysielaní.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }

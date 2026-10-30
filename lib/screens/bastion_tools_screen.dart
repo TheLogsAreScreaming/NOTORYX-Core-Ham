@@ -23,16 +23,160 @@ import 'settings_screen.dart';
 import 'track_log_screen.dart';
 import '../utils/platform_info.dart';
 
-/// The More tab: app settings and field tools grouped in glass action cards.
-class BastionToolsScreen extends StatelessWidget {
+/// Searchable, grouped entry points for app settings and field tools.
+class BastionToolsScreen extends StatefulWidget {
   const BastionToolsScreen({super.key});
+
+  @override
+  State<BastionToolsScreen> createState() => _BastionToolsScreenState();
+}
+
+class _BastionToolsScreenState extends State<BastionToolsScreen> {
+  final _searchController = TextEditingController();
+  String _query = '';
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    void open(Widget screen) =>
-        Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
-
+    final groups = [
+      (
+        title: l10n.tools_groupApp,
+        actions: <_ToolAction>[
+          _ToolAction(
+            icon: Icons.tune_rounded,
+            title: l10n.settings_title,
+            builder: (_) => const SettingsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.lock_outline,
+            title: l10n.bastionTools_backup,
+            subtitle: l10n.bastionTools_backupHint,
+            builder: (_) => const EncryptedBackupScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.menu_book_outlined,
+            title: l10n.guide_title,
+            subtitle: l10n.guide_subtitle,
+            builder: (_) => const FieldGuideScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.info_outline_rounded,
+            title: l10n.bastionTools_about,
+            subtitle: l10n.bastionTools_aboutHint,
+            builder: (_) => const BastionAboutScreen(),
+          ),
+        ],
+      ),
+      (
+        title: l10n.tools_groupField,
+        actions: <_ToolAction>[
+          _ToolAction(
+            icon: Icons.backpack_outlined,
+            title: l10n.bastion_fieldOps,
+            subtitle: l10n.bastionTools_fieldOpsHint,
+            builder: (_) => const BastionFieldOpsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.analytics_outlined,
+            title: l10n.bastion_fieldStats,
+            subtitle: l10n.bastionTools_statsHint,
+            builder: (_) => const BastionFieldStatsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.timeline,
+            title: l10n.trackLog_title,
+            subtitle: l10n.trackLog_subtitle,
+            builder: (_) => const TrackLogScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.monitor_heart_outlined,
+            title: l10n.bastionTools_diagnostics,
+            subtitle: l10n.bastionTools_diagnosticsHint,
+            builder: (_) => const BastionDiagnosticsScreen(),
+          ),
+        ],
+      ),
+      (
+        title: l10n.tools_groupMaps,
+        actions: <_ToolAction>[
+          _ToolAction(
+            icon: Icons.map_outlined,
+            title: l10n.bastion_mapCoverage,
+            subtitle: l10n.bastionTools_mapHint,
+            builder: (_) => const BastionMapHubScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.cell_tower,
+            title: l10n.tools_antenna,
+            subtitle: l10n.tools_antennaHint,
+            builder: (_) => const AntennaCoverageScreen(),
+          ),
+          if (!PlatformInfo.isWeb)
+            _ToolAction(
+              icon: Icons.hexagon_outlined,
+              title: l10n.coverageHex_title,
+              subtitle: l10n.coverageHex_toolSubtitle,
+              builder: (_) => const CoverageHexScreen(),
+            ),
+        ],
+      ),
+      (
+        title: l10n.tools_groupRouting,
+        actions: <_ToolAction>[
+          _ToolAction(
+            icon: Icons.route_rounded,
+            title: l10n.bastionTools_pathAnalysis,
+            subtitle: l10n.bastionTools_pathHint,
+            builder: (_) => const BastionPathHubScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.account_tree_outlined,
+            title: l10n.tools_pathGraph,
+            subtitle: l10n.tools_pathGraphHint,
+            builder: (_) => const PathGraphScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.cell_tower_rounded,
+            title: l10n.bastion_repeaterTools,
+            subtitle: l10n.bastionTools_repeaterHint,
+            builder: (_) => const BastionRepeaterToolsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.network_ping,
+            title: l10n.ping_title,
+            subtitle: l10n.ping_toolSubtitle,
+            builder: (_) => const RepeaterPingScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.track_changes,
+            title: l10n.hunt_title,
+            subtitle: l10n.hunt_toolSubtitle,
+            builder: (_) => const AntennaHuntScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.fingerprint,
+            title: l10n.prefixTool_title,
+            subtitle: l10n.prefixTool_subtitle,
+            builder: (_) => const PrefixToolScreen(),
+          ),
+        ],
+      ),
+    ];
+    final visibleGroups = [
+      for (final group in groups)
+        (
+          title: group.title,
+          actions: group.actions
+              .where((action) => action.matches(_query))
+              .toList(),
+        ),
+    ].where((group) => group.actions.isNotEmpty).toList();
     return Scaffold(
       backgroundColor: MeshPalette.bg,
       appBar: AppBar(
@@ -43,118 +187,82 @@ class BastionToolsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         top: false,
-        child: ListView(
-          padding: const EdgeInsets.only(bottom: MeshSpace.xxl),
+        child: Column(
           children: [
-            InstrumentLabel(l10n.tools_groupApp),
-            GlassActionRow(
-              icon: Icons.tune_rounded,
-              title: l10n.settings_title,
-              onTap: () => open(const SettingsScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.lock_outline,
-              title: l10n.bastionTools_backup,
-              subtitle: l10n.bastionTools_backupHint,
-              onTap: () => open(const EncryptedBackupScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.menu_book_outlined,
-              title: l10n.guide_title,
-              subtitle: l10n.guide_subtitle,
-              onTap: () => open(const FieldGuideScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.info_outline_rounded,
-              title: l10n.bastionTools_about,
-              subtitle: l10n.bastionTools_aboutHint,
-              onTap: () => open(const BastionAboutScreen()),
-            ),
-            InstrumentLabel(l10n.tools_groupField),
-            GlassActionRow(
-              icon: Icons.backpack_outlined,
-              title: l10n.bastion_fieldOps,
-              subtitle: l10n.bastionTools_fieldOpsHint,
-              onTap: () => open(const BastionFieldOpsScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.analytics_outlined,
-              title: l10n.bastion_fieldStats,
-              subtitle: l10n.bastionTools_statsHint,
-              onTap: () => open(const BastionFieldStatsScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.timeline,
-              title: l10n.trackLog_title,
-              subtitle: l10n.trackLog_subtitle,
-              onTap: () => open(const TrackLogScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.monitor_heart_outlined,
-              title: l10n.bastionTools_diagnostics,
-              subtitle: l10n.bastionTools_diagnosticsHint,
-              onTap: () => open(const BastionDiagnosticsScreen()),
-            ),
-            InstrumentLabel(l10n.tools_groupMaps),
-            GlassActionRow(
-              icon: Icons.map_outlined,
-              title: l10n.bastion_mapCoverage,
-              subtitle: l10n.bastionTools_mapHint,
-              onTap: () => open(const BastionMapHubScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.cell_tower,
-              title: l10n.tools_antenna,
-              subtitle: l10n.tools_antennaHint,
-              onTap: () => open(const AntennaCoverageScreen()),
-            ),
-            if (!PlatformInfo.isWeb)
-              GlassActionRow(
-                icon: Icons.hexagon_outlined,
-                title: l10n.coverageHex_title,
-                subtitle: l10n.coverageHex_toolSubtitle,
-                onTap: () => open(const CoverageHexScreen()),
+            Padding(
+              padding: const EdgeInsets.all(MeshSpace.lg),
+              child: TextField(
+                key: const ValueKey('tools-search'),
+                controller: _searchController,
+                onChanged: (value) =>
+                    setState(() => _query = value.trim().toLowerCase()),
+                decoration: InputDecoration(
+                  labelText: l10n.tools_search,
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: _searchController.text.isEmpty
+                      ? null
+                      : IconButton(
+                          tooltip: l10n.common_clear,
+                          icon: const Icon(Icons.clear),
+                          onPressed: () {
+                            _searchController.clear();
+                            setState(() => _query = '');
+                          },
+                        ),
+                ),
               ),
-            InstrumentLabel(l10n.tools_groupRouting),
-            GlassActionRow(
-              icon: Icons.route_rounded,
-              title: l10n.bastionTools_pathAnalysis,
-              subtitle: l10n.bastionTools_pathHint,
-              onTap: () => open(const BastionPathHubScreen()),
             ),
-            GlassActionRow(
-              icon: Icons.account_tree_outlined,
-              title: l10n.tools_pathGraph,
-              subtitle: l10n.tools_pathGraphHint,
-              onTap: () => open(const PathGraphScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.cell_tower_rounded,
-              title: l10n.bastion_repeaterTools,
-              subtitle: l10n.bastionTools_repeaterHint,
-              onTap: () => open(const BastionRepeaterToolsScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.network_ping,
-              title: l10n.ping_title,
-              subtitle: l10n.ping_toolSubtitle,
-              onTap: () => open(const RepeaterPingScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.track_changes,
-              title: l10n.hunt_title,
-              subtitle: l10n.hunt_toolSubtitle,
-              onTap: () => open(const AntennaHuntScreen()),
-            ),
-            GlassActionRow(
-              icon: Icons.fingerprint,
-              title: l10n.prefixTool_title,
-              subtitle: l10n.prefixTool_subtitle,
-              onTap: () => open(const PrefixToolScreen()),
+            Expanded(
+              child: visibleGroups.isEmpty
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(MeshSpace.lg),
+                        child: Text(
+                          l10n.tools_noMatches,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    )
+                  : ListView(
+                      keyboardDismissBehavior:
+                          ScrollViewKeyboardDismissBehavior.onDrag,
+                      padding: const EdgeInsets.only(bottom: MeshSpace.xxl),
+                      children: [
+                        for (final group in visibleGroups) ...[
+                          InstrumentLabel(group.title),
+                          for (final action in group.actions)
+                            GlassActionRow(
+                              icon: action.icon,
+                              title: action.title,
+                              subtitle: action.subtitle,
+                              onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(builder: action.builder),
+                              ),
+                            ),
+                        ],
+                      ],
+                    ),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+class _ToolAction {
+  const _ToolAction({
+    required this.icon,
+    required this.title,
+    this.subtitle,
+    required this.builder,
+  });
+
+  final IconData icon;
+  final String title;
+  final String? subtitle;
+  final WidgetBuilder builder;
+
+  bool matches(String query) =>
+      '$title ${subtitle ?? ''}'.toLowerCase().contains(query);
 }

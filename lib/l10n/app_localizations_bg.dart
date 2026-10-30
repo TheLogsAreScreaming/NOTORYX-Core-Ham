@@ -8995,4 +8995,9 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'SOS в канал винаги се подписва. Това подписва всяка публикация, за да виждат другите потребители на NOTORYX, че наистина сте вие. Всеки подпис е един допълнителен пакет в ефира.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }

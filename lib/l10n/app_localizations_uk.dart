@@ -9033,4 +9033,9 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'SOS у каналі завжди підписується. Це налаштування підписує кожне повідомлення, щоб інші користувачі NOTORYX бачили, що це справді ви. Кожен підпис — ще один пакет в ефірі.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }
