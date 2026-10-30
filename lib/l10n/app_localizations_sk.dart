@@ -1304,10 +1304,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String get appSettings_unitsTitle => 'Jednotky';
 
   @override
-  String get appSettings_unitsMetric => 'Metrické (m / km)';
+  String get appSettings_unitsMetric => 'Metrické (m / km / °C)';
 
   @override
-  String get appSettings_unitsImperial => 'Imperiálne (ft / mi)';
+  String get appSettings_unitsImperial => 'Imperiálne (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'Neoznačila sa žiadna oblasť';

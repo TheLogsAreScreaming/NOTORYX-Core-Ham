@@ -1299,10 +1299,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appSettings_unitsTitle => 'Units';
 
   @override
-  String get appSettings_unitsMetric => 'Metric (m / km)';
+  String get appSettings_unitsMetric => 'Metric (m / km / °C)';
 
   @override
-  String get appSettings_unitsImperial => 'Imperial (ft / mi)';
+  String get appSettings_unitsImperial => 'Imperial (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'No area selected';

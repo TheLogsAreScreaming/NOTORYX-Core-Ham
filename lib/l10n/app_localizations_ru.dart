@@ -1322,10 +1322,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get appSettings_unitsTitle => 'Единицы';
 
   @override
-  String get appSettings_unitsMetric => 'Метрическая (м/км)';
+  String get appSettings_unitsMetric => 'Метрическая (м/км/°C)';
 
   @override
-  String get appSettings_unitsImperial => 'Имперская (ft / mi)';
+  String get appSettings_unitsImperial => 'Имперская (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'Область не выбрана';

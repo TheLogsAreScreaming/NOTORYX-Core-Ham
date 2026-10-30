@@ -552,8 +552,8 @@
   "appSettings_stadiaApiKeyDialogDescription": "Enter your Stadia Maps API key. This app uses it for raster tile requests.",
   "appSettings_offlineMapCache": "Offline Map Cache",
   "appSettings_unitsTitle": "Units",
-  "appSettings_unitsMetric": "Metric (m / km)",
-  "appSettings_unitsImperial": "Imperial (ft / mi)",
+  "appSettings_unitsMetric": "Metric (m / km / °C)",
+  "appSettings_unitsImperial": "Imperial (ft / mi / °F)",
   "appSettings_noAreaSelected": "No area selected",
   "appSettings_areaSelectedZoom": "Area selected (zoom {minZoom}-{maxZoom})",
   "@appSettings_areaSelectedZoom": {

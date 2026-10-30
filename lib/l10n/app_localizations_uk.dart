@@ -1312,10 +1312,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get appSettings_unitsTitle => 'Одиниці';
 
   @override
-  String get appSettings_unitsMetric => 'Метричні (м / км)';
+  String get appSettings_unitsMetric => 'Метричні (м / км / °C)';
 
   @override
-  String get appSettings_unitsImperial => 'Імперські (ft / mi)';
+  String get appSettings_unitsImperial => 'Імперські (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'Область не вибрано';

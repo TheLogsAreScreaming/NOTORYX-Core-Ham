@@ -1323,10 +1323,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get appSettings_unitsTitle => 'Unità';
 
   @override
-  String get appSettings_unitsMetric => 'Metrico (m / km)';
+  String get appSettings_unitsMetric => 'Metrico (m / km / °C)';
 
   @override
-  String get appSettings_unitsImperial => 'Imperiale (ft / mi)';
+  String get appSettings_unitsImperial => 'Imperiale (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'Nessun\'area selezionata';

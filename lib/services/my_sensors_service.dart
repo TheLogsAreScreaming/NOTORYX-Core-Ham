@@ -78,25 +78,33 @@ class MySensorsService extends ChangeNotifier {
 }
 
 /// A reading as short text, like "4.19 V" or "41.328, -73.094", or null for
-/// kinds the panel doesn't show.
-String? formatSensorReading(Map<String, dynamic> reading) {
+/// kinds the panel doesn't show. [imperial] shows temperature in °F,
+/// altitude in feet and pressure in inHg.
+String? formatSensorReading(
+  Map<String, dynamic> reading, {
+  bool imperial = false,
+}) {
   final value = reading['value'];
   String n(num v, int digits) => v.toStringAsFixed(digits);
+  String alt(num m) => imperial ? '${n(m * 3.28084, 0)}ft' : '${n(m, 0)}m';
   switch (reading['type']) {
     case CayenneLpp.lppVoltage:
       return '${n(value as num, 2)} V';
     case CayenneLpp.lppTemperature:
-      return '${n(value as num, 1)} °C';
+      final c = value as num;
+      return imperial ? '${n(c * 9 / 5 + 32, 1)} °F' : '${n(c, 1)} °C';
     case CayenneLpp.lppLuminosity:
       return '$value lx';
     case CayenneLpp.lppRelativeHumidity:
       return '${n(value as num, 0)} %RH';
     case CayenneLpp.lppBarometricPressure:
-      return '${n(value as num, 1)} hPa';
+      final hpa = value as num;
+      return imperial ? '${n(hpa * 0.02953, 2)} inHg' : '${n(hpa, 1)} hPa';
     case CayenneLpp.lppPercentage:
       return '$value %';
     case CayenneLpp.lppAltitude:
-      return '$value m';
+      final m = value as num;
+      return imperial ? '${n(m * 3.28084, 0)} ft' : '${n(m, 0)} m';
     case CayenneLpp.lppCurrent:
       return '${n(value as num, 3)} A';
     case CayenneLpp.lppPower:
@@ -107,7 +115,7 @@ String? formatSensorReading(Map<String, dynamic> reading) {
       final gps = value as Map;
       final lat = gps['latitude'] as num, lon = gps['longitude'] as num;
       if (lat == 0 && lon == 0) return null;
-      return '${n(lat, 3)}, ${n(lon, 3)} @${n(gps['altitude'] as num, 0)}m';
+      return '${n(lat, 3)}, ${n(lon, 3)} @${alt(gps['altitude'] as num)}';
   }
   return null;
 }

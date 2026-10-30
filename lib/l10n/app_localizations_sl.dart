@@ -1307,10 +1307,10 @@ class AppLocalizationsSl extends AppLocalizations {
   String get appSettings_unitsTitle => 'Enote';
 
   @override
-  String get appSettings_unitsMetric => 'Metrična (m/km)';
+  String get appSettings_unitsMetric => 'Metrična (m/km/°C)';
 
   @override
-  String get appSettings_unitsImperial => 'Imperialno (ft / mi)';
+  String get appSettings_unitsImperial => 'Imperialno (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'Območje ni izbrano';

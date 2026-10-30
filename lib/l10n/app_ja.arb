@@ -355,8 +355,8 @@
   "appSettings_stadiaApiKeyDialogDescription": "Stadia Maps の API キーを入力してください。このアプリはラスタタイルの取得に使用します。",
   "appSettings_offlineMapCache": "オフライン地図キャッシュ",
   "appSettings_unitsTitle": "単位",
-  "appSettings_unitsMetric": "メートル法 (m / km)",
-  "appSettings_unitsImperial": "ヤード・ポンド法 (ft / mi)",
+  "appSettings_unitsMetric": "メートル法 (m / km / °C)",
+  "appSettings_unitsImperial": "ヤード・ポンド法 (ft / mi / °F)",
   "appSettings_noAreaSelected": "エリアが選択されていません",
   "appSettings_areaSelectedZoom": "エリア選択中（ズーム {minZoom}-{maxZoom}）",
   "@appSettings_areaSelectedZoom": {
