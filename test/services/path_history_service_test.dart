@@ -823,4 +823,96 @@ void main() {
       expect(paths.first.routeWeight, closeTo(1.5, 0.001));
     });
   });
+
+  group('a screen listing every contact', () {
+    // Route Intelligence reads every contact's routes on each rebuild, and
+    // rebuilds whenever the service notifies. With more contacts than the
+    // cache held, each load evicted another history, which was then loaded
+    // again: the screen redrew without end.
+    String key(int i) => i.toRadixString(16).padLeft(64, '0');
+
+    FakeStorageService storageWith(int n) {
+      final storage = FakeStorageService();
+      for (var i = 0; i < n; i++) {
+        storage._store[key(i)] = ContactPathHistory(
+          contactPubKeyHex: key(i),
+          recentPaths: [
+            PathRecord(
+              hopCount: 1,
+              tripTimeMs: 0,
+              timestamp: DateTime(2026, 10, 29),
+              wasFloodDiscovery: true,
+              pathBytes: [i & 0xFF],
+              successCount: 0,
+              failureCount: 0,
+            ),
+          ],
+        );
+      }
+      return storage;
+    }
+
+    test('settles instead of reloading forever', () async {
+      final service = PathHistoryService(storageWith(120));
+      var builds = 0;
+      void build() {
+        builds++;
+        for (var i = 0; i < 120; i++) {
+          service.getRecentPaths(key(i));
+        }
+      }
+
+      service.addListener(build);
+      build();
+      for (var i = 0; i < 50 && builds < 1000; i++) {
+        await Future<void>.delayed(Duration.zero);
+      }
+      service.removeListener(build);
+
+      expect(builds, lessThanOrEqualTo(121));
+      for (var i = 0; i < 120; i++) {
+        expect(service.getRecentPaths(key(i)), hasLength(1), reason: key(i));
+      }
+    });
+
+    test('trims back once the screen has been closed a while', () async {
+      var now = DateTime(2026, 10, 29, 12);
+      final service = PathHistoryService(storageWith(120), clock: () => now);
+      for (var i = 0; i < 120; i++) {
+        service.getRecentPaths(key(i));
+      }
+      await Future<void>.delayed(Duration.zero);
+      for (var i = 0; i < 120; i++) {
+        expect(service.getRecentPaths(key(i)), hasLength(1));
+      }
+
+      now = now.add(const Duration(minutes: 1));
+      service.handlePathUpdated(
+        _makeContact(publicKeyHex: key(200), pathLength: 1, path: [0xAB]),
+      );
+      await Future<void>.delayed(Duration.zero);
+      // Older histories were evicted; the first one has to load again.
+      expect(service.getRecentPaths(key(0)), isEmpty);
+    });
+
+    test('reads a contact with no stored routes only once', () async {
+      final storage = _CountingStorage();
+      final service = PathHistoryService(storage);
+      for (var i = 0; i < 5; i++) {
+        expect(service.getRecentPaths(key(1)), isEmpty);
+        await Future<void>.delayed(Duration.zero);
+      }
+      expect(storage.loads, 1);
+    });
+  });
+}
+
+class _CountingStorage extends FakeStorageService {
+  int loads = 0;
+
+  @override
+  Future<ContactPathHistory?> loadPathHistory(String contactPubKeyHex) {
+    loads++;
+    return super.loadPathHistory(contactPubKeyHex);
+  }
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import '../models/advert_signature.dart';
 import '../models/contact.dart';
 import 'prefs_manager.dart';
 
@@ -16,6 +17,8 @@ class ContactDiscoveryStore {
       final jsonList = jsonDecode(jsonStr) as List<dynamic>;
       return jsonList
           .map((entry) => _fromJson(entry as Map<String, dynamic>))
+          // Saved before adverts were verified: drop the corrupt ones.
+          .where((c) => !looksCorrupt(c.type, c.name))
           .toList();
     } catch (_) {
       return [];
