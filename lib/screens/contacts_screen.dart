@@ -956,7 +956,10 @@ class _ContactsScreenState extends State<ContactsScreen>
                         contact,
                       );
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 4,
+                        ),
                         child: GlassNodeCard(
                           child: _ContactTileEntrance(
                             index: index,
