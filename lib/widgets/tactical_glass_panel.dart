@@ -25,6 +25,7 @@ class TacticalGlassPanel extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final radius = BorderRadius.circular(borderRadius);
+    final useBlur = blur && !MediaQuery.disableAnimationsOf(context);
     final panel = Container(
       padding: padding,
       decoration: BoxDecoration(
@@ -33,8 +34,8 @@ class TacticalGlassPanel extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            scheme.surfaceContainerHigh.withValues(alpha: blur ? 0.82 : 1),
-            scheme.surfaceContainerLow.withValues(alpha: blur ? 0.90 : 1),
+            scheme.surfaceContainerHigh.withValues(alpha: useBlur ? 0.82 : 1),
+            scheme.surfaceContainerLow.withValues(alpha: useBlur ? 0.90 : 1),
           ],
         ),
         border: Border.all(
@@ -53,7 +54,7 @@ class TacticalGlassPanel extends StatelessWidget {
 
     return ClipRRect(
       borderRadius: radius,
-      child: blur
+      child: useBlur
           ? BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: panel,
