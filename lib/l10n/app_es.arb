@@ -4040,5 +4040,7 @@
   "post_signedUnknownKey": "Firmado, pero no por ninguno de tus contactos. Añade al remitente como contacto para saber quién es.",
   "post_unverifiedHint": "Con este mensaje llegó una firma que no coincide. Puede que se modificara por el camino o que no sea de quien dice.",
   "settings_signPosts": "Firmar todos mis mensajes de canal",
-  "settings_signPostsHint": "Un SOS en un canal siempre se firma. Esto firma cada mensaje para que otros usuarios de NOTORYX sepan que eres tú. Cada firma es un paquete más en el aire."
+  "settings_signPostsHint": "Un SOS en un canal siempre se firma. Esto firma cada mensaje para que otros usuarios de NOTORYX sepan que eres tú. Cada firma es un paquete más en el aire.",
+  "tools_search": "Buscar herramientas y ajustes",
+  "tools_noMatches": "Ninguna herramienta coincide con la búsqueda."
 }

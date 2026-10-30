@@ -9035,9 +9035,10 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'SOS в канале всегда подписывается. Эта настройка подписывает каждое сообщение, чтобы другие пользователи NOTORYX видели, что это действительно вы. Каждая подпись — ещё один пакет в эфире.';
-  @override
-  String get tools_search => 'Search tools and settings';
 
   @override
-  String get tools_noMatches => 'No tools match your search.';
+  String get tools_search => 'Поиск инструментов и настроек';
+
+  @override
+  String get tools_noMatches => 'Нет инструментов по вашему запросу.';
 }

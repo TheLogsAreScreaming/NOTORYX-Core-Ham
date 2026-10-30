@@ -3944,5 +3944,7 @@
   "post_signedUnknownKey": "Aláírt, de nem az egyik névjegye írta alá. Vegye fel a feladót névjegyként, hogy lássa, ki az.",
   "post_unverifiedHint": "A bejegyzéssel aláírás érkezett, de nem egyezik. Lehet, hogy útközben megváltozott, vagy nem attól származik, akitől állítja.",
   "settings_signPosts": "Minden csatornabejegyzésem aláírása",
-  "settings_signPostsHint": "A csatornára küldött SOS mindig aláírt. Ez minden bejegyzést aláír, így más NOTORYX-felhasználók láthatják, hogy valóban Ön az. Minden aláírás egy további csomag az éterben."
+  "settings_signPostsHint": "A csatornára küldött SOS mindig aláírt. Ez minden bejegyzést aláír, így más NOTORYX-felhasználók láthatják, hogy valóban Ön az. Minden aláírás egy további csomag az éterben.",
+  "tools_search": "Eszközök és beállítások keresése",
+  "tools_noMatches": "Nincs a keresésnek megfelelő eszköz."
 }

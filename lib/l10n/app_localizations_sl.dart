@@ -8995,9 +8995,10 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'SOS v kanalu je vedno podpisan. To podpiše vsako sporočilo, da drugi uporabniki NOTORYX vidijo, da ste res vi. Vsak podpis je en dodaten paket v etru.';
-  @override
-  String get tools_search => 'Search tools and settings';
 
   @override
-  String get tools_noMatches => 'No tools match your search.';
+  String get tools_search => 'Iskanje orodij in nastavitev';
+
+  @override
+  String get tools_noMatches => 'Iskanju ne ustreza nobeno orodje.';
 }

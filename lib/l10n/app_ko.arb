@@ -4040,5 +4040,7 @@
   "post_signedUnknownKey": "서명은 있지만 연락처에 있는 사람이 아닙니다. 보낸 사람을 연락처에 추가하면 누구인지 알 수 있습니다.",
   "post_unverifiedHint": "이 게시물에 서명이 있었지만 일치하지 않습니다. 도중에 바뀌었거나 말한 사람이 보낸 것이 아닐 수 있습니다.",
   "settings_signPosts": "모든 채널 게시물에 서명",
-  "settings_signPostsHint": "채널의 SOS는 항상 서명됩니다. 이 설정은 모든 게시물에 서명해 다른 NOTORYX 사용자가 정말 본인임을 알 수 있게 합니다. 서명마다 패킷이 하나 더 전송됩니다."
+  "settings_signPostsHint": "채널의 SOS는 항상 서명됩니다. 이 설정은 모든 게시물에 서명해 다른 NOTORYX 사용자가 정말 본인임을 알 수 있게 합니다. 서명마다 패킷이 하나 더 전송됩니다.",
+  "tools_search": "도구 및 설정 검색",
+  "tools_noMatches": "검색과 일치하는 도구가 없습니다."
 }

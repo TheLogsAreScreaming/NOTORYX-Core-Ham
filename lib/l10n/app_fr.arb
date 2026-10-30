@@ -4040,5 +4040,7 @@
   "post_signedUnknownKey": "Signé, mais par aucun de vos contacts. Ajoutez l’expéditeur en contact pour savoir qui c’est.",
   "post_unverifiedHint": "Une signature accompagnait ce message mais ne correspond pas. Il a peut-être été modifié en route, ou ne vient pas de la personne indiquée.",
   "settings_signPosts": "Signer tous mes messages de canal",
-  "settings_signPostsHint": "Un SOS sur un canal est toujours signé. Ceci signe chaque message pour que les autres utilisateurs de NOTORYX sachent que c’est bien vous. Chaque signature ajoute un paquet sur les ondes."
+  "settings_signPostsHint": "Un SOS sur un canal est toujours signé. Ceci signe chaque message pour que les autres utilisateurs de NOTORYX sachent que c’est bien vous. Chaque signature ajoute un paquet sur les ondes.",
+  "tools_search": "Rechercher outils et réglages",
+  "tools_noMatches": "Aucun outil ne correspond à la recherche."
 }

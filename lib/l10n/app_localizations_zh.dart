@@ -8388,9 +8388,10 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       '频道中的 SOS 始终会签名。开启后每条消息都会签名，让其他 NOTORYX 用户确认确实是你发的。每个签名会多发送一个数据包。';
-  @override
-  String get tools_search => 'Search tools and settings';
 
   @override
-  String get tools_noMatches => 'No tools match your search.';
+  String get tools_search => '搜索工具和设置';
+
+  @override
+  String get tools_noMatches => '没有与搜索匹配的工具。';
 }

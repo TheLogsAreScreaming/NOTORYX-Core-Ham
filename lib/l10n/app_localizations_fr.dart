@@ -9042,9 +9042,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'Un SOS sur un canal est toujours signé. Ceci signe chaque message pour que les autres utilisateurs de NOTORYX sachent que c’est bien vous. Chaque signature ajoute un paquet sur les ondes.';
-  @override
-  String get tools_search => 'Search tools and settings';
 
   @override
-  String get tools_noMatches => 'No tools match your search.';
+  String get tools_search => 'Rechercher outils et réglages';
+
+  @override
+  String get tools_noMatches => 'Aucun outil ne correspond à la recherche.';
 }
