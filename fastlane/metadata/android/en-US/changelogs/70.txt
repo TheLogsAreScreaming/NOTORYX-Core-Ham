@@ -1,0 +1,3 @@
+• Frosted ember look: real glass panels over a warm glow on Home, Chats, Nodes and More
+• Floating glass tab bar
+• Cleaner node and chat cards; glass Check in and SOS buttons
