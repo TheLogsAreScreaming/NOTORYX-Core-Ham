@@ -13,9 +13,9 @@ Part of the **NOTORYX** off-grid communications family. **No Towers. No Limits.*
 NOTORYX Core turns your phone or computer and a [MeshCore](https://meshcore.io/) radio into a field communicator that works without cell service, Wi-Fi or the internet. Messages hop from radio to radio across the mesh.
 
 <p align="center">
-  <img src="docs/screenshots/home.png" width="230" alt="Field Console home screen with check-in and SOS">
-  <img src="docs/screenshots/channel_chat.png" width="230" alt="A channel conversation">
-  <img src="docs/screenshots/path_graph.png" width="230" alt="Path graph showing how messages reach you">
+  <img src="docs/screenshots/home.png" width="230" alt="Home: radio readouts, check-in, SOS and field tools on frosted glass">
+  <img src="docs/screenshots/chats.png" width="230" alt="Chats: channels and direct conversations">
+  <img src="docs/screenshots/nodes.png" width="230" alt="Nodes: repeaters, people, rooms and sensors heard on the mesh">
 </p>
 
 > NOTORYX Core is a pre-release. It is tested in automated tests and a mesh simulator but not yet on a wide range of phones and radios. MQTT bridging and LetsMesh sign-in are new and still need wider real-world testing. It is not a replacement for an emergency service or a satellite messenger. Please [report issues](../../issues).
@@ -37,7 +37,7 @@ iOS, Windows, Linux and web builds compile in CI but aren't released yet.
 2. Open the file. If Android asks, allow installs from your browser or file manager.
 3. Open NOTORYX Core and allow **Bluetooth**, **location** and **notifications** when asked.
 
-**Upgrading from a test build:** builds before 10.0.0-rc.10 were signed with a temporary test key, and Android won't install a release-signed build over them. First make an encrypted backup (**Tools → Encrypted backup**), then uninstall the old app, install the new one and restore. You only do this once. Later versions install as normal updates.
+**Upgrading from a test build:** builds before 10.0.0-rc.10 were signed with a temporary test key, and Android won't install a release-signed build over them. First make an encrypted backup (**More → Encrypted backup**), then uninstall the old app, install the new one and restore. You only do this once. Later versions install as normal updates.
 
 ### Install on a Mac
 
@@ -56,59 +56,73 @@ Each release includes `SHA256SUMS-Android.txt` and `SHA256SUMS-macOS.txt` if you
 1. **Connect your radio.** On the home screen, tap **Get started**, or go to **Connect radio**. NOTORYX Core connects over Bluetooth, USB or TCP to a radio running MeshCore companion firmware, and reconnects to your last radio on its own.
 2. **Say hello.** Open **Chats** and send a message on a channel, or open someone in **Nodes** to message them directly.
 3. **Choose who gets your check-ins and SOS.** Tap **Check in: I'm OK** or hold **SOS**. The first time, NOTORYX Core asks who should get them. You can change this anytime in **Plan your trip**.
-4. **Pick a look.** **Settings → Theme** offers Blaze (default), Topo night, Red light and Alpine day (plus Halloween in 10.0.0-rc.H only).
+4. **Set your radio for your area.** **Settings → Radio settings → Presets** lists MeshCore's community presets (USA, Canada, EU/UK, Australia and more) with the one for your country suggested first.
+5. **Pick a look.** **Settings → Theme** offers Blaze (default), Topo night, Red light and Alpine day.
 
-The **HOME** tab at the bottom always brings you back to the Field Console, where check-in and SOS live.
+The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**. Home is where check-in, SOS and your radio's readings live; **More** holds every tool and setting, with a search box.
 
 ## Features
 
 ### Safety and trips
 - **SOS:** hold for 2 seconds to send your radio's position to your trip contacts (and an optional channel). It repeats every 5 minutes until someone replies or you stop it, and **I'm safe** sends an all-clear.
+- **Signed SOS:** an SOS on a channel carries a signature from your radio's own key, so other NOTORYX users can see it really came from you. You can sign every channel post too. A post whose signature doesn't check out is shown as unverified, and other apps just see the normal message.
 - **Check-ins:** I'm OK, At camp, Delayed and Heading back. You see who each one reached, and can resend to anyone it missed.
-- **Check-in reminders:** a phone notification when you're due to check in, even if NOTORYX Core is closed.
-- **Overdue alerts:** a warning when a trip contact goes quiet for longer than you set.
+- **Check-in reminders and overdue alerts:** a notification when you're due to check in, and a warning when a trip contact goes quiet for longer than you set.
 - **Trip planning:** pick up to six contacts. Trip briefs, a Field Log of everything sent and received, and optional automations.
+- **Android home-screen widget:** radio status, battery and unread count, with one-tap Check in and SOS.
 
 ### Messaging
-- Direct and channel messages with delivery status, reactions, GIFs and image messages.
-- **Message search** across everything saved on the device.
-- **Drafts** are kept per chat.
+- Direct and channel messages with delivery status, reactions, GIFs and image messages. Tapping a notification opens that chat.
+- **Find channels:** a directory of public hashtag channels (local ones first), channels heard on air that you haven't joined, and **Active online**: the #channels an online analyzer has seen in use, with one-tap Join.
+- **Message search**, per-chat **drafts**, **read aloud** and on-device translation.
 - **Share your position or a contact** from the message box. Received contacts can be added in one tap.
-- **Read messages aloud** (optional), and on-device translation.
+- **Link previews** (off by default, since fetching one tells the site your IP address).
 - **Area-limited channel messages** that stay within a radius of you. These need radios running flood-corridor firmware.
 - Optional auto-delete of old channel messages.
 
 ### Maps, paths and coverage
-- Live mesh map with offline map packs.
-- **Path graph:** every path you've heard, drawn as flows from far repeaters to you, with the busiest repeaters ranked. Short (1-byte) hops are matched to a specific repeater using longer paths.
-- **Antenna coverage:** see where an antenna at a chosen height could reach over the terrain.
-- Line-of-sight checks, coverage capture sessions you can record and export, and route intelligence (which handles 1-, 2- and 3-byte hop IDs).
+- Live mesh map with offline map packs, and a **track log** that records your trail and exports GPX.
+- **Path graph:** every path you've heard, drawn as flows from far repeaters to you. Short (1-byte) hops are matched to a specific repeater using longer paths.
+- **Route Intelligence:** learned routes and the best repeaters your radio hears directly.
+- **Observer reach:** check which online observers heard a message you sent, how many hops it took and the best signal. Repeaters you don't have as contacts can be named online. Both use a CoreScope analyzer you choose in Settings.
+- **Coverage hexagons:** record where your radio got through and upload to your own HTTPS endpoints, with a privacy delay.
+- **Antenna coverage** over the terrain, line-of-sight checks and coverage capture sessions.
+
+### Your radio
+- **Sensors on Home:** your radio's own readings (battery voltage, temperatures, GPS, light and whatever else it reports).
+- **Radio presets:** MeshCore's community catalogue with search and a suggestion for your country. Choosing one keeps your transmit power. Local mesh settings (for example Philadelphia's) are offered when your radio is in that area; see [adding your area](#add-your-areas-mesh-settings).
+- **Send your advert** zero-hop (only radios that hear you directly) or flooded across the mesh.
+- Connections dashboard, live radio stats and a noise-floor chart, adjustable refresh rate and battery saver.
+- Command line and Wi-Fi setup for your own radio. With permission, you can also use a trusted contact's command line.
+
+### Field tools
+- **Repeater ping:** a one-hop trace showing the signal both ways. **Antenna hunt:** clicks faster as a chosen repeater gets louder.
+- Repeater and room-server tools: login, status, neighbors, telemetry, command line and **access control**.
+- **Repeater IDs** (who uses an ID, which are free) and **Region setup** (US and Canada region trees, or your own) for repeater owners.
+- **Bot Mode:** local auto-replies, keyword rules and commands like `!ping`, `!sun`, `!moon`, `!weather`, `!dice` and `!trace`, in direct messages and in the channels you choose. It can also post weather alerts to a channel.
+- **Field guide**, encrypted backup and app-icon shortcuts.
 
 ### MQTT bridge (optional)
-- **Connect to an MQTT broker** over TLS or secure WebSocket to see MeshCore traffic from beyond radio range. Broker passwords are kept in the system keychain, never in plain settings.
-- **Live packet feed** of what arrives over MQTT. Channel messages that reached you only over the internet are marked **via MQTT**, and never count as radio repeats.
-- **Observer sharing** sends what your radio hears to the broker, in the community `meshcoretomqtt` format. It's off until you turn it on, and direct messages and your own traffic each need a separate opt-in.
-- **LetsMesh-style brokers:** sign in with a token signed by your radio, so its private key never leaves it. US and EU LetsMesh presets are included; they're community services, not part of NOTORYX.
-- Reconnects on its own when your network comes back.
-
-### Your radios
-- **Connections dashboard** (from **Connect radio**): radio and MQTT status side by side, device and firmware details, and a clear prompt when Bluetooth is off.
-- Radio overview with battery, firmware and LoRa settings, plus live radio stats and a noise-floor chart.
-- **Local mesh settings:** NOTORYX Core knows the settings that local meshes have agreed on (for example Philadelphia's 919.500 MHz preset). It tells you when your radio doesn't match, and switches it after you confirm. See [adding your area](#add-your-areas-mesh-settings).
-- Repeater and room-server tools: login, status, neighbors, telemetry, command line and **access control**.
-- **Live sensor updates:** sensors push readings when they change.
-- Command line and Wi-Fi setup for your own radio. With permission, you can also use a trusted contact's command line.
-- Bot Mode auto-replies, encrypted backup, battery saver and app-icon shortcuts.
+- **Several brokers at once** over TLS or secure WebSocket, with a Wi-Fi-only option and an offline queue that sends when you're back online. Broker passwords are kept in the system keychain.
+- **Live packet feed.** Channel messages that reached you only over the internet are marked **via MQTT**, and never count as radio repeats.
+- **Observer sharing** in the community `meshcoretomqtt` format. It's off until you turn it on, and direct messages and your own traffic each need a separate opt-in.
+- **LetsMesh-style sign-in** with a token signed by your radio, so its private key never leaves it. LetsMesh (US and EU) and MeshRank presets are included; they're community services, not part of NOTORYX.
 
 ### Look and feel
-- Four themes: **Blaze**, **Topo night**, **Red light** (keeps your night vision) and **Alpine day** (for bright sun). All are checked for readable contrast.
-- **Halloween** (pumpkin, toxic green and haunted purple) is available in 10.0.0-rc.H only. It goes away in the next release, and the app switches back to Blaze on its own.
-- Available in 17 languages. A few screens (bot settings and the local mesh settings banner) are still in English only.
+- **Frosted ember:** the main screens sit on a warm glow, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
+- Four themes: **Blaze**, **Topo night**, **Red light** (keeps your night vision) and **Alpine day** (for bright sun).
+- Available in 18 languages.
 
 <p align="center">
-  <img src="docs/screenshots/home_red_light.png" width="200" alt="Red light theme">
+  <img src="docs/screenshots/more.png" width="200" alt="More: every tool and setting, searchable">
   <img src="docs/screenshots/home_alpine_day.png" width="200" alt="Alpine day theme">
-  <img src="docs/screenshots/settings.png" width="200" alt="Settings with the theme picker">
+  <img src="docs/screenshots/home_red_light.png" width="200" alt="Red light theme">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/routes.png" width="200" alt="Route Intelligence">
+  <img src="docs/screenshots/path_graph.png" width="200" alt="Path graph showing how messages reach you">
+  <img src="docs/screenshots/settings.png" width="200" alt="Settings">
 </p>
 
 ## Add your area's mesh settings
@@ -158,7 +172,7 @@ Before opening a pull request, run:
 
 ```bash
 dart format lib test
-flutter analyze
+flutter analyze --fatal-infos
 flutter test
 ```
 
@@ -169,7 +183,7 @@ flutter test
 - `lib/services/`: field ops, coverage, routing, MQTT, notifications and other services
 - `lib/models/`, `lib/storage/`: data and persistence
 - `lib/theme/`: themes and colors
-- `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`)
+- `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`, with `PREVIEW_THEME=alpine_day` or `red_light` for other themes)
 
 ## Contributing
 
