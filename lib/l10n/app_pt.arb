@@ -3677,7 +3677,6 @@
   "regionSetup_tree": "Árvore de regiões",
   "regionSetup_custom": "Personalizado",
   "regionSetup_region": "Região mais local",
-  "regionSetup_source": "Fonte: {source}",
   "regionSetup_customLabel": "Regiões, da mais ampla para a mais local",
   "regionSetup_invalidName": "\"{name}\" não é um nome de região válido. Use letras minúsculas, números e hífens, até 29 caracteres.",
   "regionSetup_tooMany": "Um repetidor pode ter no máximo {max} regiões.",

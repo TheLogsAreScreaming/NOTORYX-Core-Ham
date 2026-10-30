@@ -1,24 +1,370 @@
 {
-  "version": 1,
-  "about": "Example MeshCore region trees for the Region setup helper. Each region names its parent; a repeater carries its region and every region above it. To add your area's tree, open a pull request and give a source.",
+  "version": 2,
+  "about": "Starting-point MeshCore region trees for the Region setup helper. Each region names its parent; a repeater carries its region and every region above it. Region names only work if neighbouring repeaters use the same ones, so check what your area uses, or pick Custom in the app.",
   "trees": [
     {
-      "id": "pnw",
-      "name": "Pacific Northwest",
-      "source": "CascadiaMesh region guide, cascadiamesh.org/regions",
+      "id": "us",
+      "name": "United States",
       "regions": [
-        { "name": "west", "label": "Entire mesh" },
-        { "name": "pnw", "parent": "west", "label": "Pacific Northwest" },
-        { "name": "wa", "parent": "pnw", "label": "Washington" },
-        { "name": "or", "parent": "pnw", "label": "Oregon" },
-        { "name": "id", "parent": "pnw", "label": "Idaho" },
-        { "name": "mt", "parent": "pnw", "label": "Montana" },
-        { "name": "bc", "parent": "pnw", "label": "British Columbia" },
-        { "name": "w-wa", "parent": "wa", "label": "Western Washington" },
-        { "name": "e-wa", "parent": "wa", "label": "Eastern Washington" },
-        { "name": "sea", "parent": "w-wa", "label": "Seattle" },
-        { "name": "geg", "parent": "e-wa", "label": "Spokane" },
-        { "name": "pdx", "parent": "or", "label": "Portland" }
+        {
+          "name": "usa",
+          "label": "Entire United States"
+        },
+        {
+          "name": "us-ne",
+          "parent": "usa",
+          "label": "Northeast"
+        },
+        {
+          "name": "ct",
+          "parent": "us-ne",
+          "label": "Connecticut"
+        },
+        {
+          "name": "me",
+          "parent": "us-ne",
+          "label": "Maine"
+        },
+        {
+          "name": "ma",
+          "parent": "us-ne",
+          "label": "Massachusetts"
+        },
+        {
+          "name": "nh",
+          "parent": "us-ne",
+          "label": "New Hampshire"
+        },
+        {
+          "name": "ri",
+          "parent": "us-ne",
+          "label": "Rhode Island"
+        },
+        {
+          "name": "vt",
+          "parent": "us-ne",
+          "label": "Vermont"
+        },
+        {
+          "name": "nj",
+          "parent": "us-ne",
+          "label": "New Jersey"
+        },
+        {
+          "name": "ny",
+          "parent": "us-ne",
+          "label": "New York"
+        },
+        {
+          "name": "pa",
+          "parent": "us-ne",
+          "label": "Pennsylvania"
+        },
+        {
+          "name": "us-se",
+          "parent": "usa",
+          "label": "Southeast"
+        },
+        {
+          "name": "de",
+          "parent": "us-se",
+          "label": "Delaware"
+        },
+        {
+          "name": "dc",
+          "parent": "us-se",
+          "label": "District of Columbia"
+        },
+        {
+          "name": "fl",
+          "parent": "us-se",
+          "label": "Florida"
+        },
+        {
+          "name": "ga",
+          "parent": "us-se",
+          "label": "Georgia"
+        },
+        {
+          "name": "md",
+          "parent": "us-se",
+          "label": "Maryland"
+        },
+        {
+          "name": "nc",
+          "parent": "us-se",
+          "label": "North Carolina"
+        },
+        {
+          "name": "sc",
+          "parent": "us-se",
+          "label": "South Carolina"
+        },
+        {
+          "name": "va",
+          "parent": "us-se",
+          "label": "Virginia"
+        },
+        {
+          "name": "wv",
+          "parent": "us-se",
+          "label": "West Virginia"
+        },
+        {
+          "name": "al",
+          "parent": "us-se",
+          "label": "Alabama"
+        },
+        {
+          "name": "ky",
+          "parent": "us-se",
+          "label": "Kentucky"
+        },
+        {
+          "name": "ms",
+          "parent": "us-se",
+          "label": "Mississippi"
+        },
+        {
+          "name": "tn",
+          "parent": "us-se",
+          "label": "Tennessee"
+        },
+        {
+          "name": "ar",
+          "parent": "us-se",
+          "label": "Arkansas"
+        },
+        {
+          "name": "la",
+          "parent": "us-se",
+          "label": "Louisiana"
+        },
+        {
+          "name": "us-mw",
+          "parent": "usa",
+          "label": "Midwest"
+        },
+        {
+          "name": "il",
+          "parent": "us-mw",
+          "label": "Illinois"
+        },
+        {
+          "name": "in",
+          "parent": "us-mw",
+          "label": "Indiana"
+        },
+        {
+          "name": "mi",
+          "parent": "us-mw",
+          "label": "Michigan"
+        },
+        {
+          "name": "oh",
+          "parent": "us-mw",
+          "label": "Ohio"
+        },
+        {
+          "name": "wi",
+          "parent": "us-mw",
+          "label": "Wisconsin"
+        },
+        {
+          "name": "ia",
+          "parent": "us-mw",
+          "label": "Iowa"
+        },
+        {
+          "name": "ks",
+          "parent": "us-mw",
+          "label": "Kansas"
+        },
+        {
+          "name": "mn",
+          "parent": "us-mw",
+          "label": "Minnesota"
+        },
+        {
+          "name": "mo",
+          "parent": "us-mw",
+          "label": "Missouri"
+        },
+        {
+          "name": "ne",
+          "parent": "us-mw",
+          "label": "Nebraska"
+        },
+        {
+          "name": "nd",
+          "parent": "us-mw",
+          "label": "North Dakota"
+        },
+        {
+          "name": "sd",
+          "parent": "us-mw",
+          "label": "South Dakota"
+        },
+        {
+          "name": "us-sw",
+          "parent": "usa",
+          "label": "Southwest"
+        },
+        {
+          "name": "az",
+          "parent": "us-sw",
+          "label": "Arizona"
+        },
+        {
+          "name": "nm",
+          "parent": "us-sw",
+          "label": "New Mexico"
+        },
+        {
+          "name": "ok",
+          "parent": "us-sw",
+          "label": "Oklahoma"
+        },
+        {
+          "name": "tx",
+          "parent": "us-sw",
+          "label": "Texas"
+        },
+        {
+          "name": "us-w",
+          "parent": "usa",
+          "label": "West"
+        },
+        {
+          "name": "co",
+          "parent": "us-w",
+          "label": "Colorado"
+        },
+        {
+          "name": "id",
+          "parent": "us-w",
+          "label": "Idaho"
+        },
+        {
+          "name": "mt",
+          "parent": "us-w",
+          "label": "Montana"
+        },
+        {
+          "name": "nv",
+          "parent": "us-w",
+          "label": "Nevada"
+        },
+        {
+          "name": "ut",
+          "parent": "us-w",
+          "label": "Utah"
+        },
+        {
+          "name": "wy",
+          "parent": "us-w",
+          "label": "Wyoming"
+        },
+        {
+          "name": "ak",
+          "parent": "us-w",
+          "label": "Alaska"
+        },
+        {
+          "name": "ca",
+          "parent": "us-w",
+          "label": "California"
+        },
+        {
+          "name": "hi",
+          "parent": "us-w",
+          "label": "Hawaii"
+        },
+        {
+          "name": "or",
+          "parent": "us-w",
+          "label": "Oregon"
+        },
+        {
+          "name": "wa",
+          "parent": "us-w",
+          "label": "Washington"
+        }
+      ]
+    },
+    {
+      "id": "canada",
+      "name": "Canada",
+      "regions": [
+        {
+          "name": "canada",
+          "label": "Entire Canada"
+        },
+        {
+          "name": "ca-bc",
+          "parent": "canada",
+          "label": "British Columbia"
+        },
+        {
+          "name": "ca-ab",
+          "parent": "canada",
+          "label": "Alberta"
+        },
+        {
+          "name": "ca-sk",
+          "parent": "canada",
+          "label": "Saskatchewan"
+        },
+        {
+          "name": "ca-mb",
+          "parent": "canada",
+          "label": "Manitoba"
+        },
+        {
+          "name": "ca-on",
+          "parent": "canada",
+          "label": "Ontario"
+        },
+        {
+          "name": "ca-qc",
+          "parent": "canada",
+          "label": "Quebec"
+        },
+        {
+          "name": "ca-nb",
+          "parent": "canada",
+          "label": "New Brunswick"
+        },
+        {
+          "name": "ca-ns",
+          "parent": "canada",
+          "label": "Nova Scotia"
+        },
+        {
+          "name": "ca-pe",
+          "parent": "canada",
+          "label": "Prince Edward Island"
+        },
+        {
+          "name": "ca-nl",
+          "parent": "canada",
+          "label": "Newfoundland and Labrador"
+        },
+        {
+          "name": "ca-yt",
+          "parent": "canada",
+          "label": "Yukon"
+        },
+        {
+          "name": "ca-nt",
+          "parent": "canada",
+          "label": "Northwest Territories"
+        },
+        {
+          "name": "ca-nu",
+          "parent": "canada",
+          "label": "Nunavut"
+        }
       ]
     }
   ]

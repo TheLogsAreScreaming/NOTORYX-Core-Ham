@@ -216,23 +216,13 @@ class _RegionSetupScreenState extends State<RegionSetupScreen> {
                         ],
                         onChanged: (v) => _changed(() => _leaf = v),
                       ),
-                      if (tree.source.isNotEmpty) ...[
-                        const SizedBox(height: 8),
-                        Text(
-                          l10n.regionSetup_source(tree.source),
-                          style: TextStyle(
-                            color: MeshPalette.ink3,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
                     ] else
                       TextField(
                         key: const ValueKey('region-custom'),
                         controller: _customController,
                         decoration: InputDecoration(
                           labelText: l10n.regionSetup_customLabel,
-                          hintText: 'west > pnw > wa > sea',
+                          hintText: 'usa > us-ne > ct',
                           errorText: invalid.isNotEmpty
                               ? l10n.regionSetup_invalidName(invalid.first)
                               : tooMany

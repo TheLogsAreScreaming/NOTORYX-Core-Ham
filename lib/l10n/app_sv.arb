@@ -3677,7 +3677,6 @@
   "regionSetup_tree": "Regionträd",
   "regionSetup_custom": "Anpassat",
   "regionSetup_region": "Mest lokal region",
-  "regionSetup_source": "Källa: {source}",
   "regionSetup_customLabel": "Regioner, bredast först",
   "regionSetup_invalidName": "\"{name}\" är inte ett giltigt regionnamn. Använd gemener, siffror och bindestreck, högst 29 tecken.",
   "regionSetup_tooMany": "En repeater kan bära högst {max} regioner.",

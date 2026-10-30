@@ -8208,11 +8208,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get regionSetup_region => 'Самый местный регион';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Источник: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Регионы, от самого широкого';
 
   @override

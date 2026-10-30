@@ -3811,7 +3811,6 @@
   "regionSetup_tree": "Regionsbaum",
   "regionSetup_custom": "Eigene",
   "regionSetup_region": "Lokalste Region",
-  "regionSetup_source": "Quelle: {source}",
   "regionSetup_customLabel": "Regionen, die weiteste zuerst",
   "regionSetup_invalidName": "„{name}“ ist kein gültiger Regionsname. Nutze Kleinbuchstaben, Ziffern und Bindestriche, höchstens 29 Zeichen.",
   "regionSetup_tooMany": "Ein Repeater kann höchstens {max} Regionen tragen.",

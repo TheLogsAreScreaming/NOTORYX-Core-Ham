@@ -8165,11 +8165,6 @@ class AppLocalizationsHu extends AppLocalizations {
   String get regionSetup_region => 'Leghelyibb régió';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Forrás: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Régiók, a legtágabbtól';
 
   @override

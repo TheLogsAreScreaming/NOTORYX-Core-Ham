@@ -3715,7 +3715,6 @@
   "regionSetup_tree": "Drzewo regionów",
   "regionSetup_custom": "Własne",
   "regionSetup_region": "Najbardziej lokalny region",
-  "regionSetup_source": "Źródło: {source}",
   "regionSetup_customLabel": "Regiony, od najszerszego",
   "regionSetup_invalidName": "„{name}” nie jest prawidłową nazwą regionu. Użyj małych liter, cyfr i łączników, do 29 znaków.",
   "regionSetup_tooMany": "Przemiennik może mieć najwyżej {max} regionów.",

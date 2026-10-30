@@ -3682,7 +3682,6 @@
   "regionSetup_tree": "区域树",
   "regionSetup_custom": "自定义",
   "regionSetup_region": "最小的区域",
-  "regionSetup_source": "来源：{source}",
   "regionSetup_customLabel": "区域（从大到小）",
   "regionSetup_invalidName": "“{name}”不是有效的区域名。请使用小写字母、数字和连字符，最多 29 个字符。",
   "regionSetup_tooMany": "一台中继器最多可设置 {max} 个区域。",

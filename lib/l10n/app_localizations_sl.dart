@@ -8166,11 +8166,6 @@ class AppLocalizationsSl extends AppLocalizations {
   String get regionSetup_region => 'Najbolj lokalna regija';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Vir: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Regije, od najširše';
 
   @override

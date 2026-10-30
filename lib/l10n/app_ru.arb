@@ -2980,7 +2980,6 @@
   "regionSetup_tree": "Дерево регионов",
   "regionSetup_custom": "Своё",
   "regionSetup_region": "Самый местный регион",
-  "regionSetup_source": "Источник: {source}",
   "regionSetup_customLabel": "Регионы, от самого широкого",
   "regionSetup_invalidName": "«{name}» — недопустимое имя региона. Используйте строчные латинские буквы, цифры и дефисы, до 29 символов.",
   "regionSetup_tooMany": "Ретранслятору можно задать не более {max} регионов.",

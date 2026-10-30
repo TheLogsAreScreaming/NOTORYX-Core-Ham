@@ -7790,11 +7790,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get regionSetup_region => '가장 좁은 지역';
 
   @override
-  String regionSetup_source(String source) {
-    return '출처: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => '지역 (넓은 순서)';
 
   @override

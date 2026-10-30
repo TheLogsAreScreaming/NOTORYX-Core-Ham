@@ -3677,7 +3677,6 @@
   "regionSetup_tree": "Дърво от региони",
   "regionSetup_custom": "Собствено",
   "regionSetup_region": "Най-местен регион",
-  "regionSetup_source": "Източник: {source}",
   "regionSetup_customLabel": "Региони, от най-широкия",
   "regionSetup_invalidName": "„{name}“ не е валидно име на регион. Използвайте малки латински букви, цифри и тирета, до 29 знака.",
   "regionSetup_tooMany": "Ретранслаторът може да носи най-много {max} региона.",

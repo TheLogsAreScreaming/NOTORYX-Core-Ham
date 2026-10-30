@@ -8160,11 +8160,6 @@ class AppLocalizationsSk extends AppLocalizations {
   String get regionSetup_region => 'Najmiestnejší región';
 
   @override
-  String regionSetup_source(String source) {
-    return 'Zdroj: $source';
-  }
-
-  @override
   String get regionSetup_customLabel => 'Regióny, od najširšieho';
 
   @override

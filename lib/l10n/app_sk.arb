@@ -3677,7 +3677,6 @@
   "regionSetup_tree": "Strom regiónov",
   "regionSetup_custom": "Vlastné",
   "regionSetup_region": "Najmiestnejší región",
-  "regionSetup_source": "Zdroj: {source}",
   "regionSetup_customLabel": "Regióny, od najširšieho",
   "regionSetup_invalidName": "„{name}“ nie je platný názov regiónu. Použite malé písmená, číslice a pomlčky, najviac 29 znakov.",
   "regionSetup_tooMany": "Opakovač môže mať najviac {max} regiónov.",

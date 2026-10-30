@@ -7614,11 +7614,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get regionSetup_region => '最小的区域';
 
   @override
-  String regionSetup_source(String source) {
-    return '来源：$source';
-  }
-
-  @override
   String get regionSetup_customLabel => '区域（从大到小）';
 
   @override
