@@ -1,4 +1,5 @@
 import '../theme/mesh_theme.dart';
+import '../widgets/tactical_glass_panel.dart';
 import 'package:flutter/material.dart';
 import '../l10n/l10n.dart';
 import 'map_screen.dart';
@@ -25,12 +26,9 @@ class BastionMapHubScreen extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.fromLTRB(18, 18, 18, 28),
         children: [
-          Container(
+          TacticalGlassPanel(
+            blur: false,
             padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              border: Border.all(color: MeshPalette.line),
-              borderRadius: BorderRadius.circular(MeshRadii.xs),
-            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
