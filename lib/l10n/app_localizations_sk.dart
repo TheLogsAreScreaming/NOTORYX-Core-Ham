@@ -9132,4 +9132,7 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Každý ping je žiadosť o objavenie bez preposielania: odpovedajú len opakovače v priamom dosahu a nič sa nepublikuje do kanála. Poloha pochádza z GPS rádia.';
+  @override
+  String get mapTelemetry_policy =>
+      'Uložené hodnoty sa po 1 hodine stlmia a po 24 hodinách zmiznú. Obnovenie odošle jednu požiadavku; uzol musí povoliť telemetriu a senzory môžu vyžadovať prihlásenie. Mapa nikdy nežiada aktualizácie automaticky.';
 }

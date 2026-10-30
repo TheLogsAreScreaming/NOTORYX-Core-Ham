@@ -8528,4 +8528,7 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       '每次 ping 都是零跳发现请求：只有直接覆盖范围内的中继器会回应，不会向频道发布任何内容。位置来自电台的 GPS。';
+  @override
+  String get mapTelemetry_policy =>
+      '缓存读数在1小时后变暗，24小时后隐藏。刷新会发送一次请求；节点必须允许遥测，传感器可能需要登录。地图不会自动请求更新。';
 }

@@ -9191,4 +9191,7 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Każdy ping to żądanie wykrywania bez przekazywania: odpowiadają tylko przemienniki w bezpośrednim zasięgu, nic nie trafia na kanał. Pozycje pochodzą z GPS radia.';
+  @override
+  String get mapTelemetry_policy =>
+      'Zapisane odczyty są przyciemniane po 1 godzinie i znikają po 24 godzinach. Odświeżenie wysyła jedno żądanie; węzeł musi zezwalać na telemetrię, a czujniki mogą wymagać logowania. Mapa nigdy nie żąda aktualizacji automatycznie.';
 }

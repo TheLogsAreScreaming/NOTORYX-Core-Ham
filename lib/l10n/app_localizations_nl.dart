@@ -9121,4 +9121,7 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Elke ping is een discover-verzoek zonder doorsturen: alleen repeaters binnen direct bereik antwoorden en er wordt niets in een kanaal gezet. Posities komen van de GPS van je radio.';
+  @override
+  String get mapTelemetry_policy =>
+      'Opgeslagen metingen vervagen na 1 uur en verdwijnen na 24 uur. Vernieuwen verstuurt één verzoek; de node moet telemetrie toestaan en sensoren kunnen een aanmelding vereisen. De kaart vraagt nooit automatisch updates op.';
 }

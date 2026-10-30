@@ -9191,4 +9191,7 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Chaque ping est une demande de découverte sans relais : seuls les répéteurs à portée directe répondent, rien n’est publié sur un canal. Les positions viennent du GPS de votre radio.';
+  @override
+  String get mapTelemetry_policy =>
+      'Les mesures enregistrées sont atténuées après 1 heure et masquées après 24 heures. Actualiser envoie une demande ; le nœud doit autoriser la télémétrie et les capteurs peuvent nécessiter une connexion. La carte ne demande jamais de mises à jour automatiques.';
 }

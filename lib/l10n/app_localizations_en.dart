@@ -9034,4 +9034,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your radio’s GPS.';
+  @override
+  String get mapTelemetry_policy =>
+      'Cached readings dim after 1 hour and disappear after 24 hours. Refresh sends one request; the node must allow telemetry and sensors may require login. The map never requests updates automatically.';
 }
