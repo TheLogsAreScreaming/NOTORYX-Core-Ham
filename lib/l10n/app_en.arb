@@ -5259,5 +5259,42 @@
         "type": "String"
       }
     }
-  }
+  },
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Ping from where you are and map which repeaters hear you",
+  "wardrive_start": "Start",
+  "wardrive_stop": "Stop",
+  "wardrive_pings": "pings",
+  "wardrive_heard": "heard",
+  "wardrive_pinging": "Pinging…",
+  "wardrive_waitPosition": "Waiting for a GPS fix from your radio.",
+  "wardrive_waitRadio": "Connect a radio to ping.",
+  "wardrive_history": "History",
+  "wardrive_noSessions": "No drives yet.",
+  "wardrive_sessionSummary": "{pings} pings · {heard} heard",
+  "@wardrive_sessionSummary": {
+    "placeholders": {
+      "pings": {
+        "type": "int"
+      },
+      "heard": {
+        "type": "int"
+      }
+    }
+  },
+  "wardrive_delete": "Delete",
+  "wardrive_backToLive": "Back to live drive",
+  "wardrive_noReplies": "No repeater heard this ping.",
+  "wardrive_replyDetail": "Heard you at {there} dB · you heard it at {here} dB",
+  "@wardrive_replyDetail": {
+    "placeholders": {
+      "there": {
+        "type": "String"
+      },
+      "here": {
+        "type": "String"
+      }
+    }
+  },
+  "wardrive_explainer": "Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your radio’s GPS."
 }

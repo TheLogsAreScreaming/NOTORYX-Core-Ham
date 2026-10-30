@@ -4061,5 +4061,22 @@
   "mySensors_none": "무전기의 센서 값이 없습니다.",
   "activeChannels_title": "온라인 활성",
   "activeChannels_messages": "메시지 {count}개",
-  "activeChannels_source": "{host} 관측자가 들은, 사람들이 쓰는 채널입니다. 내 지역을 보려면 설정에서 분석기를 바꾸세요."
+  "activeChannels_source": "{host} 관측자가 들은, 사람들이 쓰는 채널입니다. 내 지역을 보려면 설정에서 분석기를 바꾸세요.",
+  "wardrive_title": "워드라이브",
+  "wardrive_hint": "현재 위치에서 핑하고 어떤 리피터가 듣는지 지도에 표시",
+  "wardrive_start": "시작",
+  "wardrive_stop": "중지",
+  "wardrive_pings": "핑",
+  "wardrive_heard": "들림",
+  "wardrive_pinging": "핑 중…",
+  "wardrive_waitPosition": "무전기의 GPS 위치를 기다리는 중입니다.",
+  "wardrive_waitRadio": "핑하려면 무전기를 연결하세요.",
+  "wardrive_history": "기록",
+  "wardrive_noSessions": "아직 기록이 없습니다.",
+  "wardrive_sessionSummary": "핑 {pings}회 · {heard}회 들림",
+  "wardrive_delete": "삭제",
+  "wardrive_backToLive": "현재 기록으로 돌아가기",
+  "wardrive_noReplies": "이 핑을 들은 리피터가 없습니다.",
+  "wardrive_replyDetail": "당신을 {there} dB로 들음 · 당신은 {here} dB로 들음",
+  "wardrive_explainer": "각 핑은 제로홉 탐색 요청입니다. 직접 범위의 리피터만 응답하며 채널에는 아무것도 게시되지 않습니다. 위치는 무전기 GPS에서 가져옵니다."
 }

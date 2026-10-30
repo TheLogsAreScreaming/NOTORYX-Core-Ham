@@ -9005,4 +9005,61 @@ class AppLocalizationsSv extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanaler som används, enligt observatörerna hos $host. Byt analysator i inställningarna för ditt område.';
   }
+
+  @override
+  String get wardrive_title => 'Wardrive';
+
+  @override
+  String get wardrive_hint =>
+      'Pinga där du är och kartlägg vilka repeatrar som hör dig';
+
+  @override
+  String get wardrive_start => 'Starta';
+
+  @override
+  String get wardrive_stop => 'Stoppa';
+
+  @override
+  String get wardrive_pings => 'pingar';
+
+  @override
+  String get wardrive_heard => 'hörda';
+
+  @override
+  String get wardrive_pinging => 'Pingar…';
+
+  @override
+  String get wardrive_waitPosition => 'Väntar på GPS-position från radion.';
+
+  @override
+  String get wardrive_waitRadio => 'Anslut en radio för att pinga.';
+
+  @override
+  String get wardrive_history => 'Historik';
+
+  @override
+  String get wardrive_noSessions => 'Inga turer än.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings pingar · $heard hörda';
+  }
+
+  @override
+  String get wardrive_delete => 'Ta bort';
+
+  @override
+  String get wardrive_backToLive => 'Tillbaka till pågående';
+
+  @override
+  String get wardrive_noReplies => 'Ingen repeater hörde den här pingen.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Hörde dig på $there dB · du hörde den på $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Varje ping är en upptäcktsförfrågan utan vidarebefordran: bara repeatrar inom direkt räckvidd svarar och inget postas i en kanal. Positioner kommer från radions GPS.';
 }

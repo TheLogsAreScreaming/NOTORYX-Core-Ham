@@ -9068,4 +9068,61 @@ class AppLocalizationsHu extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Használt csatornák $host megfigyelői szerint. A beállításokban válasszon a régiójához tartozó elemzőt.';
   }
+
+  @override
+  String get wardrive_title => 'Lefedettség-felmérés';
+
+  @override
+  String get wardrive_hint =>
+      'Pingeljen onnan, ahol van, és térképezze fel, mely átjátszók hallják';
+
+  @override
+  String get wardrive_start => 'Indítás';
+
+  @override
+  String get wardrive_stop => 'Leállítás';
+
+  @override
+  String get wardrive_pings => 'ping';
+
+  @override
+  String get wardrive_heard => 'hallott';
+
+  @override
+  String get wardrive_pinging => 'Pingelés…';
+
+  @override
+  String get wardrive_waitPosition => 'Várakozás a rádió GPS-pozíciójára.';
+
+  @override
+  String get wardrive_waitRadio => 'Csatlakoztasson rádiót a pingeléshez.';
+
+  @override
+  String get wardrive_history => 'Előzmények';
+
+  @override
+  String get wardrive_noSessions => 'Még nincs felmérés.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings ping · $heard hallott';
+  }
+
+  @override
+  String get wardrive_delete => 'Törlés';
+
+  @override
+  String get wardrive_backToLive => 'Vissza az aktuálishoz';
+
+  @override
+  String get wardrive_noReplies => 'Egy átjátszó sem hallotta ezt a pinget.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return '$there dB-lel hallotta · Ön $here dB-lel hallotta';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Minden ping nulla ugrásos felderítő kérés: csak a közvetlen hatótávú átjátszók válaszolnak, csatornára semmi sem kerül. A pozíció a rádió GPS-éből jön.';
 }

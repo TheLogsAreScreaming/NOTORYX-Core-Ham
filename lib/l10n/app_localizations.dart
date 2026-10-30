@@ -15210,6 +15210,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Channels people are using, as heard by the observers of {host}. Change the analyzer in Settings to see your area.'**
   String activeChannels_source(String host);
+
+  /// No description provided for @wardrive_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Wardrive'**
+  String get wardrive_title;
+
+  /// No description provided for @wardrive_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ping from where you are and map which repeaters hear you'**
+  String get wardrive_hint;
+
+  /// No description provided for @wardrive_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get wardrive_start;
+
+  /// No description provided for @wardrive_stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get wardrive_stop;
+
+  /// No description provided for @wardrive_pings.
+  ///
+  /// In en, this message translates to:
+  /// **'pings'**
+  String get wardrive_pings;
+
+  /// No description provided for @wardrive_heard.
+  ///
+  /// In en, this message translates to:
+  /// **'heard'**
+  String get wardrive_heard;
+
+  /// No description provided for @wardrive_pinging.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinging…'**
+  String get wardrive_pinging;
+
+  /// No description provided for @wardrive_waitPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for a GPS fix from your radio.'**
+  String get wardrive_waitPosition;
+
+  /// No description provided for @wardrive_waitRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a radio to ping.'**
+  String get wardrive_waitRadio;
+
+  /// No description provided for @wardrive_history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get wardrive_history;
+
+  /// No description provided for @wardrive_noSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'No drives yet.'**
+  String get wardrive_noSessions;
+
+  /// No description provided for @wardrive_sessionSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{pings} pings · {heard} heard'**
+  String wardrive_sessionSummary(int pings, int heard);
+
+  /// No description provided for @wardrive_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get wardrive_delete;
+
+  /// No description provided for @wardrive_backToLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to live drive'**
+  String get wardrive_backToLive;
+
+  /// No description provided for @wardrive_noReplies.
+  ///
+  /// In en, this message translates to:
+  /// **'No repeater heard this ping.'**
+  String get wardrive_noReplies;
+
+  /// No description provided for @wardrive_replyDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard you at {there} dB · you heard it at {here} dB'**
+  String wardrive_replyDetail(String there, String here);
+
+  /// No description provided for @wardrive_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your radio’s GPS.'**
+  String get wardrive_explainer;
 }
 
 class _AppLocalizationsDelegate

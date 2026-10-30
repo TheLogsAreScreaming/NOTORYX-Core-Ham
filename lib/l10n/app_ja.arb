@@ -4061,5 +4061,22 @@
   "mySensors_none": "無線機からのセンサー値はありません。",
   "activeChannels_title": "オンラインで活発",
   "activeChannels_messages": "{count} 件のメッセージ",
-  "activeChannels_source": "{host} のオブザーバーが受信した、使われているチャンネルです。地域を見るには設定でアナライザーを変更してください。"
+  "activeChannels_source": "{host} のオブザーバーが受信した、使われているチャンネルです。地域を見るには設定でアナライザーを変更してください。",
+  "wardrive_title": "ウォードライブ",
+  "wardrive_hint": "現在地から ping して、どのリピーターに届くかを地図化",
+  "wardrive_start": "開始",
+  "wardrive_stop": "停止",
+  "wardrive_pings": "ping",
+  "wardrive_heard": "受信",
+  "wardrive_pinging": "ping 中…",
+  "wardrive_waitPosition": "無線機の GPS 測位を待っています。",
+  "wardrive_waitRadio": "ping するには無線機を接続してください。",
+  "wardrive_history": "履歴",
+  "wardrive_noSessions": "まだ記録はありません。",
+  "wardrive_sessionSummary": "{pings} 回 ping · {heard} 回受信",
+  "wardrive_delete": "削除",
+  "wardrive_backToLive": "現在の記録に戻る",
+  "wardrive_noReplies": "この ping を受信したリピーターはいません。",
+  "wardrive_replyDetail": "あなたを {there} dB で受信 · あなたは {here} dB で受信",
+  "wardrive_explainer": "各 ping はゼロホップの探索要求です。直接届くリピーターだけが応答し、チャンネルには何も投稿されません。位置は無線機の GPS から取得します。"
 }

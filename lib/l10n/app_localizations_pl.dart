@@ -9115,4 +9115,61 @@ class AppLocalizationsPl extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanały w użyciu według obserwatorów $host. Zmień analizator w ustawieniach, by zobaczyć swój region.';
   }
+
+  @override
+  String get wardrive_title => 'Wardrive';
+
+  @override
+  String get wardrive_hint =>
+      'Pinguj z miejsca, w którym jesteś, i mapuj, które przemienniki cię słyszą';
+
+  @override
+  String get wardrive_start => 'Start';
+
+  @override
+  String get wardrive_stop => 'Stop';
+
+  @override
+  String get wardrive_pings => 'pingi';
+
+  @override
+  String get wardrive_heard => 'usłyszane';
+
+  @override
+  String get wardrive_pinging => 'Pingowanie…';
+
+  @override
+  String get wardrive_waitPosition => 'Oczekiwanie na pozycję GPS z radia.';
+
+  @override
+  String get wardrive_waitRadio => 'Podłącz radio, aby pingować.';
+
+  @override
+  String get wardrive_history => 'Historia';
+
+  @override
+  String get wardrive_noSessions => 'Brak przejazdów.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return 'Pingi: $pings · usłyszane: $heard';
+  }
+
+  @override
+  String get wardrive_delete => 'Usuń';
+
+  @override
+  String get wardrive_backToLive => 'Wróć do bieżącego';
+
+  @override
+  String get wardrive_noReplies => 'Żaden przemiennik nie usłyszał tego pingu.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Usłyszał cię przy $there dB · ty go przy $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Każdy ping to żądanie wykrywania bez przekazywania: odpowiadają tylko przemienniki w bezpośrednim zasięgu, nic nie trafia na kanał. Pozycje pochodzą z GPS radia.';
 }

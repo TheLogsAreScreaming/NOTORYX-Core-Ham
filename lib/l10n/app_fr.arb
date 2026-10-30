@@ -4061,5 +4061,22 @@
   "mySensors_none": "Aucune mesure de capteur de votre radio.",
   "activeChannels_title": "Actifs en ligne",
   "activeChannels_messages": "{count} messages",
-  "activeChannels_source": "Canaux utilisés, selon les observateurs de {host}. Changez d’analyseur dans les réglages pour voir votre région."
+  "activeChannels_source": "Canaux utilisés, selon les observateurs de {host}. Changez d’analyseur dans les réglages pour voir votre région.",
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Pinguez d’où vous êtes et cartographiez les répéteurs qui vous entendent",
+  "wardrive_start": "Démarrer",
+  "wardrive_stop": "Arrêter",
+  "wardrive_pings": "pings",
+  "wardrive_heard": "entendus",
+  "wardrive_pinging": "Ping en cours…",
+  "wardrive_waitPosition": "En attente d’une position GPS de votre radio.",
+  "wardrive_waitRadio": "Connectez une radio pour pinguer.",
+  "wardrive_history": "Historique",
+  "wardrive_noSessions": "Aucun trajet pour l’instant.",
+  "wardrive_sessionSummary": "{pings} pings · {heard} entendus",
+  "wardrive_delete": "Supprimer",
+  "wardrive_backToLive": "Revenir au trajet en cours",
+  "wardrive_noReplies": "Aucun répéteur n’a entendu ce ping.",
+  "wardrive_replyDetail": "Vous a entendu à {there} dB · vous l’avez entendu à {here} dB",
+  "wardrive_explainer": "Chaque ping est une demande de découverte sans relais : seuls les répéteurs à portée directe répondent, rien n’est publié sur un canal. Les positions viennent du GPS de votre radio."
 }

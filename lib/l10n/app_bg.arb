@@ -3927,5 +3927,22 @@
   "mySensors_none": "Няма данни от сензорите на радиото.",
   "activeChannels_title": "Активни онлайн",
   "activeChannels_messages": "{count} съобщения",
-  "activeChannels_source": "Канали, които хората използват, според наблюдателите на {host}. Сменете анализатора в Настройки за вашия район."
+  "activeChannels_source": "Канали, които хората използват, според наблюдателите на {host}. Сменете анализатора в Настройки за вашия район.",
+  "wardrive_title": "Картографиране на покритие",
+  "wardrive_hint": "Пингване от мястото ви и карта кои ретранслатори ви чуват",
+  "wardrive_start": "Старт",
+  "wardrive_stop": "Стоп",
+  "wardrive_pings": "пинга",
+  "wardrive_heard": "чути",
+  "wardrive_pinging": "Пингване…",
+  "wardrive_waitPosition": "Изчаква се GPS позиция от радиото.",
+  "wardrive_waitRadio": "Свържете радио, за да пингвате.",
+  "wardrive_history": "История",
+  "wardrive_noSessions": "Още няма записи.",
+  "wardrive_sessionSummary": "{pings} пинга · {heard} чути",
+  "wardrive_delete": "Изтриване",
+  "wardrive_backToLive": "Обратно към текущото",
+  "wardrive_noReplies": "Никой ретранслатор не чу този пинг.",
+  "wardrive_replyDetail": "Чу ви с {there} dB · вие го чухте с {here} dB",
+  "wardrive_explainer": "Всеки пинг е заявка за откриване с нула скока: отговарят само ретранслатори в пряк обхват, нищо не се публикува в канал. Позициите идват от GPS на радиото."
 }

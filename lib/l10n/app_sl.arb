@@ -3927,5 +3927,22 @@
   "mySensors_none": "Ni podatkov senzorjev radia.",
   "activeChannels_title": "Aktivni na spletu",
   "activeChannels_messages": "Sporočila: {count}",
-  "activeChannels_source": "Kanali v uporabi po podatkih opazovalcev {host}. V nastavitvah zamenjajte analizator za svoje območje."
+  "activeChannels_source": "Kanali v uporabi po podatkih opazovalcev {host}. V nastavitvah zamenjajte analizator za svoje območje.",
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Pingajte od tam, kjer ste, in na zemljevidu označite, kateri repetitorji vas slišijo",
+  "wardrive_start": "Začni",
+  "wardrive_stop": "Ustavi",
+  "wardrive_pings": "pingi",
+  "wardrive_heard": "slišani",
+  "wardrive_pinging": "Pinganje…",
+  "wardrive_waitPosition": "Čakanje na GPS položaj z radia.",
+  "wardrive_waitRadio": "Povežite radio za pinganje.",
+  "wardrive_history": "Zgodovina",
+  "wardrive_noSessions": "Še ni voženj.",
+  "wardrive_sessionSummary": "Pingi: {pings} · slišani: {heard}",
+  "wardrive_delete": "Izbriši",
+  "wardrive_backToLive": "Nazaj na trenutno",
+  "wardrive_noReplies": "Tega pinga ni slišal noben repetitor.",
+  "wardrive_replyDetail": "Slišal vas je pri {there} dB · vi njega pri {here} dB",
+  "wardrive_explainer": "Vsak ping je zahteva za odkrivanje brez posredovanja: odgovorijo le repetitorji v neposrednem dosegu, v kanal se nič ne objavi. Položaj je iz GPS radia."
 }

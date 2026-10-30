@@ -3965,5 +3965,22 @@
   "mySensors_none": "Nincs érzékelőadat a rádiótól.",
   "activeChannels_title": "Aktív online",
   "activeChannels_messages": "{count} üzenet",
-  "activeChannels_source": "Használt csatornák {host} megfigyelői szerint. A beállításokban válasszon a régiójához tartozó elemzőt."
+  "activeChannels_source": "Használt csatornák {host} megfigyelői szerint. A beállításokban válasszon a régiójához tartozó elemzőt.",
+  "wardrive_title": "Lefedettség-felmérés",
+  "wardrive_hint": "Pingeljen onnan, ahol van, és térképezze fel, mely átjátszók hallják",
+  "wardrive_start": "Indítás",
+  "wardrive_stop": "Leállítás",
+  "wardrive_pings": "ping",
+  "wardrive_heard": "hallott",
+  "wardrive_pinging": "Pingelés…",
+  "wardrive_waitPosition": "Várakozás a rádió GPS-pozíciójára.",
+  "wardrive_waitRadio": "Csatlakoztasson rádiót a pingeléshez.",
+  "wardrive_history": "Előzmények",
+  "wardrive_noSessions": "Még nincs felmérés.",
+  "wardrive_sessionSummary": "{pings} ping · {heard} hallott",
+  "wardrive_delete": "Törlés",
+  "wardrive_backToLive": "Vissza az aktuálishoz",
+  "wardrive_noReplies": "Egy átjátszó sem hallotta ezt a pinget.",
+  "wardrive_replyDetail": "{there} dB-lel hallotta · Ön {here} dB-lel hallotta",
+  "wardrive_explainer": "Minden ping nulla ugrásos felderítő kérés: csak a közvetlen hatótávú átjátszók válaszolnak, csatornára semmi sem kerül. A pozíció a rádió GPS-éből jön."
 }

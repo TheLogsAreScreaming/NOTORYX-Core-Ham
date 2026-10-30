@@ -4061,5 +4061,22 @@
   "mySensors_none": "Nessuna lettura dai sensori della radio.",
   "activeChannels_title": "Attivi online",
   "activeChannels_messages": "{count} messaggi",
-  "activeChannels_source": "Canali in uso, secondo gli osservatori di {host}. Cambia analizzatore nelle impostazioni per la tua zona."
+  "activeChannels_source": "Canali in uso, secondo gli osservatori di {host}. Cambia analizzatore nelle impostazioni per la tua zona.",
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Fai ping da dove sei e mappa quali ripetitori ti sentono",
+  "wardrive_start": "Avvia",
+  "wardrive_stop": "Ferma",
+  "wardrive_pings": "ping",
+  "wardrive_heard": "sentiti",
+  "wardrive_pinging": "Ping in corso…",
+  "wardrive_waitPosition": "In attesa della posizione GPS della radio.",
+  "wardrive_waitRadio": "Collega una radio per fare ping.",
+  "wardrive_history": "Cronologia",
+  "wardrive_noSessions": "Nessun percorso ancora.",
+  "wardrive_sessionSummary": "{pings} ping · {heard} sentiti",
+  "wardrive_delete": "Elimina",
+  "wardrive_backToLive": "Torna al percorso attuale",
+  "wardrive_noReplies": "Nessun ripetitore ha sentito questo ping.",
+  "wardrive_replyDetail": "Ti ha sentito a {there} dB · lo hai sentito a {here} dB",
+  "wardrive_explainer": "Ogni ping è una richiesta di scoperta a zero salti: rispondono solo i ripetitori a portata diretta e nulla viene pubblicato su un canale. Le posizioni vengono dal GPS della radio."
 }

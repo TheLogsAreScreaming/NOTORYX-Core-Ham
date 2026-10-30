@@ -58,6 +58,7 @@ import 'services/coverage_hex_service.dart';
 import 'services/channel_discovery_service.dart';
 import 'services/corescope.dart';
 import 'services/my_sensors_service.dart';
+import 'services/wardrive_service.dart';
 import 'services/track_log_service.dart';
 import 'services/weather_service.dart';
 
@@ -277,6 +278,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final ChannelDiscoveryService _channelDiscovery;
   late final AnalyzerService _analyzer;
   late final MySensorsService _mySensors;
+  late final WardriveService _wardrive;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -307,6 +309,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_channelDiscovery.load());
     _analyzer = AnalyzerService()..load();
     _mySensors = MySensorsService(widget.connector);
+    _wardrive = WardriveService(widget.connector)..load();
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
     unawaited(_trackLog.load());
@@ -401,6 +404,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _channelDiscovery.dispose();
     _analyzer.dispose();
     _mySensors.dispose();
+    _wardrive.dispose();
     _coverageHex.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
@@ -498,6 +502,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ),
         ChangeNotifierProvider<AnalyzerService?>.value(value: _analyzer),
         ChangeNotifierProvider<MySensorsService?>.value(value: _mySensors),
+        ChangeNotifierProvider.value(value: _wardrive),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,

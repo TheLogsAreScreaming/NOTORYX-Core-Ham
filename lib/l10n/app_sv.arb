@@ -3927,5 +3927,22 @@
   "mySensors_none": "Inga sensorvärden från radion.",
   "activeChannels_title": "Aktiva online",
   "activeChannels_messages": "{count} meddelanden",
-  "activeChannels_source": "Kanaler som används, enligt observatörerna hos {host}. Byt analysator i inställningarna för ditt område."
+  "activeChannels_source": "Kanaler som används, enligt observatörerna hos {host}. Byt analysator i inställningarna för ditt område.",
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Pinga där du är och kartlägg vilka repeatrar som hör dig",
+  "wardrive_start": "Starta",
+  "wardrive_stop": "Stoppa",
+  "wardrive_pings": "pingar",
+  "wardrive_heard": "hörda",
+  "wardrive_pinging": "Pingar…",
+  "wardrive_waitPosition": "Väntar på GPS-position från radion.",
+  "wardrive_waitRadio": "Anslut en radio för att pinga.",
+  "wardrive_history": "Historik",
+  "wardrive_noSessions": "Inga turer än.",
+  "wardrive_sessionSummary": "{pings} pingar · {heard} hörda",
+  "wardrive_delete": "Ta bort",
+  "wardrive_backToLive": "Tillbaka till pågående",
+  "wardrive_noReplies": "Ingen repeater hörde den här pingen.",
+  "wardrive_replyDetail": "Hörde dig på {there} dB · du hörde den på {here} dB",
+  "wardrive_explainer": "Varje ping är en upptäcktsförfrågan utan vidarebefordran: bara repeatrar inom direkt räckvidd svarar och inget postas i en kanal. Positioner kommer från radions GPS."
 }

@@ -3230,5 +3230,22 @@
   "mySensors_none": "Нет показаний датчиков радио.",
   "activeChannels_title": "Активные онлайн",
   "activeChannels_messages": "Сообщений: {count}",
-  "activeChannels_source": "Каналы, которыми пользуются, по данным наблюдателей {host}. Смените анализатор в настройках, чтобы видеть свой регион."
+  "activeChannels_source": "Каналы, которыми пользуются, по данным наблюдателей {host}. Смените анализатор в настройках, чтобы видеть свой регион.",
+  "wardrive_title": "Вардрайв",
+  "wardrive_hint": "Пингуйте с места и отмечайте на карте, какие ретрансляторы вас слышат",
+  "wardrive_start": "Старт",
+  "wardrive_stop": "Стоп",
+  "wardrive_pings": "пинги",
+  "wardrive_heard": "услышаны",
+  "wardrive_pinging": "Пинг…",
+  "wardrive_waitPosition": "Ожидание GPS-координат от радио.",
+  "wardrive_waitRadio": "Подключите радио для пинга.",
+  "wardrive_history": "История",
+  "wardrive_noSessions": "Пока нет поездок.",
+  "wardrive_sessionSummary": "Пингов: {pings} · услышано: {heard}",
+  "wardrive_delete": "Удалить",
+  "wardrive_backToLive": "Назад к текущей",
+  "wardrive_noReplies": "Ни один ретранслятор не услышал этот пинг.",
+  "wardrive_replyDetail": "Слышал вас на {there} дБ · вы его на {here} дБ",
+  "wardrive_explainer": "Каждый пинг — запрос обнаружения без ретрансляции: отвечают только ретрансляторы в прямой досягаемости, в канал ничего не публикуется. Координаты берутся из GPS радио."
 }

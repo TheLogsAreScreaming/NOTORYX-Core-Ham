@@ -131,7 +131,7 @@ class WardriveSession {
 /// `[code][snr×4][rssi][path len][type][snr there×4][tag u32][key prefix]`.
 /// Null for anything else.
 WardriveReply? parseDiscoverReply(Uint8List frame, int tag) {
-  if (frame.length < 13 || frame[0] != pushCodeControlData) return null;
+  if (frame.length < 11 || frame[0] != pushCodeControlData) return null;
   final type = frame[4];
   if (((type >> 4) & 0x0F) != controlSubtypeDiscoverResp ||
       (type & 0x0F) != advTypeRepeater) {

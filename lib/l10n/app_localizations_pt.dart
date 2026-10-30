@@ -9065,4 +9065,61 @@ class AppLocalizationsPt extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Canais em uso, segundo os observadores de $host. Mude o analisador nas definições para ver a sua zona.';
   }
+
+  @override
+  String get wardrive_title => 'Wardrive';
+
+  @override
+  String get wardrive_hint =>
+      'Faça ping de onde está e mapeie que repetidores o ouvem';
+
+  @override
+  String get wardrive_start => 'Iniciar';
+
+  @override
+  String get wardrive_stop => 'Parar';
+
+  @override
+  String get wardrive_pings => 'pings';
+
+  @override
+  String get wardrive_heard => 'ouvidos';
+
+  @override
+  String get wardrive_pinging => 'A fazer ping…';
+
+  @override
+  String get wardrive_waitPosition => 'À espera de posição GPS do rádio.';
+
+  @override
+  String get wardrive_waitRadio => 'Ligue um rádio para fazer ping.';
+
+  @override
+  String get wardrive_history => 'Histórico';
+
+  @override
+  String get wardrive_noSessions => 'Ainda sem percursos.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings pings · $heard ouvidos';
+  }
+
+  @override
+  String get wardrive_delete => 'Eliminar';
+
+  @override
+  String get wardrive_backToLive => 'Voltar ao percurso atual';
+
+  @override
+  String get wardrive_noReplies => 'Nenhum repetidor ouviu este ping.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Ouviu-o a $there dB · ouviu-o a $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Cada ping é um pedido de descoberta de salto zero: só respondem repetidores ao alcance direto e nada é publicado num canal. As posições vêm do GPS do rádio.';
 }

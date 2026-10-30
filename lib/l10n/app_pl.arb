@@ -3965,5 +3965,22 @@
   "mySensors_none": "Brak odczytów czujników z radia.",
   "activeChannels_title": "Aktywne online",
   "activeChannels_messages": "Wiadomości: {count}",
-  "activeChannels_source": "Kanały w użyciu według obserwatorów {host}. Zmień analizator w ustawieniach, by zobaczyć swój region."
+  "activeChannels_source": "Kanały w użyciu według obserwatorów {host}. Zmień analizator w ustawieniach, by zobaczyć swój region.",
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Pinguj z miejsca, w którym jesteś, i mapuj, które przemienniki cię słyszą",
+  "wardrive_start": "Start",
+  "wardrive_stop": "Stop",
+  "wardrive_pings": "pingi",
+  "wardrive_heard": "usłyszane",
+  "wardrive_pinging": "Pingowanie…",
+  "wardrive_waitPosition": "Oczekiwanie na pozycję GPS z radia.",
+  "wardrive_waitRadio": "Podłącz radio, aby pingować.",
+  "wardrive_history": "Historia",
+  "wardrive_noSessions": "Brak przejazdów.",
+  "wardrive_sessionSummary": "Pingi: {pings} · usłyszane: {heard}",
+  "wardrive_delete": "Usuń",
+  "wardrive_backToLive": "Wróć do bieżącego",
+  "wardrive_noReplies": "Żaden przemiennik nie usłyszał tego pingu.",
+  "wardrive_replyDetail": "Usłyszał cię przy {there} dB · ty go przy {here} dB",
+  "wardrive_explainer": "Każdy ping to żądanie wykrywania bez przekazywania: odpowiadają tylko przemienniki w bezpośrednim zasięgu, nic nie trafia na kanał. Pozycje pochodzą z GPS radia."
 }

@@ -9093,4 +9093,61 @@ class AppLocalizationsDe extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanäle, die genutzt werden, laut den Beobachtern von $host. Wechsle den Analysator in den Einstellungen für deine Region.';
   }
+
+  @override
+  String get wardrive_title => 'Wardrive';
+
+  @override
+  String get wardrive_hint =>
+      'Von deinem Standort pingen und kartieren, welche Repeater dich hören';
+
+  @override
+  String get wardrive_start => 'Start';
+
+  @override
+  String get wardrive_stop => 'Stopp';
+
+  @override
+  String get wardrive_pings => 'Pings';
+
+  @override
+  String get wardrive_heard => 'gehört';
+
+  @override
+  String get wardrive_pinging => 'Pingt…';
+
+  @override
+  String get wardrive_waitPosition => 'Warte auf GPS-Position vom Funkgerät.';
+
+  @override
+  String get wardrive_waitRadio => 'Verbinde ein Funkgerät, um zu pingen.';
+
+  @override
+  String get wardrive_history => 'Verlauf';
+
+  @override
+  String get wardrive_noSessions => 'Noch keine Fahrten.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings Pings · $heard gehört';
+  }
+
+  @override
+  String get wardrive_delete => 'Löschen';
+
+  @override
+  String get wardrive_backToLive => 'Zurück zur laufenden Fahrt';
+
+  @override
+  String get wardrive_noReplies => 'Kein Repeater hat diesen Ping gehört.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Hörte dich mit $there dB · du hörtest ihn mit $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Jeder Ping ist eine Discover-Anfrage ohne Weiterleitung: Nur Repeater in direkter Reichweite antworten, nichts wird in einen Kanal gepostet. Positionen kommen vom GPS des Funkgeräts.';
 }

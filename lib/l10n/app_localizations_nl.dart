@@ -9044,4 +9044,62 @@ class AppLocalizationsNl extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanalen die worden gebruikt, volgens de waarnemers van $host. Kies in Instellingen een analyser voor je regio.';
   }
+
+  @override
+  String get wardrive_title => 'Wardrive';
+
+  @override
+  String get wardrive_hint =>
+      'Ping vanaf je plek en breng in kaart welke repeaters je horen';
+
+  @override
+  String get wardrive_start => 'Start';
+
+  @override
+  String get wardrive_stop => 'Stop';
+
+  @override
+  String get wardrive_pings => 'pings';
+
+  @override
+  String get wardrive_heard => 'gehoord';
+
+  @override
+  String get wardrive_pinging => 'Bezig met pingen…';
+
+  @override
+  String get wardrive_waitPosition =>
+      'Wachten op een GPS-positie van je radio.';
+
+  @override
+  String get wardrive_waitRadio => 'Verbind een radio om te pingen.';
+
+  @override
+  String get wardrive_history => 'Geschiedenis';
+
+  @override
+  String get wardrive_noSessions => 'Nog geen ritten.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings pings · $heard gehoord';
+  }
+
+  @override
+  String get wardrive_delete => 'Verwijderen';
+
+  @override
+  String get wardrive_backToLive => 'Terug naar huidige rit';
+
+  @override
+  String get wardrive_noReplies => 'Geen repeater hoorde deze ping.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Hoorde jou op $there dB · jij hoorde hem op $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Elke ping is een discover-verzoek zonder doorsturen: alleen repeaters binnen direct bereik antwoorden en er wordt niets in een kanaal gezet. Posities komen van de GPS van je radio.';
 }
