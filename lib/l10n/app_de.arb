@@ -4048,5 +4048,10 @@
   "botChannels_hint": "Der Bot beantwortet !Befehle auch in den eingeschalteten Kanälen, im selben Kanal. Abwesenheitsantworten sendet er dort nie.",
   "botChannels_none": "Noch keine Kanäle auf diesem Funkgerät.",
   "advert_zeroHopHint": "Nur Funkgeräte, die dich direkt hören. Repeater leiten es nicht weiter.",
-  "advert_floodHint": "Repeater verbreiten es im ganzen Mesh. Braucht mehr Sendezeit."
+  "advert_floodHint": "Repeater verbreiten es im ganzen Mesh. Braucht mehr Sendezeit.",
+  "radioPresets_custom": "Benutzerdefiniert",
+  "radioPresets_search": "Voreinstellungen suchen",
+  "radioPresets_suggested": "Empfohlen für deine Region",
+  "radioPresets_community": "Community-Voreinstellungen",
+  "radioPresets_hint": "Das sind die von der MeshCore-Community empfohlenen Voreinstellungen. Wähle die deines lokalen Mesh. Sie setzt Frequenz, Bandbreite, Spreizfaktor und Coderate; deine Sendeleistung bleibt."
 }

@@ -9021,4 +9021,20 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get advert_floodHint =>
       'Repetitorji ga razširijo po celotnem omrežju. Porabi več oddajnega časa.';
+
+  @override
+  String get radioPresets_custom => 'Po meri';
+
+  @override
+  String get radioPresets_search => 'Iskanje prednastavitev';
+
+  @override
+  String get radioPresets_suggested => 'Priporočeno za vašo regijo';
+
+  @override
+  String get radioPresets_community => 'Prednastavitve skupnosti';
+
+  @override
+  String get radioPresets_hint =>
+      'To so prednastavitve, ki jih priporoča skupnost MeshCore. Izberite tisto, ki jo uporablja lokalno omrežje. Nastavi frekvenco, pasovno širino, SF in CR; oddajna moč ostane.';
 }

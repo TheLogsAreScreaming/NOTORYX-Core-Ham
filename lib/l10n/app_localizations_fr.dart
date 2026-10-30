@@ -9068,4 +9068,20 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get advert_floodHint =>
       'Les répéteurs le propagent dans tout le maillage. Utilise plus de temps d’antenne.';
+
+  @override
+  String get radioPresets_custom => 'Personnalisé';
+
+  @override
+  String get radioPresets_search => 'Rechercher un préréglage';
+
+  @override
+  String get radioPresets_suggested => 'Suggéré pour votre région';
+
+  @override
+  String get radioPresets_community => 'Préréglages de la communauté';
+
+  @override
+  String get radioPresets_hint =>
+      'Ce sont les préréglages suggérés par la communauté MeshCore. Choisissez celui de votre maillage local. Il règle fréquence, bande passante, facteur d’étalement et taux de codage ; votre puissance d’émission ne change pas.';
 }

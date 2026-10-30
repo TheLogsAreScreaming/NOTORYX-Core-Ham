@@ -8410,4 +8410,20 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get advert_floodHint => '中继器会将其传遍整个网络，占用更多空中时间。';
+
+  @override
+  String get radioPresets_custom => '自定义';
+
+  @override
+  String get radioPresets_search => '搜索预设';
+
+  @override
+  String get radioPresets_suggested => '你所在地区的推荐';
+
+  @override
+  String get radioPresets_community => '社区预设';
+
+  @override
+  String get radioPresets_hint =>
+      '这些是 MeshCore 社区推荐的预设。请选择你本地网络使用的那个。预设会设置频率、带宽、扩频因子和编码率，发射功率保持不变。';
 }

@@ -3952,5 +3952,10 @@
   "botChannels_hint": "A bot a bekapcsolt csatornákon is válaszol a !parancsokra, ugyanabban a csatornában. Távollét-választ ott sosem küld.",
   "botChannels_none": "Ezen a rádión még nincs csatorna.",
   "advert_zeroHopHint": "Csak a közvetlenül halló rádiók. Az átjátszók nem továbbítják.",
-  "advert_floodHint": "Az átjátszók az egész hálózatban továbbítják. Több adásidőt használ."
+  "advert_floodHint": "Az átjátszók az egész hálózatban továbbítják. Több adásidőt használ.",
+  "radioPresets_custom": "Egyéni",
+  "radioPresets_search": "Előbeállítás keresése",
+  "radioPresets_suggested": "Ajánlott a régiójához",
+  "radioPresets_community": "Közösségi előbeállítások",
+  "radioPresets_hint": "Ezeket az előbeállításokat a MeshCore közösség ajánlja. Válassza a helyi hálózatét. Beállítja a frekvenciát, sávszélességet, SF-et és CR-t; az adóteljesítmény marad."
 }

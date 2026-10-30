@@ -9048,4 +9048,20 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get advert_floodHint =>
       'Repeater verbreiten es im ganzen Mesh. Braucht mehr Sendezeit.';
+
+  @override
+  String get radioPresets_custom => 'Benutzerdefiniert';
+
+  @override
+  String get radioPresets_search => 'Voreinstellungen suchen';
+
+  @override
+  String get radioPresets_suggested => 'Empfohlen für deine Region';
+
+  @override
+  String get radioPresets_community => 'Community-Voreinstellungen';
+
+  @override
+  String get radioPresets_hint =>
+      'Das sind die von der MeshCore-Community empfohlenen Voreinstellungen. Wähle die deines lokalen Mesh. Sie setzt Frequenz, Bandbreite, Spreizfaktor und Coderate; deine Sendeleistung bleibt.';
 }

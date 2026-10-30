@@ -9070,4 +9070,20 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get advert_floodHint =>
       'Przemienniki przekazują go w całej sieci. Zajmuje więcej czasu nadawania.';
+
+  @override
+  String get radioPresets_custom => 'Własne';
+
+  @override
+  String get radioPresets_search => 'Szukaj ustawień';
+
+  @override
+  String get radioPresets_suggested => 'Sugerowane dla twojego regionu';
+
+  @override
+  String get radioPresets_community => 'Ustawienia społeczności';
+
+  @override
+  String get radioPresets_hint =>
+      'To ustawienia sugerowane przez społeczność MeshCore. Wybierz to, którego używa lokalna sieć. Ustawia częstotliwość, pasmo, SF i CR; moc nadawania się nie zmienia.';
 }

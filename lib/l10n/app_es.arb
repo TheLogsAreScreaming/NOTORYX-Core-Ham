@@ -4048,5 +4048,10 @@
   "botChannels_hint": "El bot también responde a !comandos en los canales que actives, en ese mismo canal. Nunca envía respuestas de ausencia allí.",
   "botChannels_none": "Aún no hay canales en esta radio.",
   "advert_zeroHopHint": "Solo las radios que te oyen directamente. Los repetidores no lo reenvían.",
-  "advert_floodHint": "Los repetidores lo propagan por toda la malla. Usa más tiempo de aire."
+  "advert_floodHint": "Los repetidores lo propagan por toda la malla. Usa más tiempo de aire.",
+  "radioPresets_custom": "Personalizado",
+  "radioPresets_search": "Buscar ajustes",
+  "radioPresets_suggested": "Sugerido para tu región",
+  "radioPresets_community": "Ajustes de la comunidad",
+  "radioPresets_hint": "Son los ajustes que sugiere la comunidad MeshCore. Elige el de tu malla local. Fija frecuencia, ancho de banda, factor de dispersión y tasa de codificación; tu potencia de transmisión no cambia."
 }

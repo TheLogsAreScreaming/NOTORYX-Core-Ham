@@ -8607,4 +8607,20 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get advert_floodHint => '리피터가 메시 전체로 전달합니다. 방송 시간을 더 씁니다.';
+
+  @override
+  String get radioPresets_custom => '사용자 지정';
+
+  @override
+  String get radioPresets_search => '프리셋 검색';
+
+  @override
+  String get radioPresets_suggested => '내 지역 추천';
+
+  @override
+  String get radioPresets_community => '커뮤니티 프리셋';
+
+  @override
+  String get radioPresets_hint =>
+      'MeshCore 커뮤니티가 추천하는 프리셋입니다. 지역 메시에서 쓰는 것을 고르세요. 주파수·대역폭·SF·CR을 설정하며 송신 출력은 그대로입니다.';
 }

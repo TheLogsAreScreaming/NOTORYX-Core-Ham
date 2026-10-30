@@ -9020,4 +9020,20 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get advert_floodHint =>
       'Os repetidores espalham-no por toda a malha. Usa mais tempo de emissão.';
+
+  @override
+  String get radioPresets_custom => 'Personalizado';
+
+  @override
+  String get radioPresets_search => 'Pesquisar predefinições';
+
+  @override
+  String get radioPresets_suggested => 'Sugerido para a sua região';
+
+  @override
+  String get radioPresets_community => 'Predefinições da comunidade';
+
+  @override
+  String get radioPresets_hint =>
+      'Estas são as predefinições sugeridas pela comunidade MeshCore. Escolha a da sua malha local. Define frequência, largura de banda, fator de espalhamento e taxa de codificação; a potência de transmissão mantém-se.';
 }

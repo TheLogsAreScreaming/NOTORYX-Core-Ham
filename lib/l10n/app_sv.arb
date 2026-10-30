@@ -3914,5 +3914,10 @@
   "botChannels_hint": "Boten svarar också på !kommandon i kanalerna du slår på, i samma kanal. Frånvarosvar skickas aldrig där.",
   "botChannels_none": "Inga kanaler på den här radion än.",
   "advert_zeroHopHint": "Bara radioapparater som hör dig direkt. Repeatrar skickar inte vidare.",
-  "advert_floodHint": "Repeatrar sprider den i hela nätet. Tar mer sändningstid."
+  "advert_floodHint": "Repeatrar sprider den i hela nätet. Tar mer sändningstid.",
+  "radioPresets_custom": "Anpassad",
+  "radioPresets_search": "Sök förinställningar",
+  "radioPresets_suggested": "Föreslaget för din region",
+  "radioPresets_community": "Gemenskapens förinställningar",
+  "radioPresets_hint": "Detta är förinställningarna som MeshCore-gemenskapen föreslår. Välj den ditt lokala nät använder. Den sätter frekvens, bandbredd, spridningsfaktor och kodningsgrad; din sändeffekt är oförändrad."
 }

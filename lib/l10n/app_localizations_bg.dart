@@ -9021,4 +9021,20 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get advert_floodHint =>
       'Ретранслаторите го разпространяват в цялата мрежа. Използва повече ефирно време.';
+
+  @override
+  String get radioPresets_custom => 'Ръчни';
+
+  @override
+  String get radioPresets_search => 'Търсене на настройки';
+
+  @override
+  String get radioPresets_suggested => 'Препоръчано за вашия регион';
+
+  @override
+  String get radioPresets_community => 'Настройки на общността';
+
+  @override
+  String get radioPresets_hint =>
+      'Това са настройките, които общността на MeshCore препоръчва. Изберете тази на местната мрежа. Настройката задава честота, ширина на канала, SF и CR; мощността на предаване остава същата.';
 }

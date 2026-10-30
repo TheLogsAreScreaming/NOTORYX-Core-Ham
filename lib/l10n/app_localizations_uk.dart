@@ -9059,4 +9059,20 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get advert_floodHint =>
       'Ретранслятори поширюють його всією мережею. Займає більше ефіру.';
+
+  @override
+  String get radioPresets_custom => 'Власні';
+
+  @override
+  String get radioPresets_search => 'Пошук пресетів';
+
+  @override
+  String get radioPresets_suggested => 'Рекомендовано для вашого регіону';
+
+  @override
+  String get radioPresets_community => 'Пресети спільноти';
+
+  @override
+  String get radioPresets_hint =>
+      'Це пресети, які радить спільнота MeshCore. Оберіть той, що використовує місцева мережа. Пресет задає частоту, смугу, SF і CR; потужність передавання не змінюється.';
 }

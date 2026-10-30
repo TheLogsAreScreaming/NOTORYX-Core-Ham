@@ -5232,5 +5232,10 @@
   "botChannels_hint": "The bot also answers !commands in the channels you turn on, in that channel. It never sends away replies there.",
   "botChannels_none": "No channels on this radio yet.",
   "advert_zeroHopHint": "Only radios that hear you directly. Repeaters don’t pass it on.",
-  "advert_floodHint": "Repeaters pass it across the whole mesh. Uses more airtime."
+  "advert_floodHint": "Repeaters pass it across the whole mesh. Uses more airtime.",
+  "radioPresets_custom": "Custom",
+  "radioPresets_search": "Search presets",
+  "radioPresets_suggested": "Suggested for your region",
+  "radioPresets_community": "Community presets",
+  "radioPresets_hint": "These are the presets the MeshCore community suggests. Pick the one your local mesh runs. A preset sets frequency, bandwidth, spreading factor and coding rate; your transmit power stays as it is."
 }

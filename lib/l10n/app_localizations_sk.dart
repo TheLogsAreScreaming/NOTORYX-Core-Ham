@@ -9011,4 +9011,20 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get advert_floodHint =>
       'Opakovače ho šíria celou sieťou. Zaberie viac vysielacieho času.';
+
+  @override
+  String get radioPresets_custom => 'Vlastné';
+
+  @override
+  String get radioPresets_search => 'Hľadať predvoľby';
+
+  @override
+  String get radioPresets_suggested => 'Odporúčané pre váš región';
+
+  @override
+  String get radioPresets_community => 'Predvoľby komunity';
+
+  @override
+  String get radioPresets_hint =>
+      'Toto sú predvoľby odporúčané komunitou MeshCore. Vyberte tú, ktorú používa miestna sieť. Nastaví frekvenciu, šírku pásma, SF a CR; vysielací výkon zostáva.';
 }
