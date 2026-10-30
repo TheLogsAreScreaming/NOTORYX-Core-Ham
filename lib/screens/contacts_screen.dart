@@ -969,8 +969,11 @@ class _ContactsScreenState extends State<ContactsScreen>
                             unreadCount: unreadCount,
                             isFavorite: contact.isFavorite,
                             onTap: () => _openChat(context, contact),
-                            onLongPress: () =>
-                                _showContactOptions(context, connector, contact),
+                            onLongPress: () => _showContactOptions(
+                              context,
+                              connector,
+                              contact,
+                            ),
                           ),
                         ),
                       );
