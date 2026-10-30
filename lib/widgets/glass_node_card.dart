@@ -20,7 +20,9 @@ class GlassNodeCard extends StatelessWidget {
             Icon(
               Icons.circle,
               size: 8,
-              color: status ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.outline,
+              color: status
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.outline,
             ),
             const SizedBox(width: 12),
           ],
