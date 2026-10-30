@@ -2153,7 +2153,9 @@ class _DirectChats extends StatelessWidget {
                       style: MeshTheme.mono(
                         fontSize: 12,
                         fontWeight: unread > 0 ? FontWeight.w700 : null,
-                        color: unread > 0 ? MeshPalette.accent : MeshPalette.ink4,
+                        color: unread > 0
+                            ? MeshPalette.accent
+                            : MeshPalette.ink4,
                       ),
                     ),
                   ],
