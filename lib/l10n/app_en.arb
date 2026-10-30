@@ -5231,6 +5231,8 @@
   "botChannels_title": "Channels",
   "botChannels_hint": "The bot also answers !commands in the channels you turn on, in that channel. It never sends away replies there.",
   "botChannels_none": "No channels on this radio yet.",
+  "advert_zeroHopHint": "Only radios that hear you directly. Repeaters don’t pass it on.",
+  "advert_floodHint": "Repeaters pass it across the whole mesh. Uses more airtime.",
   "activeChannels_title": "Active online",
   "activeChannels_messages": "{count} messages",
   "@activeChannels_messages": {

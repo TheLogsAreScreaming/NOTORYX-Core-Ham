@@ -9053,6 +9053,14 @@ class AppLocalizationsUk extends AppLocalizations {
   String get botChannels_none => 'На цьому радіо ще немає каналів.';
 
   @override
+  String get advert_zeroHopHint =>
+      'Лише радіо, які чують вас напряму. Ретранслятори його не передають.';
+
+  @override
+  String get advert_floodHint =>
+      'Ретранслятори поширюють його всією мережею. Займає більше ефіру.';
+
+  @override
   String get activeChannels_title => 'Активні онлайн';
 
   @override

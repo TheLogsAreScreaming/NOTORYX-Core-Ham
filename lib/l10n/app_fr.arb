@@ -4047,6 +4047,8 @@
   "botChannels_title": "Canaux",
   "botChannels_hint": "Le bot répond aussi aux !commandes dans les canaux activés, dans ce canal. Il n’y envoie jamais de réponse d’absence.",
   "botChannels_none": "Aucun canal sur cette radio pour l’instant.",
+  "advert_zeroHopHint": "Seulement les radios qui vous entendent directement. Les répéteurs ne le relaient pas.",
+  "advert_floodHint": "Les répéteurs le propagent dans tout le maillage. Utilise plus de temps d’antenne.",
   "activeChannels_title": "Actifs en ligne",
   "activeChannels_messages": "{count} messages",
   "activeChannels_source": "Canaux utilisés, selon les observateurs de {host}. Changez d’analyseur dans les réglages pour voir votre région."

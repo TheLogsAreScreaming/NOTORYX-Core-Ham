@@ -9042,6 +9042,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get botChannels_none => 'Noch keine Kanäle auf diesem Funkgerät.';
 
   @override
+  String get advert_zeroHopHint =>
+      'Nur Funkgeräte, die dich direkt hören. Repeater leiten es nicht weiter.';
+
+  @override
+  String get advert_floodHint =>
+      'Repeater verbreiten es im ganzen Mesh. Braucht mehr Sendezeit.';
+
+  @override
   String get activeChannels_title => 'Online aktiv';
 
   @override

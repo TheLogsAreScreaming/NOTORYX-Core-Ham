@@ -3951,6 +3951,8 @@
   "botChannels_title": "Csatornák",
   "botChannels_hint": "A bot a bekapcsolt csatornákon is válaszol a !parancsokra, ugyanabban a csatornában. Távollét-választ ott sosem küld.",
   "botChannels_none": "Ezen a rádión még nincs csatorna.",
+  "advert_zeroHopHint": "Csak a közvetlenül halló rádiók. Az átjátszók nem továbbítják.",
+  "advert_floodHint": "Az átjátszók az egész hálózatban továbbítják. Több adásidőt használ.",
   "activeChannels_title": "Aktív online",
   "activeChannels_messages": "{count} üzenet",
   "activeChannels_source": "Használt csatornák {host} megfigyelői szerint. A beállításokban válasszon a régiójához tartozó elemzőt."

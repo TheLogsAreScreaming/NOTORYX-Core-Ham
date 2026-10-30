@@ -8593,6 +8593,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get botChannels_none => 'この無線機にはまだチャンネルがありません。';
 
   @override
+  String get advert_zeroHopHint => '直接受信できる無線機だけに届きます。リピーターは中継しません。';
+
+  @override
+  String get advert_floodHint => 'リピーターがメッシュ全体に中継します。通信時間が多くかかります。';
+
+  @override
   String get activeChannels_title => 'オンラインで活発';
 
   @override

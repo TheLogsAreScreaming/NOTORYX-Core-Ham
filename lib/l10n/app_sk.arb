@@ -3913,6 +3913,8 @@
   "botChannels_title": "Kanály",
   "botChannels_hint": "Bot odpovedá na !príkazy aj v zapnutých kanáloch, v tom istom kanáli. Odpovede o neprítomnosti tam nikdy neposiela.",
   "botChannels_none": "Na tomto rádiu zatiaľ nie sú kanály.",
+  "advert_zeroHopHint": "Iba rádiá, ktoré vás počujú priamo. Opakovače ho nepreposielajú.",
+  "advert_floodHint": "Opakovače ho šíria celou sieťou. Zaberie viac vysielacieho času.",
   "activeChannels_title": "Aktívne online",
   "activeChannels_messages": "Správy: {count}",
   "activeChannels_source": "Kanály, ktoré sa používajú, podľa pozorovateľov {host}. V nastaveniach zmeňte analyzátor pre svoju oblasť."

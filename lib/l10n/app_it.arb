@@ -4047,6 +4047,8 @@
   "botChannels_title": "Canali",
   "botChannels_hint": "Il bot risponde ai !comandi anche nei canali attivati, nello stesso canale. Lì non invia mai risposte di assenza.",
   "botChannels_none": "Nessun canale su questa radio.",
+  "advert_zeroHopHint": "Solo le radio che ti sentono direttamente. I ripetitori non lo inoltrano.",
+  "advert_floodHint": "I ripetitori lo diffondono in tutta la mesh. Usa più tempo di trasmissione.",
   "activeChannels_title": "Attivi online",
   "activeChannels_messages": "{count} messaggi",
   "activeChannels_source": "Canali in uso, secondo gli osservatori di {host}. Cambia analizzatore nelle impostazioni per la tua zona."
