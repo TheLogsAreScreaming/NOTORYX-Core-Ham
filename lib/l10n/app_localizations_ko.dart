@@ -1252,10 +1252,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get appSettings_unitsTitle => '단위';
 
   @override
-  String get appSettings_unitsMetric => '미터법 (m / km)';
+  String get appSettings_unitsMetric => '미터법 (m / km / °C)';
 
   @override
-  String get appSettings_unitsImperial => '영국식 (ft / mi)';
+  String get appSettings_unitsImperial => '영국식 (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => '선택된 영역 없음';

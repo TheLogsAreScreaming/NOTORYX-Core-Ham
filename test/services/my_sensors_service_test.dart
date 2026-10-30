@@ -105,4 +105,22 @@ void main() {
       '19 lx',
     );
   });
+
+  test('Imperial units show °F, feet and inHg', () {
+    String? f(int type, Object value) =>
+        formatSensorReading({'type': type, 'value': value}, imperial: true);
+    expect(f(CayenneLpp.lppTemperature, 20.5), '68.9 °F');
+    expect(f(CayenneLpp.lppTemperature, -40), '-40.0 °F');
+    expect(f(CayenneLpp.lppAltitude, 100), '328 ft');
+    expect(f(CayenneLpp.lppBarometricPressure, 1013.2), '29.92 inHg');
+    expect(
+      f(CayenneLpp.lppGps, {
+        'latitude': 41.328,
+        'longitude': -73.094,
+        'altitude': 30,
+      }),
+      '41.328, -73.094 @98ft',
+    );
+    expect(f(CayenneLpp.lppVoltage, 4.19), '4.19 V');
+  });
 }

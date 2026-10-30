@@ -1232,10 +1232,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appSettings_unitsTitle => '单位';
 
   @override
-  String get appSettings_unitsMetric => '公制（米/公里）';
+  String get appSettings_unitsMetric => '公制（米/公里） (°C)';
 
   @override
-  String get appSettings_unitsImperial => '英制 (ft / mi)';
+  String get appSettings_unitsImperial => '英制 (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => '未选择任何区域';

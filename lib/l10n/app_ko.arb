@@ -349,8 +349,8 @@
   "appSettings_stadiaApiKeyDialogDescription": "Stadia Maps API 키를 입력하세요. 이 앱은 래스터 타일 요청에 이 키를 사용합니다.",
   "appSettings_offlineMapCache": "오프라인 지도 캐시",
   "appSettings_unitsTitle": "단위",
-  "appSettings_unitsMetric": "미터법 (m / km)",
-  "appSettings_unitsImperial": "영국식 (ft / mi)",
+  "appSettings_unitsMetric": "미터법 (m / km / °C)",
+  "appSettings_unitsImperial": "영국식 (ft / mi / °F)",
   "appSettings_noAreaSelected": "선택된 영역 없음",
   "appSettings_areaSelectedZoom": "선택된 영역 (줌 레벨: {minZoom} - {maxZoom})",
   "@appSettings_areaSelectedZoom": {

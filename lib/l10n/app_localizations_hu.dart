@@ -1313,10 +1313,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get appSettings_unitsTitle => 'Egységek';
 
   @override
-  String get appSettings_unitsMetric => 'Metrikus (m/km)';
+  String get appSettings_unitsMetric => 'Metrikus (m/km/°C)';
 
   @override
-  String get appSettings_unitsImperial => 'birodalmi (ft/mi)';
+  String get appSettings_unitsImperial => 'birodalmi (ft/mi/°F)';
 
   @override
   String get appSettings_noAreaSelected => 'Nincs kiválasztott terület';

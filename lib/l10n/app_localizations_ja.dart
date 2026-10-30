@@ -1250,10 +1250,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get appSettings_unitsTitle => '単位';
 
   @override
-  String get appSettings_unitsMetric => 'メートル法 (m / km)';
+  String get appSettings_unitsMetric => 'メートル法 (m / km / °C)';
 
   @override
-  String get appSettings_unitsImperial => 'ヤード・ポンド法 (ft / mi)';
+  String get appSettings_unitsImperial => 'ヤード・ポンド法 (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'エリアが選択されていません';

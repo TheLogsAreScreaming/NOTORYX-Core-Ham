@@ -1325,10 +1325,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appSettings_unitsTitle => 'Unités';
 
   @override
-  String get appSettings_unitsMetric => 'Métrique (m/km)';
+  String get appSettings_unitsMetric => 'Métrique (m/km/°C)';
 
   @override
-  String get appSettings_unitsImperial => 'Impérial (ft / mi)';
+  String get appSettings_unitsImperial => 'Impérial (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'Aucune zone sélectionnée';

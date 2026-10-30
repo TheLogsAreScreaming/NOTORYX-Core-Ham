@@ -1319,10 +1319,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get appSettings_unitsTitle => 'Jednostki';
 
   @override
-  String get appSettings_unitsMetric => 'Metryczne (m / km)';
+  String get appSettings_unitsMetric => 'Metryczne (m / km / °C)';
 
   @override
-  String get appSettings_unitsImperial => 'Imperialne (ft / mi)';
+  String get appSettings_unitsImperial => 'Imperialne (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'Nie wybrano żadnego obszaru.';

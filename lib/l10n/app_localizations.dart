@@ -2461,13 +2461,13 @@ abstract class AppLocalizations {
   /// No description provided for @appSettings_unitsMetric.
   ///
   /// In en, this message translates to:
-  /// **'Metric (m / km)'**
+  /// **'Metric (m / km / °C)'**
   String get appSettings_unitsMetric;
 
   /// No description provided for @appSettings_unitsImperial.
   ///
   /// In en, this message translates to:
-  /// **'Imperial (ft / mi)'**
+  /// **'Imperial (ft / mi / °F)'**
   String get appSettings_unitsImperial;
 
   /// No description provided for @appSettings_noAreaSelected.

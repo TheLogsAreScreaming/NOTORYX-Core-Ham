@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../helpers/cayenne_lpp.dart';
 import '../l10n/l10n.dart';
+import '../models/app_settings.dart';
+import '../services/app_settings_service.dart';
 import '../services/my_sensors_service.dart';
 import '../theme/mesh_theme.dart';
 import 'instrument.dart';
@@ -44,9 +46,13 @@ class _MySensorsPanelState extends State<MySensorsPanel> {
     final sensors = context.watch<MySensorsService?>();
     if (sensors == null) return const SizedBox.shrink();
     final l10n = context.l10n;
+    // Settings → App settings → Units.
+    final imperial =
+        context.watch<AppSettingsService?>()?.settings.unitSystem ==
+        UnitSystem.imperial;
     final chips = [
       for (final r in sensors.readings)
-        if (formatSensorReading(r) case final text?)
+        if (formatSensorReading(r, imperial: imperial) case final text?)
           (icon: _icon(r['type'] as int), text: text),
     ];
     return Column(

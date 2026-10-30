@@ -1324,10 +1324,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get appSettings_unitsTitle => 'единици';
 
   @override
-  String get appSettings_unitsMetric => 'Метрика (m / km)';
+  String get appSettings_unitsMetric => 'Метрика (m / km / °C)';
 
   @override
-  String get appSettings_unitsImperial => 'Имперска (ft / mi)';
+  String get appSettings_unitsImperial => 'Имперска (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'Няма избрана област';

@@ -1312,10 +1312,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get appSettings_unitsTitle => 'Eenheden';
 
   @override
-  String get appSettings_unitsMetric => 'Metrisch (m / km)';
+  String get appSettings_unitsMetric => 'Metrisch (m / km / °C)';
 
   @override
-  String get appSettings_unitsImperial => 'Imperiaal (ft / mi)';
+  String get appSettings_unitsImperial => 'Imperiaal (ft / mi / °F)';
 
   @override
   String get appSettings_noAreaSelected => 'Geen gebied geselecteerd';

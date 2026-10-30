@@ -349,8 +349,8 @@
   "appSettings_stadiaApiKeyDialogDescription": "Adja meg a Stadia Maps API-kulcsát. Az alkalmazás ezt használja raszteres csempekérésekhez.",
   "appSettings_offlineMapCache": "Offline térképgyorsítótár",
   "appSettings_unitsTitle": "Egységek",
-  "appSettings_unitsMetric": "Metrikus (m/km)",
-  "appSettings_unitsImperial": "birodalmi (ft/mi)",
+  "appSettings_unitsMetric": "Metrikus (m/km/°C)",
+  "appSettings_unitsImperial": "birodalmi (ft/mi/°F)",
   "appSettings_noAreaSelected": "Nincs kiválasztott terület",
   "appSettings_areaSelectedZoom": "Kijelölt terület (nagyítás {minZoom}-{maxZoom})",
   "@appSettings_areaSelectedZoom": {
