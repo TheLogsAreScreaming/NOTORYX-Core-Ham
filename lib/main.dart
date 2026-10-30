@@ -1,3 +1,4 @@
+import 'services/node_telemetry_store.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -277,6 +278,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final TrackLogService _trackLog;
   late final ChannelDiscoveryService _channelDiscovery;
   late final AnalyzerService _analyzer;
+  late final NodeTelemetryStore _telemetry;
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
   late final CoverageHexService _coverageHex;
@@ -308,6 +310,10 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _channelDiscovery = ChannelDiscoveryService(widget.connector);
     unawaited(_channelDiscovery.load());
     _analyzer = AnalyzerService()..load();
+    _telemetry = NodeTelemetryStore(PrefsManager.instance);
+    widget.connector.telemetryStore = _telemetry;
+    _syncTelemetryScope();
+    widget.connector.addListener(_syncTelemetryScope);
     _mySensors = MySensorsService(widget.connector);
     _wardrive = WardriveService(widget.connector)..load();
     _coverageHex = CoverageHexService(widget.connector);
@@ -404,6 +410,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _channelDiscovery.dispose();
     _analyzer.dispose();
     _mySensors.dispose();
+    widget.connector.removeListener(_syncTelemetryScope);
+    widget.connector.telemetryStore = null;
+    _telemetry.dispose();
     _wardrive.dispose();
     _coverageHex.dispose();
     _readAloud.dispose();
@@ -419,6 +428,10 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _channelPruneTimer?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  void _syncTelemetryScope() {
+    _telemetry.setScope(widget.connector.selfPublicKeyHex);
   }
 
   void _syncMqttObserverIdentity() {
@@ -472,6 +485,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.receivedImageStore.setForeground(state == AppLifecycleState.resumed);
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.hidden) {
+      unawaited(_telemetry.flush());
       unawaited(widget.imageCodecService.handleMemoryPressure());
       unawaited(widget.receivedImageStore.handleMemoryPressure());
     }
@@ -502,6 +516,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ),
         ChangeNotifierProvider<AnalyzerService?>.value(value: _analyzer),
         ChangeNotifierProvider<MySensorsService?>.value(value: _mySensors),
+        ChangeNotifierProvider<NodeTelemetryStore?>.value(value: _telemetry),
         ChangeNotifierProvider.value(value: _wardrive),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(

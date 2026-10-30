@@ -1,3 +1,4 @@
+import 'node_telemetry_store.dart';
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -42,6 +43,7 @@ class MySensorsService extends ChangeNotifier {
       _notify();
       return;
     }
+    final scope = connector.selfPublicKeyHex;
     _loading = true;
     _failed = false;
     _notify();
@@ -57,6 +59,15 @@ class MySensorsService extends ChangeNotifier {
       final lpp = await reply.future.timeout(timeout);
       _readings = CayenneLpp.parse(lpp);
       _updated = _now();
+      if (connector.selfPublicKeyHex == scope &&
+          connector.telemetryStore?.scope == scope) {
+        connector.telemetryStore?.record(
+          scope,
+          _readings,
+          source: TelemetrySource.self,
+          at: _updated,
+        );
+      }
     } catch (_) {
       _failed = true;
     } finally {

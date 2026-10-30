@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:meshcore_open/services/node_telemetry_store.dart';
 import 'dart:async';
 import 'dart:math';
 import 'dart:typed_data';
@@ -35,6 +37,9 @@ class _Radio extends MeshCoreConnector {
   final requests = <Uint8List>[];
   int replySeconds = 3600;
   bool answer = true;
+  String identity = 'a' * 64;
+  @override
+  String get selfPublicKeyHex => identity;
 
   @override
   bool get isConnected => true;
@@ -84,6 +89,42 @@ class _Radio extends MeshCoreConnector {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  test('sensor pushes feed cache only for the subscribing radio', () async {
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    final radio = _Radio();
+    final store = NodeTelemetryStore(prefs)..setScope(radio.identity);
+    radio.telemetryStore = store;
+    final service = SensorSubscriptionService(radio, random: Random(7));
+    final sub = await service.subscribe(
+      _sensor,
+      readings: [_temp],
+      duration: const Duration(hours: 1),
+    );
+    radio.push(sub.pushTag, (CayenneLpp()..addTemperature(2, 23)).toBytes());
+    await Future<void>.delayed(Duration.zero);
+    expect(
+      store.metricFor(_sensor.publicKeyHex, TelemetryMetric.temperature)!.value,
+      23,
+    );
+    expect(
+      store
+          .metricFor(_sensor.publicKeyHex, TelemetryMetric.temperature)!
+          .source,
+      TelemetrySource.sensor,
+    );
+    radio.identity = 'c' * 64;
+    store.setScope(radio.identity);
+    radio.push(sub.pushTag, (CayenneLpp()..addTemperature(2, 40)).toBytes());
+    await Future<void>.delayed(Duration.zero);
+    expect(store.readingsFor(_sensor.publicKeyHex), isEmpty);
+    service.dispose();
+    await store.flush();
+    store.dispose();
+    await radio.frames.close();
+    radio.dispose();
+  });
 
   group('protocol', () {
     test('thresholds are LPP: channel, type, big-endian scaled value', () {

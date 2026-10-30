@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:meshcore_open/services/node_telemetry_store.dart';
 import 'dart:async';
 import 'dart:typed_data';
 
@@ -20,6 +22,8 @@ class _Radio extends MeshCoreConnector {
   bool get isConnected => connected;
   @override
   Uint8List? get selfPublicKey => _self;
+  @override
+  String get selfPublicKeyHex => pubKeyToHex(_self);
   @override
   Stream<Uint8List> get receivedFrames => frames.stream;
   @override
@@ -49,6 +53,42 @@ Uint8List _lpp() =>
         .toBytes();
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  test(
+    'own sensor readings and status batteries feed the scoped cache',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      final radio = _Radio()..answer = () => _reply(_self, _lpp());
+      final store = NodeTelemetryStore(prefs)..setScope(radio.selfPublicKeyHex);
+      radio.telemetryStore = store;
+      final sensors = MySensorsService(radio);
+      await sensors.refresh();
+      expect(
+        store
+            .metricFor(radio.selfPublicKeyHex, TelemetryMetric.temperature)!
+            .value,
+        20.5,
+      );
+      expect(
+        store
+            .metricFor(radio.selfPublicKeyHex, TelemetryMetric.temperature)!
+            .source,
+        TelemetrySource.self,
+      );
+      radio.updateRepeaterBatterySnapshot('b' * 64, 3850, source: 'status');
+      expect(store.metricFor('b' * 64, TelemetryMetric.battery)!.value, 3.85);
+      expect(
+        store.metricFor('b' * 64, TelemetryMetric.battery)!.source,
+        TelemetrySource.status,
+      );
+      await store.flush();
+      store.dispose();
+      sensors.dispose();
+      await radio.frames.close();
+      radio.dispose();
+    },
+  );
   test('reads and formats the radio’s own sensors', () async {
     final radio = _Radio()..answer = () => _reply(_self, _lpp());
     final sensors = MySensorsService(radio);
