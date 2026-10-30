@@ -26,6 +26,7 @@ import '../widgets/qr_code_display.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/instrument.dart';
 import '../widgets/glass_chat_card.dart';
+import '../widgets/tactical_glass_panel.dart';
 import '../helpers/gif_helper.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../utils/main_tab_navigation.dart';
@@ -432,175 +433,188 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     return ListEntrance(
       key: ValueKey('channel_entrance_${channel.index}'),
       index: dragIndex ?? listIndex,
-      child: InkWell(
-        key: ValueKey('channel_${channel.index}'),
-        onTap: () {
-          HapticFeedback.selectionClick();
-          final unread = connector.getUnreadCountForChannelIndex(channel.index);
-          connector.markChannelRead(channel.index);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChannelChatScreen(
-                channel: channel,
-                initialUnreadCount: unread,
-              ),
-            ),
-          );
-        },
-        onLongPress: () {
-          HapticFeedback.selectionClick();
-          _showChannelActions(
-            this.context,
-            connector,
-            channelMessageStore,
-            channel,
-          );
-        },
-        onSecondaryTap: PlatformInfo.isDesktop
-            ? () => _showChannelActions(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(
+          MeshSpace.lg,
+          0,
+          MeshSpace.lg,
+          MeshSpace.sm,
+        ),
+        child: TacticalGlassPanel(
+          blur: false,
+          padding: EdgeInsets.zero,
+          child: InkWell(
+            key: ValueKey('channel_${channel.index}'),
+            onTap: () {
+              HapticFeedback.selectionClick();
+              final unread = connector.getUnreadCountForChannelIndex(
+                channel.index,
+              );
+              connector.markChannelRead(channel.index);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChannelChatScreen(
+                    channel: channel,
+                    initialUnreadCount: unread,
+                  ),
+                ),
+              );
+            },
+            onLongPress: () {
+              HapticFeedback.selectionClick();
+              _showChannelActions(
                 this.context,
                 connector,
                 channelMessageStore,
                 channel,
-              )
-            : null,
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: MeshSpace.lg,
-            vertical: 10,
-          ),
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: instrumentLine)),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // A glyph, not an avatar: # hashtag, ◎ public, lock private.
-              SizedBox(
-                width: 22,
-                child: channelType == ChannelType.hashtag
-                    ? Text(
-                        '#',
-                        style: MeshTheme.mono(
-                          fontSize: 17,
-                          color: MeshPalette.ink3,
-                        ),
-                      )
-                    : channelType == ChannelType.public
-                    ? Text(
-                        '\u25CE',
-                        style: MeshTheme.mono(
-                          fontSize: 16,
-                          color: MeshPalette.ink3,
-                        ),
-                      )
-                    : Icon(icon, size: 17, color: MeshPalette.ink3),
+              );
+            },
+            onSecondaryTap: PlatformInfo.isDesktop
+                ? () => _showChannelActions(
+                    this.context,
+                    connector,
+                    channelMessageStore,
+                    channel,
+                  )
+                : null,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: MeshSpace.lg,
+                vertical: 10,
               ),
-              const SizedBox(width: 12),
-              // Title + subtitle + ch chip
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      channelLabel,
-                      style: TextStyle(
-                        color: scheme.onSurface,
-                        fontSize: 15,
-                        fontWeight: unreadCount > 0
-                            ? FontWeight.w700
-                            : FontWeight.w500,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    if (subtitle.isNotEmpty) ...[
-                      const SizedBox(height: 2),
-                      Text(
-                        subtitle,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: scheme.onSurfaceVariant,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                    if (lastPreview.isNotEmpty) ...[
-                      const SizedBox(height: 2),
-                      Text(
-                        lastPreview,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: unreadCount > 0
-                              ? MeshPalette.ink2
-                              : MeshPalette.ink3,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ],
-                ),
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: instrumentLine)),
               ),
-              const SizedBox(width: 8),
-              // Right side: time + unread badge + muted + drag handle
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  if (lastTime != null)
-                    Text(
-                      _relativeTime(lastTime),
-                      style: MeshTheme.mono(
-                        fontSize: 12,
-                        color: MeshPalette.ink3,
-                      ),
+                  // A glyph, not an avatar: # hashtag, ◎ public, lock private.
+                  SizedBox(
+                    width: 22,
+                    child: channelType == ChannelType.hashtag
+                        ? Text(
+                            '#',
+                            style: MeshTheme.mono(
+                              fontSize: 17,
+                              color: MeshPalette.ink3,
+                            ),
+                          )
+                        : channelType == ChannelType.public
+                        ? Text(
+                            '\u25CE',
+                            style: MeshTheme.mono(
+                              fontSize: 16,
+                              color: MeshPalette.ink3,
+                            ),
+                          )
+                        : Icon(icon, size: 17, color: MeshPalette.ink3),
+                  ),
+                  const SizedBox(width: 12),
+                  // Title + subtitle + ch chip
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          channelLabel,
+                          style: TextStyle(
+                            color: scheme.onSurface,
+                            fontSize: 15,
+                            fontWeight: unreadCount > 0
+                                ? FontWeight.w700
+                                : FontWeight.w500,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        if (subtitle.isNotEmpty) ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            subtitle,
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(color: scheme.onSurfaceVariant),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                        if (lastPreview.isNotEmpty) ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            lastPreview,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: unreadCount > 0
+                                  ? MeshPalette.ink2
+                                  : MeshPalette.ink3,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ],
                     ),
-                  const SizedBox(height: 4),
-                  Row(
+                  ),
+                  const SizedBox(width: 8),
+                  // Right side: time + unread badge + muted + drag handle
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      if (isMuted) ...[
-                        Icon(
-                          Icons.notifications_off,
-                          size: 14,
-                          color: scheme.onSurfaceVariant,
-                        ),
-                        const SizedBox(width: 4),
-                      ],
-                      if (unreadCount > 0)
+                      if (lastTime != null)
                         Text(
-                          '$unreadCount',
+                          _relativeTime(lastTime),
                           style: MeshTheme.mono(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w700,
-                            color: MeshPalette.accent,
+                            fontSize: 12,
+                            color: MeshPalette.ink3,
                           ),
                         ),
+                      const SizedBox(height: 4),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (isMuted) ...[
+                            Icon(
+                              Icons.notifications_off,
+                              size: 14,
+                              color: scheme.onSurfaceVariant,
+                            ),
+                            const SizedBox(width: 4),
+                          ],
+                          if (unreadCount > 0)
+                            Text(
+                              '$unreadCount',
+                              style: MeshTheme.mono(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                                color: MeshPalette.accent,
+                              ),
+                            ),
+                        ],
+                      ),
                     ],
                   ),
+                  if (showDragHandle && dragIndex != null) ...[
+                    const SizedBox(width: 4),
+                    ReorderableDragStartListener(
+                      index: dragIndex,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: MeshSpace.sm,
+                          vertical: MeshSpace.md,
+                        ),
+                        child: Icon(
+                          Icons.drag_indicator_rounded,
+                          size: 18,
+                          color: MeshPalette.ink4.withValues(alpha: 0.6),
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
               ),
-              if (showDragHandle && dragIndex != null) ...[
-                const SizedBox(width: 4),
-                ReorderableDragStartListener(
-                  index: dragIndex,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: MeshSpace.sm,
-                      vertical: MeshSpace.md,
-                    ),
-                    child: Icon(
-                      Icons.drag_indicator_rounded,
-                      size: 18,
-                      color: MeshPalette.ink4.withValues(alpha: 0.6),
-                    ),
-                  ),
-                ),
-              ],
-            ],
+            ),
           ),
         ),
       ),
