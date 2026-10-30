@@ -538,6 +538,9 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     var overdue = ops.trip.overdueMinutes;
     var reminder = ops.trip.reminderMinutes;
     final channels = ops.connector.channels.where((c) => !c.isEmpty).toList();
+    var checkInChannel = channels.any((c) => c.index == ops.trip.checkInChannel)
+        ? ops.trip.checkInChannel
+        : -1;
     var sosChannel = channels.any((c) => c.index == ops.trip.sosChannel)
         ? ops.trip.sosChannel
         : -1;
@@ -626,6 +629,26 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                       if (v != null) setDialogState(() => sosChannel = v);
                     },
                   ),
+                  DropdownButtonFormField<int>(
+                    key: const ValueKey('trip-checkin-channel'),
+                    initialValue: checkInChannel,
+                    decoration: InputDecoration(
+                      labelText: _l10n.fieldOps_checkInChannelLabel,
+                      helperText: _l10n.fieldOps_checkInChannelHint,
+                      helperMaxLines: 3,
+                    ),
+                    items: [
+                      DropdownMenuItem(
+                        value: -1,
+                        child: Text(_l10n.fieldOps_sosChannelNone),
+                      ),
+                      for (final c in channels)
+                        DropdownMenuItem(value: c.index, child: Text(c.name)),
+                    ],
+                    onChanged: (v) {
+                      if (v != null) setDialogState(() => checkInChannel = v);
+                    },
+                  ),
                   const SizedBox(height: 12),
                   Text(_l10n.fieldOps_selectContacts),
                   for (final c in ops.eligibleContacts)
@@ -658,6 +681,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                         : name.text.trim(),
                     members: selected.toList(),
                     sosChannel: sosChannel,
+                    checkInChannel: checkInChannel,
                     reminderMinutes: reminder,
                     shareLocation: location,
                     shareBattery: battery,

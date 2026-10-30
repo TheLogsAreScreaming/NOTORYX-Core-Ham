@@ -3928,6 +3928,8 @@
   "activeChannels_title": "Aktivni na spletu",
   "activeChannels_messages": "Sporočila: {count}",
   "activeChannels_source": "Kanali v uporabi po podatkih opazovalcev {host}. V nastavitvah zamenjajte analizator za svoje območje.",
+  "fieldOps_checkInChannelLabel": "Prijave gredo tudi v kanal",
+  "fieldOps_checkInChannelHint": "Podpisano s ključem radia, da drugi v kanalu vidijo, da ste res vi. Stiki izleta ga še vedno prejmejo neposredno.",
   "channels_regionUnknown": "Regionalno",
   "channels_regionSemantics": "Poslano v regijo {region}",
   "channels_regionUnknownSemantics": "Poslano v regijo, ki je aplikacija ne pozna"

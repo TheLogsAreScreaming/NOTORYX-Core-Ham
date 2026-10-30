@@ -9106,6 +9106,13 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Відмітки також у канал';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Підписується ключем вашого радіо, щоб інші в каналі бачили, що це справді ви. Контакти поїздки й далі отримують його напряму.';
+
+  @override
   String get channels_regionUnknown => 'Регіональне';
 
   @override

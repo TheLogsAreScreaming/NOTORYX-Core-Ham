@@ -9117,6 +9117,13 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Meldunki trafiają też na kanał';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Podpisane kluczem radia, więc inni na kanale widzą, że to naprawdę ty. Kontakty z wyprawy nadal dostają je bezpośrednio.';
+
+  @override
   String get channels_regionUnknown => 'Regionalne';
 
   @override

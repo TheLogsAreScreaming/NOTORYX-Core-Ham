@@ -4062,6 +4062,8 @@
   "activeChannels_title": "Online aktiv",
   "activeChannels_messages": "{count} Nachrichten",
   "activeChannels_source": "Kanäle, die genutzt werden, laut den Beobachtern von {host}. Wechsle den Analysator in den Einstellungen für deine Region.",
+  "fieldOps_checkInChannelLabel": "Check-ins auch an Kanal",
+  "fieldOps_checkInChannelHint": "Mit dem Schlüssel deines Funkgeräts signiert, damit andere im Kanal sehen, dass es wirklich von dir ist. Reisekontakte bekommen es weiterhin direkt.",
   "channels_regionUnknown": "Regional",
   "channels_regionSemantics": "An Region {region} gesendet",
   "channels_regionUnknownSemantics": "An eine Region gesendet, die die App nicht kennt"

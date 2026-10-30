@@ -9007,6 +9007,14 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel =>
+      'Incheckningar går också till kanal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Signerad med radions nyckel så att andra i kanalen ser att det verkligen är du. Resekontakterna får den fortfarande direkt.';
+
+  @override
   String get channels_regionUnknown => 'Regional';
 
   @override

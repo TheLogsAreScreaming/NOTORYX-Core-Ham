@@ -4062,6 +4062,8 @@
   "activeChannels_title": "Attivi online",
   "activeChannels_messages": "{count} messaggi",
   "activeChannels_source": "Canali in uso, secondo gli osservatori di {host}. Cambia analizzatore nelle impostazioni per la tua zona.",
+  "fieldOps_checkInChannelLabel": "Check-in anche sul canale",
+  "fieldOps_checkInChannelHint": "Firmato con la chiave della radio, così gli altri sul canale vedono che sei davvero tu. I contatti del viaggio lo ricevono comunque direttamente.",
   "channels_regionUnknown": "Regionale",
   "channels_regionSemantics": "Inviato alla regione {region}",
   "channels_regionUnknownSemantics": "Inviato a una regione sconosciuta all’app"

@@ -9058,6 +9058,13 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Hlásenia idú aj do kanála';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Podpísané kľúčom rádia, aby ostatní v kanáli videli, že ste to naozaj vy. Kontakty výletu ho stále dostanú priamo.';
+
+  @override
   String get channels_regionUnknown => 'Regionálne';
 
   @override
