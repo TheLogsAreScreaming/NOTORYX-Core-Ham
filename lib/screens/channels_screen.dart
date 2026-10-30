@@ -19,6 +19,7 @@ import '../storage/community_store.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
+import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
@@ -117,248 +118,257 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       // As a tab this is a root screen: the back gesture doesn't leave the
       // connected app.
       canPop: !isTab || !connector.isConnected,
-      child: Scaffold(
-        appBar: AppBar(
-          title: AppBarTitle(context.l10n.channels_title),
-          centerTitle: true,
-          automaticallyImplyLeading: !isTab,
-          bottom: const SyncProgressAppBarBottom(),
-          actions: [
-            IconButton(
-              key: const ValueKey('open-message-search'),
-              tooltip: context.l10n.messageSearch_title,
-              icon: const Icon(Icons.manage_search),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (_) => const MessageSearchScreen(),
+      child: EmberBackdrop(
+        scene: EmberScene.chats,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            scrolledUnderElevation: 0,
+            title: AppBarTitle(context.l10n.channels_title),
+            centerTitle: true,
+            automaticallyImplyLeading: !isTab,
+            bottom: const SyncProgressAppBarBottom(),
+            actions: [
+              IconButton(
+                key: const ValueKey('open-message-search'),
+                tooltip: context.l10n.messageSearch_title,
+                icon: const Icon(Icons.manage_search),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => const MessageSearchScreen(),
+                  ),
                 ),
               ),
-            ),
-            PopupMenuButton(
-              // onTap handlers run after the menu route pops, so they must
-              // capture the screen's context — not the itemBuilder's menu
-              // context, which is deactivated by then.
-              itemBuilder: (menuContext) => [
-                PopupMenuItem(
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.logout,
-                        color: Theme.of(menuContext).colorScheme.error,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(menuContext.l10n.common_disconnect),
-                    ],
-                  ),
-                  onTap: () => _disconnect(context),
-                ),
-                PopupMenuItem(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.groups),
-                      const SizedBox(width: 8),
-                      Text(menuContext.l10n.community_manageCommunities),
-                    ],
-                  ),
-                  onTap: () => _showManageCommunitiesDialog(context),
-                ),
-                PopupMenuItem(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.settings),
-                      const SizedBox(width: 8),
-                      Text(menuContext.l10n.settings_title),
-                    ],
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SettingsScreen(),
+              PopupMenuButton(
+                // onTap handlers run after the menu route pops, so they must
+                // capture the screen's context — not the itemBuilder's menu
+                // context, which is deactivated by then.
+                itemBuilder: (menuContext) => [
+                  PopupMenuItem(
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          color: Theme.of(menuContext).colorScheme.error,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(menuContext.l10n.common_disconnect),
+                      ],
                     ),
+                    onTap: () => _disconnect(context),
                   ),
-                ),
-              ],
-              icon: const Icon(Icons.more_vert),
-            ),
-          ],
-        ),
-        body: RefreshIndicator(
-          onRefresh: () async {
-            await context.read<MeshCoreConnector>().getChannels(force: true);
-          },
-          child: () {
-            final channels = connector.channels;
-            final waitingForFirstChannel =
-                connector.isLoadingChannels && channels.isEmpty;
-
-            // Only block the list while the first channel is actively loading.
-            // If the initial sync aborts, show cached/partial channels instead
-            // of trapping the user behind an idle spinner.
-            if (waitingForFirstChannel) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            if (channels.isEmpty) {
-              return ListView(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height - 200,
-                    child: EmptyState(
-                      icon: Icons.tag,
-                      title: context.l10n.channels_noChannelsConfigured,
-                      action: FilledButton.icon(
-                        onPressed: () => _addPublicChannel(context, connector),
-                        icon: const Icon(Icons.public),
-                        label: Text(context.l10n.channels_addPublicChannel),
+                  PopupMenuItem(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.groups),
+                        const SizedBox(width: 8),
+                        Text(menuContext.l10n.community_manageCommunities),
+                      ],
+                    ),
+                    onTap: () => _showManageCommunitiesDialog(context),
+                  ),
+                  PopupMenuItem(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.settings),
+                        const SizedBox(width: 8),
+                        Text(menuContext.l10n.settings_title),
+                      ],
+                    ),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SettingsScreen(),
                       ),
                     ),
                   ),
                 ],
-              );
-            }
+                icon: const Icon(Icons.more_vert),
+              ),
+            ],
+          ),
+          body: RefreshIndicator(
+            onRefresh: () async {
+              await context.read<MeshCoreConnector>().getChannels(force: true);
+            },
+            child: () {
+              final channels = connector.channels;
+              final waitingForFirstChannel =
+                  connector.isLoadingChannels && channels.isEmpty;
 
-            final filteredChannels = _filterAndSortChannels(
-              channels,
-              connector,
-              viewState,
-            );
+              // Only block the list while the first channel is actively loading.
+              // If the initial sync aborts, show cached/partial channels instead
+              // of trapping the user behind an idle spinner.
+              if (waitingForFirstChannel) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                      hintText: context.l10n.channels_searchChannels,
-                      prefixIcon: const Icon(Icons.search),
-                      suffixIcon: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (viewState.channelsSearchText.isNotEmpty)
-                            IconButton(
-                              icon: const Icon(Icons.clear),
-                              onPressed: () {
-                                _searchDebounce?.cancel();
-                                _searchDebounce = null;
-                                _searchController.clear();
-                                context
-                                    .read<UiViewStateService>()
-                                    .setChannelsSearchText('');
-                              },
-                            ),
-                          _buildFilterButton(viewState),
-                        ],
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 12,
+              if (channels.isEmpty) {
+                return ListView(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height - 200,
+                      child: EmptyState(
+                        icon: Icons.tag,
+                        title: context.l10n.channels_noChannelsConfigured,
+                        action: FilledButton.icon(
+                          onPressed: () =>
+                              _addPublicChannel(context, connector),
+                          icon: const Icon(Icons.public),
+                          label: Text(context.l10n.channels_addPublicChannel),
+                        ),
                       ),
                     ),
-                    onChanged: (value) {
-                      _searchDebounce?.cancel();
-                      _searchDebounce = Timer(
-                        const Duration(milliseconds: 300),
-                        () {
-                          if (!mounted) return;
-                          context
-                              .read<UiViewStateService>()
-                              .setChannelsSearchText(value);
-                        },
-                      );
-                    },
-                  ),
-                ),
-                const _DiscoveredTray(),
-                Expanded(
-                  child: filteredChannels.isEmpty
-                      ? LayoutBuilder(
-                          builder: (context, constraints) => ListView(
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            children: [
-                              ConstrainedBox(
-                                constraints: BoxConstraints(
-                                  minHeight: constraints.maxHeight,
-                                ),
-                                child: EmptyState(
-                                  icon: Icons.search_off,
-                                  title: context.l10n.channels_noChannelsFound,
-                                ),
+                  ],
+                );
+              }
+
+              final filteredChannels = _filterAndSortChannels(
+                channels,
+                connector,
+                viewState,
+              );
+
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        hintText: context.l10n.channels_searchChannels,
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (viewState.channelsSearchText.isNotEmpty)
+                              IconButton(
+                                icon: const Icon(Icons.clear),
+                                onPressed: () {
+                                  _searchDebounce?.cancel();
+                                  _searchDebounce = null;
+                                  _searchController.clear();
+                                  context
+                                      .read<UiViewStateService>()
+                                      .setChannelsSearchText('');
+                                },
                               ),
-                            ],
-                          ),
-                        )
-                      : (viewState.channelsSortOption ==
-                                ChannelSortOption.manual &&
-                            viewState.channelsSearchText.isEmpty)
-                      ? ReorderableListView.builder(
-                          padding: const EdgeInsets.only(bottom: 88),
-                          buildDefaultDragHandles: false,
-                          footer: _DirectChats(connector: connector),
-                          itemCount: filteredChannels.length,
-                          onReorderItem: (oldIndex, newIndex) {
-                            final reordered = List<Channel>.from(
-                              filteredChannels,
-                            );
-                            final item = reordered.removeAt(oldIndex);
-                            reordered.insert(newIndex, item);
-                            unawaited(
-                              connector.setChannelOrder(
-                                reordered.map((c) => c.index).toList(),
-                              ),
-                            );
-                          },
-                          itemBuilder: (context, index) {
-                            final channel = filteredChannels[index];
-                            return _buildChannelTile(
-                              context,
-                              connector,
-                              channelMessageStore,
-                              channel,
-                              showDragHandle: true,
-                              dragIndex: index,
-                              listIndex: index,
-                            );
-                          },
-                        )
-                      : ListView.builder(
-                          padding: const EdgeInsets.only(bottom: 88),
-                          // Direct chats follow the channels, but not while
-                          // searching channels.
-                          itemCount:
-                              filteredChannels.length +
-                              (viewState.channelsSearchText.isEmpty ? 1 : 0),
-                          itemBuilder: (context, index) {
-                            if (index == filteredChannels.length) {
-                              return _DirectChats(connector: connector);
-                            }
-                            final channel = filteredChannels[index];
-                            return _buildChannelTile(
-                              context,
-                              connector,
-                              channelMessageStore,
-                              channel,
-                              listIndex: index,
-                            );
-                          },
+                            _buildFilterButton(viewState),
+                          ],
                         ),
-                ),
-              ],
-            );
-          }(),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
+                        ),
+                      ),
+                      onChanged: (value) {
+                        _searchDebounce?.cancel();
+                        _searchDebounce = Timer(
+                          const Duration(milliseconds: 300),
+                          () {
+                            if (!mounted) return;
+                            context
+                                .read<UiViewStateService>()
+                                .setChannelsSearchText(value);
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  const _DiscoveredTray(),
+                  Expanded(
+                    child: filteredChannels.isEmpty
+                        ? LayoutBuilder(
+                            builder: (context, constraints) => ListView(
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              children: [
+                                ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    minHeight: constraints.maxHeight,
+                                  ),
+                                  child: EmptyState(
+                                    icon: Icons.search_off,
+                                    title:
+                                        context.l10n.channels_noChannelsFound,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : (viewState.channelsSortOption ==
+                                  ChannelSortOption.manual &&
+                              viewState.channelsSearchText.isEmpty)
+                        ? ReorderableListView.builder(
+                            padding: const EdgeInsets.only(bottom: 88),
+                            buildDefaultDragHandles: false,
+                            footer: _DirectChats(connector: connector),
+                            itemCount: filteredChannels.length,
+                            onReorderItem: (oldIndex, newIndex) {
+                              final reordered = List<Channel>.from(
+                                filteredChannels,
+                              );
+                              final item = reordered.removeAt(oldIndex);
+                              reordered.insert(newIndex, item);
+                              unawaited(
+                                connector.setChannelOrder(
+                                  reordered.map((c) => c.index).toList(),
+                                ),
+                              );
+                            },
+                            itemBuilder: (context, index) {
+                              final channel = filteredChannels[index];
+                              return _buildChannelTile(
+                                context,
+                                connector,
+                                channelMessageStore,
+                                channel,
+                                showDragHandle: true,
+                                dragIndex: index,
+                                listIndex: index,
+                              );
+                            },
+                          )
+                        : ListView.builder(
+                            padding: const EdgeInsets.only(bottom: 88),
+                            // Direct chats follow the channels, but not while
+                            // searching channels.
+                            itemCount:
+                                filteredChannels.length +
+                                (viewState.channelsSearchText.isEmpty ? 1 : 0),
+                            itemBuilder: (context, index) {
+                              if (index == filteredChannels.length) {
+                                return _DirectChats(connector: connector);
+                              }
+                              final channel = filteredChannels[index];
+                              return _buildChannelTile(
+                                context,
+                                connector,
+                                channelMessageStore,
+                                channel,
+                                listIndex: index,
+                              );
+                            },
+                          ),
+                  ),
+                ],
+              );
+            }(),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => _showAddChannelDialog(context),
+            tooltip: context.l10n.channels_addChannel,
+            child: const Icon(Icons.add),
+          ),
+          bottomNavigationBar: isTab
+              ? const SafeArea(
+                  top: false,
+                  child: QuickSwitchBar(current: MainTab.chats),
+                )
+              : null,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _showAddChannelDialog(context),
-          tooltip: context.l10n.channels_addChannel,
-          child: const Icon(Icons.add),
-        ),
-        bottomNavigationBar: isTab
-            ? const SafeArea(
-                top: false,
-                child: QuickSwitchBar(current: MainTab.chats),
-              )
-            : null,
       ),
     );
   }
@@ -2131,6 +2141,7 @@ class _DirectChats extends StatelessWidget {
             return GlassChatCard(
               unreadCount: unread,
               child: InstrumentRow(
+                divider: false,
                 key: ValueKey('direct_${chat.contact.publicKeyHex}'),
                 title: chat.contact.name,
                 subtitle: chat.last.text,

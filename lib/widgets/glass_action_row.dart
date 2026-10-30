@@ -41,6 +41,7 @@ class GlassActionRow extends StatelessWidget {
         trailing: trailing,
         onTap: onTap,
         titleColor: titleColor,
+        divider: false,
       ),
     ),
   );

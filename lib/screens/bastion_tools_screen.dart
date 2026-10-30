@@ -1,6 +1,7 @@
 import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import '../l10n/l10n.dart';
+import '../widgets/ember_backdrop.dart';
 import '../widgets/instrument.dart';
 import '../widgets/glass_action_row.dart';
 
@@ -177,73 +178,78 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
               .toList(),
         ),
     ].where((group) => group.actions.isNotEmpty).toList();
-    return Scaffold(
-      backgroundColor: MeshPalette.bg,
-      appBar: AppBar(
-        backgroundColor: MeshPalette.bg,
-        foregroundColor: MeshPalette.ink,
-        titleSpacing: MeshSpace.lg,
-        title: Text(l10n.nav_more),
-      ),
-      body: SafeArea(
-        top: false,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(MeshSpace.lg),
-              child: TextField(
-                key: const ValueKey('tools-search'),
-                controller: _searchController,
-                onChanged: (value) =>
-                    setState(() => _query = value.trim().toLowerCase()),
-                decoration: InputDecoration(
-                  labelText: l10n.tools_search,
-                  prefixIcon: const Icon(Icons.search),
-                  suffixIcon: _searchController.text.isEmpty
-                      ? null
-                      : IconButton(
-                          tooltip: l10n.common_clear,
-                          icon: const Icon(Icons.clear),
-                          onPressed: () {
-                            _searchController.clear();
-                            setState(() => _query = '');
-                          },
-                        ),
+    return EmberBackdrop(
+      scene: EmberScene.more,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          foregroundColor: MeshPalette.ink,
+          titleSpacing: MeshSpace.lg,
+          title: Text(l10n.nav_more),
+        ),
+        body: SafeArea(
+          top: false,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(MeshSpace.lg),
+                child: TextField(
+                  key: const ValueKey('tools-search'),
+                  controller: _searchController,
+                  onChanged: (value) =>
+                      setState(() => _query = value.trim().toLowerCase()),
+                  decoration: InputDecoration(
+                    labelText: l10n.tools_search,
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: _searchController.text.isEmpty
+                        ? null
+                        : IconButton(
+                            tooltip: l10n.common_clear,
+                            icon: const Icon(Icons.clear),
+                            onPressed: () {
+                              _searchController.clear();
+                              setState(() => _query = '');
+                            },
+                          ),
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: visibleGroups.isEmpty
-                  ? Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(MeshSpace.lg),
-                        child: Text(
-                          l10n.tools_noMatches,
-                          textAlign: TextAlign.center,
+              Expanded(
+                child: visibleGroups.isEmpty
+                    ? Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(MeshSpace.lg),
+                          child: Text(
+                            l10n.tools_noMatches,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      ),
-                    )
-                  : ListView(
-                      keyboardDismissBehavior:
-                          ScrollViewKeyboardDismissBehavior.onDrag,
-                      padding: const EdgeInsets.only(bottom: MeshSpace.xxl),
-                      children: [
-                        for (final group in visibleGroups) ...[
-                          InstrumentLabel(group.title),
-                          for (final action in group.actions)
-                            GlassActionRow(
-                              icon: action.icon,
-                              title: action.title,
-                              subtitle: action.subtitle,
-                              onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(builder: action.builder),
+                      )
+                    : ListView(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        padding: const EdgeInsets.only(bottom: MeshSpace.xxl),
+                        children: [
+                          for (final group in visibleGroups) ...[
+                            InstrumentLabel(group.title),
+                            for (final action in group.actions)
+                              GlassActionRow(
+                                icon: action.icon,
+                                title: action.title,
+                                subtitle: action.subtitle,
+                                onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(builder: action.builder),
+                                ),
                               ),
-                            ),
+                          ],
                         ],
-                      ],
-                    ),
-            ),
-          ],
+                      ),
+              ),
+            ],
+          ),
         ),
       ),
     );
