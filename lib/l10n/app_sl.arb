@@ -3912,5 +3912,7 @@
   "tools_botHint": "Samodejni odgovori, !ukazi in vremenska opozorila v kanalih",
   "botChannels_title": "Kanali",
   "botChannels_hint": "Bot odgovarja na !ukaze tudi v vklopljenih kanalih, v istem kanalu. Odgovorov o odsotnosti tam nikoli ne pošlje.",
-  "botChannels_none": "Na tem radiu še ni kanalov."
+  "botChannels_none": "Na tem radiu še ni kanalov.",
+  "advert_zeroHopHint": "Samo radii, ki vas slišijo neposredno. Repetitorji ga ne posredujejo.",
+  "advert_floodHint": "Repetitorji ga razširijo po celotnem omrežju. Porabi več oddajnega časa."
 }

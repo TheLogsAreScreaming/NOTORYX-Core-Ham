@@ -4046,5 +4046,7 @@
   "tools_botHint": "채널 자동 응답, !명령, 기상 경보",
   "botChannels_title": "채널",
   "botChannels_hint": "켠 채널에서도 봇이 해당 채널에서 !명령에 답합니다. 부재 응답은 보내지 않습니다.",
-  "botChannels_none": "이 무전기에 아직 채널이 없습니다."
+  "botChannels_none": "이 무전기에 아직 채널이 없습니다.",
+  "advert_zeroHopHint": "직접 듣는 무전기에만 전달됩니다. 리피터는 전달하지 않습니다.",
+  "advert_floodHint": "리피터가 메시 전체로 전달합니다. 방송 시간을 더 씁니다."
 }

@@ -9012,4 +9012,12 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Ainda não há canais neste rádio.';
+
+  @override
+  String get advert_zeroHopHint =>
+      'Só os rádios que o ouvem diretamente. Os repetidores não o reencaminham.';
+
+  @override
+  String get advert_floodHint =>
+      'Os repetidores espalham-no por toda a malha. Usa mais tempo de emissão.';
 }

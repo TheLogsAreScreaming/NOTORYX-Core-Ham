@@ -9015,4 +9015,12 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Ezen a rádión még nincs csatorna.';
+
+  @override
+  String get advert_zeroHopHint =>
+      'Csak a közvetlenül halló rádiók. Az átjátszók nem továbbítják.';
+
+  @override
+  String get advert_floodHint =>
+      'Az átjátszók az egész hálózatban továbbítják. Több adásidőt használ.';
 }

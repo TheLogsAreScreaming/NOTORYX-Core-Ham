@@ -8905,4 +8905,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get botChannels_none => 'No channels on this radio yet.';
+
+  @override
+  String get advert_zeroHopHint =>
+      'Only radios that hear you directly. Repeaters don’t pass it on.';
+
+  @override
+  String get advert_floodHint =>
+      'Repeaters pass it across the whole mesh. Uses more airtime.';
 }

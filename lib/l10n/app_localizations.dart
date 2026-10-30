@@ -15120,6 +15120,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No channels on this radio yet.'**
   String get botChannels_none;
+
+  /// No description provided for @advert_zeroHopHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only radios that hear you directly. Repeaters don’t pass it on.'**
+  String get advert_zeroHopHint;
+
+  /// No description provided for @advert_floodHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeaters pass it across the whole mesh. Uses more airtime.'**
+  String get advert_floodHint;
 }
 
 class _AppLocalizationsDelegate

@@ -9013,4 +9013,12 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Na tem radiu še ni kanalov.';
+
+  @override
+  String get advert_zeroHopHint =>
+      'Samo radii, ki vas slišijo neposredno. Repetitorji ga ne posredujejo.';
+
+  @override
+  String get advert_floodHint =>
+      'Repetitorji ga razširijo po celotnem omrežju. Porabi več oddajnega časa.';
 }

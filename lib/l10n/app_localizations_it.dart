@@ -9037,4 +9037,12 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Nessun canale su questa radio.';
+
+  @override
+  String get advert_zeroHopHint =>
+      'Solo le radio che ti sentono direttamente. I ripetitori non lo inoltrano.';
+
+  @override
+  String get advert_floodHint =>
+      'I ripetitori lo diffondono in tutta la mesh. Usa più tempo di trasmissione.';
 }
