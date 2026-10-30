@@ -2117,48 +2117,47 @@ class _DirectChats extends StatelessWidget {
             return GlassChatCard(
               unreadCount: unread,
               child: InstrumentRow(
-                key: ValueKey('direct_${chat.contact.publicKeyHex}'),
-              title: chat.contact.name,
-              subtitle: chat.last.text,
-              onTap: () {
-                HapticFeedback.selectionClick();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => ChatScreen(
-                      contact: chat.contact,
-                      initialUnreadCount: unread,
+                  key: ValueKey('direct_${chat.contact.publicKeyHex}'),
+                title: chat.contact.name,
+                subtitle: chat.last.text,
+                onTap: () {
+                  HapticFeedback.selectionClick();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ChatScreen(
+                        contact: chat.contact,
+                        initialUnreadCount: unread,
+                      ),
                     ),
-                  ),
-                );
-              },
-              trailing: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    _clock(chat.last.timestamp),
-                    style: MeshTheme.mono(
-                      fontSize: 12,
-                      color: MeshPalette.ink3,
+                  );
+                },
+                trailing: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      _clock(chat.last.timestamp),
+                      style: MeshTheme.mono(
+                        fontSize: 12,
+                        color: MeshPalette.ink3,
+                      ),
                     ),
-                  ),
-                  Text(
-                    unread > 0
-                        ? '$unread'
-                        : hops < 0
-                        ? ''
-                        : hops == 0
-                        ? 'direct'
-                        : '$hops hop${hops == 1 ? '' : 's'}',
-                    style: MeshTheme.mono(
-                      fontSize: 12,
-                      fontWeight: unread > 0 ? FontWeight.w700 : null,
-                      color: unread > 0 ? MeshPalette.accent : MeshPalette.ink4,
+                    Text(
+                      unread > 0
+                          ? '$unread'
+                          : hops < 0
+                          ? ''
+                          : hops == 0
+                          ? 'direct'
+                          : '$hops hop${hops == 1 ? '' : 's'}',
+                      style: MeshTheme.mono(
+                        fontSize: 12,
+                        fontWeight: unread > 0 ? FontWeight.w700 : null,
+                        color: unread > 0 ? MeshPalette.accent : MeshPalette.ink4,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              ),
+                  ],
+                ),
             );
           }(),
       ],
