@@ -4,12 +4,31 @@ import 'tactical_glass_panel.dart';
 
 /// Presentation-only wrapper for node information.
 class GlassNodeCard extends StatelessWidget {
-  const GlassNodeCard({super.key, required this.child});
+  const GlassNodeCard({super.key, required this.child, this.isOnline});
 
   final Widget child;
+  final bool? isOnline;
 
   @override
   Widget build(BuildContext context) {
-    return TacticalGlassPanel(blur: false, child: child);
+    final status = isOnline;
+    return TacticalGlassPanel(
+      blur: false,
+      child: Row(
+        children: [
+          if (status != null) ...[
+            Icon(
+              Icons.circle,
+              size: 8,
+              color: status
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.outline,
+            ),
+            const SizedBox(width: 12),
+          ],
+          Expanded(child: child),
+        ],
+      ),
+    );
   }
 }
