@@ -65,7 +65,10 @@ void main() {
     await _pump(tester);
     await tester.enterText(find.byType(TextField), 'Field guide');
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Field guide'));
+    // find.text also matches the query in the search field; tap the row.
+    await tester.tap(
+      find.byWidgetPredicate((w) => w is Text && w.data == 'Field guide'),
+    );
     await tester.pumpAndSettle();
     expect(find.byType(FieldGuideScreen), findsOneWidget);
     await tester.pageBack();
