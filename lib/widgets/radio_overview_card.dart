@@ -150,13 +150,7 @@ class RadioOverviewCard extends StatelessWidget {
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(52),
                   ),
-                  onPressed: () {
-                    connector.sendSelfAdvert(flood: true);
-                    showDismissibleSnackBar(
-                      context,
-                      content: Text(l10n.settings_advertisementSent),
-                    );
-                  },
+                  onPressed: () => showAdvertChoice(context, connector),
                   icon: const Icon(Icons.cell_tower),
                   label: Text(l10n.radioOverview_sendAdvert),
                 ),
@@ -222,4 +216,46 @@ class _ConnectedChip extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Asks how far the advert should go, then sends it: zero-hop reaches only
+/// radios that hear this one directly; flood is passed on by repeaters.
+Future<void> showAdvertChoice(
+  BuildContext context,
+  MeshCoreConnector connector,
+) async {
+  final l10n = context.l10n;
+  final flood = await showMeshSheet<bool>(
+    context,
+    builder: (sheet) => SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          BottomSheetHeader(title: l10n.radioOverview_sendAdvert),
+          ListTile(
+            key: const ValueKey('advert-zero-hop'),
+            leading: const Icon(Icons.connect_without_contact),
+            title: Text(l10n.contacts_zeroHopAdvert),
+            subtitle: Text(l10n.advert_zeroHopHint),
+            onTap: () => Navigator.of(sheet).pop(false),
+          ),
+          ListTile(
+            key: const ValueKey('advert-flood'),
+            leading: const Icon(Icons.cell_tower),
+            title: Text(l10n.contacts_floodAdvert),
+            subtitle: Text(l10n.advert_floodHint),
+            onTap: () => Navigator.of(sheet).pop(true),
+          ),
+          const SizedBox(height: 8),
+        ],
+      ),
+    ),
+  );
+  if (flood == null || !context.mounted) return;
+  await connector.sendSelfAdvert(flood: flood);
+  if (!context.mounted) return;
+  showDismissibleSnackBar(
+    context,
+    content: Text(l10n.settings_advertisementSent),
+  );
 }

@@ -9053,4 +9053,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get botChannels_none => 'На этом радио пока нет каналов.';
+
+  @override
+  String get advert_zeroHopHint =>
+      'Только радио, которые слышат вас напрямую. Ретрансляторы его не передают.';
+
+  @override
+  String get advert_floodHint =>
+      'Ретрансляторы распространяют его по всей сети. Занимает больше эфира.';
 }

@@ -3950,5 +3950,7 @@
   "tools_botHint": "Automatyczne odpowiedzi, !polecenia i ostrzeżenia pogodowe na kanałach",
   "botChannels_title": "Kanały",
   "botChannels_hint": "Bot odpowiada też na !polecenia na włączonych kanałach, na tym samym kanale. Nigdy nie wysyła tam odpowiedzi o nieobecności.",
-  "botChannels_none": "Na tym radiu nie ma jeszcze kanałów."
+  "botChannels_none": "Na tym radiu nie ma jeszcze kanałów.",
+  "advert_zeroHopHint": "Tylko radia, które słyszą cię bezpośrednio. Przemienniki go nie przekazują.",
+  "advert_floodHint": "Przemienniki przekazują go w całej sieci. Zajmuje więcej czasu nadawania."
 }
