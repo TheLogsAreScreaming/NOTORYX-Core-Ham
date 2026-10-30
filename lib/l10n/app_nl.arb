@@ -3913,6 +3913,8 @@
   "botChannels_title": "Kanalen",
   "botChannels_hint": "De bot beantwoordt !opdrachten ook in de kanalen die je aanzet, in dat kanaal. Afwezigheidsantwoorden stuurt hij daar nooit.",
   "botChannels_none": "Nog geen kanalen op deze radio.",
+  "advert_zeroHopHint": "Alleen radio’s die je direct horen. Repeaters sturen het niet door.",
+  "advert_floodHint": "Repeaters verspreiden het over het hele mesh. Kost meer zendtijd.",
   "radioPresets_custom": "Aangepast",
   "radioPresets_search": "Voorinstellingen zoeken",
   "radioPresets_suggested": "Aanbevolen voor jouw regio",

@@ -3913,6 +3913,8 @@
   "botChannels_title": "Canais",
   "botChannels_hint": "O bot também responde a !comandos nos canais que ativar, no próprio canal. Nunca envia respostas de ausência aí.",
   "botChannels_none": "Ainda não há canais neste rádio.",
+  "advert_zeroHopHint": "Só os rádios que o ouvem diretamente. Os repetidores não o reencaminham.",
+  "advert_floodHint": "Os repetidores espalham-no por toda a malha. Usa mais tempo de emissão.",
   "radioPresets_custom": "Personalizado",
   "radioPresets_search": "Pesquisar predefinições",
   "radioPresets_suggested": "Sugerido para a sua região",

@@ -3913,6 +3913,8 @@
   "botChannels_title": "Kanály",
   "botChannels_hint": "Bot odpovedá na !príkazy aj v zapnutých kanáloch, v tom istom kanáli. Odpovede o neprítomnosti tam nikdy neposiela.",
   "botChannels_none": "Na tomto rádiu zatiaľ nie sú kanály.",
+  "advert_zeroHopHint": "Iba rádiá, ktoré vás počujú priamo. Opakovače ho nepreposielajú.",
+  "advert_floodHint": "Opakovače ho šíria celou sieťou. Zaberie viac vysielacieho času.",
   "radioPresets_custom": "Vlastné",
   "radioPresets_search": "Hľadať predvoľby",
   "radioPresets_suggested": "Odporúčané pre váš región",

@@ -8954,6 +8954,14 @@ class AppLocalizationsSv extends AppLocalizations {
   String get botChannels_none => 'Inga kanaler på den här radion än.';
 
   @override
+  String get advert_zeroHopHint =>
+      'Bara radioapparater som hör dig direkt. Repeatrar skickar inte vidare.';
+
+  @override
+  String get advert_floodHint =>
+      'Repeatrar sprider den i hela nätet. Tar mer sändningstid.';
+
+  @override
   String get radioPresets_custom => 'Anpassad';
 
   @override

@@ -9005,6 +9005,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String get botChannels_none => 'Na tomto rádiu zatiaľ nie sú kanály.';
 
   @override
+  String get advert_zeroHopHint =>
+      'Iba rádiá, ktoré vás počujú priamo. Opakovače ho nepreposielajú.';
+
+  @override
+  String get advert_floodHint =>
+      'Opakovače ho šíria celou sieťou. Zaberie viac vysielacieho času.';
+
+  @override
   String get radioPresets_custom => 'Vlastné';
 
   @override
