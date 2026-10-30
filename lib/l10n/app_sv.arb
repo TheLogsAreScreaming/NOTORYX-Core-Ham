@@ -3909,5 +3909,8 @@
   "tools_search": "Sök verktyg och inställningar",
   "tools_noMatches": "Inga verktyg matchar sökningen.",
   "tools_bot": "Botläge",
-  "tools_botHint": "Autosvar, !kommandon och vädervarningar i kanaler"
+  "tools_botHint": "Autosvar, !kommandon och vädervarningar i kanaler",
+  "botChannels_title": "Kanaler",
+  "botChannels_hint": "Boten svarar också på !kommandon i kanalerna du slår på, i samma kanal. Frånvarosvar skickas aldrig där.",
+  "botChannels_none": "Inga kanaler på den här radion än."
 }

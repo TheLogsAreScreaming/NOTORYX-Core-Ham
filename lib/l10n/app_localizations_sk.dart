@@ -8993,4 +8993,14 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Automatické odpovede, !príkazy a výstrahy počasia v kanáloch';
+
+  @override
+  String get botChannels_title => 'Kanály';
+
+  @override
+  String get botChannels_hint =>
+      'Bot odpovedá na !príkazy aj v zapnutých kanáloch, v tom istom kanáli. Odpovede o neprítomnosti tam nikdy neposiela.';
+
+  @override
+  String get botChannels_none => 'Na tomto rádiu zatiaľ nie sú kanály.';
 }

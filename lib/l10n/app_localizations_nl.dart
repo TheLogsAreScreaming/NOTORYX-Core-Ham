@@ -8981,4 +8981,14 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Automatische antwoorden, !opdrachten en weerwaarschuwingen in kanalen';
+
+  @override
+  String get botChannels_title => 'Kanalen';
+
+  @override
+  String get botChannels_hint =>
+      'De bot beantwoordt !opdrachten ook in de kanalen die je aanzet, in dat kanaal. Afwezigheidsantwoorden stuurt hij daar nooit.';
+
+  @override
+  String get botChannels_none => 'Nog geen kanalen op deze radio.';
 }

@@ -9052,4 +9052,14 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Automatyczne odpowiedzi, !polecenia i ostrzeżenia pogodowe na kanałach';
+
+  @override
+  String get botChannels_title => 'Kanały';
+
+  @override
+  String get botChannels_hint =>
+      'Bot odpowiada też na !polecenia na włączonych kanałach, na tym samym kanale. Nigdy nie wysyła tam odpowiedzi o nieobecności.';
+
+  @override
+  String get botChannels_none => 'Na tym radiu nie ma jeszcze kanałów.';
 }

@@ -8,6 +8,8 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../models/bot_replies.dart';
 import '../models/bot_settings.dart';
+import '../models/channel.dart';
+import '../models/channel_message.dart';
 import '../models/message.dart';
 import '../storage/prefs_manager.dart';
 import 'bot_engine.dart';
@@ -21,6 +23,7 @@ class BotService extends ChangeNotifier {
   final math.Random _random = math.Random();
   final BotEngine _engine = BotEngine();
   StreamSubscription<Message>? _subscription;
+  StreamSubscription<ChannelMessage>? _channelSubscription;
   BotSettings _settings = BotSettings();
   bool _ready = false;
   bool _disposed = false;
@@ -57,6 +60,9 @@ class BotService extends ChangeNotifier {
     if (!_disposed) {
       _subscription = connector.receivedDirectMessages.listen(
         (message) => unawaited(_receive(message)),
+      );
+      _channelSubscription = connector.radioChannelMessages.listen(
+        (message) => unawaited(_receiveChannel(message)),
       );
     }
     _notify();
@@ -103,7 +109,11 @@ class BotService extends ChangeNotifier {
     return next;
   }
 
-  Map<String, String> _responses(Message message, WeatherNow? weatherNow) {
+  Map<String, String> _responses(
+    Uint8List pathBytes,
+    int? pathLength,
+    WeatherNow? weatherNow,
+  ) {
     final commands = [
       ..._settings.commands,
       if (_settings.shareLocation) '!where',
@@ -146,7 +156,7 @@ class BotService extends ChangeNotifier {
       '!weather':
           weatherNow?.reply(DateTime.now()) ??
           'Weather unavailable: needs the radio\u2019s GPS and phone internet.',
-      '!trace': traceReply(message.pathBytes, message.pathLength),
+      '!trace': traceReply(pathBytes, pathLength),
       if (_settings.shareLocation)
         '!where': hasLocation
             ? 'Radio advertised location (may be stale): ${latitude.toStringAsFixed(5)}, ${longitude.toStringAsFixed(5)}'
@@ -175,7 +185,11 @@ class BotService extends ChangeNotifier {
       text: message.text,
       timestamp: message.timestamp,
       now: DateTime.now(),
-      commandResponses: _responses(message, weatherNow),
+      commandResponses: _responses(
+        message.pathBytes,
+        message.pathLength,
+        weatherNow,
+      ),
       argCommands: {
         '!dice': (args) =>
             rollDice(args, _random) ?? 'Try !dice, !dice 20 or !dice 2d6.',
@@ -206,6 +220,75 @@ class BotService extends ChangeNotifier {
     }
   }
 
+  /// Answers a !command in a channel the bot is switched on for, in that
+  /// channel. Shares the cooldown and reply budget with direct messages.
+  Future<void> _receiveChannel(ChannelMessage message) async {
+    if (_disposed || !_ready || !connector.isConnected) return;
+    if (!_settings.enabled || _settings.channels.isEmpty) return;
+    if (message.isOutgoing || message.viaMqtt) return;
+    final index = message.channelIndex;
+    Channel? channel;
+    for (final c in connector.channels) {
+      if (c.index == index) channel = c;
+    }
+    if (channel == null ||
+        !_settings.channels.contains(botChannelId(channel.psk))) {
+      return;
+    }
+    // Channel posts carry only a name; use the matching contact's key when
+    // there is one, so allowed contacts and cooldowns work as in DMs.
+    String sender = 'channel:${message.senderName}';
+    for (final c in connector.contacts) {
+      if (c.type == advTypeChat && c.name == message.senderName) {
+        sender = c.publicKeyHex;
+      }
+    }
+    final radioKey = connector.selfPublicKeyHex;
+    final revision = _revision;
+    final wantsWeather =
+        message.text.trim().toLowerCase() == '!weather' &&
+        _settings.commands.contains('!weather');
+    final weatherNow = wantsWeather ? await weather?.weather() : null;
+    if (_disposed) return;
+    final response = _engine.reply(
+      settings: _settings,
+      messageId: '$radioKey:channel:${message.messageId}',
+      sender: sender,
+      text: message.text,
+      timestamp: message.timestamp,
+      now: DateTime.now(),
+      commandResponses: _responses(
+        message.pathBytes,
+        message.pathLength,
+        weatherNow,
+      ),
+      argCommands: {
+        '!dice': (args) =>
+            rollDice(args, _random) ?? 'Try !dice, !dice 20 or !dice 2d6.',
+      },
+      eligible: Message.parseReaction(message.text) == null,
+      channel: true,
+    );
+    if (response == null) return;
+    try {
+      await _write('bcs_bot_budget_v1', jsonEncode(_engine.budget));
+      if (_disposed ||
+          connector.selfPublicKeyHex != radioKey ||
+          revision != _revision ||
+          !_settings.enabled ||
+          !connector.isConnected) {
+        return;
+      }
+      await connector.sendChannelMessage(
+        channel,
+        channelBotReply(response, message.senderName),
+      );
+      _record('Reply sent to ${channel.name}.');
+    } catch (_) {
+      _record('Channel reply failed. No automatic bot retry was added.');
+    }
+  }
+
   void _record(String message) {
     _activity.insert(0, '${DateTime.now().toLocal()}: $message');
     if (_activity.length > 20) {
@@ -224,6 +307,17 @@ class BotService extends ChangeNotifier {
   void dispose() {
     _disposed = true;
     _subscription?.cancel();
+    _channelSubscription?.cancel();
     super.dispose();
   }
+}
+
+/// [reply] (already carrying the bot marker) addressed to [sender], when
+/// the mention still fits the reply limit; otherwise [reply] as it is.
+String channelBotReply(String reply, String sender) {
+  final body = reply.startsWith(botPrefix)
+      ? reply.substring(botPrefix.length)
+      : reply;
+  final addressed = '$botPrefix@$sender $body';
+  return utf8.encode(addressed).length <= 140 ? addressed : reply;
 }

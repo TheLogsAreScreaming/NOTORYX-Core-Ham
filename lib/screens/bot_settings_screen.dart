@@ -242,7 +242,11 @@ class BotSettingsScreen extends StatelessWidget {
                     : !settings.enabled
                     ? 'Off'
                     : connector.isConnected
-                    ? 'On — listening for direct messages'
+                    ? settings.channels.isEmpty
+                          ? 'On — listening for direct messages'
+                          : 'On — listening for direct messages and '
+                                '${settings.channels.length} '
+                                '${settings.channels.length == 1 ? 'channel' : 'channels'}'
                     : 'On — waiting for a radio connection',
               ),
               value: settings.enabled,
@@ -298,6 +302,33 @@ class BotSettingsScreen extends StatelessWidget {
                 (v) => service.settings.copyWith(checkIn: v),
               ),
             ),
+            const Divider(),
+            Text(
+              context.l10n.botChannels_title,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4, bottom: 4),
+              child: Text(context.l10n.botChannels_hint),
+            ),
+            if (connector.channels.where((c) => !c.isEmpty).isEmpty)
+              ListTile(title: Text(context.l10n.botChannels_none)),
+            for (final channel in connector.channels.where((c) => !c.isEmpty))
+              SwitchListTile(
+                key: ValueKey('bot-channel-${channel.index}'),
+                title: Text(channel.name),
+                value: settings.channels.contains(botChannelId(channel.psk)),
+                onChanged: (value) {
+                  final id = botChannelId(channel.psk);
+                  final channels = {...settings.channels};
+                  if (value) {
+                    channels.add(id);
+                  } else {
+                    channels.remove(id);
+                  }
+                  _save(context, settings.copyWith(channels: channels));
+                },
+              ),
             const Divider(),
             const Text(
               'Commands',

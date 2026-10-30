@@ -9043,4 +9043,14 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Автоответы, !команды и погодные предупреждения в каналах';
+
+  @override
+  String get botChannels_title => 'Каналы';
+
+  @override
+  String get botChannels_hint =>
+      'Бот также отвечает на !команды во включённых каналах, в том же канале. Ответы об отсутствии туда не отправляются.';
+
+  @override
+  String get botChannels_none => 'На этом радио пока нет каналов.';
 }

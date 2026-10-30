@@ -17,6 +17,7 @@ class BotEngine {
     required Map<String, String> commandResponses,
     Map<String, String? Function(String args)> argCommands = const {},
     bool eligible = true,
+    bool channel = false,
   }) {
     _seen.removeWhere((_, time) => now.difference(time).inMinutes > 10);
     _lastReply.removeWhere((_, time) => now.difference(time).inHours > 1);
@@ -38,6 +39,9 @@ class BotEngine {
         text.trimLeft().startsWith(botPrefix.trim()) ||
         legacyBotPrefixes.any(text.trimLeft().startsWith) ||
         isCheckInText(text) ||
+        // In a channel only !commands are answered: no away replies or
+        // keyword matches in a room full of people.
+        (channel && !text.trimLeft().startsWith('!')) ||
         (settings.allowedSenders.isNotEmpty &&
             !settings.allowedSenders.contains(sender))) {
       return null;
@@ -54,7 +58,7 @@ class BotEngine {
     final command = text.trim().toLowerCase();
     String? response;
     if (settings.commands.contains(command) ||
-        (command == '!where' && settings.shareLocation)) {
+        (command == '!where' && settings.shareLocation && !channel)) {
       response = commandResponses[command];
     }
     // Commands that take an argument, like "!dice 2d6", match on the first
@@ -68,6 +72,7 @@ class BotEngine {
     }
     if (response == null) {
       for (final rule in settings.rules) {
+        if (channel && rule.contains) continue;
         if (rule.matches(text, sender)) {
           response = rule.response;
           break;
@@ -75,7 +80,10 @@ class BotEngine {
       }
     }
     // Unknown/disabled commands do not trigger an away reply.
-    if (response == null && !command.startsWith('!') && settings.awayEnabled) {
+    if (response == null &&
+        !channel &&
+        !command.startsWith('!') &&
+        settings.awayEnabled) {
       response = settings.awayMessage;
     }
     if (response == null || !isValidBotResponse(response)) {

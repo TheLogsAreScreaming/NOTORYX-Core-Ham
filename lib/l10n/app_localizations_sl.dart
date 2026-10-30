@@ -9003,4 +9003,14 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Samodejni odgovori, !ukazi in vremenska opozorila v kanalih';
+
+  @override
+  String get botChannels_title => 'Kanali';
+
+  @override
+  String get botChannels_hint =>
+      'Bot odgovarja na !ukaze tudi v vklopljenih kanalih, v istem kanalu. Odgovorov o odsotnosti tam nikoli ne pošlje.';
+
+  @override
+  String get botChannels_none => 'Na tem radiu še ni kanalov.';
 }

@@ -3909,5 +3909,8 @@
   "tools_search": "Tools en instellingen zoeken",
   "tools_noMatches": "Geen tools gevonden voor je zoekopdracht.",
   "tools_bot": "Botmodus",
-  "tools_botHint": "Automatische antwoorden, !opdrachten en weerwaarschuwingen in kanalen"
+  "tools_botHint": "Automatische antwoorden, !opdrachten en weerwaarschuwingen in kanalen",
+  "botChannels_title": "Kanalen",
+  "botChannels_hint": "De bot beantwoordt !opdrachten ook in de kanalen die je aanzet, in dat kanaal. Afwezigheidsantwoorden stuurt hij daar nooit.",
+  "botChannels_none": "Nog geen kanalen op deze radio."
 }

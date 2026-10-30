@@ -9005,4 +9005,14 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Automatikus válaszok, !parancsok és időjárási riasztások a csatornákon';
+
+  @override
+  String get botChannels_title => 'Csatornák';
+
+  @override
+  String get botChannels_hint =>
+      'A bot a bekapcsolt csatornákon is válaszol a !parancsokra, ugyanabban a csatornában. Távollét-választ ott sosem küld.';
+
+  @override
+  String get botChannels_none => 'Ezen a rádión még nincs csatorna.';
 }

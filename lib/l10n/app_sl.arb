@@ -3909,5 +3909,8 @@
   "tools_search": "Iskanje orodij in nastavitev",
   "tools_noMatches": "Iskanju ne ustreza nobeno orodje.",
   "tools_bot": "Način bota",
-  "tools_botHint": "Samodejni odgovori, !ukazi in vremenska opozorila v kanalih"
+  "tools_botHint": "Samodejni odgovori, !ukazi in vremenska opozorila v kanalih",
+  "botChannels_title": "Kanali",
+  "botChannels_hint": "Bot odgovarja na !ukaze tudi v vklopljenih kanalih, v istem kanalu. Odgovorov o odsotnosti tam nikoli ne pošlje.",
+  "botChannels_none": "Na tem radiu še ni kanalov."
 }

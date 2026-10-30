@@ -9027,4 +9027,14 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get tools_botHint =>
       'Risposte automatiche, !comandi e allerte meteo nei canali';
+
+  @override
+  String get botChannels_title => 'Canali';
+
+  @override
+  String get botChannels_hint =>
+      'Il bot risponde ai !comandi anche nei canali attivati, nello stesso canale. Lì non invia mai risposte di assenza.';
+
+  @override
+  String get botChannels_none => 'Nessun canale su questa radio.';
 }

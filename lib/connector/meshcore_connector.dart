@@ -263,6 +263,8 @@ class MeshCoreConnector extends ChangeNotifier {
   final StreamController<ReceivedChannelMessage>
   _receivedChannelMessagesController =
       StreamController<ReceivedChannelMessage>.broadcast();
+  final StreamController<ChannelMessage> _radioChannelMessagesController =
+      StreamController<ChannelMessage>.broadcast();
 
   Uint8List? _selfPublicKey;
   String? _selfName;
@@ -590,6 +592,11 @@ class MeshCoreConnector extends ChangeNotifier {
   /// Incoming channel messages on channels that aren't muted.
   Stream<ReceivedChannelMessage> get receivedChannelMessages =>
       _receivedChannelMessagesController.stream;
+
+  /// New channel messages heard over the radio, as they arrive: not muted
+  /// or translated first, and never MQTT copies. For the bot.
+  Stream<ChannelMessage> get radioChannelMessages =>
+      _radioChannelMessagesController.stream;
   Uint8List? get selfPublicKey => _selfPublicKey;
   String get selfPublicKeyHex => pubKeyToHex(_selfPublicKey ?? Uint8List(0));
 
@@ -6820,6 +6827,9 @@ class MeshCoreConnector extends ChangeNotifier {
       notifyListeners();
       if (isNew && !message.isOutgoing) {
         unawaited(_claimHeldSignature(message));
+        if (!_radioChannelMessagesController.isClosed) {
+          _radioChannelMessagesController.add(message);
+        }
       }
       if (isNew && !message.isOutgoing) {
         final msg = message; // capture for closure
@@ -8264,6 +8274,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _rxPacketsController.close();
     _receivedDirectMessagesController.close();
     _receivedChannelMessagesController.close();
+    _radioChannelMessagesController.close();
     _usbManager.dispose();
     _tcpConnector.dispose();
 

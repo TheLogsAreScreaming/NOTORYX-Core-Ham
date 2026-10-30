@@ -15102,6 +15102,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Auto replies, !commands and weather alerts on channels'**
   String get tools_botHint;
+
+  /// No description provided for @botChannels_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Channels'**
+  String get botChannels_title;
+
+  /// No description provided for @botChannels_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'The bot also answers !commands in the channels you turn on, in that channel. It never sends away replies there.'**
+  String get botChannels_hint;
+
+  /// No description provided for @botChannels_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No channels on this radio yet.'**
+  String get botChannels_none;
 }
 
 class _AppLocalizationsDelegate

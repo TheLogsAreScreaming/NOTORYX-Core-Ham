@@ -8581,4 +8581,14 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get tools_botHint => 'チャンネルでの自動返信、!コマンド、気象警報';
+
+  @override
+  String get botChannels_title => 'チャンネル';
+
+  @override
+  String get botChannels_hint =>
+      'オンにしたチャンネルでも、ボットはそのチャンネル内で!コマンドに応答します。不在返信は送りません。';
+
+  @override
+  String get botChannels_none => 'この無線機にはまだチャンネルがありません。';
 }
