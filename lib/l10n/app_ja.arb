@@ -4046,5 +4046,10 @@
   "tools_botHint": "チャンネルでの自動返信、!コマンド、気象警報",
   "botChannels_title": "チャンネル",
   "botChannels_hint": "オンにしたチャンネルでも、ボットはそのチャンネル内で!コマンドに応答します。不在返信は送りません。",
-  "botChannels_none": "この無線機にはまだチャンネルがありません。"
+  "botChannels_none": "この無線機にはまだチャンネルがありません。",
+  "radioPresets_custom": "カスタム",
+  "radioPresets_search": "プリセットを検索",
+  "radioPresets_suggested": "お住まいの地域のおすすめ",
+  "radioPresets_community": "コミュニティのプリセット",
+  "radioPresets_hint": "MeshCore コミュニティが推奨するプリセットです。地元のメッシュで使われているものを選んでください。周波数・帯域幅・SF・CR を設定し、送信出力は変わりません。"
 }

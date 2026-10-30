@@ -9015,4 +9015,20 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Ezen a rádión még nincs csatorna.';
+
+  @override
+  String get radioPresets_custom => 'Egyéni';
+
+  @override
+  String get radioPresets_search => 'Előbeállítás keresése';
+
+  @override
+  String get radioPresets_suggested => 'Ajánlott a régiójához';
+
+  @override
+  String get radioPresets_community => 'Közösségi előbeállítások';
+
+  @override
+  String get radioPresets_hint =>
+      'Ezeket az előbeállításokat a MeshCore közösség ajánlja. Válassza a helyi hálózatét. Beállítja a frekvenciát, sávszélességet, SF-et és CR-t; az adóteljesítmény marad.';
 }

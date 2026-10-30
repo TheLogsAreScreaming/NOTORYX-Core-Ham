@@ -3912,5 +3912,10 @@
   "tools_botHint": "Samodejni odgovori, !ukazi in vremenska opozorila v kanalih",
   "botChannels_title": "Kanali",
   "botChannels_hint": "Bot odgovarja na !ukaze tudi v vklopljenih kanalih, v istem kanalu. Odgovorov o odsotnosti tam nikoli ne pošlje.",
-  "botChannels_none": "Na tem radiu še ni kanalov."
+  "botChannels_none": "Na tem radiu še ni kanalov.",
+  "radioPresets_custom": "Po meri",
+  "radioPresets_search": "Iskanje prednastavitev",
+  "radioPresets_suggested": "Priporočeno za vašo regijo",
+  "radioPresets_community": "Prednastavitve skupnosti",
+  "radioPresets_hint": "To so prednastavitve, ki jih priporoča skupnost MeshCore. Izberite tisto, ki jo uporablja lokalno omrežje. Nastavi frekvenco, pasovno širino, SF in CR; oddajna moč ostane."
 }

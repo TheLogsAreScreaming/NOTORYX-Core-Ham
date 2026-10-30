@@ -3912,5 +3912,10 @@
   "tools_botHint": "Automatické odpovede, !príkazy a výstrahy počasia v kanáloch",
   "botChannels_title": "Kanály",
   "botChannels_hint": "Bot odpovedá na !príkazy aj v zapnutých kanáloch, v tom istom kanáli. Odpovede o neprítomnosti tam nikdy neposiela.",
-  "botChannels_none": "Na tomto rádiu zatiaľ nie sú kanály."
+  "botChannels_none": "Na tomto rádiu zatiaľ nie sú kanály.",
+  "radioPresets_custom": "Vlastné",
+  "radioPresets_search": "Hľadať predvoľby",
+  "radioPresets_suggested": "Odporúčané pre váš región",
+  "radioPresets_community": "Predvoľby komunity",
+  "radioPresets_hint": "Toto sú predvoľby odporúčané komunitou MeshCore. Vyberte tú, ktorú používa miestna sieť. Nastaví frekvenciu, šírku pásma, SF a CR; vysielací výkon zostáva."
 }

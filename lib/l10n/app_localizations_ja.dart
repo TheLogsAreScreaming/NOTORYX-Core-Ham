@@ -8591,4 +8591,20 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get botChannels_none => 'この無線機にはまだチャンネルがありません。';
+
+  @override
+  String get radioPresets_custom => 'カスタム';
+
+  @override
+  String get radioPresets_search => 'プリセットを検索';
+
+  @override
+  String get radioPresets_suggested => 'お住まいの地域のおすすめ';
+
+  @override
+  String get radioPresets_community => 'コミュニティのプリセット';
+
+  @override
+  String get radioPresets_hint =>
+      'MeshCore コミュニティが推奨するプリセットです。地元のメッシュで使われているものを選んでください。周波数・帯域幅・SF・CR を設定し、送信出力は変わりません。';
 }

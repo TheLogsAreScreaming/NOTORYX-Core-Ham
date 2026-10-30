@@ -4046,5 +4046,10 @@
   "tools_botHint": "Réponses automatiques, !commandes et alertes météo sur les canaux",
   "botChannels_title": "Canaux",
   "botChannels_hint": "Le bot répond aussi aux !commandes dans les canaux activés, dans ce canal. Il n’y envoie jamais de réponse d’absence.",
-  "botChannels_none": "Aucun canal sur cette radio pour l’instant."
+  "botChannels_none": "Aucun canal sur cette radio pour l’instant.",
+  "radioPresets_custom": "Personnalisé",
+  "radioPresets_search": "Rechercher un préréglage",
+  "radioPresets_suggested": "Suggéré pour votre région",
+  "radioPresets_community": "Préréglages de la communauté",
+  "radioPresets_hint": "Ce sont les préréglages suggérés par la communauté MeshCore. Choisissez celui de votre maillage local. Il règle fréquence, bande passante, facteur d’étalement et taux de codage ; votre puissance d’émission ne change pas."
 }

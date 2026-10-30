@@ -3912,5 +3912,10 @@
   "tools_botHint": "Autosvar, !kommandon och vädervarningar i kanaler",
   "botChannels_title": "Kanaler",
   "botChannels_hint": "Boten svarar också på !kommandon i kanalerna du slår på, i samma kanal. Frånvarosvar skickas aldrig där.",
-  "botChannels_none": "Inga kanaler på den här radion än."
+  "botChannels_none": "Inga kanaler på den här radion än.",
+  "radioPresets_custom": "Anpassad",
+  "radioPresets_search": "Sök förinställningar",
+  "radioPresets_suggested": "Föreslaget för din region",
+  "radioPresets_community": "Gemenskapens förinställningar",
+  "radioPresets_hint": "Detta är förinställningarna som MeshCore-gemenskapen föreslår. Välj den ditt lokala nät använder. Den sätter frekvens, bandbredd, spridningsfaktor och kodningsgrad; din sändeffekt är oförändrad."
 }

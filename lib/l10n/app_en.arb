@@ -5230,5 +5230,10 @@
   "tools_botHint": "Auto replies, !commands and weather alerts on channels",
   "botChannels_title": "Channels",
   "botChannels_hint": "The bot also answers !commands in the channels you turn on, in that channel. It never sends away replies there.",
-  "botChannels_none": "No channels on this radio yet."
+  "botChannels_none": "No channels on this radio yet.",
+  "radioPresets_custom": "Custom",
+  "radioPresets_search": "Search presets",
+  "radioPresets_suggested": "Suggested for your region",
+  "radioPresets_community": "Community presets",
+  "radioPresets_hint": "These are the presets the MeshCore community suggests. Pick the one your local mesh runs. A preset sets frequency, bandwidth, spreading factor and coding rate; your transmit power stays as it is."
 }

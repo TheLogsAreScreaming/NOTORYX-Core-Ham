@@ -9053,4 +9053,20 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get botChannels_none => 'На этом радио пока нет каналов.';
+
+  @override
+  String get radioPresets_custom => 'Свои';
+
+  @override
+  String get radioPresets_search => 'Поиск пресетов';
+
+  @override
+  String get radioPresets_suggested => 'Рекомендовано для вашего региона';
+
+  @override
+  String get radioPresets_community => 'Пресеты сообщества';
+
+  @override
+  String get radioPresets_hint =>
+      'Это пресеты, которые рекомендует сообщество MeshCore. Выберите тот, что использует местная сеть. Пресет задаёт частоту, полосу, SF и CR; мощность передачи не меняется.';
 }

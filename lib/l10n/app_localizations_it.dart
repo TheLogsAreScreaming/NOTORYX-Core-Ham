@@ -9037,4 +9037,20 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Nessun canale su questa radio.';
+
+  @override
+  String get radioPresets_custom => 'Personalizzato';
+
+  @override
+  String get radioPresets_search => 'Cerca preimpostazioni';
+
+  @override
+  String get radioPresets_suggested => 'Suggerito per la tua regione';
+
+  @override
+  String get radioPresets_community => 'Preimpostazioni della comunità';
+
+  @override
+  String get radioPresets_hint =>
+      'Sono le preimpostazioni suggerite dalla comunità MeshCore. Scegli quella della tua mesh locale. Imposta frequenza, larghezza di banda, fattore di spreading e coding rate; la potenza di trasmissione resta invariata.';
 }

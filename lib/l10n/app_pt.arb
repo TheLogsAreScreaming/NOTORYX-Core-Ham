@@ -3912,5 +3912,10 @@
   "tools_botHint": "Respostas automáticas, !comandos e alertas meteorológicos nos canais",
   "botChannels_title": "Canais",
   "botChannels_hint": "O bot também responde a !comandos nos canais que ativar, no próprio canal. Nunca envia respostas de ausência aí.",
-  "botChannels_none": "Ainda não há canais neste rádio."
+  "botChannels_none": "Ainda não há canais neste rádio.",
+  "radioPresets_custom": "Personalizado",
+  "radioPresets_search": "Pesquisar predefinições",
+  "radioPresets_suggested": "Sugerido para a sua região",
+  "radioPresets_community": "Predefinições da comunidade",
+  "radioPresets_hint": "Estas são as predefinições sugeridas pela comunidade MeshCore. Escolha a da sua malha local. Define frequência, largura de banda, fator de espalhamento e taxa de codificação; a potência de transmissão mantém-se."
 }

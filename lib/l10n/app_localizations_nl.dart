@@ -8991,4 +8991,20 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Nog geen kanalen op deze radio.';
+
+  @override
+  String get radioPresets_custom => 'Aangepast';
+
+  @override
+  String get radioPresets_search => 'Voorinstellingen zoeken';
+
+  @override
+  String get radioPresets_suggested => 'Aanbevolen voor jouw regio';
+
+  @override
+  String get radioPresets_community => 'Voorinstellingen van de community';
+
+  @override
+  String get radioPresets_hint =>
+      'Dit zijn de voorinstellingen die de MeshCore-community aanraadt. Kies die van je lokale mesh. Ze zetten frequentie, bandbreedte, spreidingsfactor en coderate; je zendvermogen blijft hetzelfde.';
 }
