@@ -8991,4 +8991,11 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Vyhľadávaniu nezodpovedajú žiadne nástroje.';
+
+  @override
+  String get tools_bot => 'Režim bota';
+
+  @override
+  String get tools_botHint =>
+      'Automatické odpovede, !príkazy a výstrahy počasia v kanáloch';
 }

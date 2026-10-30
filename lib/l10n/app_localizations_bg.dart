@@ -9001,4 +9001,11 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Няма инструменти, отговарящи на търсенето.';
+
+  @override
+  String get tools_bot => 'Режим бот';
+
+  @override
+  String get tools_botHint =>
+      'Автоматични отговори, !команди и метео предупреждения в каналите';
 }

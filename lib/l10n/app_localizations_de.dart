@@ -9028,4 +9028,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Keine Werkzeuge passen zu deiner Suche.';
+
+  @override
+  String get tools_bot => 'Bot-Modus';
+
+  @override
+  String get tools_botHint =>
+      'Automatische Antworten, !Befehle und Wetterwarnungen in Kanälen';
 }

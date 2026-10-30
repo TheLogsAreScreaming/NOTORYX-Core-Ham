@@ -8,6 +8,7 @@ import '../widgets/glass_action_row.dart';
 import 'antenna_coverage_screen.dart';
 import 'antenna_hunt_screen.dart';
 import 'bastion_about_screen.dart';
+import 'bot_settings_screen.dart';
 import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
 import 'field_guide_screen.dart';
@@ -53,6 +54,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             icon: Icons.tune_rounded,
             title: l10n.settings_title,
             builder: (_) => const SettingsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.smart_toy_outlined,
+            title: l10n.tools_bot,
+            subtitle: l10n.tools_botHint,
+            builder: (_) => const BotSettingsScreen(),
           ),
           _ToolAction(
             icon: Icons.lock_outline,

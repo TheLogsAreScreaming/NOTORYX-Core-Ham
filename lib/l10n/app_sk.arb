@@ -3908,5 +3908,7 @@
   "settings_signPosts": "Podpisovať všetky moje príspevky v kanáloch",
   "settings_signPostsHint": "SOS v kanáli je vždy podpísané. Toto podpíše každý príspevok, aby ostatní používatelia NOTORYX videli, že ste to naozaj vy. Každý podpis je jeden paket navyše vo vysielaní.",
   "tools_search": "Hľadať nástroje a nastavenia",
-  "tools_noMatches": "Vyhľadávaniu nezodpovedajú žiadne nástroje."
+  "tools_noMatches": "Vyhľadávaniu nezodpovedajú žiadne nástroje.",
+  "tools_bot": "Režim bota",
+  "tools_botHint": "Automatické odpovede, !príkazy a výstrahy počasia v kanáloch"
 }

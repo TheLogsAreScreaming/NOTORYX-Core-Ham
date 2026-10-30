@@ -9001,4 +9001,11 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Iskanju ne ustreza nobeno orodje.';
+
+  @override
+  String get tools_bot => 'Način bota';
+
+  @override
+  String get tools_botHint =>
+      'Samodejni odgovori, !ukazi in vremenska opozorila v kanalih';
 }

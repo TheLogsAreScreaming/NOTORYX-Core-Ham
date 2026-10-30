@@ -9025,4 +9025,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Nessuno strumento corrisponde alla ricerca.';
+
+  @override
+  String get tools_bot => 'Modalità bot';
+
+  @override
+  String get tools_botHint =>
+      'Risposte automatiche, !comandi e allerte meteo nei canali';
 }

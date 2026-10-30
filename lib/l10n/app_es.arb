@@ -4042,5 +4042,7 @@
   "settings_signPosts": "Firmar todos mis mensajes de canal",
   "settings_signPostsHint": "Un SOS en un canal siempre se firma. Esto firma cada mensaje para que otros usuarios de NOTORYX sepan que eres tú. Cada firma es un paquete más en el aire.",
   "tools_search": "Buscar herramientas y ajustes",
-  "tools_noMatches": "Ninguna herramienta coincide con la búsqueda."
+  "tools_noMatches": "Ninguna herramienta coincide con la búsqueda.",
+  "tools_bot": "Modo bot",
+  "tools_botHint": "Respuestas automáticas, !comandos y avisos meteorológicos en canales"
 }

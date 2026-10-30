@@ -8940,4 +8940,11 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Inga verktyg matchar sökningen.';
+
+  @override
+  String get tools_bot => 'Botläge';
+
+  @override
+  String get tools_botHint =>
+      'Autosvar, !kommandon och vädervarningar i kanaler';
 }

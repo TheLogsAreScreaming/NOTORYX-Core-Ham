@@ -4042,5 +4042,7 @@
   "settings_signPosts": "Signer tous mes messages de canal",
   "settings_signPostsHint": "Un SOS sur un canal est toujours signé. Ceci signe chaque message pour que les autres utilisateurs de NOTORYX sachent que c’est bien vous. Chaque signature ajoute un paquet sur les ondes.",
   "tools_search": "Rechercher outils et réglages",
-  "tools_noMatches": "Aucun outil ne correspond à la recherche."
+  "tools_noMatches": "Aucun outil ne correspond à la recherche.",
+  "tools_bot": "Mode bot",
+  "tools_botHint": "Réponses automatiques, !commandes et alertes météo sur les canaux"
 }

@@ -93,4 +93,12 @@ void main() {
     expect(find.text('Encrypted backup'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('Bot Mode is listed and found by search', (tester) async {
+    await _pump(tester);
+    expect(find.text('Bot Mode'), findsOneWidget);
+    await tester.enterText(find.byType(TextField), 'weather alerts');
+    await tester.pumpAndSettle();
+    expect(find.text('Bot Mode'), findsOneWidget);
+  });
 }

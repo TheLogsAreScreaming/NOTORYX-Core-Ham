@@ -8580,4 +8580,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get tools_noMatches => '検索に一致するツールはありません。';
+
+  @override
+  String get tools_bot => 'ボットモード';
+
+  @override
+  String get tools_botHint => 'チャンネルでの自動返信、!コマンド、気象警報';
 }
