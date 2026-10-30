@@ -1,0 +1,5 @@
+• Glass look on chats, Route Intelligence, the channel directory and Settings
+• Wardrive: ping and map which repeaters hear you
+• Region tags on channel posts
+• Trip check-in channel, signed
+• Sensors in °F with Imperial units; clearer Check in button in light themes
