@@ -968,7 +968,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                             onTap: () => _openChat(context, contact),
                             onLongPress: () =>
                                 _showContactOptions(context, connector, contact),
-                              ),
+                          ),
                         ),
                       );
                     },
