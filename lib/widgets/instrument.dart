@@ -271,6 +271,8 @@ class InstrumentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = danger ? MeshPalette.alert : MeshPalette.ink;
+    // White glass vanishes on a light ground; tint and edge it darker there.
+    final dark = Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
       height: 48,
       child: OutlinedButton.icon(
@@ -287,11 +289,15 @@ class InstrumentButton extends StatelessWidget {
           // A frosted fill, so the button reads as glass on the backdrop.
           backgroundColor: danger
               ? MeshPalette.alert.withValues(alpha: 0.14)
-              : Colors.white.withValues(alpha: 0.07),
+              : dark
+              ? Colors.white.withValues(alpha: 0.07)
+              : Colors.black.withValues(alpha: 0.04),
           side: BorderSide(
             color: danger
                 ? MeshPalette.alert
-                : Colors.white.withValues(alpha: 0.16),
+                : dark
+                ? Colors.white.withValues(alpha: 0.16)
+                : MeshPalette.line3,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
