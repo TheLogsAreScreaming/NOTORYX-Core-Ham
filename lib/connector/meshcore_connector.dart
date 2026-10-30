@@ -10,6 +10,7 @@ import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_blue_plus_platform_interface/flutter_blue_plus_platform_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/advert_signature.dart';
 import '../models/channel.dart';
 import '../models/channel_message.dart';
 import '../models/companion_radio_stats.dart';
@@ -8404,7 +8405,33 @@ class MeshCoreConnector extends ChangeNotifier {
         lon <= 180.0;
   }
 
+  final VerifiedAdverts _verifiedAdverts = VerifiedAdverts();
+
+  /// Takes an advert heard on air or via MQTT only once its signature
+  /// checks out.
   void _handlePayloadAdvertReceived(
+    Uint8List rawPacket,
+    Uint8List payload,
+    Uint8List path,
+    int pathHashWidth,
+    int routeType,
+    double snr,
+  ) {
+    unawaited(
+      _verifiedAdverts.verify(payload).then((ok) {
+        if (!ok) {
+          appLogger.warn(
+            'Dropped an advert with a bad signature',
+            tag: 'Connector',
+          );
+          return;
+        }
+        _applyAdvert(rawPacket, payload, path, pathHashWidth, routeType, snr);
+      }),
+    );
+  }
+
+  void _applyAdvert(
     Uint8List rawPacket,
     Uint8List payload,
     Uint8List path,
@@ -8429,8 +8456,7 @@ class MeshCoreConnector extends ChangeNotifier {
           .join();
 
       timestamp = advert.readInt32LE();
-      //TODO add signature verification
-      advert.skipBytes(64); // Skip signature for now
+      advert.skipBytes(64); // Verified in _handlePayloadAdvertReceived
       final flags = advert.readByte();
       type = flags & 0x0F;
       hasLocation = (flags & 0x10) != 0;
