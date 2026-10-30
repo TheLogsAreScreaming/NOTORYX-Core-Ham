@@ -3951,6 +3951,8 @@
   "botChannels_title": "Csatornák",
   "botChannels_hint": "A bot a bekapcsolt csatornákon is válaszol a !parancsokra, ugyanabban a csatornában. Távollét-választ ott sosem küld.",
   "botChannels_none": "Ezen a rádión még nincs csatorna.",
+  "advert_zeroHopHint": "Csak a közvetlenül halló rádiók. Az átjátszók nem továbbítják.",
+  "advert_floodHint": "Az átjátszók az egész hálózatban továbbítják. Több adásidőt használ.",
   "mySensors_title": "Érzékelők",
   "mySensors_refresh": "Érzékelők olvasása",
   "mySensors_reading": "A rádió érzékelőinek olvasása…",

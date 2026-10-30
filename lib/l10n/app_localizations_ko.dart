@@ -8603,6 +8603,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get botChannels_none => '이 무전기에 아직 채널이 없습니다.';
 
   @override
+  String get advert_zeroHopHint => '직접 듣는 무전기에만 전달됩니다. 리피터는 전달하지 않습니다.';
+
+  @override
+  String get advert_floodHint => '리피터가 메시 전체로 전달합니다. 방송 시간을 더 씁니다.';
+
+  @override
   String get mySensors_title => '센서';
 
   @override

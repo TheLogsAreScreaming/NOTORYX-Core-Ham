@@ -4047,6 +4047,8 @@
   "botChannels_title": "Kanäle",
   "botChannels_hint": "Der Bot beantwortet !Befehle auch in den eingeschalteten Kanälen, im selben Kanal. Abwesenheitsantworten sendet er dort nie.",
   "botChannels_none": "Noch keine Kanäle auf diesem Funkgerät.",
+  "advert_zeroHopHint": "Nur Funkgeräte, die dich direkt hören. Repeater leiten es nicht weiter.",
+  "advert_floodHint": "Repeater verbreiten es im ganzen Mesh. Braucht mehr Sendezeit.",
   "mySensors_title": "Sensoren",
   "mySensors_refresh": "Sensoren lesen",
   "mySensors_reading": "Sensoren des Funkgeräts werden gelesen…",

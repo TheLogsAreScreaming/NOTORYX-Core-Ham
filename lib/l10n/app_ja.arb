@@ -4047,6 +4047,8 @@
   "botChannels_title": "チャンネル",
   "botChannels_hint": "オンにしたチャンネルでも、ボットはそのチャンネル内で!コマンドに応答します。不在返信は送りません。",
   "botChannels_none": "この無線機にはまだチャンネルがありません。",
+  "advert_zeroHopHint": "直接受信できる無線機だけに届きます。リピーターは中継しません。",
+  "advert_floodHint": "リピーターがメッシュ全体に中継します。通信時間が多くかかります。",
   "mySensors_title": "センサー",
   "mySensors_refresh": "センサーを読み取る",
   "mySensors_reading": "無線機のセンサーを読み取り中…",

@@ -8406,6 +8406,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get botChannels_none => '此电台还没有频道。';
 
   @override
+  String get advert_zeroHopHint => '只有直接收到你的电台会收到，中继器不会转发。';
+
+  @override
+  String get advert_floodHint => '中继器会将其传遍整个网络，占用更多空中时间。';
+
+  @override
   String get mySensors_title => '传感器';
 
   @override

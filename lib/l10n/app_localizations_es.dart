@@ -9031,6 +9031,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get botChannels_none => 'Aún no hay canales en esta radio.';
 
   @override
+  String get advert_zeroHopHint =>
+      'Solo las radios que te oyen directamente. Los repetidores no lo reenvían.';
+
+  @override
+  String get advert_floodHint =>
+      'Los repetidores lo propagan por toda la malla. Usa más tiempo de aire.';
+
+  @override
   String get mySensors_title => 'Sensores';
 
   @override

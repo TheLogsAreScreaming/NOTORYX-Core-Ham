@@ -9015,6 +9015,14 @@ class AppLocalizationsBg extends AppLocalizations {
   String get botChannels_none => 'Все още няма канали на това радио.';
 
   @override
+  String get advert_zeroHopHint =>
+      'Само радиата, които ви чуват директно. Ретранслаторите не го предават.';
+
+  @override
+  String get advert_floodHint =>
+      'Ретранслаторите го разпространяват в цялата мрежа. Използва повече ефирно време.';
+
+  @override
   String get mySensors_title => 'Сензори';
 
   @override

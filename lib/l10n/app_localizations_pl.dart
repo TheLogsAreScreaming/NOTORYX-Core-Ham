@@ -9064,6 +9064,14 @@ class AppLocalizationsPl extends AppLocalizations {
   String get botChannels_none => 'Na tym radiu nie ma jeszcze kanałów.';
 
   @override
+  String get advert_zeroHopHint =>
+      'Tylko radia, które słyszą cię bezpośrednio. Przemienniki go nie przekazują.';
+
+  @override
+  String get advert_floodHint =>
+      'Przemienniki przekazują go w całej sieci. Zajmuje więcej czasu nadawania.';
+
+  @override
   String get mySensors_title => 'Czujniki';
 
   @override

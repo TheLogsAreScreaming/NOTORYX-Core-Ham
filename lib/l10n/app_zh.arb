@@ -3918,6 +3918,8 @@
   "botChannels_title": "频道",
   "botChannels_hint": "机器人也会在你开启的频道中回复!命令，回复发在该频道。它不会在频道中发送离开回复。",
   "botChannels_none": "此电台还没有频道。",
+  "advert_zeroHopHint": "只有直接收到你的电台会收到，中继器不会转发。",
+  "advert_floodHint": "中继器会将其传遍整个网络，占用更多空中时间。",
   "mySensors_title": "传感器",
   "mySensors_refresh": "读取传感器",
   "mySensors_reading": "正在读取电台传感器…",

@@ -9062,6 +9062,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get botChannels_none => 'Aucun canal sur cette radio pour l’instant.';
 
   @override
+  String get advert_zeroHopHint =>
+      'Seulement les radios qui vous entendent directement. Les répéteurs ne le relaient pas.';
+
+  @override
+  String get advert_floodHint =>
+      'Les répéteurs le propagent dans tout le maillage. Utilise plus de temps d’antenne.';
+
+  @override
   String get mySensors_title => 'Capteurs';
 
   @override
