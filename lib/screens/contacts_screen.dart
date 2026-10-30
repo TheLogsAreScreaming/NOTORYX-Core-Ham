@@ -26,6 +26,7 @@ import '../utils/main_tab_navigation.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/instrument.dart';
+import '../widgets/glass_node_card.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../widgets/repeater_login_dialog.dart';
@@ -954,7 +955,10 @@ class _ContactsScreenState extends State<ContactsScreen>
                       final unreadCount = connector.getUnreadCountForContact(
                         contact,
                       );
-                      return _ContactTileEntrance(
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        child: GlassNodeCard(
+                          child: _ContactTileEntrance(
                         index: index,
                         contact: contact,
                         pathHashByteWidth: connector.pathHashByteWidth,
@@ -962,8 +966,10 @@ class _ContactsScreenState extends State<ContactsScreen>
                         unreadCount: unreadCount,
                         isFavorite: contact.isFavorite,
                         onTap: () => _openChat(context, contact),
-                        onLongPress: () =>
-                            _showContactOptions(context, connector, contact),
+                            onLongPress: () =>
+                                _showContactOptions(context, connector, contact),
+                          ),
+                        ),
                       );
                     },
                   ),
