@@ -4084,5 +4084,7 @@
   "wardrive_noReplies": "Kein Repeater hat diesen Ping gehört.",
   "wardrive_replyDetail": "Hörte dich mit {there} dB · du hörtest ihn mit {here} dB",
   "wardrive_explainer": "Jeder Ping ist eine Discover-Anfrage ohne Weiterleitung: Nur Repeater in direkter Reichweite antworten, nichts wird in einen Kanal gepostet. Positionen kommen vom GPS des Funkgeräts.",
-  "mapTelemetry_policy": "Gespeicherte Messwerte werden nach 1 Stunde abgeblendet und nach 24 Stunden ausgeblendet. Aktualisieren sendet eine Anfrage; der Knoten muss Telemetrie erlauben und Sensoren erfordern eventuell eine Anmeldung. Die Karte fordert keine automatischen Updates an."
+  "mapTelemetry_policy": "Gespeicherte Messwerte werden nach 1 Stunde abgeblendet und nach 24 Stunden ausgeblendet. Aktualisieren sendet eine Anfrage; der Knoten muss Telemetrie erlauben und Sensoren erfordern eventuell eine Anmeldung. Die Karte fordert keine automatischen Updates an.",
+  "autoConnect_title": "Automatisch mit meinem Funkgerät verbinden",
+  "autoConnect_hint": "Beim Öffnen der App ohne Tippen wieder mit dem letzten Funkgerät verbinden. Ist es noch nicht in Reichweite, wird es mehrmals versucht."
 }

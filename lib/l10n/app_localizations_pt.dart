@@ -9142,7 +9142,15 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Cada ping é um pedido de descoberta de salto zero: só respondem repetidores ao alcance direto e nada é publicado num canal. As posições vêm do GPS do rádio.';
+
   @override
   String get mapTelemetry_policy =>
       'As leituras guardadas ficam esbatidas após 1 hora e desaparecem após 24 horas. Atualizar envia um pedido; o nó deve permitir telemetria e os sensores podem exigir início de sessão. O mapa nunca pede atualizações automaticamente.';
+
+  @override
+  String get autoConnect_title => 'Ligar automaticamente ao meu rádio';
+
+  @override
+  String get autoConnect_hint =>
+      'Ao abrir a app, volta a ligar ao último rádio sem tocar. Tenta algumas vezes se o rádio ainda não estiver ao alcance.';
 }

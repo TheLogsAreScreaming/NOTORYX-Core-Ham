@@ -9169,7 +9169,15 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Jeder Ping ist eine Discover-Anfrage ohne Weiterleitung: Nur Repeater in direkter Reichweite antworten, nichts wird in einen Kanal gepostet. Positionen kommen vom GPS des Funkgeräts.';
+
   @override
   String get mapTelemetry_policy =>
       'Gespeicherte Messwerte werden nach 1 Stunde abgeblendet und nach 24 Stunden ausgeblendet. Aktualisieren sendet eine Anfrage; der Knoten muss Telemetrie erlauben und Sensoren erfordern eventuell eine Anmeldung. Die Karte fordert keine automatischen Updates an.';
+
+  @override
+  String get autoConnect_title => 'Automatisch mit meinem Funkgerät verbinden';
+
+  @override
+  String get autoConnect_hint =>
+      'Beim Öffnen der App ohne Tippen wieder mit dem letzten Funkgerät verbinden. Ist es noch nicht in Reichweite, wird es mehrmals versucht.';
 }

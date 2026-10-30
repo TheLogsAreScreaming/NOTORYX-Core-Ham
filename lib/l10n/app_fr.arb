@@ -4084,5 +4084,7 @@
   "wardrive_noReplies": "Aucun répéteur n’a entendu ce ping.",
   "wardrive_replyDetail": "Vous a entendu à {there} dB · vous l’avez entendu à {here} dB",
   "wardrive_explainer": "Chaque ping est une demande de découverte sans relais : seuls les répéteurs à portée directe répondent, rien n’est publié sur un canal. Les positions viennent du GPS de votre radio.",
-  "mapTelemetry_policy": "Les mesures enregistrées sont atténuées après 1 heure et masquées après 24 heures. Actualiser envoie une demande ; le nœud doit autoriser la télémétrie et les capteurs peuvent nécessiter une connexion. La carte ne demande jamais de mises à jour automatiques."
+  "mapTelemetry_policy": "Les mesures enregistrées sont atténuées après 1 heure et masquées après 24 heures. Actualiser envoie une demande ; le nœud doit autoriser la télémétrie et les capteurs peuvent nécessiter une connexion. La carte ne demande jamais de mises à jour automatiques.",
+  "autoConnect_title": "Se connecter automatiquement à ma radio",
+  "autoConnect_hint": "À l’ouverture de l’app, reconnexion à votre dernière radio sans toucher. Plusieurs essais si elle n’est pas encore à portée."
 }

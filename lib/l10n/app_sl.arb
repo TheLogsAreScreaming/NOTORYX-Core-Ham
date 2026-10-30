@@ -3950,5 +3950,7 @@
   "wardrive_noReplies": "Tega pinga ni slišal noben repetitor.",
   "wardrive_replyDetail": "Slišal vas je pri {there} dB · vi njega pri {here} dB",
   "wardrive_explainer": "Vsak ping je zahteva za odkrivanje brez posredovanja: odgovorijo le repetitorji v neposrednem dosegu, v kanal se nič ne objavi. Položaj je iz GPS radia.",
-  "mapTelemetry_policy": "Shranjene meritve po 1 uri zbledijo in po 24 urah izginejo. Osvežitev pošlje eno zahtevo; vozlišče mora dovoljevati telemetrijo, senzorji pa lahko zahtevajo prijavo. Zemljevid nikoli ne zahteva samodejnih posodobitev."
+  "mapTelemetry_policy": "Shranjene meritve po 1 uri zbledijo in po 24 urah izginejo. Osvežitev pošlje eno zahtevo; vozlišče mora dovoljevati telemetrijo, senzorji pa lahko zahtevajo prijavo. Zemljevid nikoli ne zahteva samodejnih posodobitev.",
+  "autoConnect_title": "Samodejno se poveži z mojim radiem",
+  "autoConnect_hint": "Ob odprtju aplikacije se brez dotika znova poveže z zadnjim radiem. Če še ni v dosegu, poskusi večkrat."
 }

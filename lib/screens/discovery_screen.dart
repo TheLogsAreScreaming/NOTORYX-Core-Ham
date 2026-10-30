@@ -188,25 +188,37 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Name + type chip
+                  // The name gets the whole width: on a phone the type chip
+                  // and time beside it left room for only a few letters.
+                  Text(
+                    contact.name,
+                    key: ValueKey('discovered-name-${contact.publicKeyHex}'),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
                   Row(
                     children: [
-                      Expanded(
-                        child: Text(
-                          contact.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 6),
                       StatusChip(
                         label: contact.typeLabel(context.l10n),
                         color: _avatarColor(contact.type),
                         icon: _avatarIcon(contact.type),
+                      ),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          _formatLastSeen(context, _resolveLastSeen(contact)),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: MeshTheme.mono(
+                            fontSize: 11,
+                            color: scheme.onSurfaceVariant,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -250,25 +262,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                 ],
               ),
             ),
-            const SizedBox(width: 10),
-            // Last seen time
-            MediaQuery(
-              data: MediaQuery.of(context).copyWith(
-                textScaler: TextScaler.linear(
-                  MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.3),
-                ),
-              ),
-              child: Text(
-                _formatLastSeen(context, _resolveLastSeen(contact)),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.right,
-                style: MeshTheme.mono(
-                  fontSize: 11,
-                  color: scheme.onSurfaceVariant,
-                ),
-              ),
-            ),
+            const SizedBox(width: 4),
             IconButton(
               tooltip: context.l10n.discoveredContacts_addContact,
               icon: const Icon(Icons.person_add_alt_1),

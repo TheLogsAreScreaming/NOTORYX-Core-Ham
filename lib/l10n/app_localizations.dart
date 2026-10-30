@@ -15343,8 +15343,23 @@ abstract class AppLocalizations {
   /// **'Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your radio’s GPS.'**
   String get wardrive_explainer;
 
-  /// Explains cached map readings, expiry and manual refresh.
+  /// No description provided for @mapTelemetry_policy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cached readings dim after 1 hour and disappear after 24 hours. Refresh sends one request; the node must allow telemetry and sensors may require login. The map never requests updates automatically.'**
   String get mapTelemetry_policy;
+
+  /// No description provided for @autoConnect_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to my radio automatically'**
+  String get autoConnect_title;
+
+  /// No description provided for @autoConnect_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet.'**
+  String get autoConnect_hint;
 }
 
 class _AppLocalizationsDelegate

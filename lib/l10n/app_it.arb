@@ -4084,5 +4084,7 @@
   "wardrive_noReplies": "Nessun ripetitore ha sentito questo ping.",
   "wardrive_replyDetail": "Ti ha sentito a {there} dB · lo hai sentito a {here} dB",
   "wardrive_explainer": "Ogni ping è una richiesta di scoperta a zero salti: rispondono solo i ripetitori a portata diretta e nulla viene pubblicato su un canale. Le posizioni vengono dal GPS della radio.",
-  "mapTelemetry_policy": "Le letture salvate si attenuano dopo 1 ora e scompaiono dopo 24 ore. Aggiorna invia una richiesta; il nodo deve consentire la telemetria e i sensori possono richiedere l’accesso. La mappa non richiede mai aggiornamenti automatici."
+  "mapTelemetry_policy": "Le letture salvate si attenuano dopo 1 ora e scompaiono dopo 24 ore. Aggiorna invia una richiesta; il nodo deve consentire la telemetria e i sensori possono richiedere l’accesso. La mappa non richiede mai aggiornamenti automatici.",
+  "autoConnect_title": "Connetti automaticamente alla mia radio",
+  "autoConnect_hint": "All’apertura dell’app si riconnette all’ultima radio senza toccare. Riprova alcune volte se non è ancora a portata."
 }

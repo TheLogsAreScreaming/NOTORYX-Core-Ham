@@ -9082,7 +9082,15 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Varje ping är en upptäcktsförfrågan utan vidarebefordran: bara repeatrar inom direkt räckvidd svarar och inget postas i en kanal. Positioner kommer från radions GPS.';
+
   @override
   String get mapTelemetry_policy =>
       'Sparade mätvärden tonas ned efter 1 timme och döljs efter 24 timmar. Uppdatera skickar en begäran; noden måste tillåta telemetri och sensorer kan kräva inloggning. Kartan begär aldrig uppdateringar automatiskt.';
+
+  @override
+  String get autoConnect_title => 'Anslut automatiskt till min radio';
+
+  @override
+  String get autoConnect_hint =>
+      'När appen öppnas återansluter den till din senaste radio utan att du trycker. Den försöker några gånger om radion inte är inom räckhåll än.';
 }

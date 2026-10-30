@@ -22,6 +22,7 @@ import 'screens/bastion_home_screen.dart';
 import 'services/regional_preset_service.dart';
 import 'services/read_aloud_service.dart';
 import 'services/app_shortcuts.dart';
+import 'services/auto_connect_service.dart';
 import 'services/notification_router.dart';
 import 'services/home_widget_sync.dart';
 import 'services/sensor_subscription_service.dart';
@@ -286,6 +287,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   final _navigatorKey = GlobalKey<NavigatorState>();
   AppShortcuts? _shortcuts;
   HomeWidgetSync? _homeWidget;
+  late final AutoConnectService _autoConnect;
   late final NotificationRouter _notificationRouter;
   StreamSubscription<String>? _notificationTaps;
   String? _shortcutLanguage;
@@ -341,6 +343,11 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         }),
       );
     }
+    // "Connect to my radio automatically", when it's on.
+    _autoConnect = AutoConnectService(
+      widget.connector,
+      widget.appSettingsService,
+    )..start();
     // Clicking a notification opens what it's about.
     _notificationRouter = NotificationRouter(_navigatorKey, widget.connector);
     _notificationTaps = NotificationService().taps.listen(
@@ -418,6 +425,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
     unawaited(_notificationTaps?.cancel());
+    _autoConnect.dispose();
     unawaited(_mqttPackets?.cancel());
     unawaited(_radioRxPackets?.cancel());
     widget.connector.removeListener(_syncMqttObserverIdentity);
