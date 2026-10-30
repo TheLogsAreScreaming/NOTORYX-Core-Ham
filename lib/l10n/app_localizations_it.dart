@@ -9037,4 +9037,20 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Nessun canale su questa radio.';
+
+  @override
+  String get mySensors_title => 'Sensori';
+
+  @override
+  String get mySensors_refresh => 'Leggi sensori';
+
+  @override
+  String get mySensors_reading => 'Lettura dei sensori della radio…';
+
+  @override
+  String get mySensors_failed =>
+      'La radio non ha risposto. Tocca aggiorna per riprovare.';
+
+  @override
+  String get mySensors_none => 'Nessuna lettura dai sensori della radio.';
 }

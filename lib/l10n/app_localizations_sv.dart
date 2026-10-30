@@ -8952,4 +8952,20 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Inga kanaler på den här radion än.';
+
+  @override
+  String get mySensors_title => 'Sensorer';
+
+  @override
+  String get mySensors_refresh => 'Läs sensorer';
+
+  @override
+  String get mySensors_reading => 'Läser radions sensorer…';
+
+  @override
+  String get mySensors_failed =>
+      'Radion svarade inte. Tryck på uppdatera för att försöka igen.';
+
+  @override
+  String get mySensors_none => 'Inga sensorvärden från radion.';
 }

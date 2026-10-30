@@ -9062,4 +9062,20 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Na tym radiu nie ma jeszcze kanałów.';
+
+  @override
+  String get mySensors_title => 'Czujniki';
+
+  @override
+  String get mySensors_refresh => 'Odczytaj czujniki';
+
+  @override
+  String get mySensors_reading => 'Odczyt czujników radia…';
+
+  @override
+  String get mySensors_failed =>
+      'Radio nie odpowiedziało. Stuknij odśwież, aby spróbować ponownie.';
+
+  @override
+  String get mySensors_none => 'Brak odczytów czujników z radia.';
 }

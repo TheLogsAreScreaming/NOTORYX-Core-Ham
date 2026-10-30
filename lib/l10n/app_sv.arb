@@ -3912,5 +3912,10 @@
   "tools_botHint": "Autosvar, !kommandon och vädervarningar i kanaler",
   "botChannels_title": "Kanaler",
   "botChannels_hint": "Boten svarar också på !kommandon i kanalerna du slår på, i samma kanal. Frånvarosvar skickas aldrig där.",
-  "botChannels_none": "Inga kanaler på den här radion än."
+  "botChannels_none": "Inga kanaler på den här radion än.",
+  "mySensors_title": "Sensorer",
+  "mySensors_refresh": "Läs sensorer",
+  "mySensors_reading": "Läser radions sensorer…",
+  "mySensors_failed": "Radion svarade inte. Tryck på uppdatera för att försöka igen.",
+  "mySensors_none": "Inga sensorvärden från radion."
 }

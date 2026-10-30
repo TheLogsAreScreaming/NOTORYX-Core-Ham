@@ -3912,5 +3912,10 @@
   "tools_botHint": "Automatické odpovede, !príkazy a výstrahy počasia v kanáloch",
   "botChannels_title": "Kanály",
   "botChannels_hint": "Bot odpovedá na !príkazy aj v zapnutých kanáloch, v tom istom kanáli. Odpovede o neprítomnosti tam nikdy neposiela.",
-  "botChannels_none": "Na tomto rádiu zatiaľ nie sú kanály."
+  "botChannels_none": "Na tomto rádiu zatiaľ nie sú kanály.",
+  "mySensors_title": "Senzory",
+  "mySensors_refresh": "Načítať senzory",
+  "mySensors_reading": "Čítajú sa senzory rádia…",
+  "mySensors_failed": "Rádio neodpovedalo. Ťuknite na obnoviť a skúste znova.",
+  "mySensors_none": "Žiadne údaje zo senzorov rádia."
 }

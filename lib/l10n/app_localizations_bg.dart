@@ -9013,4 +9013,20 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Все още няма канали на това радио.';
+
+  @override
+  String get mySensors_title => 'Сензори';
+
+  @override
+  String get mySensors_refresh => 'Прочети сензорите';
+
+  @override
+  String get mySensors_reading => 'Четене на сензорите на радиото…';
+
+  @override
+  String get mySensors_failed =>
+      'Радиото не отговори. Докоснете обновяване, за да опитате отново.';
+
+  @override
+  String get mySensors_none => 'Няма данни от сензорите на радиото.';
 }

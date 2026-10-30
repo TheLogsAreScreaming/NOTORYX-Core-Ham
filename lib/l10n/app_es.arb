@@ -4046,5 +4046,10 @@
   "tools_botHint": "Respuestas automáticas, !comandos y avisos meteorológicos en canales",
   "botChannels_title": "Canales",
   "botChannels_hint": "El bot también responde a !comandos en los canales que actives, en ese mismo canal. Nunca envía respuestas de ausencia allí.",
-  "botChannels_none": "Aún no hay canales en esta radio."
+  "botChannels_none": "Aún no hay canales en esta radio.",
+  "mySensors_title": "Sensores",
+  "mySensors_refresh": "Leer sensores",
+  "mySensors_reading": "Leyendo los sensores de tu radio…",
+  "mySensors_failed": "Tu radio no respondió. Toca actualizar para reintentar.",
+  "mySensors_none": "Tu radio no da lecturas de sensores."
 }

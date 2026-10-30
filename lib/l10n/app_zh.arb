@@ -3917,5 +3917,10 @@
   "tools_botHint": "频道自动回复、!命令和天气警报",
   "botChannels_title": "频道",
   "botChannels_hint": "机器人也会在你开启的频道中回复!命令，回复发在该频道。它不会在频道中发送离开回复。",
-  "botChannels_none": "此电台还没有频道。"
+  "botChannels_none": "此电台还没有频道。",
+  "mySensors_title": "传感器",
+  "mySensors_refresh": "读取传感器",
+  "mySensors_reading": "正在读取电台传感器…",
+  "mySensors_failed": "电台没有响应。点按刷新重试。",
+  "mySensors_none": "电台没有传感器读数。"
 }

@@ -3912,5 +3912,10 @@
   "tools_botHint": "Automatische antwoorden, !opdrachten en weerwaarschuwingen in kanalen",
   "botChannels_title": "Kanalen",
   "botChannels_hint": "De bot beantwoordt !opdrachten ook in de kanalen die je aanzet, in dat kanaal. Afwezigheidsantwoorden stuurt hij daar nooit.",
-  "botChannels_none": "Nog geen kanalen op deze radio."
+  "botChannels_none": "Nog geen kanalen op deze radio.",
+  "mySensors_title": "Sensoren",
+  "mySensors_refresh": "Sensoren uitlezen",
+  "mySensors_reading": "Sensoren van je radio uitlezen…",
+  "mySensors_failed": "Je radio antwoordde niet. Tik op vernieuwen om het opnieuw te proberen.",
+  "mySensors_none": "Geen sensorwaarden van je radio."
 }

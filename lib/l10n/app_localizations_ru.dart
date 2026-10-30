@@ -9053,4 +9053,20 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get botChannels_none => 'На этом радио пока нет каналов.';
+
+  @override
+  String get mySensors_title => 'Датчики';
+
+  @override
+  String get mySensors_refresh => 'Считать датчики';
+
+  @override
+  String get mySensors_reading => 'Чтение датчиков радио…';
+
+  @override
+  String get mySensors_failed =>
+      'Радио не ответило. Нажмите «обновить», чтобы повторить.';
+
+  @override
+  String get mySensors_none => 'Нет показаний датчиков радио.';
 }

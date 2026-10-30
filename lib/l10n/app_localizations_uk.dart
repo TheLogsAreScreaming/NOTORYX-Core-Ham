@@ -9051,4 +9051,20 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get botChannels_none => 'На цьому радіо ще немає каналів.';
+
+  @override
+  String get mySensors_title => 'Датчики';
+
+  @override
+  String get mySensors_refresh => 'Зчитати датчики';
+
+  @override
+  String get mySensors_reading => 'Зчитування датчиків радіо…';
+
+  @override
+  String get mySensors_failed =>
+      'Радіо не відповіло. Натисніть «оновити», щоб спробувати ще раз.';
+
+  @override
+  String get mySensors_none => 'Немає показів датчиків радіо.';
 }

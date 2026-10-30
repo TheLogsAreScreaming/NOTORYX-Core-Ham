@@ -9060,4 +9060,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Aucun canal sur cette radio pour l’instant.';
+
+  @override
+  String get mySensors_title => 'Capteurs';
+
+  @override
+  String get mySensors_refresh => 'Lire les capteurs';
+
+  @override
+  String get mySensors_reading => 'Lecture des capteurs de votre radio…';
+
+  @override
+  String get mySensors_failed =>
+      'Votre radio n’a pas répondu. Touchez actualiser pour réessayer.';
+
+  @override
+  String get mySensors_none => 'Aucune mesure de capteur de votre radio.';
 }

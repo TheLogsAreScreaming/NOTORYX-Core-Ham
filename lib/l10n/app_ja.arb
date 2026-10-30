@@ -4046,5 +4046,10 @@
   "tools_botHint": "チャンネルでの自動返信、!コマンド、気象警報",
   "botChannels_title": "チャンネル",
   "botChannels_hint": "オンにしたチャンネルでも、ボットはそのチャンネル内で!コマンドに応答します。不在返信は送りません。",
-  "botChannels_none": "この無線機にはまだチャンネルがありません。"
+  "botChannels_none": "この無線機にはまだチャンネルがありません。",
+  "mySensors_title": "センサー",
+  "mySensors_refresh": "センサーを読み取る",
+  "mySensors_reading": "無線機のセンサーを読み取り中…",
+  "mySensors_failed": "無線機が応答しませんでした。更新をタップして再試行してください。",
+  "mySensors_none": "無線機からのセンサー値はありません。"
 }

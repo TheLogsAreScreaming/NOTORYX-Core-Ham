@@ -8591,4 +8591,19 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get botChannels_none => 'この無線機にはまだチャンネルがありません。';
+
+  @override
+  String get mySensors_title => 'センサー';
+
+  @override
+  String get mySensors_refresh => 'センサーを読み取る';
+
+  @override
+  String get mySensors_reading => '無線機のセンサーを読み取り中…';
+
+  @override
+  String get mySensors_failed => '無線機が応答しませんでした。更新をタップして再試行してください。';
+
+  @override
+  String get mySensors_none => '無線機からのセンサー値はありません。';
 }

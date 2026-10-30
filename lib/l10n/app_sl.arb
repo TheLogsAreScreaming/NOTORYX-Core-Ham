@@ -3912,5 +3912,10 @@
   "tools_botHint": "Samodejni odgovori, !ukazi in vremenska opozorila v kanalih",
   "botChannels_title": "Kanali",
   "botChannels_hint": "Bot odgovarja na !ukaze tudi v vklopljenih kanalih, v istem kanalu. Odgovorov o odsotnosti tam nikoli ne pošlje.",
-  "botChannels_none": "Na tem radiu še ni kanalov."
+  "botChannels_none": "Na tem radiu še ni kanalov.",
+  "mySensors_title": "Senzorji",
+  "mySensors_refresh": "Preberi senzorje",
+  "mySensors_reading": "Branje senzorjev radia…",
+  "mySensors_failed": "Radio se ni odzval. Tapnite osveži za ponovni poskus.",
+  "mySensors_none": "Ni podatkov senzorjev radia."
 }

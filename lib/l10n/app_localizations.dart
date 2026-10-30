@@ -15120,6 +15120,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No channels on this radio yet.'**
   String get botChannels_none;
+
+  /// No description provided for @mySensors_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensors'**
+  String get mySensors_title;
+
+  /// No description provided for @mySensors_refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Read sensors'**
+  String get mySensors_refresh;
+
+  /// No description provided for @mySensors_reading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading your radio’s sensors…'**
+  String get mySensors_reading;
+
+  /// No description provided for @mySensors_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio didn’t answer. Tap refresh to try again.'**
+  String get mySensors_failed;
+
+  /// No description provided for @mySensors_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No sensor readings from your radio.'**
+  String get mySensors_none;
 }
 
 class _AppLocalizationsDelegate

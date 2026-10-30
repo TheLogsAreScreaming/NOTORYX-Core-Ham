@@ -9015,4 +9015,20 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Ezen a rádión még nincs csatorna.';
+
+  @override
+  String get mySensors_title => 'Érzékelők';
+
+  @override
+  String get mySensors_refresh => 'Érzékelők olvasása';
+
+  @override
+  String get mySensors_reading => 'A rádió érzékelőinek olvasása…';
+
+  @override
+  String get mySensors_failed =>
+      'A rádió nem válaszolt. Koppintson a frissítésre.';
+
+  @override
+  String get mySensors_none => 'Nincs érzékelőadat a rádiótól.';
 }

@@ -9013,4 +9013,20 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Na tem radiu še ni kanalov.';
+
+  @override
+  String get mySensors_title => 'Senzorji';
+
+  @override
+  String get mySensors_refresh => 'Preberi senzorje';
+
+  @override
+  String get mySensors_reading => 'Branje senzorjev radia…';
+
+  @override
+  String get mySensors_failed =>
+      'Radio se ni odzval. Tapnite osveži za ponovni poskus.';
+
+  @override
+  String get mySensors_none => 'Ni podatkov senzorjev radia.';
 }

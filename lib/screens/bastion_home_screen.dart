@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import '../theme/mesh_theme.dart';
+import '../widgets/my_sensors_panel.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/notoryx_logo.dart';
 import '../widgets/tactical_glass_panel.dart';
@@ -169,6 +170,7 @@ class BastionHomeScreen extends StatelessWidget {
                   titleColor: MeshPalette.accent,
                   onTap: () => openConnectionSetup(context),
                 ),
+              if (online) const MySensorsPanel(),
               InstrumentLabel(l10n.routes_nearbyTitle),
               if (heard.isEmpty)
                 GlassActionRow(

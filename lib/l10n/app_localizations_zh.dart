@@ -8404,4 +8404,19 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get botChannels_none => '此电台还没有频道。';
+
+  @override
+  String get mySensors_title => '传感器';
+
+  @override
+  String get mySensors_refresh => '读取传感器';
+
+  @override
+  String get mySensors_reading => '正在读取电台传感器…';
+
+  @override
+  String get mySensors_failed => '电台没有响应。点按刷新重试。';
+
+  @override
+  String get mySensors_none => '电台没有传感器读数。';
 }

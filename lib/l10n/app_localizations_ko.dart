@@ -8601,4 +8601,19 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get botChannels_none => '이 무전기에 아직 채널이 없습니다.';
+
+  @override
+  String get mySensors_title => '센서';
+
+  @override
+  String get mySensors_refresh => '센서 읽기';
+
+  @override
+  String get mySensors_reading => '무전기 센서를 읽는 중…';
+
+  @override
+  String get mySensors_failed => '무전기가 응답하지 않았습니다. 새로고침을 눌러 다시 시도하세요.';
+
+  @override
+  String get mySensors_none => '무전기의 센서 값이 없습니다.';
 }

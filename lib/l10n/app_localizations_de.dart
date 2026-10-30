@@ -9040,4 +9040,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Noch keine Kanäle auf diesem Funkgerät.';
+
+  @override
+  String get mySensors_title => 'Sensoren';
+
+  @override
+  String get mySensors_refresh => 'Sensoren lesen';
+
+  @override
+  String get mySensors_reading => 'Sensoren des Funkgeräts werden gelesen…';
+
+  @override
+  String get mySensors_failed =>
+      'Das Funkgerät hat nicht geantwortet. Tippe auf Aktualisieren.';
+
+  @override
+  String get mySensors_none => 'Keine Sensorwerte vom Funkgerät.';
 }

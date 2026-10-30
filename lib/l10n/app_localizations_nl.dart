@@ -8991,4 +8991,20 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Nog geen kanalen op deze radio.';
+
+  @override
+  String get mySensors_title => 'Sensoren';
+
+  @override
+  String get mySensors_refresh => 'Sensoren uitlezen';
+
+  @override
+  String get mySensors_reading => 'Sensoren van je radio uitlezen…';
+
+  @override
+  String get mySensors_failed =>
+      'Je radio antwoordde niet. Tik op vernieuwen om het opnieuw te proberen.';
+
+  @override
+  String get mySensors_none => 'Geen sensorwaarden van je radio.';
 }

@@ -4046,5 +4046,10 @@
   "tools_botHint": "채널 자동 응답, !명령, 기상 경보",
   "botChannels_title": "채널",
   "botChannels_hint": "켠 채널에서도 봇이 해당 채널에서 !명령에 답합니다. 부재 응답은 보내지 않습니다.",
-  "botChannels_none": "이 무전기에 아직 채널이 없습니다."
+  "botChannels_none": "이 무전기에 아직 채널이 없습니다.",
+  "mySensors_title": "센서",
+  "mySensors_refresh": "센서 읽기",
+  "mySensors_reading": "무전기 센서를 읽는 중…",
+  "mySensors_failed": "무전기가 응답하지 않았습니다. 새로고침을 눌러 다시 시도하세요.",
+  "mySensors_none": "무전기의 센서 값이 없습니다."
 }
