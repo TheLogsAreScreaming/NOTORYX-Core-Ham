@@ -1,3 +1,5 @@
+import '../widgets/map_telemetry.dart';
+import '../services/node_telemetry_store.dart';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -70,6 +72,8 @@ class _MapScreenState extends State<MapScreen> {
   static const double _mapMaxZoom = 18.0;
 
   final MapController _mapController = MapController();
+  bool _showTelemetry = false;
+  TelemetryMetric _telemetryMetric = TelemetryMetric.battery;
   final MapMarkerService _markerService = MapMarkerService();
   final Set<String> _hiddenMarkerIds = {};
   Set<String> _removedMarkerIds = {};
@@ -896,6 +900,35 @@ class _MapScreenState extends State<MapScreen> {
                           ),
                       ],
                     ),
+                    if (_showTelemetry && !_isBuildingPathTrace)
+                      MapTelemetryLayer(
+                        contacts: [
+                          ...visibleContacts,
+                          if (selectedContact != null &&
+                              !visibleContacts.any(
+                                (c) =>
+                                    c.publicKeyHex ==
+                                    selectedContact?.publicKeyHex,
+                              ))
+                            selectedContact,
+                        ],
+                        selectedKey: selectedContact?.publicKeyHex,
+                        clusterCellDegrees:
+                            _zoom < _clusterOffZoom && !settings.mapShowOverlaps
+                            ? 360.0 / (256.0 * pow(2.0, _zoom)) * 64.0
+                            : null,
+                        metric: _telemetryMetric,
+                        onSelect: _selectNode,
+                        selfKey: connector.selfPublicKeyHex,
+                        selfPosition:
+                            connector.selfLatitude == null ||
+                                connector.selfLongitude == null
+                            ? null
+                            : LatLng(
+                                connector.selfLatitude!,
+                                connector.selfLongitude!,
+                              ),
+                      ),
                   ],
                 ),
                 if (selectedContact == null)
@@ -1910,6 +1943,31 @@ class _MapScreenState extends State<MapScreen> {
             builder: (context, constraints) {
               final chips = <Widget>[
                 _mapChip(
+                  label: context.l10n.contact_telemetry,
+                  selected: _showTelemetry,
+                  onTap: () => setState(() => _showTelemetry = !_showTelemetry),
+                ),
+                if (_showTelemetry)
+                  PopupMenuButton<TelemetryMetric>(
+                    tooltip: context.l10n.contact_telemetry,
+                    initialValue: _telemetryMetric,
+                    onSelected: (value) =>
+                        setState(() => _telemetryMetric = value),
+                    itemBuilder: (context) => [
+                      for (final metric in TelemetryMetric.values)
+                        PopupMenuItem(
+                          value: metric,
+                          child: Text(telemetryMetricLabel(context, metric)),
+                        ),
+                    ],
+                    child: Chip(
+                      label: Text(
+                        telemetryMetricLabel(context, _telemetryMetric),
+                      ),
+                      avatar: const Icon(Icons.arrow_drop_down),
+                    ),
+                  ),
+                _mapChip(
                   label: context.l10n.time_allTime,
                   selected: _freshness == _Freshness.all,
                   onTap: () => setState(() => _freshness = _Freshness.all),
@@ -2307,134 +2365,154 @@ class _MapScreenState extends State<MapScreen> {
           offset: Offset(0, 32 * t),
           child: Opacity(opacity: 1 - t, child: child),
         ),
-        child: MeshCard(
-          margin: EdgeInsets.zero,
-          padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
-          color: _overlayPanelColor,
-          borderColor: _overlayBorderColor,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.sizeOf(context).height * 0.6,
+          ),
+          child: SingleChildScrollView(
+            child: MeshCard(
+              margin: EdgeInsets.zero,
+              padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
+              color: _overlayPanelColor,
+              borderColor: _overlayBorderColor,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AvatarCircle(
-                    name: contact.name,
-                    size: 38,
-                    color: color,
-                    icon: _getNodeIcon(contact.type),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                  Row(
+                    children: [
+                      AvatarCircle(
+                        name: contact.name,
+                        size: 38,
+                        color: color,
+                        icon: _getNodeIcon(contact.type),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Flexible(
-                              child: Text(
-                                contact.name,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w700,
-                                  color: _overlayPrimaryTextColor,
+                            Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    contact.name,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
+                                      color: _overlayPrimaryTextColor,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                                if (contact.isFavorite) ...[
+                                  const SizedBox(width: 4),
+                                  const Icon(
+                                    Icons.star,
+                                    size: 14,
+                                    color: MapPalette.stale,
+                                  ),
+                                ],
+                              ],
                             ),
-                            if (contact.isFavorite) ...[
-                              const SizedBox(width: 4),
-                              const Icon(
-                                Icons.star,
-                                size: 14,
-                                color: MapPalette.stale,
-                              ),
-                            ],
+                            const SizedBox(height: 3),
+                            Row(
+                              children: [
+                                StatusChip(
+                                  label: _ageLabel(age),
+                                  color: _ageColor(age),
+                                  fontSize: 9.5,
+                                  pulse: age == _NodeAge.online,
+                                ),
+                                const SizedBox(width: 6),
+                                Flexible(
+                                  child: Text(
+                                    contact.typeLabel(context.l10n),
+                                    style: TextStyle(
+                                      fontSize: 11.5,
+                                      color: _overlaySecondaryTextColor,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
-                        const SizedBox(height: 3),
-                        Row(
-                          children: [
-                            StatusChip(
-                              label: _ageLabel(age),
-                              color: _ageColor(age),
-                              fontSize: 9.5,
-                              pulse: age == _NodeAge.online,
-                            ),
-                            const SizedBox(width: 6),
-                            Flexible(
-                              child: Text(
-                                contact.typeLabel(context.l10n),
-                                style: TextStyle(
-                                  fontSize: 11.5,
-                                  color: _overlaySecondaryTextColor,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
+                      ),
+                      if (pos != null)
+                        IconButton(
+                          color: _overlayPrimaryTextColor,
+                          icon: const Icon(Icons.center_focus_strong, size: 20),
+                          tooltip: context.l10n.map_centerOnNode,
+                          onPressed: () =>
+                              _mapController.move(pos, max(_zoom, 15)),
                         ),
-                      ],
+                      IconButton(
+                        color: _overlayPrimaryTextColor,
+                        icon: const Icon(Icons.close, size: 20),
+                        onPressed: _clearSelection,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 14,
+                    runSpacing: 4,
+                    children: [
+                      _miniMeta(
+                        context.l10n.map_lastSeen,
+                        _formatLastSeen(contact.lastSeen),
+                      ),
+                      _miniMeta(
+                        context.l10n.map_path,
+                        contact.pathLabel(
+                          context.l10n,
+                          pathHashByteWidth: connector.pathHashByteWidth,
+                        ),
+                      ),
+                      _miniMeta('ID', contact.publicKeyHex.substring(0, 12)),
+                      if (pos != null)
+                        _miniMeta(
+                          context.l10n.map_location,
+                          '${contact.hasLocation ? '' : '~'}${pos.latitude.toStringAsFixed(5)}, ${pos.longitude.toStringAsFixed(5)}',
+                        ),
+                    ],
+                  ),
+                  Theme(
+                    data: Theme.of(context).copyWith(
+                      colorScheme: Theme.of(context).colorScheme.copyWith(
+                        onSurface: _overlayPrimaryTextColor,
+                        onSurfaceVariant: _overlaySecondaryTextColor,
+                      ),
+                    ),
+                    child: NodeTelemetrySection(
+                      key: ValueKey(contact.publicKeyHex),
+                      contact: contact,
                     ),
                   ),
-                  if (pos != null)
-                    IconButton(
-                      color: _overlayPrimaryTextColor,
-                      icon: const Icon(Icons.center_focus_strong, size: 20),
-                      tooltip: context.l10n.map_centerOnNode,
-                      onPressed: () => _mapController.move(pos, max(_zoom, 15)),
-                    ),
-                  IconButton(
-                    color: _overlayPrimaryTextColor,
-                    icon: const Icon(Icons.close, size: 20),
-                    onPressed: _clearSelection,
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      ..._selectedNodeActions(context, contact, connector),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          foregroundColor: MapPalette.selected,
+                        ),
+                        onPressed: () => _showNodeInfo(
+                          context,
+                          contact,
+                          guessedPosition: contact.hasLocation
+                              ? null
+                              : _selectedGuessPos,
+                        ),
+                        child: Text(context.l10n.map_details),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
-              Wrap(
-                spacing: 14,
-                runSpacing: 4,
-                children: [
-                  _miniMeta(
-                    context.l10n.map_lastSeen,
-                    _formatLastSeen(contact.lastSeen),
-                  ),
-                  _miniMeta(
-                    context.l10n.map_path,
-                    contact.pathLabel(
-                      context.l10n,
-                      pathHashByteWidth: connector.pathHashByteWidth,
-                    ),
-                  ),
-                  _miniMeta('ID', contact.publicKeyHex.substring(0, 12)),
-                  if (pos != null)
-                    _miniMeta(
-                      context.l10n.map_location,
-                      '${contact.hasLocation ? '' : '~'}${pos.latitude.toStringAsFixed(5)}, ${pos.longitude.toStringAsFixed(5)}',
-                    ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  ..._selectedNodeActions(context, contact, connector),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: MapPalette.selected,
-                    ),
-                    onPressed: () => _showNodeInfo(
-                      context,
-                      contact,
-                      guessedPosition: contact.hasLocation
-                          ? null
-                          : _selectedGuessPos,
-                    ),
-                    child: Text(context.l10n.map_details),
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
         ),
       ),

@@ -15342,6 +15342,9 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your radio’s GPS.'**
   String get wardrive_explainer;
+
+  /// Explains cached map readings, expiry and manual refresh.
+  String get mapTelemetry_policy;
 }
 
 class _AppLocalizationsDelegate

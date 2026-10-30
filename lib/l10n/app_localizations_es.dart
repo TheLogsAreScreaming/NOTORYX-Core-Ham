@@ -9159,4 +9159,7 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Cada ping es una solicitud de descubrimiento de salto cero: solo responden los repetidores a alcance directo y no se publica nada en un canal. Las posiciones vienen del GPS de tu radio.';
+  @override
+  String get mapTelemetry_policy =>
+      'Las lecturas guardadas se atenúan tras 1 hora y desaparecen tras 24 horas. Actualizar envía una solicitud; el nodo debe permitir telemetría y los sensores pueden requerir iniciar sesión. El mapa nunca solicita actualizaciones automáticamente.';
 }

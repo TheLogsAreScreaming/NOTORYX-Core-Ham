@@ -3949,5 +3949,6 @@
   "wardrive_backToLive": "Tillbaka till pågående",
   "wardrive_noReplies": "Ingen repeater hörde den här pingen.",
   "wardrive_replyDetail": "Hörde dig på {there} dB · du hörde den på {here} dB",
-  "wardrive_explainer": "Varje ping är en upptäcktsförfrågan utan vidarebefordran: bara repeatrar inom direkt räckvidd svarar och inget postas i en kanal. Positioner kommer från radions GPS."
+  "wardrive_explainer": "Varje ping är en upptäcktsförfrågan utan vidarebefordran: bara repeatrar inom direkt räckvidd svarar och inget postas i en kanal. Positioner kommer från radions GPS.",
+  "mapTelemetry_policy": "Sparade mätvärden tonas ned efter 1 timme och döljs efter 24 timmar. Uppdatera skickar en begäran; noden måste tillåta telemetri och sensorer kan kräva inloggning. Kartan begär aldrig uppdateringar automatiskt."
 }

@@ -3987,5 +3987,6 @@
   "wardrive_backToLive": "Wróć do bieżącego",
   "wardrive_noReplies": "Żaden przemiennik nie usłyszał tego pingu.",
   "wardrive_replyDetail": "Usłyszał cię przy {there} dB · ty go przy {here} dB",
-  "wardrive_explainer": "Każdy ping to żądanie wykrywania bez przekazywania: odpowiadają tylko przemienniki w bezpośrednim zasięgu, nic nie trafia na kanał. Pozycje pochodzą z GPS radia."
+  "wardrive_explainer": "Każdy ping to żądanie wykrywania bez przekazywania: odpowiadają tylko przemienniki w bezpośrednim zasięgu, nic nie trafia na kanał. Pozycje pochodzą z GPS radia.",
+  "mapTelemetry_policy": "Zapisane odczyty są przyciemniane po 1 godzinie i znikają po 24 godzinach. Odświeżenie wysyła jedno żądanie; węzeł musi zezwalać na telemetrię, a czujniki mogą wymagać logowania. Mapa nigdy nie żąda aktualizacji automatycznie."
 }

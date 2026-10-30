@@ -3954,5 +3954,6 @@
   "wardrive_backToLive": "返回当前记录",
   "wardrive_noReplies": "没有中继器听到这次 ping。",
   "wardrive_replyDetail": "以 {there} dB 听到你 · 你以 {here} dB 听到它",
-  "wardrive_explainer": "每次 ping 都是零跳发现请求：只有直接覆盖范围内的中继器会回应，不会向频道发布任何内容。位置来自电台的 GPS。"
+  "wardrive_explainer": "每次 ping 都是零跳发现请求：只有直接覆盖范围内的中继器会回应，不会向频道发布任何内容。位置来自电台的 GPS。",
+  "mapTelemetry_policy": "缓存读数在1小时后变暗，24小时后隐藏。刷新会发送一次请求；节点必须允许遥测，传感器可能需要登录。地图不会自动请求更新。"
 }

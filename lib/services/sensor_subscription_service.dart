@@ -1,3 +1,4 @@
+import 'node_telemetry_store.dart';
 import 'dart:async';
 import 'dart:math';
 
@@ -12,6 +13,7 @@ import '../models/sensor_subscription.dart';
 /// A live subscription to one sensor's readings.
 class SensorSubscription {
   final String contactKey;
+  final String ownerKey;
   final String name;
   final int pushTag;
   final List<WatchedReading> readings;
@@ -23,6 +25,7 @@ class SensorSubscription {
 
   SensorSubscription({
     required this.contactKey,
+    this.ownerKey = '',
     required this.name,
     required this.pushTag,
     required this.readings,
@@ -79,6 +82,7 @@ class SensorSubscriptionService extends ChangeNotifier {
     required Duration duration,
     Duration timeout = const Duration(seconds: 30),
   }) async {
+    final ownerKey = _connector.selfPublicKeyHex;
     var tag = 0;
     while (tag == 0) {
       tag = _random.nextInt(1 << 32);
@@ -96,6 +100,7 @@ class SensorSubscriptionService extends ChangeNotifier {
     }
     final sub = SensorSubscription(
       contactKey: sensor.publicKeyHex,
+      ownerKey: ownerKey,
       name: sensor.name,
       pushTag: tag,
       readings: List.unmodifiable(readings),
@@ -124,7 +129,11 @@ class SensorSubscriptionService extends ChangeNotifier {
     final push = parseSensorPush(frame);
     if (push == null) return;
     for (final sub in _subscriptions.values) {
-      if (sub.pushTag != push.tag) continue;
+      if (sub.pushTag != push.tag ||
+          !sub.activeAt(DateTime.now()) ||
+          sub.ownerKey != _connector.selfPublicKeyHex) {
+        continue;
+      }
       sub.pushes.insert(
         0,
         SensorReadingPush(
@@ -133,6 +142,14 @@ class SensorSubscriptionService extends ChangeNotifier {
           CayenneLpp.parse(push.lpp),
         ),
       );
+      if (_connector.telemetryStore?.scope == sub.ownerKey) {
+        _connector.telemetryStore?.record(
+          sub.contactKey,
+          sub.pushes.first.readings,
+          source: TelemetrySource.sensor,
+          at: sub.pushes.first.receivedAt,
+        );
+      }
       if (sub.pushes.length > historyLimit) sub.pushes.removeLast();
       _notify();
       return;

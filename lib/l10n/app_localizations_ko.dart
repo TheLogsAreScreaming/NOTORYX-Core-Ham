@@ -8725,4 +8725,7 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       '각 핑은 제로홉 탐색 요청입니다. 직접 범위의 리피터만 응답하며 채널에는 아무것도 게시되지 않습니다. 위치는 무전기 GPS에서 가져옵니다.';
+  @override
+  String get mapTelemetry_policy =>
+      '저장된 측정값은 1시간 후 흐리게 표시되고 24시간 후 사라집니다. 새로고침은 요청을 한 번 전송합니다. 노드에서 원격 측정을 허용해야 하며 센서는 로그인이 필요할 수 있습니다. 지도는 자동으로 업데이트를 요청하지 않습니다.';
 }

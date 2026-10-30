@@ -9167,4 +9167,7 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Ogni ping è una richiesta di scoperta a zero salti: rispondono solo i ripetitori a portata diretta e nulla viene pubblicato su un canale. Le posizioni vengono dal GPS della radio.';
+  @override
+  String get mapTelemetry_policy =>
+      'Le letture salvate si attenuano dopo 1 ora e scompaiono dopo 24 ore. Aggiorna invia una richiesta; il nodo deve consentire la telemetria e i sensori possono richiedere l’accesso. La mappa non richiede mai aggiornamenti automatici.';
 }

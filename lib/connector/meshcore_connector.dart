@@ -1,3 +1,5 @@
+import '../services/node_telemetry_store.dart';
+import '../helpers/cayenne_lpp.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
@@ -447,6 +449,9 @@ class MeshCoreConnector extends ChangeNotifier {
   final Map<String, String?> _contactCyr2LatProfileId = {};
   final Set<String> _knownContactKeys = {};
   final Map<String, int> _contactUnreadCount = {};
+
+  /// App-owned cache; optional for headless connectors and tests.
+  NodeTelemetryStore? telemetryStore;
   final Map<String, RepeaterBatterySnapshot> _repeaterBatterySnapshots = {};
   bool _unreadStateLoaded = false;
   int _cachedContactsUnreadTotal = 0;
@@ -792,6 +797,20 @@ class MeshCoreConnector extends ChangeNotifier {
       source: source,
     );
     _repeaterBatterySnapshots[contactKeyHex] = snapshot;
+    telemetryStore?.record(
+      contactKeyHex,
+      [
+        {
+          'channel': 0,
+          'type': CayenneLpp.lppVoltage,
+          'value': millivolts / 1000.0,
+        },
+      ],
+      source: source == 'telemetry'
+          ? TelemetrySource.telemetry
+          : TelemetrySource.status,
+    );
+
     if (previous?.millivolts != millivolts) {
       notifyListeners();
     }

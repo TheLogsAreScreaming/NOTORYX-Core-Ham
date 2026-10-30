@@ -9145,4 +9145,7 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Minden ping nulla ugrásos felderítő kérés: csak a közvetlen hatótávú átjátszók válaszolnak, csatornára semmi sem kerül. A pozíció a rádió GPS-éből jön.';
+  @override
+  String get mapTelemetry_policy =>
+      'A mentett mérések 1 óra után halványulnak, 24 óra után eltűnnek. A frissítés egy kérést küld; a csomópontnak engedélyeznie kell a telemetriát, az érzékelők pedig bejelentkezést kérhetnek. A térkép soha nem kér automatikus frissítést.';
 }

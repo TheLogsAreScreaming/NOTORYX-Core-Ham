@@ -1,3 +1,4 @@
+import '../services/node_telemetry_store.dart';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
   static const int _autoRefreshMaxQuantity = 10;
 
   int _tagData = 0;
+  String _requestScope = '';
 
   bool _isLoading = false;
   bool _isLoaded = false;
@@ -101,7 +103,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
 
     // Listen for incoming text messages from the repeater
     _frameSubscription = connector.receivedFrames.listen((frame) {
-      if (frame.isEmpty) return;
+      if (frame.isEmpty || !_isLoading) return;
       final reader = BufferReader(frame);
       try {
         final cmd = reader.readByte();
@@ -160,8 +162,19 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
   }
 
   void _handleTelemetryResponse(Uint8List frame) {
+    if (_requestScope != context.read<MeshCoreConnector>().selfPublicKeyHex) {
+      return;
+    }
     final parsedTelemetry = CayenneLpp.parseByChannel(frame);
     _rawReadings = CayenneLpp.parse(frame);
+    final cache = context.read<MeshCoreConnector>().telemetryStore;
+    if (_requestScope.isNotEmpty && cache?.scope == _requestScope) {
+      cache?.record(
+        widget.contact.publicKeyHex,
+        _rawReadings!,
+        source: TelemetrySource.telemetry,
+      );
+    }
     final batteryMv = _extractTelemetryBatteryMillivolts(parsedTelemetry);
     if (batteryMv != null) {
       final connector = Provider.of<MeshCoreConnector>(context, listen: false);
@@ -201,6 +214,8 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
 
   Future<void> _loadTelemetry({bool isAutoRefresh = false}) async {
     if (_commandService == null) return;
+    _requestScope = context.read<MeshCoreConnector>().selfPublicKeyHex;
+    _tagData = 0;
 
     setState(() {
       _isLoading = true;

@@ -9142,4 +9142,7 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Vsak ping je zahteva za odkrivanje brez posredovanja: odgovorijo le repetitorji v neposrednem dosegu, v kanal se nič ne objavi. Položaj je iz GPS radia.';
+  @override
+  String get mapTelemetry_policy =>
+      'Shranjene meritve po 1 uri zbledijo in po 24 urah izginejo. Osvežitev pošlje eno zahtevo; vozlišče mora dovoljevati telemetrijo, senzorji pa lahko zahtevajo prijavo. Zemljevid nikoli ne zahteva samodejnih posodobitev.';
 }
