@@ -959,16 +959,16 @@ class _ContactsScreenState extends State<ContactsScreen>
                         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                         child: GlassNodeCard(
                           child: _ContactTileEntrance(
-                        index: index,
-                        contact: contact,
-                        pathHashByteWidth: connector.pathHashByteWidth,
-                        lastSeen: _resolveLastSeen(contact),
-                        unreadCount: unreadCount,
-                        isFavorite: contact.isFavorite,
-                        onTap: () => _openChat(context, contact),
+                            index: index,
+                            contact: contact,
+                            pathHashByteWidth: connector.pathHashByteWidth,
+                            lastSeen: _resolveLastSeen(contact),
+                            unreadCount: unreadCount,
+                            isFavorite: contact.isFavorite,
+                            onTap: () => _openChat(context, contact),
                             onLongPress: () =>
                                 _showContactOptions(context, connector, contact),
-                          ),
+                              ),
                         ),
                       );
                     },
