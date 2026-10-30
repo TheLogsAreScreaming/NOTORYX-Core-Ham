@@ -9005,4 +9005,12 @@ class AppLocalizationsSv extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanaler som används, enligt observatörerna hos $host. Byt analysator i inställningarna för ditt område.';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel =>
+      'Incheckningar går också till kanal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Signerad med radions nyckel så att andra i kanalen ser att det verkligen är du. Resekontakterna får den fortfarande direkt.';
 }

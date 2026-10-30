@@ -3927,5 +3927,7 @@
   "mySensors_none": "Žiadne údaje zo senzorov rádia.",
   "activeChannels_title": "Aktívne online",
   "activeChannels_messages": "Správy: {count}",
-  "activeChannels_source": "Kanály, ktoré sa používajú, podľa pozorovateľov {host}. V nastaveniach zmeňte analyzátor pre svoju oblasť."
+  "activeChannels_source": "Kanály, ktoré sa používajú, podľa pozorovateľov {host}. V nastaveniach zmeňte analyzátor pre svoju oblasť.",
+  "fieldOps_checkInChannelLabel": "Hlásenia idú aj do kanála",
+  "fieldOps_checkInChannelHint": "Podpísané kľúčom rádia, aby ostatní v kanáli videli, že ste to naozaj vy. Kontakty výletu ho stále dostanú priamo."
 }

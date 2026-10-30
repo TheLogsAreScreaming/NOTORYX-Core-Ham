@@ -3932,5 +3932,7 @@
   "mySensors_none": "电台没有传感器读数。",
   "activeChannels_title": "在线活跃",
   "activeChannels_messages": "{count} 条消息",
-  "activeChannels_source": "{host} 的观测站收到的正在使用的频道。在设置中更换分析器可查看你所在地区。"
+  "activeChannels_source": "{host} 的观测站收到的正在使用的频道。在设置中更换分析器可查看你所在地区。",
+  "fieldOps_checkInChannelLabel": "签到也发到频道",
+  "fieldOps_checkInChannelHint": "使用电台的密钥签名，频道中的其他人能确认确实是你。行程联系人仍会直接收到。"
 }

@@ -9044,4 +9044,11 @@ class AppLocalizationsNl extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanalen die worden gebruikt, volgens de waarnemers van $host. Kies in Instellingen een analyser voor je regio.';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel => 'Check-ins ook naar kanaal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Ondertekend met de sleutel van je radio, zodat anderen in het kanaal zien dat jij het echt bent. Reiscontacten krijgen het nog steeds direct.';
 }

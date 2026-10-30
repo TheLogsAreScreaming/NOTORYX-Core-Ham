@@ -8454,4 +8454,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String activeChannels_source(String host) {
     return '$host 的观测站收到的正在使用的频道。在设置中更换分析器可查看你所在地区。';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel => '签到也发到频道';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      '使用电台的密钥签名，频道中的其他人能确认确实是你。行程联系人仍会直接收到。';
 }

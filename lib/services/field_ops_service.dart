@@ -106,6 +106,17 @@ class FieldOpsService extends ChangeNotifier {
     return null;
   }
 
+  /// The channel check-ins are also posted to, if one is configured and
+  /// still exists.
+  Channel? get checkInChannel {
+    for (final channel in connector.channels) {
+      if (channel.index == trip.checkInChannel && !channel.isEmpty) {
+        return channel;
+      }
+    }
+    return null;
+  }
+
   String? get sosUnavailable => sosUnavailableReason(
     ready: ready,
     storageError: error != null,
@@ -582,6 +593,33 @@ class FieldOpsService extends ChangeNotifier {
             'check-in',
             '${contact.name}: send could not be confirmed: $e',
             contactKey: contact.publicKeyHex,
+            status: 'failed',
+            batch: batchId,
+          );
+        }
+      }
+      // Also post to the trip's check-in channel, signed so listeners can
+      // tell it's really from this radio. A resend to the contacts who
+      // missed one doesn't repost.
+      final channel = checkInChannel;
+      if (channel != null &&
+          only == null &&
+          trip.active &&
+          connector.isConnected &&
+          !(automatic && !automationEnabled)) {
+        try {
+          await connector.sendChannelMessage(channel, text, sign: true);
+          lastCheckInAt = now;
+          await record(
+            'check-in',
+            '${channel.name}: $text',
+            status: 'sent',
+            batch: batchId,
+          );
+        } catch (e) {
+          await record(
+            'check-in',
+            '${channel.name}: send could not be confirmed: $e',
             status: 'failed',
             batch: batchId,
           );

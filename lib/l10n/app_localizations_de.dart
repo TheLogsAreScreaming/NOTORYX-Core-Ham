@@ -9093,4 +9093,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanäle, die genutzt werden, laut den Beobachtern von $host. Wechsle den Analysator in den Einstellungen für deine Region.';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel => 'Check-ins auch an Kanal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Mit dem Schlüssel deines Funkgeräts signiert, damit andere im Kanal sehen, dass es wirklich von dir ist. Reisekontakte bekommen es weiterhin direkt.';
 }

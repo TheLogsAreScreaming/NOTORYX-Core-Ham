@@ -9066,4 +9066,11 @@ class AppLocalizationsSl extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanali v uporabi po podatkih opazovalcev $host. V nastavitvah zamenjajte analizator za svoje območje.';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel => 'Prijave gredo tudi v kanal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Podpisano s ključem radia, da drugi v kanalu vidijo, da ste res vi. Stiki izleta ga še vedno prejmejo neposredno.';
 }

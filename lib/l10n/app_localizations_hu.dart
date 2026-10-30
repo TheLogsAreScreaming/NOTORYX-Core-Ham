@@ -9068,4 +9068,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Használt csatornák $host megfigyelői szerint. A beállításokban válasszon a régiójához tartozó elemzőt.';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel =>
+      'A bejelentkezések csatornára is mennek';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'A rádió kulcsával aláírva, így a csatornán mások látják, hogy tényleg Öntől jön. Az út kontaktjai közvetlenül is megkapják.';
 }

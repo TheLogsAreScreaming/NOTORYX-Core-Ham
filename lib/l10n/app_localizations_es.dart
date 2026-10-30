@@ -9082,4 +9082,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Canales en uso, según los observadores de $host. Cambia el analizador en Ajustes para ver tu zona.';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel =>
+      'Los check-ins también van al canal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Firmado con la clave de tu radio, para que los demás del canal vean que eres tú. Tus contactos del viaje lo siguen recibiendo directamente.';
 }

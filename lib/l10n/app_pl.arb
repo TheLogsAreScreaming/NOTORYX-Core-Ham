@@ -3965,5 +3965,7 @@
   "mySensors_none": "Brak odczytów czujników z radia.",
   "activeChannels_title": "Aktywne online",
   "activeChannels_messages": "Wiadomości: {count}",
-  "activeChannels_source": "Kanały w użyciu według obserwatorów {host}. Zmień analizator w ustawieniach, by zobaczyć swój region."
+  "activeChannels_source": "Kanały w użyciu według obserwatorów {host}. Zmień analizator w ustawieniach, by zobaczyć swój region.",
+  "fieldOps_checkInChannelLabel": "Meldunki trafiają też na kanał",
+  "fieldOps_checkInChannelHint": "Podpisane kluczem radia, więc inni na kanale widzą, że to naprawdę ty. Kontakty z wyprawy nadal dostają je bezpośrednio."
 }
