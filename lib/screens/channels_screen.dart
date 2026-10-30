@@ -25,6 +25,7 @@ import '../widgets/mesh_ui.dart';
 import '../widgets/qr_code_display.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/instrument.dart';
+import '../widgets/glass_chat_card.dart';
 import '../helpers/gif_helper.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../utils/main_tab_navigation.dart';
@@ -2113,8 +2114,10 @@ class _DirectChats extends StatelessWidget {
           () {
             final unread = connector.getUnreadCountForContact(chat.contact);
             final hops = chat.contact.pathLength;
-            return InstrumentRow(
-              key: ValueKey('direct_${chat.contact.publicKeyHex}'),
+            return GlassChatCard(
+              unreadCount: unread,
+              child: InstrumentRow(
+                key: ValueKey('direct_${chat.contact.publicKeyHex}'),
               title: chat.contact.name,
               subtitle: chat.last.text,
               onTap: () {
@@ -2154,6 +2157,7 @@ class _DirectChats extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
               ),
             );
           }(),
