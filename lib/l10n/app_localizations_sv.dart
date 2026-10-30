@@ -8934,4 +8934,9 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'Ett SOS i en kanal signeras alltid. Detta signerar varje inlägg så att andra NOTORYX-användare ser att det verkligen är du. Varje signatur är ett extra paket i luften.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }

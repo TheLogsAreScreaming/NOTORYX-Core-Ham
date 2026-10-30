@@ -8887,4 +8887,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'An SOS on a channel is always signed. This signs every post, so other NOTORYX users can tell it’s really you. Each signature is one extra packet on air.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }

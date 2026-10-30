@@ -15084,6 +15084,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An SOS on a channel is always signed. This signs every post, so other NOTORYX users can tell it’s really you. Each signature is one extra packet on air.'**
   String get settings_signPostsHint;
+
+  /// No description provided for @tools_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search tools and settings'**
+  String get tools_search;
+
+  /// No description provided for @tools_noMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'No tools match your search.'**
+  String get tools_noMatches;
 }
 
 class _AppLocalizationsDelegate

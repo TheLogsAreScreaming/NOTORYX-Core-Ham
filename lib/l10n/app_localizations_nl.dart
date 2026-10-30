@@ -8973,4 +8973,9 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'Een SOS op een kanaal wordt altijd ondertekend. Dit ondertekent elk bericht, zodat andere NOTORYX-gebruikers zien dat het echt van jou is. Elke handtekening is één extra pakket in de lucht.';
+  @override
+  String get tools_search => 'Search tools and settings';
+
+  @override
+  String get tools_noMatches => 'No tools match your search.';
 }
