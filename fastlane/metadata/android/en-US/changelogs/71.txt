@@ -1,0 +1,5 @@
+• Bot Mode: choose channels where the bot answers !commands
+• Bot Mode now listed in More
+• Tapping a notification opens that chat or channel
+• Path trace no longer spins forever
+• Region setup: United States and Canada region trees
