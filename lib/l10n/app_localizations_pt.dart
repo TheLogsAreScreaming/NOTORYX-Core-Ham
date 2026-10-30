@@ -8995,4 +8995,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Nenhuma ferramenta corresponde à pesquisa.';
+
+  @override
+  String get tools_bot => 'Modo bot';
+
+  @override
+  String get tools_botHint =>
+      'Respostas automáticas, !comandos e alertas meteorológicos nos canais';
 }

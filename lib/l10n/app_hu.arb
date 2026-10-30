@@ -3945,5 +3945,7 @@
   "settings_signPosts": "Minden csatornabejegyzésem aláírása",
   "settings_signPostsHint": "A csatornára küldött SOS mindig aláírt. Ez minden bejegyzést aláír, így más NOTORYX-felhasználók láthatják, hogy valóban Ön az. Minden aláírás egy további csomag az éterben.",
   "tools_search": "Eszközök és beállítások keresése",
-  "tools_noMatches": "Nincs a keresésnek megfelelő eszköz."
+  "tools_noMatches": "Nincs a keresésnek megfelelő eszköz.",
+  "tools_bot": "Bot mód",
+  "tools_botHint": "Automatikus válaszok, !parancsok és időjárási riasztások a csatornákon"
 }

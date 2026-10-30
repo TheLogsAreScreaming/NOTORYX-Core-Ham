@@ -3945,5 +3945,7 @@
   "settings_signPosts": "Podpisuj wszystkie moje wiadomości na kanałach",
   "settings_signPostsHint": "SOS na kanale jest zawsze podpisany. To podpisuje każdą wiadomość, aby inni użytkownicy NOTORYX wiedzieli, że to naprawdę ty. Każdy podpis to jeden dodatkowy pakiet w eterze.",
   "tools_search": "Szukaj narzędzi i ustawień",
-  "tools_noMatches": "Brak narzędzi pasujących do wyszukiwania."
+  "tools_noMatches": "Brak narzędzi pasujących do wyszukiwania.",
+  "tools_bot": "Tryb bota",
+  "tools_botHint": "Automatyczne odpowiedzi, !polecenia i ostrzeżenia pogodowe na kanałach"
 }

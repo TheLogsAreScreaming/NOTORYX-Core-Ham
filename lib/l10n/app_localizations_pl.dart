@@ -9045,4 +9045,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Brak narzędzi pasujących do wyszukiwania.';
+
+  @override
+  String get tools_bot => 'Tryb bota';
+
+  @override
+  String get tools_botHint =>
+      'Automatyczne odpowiedzi, !polecenia i ostrzeżenia pogodowe na kanałach';
 }

@@ -9043,4 +9043,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Aucun outil ne correspond à la recherche.';
+
+  @override
+  String get tools_bot => 'Mode bot';
+
+  @override
+  String get tools_botHint =>
+      'Réponses automatiques, !commandes et alertes météo sur les canaux';
 }

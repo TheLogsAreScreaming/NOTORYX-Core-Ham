@@ -3907,5 +3907,7 @@
   "settings_signPosts": "Signera alla mina kanalinlägg",
   "settings_signPostsHint": "Ett SOS i en kanal signeras alltid. Detta signerar varje inlägg så att andra NOTORYX-användare ser att det verkligen är du. Varje signatur är ett extra paket i luften.",
   "tools_search": "Sök verktyg och inställningar",
-  "tools_noMatches": "Inga verktyg matchar sökningen."
+  "tools_noMatches": "Inga verktyg matchar sökningen.",
+  "tools_bot": "Botläge",
+  "tools_botHint": "Autosvar, !kommandon och vädervarningar i kanaler"
 }

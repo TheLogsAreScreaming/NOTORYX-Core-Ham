@@ -3907,5 +3907,7 @@
   "settings_signPosts": "Podpiši vsa moja sporočila v kanalih",
   "settings_signPostsHint": "SOS v kanalu je vedno podpisan. To podpiše vsako sporočilo, da drugi uporabniki NOTORYX vidijo, da ste res vi. Vsak podpis je en dodaten paket v etru.",
   "tools_search": "Iskanje orodij in nastavitev",
-  "tools_noMatches": "Iskanju ne ustreza nobeno orodje."
+  "tools_noMatches": "Iskanju ne ustreza nobeno orodje.",
+  "tools_bot": "Način bota",
+  "tools_botHint": "Samodejni odgovori, !ukazi in vremenska opozorila v kanalih"
 }

@@ -8998,4 +8998,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Nincs a keresésnek megfelelő eszköz.';
+
+  @override
+  String get tools_bot => 'Bot mód';
+
+  @override
+  String get tools_botHint =>
+      'Automatikus válaszok, !parancsok és időjárási riasztások a csatornákon';
 }

@@ -8974,4 +8974,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Geen tools gevonden voor je zoekopdracht.';
+
+  @override
+  String get tools_bot => 'Botmodus';
+
+  @override
+  String get tools_botHint =>
+      'Automatische antwoorden, !opdrachten en weerwaarschuwingen in kanalen';
 }

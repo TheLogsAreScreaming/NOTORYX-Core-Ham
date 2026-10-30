@@ -4041,5 +4041,7 @@
   "settings_signPosts": "すべてのチャンネル投稿に署名",
   "settings_signPostsHint": "チャンネルの SOS は常に署名されます。これをオンにするとすべての投稿に署名し、他の NOTORYX ユーザーが本当にあなたからだと分かります。署名ごとに 1 パケット送信が増えます。",
   "tools_search": "ツールと設定を検索",
-  "tools_noMatches": "検索に一致するツールはありません。"
+  "tools_noMatches": "検索に一致するツールはありません。",
+  "tools_bot": "ボットモード",
+  "tools_botHint": "チャンネルでの自動返信、!コマンド、気象警報"
 }

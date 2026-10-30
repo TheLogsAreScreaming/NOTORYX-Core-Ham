@@ -8585,4 +8585,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get tools_noMatches => '검색과 일치하는 도구가 없습니다.';
+
+  @override
+  String get tools_bot => '봇 모드';
+
+  @override
+  String get tools_botHint => '채널 자동 응답, !명령, 기상 경보';
 }

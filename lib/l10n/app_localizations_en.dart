@@ -8888,4 +8888,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'No tools match your search.';
+
+  @override
+  String get tools_bot => 'Bot Mode';
+
+  @override
+  String get tools_botHint =>
+      'Auto replies, !commands and weather alerts on channels';
 }

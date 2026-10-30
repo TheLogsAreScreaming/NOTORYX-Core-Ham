@@ -3912,5 +3912,7 @@
   "settings_signPosts": "为我的所有频道消息签名",
   "settings_signPostsHint": "频道中的 SOS 始终会签名。开启后每条消息都会签名，让其他 NOTORYX 用户确认确实是你发的。每个签名会多发送一个数据包。",
   "tools_search": "搜索工具和设置",
-  "tools_noMatches": "没有与搜索匹配的工具。"
+  "tools_noMatches": "没有与搜索匹配的工具。",
+  "tools_bot": "机器人模式",
+  "tools_botHint": "频道自动回复、!命令和天气警报"
 }

@@ -15090,6 +15090,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No tools match your search.'**
   String get tools_noMatches;
+
+  /// No description provided for @tools_bot.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot Mode'**
+  String get tools_bot;
+
+  /// No description provided for @tools_botHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto replies, !commands and weather alerts on channels'**
+  String get tools_botHint;
 }
 
 class _AppLocalizationsDelegate

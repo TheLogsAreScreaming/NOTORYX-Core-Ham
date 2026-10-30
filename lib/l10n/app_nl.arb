@@ -3907,5 +3907,7 @@
   "settings_signPosts": "Al mijn kanaalberichten ondertekenen",
   "settings_signPostsHint": "Een SOS op een kanaal wordt altijd ondertekend. Dit ondertekent elk bericht, zodat andere NOTORYX-gebruikers zien dat het echt van jou is. Elke handtekening is één extra pakket in de lucht.",
   "tools_search": "Tools en instellingen zoeken",
-  "tools_noMatches": "Geen tools gevonden voor je zoekopdracht."
+  "tools_noMatches": "Geen tools gevonden voor je zoekopdracht.",
+  "tools_bot": "Botmodus",
+  "tools_botHint": "Automatische antwoorden, !opdrachten en weerwaarschuwingen in kanalen"
 }

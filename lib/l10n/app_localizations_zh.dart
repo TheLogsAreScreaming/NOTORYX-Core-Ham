@@ -8389,4 +8389,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tools_noMatches => '没有与搜索匹配的工具。';
+
+  @override
+  String get tools_bot => '机器人模式';
+
+  @override
+  String get tools_botHint => '频道自动回复、!命令和天气警报';
 }

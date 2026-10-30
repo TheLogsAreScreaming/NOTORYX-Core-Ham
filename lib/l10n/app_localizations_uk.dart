@@ -9034,4 +9034,11 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Немає інструментів за вашим запитом.';
+
+  @override
+  String get tools_bot => 'Режим бота';
+
+  @override
+  String get tools_botHint =>
+      'Автовідповіді, !команди та погодні попередження в каналах';
 }

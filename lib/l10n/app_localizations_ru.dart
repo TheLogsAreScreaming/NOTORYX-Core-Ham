@@ -9036,4 +9036,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tools_noMatches => 'Нет инструментов по вашему запросу.';
+
+  @override
+  String get tools_bot => 'Режим бота';
+
+  @override
+  String get tools_botHint =>
+      'Автоответы, !команды и погодные предупреждения в каналах';
 }
