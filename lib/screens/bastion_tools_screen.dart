@@ -54,7 +54,7 @@ class BastionToolsScreen extends StatelessWidget {
                 blur: false,
                 child: InstrumentRow(
                   icon: Icons.tune_rounded,
-              title: l10n.settings_title,
+                  title: l10n.settings_title,
                   onTap: () => open(const SettingsScreen()),
                 ),
               ),
