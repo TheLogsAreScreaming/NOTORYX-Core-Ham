@@ -123,12 +123,8 @@ class _MapAction extends StatelessWidget {
     child: InkWell(
       borderRadius: BorderRadius.circular(MeshRadii.xs),
       onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          border: Border.all(color: MeshPalette.line),
-          borderRadius: BorderRadius.circular(16),
-        ),
+      child: TacticalGlassPanel(
+        blur: false,
         child: Row(
           children: [
             Container(
