@@ -18,7 +18,10 @@ class GlassChatCard extends StatelessWidget {
           Expanded(child: child),
           if (unreadCount > 0) ...[
             const SizedBox(width: 12),
-            Badge(label: Text('$unreadCount')),
+            Semantics(
+              label: '$unreadCount unread messages',
+              child: Badge(label: Text('$unreadCount')),
+            ),
           ],
         ],
       ),
