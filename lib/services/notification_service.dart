@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io' show Platform, File;
 import 'dart:ui';
 
@@ -15,6 +16,20 @@ class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
   NotificationService._internal();
+
+  final StreamController<String> _taps = StreamController<String>.broadcast();
+  String? _launchPayload;
+
+  /// The payload of each notification the user clicks while the app runs:
+  /// `message:<contact key>`, `channel:<index>`, `advert:<key>` or `batch`.
+  Stream<String> get taps => _taps.stream;
+
+  /// The payload of the notification that launched the app, once.
+  String? takeLaunchPayload() {
+    final payload = _launchPayload;
+    _launchPayload = null;
+    return payload;
+  }
 
   final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
@@ -104,6 +119,10 @@ class NotificationService {
         onDidReceiveNotificationResponse: _onNotificationTapped,
       );
       _isInitialized = true;
+      final launch = await _notifications.getNotificationAppLaunchDetails();
+      if (launch?.didNotificationLaunchApp ?? false) {
+        _launchPayload = launch!.notificationResponse?.payload;
+      }
     } catch (e) {
       debugPrint('Error initializing notifications: $e');
     }
@@ -509,11 +528,7 @@ class NotificationService {
 
   void _onNotificationTapped(NotificationResponse response) {
     final payload = response.payload;
-    if (payload != null) {
-      debugPrint('Notification tapped: $payload');
-      // Handle navigation based on payload
-      // This can be extended to navigate to specific screens
-    }
+    if (payload != null && !_taps.isClosed) _taps.add(payload);
   }
 
   Future<void> cancelAll() async {

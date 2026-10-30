@@ -51,6 +51,11 @@ class _FakeMeshCoreConnector extends MeshCoreConnector {
   @override
   List<Contact> get contacts => [];
 
+  bool connected = true;
+
+  @override
+  bool get isConnected => connected;
+
   void emitFrame(Uint8List frame) {
     _receivedFramesController.add(frame);
   }
@@ -399,5 +404,43 @@ void main() {
 
     // Verify it parsed correctly (should not show the unavailable message)
     expect(find.text('Path trace not available.'), findsNothing);
+  });
+
+  testWidgets('a trace the radio never answers stops spinning', (tester) async {
+    final connector = _FakeMeshCoreConnector();
+    await tester.pumpWidget(
+      _buildTestApp(
+        connector: connector,
+        child: PathTraceMapScreen(
+          title: 'No reply',
+          path: Uint8List.fromList([0x12, 0x34]),
+          pathHashByteWidth: 1,
+        ),
+      ),
+    );
+    await tester.pump();
+    expect(connector.sentFrames, hasLength(1));
+    expect(find.byType(CircularProgressIndicator), findsWidgets);
+
+    await tester.pump(const Duration(seconds: 16));
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+    expect(find.text('Path trace not available.'), findsOneWidget);
+  });
+
+  testWidgets('without a radio the trace fails at once', (tester) async {
+    final connector = _FakeMeshCoreConnector()..connected = false;
+    await tester.pumpWidget(
+      _buildTestApp(
+        connector: connector,
+        child: PathTraceMapScreen(
+          title: 'Offline',
+          path: Uint8List.fromList([0x12, 0x34]),
+          pathHashByteWidth: 1,
+        ),
+      ),
+    );
+    await tester.pump();
+    expect(connector.sentFrames, isEmpty);
+    expect(find.text('Path trace not available.'), findsOneWidget);
   });
 }

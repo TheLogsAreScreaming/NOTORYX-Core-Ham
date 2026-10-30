@@ -90,6 +90,11 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
   StreamSubscription<Uint8List>? _frameSubscription;
   Timer? _timeoutTimer;
 
+  /// How long to wait for the radio to accept the trace. Its "sent" reply
+  /// replaces this with its own timeout; without that reply the screen used
+  /// to spin forever.
+  static const _noReplyTimeout = Duration(seconds: 15);
+
   bool _isLoading = false;
   bool _failed2Loaded = false;
   bool _hasData = false;
@@ -442,7 +447,27 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
       flags, // flag
       payload: tracePayload,
     );
-    connector.sendFrame(frame);
+    if (!connector.isConnected) {
+      _traceFailed();
+      return;
+    }
+    _timeoutTimer?.cancel();
+    _timeoutTimer = Timer(_noReplyTimeout, _traceFailed);
+    try {
+      await connector.sendFrame(frame);
+    } catch (e) {
+      appLogger.warn('Path trace not sent: $e', tag: 'PathTraceMapScreen');
+      _traceFailed();
+    }
+  }
+
+  void _traceFailed() {
+    _timeoutTimer?.cancel();
+    if (!mounted) return;
+    setState(() {
+      _isLoading = false;
+      _failed2Loaded = true;
+    });
   }
 
   void _setupFrameListener() {
