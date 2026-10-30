@@ -902,7 +902,21 @@ class _MapScreenState extends State<MapScreen> {
                     ),
                     if (_showTelemetry && !_isBuildingPathTrace)
                       MapTelemetryLayer(
-                        contacts: visibleContacts,
+                        contacts: [
+                          ...visibleContacts,
+                          if (selectedContact != null &&
+                              !visibleContacts.any(
+                                (c) =>
+                                    c.publicKeyHex ==
+                                    selectedContact.publicKeyHex,
+                              ))
+                            selectedContact,
+                        ],
+                        selectedKey: selectedContact?.publicKeyHex,
+                        clusterCellDegrees:
+                            _zoom < _clusterOffZoom && !settings.mapShowOverlaps
+                            ? 360.0 / (256.0 * pow(2.0, _zoom)) * 64.0
+                            : null,
                         metric: _telemetryMetric,
                         onSelect: _selectNode,
                         selfKey: connector.selfPublicKeyHex,

@@ -13,6 +13,32 @@ import 'package:meshcore_open/services/node_telemetry_store.dart';
 import 'package:meshcore_open/widgets/map_telemetry.dart';
 
 void main() {
+  test(
+    'cluster members have no individual badges until selected or unclustered',
+    () {
+      Contact node(int key, double latitude) => Contact(
+        publicKey: Uint8List.fromList(List.filled(32, key)),
+        name: '$key',
+        type: 1,
+        pathLength: -1,
+        path: Uint8List(0),
+        lastSeen: DateTime.now(),
+        latitude: latitude,
+        longitude: -74.01,
+      );
+      final a = node(1, 40.001), b = node(2, 40.002), c = node(3, 41.1);
+      expect(telemetryIndividualNodes([a, b, c], cellDegrees: 0.1), [c]);
+      expect(
+        telemetryIndividualNodes(
+          [a, b, c],
+          cellDegrees: 0.1,
+          selectedKey: a.publicKeyHex,
+        ),
+        [a, b, c],
+      );
+      expect(telemetryIndividualNodes([a, b, c]), [a, b, c]);
+    },
+  );
   testWidgets(
     'layer shows visible recent readings and hides expired or offscreen nodes',
     (tester) async {

@@ -27,6 +27,19 @@ void main() {
     store.dispose();
   });
 
+  test(
+    'rapid identity switches retain readings before disk writes finish',
+    () async {
+      store.record(node, [
+        reading(CayenneLpp.lppTemperature, 21),
+      ], source: TelemetrySource.telemetry);
+      store.setScope('c' * 64);
+      store.setScope(radio);
+      expect(store.metricFor(node, TelemetryMetric.temperature)!.value, 21);
+      await store.flush();
+    },
+  );
+
   test('partial updates preserve independent timestamps and sources', () {
     store.record(node, [
       reading(CayenneLpp.lppTemperature, 21),

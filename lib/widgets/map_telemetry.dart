@@ -99,6 +99,29 @@ class _TelemetryClockState extends State<TelemetryClock> {
   Widget build(BuildContext context) => widget.builder(context);
 }
 
+/// Mirrors map clustering: only single-node cells and the selected node get badges.
+List<Contact> telemetryIndividualNodes(
+  List<Contact> contacts, {
+  double? cellDegrees,
+  String? selectedKey,
+}) {
+  if (cellDegrees == null || cellDegrees <= 0) return contacts;
+  String cell(Contact c) =>
+      '${(c.latitude! / cellDegrees).floor()}:${(c.longitude! / cellDegrees).floor()}';
+  final counts = <String, int>{};
+  for (final c in contacts) {
+    if (!c.hasLocation || c.publicKeyHex == selectedKey) continue;
+    counts.update(cell(c), (count) => count + 1, ifAbsent: () => 1);
+  }
+  return contacts
+      .where(
+        (c) =>
+            c.hasLocation &&
+            (c.publicKeyHex == selectedKey || counts[cell(c)] == 1),
+      )
+      .toList();
+}
+
 /// An opt-in layer, culled against the current camera bounds on every map move.
 class MapTelemetryLayer extends StatelessWidget {
   const MapTelemetryLayer({
@@ -108,12 +131,16 @@ class MapTelemetryLayer extends StatelessWidget {
     required this.onSelect,
     this.selfKey,
     this.selfPosition,
+    this.clusterCellDegrees,
+    this.selectedKey,
   });
   final List<Contact> contacts;
   final TelemetryMetric metric;
   final ValueChanged<Contact> onSelect;
   final String? selfKey;
   final LatLng? selfPosition;
+  final double? clusterCellDegrees;
+  final String? selectedKey;
 
   @override
   Widget build(BuildContext context) => TelemetryClock(
@@ -125,7 +152,11 @@ class MapTelemetryLayer extends StatelessWidget {
         (s) => s.settings.unitSystem == UnitSystem.imperial,
       );
       final points = [
-        for (final c in contacts)
+        for (final c in telemetryIndividualNodes(
+          contacts,
+          cellDegrees: clusterCellDegrees,
+          selectedKey: selectedKey,
+        ))
           if (c.hasLocation)
             (
               key: c.publicKeyHex,

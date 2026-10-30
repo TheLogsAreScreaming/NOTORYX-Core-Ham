@@ -55,6 +55,7 @@ class NodeTelemetryStore extends ChangeNotifier {
   final DateTime Function() _now;
   final int maxNodes;
   final Map<String, Map<String, NodeReading>> _nodes = {};
+  final Map<String, String> _pendingSnapshots = {};
   String _scope = '';
   Timer? _saveTimer;
   Future<void> _writes = Future.value();
@@ -125,7 +126,8 @@ class NodeTelemetryStore extends ChangeNotifier {
     _scope = key;
     if (key.isNotEmpty) {
       try {
-        final raw = prefs.getString('node_telemetry_v1_$key');
+        final cacheKey = 'node_telemetry_v1_$key';
+        final raw = _pendingSnapshots[cacheKey] ?? prefs.getString(cacheKey);
         if (raw != null) {
           final data = jsonDecode(raw);
           if (data is Map) {
@@ -288,11 +290,13 @@ class NodeTelemetryStore extends ChangeNotifier {
             MapEntry(key, value.values.map((r) => r.toJson()).toList()),
       ),
     );
+    _pendingSnapshots[key] = data;
     _writes = _writes
         .then((_) async {
           if (!await prefs.setString(key, data)) {
             throw StateError('Telemetry cache write failed');
           }
+          if (_pendingSnapshots[key] == data) _pendingSnapshots.remove(key);
         })
         .catchError((Object e) {
           appLogger.error('Cannot save telemetry cache: $e');
