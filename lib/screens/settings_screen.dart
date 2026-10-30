@@ -10,6 +10,7 @@ import '../storage/region_store.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/radio_settings.dart';
+import '../widgets/ember_backdrop.dart';
 import '../widgets/regional_preset_banner.dart';
 import '../widgets/theme_picker.dart';
 import '../widgets/us_bandwidth_notice.dart';
@@ -75,133 +76,140 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return Scaffold(
-      appBar: AppBar(
-        title: AppBarTitle(
-          l10n.settings_title,
-          indicators: false,
-          subtitle: false,
+    return EmberBackdrop(
+      scene: EmberScene.more,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          title: AppBarTitle(
+            l10n.settings_title,
+            indicators: false,
+            subtitle: false,
+          ),
+          centerTitle: true,
+          bottom: const SyncProgressAppBarBottom(),
         ),
-        centerTitle: true,
-        bottom: const SyncProgressAppBarBottom(),
-      ),
-      body: SafeArea(
-        top: false,
-        child: Consumer<MeshCoreConnector>(
-          builder: (context, connector, child) {
-            return ListView(
-              padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
-              children: [
-                RadioOverviewCard(connector: connector),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: RegionalPresetBanner(),
-                ),
-                const MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: RegionalPresetTile(),
-                ),
-                const BatterySaverCard(),
-                const RefreshRateCard(),
-                const AnalyzerCard(),
-                const LinkPreviewsCard(),
-                const SignPostsCard(),
-                const MeshCard(
-                  padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          'Theme',
-                          style: TextStyle(fontWeight: FontWeight.w700),
+        body: SafeArea(
+          top: false,
+          child: Consumer<MeshCoreConnector>(
+            builder: (context, connector, child) {
+              return ListView(
+                padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
+                children: [
+                  RadioOverviewCard(connector: connector),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: RegionalPresetBanner(),
+                  ),
+                  const MeshCard(
+                    padding: EdgeInsets.zero,
+                    child: RegionalPresetTile(),
+                  ),
+                  const BatterySaverCard(),
+                  const RefreshRateCard(),
+                  const AnalyzerCard(),
+                  const LinkPreviewsCard(),
+                  const SignPostsCard(),
+                  const MeshCard(
+                    padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            'Theme',
+                            style: TextStyle(fontWeight: FontWeight.w700),
+                          ),
                         ),
+                        ThemePicker(),
+                      ],
+                    ),
+                  ),
+                  const ChannelRetentionCard(),
+
+                  // IDENTITY section
+                  MeshCard(
+                    padding: EdgeInsets.zero,
+                    child: _buildIdentityCardContent(context, connector),
+                  ),
+
+                  // NODE section
+                  SectionHeader(l10n.settings_nodeSettings),
+                  MeshCard(
+                    padding: EdgeInsets.zero,
+                    child: _buildNodeCardContent(context, connector),
+                  ),
+
+                  // LOCATION section
+                  SectionHeader(l10n.settings_location),
+                  MeshCard(
+                    padding: EdgeInsets.zero,
+                    child: _buildLocationCardContent(context, connector),
+                  ),
+
+                  // READ ALOUD
+                  const ReadAloudCard(),
+
+                  // APP SETTINGS
+                  SectionHeader(l10n.settings_appSettings),
+                  MeshCard(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const AppSettingsScreen(),
                       ),
-                      ThemePicker(),
-                    ],
-                  ),
-                ),
-                const ChannelRetentionCard(),
-
-                // IDENTITY section
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildIdentityCardContent(context, connector),
-                ),
-
-                // NODE section
-                SectionHeader(l10n.settings_nodeSettings),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildNodeCardContent(context, connector),
-                ),
-
-                // LOCATION section
-                SectionHeader(l10n.settings_location),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildLocationCardContent(context, connector),
-                ),
-
-                // READ ALOUD
-                const ReadAloudCard(),
-
-                // APP SETTINGS
-                SectionHeader(l10n.settings_appSettings),
-                MeshCard(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const AppSettingsScreen(),
+                    ),
+                    child: _buildNavTileContent(
+                      context,
+                      icon: Icons.settings_outlined,
+                      title: l10n.settings_appSettings,
+                      subtitle: l10n.settings_appSettingsSubtitle,
                     ),
                   ),
-                  child: _buildNavTileContent(
-                    context,
-                    icon: Icons.settings_outlined,
-                    title: l10n.settings_appSettings,
-                    subtitle: l10n.settings_appSettingsSubtitle,
+
+                  // ACTIONS section
+                  SectionHeader(l10n.settings_actions),
+                  MeshCard(
+                    padding: EdgeInsets.zero,
+                    child: _buildActionsCardContent(context, connector),
                   ),
-                ),
 
-                // ACTIONS section
-                SectionHeader(l10n.settings_actions),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildActionsCardContent(context, connector),
-                ),
+                  // EXPORT section
+                  SectionHeader(l10n.settings_gpxExportRepeaters),
+                  MeshCard(
+                    padding: EdgeInsets.zero,
+                    child: _buildExportCardContent(context, connector),
+                  ),
 
-                // EXPORT section
-                SectionHeader(l10n.settings_gpxExportRepeaters),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildExportCardContent(context, connector),
-                ),
+                  // DEBUG section
+                  SectionHeader(l10n.settings_debug),
+                  MeshCard(
+                    padding: EdgeInsets.zero,
+                    child: _buildDebugCardContent(context),
+                  ),
 
-                // DEBUG section
-                SectionHeader(l10n.settings_debug),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildDebugCardContent(context),
-                ),
-
-                // ABOUT
-                SectionHeader(l10n.settings_about),
-                MeshCard(
-                  onTap: () => _showAbout(context),
-                  child: _buildNavTileContent(
-                    context,
-                    icon: Icons.info_outline,
-                    title: l10n.settings_about,
-                    subtitle: l10n.settings_aboutVersion(
-                      _appVersion.isEmpty ? l10n.common_loading : _appVersion,
+                  // ABOUT
+                  SectionHeader(l10n.settings_about),
+                  MeshCard(
+                    onTap: () => _showAbout(context),
+                    child: _buildNavTileContent(
+                      context,
+                      icon: Icons.info_outline,
+                      title: l10n.settings_about,
+                      subtitle: l10n.settings_aboutVersion(
+                        _appVersion.isEmpty ? l10n.common_loading : _appVersion,
+                      ),
+                      showChevron: false,
                     ),
-                    showChevron: false,
                   ),
-                ),
-              ],
-            );
-          },
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

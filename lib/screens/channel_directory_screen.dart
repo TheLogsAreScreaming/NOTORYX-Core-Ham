@@ -12,6 +12,7 @@ import '../models/channel_directory.dart';
 import '../services/channel_directory_service.dart';
 import '../services/corescope.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/ember_backdrop.dart';
 import '../widgets/connect_ui.dart';
 import '../widgets/mesh_ui.dart';
 
@@ -136,130 +137,141 @@ class _ChannelDirectoryScreenState extends State<ChannelDirectoryScreen> {
       ),
     );
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.channelDirectory_title)),
-      body: Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 720),
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
-            children: [
-              TextField(
-                key: const ValueKey('channel-directory-search'),
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: l10n.channelDirectory_search,
-                ),
-                textInputAction: TextInputAction.search,
-                onChanged: (v) => setState(() => _query = v),
-              ),
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  ChoiceChip(
-                    label: Text(l10n.channelDirectory_catAll),
-                    selected: _category == null,
-                    onSelected: (_) => setState(() => _category = null),
+    return EmberBackdrop(
+      scene: EmberScene.more,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          title: Text(l10n.channelDirectory_title),
+        ),
+        body: Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 720),
+            child: ListView(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
+              children: [
+                TextField(
+                  key: const ValueKey('channel-directory-search'),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    hintText: l10n.channelDirectory_search,
                   ),
-                  for (final c in ChannelCategory.values)
+                  textInputAction: TextInputAction.search,
+                  onChanged: (v) => setState(() => _query = v),
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
                     ChoiceChip(
-                      label: Text(categoryLabel(l10n, c)),
-                      selected: _category == c,
-                      onSelected: (_) =>
-                          setState(() => _category = _category == c ? null : c),
+                      label: Text(l10n.channelDirectory_catAll),
+                      selected: _category == null,
+                      onSelected: (_) => setState(() => _category = null),
                     ),
-                ],
-              ),
-              if (!connector.isConnected) ...[
-                const SizedBox(height: 14),
-                ConsolePanel(
-                  padding: const EdgeInsets.all(14),
-                  child: Row(
-                    children: [
-                      Icon(Icons.info_outline, color: MeshPalette.warn),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          l10n.channelDirectory_connectFirst,
-                          style: TextStyle(color: MeshPalette.ink2),
+                    for (final c in ChannelCategory.values)
+                      ChoiceChip(
+                        label: Text(categoryLabel(l10n, c)),
+                        selected: _category == c,
+                        onSelected: (_) => setState(
+                          () => _category = _category == c ? null : c,
                         ),
                       ),
-                    ],
-                  ),
+                  ],
                 ),
-              ],
-              const SizedBox(height: 22),
-              if (activeShown.isNotEmpty) ...[
-                ConsoleKicker(l10n.activeChannels_title),
-                for (final a in activeShown)
-                  ListTile(
-                    key: ValueKey('active-${a.name}'),
-                    contentPadding: EdgeInsets.zero,
-                    leading: Icon(
-                      Icons.forum_outlined,
-                      color: MeshPalette.ink3,
-                    ),
-                    title: Text(a.name),
-                    subtitle: Text(
-                      [
-                        l10n.activeChannels_messages(a.messages),
-                        _ago(l10n, a.lastActivity),
-                      ].where((s) => s.isNotEmpty).join(' · '),
-                    ),
-                    trailing: joined.contains(a.name)
-                        ? Text(
-                            l10n.channelDirectory_joined,
-                            style: TextStyle(color: MeshPalette.ink3),
-                          )
-                        : TextButton(
-                            onPressed: connector.isConnected && _joining == null
-                                ? () => _joinName(connector, a.name)
-                                : null,
-                            child: Text(l10n.channelDirectory_join),
+                if (!connector.isConnected) ...[
+                  const SizedBox(height: 14),
+                  ConsolePanel(
+                    padding: const EdgeInsets.all(14),
+                    child: Row(
+                      children: [
+                        Icon(Icons.info_outline, color: MeshPalette.warn),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            l10n.channelDirectory_connectFirst,
+                            style: TextStyle(color: MeshPalette.ink2),
                           ),
+                        ),
+                      ],
+                    ),
                   ),
+                ],
+                const SizedBox(height: 22),
+                if (activeShown.isNotEmpty) ...[
+                  ConsoleKicker(l10n.activeChannels_title),
+                  for (final a in activeShown)
+                    ListTile(
+                      key: ValueKey('active-${a.name}'),
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(
+                        Icons.forum_outlined,
+                        color: MeshPalette.ink3,
+                      ),
+                      title: Text(a.name),
+                      subtitle: Text(
+                        [
+                          l10n.activeChannels_messages(a.messages),
+                          _ago(l10n, a.lastActivity),
+                        ].where((s) => s.isNotEmpty).join(' · '),
+                      ),
+                      trailing: joined.contains(a.name)
+                          ? Text(
+                              l10n.channelDirectory_joined,
+                              style: TextStyle(color: MeshPalette.ink3),
+                            )
+                          : TextButton(
+                              onPressed:
+                                  connector.isConnected && _joining == null
+                                  ? () => _joinName(connector, a.name)
+                                  : null,
+                              child: Text(l10n.channelDirectory_join),
+                            ),
+                    ),
+                  Text(
+                    l10n.activeChannels_source(
+                      Uri.tryParse(
+                            context.read<AnalyzerService?>()?.url ?? '',
+                          )?.host ??
+                          '',
+                    ),
+                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                  ),
+                  const SizedBox(height: 18),
+                ],
+                if (near.isNotEmpty) ...[
+                  ConsoleKicker(l10n.channelDirectory_nearYou),
+                  for (final e in near) tile(e),
+                  const SizedBox(height: 12),
+                ],
+                if (rest.isNotEmpty) ...[
+                  ConsoleKicker(
+                    _category == null
+                        ? l10n.channelDirectory_all
+                        : categoryLabel(l10n, _category!),
+                  ),
+                  for (final e in rest) tile(e),
+                ],
+                if (filtered.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: Text(
+                      l10n.channelDirectory_noMatches,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: MeshPalette.ink3),
+                    ),
+                  ),
+                const SizedBox(height: 12),
                 Text(
-                  l10n.activeChannels_source(
-                    Uri.tryParse(
-                          context.read<AnalyzerService?>()?.url ?? '',
-                        )?.host ??
-                        '',
-                  ),
+                  l10n.channelDirectory_addHint,
                   style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
                 ),
-                const SizedBox(height: 18),
               ],
-              if (near.isNotEmpty) ...[
-                ConsoleKicker(l10n.channelDirectory_nearYou),
-                for (final e in near) tile(e),
-                const SizedBox(height: 12),
-              ],
-              if (rest.isNotEmpty) ...[
-                ConsoleKicker(
-                  _category == null
-                      ? l10n.channelDirectory_all
-                      : categoryLabel(l10n, _category!),
-                ),
-                for (final e in rest) tile(e),
-              ],
-              if (filtered.isEmpty)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 24),
-                  child: Text(
-                    l10n.channelDirectory_noMatches,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: MeshPalette.ink3),
-                  ),
-                ),
-              const SizedBox(height: 12),
-              Text(
-                l10n.channelDirectory_addHint,
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
-              ),
-            ],
+            ),
           ),
         ),
       ),

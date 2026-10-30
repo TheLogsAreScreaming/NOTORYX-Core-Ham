@@ -48,6 +48,32 @@ class SectionHeader extends StatelessWidget {
 /// Hairline-outlined container with press feedback, squared off in the
 /// field-instrument style: no fill unless [color] asks for one, and
 /// [borderColor] marks a state such as selected or error.
+/// Corner radius for frosted-glass cards.
+const double glassRadius = 16;
+
+/// The frosted-glass fill shared by cards and panels: see-through white with
+/// a lit top edge on dark themes, milky white on light ones, so the
+/// [EmberBackdrop] glow shows through.
+LinearGradient glassFill(BuildContext context) {
+  final dark = Theme.of(context).brightness == Brightness.dark;
+  return LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    stops: const [0, 0.06, 1],
+    colors: [
+      Colors.white.withValues(alpha: dark ? 0.12 : 0.70),
+      Colors.white.withValues(alpha: dark ? 0.07 : 0.55),
+      Colors.white.withValues(alpha: dark ? 0.03 : 0.40),
+    ],
+  );
+}
+
+/// The thin edge of a glass card.
+Color glassEdge(BuildContext context) =>
+    Theme.of(context).brightness == Brightness.dark
+    ? Colors.white.withValues(alpha: 0.12)
+    : Colors.black.withValues(alpha: 0.08);
+
 class MeshCard extends StatelessWidget {
   final Widget child;
   final VoidCallback? onTap;
@@ -69,14 +95,25 @@ class MeshCard extends StatelessWidget {
     this.margin = const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
     this.color,
     this.borderColor,
-    this.radius = MeshRadii.xs,
+    this.radius = glassRadius,
   });
 
   @override
   Widget build(BuildContext context) {
     final shape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(radius),
-      side: BorderSide(color: borderColor ?? MeshPalette.line),
+      side: BorderSide(color: borderColor ?? glassEdge(context)),
+    );
+    final ink = InkWell(
+      onTap: onTap,
+      onLongPress: onLongPress == null
+          ? null
+          : () {
+              HapticFeedback.selectionClick();
+              onLongPress!();
+            },
+      onSecondaryTap: onSecondaryTap,
+      child: Padding(padding: padding, child: child),
     );
     return Padding(
       padding: margin,
@@ -84,17 +121,13 @@ class MeshCard extends StatelessWidget {
         color: color ?? Colors.transparent,
         shape: shape,
         clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onTap,
-          onLongPress: onLongPress == null
-              ? null
-              : () {
-                  HapticFeedback.selectionClick();
-                  onLongPress!();
-                },
-          onSecondaryTap: onSecondaryTap,
-          child: Padding(padding: padding, child: child),
-        ),
+        // A card with its own colour keeps it; the rest are frosted glass.
+        child: color != null
+            ? ink
+            : Ink(
+                decoration: BoxDecoration(gradient: glassFill(context)),
+                child: ink,
+              ),
       ),
     );
   }
@@ -690,11 +723,14 @@ class MeshGroup extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: MeshPalette.line),
-          borderRadius: BorderRadius.circular(MeshRadii.xs),
+          side: BorderSide(color: glassEdge(context)),
+          borderRadius: BorderRadius.circular(glassRadius),
         ),
         clipBehavior: Clip.antiAlias,
-        child: Column(mainAxisSize: MainAxisSize.min, children: rows),
+        child: Ink(
+          decoration: BoxDecoration(gradient: glassFill(context)),
+          child: Column(mainAxisSize: MainAxisSize.min, children: rows),
+        ),
       ),
     );
   }

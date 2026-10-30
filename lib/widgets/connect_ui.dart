@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/app_localizations.dart';
 import '../theme/mesh_theme.dart';
+import 'mesh_ui.dart' show glassEdge, glassFill, glassRadius;
 
 /// Small uppercase accent heading that opens a section, matching the home
 /// screen's "FIELD TOOLS" label.
@@ -43,8 +44,9 @@ class ConsolePanel extends StatelessWidget {
     return Container(
       padding: padding,
       decoration: BoxDecoration(
-        border: Border.all(color: borderColor ?? MeshPalette.line),
-        borderRadius: BorderRadius.circular(MeshRadii.xs),
+        gradient: glassFill(context),
+        border: Border.all(color: borderColor ?? glassEdge(context)),
+        borderRadius: BorderRadius.circular(glassRadius),
       ),
       child: child,
     );

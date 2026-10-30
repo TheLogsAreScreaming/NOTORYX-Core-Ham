@@ -38,6 +38,7 @@ import '../services/received_image_store.dart';
 import '../services/translation_service.dart';
 import '../utils/lora_airtime.dart';
 import '../helpers/share_links.dart';
+import '../widgets/ember_backdrop.dart';
 import '../widgets/share_in_chat.dart';
 import '../widgets/received_image_message.dart';
 import '../widgets/byte_count_input.dart';
@@ -320,240 +321,251 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () => openRegionSelectDialog(widget.channel),
-          child: Row(
-            children: [
-              _channelIcon(widget.channel),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.channel.name.isEmpty
-                          ? context.l10n.channels_channelIndex(
-                              widget.channel.index,
-                            )
-                          : widget.channel.name,
-                      style: const TextStyle(fontSize: 16),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Consumer<MeshCoreConnector>(
-                      builder: (context, connector, _) {
-                        final privacy = widget.channel.isPublicChannel
-                            ? context.l10n.channels_public
-                            : context.l10n.channels_private;
-                        final region = connector.getChannelRegion(
-                          widget.channel.index,
-                        );
-                        final regionText = region.isNotEmpty
-                            ? ' • ${context.l10n.channels_regionSetTo(region)}'
-                            : '';
-                        return Text(
-                          '$privacy$regionText',
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontSize: 12),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        centerTitle: false,
-        bottom: const SyncProgressAppBarBottom(),
-        actions: [
-          IconButton(
-            tooltip: context.l10n.channels_regionSelect_Title,
-            icon: const Icon(Icons.landscape),
-            onPressed: () => openRegionSelectDialog(widget.channel),
-          ),
-          const RadioStatsIconButton(),
-          PopupMenuButton<String>(
-            icon: const Icon(Icons.more_vert),
-            onSelected: (value) {
-              if (value == 'clearChat') {
-                _confirmClearChat();
-              }
-            },
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: 'clearChat',
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.delete,
-                      size: 20,
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                    const SizedBox(width: 12),
-                    Text(
-                      context.l10n.contact_clearChat,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-      body: SafeArea(
-        top: false,
-        child: Column(
-          children: [
-            Expanded(
-              child: Consumer<MeshCoreConnector>(
-                builder: (context, connector, child) {
-                  final messages = connector.getChannelMessages(widget.channel);
-                  final imageRows = _receivedImageRows(context);
-
-                  if (messages.isEmpty && imageRows.isEmpty) {
-                    return EmptyState(
-                      icon: widget.channel.isPublicChannel
-                          ? Icons.public
-                          : Icons.tag,
-                      title: context.l10n.chat_noMessages,
-                      subtitle: context.l10n.chat_sendMessageTo(
+    return EmberBackdrop(
+      scene: EmberScene.chats,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          title: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => openRegionSelectDialog(widget.channel),
+            child: Row(
+              children: [
+                _channelIcon(widget.channel),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
                         widget.channel.name.isEmpty
                             ? context.l10n.channels_channelIndex(
                                 widget.channel.index,
                               )
                             : widget.channel.name,
+                        style: const TextStyle(fontSize: 16),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    );
-                  }
-
-                  final urlImagesEnabled = connector.isChannelUrlImagesEnabled(
-                    widget.channel.index,
-                  );
-                  // Images are not ChannelMessages: they arrive as GRP_DATA
-                  // chunks and are owned by ReceivedImageStore, so the two
-                  // sources are merged here in timestamp order and the list
-                  // below indexes rows, not messages.
-                  final rows = <_ChannelChatRow>[
-                    for (final message in messages)
-                      _ChannelChatRow(message: message),
-                    ...imageRows,
-                  ]..sort((a, b) => a.timestamp.compareTo(b.timestamp));
-
-                  // Reverse rows so newest appear at bottom with reverse: true
-                  final reversedRows = rows.reversed.toList();
-                  final itemCount =
-                      reversedRows.length + (_isLoadingOlder ? 1 : 0);
-
-                  // Prune stale keys (deleted/cleared messages) to avoid
-                  // unbounded growth.
-                  final liveIds = reversedRows.map((r) => r.id).toSet();
-                  _messageKeys.removeWhere((id, _) => !liveIds.contains(id));
-
-                  // Two messages can collide on messageId (same ms + name/text
-                  // hash). Only the first occurrence owns the shared GlobalKey
-                  // used for scroll-to-message; duplicates get a local key so
-                  // no two widgets share one GlobalKey.
-                  final seenIds = <String>{};
-                  final keyedIndices = <int>{};
-                  for (var i = 0; i < reversedRows.length; i++) {
-                    if (seenIds.add(reversedRows[i].id)) {
-                      keyedIndices.add(i);
-                    }
-                  }
-
-                  // Auto-scroll to bottom if user is already at bottom
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    if (_channelSkipNextBottomSnap) {
-                      _channelSkipNextBottomSnap = false;
-                      return;
-                    }
-                    _scrollController.scrollToBottomIfAtBottom();
-                  });
-
-                  return Stack(
+                      Consumer<MeshCoreConnector>(
+                        builder: (context, connector, _) {
+                          final privacy = widget.channel.isPublicChannel
+                              ? context.l10n.channels_public
+                              : context.l10n.channels_private;
+                          final region = connector.getChannelRegion(
+                            widget.channel.index,
+                          );
+                          final regionText = region.isNotEmpty
+                              ? ' • ${context.l10n.channels_regionSetTo(region)}'
+                              : '';
+                          return Text(
+                            '$privacy$regionText',
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontSize: 12),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          centerTitle: false,
+          bottom: const SyncProgressAppBarBottom(),
+          actions: [
+            IconButton(
+              tooltip: context.l10n.channels_regionSelect_Title,
+              icon: const Icon(Icons.landscape),
+              onPressed: () => openRegionSelectDialog(widget.channel),
+            ),
+            const RadioStatsIconButton(),
+            PopupMenuButton<String>(
+              icon: const Icon(Icons.more_vert),
+              onSelected: (value) {
+                if (value == 'clearChat') {
+                  _confirmClearChat();
+                }
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: 'clearChat',
+                  child: Row(
                     children: [
-                      ChatZoomWrapper(
-                        child: ListView.builder(
-                          reverse: true, // List grows from bottom up
-                          controller: _scrollController,
-                          padding: const EdgeInsets.all(8),
-                          itemCount: itemCount,
-                          itemBuilder: (context, index) {
-                            // Loading indicator now appears at end (bottom) of reversed list
-                            if (_isLoadingOlder && index == itemCount - 1) {
-                              return const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 16),
-                                child: Center(
-                                  child: SizedBox(
-                                    width: 20,
-                                    height: 20,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-                            final row = reversedRows[index];
-                            final GlobalKey messageKey;
-                            if (keyedIndices.contains(index)) {
-                              messageKey = _messageKeys.putIfAbsent(
-                                row.id,
-                                GlobalKey.new,
-                              );
-                            } else {
-                              messageKey = GlobalKey();
-                            }
-                            final isUnreadAnchor =
-                                _unreadDividerMessageId != null &&
-                                row.id == _unreadDividerMessageId;
-                            return Container(
-                              key: messageKey,
-                              child: Builder(
-                                builder: (context) {
-                                  final textScale = context
-                                      .select<ChatTextScaleService, double>(
-                                        (service) => service.scale,
-                                      );
-                                  final message = row.message;
-                                  final bubble = message != null
-                                      ? _buildMessageBubble(
-                                          message,
-                                          textScale,
-                                          urlImagesEnabled,
-                                        )
-                                      : _buildImageBubble(
-                                          row.image!,
-                                          textScale,
-                                        );
-                                  if (isUnreadAnchor) {
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [const UnreadDivider(), bubble],
-                                    );
-                                  }
-                                  return bubble;
-                                },
-                              ),
-                            );
-                          },
+                      Icon(
+                        Icons.delete,
+                        size: 20,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                      const SizedBox(width: 12),
+                      Text(
+                        context.l10n.contact_clearChat,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.error,
                         ),
                       ),
-                      JumpToBottomButton(scrollController: _scrollController),
                     ],
-                  );
-                },
-              ),
+                  ),
+                ),
+              ],
             ),
-            _buildInputBar(),
           ],
+        ),
+        body: SafeArea(
+          top: false,
+          child: Column(
+            children: [
+              Expanded(
+                child: Consumer<MeshCoreConnector>(
+                  builder: (context, connector, child) {
+                    final messages = connector.getChannelMessages(
+                      widget.channel,
+                    );
+                    final imageRows = _receivedImageRows(context);
+
+                    if (messages.isEmpty && imageRows.isEmpty) {
+                      return EmptyState(
+                        icon: widget.channel.isPublicChannel
+                            ? Icons.public
+                            : Icons.tag,
+                        title: context.l10n.chat_noMessages,
+                        subtitle: context.l10n.chat_sendMessageTo(
+                          widget.channel.name.isEmpty
+                              ? context.l10n.channels_channelIndex(
+                                  widget.channel.index,
+                                )
+                              : widget.channel.name,
+                        ),
+                      );
+                    }
+
+                    final urlImagesEnabled = connector
+                        .isChannelUrlImagesEnabled(widget.channel.index);
+                    // Images are not ChannelMessages: they arrive as GRP_DATA
+                    // chunks and are owned by ReceivedImageStore, so the two
+                    // sources are merged here in timestamp order and the list
+                    // below indexes rows, not messages.
+                    final rows = <_ChannelChatRow>[
+                      for (final message in messages)
+                        _ChannelChatRow(message: message),
+                      ...imageRows,
+                    ]..sort((a, b) => a.timestamp.compareTo(b.timestamp));
+
+                    // Reverse rows so newest appear at bottom with reverse: true
+                    final reversedRows = rows.reversed.toList();
+                    final itemCount =
+                        reversedRows.length + (_isLoadingOlder ? 1 : 0);
+
+                    // Prune stale keys (deleted/cleared messages) to avoid
+                    // unbounded growth.
+                    final liveIds = reversedRows.map((r) => r.id).toSet();
+                    _messageKeys.removeWhere((id, _) => !liveIds.contains(id));
+
+                    // Two messages can collide on messageId (same ms + name/text
+                    // hash). Only the first occurrence owns the shared GlobalKey
+                    // used for scroll-to-message; duplicates get a local key so
+                    // no two widgets share one GlobalKey.
+                    final seenIds = <String>{};
+                    final keyedIndices = <int>{};
+                    for (var i = 0; i < reversedRows.length; i++) {
+                      if (seenIds.add(reversedRows[i].id)) {
+                        keyedIndices.add(i);
+                      }
+                    }
+
+                    // Auto-scroll to bottom if user is already at bottom
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (_channelSkipNextBottomSnap) {
+                        _channelSkipNextBottomSnap = false;
+                        return;
+                      }
+                      _scrollController.scrollToBottomIfAtBottom();
+                    });
+
+                    return Stack(
+                      children: [
+                        ChatZoomWrapper(
+                          child: ListView.builder(
+                            reverse: true, // List grows from bottom up
+                            controller: _scrollController,
+                            padding: const EdgeInsets.all(8),
+                            itemCount: itemCount,
+                            itemBuilder: (context, index) {
+                              // Loading indicator now appears at end (bottom) of reversed list
+                              if (_isLoadingOlder && index == itemCount - 1) {
+                                return const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 16),
+                                  child: Center(
+                                    child: SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              final row = reversedRows[index];
+                              final GlobalKey messageKey;
+                              if (keyedIndices.contains(index)) {
+                                messageKey = _messageKeys.putIfAbsent(
+                                  row.id,
+                                  GlobalKey.new,
+                                );
+                              } else {
+                                messageKey = GlobalKey();
+                              }
+                              final isUnreadAnchor =
+                                  _unreadDividerMessageId != null &&
+                                  row.id == _unreadDividerMessageId;
+                              return Container(
+                                key: messageKey,
+                                child: Builder(
+                                  builder: (context) {
+                                    final textScale = context
+                                        .select<ChatTextScaleService, double>(
+                                          (service) => service.scale,
+                                        );
+                                    final message = row.message;
+                                    final bubble = message != null
+                                        ? _buildMessageBubble(
+                                            message,
+                                            textScale,
+                                            urlImagesEnabled,
+                                          )
+                                        : _buildImageBubble(
+                                            row.image!,
+                                            textScale,
+                                          );
+                                    if (isUnreadAnchor) {
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const UnreadDivider(),
+                                          bubble,
+                                        ],
+                                      );
+                                    }
+                                    return bubble;
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        JumpToBottomButton(scrollController: _scrollController),
+                      ],
+                    );
+                  },
+                ),
+              ),
+              _buildInputBar(),
+            ],
+          ),
         ),
       ),
     );
