@@ -17,12 +17,15 @@ class GlassNodeCard extends StatelessWidget {
       child: Row(
         children: [
           if (status != null) ...[
-            Icon(
-              Icons.circle,
-              size: 8,
-              color: status
-                  ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).colorScheme.outline,
+            Semantics(
+              label: status ? 'Node online' : 'Node offline',
+              child: Icon(
+                Icons.circle,
+                size: 8,
+                color: status
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.outline,
+              ),
             ),
             const SizedBox(width: 12),
           ],
