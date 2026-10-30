@@ -9063,6 +9063,22 @@ class AppLocalizationsIt extends AppLocalizations {
       'Sono le preimpostazioni suggerite dalla comunità MeshCore. Scegli quella della tua mesh locale. Imposta frequenza, larghezza di banda, fattore di spreading e coding rate; la potenza di trasmissione resta invariata.';
 
   @override
+  String get mySensors_title => 'Sensori';
+
+  @override
+  String get mySensors_refresh => 'Leggi sensori';
+
+  @override
+  String get mySensors_reading => 'Lettura dei sensori della radio…';
+
+  @override
+  String get mySensors_failed =>
+      'La radio non ha risposto. Tocca aggiorna per riprovare.';
+
+  @override
+  String get mySensors_none => 'Nessuna lettura dai sensori della radio.';
+
+  @override
   String get activeChannels_title => 'Attivi online';
 
   @override

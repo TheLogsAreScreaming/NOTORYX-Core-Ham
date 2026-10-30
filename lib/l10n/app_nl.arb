@@ -3920,6 +3920,11 @@
   "radioPresets_suggested": "Aanbevolen voor jouw regio",
   "radioPresets_community": "Voorinstellingen van de community",
   "radioPresets_hint": "Dit zijn de voorinstellingen die de MeshCore-community aanraadt. Kies die van je lokale mesh. Ze zetten frequentie, bandbreedte, spreidingsfactor en coderate; je zendvermogen blijft hetzelfde.",
+  "mySensors_title": "Sensoren",
+  "mySensors_refresh": "Sensoren uitlezen",
+  "mySensors_reading": "Sensoren van je radio uitlezen…",
+  "mySensors_failed": "Je radio antwoordde niet. Tik op vernieuwen om het opnieuw te proberen.",
+  "mySensors_none": "Geen sensorwaarden van je radio.",
   "activeChannels_title": "Online actief",
   "activeChannels_messages": "{count} berichten",
   "activeChannels_source": "Kanalen die worden gebruikt, volgens de waarnemers van {host}. Kies in Instellingen een analyser voor je regio."

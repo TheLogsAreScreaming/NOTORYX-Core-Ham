@@ -8625,6 +8625,21 @@ class AppLocalizationsKo extends AppLocalizations {
       'MeshCore 커뮤니티가 추천하는 프리셋입니다. 지역 메시에서 쓰는 것을 고르세요. 주파수·대역폭·SF·CR을 설정하며 송신 출력은 그대로입니다.';
 
   @override
+  String get mySensors_title => '센서';
+
+  @override
+  String get mySensors_refresh => '센서 읽기';
+
+  @override
+  String get mySensors_reading => '무전기 센서를 읽는 중…';
+
+  @override
+  String get mySensors_failed => '무전기가 응답하지 않았습니다. 새로고침을 눌러 다시 시도하세요.';
+
+  @override
+  String get mySensors_none => '무전기의 센서 값이 없습니다.';
+
+  @override
   String get activeChannels_title => '온라인 활성';
 
   @override

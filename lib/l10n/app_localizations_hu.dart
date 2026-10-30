@@ -9041,6 +9041,22 @@ class AppLocalizationsHu extends AppLocalizations {
       'Ezeket az előbeállításokat a MeshCore közösség ajánlja. Válassza a helyi hálózatét. Beállítja a frekvenciát, sávszélességet, SF-et és CR-t; az adóteljesítmény marad.';
 
   @override
+  String get mySensors_title => 'Érzékelők';
+
+  @override
+  String get mySensors_refresh => 'Érzékelők olvasása';
+
+  @override
+  String get mySensors_reading => 'A rádió érzékelőinek olvasása…';
+
+  @override
+  String get mySensors_failed =>
+      'A rádió nem válaszolt. Koppintson a frissítésre.';
+
+  @override
+  String get mySensors_none => 'Nincs érzékelőadat a rádiótól.';
+
+  @override
   String get activeChannels_title => 'Aktív online';
 
   @override

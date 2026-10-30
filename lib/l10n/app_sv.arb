@@ -3920,6 +3920,11 @@
   "radioPresets_suggested": "Föreslaget för din region",
   "radioPresets_community": "Gemenskapens förinställningar",
   "radioPresets_hint": "Detta är förinställningarna som MeshCore-gemenskapen föreslår. Välj den ditt lokala nät använder. Den sätter frekvens, bandbredd, spridningsfaktor och kodningsgrad; din sändeffekt är oförändrad.",
+  "mySensors_title": "Sensorer",
+  "mySensors_refresh": "Läs sensorer",
+  "mySensors_reading": "Läser radions sensorer…",
+  "mySensors_failed": "Radion svarade inte. Tryck på uppdatera för att försöka igen.",
+  "mySensors_none": "Inga sensorvärden från radion.",
   "activeChannels_title": "Aktiva online",
   "activeChannels_messages": "{count} meddelanden",
   "activeChannels_source": "Kanaler som används, enligt observatörerna hos {host}. Byt analysator i inställningarna för ditt område."

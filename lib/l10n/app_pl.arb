@@ -3958,6 +3958,11 @@
   "radioPresets_suggested": "Sugerowane dla twojego regionu",
   "radioPresets_community": "Ustawienia społeczności",
   "radioPresets_hint": "To ustawienia sugerowane przez społeczność MeshCore. Wybierz to, którego używa lokalna sieć. Ustawia częstotliwość, pasmo, SF i CR; moc nadawania się nie zmienia.",
+  "mySensors_title": "Czujniki",
+  "mySensors_refresh": "Odczytaj czujniki",
+  "mySensors_reading": "Odczyt czujników radia…",
+  "mySensors_failed": "Radio nie odpowiedziało. Stuknij odśwież, aby spróbować ponownie.",
+  "mySensors_none": "Brak odczytów czujników z radia.",
   "activeChannels_title": "Aktywne online",
   "activeChannels_messages": "Wiadomości: {count}",
   "activeChannels_source": "Kanały w użyciu według obserwatorów {host}. Zmień analizator w ustawieniach, by zobaczyć swój region."

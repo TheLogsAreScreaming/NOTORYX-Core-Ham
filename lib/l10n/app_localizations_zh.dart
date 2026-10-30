@@ -8428,6 +8428,21 @@ class AppLocalizationsZh extends AppLocalizations {
       '这些是 MeshCore 社区推荐的预设。请选择你本地网络使用的那个。预设会设置频率、带宽、扩频因子和编码率，发射功率保持不变。';
 
   @override
+  String get mySensors_title => '传感器';
+
+  @override
+  String get mySensors_refresh => '读取传感器';
+
+  @override
+  String get mySensors_reading => '正在读取电台传感器…';
+
+  @override
+  String get mySensors_failed => '电台没有响应。点按刷新重试。';
+
+  @override
+  String get mySensors_none => '电台没有传感器读数。';
+
+  @override
   String get activeChannels_title => '在线活跃';
 
   @override

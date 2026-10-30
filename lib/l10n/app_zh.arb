@@ -3925,6 +3925,11 @@
   "radioPresets_suggested": "你所在地区的推荐",
   "radioPresets_community": "社区预设",
   "radioPresets_hint": "这些是 MeshCore 社区推荐的预设。请选择你本地网络使用的那个。预设会设置频率、带宽、扩频因子和编码率，发射功率保持不变。",
+  "mySensors_title": "传感器",
+  "mySensors_refresh": "读取传感器",
+  "mySensors_reading": "正在读取电台传感器…",
+  "mySensors_failed": "电台没有响应。点按刷新重试。",
+  "mySensors_none": "电台没有传感器读数。",
   "activeChannels_title": "在线活跃",
   "activeChannels_messages": "{count} 条消息",
   "activeChannels_source": "{host} 的观测站收到的正在使用的频道。在设置中更换分析器可查看你所在地区。"

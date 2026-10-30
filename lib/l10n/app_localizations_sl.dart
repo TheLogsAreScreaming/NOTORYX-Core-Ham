@@ -9039,6 +9039,22 @@ class AppLocalizationsSl extends AppLocalizations {
       'To so prednastavitve, ki jih priporoča skupnost MeshCore. Izberite tisto, ki jo uporablja lokalno omrežje. Nastavi frekvenco, pasovno širino, SF in CR; oddajna moč ostane.';
 
   @override
+  String get mySensors_title => 'Senzorji';
+
+  @override
+  String get mySensors_refresh => 'Preberi senzorje';
+
+  @override
+  String get mySensors_reading => 'Branje senzorjev radia…';
+
+  @override
+  String get mySensors_failed =>
+      'Radio se ni odzval. Tapnite osveži za ponovni poskus.';
+
+  @override
+  String get mySensors_none => 'Ni podatkov senzorjev radia.';
+
+  @override
   String get activeChannels_title => 'Aktivni na spletu';
 
   @override

@@ -9077,6 +9077,22 @@ class AppLocalizationsUk extends AppLocalizations {
       'Це пресети, які радить спільнота MeshCore. Оберіть той, що використовує місцева мережа. Пресет задає частоту, смугу, SF і CR; потужність передавання не змінюється.';
 
   @override
+  String get mySensors_title => 'Датчики';
+
+  @override
+  String get mySensors_refresh => 'Зчитати датчики';
+
+  @override
+  String get mySensors_reading => 'Зчитування датчиків радіо…';
+
+  @override
+  String get mySensors_failed =>
+      'Радіо не відповіло. Натисніть «оновити», щоб спробувати ще раз.';
+
+  @override
+  String get mySensors_none => 'Немає показів датчиків радіо.';
+
+  @override
   String get activeChannels_title => 'Активні онлайн';
 
   @override

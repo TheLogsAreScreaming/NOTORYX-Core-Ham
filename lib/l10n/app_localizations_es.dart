@@ -9055,6 +9055,22 @@ class AppLocalizationsEs extends AppLocalizations {
       'Son los ajustes que sugiere la comunidad MeshCore. Elige el de tu malla local. Fija frecuencia, ancho de banda, factor de dispersión y tasa de codificación; tu potencia de transmisión no cambia.';
 
   @override
+  String get mySensors_title => 'Sensores';
+
+  @override
+  String get mySensors_refresh => 'Leer sensores';
+
+  @override
+  String get mySensors_reading => 'Leyendo los sensores de tu radio…';
+
+  @override
+  String get mySensors_failed =>
+      'Tu radio no respondió. Toca actualizar para reintentar.';
+
+  @override
+  String get mySensors_none => 'Tu radio no da lecturas de sensores.';
+
+  @override
   String get activeChannels_title => 'Activos en línea';
 
   @override
