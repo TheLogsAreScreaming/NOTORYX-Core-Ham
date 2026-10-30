@@ -131,8 +131,9 @@ class SensorSubscriptionService extends ChangeNotifier {
     for (final sub in _subscriptions.values) {
       if (sub.pushTag != push.tag ||
           !sub.activeAt(DateTime.now()) ||
-          sub.ownerKey != _connector.selfPublicKeyHex)
+          sub.ownerKey != _connector.selfPublicKeyHex) {
         continue;
+      }
       sub.pushes.insert(
         0,
         SensorReadingPush(

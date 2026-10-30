@@ -162,8 +162,9 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
   }
 
   void _handleTelemetryResponse(Uint8List frame) {
-    if (_requestScope != context.read<MeshCoreConnector>().selfPublicKeyHex)
+    if (_requestScope != context.read<MeshCoreConnector>().selfPublicKeyHex) {
       return;
+    }
     final parsedTelemetry = CayenneLpp.parseByChannel(frame);
     _rawReadings = CayenneLpp.parse(frame);
     final cache = context.read<MeshCoreConnector>().telemetryStore;

@@ -92,8 +92,9 @@ class NodeTelemetryStore extends ChangeNotifier {
           !lon.isFinite ||
           !alt.isFinite ||
           lat.abs() > 90 ||
-          lon.abs() > 180)
+          lon.abs() > 180) {
         return null;
+      }
       return Map<String, dynamic>.unmodifiable({
         'latitude': lat,
         'longitude': lon,
@@ -103,13 +104,15 @@ class NodeTelemetryStore extends ChangeNotifier {
     if (value is! num || !value.isFinite) return null;
     if ((type == CayenneLpp.lppPercentage ||
             type == CayenneLpp.lppRelativeHumidity) &&
-        (value < 0 || value > 100))
+        (value < 0 || value > 100)) {
       return null;
+    }
     if ((type == CayenneLpp.lppVoltage ||
             type == CayenneLpp.lppLuminosity ||
             type == CayenneLpp.lppBarometricPressure) &&
-        value < 0)
+        value < 0) {
       return null;
+    }
     return value;
   }
 
@@ -129,24 +132,27 @@ class NodeTelemetryStore extends ChangeNotifier {
             for (final entry in data.entries) {
               if (entry.key is! String ||
                   !_keyValid(entry.key as String) ||
-                  entry.value is! List)
+                  entry.value is! List) {
                 continue;
+              }
               for (final item in entry.value as List) {
                 if (item is! Map ||
                     item['channel'] is! int ||
                     (item['channel'] as int) < 0 ||
                     (item['channel'] as int) > 255 ||
                     item['type'] is! int ||
-                    item['at'] is! int)
+                    item['at'] is! int) {
                   continue;
+                }
                 final value = _value(item['type'] as int, item['value']);
                 if (value == null) continue;
                 final at = DateTime.fromMillisecondsSinceEpoch(
                   item['at'] as int,
                 );
                 if (at.isAfter(now) ||
-                    now.difference(at) >= const Duration(hours: 24))
+                    now.difference(at) >= const Duration(hours: 24)) {
                   continue;
+                }
                 final sources = TelemetrySource.values.where(
                   (s) => s.name == item['source'],
                 );
@@ -181,13 +187,16 @@ class NodeTelemetryStore extends ChangeNotifier {
   }) {
     if (_disposed || _scope.isEmpty || !_keyValid(key)) return;
     final time = at ?? now;
-    if (time.isAfter(now) || now.difference(time) >= const Duration(hours: 24))
+    if (time.isAfter(now) ||
+        now.difference(time) >= const Duration(hours: 24)) {
       return;
+    }
     var changed = false;
     for (final raw in readings) {
       final type = raw['type'], channel = raw['channel'];
-      if (type is! int || channel is! int || channel < 0 || channel > 255)
+      if (type is! int || channel is! int || channel < 0 || channel > 255) {
         continue;
+      }
       final value = _value(type, raw['value']);
       if (value == null) continue;
       changed =
@@ -281,8 +290,9 @@ class NodeTelemetryStore extends ChangeNotifier {
     );
     _writes = _writes
         .then((_) async {
-          if (!await prefs.setString(key, data))
+          if (!await prefs.setString(key, data)) {
             throw StateError('Telemetry cache write failed');
+          }
         })
         .catchError((Object e) {
           appLogger.error('Cannot save telemetry cache: $e');
