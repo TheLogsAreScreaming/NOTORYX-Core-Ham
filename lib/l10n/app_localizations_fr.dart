@@ -9084,4 +9084,20 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'Ce sont les préréglages suggérés par la communauté MeshCore. Choisissez celui de votre maillage local. Il règle fréquence, bande passante, facteur d’étalement et taux de codage ; votre puissance d’émission ne change pas.';
+
+  @override
+  String get mySensors_title => 'Capteurs';
+
+  @override
+  String get mySensors_refresh => 'Lire les capteurs';
+
+  @override
+  String get mySensors_reading => 'Lecture des capteurs de votre radio…';
+
+  @override
+  String get mySensors_failed =>
+      'Votre radio n’a pas répondu. Touchez actualiser pour réessayer.';
+
+  @override
+  String get mySensors_none => 'Aucune mesure de capteur de votre radio.';
 }

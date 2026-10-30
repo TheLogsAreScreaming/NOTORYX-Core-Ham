@@ -9015,4 +9015,20 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'Dit zijn de voorinstellingen die de MeshCore-community aanraadt. Kies die van je lokale mesh. Ze zetten frequentie, bandbreedte, spreidingsfactor en coderate; je zendvermogen blijft hetzelfde.';
+
+  @override
+  String get mySensors_title => 'Sensoren';
+
+  @override
+  String get mySensors_refresh => 'Sensoren uitlezen';
+
+  @override
+  String get mySensors_reading => 'Sensoren van je radio uitlezen…';
+
+  @override
+  String get mySensors_failed =>
+      'Je radio antwoordde niet. Tik op vernieuwen om het opnieuw te proberen.';
+
+  @override
+  String get mySensors_none => 'Geen sensorwaarden van je radio.';
 }

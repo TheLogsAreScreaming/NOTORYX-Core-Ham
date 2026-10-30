@@ -8613,4 +8613,19 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'MeshCore コミュニティが推奨するプリセットです。地元のメッシュで使われているものを選んでください。周波数・帯域幅・SF・CR を設定し、送信出力は変わりません。';
+
+  @override
+  String get mySensors_title => 'センサー';
+
+  @override
+  String get mySensors_refresh => 'センサーを読み取る';
+
+  @override
+  String get mySensors_reading => '無線機のセンサーを読み取り中…';
+
+  @override
+  String get mySensors_failed => '無線機が応答しませんでした。更新をタップして再試行してください。';
+
+  @override
+  String get mySensors_none => '無線機からのセンサー値はありません。';
 }

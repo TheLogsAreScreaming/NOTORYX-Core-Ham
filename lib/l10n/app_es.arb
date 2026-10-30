@@ -4053,5 +4053,10 @@
   "radioPresets_search": "Buscar ajustes",
   "radioPresets_suggested": "Sugerido para tu región",
   "radioPresets_community": "Ajustes de la comunidad",
-  "radioPresets_hint": "Son los ajustes que sugiere la comunidad MeshCore. Elige el de tu malla local. Fija frecuencia, ancho de banda, factor de dispersión y tasa de codificación; tu potencia de transmisión no cambia."
+  "radioPresets_hint": "Son los ajustes que sugiere la comunidad MeshCore. Elige el de tu malla local. Fija frecuencia, ancho de banda, factor de dispersión y tasa de codificación; tu potencia de transmisión no cambia.",
+  "mySensors_title": "Sensores",
+  "mySensors_refresh": "Leer sensores",
+  "mySensors_reading": "Leyendo los sensores de tu radio…",
+  "mySensors_failed": "Tu radio no respondió. Toca actualizar para reintentar.",
+  "mySensors_none": "Tu radio no da lecturas de sensores."
 }

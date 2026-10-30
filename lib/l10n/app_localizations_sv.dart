@@ -8976,4 +8976,20 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'Detta är förinställningarna som MeshCore-gemenskapen föreslår. Välj den ditt lokala nät använder. Den sätter frekvens, bandbredd, spridningsfaktor och kodningsgrad; din sändeffekt är oförändrad.';
+
+  @override
+  String get mySensors_title => 'Sensorer';
+
+  @override
+  String get mySensors_refresh => 'Läs sensorer';
+
+  @override
+  String get mySensors_reading => 'Läser radions sensorer…';
+
+  @override
+  String get mySensors_failed =>
+      'Radion svarade inte. Tryck på uppdatera för att försöka igen.';
+
+  @override
+  String get mySensors_none => 'Inga sensorvärden från radion.';
 }

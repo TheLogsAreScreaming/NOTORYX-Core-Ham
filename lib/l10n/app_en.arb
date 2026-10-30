@@ -5237,5 +5237,10 @@
   "radioPresets_search": "Search presets",
   "radioPresets_suggested": "Suggested for your region",
   "radioPresets_community": "Community presets",
-  "radioPresets_hint": "These are the presets the MeshCore community suggests. Pick the one your local mesh runs. A preset sets frequency, bandwidth, spreading factor and coding rate; your transmit power stays as it is."
+  "radioPresets_hint": "These are the presets the MeshCore community suggests. Pick the one your local mesh runs. A preset sets frequency, bandwidth, spreading factor and coding rate; your transmit power stays as it is.",
+  "mySensors_title": "Sensors",
+  "mySensors_refresh": "Read sensors",
+  "mySensors_reading": "Reading your radio’s sensors…",
+  "mySensors_failed": "Your radio didn’t answer. Tap refresh to try again.",
+  "mySensors_none": "No sensor readings from your radio."
 }

@@ -9037,4 +9037,20 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'Това са настройките, които общността на MeshCore препоръчва. Изберете тази на местната мрежа. Настройката задава честота, ширина на канала, SF и CR; мощността на предаване остава същата.';
+
+  @override
+  String get mySensors_title => 'Сензори';
+
+  @override
+  String get mySensors_refresh => 'Прочети сензорите';
+
+  @override
+  String get mySensors_reading => 'Четене на сензорите на радиото…';
+
+  @override
+  String get mySensors_failed =>
+      'Радиото не отговори. Докоснете обновяване, за да опитате отново.';
+
+  @override
+  String get mySensors_none => 'Няма данни от сензорите на радиото.';
 }

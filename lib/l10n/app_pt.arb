@@ -3919,5 +3919,10 @@
   "radioPresets_search": "Pesquisar predefinições",
   "radioPresets_suggested": "Sugerido para a sua região",
   "radioPresets_community": "Predefinições da comunidade",
-  "radioPresets_hint": "Estas são as predefinições sugeridas pela comunidade MeshCore. Escolha a da sua malha local. Define frequência, largura de banda, fator de espalhamento e taxa de codificação; a potência de transmissão mantém-se."
+  "radioPresets_hint": "Estas são as predefinições sugeridas pela comunidade MeshCore. Escolha a da sua malha local. Define frequência, largura de banda, fator de espalhamento e taxa de codificação; a potência de transmissão mantém-se.",
+  "mySensors_title": "Sensores",
+  "mySensors_refresh": "Ler sensores",
+  "mySensors_reading": "A ler os sensores do rádio…",
+  "mySensors_failed": "O rádio não respondeu. Toque em atualizar para tentar de novo.",
+  "mySensors_none": "Sem leituras de sensores do rádio."
 }

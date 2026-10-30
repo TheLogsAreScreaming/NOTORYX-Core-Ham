@@ -9064,4 +9064,20 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'Das sind die von der MeshCore-Community empfohlenen Voreinstellungen. Wähle die deines lokalen Mesh. Sie setzt Frequenz, Bandbreite, Spreizfaktor und Coderate; deine Sendeleistung bleibt.';
+
+  @override
+  String get mySensors_title => 'Sensoren';
+
+  @override
+  String get mySensors_refresh => 'Sensoren lesen';
+
+  @override
+  String get mySensors_reading => 'Sensoren des Funkgeräts werden gelesen…';
+
+  @override
+  String get mySensors_failed =>
+      'Das Funkgerät hat nicht geantwortet. Tippe auf Aktualisieren.';
+
+  @override
+  String get mySensors_none => 'Keine Sensorwerte vom Funkgerät.';
 }

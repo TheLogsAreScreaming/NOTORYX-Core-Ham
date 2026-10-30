@@ -3957,5 +3957,10 @@
   "radioPresets_search": "Szukaj ustawień",
   "radioPresets_suggested": "Sugerowane dla twojego regionu",
   "radioPresets_community": "Ustawienia społeczności",
-  "radioPresets_hint": "To ustawienia sugerowane przez społeczność MeshCore. Wybierz to, którego używa lokalna sieć. Ustawia częstotliwość, pasmo, SF i CR; moc nadawania się nie zmienia."
+  "radioPresets_hint": "To ustawienia sugerowane przez społeczność MeshCore. Wybierz to, którego używa lokalna sieć. Ustawia częstotliwość, pasmo, SF i CR; moc nadawania się nie zmienia.",
+  "mySensors_title": "Czujniki",
+  "mySensors_refresh": "Odczytaj czujniki",
+  "mySensors_reading": "Odczyt czujników radia…",
+  "mySensors_failed": "Radio nie odpowiedziało. Stuknij odśwież, aby spróbować ponownie.",
+  "mySensors_none": "Brak odczytów czujników z radia."
 }

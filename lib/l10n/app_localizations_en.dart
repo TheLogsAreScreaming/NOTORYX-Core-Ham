@@ -8929,4 +8929,20 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'These are the presets the MeshCore community suggests. Pick the one your local mesh runs. A preset sets frequency, bandwidth, spreading factor and coding rate; your transmit power stays as it is.';
+
+  @override
+  String get mySensors_title => 'Sensors';
+
+  @override
+  String get mySensors_refresh => 'Read sensors';
+
+  @override
+  String get mySensors_reading => 'Reading your radio’s sensors…';
+
+  @override
+  String get mySensors_failed =>
+      'Your radio didn’t answer. Tap refresh to try again.';
+
+  @override
+  String get mySensors_none => 'No sensor readings from your radio.';
 }

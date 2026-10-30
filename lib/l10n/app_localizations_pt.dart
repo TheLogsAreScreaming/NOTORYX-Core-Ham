@@ -9036,4 +9036,20 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'Estas são as predefinições sugeridas pela comunidade MeshCore. Escolha a da sua malha local. Define frequência, largura de banda, fator de espalhamento e taxa de codificação; a potência de transmissão mantém-se.';
+
+  @override
+  String get mySensors_title => 'Sensores';
+
+  @override
+  String get mySensors_refresh => 'Ler sensores';
+
+  @override
+  String get mySensors_reading => 'A ler os sensores do rádio…';
+
+  @override
+  String get mySensors_failed =>
+      'O rádio não respondeu. Toque em atualizar para tentar de novo.';
+
+  @override
+  String get mySensors_none => 'Sem leituras de sensores do rádio.';
 }

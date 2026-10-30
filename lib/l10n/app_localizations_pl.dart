@@ -9086,4 +9086,20 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'To ustawienia sugerowane przez społeczność MeshCore. Wybierz to, którego używa lokalna sieć. Ustawia częstotliwość, pasmo, SF i CR; moc nadawania się nie zmienia.';
+
+  @override
+  String get mySensors_title => 'Czujniki';
+
+  @override
+  String get mySensors_refresh => 'Odczytaj czujniki';
+
+  @override
+  String get mySensors_reading => 'Odczyt czujników radia…';
+
+  @override
+  String get mySensors_failed =>
+      'Radio nie odpowiedziało. Stuknij odśwież, aby spróbować ponownie.';
+
+  @override
+  String get mySensors_none => 'Brak odczytów czujników z radia.';
 }

@@ -9027,4 +9027,20 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get radioPresets_hint =>
       'Toto sú predvoľby odporúčané komunitou MeshCore. Vyberte tú, ktorú používa miestna sieť. Nastaví frekvenciu, šírku pásma, SF a CR; vysielací výkon zostáva.';
+
+  @override
+  String get mySensors_title => 'Senzory';
+
+  @override
+  String get mySensors_refresh => 'Načítať senzory';
+
+  @override
+  String get mySensors_reading => 'Čítajú sa senzory rádia…';
+
+  @override
+  String get mySensors_failed =>
+      'Rádio neodpovedalo. Ťuknite na obnoviť a skúste znova.';
+
+  @override
+  String get mySensors_none => 'Žiadne údaje zo senzorov rádia.';
 }

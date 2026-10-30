@@ -3957,5 +3957,10 @@
   "radioPresets_search": "Előbeállítás keresése",
   "radioPresets_suggested": "Ajánlott a régiójához",
   "radioPresets_community": "Közösségi előbeállítások",
-  "radioPresets_hint": "Ezeket az előbeállításokat a MeshCore közösség ajánlja. Válassza a helyi hálózatét. Beállítja a frekvenciát, sávszélességet, SF-et és CR-t; az adóteljesítmény marad."
+  "radioPresets_hint": "Ezeket az előbeállításokat a MeshCore közösség ajánlja. Válassza a helyi hálózatét. Beállítja a frekvenciát, sávszélességet, SF-et és CR-t; az adóteljesítmény marad.",
+  "mySensors_title": "Érzékelők",
+  "mySensors_refresh": "Érzékelők olvasása",
+  "mySensors_reading": "A rádió érzékelőinek olvasása…",
+  "mySensors_failed": "A rádió nem válaszolt. Koppintson a frissítésre.",
+  "mySensors_none": "Nincs érzékelőadat a rádiótól."
 }

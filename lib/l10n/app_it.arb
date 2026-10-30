@@ -4053,5 +4053,10 @@
   "radioPresets_search": "Cerca preimpostazioni",
   "radioPresets_suggested": "Suggerito per la tua regione",
   "radioPresets_community": "Preimpostazioni della comunità",
-  "radioPresets_hint": "Sono le preimpostazioni suggerite dalla comunità MeshCore. Scegli quella della tua mesh locale. Imposta frequenza, larghezza di banda, fattore di spreading e coding rate; la potenza di trasmissione resta invariata."
+  "radioPresets_hint": "Sono le preimpostazioni suggerite dalla comunità MeshCore. Scegli quella della tua mesh locale. Imposta frequenza, larghezza di banda, fattore di spreading e coding rate; la potenza di trasmissione resta invariata.",
+  "mySensors_title": "Sensori",
+  "mySensors_refresh": "Leggi sensori",
+  "mySensors_reading": "Lettura dei sensori della radio…",
+  "mySensors_failed": "La radio non ha risposto. Tocca aggiorna per riprovare.",
+  "mySensors_none": "Nessuna lettura dai sensori della radio."
 }
