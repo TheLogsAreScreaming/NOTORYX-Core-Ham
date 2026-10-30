@@ -9073,4 +9073,16 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get fieldOps_checkInChannelHint =>
       'Подписва се с ключа на радиото, за да виждат другите в канала, че наистина сте вие. Контактите от пътуването го получават директно.';
+
+  @override
+  String get channels_regionUnknown => 'Регионално';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Изпратено до регион $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Изпратено до регион, непознат за приложението';
 }

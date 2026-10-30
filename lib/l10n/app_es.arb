@@ -4063,5 +4063,8 @@
   "activeChannels_messages": "{count} mensajes",
   "activeChannels_source": "Canales en uso, según los observadores de {host}. Cambia el analizador en Ajustes para ver tu zona.",
   "fieldOps_checkInChannelLabel": "Los check-ins también van al canal",
-  "fieldOps_checkInChannelHint": "Firmado con la clave de tu radio, para que los demás del canal vean que eres tú. Tus contactos del viaje lo siguen recibiendo directamente."
+  "fieldOps_checkInChannelHint": "Firmado con la clave de tu radio, para que los demás del canal vean que eres tú. Tus contactos del viaje lo siguen recibiendo directamente.",
+  "channels_regionUnknown": "Regional",
+  "channels_regionSemantics": "Enviado a la región {region}",
+  "channels_regionUnknownSemantics": "Enviado a una región que la app no conoce"
 }

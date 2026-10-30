@@ -9073,4 +9073,16 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get fieldOps_checkInChannelHint =>
       'Assinado com a chave do rádio, para que os outros no canal vejam que é mesmo você. Os contactos da viagem continuam a recebê-lo diretamente.';
+
+  @override
+  String get channels_regionUnknown => 'Regional';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Enviado para a região $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Enviado para uma região que a app não conhece';
 }

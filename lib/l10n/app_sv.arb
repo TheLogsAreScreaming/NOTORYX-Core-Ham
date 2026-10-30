@@ -3929,5 +3929,8 @@
   "activeChannels_messages": "{count} meddelanden",
   "activeChannels_source": "Kanaler som används, enligt observatörerna hos {host}. Byt analysator i inställningarna för ditt område.",
   "fieldOps_checkInChannelLabel": "Incheckningar går också till kanal",
-  "fieldOps_checkInChannelHint": "Signerad med radions nyckel så att andra i kanalen ser att det verkligen är du. Resekontakterna får den fortfarande direkt."
+  "fieldOps_checkInChannelHint": "Signerad med radions nyckel så att andra i kanalen ser att det verkligen är du. Resekontakterna får den fortfarande direkt.",
+  "channels_regionUnknown": "Regional",
+  "channels_regionSemantics": "Skickat till region {region}",
+  "channels_regionUnknownSemantics": "Skickat till en region appen inte känner"
 }

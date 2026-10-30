@@ -124,6 +124,7 @@ class ChannelMessageStore {
       if (msg.signature != ChannelSignature.none)
         'signature': msg.signature.name,
       if (msg.signerKey != null) 'signerKey': base64Encode(msg.signerKey!),
+      if (msg.region != null) 'region': msg.region,
     };
   }
 
@@ -212,6 +213,7 @@ class ChannelMessageStore {
         (v) => v.name == json['signature'],
         orElse: () => ChannelSignature.none,
       ),
+      region: json['region'] as String?,
       signerKey: json['signerKey'] is String
           ? Uint8List.fromList(base64Decode(json['signerKey'] as String))
           : null,

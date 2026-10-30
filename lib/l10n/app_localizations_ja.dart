@@ -8648,4 +8648,15 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get fieldOps_checkInChannelHint =>
       '無線機の鍵で署名されるので、チャンネルの他の人に本当にあなたからだと分かります。旅行の連絡先には引き続き直接届きます。';
+
+  @override
+  String get channels_regionUnknown => '地域限定';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return '地域 $region 宛てに送信';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics => 'アプリが知らない地域宛てに送信';
 }

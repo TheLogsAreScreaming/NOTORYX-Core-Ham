@@ -9122,4 +9122,16 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get fieldOps_checkInChannelHint =>
       'Podpisane kluczem radia, więc inni na kanale widzą, że to naprawdę ty. Kontakty z wyprawy nadal dostają je bezpośrednio.';
+
+  @override
+  String get channels_regionUnknown => 'Regionalne';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Wysłane do regionu $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Wysłane do regionu nieznanego aplikacji';
 }

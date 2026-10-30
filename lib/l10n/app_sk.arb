@@ -3929,5 +3929,8 @@
   "activeChannels_messages": "Správy: {count}",
   "activeChannels_source": "Kanály, ktoré sa používajú, podľa pozorovateľov {host}. V nastaveniach zmeňte analyzátor pre svoju oblasť.",
   "fieldOps_checkInChannelLabel": "Hlásenia idú aj do kanála",
-  "fieldOps_checkInChannelHint": "Podpísané kľúčom rádia, aby ostatní v kanáli videli, že ste to naozaj vy. Kontakty výletu ho stále dostanú priamo."
+  "fieldOps_checkInChannelHint": "Podpísané kľúčom rádia, aby ostatní v kanáli videli, že ste to naozaj vy. Kontakty výletu ho stále dostanú priamo.",
+  "channels_regionUnknown": "Regionálne",
+  "channels_regionSemantics": "Odoslané do regiónu {region}",
+  "channels_regionUnknownSemantics": "Odoslané do regiónu, ktorý aplikácia nepozná"
 }

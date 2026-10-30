@@ -9090,4 +9090,16 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get fieldOps_checkInChannelHint =>
       'Firmado con la clave de tu radio, para que los demás del canal vean que eres tú. Tus contactos del viaje lo siguen recibiendo directamente.';
+
+  @override
+  String get channels_regionUnknown => 'Regional';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Enviado a la región $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Enviado a una región que la app no conoce';
 }

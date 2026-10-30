@@ -69,6 +69,10 @@ class ChannelMessage {
   final ChannelSignature signature;
   final Uint8List? signerKey;
 
+  /// The region the post was scoped to by its sender, when it was: the
+  /// region's name, or [unknownRegion] for a region this app can't name.
+  final String? region;
+
   ChannelMessage({
     this.senderKey,
     required this.senderName,
@@ -97,6 +101,7 @@ class ChannelMessage {
     this.viaMqtt = false,
     this.signature = ChannelSignature.none,
     this.signerKey,
+    this.region,
   }) : messageId =
            messageId ??
            '${timestamp.millisecondsSinceEpoch}_${senderName.hashCode}_${text.hashCode}',
@@ -131,6 +136,7 @@ class ChannelMessage {
     bool? viaMqtt,
     ChannelSignature? signature,
     Uint8List? signerKey,
+    String? region,
   }) {
     return ChannelMessage(
       senderKey: senderKey,
@@ -168,6 +174,7 @@ class ChannelMessage {
       viaMqtt: viaMqtt ?? this.viaMqtt,
       signature: signature ?? this.signature,
       signerKey: signerKey ?? this.signerKey,
+      region: region ?? this.region,
     );
   }
 

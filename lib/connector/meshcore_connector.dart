@@ -5,11 +5,14 @@ import 'dart:math' as math;
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:meshcore_open/storage/region_store.dart';
 import 'package:pointycastle/export.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_blue_plus_platform_interface/flutter_blue_plus_platform_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/region_setup.dart' show parseRegionTrees;
+import '../models/region_scope.dart';
 import '../models/advert_signature.dart';
 import '../models/channel.dart';
 import '../models/channel_message.dart';
@@ -998,6 +1001,31 @@ class MeshCoreConnector extends ChangeNotifier {
     return _contactUrlImagesEnabled[contactKeyHex] ?? false;
   }
 
+  /// Region names a scoped message can be matched against: the bundled
+  /// region trees plus any region set on a channel here.
+  Set<String> _knownRegionNames() => {
+    ..._bundledRegionNames,
+    for (final r in _channelRegions.values)
+      if (r.isNotEmpty) r,
+  };
+
+  /// Names from `assets/region_trees.json`, loaded once at start.
+  Set<String> _bundledRegionNames = const {};
+
+  @visibleForTesting
+  set debugRegionNames(Set<String> names) => _bundledRegionNames = names;
+
+  Future<void> _loadBundledRegionNames() async {
+    try {
+      final trees = parseRegionTrees(
+        await rootBundle.loadString('assets/region_trees.json'),
+      );
+      _bundledRegionNames = {for (final t in trees) ...t.regions.keys};
+    } catch (_) {
+      // Tests and stripped builds have no asset; channel regions still work.
+    }
+  }
+
   bool hasChannelRegion(int channelIndex) {
     return (_channelRegions[channelIndex] ?? '').isNotEmpty;
   }
@@ -1349,6 +1377,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     // Initialize notification service
     _notificationService.initialize();
+    unawaited(_loadBundledRegionNames());
     _loadChannelOrder();
 
     // Initialize retry service callbacks
@@ -7075,6 +7104,12 @@ class MeshCoreConnector extends ChangeNotifier {
             channelIndex: channel.index,
             packetHash: pktHash,
             viaMqtt: viaMqtt,
+            region: matchRegion(
+              packet.transportCode,
+              packet.payloadType,
+              packet.payload,
+              _knownRegionNames(),
+            ),
           );
           if (viaMqtt &&
               _findChannelRepeatIndex(
@@ -7676,9 +7711,11 @@ class MeshCoreConnector extends ChangeNotifier {
       final hasTransport =
           routeType == _routeTransportFlood ||
           routeType == _routeTransportDirect;
+      var transportCode = 0;
       if (hasTransport) {
-        // Skip reserved bytes in transport header made up of two u16 fields
-        reader.skipBytes(4);
+        // Two u16 transport codes, little-endian; the first is the region's.
+        transportCode = reader.readByte() | (reader.readByte() << 8);
+        reader.skipBytes(2);
       }
       final pathLenRaw = reader.readByte();
       final pathByteLen = _decodePathByteLen(pathLenRaw);
@@ -7693,6 +7730,7 @@ class MeshCoreConnector extends ChangeNotifier {
         pathLenRaw: pathLenRaw,
         pathBytes: pathBytes,
         payload: payload,
+        transportCode: transportCode,
       );
     } catch (e) {
       appLogger.warn('Error parsing raw packet: $e');
@@ -7875,6 +7913,7 @@ class MeshCoreConnector extends ChangeNotifier {
           channelIndex: message.channelIndex,
           messageId: message.messageId,
           packetHash: message.packetHash,
+          region: message.region,
           replyToMessageId: originalMessage.messageId,
           replyToSenderName: originalMessage.senderName,
           replyToText: originalMessage.text,
@@ -7899,6 +7938,7 @@ class MeshCoreConnector extends ChangeNotifier {
           pathBytes: processedMessage.pathBytes,
           pathVariants: processedMessage.pathVariants,
           packetHash: existing.packetHash ?? processedMessage.packetHash,
+          region: existing.region ?? processedMessage.region,
         );
         _channelMessageStore.saveChannelMessages(channelIndex, messages);
         return false;
@@ -7927,6 +7967,7 @@ class MeshCoreConnector extends ChangeNotifier {
         pathBytes: mergedPathBytes,
         pathVariants: mergedPathVariants,
         packetHash: existing.packetHash ?? processedMessage.packetHash,
+        region: existing.region ?? processedMessage.region,
         // Mark as sent when first repeat is heard
         status: promotedFromPending
             ? ChannelMessageStatus.sent
@@ -8911,6 +8952,9 @@ class _RawPacket {
   final Uint8List pathBytes;
   final Uint8List payload;
 
+  /// The region transport code of a scoped flood, else 0.
+  final int transportCode;
+
   _RawPacket({
     required this.header,
     required this.routeType,
@@ -8919,6 +8963,7 @@ class _RawPacket {
     required this.pathLenRaw,
     required this.pathBytes,
     required this.payload,
+    this.transportCode = 0,
   });
 
   bool get isFlood =>

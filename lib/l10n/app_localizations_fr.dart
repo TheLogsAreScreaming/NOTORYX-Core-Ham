@@ -9121,4 +9121,16 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get fieldOps_checkInChannelHint =>
       'Signé avec la clé de votre radio, pour que les autres du canal voient que c’est bien vous. Vos contacts de sortie le reçoivent toujours directement.';
+
+  @override
+  String get channels_regionUnknown => 'Régional';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Envoyé à la région $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Envoyé à une région inconnue de l’app';
 }
