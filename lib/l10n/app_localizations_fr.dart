@@ -9060,4 +9060,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Aucun canal sur cette radio pour l’instant.';
+
+  @override
+  String get activeChannels_title => 'Actifs en ligne';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count messages';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Canaux utilisés, selon les observateurs de $host. Changez d’analyseur dans les réglages pour voir votre région.';
+  }
 }

@@ -55,6 +55,39 @@ List<ObserverHit> parseTraces(Map<String, dynamic> json) {
     ..sort((a, b) => (b.snr ?? -99).compareTo(a.snr ?? -99));
 }
 
+/// A hashtag channel an analyzer has seen in use.
+class ActiveChannel {
+  final String name;
+  final int messages;
+  final DateTime? lastActivity;
+  const ActiveChannel(this.name, this.messages, this.lastActivity);
+}
+
+/// CoreScope's `/api/channels`: the hashtag channels in use, most recently
+/// active first. Only `#` names are kept: those are the ones anyone can
+/// join by name.
+List<ActiveChannel> parseActiveChannels(Map<String, dynamic> json) {
+  final out = <ActiveChannel>[];
+  for (final c in json['channels'] as List? ?? const []) {
+    if (c is! Map) continue;
+    final name = (c['name'] as String? ?? '').trim();
+    if (!name.startsWith('#') || name.length < 2) continue;
+    out.add(
+      ActiveChannel(
+        name,
+        (c['messageCount'] as num?)?.toInt() ?? 0,
+        DateTime.tryParse(c['lastActivity'] as String? ?? ''),
+      ),
+    );
+  }
+  out.sort((a, b) {
+    final at = a.lastActivity, bt = b.lastActivity;
+    if (at == null || bt == null) return at == null ? 1 : -1;
+    return bt.compareTo(at);
+  });
+  return out;
+}
+
 /// A repeater ID resolved online: its best-guess name, and whether more
 /// than one known repeater shares the ID.
 class OnlineHop {
@@ -151,6 +184,13 @@ class AnalyzerService extends ChangeNotifier {
   Future<List<ObserverHit>?> observersOf(String hash) async {
     final json = await _get(_api('/api/traces/${hash.toLowerCase()}'));
     return json == null ? null : parseTraces(json);
+  }
+
+  /// The hashtag channels the analyzer has seen in use, or null when it
+  /// couldn't be reached.
+  Future<List<ActiveChannel>?> activeChannels() async {
+    final json = await _get(_api('/api/channels'));
+    return json == null ? null : parseActiveChannels(json);
   }
 
   /// The online name for repeater [id] when hop lookup is on: the cached

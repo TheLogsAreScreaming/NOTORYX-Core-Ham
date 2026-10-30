@@ -3917,5 +3917,8 @@
   "tools_botHint": "频道自动回复、!命令和天气警报",
   "botChannels_title": "频道",
   "botChannels_hint": "机器人也会在你开启的频道中回复!命令，回复发在该频道。它不会在频道中发送离开回复。",
-  "botChannels_none": "此电台还没有频道。"
+  "botChannels_none": "此电台还没有频道。",
+  "activeChannels_title": "在线活跃",
+  "activeChannels_messages": "{count} 条消息",
+  "activeChannels_source": "{host} 的观测站收到的正在使用的频道。在设置中更换分析器可查看你所在地区。"
 }

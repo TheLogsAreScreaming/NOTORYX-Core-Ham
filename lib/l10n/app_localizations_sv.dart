@@ -8952,4 +8952,17 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Inga kanaler på den här radion än.';
+
+  @override
+  String get activeChannels_title => 'Aktiva online';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count meddelanden';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Kanaler som används, enligt observatörerna hos $host. Byt analysator i inställningarna för ditt område.';
+  }
 }

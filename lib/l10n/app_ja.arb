@@ -4046,5 +4046,8 @@
   "tools_botHint": "チャンネルでの自動返信、!コマンド、気象警報",
   "botChannels_title": "チャンネル",
   "botChannels_hint": "オンにしたチャンネルでも、ボットはそのチャンネル内で!コマンドに応答します。不在返信は送りません。",
-  "botChannels_none": "この無線機にはまだチャンネルがありません。"
+  "botChannels_none": "この無線機にはまだチャンネルがありません。",
+  "activeChannels_title": "オンラインで活発",
+  "activeChannels_messages": "{count} 件のメッセージ",
+  "activeChannels_source": "{host} のオブザーバーが受信した、使われているチャンネルです。地域を見るには設定でアナライザーを変更してください。"
 }

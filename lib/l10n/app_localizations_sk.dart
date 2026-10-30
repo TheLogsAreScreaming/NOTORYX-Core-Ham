@@ -9003,4 +9003,17 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Na tomto rádiu zatiaľ nie sú kanály.';
+
+  @override
+  String get activeChannels_title => 'Aktívne online';
+
+  @override
+  String activeChannels_messages(int count) {
+    return 'Správy: $count';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Kanály, ktoré sa používajú, podľa pozorovateľov $host. V nastaveniach zmeňte analyzátor pre svoju oblasť.';
+  }
 }

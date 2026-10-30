@@ -9013,4 +9013,17 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Все още няма канали на това радио.';
+
+  @override
+  String get activeChannels_title => 'Активни онлайн';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count съобщения';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Канали, които хората използват, според наблюдателите на $host. Сменете анализатора в Настройки за вашия район.';
+  }
 }

@@ -3912,5 +3912,8 @@
   "tools_botHint": "Automatische antwoorden, !opdrachten en weerwaarschuwingen in kanalen",
   "botChannels_title": "Kanalen",
   "botChannels_hint": "De bot beantwoordt !opdrachten ook in de kanalen die je aanzet, in dat kanaal. Afwezigheidsantwoorden stuurt hij daar nooit.",
-  "botChannels_none": "Nog geen kanalen op deze radio."
+  "botChannels_none": "Nog geen kanalen op deze radio.",
+  "activeChannels_title": "Online actief",
+  "activeChannels_messages": "{count} berichten",
+  "activeChannels_source": "Kanalen die worden gebruikt, volgens de waarnemers van {host}. Kies in Instellingen een analyser voor je regio."
 }

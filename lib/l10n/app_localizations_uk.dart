@@ -9051,4 +9051,17 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get botChannels_none => 'На цьому радіо ще немає каналів.';
+
+  @override
+  String get activeChannels_title => 'Активні онлайн';
+
+  @override
+  String activeChannels_messages(int count) {
+    return 'Повідомлень: $count';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Канали, якими користуються, за даними спостерігачів $host. Змініть аналізатор у налаштуваннях для свого регіону.';
+  }
 }

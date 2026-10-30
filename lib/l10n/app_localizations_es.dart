@@ -9029,4 +9029,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get botChannels_none => 'Aún no hay canales en esta radio.';
+
+  @override
+  String get activeChannels_title => 'Activos en línea';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count mensajes';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Canales en uso, según los observadores de $host. Cambia el analizador en Ajustes para ver tu zona.';
+  }
 }

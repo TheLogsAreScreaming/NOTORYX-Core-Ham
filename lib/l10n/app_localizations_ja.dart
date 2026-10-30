@@ -8591,4 +8591,17 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get botChannels_none => 'この無線機にはまだチャンネルがありません。';
+
+  @override
+  String get activeChannels_title => 'オンラインで活発';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count 件のメッセージ';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return '$host のオブザーバーが受信した、使われているチャンネルです。地域を見るには設定でアナライザーを変更してください。';
+  }
 }

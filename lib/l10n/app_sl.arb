@@ -3912,5 +3912,8 @@
   "tools_botHint": "Samodejni odgovori, !ukazi in vremenska opozorila v kanalih",
   "botChannels_title": "Kanali",
   "botChannels_hint": "Bot odgovarja na !ukaze tudi v vklopljenih kanalih, v istem kanalu. Odgovorov o odsotnosti tam nikoli ne pošlje.",
-  "botChannels_none": "Na tem radiu še ni kanalov."
+  "botChannels_none": "Na tem radiu še ni kanalov.",
+  "activeChannels_title": "Aktivni na spletu",
+  "activeChannels_messages": "Sporočila: {count}",
+  "activeChannels_source": "Kanali v uporabi po podatkih opazovalcev {host}. V nastavitvah zamenjajte analizator za svoje območje."
 }

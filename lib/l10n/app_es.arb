@@ -4046,5 +4046,8 @@
   "tools_botHint": "Respuestas automáticas, !comandos y avisos meteorológicos en canales",
   "botChannels_title": "Canales",
   "botChannels_hint": "El bot también responde a !comandos en los canales que actives, en ese mismo canal. Nunca envía respuestas de ausencia allí.",
-  "botChannels_none": "Aún no hay canales en esta radio."
+  "botChannels_none": "Aún no hay canales en esta radio.",
+  "activeChannels_title": "Activos en línea",
+  "activeChannels_messages": "{count} mensajes",
+  "activeChannels_source": "Canales en uso, según los observadores de {host}. Cambia el analizador en Ajustes para ver tu zona."
 }

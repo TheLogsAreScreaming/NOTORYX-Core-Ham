@@ -15120,6 +15120,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No channels on this radio yet.'**
   String get botChannels_none;
+
+  /// No description provided for @activeChannels_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Active online'**
+  String get activeChannels_title;
+
+  /// No description provided for @activeChannels_messages.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} messages'**
+  String activeChannels_messages(int count);
+
+  /// No description provided for @activeChannels_source.
+  ///
+  /// In en, this message translates to:
+  /// **'Channels people are using, as heard by the observers of {host}. Change the analyzer in Settings to see your area.'**
+  String activeChannels_source(String host);
 }
 
 class _AppLocalizationsDelegate

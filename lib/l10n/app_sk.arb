@@ -3912,5 +3912,8 @@
   "tools_botHint": "Automatické odpovede, !príkazy a výstrahy počasia v kanáloch",
   "botChannels_title": "Kanály",
   "botChannels_hint": "Bot odpovedá na !príkazy aj v zapnutých kanáloch, v tom istom kanáli. Odpovede o neprítomnosti tam nikdy neposiela.",
-  "botChannels_none": "Na tomto rádiu zatiaľ nie sú kanály."
+  "botChannels_none": "Na tomto rádiu zatiaľ nie sú kanály.",
+  "activeChannels_title": "Aktívne online",
+  "activeChannels_messages": "Správy: {count}",
+  "activeChannels_source": "Kanály, ktoré sa používajú, podľa pozorovateľov {host}. V nastaveniach zmeňte analyzátor pre svoju oblasť."
 }

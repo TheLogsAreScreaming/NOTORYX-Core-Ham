@@ -9,6 +9,7 @@ import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/channel.dart';
 import 'package:meshcore_open/screens/channel_directory_screen.dart';
 import 'package:meshcore_open/services/channel_directory_service.dart';
+import 'package:meshcore_open/services/corescope.dart';
 import 'package:provider/provider.dart';
 
 class _FakeConnector extends MeshCoreConnector {
@@ -47,15 +48,22 @@ const _list = '''
    "area": {"name": "Seattle", "center": [47.6062, -122.3321], "radiusKm": 50}}
 ]}''';
 
-Future<void> _pump(WidgetTester tester, _FakeConnector connector) async {
+Future<void> _pump(
+  WidgetTester tester,
+  _FakeConnector connector, {
+  AnalyzerService? analyzer,
+}) async {
   final service = ChannelDirectoryService(
     httpClient: MockClient((_) async => http.Response('offline', 503)),
     loadBundled: () async => _list,
   );
   addTearDown(service.dispose);
   await tester.pumpWidget(
-    ChangeNotifierProvider<MeshCoreConnector>.value(
-      value: connector,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<MeshCoreConnector>.value(value: connector),
+        ChangeNotifierProvider<AnalyzerService?>.value(value: analyzer),
+      ],
       child: MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -120,5 +128,39 @@ void main() {
       find.widgetWithText(FilledButton, 'Join').first,
     );
     expect(join.onPressed, isNull);
+  });
+
+  testWidgets('lists hashtag channels active online, newest first', (
+    tester,
+  ) async {
+    final now = DateTime.now().toUtc();
+    final analyzer = AnalyzerService(
+      client: () => MockClient(
+        (req) async => http.Response(
+          '{"channels": ['
+          '{"name": "#wardriving", "messageCount": 2865, '
+          '"lastActivity": "${now.subtract(const Duration(hours: 2)).toIso8601String()}"},'
+          '{"name": "#hiking", "messageCount": 12, '
+          '"lastActivity": "${now.subtract(const Duration(minutes: 5)).toIso8601String()}"},'
+          '{"name": "Public", "messageCount": 99999}]}',
+          200,
+        ),
+      ),
+    );
+    addTearDown(analyzer.dispose);
+    await _pump(tester, _FakeConnector(), analyzer: analyzer);
+    expect(find.text('Active online'), findsOneWidget);
+    expect(find.text('12 messages · 5m ago'), findsOneWidget);
+    expect(find.text('Public'), findsNothing);
+    expect(
+      tester.getTopLeft(find.text('#hiking')).dy,
+      lessThan(tester.getTopLeft(find.text('#wardriving')).dy),
+    );
+    expect(find.textContaining('analyzer.on8ar.eu'), findsOneWidget);
+  });
+
+  testWidgets('without an analyzer there is no online section', (tester) async {
+    await _pump(tester, _FakeConnector());
+    expect(find.text('Active online'), findsNothing);
   });
 }
