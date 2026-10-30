@@ -2,6 +2,7 @@ import 'dart:async';
 
 import '../theme/mesh_theme.dart';
 import '../widgets/notoryx_logo.dart';
+import '../widgets/tactical_glass_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -128,21 +129,27 @@ class BastionHomeScreen extends StatelessWidget {
               ),
             ),
             const RegionalPresetBanner(),
-            ReadoutStrip([
-              Readout(volts, l10n.radioOverview_battery),
-              Readout(
-                snr == null ? '—' : snr.toStringAsFixed(1),
-                'SNR',
-                color: snr == null
-                    ? null
-                    : MeshTheme.snrColor(snr, blocked: false),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
+              child: TacticalGlassPanel(
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                child: ReadoutStrip([
+                  Readout(volts, l10n.radioOverview_battery),
+                  Readout(
+                    snr == null ? '—' : snr.toStringAsFixed(1),
+                    'SNR',
+                    color: snr == null
+                        ? null
+                        : MeshTheme.snrColor(snr, blocked: false),
+                  ),
+                  Readout(
+                    stats == null || !online ? '—' : '${stats.lastRssiDbm}',
+                    'RSSI',
+                  ),
+                  Readout('${c.contacts.length}', l10n.bastion_nodes),
+                ]),
               ),
-              Readout(
-                stats == null || !online ? '—' : '${stats.lastRssiDbm}',
-                'RSSI',
-              ),
-              Readout('${c.contacts.length}', l10n.bastion_nodes),
-            ]),
+            ),
             if (!online)
               InstrumentRow(
                 icon: Icons.bluetooth_searching_rounded,
