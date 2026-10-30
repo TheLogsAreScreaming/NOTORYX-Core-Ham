@@ -8962,6 +8962,22 @@ class AppLocalizationsSv extends AppLocalizations {
       'Repeatrar sprider den i hela nätet. Tar mer sändningstid.';
 
   @override
+  String get radioPresets_custom => 'Anpassad';
+
+  @override
+  String get radioPresets_search => 'Sök förinställningar';
+
+  @override
+  String get radioPresets_suggested => 'Föreslaget för din region';
+
+  @override
+  String get radioPresets_community => 'Gemenskapens förinställningar';
+
+  @override
+  String get radioPresets_hint =>
+      'Detta är förinställningarna som MeshCore-gemenskapen föreslår. Välj den ditt lokala nät använder. Den sätter frekvens, bandbredd, spridningsfaktor och kodningsgrad; din sändeffekt är oförändrad.';
+
+  @override
   String get activeChannels_title => 'Aktiva online';
 
   @override

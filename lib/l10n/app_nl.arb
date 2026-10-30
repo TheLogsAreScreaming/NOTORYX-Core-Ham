@@ -3915,6 +3915,11 @@
   "botChannels_none": "Nog geen kanalen op deze radio.",
   "advert_zeroHopHint": "Alleen radio’s die je direct horen. Repeaters sturen het niet door.",
   "advert_floodHint": "Repeaters verspreiden het over het hele mesh. Kost meer zendtijd.",
+  "radioPresets_custom": "Aangepast",
+  "radioPresets_search": "Voorinstellingen zoeken",
+  "radioPresets_suggested": "Aanbevolen voor jouw regio",
+  "radioPresets_community": "Voorinstellingen van de community",
+  "radioPresets_hint": "Dit zijn de voorinstellingen die de MeshCore-community aanraadt. Kies die van je lokale mesh. Ze zetten frequentie, bandbreedte, spreidingsfactor en coderate; je zendvermogen blijft hetzelfde.",
   "activeChannels_title": "Online actief",
   "activeChannels_messages": "{count} berichten",
   "activeChannels_source": "Kanalen die worden gebruikt, volgens de waarnemers van {host}. Kies in Instellingen een analyser voor je regio."

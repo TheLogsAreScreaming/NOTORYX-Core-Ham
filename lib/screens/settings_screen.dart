@@ -1679,6 +1679,20 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
     super.dispose();
   }
 
+  Future<void> _pickPreset() async {
+    final index = await showMeshSheet<int>(
+      context,
+      builder: (_) => RadioPresetPicker(
+        indexes: _visiblePresetIndexes().toList(),
+        selected: _selectedPresetIndex,
+        suggested: RadioSettings.suggestedPresetFor(
+          WidgetsBinding.instance.platformDispatcher.locale.countryCode,
+        ),
+      ),
+    );
+    if (index != null && mounted) _applyPreset(index);
+  }
+
   void _applyPreset(int index) {
     setState(() {
       _applyPresetState(index);
@@ -1698,8 +1712,8 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
       if (preset.frequencyHz == snapshot.frequencyHz &&
           preset.bandwidth == snapshot.bandwidth &&
           preset.spreadingFactor == snapshot.spreadingFactor &&
-          preset.codingRate == snapshot.codingRate &&
-          preset.txPowerDbm == snapshot.txPowerDbm) {
+          preset.codingRate == snapshot.codingRate) {
+        // Power is the user's own choice, not part of a preset.
         return i;
       }
     }
@@ -1780,14 +1794,13 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
       if (offGridFreqHz == current.frequencyHz &&
           preset.bandwidth == current.bandwidth &&
           preset.spreadingFactor == current.spreadingFactor &&
-          preset.codingRate == current.codingRate &&
-          preset.txPowerDbm == current.txPowerDbm) {
+          preset.codingRate == current.codingRate) {
         return _RadioSettingsSnapshot(
           frequencyMHz: preset.frequencyMHz,
           bandwidth: preset.bandwidth,
           spreadingFactor: preset.spreadingFactor,
           codingRate: preset.codingRate,
-          txPowerDbm: preset.txPowerDbm,
+          txPowerDbm: current.txPowerDbm,
         );
       }
     }
@@ -1804,12 +1817,15 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
 
   void _applyPresetState(int index) {
     final preset = RadioSettings.presets[index].$2;
+    // A preset sets the radio settings; the transmit power stays as it is.
+    final txPowerDbm =
+        int.tryParse(_txPowerController.text) ?? preset.txPowerDbm;
     final baseSnapshot = _RadioSettingsSnapshot(
       frequencyMHz: preset.frequencyMHz,
       bandwidth: preset.bandwidth,
       spreadingFactor: preset.spreadingFactor,
       codingRate: preset.codingRate,
-      txPowerDbm: preset.txPowerDbm,
+      txPowerDbm: txPowerDbm,
     );
     final frequencyMHz = _clientRepeat
         ? _offGridFrequencyForBaseFrequency(baseSnapshot.frequencyMHz)
@@ -1818,7 +1834,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
     _bandwidth = preset.bandwidth;
     _spreadingFactor = preset.spreadingFactor;
     _codingRate = preset.codingRate;
-    _txPowerController.text = preset.txPowerDbm.toString();
+    _txPowerController.text = txPowerDbm.toString();
     _selectedPresetIndex = index;
     _lastNonRepeatSnapshot = baseSnapshot;
   }
@@ -2044,26 +2060,21 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DropdownButtonFormField<int>(
-              key: ValueKey<int?>(_selectedPresetIndex),
-              isExpanded: true,
-              initialValue: _selectedPresetIndex,
-              decoration: InputDecoration(
-                labelText: l10n.settings_presets,
-                border: const OutlineInputBorder(),
+            InkWell(
+              key: const ValueKey('radio-preset-picker'),
+              onTap: _pickPreset,
+              child: InputDecorator(
+                decoration: InputDecoration(
+                  labelText: l10n.settings_presets,
+                  border: const OutlineInputBorder(),
+                  suffixIcon: const Icon(Icons.arrow_drop_down),
+                ),
+                child: Text(
+                  _selectedPresetIndex == null
+                      ? l10n.radioPresets_custom
+                      : RadioSettings.presets[_selectedPresetIndex!].$1,
+                ),
               ),
-              items: [
-                for (final i in _visiblePresetIndexes())
-                  DropdownMenuItem(
-                    value: i,
-                    child: Text(RadioSettings.presets[i].$1),
-                  ),
-              ],
-              onChanged: (index) {
-                if (index != null) {
-                  _applyPreset(index);
-                }
-              },
             ),
             const SizedBox(height: 16),
             TextField(
@@ -2510,6 +2521,97 @@ class ReadAloudCard extends StatelessWidget {
         onChanged: (v) {
           if (v != null) settings.setReadAloudIncoming(v);
         },
+      ),
+    );
+  }
+}
+
+/// MeshCore's community presets with a search box and the one suggested for
+/// the device's country on top. Returns the chosen preset's index.
+class RadioPresetPicker extends StatefulWidget {
+  const RadioPresetPicker({
+    super.key,
+    required this.indexes,
+    this.selected,
+    this.suggested,
+  });
+
+  final List<int> indexes;
+  final int? selected;
+  final String? suggested;
+
+  @override
+  State<RadioPresetPicker> createState() => _RadioPresetPickerState();
+}
+
+class _RadioPresetPickerState extends State<RadioPresetPicker> {
+  String _query = '';
+
+  Widget _tile(BuildContext context, int i) {
+    final (name, preset) = RadioSettings.presets[i];
+    return ListTile(
+      key: ValueKey('radio-preset-$i'),
+      title: Text(name),
+      subtitle: Text(preset.summary),
+      trailing: i == widget.selected
+          ? Icon(Icons.check, color: Theme.of(context).colorScheme.primary)
+          : null,
+      onTap: () => Navigator.of(context).pop(i),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final query = _query.trim().toLowerCase();
+    final shown = [
+      for (final i in widget.indexes)
+        if (query.isEmpty ||
+            RadioSettings.presets[i].$1.toLowerCase().contains(query) ||
+            RadioSettings.presets[i].$2.summary.toLowerCase().contains(query))
+          i,
+    ];
+    final suggested = query.isNotEmpty
+        ? null
+        : widget.indexes
+              .where((i) => RadioSettings.presets[i].$1 == widget.suggested)
+              .firstOrNull;
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height * 0.8,
+      child: Column(
+        children: [
+          BottomSheetHeader(title: l10n.settings_presets),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+            child: TextField(
+              key: const ValueKey('radio-preset-search'),
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search),
+                hintText: l10n.radioPresets_search,
+              ),
+              onChanged: (v) => setState(() => _query = v),
+            ),
+          ),
+          Expanded(
+            child: ListView(
+              children: [
+                if (suggested != null) ...[
+                  SectionHeader(l10n.radioPresets_suggested),
+                  _tile(context, suggested),
+                ],
+                SectionHeader(l10n.radioPresets_community),
+                for (final i in shown) _tile(context, i),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    l10n.radioPresets_hint,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -3915,6 +3915,11 @@
   "botChannels_none": "Ainda não há canais neste rádio.",
   "advert_zeroHopHint": "Só os rádios que o ouvem diretamente. Os repetidores não o reencaminham.",
   "advert_floodHint": "Os repetidores espalham-no por toda a malha. Usa mais tempo de emissão.",
+  "radioPresets_custom": "Personalizado",
+  "radioPresets_search": "Pesquisar predefinições",
+  "radioPresets_suggested": "Sugerido para a sua região",
+  "radioPresets_community": "Predefinições da comunidade",
+  "radioPresets_hint": "Estas são as predefinições sugeridas pela comunidade MeshCore. Escolha a da sua malha local. Define frequência, largura de banda, fator de espalhamento e taxa de codificação; a potência de transmissão mantém-se.",
   "activeChannels_title": "Ativos online",
   "activeChannels_messages": "{count} mensagens",
   "activeChannels_source": "Canais em uso, segundo os observadores de {host}. Mude o analisador nas definições para ver a sua zona."

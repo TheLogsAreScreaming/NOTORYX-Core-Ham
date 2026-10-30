@@ -3953,6 +3953,11 @@
   "botChannels_none": "Na tym radiu nie ma jeszcze kanałów.",
   "advert_zeroHopHint": "Tylko radia, które słyszą cię bezpośrednio. Przemienniki go nie przekazują.",
   "advert_floodHint": "Przemienniki przekazują go w całej sieci. Zajmuje więcej czasu nadawania.",
+  "radioPresets_custom": "Własne",
+  "radioPresets_search": "Szukaj ustawień",
+  "radioPresets_suggested": "Sugerowane dla twojego regionu",
+  "radioPresets_community": "Ustawienia społeczności",
+  "radioPresets_hint": "To ustawienia sugerowane przez społeczność MeshCore. Wybierz to, którego używa lokalna sieć. Ustawia częstotliwość, pasmo, SF i CR; moc nadawania się nie zmienia.",
   "activeChannels_title": "Aktywne online",
   "activeChannels_messages": "Wiadomości: {count}",
   "activeChannels_source": "Kanały w użyciu według obserwatorów {host}. Zmień analizator w ustawieniach, by zobaczyć swój region."

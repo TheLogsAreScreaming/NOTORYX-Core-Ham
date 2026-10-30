@@ -8915,6 +8915,22 @@ class AppLocalizationsEn extends AppLocalizations {
       'Repeaters pass it across the whole mesh. Uses more airtime.';
 
   @override
+  String get radioPresets_custom => 'Custom';
+
+  @override
+  String get radioPresets_search => 'Search presets';
+
+  @override
+  String get radioPresets_suggested => 'Suggested for your region';
+
+  @override
+  String get radioPresets_community => 'Community presets';
+
+  @override
+  String get radioPresets_hint =>
+      'These are the presets the MeshCore community suggests. Pick the one your local mesh runs. A preset sets frequency, bandwidth, spreading factor and coding rate; your transmit power stays as it is.';
+
+  @override
   String get activeChannels_title => 'Active online';
 
   @override

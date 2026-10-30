@@ -15133,6 +15133,36 @@ abstract class AppLocalizations {
   /// **'Repeaters pass it across the whole mesh. Uses more airtime.'**
   String get advert_floodHint;
 
+  /// No description provided for @radioPresets_custom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get radioPresets_custom;
+
+  /// No description provided for @radioPresets_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search presets'**
+  String get radioPresets_search;
+
+  /// No description provided for @radioPresets_suggested.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested for your region'**
+  String get radioPresets_suggested;
+
+  /// No description provided for @radioPresets_community.
+  ///
+  /// In en, this message translates to:
+  /// **'Community presets'**
+  String get radioPresets_community;
+
+  /// No description provided for @radioPresets_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'These are the presets the MeshCore community suggests. Pick the one your local mesh runs. A preset sets frequency, bandwidth, spreading factor and coding rate; your transmit power stays as it is.'**
+  String get radioPresets_hint;
+
   /// No description provided for @activeChannels_title.
   ///
   /// In en, this message translates to:

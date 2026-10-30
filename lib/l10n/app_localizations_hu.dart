@@ -9025,6 +9025,22 @@ class AppLocalizationsHu extends AppLocalizations {
       'Az átjátszók az egész hálózatban továbbítják. Több adásidőt használ.';
 
   @override
+  String get radioPresets_custom => 'Egyéni';
+
+  @override
+  String get radioPresets_search => 'Előbeállítás keresése';
+
+  @override
+  String get radioPresets_suggested => 'Ajánlott a régiójához';
+
+  @override
+  String get radioPresets_community => 'Közösségi előbeállítások';
+
+  @override
+  String get radioPresets_hint =>
+      'Ezeket az előbeállításokat a MeshCore közösség ajánlja. Válassza a helyi hálózatét. Beállítja a frekvenciát, sávszélességet, SF-et és CR-t; az adóteljesítmény marad.';
+
+  @override
   String get activeChannels_title => 'Aktív online';
 
   @override
