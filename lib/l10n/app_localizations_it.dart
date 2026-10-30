@@ -9092,6 +9092,13 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Check-in anche sul canale';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Firmato con la chiave della radio, così gli altri sul canale vedono che sei davvero tu. I contatti del viaggio lo ricevono comunque direttamente.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

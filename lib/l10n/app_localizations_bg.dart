@@ -9068,6 +9068,13 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Чекинът отива и в канал';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Подписва се с ключа на радиото, за да виждат другите в канала, че наистина сте вие. Контактите от пътуването го получават директно.';
+
+  @override
   String get wardrive_title => 'Картографиране на покритие';
 
   @override

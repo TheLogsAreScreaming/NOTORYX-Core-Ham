@@ -9108,6 +9108,13 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Отметки также в канал';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Подписывается ключом вашего радио, чтобы другие в канале видели, что это действительно вы. Контакты поездки по-прежнему получают его напрямую.';
+
+  @override
   String get wardrive_title => 'Вардрайв';
 
   @override

@@ -9046,6 +9046,13 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Check-ins ook naar kanaal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Ondertekend met de sleutel van je radio, zodat anderen in het kanaal zien dat jij het echt bent. Reiscontacten krijgen het nog steeds direct.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

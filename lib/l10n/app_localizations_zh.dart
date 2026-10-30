@@ -8456,6 +8456,13 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => '签到也发到频道';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      '使用电台的密钥签名，频道中的其他人能确认确实是你。行程联系人仍会直接收到。';
+
+  @override
   String get wardrive_title => '覆盖测绘';
 
   @override

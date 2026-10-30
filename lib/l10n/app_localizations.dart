@@ -15211,6 +15211,18 @@ abstract class AppLocalizations {
   /// **'Channels people are using, as heard by the observers of {host}. Change the analyzer in Settings to see your area.'**
   String activeChannels_source(String host);
 
+  /// No description provided for @fieldOps_checkInChannelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Check-ins also go to channel'**
+  String get fieldOps_checkInChannelLabel;
+
+  /// No description provided for @fieldOps_checkInChannelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed with your radio’s key, so others on the channel can see it’s really you. Trip contacts still get it directly.'**
+  String get fieldOps_checkInChannelHint;
+
   /// No description provided for @wardrive_title.
   ///
   /// In en, this message translates to:

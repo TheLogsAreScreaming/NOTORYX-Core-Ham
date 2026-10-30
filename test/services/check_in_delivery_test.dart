@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
+import 'package:meshcore_open/models/channel.dart';
 import 'package:meshcore_open/models/contact.dart';
 import 'package:meshcore_open/models/field_ops.dart';
 import 'package:meshcore_open/models/message.dart';
@@ -25,6 +26,23 @@ class _Radio extends MeshCoreConnector {
   final sam = _contact(7, 'Sam');
   final alex = _contact(8, 'Alex');
   final sent = <String, List<Message>>{};
+  final team = Channel(
+    index: 2,
+    name: '#team',
+    psk: Uint8List.fromList(List.filled(16, 3)),
+  );
+  final channelPosts = <(String, String, bool)>[];
+  @override
+  List<Channel> get channels => [team];
+  @override
+  Future<void> sendChannelMessage(
+    Channel channel,
+    String text, {
+    String? originalText,
+    String? translatedLanguageCode,
+    String? translationModelId,
+    bool sign = false,
+  }) async => channelPosts.add((channel.name, text, sign));
   @override
   bool get isConnected => true;
   @override
@@ -188,5 +206,60 @@ void main() {
       await ops.resendCheckIn();
       expect(radio.sent.values.every((l) => l.length == 1), true);
     });
+  });
+
+  group('check-in channel', () {
+    late _Radio radio;
+    late FieldOpsService ops;
+    Future<void> start({int channel = -1}) async {
+      SharedPreferences.setMockInitialValues({});
+      radio = _Radio();
+      ops = FieldOpsService(radio);
+      await ops.load();
+      await ops.configureTrip(
+        TripPlan(
+          members: [radio.sam.publicKeyHex, radio.alex.publicKeyHex],
+          checkInChannel: channel,
+        ),
+      );
+      await ops.startTrip();
+    }
+
+    tearDown(() async {
+      ops.dispose();
+      await radio.stream.close();
+      radio.dispose();
+    });
+
+    test('posts each check-in to the channel, signed', () async {
+      await start(channel: 2);
+      await ops.sendCheckIn(ops.previewCheckIn("I'm OK"));
+      final text = radio.sent[radio.sam.publicKeyHex]!.single.text;
+      expect(radio.channelPosts, [('#team', text, true)]);
+      // The channel is not a contact: the summary still counts two.
+      expect(ops.latestDelivery!.total, 2);
+      expect(ops.entries.any((e) => e.text == '#team: $text'), isTrue);
+    });
+
+    test('a resend to missed contacts does not repost', () async {
+      await start(channel: 2);
+      await ops.sendCheckIn(ops.previewCheckIn("I'm OK"));
+      radio.setStatus(radio.alex, MessageStatus.failed);
+      await Future<void>.delayed(const Duration(milliseconds: 120));
+      await ops.resendCheckIn();
+      expect(radio.channelPosts, hasLength(1));
+    });
+
+    test('without a channel nothing is posted', () async {
+      await start();
+      await ops.sendCheckIn(ops.previewCheckIn("I'm OK"));
+      expect(radio.channelPosts, isEmpty);
+    });
+  });
+
+  test('the channel choice is saved with the trip', () {
+    final back = TripPlan.fromJson(const TripPlan(checkInChannel: 2).toJson());
+    expect(back.checkInChannel, 2);
+    expect(TripPlan.fromJson(const {}).checkInChannel, -1);
   });
 }

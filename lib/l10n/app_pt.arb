@@ -3928,6 +3928,8 @@
   "activeChannels_title": "Ativos online",
   "activeChannels_messages": "{count} mensagens",
   "activeChannels_source": "Canais em uso, segundo os observadores de {host}. Mude o analisador nas definições para ver a sua zona.",
+  "fieldOps_checkInChannelLabel": "Check-ins também vão para o canal",
+  "fieldOps_checkInChannelHint": "Assinado com a chave do rádio, para que os outros no canal vejam que é mesmo você. Os contactos da viagem continuam a recebê-lo diretamente.",
   "wardrive_title": "Wardrive",
   "wardrive_hint": "Faça ping de onde está e mapeie que repetidores o ouvem",
   "wardrive_start": "Iniciar",

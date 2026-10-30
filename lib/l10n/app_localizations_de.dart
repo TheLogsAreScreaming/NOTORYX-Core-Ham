@@ -9095,6 +9095,13 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Check-ins auch an Kanal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Mit dem Schlüssel deines Funkgeräts signiert, damit andere im Kanal sehen, dass es wirklich von dir ist. Reisekontakte bekommen es weiterhin direkt.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

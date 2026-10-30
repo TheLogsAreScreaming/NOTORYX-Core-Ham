@@ -9115,6 +9115,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel =>
+      'Les check-ins vont aussi au canal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Signé avec la clé de votre radio, pour que les autres du canal voient que c’est bien vous. Vos contacts de sortie le reçoivent toujours directement.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

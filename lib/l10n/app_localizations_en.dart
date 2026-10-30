@@ -8960,6 +8960,13 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Check-ins also go to channel';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Signed with your radio’s key, so others on the channel can see it’s really you. Trip contacts still get it directly.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

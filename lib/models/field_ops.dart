@@ -114,6 +114,10 @@ class TripPlan {
   /// Channel index an SOS is also sent to, or -1 for trip contacts only.
   final int sosChannel;
 
+  /// Channel index check-ins are also posted to, signed, or -1 for trip
+  /// contacts only.
+  final int checkInChannel;
+
   /// Minutes after the last check-in before a reminder notification, or 0.
   final int reminderMinutes;
   const TripPlan({
@@ -124,6 +128,7 @@ class TripPlan {
     this.shareBattery = false,
     this.overdueMinutes = 60,
     this.sosChannel = -1,
+    this.checkInChannel = -1,
     this.reminderMinutes = 0,
   });
   TripPlan copyWith({
@@ -134,6 +139,7 @@ class TripPlan {
     bool? shareBattery,
     int? overdueMinutes,
     int? sosChannel,
+    int? checkInChannel,
     int? reminderMinutes,
   }) => TripPlan(
     name: name ?? this.name,
@@ -143,6 +149,7 @@ class TripPlan {
     shareBattery: shareBattery ?? this.shareBattery,
     overdueMinutes: overdueMinutes ?? this.overdueMinutes,
     sosChannel: sosChannel ?? this.sosChannel,
+    checkInChannel: checkInChannel ?? this.checkInChannel,
     reminderMinutes: reminderMinutes ?? this.reminderMinutes,
   );
   Map<String, dynamic> toJson() => {
@@ -153,6 +160,7 @@ class TripPlan {
     'shareBattery': shareBattery,
     'overdueMinutes': overdueMinutes,
     'sosChannel': sosChannel,
+    'checkInChannel': checkInChannel,
     'reminderMinutes': reminderMinutes,
   };
   factory TripPlan.fromJson(Map<String, dynamic> j) => TripPlan(
@@ -171,6 +179,7 @@ class TripPlan {
       1440,
     ),
     sosChannel: (j['sosChannel'] as num?)?.toInt() ?? -1,
+    checkInChannel: (j['checkInChannel'] as num?)?.toInt() ?? -1,
     reminderMinutes: reminderChoices.contains(j['reminderMinutes'])
         ? j['reminderMinutes'] as int
         : 0,

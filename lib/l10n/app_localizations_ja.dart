@@ -8643,6 +8643,13 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'チェックインの送信先チャンネル';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      '無線機の鍵で署名されるので、チャンネルの他の人に本当にあなたからだと分かります。旅行の連絡先には引き続き直接届きます。';
+
+  @override
   String get wardrive_title => 'ウォードライブ';
 
   @override

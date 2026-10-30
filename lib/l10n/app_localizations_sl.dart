@@ -9068,6 +9068,13 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get fieldOps_checkInChannelLabel => 'Prijave gredo tudi v kanal';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Podpisano s ključem radia, da drugi v kanalu vidijo, da ste res vi. Stiki izleta ga še vedno prejmejo neposredno.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override
