@@ -3924,5 +3924,8 @@
   "mySensors_refresh": "Preberi senzorje",
   "mySensors_reading": "Branje senzorjev radia…",
   "mySensors_failed": "Radio se ni odzval. Tapnite osveži za ponovni poskus.",
-  "mySensors_none": "Ni podatkov senzorjev radia."
+  "mySensors_none": "Ni podatkov senzorjev radia.",
+  "activeChannels_title": "Aktivni na spletu",
+  "activeChannels_messages": "Sporočila: {count}",
+  "activeChannels_source": "Kanali v uporabi po podatkih opazovalcev {host}. V nastavitvah zamenjajte analizator za svoje območje."
 }

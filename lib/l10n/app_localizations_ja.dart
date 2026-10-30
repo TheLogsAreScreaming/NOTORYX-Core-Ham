@@ -8628,4 +8628,17 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get mySensors_none => '無線機からのセンサー値はありません。';
+
+  @override
+  String get activeChannels_title => 'オンラインで活発';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count 件のメッセージ';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return '$host のオブザーバーが受信した、使われているチャンネルです。地域を見るには設定でアナライザーを変更してください。';
+  }
 }

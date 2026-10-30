@@ -9055,4 +9055,17 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get mySensors_none => 'Nincs érzékelőadat a rádiótól.';
+
+  @override
+  String get activeChannels_title => 'Aktív online';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count üzenet';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Használt csatornák $host megfigyelői szerint. A beállításokban válasszon a régiójához tartozó elemzőt.';
+  }
 }

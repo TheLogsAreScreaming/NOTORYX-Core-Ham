@@ -3924,5 +3924,8 @@
   "mySensors_refresh": "Sensoren uitlezen",
   "mySensors_reading": "Sensoren van je radio uitlezen…",
   "mySensors_failed": "Je radio antwoordde niet. Tik op vernieuwen om het opnieuw te proberen.",
-  "mySensors_none": "Geen sensorwaarden van je radio."
+  "mySensors_none": "Geen sensorwaarden van je radio.",
+  "activeChannels_title": "Online actief",
+  "activeChannels_messages": "{count} berichten",
+  "activeChannels_source": "Kanalen die worden gebruikt, volgens de waarnemers van {host}. Kies in Instellingen een analyser voor je regio."
 }

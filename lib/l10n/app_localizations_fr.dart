@@ -9100,4 +9100,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get mySensors_none => 'Aucune mesure de capteur de votre radio.';
+
+  @override
+  String get activeChannels_title => 'Actifs en ligne';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count messages';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Canaux utilisés, selon les observateurs de $host. Changez d’analyseur dans les réglages pour voir votre région.';
+  }
 }

@@ -4058,5 +4058,8 @@
   "mySensors_refresh": "Leer sensores",
   "mySensors_reading": "Leyendo los sensores de tu radio…",
   "mySensors_failed": "Tu radio no respondió. Toca actualizar para reintentar.",
-  "mySensors_none": "Tu radio no da lecturas de sensores."
+  "mySensors_none": "Tu radio no da lecturas de sensores.",
+  "activeChannels_title": "Activos en línea",
+  "activeChannels_messages": "{count} mensajes",
+  "activeChannels_source": "Canales en uso, según los observadores de {host}. Cambia el analizador en Ajustes para ver tu zona."
 }

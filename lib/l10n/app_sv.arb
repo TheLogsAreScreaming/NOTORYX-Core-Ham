@@ -3924,5 +3924,8 @@
   "mySensors_refresh": "Läs sensorer",
   "mySensors_reading": "Läser radions sensorer…",
   "mySensors_failed": "Radion svarade inte. Tryck på uppdatera för att försöka igen.",
-  "mySensors_none": "Inga sensorvärden från radion."
+  "mySensors_none": "Inga sensorvärden från radion.",
+  "activeChannels_title": "Aktiva online",
+  "activeChannels_messages": "{count} meddelanden",
+  "activeChannels_source": "Kanaler som används, enligt observatörerna hos {host}. Byt analysator i inställningarna för ditt område."
 }

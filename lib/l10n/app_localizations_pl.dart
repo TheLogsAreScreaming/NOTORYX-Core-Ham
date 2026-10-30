@@ -9102,4 +9102,17 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get mySensors_none => 'Brak odczytów czujników z radia.';
+
+  @override
+  String get activeChannels_title => 'Aktywne online';
+
+  @override
+  String activeChannels_messages(int count) {
+    return 'Wiadomości: $count';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Kanały w użyciu według obserwatorów $host. Zmień analizator w ustawieniach, by zobaczyć swój region.';
+  }
 }

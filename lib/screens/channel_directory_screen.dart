@@ -10,6 +10,7 @@ import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/channel_directory.dart';
 import '../services/channel_directory_service.dart';
+import '../services/corescope.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/connect_ui.dart';
 import '../widgets/mesh_ui.dart';
@@ -33,11 +34,41 @@ class _ChannelDirectoryScreenState extends State<ChannelDirectoryScreen> {
   ChannelCategory? _category;
   String? _joining;
 
+  /// Hashtag channels the online analyzer has seen in use; null until
+  /// loaded or when it couldn't be reached.
+  List<ActiveChannel>? _active;
+
   @override
   void initState() {
     super.initState();
     _service.addListener(_changed);
     unawaited(_service.load());
+    final analyzer = context.read<AnalyzerService?>();
+    if (analyzer != null) {
+      unawaited(
+        analyzer.activeChannels().then((list) {
+          if (mounted) setState(() => _active = list);
+        }),
+      );
+    }
+  }
+
+  Future<void> _joinName(MeshCoreConnector connector, String name) async {
+    setState(() => _joining = name);
+    try {
+      await joinHashtagChannel(context, connector, name);
+    } finally {
+      if (mounted) setState(() => _joining = null);
+    }
+  }
+
+  String _ago(AppLocalizations l10n, DateTime? at) {
+    if (at == null) return '';
+    final d = DateTime.now().difference(at);
+    if (d.inMinutes < 1) return l10n.time_justNow;
+    if (d.inHours < 1) return l10n.time_minutesAgo(d.inMinutes);
+    if (d.inDays < 1) return l10n.time_hoursAgo(d.inHours);
+    return l10n.time_daysAgo(d.inDays);
   }
 
   void _changed() {
@@ -88,6 +119,11 @@ class _ChannelDirectoryScreenState extends State<ChannelDirectoryScreen> {
         if (!near.contains(e)) e,
     ];
 
+    final query = _query.trim().toLowerCase();
+    final activeShown = [
+      for (final a in _active ?? const <ActiveChannel>[])
+        if (query.isEmpty || a.name.toLowerCase().contains(query)) a,
+    ].take(15).toList();
     Widget tile(ChannelDirectoryEntry e) => Padding(
       key: ValueKey(e.name),
       padding: const EdgeInsets.only(bottom: 10),
@@ -156,6 +192,46 @@ class _ChannelDirectoryScreenState extends State<ChannelDirectoryScreen> {
                 ),
               ],
               const SizedBox(height: 22),
+              if (activeShown.isNotEmpty) ...[
+                ConsoleKicker(l10n.activeChannels_title),
+                for (final a in activeShown)
+                  ListTile(
+                    key: ValueKey('active-${a.name}'),
+                    contentPadding: EdgeInsets.zero,
+                    leading: Icon(
+                      Icons.forum_outlined,
+                      color: MeshPalette.ink3,
+                    ),
+                    title: Text(a.name),
+                    subtitle: Text(
+                      [
+                        l10n.activeChannels_messages(a.messages),
+                        _ago(l10n, a.lastActivity),
+                      ].where((s) => s.isNotEmpty).join(' · '),
+                    ),
+                    trailing: joined.contains(a.name)
+                        ? Text(
+                            l10n.channelDirectory_joined,
+                            style: TextStyle(color: MeshPalette.ink3),
+                          )
+                        : TextButton(
+                            onPressed: connector.isConnected && _joining == null
+                                ? () => _joinName(connector, a.name)
+                                : null,
+                            child: Text(l10n.channelDirectory_join),
+                          ),
+                  ),
+                Text(
+                  l10n.activeChannels_source(
+                    Uri.tryParse(
+                          context.read<AnalyzerService?>()?.url ?? '',
+                        )?.host ??
+                        '',
+                  ),
+                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                ),
+                const SizedBox(height: 18),
+              ],
               if (near.isNotEmpty) ...[
                 ConsoleKicker(l10n.channelDirectory_nearYou),
                 for (final e in near) tile(e),

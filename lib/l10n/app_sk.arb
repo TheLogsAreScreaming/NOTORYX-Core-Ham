@@ -3924,5 +3924,8 @@
   "mySensors_refresh": "Načítať senzory",
   "mySensors_reading": "Čítajú sa senzory rádia…",
   "mySensors_failed": "Rádio neodpovedalo. Ťuknite na obnoviť a skúste znova.",
-  "mySensors_none": "Žiadne údaje zo senzorov rádia."
+  "mySensors_none": "Žiadne údaje zo senzorov rádia.",
+  "activeChannels_title": "Aktívne online",
+  "activeChannels_messages": "Správy: {count}",
+  "activeChannels_source": "Kanály, ktoré sa používajú, podľa pozorovateľov {host}. V nastaveniach zmeňte analyzátor pre svoju oblasť."
 }

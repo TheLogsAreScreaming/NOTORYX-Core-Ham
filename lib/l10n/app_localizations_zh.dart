@@ -8441,4 +8441,17 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get mySensors_none => '电台没有传感器读数。';
+
+  @override
+  String get activeChannels_title => '在线活跃';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count 条消息';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return '$host 的观测站收到的正在使用的频道。在设置中更换分析器可查看你所在地区。';
+  }
 }

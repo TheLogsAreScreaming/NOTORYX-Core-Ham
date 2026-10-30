@@ -4058,5 +4058,8 @@
   "mySensors_refresh": "Sensoren lesen",
   "mySensors_reading": "Sensoren des Funkgeräts werden gelesen…",
   "mySensors_failed": "Das Funkgerät hat nicht geantwortet. Tippe auf Aktualisieren.",
-  "mySensors_none": "Keine Sensorwerte vom Funkgerät."
+  "mySensors_none": "Keine Sensorwerte vom Funkgerät.",
+  "activeChannels_title": "Online aktiv",
+  "activeChannels_messages": "{count} Nachrichten",
+  "activeChannels_source": "Kanäle, die genutzt werden, laut den Beobachtern von {host}. Wechsle den Analysator in den Einstellungen für deine Region."
 }

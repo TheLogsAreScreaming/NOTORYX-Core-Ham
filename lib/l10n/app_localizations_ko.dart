@@ -8638,4 +8638,17 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get mySensors_none => '무전기의 센서 값이 없습니다.';
+
+  @override
+  String get activeChannels_title => '온라인 활성';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '메시지 $count개';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return '$host 관측자가 들은, 사람들이 쓰는 채널입니다. 내 지역을 보려면 설정에서 분석기를 바꾸세요.';
+  }
 }

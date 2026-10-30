@@ -9077,4 +9077,17 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get mySensors_none => 'Nessuna lettura dai sensori della radio.';
+
+  @override
+  String get activeChannels_title => 'Attivi online';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count messaggi';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Canali in uso, secondo gli osservatori di $host. Cambia analizzatore nelle impostazioni per la tua zona.';
+  }
 }

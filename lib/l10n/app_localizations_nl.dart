@@ -9031,4 +9031,17 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get mySensors_none => 'Geen sensorwaarden van je radio.';
+
+  @override
+  String get activeChannels_title => 'Online actief';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count berichten';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Kanalen die worden gebruikt, volgens de waarnemers van $host. Kies in Instellingen een analyser voor je regio.';
+  }
 }

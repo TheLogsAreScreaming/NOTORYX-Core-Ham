@@ -9091,4 +9091,17 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get mySensors_none => 'Немає показів датчиків радіо.';
+
+  @override
+  String get activeChannels_title => 'Активні онлайн';
+
+  @override
+  String activeChannels_messages(int count) {
+    return 'Повідомлень: $count';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Канали, якими користуються, за даними спостерігачів $host. Змініть аналізатор у налаштуваннях для свого регіону.';
+  }
 }

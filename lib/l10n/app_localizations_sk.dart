@@ -9043,4 +9043,17 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get mySensors_none => 'Žiadne údaje zo senzorov rádia.';
+
+  @override
+  String get activeChannels_title => 'Aktívne online';
+
+  @override
+  String activeChannels_messages(int count) {
+    return 'Správy: $count';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Kanály, ktoré sa používajú, podľa pozorovateľov $host. V nastaveniach zmeňte analyzátor pre svoju oblasť.';
+  }
 }

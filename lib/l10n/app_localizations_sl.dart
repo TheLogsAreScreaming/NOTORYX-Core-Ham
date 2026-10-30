@@ -9053,4 +9053,17 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get mySensors_none => 'Ni podatkov senzorjev radia.';
+
+  @override
+  String get activeChannels_title => 'Aktivni na spletu';
+
+  @override
+  String activeChannels_messages(int count) {
+    return 'Sporočila: $count';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Kanali v uporabi po podatkih opazovalcev $host. V nastavitvah zamenjajte analizator za svoje območje.';
+  }
 }

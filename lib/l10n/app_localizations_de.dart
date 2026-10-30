@@ -9080,4 +9080,17 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get mySensors_none => 'Keine Sensorwerte vom Funkgerät.';
+
+  @override
+  String get activeChannels_title => 'Online aktiv';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count Nachrichten';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Kanäle, die genutzt werden, laut den Beobachtern von $host. Wechsle den Analysator in den Einstellungen für deine Region.';
+  }
 }

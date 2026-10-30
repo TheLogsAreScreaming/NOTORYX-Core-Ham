@@ -8945,4 +8945,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mySensors_none => 'No sensor readings from your radio.';
+
+  @override
+  String get activeChannels_title => 'Active online';
+
+  @override
+  String activeChannels_messages(int count) {
+    return '$count messages';
+  }
+
+  @override
+  String activeChannels_source(String host) {
+    return 'Channels people are using, as heard by the observers of $host. Change the analyzer in Settings to see your area.';
+  }
 }
