@@ -289,6 +289,10 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(appTheme: id));
   }
 
+  Future<void> setAutoConnectRadio(bool value) async {
+    await updateSettings(_settings.copyWith(autoConnectRadio: value));
+  }
+
   Future<void> setLinkPreviews(bool value) async {
     await updateSettings(_settings.copyWith(linkPreviews: value));
   }

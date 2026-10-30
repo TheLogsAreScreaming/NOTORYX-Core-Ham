@@ -12,6 +12,7 @@ import '../services/linux_ble_error_classifier.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/app_logger.dart';
 import '../widgets/adaptive_app_bar_title.dart';
+import '../widgets/auto_connect_switch.dart';
 import '../widgets/connect_ui.dart';
 import '../widgets/device_tile.dart';
 import '../widgets/mesh_ui.dart';
@@ -257,6 +258,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
           ],
         ),
       ),
+      const AutoConnectSwitch(dense: true),
     ];
   }
 

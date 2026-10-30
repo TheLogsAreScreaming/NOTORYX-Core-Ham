@@ -10,6 +10,7 @@ import '../storage/region_store.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/radio_settings.dart';
+import '../widgets/auto_connect_switch.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/regional_preset_banner.dart';
 import '../widgets/theme_picker.dart';
@@ -110,6 +111,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   const BatterySaverCard(),
                   const RefreshRateCard(),
+                  const MeshCard(
+                    padding: EdgeInsets.zero,
+                    child: AutoConnectSwitch(),
+                  ),
                   const AnalyzerCard(),
                   const LinkPreviewsCard(),
                   const SignPostsCard(),

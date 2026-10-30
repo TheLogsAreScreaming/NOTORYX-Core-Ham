@@ -9121,7 +9121,15 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Elke ping is een discover-verzoek zonder doorsturen: alleen repeaters binnen direct bereik antwoorden en er wordt niets in een kanaal gezet. Posities komen van de GPS van je radio.';
+
   @override
   String get mapTelemetry_policy =>
       'Opgeslagen metingen vervagen na 1 uur en verdwijnen na 24 uur. Vernieuwen verstuurt één verzoek; de node moet telemetrie toestaan en sensoren kunnen een aanmelding vereisen. De kaart vraagt nooit automatisch updates op.';
+
+  @override
+  String get autoConnect_title => 'Automatisch verbinden met mijn radio';
+
+  @override
+  String get autoConnect_hint =>
+      'Bij het openen van de app opnieuw verbinden met je laatste radio, zonder tikken. Als hij nog niet in bereik is, probeert hij het een paar keer.';
 }

@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
@@ -78,5 +79,18 @@ void main() {
     await tester.tap(add);
     await tester.pumpAndSettle();
     expect(radio.imported, ['Ridge Repeater']);
+  });
+
+  testWidgets('a long name is readable at phone width', (tester) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    await _pump(tester);
+    final name = tester.renderObject<RenderParagraph>(
+      find.byKey(ValueKey('discovered-name-${_ridge.publicKeyHex}')),
+    );
+    expect(name.didExceedMaxLines, isFalse);
+    expect(tester.getSize(find.text('Ridge Repeater')).width, greaterThan(100));
   });
 }

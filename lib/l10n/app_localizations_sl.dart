@@ -9142,7 +9142,15 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       'Vsak ping je zahteva za odkrivanje brez posredovanja: odgovorijo le repetitorji v neposrednem dosegu, v kanal se nič ne objavi. Položaj je iz GPS radia.';
+
   @override
   String get mapTelemetry_policy =>
       'Shranjene meritve po 1 uri zbledijo in po 24 urah izginejo. Osvežitev pošlje eno zahtevo; vozlišče mora dovoljevati telemetrijo, senzorji pa lahko zahtevajo prijavo. Zemljevid nikoli ne zahteva samodejnih posodobitev.';
+
+  @override
+  String get autoConnect_title => 'Samodejno se poveži z mojim radiem';
+
+  @override
+  String get autoConnect_hint =>
+      'Ob odprtju aplikacije se brez dotika znova poveže z zadnjim radiem. Če še ni v dosegu, poskusi večkrat.';
 }

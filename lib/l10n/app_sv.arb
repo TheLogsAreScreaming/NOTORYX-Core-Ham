@@ -3950,5 +3950,7 @@
   "wardrive_noReplies": "Ingen repeater hörde den här pingen.",
   "wardrive_replyDetail": "Hörde dig på {there} dB · du hörde den på {here} dB",
   "wardrive_explainer": "Varje ping är en upptäcktsförfrågan utan vidarebefordran: bara repeatrar inom direkt räckvidd svarar och inget postas i en kanal. Positioner kommer från radions GPS.",
-  "mapTelemetry_policy": "Sparade mätvärden tonas ned efter 1 timme och döljs efter 24 timmar. Uppdatera skickar en begäran; noden måste tillåta telemetri och sensorer kan kräva inloggning. Kartan begär aldrig uppdateringar automatiskt."
+  "mapTelemetry_policy": "Sparade mätvärden tonas ned efter 1 timme och döljs efter 24 timmar. Uppdatera skickar en begäran; noden måste tillåta telemetri och sensorer kan kräva inloggning. Kartan begär aldrig uppdateringar automatiskt.",
+  "autoConnect_title": "Anslut automatiskt till min radio",
+  "autoConnect_hint": "När appen öppnas återansluter den till din senaste radio utan att du trycker. Den försöker några gånger om radion inte är inom räckhåll än."
 }

@@ -8715,7 +8715,14 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get wardrive_explainer =>
       '各 ping はゼロホップの探索要求です。直接届くリピーターだけが応答し、チャンネルには何も投稿されません。位置は無線機の GPS から取得します。';
+
   @override
   String get mapTelemetry_policy =>
       '保存された測定値は1時間後に薄く表示され、24時間後に非表示になります。更新すると1回の要求を送信します。ノードがテレメトリーを許可している必要があり、センサーにはログインが必要な場合があります。地図は自動で更新を要求しません。';
+
+  @override
+  String get autoConnect_title => '無線機に自動接続';
+
+  @override
+  String get autoConnect_hint => 'アプリを開くと、タップせずに前回の無線機へ再接続します。まだ圏外なら数回試します。';
 }

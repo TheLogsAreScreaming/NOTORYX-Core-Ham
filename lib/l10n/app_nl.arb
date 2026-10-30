@@ -3950,5 +3950,7 @@
   "wardrive_noReplies": "Geen repeater hoorde deze ping.",
   "wardrive_replyDetail": "Hoorde jou op {there} dB · jij hoorde hem op {here} dB",
   "wardrive_explainer": "Elke ping is een discover-verzoek zonder doorsturen: alleen repeaters binnen direct bereik antwoorden en er wordt niets in een kanaal gezet. Posities komen van de GPS van je radio.",
-  "mapTelemetry_policy": "Opgeslagen metingen vervagen na 1 uur en verdwijnen na 24 uur. Vernieuwen verstuurt één verzoek; de node moet telemetrie toestaan en sensoren kunnen een aanmelding vereisen. De kaart vraagt nooit automatisch updates op."
+  "mapTelemetry_policy": "Opgeslagen metingen vervagen na 1 uur en verdwijnen na 24 uur. Vernieuwen verstuurt één verzoek; de node moet telemetrie toestaan en sensoren kunnen een aanmelding vereisen. De kaart vraagt nooit automatisch updates op.",
+  "autoConnect_title": "Automatisch verbinden met mijn radio",
+  "autoConnect_hint": "Bij het openen van de app opnieuw verbinden met je laatste radio, zonder tikken. Als hij nog niet in bereik is, probeert hij het een paar keer."
 }
