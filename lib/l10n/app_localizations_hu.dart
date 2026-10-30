@@ -9068,4 +9068,16 @@ class AppLocalizationsHu extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Használt csatornák $host megfigyelői szerint. A beállításokban válasszon a régiójához tartozó elemzőt.';
   }
+
+  @override
+  String get channels_regionUnknown => 'Regionális';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Elküldve a(z) $region régiónak';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Az alkalmazás által nem ismert régiónak küldve';
 }

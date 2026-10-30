@@ -3965,5 +3965,8 @@
   "mySensors_none": "Brak odczytów czujników z radia.",
   "activeChannels_title": "Aktywne online",
   "activeChannels_messages": "Wiadomości: {count}",
-  "activeChannels_source": "Kanały w użyciu według obserwatorów {host}. Zmień analizator w ustawieniach, by zobaczyć swój region."
+  "activeChannels_source": "Kanały w użyciu według obserwatorów {host}. Zmień analizator w ustawieniach, by zobaczyć swój region.",
+  "channels_regionUnknown": "Regionalne",
+  "channels_regionSemantics": "Wysłane do regionu {region}",
+  "channels_regionUnknownSemantics": "Wysłane do regionu nieznanego aplikacji"
 }

@@ -9066,4 +9066,16 @@ class AppLocalizationsBg extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Канали, които хората използват, според наблюдателите на $host. Сменете анализатора в Настройки за вашия район.';
   }
+
+  @override
+  String get channels_regionUnknown => 'Регионално';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Изпратено до регион $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Изпратено до регион, непознат за приложението';
 }

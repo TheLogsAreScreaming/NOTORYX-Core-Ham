@@ -9115,4 +9115,16 @@ class AppLocalizationsPl extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanały w użyciu według obserwatorów $host. Zmień analizator w ustawieniach, by zobaczyć swój region.';
   }
+
+  @override
+  String get channels_regionUnknown => 'Regionalne';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Wysłane do regionu $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Wysłane do regionu nieznanego aplikacji';
 }

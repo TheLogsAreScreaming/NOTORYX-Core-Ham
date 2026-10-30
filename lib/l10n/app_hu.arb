@@ -3965,5 +3965,8 @@
   "mySensors_none": "Nincs érzékelőadat a rádiótól.",
   "activeChannels_title": "Aktív online",
   "activeChannels_messages": "{count} üzenet",
-  "activeChannels_source": "Használt csatornák {host} megfigyelői szerint. A beállításokban válasszon a régiójához tartozó elemzőt."
+  "activeChannels_source": "Használt csatornák {host} megfigyelői szerint. A beállításokban válasszon a régiójához tartozó elemzőt.",
+  "channels_regionUnknown": "Regionális",
+  "channels_regionSemantics": "Elküldve a(z) {region} régiónak",
+  "channels_regionUnknownSemantics": "Az alkalmazás által nem ismert régiónak küldve"
 }

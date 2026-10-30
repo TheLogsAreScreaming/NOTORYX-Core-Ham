@@ -5259,5 +5259,15 @@
         "type": "String"
       }
     }
-  }
+  },
+  "channels_regionUnknown": "Regional",
+  "channels_regionSemantics": "Sent to region {region}",
+  "@channels_regionSemantics": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "channels_regionUnknownSemantics": "Sent to a region this app doesn’t know"
 }

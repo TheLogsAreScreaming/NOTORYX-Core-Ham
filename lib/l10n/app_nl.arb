@@ -3927,5 +3927,8 @@
   "mySensors_none": "Geen sensorwaarden van je radio.",
   "activeChannels_title": "Online actief",
   "activeChannels_messages": "{count} berichten",
-  "activeChannels_source": "Kanalen die worden gebruikt, volgens de waarnemers van {host}. Kies in Instellingen een analyser voor je regio."
+  "activeChannels_source": "Kanalen die worden gebruikt, volgens de waarnemers van {host}. Kies in Instellingen een analyser voor je regio.",
+  "channels_regionUnknown": "Regionaal",
+  "channels_regionSemantics": "Verzonden naar regio {region}",
+  "channels_regionUnknownSemantics": "Verzonden naar een regio die de app niet kent"
 }

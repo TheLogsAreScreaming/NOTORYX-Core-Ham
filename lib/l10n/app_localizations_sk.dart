@@ -9056,4 +9056,16 @@ class AppLocalizationsSk extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanály, ktoré sa používajú, podľa pozorovateľov $host. V nastaveniach zmeňte analyzátor pre svoju oblasť.';
   }
+
+  @override
+  String get channels_regionUnknown => 'Regionálne';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Odoslané do regiónu $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Odoslané do regiónu, ktorý aplikácia nepozná';
 }

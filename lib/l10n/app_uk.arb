@@ -3907,5 +3907,8 @@
   "mySensors_none": "Немає показів датчиків радіо.",
   "activeChannels_title": "Активні онлайн",
   "activeChannels_messages": "Повідомлень: {count}",
-  "activeChannels_source": "Канали, якими користуються, за даними спостерігачів {host}. Змініть аналізатор у налаштуваннях для свого регіону."
+  "activeChannels_source": "Канали, якими користуються, за даними спостерігачів {host}. Змініть аналізатор у налаштуваннях для свого регіону.",
+  "channels_regionUnknown": "Регіональне",
+  "channels_regionSemantics": "Надіслано в регіон {region}",
+  "channels_regionUnknownSemantics": "Надіслано в регіон, невідомий застосунку"
 }

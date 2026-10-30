@@ -9106,4 +9106,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Каналы, которыми пользуются, по данным наблюдателей $host. Смените анализатор в настройках, чтобы видеть свой регион.';
   }
+
+  @override
+  String get channels_regionUnknown => 'Региональное';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Отправлено в регион $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Отправлено в регион, неизвестный приложению';
 }

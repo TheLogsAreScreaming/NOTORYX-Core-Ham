@@ -3927,5 +3927,8 @@
   "mySensors_none": "Žiadne údaje zo senzorov rádia.",
   "activeChannels_title": "Aktívne online",
   "activeChannels_messages": "Správy: {count}",
-  "activeChannels_source": "Kanály, ktoré sa používajú, podľa pozorovateľov {host}. V nastaveniach zmeňte analyzátor pre svoju oblasť."
+  "activeChannels_source": "Kanály, ktoré sa používajú, podľa pozorovateľov {host}. V nastaveniach zmeňte analyzátor pre svoju oblasť.",
+  "channels_regionUnknown": "Regionálne",
+  "channels_regionSemantics": "Odoslané do regiónu {region}",
+  "channels_regionUnknownSemantics": "Odoslané do regiónu, ktorý aplikácia nepozná"
 }

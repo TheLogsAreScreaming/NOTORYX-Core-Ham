@@ -8958,4 +8958,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Channels people are using, as heard by the observers of $host. Change the analyzer in Settings to see your area.';
   }
+
+  @override
+  String get channels_regionUnknown => 'Regional';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Sent to region $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Sent to a region this app doesn’t know';
 }

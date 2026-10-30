@@ -9044,4 +9044,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanalen die worden gebruikt, volgens de waarnemers van $host. Kies in Instellingen een analyser voor je regio.';
   }
+
+  @override
+  String get channels_regionUnknown => 'Regionaal';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Verzonden naar regio $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Verzonden naar een regio die de app niet kent';
 }

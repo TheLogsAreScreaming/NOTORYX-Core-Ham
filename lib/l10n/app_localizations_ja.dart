@@ -8641,4 +8641,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String activeChannels_source(String host) {
     return '$host のオブザーバーが受信した、使われているチャンネルです。地域を見るには設定でアナライザーを変更してください。';
   }
+
+  @override
+  String get channels_regionUnknown => '地域限定';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return '地域 $region 宛てに送信';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics => 'アプリが知らない地域宛てに送信';
 }

@@ -9005,4 +9005,16 @@ class AppLocalizationsSv extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Kanaler som används, enligt observatörerna hos $host. Byt analysator i inställningarna för ditt område.';
   }
+
+  @override
+  String get channels_regionUnknown => 'Regional';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return 'Skickat till region $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics =>
+      'Skickat till en region appen inte känner';
 }

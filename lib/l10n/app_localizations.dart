@@ -15210,6 +15210,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Channels people are using, as heard by the observers of {host}. Change the analyzer in Settings to see your area.'**
   String activeChannels_source(String host);
+
+  /// No description provided for @channels_regionUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Regional'**
+  String get channels_regionUnknown;
+
+  /// No description provided for @channels_regionSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to region {region}'**
+  String channels_regionSemantics(String region);
+
+  /// No description provided for @channels_regionUnknownSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to a region this app doesn’t know'**
+  String get channels_regionUnknownSemantics;
 }
 
 class _AppLocalizationsDelegate

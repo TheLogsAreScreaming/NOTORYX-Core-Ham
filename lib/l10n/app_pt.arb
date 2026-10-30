@@ -3927,5 +3927,8 @@
   "mySensors_none": "Sem leituras de sensores do rádio.",
   "activeChannels_title": "Ativos online",
   "activeChannels_messages": "{count} mensagens",
-  "activeChannels_source": "Canais em uso, segundo os observadores de {host}. Mude o analisador nas definições para ver a sua zona."
+  "activeChannels_source": "Canais em uso, segundo os observadores de {host}. Mude o analisador nas definições para ver a sua zona.",
+  "channels_regionUnknown": "Regional",
+  "channels_regionSemantics": "Enviado para a região {region}",
+  "channels_regionUnknownSemantics": "Enviado para uma região que a app não conhece"
 }

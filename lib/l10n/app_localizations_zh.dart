@@ -8454,4 +8454,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String activeChannels_source(String host) {
     return '$host 的观测站收到的正在使用的频道。在设置中更换分析器可查看你所在地区。';
   }
+
+  @override
+  String get channels_regionUnknown => '区域';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return '发送到区域 $region';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics => '发送到应用未知的区域';
 }

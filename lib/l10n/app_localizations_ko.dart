@@ -8651,4 +8651,15 @@ class AppLocalizationsKo extends AppLocalizations {
   String activeChannels_source(String host) {
     return '$host 관측자가 들은, 사람들이 쓰는 채널입니다. 내 지역을 보려면 설정에서 분석기를 바꾸세요.';
   }
+
+  @override
+  String get channels_regionUnknown => '지역 한정';
+
+  @override
+  String channels_regionSemantics(String region) {
+    return '$region 지역으로 보냄';
+  }
+
+  @override
+  String get channels_regionUnknownSemantics => '앱이 모르는 지역으로 보냄';
 }
