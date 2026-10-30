@@ -2,6 +2,7 @@ import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import '../l10n/l10n.dart';
 import '../widgets/instrument.dart';
+import '../widgets/tactical_glass_panel.dart';
 
 import 'antenna_coverage_screen.dart';
 import 'antenna_hunt_screen.dart';
@@ -47,10 +48,16 @@ class BastionToolsScreen extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: MeshSpace.xxl),
           children: [
             InstrumentLabel(l10n.tools_groupApp),
-            InstrumentRow(
-              icon: Icons.tune_rounded,
-              title: l10n.settings_title,
-              onTap: () => open(const SettingsScreen()),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
+              child: TacticalGlassPanel(
+                blur: false,
+                child: InstrumentRow(
+                  icon: Icons.tune_rounded,
+                  title: l10n.settings_title,
+                  onTap: () => open(const SettingsScreen()),
+                ),
+              ),
             ),
             InstrumentRow(
               icon: Icons.lock_outline,
