@@ -9106,4 +9106,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Каналы, которыми пользуются, по данным наблюдателей $host. Смените анализатор в настройках, чтобы видеть свой регион.';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel => 'Отметки также в канал';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Подписывается ключом вашего радио, чтобы другие в канале видели, что это действительно вы. Контакты поездки по-прежнему получают его напрямую.';
 }

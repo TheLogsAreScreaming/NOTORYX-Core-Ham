@@ -3927,5 +3927,7 @@
   "mySensors_none": "Ni podatkov senzorjev radia.",
   "activeChannels_title": "Aktivni na spletu",
   "activeChannels_messages": "Sporočila: {count}",
-  "activeChannels_source": "Kanali v uporabi po podatkih opazovalcev {host}. V nastavitvah zamenjajte analizator za svoje območje."
+  "activeChannels_source": "Kanali v uporabi po podatkih opazovalcev {host}. V nastavitvah zamenjajte analizator za svoje območje.",
+  "fieldOps_checkInChannelLabel": "Prijave gredo tudi v kanal",
+  "fieldOps_checkInChannelHint": "Podpisano s ključem radia, da drugi v kanalu vidijo, da ste res vi. Stiki izleta ga še vedno prejmejo neposredno."
 }

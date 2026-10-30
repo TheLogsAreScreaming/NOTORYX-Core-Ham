@@ -8958,4 +8958,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Channels people are using, as heard by the observers of $host. Change the analyzer in Settings to see your area.';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel => 'Check-ins also go to channel';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Signed with your radio’s key, so others on the channel can see it’s really you. Trip contacts still get it directly.';
 }

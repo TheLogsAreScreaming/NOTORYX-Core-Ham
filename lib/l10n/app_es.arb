@@ -4061,5 +4061,7 @@
   "mySensors_none": "Tu radio no da lecturas de sensores.",
   "activeChannels_title": "Activos en línea",
   "activeChannels_messages": "{count} mensajes",
-  "activeChannels_source": "Canales en uso, según los observadores de {host}. Cambia el analizador en Ajustes para ver tu zona."
+  "activeChannels_source": "Canales en uso, según los observadores de {host}. Cambia el analizador en Ajustes para ver tu zona.",
+  "fieldOps_checkInChannelLabel": "Los check-ins también van al canal",
+  "fieldOps_checkInChannelHint": "Firmado con la clave de tu radio, para que los demás del canal vean que eres tú. Tus contactos del viaje lo siguen recibiendo directamente."
 }

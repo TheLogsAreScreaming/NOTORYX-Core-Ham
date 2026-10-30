@@ -9066,4 +9066,11 @@ class AppLocalizationsBg extends AppLocalizations {
   String activeChannels_source(String host) {
     return 'Канали, които хората използват, според наблюдателите на $host. Сменете анализатора в Настройки за вашия район.';
   }
+
+  @override
+  String get fieldOps_checkInChannelLabel => 'Чекинът отива и в канал';
+
+  @override
+  String get fieldOps_checkInChannelHint =>
+      'Подписва се с ключа на радиото, за да виждат другите в канала, че наистина сте вие. Контактите от пътуването го получават директно.';
 }
