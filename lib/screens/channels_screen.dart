@@ -2141,6 +2141,7 @@ class _DirectChats extends StatelessWidget {
             return GlassChatCard(
               unreadCount: unread,
               child: InstrumentRow(
+                divider: false,
                 key: ValueKey('direct_${chat.contact.publicKeyHex}'),
                 title: chat.contact.name,
                 subtitle: chat.last.text,

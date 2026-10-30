@@ -126,6 +126,9 @@ class InstrumentRow extends StatelessWidget {
   final VoidCallback? onTap;
   final Color? titleColor;
 
+  /// The hairline under the row; off when the row sits in its own card.
+  final bool divider;
+
   const InstrumentRow({
     super.key,
     required this.title,
@@ -134,6 +137,7 @@ class InstrumentRow extends StatelessWidget {
     this.trailing,
     this.onTap,
     this.titleColor,
+    this.divider = true,
   });
 
   @override
@@ -145,9 +149,11 @@ class InstrumentRow extends StatelessWidget {
           horizontal: MeshSpace.lg,
           vertical: 11,
         ),
-        decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: instrumentLine)),
-        ),
+        decoration: divider
+            ? BoxDecoration(
+                border: Border(bottom: BorderSide(color: instrumentLine)),
+              )
+            : null,
         child: Row(
           children: [
             if (icon != null) ...[
@@ -278,11 +284,17 @@ class InstrumentButton extends StatelessWidget {
         ),
         style: OutlinedButton.styleFrom(
           foregroundColor: color,
+          // A frosted fill, so the button reads as glass on the backdrop.
+          backgroundColor: danger
+              ? MeshPalette.alert.withValues(alpha: 0.14)
+              : Colors.white.withValues(alpha: 0.07),
           side: BorderSide(
-            color: danger ? MeshPalette.alert : MeshPalette.line3,
+            color: danger
+                ? MeshPalette.alert
+                : Colors.white.withValues(alpha: 0.16),
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.xs),
+            borderRadius: BorderRadius.circular(16),
           ),
           // A style here replaces the theme's, so the family is restated.
           textStyle: const TextStyle(

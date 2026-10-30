@@ -14,6 +14,8 @@ class GlassNodeCard extends StatelessWidget {
     final status = isOnline;
     return TacticalGlassPanel(
       blur: false,
+      borderRadius: 18,
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
       child: Row(
         children: [
           if (status != null) ...[

@@ -26,7 +26,6 @@ import '../utils/main_tab_navigation.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
-import '../widgets/instrument.dart';
 import '../widgets/glass_node_card.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/quick_switch_bar.dart';
@@ -1665,10 +1664,9 @@ class _ContactTile extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         onLongPress: onLongPress,
+        // Each tile sits in its own glass card, so no divider line.
         child: DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: instrumentLine)),
-          ),
+          decoration: const BoxDecoration(),
           child: ConstrainedBox(
             constraints: const BoxConstraints(minHeight: 56),
             child: Padding(

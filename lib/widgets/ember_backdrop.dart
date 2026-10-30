@@ -121,7 +121,7 @@ class EmberPainter extends CustomPainter {
     final line = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1
-      ..color = contour.withValues(alpha: dark ? 0.14 : 0.10);
+      ..color = contour.withValues(alpha: dark ? 0.08 : 0.07);
     for (final top in _bands) {
       for (var k = 0; k < 3; k++) {
         final y = top + k * 45;

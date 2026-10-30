@@ -236,7 +236,9 @@ class _HoldToConfirmButtonState extends State<HoldToConfirmButton>
           builder: (context, _) => Container(
             height: 48,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(MeshRadii.xs),
+              // A red-tinted glass fill, matching the frosted look.
+              color: color.withValues(alpha: 0.14),
+              borderRadius: BorderRadius.circular(16),
               border: Border.all(color: color, width: 1.2),
             ),
             clipBehavior: Clip.antiAlias,
