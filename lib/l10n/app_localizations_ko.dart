@@ -8584,9 +8584,10 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       '채널의 SOS는 항상 서명됩니다. 이 설정은 모든 게시물에 서명해 다른 NOTORYX 사용자가 정말 본인임을 알 수 있게 합니다. 서명마다 패킷이 하나 더 전송됩니다.';
-  @override
-  String get tools_search => 'Search tools and settings';
 
   @override
-  String get tools_noMatches => 'No tools match your search.';
+  String get tools_search => '도구 및 설정 검색';
+
+  @override
+  String get tools_noMatches => '검색과 일치하는 도구가 없습니다.';
 }

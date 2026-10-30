@@ -1,0 +1,4 @@
+• Route Intelligence no longer redraws endlessly with many contacts
+• Garbled contacts from damaged adverts are rejected and cleaned up
+• Glass look for Home, Chats and More
+• Search tools and settings in More

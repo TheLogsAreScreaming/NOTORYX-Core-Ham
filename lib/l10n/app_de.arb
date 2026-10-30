@@ -4040,5 +4040,7 @@
   "post_signedUnknownKey": "Signiert, aber von keinem deiner Kontakte. Füge den Absender als Kontakt hinzu, um zu sehen, wer es ist.",
   "post_unverifiedHint": "Mit diesem Beitrag kam eine Signatur, die nicht passt. Der Beitrag wurde vielleicht unterwegs verändert oder stammt nicht vom angegebenen Absender.",
   "settings_signPosts": "Alle meine Kanalbeiträge signieren",
-  "settings_signPostsHint": "Ein SOS im Kanal wird immer signiert. Damit wird jeder Beitrag signiert, sodass andere NOTORYX-Nutzer sehen, dass er wirklich von dir ist. Jede Signatur ist ein zusätzliches Paket auf Sendung."
+  "settings_signPostsHint": "Ein SOS im Kanal wird immer signiert. Damit wird jeder Beitrag signiert, sodass andere NOTORYX-Nutzer sehen, dass er wirklich von dir ist. Jede Signatur ist ein zusätzliches Paket auf Sendung.",
+  "tools_search": "Werkzeuge und Einstellungen suchen",
+  "tools_noMatches": "Keine Werkzeuge passen zu deiner Suche."
 }

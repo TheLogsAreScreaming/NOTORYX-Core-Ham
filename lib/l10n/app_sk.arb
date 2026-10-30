@@ -3906,5 +3906,7 @@
   "post_signedUnknownKey": "Podpísané, ale nie žiadnym z vašich kontaktov. Pridajte odosielateľa do kontaktov a uvidíte, kto to je.",
   "post_unverifiedHint": "S príspevkom prišiel podpis, ktorý nesedí. Mohol sa cestou zmeniť alebo nie je od toho, kto tvrdí.",
   "settings_signPosts": "Podpisovať všetky moje príspevky v kanáloch",
-  "settings_signPostsHint": "SOS v kanáli je vždy podpísané. Toto podpíše každý príspevok, aby ostatní používatelia NOTORYX videli, že ste to naozaj vy. Každý podpis je jeden paket navyše vo vysielaní."
+  "settings_signPostsHint": "SOS v kanáli je vždy podpísané. Toto podpíše každý príspevok, aby ostatní používatelia NOTORYX videli, že ste to naozaj vy. Každý podpis je jeden paket navyše vo vysielaní.",
+  "tools_search": "Hľadať nástroje a nastavenia",
+  "tools_noMatches": "Vyhľadávaniu nezodpovedajú žiadne nástroje."
 }

@@ -9044,9 +9044,10 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get settings_signPostsHint =>
       'SOS na kanale jest zawsze podpisany. To podpisuje każdą wiadomość, aby inni użytkownicy NOTORYX wiedzieli, że to naprawdę ty. Każdy podpis to jeden dodatkowy pakiet w eterze.';
-  @override
-  String get tools_search => 'Search tools and settings';
 
   @override
-  String get tools_noMatches => 'No tools match your search.';
+  String get tools_search => 'Szukaj narzędzi i ustawień';
+
+  @override
+  String get tools_noMatches => 'Brak narzędzi pasujących do wyszukiwania.';
 }
