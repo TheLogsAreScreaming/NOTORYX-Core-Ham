@@ -3,7 +3,7 @@ import 'dart:async';
 import '../theme/mesh_theme.dart';
 import '../widgets/notoryx_logo.dart';
 import '../widgets/tactical_glass_panel.dart';
-import '../widgets/glass_action_group.dart';
+import '../widgets/glass_action_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -152,27 +152,22 @@ class BastionHomeScreen extends StatelessWidget {
               ),
             ),
             if (!online)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
-                child: GlassActionGroup(
-                  child: InstrumentRow(
-                    icon: Icons.bluetooth_searching_rounded,
-                    title: l10n.bastionHome_connectRadio,
-                    subtitle: l10n.bastionHome_connectRadioHint,
-                    titleColor: MeshPalette.accent,
-                    onTap: () => openConnectionSetup(context),
-                  ),
-                ),
+              GlassActionRow(
+                icon: Icons.bluetooth_searching_rounded,
+                title: l10n.bastionHome_connectRadio,
+                subtitle: l10n.bastionHome_connectRadioHint,
+                titleColor: MeshPalette.accent,
+                onTap: () => openConnectionSetup(context),
               ),
             InstrumentLabel(l10n.routes_nearbyTitle),
             if (heard.isEmpty)
-              InstrumentRow(
+              GlassActionRow(
                 title: l10n.routes_nearbyEmptyTitle,
                 titleColor: MeshPalette.ink3,
               )
             else
               for (final h in heard.take(3))
-                InstrumentRow(
+                GlassActionRow(
                   title:
                       heardNameWithOnline(
                         c,
@@ -184,7 +179,7 @@ class BastionHomeScreen extends StatelessWidget {
                   onTap: () => open(const BastionPathHubScreen()),
                 ),
             InstrumentLabel(l10n.fieldOps_tabTrip),
-            InstrumentRow(
+            GlassActionRow(
               title: ops.trip.active
                   ? ops.trip.name
                   : l10n.bastionHome_planYourTrip,
@@ -248,37 +243,37 @@ class BastionHomeScreen extends StatelessWidget {
               ),
             InstrumentLabel(l10n.bastionHome_fieldTools),
             if (online)
-              InstrumentRow(
+              GlassActionRow(
                 icon: Icons.monitor_heart_outlined,
                 title: l10n.bastionHome_liveDiagnostics,
                 onTap: () => open(const BastionDiagnosticsScreen()),
               ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.radar_rounded,
               title: l10n.bastionHome_meshDiscovery,
               onTap: () => open(const DiscoveryScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.map_outlined,
               title: l10n.bastion_mapCoverage,
               onTap: () => open(const BastionMapHubScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.route_rounded,
               title: l10n.bastion_routeIntelligence,
               onTap: () => open(const BastionPathHubScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.cell_tower_rounded,
               title: l10n.bastion_repeaterTools,
               onTap: () => open(const BastionRepeaterToolsScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.analytics_outlined,
               title: l10n.bastion_fieldStats,
               onTap: () => open(const BastionFieldStatsScreen()),
             ),
-            InstrumentRow(
+            GlassActionRow(
               icon: Icons.explore_outlined,
               title: l10n.bastionHome_getStarted,
               onTap: () => open(const BastionSetupScreen()),
