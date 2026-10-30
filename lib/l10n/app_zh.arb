@@ -3937,5 +3937,22 @@
   "fieldOps_checkInChannelHint": "使用电台的密钥签名，频道中的其他人能确认确实是你。行程联系人仍会直接收到。",
   "channels_regionUnknown": "区域",
   "channels_regionSemantics": "发送到区域 {region}",
-  "channels_regionUnknownSemantics": "发送到应用未知的区域"
+  "channels_regionUnknownSemantics": "发送到应用未知的区域",
+  "wardrive_title": "覆盖测绘",
+  "wardrive_hint": "在所在位置 ping，绘制哪些中继器能听到你",
+  "wardrive_start": "开始",
+  "wardrive_stop": "停止",
+  "wardrive_pings": "次 ping",
+  "wardrive_heard": "被听到",
+  "wardrive_pinging": "正在 ping…",
+  "wardrive_waitPosition": "正在等待电台的 GPS 定位。",
+  "wardrive_waitRadio": "请连接电台后再 ping。",
+  "wardrive_history": "历史",
+  "wardrive_noSessions": "还没有记录。",
+  "wardrive_sessionSummary": "{pings} 次 ping · {heard} 次被听到",
+  "wardrive_delete": "删除",
+  "wardrive_backToLive": "返回当前记录",
+  "wardrive_noReplies": "没有中继器听到这次 ping。",
+  "wardrive_replyDetail": "以 {there} dB 听到你 · 你以 {here} dB 听到它",
+  "wardrive_explainer": "每次 ping 都是零跳发现请求：只有直接覆盖范围内的中继器会回应，不会向频道发布任何内容。位置来自电台的 GPS。"
 }

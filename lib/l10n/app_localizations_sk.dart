@@ -9075,4 +9075,61 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get channels_regionUnknownSemantics =>
       'Odoslané do regiónu, ktorý aplikácia nepozná';
+
+  @override
+  String get wardrive_title => 'Wardrive';
+
+  @override
+  String get wardrive_hint =>
+      'Pingujte z miesta, kde ste, a mapujte, ktoré opakovače vás počujú';
+
+  @override
+  String get wardrive_start => 'Štart';
+
+  @override
+  String get wardrive_stop => 'Stop';
+
+  @override
+  String get wardrive_pings => 'pingy';
+
+  @override
+  String get wardrive_heard => 'počuté';
+
+  @override
+  String get wardrive_pinging => 'Pingujem…';
+
+  @override
+  String get wardrive_waitPosition => 'Čaká sa na GPS polohu z rádia.';
+
+  @override
+  String get wardrive_waitRadio => 'Pripojte rádio na pingovanie.';
+
+  @override
+  String get wardrive_history => 'História';
+
+  @override
+  String get wardrive_noSessions => 'Zatiaľ žiadne jazdy.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return 'Pingy: $pings · počuté: $heard';
+  }
+
+  @override
+  String get wardrive_delete => 'Odstrániť';
+
+  @override
+  String get wardrive_backToLive => 'Späť na aktuálnu';
+
+  @override
+  String get wardrive_noReplies => 'Tento ping nepočul žiadny opakovač.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Počul vás pri $there dB · vy ho pri $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Každý ping je žiadosť o objavenie bez preposielania: odpovedajú len opakovače v priamom dosahu a nič sa nepublikuje do kanála. Poloha pochádza z GPS rádia.';
 }

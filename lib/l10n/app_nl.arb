@@ -3932,5 +3932,22 @@
   "fieldOps_checkInChannelHint": "Ondertekend met de sleutel van je radio, zodat anderen in het kanaal zien dat jij het echt bent. Reiscontacten krijgen het nog steeds direct.",
   "channels_regionUnknown": "Regionaal",
   "channels_regionSemantics": "Verzonden naar regio {region}",
-  "channels_regionUnknownSemantics": "Verzonden naar een regio die de app niet kent"
+  "channels_regionUnknownSemantics": "Verzonden naar een regio die de app niet kent",
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Ping vanaf je plek en breng in kaart welke repeaters je horen",
+  "wardrive_start": "Start",
+  "wardrive_stop": "Stop",
+  "wardrive_pings": "pings",
+  "wardrive_heard": "gehoord",
+  "wardrive_pinging": "Bezig met pingen…",
+  "wardrive_waitPosition": "Wachten op een GPS-positie van je radio.",
+  "wardrive_waitRadio": "Verbind een radio om te pingen.",
+  "wardrive_history": "Geschiedenis",
+  "wardrive_noSessions": "Nog geen ritten.",
+  "wardrive_sessionSummary": "{pings} pings · {heard} gehoord",
+  "wardrive_delete": "Verwijderen",
+  "wardrive_backToLive": "Terug naar huidige rit",
+  "wardrive_noReplies": "Geen repeater hoorde deze ping.",
+  "wardrive_replyDetail": "Hoorde jou op {there} dB · jij hoorde hem op {here} dB",
+  "wardrive_explainer": "Elke ping is een discover-verzoek zonder doorsturen: alleen repeaters binnen direct bereik antwoorden en er wordt niets in een kanaal gezet. Posities komen van de GPS van je radio."
 }

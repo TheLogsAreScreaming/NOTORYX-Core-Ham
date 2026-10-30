@@ -3932,5 +3932,22 @@
   "fieldOps_checkInChannelHint": "Podpísané kľúčom rádia, aby ostatní v kanáli videli, že ste to naozaj vy. Kontakty výletu ho stále dostanú priamo.",
   "channels_regionUnknown": "Regionálne",
   "channels_regionSemantics": "Odoslané do regiónu {region}",
-  "channels_regionUnknownSemantics": "Odoslané do regiónu, ktorý aplikácia nepozná"
+  "channels_regionUnknownSemantics": "Odoslané do regiónu, ktorý aplikácia nepozná",
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Pingujte z miesta, kde ste, a mapujte, ktoré opakovače vás počujú",
+  "wardrive_start": "Štart",
+  "wardrive_stop": "Stop",
+  "wardrive_pings": "pingy",
+  "wardrive_heard": "počuté",
+  "wardrive_pinging": "Pingujem…",
+  "wardrive_waitPosition": "Čaká sa na GPS polohu z rádia.",
+  "wardrive_waitRadio": "Pripojte rádio na pingovanie.",
+  "wardrive_history": "História",
+  "wardrive_noSessions": "Zatiaľ žiadne jazdy.",
+  "wardrive_sessionSummary": "Pingy: {pings} · počuté: {heard}",
+  "wardrive_delete": "Odstrániť",
+  "wardrive_backToLive": "Späť na aktuálnu",
+  "wardrive_noReplies": "Tento ping nepočul žiadny opakovač.",
+  "wardrive_replyDetail": "Počul vás pri {there} dB · vy ho pri {here} dB",
+  "wardrive_explainer": "Každý ping je žiadosť o objavenie bez preposielania: odpovedajú len opakovače v priamom dosahu a nič sa nepublikuje do kanála. Poloha pochádza z GPS rádia."
 }

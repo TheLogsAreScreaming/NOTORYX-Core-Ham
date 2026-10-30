@@ -8472,4 +8472,60 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get channels_regionUnknownSemantics => '发送到应用未知的区域';
+
+  @override
+  String get wardrive_title => '覆盖测绘';
+
+  @override
+  String get wardrive_hint => '在所在位置 ping，绘制哪些中继器能听到你';
+
+  @override
+  String get wardrive_start => '开始';
+
+  @override
+  String get wardrive_stop => '停止';
+
+  @override
+  String get wardrive_pings => '次 ping';
+
+  @override
+  String get wardrive_heard => '被听到';
+
+  @override
+  String get wardrive_pinging => '正在 ping…';
+
+  @override
+  String get wardrive_waitPosition => '正在等待电台的 GPS 定位。';
+
+  @override
+  String get wardrive_waitRadio => '请连接电台后再 ping。';
+
+  @override
+  String get wardrive_history => '历史';
+
+  @override
+  String get wardrive_noSessions => '还没有记录。';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings 次 ping · $heard 次被听到';
+  }
+
+  @override
+  String get wardrive_delete => '删除';
+
+  @override
+  String get wardrive_backToLive => '返回当前记录';
+
+  @override
+  String get wardrive_noReplies => '没有中继器听到这次 ping。';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return '以 $there dB 听到你 · 你以 $here dB 听到它';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      '每次 ping 都是零跳发现请求：只有直接覆盖范围内的中继器会回应，不会向频道发布任何内容。位置来自电台的 GPS。';
 }

@@ -8659,4 +8659,60 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get channels_regionUnknownSemantics => 'アプリが知らない地域宛てに送信';
+
+  @override
+  String get wardrive_title => 'ウォードライブ';
+
+  @override
+  String get wardrive_hint => '現在地から ping して、どのリピーターに届くかを地図化';
+
+  @override
+  String get wardrive_start => '開始';
+
+  @override
+  String get wardrive_stop => '停止';
+
+  @override
+  String get wardrive_pings => 'ping';
+
+  @override
+  String get wardrive_heard => '受信';
+
+  @override
+  String get wardrive_pinging => 'ping 中…';
+
+  @override
+  String get wardrive_waitPosition => '無線機の GPS 測位を待っています。';
+
+  @override
+  String get wardrive_waitRadio => 'ping するには無線機を接続してください。';
+
+  @override
+  String get wardrive_history => '履歴';
+
+  @override
+  String get wardrive_noSessions => 'まだ記録はありません。';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings 回 ping · $heard 回受信';
+  }
+
+  @override
+  String get wardrive_delete => '削除';
+
+  @override
+  String get wardrive_backToLive => '現在の記録に戻る';
+
+  @override
+  String get wardrive_noReplies => 'この ping を受信したリピーターはいません。';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'あなたを $there dB で受信 · あなたは $here dB で受信';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      '各 ping はゼロホップの探索要求です。直接届くリピーターだけが応答し、チャンネルには何も投稿されません。位置は無線機の GPS から取得します。';
 }

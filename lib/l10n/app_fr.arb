@@ -4066,5 +4066,22 @@
   "fieldOps_checkInChannelHint": "Signé avec la clé de votre radio, pour que les autres du canal voient que c’est bien vous. Vos contacts de sortie le reçoivent toujours directement.",
   "channels_regionUnknown": "Régional",
   "channels_regionSemantics": "Envoyé à la région {region}",
-  "channels_regionUnknownSemantics": "Envoyé à une région inconnue de l’app"
+  "channels_regionUnknownSemantics": "Envoyé à une région inconnue de l’app",
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Pinguez d’où vous êtes et cartographiez les répéteurs qui vous entendent",
+  "wardrive_start": "Démarrer",
+  "wardrive_stop": "Arrêter",
+  "wardrive_pings": "pings",
+  "wardrive_heard": "entendus",
+  "wardrive_pinging": "Ping en cours…",
+  "wardrive_waitPosition": "En attente d’une position GPS de votre radio.",
+  "wardrive_waitRadio": "Connectez une radio pour pinguer.",
+  "wardrive_history": "Historique",
+  "wardrive_noSessions": "Aucun trajet pour l’instant.",
+  "wardrive_sessionSummary": "{pings} pings · {heard} entendus",
+  "wardrive_delete": "Supprimer",
+  "wardrive_backToLive": "Revenir au trajet en cours",
+  "wardrive_noReplies": "Aucun répéteur n’a entendu ce ping.",
+  "wardrive_replyDetail": "Vous a entendu à {there} dB · vous l’avez entendu à {here} dB",
+  "wardrive_explainer": "Chaque ping est une demande de découverte sans relais : seuls les répéteurs à portée directe répondent, rien n’est publié sur un canal. Les positions viennent du GPS de votre radio."
 }

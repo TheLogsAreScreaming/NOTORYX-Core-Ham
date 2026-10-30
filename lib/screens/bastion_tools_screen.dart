@@ -23,6 +23,7 @@ import 'prefix_tool_screen.dart';
 import 'repeater_ping_screen.dart';
 import 'settings_screen.dart';
 import 'track_log_screen.dart';
+import 'wardrive_screen.dart';
 import '../utils/platform_info.dart';
 
 /// Searchable, grouped entry points for app settings and field tools.
@@ -84,6 +85,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
       (
         title: l10n.tools_groupField,
         actions: <_ToolAction>[
+          _ToolAction(
+            icon: Icons.route_outlined,
+            title: l10n.wardrive_title,
+            subtitle: l10n.wardrive_hint,
+            builder: (_) => const WardriveScreen(),
+          ),
           _ToolAction(
             icon: Icons.backpack_outlined,
             title: l10n.bastion_fieldOps,

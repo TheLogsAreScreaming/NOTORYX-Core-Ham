@@ -4066,5 +4066,22 @@
   "fieldOps_checkInChannelHint": "무전기 키로 서명되어 채널의 다른 사람이 정말 당신임을 알 수 있습니다. 여행 연락처는 계속 직접 받습니다.",
   "channels_regionUnknown": "지역 한정",
   "channels_regionSemantics": "{region} 지역으로 보냄",
-  "channels_regionUnknownSemantics": "앱이 모르는 지역으로 보냄"
+  "channels_regionUnknownSemantics": "앱이 모르는 지역으로 보냄",
+  "wardrive_title": "워드라이브",
+  "wardrive_hint": "현재 위치에서 핑하고 어떤 리피터가 듣는지 지도에 표시",
+  "wardrive_start": "시작",
+  "wardrive_stop": "중지",
+  "wardrive_pings": "핑",
+  "wardrive_heard": "들림",
+  "wardrive_pinging": "핑 중…",
+  "wardrive_waitPosition": "무전기의 GPS 위치를 기다리는 중입니다.",
+  "wardrive_waitRadio": "핑하려면 무전기를 연결하세요.",
+  "wardrive_history": "기록",
+  "wardrive_noSessions": "아직 기록이 없습니다.",
+  "wardrive_sessionSummary": "핑 {pings}회 · {heard}회 들림",
+  "wardrive_delete": "삭제",
+  "wardrive_backToLive": "현재 기록으로 돌아가기",
+  "wardrive_noReplies": "이 핑을 들은 리피터가 없습니다.",
+  "wardrive_replyDetail": "당신을 {there} dB로 들음 · 당신은 {here} dB로 들음",
+  "wardrive_explainer": "각 핑은 제로홉 탐색 요청입니다. 직접 범위의 리피터만 응답하며 채널에는 아무것도 게시되지 않습니다. 위치는 무전기 GPS에서 가져옵니다."
 }

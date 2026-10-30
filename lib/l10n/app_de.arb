@@ -4066,5 +4066,22 @@
   "fieldOps_checkInChannelHint": "Mit dem Schlüssel deines Funkgeräts signiert, damit andere im Kanal sehen, dass es wirklich von dir ist. Reisekontakte bekommen es weiterhin direkt.",
   "channels_regionUnknown": "Regional",
   "channels_regionSemantics": "An Region {region} gesendet",
-  "channels_regionUnknownSemantics": "An eine Region gesendet, die die App nicht kennt"
+  "channels_regionUnknownSemantics": "An eine Region gesendet, die die App nicht kennt",
+  "wardrive_title": "Wardrive",
+  "wardrive_hint": "Von deinem Standort pingen und kartieren, welche Repeater dich hören",
+  "wardrive_start": "Start",
+  "wardrive_stop": "Stopp",
+  "wardrive_pings": "Pings",
+  "wardrive_heard": "gehört",
+  "wardrive_pinging": "Pingt…",
+  "wardrive_waitPosition": "Warte auf GPS-Position vom Funkgerät.",
+  "wardrive_waitRadio": "Verbinde ein Funkgerät, um zu pingen.",
+  "wardrive_history": "Verlauf",
+  "wardrive_noSessions": "Noch keine Fahrten.",
+  "wardrive_sessionSummary": "{pings} Pings · {heard} gehört",
+  "wardrive_delete": "Löschen",
+  "wardrive_backToLive": "Zurück zur laufenden Fahrt",
+  "wardrive_noReplies": "Kein Repeater hat diesen Ping gehört.",
+  "wardrive_replyDetail": "Hörte dich mit {there} dB · du hörtest ihn mit {here} dB",
+  "wardrive_explainer": "Jeder Ping ist eine Discover-Anfrage ohne Weiterleitung: Nur Repeater in direkter Reichweite antworten, nichts wird in einen Kanal gepostet. Positionen kommen vom GPS des Funkgeräts."
 }

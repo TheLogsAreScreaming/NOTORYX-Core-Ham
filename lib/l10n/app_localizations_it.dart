@@ -9109,4 +9109,62 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get channels_regionUnknownSemantics =>
       'Inviato a una regione sconosciuta all’app';
+
+  @override
+  String get wardrive_title => 'Wardrive';
+
+  @override
+  String get wardrive_hint =>
+      'Fai ping da dove sei e mappa quali ripetitori ti sentono';
+
+  @override
+  String get wardrive_start => 'Avvia';
+
+  @override
+  String get wardrive_stop => 'Ferma';
+
+  @override
+  String get wardrive_pings => 'ping';
+
+  @override
+  String get wardrive_heard => 'sentiti';
+
+  @override
+  String get wardrive_pinging => 'Ping in corso…';
+
+  @override
+  String get wardrive_waitPosition =>
+      'In attesa della posizione GPS della radio.';
+
+  @override
+  String get wardrive_waitRadio => 'Collega una radio per fare ping.';
+
+  @override
+  String get wardrive_history => 'Cronologia';
+
+  @override
+  String get wardrive_noSessions => 'Nessun percorso ancora.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings ping · $heard sentiti';
+  }
+
+  @override
+  String get wardrive_delete => 'Elimina';
+
+  @override
+  String get wardrive_backToLive => 'Torna al percorso attuale';
+
+  @override
+  String get wardrive_noReplies => 'Nessun ripetitore ha sentito questo ping.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Ti ha sentito a $there dB · lo hai sentito a $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Ogni ping è una richiesta di scoperta a zero salti: rispondono solo i ripetitori a portata diretta e nulla viene pubblicato su un canale. Le posizioni vengono dal GPS della radio.';
 }

@@ -3912,5 +3912,22 @@
   "fieldOps_checkInChannelHint": "Підписується ключем вашого радіо, щоб інші в каналі бачили, що це справді ви. Контакти поїздки й далі отримують його напряму.",
   "channels_regionUnknown": "Регіональне",
   "channels_regionSemantics": "Надіслано в регіон {region}",
-  "channels_regionUnknownSemantics": "Надіслано в регіон, невідомий застосунку"
+  "channels_regionUnknownSemantics": "Надіслано в регіон, невідомий застосунку",
+  "wardrive_title": "Вардрайв",
+  "wardrive_hint": "Пінгуйте з місця та позначайте на мапі, які ретранслятори вас чують",
+  "wardrive_start": "Старт",
+  "wardrive_stop": "Стоп",
+  "wardrive_pings": "пінги",
+  "wardrive_heard": "почуті",
+  "wardrive_pinging": "Пінг…",
+  "wardrive_waitPosition": "Очікування GPS-координат від радіо.",
+  "wardrive_waitRadio": "Підключіть радіо для пінгу.",
+  "wardrive_history": "Історія",
+  "wardrive_noSessions": "Поки немає поїздок.",
+  "wardrive_sessionSummary": "Пінгів: {pings} · почуто: {heard}",
+  "wardrive_delete": "Видалити",
+  "wardrive_backToLive": "Назад до поточної",
+  "wardrive_noReplies": "Жоден ретранслятор не почув цей пінг.",
+  "wardrive_replyDetail": "Чув вас на {there} дБ · ви його на {here} дБ",
+  "wardrive_explainer": "Кожен пінг — запит виявлення без ретрансляції: відповідають лише ретранслятори в прямій досяжності, у канал нічого не публікується. Координати беруться з GPS радіо."
 }

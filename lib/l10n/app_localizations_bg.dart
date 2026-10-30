@@ -9085,4 +9085,61 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get channels_regionUnknownSemantics =>
       'Изпратено до регион, непознат за приложението';
+
+  @override
+  String get wardrive_title => 'Картографиране на покритие';
+
+  @override
+  String get wardrive_hint =>
+      'Пингване от мястото ви и карта кои ретранслатори ви чуват';
+
+  @override
+  String get wardrive_start => 'Старт';
+
+  @override
+  String get wardrive_stop => 'Стоп';
+
+  @override
+  String get wardrive_pings => 'пинга';
+
+  @override
+  String get wardrive_heard => 'чути';
+
+  @override
+  String get wardrive_pinging => 'Пингване…';
+
+  @override
+  String get wardrive_waitPosition => 'Изчаква се GPS позиция от радиото.';
+
+  @override
+  String get wardrive_waitRadio => 'Свържете радио, за да пингвате.';
+
+  @override
+  String get wardrive_history => 'История';
+
+  @override
+  String get wardrive_noSessions => 'Още няма записи.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings пинга · $heard чути';
+  }
+
+  @override
+  String get wardrive_delete => 'Изтриване';
+
+  @override
+  String get wardrive_backToLive => 'Обратно към текущото';
+
+  @override
+  String get wardrive_noReplies => 'Никой ретранслатор не чу този пинг.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Чу ви с $there dB · вие го чухте с $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Всеки пинг е заявка за откриване с нула скока: отговарят само ретранслатори в пряк обхват, нищо не се публикува в канал. Позициите идват от GPS на радиото.';
 }

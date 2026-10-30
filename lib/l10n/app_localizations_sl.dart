@@ -9085,4 +9085,61 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get channels_regionUnknownSemantics =>
       'Poslano v regijo, ki je aplikacija ne pozna';
+
+  @override
+  String get wardrive_title => 'Wardrive';
+
+  @override
+  String get wardrive_hint =>
+      'Pingajte od tam, kjer ste, in na zemljevidu označite, kateri repetitorji vas slišijo';
+
+  @override
+  String get wardrive_start => 'Začni';
+
+  @override
+  String get wardrive_stop => 'Ustavi';
+
+  @override
+  String get wardrive_pings => 'pingi';
+
+  @override
+  String get wardrive_heard => 'slišani';
+
+  @override
+  String get wardrive_pinging => 'Pinganje…';
+
+  @override
+  String get wardrive_waitPosition => 'Čakanje na GPS položaj z radia.';
+
+  @override
+  String get wardrive_waitRadio => 'Povežite radio za pinganje.';
+
+  @override
+  String get wardrive_history => 'Zgodovina';
+
+  @override
+  String get wardrive_noSessions => 'Še ni voženj.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return 'Pingi: $pings · slišani: $heard';
+  }
+
+  @override
+  String get wardrive_delete => 'Izbriši';
+
+  @override
+  String get wardrive_backToLive => 'Nazaj na trenutno';
+
+  @override
+  String get wardrive_noReplies => 'Tega pinga ni slišal noben repetitor.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Slišal vas je pri $there dB · vi njega pri $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Vsak ping je zahteva za odkrivanje brez posredovanja: odgovorijo le repetitorji v neposrednem dosegu, v kanal se nič ne objavi. Položaj je iz GPS radia.';
 }

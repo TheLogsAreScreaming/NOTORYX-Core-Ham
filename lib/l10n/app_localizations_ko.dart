@@ -8669,4 +8669,60 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get channels_regionUnknownSemantics => '앱이 모르는 지역으로 보냄';
+
+  @override
+  String get wardrive_title => '워드라이브';
+
+  @override
+  String get wardrive_hint => '현재 위치에서 핑하고 어떤 리피터가 듣는지 지도에 표시';
+
+  @override
+  String get wardrive_start => '시작';
+
+  @override
+  String get wardrive_stop => '중지';
+
+  @override
+  String get wardrive_pings => '핑';
+
+  @override
+  String get wardrive_heard => '들림';
+
+  @override
+  String get wardrive_pinging => '핑 중…';
+
+  @override
+  String get wardrive_waitPosition => '무전기의 GPS 위치를 기다리는 중입니다.';
+
+  @override
+  String get wardrive_waitRadio => '핑하려면 무전기를 연결하세요.';
+
+  @override
+  String get wardrive_history => '기록';
+
+  @override
+  String get wardrive_noSessions => '아직 기록이 없습니다.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '핑 $pings회 · $heard회 들림';
+  }
+
+  @override
+  String get wardrive_delete => '삭제';
+
+  @override
+  String get wardrive_backToLive => '현재 기록으로 돌아가기';
+
+  @override
+  String get wardrive_noReplies => '이 핑을 들은 리피터가 없습니다.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return '당신을 $there dB로 들음 · 당신은 $here dB로 들음';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      '각 핑은 제로홉 탐색 요청입니다. 직접 범위의 리피터만 응답하며 채널에는 아무것도 게시되지 않습니다. 위치는 무전기 GPS에서 가져옵니다.';
 }

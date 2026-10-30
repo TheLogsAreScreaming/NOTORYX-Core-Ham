@@ -8977,4 +8977,61 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get channels_regionUnknownSemantics =>
       'Sent to a region this app doesn’t know';
+
+  @override
+  String get wardrive_title => 'Wardrive';
+
+  @override
+  String get wardrive_hint =>
+      'Ping from where you are and map which repeaters hear you';
+
+  @override
+  String get wardrive_start => 'Start';
+
+  @override
+  String get wardrive_stop => 'Stop';
+
+  @override
+  String get wardrive_pings => 'pings';
+
+  @override
+  String get wardrive_heard => 'heard';
+
+  @override
+  String get wardrive_pinging => 'Pinging…';
+
+  @override
+  String get wardrive_waitPosition => 'Waiting for a GPS fix from your radio.';
+
+  @override
+  String get wardrive_waitRadio => 'Connect a radio to ping.';
+
+  @override
+  String get wardrive_history => 'History';
+
+  @override
+  String get wardrive_noSessions => 'No drives yet.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return '$pings pings · $heard heard';
+  }
+
+  @override
+  String get wardrive_delete => 'Delete';
+
+  @override
+  String get wardrive_backToLive => 'Back to live drive';
+
+  @override
+  String get wardrive_noReplies => 'No repeater heard this ping.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Heard you at $there dB · you heard it at $here dB';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your radio’s GPS.';
 }

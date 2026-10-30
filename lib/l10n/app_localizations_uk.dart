@@ -9123,4 +9123,61 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get channels_regionUnknownSemantics =>
       'Надіслано в регіон, невідомий застосунку';
+
+  @override
+  String get wardrive_title => 'Вардрайв';
+
+  @override
+  String get wardrive_hint =>
+      'Пінгуйте з місця та позначайте на мапі, які ретранслятори вас чують';
+
+  @override
+  String get wardrive_start => 'Старт';
+
+  @override
+  String get wardrive_stop => 'Стоп';
+
+  @override
+  String get wardrive_pings => 'пінги';
+
+  @override
+  String get wardrive_heard => 'почуті';
+
+  @override
+  String get wardrive_pinging => 'Пінг…';
+
+  @override
+  String get wardrive_waitPosition => 'Очікування GPS-координат від радіо.';
+
+  @override
+  String get wardrive_waitRadio => 'Підключіть радіо для пінгу.';
+
+  @override
+  String get wardrive_history => 'Історія';
+
+  @override
+  String get wardrive_noSessions => 'Поки немає поїздок.';
+
+  @override
+  String wardrive_sessionSummary(int pings, int heard) {
+    return 'Пінгів: $pings · почуто: $heard';
+  }
+
+  @override
+  String get wardrive_delete => 'Видалити';
+
+  @override
+  String get wardrive_backToLive => 'Назад до поточної';
+
+  @override
+  String get wardrive_noReplies => 'Жоден ретранслятор не почув цей пінг.';
+
+  @override
+  String wardrive_replyDetail(String there, String here) {
+    return 'Чув вас на $there дБ · ви його на $here дБ';
+  }
+
+  @override
+  String get wardrive_explainer =>
+      'Кожен пінг — запит виявлення без ретрансляції: відповідають лише ретранслятори в прямій досяжності, у канал нічого не публікується. Координати беруться з GPS радіо.';
 }
