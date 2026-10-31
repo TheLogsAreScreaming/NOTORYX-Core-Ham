@@ -1,0 +1,2 @@
+• SOS relay (opt-in): passes on an SOS that no repeater carried
+• Find it in Field Ops → Ready; needs radio firmware v1.16+
