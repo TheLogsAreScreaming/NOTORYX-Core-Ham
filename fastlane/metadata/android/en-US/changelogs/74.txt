@@ -1,0 +1,3 @@
+• Map telemetry: battery, temperature, humidity and pressure on the map
+• Discovered contacts: names are readable on phones
+• New: connect to my radio automatically when the app opens
