@@ -15286,7 +15286,7 @@ abstract class AppLocalizations {
   /// No description provided for @wardrive_waitPosition.
   ///
   /// In en, this message translates to:
-  /// **'Waiting for a GPS fix from your radio.'**
+  /// **'Waiting for a GPS fix from your phone or radio.'**
   String get wardrive_waitPosition;
 
   /// No description provided for @wardrive_waitRadio.
@@ -15319,6 +15319,18 @@ abstract class AppLocalizations {
   /// **'Delete'**
   String get wardrive_delete;
 
+  /// No description provided for @wardrive_recentre.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to my position'**
+  String get wardrive_recentre;
+
+  /// No description provided for @wardrive_youAreHere.
+  ///
+  /// In en, this message translates to:
+  /// **'You are here'**
+  String get wardrive_youAreHere;
+
   /// No description provided for @wardrive_backToLive.
   ///
   /// In en, this message translates to:
@@ -15340,7 +15352,7 @@ abstract class AppLocalizations {
   /// No description provided for @wardrive_explainer.
   ///
   /// In en, this message translates to:
-  /// **'Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your radio’s GPS.'**
+  /// **'Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your phone’s GPS, or your radio’s when the phone has none.'**
   String get wardrive_explainer;
 
   /// No description provided for @mapTelemetry_policy.

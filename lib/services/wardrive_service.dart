@@ -7,29 +7,41 @@ import 'package:flutter/foundation.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../models/wardrive.dart';
+import 'coverage_hex_service.dart' show PositionFix, geolocatorFixes;
 import '../storage/prefs_manager.dart';
 
 /// Why the last ping wasn't sent, for the screen to word.
 enum WardriveWait { none, noRadio, noPosition }
 
 /// Drives a wardrive: every [interval] it sends a zero-hop discover request
-/// from the radio's GPS position and records which repeaters answered, how
+/// from where you are and records which repeaters answered, how
 /// well they heard us and how well we heard them. Nothing is posted to a
 /// channel, and zero-hop packets aren't passed on, so it only uses airtime
 /// where you are.
+///
+/// The position comes from the phone's GPS while a session runs. The radio
+/// only reports its own position when the app connects, so on its own it
+/// would pin every ping to the spot you started from. Its position is the
+/// fallback when the phone has no fix.
 class WardriveService extends ChangeNotifier {
   WardriveService(
     this.connector, {
     this.listenWindow = const Duration(seconds: 6),
     DateTime Function()? clock,
     math.Random? random,
+    Stream<PositionFix> Function()? fixes,
   }) : _now = clock ?? DateTime.now,
-       _random = random ?? math.Random();
+       _random = random ?? math.Random(),
+       _fixes = fixes ?? geolocatorFixes;
 
   final MeshCoreConnector connector;
   final Duration listenWindow;
   final DateTime Function() _now;
   final math.Random _random;
+  final Stream<PositionFix> Function() _fixes;
+
+  /// A phone fix older than this is not trusted for a ping.
+  static const fixMaxAge = Duration(minutes: 2);
 
   static const _key = 'notoryx_wardrive_sessions_v1';
   static const maxSessions = 20;
@@ -46,6 +58,9 @@ class WardriveService extends ChangeNotifier {
   bool _pinging = false;
   WardriveWait _wait = WardriveWait.none;
   bool _disposed = false;
+  StreamSubscription<PositionFix>? _fixSub;
+  PositionFix? _fix;
+  DateTime? _fixAt;
 
   /// Finished sessions, newest first.
   List<WardriveSession> get sessions => _sessions;
@@ -54,6 +69,18 @@ class WardriveService extends ChangeNotifier {
   bool get pinging => _pinging;
   Duration get interval => _interval;
   WardriveWait get wait => _wait;
+
+  /// Where you are now, for the map to follow: the phone's latest fix, or
+  /// the radio's position. Null when neither is known.
+  ({double lat, double lon})? get position {
+    final fix = _fix, at = _fixAt;
+    if (fix != null && at != null && _now().difference(at) <= fixMaxAge) {
+      return (lat: fix.lat, lon: fix.lon);
+    }
+    final lat = connector.selfLatitude, lon = connector.selfLongitude;
+    if (lat == null || lon == null || (lat == 0 && lon == 0)) return null;
+    return (lat: lat, lon: lon);
+  }
 
   void load() {
     try {
@@ -81,6 +108,7 @@ class WardriveService extends ChangeNotifier {
       id: '${_now().microsecondsSinceEpoch}',
       startedAt: _now(),
     );
+    _watchPosition();
     _schedule();
     _notify();
     await pingNow();
@@ -92,6 +120,7 @@ class WardriveService extends ChangeNotifier {
     if (session == null) return;
     _timer?.cancel();
     _timer = null;
+    _stopWatchingPosition();
     _active = null;
     _wait = WardriveWait.none;
     if (session.pings.isNotEmpty) {
@@ -110,6 +139,31 @@ class WardriveService extends ChangeNotifier {
     _notify();
   }
 
+  void _watchPosition() {
+    _fixSub?.cancel();
+    try {
+      _fixSub = _fixes().listen(
+        (fix) {
+          _fix = fix;
+          _fixAt = _now();
+          _notify();
+        },
+        // No permission or no GPS: the radio's position is used instead.
+        onError: (Object _) {},
+        cancelOnError: true,
+      );
+    } catch (_) {
+      _fixSub = null;
+    }
+  }
+
+  void _stopWatchingPosition() {
+    unawaited(_fixSub?.cancel());
+    _fixSub = null;
+    _fix = null;
+    _fixAt = null;
+  }
+
   void _schedule() {
     _timer?.cancel();
     _timer = Timer.periodic(_interval, (_) => unawaited(pingNow()));
@@ -124,8 +178,8 @@ class WardriveService extends ChangeNotifier {
       _notify();
       return;
     }
-    final lat = connector.selfLatitude, lon = connector.selfLongitude;
-    if (lat == null || lon == null || (lat == 0 && lon == 0)) {
+    final here = position;
+    if (here == null) {
       _wait = WardriveWait.noPosition;
       _notify();
       return;
@@ -159,8 +213,8 @@ class WardriveService extends ChangeNotifier {
       ...session.pings,
       WardrivePing(
         at: at,
-        latitude: lat,
-        longitude: lon,
+        latitude: here.lat,
+        longitude: here.lon,
         replies: replies.values.toList(),
       ),
     ];
@@ -187,6 +241,7 @@ class WardriveService extends ChangeNotifier {
   void dispose() {
     _disposed = true;
     _timer?.cancel();
+    _stopWatchingPosition();
     super.dispose();
   }
 }

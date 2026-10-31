@@ -5279,7 +5279,7 @@
   "wardrive_pings": "pings",
   "wardrive_heard": "heard",
   "wardrive_pinging": "Pinging…",
-  "wardrive_waitPosition": "Waiting for a GPS fix from your radio.",
+  "wardrive_waitPosition": "Waiting for a GPS fix from your phone or radio.",
   "wardrive_waitRadio": "Connect a radio to ping.",
   "wardrive_history": "History",
   "wardrive_noSessions": "No drives yet.",
@@ -5295,6 +5295,8 @@
     }
   },
   "wardrive_delete": "Delete",
+  "wardrive_recentre": "Back to my position",
+  "wardrive_youAreHere": "You are here",
   "wardrive_backToLive": "Back to live drive",
   "wardrive_noReplies": "No repeater heard this ping.",
   "wardrive_replyDetail": "Heard you at {there} dB · you heard it at {here} dB",
@@ -5308,7 +5310,7 @@
       }
     }
   },
-  "wardrive_explainer": "Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your radio’s GPS.",
+  "wardrive_explainer": "Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your phone’s GPS, or your radio’s when the phone has none.",
   "mapTelemetry_policy": "Cached readings dim after 1 hour and disappear after 24 hours. Refresh sends one request; the node must allow telemetry and sensors may require login. The map never requests updates automatically.",
   "autoConnect_title": "Connect to my radio automatically",
   "autoConnect_hint": "When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet."

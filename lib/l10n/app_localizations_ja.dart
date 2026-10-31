@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -8682,7 +8683,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get wardrive_pinging => 'ping 中…';
 
   @override
-  String get wardrive_waitPosition => '無線機の GPS 測位を待っています。';
+  String get wardrive_waitPosition => 'スマートフォンまたは無線機の GPS 測位を待っています。';
 
   @override
   String get wardrive_waitRadio => 'ping するには無線機を接続してください。';
@@ -8702,6 +8703,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get wardrive_delete => '削除';
 
   @override
+  String get wardrive_recentre => '現在地に戻る';
+
+  @override
+  String get wardrive_youAreHere => '現在地';
+
+  @override
   String get wardrive_backToLive => '現在の記録に戻る';
 
   @override
@@ -8714,7 +8721,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      '各 ping はゼロホップの探索要求です。直接届くリピーターだけが応答し、チャンネルには何も投稿されません。位置は無線機の GPS から取得します。';
+      '各 ping はゼロホップの探索要求です。直接届くリピーターだけが応答し、チャンネルには何も投稿されません。位置はスマートフォンの GPS から取得し、ない場合は無線機の GPS を使います。';
 
   @override
   String get mapTelemetry_policy =>

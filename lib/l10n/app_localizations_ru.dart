@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9149,7 +9150,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get wardrive_pinging => 'Пинг…';
 
   @override
-  String get wardrive_waitPosition => 'Ожидание GPS-координат от радио.';
+  String get wardrive_waitPosition =>
+      'Ожидание GPS-координат от телефона или радио.';
 
   @override
   String get wardrive_waitRadio => 'Подключите радио для пинга.';
@@ -9169,6 +9171,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get wardrive_delete => 'Удалить';
 
   @override
+  String get wardrive_recentre => 'К моему местоположению';
+
+  @override
+  String get wardrive_youAreHere => 'Вы здесь';
+
+  @override
   String get wardrive_backToLive => 'Назад к текущей';
 
   @override
@@ -9181,7 +9189,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      'Каждый пинг — запрос обнаружения без ретрансляции: отвечают только ретрансляторы в прямой досягаемости, в канал ничего не публикуется. Координаты берутся из GPS радио.';
+      'Каждый пинг — запрос обнаружения без ретрансляции: отвечают только ретрансляторы в прямой досягаемости, в канал ничего не публикуется. Координаты берутся из GPS телефона, а если его нет — из радио.';
 
   @override
   String get mapTelemetry_policy =>

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -5266,8 +5267,7 @@ class AppLocalizationsDe extends AppLocalizations {
       locale: localeName,
       other:
           '$count Sprünge haben keinen Standort - der angezeigte Pfad ist unvollständig',
-      one:
-          '1 Sprung hat keinen Standort - der angezeigte Pfad ist unvollständig',
+      one: '1 Sprung hat keinen Standort - der angezeigte Pfad ist unvollständig',
     );
     return '$_temp0';
   }
@@ -9136,7 +9136,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get wardrive_pinging => 'Pingt…';
 
   @override
-  String get wardrive_waitPosition => 'Warte auf GPS-Position vom Funkgerät.';
+  String get wardrive_waitPosition =>
+      'Warte auf GPS-Position vom Telefon oder Funkgerät.';
 
   @override
   String get wardrive_waitRadio => 'Verbinde ein Funkgerät, um zu pingen.';
@@ -9156,6 +9157,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get wardrive_delete => 'Löschen';
 
   @override
+  String get wardrive_recentre => 'Zu meiner Position';
+
+  @override
+  String get wardrive_youAreHere => 'Sie sind hier';
+
+  @override
   String get wardrive_backToLive => 'Zurück zur laufenden Fahrt';
 
   @override
@@ -9168,7 +9175,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      'Jeder Ping ist eine Discover-Anfrage ohne Weiterleitung: Nur Repeater in direkter Reichweite antworten, nichts wird in einen Kanal gepostet. Positionen kommen vom GPS des Funkgeräts.';
+      'Jeder Ping ist eine Discover-Anfrage ohne Weiterleitung: Nur Repeater in direkter Reichweite antworten, nichts wird in einen Kanal gepostet. Positionen kommen vom GPS des Telefons, sonst vom Funkgerät.';
 
   @override
   String get mapTelemetry_policy =>

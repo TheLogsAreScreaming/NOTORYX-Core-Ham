@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9001,7 +9002,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get wardrive_pinging => 'Pinging…';
 
   @override
-  String get wardrive_waitPosition => 'Waiting for a GPS fix from your radio.';
+  String get wardrive_waitPosition =>
+      'Waiting for a GPS fix from your phone or radio.';
 
   @override
   String get wardrive_waitRadio => 'Connect a radio to ping.';
@@ -9021,6 +9023,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get wardrive_delete => 'Delete';
 
   @override
+  String get wardrive_recentre => 'Back to my position';
+
+  @override
+  String get wardrive_youAreHere => 'You are here';
+
+  @override
   String get wardrive_backToLive => 'Back to live drive';
 
   @override
@@ -9033,7 +9041,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      'Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your radio’s GPS.';
+      'Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your phone’s GPS, or your radio’s when the phone has none.';
 
   @override
   String get mapTelemetry_policy =>
