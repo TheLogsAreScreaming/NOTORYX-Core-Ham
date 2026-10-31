@@ -74,12 +74,6 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             subtitle: l10n.guide_subtitle,
             builder: (_) => const FieldGuideScreen(),
           ),
-          _ToolAction(
-            icon: Icons.info_outline_rounded,
-            title: l10n.bastionTools_about,
-            subtitle: l10n.bastionTools_aboutHint,
-            builder: (_) => const BastionAboutScreen(),
-          ),
         ],
       ),
       (
@@ -182,6 +176,18 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
           ),
         ],
       ),
+      // About sits on its own at the very end, under no heading.
+      (
+        title: null as String?,
+        actions: <_ToolAction>[
+          _ToolAction(
+            icon: Icons.info_outline_rounded,
+            title: l10n.bastionTools_about,
+            subtitle: l10n.bastionTools_aboutHint,
+            builder: (_) => const BastionAboutScreen(),
+          ),
+        ],
+      ),
     ];
     final visibleGroups = [
       for (final group in groups)
@@ -248,7 +254,10 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
                         padding: const EdgeInsets.only(bottom: MeshSpace.xxl),
                         children: [
                           for (final group in visibleGroups) ...[
-                            InstrumentLabel(group.title),
+                            if (group.title case final title?)
+                              InstrumentLabel(title)
+                            else
+                              const SizedBox(height: MeshSpace.lg),
                             for (final action in group.actions)
                               GlassActionRow(
                                 icon: action.icon,
