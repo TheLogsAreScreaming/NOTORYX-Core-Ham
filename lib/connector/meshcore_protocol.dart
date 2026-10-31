@@ -217,6 +217,8 @@ const int cmdSendAnonReq = 57;
 const int cmdSetAutoAddConfig = 58;
 const int cmdGetAutoAddConfig = 59;
 const int cmdSetPathHashMode = 61;
+const int cmdSendRawPacket =
+    65; // v13+ (firmware v1.16): transmit a whole packet
 const int cmdRunCliCommand = 66; // v14+: run a CLI command on the companion
 
 // Signing with the radio's own key (companion_radio CMD_SIGN_*). The private
@@ -1040,6 +1042,18 @@ Uint8List? parseSignatureFrame(Uint8List frame) {
     return null;
   }
   return Uint8List.fromList(frame.sublist(1, 1 + signatureSize));
+}
+
+/// Firmware version code from which the companion transmits a packet the
+/// app hands it unchanged ([cmdSendRawPacket]). Firmware v1.15 is 11 and
+/// v1.16 is 13.
+const int minFirmwareVerCodeForRawPacket = 13;
+
+/// Transmits [raw], a whole packet as the radio heard it (header, path and
+/// payload), byte for byte. [priority] is the firmware's send priority; 1 is
+/// what it uses for an ordinary flood.
+Uint8List buildSendRawPacketFrame(Uint8List raw, {int priority = 1}) {
+  return Uint8List.fromList([cmdSendRawPacket, priority, ...raw]);
 }
 
 Uint8List buildRunCliCommandFrame(String command) {

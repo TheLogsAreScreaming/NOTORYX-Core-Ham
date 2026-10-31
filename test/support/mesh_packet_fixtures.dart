@@ -16,10 +16,39 @@ Uint8List groupTextPacket({
   List<int> path = const [],
 }) {
   final body = utf8.encode(text);
-  final plain = Uint8List(((5 + body.length + 1 + 15) ~/ 16) * 16)
+  final plain = Uint8List(5 + body.length)
     ..buffer.asByteData().setUint32(0, timestamp, Endian.little)
     ..[4] = 0
     ..setRange(5, 5 + body.length, body);
+  return _groupPacket(0x15, psk, plain, path); // flood route, GRP_TXT
+}
+
+/// A flood GRP_DATA packet: `[data type u16 LE][length][data]`, encrypted
+/// like [groupTextPacket].
+Uint8List groupDataPacket({
+  required Uint8List psk,
+  required int dataType,
+  required List<int> data,
+  List<int> path = const [],
+}) {
+  final plain = Uint8List.fromList([
+    dataType & 0xFF,
+    dataType >> 8,
+    data.length,
+    ...data,
+  ]);
+  return _groupPacket(0x19, psk, plain, path); // flood route, GRP_DATA
+}
+
+Uint8List _groupPacket(
+  int header,
+  Uint8List psk,
+  Uint8List body,
+  List<int> path,
+) {
+  // Zero-padded to whole blocks; a text keeps at least one zero terminator.
+  final plain = Uint8List(((body.length + 1 + 15) ~/ 16) * 16)
+    ..setRange(0, body.length, body);
   final key16 = Uint8List(16)..setRange(0, psk.length.clamp(0, 16), psk);
   final cipher = ECBBlockCipher(AESEngine())..init(true, KeyParameter(key16));
   final encrypted = Uint8List(plain.length);
@@ -30,7 +59,7 @@ Uint8List groupTextPacket({
   final mac = crypto.Hmac(crypto.sha256, key32).convert(encrypted).bytes;
   final channelHash = crypto.sha256.convert(psk).bytes[0];
   return Uint8List.fromList([
-    0x15, // flood route, GRP_TXT, version 0
+    header,
     path.length,
     ...path,
     channelHash,
