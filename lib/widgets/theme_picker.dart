@@ -15,7 +15,7 @@ class ThemePicker extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final columns = constraints.maxWidth >= 720
-            ? BastionTheme.values.length
+            ? 4
             : constraints.maxWidth >= 560
             ? 3
             : 2;

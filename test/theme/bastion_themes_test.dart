@@ -52,6 +52,54 @@ void main() {
     }
   });
 
+  test('Christmas has a stable saved id', () {
+    expect(BastionTheme.fromId('christmas'), BastionTheme.christmas);
+    final saved = AppSettings().copyWith(appTheme: 'christmas');
+    expect(AppSettings.fromJson(saved.toJson()).appTheme, 'christmas');
+  });
+
+  for (final width in [320.0, 720.0]) {
+    testWidgets('Christmas selection survives reload at width $width', (
+      tester,
+    ) async {
+      SharedPreferences.setMockInitialValues({});
+      PrefsManager.reset();
+      await PrefsManager.initialize();
+      final settings = AppSettingsService();
+      await settings.loadSettings();
+      await tester.binding.setSurfaceSize(Size(width, 1000));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await tester.pumpWidget(
+        ChangeNotifierProvider.value(
+          value: settings,
+          child: MaterialApp(
+            builder: (context, child) => MediaQuery(
+              data: MediaQuery.of(
+                context,
+              ).copyWith(textScaler: const TextScaler.linear(2)),
+              child: child!,
+            ),
+            home: const Scaffold(
+              body: SingleChildScrollView(child: ThemePicker()),
+            ),
+          ),
+        ),
+      );
+      final christmas = find.byKey(const ValueKey('theme-christmas'));
+      await tester.ensureVisible(christmas);
+      await tester.tap(christmas);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(settings.settings.appTheme, 'christmas');
+      final restored = AppSettingsService();
+      await restored.loadSettings();
+      expect(restored.settings.appTheme, 'christmas');
+      await tester.pumpWidget(const SizedBox.shrink());
+      restored.dispose();
+      settings.dispose();
+    });
+  }
+
   test('the palette follows the chosen theme', () {
     MeshPalette.current = BastionTheme.topoNight.palette;
     expect(MeshPalette.accent, const Color(0xFF5CE1E6));
