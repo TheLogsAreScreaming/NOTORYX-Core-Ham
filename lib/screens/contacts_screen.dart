@@ -295,8 +295,9 @@ class _ContactsScreenState extends State<ContactsScreen>
       return;
     }
     final text = clipboardData.text!.trim();
-    final link = parseContactLink(text);
-    if (link != null) {
+    final pasted = parsePastedContact(text);
+    if (pasted is PastedLink) {
+      final link = pasted.link;
       // Preview the identity and reuse chat's explicit Add action. In
       // particular, never replace an existing contact's name or route.
       await showDialog<void>(
@@ -321,19 +322,18 @@ class _ContactsScreenState extends State<ContactsScreen>
       );
       return;
     }
-    if (!RegExp(r'^meshcore://[0-9a-fA-F]+$').hasMatch(text)) {
+    if (pasted is! PastedAdvert) {
       if (mounted) {
         showDismissibleSnackBar(
           context,
-          content: Text(context.l10n.contacts_invalidAdvertFormat),
+          content: Text(context.l10n.contacts_pasteNotContact),
         );
       }
       return;
     }
-    final hexString = text.substring('meshcore://'.length);
     final Uint8List importContactFrame;
     try {
-      final bytes = hex2Uint8List(hexString);
+      final bytes = pasted.advert;
       if (bytes.length < 98 || bytes.length + 1 > maxFrameSize) {
         throw const FormatException('Invalid contact advertisement size');
       }

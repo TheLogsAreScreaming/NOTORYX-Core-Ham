@@ -1851,6 +1851,7 @@
   "contacts_pathTraceTo": "Tracer l'itinéraire vers {name}",
   "contacts_ping": "Ping",
   "contacts_roomPing": "Pinguer le room server",
+  "contacts_pasteNotContact": "Ce n’est pas un contact MeshCore. Copiez un lien ou une annonce meshcore://, puis réessayez.",
   "contacts_invalidAdvertFormat": "Données de contact non valides",
   "appSettings_languageUk": "Ukrainien",
   "appSettings_languageRu": "Russe",

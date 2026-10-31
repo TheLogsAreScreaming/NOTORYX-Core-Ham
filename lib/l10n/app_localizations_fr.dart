@@ -4667,6 +4667,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Le presse-papiers est vide.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Ce n’est pas un contact MeshCore. Copiez un lien ou une annonce meshcore://, puis réessayez.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Données de contact non valides';
 
   @override

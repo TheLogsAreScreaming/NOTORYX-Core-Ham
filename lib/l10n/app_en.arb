@@ -2621,6 +2621,7 @@
     }
   },
   "contacts_clipboardEmpty": "Clipboard is empty.",
+  "contacts_pasteNotContact": "That isn’t a MeshCore contact. Copy a meshcore:// contact link or advert, then try again.",
   "contacts_invalidAdvertFormat": "Invalid contact data",
   "contacts_contactImported": "Contact has been imported.",
   "contacts_contactImportFailed": "Failed to import contact.",

@@ -1760,6 +1760,7 @@
   "contacts_contactImportFailed": "Kontakt ni bil uspešno uvožen.",
   "contacts_zeroHopAdvert": "Reklama brez posrednikov",
   "contacts_floodAdvert": "Poplavna oglás",
+  "contacts_pasteNotContact": "To ni stik MeshCore. Kopirajte povezavo ali oglas meshcore:// in poskusite znova.",
   "contacts_invalidAdvertFormat": "Neveljavni kontaktne podatke",
   "contacts_clipboardEmpty": "Odložišče je prazno.",
   "contacts_copyAdvertToClipboard": "Kopiraj oglas v odložišče",

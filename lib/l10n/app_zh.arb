@@ -1762,6 +1762,7 @@
     }
   },
   "contacts_clipboardEmpty": "剪贴板为空",
+  "contacts_pasteNotContact": "这不是 MeshCore 联系人。请复制 meshcore:// 联系人链接或广播后重试。",
   "contacts_invalidAdvertFormat": "无效的联系人信息格式",
   "contacts_contactImported": "联系人已导入",
   "contacts_contactImportFailed": "导入联系人失败。",

@@ -4649,6 +4649,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get contacts_clipboardEmpty => 'El portapapeles está vacío.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Eso no es un contacto de MeshCore. Copia un enlace o anuncio meshcore:// e inténtalo de nuevo.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Formato de anuncio no válido';
 
   @override

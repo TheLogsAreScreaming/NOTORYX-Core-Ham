@@ -4648,6 +4648,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Клипборда е празна.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Това не е контакт на MeshCore. Копирайте връзка или обява meshcore:// и опитайте отново.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Невалидни данни за контакт';
 
   @override

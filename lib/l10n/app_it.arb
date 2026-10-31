@@ -1895,6 +1895,7 @@
   "contacts_roomPing": "Ping al server della stanza",
   "contacts_chatTraceRoute": "Traccia percorso path",
   "appSettings_languageRu": "Russo",
+  "contacts_pasteNotContact": "Non è un contatto MeshCore. Copia un link o un annuncio meshcore:// e riprova.",
   "contacts_invalidAdvertFormat": "Dati di contatto non validi",
   "appSettings_languageUk": "Ucraino",
   "appSettings_enableMessageTracing": "Abilita tracciamento messaggi",

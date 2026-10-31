@@ -4604,6 +4604,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Urklipp är tomt.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Det är ingen MeshCore-kontakt. Kopiera en meshcore://-kontaktlänk eller annons och försök igen.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Ogiltiga kontaktuppgifter';
 
   @override

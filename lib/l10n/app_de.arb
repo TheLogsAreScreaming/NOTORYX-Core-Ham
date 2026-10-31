@@ -1855,6 +1855,7 @@
   "contacts_pathTraceTo": "Route nach {name} verfolgen",
   "contacts_chatTraceRoute": "Pfadverfolgungsroute",
   "appSettings_languageRu": "Russisch",
+  "contacts_pasteNotContact": "Das ist kein MeshCore-Kontakt. Kopiere einen meshcore://-Kontaktlink oder ein Advert und versuche es erneut.",
   "contacts_invalidAdvertFormat": "Ungültige Kontaktdaten",
   "contacts_clipboardEmpty": "Die Zwischenablage ist leer.",
   "appSettings_languageUk": "Ukrainisch",

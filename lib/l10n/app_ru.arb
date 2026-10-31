@@ -924,6 +924,7 @@
   "contacts_pathTraceTo": "Показать маршрут к {name}",
   "contacts_contactImported": "Контакт был импортирован",
   "contacts_contactImportFailed": "Контакт не удалось импортировать",
+  "contacts_pasteNotContact": "Это не контакт MeshCore. Скопируйте ссылку или объявление meshcore:// и попробуйте снова.",
   "contacts_invalidAdvertFormat": "Недействительные контактные данные",
   "contacts_zeroHopAdvert": "Реклама Zero Hop",
   "appSettings_languageUk": "Українська",

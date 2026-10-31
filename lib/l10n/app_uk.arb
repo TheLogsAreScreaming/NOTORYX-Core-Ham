@@ -1763,6 +1763,7 @@
   "contacts_roomPing": "Пінг сервера кімнати",
   "contacts_chatTraceRoute": "Трасування шляху",
   "contacts_pathTraceTo": "Відстежити маршрут до {name}",
+  "contacts_pasteNotContact": "Це не контакт MeshCore. Скопіюйте посилання або оголошення meshcore:// і спробуйте ще раз.",
   "contacts_invalidAdvertFormat": "Недійсні контактні дані",
   "contacts_contactImported": "Контакт було імпортовано.",
   "contacts_contactImportFailed": "Контакт не вдалось імпортувати",

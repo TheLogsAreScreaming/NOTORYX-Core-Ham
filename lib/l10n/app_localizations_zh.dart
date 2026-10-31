@@ -4333,6 +4333,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get contacts_clipboardEmpty => '剪贴板为空';
 
   @override
+  String get contacts_pasteNotContact =>
+      '这不是 MeshCore 联系人。请复制 meshcore:// 联系人链接或广播后重试。';
+
+  @override
   String get contacts_invalidAdvertFormat => '无效的联系人信息格式';
 
   @override

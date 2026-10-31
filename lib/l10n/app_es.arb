@@ -1856,6 +1856,7 @@
   "appSettings_languageRu": "Ruso",
   "appSettings_enableMessageTracing": "Habilitar seguimiento de mensajes",
   "appSettings_enableMessageTracingSubtitle": "Mostrar metadatos detallados de enrutamiento y tiempo para los mensajes",
+  "contacts_pasteNotContact": "Eso no es un contacto de MeshCore. Copia un enlace o anuncio meshcore:// e inténtalo de nuevo.",
   "contacts_invalidAdvertFormat": "Formato de anuncio no válido",
   "contacts_floodAdvert": "Anuncio de inundación",
   "contacts_contactImported": "El contacto ha sido importado.",

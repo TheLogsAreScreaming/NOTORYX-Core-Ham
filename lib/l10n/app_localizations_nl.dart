@@ -4630,6 +4630,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Knipbord is leeg.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Dat is geen MeshCore-contact. Kopieer een meshcore://-contactlink of -advert en probeer het opnieuw.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Ongeldige contactgegevens';
 
   @override

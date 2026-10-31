@@ -4643,6 +4643,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get contacts_clipboardEmpty => 'A vágólap üres.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Ez nem MeshCore-névjegy. Másolj egy meshcore:// névjegyhivatkozást vagy hirdetést, és próbáld újra.';
+
+  @override
   String get contacts_invalidAdvertFormat =>
       'Érvénytelen kapcsolattartási adatok';
 

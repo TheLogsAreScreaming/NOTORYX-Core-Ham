@@ -111,6 +111,74 @@ void main() {
     }
   });
 
+  group('pasting a contact', () {
+    final key =
+        '9cd8fcf22a47333b591d96a2b848b73f457b1bb1a3ea2453a885f9e5787765b1';
+    final advertHex = List.generate(
+      110,
+      (i) => (i * 7 % 256).toRadixString(16).padLeft(2, '0'),
+    ).join();
+
+    ContactLink linkOf(String text) =>
+        (parsePastedContact(text)! as PastedLink).link;
+
+    test('takes a proper link, even inside other words', () {
+      final link = linkOf(
+        'Add me! meshcore://contact/add?name=Ridge&public_key=$key&type=2 thanks',
+      );
+      expect(link.name, 'Ridge');
+      expect(link.type, advTypeRepeater);
+    });
+
+    test('takes a link whose name has raw spaces', () {
+      final link = linkOf(
+        'meshcore://contact/add?name=Bob Smith&public_key=$key&type=1',
+      );
+      expect(link.name, 'Bob Smith');
+      expect(link.publicKeyHex.toLowerCase(), key);
+      final last = linkOf(
+        'meshcore://contact/add?public_key=$key&type=3&name=Base Camp Room',
+      );
+      expect(last.name, 'Base Camp Room');
+      expect(last.type, advTypeRoom);
+    });
+
+    test('takes an advert wrapped across lines or in other case', () {
+      final wrapped =
+          'MeshCore://${advertHex.substring(0, 100)}\n'
+          '${advertHex.substring(100, 180)} ${advertHex.substring(180)}';
+      final pasted = parsePastedContact(wrapped)! as PastedAdvert;
+      expect(pasted.advert, hex2Uint8List(advertHex));
+      expect(
+        (parsePastedContact('  meshcore://$advertHex\n')! as PastedAdvert)
+            .advert
+            .length,
+        110,
+      );
+      expect(parsePastedContact(advertHex), isA<PastedAdvert>());
+    });
+
+    test('takes a bare public key', () {
+      final link = linkOf(' $key ');
+      expect(link.name, 'Unnamed contact');
+      expect(link.type, advTypeChat);
+    });
+
+    test('turns down anything else', () {
+      for (final text in [
+        'hello',
+        'meshcore://abcd',
+        'meshcore://contact/add?name=x&public_key=abc&type=1',
+        key.substring(1),
+        'meshcore://contact/add?name=A B&public_key=$key&type=2&type=1',
+        'meshcore://contact/add?name=A B&public_key=$key&name=C',
+        '',
+      ]) {
+        expect(parsePastedContact(text), isNull, reason: text);
+      }
+    });
+  });
+
   test('a shared position is the map marker the app already shows', () {
     final text = positionMarker(35.123456, -80.5, 'Trail|Lead position');
     final poi = parseMarkerText(text)!;

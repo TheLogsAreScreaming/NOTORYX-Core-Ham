@@ -2056,6 +2056,7 @@
     }
   },
   "contacts_clipboardEmpty": "클립보드가 비어 있습니다.",
+  "contacts_pasteNotContact": "MeshCore 연락처가 아닙니다. meshcore:// 연락처 링크나 광고를 복사한 뒤 다시 시도하세요.",
   "contacts_invalidAdvertFormat": "유효하지 않은 연락 정보",
   "contacts_contactImported": "연락이 수신되었습니다.",
   "contacts_contactImportFailed": "연락처를 가져오지 못했습니다.",

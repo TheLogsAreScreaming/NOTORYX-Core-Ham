@@ -1753,6 +1753,7 @@
   "contacts_chatTraceRoute": "Route traceren",
   "contacts_pathTraceTo": "Volg de route naar {name}",
   "appSettings_languageUk": "Oekraïens",
+  "contacts_pasteNotContact": "Dat is geen MeshCore-contact. Kopieer een meshcore://-contactlink of -advert en probeer het opnieuw.",
   "contacts_invalidAdvertFormat": "Ongeldige contactgegevens",
   "contacts_contactImportFailed": "Contact kon niet geïmporteerd worden.",
   "contacts_zeroHopAdvert": "Zero Hop Reclame",

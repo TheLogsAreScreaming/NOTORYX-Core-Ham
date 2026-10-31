@@ -4417,6 +4417,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get contacts_clipboardEmpty => 'クリップボードは空です。';
 
   @override
+  String get contacts_pasteNotContact =>
+      'MeshCore の連絡先ではありません。meshcore:// の連絡先リンクまたはアドバートをコピーして、もう一度お試しください。';
+
+  @override
   String get contacts_invalidAdvertFormat => '無効な連絡先情報';
 
   @override
