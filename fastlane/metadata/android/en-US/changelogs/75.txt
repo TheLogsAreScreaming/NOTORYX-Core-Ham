@@ -1,0 +1,3 @@
+• Wardrive: the map follows you, and pings use your phone's GPS
+• Paste contacts: links with spaces, wrapped adverts and bare keys work
+• New themes: Christmas and Bubble Gum (replaces Topo night)
