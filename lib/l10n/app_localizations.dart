@@ -8026,6 +8026,12 @@ abstract class AppLocalizations {
   /// **'Clipboard is empty.'**
   String get contacts_clipboardEmpty;
 
+  /// No description provided for @contacts_pasteNotContact.
+  ///
+  /// In en, this message translates to:
+  /// **'That isn’t a MeshCore contact. Copy a meshcore:// contact link or advert, then try again.'**
+  String get contacts_pasteNotContact;
+
   /// No description provided for @contacts_invalidAdvertFormat.
   ///
   /// In en, this message translates to:

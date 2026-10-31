@@ -4657,6 +4657,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Die Zwischenablage ist leer.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Das ist kein MeshCore-Kontakt. Kopiere einen meshcore://-Kontaktlink oder ein Advert und versuche es erneut.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Ungültige Kontaktdaten';
 
   @override

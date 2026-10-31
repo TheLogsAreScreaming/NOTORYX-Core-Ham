@@ -1771,6 +1771,7 @@
   "contacts_floodAdvert": "Rozgłoszenie zalewowe",
   "contacts_copyAdvertToClipboard": "Kopiuj rozgłoszenie do schowka",
   "contacts_clipboardEmpty": "Schowek jest pusty.",
+  "contacts_pasteNotContact": "To nie jest kontakt MeshCore. Skopiuj link lub ogłoszenie meshcore:// i spróbuj ponownie.",
   "contacts_invalidAdvertFormat": "Nieprawidłowe dane kontaktowe",
   "contacts_addContactFromClipboard": "Dodaj kontakt z schowka",
   "contacts_contactImported": "Kontakt został zaimportowany.",

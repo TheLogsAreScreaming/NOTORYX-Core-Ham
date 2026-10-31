@@ -4426,6 +4426,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get contacts_clipboardEmpty => '클립보드가 비어 있습니다.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'MeshCore 연락처가 아닙니다. meshcore:// 연락처 링크나 광고를 복사한 뒤 다시 시도하세요.';
+
+  @override
   String get contacts_invalidAdvertFormat => '유효하지 않은 연락 정보';
 
   @override

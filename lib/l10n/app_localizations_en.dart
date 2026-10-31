@@ -4580,6 +4580,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Clipboard is empty.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'That isn’t a MeshCore contact. Copy a meshcore:// contact link or advert, then try again.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Invalid contact data';
 
   @override

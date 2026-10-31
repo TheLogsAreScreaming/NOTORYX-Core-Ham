@@ -4646,6 +4646,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Área de Transferência Está Vazia.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Isto não é um contacto MeshCore. Copie uma ligação ou anúncio meshcore:// e tente novamente.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Dados de Contato Inválidos';
 
   @override

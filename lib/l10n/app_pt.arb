@@ -1752,6 +1752,7 @@
   "contacts_roomPing": "Pingar servidor da sala",
   "contacts_chatTraceRoute": "Rastrear rota do caminho",
   "contacts_pathTraceTo": "Rastrear rota para {name}",
+  "contacts_pasteNotContact": "Isto não é um contacto MeshCore. Copie uma ligação ou anúncio meshcore:// e tente novamente.",
   "contacts_invalidAdvertFormat": "Dados de Contato Inválidos",
   "contacts_clipboardEmpty": "Área de Transferência Está Vazia.",
   "appSettings_languageUk": "Ucraniano",

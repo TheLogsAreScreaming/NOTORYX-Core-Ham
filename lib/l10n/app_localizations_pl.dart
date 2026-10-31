@@ -4666,6 +4666,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Schowek jest pusty.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'To nie jest kontakt MeshCore. Skopiuj link lub ogłoszenie meshcore:// i spróbuj ponownie.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Nieprawidłowe dane kontaktowe';
 
   @override

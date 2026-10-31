@@ -4654,6 +4654,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Буфер обміну порожній';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Це не контакт MeshCore. Скопіюйте посилання або оголошення meshcore:// і спробуйте ще раз.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Недійсні контактні дані';
 
   @override

@@ -4627,6 +4627,10 @@ class AppLocalizationsSl extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Odložišče je prazno.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'To ni stik MeshCore. Kopirajte povezavo ali oglas meshcore:// in poskusite znova.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Neveljavni kontaktne podatke';
 
   @override

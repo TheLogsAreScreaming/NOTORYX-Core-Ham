@@ -4659,6 +4659,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Буфер обмена пуст.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Это не контакт MeshCore. Скопируйте ссылку или объявление meshcore:// и попробуйте снова.';
+
+  @override
   String get contacts_invalidAdvertFormat =>
       'Недействительные контактные данные';
 

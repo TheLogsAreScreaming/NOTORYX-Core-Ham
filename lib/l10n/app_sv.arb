@@ -1759,6 +1759,7 @@
   "contacts_zeroHopAdvert": "Nollhoppsannons",
   "contacts_floodAdvert": "Flood-annonsering",
   "contacts_copyAdvertToClipboard": "Kopiera annons till urklipp",
+  "contacts_pasteNotContact": "Det är ingen MeshCore-kontakt. Kopiera en meshcore://-kontaktlänk eller annons och försök igen.",
   "contacts_invalidAdvertFormat": "Ogiltiga kontaktuppgifter",
   "appSettings_languageUk": "Ukrainska",
   "appSettings_enableMessageTracing": "Aktivera meddelandespårning",

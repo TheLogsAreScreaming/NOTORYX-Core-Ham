@@ -4628,6 +4628,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String get contacts_clipboardEmpty => 'Schránka je prázdna.';
 
   @override
+  String get contacts_pasteNotContact =>
+      'Toto nie je kontakt MeshCore. Skopírujte odkaz alebo oznam meshcore:// a skúste to znova.';
+
+  @override
   String get contacts_invalidAdvertFormat => 'Neplatné kontaktné údaje';
 
   @override
