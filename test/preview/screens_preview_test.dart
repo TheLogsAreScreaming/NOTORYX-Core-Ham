@@ -525,7 +525,7 @@ void main() {
   };
 
   setUpAll(() async {
-    // PREVIEW_THEME=topo_night (etc.) renders that theme; Blaze by default.
+    // PREVIEW_THEME=bubble_gum (etc.) renders that theme; Blaze by default.
     MeshPalette.current = BastionTheme.fromId(
       Platform.environment['PREVIEW_THEME'],
     ).palette;

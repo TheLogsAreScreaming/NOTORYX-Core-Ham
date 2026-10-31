@@ -20,7 +20,12 @@ void main() {
     expect(AppSettings().appTheme, 'blaze');
     expect(BastionTheme.fromId(null), BastionTheme.blaze);
     expect(BastionTheme.fromId('nope'), BastionTheme.blaze);
-    expect(BastionTheme.fromId('topo_night'), BastionTheme.topoNight);
+    expect(BastionTheme.fromId('topo_night'), BastionTheme.bubbleGum);
+    expect(BastionTheme.fromId('bubble_gum'), BastionTheme.bubbleGum);
+    expect(
+      BastionTheme.values.any((theme) => theme.id == 'topo_night'),
+      isFalse,
+    );
     // The rc.H-only Halloween theme is gone; people who picked it get Blaze.
     expect(BastionTheme.fromId('halloween'), BastionTheme.blaze);
     final saved = AppSettings().copyWith(appTheme: 'alpine_day');
@@ -50,6 +55,15 @@ void main() {
       }
       expect(s.brightness, p.brightness);
     }
+  });
+
+  test('Bubble Gum keeps all five reference colors', () {
+    final p = BastionTheme.bubbleGum.palette;
+    expect(p.bg4, const Color(0xFFCDB4DA));
+    expect(p.bg1, const Color(0xFFFFC8DC));
+    expect(p.me, const Color(0xFFFFAFCC));
+    expect(p.bg3, const Color(0xFFBEE0FE));
+    expect(p.accentDim, const Color(0xFFA2D2FF));
   });
 
   test('Christmas has a stable saved id', () {
@@ -94,6 +108,15 @@ void main() {
       final restored = AppSettingsService();
       await restored.loadSettings();
       expect(restored.settings.appTheme, 'christmas');
+      final bubbleGum = find.byKey(const ValueKey('theme-bubble_gum'));
+      await tester.ensureVisible(bubbleGum);
+      await tester.tap(bubbleGum);
+      await tester.pumpAndSettle();
+      expect(find.text('Topo night'), findsNothing);
+      expect(settings.settings.appTheme, 'bubble_gum');
+      await restored.loadSettings();
+      expect(restored.settings.appTheme, 'bubble_gum');
+      expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
       restored.dispose();
       settings.dispose();
@@ -101,8 +124,8 @@ void main() {
   }
 
   test('the palette follows the chosen theme', () {
-    MeshPalette.current = BastionTheme.topoNight.palette;
-    expect(MeshPalette.accent, const Color(0xFF5CE1E6));
+    MeshPalette.current = BastionTheme.bubbleGum.palette;
+    expect(MeshPalette.accent, const Color(0xFF704887));
     MeshPalette.current = BastionTheme.blaze.palette;
     expect(MeshPalette.accent, const Color(0xFFFF9A3C));
     expect(MeshTheme.light().brightness, Brightness.light);
