@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9103,7 +9104,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String get wardrive_pinging => 'Pingujem…';
 
   @override
-  String get wardrive_waitPosition => 'Čaká sa na GPS polohu z rádia.';
+  String get wardrive_waitPosition =>
+      'Čaká sa na GPS polohu z telefónu alebo rádia.';
 
   @override
   String get wardrive_waitRadio => 'Pripojte rádio na pingovanie.';
@@ -9123,6 +9125,12 @@ class AppLocalizationsSk extends AppLocalizations {
   String get wardrive_delete => 'Odstrániť';
 
   @override
+  String get wardrive_recentre => 'Späť na moju polohu';
+
+  @override
+  String get wardrive_youAreHere => 'Ste tu';
+
+  @override
   String get wardrive_backToLive => 'Späť na aktuálnu';
 
   @override
@@ -9135,7 +9143,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      'Každý ping je žiadosť o objavenie bez preposielania: odpovedajú len opakovače v priamom dosahu a nič sa nepublikuje do kanála. Poloha pochádza z GPS rádia.';
+      'Každý ping je žiadosť o objavenie bez preposielania: odpovedajú len opakovače v priamom dosahu a nič sa nepublikuje do kanála. Poloha pochádza z GPS telefónu, inak z rádia.';
 
   @override
   String get mapTelemetry_policy =>

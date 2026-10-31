@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/models/wardrive.dart';
+import 'package:meshcore_open/services/coverage_hex_service.dart';
 import 'package:meshcore_open/services/wardrive_service.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -97,8 +98,10 @@ void main() {
   group('service', () {
     late _Radio radio;
     late WardriveService service;
+    late StreamController<PositionFix> gps;
 
     setUp(() async {
+      gps = StreamController<PositionFix>.broadcast();
       SharedPreferences.setMockInitialValues({});
       PrefsManager.reset();
       await PrefsManager.initialize();
@@ -106,10 +109,12 @@ void main() {
       service = WardriveService(
         radio,
         listenWindow: const Duration(milliseconds: 30),
+        fixes: () => gps.stream,
       )..load();
     });
     tearDown(() {
       service.dispose();
+      unawaited(gps.close());
       PrefsManager.reset();
     });
 
@@ -119,6 +124,30 @@ void main() {
       expect(ping.latitude, 41.328);
       expect(ping.replies.single.prefix, 'fa01020304050607');
       expect(service.active!.heardCount, 1);
+    });
+
+    test(
+      'pings follow the phone as it moves, not where the radio started',
+      () async {
+        await service.start();
+        gps.add(PositionFix(41.40, -73.20, 5, DateTime.now()));
+        await Future<void>.delayed(Duration.zero);
+        expect(service.position, (lat: 41.40, lon: -73.20));
+        await service.pingNow();
+        gps.add(PositionFix(41.50, -73.30, 5, DateTime.now()));
+        await Future<void>.delayed(Duration.zero);
+        await service.pingNow();
+        final pings = service.active!.pings;
+        expect(pings.map((p) => p.latitude), [41.328, 41.40, 41.50]);
+        expect(pings.last.longitude, -73.30);
+      },
+    );
+
+    test('without phone GPS it falls back to the radio', () async {
+      gps.addError(StateError('Location permission was not granted.'));
+      await service.start();
+      expect(service.position, (lat: 41.328, lon: -73.094));
+      expect(service.active!.pings.single.latitude, 41.328);
     });
 
     test('an unheard ping is still recorded, as red', () async {

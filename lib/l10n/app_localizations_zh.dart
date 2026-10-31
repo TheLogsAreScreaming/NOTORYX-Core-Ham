@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -8499,7 +8500,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get wardrive_pinging => '正在 ping…';
 
   @override
-  String get wardrive_waitPosition => '正在等待电台的 GPS 定位。';
+  String get wardrive_waitPosition => '正在等待手机或电台的 GPS 定位。';
 
   @override
   String get wardrive_waitRadio => '请连接电台后再 ping。';
@@ -8519,6 +8520,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get wardrive_delete => '删除';
 
   @override
+  String get wardrive_recentre => '回到我的位置';
+
+  @override
+  String get wardrive_youAreHere => '你在这里';
+
+  @override
   String get wardrive_backToLive => '返回当前记录';
 
   @override
@@ -8531,7 +8538,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      '每次 ping 都是零跳发现请求：只有直接覆盖范围内的中继器会回应，不会向频道发布任何内容。位置来自电台的 GPS。';
+      '每次 ping 都是零跳发现请求：只有直接覆盖范围内的中继器会回应，不会向频道发布任何内容。位置来自手机的 GPS，没有时使用电台的 GPS。';
 
   @override
   String get mapTelemetry_policy =>

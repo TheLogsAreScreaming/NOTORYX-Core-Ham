@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -8696,7 +8697,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get wardrive_pinging => '핑 중…';
 
   @override
-  String get wardrive_waitPosition => '무전기의 GPS 위치를 기다리는 중입니다.';
+  String get wardrive_waitPosition => '휴대폰 또는 무전기의 GPS 위치를 기다리는 중입니다.';
 
   @override
   String get wardrive_waitRadio => '핑하려면 무전기를 연결하세요.';
@@ -8716,6 +8717,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get wardrive_delete => '삭제';
 
   @override
+  String get wardrive_recentre => '내 위치로 돌아가기';
+
+  @override
+  String get wardrive_youAreHere => '현재 위치';
+
+  @override
   String get wardrive_backToLive => '현재 기록으로 돌아가기';
 
   @override
@@ -8728,7 +8735,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      '각 핑은 제로홉 탐색 요청입니다. 직접 범위의 리피터만 응답하며 채널에는 아무것도 게시되지 않습니다. 위치는 무전기 GPS에서 가져옵니다.';
+      '각 핑은 제로홉 탐색 요청입니다. 직접 범위의 리피터만 응답하며 채널에는 아무것도 게시되지 않습니다. 위치는 휴대폰 GPS에서 가져오며, 없으면 무전기 GPS를 사용합니다.';
 
   @override
   String get mapTelemetry_policy =>

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -5269,8 +5270,7 @@ class AppLocalizationsIt extends AppLocalizations {
       locale: localeName,
       other:
           '$count salti non hanno una posizione specifica — il percorso mostrato è parziale',
-      one:
-          '1 salto non ha una posizione specifica — il percorso mostrato è parziale',
+      one: '1 salto non ha una posizione specifica — il percorso mostrato è parziale',
     );
     return '$_temp0';
   }
@@ -9138,7 +9138,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get wardrive_waitPosition =>
-      'In attesa della posizione GPS della radio.';
+      'In attesa della posizione GPS del telefono o della radio.';
 
   @override
   String get wardrive_waitRadio => 'Collega una radio per fare ping.';
@@ -9158,6 +9158,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get wardrive_delete => 'Elimina';
 
   @override
+  String get wardrive_recentre => 'Torna alla mia posizione';
+
+  @override
+  String get wardrive_youAreHere => 'Sei qui';
+
+  @override
   String get wardrive_backToLive => 'Torna al percorso attuale';
 
   @override
@@ -9170,7 +9176,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      'Ogni ping è una richiesta di scoperta a zero salti: rispondono solo i ripetitori a portata diretta e nulla viene pubblicato su un canale. Le posizioni vengono dal GPS della radio.';
+      'Ogni ping è una richiesta di scoperta a zero salti: rispondono solo i ripetitori a portata diretta e nulla viene pubblicato su un canale. Le posizioni vengono dal GPS del telefono o, se manca, della radio.';
 
   @override
   String get mapTelemetry_policy =>

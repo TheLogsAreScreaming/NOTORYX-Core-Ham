@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9092,7 +9093,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get wardrive_waitPosition =>
-      'Wachten op een GPS-positie van je radio.';
+      'Wachten op een GPS-positie van je telefoon of radio.';
 
   @override
   String get wardrive_waitRadio => 'Verbind een radio om te pingen.';
@@ -9112,6 +9113,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get wardrive_delete => 'Verwijderen';
 
   @override
+  String get wardrive_recentre => 'Terug naar mijn positie';
+
+  @override
+  String get wardrive_youAreHere => 'Je bent hier';
+
+  @override
   String get wardrive_backToLive => 'Terug naar huidige rit';
 
   @override
@@ -9124,7 +9131,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      'Elke ping is een discover-verzoek zonder doorsturen: alleen repeaters binnen direct bereik antwoorden en er wordt niets in een kanaal gezet. Posities komen van de GPS van je radio.';
+      'Elke ping is een discover-verzoek zonder doorsturen: alleen repeaters binnen direct bereik antwoorden en er wordt niets in een kanaal gezet. Posities komen van de GPS van je telefoon, of anders van je radio.';
 
   @override
   String get mapTelemetry_policy =>

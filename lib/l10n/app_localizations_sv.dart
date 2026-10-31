@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9053,7 +9054,8 @@ class AppLocalizationsSv extends AppLocalizations {
   String get wardrive_pinging => 'Pingar…';
 
   @override
-  String get wardrive_waitPosition => 'Väntar på GPS-position från radion.';
+  String get wardrive_waitPosition =>
+      'Väntar på GPS-position från telefonen eller radion.';
 
   @override
   String get wardrive_waitRadio => 'Anslut en radio för att pinga.';
@@ -9073,6 +9075,12 @@ class AppLocalizationsSv extends AppLocalizations {
   String get wardrive_delete => 'Ta bort';
 
   @override
+  String get wardrive_recentre => 'Tillbaka till min position';
+
+  @override
+  String get wardrive_youAreHere => 'Du är här';
+
+  @override
   String get wardrive_backToLive => 'Tillbaka till pågående';
 
   @override
@@ -9085,7 +9093,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      'Varje ping är en upptäcktsförfrågan utan vidarebefordran: bara repeatrar inom direkt räckvidd svarar och inget postas i en kanal. Positioner kommer från radions GPS.';
+      'Varje ping är en upptäcktsförfrågan utan vidarebefordran: bara repeatrar inom direkt räckvidd svarar och inget postas i en kanal. Positioner kommer från telefonens GPS, annars från radion.';
 
   @override
   String get mapTelemetry_policy =>

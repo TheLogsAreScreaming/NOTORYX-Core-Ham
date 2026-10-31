@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9116,7 +9117,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get wardrive_pinging => 'Pingelés…';
 
   @override
-  String get wardrive_waitPosition => 'Várakozás a rádió GPS-pozíciójára.';
+  String get wardrive_waitPosition =>
+      'Várakozás a telefon vagy a rádió GPS-pozíciójára.';
 
   @override
   String get wardrive_waitRadio => 'Csatlakoztasson rádiót a pingeléshez.';
@@ -9136,6 +9138,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get wardrive_delete => 'Törlés';
 
   @override
+  String get wardrive_recentre => 'Vissza a pozíciómhoz';
+
+  @override
+  String get wardrive_youAreHere => 'Itt vagy';
+
+  @override
   String get wardrive_backToLive => 'Vissza az aktuálishoz';
 
   @override
@@ -9148,7 +9156,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get wardrive_explainer =>
-      'Minden ping nulla ugrásos felderítő kérés: csak a közvetlen hatótávú átjátszók válaszolnak, csatornára semmi sem kerül. A pozíció a rádió GPS-éből jön.';
+      'Minden ping nulla ugrásos felderítő kérés: csak a közvetlen hatótávú átjátszók válaszolnak, csatornára semmi sem kerül. A pozíció a telefon GPS-éből jön, ennek hiányában a rádióéból.';
 
   @override
   String get mapTelemetry_policy =>
