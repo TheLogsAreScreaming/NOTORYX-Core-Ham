@@ -14,6 +14,7 @@ import '../services/coverage_capture_service.dart';
 import '../services/app_settings_service.dart';
 import '../services/field_ops_service.dart';
 import '../services/map_tile_cache_service.dart';
+import '../services/sos_relay_service.dart';
 import '../services/notification_service.dart';
 import 'bastion_coverage_capture_screen.dart';
 import 'bastion_diagnostics_screen.dart';
@@ -808,7 +809,33 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
         ],
       ),
     ]),
+    _sosRelayCard(radio),
   ]);
+
+  Widget _sosRelayCard(MeshCoreConnector radio) {
+    final relay = context.watch<SosRelayService>();
+    final last = relay.lastRelayAt;
+    return _card(_l10n.sosRelay_title, [
+      SwitchListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(_l10n.sosRelay_enable),
+        subtitle: Text(
+          radio.isConnected && !relay.radioSupported
+              ? _l10n.sosRelay_needsFirmware
+              : relay.relayed == 0 || last == null
+              ? _l10n.sosRelay_noneYet
+              : _l10n.sosRelay_relayedCount(
+                  relay.relayed,
+                  TimeOfDay.fromDateTime(last).format(context),
+                ),
+        ),
+        value: relay.enabled,
+        onChanged: (v) => _perform(() => relay.setEnabled(v)),
+      ),
+      Text(_l10n.sosRelay_explainer),
+    ]);
+  }
+
   Widget _readyRow(bool good, String title, String detail) => ListTile(
     contentPadding: EdgeInsets.zero,
     leading: Icon(

@@ -23,6 +23,7 @@ import '../models/radio_rx_packet.dart';
 import '../models/saved_radio.dart';
 import '../models/contact.dart';
 import '../models/flood_corridor.dart';
+import '../models/heard_channel_packet.dart';
 import '../models/message.dart';
 import '../models/path_selection.dart';
 import '../models/translation_support.dart';
@@ -7755,6 +7756,75 @@ class MeshCoreConnector extends ChangeNotifier {
       appLogger.warn('Error parsing raw packet: $e');
       return null;
     }
+  }
+
+  /// True when the connected radio can transmit a packet the app hands it
+  /// unchanged (CMD_SEND_RAW_PACKET, firmware v1.16+).
+  bool get supportsRawPacketSend =>
+      isConnected && (_firmwareVerCode ?? 0) >= minFirmwareVerCodeForRawPacket;
+
+  /// Transmits [raw], a packet the radio heard, byte for byte: same header,
+  /// path, region code and payload, so a signature in it still verifies and
+  /// repeaters that already forwarded it drop the copy.
+  Future<void> sendRawPacket(Uint8List raw) async {
+    if (!supportsRawPacketSend) {
+      throw StateError('This radio cannot send raw packets');
+    }
+    await _sendFrameAndWaitForCommandAck(buildSendRawPacketFrame(raw));
+  }
+
+  /// [raw] decrypted as a flood channel text or signed-post signature on one
+  /// of this radio's channels; null for anything else, including direct
+  /// packets and channels this radio doesn't have.
+  HeardChannelPacket? decodeHeardChannelPacket(Uint8List raw) {
+    final packet = _parseRawPacket(raw);
+    if (packet == null || !packet.isFlood || packet.payload.isEmpty) {
+      return null;
+    }
+    final isText = packet.payloadType == _payloadTypeGroupText;
+    if (!isText && packet.payloadType != payloadTypeGRPDATA) return null;
+    final channelHash = packet.payload[0];
+    final encrypted = Uint8List.sublistView(packet.payload, 1);
+    final channels = _channels.isNotEmpty ? _channels : _cachedChannels;
+    for (final channel in channels) {
+      if (channel.isEmpty || _computeChannelHash(channel.psk) != channelHash) {
+        continue;
+      }
+      final decrypted = _decryptPayload(channel.psk, encrypted);
+      if (decrypted == null) continue;
+      final hash = _computePacketHash(packet.payloadType, packet.payload);
+      try {
+        final reader = BufferReader(decrypted);
+        if (isText) {
+          final timestamp = reader.readUInt32LE();
+          if ((reader.readByte() >> 2) != 0) return null; // not plain text
+          final parsed = _splitSenderText(reader.readCString());
+          return HeardChannelPacket(
+            packetHash: hash,
+            hopCount: packet.hopCount,
+            channelIndex: channel.index,
+            senderName: parsed.senderName,
+            text: Smaz.tryDecodePrefixed(parsed.text) ?? parsed.text,
+            timestamp: timestamp,
+          );
+        }
+        final dataType = reader.readByte() | (reader.readByte() << 8);
+        final length = reader.readByte();
+        if (dataType != dataTypeSignedPost) return null;
+        final post = SignedPostPayload.decode(reader.readBytes(length));
+        if (post == null) return null;
+        return HeardChannelPacket(
+          packetHash: hash,
+          hopCount: packet.hopCount,
+          channelIndex: channel.index,
+          timestamp: post.timestamp,
+          signedPost: post,
+        );
+      } catch (_) {
+        return null;
+      }
+    }
+    return null;
   }
 
   /// The channel hash of [raw] when it's a group text message, else null.

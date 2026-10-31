@@ -10204,6 +10204,42 @@ abstract class AppLocalizations {
   /// **'Send'**
   String get fieldOps_send;
 
+  /// Field Ops card title for relaying other people's SOS messages
+  ///
+  /// In en, this message translates to:
+  /// **'SOS relay'**
+  String get sosRelay_title;
+
+  /// No description provided for @sosRelay_enable.
+  ///
+  /// In en, this message translates to:
+  /// **'Relay SOS no repeater carried'**
+  String get sosRelay_enable;
+
+  /// No description provided for @sosRelay_needsFirmware.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs radio firmware v1.16 or newer'**
+  String get sosRelay_needsFirmware;
+
+  /// No description provided for @sosRelay_noneYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No SOS relayed yet'**
+  String get sosRelay_noneYet;
+
+  /// No description provided for @sosRelay_relayedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Relayed 1 SOS packet, last at {time}} other{Relayed {count} SOS packets, last at {time}}}'**
+  String sosRelay_relayedCount(int count, String time);
+
+  /// No description provided for @sosRelay_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.'**
+  String get sosRelay_explainer;
+
   /// No description provided for @fieldOps_beforeYouLeave.
   ///
   /// In en, this message translates to:

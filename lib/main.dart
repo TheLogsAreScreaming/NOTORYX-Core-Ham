@@ -30,6 +30,7 @@ import 'services/mqtt_broker_service.dart';
 import 'services/mqtt_client_transport.dart';
 import 'services/network_monitor.dart';
 import 'services/secure_mqtt_credentials_store.dart';
+import 'services/sos_relay_service.dart';
 import 'services/image_chunk_transport.dart';
 import 'services/image_codec_service.dart';
 import 'services/image_codec_settings_store.dart';
@@ -282,6 +283,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final NodeTelemetryStore _telemetry;
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
+  late final SosRelayService _sosRelay;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -318,6 +320,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.connector.addListener(_syncTelemetryScope);
     _mySensors = MySensorsService(widget.connector);
     _wardrive = WardriveService(widget.connector)..load();
+    _sosRelay = SosRelayService.forConnector(widget.connector)..load();
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
     unawaited(_trackLog.load());
@@ -421,6 +424,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.connector.telemetryStore = null;
     _telemetry.dispose();
     _wardrive.dispose();
+    _sosRelay.dispose();
     _coverageHex.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
@@ -526,6 +530,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider<MySensorsService?>.value(value: _mySensors),
         ChangeNotifierProvider<NodeTelemetryStore?>.value(value: _telemetry),
         ChangeNotifierProvider.value(value: _wardrive),
+        ChangeNotifierProvider.value(value: _sosRelay),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,

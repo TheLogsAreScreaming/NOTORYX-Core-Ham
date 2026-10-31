@@ -37,6 +37,13 @@ bool isCheckInText(String text) {
   return t.startsWith(checkInTag) || t.startsWith(legacyCheckInTag);
 }
 
+/// Whether [text] is an SOS or all-clear from this app or an older Bastion
+/// release.
+bool isSosText(String text) {
+  final t = text.trimLeft();
+  return t.startsWith(sosTag) || t.startsWith(legacySosTag);
+}
+
 const checkInLabels = ["I'm OK", 'At Camp', 'Delayed', 'Heading Back'];
 
 /// A local summary: never includes message history, public keys or coordinates.

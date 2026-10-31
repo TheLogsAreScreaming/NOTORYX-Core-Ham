@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -5270,7 +5269,8 @@ class AppLocalizationsIt extends AppLocalizations {
       locale: localeName,
       other:
           '$count salti non hanno una posizione specifica — il percorso mostrato è parziale',
-      one: '1 salto non ha una posizione specifica — il percorso mostrato è parziale',
+      one:
+          '1 salto non ha una posizione specifica — il percorso mostrato è parziale',
     );
     return '$_temp0';
   }
@@ -6092,6 +6092,33 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get fieldOps_send => 'Invia';
+
+  @override
+  String get sosRelay_title => 'SOS relay';
+
+  @override
+  String get sosRelay_enable => 'Relay SOS no repeater carried';
+
+  @override
+  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+
+  @override
+  String get sosRelay_noneYet => 'No SOS relayed yet';
+
+  @override
+  String sosRelay_relayedCount(int count, String time) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Relayed $count SOS packets, last at $time',
+      one: 'Relayed 1 SOS packet, last at $time',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get sosRelay_explainer =>
+      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Prima di partire';
