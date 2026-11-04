@@ -138,37 +138,12 @@ class NodeTelemetryStore extends ChangeNotifier {
                 continue;
               }
               for (final item in entry.value as List) {
-                if (item is! Map ||
-                    item['channel'] is! int ||
-                    (item['channel'] as int) < 0 ||
-                    (item['channel'] as int) > 255 ||
-                    item['type'] is! int ||
-                    item['at'] is! int) {
-                  continue;
+                // One bad entry costs only itself, never the whole cache.
+                try {
+                  _load(entry.key as String, item);
+                } catch (e) {
+                  appLogger.warn('Skipping a bad telemetry cache entry: $e');
                 }
-                final value = _value(item['type'] as int, item['value']);
-                if (value == null) continue;
-                final at = DateTime.fromMillisecondsSinceEpoch(
-                  item['at'] as int,
-                );
-                if (at.isAfter(now) ||
-                    now.difference(at) >= const Duration(hours: 24)) {
-                  continue;
-                }
-                final sources = TelemetrySource.values.where(
-                  (s) => s.name == item['source'],
-                );
-                if (sources.isEmpty) continue;
-                _put(
-                  entry.key as String,
-                  NodeReading(
-                    channel: item['channel'] as int,
-                    type: item['type'] as int,
-                    value: value,
-                    at: at,
-                    source: sources.first,
-                  ),
-                );
               }
             }
           }
@@ -179,6 +154,37 @@ class NodeTelemetryStore extends ChangeNotifier {
     }
     _trim();
     notifyListeners();
+  }
+
+  void _load(String key, Object? item) {
+    if (item is! Map ||
+        item['channel'] is! int ||
+        (item['channel'] as int) < 0 ||
+        (item['channel'] as int) > 255 ||
+        item['type'] is! int ||
+        item['at'] is! int) {
+      return;
+    }
+    final value = _value(item['type'] as int, item['value']);
+    if (value == null) return;
+    final at = DateTime.fromMillisecondsSinceEpoch(item['at'] as int);
+    if (at.isAfter(now) || now.difference(at) >= const Duration(hours: 24)) {
+      return;
+    }
+    final sources = TelemetrySource.values.where(
+      (s) => s.name == item['source'],
+    );
+    if (sources.isEmpty) return;
+    _put(
+      key,
+      NodeReading(
+        channel: item['channel'] as int,
+        type: item['type'] as int,
+        value: value,
+        at: at,
+        source: sources.first,
+      ),
+    );
   }
 
   void record(
@@ -255,10 +261,20 @@ class NodeTelemetryStore extends ChangeNotifier {
       TelemetryMetric.humidity => {CayenneLpp.lppRelativeHumidity},
       TelemetryMetric.pressure => {CayenneLpp.lppBarometricPressure},
     };
-    final matches =
-        readingsFor(key).where((r) => types.contains(r.type)).toList()
-          ..sort((a, b) => b.at.compareTo(a.at));
-    return matches.isEmpty ? null : matches.first;
+    // One pass, no sorting: the newest reading wins, and readings from the
+    // same report (same time) go to the lowest channel, so the badge doesn't
+    // flip between sensors from one redraw to the next.
+    final now = this.now;
+    NodeReading? best;
+    for (final r in _nodes[key]?.values ?? const <NodeReading>[]) {
+      if (!types.contains(r.type) || r.expiredAt(now)) continue;
+      if (best == null ||
+          r.at.isAfter(best.at) ||
+          (r.at.isAtSameMomentAs(best.at) && r.channel < best.channel)) {
+        best = r;
+      }
+    }
+    return best;
   }
 
   void _trim() {
