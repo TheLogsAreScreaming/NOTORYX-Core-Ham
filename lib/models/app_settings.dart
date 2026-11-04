@@ -138,6 +138,11 @@ class AppSettings {
   /// Reconnect to the last radio by itself when the app opens.
   final bool autoConnectRadio;
 
+  /// The map's telemetry badges, and which reading they show (a
+  /// `TelemetryMetric` name), kept between visits.
+  final bool mapShowTelemetry;
+  final String mapTelemetryMetric;
+
   /// Signs every channel post, not only SOS. Each signature is one extra
   /// packet on air.
   final bool signChannelPosts;
@@ -254,6 +259,8 @@ class AppSettings {
     this.refreshRate = 'normal',
     this.linkPreviews = false,
     this.autoConnectRadio = false,
+    this.mapShowTelemetry = false,
+    this.mapTelemetryMetric = 'battery',
     this.signChannelPosts = false,
     this.appTheme = 'blaze',
     this.channelMessageRetentionDays = 0,
@@ -337,6 +344,8 @@ class AppSettings {
       'refresh_rate': refreshRate,
       'link_previews': linkPreviews,
       'auto_connect_radio': autoConnectRadio,
+      'map_show_telemetry': mapShowTelemetry,
+      'map_telemetry_metric': mapTelemetryMetric,
       'sign_channel_posts': signChannelPosts,
       'app_theme': appTheme,
       'channel_message_retention_days': channelMessageRetentionDays,
@@ -446,6 +455,8 @@ class AppSettings {
       refreshRate: json['refresh_rate'] as String? ?? 'normal',
       linkPreviews: json['link_previews'] as bool? ?? false,
       autoConnectRadio: json['auto_connect_radio'] as bool? ?? false,
+      mapShowTelemetry: json['map_show_telemetry'] as bool? ?? false,
+      mapTelemetryMetric: json['map_telemetry_metric'] as String? ?? 'battery',
       signChannelPosts: json['sign_channel_posts'] as bool? ?? false,
       appTheme: json['app_theme'] as String? ?? 'blaze',
       channelMessageRetentionDays:
@@ -572,6 +583,8 @@ class AppSettings {
     String? refreshRate,
     bool? linkPreviews,
     bool? autoConnectRadio,
+    bool? mapShowTelemetry,
+    String? mapTelemetryMetric,
     bool? signChannelPosts,
     String? appTheme,
     int? channelMessageRetentionDays,
@@ -654,6 +667,8 @@ class AppSettings {
       refreshRate: refreshRate ?? this.refreshRate,
       linkPreviews: linkPreviews ?? this.linkPreviews,
       autoConnectRadio: autoConnectRadio ?? this.autoConnectRadio,
+      mapShowTelemetry: mapShowTelemetry ?? this.mapShowTelemetry,
+      mapTelemetryMetric: mapTelemetryMetric ?? this.mapTelemetryMetric,
       signChannelPosts: signChannelPosts ?? this.signChannelPosts,
       appTheme: appTheme ?? this.appTheme,
       channelMessageRetentionDays:

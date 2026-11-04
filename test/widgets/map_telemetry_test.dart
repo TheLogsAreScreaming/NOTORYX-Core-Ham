@@ -5,6 +5,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/helpers/cayenne_lpp.dart';
 import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/contact.dart';
@@ -126,4 +127,74 @@ void main() {
       settings.dispose();
     },
   );
+
+  for (final width in [320.0, 720.0]) {
+    testWidgets('node telemetry fits $width px wide at 2x text', (
+      tester,
+    ) async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      final now = DateTime.utc(2026, 10, 30, 12);
+      final store = NodeTelemetryStore(prefs, clock: () => now)
+        ..setScope('a' * 64);
+      final settings = AppSettingsService();
+      final radio = MeshCoreConnector();
+      final node = Contact(
+        publicKey: Uint8List.fromList(List.filled(32, 1)),
+        name: 'Ridge',
+        type: 1,
+        pathLength: -1,
+        path: Uint8List(0),
+        lastSeen: now,
+      );
+      store.record(node.publicKeyHex, [
+        {'channel': 1, 'type': CayenneLpp.lppTemperature, 'value': 21},
+        {'channel': 1, 'type': CayenneLpp.lppVoltage, 'value': 4.1},
+        {'channel': 2, 'type': CayenneLpp.lppRelativeHumidity, 'value': 40},
+      ], source: TelemetrySource.telemetry);
+      tester.view.physicalSize = Size(width, 900);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      await tester.pumpWidget(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider<NodeTelemetryStore?>.value(value: store),
+            ChangeNotifierProvider.value(value: settings),
+            ChangeNotifierProvider<MeshCoreConnector>.value(value: radio),
+          ],
+          child: MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: MediaQuery(
+              data: MediaQueryData(
+                size: Size(width, 900),
+                textScaler: const TextScaler.linear(2),
+              ),
+              child: Scaffold(
+                body: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: NodeTelemetrySection(contact: node),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+      final title = tester.getRect(find.text('Telemetry'));
+      final refresh = tester.getRect(
+        find.byKey(const ValueKey('node-telemetry-refresh')),
+      );
+      if (width < 400) {
+        expect(refresh.top, greaterThanOrEqualTo(title.bottom));
+      } else {
+        expect(refresh.top, lessThan(title.bottom));
+      }
+      await tester.pumpWidget(const SizedBox());
+      store.dispose();
+      settings.dispose();
+      radio.dispose();
+    });
+  }
 }

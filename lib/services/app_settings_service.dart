@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
+
 import '../models/app_settings.dart';
 import '../models/image_codec_support.dart';
 import '../models/translation_support.dart';
@@ -291,6 +293,14 @@ class AppSettingsService extends ChangeNotifier {
 
   Future<void> setAutoConnectRadio(bool value) async {
     await updateSettings(_settings.copyWith(autoConnectRadio: value));
+  }
+
+  Future<void> setMapShowTelemetry(bool value) async {
+    await updateSettings(_settings.copyWith(mapShowTelemetry: value));
+  }
+
+  Future<void> setMapTelemetryMetric(String value) async {
+    await updateSettings(_settings.copyWith(mapTelemetryMetric: value));
   }
 
   Future<void> setLinkPreviews(bool value) async {
