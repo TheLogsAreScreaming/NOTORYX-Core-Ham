@@ -1,0 +1,4 @@
+• Map remembers the Telemetry badges and the reading you picked
+• Node telemetry fits small screens and large text
+• A damaged telemetry cache entry no longer wipes saved readings
+• Map badges stay steady when a node reports several sensors
