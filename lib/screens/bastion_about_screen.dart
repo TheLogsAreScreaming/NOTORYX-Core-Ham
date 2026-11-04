@@ -84,7 +84,7 @@ class BastionAboutScreen extends StatelessWidget {
             ),
             onPressed: () => showLicensePage(
               context: context,
-              applicationName: 'NOTORYX Core',
+              applicationName: 'NOTORYX Core Ham',
               applicationLegalese: l10n.bastionAbout_legalese,
             ),
             icon: const Icon(Icons.description_outlined),

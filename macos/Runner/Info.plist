@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>NOTORYX Core</string>
+	<string>NOTORYX Core Ham</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
@@ -35,12 +35,12 @@
 	<key>FLTEnableImpeller</key>
 	<false/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>NOTORYX Core uses Bluetooth to talk to your MeshCore LoRa radio.</string>
+	<string>NOTORYX Core Ham uses Bluetooth to talk to your MeshCore LoRa radio.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera to scan QR codes for joining communities.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app lets you pick a photo to compress and send over the mesh.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>NOTORYX Core uses your location only while coverage mapping is on, to credit what your radio hears to a map hexagon.</string>
+	<string>NOTORYX Core Ham uses your location only while coverage mapping is on, to credit what your radio hears to a map hexagon.</string>
 </dict>
 </plist>

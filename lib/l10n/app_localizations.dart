@@ -133,7 +133,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core'**
+  /// **'NOTORYX Core Ham'**
   String get appTitle;
 
   /// No description provided for @nav_contacts.
@@ -1741,19 +1741,19 @@ abstract class AppLocalizations {
   /// No description provided for @settings_aboutVersion.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core v{version}'**
+  /// **'NOTORYX Core Ham v{version}'**
   String settings_aboutVersion(String version);
 
   /// No description provided for @settings_aboutLegalese.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core • Built with open-source MeshCore Open components'**
+  /// **'NOTORYX Core Ham • Built with open-source MeshCore Open components'**
   String get settings_aboutLegalese;
 
   /// No description provided for @settings_aboutDescription.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.'**
+  /// **'NOTORYX Core Ham is a community-focused MeshCore companion app. It includes and builds on open-source components from MeshCore Open and other credited projects.'**
   String get settings_aboutDescription;
 
   /// No description provided for @settings_aboutOpenMeteoAttribution.
@@ -8113,7 +8113,7 @@ abstract class AppLocalizations {
   /// No description provided for @notification_activityTitle.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core Activity'**
+  /// **'NOTORYX Core Ham Activity'**
   String get notification_activityTitle;
 
   /// No description provided for @notification_messagesCount.
@@ -8227,13 +8227,13 @@ abstract class AppLocalizations {
   /// No description provided for @settings_gpxExportShareText.
   ///
   /// In en, this message translates to:
-  /// **'Map data exported from NOTORYX Core'**
+  /// **'Map data exported from NOTORYX Core Ham'**
   String get settings_gpxExportShareText;
 
   /// No description provided for @settings_gpxExportShareSubject.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core GPX map data export'**
+  /// **'NOTORYX Core Ham GPX map data export'**
   String get settings_gpxExportShareSubject;
 
   /// No description provided for @snrIndicator_nearByRepeaters.
@@ -8785,7 +8785,7 @@ abstract class AppLocalizations {
   /// No description provided for @background_serviceTitle.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core running'**
+  /// **'NOTORYX Core Ham running'**
   String get background_serviceTitle;
 
   /// No description provided for @background_serviceText.
@@ -9817,7 +9817,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_title.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core Field Operations'**
+  /// **'NOTORYX Core Ham Field Operations'**
   String get fieldOps_title;
 
   /// No description provided for @fieldOps_tabTrip.
@@ -10099,7 +10099,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_briefSubject.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core Trip Brief'**
+  /// **'NOTORYX Core Ham Trip Brief'**
   String get fieldOps_briefSubject;
 
   /// No description provided for @fieldOps_tripName.
@@ -10147,7 +10147,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_reminderHelper.
   ///
   /// In en, this message translates to:
-  /// **'A phone notification, even if NOTORYX Core is closed.'**
+  /// **'A phone notification, even if NOTORYX Core Ham is closed.'**
   String get fieldOps_reminderHelper;
 
   /// No description provided for @fieldOps_reminderOff.
@@ -10451,7 +10451,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldOps_logSubject.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core Field Log'**
+  /// **'NOTORYX Core Ham Field Log'**
   String get fieldOps_logSubject;
 
   /// No description provided for @fieldOps_logCaveat.
@@ -10787,7 +10787,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionHome_aboutTooltip.
   ///
   /// In en, this message translates to:
-  /// **'About NOTORYX Core'**
+  /// **'About NOTORYX Core Ham'**
   String get bastionHome_aboutTooltip;
 
   /// No description provided for @bastionHome_getStarted.
@@ -10997,7 +10997,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionTools_aboutHint.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core version, independence statement and open-source licenses'**
+  /// **'NOTORYX Core Ham version, independence statement and open-source licenses'**
   String get bastionTools_aboutHint;
 
   /// No description provided for @bastionAbout_title.
@@ -11009,7 +11009,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionAbout_intro.
   ///
   /// In en, this message translates to:
-  /// **'An independent community companion app for MeshCore networks. NOTORYX Core is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.'**
+  /// **'An independent community companion app for MeshCore networks. NOTORYX Core Ham is not an official MeshCore app and inclusion of community resources does not imply partnership or endorsement.'**
   String get bastionAbout_intro;
 
   /// No description provided for @bastionAbout_version.
@@ -11027,7 +11027,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionAbout_openSourceBody.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.'**
+  /// **'NOTORYX Core Ham is built from and modifies open-source MeshCore Open code under the MIT License. Coverage workflow work also credits the MIT-licensed MeshMapper Flutter App where applicable.'**
   String get bastionAbout_openSourceBody;
 
   /// No description provided for @bastionAbout_community.
@@ -11045,7 +11045,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionAbout_legalese.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core • Independent MeshCore companion'**
+  /// **'NOTORYX Core Ham • Independent MeshCore companion'**
   String get bastionAbout_legalese;
 
   /// No description provided for @bastionAbout_licenses.
@@ -11057,7 +11057,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionSetup_title.
   ///
   /// In en, this message translates to:
-  /// **'Get started with NOTORYX Core'**
+  /// **'Get started with NOTORYX Core Ham'**
   String get bastionSetup_title;
 
   /// No description provided for @bastionSetup_intro.
@@ -11093,7 +11093,7 @@ abstract class AppLocalizations {
   /// No description provided for @bastionSetup_step1Bluetooth.
   ///
   /// In en, this message translates to:
-  /// **'If Bluetooth discovery is empty, check Bluetooth is enabled and NOTORYX Core has Nearby devices permission in Android app settings. Follow any additional permission prompt shown by the scanner.'**
+  /// **'If Bluetooth discovery is empty, check Bluetooth is enabled and NOTORYX Core Ham has Nearby devices permission in Android app settings. Follow any additional permission prompt shown by the scanner.'**
   String get bastionSetup_step1Bluetooth;
 
   /// No description provided for @bastionSetup_connectionDiagnostics.
@@ -11393,7 +11393,7 @@ abstract class AppLocalizations {
   /// No description provided for @coverage_connectedBody.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.'**
+  /// **'NOTORYX Core Ham records newly heard nodes during this session, including route data, node/location metadata and the nearest available radio RSSI/SNR snapshot.'**
   String get coverage_connectedBody;
 
   /// No description provided for @coverage_disconnectedBody.
@@ -11525,13 +11525,13 @@ abstract class AppLocalizations {
   /// No description provided for @coverage_shareSubject.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core Coverage Session'**
+  /// **'NOTORYX Core Ham Coverage Session'**
   String get coverage_shareSubject;
 
   /// No description provided for @coverage_shareText.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core coverage capture export'**
+  /// **'NOTORYX Core Ham coverage capture export'**
   String get coverage_shareText;
 
   /// No description provided for @coverage_historyTitle.
@@ -11669,7 +11669,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldStats_headline.
   ///
   /// In en, this message translates to:
-  /// **'What NOTORYX Core knows right now.'**
+  /// **'What NOTORYX Core Ham knows right now.'**
   String get fieldStats_headline;
 
   /// No description provided for @fieldStats_body.
@@ -11747,7 +11747,7 @@ abstract class AppLocalizations {
   /// No description provided for @fieldStats_pathIntelBody.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.'**
+  /// **'NOTORYX Core Ham’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.'**
   String get fieldStats_pathIntelBody;
 
   /// No description provided for @fieldStats_coverageSessions.
@@ -11771,7 +11771,7 @@ abstract class AppLocalizations {
   /// No description provided for @mapHub_intro.
   ///
   /// In en, this message translates to:
-  /// **'Live maps, offline areas, regional profiles and NOTORYX Core field coverage sessions.'**
+  /// **'Live maps, offline areas, regional profiles and NOTORYX Core Ham field coverage sessions.'**
   String get mapHub_intro;
 
   /// No description provided for @mapHub_captureHint.
@@ -11855,7 +11855,7 @@ abstract class AppLocalizations {
   /// No description provided for @routes_body.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core ranks saved routes using the path history already learned from real message attempts and discoveries.'**
+  /// **'NOTORYX Core Ham ranks saved routes using the path history already learned from real message attempts and discoveries.'**
   String get routes_body;
 
   /// No description provided for @routes_routes.
@@ -11915,7 +11915,7 @@ abstract class AppLocalizations {
   /// No description provided for @routes_noneBody.
   ///
   /// In en, this message translates to:
-  /// **'Use the mesh normally or run discovery. NOTORYX Core will surface learned routes here as path history becomes available.'**
+  /// **'Use the mesh normally or run discovery. NOTORYX Core Ham will surface learned routes here as path history becomes available.'**
   String get routes_noneBody;
 
   /// No description provided for @routes_direct.
@@ -12052,13 +12052,13 @@ abstract class AppLocalizations {
   /// No description provided for @notification_checkInReminderTitle.
   ///
   /// In en, this message translates to:
-  /// **'NOTORYX Core check-in reminder'**
+  /// **'NOTORYX Core Ham check-in reminder'**
   String get notification_checkInReminderTitle;
 
   /// No description provided for @notification_checkInReminderBody.
   ///
   /// In en, this message translates to:
-  /// **'No check-in for {minutes} minutes on {trip}. Open NOTORYX Core to check in.'**
+  /// **'No check-in for {minutes} minutes on {trip}. Open NOTORYX Core Ham to check in.'**
   String notification_checkInReminderBody(int minutes, String trip);
 
   /// No description provided for @notification_overdueBody.
@@ -12112,7 +12112,7 @@ abstract class AppLocalizations {
   /// No description provided for @settings_readAloudHelper.
   ///
   /// In en, this message translates to:
-  /// **'While NOTORYX Core is open. Muted channels stay quiet. Any message can also be read from its menu.'**
+  /// **'While NOTORYX Core Ham is open. Muted channels stay quiet. Any message can also be read from its menu.'**
   String get settings_readAloudHelper;
 
   /// No description provided for @settings_readAloudOff.
@@ -13906,7 +13906,7 @@ abstract class AppLocalizations {
   /// No description provided for @trackLog_howItWorks.
   ///
   /// In en, this message translates to:
-  /// **'Uses the position your radio reports, about once a minute, while NOTORYX Core is open. A point is added after you move 25 m, or every 15 minutes when you stay put.'**
+  /// **'Uses the position your radio reports, about once a minute, while NOTORYX Core Ham is open. A point is added after you move 25 m, or every 15 minutes when you stay put.'**
   String get trackLog_howItWorks;
 
   /// No description provided for @trackLog_snap.

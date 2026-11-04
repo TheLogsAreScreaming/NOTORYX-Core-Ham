@@ -16,7 +16,7 @@ Map<String, String> homeWidgetValues({
   required int unread,
 }) => {
   'radio': (radioName == null || radioName.isEmpty)
-      ? 'NOTORYX Core'
+      ? 'NOTORYX Core Ham'
       : radioName,
   'status': connected
       ? t.connections_statusConnected

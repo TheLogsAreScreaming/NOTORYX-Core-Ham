@@ -327,7 +327,7 @@ class _WardriveScreenState extends State<WardriveScreen> {
                           TileLayer(
                             urlTemplate:
                                 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                            userAgentPackageName: 'com.bastionmesh.bastion',
+                            userAgentPackageName: 'com.bastionmesh.ham',
                           ),
                           MarkerLayer(
                             markers: [

@@ -76,7 +76,7 @@ jobs:
           AAPT=$(find "$ANDROID_HOME/build-tools" -maxdepth 2 -name aapt | sort -V | tail -n 1)
           test -x "$AAPT"
           "$AAPT" dump badging "$APK" > /tmp/bastion-badging.txt
-          grep -F "package: name='com.bastionmesh.bastion'" /tmp/bastion-badging.txt
+          grep -F "package: name='com.bastionmesh.ham'" /tmp/bastion-badging.txt
           grep -F "launchable-activity: name='com.meshcore.meshcore_open.MainActivity'" /tmp/bastion-badging.txt
           "$AAPT" dump resources "$APK" > /tmp/bastion-resources.txt
           grep -F 'mipmap/ic_launcher' /tmp/bastion-resources.txt

@@ -16,7 +16,7 @@
     <uses-feature android:name="android.hardware.usb.host" android:required="false"/>
 
     <application
-        android:label="NOTORYX"
+        android:label="NOTORYX Ham"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <service

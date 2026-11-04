@@ -9,7 +9,7 @@ class AppLocalizationsSv extends AppLocalizations {
   AppLocalizationsSv([String locale = 'sv']) : super(locale);
 
   @override
-  String get appTitle => 'NOTORYX Core';
+  String get appTitle => 'NOTORYX Core Ham';
 
   @override
   String get nav_contacts => 'Kontakter';
@@ -900,7 +900,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'NOTORYX Core version $version';
+    return 'NOTORYX Core Ham version $version';
   }
 
   @override
@@ -4742,11 +4742,11 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Kartdata exporterad från NOTORYX Core';
+      'Kartdata exporterad från NOTORYX Core Ham';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'NOTORYX Core export av GPX-kartdata';
+      'NOTORYX Core Ham export av GPX-kartdata';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Närliggande repeatrar';
@@ -5763,7 +5763,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'Den här översikten delar bara information; den skickar inget radiomeddelande och startar ingen tur.';
 
   @override
-  String get fieldOps_title => 'NOTORYX Core fältarbete';
+  String get fieldOps_title => 'NOTORYX Core Ham fältarbete';
 
   @override
   String get fieldOps_tabTrip => 'Tur';
@@ -5956,7 +5956,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get fieldOps_shareBrief => 'Dela översikt';
 
   @override
-  String get fieldOps_briefSubject => 'NOTORYX-Core-turöversikt';
+  String get fieldOps_briefSubject => 'NOTORYX-Core-Ham-turöversikt';
 
   @override
   String get fieldOps_tripName => 'Turnamn';
@@ -5983,7 +5983,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get fieldOps_reminderHelper =>
-      'En telefonavisering, även om NOTORYX Core är stängt.';
+      'En telefonavisering, även om NOTORYX Core Ham är stängt.';
 
   @override
   String get fieldOps_reminderOff => 'Av';
@@ -6169,7 +6169,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get fieldOps_deleteLog => 'Radera logg';
 
   @override
-  String get fieldOps_logSubject => 'NOTORYX-Core-fältlogg';
+  String get fieldOps_logSubject => 'NOTORYX-Core-Ham-fältlogg';
 
   @override
   String get fieldOps_logCaveat =>
@@ -6368,7 +6368,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'Lokal anteckning vid radions annonserade koordinater; kan vara inaktuell.';
 
   @override
-  String get bastionHome_aboutTooltip => 'Om NOTORYX Core';
+  String get bastionHome_aboutTooltip => 'Om NOTORYX Core Ham';
 
   @override
   String get bastionHome_getStarted => 'Kom igång';
@@ -6493,14 +6493,14 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get bastionTools_aboutHint =>
-      'NOTORYX-Core-version, oberoendeförklaring och licenser för öppen källkod';
+      'NOTORYX-Core-Ham-version, oberoendeförklaring och licenser för öppen källkod';
 
   @override
   String get bastionAbout_title => 'Om + Tack';
 
   @override
   String get bastionAbout_intro =>
-      'En oberoende community-app för MeshCore-nätverk. NOTORYX Core är inte en officiell MeshCore-app, och att communityresurser ingår innebär inget partnerskap eller stöd.';
+      'En oberoende community-app för MeshCore-nätverk. NOTORYX Core Ham är inte en officiell MeshCore-app, och att communityresurser ingår innebär inget partnerskap eller stöd.';
 
   @override
   String get bastionAbout_version => 'Version';
@@ -6510,7 +6510,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'NOTORYX Core bygger på och modifierar öppen källkod från MeshCore Open under MIT-licensen. Arbetet med täckningsflödet krediterar även, där det är tillämpligt, den MIT-licensierade MeshMapper Flutter App.';
+      'NOTORYX Core Ham bygger på och modifierar öppen källkod från MeshCore Open under MIT-licensen. Arbetet med täckningsflödet krediterar även, där det är tillämpligt, den MIT-licensierade MeshMapper Flutter App.';
 
   @override
   String get bastionAbout_community => 'Communityn först';
@@ -6521,13 +6521,13 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get bastionAbout_legalese =>
-      'NOTORYX Core • Oberoende MeshCore-följeslagare';
+      'NOTORYX Core Ham • Oberoende MeshCore-följeslagare';
 
   @override
   String get bastionAbout_licenses => 'Licenser för öppen källkod';
 
   @override
-  String get bastionSetup_title => 'Kom igång med NOTORYX Core';
+  String get bastionSetup_title => 'Kom igång med NOTORYX Core Ham';
 
   @override
   String get bastionSetup_intro =>
@@ -6550,7 +6550,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Om Bluetooth-sökningen är tom, kontrollera att Bluetooth är på och att NOTORYX Core har behörigheten Enheter i närheten i Androids appinställningar. Följ eventuella ytterligare behörighetsfrågor från skannern.';
+      'Om Bluetooth-sökningen är tom, kontrollera att Bluetooth är på och att NOTORYX Core Ham har behörigheten Enheter i närheten i Androids appinställningar. Följ eventuella ytterligare behörighetsfrågor från skannern.';
 
   @override
   String get bastionSetup_connectionDiagnostics => 'Anslutningsdiagnostik';
@@ -6714,7 +6714,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'NOTORYX Core registrerar nyss hörda noder under sessionen, inklusive ruttdata, nod-/platsmetadata och radions närmaste tillgängliga RSSI/SNR-ögonblicksbild.';
+      'NOTORYX Core Ham registrerar nyss hörda noder under sessionen, inklusive ruttdata, nod-/platsmetadata och radions närmaste tillgängliga RSSI/SNR-ögonblicksbild.';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6784,10 +6784,11 @@ class AppLocalizationsSv extends AppLocalizations {
   String get coverage_pathDirect => 'direkt';
 
   @override
-  String get coverage_shareSubject => 'NOTORYX-Core-täckningssession';
+  String get coverage_shareSubject => 'NOTORYX-Core-Ham-täckningssession';
 
   @override
-  String get coverage_shareText => 'NOTORYX-Core-export av täckningsinsamling';
+  String get coverage_shareText =>
+      'NOTORYX-Core-Ham-export av täckningsinsamling';
 
   @override
   String get coverage_historyTitle => 'Sparade täckningssessioner';
@@ -6878,7 +6879,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get fieldStats_snapshot => 'Live ögonblicksbild av meshnätet';
 
   @override
-  String get fieldStats_headline => 'Vad NOTORYX Core vet just nu.';
+  String get fieldStats_headline => 'Vad NOTORYX Core Ham vet just nu.';
 
   @override
   String get fieldStats_body =>
@@ -6919,7 +6920,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'NOTORYX Cores ruttanalys använder sparade vägförsök, antal hopp, lyckade/misslyckade, restid och ruttviktning för att visa inlärda rutter.';
+      'NOTORYX Core Hams ruttanalys använder sparade vägförsök, antal hopp, lyckade/misslyckade, restid och ruttviktning för att visa inlärda rutter.';
 
   @override
   String get fieldStats_coverageSessions => 'Täckningssessioner';
@@ -6933,7 +6934,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get mapHub_intro =>
-      'Livekartor, offlineområden, regionala profiler och NOTORYX Cores fälttäckningssessioner.';
+      'Livekartor, offlineområden, regionala profiler och NOTORYX Core Hams fälttäckningssessioner.';
 
   @override
   String get mapHub_captureHint => 'Starta och stoppa en fälttäckningssession';
@@ -6979,7 +6980,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'NOTORYX Core rangordnar sparade rutter med hjälp av väghistorik som redan lärts från verkliga meddelandeförsök och upptäckter.';
+      'NOTORYX Core Ham rangordnar sparade rutter med hjälp av väghistorik som redan lärts från verkliga meddelandeförsök och upptäckter.';
 
   @override
   String get routes_routes => 'Rutter';
@@ -7010,7 +7011,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get routes_noneBody =>
-      'Använd meshnätet som vanligt eller kör en upptäckt. NOTORYX Core visar inlärda rutter här när väghistorik blir tillgänglig.';
+      'Använd meshnätet som vanligt eller kör en upptäckt. NOTORYX Core Ham visar inlärda rutter här när väghistorik blir tillgänglig.';
 
   @override
   String get routes_direct => 'DIREKT';
@@ -7104,11 +7105,11 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get notification_checkInReminderTitle =>
-      'NOTORYX Core påminnelse om incheckning';
+      'NOTORYX Core Ham påminnelse om incheckning';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return 'Ingen incheckning på $minutes minuter på $trip. Öppna NOTORYX Core för att checka in.';
+    return 'Ingen incheckning på $minutes minuter på $trip. Öppna NOTORYX Core Ham för att checka in.';
   }
 
   @override
@@ -7145,7 +7146,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'Medan NOTORYX Core är öppet. Tystade kanaler förblir tysta. Alla meddelanden kan också läsas upp från sin meny.';
+      'Medan NOTORYX Core Ham är öppet. Tystade kanaler förblir tysta. Alla meddelanden kan också läsas upp från sin meny.';
 
   @override
   String get settings_readAloudOff => 'Av';
@@ -8237,7 +8238,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get trackLog_howItWorks =>
-      'Använder positionen som radion rapporterar, ungefär en gång i minuten, medan NOTORYX Core är öppen. En punkt läggs till när du rört dig 25 m, eller var 15:e minut när du står still.';
+      'Använder positionen som radion rapporterar, ungefär en gång i minuten, medan NOTORYX Core Ham är öppen. En punkt läggs till när du rört dig 25 m, eller var 15:e minut när du står still.';
 
   @override
   String get trackLog_snap => 'Avrunda positioner till cirka 100 m';

@@ -1,5 +1,5 @@
 name: meshcore_open
-description: "NOTORYX Core: an independent MeshCore LoRa companion app"
+description: "NOTORYX Core Ham: an independent MeshCore LoRa companion app"
 publish_to: 'none'
 version: 10.0.0-rc.24+76
 

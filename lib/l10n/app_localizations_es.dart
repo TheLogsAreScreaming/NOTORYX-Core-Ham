@@ -9,7 +9,7 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitle => 'NOTORYX Core';
+  String get appTitle => 'NOTORYX Core Ham';
 
   @override
   String get nav_contacts => 'Contactos';
@@ -438,7 +438,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get common_interval => 'Intervalo';
 
   @override
-  String get scanner_title => 'NOTORYX Core';
+  String get scanner_title => 'NOTORYX Core Ham';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -914,7 +914,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'NOTORYX Core v$version';
+    return 'NOTORYX Core Ham v$version';
   }
 
   @override
@@ -4789,11 +4789,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Datos del mapa exportados desde NOTORYX Core';
+      'Datos del mapa exportados desde NOTORYX Core Ham';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'Exportación GPX de datos de mapa de NOTORYX Core';
+      'Exportación GPX de datos de mapa de NOTORYX Core Ham';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Repetidores cercanos';
@@ -5822,7 +5822,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Este resumen solo comparte información; no envía un mensaje de radio ni inicia una salida.';
 
   @override
-  String get fieldOps_title => 'Operaciones de campo de NOTORYX Core';
+  String get fieldOps_title => 'Operaciones de campo de NOTORYX Core Ham';
 
   @override
   String get fieldOps_tabTrip => 'Salida';
@@ -6016,7 +6016,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get fieldOps_shareBrief => 'Compartir resumen';
 
   @override
-  String get fieldOps_briefSubject => 'Resumen de salida de NOTORYX Core';
+  String get fieldOps_briefSubject => 'Resumen de salida de NOTORYX Core Ham';
 
   @override
   String get fieldOps_tripName => 'Nombre de la salida';
@@ -6044,7 +6044,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get fieldOps_reminderHelper =>
-      'Una notificación del teléfono, aunque NOTORYX Core esté cerrado.';
+      'Una notificación del teléfono, aunque NOTORYX Core Ham esté cerrado.';
 
   @override
   String get fieldOps_reminderOff => 'Desactivado';
@@ -6230,7 +6230,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get fieldOps_deleteLog => 'Eliminar registro';
 
   @override
-  String get fieldOps_logSubject => 'Registro de campo de NOTORYX Core';
+  String get fieldOps_logSubject => 'Registro de campo de NOTORYX Core Ham';
 
   @override
   String get fieldOps_logCaveat =>
@@ -6430,7 +6430,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Nota local en coordenadas anunciadas por la radio; puede estar desactualizada.';
 
   @override
-  String get bastionHome_aboutTooltip => 'Acerca de NOTORYX Core';
+  String get bastionHome_aboutTooltip => 'Acerca de NOTORYX Core Ham';
 
   @override
   String get bastionHome_getStarted => 'Empezar';
@@ -6556,14 +6556,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get bastionTools_aboutHint =>
-      'Versión de NOTORYX Core, declaración de independencia y licencias de código abierto';
+      'Versión de NOTORYX Core Ham, declaración de independencia y licencias de código abierto';
 
   @override
   String get bastionAbout_title => 'Acerca de + Créditos';
 
   @override
   String get bastionAbout_intro =>
-      'Una app comunitaria independiente para redes MeshCore. NOTORYX Core no es una app oficial de MeshCore y la inclusión de recursos de la comunidad no implica asociación ni respaldo.';
+      'Una app comunitaria independiente para redes MeshCore. NOTORYX Core Ham no es una app oficial de MeshCore y la inclusión de recursos de la comunidad no implica asociación ni respaldo.';
 
   @override
   String get bastionAbout_version => 'Versión';
@@ -6573,7 +6573,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'NOTORYX Core se basa en el código abierto de MeshCore Open bajo la licencia MIT y lo modifica. El trabajo del flujo de cobertura también da crédito a la MeshMapper Flutter App con licencia MIT cuando corresponde.';
+      'NOTORYX Core Ham se basa en el código abierto de MeshCore Open bajo la licencia MIT y lo modifica. El trabajo del flujo de cobertura también da crédito a la MeshMapper Flutter App con licencia MIT cuando corresponde.';
 
   @override
   String get bastionAbout_community => 'La comunidad primero';
@@ -6584,13 +6584,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get bastionAbout_legalese =>
-      'NOTORYX Core • Compañero independiente de MeshCore';
+      'NOTORYX Core Ham • Compañero independiente de MeshCore';
 
   @override
   String get bastionAbout_licenses => 'Licencias de código abierto';
 
   @override
-  String get bastionSetup_title => 'Primeros pasos con NOTORYX Core';
+  String get bastionSetup_title => 'Primeros pasos con NOTORYX Core Ham';
 
   @override
   String get bastionSetup_intro =>
@@ -6613,7 +6613,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Si la búsqueda Bluetooth está vacía, comprueba que Bluetooth está activado y que NOTORYX Core tiene el permiso de Dispositivos cercanos en los ajustes de apps de Android. Sigue cualquier otra solicitud de permisos que muestre el escáner.';
+      'Si la búsqueda Bluetooth está vacía, comprueba que Bluetooth está activado y que NOTORYX Core Ham tiene el permiso de Dispositivos cercanos en los ajustes de apps de Android. Sigue cualquier otra solicitud de permisos que muestre el escáner.';
 
   @override
   String get bastionSetup_connectionDiagnostics => 'Diagnóstico de conexión';
@@ -6779,7 +6779,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'NOTORYX Core registra los nodos recién oídos durante esta sesión, incluidos datos de ruta, metadatos de nodo/ubicación y la instantánea RSSI/SNR de la radio más cercana disponible.';
+      'NOTORYX Core Ham registra los nodos recién oídos durante esta sesión, incluidos datos de ruta, metadatos de nodo/ubicación y la instantánea RSSI/SNR de la radio más cercana disponible.';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6849,11 +6849,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get coverage_pathDirect => 'directa';
 
   @override
-  String get coverage_shareSubject => 'Sesión de cobertura de NOTORYX Core';
+  String get coverage_shareSubject => 'Sesión de cobertura de NOTORYX Core Ham';
 
   @override
   String get coverage_shareText =>
-      'Exportación de captura de cobertura de NOTORYX Core';
+      'Exportación de captura de cobertura de NOTORYX Core Ham';
 
   @override
   String get coverage_historyTitle => 'Sesiones de cobertura guardadas';
@@ -6944,7 +6944,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get fieldStats_snapshot => 'Instantánea de la malla en vivo';
 
   @override
-  String get fieldStats_headline => 'Lo que NOTORYX Core sabe ahora mismo.';
+  String get fieldStats_headline => 'Lo que NOTORYX Core Ham sabe ahora mismo.';
 
   @override
   String get fieldStats_body =>
@@ -6985,7 +6985,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'La inteligencia de rutas de NOTORYX Core usa intentos de ruta guardados, número de saltos, éxitos/fallos, tiempo de viaje y ponderación de rutas para mostrar rutas aprendidas.';
+      'La inteligencia de rutas de NOTORYX Core Ham usa intentos de ruta guardados, número de saltos, éxitos/fallos, tiempo de viaje y ponderación de rutas para mostrar rutas aprendidas.';
 
   @override
   String get fieldStats_coverageSessions => 'Sesiones de cobertura';
@@ -6999,7 +6999,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get mapHub_intro =>
-      'Mapas en vivo, áreas sin conexión, perfiles regionales y sesiones de cobertura de campo de NOTORYX Core.';
+      'Mapas en vivo, áreas sin conexión, perfiles regionales y sesiones de cobertura de campo de NOTORYX Core Ham.';
 
   @override
   String get mapHub_captureHint =>
@@ -7046,7 +7046,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'NOTORYX Core clasifica las rutas guardadas usando el historial de caminos ya aprendido de intentos reales de mensajes y descubrimientos.';
+      'NOTORYX Core Ham clasifica las rutas guardadas usando el historial de caminos ya aprendido de intentos reales de mensajes y descubrimientos.';
 
   @override
   String get routes_routes => 'Rutas';
@@ -7077,7 +7077,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get routes_noneBody =>
-      'Usa la malla con normalidad o ejecuta un descubrimiento. NOTORYX Core mostrará aquí las rutas aprendidas a medida que haya historial de caminos.';
+      'Usa la malla con normalidad o ejecuta un descubrimiento. NOTORYX Core Ham mostrará aquí las rutas aprendidas a medida que haya historial de caminos.';
 
   @override
   String get routes_direct => 'DIRECTA';
@@ -7171,11 +7171,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get notification_checkInReminderTitle =>
-      'Recordatorio de aviso de NOTORYX Core';
+      'Recordatorio de aviso de NOTORYX Core Ham';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return 'Sin aviso desde hace $minutes minutos en $trip. Abre NOTORYX Core para enviar un aviso.';
+    return 'Sin aviso desde hace $minutes minutos en $trip. Abre NOTORYX Core Ham para enviar un aviso.';
   }
 
   @override
@@ -7212,7 +7212,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'Mientras NOTORYX Core esté abierto. Los canales silenciados no se leen. Cualquier mensaje también puede leerse desde su menú.';
+      'Mientras NOTORYX Core Ham esté abierto. Los canales silenciados no se leen. Cualquier mensaje también puede leerse desde su menú.';
 
   @override
   String get settings_readAloudOff => 'Desactivado';
@@ -8311,7 +8311,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get trackLog_howItWorks =>
-      'Usa la posición que informa tu radio, aproximadamente una vez por minuto, mientras NOTORYX Core está abierta. Se añade un punto al moverte 25 m, o cada 15 minutos si no te mueves.';
+      'Usa la posición que informa tu radio, aproximadamente una vez por minuto, mientras NOTORYX Core Ham está abierta. Se añade un punto al moverte 25 m, o cada 15 minutos si no te mueves.';
 
   @override
   String get trackLog_snap => 'Redondear posiciones a unos 100 m';

@@ -1,9 +1,9 @@
-name: Build NOTORYX Core APK
+name: Build NOTORYX Core Ham APK
 
 # Installable Android build for testing: every push to dev and every PR
-# produces a downloadable "NOTORYX-Core-Android-ARM64" artifact (Actions run
+# produces a downloadable "NOTORYX-Core-Ham-Android-ARM64" artifact (Actions run
 # page, Artifacts section). Pushes to dev and manual runs also produce
-# "NOTORYX-Core-Android-AAB" for Google Play. Both are debug-signed here and
+# "NOTORYX-Core-Ham-Android-AAB" for Google Play. Both are debug-signed here and
 # must be re-signed with the release key on the maintainer's Mac.
 on:
   push:
@@ -69,15 +69,15 @@ jobs:
         shell: bash
         run: |
           mkdir -p dist
-          cp build/app/outputs/flutter-apk/app-release.apk dist/NOTORYX-Core-arm64-v8a.apk
+          cp build/app/outputs/flutter-apk/app-release.apk dist/NOTORYX-Core-Ham-arm64-v8a.apk
           cd dist
-          sha256sum NOTORYX-Core-arm64-v8a.apk > SHA256SUMS.txt
+          sha256sum NOTORYX-Core-Ham-arm64-v8a.apk > SHA256SUMS.txt
           ls -lh
 
       - name: Upload Android artifact
         uses: actions/upload-artifact@v4
         with:
-          name: NOTORYX-Core-Android-ARM64
+          name: NOTORYX-Core-Ham-Android-ARM64
           path: dist/
           if-no-files-found: error
           retention-days: 30
@@ -91,15 +91,15 @@ jobs:
         shell: bash
         run: |
           mkdir -p dist-aab
-          cp build/app/outputs/bundle/release/app-release.aab dist-aab/NOTORYX-Core.aab
+          cp build/app/outputs/bundle/release/app-release.aab dist-aab/NOTORYX-Core-Ham.aab
           cd dist-aab
-          sha256sum NOTORYX-Core.aab > SHA256SUMS.txt
+          sha256sum NOTORYX-Core-Ham.aab > SHA256SUMS.txt
           ls -lh
 
       - name: Upload app bundle artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          name: NOTORYX-Core-Android-AAB
+          name: NOTORYX-Core-Ham-Android-AAB
           path: dist-aab/
           if-no-files-found: error

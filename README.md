@@ -2,15 +2,15 @@
   <img src="branding/notoryx-icon.png" width="120" alt="NOTORYX app icon">
 </p>
 
-# NOTORYX Core
+# NOTORYX Core Ham
 
 Part of the **NOTORYX** off-grid communications family. **No Towers. No Limits.**
 
-> NOTORYX Core was previously named Bastion. Its package ID (`com.bastionmesh.bastion`) and Android signing key are unchanged, so existing installs update in place and keep their data.
+> NOTORYX Core Ham is the amateur radio edition of NOTORYX Core, for licensed operators. It installs as a separate app (`com.bastionmesh.ham`) next to NOTORYX Core. Licensed Operator Mode (call-sign ID, no encryption, Part 97 power settings) is in development and needs the NOTORYX Core Ham firmware; until then the app behaves like NOTORYX Core. See [docs/licensed-operator](docs/licensed-operator).
 
 **Off-grid messaging, check-ins and SOS over your MeshCore LoRa radio.**
 
-NOTORYX Core turns your phone or computer and a [MeshCore](https://meshcore.io/) radio into a field communicator that works without cell service, Wi-Fi or the internet. Messages hop from radio to radio across the mesh.
+NOTORYX Core Ham turns your phone or computer and a [MeshCore](https://meshcore.io/) radio into a field communicator that works without cell service, Wi-Fi or the internet. Messages hop from radio to radio across the mesh.
 
 <p align="center">
   <img src="docs/screenshots/home.png" width="230" alt="Home: radio readouts, check-in, SOS and field tools on frosted glass">
@@ -18,40 +18,40 @@ NOTORYX Core turns your phone or computer and a [MeshCore](https://meshcore.io/)
   <img src="docs/screenshots/nodes.png" width="230" alt="Nodes: repeaters, people, rooms and sensors heard on the mesh">
 </p>
 
-> NOTORYX Core is a pre-release. It is tested in automated tests and a mesh simulator but not yet on a wide range of phones and radios. MQTT bridging and LetsMesh sign-in are new and still need wider real-world testing. It is not a replacement for an emergency service or a satellite messenger. Please [report issues](../../issues).
+> NOTORYX Core Ham is a pre-release. It is tested in automated tests and a mesh simulator but not yet on a wide range of phones and radios. MQTT bridging and LetsMesh sign-in are new and still need wider real-world testing. It is not a replacement for an emergency service or a satellite messenger. Please [report issues](../../issues).
 
 ## Download
 
-Get the latest build from **[NOTORYX Core releases](https://github.com/TheLogsAreScreaming/notoryx-core-releases/releases)**. Each release lists what changed.
+Get the latest build from **[NOTORYX Core Ham releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases)**. Each release lists what changed.
 
 | Platform | File | Notes |
 |---|---|---|
-| Android (ARM64 phones) | `NOTORYX-Core-…-arm64-v8a.apk` | Signed with the existing release key |
-| macOS (Intel and Apple silicon, macOS 14+) | `NOTORYX-Core-…-macOS-universal.zip` | Not notarized by Apple (see below) |
+| Android (ARM64 phones) | `NOTORYX-Core-Ham-…-arm64-v8a.apk` | Signed with the existing release key |
+| macOS (Intel and Apple silicon, macOS 14+) | `NOTORYX-Core-Ham-…-macOS-universal.zip` | Not notarized by Apple (see below) |
 
 iOS, Windows, Linux and web builds compile in CI but aren't released yet.
 
 ### Install on Android
 
-**Easiest: get updates automatically with [Obtainium](https://obtainium.imranr.dev/).** On your phone, install Obtainium, then tap the badge below. It adds NOTORYX Core with pre-releases included and the Android APK picked out, and tells you when a new build is out.
+**Easiest: get updates automatically with [Obtainium](https://obtainium.imranr.dev/).** On your phone, install Obtainium, then tap the badge below. It adds NOTORYX Core Ham with pre-releases included and the Android APK picked out, and tells you when a new build is out.
 
-<p><a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.bastionmesh.bastion%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FTheLogsAreScreaming%2Fnotoryx-core-releases%22%2C%22author%22%3A%22TheLogsAreScreaming%22%2C%22name%22%3A%22NOTORYX%20Core%22%2C%22additionalSettings%22%3A%22%7B%5C%22includePrereleases%5C%22%3Atrue%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22arm64-v8a%5C%5C%5C%5C.apk%24%5C%22%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22versionDetection%5C%22%3Atrue%7D%22%7D"><img src="branding/badge_obtainium.png" width="161" alt="Get it on Obtainium"></a></p>
+<p><a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.bastionmesh.ham%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FTheLogsAreScreaming%2FNOTORYX-Core-Ham-Releases%22%2C%22author%22%3A%22TheLogsAreScreaming%22%2C%22name%22%3A%22NOTORYX%20Core%20Ham%22%2C%22additionalSettings%22%3A%22%7B%5C%22includePrereleases%5C%22%3Atrue%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22arm64-v8a%5C%5C%5C%5C.apk%24%5C%22%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22versionDetection%5C%22%3Atrue%7D%22%7D"><img src="branding/badge_obtainium.png" width="161" alt="Get it on Obtainium"></a></p>
 
 Or install the APK yourself:
 
 1. On your phone, open the release and download the `.apk`.
 2. Open the file. If Android asks, allow installs from your browser or file manager.
-3. Open NOTORYX Core and allow **Bluetooth**, **location** and **notifications** when asked.
+3. Open NOTORYX Core Ham and allow **Bluetooth**, **location** and **notifications** when asked.
 
 **Upgrading from a test build:** builds before 10.0.0-rc.10 were signed with a temporary test key, and Android won't install a release-signed build over them. First make an encrypted backup (**More → Encrypted backup**), then uninstall the old app, install the new one and restore. You only do this once. Later versions install as normal updates.
 
 ### Install on a Mac
 
 1. Download the `.zip` from the release and double-click it to unzip.
-2. Drag **NOTORYX Core** into your **Applications** folder.
+2. Drag **NOTORYX Core Ham** into your **Applications** folder.
 3. Open it. The first time, macOS says it can't check the app for malicious software, because it isn't notarized by Apple.
    - Click **Done**, then open **System Settings → Privacy & Security**.
-   - Scroll down and click **Open Anyway** next to "NOTORYX Core was blocked", then confirm.
+   - Scroll down and click **Open Anyway** next to "NOTORYX Core Ham was blocked", then confirm.
    - You do this once for each new version.
 4. Allow Bluetooth when asked.
 
@@ -59,9 +59,9 @@ Each release includes `SHA256SUMS-Android.txt` and `SHA256SUMS-macOS.txt` if you
 
 ## Getting started
 
-1. **Connect your radio.** On the home screen, tap **Get started**, or go to **Connect radio**. NOTORYX Core connects over Bluetooth, USB or TCP to a radio running MeshCore companion firmware, and reconnects to your last radio on its own.
+1. **Connect your radio.** On the home screen, tap **Get started**, or go to **Connect radio**. NOTORYX Core Ham connects over Bluetooth, USB or TCP to a radio running MeshCore companion firmware, and reconnects to your last radio on its own.
 2. **Say hello.** Open **Chats** and send a message on a channel, or open someone in **Nodes** to message them directly.
-3. **Choose who gets your check-ins and SOS.** Tap **Check in: I'm OK** or hold **SOS**. The first time, NOTORYX Core asks who should get them. You can change this anytime in **Plan your trip**.
+3. **Choose who gets your check-ins and SOS.** Tap **Check in: I'm OK** or hold **SOS**. The first time, NOTORYX Core Ham asks who should get them. You can change this anytime in **Plan your trip**.
 4. **Set your radio for your area.** **Settings → Radio settings → Presets** lists MeshCore's community presets (USA, Canada, EU/UK, Australia and more) with the one for your country suggested first.
 5. **Pick a look.** **Settings → Theme** offers Blaze (default), Topo night, Red light and Alpine day.
 
@@ -133,9 +133,9 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 ## Add your area's mesh settings
 
-When a local mesh agrees on new radio settings, NOTORYX Core can offer them to everyone nearby. The live list is [`regional_presets.json` in notoryx-core-releases](https://github.com/TheLogsAreScreaming/notoryx-core-releases/blob/main/regional_presets.json), which NOTORYX Core checks every 12 hours. The app also bundles a copy, [`assets/regional_presets.json`](assets/regional_presets.json), for first launch and offline use; update it to match the live list before each release.
+When a local mesh agrees on new radio settings, NOTORYX Core Ham can offer them to everyone nearby. The live list is [`regional_presets.json` in NOTORYX-Core-Ham-Releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/blob/main/regional_presets.json), which NOTORYX Core Ham checks every 12 hours. The app also bundles a copy, [`assets/regional_presets.json`](assets/regional_presets.json), for first launch and offline use; update it to match the live list before each release.
 
-To add or update an area, [open an issue in notoryx-core-releases](https://github.com/TheLogsAreScreaming/notoryx-core-releases/issues/new). Each entry has:
+To add or update an area, [open an issue in NOTORYX-Core-Ham-Releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/issues/new). Each entry has:
 
 ```json
 {
@@ -172,7 +172,7 @@ flutter build appbundle --release   # Google Play
 flutter build macos --release
 ```
 
-The Android application ID is `com.bastionmesh.bastion`.
+The Android application ID is `com.bastionmesh.ham`, so it installs next to NOTORYX Core (`com.bastionmesh.bastion`).
 
 Before opening a pull request, run:
 
@@ -197,9 +197,9 @@ Bug reports, feature requests and pull requests are welcome. Use the **[Issues](
 
 ## Independence and attribution
 
-NOTORYX Core is an independent community app. It is not an official MeshCore app and doesn't imply endorsement by MeshCore. For MeshCore itself, see [meshcore.io](https://meshcore.io/).
+NOTORYX Core Ham is an independent community app. It is not an official MeshCore app and doesn't imply endorsement by MeshCore. For MeshCore itself, see [meshcore.io](https://meshcore.io/).
 
-NOTORYX Core builds on the open-source [MeshCore Open](https://github.com/zjs81/meshcore-open) project. License text and third-party notices are in [`LICENSE`](LICENSE), [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and the app's Open source licenses screen.
+NOTORYX Core Ham builds on the open-source [MeshCore Open](https://github.com/zjs81/meshcore-open) project. License text and third-party notices are in [`LICENSE`](LICENSE), [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and the app's Open source licenses screen.
 
 ## License
 

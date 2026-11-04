@@ -33,7 +33,7 @@ void main() {
       batteryPercent: 80,
       unread: 3,
     );
-    expect(off['radio'], 'NOTORYX Core');
+    expect(off['radio'], 'NOTORYX Core Ham');
     expect(off['status'], en.connections_statusNotConnected);
     expect(off['battery'], '—', reason: 'stale battery is not shown');
     expect(off['unread'], '3');
