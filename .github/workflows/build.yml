@@ -112,8 +112,8 @@ jobs:
       - name: Verify and package universal Mac candidate
         run: |
           set -euo pipefail
-          APP="build/macos/Build/Products/Release/NOTORYX Core.app"
-          ARCHS=$(lipo -archs "$APP/Contents/MacOS/NOTORYX Core")
+          APP="build/macos/Build/Products/Release/NOTORYX Core Ham.app"
+          ARCHS=$(lipo -archs "$APP/Contents/MacOS/NOTORYX Core Ham")
           case "$ARCHS" in *x86_64*) ;; *) exit 1;; esac
           case "$ARCHS" in *arm64*) ;; *) exit 1;; esac
           test "$(/usr/libexec/PlistBuddy -c 'Print :FLTEnableImpeller' "$APP/Contents/Info.plist")" = false
@@ -121,14 +121,14 @@ jobs:
           codesign --verify --deep --strict "$APP"
           VERSION=$(sed -n 's/^version: //p' pubspec.yaml)
           mkdir -p dist
-          ditto -c -k --keepParent "$APP" "dist/NOTORYX-Core-$VERSION-macOS-universal.zip"
+          ditto -c -k --keepParent "$APP" "dist/NOTORYX-Core-Ham-$VERSION-macOS-universal.zip"
           cp -R build/symbols/macos "dist/symbols-$VERSION"
           printf '%s\n' "$GITHUB_SHA" > dist/SOURCE_COMMIT.txt
           cd dist
           shasum -a 256 *.zip > SHA256SUMS-macOS.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: NOTORYX-Core-macOS-candidate
+          name: NOTORYX-Core-Ham-macOS-candidate
           path: dist/
           if-no-files-found: error
           retention-days: 30

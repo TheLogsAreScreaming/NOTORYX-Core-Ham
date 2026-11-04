@@ -9,7 +9,7 @@ class AppLocalizationsHu extends AppLocalizations {
   AppLocalizationsHu([String locale = 'hu']) : super(locale);
 
   @override
-  String get appTitle => 'NOTORYX Core';
+  String get appTitle => 'NOTORYX Core Ham';
 
   @override
   String get nav_contacts => 'Kapcsolatok';
@@ -438,7 +438,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get common_interval => 'Intervallum';
 
   @override
-  String get scanner_title => 'NOTORYX Core';
+  String get scanner_title => 'NOTORYX Core Ham';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -910,7 +910,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'NOTORYX Core v$version';
+    return 'NOTORYX Core Ham v$version';
   }
 
   @override
@@ -4782,11 +4782,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'A térképadatok a NOTORYX Core-ból exportálva';
+      'A térképadatok a NOTORYX Core Ham-ból exportálva';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'NOTORYX Core GPX térképadatok exportálása';
+      'NOTORYX Core Ham GPX térképadatok exportálása';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Közeli átjátszók';
@@ -5807,7 +5807,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Ez az összefoglaló csak információt oszt meg; nem küld rádióüzenetet és nem indít túrát.';
 
   @override
-  String get fieldOps_title => 'NOTORYX Core terepi műveletek';
+  String get fieldOps_title => 'NOTORYX Core Ham terepi műveletek';
 
   @override
   String get fieldOps_tabTrip => 'Túra';
@@ -6002,7 +6002,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldOps_shareBrief => 'Összefoglaló megosztása';
 
   @override
-  String get fieldOps_briefSubject => 'NOTORYX Core túraösszefoglaló';
+  String get fieldOps_briefSubject => 'NOTORYX Core Ham túraösszefoglaló';
 
   @override
   String get fieldOps_tripName => 'Túra neve';
@@ -6029,7 +6029,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get fieldOps_reminderHelper =>
-      'Telefonos értesítés, akkor is, ha a NOTORYX Core be van zárva.';
+      'Telefonos értesítés, akkor is, ha a NOTORYX Core Ham be van zárva.';
 
   @override
   String get fieldOps_reminderOff => 'Ki';
@@ -6215,7 +6215,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldOps_deleteLog => 'Napló törlése';
 
   @override
-  String get fieldOps_logSubject => 'NOTORYX Core terepnapló';
+  String get fieldOps_logSubject => 'NOTORYX Core Ham terepnapló';
 
   @override
   String get fieldOps_logCaveat =>
@@ -6414,7 +6414,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Helyi jegyzet a rádió által sugárzott koordinátáknál; elavult lehet.';
 
   @override
-  String get bastionHome_aboutTooltip => 'A NOTORYX Core-ról';
+  String get bastionHome_aboutTooltip => 'A NOTORYX Core Ham-ról';
 
   @override
   String get bastionHome_getStarted => 'Első lépések';
@@ -6539,14 +6539,14 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get bastionTools_aboutHint =>
-      'NOTORYX-Core-verzió, függetlenségi nyilatkozat és nyílt forráskódú licencek';
+      'NOTORYX-Core-Ham-verzió, függetlenségi nyilatkozat és nyílt forráskódú licencek';
 
   @override
   String get bastionAbout_title => 'Névjegy + Köszönet';
 
   @override
   String get bastionAbout_intro =>
-      'Független közösségi kísérőalkalmazás MeshCore-hálózatokhoz. A NOTORYX Core nem hivatalos MeshCore-alkalmazás, és a közösségi források szerepeltetése nem jelent partnerséget vagy jóváhagyást.';
+      'Független közösségi kísérőalkalmazás MeshCore-hálózatokhoz. A NOTORYX Core Ham nem hivatalos MeshCore-alkalmazás, és a közösségi források szerepeltetése nem jelent partnerséget vagy jóváhagyást.';
 
   @override
   String get bastionAbout_version => 'Verzió';
@@ -6556,7 +6556,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'A NOTORYX Core a MeshCore Open MIT-licences nyílt forráskódjára épül, és azt módosítja. A lefedettségi munkafolyamat ahol releváns, a MIT-licences MeshMapper Flutter App érdemeit is elismeri.';
+      'A NOTORYX Core Ham a MeshCore Open MIT-licences nyílt forráskódjára épül, és azt módosítja. A lefedettségi munkafolyamat ahol releváns, a MIT-licences MeshMapper Flutter App érdemeit is elismeri.';
 
   @override
   String get bastionAbout_community => 'A közösség az első';
@@ -6567,13 +6567,13 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get bastionAbout_legalese =>
-      'NOTORYX Core • Független MeshCore-kísérő';
+      'NOTORYX Core Ham • Független MeshCore-kísérő';
 
   @override
   String get bastionAbout_licenses => 'Nyílt forráskódú licencek';
 
   @override
-  String get bastionSetup_title => 'Első lépések a NOTORYX Core-ral';
+  String get bastionSetup_title => 'Első lépések a NOTORYX Core Ham-ral';
 
   @override
   String get bastionSetup_intro =>
@@ -6596,7 +6596,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Ha a Bluetooth-keresés üres, ellenőrizze, hogy a Bluetooth be van-e kapcsolva, és hogy a NOTORYX Core rendelkezik-e a Közeli eszközök engedéllyel az Android alkalmazásbeállításaiban. Kövesse a szkenner által megjelenített további engedélykéréseket.';
+      'Ha a Bluetooth-keresés üres, ellenőrizze, hogy a Bluetooth be van-e kapcsolva, és hogy a NOTORYX Core Ham rendelkezik-e a Közeli eszközök engedéllyel az Android alkalmazásbeállításaiban. Kövesse a szkenner által megjelenített további engedélykéréseket.';
 
   @override
   String get bastionSetup_connectionDiagnostics => 'Kapcsolatdiagnosztika';
@@ -6761,7 +6761,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'A NOTORYX Core rögzíti a munkamenet során újonnan hallott csomópontokat, beleértve az útvonaladatokat, a csomópont-/helymetaadatokat és a rádió legközelebbi elérhető RSSI/SNR pillanatképét.';
+      'A NOTORYX Core Ham rögzíti a munkamenet során újonnan hallott csomópontokat, beleértve az útvonaladatokat, a csomópont-/helymetaadatokat és a rádió legközelebbi elérhető RSSI/SNR pillanatképét.';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6831,10 +6831,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get coverage_pathDirect => 'közvetlen';
 
   @override
-  String get coverage_shareSubject => 'NOTORYX Core lefedettségi munkamenet';
+  String get coverage_shareSubject =>
+      'NOTORYX Core Ham lefedettségi munkamenet';
 
   @override
-  String get coverage_shareText => 'NOTORYX Core lefedettségrögzítési export';
+  String get coverage_shareText =>
+      'NOTORYX Core Ham lefedettségrögzítési export';
 
   @override
   String get coverage_historyTitle => 'Mentett lefedettségi munkamenetek';
@@ -6925,7 +6927,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldStats_snapshot => 'Élő hálózati pillanatkép';
 
   @override
-  String get fieldStats_headline => 'Amit a NOTORYX Core most tud.';
+  String get fieldStats_headline => 'Amit a NOTORYX Core Ham most tud.';
 
   @override
   String get fieldStats_body =>
@@ -6966,7 +6968,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'A NOTORYX Core útvonalelemzése mentett útkísérleteket, ugrásszámokat, sikereket/hibákat, átfutási időt és útvonalsúlyozást használ a tanult útvonalak megjelenítéséhez.';
+      'A NOTORYX Core Ham útvonalelemzése mentett útkísérleteket, ugrásszámokat, sikereket/hibákat, átfutási időt és útvonalsúlyozást használ a tanult útvonalak megjelenítéséhez.';
 
   @override
   String get fieldStats_coverageSessions => 'Lefedettségi munkamenetek';
@@ -6980,7 +6982,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get mapHub_intro =>
-      'Élő térképek, offline területek, regionális profilok és NOTORYX Core terepi lefedettségi munkamenetek.';
+      'Élő térképek, offline területek, regionális profilok és NOTORYX Core Ham terepi lefedettségi munkamenetek.';
 
   @override
   String get mapHub_captureHint =>
@@ -7028,7 +7030,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'A NOTORYX Core a valós üzenetküldési kísérletekből és felderítésekből már megtanult útelőzmények alapján rangsorolja a mentett útvonalakat.';
+      'A NOTORYX Core Ham a valós üzenetküldési kísérletekből és felderítésekből már megtanult útelőzmények alapján rangsorolja a mentett útvonalakat.';
 
   @override
   String get routes_routes => 'Útvonalak';
@@ -7059,7 +7061,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get routes_noneBody =>
-      'Használja a hálózatot a szokásos módon, vagy indítson felderítést. A NOTORYX Core itt jeleníti meg a tanult útvonalakat, amint útelőzmények állnak rendelkezésre.';
+      'Használja a hálózatot a szokásos módon, vagy indítson felderítést. A NOTORYX Core Ham itt jeleníti meg a tanult útvonalakat, amint útelőzmények állnak rendelkezésre.';
 
   @override
   String get routes_direct => 'KÖZVETLEN';
@@ -7153,11 +7155,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get notification_checkInReminderTitle =>
-      'NOTORYX Core bejelentkezési emlékeztető';
+      'NOTORYX Core Ham bejelentkezési emlékeztető';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return '$minutes perce nincs bejelentkezés a(z) $trip túrán. Nyissa meg a NOTORYX Core-t a bejelentkezéshez.';
+    return '$minutes perce nincs bejelentkezés a(z) $trip túrán. Nyissa meg a NOTORYX Core Ham-t a bejelentkezéshez.';
   }
 
   @override
@@ -7194,7 +7196,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'Amíg a NOTORYX Core nyitva van. A némított csatornák csendben maradnak. Bármely üzenet felolvasható a menüjéből is.';
+      'Amíg a NOTORYX Core Ham nyitva van. A némított csatornák csendben maradnak. Bármely üzenet felolvasható a menüjéből is.';
 
   @override
   String get settings_readAloudOff => 'Ki';
@@ -8297,7 +8299,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get trackLog_howItWorks =>
-      'A rádió által nagyjából percenként jelentett pozíciót használja, amíg a NOTORYX Core nyitva van. 25 m elmozdulás után vagy egy helyben 15 percenként kerül be új pont.';
+      'A rádió által nagyjából percenként jelentett pozíciót használja, amíg a NOTORYX Core Ham nyitva van. 25 m elmozdulás után vagy egy helyben 15 percenként kerül be új pont.';
 
   @override
   String get trackLog_snap => 'Pozíciók kerekítése kb. 100 m-re';

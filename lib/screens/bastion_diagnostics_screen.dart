@@ -33,7 +33,7 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     final s = c.latestRadioStats;
     final now = DateTime.now().toIso8601String();
     final lines = <String>[
-      'NOTORYX Core Diagnostics',
+      'NOTORYX Core Ham Diagnostics',
       'Generated: $now',
       '',
       'Connection',
@@ -75,8 +75,8 @@ class BastionDiagnosticsScreen extends StatelessWidget {
     if (!context.mounted) return;
     await SharePlus.instance.share(
       ShareParams(
-        subject: 'NOTORYX Core Diagnostics',
-        text: 'NOTORYX Core diagnostics export',
+        subject: 'NOTORYX Core Ham Diagnostics',
+        text: 'NOTORYX Core Ham diagnostics export',
         files: [XFile(file.path)],
       ),
     );

@@ -224,7 +224,7 @@ class _HexMap extends StatelessWidget {
           children: [
             TileLayer(
               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              userAgentPackageName: 'com.bastionmesh.bastion',
+              userAgentPackageName: 'com.bastionmesh.ham',
             ),
             PolygonLayer(
               polygons: [

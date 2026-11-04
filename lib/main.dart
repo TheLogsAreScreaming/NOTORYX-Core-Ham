@@ -559,7 +559,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
           final palette = _applyTheme(settingsService.settings.appTheme);
           return MaterialApp(
             navigatorKey: _navigatorKey,
-            title: 'NOTORYX Core',
+            title: 'NOTORYX Core Ham',
             debugShowCheckedModeBanner: false,
             localizationsDelegates: const [
               AppLocalizations.delegate,

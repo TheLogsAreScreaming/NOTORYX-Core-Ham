@@ -285,7 +285,7 @@ class WeatherService extends ChangeNotifier {
             uri,
             headers: {
               'User-Agent':
-                  'NOTORYX Core (github.com/TheLogsAreScreaming/notoryx-core)',
+                  'NOTORYX Core Ham (github.com/TheLogsAreScreaming/NOTORYX-Core-Ham)',
               'Accept': 'application/geo+json',
             },
           )

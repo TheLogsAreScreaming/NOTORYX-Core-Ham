@@ -10,7 +10,7 @@ import '../storage/prefs_manager.dart';
 /// Where the shared list lives, next to `regional_presets.json` in the public
 /// releases repository. The app also bundles a copy.
 const channelDirectoryUrl =
-    'https://raw.githubusercontent.com/TheLogsAreScreaming/notoryx-core-releases/main/channel_directory.json';
+    'https://raw.githubusercontent.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/main/channel_directory.json';
 
 /// Loads the public channel directory: the last downloaded copy (or the
 /// bundled one) at once, then the latest from GitHub when online.

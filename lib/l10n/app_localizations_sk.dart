@@ -9,7 +9,7 @@ class AppLocalizationsSk extends AppLocalizations {
   AppLocalizationsSk([String locale = 'sk']) : super(locale);
 
   @override
-  String get appTitle => 'NOTORYX Core';
+  String get appTitle => 'NOTORYX Core Ham';
 
   @override
   String get nav_contacts => 'Kontakty';
@@ -4768,11 +4768,11 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get settings_gpxExportShareText =>
-      'Mapové údaje exportované z NOTORYX Core';
+      'Mapové údaje exportované z NOTORYX Core Ham';
 
   @override
   String get settings_gpxExportShareSubject =>
-      'NOTORYX Core export dát GPX mapových údajov';
+      'NOTORYX Core Ham export dát GPX mapových údajov';
 
   @override
   String get snrIndicator_nearByRepeaters => 'Miestne opakovače';
@@ -5799,7 +5799,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'Tento prehľad iba zdieľa informácie; neodosiela rádiovú správu ani nespúšťa túru.';
 
   @override
-  String get fieldOps_title => 'Terénne operácie NOTORYX Core';
+  String get fieldOps_title => 'Terénne operácie NOTORYX Core Ham';
 
   @override
   String get fieldOps_tabTrip => 'Túra';
@@ -5999,7 +5999,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get fieldOps_shareBrief => 'Zdieľať prehľad';
 
   @override
-  String get fieldOps_briefSubject => 'Prehľad túry NOTORYX Core';
+  String get fieldOps_briefSubject => 'Prehľad túry NOTORYX Core Ham';
 
   @override
   String get fieldOps_tripName => 'Názov túry';
@@ -6025,7 +6025,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get fieldOps_reminderHelper =>
-      'Upozornenie v telefóne, aj keď je NOTORYX Core zatvorený.';
+      'Upozornenie v telefóne, aj keď je NOTORYX Core Ham zatvorený.';
 
   @override
   String get fieldOps_reminderOff => 'Vyp.';
@@ -6213,7 +6213,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get fieldOps_deleteLog => 'Odstrániť denník';
 
   @override
-  String get fieldOps_logSubject => 'Terénny denník NOTORYX Core';
+  String get fieldOps_logSubject => 'Terénny denník NOTORYX Core Ham';
 
   @override
   String get fieldOps_logCaveat =>
@@ -6410,7 +6410,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'Miestna poznámka pri súradniciach vysielaných rádiom; môže byť zastaraná.';
 
   @override
-  String get bastionHome_aboutTooltip => 'O aplikácii NOTORYX Core';
+  String get bastionHome_aboutTooltip => 'O aplikácii NOTORYX Core Ham';
 
   @override
   String get bastionHome_getStarted => 'Začíname';
@@ -6535,14 +6535,14 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get bastionTools_aboutHint =>
-      'Verzia NOTORYX Core, vyhlásenie o nezávislosti a licencie open source';
+      'Verzia NOTORYX Core Ham, vyhlásenie o nezávislosti a licencie open source';
 
   @override
   String get bastionAbout_title => 'O aplikácii + Poďakovania';
 
   @override
   String get bastionAbout_intro =>
-      'Nezávislá komunitná sprievodná aplikácia pre siete MeshCore. NOTORYX Core nie je oficiálna aplikácia MeshCore a zahrnutie komunitných zdrojov neznamená partnerstvo ani podporu.';
+      'Nezávislá komunitná sprievodná aplikácia pre siete MeshCore. NOTORYX Core Ham nie je oficiálna aplikácia MeshCore a zahrnutie komunitných zdrojov neznamená partnerstvo ani podporu.';
 
   @override
   String get bastionAbout_version => 'Verzia';
@@ -6552,7 +6552,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get bastionAbout_openSourceBody =>
-      'NOTORYX Core je postavený na otvorenom kóde MeshCore Open pod licenciou MIT a upravuje ho. Práca na postupe pokrytia uvádza aj, kde je to vhodné, aplikáciu MeshMapper Flutter App s licenciou MIT.';
+      'NOTORYX Core Ham je postavený na otvorenom kóde MeshCore Open pod licenciou MIT a upravuje ho. Práca na postupe pokrytia uvádza aj, kde je to vhodné, aplikáciu MeshMapper Flutter App s licenciou MIT.';
 
   @override
   String get bastionAbout_community => 'Komunita na prvom mieste';
@@ -6563,13 +6563,13 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get bastionAbout_legalese =>
-      'NOTORYX Core • Nezávislý sprievodca MeshCore';
+      'NOTORYX Core Ham • Nezávislý sprievodca MeshCore';
 
   @override
   String get bastionAbout_licenses => 'Licencie open source';
 
   @override
-  String get bastionSetup_title => 'Začíname s NOTORYX Core';
+  String get bastionSetup_title => 'Začíname s NOTORYX Core Ham';
 
   @override
   String get bastionSetup_intro =>
@@ -6592,7 +6592,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get bastionSetup_step1Bluetooth =>
-      'Ak je vyhľadávanie Bluetooth prázdne, skontrolujte, či je Bluetooth zapnutý a či má NOTORYX Core oprávnenie Zariadenia v okolí v nastaveniach aplikácií Androidu. Postupujte podľa ďalších žiadostí o oprávnenia, ktoré zobrazí skener.';
+      'Ak je vyhľadávanie Bluetooth prázdne, skontrolujte, či je Bluetooth zapnutý a či má NOTORYX Core Ham oprávnenie Zariadenia v okolí v nastaveniach aplikácií Androidu. Postupujte podľa ďalších žiadostí o oprávnenia, ktoré zobrazí skener.';
 
   @override
   String get bastionSetup_connectionDiagnostics => 'Diagnostika pripojenia';
@@ -6757,7 +6757,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get coverage_connectedBody =>
-      'NOTORYX Core počas tejto relácie zaznamenáva novo počuté uzly vrátane údajov o trase, metadát uzla/polohy a najbližšej dostupnej snímky RSSI/SNR rádia.';
+      'NOTORYX Core Ham počas tejto relácie zaznamenáva novo počuté uzly vrátane údajov o trase, metadát uzla/polohy a najbližšej dostupnej snímky RSSI/SNR rádia.';
 
   @override
   String get coverage_disconnectedBody =>
@@ -6827,10 +6827,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String get coverage_pathDirect => 'priama';
 
   @override
-  String get coverage_shareSubject => 'Relácia pokrytia NOTORYX Core';
+  String get coverage_shareSubject => 'Relácia pokrytia NOTORYX Core Ham';
 
   @override
-  String get coverage_shareText => 'Export záznamu pokrytia NOTORYX Core';
+  String get coverage_shareText => 'Export záznamu pokrytia NOTORYX Core Ham';
 
   @override
   String get coverage_historyTitle => 'Uložené relácie pokrytia';
@@ -6923,7 +6923,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get fieldStats_snapshot => 'Živá snímka siete';
 
   @override
-  String get fieldStats_headline => 'Čo NOTORYX Core práve vie.';
+  String get fieldStats_headline => 'Čo NOTORYX Core Ham práve vie.';
 
   @override
   String get fieldStats_body =>
@@ -6964,7 +6964,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get fieldStats_pathIntelBody =>
-      'Analýza trás v NOTORYX Core využíva uložené pokusy o cesty, počty skokov, úspechy/zlyhania, čas prechodu a váženie trás na zobrazenie naučených trás.';
+      'Analýza trás v NOTORYX Core Ham využíva uložené pokusy o cesty, počty skokov, úspechy/zlyhania, čas prechodu a váženie trás na zobrazenie naučených trás.';
 
   @override
   String get fieldStats_coverageSessions => 'Relácie pokrytia';
@@ -6978,7 +6978,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get mapHub_intro =>
-      'Živé mapy, offline oblasti, regionálne profily a terénne relácie pokrytia NOTORYX Core.';
+      'Živé mapy, offline oblasti, regionálne profily a terénne relácie pokrytia NOTORYX Core Ham.';
 
   @override
   String get mapHub_captureHint =>
@@ -7025,7 +7025,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get routes_body =>
-      'NOTORYX Core zoraďuje uložené trasy podľa histórie ciest, ktorú sa už naučil zo skutočných pokusov o správy a objavovanie.';
+      'NOTORYX Core Ham zoraďuje uložené trasy podľa histórie ciest, ktorú sa už naučil zo skutočných pokusov o správy a objavovanie.';
 
   @override
   String get routes_routes => 'Trasy';
@@ -7056,7 +7056,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get routes_noneBody =>
-      'Používajte sieť ako zvyčajne alebo spustite objavovanie. NOTORYX Core tu zobrazí naučené trasy, keď bude k dispozícii história ciest.';
+      'Používajte sieť ako zvyčajne alebo spustite objavovanie. NOTORYX Core Ham tu zobrazí naučené trasy, keď bude k dispozícii história ciest.';
 
   @override
   String get routes_direct => 'PRIAMA';
@@ -7152,11 +7152,11 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get notification_checkInReminderTitle =>
-      'Pripomienka hlásenia NOTORYX Core';
+      'Pripomienka hlásenia NOTORYX Core Ham';
 
   @override
   String notification_checkInReminderBody(int minutes, String trip) {
-    return 'Už $minutes min bez hlásenia na túre $trip. Otvorte NOTORYX Core a nahláste sa.';
+    return 'Už $minutes min bez hlásenia na túre $trip. Otvorte NOTORYX Core Ham a nahláste sa.';
   }
 
   @override
@@ -7193,7 +7193,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get settings_readAloudHelper =>
-      'Kým je NOTORYX Core otvorený. Stlmené kanály zostávajú ticho. Každú správu možno prečítať aj z jej ponuky.';
+      'Kým je NOTORYX Core Ham otvorený. Stlmené kanály zostávajú ticho. Každú správu možno prečítať aj z jej ponuky.';
 
   @override
   String get settings_readAloudOff => 'Vyp.';
@@ -8290,7 +8290,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get trackLog_howItWorks =>
-      'Používa polohu, ktorú rádio hlási približne raz za minútu, kým je NOTORYX Core otvorený. Bod sa pridá po presune o 25 m alebo každých 15 minút na mieste.';
+      'Používa polohu, ktorú rádio hlási približne raz za minútu, kým je NOTORYX Core Ham otvorený. Bod sa pridá po presune o 25 m alebo každých 15 minút na mieste.';
 
   @override
   String get trackLog_snap => 'Zaokrúhľovať polohy na približne 100 m';

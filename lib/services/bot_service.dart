@@ -134,7 +134,7 @@ class BotService extends ChangeNotifier {
         (latitude != 0 || longitude != 0);
     // Advertised coordinates may be configured/stale. Never claim live GPS.
     return {
-      '!ping': 'Pong — NOTORYX Core online',
+      '!ping': 'Pong — NOTORYX Core Ham online',
       '!status':
           'Radio connected; ${connector.contacts.length} contacts; '
           '${connector.contacts.where((c) => c.type == advTypeRepeater).length} known repeaters.',

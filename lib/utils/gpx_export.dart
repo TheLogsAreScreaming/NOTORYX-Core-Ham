@@ -136,7 +136,7 @@ class GpxExport {
       // 1. Build GPX content (your existing logic – unchanged here)
       final gpx = Gpx()
         ..version = '1.1'
-        ..creator = 'NOTORYX Core exporter'
+        ..creator = 'NOTORYX Core Ham exporter'
         ..metadata = Metadata(
           name: name,
           desc: description,
