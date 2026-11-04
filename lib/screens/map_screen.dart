@@ -1,5 +1,7 @@
+import 'dart:async';
 import '../widgets/map_telemetry.dart';
 import '../services/node_telemetry_store.dart';
+
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -164,6 +166,13 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
+    // The telemetry badges and their metric are remembered between visits.
+    final settings = context.read<AppSettingsService>().settings;
+    _showTelemetry = settings.mapShowTelemetry;
+    _telemetryMetric = TelemetryMetric.values.firstWhere(
+      (m) => m.name == settings.mapTelemetryMetric,
+      orElse: () => TelemetryMetric.battery,
+    );
     _loadRemovedMarkers();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
@@ -1945,14 +1954,27 @@ class _MapScreenState extends State<MapScreen> {
                 _mapChip(
                   label: context.l10n.contact_telemetry,
                   selected: _showTelemetry,
-                  onTap: () => setState(() => _showTelemetry = !_showTelemetry),
+                  onTap: () {
+                    setState(() => _showTelemetry = !_showTelemetry);
+                    unawaited(
+                      context.read<AppSettingsService>().setMapShowTelemetry(
+                        _showTelemetry,
+                      ),
+                    );
+                  },
                 ),
                 if (_showTelemetry)
                   PopupMenuButton<TelemetryMetric>(
                     tooltip: context.l10n.contact_telemetry,
                     initialValue: _telemetryMetric,
-                    onSelected: (value) =>
-                        setState(() => _telemetryMetric = value),
+                    onSelected: (value) {
+                      setState(() => _telemetryMetric = value);
+                      unawaited(
+                        context
+                            .read<AppSettingsService>()
+                            .setMapTelemetryMetric(value.name),
+                      );
+                    },
                     itemBuilder: (context) => [
                       for (final metric in TelemetryMetric.values)
                         PopupMenuItem(
