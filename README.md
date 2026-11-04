@@ -63,7 +63,7 @@ Each release includes `SHA256SUMS-Android.txt` and `SHA256SUMS-macOS.txt` if you
 2. **Say hello.** Open **Chats** and send a message on a channel, or open someone in **Nodes** to message them directly.
 3. **Choose who gets your check-ins and SOS.** Tap **Check in: I'm OK** or hold **SOS**. The first time, NOTORYX Core asks who should get them. You can change this anytime in **Plan your trip**.
 4. **Set your radio for your area.** **Settings → Radio settings → Presets** lists MeshCore's community presets (USA, Canada, EU/UK, Australia and more) with the one for your country suggested first.
-5. **Pick a look.** **Settings → Theme** offers Blaze (default), Topo night, Red light and Alpine day.
+5. **Pick a look.** **Settings → Theme** offers Blaze (default), Autumn Frost, Bubble Gum and Red light.
 
 The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**. Home is where check-in, SOS and your radio's readings live; **More** holds every tool and setting, with a search box.
 
@@ -116,12 +116,12 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 ### Look and feel
 - **Frosted ember:** the main screens sit on a warm glow, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
-- Four themes: **Blaze**, **Topo night**, **Red light** (keeps your night vision) and **Alpine day** (for bright sun).
+- Four themes: **Blaze**, **Autumn Frost** (slate, pine and amber), **Bubble Gum** (pastel, light) and **Red light** (keeps your night vision).
 - Available in 18 languages.
 
 <p align="center">
   <img src="docs/screenshots/more.png" width="200" alt="More: every tool and setting, searchable">
-  <img src="docs/screenshots/home_alpine_day.png" width="200" alt="Alpine day theme">
+  <img src="docs/screenshots/home_autumn_frost.png" width="200" alt="Autumn Frost theme">
   <img src="docs/screenshots/home_red_light.png" width="200" alt="Red light theme">
 </p>
 
@@ -189,7 +189,7 @@ flutter test
 - `lib/services/`: field ops, coverage, routing, MQTT, notifications and other services
 - `lib/models/`, `lib/storage/`: data and persistence
 - `lib/theme/`: themes and colors
-- `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`, with `PREVIEW_THEME=alpine_day` or `red_light` for other themes)
+- `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`, with `PREVIEW_THEME=autumn_frost`, `bubble_gum` or `red_light` for other themes)
 
 ## Contributing
 

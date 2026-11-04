@@ -97,6 +97,46 @@ enum BastionTheme {
       secondaryContainer: Color(0xFF4A3F22),
     ),
   ),
+  autumnFrost(
+    'autumn_frost',
+    'Autumn Frost',
+    'Frozen slate, pine and amber leaves',
+    BastionPalette(
+      brightness: Brightness.dark,
+      bg: Color(0xFF1A262C),
+      bg1: Color(0xFF1F2D34),
+      // Frozen Slate
+      bg2: Color(0xFF24343C),
+      bg3: Color(0xFF2C3F48),
+      // Pine Frost
+      bg4: Color(0xFF3A574C),
+      line: Color(0xFF2C3F48),
+      line2: Color(0xFF3E525C),
+      line3: Color(0xFF5C727C),
+      ink: Color(0xFFF1E9DC),
+      ink2: Color(0xFFD9CDBB),
+      ink3: Color(0xFFB9AD9A),
+      ink4: Color(0xFFA69A87),
+      signal: Color(0xFF8FC79F),
+      signalDim: Color(0xFF6F9F7E),
+      warn: Color(0xFFE8C062),
+      warnDim: Color(0xFFB8963F),
+      alert: Color(0xFFFF7A63),
+      // A brighter Amber Oak, so buttons and links read on the slate.
+      accent: Color(0xFFD9A04E),
+      // Amber Oak
+      accentDim: Color(0xFFA06A25),
+      onAccent: Color(0xFF24170A),
+      magenta: Color(0xFFC9A0B8),
+      // Chestnut Ember
+      me: Color(0xFF854D2B),
+      meBorder: Color(0xFFA06A25),
+      meInk: Color(0xFFFBF1E4),
+      primaryContainer: Color(0xFF3A574C),
+      // Bronze Leaf
+      secondaryContainer: Color(0xFF87591F),
+    ),
+  ),
   bubbleGum(
     'bubble_gum',
     'Bubble Gum',
@@ -164,74 +204,6 @@ enum BastionTheme {
       primaryContainer: Color(0xFF4A1512),
       secondaryContainer: Color(0xFF3D1A10),
     ),
-  ),
-  alpineDay(
-    'alpine_day',
-    'Alpine day',
-    'Light, for bright sun',
-    BastionPalette(
-      brightness: Brightness.light,
-      bg: Color(0xFFF3F4EF),
-      bg1: Color(0xFFECEEE8),
-      bg2: Color(0xFFFFFFFF),
-      bg3: Color(0xFFE3E7E0),
-      bg4: Color(0xFFD6DBD3),
-      line: Color(0xFFD6DBD3),
-      line2: Color(0xFFB9C2B8),
-      line3: Color(0xFF8E998F),
-      ink: Color(0xFF16201B),
-      ink2: Color(0xFF33413A),
-      ink3: Color(0xFF5A685F),
-      ink4: Color(0xFF616E66),
-      signal: Color(0xFF2F7D4A),
-      signalDim: Color(0xFF3F8F5A),
-      warn: Color(0xFF9A5F08),
-      warnDim: Color(0xFF7F4E07),
-      alert: Color(0xFFB83A16),
-      accent: Color(0xFF1F6B4F),
-      accentDim: Color(0xFF2E8A68),
-      onAccent: Color(0xFFFFFFFF),
-      magenta: Color(0xFF7B4E8A),
-      me: Color(0xFFDCEBE3),
-      meBorder: Color(0xFF6FA58C),
-      meInk: Color(0xFF16201B),
-      primaryContainer: Color(0xFFCFE6DA),
-      secondaryContainer: Color(0xFFF3E3C3),
-    ),
-  ),
-  christmas(
-    'christmas',
-    'Christmas',
-    'Evergreen, cranberry and candlelight',
-    BastionPalette(
-      brightness: Brightness.light,
-      bg: Color(0xFFFBF7EE),
-      bg1: Color(0xFFF4EEE1),
-      bg2: Color(0xFFFFFDF5),
-      bg3: Color(0xFFE9E5D7),
-      bg4: Color(0xFFDDD9C9),
-      line: Color(0xFFDDD9C9),
-      line2: Color(0xFFB7BEAB),
-      line3: Color(0xFF7E8C79),
-      ink: Color(0xFF172B22),
-      ink2: Color(0xFF384C40),
-      ink3: Color(0xFF586354),
-      ink4: Color(0xFF656454),
-      signal: Color(0xFF246546),
-      signalDim: Color(0xFF37956C),
-      warn: Color(0xFF80520A),
-      warnDim: Color(0xFF966717),
-      alert: Color(0xFFB42330),
-      accent: Color(0xFF246546),
-      accentDim: Color(0xFF37956C),
-      onAccent: Color(0xFFFFFDF5),
-      magenta: Color(0xFF9B111E),
-      me: Color(0xFF9B111E),
-      meBorder: Color(0xFFD28A2C),
-      meInk: Color(0xFFFFFDF5),
-      primaryContainer: Color(0xFFDAEADF),
-      secondaryContainer: Color(0xFFFBE5A4),
-    ),
   );
 
   const BastionTheme(this.id, this.label, this.description, this.palette);
@@ -246,6 +218,10 @@ enum BastionTheme {
     // Existing Topo night selections follow its replacement without losing
     // the saved preference or falling back to an unrelated theme.
     if (id == 'topo_night') return bubbleGum;
+    // Christmas became Autumn Frost. Alpine day is gone; its people get the
+    // default.
+    if (id == 'christmas') return autumnFrost;
+    if (id == 'alpine_day') return fallback;
     for (final t in values) {
       if (t.id == id) return t;
     }
