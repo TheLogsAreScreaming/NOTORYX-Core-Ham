@@ -36,6 +36,7 @@ import 'package:meshcore_open/services/sensor_subscription_service.dart';
 import 'package:meshcore_open/services/access_control_service.dart';
 import 'package:meshcore_open/services/app_debug_log_service.dart';
 import 'package:meshcore_open/services/app_settings_service.dart';
+import 'package:meshcore_open/services/operator_profile_service.dart';
 import 'package:meshcore_open/services/bot_service.dart';
 import 'package:meshcore_open/services/field_ops_service.dart';
 import 'package:meshcore_open/services/chat_text_scale_service.dart';
@@ -389,6 +390,7 @@ Widget _app(Widget home, ThemeMode mode) {
       ),
       ChangeNotifierProvider(create: (_) => BotService(connector)),
       ChangeNotifierProvider.value(value: settings),
+      ChangeNotifierProvider(create: (_) => OperatorProfileService()),
       ChangeNotifierProvider(create: (_) => MessageRetryService()),
       ChangeNotifierProvider(create: (_) => PathHistoryService(storage)),
       ChangeNotifierProvider(

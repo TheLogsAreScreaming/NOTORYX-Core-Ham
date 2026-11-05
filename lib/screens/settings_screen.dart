@@ -33,6 +33,7 @@ import 'companion_cli_screen.dart';
 import 'wifi_settings_screen.dart';
 import 'region_management_screen.dart';
 import '../utils/amateur_radio.dart';
+import '../widgets/licensed_operator_card.dart';
 
 /// Convert device coding-rate value (1-4 on some firmware, 5-8 on others)
 /// to the UI enum range (always 5-8).
@@ -102,6 +103,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
                 children: [
                   RadioOverviewCard(connector: connector),
+                  const LicensedOperatorCard(),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12),
                     child: RegionalPresetBanner(),

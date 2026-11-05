@@ -30,6 +30,7 @@ import 'services/mqtt_broker_service.dart';
 import 'services/mqtt_client_transport.dart';
 import 'services/network_monitor.dart';
 import 'services/secure_mqtt_credentials_store.dart';
+import 'services/operator_profile_service.dart';
 import 'services/sos_relay_service.dart';
 import 'services/image_chunk_transport.dart';
 import 'services/image_codec_service.dart';
@@ -55,6 +56,7 @@ import 'storage/prefs_manager.dart';
 import 'theme/mesh_theme.dart';
 import 'utils/app_logger.dart';
 import 'widgets/image_send_codec_binding.dart';
+import 'widgets/operator_setup_banner.dart';
 import 'services/direct_repeater_service.dart';
 import 'services/mqtt_uploaders_service.dart';
 import 'services/coverage_hex_service.dart';
@@ -284,6 +286,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
   late final SosRelayService _sosRelay;
+  final _operatorProfile = OperatorProfileService()..load();
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -531,6 +534,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider<NodeTelemetryStore?>.value(value: _telemetry),
         ChangeNotifierProvider.value(value: _wardrive),
         ChangeNotifierProvider.value(value: _sosRelay),
+        ChangeNotifierProvider.value(value: _operatorProfile),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,
@@ -582,7 +586,10 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
               _relabelShortcuts(locale);
               return AnnotatedRegion<SystemUiOverlayStyle>(
                 value: _systemUiOverlayStyle(context),
-                child: child ?? const SizedBox.shrink(),
+                child: OperatorSetupBanner(
+                  navigatorKey: _navigatorKey,
+                  child: child ?? const SizedBox.shrink(),
+                ),
               );
             },
             home: (PlatformInfo.isWeb && !PlatformInfo.isChrome)
