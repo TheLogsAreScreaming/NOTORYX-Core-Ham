@@ -119,6 +119,7 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
                       labelText: 'Licence class',
                       helperText:
                           'Every class has full 33 cm and 70 cm privileges',
+                      helperMaxLines: 2,
                       border: OutlineInputBorder(),
                     ),
                     items: [
