@@ -966,10 +966,11 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settings_frequency => 'Честота (MHz)';
 
   @override
-  String get settings_frequencyHelper => '300,0 – 2500,0';
+  String get settings_frequencyHelper => '420–450 / 902–928';
 
   @override
-  String get settings_frequencyInvalid => 'Невалидна честота (300-2500 MHz)';
+  String get settings_frequencyInvalid =>
+      'Невалидна честота (420–450 / 902–928 MHz)';
 
   @override
   String get settings_bandwidth => 'Ширина на честотната лента';
@@ -2938,7 +2939,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get repeater_frequencyMhz => 'Честота (MHz)';
 
   @override
-  String get repeater_frequencyHelper => '300-2500 MHz';
+  String get repeater_frequencyHelper => '420–450 / 902–928 MHz';
 
   @override
   String get repeater_txPower => 'TX мощност';

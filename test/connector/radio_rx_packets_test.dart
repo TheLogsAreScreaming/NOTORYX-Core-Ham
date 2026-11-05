@@ -35,7 +35,12 @@ void main() {
     int snrX4 = 0x1C,
     int rssi = 0xA4,
   }) async {
-    connector.handleFrameForTest([pushCodeLogRxData, snrX4, rssi, ...raw]);
+    connector.handleFrameForTest([
+      pushCodeLogRxData,
+      snrX4,
+      rssi,
+      ...onAir(raw, station: 'N0RPT'),
+    ]);
     await Future<void>.delayed(Duration.zero);
     return heard.last;
   }
@@ -50,8 +55,21 @@ void main() {
     expect(packet.snr, 7.0);
     expect(packet.rssi, -92);
     expect(packet.fromSelf, isFalse);
+    expect(packet.station, 'N0RPT');
 
     expect((await rx(raw, snrX4: 0xF6)).snr, -2.5);
+  });
+
+  test('ignores stock MeshCore frames', () async {
+    final before = heard.length;
+    connector.handleFrameForTest([
+      pushCodeLogRxData,
+      0x1C,
+      0xA4,
+      ...groupTextPacket(psk: psk, text: 'Alice: Part 15 mesh'),
+    ]);
+    await Future<void>.delayed(Duration.zero);
+    expect(heard.length, before);
   });
 
   test('recognises its own advert', () async {

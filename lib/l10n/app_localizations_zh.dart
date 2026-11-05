@@ -905,10 +905,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settings_frequency => '频率 (MHz)';
 
   @override
-  String get settings_frequencyHelper => '300.0 - 2500.0';
+  String get settings_frequencyHelper => '420–450 / 902–928';
 
   @override
-  String get settings_frequencyInvalid => '无效频率范围（300-2500 MHz）';
+  String get settings_frequencyInvalid => '无效频率范围（420–450 / 902–928 MHz）';
 
   @override
   String get settings_bandwidth => '带宽';
@@ -2777,7 +2777,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get repeater_frequencyMhz => '频率 (MHz)';
 
   @override
-  String get repeater_frequencyHelper => '300-2500 兆赫';
+  String get repeater_frequencyHelper => '420–450 / 902–928 兆赫';
 
   @override
   String get repeater_txPower => 'TX 功率';

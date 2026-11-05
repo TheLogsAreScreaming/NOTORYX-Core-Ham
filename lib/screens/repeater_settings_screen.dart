@@ -18,6 +18,7 @@ import '../widgets/routing_sheet.dart';
 import '../models/prefix_census.dart';
 import '../utils/keys.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../utils/amateur_radio.dart';
 
 class RepeaterSettingsScreen extends StatefulWidget {
   final Contact repeater;
@@ -728,8 +729,36 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
     });
   }
 
+  /// Why the ham firmware would refuse these settings, or null. Remote admin
+  /// travels in plain text, so passwords never go over the air.
+  String? _amateurProblem() {
+    if (_dirtyFields.contains(_SettingField.name) &&
+        _nameController.text.isNotEmpty &&
+        callsignOf(_nameController.text.trim()) == null) {
+      return 'The name must start with the repeater\'s call sign, '
+          'like "N0RPT Hilltop".';
+    }
+    if (_passwordController.text.isNotEmpty ||
+        _guestPasswordController.text.isNotEmpty) {
+      return 'Set passwords on the repeater\'s USB serial console. '
+          'Sent over the air, anyone could read them.';
+    }
+    final mhz = double.tryParse(_freqController.text.trim());
+    if (_dirtyFields.contains(_SettingField.radio) &&
+        mhz != null &&
+        !isAmateurFrequencyMHz(mhz)) {
+      return context.l10n.settings_frequencyInvalid;
+    }
+    return null;
+  }
+
   Future<void> _saveSettings() async {
     if (_commandService == null) return;
+    final problem = _amateurProblem();
+    if (problem != null) {
+      showDismissibleSnackBar(context, content: Text(problem));
+      return;
+    }
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     final repeater = _resolveRepeater(connector);
 

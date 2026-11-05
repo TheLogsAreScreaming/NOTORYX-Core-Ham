@@ -24,17 +24,18 @@ void main() {
     connector = MeshCoreConnector()..debugSetChannels([channel]);
   });
 
+  // MQTT observers share what radios log: ham frames with their station ID.
+  void ingest(Uint8List raw) => connector.ingestMqttRawPacket(onAir(raw));
+
   void radioRx(Uint8List raw) => connector.handleFrameForTest([
     pushCodeLogRxData,
     0x1C, // SNR
     0xA4, // RSSI
-    ...raw,
+    ...onAir(raw),
   ]);
 
   test('adds a channel message heard via MQTT', () {
-    connector.ingestMqttRawPacket(
-      groupTextPacket(psk: psk, text: 'Alice: summit at noon', path: [3]),
-    );
+    ingest(groupTextPacket(psk: psk, text: 'Alice: summit at noon', path: [3]));
     final messages = connector.getChannelMessages(channel);
     expect(messages, hasLength(1));
     expect(messages.single.senderName, 'Alice');
@@ -42,20 +43,23 @@ void main() {
     expect(messages.single.isOutgoing, isFalse);
   });
 
-  test('ignores packets for channels the user has not joined', () {
+  test('ignores stock MeshCore packets without a station ID', () {
     connector.ingestMqttRawPacket(
-      groupTextPacket(psk: Uint8List(16), text: 'Bob: elsewhere'),
+      groupTextPacket(psk: psk, text: 'Alice: Part 15 mesh'),
     );
+    expect(connector.getChannelMessages(channel), isEmpty);
+  });
+
+  test('ignores packets for channels the user has not joined', () {
+    ingest(groupTextPacket(psk: Uint8List(16), text: 'Bob: elsewhere'));
     expect(connector.getChannelMessages(channel), isEmpty);
   });
 
   test('does not count MQTT copies as radio repeats', () {
     final raw = groupTextPacket(psk: psk, text: 'Alice: hi');
     radioRx(raw);
-    connector.ingestMqttRawPacket(raw);
-    connector.ingestMqttRawPacket(
-      groupTextPacket(psk: psk, text: 'Alice: hi', path: [5, 6]),
-    );
+    ingest(raw);
+    ingest(groupTextPacket(psk: psk, text: 'Alice: hi', path: [5, 6]));
     final messages = connector.getChannelMessages(channel);
     expect(messages, hasLength(1));
     expect(messages.single.repeatCount, 0);
@@ -65,18 +69,14 @@ void main() {
   });
 
   test('flags a message first heard via MQTT', () {
-    connector.ingestMqttRawPacket(
-      groupTextPacket(psk: psk, text: 'Alice: summit', path: [3]),
-    );
+    ingest(groupTextPacket(psk: psk, text: 'Alice: summit', path: [3]));
     final message = connector.getChannelMessages(channel).single;
     expect(message.viaMqtt, isTrue);
     expect(message.repeatCount, 0);
   });
 
   test('radio copy after MQTT clears the flag without counting a repeat', () {
-    connector.ingestMqttRawPacket(
-      groupTextPacket(psk: psk, text: 'Alice: summit', path: [3, 4]),
-    );
+    ingest(groupTextPacket(psk: psk, text: 'Alice: summit', path: [3, 4]));
     radioRx(groupTextPacket(psk: psk, text: 'Alice: summit', path: [7]));
     var message = connector.getChannelMessages(channel).single;
     expect(message.viaMqtt, isFalse);
@@ -96,7 +96,7 @@ void main() {
   test('MQTT copy after radio leaves the message unflagged', () {
     final raw = groupTextPacket(psk: psk, text: 'Alice: summit');
     radioRx(raw);
-    connector.ingestMqttRawPacket(raw);
+    ingest(raw);
     final message = connector.getChannelMessages(channel).single;
     expect(message.viaMqtt, isFalse);
     expect(message.repeatCount, 0);
@@ -108,8 +108,8 @@ void main() {
   });
 
   test('ignores garbage without throwing', () {
-    connector.ingestMqttRawPacket(Uint8List.fromList([0x15]));
-    connector.ingestMqttRawPacket(Uint8List.fromList([0x15, 0x3F, 1]));
+    ingest(Uint8List.fromList([0x15]));
+    ingest(Uint8List.fromList([0x15, 0x3F, 1]));
     expect(connector.getChannelMessages(channel), isEmpty);
   });
 

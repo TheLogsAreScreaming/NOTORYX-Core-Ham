@@ -6,7 +6,6 @@ import 'dart:math' as math;
 
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:meshcore_open/storage/region_store.dart';
-import 'package:pointycastle/export.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
@@ -71,6 +70,7 @@ import '../storage/message_store.dart';
 import '../storage/prefs_manager.dart';
 import '../storage/unread_store.dart';
 import '../utils/app_logger.dart';
+import '../utils/amateur_radio.dart';
 import '../utils/battery_utils.dart';
 import '../utils/platform_info.dart';
 import 'meshcore_uuids.dart';
@@ -5952,7 +5952,7 @@ class MeshCoreConnector extends ChangeNotifier {
         _currentCr != null) {
       final cr = _currentCr! <= 4 ? _currentCr! : _currentCr! - 4;
       return calculateLoRaAirtime(
-        payloadBytes: messageBytes,
+        payloadBytes: messageBytes + stationIdBytes, // ID on every frame
         spreadingFactor: _currentSf!,
         bandwidthHz: _currentBwHz!,
         codingRate: cr,
@@ -6994,12 +6994,17 @@ class MeshCoreConnector extends ChangeNotifier {
     if (frame.length < 4) return;
     final reader = BufferReader(frame);
     reader.skipBytes(3); // Skip code, SNR x4, RSSI
-    final raw = reader.readRemainingBytes();
+    final onAir = reader.readRemainingBytes();
     final signal = frame.buffer.asByteData(frame.offsetInBytes);
     _lastRxSnr = signal.getInt8(1) / 4;
     _lastRxRssi = signal.getInt8(2);
     _lastRxSignalAt = DateTime.now();
     markNotifyDirty();
+    // The radio logs everything it hears. Only amateur frames are ours; the
+    // rest (eg. Part 15 MeshCore on the same channel) is left alone.
+    final amateur = AmateurFrame.unwrap(onAir);
+    if (amateur == null) return;
+    final raw = amateur.packet;
     _handleRawRxPacket(raw);
     if (!_rxPacketsController.hasListener) return;
     final packet = _parseRawPacket(raw);
@@ -7011,6 +7016,7 @@ class MeshCoreConnector extends ChangeNotifier {
         rssi: _lastRxRssi!,
         receivedAt: DateTime.now(),
         fromSelf: _isOwnRxPacket(packet),
+        station: amateur.station,
       ),
     );
   }
@@ -7064,8 +7070,14 @@ class MeshCoreConnector extends ChangeNotifier {
   ///
   /// Unlike radio RX, a message the app already has is left alone instead of
   /// counted as a repeat, so internet copies don't inflate RF repeat counts.
-  void ingestMqttRawPacket(Uint8List raw) =>
-      _handleRawRxPacket(raw, viaMqtt: true);
+  ///
+  /// Only amateur frames (station ID attached) are used, so encrypted Part 15
+  /// traffic shared by MeshCore observers never shows up as garbled text.
+  void ingestMqttRawPacket(Uint8List raw) {
+    final amateur = AmateurFrame.unwrap(raw);
+    if (amateur == null) return;
+    _handleRawRxPacket(amateur.packet, viaMqtt: true);
+  }
 
   void _handleRawRxPacket(Uint8List raw, {bool viaMqtt = false}) {
     try {
@@ -7908,17 +7920,9 @@ class MeshCoreConnector extends ChangeNotifier {
     }
 
     if (cipherText.isEmpty || cipherText.length % 16 != 0) return null;
-    final key16 = Uint8List(16);
-    final keyLen = psk.length < 16 ? psk.length : 16;
-    key16.setRange(0, keyLen, psk);
-
-    final cipher = ECBBlockCipher(AESEngine());
-    cipher.init(false, KeyParameter(key16));
-    final out = Uint8List(cipherText.length);
-    for (var i = 0; i < cipherText.length; i += 16) {
-      cipher.processBlock(cipherText, i, out, i);
-    }
-    return out;
+    // Amateur frames carry plain text (Part 97.113): once the MAC matches the
+    // channel key, the zero-padded body is the message itself.
+    return Uint8List.fromList(cipherText);
   }
 
   _ParsedText _splitSenderText(String text) {
