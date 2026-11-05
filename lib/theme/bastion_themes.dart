@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'okabe_ito.dart';
+
 /// Every color a Bastion theme defines. [MeshPalette] reads the current one.
 class BastionPalette {
   final Brightness brightness;
@@ -204,6 +206,43 @@ enum BastionTheme {
       meInk: Color(0xFFF0C2BC),
       primaryContainer: Color(0xFF4A1512),
       secondaryContainer: Color(0xFF3D1A10),
+    ),
+  ),
+  // Every status and accent color here is from the Okabe-Ito palette, so
+  // good, warning and bad signal stay apart with color blindness.
+  okabeIto(
+    'okabe_ito',
+    'Okabe-Ito',
+    'Color-blind safe, on black',
+    BastionPalette(
+      brightness: Brightness.dark,
+      // Black, the palette's eighth color, is the page.
+      bg: Color(0xFF000000),
+      bg1: Color(0xFF0C0F12),
+      bg2: Color(0xFF12161A),
+      bg3: Color(0xFF1A2026),
+      bg4: Color(0xFF242B32),
+      line: Color(0xFF242B32),
+      line2: Color(0xFF36404A),
+      line3: Color(0xFF56636F),
+      ink: Color(0xFFF2F4F5),
+      ink2: Color(0xFFD5DADE),
+      ink3: Color(0xFFAEB6BD),
+      ink4: Color(0xFF98A1A9),
+      signal: OkabeIto.bluishGreen,
+      signalDim: Color(0xFF00805E),
+      warn: OkabeIto.yellow,
+      warnDim: OkabeIto.orange,
+      alert: OkabeIto.vermillion,
+      accent: OkabeIto.skyBlue,
+      accentDim: OkabeIto.blue,
+      onAccent: OkabeIto.black,
+      magenta: OkabeIto.reddishPurple,
+      me: OkabeIto.blue,
+      meBorder: OkabeIto.skyBlue,
+      meInk: Color(0xFFFFFFFF),
+      primaryContainer: Color(0xFF003A5C),
+      secondaryContainer: Color(0xFF4A3300),
     ),
   );
 

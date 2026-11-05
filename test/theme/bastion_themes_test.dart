@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/models/app_settings.dart';
 import 'package:meshcore_open/services/app_settings_service.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
@@ -35,6 +36,7 @@ void main() {
       'autumn_frost',
       'bubble_gum',
       'red_light',
+      'okabe_ito',
     ]);
   });
 
@@ -74,6 +76,33 @@ void main() {
     expect(p.me, const Color(0xFFB5207A));
   });
 
+  test('the Okabe-Ito palette, theme and node colors match the reference', () {
+    expect(OkabeIto.categorical, const [
+      Color(0xFFE69F00),
+      Color(0xFF56B4E9),
+      Color(0xFF009E73),
+      Color(0xFFF0E442),
+      Color(0xFF0072B2),
+      Color(0xFFD55E00),
+      Color(0xFFCC79A7),
+    ]);
+    expect(OkabeIto.black, const Color(0xFF000000));
+    final p = BastionTheme.okabeIto.palette;
+    expect(p.bg, OkabeIto.black);
+    // Good, warning and bad signal are three different Okabe-Ito hues.
+    expect(
+      {p.signal, p.warn, p.alert},
+      {OkabeIto.bluishGreen, OkabeIto.yellow, OkabeIto.vermillion},
+    );
+    expect(BastionTheme.fromId('okabe_ito'), BastionTheme.okabeIto);
+    final types = [advTypeChat, advTypeRepeater, advTypeRoom, advTypeSensor];
+    final colors = types.map(OkabeIto.nodeType).toSet();
+    expect(colors, hasLength(4));
+    expect(colors.every(OkabeIto.categorical.contains), isTrue);
+    expect(MapPalette.repeater, OkabeIto.nodeType(advTypeRepeater));
+    expect(MapPalette.sensor, OkabeIto.nodeType(advTypeSensor));
+  });
+
   test('Autumn Frost uses all five fall colors and replaces Christmas', () {
     final p = BastionTheme.autumnFrost.palette;
     expect(p.bg2, const Color(0xFF24343C)); // Frozen Slate
@@ -103,8 +132,9 @@ void main() {
           value: settings,
           child: MaterialApp(
             builder: (context, child) => MediaQuery(
-              data: MediaQuery.of(context)
-                  .copyWith(textScaler: const TextScaler.linear(2)),
+              data: MediaQuery.of(
+                context,
+              ).copyWith(textScaler: const TextScaler.linear(2)),
               child: child!,
             ),
             home: const Scaffold(
