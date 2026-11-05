@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'bastion_themes.dart';
+import 'okabe_ito.dart';
 
 export 'bastion_themes.dart';
+export 'okabe_ito.dart';
 
 /// Bastion palette: the colors of the theme chosen in Settings. Read these
 /// at build time (they are not constants) so a theme switch repaints.
@@ -63,12 +65,13 @@ class MapPalette {
   static const online = Color(0xFF93B99D);
   static const offline = Color(0xFF6B7280);
   static const stale = Color(0xFFD6B77C);
-  static const repeater = Color(0xFF2563EB);
-  static const router = Color(0xFF7C3AED);
+  // Node types use the color-blind safe Okabe-Ito palette.
+  static const repeater = OkabeIto.orange;
+  static const router = OkabeIto.reddishPurple;
   static const batteryLow = Color(0xFFDB8D85);
-  static const cluster = Color(0xFFF97316);
-  static const selected = Color(0xFF8AB6AA);
-  static const sensor = Color(0xFF0F766E);
+  static const cluster = OkabeIto.vermillion;
+  static const selected = OkabeIto.skyBlue;
+  static const sensor = OkabeIto.bluishGreen;
   static const shared = Color(0xFF6D978C);
 
   static const panelLight = Color(0xF0FFFFFF);

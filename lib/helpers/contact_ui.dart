@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../connector/meshcore_protocol.dart';
+import '../theme/okabe_ito.dart';
 import '../utils/emoji_utils.dart';
 
 IconData contactTypeIcon(int type) {
@@ -18,36 +19,11 @@ IconData contactTypeIcon(int type) {
   }
 }
 
-Color contactTypeColor(int type) {
-  switch (type) {
-    case advTypeChat:
-      return Colors.blue;
-    case advTypeRepeater:
-      return Colors.orange;
-    case advTypeRoom:
-      return Colors.purple;
-    case advTypeSensor:
-      return Colors.green;
-    default:
-      return Colors.grey;
-  }
-}
+/// Node-type colors from the color-blind safe Okabe-Ito palette.
+Color contactTypeColor(int type) => OkabeIto.nodeType(type);
 
-Color colorForName(String name) {
-  const colors = [
-    Colors.blue,
-    Colors.green,
-    Colors.orange,
-    Colors.purple,
-    Colors.pink,
-    Colors.teal,
-    Colors.indigo,
-    Colors.cyan,
-    Colors.amber,
-    Colors.deepOrange,
-  ];
-  return colors[name.hashCode.abs() % colors.length];
-}
+Color colorForName(String name) =>
+    OkabeIto.categorical[name.hashCode.abs() % OkabeIto.categorical.length];
 
 String firstCharacterOrEmoji(String name) {
   if (name.isEmpty) return '?';
