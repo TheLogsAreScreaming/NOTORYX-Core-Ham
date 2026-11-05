@@ -5370,5 +5370,6 @@
   "networks_clearLogConfirm": "Delete every logged network sighting?",
   "networks_name": "Name",
   "networks_invalid": "Check the settings: they're outside what MeshCore radios accept.",
-  "networks_nodesHeard": "Nodes heard"
+  "networks_nodesHeard": "Nodes heard",
+  "chat_resendNeedsRadio": "Not sent: connect your radio, then try again. The message is kept."
 }

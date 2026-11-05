@@ -8698,4 +8698,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => '听到的节点';
+
+  @override
+  String get chat_resendNeedsRadio => '未发送：请连接电台后重试。消息已保留。';
 }

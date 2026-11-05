@@ -4125,5 +4125,6 @@
   "networks_clearLogConfirm": "Supprimer tous les réseaux consignés ?",
   "networks_name": "Nom",
   "networks_invalid": "Vérifiez les réglages : ils sortent de ce qu’acceptent les radios MeshCore.",
-  "networks_nodesHeard": "Nœuds entendus"
+  "networks_nodesHeard": "Nœuds entendus",
+  "chat_resendNeedsRadio": "Non envoyé : connectez votre radio, puis réessayez. Le message est conservé."
 }

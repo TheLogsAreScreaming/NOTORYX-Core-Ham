@@ -9317,4 +9317,8 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Чути възли';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Не е изпратено: свържете радиото и опитайте отново. Съобщението е запазено.';
 }

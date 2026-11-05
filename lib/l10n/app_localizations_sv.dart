@@ -9258,4 +9258,8 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Hörda noder';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Inte skickat: anslut radion och försök igen. Meddelandet sparas.';
 }

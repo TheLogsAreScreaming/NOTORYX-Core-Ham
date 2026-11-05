@@ -9346,4 +9346,8 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Gehörte Knoten';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Nicht gesendet: Verbinde dein Funkgerät und versuche es erneut. Die Nachricht bleibt erhalten.';
 }
