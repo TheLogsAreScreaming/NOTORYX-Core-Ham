@@ -32,6 +32,7 @@ import '../widgets/radio_overview_card.dart';
 import 'companion_cli_screen.dart';
 import 'wifi_settings_screen.dart';
 import 'region_management_screen.dart';
+import '../utils/amateur_radio.dart';
 
 /// Convert device coding-rate value (1-4 on some firmware, 5-8 on others)
 /// to the UI enum range (always 5-8).
@@ -831,6 +832,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           controller: controller,
           decoration: InputDecoration(
             hintText: l10n.settings_nodeNameHint,
+            // The ham firmware won't transmit until the name starts with a
+            // call sign; it sends that call sign as the station ID.
+            helperText: 'Start with your call sign, like "W1AW" or "W1AW Base"',
+            helperMaxLines: 2,
             border: const OutlineInputBorder(),
           ),
           maxLength: 31,
@@ -845,7 +850,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             builder: (context, _) {
               final name = controller.text.trim();
               return TextButton(
-                onPressed: name.isEmpty
+                onPressed: callsignOf(name) == null
                     ? null
                     : () async {
                         Navigator.pop(context);
@@ -1761,14 +1766,12 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
 
   double _offGridFrequencyForBaseFrequency(double baseFrequencyMHz) {
     if (baseFrequencyMHz < 500) return 433.0;
-    if (baseFrequencyMHz < 900) return 869.0;
     return 918.0;
   }
 
   double _normalFrequencyForBand(double frequencyMHz) {
-    if (frequencyMHz < 500) return 433.650;
-    if (frequencyMHz < 900) return 869.432;
-    return 915.8;
+    if (frequencyMHz < 500) return 433.500;
+    return 906.875;
   }
 
   _RadioSettingsSnapshot _fallbackNonRepeatSnapshot(
@@ -1905,7 +1908,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
   void _validateFields() {
     final l10n = context.l10n;
     final freqMHz = double.tryParse(_frequencyController.text);
-    _frequencyError = (freqMHz == null || freqMHz < 300 || freqMHz > 2500)
+    _frequencyError = (freqMHz == null || !isAmateurFrequencyMHz(freqMHz))
         ? l10n.settings_frequencyInvalid
         : null;
 
@@ -1949,7 +1952,7 @@ class _RadioSettingsDialogState extends State<_RadioSettingsDialog> {
     final freqMHz = double.tryParse(_frequencyController.text);
     final txPower = int.tryParse(_txPowerController.text);
 
-    if (freqMHz == null || freqMHz < 300 || freqMHz > 2500) {
+    if (freqMHz == null || !isAmateurFrequencyMHz(freqMHz)) {
       showDismissibleSnackBar(
         context,
         content: Text(l10n.settings_frequencyInvalid),

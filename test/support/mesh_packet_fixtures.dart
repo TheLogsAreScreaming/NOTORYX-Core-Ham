@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart' as crypto;
-import 'package:pointycastle/export.dart';
 
 String hex(List<int> bytes) =>
     bytes.map((b) => b.toRadixString(16).padLeft(2, '0')).join();
 
-/// A flood GRP_TXT packet encrypted the way companion firmware does it:
-/// AES-128-ECB over zero-padded plaintext, 2-byte HMAC-SHA256 MAC.
+/// A flood GRP_TXT packet the way the ham firmware builds it: plain text,
+/// zero padded to 16-byte blocks, 2-byte HMAC-SHA256 MAC. This is the V1
+/// packet the app parses; [onAir] adds what the radio actually sends.
 Uint8List groupTextPacket({
   required Uint8List psk,
   required String text,
@@ -23,8 +23,8 @@ Uint8List groupTextPacket({
   return _groupPacket(0x15, psk, plain, path); // flood route, GRP_TXT
 }
 
-/// A flood GRP_DATA packet: `[data type u16 LE][length][data]`, encrypted
-/// like [groupTextPacket].
+/// A flood GRP_DATA packet: `[data type u16 LE][length][data]`, built like
+/// [groupTextPacket].
 Uint8List groupDataPacket({
   required Uint8List psk,
   required int dataType,
@@ -49,14 +49,8 @@ Uint8List _groupPacket(
   // Zero-padded to whole blocks; a text keeps at least one zero terminator.
   final plain = Uint8List(((body.length + 1 + 15) ~/ 16) * 16)
     ..setRange(0, body.length, body);
-  final key16 = Uint8List(16)..setRange(0, psk.length.clamp(0, 16), psk);
-  final cipher = ECBBlockCipher(AESEngine())..init(true, KeyParameter(key16));
-  final encrypted = Uint8List(plain.length);
-  for (var i = 0; i < plain.length; i += 16) {
-    cipher.processBlock(plain, i, encrypted, i);
-  }
   final key32 = Uint8List(32)..setRange(0, psk.length.clamp(0, 32), psk);
-  final mac = crypto.Hmac(crypto.sha256, key32).convert(encrypted).bytes;
+  final mac = crypto.Hmac(crypto.sha256, key32).convert(plain).bytes;
   final channelHash = crypto.sha256.convert(psk).bytes[0];
   return Uint8List.fromList([
     header,
@@ -65,7 +59,18 @@ Uint8List _groupPacket(
     channelHash,
     mac[0],
     mac[1],
-    ...encrypted,
+    ...plain,
+  ]);
+}
+
+/// [packet] as the ham firmware puts it on air (and logs it in LOG_RX_DATA):
+/// header marked payload version 2, then the station ID, zero padded to 8.
+Uint8List onAir(Uint8List packet, {String station = 'W1AW'}) {
+  final id = Uint8List(8)..setRange(0, station.length, ascii.encode(station));
+  return Uint8List.fromList([
+    (packet[0] & 0x3F) | 0x40,
+    ...packet.sublist(1),
+    ...id,
   ]);
 }
 

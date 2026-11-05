@@ -963,10 +963,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settings_frequency => 'Частота (МГц)';
 
   @override
-  String get settings_frequencyHelper => '300.0 – 2500.0';
+  String get settings_frequencyHelper => '420–450 / 902–928';
 
   @override
-  String get settings_frequencyInvalid => 'Недопустимая частота (300–2500 МГц)';
+  String get settings_frequencyInvalid =>
+      'Недопустимая частота (420–450 / 902–928 МГц)';
 
   @override
   String get settings_bandwidth => 'Полоса пропускания';
@@ -2939,7 +2940,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get repeater_frequencyMhz => 'Частота (МГц)';
 
   @override
-  String get repeater_frequencyHelper => '300–2500 МГц';
+  String get repeater_frequencyHelper => '420–450 / 902–928 МГц';
 
   @override
   String get repeater_txPower => 'Мощность передачи';

@@ -72,12 +72,15 @@ class _Radio extends MeshCoreConnector {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('the bundled list is valid and includes Philadelphia', () {
-    final presets = parseRegionalPresets(
-      File('assets/regional_presets.json').readAsStringSync(),
-    );
-    final philly = presets.singleWhere((p) => p.id == 'us-philadelphia');
-    expect(philly.summary, '919.500 MHz · BW500 · SF10 · CR5 · 2-byte paths');
+  test('the bundled list is a valid ham document with no areas yet', () {
+    final source = File('assets/regional_presets.json').readAsStringSync();
+    expect(jsonDecode(source)['version'], 1);
+    expect(parseRegionalPresets(source), isEmpty);
+  });
+
+  test('areas outside the ham bands are skipped', () {
+    expect(parseRegionalPresets(_doc(freq: 869.525)), isEmpty);
+    expect(parseRegionalPresets(_doc(freq: 915.0)), hasLength(1));
   });
 
   test('invalid entries and documents are skipped', () {

@@ -1831,13 +1831,13 @@ abstract class AppLocalizations {
   /// No description provided for @settings_frequencyHelper.
   ///
   /// In en, this message translates to:
-  /// **'300.0 - 2500.0'**
+  /// **'420–450 / 902–928'**
   String get settings_frequencyHelper;
 
   /// No description provided for @settings_frequencyInvalid.
   ///
   /// In en, this message translates to:
-  /// **'Invalid frequency (300-2500 MHz)'**
+  /// **'Invalid frequency (420–450 / 902–928 MHz)'**
   String get settings_frequencyInvalid;
 
   /// No description provided for @settings_bandwidth.
@@ -5231,7 +5231,7 @@ abstract class AppLocalizations {
   /// No description provided for @repeater_frequencyHelper.
   ///
   /// In en, this message translates to:
-  /// **'300-2500 MHz'**
+  /// **'420–450 / 902–928 MHz'**
   String get repeater_frequencyHelper;
 
   /// No description provided for @repeater_txPower.

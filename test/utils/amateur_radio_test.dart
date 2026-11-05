@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/utils/amateur_radio.dart';
 
 Uint8List _hex(String s) => Uint8List.fromList([
-  for (var i = 0; i < s.length; i += 2) int.parse(s.substring(i, i + 2), radix: 16),
+  for (var i = 0; i < s.length; i += 2)
+    int.parse(s.substring(i, i + 2), radix: 16),
 ]);
 
 void main() {
@@ -42,13 +43,31 @@ void main() {
 
   group('call signs', () {
     test('accepts US formats', () {
-      for (final c in ['W1AW', 'K7A', 'N0ABC', 'KD2ABC', 'WA6XY', 'AL7Q', 'kd2abc']) {
+      for (final c in [
+        'W1AW',
+        'K7A',
+        'N0ABC',
+        'KD2ABC',
+        'WA6XY',
+        'AL7Q',
+        'kd2abc',
+      ]) {
         expect(isUsCallsign(c), isTrue, reason: c);
       }
     });
 
     test('rejects others', () {
-      for (final c in ['', 'W1', '1AW', 'ABC1D', 'AM1X', 'VE3ABC', 'W1ABCD', 'W12AB', 'NONAME']) {
+      for (final c in [
+        '',
+        'W1',
+        '1AW',
+        'ABC1D',
+        'AM1X',
+        'VE3ABC',
+        'W1ABCD',
+        'W12AB',
+        'NONAME',
+      ]) {
         expect(isUsCallsign(c), isFalse, reason: c);
       }
     });

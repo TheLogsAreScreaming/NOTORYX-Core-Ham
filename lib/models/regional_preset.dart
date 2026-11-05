@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:latlong2/latlong.dart';
 
+import '../utils/amateur_radio.dart';
+
 /// The radio settings a local mesh has agreed on, from the shared
 /// `regional_presets.json` list.
 class RegionalPreset {
@@ -56,8 +58,7 @@ class RegionalPreset {
       );
       final valid =
           p.id.isNotEmpty &&
-          p.frequencyMHz >= 137 &&
-          p.frequencyMHz <= 2500 &&
+          isAmateurFrequencyMHz(p.frequencyMHz) && // ham firmware bands only
           const [
             7.8,
             10.4,

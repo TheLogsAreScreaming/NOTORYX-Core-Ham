@@ -355,8 +355,7 @@ class _BleDebugLogScreenState extends State<BleDebugLogScreen> {
     final station = amateur == null
         ? 'not an amateur frame'
         : 'ID=${amateur.station}';
-    final detail =
-        '$summary • $pathSummary • $station • len=${onAir.length}';
+    final detail = '$summary • $pathSummary • $station • len=${onAir.length}';
     return _RawPacketInfo(
       title: title,
       summary: detail,

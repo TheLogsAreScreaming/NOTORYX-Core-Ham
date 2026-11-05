@@ -3,21 +3,26 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/radio_settings.dart';
 import 'package:meshcore_open/screens/settings_screen.dart';
+import 'package:meshcore_open/utils/amateur_radio.dart';
 
 RadioSettings _preset(String name) =>
     RadioSettings.presets.firstWhere((p) => p.$1 == name).$2;
 
 void main() {
-  test('the catalogue has MeshCore’s USA and Canada presets', () {
-    final usa = _preset('USA');
-    expect(usa.frequencyHz, 910525);
-    expect(usa.spreadingFactor, LoRaSpreadingFactor.sf7);
-    expect(usa.bandwidth, LoRaBandwidth.bw62_5);
-    expect(usa.codingRate, LoRaCodingRate.cr4_5);
-    expect(usa.summary, '910.525 MHz · SF 7 · BW 62.5 · CR 4/5');
-    expect(_preset('Canada').frequencyHz, 910525);
-    expect(_preset('USA - Southern California').frequencyHz, 927875);
-    expect(_preset('EU/UK (Narrow)').codingRate, LoRaCodingRate.cr4_8);
+  test('the catalogue starts with the ham firmware default', () {
+    final def = _preset('US 33cm');
+    expect(def.frequencyHz, 906875);
+    expect(def.spreadingFactor, LoRaSpreadingFactor.sf10);
+    expect(def.bandwidth, LoRaBandwidth.bw250);
+    expect(def.codingRate, LoRaCodingRate.cr4_5);
+    expect(def.summary, '906.875 MHz · SF 10 · BW 250 · CR 4/5');
+    expect(RadioSettings.presets.first.$1, 'US 33cm');
+  });
+
+  test('every preset is in a ham band', () {
+    for (final (name, preset) in RadioSettings.presets) {
+      expect(isAmateurFrequencyMHz(preset.frequencyMHz), isTrue, reason: name);
+    }
   });
 
   test('every preset name is unique', () {
@@ -25,20 +30,11 @@ void main() {
     expect(names.toSet().length, names.length);
   });
 
-  test('the suggested preset follows the device country', () {
-    expect(RadioSettings.suggestedPresetFor('US'), 'USA');
-    expect(RadioSettings.suggestedPresetFor('ca'), 'Canada');
-    expect(RadioSettings.suggestedPresetFor('DE'), 'EU/UK (Narrow)');
-    expect(RadioSettings.suggestedPresetFor('JP'), isNull);
+  test('the suggested preset is the US 33 cm default', () {
+    expect(RadioSettings.suggestedPresetFor('US'), 'US 33cm');
+    expect(RadioSettings.suggestedPresetFor('us'), 'US 33cm');
+    expect(RadioSettings.suggestedPresetFor('CA'), isNull);
     expect(RadioSettings.suggestedPresetFor(null), isNull);
-    for (final code in ['US', 'CA', 'AU', 'NZ', 'NL', 'CH', 'GB', 'VN']) {
-      final name = RadioSettings.suggestedPresetFor(code);
-      expect(
-        RadioSettings.presets.any((p) => p.$1 == name),
-        isTrue,
-        reason: code,
-      );
-    }
   });
 
   group('picker', () {
@@ -46,7 +42,7 @@ void main() {
       for (var i = 0; i < RadioSettings.presets.length; i++)
         if (!RadioSettings.presets[i].$1.startsWith('Off-Grid ')) i,
     ];
-    final usa = RadioSettings.presets.indexWhere((p) => p.$1 == 'USA');
+    final usa = RadioSettings.presets.indexWhere((p) => p.$1 == 'US 33cm');
 
     Future<List<int?>> open(WidgetTester tester) async {
       final picked = <int?>[];
@@ -64,7 +60,7 @@ void main() {
                     builder: (_) => RadioPresetPicker(
                       indexes: indexes,
                       selected: usa,
-                      suggested: 'USA',
+                      suggested: 'US 33cm',
                     ),
                   ),
                 ),
@@ -84,8 +80,8 @@ void main() {
     ) async {
       final picked = await open(tester);
       expect(find.text('Suggested for your region'), findsOneWidget);
-      expect(find.text('USA'), findsWidgets);
-      await tester.tap(find.text('USA').first);
+      expect(find.text('US 33cm'), findsWidgets);
+      await tester.tap(find.text('US 33cm').first);
       await tester.pumpAndSettle();
       expect(picked, [usa]);
     });
@@ -94,12 +90,12 @@ void main() {
       await open(tester);
       await tester.enterText(
         find.byKey(const ValueKey('radio-preset-search')),
-        'canada',
+        '70cm',
       );
       await tester.pumpAndSettle();
       expect(find.text('Suggested for your region'), findsNothing);
-      expect(find.text('Canada'), findsOneWidget);
-      expect(find.text('Australia'), findsNothing);
+      expect(find.text('US 70cm'), findsOneWidget);
+      expect(find.text('US 33cm Long Range'), findsNothing);
     });
   });
 }

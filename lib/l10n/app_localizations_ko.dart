@@ -917,10 +917,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settings_frequency => '주파수 (MHz)';
 
   @override
-  String get settings_frequencyHelper => '300.0 - 2500.0';
+  String get settings_frequencyHelper => '420–450 / 902–928';
 
   @override
-  String get settings_frequencyInvalid => '유효하지 않은 주파수 (300-2500 MHz)';
+  String get settings_frequencyInvalid => '유효하지 않은 주파수 (420–450 / 902–928 MHz)';
 
   @override
   String get settings_bandwidth => '대역폭';
@@ -2811,7 +2811,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get repeater_frequencyMhz => '주파수 (MHz)';
 
   @override
-  String get repeater_frequencyHelper => '300-2500 MHz';
+  String get repeater_frequencyHelper => '420–450 / 902–928 MHz';
 
   @override
   String get repeater_txPower => 'TX 파워';
