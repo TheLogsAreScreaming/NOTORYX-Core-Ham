@@ -6,6 +6,9 @@
 
 Part of the **NOTORYX** off-grid communications family. **No Towers. No Limits.**
 
+> [!WARNING]
+> **Use only after a great deal of coordination.** NOTORYX Core Ham and its firmware transmit automatically on shared amateur bands, and every repeater relays under its operator's licence. Before any radio goes on the air, coordinate with your frequency coordinator, the local band plan and every operator in your area. Read **[the coordination guide](docs/licensed-operator/COORDINATION.md)** first.
+
 > NOTORYX Core Ham is the amateur radio edition of NOTORYX Core, for licensed operators. It installs as a separate app (`com.bastionmesh.ham`) next to NOTORYX Core. Licensed Operator Mode (call-sign ID, no encryption, Part 97 power settings) is in development and needs the NOTORYX Core Ham firmware; until then the app behaves like NOTORYX Core. See [docs/licensed-operator](docs/licensed-operator).
 
 **Off-grid messaging, check-ins and SOS over your MeshCore LoRa radio.**
