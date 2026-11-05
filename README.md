@@ -4,73 +4,67 @@
 
 # NOTORYX Core Ham
 
-Part of the **NOTORYX** off-grid communications family. **No Towers. No Limits.**
+**Off-grid LoRa mesh messaging for licensed US amateur radio operators.** Part of the **NOTORYX** family. **No Towers. No Limits.**
 
 > [!WARNING]
 > **Use only after a great deal of coordination.** NOTORYX Core Ham and its firmware transmit automatically on shared amateur bands, and every repeater relays under its operator's licence. Before any radio goes on the air, coordinate with your frequency coordinator, the local band plan and every operator in your area. Read **[the coordination guide](docs/licensed-operator/COORDINATION.md)** first.
 
-> NOTORYX Core Ham is the amateur radio edition of NOTORYX Core, for licensed operators. It installs as a separate app (`com.bastionmesh.ham`) next to NOTORYX Core. Licensed Operator Mode (call-sign ID, no encryption, Part 97 power settings) is in development and needs the NOTORYX Core Ham firmware; until then the app behaves like NOTORYX Core. See [docs/licensed-operator](docs/licensed-operator).
-
-**Off-grid messaging, check-ins and SOS over your MeshCore LoRa radio.**
-
-NOTORYX Core Ham turns your phone or computer and a [MeshCore](https://meshcore.io/) radio into a field communicator that works without cell service, Wi-Fi or the internet. Messages hop from radio to radio across the mesh.
+NOTORYX Core Ham is the amateur radio (FCC Part 97) edition of NOTORYX Core. Paired with radios running the **[NOTORYX Ham firmware](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Firmware)**, it gives you MeshCore-style mesh messaging on 33 cm and 70 cm, with your call sign on every transmission and nothing encrypted. It installs as its own app (`com.bastionmesh.ham`), next to NOTORYX Core.
 
 <p align="center">
-  <img src="docs/screenshots/home.png" width="230" alt="Home: radio readouts, check-in, SOS and field tools on frosted glass">
-  <img src="docs/screenshots/chats.png" width="230" alt="Chats: channels and direct conversations">
-  <img src="docs/screenshots/nodes.png" width="230" alt="Nodes: repeaters, people, rooms and sensors heard on the mesh">
+  <img src="docs/screenshots/ham_setup_banner.png" width="230" alt="Home with the setup banner: finish licensed operator setup before transmitting">
+  <img src="docs/screenshots/ham_licensed_operator.png" width="230" alt="Licensed operator: call sign, licence class, coordination acknowledgment and connected radio checks">
+  <img src="docs/screenshots/ham_presets.png" width="230" alt="Radio presets: US 33 cm and 70 cm only">
 </p>
 
-> NOTORYX Core Ham is a pre-release. It is tested in automated tests and a mesh simulator but not yet on a wide range of phones and radios. MQTT bridging and LetsMesh sign-in are new and still need wider real-world testing. It is not a replacement for an emergency service or a satellite messenger. Please [report issues](../../issues).
+> **Status: in development.** The app and firmware pass automated tests and a mesh simulator, but have **not been tested on the air yet**. There are no public builds. Everything you send is readable by anyone: that's the law on amateur bands, not a bug.
 
-## Download
+## What makes it a ham app
 
-Get the latest build from **[NOTORYX Core Ham releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases)**. Each release lists what changed.
-
-| Platform | File | Notes |
+| | NOTORYX Core (Part 15) | NOTORYX Core Ham (Part 97) |
 |---|---|---|
-| Android (ARM64 phones) | `NOTORYX-Core-Ham-…-arm64-v8a.apk` | Signed with the existing release key |
-| macOS (Intel and Apple silicon, macOS 14+) | `NOTORYX-Core-Ham-…-macOS-universal.zip` | Not notarized by Apple (see below) |
+| Station ID | none | Your call sign ends every frame, including frames a repeater relays (§97.119) |
+| No call sign, no transmission | — | The radio stays silent until its name starts with a valid call sign |
+| Content | AES encrypted | Plain text; authentication kept (§97.113(a)(4)) |
+| Bands | regional presets | 33 cm (902–928 MHz) and 70 cm (420–450 MHz) only |
+| Repeater login | password sent encrypted | One-time proof; the password never goes on air |
+| Other traffic | — | Ordinary (Part 15) MeshCore traffic on the same channel is ignored |
+| Operator | — | **Licensed operator** setup: call sign, licence class and a coordination acknowledgment |
 
-iOS, Windows, Linux and web builds compile in CI but aren't released yet.
+The NOTORYX Ham firmware isn't compatible with ordinary MeshCore on the air. Every radio in your mesh, repeaters included, needs it.
 
-### Install on Android
+## Supported radios
 
-**Easiest: get updates automatically with [Obtainium](https://obtainium.imranr.dev/).** On your phone, install Obtainium, then tap the badge below. It adds NOTORYX Core Ham with pre-releases included and the Android APK picked out, and tells you when a new build is out.
+| Radio | Companion (connect the app) | Repeater |
+|---|---|---|
+| Heltec V4 | Bluetooth or USB | ✓ |
+| Heltec T114 | Bluetooth or USB | ✓ |
+| RAK WisBlock / WisMesh (RAK4631) | Bluetooth or USB | ✓ |
+| RAK WisMesh 1W Booster (RAK3401 + 13302) | Bluetooth or USB | ✓ |
+| Seeed Studio SenseCAP T1000-E | Bluetooth or USB | — |
+| UnitEng Station G2 | USB | ✓ |
+| UnitEng Station G3 | USB | ✓ |
 
-<p><a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.bastionmesh.ham%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2FTheLogsAreScreaming%2FNOTORYX-Core-Ham-Releases%22%2C%22author%22%3A%22TheLogsAreScreaming%22%2C%22name%22%3A%22NOTORYX%20Core%20Ham%22%2C%22additionalSettings%22%3A%22%7B%5C%22includePrereleases%5C%22%3Atrue%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22arm64-v8a%5C%5C%5C%5C.apk%24%5C%22%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22versionDetection%5C%22%3Atrue%7D%22%7D"><img src="branding/badge_obtainium.png" width="161" alt="Get it on Obtainium"></a></p>
-
-Or install the APK yourself:
-
-1. On your phone, open the release and download the `.apk`.
-2. Open the file. If Android asks, allow installs from your browser or file manager.
-3. Open NOTORYX Core Ham and allow **Bluetooth**, **location** and **notifications** when asked.
-
-**Upgrading from a test build:** builds before 10.0.0-rc.10 were signed with a temporary test key, and Android won't install a release-signed build over them. First make an encrypted backup (**More → Encrypted backup**), then uninstall the old app, install the new one and restore. You only do this once. Later versions install as normal updates.
-
-### Install on a Mac
-
-1. Download the `.zip` from the release and double-click it to unzip.
-2. Drag **NOTORYX Core Ham** into your **Applications** folder.
-3. Open it. The first time, macOS says it can't check the app for malicious software, because it isn't notarized by Apple.
-   - Click **Done**, then open **System Settings → Privacy & Security**.
-   - Scroll down and click **Open Anyway** next to "NOTORYX Core Ham was blocked", then confirm.
-   - You do this once for each new version.
-4. Allow Bluetooth when asked.
-
-Each release includes `SHA256SUMS-Android.txt` and `SHA256SUMS-macOS.txt` if you want to check your download (`shasum -a 256 <file>`).
+Station G2 and G3 companions are USB only: the Bluetooth build doesn't fit on those boards (the same as stock MeshCore v1.18.0). The firmware's transmit power is the radio chip's setting; boards with an amplifier put out more, so use the least power that works.
 
 ## Getting started
 
-1. **Connect your radio.** On the home screen, tap **Get started**, or go to **Connect radio**. NOTORYX Core Ham connects over Bluetooth, USB or TCP to a radio running MeshCore companion firmware, and reconnects to your last radio on its own.
-2. **Say hello.** Open **Chats** and send a message on a channel, or open someone in **Nodes** to message them directly.
-3. **Choose who gets your check-ins and SOS.** Tap **Check in: I'm OK** or hold **SOS**. The first time, NOTORYX Core Ham asks who should get them. You can change this anytime in **Plan your trip**.
-4. **Set your radio for your area.** **Settings → Radio settings → Presets** lists MeshCore's community presets (USA, Canada, EU/UK, Australia and more) with the one for your country suggested first.
-5. **Pick a look.** **Settings → Theme** offers Blaze (default), Topo night, Red light and Alpine day.
+1. **Coordinate first.** Read the [coordination guide](docs/licensed-operator/COORDINATION.md) and agree a channel with your frequency coordinator and local operators.
+2. **Flash the NOTORYX Ham firmware** on every radio. See the [firmware repository](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Firmware) for builds and flashing.
+3. **Set up your operator.** Open **Settings → Licensed operator**, enter your call sign and licence class, read the guide and tick the acknowledgment. Until you do, a banner reminds you on every screen while a radio is connected.
+4. **Name your radio with your call sign.** The Licensed operator page offers **Set to W1AW** (with your call); you can add a suffix like `W1AW-2` or `W1AW Base`.
+5. **Pick the agreed channel.** **Settings → Radio settings → Presets** starts with **US 33cm**, the firmware default.
+6. **Start low.** Use the least transmit power that works, and do an RF exposure evaluation before running higher power.
 
 The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**. Home is where check-in, SOS and your radio's readings live; **More** holds every tool and setting, with a search box.
 
+## Downloads
+
+None yet. Builds will appear in **[NOTORYX-Core-Ham-Releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases)** once the firmware and app pass testing on real radios.
+
 ## Features
+
+Everything from NOTORYX Core, working over plain-text ham frames:
 
 ### Safety and trips
 - **SOS:** hold for 2 seconds to send your radio's position to your trip contacts (and an optional channel). It repeats every 5 minutes until someone replies or you stop it, and **I'm safe** sends an all-clear.
@@ -81,7 +75,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 - **Android home-screen widget:** radio status, battery and unread count, with one-tap Check in and SOS.
 
 ### Messaging
-- Direct and channel messages with delivery status, reactions, GIFs and image messages. Tapping a notification opens that chat.
+- Direct and channel messages with delivery status, reactions and GIFs, up to 152 characters. Tapping a notification opens that chat. (Picture messages are off for now: they don't fit in ham frames yet.)
 - **Find channels:** a directory of public hashtag channels (local ones first), channels heard on air that you haven't joined, and **Active online**: the #channels an online analyzer has seen in use, with one-tap Join.
 - **Message search**, per-chat **drafts**, **read aloud** and on-device translation.
 - **Share your position or a contact** from the message box. Received contacts can be added in one tap.
@@ -99,7 +93,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 ### Your radio
 - **Sensors on Home:** your radio's own readings (battery voltage, temperatures, GPS, light and whatever else it reports).
-- **Radio presets:** MeshCore's community catalogue with search and a suggestion for your country. Choosing one keeps your transmit power. Local mesh settings (for example Philadelphia's) are offered when your radio is in that area; see [adding your area](#add-your-areas-mesh-settings).
+- **Radio presets:** US 33 cm (906.875 MHz, the firmware default), 33 cm Long Range, 33 cm Fast, US 70 cm and off-grid 33/70 cm. Frequency fields only accept 420–450 and 902–928 MHz. Choosing a preset keeps your transmit power. Coordinated local settings can be offered by area; see [adding your area](#add-your-areas-mesh-settings).
 - **Send your advert** zero-hop (only radios that hear you directly) or flooded across the mesh.
 - Connections dashboard, live radio stats and a noise-floor chart, adjustable refresh rate and battery saver.
 - Command line and Wi-Fi setup for your own radio. With permission, you can also use a trusted contact's command line.
@@ -112,6 +106,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 - **Field guide**, encrypted backup and app-icon shortcuts.
 
 ### MQTT bridge (optional)
+- **Think before bridging.** Linking a ham mesh to the internet raises third-party traffic questions (§97.115); the [coordination guide](docs/licensed-operator/COORDINATION.md) covers it. Only frames with a station ID are used, so encrypted Part 15 traffic from other observers is ignored.
 - **Several brokers at once** over TLS or secure WebSocket, with a Wi-Fi-only option and an offline queue that sends when you're back online. Broker passwords are kept in the system keychain.
 - **Live packet feed.** Channel messages that reached you only over the internet are marked **via MQTT**, and never count as radio repeats.
 - **Observer sharing** in the community `meshcoretomqtt` format. It's off until you turn it on, and direct messages and your own traffic each need a separate opt-in.
@@ -123,40 +118,40 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 - Available in 18 languages.
 
 <p align="center">
+  <img src="docs/screenshots/nodes.png" width="200" alt="Nodes: stations heard on the mesh, named with call signs">
   <img src="docs/screenshots/more.png" width="200" alt="More: every tool and setting, searchable">
-  <img src="docs/screenshots/home_alpine_day.png" width="200" alt="Alpine day theme">
-  <img src="docs/screenshots/home_red_light.png" width="200" alt="Red light theme">
+  <img src="docs/screenshots/settings.png" width="200" alt="Settings with the Licensed operator card">
 </p>
 
 <p align="center">
+  <img src="docs/screenshots/home_alpine_day.png" width="200" alt="Alpine day theme">
   <img src="docs/screenshots/routes.png" width="200" alt="Route Intelligence">
   <img src="docs/screenshots/path_graph.png" width="200" alt="Path graph showing how messages reach you">
-  <img src="docs/screenshots/settings.png" width="200" alt="Settings">
 </p>
 
 ## Add your area's mesh settings
 
-When a local mesh agrees on new radio settings, NOTORYX Core Ham can offer them to everyone nearby. The live list is [`regional_presets.json` in NOTORYX-Core-Ham-Releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/blob/main/regional_presets.json), which NOTORYX Core Ham checks every 12 hours. The app also bundles a copy, [`assets/regional_presets.json`](assets/regional_presets.json), for first launch and offline use; update it to match the live list before each release.
+NOTORYX Core Ham can offer a coordinated channel to everyone in an area. The live list is [`regional_presets.json` in NOTORYX-Core-Ham-Releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/blob/main/regional_presets.json), checked every 12 hours; the app bundles a copy, [`assets/regional_presets.json`](assets/regional_presets.json), for offline use. It's empty for now. Only ham-band entries are accepted, and Part 15 MeshCore meshes don't belong here.
 
-To add or update an area, [open an issue in NOTORYX-Core-Ham-Releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/issues/new). Each entry has:
+To add an area your frequency coordinator has agreed, [open an issue in NOTORYX-Core-Ham-Releases](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/issues/new). Each entry looks like this:
 
 ```json
 {
-  "id": "us-philadelphia",
-  "name": "Philadelphia",
+  "id": "us-example",
+  "name": "Example County",
   "center": [39.9526, -75.1652],
-  "radiusKm": 100,
-  "frequencyMHz": 919.5,
-  "bandwidthKHz": 500,
+  "radiusKm": 60,
+  "frequencyMHz": 906.875,
+  "bandwidthKHz": 250,
   "spreadingFactor": 10,
   "codingRate": 5,
-  "pathHashBytes": 2,
-  "updated": "2026-10-17",
-  "notes": "Where this comes from and anything people should know."
+  "pathHashBytes": 1,
+  "updated": "2026-11-05",
+  "notes": "Who coordinated this channel, and anything operators should know."
 }
 ```
 
-Please say in `notes` where the settings come from. Change `updated` whenever the settings change: that's what triggers the "settings changed" notification.
+Say in `notes` who agreed the channel. Change `updated` whenever the settings change: that's what triggers the "settings changed" notification.
 
 ## Building from source
 
@@ -192,6 +187,8 @@ flutter test
 - `lib/services/`: field ops, coverage, routing, MQTT, notifications and other services
 - `lib/models/`, `lib/storage/`: data and persistence
 - `lib/theme/`: themes and colors
+- `lib/utils/amateur_radio.dart`: ham frame handling, call-sign and band checks shared with the firmware
+- `docs/licensed-operator/`: the coordination guide and the Part 97 feasibility notes
 - `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`, with `PREVIEW_THEME=alpine_day` or `red_light` for other themes)
 
 ## Contributing
@@ -202,7 +199,7 @@ Bug reports, feature requests and pull requests are welcome. Use the **[Issues](
 
 NOTORYX Core Ham is an independent community app. It is not an official MeshCore app and doesn't imply endorsement by MeshCore. For MeshCore itself, see [meshcore.io](https://meshcore.io/).
 
-NOTORYX Core Ham builds on the open-source [MeshCore Open](https://github.com/zjs81/meshcore-open) project. License text and third-party notices are in [`LICENSE`](LICENSE), [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and the app's Open source licenses screen.
+NOTORYX Core Ham is the amateur edition of NOTORYX Core and builds on the open-source [MeshCore Open](https://github.com/zjs81/meshcore-open) project. License text and third-party notices are in [`LICENSE`](LICENSE), [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) and the app's Open source licenses screen.
 
 ## License
 

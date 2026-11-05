@@ -71,6 +71,10 @@ import 'package:meshcore_open/services/channel_directory_service.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:meshcore_open/screens/scanner_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:meshcore_open/models/operator_profile.dart';
+import 'package:meshcore_open/models/radio_settings.dart';
+import 'package:meshcore_open/screens/licensed_operator_screen.dart';
+import 'package:meshcore_open/widgets/operator_setup_banner.dart';
 
 // Anchored to today so time-filtered screens (path graph) have data in range.
 final _today = DateTime.now();
@@ -97,12 +101,12 @@ Contact _contact(
 );
 
 final _contacts = [
-  _contact(1, 'Ridge Camp', advTypeChat, ago: 2),
-  _contact(2, 'Sam (trail crew)', advTypeChat, hops: 2, ago: 14),
-  _contact(3, 'Hollyburn RPT', advTypeRepeater, hops: 0, ago: 1),
-  _contact(4, 'Cypress Bowl RPT', advTypeRepeater, hops: 1, ago: 40),
-  _contact(5, 'Basecamp Room', advTypeRoom, hops: 2, ago: 90),
-  _contact(6, 'Weather Stn 3', advTypeSensor, hops: 3, ago: 300),
+  _contact(1, 'KD2ABC Ridge Camp', advTypeChat, ago: 2),
+  _contact(2, 'N7SAM trail crew', advTypeChat, hops: 2, ago: 14),
+  _contact(3, 'N0RPT Hollyburn', advTypeRepeater, hops: 0, ago: 1),
+  _contact(4, 'K7CYP Cypress Bowl', advTypeRepeater, hops: 1, ago: 40),
+  _contact(5, 'W1BC Basecamp Room', advTypeRoom, hops: 2, ago: 90),
+  _contact(6, 'KE7WX Weather', advTypeSensor, hops: 3, ago: 300),
 ];
 
 final _channels = [
@@ -208,9 +212,9 @@ class _PreviewConnector extends MeshCoreConnector {
   Future<List<ChannelMessage>> loadFullChannelHistory(Channel channel) async =>
       channel.index == 1 ? _pathHistory() : const [];
   @override
-  String? get selfName => 'Trail Lead';
+  String? get selfName => 'W1AW Trail';
   @override
-  String get deviceDisplayName => 'Trail Lead';
+  String get deviceDisplayName => 'W1AW Trail';
   @override
   Uint8List? get selfPublicKey => _key(99);
   @override
@@ -222,13 +226,13 @@ class _PreviewConnector extends MeshCoreConnector {
   @override
   int? get batteryPercent => 78;
   @override
-  String? get firmwareVersionString => 'v1.9.1';
+  String? get firmwareVersionString => 'v1.18.0-ham';
   @override
-  int? get currentFreqHz => 910525; // kHz, as radios report it
+  int? get currentFreqHz => 906875; // kHz, as radios report it
   @override
-  int? get currentBwHz => 62500;
+  int? get currentBwHz => 250000;
   @override
-  int? get currentSf => 7;
+  int? get currentSf => 10;
   @override
   int? get currentCr => 5;
   @override
@@ -267,7 +271,7 @@ class _PreviewScanConnector extends _PreviewConnector {
   MeshCoreConnectionState get state => MeshCoreConnectionState.scanning;
   @override
   List<ScanResult> get scanResults => [
-    _scan('MeshCore-Trail Lead', 'CF57FC24-9872-0AFC-7DEC-E36A387DE23D', -48),
+    _scan('MeshCore-W1AW Trail', 'CF57FC24-9872-0AFC-7DEC-E36A387DE23D', -48),
     _scan('MeshCore-Ridge Base', '7A10B2C3-1F4E-4D21-9A0B-5C6D7E8F9012', -71),
     _scan('MeshCore-Cabin Relay', 'E2B4C6D8-0A1C-4E3F-8B2D-4F6A8C0E2B44', -88),
   ];
@@ -521,6 +525,28 @@ void main() {
             'get wifi.ip': '> 192.168.4.20',
           }[c] ??
           '> ok',
+    ),
+    'licensed_operator': () => ChangeNotifierProvider(
+      create: (_) => OperatorProfileService()
+        ..save(
+          OperatorProfile(
+            callsign: 'W1AW',
+            licenseClass: LicenseClass.general,
+            acknowledgedAt: DateTime(2026, 11, 5),
+          ),
+        ),
+      child: const LicensedOperatorScreen(),
+    ),
+    'setup_banner': () => OperatorSetupBanner(
+      navigatorKey: GlobalKey(),
+      child: const BastionHomeScreen(),
+    ),
+    'radio_presets': () => Scaffold(
+      body: RadioPresetPicker(
+        indexes: [for (var i = 0; i < RadioSettings.presets.length; i++) i],
+        selected: 0,
+        suggested: 'US 33cm',
+      ),
     ),
     'companion_cli': () =>
         CompanionCliScreen(run: (c) async => 'v1.18.0 (Build: 15-Oct-2026)'),
