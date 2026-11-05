@@ -120,7 +120,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 ### Look and feel
 - **Frosted ember:** the main screens sit on a warm glow, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
-- Four themes: **Blaze**, **Autumn Frost** (slate, pine and amber), **Bubble Gum** (pastel, light) and **Red light** (keeps your night vision).
+- Four themes: **Blaze**, **Autumn Frost** (slate, pine and amber), **Bubble Gum** (rose and hot pink) and **Red light** (keeps your night vision).
 - Available in 18 languages.
 
 <p align="center">

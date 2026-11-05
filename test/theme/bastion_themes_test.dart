@@ -63,13 +63,15 @@ void main() {
     }
   });
 
-  test('Bubble Gum keeps all five reference colors', () {
+  test('Bubble Gum is pink, not white, behind the text', () {
     final p = BastionTheme.bubbleGum.palette;
-    expect(p.bg4, const Color(0xFFCDB4DA));
-    expect(p.bg1, const Color(0xFFFFC8DC));
-    expect(p.me, const Color(0xFFFFAFCC));
-    expect(p.bg3, const Color(0xFFBEE0FE));
-    expect(p.accentDim, const Color(0xFFA2D2FF));
+    expect(p.brightness, Brightness.light);
+    // The old near-white page was too bright; keep the page a real pink.
+    for (final surface in [p.bg, p.bg1, p.bg2]) {
+      expect(surface.computeLuminance(), lessThan(0.7));
+      expect(surface.r, greaterThan(surface.g));
+    }
+    expect(p.me, const Color(0xFFB5207A));
   });
 
   test('Autumn Frost uses all five fall colors and replaces Christmas', () {
@@ -101,9 +103,8 @@ void main() {
           value: settings,
           child: MaterialApp(
             builder: (context, child) => MediaQuery(
-              data: MediaQuery.of(
-                context,
-              ).copyWith(textScaler: const TextScaler.linear(2)),
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: const TextScaler.linear(2)),
               child: child!,
             ),
             home: const Scaffold(
@@ -140,7 +141,7 @@ void main() {
 
   test('the palette follows the chosen theme', () {
     MeshPalette.current = BastionTheme.bubbleGum.palette;
-    expect(MeshPalette.accent, const Color(0xFF704887));
+    expect(MeshPalette.accent, const Color(0xFF8E0B56));
     MeshPalette.current = BastionTheme.blaze.palette;
     expect(MeshPalette.accent, const Color(0xFFFF9A3C));
     expect(MeshTheme.light().brightness, Brightness.light);
