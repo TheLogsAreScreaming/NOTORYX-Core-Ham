@@ -9194,4 +9194,132 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Az alkalmazás megnyitásakor koppintás nélkül újracsatlakozik az utolsó rádióhoz. Ha még nincs hatótávon belül, többször is próbálkozik.';
+
+  @override
+  String get networks_title => 'Hálózatok';
+
+  @override
+  String get networks_hint => 'Közeli hálózatok keresése és naplózása';
+
+  @override
+  String get networks_yourNetwork => 'Saját hálózat';
+
+  @override
+  String get networks_scanTitle => 'Hálózatok keresése';
+
+  @override
+  String get networks_scanExplainer =>
+      'A rádió csak a pontosan saját beállításait használó hálózatokat hallja, ezért a keresés sorra átállítja mindegyikre, hallgat, majd visszaállítja. Keresés közben nem vagy a saját hálózatodon.';
+
+  @override
+  String get networks_listenFor => 'Hallgatás hálózatonként';
+
+  @override
+  String networks_choose(int count) {
+    return 'Keresendő hálózatok: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Javasoltak';
+
+  @override
+  String get networks_start => 'Keresés indítása';
+
+  @override
+  String get networks_cancel => 'Keresés leállítása';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Hallgatás: $name ($step/$steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Csatlakoztass rádiót a kereséshez.';
+
+  @override
+  String get networks_blockSettings => 'Várakozás a rádió beállításaira.';
+
+  @override
+  String get networks_blockSos =>
+      'Aktív SOS alatt nem: a keresés lekapcsol a hálózatról.';
+
+  @override
+  String get networks_blockTrip =>
+      'Túra alatt nem: a keresés lekapcsol a hálózatról.';
+
+  @override
+  String get networks_nearby => 'Közeli hálózatok';
+
+  @override
+  String get networks_nothingYet =>
+      'Még nem hallottunk hálózatot. Indíts keresést.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Csomópont $nodes · csomag $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Utoljára hallva $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Hallva ennyiszer: $count';
+  }
+
+  @override
+  String get networks_saved => 'Mentett hálózatok';
+
+  @override
+  String get networks_noSaved => 'Még nincs mentett hálózat.';
+
+  @override
+  String get networks_add => 'Hálózat hozzáadása';
+
+  @override
+  String get networks_join => 'Csatlakozás';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Átállítod a rádiót erre: $name? Elhagyod a jelenlegi hálózatot. Az adóteljesítmény nem változik.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'A rádió most ezen van: $name.';
+  }
+
+  @override
+  String get networks_log => 'Hálózatnapló';
+
+  @override
+  String get networks_logEmpty => 'Még nincs naplózva semmi.';
+
+  @override
+  String get networks_showMap => 'Térkép';
+
+  @override
+  String get networks_exportCsv => 'CSV export';
+
+  @override
+  String get networks_exportGpx => 'GPX export';
+
+  @override
+  String get networks_clearLog => 'Napló törlése';
+
+  @override
+  String get networks_clearLogConfirm =>
+      'Törlöd az összes naplózott hálózatot?';
+
+  @override
+  String get networks_name => 'Név';
+
+  @override
+  String get networks_invalid =>
+      'Ellenőrizd a beállításokat: kívül esnek azon, amit a MeshCore rádiók elfogadnak.';
+
+  @override
+  String get networks_nodesHeard => 'Hallott csomópontok';
 }

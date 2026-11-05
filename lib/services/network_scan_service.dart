@@ -116,6 +116,18 @@ class NetworkScanService extends ChangeNotifier {
     ];
   }
 
+  /// Fills the log and saved networks without touching storage, for
+  /// previews and tests.
+  @visibleForTesting
+  void debugSeed({
+    List<NetworkSighting> log = const [],
+    List<ScanTarget> saved = const [],
+  }) {
+    _log = [...log]..sort((a, b) => b.at.compareTo(a.at));
+    _saved = [...saved];
+    _notify();
+  }
+
   static List<Object?> _decodeList(String? raw) {
     if (raw == null) return const [];
     try {

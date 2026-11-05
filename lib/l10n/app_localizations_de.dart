@@ -9218,4 +9218,132 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Beim Öffnen der App ohne Tippen wieder mit dem letzten Funkgerät verbinden. Ist es noch nicht in Reichweite, wird es mehrmals versucht.';
+
+  @override
+  String get networks_title => 'Netze';
+
+  @override
+  String get networks_hint => 'Netze in der Nähe suchen und protokollieren';
+
+  @override
+  String get networks_yourNetwork => 'Dein Netz';
+
+  @override
+  String get networks_scanTitle => 'Nach Netzen suchen';
+
+  @override
+  String get networks_scanExplainer =>
+      'Dein Funkgerät hört nur Netze mit genau seinen Einstellungen. Ein Suchlauf schaltet es deshalb nacheinander auf jedes um, hört zu und schaltet zurück. Währenddessen bist du nicht in deinem Mesh.';
+
+  @override
+  String get networks_listenFor => 'Pro Netz zuhören';
+
+  @override
+  String networks_choose(int count) {
+    return 'Zu suchende Netze: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Vorschläge';
+
+  @override
+  String get networks_start => 'Suche starten';
+
+  @override
+  String get networks_cancel => 'Suche stoppen';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Höre auf $name ($step von $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Verbinde ein Funkgerät zum Suchen.';
+
+  @override
+  String get networks_blockSettings =>
+      'Warte auf die Einstellungen des Funkgeräts.';
+
+  @override
+  String get networks_blockSos =>
+      'Nicht während eines SOS: Ein Suchlauf nimmt dich aus dem Mesh.';
+
+  @override
+  String get networks_blockTrip =>
+      'Nicht während einer Tour: Ein Suchlauf nimmt dich aus dem Mesh.';
+
+  @override
+  String get networks_nearby => 'Netze in der Nähe';
+
+  @override
+  String get networks_nothingYet =>
+      'Noch keine Netze gehört. Starte einen Suchlauf.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Knoten $nodes · Pakete $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Zuletzt gehört $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Mal gehört: $count';
+  }
+
+  @override
+  String get networks_saved => 'Gespeicherte Netze';
+
+  @override
+  String get networks_noSaved => 'Noch keine gespeicherten Netze.';
+
+  @override
+  String get networks_add => 'Netz hinzufügen';
+
+  @override
+  String get networks_join => 'Beitreten';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Funkgerät auf $name umstellen? Du verlässt dein aktuelles Netz. Die Sendeleistung bleibt gleich.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Dein Funkgerät ist jetzt auf $name.';
+  }
+
+  @override
+  String get networks_log => 'Netzprotokoll';
+
+  @override
+  String get networks_logEmpty => 'Noch nichts protokolliert.';
+
+  @override
+  String get networks_showMap => 'Karte';
+
+  @override
+  String get networks_exportCsv => 'CSV exportieren';
+
+  @override
+  String get networks_exportGpx => 'GPX exportieren';
+
+  @override
+  String get networks_clearLog => 'Protokoll leeren';
+
+  @override
+  String get networks_clearLogConfirm => 'Alle protokollierten Netze löschen?';
+
+  @override
+  String get networks_name => 'Name';
+
+  @override
+  String get networks_invalid =>
+      'Prüfe die Einstellungen: Sie liegen außerhalb dessen, was MeshCore-Funkgeräte annehmen.';
+
+  @override
+  String get networks_nodesHeard => 'Gehörte Knoten';
 }

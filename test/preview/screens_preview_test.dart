@@ -62,7 +62,10 @@ import 'package:meshcore_open/models/track_log.dart';
 import 'package:meshcore_open/screens/track_log_screen.dart';
 import 'package:meshcore_open/services/track_log_service.dart';
 import 'package:meshcore_open/screens/region_setup_screen.dart';
+import 'package:meshcore_open/models/network_scan.dart';
+import 'package:meshcore_open/screens/networks_screen.dart';
 import 'package:meshcore_open/screens/prefix_tool_screen.dart';
+import 'package:meshcore_open/services/network_scan_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:meshcore_open/screens/channel_directory_screen.dart';
@@ -488,6 +491,27 @@ void main() {
         );
       },
     ),
+    'networks': () => Builder(
+      builder: (context) {
+        final scan = NetworkScanService(context.read<MeshCoreConnector>())
+          ..debugSeed(
+            log: _sampleSightings(),
+            saved: [
+              const ScanTarget(
+                name: 'Hilltop club',
+                freqKHz: 918000,
+                bwHz: 250000,
+                sf: 11,
+                cr: 8,
+              ),
+            ],
+          );
+        return ChangeNotifierProvider<NetworkScanService>.value(
+          value: scan,
+          child: const NetworksScreen(),
+        );
+      },
+    ),
     'region_setup': () => RegionSetupScreen(
       loadTrees: () async =>
           File('assets/region_trees.json').readAsStringSync(),
@@ -591,4 +615,46 @@ void main() {
       }, skip: out == null);
     }
   }
+}
+
+List<NetworkSighting> _sampleSightings() {
+  final now = DateTime.now();
+  return [
+    NetworkSighting(
+      target: const ScanTarget(
+        name: 'MediumSlow',
+        freqKHz: 914875,
+        bwHz: 250000,
+        sf: 10,
+        cr: 5,
+      ),
+      at: now.subtract(const Duration(minutes: 12)),
+      latitude: 49.3,
+      longitude: -123.1,
+      packets: 14,
+      bestSnr: 7.25,
+      bestRssi: -92,
+      nodes: const [
+        HeardNode(key: 'a1b2c3d4', name: 'Hollyburn RPT', type: 2),
+        HeardNode(key: 'e5f60718', name: 'Cypress Bowl RPT', type: 2),
+        HeardNode(key: '99aa0011', name: 'Ridge Camp', type: 1),
+      ],
+    ),
+    NetworkSighting(
+      target: const ScanTarget(
+        name: 'Canada',
+        freqKHz: 910525,
+        bwHz: 250000,
+        sf: 11,
+        cr: 5,
+      ),
+      at: now.subtract(const Duration(hours: 3)),
+      latitude: 49.32,
+      longitude: -123.05,
+      packets: 3,
+      bestSnr: -4.5,
+      bestRssi: -118,
+      nodes: const [HeardNode(key: '0badf00d', name: 'Seymour RPT', type: 2)],
+    ),
+  ];
 }

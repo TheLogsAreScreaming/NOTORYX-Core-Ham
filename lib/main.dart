@@ -61,6 +61,7 @@ import 'services/coverage_hex_service.dart';
 import 'services/channel_discovery_service.dart';
 import 'services/corescope.dart';
 import 'services/my_sensors_service.dart';
+import 'services/network_scan_service.dart';
 import 'services/wardrive_service.dart';
 import 'services/track_log_service.dart';
 import 'services/weather_service.dart';
@@ -283,6 +284,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final NodeTelemetryStore _telemetry;
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
+  late final NetworkScanService _networkScan;
   late final SosRelayService _sosRelay;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
@@ -320,6 +322,11 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.connector.addListener(_syncTelemetryScope);
     _mySensors = MySensorsService(widget.connector);
     _wardrive = WardriveService(widget.connector)..load();
+    _networkScan = NetworkScanService(
+      widget.connector,
+      sosActive: () => _fieldOps.sos.active,
+      tripActive: () => _fieldOps.trip.active,
+    )..load();
     _sosRelay = SosRelayService.forConnector(widget.connector)..load();
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
@@ -424,6 +431,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.connector.telemetryStore = null;
     _telemetry.dispose();
     _wardrive.dispose();
+    _networkScan.dispose();
     _sosRelay.dispose();
     _coverageHex.dispose();
     _readAloud.dispose();
@@ -530,6 +538,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider<MySensorsService?>.value(value: _mySensors),
         ChangeNotifierProvider<NodeTelemetryStore?>.value(value: _telemetry),
         ChangeNotifierProvider.value(value: _wardrive),
+        ChangeNotifierProvider.value(value: _networkScan),
         ChangeNotifierProvider.value(value: _sosRelay),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(

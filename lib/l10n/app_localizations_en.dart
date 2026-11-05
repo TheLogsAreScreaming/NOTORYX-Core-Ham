@@ -9083,4 +9083,132 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet.';
+
+  @override
+  String get networks_title => 'Networks';
+
+  @override
+  String get networks_hint => 'Scan for networks nearby and keep a log';
+
+  @override
+  String get networks_yourNetwork => 'Your network';
+
+  @override
+  String get networks_scanTitle => 'Scan for networks';
+
+  @override
+  String get networks_scanExplainer =>
+      'Your radio only hears networks that use its exact settings, so a scan switches it to each one in turn, listens, then switches it back. You\'re off your own mesh while it scans.';
+
+  @override
+  String get networks_listenFor => 'Listen on each';
+
+  @override
+  String networks_choose(int count) {
+    return 'Networks to scan: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Suggested';
+
+  @override
+  String get networks_start => 'Start scan';
+
+  @override
+  String get networks_cancel => 'Stop scan';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Listening on $name ($step of $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Connect a radio to scan.';
+
+  @override
+  String get networks_blockSettings => 'Waiting for your radio\'s settings.';
+
+  @override
+  String get networks_blockSos =>
+      'Not while an SOS is active: a scan takes you off your mesh.';
+
+  @override
+  String get networks_blockTrip =>
+      'Not during a trip: a scan takes you off your mesh.';
+
+  @override
+  String get networks_nearby => 'Networks nearby';
+
+  @override
+  String get networks_nothingYet =>
+      'No networks heard yet. Run a scan to look for some.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Nodes $nodes · packets $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Last heard $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Times heard: $count';
+  }
+
+  @override
+  String get networks_saved => 'Saved networks';
+
+  @override
+  String get networks_noSaved => 'No saved networks yet.';
+
+  @override
+  String get networks_add => 'Add a network';
+
+  @override
+  String get networks_join => 'Join';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Switch your radio to $name? You\'ll leave your current network. Your transmit power stays the same.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Your radio is on $name now.';
+  }
+
+  @override
+  String get networks_log => 'Network log';
+
+  @override
+  String get networks_logEmpty => 'Nothing logged yet.';
+
+  @override
+  String get networks_showMap => 'Map';
+
+  @override
+  String get networks_exportCsv => 'Export CSV';
+
+  @override
+  String get networks_exportGpx => 'Export GPX';
+
+  @override
+  String get networks_clearLog => 'Clear log';
+
+  @override
+  String get networks_clearLogConfirm =>
+      'Delete every logged network sighting?';
+
+  @override
+  String get networks_name => 'Name';
+
+  @override
+  String get networks_invalid =>
+      'Check the settings: they\'re outside what MeshCore radios accept.';
+
+  @override
+  String get networks_nodesHeard => 'Nodes heard';
 }

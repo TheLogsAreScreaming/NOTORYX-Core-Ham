@@ -9231,4 +9231,131 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'При открытии приложения переподключается к последнему радио без нажатий. Делает несколько попыток, если радио ещё вне зоны.';
+
+  @override
+  String get networks_title => 'Сети';
+
+  @override
+  String get networks_hint => 'Поиск ближайших сетей и журнал';
+
+  @override
+  String get networks_yourNetwork => 'Ваша сеть';
+
+  @override
+  String get networks_scanTitle => 'Поиск сетей';
+
+  @override
+  String get networks_scanExplainer =>
+      'Радио слышит только сети с точно такими же настройками, поэтому поиск по очереди переключает его на каждую, слушает и возвращает обратно. Во время поиска вы вне своей сети.';
+
+  @override
+  String get networks_listenFor => 'Слушать каждую';
+
+  @override
+  String networks_choose(int count) {
+    return 'Сетей для поиска: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Предложенные';
+
+  @override
+  String get networks_start => 'Начать поиск';
+
+  @override
+  String get networks_cancel => 'Остановить поиск';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Слушаю $name ($step из $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Подключите радио для поиска.';
+
+  @override
+  String get networks_blockSettings => 'Ожидание настроек радио.';
+
+  @override
+  String get networks_blockSos =>
+      'Не во время SOS: поиск отключает вас от сети.';
+
+  @override
+  String get networks_blockTrip =>
+      'Не во время похода: поиск отключает вас от сети.';
+
+  @override
+  String get networks_nearby => 'Сети рядом';
+
+  @override
+  String get networks_nothingYet =>
+      'Пока ни одной сети не слышно. Запустите поиск.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Узлы $nodes · пакеты $packets · SNR $snr дБ';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Последний раз $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Сколько раз слышна: $count';
+  }
+
+  @override
+  String get networks_saved => 'Сохранённые сети';
+
+  @override
+  String get networks_noSaved => 'Сохранённых сетей пока нет.';
+
+  @override
+  String get networks_add => 'Добавить сеть';
+
+  @override
+  String get networks_join => 'Подключиться';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Переключить радио на $name? Вы покинете текущую сеть. Мощность передачи не изменится.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Радио теперь на $name.';
+  }
+
+  @override
+  String get networks_log => 'Журнал сетей';
+
+  @override
+  String get networks_logEmpty => 'Пока ничего не записано.';
+
+  @override
+  String get networks_showMap => 'Карта';
+
+  @override
+  String get networks_exportCsv => 'Экспорт CSV';
+
+  @override
+  String get networks_exportGpx => 'Экспорт GPX';
+
+  @override
+  String get networks_clearLog => 'Очистить журнал';
+
+  @override
+  String get networks_clearLogConfirm => 'Удалить все записанные сети?';
+
+  @override
+  String get networks_name => 'Название';
+
+  @override
+  String get networks_invalid =>
+      'Проверьте настройки: они вне диапазона, который принимают радио MeshCore.';
+
+  @override
+  String get networks_nodesHeard => 'Услышанные узлы';
 }

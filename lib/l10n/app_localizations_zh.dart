@@ -8575,4 +8575,127 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get autoConnect_hint => '打开应用时无需点按即可重新连接上次的电台。如果电台还不在范围内，会尝试几次。';
+
+  @override
+  String get networks_title => '网络';
+
+  @override
+  String get networks_hint => '搜索附近网络并记录';
+
+  @override
+  String get networks_yourNetwork => '你的网络';
+
+  @override
+  String get networks_scanTitle => '搜索网络';
+
+  @override
+  String get networks_scanExplainer =>
+      '电台只能听到设置完全相同的网络，所以搜索会依次切换到每个网络收听，最后再切回来。搜索期间你会离开自己的网状网络。';
+
+  @override
+  String get networks_listenFor => '每个网络收听时长';
+
+  @override
+  String networks_choose(int count) {
+    return '要搜索的网络：$count';
+  }
+
+  @override
+  String get networks_suggested => '推荐';
+
+  @override
+  String get networks_start => '开始搜索';
+
+  @override
+  String get networks_cancel => '停止搜索';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return '正在收听 $name（$step/$steps）';
+  }
+
+  @override
+  String get networks_blockNoRadio => '请连接电台后再搜索。';
+
+  @override
+  String get networks_blockSettings => '正在等待电台设置。';
+
+  @override
+  String get networks_blockSos => 'SOS 进行中不能搜索：搜索会让你离开网状网络。';
+
+  @override
+  String get networks_blockTrip => '行程中不能搜索：搜索会让你离开网状网络。';
+
+  @override
+  String get networks_nearby => '附近的网络';
+
+  @override
+  String get networks_nothingYet => '还没有听到任何网络。请开始搜索。';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return '节点 $nodes · 数据包 $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return '最后听到 $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return '听到次数：$count';
+  }
+
+  @override
+  String get networks_saved => '已保存的网络';
+
+  @override
+  String get networks_noSaved => '还没有保存的网络。';
+
+  @override
+  String get networks_add => '添加网络';
+
+  @override
+  String get networks_join => '加入';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return '将电台切换到 $name？你将离开当前网络。发射功率保持不变。';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return '电台现在使用 $name。';
+  }
+
+  @override
+  String get networks_log => '网络记录';
+
+  @override
+  String get networks_logEmpty => '还没有记录。';
+
+  @override
+  String get networks_showMap => '地图';
+
+  @override
+  String get networks_exportCsv => '导出 CSV';
+
+  @override
+  String get networks_exportGpx => '导出 GPX';
+
+  @override
+  String get networks_clearLog => '清空记录';
+
+  @override
+  String get networks_clearLogConfirm => '删除所有已记录的网络？';
+
+  @override
+  String get networks_name => '名称';
+
+  @override
+  String get networks_invalid => '请检查设置：超出了 MeshCore 电台可接受的范围。';
+
+  @override
+  String get networks_nodesHeard => '听到的节点';
 }

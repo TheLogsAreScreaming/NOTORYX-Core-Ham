@@ -8773,4 +8773,127 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       '앱을 열면 탭하지 않아도 마지막 무전기에 다시 연결합니다. 아직 범위 밖이면 몇 번 시도합니다.';
+
+  @override
+  String get networks_title => '네트워크';
+
+  @override
+  String get networks_hint => '근처 네트워크를 찾아 기록';
+
+  @override
+  String get networks_yourNetwork => '내 네트워크';
+
+  @override
+  String get networks_scanTitle => '네트워크 찾기';
+
+  @override
+  String get networks_scanExplainer =>
+      '무전기는 설정이 정확히 같은 네트워크만 들을 수 있어서, 스캔은 각 네트워크로 차례로 전환해 듣고 다시 원래대로 돌려놓습니다. 스캔 중에는 내 메시에서 벗어납니다.';
+
+  @override
+  String get networks_listenFor => '네트워크당 듣는 시간';
+
+  @override
+  String networks_choose(int count) {
+    return '스캔할 네트워크: $count';
+  }
+
+  @override
+  String get networks_suggested => '추천';
+
+  @override
+  String get networks_start => '스캔 시작';
+
+  @override
+  String get networks_cancel => '스캔 중지';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return '$name 듣는 중 ($step/$steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => '스캔하려면 무전기를 연결하세요.';
+
+  @override
+  String get networks_blockSettings => '무전기 설정을 기다리는 중입니다.';
+
+  @override
+  String get networks_blockSos => 'SOS 중에는 안 됩니다: 스캔하면 메시에서 벗어납니다.';
+
+  @override
+  String get networks_blockTrip => '여행 중에는 안 됩니다: 스캔하면 메시에서 벗어납니다.';
+
+  @override
+  String get networks_nearby => '근처 네트워크';
+
+  @override
+  String get networks_nothingYet => '아직 들린 네트워크가 없습니다. 스캔해 보세요.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return '노드 $nodes · 패킷 $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return '마지막 수신 $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return '수신 횟수: $count';
+  }
+
+  @override
+  String get networks_saved => '저장한 네트워크';
+
+  @override
+  String get networks_noSaved => '저장한 네트워크가 없습니다.';
+
+  @override
+  String get networks_add => '네트워크 추가';
+
+  @override
+  String get networks_join => '참여';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return '무전기를 $name(으)로 바꿀까요? 현재 네트워크에서 나갑니다. 송신 출력은 그대로입니다.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return '무전기가 이제 $name에 있습니다.';
+  }
+
+  @override
+  String get networks_log => '네트워크 기록';
+
+  @override
+  String get networks_logEmpty => '아직 기록이 없습니다.';
+
+  @override
+  String get networks_showMap => '지도';
+
+  @override
+  String get networks_exportCsv => 'CSV 내보내기';
+
+  @override
+  String get networks_exportGpx => 'GPX 내보내기';
+
+  @override
+  String get networks_clearLog => '기록 지우기';
+
+  @override
+  String get networks_clearLogConfirm => '기록된 네트워크를 모두 삭제할까요?';
+
+  @override
+  String get networks_name => '이름';
+
+  @override
+  String get networks_invalid => '설정을 확인하세요: MeshCore 무전기가 허용하는 범위를 벗어납니다.';
+
+  @override
+  String get networks_nodesHeard => '들린 노드';
 }
