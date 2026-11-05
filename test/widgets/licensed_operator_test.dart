@@ -1,0 +1,111 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:meshcore_open/connector/meshcore_connector.dart';
+import 'package:meshcore_open/models/operator_profile.dart';
+import 'package:meshcore_open/screens/licensed_operator_screen.dart';
+import 'package:meshcore_open/services/operator_profile_service.dart';
+import 'package:meshcore_open/storage/prefs_manager.dart';
+import 'package:meshcore_open/widgets/operator_setup_banner.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+class _Connector extends MeshCoreConnector {
+  _Connector({required this.connected});
+  final bool connected;
+  @override
+  bool get isConnected => connected;
+}
+
+void main() {
+  late OperatorProfileService profiles;
+
+  setUp(() async {
+    SharedPreferences.setMockInitialValues({});
+    PrefsManager.reset();
+    await PrefsManager.initialize();
+    profiles = OperatorProfileService()..load();
+  });
+
+  Widget app(Widget home, {bool connected = false}) {
+    final navigatorKey = GlobalKey<NavigatorState>();
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<MeshCoreConnector>.value(
+          value: _Connector(connected: connected),
+        ),
+        ChangeNotifierProvider.value(value: profiles),
+      ],
+      child: MaterialApp(
+        navigatorKey: navigatorKey,
+        builder: (context, child) =>
+            OperatorSetupBanner(navigatorKey: navigatorKey, child: child!),
+        home: home,
+      ),
+    );
+  }
+
+  testWidgets('saves only a complete profile, and keeps it', (tester) async {
+    tester.view.physicalSize = const Size(1080, 5000);
+    tester.view.devicePixelRatio = 2.5;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(app(const LicensedOperatorScreen()));
+    FilledButton save() =>
+        tester.widget(find.byKey(const ValueKey('operator-save')));
+
+    expect(save().onPressed, isNull);
+    await tester.enterText(
+      find.byKey(const ValueKey('operator-callsign')),
+      'vE3abc',
+    );
+    await tester.pump();
+    expect(find.text('Not a US call sign'), findsOneWidget);
+
+    await tester.enterText(
+      find.byKey(const ValueKey('operator-callsign')),
+      'w1aw',
+    );
+    await tester.tap(find.byKey(const ValueKey('operator-class')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('General').last);
+    await tester.pumpAndSettle();
+    expect(save().onPressed, isNull); // not acknowledged yet
+
+    await tester.tap(find.byKey(const ValueKey('operator-acknowledge')));
+    await tester.pump();
+    await tester.ensureVisible(find.byKey(const ValueKey('operator-save')));
+    await tester.tap(find.byKey(const ValueKey('operator-save')));
+    await tester.pumpAndSettle();
+
+    expect(profiles.profile.isComplete, isTrue);
+    expect(profiles.profile.callsign, 'W1AW');
+    expect(profiles.profile.licenseClass, LicenseClass.general);
+    final reloaded = OperatorProfileService()..load();
+    expect(reloaded.profile.callsign, 'W1AW');
+  });
+
+  testWidgets('banner shows only while connected and setup is unfinished', (
+    tester,
+  ) async {
+    const banner = 'Finish licensed operator setup before transmitting';
+
+    await tester.pumpWidget(app(const Text('home')));
+    expect(find.text(banner), findsNothing); // not connected
+
+    await tester.pumpWidget(app(const Text('home'), connected: true));
+    expect(find.text(banner), findsOneWidget);
+
+    await tester.tap(find.text(banner));
+    await tester.pumpAndSettle();
+    expect(find.text('Licensed operator'), findsWidgets);
+
+    await profiles.save(
+      OperatorProfile(
+        callsign: 'W1AW',
+        licenseClass: LicenseClass.technician,
+        acknowledgedAt: DateTime.now(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text(banner), findsNothing);
+  });
+}
