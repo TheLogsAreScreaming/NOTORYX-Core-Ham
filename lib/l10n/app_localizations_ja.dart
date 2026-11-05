@@ -8885,4 +8885,8 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => '受信したノード';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      '送信されていません: 無線機を接続してからもう一度お試しください。メッセージは残っています。';
 }

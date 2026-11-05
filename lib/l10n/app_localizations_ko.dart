@@ -8896,4 +8896,8 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => '들린 노드';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      '보내지 않았습니다: 무전기를 연결한 뒤 다시 시도하세요. 메시지는 그대로 남아 있습니다.';
 }

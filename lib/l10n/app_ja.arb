@@ -4125,5 +4125,6 @@
   "networks_clearLogConfirm": "記録したネットワークをすべて削除しますか?",
   "networks_name": "名前",
   "networks_invalid": "設定を確認してください: MeshCore 無線機が受け付ける範囲外です。",
-  "networks_nodesHeard": "受信したノード"
+  "networks_nodesHeard": "受信したノード",
+  "chat_resendNeedsRadio": "送信されていません: 無線機を接続してからもう一度お試しください。メッセージは残っています。"
 }

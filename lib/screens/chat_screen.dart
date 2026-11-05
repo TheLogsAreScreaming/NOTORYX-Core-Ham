@@ -1387,7 +1387,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 title: Text(context.l10n.common_retry),
                 onTap: () {
                   Navigator.pop(sheetContext);
-                  _retryMessage(message);
+                  unawaited(_retryMessage(message));
                 },
               ),
             if (_resolveContact(context.read<MeshCoreConnector>()).type ==
@@ -1439,12 +1439,19 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  void _retryMessage(Message message) {
+  Future<void> _retryMessage(Message message) async {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
-    connector.resendMessage(_resolveContact(connector), message);
+    final l10n = context.l10n;
+    final sent = await connector.resendMessage(
+      _resolveContact(connector),
+      message,
+    );
+    if (!mounted) return;
     showDismissibleSnackBar(
       context,
-      content: Text(context.l10n.chat_retryingMessage),
+      content: Text(
+        sent ? l10n.chat_retryingMessage : l10n.chat_resendNeedsRadio,
+      ),
     );
   }
 

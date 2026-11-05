@@ -4029,5 +4029,6 @@
   "networks_clearLogConfirm": "Törlöd az összes naplózott hálózatot?",
   "networks_name": "Név",
   "networks_invalid": "Ellenőrizd a beállításokat: kívül esnek azon, amit a MeshCore rádiók elfogadnak.",
-  "networks_nodesHeard": "Hallott csomópontok"
+  "networks_nodesHeard": "Hallott csomópontok",
+  "chat_resendNeedsRadio": "Nincs elküldve: csatlakoztasd a rádiót, majd próbáld újra. Az üzenet megmarad."
 }

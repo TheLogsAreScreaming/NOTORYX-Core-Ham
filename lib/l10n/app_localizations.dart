@@ -15630,6 +15630,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nodes heard'**
   String get networks_nodesHeard;
+
+  /// No description provided for @chat_resendNeedsRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sent: connect your radio, then try again. The message is kept.'**
+  String get chat_resendNeedsRadio;
 }
 
 class _AppLocalizationsDelegate

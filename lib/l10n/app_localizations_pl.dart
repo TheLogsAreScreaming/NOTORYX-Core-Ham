@@ -9368,4 +9368,8 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Usłyszane węzły';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Nie wysłano: podłącz radio i spróbuj ponownie. Wiadomość została zachowana.';
 }

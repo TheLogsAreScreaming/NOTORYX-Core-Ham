@@ -4029,5 +4029,6 @@
   "networks_clearLogConfirm": "Usunąć wszystkie zapisane sieci?",
   "networks_name": "Nazwa",
   "networks_invalid": "Sprawdź ustawienia: wykraczają poza to, co akceptują radia MeshCore.",
-  "networks_nodesHeard": "Usłyszane węzły"
+  "networks_nodesHeard": "Usłyszane węzły",
+  "chat_resendNeedsRadio": "Nie wysłano: podłącz radio i spróbuj ponownie. Wiadomość została zachowana."
 }

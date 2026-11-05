@@ -3991,5 +3991,6 @@
   "networks_clearLogConfirm": "Apagar todas as redes registadas?",
   "networks_name": "Nome",
   "networks_invalid": "Verifique as definições: estão fora do que os rádios MeshCore aceitam.",
-  "networks_nodesHeard": "Nós ouvidos"
+  "networks_nodesHeard": "Nós ouvidos",
+  "chat_resendNeedsRadio": "Não enviada: ligue o rádio e tente novamente. A mensagem é mantida."
 }

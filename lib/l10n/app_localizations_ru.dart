@@ -9358,4 +9358,8 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Услышанные узлы';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Не отправлено: подключите радио и попробуйте снова. Сообщение сохранено.';
 }

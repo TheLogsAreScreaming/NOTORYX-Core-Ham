@@ -827,6 +827,12 @@ class MeshCoreConnector extends ChangeNotifier {
     return _conversations[contact.publicKeyHex] ?? [];
   }
 
+  /// Puts [message] in its conversation, for tests.
+  @visibleForTesting
+  void debugAddMessage(Message message) {
+    _conversations.putIfAbsent(message.senderKeyHex, () => []).add(message);
+  }
+
   Future<void> deleteMessage(Message message) async {
     final contactKeyHex = message.senderKeyHex;
     final messages = _conversations[contactKeyHex];
@@ -838,7 +844,17 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> resendMessage(Contact contact, Message message) async {
+  /// Sends [message] again as a new message and removes the old one.
+  /// Returns false, keeping the message and marking it failed, when the
+  /// radio is disconnected: deleting it then would lose it, since nothing
+  /// can be sent.
+  Future<bool> resendMessage(Contact contact, Message message) async {
+    if (!isConnected) {
+      if (message.status != MessageStatus.failed) {
+        _updateMessage(message.copyWith(status: MessageStatus.failed));
+      }
+      return false;
+    }
     await deleteMessage(message);
     await sendMessage(
       contact,
@@ -847,6 +863,7 @@ class MeshCoreConnector extends ChangeNotifier {
       translatedLanguageCode: message.translatedLanguageCode,
       translationModelId: message.translationModelId,
     );
+    return true;
   }
 
   Future<void> _loadMessagesForContact(String contactKeyHex) async {
