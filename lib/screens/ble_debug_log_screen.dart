@@ -7,6 +7,7 @@ import '../connector/meshcore_protocol.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../utils/amateur_radio.dart';
 
 enum _BleLogView { frames, rawLogRx }
 
@@ -289,7 +290,11 @@ class _BleDebugLogScreenState extends State<BleDebugLogScreen> {
     );
   }
 
-  _RawPacketInfo _decodeRawPacket(Uint8List raw) {
+  _RawPacketInfo _decodeRawPacket(Uint8List onAir) {
+    // Amateur frames end with the sender's station ID; decode the packet
+    // inside it, and show anything else as heard.
+    final amateur = AmateurFrame.unwrap(onAir);
+    final raw = amateur?.packet ?? onAir;
     if (raw.length < 2) {
       return _RawPacketInfo(
         title: 'RX RAW_LOG_RX_DATA • invalid',
@@ -347,11 +352,15 @@ class _BleDebugLogScreenState extends State<BleDebugLogScreen> {
     final pathSummary = pathByteLen > 0
         ? 'Path=${_bytesToHex(pathBytes)}'
         : 'Path=none';
-    final detail = '$summary • $pathSummary • len=${raw.length}';
+    final station = amateur == null
+        ? 'not an amateur frame'
+        : 'ID=${amateur.station}';
+    final detail =
+        '$summary • $pathSummary • $station • len=${onAir.length}';
     return _RawPacketInfo(
       title: title,
       summary: detail,
-      rawHex: _bytesToHex(raw),
+      rawHex: _bytesToHex(onAir),
     );
   }
 

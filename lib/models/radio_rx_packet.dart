@@ -8,6 +8,7 @@ class RadioRxPacket {
     required this.rssi,
     required this.receivedAt,
     this.fromSelf = false,
+    this.station,
   });
 
   final Uint8List raw;
@@ -20,4 +21,8 @@ class RadioRxPacket {
   /// one-byte source hash can match other nodes too, which errs toward
   /// keeping traffic private.
   final bool fromSelf;
+
+  /// Call sign of the station that transmitted this frame (the sender, or
+  /// the repeater that relayed it), from the amateur station ID.
+  final String? station;
 }

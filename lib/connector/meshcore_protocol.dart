@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 
 import '../models/access_control.dart';
 import '../models/flood_corridor.dart';
+import '../utils/amateur_radio.dart' show stationIdBytes;
 
 // Buffer Reader - sequential binary data reader with pointer tracking
 class BufferReader {
@@ -367,8 +368,9 @@ const int pathHashSize = 1;
 const int maxNameSize = 32;
 const int maxFrameSize = 172;
 const int appProtocolVersion = 4;
-// Matches firmware MAX_TEXT_LEN (10 * CIPHER_BLOCK_SIZE).
-const int maxTextPayloadBytes = 160;
+// Matches the ham firmware's MAX_TEXT_LEN: the 8-byte station ID on every
+// frame shrinks MAX_PACKET_PAYLOAD from 184 to 176, so text drops from 160.
+const int maxTextPayloadBytes = 152;
 const int _sendTextMsgOverheadBytes =
     1 + 1 + 1 + 4 + 6 + 1 + 2; // +2 safety margin
 const int _sendChannelTextMsgOverheadBytes =
@@ -879,7 +881,7 @@ int calculateMessageTimeout({
 }) {
   // Calculate airtime for one packet
   final airtime = calculateLoRaAirtime(
-    payloadBytes: messageBytes,
+    payloadBytes: messageBytes + stationIdBytes,
     spreadingFactor: sf,
     bandwidthHz: bwHz,
     codingRate: cr,
