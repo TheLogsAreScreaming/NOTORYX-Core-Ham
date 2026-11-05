@@ -59,11 +59,11 @@ Each release includes `SHA256SUMS-Android.txt` and `SHA256SUMS-macOS.txt` if you
 
 ## Getting started
 
-1. **Connect your radio.** On the home screen, tap **Get started**, or go to **Connect radio**. NOTORYX Core connects over Bluetooth, USB or TCP to a radio running MeshCore companion firmware, and reconnects to your last radio on its own.
+1. **Connect your radio.** On the home screen, tap **Get started**, or go to **Connect radio**. NOTORYX Core connects over Bluetooth, USB or TCP to a radio running MeshCore companion firmware. Turn on **Connect to my radio automatically** and it reconnects to your last radio when the app opens.
 2. **Say hello.** Open **Chats** and send a message on a channel, or open someone in **Nodes** to message them directly.
 3. **Choose who gets your check-ins and SOS.** Tap **Check in: I'm OK** or hold **SOS**. The first time, NOTORYX Core asks who should get them. You can change this anytime in **Plan your trip**.
 4. **Set your radio for your area.** **Settings → Radio settings → Presets** lists MeshCore's community presets (USA, Canada, EU/UK, Australia and more) with the one for your country suggested first.
-5. **Pick a look.** **Settings → Theme** offers Blaze (default), Topo night, Red light and Alpine day.
+5. **Pick a look.** **Settings → Theme** offers Blaze (default), Autumn Frost, Bubble Gum and Red light.
 
 The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**. Home is where check-in, SOS and your radio's readings live; **More** holds every tool and setting, with a search box.
 
@@ -72,7 +72,8 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 ### Safety and trips
 - **SOS:** hold for 2 seconds to send your radio's position to your trip contacts (and an optional channel). It repeats every 5 minutes until someone replies or you stop it, and **I'm safe** sends an all-clear.
 - **Signed SOS:** an SOS on a channel carries a signature from your radio's own key, so other NOTORYX users can see it really came from you. You can sign every channel post too. A post whose signature doesn't check out is shown as unverified, and other apps just see the normal message.
-- **Check-ins:** I'm OK, At camp, Delayed and Heading back. You see who each one reached, and can resend to anyone it missed.
+- **SOS relay** (optional, off by default): when your radio hears an SOS straight from the sender and no repeater passes it on, NOTORYX sends it once more so it can reach a repeater the sender can't. Needs radio firmware v1.16 or newer, and is not yet field-tested on radios.
+- **Check-ins:** I'm OK, At camp, Delayed and Heading back. You see who each one reached, and can resend to anyone it missed. Check-ins can also go to a team or SAR channel, signed with your radio's key.
 - **Check-in reminders and overdue alerts:** a notification when you're due to check in, and a warning when a trip contact goes quiet for longer than you set.
 - **Trip planning:** pick up to six contacts. Trip briefs, a Field Log of everything sent and received, and optional automations.
 - **Android home-screen widget:** radio status, battery and unread count, with one-tap Check in and SOS.
@@ -81,13 +82,16 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 - Direct and channel messages with delivery status, reactions, GIFs and image messages. Tapping a notification opens that chat.
 - **Find channels:** a directory of public hashtag channels (local ones first), channels heard on air that you haven't joined, and **Active online**: the #channels an online analyzer has seen in use, with one-tap Join.
 - **Message search**, per-chat **drafts**, **read aloud** and on-device translation.
-- **Share your position or a contact** from the message box. Received contacts can be added in one tap.
+- **Share your position or a contact** from the message box. Received contacts can be added in one tap, and **Add contact from clipboard** accepts links, adverts (even wrapped across lines) and bare public keys.
+- **Region tags:** a channel post scoped to a region shows it next to the time, for example **📍 ct**.
 - **Link previews** (off by default, since fetching one tells the site your IP address).
 - **Area-limited channel messages** that stay within a radius of you. These need radios running flood-corridor firmware.
 - Optional auto-delete of old channel messages.
 
 ### Maps, paths and coverage
 - Live mesh map with offline map packs, and a **track log** that records your trail and exports GPX.
+- **Map telemetry:** battery, temperature, humidity or pressure badges on the map. Readings dim after an hour and hide after a day, and the map remembers your choice.
+- **Wardrive:** ping as you drive or hike and map which repeaters heard you, and how well, both ways. Pings use your phone's GPS and the map follows you. Drives are saved.
 - **Path graph:** every path you've heard, drawn as flows from far repeaters to you. Short (1-byte) hops are matched to a specific repeater using longer paths.
 - **Route Intelligence:** learned routes and the best repeaters your radio hears directly.
 - **Observer reach:** check which online observers heard a message you sent, how many hops it took and the best signal. Repeaters you don't have as contacts can be named online. Both use a CoreScope analyzer you choose in Settings.
@@ -116,13 +120,20 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 ### Look and feel
 - **Frosted ember:** the main screens sit on a warm glow, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
-- Four themes: **Blaze**, **Topo night**, **Red light** (keeps your night vision) and **Alpine day** (for bright sun).
+- Four themes: **Blaze**, **Autumn Frost** (slate, pine and amber), **Bubble Gum** (pastel, light) and **Red light** (keeps your night vision).
 - Available in 18 languages.
 
 <p align="center">
   <img src="docs/screenshots/more.png" width="200" alt="More: every tool and setting, searchable">
-  <img src="docs/screenshots/home_alpine_day.png" width="200" alt="Alpine day theme">
-  <img src="docs/screenshots/home_red_light.png" width="200" alt="Red light theme">
+  <img src="docs/screenshots/channel_directory.png" width="200" alt="Channel directory: local, emergency and active channels">
+  <img src="docs/screenshots/access_control.png" width="200" alt="Repeater access control">
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/home.png" width="160" alt="Blaze theme">
+  <img src="docs/screenshots/home_autumn_frost.png" width="160" alt="Autumn Frost theme">
+  <img src="docs/screenshots/home_bubble_gum.png" width="160" alt="Bubble Gum theme">
+  <img src="docs/screenshots/home_red_light.png" width="160" alt="Red light theme">
 </p>
 
 <p align="center">
@@ -189,7 +200,7 @@ flutter test
 - `lib/services/`: field ops, coverage, routing, MQTT, notifications and other services
 - `lib/models/`, `lib/storage/`: data and persistence
 - `lib/theme/`: themes and colors
-- `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`, with `PREVIEW_THEME=alpine_day` or `red_light` for other themes)
+- `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`, with `PREVIEW_THEME=autumn_frost`, `bubble_gum` or `red_light` for other themes)
 
 ## Contributing
 

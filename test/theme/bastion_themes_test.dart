@@ -28,8 +28,14 @@ void main() {
     );
     // The rc.H-only Halloween theme is gone; people who picked it get Blaze.
     expect(BastionTheme.fromId('halloween'), BastionTheme.blaze);
-    final saved = AppSettings().copyWith(appTheme: 'alpine_day');
-    expect(AppSettings.fromJson(saved.toJson()).appTheme, 'alpine_day');
+    // Alpine day is gone too; people who picked it get the default.
+    expect(BastionTheme.fromId('alpine_day'), BastionTheme.blaze);
+    expect(BastionTheme.values.map((t) => t.id), [
+      'blaze',
+      'autumn_frost',
+      'bubble_gum',
+      'red_light',
+    ]);
   });
 
   test('every theme keeps text, buttons and SOS readable', () {
@@ -66,14 +72,21 @@ void main() {
     expect(p.accentDim, const Color(0xFFA2D2FF));
   });
 
-  test('Christmas has a stable saved id', () {
-    expect(BastionTheme.fromId('christmas'), BastionTheme.christmas);
-    final saved = AppSettings().copyWith(appTheme: 'christmas');
-    expect(AppSettings.fromJson(saved.toJson()).appTheme, 'christmas');
+  test('Autumn Frost uses all five fall colors and replaces Christmas', () {
+    final p = BastionTheme.autumnFrost.palette;
+    expect(p.bg2, const Color(0xFF24343C)); // Frozen Slate
+    expect(p.bg4, const Color(0xFF3A574C)); // Pine Frost
+    expect(p.me, const Color(0xFF854D2B)); // Chestnut Ember
+    expect(p.secondaryContainer, const Color(0xFF87591F)); // Bronze Leaf
+    expect(p.accentDim, const Color(0xFFA06A25)); // Amber Oak
+    expect(BastionTheme.fromId('autumn_frost'), BastionTheme.autumnFrost);
+    expect(BastionTheme.fromId('christmas'), BastionTheme.autumnFrost);
+    final saved = AppSettings().copyWith(appTheme: 'autumn_frost');
+    expect(AppSettings.fromJson(saved.toJson()).appTheme, 'autumn_frost');
   });
 
   for (final width in [320.0, 720.0]) {
-    testWidgets('Christmas selection survives reload at width $width', (
+    testWidgets('Autumn Frost selection survives reload at width $width', (
       tester,
     ) async {
       SharedPreferences.setMockInitialValues({});
@@ -99,20 +112,22 @@ void main() {
           ),
         ),
       );
-      final christmas = find.byKey(const ValueKey('theme-christmas'));
-      await tester.ensureVisible(christmas);
-      await tester.tap(christmas);
+      final autumn = find.byKey(const ValueKey('theme-autumn_frost'));
+      await tester.ensureVisible(autumn);
+      await tester.tap(autumn);
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
-      expect(settings.settings.appTheme, 'christmas');
+      expect(settings.settings.appTheme, 'autumn_frost');
       final restored = AppSettingsService();
       await restored.loadSettings();
-      expect(restored.settings.appTheme, 'christmas');
+      expect(restored.settings.appTheme, 'autumn_frost');
       final bubbleGum = find.byKey(const ValueKey('theme-bubble_gum'));
       await tester.ensureVisible(bubbleGum);
       await tester.tap(bubbleGum);
       await tester.pumpAndSettle();
       expect(find.text('Topo night'), findsNothing);
+      expect(find.text('Alpine day'), findsNothing);
+      expect(find.text('Christmas'), findsNothing);
       expect(settings.settings.appTheme, 'bubble_gum');
       await restored.loadSettings();
       expect(restored.settings.appTheme, 'bubble_gum');
