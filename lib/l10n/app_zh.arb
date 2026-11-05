@@ -3996,5 +3996,6 @@
   "networks_clearLogConfirm": "删除所有已记录的网络？",
   "networks_name": "名称",
   "networks_invalid": "请检查设置：超出了 MeshCore 电台可接受的范围。",
-  "networks_nodesHeard": "听到的节点"
+  "networks_nodesHeard": "听到的节点",
+  "chat_resendNeedsRadio": "未发送：请连接电台后重试。消息已保留。"
 }

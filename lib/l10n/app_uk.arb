@@ -3971,5 +3971,6 @@
   "networks_clearLogConfirm": "Видалити всі записані мережі?",
   "networks_name": "Назва",
   "networks_invalid": "Перевірте налаштування: вони поза межами, які приймають радіо MeshCore.",
-  "networks_nodesHeard": "Почуті вузли"
+  "networks_nodesHeard": "Почуті вузли",
+  "chat_resendNeedsRadio": "Не надіслано: під'єднайте радіо та спробуйте ще раз. Повідомлення збережено."
 }

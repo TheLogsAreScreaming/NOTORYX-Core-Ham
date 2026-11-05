@@ -9317,4 +9317,8 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Slišana vozlišča';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Ni poslano: povežite radio in poskusite znova. Sporočilo ostane shranjeno.';
 }

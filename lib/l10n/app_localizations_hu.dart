@@ -9322,4 +9322,8 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Hallott csomópontok';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Nincs elküldve: csatlakoztasd a rádiót, majd próbáld újra. Az üzenet megmarad.';
 }

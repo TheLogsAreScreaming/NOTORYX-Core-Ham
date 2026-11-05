@@ -3991,5 +3991,6 @@
   "networks_clearLogConfirm": "Alle gelogde netwerken verwijderen?",
   "networks_name": "Naam",
   "networks_invalid": "Controleer de instellingen: ze vallen buiten wat MeshCore-radio's accepteren.",
-  "networks_nodesHeard": "Gehoorde nodes"
+  "networks_nodesHeard": "Gehoorde nodes",
+  "chat_resendNeedsRadio": "Niet verzonden: verbind je radio en probeer het opnieuw. Het bericht blijft bewaard."
 }

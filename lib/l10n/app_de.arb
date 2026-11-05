@@ -4125,5 +4125,6 @@
   "networks_clearLogConfirm": "Alle protokollierten Netze löschen?",
   "networks_name": "Name",
   "networks_invalid": "Prüfe die Einstellungen: Sie liegen außerhalb dessen, was MeshCore-Funkgeräte annehmen.",
-  "networks_nodesHeard": "Gehörte Knoten"
+  "networks_nodesHeard": "Gehörte Knoten",
+  "chat_resendNeedsRadio": "Nicht gesendet: Verbinde dein Funkgerät und versuche es erneut. Die Nachricht bleibt erhalten."
 }

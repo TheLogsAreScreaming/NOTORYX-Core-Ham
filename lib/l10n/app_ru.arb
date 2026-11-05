@@ -3294,5 +3294,6 @@
   "networks_clearLogConfirm": "Удалить все записанные сети?",
   "networks_name": "Название",
   "networks_invalid": "Проверьте настройки: они вне диапазона, который принимают радио MeshCore.",
-  "networks_nodesHeard": "Услышанные узлы"
+  "networks_nodesHeard": "Услышанные узлы",
+  "chat_resendNeedsRadio": "Не отправлено: подключите радио и попробуйте снова. Сообщение сохранено."
 }

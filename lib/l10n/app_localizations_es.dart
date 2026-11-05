@@ -9335,4 +9335,8 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Nodos oídos';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'No enviado: conecta tu radio e inténtalo de nuevo. El mensaje se conserva.';
 }

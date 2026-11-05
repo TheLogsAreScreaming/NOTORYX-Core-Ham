@@ -9367,4 +9367,8 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Nœuds entendus';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Non envoyé : connectez votre radio, puis réessayez. Le message est conservé.';
 }

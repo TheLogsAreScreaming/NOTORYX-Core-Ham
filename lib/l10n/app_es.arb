@@ -4125,5 +4125,6 @@
   "networks_clearLogConfirm": "¿Borrar todas las redes registradas?",
   "networks_name": "Nombre",
   "networks_invalid": "Revisa los ajustes: están fuera de lo que aceptan las radios MeshCore.",
-  "networks_nodesHeard": "Nodos oídos"
+  "networks_nodesHeard": "Nodos oídos",
+  "chat_resendNeedsRadio": "No enviado: conecta tu radio e inténtalo de nuevo. El mensaje se conserva."
 }

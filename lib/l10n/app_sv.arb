@@ -3991,5 +3991,6 @@
   "networks_clearLogConfirm": "Radera alla loggade nätverk?",
   "networks_name": "Namn",
   "networks_invalid": "Kontrollera inställningarna: de ligger utanför vad MeshCore-radior accepterar.",
-  "networks_nodesHeard": "Hörda noder"
+  "networks_nodesHeard": "Hörda noder",
+  "chat_resendNeedsRadio": "Inte skickat: anslut radion och försök igen. Meddelandet sparas."
 }

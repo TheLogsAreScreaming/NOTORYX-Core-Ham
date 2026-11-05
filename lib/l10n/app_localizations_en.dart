@@ -9211,4 +9211,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Nodes heard';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Not sent: connect your radio, then try again. The message is kept.';
 }

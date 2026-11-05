@@ -9356,4 +9356,8 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Почуті вузли';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Не надіслано: під\'єднайте радіо та спробуйте ще раз. Повідомлення збережено.';
 }

@@ -9308,4 +9308,8 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Počuté uzly';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Neodoslané: pripojte rádio a skúste to znova. Správa zostáva uložená.';
 }

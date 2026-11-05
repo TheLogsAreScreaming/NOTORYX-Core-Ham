@@ -9298,4 +9298,8 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get networks_nodesHeard => 'Gehoorde nodes';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Niet verzonden: verbind je radio en probeer het opnieuw. Het bericht blijft bewaard.';
 }

@@ -3991,5 +3991,6 @@
   "networks_clearLogConfirm": "Izbrišem vsa zabeležena omrežja?",
   "networks_name": "Ime",
   "networks_invalid": "Preverite nastavitve: so zunaj obsega, ki ga sprejemajo radii MeshCore.",
-  "networks_nodesHeard": "Slišana vozlišča"
+  "networks_nodesHeard": "Slišana vozlišča",
+  "chat_resendNeedsRadio": "Ni poslano: povežite radio in poskusite znova. Sporočilo ostane shranjeno."
 }
