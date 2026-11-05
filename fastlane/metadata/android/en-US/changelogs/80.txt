@@ -1,0 +1,3 @@
+• New: Networks (More → Networks). Scan for MeshCore networks nearby, see the nodes heard, and keep a log you can map and export as CSV or GPX
+• Save networks or add one by hand, and join one with a tap
+• Scanning is paused during an SOS or a trip
