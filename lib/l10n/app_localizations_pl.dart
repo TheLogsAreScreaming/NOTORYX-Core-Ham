@@ -9240,4 +9240,132 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Po otwarciu aplikacji łączy się ponownie z ostatnim radiem bez stukania. Próbuje kilka razy, jeśli radio nie jest jeszcze w zasięgu.';
+
+  @override
+  String get networks_title => 'Sieci';
+
+  @override
+  String get networks_hint =>
+      'Wyszukuj pobliskie sieci i zapisuj je w dzienniku';
+
+  @override
+  String get networks_yourNetwork => 'Twoja sieć';
+
+  @override
+  String get networks_scanTitle => 'Szukaj sieci';
+
+  @override
+  String get networks_scanExplainer =>
+      'Radio słyszy tylko sieci o dokładnie takich samych ustawieniach, więc skanowanie przełącza je kolejno na każdą, nasłuchuje i przywraca ustawienia. W trakcie skanowania jesteś poza swoją siecią.';
+
+  @override
+  String get networks_listenFor => 'Nasłuch na każdej';
+
+  @override
+  String networks_choose(int count) {
+    return 'Sieci do skanowania: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Sugerowane';
+
+  @override
+  String get networks_start => 'Rozpocznij skanowanie';
+
+  @override
+  String get networks_cancel => 'Zatrzymaj skanowanie';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Nasłuch na $name ($step z $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Podłącz radio, aby skanować.';
+
+  @override
+  String get networks_blockSettings => 'Czekam na ustawienia radia.';
+
+  @override
+  String get networks_blockSos =>
+      'Nie podczas aktywnego SOS: skanowanie odcina cię od sieci.';
+
+  @override
+  String get networks_blockTrip =>
+      'Nie w trakcie wyprawy: skanowanie odcina cię od sieci.';
+
+  @override
+  String get networks_nearby => 'Sieci w pobliżu';
+
+  @override
+  String get networks_nothingYet =>
+      'Nie usłyszano jeszcze żadnej sieci. Uruchom skanowanie.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Węzły $nodes · pakiety $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Ostatnio słyszana $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Razy słyszana: $count';
+  }
+
+  @override
+  String get networks_saved => 'Zapisane sieci';
+
+  @override
+  String get networks_noSaved => 'Brak zapisanych sieci.';
+
+  @override
+  String get networks_add => 'Dodaj sieć';
+
+  @override
+  String get networks_join => 'Dołącz';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Przełączyć radio na $name? Opuścisz obecną sieć. Moc nadawania się nie zmieni.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Radio jest teraz na $name.';
+  }
+
+  @override
+  String get networks_log => 'Dziennik sieci';
+
+  @override
+  String get networks_logEmpty => 'Jeszcze nic nie zapisano.';
+
+  @override
+  String get networks_showMap => 'Mapa';
+
+  @override
+  String get networks_exportCsv => 'Eksportuj CSV';
+
+  @override
+  String get networks_exportGpx => 'Eksportuj GPX';
+
+  @override
+  String get networks_clearLog => 'Wyczyść dziennik';
+
+  @override
+  String get networks_clearLogConfirm => 'Usunąć wszystkie zapisane sieci?';
+
+  @override
+  String get networks_name => 'Nazwa';
+
+  @override
+  String get networks_invalid =>
+      'Sprawdź ustawienia: wykraczają poza to, co akceptują radia MeshCore.';
+
+  @override
+  String get networks_nodesHeard => 'Usłyszane węzły';
 }

@@ -9,6 +9,7 @@ import 'antenna_coverage_screen.dart';
 import 'antenna_hunt_screen.dart';
 import 'bastion_about_screen.dart';
 import 'bot_settings_screen.dart';
+import 'networks_screen.dart';
 import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
 import 'field_guide_screen.dart';
@@ -84,6 +85,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.wardrive_title,
             subtitle: l10n.wardrive_hint,
             builder: (_) => const WardriveScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.radar,
+            title: l10n.networks_title,
+            subtitle: l10n.networks_hint,
+            builder: (_) => const NetworksScreen(),
           ),
           _ToolAction(
             icon: Icons.backpack_outlined,

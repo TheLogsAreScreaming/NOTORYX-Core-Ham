@@ -9191,4 +9191,130 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Ob odprtju aplikacije se brez dotika znova poveže z zadnjim radiem. Če še ni v dosegu, poskusi večkrat.';
+
+  @override
+  String get networks_title => 'Omrežja';
+
+  @override
+  String get networks_hint => 'Iskanje bližnjih omrežij in dnevnik';
+
+  @override
+  String get networks_yourNetwork => 'Vaše omrežje';
+
+  @override
+  String get networks_scanTitle => 'Iskanje omrežij';
+
+  @override
+  String get networks_scanExplainer =>
+      'Radio sliši le omrežja s povsem enakimi nastavitvami, zato ga iskanje po vrsti preklopi na vsako, posluša in ga nato vrne nazaj. Med iskanjem niste v svojem omrežju.';
+
+  @override
+  String get networks_listenFor => 'Poslušanje na vsakem';
+
+  @override
+  String networks_choose(int count) {
+    return 'Omrežja za iskanje: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Predlagana';
+
+  @override
+  String get networks_start => 'Začni iskanje';
+
+  @override
+  String get networks_cancel => 'Ustavi iskanje';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Poslušam $name ($step od $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Za iskanje povežite radio.';
+
+  @override
+  String get networks_blockSettings => 'Čakanje na nastavitve radia.';
+
+  @override
+  String get networks_blockSos => 'Ne med SOS: iskanje vas odklopi od omrežja.';
+
+  @override
+  String get networks_blockTrip =>
+      'Ne med izletom: iskanje vas odklopi od omrežja.';
+
+  @override
+  String get networks_nearby => 'Bližnja omrežja';
+
+  @override
+  String get networks_nothingYet =>
+      'Še nobeno omrežje ni bilo slišano. Zaženite iskanje.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Vozlišča $nodes · paketi $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Nazadnje slišano $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Kolikokrat slišano: $count';
+  }
+
+  @override
+  String get networks_saved => 'Shranjena omrežja';
+
+  @override
+  String get networks_noSaved => 'Še ni shranjenih omrežij.';
+
+  @override
+  String get networks_add => 'Dodaj omrežje';
+
+  @override
+  String get networks_join => 'Pridruži se';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Preklopim radio na $name? Zapustili boste trenutno omrežje. Oddajna moč ostane enaka.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Radio je zdaj na $name.';
+  }
+
+  @override
+  String get networks_log => 'Dnevnik omrežij';
+
+  @override
+  String get networks_logEmpty => 'Še nič zabeleženo.';
+
+  @override
+  String get networks_showMap => 'Zemljevid';
+
+  @override
+  String get networks_exportCsv => 'Izvozi CSV';
+
+  @override
+  String get networks_exportGpx => 'Izvozi GPX';
+
+  @override
+  String get networks_clearLog => 'Počisti dnevnik';
+
+  @override
+  String get networks_clearLogConfirm => 'Izbrišem vsa zabeležena omrežja?';
+
+  @override
+  String get networks_name => 'Ime';
+
+  @override
+  String get networks_invalid =>
+      'Preverite nastavitve: so zunaj obsega, ki ga sprejemajo radii MeshCore.';
+
+  @override
+  String get networks_nodesHeard => 'Slišana vozlišča';
 }

@@ -9169,4 +9169,133 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Bij het openen van de app opnieuw verbinden met je laatste radio, zonder tikken. Als hij nog niet in bereik is, probeert hij het een paar keer.';
+
+  @override
+  String get networks_title => 'Netwerken';
+
+  @override
+  String get networks_hint =>
+      'Zoek netwerken in de buurt en houd een logboek bij';
+
+  @override
+  String get networks_yourNetwork => 'Jouw netwerk';
+
+  @override
+  String get networks_scanTitle => 'Netwerken zoeken';
+
+  @override
+  String get networks_scanExplainer =>
+      'Je radio hoort alleen netwerken met precies zijn eigen instellingen. Een scan zet hem daarom om de beurt op elk netwerk, luistert en zet hem terug. Tijdens het scannen ben je van je eigen mesh af.';
+
+  @override
+  String get networks_listenFor => 'Luisteren per netwerk';
+
+  @override
+  String networks_choose(int count) {
+    return 'Te scannen netwerken: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Voorgesteld';
+
+  @override
+  String get networks_start => 'Scan starten';
+
+  @override
+  String get networks_cancel => 'Scan stoppen';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Luisteren op $name ($step van $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Verbind een radio om te scannen.';
+
+  @override
+  String get networks_blockSettings =>
+      'Wachten op de instellingen van je radio.';
+
+  @override
+  String get networks_blockSos =>
+      'Niet tijdens een SOS: een scan haalt je van je mesh.';
+
+  @override
+  String get networks_blockTrip =>
+      'Niet tijdens een tocht: een scan haalt je van je mesh.';
+
+  @override
+  String get networks_nearby => 'Netwerken in de buurt';
+
+  @override
+  String get networks_nothingYet =>
+      'Nog geen netwerken gehoord. Start een scan.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Nodes $nodes · pakketten $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Laatst gehoord $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Keer gehoord: $count';
+  }
+
+  @override
+  String get networks_saved => 'Opgeslagen netwerken';
+
+  @override
+  String get networks_noSaved => 'Nog geen opgeslagen netwerken.';
+
+  @override
+  String get networks_add => 'Netwerk toevoegen';
+
+  @override
+  String get networks_join => 'Deelnemen';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Je radio op $name zetten? Je verlaat je huidige netwerk. Het zendvermogen blijft gelijk.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Je radio staat nu op $name.';
+  }
+
+  @override
+  String get networks_log => 'Netwerklogboek';
+
+  @override
+  String get networks_logEmpty => 'Nog niets gelogd.';
+
+  @override
+  String get networks_showMap => 'Kaart';
+
+  @override
+  String get networks_exportCsv => 'CSV exporteren';
+
+  @override
+  String get networks_exportGpx => 'GPX exporteren';
+
+  @override
+  String get networks_clearLog => 'Logboek wissen';
+
+  @override
+  String get networks_clearLogConfirm => 'Alle gelogde netwerken verwijderen?';
+
+  @override
+  String get networks_name => 'Naam';
+
+  @override
+  String get networks_invalid =>
+      'Controleer de instellingen: ze vallen buiten wat MeshCore-radio\'s accepteren.';
+
+  @override
+  String get networks_nodesHeard => 'Gehoorde nodes';
 }

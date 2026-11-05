@@ -92,6 +92,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 - Live mesh map with offline map packs, and a **track log** that records your trail and exports GPX.
 - **Map telemetry:** battery, temperature, humidity or pressure badges on the map. Readings dim after an hour and hide after a day, and the map remembers your choice.
 - **Wardrive:** ping as you drive or hike and map which repeaters heard you, and how well, both ways. Pings use your phone's GPS and the map follows you. Drives are saved.
+- **Network scan** (More → Networks): find MeshCore networks nearby. A radio only hears networks on its exact settings, so a scan switches yours to each preset in turn (the ones in your band by default, plus networks you've saved), listens for 30–90 s, and switches back. Each network heard is logged with the time, place, signal and the node names from its adverts, so you can see it on a map, export CSV or GPX, save it, or join it with one tap. You're off your own mesh while it scans, so it won't run during an SOS or a trip, and the radio's auto-add is paused so other networks' nodes don't fill your contacts. Not yet tested on a wide range of radios.
 - **Path graph:** every path you've heard, drawn as flows from far repeaters to you. Short (1-byte) hops are matched to a specific repeater using longer paths.
 - **Route Intelligence:** learned routes and the best repeaters your radio hears directly.
 - **Observer reach:** check which online observers heard a message you sent, how many hops it took and the best signal. Repeaters you don't have as contacts can be named online. Both use a CoreScope analyzer you choose in Settings.
@@ -132,6 +133,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
   <img src="docs/screenshots/more.png" width="200" alt="More: every tool and setting, searchable">
   <img src="docs/screenshots/channel_directory.png" width="200" alt="Channel directory: local, emergency and active channels">
   <img src="docs/screenshots/access_control.png" width="200" alt="Repeater access control">
+  <img src="docs/screenshots/networks.png" width="200" alt="Networks: scan for nearby networks and keep a log">
 </p>
 
 <p align="center">

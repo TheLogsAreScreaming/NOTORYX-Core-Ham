@@ -8762,4 +8762,127 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get autoConnect_hint => 'アプリを開くと、タップせずに前回の無線機へ再接続します。まだ圏外なら数回試します。';
+
+  @override
+  String get networks_title => 'ネットワーク';
+
+  @override
+  String get networks_hint => '近くのネットワークを探して記録';
+
+  @override
+  String get networks_yourNetwork => 'あなたのネットワーク';
+
+  @override
+  String get networks_scanTitle => 'ネットワークを探す';
+
+  @override
+  String get networks_scanExplainer =>
+      '無線機はまったく同じ設定のネットワークしか受信できないため、スキャンでは設定を順に切り替えて受信し、最後に元に戻します。スキャン中は自分のメッシュから外れます。';
+
+  @override
+  String get networks_listenFor => '各ネットワークの受信時間';
+
+  @override
+  String networks_choose(int count) {
+    return 'スキャンするネットワーク: $count';
+  }
+
+  @override
+  String get networks_suggested => 'おすすめ';
+
+  @override
+  String get networks_start => 'スキャン開始';
+
+  @override
+  String get networks_cancel => 'スキャン停止';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return '$name を受信中 ($step/$steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'スキャンするには無線機を接続してください。';
+
+  @override
+  String get networks_blockSettings => '無線機の設定を待っています。';
+
+  @override
+  String get networks_blockSos => 'SOS 中はできません: スキャンするとメッシュから外れます。';
+
+  @override
+  String get networks_blockTrip => 'トリップ中はできません: スキャンするとメッシュから外れます。';
+
+  @override
+  String get networks_nearby => '近くのネットワーク';
+
+  @override
+  String get networks_nothingYet => 'まだネットワークは受信されていません。スキャンしてください。';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'ノード $nodes · パケット $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return '最終受信 $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return '受信回数: $count';
+  }
+
+  @override
+  String get networks_saved => '保存したネットワーク';
+
+  @override
+  String get networks_noSaved => '保存したネットワークはまだありません。';
+
+  @override
+  String get networks_add => 'ネットワークを追加';
+
+  @override
+  String get networks_join => '参加';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return '無線機を $name に切り替えますか? 現在のネットワークから離れます。送信出力は変わりません。';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return '無線機は $name になりました。';
+  }
+
+  @override
+  String get networks_log => 'ネットワークログ';
+
+  @override
+  String get networks_logEmpty => 'まだ記録はありません。';
+
+  @override
+  String get networks_showMap => '地図';
+
+  @override
+  String get networks_exportCsv => 'CSV を書き出す';
+
+  @override
+  String get networks_exportGpx => 'GPX を書き出す';
+
+  @override
+  String get networks_clearLog => 'ログを消去';
+
+  @override
+  String get networks_clearLogConfirm => '記録したネットワークをすべて削除しますか?';
+
+  @override
+  String get networks_name => '名前';
+
+  @override
+  String get networks_invalid => '設定を確認してください: MeshCore 無線機が受け付ける範囲外です。';
+
+  @override
+  String get networks_nodesHeard => '受信したノード';
 }

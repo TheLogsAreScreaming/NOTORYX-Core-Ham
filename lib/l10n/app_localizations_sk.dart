@@ -9181,4 +9181,131 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Po otvorení aplikácie sa znova pripojí k poslednému rádiu bez ťuknutia. Ak ešte nie je v dosahu, skúsi to niekoľkokrát.';
+
+  @override
+  String get networks_title => 'Siete';
+
+  @override
+  String get networks_hint => 'Vyhľadávanie sietí v okolí a ich záznam';
+
+  @override
+  String get networks_yourNetwork => 'Vaša sieť';
+
+  @override
+  String get networks_scanTitle => 'Hľadať siete';
+
+  @override
+  String get networks_scanExplainer =>
+      'Rádio počuje len siete s presne rovnakými nastaveniami, preto ho vyhľadávanie postupne prepne na každú, počúva a potom ho vráti späť. Počas vyhľadávania ste mimo svojej siete.';
+
+  @override
+  String get networks_listenFor => 'Počúvať na každej';
+
+  @override
+  String networks_choose(int count) {
+    return 'Siete na vyhľadanie: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Navrhované';
+
+  @override
+  String get networks_start => 'Spustiť vyhľadávanie';
+
+  @override
+  String get networks_cancel => 'Zastaviť vyhľadávanie';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Počúvam $name ($step z $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Pripojte rádio na vyhľadávanie.';
+
+  @override
+  String get networks_blockSettings => 'Čaká sa na nastavenia rádia.';
+
+  @override
+  String get networks_blockSos =>
+      'Nie počas SOS: vyhľadávanie vás odpojí od siete.';
+
+  @override
+  String get networks_blockTrip =>
+      'Nie počas výletu: vyhľadávanie vás odpojí od siete.';
+
+  @override
+  String get networks_nearby => 'Siete v okolí';
+
+  @override
+  String get networks_nothingYet =>
+      'Zatiaľ nebola počutá žiadna sieť. Spustite vyhľadávanie.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Uzly $nodes · pakety $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Naposledy počutá $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Koľkokrát počutá: $count';
+  }
+
+  @override
+  String get networks_saved => 'Uložené siete';
+
+  @override
+  String get networks_noSaved => 'Zatiaľ žiadne uložené siete.';
+
+  @override
+  String get networks_add => 'Pridať sieť';
+
+  @override
+  String get networks_join => 'Pripojiť sa';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Prepnúť rádio na $name? Opustíte aktuálnu sieť. Vysielací výkon zostane rovnaký.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Rádio je teraz na $name.';
+  }
+
+  @override
+  String get networks_log => 'Záznam sietí';
+
+  @override
+  String get networks_logEmpty => 'Zatiaľ nič zaznamenané.';
+
+  @override
+  String get networks_showMap => 'Mapa';
+
+  @override
+  String get networks_exportCsv => 'Exportovať CSV';
+
+  @override
+  String get networks_exportGpx => 'Exportovať GPX';
+
+  @override
+  String get networks_clearLog => 'Vymazať záznam';
+
+  @override
+  String get networks_clearLogConfirm => 'Odstrániť všetky zaznamenané siete?';
+
+  @override
+  String get networks_name => 'Názov';
+
+  @override
+  String get networks_invalid =>
+      'Skontrolujte nastavenia: sú mimo rozsahu, ktorý prijímajú rádiá MeshCore.';
+
+  @override
+  String get networks_nodesHeard => 'Počuté uzly';
 }

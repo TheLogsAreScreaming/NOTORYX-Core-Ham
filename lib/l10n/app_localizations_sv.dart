@@ -9131,4 +9131,131 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'När appen öppnas återansluter den till din senaste radio utan att du trycker. Den försöker några gånger om radion inte är inom räckhåll än.';
+
+  @override
+  String get networks_title => 'Nätverk';
+
+  @override
+  String get networks_hint => 'Sök efter nätverk i närheten och för logg';
+
+  @override
+  String get networks_yourNetwork => 'Ditt nätverk';
+
+  @override
+  String get networks_scanTitle => 'Sök efter nätverk';
+
+  @override
+  String get networks_scanExplainer =>
+      'Radion hör bara nätverk med exakt samma inställningar, så en sökning ställer om den till varje nätverk i tur och ordning, lyssnar och ställer tillbaka den. Under sökningen är du utanför ditt eget mesh.';
+
+  @override
+  String get networks_listenFor => 'Lyssna på varje';
+
+  @override
+  String networks_choose(int count) {
+    return 'Nätverk att söka: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Förslag';
+
+  @override
+  String get networks_start => 'Starta sökning';
+
+  @override
+  String get networks_cancel => 'Stoppa sökning';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Lyssnar på $name ($step av $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Anslut en radio för att söka.';
+
+  @override
+  String get networks_blockSettings => 'Väntar på radions inställningar.';
+
+  @override
+  String get networks_blockSos =>
+      'Inte under ett SOS: en sökning tar dig ur ditt mesh.';
+
+  @override
+  String get networks_blockTrip =>
+      'Inte under en tur: en sökning tar dig ur ditt mesh.';
+
+  @override
+  String get networks_nearby => 'Nätverk i närheten';
+
+  @override
+  String get networks_nothingYet =>
+      'Inga nätverk hörda ännu. Starta en sökning.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Noder $nodes · paket $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Senast hörd $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Antal gånger hörd: $count';
+  }
+
+  @override
+  String get networks_saved => 'Sparade nätverk';
+
+  @override
+  String get networks_noSaved => 'Inga sparade nätverk ännu.';
+
+  @override
+  String get networks_add => 'Lägg till nätverk';
+
+  @override
+  String get networks_join => 'Gå med';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Ställa om radion till $name? Du lämnar ditt nuvarande nätverk. Sändeffekten är oförändrad.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Radion är nu på $name.';
+  }
+
+  @override
+  String get networks_log => 'Nätverkslogg';
+
+  @override
+  String get networks_logEmpty => 'Inget loggat ännu.';
+
+  @override
+  String get networks_showMap => 'Karta';
+
+  @override
+  String get networks_exportCsv => 'Exportera CSV';
+
+  @override
+  String get networks_exportGpx => 'Exportera GPX';
+
+  @override
+  String get networks_clearLog => 'Rensa loggen';
+
+  @override
+  String get networks_clearLogConfirm => 'Radera alla loggade nätverk?';
+
+  @override
+  String get networks_name => 'Namn';
+
+  @override
+  String get networks_invalid =>
+      'Kontrollera inställningarna: de ligger utanför vad MeshCore-radior accepterar.';
+
+  @override
+  String get networks_nodesHeard => 'Hörda noder';
 }

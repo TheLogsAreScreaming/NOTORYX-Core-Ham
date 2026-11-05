@@ -15414,6 +15414,222 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet.'**
   String get autoConnect_hint;
+
+  /// No description provided for @networks_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Networks'**
+  String get networks_title;
+
+  /// No description provided for @networks_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan for networks nearby and keep a log'**
+  String get networks_hint;
+
+  /// No description provided for @networks_yourNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Your network'**
+  String get networks_yourNetwork;
+
+  /// No description provided for @networks_scanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan for networks'**
+  String get networks_scanTitle;
+
+  /// No description provided for @networks_scanExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio only hears networks that use its exact settings, so a scan switches it to each one in turn, listens, then switches it back. You\'re off your own mesh while it scans.'**
+  String get networks_scanExplainer;
+
+  /// No description provided for @networks_listenFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen on each'**
+  String get networks_listenFor;
+
+  /// No description provided for @networks_choose.
+  ///
+  /// In en, this message translates to:
+  /// **'Networks to scan: {count}'**
+  String networks_choose(int count);
+
+  /// No description provided for @networks_suggested.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested'**
+  String get networks_suggested;
+
+  /// No description provided for @networks_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start scan'**
+  String get networks_start;
+
+  /// No description provided for @networks_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop scan'**
+  String get networks_cancel;
+
+  /// No description provided for @networks_listening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening on {name} ({step} of {steps})'**
+  String networks_listening(String name, int step, int steps);
+
+  /// No description provided for @networks_blockNoRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a radio to scan.'**
+  String get networks_blockNoRadio;
+
+  /// No description provided for @networks_blockSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for your radio\'s settings.'**
+  String get networks_blockSettings;
+
+  /// No description provided for @networks_blockSos.
+  ///
+  /// In en, this message translates to:
+  /// **'Not while an SOS is active: a scan takes you off your mesh.'**
+  String get networks_blockSos;
+
+  /// No description provided for @networks_blockTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Not during a trip: a scan takes you off your mesh.'**
+  String get networks_blockTrip;
+
+  /// No description provided for @networks_nearby.
+  ///
+  /// In en, this message translates to:
+  /// **'Networks nearby'**
+  String get networks_nearby;
+
+  /// No description provided for @networks_nothingYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No networks heard yet. Run a scan to look for some.'**
+  String get networks_nothingYet;
+
+  /// No description provided for @networks_heardSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Nodes {nodes} · packets {packets} · SNR {snr} dB'**
+  String networks_heardSummary(int nodes, int packets, String snr);
+
+  /// No description provided for @networks_lastHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Last heard {time}'**
+  String networks_lastHeard(String time);
+
+  /// No description provided for @networks_timesHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Times heard: {count}'**
+  String networks_timesHeard(int count);
+
+  /// No description provided for @networks_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved networks'**
+  String get networks_saved;
+
+  /// No description provided for @networks_noSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved networks yet.'**
+  String get networks_noSaved;
+
+  /// No description provided for @networks_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a network'**
+  String get networks_add;
+
+  /// No description provided for @networks_join.
+  ///
+  /// In en, this message translates to:
+  /// **'Join'**
+  String get networks_join;
+
+  /// No description provided for @networks_joinConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch your radio to {name}? You\'ll leave your current network. Your transmit power stays the same.'**
+  String networks_joinConfirm(String name);
+
+  /// No description provided for @networks_joined.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio is on {name} now.'**
+  String networks_joined(String name);
+
+  /// No description provided for @networks_log.
+  ///
+  /// In en, this message translates to:
+  /// **'Network log'**
+  String get networks_log;
+
+  /// No description provided for @networks_logEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing logged yet.'**
+  String get networks_logEmpty;
+
+  /// No description provided for @networks_showMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get networks_showMap;
+
+  /// No description provided for @networks_exportCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get networks_exportCsv;
+
+  /// No description provided for @networks_exportGpx.
+  ///
+  /// In en, this message translates to:
+  /// **'Export GPX'**
+  String get networks_exportGpx;
+
+  /// No description provided for @networks_clearLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear log'**
+  String get networks_clearLog;
+
+  /// No description provided for @networks_clearLogConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete every logged network sighting?'**
+  String get networks_clearLogConfirm;
+
+  /// No description provided for @networks_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get networks_name;
+
+  /// No description provided for @networks_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the settings: they\'re outside what MeshCore radios accept.'**
+  String get networks_invalid;
+
+  /// No description provided for @networks_nodesHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Nodes heard'**
+  String get networks_nodesHeard;
 }
 
 class _AppLocalizationsDelegate
