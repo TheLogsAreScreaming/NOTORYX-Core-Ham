@@ -46,7 +46,9 @@ class RegionalPresetBanner extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'The local mesh uses ${preset.summary}. Your radio is set differently, so you may not hear it.',
+              preset.fromMap
+                  ? 'Most nodes around here${preset.nodeCount == null ? '' : ' (${preset.nodeCount} on the MeshCore map)'} use ${preset.summary}. Your radio is set differently, so you may not hear them.'
+                  : 'The local mesh uses ${preset.summary}. Your radio is set differently, so you may not hear it.',
               style: TextStyle(color: scheme.onTertiaryContainer),
             ),
             Align(
@@ -105,7 +107,8 @@ Future<void> reviewRegionalPreset(
             ],
             const SizedBox(height: 8),
             Text(
-              'Updated ${preset.updated}. After switching you will only hear radios that use the same settings. Transmit power is not changed.',
+              '${preset.fromMap ? 'Reported by node owners on the MeshCore map, not checked on air. ' : ''}'
+              'Updated ${preset.updated}. After switching you will only hear radios that use the same settings. Transmit power${preset.pathHashBytes == null ? ' and path hash size are' : ' is'} not changed.',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
@@ -151,7 +154,7 @@ class RegionalPresetTile extends StatelessWidget {
     final auto = service.selection == RegionalPresetService.auto;
     final subtitle = active == null
         ? (auto
-              ? 'No listed area around your radio.'
+              ? 'No listed area around you.'
               : 'Chosen area is no longer listed.')
         : '${auto ? 'Auto: ' : ''}${active.name} • ${active.summary}';
     return ListTile(
@@ -182,13 +185,15 @@ class RegionalPresetTile extends StatelessWidget {
                 const RadioListTile<String>(
                   value: RegionalPresetService.auto,
                   title: Text('Automatic'),
-                  subtitle: Text("From your radio's position"),
+                  subtitle: Text("From your radio's or phone's position"),
                 ),
                 for (final p in service.presets)
                   RadioListTile<String>(
                     value: p.id,
                     title: Text(p.name),
-                    subtitle: Text(p.summary),
+                    subtitle: Text(
+                      p.fromMap ? '${p.summary} · MeshCore map' : p.summary,
+                    ),
                   ),
               ],
             ),

@@ -103,7 +103,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 ### Your radio
 - **Sensors on Home:** your radio's own readings (battery voltage, temperatures, GPS, light and whatever else it reports).
-- **Radio presets:** MeshCore's community catalogue with search and a suggestion for your country. Choosing one keeps your transmit power. Local mesh settings (for example Philadelphia's) are offered when your radio is in that area; see [adding your area](#add-your-areas-mesh-settings).
+- **Radio presets:** MeshCore's community catalogue with search and a suggestion for your country. Choosing one keeps your transmit power. Local mesh settings (for example Phoenix's or Philadelphia's) are offered when your radio, or your phone if the radio has no position, is in that area; see [adding your area](#add-your-areas-mesh-settings).
 - **Send your advert** zero-hop (only radios that hear you directly) or flooded across the mesh.
 - Connections dashboard, live radio stats and a noise-floor chart, adjustable refresh rate and battery saver.
 - Command line and Wi-Fi setup for your own radio. With permission, you can also use a trusted contact's command line.
@@ -176,6 +176,8 @@ To add or update an area, [open an issue in notoryx-core-releases](https://githu
 ```
 
 Please say in `notes` where the settings come from. Change `updated` whenever the settings change: that's what triggers the "settings changed" notification.
+
+Most entries are worked out from the public [MeshCore map](https://map.meshcore.io), where node owners report their settings. These have `"source": "map"` and a node count, and the app labels them as reported, not checked on air. They leave out `pathHashBytes` because the map doesn't report it, so applying one doesn't change the radio's path hash size. They're made with [`tools/regional_presets`](tools/regional_presets/README.md), which only lists areas that differ from the usual settings for their part of the world. Hand-made entries (no `source`) are kept when the list is regenerated and win over a map area with the same settings. The file is `"version": 2`; older app versions ignore it and keep the list they have.
 
 ## Building from source
 
