@@ -11660,30 +11660,6 @@ abstract class AppLocalizations {
   /// **'Field intelligence'**
   String get fieldStats_title;
 
-  /// No description provided for @fieldStats_snapshot.
-  ///
-  /// In en, this message translates to:
-  /// **'Live mesh snapshot'**
-  String get fieldStats_snapshot;
-
-  /// No description provided for @fieldStats_headline.
-  ///
-  /// In en, this message translates to:
-  /// **'What NOTORYX Core knows right now.'**
-  String get fieldStats_headline;
-
-  /// No description provided for @fieldStats_body.
-  ///
-  /// In en, this message translates to:
-  /// **'These counters are calculated from the connected MeshCore contact table, locations, paths and last-seen timestamps.'**
-  String get fieldStats_body;
-
-  /// No description provided for @fieldStats_total.
-  ///
-  /// In en, this message translates to:
-  /// **'Total'**
-  String get fieldStats_total;
-
   /// No description provided for @fieldStats_chatNodes.
   ///
   /// In en, this message translates to:
@@ -11702,65 +11678,11 @@ abstract class AppLocalizations {
   /// **'Sensors'**
   String get fieldStats_sensors;
 
-  /// No description provided for @fieldStats_located.
-  ///
-  /// In en, this message translates to:
-  /// **'Located'**
-  String get fieldStats_located;
-
-  /// No description provided for @fieldStats_favorites.
-  ///
-  /// In en, this message translates to:
-  /// **'Favorites'**
-  String get fieldStats_favorites;
-
-  /// No description provided for @fieldStats_routeSnapshot.
-  ///
-  /// In en, this message translates to:
-  /// **'Route snapshot'**
-  String get fieldStats_routeSnapshot;
-
-  /// No description provided for @fieldStats_routed.
-  ///
-  /// In en, this message translates to:
-  /// **'Routed'**
-  String get fieldStats_routed;
-
   /// No description provided for @fieldStats_direct.
   ///
   /// In en, this message translates to:
   /// **'Direct'**
   String get fieldStats_direct;
-
-  /// No description provided for @fieldStats_flood.
-  ///
-  /// In en, this message translates to:
-  /// **'Flood'**
-  String get fieldStats_flood;
-
-  /// No description provided for @fieldStats_pathIntel.
-  ///
-  /// In en, this message translates to:
-  /// **'Path intelligence'**
-  String get fieldStats_pathIntel;
-
-  /// No description provided for @fieldStats_pathIntelBody.
-  ///
-  /// In en, this message translates to:
-  /// **'NOTORYX Core’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.'**
-  String get fieldStats_pathIntelBody;
-
-  /// No description provided for @fieldStats_coverageSessions.
-  ///
-  /// In en, this message translates to:
-  /// **'Coverage sessions'**
-  String get fieldStats_coverageSessions;
-
-  /// No description provided for @fieldStats_coverageSessionsBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Coverage Capture now saves field sessions, restores interrupted work, exports observations and maps recorded coverage points. RSSI/SNR remain the nearest available radio snapshot.'**
-  String get fieldStats_coverageSessionsBody;
 
   /// No description provided for @mapHub_title.
   ///
@@ -15834,6 +15756,216 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your radio\'s contact list is full. Remove some contacts first.'**
   String get discoveredContacts_radioFull;
+
+  /// No description provided for @fieldIntel_radioNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio right now'**
+  String get fieldIntel_radioNow;
+
+  /// No description provided for @fieldIntel_noRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio for live readings.'**
+  String get fieldIntel_noRadio;
+
+  /// No description provided for @fieldIntel_noise.
+  ///
+  /// In en, this message translates to:
+  /// **'noise dBm'**
+  String get fieldIntel_noise;
+
+  /// No description provided for @fieldIntel_lastSnr.
+  ///
+  /// In en, this message translates to:
+  /// **'last SNR'**
+  String get fieldIntel_lastSnr;
+
+  /// No description provided for @fieldIntel_lastRssi.
+  ///
+  /// In en, this message translates to:
+  /// **'last RSSI'**
+  String get fieldIntel_lastRssi;
+
+  /// No description provided for @fieldIntel_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'battery V'**
+  String get fieldIntel_battery;
+
+  /// No description provided for @fieldIntel_airtime.
+  ///
+  /// In en, this message translates to:
+  /// **'Airtime since the radio started: sent {sent}, received {received}'**
+  String fieldIntel_airtime(String sent, String received);
+
+  /// No description provided for @fieldIntel_whoAround.
+  ///
+  /// In en, this message translates to:
+  /// **'Who\'s around'**
+  String get fieldIntel_whoAround;
+
+  /// No description provided for @fieldIntel_m15.
+  ///
+  /// In en, this message translates to:
+  /// **'15 min'**
+  String get fieldIntel_m15;
+
+  /// No description provided for @fieldIntel_h1.
+  ///
+  /// In en, this message translates to:
+  /// **'1 hour'**
+  String get fieldIntel_h1;
+
+  /// No description provided for @fieldIntel_h24.
+  ///
+  /// In en, this message translates to:
+  /// **'24 hours'**
+  String get fieldIntel_h24;
+
+  /// No description provided for @fieldIntel_older.
+  ///
+  /// In en, this message translates to:
+  /// **'Older'**
+  String get fieldIntel_older;
+
+  /// No description provided for @fieldIntel_lastHour.
+  ///
+  /// In en, this message translates to:
+  /// **'Last hour'**
+  String get fieldIntel_lastHour;
+
+  /// No description provided for @fieldIntel_chartHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When each node was last heard, hour by hour, over the past day. Tap a bar to see who.'**
+  String get fieldIntel_chartHint;
+
+  /// No description provided for @fieldIntel_mix.
+  ///
+  /// In en, this message translates to:
+  /// **'Node mix'**
+  String get fieldIntel_mix;
+
+  /// No description provided for @fieldIntel_reach.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach'**
+  String get fieldIntel_reach;
+
+  /// No description provided for @fieldIntel_hops1.
+  ///
+  /// In en, this message translates to:
+  /// **'1 hop'**
+  String get fieldIntel_hops1;
+
+  /// No description provided for @fieldIntel_hops2.
+  ///
+  /// In en, this message translates to:
+  /// **'2 hops'**
+  String get fieldIntel_hops2;
+
+  /// No description provided for @fieldIntel_hops3.
+  ///
+  /// In en, this message translates to:
+  /// **'3+ hops'**
+  String get fieldIntel_hops3;
+
+  /// No description provided for @fieldIntel_noRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'No route yet'**
+  String get fieldIntel_noRoute;
+
+  /// No description provided for @fieldIntel_distance.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearest and farthest'**
+  String get fieldIntel_distance;
+
+  /// No description provided for @fieldIntel_noneLocated.
+  ///
+  /// In en, this message translates to:
+  /// **'None of your contacts has a position.'**
+  String get fieldIntel_noneLocated;
+
+  /// No description provided for @fieldIntel_noPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio has no position yet, so distances can\'t be worked out.'**
+  String get fieldIntel_noPosition;
+
+  /// No description provided for @fieldIntel_bestRepeaters.
+  ///
+  /// In en, this message translates to:
+  /// **'Best repeaters you hear directly'**
+  String get fieldIntel_bestRepeaters;
+
+  /// No description provided for @fieldIntel_noneDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'No repeater heard directly in the last 30 minutes.'**
+  String get fieldIntel_noneDirect;
+
+  /// No description provided for @fieldIntel_attention.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs attention'**
+  String get fieldIntel_attention;
+
+  /// No description provided for @fieldIntel_allGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing needs attention.'**
+  String get fieldIntel_allGood;
+
+  /// No description provided for @fieldIntel_lowBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery low: {volts} V'**
+  String fieldIntel_lowBattery(String volts);
+
+  /// No description provided for @fieldIntel_quietFavorite.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourite not heard since {ago}'**
+  String fieldIntel_quietFavorite(String ago);
+
+  /// No description provided for @fieldIntel_moreTools.
+  ///
+  /// In en, this message translates to:
+  /// **'More tools'**
+  String get fieldIntel_moreTools;
+
+  /// No description provided for @fieldIntel_nodeCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Nodes: {count}'**
+  String fieldIntel_nodeCount(int count);
+
+  /// No description provided for @fieldIntel_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No nodes here.'**
+  String get fieldIntel_none;
+
+  /// No description provided for @fieldIntel_lastHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Last heard {ago}'**
+  String fieldIntel_lastHeard(String ago);
+
+  /// No description provided for @fieldIntel_showOnMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Show on map'**
+  String get fieldIntel_showOnMap;
+
+  /// No description provided for @fieldIntel_openChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Open chat'**
+  String get fieldIntel_openChat;
 }
 
 class _AppLocalizationsDelegate

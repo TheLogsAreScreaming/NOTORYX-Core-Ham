@@ -6953,19 +6953,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get fieldStats_title => 'Analisi sul campo';
 
   @override
-  String get fieldStats_snapshot => 'Istantanea della rete mesh';
-
-  @override
-  String get fieldStats_headline => 'Cosa sa NOTORYX Core in questo momento.';
-
-  @override
-  String get fieldStats_body =>
-      'Questi contatori sono calcolati dalla tabella dei contatti MeshCore collegata, dalle posizioni, dai percorsi e dagli orari di ultimo avvistamento.';
-
-  @override
-  String get fieldStats_total => 'Totale';
-
-  @override
   String get fieldStats_chatNodes => 'Nodi chat';
 
   @override
@@ -6975,36 +6962,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get fieldStats_sensors => 'Sensori';
 
   @override
-  String get fieldStats_located => 'Localizzati';
-
-  @override
-  String get fieldStats_favorites => 'Preferiti';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Istantanea dei percorsi';
-
-  @override
-  String get fieldStats_routed => 'Instradati';
-
-  @override
   String get fieldStats_direct => 'Diretti';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Analisi dei cammini';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'L\'analisi dei percorsi di NOTORYX Core usa i tentativi di percorso salvati, il numero di salti, successi/fallimenti, il tempo di percorrenza e la ponderazione per mostrare i percorsi appresi.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Sessioni di copertura';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Il rilevamento copertura ora salva le sessioni sul campo, ripristina il lavoro interrotto, esporta le osservazioni e mappa i punti di copertura registrati. RSSI/SNR restano l\'istantanea radio più vicina disponibile.';
 
   @override
   String get mapHub_title => 'Mappa da campo NOTORYX';
@@ -9473,4 +9431,125 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'L\'elenco contatti della radio è pieno. Rimuovi prima alcuni contatti.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radio adesso';
+
+  @override
+  String get fieldIntel_noRadio =>
+      'Collega la radio per i dati in tempo reale.';
+
+  @override
+  String get fieldIntel_noise => 'rumore dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'ultimo SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'ultimo RSSI';
+
+  @override
+  String get fieldIntel_battery => 'batteria V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Tempo in onda dall\'avvio della radio: inviato $sent, ricevuto $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Chi c\'è intorno';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 ora';
+
+  @override
+  String get fieldIntel_h24 => '24 ore';
+
+  @override
+  String get fieldIntel_older => 'Più vecchi';
+
+  @override
+  String get fieldIntel_lastHour => 'Ultima ora';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Quando ogni nodo è stato sentito l\'ultima volta, ora per ora, nell\'ultimo giorno. Tocca una barra per vedere chi.';
+
+  @override
+  String get fieldIntel_mix => 'Tipi di nodo';
+
+  @override
+  String get fieldIntel_reach => 'Portata';
+
+  @override
+  String get fieldIntel_hops1 => '1 salto';
+
+  @override
+  String get fieldIntel_hops2 => '2 salti';
+
+  @override
+  String get fieldIntel_hops3 => '3+ salti';
+
+  @override
+  String get fieldIntel_noRoute => 'Ancora nessun percorso';
+
+  @override
+  String get fieldIntel_distance => 'Più vicini e più lontani';
+
+  @override
+  String get fieldIntel_noneLocated =>
+      'Nessuno dei tuoi contatti ha una posizione.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'La radio non ha ancora una posizione, quindi non si possono calcolare le distanze.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Migliori ripetitori sentiti direttamente';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'Nessun ripetitore sentito direttamente negli ultimi 30 minuti.';
+
+  @override
+  String get fieldIntel_attention => 'Da controllare';
+
+  @override
+  String get fieldIntel_allGood => 'Niente da controllare.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Batteria scarica: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Preferito non sentito da $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Altri strumenti';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Nodi: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Nessun nodo.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Sentito l\'ultima volta $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Mostra sulla mappa';
+
+  @override
+  String get fieldIntel_openChat => 'Apri chat';
 }

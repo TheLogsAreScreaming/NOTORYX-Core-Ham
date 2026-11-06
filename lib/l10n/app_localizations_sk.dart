@@ -6920,19 +6920,6 @@ class AppLocalizationsSk extends AppLocalizations {
   String get fieldStats_title => 'Terénna analýza';
 
   @override
-  String get fieldStats_snapshot => 'Živá snímka siete';
-
-  @override
-  String get fieldStats_headline => 'Čo NOTORYX Core práve vie.';
-
-  @override
-  String get fieldStats_body =>
-      'Tieto počítadlá sa počítajú z tabuľky kontaktov pripojeného MeshCore, polôh, ciest a časov posledného videnia.';
-
-  @override
-  String get fieldStats_total => 'Spolu';
-
-  @override
   String get fieldStats_chatNodes => 'Uzly četu';
 
   @override
@@ -6942,36 +6929,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get fieldStats_sensors => 'Senzory';
 
   @override
-  String get fieldStats_located => 'S polohou';
-
-  @override
-  String get fieldStats_favorites => 'Obľúbené';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Snímka trás';
-
-  @override
-  String get fieldStats_routed => 'S trasou';
-
-  @override
   String get fieldStats_direct => 'Priame';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Analýza ciest';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'Analýza trás v NOTORYX Core využíva uložené pokusy o cesty, počty skokov, úspechy/zlyhania, čas prechodu a váženie trás na zobrazenie naučených trás.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Relácie pokrytia';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Záznam pokrytia teraz ukladá terénne relácie, obnovuje prerušenú prácu, exportuje pozorovania a zobrazuje zaznamenané body pokrytia na mape. RSSI/SNR zostávajú najbližšou dostupnou snímkou rádia.';
 
   @override
   String get mapHub_title => 'Terénna mapa NOTORYX';
@@ -9438,4 +9396,122 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'Zoznam kontaktov rádia je plný. Najprv odstráňte niektoré kontakty.';
+
+  @override
+  String get fieldIntel_radioNow => 'Rádio teraz';
+
+  @override
+  String get fieldIntel_noRadio => 'Pripojte rádio pre živé údaje.';
+
+  @override
+  String get fieldIntel_noise => 'šum dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'posledný SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'posledný RSSI';
+
+  @override
+  String get fieldIntel_battery => 'batéria V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Čas vysielania od štartu rádia: odoslané $sent, prijaté $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Kto je nablízku';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 hod.';
+
+  @override
+  String get fieldIntel_h24 => '24 hod.';
+
+  @override
+  String get fieldIntel_older => 'Staršie';
+
+  @override
+  String get fieldIntel_lastHour => 'Posledná hodina';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Kedy bol každý uzol naposledy počutý, po hodinách za posledný deň. Ťuknite na stĺpec a uvidíte kto.';
+
+  @override
+  String get fieldIntel_mix => 'Typy uzlov';
+
+  @override
+  String get fieldIntel_reach => 'Dosah';
+
+  @override
+  String get fieldIntel_hops1 => '1 skok';
+
+  @override
+  String get fieldIntel_hops2 => '2 skoky';
+
+  @override
+  String get fieldIntel_hops3 => '3+ skoky';
+
+  @override
+  String get fieldIntel_noRoute => 'Zatiaľ bez trasy';
+
+  @override
+  String get fieldIntel_distance => 'Najbližšie a najvzdialenejšie';
+
+  @override
+  String get fieldIntel_noneLocated => 'Žiadny z kontaktov nemá polohu.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Rádio zatiaľ nemá polohu, preto sa vzdialenosti nedajú vypočítať.';
+
+  @override
+  String get fieldIntel_bestRepeaters => 'Najlepšie priamo počuté opakovače';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'Za posledných 30 minút nebol priamo počutý žiadny opakovač.';
+
+  @override
+  String get fieldIntel_attention => 'Vyžaduje pozornosť';
+
+  @override
+  String get fieldIntel_allGood => 'Nič nevyžaduje pozornosť.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Slabá batéria: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Obľúbený nepočutý od $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Ďalšie nástroje';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Uzly: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Žiadne uzly.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Naposledy počutý $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Zobraziť na mape';
+
+  @override
+  String get fieldIntel_openChat => 'Otvoriť chat';
 }

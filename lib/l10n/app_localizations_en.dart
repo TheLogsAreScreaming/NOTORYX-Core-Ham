@@ -6831,19 +6831,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fieldStats_title => 'Field intelligence';
 
   @override
-  String get fieldStats_snapshot => 'Live mesh snapshot';
-
-  @override
-  String get fieldStats_headline => 'What NOTORYX Core knows right now.';
-
-  @override
-  String get fieldStats_body =>
-      'These counters are calculated from the connected MeshCore contact table, locations, paths and last-seen timestamps.';
-
-  @override
-  String get fieldStats_total => 'Total';
-
-  @override
   String get fieldStats_chatNodes => 'Chat nodes';
 
   @override
@@ -6853,36 +6840,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fieldStats_sensors => 'Sensors';
 
   @override
-  String get fieldStats_located => 'Located';
-
-  @override
-  String get fieldStats_favorites => 'Favorites';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Route snapshot';
-
-  @override
-  String get fieldStats_routed => 'Routed';
-
-  @override
   String get fieldStats_direct => 'Direct';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Path intelligence';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'NOTORYX Core’s Route Intelligence uses persisted path attempts, hop counts, success/failure, trip time and route weighting to surface learned routes.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Coverage sessions';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Coverage Capture now saves field sessions, restores interrupted work, exports observations and maps recorded coverage points. RSSI/SNR remain the nearest available radio snapshot.';
 
   @override
   String get mapHub_title => 'NOTORYX field map';
@@ -9340,4 +9298,122 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'Your radio\'s contact list is full. Remove some contacts first.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radio right now';
+
+  @override
+  String get fieldIntel_noRadio => 'Connect your radio for live readings.';
+
+  @override
+  String get fieldIntel_noise => 'noise dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'last SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'last RSSI';
+
+  @override
+  String get fieldIntel_battery => 'battery V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Airtime since the radio started: sent $sent, received $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Who\'s around';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 hour';
+
+  @override
+  String get fieldIntel_h24 => '24 hours';
+
+  @override
+  String get fieldIntel_older => 'Older';
+
+  @override
+  String get fieldIntel_lastHour => 'Last hour';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'When each node was last heard, hour by hour, over the past day. Tap a bar to see who.';
+
+  @override
+  String get fieldIntel_mix => 'Node mix';
+
+  @override
+  String get fieldIntel_reach => 'Reach';
+
+  @override
+  String get fieldIntel_hops1 => '1 hop';
+
+  @override
+  String get fieldIntel_hops2 => '2 hops';
+
+  @override
+  String get fieldIntel_hops3 => '3+ hops';
+
+  @override
+  String get fieldIntel_noRoute => 'No route yet';
+
+  @override
+  String get fieldIntel_distance => 'Nearest and farthest';
+
+  @override
+  String get fieldIntel_noneLocated => 'None of your contacts has a position.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Your radio has no position yet, so distances can\'t be worked out.';
+
+  @override
+  String get fieldIntel_bestRepeaters => 'Best repeaters you hear directly';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'No repeater heard directly in the last 30 minutes.';
+
+  @override
+  String get fieldIntel_attention => 'Needs attention';
+
+  @override
+  String get fieldIntel_allGood => 'Nothing needs attention.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Battery low: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Favourite not heard since $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'More tools';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Nodes: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'No nodes here.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Last heard $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Show on map';
+
+  @override
+  String get fieldIntel_openChat => 'Open chat';
 }

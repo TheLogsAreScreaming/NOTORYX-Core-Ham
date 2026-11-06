@@ -6969,19 +6969,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get fieldStats_title => 'Полевая аналитика';
 
   @override
-  String get fieldStats_snapshot => 'Снимок сети в реальном времени';
-
-  @override
-  String get fieldStats_headline => 'Что NOTORYX Core знает прямо сейчас.';
-
-  @override
-  String get fieldStats_body =>
-      'Эти счётчики рассчитываются по таблице контактов подключённого MeshCore, местоположениям, путям и времени последнего появления.';
-
-  @override
-  String get fieldStats_total => 'Всего';
-
-  @override
   String get fieldStats_chatNodes => 'Узлы чата';
 
   @override
@@ -6991,36 +6978,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get fieldStats_sensors => 'Датчики';
 
   @override
-  String get fieldStats_located => 'С местоположением';
-
-  @override
-  String get fieldStats_favorites => 'Избранное';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Снимок маршрутов';
-
-  @override
-  String get fieldStats_routed => 'С маршрутом';
-
-  @override
   String get fieldStats_direct => 'Напрямую';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Анализ путей';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'Анализ маршрутов NOTORYX Core использует сохранённые попытки путей, число переходов, успехи/неудачи, время прохождения и веса маршрутов, чтобы показывать выученные маршруты.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Сессии покрытия';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Запись покрытия теперь сохраняет полевые сессии, восстанавливает прерванную работу, экспортирует наблюдения и наносит записанные точки покрытия на карту. RSSI/SNR остаются ближайшим доступным снимком радиостанции.';
 
   @override
   String get mapHub_title => 'Полевая карта NOTORYX';
@@ -9488,4 +9446,124 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'Список контактов радио заполнен. Сначала удалите часть контактов.';
+
+  @override
+  String get fieldIntel_radioNow => 'Радио сейчас';
+
+  @override
+  String get fieldIntel_noRadio =>
+      'Подключите радио, чтобы видеть данные в реальном времени.';
+
+  @override
+  String get fieldIntel_noise => 'шум дБм';
+
+  @override
+  String get fieldIntel_lastSnr => 'последний SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'последний RSSI';
+
+  @override
+  String get fieldIntel_battery => 'батарея В';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Эфирное время с запуска радио: передано $sent, принято $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Кто рядом';
+
+  @override
+  String get fieldIntel_m15 => '15 мин';
+
+  @override
+  String get fieldIntel_h1 => '1 час';
+
+  @override
+  String get fieldIntel_h24 => '24 часа';
+
+  @override
+  String get fieldIntel_older => 'Раньше';
+
+  @override
+  String get fieldIntel_lastHour => 'Последний час';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Когда каждый узел был слышен в последний раз, по часам за последние сутки. Нажмите на столбец, чтобы увидеть кто.';
+
+  @override
+  String get fieldIntel_mix => 'Типы узлов';
+
+  @override
+  String get fieldIntel_reach => 'Охват';
+
+  @override
+  String get fieldIntel_hops1 => '1 хоп';
+
+  @override
+  String get fieldIntel_hops2 => '2 хопа';
+
+  @override
+  String get fieldIntel_hops3 => '3+ хопа';
+
+  @override
+  String get fieldIntel_noRoute => 'Маршрута пока нет';
+
+  @override
+  String get fieldIntel_distance => 'Ближайшие и самые дальние';
+
+  @override
+  String get fieldIntel_noneLocated => 'Ни у одного контакта нет координат.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'У радио пока нет координат, поэтому расстояния не вычислить.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Лучшие ретрансляторы, слышимые напрямую';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'За последние 30 минут ни один ретранслятор не был слышен напрямую.';
+
+  @override
+  String get fieldIntel_attention => 'Требует внимания';
+
+  @override
+  String get fieldIntel_allGood => 'Ничего не требует внимания.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Низкий заряд: $volts В';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Избранный не слышен с $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Другие инструменты';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Узлов: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Узлов нет.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Последний раз $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Показать на карте';
+
+  @override
+  String get fieldIntel_openChat => 'Открыть чат';
 }

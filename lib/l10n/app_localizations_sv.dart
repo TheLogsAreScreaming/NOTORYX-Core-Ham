@@ -6875,19 +6875,6 @@ class AppLocalizationsSv extends AppLocalizations {
   String get fieldStats_title => 'Fältanalys';
 
   @override
-  String get fieldStats_snapshot => 'Live ögonblicksbild av meshnätet';
-
-  @override
-  String get fieldStats_headline => 'Vad NOTORYX Core vet just nu.';
-
-  @override
-  String get fieldStats_body =>
-      'Räknarna beräknas från den anslutna MeshCore-kontakttabellen, platser, vägar och tidsstämplar för senast sedd.';
-
-  @override
-  String get fieldStats_total => 'Totalt';
-
-  @override
   String get fieldStats_chatNodes => 'Chattnoder';
 
   @override
@@ -6897,36 +6884,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get fieldStats_sensors => 'Sensorer';
 
   @override
-  String get fieldStats_located => 'Med plats';
-
-  @override
-  String get fieldStats_favorites => 'Favoriter';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Ögonblicksbild av rutter';
-
-  @override
-  String get fieldStats_routed => 'Dirigerade';
-
-  @override
   String get fieldStats_direct => 'Direkta';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Väganalys';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'NOTORYX Cores ruttanalys använder sparade vägförsök, antal hopp, lyckade/misslyckade, restid och ruttviktning för att visa inlärda rutter.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Täckningssessioner';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Täckningsinsamlingen sparar nu fältsessioner, återställer avbrutet arbete, exporterar observationer och kartlägger registrerade täckningspunkter. RSSI/SNR är fortfarande närmaste tillgängliga radioögonblicksbild.';
 
   @override
   String get mapHub_title => 'NOTORYX fältkarta';
@@ -9388,4 +9346,123 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'Radions kontaktlista är full. Ta bort några kontakter först.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radion just nu';
+
+  @override
+  String get fieldIntel_noRadio => 'Anslut radion för livevärden.';
+
+  @override
+  String get fieldIntel_noise => 'brus dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'senaste SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'senaste RSSI';
+
+  @override
+  String get fieldIntel_battery => 'batteri V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Sändtid sedan radion startade: skickat $sent, mottaget $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Vilka finns i närheten';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 timme';
+
+  @override
+  String get fieldIntel_h24 => '24 timmar';
+
+  @override
+  String get fieldIntel_older => 'Äldre';
+
+  @override
+  String get fieldIntel_lastHour => 'Senaste timmen';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'När varje nod senast hördes, timme för timme under det senaste dygnet. Tryck på en stapel för att se vilka.';
+
+  @override
+  String get fieldIntel_mix => 'Nodtyper';
+
+  @override
+  String get fieldIntel_reach => 'Räckvidd';
+
+  @override
+  String get fieldIntel_hops1 => '1 hopp';
+
+  @override
+  String get fieldIntel_hops2 => '2 hopp';
+
+  @override
+  String get fieldIntel_hops3 => '3+ hopp';
+
+  @override
+  String get fieldIntel_noRoute => 'Ingen rutt än';
+
+  @override
+  String get fieldIntel_distance => 'Närmast och längst bort';
+
+  @override
+  String get fieldIntel_noneLocated =>
+      'Ingen av dina kontakter har en position.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Radion har ingen position än, så avstånd kan inte räknas ut.';
+
+  @override
+  String get fieldIntel_bestRepeaters => 'Bästa repeatrar du hör direkt';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'Ingen repeater hörd direkt de senaste 30 minuterna.';
+
+  @override
+  String get fieldIntel_attention => 'Behöver uppmärksamhet';
+
+  @override
+  String get fieldIntel_allGood => 'Inget behöver uppmärksamhet.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Svagt batteri: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Favorit inte hörd sedan $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Fler verktyg';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Noder: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Inga noder.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Senast hörd $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Visa på karta';
+
+  @override
+  String get fieldIntel_openChat => 'Öppna chatt';
 }

@@ -6968,19 +6968,6 @@ class AppLocalizationsPl extends AppLocalizations {
   String get fieldStats_title => 'Analiza terenowa';
 
   @override
-  String get fieldStats_snapshot => 'Migawka sieci mesh na żywo';
-
-  @override
-  String get fieldStats_headline => 'Co NOTORYX Core wie w tej chwili.';
-
-  @override
-  String get fieldStats_body =>
-      'Te liczniki są obliczane z tabeli kontaktów połączonego MeshCore, lokalizacji, ścieżek i znaczników czasu ostatniego widzenia.';
-
-  @override
-  String get fieldStats_total => 'Razem';
-
-  @override
   String get fieldStats_chatNodes => 'Węzły czatu';
 
   @override
@@ -6990,36 +6977,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get fieldStats_sensors => 'Czujniki';
 
   @override
-  String get fieldStats_located => 'Z lokalizacją';
-
-  @override
-  String get fieldStats_favorites => 'Ulubione';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Migawka tras';
-
-  @override
-  String get fieldStats_routed => 'Z trasą';
-
-  @override
   String get fieldStats_direct => 'Bezpośrednie';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Analiza ścieżek';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'Analiza tras NOTORYX Core wykorzystuje zapisane próby ścieżek, liczbę skoków, sukcesy/niepowodzenia, czas przejścia i wagi tras, aby pokazać wyuczone trasy.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Sesje zasięgu';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Rejestracja zasięgu zapisuje teraz sesje terenowe, przywraca przerwaną pracę, eksportuje obserwacje i nanosi zapisane punkty zasięgu na mapę. RSSI/SNR pozostają najbliższą dostępną migawką radia.';
 
   @override
   String get mapHub_title => 'Mapa terenowa NOTORYX';
@@ -9498,4 +9456,123 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'Lista kontaktów radia jest pełna. Najpierw usuń część kontaktów.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radio teraz';
+
+  @override
+  String get fieldIntel_noRadio => 'Podłącz radio, aby widzieć dane na żywo.';
+
+  @override
+  String get fieldIntel_noise => 'szum dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'ostatni SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'ostatni RSSI';
+
+  @override
+  String get fieldIntel_battery => 'bateria V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Czas nadawania od startu radia: wysłano $sent, odebrano $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Kto jest w pobliżu';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 godz.';
+
+  @override
+  String get fieldIntel_h24 => '24 godz.';
+
+  @override
+  String get fieldIntel_older => 'Starsze';
+
+  @override
+  String get fieldIntel_lastHour => 'Ostatnia godzina';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Kiedy każdy węzeł był ostatnio słyszany, godzina po godzinie z ostatniej doby. Stuknij słupek, aby zobaczyć kto.';
+
+  @override
+  String get fieldIntel_mix => 'Rodzaje węzłów';
+
+  @override
+  String get fieldIntel_reach => 'Zasięg';
+
+  @override
+  String get fieldIntel_hops1 => '1 skok';
+
+  @override
+  String get fieldIntel_hops2 => '2 skoki';
+
+  @override
+  String get fieldIntel_hops3 => '3+ skoki';
+
+  @override
+  String get fieldIntel_noRoute => 'Brak trasy';
+
+  @override
+  String get fieldIntel_distance => 'Najbliższe i najdalsze';
+
+  @override
+  String get fieldIntel_noneLocated => 'Żaden z kontaktów nie ma pozycji.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Radio nie ma jeszcze pozycji, więc nie da się obliczyć odległości.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Najlepsze przemienniki słyszane bezpośrednio';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'W ciągu ostatnich 30 minut nie usłyszano bezpośrednio żadnego przemiennika.';
+
+  @override
+  String get fieldIntel_attention => 'Wymaga uwagi';
+
+  @override
+  String get fieldIntel_allGood => 'Nic nie wymaga uwagi.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Słaba bateria: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Ulubiony niesłyszany od $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Więcej narzędzi';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Węzły: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Brak węzłów.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Ostatnio słyszany $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Pokaż na mapie';
+
+  @override
+  String get fieldIntel_openChat => 'Otwórz czat';
 }
