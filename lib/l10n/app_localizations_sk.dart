@@ -7058,48 +7058,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Ovládanie opakovačov';
-
-  @override
-  String get repeaterTools_headline =>
-      'Spravujte infraštruktúru za vašou sieťou.';
-
-  @override
-  String get repeaterTools_body =>
-      'Vyberte objavený opakovač, prihláste sa a otvorte jeho existujúce nástroje MeshCore pre stav, telemetriu, susedov, nastavenia a CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Objavené';
-
-  @override
-  String get repeaterTools_tools => 'Nástroje';
-
-  @override
-  String get repeaterTools_available => 'Dostupné opakovače';
-
-  @override
   String get repeaterTools_unnamed => 'Nepomenovaný opakovač';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Stav + telemetria';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Kontrolujte stav a telemetriu opakovača pomocou existujúcich nástrojov správy.';
-
-  @override
-  String get repeaterTools_neighbors => 'Susedia';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Preskúmajte susednú infraštruktúru a vzťahy v sieti.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + nastavenia';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Prihlásení správcovia majú prístup k existujúcemu CLI opakovača a nástrojom konfigurácie.';
 
   @override
   String get repeaterTools_empty =>
@@ -9514,4 +9473,36 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Otvoriť chat';
+
+  @override
+  String get repeaterTools_login => 'Prihlásiť sa';
+
+  @override
+  String get repeaterTools_heardDirect => 'Počutý priamo';
+
+  @override
+  String get repeaterTools_filterAll => 'Všetky';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Slabá batéria';
+
+  @override
+  String get repeaterTools_hint =>
+      'Ťuknite na opakovač pre podrobnosti a odtiaľ sa prihláste pre stav, susedov, telemetriu a príkazový riadok.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Žiadne opakovače.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Nástroje';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Vyhľadajte strom regiónov pre svoju oblasť a skopírujte jeho príkazy';
+
+  @override
+  String get routes_failingOnly => 'Iba neúspešné trasy';
+
+  @override
+  String get routes_contactDetails => 'Údaje kontaktu';
 }

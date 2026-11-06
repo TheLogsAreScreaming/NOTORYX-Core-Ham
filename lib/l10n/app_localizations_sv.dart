@@ -7010,48 +7010,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Repeaterstyrning';
-
-  @override
-  String get repeaterTools_headline =>
-      'Hantera infrastrukturen bakom ditt meshnät.';
-
-  @override
-  String get repeaterTools_body =>
-      'Välj en upptäckt repeater för att logga in och öppna dess befintliga MeshCore-verktyg för status, telemetri, grannar, inställningar och CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Upptäckta';
-
-  @override
-  String get repeaterTools_tools => 'Verktyg';
-
-  @override
-  String get repeaterTools_available => 'Tillgängliga repeatrar';
-
-  @override
   String get repeaterTools_unnamed => 'Namnlös repeater';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Status + telemetri';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Granska repeaterns hälsa och telemetri med de befintliga hanteringsverktygen.';
-
-  @override
-  String get repeaterTools_neighbors => 'Grannar';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Granska närliggande infrastruktur och relationer i meshnätet.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + inställningar';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Inloggade administratörer når repeaterns befintliga CLI och konfigurationsverktyg.';
 
   @override
   String get repeaterTools_empty =>
@@ -9465,4 +9424,36 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Öppna chatt';
+
+  @override
+  String get repeaterTools_login => 'Logga in';
+
+  @override
+  String get repeaterTools_heardDirect => 'Hörd direkt';
+
+  @override
+  String get repeaterTools_filterAll => 'Alla';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Svagt batteri';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tryck på en repeater för detaljer och logga in därifrån för status, grannar, telemetri och kommandoraden.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Inga repeatrar här.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Verktyg';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Slå upp regionträdet för ditt område och kopiera dess kommandon';
+
+  @override
+  String get routes_failingOnly => 'Endast misslyckade rutter';
+
+  @override
+  String get routes_contactDetails => 'Kontaktuppgifter';
 }

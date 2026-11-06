@@ -7061,48 +7061,7 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Upravljanje repetitorjev';
-
-  @override
-  String get repeaterTools_headline =>
-      'Upravljajte infrastrukturo za vašim omrežjem.';
-
-  @override
-  String get repeaterTools_body =>
-      'Izberite odkrit repetitor, da se prijavite in odprete njegova obstoječa orodja MeshCore za stanje, telemetrijo, sosede, nastavitve in CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Odkriti';
-
-  @override
-  String get repeaterTools_tools => 'Orodja';
-
-  @override
-  String get repeaterTools_available => 'Razpoložljivi repetitorji';
-
-  @override
   String get repeaterTools_unnamed => 'Neimenovan repetitor';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Stanje + telemetrija';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Preverite stanje in telemetrijo repetitorja z obstoječimi orodji za upravljanje.';
-
-  @override
-  String get repeaterTools_neighbors => 'Sosedje';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Raziščite sosednjo infrastrukturo in odnose v omrežju.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + nastavitve';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Prijavljeni skrbniki lahko dostopajo do obstoječega CLI repetitorja in orodij za nastavitve.';
 
   @override
   String get repeaterTools_empty =>
@@ -9523,4 +9482,36 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Odpri klepet';
+
+  @override
+  String get repeaterTools_login => 'Prijava';
+
+  @override
+  String get repeaterTools_heardDirect => 'Slišan neposredno';
+
+  @override
+  String get repeaterTools_filterAll => 'Vsi';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Šibka baterija';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tapnite repetitor za podrobnosti, nato se prijavite za stanje, sosede, telemetrijo in ukazno vrstico.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Tukaj ni repetitorjev.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Orodja';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Poiščite regijsko drevo za svoje območje in kopirajte njegove ukaze';
+
+  @override
+  String get routes_failingOnly => 'Samo neuspešne poti';
+
+  @override
+  String get routes_contactDetails => 'Podrobnosti stika';
 }

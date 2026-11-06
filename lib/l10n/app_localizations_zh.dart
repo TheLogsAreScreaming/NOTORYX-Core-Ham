@@ -6580,44 +6580,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => '中继器管理';
-
-  @override
-  String get repeaterTools_headline => '管理支撑你网状网络的基础设施。';
-
-  @override
-  String get repeaterTools_body =>
-      '选择一个已发现的中继器进行认证，并打开其现有的 MeshCore 状态、遥测、邻居、设置和 CLI 工具。';
-
-  @override
-  String get repeaterTools_discovered => '已发现';
-
-  @override
-  String get repeaterTools_tools => '工具';
-
-  @override
-  String get repeaterTools_available => '可用的中继器';
-
-  @override
   String get repeaterTools_unnamed => '未命名中继器';
-
-  @override
-  String get repeaterTools_statusTelemetry => '状态 + 遥测';
-
-  @override
-  String get repeaterTools_statusTelemetryBody => '使用现有管理工具查看中继器状态和遥测。';
-
-  @override
-  String get repeaterTools_neighbors => '邻居';
-
-  @override
-  String get repeaterTools_neighborsBody => '查看相邻的基础设施和网络关系。';
-
-  @override
-  String get repeaterTools_cli => 'CLI + 设置';
-
-  @override
-  String get repeaterTools_cliBody => '已认证的管理员可以使用现有的中继器 CLI 和配置工具。';
 
   @override
   String get repeaterTools_empty => '尚未发现中继器。请先连接电台并探索网状网络。';
@@ -8895,4 +8858,34 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => '打开聊天';
+
+  @override
+  String get repeaterTools_login => '登录';
+
+  @override
+  String get repeaterTools_heardDirect => '直接听到';
+
+  @override
+  String get repeaterTools_filterAll => '全部';
+
+  @override
+  String get repeaterTools_filterLowBattery => '电量低';
+
+  @override
+  String get repeaterTools_hint => '点按中继器查看详情，并在那里登录以查看状态、邻居、遥测和命令行。';
+
+  @override
+  String get repeaterTools_noneMatch => '这里没有中继器。';
+
+  @override
+  String get repeaterTools_toolsTitle => '工具';
+
+  @override
+  String get repeaterTools_regionSetupHint => '查找你所在地区的区域树并复制其命令';
+
+  @override
+  String get routes_failingOnly => '仅失败的路由';
+
+  @override
+  String get routes_contactDetails => '联系人详情';
 }

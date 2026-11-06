@@ -7107,47 +7107,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Управление ретрансляторами';
-
-  @override
-  String get repeaterTools_headline => 'Управляйте инфраструктурой своей сети.';
-
-  @override
-  String get repeaterTools_body =>
-      'Выберите обнаруженный ретранслятор, чтобы войти и открыть его существующие инструменты MeshCore: состояние, телеметрию, соседей, настройки и CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Обнаружено';
-
-  @override
-  String get repeaterTools_tools => 'Инструменты';
-
-  @override
-  String get repeaterTools_available => 'Доступные ретрансляторы';
-
-  @override
   String get repeaterTools_unnamed => 'Безымянный ретранслятор';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Состояние + телеметрия';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Проверяйте состояние и телеметрию ретранслятора с помощью существующих инструментов управления.';
-
-  @override
-  String get repeaterTools_neighbors => 'Соседи';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Изучайте соседнюю инфраструктуру и связи в сети.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + настройки';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Вошедшие администраторы получают доступ к существующему CLI ретранслятора и инструментам настройки.';
 
   @override
   String get repeaterTools_empty =>
@@ -9566,4 +9526,36 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Открыть чат';
+
+  @override
+  String get repeaterTools_login => 'Войти';
+
+  @override
+  String get repeaterTools_heardDirect => 'Слышен напрямую';
+
+  @override
+  String get repeaterTools_filterAll => 'Все';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Низкий заряд';
+
+  @override
+  String get repeaterTools_hint =>
+      'Нажмите на ретранслятор, чтобы увидеть подробности, и войдите оттуда, чтобы открыть состояние, соседей, телеметрию и командную строку.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Ретрансляторов нет.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Инструменты';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Найдите дерево регионов для своей местности и скопируйте его команды';
+
+  @override
+  String get routes_failingOnly => 'Только неудачные маршруты';
+
+  @override
+  String get routes_contactDetails => 'Сведения о контакте';
 }

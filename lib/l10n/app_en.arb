@@ -4070,19 +4070,7 @@
       }
     }
   },
-  "repeaterTools_heroLabel": "Repeater command",
-  "repeaterTools_headline": "Manage the infrastructure behind your mesh.",
-  "repeaterTools_body": "Select a discovered repeater to authenticate and open its existing MeshCore status, telemetry, neighbors, settings and CLI tools.",
-  "repeaterTools_discovered": "Discovered",
-  "repeaterTools_tools": "Tools",
-  "repeaterTools_available": "Available repeaters",
   "repeaterTools_unnamed": "Unnamed repeater",
-  "repeaterTools_statusTelemetry": "Status + telemetry",
-  "repeaterTools_statusTelemetryBody": "Inspect repeater health and telemetry using the existing management stack.",
-  "repeaterTools_neighbors": "Neighbors",
-  "repeaterTools_neighborsBody": "Inspect neighboring infrastructure and mesh relationships.",
-  "repeaterTools_cli": "CLI + settings",
-  "repeaterTools_cliBody": "Authenticated administrators can reach the existing repeater CLI and configuration tools.",
   "repeaterTools_empty": "No repeaters discovered yet. Connect a radio and discover the mesh first.",
   "notification_fieldAlertTitle": "NOTORYX Field Alert",
   "notification_checkInReminderTitle": "NOTORYX Core check-in reminder",
@@ -5441,5 +5429,15 @@
   "fieldIntel_lastHeard": "Last heard {ago}",
   "@fieldIntel_lastHeard": {"placeholders": {"ago": {"type": "String"}}},
   "fieldIntel_showOnMap": "Show on map",
-  "fieldIntel_openChat": "Open chat"
+  "fieldIntel_openChat": "Open chat",
+  "repeaterTools_login": "Log in",
+  "repeaterTools_heardDirect": "Heard directly",
+  "repeaterTools_filterAll": "All",
+  "repeaterTools_filterLowBattery": "Low battery",
+  "repeaterTools_hint": "Tap a repeater for its details, and log in from there for status, neighbours, telemetry and the command line.",
+  "repeaterTools_noneMatch": "No repeaters here.",
+  "repeaterTools_toolsTitle": "Tools",
+  "repeaterTools_regionSetupHint": "Look up your area's region tree and copy its commands",
+  "routes_failingOnly": "Only routes that failed",
+  "routes_contactDetails": "Contact details"
 }

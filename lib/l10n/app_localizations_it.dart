@@ -7090,48 +7090,7 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Controllo ripetitori';
-
-  @override
-  String get repeaterTools_headline =>
-      'Gestisci l\'infrastruttura dietro la tua rete mesh.';
-
-  @override
-  String get repeaterTools_body =>
-      'Seleziona un ripetitore scoperto per autenticarti e aprire i suoi strumenti MeshCore esistenti per stato, telemetria, vicini, impostazioni e CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Scoperti';
-
-  @override
-  String get repeaterTools_tools => 'Strumenti';
-
-  @override
-  String get repeaterTools_available => 'Ripetitori disponibili';
-
-  @override
   String get repeaterTools_unnamed => 'Ripetitore senza nome';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Stato + telemetria';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Esamina lo stato e la telemetria del ripetitore con gli strumenti di gestione esistenti.';
-
-  @override
-  String get repeaterTools_neighbors => 'Vicini';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Esamina l\'infrastruttura vicina e le relazioni della rete mesh.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + impostazioni';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Gli amministratori autenticati possono accedere alla CLI del ripetitore e agli strumenti di configurazione esistenti.';
 
   @override
   String get repeaterTools_empty =>
@@ -9552,4 +9511,36 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Apri chat';
+
+  @override
+  String get repeaterTools_login => 'Accedi';
+
+  @override
+  String get repeaterTools_heardDirect => 'Sentito direttamente';
+
+  @override
+  String get repeaterTools_filterAll => 'Tutti';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Batteria scarica';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tocca un ripetitore per i dettagli e accedi da lì per stato, vicini, telemetria e riga di comando.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Nessun ripetitore qui.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Strumenti';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Trova l\'albero delle regioni della tua zona e copiane i comandi';
+
+  @override
+  String get routes_failingOnly => 'Solo percorsi falliti';
+
+  @override
+  String get routes_contactDetails => 'Dettagli contatto';
 }

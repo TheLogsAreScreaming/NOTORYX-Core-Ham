@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -16,11 +15,10 @@ import '../theme/mesh_theme.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/instrument.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/node_sheet.dart';
 import '../widgets/tactical_glass_panel.dart';
 import 'bastion_map_hub_screen.dart';
 import 'bastion_path_hub_screen.dart';
-import 'chat_screen.dart';
-import 'map_screen.dart';
 import 'networks_screen.dart';
 
 /// Field intelligence: a live picture of the mesh around you, built from
@@ -70,35 +68,9 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
       ? sorted
       : [...sorted.take(3), ...sorted.skip(sorted.length - 2)];
 
-  String _distance(double km, bool imperial) {
-    final v = imperial ? km * 0.621371 : km;
-    final unit = imperial ? 'mi' : 'km';
-    return '${v < 10 ? v.toStringAsFixed(1) : v.round()} $unit';
-  }
-
-  String _ago(DateTime at) {
-    final l10n = context.l10n;
-    final m = DateTime.now().difference(at).inMinutes;
-    if (m < 1) return l10n.time_justNow;
-    if (m < 60) return l10n.time_minutesAgo(m);
-    if (m < 48 * 60) return l10n.time_hoursAgo(m ~/ 60);
-    return l10n.time_daysAgo(m ~/ (24 * 60));
-  }
-
   String _airtime(int secs) {
     final h = secs ~/ 3600, m = (secs % 3600) ~/ 60, s = secs % 60;
     return h > 0 ? '${h}h ${m}m' : (m > 0 ? '${m}m ${s}s' : '${s}s');
-  }
-
-  String _hopLabel(HopBand b) {
-    final l10n = context.l10n;
-    return switch (b) {
-      HopBand.direct => l10n.fieldStats_direct,
-      HopBand.one => l10n.fieldIntel_hops1,
-      HopBand.two => l10n.fieldIntel_hops2,
-      HopBand.threePlus => l10n.fieldIntel_hops3,
-      HopBand.unknown => l10n.fieldIntel_noRoute,
-    };
   }
 
   String _heardLabel(HeardWhen w) {
@@ -113,7 +85,6 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
 
   /// A sheet listing [nodes]; each opens its own sheet.
   void _showNodes(String title, List<Contact> nodes) {
-    final connector = context.read<MeshCoreConnector>();
     showMeshSheet<void>(
       context,
       builder: (sheet) => SafeArea(
@@ -144,10 +115,10 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                               icon: contactTypeIcon(c.type),
                               title: c.name,
                               subtitle:
-                                  '${_hopLabel(hopBand(c))} · ${_ago(c.lastSeen)}',
+                                  '${hopLabel(context.l10n, hopBand(c))} · ${agoLabel(context.l10n, c.lastSeen)}',
                               onTap: () {
                                 Navigator.pop(sheet);
-                                _showNode(c, connector);
+                                showNodeSheet(context, c);
                               },
                             ),
                         ],
@@ -155,97 +126,6 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  void _showNode(Contact c, MeshCoreConnector connector) {
-    final l10n = context.l10n;
-    final imperial =
-        context.read<AppSettingsService>().settings.unitSystem ==
-        UnitSystem.imperial;
-    final lat = connector.selfLatitude, lon = connector.selfLongitude;
-    final hasSelf = lat != null && lon != null && (lat != 0 || lon != 0);
-    final mv = c.type == advTypeRepeater
-        ? connector.getRepeaterBatteryMillivolts(c.publicKeyHex)
-        : null;
-    showMeshSheet<void>(
-      context,
-      builder: (sheet) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            BottomSheetHeader(title: c.name, subtitle: c.typeLabelRaw),
-            InstrumentRow(
-              icon: Icons.route,
-              title: _hopLabel(hopBand(c)),
-              subtitle: l10n.fieldIntel_lastHeard(_ago(c.lastSeen)),
-              divider: false,
-            ),
-            if (hasSelf && c.hasLocation)
-              InstrumentRow(
-                icon: Icons.near_me_outlined,
-                title:
-                    '${_distance(distanceKm(lat, lon, c.latitude!, c.longitude!), imperial)} '
-                    '${compassPoint(bearingDeg(lat, lon, c.latitude!, c.longitude!))}',
-                divider: false,
-              ),
-            if (mv != null && mv > 0)
-              InstrumentRow(
-                icon: Icons.battery_std,
-                title: '${(mv / 1000).toStringAsFixed(2)} V',
-                titleColor: mv < lowBatteryMv ? MeshPalette.alert : null,
-                divider: false,
-              ),
-            Padding(
-              padding: const EdgeInsets.all(MeshSpace.lg),
-              child: Row(
-                children: [
-                  if (c.hasLocation)
-                    Expanded(
-                      child: InstrumentButton(
-                        label: l10n.fieldIntel_showOnMap,
-                        icon: Icons.map_outlined,
-                        onPressed: () {
-                          Navigator.pop(sheet);
-                          Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (_) => MapScreen(
-                                highlightPosition: LatLng(
-                                  c.latitude!,
-                                  c.longitude!,
-                                ),
-                                highlightLabel: c.name,
-                                highlightMarkerKey: c.publicKeyHex,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  if (c.hasLocation && c.type == advTypeChat)
-                    const SizedBox(width: MeshSpace.sm),
-                  if (c.type == advTypeChat)
-                    Expanded(
-                      child: InstrumentButton(
-                        label: l10n.fieldIntel_openChat,
-                        icon: Icons.chat_bubble_outline,
-                        onPressed: () {
-                          Navigator.pop(sheet);
-                          Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (_) => ChatScreen(contact: c),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ],
         ),
       ),
     );
@@ -452,13 +332,14 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                     for (final (i, b) in HopBand.values.indexed)
                       _BarRow(
                         key: ValueKey('hops-${b.name}'),
-                        label: _hopLabel(b),
+                        label: hopLabel(context.l10n, b),
                         count: hops[b]!.length,
                         total: contacts.length,
                         color: b == HopBand.unknown
                             ? MeshPalette.ink4
                             : OkabeIto.categorical[i],
-                        onTap: () => _showNodes(_hopLabel(b), hops[b]!),
+                        onTap: () =>
+                            _showNodes(hopLabel(context.l10n, b), hops[b]!),
                       ),
                   ],
                 ),
@@ -484,15 +365,15 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                         InstrumentRow(
                           icon: contactTypeIcon(d.contact.type),
                           title: d.contact.name,
-                          subtitle: _ago(d.contact.lastSeen),
+                          subtitle: agoLabel(context.l10n, d.contact.lastSeen),
                           trailing: Text(
-                            '${_distance(d.km, imperial)} ${compassPoint(d.bearing)}',
+                            '${distanceLabel(d.km, imperial)} ${compassPoint(d.bearing)}',
                             style: MeshTheme.mono(
                               color: MeshPalette.ink,
                               fontSize: 13,
                             ),
                           ),
-                          onTap: () => _showNode(d.contact, connector),
+                          onTap: () => showNodeSheet(context, d.contact),
                           divider: false,
                         ),
                     ],
@@ -526,11 +407,14 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                                 return InstrumentRow(
                                   icon: Icons.cell_tower,
                                   title: c?.name ?? r.pubkeyPrefixHex,
-                                  subtitle: _ago(r.lastUpdated),
+                                  subtitle: agoLabel(
+                                    context.l10n,
+                                    r.lastUpdated,
+                                  ),
                                   trailing: SignalReadout(r.snr),
                                   onTap: c == null
                                       ? null
-                                      : () => _showNode(c, connector),
+                                      : () => showNodeSheet(context, c),
                                   divider: false,
                                 );
                               },
@@ -567,7 +451,7 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                               subtitle: l10n.fieldIntel_lowBattery(
                                 (mv / 1000).toStringAsFixed(2),
                               ),
-                              onTap: () => _showNode(c, connector),
+                              onTap: () => showNodeSheet(context, c),
                               divider: false,
                             ),
                           for (final c in quiet)
@@ -575,9 +459,9 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                               icon: Icons.star_outline,
                               title: c.name,
                               subtitle: l10n.fieldIntel_quietFavorite(
-                                _ago(c.lastSeen),
+                                agoLabel(context.l10n, c.lastSeen),
                               ),
-                              onTap: () => _showNode(c, connector),
+                              onTap: () => showNodeSheet(context, c),
                               divider: false,
                             ),
                         ],

@@ -7106,48 +7106,7 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Centrum przekaźników';
-
-  @override
-  String get repeaterTools_headline =>
-      'Zarządzaj infrastrukturą swojej sieci mesh.';
-
-  @override
-  String get repeaterTools_body =>
-      'Wybierz wykryty przekaźnik, aby się uwierzytelnić i otworzyć jego istniejące narzędzia MeshCore: stan, telemetrię, sąsiadów, ustawienia i CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Wykryte';
-
-  @override
-  String get repeaterTools_tools => 'Narzędzia';
-
-  @override
-  String get repeaterTools_available => 'Dostępne przekaźniki';
-
-  @override
   String get repeaterTools_unnamed => 'Przekaźnik bez nazwy';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Stan + telemetria';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Sprawdzaj stan i telemetrię przekaźnika za pomocą istniejących narzędzi zarządzania.';
-
-  @override
-  String get repeaterTools_neighbors => 'Sąsiedzi';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Badaj sąsiednią infrastrukturę i powiązania w sieci mesh.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + ustawienia';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Uwierzytelnieni administratorzy mają dostęp do istniejącego CLI przekaźnika i narzędzi konfiguracji.';
 
   @override
   String get repeaterTools_empty =>
@@ -9575,4 +9534,36 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Otwórz czat';
+
+  @override
+  String get repeaterTools_login => 'Zaloguj';
+
+  @override
+  String get repeaterTools_heardDirect => 'Słyszany bezpośrednio';
+
+  @override
+  String get repeaterTools_filterAll => 'Wszystkie';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Słaba bateria';
+
+  @override
+  String get repeaterTools_hint =>
+      'Stuknij przemiennik, aby zobaczyć szczegóły, a stamtąd zaloguj się, by sprawdzić stan, sąsiadów, telemetrię i wiersz poleceń.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Brak przemienników.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Narzędzia';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Znajdź drzewo regionów dla swojej okolicy i skopiuj jego polecenia';
+
+  @override
+  String get routes_failingOnly => 'Tylko nieudane trasy';
+
+  @override
+  String get routes_contactDetails => 'Szczegóły kontaktu';
 }

@@ -8,6 +8,7 @@ import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/contact.dart';
 import 'package:meshcore_open/models/path_history.dart';
 import 'package:meshcore_open/screens/bastion_path_hub_screen.dart';
+import 'package:meshcore_open/services/app_settings_service.dart';
 import 'package:meshcore_open/services/path_history_service.dart';
 import 'package:meshcore_open/services/storage_service.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
@@ -42,14 +43,14 @@ Contact _repeater(int seed, String name) => Contact(
   lastSeen: DateTime(2026, 10, 22),
 );
 
-PathRecord _route(int hops, List<int> bytes) => PathRecord(
+PathRecord _route(int hops, List<int> bytes, {int failures = 0}) => PathRecord(
   hopCount: hops,
   tripTimeMs: 900,
   timestamp: DateTime(2026, 10, 22),
   wasFloodDiscovery: false,
   pathBytes: bytes,
   successCount: 0,
-  failureCount: 0,
+  failureCount: failures,
 );
 
 void main() {
@@ -96,5 +97,58 @@ void main() {
     expect(find.textContaining('3D › 4B › 8F'), findsOneWidget);
     expect(find.textContaining('3D4A › 4BE0 › 6B80'), findsOneWidget);
     expect(find.textContaining('3D › 4A › 4B'), findsNothing);
+  });
+
+  testWidgets('routes open their details, and Failed shows only failing ones', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1200, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+
+    final good = _repeater(0x10, 'Good Hill');
+    final bad = _repeater(0x60, 'Bad Ridge');
+    final connector = MeshCoreConnector()..debugSetContacts([good, bad]);
+    final settings = AppSettingsService();
+    final history = _History({
+      good.publicKeyHex: [
+        _route(1, [0x3D]),
+      ],
+      bad.publicKeyHex: [
+        _route(2, [0x3D, 0x4B], failures: 3),
+      ],
+    });
+
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<MeshCoreConnector>.value(value: connector),
+          ChangeNotifierProvider<PathHistoryService>.value(value: history),
+          ChangeNotifierProvider.value(value: settings),
+        ],
+        child: MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: const BastionPathHubScreen(),
+        ),
+      ),
+    );
+    await tester.pump();
+
+    await tester.tap(find.byKey(const ValueKey('routes-failed')));
+    await tester.pump();
+    expect(find.text('Good Hill'), findsNothing);
+    expect(find.text('Bad Ridge'), findsOneWidget);
+    expect(find.text('Only routes that failed'), findsOneWidget);
+
+    await tester.tap(find.byKey(ValueKey('route-${bad.publicKeyHex}')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('route-contact-details')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('node-sheet')), findsOneWidget);
+    expect(find.text('Log in'), findsOneWidget);
+
+    await tester.pumpWidget(const SizedBox());
+    settings.dispose();
   });
 }

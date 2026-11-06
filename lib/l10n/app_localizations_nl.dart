@@ -7042,48 +7042,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Repeaterbeheer';
-
-  @override
-  String get repeaterTools_headline =>
-      'Beheer de infrastructuur achter je mesh.';
-
-  @override
-  String get repeaterTools_body =>
-      'Kies een gevonden repeater om in te loggen en de bestaande MeshCore-tools voor status, telemetrie, buren, instellingen en CLI te openen.';
-
-  @override
-  String get repeaterTools_discovered => 'Gevonden';
-
-  @override
-  String get repeaterTools_tools => 'Tools';
-
-  @override
-  String get repeaterTools_available => 'Beschikbare repeaters';
-
-  @override
   String get repeaterTools_unnamed => 'Naamloze repeater';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Status + telemetrie';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Repeaterstatus en telemetrie bekijken met de bestaande beheertools.';
-
-  @override
-  String get repeaterTools_neighbors => 'Buren';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Naburige infrastructuur en meshrelaties bekijken.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + instellingen';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Ingelogde beheerders kunnen de bestaande repeater-CLI en configuratietools gebruiken.';
 
   @override
   String get repeaterTools_empty =>
@@ -9505,4 +9464,36 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Chat openen';
+
+  @override
+  String get repeaterTools_login => 'Inloggen';
+
+  @override
+  String get repeaterTools_heardDirect => 'Direct gehoord';
+
+  @override
+  String get repeaterTools_filterAll => 'Alle';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Batterij laag';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tik op een repeater voor details en log daar in voor status, buren, telemetrie en de opdrachtregel.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Geen repeaters hier.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Hulpmiddelen';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Zoek de regioboom van je gebied en kopieer de opdrachten';
+
+  @override
+  String get routes_failingOnly => 'Alleen mislukte routes';
+
+  @override
+  String get routes_contactDetails => 'Contactgegevens';
 }

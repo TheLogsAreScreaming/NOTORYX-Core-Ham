@@ -7100,48 +7100,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Commande des répéteurs';
-
-  @override
-  String get repeaterTools_headline =>
-      'Gérez l\'infrastructure derrière votre maillage.';
-
-  @override
-  String get repeaterTools_body =>
-      'Sélectionnez un répéteur découvert pour vous authentifier et ouvrir ses outils MeshCore existants : état, télémétrie, voisins, réglages et CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Découverts';
-
-  @override
-  String get repeaterTools_tools => 'Outils';
-
-  @override
-  String get repeaterTools_available => 'Répéteurs disponibles';
-
-  @override
   String get repeaterTools_unnamed => 'Répéteur sans nom';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'État + télémétrie';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Inspectez l\'état et la télémétrie du répéteur avec les outils de gestion existants.';
-
-  @override
-  String get repeaterTools_neighbors => 'Voisins';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Inspectez l\'infrastructure voisine et les relations du maillage.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + réglages';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Les administrateurs authentifiés peuvent accéder à la CLI du répéteur et aux outils de configuration existants.';
 
   @override
   String get repeaterTools_empty =>
@@ -9575,4 +9534,36 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Ouvrir la discussion';
+
+  @override
+  String get repeaterTools_login => 'Se connecter';
+
+  @override
+  String get repeaterTools_heardDirect => 'Entendu en direct';
+
+  @override
+  String get repeaterTools_filterAll => 'Tous';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Batterie faible';
+
+  @override
+  String get repeaterTools_hint =>
+      'Touchez un répéteur pour ses détails, puis connectez-vous pour l’état, les voisins, la télémétrie et la ligne de commande.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Aucun répéteur ici.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Outils';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Trouvez l’arbre de régions de votre secteur et copiez ses commandes';
+
+  @override
+  String get routes_failingOnly => 'Seulement les routes en échec';
+
+  @override
+  String get routes_contactDetails => 'Détails du contact';
 }

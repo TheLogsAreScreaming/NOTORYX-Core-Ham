@@ -7081,48 +7081,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Repeater-Zentrale';
-
-  @override
-  String get repeaterTools_headline =>
-      'Verwalte die Infrastruktur hinter deinem Mesh.';
-
-  @override
-  String get repeaterTools_body =>
-      'Wähle einen gefundenen Repeater, um dich anzumelden und seine vorhandenen MeshCore-Werkzeuge für Status, Telemetrie, Nachbarn, Einstellungen und CLI zu öffnen.';
-
-  @override
-  String get repeaterTools_discovered => 'Gefunden';
-
-  @override
-  String get repeaterTools_tools => 'Werkzeuge';
-
-  @override
-  String get repeaterTools_available => 'Verfügbare Repeater';
-
-  @override
   String get repeaterTools_unnamed => 'Unbenannter Repeater';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Status + Telemetrie';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Zustand und Telemetrie von Repeatern mit den vorhandenen Verwaltungswerkzeugen untersuchen.';
-
-  @override
-  String get repeaterTools_neighbors => 'Nachbarn';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Benachbarte Infrastruktur und Mesh-Beziehungen untersuchen.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + Einstellungen';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Angemeldete Administratoren erreichen die vorhandene Repeater-CLI und Konfigurationswerkzeuge.';
 
   @override
   String get repeaterTools_empty =>
@@ -9553,4 +9512,36 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Chat öffnen';
+
+  @override
+  String get repeaterTools_login => 'Anmelden';
+
+  @override
+  String get repeaterTools_heardDirect => 'Direkt gehört';
+
+  @override
+  String get repeaterTools_filterAll => 'Alle';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Akku schwach';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tippe auf einen Repeater für Details und melde dich dort an für Status, Nachbarn, Telemetrie und Befehlszeile.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Keine Repeater hier.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Werkzeuge';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Finde den Regionsbaum deiner Gegend und kopiere seine Befehle';
+
+  @override
+  String get routes_failingOnly => 'Nur fehlgeschlagene Routen';
+
+  @override
+  String get routes_contactDetails => 'Kontaktdetails';
 }

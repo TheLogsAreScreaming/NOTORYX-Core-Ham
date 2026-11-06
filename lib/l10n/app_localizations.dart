@@ -11881,83 +11881,11 @@ abstract class AppLocalizations {
   /// **'Flood: {success} success / {fail} fail'**
   String routes_flood(String success, String fail);
 
-  /// No description provided for @repeaterTools_heroLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Repeater command'**
-  String get repeaterTools_heroLabel;
-
-  /// No description provided for @repeaterTools_headline.
-  ///
-  /// In en, this message translates to:
-  /// **'Manage the infrastructure behind your mesh.'**
-  String get repeaterTools_headline;
-
-  /// No description provided for @repeaterTools_body.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a discovered repeater to authenticate and open its existing MeshCore status, telemetry, neighbors, settings and CLI tools.'**
-  String get repeaterTools_body;
-
-  /// No description provided for @repeaterTools_discovered.
-  ///
-  /// In en, this message translates to:
-  /// **'Discovered'**
-  String get repeaterTools_discovered;
-
-  /// No description provided for @repeaterTools_tools.
-  ///
-  /// In en, this message translates to:
-  /// **'Tools'**
-  String get repeaterTools_tools;
-
-  /// No description provided for @repeaterTools_available.
-  ///
-  /// In en, this message translates to:
-  /// **'Available repeaters'**
-  String get repeaterTools_available;
-
   /// No description provided for @repeaterTools_unnamed.
   ///
   /// In en, this message translates to:
   /// **'Unnamed repeater'**
   String get repeaterTools_unnamed;
-
-  /// No description provided for @repeaterTools_statusTelemetry.
-  ///
-  /// In en, this message translates to:
-  /// **'Status + telemetry'**
-  String get repeaterTools_statusTelemetry;
-
-  /// No description provided for @repeaterTools_statusTelemetryBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Inspect repeater health and telemetry using the existing management stack.'**
-  String get repeaterTools_statusTelemetryBody;
-
-  /// No description provided for @repeaterTools_neighbors.
-  ///
-  /// In en, this message translates to:
-  /// **'Neighbors'**
-  String get repeaterTools_neighbors;
-
-  /// No description provided for @repeaterTools_neighborsBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Inspect neighboring infrastructure and mesh relationships.'**
-  String get repeaterTools_neighborsBody;
-
-  /// No description provided for @repeaterTools_cli.
-  ///
-  /// In en, this message translates to:
-  /// **'CLI + settings'**
-  String get repeaterTools_cli;
-
-  /// No description provided for @repeaterTools_cliBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Authenticated administrators can reach the existing repeater CLI and configuration tools.'**
-  String get repeaterTools_cliBody;
 
   /// No description provided for @repeaterTools_empty.
   ///
@@ -15966,6 +15894,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open chat'**
   String get fieldIntel_openChat;
+
+  /// No description provided for @repeaterTools_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get repeaterTools_login;
+
+  /// No description provided for @repeaterTools_heardDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard directly'**
+  String get repeaterTools_heardDirect;
+
+  /// No description provided for @repeaterTools_filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get repeaterTools_filterAll;
+
+  /// No description provided for @repeaterTools_filterLowBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'Low battery'**
+  String get repeaterTools_filterLowBattery;
+
+  /// No description provided for @repeaterTools_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a repeater for its details, and log in from there for status, neighbours, telemetry and the command line.'**
+  String get repeaterTools_hint;
+
+  /// No description provided for @repeaterTools_noneMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No repeaters here.'**
+  String get repeaterTools_noneMatch;
+
+  /// No description provided for @repeaterTools_toolsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get repeaterTools_toolsTitle;
+
+  /// No description provided for @repeaterTools_regionSetupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Look up your area\'s region tree and copy its commands'**
+  String get repeaterTools_regionSetupHint;
+
+  /// No description provided for @routes_failingOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Only routes that failed'**
+  String get routes_failingOnly;
+
+  /// No description provided for @routes_contactDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact details'**
+  String get routes_contactDetails;
 }
 
 class _AppLocalizationsDelegate

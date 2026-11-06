@@ -7059,48 +7059,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Ismétlő-irányítás';
-
-  @override
-  String get repeaterTools_headline =>
-      'Kezelje a hálózata mögötti infrastruktúrát.';
-
-  @override
-  String get repeaterTools_body =>
-      'Válasszon egy felderített ismétlőt a bejelentkezéshez, és nyissa meg meglévő MeshCore-eszközeit: állapot, telemetria, szomszédok, beállítások és CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Felderítve';
-
-  @override
-  String get repeaterTools_tools => 'Eszközök';
-
-  @override
-  String get repeaterTools_available => 'Elérhető ismétlők';
-
-  @override
   String get repeaterTools_unnamed => 'Névtelen ismétlő';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Állapot + telemetria';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Az ismétlő állapotának és telemetriájának vizsgálata a meglévő kezelőeszközökkel.';
-
-  @override
-  String get repeaterTools_neighbors => 'Szomszédok';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Szomszédos infrastruktúra és hálózati kapcsolatok vizsgálata.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + beállítások';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'A bejelentkezett rendszergazdák elérik az ismétlő meglévő CLI-jét és konfigurációs eszközeit.';
 
   @override
   String get repeaterTools_empty =>
@@ -9529,4 +9488,36 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Csevegés megnyitása';
+
+  @override
+  String get repeaterTools_login => 'Bejelentkezés';
+
+  @override
+  String get repeaterTools_heardDirect => 'Közvetlenül hallva';
+
+  @override
+  String get repeaterTools_filterAll => 'Mind';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Gyenge akku';
+
+  @override
+  String get repeaterTools_hint =>
+      'Koppints egy átjátszóra a részletekért, onnan bejelentkezve láthatod az állapotot, szomszédokat, telemetriát és a parancssort.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Itt nincs átjátszó.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Eszközök';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Keresd meg a környéked régiófáját, és másold a parancsait';
+
+  @override
+  String get routes_failingOnly => 'Csak sikertelen útvonalak';
+
+  @override
+  String get routes_contactDetails => 'Névjegy adatai';
 }

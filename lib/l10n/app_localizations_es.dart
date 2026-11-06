@@ -7077,48 +7077,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Control de repetidores';
-
-  @override
-  String get repeaterTools_headline =>
-      'Gestiona la infraestructura detrás de tu malla.';
-
-  @override
-  String get repeaterTools_body =>
-      'Selecciona un repetidor descubierto para autenticarte y abrir sus herramientas MeshCore de estado, telemetría, vecinos, ajustes y CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Descubiertos';
-
-  @override
-  String get repeaterTools_tools => 'Herramientas';
-
-  @override
-  String get repeaterTools_available => 'Repetidores disponibles';
-
-  @override
   String get repeaterTools_unnamed => 'Repetidor sin nombre';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Estado + telemetría';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Inspecciona el estado y la telemetría del repetidor con las herramientas de gestión existentes.';
-
-  @override
-  String get repeaterTools_neighbors => 'Vecinos';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Inspecciona la infraestructura vecina y las relaciones de la malla.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + ajustes';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Los administradores autenticados pueden acceder a la CLI del repetidor y a las herramientas de configuración existentes.';
 
   @override
   String get repeaterTools_empty =>
@@ -9543,4 +9502,36 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Abrir chat';
+
+  @override
+  String get repeaterTools_login => 'Iniciar sesión';
+
+  @override
+  String get repeaterTools_heardDirect => 'Oído directamente';
+
+  @override
+  String get repeaterTools_filterAll => 'Todos';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Batería baja';
+
+  @override
+  String get repeaterTools_hint =>
+      'Toca un repetidor para ver sus detalles e inicia sesión desde ahí para ver estado, vecinos, telemetría y la línea de comandos.';
+
+  @override
+  String get repeaterTools_noneMatch => 'No hay repetidores aquí.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Herramientas';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Busca el árbol de regiones de tu zona y copia sus comandos';
+
+  @override
+  String get routes_failingOnly => 'Solo rutas fallidas';
+
+  @override
+  String get routes_contactDetails => 'Datos del contacto';
 }

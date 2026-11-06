@@ -6731,45 +6731,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => '리피터 관리';
-
-  @override
-  String get repeaterTools_headline => '메시를 받치는 인프라를 관리하세요.';
-
-  @override
-  String get repeaterTools_body =>
-      '발견된 리피터를 선택해 인증하고, 기존 MeshCore 상태, 원격 측정, 이웃, 설정, CLI 도구를 여세요.';
-
-  @override
-  String get repeaterTools_discovered => '발견됨';
-
-  @override
-  String get repeaterTools_tools => '도구';
-
-  @override
-  String get repeaterTools_available => '사용 가능한 리피터';
-
-  @override
   String get repeaterTools_unnamed => '이름 없는 리피터';
-
-  @override
-  String get repeaterTools_statusTelemetry => '상태 + 원격 측정';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      '기존 관리 도구로 리피터 상태와 원격 측정을 확인합니다.';
-
-  @override
-  String get repeaterTools_neighbors => '이웃';
-
-  @override
-  String get repeaterTools_neighborsBody => '이웃 인프라와 메시 관계를 살펴봅니다.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + 설정';
-
-  @override
-  String get repeaterTools_cliBody => '인증된 관리자는 기존 리피터 CLI와 구성 도구를 사용할 수 있습니다.';
 
   @override
   String get repeaterTools_empty => '아직 발견된 리피터가 없습니다. 무전기를 연결하고 먼저 메시를 탐색하세요.';
@@ -9098,4 +9060,35 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => '채팅 열기';
+
+  @override
+  String get repeaterTools_login => '로그인';
+
+  @override
+  String get repeaterTools_heardDirect => '직접 수신';
+
+  @override
+  String get repeaterTools_filterAll => '전체';
+
+  @override
+  String get repeaterTools_filterLowBattery => '배터리 부족';
+
+  @override
+  String get repeaterTools_hint =>
+      '리피터를 누르면 세부 정보가 나오고, 거기서 로그인하면 상태, 이웃, 텔레메트리, 명령줄을 볼 수 있습니다.';
+
+  @override
+  String get repeaterTools_noneMatch => '해당하는 리피터가 없습니다.';
+
+  @override
+  String get repeaterTools_toolsTitle => '도구';
+
+  @override
+  String get repeaterTools_regionSetupHint => '내 지역의 리전 트리를 찾아 명령을 복사합니다';
+
+  @override
+  String get routes_failingOnly => '실패한 경로만';
+
+  @override
+  String get routes_contactDetails => '연락처 정보';
 }

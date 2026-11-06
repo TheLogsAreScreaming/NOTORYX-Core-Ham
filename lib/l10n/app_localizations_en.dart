@@ -6965,48 +6965,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Repeater command';
-
-  @override
-  String get repeaterTools_headline =>
-      'Manage the infrastructure behind your mesh.';
-
-  @override
-  String get repeaterTools_body =>
-      'Select a discovered repeater to authenticate and open its existing MeshCore status, telemetry, neighbors, settings and CLI tools.';
-
-  @override
-  String get repeaterTools_discovered => 'Discovered';
-
-  @override
-  String get repeaterTools_tools => 'Tools';
-
-  @override
-  String get repeaterTools_available => 'Available repeaters';
-
-  @override
   String get repeaterTools_unnamed => 'Unnamed repeater';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Status + telemetry';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Inspect repeater health and telemetry using the existing management stack.';
-
-  @override
-  String get repeaterTools_neighbors => 'Neighbors';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Inspect neighboring infrastructure and mesh relationships.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + settings';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Authenticated administrators can reach the existing repeater CLI and configuration tools.';
 
   @override
   String get repeaterTools_empty =>
@@ -9416,4 +9375,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Open chat';
+
+  @override
+  String get repeaterTools_login => 'Log in';
+
+  @override
+  String get repeaterTools_heardDirect => 'Heard directly';
+
+  @override
+  String get repeaterTools_filterAll => 'All';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Low battery';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tap a repeater for its details, and log in from there for status, neighbours, telemetry and the command line.';
+
+  @override
+  String get repeaterTools_noneMatch => 'No repeaters here.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Tools';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Look up your area\'s region tree and copy its commands';
+
+  @override
+  String get routes_failingOnly => 'Only routes that failed';
+
+  @override
+  String get routes_contactDetails => 'Contact details';
 }

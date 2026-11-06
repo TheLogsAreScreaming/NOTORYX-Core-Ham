@@ -7065,48 +7065,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Управление на ретранслатори';
-
-  @override
-  String get repeaterTools_headline =>
-      'Управлявайте инфраструктурата зад мрежата си.';
-
-  @override
-  String get repeaterTools_body =>
-      'Изберете открит ретранслатор, за да влезете и да отворите наличните му инструменти MeshCore за състояние, телеметрия, съседи, настройки и CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Открити';
-
-  @override
-  String get repeaterTools_tools => 'Инструменти';
-
-  @override
-  String get repeaterTools_available => 'Налични ретранслатори';
-
-  @override
   String get repeaterTools_unnamed => 'Ретранслатор без име';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Състояние + телеметрия';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Проверявайте състоянието и телеметрията на ретранслатора с наличните инструменти за управление.';
-
-  @override
-  String get repeaterTools_neighbors => 'Съседи';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Разгледайте съседната инфраструктура и връзките в мрежата.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + настройки';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Влезлите администратори имат достъп до наличния CLI на ретранслатора и инструментите за конфигуриране.';
 
   @override
   String get repeaterTools_empty =>
@@ -9524,4 +9483,36 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get fieldIntel_openChat => 'Отвори чата';
+
+  @override
+  String get repeaterTools_login => 'Вход';
+
+  @override
+  String get repeaterTools_heardDirect => 'Чут директно';
+
+  @override
+  String get repeaterTools_filterAll => 'Всички';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Слаба батерия';
+
+  @override
+  String get repeaterTools_hint =>
+      'Докоснете ретранслатор за подробности, а оттам влезте за състояние, съседи, телеметрия и команден ред.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Няма ретранслатори тук.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Инструменти';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Намерете регионалното дърво за района си и копирайте командите му';
+
+  @override
+  String get routes_failingOnly => 'Само неуспешни маршрути';
+
+  @override
+  String get routes_contactDetails => 'Данни за контакта';
 }
