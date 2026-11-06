@@ -9404,4 +9404,23 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Fatto. Il prossimo annuncio di questo nodo sarà accettato.';
+
+  @override
+  String get networks_modeQuick => 'Rapida';
+
+  @override
+  String get networks_modeThorough => 'Approfondita';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Invia un breve ping a zero salti su ogni rete e ascolta qualche secondo. Trova le reti con un ripetitore a portata.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Ascolta soltanto, più a lungo su ogni rete. Non invia nulla e trova anche reti senza ripetitore a portata, se qualcuno trasmette.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'circa $time';
+  }
 }

@@ -29,6 +29,7 @@ class NetworksScreen extends StatefulWidget {
 
 class _NetworksScreenState extends State<NetworksScreen> {
   int _dwell = 45;
+  ScanMode _mode = ScanMode.quick;
   Set<String>? _chosen;
   Timer? _tick;
 
@@ -38,9 +39,21 @@ class _NetworksScreenState extends State<NetworksScreen> {
     super.dispose();
   }
 
+  String? get _country =>
+      WidgetsBinding.instance.platformDispatcher.locale.countryCode;
+
+  /// "about 45 s" or "about 3 min".
+  String _about(Duration d) {
+    final l10n = context.l10n;
+    final secs = d.inSeconds;
+    return l10n.networks_estimate(
+      secs < 90 ? '$secs s' : '${(secs / 60).round()} min',
+    );
+  }
+
   List<ScanTarget> _targets(NetworkScanService s) {
     final chosen = _chosen;
-    if (chosen == null) return s.suggestedTargets();
+    if (chosen == null) return s.suggestedTargets(countryCode: _country);
     return [
       for (final t in s.allTargets())
         if (chosen.contains(t.signature)) t,
@@ -69,14 +82,20 @@ class _NetworksScreenState extends State<NetworksScreen> {
     _tick = Timer.periodic(const Duration(seconds: 1), (_) {
       if (mounted) setState(() {});
     });
-    await s.scan(_targets(s), dwell: Duration(seconds: _dwell));
+    await s.scan(
+      _targets(s),
+      mode: _mode,
+      dwell: Duration(seconds: _dwell),
+    );
     _tick?.cancel();
     if (mounted) setState(() {});
   }
 
   Future<void> _pickTargets(NetworkScanService s) async {
     final l10n = context.l10n;
-    final suggested = {for (final t in s.suggestedTargets()) t.signature};
+    final suggested = {
+      for (final t in s.suggestedTargets(countryCode: _country)) t.signature,
+    };
     final all = s.allTargets()
       ..sort(
         (a, b) => (suggested.contains(b.signature) ? 1 : 0).compareTo(
@@ -359,26 +378,58 @@ class _NetworksScreenState extends State<NetworksScreen> {
                     style: TextStyle(color: MeshPalette.ink2, fontSize: 13),
                   ),
                   const SizedBox(height: MeshSpace.sm),
-                  Text(
-                    l10n.networks_listenFor,
-                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
-                  ),
-                  const SizedBox(height: 4),
-                  SegmentedButton<int>(
+                  SegmentedButton<ScanMode>(
+                    key: const ValueKey('scan-mode'),
                     showSelectedIcon: false,
                     segments: [
-                      for (final d in NetworkScanService.dwells)
-                        ButtonSegment(value: d, label: Text('${d}s')),
+                      ButtonSegment(
+                        value: ScanMode.quick,
+                        icon: const Icon(Icons.bolt),
+                        label: Text(l10n.networks_modeQuick),
+                      ),
+                      ButtonSegment(
+                        value: ScanMode.thorough,
+                        icon: const Icon(Icons.hearing),
+                        label: Text(l10n.networks_modeThorough),
+                      ),
                     ],
-                    selected: {_dwell},
+                    selected: {_mode},
                     onSelectionChanged: s.running
                         ? null
-                        : (v) => setState(() => _dwell = v.first),
+                        : (v) => setState(() => _mode = v.first),
                   ),
+                  const SizedBox(height: 6),
+                  Text(
+                    _mode == ScanMode.quick
+                        ? l10n.networks_modeQuickHint
+                        : l10n.networks_modeThoroughHint,
+                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                  ),
+                  if (_mode == ScanMode.thorough) ...[
+                    const SizedBox(height: MeshSpace.sm),
+                    Text(
+                      l10n.networks_listenFor,
+                      style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                    ),
+                    const SizedBox(height: 4),
+                    SegmentedButton<int>(
+                      showSelectedIcon: false,
+                      segments: [
+                        for (final d in NetworkScanService.dwells)
+                          ButtonSegment(value: d, label: Text('${d}s')),
+                      ],
+                      selected: {_dwell},
+                      onSelectionChanged: s.running
+                          ? null
+                          : (v) => setState(() => _dwell = v.first),
+                    ),
+                  ],
                   InstrumentRow(
                     key: const ValueKey('scan-targets'),
                     icon: Icons.tune,
-                    title: l10n.networks_choose(targets.length),
+                    title:
+                        '${l10n.networks_choose(targets.length)} · '
+                        '${_about(s.estimate(targets.length, _mode, Duration(seconds: _dwell)))}',
                     subtitle: targets.map((t) => t.name).take(4).join(', '),
                     onTap: s.running ? null : () => _pickTargets(s),
                     divider: false,

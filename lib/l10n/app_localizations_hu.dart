@@ -9383,4 +9383,23 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Kész. A csomópont következő hirdetése el lesz fogadva.';
+
+  @override
+  String get networks_modeQuick => 'Gyors';
+
+  @override
+  String get networks_modeThorough => 'Alapos';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Minden hálózaton küld egy rövid, nulla ugrásos pinget, és néhány másodpercig hallgat. Megtalálja a hatótávon belüli átjátszós hálózatokat.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Csak hallgat, hosszabban minden hálózaton. Semmit nem küld, és ha valaki ad, átjátszó nélküli hálózatokat is talál.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'kb. $time';
+  }
 }

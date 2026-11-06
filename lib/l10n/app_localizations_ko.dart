@@ -8955,4 +8955,23 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get contact_forgetAdvertDone => '완료했습니다. 이 노드의 다음 광고를 받아들입니다.';
+
+  @override
+  String get networks_modeQuick => '빠르게';
+
+  @override
+  String get networks_modeThorough => '꼼꼼하게';
+
+  @override
+  String get networks_modeQuickHint =>
+      '각 네트워크에 제로홉 핑을 한 번 보내고 몇 초간 듣습니다. 범위 안에 리피터가 있는 네트워크를 찾습니다.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      '듣기만 하며 네트워크마다 더 오래 듣습니다. 아무것도 보내지 않으며, 누군가 송신하면 리피터가 없는 네트워크도 찾습니다.';
+
+  @override
+  String networks_estimate(String time) {
+    return '약 $time';
+  }
 }

@@ -9429,4 +9429,23 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Gotowe. Następne ogłoszenie tego węzła zostanie przyjęte.';
+
+  @override
+  String get networks_modeQuick => 'Szybkie';
+
+  @override
+  String get networks_modeThorough => 'Dokładne';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Wysyła w każdej sieci jeden krótki ping bez przekazywania i nasłuchuje kilka sekund. Znajduje sieci z przemiennikiem w zasięgu.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Tylko nasłuchuje, dłużej w każdej sieci. Nic nie wysyła i znajduje też sieci bez przemiennika w zasięgu, jeśli ktoś nadaje.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'około $time';
+  }
 }

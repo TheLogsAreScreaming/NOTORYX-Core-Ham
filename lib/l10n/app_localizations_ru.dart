@@ -9419,4 +9419,23 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Готово. Следующее объявление этого узла будет принято.';
+
+  @override
+  String get networks_modeQuick => 'Быстро';
+
+  @override
+  String get networks_modeThorough => 'Подробно';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Отправляет в каждой сети один короткий пинг без ретрансляции и слушает несколько секунд. Находит сети с ретранслятором в зоне досягаемости.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Только слушает, дольше в каждой сети. Ничего не отправляет и находит сети без ретранслятора рядом, если кто-то передаёт.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'около $time';
+  }
 }

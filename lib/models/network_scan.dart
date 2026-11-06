@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import '../connector/meshcore_protocol.dart';
 import 'radio_settings.dart';
 
 /// One set of LoRa settings to listen on: a MeshCore preset, a local mesh
@@ -183,11 +184,22 @@ class SightingBuilder {
   final Map<String, HeardNode> _nodes = {};
 
   void add(Uint8List raw, double snr, int rssi) {
+    _signal(snr, rssi);
+    final node = parseAdvertNode(raw);
+    if (node != null) _nodes[node.key] = node;
+  }
+
+  /// A node that answered a quick scan's discover ping. Its name comes
+  /// later, if it also sends an advert.
+  void addReply(DiscoverAnswer a) {
+    _signal(a.snr, a.rssi);
+    _nodes.putIfAbsent(a.key, () => HeardNode(key: a.key, type: a.type));
+  }
+
+  void _signal(double snr, int rssi) {
     packets++;
     if (bestSnr == null || snr > bestSnr!) bestSnr = snr;
     if (bestRssi == null || rssi > bestRssi!) bestRssi = rssi;
-    final node = parseAdvertNode(raw);
-    if (node != null) _nodes[node.key] = node;
   }
 
   /// Null when nothing was heard.
@@ -309,4 +321,43 @@ String networkLogGpx(List<NetworkSighting> log) {
   }
   b.writeln('</gpx>');
   return b.toString();
+}
+
+/// An answer to a discover ping: who answered and how well we heard it.
+class DiscoverAnswer {
+  const DiscoverAnswer({
+    required this.key,
+    required this.type,
+    required this.snr,
+    required this.rssi,
+  });
+
+  /// The first 4 bytes of its public key, as hex, like [HeardNode.key].
+  final String key;
+  final int type;
+  final double snr;
+  final int rssi;
+}
+
+/// A node's answer to the discover request tagged [tag], from a
+/// PUSH_CODE_CONTROL_DATA frame:
+/// `[code][snr×4][rssi][path len][type][snr there×4][tag u32][key prefix]`.
+/// Any node type counts. Null for anything else.
+DiscoverAnswer? parseDiscoverAnswer(Uint8List frame, int tag) {
+  if (frame.length < 14 || frame[0] != pushCodeControlData) return null;
+  final type = frame[4];
+  if ((type >> 4) & 0x0F != controlSubtypeDiscoverResp) return null;
+  final data = ByteData.sublistView(frame);
+  if (data.getUint32(6, Endian.little) != tag) return null;
+  final key = frame
+      .sublist(10, 14)
+      .map((b) => b.toRadixString(16).padLeft(2, '0'))
+      .join();
+  final nodeType = type & 0x0F;
+  return DiscoverAnswer(
+    key: key,
+    type: nodeType,
+    snr: data.getInt8(1) / 4,
+    rssi: data.getInt8(2),
+  );
 }

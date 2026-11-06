@@ -4009,5 +4009,10 @@
   "map_positionUnavailable": "Din position är inte tillgänglig. Slå på plats eller ange radions position.",
   "contact_forgetAdvert": "Glöm senaste annons",
   "contact_forgetAdvertHint": "Om nodens annonser slutat uppdateras efter att dess klocka återställts, släpper Glöm senaste annons igenom nästa.",
-  "contact_forgetAdvertDone": "Klart. Nästa annons från noden accepteras."
+  "contact_forgetAdvertDone": "Klart. Nästa annons från noden accepteras.",
+  "networks_modeQuick": "Snabb",
+  "networks_modeThorough": "Grundlig",
+  "networks_modeQuickHint": "Skickar en kort ping utan vidarebefordran på varje nätverk och lyssnar några sekunder. Hittar nätverk med en repeater inom räckvidd.",
+  "networks_modeThoroughHint": "Lyssnar bara, längre på varje nätverk. Skickar inget och hittar även nätverk utan repeater inom räckvidd om någon sänder.",
+  "networks_estimate": "cirka {time}"
 }

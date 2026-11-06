@@ -4143,5 +4143,10 @@
   "map_positionUnavailable": "La tua posizione non è disponibile. Attiva la localizzazione o imposta la posizione della radio.",
   "contact_forgetAdvert": "Dimentica l'ultimo annuncio",
   "contact_forgetAdvertHint": "Se gli annunci di questo nodo hanno smesso di aggiornarsi dopo un azzeramento dell'orologio, Dimentica l'ultimo annuncio lascia passare il prossimo.",
-  "contact_forgetAdvertDone": "Fatto. Il prossimo annuncio di questo nodo sarà accettato."
+  "contact_forgetAdvertDone": "Fatto. Il prossimo annuncio di questo nodo sarà accettato.",
+  "networks_modeQuick": "Rapida",
+  "networks_modeThorough": "Approfondita",
+  "networks_modeQuickHint": "Invia un breve ping a zero salti su ogni rete e ascolta qualche secondo. Trova le reti con un ripetitore a portata.",
+  "networks_modeThoroughHint": "Ascolta soltanto, più a lungo su ogni rete. Non invia nulla e trova anche reti senza ripetitore a portata, se qualcuno trasmette.",
+  "networks_estimate": "circa {time}"
 }

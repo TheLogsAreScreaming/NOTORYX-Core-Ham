@@ -9271,4 +9271,23 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Done. The next advert from this node will be accepted.';
+
+  @override
+  String get networks_modeQuick => 'Quick';
+
+  @override
+  String get networks_modeThorough => 'Thorough';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Sends one short zero-hop ping on each network and listens a few seconds. Finds networks with a repeater in range.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Only listens, longer on each network. Sends nothing, and also finds networks without a repeater in range if someone transmits.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'about $time';
+  }
 }

@@ -4047,5 +4047,10 @@
   "map_positionUnavailable": "A pozíciód nem érhető el. Kapcsold be a helymeghatározást, vagy állítsd be a rádió pozícióját.",
   "contact_forgetAdvert": "Utolsó hirdetés elfelejtése",
   "contact_forgetAdvertHint": "Ha a csomópont hirdetései az órája visszaállítása után nem frissülnek, az Utolsó hirdetés elfelejtése átengedi a következőt.",
-  "contact_forgetAdvertDone": "Kész. A csomópont következő hirdetése el lesz fogadva."
+  "contact_forgetAdvertDone": "Kész. A csomópont következő hirdetése el lesz fogadva.",
+  "networks_modeQuick": "Gyors",
+  "networks_modeThorough": "Alapos",
+  "networks_modeQuickHint": "Minden hálózaton küld egy rövid, nulla ugrásos pinget, és néhány másodpercig hallgat. Megtalálja a hatótávon belüli átjátszós hálózatokat.",
+  "networks_modeThoroughHint": "Csak hallgat, hosszabban minden hálózaton. Semmit nem küld, és ha valaki ad, átjátszó nélküli hálózatokat is talál.",
+  "networks_estimate": "kb. {time}"
 }

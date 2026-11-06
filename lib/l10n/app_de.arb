@@ -4143,5 +4143,10 @@
   "map_positionUnavailable": "Deine Position ist nicht verfügbar. Schalte die Ortung ein oder setze die Position des Funkgeräts.",
   "contact_forgetAdvert": "Letztes Advert vergessen",
   "contact_forgetAdvertHint": "Wenn die Adverts dieses Knotens nach einem Zurücksetzen seiner Uhr nicht mehr aktualisiert werden, lässt Letztes Advert vergessen das nächste durch.",
-  "contact_forgetAdvertDone": "Erledigt. Das nächste Advert dieses Knotens wird angenommen."
+  "contact_forgetAdvertDone": "Erledigt. Das nächste Advert dieses Knotens wird angenommen.",
+  "networks_modeQuick": "Schnell",
+  "networks_modeThorough": "Gründlich",
+  "networks_modeQuickHint": "Sendet in jedem Netz einen kurzen Ping ohne Weiterleitung und hört ein paar Sekunden zu. Findet Netze mit einem Repeater in Reichweite.",
+  "networks_modeThoroughHint": "Hört nur zu, länger pro Netz. Sendet nichts und findet auch Netze ohne Repeater in Reichweite, wenn jemand sendet.",
+  "networks_estimate": "etwa {time}"
 }

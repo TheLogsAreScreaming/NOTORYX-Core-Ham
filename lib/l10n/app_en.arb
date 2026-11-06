@@ -5389,5 +5389,11 @@
   "map_positionUnavailable": "Your position isn't available. Turn on location, or set your radio's position.",
   "contact_forgetAdvert": "Forget last advert",
   "contact_forgetAdvertHint": "If this node's adverts stopped updating after its clock was reset, Forget last advert lets the next one through.",
-  "contact_forgetAdvertDone": "Done. The next advert from this node will be accepted."
+  "contact_forgetAdvertDone": "Done. The next advert from this node will be accepted.",
+  "networks_modeQuick": "Quick",
+  "networks_modeThorough": "Thorough",
+  "networks_modeQuickHint": "Sends one short zero-hop ping on each network and listens a few seconds. Finds networks with a repeater in range.",
+  "networks_modeThoroughHint": "Only listens, longer on each network. Sends nothing, and also finds networks without a repeater in range if someone transmits.",
+  "networks_estimate": "about {time}",
+  "@networks_estimate": {"placeholders": {"time": {"type": "String"}}}
 }

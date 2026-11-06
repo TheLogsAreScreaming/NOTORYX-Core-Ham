@@ -9369,4 +9369,23 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Hotovo. Ďalší oznam tohto uzla bude prijatý.';
+
+  @override
+  String get networks_modeQuick => 'Rýchle';
+
+  @override
+  String get networks_modeThorough => 'Dôkladné';
+
+  @override
+  String get networks_modeQuickHint =>
+      'V každej sieti pošle jeden krátky ping bez preposielania a niekoľko sekúnd počúva. Nájde siete s opakovačom v dosahu.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Iba počúva, dlhšie v každej sieti. Nič neposiela a nájde aj siete bez opakovača v dosahu, ak niekto vysiela.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'asi $time';
+  }
 }

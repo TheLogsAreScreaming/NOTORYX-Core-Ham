@@ -9428,4 +9428,23 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'C’est fait. La prochaine annonce de ce nœud sera acceptée.';
+
+  @override
+  String get networks_modeQuick => 'Rapide';
+
+  @override
+  String get networks_modeThorough => 'Approfondi';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Envoie un court ping sans relais sur chaque réseau et écoute quelques secondes. Trouve les réseaux avec un répéteur à portée.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Écoute seulement, plus longtemps sur chaque réseau. N’envoie rien et trouve aussi les réseaux sans répéteur à portée si quelqu’un émet.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'environ $time';
+  }
 }

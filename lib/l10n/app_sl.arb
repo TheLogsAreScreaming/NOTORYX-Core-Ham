@@ -4009,5 +4009,10 @@
   "map_positionUnavailable": "Vaš položaj ni na voljo. Vklopite lokacijo ali nastavite položaj radia.",
   "contact_forgetAdvert": "Pozabi zadnji oglas",
   "contact_forgetAdvertHint": "Če se oglasi tega vozlišča po ponastavitvi ure ne posodabljajo več, Pozabi zadnji oglas spusti naslednjega.",
-  "contact_forgetAdvertDone": "Končano. Naslednji oglas tega vozlišča bo sprejet."
+  "contact_forgetAdvertDone": "Končano. Naslednji oglas tega vozlišča bo sprejet.",
+  "networks_modeQuick": "Hitro",
+  "networks_modeThorough": "Temeljito",
+  "networks_modeQuickHint": "V vsakem omrežju pošlje en kratek ping brez posredovanja in posluša nekaj sekund. Najde omrežja z repetitorjem v dosegu.",
+  "networks_modeThoroughHint": "Samo posluša, dlje v vsakem omrežju. Ničesar ne pošlje in najde tudi omrežja brez repetitorja v dosegu, če kdo oddaja.",
+  "networks_estimate": "približno {time}"
 }

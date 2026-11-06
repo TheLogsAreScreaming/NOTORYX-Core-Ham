@@ -9407,4 +9407,23 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Erledigt. Das nächste Advert dieses Knotens wird angenommen.';
+
+  @override
+  String get networks_modeQuick => 'Schnell';
+
+  @override
+  String get networks_modeThorough => 'Gründlich';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Sendet in jedem Netz einen kurzen Ping ohne Weiterleitung und hört ein paar Sekunden zu. Findet Netze mit einem Repeater in Reichweite.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Hört nur zu, länger pro Netz. Sendet nichts und findet auch Netze ohne Repeater in Reichweite, wenn jemand sendet.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'etwa $time';
+  }
 }

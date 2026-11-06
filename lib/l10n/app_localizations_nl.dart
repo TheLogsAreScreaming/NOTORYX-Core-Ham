@@ -9359,4 +9359,23 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Klaar. Het volgende advert van deze node wordt geaccepteerd.';
+
+  @override
+  String get networks_modeQuick => 'Snel';
+
+  @override
+  String get networks_modeThorough => 'Grondig';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Stuurt op elk netwerk één korte zero-hop-ping en luistert een paar seconden. Vindt netwerken met een repeater binnen bereik.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Luistert alleen, langer per netwerk. Verstuurt niets en vindt ook netwerken zonder repeater binnen bereik als iemand zendt.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'ongeveer $time';
+  }
 }

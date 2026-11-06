@@ -9379,4 +9379,23 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Feito. O próximo anúncio deste nó será aceite.';
+
+  @override
+  String get networks_modeQuick => 'Rápida';
+
+  @override
+  String get networks_modeThorough => 'Completa';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Envia um ping curto de salto zero em cada rede e escuta alguns segundos. Encontra redes com um repetidor ao alcance.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Só escuta, mais tempo em cada rede. Não envia nada e também encontra redes sem repetidor ao alcance se alguém transmitir.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'cerca de $time';
+  }
 }

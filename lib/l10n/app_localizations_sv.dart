@@ -9319,4 +9319,23 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Klart. Nästa annons från noden accepteras.';
+
+  @override
+  String get networks_modeQuick => 'Snabb';
+
+  @override
+  String get networks_modeThorough => 'Grundlig';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Skickar en kort ping utan vidarebefordran på varje nätverk och lyssnar några sekunder. Hittar nätverk med en repeater inom räckvidd.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Lyssnar bara, längre på varje nätverk. Skickar inget och hittar även nätverk utan repeater inom räckvidd om någon sänder.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'cirka $time';
+  }
 }

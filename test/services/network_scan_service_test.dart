@@ -35,6 +35,11 @@ class _Radio extends MeshCoreConnector {
   _Radio();
 
   final rx = StreamController<RadioRxPacket>.broadcast();
+  final frames = StreamController<Uint8List>.broadcast();
+
+  /// Nodes that answer a discover ping, per frequency (kHz): key byte, type.
+  final answering = <int, List<(int, int)>>{};
+  int tunedKHz = 910525;
   final sent = <Uint8List>[];
   bool connected = true;
   int? freq = 910525, bw = 62500, sf = 7, cr = 5;
@@ -66,6 +71,8 @@ class _Radio extends MeshCoreConnector {
   @override
   Stream<RadioRxPacket> get rxPackets => rx.stream;
   @override
+  Stream<Uint8List> get receivedFrames => frames.stream;
+  @override
   Future<void> refreshDeviceInfo() async {}
 
   List<int> get tunedTo => [
@@ -87,8 +94,26 @@ class _Radio extends MeshCoreConnector {
     bool waitForGenericAck = false,
   }) async {
     sent.add(data);
-    if (!connected || data[0] != cmdSetRadioParams) return;
+    if (!connected) return;
+    if (data[0] == cmdSendControlData) {
+      final tag = ByteData.sublistView(data).getUint32(3, Endian.little);
+      for (final (keyByte, type)
+          in answering[tunedKHz] ?? const <(int, int)>[]) {
+        final b = BytesBuilder()
+          ..add([pushCodeControlData, 20, 0xA0, 0])
+          ..addByte((controlSubtypeDiscoverResp << 4) | type)
+          ..addByte(8);
+        final t = ByteData(4)..setUint32(0, tag, Endian.little);
+        b
+          ..add(t.buffer.asUint8List())
+          ..add(List.filled(8, keyByte));
+        Timer(const Duration(milliseconds: 5), () => frames.add(b.toBytes()));
+      }
+      return;
+    }
+    if (data[0] != cmdSetRadioParams) return;
     final f = ByteData.sublistView(data).getUint32(1, Endian.little);
+    tunedKHz = f;
     for (final raw in onAir[f] ?? const <Uint8List>[]) {
       Timer(const Duration(milliseconds: 5), () {
         rx.add(
@@ -139,6 +164,8 @@ void main() {
       tripActive: () => trip,
       locate: () async => (lat: 41.3, lon: -73.1),
       settleTime: Duration.zero,
+      quickListen: const Duration(milliseconds: 40),
+      quickLinger: const Duration(milliseconds: 40),
     )..load();
   });
   tearDown(() {
@@ -167,7 +194,11 @@ void main() {
         advert(0xAB, 'Hilltop'),
         advert(0xCD, 'Valley'),
       ];
-      final results = await service.scan([usa, ms, quiet], dwell: dwell);
+      final results = await service.scan(
+        [usa, ms, quiet],
+        mode: ScanMode.thorough,
+        dwell: dwell,
+      );
 
       // The radio's own settings are skipped, then it's tuned back to them.
       expect(radio.tunedTo, [ms.freqKHz, quiet.freqKHz, usa.freqKHz]);
@@ -200,7 +231,11 @@ void main() {
   );
 
   test('cancelling stops at once and still restores the radio', () async {
-    final scan = service.scan([ms, quiet], dwell: const Duration(seconds: 5));
+    final scan = service.scan(
+      [ms, quiet],
+      mode: ScanMode.thorough,
+      dwell: const Duration(seconds: 5),
+    );
     await Future<void>.delayed(const Duration(milliseconds: 20));
     expect(service.running, isTrue);
     expect(service.current?.name, 'MediumSlow');
@@ -212,12 +247,19 @@ void main() {
 
   test('an SOS blocks a scan, and a trip stops one at the next step', () async {
     sos = true;
-    expect(await service.scan([ms], dwell: dwell), isEmpty);
+    expect(
+      await service.scan([ms], mode: ScanMode.thorough, dwell: dwell),
+      isEmpty,
+    );
     expect(radio.sent, isEmpty);
     expect(service.stoppedBy, ScanBlock.sos);
 
     sos = false;
-    final scan = service.scan([ms, quiet], dwell: dwell);
+    final scan = service.scan(
+      [ms, quiet],
+      mode: ScanMode.thorough,
+      dwell: dwell,
+    );
     await Future<void>.delayed(const Duration(milliseconds: 10));
     trip = true;
     await scan;
@@ -228,11 +270,11 @@ void main() {
   test('without a radio or its settings, nothing is sent', () async {
     radio.freq = null;
     expect(service.block, ScanBlock.noSettings);
-    await service.scan([ms], dwell: dwell);
+    await service.scan([ms], mode: ScanMode.thorough, dwell: dwell);
     radio.freq = 910525;
     radio.connected = false;
     expect(service.block, ScanBlock.noRadio);
-    await service.scan([ms], dwell: dwell);
+    await service.scan([ms], mode: ScanMode.thorough, dwell: dwell);
     expect(radio.sent, isEmpty);
   });
 
@@ -313,5 +355,68 @@ void main() {
     expect(ScanTarget.fromJson({...ms.toJson(), 'freqKHz': 'x'}), isNull);
     expect(ms.summary, '914.875 MHz · 250 kHz · SF10 · CR 4/5');
     expect(usa.summary, '910.525 MHz · 62.5 kHz · SF7 · CR 4/5');
+  });
+
+  test('a quick scan pings each network and logs who answered', () async {
+    radio.answering[ms.freqKHz] = [(0xAB, 2), (0xCD, 3)];
+    final results = await service.scan([ms, quiet]);
+    expect(radio.tunedTo, [ms.freqKHz, quiet.freqKHz, usa.freqKHz]);
+    final pings = radio.sent.where((f) => f[0] == cmdSendControlData);
+    expect(pings, hasLength(2));
+    final s = results.single;
+    expect(s.target.name, 'MediumSlow');
+    expect(s.packets, 2);
+    expect(s.bestSnr, 5);
+    expect(
+      s.nodes.map((n) => n.key),
+      unorderedEquals(['abababab', 'cdcdcdcd']),
+    );
+    expect(s.nodes.map((n) => n.type), unorderedEquals([2, 3]));
+  });
+
+  test('a quick scan names answering nodes from their adverts', () async {
+    radio.answering[ms.freqKHz] = [(0xAB, 2)];
+    radio.onAir[ms.freqKHz] = [advert(0xAB, 'Hilltop')];
+    final s = (await service.scan([ms])).single;
+    expect(s.nodes.single.name, 'Hilltop');
+  });
+
+  test('after the first finds, the default list is short', () async {
+    final first = service.suggestedTargets(countryCode: 'US');
+    expect(first.length, greaterThan(5));
+    service.debugSeed(
+      log: [
+        NetworkSighting(
+          target: ms,
+          at: DateTime.now(),
+          packets: 1,
+          bestSnr: 0,
+          bestRssi: -100,
+        ),
+      ],
+    );
+    final names = service
+        .suggestedTargets(countryCode: 'US')
+        .map((t) => t.name)
+        .toList();
+    // USA is the radio's own settings here, so only what was heard is left.
+    expect(names, ['MediumSlow']);
+    expect(service.suggestedTargets(countryCode: 'AU').map((t) => t.name), [
+      'MediumSlow',
+      'Australia',
+    ]);
+  });
+
+  test('estimates how long a scan takes', () {
+    final quick = NetworkScanService(radio);
+    expect(
+      quick.estimate(5, ScanMode.quick, const Duration(seconds: 45)),
+      const Duration(milliseconds: 44000),
+    );
+    expect(
+      quick.estimate(5, ScanMode.thorough, const Duration(seconds: 45)),
+      const Duration(seconds: 225),
+    );
+    quick.dispose();
   });
 }
