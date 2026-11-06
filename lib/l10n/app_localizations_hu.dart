@@ -6071,31 +6071,33 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldOps_send => 'Küldés';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS-továbbítás';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Átjátszó által nem továbbított SOS továbbítása';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Rádió firmware v1.16 vagy újabb szükséges';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Még nem továbbítottunk SOS-t';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-csomag továbbítva, utoljára $time',
+      one: '1 SOS-csomag továbbítva, utoljára $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Ha a rádió közvetlenül a küldőtől hall egy SOS-t, és kb. 15 másodpercen belül egyetlen átjátszó sem adja tovább, a NOTORYX még egyszer elküldi változatlanul, hogy eljusson egy olyan átjátszóhoz, amelyet te hallasz, a küldő viszont nem. Csak a saját csatornáidon lévő SOS-t továbbítja. Akkut és adásidőt használ, ezért alapból ki van kapcsolva.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Indulás előtt';

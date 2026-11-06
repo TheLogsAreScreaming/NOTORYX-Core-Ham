@@ -4179,5 +4179,11 @@
   "repeaterTools_toolsTitle": "Herramientas",
   "repeaterTools_regionSetupHint": "Busca el árbol de regiones de tu zona y copia sus comandos",
   "routes_failingOnly": "Solo rutas fallidas",
-  "routes_contactDetails": "Datos del contacto"
+  "routes_contactDetails": "Datos del contacto",
+  "sosRelay_title": "Reenvío de SOS",
+  "sosRelay_enable": "Reenviar SOS que ningún repetidor retransmitió",
+  "sosRelay_needsFirmware": "Requiere firmware de radio v1.16 o posterior",
+  "sosRelay_noneYet": "Aún no se ha reenviado ningún SOS",
+  "sosRelay_relayedCount": "{count, plural, =1{1 paquete SOS reenviado, el último a las {time}} other{{count} paquetes SOS reenviados, el último a las {time}}}",
+  "sosRelay_explainer": "Cuando tu radio oye un SOS directamente del remitente y ningún repetidor lo retransmite en unos 15 segundos, NOTORYX lo envía una vez más, sin cambios, para que llegue a un repetidor que tú oyes y el remitente no. Solo se reenvían SOS de tus canales. Gasta algo de batería y tiempo en el aire, por eso está desactivado por defecto."
 }

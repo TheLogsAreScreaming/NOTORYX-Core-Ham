@@ -4045,5 +4045,11 @@
   "repeaterTools_toolsTitle": "Hulpmiddelen",
   "repeaterTools_regionSetupHint": "Zoek de regioboom van je gebied en kopieer de opdrachten",
   "routes_failingOnly": "Alleen mislukte routes",
-  "routes_contactDetails": "Contactgegevens"
+  "routes_contactDetails": "Contactgegevens",
+  "sosRelay_title": "SOS doorgeven",
+  "sosRelay_enable": "SOS doorgeven die geen repeater doorgaf",
+  "sosRelay_needsFirmware": "Vereist radiofirmware v1.16 of nieuwer",
+  "sosRelay_noneYet": "Nog geen SOS doorgegeven",
+  "sosRelay_relayedCount": "{count, plural, =1{1 SOS-pakket doorgegeven, laatst om {time}} other{{count} SOS-pakketten doorgegeven, laatst om {time}}}",
+  "sosRelay_explainer": "Als je radio een SOS direct van de afzender hoort en geen repeater het binnen ongeveer 15 seconden doorgeeft, stuurt NOTORYX het nog één keer, ongewijzigd, zodat het een repeater bereikt die jij hoort maar de afzender niet. Alleen SOS in jouw kanalen worden doorgegeven. Kost wat batterij en zendtijd, dus standaard uit."
 }

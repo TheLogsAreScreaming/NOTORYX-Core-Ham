@@ -4045,5 +4045,11 @@
   "repeaterTools_toolsTitle": "Orodja",
   "repeaterTools_regionSetupHint": "Poiščite regijsko drevo za svoje območje in kopirajte njegove ukaze",
   "routes_failingOnly": "Samo neuspešne poti",
-  "routes_contactDetails": "Podrobnosti stika"
+  "routes_contactDetails": "Podrobnosti stika",
+  "sosRelay_title": "Posredovanje SOS",
+  "sosRelay_enable": "Posreduj SOS, ki jih ni posredoval noben repetitor",
+  "sosRelay_needsFirmware": "Zahteva vdelano programsko opremo radia v1.16 ali novejšo",
+  "sosRelay_noneYet": "Še ni bil posredovan noben SOS",
+  "sosRelay_relayedCount": "{count, plural, =1{Posredovan 1 paket SOS, nazadnje ob {time}} =2{Posredovana 2 paketa SOS, nazadnje ob {time}} few{Posredovani {count} paketi SOS, nazadnje ob {time}} other{Posredovanih {count} paketov SOS, nazadnje ob {time}}}",
+  "sosRelay_explainer": "Ko radio sliši SOS neposredno od pošiljatelja in ga noben repetitor ne posreduje v približno 15 sekundah, ga NOTORYX še enkrat pošlje nespremenjenega, da doseže repetitor, ki ga slišite vi, pošiljatelj pa ne. Posredujejo se le SOS v vaših kanalih. Porabi nekaj baterije in časa oddajanja, zato je privzeto izklopljeno."
 }

@@ -4179,5 +4179,11 @@
   "repeaterTools_toolsTitle": "Werkzeuge",
   "repeaterTools_regionSetupHint": "Finde den Regionsbaum deiner Gegend und kopiere seine Befehle",
   "routes_failingOnly": "Nur fehlgeschlagene Routen",
-  "routes_contactDetails": "Kontaktdetails"
+  "routes_contactDetails": "Kontaktdetails",
+  "sosRelay_title": "SOS-Weiterleitung",
+  "sosRelay_enable": "SOS weiterleiten, die kein Repeater übernommen hat",
+  "sosRelay_needsFirmware": "Benötigt Funkgeräte-Firmware v1.16 oder neuer",
+  "sosRelay_noneYet": "Noch kein SOS weitergeleitet",
+  "sosRelay_relayedCount": "{count, plural, =1{1 SOS-Paket weitergeleitet, zuletzt um {time}} other{{count} SOS-Pakete weitergeleitet, zuletzt um {time}}}",
+  "sosRelay_explainer": "Wenn dein Funkgerät ein SOS direkt vom Absender hört und es innerhalb von etwa 15 Sekunden kein Repeater weitergibt, sendet NOTORYX es unverändert noch einmal, damit es einen Repeater erreicht, den du hörst, der Absender aber nicht. Nur SOS in deinen Kanälen werden weitergeleitet. Kostet etwas Akku und Sendezeit, daher standardmäßig aus."
 }

@@ -4083,5 +4083,11 @@
   "repeaterTools_toolsTitle": "Eszközök",
   "repeaterTools_regionSetupHint": "Keresd meg a környéked régiófáját, és másold a parancsait",
   "routes_failingOnly": "Csak sikertelen útvonalak",
-  "routes_contactDetails": "Névjegy adatai"
+  "routes_contactDetails": "Névjegy adatai",
+  "sosRelay_title": "SOS-továbbítás",
+  "sosRelay_enable": "Átjátszó által nem továbbított SOS továbbítása",
+  "sosRelay_needsFirmware": "Rádió firmware v1.16 vagy újabb szükséges",
+  "sosRelay_noneYet": "Még nem továbbítottunk SOS-t",
+  "sosRelay_relayedCount": "{count, plural, =1{1 SOS-csomag továbbítva, utoljára {time}} other{{count} SOS-csomag továbbítva, utoljára {time}}}",
+  "sosRelay_explainer": "Ha a rádió közvetlenül a küldőtől hall egy SOS-t, és kb. 15 másodpercen belül egyetlen átjátszó sem adja tovább, a NOTORYX még egyszer elküldi változatlanul, hogy eljusson egy olyan átjátszóhoz, amelyet te hallasz, a küldő viszont nem. Csak a saját csatornáidon lévő SOS-t továbbítja. Akkut és adásidőt használ, ezért alapból ki van kapcsolva."
 }

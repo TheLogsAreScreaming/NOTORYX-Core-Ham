@@ -4050,5 +4050,11 @@
   "repeaterTools_toolsTitle": "工具",
   "repeaterTools_regionSetupHint": "查找你所在地区的区域树并复制其命令",
   "routes_failingOnly": "仅失败的路由",
-  "routes_contactDetails": "联系人详情"
+  "routes_contactDetails": "联系人详情",
+  "sosRelay_title": "SOS 转发",
+  "sosRelay_enable": "转发没有中继器转发的 SOS",
+  "sosRelay_needsFirmware": "需要电台固件 v1.16 或更新版本",
+  "sosRelay_noneYet": "尚未转发任何 SOS",
+  "sosRelay_relayedCount": "{count, plural, other{已转发 {count} 个 SOS 数据包，最近一次在 {time}}}",
+  "sosRelay_explainer": "当电台直接从发送者听到 SOS，且约 15 秒内没有中继器转发时，NOTORYX 会原样再发送一次，让它到达你能听到而发送者听不到的中继器。只转发你所拥有频道中的 SOS。会消耗电量和发射时间，因此默认关闭。"
 }

@@ -4179,5 +4179,11 @@
   "repeaterTools_toolsTitle": "ツール",
   "repeaterTools_regionSetupHint": "地域のリージョンツリーを調べてコマンドをコピーします",
   "routes_failingOnly": "失敗したルートのみ",
-  "routes_contactDetails": "連絡先の詳細"
+  "routes_contactDetails": "連絡先の詳細",
+  "sosRelay_title": "SOS 中継",
+  "sosRelay_enable": "リピーターが中継しなかった SOS を中継する",
+  "sosRelay_needsFirmware": "無線機ファームウェア v1.16 以降が必要です",
+  "sosRelay_noneYet": "まだ SOS を中継していません",
+  "sosRelay_relayedCount": "{count, plural, other{SOS パケットを {count} 件中継、最終 {time}}}",
+  "sosRelay_explainer": "送信者から直接 SOS を受信し、約 15 秒以内にどのリピーターも中継しなかった場合、NOTORYX がそれをそのまま 1 回だけ再送信し、送信者には届かないがあなたには届くリピーターへ届けます。中継するのは、あなたが持っているチャンネルの SOS だけです。バッテリーと送信時間を使うため、既定ではオフです。"
 }

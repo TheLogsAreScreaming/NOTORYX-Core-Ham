@@ -6069,31 +6069,34 @@ class AppLocalizationsSk extends AppLocalizations {
   String get fieldOps_send => 'Odoslať';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Preposielanie SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Preposielať SOS, ktoré nepreposlal žiadny opakovač';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Vyžaduje firmvér rádia v1.16 alebo novší';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Zatiaľ nebolo preposlané žiadne SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Preposlaných $count SOS paketov, naposledy o $time',
+      few: 'Preposlané $count SOS pakety, naposledy o $time',
+      one: 'Preposlaný 1 SOS paket, naposledy o $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Keď rádio počuje SOS priamo od odosielateľa a žiadny opakovač ho do približne 15 sekúnd nepreposlal, NOTORYX ho pošle ešte raz, nezmenené, aby sa dostalo k opakovaču, ktorý počujete vy, ale odosielateľ nie. Preposielajú sa len SOS vo vašich kanáloch. Spotrebúva batériu a čas vysielania, preto je predvolene vypnuté.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Pred odchodom';

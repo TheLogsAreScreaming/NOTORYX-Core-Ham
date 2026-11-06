@@ -4045,5 +4045,11 @@
   "repeaterTools_toolsTitle": "Nástroje",
   "repeaterTools_regionSetupHint": "Vyhľadajte strom regiónov pre svoju oblasť a skopírujte jeho príkazy",
   "routes_failingOnly": "Iba neúspešné trasy",
-  "routes_contactDetails": "Údaje kontaktu"
+  "routes_contactDetails": "Údaje kontaktu",
+  "sosRelay_title": "Preposielanie SOS",
+  "sosRelay_enable": "Preposielať SOS, ktoré nepreposlal žiadny opakovač",
+  "sosRelay_needsFirmware": "Vyžaduje firmvér rádia v1.16 alebo novší",
+  "sosRelay_noneYet": "Zatiaľ nebolo preposlané žiadne SOS",
+  "sosRelay_relayedCount": "{count, plural, =1{Preposlaný 1 SOS paket, naposledy o {time}} few{Preposlané {count} SOS pakety, naposledy o {time}} other{Preposlaných {count} SOS paketov, naposledy o {time}}}",
+  "sosRelay_explainer": "Keď rádio počuje SOS priamo od odosielateľa a žiadny opakovač ho do približne 15 sekúnd nepreposlal, NOTORYX ho pošle ešte raz, nezmenené, aby sa dostalo k opakovaču, ktorý počujete vy, ale odosielateľ nie. Preposielajú sa len SOS vo vašich kanáloch. Spotrebúva batériu a čas vysielania, preto je predvolene vypnuté."
 }
