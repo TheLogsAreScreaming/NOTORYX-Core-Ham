@@ -9388,4 +9388,54 @@ class AppLocalizationsSk extends AppLocalizations {
   String networks_estimate(String time) {
     return 'asi $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return 'Vybrané: $count';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Vybrať všetko';
+
+  @override
+  String get discoveredContacts_addSelected => 'Pridať vybrané';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Pridať všetky zobrazené ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Pridať kontakty ($count)?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Rádio má miesto ešte pre $room kontaktov.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Rádio má miesto ešte pre $room kontaktov, preto sa pridá len prvých $room z $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Pridáva sa $done z $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Pridané kontakty: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Pridané kontakty: $added. Nepridané: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Zoznam kontaktov rádia je plný. Najprv odstráňte niektoré kontakty.';
 }

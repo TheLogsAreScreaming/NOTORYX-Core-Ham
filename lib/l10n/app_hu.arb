@@ -4052,5 +4052,16 @@
   "networks_modeThorough": "Alapos",
   "networks_modeQuickHint": "Minden hálózaton küld egy rövid, nulla ugrásos pinget, és néhány másodpercig hallgat. Megtalálja a hatótávon belüli átjátszós hálózatokat.",
   "networks_modeThoroughHint": "Csak hallgat, hosszabban minden hálózaton. Semmit nem küld, és ha valaki ad, átjátszó nélküli hálózatokat is talál.",
-  "networks_estimate": "kb. {time}"
+  "networks_estimate": "kb. {time}",
+  "discoveredContacts_selected": "{count} kiválasztva",
+  "discoveredContacts_selectAll": "Összes kijelölése",
+  "discoveredContacts_addSelected": "Kijelöltek hozzáadása",
+  "discoveredContacts_addAllShown": "Összes látható hozzáadása ({count})",
+  "discoveredContacts_addManyTitle": "Hozzáadsz {count} névjegyet?",
+  "discoveredContacts_roomLeft": "A rádión még {room} névjegynek van hely.",
+  "discoveredContacts_roomLimit": "A rádión még {room} névjegynek van hely, ezért csak az első {room} kerül hozzáadásra a(z) {count} közül.",
+  "discoveredContacts_adding": "Hozzáadás: {done}/{total}…",
+  "discoveredContacts_addedMany": "Hozzáadott névjegyek: {count}",
+  "discoveredContacts_addedSome": "Hozzáadott névjegyek: {added}. Nem sikerült: {failed}.",
+  "discoveredContacts_radioFull": "A rádió névjegylistája megtelt. Előbb törölj néhány névjegyet."
 }

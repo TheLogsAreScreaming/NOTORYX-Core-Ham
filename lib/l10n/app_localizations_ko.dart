@@ -8974,4 +8974,54 @@ class AppLocalizationsKo extends AppLocalizations {
   String networks_estimate(String time) {
     return '약 $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count개 선택됨';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => '모두 선택';
+
+  @override
+  String get discoveredContacts_addSelected => '선택 항목 추가';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return '표시된 항목 모두 추가 ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '연락처 $count개를 추가할까요?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return '무전기에 연락처를 $room개 더 추가할 수 있습니다.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return '무전기에 $room개만 더 추가할 수 있어 $count개 중 처음 $room개만 추가됩니다.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return '$total개 중 $done개 추가 중…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return '추가된 연락처: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return '추가된 연락처: $added. 추가하지 못함: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      '무전기의 연락처 목록이 가득 찼습니다. 먼저 일부를 삭제하세요.';
 }

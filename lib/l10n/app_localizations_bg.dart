@@ -9397,4 +9397,54 @@ class AppLocalizationsBg extends AppLocalizations {
   String networks_estimate(String time) {
     return 'около $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return 'Избрани: $count';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Избери всички';
+
+  @override
+  String get discoveredContacts_addSelected => 'Добави избраните';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Добави всички показани ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Да добавя ли $count контакта?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Радиото има място за още $room контакта.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Радиото има място за още $room контакта, затова ще бъдат добавени само първите $room от $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Добавяне $done от $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Добавени контакти: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Добавени контакти: $added. Недобавени: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Списъкът с контакти на радиото е пълен. Първо премахнете някои.';
 }

@@ -9402,4 +9402,54 @@ class AppLocalizationsHu extends AppLocalizations {
   String networks_estimate(String time) {
     return 'kb. $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count kiválasztva';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Összes kijelölése';
+
+  @override
+  String get discoveredContacts_addSelected => 'Kijelöltek hozzáadása';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Összes látható hozzáadása ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Hozzáadsz $count névjegyet?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'A rádión még $room névjegynek van hely.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'A rádión még $room névjegynek van hely, ezért csak az első $room kerül hozzáadásra a(z) $count közül.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Hozzáadás: $done/$total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Hozzáadott névjegyek: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Hozzáadott névjegyek: $added. Nem sikerült: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'A rádió névjegylistája megtelt. Előbb törölj néhány névjegyet.';
 }

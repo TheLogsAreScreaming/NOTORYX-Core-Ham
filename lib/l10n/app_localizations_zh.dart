@@ -8772,4 +8772,53 @@ class AppLocalizationsZh extends AppLocalizations {
   String networks_estimate(String time) {
     return '约 $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '已选择 $count 个';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => '全选';
+
+  @override
+  String get discoveredContacts_addSelected => '添加所选';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return '添加全部显示项（$count）';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '添加 $count 个联系人？';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return '电台还能再添加 $room 个联系人。';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return '电台只能再添加 $room 个联系人，因此 $count 个中只会添加前 $room 个。';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return '正在添加 $done/$total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return '已添加联系人：$count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return '已添加联系人：$added。未能添加：$failed。';
+  }
+
+  @override
+  String get discoveredContacts_radioFull => '电台的联系人列表已满。请先删除一些联系人。';
 }

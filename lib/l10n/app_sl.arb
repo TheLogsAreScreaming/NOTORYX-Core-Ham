@@ -4014,5 +4014,16 @@
   "networks_modeThorough": "Temeljito",
   "networks_modeQuickHint": "V vsakem omrežju pošlje en kratek ping brez posredovanja in posluša nekaj sekund. Najde omrežja z repetitorjem v dosegu.",
   "networks_modeThoroughHint": "Samo posluša, dlje v vsakem omrežju. Ničesar ne pošlje in najde tudi omrežja brez repetitorja v dosegu, če kdo oddaja.",
-  "networks_estimate": "približno {time}"
+  "networks_estimate": "približno {time}",
+  "discoveredContacts_selected": "Izbrano: {count}",
+  "discoveredContacts_selectAll": "Izberi vse",
+  "discoveredContacts_addSelected": "Dodaj izbrane",
+  "discoveredContacts_addAllShown": "Dodaj vse prikazane ({count})",
+  "discoveredContacts_addManyTitle": "Dodam stike ({count})?",
+  "discoveredContacts_roomLeft": "Radio ima prostor še za {room} stikov.",
+  "discoveredContacts_roomLimit": "Radio ima prostor še za {room} stikov, zato bo dodanih le prvih {room} od {count}.",
+  "discoveredContacts_adding": "Dodajanje {done} od {total}…",
+  "discoveredContacts_addedMany": "Dodani stiki: {count}",
+  "discoveredContacts_addedSome": "Dodani stiki: {added}. Ni dodanih: {failed}.",
+  "discoveredContacts_radioFull": "Seznam stikov radia je poln. Najprej odstranite nekaj stikov."
 }

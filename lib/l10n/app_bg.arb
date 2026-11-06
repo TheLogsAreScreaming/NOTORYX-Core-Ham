@@ -4014,5 +4014,16 @@
   "networks_modeThorough": "Подробно",
   "networks_modeQuickHint": "Изпраща един кратък пинг с нула скока във всяка мрежа и слуша няколко секунди. Намира мрежи с ретранслатор в обхват.",
   "networks_modeThoroughHint": "Само слуша, по-дълго във всяка мрежа. Не изпраща нищо и намира и мрежи без ретранслатор в обхват, ако някой предава.",
-  "networks_estimate": "около {time}"
+  "networks_estimate": "около {time}",
+  "discoveredContacts_selected": "Избрани: {count}",
+  "discoveredContacts_selectAll": "Избери всички",
+  "discoveredContacts_addSelected": "Добави избраните",
+  "discoveredContacts_addAllShown": "Добави всички показани ({count})",
+  "discoveredContacts_addManyTitle": "Да добавя ли {count} контакта?",
+  "discoveredContacts_roomLeft": "Радиото има място за още {room} контакта.",
+  "discoveredContacts_roomLimit": "Радиото има място за още {room} контакта, затова ще бъдат добавени само първите {room} от {count}.",
+  "discoveredContacts_adding": "Добавяне {done} от {total}…",
+  "discoveredContacts_addedMany": "Добавени контакти: {count}",
+  "discoveredContacts_addedSome": "Добавени контакти: {added}. Недобавени: {failed}.",
+  "discoveredContacts_radioFull": "Списъкът с контакти на радиото е пълен. Първо премахнете някои."
 }

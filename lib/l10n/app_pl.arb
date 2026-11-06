@@ -4052,5 +4052,16 @@
   "networks_modeThorough": "Dokładne",
   "networks_modeQuickHint": "Wysyła w każdej sieci jeden krótki ping bez przekazywania i nasłuchuje kilka sekund. Znajduje sieci z przemiennikiem w zasięgu.",
   "networks_modeThoroughHint": "Tylko nasłuchuje, dłużej w każdej sieci. Nic nie wysyła i znajduje też sieci bez przemiennika w zasięgu, jeśli ktoś nadaje.",
-  "networks_estimate": "około {time}"
+  "networks_estimate": "około {time}",
+  "discoveredContacts_selected": "Zaznaczono: {count}",
+  "discoveredContacts_selectAll": "Zaznacz wszystko",
+  "discoveredContacts_addSelected": "Dodaj zaznaczone",
+  "discoveredContacts_addAllShown": "Dodaj wszystkie widoczne ({count})",
+  "discoveredContacts_addManyTitle": "Dodać kontakty ({count})?",
+  "discoveredContacts_roomLeft": "Radio ma miejsce na jeszcze {room} kontaktów.",
+  "discoveredContacts_roomLimit": "Radio ma miejsce na jeszcze {room} kontaktów, więc zostanie dodanych tylko pierwszych {room} z {count}.",
+  "discoveredContacts_adding": "Dodawanie {done} z {total}…",
+  "discoveredContacts_addedMany": "Dodane kontakty: {count}",
+  "discoveredContacts_addedSome": "Dodane kontakty: {added}. Niedodane: {failed}.",
+  "discoveredContacts_radioFull": "Lista kontaktów radia jest pełna. Najpierw usuń część kontaktów."
 }

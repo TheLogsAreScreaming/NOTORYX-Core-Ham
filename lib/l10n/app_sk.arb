@@ -4014,5 +4014,16 @@
   "networks_modeThorough": "Dôkladné",
   "networks_modeQuickHint": "V každej sieti pošle jeden krátky ping bez preposielania a niekoľko sekúnd počúva. Nájde siete s opakovačom v dosahu.",
   "networks_modeThoroughHint": "Iba počúva, dlhšie v každej sieti. Nič neposiela a nájde aj siete bez opakovača v dosahu, ak niekto vysiela.",
-  "networks_estimate": "asi {time}"
+  "networks_estimate": "asi {time}",
+  "discoveredContacts_selected": "Vybrané: {count}",
+  "discoveredContacts_selectAll": "Vybrať všetko",
+  "discoveredContacts_addSelected": "Pridať vybrané",
+  "discoveredContacts_addAllShown": "Pridať všetky zobrazené ({count})",
+  "discoveredContacts_addManyTitle": "Pridať kontakty ({count})?",
+  "discoveredContacts_roomLeft": "Rádio má miesto ešte pre {room} kontaktov.",
+  "discoveredContacts_roomLimit": "Rádio má miesto ešte pre {room} kontaktov, preto sa pridá len prvých {room} z {count}.",
+  "discoveredContacts_adding": "Pridáva sa {done} z {total}…",
+  "discoveredContacts_addedMany": "Pridané kontakty: {count}",
+  "discoveredContacts_addedSome": "Pridané kontakty: {added}. Nepridané: {failed}.",
+  "discoveredContacts_radioFull": "Zoznam kontaktov rádia je plný. Najprv odstráňte niektoré kontakty."
 }

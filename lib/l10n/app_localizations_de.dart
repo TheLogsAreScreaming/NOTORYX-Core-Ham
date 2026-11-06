@@ -9426,4 +9426,54 @@ class AppLocalizationsDe extends AppLocalizations {
   String networks_estimate(String time) {
     return 'etwa $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count ausgewählt';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Alle auswählen';
+
+  @override
+  String get discoveredContacts_addSelected => 'Auswahl hinzufügen';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Alle angezeigten hinzufügen ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '$count Kontakte hinzufügen?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Dein Funkgerät hat Platz für $room weitere Kontakte.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Dein Funkgerät hat Platz für $room weitere Kontakte, daher werden nur die ersten $room von $count hinzugefügt.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Füge $done von $total hinzu…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Kontakte hinzugefügt: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Kontakte hinzugefügt: $added. Nicht hinzugefügt: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Die Kontaktliste deines Funkgeräts ist voll. Entferne zuerst einige Kontakte.';
 }

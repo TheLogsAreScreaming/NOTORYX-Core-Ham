@@ -4014,5 +4014,16 @@
   "networks_modeThorough": "Grondig",
   "networks_modeQuickHint": "Stuurt op elk netwerk één korte zero-hop-ping en luistert een paar seconden. Vindt netwerken met een repeater binnen bereik.",
   "networks_modeThoroughHint": "Luistert alleen, langer per netwerk. Verstuurt niets en vindt ook netwerken zonder repeater binnen bereik als iemand zendt.",
-  "networks_estimate": "ongeveer {time}"
+  "networks_estimate": "ongeveer {time}",
+  "discoveredContacts_selected": "{count} geselecteerd",
+  "discoveredContacts_selectAll": "Alles selecteren",
+  "discoveredContacts_addSelected": "Selectie toevoegen",
+  "discoveredContacts_addAllShown": "Alle getoonde toevoegen ({count})",
+  "discoveredContacts_addManyTitle": "{count} contacten toevoegen?",
+  "discoveredContacts_roomLeft": "Je radio heeft ruimte voor nog {room} contacten.",
+  "discoveredContacts_roomLimit": "Je radio heeft ruimte voor nog {room} contacten, dus alleen de eerste {room} van {count} worden toegevoegd.",
+  "discoveredContacts_adding": "{done} van {total} toevoegen…",
+  "discoveredContacts_addedMany": "Contacten toegevoegd: {count}",
+  "discoveredContacts_addedSome": "Contacten toegevoegd: {added}. Niet toegevoegd: {failed}.",
+  "discoveredContacts_radioFull": "De contactenlijst van je radio is vol. Verwijder eerst wat contacten."
 }

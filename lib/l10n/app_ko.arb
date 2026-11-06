@@ -4148,5 +4148,16 @@
   "networks_modeThorough": "꼼꼼하게",
   "networks_modeQuickHint": "각 네트워크에 제로홉 핑을 한 번 보내고 몇 초간 듣습니다. 범위 안에 리피터가 있는 네트워크를 찾습니다.",
   "networks_modeThoroughHint": "듣기만 하며 네트워크마다 더 오래 듣습니다. 아무것도 보내지 않으며, 누군가 송신하면 리피터가 없는 네트워크도 찾습니다.",
-  "networks_estimate": "약 {time}"
+  "networks_estimate": "약 {time}",
+  "discoveredContacts_selected": "{count}개 선택됨",
+  "discoveredContacts_selectAll": "모두 선택",
+  "discoveredContacts_addSelected": "선택 항목 추가",
+  "discoveredContacts_addAllShown": "표시된 항목 모두 추가 ({count})",
+  "discoveredContacts_addManyTitle": "연락처 {count}개를 추가할까요?",
+  "discoveredContacts_roomLeft": "무전기에 연락처를 {room}개 더 추가할 수 있습니다.",
+  "discoveredContacts_roomLimit": "무전기에 {room}개만 더 추가할 수 있어 {count}개 중 처음 {room}개만 추가됩니다.",
+  "discoveredContacts_adding": "{total}개 중 {done}개 추가 중…",
+  "discoveredContacts_addedMany": "추가된 연락처: {count}",
+  "discoveredContacts_addedSome": "추가된 연락처: {added}. 추가하지 못함: {failed}.",
+  "discoveredContacts_radioFull": "무전기의 연락처 목록이 가득 찼습니다. 먼저 일부를 삭제하세요."
 }

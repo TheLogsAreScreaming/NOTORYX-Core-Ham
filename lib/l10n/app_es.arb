@@ -4148,5 +4148,16 @@
   "networks_modeThorough": "Completo",
   "networks_modeQuickHint": "Envía un ping corto de salto cero en cada red y escucha unos segundos. Encuentra redes con un repetidor al alcance.",
   "networks_modeThoroughHint": "Solo escucha, más tiempo en cada red. No envía nada y también encuentra redes sin repetidor al alcance si alguien transmite.",
-  "networks_estimate": "unos {time}"
+  "networks_estimate": "unos {time}",
+  "discoveredContacts_selected": "{count} seleccionados",
+  "discoveredContacts_selectAll": "Seleccionar todo",
+  "discoveredContacts_addSelected": "Añadir seleccionados",
+  "discoveredContacts_addAllShown": "Añadir todos los mostrados ({count})",
+  "discoveredContacts_addManyTitle": "¿Añadir {count} contactos?",
+  "discoveredContacts_roomLeft": "Tu radio tiene espacio para {room} contactos más.",
+  "discoveredContacts_roomLimit": "Tu radio tiene espacio para {room} contactos más, así que solo se añadirán los primeros {room} de {count}.",
+  "discoveredContacts_adding": "Añadiendo {done} de {total}…",
+  "discoveredContacts_addedMany": "Contactos añadidos: {count}",
+  "discoveredContacts_addedSome": "Contactos añadidos: {added}. No añadidos: {failed}.",
+  "discoveredContacts_radioFull": "La lista de contactos de tu radio está llena. Quita algunos contactos primero."
 }

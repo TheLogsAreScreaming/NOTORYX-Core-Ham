@@ -85,6 +85,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 - **Quick messages:** ready-made replies like "On my way" or "At camp" from the message box menu. Edit the list to make it yours.
 - **Direct messages:** stop retrying a message that's still being sent, and a note in a new chat that the other person has to add you as a contact before they can read and answer.
 - **Share your position or a contact** from the message box. Received contacts can be added in one tap, and **Add contact from clipboard** accepts links, adverts (even wrapped across lines) and bare public keys.
+- **Discovered contacts:** add one with a tap, or long-press to pick several (or **Add all shown**) and add them together, up to the room left on your radio.
 - **Region tags:** a channel post scoped to a region shows it next to the time, for example **📍 ct**.
 - **Link previews** (off by default, since fetching one tells the site your IP address).
 - **Area-limited channel messages** that stay within a radius of you. These need radios running flood-corridor firmware.

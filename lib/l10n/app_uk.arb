@@ -3994,5 +3994,16 @@
   "networks_modeThorough": "Детально",
   "networks_modeQuickHint": "Надсилає в кожній мережі один короткий пінг без ретрансляції й слухає кілька секунд. Знаходить мережі з ретранслятором поблизу.",
   "networks_modeThoroughHint": "Лише слухає, довше в кожній мережі. Нічого не надсилає й знаходить мережі без ретранслятора поблизу, якщо хтось передає.",
-  "networks_estimate": "близько {time}"
+  "networks_estimate": "близько {time}",
+  "discoveredContacts_selected": "Вибрано: {count}",
+  "discoveredContacts_selectAll": "Вибрати все",
+  "discoveredContacts_addSelected": "Додати вибрані",
+  "discoveredContacts_addAllShown": "Додати всі показані ({count})",
+  "discoveredContacts_addManyTitle": "Додати контакти ({count})?",
+  "discoveredContacts_roomLeft": "У радіо є місце ще для {room} контактів.",
+  "discoveredContacts_roomLimit": "У радіо є місце ще для {room} контактів, тому буде додано лише перші {room} з {count}.",
+  "discoveredContacts_adding": "Додавання {done} з {total}…",
+  "discoveredContacts_addedMany": "Додано контактів: {count}",
+  "discoveredContacts_addedSome": "Додано контактів: {added}. Не додано: {failed}.",
+  "discoveredContacts_radioFull": "Список контактів радіо заповнений. Спочатку видаліть кілька контактів."
 }

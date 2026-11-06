@@ -15768,6 +15768,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'about {time}'**
   String networks_estimate(String time);
+
+  /// No description provided for @discoveredContacts_selected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} selected'**
+  String discoveredContacts_selected(int count);
+
+  /// No description provided for @discoveredContacts_selectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Select all'**
+  String get discoveredContacts_selectAll;
+
+  /// No description provided for @discoveredContacts_addSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Add selected'**
+  String get discoveredContacts_addSelected;
+
+  /// No description provided for @discoveredContacts_addAllShown.
+  ///
+  /// In en, this message translates to:
+  /// **'Add all shown ({count})'**
+  String discoveredContacts_addAllShown(int count);
+
+  /// No description provided for @discoveredContacts_addManyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {count} contacts?'**
+  String discoveredContacts_addManyTitle(int count);
+
+  /// No description provided for @discoveredContacts_roomLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio has room for {room} more contacts.'**
+  String discoveredContacts_roomLeft(int room);
+
+  /// No description provided for @discoveredContacts_roomLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio has room for {room} more contacts, so only the first {room} of {count} will be added.'**
+  String discoveredContacts_roomLimit(int room, int count);
+
+  /// No description provided for @discoveredContacts_adding.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding {done} of {total}…'**
+  String discoveredContacts_adding(int done, int total);
+
+  /// No description provided for @discoveredContacts_addedMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts added: {count}'**
+  String discoveredContacts_addedMany(int count);
+
+  /// No description provided for @discoveredContacts_addedSome.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts added: {added}. Not added: {failed}.'**
+  String discoveredContacts_addedSome(int added, int failed);
+
+  /// No description provided for @discoveredContacts_radioFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio\'s contact list is full. Remove some contacts first.'**
+  String get discoveredContacts_radioFull;
 }
 
 class _AppLocalizationsDelegate
