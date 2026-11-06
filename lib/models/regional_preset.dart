@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:latlong2/latlong.dart';
 
-/// The radio settings a local mesh has agreed on, from the shared
-/// `regional_presets.json` list.
+/// The radio settings a local mesh uses, from the shared
+/// `regional_presets.json` list. Entries are either hand-made (agreed by the
+/// local group) or worked out from the public MeshCore map ([fromMap]).
 class RegionalPreset {
   final String id;
   final String name;
@@ -16,12 +17,23 @@ class RegionalPreset {
   /// 5–8, meaning 4/5–4/8.
   final int codingRate;
 
-  /// Bytes per hop in paths: 1, 2 or 3 (path hash mode 0, 1 or 2).
-  final int pathHashBytes;
+  /// Bytes per hop in paths: 1, 2 or 3 (path hash mode 0, 1 or 2). Null
+  /// when the area's path hash isn't known (map areas): the radio's own
+  /// setting is then left alone.
+  final int? pathHashBytes;
 
   /// When the area last changed its settings, as YYYY-MM-DD.
   final String updated;
   final String notes;
+
+  /// Where the entry came from: null for hand-made, 'map' for areas worked
+  /// out from what node owners report on the MeshCore map.
+  final String? source;
+
+  /// For map areas: how many nodes on the map use these settings.
+  final int? nodeCount;
+
+  bool get fromMap => source == 'map';
 
   const RegionalPreset({
     required this.id,
@@ -35,10 +47,14 @@ class RegionalPreset {
     required this.pathHashBytes,
     required this.updated,
     this.notes = '',
+    this.source,
+    this.nodeCount,
   });
 
   /// Reads one entry, or null if any value is missing or out of range.
-  static RegionalPreset? fromJson(Map<String, dynamic> j) {
+  /// [version] is the document's: from version 2 a missing `pathHashBytes`
+  /// means "unknown" instead of 1.
+  static RegionalPreset? fromJson(Map<String, dynamic> j, {int version = 1}) {
     try {
       final center = (j['center'] as List).cast<num>();
       final p = RegionalPreset(
@@ -50,10 +66,15 @@ class RegionalPreset {
         bandwidthKHz: (j['bandwidthKHz'] as num).toDouble(),
         spreadingFactor: (j['spreadingFactor'] as num).toInt(),
         codingRate: (j['codingRate'] as num).toInt(),
-        pathHashBytes: (j['pathHashBytes'] as num? ?? 1).toInt(),
+        pathHashBytes: version >= 2
+            ? (j['pathHashBytes'] as num?)?.toInt()
+            : (j['pathHashBytes'] as num? ?? 1).toInt(),
         updated: j['updated'] as String,
         notes: j['notes'] as String? ?? '',
+        source: j['source'] as String?,
+        nodeCount: (j['nodes'] as num?)?.toInt(),
       );
+      final hash = p.pathHashBytes;
       final valid =
           p.id.isNotEmpty &&
           p.frequencyMHz >= 137 &&
@@ -74,8 +95,7 @@ class RegionalPreset {
           p.spreadingFactor <= 12 &&
           p.codingRate >= 5 &&
           p.codingRate <= 8 &&
-          p.pathHashBytes >= 1 &&
-          p.pathHashBytes <= 3 &&
+          (hash == null || (hash >= 1 && hash <= 3)) &&
           p.radiusKm > 0 &&
           RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(p.updated);
       return valid ? p : null;
@@ -84,9 +104,11 @@ class RegionalPreset {
     }
   }
 
-  /// "919.500 MHz · BW500 · SF10 · CR5 · 2-byte paths"
+  /// "919.500 MHz · BW500 · SF10 · CR5 · 2-byte paths" (no path part when
+  /// the path hash isn't known).
   String get summary =>
-      '${frequencyMHz.toStringAsFixed(3)} MHz · BW${_num(bandwidthKHz)} · SF$spreadingFactor · CR$codingRate · $pathHashBytes-byte paths';
+      '${frequencyMHz.toStringAsFixed(3)} MHz · BW${_num(bandwidthKHz)} · SF$spreadingFactor · CR$codingRate'
+      '${pathHashBytes == null ? '' : ' · $pathHashBytes-byte paths'}';
 
   /// Identifies these exact settings, so a dismissal or "seen" mark lapses
   /// when the area changes them.
@@ -114,7 +136,9 @@ class RegionalPreset {
     if (radio.codingRate != null && radio.codingRate != codingRate) {
       out.add('Coding rate 4/${radio.codingRate} → 4/$codingRate');
     }
-    if (radio.pathHashBytes != null && radio.pathHashBytes != pathHashBytes) {
+    if (pathHashBytes != null &&
+        radio.pathHashBytes != null &&
+        radio.pathHashBytes != pathHashBytes) {
       out.add('Path hash ${radio.pathHashBytes}-byte → $pathHashBytes-byte');
     }
     return out;
@@ -137,15 +161,18 @@ class RadioSettingsState {
   });
 }
 
-/// Reads a `regional_presets.json` document, skipping invalid entries.
-/// Returns an empty list when the document itself is unreadable.
+/// Reads a `regional_presets.json` document (version 1 or 2), skipping
+/// invalid entries. Returns an empty list when the document itself is
+/// unreadable or from a newer, unknown version.
 List<RegionalPreset> parseRegionalPresets(String source) {
   try {
     final doc = jsonDecode(source) as Map<String, dynamic>;
-    if (doc['version'] != 1) return const [];
+    final version = doc['version'];
+    if (version != 1 && version != 2) return const [];
     return [
       for (final r in doc['regions'] as List)
-        if (r is Map<String, dynamic>) ?RegionalPreset.fromJson(r),
+        if (r is Map<String, dynamic>)
+          ?RegionalPreset.fromJson(r, version: version as int),
     ];
   } catch (_) {
     return const [];
