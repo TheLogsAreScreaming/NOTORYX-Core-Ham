@@ -4030,5 +4030,22 @@
   "networks_name": "Név",
   "networks_invalid": "Ellenőrizd a beállításokat: kívül esnek azon, amit a MeshCore rádiók elfogadnak.",
   "networks_nodesHeard": "Hallott csomópontok",
-  "chat_resendNeedsRadio": "Nincs elküldve: csatlakoztasd a rádiót, majd próbáld újra. Az üzenet megmarad."
+  "chat_resendNeedsRadio": "Nincs elküldve: csatlakoztasd a rádiót, majd próbáld újra. Az üzenet megmarad.",
+  "quick_title": "Gyorsüzenetek",
+  "quick_ok": "OK",
+  "quick_onMyWay": "Úton vagyok",
+  "quick_atCamp": "A táborban",
+  "quick_runningLate": "Késem",
+  "quick_needHelp": "Segítség kell",
+  "quick_copyThat": "Vettem",
+  "quick_empty": "Nincsenek gyorsüzenetek. Koppints a Szerkesztésre egy hozzáadásához.",
+  "quick_add": "Új gyorsüzenet",
+  "quick_reset": "Alapértelmezések visszaállítása",
+  "chat_stopRetrying": "Újrapróbálás leállítása",
+  "chat_addFirstBanner": "{name} csak azután tudja olvasni és megválaszolni a közvetlen üzeneteidet, hogy felvett névjegyként. Ha még nem tette, küldd el a hirdetésed vagy oszd meg a névjegyed.",
+  "map_goToMyPosition": "Ugrás a pozíciómra",
+  "map_positionUnavailable": "A pozíciód nem érhető el. Kapcsold be a helymeghatározást, vagy állítsd be a rádió pozícióját.",
+  "contact_forgetAdvert": "Utolsó hirdetés elfelejtése",
+  "contact_forgetAdvertHint": "Ha a csomópont hirdetései az órája visszaállítása után nem frissülnek, az Utolsó hirdetés elfelejtése átengedi a következőt.",
+  "contact_forgetAdvertDone": "Kész. A csomópont következő hirdetése el lesz fogadva."
 }

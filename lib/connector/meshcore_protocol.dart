@@ -776,6 +776,7 @@ Uint8List buildUpdateContactPathFrame(
   double? lat,
   double? lon,
   DateTime? lastModified,
+  int? lastAdvertTimestamp,
 }) {
   final writer = BufferWriter();
   writer.writeByte(cmdAddUpdateContact);
@@ -789,8 +790,10 @@ Uint8List buildUpdateContactPathFrame(
   // Name (32 bytes, null-padded)
   writer.writeCString(name, maxNameSize);
 
-  // Timestamp
-  final timestamp = DateTime.now().millisecondsSinceEpoch ~/ 1000;
+  // The contact's last advert time. The radio ignores an advert that is not
+  // newer than this, so 0 lets the next advert through whatever its clock.
+  final timestamp =
+      lastAdvertTimestamp ?? DateTime.now().millisecondsSinceEpoch ~/ 1000;
   writer.writeUInt32LE(timestamp);
 
   // Optional [Lat x4, Lon x4][timestamp x4] tail per the doc comment above.

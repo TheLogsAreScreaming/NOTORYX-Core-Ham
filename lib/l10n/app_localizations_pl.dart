@@ -9372,4 +9372,61 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Nie wysłano: podłącz radio i spróbuj ponownie. Wiadomość została zachowana.';
+
+  @override
+  String get quick_title => 'Szybkie wiadomości';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Jestem w drodze';
+
+  @override
+  String get quick_atCamp => 'W obozie';
+
+  @override
+  String get quick_runningLate => 'Spóźnię się';
+
+  @override
+  String get quick_needHelp => 'Potrzebuję pomocy';
+
+  @override
+  String get quick_copyThat => 'Przyjąłem';
+
+  @override
+  String get quick_empty =>
+      'Brak szybkich wiadomości. Stuknij Edytuj, aby dodać.';
+
+  @override
+  String get quick_add => 'Nowa szybka wiadomość';
+
+  @override
+  String get quick_reset => 'Przywróć domyślne';
+
+  @override
+  String get chat_stopRetrying => 'Przestań ponawiać';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name może czytać twoje wiadomości bezpośrednie i na nie odpowiadać dopiero po dodaniu cię jako kontaktu. Jeśli tego nie zrobił, wyślij swoje ogłoszenie lub udostępnij kontakt.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Przejdź do mojej pozycji';
+
+  @override
+  String get map_positionUnavailable =>
+      'Twoja pozycja jest niedostępna. Włącz lokalizację lub ustaw pozycję radia.';
+
+  @override
+  String get contact_forgetAdvert => 'Zapomnij ostatnie ogłoszenie';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Jeśli ogłoszenia tego węzła przestały się aktualizować po zresetowaniu jego zegara, Zapomnij ostatnie ogłoszenie przepuści następne.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Gotowe. Następne ogłoszenie tego węzła zostanie przyjęte.';
 }

@@ -15636,6 +15636,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not sent: connect your radio, then try again. The message is kept.'**
   String get chat_resendNeedsRadio;
+
+  /// No description provided for @quick_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick messages'**
+  String get quick_title;
+
+  /// No description provided for @quick_ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get quick_ok;
+
+  /// No description provided for @quick_onMyWay.
+  ///
+  /// In en, this message translates to:
+  /// **'On my way'**
+  String get quick_onMyWay;
+
+  /// No description provided for @quick_atCamp.
+  ///
+  /// In en, this message translates to:
+  /// **'At camp'**
+  String get quick_atCamp;
+
+  /// No description provided for @quick_runningLate.
+  ///
+  /// In en, this message translates to:
+  /// **'Running late'**
+  String get quick_runningLate;
+
+  /// No description provided for @quick_needHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Need help'**
+  String get quick_needHelp;
+
+  /// No description provided for @quick_copyThat.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy that'**
+  String get quick_copyThat;
+
+  /// No description provided for @quick_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No quick messages. Tap Edit to add one.'**
+  String get quick_empty;
+
+  /// No description provided for @quick_add.
+  ///
+  /// In en, this message translates to:
+  /// **'New quick message'**
+  String get quick_add;
+
+  /// No description provided for @quick_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to the defaults'**
+  String get quick_reset;
+
+  /// No description provided for @chat_stopRetrying.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop retrying'**
+  String get chat_stopRetrying;
+
+  /// No description provided for @chat_addFirstBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} can only read and answer your direct messages after adding you as a contact. If they haven\'t, send your advert or share your contact with them.'**
+  String chat_addFirstBanner(String name);
+
+  /// No description provided for @map_goToMyPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to my position'**
+  String get map_goToMyPosition;
+
+  /// No description provided for @map_positionUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Your position isn\'t available. Turn on location, or set your radio\'s position.'**
+  String get map_positionUnavailable;
+
+  /// No description provided for @contact_forgetAdvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget last advert'**
+  String get contact_forgetAdvert;
+
+  /// No description provided for @contact_forgetAdvertHint.
+  ///
+  /// In en, this message translates to:
+  /// **'If this node\'s adverts stopped updating after its clock was reset, Forget last advert lets the next one through.'**
+  String get contact_forgetAdvertHint;
+
+  /// No description provided for @contact_forgetAdvertDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done. The next advert from this node will be accepted.'**
+  String get contact_forgetAdvertDone;
 }
 
 class _AppLocalizationsDelegate

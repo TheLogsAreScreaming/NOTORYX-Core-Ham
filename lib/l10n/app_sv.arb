@@ -3992,5 +3992,22 @@
   "networks_name": "Namn",
   "networks_invalid": "Kontrollera inställningarna: de ligger utanför vad MeshCore-radior accepterar.",
   "networks_nodesHeard": "Hörda noder",
-  "chat_resendNeedsRadio": "Inte skickat: anslut radion och försök igen. Meddelandet sparas."
+  "chat_resendNeedsRadio": "Inte skickat: anslut radion och försök igen. Meddelandet sparas.",
+  "quick_title": "Snabbmeddelanden",
+  "quick_ok": "OK",
+  "quick_onMyWay": "På väg",
+  "quick_atCamp": "Vid lägret",
+  "quick_runningLate": "Blir sen",
+  "quick_needHelp": "Behöver hjälp",
+  "quick_copyThat": "Uppfattat",
+  "quick_empty": "Inga snabbmeddelanden. Tryck på Redigera för att lägga till ett.",
+  "quick_add": "Nytt snabbmeddelande",
+  "quick_reset": "Återställ standard",
+  "chat_stopRetrying": "Sluta försöka igen",
+  "chat_addFirstBanner": "{name} kan läsa och svara på dina direktmeddelanden först när hen har lagt till dig som kontakt. Om inte, skicka din annons eller dela din kontakt.",
+  "map_goToMyPosition": "Gå till min position",
+  "map_positionUnavailable": "Din position är inte tillgänglig. Slå på plats eller ange radions position.",
+  "contact_forgetAdvert": "Glöm senaste annons",
+  "contact_forgetAdvertHint": "Om nodens annonser slutat uppdateras efter att dess klocka återställts, släpper Glöm senaste annons igenom nästa.",
+  "contact_forgetAdvertDone": "Klart. Nästa annons från noden accepteras."
 }

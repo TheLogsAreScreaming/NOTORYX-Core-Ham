@@ -3992,5 +3992,22 @@
   "networks_name": "Názov",
   "networks_invalid": "Skontrolujte nastavenia: sú mimo rozsahu, ktorý prijímajú rádiá MeshCore.",
   "networks_nodesHeard": "Počuté uzly",
-  "chat_resendNeedsRadio": "Neodoslané: pripojte rádio a skúste to znova. Správa zostáva uložená."
+  "chat_resendNeedsRadio": "Neodoslané: pripojte rádio a skúste to znova. Správa zostáva uložená.",
+  "quick_title": "Rýchle správy",
+  "quick_ok": "OK",
+  "quick_onMyWay": "Som na ceste",
+  "quick_atCamp": "V tábore",
+  "quick_runningLate": "Meškám",
+  "quick_needHelp": "Potrebujem pomoc",
+  "quick_copyThat": "Rozumiem",
+  "quick_empty": "Žiadne rýchle správy. Ťuknite na Upraviť a pridajte jednu.",
+  "quick_add": "Nová rýchla správa",
+  "quick_reset": "Obnoviť predvolené",
+  "chat_stopRetrying": "Zastaviť opakovanie",
+  "chat_addFirstBanner": "{name} môže čítať vaše priame správy a odpovedať na ne až po pridaní vás medzi kontakty. Ak to neurobil, pošlite svoj oznam alebo zdieľajte kontakt.",
+  "map_goToMyPosition": "Prejsť na moju polohu",
+  "map_positionUnavailable": "Vaša poloha nie je dostupná. Zapnite polohu alebo nastavte polohu rádia.",
+  "contact_forgetAdvert": "Zabudnúť posledný oznam",
+  "contact_forgetAdvertHint": "Ak sa oznamy tohto uzla po resetovaní jeho hodín prestali aktualizovať, Zabudnúť posledný oznam prepustí ďalší.",
+  "contact_forgetAdvertDone": "Hotovo. Ďalší oznam tohto uzla bude prijatý."
 }

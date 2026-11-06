@@ -8889,4 +8889,59 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       '送信されていません: 無線機を接続してからもう一度お試しください。メッセージは残っています。';
+
+  @override
+  String get quick_title => 'クイックメッセージ';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => '向かっています';
+
+  @override
+  String get quick_atCamp => 'キャンプにいます';
+
+  @override
+  String get quick_runningLate => '遅れます';
+
+  @override
+  String get quick_needHelp => '助けが必要です';
+
+  @override
+  String get quick_copyThat => '了解';
+
+  @override
+  String get quick_empty => 'クイックメッセージはありません。編集をタップして追加してください。';
+
+  @override
+  String get quick_add => '新しいクイックメッセージ';
+
+  @override
+  String get quick_reset => '既定に戻す';
+
+  @override
+  String get chat_stopRetrying => '再送を止める';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name があなたを連絡先に追加するまで、ダイレクトメッセージを読んだり返信したりできません。まだなら、アドバートを送るか連絡先を共有してください。';
+  }
+
+  @override
+  String get map_goToMyPosition => '現在地に移動';
+
+  @override
+  String get map_positionUnavailable =>
+      '位置情報を取得できません。位置情報をオンにするか、無線機の位置を設定してください。';
+
+  @override
+  String get contact_forgetAdvert => '最後のアドバートを忘れる';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'このノードの時計がリセットされてからアドバートが更新されない場合、「最後のアドバートを忘れる」で次のアドバートを受け付けます。';
+
+  @override
+  String get contact_forgetAdvertDone => '完了しました。このノードの次のアドバートを受け付けます。';
 }

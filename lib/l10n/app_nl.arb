@@ -3992,5 +3992,22 @@
   "networks_name": "Naam",
   "networks_invalid": "Controleer de instellingen: ze vallen buiten wat MeshCore-radio's accepteren.",
   "networks_nodesHeard": "Gehoorde nodes",
-  "chat_resendNeedsRadio": "Niet verzonden: verbind je radio en probeer het opnieuw. Het bericht blijft bewaard."
+  "chat_resendNeedsRadio": "Niet verzonden: verbind je radio en probeer het opnieuw. Het bericht blijft bewaard.",
+  "quick_title": "Snelle berichten",
+  "quick_ok": "OK",
+  "quick_onMyWay": "Ik kom eraan",
+  "quick_atCamp": "In het kamp",
+  "quick_runningLate": "Ik ben laat",
+  "quick_needHelp": "Hulp nodig",
+  "quick_copyThat": "Begrepen",
+  "quick_empty": "Geen snelle berichten. Tik op Bewerken om er een toe te voegen.",
+  "quick_add": "Nieuw snel bericht",
+  "quick_reset": "Standaard herstellen",
+  "chat_stopRetrying": "Stoppen met opnieuw proberen",
+  "chat_addFirstBanner": "{name} kan je directe berichten pas lezen en beantwoorden nadat diegene jou als contact heeft toegevoegd. Zo niet, stuur je advert of deel je contact.",
+  "map_goToMyPosition": "Naar mijn positie",
+  "map_positionUnavailable": "Je positie is niet beschikbaar. Zet locatie aan of stel de positie van je radio in.",
+  "contact_forgetAdvert": "Laatste advert vergeten",
+  "contact_forgetAdvertHint": "Als de adverts van deze node niet meer bijwerken nadat de klok is gereset, laat Laatste advert vergeten de volgende door.",
+  "contact_forgetAdvertDone": "Klaar. Het volgende advert van deze node wordt geaccepteerd."
 }

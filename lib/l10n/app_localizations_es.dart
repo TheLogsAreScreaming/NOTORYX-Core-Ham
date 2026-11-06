@@ -9339,4 +9339,61 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'No enviado: conecta tu radio e inténtalo de nuevo. El mensaje se conserva.';
+
+  @override
+  String get quick_title => 'Mensajes rápidos';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Voy de camino';
+
+  @override
+  String get quick_atCamp => 'En el campamento';
+
+  @override
+  String get quick_runningLate => 'Llego tarde';
+
+  @override
+  String get quick_needHelp => 'Necesito ayuda';
+
+  @override
+  String get quick_copyThat => 'Recibido';
+
+  @override
+  String get quick_empty =>
+      'No hay mensajes rápidos. Toca Editar para añadir uno.';
+
+  @override
+  String get quick_add => 'Nuevo mensaje rápido';
+
+  @override
+  String get quick_reset => 'Restablecer los predeterminados';
+
+  @override
+  String get chat_stopRetrying => 'Dejar de reintentar';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name solo puede leer y responder tus mensajes directos después de añadirte como contacto. Si no lo ha hecho, envía tu anuncio o comparte tu contacto.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Ir a mi posición';
+
+  @override
+  String get map_positionUnavailable =>
+      'Tu posición no está disponible. Activa la ubicación o configura la posición de tu radio.';
+
+  @override
+  String get contact_forgetAdvert => 'Olvidar el último anuncio';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Si los anuncios de este nodo dejaron de actualizarse tras reiniciarse su reloj, Olvidar el último anuncio deja pasar el siguiente.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Hecho. Se aceptará el siguiente anuncio de este nodo.';
 }

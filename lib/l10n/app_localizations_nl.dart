@@ -9302,4 +9302,61 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Niet verzonden: verbind je radio en probeer het opnieuw. Het bericht blijft bewaard.';
+
+  @override
+  String get quick_title => 'Snelle berichten';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Ik kom eraan';
+
+  @override
+  String get quick_atCamp => 'In het kamp';
+
+  @override
+  String get quick_runningLate => 'Ik ben laat';
+
+  @override
+  String get quick_needHelp => 'Hulp nodig';
+
+  @override
+  String get quick_copyThat => 'Begrepen';
+
+  @override
+  String get quick_empty =>
+      'Geen snelle berichten. Tik op Bewerken om er een toe te voegen.';
+
+  @override
+  String get quick_add => 'Nieuw snel bericht';
+
+  @override
+  String get quick_reset => 'Standaard herstellen';
+
+  @override
+  String get chat_stopRetrying => 'Stoppen met opnieuw proberen';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name kan je directe berichten pas lezen en beantwoorden nadat diegene jou als contact heeft toegevoegd. Zo niet, stuur je advert of deel je contact.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Naar mijn positie';
+
+  @override
+  String get map_positionUnavailable =>
+      'Je positie is niet beschikbaar. Zet locatie aan of stel de positie van je radio in.';
+
+  @override
+  String get contact_forgetAdvert => 'Laatste advert vergeten';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Als de adverts van deze node niet meer bijwerken nadat de klok is gereset, laat Laatste advert vergeten de volgende door.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Klaar. Het volgende advert van deze node wordt geaccepteerd.';
 }

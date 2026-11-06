@@ -4126,5 +4126,22 @@
   "networks_name": "名前",
   "networks_invalid": "設定を確認してください: MeshCore 無線機が受け付ける範囲外です。",
   "networks_nodesHeard": "受信したノード",
-  "chat_resendNeedsRadio": "送信されていません: 無線機を接続してからもう一度お試しください。メッセージは残っています。"
+  "chat_resendNeedsRadio": "送信されていません: 無線機を接続してからもう一度お試しください。メッセージは残っています。",
+  "quick_title": "クイックメッセージ",
+  "quick_ok": "OK",
+  "quick_onMyWay": "向かっています",
+  "quick_atCamp": "キャンプにいます",
+  "quick_runningLate": "遅れます",
+  "quick_needHelp": "助けが必要です",
+  "quick_copyThat": "了解",
+  "quick_empty": "クイックメッセージはありません。編集をタップして追加してください。",
+  "quick_add": "新しいクイックメッセージ",
+  "quick_reset": "既定に戻す",
+  "chat_stopRetrying": "再送を止める",
+  "chat_addFirstBanner": "{name} があなたを連絡先に追加するまで、ダイレクトメッセージを読んだり返信したりできません。まだなら、アドバートを送るか連絡先を共有してください。",
+  "map_goToMyPosition": "現在地に移動",
+  "map_positionUnavailable": "位置情報を取得できません。位置情報をオンにするか、無線機の位置を設定してください。",
+  "contact_forgetAdvert": "最後のアドバートを忘れる",
+  "contact_forgetAdvertHint": "このノードの時計がリセットされてからアドバートが更新されない場合、「最後のアドバートを忘れる」で次のアドバートを受け付けます。",
+  "contact_forgetAdvertDone": "完了しました。このノードの次のアドバートを受け付けます。"
 }

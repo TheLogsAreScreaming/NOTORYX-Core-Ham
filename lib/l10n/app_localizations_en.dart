@@ -9215,4 +9215,60 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Not sent: connect your radio, then try again. The message is kept.';
+
+  @override
+  String get quick_title => 'Quick messages';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'On my way';
+
+  @override
+  String get quick_atCamp => 'At camp';
+
+  @override
+  String get quick_runningLate => 'Running late';
+
+  @override
+  String get quick_needHelp => 'Need help';
+
+  @override
+  String get quick_copyThat => 'Copy that';
+
+  @override
+  String get quick_empty => 'No quick messages. Tap Edit to add one.';
+
+  @override
+  String get quick_add => 'New quick message';
+
+  @override
+  String get quick_reset => 'Reset to the defaults';
+
+  @override
+  String get chat_stopRetrying => 'Stop retrying';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name can only read and answer your direct messages after adding you as a contact. If they haven\'t, send your advert or share your contact with them.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Go to my position';
+
+  @override
+  String get map_positionUnavailable =>
+      'Your position isn\'t available. Turn on location, or set your radio\'s position.';
+
+  @override
+  String get contact_forgetAdvert => 'Forget last advert';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'If this node\'s adverts stopped updating after its clock was reset, Forget last advert lets the next one through.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Done. The next advert from this node will be accepted.';
 }

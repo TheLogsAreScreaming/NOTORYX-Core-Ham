@@ -6,6 +6,7 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -250,6 +251,44 @@ class _MapScreenState extends State<MapScreen> {
         platform == TargetPlatform.macOS;
   }
 
+  /// Centres the map on where you are: the phone's GPS first, since it
+  /// moves with you, then the radio's position.
+  Future<void> _goToMyPosition(MeshCoreConnector connector) async {
+    LatLng? here;
+    try {
+      var permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
+      if (permission != LocationPermission.denied &&
+          permission != LocationPermission.deniedForever) {
+        final p =
+            await Geolocator.getLastKnownPosition() ??
+            await Geolocator.getCurrentPosition(
+              locationSettings: const LocationSettings(
+                timeLimit: Duration(seconds: 10),
+              ),
+            );
+        here = LatLng(p.latitude, p.longitude);
+      }
+    } catch (_) {
+      // No phone GPS here; the radio's position is next.
+    }
+    final lat = connector.selfLatitude, lon = connector.selfLongitude;
+    if (here == null && lat != null && lon != null && (lat != 0 || lon != 0)) {
+      here = LatLng(lat, lon);
+    }
+    if (!mounted) return;
+    if (here == null) {
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.map_positionUnavailable),
+      );
+      return;
+    }
+    _mapController.move(here, max(_zoom, 14));
+  }
+
   void _zoomMapBy(double delta) {
     final camera = _mapController.camera;
     final nextZoom = (camera.zoom + delta)
@@ -264,8 +303,6 @@ class _MapScreenState extends State<MapScreen> {
     required double zoom,
     required MeshCoreConnector connector,
   }) {
-    final hasSelf =
-        connector.selfLatitude != null && connector.selfLongitude != null;
     return Positioned(
       left: 12,
       bottom: 96,
@@ -306,16 +343,13 @@ class _MapScreenState extends State<MapScreen> {
                 tooltip: context.l10n.map_centerMap,
                 onPressed: () => _mapController.move(center, zoom),
               ),
-              if (hasSelf)
-                IconButton(
-                  color: MapPalette.selected,
-                  icon: const Icon(Icons.my_location),
-                  tooltip: context.l10n.map_setAsMyLocation,
-                  onPressed: () => _mapController.move(
-                    LatLng(connector.selfLatitude!, connector.selfLongitude!),
-                    max(_zoom, 14),
-                  ),
-                ),
+              IconButton(
+                key: const ValueKey('map-my-position'),
+                color: MapPalette.selected,
+                icon: const Icon(Icons.my_location),
+                tooltip: context.l10n.map_goToMyPosition,
+                onPressed: () => unawaited(_goToMyPosition(connector)),
+              ),
             ],
           ),
         ),

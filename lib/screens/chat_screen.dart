@@ -19,6 +19,8 @@ import '../helpers/path_helper.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/share_links.dart';
 import '../widgets/ember_backdrop.dart';
+import '../widgets/add_first_banner.dart';
+import '../widgets/quick_messages.dart';
 import '../widgets/share_in_chat.dart';
 import '../widgets/message_status_icon.dart';
 import '../widgets/empty_state.dart';
@@ -386,8 +388,11 @@ class _ChatScreenState extends State<ChatScreen> {
         body: Consumer<MeshCoreConnector>(
           builder: (context, connector, child) {
             final messages = connector.getMessages(widget.contact);
+            final contact = _resolveContact(connector);
             return Column(
               children: [
+                if (contact.type == advTypeChat)
+                  AddFirstBanner(contact: contact, messages: messages),
                 Expanded(
                   child: Stack(
                     children: [
@@ -532,6 +537,19 @@ class _ChatScreenState extends State<ChatScreen> {
     String action,
     MeshCoreConnector connector,
   ) async {
+    if (action == 'quick') {
+      final quick = await pickQuickMessage(context);
+      if (quick == null || !mounted) return;
+      // A quick message joins whatever is already typed.
+      final typed = _textController.text.trimRight();
+      final text = typed.isEmpty ? quick : '$typed $quick';
+      _textController.value = TextEditingValue(
+        text: text,
+        selection: TextSelection.collapsed(offset: text.length),
+      );
+      _textFieldFocusNode.requestFocus();
+      return;
+    }
     final text = action == 'position'
         ? myPositionMessage(connector)
         : await pickContactToShare(context);
@@ -565,11 +583,29 @@ class _ChatScreenState extends State<ChatScreen> {
                 tooltip: context.l10n.chat_selectSendAction,
                 onSelected: (action) {
                   if (action == 'gif') _showGifPicker(context);
-                  if (action == 'position' || action == 'contact') {
+                  if (action == 'position' ||
+                      action == 'contact' ||
+                      action == 'quick') {
                     _shareIntoComposer(action, connector);
                   }
                 },
                 itemBuilder: (context) => [
+                  PopupMenuItem(
+                    key: const ValueKey('composer-quick'),
+                    value: 'quick',
+                    child: Row(
+                      children: [
+                        const Icon(Icons.bolt_outlined),
+                        const SizedBox(width: 12),
+                        Flexible(
+                          child: Text(
+                            context.l10n.quick_title,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   PopupMenuItem(
                     value: 'gif',
                     child: Row(
@@ -983,10 +1019,36 @@ class _ChatScreenState extends State<ChatScreen> {
                   '${contact.latitude?.toStringAsFixed(4)}, ${contact.longitude?.toStringAsFixed(4)}',
                 ),
               _buildInfoRow(context.l10n.chat_publicKey, contact.publicKeyHex),
+              const SizedBox(height: 8),
+              Text(
+                context.l10n.contact_forgetAdvertHint,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
             ],
           ),
         ),
         actions: [
+          TextButton(
+            key: const ValueKey('contact-forget-advert'),
+            onPressed: connector.isConnected
+                ? () async {
+                    final messenger = ScaffoldMessenger.of(context);
+                    final l10n = context.l10n;
+                    Navigator.pop(context);
+                    try {
+                      await connector.forgetLastAdvert(contact);
+                      messenger.showSnackBar(
+                        SnackBar(content: Text(l10n.contact_forgetAdvertDone)),
+                      );
+                    } catch (e) {
+                      messenger.showSnackBar(
+                        SnackBar(content: Text(l10n.settings_error('$e'))),
+                      );
+                    }
+                  }
+                : null,
+            child: Text(context.l10n.contact_forgetAdvert),
+          ),
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(context.l10n.common_close),
@@ -1379,6 +1441,16 @@ class _ChatScreenState extends State<ChatScreen> {
                 onTap: () {
                   Navigator.pop(sheetContext);
                   _markAsUnread(message);
+                },
+              ),
+            if (message.isOutgoing && message.status == MessageStatus.pending)
+              ListTile(
+                key: const ValueKey('message-stop-retrying'),
+                leading: const Icon(Icons.cancel_schedule_send_outlined),
+                title: Text(context.l10n.chat_stopRetrying),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  context.read<MeshCoreConnector>().stopRetrying(message);
                 },
               ),
             if (message.isOutgoing && message.status == MessageStatus.failed)

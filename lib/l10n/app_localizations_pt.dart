@@ -9322,4 +9322,61 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Não enviada: ligue o rádio e tente novamente. A mensagem é mantida.';
+
+  @override
+  String get quick_title => 'Mensagens rápidas';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Estou a caminho';
+
+  @override
+  String get quick_atCamp => 'No acampamento';
+
+  @override
+  String get quick_runningLate => 'Vou atrasar-me';
+
+  @override
+  String get quick_needHelp => 'Preciso de ajuda';
+
+  @override
+  String get quick_copyThat => 'Recebido';
+
+  @override
+  String get quick_empty =>
+      'Não há mensagens rápidas. Toque em Editar para adicionar uma.';
+
+  @override
+  String get quick_add => 'Nova mensagem rápida';
+
+  @override
+  String get quick_reset => 'Repor as predefinidas';
+
+  @override
+  String get chat_stopRetrying => 'Parar de tentar';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name só pode ler e responder às suas mensagens diretas depois de o adicionar como contacto. Se ainda não o fez, envie o seu anúncio ou partilhe o seu contacto.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Ir para a minha posição';
+
+  @override
+  String get map_positionUnavailable =>
+      'A sua posição não está disponível. Ative a localização ou defina a posição do rádio.';
+
+  @override
+  String get contact_forgetAdvert => 'Esquecer o último anúncio';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Se os anúncios deste nó deixaram de atualizar depois de o relógio ser reposto, Esquecer o último anúncio deixa passar o seguinte.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Feito. O próximo anúncio deste nó será aceite.';
 }

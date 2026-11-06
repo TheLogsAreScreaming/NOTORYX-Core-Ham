@@ -9360,4 +9360,61 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Не надіслано: під\'єднайте радіо та спробуйте ще раз. Повідомлення збережено.';
+
+  @override
+  String get quick_title => 'Швидкі повідомлення';
+
+  @override
+  String get quick_ok => 'Гаразд';
+
+  @override
+  String get quick_onMyWay => 'Уже йду';
+
+  @override
+  String get quick_atCamp => 'У таборі';
+
+  @override
+  String get quick_runningLate => 'Запізнююся';
+
+  @override
+  String get quick_needHelp => 'Потрібна допомога';
+
+  @override
+  String get quick_copyThat => 'Прийнято';
+
+  @override
+  String get quick_empty =>
+      'Немає швидких повідомлень. Торкніться «Редагувати», щоб додати.';
+
+  @override
+  String get quick_add => 'Нове швидке повідомлення';
+
+  @override
+  String get quick_reset => 'Повернути стандартні';
+
+  @override
+  String get chat_stopRetrying => 'Зупинити повтори';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name зможе читати ваші особисті повідомлення й відповідати на них лише після того, як додасть вас у контакти. Якщо ні, надішліть своє оголошення або поділіться контактом.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'До мого місця';
+
+  @override
+  String get map_positionUnavailable =>
+      'Ваше місцезнаходження недоступне. Увімкніть геолокацію або задайте позицію радіо.';
+
+  @override
+  String get contact_forgetAdvert => 'Забути останнє оголошення';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Якщо оголошення цього вузла перестали оновлюватися після скидання його годинника, «Забути останнє оголошення» пропустить наступне.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Готово. Наступне оголошення цього вузла буде прийнято.';
 }

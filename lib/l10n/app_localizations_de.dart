@@ -9350,4 +9350,61 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Nicht gesendet: Verbinde dein Funkgerät und versuche es erneut. Die Nachricht bleibt erhalten.';
+
+  @override
+  String get quick_title => 'Schnellnachrichten';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Bin unterwegs';
+
+  @override
+  String get quick_atCamp => 'Im Lager';
+
+  @override
+  String get quick_runningLate => 'Verspäte mich';
+
+  @override
+  String get quick_needHelp => 'Brauche Hilfe';
+
+  @override
+  String get quick_copyThat => 'Verstanden';
+
+  @override
+  String get quick_empty =>
+      'Keine Schnellnachrichten. Tippe auf Bearbeiten, um eine hinzuzufügen.';
+
+  @override
+  String get quick_add => 'Neue Schnellnachricht';
+
+  @override
+  String get quick_reset => 'Auf Standard zurücksetzen';
+
+  @override
+  String get chat_stopRetrying => 'Wiederholen stoppen';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name kann deine Direktnachrichten erst lesen und beantworten, wenn er dich als Kontakt hinzugefügt hat. Falls nicht, sende dein Advert oder teile deinen Kontakt.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Zu meiner Position';
+
+  @override
+  String get map_positionUnavailable =>
+      'Deine Position ist nicht verfügbar. Schalte die Ortung ein oder setze die Position des Funkgeräts.';
+
+  @override
+  String get contact_forgetAdvert => 'Letztes Advert vergessen';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Wenn die Adverts dieses Knotens nach einem Zurücksetzen seiner Uhr nicht mehr aktualisiert werden, lässt Letztes Advert vergessen das nächste durch.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Erledigt. Das nächste Advert dieses Knotens wird angenommen.';
 }

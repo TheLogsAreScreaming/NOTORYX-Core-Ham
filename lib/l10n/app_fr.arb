@@ -4126,5 +4126,22 @@
   "networks_name": "Nom",
   "networks_invalid": "Vérifiez les réglages : ils sortent de ce qu’acceptent les radios MeshCore.",
   "networks_nodesHeard": "Nœuds entendus",
-  "chat_resendNeedsRadio": "Non envoyé : connectez votre radio, puis réessayez. Le message est conservé."
+  "chat_resendNeedsRadio": "Non envoyé : connectez votre radio, puis réessayez. Le message est conservé.",
+  "quick_title": "Messages rapides",
+  "quick_ok": "OK",
+  "quick_onMyWay": "J’arrive",
+  "quick_atCamp": "Au camp",
+  "quick_runningLate": "En retard",
+  "quick_needHelp": "Besoin d’aide",
+  "quick_copyThat": "Bien reçu",
+  "quick_empty": "Aucun message rapide. Touchez Modifier pour en ajouter un.",
+  "quick_add": "Nouveau message rapide",
+  "quick_reset": "Rétablir les messages par défaut",
+  "chat_stopRetrying": "Arrêter les nouvelles tentatives",
+  "chat_addFirstBanner": "{name} ne peut lire vos messages directs et y répondre qu’après vous avoir ajouté comme contact. Sinon, envoyez votre annonce ou partagez votre contact.",
+  "map_goToMyPosition": "Aller à ma position",
+  "map_positionUnavailable": "Votre position n’est pas disponible. Activez la localisation ou définissez la position de la radio.",
+  "contact_forgetAdvert": "Oublier la dernière annonce",
+  "contact_forgetAdvertHint": "Si les annonces de ce nœud ne se mettent plus à jour après une réinitialisation de son horloge, Oublier la dernière annonce laisse passer la suivante.",
+  "contact_forgetAdvertDone": "C’est fait. La prochaine annonce de ce nœud sera acceptée."
 }

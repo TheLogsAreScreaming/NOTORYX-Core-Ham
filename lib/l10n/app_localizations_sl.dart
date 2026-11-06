@@ -9321,4 +9321,60 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Ni poslano: povežite radio in poskusite znova. Sporočilo ostane shranjeno.';
+
+  @override
+  String get quick_title => 'Hitra sporočila';
+
+  @override
+  String get quick_ok => 'V redu';
+
+  @override
+  String get quick_onMyWay => 'Na poti sem';
+
+  @override
+  String get quick_atCamp => 'V taboru';
+
+  @override
+  String get quick_runningLate => 'Zamujam';
+
+  @override
+  String get quick_needHelp => 'Potrebujem pomoč';
+
+  @override
+  String get quick_copyThat => 'Razumem';
+
+  @override
+  String get quick_empty => 'Ni hitrih sporočil. Tapnite Uredi, da dodate eno.';
+
+  @override
+  String get quick_add => 'Novo hitro sporočilo';
+
+  @override
+  String get quick_reset => 'Ponastavi na privzeta';
+
+  @override
+  String get chat_stopRetrying => 'Ustavi ponovne poskuse';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name lahko bere vaša neposredna sporočila in odgovarja nanje šele, ko vas doda med stike. Če tega še ni storil, pošljite svoj oglas ali delite stik.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Na moj položaj';
+
+  @override
+  String get map_positionUnavailable =>
+      'Vaš položaj ni na voljo. Vklopite lokacijo ali nastavite položaj radia.';
+
+  @override
+  String get contact_forgetAdvert => 'Pozabi zadnji oglas';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Če se oglasi tega vozlišča po ponastavitvi ure ne posodabljajo več, Pozabi zadnji oglas spusti naslednjega.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Končano. Naslednji oglas tega vozlišča bo sprejet.';
 }
