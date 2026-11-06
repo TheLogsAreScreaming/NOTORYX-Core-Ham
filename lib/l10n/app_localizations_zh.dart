@@ -8701,4 +8701,57 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get chat_resendNeedsRadio => '未发送：请连接电台后重试。消息已保留。';
+
+  @override
+  String get quick_title => '快捷消息';
+
+  @override
+  String get quick_ok => '好的';
+
+  @override
+  String get quick_onMyWay => '在路上';
+
+  @override
+  String get quick_atCamp => '在营地';
+
+  @override
+  String get quick_runningLate => '会晚到';
+
+  @override
+  String get quick_needHelp => '需要帮助';
+
+  @override
+  String get quick_copyThat => '收到';
+
+  @override
+  String get quick_empty => '没有快捷消息。点按“编辑”添加。';
+
+  @override
+  String get quick_add => '新的快捷消息';
+
+  @override
+  String get quick_reset => '恢复默认';
+
+  @override
+  String get chat_stopRetrying => '停止重试';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name 需要先把你加为联系人，才能阅读并回复你的私信。如果对方还没有添加，请发送你的广播或分享你的联系人。';
+  }
+
+  @override
+  String get map_goToMyPosition => '前往我的位置';
+
+  @override
+  String get map_positionUnavailable => '无法获取你的位置。请打开定位，或设置电台的位置。';
+
+  @override
+  String get contact_forgetAdvert => '忘记上次广播';
+
+  @override
+  String get contact_forgetAdvertHint => '如果此节点的时钟重置后广播不再更新，“忘记上次广播”可让下一条广播通过。';
+
+  @override
+  String get contact_forgetAdvertDone => '完成。此节点的下一条广播将被接受。';
 }

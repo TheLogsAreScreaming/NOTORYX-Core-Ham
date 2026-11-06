@@ -3884,6 +3884,40 @@ class MeshCoreConnector extends ChangeNotifier {
     await refreshContacts();
   }
 
+  /// Forgets when [contact] last advertised, keeping its name, type, route
+  /// and position. The radio drops an advert that isn't newer than the last
+  /// one, so a node whose clock went backwards (a reset or a dead RTC
+  /// battery) stays stuck until this is cleared.
+  Future<void> forgetLastAdvert(Contact contact) async {
+    if (!isConnected) throw StateError('Connect your radio first.');
+    final flood = contact.pathLength < 0;
+    final pathLen = flood
+        ? 0xFF
+        : _encodePathLenForCurrentMode(contact.pathLength, contact.path);
+    await sendFrame(
+      buildUpdateContactPathFrame(
+        contact.publicKey,
+        flood ? Uint8List(0) : contact.path,
+        pathLen ?? 0xFF,
+        type: contact.type,
+        flags: contact.flags,
+        name: contact.name,
+        lat: contact.hasLocation ? contact.latitude : null,
+        lon: contact.hasLocation ? contact.longitude : null,
+        lastAdvertTimestamp: 0,
+      ),
+      expectsGenericAck: true,
+      waitForGenericAck: true,
+    );
+  }
+
+  /// Stops retrying [message] and marks it failed, so it isn't sent again.
+  void stopRetrying(Message message) {
+    if (message.status != MessageStatus.pending) return;
+    _retryService?.untrack(message.messageId);
+    _updateMessage(message.copyWith(status: MessageStatus.failed));
+  }
+
   Future<void> refreshContacts() async {
     await getContacts(preserveExisting: true);
   }

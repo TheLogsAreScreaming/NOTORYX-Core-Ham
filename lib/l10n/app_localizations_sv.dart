@@ -9262,4 +9262,61 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Inte skickat: anslut radion och försök igen. Meddelandet sparas.';
+
+  @override
+  String get quick_title => 'Snabbmeddelanden';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'På väg';
+
+  @override
+  String get quick_atCamp => 'Vid lägret';
+
+  @override
+  String get quick_runningLate => 'Blir sen';
+
+  @override
+  String get quick_needHelp => 'Behöver hjälp';
+
+  @override
+  String get quick_copyThat => 'Uppfattat';
+
+  @override
+  String get quick_empty =>
+      'Inga snabbmeddelanden. Tryck på Redigera för att lägga till ett.';
+
+  @override
+  String get quick_add => 'Nytt snabbmeddelande';
+
+  @override
+  String get quick_reset => 'Återställ standard';
+
+  @override
+  String get chat_stopRetrying => 'Sluta försöka igen';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name kan läsa och svara på dina direktmeddelanden först när hen har lagt till dig som kontakt. Om inte, skicka din annons eller dela din kontakt.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Gå till min position';
+
+  @override
+  String get map_positionUnavailable =>
+      'Din position är inte tillgänglig. Slå på plats eller ange radions position.';
+
+  @override
+  String get contact_forgetAdvert => 'Glöm senaste annons';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Om nodens annonser slutat uppdateras efter att dess klocka återställts, släpper Glöm senaste annons igenom nästa.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Klart. Nästa annons från noden accepteras.';
 }

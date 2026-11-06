@@ -9312,4 +9312,61 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Neodoslané: pripojte rádio a skúste to znova. Správa zostáva uložená.';
+
+  @override
+  String get quick_title => 'Rýchle správy';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Som na ceste';
+
+  @override
+  String get quick_atCamp => 'V tábore';
+
+  @override
+  String get quick_runningLate => 'Meškám';
+
+  @override
+  String get quick_needHelp => 'Potrebujem pomoc';
+
+  @override
+  String get quick_copyThat => 'Rozumiem';
+
+  @override
+  String get quick_empty =>
+      'Žiadne rýchle správy. Ťuknite na Upraviť a pridajte jednu.';
+
+  @override
+  String get quick_add => 'Nová rýchla správa';
+
+  @override
+  String get quick_reset => 'Obnoviť predvolené';
+
+  @override
+  String get chat_stopRetrying => 'Zastaviť opakovanie';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name môže čítať vaše priame správy a odpovedať na ne až po pridaní vás medzi kontakty. Ak to neurobil, pošlite svoj oznam alebo zdieľajte kontakt.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Prejsť na moju polohu';
+
+  @override
+  String get map_positionUnavailable =>
+      'Vaša poloha nie je dostupná. Zapnite polohu alebo nastavte polohu rádia.';
+
+  @override
+  String get contact_forgetAdvert => 'Zabudnúť posledný oznam';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Ak sa oznamy tohto uzla po resetovaní jeho hodín prestali aktualizovať, Zabudnúť posledný oznam prepustí ďalší.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Hotovo. Ďalší oznam tohto uzla bude prijatý.';
 }

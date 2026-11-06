@@ -9371,4 +9371,61 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Non envoyé : connectez votre radio, puis réessayez. Le message est conservé.';
+
+  @override
+  String get quick_title => 'Messages rapides';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'J’arrive';
+
+  @override
+  String get quick_atCamp => 'Au camp';
+
+  @override
+  String get quick_runningLate => 'En retard';
+
+  @override
+  String get quick_needHelp => 'Besoin d’aide';
+
+  @override
+  String get quick_copyThat => 'Bien reçu';
+
+  @override
+  String get quick_empty =>
+      'Aucun message rapide. Touchez Modifier pour en ajouter un.';
+
+  @override
+  String get quick_add => 'Nouveau message rapide';
+
+  @override
+  String get quick_reset => 'Rétablir les messages par défaut';
+
+  @override
+  String get chat_stopRetrying => 'Arrêter les nouvelles tentatives';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name ne peut lire vos messages directs et y répondre qu’après vous avoir ajouté comme contact. Sinon, envoyez votre annonce ou partagez votre contact.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Aller à ma position';
+
+  @override
+  String get map_positionUnavailable =>
+      'Votre position n’est pas disponible. Activez la localisation ou définissez la position de la radio.';
+
+  @override
+  String get contact_forgetAdvert => 'Oublier la dernière annonce';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Si les annonces de ce nœud ne se mettent plus à jour après une réinitialisation de son horloge, Oublier la dernière annonce laisse passer la suivante.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'C’est fait. La prochaine annonce de ce nœud sera acceptée.';
 }

@@ -9321,4 +9321,61 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Не е изпратено: свържете радиото и опитайте отново. Съобщението е запазено.';
+
+  @override
+  String get quick_title => 'Бързи съобщения';
+
+  @override
+  String get quick_ok => 'Добре';
+
+  @override
+  String get quick_onMyWay => 'Идвам';
+
+  @override
+  String get quick_atCamp => 'В лагера';
+
+  @override
+  String get quick_runningLate => 'Закъснявам';
+
+  @override
+  String get quick_needHelp => 'Нужна ми е помощ';
+
+  @override
+  String get quick_copyThat => 'Разбрано';
+
+  @override
+  String get quick_empty =>
+      'Няма бързи съобщения. Докоснете Редактиране, за да добавите.';
+
+  @override
+  String get quick_add => 'Ново бързо съобщение';
+
+  @override
+  String get quick_reset => 'Връщане към стандартните';
+
+  @override
+  String get chat_stopRetrying => 'Спри повторните опити';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name може да чете и отговаря на личните ви съобщения само след като ви добави като контакт. Ако не е, изпратете обявата си или споделете контакта си.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Към моята позиция';
+
+  @override
+  String get map_positionUnavailable =>
+      'Позицията ви не е налична. Включете местоположението или задайте позицията на радиото.';
+
+  @override
+  String get contact_forgetAdvert => 'Забрави последната обява';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Ако обявите на този възел са спрели да се обновяват след нулиране на часовника му, Забрави последната обява пропуска следващата.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Готово. Следващата обява от този възел ще бъде приета.';
 }

@@ -9347,4 +9347,61 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Non inviato: collega la radio e riprova. Il messaggio viene conservato.';
+
+  @override
+  String get quick_title => 'Messaggi rapidi';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Sto arrivando';
+
+  @override
+  String get quick_atCamp => 'Al campo';
+
+  @override
+  String get quick_runningLate => 'Sono in ritardo';
+
+  @override
+  String get quick_needHelp => 'Serve aiuto';
+
+  @override
+  String get quick_copyThat => 'Ricevuto';
+
+  @override
+  String get quick_empty =>
+      'Nessun messaggio rapido. Tocca Modifica per aggiungerne uno.';
+
+  @override
+  String get quick_add => 'Nuovo messaggio rapido';
+
+  @override
+  String get quick_reset => 'Ripristina i predefiniti';
+
+  @override
+  String get chat_stopRetrying => 'Smetti di riprovare';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name può leggere e rispondere ai tuoi messaggi diretti solo dopo averti aggiunto come contatto. Se non l\'ha fatto, invia il tuo annuncio o condividi il tuo contatto.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Vai alla mia posizione';
+
+  @override
+  String get map_positionUnavailable =>
+      'La tua posizione non è disponibile. Attiva la localizzazione o imposta la posizione della radio.';
+
+  @override
+  String get contact_forgetAdvert => 'Dimentica l\'ultimo annuncio';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Se gli annunci di questo nodo hanno smesso di aggiornarsi dopo un azzeramento dell\'orologio, Dimentica l\'ultimo annuncio lascia passare il prossimo.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Fatto. Il prossimo annuncio di questo nodo sarà accettato.';
 }

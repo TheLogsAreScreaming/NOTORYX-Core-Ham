@@ -3992,5 +3992,22 @@
   "networks_name": "Ime",
   "networks_invalid": "Preverite nastavitve: so zunaj obsega, ki ga sprejemajo radii MeshCore.",
   "networks_nodesHeard": "Slišana vozlišča",
-  "chat_resendNeedsRadio": "Ni poslano: povežite radio in poskusite znova. Sporočilo ostane shranjeno."
+  "chat_resendNeedsRadio": "Ni poslano: povežite radio in poskusite znova. Sporočilo ostane shranjeno.",
+  "quick_title": "Hitra sporočila",
+  "quick_ok": "V redu",
+  "quick_onMyWay": "Na poti sem",
+  "quick_atCamp": "V taboru",
+  "quick_runningLate": "Zamujam",
+  "quick_needHelp": "Potrebujem pomoč",
+  "quick_copyThat": "Razumem",
+  "quick_empty": "Ni hitrih sporočil. Tapnite Uredi, da dodate eno.",
+  "quick_add": "Novo hitro sporočilo",
+  "quick_reset": "Ponastavi na privzeta",
+  "chat_stopRetrying": "Ustavi ponovne poskuse",
+  "chat_addFirstBanner": "{name} lahko bere vaša neposredna sporočila in odgovarja nanje šele, ko vas doda med stike. Če tega še ni storil, pošljite svoj oglas ali delite stik.",
+  "map_goToMyPosition": "Na moj položaj",
+  "map_positionUnavailable": "Vaš položaj ni na voljo. Vklopite lokacijo ali nastavite položaj radia.",
+  "contact_forgetAdvert": "Pozabi zadnji oglas",
+  "contact_forgetAdvertHint": "Če se oglasi tega vozlišča po ponastavitvi ure ne posodabljajo več, Pozabi zadnji oglas spusti naslednjega.",
+  "contact_forgetAdvertDone": "Končano. Naslednji oglas tega vozlišča bo sprejet."
 }

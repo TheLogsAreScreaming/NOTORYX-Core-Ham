@@ -9362,4 +9362,61 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Не отправлено: подключите радио и попробуйте снова. Сообщение сохранено.';
+
+  @override
+  String get quick_title => 'Быстрые сообщения';
+
+  @override
+  String get quick_ok => 'ОК';
+
+  @override
+  String get quick_onMyWay => 'Уже иду';
+
+  @override
+  String get quick_atCamp => 'В лагере';
+
+  @override
+  String get quick_runningLate => 'Опаздываю';
+
+  @override
+  String get quick_needHelp => 'Нужна помощь';
+
+  @override
+  String get quick_copyThat => 'Принято';
+
+  @override
+  String get quick_empty =>
+      'Нет быстрых сообщений. Нажмите «Изменить», чтобы добавить.';
+
+  @override
+  String get quick_add => 'Новое быстрое сообщение';
+
+  @override
+  String get quick_reset => 'Вернуть стандартные';
+
+  @override
+  String get chat_stopRetrying => 'Остановить повторы';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name сможет читать ваши личные сообщения и отвечать на них только после того, как добавит вас в контакты. Если нет, отправьте своё объявление или поделитесь контактом.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'К моему местоположению';
+
+  @override
+  String get map_positionUnavailable =>
+      'Местоположение недоступно. Включите геолокацию или задайте позицию радио.';
+
+  @override
+  String get contact_forgetAdvert => 'Забыть последнее объявление';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Если объявления этого узла перестали обновляться после сброса его часов, «Забыть последнее объявление» пропустит следующее.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Готово. Следующее объявление этого узла будет принято.';
 }

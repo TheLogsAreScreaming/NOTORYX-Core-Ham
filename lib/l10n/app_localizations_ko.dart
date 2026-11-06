@@ -8900,4 +8900,59 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       '보내지 않았습니다: 무전기를 연결한 뒤 다시 시도하세요. 메시지는 그대로 남아 있습니다.';
+
+  @override
+  String get quick_title => '빠른 메시지';
+
+  @override
+  String get quick_ok => '확인';
+
+  @override
+  String get quick_onMyWay => '가는 중';
+
+  @override
+  String get quick_atCamp => '캠프에 있음';
+
+  @override
+  String get quick_runningLate => '늦어요';
+
+  @override
+  String get quick_needHelp => '도움이 필요해요';
+
+  @override
+  String get quick_copyThat => '알겠습니다';
+
+  @override
+  String get quick_empty => '빠른 메시지가 없습니다. 편집을 눌러 추가하세요.';
+
+  @override
+  String get quick_add => '새 빠른 메시지';
+
+  @override
+  String get quick_reset => '기본값으로 재설정';
+
+  @override
+  String get chat_stopRetrying => '재시도 중지';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name님이 나를 연락처로 추가해야 내 다이렉트 메시지를 읽고 답할 수 있습니다. 아직이라면 내 광고를 보내거나 연락처를 공유하세요.';
+  }
+
+  @override
+  String get map_goToMyPosition => '내 위치로 이동';
+
+  @override
+  String get map_positionUnavailable =>
+      '위치를 사용할 수 없습니다. 위치 서비스를 켜거나 무전기 위치를 설정하세요.';
+
+  @override
+  String get contact_forgetAdvert => '마지막 광고 잊기';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      '이 노드의 시계가 초기화된 뒤 광고가 갱신되지 않으면, 마지막 광고 잊기로 다음 광고를 받아들입니다.';
+
+  @override
+  String get contact_forgetAdvertDone => '완료했습니다. 이 노드의 다음 광고를 받아들입니다.';
 }

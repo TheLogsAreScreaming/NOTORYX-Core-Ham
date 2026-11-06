@@ -4030,5 +4030,22 @@
   "networks_name": "Nazwa",
   "networks_invalid": "Sprawdź ustawienia: wykraczają poza to, co akceptują radia MeshCore.",
   "networks_nodesHeard": "Usłyszane węzły",
-  "chat_resendNeedsRadio": "Nie wysłano: podłącz radio i spróbuj ponownie. Wiadomość została zachowana."
+  "chat_resendNeedsRadio": "Nie wysłano: podłącz radio i spróbuj ponownie. Wiadomość została zachowana.",
+  "quick_title": "Szybkie wiadomości",
+  "quick_ok": "OK",
+  "quick_onMyWay": "Jestem w drodze",
+  "quick_atCamp": "W obozie",
+  "quick_runningLate": "Spóźnię się",
+  "quick_needHelp": "Potrzebuję pomocy",
+  "quick_copyThat": "Przyjąłem",
+  "quick_empty": "Brak szybkich wiadomości. Stuknij Edytuj, aby dodać.",
+  "quick_add": "Nowa szybka wiadomość",
+  "quick_reset": "Przywróć domyślne",
+  "chat_stopRetrying": "Przestań ponawiać",
+  "chat_addFirstBanner": "{name} może czytać twoje wiadomości bezpośrednie i na nie odpowiadać dopiero po dodaniu cię jako kontaktu. Jeśli tego nie zrobił, wyślij swoje ogłoszenie lub udostępnij kontakt.",
+  "map_goToMyPosition": "Przejdź do mojej pozycji",
+  "map_positionUnavailable": "Twoja pozycja jest niedostępna. Włącz lokalizację lub ustaw pozycję radia.",
+  "contact_forgetAdvert": "Zapomnij ostatnie ogłoszenie",
+  "contact_forgetAdvertHint": "Jeśli ogłoszenia tego węzła przestały się aktualizować po zresetowaniu jego zegara, Zapomnij ostatnie ogłoszenie przepuści następne.",
+  "contact_forgetAdvertDone": "Gotowe. Następne ogłoszenie tego węzła zostanie przyjęte."
 }

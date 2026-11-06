@@ -3992,5 +3992,22 @@
   "networks_name": "Nome",
   "networks_invalid": "Verifique as definições: estão fora do que os rádios MeshCore aceitam.",
   "networks_nodesHeard": "Nós ouvidos",
-  "chat_resendNeedsRadio": "Não enviada: ligue o rádio e tente novamente. A mensagem é mantida."
+  "chat_resendNeedsRadio": "Não enviada: ligue o rádio e tente novamente. A mensagem é mantida.",
+  "quick_title": "Mensagens rápidas",
+  "quick_ok": "OK",
+  "quick_onMyWay": "Estou a caminho",
+  "quick_atCamp": "No acampamento",
+  "quick_runningLate": "Vou atrasar-me",
+  "quick_needHelp": "Preciso de ajuda",
+  "quick_copyThat": "Recebido",
+  "quick_empty": "Não há mensagens rápidas. Toque em Editar para adicionar uma.",
+  "quick_add": "Nova mensagem rápida",
+  "quick_reset": "Repor as predefinidas",
+  "chat_stopRetrying": "Parar de tentar",
+  "chat_addFirstBanner": "{name} só pode ler e responder às suas mensagens diretas depois de o adicionar como contacto. Se ainda não o fez, envie o seu anúncio ou partilhe o seu contacto.",
+  "map_goToMyPosition": "Ir para a minha posição",
+  "map_positionUnavailable": "A sua posição não está disponível. Ative a localização ou defina a posição do rádio.",
+  "contact_forgetAdvert": "Esquecer o último anúncio",
+  "contact_forgetAdvertHint": "Se os anúncios deste nó deixaram de atualizar depois de o relógio ser reposto, Esquecer o último anúncio deixa passar o seguinte.",
+  "contact_forgetAdvertDone": "Feito. O próximo anúncio deste nó será aceite."
 }

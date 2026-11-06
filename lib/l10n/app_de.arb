@@ -4126,5 +4126,22 @@
   "networks_name": "Name",
   "networks_invalid": "Prüfe die Einstellungen: Sie liegen außerhalb dessen, was MeshCore-Funkgeräte annehmen.",
   "networks_nodesHeard": "Gehörte Knoten",
-  "chat_resendNeedsRadio": "Nicht gesendet: Verbinde dein Funkgerät und versuche es erneut. Die Nachricht bleibt erhalten."
+  "chat_resendNeedsRadio": "Nicht gesendet: Verbinde dein Funkgerät und versuche es erneut. Die Nachricht bleibt erhalten.",
+  "quick_title": "Schnellnachrichten",
+  "quick_ok": "OK",
+  "quick_onMyWay": "Bin unterwegs",
+  "quick_atCamp": "Im Lager",
+  "quick_runningLate": "Verspäte mich",
+  "quick_needHelp": "Brauche Hilfe",
+  "quick_copyThat": "Verstanden",
+  "quick_empty": "Keine Schnellnachrichten. Tippe auf Bearbeiten, um eine hinzuzufügen.",
+  "quick_add": "Neue Schnellnachricht",
+  "quick_reset": "Auf Standard zurücksetzen",
+  "chat_stopRetrying": "Wiederholen stoppen",
+  "chat_addFirstBanner": "{name} kann deine Direktnachrichten erst lesen und beantworten, wenn er dich als Kontakt hinzugefügt hat. Falls nicht, sende dein Advert oder teile deinen Kontakt.",
+  "map_goToMyPosition": "Zu meiner Position",
+  "map_positionUnavailable": "Deine Position ist nicht verfügbar. Schalte die Ortung ein oder setze die Position des Funkgeräts.",
+  "contact_forgetAdvert": "Letztes Advert vergessen",
+  "contact_forgetAdvertHint": "Wenn die Adverts dieses Knotens nach einem Zurücksetzen seiner Uhr nicht mehr aktualisiert werden, lässt Letztes Advert vergessen das nächste durch.",
+  "contact_forgetAdvertDone": "Erledigt. Das nächste Advert dieses Knotens wird angenommen."
 }

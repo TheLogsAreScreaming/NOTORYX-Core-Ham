@@ -9326,4 +9326,61 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get chat_resendNeedsRadio =>
       'Nincs elküldve: csatlakoztasd a rádiót, majd próbáld újra. Az üzenet megmarad.';
+
+  @override
+  String get quick_title => 'Gyorsüzenetek';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Úton vagyok';
+
+  @override
+  String get quick_atCamp => 'A táborban';
+
+  @override
+  String get quick_runningLate => 'Késem';
+
+  @override
+  String get quick_needHelp => 'Segítség kell';
+
+  @override
+  String get quick_copyThat => 'Vettem';
+
+  @override
+  String get quick_empty =>
+      'Nincsenek gyorsüzenetek. Koppints a Szerkesztésre egy hozzáadásához.';
+
+  @override
+  String get quick_add => 'Új gyorsüzenet';
+
+  @override
+  String get quick_reset => 'Alapértelmezések visszaállítása';
+
+  @override
+  String get chat_stopRetrying => 'Újrapróbálás leállítása';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name csak azután tudja olvasni és megválaszolni a közvetlen üzeneteidet, hogy felvett névjegyként. Ha még nem tette, küldd el a hirdetésed vagy oszd meg a névjegyed.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Ugrás a pozíciómra';
+
+  @override
+  String get map_positionUnavailable =>
+      'A pozíciód nem érhető el. Kapcsold be a helymeghatározást, vagy állítsd be a rádió pozícióját.';
+
+  @override
+  String get contact_forgetAdvert => 'Utolsó hirdetés elfelejtése';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Ha a csomópont hirdetései az órája visszaállítása után nem frissülnek, az Utolsó hirdetés elfelejtése átengedi a következőt.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Kész. A csomópont következő hirdetése el lesz fogadva.';
 }
