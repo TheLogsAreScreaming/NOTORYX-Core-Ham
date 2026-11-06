@@ -82,6 +82,8 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 - Direct and channel messages with delivery status, reactions, GIFs and image messages. Tapping a notification opens that chat.
 - **Find channels:** a directory of public hashtag channels (local ones first), channels heard on air that you haven't joined, and **Active online**: the #channels an online analyzer has seen in use, with one-tap Join.
 - **Message search**, per-chat **drafts**, **read aloud** and on-device translation.
+- **Quick messages:** ready-made replies like "On my way" or "At camp" from the message box menu. Edit the list to make it yours.
+- **Direct messages:** stop retrying a message that's still being sent, and a note in a new chat that the other person has to add you as a contact before they can read and answer.
 - **Share your position or a contact** from the message box. Received contacts can be added in one tap, and **Add contact from clipboard** accepts links, adverts (even wrapped across lines) and bare public keys.
 - **Region tags:** a channel post scoped to a region shows it next to the time, for example **📍 ct**.
 - **Link previews** (off by default, since fetching one tells the site your IP address).
@@ -89,7 +91,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 - Optional auto-delete of old channel messages.
 
 ### Maps, paths and coverage
-- Live mesh map with offline map packs, and a **track log** that records your trail and exports GPX.
+- Live mesh map with offline map packs, a button to jump to your position (phone GPS, or your radio's), and a **track log** that records your trail and exports GPX.
 - **Map telemetry:** battery, temperature, humidity or pressure badges on the map. Readings dim after an hour and hide after a day, and the map remembers your choice.
 - **Wardrive:** ping as you drive or hike and map which repeaters heard you, and how well, both ways. Pings use your phone's GPS and the map follows you. Drives are saved.
 - **Network scan** (More → Networks): find MeshCore networks nearby. A radio only hears networks on its exact settings, so a scan switches yours to each preset in turn (the ones in your band by default, plus networks you've saved), listens for 30–90 s, and switches back. Each network heard is logged with the time, place, signal and the node names from its adverts, so you can see it on a map, export CSV or GPX, save it, or join it with one tap. You're off your own mesh while it scans, so it won't run during an SOS or a trip, and the radio's auto-add is paused so other networks' nodes don't fill your contacts. Not yet tested on a wide range of radios.
@@ -109,6 +111,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 ### Field tools
 - **Repeater ping:** a one-hop trace showing the signal both ways. **Antenna hunt:** clicks faster as a chosen repeater gets louder.
 - Repeater and room-server tools: login, status, neighbors, telemetry, command line and **access control**.
+- **Forget last advert** on a contact, for a node whose adverts stopped updating after its clock was reset.
 - **Repeater IDs** (who uses an ID, which are free) and **Region setup** (US and Canada region trees, or your own) for repeater owners.
 - **Bot Mode:** local auto-replies, keyword rules and commands like `!ping`, `!sun`, `!moon`, `!weather`, `!dice` and `!trace`, in direct messages and in the channels you choose. It can also post weather alerts to a channel.
 - **Field guide**, encrypted backup and app-icon shortcuts.
