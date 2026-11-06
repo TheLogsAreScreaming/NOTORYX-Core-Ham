@@ -4014,5 +4014,16 @@
   "networks_modeThorough": "Grundlig",
   "networks_modeQuickHint": "Skickar en kort ping utan vidarebefordran på varje nätverk och lyssnar några sekunder. Hittar nätverk med en repeater inom räckvidd.",
   "networks_modeThoroughHint": "Lyssnar bara, längre på varje nätverk. Skickar inget och hittar även nätverk utan repeater inom räckvidd om någon sänder.",
-  "networks_estimate": "cirka {time}"
+  "networks_estimate": "cirka {time}",
+  "discoveredContacts_selected": "{count} markerade",
+  "discoveredContacts_selectAll": "Markera alla",
+  "discoveredContacts_addSelected": "Lägg till markerade",
+  "discoveredContacts_addAllShown": "Lägg till alla som visas ({count})",
+  "discoveredContacts_addManyTitle": "Lägga till {count} kontakter?",
+  "discoveredContacts_roomLeft": "Radion har plats för {room} kontakter till.",
+  "discoveredContacts_roomLimit": "Radion har plats för {room} kontakter till, så bara de första {room} av {count} läggs till.",
+  "discoveredContacts_adding": "Lägger till {done} av {total}…",
+  "discoveredContacts_addedMany": "Tillagda kontakter: {count}",
+  "discoveredContacts_addedSome": "Tillagda kontakter: {added}. Inte tillagda: {failed}.",
+  "discoveredContacts_radioFull": "Radions kontaktlista är full. Ta bort några kontakter först."
 }

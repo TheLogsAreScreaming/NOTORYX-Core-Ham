@@ -4019,5 +4019,16 @@
   "networks_modeThorough": "全面",
   "networks_modeQuickHint": "在每个网络发送一次零跳短 ping 并收听几秒，可找到范围内有中继器的网络。",
   "networks_modeThoroughHint": "只收听，每个网络听更久。不发送任何内容；只要有人发射，也能找到范围内没有中继器的网络。",
-  "networks_estimate": "约 {time}"
+  "networks_estimate": "约 {time}",
+  "discoveredContacts_selected": "已选择 {count} 个",
+  "discoveredContacts_selectAll": "全选",
+  "discoveredContacts_addSelected": "添加所选",
+  "discoveredContacts_addAllShown": "添加全部显示项（{count}）",
+  "discoveredContacts_addManyTitle": "添加 {count} 个联系人？",
+  "discoveredContacts_roomLeft": "电台还能再添加 {room} 个联系人。",
+  "discoveredContacts_roomLimit": "电台只能再添加 {room} 个联系人，因此 {count} 个中只会添加前 {room} 个。",
+  "discoveredContacts_adding": "正在添加 {done}/{total}…",
+  "discoveredContacts_addedMany": "已添加联系人：{count}",
+  "discoveredContacts_addedSome": "已添加联系人：{added}。未能添加：{failed}。",
+  "discoveredContacts_radioFull": "电台的联系人列表已满。请先删除一些联系人。"
 }

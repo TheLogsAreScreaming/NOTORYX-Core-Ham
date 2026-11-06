@@ -4148,5 +4148,16 @@
   "networks_modeThorough": "じっくり",
   "networks_modeQuickHint": "各ネットワークでゼロホップの短い ping を 1 回送り、数秒受信します。範囲内にリピーターがあるネットワークを見つけます。",
   "networks_modeThoroughHint": "受信のみで、各ネットワークで長めに聞きます。何も送信せず、誰かが送信すればリピーターのないネットワークも見つけます。",
-  "networks_estimate": "約 {time}"
+  "networks_estimate": "約 {time}",
+  "discoveredContacts_selected": "{count} 件選択",
+  "discoveredContacts_selectAll": "すべて選択",
+  "discoveredContacts_addSelected": "選択項目を追加",
+  "discoveredContacts_addAllShown": "表示中をすべて追加 ({count})",
+  "discoveredContacts_addManyTitle": "{count} 件の連絡先を追加しますか?",
+  "discoveredContacts_roomLeft": "無線機にはあと {room} 件の連絡先を追加できます。",
+  "discoveredContacts_roomLimit": "無線機にはあと {room} 件しか追加できないため、{count} 件のうち最初の {room} 件だけを追加します。",
+  "discoveredContacts_adding": "{done}/{total} を追加中…",
+  "discoveredContacts_addedMany": "追加した連絡先: {count}",
+  "discoveredContacts_addedSome": "追加した連絡先: {added}。追加できなかった連絡先: {failed}。",
+  "discoveredContacts_radioFull": "無線機の連絡先リストがいっぱいです。先にいくつか削除してください。"
 }

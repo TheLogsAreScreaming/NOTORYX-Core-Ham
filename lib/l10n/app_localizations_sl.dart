@@ -9396,4 +9396,54 @@ class AppLocalizationsSl extends AppLocalizations {
   String networks_estimate(String time) {
     return 'približno $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return 'Izbrano: $count';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Izberi vse';
+
+  @override
+  String get discoveredContacts_addSelected => 'Dodaj izbrane';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Dodaj vse prikazane ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Dodam stike ($count)?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Radio ima prostor še za $room stikov.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Radio ima prostor še za $room stikov, zato bo dodanih le prvih $room od $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Dodajanje $done od $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Dodani stiki: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Dodani stiki: $added. Ni dodanih: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Seznam stikov radia je poln. Najprej odstranite nekaj stikov.';
 }

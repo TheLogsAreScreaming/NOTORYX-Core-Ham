@@ -9338,4 +9338,54 @@ class AppLocalizationsSv extends AppLocalizations {
   String networks_estimate(String time) {
     return 'cirka $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count markerade';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Markera alla';
+
+  @override
+  String get discoveredContacts_addSelected => 'Lägg till markerade';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Lägg till alla som visas ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Lägga till $count kontakter?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Radion har plats för $room kontakter till.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Radion har plats för $room kontakter till, så bara de första $room av $count läggs till.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Lägger till $done av $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Tillagda kontakter: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Tillagda kontakter: $added. Inte tillagda: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Radions kontaktlista är full. Ta bort några kontakter först.';
 }

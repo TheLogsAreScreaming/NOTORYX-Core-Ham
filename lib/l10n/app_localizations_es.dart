@@ -9415,4 +9415,54 @@ class AppLocalizationsEs extends AppLocalizations {
   String networks_estimate(String time) {
     return 'unos $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count seleccionados';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Seleccionar todo';
+
+  @override
+  String get discoveredContacts_addSelected => 'Añadir seleccionados';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Añadir todos los mostrados ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '¿Añadir $count contactos?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Tu radio tiene espacio para $room contactos más.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Tu radio tiene espacio para $room contactos más, así que solo se añadirán los primeros $room de $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Añadiendo $done de $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Contactos añadidos: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Contactos añadidos: $added. No añadidos: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'La lista de contactos de tu radio está llena. Quita algunos contactos primero.';
 }

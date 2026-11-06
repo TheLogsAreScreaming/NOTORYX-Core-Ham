@@ -9436,4 +9436,54 @@ class AppLocalizationsUk extends AppLocalizations {
   String networks_estimate(String time) {
     return 'близько $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return 'Вибрано: $count';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Вибрати все';
+
+  @override
+  String get discoveredContacts_addSelected => 'Додати вибрані';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Додати всі показані ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Додати контакти ($count)?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'У радіо є місце ще для $room контактів.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'У радіо є місце ще для $room контактів, тому буде додано лише перші $room з $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Додавання $done з $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Додано контактів: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Додано контактів: $added. Не додано: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Список контактів радіо заповнений. Спочатку видаліть кілька контактів.';
 }

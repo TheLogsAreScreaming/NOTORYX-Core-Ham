@@ -4148,5 +4148,16 @@
   "networks_modeThorough": "Gründlich",
   "networks_modeQuickHint": "Sendet in jedem Netz einen kurzen Ping ohne Weiterleitung und hört ein paar Sekunden zu. Findet Netze mit einem Repeater in Reichweite.",
   "networks_modeThoroughHint": "Hört nur zu, länger pro Netz. Sendet nichts und findet auch Netze ohne Repeater in Reichweite, wenn jemand sendet.",
-  "networks_estimate": "etwa {time}"
+  "networks_estimate": "etwa {time}",
+  "discoveredContacts_selected": "{count} ausgewählt",
+  "discoveredContacts_selectAll": "Alle auswählen",
+  "discoveredContacts_addSelected": "Auswahl hinzufügen",
+  "discoveredContacts_addAllShown": "Alle angezeigten hinzufügen ({count})",
+  "discoveredContacts_addManyTitle": "{count} Kontakte hinzufügen?",
+  "discoveredContacts_roomLeft": "Dein Funkgerät hat Platz für {room} weitere Kontakte.",
+  "discoveredContacts_roomLimit": "Dein Funkgerät hat Platz für {room} weitere Kontakte, daher werden nur die ersten {room} von {count} hinzugefügt.",
+  "discoveredContacts_adding": "Füge {done} von {total} hinzu…",
+  "discoveredContacts_addedMany": "Kontakte hinzugefügt: {count}",
+  "discoveredContacts_addedSome": "Kontakte hinzugefügt: {added}. Nicht hinzugefügt: {failed}.",
+  "discoveredContacts_radioFull": "Die Kontaktliste deines Funkgeräts ist voll. Entferne zuerst einige Kontakte."
 }

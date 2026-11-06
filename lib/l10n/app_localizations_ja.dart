@@ -8963,4 +8963,54 @@ class AppLocalizationsJa extends AppLocalizations {
   String networks_estimate(String time) {
     return '約 $time';
   }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count 件選択';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'すべて選択';
+
+  @override
+  String get discoveredContacts_addSelected => '選択項目を追加';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return '表示中をすべて追加 ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '$count 件の連絡先を追加しますか?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return '無線機にはあと $room 件の連絡先を追加できます。';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return '無線機にはあと $room 件しか追加できないため、$count 件のうち最初の $room 件だけを追加します。';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return '$done/$total を追加中…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return '追加した連絡先: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return '追加した連絡先: $added。追加できなかった連絡先: $failed。';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      '無線機の連絡先リストがいっぱいです。先にいくつか削除してください。';
 }

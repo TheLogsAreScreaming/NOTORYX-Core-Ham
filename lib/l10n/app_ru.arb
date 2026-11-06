@@ -3317,5 +3317,16 @@
   "networks_modeThorough": "Подробно",
   "networks_modeQuickHint": "Отправляет в каждой сети один короткий пинг без ретрансляции и слушает несколько секунд. Находит сети с ретранслятором в зоне досягаемости.",
   "networks_modeThoroughHint": "Только слушает, дольше в каждой сети. Ничего не отправляет и находит сети без ретранслятора рядом, если кто-то передаёт.",
-  "networks_estimate": "около {time}"
+  "networks_estimate": "около {time}",
+  "discoveredContacts_selected": "Выбрано: {count}",
+  "discoveredContacts_selectAll": "Выбрать все",
+  "discoveredContacts_addSelected": "Добавить выбранные",
+  "discoveredContacts_addAllShown": "Добавить все показанные ({count})",
+  "discoveredContacts_addManyTitle": "Добавить контакты ({count})?",
+  "discoveredContacts_roomLeft": "В радио есть место ещё для {room} контактов.",
+  "discoveredContacts_roomLimit": "В радио есть место ещё для {room} контактов, поэтому будут добавлены только первые {room} из {count}.",
+  "discoveredContacts_adding": "Добавление {done} из {total}…",
+  "discoveredContacts_addedMany": "Добавлено контактов: {count}",
+  "discoveredContacts_addedSome": "Добавлено контактов: {added}. Не добавлено: {failed}.",
+  "discoveredContacts_radioFull": "Список контактов радио заполнен. Сначала удалите часть контактов."
 }
