@@ -6907,19 +6907,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get fieldStats_title => 'Veldinzicht';
 
   @override
-  String get fieldStats_snapshot => 'Live mesh-momentopname';
-
-  @override
-  String get fieldStats_headline => 'Wat NOTORYX Core nu weet.';
-
-  @override
-  String get fieldStats_body =>
-      'Deze tellers worden berekend uit de contactentabel van de verbonden MeshCore-radio, locaties, paden en laatst-gezien-tijdstempels.';
-
-  @override
-  String get fieldStats_total => 'Totaal';
-
-  @override
   String get fieldStats_chatNodes => 'Chatnodes';
 
   @override
@@ -6929,36 +6916,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get fieldStats_sensors => 'Sensoren';
 
   @override
-  String get fieldStats_located => 'Met locatie';
-
-  @override
-  String get fieldStats_favorites => 'Favorieten';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Route-momentopname';
-
-  @override
-  String get fieldStats_routed => 'Gerouteerd';
-
-  @override
   String get fieldStats_direct => 'Direct';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Padinzicht';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'Het route-inzicht van NOTORYX Core gebruikt opgeslagen padpogingen, aantallen hops, geslaagd/mislukt, reistijd en routeweging om geleerde routes te tonen.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Dekkingssessies';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Dekkingsopname slaat nu veldsessies op, herstelt onderbroken werk, exporteert waarnemingen en zet vastgelegde dekkingspunten op de kaart. RSSI/SNR blijven de dichtstbijzijnde beschikbare radiomomentopname.';
 
   @override
   String get mapHub_title => 'NOTORYX-veldkaart';
@@ -7084,48 +7042,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Repeaterbeheer';
-
-  @override
-  String get repeaterTools_headline =>
-      'Beheer de infrastructuur achter je mesh.';
-
-  @override
-  String get repeaterTools_body =>
-      'Kies een gevonden repeater om in te loggen en de bestaande MeshCore-tools voor status, telemetrie, buren, instellingen en CLI te openen.';
-
-  @override
-  String get repeaterTools_discovered => 'Gevonden';
-
-  @override
-  String get repeaterTools_tools => 'Tools';
-
-  @override
-  String get repeaterTools_available => 'Beschikbare repeaters';
-
-  @override
   String get repeaterTools_unnamed => 'Naamloze repeater';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Status + telemetrie';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Repeaterstatus en telemetrie bekijken met de bestaande beheertools.';
-
-  @override
-  String get repeaterTools_neighbors => 'Buren';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Naburige infrastructuur en meshrelaties bekijken.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + instellingen';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Ingelogde beheerders kunnen de bestaande repeater-CLI en configuratietools gebruiken.';
 
   @override
   String get repeaterTools_empty =>
@@ -9428,4 +9345,155 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'De contactenlijst van je radio is vol. Verwijder eerst wat contacten.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radio nu';
+
+  @override
+  String get fieldIntel_noRadio => 'Verbind je radio voor live waarden.';
+
+  @override
+  String get fieldIntel_noise => 'ruis dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'laatste SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'laatste RSSI';
+
+  @override
+  String get fieldIntel_battery => 'batterij V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Zendtijd sinds de radio startte: verzonden $sent, ontvangen $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Wie is er in de buurt';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 uur';
+
+  @override
+  String get fieldIntel_h24 => '24 uur';
+
+  @override
+  String get fieldIntel_older => 'Ouder';
+
+  @override
+  String get fieldIntel_lastHour => 'Laatste uur';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Wanneer elke node het laatst is gehoord, per uur over de afgelopen dag. Tik op een balk om te zien wie.';
+
+  @override
+  String get fieldIntel_mix => 'Soorten nodes';
+
+  @override
+  String get fieldIntel_reach => 'Bereik';
+
+  @override
+  String get fieldIntel_hops1 => '1 hop';
+
+  @override
+  String get fieldIntel_hops2 => '2 hops';
+
+  @override
+  String get fieldIntel_hops3 => '3+ hops';
+
+  @override
+  String get fieldIntel_noRoute => 'Nog geen route';
+
+  @override
+  String get fieldIntel_distance => 'Dichtstbij en verst weg';
+
+  @override
+  String get fieldIntel_noneLocated =>
+      'Geen van je contacten heeft een positie.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Je radio heeft nog geen positie, dus afstanden zijn niet te berekenen.';
+
+  @override
+  String get fieldIntel_bestRepeaters => 'Beste repeaters die je direct hoort';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'In de afgelopen 30 minuten geen repeater direct gehoord.';
+
+  @override
+  String get fieldIntel_attention => 'Vraagt aandacht';
+
+  @override
+  String get fieldIntel_allGood => 'Niets vraagt aandacht.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Batterij laag: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Favoriet niet gehoord sinds $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Meer hulpmiddelen';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Nodes: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Geen nodes.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Laatst gehoord $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Op kaart tonen';
+
+  @override
+  String get fieldIntel_openChat => 'Chat openen';
+
+  @override
+  String get repeaterTools_login => 'Inloggen';
+
+  @override
+  String get repeaterTools_heardDirect => 'Direct gehoord';
+
+  @override
+  String get repeaterTools_filterAll => 'Alle';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Batterij laag';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tik op een repeater voor details en log daar in voor status, buren, telemetrie en de opdrachtregel.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Geen repeaters hier.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Hulpmiddelen';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Zoek de regioboom van je gebied en kopieer de opdrachten';
+
+  @override
+  String get routes_failingOnly => 'Alleen mislukte routes';
+
+  @override
+  String get routes_contactDetails => 'Contactgegevens';
 }

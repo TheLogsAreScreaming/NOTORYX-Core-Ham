@@ -6963,19 +6963,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get fieldStats_title => 'Analyse de terrain';
 
   @override
-  String get fieldStats_snapshot => 'Instantané du maillage';
-
-  @override
-  String get fieldStats_headline => 'Ce que NOTORYX Core sait en ce moment.';
-
-  @override
-  String get fieldStats_body =>
-      'Ces compteurs sont calculés à partir de la table de contacts MeshCore connectée, des positions, des chemins et des horodatages de dernière vue.';
-
-  @override
-  String get fieldStats_total => 'Total';
-
-  @override
   String get fieldStats_chatNodes => 'Nœuds de discussion';
 
   @override
@@ -6985,36 +6972,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get fieldStats_sensors => 'Capteurs';
 
   @override
-  String get fieldStats_located => 'Localisés';
-
-  @override
-  String get fieldStats_favorites => 'Favoris';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Instantané des routes';
-
-  @override
-  String get fieldStats_routed => 'Routés';
-
-  @override
   String get fieldStats_direct => 'Directs';
-
-  @override
-  String get fieldStats_flood => 'Diffusion';
-
-  @override
-  String get fieldStats_pathIntel => 'Analyse des chemins';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'L\'analyse des routes de NOTORYX Core utilise les tentatives de chemin enregistrées, le nombre de sauts, les succès/échecs, le temps de trajet et la pondération des routes pour afficher les routes apprises.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Sessions de couverture';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'La capture de couverture enregistre désormais les sessions de terrain, restaure le travail interrompu, exporte les observations et cartographie les points de couverture enregistrés. RSSI/SNR restent l\'instantané radio disponible le plus proche.';
 
   @override
   String get mapHub_title => 'Carte de terrain NOTORYX';
@@ -7142,48 +7100,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Commande des répéteurs';
-
-  @override
-  String get repeaterTools_headline =>
-      'Gérez l\'infrastructure derrière votre maillage.';
-
-  @override
-  String get repeaterTools_body =>
-      'Sélectionnez un répéteur découvert pour vous authentifier et ouvrir ses outils MeshCore existants : état, télémétrie, voisins, réglages et CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Découverts';
-
-  @override
-  String get repeaterTools_tools => 'Outils';
-
-  @override
-  String get repeaterTools_available => 'Répéteurs disponibles';
-
-  @override
   String get repeaterTools_unnamed => 'Répéteur sans nom';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'État + télémétrie';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Inspectez l\'état et la télémétrie du répéteur avec les outils de gestion existants.';
-
-  @override
-  String get repeaterTools_neighbors => 'Voisins';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Inspectez l\'infrastructure voisine et les relations du maillage.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + réglages';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Les administrateurs authentifiés peuvent accéder à la CLI du répéteur et aux outils de configuration existants.';
 
   @override
   String get repeaterTools_empty =>
@@ -9497,4 +9414,156 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'La liste de contacts de votre radio est pleine. Supprimez d’abord quelques contacts.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radio en ce moment';
+
+  @override
+  String get fieldIntel_noRadio =>
+      'Connectez votre radio pour les mesures en direct.';
+
+  @override
+  String get fieldIntel_noise => 'bruit dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'dernier SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'dernier RSSI';
+
+  @override
+  String get fieldIntel_battery => 'batterie V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Temps d’émission depuis le démarrage de la radio : envoyé $sent, reçu $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Qui est dans le coin';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 heure';
+
+  @override
+  String get fieldIntel_h24 => '24 heures';
+
+  @override
+  String get fieldIntel_older => 'Plus ancien';
+
+  @override
+  String get fieldIntel_lastHour => 'Dernière heure';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Quand chaque nœud a été entendu pour la dernière fois, heure par heure, sur la dernière journée. Touchez une barre pour voir qui.';
+
+  @override
+  String get fieldIntel_mix => 'Types de nœuds';
+
+  @override
+  String get fieldIntel_reach => 'Portée';
+
+  @override
+  String get fieldIntel_hops1 => '1 saut';
+
+  @override
+  String get fieldIntel_hops2 => '2 sauts';
+
+  @override
+  String get fieldIntel_hops3 => '3+ sauts';
+
+  @override
+  String get fieldIntel_noRoute => 'Pas encore de route';
+
+  @override
+  String get fieldIntel_distance => 'Les plus proches et les plus loin';
+
+  @override
+  String get fieldIntel_noneLocated => 'Aucun de vos contacts n’a de position.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Votre radio n’a pas encore de position : impossible de calculer les distances.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Meilleurs répéteurs entendus en direct';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'Aucun répéteur entendu en direct ces 30 dernières minutes.';
+
+  @override
+  String get fieldIntel_attention => 'À surveiller';
+
+  @override
+  String get fieldIntel_allGood => 'Rien à surveiller.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Batterie faible : $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Favori non entendu depuis $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Autres outils';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Nœuds : $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Aucun nœud.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Entendu $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Voir sur la carte';
+
+  @override
+  String get fieldIntel_openChat => 'Ouvrir la discussion';
+
+  @override
+  String get repeaterTools_login => 'Se connecter';
+
+  @override
+  String get repeaterTools_heardDirect => 'Entendu en direct';
+
+  @override
+  String get repeaterTools_filterAll => 'Tous';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Batterie faible';
+
+  @override
+  String get repeaterTools_hint =>
+      'Touchez un répéteur pour ses détails, puis connectez-vous pour l’état, les voisins, la télémétrie et la ligne de commande.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Aucun répéteur ici.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Outils';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Trouvez l’arbre de régions de votre secteur et copiez ses commandes';
+
+  @override
+  String get routes_failingOnly => 'Seulement les routes en échec';
+
+  @override
+  String get routes_contactDetails => 'Détails du contact';
 }

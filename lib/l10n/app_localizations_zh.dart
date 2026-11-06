@@ -6451,18 +6451,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldStats_title => '野外情报';
 
   @override
-  String get fieldStats_snapshot => '实时网络快照';
-
-  @override
-  String get fieldStats_headline => 'NOTORYX Core 此刻掌握的情况。';
-
-  @override
-  String get fieldStats_body => '这些计数根据已连接 MeshCore 的联系人表、位置、路径和最后可见时间计算。';
-
-  @override
-  String get fieldStats_total => '总计';
-
-  @override
   String get fieldStats_chatNodes => '聊天节点';
 
   @override
@@ -6472,36 +6460,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldStats_sensors => '传感器';
 
   @override
-  String get fieldStats_located => '有位置';
-
-  @override
-  String get fieldStats_favorites => '收藏';
-
-  @override
-  String get fieldStats_routeSnapshot => '路由快照';
-
-  @override
-  String get fieldStats_routed => '有路由';
-
-  @override
   String get fieldStats_direct => '直连';
-
-  @override
-  String get fieldStats_flood => '泛洪';
-
-  @override
-  String get fieldStats_pathIntel => '路径分析';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'NOTORYX Core 的路由分析利用已保存的路径尝试、跳数、成功/失败、往返时间和路由权重来呈现学到的路由。';
-
-  @override
-  String get fieldStats_coverageSessions => '覆盖会话';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      '覆盖记录现在可以保存野外会话、恢复中断的工作、导出观测并在地图上标出记录的覆盖点。RSSI/SNR 仍是最接近的电台快照。';
 
   @override
   String get mapHub_title => 'NOTORYX 野外地图';
@@ -6621,44 +6580,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => '中继器管理';
-
-  @override
-  String get repeaterTools_headline => '管理支撑你网状网络的基础设施。';
-
-  @override
-  String get repeaterTools_body =>
-      '选择一个已发现的中继器进行认证，并打开其现有的 MeshCore 状态、遥测、邻居、设置和 CLI 工具。';
-
-  @override
-  String get repeaterTools_discovered => '已发现';
-
-  @override
-  String get repeaterTools_tools => '工具';
-
-  @override
-  String get repeaterTools_available => '可用的中继器';
-
-  @override
   String get repeaterTools_unnamed => '未命名中继器';
-
-  @override
-  String get repeaterTools_statusTelemetry => '状态 + 遥测';
-
-  @override
-  String get repeaterTools_statusTelemetryBody => '使用现有管理工具查看中继器状态和遥测。';
-
-  @override
-  String get repeaterTools_neighbors => '邻居';
-
-  @override
-  String get repeaterTools_neighborsBody => '查看相邻的基础设施和网络关系。';
-
-  @override
-  String get repeaterTools_cli => 'CLI + 设置';
-
-  @override
-  String get repeaterTools_cliBody => '已认证的管理员可以使用现有的中继器 CLI 和配置工具。';
 
   @override
   String get repeaterTools_empty => '尚未发现中继器。请先连接电台并探索网状网络。';
@@ -8821,4 +8743,149 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get discoveredContacts_radioFull => '电台的联系人列表已满。请先删除一些联系人。';
+
+  @override
+  String get fieldIntel_radioNow => '电台现状';
+
+  @override
+  String get fieldIntel_noRadio => '连接电台以查看实时数据。';
+
+  @override
+  String get fieldIntel_noise => '噪声 dBm';
+
+  @override
+  String get fieldIntel_lastSnr => '最近 SNR';
+
+  @override
+  String get fieldIntel_lastRssi => '最近 RSSI';
+
+  @override
+  String get fieldIntel_battery => '电池 V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return '电台启动以来的发射时间：发送 $sent，接收 $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => '附近有谁';
+
+  @override
+  String get fieldIntel_m15 => '15 分钟';
+
+  @override
+  String get fieldIntel_h1 => '1 小时';
+
+  @override
+  String get fieldIntel_h24 => '24 小时';
+
+  @override
+  String get fieldIntel_older => '更早';
+
+  @override
+  String get fieldIntel_lastHour => '最近一小时';
+
+  @override
+  String get fieldIntel_chartHint => '过去一天内每个节点最后被听到的时间，按小时显示。点按柱形查看是谁。';
+
+  @override
+  String get fieldIntel_mix => '节点类型';
+
+  @override
+  String get fieldIntel_reach => '覆盖范围';
+
+  @override
+  String get fieldIntel_hops1 => '1 跳';
+
+  @override
+  String get fieldIntel_hops2 => '2 跳';
+
+  @override
+  String get fieldIntel_hops3 => '3 跳以上';
+
+  @override
+  String get fieldIntel_noRoute => '暂无路由';
+
+  @override
+  String get fieldIntel_distance => '最近和最远';
+
+  @override
+  String get fieldIntel_noneLocated => '你的联系人都没有位置。';
+
+  @override
+  String get fieldIntel_noPosition => '电台还没有位置，无法计算距离。';
+
+  @override
+  String get fieldIntel_bestRepeaters => '直接听到的最佳中继器';
+
+  @override
+  String get fieldIntel_noneDirect => '过去 30 分钟内没有直接听到中继器。';
+
+  @override
+  String get fieldIntel_attention => '需要注意';
+
+  @override
+  String get fieldIntel_allGood => '没有需要注意的事项。';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return '电池电量低：$volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return '收藏节点，$ago以来未听到';
+  }
+
+  @override
+  String get fieldIntel_moreTools => '更多工具';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return '节点：$count';
+  }
+
+  @override
+  String get fieldIntel_none => '没有节点。';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return '最后听到 $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => '在地图上显示';
+
+  @override
+  String get fieldIntel_openChat => '打开聊天';
+
+  @override
+  String get repeaterTools_login => '登录';
+
+  @override
+  String get repeaterTools_heardDirect => '直接听到';
+
+  @override
+  String get repeaterTools_filterAll => '全部';
+
+  @override
+  String get repeaterTools_filterLowBattery => '电量低';
+
+  @override
+  String get repeaterTools_hint => '点按中继器查看详情，并在那里登录以查看状态、邻居、遥测和命令行。';
+
+  @override
+  String get repeaterTools_noneMatch => '这里没有中继器。';
+
+  @override
+  String get repeaterTools_toolsTitle => '工具';
+
+  @override
+  String get repeaterTools_regionSetupHint => '查找你所在地区的区域树并复制其命令';
+
+  @override
+  String get routes_failingOnly => '仅失败的路由';
+
+  @override
+  String get routes_contactDetails => '联系人详情';
 }

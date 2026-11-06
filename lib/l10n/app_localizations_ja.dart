@@ -6590,19 +6590,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldStats_title => 'フィールド分析';
 
   @override
-  String get fieldStats_snapshot => 'メッシュのライブスナップショット';
-
-  @override
-  String get fieldStats_headline => '今 NOTORYX Core が把握していること。';
-
-  @override
-  String get fieldStats_body =>
-      'これらの集計は、接続中の MeshCore の連絡先テーブル、位置、経路、最終確認時刻から計算されます。';
-
-  @override
-  String get fieldStats_total => '合計';
-
-  @override
   String get fieldStats_chatNodes => 'チャットノード';
 
   @override
@@ -6612,36 +6599,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldStats_sensors => 'センサー';
 
   @override
-  String get fieldStats_located => '位置あり';
-
-  @override
-  String get fieldStats_favorites => 'お気に入り';
-
-  @override
-  String get fieldStats_routeSnapshot => 'ルートのスナップショット';
-
-  @override
-  String get fieldStats_routed => 'ルートあり';
-
-  @override
   String get fieldStats_direct => '直接';
-
-  @override
-  String get fieldStats_flood => 'フラッド';
-
-  @override
-  String get fieldStats_pathIntel => '経路分析';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'NOTORYX Core のルート分析は、保存された経路の試行、ホップ数、成功/失敗、所要時間、ルートの重み付けを使って学習済みルートを表示します。';
-
-  @override
-  String get fieldStats_coverageSessions => 'カバレッジセッション';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'カバレッジ記録はフィールドセッションの保存、中断した作業の復元、観測のエクスポート、記録したカバレッジ地点の地図表示に対応しました。RSSI/SNRは引き続き最も近い無線機のスナップショットです。';
 
   @override
   String get mapHub_title => 'NOTORYX フィールドマップ';
@@ -6763,45 +6721,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'リピーター管理';
-
-  @override
-  String get repeaterTools_headline => 'メッシュを支えるインフラを管理します。';
-
-  @override
-  String get repeaterTools_body =>
-      '検出したリピーターを選んで認証し、既存の MeshCore の状態、テレメトリー、近隣、設定、CLIツールを開きます。';
-
-  @override
-  String get repeaterTools_discovered => '検出済み';
-
-  @override
-  String get repeaterTools_tools => 'ツール';
-
-  @override
-  String get repeaterTools_available => '利用可能なリピーター';
-
-  @override
   String get repeaterTools_unnamed => '名前のないリピーター';
-
-  @override
-  String get repeaterTools_statusTelemetry => '状態 + テレメトリー';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      '既存の管理機能でリピーターの状態とテレメトリーを確認します。';
-
-  @override
-  String get repeaterTools_neighbors => '近隣';
-
-  @override
-  String get repeaterTools_neighborsBody => '近隣のインフラとメッシュの関係を調べます。';
-
-  @override
-  String get repeaterTools_cli => 'CLI + 設定';
-
-  @override
-  String get repeaterTools_cliBody => '認証済みの管理者は既存のリピーターCLIと設定ツールを利用できます。';
 
   @override
   String get repeaterTools_empty =>
@@ -9013,4 +8933,151 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       '無線機の連絡先リストがいっぱいです。先にいくつか削除してください。';
+
+  @override
+  String get fieldIntel_radioNow => '現在の無線機';
+
+  @override
+  String get fieldIntel_noRadio => 'ライブ値を表示するには無線機を接続してください。';
+
+  @override
+  String get fieldIntel_noise => 'ノイズ dBm';
+
+  @override
+  String get fieldIntel_lastSnr => '最新 SNR';
+
+  @override
+  String get fieldIntel_lastRssi => '最新 RSSI';
+
+  @override
+  String get fieldIntel_battery => 'バッテリー V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return '無線機起動後の送信時間: 送信 $sent、受信 $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => '周りにいるノード';
+
+  @override
+  String get fieldIntel_m15 => '15 分';
+
+  @override
+  String get fieldIntel_h1 => '1 時間';
+
+  @override
+  String get fieldIntel_h24 => '24 時間';
+
+  @override
+  String get fieldIntel_older => 'それ以前';
+
+  @override
+  String get fieldIntel_lastHour => '直近 1 時間';
+
+  @override
+  String get fieldIntel_chartHint =>
+      '各ノードを最後に受信した時刻を、過去 1 日分 1 時間ごとに表示します。バーをタップすると一覧が表示されます。';
+
+  @override
+  String get fieldIntel_mix => 'ノードの種類';
+
+  @override
+  String get fieldIntel_reach => '到達範囲';
+
+  @override
+  String get fieldIntel_hops1 => '1 ホップ';
+
+  @override
+  String get fieldIntel_hops2 => '2 ホップ';
+
+  @override
+  String get fieldIntel_hops3 => '3 ホップ以上';
+
+  @override
+  String get fieldIntel_noRoute => 'ルート未確定';
+
+  @override
+  String get fieldIntel_distance => '最も近い / 遠いノード';
+
+  @override
+  String get fieldIntel_noneLocated => '位置情報を持つ連絡先がありません。';
+
+  @override
+  String get fieldIntel_noPosition => '無線機に位置がないため、距離を計算できません。';
+
+  @override
+  String get fieldIntel_bestRepeaters => '直接受信できる最良のリピーター';
+
+  @override
+  String get fieldIntel_noneDirect => '過去 30 分間に直接受信したリピーターはありません。';
+
+  @override
+  String get fieldIntel_attention => '要確認';
+
+  @override
+  String get fieldIntel_allGood => '確認が必要なものはありません。';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'バッテリー低下: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'お気に入り、$agoから受信なし';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'その他のツール';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'ノード: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'ノードはありません。';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return '最終受信 $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => '地図で表示';
+
+  @override
+  String get fieldIntel_openChat => 'チャットを開く';
+
+  @override
+  String get repeaterTools_login => 'ログイン';
+
+  @override
+  String get repeaterTools_heardDirect => '直接受信';
+
+  @override
+  String get repeaterTools_filterAll => 'すべて';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'バッテリー低下';
+
+  @override
+  String get repeaterTools_hint =>
+      'リピーターをタップすると詳細が表示され、そこからログインしてステータス、近隣、テレメトリー、コマンドラインを確認できます。';
+
+  @override
+  String get repeaterTools_noneMatch => '該当するリピーターはありません。';
+
+  @override
+  String get repeaterTools_toolsTitle => 'ツール';
+
+  @override
+  String get repeaterTools_regionSetupHint => '地域のリージョンツリーを調べてコマンドをコピーします';
+
+  @override
+  String get routes_failingOnly => '失敗したルートのみ';
+
+  @override
+  String get routes_contactDetails => '連絡先の詳細';
 }

@@ -6600,19 +6600,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get fieldStats_title => '현장 분석';
 
   @override
-  String get fieldStats_snapshot => '실시간 메시 스냅샷';
-
-  @override
-  String get fieldStats_headline => '지금 NOTORYX Core가 알고 있는 것.';
-
-  @override
-  String get fieldStats_body =>
-      '이 집계는 연결된 MeshCore 연락처 표, 위치, 경로, 마지막 확인 시각을 바탕으로 계산됩니다.';
-
-  @override
-  String get fieldStats_total => '전체';
-
-  @override
   String get fieldStats_chatNodes => '채팅 노드';
 
   @override
@@ -6622,36 +6609,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get fieldStats_sensors => '센서';
 
   @override
-  String get fieldStats_located => '위치 있음';
-
-  @override
-  String get fieldStats_favorites => '즐겨찾기';
-
-  @override
-  String get fieldStats_routeSnapshot => '경로 스냅샷';
-
-  @override
-  String get fieldStats_routed => '경로 있음';
-
-  @override
   String get fieldStats_direct => '직접';
-
-  @override
-  String get fieldStats_flood => '플러드';
-
-  @override
-  String get fieldStats_pathIntel => '경로 분석';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'NOTORYX Core의 경로 분석은 저장된 경로 시도, 홉 수, 성공/실패, 이동 시간, 경로 가중치를 사용해 학습된 경로를 보여 줍니다.';
-
-  @override
-  String get fieldStats_coverageSessions => '커버리지 세션';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      '커버리지 기록은 이제 현장 세션을 저장하고, 중단된 작업을 복원하고, 관측을 내보내고, 기록된 커버리지 지점을 지도에 표시합니다. RSSI/SNR은 여전히 가장 가까운 무전기 스냅샷입니다.';
 
   @override
   String get mapHub_title => 'NOTORYX 현장 지도';
@@ -6773,45 +6731,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => '리피터 관리';
-
-  @override
-  String get repeaterTools_headline => '메시를 받치는 인프라를 관리하세요.';
-
-  @override
-  String get repeaterTools_body =>
-      '발견된 리피터를 선택해 인증하고, 기존 MeshCore 상태, 원격 측정, 이웃, 설정, CLI 도구를 여세요.';
-
-  @override
-  String get repeaterTools_discovered => '발견됨';
-
-  @override
-  String get repeaterTools_tools => '도구';
-
-  @override
-  String get repeaterTools_available => '사용 가능한 리피터';
-
-  @override
   String get repeaterTools_unnamed => '이름 없는 리피터';
-
-  @override
-  String get repeaterTools_statusTelemetry => '상태 + 원격 측정';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      '기존 관리 도구로 리피터 상태와 원격 측정을 확인합니다.';
-
-  @override
-  String get repeaterTools_neighbors => '이웃';
-
-  @override
-  String get repeaterTools_neighborsBody => '이웃 인프라와 메시 관계를 살펴봅니다.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + 설정';
-
-  @override
-  String get repeaterTools_cliBody => '인증된 관리자는 기존 리피터 CLI와 구성 도구를 사용할 수 있습니다.';
 
   @override
   String get repeaterTools_empty => '아직 발견된 리피터가 없습니다. 무전기를 연결하고 먼저 메시를 탐색하세요.';
@@ -9024,4 +8944,151 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       '무전기의 연락처 목록이 가득 찼습니다. 먼저 일부를 삭제하세요.';
+
+  @override
+  String get fieldIntel_radioNow => '지금 무전기';
+
+  @override
+  String get fieldIntel_noRadio => '실시간 값을 보려면 무전기를 연결하세요.';
+
+  @override
+  String get fieldIntel_noise => '노이즈 dBm';
+
+  @override
+  String get fieldIntel_lastSnr => '최근 SNR';
+
+  @override
+  String get fieldIntel_lastRssi => '최근 RSSI';
+
+  @override
+  String get fieldIntel_battery => '배터리 V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return '무전기 시작 후 송신 시간: 송신 $sent, 수신 $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => '주변 노드';
+
+  @override
+  String get fieldIntel_m15 => '15분';
+
+  @override
+  String get fieldIntel_h1 => '1시간';
+
+  @override
+  String get fieldIntel_h24 => '24시간';
+
+  @override
+  String get fieldIntel_older => '이전';
+
+  @override
+  String get fieldIntel_lastHour => '최근 1시간';
+
+  @override
+  String get fieldIntel_chartHint =>
+      '지난 하루 동안 각 노드가 마지막으로 들린 시간을 시간별로 보여 줍니다. 막대를 누르면 목록이 나옵니다.';
+
+  @override
+  String get fieldIntel_mix => '노드 종류';
+
+  @override
+  String get fieldIntel_reach => '도달 범위';
+
+  @override
+  String get fieldIntel_hops1 => '1홉';
+
+  @override
+  String get fieldIntel_hops2 => '2홉';
+
+  @override
+  String get fieldIntel_hops3 => '3홉 이상';
+
+  @override
+  String get fieldIntel_noRoute => '아직 경로 없음';
+
+  @override
+  String get fieldIntel_distance => '가장 가까운 / 먼 노드';
+
+  @override
+  String get fieldIntel_noneLocated => '위치가 있는 연락처가 없습니다.';
+
+  @override
+  String get fieldIntel_noPosition => '무전기에 아직 위치가 없어 거리를 계산할 수 없습니다.';
+
+  @override
+  String get fieldIntel_bestRepeaters => '직접 들리는 최고의 리피터';
+
+  @override
+  String get fieldIntel_noneDirect => '최근 30분 동안 직접 들린 리피터가 없습니다.';
+
+  @override
+  String get fieldIntel_attention => '확인 필요';
+
+  @override
+  String get fieldIntel_allGood => '확인이 필요한 항목이 없습니다.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return '배터리 부족: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return '즐겨찾기, $ago 이후로 들리지 않음';
+  }
+
+  @override
+  String get fieldIntel_moreTools => '더 많은 도구';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return '노드: $count';
+  }
+
+  @override
+  String get fieldIntel_none => '노드가 없습니다.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return '마지막 수신 $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => '지도에서 보기';
+
+  @override
+  String get fieldIntel_openChat => '채팅 열기';
+
+  @override
+  String get repeaterTools_login => '로그인';
+
+  @override
+  String get repeaterTools_heardDirect => '직접 수신';
+
+  @override
+  String get repeaterTools_filterAll => '전체';
+
+  @override
+  String get repeaterTools_filterLowBattery => '배터리 부족';
+
+  @override
+  String get repeaterTools_hint =>
+      '리피터를 누르면 세부 정보가 나오고, 거기서 로그인하면 상태, 이웃, 텔레메트리, 명령줄을 볼 수 있습니다.';
+
+  @override
+  String get repeaterTools_noneMatch => '해당하는 리피터가 없습니다.';
+
+  @override
+  String get repeaterTools_toolsTitle => '도구';
+
+  @override
+  String get repeaterTools_regionSetupHint => '내 지역의 리전 트리를 찾아 명령을 복사합니다';
+
+  @override
+  String get routes_failingOnly => '실패한 경로만';
+
+  @override
+  String get routes_contactDetails => '연락처 정보';
 }

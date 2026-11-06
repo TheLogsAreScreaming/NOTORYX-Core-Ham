@@ -6923,19 +6923,6 @@ class AppLocalizationsSl extends AppLocalizations {
   String get fieldStats_title => 'Terenska analiza';
 
   @override
-  String get fieldStats_snapshot => 'Posnetek omrežja v živo';
-
-  @override
-  String get fieldStats_headline => 'Kaj NOTORYX Core ve ta trenutek.';
-
-  @override
-  String get fieldStats_body =>
-      'Ti števci so izračunani iz tabele stikov povezanega MeshCore, lokacij, poti in časov zadnje zaznave.';
-
-  @override
-  String get fieldStats_total => 'Skupaj';
-
-  @override
   String get fieldStats_chatNodes => 'Vozlišča za klepet';
 
   @override
@@ -6945,36 +6932,7 @@ class AppLocalizationsSl extends AppLocalizations {
   String get fieldStats_sensors => 'Senzorji';
 
   @override
-  String get fieldStats_located => 'Z lokacijo';
-
-  @override
-  String get fieldStats_favorites => 'Priljubljeni';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Posnetek poti';
-
-  @override
-  String get fieldStats_routed => 'S potjo';
-
-  @override
   String get fieldStats_direct => 'Neposredno';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Analiza poti';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'Analiza poti v NOTORYX Core uporablja shranjene poskuse poti, število skokov, uspehe/neuspehe, čas potovanja in uteži poti za prikaz naučenih poti.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Seje pokritosti';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Zajem pokritosti zdaj shranjuje terenske seje, obnovi prekinjeno delo, izvaža opažanja in na zemljevidu prikaže zabeležene točke pokritosti. RSSI/SNR ostajata najbližji razpoložljivi posnetek radia.';
 
   @override
   String get mapHub_title => 'Terenski zemljevid NOTORYX';
@@ -7103,48 +7061,7 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Upravljanje repetitorjev';
-
-  @override
-  String get repeaterTools_headline =>
-      'Upravljajte infrastrukturo za vašim omrežjem.';
-
-  @override
-  String get repeaterTools_body =>
-      'Izberite odkrit repetitor, da se prijavite in odprete njegova obstoječa orodja MeshCore za stanje, telemetrijo, sosede, nastavitve in CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Odkriti';
-
-  @override
-  String get repeaterTools_tools => 'Orodja';
-
-  @override
-  String get repeaterTools_available => 'Razpoložljivi repetitorji';
-
-  @override
   String get repeaterTools_unnamed => 'Neimenovan repetitor';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Stanje + telemetrija';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Preverite stanje in telemetrijo repetitorja z obstoječimi orodji za upravljanje.';
-
-  @override
-  String get repeaterTools_neighbors => 'Sosedje';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Raziščite sosednjo infrastrukturo in odnose v omrežju.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + nastavitve';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Prijavljeni skrbniki lahko dostopajo do obstoječega CLI repetitorja in orodij za nastavitve.';
 
   @override
   String get repeaterTools_empty =>
@@ -9446,4 +9363,155 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'Seznam stikov radia je poln. Najprej odstranite nekaj stikov.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radio zdaj';
+
+  @override
+  String get fieldIntel_noRadio => 'Povežite radio za podatke v živo.';
+
+  @override
+  String get fieldIntel_noise => 'šum dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'zadnji SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'zadnji RSSI';
+
+  @override
+  String get fieldIntel_battery => 'baterija V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Čas oddajanja od zagona radia: poslano $sent, prejeto $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Kdo je v bližini';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 ura';
+
+  @override
+  String get fieldIntel_h24 => '24 ur';
+
+  @override
+  String get fieldIntel_older => 'Starejši';
+
+  @override
+  String get fieldIntel_lastHour => 'Zadnja ura';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Kdaj je bilo vsako vozlišče nazadnje slišano, po urah v zadnjem dnevu. Tapnite stolpec, da vidite koga.';
+
+  @override
+  String get fieldIntel_mix => 'Vrste vozlišč';
+
+  @override
+  String get fieldIntel_reach => 'Doseg';
+
+  @override
+  String get fieldIntel_hops1 => '1 skok';
+
+  @override
+  String get fieldIntel_hops2 => '2 skoka';
+
+  @override
+  String get fieldIntel_hops3 => '3+ skoki';
+
+  @override
+  String get fieldIntel_noRoute => 'Še brez poti';
+
+  @override
+  String get fieldIntel_distance => 'Najbližja in najbolj oddaljena';
+
+  @override
+  String get fieldIntel_noneLocated => 'Noben stik nima položaja.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Radio še nima položaja, zato razdalj ni mogoče izračunati.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Najboljši neposredno slišani repetitorji';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'V zadnjih 30 minutah ni bil neposredno slišan noben repetitor.';
+
+  @override
+  String get fieldIntel_attention => 'Potrebuje pozornost';
+
+  @override
+  String get fieldIntel_allGood => 'Nič ne potrebuje pozornosti.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Šibka baterija: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Priljubljeni ni slišan od $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Več orodij';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Vozlišča: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Ni vozlišč.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Nazadnje slišano $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Pokaži na zemljevidu';
+
+  @override
+  String get fieldIntel_openChat => 'Odpri klepet';
+
+  @override
+  String get repeaterTools_login => 'Prijava';
+
+  @override
+  String get repeaterTools_heardDirect => 'Slišan neposredno';
+
+  @override
+  String get repeaterTools_filterAll => 'Vsi';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Šibka baterija';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tapnite repetitor za podrobnosti, nato se prijavite za stanje, sosede, telemetrijo in ukazno vrstico.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Tukaj ni repetitorjev.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Orodja';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Poiščite regijsko drevo za svoje območje in kopirajte njegove ukaze';
+
+  @override
+  String get routes_failingOnly => 'Samo neuspešne poti';
+
+  @override
+  String get routes_contactDetails => 'Podrobnosti stika';
 }

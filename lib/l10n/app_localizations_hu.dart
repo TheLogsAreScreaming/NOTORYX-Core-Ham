@@ -6922,19 +6922,6 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldStats_title => 'Terepi elemzés';
 
   @override
-  String get fieldStats_snapshot => 'Élő hálózati pillanatkép';
-
-  @override
-  String get fieldStats_headline => 'Amit a NOTORYX Core most tud.';
-
-  @override
-  String get fieldStats_body =>
-      'Ezek a számlálók a csatlakoztatott MeshCore kapcsolattáblájából, a helyekből, az utakból és az utoljára látott időbélyegekből számolódnak.';
-
-  @override
-  String get fieldStats_total => 'Összesen';
-
-  @override
   String get fieldStats_chatNodes => 'Csevegő csomópontok';
 
   @override
@@ -6944,36 +6931,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldStats_sensors => 'Érzékelők';
 
   @override
-  String get fieldStats_located => 'Hellyel';
-
-  @override
-  String get fieldStats_favorites => 'Kedvencek';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Útvonal-pillanatkép';
-
-  @override
-  String get fieldStats_routed => 'Útvonalas';
-
-  @override
   String get fieldStats_direct => 'Közvetlen';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Útelemzés';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'A NOTORYX Core útvonalelemzése mentett útkísérleteket, ugrásszámokat, sikereket/hibákat, átfutási időt és útvonalsúlyozást használ a tanult útvonalak megjelenítéséhez.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Lefedettségi munkamenetek';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'A lefedettségrögzítés mostantól menti a terepi munkameneteket, visszaállítja a megszakított munkát, exportálja a megfigyeléseket és térképre viszi a rögzített lefedettségi pontokat. Az RSSI/SNR továbbra is a legközelebbi elérhető rádiós pillanatkép.';
 
   @override
   String get mapHub_title => 'NOTORYX terepi térkép';
@@ -7101,48 +7059,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Ismétlő-irányítás';
-
-  @override
-  String get repeaterTools_headline =>
-      'Kezelje a hálózata mögötti infrastruktúrát.';
-
-  @override
-  String get repeaterTools_body =>
-      'Válasszon egy felderített ismétlőt a bejelentkezéshez, és nyissa meg meglévő MeshCore-eszközeit: állapot, telemetria, szomszédok, beállítások és CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Felderítve';
-
-  @override
-  String get repeaterTools_tools => 'Eszközök';
-
-  @override
-  String get repeaterTools_available => 'Elérhető ismétlők';
-
-  @override
   String get repeaterTools_unnamed => 'Névtelen ismétlő';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Állapot + telemetria';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Az ismétlő állapotának és telemetriájának vizsgálata a meglévő kezelőeszközökkel.';
-
-  @override
-  String get repeaterTools_neighbors => 'Szomszédok';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Szomszédos infrastruktúra és hálózati kapcsolatok vizsgálata.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + beállítások';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'A bejelentkezett rendszergazdák elérik az ismétlő meglévő CLI-jét és konfigurációs eszközeit.';
 
   @override
   String get repeaterTools_empty =>
@@ -9452,4 +9369,155 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'A rádió névjegylistája megtelt. Előbb törölj néhány névjegyet.';
+
+  @override
+  String get fieldIntel_radioNow => 'Rádió most';
+
+  @override
+  String get fieldIntel_noRadio => 'Csatlakoztasd a rádiót az élő adatokhoz.';
+
+  @override
+  String get fieldIntel_noise => 'zaj dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'utolsó SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'utolsó RSSI';
+
+  @override
+  String get fieldIntel_battery => 'akku V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Adásidő a rádió indulása óta: küldve $sent, fogadva $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Kik vannak a közelben';
+
+  @override
+  String get fieldIntel_m15 => '15 perc';
+
+  @override
+  String get fieldIntel_h1 => '1 óra';
+
+  @override
+  String get fieldIntel_h24 => '24 óra';
+
+  @override
+  String get fieldIntel_older => 'Régebbi';
+
+  @override
+  String get fieldIntel_lastHour => 'Utolsó óra';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Mikor hallottuk utoljára az egyes csomópontokat, óránként az elmúlt napban. Koppints egy oszlopra, hogy lásd, kiket.';
+
+  @override
+  String get fieldIntel_mix => 'Csomóponttípusok';
+
+  @override
+  String get fieldIntel_reach => 'Hatótáv';
+
+  @override
+  String get fieldIntel_hops1 => '1 ugrás';
+
+  @override
+  String get fieldIntel_hops2 => '2 ugrás';
+
+  @override
+  String get fieldIntel_hops3 => '3+ ugrás';
+
+  @override
+  String get fieldIntel_noRoute => 'Még nincs útvonal';
+
+  @override
+  String get fieldIntel_distance => 'Legközelebbi és legtávolabbi';
+
+  @override
+  String get fieldIntel_noneLocated => 'Egyik névjegyednek sincs pozíciója.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'A rádiónak még nincs pozíciója, így a távolság nem számolható.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Legjobb közvetlenül hallott átjátszók';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'Az elmúlt 30 percben nem hallottunk közvetlenül átjátszót.';
+
+  @override
+  String get fieldIntel_attention => 'Figyelmet igényel';
+
+  @override
+  String get fieldIntel_allGood => 'Semmi sem igényel figyelmet.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Gyenge akku: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Kedvenc, nem hallott ennyi ideje: $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'További eszközök';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Csomópontok: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Nincsenek csomópontok.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Utoljára hallva $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Megjelenítés a térképen';
+
+  @override
+  String get fieldIntel_openChat => 'Csevegés megnyitása';
+
+  @override
+  String get repeaterTools_login => 'Bejelentkezés';
+
+  @override
+  String get repeaterTools_heardDirect => 'Közvetlenül hallva';
+
+  @override
+  String get repeaterTools_filterAll => 'Mind';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Gyenge akku';
+
+  @override
+  String get repeaterTools_hint =>
+      'Koppints egy átjátszóra a részletekért, onnan bejelentkezve láthatod az állapotot, szomszédokat, telemetriát és a parancssort.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Itt nincs átjátszó.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Eszközök';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Keresd meg a környéked régiófáját, és másold a parancsait';
+
+  @override
+  String get routes_failingOnly => 'Csak sikertelen útvonalak';
+
+  @override
+  String get routes_contactDetails => 'Névjegy adatai';
 }

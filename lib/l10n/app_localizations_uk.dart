@@ -6965,19 +6965,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String get fieldStats_title => 'Польова аналітика';
 
   @override
-  String get fieldStats_snapshot => 'Знімок мережі наживо';
-
-  @override
-  String get fieldStats_headline => 'Що NOTORYX Core знає просто зараз.';
-
-  @override
-  String get fieldStats_body =>
-      'Ці лічильники обчислюються за таблицею контактів під\'єднаного MeshCore, місцезнаходженнями, шляхами й часом останньої появи.';
-
-  @override
-  String get fieldStats_total => 'Усього';
-
-  @override
   String get fieldStats_chatNodes => 'Вузли чату';
 
   @override
@@ -6987,36 +6974,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get fieldStats_sensors => 'Датчики';
 
   @override
-  String get fieldStats_located => 'З місцезнаходженням';
-
-  @override
-  String get fieldStats_favorites => 'Обране';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Знімок маршрутів';
-
-  @override
-  String get fieldStats_routed => 'З маршрутом';
-
-  @override
   String get fieldStats_direct => 'Напряму';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Аналіз шляхів';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'Аналіз маршрутів NOTORYX Core використовує збережені спроби шляхів, кількість переходів, успіхи/невдачі, час проходження й ваги маршрутів, щоб показувати вивчені маршрути.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Сесії покриття';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Запис покриття тепер зберігає польові сесії, відновлює перервану роботу, експортує спостереження й наносить записані точки покриття на мапу. RSSI/SNR залишаються найближчим доступним знімком радіостанції.';
 
   @override
   String get mapHub_title => 'Польова мапа NOTORYX';
@@ -7144,47 +7102,7 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Керування ретрансляторами';
-
-  @override
-  String get repeaterTools_headline => 'Керуйте інфраструктурою своєї мережі.';
-
-  @override
-  String get repeaterTools_body =>
-      'Виберіть виявлений ретранслятор, щоб увійти й відкрити його наявні інструменти MeshCore: стан, телеметрію, сусідів, налаштування й CLI.';
-
-  @override
-  String get repeaterTools_discovered => 'Виявлено';
-
-  @override
-  String get repeaterTools_tools => 'Інструменти';
-
-  @override
-  String get repeaterTools_available => 'Доступні ретранслятори';
-
-  @override
   String get repeaterTools_unnamed => 'Ретранслятор без назви';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Стан + телеметрія';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Перевіряйте стан і телеметрію ретранслятора наявними інструментами керування.';
-
-  @override
-  String get repeaterTools_neighbors => 'Сусіди';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Досліджуйте сусідню інфраструктуру й зв\'язки в мережі.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + налаштування';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Адміністратори, що увійшли, мають доступ до наявного CLI ретранслятора й інструментів налаштування.';
 
   @override
   String get repeaterTools_empty =>
@@ -9486,4 +9404,156 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'Список контактів радіо заповнений. Спочатку видаліть кілька контактів.';
+
+  @override
+  String get fieldIntel_radioNow => 'Радіо зараз';
+
+  @override
+  String get fieldIntel_noRadio =>
+      'Під\'єднайте радіо, щоб бачити дані наживо.';
+
+  @override
+  String get fieldIntel_noise => 'шум дБм';
+
+  @override
+  String get fieldIntel_lastSnr => 'останній SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'останній RSSI';
+
+  @override
+  String get fieldIntel_battery => 'батарея В';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Ефірний час від запуску радіо: передано $sent, отримано $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Хто поруч';
+
+  @override
+  String get fieldIntel_m15 => '15 хв';
+
+  @override
+  String get fieldIntel_h1 => '1 год';
+
+  @override
+  String get fieldIntel_h24 => '24 год';
+
+  @override
+  String get fieldIntel_older => 'Раніше';
+
+  @override
+  String get fieldIntel_lastHour => 'Остання година';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Коли кожен вузол чули востаннє, по годинах за останню добу. Торкніться стовпчика, щоб побачити хто.';
+
+  @override
+  String get fieldIntel_mix => 'Типи вузлів';
+
+  @override
+  String get fieldIntel_reach => 'Охоплення';
+
+  @override
+  String get fieldIntel_hops1 => '1 хоп';
+
+  @override
+  String get fieldIntel_hops2 => '2 хопи';
+
+  @override
+  String get fieldIntel_hops3 => '3+ хопи';
+
+  @override
+  String get fieldIntel_noRoute => 'Маршруту ще немає';
+
+  @override
+  String get fieldIntel_distance => 'Найближчі й найдальші';
+
+  @override
+  String get fieldIntel_noneLocated => 'Жоден контакт не має координат.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Радіо ще не має координат, тому відстані не обчислити.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Найкращі ретранслятори, чутні напряму';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'За останні 30 хвилин жодного ретранслятора не чули напряму.';
+
+  @override
+  String get fieldIntel_attention => 'Потребує уваги';
+
+  @override
+  String get fieldIntel_allGood => 'Ніщо не потребує уваги.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Низький заряд: $volts В';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Обраний не чутно з $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Інші інструменти';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Вузлів: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Вузлів немає.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Востаннє $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Показати на карті';
+
+  @override
+  String get fieldIntel_openChat => 'Відкрити чат';
+
+  @override
+  String get repeaterTools_login => 'Увійти';
+
+  @override
+  String get repeaterTools_heardDirect => 'Чутно напряму';
+
+  @override
+  String get repeaterTools_filterAll => 'Усі';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Низький заряд';
+
+  @override
+  String get repeaterTools_hint =>
+      'Торкніться ретранслятора, щоб побачити подробиці, і увійдіть звідти, щоб переглянути стан, сусідів, телеметрію та командний рядок.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Ретрансляторів немає.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Інструменти';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Знайдіть дерево регіонів для своєї місцевості й скопіюйте його команди';
+
+  @override
+  String get routes_failingOnly => 'Лише невдалі маршрути';
+
+  @override
+  String get routes_contactDetails => 'Відомості про контакт';
 }

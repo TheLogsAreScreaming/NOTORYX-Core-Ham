@@ -63,6 +63,8 @@ import 'package:meshcore_open/screens/track_log_screen.dart';
 import 'package:meshcore_open/services/track_log_service.dart';
 import 'package:meshcore_open/screens/region_setup_screen.dart';
 import 'package:meshcore_open/models/network_scan.dart';
+import 'package:meshcore_open/screens/bastion_field_stats_screen.dart';
+import 'package:meshcore_open/screens/bastion_repeater_tools_screen.dart';
 import 'package:meshcore_open/screens/networks_screen.dart';
 import 'package:meshcore_open/screens/prefix_tool_screen.dart';
 import 'package:meshcore_open/services/network_scan_service.dart';
@@ -517,6 +519,8 @@ void main() {
           File('assets/region_trees.json').readAsStringSync(),
     ),
     'prefix_tool': () => const PrefixToolScreen(),
+    'field_stats': () => const BastionFieldStatsScreen(),
+    'repeater_tools': () => const BastionRepeaterToolsScreen(),
     'channel_directory': () => ChannelDirectoryScreen(
       service: ChannelDirectoryService(
         httpClient: MockClient((_) async => http.Response('', 503)),

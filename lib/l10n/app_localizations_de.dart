@@ -6944,19 +6944,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get fieldStats_title => 'Feldanalyse';
 
   @override
-  String get fieldStats_snapshot => 'Live-Mesh-Momentaufnahme';
-
-  @override
-  String get fieldStats_headline => 'Was NOTORYX Core gerade weiß.';
-
-  @override
-  String get fieldStats_body =>
-      'Diese Zähler werden aus der Kontakttabelle des verbundenen MeshCore-Geräts, Standorten, Pfaden und Zuletzt-gesehen-Zeitstempeln berechnet.';
-
-  @override
-  String get fieldStats_total => 'Gesamt';
-
-  @override
   String get fieldStats_chatNodes => 'Chat-Knoten';
 
   @override
@@ -6966,36 +6953,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get fieldStats_sensors => 'Sensoren';
 
   @override
-  String get fieldStats_located => 'Mit Standort';
-
-  @override
-  String get fieldStats_favorites => 'Favoriten';
-
-  @override
-  String get fieldStats_routeSnapshot => 'Routen-Momentaufnahme';
-
-  @override
-  String get fieldStats_routed => 'Geroutet';
-
-  @override
   String get fieldStats_direct => 'Direkt';
-
-  @override
-  String get fieldStats_flood => 'Flood';
-
-  @override
-  String get fieldStats_pathIntel => 'Pfadanalyse';
-
-  @override
-  String get fieldStats_pathIntelBody =>
-      'Die Routenanalyse von NOTORYX Core nutzt gespeicherte Pfadversuche, Hop-Zahlen, Erfolg/Fehlschlag, Laufzeit und Routengewichtung, um gelernte Routen anzuzeigen.';
-
-  @override
-  String get fieldStats_coverageSessions => 'Abdeckungssitzungen';
-
-  @override
-  String get fieldStats_coverageSessionsBody =>
-      'Die Abdeckungserfassung speichert jetzt Feldsitzungen, stellt unterbrochene Arbeit wieder her, exportiert Beobachtungen und kartiert erfasste Abdeckungspunkte. RSSI/SNR bleiben die nächstgelegene verfügbare Funk-Momentaufnahme.';
 
   @override
   String get mapHub_title => 'NOTORYX-Feldkarte';
@@ -7123,48 +7081,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get repeaterTools_heroLabel => 'Repeater-Zentrale';
-
-  @override
-  String get repeaterTools_headline =>
-      'Verwalte die Infrastruktur hinter deinem Mesh.';
-
-  @override
-  String get repeaterTools_body =>
-      'Wähle einen gefundenen Repeater, um dich anzumelden und seine vorhandenen MeshCore-Werkzeuge für Status, Telemetrie, Nachbarn, Einstellungen und CLI zu öffnen.';
-
-  @override
-  String get repeaterTools_discovered => 'Gefunden';
-
-  @override
-  String get repeaterTools_tools => 'Werkzeuge';
-
-  @override
-  String get repeaterTools_available => 'Verfügbare Repeater';
-
-  @override
   String get repeaterTools_unnamed => 'Unbenannter Repeater';
-
-  @override
-  String get repeaterTools_statusTelemetry => 'Status + Telemetrie';
-
-  @override
-  String get repeaterTools_statusTelemetryBody =>
-      'Zustand und Telemetrie von Repeatern mit den vorhandenen Verwaltungswerkzeugen untersuchen.';
-
-  @override
-  String get repeaterTools_neighbors => 'Nachbarn';
-
-  @override
-  String get repeaterTools_neighborsBody =>
-      'Benachbarte Infrastruktur und Mesh-Beziehungen untersuchen.';
-
-  @override
-  String get repeaterTools_cli => 'CLI + Einstellungen';
-
-  @override
-  String get repeaterTools_cliBody =>
-      'Angemeldete Administratoren erreichen die vorhandene Repeater-CLI und Konfigurationswerkzeuge.';
 
   @override
   String get repeaterTools_empty =>
@@ -9476,4 +9393,155 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get discoveredContacts_radioFull =>
       'Die Kontaktliste deines Funkgeräts ist voll. Entferne zuerst einige Kontakte.';
+
+  @override
+  String get fieldIntel_radioNow => 'Funkgerät gerade';
+
+  @override
+  String get fieldIntel_noRadio => 'Verbinde dein Funkgerät für Live-Werte.';
+
+  @override
+  String get fieldIntel_noise => 'Rauschen dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'letzter SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'letzter RSSI';
+
+  @override
+  String get fieldIntel_battery => 'Akku V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Sendezeit seit dem Start des Funkgeräts: gesendet $sent, empfangen $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Wer ist in der Nähe';
+
+  @override
+  String get fieldIntel_m15 => '15 Min.';
+
+  @override
+  String get fieldIntel_h1 => '1 Stunde';
+
+  @override
+  String get fieldIntel_h24 => '24 Stunden';
+
+  @override
+  String get fieldIntel_older => 'Älter';
+
+  @override
+  String get fieldIntel_lastHour => 'Letzte Stunde';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Wann jeder Knoten zuletzt gehört wurde, stündlich über den letzten Tag. Tippe auf einen Balken, um zu sehen, wer.';
+
+  @override
+  String get fieldIntel_mix => 'Knotenarten';
+
+  @override
+  String get fieldIntel_reach => 'Reichweite';
+
+  @override
+  String get fieldIntel_hops1 => '1 Hop';
+
+  @override
+  String get fieldIntel_hops2 => '2 Hops';
+
+  @override
+  String get fieldIntel_hops3 => '3+ Hops';
+
+  @override
+  String get fieldIntel_noRoute => 'Noch keine Route';
+
+  @override
+  String get fieldIntel_distance => 'Nächste und fernste';
+
+  @override
+  String get fieldIntel_noneLocated =>
+      'Keiner deiner Kontakte hat eine Position.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Dein Funkgerät hat noch keine Position, daher lassen sich keine Entfernungen berechnen.';
+
+  @override
+  String get fieldIntel_bestRepeaters => 'Beste direkt gehörte Repeater';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'In den letzten 30 Minuten wurde kein Repeater direkt gehört.';
+
+  @override
+  String get fieldIntel_attention => 'Braucht Aufmerksamkeit';
+
+  @override
+  String get fieldIntel_allGood => 'Nichts braucht Aufmerksamkeit.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Akku schwach: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Favorit nicht gehört seit $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Weitere Werkzeuge';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Knoten: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Keine Knoten.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Zuletzt gehört $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Auf Karte zeigen';
+
+  @override
+  String get fieldIntel_openChat => 'Chat öffnen';
+
+  @override
+  String get repeaterTools_login => 'Anmelden';
+
+  @override
+  String get repeaterTools_heardDirect => 'Direkt gehört';
+
+  @override
+  String get repeaterTools_filterAll => 'Alle';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Akku schwach';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tippe auf einen Repeater für Details und melde dich dort an für Status, Nachbarn, Telemetrie und Befehlszeile.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Keine Repeater hier.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Werkzeuge';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Finde den Regionsbaum deiner Gegend und kopiere seine Befehle';
+
+  @override
+  String get routes_failingOnly => 'Nur fehlgeschlagene Routen';
+
+  @override
+  String get routes_contactDetails => 'Kontaktdetails';
 }
