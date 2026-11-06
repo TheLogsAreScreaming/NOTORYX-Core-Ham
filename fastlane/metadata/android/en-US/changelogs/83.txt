@@ -1,0 +1,2 @@
+• Discovered contacts: long-press to pick several, or Add all shown, to add many at once
+• Never adds more than your radio has room for, with progress you can stop
