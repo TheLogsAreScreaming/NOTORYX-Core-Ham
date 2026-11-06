@@ -9534,4 +9534,83 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Datos del contacto';
+
+  @override
+  String get pathGraph_you => 'Tú';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Retransmitió $count mensajes';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Este ID corto coincide con más de un repetidor, así que no se puede asignar a uno.';
+
+  @override
+  String get pathGraph_comesFrom => 'Viene de';
+
+  @override
+  String get pathGraph_goesTo => 'Va a';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Detalles del repetidor';
+
+  @override
+  String get pathGraph_days7 => '7 días';
+
+  @override
+  String get pathGraph_empty =>
+      'Aún no hay rutas de mensajes de canal en este periodo. Las rutas se recogen de los mensajes de canal que recibes mientras el rastreo está activado.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths rutas oídas · $repeaters repetidores';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Cada salto se muestra por su prefijo hash, o por su nombre si conoces el repetidor.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count saltos cortos (1 byte) asociados a un repetidor concreto usando rutas más largas.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched saltos cortos (1 byte) asociados a un repetidor concreto usando rutas más largas · $ambiguous siguen siendo ambiguos (marcados con ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Izquierda: repetidores más lejanos. Derecha: tú. El grosor de la banda es cuántos mensajes tomaron ese salto. Toca una caja para ver ese repetidor.';
+
+  @override
+  String get pathGraph_busiest => 'Repetidores más usados';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Gráfico de rutas. Repetidor más usado $name, retransmitió $count mensajes.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Copiado: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'No hay canales en esta radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Toca un valor para copiarlo. Desliza hacia abajo para actualizar.';
+
+  @override
+  String get diag_storage => 'Almacenamiento';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used de $total KB';
+  }
 }

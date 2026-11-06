@@ -9407,4 +9407,83 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Contact details';
+
+  @override
+  String get pathGraph_you => 'You';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Relayed $count messages';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'This short ID matches more than one repeater, so it can\'t be pinned to one.';
+
+  @override
+  String get pathGraph_comesFrom => 'Comes from';
+
+  @override
+  String get pathGraph_goesTo => 'Goes to';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeater details';
+
+  @override
+  String get pathGraph_days7 => '7 days';
+
+  @override
+  String get pathGraph_empty =>
+      'No channel message paths in this period yet. Paths are collected from channel messages you receive while message tracing is on.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths paths heard · $repeaters repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Each hop is shown by its hash prefix, or its name when you know the repeater.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count short (1-byte) hops matched to a specific repeater using longer paths.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched short (1-byte) hops matched to a specific repeater using longer paths · $ambiguous still ambiguous (marked ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Left: repeaters farther away. Right: you. Band width is how many messages took that hop. Tap a box to see that repeater.';
+
+  @override
+  String get pathGraph_busiest => 'Busiest repeaters';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Path graph. Busiest repeater $name, relayed $count messages.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Copied: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'No channels on this radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tap any value to copy it. Pull down to refresh.';
+
+  @override
+  String get diag_storage => 'Storage';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used of $total KB';
+  }
 }

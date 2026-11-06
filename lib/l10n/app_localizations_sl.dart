@@ -9514,4 +9514,83 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Podrobnosti stika';
+
+  @override
+  String get pathGraph_you => 'Vi';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Posredoval $count sporočil';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Ta kratki ID se ujema z več repetitorji, zato ga ni mogoče pripisati enemu.';
+
+  @override
+  String get pathGraph_comesFrom => 'Prihaja od';
+
+  @override
+  String get pathGraph_goesTo => 'Gre k';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Podrobnosti repetitorja';
+
+  @override
+  String get pathGraph_days7 => '7 dni';
+
+  @override
+  String get pathGraph_empty =>
+      'V tem obdobju še ni poti sporočil kanalov. Poti se zbirajo iz prejetih sporočil kanalov, ko je sledenje vklopljeno.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Slišane poti: $paths · repetitorji: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Vsak skok je prikazan s predpono zgoščevanja ali z imenom, če repetitor poznate.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count kratkih (1-bajtnih) skokov je s pomočjo daljših poti pripisanih določenemu repetitorju.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched kratkih (1-bajtnih) skokov je s pomočjo daljših poti pripisanih določenemu repetitorju · $ambiguous jih je še nejasnih (označeno z ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Levo: bolj oddaljeni repetitorji. Desno: vi. Debelina pasu pove, koliko sporočil je šlo prek tega skoka. Tapnite polje za ta repetitor.';
+
+  @override
+  String get pathGraph_busiest => 'Najbolj obremenjeni repetitorji';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Graf poti. Najbolj obremenjen repetitor $name, posredoval $count sporočil.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Kopirano: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Na tem radiu ni kanalov.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tapnite vrednost, da jo kopirate. Povlecite navzdol za osvežitev.';
+
+  @override
+  String get diag_storage => 'Pomnilnik';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used od $total KB';
+  }
 }

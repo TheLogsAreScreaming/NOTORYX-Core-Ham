@@ -83,54 +83,6 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
     };
   }
 
-  /// A sheet listing [nodes]; each opens its own sheet.
-  void _showNodes(String title, List<Contact> nodes) {
-    showMeshSheet<void>(
-      context,
-      builder: (sheet) => SafeArea(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.sizeOf(sheet).height * 0.8,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              BottomSheetHeader(
-                title: title,
-                subtitle: context.l10n.fieldIntel_nodeCount(nodes.length),
-              ),
-              Flexible(
-                child: nodes.isEmpty
-                    ? Padding(
-                        padding: const EdgeInsets.all(MeshSpace.lg),
-                        child: Text(context.l10n.fieldIntel_none),
-                      )
-                    : ListView(
-                        shrinkWrap: true,
-                        children: [
-                          for (final c in [
-                            ...nodes,
-                          ]..sort((a, b) => b.lastSeen.compareTo(a.lastSeen)))
-                            InstrumentRow(
-                              icon: contactTypeIcon(c.type),
-                              title: c.name,
-                              subtitle:
-                                  '${hopLabel(context.l10n, hopBand(c))} · ${agoLabel(context.l10n, c.lastSeen)}',
-                              onTap: () {
-                                Navigator.pop(sheet);
-                                showNodeSheet(context, c);
-                              },
-                            ),
-                        ],
-                      ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -274,7 +226,8 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                           key: ValueKey('heard-${w.name}'),
                           value: '${heard[w]!.length}',
                           label: _heardLabel(w),
-                          onTap: () => _showNodes(_heardLabel(w), heard[w]!),
+                          onTap: () =>
+                              showNodeList(context, _heardLabel(w), heard[w]!),
                         ),
                       ),
                       if (w != HeardWhen.older)
@@ -290,7 +243,8 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                   children: [
                     _HourChart(
                       counts: hourly,
-                      onTapHour: (i) => _showNodes(
+                      onTapHour: (i) => showNodeList(
+                        context,
                         i == 23
                             ? l10n.fieldIntel_lastHour
                             : l10n.time_hoursAgo(23 - i),
@@ -318,7 +272,11 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                         count: types[type]?.length ?? 0,
                         total: contacts.length,
                         color: OkabeIto.nodeType(type),
-                        onTap: () => _showNodes(label, types[type] ?? const []),
+                        onTap: () => showNodeList(
+                          context,
+                          label,
+                          types[type] ?? const [],
+                        ),
                       ),
                   ],
                 ),
@@ -338,8 +296,11 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                         color: b == HopBand.unknown
                             ? MeshPalette.ink4
                             : OkabeIto.categorical[i],
-                        onTap: () =>
-                            _showNodes(hopLabel(context.l10n, b), hops[b]!),
+                        onTap: () => showNodeList(
+                          context,
+                          hopLabel(context.l10n, b),
+                          hops[b]!,
+                        ),
                       ),
                   ],
                 ),
