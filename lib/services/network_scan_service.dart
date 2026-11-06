@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
@@ -13,6 +14,18 @@ import '../utils/app_logger.dart';
 
 /// Why a scan can't start, or stopped early.
 enum ScanBlock { none, noRadio, noSettings, sos, trip }
+
+/// How a scan looks for a network.
+enum ScanMode {
+  /// Sends one zero-hop discover ping on each network and listens a few
+  /// seconds; any node in range answers at once, so this is fast. It finds
+  /// networks with a repeater (or room or sensor) within one hop.
+  quick,
+
+  /// Only listens, for longer. It sends nothing, and also finds networks
+  /// without a repeater in range, as long as someone transmits meanwhile.
+  thorough,
+}
 
 /// Finds MeshCore networks nearby by scanning: the radio switches to each
 /// target's settings in turn, listens, and switches back to your own
@@ -34,7 +47,11 @@ class NetworkScanService extends ChangeNotifier {
     Future<({double lat, double lon})?> Function()? locate,
     DateTime Function()? clock,
     this.settleTime = const Duration(milliseconds: 800),
-  }) : _sosActive = sosActive ?? (() => false),
+    this.quickListen = const Duration(seconds: 8),
+    this.quickLinger = const Duration(seconds: 15),
+    math.Random? random,
+  }) : _random = random ?? math.Random(),
+       _sosActive = sosActive ?? (() => false),
        _tripActive = tripActive ?? (() => false),
        _locate = locate,
        _now = clock ?? DateTime.now {
@@ -50,6 +67,12 @@ class NetworkScanService extends ChangeNotifier {
   /// Time after a switch before packets count, so a packet that was
   /// arriving on the old settings isn't credited to the new ones.
   final Duration settleTime;
+
+  /// A quick scan's wait for answers to its ping, and the extra time it
+  /// stays on a network that answered, to hear node names from adverts.
+  final Duration quickListen;
+  final Duration quickLinger;
+  final math.Random _random;
 
   static const _logKey = 'notoryx_network_log_v1';
   static const _savedKey = 'notoryx_saved_networks_v1';
@@ -138,21 +161,44 @@ class NetworkScanService extends ChangeNotifier {
     }
   }
 
-  /// Presets in the same band as your radio (for example 902–928 MHz),
-  /// then your saved networks, without duplicates or your own settings.
-  List<ScanTarget> suggestedTargets() {
+  /// What a scan checks unless you pick: the networks you've heard before
+  /// and saved, plus your country's MeshCore preset. Until you've found
+  /// any, it's every preset in your radio's band (for example 902–928
+  /// MHz), so the first scan looks widely. Never your own settings.
+  List<ScanTarget> suggestedTargets({String? countryCode}) {
     final own = yourNetwork;
-    final band = own == null ? null : _bandOf(own.freqKHz);
     final seen = <String>{?own?.signature};
+    final known = [
+      for (final s in latestByNetwork())
+        if (seen.add(s.target.signature)) s.target,
+      for (final t in _saved)
+        if (seen.add(t.signature)) t,
+    ];
+    final preset = RadioSettings.suggestedPresetFor(countryCode);
+    if (known.isNotEmpty) {
+      return [
+        ...known,
+        for (final (name, s) in RadioSettings.presets)
+          if (name == preset &&
+              seen.add(ScanTarget.fromPreset(name, s).signature))
+            ScanTarget.fromPreset(name, s),
+      ];
+    }
+    final band = own == null ? null : _bandOf(own.freqKHz);
     return [
       for (final (name, s) in RadioSettings.presets)
         if (band != null && _bandOf(s.frequencyHz) == band)
           if (seen.add(ScanTarget.fromPreset(name, s).signature))
             ScanTarget.fromPreset(name, s),
-      for (final t in _saved)
-        if (seen.add(t.signature)) t,
     ];
   }
+
+  /// About how long a scan of [count] networks takes. A quick scan stays
+  /// longer on networks that answer, so this is its shortest time.
+  Duration estimate(int count, ScanMode mode, Duration dwell) =>
+      mode == ScanMode.quick
+      ? (settleTime + quickListen) * count
+      : dwell * count;
 
   /// Every preset and saved network, for picking by hand.
   List<ScanTarget> allTargets() {
@@ -185,6 +231,7 @@ class NetworkScanService extends ChangeNotifier {
   /// its own settings. Returns what was heard.
   Future<List<NetworkSighting>> scan(
     List<ScanTarget> targets, {
+    ScanMode mode = ScanMode.quick,
     Duration dwell = const Duration(seconds: 45),
   }) async {
     if (_running) return const [];
@@ -221,6 +268,13 @@ class NetworkScanService extends ChangeNotifier {
       if (p.receivedAt.isBefore(countFrom)) return;
       heard.add(p.raw, p.snr, p.rssi);
     });
+    var tag = 0;
+    final answers = connector.receivedFrames.listen((frame) {
+      final heard = builder;
+      if (heard == null || tag == 0) return;
+      final a = parseDiscoverAnswer(frame, tag);
+      if (a != null) heard.addReply(a);
+    });
     try {
       if (autoAdd != null && autoAdd.anyOn) {
         await connector.sendFrame(_autoAddFrame(autoAdd, off: true));
@@ -234,12 +288,43 @@ class NetworkScanService extends ChangeNotifier {
         _step++;
         _current = target;
         builder = null;
+        tag = 0;
         await _apply(target);
         countFrom = _now().add(settleTime);
         builder = SightingBuilder(target);
-        _stepEndsAt = _now().add(dwell);
-        _notify();
-        await _sleep(dwell);
+        if (mode == ScanMode.quick) {
+          _stepEndsAt = _now().add(settleTime + quickListen);
+          _notify();
+          // Give the radio a moment on its new settings, then ask who's
+          // there. Zero-hop: nothing repeats it.
+          await _sleep(settleTime);
+          if (!_cancel) {
+            tag = 1 + _random.nextInt(0x7FFFFFFE);
+            await connector.sendFrame(
+              buildSendControlDataFrame(
+                buildDiscoveryRequestPayload(
+                  tag,
+                  prefixOnly: true,
+                  typeMask:
+                      (1 << advTypeRepeater) |
+                      (1 << advTypeRoom) |
+                      (1 << advTypeSensor),
+                ),
+              ),
+            );
+            await _sleep(quickListen);
+          }
+          if (!_cancel && builder.packets > 0) {
+            _stepEndsAt = _now().add(quickLinger);
+            _notify();
+            await _sleep(quickLinger);
+          }
+        } else {
+          _stepEndsAt = _now().add(dwell);
+          _notify();
+          await _sleep(dwell);
+        }
+        tag = 0;
         final heard = builder;
         builder = null;
         if (heard.packets > 0) {
@@ -261,6 +346,7 @@ class NetworkScanService extends ChangeNotifier {
     } finally {
       builder = null;
       await sub.cancel();
+      await answers.cancel();
       await _restore(own);
       if (autoAdd != null && autoAdd.anyOn && connector.isConnected) {
         try {

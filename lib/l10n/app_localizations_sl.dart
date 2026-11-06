@@ -9377,4 +9377,23 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Končano. Naslednji oglas tega vozlišča bo sprejet.';
+
+  @override
+  String get networks_modeQuick => 'Hitro';
+
+  @override
+  String get networks_modeThorough => 'Temeljito';
+
+  @override
+  String get networks_modeQuickHint =>
+      'V vsakem omrežju pošlje en kratek ping brez posredovanja in posluša nekaj sekund. Najde omrežja z repetitorjem v dosegu.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Samo posluša, dlje v vsakem omrežju. Ničesar ne pošlje in najde tudi omrežja brez repetitorja v dosegu, če kdo oddaja.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'približno $time';
+  }
 }

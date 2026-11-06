@@ -4047,5 +4047,10 @@
   "map_positionUnavailable": "Twoja pozycja jest niedostępna. Włącz lokalizację lub ustaw pozycję radia.",
   "contact_forgetAdvert": "Zapomnij ostatnie ogłoszenie",
   "contact_forgetAdvertHint": "Jeśli ogłoszenia tego węzła przestały się aktualizować po zresetowaniu jego zegara, Zapomnij ostatnie ogłoszenie przepuści następne.",
-  "contact_forgetAdvertDone": "Gotowe. Następne ogłoszenie tego węzła zostanie przyjęte."
+  "contact_forgetAdvertDone": "Gotowe. Następne ogłoszenie tego węzła zostanie przyjęte.",
+  "networks_modeQuick": "Szybkie",
+  "networks_modeThorough": "Dokładne",
+  "networks_modeQuickHint": "Wysyła w każdej sieci jeden krótki ping bez przekazywania i nasłuchuje kilka sekund. Znajduje sieci z przemiennikiem w zasięgu.",
+  "networks_modeThoroughHint": "Tylko nasłuchuje, dłużej w każdej sieci. Nic nie wysyła i znajduje też sieci bez przemiennika w zasięgu, jeśli ktoś nadaje.",
+  "networks_estimate": "około {time}"
 }

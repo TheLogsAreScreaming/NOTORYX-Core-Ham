@@ -4009,5 +4009,10 @@
   "map_positionUnavailable": "Vaša poloha nie je dostupná. Zapnite polohu alebo nastavte polohu rádia.",
   "contact_forgetAdvert": "Zabudnúť posledný oznam",
   "contact_forgetAdvertHint": "Ak sa oznamy tohto uzla po resetovaní jeho hodín prestali aktualizovať, Zabudnúť posledný oznam prepustí ďalší.",
-  "contact_forgetAdvertDone": "Hotovo. Ďalší oznam tohto uzla bude prijatý."
+  "contact_forgetAdvertDone": "Hotovo. Ďalší oznam tohto uzla bude prijatý.",
+  "networks_modeQuick": "Rýchle",
+  "networks_modeThorough": "Dôkladné",
+  "networks_modeQuickHint": "V každej sieti pošle jeden krátky ping bez preposielania a niekoľko sekúnd počúva. Nájde siete s opakovačom v dosahu.",
+  "networks_modeThoroughHint": "Iba počúva, dlhšie v každej sieti. Nič neposiela a nájde aj siete bez opakovača v dosahu, ak niekto vysiela.",
+  "networks_estimate": "asi {time}"
 }

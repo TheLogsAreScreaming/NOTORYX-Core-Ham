@@ -9378,4 +9378,23 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Готово. Следващата обява от този възел ще бъде приета.';
+
+  @override
+  String get networks_modeQuick => 'Бързо';
+
+  @override
+  String get networks_modeThorough => 'Подробно';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Изпраща един кратък пинг с нула скока във всяка мрежа и слуша няколко секунди. Намира мрежи с ретранслатор в обхват.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Само слуша, по-дълго във всяка мрежа. Не изпраща нищо и намира и мрежи без ретранслатор в обхват, ако някой предава.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'около $time';
+  }
 }

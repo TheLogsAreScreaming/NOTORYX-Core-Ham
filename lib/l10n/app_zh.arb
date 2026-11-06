@@ -4014,5 +4014,10 @@
   "map_positionUnavailable": "无法获取你的位置。请打开定位，或设置电台的位置。",
   "contact_forgetAdvert": "忘记上次广播",
   "contact_forgetAdvertHint": "如果此节点的时钟重置后广播不再更新，“忘记上次广播”可让下一条广播通过。",
-  "contact_forgetAdvertDone": "完成。此节点的下一条广播将被接受。"
+  "contact_forgetAdvertDone": "完成。此节点的下一条广播将被接受。",
+  "networks_modeQuick": "快速",
+  "networks_modeThorough": "全面",
+  "networks_modeQuickHint": "在每个网络发送一次零跳短 ping 并收听几秒，可找到范围内有中继器的网络。",
+  "networks_modeThoroughHint": "只收听，每个网络听更久。不发送任何内容；只要有人发射，也能找到范围内没有中继器的网络。",
+  "networks_estimate": "约 {time}"
 }

@@ -4143,5 +4143,10 @@
   "map_positionUnavailable": "위치를 사용할 수 없습니다. 위치 서비스를 켜거나 무전기 위치를 설정하세요.",
   "contact_forgetAdvert": "마지막 광고 잊기",
   "contact_forgetAdvertHint": "이 노드의 시계가 초기화된 뒤 광고가 갱신되지 않으면, 마지막 광고 잊기로 다음 광고를 받아들입니다.",
-  "contact_forgetAdvertDone": "완료했습니다. 이 노드의 다음 광고를 받아들입니다."
+  "contact_forgetAdvertDone": "완료했습니다. 이 노드의 다음 광고를 받아들입니다.",
+  "networks_modeQuick": "빠르게",
+  "networks_modeThorough": "꼼꼼하게",
+  "networks_modeQuickHint": "각 네트워크에 제로홉 핑을 한 번 보내고 몇 초간 듣습니다. 범위 안에 리피터가 있는 네트워크를 찾습니다.",
+  "networks_modeThoroughHint": "듣기만 하며 네트워크마다 더 오래 듣습니다. 아무것도 보내지 않으며, 누군가 송신하면 리피터가 없는 네트워크도 찾습니다.",
+  "networks_estimate": "약 {time}"
 }

@@ -8754,4 +8754,22 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get contact_forgetAdvertDone => '完成。此节点的下一条广播将被接受。';
+
+  @override
+  String get networks_modeQuick => '快速';
+
+  @override
+  String get networks_modeThorough => '全面';
+
+  @override
+  String get networks_modeQuickHint => '在每个网络发送一次零跳短 ping 并收听几秒，可找到范围内有中继器的网络。';
+
+  @override
+  String get networks_modeThoroughHint =>
+      '只收听，每个网络听更久。不发送任何内容；只要有人发射，也能找到范围内没有中继器的网络。';
+
+  @override
+  String networks_estimate(String time) {
+    return '约 $time';
+  }
 }

@@ -4143,5 +4143,10 @@
   "map_positionUnavailable": "Votre position n’est pas disponible. Activez la localisation ou définissez la position de la radio.",
   "contact_forgetAdvert": "Oublier la dernière annonce",
   "contact_forgetAdvertHint": "Si les annonces de ce nœud ne se mettent plus à jour après une réinitialisation de son horloge, Oublier la dernière annonce laisse passer la suivante.",
-  "contact_forgetAdvertDone": "C’est fait. La prochaine annonce de ce nœud sera acceptée."
+  "contact_forgetAdvertDone": "C’est fait. La prochaine annonce de ce nœud sera acceptée.",
+  "networks_modeQuick": "Rapide",
+  "networks_modeThorough": "Approfondi",
+  "networks_modeQuickHint": "Envoie un court ping sans relais sur chaque réseau et écoute quelques secondes. Trouve les réseaux avec un répéteur à portée.",
+  "networks_modeThoroughHint": "Écoute seulement, plus longtemps sur chaque réseau. N’envoie rien et trouve aussi les réseaux sans répéteur à portée si quelqu’un émet.",
+  "networks_estimate": "environ {time}"
 }

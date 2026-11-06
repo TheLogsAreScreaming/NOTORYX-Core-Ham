@@ -9417,4 +9417,23 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get contact_forgetAdvertDone =>
       'Готово. Наступне оголошення цього вузла буде прийнято.';
+
+  @override
+  String get networks_modeQuick => 'Швидко';
+
+  @override
+  String get networks_modeThorough => 'Детально';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Надсилає в кожній мережі один короткий пінг без ретрансляції й слухає кілька секунд. Знаходить мережі з ретранслятором поблизу.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Лише слухає, довше в кожній мережі. Нічого не надсилає й знаходить мережі без ретранслятора поблизу, якщо хтось передає.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'близько $time';
+  }
 }

@@ -4143,5 +4143,10 @@
   "map_positionUnavailable": "Tu posición no está disponible. Activa la ubicación o configura la posición de tu radio.",
   "contact_forgetAdvert": "Olvidar el último anuncio",
   "contact_forgetAdvertHint": "Si los anuncios de este nodo dejaron de actualizarse tras reiniciarse su reloj, Olvidar el último anuncio deja pasar el siguiente.",
-  "contact_forgetAdvertDone": "Hecho. Se aceptará el siguiente anuncio de este nodo."
+  "contact_forgetAdvertDone": "Hecho. Se aceptará el siguiente anuncio de este nodo.",
+  "networks_modeQuick": "Rápido",
+  "networks_modeThorough": "Completo",
+  "networks_modeQuickHint": "Envía un ping corto de salto cero en cada red y escucha unos segundos. Encuentra redes con un repetidor al alcance.",
+  "networks_modeThoroughHint": "Solo escucha, más tiempo en cada red. No envía nada y también encuentra redes sin repetidor al alcance si alguien transmite.",
+  "networks_estimate": "unos {time}"
 }

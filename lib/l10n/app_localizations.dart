@@ -15738,6 +15738,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Done. The next advert from this node will be accepted.'**
   String get contact_forgetAdvertDone;
+
+  /// No description provided for @networks_modeQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick'**
+  String get networks_modeQuick;
+
+  /// No description provided for @networks_modeThorough.
+  ///
+  /// In en, this message translates to:
+  /// **'Thorough'**
+  String get networks_modeThorough;
+
+  /// No description provided for @networks_modeQuickHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sends one short zero-hop ping on each network and listens a few seconds. Finds networks with a repeater in range.'**
+  String get networks_modeQuickHint;
+
+  /// No description provided for @networks_modeThoroughHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only listens, longer on each network. Sends nothing, and also finds networks without a repeater in range if someone transmits.'**
+  String get networks_modeThoroughHint;
+
+  /// No description provided for @networks_estimate.
+  ///
+  /// In en, this message translates to:
+  /// **'about {time}'**
+  String networks_estimate(String time);
 }
 
 class _AppLocalizationsDelegate

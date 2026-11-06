@@ -4009,5 +4009,10 @@
   "map_positionUnavailable": "Je positie is niet beschikbaar. Zet locatie aan of stel de positie van je radio in.",
   "contact_forgetAdvert": "Laatste advert vergeten",
   "contact_forgetAdvertHint": "Als de adverts van deze node niet meer bijwerken nadat de klok is gereset, laat Laatste advert vergeten de volgende door.",
-  "contact_forgetAdvertDone": "Klaar. Het volgende advert van deze node wordt geaccepteerd."
+  "contact_forgetAdvertDone": "Klaar. Het volgende advert van deze node wordt geaccepteerd.",
+  "networks_modeQuick": "Snel",
+  "networks_modeThorough": "Grondig",
+  "networks_modeQuickHint": "Stuurt op elk netwerk één korte zero-hop-ping en luistert een paar seconden. Vindt netwerken met een repeater binnen bereik.",
+  "networks_modeThoroughHint": "Luistert alleen, langer per netwerk. Verstuurt niets en vindt ook netwerken zonder repeater binnen bereik als iemand zendt.",
+  "networks_estimate": "ongeveer {time}"
 }

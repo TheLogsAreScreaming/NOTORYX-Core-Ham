@@ -8944,4 +8944,23 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get contact_forgetAdvertDone => '完了しました。このノードの次のアドバートを受け付けます。';
+
+  @override
+  String get networks_modeQuick => 'クイック';
+
+  @override
+  String get networks_modeThorough => 'じっくり';
+
+  @override
+  String get networks_modeQuickHint =>
+      '各ネットワークでゼロホップの短い ping を 1 回送り、数秒受信します。範囲内にリピーターがあるネットワークを見つけます。';
+
+  @override
+  String get networks_modeThoroughHint =>
+      '受信のみで、各ネットワークで長めに聞きます。何も送信せず、誰かが送信すればリピーターのないネットワークも見つけます。';
+
+  @override
+  String networks_estimate(String time) {
+    return '約 $time';
+  }
 }

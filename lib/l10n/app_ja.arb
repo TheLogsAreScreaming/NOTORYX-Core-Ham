@@ -4143,5 +4143,10 @@
   "map_positionUnavailable": "位置情報を取得できません。位置情報をオンにするか、無線機の位置を設定してください。",
   "contact_forgetAdvert": "最後のアドバートを忘れる",
   "contact_forgetAdvertHint": "このノードの時計がリセットされてからアドバートが更新されない場合、「最後のアドバートを忘れる」で次のアドバートを受け付けます。",
-  "contact_forgetAdvertDone": "完了しました。このノードの次のアドバートを受け付けます。"
+  "contact_forgetAdvertDone": "完了しました。このノードの次のアドバートを受け付けます。",
+  "networks_modeQuick": "クイック",
+  "networks_modeThorough": "じっくり",
+  "networks_modeQuickHint": "各ネットワークでゼロホップの短い ping を 1 回送り、数秒受信します。範囲内にリピーターがあるネットワークを見つけます。",
+  "networks_modeThoroughHint": "受信のみで、各ネットワークで長めに聞きます。何も送信せず、誰かが送信すればリピーターのないネットワークも見つけます。",
+  "networks_estimate": "約 {time}"
 }
