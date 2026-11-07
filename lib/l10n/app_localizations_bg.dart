@@ -9630,4 +9630,39 @@ class AppLocalizationsBg extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used от $total KB';
   }
+
+  @override
+  String get favReturn_setting => 'Любими отново в обхват';
+
+  @override
+  String get favReturn_settingHint =>
+      'Известие, когато любим контакт се чуе отново след период на тишина';
+
+  @override
+  String get favReturn_off => 'Изкл.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'След $count часа',
+      one: 'След 1 час',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Отново в обхват';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours часа',
+      one: '1 час',
+    );
+    return '$name се чу отново след $_temp0 тишина';
+  }
 }

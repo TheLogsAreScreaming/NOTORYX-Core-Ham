@@ -4081,5 +4081,11 @@
   "diag_noChannels": "Sem canais neste rádio.",
   "diag_tapToCopy": "Toque num valor para o copiar. Puxe para baixo para atualizar.",
   "diag_storage": "Armazenamento",
-  "diag_storageValue": "{used} de {total} KB"
+  "diag_storageValue": "{used} de {total} KB",
+  "favReturn_setting": "Favoritos de volta ao alcance",
+  "favReturn_settingHint": "Notificar quando um favorito voltar a ser ouvido após um período de silêncio",
+  "favReturn_off": "Desligado",
+  "favReturn_hours": "{count, plural, =1{Após 1 hora} other{Após {count} horas}}",
+  "favReturn_title": "De volta ao alcance",
+  "favReturn_body": "{name} ouvido de novo após {hours, plural, =1{1 hora} other{{hours} horas}} em silêncio"
 }

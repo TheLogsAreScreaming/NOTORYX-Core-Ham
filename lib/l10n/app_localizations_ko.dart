@@ -9198,4 +9198,36 @@ class AppLocalizationsKo extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used / $total KB';
   }
+
+  @override
+  String get favReturn_setting => '즐겨찾기 범위 복귀';
+
+  @override
+  String get favReturn_settingHint => '한동안 조용하던 즐겨찾기가 다시 들리면 알림';
+
+  @override
+  String get favReturn_off => '끄기';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count시간 후',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => '범위 복귀';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours시간',
+    );
+    return '$name이(가) $_temp0 만에 다시 들립니다';
+  }
 }

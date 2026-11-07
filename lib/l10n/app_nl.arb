@@ -4081,5 +4081,11 @@
   "diag_noChannels": "Geen kanalen op deze radio.",
   "diag_tapToCopy": "Tik op een waarde om die te kopiëren. Trek omlaag om te vernieuwen.",
   "diag_storage": "Opslag",
-  "diag_storageValue": "{used} van {total} KB"
+  "diag_storageValue": "{used} van {total} KB",
+  "favReturn_setting": "Favorieten weer binnen bereik",
+  "favReturn_settingHint": "Melding wanneer een favoriet na een stille periode weer te horen is",
+  "favReturn_off": "Uit",
+  "favReturn_hours": "{count, plural, =1{Na 1 uur} other{Na {count} uur}}",
+  "favReturn_title": "Weer binnen bereik",
+  "favReturn_body": "{name} weer gehoord na {hours, plural, =1{1 uur} other{{hours} uur}} stilte"
 }

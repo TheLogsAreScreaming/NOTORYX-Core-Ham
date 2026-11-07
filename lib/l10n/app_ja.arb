@@ -4215,5 +4215,11 @@
   "diag_noChannels": "この無線機にはチャンネルがありません。",
   "diag_tapToCopy": "値をタップするとコピーします。下に引くと更新します。",
   "diag_storage": "ストレージ",
-  "diag_storageValue": "{used} / {total} KB"
+  "diag_storageValue": "{used} / {total} KB",
+  "favReturn_setting": "お気に入りが圏内に復帰",
+  "favReturn_settingHint": "しばらく受信がなかったお気に入りを再び受信したら通知",
+  "favReturn_off": "オフ",
+  "favReturn_hours": "{count, plural, other{{count}時間後}}",
+  "favReturn_title": "圏内に復帰",
+  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました"
 }

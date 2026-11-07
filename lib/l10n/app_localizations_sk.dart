@@ -9620,4 +9620,39 @@ class AppLocalizationsSk extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used z $total KB';
   }
+
+  @override
+  String get favReturn_setting => 'Obľúbené opäť v dosahu';
+
+  @override
+  String get favReturn_settingHint =>
+      'Upozorniť, keď je obľúbený kontakt po období ticha opäť počuť';
+
+  @override
+  String get favReturn_off => 'Vyp.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Po $count hodinách',
+      one: 'Po 1 hodine',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Opäť v dosahu';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hodinách',
+      one: '1 hodine',
+    );
+    return '$name je opäť počuť po $_temp0 ticha';
+  }
 }

@@ -4215,5 +4215,11 @@
   "diag_noChannels": "Aucun canal sur cette radio.",
   "diag_tapToCopy": "Touchez une valeur pour la copier. Tirez vers le bas pour actualiser.",
   "diag_storage": "Stockage",
-  "diag_storageValue": "{used} sur {total} Ko"
+  "diag_storageValue": "{used} sur {total} Ko",
+  "favReturn_setting": "Favoris de retour à portée",
+  "favReturn_settingHint": "Prévenir quand un favori se fait de nouveau entendre après un silence",
+  "favReturn_off": "Désactivé",
+  "favReturn_hours": "{count, plural, =1{Après 1 heure} other{Après {count} heures}}",
+  "favReturn_title": "De retour à portée",
+  "favReturn_body": "{name} entendu de nouveau après {hours, plural, =1{1 heure} other{{hours} heures}} de silence"
 }

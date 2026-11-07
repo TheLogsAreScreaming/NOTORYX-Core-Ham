@@ -9186,4 +9186,36 @@ class AppLocalizationsJa extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used / $total KB';
   }
+
+  @override
+  String get favReturn_setting => 'お気に入りが圏内に復帰';
+
+  @override
+  String get favReturn_settingHint => 'しばらく受信がなかったお気に入りを再び受信したら通知';
+
+  @override
+  String get favReturn_off => 'オフ';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count時間後',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => '圏内に復帰';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours時間',
+    );
+    return '$name を$_temp0ぶりに受信しました';
+  }
 }

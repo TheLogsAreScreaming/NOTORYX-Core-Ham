@@ -4215,5 +4215,11 @@
   "diag_noChannels": "Keine Kanäle auf diesem Funkgerät.",
   "diag_tapToCopy": "Tippe auf einen Wert, um ihn zu kopieren. Zum Aktualisieren nach unten ziehen.",
   "diag_storage": "Speicher",
-  "diag_storageValue": "{used} von {total} KB"
+  "diag_storageValue": "{used} von {total} KB",
+  "favReturn_setting": "Favoriten wieder in Reichweite",
+  "favReturn_settingHint": "Benachrichtigen, wenn ein Favorit nach einer Funkstille wieder zu hören ist",
+  "favReturn_off": "Aus",
+  "favReturn_hours": "{count, plural, =1{Nach 1 Stunde} other{Nach {count} Stunden}}",
+  "favReturn_title": "Wieder in Reichweite",
+  "favReturn_body": "{name} nach {hours, plural, =1{1 Stunde} other{{hours} Stunden}} Funkstille wieder zu hören"
 }

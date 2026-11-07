@@ -9682,4 +9682,39 @@ class AppLocalizationsPl extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used z $total KB';
   }
+
+  @override
+  String get favReturn_setting => 'Ulubione znów w zasięgu';
+
+  @override
+  String get favReturn_settingHint =>
+      'Powiadom, gdy ulubiony kontakt znów się odezwie po okresie ciszy';
+
+  @override
+  String get favReturn_off => 'Wył.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Po $count godzinach',
+      one: 'Po 1 godzinie',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Znów w zasięgu';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours godzinach',
+      one: '1 godzinie',
+    );
+    return '$name znów słyszany po $_temp0 ciszy';
+  }
 }

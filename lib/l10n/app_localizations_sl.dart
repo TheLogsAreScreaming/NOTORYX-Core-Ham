@@ -9631,4 +9631,41 @@ class AppLocalizationsSl extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used od $total KB';
   }
+
+  @override
+  String get favReturn_setting => 'Priljubljeni spet v dosegu';
+
+  @override
+  String get favReturn_settingHint =>
+      'Obvesti, ko je priljubljenega po obdobju tišine spet slišati';
+
+  @override
+  String get favReturn_off => 'Izklop';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Po $count urah',
+      two: 'Po 2 urah',
+      one: 'Po 1 uri',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Spet v dosegu';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours urah',
+      two: '2 urah',
+      one: '1 uri',
+    );
+    return '$name je spet slišen po $_temp0 tišine';
+  }
 }

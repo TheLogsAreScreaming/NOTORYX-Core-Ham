@@ -23,6 +23,9 @@ import '../helpers/snack_bar_builder.dart';
 import 'map_cache_screen.dart';
 import 'bot_settings_screen.dart';
 
+/// Quiet times offered for favorite back-in-range alerts, in hours.
+const favoriteReturnChoices = [0, 1, 3, 6, 12, 24];
+
 class AppSettingsScreen extends StatelessWidget {
   /// Scrolls the image-message settings into view once, on first build.
   ///
@@ -372,6 +375,43 @@ class AppSettingsScreen extends StatelessWidget {
           onChanged: notifEnabled
               ? (value) => settingsService.setNotifyOnNewAdvert(value)
               : null,
+        ),
+        const Divider(height: 1, indent: 16),
+        ListTile(
+          key: const ValueKey('favorite-return-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          enabled: notifEnabled,
+          leading: const Icon(Icons.star_outline, size: 20),
+          title: Text(context.l10n.favReturn_setting),
+          subtitle: Text(context.l10n.favReturn_settingHint),
+          trailing: DropdownButton<int>(
+            value:
+                favoriteReturnChoices.contains(
+                  settingsService.settings.favoriteReturnHours,
+                )
+                ? settingsService.settings.favoriteReturnHours
+                : 6,
+            underline: const SizedBox.shrink(),
+            onChanged: notifEnabled
+                ? (v) {
+                    if (v != null) settingsService.setFavoriteReturnHours(v);
+                  }
+                : null,
+            items: [
+              for (final h in favoriteReturnChoices)
+                DropdownMenuItem(
+                  value: h,
+                  child: Text(
+                    h == 0
+                        ? context.l10n.favReturn_off
+                        : context.l10n.favReturn_hours(h),
+                  ),
+                ),
+            ],
+          ),
         ),
       ],
     );
