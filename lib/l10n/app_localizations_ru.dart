@@ -9562,6 +9562,22 @@ class AppLocalizationsRu extends AppLocalizations {
   String get routes_contactDetails => 'Сведения о контакте';
 
   @override
+  String get links_contactTitle => 'Добавить контакт?';
+
+  @override
+  String get links_importAdvert => 'Добавить этот контакт в радио?';
+
+  @override
+  String get links_connectFirst =>
+      'Сначала подключите радио, затем снова откройте ссылку.';
+
+  @override
+  String get links_added => 'Контакт добавлен';
+
+  @override
+  String get links_notContact => 'Эта ссылка не является контактом MeshCore.';
+
+  @override
   String get radioBuzzer_title => 'Зуммер радио';
 
   @override

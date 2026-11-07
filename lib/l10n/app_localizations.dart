@@ -15955,6 +15955,36 @@ abstract class AppLocalizations {
   /// **'Contact details'**
   String get routes_contactDetails;
 
+  /// No description provided for @links_contactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a contact?'**
+  String get links_contactTitle;
+
+  /// No description provided for @links_importAdvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Add this contact to your radio?'**
+  String get links_importAdvert;
+
+  /// No description provided for @links_connectFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio first, then open the link again.'**
+  String get links_connectFirst;
+
+  /// No description provided for @links_added.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact added'**
+  String get links_added;
+
+  /// No description provided for @links_notContact.
+  ///
+  /// In en, this message translates to:
+  /// **'This link isn\'t a MeshCore contact.'**
+  String get links_notContact;
+
   /// No description provided for @radioBuzzer_title.
   ///
   /// In en, this message translates to:

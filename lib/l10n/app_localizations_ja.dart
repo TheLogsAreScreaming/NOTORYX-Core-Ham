@@ -9081,6 +9081,21 @@ class AppLocalizationsJa extends AppLocalizations {
   String get routes_contactDetails => '連絡先の詳細';
 
   @override
+  String get links_contactTitle => '連絡先を追加しますか?';
+
+  @override
+  String get links_importAdvert => 'この連絡先を無線機に追加しますか?';
+
+  @override
+  String get links_connectFirst => '先に無線機を接続してから、もう一度リンクを開いてください。';
+
+  @override
+  String get links_added => '連絡先を追加しました';
+
+  @override
+  String get links_notContact => 'このリンクは MeshCore の連絡先ではありません。';
+
+  @override
   String get radioBuzzer_title => '無線機のブザー';
 
   @override

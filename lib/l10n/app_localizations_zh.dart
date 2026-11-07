@@ -8889,6 +8889,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String get routes_contactDetails => '联系人详情';
 
   @override
+  String get links_contactTitle => '添加联系人？';
+
+  @override
+  String get links_importAdvert => '将此联系人添加到电台？';
+
+  @override
+  String get links_connectFirst => '请先连接电台，然后重新打开链接。';
+
+  @override
+  String get links_added => '已添加联系人';
+
+  @override
+  String get links_notContact => '此链接不是 MeshCore 联系人。';
+
+  @override
   String get radioBuzzer_title => '电台蜂鸣器';
 
   @override

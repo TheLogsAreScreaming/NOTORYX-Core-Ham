@@ -9519,6 +9519,22 @@ class AppLocalizationsPt extends AppLocalizations {
   String get routes_contactDetails => 'Detalhes do contacto';
 
   @override
+  String get links_contactTitle => 'Adicionar um contacto?';
+
+  @override
+  String get links_importAdvert => 'Adicionar este contacto ao rádio?';
+
+  @override
+  String get links_connectFirst =>
+      'Ligue primeiro o rádio e volte a abrir a ligação.';
+
+  @override
+  String get links_added => 'Contacto adicionado';
+
+  @override
+  String get links_notContact => 'Esta ligação não é um contacto MeshCore.';
+
+  @override
   String get radioBuzzer_title => 'Besouro do rádio';
 
   @override

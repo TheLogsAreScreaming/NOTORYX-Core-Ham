@@ -23,6 +23,7 @@ import 'services/regional_preset_service.dart';
 import 'services/read_aloud_service.dart';
 import 'services/app_shortcuts.dart';
 import 'services/auto_connect_service.dart';
+import 'services/link_router.dart';
 import 'services/notification_router.dart';
 import 'services/home_widget_sync.dart';
 import 'services/sensor_subscription_service.dart';
@@ -293,6 +294,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   HomeWidgetSync? _homeWidget;
   late final AutoConnectService _autoConnect;
   late final NotificationRouter _notificationRouter;
+  late final LinkRouter _linkRouter;
   StreamSubscription<String>? _notificationTaps;
   String? _shortcutLanguage;
   late final SensorSubscriptionService _sensorSubscriptions;
@@ -360,6 +362,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     )..start();
     // Clicking a notification opens what it's about.
     _notificationRouter = NotificationRouter(_navigatorKey, widget.connector);
+    _linkRouter = LinkRouter(_navigatorKey, widget.connector)..start();
     _notificationTaps = NotificationService().taps.listen(
       _notificationRouter.open,
     );
@@ -431,6 +434,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.connector.telemetryStore = null;
     _telemetry.dispose();
     _wardrive.dispose();
+    _linkRouter.dispose();
     _networkScan.dispose();
     _sosRelay.dispose();
     _coverageHex.dispose();

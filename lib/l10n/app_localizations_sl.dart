@@ -9520,6 +9520,22 @@ class AppLocalizationsSl extends AppLocalizations {
   String get routes_contactDetails => 'Podrobnosti stika';
 
   @override
+  String get links_contactTitle => 'Dodam stik?';
+
+  @override
+  String get links_importAdvert => 'Dodam ta stik v radio?';
+
+  @override
+  String get links_connectFirst =>
+      'Najprej povežite radio, nato znova odprite povezavo.';
+
+  @override
+  String get links_added => 'Stik dodan';
+
+  @override
+  String get links_notContact => 'Ta povezava ni stik MeshCore.';
+
+  @override
   String get radioBuzzer_title => 'Brenčač radia';
 
   @override

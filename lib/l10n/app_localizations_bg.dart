@@ -9519,6 +9519,22 @@ class AppLocalizationsBg extends AppLocalizations {
   String get routes_contactDetails => 'Данни за контакта';
 
   @override
+  String get links_contactTitle => 'Добавяне на контакт?';
+
+  @override
+  String get links_importAdvert => 'Да добавя ли този контакт в радиото?';
+
+  @override
+  String get links_connectFirst =>
+      'Първо свържете радиото, после отворете връзката отново.';
+
+  @override
+  String get links_added => 'Контактът е добавен';
+
+  @override
+  String get links_notContact => 'Тази връзка не е контакт на MeshCore.';
+
+  @override
   String get radioBuzzer_title => 'Звуков сигнал на радиото';
 
   @override
