@@ -9246,4 +9246,16 @@ class AppLocalizationsZh extends AppLocalizations {
     );
     return '沉寂 $_temp0后再次收到 $name';
   }
+
+  @override
+  String get batteryOpt_title => '电池优化';
+
+  @override
+  String get batteryOpt_off => '已为 NOTORYX Core 关闭，后台也能正常提醒。';
+
+  @override
+  String get batteryOpt_on => '已开启。Android 可能会在后台停止本应用，SOS、签到和消息提醒可能延迟或丢失。';
+
+  @override
+  String get batteryOpt_fix => '关闭';
 }

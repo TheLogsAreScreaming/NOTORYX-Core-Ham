@@ -4279,5 +4279,9 @@
   "favReturn_off": "オフ",
   "favReturn_hours": "{count, plural, other{{count}時間後}}",
   "favReturn_title": "圏内に復帰",
-  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました"
+  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました",
+  "batteryOpt_title": "バッテリーの最適化",
+  "batteryOpt_off": "NOTORYX Core ではオフのため、バックグラウンドでも通知が届きます。",
+  "batteryOpt_on": "オン。Android がバックグラウンドでアプリを停止することがあり、SOS・チェックイン・メッセージの通知が遅れたり届かなかったりします。",
+  "batteryOpt_fix": "オフにする"
 }

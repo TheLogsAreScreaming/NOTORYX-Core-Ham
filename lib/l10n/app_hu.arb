@@ -4183,5 +4183,9 @@
   "favReturn_off": "Ki",
   "favReturn_hours": "{count, plural, =1{1 óra után} other{{count} óra után}}",
   "favReturn_title": "Újra hatótávon belül",
-  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után"
+  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után",
+  "batteryOpt_title": "Akkumulátor-optimalizálás",
+  "batteryOpt_off": "A NOTORYX Core számára ki van kapcsolva, így az értesítések a háttérben is működnek.",
+  "batteryOpt_on": "Bekapcsolva. Az Android leállíthatja az alkalmazást a háttérben, így az SOS-, bejelentkezési és üzenetértesítések késhetnek vagy elmaradhatnak.",
+  "batteryOpt_fix": "Kikapcsolás"
 }

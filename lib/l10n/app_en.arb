@@ -5556,5 +5556,9 @@
   "@favReturn_hours": {"placeholders": {"count": {"type": "int"}}},
   "favReturn_title": "Back in range",
   "favReturn_body": "{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet",
-  "@favReturn_body": {"placeholders": {"name": {"type": "String"}, "hours": {"type": "int"}}}
+  "@favReturn_body": {"placeholders": {"name": {"type": "String"}, "hours": {"type": "int"}}},
+  "batteryOpt_title": "Battery optimisation",
+  "batteryOpt_off": "Off for NOTORYX Core, so alerts keep working in the background.",
+  "batteryOpt_on": "On. Android may stop the app in the background, so SOS, check-in and message alerts can be late or missed.",
+  "batteryOpt_fix": "Turn off"
 }

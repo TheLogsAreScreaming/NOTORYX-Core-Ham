@@ -9926,4 +9926,18 @@ class AppLocalizationsDe extends AppLocalizations {
     );
     return '$name nach $_temp0 Funkstille wieder zu hören';
   }
+
+  @override
+  String get batteryOpt_title => 'Akku-Optimierung';
+
+  @override
+  String get batteryOpt_off =>
+      'Für NOTORYX Core aus, damit Benachrichtigungen auch im Hintergrund funktionieren.';
+
+  @override
+  String get batteryOpt_on =>
+      'An. Android kann die App im Hintergrund beenden, sodass SOS-, Check-in- und Nachrichtenhinweise verspätet kommen oder ausbleiben.';
+
+  @override
+  String get batteryOpt_fix => 'Ausschalten';
 }

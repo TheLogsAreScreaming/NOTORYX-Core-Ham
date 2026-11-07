@@ -4125,5 +4125,9 @@
   "favReturn_off": "Вимк.",
   "favReturn_hours": "{count, plural, =1{Через 1 годину} few{Через {count} години} many{Через {count} годин} other{Через {count} години}}",
   "favReturn_title": "Знову в зоні",
-  "favReturn_body": "{name} знову чути після {hours, plural, =1{1 години} other{{hours} год}} тиші"
+  "favReturn_body": "{name} знову чути після {hours, plural, =1{1 години} other{{hours} год}} тиші",
+  "batteryOpt_title": "Оптимізація батареї",
+  "batteryOpt_off": "Вимкнена для NOTORYX Core, тож сповіщення працюють у фоні.",
+  "batteryOpt_on": "Увімкнена. Android може зупинити застосунок у фоні, і сповіщення про SOS, відмітки та повідомлення можуть запізнюватися або губитися.",
+  "batteryOpt_fix": "Вимкнути"
 }

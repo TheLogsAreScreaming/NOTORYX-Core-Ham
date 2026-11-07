@@ -9454,4 +9454,17 @@ class AppLocalizationsKo extends AppLocalizations {
     );
     return '$name이(가) $_temp0 만에 다시 들립니다';
   }
+
+  @override
+  String get batteryOpt_title => '배터리 최적화';
+
+  @override
+  String get batteryOpt_off => 'NOTORYX Core에 대해 꺼져 있어 백그라운드에서도 알림이 작동합니다.';
+
+  @override
+  String get batteryOpt_on =>
+      '켜짐. Android가 백그라운드에서 앱을 중지할 수 있어 SOS, 체크인, 메시지 알림이 늦거나 누락될 수 있습니다.';
+
+  @override
+  String get batteryOpt_fix => '끄기';
 }

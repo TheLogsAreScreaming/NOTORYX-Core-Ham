@@ -9441,4 +9441,17 @@ class AppLocalizationsJa extends AppLocalizations {
     );
     return '$name を$_temp0ぶりに受信しました';
   }
+
+  @override
+  String get batteryOpt_title => 'バッテリーの最適化';
+
+  @override
+  String get batteryOpt_off => 'NOTORYX Core ではオフのため、バックグラウンドでも通知が届きます。';
+
+  @override
+  String get batteryOpt_on =>
+      'オン。Android がバックグラウンドでアプリを停止することがあり、SOS・チェックイン・メッセージの通知が遅れたり届かなかったりします。';
+
+  @override
+  String get batteryOpt_fix => 'オフにする';
 }

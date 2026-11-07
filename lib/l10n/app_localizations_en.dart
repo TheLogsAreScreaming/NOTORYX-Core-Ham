@@ -9786,4 +9786,18 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$name heard again after $_temp0 quiet';
   }
+
+  @override
+  String get batteryOpt_title => 'Battery optimisation';
+
+  @override
+  String get batteryOpt_off =>
+      'Off for NOTORYX Core, so alerts keep working in the background.';
+
+  @override
+  String get batteryOpt_on =>
+      'On. Android may stop the app in the background, so SOS, check-in and message alerts can be late or missed.';
+
+  @override
+  String get batteryOpt_fix => 'Turn off';
 }

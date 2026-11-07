@@ -4145,5 +4145,9 @@
   "favReturn_off": "Uit",
   "favReturn_hours": "{count, plural, =1{Na 1 uur} other{Na {count} uur}}",
   "favReturn_title": "Weer binnen bereik",
-  "favReturn_body": "{name} weer gehoord na {hours, plural, =1{1 uur} other{{hours} uur}} stilte"
+  "favReturn_body": "{name} weer gehoord na {hours, plural, =1{1 uur} other{{hours} uur}} stilte",
+  "batteryOpt_title": "Batterijoptimalisatie",
+  "batteryOpt_off": "Uit voor NOTORYX Core, zodat meldingen op de achtergrond blijven werken.",
+  "batteryOpt_on": "Aan. Android kan de app op de achtergrond stoppen, waardoor SOS-, check-in- en berichtmeldingen te laat komen of wegblijven.",
+  "batteryOpt_fix": "Uitzetten"
 }

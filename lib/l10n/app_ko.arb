@@ -4279,5 +4279,9 @@
   "favReturn_off": "끄기",
   "favReturn_hours": "{count, plural, other{{count}시간 후}}",
   "favReturn_title": "범위 복귀",
-  "favReturn_body": "{name}이(가) {hours, plural, other{{hours}시간}} 만에 다시 들립니다"
+  "favReturn_body": "{name}이(가) {hours, plural, other{{hours}시간}} 만에 다시 들립니다",
+  "batteryOpt_title": "배터리 최적화",
+  "batteryOpt_off": "NOTORYX Core에 대해 꺼져 있어 백그라운드에서도 알림이 작동합니다.",
+  "batteryOpt_on": "켜짐. Android가 백그라운드에서 앱을 중지할 수 있어 SOS, 체크인, 메시지 알림이 늦거나 누락될 수 있습니다.",
+  "batteryOpt_fix": "끄기"
 }

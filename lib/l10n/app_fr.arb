@@ -4279,5 +4279,9 @@
   "favReturn_off": "Désactivé",
   "favReturn_hours": "{count, plural, =1{Après 1 heure} other{Après {count} heures}}",
   "favReturn_title": "De retour à portée",
-  "favReturn_body": "{name} entendu de nouveau après {hours, plural, =1{1 heure} other{{hours} heures}} de silence"
+  "favReturn_body": "{name} entendu de nouveau après {hours, plural, =1{1 heure} other{{hours} heures}} de silence",
+  "batteryOpt_title": "Optimisation de la batterie",
+  "batteryOpt_off": "Désactivée pour NOTORYX Core : les alertes continuent en arrière-plan.",
+  "batteryOpt_on": "Activée. Android peut arrêter l'app en arrière-plan, et les alertes SOS, de pointage et de messages peuvent arriver en retard ou être perdues.",
+  "batteryOpt_fix": "Désactiver"
 }

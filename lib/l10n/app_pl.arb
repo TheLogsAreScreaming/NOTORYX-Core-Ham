@@ -4183,5 +4183,9 @@
   "favReturn_off": "Wył.",
   "favReturn_hours": "{count, plural, =1{Po 1 godzinie} other{Po {count} godzinach}}",
   "favReturn_title": "Znów w zasięgu",
-  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy"
+  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy",
+  "batteryOpt_title": "Optymalizacja baterii",
+  "batteryOpt_off": "Wyłączona dla NOTORYX Core, więc powiadomienia działają w tle.",
+  "batteryOpt_on": "Włączona. Android może zatrzymać aplikację w tle, przez co powiadomienia SOS, meldunków i wiadomości mogą się spóźniać lub nie dotrzeć.",
+  "batteryOpt_fix": "Wyłącz"
 }

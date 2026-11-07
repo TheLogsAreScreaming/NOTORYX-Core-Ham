@@ -9902,4 +9902,18 @@ class AppLocalizationsHu extends AppLocalizations {
     );
     return '$name újra hallható $_temp0 csend után';
   }
+
+  @override
+  String get batteryOpt_title => 'Akkumulátor-optimalizálás';
+
+  @override
+  String get batteryOpt_off =>
+      'A NOTORYX Core számára ki van kapcsolva, így az értesítések a háttérben is működnek.';
+
+  @override
+  String get batteryOpt_on =>
+      'Bekapcsolva. Az Android leállíthatja az alkalmazást a háttérben, így az SOS-, bejelentkezési és üzenetértesítések késhetnek vagy elmaradhatnak.';
+
+  @override
+  String get batteryOpt_fix => 'Kikapcsolás';
 }

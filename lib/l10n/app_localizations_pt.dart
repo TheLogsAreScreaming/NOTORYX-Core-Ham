@@ -9898,4 +9898,18 @@ class AppLocalizationsPt extends AppLocalizations {
     );
     return '$name ouvido de novo após $_temp0 em silêncio';
   }
+
+  @override
+  String get batteryOpt_title => 'Otimização de bateria';
+
+  @override
+  String get batteryOpt_off =>
+      'Desativada para o NOTORYX Core, então os alertas continuam funcionando em segundo plano.';
+
+  @override
+  String get batteryOpt_on =>
+      'Ativada. O Android pode parar o app em segundo plano, e os alertas de SOS, check-in e mensagens podem atrasar ou se perder.';
+
+  @override
+  String get batteryOpt_fix => 'Desativar';
 }

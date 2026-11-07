@@ -4145,5 +4145,9 @@
   "favReturn_off": "Izklop",
   "favReturn_hours": "{count, plural, =1{Po 1 uri} =2{Po 2 urah} other{Po {count} urah}}",
   "favReturn_title": "Spet v dosegu",
-  "favReturn_body": "{name} je spet slišen po {hours, plural, =1{1 uri} =2{2 urah} other{{hours} urah}} tišine"
+  "favReturn_body": "{name} je spet slišen po {hours, plural, =1{1 uri} =2{2 urah} other{{hours} urah}} tišine",
+  "batteryOpt_title": "Optimizacija baterije",
+  "batteryOpt_off": "Za NOTORYX Core je izklopljena, zato obvestila delujejo tudi v ozadju.",
+  "batteryOpt_on": "Vklopljena. Android lahko aplikacijo v ozadju ustavi, zato lahko obvestila o SOS, prijavah in sporočilih zamujajo ali se izgubijo.",
+  "batteryOpt_fix": "Izklopi"
 }

@@ -16518,6 +16518,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet'**
   String favReturn_body(String name, int hours);
+
+  /// No description provided for @batteryOpt_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery optimisation'**
+  String get batteryOpt_title;
+
+  /// No description provided for @batteryOpt_off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off for NOTORYX Core, so alerts keep working in the background.'**
+  String get batteryOpt_off;
+
+  /// No description provided for @batteryOpt_on.
+  ///
+  /// In en, this message translates to:
+  /// **'On. Android may stop the app in the background, so SOS, check-in and message alerts can be late or missed.'**
+  String get batteryOpt_on;
+
+  /// No description provided for @batteryOpt_fix.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off'**
+  String get batteryOpt_fix;
 }
 
 class _AppLocalizationsDelegate

@@ -4145,5 +4145,9 @@
   "favReturn_off": "Vyp.",
   "favReturn_hours": "{count, plural, =1{Po 1 hodine} other{Po {count} hodinách}}",
   "favReturn_title": "Opäť v dosahu",
-  "favReturn_body": "{name} je opäť počuť po {hours, plural, =1{1 hodine} other{{hours} hodinách}} ticha"
+  "favReturn_body": "{name} je opäť počuť po {hours, plural, =1{1 hodine} other{{hours} hodinách}} ticha",
+  "batteryOpt_title": "Optimalizácia batérie",
+  "batteryOpt_off": "Pre NOTORYX Core vypnutá, takže upozornenia fungujú aj na pozadí.",
+  "batteryOpt_on": "Zapnutá. Android môže aplikáciu na pozadí zastaviť, takže upozornenia na SOS, prihlásenia a správy môžu meškať alebo sa stratiť.",
+  "batteryOpt_fix": "Vypnúť"
 }

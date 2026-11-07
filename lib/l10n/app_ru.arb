@@ -3448,5 +3448,9 @@
   "favReturn_off": "Выкл.",
   "favReturn_hours": "{count, plural, =1{Через 1 час} few{Через {count} часа} many{Через {count} часов} other{Через {count} часа}}",
   "favReturn_title": "Снова в зоне",
-  "favReturn_body": "{name} снова слышен после {hours, plural, =1{1 часа} other{{hours} ч}} тишины"
+  "favReturn_body": "{name} снова слышен после {hours, plural, =1{1 часа} other{{hours} ч}} тишины",
+  "batteryOpt_title": "Оптимизация батареи",
+  "batteryOpt_off": "Отключена для NOTORYX Core, поэтому уведомления работают в фоне.",
+  "batteryOpt_on": "Включена. Android может остановить приложение в фоне, и уведомления о SOS, отметках и сообщениях могут опаздывать или теряться.",
+  "batteryOpt_fix": "Отключить"
 }

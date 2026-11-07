@@ -9836,4 +9836,18 @@ class AppLocalizationsSv extends AppLocalizations {
     );
     return '$name hörs igen efter $_temp0 tystnad';
   }
+
+  @override
+  String get batteryOpt_title => 'Batterioptimering';
+
+  @override
+  String get batteryOpt_off =>
+      'Av för NOTORYX Core, så aviseringar fungerar i bakgrunden.';
+
+  @override
+  String get batteryOpt_on =>
+      'På. Android kan stoppa appen i bakgrunden, så SOS-, incheckning- och meddelandeaviseringar kan bli sena eller utebli.';
+
+  @override
+  String get batteryOpt_fix => 'Stäng av';
 }

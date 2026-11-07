@@ -9948,4 +9948,18 @@ class AppLocalizationsUk extends AppLocalizations {
     );
     return '$name знову чути після $_temp0 тиші';
   }
+
+  @override
+  String get batteryOpt_title => 'Оптимізація батареї';
+
+  @override
+  String get batteryOpt_off =>
+      'Вимкнена для NOTORYX Core, тож сповіщення працюють у фоні.';
+
+  @override
+  String get batteryOpt_on =>
+      'Увімкнена. Android може зупинити застосунок у фоні, і сповіщення про SOS, відмітки та повідомлення можуть запізнюватися або губитися.';
+
+  @override
+  String get batteryOpt_fix => 'Вимкнути';
 }
