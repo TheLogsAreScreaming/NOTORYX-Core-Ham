@@ -9562,6 +9562,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get routes_contactDetails => 'Сведения о контакте';
 
   @override
+  String get radioBuzzer_title => 'Зуммер радио';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Радио пищит при новых сообщениях. Показывается только для радио с зуммером.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Радио не приняло изменение. Попробуйте снова.';
+
+  @override
   String get appSettings_floodAttempts => 'Попытки флудом';
 
   @override

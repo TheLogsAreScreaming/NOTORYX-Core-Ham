@@ -9519,6 +9519,17 @@ class AppLocalizationsPt extends AppLocalizations {
   String get routes_contactDetails => 'Detalhes do contacto';
 
   @override
+  String get radioBuzzer_title => 'Besouro do rádio';
+
+  @override
+  String get radioBuzzer_hint =>
+      'O rádio apita com mensagens novas. Só aparece em rádios com besouro.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'O rádio não aceitou a alteração. Tente novamente.';
+
+  @override
   String get appSettings_floodAttempts => 'Tentativas por inundação';
 
   @override

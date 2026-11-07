@@ -9510,6 +9510,16 @@ class AppLocalizationsSk extends AppLocalizations {
   String get routes_contactDetails => 'Údaje kontaktu';
 
   @override
+  String get radioBuzzer_title => 'Bzučiak rádia';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Rádio pípne pri nových správach. Zobrazuje sa len pri rádiách s bzučiakom.';
+
+  @override
+  String get radioBuzzer_failed => 'Rádio zmenu neprijalo. Skúste to znova.';
+
+  @override
   String get appSettings_floodAttempts => 'Pokusy zaplavením';
 
   @override

@@ -9538,6 +9538,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get routes_contactDetails => 'Datos del contacto';
 
   @override
+  String get radioBuzzer_title => 'Zumbador de la radio';
+
+  @override
+  String get radioBuzzer_hint =>
+      'La radio pita con los mensajes nuevos. Solo aparece en radios con zumbador.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'La radio no aceptó el cambio. Inténtalo de nuevo.';
+
+  @override
   String get appSettings_floodAttempts => 'Intentos por inundación';
 
   @override

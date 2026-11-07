@@ -9570,6 +9570,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get routes_contactDetails => 'Détails du contact';
 
   @override
+  String get radioBuzzer_title => 'Buzzer de la radio';
+
+  @override
+  String get radioBuzzer_hint =>
+      'La radio bipe à chaque nouveau message. Visible seulement pour les radios avec buzzer.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'La radio n’a pas accepté le changement. Réessayez.';
+
+  @override
   String get appSettings_floodAttempts => 'Tentatives en inondation';
 
   @override

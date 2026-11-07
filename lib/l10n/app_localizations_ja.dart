@@ -9081,6 +9081,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String get routes_contactDetails => '連絡先の詳細';
 
   @override
+  String get radioBuzzer_title => '無線機のブザー';
+
+  @override
+  String get radioBuzzer_hint => '新着メッセージで無線機が鳴ります。ブザー付きの無線機でのみ表示されます。';
+
+  @override
+  String get radioBuzzer_failed => '無線機が変更を受け付けませんでした。もう一度お試しください。';
+
+  @override
   String get appSettings_floodAttempts => 'フラッド送信の試行回数';
 
   @override

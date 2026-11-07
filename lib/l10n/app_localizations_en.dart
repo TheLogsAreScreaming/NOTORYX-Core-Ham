@@ -9409,6 +9409,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get routes_contactDetails => 'Contact details';
 
   @override
+  String get radioBuzzer_title => 'Radio buzzer';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Beeps on the radio for new messages. Only shown for radios with a buzzer.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'The radio didn\'t accept the change. Try again.';
+
+  @override
   String get appSettings_floodAttempts => 'Flood attempts';
 
   @override

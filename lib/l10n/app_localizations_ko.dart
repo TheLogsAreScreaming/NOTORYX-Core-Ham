@@ -9092,6 +9092,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get routes_contactDetails => '연락처 정보';
 
   @override
+  String get radioBuzzer_title => '무전기 부저';
+
+  @override
+  String get radioBuzzer_hint =>
+      '새 메시지가 오면 무전기가 삐 소리를 냅니다. 부저가 있는 무전기에서만 표시됩니다.';
+
+  @override
+  String get radioBuzzer_failed => '무전기가 변경을 받아들이지 않았습니다. 다시 시도하세요.';
+
+  @override
   String get appSettings_floodAttempts => '플러드 시도';
 
   @override

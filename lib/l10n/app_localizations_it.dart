@@ -9547,6 +9547,17 @@ class AppLocalizationsIt extends AppLocalizations {
   String get routes_contactDetails => 'Dettagli contatto';
 
   @override
+  String get radioBuzzer_title => 'Cicalino della radio';
+
+  @override
+  String get radioBuzzer_hint =>
+      'La radio emette un bip per i nuovi messaggi. Compare solo per radio con cicalino.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'La radio non ha accettato la modifica. Riprova.';
+
+  @override
   String get appSettings_floodAttempts => 'Tentativi in flood';
 
   @override
