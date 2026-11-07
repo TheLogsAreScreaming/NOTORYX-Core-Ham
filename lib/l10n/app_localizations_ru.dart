@@ -6115,31 +6115,33 @@ class AppLocalizationsRu extends AppLocalizations {
   String get fieldOps_send => 'Отправить';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Ретрансляция SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Ретранслировать SOS, которые не передал ни один ретранслятор';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => 'Нужна прошивка радио v1.16 или новее';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'SOS ещё не ретранслировались';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Ретранслировано $count пакетов SOS, последний в $time',
+      few: 'Ретранслировано $count пакета SOS, последний в $time',
+      one: 'Ретранслирован $count пакет SOS, последний в $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Если радио слышит SOS напрямую от отправителя, а ни один ретранслятор не передаёт его примерно за 15 секунд, NOTORYX отправляет его ещё раз без изменений, чтобы оно дошло до ретранслятора, который слышите вы, но не отправитель. Ретранслируются только SOS в ваших каналах. Расходует батарею и эфирное время, поэтому по умолчанию выключено.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Перед выходом';
@@ -9569,4 +9571,90 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get radioBuzzer_failed =>
       'Радио не приняло изменение. Попробуйте снова.';
+
+  @override
+  String get appSettings_floodAttempts => 'Попытки флудом';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Дополнительные попытки флудом после неудачных прямых, на случай если маршрут изменился. Каждая занимает больше эфирного времени. 0 отключает.';
+
+  @override
+  String get pathGraph_you => 'Вы';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Передал сообщений: $count';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Этот короткий ID совпадает с несколькими ретрансляторами, поэтому его нельзя отнести к одному.';
+
+  @override
+  String get pathGraph_comesFrom => 'Приходит от';
+
+  @override
+  String get pathGraph_goesTo => 'Уходит к';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Сведения о ретрансляторе';
+
+  @override
+  String get pathGraph_days7 => '7 дней';
+
+  @override
+  String get pathGraph_empty =>
+      'За этот период ещё нет маршрутов сообщений в каналах. Маршруты собираются из полученных сообщений в каналах, пока включена трассировка.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Услышано маршрутов: $paths · ретрансляторов: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Каждый хоп показан префиксом хеша или именем, если ретранслятор известен.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return 'Коротких (1-байтовых) хопов, сопоставленных с конкретным ретранслятором по более длинным маршрутам: $count.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return 'Коротких (1-байтовых) хопов, сопоставленных по более длинным маршрутам: $matched · всё ещё неоднозначных (с ?): $ambiguous.';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Слева: более далёкие ретрансляторы. Справа: вы. Толщина полосы — сколько сообщений прошло этим хопом. Нажмите на блок, чтобы увидеть ретранслятор.';
+
+  @override
+  String get pathGraph_busiest => 'Самые загруженные ретрансляторы';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Граф маршрутов. Самый загруженный ретранслятор $name, передал сообщений: $count.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Скопировано: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'В радио нет каналов.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Нажмите на значение, чтобы скопировать. Потяните вниз для обновления.';
+
+  @override
+  String get diag_storage => 'Память';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used из $total КБ';
+  }
 }

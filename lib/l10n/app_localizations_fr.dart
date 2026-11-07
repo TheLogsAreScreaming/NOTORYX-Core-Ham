@@ -6108,31 +6108,33 @@ class AppLocalizationsFr extends AppLocalizations {
   String get fieldOps_send => 'Envoyer';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Relais SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Relayer les SOS qu’aucun répéteur n’a transmis';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Nécessite le firmware radio v1.16 ou plus récent';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Aucun SOS relayé pour l’instant';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count paquets SOS relayés, le dernier à $time',
+      one: '1 paquet SOS relayé, le dernier à $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Quand votre radio entend un SOS directement de l’expéditeur et qu’aucun répéteur ne le transmet dans les 15 secondes environ, NOTORYX le renvoie une fois, sans modification, pour qu’il atteigne un répéteur que vous entendez mais pas l’expéditeur. Seuls les SOS de vos canaux sont relayés. Consomme un peu de batterie et de temps d’antenne, donc désactivé par défaut.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Avant de partir';
@@ -9577,4 +9579,90 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get radioBuzzer_failed =>
       'La radio n’a pas accepté le changement. Réessayez.';
+
+  @override
+  String get appSettings_floodAttempts => 'Tentatives en inondation';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Essais supplémentaires envoyés en inondation après l’échec des essais directs, au cas où la route aurait changé. Chacun utilise plus de temps d’antenne. 0 les désactive.';
+
+  @override
+  String get pathGraph_you => 'Vous';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count messages relayés';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Cet ID court correspond à plusieurs répéteurs, impossible de l’attribuer à un seul.';
+
+  @override
+  String get pathGraph_comesFrom => 'Vient de';
+
+  @override
+  String get pathGraph_goesTo => 'Va vers';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Détails du répéteur';
+
+  @override
+  String get pathGraph_days7 => '7 jours';
+
+  @override
+  String get pathGraph_empty =>
+      'Aucun chemin de message de canal sur cette période. Les chemins sont collectés à partir des messages de canal reçus quand le traçage est activé.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths chemins entendus · $repeaters répéteurs';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Chaque saut est affiché par son préfixe de hachage, ou son nom si vous connaissez le répéteur.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count sauts courts (1 octet) associés à un répéteur précis grâce à des chemins plus longs.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched sauts courts (1 octet) associés à un répéteur précis grâce à des chemins plus longs · $ambiguous encore ambigus (marqués ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'À gauche : répéteurs plus éloignés. À droite : vous. L’épaisseur de la bande indique combien de messages ont pris ce saut. Touchez une case pour voir ce répéteur.';
+
+  @override
+  String get pathGraph_busiest => 'Répéteurs les plus actifs';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Graphe des chemins. Répéteur le plus actif $name, $count messages relayés.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Copié : $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Aucun canal sur cette radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Touchez une valeur pour la copier. Tirez vers le bas pour actualiser.';
+
+  @override
+  String get diag_storage => 'Stockage';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used sur $total Ko';
+  }
 }

@@ -6071,31 +6071,33 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldOps_send => 'Küldés';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS-továbbítás';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Átjátszó által nem továbbított SOS továbbítása';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Rádió firmware v1.16 vagy újabb szükséges';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Még nem továbbítottunk SOS-t';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-csomag továbbítva, utoljára $time',
+      one: '1 SOS-csomag továbbítva, utoljára $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Ha a rádió közvetlenül a küldőtől hall egy SOS-t, és kb. 15 másodpercen belül egyetlen átjátszó sem adja tovább, a NOTORYX még egyszer elküldi változatlanul, hogy eljusson egy olyan átjátszóhoz, amelyet te hallasz, a küldő viszont nem. Csak a saját csatornáidon lévő SOS-t továbbítja. Akkut és adásidőt használ, ezért alapból ki van kapcsolva.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Indulás előtt';
@@ -9531,4 +9533,90 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get radioBuzzer_failed =>
       'A rádió nem fogadta el a változtatást. Próbáld újra.';
+
+  @override
+  String get appSettings_floodAttempts => 'Elárasztásos próbák';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra próbák elárasztással, ha a közvetlenek sikertelenek, arra az esetre, ha megváltozott az útvonal. Mindegyik több adásidőt használ. 0 kikapcsolja.';
+
+  @override
+  String get pathGraph_you => 'Te';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count üzenetet továbbított';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Ez a rövid azonosító több átjátszóhoz is illik, így nem köthető egyhez.';
+
+  @override
+  String get pathGraph_comesFrom => 'Honnan jön';
+
+  @override
+  String get pathGraph_goesTo => 'Hová megy';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Átjátszó adatai';
+
+  @override
+  String get pathGraph_days7 => '7 nap';
+
+  @override
+  String get pathGraph_empty =>
+      'Ebben az időszakban még nincs csatornaüzenet-útvonal. Az útvonalak a kapott csatornaüzenetekből gyűlnek, amíg a nyomkövetés be van kapcsolva.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths hallott útvonal · $repeaters átjátszó';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Minden ugrás a hash-előtagjával látszik, vagy a nevével, ha ismered az átjátszót.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count rövid (1 bájtos) ugrás hosszabb útvonalak alapján egy adott átjátszóhoz kötve.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched rövid (1 bájtos) ugrás hosszabb útvonalak alapján egy adott átjátszóhoz kötve · $ambiguous még kétértelmű (? jelöli).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Bal oldalt: távolabbi átjátszók. Jobb oldalt: te. A sáv vastagsága mutatja, hány üzenet ment azon az ugráson. Koppints egy dobozra az átjátszóért.';
+
+  @override
+  String get pathGraph_busiest => 'Legforgalmasabb átjátszók';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Útvonalgráf. Legforgalmasabb átjátszó: $name, $count üzenetet továbbított.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Másolva: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Nincs csatorna ezen a rádión.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Koppints egy értékre a másoláshoz. Húzd le a frissítéshez.';
+
+  @override
+  String get diag_storage => 'Tárhely';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
 }
