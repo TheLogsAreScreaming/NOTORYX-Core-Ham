@@ -9443,6 +9443,49 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String block_sender(String name) {
+    return '$name をブロック';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'この相手のチャンネルメッセージはこの端末で非表示になり、通知もされません。相手からはあなたのメッセージが引き続き見えます。設定でブロックを解除できます。';
+
+  @override
+  String get block_action => 'ブロック';
+
+  @override
+  String block_done(String name) {
+    return '$name をブロックしました';
+  }
+
+  @override
+  String get mention_suggestions => '名前の候補';
+
+  @override
+  String get block_listTitle => 'ブロック中の送信者';
+
+  @override
+  String get block_listHint => 'これらの名前からのメッセージはチャンネルで非表示になり、通知もされません。';
+
+  @override
+  String get block_listEmpty => 'ブロック中の相手はいません。';
+
+  @override
+  String get block_unblock => 'ブロック解除';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件ブロック中',
+      zero: 'ブロックなし',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String contactTable_nearlyFull(int percent) {
     return '無線機の連絡先リストが $percent% 使用中';
   }
