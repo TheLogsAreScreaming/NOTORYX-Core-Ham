@@ -36,6 +36,15 @@ void main() {
     expect(back.licenseClass, LicenseClass.general);
     expect(back.acknowledgedAt, full.acknowledgedAt);
 
+    final station = OperatorProfile.fromJson(
+      full
+          .copyWith(externalAmpDb: 10, feedlineLossDb: 1.5, antennaGainDbi: 6)
+          .toJson(),
+    );
+    expect(station.externalAmpDb, 10);
+    expect(station.feedlineLossDb, 1.5);
+    expect(station.antennaGainDbi, 6);
+
     final junk = OperatorProfile.fromJson({
       'callsign': ' kd2abc ',
       'licenseClass': 'novice',

@@ -19,6 +19,9 @@ class OperatorProfile {
     this.callsign = '',
     this.licenseClass,
     this.acknowledgedAt,
+    this.externalAmpDb = 0,
+    this.feedlineLossDb = 0,
+    this.antennaGainDbi = 0,
   });
 
   /// Upper-case US call sign, or empty.
@@ -28,6 +31,12 @@ class OperatorProfile {
   /// When the operator confirmed they hold the licence, read the coordination
   /// guide and will coordinate before transmitting; null until they do.
   final DateTime? acknowledgedAt;
+
+  /// The antenna system after the radio, for power estimates: gain of any
+  /// external amplifier, loss in the feedline, and antenna gain over isotropic.
+  final double externalAmpDb;
+  final double feedlineLossDb;
+  final double antennaGainDbi;
 
   bool get hasValidCallsign => isUsCallsign(callsign);
 
@@ -46,12 +55,18 @@ class OperatorProfile {
     LicenseClass? licenseClass,
     DateTime? acknowledgedAt,
     bool clearAcknowledgment = false,
+    double? externalAmpDb,
+    double? feedlineLossDb,
+    double? antennaGainDbi,
   }) => OperatorProfile(
     callsign: callsign ?? this.callsign,
     licenseClass: licenseClass ?? this.licenseClass,
     acknowledgedAt: clearAcknowledgment
         ? null
         : (acknowledgedAt ?? this.acknowledgedAt),
+    externalAmpDb: externalAmpDb ?? this.externalAmpDb,
+    feedlineLossDb: feedlineLossDb ?? this.feedlineLossDb,
+    antennaGainDbi: antennaGainDbi ?? this.antennaGainDbi,
   );
 
   Map<String, dynamic> toJson() => {
@@ -59,6 +74,9 @@ class OperatorProfile {
     if (licenseClass != null) 'licenseClass': licenseClass!.name,
     if (acknowledgedAt != null)
       'acknowledgedAt': acknowledgedAt!.toUtc().toIso8601String(),
+    'externalAmpDb': externalAmpDb,
+    'feedlineLossDb': feedlineLossDb,
+    'antennaGainDbi': antennaGainDbi,
   };
 
   /// Reads [json], dropping anything unreadable instead of failing.
@@ -71,6 +89,11 @@ class OperatorProfile {
       acknowledgedAt: DateTime.tryParse(
         json['acknowledgedAt'] as String? ?? '',
       ),
+      externalAmpDb: _db(json['externalAmpDb']),
+      feedlineLossDb: _db(json['feedlineLossDb']),
+      antennaGainDbi: _db(json['antennaGainDbi']),
     );
   }
+
+  static double _db(Object? v) => v is num && v.isFinite ? v.toDouble() : 0;
 }
