@@ -422,11 +422,11 @@ class ChannelMessagePathScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           hop.index.toString(),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 9,
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                       ),
                     ),
@@ -1271,9 +1271,8 @@ class _ChannelMessagePathMapScreenState
                     label,
                     _formatPathPrefixes(selectedPath.pathBytes, width),
                   ),
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    fontSize: 12,
                   ),
                 ),
               ],
@@ -1316,10 +1315,9 @@ class _ChannelMessagePathMapScreenState
               alignment: Alignment.center,
               child: Text(
                 hop.index.toString(),
-                style: const TextStyle(
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 12,
                 ),
               ),
             ),
@@ -1371,10 +1369,9 @@ class _ChannelMessagePathMapScreenState
             alignment: Alignment.center,
             child: Text(
               context.l10n.pathTrace_you,
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 12,
               ),
             ),
           ),
@@ -1462,10 +1459,9 @@ class _ChannelMessagePathMapScreenState
                   alignment: Alignment.center,
                   child: Text(
                     label,
-                    style: const TextStyle(
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 11,
                     ),
                   ),
                 ),
@@ -1542,9 +1538,8 @@ class _ChannelMessagePathMapScreenState
                 label,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: Colors.white,
-                  fontSize: 11,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -1689,10 +1684,8 @@ class _ChannelMessagePathMapScreenState
                             l10n.pathMap_partialAnimation(
                               selectedDisplay.unresolvedHops,
                             ),
-                            style: TextStyle(
-                              fontSize: 10.5,
-                              color: MeshPalette.warn,
-                            ),
+                            style: Theme.of(context).textTheme.labelSmall
+                                ?.copyWith(color: MeshPalette.warn),
                           ),
                         ),
                       if (combined)
@@ -1792,9 +1785,8 @@ class _ChannelMessagePathMapScreenState
                       alignment: Alignment.center,
                       child: Text(
                         hop.index.toString(),
-                        style: const TextStyle(
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: Colors.white,
-                          fontSize: 11,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -1806,10 +1798,8 @@ class _ChannelMessagePathMapScreenState
                         children: [
                           Text(
                             hop.displayLabel,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13,
-                            ),
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(fontWeight: FontWeight.w600),
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(

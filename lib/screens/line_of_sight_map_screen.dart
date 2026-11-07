@@ -544,9 +544,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                         '${_start?.label ?? 'A'}  →  ${_end?.label ?? 'B'}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: LosPalette.text,
-                          fontSize: 14,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
@@ -559,11 +558,11 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                                   '${isImperial ? 'mi' : 'km'}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: LosPalette.textMuted,
-                          fontSize: 11.5,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
+                              color: LosPalette.textMuted,
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                     ],
                   ),
@@ -656,9 +655,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               color: LosPalette.text,
               icon: Text(
                 isImperial ? 'ft' : 'm',
-                style: const TextStyle(
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: LosPalette.text,
-                  fontSize: 12,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -715,9 +713,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               Expanded(
                 child: Text(
                   _statusLabel(status),
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: color,
-                    fontSize: 19,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -766,9 +763,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
           children: [
             Text(
               label.toUpperCase(),
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: LosPalette.textMuted,
-                fontSize: 9,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -828,9 +824,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                 Expanded(
                   child: Text(
                     '${_formatDistanceValue(obstruction.distanceMeters, isImperial)} $distanceUnit',
-                    style: const TextStyle(
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: LosPalette.text,
-                      fontSize: 12,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
@@ -845,11 +840,10 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                       color: LosPalette.blocked,
                       borderRadius: BorderRadius.circular(99),
                     ),
-                    child: const Text(
+                    child: Text(
                       'WORST',
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: Colors.white,
-                        fontSize: 8,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
@@ -859,9 +853,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
             const Spacer(),
             Text(
               'Blocked ${_formatHeightValue(obstruction.obstructionMeters, isImperial)} $heightUnit',
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: LosPalette.textMuted,
-                fontSize: 11,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -888,11 +881,10 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Selected obstruction',
-            style: TextStyle(
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: LosPalette.text,
-              fontSize: 14,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -941,9 +933,8 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
         children: [
           Text(
             label.toUpperCase(),
-            style: const TextStyle(
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: LosPalette.textMuted,
-              fontSize: 9,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -1021,16 +1012,17 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
             const SizedBox(height: 18),
             Text(
               context.l10n.losBlockedSpotsTitle,
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: LosPalette.text,
-                fontSize: 15,
                 fontWeight: FontWeight.w800,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               context.l10n.losBlockedSpotsHint,
-              style: const TextStyle(color: LosPalette.textMuted, fontSize: 12),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: LosPalette.textMuted),
             ),
             const SizedBox(height: 10),
             SizedBox(
@@ -1069,15 +1061,16 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
             collapsedIconColor: LosPalette.textMuted,
             title: Text(
               context.l10n.losMenuTitle,
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 color: LosPalette.text,
-                fontSize: 14,
                 fontWeight: FontWeight.w700,
               ),
             ),
             subtitle: Text(
               context.l10n.losMenuSubtitle,
-              style: const TextStyle(color: LosPalette.textMuted, fontSize: 11),
+              style: Theme.of(
+                context,
+              ).textTheme.labelSmall?.copyWith(color: LosPalette.textMuted),
             ),
             children: [
               SwitchListTile(
@@ -1085,7 +1078,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                 contentPadding: EdgeInsets.zero,
                 title: Text(
                   context.l10n.losShowDisplayNodes,
-                  style: const TextStyle(fontSize: 12),
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 value: _showDisplayNodes,
                 onChanged: (value) {
@@ -1101,7 +1094,9 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                 const SizedBox(height: 6),
                 Text(
                   context.l10n.losCustomPoints,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 for (final point in _customEndpoints)
                   ListTile(
@@ -1109,11 +1104,11 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                     contentPadding: EdgeInsets.zero,
                     title: Text(
                       point.label,
-                      style: const TextStyle(fontSize: 12),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     subtitle: Text(
                       '${point.point.latitude.toStringAsFixed(5)}, ${point.point.longitude.toStringAsFixed(5)}',
-                      style: const TextStyle(fontSize: 11),
+                      style: Theme.of(context).textTheme.labelSmall,
                     ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -1170,7 +1165,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                   antennaADisplay.toStringAsFixed(1),
                   heightUnit,
                 ),
-                style: const TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Slider(
                 value: antennaADisplay,
@@ -1188,7 +1183,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                   antennaBDisplay.toStringAsFixed(1),
                   heightUnit,
                 ),
-                style: const TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Slider(
                 value: antennaBDisplay,
@@ -1219,10 +1214,9 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                   '${context.l10n.losFrequencyLabel}: '
                   '${displayFrequencyMHz.toStringAsFixed(3)} MHz'
                   '${kFactorUsed == null ? '' : '  k=${kFactorUsed.toStringAsFixed(3)}'}',
-                  style: const TextStyle(
-                    color: LosPalette.textMuted,
-                    fontSize: 11,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: LosPalette.textMuted),
                 ),
                 if (kFactorUsed != null)
                   IconButton(
@@ -1240,7 +1234,9 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
           ],
           Text(
             context.l10n.losElevationAttribution,
-            style: const TextStyle(color: LosPalette.textMuted, fontSize: 10),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: LosPalette.textMuted),
           ),
         ],
       ),
@@ -1257,7 +1253,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
       children: [
         SizedBox(
           width: 54,
-          child: Text(label, style: const TextStyle(fontSize: 12)),
+          child: Text(label, style: Theme.of(context).textTheme.bodySmall),
         ),
         Expanded(
           child: DropdownButton<LineOfSightEndpoint>(

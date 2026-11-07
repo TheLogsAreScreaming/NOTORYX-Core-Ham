@@ -5,6 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:share_plus/share_plus.dart';
 import '../l10n/l10n.dart';
 import '../services/coverage_capture_service.dart';
+import '../widgets/ui/mesh_states.dart';
 
 class BastionCoverageHistoryScreen extends StatefulWidget {
   final CoverageCaptureService capture;
@@ -64,7 +65,7 @@ class _HistoryState extends State<BastionCoverageHistoryScreen> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(context.l10n.coverage_historyTitle)),
     body: loading
-        ? const Center(child: CircularProgressIndicator())
+        ? const MeshLoadingState()
         : ListView(
             padding: const EdgeInsets.all(16),
             children: [

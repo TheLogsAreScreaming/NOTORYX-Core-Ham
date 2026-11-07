@@ -131,6 +131,8 @@ void main() {
     final scannerL10n = AppLocalizations.of(scannerContext);
     final tcpTile = find.text(scannerL10n.radioStatus_tcp);
     await tester.ensureVisible(tcpTile);
+    // The list measures its full extent lazily; settle before tapping.
+    await tester.pumpAndSettle();
     await tester.tap(tcpTile);
     await tester.pumpAndSettle();
     expect(find.byType(TcpScreen), findsOneWidget);

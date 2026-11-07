@@ -30,7 +30,7 @@ Material 3 structure (roles, components, motion), with Apple HIG restraint: cont
 | 2 | Shell and navigation: More reorganised (a Station group with Licensed operator, Connections and Radio), Home hierarchy, no "Private" padlocks for ham channels | Done, except Home (PR 8) |
 | 3 | Chats and Nodes: list rows, chat headers, composer, empty states | Done (PR 9) |
 | 4 | Settings, Connections, scanner, radio and repeater settings | Done (PR 8 scanner, PR 12) |
-| 5 | Tools: field ops, wardrive, track log, diagnostics, path and route tools, maps | |
+| 5 | Tools: field ops, wardrive, track log, diagnostics, path and route tools, maps | PR 17 |
 | 6 | Dialogs, sheets and snackbars app-wide; destructive confirmations | |
 | 7 | Accessibility pass (text scale, touch targets, semantics), screenshots, write-up | |
 

@@ -40,9 +40,8 @@ class BastionAboutScreen extends StatelessWidget {
                   const SizedBox(height: 12),
                   Text(
                     'NOTORYX',
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       color: MeshPalette.ink,
-                      fontSize: 28,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 2,
                     ),
