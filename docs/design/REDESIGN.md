@@ -26,10 +26,10 @@ Material 3 structure (roles, components, motion), with Apple HIG restraint: cont
 
 | Stage | Scope | Status |
 |---|---|---|
-| 1 | Design system v2: type scale, status colours, unified corners and controls, touch targets, motion tokens; shared components for empty, loading and error states, status banners and destructive confirmations | |
-| 2 | Shell and navigation: More reorganised (a Station group with Licensed operator, Connections and Radio), Home hierarchy, no "Private" padlocks for ham channels | |
+| 1 | Design system v2: type scale, status colours, unified corners and controls, touch targets, motion tokens; shared components for empty, loading and error states, status banners and destructive confirmations | Done (PR 8) |
+| 2 | Shell and navigation: More reorganised (a Station group with Licensed operator, Connections and Radio), Home hierarchy, no "Private" padlocks for ham channels | Done, except Home (PR 8) |
 | 3 | Chats and Nodes: list rows, chat headers, composer, empty states | |
-| 4 | Settings, Connections, scanner, radio and repeater settings | |
+| 4 | Settings, Connections, scanner, radio and repeater settings | Scanner done (PR 8) |
 | 5 | Tools: field ops, wardrive, track log, diagnostics, path and route tools, maps | |
 | 6 | Dialogs, sheets and snackbars app-wide; destructive confirmations | |
 | 7 | Accessibility pass (text scale, touch targets, semantics), screenshots, write-up | |

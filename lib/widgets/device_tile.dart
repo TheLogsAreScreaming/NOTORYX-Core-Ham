@@ -161,23 +161,27 @@ class DeviceTile extends StatelessWidget {
                     ),
                   )
                 else
+                  // Quiet outline: the whole row is the tap target, and a
+                  // list of filled buttons would compete for attention.
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 14,
                       vertical: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: tap == null ? MeshPalette.bg3 : MeshPalette.accent,
                       borderRadius: BorderRadius.circular(MeshRadii.pill),
+                      border: Border.all(
+                        color: tap == null
+                            ? MeshPalette.line2
+                            : MeshPalette.accent.withValues(alpha: 0.7),
+                      ),
                     ),
                     child: Text(
                       l10n.common_connect,
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: tap == null
                             ? MeshPalette.ink3
-                            : MeshPalette.onAccent,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
+                            : MeshPalette.accent,
                       ),
                     ),
                   ),

@@ -7424,7 +7424,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Радиото ви се нуждае от фърмуер MeshCore companion, който поддържа избраната връзка. Поддръжката зависи от платката и версията на фърмуера; наличието на USB порт само по себе си не гарантира поддръжка на USB сериен порт. Проверете инструкциите за вашата платка и инсталираната версия. Фърмуерът на повторител или сървър за стая не е companion. Неуспешната връзка сама по себе си не означава, че трябва да препрограмирате.';
+      'Радиото ви се нуждае от фърмуер NOTORYX Ham companion, който поддържа избраната връзка. Поддръжката зависи от платката и версията на фърмуера; наличието на USB порт само по себе си не гарантира поддръжка на USB сериен порт. Проверете инструкциите за вашата платка и инсталираната версия. Фърмуерът на повторител или сървър за стая не е companion. Неуспешната връзка сама по себе си не означава, че трябва да препрограмирате.';
 
   @override
   String get setupWizard_settings =>
@@ -7974,7 +7974,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Включете радиото и го дръжте на няколко метра. Нужен е фърмуер MeshCore companion.';
+      'Включете радиото и го дръжте на няколко метра. Нужен е фърмуер NOTORYX Ham companion.';
 
   @override
   String get scanner_tipsTitle => 'Не виждате радиото си?';
@@ -7984,7 +7984,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Нужен е фърмуер MeshCore companion. Ретранслаторите и стайните сървъри не се показват тук.';
+      'Нужен е фърмуер NOTORYX Ham companion. Ретранслаторите и стайните сървъри не се показват тук.';
 
   @override
   String get scanner_tipOtherDevice =>

@@ -7068,7 +7068,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      '無線機には、選んだ接続方法に対応したMeshCoreコンパニオンファームウェアが必要です。対応状況はボードやファームウェアのビルドによって異なり、USBポートがあってもUSBシリアルに対応しているとは限りません。お使いのボードとインストール済みのビルドの説明を確認してください。リピーターやルームサーバーのファームウェアはコンパニオンではありません。接続に失敗しただけで書き直しが必要とは限りません。';
+      '無線機には、選んだ接続方法に対応したNOTORYX Hamコンパニオンファームウェアが必要です。対応状況はボードやファームウェアのビルドによって異なり、USBポートがあってもUSBシリアルに対応しているとは限りません。お使いのボードとインストール済みのビルドの説明を確認してください。リピーターやルームサーバーのファームウェアはコンパニオンではありません。接続に失敗しただけで書き直しが必要とは限りません。';
 
   @override
   String get setupWizard_settings =>
@@ -7598,7 +7598,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      '無線機の電源を入れ、数メートル以内に置いてください。MeshCore companion ファームウェアが必要です。';
+      '無線機の電源を入れ、数メートル以内に置いてください。NOTORYX Ham companion ファームウェアが必要です。';
 
   @override
   String get scanner_tipsTitle => '無線機が表示されませんか？';
@@ -7608,7 +7608,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'MeshCore companion ファームウェアが必要です。リピーターとルームサーバーはここに表示されません。';
+      'NOTORYX Ham companion ファームウェアが必要です。リピーターとルームサーバーはここに表示されません。';
 
   @override
   String get scanner_tipOtherDevice =>

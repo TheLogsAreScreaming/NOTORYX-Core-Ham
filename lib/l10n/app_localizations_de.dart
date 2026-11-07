@@ -7436,7 +7436,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Dein Funkgerät braucht MeshCore-Companion-Firmware, die die gewählte Verbindung unterstützt. Die Unterstützung hängt von Board und Firmware-Build ab; eine USB-Buchse allein bedeutet noch keine USB-Seriell-Unterstützung. Prüfe die Anleitung für dein genaues Board und den installierten Build. Repeater- oder Room-Server-Firmware ist kein Companion. Eine fehlgeschlagene Verbindung heißt nicht automatisch, dass du neu flashen musst.';
+      'Dein Funkgerät braucht NOTORYX Ham-Companion-Firmware, die die gewählte Verbindung unterstützt. Die Unterstützung hängt von Board und Firmware-Build ab; eine USB-Buchse allein bedeutet noch keine USB-Seriell-Unterstützung. Prüfe die Anleitung für dein genaues Board und den installierten Build. Repeater- oder Room-Server-Firmware ist kein Companion. Eine fehlgeschlagene Verbindung heißt nicht automatisch, dass du neu flashen musst.';
 
   @override
   String get setupWizard_settings =>
@@ -7992,7 +7992,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Schalte dein Funkgerät ein und halte es in wenigen Metern Nähe. Es braucht MeshCore-Companion-Firmware.';
+      'Schalte dein Funkgerät ein und halte es in wenigen Metern Nähe. Es braucht NOTORYX Ham-Companion-Firmware.';
 
   @override
   String get scanner_tipsTitle => 'Funkgerät nicht zu sehen?';
@@ -8002,7 +8002,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Es braucht MeshCore-Companion-Firmware. Repeater und Room-Server erscheinen hier nicht.';
+      'Es braucht NOTORYX Ham-Companion-Firmware. Repeater und Room-Server erscheinen hier nicht.';
 
   @override
   String get scanner_tipOtherDevice =>

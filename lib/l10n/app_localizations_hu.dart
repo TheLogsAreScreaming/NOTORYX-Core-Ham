@@ -7416,7 +7416,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'A rádiónak a választott kapcsolatot támogató MeshCore companion firmware kell. A támogatás panelenként és firmware-verziónként eltér; egy USB-aljzat önmagában nem jelent USB-soros támogatást. Nézze meg a panelje és a telepített verzió leírását. Az ismétlő vagy szobaszerver firmware nem companion. Egy sikertelen kapcsolódás önmagában nem jelenti, hogy újra kell flashelni.';
+      'A rádiónak a választott kapcsolatot támogató NOTORYX Ham companion firmware kell. A támogatás panelenként és firmware-verziónként eltér; egy USB-aljzat önmagában nem jelent USB-soros támogatást. Nézze meg a panelje és a telepített verzió leírását. Az ismétlő vagy szobaszerver firmware nem companion. Egy sikertelen kapcsolódás önmagában nem jelenti, hogy újra kell flashelni.';
 
   @override
   String get setupWizard_settings =>
@@ -7972,7 +7972,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Kapcsold be a rádiót, és tartsd néhány méteren belül. MeshCore companion firmware kell hozzá.';
+      'Kapcsold be a rádiót, és tartsd néhány méteren belül. NOTORYX Ham companion firmware kell hozzá.';
 
   @override
   String get scanner_tipsTitle => 'Nem látod a rádiódat?';
@@ -7983,7 +7983,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'MeshCore companion firmware kell hozzá. Az átjátszók és szobaszerverek itt nem jelennek meg.';
+      'NOTORYX Ham companion firmware kell hozzá. Az átjátszók és szobaszerverek itt nem jelennek meg.';
 
   @override
   String get scanner_tipOtherDevice =>

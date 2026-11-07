@@ -7079,7 +7079,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      '무전기에는 선택한 연결 방식을 지원하는 MeshCore 컴패니언 펌웨어가 필요합니다. 지원 여부는 보드와 펌웨어 빌드에 따라 다르며, USB 포트가 있다고 해서 USB 시리얼이 지원되는 것은 아닙니다. 사용 중인 보드와 설치된 빌드의 안내를 확인하세요. 리피터나 룸 서버 펌웨어는 컴패니언이 아닙니다. 연결 실패만으로 펌웨어를 다시 써야 한다는 뜻은 아닙니다.';
+      '무전기에는 선택한 연결 방식을 지원하는 NOTORYX Ham 컴패니언 펌웨어가 필요합니다. 지원 여부는 보드와 펌웨어 빌드에 따라 다르며, USB 포트가 있다고 해서 USB 시리얼이 지원되는 것은 아닙니다. 사용 중인 보드와 설치된 빌드의 안내를 확인하세요. 리피터나 룸 서버 펌웨어는 컴패니언이 아닙니다. 연결 실패만으로 펌웨어를 다시 써야 한다는 뜻은 아닙니다.';
 
   @override
   String get setupWizard_settings =>
@@ -7609,7 +7609,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      '무전기를 켜고 몇 미터 안에 두세요. MeshCore companion 펌웨어가 필요합니다.';
+      '무전기를 켜고 몇 미터 안에 두세요. NOTORYX Ham companion 펌웨어가 필요합니다.';
 
   @override
   String get scanner_tipsTitle => '무전기가 보이지 않나요?';
@@ -7619,7 +7619,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'MeshCore companion 펌웨어가 필요합니다. 리피터와 룸 서버는 여기에 표시되지 않습니다.';
+      'NOTORYX Ham companion 펌웨어가 필요합니다. 리피터와 룸 서버는 여기에 표시되지 않습니다.';
 
   @override
   String get scanner_tipOtherDevice =>

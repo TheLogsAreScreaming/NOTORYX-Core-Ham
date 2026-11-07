@@ -7398,7 +7398,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Je radio heeft MeshCore-companionfirmware nodig die de gekozen verbinding ondersteunt. Ondersteuning verschilt per board en firmwarebuild; een USB-poort alleen betekent nog geen USB-serieel-ondersteuning. Raadpleeg de instructies voor jouw board en geïnstalleerde build. Repeater- of room-serverfirmware is geen companion. Een mislukte verbinding betekent niet vanzelf dat je opnieuw moet flashen.';
+      'Je radio heeft NOTORYX Ham-companionfirmware nodig die de gekozen verbinding ondersteunt. Ondersteuning verschilt per board en firmwarebuild; een USB-poort alleen betekent nog geen USB-serieel-ondersteuning. Raadpleeg de instructies voor jouw board en geïnstalleerde build. Repeater- of room-serverfirmware is geen companion. Een mislukte verbinding betekent niet vanzelf dat je opnieuw moet flashen.';
 
   @override
   String get setupWizard_settings =>
@@ -7951,7 +7951,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Zet je radio aan en houd hem binnen een paar meter. Hij heeft MeshCore-companionfirmware nodig.';
+      'Zet je radio aan en houd hem binnen een paar meter. Hij heeft NOTORYX Ham-companionfirmware nodig.';
 
   @override
   String get scanner_tipsTitle => 'Zie je je radio niet?';
@@ -7961,7 +7961,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Hij heeft MeshCore-companionfirmware nodig. Repeaters en roomservers verschijnen hier niet.';
+      'Hij heeft NOTORYX Ham-companionfirmware nodig. Repeaters en roomservers verschijnen hier niet.';
 
   @override
   String get scanner_tipOtherDevice =>

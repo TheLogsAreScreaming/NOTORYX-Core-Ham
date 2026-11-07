@@ -7322,7 +7322,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      'Your radio needs NOTORYX Ham companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
 
   @override
   String get setupWizard_settings =>
@@ -7871,7 +7871,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Turn your radio on and keep it within a few meters. It needs MeshCore companion firmware.';
+      'Turn your radio on and keep it within a few meters. It needs NOTORYX Ham companion firmware.';
 
   @override
   String get scanner_tipsTitle => 'Can\'t see your radio?';
@@ -7881,7 +7881,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'It needs MeshCore companion firmware. Repeaters and room servers don\'t show up here.';
+      'It needs NOTORYX Ham companion firmware. Repeaters and room servers don\'t show up here.';
 
   @override
   String get scanner_tipOtherDevice =>

@@ -7464,7 +7464,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Радіо потрібна прошивка MeshCore companion із підтримкою вибраного підключення. Підтримка залежить від плати й збірки прошивки; наявність USB-роз\'єму ще не означає підтримки USB-serial. Перевірте інструкції для вашої плати та встановленої збірки. Прошивка ретранслятора чи кімнатного сервера не є companion. Невдале підключення саме по собі не означає, що потрібно перепрошивати.';
+      'Радіо потрібна прошивка NOTORYX Ham companion із підтримкою вибраного підключення. Підтримка залежить від плати й збірки прошивки; наявність USB-роз\'єму ще не означає підтримки USB-serial. Перевірте інструкції для вашої плати та встановленої збірки. Прошивка ретранслятора чи кімнатного сервера не є companion. Невдале підключення саме по собі не означає, що потрібно перепрошивати.';
 
   @override
   String get setupWizard_settings =>
@@ -8016,7 +8016,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Увімкніть радіо й тримайте його за кілька метрів. Потрібна прошивка MeshCore companion.';
+      'Увімкніть радіо й тримайте його за кілька метрів. Потрібна прошивка NOTORYX Ham companion.';
 
   @override
   String get scanner_tipsTitle => 'Не бачите свого радіо?';
@@ -8026,7 +8026,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Потрібна прошивка MeshCore companion. Ретранслятори й кімнатні сервери тут не показуються.';
+      'Потрібна прошивка NOTORYX Ham companion. Ретранслятори й кімнатні сервери тут не показуються.';
 
   @override
   String get scanner_tipOtherDevice =>

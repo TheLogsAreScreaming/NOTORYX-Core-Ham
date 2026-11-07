@@ -7418,7 +7418,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Rádio potrebuje firmvér MeshCore companion, ktorý podporuje zvolené pripojenie. Podpora sa líši podľa dosky a zostavy firmvéru; samotný USB konektor ešte neznamená podporu USB sériového rozhrania. Pozrite si pokyny pre svoju dosku a nainštalovanú zostavu. Firmvér opakovača alebo servera miestnosti nie je companion. Neúspešné pripojenie samo osebe neznamená, že treba firmvér nahrať znova.';
+      'Rádio potrebuje firmvér NOTORYX Ham companion, ktorý podporuje zvolené pripojenie. Podpora sa líši podľa dosky a zostavy firmvéru; samotný USB konektor ešte neznamená podporu USB sériového rozhrania. Pozrite si pokyny pre svoju dosku a nainštalovanú zostavu. Firmvér opakovača alebo servera miestnosti nie je companion. Neúspešné pripojenie samo osebe neznamená, že treba firmvér nahrať znova.';
 
   @override
   String get setupWizard_settings =>
@@ -7969,7 +7969,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Zapnite rádio a majte ho do pár metrov. Potrebuje firmvér MeshCore companion.';
+      'Zapnite rádio a majte ho do pár metrov. Potrebuje firmvér NOTORYX Ham companion.';
 
   @override
   String get scanner_tipsTitle => 'Nevidíte svoje rádio?';
@@ -7979,7 +7979,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Potrebuje firmvér MeshCore companion. Opakovače a izbové servery sa tu nezobrazujú.';
+      'Potrebuje firmvér NOTORYX Ham companion. Opakovače a izbové servery sa tu nezobrazujú.';
 
   @override
   String get scanner_tipOtherDevice =>
