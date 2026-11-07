@@ -6114,31 +6114,34 @@ class AppLocalizationsUk extends AppLocalizations {
   String get fieldOps_send => 'Надіслати';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Ретрансляція SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Ретранслювати SOS, які не передав жоден ретранслятор';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Потрібна прошивка радіо v1.16 або новіша';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'SOS ще не ретранслювалися';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Ретрансльовано $count пакетів SOS, останній о $time',
+      few: 'Ретрансльовано $count пакети SOS, останній о $time',
+      one: 'Ретрансльовано $count пакет SOS, останній о $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Якщо радіо чує SOS напряму від відправника, а жоден ретранслятор не передає його приблизно за 15 секунд, NOTORYX надсилає його ще раз без змін, щоб воно дійшло до ретранслятора, якого чуєте ви, але не відправник. Ретранслюються лише SOS у ваших каналах. Витрачає батарею й ефірний час, тому за замовчуванням вимкнено.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Перед виходом';
@@ -9423,6 +9426,564 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Задавайте паролі через послідовну USB-консоль ретранслятора. Передані в ефірі, їх може прочитати будь-хто.';
+
+  @override
+  String get networks_title => 'Мережі';
+
+  @override
+  String get networks_hint => 'Пошук мереж поблизу та журнал';
+
+  @override
+  String get networks_yourNetwork => 'Ваша мережа';
+
+  @override
+  String get networks_scanTitle => 'Пошук мереж';
+
+  @override
+  String get networks_scanExplainer =>
+      'Радіо чує лише мережі з точно такими самими налаштуваннями, тому пошук по черзі перемикає його на кожну, слухає й повертає назад. Під час пошуку ви поза своєю мережею.';
+
+  @override
+  String get networks_listenFor => 'Слухати кожну';
+
+  @override
+  String networks_choose(int count) {
+    return 'Мереж для пошуку: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Запропоновані';
+
+  @override
+  String get networks_start => 'Почати пошук';
+
+  @override
+  String get networks_cancel => 'Зупинити пошук';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Слухаю $name ($step з $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Під\'єднайте радіо для пошуку.';
+
+  @override
+  String get networks_blockSettings => 'Очікування налаштувань радіо.';
+
+  @override
+  String get networks_blockSos =>
+      'Не під час SOS: пошук відключає вас від мережі.';
+
+  @override
+  String get networks_blockTrip =>
+      'Не під час походу: пошук відключає вас від мережі.';
+
+  @override
+  String get networks_nearby => 'Мережі поблизу';
+
+  @override
+  String get networks_nothingYet =>
+      'Поки жодної мережі не чути. Запустіть пошук.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Вузли $nodes · пакети $packets · SNR $snr дБ';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Востаннє $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Скільки разів чути: $count';
+  }
+
+  @override
+  String get networks_saved => 'Збережені мережі';
+
+  @override
+  String get networks_noSaved => 'Збережених мереж поки немає.';
+
+  @override
+  String get networks_add => 'Додати мережу';
+
+  @override
+  String get networks_join => 'Приєднатися';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Перемкнути радіо на $name? Ви залишите поточну мережу. Потужність передавання не зміниться.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Радіо тепер на $name.';
+  }
+
+  @override
+  String get networks_log => 'Журнал мереж';
+
+  @override
+  String get networks_logEmpty => 'Поки нічого не записано.';
+
+  @override
+  String get networks_showMap => 'Карта';
+
+  @override
+  String get networks_exportCsv => 'Експорт CSV';
+
+  @override
+  String get networks_exportGpx => 'Експорт GPX';
+
+  @override
+  String get networks_clearLog => 'Очистити журнал';
+
+  @override
+  String get networks_clearLogConfirm => 'Видалити всі записані мережі?';
+
+  @override
+  String get networks_name => 'Назва';
+
+  @override
+  String get networks_invalid =>
+      'Перевірте налаштування: вони поза межами, які приймають радіо MeshCore.';
+
+  @override
+  String get networks_nodesHeard => 'Почуті вузли';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Не надіслано: під\'єднайте радіо та спробуйте ще раз. Повідомлення збережено.';
+
+  @override
+  String get quick_title => 'Швидкі повідомлення';
+
+  @override
+  String get quick_ok => 'Гаразд';
+
+  @override
+  String get quick_onMyWay => 'Уже йду';
+
+  @override
+  String get quick_atCamp => 'У таборі';
+
+  @override
+  String get quick_runningLate => 'Запізнююся';
+
+  @override
+  String get quick_needHelp => 'Потрібна допомога';
+
+  @override
+  String get quick_copyThat => 'Прийнято';
+
+  @override
+  String get quick_empty =>
+      'Немає швидких повідомлень. Торкніться «Редагувати», щоб додати.';
+
+  @override
+  String get quick_add => 'Нове швидке повідомлення';
+
+  @override
+  String get quick_reset => 'Повернути стандартні';
+
+  @override
+  String get chat_stopRetrying => 'Зупинити повтори';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name зможе читати ваші особисті повідомлення й відповідати на них лише після того, як додасть вас у контакти. Якщо ні, надішліть своє оголошення або поділіться контактом.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'До мого місця';
+
+  @override
+  String get map_positionUnavailable =>
+      'Ваше місцезнаходження недоступне. Увімкніть геолокацію або задайте позицію радіо.';
+
+  @override
+  String get contact_forgetAdvert => 'Забути останнє оголошення';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Якщо оголошення цього вузла перестали оновлюватися після скидання його годинника, «Забути останнє оголошення» пропустить наступне.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Готово. Наступне оголошення цього вузла буде прийнято.';
+
+  @override
+  String get networks_modeQuick => 'Швидко';
+
+  @override
+  String get networks_modeThorough => 'Детально';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Надсилає в кожній мережі один короткий пінг без ретрансляції й слухає кілька секунд. Знаходить мережі з ретранслятором поблизу.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Лише слухає, довше в кожній мережі. Нічого не надсилає й знаходить мережі без ретранслятора поблизу, якщо хтось передає.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'близько $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return 'Вибрано: $count';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Вибрати все';
+
+  @override
+  String get discoveredContacts_addSelected => 'Додати вибрані';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Додати всі показані ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Додати контакти ($count)?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'У радіо є місце ще для $room контактів.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'У радіо є місце ще для $room контактів, тому буде додано лише перші $room з $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Додавання $done з $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Додано контактів: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Додано контактів: $added. Не додано: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Список контактів радіо заповнений. Спочатку видаліть кілька контактів.';
+
+  @override
+  String get fieldIntel_radioNow => 'Радіо зараз';
+
+  @override
+  String get fieldIntel_noRadio =>
+      'Під\'єднайте радіо, щоб бачити дані наживо.';
+
+  @override
+  String get fieldIntel_noise => 'шум дБм';
+
+  @override
+  String get fieldIntel_lastSnr => 'останній SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'останній RSSI';
+
+  @override
+  String get fieldIntel_battery => 'батарея В';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Ефірний час від запуску радіо: передано $sent, отримано $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Хто поруч';
+
+  @override
+  String get fieldIntel_m15 => '15 хв';
+
+  @override
+  String get fieldIntel_h1 => '1 год';
+
+  @override
+  String get fieldIntel_h24 => '24 год';
+
+  @override
+  String get fieldIntel_older => 'Раніше';
+
+  @override
+  String get fieldIntel_lastHour => 'Остання година';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Коли кожен вузол чули востаннє, по годинах за останню добу. Торкніться стовпчика, щоб побачити хто.';
+
+  @override
+  String get fieldIntel_mix => 'Типи вузлів';
+
+  @override
+  String get fieldIntel_reach => 'Охоплення';
+
+  @override
+  String get fieldIntel_hops1 => '1 хоп';
+
+  @override
+  String get fieldIntel_hops2 => '2 хопи';
+
+  @override
+  String get fieldIntel_hops3 => '3+ хопи';
+
+  @override
+  String get fieldIntel_noRoute => 'Маршруту ще немає';
+
+  @override
+  String get fieldIntel_distance => 'Найближчі й найдальші';
+
+  @override
+  String get fieldIntel_noneLocated => 'Жоден контакт не має координат.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Радіо ще не має координат, тому відстані не обчислити.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Найкращі ретранслятори, чутні напряму';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'За останні 30 хвилин жодного ретранслятора не чули напряму.';
+
+  @override
+  String get fieldIntel_attention => 'Потребує уваги';
+
+  @override
+  String get fieldIntel_allGood => 'Ніщо не потребує уваги.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Низький заряд: $volts В';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Обраний не чутно з $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Інші інструменти';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Вузлів: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Вузлів немає.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Востаннє $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Показати на карті';
+
+  @override
+  String get fieldIntel_openChat => 'Відкрити чат';
+
+  @override
+  String get repeaterTools_login => 'Увійти';
+
+  @override
+  String get repeaterTools_heardDirect => 'Чутно напряму';
+
+  @override
+  String get repeaterTools_filterAll => 'Усі';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Низький заряд';
+
+  @override
+  String get repeaterTools_hint =>
+      'Торкніться ретранслятора, щоб побачити подробиці, і увійдіть звідти, щоб переглянути стан, сусідів, телеметрію та командний рядок.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Ретрансляторів немає.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Інструменти';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Знайдіть дерево регіонів для своєї місцевості й скопіюйте його команди';
+
+  @override
+  String get routes_failingOnly => 'Лише невдалі маршрути';
+
+  @override
+  String get routes_contactDetails => 'Відомості про контакт';
+
+  @override
+  String get links_contactTitle => 'Додати контакт?';
+
+  @override
+  String get links_importAdvert => 'Додати цей контакт до радіо?';
+
+  @override
+  String get links_connectFirst =>
+      'Спершу під\'єднайте радіо, потім знову відкрийте посилання.';
+
+  @override
+  String get links_added => 'Контакт додано';
+
+  @override
+  String get links_notContact => 'Це посилання не є контактом MeshCore.';
+
+  @override
+  String get radioBuzzer_title => 'Зумер радіо';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Радіо пищить при нових повідомленнях. Показується лише для радіо із зумером.';
+
+  @override
+  String get radioBuzzer_failed => 'Радіо не прийняло зміну. Спробуйте ще раз.';
+
+  @override
+  String get appSettings_floodAttempts => 'Спроби флудом';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Додаткові спроби флудом після невдалих прямих, якщо маршрут змінився. Кожна займає більше ефірного часу. 0 вимикає.';
+
+  @override
+  String get pathGraph_you => 'Ви';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Передав повідомлень: $count';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Цей короткий ID збігається з кількома ретрансляторами, тому його не можна віднести до одного.';
+
+  @override
+  String get pathGraph_comesFrom => 'Надходить від';
+
+  @override
+  String get pathGraph_goesTo => 'Іде до';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Відомості про ретранслятор';
+
+  @override
+  String get pathGraph_days7 => '7 днів';
+
+  @override
+  String get pathGraph_empty =>
+      'За цей період ще немає маршрутів повідомлень у каналах. Маршрути збираються з отриманих повідомлень у каналах, поки ввімкнено трасування.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Почуто маршрутів: $paths · ретрансляторів: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Кожен хоп показано префіксом хешу або назвою, якщо ретранслятор відомий.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return 'Коротких (1-байтових) хопів, зіставлених із конкретним ретранслятором за довшими маршрутами: $count.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return 'Коротких (1-байтових) хопів, зіставлених за довшими маршрутами: $matched · досі неоднозначних (з ?): $ambiguous.';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Ліворуч: дальші ретранслятори. Праворуч: ви. Товщина смуги — скільки повідомлень пройшло цим хопом. Торкніться блоку, щоб побачити ретранслятор.';
+
+  @override
+  String get pathGraph_busiest => 'Найзавантаженіші ретранслятори';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Граф маршрутів. Найзавантаженіший ретранслятор $name, передав повідомлень: $count.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Скопійовано: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'У радіо немає каналів.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Торкніться значення, щоб скопіювати. Потягніть униз для оновлення.';
+
+  @override
+  String get diag_storage => 'Пам\'ять';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used з $total КБ';
+  }
+
+  @override
+  String get favReturn_setting => 'Обрані знову в зоні';
+
+  @override
+  String get favReturn_settingHint =>
+      'Сповіщати, коли обраний контакт знову чути після тиші';
+
+  @override
+  String get favReturn_off => 'Вимк.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Через $count години',
+      many: 'Через $count годин',
+      few: 'Через $count години',
+      one: 'Через 1 годину',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Знову в зоні';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours год',
+      one: '1 години',
+    );
+    return '$name знову чути після $_temp0 тиші';
+  }
 
   @override
   String get ham_heardFrom => 'Почуто від';

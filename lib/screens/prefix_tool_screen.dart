@@ -15,6 +15,7 @@ import '../theme/mesh_theme.dart';
 import '../utils/keys.dart';
 import '../widgets/connect_ui.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/ember_backdrop.dart';
 
 /// Repeater IDs: look up who uses a path ID, see which IDs clash, and pick a
 /// free one (with a matching key) for a new repeater.
@@ -67,197 +68,209 @@ class _PrefixToolScreenState extends State<PrefixToolScreen> {
         ? census.freeOneByte.length
         : census.space - census.byPrefix.length;
 
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.prefixTool_title)),
-      body: Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 720),
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
-            children: [
-              ConsolePanel(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l10n.prefixTool_width,
-                      style: TextStyle(
-                        color: MeshPalette.ink2,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    SegmentedButton<int>(
-                      segments: [
-                        for (final b in const [1, 2, 3])
-                          ButtonSegment(
-                            value: b,
-                            label: Text(l10n.prefixTool_widthBytes(b)),
-                          ),
-                      ],
-                      selected: {bytes},
-                      onSelectionChanged: (s) =>
-                          setState(() => _bytes = s.first),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            l10n.prefixTool_includeCompanions,
-                            style: TextStyle(color: MeshPalette.ink2),
-                          ),
+    return EmberBackdrop(
+      scene: EmberScene.more,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          title: Text(l10n.prefixTool_title),
+        ),
+        body: Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 720),
+            child: ListView(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
+              children: [
+                ConsolePanel(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.prefixTool_width,
+                        style: TextStyle(
+                          color: MeshPalette.ink2,
+                          fontWeight: FontWeight.w600,
                         ),
-                        Switch(
-                          value: _includeCompanions,
-                          onChanged: (v) =>
-                              setState(() => _includeCompanions = v),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      l10n.prefixTool_summary(
-                        census.nodeCount,
-                        census.byPrefix.length,
-                        collisions.length,
                       ),
-                      key: const ValueKey('prefix-summary'),
-                      style: TextStyle(
-                        color: MeshPalette.ink,
-                        fontWeight: FontWeight.w700,
+                      const SizedBox(height: 8),
+                      SegmentedButton<int>(
+                        segments: [
+                          for (final b in const [1, 2, 3])
+                            ButtonSegment(
+                              value: b,
+                              label: Text(l10n.prefixTool_widthBytes(b)),
+                            ),
+                        ],
+                        selected: {bytes},
+                        onSelectionChanged: (s) =>
+                            setState(() => _bytes = s.first),
                       ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      l10n.prefixTool_freeOfSpace(freeCount, census.space),
-                      style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 22),
-              TextField(
-                key: const ValueKey('prefix-lookup'),
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: l10n.prefixTool_lookupHint,
-                ),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp('[0-9a-fA-F]')),
-                  LengthLimitingTextInputFormatter(6),
-                ],
-                textCapitalization: TextCapitalization.characters,
-                onChanged: (v) => setState(() => _query = v),
-              ),
-              if (query.isNotEmpty) ...[
-                const SizedBox(height: 10),
-                Text(
-                  matches.isEmpty
-                      ? l10n.prefixTool_lookupFree(query)
-                      : l10n.prefixTool_lookupUsed(matches.length, query),
-                  key: const ValueKey('prefix-lookup-result'),
-                  style: TextStyle(
-                    color: matches.isEmpty
-                        ? MeshPalette.signal
-                        : MeshPalette.warn,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                for (final c in matches) _NodeRow(contact: c, bytes: bytes),
-                if (matches.isEmpty && query.length <= 4)
-                  Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: TextButton.icon(
-                      onPressed: () => showKeyGeneratorSheet(context, query),
-                      icon: const Icon(Icons.key),
-                      label: Text(l10n.prefixTool_makeKey),
-                    ),
-                  ),
-              ],
-              const SizedBox(height: 22),
-              ConsoleKicker(
-                l10n.prefixTool_shared,
-                trailing: Text(
-                  '${collisions.length}',
-                  style: MeshTheme.mono(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                    color: MeshPalette.ink3,
-                  ),
-                ),
-              ),
-              if (collisions.isEmpty)
-                Text(
-                  l10n.prefixTool_noShared,
-                  style: TextStyle(color: MeshPalette.ink3),
-                )
-              else ...[
-                Text(
-                  l10n.prefixTool_sharedHint,
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
-                ),
-                const SizedBox(height: 8),
-                for (final e in collisions.take(30))
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: ConsolePanel(
-                      padding: const EdgeInsets.all(12),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      const SizedBox(height: 8),
+                      Row(
                         children: [
-                          _IdChip(id: e.key, color: MeshPalette.warn),
-                          const SizedBox(width: 12),
                           Expanded(
                             child: Text(
-                              e.value.map((c) => c.name).join('\n'),
+                              l10n.prefixTool_includeCompanions,
                               style: TextStyle(color: MeshPalette.ink2),
                             ),
                           ),
+                          Switch(
+                            value: _includeCompanions,
+                            onChanged: (v) =>
+                                setState(() => _includeCompanions = v),
+                          ),
                         ],
                       ),
-                    ),
-                  ),
-              ],
-              const SizedBox(height: 22),
-              ConsoleKicker(
-                l10n.prefixTool_free,
-                trailing: TextButton(
-                  onPressed: () => setState(() => _shuffle++),
-                  child: Text(l10n.prefixTool_shuffle),
-                ),
-              ),
-              Wrap(
-                key: ValueKey('free-$_shuffle'),
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final id in suggestions)
-                    ActionChip(
-                      label: Text(
-                        id,
-                        style: MeshTheme.mono(
-                          fontSize: 13,
+                      const SizedBox(height: 8),
+                      Text(
+                        l10n.prefixTool_summary(
+                          census.nodeCount,
+                          census.byPrefix.length,
+                          collisions.length,
+                        ),
+                        key: const ValueKey('prefix-summary'),
+                        style: TextStyle(
+                          color: MeshPalette.ink,
                           fontWeight: FontWeight.w700,
-                          color: MeshPalette.signal,
                         ),
                       ),
-                      tooltip: l10n.prefixTool_makeKey,
-                      onPressed: () => showKeyGeneratorSheet(
-                        context,
-                        id.substring(0, id.length.clamp(0, 4)),
+                      const SizedBox(height: 2),
+                      Text(
+                        l10n.prefixTool_freeOfSpace(freeCount, census.space),
+                        style: TextStyle(
+                          color: MeshPalette.ink3,
+                          fontSize: 12.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 22),
+                TextField(
+                  key: const ValueKey('prefix-lookup'),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    hintText: l10n.prefixTool_lookupHint,
+                  ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp('[0-9a-fA-F]')),
+                    LengthLimitingTextInputFormatter(6),
+                  ],
+                  textCapitalization: TextCapitalization.characters,
+                  onChanged: (v) => setState(() => _query = v),
+                ),
+                if (query.isNotEmpty) ...[
+                  const SizedBox(height: 10),
+                  Text(
+                    matches.isEmpty
+                        ? l10n.prefixTool_lookupFree(query)
+                        : l10n.prefixTool_lookupUsed(matches.length, query),
+                    key: const ValueKey('prefix-lookup-result'),
+                    style: TextStyle(
+                      color: matches.isEmpty
+                          ? MeshPalette.signal
+                          : MeshPalette.warn,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  for (final c in matches) _NodeRow(contact: c, bytes: bytes),
+                  if (matches.isEmpty && query.length <= 4)
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: TextButton.icon(
+                        onPressed: () => showKeyGeneratorSheet(context, query),
+                        icon: const Icon(Icons.key),
+                        label: Text(l10n.prefixTool_makeKey),
                       ),
                     ),
                 ],
-              ),
-              const SizedBox(height: 16),
-              Text(
-                l10n.prefixTool_onlyKnown,
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
-              ),
-            ],
+                const SizedBox(height: 22),
+                ConsoleKicker(
+                  l10n.prefixTool_shared,
+                  trailing: Text(
+                    '${collisions.length}',
+                    style: MeshTheme.mono(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: MeshPalette.ink3,
+                    ),
+                  ),
+                ),
+                if (collisions.isEmpty)
+                  Text(
+                    l10n.prefixTool_noShared,
+                    style: TextStyle(color: MeshPalette.ink3),
+                  )
+                else ...[
+                  Text(
+                    l10n.prefixTool_sharedHint,
+                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                  ),
+                  const SizedBox(height: 8),
+                  for (final e in collisions.take(30))
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: ConsolePanel(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _IdChip(id: e.key, color: MeshPalette.warn),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                e.value.map((c) => c.name).join('\n'),
+                                style: TextStyle(color: MeshPalette.ink2),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+                const SizedBox(height: 22),
+                ConsoleKicker(
+                  l10n.prefixTool_free,
+                  trailing: TextButton(
+                    onPressed: () => setState(() => _shuffle++),
+                    child: Text(l10n.prefixTool_shuffle),
+                  ),
+                ),
+                Wrap(
+                  key: ValueKey('free-$_shuffle'),
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final id in suggestions)
+                      ActionChip(
+                        label: Text(
+                          id,
+                          style: MeshTheme.mono(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: MeshPalette.signal,
+                          ),
+                        ),
+                        tooltip: l10n.prefixTool_makeKey,
+                        onPressed: () => showKeyGeneratorSheet(
+                          context,
+                          id.substring(0, id.length.clamp(0, 4)),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  l10n.prefixTool_onlyKnown,
+                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                ),
+              ],
+            ),
           ),
         ),
       ),

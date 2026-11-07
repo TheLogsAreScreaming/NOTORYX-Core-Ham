@@ -1,0 +1,3 @@
+• Field intelligence is now a live dashboard: radio readings, who's around, an hourly chart, node mix, reach, distances and what needs attention. Tap anything to see the nodes
+• Repeater tools: filters, battery and signal per repeater, and real tool buttons
+• Route Intelligence: tap routes and repeaters for details

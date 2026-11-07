@@ -5786,31 +5786,30 @@ class AppLocalizationsKo extends AppLocalizations {
   String get fieldOps_send => '보내기';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 중계';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => '리피터가 전달하지 않은 SOS 중계';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '무전기 펌웨어 v1.16 이상이 필요합니다';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => '아직 중계한 SOS가 없습니다';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'SOS 패킷 $count개 중계, 마지막 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '무전기가 보낸 사람에게서 직접 SOS를 듣고 약 15초 안에 어떤 리피터도 전달하지 않으면, NOTORYX가 그대로 한 번 더 보내 보낸 사람은 닿지 않지만 내가 들을 수 있는 리피터에 닿게 합니다. 내가 가진 채널의 SOS만 중계합니다. 배터리와 송신 시간을 쓰므로 기본적으로 꺼져 있습니다.';
 
   @override
   String get fieldOps_beforeYouLeave => '출발 전에';
@@ -8961,6 +8960,544 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       '비밀번호는 중계기의 USB 시리얼 콘솔에서 설정하세요. 전파로 보내면 누구나 읽을 수 있습니다.';
+
+  @override
+  String get networks_title => '네트워크';
+
+  @override
+  String get networks_hint => '근처 네트워크를 찾아 기록';
+
+  @override
+  String get networks_yourNetwork => '내 네트워크';
+
+  @override
+  String get networks_scanTitle => '네트워크 찾기';
+
+  @override
+  String get networks_scanExplainer =>
+      '무전기는 설정이 정확히 같은 네트워크만 들을 수 있어서, 스캔은 각 네트워크로 차례로 전환해 듣고 다시 원래대로 돌려놓습니다. 스캔 중에는 내 메시에서 벗어납니다.';
+
+  @override
+  String get networks_listenFor => '네트워크당 듣는 시간';
+
+  @override
+  String networks_choose(int count) {
+    return '스캔할 네트워크: $count';
+  }
+
+  @override
+  String get networks_suggested => '추천';
+
+  @override
+  String get networks_start => '스캔 시작';
+
+  @override
+  String get networks_cancel => '스캔 중지';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return '$name 듣는 중 ($step/$steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => '스캔하려면 무전기를 연결하세요.';
+
+  @override
+  String get networks_blockSettings => '무전기 설정을 기다리는 중입니다.';
+
+  @override
+  String get networks_blockSos => 'SOS 중에는 안 됩니다: 스캔하면 메시에서 벗어납니다.';
+
+  @override
+  String get networks_blockTrip => '여행 중에는 안 됩니다: 스캔하면 메시에서 벗어납니다.';
+
+  @override
+  String get networks_nearby => '근처 네트워크';
+
+  @override
+  String get networks_nothingYet => '아직 들린 네트워크가 없습니다. 스캔해 보세요.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return '노드 $nodes · 패킷 $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return '마지막 수신 $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return '수신 횟수: $count';
+  }
+
+  @override
+  String get networks_saved => '저장한 네트워크';
+
+  @override
+  String get networks_noSaved => '저장한 네트워크가 없습니다.';
+
+  @override
+  String get networks_add => '네트워크 추가';
+
+  @override
+  String get networks_join => '참여';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return '무전기를 $name(으)로 바꿀까요? 현재 네트워크에서 나갑니다. 송신 출력은 그대로입니다.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return '무전기가 이제 $name에 있습니다.';
+  }
+
+  @override
+  String get networks_log => '네트워크 기록';
+
+  @override
+  String get networks_logEmpty => '아직 기록이 없습니다.';
+
+  @override
+  String get networks_showMap => '지도';
+
+  @override
+  String get networks_exportCsv => 'CSV 내보내기';
+
+  @override
+  String get networks_exportGpx => 'GPX 내보내기';
+
+  @override
+  String get networks_clearLog => '기록 지우기';
+
+  @override
+  String get networks_clearLogConfirm => '기록된 네트워크를 모두 삭제할까요?';
+
+  @override
+  String get networks_name => '이름';
+
+  @override
+  String get networks_invalid => '설정을 확인하세요: MeshCore 무전기가 허용하는 범위를 벗어납니다.';
+
+  @override
+  String get networks_nodesHeard => '들린 노드';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      '보내지 않았습니다: 무전기를 연결한 뒤 다시 시도하세요. 메시지는 그대로 남아 있습니다.';
+
+  @override
+  String get quick_title => '빠른 메시지';
+
+  @override
+  String get quick_ok => '확인';
+
+  @override
+  String get quick_onMyWay => '가는 중';
+
+  @override
+  String get quick_atCamp => '캠프에 있음';
+
+  @override
+  String get quick_runningLate => '늦어요';
+
+  @override
+  String get quick_needHelp => '도움이 필요해요';
+
+  @override
+  String get quick_copyThat => '알겠습니다';
+
+  @override
+  String get quick_empty => '빠른 메시지가 없습니다. 편집을 눌러 추가하세요.';
+
+  @override
+  String get quick_add => '새 빠른 메시지';
+
+  @override
+  String get quick_reset => '기본값으로 재설정';
+
+  @override
+  String get chat_stopRetrying => '재시도 중지';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name님이 나를 연락처로 추가해야 내 다이렉트 메시지를 읽고 답할 수 있습니다. 아직이라면 내 광고를 보내거나 연락처를 공유하세요.';
+  }
+
+  @override
+  String get map_goToMyPosition => '내 위치로 이동';
+
+  @override
+  String get map_positionUnavailable =>
+      '위치를 사용할 수 없습니다. 위치 서비스를 켜거나 무전기 위치를 설정하세요.';
+
+  @override
+  String get contact_forgetAdvert => '마지막 광고 잊기';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      '이 노드의 시계가 초기화된 뒤 광고가 갱신되지 않으면, 마지막 광고 잊기로 다음 광고를 받아들입니다.';
+
+  @override
+  String get contact_forgetAdvertDone => '완료했습니다. 이 노드의 다음 광고를 받아들입니다.';
+
+  @override
+  String get networks_modeQuick => '빠르게';
+
+  @override
+  String get networks_modeThorough => '꼼꼼하게';
+
+  @override
+  String get networks_modeQuickHint =>
+      '각 네트워크에 제로홉 핑을 한 번 보내고 몇 초간 듣습니다. 범위 안에 리피터가 있는 네트워크를 찾습니다.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      '듣기만 하며 네트워크마다 더 오래 듣습니다. 아무것도 보내지 않으며, 누군가 송신하면 리피터가 없는 네트워크도 찾습니다.';
+
+  @override
+  String networks_estimate(String time) {
+    return '약 $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count개 선택됨';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => '모두 선택';
+
+  @override
+  String get discoveredContacts_addSelected => '선택 항목 추가';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return '표시된 항목 모두 추가 ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '연락처 $count개를 추가할까요?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return '무전기에 연락처를 $room개 더 추가할 수 있습니다.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return '무전기에 $room개만 더 추가할 수 있어 $count개 중 처음 $room개만 추가됩니다.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return '$total개 중 $done개 추가 중…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return '추가된 연락처: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return '추가된 연락처: $added. 추가하지 못함: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      '무전기의 연락처 목록이 가득 찼습니다. 먼저 일부를 삭제하세요.';
+
+  @override
+  String get fieldIntel_radioNow => '지금 무전기';
+
+  @override
+  String get fieldIntel_noRadio => '실시간 값을 보려면 무전기를 연결하세요.';
+
+  @override
+  String get fieldIntel_noise => '노이즈 dBm';
+
+  @override
+  String get fieldIntel_lastSnr => '최근 SNR';
+
+  @override
+  String get fieldIntel_lastRssi => '최근 RSSI';
+
+  @override
+  String get fieldIntel_battery => '배터리 V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return '무전기 시작 후 송신 시간: 송신 $sent, 수신 $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => '주변 노드';
+
+  @override
+  String get fieldIntel_m15 => '15분';
+
+  @override
+  String get fieldIntel_h1 => '1시간';
+
+  @override
+  String get fieldIntel_h24 => '24시간';
+
+  @override
+  String get fieldIntel_older => '이전';
+
+  @override
+  String get fieldIntel_lastHour => '최근 1시간';
+
+  @override
+  String get fieldIntel_chartHint =>
+      '지난 하루 동안 각 노드가 마지막으로 들린 시간을 시간별로 보여 줍니다. 막대를 누르면 목록이 나옵니다.';
+
+  @override
+  String get fieldIntel_mix => '노드 종류';
+
+  @override
+  String get fieldIntel_reach => '도달 범위';
+
+  @override
+  String get fieldIntel_hops1 => '1홉';
+
+  @override
+  String get fieldIntel_hops2 => '2홉';
+
+  @override
+  String get fieldIntel_hops3 => '3홉 이상';
+
+  @override
+  String get fieldIntel_noRoute => '아직 경로 없음';
+
+  @override
+  String get fieldIntel_distance => '가장 가까운 / 먼 노드';
+
+  @override
+  String get fieldIntel_noneLocated => '위치가 있는 연락처가 없습니다.';
+
+  @override
+  String get fieldIntel_noPosition => '무전기에 아직 위치가 없어 거리를 계산할 수 없습니다.';
+
+  @override
+  String get fieldIntel_bestRepeaters => '직접 들리는 최고의 리피터';
+
+  @override
+  String get fieldIntel_noneDirect => '최근 30분 동안 직접 들린 리피터가 없습니다.';
+
+  @override
+  String get fieldIntel_attention => '확인 필요';
+
+  @override
+  String get fieldIntel_allGood => '확인이 필요한 항목이 없습니다.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return '배터리 부족: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return '즐겨찾기, $ago 이후로 들리지 않음';
+  }
+
+  @override
+  String get fieldIntel_moreTools => '더 많은 도구';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return '노드: $count';
+  }
+
+  @override
+  String get fieldIntel_none => '노드가 없습니다.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return '마지막 수신 $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => '지도에서 보기';
+
+  @override
+  String get fieldIntel_openChat => '채팅 열기';
+
+  @override
+  String get repeaterTools_login => '로그인';
+
+  @override
+  String get repeaterTools_heardDirect => '직접 수신';
+
+  @override
+  String get repeaterTools_filterAll => '전체';
+
+  @override
+  String get repeaterTools_filterLowBattery => '배터리 부족';
+
+  @override
+  String get repeaterTools_hint =>
+      '리피터를 누르면 세부 정보가 나오고, 거기서 로그인하면 상태, 이웃, 텔레메트리, 명령줄을 볼 수 있습니다.';
+
+  @override
+  String get repeaterTools_noneMatch => '해당하는 리피터가 없습니다.';
+
+  @override
+  String get repeaterTools_toolsTitle => '도구';
+
+  @override
+  String get repeaterTools_regionSetupHint => '내 지역의 리전 트리를 찾아 명령을 복사합니다';
+
+  @override
+  String get routes_failingOnly => '실패한 경로만';
+
+  @override
+  String get routes_contactDetails => '연락처 정보';
+
+  @override
+  String get links_contactTitle => '연락처를 추가할까요?';
+
+  @override
+  String get links_importAdvert => '이 연락처를 무전기에 추가할까요?';
+
+  @override
+  String get links_connectFirst => '먼저 무전기를 연결한 뒤 링크를 다시 여세요.';
+
+  @override
+  String get links_added => '연락처를 추가했습니다';
+
+  @override
+  String get links_notContact => '이 링크는 MeshCore 연락처가 아닙니다.';
+
+  @override
+  String get radioBuzzer_title => '무전기 부저';
+
+  @override
+  String get radioBuzzer_hint =>
+      '새 메시지가 오면 무전기가 삐 소리를 냅니다. 부저가 있는 무전기에서만 표시됩니다.';
+
+  @override
+  String get radioBuzzer_failed => '무전기가 변경을 받아들이지 않았습니다. 다시 시도하세요.';
+
+  @override
+  String get appSettings_floodAttempts => '플러드 시도';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      '직접 전송이 실패한 뒤 경로가 바뀌었을 경우를 대비해 플러드로 추가 전송합니다. 시도마다 송신 시간이 더 듭니다. 0이면 끕니다.';
+
+  @override
+  String get pathGraph_you => '나';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '메시지 $count개 중계';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => '이 짧은 ID는 여러 리피터와 일치해 하나로 특정할 수 없습니다.';
+
+  @override
+  String get pathGraph_comesFrom => '들어오는 곳';
+
+  @override
+  String get pathGraph_goesTo => '나가는 곳';
+
+  @override
+  String get pathGraph_repeaterDetails => '리피터 정보';
+
+  @override
+  String get pathGraph_days7 => '7일';
+
+  @override
+  String get pathGraph_empty =>
+      '이 기간에는 아직 채널 메시지 경로가 없습니다. 경로는 메시지 추적이 켜져 있는 동안 받은 채널 메시지에서 수집됩니다.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '들린 경로 $paths · 리피터 $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '각 홉은 해시 접두사로, 아는 리피터라면 이름으로 표시됩니다.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '짧은 (1바이트) 홉 $count개를 더 긴 경로로 특정 리피터에 연결했습니다.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '짧은 (1바이트) 홉 $matched개를 더 긴 경로로 특정 리피터에 연결했습니다 · $ambiguous개는 아직 모호합니다(? 표시).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      '왼쪽: 더 먼 리피터. 오른쪽: 나. 띠의 두께는 그 홉을 거친 메시지 수입니다. 상자를 누르면 해당 리피터를 봅니다.';
+
+  @override
+  String get pathGraph_busiest => '가장 바쁜 리피터';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '경로 그래프. 가장 바쁜 리피터 $name, 메시지 $count개 중계.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return '복사됨: $label';
+  }
+
+  @override
+  String get diag_noChannels => '이 무전기에는 채널이 없습니다.';
+
+  @override
+  String get diag_tapToCopy => '값을 누르면 복사됩니다. 아래로 당겨 새로 고칩니다.';
+
+  @override
+  String get diag_storage => '저장 공간';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
+
+  @override
+  String get favReturn_setting => '즐겨찾기 범위 복귀';
+
+  @override
+  String get favReturn_settingHint => '한동안 조용하던 즐겨찾기가 다시 들리면 알림';
+
+  @override
+  String get favReturn_off => '끄기';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count시간 후',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => '범위 복귀';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours시간',
+    );
+    return '$name이(가) $_temp0 만에 다시 들립니다';
+  }
 
   @override
   String get ham_heardFrom => '수신 출처';

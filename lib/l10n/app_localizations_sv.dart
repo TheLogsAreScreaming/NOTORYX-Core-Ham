@@ -6026,31 +6026,33 @@ class AppLocalizationsSv extends AppLocalizations {
   String get fieldOps_send => 'Skicka';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS-vidarebefordran';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Vidarebefordra SOS som ingen repeater skickade vidare';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Kräver radiofirmware v1.16 eller senare';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Inga SOS vidarebefordrade än';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-paket vidarebefordrade, senast $time',
+      one: '1 SOS-paket vidarebefordrat, senast $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'När radion hör ett SOS direkt från avsändaren och ingen repeater skickar det vidare inom ungefär 15 sekunder, skickar NOTORYX det en gång till, oförändrat, så att det når en repeater som du hör men avsändaren inte gör. Bara SOS i dina kanaler vidarebefordras. Använder lite batteri och sändtid, så det är av som standard.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Innan du ger dig av';
@@ -9325,6 +9327,561 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Ställ in lösenord via repeaterns seriella USB-konsol. Skickade via radio kan vem som helst läsa dem.';
+
+  @override
+  String get networks_title => 'Nätverk';
+
+  @override
+  String get networks_hint => 'Sök efter nätverk i närheten och för logg';
+
+  @override
+  String get networks_yourNetwork => 'Ditt nätverk';
+
+  @override
+  String get networks_scanTitle => 'Sök efter nätverk';
+
+  @override
+  String get networks_scanExplainer =>
+      'Radion hör bara nätverk med exakt samma inställningar, så en sökning ställer om den till varje nätverk i tur och ordning, lyssnar och ställer tillbaka den. Under sökningen är du utanför ditt eget mesh.';
+
+  @override
+  String get networks_listenFor => 'Lyssna på varje';
+
+  @override
+  String networks_choose(int count) {
+    return 'Nätverk att söka: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Förslag';
+
+  @override
+  String get networks_start => 'Starta sökning';
+
+  @override
+  String get networks_cancel => 'Stoppa sökning';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Lyssnar på $name ($step av $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Anslut en radio för att söka.';
+
+  @override
+  String get networks_blockSettings => 'Väntar på radions inställningar.';
+
+  @override
+  String get networks_blockSos =>
+      'Inte under ett SOS: en sökning tar dig ur ditt mesh.';
+
+  @override
+  String get networks_blockTrip =>
+      'Inte under en tur: en sökning tar dig ur ditt mesh.';
+
+  @override
+  String get networks_nearby => 'Nätverk i närheten';
+
+  @override
+  String get networks_nothingYet =>
+      'Inga nätverk hörda ännu. Starta en sökning.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Noder $nodes · paket $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Senast hörd $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Antal gånger hörd: $count';
+  }
+
+  @override
+  String get networks_saved => 'Sparade nätverk';
+
+  @override
+  String get networks_noSaved => 'Inga sparade nätverk ännu.';
+
+  @override
+  String get networks_add => 'Lägg till nätverk';
+
+  @override
+  String get networks_join => 'Gå med';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Ställa om radion till $name? Du lämnar ditt nuvarande nätverk. Sändeffekten är oförändrad.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Radion är nu på $name.';
+  }
+
+  @override
+  String get networks_log => 'Nätverkslogg';
+
+  @override
+  String get networks_logEmpty => 'Inget loggat ännu.';
+
+  @override
+  String get networks_showMap => 'Karta';
+
+  @override
+  String get networks_exportCsv => 'Exportera CSV';
+
+  @override
+  String get networks_exportGpx => 'Exportera GPX';
+
+  @override
+  String get networks_clearLog => 'Rensa loggen';
+
+  @override
+  String get networks_clearLogConfirm => 'Radera alla loggade nätverk?';
+
+  @override
+  String get networks_name => 'Namn';
+
+  @override
+  String get networks_invalid =>
+      'Kontrollera inställningarna: de ligger utanför vad MeshCore-radior accepterar.';
+
+  @override
+  String get networks_nodesHeard => 'Hörda noder';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Inte skickat: anslut radion och försök igen. Meddelandet sparas.';
+
+  @override
+  String get quick_title => 'Snabbmeddelanden';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'På väg';
+
+  @override
+  String get quick_atCamp => 'Vid lägret';
+
+  @override
+  String get quick_runningLate => 'Blir sen';
+
+  @override
+  String get quick_needHelp => 'Behöver hjälp';
+
+  @override
+  String get quick_copyThat => 'Uppfattat';
+
+  @override
+  String get quick_empty =>
+      'Inga snabbmeddelanden. Tryck på Redigera för att lägga till ett.';
+
+  @override
+  String get quick_add => 'Nytt snabbmeddelande';
+
+  @override
+  String get quick_reset => 'Återställ standard';
+
+  @override
+  String get chat_stopRetrying => 'Sluta försöka igen';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name kan läsa och svara på dina direktmeddelanden först när hen har lagt till dig som kontakt. Om inte, skicka din annons eller dela din kontakt.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Gå till min position';
+
+  @override
+  String get map_positionUnavailable =>
+      'Din position är inte tillgänglig. Slå på plats eller ange radions position.';
+
+  @override
+  String get contact_forgetAdvert => 'Glöm senaste annons';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Om nodens annonser slutat uppdateras efter att dess klocka återställts, släpper Glöm senaste annons igenom nästa.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Klart. Nästa annons från noden accepteras.';
+
+  @override
+  String get networks_modeQuick => 'Snabb';
+
+  @override
+  String get networks_modeThorough => 'Grundlig';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Skickar en kort ping utan vidarebefordran på varje nätverk och lyssnar några sekunder. Hittar nätverk med en repeater inom räckvidd.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Lyssnar bara, längre på varje nätverk. Skickar inget och hittar även nätverk utan repeater inom räckvidd om någon sänder.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'cirka $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count markerade';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Markera alla';
+
+  @override
+  String get discoveredContacts_addSelected => 'Lägg till markerade';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Lägg till alla som visas ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Lägga till $count kontakter?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Radion har plats för $room kontakter till.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Radion har plats för $room kontakter till, så bara de första $room av $count läggs till.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Lägger till $done av $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Tillagda kontakter: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Tillagda kontakter: $added. Inte tillagda: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Radions kontaktlista är full. Ta bort några kontakter först.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radion just nu';
+
+  @override
+  String get fieldIntel_noRadio => 'Anslut radion för livevärden.';
+
+  @override
+  String get fieldIntel_noise => 'brus dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'senaste SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'senaste RSSI';
+
+  @override
+  String get fieldIntel_battery => 'batteri V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Sändtid sedan radion startade: skickat $sent, mottaget $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Vilka finns i närheten';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 timme';
+
+  @override
+  String get fieldIntel_h24 => '24 timmar';
+
+  @override
+  String get fieldIntel_older => 'Äldre';
+
+  @override
+  String get fieldIntel_lastHour => 'Senaste timmen';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'När varje nod senast hördes, timme för timme under det senaste dygnet. Tryck på en stapel för att se vilka.';
+
+  @override
+  String get fieldIntel_mix => 'Nodtyper';
+
+  @override
+  String get fieldIntel_reach => 'Räckvidd';
+
+  @override
+  String get fieldIntel_hops1 => '1 hopp';
+
+  @override
+  String get fieldIntel_hops2 => '2 hopp';
+
+  @override
+  String get fieldIntel_hops3 => '3+ hopp';
+
+  @override
+  String get fieldIntel_noRoute => 'Ingen rutt än';
+
+  @override
+  String get fieldIntel_distance => 'Närmast och längst bort';
+
+  @override
+  String get fieldIntel_noneLocated =>
+      'Ingen av dina kontakter har en position.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Radion har ingen position än, så avstånd kan inte räknas ut.';
+
+  @override
+  String get fieldIntel_bestRepeaters => 'Bästa repeatrar du hör direkt';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'Ingen repeater hörd direkt de senaste 30 minuterna.';
+
+  @override
+  String get fieldIntel_attention => 'Behöver uppmärksamhet';
+
+  @override
+  String get fieldIntel_allGood => 'Inget behöver uppmärksamhet.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Svagt batteri: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Favorit inte hörd sedan $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Fler verktyg';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Noder: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Inga noder.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Senast hörd $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Visa på karta';
+
+  @override
+  String get fieldIntel_openChat => 'Öppna chatt';
+
+  @override
+  String get repeaterTools_login => 'Logga in';
+
+  @override
+  String get repeaterTools_heardDirect => 'Hörd direkt';
+
+  @override
+  String get repeaterTools_filterAll => 'Alla';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Svagt batteri';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tryck på en repeater för detaljer och logga in därifrån för status, grannar, telemetri och kommandoraden.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Inga repeatrar här.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Verktyg';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Slå upp regionträdet för ditt område och kopiera dess kommandon';
+
+  @override
+  String get routes_failingOnly => 'Endast misslyckade rutter';
+
+  @override
+  String get routes_contactDetails => 'Kontaktuppgifter';
+
+  @override
+  String get links_contactTitle => 'Lägga till en kontakt?';
+
+  @override
+  String get links_importAdvert => 'Lägga till den här kontakten i radion?';
+
+  @override
+  String get links_connectFirst =>
+      'Anslut radion först och öppna sedan länken igen.';
+
+  @override
+  String get links_added => 'Kontakt tillagd';
+
+  @override
+  String get links_notContact => 'Den här länken är ingen MeshCore-kontakt.';
+
+  @override
+  String get radioBuzzer_title => 'Radions summer';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Radion piper vid nya meddelanden. Visas bara för radior med summer.';
+
+  @override
+  String get radioBuzzer_failed => 'Radion godtog inte ändringen. Försök igen.';
+
+  @override
+  String get appSettings_floodAttempts => 'Flood-försök';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra försök som skickas som flood när de direkta misslyckas, ifall rutten har ändrats. Varje försök tar mer sändtid. 0 stänger av dem.';
+
+  @override
+  String get pathGraph_you => 'Du';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Vidarebefordrade $count meddelanden';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Det här korta ID:t matchar mer än en repeater och kan inte knytas till en.';
+
+  @override
+  String get pathGraph_comesFrom => 'Kommer från';
+
+  @override
+  String get pathGraph_goesTo => 'Går till';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeaterdetaljer';
+
+  @override
+  String get pathGraph_days7 => '7 dagar';
+
+  @override
+  String get pathGraph_empty =>
+      'Inga kanalmeddelandevägar under perioden än. Vägar samlas från mottagna kanalmeddelanden medan spårning är på.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths vägar hörda · $repeaters repeatrar';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Varje hopp visas med sitt hashprefix, eller namnet om du känner repeatern.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count korta (1-byte) hopp kopplade till en viss repeater via längre vägar.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched korta (1-byte) hopp kopplade till en viss repeater via längre vägar · $ambiguous fortfarande tvetydiga (markerade ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Vänster: repeatrar längre bort. Höger: du. Bandets bredd är hur många meddelanden som tog det hoppet. Tryck på en ruta för att se repeatern.';
+
+  @override
+  String get pathGraph_busiest => 'Mest belastade repeatrar';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Väggraf. Mest belastad repeater $name, vidarebefordrade $count meddelanden.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Kopierat: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Inga kanaler på radion.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tryck på ett värde för att kopiera det. Dra nedåt för att uppdatera.';
+
+  @override
+  String get diag_storage => 'Lagring';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used av $total KB';
+  }
+
+  @override
+  String get favReturn_setting => 'Favoriter tillbaka inom räckvidd';
+
+  @override
+  String get favReturn_settingHint =>
+      'Meddela när en favorit hörs igen efter en tyst period';
+
+  @override
+  String get favReturn_off => 'Av';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Efter $count timmar',
+      one: 'Efter 1 timme',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Tillbaka inom räckvidd';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours timmars',
+      one: '1 timmes',
+    );
+    return '$name hörs igen efter $_temp0 tystnad';
+  }
 
   @override
   String get ham_heardFrom => 'Hört från';

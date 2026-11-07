@@ -1,285 +1,210 @@
-import '../theme/mesh_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
-import '../widgets/repeater_login_dialog.dart';
-import 'repeater_hub_screen.dart';
+import '../models/field_intel.dart';
+import '../theme/mesh_theme.dart';
+import '../widgets/ember_backdrop.dart';
+import '../widgets/instrument.dart';
+import '../widgets/mesh_ui.dart';
+import '../widgets/node_sheet.dart';
+import 'antenna_hunt_screen.dart';
+import 'prefix_tool_screen.dart';
+import 'region_setup_screen.dart';
+import 'repeater_ping_screen.dart';
 
-class BastionRepeaterToolsScreen extends StatelessWidget {
+enum _Filter { all, recent, direct, lowBattery }
+
+/// Repeater tools: the repeaters your radio knows, how they're doing, and
+/// the tools for working on them. Tap a repeater for its details, and log
+/// in from there for status, neighbours, telemetry and command line.
+class BastionRepeaterToolsScreen extends StatefulWidget {
   const BastionRepeaterToolsScreen({super.key});
-  static Color get _cyan => MeshPalette.accent;
-  static Color get _bg => MeshPalette.bg;
 
-  void _login(BuildContext context, Contact repeater) {
-    showDialog<void>(
-      context: context,
-      builder: (dialogContext) => RepeaterLoginDialog(
-        repeater: repeater,
-        onLogin: (password, isAdmin) {
-          Navigator.of(dialogContext).pop();
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => RepeaterHubScreen(
-                repeater: repeater,
-                password: password,
-                isAdmin: isAdmin,
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
+  @override
+  State<BastionRepeaterToolsScreen> createState() =>
+      _BastionRepeaterToolsScreenState();
+}
+
+class _BastionRepeaterToolsScreenState
+    extends State<BastionRepeaterToolsScreen> {
+  _Filter _filter = _Filter.all;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final connector = context.watch<MeshCoreConnector>();
+    final now = DateTime.now();
     final repeaters = connector.contacts
         .where((c) => c.type == advTypeRepeater)
         .toList();
-    final l10n = context.l10n;
-    return Scaffold(
-      backgroundColor: _bg,
-      appBar: AppBar(
-        backgroundColor: _bg,
-        foregroundColor: MeshPalette.ink,
-        title: Text(l10n.bastion_repeaterTools),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(18, 10, 18, 28),
-        children: [
-          Container(
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              border: Border.all(color: MeshPalette.line),
-              borderRadius: BorderRadius.circular(MeshRadii.xs),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n.repeaterTools_heroLabel,
-                  style: MeshTheme.sectionTitle(),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  l10n.repeaterTools_headline,
-                  style: TextStyle(
-                    color: MeshPalette.ink,
-                    fontSize: 21,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  l10n.repeaterTools_body,
-                  style: TextStyle(color: MeshPalette.ink2, height: 1.4),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 18),
-          Row(
-            children: [
-              _Stat(
-                label: l10n.repeaterTools_discovered,
-                value: '${repeaters.length}',
+    final directSnr = <String, double>{
+      for (final r in connector.directRepeaters)
+        if (r.contactKeyHex != null) r.contactKeyHex!.toLowerCase(): r.snr,
+    };
+    double? snrOf(Contact c) => directSnr[c.publicKeyHex.toLowerCase()];
+    int? mvOf(Contact c) =>
+        connector.getRepeaterBatteryMillivolts(c.publicKeyHex);
+    bool low(Contact c) {
+      final mv = mvOf(c);
+      return mv != null && mv > 0 && mv < lowBatteryMv;
+    }
+
+    final groups = {
+      _Filter.all: repeaters,
+      _Filter.recent: [
+        for (final c in repeaters)
+          if (now.difference(c.lastSeen) <= const Duration(hours: 1)) c,
+      ],
+      _Filter.direct: [
+        for (final c in repeaters)
+          if (snrOf(c) != null) c,
+      ],
+      _Filter.lowBattery: [
+        for (final c in repeaters)
+          if (low(c)) c,
+      ],
+    };
+    final shown = [...groups[_filter]!]
+      ..sort(
+        (a, b) => _filter == _Filter.direct
+            ? snrOf(b)!.compareTo(snrOf(a)!)
+            : b.lastSeen.compareTo(a.lastSeen),
+      );
+    String label(_Filter f) => switch (f) {
+      _Filter.all => l10n.repeaterTools_filterAll,
+      _Filter.recent => l10n.fieldIntel_lastHour,
+      _Filter.direct => l10n.repeaterTools_heardDirect,
+      _Filter.lowBattery => l10n.repeaterTools_filterLowBattery,
+    };
+
+    return EmberBackdrop(
+      scene: EmberScene.more,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          title: Text(l10n.bastion_repeaterTools),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.only(bottom: MeshSpace.xxl),
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                MeshSpace.lg,
+                MeshSpace.sm,
+                MeshSpace.lg,
+                0,
               ),
-              const SizedBox(width: 10),
-              _Stat(label: l10n.repeaterTools_tools, value: '5+'),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Text(l10n.repeaterTools_available, style: MeshTheme.sectionTitle()),
-          const SizedBox(height: 10),
-          if (repeaters.isEmpty)
-            const _EmptyRepeaters()
-          else
-            ...repeaters.map(
-              (r) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Material(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(MeshRadii.xs),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(MeshRadii.xs),
-                    onTap: () => _login(context, r),
-                    child: Container(
-                      padding: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: MeshPalette.line),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.cell_tower_rounded,
-                            color: _cyan,
-                            size: 28,
-                          ),
-                          const SizedBox(width: 13),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  r.name.isEmpty
-                                      ? l10n.repeaterTools_unnamed
-                                      : r.name,
-                                  style: TextStyle(
-                                    color: MeshPalette.ink,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                                const SizedBox(height: 3),
-                                Text(
-                                  r.shortPubKeyHex,
-                                  style: TextStyle(
-                                    color: MeshPalette.ink3,
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Icon(Icons.login_rounded, color: _cyan),
-                        ],
-                      ),
+              child: Wrap(
+                spacing: MeshSpace.sm,
+                runSpacing: MeshSpace.sm,
+                children: [
+                  for (final f in _Filter.values)
+                    ChoiceChip(
+                      key: ValueKey('repeater-filter-${f.name}'),
+                      label: Text('${label(f)} (${groups[f]!.length})'),
+                      selected: _filter == f,
+                      onSelected: (_) => setState(() => _filter = f),
                     ),
-                  ),
-                ),
+                ],
               ),
             ),
-          const SizedBox(height: 12),
-          _Capability(
-            icon: Icons.monitor_heart_rounded,
-            title: l10n.repeaterTools_statusTelemetry,
-            body: l10n.repeaterTools_statusTelemetryBody,
-          ),
-          const SizedBox(height: 10),
-          _Capability(
-            icon: Icons.hub_rounded,
-            title: l10n.repeaterTools_neighbors,
-            body: l10n.repeaterTools_neighborsBody,
-          ),
-          const SizedBox(height: 10),
-          _Capability(
-            icon: Icons.terminal_rounded,
-            title: l10n.repeaterTools_cli,
-            body: l10n.repeaterTools_cliBody,
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                MeshSpace.lg,
+                MeshSpace.sm,
+                MeshSpace.lg,
+                0,
+              ),
+              child: Text(
+                l10n.repeaterTools_hint,
+                style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+              ),
+            ),
+            const SizedBox(height: MeshSpace.sm),
+            if (repeaters.isEmpty)
+              MeshCard(
+                child: Text(
+                  l10n.repeaterTools_empty,
+                  style: TextStyle(color: MeshPalette.ink2),
+                ),
+              )
+            else if (shown.isEmpty)
+              MeshCard(
+                child: Text(
+                  l10n.repeaterTools_noneMatch,
+                  style: TextStyle(color: MeshPalette.ink3),
+                ),
+              )
+            else
+              for (final r in shown)
+                MeshCard(
+                  key: ValueKey('repeater-${r.publicKeyHex}'),
+                  onTap: () => showNodeSheet(context, r),
+                  child: InstrumentRow(
+                    icon: Icons.cell_tower_rounded,
+                    titleColor: low(r) ? MeshPalette.alert : null,
+                    title: r.name.isEmpty ? l10n.repeaterTools_unnamed : r.name,
+                    subtitle: [
+                      hopLabel(l10n, hopBand(r)),
+                      agoLabel(l10n, r.lastSeen),
+                      if (mvOf(r) case final mv? when mv > 0)
+                        '${(mv / 1000).toStringAsFixed(2)} V',
+                    ].join(' · '),
+                    trailing: snrOf(r) == null
+                        ? Icon(Icons.chevron_right, color: MeshPalette.ink3)
+                        : SignalReadout(snrOf(r)!),
+                    divider: false,
+                  ),
+                ),
+            InstrumentLabel(l10n.repeaterTools_toolsTitle),
+            for (final (icon, title, subtitle, page) in [
+              (
+                Icons.network_ping,
+                l10n.ping_title,
+                l10n.ping_toolSubtitle,
+                const RepeaterPingScreen() as Widget,
+              ),
+              (
+                Icons.track_changes,
+                l10n.hunt_title,
+                l10n.hunt_toolSubtitle,
+                const AntennaHuntScreen(),
+              ),
+              (
+                Icons.fingerprint,
+                l10n.prefixTool_title,
+                l10n.prefixTool_subtitle,
+                const PrefixToolScreen(),
+              ),
+              (
+                Icons.public,
+                l10n.regionSetup_title,
+                l10n.repeaterTools_regionSetupHint,
+                const RegionSetupScreen(),
+              ),
+            ])
+              MeshCard(
+                onTap: () => Navigator.of(
+                  context,
+                ).push(MaterialPageRoute<void>(builder: (_) => page)),
+                child: InstrumentRow(
+                  icon: icon,
+                  title: title,
+                  subtitle: subtitle,
+                  trailing: Icon(Icons.chevron_right, color: MeshPalette.ink3),
+                  divider: false,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
-}
-
-class _Stat extends StatelessWidget {
-  final String label;
-  final String value;
-  const _Stat({required this.label, required this.value});
-  @override
-  Widget build(BuildContext context) => Expanded(
-    child: Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        border: Border.all(color: MeshPalette.line),
-        borderRadius: BorderRadius.circular(MeshRadii.xs),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            value,
-            style: TextStyle(
-              color: MeshPalette.accent,
-              fontSize: 24,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-          Text(
-            label,
-            style: TextStyle(
-              color: MeshPalette.ink3,
-              fontSize: 9,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 1,
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-class _EmptyRepeaters extends StatelessWidget {
-  const _EmptyRepeaters();
-  @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.all(18),
-    decoration: BoxDecoration(
-      border: Border.all(color: MeshPalette.line),
-      borderRadius: BorderRadius.circular(MeshRadii.xs),
-    ),
-    child: Row(
-      children: [
-        Icon(Icons.portable_wifi_off_rounded, color: MeshPalette.accent),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Text(
-            context.l10n.repeaterTools_empty,
-            style: TextStyle(color: MeshPalette.ink2, height: 1.35),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-class _Capability extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String body;
-  const _Capability({
-    required this.icon,
-    required this.title,
-    required this.body,
-  });
-  @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.all(15),
-    decoration: BoxDecoration(
-      border: Border.all(color: MeshPalette.line),
-      borderRadius: BorderRadius.circular(MeshRadii.xs),
-    ),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(icon, color: MeshPalette.accent),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  color: MeshPalette.ink,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                body,
-                style: TextStyle(color: MeshPalette.ink3, height: 1.35),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
 }

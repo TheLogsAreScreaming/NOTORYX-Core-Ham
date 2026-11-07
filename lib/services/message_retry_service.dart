@@ -86,7 +86,20 @@ class MessageRetryService extends ChangeNotifier {
   static const int _maxGlobalInFlight = 6;
 
   int _maxRetries = 5;
-  int get maxRetries => _maxRetries;
+
+  /// Direct tries, along the known route (or rotating routes). Read from
+  /// settings each time, so a change applies to the next message.
+  int get maxRetries =>
+      _config?.appSettingsService?.settings.maxMessageRetries.clamp(2, 10) ??
+      _maxRetries;
+
+  /// Flood tries after the direct ones, in case the route has changed.
+  int get floodAttempts =>
+      _config?.appSettingsService?.settings.messageFloodAttempts.clamp(0, 5) ??
+      0;
+
+  /// Every try a message gets before it's marked failed.
+  int get totalAttempts => maxRetries + floodAttempts;
 
   final Map<String, Timer> _timeoutTimers = {};
   final Map<String, Message> _pendingMessages = {};
@@ -284,7 +297,10 @@ class MessageRetryService extends ChangeNotifier {
 
     if (message == null || contact == null || config == null) return;
 
-    final currentSelection = _selectPathForAttempt(message, contact);
+    // Past the direct tries, flood: the route may have broken.
+    final currentSelection = message.retryCount >= maxRetries
+        ? const PathSelection(pathBytes: [], hopCount: -1, useFlood: true)
+        : _selectPathForAttempt(message, contact);
 
     if (currentSelection != null) {
       final updatedMessage = message.copyWith(
@@ -535,7 +551,7 @@ class MessageRetryService extends ChangeNotifier {
       tag: 'AckHash',
     );
 
-    if (message.retryCount < maxRetries - 1) {
+    if (message.retryCount < totalAttempts - 1) {
       final backoffMs = 1000 * (1 << message.retryCount);
 
       if (selection != null) {

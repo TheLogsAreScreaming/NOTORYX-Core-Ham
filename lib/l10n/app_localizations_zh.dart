@@ -5644,31 +5644,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_send => '发送';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 转发';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => '转发没有中继器转发的 SOS';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '需要电台固件 v1.16 或更新版本';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => '尚未转发任何 SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '已转发 $count 个 SOS 数据包，最近一次在 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '当电台直接从发送者听到 SOS，且约 15 秒内没有中继器转发时，NOTORYX 会原样再发送一次，让它到达你能听到而发送者听不到的中继器。只转发你所拥有频道中的 SOS。会消耗电量和发射时间，因此默认关闭。';
 
   @override
   String get fieldOps_beforeYouLeave => '出发前';
@@ -8756,6 +8755,534 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       '请通过中继的 USB 串口控制台设置密码。通过无线发送的话，任何人都能读取。';
+
+  @override
+  String get networks_title => '网络';
+
+  @override
+  String get networks_hint => '搜索附近网络并记录';
+
+  @override
+  String get networks_yourNetwork => '你的网络';
+
+  @override
+  String get networks_scanTitle => '搜索网络';
+
+  @override
+  String get networks_scanExplainer =>
+      '电台只能听到设置完全相同的网络，所以搜索会依次切换到每个网络收听，最后再切回来。搜索期间你会离开自己的网状网络。';
+
+  @override
+  String get networks_listenFor => '每个网络收听时长';
+
+  @override
+  String networks_choose(int count) {
+    return '要搜索的网络：$count';
+  }
+
+  @override
+  String get networks_suggested => '推荐';
+
+  @override
+  String get networks_start => '开始搜索';
+
+  @override
+  String get networks_cancel => '停止搜索';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return '正在收听 $name（$step/$steps）';
+  }
+
+  @override
+  String get networks_blockNoRadio => '请连接电台后再搜索。';
+
+  @override
+  String get networks_blockSettings => '正在等待电台设置。';
+
+  @override
+  String get networks_blockSos => 'SOS 进行中不能搜索：搜索会让你离开网状网络。';
+
+  @override
+  String get networks_blockTrip => '行程中不能搜索：搜索会让你离开网状网络。';
+
+  @override
+  String get networks_nearby => '附近的网络';
+
+  @override
+  String get networks_nothingYet => '还没有听到任何网络。请开始搜索。';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return '节点 $nodes · 数据包 $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return '最后听到 $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return '听到次数：$count';
+  }
+
+  @override
+  String get networks_saved => '已保存的网络';
+
+  @override
+  String get networks_noSaved => '还没有保存的网络。';
+
+  @override
+  String get networks_add => '添加网络';
+
+  @override
+  String get networks_join => '加入';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return '将电台切换到 $name？你将离开当前网络。发射功率保持不变。';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return '电台现在使用 $name。';
+  }
+
+  @override
+  String get networks_log => '网络记录';
+
+  @override
+  String get networks_logEmpty => '还没有记录。';
+
+  @override
+  String get networks_showMap => '地图';
+
+  @override
+  String get networks_exportCsv => '导出 CSV';
+
+  @override
+  String get networks_exportGpx => '导出 GPX';
+
+  @override
+  String get networks_clearLog => '清空记录';
+
+  @override
+  String get networks_clearLogConfirm => '删除所有已记录的网络？';
+
+  @override
+  String get networks_name => '名称';
+
+  @override
+  String get networks_invalid => '请检查设置：超出了 MeshCore 电台可接受的范围。';
+
+  @override
+  String get networks_nodesHeard => '听到的节点';
+
+  @override
+  String get chat_resendNeedsRadio => '未发送：请连接电台后重试。消息已保留。';
+
+  @override
+  String get quick_title => '快捷消息';
+
+  @override
+  String get quick_ok => '好的';
+
+  @override
+  String get quick_onMyWay => '在路上';
+
+  @override
+  String get quick_atCamp => '在营地';
+
+  @override
+  String get quick_runningLate => '会晚到';
+
+  @override
+  String get quick_needHelp => '需要帮助';
+
+  @override
+  String get quick_copyThat => '收到';
+
+  @override
+  String get quick_empty => '没有快捷消息。点按“编辑”添加。';
+
+  @override
+  String get quick_add => '新的快捷消息';
+
+  @override
+  String get quick_reset => '恢复默认';
+
+  @override
+  String get chat_stopRetrying => '停止重试';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name 需要先把你加为联系人，才能阅读并回复你的私信。如果对方还没有添加，请发送你的广播或分享你的联系人。';
+  }
+
+  @override
+  String get map_goToMyPosition => '前往我的位置';
+
+  @override
+  String get map_positionUnavailable => '无法获取你的位置。请打开定位，或设置电台的位置。';
+
+  @override
+  String get contact_forgetAdvert => '忘记上次广播';
+
+  @override
+  String get contact_forgetAdvertHint => '如果此节点的时钟重置后广播不再更新，“忘记上次广播”可让下一条广播通过。';
+
+  @override
+  String get contact_forgetAdvertDone => '完成。此节点的下一条广播将被接受。';
+
+  @override
+  String get networks_modeQuick => '快速';
+
+  @override
+  String get networks_modeThorough => '全面';
+
+  @override
+  String get networks_modeQuickHint => '在每个网络发送一次零跳短 ping 并收听几秒，可找到范围内有中继器的网络。';
+
+  @override
+  String get networks_modeThoroughHint =>
+      '只收听，每个网络听更久。不发送任何内容；只要有人发射，也能找到范围内没有中继器的网络。';
+
+  @override
+  String networks_estimate(String time) {
+    return '约 $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '已选择 $count 个';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => '全选';
+
+  @override
+  String get discoveredContacts_addSelected => '添加所选';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return '添加全部显示项（$count）';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '添加 $count 个联系人？';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return '电台还能再添加 $room 个联系人。';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return '电台只能再添加 $room 个联系人，因此 $count 个中只会添加前 $room 个。';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return '正在添加 $done/$total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return '已添加联系人：$count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return '已添加联系人：$added。未能添加：$failed。';
+  }
+
+  @override
+  String get discoveredContacts_radioFull => '电台的联系人列表已满。请先删除一些联系人。';
+
+  @override
+  String get fieldIntel_radioNow => '电台现状';
+
+  @override
+  String get fieldIntel_noRadio => '连接电台以查看实时数据。';
+
+  @override
+  String get fieldIntel_noise => '噪声 dBm';
+
+  @override
+  String get fieldIntel_lastSnr => '最近 SNR';
+
+  @override
+  String get fieldIntel_lastRssi => '最近 RSSI';
+
+  @override
+  String get fieldIntel_battery => '电池 V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return '电台启动以来的发射时间：发送 $sent，接收 $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => '附近有谁';
+
+  @override
+  String get fieldIntel_m15 => '15 分钟';
+
+  @override
+  String get fieldIntel_h1 => '1 小时';
+
+  @override
+  String get fieldIntel_h24 => '24 小时';
+
+  @override
+  String get fieldIntel_older => '更早';
+
+  @override
+  String get fieldIntel_lastHour => '最近一小时';
+
+  @override
+  String get fieldIntel_chartHint => '过去一天内每个节点最后被听到的时间，按小时显示。点按柱形查看是谁。';
+
+  @override
+  String get fieldIntel_mix => '节点类型';
+
+  @override
+  String get fieldIntel_reach => '覆盖范围';
+
+  @override
+  String get fieldIntel_hops1 => '1 跳';
+
+  @override
+  String get fieldIntel_hops2 => '2 跳';
+
+  @override
+  String get fieldIntel_hops3 => '3 跳以上';
+
+  @override
+  String get fieldIntel_noRoute => '暂无路由';
+
+  @override
+  String get fieldIntel_distance => '最近和最远';
+
+  @override
+  String get fieldIntel_noneLocated => '你的联系人都没有位置。';
+
+  @override
+  String get fieldIntel_noPosition => '电台还没有位置，无法计算距离。';
+
+  @override
+  String get fieldIntel_bestRepeaters => '直接听到的最佳中继器';
+
+  @override
+  String get fieldIntel_noneDirect => '过去 30 分钟内没有直接听到中继器。';
+
+  @override
+  String get fieldIntel_attention => '需要注意';
+
+  @override
+  String get fieldIntel_allGood => '没有需要注意的事项。';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return '电池电量低：$volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return '收藏节点，$ago以来未听到';
+  }
+
+  @override
+  String get fieldIntel_moreTools => '更多工具';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return '节点：$count';
+  }
+
+  @override
+  String get fieldIntel_none => '没有节点。';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return '最后听到 $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => '在地图上显示';
+
+  @override
+  String get fieldIntel_openChat => '打开聊天';
+
+  @override
+  String get repeaterTools_login => '登录';
+
+  @override
+  String get repeaterTools_heardDirect => '直接听到';
+
+  @override
+  String get repeaterTools_filterAll => '全部';
+
+  @override
+  String get repeaterTools_filterLowBattery => '电量低';
+
+  @override
+  String get repeaterTools_hint => '点按中继器查看详情，并在那里登录以查看状态、邻居、遥测和命令行。';
+
+  @override
+  String get repeaterTools_noneMatch => '这里没有中继器。';
+
+  @override
+  String get repeaterTools_toolsTitle => '工具';
+
+  @override
+  String get repeaterTools_regionSetupHint => '查找你所在地区的区域树并复制其命令';
+
+  @override
+  String get routes_failingOnly => '仅失败的路由';
+
+  @override
+  String get routes_contactDetails => '联系人详情';
+
+  @override
+  String get links_contactTitle => '添加联系人？';
+
+  @override
+  String get links_importAdvert => '将此联系人添加到电台？';
+
+  @override
+  String get links_connectFirst => '请先连接电台，然后重新打开链接。';
+
+  @override
+  String get links_added => '已添加联系人';
+
+  @override
+  String get links_notContact => '此链接不是 MeshCore 联系人。';
+
+  @override
+  String get radioBuzzer_title => '电台蜂鸣器';
+
+  @override
+  String get radioBuzzer_hint => '收到新消息时电台会发出蜂鸣。仅在带蜂鸣器的电台上显示。';
+
+  @override
+  String get radioBuzzer_failed => '电台未接受此更改。请重试。';
+
+  @override
+  String get appSettings_floodAttempts => '泛洪重试次数';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      '直接发送失败后，以泛洪方式额外重试，以防路由已变化。每次都会占用更多发射时间。设为 0 则关闭。';
+
+  @override
+  String get pathGraph_you => '你';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '中继了 $count 条消息';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => '这个短 ID 与多个中继器匹配，无法确定是哪一个。';
+
+  @override
+  String get pathGraph_comesFrom => '来自';
+
+  @override
+  String get pathGraph_goesTo => '去往';
+
+  @override
+  String get pathGraph_repeaterDetails => '中继器详情';
+
+  @override
+  String get pathGraph_days7 => '7 天';
+
+  @override
+  String get pathGraph_empty => '此期间还没有频道消息路径。消息追踪开启时，会从收到的频道消息中收集路径。';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '听到的路径 $paths · 中继器 $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '每一跳以其哈希前缀显示；如果你认识该中继器，则显示名称。';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '已通过更长的路径将 $count 个短（1 字节）跳匹配到具体中继器。';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '已通过更长的路径将 $matched 个短（1 字节）跳匹配到具体中继器 · $ambiguous 个仍不确定（标有 ?）。';
+  }
+
+  @override
+  String get pathGraph_chartHint => '左：较远的中继器。右：你。带宽表示经过该跳的消息数。点按方块可查看该中继器。';
+
+  @override
+  String get pathGraph_busiest => '最繁忙的中继器';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '路径图。最繁忙的中继器 $name，中继了 $count 条消息。';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return '已复制：$label';
+  }
+
+  @override
+  String get diag_noChannels => '此电台没有频道。';
+
+  @override
+  String get diag_tapToCopy => '点按任意值即可复制。下拉刷新。';
+
+  @override
+  String get diag_storage => '存储';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
+
+  @override
+  String get favReturn_setting => '收藏联系人回到范围内';
+
+  @override
+  String get favReturn_settingHint => '收藏联系人沉寂一段时间后再次收到时通知';
+
+  @override
+  String get favReturn_off => '关闭';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 小时后',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => '回到范围内';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时',
+    );
+    return '沉寂 $_temp0后再次收到 $name';
+  }
 
   @override
   String get ham_heardFrom => '收到自';

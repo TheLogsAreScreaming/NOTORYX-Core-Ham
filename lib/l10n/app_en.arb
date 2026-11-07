@@ -5427,6 +5427,413 @@
   "ham_nodeNameCallsignHelper": "Start with your call sign, like \"W1AW\" or \"W1AW Base\"",
   "ham_repeaterNameNeedsCall": "The name must start with the repeater's call sign, like \"N0RPT Hilltop\".",
   "ham_repeaterPasswordsSerial": "Set passwords on the repeater's USB serial console. Sent over the air, anyone could read them.",
+  "networks_title": "Networks",
+  "networks_hint": "Scan for networks nearby and keep a log",
+  "networks_yourNetwork": "Your network",
+  "networks_scanTitle": "Scan for networks",
+  "networks_scanExplainer": "Your radio only hears networks that use its exact settings, so a scan switches it to each one in turn, listens, then switches it back. You're off your own mesh while it scans.",
+  "networks_listenFor": "Listen on each",
+  "networks_choose": "Networks to scan: {count}",
+  "@networks_choose": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "networks_suggested": "Suggested",
+  "networks_start": "Start scan",
+  "networks_cancel": "Stop scan",
+  "networks_listening": "Listening on {name} ({step} of {steps})",
+  "@networks_listening": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "step": {
+        "type": "int"
+      },
+      "steps": {
+        "type": "int"
+      }
+    }
+  },
+  "networks_blockNoRadio": "Connect a radio to scan.",
+  "networks_blockSettings": "Waiting for your radio's settings.",
+  "networks_blockSos": "Not while an SOS is active: a scan takes you off your mesh.",
+  "networks_blockTrip": "Not during a trip: a scan takes you off your mesh.",
+  "networks_nearby": "Networks nearby",
+  "networks_nothingYet": "No networks heard yet. Run a scan to look for some.",
+  "networks_heardSummary": "Nodes {nodes} · packets {packets} · SNR {snr} dB",
+  "@networks_heardSummary": {
+    "placeholders": {
+      "nodes": {
+        "type": "int"
+      },
+      "packets": {
+        "type": "int"
+      },
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
+  "networks_lastHeard": "Last heard {time}",
+  "@networks_lastHeard": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "networks_timesHeard": "Times heard: {count}",
+  "@networks_timesHeard": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "networks_saved": "Saved networks",
+  "networks_noSaved": "No saved networks yet.",
+  "networks_add": "Add a network",
+  "networks_join": "Join",
+  "networks_joinConfirm": "Switch your radio to {name}? You'll leave your current network. Your transmit power stays the same.",
+  "@networks_joinConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "networks_joined": "Your radio is on {name} now.",
+  "@networks_joined": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "networks_log": "Network log",
+  "networks_logEmpty": "Nothing logged yet.",
+  "networks_showMap": "Map",
+  "networks_exportCsv": "Export CSV",
+  "networks_exportGpx": "Export GPX",
+  "networks_clearLog": "Clear log",
+  "networks_clearLogConfirm": "Delete every logged network sighting?",
+  "networks_name": "Name",
+  "networks_invalid": "Check the settings: they're outside what MeshCore radios accept.",
+  "networks_nodesHeard": "Nodes heard",
+  "chat_resendNeedsRadio": "Not sent: connect your radio, then try again. The message is kept.",
+  "quick_title": "Quick messages",
+  "quick_ok": "OK",
+  "quick_onMyWay": "On my way",
+  "quick_atCamp": "At camp",
+  "quick_runningLate": "Running late",
+  "quick_needHelp": "Need help",
+  "quick_copyThat": "Copy that",
+  "quick_empty": "No quick messages. Tap Edit to add one.",
+  "quick_add": "New quick message",
+  "quick_reset": "Reset to the defaults",
+  "chat_stopRetrying": "Stop retrying",
+  "chat_addFirstBanner": "{name} can only read and answer your direct messages after adding you as a contact. If they haven't, send your advert or share your contact with them.",
+  "@chat_addFirstBanner": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "map_goToMyPosition": "Go to my position",
+  "map_positionUnavailable": "Your position isn't available. Turn on location, or set your radio's position.",
+  "contact_forgetAdvert": "Forget last advert",
+  "contact_forgetAdvertHint": "If this node's adverts stopped updating after its clock was reset, Forget last advert lets the next one through.",
+  "contact_forgetAdvertDone": "Done. The next advert from this node will be accepted.",
+  "networks_modeQuick": "Quick",
+  "networks_modeThorough": "Thorough",
+  "networks_modeQuickHint": "Sends one short zero-hop ping on each network and listens a few seconds. Finds networks with a repeater in range.",
+  "networks_modeThoroughHint": "Only listens, longer on each network. Sends nothing, and also finds networks without a repeater in range if someone transmits.",
+  "networks_estimate": "about {time}",
+  "@networks_estimate": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "discoveredContacts_selected": "{count} selected",
+  "@discoveredContacts_selected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_selectAll": "Select all",
+  "discoveredContacts_addSelected": "Add selected",
+  "discoveredContacts_addAllShown": "Add all shown ({count})",
+  "@discoveredContacts_addAllShown": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_addManyTitle": "Add {count} contacts?",
+  "@discoveredContacts_addManyTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_roomLeft": "Your radio has room for {room} more contacts.",
+  "@discoveredContacts_roomLeft": {
+    "placeholders": {
+      "room": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_roomLimit": "Your radio has room for {room} more contacts, so only the first {room} of {count} will be added.",
+  "@discoveredContacts_roomLimit": {
+    "placeholders": {
+      "room": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_adding": "Adding {done} of {total}…",
+  "@discoveredContacts_adding": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_addedMany": "Contacts added: {count}",
+  "@discoveredContacts_addedMany": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_addedSome": "Contacts added: {added}. Not added: {failed}.",
+  "@discoveredContacts_addedSome": {
+    "placeholders": {
+      "added": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "discoveredContacts_radioFull": "Your radio's contact list is full. Remove some contacts first.",
+  "fieldIntel_radioNow": "Radio right now",
+  "fieldIntel_noRadio": "Connect your radio for live readings.",
+  "fieldIntel_noise": "noise dBm",
+  "fieldIntel_lastSnr": "last SNR",
+  "fieldIntel_lastRssi": "last RSSI",
+  "fieldIntel_battery": "battery V",
+  "fieldIntel_airtime": "Airtime since the radio started: sent {sent}, received {received}",
+  "@fieldIntel_airtime": {
+    "placeholders": {
+      "sent": {
+        "type": "String"
+      },
+      "received": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldIntel_whoAround": "Who's around",
+  "fieldIntel_m15": "15 min",
+  "fieldIntel_h1": "1 hour",
+  "fieldIntel_h24": "24 hours",
+  "fieldIntel_older": "Older",
+  "fieldIntel_lastHour": "Last hour",
+  "fieldIntel_chartHint": "When each node was last heard, hour by hour, over the past day. Tap a bar to see who.",
+  "fieldIntel_mix": "Node mix",
+  "fieldIntel_reach": "Reach",
+  "fieldIntel_hops1": "1 hop",
+  "fieldIntel_hops2": "2 hops",
+  "fieldIntel_hops3": "3+ hops",
+  "fieldIntel_noRoute": "No route yet",
+  "fieldIntel_distance": "Nearest and farthest",
+  "fieldIntel_noneLocated": "None of your contacts has a position.",
+  "fieldIntel_noPosition": "Your radio has no position yet, so distances can't be worked out.",
+  "fieldIntel_bestRepeaters": "Best repeaters you hear directly",
+  "fieldIntel_noneDirect": "No repeater heard directly in the last 30 minutes.",
+  "fieldIntel_attention": "Needs attention",
+  "fieldIntel_allGood": "Nothing needs attention.",
+  "fieldIntel_lowBattery": "Battery low: {volts} V",
+  "@fieldIntel_lowBattery": {
+    "placeholders": {
+      "volts": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldIntel_quietFavorite": "Favourite not heard since {ago}",
+  "@fieldIntel_quietFavorite": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldIntel_moreTools": "More tools",
+  "fieldIntel_nodeCount": "Nodes: {count}",
+  "@fieldIntel_nodeCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldIntel_none": "No nodes here.",
+  "fieldIntel_lastHeard": "Last heard {ago}",
+  "@fieldIntel_lastHeard": {
+    "placeholders": {
+      "ago": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldIntel_showOnMap": "Show on map",
+  "fieldIntel_openChat": "Open chat",
+  "repeaterTools_login": "Log in",
+  "repeaterTools_heardDirect": "Heard directly",
+  "repeaterTools_filterAll": "All",
+  "repeaterTools_filterLowBattery": "Low battery",
+  "repeaterTools_hint": "Tap a repeater for its details, and log in from there for status, neighbours, telemetry and the command line.",
+  "repeaterTools_noneMatch": "No repeaters here.",
+  "repeaterTools_toolsTitle": "Tools",
+  "repeaterTools_regionSetupHint": "Look up your area's region tree and copy its commands",
+  "routes_failingOnly": "Only routes that failed",
+  "routes_contactDetails": "Contact details",
+  "links_contactTitle": "Add a contact?",
+  "links_importAdvert": "Add this contact to your radio?",
+  "links_connectFirst": "Connect your radio first, then open the link again.",
+  "links_added": "Contact added",
+  "links_notContact": "This link isn't a MeshCore contact.",
+  "radioBuzzer_title": "Radio buzzer",
+  "radioBuzzer_hint": "Beeps on the radio for new messages. Only shown for radios with a buzzer.",
+  "radioBuzzer_failed": "The radio didn't accept the change. Try again.",
+  "appSettings_floodAttempts": "Flood attempts",
+  "appSettings_floodAttemptsSubtitle": "Extra tries sent as a flood after the direct ones fail, in case the route has changed. Each one uses more airtime. 0 turns them off.",
+  "pathGraph_you": "You",
+  "pathGraph_relayed": "Relayed {count} messages",
+  "@pathGraph_relayed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pathGraph_ambiguousNote": "This short ID matches more than one repeater, so it can't be pinned to one.",
+  "pathGraph_comesFrom": "Comes from",
+  "pathGraph_goesTo": "Goes to",
+  "pathGraph_repeaterDetails": "Repeater details",
+  "pathGraph_days7": "7 days",
+  "pathGraph_empty": "No channel message paths in this period yet. Paths are collected from channel messages you receive while message tracing is on.",
+  "pathGraph_summary": "{paths} paths heard · {repeaters} repeaters",
+  "@pathGraph_summary": {
+    "placeholders": {
+      "paths": {
+        "type": "int"
+      },
+      "repeaters": {
+        "type": "int"
+      }
+    }
+  },
+  "pathGraph_hashOnly": "Each hop is shown by its hash prefix, or its name when you know the repeater.",
+  "pathGraph_matched": "{count} short (1-byte) hops matched to a specific repeater using longer paths.",
+  "@pathGraph_matched": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pathGraph_matchedAmbiguous": "{matched} short (1-byte) hops matched to a specific repeater using longer paths · {ambiguous} still ambiguous (marked ?).",
+  "@pathGraph_matchedAmbiguous": {
+    "placeholders": {
+      "matched": {
+        "type": "int"
+      },
+      "ambiguous": {
+        "type": "int"
+      }
+    }
+  },
+  "pathGraph_chartHint": "Left: repeaters farther away. Right: you. Band width is how many messages took that hop. Tap a box to see that repeater.",
+  "pathGraph_busiest": "Busiest repeaters",
+  "pathGraph_chartSemantics": "Path graph. Busiest repeater {name}, relayed {count} messages.",
+  "@pathGraph_chartSemantics": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diag_copied": "Copied: {label}",
+  "@diag_copied": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "diag_noChannels": "No channels on this radio.",
+  "diag_tapToCopy": "Tap any value to copy it. Pull down to refresh.",
+  "diag_storage": "Storage",
+  "diag_storageValue": "{used} of {total} KB",
+  "@diag_storageValue": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "favReturn_setting": "Favorites back in range",
+  "favReturn_settingHint": "Notify when a favorite is heard again after a quiet spell",
+  "favReturn_off": "Off",
+  "favReturn_hours": "{count, plural, =1{After 1 hour} other{After {count} hours}}",
+  "@favReturn_hours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "favReturn_title": "Back in range",
+  "favReturn_body": "{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet",
+  "@favReturn_body": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
   "ham_heardFrom": "Heard from",
   "ham_lastHeard": "Last frame heard from",
   "ham_nothingHeardYet": "nothing yet",

@@ -6117,31 +6117,34 @@ class AppLocalizationsPl extends AppLocalizations {
   String get fieldOps_send => 'Wyślij';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Przekazywanie SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Przekazuj SOS, których nie przekazał żaden przemiennik';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Wymaga firmware radia v1.16 lub nowszego';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Nie przekazano jeszcze żadnego SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Przekazano $count pakietów SOS, ostatni o $time',
+      few: 'Przekazano $count pakiety SOS, ostatni o $time',
+      one: 'Przekazano 1 pakiet SOS, ostatni o $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Gdy radio usłyszy SOS bezpośrednio od nadawcy, a żaden przemiennik nie przekaże go w ciągu około 15 sekund, NOTORYX wyśle go jeszcze raz, bez zmian, aby dotarł do przemiennika, który ty słyszysz, a nadawca nie. Przekazywane są tylko SOS z twoich kanałów. Zużywa trochę baterii i czasu nadawania, dlatego domyślnie jest wyłączone.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Zanim wyruszysz';
@@ -9434,6 +9437,563 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Ustaw hasła przez konsolę szeregową USB przemiennika. Wysłane drogą radiową mógłby je przeczytać każdy.';
+
+  @override
+  String get networks_title => 'Sieci';
+
+  @override
+  String get networks_hint =>
+      'Wyszukuj pobliskie sieci i zapisuj je w dzienniku';
+
+  @override
+  String get networks_yourNetwork => 'Twoja sieć';
+
+  @override
+  String get networks_scanTitle => 'Szukaj sieci';
+
+  @override
+  String get networks_scanExplainer =>
+      'Radio słyszy tylko sieci o dokładnie takich samych ustawieniach, więc skanowanie przełącza je kolejno na każdą, nasłuchuje i przywraca ustawienia. W trakcie skanowania jesteś poza swoją siecią.';
+
+  @override
+  String get networks_listenFor => 'Nasłuch na każdej';
+
+  @override
+  String networks_choose(int count) {
+    return 'Sieci do skanowania: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Sugerowane';
+
+  @override
+  String get networks_start => 'Rozpocznij skanowanie';
+
+  @override
+  String get networks_cancel => 'Zatrzymaj skanowanie';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Nasłuch na $name ($step z $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Podłącz radio, aby skanować.';
+
+  @override
+  String get networks_blockSettings => 'Czekam na ustawienia radia.';
+
+  @override
+  String get networks_blockSos =>
+      'Nie podczas aktywnego SOS: skanowanie odcina cię od sieci.';
+
+  @override
+  String get networks_blockTrip =>
+      'Nie w trakcie wyprawy: skanowanie odcina cię od sieci.';
+
+  @override
+  String get networks_nearby => 'Sieci w pobliżu';
+
+  @override
+  String get networks_nothingYet =>
+      'Nie usłyszano jeszcze żadnej sieci. Uruchom skanowanie.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Węzły $nodes · pakiety $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Ostatnio słyszana $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Razy słyszana: $count';
+  }
+
+  @override
+  String get networks_saved => 'Zapisane sieci';
+
+  @override
+  String get networks_noSaved => 'Brak zapisanych sieci.';
+
+  @override
+  String get networks_add => 'Dodaj sieć';
+
+  @override
+  String get networks_join => 'Dołącz';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Przełączyć radio na $name? Opuścisz obecną sieć. Moc nadawania się nie zmieni.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Radio jest teraz na $name.';
+  }
+
+  @override
+  String get networks_log => 'Dziennik sieci';
+
+  @override
+  String get networks_logEmpty => 'Jeszcze nic nie zapisano.';
+
+  @override
+  String get networks_showMap => 'Mapa';
+
+  @override
+  String get networks_exportCsv => 'Eksportuj CSV';
+
+  @override
+  String get networks_exportGpx => 'Eksportuj GPX';
+
+  @override
+  String get networks_clearLog => 'Wyczyść dziennik';
+
+  @override
+  String get networks_clearLogConfirm => 'Usunąć wszystkie zapisane sieci?';
+
+  @override
+  String get networks_name => 'Nazwa';
+
+  @override
+  String get networks_invalid =>
+      'Sprawdź ustawienia: wykraczają poza to, co akceptują radia MeshCore.';
+
+  @override
+  String get networks_nodesHeard => 'Usłyszane węzły';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Nie wysłano: podłącz radio i spróbuj ponownie. Wiadomość została zachowana.';
+
+  @override
+  String get quick_title => 'Szybkie wiadomości';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Jestem w drodze';
+
+  @override
+  String get quick_atCamp => 'W obozie';
+
+  @override
+  String get quick_runningLate => 'Spóźnię się';
+
+  @override
+  String get quick_needHelp => 'Potrzebuję pomocy';
+
+  @override
+  String get quick_copyThat => 'Przyjąłem';
+
+  @override
+  String get quick_empty =>
+      'Brak szybkich wiadomości. Stuknij Edytuj, aby dodać.';
+
+  @override
+  String get quick_add => 'Nowa szybka wiadomość';
+
+  @override
+  String get quick_reset => 'Przywróć domyślne';
+
+  @override
+  String get chat_stopRetrying => 'Przestań ponawiać';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name może czytać twoje wiadomości bezpośrednie i na nie odpowiadać dopiero po dodaniu cię jako kontaktu. Jeśli tego nie zrobił, wyślij swoje ogłoszenie lub udostępnij kontakt.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Przejdź do mojej pozycji';
+
+  @override
+  String get map_positionUnavailable =>
+      'Twoja pozycja jest niedostępna. Włącz lokalizację lub ustaw pozycję radia.';
+
+  @override
+  String get contact_forgetAdvert => 'Zapomnij ostatnie ogłoszenie';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Jeśli ogłoszenia tego węzła przestały się aktualizować po zresetowaniu jego zegara, Zapomnij ostatnie ogłoszenie przepuści następne.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Gotowe. Następne ogłoszenie tego węzła zostanie przyjęte.';
+
+  @override
+  String get networks_modeQuick => 'Szybkie';
+
+  @override
+  String get networks_modeThorough => 'Dokładne';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Wysyła w każdej sieci jeden krótki ping bez przekazywania i nasłuchuje kilka sekund. Znajduje sieci z przemiennikiem w zasięgu.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Tylko nasłuchuje, dłużej w każdej sieci. Nic nie wysyła i znajduje też sieci bez przemiennika w zasięgu, jeśli ktoś nadaje.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'około $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return 'Zaznaczono: $count';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Zaznacz wszystko';
+
+  @override
+  String get discoveredContacts_addSelected => 'Dodaj zaznaczone';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Dodaj wszystkie widoczne ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Dodać kontakty ($count)?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Radio ma miejsce na jeszcze $room kontaktów.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Radio ma miejsce na jeszcze $room kontaktów, więc zostanie dodanych tylko pierwszych $room z $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Dodawanie $done z $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Dodane kontakty: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Dodane kontakty: $added. Niedodane: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Lista kontaktów radia jest pełna. Najpierw usuń część kontaktów.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radio teraz';
+
+  @override
+  String get fieldIntel_noRadio => 'Podłącz radio, aby widzieć dane na żywo.';
+
+  @override
+  String get fieldIntel_noise => 'szum dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'ostatni SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'ostatni RSSI';
+
+  @override
+  String get fieldIntel_battery => 'bateria V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Czas nadawania od startu radia: wysłano $sent, odebrano $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Kto jest w pobliżu';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 godz.';
+
+  @override
+  String get fieldIntel_h24 => '24 godz.';
+
+  @override
+  String get fieldIntel_older => 'Starsze';
+
+  @override
+  String get fieldIntel_lastHour => 'Ostatnia godzina';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Kiedy każdy węzeł był ostatnio słyszany, godzina po godzinie z ostatniej doby. Stuknij słupek, aby zobaczyć kto.';
+
+  @override
+  String get fieldIntel_mix => 'Rodzaje węzłów';
+
+  @override
+  String get fieldIntel_reach => 'Zasięg';
+
+  @override
+  String get fieldIntel_hops1 => '1 skok';
+
+  @override
+  String get fieldIntel_hops2 => '2 skoki';
+
+  @override
+  String get fieldIntel_hops3 => '3+ skoki';
+
+  @override
+  String get fieldIntel_noRoute => 'Brak trasy';
+
+  @override
+  String get fieldIntel_distance => 'Najbliższe i najdalsze';
+
+  @override
+  String get fieldIntel_noneLocated => 'Żaden z kontaktów nie ma pozycji.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Radio nie ma jeszcze pozycji, więc nie da się obliczyć odległości.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Najlepsze przemienniki słyszane bezpośrednio';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'W ciągu ostatnich 30 minut nie usłyszano bezpośrednio żadnego przemiennika.';
+
+  @override
+  String get fieldIntel_attention => 'Wymaga uwagi';
+
+  @override
+  String get fieldIntel_allGood => 'Nic nie wymaga uwagi.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Słaba bateria: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Ulubiony niesłyszany od $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Więcej narzędzi';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Węzły: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Brak węzłów.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Ostatnio słyszany $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Pokaż na mapie';
+
+  @override
+  String get fieldIntel_openChat => 'Otwórz czat';
+
+  @override
+  String get repeaterTools_login => 'Zaloguj';
+
+  @override
+  String get repeaterTools_heardDirect => 'Słyszany bezpośrednio';
+
+  @override
+  String get repeaterTools_filterAll => 'Wszystkie';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Słaba bateria';
+
+  @override
+  String get repeaterTools_hint =>
+      'Stuknij przemiennik, aby zobaczyć szczegóły, a stamtąd zaloguj się, by sprawdzić stan, sąsiadów, telemetrię i wiersz poleceń.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Brak przemienników.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Narzędzia';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Znajdź drzewo regionów dla swojej okolicy i skopiuj jego polecenia';
+
+  @override
+  String get routes_failingOnly => 'Tylko nieudane trasy';
+
+  @override
+  String get routes_contactDetails => 'Szczegóły kontaktu';
+
+  @override
+  String get links_contactTitle => 'Dodać kontakt?';
+
+  @override
+  String get links_importAdvert => 'Dodać ten kontakt do radia?';
+
+  @override
+  String get links_connectFirst =>
+      'Najpierw podłącz radio, a potem otwórz link ponownie.';
+
+  @override
+  String get links_added => 'Dodano kontakt';
+
+  @override
+  String get links_notContact => 'Ten link nie jest kontaktem MeshCore.';
+
+  @override
+  String get radioBuzzer_title => 'Brzęczyk radia';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Radio piszczy przy nowych wiadomościach. Widoczne tylko dla radiów z brzęczykiem.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Radio nie przyjęło zmiany. Spróbuj ponownie.';
+
+  @override
+  String get appSettings_floodAttempts => 'Próby zalewowe';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Dodatkowe próby wysyłane zalewowo, gdy bezpośrednie zawiodą, na wypadek zmiany trasy. Każda zużywa więcej czasu nadawania. 0 je wyłącza.';
+
+  @override
+  String get pathGraph_you => 'Ty';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Przekazał $count wiadomości';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Ten krótki ID pasuje do więcej niż jednego przemiennika, więc nie da się go przypisać do jednego.';
+
+  @override
+  String get pathGraph_comesFrom => 'Przychodzi z';
+
+  @override
+  String get pathGraph_goesTo => 'Idzie do';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Szczegóły przemiennika';
+
+  @override
+  String get pathGraph_days7 => '7 dni';
+
+  @override
+  String get pathGraph_empty =>
+      'W tym okresie nie ma jeszcze tras wiadomości z kanałów. Trasy są zbierane z odebranych wiadomości z kanałów, gdy śledzenie jest włączone.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Usłyszane trasy: $paths · przemienniki: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Każdy skok jest pokazany przez prefiks skrótu lub nazwę, jeśli znasz przemiennik.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count krótkich (1-bajtowych) skoków przypisano do konkretnego przemiennika na podstawie dłuższych tras.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched krótkich (1-bajtowych) skoków przypisano do konkretnego przemiennika na podstawie dłuższych tras · $ambiguous nadal niejednoznacznych (oznaczone ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Po lewej: dalsze przemienniki. Po prawej: ty. Grubość pasma to liczba wiadomości przez ten skok. Stuknij pole, aby zobaczyć przemiennik.';
+
+  @override
+  String get pathGraph_busiest => 'Najbardziej obciążone przemienniki';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Graf tras. Najbardziej obciążony przemiennik $name, przekazał $count wiadomości.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Skopiowano: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Brak kanałów w tym radiu.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Stuknij wartość, aby ją skopiować. Pociągnij w dół, aby odświeżyć.';
+
+  @override
+  String get diag_storage => 'Pamięć';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used z $total KB';
+  }
+
+  @override
+  String get favReturn_setting => 'Ulubione znów w zasięgu';
+
+  @override
+  String get favReturn_settingHint =>
+      'Powiadom, gdy ulubiony kontakt znów się odezwie po okresie ciszy';
+
+  @override
+  String get favReturn_off => 'Wył.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Po $count godzinach',
+      one: 'Po 1 godzinie',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Znów w zasięgu';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours godzinach',
+      one: '1 godzinie',
+    );
+    return '$name znów słyszany po $_temp0 ciszy';
+  }
 
   @override
   String get ham_heardFrom => 'Odebrano od';

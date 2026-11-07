@@ -23,6 +23,9 @@ import '../helpers/snack_bar_builder.dart';
 import 'map_cache_screen.dart';
 import 'bot_settings_screen.dart';
 
+/// Quiet times offered for favorite back-in-range alerts, in hours.
+const favoriteReturnChoices = [0, 1, 3, 6, 12, 24];
+
 class AppSettingsScreen extends StatelessWidget {
   /// Scrolls the image-message settings into view once, on first build.
   ///
@@ -373,6 +376,43 @@ class AppSettingsScreen extends StatelessWidget {
               ? (value) => settingsService.setNotifyOnNewAdvert(value)
               : null,
         ),
+        const Divider(height: 1, indent: 16),
+        ListTile(
+          key: const ValueKey('favorite-return-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          enabled: notifEnabled,
+          leading: const Icon(Icons.star_outline, size: 20),
+          title: Text(context.l10n.favReturn_setting),
+          subtitle: Text(context.l10n.favReturn_settingHint),
+          trailing: DropdownButton<int>(
+            value:
+                favoriteReturnChoices.contains(
+                  settingsService.settings.favoriteReturnHours,
+                )
+                ? settingsService.settings.favoriteReturnHours
+                : 6,
+            underline: const SizedBox.shrink(),
+            onChanged: notifEnabled
+                ? (v) {
+                    if (v != null) settingsService.setFavoriteReturnHours(v);
+                  }
+                : null,
+            items: [
+              for (final h in favoriteReturnChoices)
+                DropdownMenuItem(
+                  value: h,
+                  child: Text(
+                    h == 0
+                        ? context.l10n.favReturn_off
+                        : context.l10n.favReturn_hours(h),
+                  ),
+                ),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -562,35 +602,47 @@ class AppSettingsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Divider(height: 1),
-                      ListTile(
-                        title: Text(context.l10n.appSettings_maxMessageRetries),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              context
-                                  .l10n
-                                  .appSettings_maxMessageRetriesSubtitle,
-                            ),
-                            Slider(
-                              value: settingsService.settings.maxMessageRetries
-                                  .toDouble(),
-                              min: 2,
-                              max: 10,
-                              divisions: 8,
-                              label: settingsService.settings.maxMessageRetries
-                                  .toString(),
-                              onChanged: (value) => settingsService
-                                  .setMaxMessageRetries(value.toInt()),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 )
               : const SizedBox.shrink(),
+        ),
+        ListTile(
+          title: Text(context.l10n.appSettings_maxMessageRetries),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(context.l10n.appSettings_maxMessageRetriesSubtitle),
+              Slider(
+                value: settingsService.settings.maxMessageRetries.toDouble(),
+                min: 2,
+                max: 10,
+                divisions: 8,
+                label: settingsService.settings.maxMessageRetries.toString(),
+                onChanged: (value) =>
+                    settingsService.setMaxMessageRetries(value.toInt()),
+              ),
+            ],
+          ),
+        ),
+        ListTile(
+          title: Text(context.l10n.appSettings_floodAttempts),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(context.l10n.appSettings_floodAttemptsSubtitle),
+              Slider(
+                key: const ValueKey('flood-attempts'),
+                value: settingsService.settings.messageFloodAttempts.toDouble(),
+                min: 0,
+                max: 5,
+                divisions: 5,
+                label: settingsService.settings.messageFloodAttempts.toString(),
+                onChanged: (value) =>
+                    settingsService.setMessageFloodAttempts(value.toInt()),
+              ),
+            ],
+          ),
         ),
         const Divider(height: 1, indent: 16),
         SwitchListTile(

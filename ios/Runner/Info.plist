@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>NOTORYX Ham</string>
+	<string>NOTORYX</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -85,5 +85,18 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>NOTORYX Core Ham uses your location only while coverage mapping is on, to credit what your radio hears to a map hexagon.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>meshcore</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>meshcore</string>
+			</array>
+		</dict>
+	</array>
+	<key>FlutterDeepLinkingEnabled</key>
+	<false/>
 </dict>
 </plist>

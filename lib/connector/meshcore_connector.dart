@@ -157,6 +157,43 @@ enum MeshCoreConnectionState {
 
 enum MeshCoreTransportType { bluetooth, usb, tcp }
 
+/// A wired or network link to reconnect to after it drops: the TCP endpoint
+/// or USB port of the last connect that succeeded. Bluetooth reconnects use
+/// the remembered device instead.
+@immutable
+sealed class LinkTarget {
+  const LinkTarget();
+  MeshCoreTransportType get transport;
+}
+
+final class TcpLinkTarget extends LinkTarget {
+  const TcpLinkTarget(this.host, this.port);
+  final String host;
+  final int port;
+  @override
+  MeshCoreTransportType get transport => MeshCoreTransportType.tcp;
+  @override
+  bool operator ==(Object other) =>
+      other is TcpLinkTarget && other.host == host && other.port == port;
+  @override
+  int get hashCode => Object.hash(host, port);
+}
+
+final class UsbLinkTarget extends LinkTarget {
+  const UsbLinkTarget(this.portName, this.baudRate);
+  final String portName;
+  final int baudRate;
+  @override
+  MeshCoreTransportType get transport => MeshCoreTransportType.usb;
+  @override
+  bool operator ==(Object other) =>
+      other is UsbLinkTarget &&
+      other.portName == portName &&
+      other.baudRate == baudRate;
+  @override
+  int get hashCode => Object.hash(portName, baudRate);
+}
+
 class RepeaterBatterySnapshot {
   final int millivolts;
   final DateTime updatedAt;
@@ -205,6 +242,10 @@ class MeshCoreConnector extends ChangeNotifier {
   String? _lastDeviceId;
   String? _lastDeviceDisplayName;
   bool _manualDisconnect = false;
+  // Set once a TCP or USB connect succeeds; cleared by a manual disconnect
+  // or by any connect the user starts. While set, a dropped link is retried
+  // with the same backoff as Bluetooth.
+  LinkTarget? _linkTarget;
   final MeshCoreUsbManager _usbManager = MeshCoreUsbManager();
   final LinuxBlePairingService _linuxBlePairingService =
       LinuxBlePairingService();
@@ -531,6 +572,21 @@ class MeshCoreConnector extends ChangeNotifier {
   @visibleForTesting
   Future<void> Function(BluetoothDevice device)? debugBleLinkOverride;
 
+  /// Replaces the TCP/USB reconnect attempt; for tests.
+  @visibleForTesting
+  Future<void> Function(LinkTarget target)? debugLinkReconnectOverride;
+
+  /// The TCP endpoint or USB port a dropped link will be retried on.
+  LinkTarget? get reconnectTarget => _linkTarget;
+
+  /// Marks [target] as the link to retry, as a successful connect would;
+  /// for tests.
+  @visibleForTesting
+  void debugRememberLink(LinkTarget target) {
+    _linkTarget = target;
+    _manualDisconnect = false;
+  }
+
   /// Replaces the platform BLE disconnect in tests.
   @visibleForTesting
   Future<void> Function(BluetoothDevice device)? debugBleUnlinkOverride;
@@ -827,6 +883,12 @@ class MeshCoreConnector extends ChangeNotifier {
     return _conversations[contact.publicKeyHex] ?? [];
   }
 
+  /// Puts [message] in its conversation, for tests.
+  @visibleForTesting
+  void debugAddMessage(Message message) {
+    _conversations.putIfAbsent(message.senderKeyHex, () => []).add(message);
+  }
+
   Future<void> deleteMessage(Message message) async {
     final contactKeyHex = message.senderKeyHex;
     final messages = _conversations[contactKeyHex];
@@ -838,7 +900,17 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> resendMessage(Contact contact, Message message) async {
+  /// Sends [message] again as a new message and removes the old one.
+  /// Returns false, keeping the message and marking it failed, when the
+  /// radio is disconnected: deleting it then would lose it, since nothing
+  /// can be sent.
+  Future<bool> resendMessage(Contact contact, Message message) async {
+    if (!isConnected) {
+      if (message.status != MessageStatus.failed) {
+        _updateMessage(message.copyWith(status: MessageStatus.failed));
+      }
+      return false;
+    }
     await deleteMessage(message);
     await sendMessage(
       contact,
@@ -847,6 +919,7 @@ class MeshCoreConnector extends ChangeNotifier {
       translatedLanguageCode: message.translatedLanguageCode,
       translationModelId: message.translationModelId,
     );
+    return true;
   }
 
   Future<void> _loadMessagesForContact(String contactKeyHex) async {
@@ -2084,6 +2157,7 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> connectUsb({
     required String portName,
     int baudRate = 115200,
+    bool automaticReconnect = false,
   }) async {
     final pendingDisconnect = _disconnectInFlight;
     if (pendingDisconnect != null) await pendingDisconnect;
@@ -2102,8 +2176,7 @@ class MeshCoreConnector extends ChangeNotifier {
     );
 
     await stopScan();
-    _cancelReconnectTimer();
-    _manualDisconnect = false;
+    _beginWiredConnect(automaticReconnect);
     _resetConnectionHandshakeState();
     _activeTransport = MeshCoreTransportType.usb;
     _setState(MeshCoreConnectionState.connecting);
@@ -2180,6 +2253,11 @@ class MeshCoreConnector extends ChangeNotifier {
       await syncTime();
       _appDebugLogService?.info('connectUsb: complete', tag: 'USB');
       _lastConnectionError = null;
+      _reconnectAttempts = 0;
+      // Web serial ports can only be reopened from a user gesture.
+      if (!PlatformInfo.isWeb) {
+        _linkTarget = UsbLinkTarget(portName, baudRate);
+      }
       unawaited(_rememberRadio(SavedRadioTransport.usb, portName));
     } catch (error) {
       _appDebugLogService?.error('USB connection error: $error', tag: 'USB');
@@ -2189,7 +2267,11 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<void> connectTcp({required String host, required int port}) async {
+  Future<void> connectTcp({
+    required String host,
+    required int port,
+    bool automaticReconnect = false,
+  }) async {
     final pendingDisconnect = _disconnectInFlight;
     if (pendingDisconnect != null) await pendingDisconnect;
     if (_state == MeshCoreConnectionState.connecting ||
@@ -2204,8 +2286,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _appDebugLogService?.info('connectTcp: endpoint=$host:$port', tag: 'TCP');
 
     await stopScan();
-    _cancelReconnectTimer();
-    _manualDisconnect = false;
+    _beginWiredConnect(automaticReconnect);
     _resetConnectionHandshakeState();
     _activeTransport = MeshCoreTransportType.tcp;
     _setState(MeshCoreConnectionState.connecting);
@@ -2288,6 +2369,8 @@ class MeshCoreConnector extends ChangeNotifier {
 
       await syncTime();
       _lastConnectionError = null;
+      _reconnectAttempts = 0;
+      _linkTarget = TcpLinkTarget(host, port);
       unawaited(_rememberRadio(SavedRadioTransport.tcp, '$host:$port'));
     } catch (error) {
       _appDebugLogService?.error('TCP connection error: $error', tag: 'TCP');
@@ -2393,6 +2476,7 @@ class MeshCoreConnector extends ChangeNotifier {
     // begin a fresh retry sequence.
     if (!automaticReconnect) {
       _cancelReconnectTimer();
+      _linkTarget = null;
     }
     _bleInitialSyncStarted = false;
     if (PlatformInfo.isWeb) {
@@ -3134,11 +3218,26 @@ class MeshCoreConnector extends ChangeNotifier {
     _previousChannelsCache.clear();
   }
 
-  bool get _shouldAutoReconnect =>
-      !_manualDisconnect &&
-      !isBluetoothOff &&
-      _lastDeviceId != null &&
-      _activeTransport == MeshCoreTransportType.bluetooth;
+  bool get _shouldAutoReconnect {
+    if (_manualDisconnect) return false;
+    if (_linkTarget != null) return true;
+    return !isBluetoothOff &&
+        _lastDeviceId != null &&
+        _activeTransport == MeshCoreTransportType.bluetooth;
+  }
+
+  /// Starts a TCP or USB connect. One the user asks for begins a fresh
+  /// backoff and forgets the old link; an automatic retry keeps both.
+  void _beginWiredConnect(bool automaticReconnect) {
+    _manualDisconnect = false;
+    if (automaticReconnect) {
+      _reconnectTimer?.cancel();
+      _reconnectTimer = null;
+    } else {
+      _cancelReconnectTimer();
+      _linkTarget = null;
+    }
+  }
 
   SharedPreferences? get _prefsOrNull {
     try {
@@ -3337,6 +3436,38 @@ class MeshCoreConnector extends ChangeNotifier {
         return;
       }
 
+      final target = _linkTarget;
+      if (target != null) {
+        _appDebugLogService?.info(
+          'Reconnecting ${target.transport.name} (attempt $_reconnectAttempts)',
+          tag: 'Connection',
+        );
+        try {
+          final override = debugLinkReconnectOverride;
+          if (override != null) {
+            await override(target);
+          } else {
+            switch (target) {
+              case TcpLinkTarget(:final host, :final port):
+                await connectTcp(
+                  host: host,
+                  port: port,
+                  automaticReconnect: true,
+                );
+              case UsbLinkTarget(:final portName, :final baudRate):
+                await connectUsb(
+                  portName: portName,
+                  baudRate: baudRate,
+                  automaticReconnect: true,
+                );
+            }
+          }
+        } catch (_) {
+          _scheduleReconnect();
+        }
+        return;
+      }
+
       final device =
           _lastDevice ??
           (_lastDeviceId == null
@@ -3395,6 +3526,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     if (manual) {
       _manualDisconnect = true;
+      _linkTarget = null;
       _cancelReconnectTimer();
       unawaited(_backgroundService?.stop());
     } else {
@@ -3494,7 +3626,9 @@ class MeshCoreConnector extends ChangeNotifier {
       'Disconnect complete transport=$transportLabel manual=$manual',
       tag: 'Connection',
     );
-    if (!manual && transportAtDisconnect == MeshCoreTransportType.bluetooth) {
+    if (!manual &&
+        (transportAtDisconnect == MeshCoreTransportType.bluetooth ||
+            _linkTarget != null)) {
       _scheduleReconnect();
     }
   }
@@ -3865,6 +3999,40 @@ class MeshCoreConnector extends ChangeNotifier {
       waitForGenericAck: true,
     );
     await refreshContacts();
+  }
+
+  /// Forgets when [contact] last advertised, keeping its name, type, route
+  /// and position. The radio drops an advert that isn't newer than the last
+  /// one, so a node whose clock went backwards (a reset or a dead RTC
+  /// battery) stays stuck until this is cleared.
+  Future<void> forgetLastAdvert(Contact contact) async {
+    if (!isConnected) throw StateError('Connect your radio first.');
+    final flood = contact.pathLength < 0;
+    final pathLen = flood
+        ? 0xFF
+        : _encodePathLenForCurrentMode(contact.pathLength, contact.path);
+    await sendFrame(
+      buildUpdateContactPathFrame(
+        contact.publicKey,
+        flood ? Uint8List(0) : contact.path,
+        pathLen ?? 0xFF,
+        type: contact.type,
+        flags: contact.flags,
+        name: contact.name,
+        lat: contact.hasLocation ? contact.latitude : null,
+        lon: contact.hasLocation ? contact.longitude : null,
+        lastAdvertTimestamp: 0,
+      ),
+      expectsGenericAck: true,
+      waitForGenericAck: true,
+    );
+  }
+
+  /// Stops retrying [message] and marks it failed, so it isn't sent again.
+  void stopRetrying(Message message) {
+    if (message.status != MessageStatus.pending) return;
+    _retryService?.untrack(message.messageId);
+    _updateMessage(message.copyWith(status: MessageStatus.failed));
   }
 
   Future<void> refreshContacts() async {

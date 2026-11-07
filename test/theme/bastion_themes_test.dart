@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/models/app_settings.dart';
 import 'package:meshcore_open/services/app_settings_service.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
@@ -28,8 +29,15 @@ void main() {
     );
     // The rc.H-only Halloween theme is gone; people who picked it get Blaze.
     expect(BastionTheme.fromId('halloween'), BastionTheme.blaze);
-    final saved = AppSettings().copyWith(appTheme: 'alpine_day');
-    expect(AppSettings.fromJson(saved.toJson()).appTheme, 'alpine_day');
+    // Alpine day is gone too; people who picked it get the default.
+    expect(BastionTheme.fromId('alpine_day'), BastionTheme.blaze);
+    expect(BastionTheme.values.map((t) => t.id), [
+      'blaze',
+      'autumn_frost',
+      'bubble_gum',
+      'red_light',
+      'okabe_ito',
+    ]);
   });
 
   test('every theme keeps text, buttons and SOS readable', () {
@@ -57,23 +65,59 @@ void main() {
     }
   });
 
-  test('Bubble Gum keeps all five reference colors', () {
+  test('Bubble Gum is pink, not white, behind the text', () {
     final p = BastionTheme.bubbleGum.palette;
-    expect(p.bg4, const Color(0xFFCDB4DA));
-    expect(p.bg1, const Color(0xFFFFC8DC));
-    expect(p.me, const Color(0xFFFFAFCC));
-    expect(p.bg3, const Color(0xFFBEE0FE));
-    expect(p.accentDim, const Color(0xFFA2D2FF));
+    expect(p.brightness, Brightness.light);
+    // The old near-white page was too bright; keep the page a real pink.
+    for (final surface in [p.bg, p.bg1, p.bg2]) {
+      expect(surface.computeLuminance(), lessThan(0.7));
+      expect(surface.r, greaterThan(surface.g));
+    }
+    expect(p.me, const Color(0xFFB5207A));
   });
 
-  test('Christmas has a stable saved id', () {
-    expect(BastionTheme.fromId('christmas'), BastionTheme.christmas);
-    final saved = AppSettings().copyWith(appTheme: 'christmas');
-    expect(AppSettings.fromJson(saved.toJson()).appTheme, 'christmas');
+  test('the Okabe-Ito palette, theme and node colors match the reference', () {
+    expect(OkabeIto.categorical, const [
+      Color(0xFFE69F00),
+      Color(0xFF56B4E9),
+      Color(0xFF009E73),
+      Color(0xFFF0E442),
+      Color(0xFF0072B2),
+      Color(0xFFD55E00),
+      Color(0xFFCC79A7),
+    ]);
+    expect(OkabeIto.black, const Color(0xFF000000));
+    final p = BastionTheme.okabeIto.palette;
+    expect(p.bg, OkabeIto.black);
+    // Good, warning and bad signal are three different Okabe-Ito hues.
+    expect(
+      {p.signal, p.warn, p.alert},
+      {OkabeIto.bluishGreen, OkabeIto.yellow, OkabeIto.vermillion},
+    );
+    expect(BastionTheme.fromId('okabe_ito'), BastionTheme.okabeIto);
+    final types = [advTypeChat, advTypeRepeater, advTypeRoom, advTypeSensor];
+    final colors = types.map(OkabeIto.nodeType).toSet();
+    expect(colors, hasLength(4));
+    expect(colors.every(OkabeIto.categorical.contains), isTrue);
+    expect(MapPalette.repeater, OkabeIto.nodeType(advTypeRepeater));
+    expect(MapPalette.sensor, OkabeIto.nodeType(advTypeSensor));
+  });
+
+  test('Autumn Frost uses all five fall colors and replaces Christmas', () {
+    final p = BastionTheme.autumnFrost.palette;
+    expect(p.bg2, const Color(0xFF24343C)); // Frozen Slate
+    expect(p.bg4, const Color(0xFF3A574C)); // Pine Frost
+    expect(p.me, const Color(0xFF854D2B)); // Chestnut Ember
+    expect(p.secondaryContainer, const Color(0xFF87591F)); // Bronze Leaf
+    expect(p.accentDim, const Color(0xFFA06A25)); // Amber Oak
+    expect(BastionTheme.fromId('autumn_frost'), BastionTheme.autumnFrost);
+    expect(BastionTheme.fromId('christmas'), BastionTheme.autumnFrost);
+    final saved = AppSettings().copyWith(appTheme: 'autumn_frost');
+    expect(AppSettings.fromJson(saved.toJson()).appTheme, 'autumn_frost');
   });
 
   for (final width in [320.0, 720.0]) {
-    testWidgets('Christmas selection survives reload at width $width', (
+    testWidgets('Autumn Frost selection survives reload at width $width', (
       tester,
     ) async {
       SharedPreferences.setMockInitialValues({});
@@ -99,20 +143,22 @@ void main() {
           ),
         ),
       );
-      final christmas = find.byKey(const ValueKey('theme-christmas'));
-      await tester.ensureVisible(christmas);
-      await tester.tap(christmas);
+      final autumn = find.byKey(const ValueKey('theme-autumn_frost'));
+      await tester.ensureVisible(autumn);
+      await tester.tap(autumn);
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
-      expect(settings.settings.appTheme, 'christmas');
+      expect(settings.settings.appTheme, 'autumn_frost');
       final restored = AppSettingsService();
       await restored.loadSettings();
-      expect(restored.settings.appTheme, 'christmas');
+      expect(restored.settings.appTheme, 'autumn_frost');
       final bubbleGum = find.byKey(const ValueKey('theme-bubble_gum'));
       await tester.ensureVisible(bubbleGum);
       await tester.tap(bubbleGum);
       await tester.pumpAndSettle();
       expect(find.text('Topo night'), findsNothing);
+      expect(find.text('Alpine day'), findsNothing);
+      expect(find.text('Christmas'), findsNothing);
       expect(settings.settings.appTheme, 'bubble_gum');
       await restored.loadSettings();
       expect(restored.settings.appTheme, 'bubble_gum');
@@ -125,7 +171,7 @@ void main() {
 
   test('the palette follows the chosen theme', () {
     MeshPalette.current = BastionTheme.bubbleGum.palette;
-    expect(MeshPalette.accent, const Color(0xFF704887));
+    expect(MeshPalette.accent, const Color(0xFF8E0B56));
     MeshPalette.current = BastionTheme.blaze.palette;
     expect(MeshPalette.accent, const Color(0xFFFF9A3C));
     expect(MeshTheme.light().brightness, Brightness.light);

@@ -23,6 +23,7 @@ import 'services/regional_preset_service.dart';
 import 'services/read_aloud_service.dart';
 import 'services/app_shortcuts.dart';
 import 'services/auto_connect_service.dart';
+import 'services/link_router.dart';
 import 'services/notification_router.dart';
 import 'services/home_widget_sync.dart';
 import 'services/sensor_subscription_service.dart';
@@ -40,6 +41,7 @@ import 'services/received_image_store.dart';
 import 'services/storage_service.dart';
 import 'services/message_retry_service.dart';
 import 'services/bot_service.dart';
+import 'services/favorite_return_service.dart';
 import 'services/field_ops_service.dart';
 import 'services/path_history_service.dart';
 import 'services/app_settings_service.dart';
@@ -63,6 +65,7 @@ import 'services/coverage_hex_service.dart';
 import 'services/channel_discovery_service.dart';
 import 'services/corescope.dart';
 import 'services/my_sensors_service.dart';
+import 'services/network_scan_service.dart';
 import 'services/wardrive_service.dart';
 import 'services/track_log_service.dart';
 import 'services/weather_service.dart';
@@ -285,6 +288,8 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final NodeTelemetryStore _telemetry;
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
+  late final NetworkScanService _networkScan;
+  late final FavoriteReturnService _favoriteReturn;
   late final SosRelayService _sosRelay;
   final _operatorProfile = OperatorProfileService()..load();
   late final CoverageHexService _coverageHex;
@@ -294,6 +299,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   HomeWidgetSync? _homeWidget;
   late final AutoConnectService _autoConnect;
   late final NotificationRouter _notificationRouter;
+  late final LinkRouter _linkRouter;
   StreamSubscription<String>? _notificationTaps;
   String? _shortcutLanguage;
   late final SensorSubscriptionService _sensorSubscriptions;
@@ -323,7 +329,24 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.connector.addListener(_syncTelemetryScope);
     _mySensors = MySensorsService(widget.connector);
     _wardrive = WardriveService(widget.connector)..load();
+    _networkScan = NetworkScanService(
+      widget.connector,
+      sosActive: () => _fieldOps.sos.active,
+      tripActive: () => _fieldOps.trip.active,
+    )..load();
     _sosRelay = SosRelayService.forConnector(widget.connector)..load();
+    _favoriteReturn = FavoriteReturnService(
+      widget.connector,
+      quietHours: () => widget.appSettingsService.settings.favoriteReturnHours,
+      notify: (back) async {
+        if (!widget.appSettingsService.settings.notificationsEnabled) return;
+        await NotificationService().showFavoriteReturn(
+          contactId: back.key,
+          name: back.name,
+          quietHours: back.quiet.inHours,
+        );
+      },
+    );
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
     unawaited(_trackLog.load());
@@ -356,6 +379,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     )..start();
     // Clicking a notification opens what it's about.
     _notificationRouter = NotificationRouter(_navigatorKey, widget.connector);
+    _linkRouter = LinkRouter(_navigatorKey, widget.connector)..start();
     _notificationTaps = NotificationService().taps.listen(
       _notificationRouter.open,
     );
@@ -381,7 +405,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(
       PackageInfo.fromPlatform()
           .then((info) {
-            final version = 'notoryx-core/${info.version}';
+            final version = 'notoryx-core-ham/${info.version}';
             _uploaders.clientVersion = version;
             return _mqtt.clientVersion = version;
           })
@@ -413,6 +437,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    _favoriteReturn.dispose();
     _botService.dispose();
     _weather.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
@@ -427,6 +452,8 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     widget.connector.telemetryStore = null;
     _telemetry.dispose();
     _wardrive.dispose();
+    _linkRouter.dispose();
+    _networkScan.dispose();
     _sosRelay.dispose();
     _coverageHex.dispose();
     _readAloud.dispose();
@@ -533,6 +560,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider<MySensorsService?>.value(value: _mySensors),
         ChangeNotifierProvider<NodeTelemetryStore?>.value(value: _telemetry),
         ChangeNotifierProvider.value(value: _wardrive),
+        ChangeNotifierProvider.value(value: _networkScan),
         ChangeNotifierProvider.value(value: _sosRelay),
         ChangeNotifierProvider.value(value: _operatorProfile),
         ChangeNotifierProvider.value(value: _coverageHex),

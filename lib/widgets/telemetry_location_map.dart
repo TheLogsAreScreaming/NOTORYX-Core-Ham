@@ -9,6 +9,7 @@ import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/app_settings.dart';
 import '../models/contact.dart';
+import '../theme/okabe_ito.dart';
 import '../services/app_settings_service.dart';
 import '../services/map_tile_cache_service.dart';
 
@@ -263,20 +264,7 @@ class _TelemetryLocationMapState extends State<TelemetryLocationMap> {
         platform == TargetPlatform.macOS;
   }
 
-  Color _getNodeColor(int type) {
-    switch (type) {
-      case advTypeChat:
-        return Colors.blue;
-      case advTypeRepeater:
-        return Colors.green;
-      case advTypeRoom:
-        return Colors.purple;
-      case advTypeSensor:
-        return Colors.orange;
-      default:
-        return Colors.grey;
-    }
-  }
+  Color _getNodeColor(int type) => OkabeIto.nodeType(type);
 
   IconData _getNodeIcon(int type) {
     switch (type) {
