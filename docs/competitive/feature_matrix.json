@@ -1,1750 +1,351 @@
 {
- "research_date": "2026-11-07",
- "legend": {
-  "Y": "implemented (NX: verified in source) / documented by the project",
-  "S": "NOTORYX: implemented and judged stronger than the field",
-  "P": "partial",
-  "N": "missing (NX verified absent; MCO only where an open issue requests it)",
-  "?": "not documented by that project (NOT proof it is missing)",
-  "NA": "not applicable"
- },
- "comparison_legend": {
-  "S": "NOTORYX superior",
-  "=": "parity",
-  "I": "NOTORYX inferior",
-  "U": "unverified",
-  "NA": "not applicable"
- },
- "apps": {
-  "NX": {
-   "name": "NOTORYX Core 10.0.0-rc.33",
-   "evidence": "source: TheLogsAreScreaming/notoryx-core dev 21e5f380"
-  },
-  "OFF": {
-   "name": "MeshCore official v1.51.0",
-   "evidence": "https://app.meshcore.nz/assets/CHANGELOG.md"
-  },
-  "MCO": {
-   "name": "MeshCore Open BETA-99.0.1",
-   "evidence": "https://github.com/zjs81/meshcore-open"
-  },
-  "MC1": {
-   "name": "MeshCore One v1.6.2 (iOS)",
-   "evidence": "https://github.com/Avi0n/MeshCoreOne"
-  },
-  "MTX": {
-   "name": "MeshTrax v1.10.0",
-   "evidence": "https://github.com/venamartin/meshtrax"
-  },
-  "MCOA": {
-   "name": "MCO Advanced 9.5.0-mod-1.12.0",
-   "evidence": "https://github.com/HDDen/meshcore-open"
-  },
-  "TEAM": {
-   "name": "MeshCore TEAM 1.2.0-beta6",
-   "evidence": "https://github.com/tmacinc/MeshCore-TEAM"
-  },
-  "MCC": {
-   "name": "MeshCore Companion v1.21.2 (web bridge)",
-   "evidence": "https://github.com/edleeman17/meshcore-companion"
-  },
-  "MSC": {
-   "name": "mesh-client v6.6.0 (desktop)",
-   "evidence": "https://github.com/Colorado-Mesh/mesh-client"
-  }
- },
- "rows": [
-  {
-   "category": "Messaging",
-   "feature": "Direct messages",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/chat_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Channels (public/hashtag/private)",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/channels_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Delivery status / ACK ticks",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/widgets/message_status_icon.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Configurable direct+flood retries",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "P",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/services/message_retry_service.dart",
-   "note": "OFF v1.51 4+4; NX has flood-attempts setting (#212)"
-  },
-  {
-   "category": "Messaging",
-   "feature": "Cancel / stop retrying",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "README: stop retrying",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Offline send queue (radio down)",
-   "status": {
-    "NX": "P",
-    "OFF": "P",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "messages fail when disconnected (no persistent queue); MQTT has offline queue",
-   "note": "MCOA scheduled send; MCC bridge holds radio 24/7"
-  },
-  {
-   "category": "Messaging",
-   "feature": "Failed-DM diagnosis (which stage)",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "P",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "lib/models/delivery_observation.dart, timeout_prediction_service.dart, Observer reach (online only)",
-   "note": "MCC: 'reached mesh' vs 'never repeated'; MC1 #458 open"
-  },
-  {
-   "category": "Messaging",
-   "feature": "Heard repeats on channel posts",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/channel_message_path_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Signed messages / posts",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/services/signed_posts.dart (Ed25519 via radio key, GRP_DATA 0xAE51)",
-   "note": "MCOA (MCMP v3) and MCC also sign; formats differ, not interoperable"
-  },
-  {
-   "category": "Messaging",
-   "feature": "Message search",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/message_search_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Drafts",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/storage/draft_store.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Quick / canned messages",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/widgets/quick_messages.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Reactions",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/helpers/reaction_helper.dart",
-   "note": "airtime/interop concerns MCO #109"
-  },
-  {
-   "category": "Messaging",
-   "feature": "Replies / quotes",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "Y",
-    "MC1": "?",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "ReplyInfo.parseReplyMention in lib/models/channel_message.dart",
-   "note": "MCOA exact quotes"
-  },
-  {
-   "category": "Messaging",
-   "feature": "@mention autocomplete",
-   "status": {
-    "NX": "N",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "not found in composer",
-   "note": "OFF v1.44 auto-space; TEAM autocomplete"
-  },
-  {
-   "category": "Messaging",
-   "feature": "Block sender / moderation",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "lib/services/inbound_spam_policy.dart (spam rules only; no per-sender block)",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Images over mesh",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/services/image_codec_service.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Translation (on-device)",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "Y",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/services/translation_service.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Read aloud",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/services/read_aloud_service.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Notifications + per-chat mute",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/services/notification_service.dart",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Notification quick reply",
-   "status": {
-    "NX": "?",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "U",
-   "notoryx_evidence": "not verified in NX",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Channel directory / discovery",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/screens/channel_directory_screen.dart (+Active online via analyzer)",
-   "note": ""
-  },
-  {
-   "category": "Messaging",
-   "feature": "Room servers",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/widgets/room_login_dialog.dart",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Node discovery / discovered list",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/discovery_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Multi-byte (2-byte) path hashes",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "P",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "26 refs to pathHashBytes/hash size",
-   "note": "MCO #421 most-upvoted open issue"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Path trace / ping",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/repeater_ping_screen.dart, path_trace_map.dart",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Path graph / route visualisation",
-   "status": {
-    "NX": "S",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/screens/path_graph_screen.dart, widgets/path_sankey.dart",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Route Intelligence (learned routes)",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "P",
-    "MC1": "?",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "P"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/services/path_history_service.dart",
-   "note": "MCO auto route rotation; MSC #223 weighted scoring"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Network scan across presets",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/screens/networks_screen.dart",
-   "note": "Meshtastic Apple has the same idea (Local Mesh Discovery)"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Noise floor monitor",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/companion_radio_stats_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "RX log / packet inspector",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "raw RX parsed (models/radio_rx_packet.dart) + BLE debug log; no user packet log/inspector",
-   "note": "mesh-sn.de: official lacks RX log"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Airtime / duty-cycle meter",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "lib/utils/lora_airtime.dart (estimates), diagnostics screen",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Mesh health summary",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "lib/screens/bastion_diagnostics_screen.dart (counts, not graded)",
-   "note": "MSC Healthy/Attention/Degraded"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Observer reach via analyzer",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/widgets/observer_reach_sheet.dart, services/corescope.dart",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Contact table full handling",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "room-left check on multi-add only",
-   "note": "MCC auto-evicts least recent; TEAM auto-purge"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Repeater remote admin (free)",
-   "status": {
-    "NX": "S",
-    "OFF": "P",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/screens/repeater_hub_screen.dart",
-   "note": "OFF charges to skip wait"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Repeater access control (ACL)",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/screens/access_control_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Telemetry history charts",
-   "status": {
-    "NX": "P",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "lib/services/node_telemetry_store.dart keeps readings; no charts",
-   "note": "MCO #348 requested"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Repeater battery watch alerts",
-   "status": {
-    "NX": "N",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "\u2014",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Back-in-range alerts",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "overdue trip-contact alerts only",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Regions / scopes",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/region_management_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Flood corridor (geo-limited)",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/screens/flood_corridor_screen.dart",
-   "note": "needs corridor firmware"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Multiple radios at once",
-   "status": {
-    "NX": "N",
-    "OFF": "?",
-    "MCO": "N",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "\u2014",
-   "note": "MCO #119 requested"
-  },
-  {
-   "category": "Mesh networking",
-   "feature": "Firmware update from app",
-   "status": {
-    "NX": "N",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "\u2014",
-   "note": "Meshtastic apps do this; MC1 listing reportedly ESP32 OTA (unverified)"
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Interactive map",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/map_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Offline maps",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "S",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "lib/screens/map_cache_screen.dart",
-   "note": "MTX topo/contours/NOAA by region"
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Jump to my GPS",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "README (rc.23)",
-   "note": ""
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Track log + GPX export",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/services/track_log_service.dart, utils/gpx_export.dart",
-   "note": ""
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "GPX/KMZ import, waypoints, routes",
-   "status": {
-    "NX": "N",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "\u2014",
-   "note": ""
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Coordinate formats (MGRS/UTM)",
-   "status": {
-    "NX": "N",
-    "OFF": "?",
-    "MCO": "Y",
-    "MC1": "?",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "\u2014",
-   "note": ""
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Offline trail routing / POI search",
-   "status": {
-    "NX": "N",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "\u2014",
-   "note": ""
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Wardrive / coverage capture",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/screens/wardrive_screen.dart, coverage_hex_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Line of sight / antenna coverage",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/line_of_sight_map_screen.dart, antenna_coverage_screen.dart",
-   "note": "MC1 Fresnel zone"
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Map telemetry overlays",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/widgets/map_telemetry.dart",
-   "note": ""
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Team position tracking",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "SOS/check-in share position; no continuous team tracking",
-   "note": "TEAM, SAR"
-  },
-  {
-   "category": "Mapping & location",
-   "feature": "Location privacy controls",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "position omitted unless opted in (field validation doc); coverage privacy delay",
-   "note": ""
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "Bluetooth LE",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/connector/meshcore_connector.dart",
-   "note": ""
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "USB serial",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "?",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/connector/meshcore_connector_usb.dart",
-   "note": ""
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "TCP / Wi-Fi",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/connector/meshcore_connector_tcp.dart",
-   "note": ""
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "Auto-connect at launch",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "N",
-    "MC1": "?",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/services/auto_connect_service.dart",
-   "note": "MCO #486 requested"
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "Auto-reconnect on link drop",
-   "status": {
-    "NX": "P",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "_shouldAutoReconnect requires bluetooth transport (meshcore_connector.dart:3154)",
-   "note": "OFF v1.44 Wi-Fi auto-reconnect"
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "Android foreground service",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "N",
-    "MC1": "?",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "NA",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "flutter_foreground_task; services/background_service.dart",
-   "note": "MCO #58 open"
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "Battery monitoring",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/widgets/battery_indicator.dart",
-   "note": ""
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "Connection log / troubleshooting",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/ble_debug_log_screen.dart, app_debug_log_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "Radio clock sync on connect",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "tz/clock refs in meshcore_connector.dart (verify on device)",
-   "note": ""
-  },
-  {
-   "category": "Device connectivity",
-   "feature": "Companion CLI / Wi-Fi setup",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/companion_cli_screen.dart, wifi_settings_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "UI/UX & accessibility",
-   "feature": "Onboarding flow",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/bastion_setup_screen.dart, field_guide_screen.dart",
-   "note": ""
-  },
-  {
-   "category": "UI/UX & accessibility",
-   "feature": "Dark / light / red-light themes",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/theme/bastion_themes.dart (5 themes incl. Red light, Okabe-Ito)",
-   "note": ""
-  },
-  {
-   "category": "UI/UX & accessibility",
-   "feature": "Color-blind-safe palette",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "Okabe-Ito node colours + theme",
-   "note": ""
-  },
-  {
-   "category": "UI/UX & accessibility",
-   "feature": "Languages",
-   "status": {
-    "NX": "S",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "N",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "?",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "18 locales (lib/l10n)",
-   "note": "MC1 English only per mesh-sn.de"
-  },
-  {
-   "category": "UI/UX & accessibility",
-   "feature": "Screen-reader semantics",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "U",
-   "notoryx_evidence": "65 Semantics( uses in 116k lines; not audited",
-   "note": ""
-  },
-  {
-   "category": "UI/UX & accessibility",
-   "feature": "Settings search",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "More tab search box",
-   "note": ""
-  },
-  {
-   "category": "UI/UX & accessibility",
-   "feature": "Home-screen widget",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/services/home_widget_sync.dart (Android)",
-   "note": "Meshtastic Android has one"
-  },
-  {
-   "category": "UI/UX & accessibility",
-   "feature": "Live Activity / CarPlay / Siri",
-   "status": {
-    "NX": "NA",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "NA",
-   "notoryx_evidence": "no iOS build shipped",
-   "note": ""
-  },
-  {
-   "category": "Advanced",
-   "feature": "MQTT bridge (multi-broker)",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/services/mqtt_broker_service.dart",
-   "note": ""
-  },
-  {
-   "category": "Advanced",
-   "feature": "Bots / auto-replies",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/services/bot_engine.dart",
-   "note": ""
-  },
-  {
-   "category": "Advanced",
-   "feature": "Weather",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/services/weather_service.dart",
-   "note": ""
-  },
-  {
-   "category": "Advanced",
-   "feature": "Config / data export",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/screens/encrypted_backup_screen.dart",
-   "note": "OFF exports SQLite DB"
-  },
-  {
-   "category": "Advanced",
-   "feature": "Text compression",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "S",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "lib/helpers/smaz.dart, cyr2lat.dart",
-   "note": "MCOA 3 schemes"
-  },
-  {
-   "category": "Safety & emergency",
-   "feature": "SOS with repeat + all-clear",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/widgets/sos_panel.dart",
-   "note": ""
-  },
-  {
-   "category": "Safety & emergency",
-   "feature": "SOS relay",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/services/sos_relay_service.dart (not field-tested)",
-   "note": ""
-  },
-  {
-   "category": "Safety & emergency",
-   "feature": "Check-ins + overdue alerts",
-   "status": {
-    "NX": "S",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/services/field_ops_service.dart",
-   "note": ""
-  },
-  {
-   "category": "Safety & emergency",
-   "feature": "Pre-trip readiness check",
-   "status": {
-    "NX": "P",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "offline map readiness check only (BASTION_FIELD_VALIDATION.md)",
-   "note": ""
-  },
-  {
-   "category": "Privacy & security",
-   "feature": "Credentials in OS keychain",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "lib/services/secure_mqtt_credentials_store.dart",
-   "note": ""
-  },
-  {
-   "category": "Privacy & security",
-   "feature": "Encrypted backup",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "lib/services/encrypted_backup_service.dart",
-   "note": ""
-  },
-  {
-   "category": "Privacy & security",
-   "feature": "At-rest history encryption",
-   "status": {
-    "NX": "N",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "U",
-   "notoryx_evidence": "\u2014",
-   "note": ""
-  },
-  {
-   "category": "Privacy & security",
-   "feature": "App lock (biometric/PIN)",
-   "status": {
-    "NX": "N",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "U",
-   "notoryx_evidence": "\u2014",
-   "note": ""
-  },
-  {
-   "category": "Privacy & security",
-   "feature": "Link previews off by default",
-   "status": {
-    "NX": "Y",
-    "OFF": "?",
-    "MCO": "?",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "?",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "S",
-   "notoryx_evidence": "README",
-   "note": ""
-  },
-  {
-   "category": "Distribution & platform",
-   "feature": "Android",
-   "status": {
-    "NX": "Y",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "NA",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "Y",
-    "MCC": "Y",
-    "MSC": "NA"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "APK + Obtainium",
-   "note": ""
-  },
-  {
-   "category": "Distribution & platform",
-   "feature": "iOS",
-   "status": {
-    "NX": "N",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "Y",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "NA"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "builds in CI only; bundle id com.monitormx.meshcoreopen (upstream)",
-   "note": ""
-  },
-  {
-   "category": "Distribution & platform",
-   "feature": "macOS / Windows / Linux / web",
-   "status": {
-    "NX": "P",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "P",
-    "MTX": "Y",
-    "MCOA": "P",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "macOS released; others CI only",
-   "note": ""
-  },
-  {
-   "category": "Distribution & platform",
-   "feature": "App-store listing",
-   "status": {
-    "NX": "N",
-    "OFF": "Y",
-    "MCO": "Y",
-    "MC1": "Y",
-    "MTX": "Y",
-    "MCOA": "?",
-    "TEAM": "Y",
-    "MCC": "NA",
-    "MSC": "?"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "not on Play/App Store",
-   "note": ""
-  },
-  {
-   "category": "Distribution & platform",
-   "feature": "F-Droid / IzzyOnDroid",
-   "status": {
-    "NX": "N",
-    "OFF": "?",
-    "MCO": "N",
-    "MC1": "?",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "NA",
-    "MSC": "NA"
-   },
-   "notoryx_vs_field": "=",
-   "notoryx_evidence": "\u2014",
-   "note": "MCO #113 requested"
-  },
-  {
-   "category": "Distribution & platform",
-   "feature": "Message storage engine",
-   "status": {
-    "NX": "P",
-    "OFF": "Y",
-    "MCO": "P",
-    "MC1": "Y",
-    "MTX": "?",
-    "MCOA": "?",
-    "TEAM": "?",
-    "MCC": "Y",
-    "MSC": "Y"
-   },
-   "notoryx_vs_field": "I",
-   "notoryx_evidence": "shared_preferences JSON (lib/storage/message_store.dart:28)",
-   "note": "OFF SQLite (v1.43 export); Offband moved to SQLite #334"
-  }
- ]
+  "meta": {
+    "legend": [
+      "NX cells come from source (app `lib/`, firmware `src/helpers/AmateurStation.*` on NOTORYX-Core-Ham-Firmware main). Competitor cells are I/S/F/M only when a primary source says so; otherwise U.",
+      "MC is included only for contrast: stock MeshCore encrypts all traffic, so it is not a Part 97 option on amateur frequencies.",
+      "This is an engineering comparison, not legal advice. Part 97 points must be checked against the current eCFR text.",
+      "No competitor app was installed and tested hands-on for this report."
+    ],
+    "title": "NOTORYX Core Ham: master feature comparison matrix",
+    "researched": "2026-11-07 (NOTORYX Core Ham `dev` d064a55, 0.1.0-test.3; open PRs #8/#9 are UI only)",
+    "ours": "NX",
+    "codes": {
+      "I": "Implemented",
+      "P": "Partial",
+      "M": "Missing",
+      "S": "Superior",
+      "F": "Inferior",
+      "U": "Unverified",
+      "NA": "Not applicable",
+      "O": "In open PR"
+    },
+    "counts_for_ours": {
+      "Implemented": 13,
+      "Superior": 4,
+      "Unverified": 1,
+      "Inferior": 3,
+      "Partial": 3,
+      "Missing": 1
+    },
+    "rows": 25
+  },
+  "apps": [
+    {
+      "key": "NX",
+      "name": "NOTORYX Core Ham + NOTORYX ham firmware"
+    },
+    {
+      "key": "MT",
+      "name": "Meshtastic licensed mode (official apps + firmware)"
+    },
+    {
+      "key": "LA",
+      "name": "LoRa APRS (trackers/iGates + APRSdroid / aprs.fi)"
+    },
+    {
+      "key": "RS",
+      "name": "Reticulum + Sideband on an RNode"
+    },
+    {
+      "key": "MC",
+      "name": "Stock MeshCore apps (official, MeshCore One)"
+    }
+  ],
+  "areas": [
+    {
+      "area": "Part 97 operation",
+      "features": [
+        {
+          "feature": "Unencrypted content on air",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Implemented",
+            "RS": "Unverified",
+            "MC": "Missing"
+          },
+          "evidence": "NX firmware sends plaintext with a 2-byte MAC kept; MT licensed mode clears encryption (meshtastic.org user config docs); APRS is plaintext by design; MC encrypts everything"
+        },
+        {
+          "feature": "Call sign carried by every transmitted frame, including relays",
+          "status": {
+            "NX": "Superior",
+            "MT": "Partial",
+            "LA": "Implemented",
+            "RS": "Partial",
+            "MC": "Missing"
+          },
+          "evidence": "NX: 8-byte call trailer added in firmware at send, so repeaters ID themselves; MT: call sign in NodeInfo broadcasts; APRS: source call in every frame; RS: periodic interface ID (`id_callsign`)"
+        },
+        {
+          "feature": "Transmit blocked until a valid call sign is set",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "NX firmware TX inhibit; app `isUsCallsign()` in `lib/utils/amateur_radio.dart:63`"
+        },
+        {
+          "feature": "Remote login without sending the password",
+          "status": {
+            "NX": "Superior",
+            "MT": "Unverified",
+            "LA": "Not applicable",
+            "RS": "Unverified",
+            "MC": "Missing"
+          },
+          "evidence": "NX login proof: HMAC-SHA256 over timestamp and both keys (firmware PR #2, merged)"
+        },
+        {
+          "feature": "Frequency locked to amateur bands",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "NX firmware 420–450 / 902–928 MHz; app `isAmateurFrequencyMHz()`"
+        },
+        {
+          "feature": "Chip power vs antenna output estimate",
+          "status": {
+            "NX": "Superior",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Missing"
+          },
+          "evidence": "`lib/utils/amateur_power.dart`: per-board amplifier gain, dBm→W, 10 W spread-spectrum ceiling (§97.311(d))"
+        },
+        {
+          "feature": "Location cautions (§97.303 33 cm exclusion areas, Line A)",
+          "status": {
+            "NX": "Superior",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "`lib/utils/amateur_location.dart`"
+        },
+        {
+          "feature": "Coordination guide for operators",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Partial",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "`docs/licensed-operator/COORDINATION.md`; MT has community guides (bayme.sh licensed operations)"
+        },
+        {
+          "feature": "Spoof-resistant licensed flag",
+          "status": {
+            "NX": "Unverified",
+            "MT": "Inferior",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "MT CVE-2025-55292: forged NodeInfo could advertise ham mode"
+        }
+      ]
+    },
+    {
+      "area": "Messaging and mesh",
+      "features": [
+        {
+          "feature": "Mesh routing (multi-hop, flood + direct)",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited from NOTORYX Core; APRS uses digipeaters, not mesh routing"
+        },
+        {
+          "feature": "Direct and channel messages",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "APRS messages are point-to-point with ACK"
+        },
+        {
+          "feature": "Delivery acknowledgements and retries",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited from Core (rc.24 retry logic)"
+        },
+        {
+          "feature": "Message storage engine",
+          "status": {
+            "NX": "Inferior",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Unverified"
+          },
+          "evidence": "Inherited `lib/storage/message_store.dart:29` JSON in SharedPreferences"
+        },
+        {
+          "feature": "Interop with the stock network on the same frequency",
+          "status": {
+            "NX": "Inferior",
+            "MT": "Inferior",
+            "LA": "Not applicable",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "By design: payload version 2 frames are not readable by stock MeshCore; MT licensed nodes can't talk to the encrypted mesh"
+        }
+      ]
+    },
+    {
+      "area": "Mapping, internet and tools",
+      "features": [
+        {
+          "feature": "Map with nodes and positions",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Implemented",
+            "RS": "Unverified",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited Core map"
+        },
+        {
+          "feature": "Internet gateway / bridge",
+          "status": {
+            "NX": "Partial",
+            "MT": "Implemented",
+            "LA": "Superior",
+            "RS": "Implemented",
+            "MC": "Partial"
+          },
+          "evidence": "NX inherits multi-broker MQTT from Core; APRS-IS iGates are the mature, worldwide ham option"
+        },
+        {
+          "feature": "Path / route diagnostics",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Partial",
+            "LA": "Partial",
+            "RS": "Unverified",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited Core Route Intelligence (rc.24 version)"
+        },
+        {
+          "feature": "Raw packet log with payload version",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Partial"
+          },
+          "evidence": "`lib/screens/ble_debug_log_screen.dart:310`"
+        }
+      ]
+    },
+    {
+      "area": "Platform and distribution",
+      "features": [
+        {
+          "feature": "Android",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Implemented",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "NX test builds in NOTORYX-Core-Ham-Releases (test.1–test.3)"
+        },
+        {
+          "feature": "iOS",
+          "status": {
+            "NX": "Missing",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Missing",
+            "MC": "Implemented"
+          },
+          "evidence": "NX iOS bundle ID still `com.monitormx.meshcoreopen`; aprs.fi iOS works with a BLE KISS TNC; Sideband has no iOS build"
+        },
+        {
+          "feature": "Desktop",
+          "status": {
+            "NX": "Partial",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "NX macOS build exists (inherited workflow), not released"
+        },
+        {
+          "feature": "Firmware for the boards",
+          "status": {
+            "NX": "Partial",
+            "MT": "Implemented",
+            "LA": "Implemented",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "NX ham firmware builds 7 boards; Station G2/G3 BLE companion over partition size"
+        },
+        {
+          "feature": "Open source",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Partial"
+          },
+          "evidence": "aprs.fi app is proprietary; MC official app is proprietary, MC1 is GPL-3.0"
+        },
+        {
+          "feature": "Translations",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited Core locales; new Licensed Operator strings English-first"
+        },
+        {
+          "feature": "Tracks upstream app fixes",
+          "status": {
+            "NX": "Inferior",
+            "MT": "Not applicable",
+            "LA": "Not applicable",
+            "RS": "Not applicable",
+            "MC": "Not applicable"
+          },
+          "evidence": "NX app is based on Core rc.24 and is 70 commits behind Core `dev` (rc.33)"
+        }
+      ]
+    }
+  ]
 }
