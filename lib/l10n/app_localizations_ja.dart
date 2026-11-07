@@ -9443,15 +9443,127 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get batteryOpt_title => 'バッテリーの最適化';
+  String block_sender(String name) {
+    return '$name をブロック';
+  }
 
   @override
-  String get batteryOpt_off => 'NOTORYX Core ではオフのため、バックグラウンドでも通知が届きます。';
+  String get block_confirmBody =>
+      'この相手のチャンネルメッセージはこの端末で非表示になり、通知もされません。相手からはあなたのメッセージが引き続き見えます。設定でブロックを解除できます。';
 
   @override
-  String get batteryOpt_on =>
-      'オン。Android がバックグラウンドでアプリを停止することがあり、SOS・チェックイン・メッセージの通知が遅れたり届かなかったりします。';
+  String get block_action => 'ブロック';
 
   @override
-  String get batteryOpt_fix => 'オフにする';
+  String block_done(String name) {
+    return '$name をブロックしました';
+  }
+
+  @override
+  String get mention_suggestions => '名前の候補';
+
+  @override
+  String get block_listTitle => 'ブロック中の送信者';
+
+  @override
+  String get block_listHint => 'これらの名前からのメッセージはチャンネルで非表示になり、通知もされません。';
+
+  @override
+  String get block_listEmpty => 'ブロック中の相手はいません。';
+
+  @override
+  String get block_unblock => 'ブロック解除';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件ブロック中',
+      zero: 'ブロックなし',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return '無線機の連絡先リストが $percent% 使用中';
+  }
+
+  @override
+  String get contactTable_full => '無線機の連絡先リストがいっぱいです';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used / $max 件の連絡先';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'いっぱいになると、無線機は最も長く受信していない連絡先を置き換えます。お気に入りは残ります。';
+
+  @override
+  String get contactTable_stopHint => 'いっぱいになると、無線機は新しく受信した連絡先を追加しなくなります。';
+
+  @override
+  String get contactTable_freeUp => '空きを作る';
+
+  @override
+  String get contactTable_sheetBody => '受信が古い順に表示。お気に入りは表示されません。';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return '最終受信 $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件の連絡先を削除',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      '無線機から削除され、この端末上のメッセージも削除されます。元に戻せません。';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件の連絡先を削除しました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => 'すべての連絡先がお気に入りのため、候補はありません。';
+
+  @override
+  String get adminWait_waiting => '応答を待っています';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'まだ応答がありません。再試行中 ($attempt/$total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '直接、$hops ホップ',
+      zero: '直接',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '最大 $seconds 秒';
+  }
 }

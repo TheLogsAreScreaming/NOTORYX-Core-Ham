@@ -9928,16 +9928,135 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get batteryOpt_title => 'Ottimizzazione batteria';
+  String block_sender(String name) {
+    return 'Blocca $name';
+  }
 
   @override
-  String get batteryOpt_off =>
-      'Disattivata per NOTORYX Core, così gli avvisi funzionano anche in background.';
+  String get block_confirmBody =>
+      'I suoi messaggi nei canali vengono nascosti su questo dispositivo e non ti notificano mai. Può ancora vedere i tuoi messaggi. Puoi sbloccarlo nelle Impostazioni.';
 
   @override
-  String get batteryOpt_on =>
-      'Attiva. Android può fermare l\'app in background, quindi gli avvisi di SOS, check-in e messaggi possono arrivare in ritardo o andare persi.';
+  String get block_action => 'Blocca';
 
   @override
-  String get batteryOpt_fix => 'Disattiva';
+  String block_done(String name) {
+    return '$name bloccato';
+  }
+
+  @override
+  String get mention_suggestions => 'Suggerimenti di nomi';
+
+  @override
+  String get block_listTitle => 'Mittenti bloccati';
+
+  @override
+  String get block_listHint =>
+      'I messaggi di questi nomi sono nascosti nei canali e non ti notificano mai.';
+
+  @override
+  String get block_listEmpty => 'Nessuno è bloccato.';
+
+  @override
+  String get block_unblock => 'Sblocca';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bloccati',
+      one: '1 bloccato',
+      zero: 'Nessuno bloccato',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Elenco contatti della radio pieno al $percent%';
+  }
+
+  @override
+  String get contactTable_full => 'L\'elenco contatti della radio è pieno';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used di $max contatti';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Quando è pieno, la radio sostituisce il contatto sentito meno di recente. I preferiti restano.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Quando è pieno, la radio smette di aggiungere i nuovi contatti che sente.';
+
+  @override
+  String get contactTable_freeUp => 'Libera spazio';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Prima quelli sentiti meno di recente. I preferiti non sono elencati.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Sentito l\'ultima volta $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Rimuovi $count contatti',
+      one: 'Rimuovi 1 contatto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Vengono rimossi dalla radio e i loro messaggi su questo dispositivo vengono eliminati. Non si può annullare.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contatti rimossi',
+      one: '1 contatto rimosso',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Tutti i contatti sono preferiti, quindi non c\'è nulla da suggerire.';
+
+  @override
+  String get adminWait_waiting => 'In attesa di risposta';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Ancora nessuna risposta. Nuovo tentativo ($attempt di $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Diretto, $hops salti',
+      one: 'Diretto, 1 salto',
+      zero: 'Diretto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'fino a $seconds s';
+  }
 }

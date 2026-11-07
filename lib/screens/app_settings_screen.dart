@@ -16,6 +16,7 @@ import '../services/notification_service.dart';
 import '../services/translation_service.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/battery_optimization_tile.dart';
+import '../widgets/blocked_senders_sheet.dart';
 import '../widgets/theme_picker.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/mesh_ui.dart';
@@ -414,6 +415,23 @@ class AppSettingsScreen extends StatelessWidget {
                 ),
             ],
           ),
+        ),
+        const Divider(height: 1, indent: 16),
+        ListTile(
+          key: const ValueKey('blocked-senders-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          leading: const Icon(Icons.block, size: 20),
+          title: Text(context.l10n.block_listTitle),
+          subtitle: Text(
+            context.l10n.block_count(
+              settingsService.settings.blockedSenders.length,
+            ),
+          ),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => showBlockedSendersSheet(context),
         ),
       ],
     );

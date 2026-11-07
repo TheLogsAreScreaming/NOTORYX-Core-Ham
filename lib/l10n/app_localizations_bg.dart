@@ -9898,16 +9898,135 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get batteryOpt_title => 'Оптимизация на батерията';
+  String block_sender(String name) {
+    return 'Блокирай $name';
+  }
 
   @override
-  String get batteryOpt_off =>
-      'Изключена за NOTORYX Core, така известията работят и във фонов режим.';
+  String get block_confirmBody =>
+      'Съобщенията му в каналите се скриват на това устройство и никога не ви известяват. Той още вижда вашите съобщения. Можете да го отблокирате в Настройки.';
 
   @override
-  String get batteryOpt_on =>
-      'Включена. Android може да спре приложението във фонов режим и известията за SOS, отметки и съобщения да закъснеят или да се изгубят.';
+  String get block_action => 'Блокирай';
 
   @override
-  String get batteryOpt_fix => 'Изключи';
+  String block_done(String name) {
+    return '$name е блокиран';
+  }
+
+  @override
+  String get mention_suggestions => 'Предложения за имена';
+
+  @override
+  String get block_listTitle => 'Блокирани податели';
+
+  @override
+  String get block_listHint =>
+      'Съобщенията от тези имена се скриват в каналите и никога не ви известяват.';
+
+  @override
+  String get block_listEmpty => 'Няма блокирани.';
+
+  @override
+  String get block_unblock => 'Отблокирай';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count блокирани',
+      one: '1 блокиран',
+      zero: 'Няма блокирани',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Списъкът с контакти на радиото е запълнен на $percent%';
+  }
+
+  @override
+  String get contactTable_full => 'Списъкът с контакти на радиото е пълен';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used от $max контакта';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Когато е пълен, радиото заменя най-отдавна чутия контакт. Любимите се запазват.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Когато е пълен, радиото спира да добавя нови чути контакти.';
+
+  @override
+  String get contactTable_freeUp => 'Освободи място';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Първо най-отдавна чутите. Любимите не са в списъка.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Последно чут $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Премахни $count контакта',
+      one: 'Премахни 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Премахват се от радиото, а съобщенията им на това устройство се изтриват. Това не може да се отмени.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Премахнати са $count контакта',
+      one: 'Премахнат е 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Всички контакти са любими, затова няма какво да се предложи.';
+
+  @override
+  String get adminWait_waiting => 'Изчакване на отговор';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Още няма отговор. Нов опит ($attempt от $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Директно, $hops скока',
+      one: 'Директно, 1 скок',
+      zero: 'Директно',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'до $seconds с';
+  }
 }

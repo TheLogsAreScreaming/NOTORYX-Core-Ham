@@ -9950,16 +9950,143 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get batteryOpt_title => 'Оптимізація батареї';
+  String block_sender(String name) {
+    return 'Заблокувати $name';
+  }
 
   @override
-  String get batteryOpt_off =>
-      'Вимкнена для NOTORYX Core, тож сповіщення працюють у фоні.';
+  String get block_confirmBody =>
+      'Його повідомлення в каналах приховуються на цьому пристрої й ніколи не сповіщають вас. Він і далі бачить ваші повідомлення. Розблокувати можна в Налаштуваннях.';
 
   @override
-  String get batteryOpt_on =>
-      'Увімкнена. Android може зупинити застосунок у фоні, і сповіщення про SOS, відмітки та повідомлення можуть запізнюватися або губитися.';
+  String get block_action => 'Заблокувати';
 
   @override
-  String get batteryOpt_fix => 'Вимкнути';
+  String block_done(String name) {
+    return '$name заблоковано';
+  }
+
+  @override
+  String get mention_suggestions => 'Підказки імен';
+
+  @override
+  String get block_listTitle => 'Заблоковані відправники';
+
+  @override
+  String get block_listHint =>
+      'Повідомлення від цих імен приховуються в каналах і ніколи не сповіщають вас.';
+
+  @override
+  String get block_listEmpty => 'Ніхто не заблокований.';
+
+  @override
+  String get block_unblock => 'Розблокувати';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count заблоковано',
+      many: '$count заблоковано',
+      few: '$count заблоковано',
+      one: '1 заблоковано',
+      zero: 'Ніхто не заблокований',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Список контактів радіо заповнено на $percent%';
+  }
+
+  @override
+  String get contactTable_full => 'Список контактів радіо заповнено';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used з $max контактів';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Коли він заповнений, радіо замінює контакт, якого найдовше не було чути. Обрані зберігаються.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Коли він заповнений, радіо перестає додавати нові почуті контакти.';
+
+  @override
+  String get contactTable_freeUp => 'Звільнити місце';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Спершу ті, кого найдовше не було чути. Обрані не показано.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Востаннє чути $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Видалити $count контакту',
+      many: 'Видалити $count контактів',
+      few: 'Видалити $count контакти',
+      one: 'Видалити 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Їх буде видалено з радіо, а їхні повідомлення на цьому пристрої стерто. Це не можна скасувати.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Видалено $count контакту',
+      many: 'Видалено $count контактів',
+      few: 'Видалено $count контакти',
+      one: 'Видалено 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Усі контакти в обраних, тож пропонувати нічого.';
+
+  @override
+  String get adminWait_waiting => 'Очікування відповіді';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Відповіді ще немає. Повторна спроба ($attempt з $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Напряму, $hops переходу',
+      many: 'Напряму, $hops переходів',
+      few: 'Напряму, $hops переходи',
+      one: 'Напряму, 1 перехід',
+      zero: 'Напряму',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'до $seconds с';
+  }
 }

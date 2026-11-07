@@ -9928,16 +9928,135 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get batteryOpt_title => 'Akku-Optimierung';
+  String block_sender(String name) {
+    return '$name blockieren';
+  }
 
   @override
-  String get batteryOpt_off =>
-      'Für NOTORYX Core aus, damit Benachrichtigungen auch im Hintergrund funktionieren.';
+  String get block_confirmBody =>
+      'Kanalnachrichten dieser Person werden auf diesem Gerät ausgeblendet und lösen keine Benachrichtigung aus. Sie sieht deine Nachrichten weiterhin. Du kannst die Blockierung in den Einstellungen aufheben.';
 
   @override
-  String get batteryOpt_on =>
-      'An. Android kann die App im Hintergrund beenden, sodass SOS-, Check-in- und Nachrichtenhinweise verspätet kommen oder ausbleiben.';
+  String get block_action => 'Blockieren';
 
   @override
-  String get batteryOpt_fix => 'Ausschalten';
+  String block_done(String name) {
+    return '$name blockiert';
+  }
+
+  @override
+  String get mention_suggestions => 'Namensvorschläge';
+
+  @override
+  String get block_listTitle => 'Blockierte Absender';
+
+  @override
+  String get block_listHint =>
+      'Nachrichten von diesen Namen werden in Kanälen ausgeblendet und lösen nie eine Benachrichtigung aus.';
+
+  @override
+  String get block_listEmpty => 'Niemand ist blockiert.';
+
+  @override
+  String get block_unblock => 'Freigeben';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blockiert',
+      one: '1 blockiert',
+      zero: 'Niemand blockiert',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Kontaktliste des Funkgeräts zu $percent% voll';
+  }
+
+  @override
+  String get contactTable_full => 'Kontaktliste des Funkgeräts ist voll';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used von $max Kontakten';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Wenn sie voll ist, ersetzt das Funkgerät den am längsten nicht gehörten Kontakt. Favoriten bleiben erhalten.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Wenn sie voll ist, fügt das Funkgerät keine neu gehörten Kontakte mehr hinzu.';
+
+  @override
+  String get contactTable_freeUp => 'Platz schaffen';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Am längsten nicht gehörte zuerst. Favoriten werden nicht aufgeführt.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Zuletzt gehört $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Kontakte entfernen',
+      one: '1 Kontakt entfernen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Sie werden vom Funkgerät entfernt und ihre Nachrichten auf diesem Gerät gelöscht. Das lässt sich nicht rückgängig machen.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Kontakte entfernt',
+      one: '1 Kontakt entfernt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Alle Kontakte sind Favoriten, daher gibt es keine Vorschläge.';
+
+  @override
+  String get adminWait_waiting => 'Warte auf Antwort';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Noch keine Antwort. Neuer Versuch ($attempt von $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Direkt, $hops Hops',
+      one: 'Direkt, 1 Hop',
+      zero: 'Direkt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'bis zu $seconds s';
+  }
 }

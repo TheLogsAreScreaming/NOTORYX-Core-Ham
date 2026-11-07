@@ -9909,16 +9909,143 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get batteryOpt_title => 'Optimizacija baterije';
+  String block_sender(String name) {
+    return 'Blokiraj $name';
+  }
 
   @override
-  String get batteryOpt_off =>
-      'Za NOTORYX Core je izklopljena, zato obvestila delujejo tudi v ozadju.';
+  String get block_confirmBody =>
+      'Njegova sporočila v kanalih so na tej napravi skrita in vas nikoli ne obvestijo. Še vedno vidi vaša sporočila. Blokado lahko odstranite v Nastavitvah.';
 
   @override
-  String get batteryOpt_on =>
-      'Vklopljena. Android lahko aplikacijo v ozadju ustavi, zato lahko obvestila o SOS, prijavah in sporočilih zamujajo ali se izgubijo.';
+  String get block_action => 'Blokiraj';
 
   @override
-  String get batteryOpt_fix => 'Izklopi';
+  String block_done(String name) {
+    return '$name blokiran';
+  }
+
+  @override
+  String get mention_suggestions => 'Predlogi imen';
+
+  @override
+  String get block_listTitle => 'Blokirani pošiljatelji';
+
+  @override
+  String get block_listHint =>
+      'Sporočila teh imen so v kanalih skrita in vas nikoli ne obvestijo.';
+
+  @override
+  String get block_listEmpty => 'Nihče ni blokiran.';
+
+  @override
+  String get block_unblock => 'Odblokiraj';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blokiranih',
+      few: '$count blokirani',
+      two: '2 blokirana',
+      one: '1 blokiran',
+      zero: 'Nihče ni blokiran',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Seznam stikov radia je poln $percent %';
+  }
+
+  @override
+  String get contactTable_full => 'Seznam stikov radia je poln';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used od $max stikov';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Ko je poln, radio zamenja stik, ki ga najdlje ni slišal. Priljubljeni ostanejo.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Ko je poln, radio ne dodaja več novih slišanih stikov.';
+
+  @override
+  String get contactTable_freeUp => 'Sprosti prostor';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Najprej tisti, ki jih najdlje ni bilo slišati. Priljubljeni niso navedeni.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Nazadnje slišan $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Odstrani $count stikov',
+      few: 'Odstrani $count stike',
+      two: 'Odstrani 2 stika',
+      one: 'Odstrani 1 stik',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Odstranjeni bodo z radia, njihova sporočila na tej napravi pa izbrisana. Tega ni mogoče razveljaviti.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Odstranjenih $count stikov',
+      few: 'Odstranjeni $count stiki',
+      two: 'Odstranjena 2 stika',
+      one: 'Odstranjen 1 stik',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Vsi stiki so priljubljeni, zato ni kaj predlagati.';
+
+  @override
+  String get adminWait_waiting => 'Čakanje na odgovor';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Odgovora še ni. Nov poskus ($attempt od $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Neposredno, $hops skokov',
+      few: 'Neposredno, $hops skoki',
+      two: 'Neposredno, 2 skoka',
+      one: 'Neposredno, 1 skok',
+      zero: 'Neposredno',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'do $seconds s';
+  }
 }

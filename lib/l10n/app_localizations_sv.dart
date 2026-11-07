@@ -9838,16 +9838,135 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get batteryOpt_title => 'Batterioptimering';
+  String block_sender(String name) {
+    return 'Blockera $name';
+  }
 
   @override
-  String get batteryOpt_off =>
-      'Av för NOTORYX Core, så aviseringar fungerar i bakgrunden.';
+  String get block_confirmBody =>
+      'Personens kanalmeddelanden döljs på den här enheten och ger aldrig aviseringar. Personen ser fortfarande dina meddelanden. Du kan häva blockeringen i Inställningar.';
 
   @override
-  String get batteryOpt_on =>
-      'På. Android kan stoppa appen i bakgrunden, så SOS-, incheckning- och meddelandeaviseringar kan bli sena eller utebli.';
+  String get block_action => 'Blockera';
 
   @override
-  String get batteryOpt_fix => 'Stäng av';
+  String block_done(String name) {
+    return '$name blockerad';
+  }
+
+  @override
+  String get mention_suggestions => 'Namnförslag';
+
+  @override
+  String get block_listTitle => 'Blockerade avsändare';
+
+  @override
+  String get block_listHint =>
+      'Meddelanden från de här namnen döljs i kanaler och ger aldrig aviseringar.';
+
+  @override
+  String get block_listEmpty => 'Ingen är blockerad.';
+
+  @override
+  String get block_unblock => 'Häv blockering';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blockerade',
+      one: '1 blockerad',
+      zero: 'Ingen blockerad',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Radions kontaktlista $percent % full';
+  }
+
+  @override
+  String get contactTable_full => 'Radions kontaktlista är full';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used av $max kontakter';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'När den är full ersätter radion den kontakt som hörts för längst sedan. Favoriter behålls.';
+
+  @override
+  String get contactTable_stopHint =>
+      'När den är full slutar radion lägga till nya kontakter den hör.';
+
+  @override
+  String get contactTable_freeUp => 'Frigör utrymme';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Hörda för längst sedan först. Favoriter visas inte.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Senast hörd $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Ta bort $count kontakter',
+      one: 'Ta bort 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'De tas bort från radion och deras meddelanden på den här enheten raderas. Det går inte att ångra.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tog bort $count kontakter',
+      one: 'Tog bort 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Alla kontakter är favoriter, så det finns inget att föreslå.';
+
+  @override
+  String get adminWait_waiting => 'Väntar på svar';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Inget svar än. Försöker igen ($attempt av $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Direkt, $hops hopp',
+      one: 'Direkt, 1 hopp',
+      zero: 'Direkt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'upp till $seconds s';
+  }
 }

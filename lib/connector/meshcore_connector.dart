@@ -409,6 +409,7 @@ class MeshCoreConnector extends ChangeNotifier {
   static const int _defaultMaxContacts = 350;
   static const int _defaultMaxChannels = 40;
   int _maxContacts = _defaultMaxContacts;
+  bool _maxContactsReported = false;
   int _maxChannels = _defaultMaxChannels;
   int? _contactSyncTotal;
   int _contactSyncReceived = 0;
@@ -739,6 +740,10 @@ class MeshCoreConnector extends ChangeNotifier {
   int? get storageUsedKb => _storageUsedKb;
   int? get storageTotalKb => _storageTotalKb;
   int get maxContacts => _maxContacts;
+
+  /// Whether [maxContacts] came from the radio's device info rather than the
+  /// built-in default, so a fullness warning can trust it.
+  bool get maxContactsReported => _maxContactsReported;
   int get maxChannels => _maxChannels;
   Set<String> get knownContactKeys => Set.unmodifiable(_knownContactKeys);
 
@@ -3615,6 +3620,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _awaitingSelfInfo = false;
     _hasReceivedDeviceInfo = false;
     _maxContacts = _defaultMaxContacts;
+    _maxContactsReported = false;
     _maxChannels = _defaultMaxChannels;
     _resetSyncProgressState();
     _pendingChannelSentQueue.clear();
@@ -5937,6 +5943,7 @@ class MeshCoreConnector extends ChangeNotifier {
     final nextMaxContacts = reportedContacts > 0
         ? reportedContacts * 2
         : _maxContacts;
+    if (reportedContacts > 0) _maxContactsReported = true;
     final nextMaxChannels = reportedChannels > 0
         ? reportedChannels
         : _maxChannels;
@@ -6374,6 +6381,7 @@ class MeshCoreConnector extends ChangeNotifier {
     bool autoAddRepeaters = false,
   }) {
     _maxContacts = maxContacts;
+    _maxContactsReported = true;
     _overwriteOldest = overwriteOldest;
     _autoAddUsers = autoAddUsers;
     _autoAddRepeaters = autoAddRepeaters;
@@ -7033,6 +7041,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     final label = channelName ?? _channelDisplayName(channelIndex);
     if (_appSettingsService!.isChannelMuted(label)) return;
+    if (_isBlockedChannelSender(message)) return;
     if (!_receivedChannelMessagesController.isClosed) {
       _receivedChannelMessagesController.add(
         ReceivedChannelMessage(message, label),
@@ -7728,10 +7737,17 @@ class MeshCoreConnector extends ChangeNotifier {
         );
   }
 
+  /// Whether [message] comes from a sender the user blocked: it is kept but
+  /// neither notifies nor counts as unread.
+  bool _isBlockedChannelSender(ChannelMessage message) =>
+      !message.isOutgoing &&
+      (_appSettingsService?.isSenderBlocked(message.senderName) ?? false);
+
   void _maybeIncrementChannelUnread(
     ChannelMessage message, {
     required bool isNew,
   }) {
+    if (_isBlockedChannelSender(message)) return;
     if (!isNew || message.isOutgoing) {
       _appDebugLogService?.info(
         'Skip unread increment: isNew=$isNew, isOutgoing=${message.isOutgoing}',
@@ -8476,6 +8492,7 @@ class MeshCoreConnector extends ChangeNotifier {
     // They're only cleared on manual disconnect via disconnect() method
     _hasReceivedDeviceInfo = false;
     _maxContacts = _defaultMaxContacts;
+    _maxContactsReported = false;
     _maxChannels = _defaultMaxChannels;
     _resetSyncProgressState();
     _pendingChannelSentQueue.clear();

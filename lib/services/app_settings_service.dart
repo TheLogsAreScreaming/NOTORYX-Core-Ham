@@ -283,6 +283,25 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(mutedChannels: updated));
   }
 
+  /// Whether channel messages from [senderName] are blocked.
+  bool isSenderBlocked(String senderName) {
+    final name = senderName.trim();
+    return name.isNotEmpty && _settings.blockedSenders.contains(name);
+  }
+
+  Future<void> blockSender(String senderName) async {
+    final name = senderName.trim();
+    if (name.isEmpty) return;
+    final updated = Set<String>.from(_settings.blockedSenders)..add(name);
+    await updateSettings(_settings.copyWith(blockedSenders: updated));
+  }
+
+  Future<void> unblockSender(String senderName) async {
+    final updated = Set<String>.from(_settings.blockedSenders)
+      ..remove(senderName.trim());
+    await updateSettings(_settings.copyWith(blockedSenders: updated));
+  }
+
   Future<void> setTcpServerAddress(String value) async {
     await updateSettings(_settings.copyWith(tcpServerAddress: value));
   }
