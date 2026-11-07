@@ -9200,6 +9200,113 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get deliv_title => '전달 세부정보';
+
+  @override
+  String get deliv_note => '이 메시지에 저장된 정보로 계산했습니다.';
+
+  @override
+  String get deliv_queued => '대기열';
+
+  @override
+  String get deliv_sent => '무전기가 전송함';
+
+  @override
+  String get deliv_notSent => '무전기가 받지 않음';
+
+  @override
+  String get deliv_attempts => '시도';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return '계획: 직접 $direct회, 이후 플러드 $flood회';
+  }
+
+  @override
+  String get deliv_lastRoute => '마지막 경로';
+
+  @override
+  String get deliv_routeFlood => '모든 중계기를 거치는 플러드';
+
+  @override
+  String get deliv_routeNeighbor => '직접, 중계기 없음';
+
+  @override
+  String deliv_routeVia(String path) {
+    return '$path 경유 직접';
+  }
+
+  @override
+  String get deliv_confirmed => '수신 확인됨';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return '왕복 $seconds초';
+  }
+
+  @override
+  String get deliv_waiting => '확인 대기 중';
+
+  @override
+  String get deliv_noConfirm => '확인 없음';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name 마지막 수신';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours시간 전',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return '전달됨. $name이(가) 확인했습니다.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return '직접 시도가 실패한 뒤 플러드로 전달되었습니다. $name에 대한 저장된 경로가 오래되었을 수 있습니다.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return '계속 시도 중: $total회 중 $attempt번째.';
+  }
+
+  @override
+  String get deliv_vNotSent => '무전기가 이 메시지를 받지 않았습니다. 연결을 확인한 뒤 다시 시도하세요.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours시간',
+    );
+    return '확인 없음. $name이(가) $_temp0 동안 들리지 않아 범위 밖이거나 꺼져 있을 수 있습니다.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      '저장된 경로로 확인이 없고 플러드 시도가 꺼져 있습니다. 설정 → 앱 설정 → 메시지에서 켜거나 다시 시도하세요.';
+
+  @override
+  String get deliv_vNoAck =>
+      '어느 경로로도 확인이 없습니다. 범위 밖이거나 확인 응답이 돌아오지 못했을 수 있습니다.';
+
+  @override
   String get favReturn_setting => '즐겨찾기 범위 복귀';
 
   @override

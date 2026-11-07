@@ -9661,6 +9661,117 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get deliv_title => 'Zustelldetails';
+
+  @override
+  String get deliv_note =>
+      'Ermittelt aus dem, was mit dieser Nachricht gespeichert ist.';
+
+  @override
+  String get deliv_queued => 'In Warteschlange';
+
+  @override
+  String get deliv_sent => 'Von deinem Funkgerät gesendet';
+
+  @override
+  String get deliv_notSent => 'Nicht von deinem Funkgerät übernommen';
+
+  @override
+  String get deliv_attempts => 'Versuche';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made von $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plan: $direct direkt, dann $flood per Flood';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Letzte Route';
+
+  @override
+  String get deliv_routeFlood => 'Flood über alle Repeater';
+
+  @override
+  String get deliv_routeNeighbor => 'Direkt, ohne Repeater';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Direkt über $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Empfang bestätigt';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Umlaufzeit $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Warte auf Bestätigung';
+
+  @override
+  String get deliv_noConfirm => 'Keine Bestätigung';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name zuletzt gehört';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'vor $hours Stunden',
+      one: 'vor 1 Stunde',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Zugestellt. $name hat es bestätigt.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Per Flood zugestellt, nachdem die direkten Versuche fehlschlugen. Die gespeicherte Route zu $name ist vielleicht veraltet.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Wird noch versucht: Versuch $attempt von $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Dein Funkgerät hat diese Nachricht nie übernommen. Prüfe die Verbindung und versuche es erneut.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours Stunden',
+      one: '1 Stunde',
+    );
+    return 'Keine Bestätigung. $name wurde seit $_temp0 nicht gehört und ist vielleicht außer Reichweite oder ausgeschaltet.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Keine Bestätigung über die gespeicherte Route, und Flood-Versuche sind aus. Schalte sie unter Einstellungen → App-Einstellungen → Nachrichten ein oder versuche es erneut.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Keine Bestätigung über irgendeine Route. Vielleicht außer Reichweite, oder die Bestätigung kam nicht bis zu dir zurück.';
+
+  @override
   String get favReturn_setting => 'Favoriten wieder in Reichweite';
 
   @override

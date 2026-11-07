@@ -9632,6 +9632,116 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get deliv_title => 'Подробности за доставката';
+
+  @override
+  String get deliv_note => 'Изведено от данните, запазени с това съобщение.';
+
+  @override
+  String get deliv_queued => 'В опашка';
+
+  @override
+  String get deliv_sent => 'Изпратено от радиото';
+
+  @override
+  String get deliv_notSent => 'Радиото не го прие';
+
+  @override
+  String get deliv_attempts => 'Опити';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made от $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'План: $direct директни, после $flood с наводняване';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Последен маршрут';
+
+  @override
+  String get deliv_routeFlood => 'Наводняване през всички ретранслатори';
+
+  @override
+  String get deliv_routeNeighbor => 'Директно, без ретранслатори';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Директно през $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Потвърдено получаване';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Двупосочно време $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Изчаква потвърждение';
+
+  @override
+  String get deliv_noConfirm => 'Няма потвърждение';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name последно чут';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'преди $hours часа',
+      one: 'преди 1 час',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Доставено. $name потвърди.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Доставено с наводняване, след като директните опити не успяха. Запазеният маршрут до $name може да е остарял.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Още се опитва: опит $attempt от $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Радиото не прие това съобщение. Проверете дали е свързано и опитайте отново.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours часа',
+      one: '1 час',
+    );
+    return 'Няма потвърждение. $name не е чут от $_temp0, може да е извън обхват или изключен.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Няма потвърждение по запазения маршрут, а опитите с наводняване са изключени. Включете ги в Настройки → Настройки на приложението → Съобщения или опитайте отново.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Няма потвърждение по никой маршрут. Може да е извън обхват или потвърждението не е стигнало до вас.';
+
+  @override
   String get favReturn_setting => 'Любими отново в обхват';
 
   @override

@@ -9633,6 +9633,120 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get deliv_title => 'Podrobnosti dostave';
+
+  @override
+  String get deliv_note =>
+      'Izračunano iz podatkov, shranjenih s tem sporočilom.';
+
+  @override
+  String get deliv_queued => 'V čakalni vrsti';
+
+  @override
+  String get deliv_sent => 'Poslal vaš radio';
+
+  @override
+  String get deliv_notSent => 'Vaš radio ga ni sprejel';
+
+  @override
+  String get deliv_attempts => 'Poskusi';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made od $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Načrt: $direct neposredno, nato $flood s poplavo';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Zadnja pot';
+
+  @override
+  String get deliv_routeFlood => 'Poplava prek vseh repetitorjev';
+
+  @override
+  String get deliv_routeNeighbor => 'Neposredno, brez repetitorjev';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Neposredno prek $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Prejem potrjen';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Povratni čas $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Čakanje na potrditev';
+
+  @override
+  String get deliv_noConfirm => 'Ni potrditve';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name nazadnje slišan';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'pred $hours urami',
+      two: 'pred 2 urama',
+      one: 'pred 1 uro',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Dostavljeno. $name je potrdil.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Dostavljeno s poplavo po neuspešnih neposrednih poskusih. Shranjena pot do $name je morda zastarela.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Še poskuša: poskus $attempt od $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Vaš radio tega sporočila ni sprejel. Preverite povezavo in poskusite znova.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ur',
+      few: '$hours ure',
+      two: '2 uri',
+      one: '1 uro',
+    );
+    return 'Ni potrditve. $name ni slišan že $_temp0, morda je zunaj dosega ali izklopljen.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Ni potrditve po shranjeni poti, poskusi s poplavo pa so izklopljeni. Vklopite jih v Nastavitve → Nastavitve aplikacije → Sporočila ali poskusite znova.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Ni potrditve po nobeni poti. Morda je zunaj dosega ali potrditev ni prišla nazaj do vas.';
+
+  @override
   String get favReturn_setting => 'Priljubljeni spet v dosegu';
 
   @override

@@ -23,6 +23,7 @@ import '../widgets/add_first_banner.dart';
 import '../widgets/quick_messages.dart';
 import '../widgets/share_in_chat.dart';
 import '../widgets/message_status_icon.dart';
+import '../widgets/delivery_sheet.dart';
 import '../widgets/empty_state.dart';
 import '../helpers/chat_scroll_controller.dart';
 import '../helpers/gif_helper.dart';
@@ -1398,6 +1399,23 @@ class _ChatScreenState extends State<ChatScreen> {
                 _openMessagePath(message, contact);
               },
             ),
+            if (message.isOutgoing && !message.isCli)
+              ListTile(
+                key: const ValueKey('message-delivery-details'),
+                leading: const Icon(Icons.fact_check_outlined),
+                title: Text(context.l10n.deliv_title),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  unawaited(
+                    showDeliverySheet(
+                      context,
+                      message: message,
+                      contact: contact,
+                      onRetry: () => unawaited(_retryMessage(message)),
+                    ),
+                  );
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.copy),
               title: Text(context.l10n.common_copy),

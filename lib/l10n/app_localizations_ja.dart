@@ -9188,6 +9188,112 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get deliv_title => '配信の詳細';
+
+  @override
+  String get deliv_note => 'このメッセージに保存された情報から算出しています。';
+
+  @override
+  String get deliv_queued => 'キュー登録';
+
+  @override
+  String get deliv_sent => '無線機が送信';
+
+  @override
+  String get deliv_notSent => '無線機が受け付けませんでした';
+
+  @override
+  String get deliv_attempts => '試行';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return '予定：ダイレクト $direct 回、その後フラッド $flood 回';
+  }
+
+  @override
+  String get deliv_lastRoute => '最後の経路';
+
+  @override
+  String get deliv_routeFlood => 'すべての中継器を通るフラッド';
+
+  @override
+  String get deliv_routeNeighbor => 'ダイレクト（中継なし）';
+
+  @override
+  String deliv_routeVia(String path) {
+    return '$path 経由のダイレクト';
+  }
+
+  @override
+  String get deliv_confirmed => '受信を確認';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return '往復 $seconds 秒';
+  }
+
+  @override
+  String get deliv_waiting => '確認待ち';
+
+  @override
+  String get deliv_noConfirm => '確認なし';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name の最終受信';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours時間前',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return '配信済み。$name が確認しました。';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'ダイレクト送信が失敗した後、フラッドで配信されました。$name への保存経路が古い可能性があります。';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return '送信中：$total 回中 $attempt 回目。';
+  }
+
+  @override
+  String get deliv_vNotSent => '無線機がこのメッセージを受け付けませんでした。接続を確認してから再試行してください。';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours時間',
+    );
+    return '確認なし。$name は$_temp0受信されていないため、圏外か電源が切れている可能性があります。';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      '保存経路で確認がなく、フラッド試行がオフです。設定 → アプリ設定 → メッセージでオンにするか、再試行してください。';
+
+  @override
+  String get deliv_vNoAck => 'どの経路でも確認がありません。圏外か、確認があなたまで届かなかった可能性があります。';
+
+  @override
   String get favReturn_setting => 'お気に入りが圏内に復帰';
 
   @override

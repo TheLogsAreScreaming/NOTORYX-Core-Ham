@@ -9637,6 +9637,116 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String get deliv_title => 'Kézbesítési részletek';
+
+  @override
+  String get deliv_note => 'Az üzenettel mentett adatokból számolva.';
+
+  @override
+  String get deliv_queued => 'Sorban áll';
+
+  @override
+  String get deliv_sent => 'A rádiód elküldte';
+
+  @override
+  String get deliv_notSent => 'A rádiód nem vette át';
+
+  @override
+  String get deliv_attempts => 'Próbálkozások';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Terv: $direct közvetlen, majd $flood elárasztásos';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Utolsó útvonal';
+
+  @override
+  String get deliv_routeFlood => 'Elárasztás minden átjátszón át';
+
+  @override
+  String get deliv_routeNeighbor => 'Közvetlen, átjátszó nélkül';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Közvetlenül ezen át: $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Kézbesítés megerősítve';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Oda-vissza $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Megerősítésre vár';
+
+  @override
+  String get deliv_noConfirm => 'Nincs megerősítés';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name utoljára hallva';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours órája',
+      one: '1 órája',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Kézbesítve. $name megerősítette.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Elárasztással kézbesítve, miután a közvetlen próbák nem sikerültek. A(z) $name felé mentett útvonal elavult lehet.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Még próbálkozik: $attempt. próba / $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'A rádiód nem vette át ezt az üzenetet. Ellenőrizd a kapcsolatot, majd próbáld újra.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours órája',
+      one: '1 órája',
+    );
+    return 'Nincs megerősítés. $name $_temp0 nem hallható, lehet hatótávon kívül vagy kikapcsolva.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Nincs megerősítés a mentett útvonalon, és az elárasztásos próbák ki vannak kapcsolva. Kapcsold be őket: Beállítások → Alkalmazás beállításai → Üzenetek, vagy próbáld újra.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Egyik útvonalon sem jött megerősítés. Lehet hatótávon kívül, vagy a megerősítés nem jutott vissza hozzád.';
+
+  @override
   String get favReturn_setting => 'Kedvencek újra hatótávon belül';
 
   @override

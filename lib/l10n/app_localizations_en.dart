@@ -9522,6 +9522,116 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get deliv_title => 'Delivery details';
+
+  @override
+  String get deliv_note => 'Worked out from what\'s saved with this message.';
+
+  @override
+  String get deliv_queued => 'Queued';
+
+  @override
+  String get deliv_sent => 'Sent by your radio';
+
+  @override
+  String get deliv_notSent => 'Not taken by your radio';
+
+  @override
+  String get deliv_attempts => 'Attempts';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made of $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plan: $direct direct, then $flood flood';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Last route';
+
+  @override
+  String get deliv_routeFlood => 'Flood, through every repeater';
+
+  @override
+  String get deliv_routeNeighbor => 'Direct, no repeaters';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Direct via $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Confirmed received';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Round trip $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Waiting for confirmation';
+
+  @override
+  String get deliv_noConfirm => 'No confirmation';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name last heard';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hours ago',
+      one: '1 hour ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Delivered. $name confirmed it.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Delivered by flood after the direct tries failed. The saved route to $name may be out of date.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Still trying: attempt $attempt of $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Your radio never took this message. Check it\'s connected, then retry.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hours',
+      one: '1 hour',
+    );
+    return 'No confirmation. $name hasn\'t been heard for $_temp0, so they may be out of range or switched off.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'No confirmation over the saved route, and flood attempts are off. Turn them on in Settings → App Settings → Messaging, or retry.';
+
+  @override
+  String get deliv_vNoAck =>
+      'No confirmation from any route. They may be out of range, or their confirmation couldn\'t get back to you.';
+
+  @override
   String get favReturn_setting => 'Favorites back in range';
 
   @override

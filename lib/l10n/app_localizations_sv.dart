@@ -9572,6 +9572,116 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get deliv_title => 'Leveransdetaljer';
+
+  @override
+  String get deliv_note => 'Beräknat från det som sparats med meddelandet.';
+
+  @override
+  String get deliv_queued => 'I kö';
+
+  @override
+  String get deliv_sent => 'Skickat av din radio';
+
+  @override
+  String get deliv_notSent => 'Inte mottaget av din radio';
+
+  @override
+  String get deliv_attempts => 'Försök';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made av $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plan: $direct direkt, sedan $flood via flood';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Senaste rutt';
+
+  @override
+  String get deliv_routeFlood => 'Flood via alla repeatrar';
+
+  @override
+  String get deliv_routeNeighbor => 'Direkt, inga repeatrar';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Direkt via $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Mottagning bekräftad';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Tur och retur $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Väntar på bekräftelse';
+
+  @override
+  String get deliv_noConfirm => 'Ingen bekräftelse';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name senast hörd';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'för $hours timmar sedan',
+      one: 'för 1 timme sedan',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Levererat. $name bekräftade det.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Levererat via flood efter att de direkta försöken misslyckats. Den sparade rutten till $name kan vara inaktuell.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Försöker fortfarande: försök $attempt av $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Din radio tog aldrig emot meddelandet. Kontrollera att den är ansluten och försök igen.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours timmar',
+      one: '1 timme',
+    );
+    return 'Ingen bekräftelse. $name har inte hörts på $_temp0 och kan vara utom räckvidd eller avstängd.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Ingen bekräftelse via den sparade rutten, och flood-försök är avstängda. Slå på dem i Inställningar → Appinställningar → Meddelanden, eller försök igen.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Ingen bekräftelse från någon rutt. Utom räckvidd, eller så kom bekräftelsen inte tillbaka till dig.';
+
+  @override
   String get favReturn_setting => 'Favoriter tillbaka inom räckvidd';
 
   @override

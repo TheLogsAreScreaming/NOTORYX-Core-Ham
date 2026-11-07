@@ -16135,6 +16135,156 @@ abstract class AppLocalizations {
   /// **'{used} of {total} KB'**
   String diag_storageValue(int used, int total);
 
+  /// No description provided for @deliv_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery details'**
+  String get deliv_title;
+
+  /// No description provided for @deliv_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Worked out from what\'s saved with this message.'**
+  String get deliv_note;
+
+  /// No description provided for @deliv_queued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get deliv_queued;
+
+  /// No description provided for @deliv_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent by your radio'**
+  String get deliv_sent;
+
+  /// No description provided for @deliv_notSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Not taken by your radio'**
+  String get deliv_notSent;
+
+  /// No description provided for @deliv_attempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Attempts'**
+  String get deliv_attempts;
+
+  /// No description provided for @deliv_attemptsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{made} of {total}'**
+  String deliv_attemptsValue(int made, int total);
+
+  /// No description provided for @deliv_plan.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan: {direct} direct, then {flood} flood'**
+  String deliv_plan(int direct, int flood);
+
+  /// No description provided for @deliv_lastRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Last route'**
+  String get deliv_lastRoute;
+
+  /// No description provided for @deliv_routeFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood, through every repeater'**
+  String get deliv_routeFlood;
+
+  /// No description provided for @deliv_routeNeighbor.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct, no repeaters'**
+  String get deliv_routeNeighbor;
+
+  /// No description provided for @deliv_routeVia.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct via {path}'**
+  String deliv_routeVia(String path);
+
+  /// No description provided for @deliv_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed received'**
+  String get deliv_confirmed;
+
+  /// No description provided for @deliv_tripTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Round trip {seconds} s'**
+  String deliv_tripTime(String seconds);
+
+  /// No description provided for @deliv_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for confirmation'**
+  String get deliv_waiting;
+
+  /// No description provided for @deliv_noConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmation'**
+  String get deliv_noConfirm;
+
+  /// No description provided for @deliv_lastHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} last heard'**
+  String deliv_lastHeard(String name);
+
+  /// No description provided for @deliv_hoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours, plural, =1{1 hour ago} other{{hours} hours ago}}'**
+  String deliv_hoursAgo(int hours);
+
+  /// No description provided for @deliv_vDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered. {name} confirmed it.'**
+  String deliv_vDelivered(String name);
+
+  /// No description provided for @deliv_vDeliveredFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered by flood after the direct tries failed. The saved route to {name} may be out of date.'**
+  String deliv_vDeliveredFlood(String name);
+
+  /// No description provided for @deliv_vPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Still trying: attempt {attempt} of {total}.'**
+  String deliv_vPending(int attempt, int total);
+
+  /// No description provided for @deliv_vNotSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio never took this message. Check it\'s connected, then retry.'**
+  String get deliv_vNotSent;
+
+  /// No description provided for @deliv_vQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmation. {name} hasn\'t been heard for {hours, plural, =1{1 hour} other{{hours} hours}}, so they may be out of range or switched off.'**
+  String deliv_vQuiet(String name, int hours);
+
+  /// No description provided for @deliv_vNoFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmation over the saved route, and flood attempts are off. Turn them on in Settings → App Settings → Messaging, or retry.'**
+  String get deliv_vNoFlood;
+
+  /// No description provided for @deliv_vNoAck.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmation from any route. They may be out of range, or their confirmation couldn\'t get back to you.'**
+  String get deliv_vNoAck;
+
   /// No description provided for @favReturn_setting.
   ///
   /// In en, this message translates to:
