@@ -9682,4 +9682,117 @@ class AppLocalizationsPl extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used z $total KB';
   }
+
+  @override
+  String get deliv_title => 'Szczegóły doręczenia';
+
+  @override
+  String get deliv_note =>
+      'Ustalone na podstawie danych zapisanych z tą wiadomością.';
+
+  @override
+  String get deliv_queued => 'W kolejce';
+
+  @override
+  String get deliv_sent => 'Wysłane przez radio';
+
+  @override
+  String get deliv_notSent => 'Radio nie przyjęło';
+
+  @override
+  String get deliv_attempts => 'Próby';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made z $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plan: $direct bezpośrednio, potem $flood zalewaniem';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Ostatnia trasa';
+
+  @override
+  String get deliv_routeFlood => 'Zalewanie przez wszystkie przekaźniki';
+
+  @override
+  String get deliv_routeNeighbor => 'Bezpośrednio, bez przekaźników';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Bezpośrednio przez $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Odbiór potwierdzony';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Czas w obie strony $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Oczekiwanie na potwierdzenie';
+
+  @override
+  String get deliv_noConfirm => 'Brak potwierdzenia';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name ostatnio słyszany';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours godziny temu',
+      many: '$hours godzin temu',
+      few: '$hours godziny temu',
+      one: '1 godzinę temu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Doręczono. $name potwierdził odbiór.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Doręczono zalewaniem po nieudanych próbach bezpośrednich. Zapisana trasa do $name może być nieaktualna.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Nadal próbuje: próba $attempt z $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Radio nie przyjęło tej wiadomości. Sprawdź połączenie i spróbuj ponownie.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours godzin',
+      one: '1 godziny',
+    );
+    return 'Brak potwierdzenia. $name nie był słyszany od $_temp0, może być poza zasięgiem lub wyłączony.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Brak potwierdzenia przez zapisaną trasę, a próby zalewaniem są wyłączone. Włącz je w Ustawienia → Ustawienia aplikacji → Wiadomości lub spróbuj ponownie.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Brak potwierdzenia z żadnej trasy. Może być poza zasięgiem albo potwierdzenie nie dotarło z powrotem.';
 }

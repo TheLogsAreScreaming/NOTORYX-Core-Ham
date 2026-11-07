@@ -9620,4 +9620,115 @@ class AppLocalizationsSk extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used z $total KB';
   }
+
+  @override
+  String get deliv_title => 'Podrobnosti doručenia';
+
+  @override
+  String get deliv_note => 'Zistené z údajov uložených s touto správou.';
+
+  @override
+  String get deliv_queued => 'V poradí';
+
+  @override
+  String get deliv_sent => 'Odoslané rádiom';
+
+  @override
+  String get deliv_notSent => 'Rádio neprijalo';
+
+  @override
+  String get deliv_attempts => 'Pokusy';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made z $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plán: $direct priamo, potom $flood záplavou';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Posledná trasa';
+
+  @override
+  String get deliv_routeFlood => 'Záplava cez všetky opakovače';
+
+  @override
+  String get deliv_routeNeighbor => 'Priamo, bez opakovačov';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Priamo cez $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Prijatie potvrdené';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Spiatočný čas $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Čaká sa na potvrdenie';
+
+  @override
+  String get deliv_noConfirm => 'Bez potvrdenia';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name naposledy počuť';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'pred $hours hodinami',
+      one: 'pred 1 hodinou',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Doručené. $name to potvrdil.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Doručené záplavou po zlyhaní priamych pokusov. Uložená trasa k $name môže byť zastaraná.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Stále sa skúša: pokus $attempt z $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Rádio túto správu nikdy neprijalo. Skontrolujte pripojenie a skúste znova.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hodín',
+      few: '$hours hodiny',
+      one: '1 hodinu',
+    );
+    return 'Bez potvrdenia. $name nebolo počuť $_temp0, môže byť mimo dosahu alebo vypnutý.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Bez potvrdenia cez uloženú trasu a pokusy záplavou sú vypnuté. Zapnite ich v Nastavenia → Nastavenia aplikácie → Správy alebo skúste znova.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Žiadne potvrdenie z žiadnej trasy. Môže byť mimo dosahu alebo sa potvrdenie nedostalo späť k vám.';
 }
