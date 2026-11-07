@@ -9248,45 +9248,82 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String block_sender(String name) {
-    return '屏蔽 $name';
+  String contactTable_nearlyFull(int percent) {
+    return '电台联系人列表已用 $percent%';
   }
 
   @override
-  String get block_confirmBody =>
-      '此人的频道消息会在本设备上隐藏，且不会通知你。对方仍能看到你的消息。可在设置中取消屏蔽。';
+  String get contactTable_full => '电台联系人列表已满';
 
   @override
-  String get block_action => '屏蔽';
-
-  @override
-  String block_done(String name) {
-    return '已屏蔽 $name';
+  String contactTable_count(int used, int max) {
+    return '$used / $max 个联系人';
   }
 
   @override
-  String get mention_suggestions => '名称建议';
+  String get contactTable_overwriteHint => '列表满后，电台会替换最久未收到的联系人。收藏联系人会保留。';
 
   @override
-  String get block_listTitle => '已屏蔽的发送者';
+  String get contactTable_stopHint => '列表满后，电台将不再添加新收到的联系人。';
 
   @override
-  String get block_listHint => '来自这些名称的消息会在频道中隐藏，且不会通知你。';
+  String get contactTable_freeUp => '释放空间';
 
   @override
-  String get block_listEmpty => '没有屏蔽任何人。';
+  String get contactTable_sheetBody => '最久未收到的排在前面。收藏联系人不在列表中。';
 
   @override
-  String get block_unblock => '取消屏蔽';
+  String contactTable_lastHeard(String when) {
+    return '最后收到 $when';
+  }
 
   @override
-  String block_count(int count) {
+  String contactTable_remove(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '已屏蔽 $count 人',
-      zero: '未屏蔽任何人',
+      other: '删除 $count 个联系人',
     );
     return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody => '这些联系人会从电台删除，其在本设备上的消息也会删除。此操作无法撤销。';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已删除 $count 个联系人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => '所有联系人都是收藏，因此没有可建议删除的。';
+
+  @override
+  String get adminWait_waiting => '正在等待回复';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return '尚未收到回复。正在重试（第 $attempt/$total 次）';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '直连，$hops 跳',
+      zero: '直连',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '最多 $seconds 秒';
   }
 }

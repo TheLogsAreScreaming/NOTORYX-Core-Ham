@@ -9456,45 +9456,84 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String block_sender(String name) {
-    return '$name 차단';
+  String contactTable_nearlyFull(int percent) {
+    return '무전기 연락처 목록 $percent% 사용 중';
   }
 
   @override
-  String get block_confirmBody =>
-      '이 사용자의 채널 메시지는 이 기기에서 숨겨지며 알림이 오지 않습니다. 상대방은 여전히 내 메시지를 볼 수 있습니다. 설정에서 차단을 해제할 수 있습니다.';
+  String get contactTable_full => '무전기 연락처 목록이 가득 찼습니다';
 
   @override
-  String get block_action => '차단';
-
-  @override
-  String block_done(String name) {
-    return '$name 차단됨';
+  String contactTable_count(int used, int max) {
+    return '연락처 $used/$max개';
   }
 
   @override
-  String get mention_suggestions => '이름 제안';
+  String get contactTable_overwriteHint =>
+      '가득 차면 무전기는 가장 오래전에 수신한 연락처를 교체합니다. 즐겨찾기는 유지됩니다.';
 
   @override
-  String get block_listTitle => '차단된 발신자';
+  String get contactTable_stopHint => '가득 차면 무전기는 새로 수신한 연락처를 더 이상 추가하지 않습니다.';
 
   @override
-  String get block_listHint => '이 이름들의 메시지는 채널에서 숨겨지며 알림이 오지 않습니다.';
+  String get contactTable_freeUp => '공간 확보';
 
   @override
-  String get block_listEmpty => '차단된 사용자가 없습니다.';
+  String get contactTable_sheetBody => '가장 오래전에 수신한 순서. 즐겨찾기는 표시되지 않습니다.';
 
   @override
-  String get block_unblock => '차단 해제';
+  String contactTable_lastHeard(String when) {
+    return '마지막 수신 $when';
+  }
 
   @override
-  String block_count(int count) {
+  String contactTable_remove(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count명 차단됨',
-      zero: '차단 없음',
+      other: '연락처 $count개 삭제',
     );
     return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      '무전기에서 삭제되며 이 기기의 메시지도 삭제됩니다. 되돌릴 수 없습니다.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '연락처 $count개를 삭제했습니다',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => '모든 연락처가 즐겨찾기라 제안할 항목이 없습니다.';
+
+  @override
+  String get adminWait_waiting => '응답 대기 중';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return '아직 응답이 없습니다. 다시 시도 중 ($attempt/$total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '직접, $hops홉',
+      zero: '직접',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '최대 $seconds초';
   }
 }

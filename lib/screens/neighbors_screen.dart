@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:meshcore_open/utils/app_logger.dart';
 import 'package:provider/provider.dart';
 import '../l10n/l10n.dart';
+import '../models/admin_wait.dart';
 import '../models/contact.dart';
 import '../models/path_selection.dart';
 import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../services/repeater_command_service.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/admin_wait_banner.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/routing_sheet.dart';
@@ -39,6 +41,7 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
   int _neighborCount = 0;
 
   bool _isLoading = false;
+  AdminWait? _wait;
   bool _isLoaded = false;
   bool _hasData = false;
   Timer? _statusTimeout;
@@ -183,7 +186,7 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
     }
   }
 
-  Future<void> _loadNeighbors() async {
+  Future<void> _loadNeighbors({int attempt = 1}) async {
     if (_commandService == null) return;
 
     setState(() {
@@ -219,19 +222,33 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
         pathLength: pathLengthValue,
         messageBytes: messageBytes,
       );
+      if (mounted) {
+        setState(() {
+          _wait = AdminWait(
+            hops: pathLengthValue,
+            timeout: Duration(milliseconds: timeoutMs),
+            attempt: attempt,
+          );
+        });
+      }
       _statusTimeout?.cancel();
       _statusTimeout = Timer(Duration(milliseconds: timeoutMs), () {
         if (!mounted) return;
+        _recordStatusResult(false);
+        if (attempt < adminRequestMaxAttempts) {
+          unawaited(_loadNeighbors(attempt: attempt + 1));
+          return;
+        }
         setState(() {
           _isLoading = false;
           _isLoaded = false;
+          _wait = null;
         });
         showDismissibleSnackBar(
           context,
           content: Text(context.l10n.neighbors_requestTimedOut),
           backgroundColor: Theme.of(context).colorScheme.error,
         );
-        _recordStatusResult(false);
       });
     } catch (e) {
       if (mounted) {
@@ -272,6 +289,7 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
     final connector = context.watch<MeshCoreConnector>();
     final repeater = _resolveRepeater(connector);
     final isFloodMode = repeater.pathOverride == -1;
+    final wait = _isLoading ? _wait : null;
 
     return Scaffold(
       appBar: AppBar(
@@ -324,6 +342,11 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
             children: [
+              if (wait != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: AdminWaitBanner(wait: wait),
+                ),
               if (!_isLoaded &&
                   !_hasData &&
                   (_parsedNeighbors == null || _parsedNeighbors!.isEmpty))

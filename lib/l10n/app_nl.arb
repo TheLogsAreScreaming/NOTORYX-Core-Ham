@@ -4155,5 +4155,21 @@
   "block_listHint": "Berichten van deze namen worden in kanalen verborgen en geven nooit een melding.",
   "block_listEmpty": "Niemand is geblokkeerd.",
   "block_unblock": "Deblokkeren",
-  "block_count": "{count, plural, =0{Niemand geblokkeerd} =1{1 geblokkeerd} other{{count} geblokkeerd}}"
+  "block_count": "{count, plural, =0{Niemand geblokkeerd} =1{1 geblokkeerd} other{{count} geblokkeerd}}",
+  "contactTable_nearlyFull": "Contactlijst van de radio {percent}% vol",
+  "contactTable_full": "Contactlijst van de radio is vol",
+  "contactTable_count": "{used} van {max} contacten",
+  "contactTable_overwriteHint": "Als hij vol is, vervangt de radio het contact dat het langst niet is gehoord. Favorieten blijven.",
+  "contactTable_stopHint": "Als hij vol is, voegt de radio geen nieuw gehoorde contacten meer toe.",
+  "contactTable_freeUp": "Ruimte vrijmaken",
+  "contactTable_sheetBody": "Langst niet gehoord eerst. Favorieten staan er niet bij.",
+  "contactTable_lastHeard": "Laatst gehoord {when}",
+  "contactTable_remove": "{count, plural, =1{1 contact verwijderen} other{{count} contacten verwijderen}}",
+  "contactTable_confirmBody": "Ze worden van de radio verwijderd en hun berichten op dit apparaat worden gewist. Dit kan niet ongedaan worden.",
+  "contactTable_removed": "{count, plural, =1{1 contact verwijderd} other{{count} contacten verwijderd}}",
+  "contactTable_noneToSuggest": "Alle contacten zijn favorieten, dus er valt niets voor te stellen.",
+  "adminWait_waiting": "Wachten op antwoord",
+  "adminWait_retrying": "Nog geen antwoord. Opnieuw proberen ({attempt} van {total})",
+  "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}",
+  "adminWait_upTo": "tot {seconds} s"
 }

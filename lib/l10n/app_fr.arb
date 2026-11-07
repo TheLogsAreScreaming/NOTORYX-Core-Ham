@@ -4289,5 +4289,21 @@
   "block_listHint": "Les messages de ces noms sont masqués dans les canaux et ne vous notifient jamais.",
   "block_listEmpty": "Personne n'est bloqué.",
   "block_unblock": "Débloquer",
-  "block_count": "{count, plural, =0{Personne de bloqué} =1{1 bloqué} other{{count} bloqués}}"
+  "block_count": "{count, plural, =0{Personne de bloqué} =1{1 bloqué} other{{count} bloqués}}",
+  "contactTable_nearlyFull": "Liste de contacts de la radio pleine à {percent}%",
+  "contactTable_full": "La liste de contacts de la radio est pleine",
+  "contactTable_count": "{used} contacts sur {max}",
+  "contactTable_overwriteHint": "Une fois pleine, la radio remplace le contact entendu le moins récemment. Les favoris sont conservés.",
+  "contactTable_stopHint": "Une fois pleine, la radio n'ajoute plus les nouveaux contacts qu'elle entend.",
+  "contactTable_freeUp": "Libérer de la place",
+  "contactTable_sheetBody": "Les moins récemment entendus d'abord. Les favoris ne sont pas listés.",
+  "contactTable_lastHeard": "Entendu {when}",
+  "contactTable_remove": "{count, plural, =1{Retirer 1 contact} other{Retirer {count} contacts}}",
+  "contactTable_confirmBody": "Ils sont retirés de la radio et leurs messages sur cet appareil sont supprimés. Action irréversible.",
+  "contactTable_removed": "{count, plural, =1{1 contact retiré} other{{count} contacts retirés}}",
+  "contactTable_noneToSuggest": "Tous les contacts sont des favoris, il n'y a donc rien à suggérer.",
+  "adminWait_waiting": "En attente de réponse",
+  "adminWait_retrying": "Pas encore de réponse. Nouvel essai ({attempt} sur {total})",
+  "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 saut} other{Direct, {hops} sauts}}",
+  "adminWait_upTo": "jusqu'à {seconds} s"
 }

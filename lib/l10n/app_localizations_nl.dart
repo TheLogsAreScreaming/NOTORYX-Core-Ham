@@ -9877,47 +9877,90 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String block_sender(String name) {
-    return '$name blokkeren';
+  String contactTable_nearlyFull(int percent) {
+    return 'Contactlijst van de radio $percent% vol';
   }
 
   @override
-  String get block_confirmBody =>
-      'Kanaalberichten van deze persoon worden op dit apparaat verborgen en geven nooit een melding. Diegene ziet jouw berichten nog wel. Je kunt de blokkering opheffen in Instellingen.';
+  String get contactTable_full => 'Contactlijst van de radio is vol';
 
   @override
-  String get block_action => 'Blokkeren';
-
-  @override
-  String block_done(String name) {
-    return '$name geblokkeerd';
+  String contactTable_count(int used, int max) {
+    return '$used van $max contacten';
   }
 
   @override
-  String get mention_suggestions => 'Naamsuggesties';
+  String get contactTable_overwriteHint =>
+      'Als hij vol is, vervangt de radio het contact dat het langst niet is gehoord. Favorieten blijven.';
 
   @override
-  String get block_listTitle => 'Geblokkeerde afzenders';
+  String get contactTable_stopHint =>
+      'Als hij vol is, voegt de radio geen nieuw gehoorde contacten meer toe.';
 
   @override
-  String get block_listHint =>
-      'Berichten van deze namen worden in kanalen verborgen en geven nooit een melding.';
+  String get contactTable_freeUp => 'Ruimte vrijmaken';
 
   @override
-  String get block_listEmpty => 'Niemand is geblokkeerd.';
+  String get contactTable_sheetBody =>
+      'Langst niet gehoord eerst. Favorieten staan er niet bij.';
 
   @override
-  String get block_unblock => 'Deblokkeren';
+  String contactTable_lastHeard(String when) {
+    return 'Laatst gehoord $when';
+  }
 
   @override
-  String block_count(int count) {
+  String contactTable_remove(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count geblokkeerd',
-      one: '1 geblokkeerd',
-      zero: 'Niemand geblokkeerd',
+      other: '$count contacten verwijderen',
+      one: '1 contact verwijderen',
     );
     return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Ze worden van de radio verwijderd en hun berichten op dit apparaat worden gewist. Dit kan niet ongedaan worden.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contacten verwijderd',
+      one: '1 contact verwijderd',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Alle contacten zijn favorieten, dus er valt niets voor te stellen.';
+
+  @override
+  String get adminWait_waiting => 'Wachten op antwoord';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Nog geen antwoord. Opnieuw proberen ($attempt van $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Direct, $hops hops',
+      one: 'Direct, 1 hop',
+      zero: 'Direct',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'tot $seconds s';
   }
 }

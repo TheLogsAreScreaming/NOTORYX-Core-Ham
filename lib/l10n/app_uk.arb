@@ -4135,5 +4135,21 @@
   "block_listHint": "Повідомлення від цих імен приховуються в каналах і ніколи не сповіщають вас.",
   "block_listEmpty": "Ніхто не заблокований.",
   "block_unblock": "Розблокувати",
-  "block_count": "{count, plural, =0{Ніхто не заблокований} =1{1 заблоковано} few{{count} заблоковано} many{{count} заблоковано} other{{count} заблоковано}}"
+  "block_count": "{count, plural, =0{Ніхто не заблокований} =1{1 заблоковано} few{{count} заблоковано} many{{count} заблоковано} other{{count} заблоковано}}",
+  "contactTable_nearlyFull": "Список контактів радіо заповнено на {percent}%",
+  "contactTable_full": "Список контактів радіо заповнено",
+  "contactTable_count": "{used} з {max} контактів",
+  "contactTable_overwriteHint": "Коли він заповнений, радіо замінює контакт, якого найдовше не було чути. Обрані зберігаються.",
+  "contactTable_stopHint": "Коли він заповнений, радіо перестає додавати нові почуті контакти.",
+  "contactTable_freeUp": "Звільнити місце",
+  "contactTable_sheetBody": "Спершу ті, кого найдовше не було чути. Обрані не показано.",
+  "contactTable_lastHeard": "Востаннє чути {when}",
+  "contactTable_remove": "{count, plural, =1{Видалити 1 контакт} few{Видалити {count} контакти} many{Видалити {count} контактів} other{Видалити {count} контакту}}",
+  "contactTable_confirmBody": "Їх буде видалено з радіо, а їхні повідомлення на цьому пристрої стерто. Це не можна скасувати.",
+  "contactTable_removed": "{count, plural, =1{Видалено 1 контакт} few{Видалено {count} контакти} many{Видалено {count} контактів} other{Видалено {count} контакту}}",
+  "contactTable_noneToSuggest": "Усі контакти в обраних, тож пропонувати нічого.",
+  "adminWait_waiting": "Очікування відповіді",
+  "adminWait_retrying": "Відповіді ще немає. Повторна спроба ({attempt} з {total})",
+  "adminWait_direct": "{hops, plural, =0{Напряму} =1{Напряму, 1 перехід} few{Напряму, {hops} переходи} many{Напряму, {hops} переходів} other{Напряму, {hops} переходу}}",
+  "adminWait_upTo": "до {seconds} с"
 }

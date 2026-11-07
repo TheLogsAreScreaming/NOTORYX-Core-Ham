@@ -4155,5 +4155,21 @@
   "block_listHint": "Správy od týchto mien sa v kanáloch skrývajú a nikdy vás neupozornia.",
   "block_listEmpty": "Nikto nie je zablokovaný.",
   "block_unblock": "Odblokovať",
-  "block_count": "{count, plural, =0{Nikto nie je zablokovaný} =1{1 zablokovaný} few{{count} zablokovaní} other{{count} zablokovaných}}"
+  "block_count": "{count, plural, =0{Nikto nie je zablokovaný} =1{1 zablokovaný} few{{count} zablokovaní} other{{count} zablokovaných}}",
+  "contactTable_nearlyFull": "Zoznam kontaktov rádia je plný na {percent} %",
+  "contactTable_full": "Zoznam kontaktov rádia je plný",
+  "contactTable_count": "{used} z {max} kontaktov",
+  "contactTable_overwriteHint": "Keď je plný, rádio nahradí kontakt počutý najdávnejšie. Obľúbené zostanú.",
+  "contactTable_stopHint": "Keď je plný, rádio prestane pridávať novo počuté kontakty.",
+  "contactTable_freeUp": "Uvoľniť miesto",
+  "contactTable_sheetBody": "Najprv najdávnejšie počuté. Obľúbené nie sú uvedené.",
+  "contactTable_lastHeard": "Naposledy počutý {when}",
+  "contactTable_remove": "{count, plural, =1{Odstrániť 1 kontakt} few{Odstrániť {count} kontakty} other{Odstrániť {count} kontaktov}}",
+  "contactTable_confirmBody": "Odstránia sa z rádia a ich správy v tomto zariadení sa vymažú. Nedá sa to vrátiť späť.",
+  "contactTable_removed": "{count, plural, =1{Odstránený 1 kontakt} few{Odstránené {count} kontakty} other{Odstránených {count} kontaktov}}",
+  "contactTable_noneToSuggest": "Všetky kontakty sú obľúbené, preto nie je čo navrhnúť.",
+  "adminWait_waiting": "Čaká sa na odpoveď",
+  "adminWait_retrying": "Zatiaľ bez odpovede. Nový pokus ({attempt} z {total})",
+  "adminWait_direct": "{hops, plural, =0{Priamo} =1{Priamo, 1 skok} few{Priamo, {hops} skoky} other{Priamo, {hops} skokov}}",
+  "adminWait_upTo": "až {seconds} s"
 }

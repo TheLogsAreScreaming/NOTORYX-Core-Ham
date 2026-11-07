@@ -4193,5 +4193,21 @@
   "block_listHint": "Ezektől a nevektől érkező üzenetek rejtve maradnak a csatornákban, és soha nem küldenek értesítést.",
   "block_listEmpty": "Senki sincs letiltva.",
   "block_unblock": "Tiltás feloldása",
-  "block_count": "{count, plural, =0{Senki sincs letiltva} =1{1 letiltva} other{{count} letiltva}}"
+  "block_count": "{count, plural, =0{Senki sincs letiltva} =1{1 letiltva} other{{count} letiltva}}",
+  "contactTable_nearlyFull": "A rádió névjegylistája {percent}%-ban tele",
+  "contactTable_full": "A rádió névjegylistája megtelt",
+  "contactTable_count": "{used} / {max} névjegy",
+  "contactTable_overwriteHint": "Ha megtelt, a rádió a legrégebben hallott névjegyet cseréli le. A kedvencek megmaradnak.",
+  "contactTable_stopHint": "Ha megtelt, a rádió nem vesz fel több újonnan hallott névjegyet.",
+  "contactTable_freeUp": "Hely felszabadítása",
+  "contactTable_sheetBody": "A legrégebben hallottak elöl. A kedvencek nem szerepelnek.",
+  "contactTable_lastHeard": "Utoljára hallva: {when}",
+  "contactTable_remove": "{count, plural, =1{1 névjegy eltávolítása} other{{count} névjegy eltávolítása}}",
+  "contactTable_confirmBody": "Eltávolítjuk őket a rádióról, és az üzeneteik törlődnek erről az eszközről. Ez nem vonható vissza.",
+  "contactTable_removed": "{count, plural, =1{1 névjegy eltávolítva} other{{count} névjegy eltávolítva}}",
+  "contactTable_noneToSuggest": "Minden névjegy kedvenc, így nincs mit javasolni.",
+  "adminWait_waiting": "Válaszra várva",
+  "adminWait_retrying": "Még nincs válasz. Újrapróbálás ({attempt}/{total})",
+  "adminWait_direct": "{hops, plural, =0{Közvetlen} =1{Közvetlen, 1 ugrás} other{Közvetlen, {hops} ugrás}}",
+  "adminWait_upTo": "legfeljebb {seconds} mp"
 }

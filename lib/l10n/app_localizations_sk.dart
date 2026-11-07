@@ -9893,48 +9893,93 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String block_sender(String name) {
-    return 'Blokovať $name';
+  String contactTable_nearlyFull(int percent) {
+    return 'Zoznam kontaktov rádia je plný na $percent %';
   }
 
   @override
-  String get block_confirmBody =>
-      'Jeho správy v kanáloch sa v tomto zariadení skryjú a nikdy vás neupozornia. Stále vidí vaše správy. Odblokovať ho môžete v Nastaveniach.';
+  String get contactTable_full => 'Zoznam kontaktov rádia je plný';
 
   @override
-  String get block_action => 'Blokovať';
-
-  @override
-  String block_done(String name) {
-    return '$name zablokovaný';
+  String contactTable_count(int used, int max) {
+    return '$used z $max kontaktov';
   }
 
   @override
-  String get mention_suggestions => 'Návrhy mien';
+  String get contactTable_overwriteHint =>
+      'Keď je plný, rádio nahradí kontakt počutý najdávnejšie. Obľúbené zostanú.';
 
   @override
-  String get block_listTitle => 'Zablokovaní odosielatelia';
+  String get contactTable_stopHint =>
+      'Keď je plný, rádio prestane pridávať novo počuté kontakty.';
 
   @override
-  String get block_listHint =>
-      'Správy od týchto mien sa v kanáloch skrývajú a nikdy vás neupozornia.';
+  String get contactTable_freeUp => 'Uvoľniť miesto';
 
   @override
-  String get block_listEmpty => 'Nikto nie je zablokovaný.';
+  String get contactTable_sheetBody =>
+      'Najprv najdávnejšie počuté. Obľúbené nie sú uvedené.';
 
   @override
-  String get block_unblock => 'Odblokovať';
+  String contactTable_lastHeard(String when) {
+    return 'Naposledy počutý $when';
+  }
 
   @override
-  String block_count(int count) {
+  String contactTable_remove(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count zablokovaných',
-      few: '$count zablokovaní',
-      one: '1 zablokovaný',
-      zero: 'Nikto nie je zablokovaný',
+      other: 'Odstrániť $count kontaktov',
+      few: 'Odstrániť $count kontakty',
+      one: 'Odstrániť 1 kontakt',
     );
     return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Odstránia sa z rádia a ich správy v tomto zariadení sa vymažú. Nedá sa to vrátiť späť.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Odstránených $count kontaktov',
+      few: 'Odstránené $count kontakty',
+      one: 'Odstránený 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Všetky kontakty sú obľúbené, preto nie je čo navrhnúť.';
+
+  @override
+  String get adminWait_waiting => 'Čaká sa na odpoveď';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Zatiaľ bez odpovede. Nový pokus ($attempt z $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Priamo, $hops skokov',
+      few: 'Priamo, $hops skoky',
+      one: 'Priamo, 1 skok',
+      zero: 'Priamo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'až $seconds s';
   }
 }
