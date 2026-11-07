@@ -15984,6 +15984,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This link isn\'t a MeshCore contact.'**
   String get links_notContact;
+
+  /// No description provided for @radioBuzzer_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio buzzer'**
+  String get radioBuzzer_title;
+
+  /// No description provided for @radioBuzzer_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Beeps on the radio for new messages. Only shown for radios with a buzzer.'**
+  String get radioBuzzer_hint;
+
+  /// No description provided for @radioBuzzer_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio didn\'t accept the change. Try again.'**
+  String get radioBuzzer_failed;
+
+  /// No description provided for @appSettings_floodAttempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood attempts'**
+  String get appSettings_floodAttempts;
+
+  /// No description provided for @appSettings_floodAttemptsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra tries sent as a flood after the direct ones fail, in case the route has changed. Each one uses more airtime. 0 turns them off.'**
+  String get appSettings_floodAttemptsSubtitle;
+
+  /// No description provided for @pathGraph_you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get pathGraph_you;
+
+  /// No description provided for @pathGraph_relayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Relayed {count} messages'**
+  String pathGraph_relayed(int count);
+
+  /// No description provided for @pathGraph_ambiguousNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This short ID matches more than one repeater, so it can\'t be pinned to one.'**
+  String get pathGraph_ambiguousNote;
+
+  /// No description provided for @pathGraph_comesFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Comes from'**
+  String get pathGraph_comesFrom;
+
+  /// No description provided for @pathGraph_goesTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Goes to'**
+  String get pathGraph_goesTo;
+
+  /// No description provided for @pathGraph_repeaterDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater details'**
+  String get pathGraph_repeaterDetails;
+
+  /// No description provided for @pathGraph_days7.
+  ///
+  /// In en, this message translates to:
+  /// **'7 days'**
+  String get pathGraph_days7;
+
+  /// No description provided for @pathGraph_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No channel message paths in this period yet. Paths are collected from channel messages you receive while message tracing is on.'**
+  String get pathGraph_empty;
+
+  /// No description provided for @pathGraph_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{paths} paths heard · {repeaters} repeaters'**
+  String pathGraph_summary(int paths, int repeaters);
+
+  /// No description provided for @pathGraph_hashOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Each hop is shown by its hash prefix, or its name when you know the repeater.'**
+  String get pathGraph_hashOnly;
+
+  /// No description provided for @pathGraph_matched.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} short (1-byte) hops matched to a specific repeater using longer paths.'**
+  String pathGraph_matched(int count);
+
+  /// No description provided for @pathGraph_matchedAmbiguous.
+  ///
+  /// In en, this message translates to:
+  /// **'{matched} short (1-byte) hops matched to a specific repeater using longer paths · {ambiguous} still ambiguous (marked ?).'**
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous);
+
+  /// No description provided for @pathGraph_chartHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Left: repeaters farther away. Right: you. Band width is how many messages took that hop. Tap a box to see that repeater.'**
+  String get pathGraph_chartHint;
+
+  /// No description provided for @pathGraph_busiest.
+  ///
+  /// In en, this message translates to:
+  /// **'Busiest repeaters'**
+  String get pathGraph_busiest;
+
+  /// No description provided for @pathGraph_chartSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Path graph. Busiest repeater {name}, relayed {count} messages.'**
+  String pathGraph_chartSemantics(String name, int count);
+
+  /// No description provided for @diag_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied: {label}'**
+  String diag_copied(String label);
+
+  /// No description provided for @diag_noChannels.
+  ///
+  /// In en, this message translates to:
+  /// **'No channels on this radio.'**
+  String get diag_noChannels;
+
+  /// No description provided for @diag_tapToCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any value to copy it. Pull down to refresh.'**
+  String get diag_tapToCopy;
+
+  /// No description provided for @diag_storage.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage'**
+  String get diag_storage;
+
+  /// No description provided for @diag_storageValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {total} KB'**
+  String diag_storageValue(int used, int total);
 }
 
 class _AppLocalizationsDelegate

@@ -6092,31 +6092,33 @@ class AppLocalizationsDe extends AppLocalizations {
   String get fieldOps_send => 'Senden';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS-Weiterleitung';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'SOS weiterleiten, die kein Repeater übernommen hat';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Benötigt Funkgeräte-Firmware v1.16 oder neuer';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Noch kein SOS weitergeleitet';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-Pakete weitergeleitet, zuletzt um $time',
+      one: '1 SOS-Paket weitergeleitet, zuletzt um $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Wenn dein Funkgerät ein SOS direkt vom Absender hört und es innerhalb von etwa 15 Sekunden kein Repeater weitergibt, sendet NOTORYX es unverändert noch einmal, damit es einen Repeater erreicht, den du hörst, der Absender aber nicht. Nur SOS in deinen Kanälen werden weitergeleitet. Kostet etwas Akku und Sendezeit, daher standardmäßig aus.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Bevor du aufbrichst';
@@ -9560,4 +9562,101 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get links_notContact => 'Dieser Link ist kein MeshCore-Kontakt.';
+
+  @override
+  String get radioBuzzer_title => 'Summer des Funkgeräts';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Das Funkgerät piept bei neuen Nachrichten. Nur bei Funkgeräten mit Summer sichtbar.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Das Funkgerät hat die Änderung nicht übernommen. Versuche es erneut.';
+
+  @override
+  String get appSettings_floodAttempts => 'Flood-Versuche';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Zusätzliche Versuche als Flood, wenn die direkten scheitern, falls sich die Route geändert hat. Jeder braucht mehr Sendezeit. 0 schaltet sie ab.';
+
+  @override
+  String get pathGraph_you => 'Du';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count Nachrichten weitergeleitet';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Diese kurze ID passt zu mehr als einem Repeater und lässt sich keinem eindeutig zuordnen.';
+
+  @override
+  String get pathGraph_comesFrom => 'Kommt von';
+
+  @override
+  String get pathGraph_goesTo => 'Geht zu';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeater-Details';
+
+  @override
+  String get pathGraph_days7 => '7 Tage';
+
+  @override
+  String get pathGraph_empty =>
+      'In diesem Zeitraum noch keine Kanalnachrichten-Pfade. Pfade werden aus empfangenen Kanalnachrichten gesammelt, solange die Nachrichtenverfolgung an ist.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths Pfade gehört · $repeaters Repeater';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Jeder Hop wird mit seinem Hash-Präfix gezeigt, oder mit dem Namen, wenn du den Repeater kennst.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count kurze (1-Byte-)Hops über längere Pfade einem bestimmten Repeater zugeordnet.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched kurze (1-Byte-)Hops über längere Pfade einem bestimmten Repeater zugeordnet · $ambiguous weiterhin mehrdeutig (mit ? markiert).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Links: weiter entfernte Repeater. Rechts: du. Die Bandbreite zeigt, wie viele Nachrichten diesen Hop nahmen. Tippe auf ein Kästchen, um den Repeater zu sehen.';
+
+  @override
+  String get pathGraph_busiest => 'Meistgenutzte Repeater';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Pfadgraph. Meistgenutzter Repeater $name, $count Nachrichten weitergeleitet.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Kopiert: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Keine Kanäle auf diesem Funkgerät.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tippe auf einen Wert, um ihn zu kopieren. Zum Aktualisieren nach unten ziehen.';
+
+  @override
+  String get diag_storage => 'Speicher';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used von $total KB';
+  }
 }

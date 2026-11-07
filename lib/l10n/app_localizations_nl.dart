@@ -6055,31 +6055,31 @@ class AppLocalizationsNl extends AppLocalizations {
   String get fieldOps_send => 'Versturen';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS doorgeven';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => 'SOS doorgeven die geen repeater doorgaf';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => 'Vereist radiofirmware v1.16 of nieuwer';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Nog geen SOS doorgegeven';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-pakketten doorgegeven, laatst om $time',
+      one: '1 SOS-pakket doorgegeven, laatst om $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Als je radio een SOS direct van de afzender hoort en geen repeater het binnen ongeveer 15 seconden doorgeeft, stuurt NOTORYX het nog één keer, ongewijzigd, zodat het een repeater bereikt die jij hoort maar de afzender niet. Alleen SOS in jouw kanalen worden doorgegeven. Kost wat batterij en zendtijd, dus standaard uit.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Voordat je vertrekt';
@@ -9512,4 +9512,101 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get links_notContact => 'Deze link is geen MeshCore-contact.';
+
+  @override
+  String get radioBuzzer_title => 'Zoemer van de radio';
+
+  @override
+  String get radioBuzzer_hint =>
+      'De radio piept bij nieuwe berichten. Alleen zichtbaar bij radio\'s met een zoemer.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'De radio nam de wijziging niet aan. Probeer het opnieuw.';
+
+  @override
+  String get appSettings_floodAttempts => 'Flood-pogingen';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra pogingen als flood nadat de directe mislukken, voor het geval de route is veranderd. Elke poging kost meer zendtijd. 0 zet ze uit.';
+
+  @override
+  String get pathGraph_you => 'Jij';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count berichten doorgegeven';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Deze korte ID past bij meer dan één repeater, dus hij is niet aan één toe te wijzen.';
+
+  @override
+  String get pathGraph_comesFrom => 'Komt van';
+
+  @override
+  String get pathGraph_goesTo => 'Gaat naar';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeatergegevens';
+
+  @override
+  String get pathGraph_days7 => '7 dagen';
+
+  @override
+  String get pathGraph_empty =>
+      'Nog geen kanaalberichtpaden in deze periode. Paden worden verzameld uit ontvangen kanaalberichten zolang het traceren aan staat.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths paden gehoord · $repeaters repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Elke hop wordt getoond met zijn hash-voorvoegsel, of met de naam als je de repeater kent.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count korte (1-byte) hops via langere paden aan een specifieke repeater gekoppeld.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched korte (1-byte) hops via langere paden aan een specifieke repeater gekoppeld · $ambiguous nog onduidelijk (gemarkeerd met ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Links: verder weg gelegen repeaters. Rechts: jij. De dikte van de band is hoeveel berichten die hop namen. Tik op een vakje om die repeater te zien.';
+
+  @override
+  String get pathGraph_busiest => 'Drukste repeaters';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Padgrafiek. Drukste repeater $name, $count berichten doorgegeven.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Gekopieerd: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Geen kanalen op deze radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tik op een waarde om die te kopiëren. Trek omlaag om te vernieuwen.';
+
+  @override
+  String get diag_storage => 'Opslag';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used van $total KB';
+  }
 }
