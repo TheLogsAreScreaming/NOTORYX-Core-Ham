@@ -3313,5 +3313,12 @@
   "ham_operatorCardIncomplete": "Укажите позывной и прочитайте руководство по координации",
   "ham_nodeNameCallsignHelper": "Начните с позывного, например «W1AW» или «W1AW Base»",
   "ham_repeaterNameNeedsCall": "Имя должно начинаться с позывного ретранслятора, например «N0RPT Hilltop».",
-  "ham_repeaterPasswordsSerial": "Задавайте пароли через последовательную USB-консоль ретранслятора. Переданные по эфиру, их может прочитать любой."
+  "ham_repeaterPasswordsSerial": "Задавайте пароли через последовательную USB-консоль ретранслятора. Переданные по эфиру, их может прочитать любой.",
+  "ham_heardFrom": "Принято от",
+  "ham_lastHeard": "Последний кадр от",
+  "ham_nothingHeardYet": "пока ничего",
+  "ham_readyToTransmit": "Готово к передаче",
+  "ham_notReadyToTransmit": "Перед передачей проверьте отмеченные ниже пункты",
+  "ham_bannerNameMismatch": "Перед передачей назовите радиостанцию своим позывным",
+  "ham_bannerOutOfBand": "Радиостанция настроена вне любительских диапазонов"
 }

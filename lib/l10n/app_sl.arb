@@ -4010,5 +4010,12 @@
   "ham_operatorCardIncomplete": "Nastavite klicni znak in preberite vodnik za usklajevanje",
   "ham_nodeNameCallsignHelper": "Začnite s klicnim znakom, npr. »W1AW« ali »W1AW Base«",
   "ham_repeaterNameNeedsCall": "Ime se mora začeti s klicnim znakom repetitorja, npr. »N0RPT Hilltop«.",
-  "ham_repeaterPasswordsSerial": "Gesla nastavite prek serijske konzole USB repetitorja. Poslana po zraku bi jih lahko prebral vsak."
+  "ham_repeaterPasswordsSerial": "Gesla nastavite prek serijske konzole USB repetitorja. Poslana po zraku bi jih lahko prebral vsak.",
+  "ham_heardFrom": "Slišano od",
+  "ham_lastHeard": "Zadnji okvir od",
+  "ham_nothingHeardYet": "še nič",
+  "ham_readyToTransmit": "Pripravljeno za oddajanje",
+  "ham_notReadyToTransmit": "Pred oddajanjem preverite spodaj označene točke",
+  "ham_bannerNameMismatch": "Pred oddajanjem poimenujte postajo s svojim klicnim znakom",
+  "ham_bannerOutOfBand": "Postaja je nastavljena zunaj radioamaterskih pasov"
 }

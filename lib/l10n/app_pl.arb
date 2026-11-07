@@ -4048,5 +4048,12 @@
   "ham_operatorCardIncomplete": "Ustaw znak wywoławczy i przeczytaj przewodnik po koordynacji",
   "ham_nodeNameCallsignHelper": "Zacznij od znaku wywoławczego, np. „W1AW” lub „W1AW Base”",
   "ham_repeaterNameNeedsCall": "Nazwa musi zaczynać się od znaku przemiennika, np. „N0RPT Hilltop”.",
-  "ham_repeaterPasswordsSerial": "Ustaw hasła przez konsolę szeregową USB przemiennika. Wysłane drogą radiową mógłby je przeczytać każdy."
+  "ham_repeaterPasswordsSerial": "Ustaw hasła przez konsolę szeregową USB przemiennika. Wysłane drogą radiową mógłby je przeczytać każdy.",
+  "ham_heardFrom": "Odebrano od",
+  "ham_lastHeard": "Ostatnia ramka od",
+  "ham_nothingHeardYet": "jeszcze nic",
+  "ham_readyToTransmit": "Gotowe do nadawania",
+  "ham_notReadyToTransmit": "Przed nadawaniem sprawdź zaznaczone poniżej pozycje",
+  "ham_bannerNameMismatch": "Przed nadawaniem nazwij radio swoim znakiem wywoławczym",
+  "ham_bannerOutOfBand": "Radio jest ustawione poza pasmami amatorskimi"
 }

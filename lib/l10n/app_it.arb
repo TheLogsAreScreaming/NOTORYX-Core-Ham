@@ -4144,5 +4144,12 @@
   "ham_operatorCardIncomplete": "Imposta il tuo nominativo e leggi la guida al coordinamento",
   "ham_nodeNameCallsignHelper": "Inizia con il tuo nominativo, ad esempio \"W1AW\" o \"W1AW Base\"",
   "ham_repeaterNameNeedsCall": "Il nome deve iniziare con il nominativo del ripetitore, ad esempio \"N0RPT Hilltop\".",
-  "ham_repeaterPasswordsSerial": "Imposta le password dalla console seriale USB del ripetitore. Inviate via radio, chiunque potrebbe leggerle."
+  "ham_repeaterPasswordsSerial": "Imposta le password dalla console seriale USB del ripetitore. Inviate via radio, chiunque potrebbe leggerle.",
+  "ham_heardFrom": "Ricevuto da",
+  "ham_lastHeard": "Ultimo frame da",
+  "ham_nothingHeardYet": "ancora niente",
+  "ham_readyToTransmit": "Pronto a trasmettere",
+  "ham_notReadyToTransmit": "Controlla le voci segnalate qui sotto prima di trasmettere",
+  "ham_bannerNameMismatch": "Dai alla radio il tuo nominativo prima di trasmettere",
+  "ham_bannerOutOfBand": "La radio è impostata fuori dalle bande radioamatoriali"
 }

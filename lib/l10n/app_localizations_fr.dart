@@ -9434,4 +9434,28 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Définissez les mots de passe sur la console série USB du relais. Envoyés par radio, tout le monde pourrait les lire.';
+
+  @override
+  String get ham_heardFrom => 'Entendu de';
+
+  @override
+  String get ham_lastHeard => 'Dernière trame de';
+
+  @override
+  String get ham_nothingHeardYet => 'rien pour l’instant';
+
+  @override
+  String get ham_readyToTransmit => 'Prêt à émettre';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Vérifiez les points signalés ci-dessous avant d’émettre';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Nommez la radio avec votre indicatif avant d’émettre';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'La radio est réglée hors des bandes radioamateurs';
 }

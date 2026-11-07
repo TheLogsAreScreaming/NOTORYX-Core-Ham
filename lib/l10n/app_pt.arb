@@ -4010,5 +4010,12 @@
   "ham_operatorCardIncomplete": "Defina seu indicativo e leia o guia de coordenação",
   "ham_nodeNameCallsignHelper": "Comece com seu indicativo, como \"W1AW\" ou \"W1AW Base\"",
   "ham_repeaterNameNeedsCall": "O nome precisa começar com o indicativo da repetidora, como \"N0RPT Hilltop\".",
-  "ham_repeaterPasswordsSerial": "Defina as senhas no console serial USB da repetidora. Enviadas pelo ar, qualquer um poderia lê-las."
+  "ham_repeaterPasswordsSerial": "Defina as senhas no console serial USB da repetidora. Enviadas pelo ar, qualquer um poderia lê-las.",
+  "ham_heardFrom": "Ouvido de",
+  "ham_lastHeard": "Último quadro de",
+  "ham_nothingHeardYet": "nada ainda",
+  "ham_readyToTransmit": "Pronto para transmitir",
+  "ham_notReadyToTransmit": "Verifique os itens marcados abaixo antes de transmitir",
+  "ham_bannerNameMismatch": "Coloque seu indicativo no nome do rádio antes de transmitir",
+  "ham_bannerOutOfBand": "O rádio está configurado fora das bandas de radioamador"
 }

@@ -4015,5 +4015,12 @@
   "ham_operatorCardIncomplete": "设置你的呼号并阅读协调指南",
   "ham_nodeNameCallsignHelper": "以你的呼号开头，例如“W1AW”或“W1AW Base”",
   "ham_repeaterNameNeedsCall": "名称必须以中继的呼号开头，例如“N0RPT Hilltop”。",
-  "ham_repeaterPasswordsSerial": "请通过中继的 USB 串口控制台设置密码。通过无线发送的话，任何人都能读取。"
+  "ham_repeaterPasswordsSerial": "请通过中继的 USB 串口控制台设置密码。通过无线发送的话，任何人都能读取。",
+  "ham_heardFrom": "收到自",
+  "ham_lastHeard": "最近一帧来自",
+  "ham_nothingHeardYet": "暂无",
+  "ham_readyToTransmit": "可以发射",
+  "ham_notReadyToTransmit": "发射前请检查下方标记的项目",
+  "ham_bannerNameMismatch": "发射前请用你的呼号命名电台",
+  "ham_bannerOutOfBand": "电台设置在业余频段之外"
 }

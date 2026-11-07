@@ -9386,4 +9386,28 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Defina as senhas no console serial USB da repetidora. Enviadas pelo ar, qualquer um poderia lê-las.';
+
+  @override
+  String get ham_heardFrom => 'Ouvido de';
+
+  @override
+  String get ham_lastHeard => 'Último quadro de';
+
+  @override
+  String get ham_nothingHeardYet => 'nada ainda';
+
+  @override
+  String get ham_readyToTransmit => 'Pronto para transmitir';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Verifique os itens marcados abaixo antes de transmitir';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Coloque seu indicativo no nome do rádio antes de transmitir';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'O rádio está configurado fora das bandas de radioamador';
 }

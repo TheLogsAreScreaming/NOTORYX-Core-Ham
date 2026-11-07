@@ -9411,4 +9411,28 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Imposta le password dalla console seriale USB del ripetitore. Inviate via radio, chiunque potrebbe leggerle.';
+
+  @override
+  String get ham_heardFrom => 'Ricevuto da';
+
+  @override
+  String get ham_lastHeard => 'Ultimo frame da';
+
+  @override
+  String get ham_nothingHeardYet => 'ancora niente';
+
+  @override
+  String get ham_readyToTransmit => 'Pronto a trasmettere';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Controlla le voci segnalate qui sotto prima di trasmettere';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Dai alla radio il tuo nominativo prima di trasmettere';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'La radio è impostata fuori dalle bande radioamatoriali';
 }

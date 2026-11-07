@@ -4010,5 +4010,12 @@
   "ham_operatorCardIncomplete": "Задайте позивната си и прочетете ръководството за координация",
   "ham_nodeNameCallsignHelper": "Започнете с позивната си, напр. „W1AW“ или „W1AW Base“",
   "ham_repeaterNameNeedsCall": "Името трябва да започва с позивната на ретранслатора, напр. „N0RPT Hilltop“.",
-  "ham_repeaterPasswordsSerial": "Задавайте паролите през USB серийната конзола на ретранслатора. Изпратени по ефира, всеки би ги прочел."
+  "ham_repeaterPasswordsSerial": "Задавайте паролите през USB серийната конзола на ретранслатора. Изпратени по ефира, всеки би ги прочел.",
+  "ham_heardFrom": "Чуто от",
+  "ham_lastHeard": "Последен кадър от",
+  "ham_nothingHeardYet": "още нищо",
+  "ham_readyToTransmit": "Готово за предаване",
+  "ham_notReadyToTransmit": "Проверете отбелязаните по-долу точки, преди да предавате",
+  "ham_bannerNameMismatch": "Дайте на радиото име с вашата позивна, преди да предавате",
+  "ham_bannerOutOfBand": "Радиото е настроено извън радиолюбителските обхвати"
 }

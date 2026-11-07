@@ -4048,5 +4048,12 @@
   "ham_operatorCardIncomplete": "Add meg a hívójeledet, és olvasd el az egyeztetési útmutatót",
   "ham_nodeNameCallsignHelper": "A hívójeleddel kezdd, például „W1AW” vagy „W1AW Base”",
   "ham_repeaterNameNeedsCall": "A névnek az átjátszó hívójelével kell kezdődnie, például „N0RPT Hilltop”.",
-  "ham_repeaterPasswordsSerial": "A jelszavakat az átjátszó USB-s soros konzolján állítsd be. Rádión elküldve bárki elolvashatná őket."
+  "ham_repeaterPasswordsSerial": "A jelszavakat az átjátszó USB-s soros konzolján állítsd be. Rádión elküldve bárki elolvashatná őket.",
+  "ham_heardFrom": "Hallott állomás",
+  "ham_lastHeard": "Utolsó keret innen",
+  "ham_nothingHeardYet": "még semmi",
+  "ham_readyToTransmit": "Adásra kész",
+  "ham_notReadyToTransmit": "Adás előtt ellenőrizd az alább jelölt pontokat",
+  "ham_bannerNameMismatch": "Adás előtt nevezd el a rádiót a hívójeleddel",
+  "ham_bannerOutOfBand": "A rádió a rádióamatőr sávokon kívülre van állítva"
 }

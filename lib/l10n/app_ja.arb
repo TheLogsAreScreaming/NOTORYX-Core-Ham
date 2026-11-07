@@ -4144,5 +4144,12 @@
   "ham_operatorCardIncomplete": "コールサインを設定し、調整ガイドを読んでください",
   "ham_nodeNameCallsignHelper": "コールサインで始めてください（例:「W1AW」「W1AW Base」）",
   "ham_repeaterNameNeedsCall": "名前はレピーターのコールサインで始めてください（例:「N0RPT Hilltop」）。",
-  "ham_repeaterPasswordsSerial": "パスワードはレピーターの USB シリアルコンソールで設定してください。電波で送ると誰でも読めてしまいます。"
+  "ham_repeaterPasswordsSerial": "パスワードはレピーターの USB シリアルコンソールで設定してください。電波で送ると誰でも読めてしまいます。",
+  "ham_heardFrom": "受信元",
+  "ham_lastHeard": "最後に受信した局",
+  "ham_nothingHeardYet": "まだありません",
+  "ham_readyToTransmit": "送信の準備ができています",
+  "ham_notReadyToTransmit": "送信する前に、下で印の付いた項目を確認してください",
+  "ham_bannerNameMismatch": "送信する前に無線機の名前をコールサインにしてください",
+  "ham_bannerOutOfBand": "無線機がアマチュアバンドの外に設定されています"
 }

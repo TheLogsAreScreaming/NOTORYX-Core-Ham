@@ -5426,5 +5426,12 @@
   "ham_operatorCardIncomplete": "Set your call sign and read the coordination guide",
   "ham_nodeNameCallsignHelper": "Start with your call sign, like \"W1AW\" or \"W1AW Base\"",
   "ham_repeaterNameNeedsCall": "The name must start with the repeater's call sign, like \"N0RPT Hilltop\".",
-  "ham_repeaterPasswordsSerial": "Set passwords on the repeater's USB serial console. Sent over the air, anyone could read them."
+  "ham_repeaterPasswordsSerial": "Set passwords on the repeater's USB serial console. Sent over the air, anyone could read them.",
+  "ham_heardFrom": "Heard from",
+  "ham_lastHeard": "Last frame heard from",
+  "ham_nothingHeardYet": "nothing yet",
+  "ham_readyToTransmit": "Ready to transmit",
+  "ham_notReadyToTransmit": "Check the items marked below before transmitting",
+  "ham_bannerNameMismatch": "Name the radio with your call sign before transmitting",
+  "ham_bannerOutOfBand": "The radio is set outside the ham bands"
 }

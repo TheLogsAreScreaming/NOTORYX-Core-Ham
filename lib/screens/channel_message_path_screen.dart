@@ -179,6 +179,10 @@ class ChannelMessagePathScreen extends StatelessWidget {
         : effectiveHopCount < 0
         ? const RouteChip(isDirect: false)
         : RouteChip(isDirect: true, hops: effectiveHopCount);
+    // Call signs from the station IDs on the copies this radio heard.
+    final heard = context.watch<MeshCoreConnector>().heardStationsFor(
+      message.packetHash,
+    );
 
     return MeshCard(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -210,6 +214,13 @@ class ChannelMessagePathScreen extends StatelessWidget {
             _formatTime(message.timestamp, l10n),
             scheme: scheme,
           ),
+          if (heard.isNotEmpty)
+            _buildDetailRow(
+              context,
+              l10n.ham_heardFrom,
+              heard.join(', '),
+              scheme: scheme,
+            ),
           if (message.repeatCount > 0)
             _buildDetailRow(
               context,

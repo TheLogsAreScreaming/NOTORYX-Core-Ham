@@ -4010,5 +4010,12 @@
   "ham_operatorCardIncomplete": "Stel je roepnaam in en lees de coördinatiegids",
   "ham_nodeNameCallsignHelper": "Begin met je roepnaam, zoals \"W1AW\" of \"W1AW Base\"",
   "ham_repeaterNameNeedsCall": "De naam moet beginnen met de roepnaam van de repeater, zoals \"N0RPT Hilltop\".",
-  "ham_repeaterPasswordsSerial": "Stel wachtwoorden in via de seriële USB-console van de repeater. Via de radio verzonden kan iedereen ze lezen."
+  "ham_repeaterPasswordsSerial": "Stel wachtwoorden in via de seriële USB-console van de repeater. Via de radio verzonden kan iedereen ze lezen.",
+  "ham_heardFrom": "Gehoord van",
+  "ham_lastHeard": "Laatste frame van",
+  "ham_nothingHeardYet": "nog niets",
+  "ham_readyToTransmit": "Klaar om uit te zenden",
+  "ham_notReadyToTransmit": "Controleer de gemarkeerde punten hieronder voordat je uitzendt",
+  "ham_bannerNameMismatch": "Geef de radio je roepnaam voordat je uitzendt",
+  "ham_bannerOutOfBand": "De radio staat buiten de amateurbanden"
 }

@@ -9434,4 +9434,28 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Ustaw hasła przez konsolę szeregową USB przemiennika. Wysłane drogą radiową mógłby je przeczytać każdy.';
+
+  @override
+  String get ham_heardFrom => 'Odebrano od';
+
+  @override
+  String get ham_lastHeard => 'Ostatnia ramka od';
+
+  @override
+  String get ham_nothingHeardYet => 'jeszcze nic';
+
+  @override
+  String get ham_readyToTransmit => 'Gotowe do nadawania';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Przed nadawaniem sprawdź zaznaczone poniżej pozycje';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Przed nadawaniem nazwij radio swoim znakiem wywoławczym';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'Radio jest ustawione poza pasmami amatorskimi';
 }

@@ -9423,4 +9423,28 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Задавайте пароли через последовательную USB-консоль ретранслятора. Переданные по эфиру, их может прочитать любой.';
+
+  @override
+  String get ham_heardFrom => 'Принято от';
+
+  @override
+  String get ham_lastHeard => 'Последний кадр от';
+
+  @override
+  String get ham_nothingHeardYet => 'пока ничего';
+
+  @override
+  String get ham_readyToTransmit => 'Готово к передаче';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Перед передачей проверьте отмеченные ниже пункты';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Перед передачей назовите радиостанцию своим позывным';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'Радиостанция настроена вне любительских диапазонов';
 }
