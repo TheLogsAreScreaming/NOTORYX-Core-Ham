@@ -185,3 +185,52 @@ void showNodeSheet(BuildContext context, Contact c) {
     },
   );
 }
+
+/// A sheet listing [nodes], newest heard first; each opens its own sheet.
+void showNodeList(BuildContext context, String title, List<Contact> nodes) {
+  final l10n = context.l10n;
+  showMeshSheet<void>(
+    context,
+    builder: (sheet) => SafeArea(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.sizeOf(sheet).height * 0.8,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            BottomSheetHeader(
+              title: title,
+              subtitle: l10n.fieldIntel_nodeCount(nodes.length),
+            ),
+            Flexible(
+              child: nodes.isEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.all(MeshSpace.lg),
+                      child: Text(l10n.fieldIntel_none),
+                    )
+                  : ListView(
+                      shrinkWrap: true,
+                      children: [
+                        for (final c in [
+                          ...nodes,
+                        ]..sort((a, b) => b.lastSeen.compareTo(a.lastSeen)))
+                          InstrumentRow(
+                            icon: contactTypeIcon(c.type),
+                            title: c.name,
+                            subtitle:
+                                '${hopLabel(l10n, hopBand(c))} · ${agoLabel(l10n, c.lastSeen)}',
+                            onTap: () {
+                              Navigator.pop(sheet);
+                              showNodeSheet(context, c);
+                            },
+                          ),
+                      ],
+                    ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}

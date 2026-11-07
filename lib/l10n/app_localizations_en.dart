@@ -9407,4 +9407,117 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Contact details';
+
+  @override
+  String get links_contactTitle => 'Add a contact?';
+
+  @override
+  String get links_importAdvert => 'Add this contact to your radio?';
+
+  @override
+  String get links_connectFirst =>
+      'Connect your radio first, then open the link again.';
+
+  @override
+  String get links_added => 'Contact added';
+
+  @override
+  String get links_notContact => 'This link isn\'t a MeshCore contact.';
+
+  @override
+  String get radioBuzzer_title => 'Radio buzzer';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Beeps on the radio for new messages. Only shown for radios with a buzzer.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'The radio didn\'t accept the change. Try again.';
+
+  @override
+  String get appSettings_floodAttempts => 'Flood attempts';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra tries sent as a flood after the direct ones fail, in case the route has changed. Each one uses more airtime. 0 turns them off.';
+
+  @override
+  String get pathGraph_you => 'You';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Relayed $count messages';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'This short ID matches more than one repeater, so it can\'t be pinned to one.';
+
+  @override
+  String get pathGraph_comesFrom => 'Comes from';
+
+  @override
+  String get pathGraph_goesTo => 'Goes to';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeater details';
+
+  @override
+  String get pathGraph_days7 => '7 days';
+
+  @override
+  String get pathGraph_empty =>
+      'No channel message paths in this period yet. Paths are collected from channel messages you receive while message tracing is on.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths paths heard · $repeaters repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Each hop is shown by its hash prefix, or its name when you know the repeater.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count short (1-byte) hops matched to a specific repeater using longer paths.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched short (1-byte) hops matched to a specific repeater using longer paths · $ambiguous still ambiguous (marked ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Left: repeaters farther away. Right: you. Band width is how many messages took that hop. Tap a box to see that repeater.';
+
+  @override
+  String get pathGraph_busiest => 'Busiest repeaters';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Path graph. Busiest repeater $name, relayed $count messages.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Copied: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'No channels on this radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tap any value to copy it. Pull down to refresh.';
+
+  @override
+  String get diag_storage => 'Storage';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used of $total KB';
+  }
 }

@@ -6069,31 +6069,34 @@ class AppLocalizationsSk extends AppLocalizations {
   String get fieldOps_send => 'Odoslať';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Preposielanie SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Preposielať SOS, ktoré nepreposlal žiadny opakovač';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Vyžaduje firmvér rádia v1.16 alebo novší';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Zatiaľ nebolo preposlané žiadne SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Preposlaných $count SOS paketov, naposledy o $time',
+      few: 'Preposlané $count SOS pakety, naposledy o $time',
+      one: 'Preposlaný 1 SOS paket, naposledy o $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Keď rádio počuje SOS priamo od odosielateľa a žiadny opakovač ho do približne 15 sekúnd nepreposlal, NOTORYX ho pošle ešte raz, nezmenené, aby sa dostalo k opakovaču, ktorý počujete vy, ale odosielateľ nie. Preposielajú sa len SOS vo vašich kanáloch. Spotrebúva batériu a čas vysielania, preto je predvolene vypnuté.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Pred odchodom';
@@ -9505,4 +9508,116 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Údaje kontaktu';
+
+  @override
+  String get links_contactTitle => 'Pridať kontakt?';
+
+  @override
+  String get links_importAdvert => 'Pridať tento kontakt do rádia?';
+
+  @override
+  String get links_connectFirst =>
+      'Najprv pripojte rádio a potom odkaz otvorte znova.';
+
+  @override
+  String get links_added => 'Kontakt pridaný';
+
+  @override
+  String get links_notContact => 'Tento odkaz nie je kontakt MeshCore.';
+
+  @override
+  String get radioBuzzer_title => 'Bzučiak rádia';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Rádio pípne pri nových správach. Zobrazuje sa len pri rádiách s bzučiakom.';
+
+  @override
+  String get radioBuzzer_failed => 'Rádio zmenu neprijalo. Skúste to znova.';
+
+  @override
+  String get appSettings_floodAttempts => 'Pokusy zaplavením';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Ďalšie pokusy poslané zaplavením po zlyhaní priamych, ak sa trasa zmenila. Každý zaberie viac vysielacieho času. 0 ich vypne.';
+
+  @override
+  String get pathGraph_you => 'Vy';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Preposlal $count správ';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Toto krátke ID zodpovedá viacerým opakovačom, takže sa nedá priradiť jednému.';
+
+  @override
+  String get pathGraph_comesFrom => 'Prichádza z';
+
+  @override
+  String get pathGraph_goesTo => 'Ide do';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Údaje opakovača';
+
+  @override
+  String get pathGraph_days7 => '7 dní';
+
+  @override
+  String get pathGraph_empty =>
+      'V tomto období zatiaľ nie sú trasy správ z kanálov. Trasy sa zbierajú z prijatých správ z kanálov, keď je sledovanie zapnuté.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Počuté trasy: $paths · opakovače: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Každý skok je zobrazený hash predponou alebo menom, ak opakovač poznáte.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count krátkych (1-bajtových) skokov priradených ku konkrétnemu opakovaču podľa dlhších trás.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched krátkych (1-bajtových) skokov priradených ku konkrétnemu opakovaču podľa dlhších trás · $ambiguous stále nejednoznačných (označené ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Vľavo: vzdialenejšie opakovače. Vpravo: vy. Hrúbka pásu je počet správ cez tento skok. Ťuknite na políčko a uvidíte opakovač.';
+
+  @override
+  String get pathGraph_busiest => 'Najvyťaženejšie opakovače';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Graf trás. Najvyťaženejší opakovač $name, preposlal $count správ.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Skopírované: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'V tomto rádiu nie sú kanály.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Ťuknite na hodnotu a skopírujete ju. Potiahnutím nadol obnovíte.';
+
+  @override
+  String get diag_storage => 'Úložisko';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used z $total KB';
+  }
 }

@@ -6112,31 +6112,34 @@ class AppLocalizationsUk extends AppLocalizations {
   String get fieldOps_send => 'Надіслати';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Ретрансляція SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Ретранслювати SOS, які не передав жоден ретранслятор';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Потрібна прошивка радіо v1.16 або новіша';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'SOS ще не ретранслювалися';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Ретрансльовано $count пакетів SOS, останній о $time',
+      few: 'Ретрансльовано $count пакети SOS, останній о $time',
+      one: 'Ретрансльовано $count пакет SOS, останній о $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Якщо радіо чує SOS напряму від відправника, а жоден ретранслятор не передає його приблизно за 15 секунд, NOTORYX надсилає його ще раз без змін, щоб воно дійшло до ретранслятора, якого чуєте ви, але не відправник. Ретранслюються лише SOS у ваших каналах. Витрачає батарею й ефірний час, тому за замовчуванням вимкнено.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Перед виходом';
@@ -9556,4 +9559,116 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Відомості про контакт';
+
+  @override
+  String get links_contactTitle => 'Додати контакт?';
+
+  @override
+  String get links_importAdvert => 'Додати цей контакт до радіо?';
+
+  @override
+  String get links_connectFirst =>
+      'Спершу під\'єднайте радіо, потім знову відкрийте посилання.';
+
+  @override
+  String get links_added => 'Контакт додано';
+
+  @override
+  String get links_notContact => 'Це посилання не є контактом MeshCore.';
+
+  @override
+  String get radioBuzzer_title => 'Зумер радіо';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Радіо пищить при нових повідомленнях. Показується лише для радіо із зумером.';
+
+  @override
+  String get radioBuzzer_failed => 'Радіо не прийняло зміну. Спробуйте ще раз.';
+
+  @override
+  String get appSettings_floodAttempts => 'Спроби флудом';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Додаткові спроби флудом після невдалих прямих, якщо маршрут змінився. Кожна займає більше ефірного часу. 0 вимикає.';
+
+  @override
+  String get pathGraph_you => 'Ви';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Передав повідомлень: $count';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Цей короткий ID збігається з кількома ретрансляторами, тому його не можна віднести до одного.';
+
+  @override
+  String get pathGraph_comesFrom => 'Надходить від';
+
+  @override
+  String get pathGraph_goesTo => 'Іде до';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Відомості про ретранслятор';
+
+  @override
+  String get pathGraph_days7 => '7 днів';
+
+  @override
+  String get pathGraph_empty =>
+      'За цей період ще немає маршрутів повідомлень у каналах. Маршрути збираються з отриманих повідомлень у каналах, поки ввімкнено трасування.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Почуто маршрутів: $paths · ретрансляторів: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Кожен хоп показано префіксом хешу або назвою, якщо ретранслятор відомий.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return 'Коротких (1-байтових) хопів, зіставлених із конкретним ретранслятором за довшими маршрутами: $count.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return 'Коротких (1-байтових) хопів, зіставлених за довшими маршрутами: $matched · досі неоднозначних (з ?): $ambiguous.';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Ліворуч: дальші ретранслятори. Праворуч: ви. Товщина смуги — скільки повідомлень пройшло цим хопом. Торкніться блоку, щоб побачити ретранслятор.';
+
+  @override
+  String get pathGraph_busiest => 'Найзавантаженіші ретранслятори';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Граф маршрутів. Найзавантаженіший ретранслятор $name, передав повідомлень: $count.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Скопійовано: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'У радіо немає каналів.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Торкніться значення, щоб скопіювати. Потягніть униз для оновлення.';
+
+  @override
+  String get diag_storage => 'Пам\'ять';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used з $total КБ';
+  }
 }

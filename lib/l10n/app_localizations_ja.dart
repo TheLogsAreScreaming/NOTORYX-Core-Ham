@@ -5771,31 +5771,30 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_send => '送信';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 中継';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => 'リピーターが中継しなかった SOS を中継する';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '無線機ファームウェア v1.16 以降が必要です';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'まだ SOS を中継していません';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'SOS パケットを $count 件中継、最終 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '送信者から直接 SOS を受信し、約 15 秒以内にどのリピーターも中継しなかった場合、NOTORYX がそれをそのまま 1 回だけ再送信し、送信者には届かないがあなたには届くリピーターへ届けます。中継するのは、あなたが持っているチャンネルの SOS だけです。バッテリーと送信時間を使うため、既定ではオフです。';
 
   @override
   String get fieldOps_beforeYouLeave => '出発前に';
@@ -9080,4 +9079,111 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get routes_contactDetails => '連絡先の詳細';
+
+  @override
+  String get links_contactTitle => '連絡先を追加しますか?';
+
+  @override
+  String get links_importAdvert => 'この連絡先を無線機に追加しますか?';
+
+  @override
+  String get links_connectFirst => '先に無線機を接続してから、もう一度リンクを開いてください。';
+
+  @override
+  String get links_added => '連絡先を追加しました';
+
+  @override
+  String get links_notContact => 'このリンクは MeshCore の連絡先ではありません。';
+
+  @override
+  String get radioBuzzer_title => '無線機のブザー';
+
+  @override
+  String get radioBuzzer_hint => '新着メッセージで無線機が鳴ります。ブザー付きの無線機でのみ表示されます。';
+
+  @override
+  String get radioBuzzer_failed => '無線機が変更を受け付けませんでした。もう一度お試しください。';
+
+  @override
+  String get appSettings_floodAttempts => 'フラッド送信の試行回数';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      '直接送信が失敗した後、経路が変わった場合に備えてフラッドで再送する回数です。1 回ごとに送信時間が増えます。0 でオフ。';
+
+  @override
+  String get pathGraph_you => 'あなた';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count 件のメッセージを中継';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => 'この短い ID は複数のリピーターに一致するため、1 つに特定できません。';
+
+  @override
+  String get pathGraph_comesFrom => '受信元';
+
+  @override
+  String get pathGraph_goesTo => '送信先';
+
+  @override
+  String get pathGraph_repeaterDetails => 'リピーターの詳細';
+
+  @override
+  String get pathGraph_days7 => '7 日間';
+
+  @override
+  String get pathGraph_empty =>
+      'この期間のチャンネルメッセージの経路はまだありません。経路は、メッセージ追跡がオンのときに受信したチャンネルメッセージから集められます。';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '受信した経路 $paths · リピーター $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '各ホップはハッシュ接頭辞、またはリピーターが分かる場合はその名前で表示されます。';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count 件の短い (1 バイト) ホップを、より長い経路から特定のリピーターに対応付けました。';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched 件の短い (1 バイト) ホップを、より長い経路から特定のリピーターに対応付けました · $ambiguous 件はまだあいまいです (? 付き)。';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      '左: 遠くのリピーター。右: あなた。帯の太さはそのホップを通ったメッセージ数です。ボックスをタップするとそのリピーターを表示します。';
+
+  @override
+  String get pathGraph_busiest => '最も使われているリピーター';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '経路グラフ。最も使われているリピーターは $name、$count 件を中継。';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'コピーしました: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'この無線機にはチャンネルがありません。';
+
+  @override
+  String get diag_tapToCopy => '値をタップするとコピーします。下に引くと更新します。';
+
+  @override
+  String get diag_storage => 'ストレージ';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
 }

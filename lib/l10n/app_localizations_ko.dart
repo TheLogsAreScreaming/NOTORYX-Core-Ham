@@ -5783,31 +5783,30 @@ class AppLocalizationsKo extends AppLocalizations {
   String get fieldOps_send => '보내기';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 중계';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => '리피터가 전달하지 않은 SOS 중계';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '무전기 펌웨어 v1.16 이상이 필요합니다';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => '아직 중계한 SOS가 없습니다';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'SOS 패킷 $count개 중계, 마지막 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '무전기가 보낸 사람에게서 직접 SOS를 듣고 약 15초 안에 어떤 리피터도 전달하지 않으면, NOTORYX가 그대로 한 번 더 보내 보낸 사람은 닿지 않지만 내가 들을 수 있는 리피터에 닿게 합니다. 내가 가진 채널의 SOS만 중계합니다. 배터리와 송신 시간을 쓰므로 기본적으로 꺼져 있습니다.';
 
   @override
   String get fieldOps_beforeYouLeave => '출발 전에';
@@ -9091,4 +9090,112 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get routes_contactDetails => '연락처 정보';
+
+  @override
+  String get links_contactTitle => '연락처를 추가할까요?';
+
+  @override
+  String get links_importAdvert => '이 연락처를 무전기에 추가할까요?';
+
+  @override
+  String get links_connectFirst => '먼저 무전기를 연결한 뒤 링크를 다시 여세요.';
+
+  @override
+  String get links_added => '연락처를 추가했습니다';
+
+  @override
+  String get links_notContact => '이 링크는 MeshCore 연락처가 아닙니다.';
+
+  @override
+  String get radioBuzzer_title => '무전기 부저';
+
+  @override
+  String get radioBuzzer_hint =>
+      '새 메시지가 오면 무전기가 삐 소리를 냅니다. 부저가 있는 무전기에서만 표시됩니다.';
+
+  @override
+  String get radioBuzzer_failed => '무전기가 변경을 받아들이지 않았습니다. 다시 시도하세요.';
+
+  @override
+  String get appSettings_floodAttempts => '플러드 시도';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      '직접 전송이 실패한 뒤 경로가 바뀌었을 경우를 대비해 플러드로 추가 전송합니다. 시도마다 송신 시간이 더 듭니다. 0이면 끕니다.';
+
+  @override
+  String get pathGraph_you => '나';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '메시지 $count개 중계';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => '이 짧은 ID는 여러 리피터와 일치해 하나로 특정할 수 없습니다.';
+
+  @override
+  String get pathGraph_comesFrom => '들어오는 곳';
+
+  @override
+  String get pathGraph_goesTo => '나가는 곳';
+
+  @override
+  String get pathGraph_repeaterDetails => '리피터 정보';
+
+  @override
+  String get pathGraph_days7 => '7일';
+
+  @override
+  String get pathGraph_empty =>
+      '이 기간에는 아직 채널 메시지 경로가 없습니다. 경로는 메시지 추적이 켜져 있는 동안 받은 채널 메시지에서 수집됩니다.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '들린 경로 $paths · 리피터 $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '각 홉은 해시 접두사로, 아는 리피터라면 이름으로 표시됩니다.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '짧은 (1바이트) 홉 $count개를 더 긴 경로로 특정 리피터에 연결했습니다.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '짧은 (1바이트) 홉 $matched개를 더 긴 경로로 특정 리피터에 연결했습니다 · $ambiguous개는 아직 모호합니다(? 표시).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      '왼쪽: 더 먼 리피터. 오른쪽: 나. 띠의 두께는 그 홉을 거친 메시지 수입니다. 상자를 누르면 해당 리피터를 봅니다.';
+
+  @override
+  String get pathGraph_busiest => '가장 바쁜 리피터';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '경로 그래프. 가장 바쁜 리피터 $name, 메시지 $count개 중계.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return '복사됨: $label';
+  }
+
+  @override
+  String get diag_noChannels => '이 무전기에는 채널이 없습니다.';
+
+  @override
+  String get diag_tapToCopy => '값을 누르면 복사됩니다. 아래로 당겨 새로 고칩니다.';
+
+  @override
+  String get diag_storage => '저장 공간';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
 }
