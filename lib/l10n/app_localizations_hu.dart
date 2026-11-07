@@ -9520,4 +9520,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Névjegy adatai';
+
+  @override
+  String get appSettings_floodAttempts => 'Elárasztásos próbák';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra próbák elárasztással, ha a közvetlenek sikertelenek, arra az esetre, ha megváltozott az útvonal. Mindegyik több adásidőt használ. 0 kikapcsolja.';
 }

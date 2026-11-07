@@ -9566,4 +9566,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Szczegóły kontaktu';
+
+  @override
+  String get appSettings_floodAttempts => 'Próby zalewowe';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Dodatkowe próby wysyłane zalewowo, gdy bezpośrednie zawiodą, na wypadek zmiany trasy. Każda zużywa więcej czasu nadawania. 0 je wyłącza.';
 }

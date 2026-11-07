@@ -4045,5 +4045,7 @@
   "repeaterTools_toolsTitle": "Nástroje",
   "repeaterTools_regionSetupHint": "Vyhľadajte strom regiónov pre svoju oblasť a skopírujte jeho príkazy",
   "routes_failingOnly": "Iba neúspešné trasy",
-  "routes_contactDetails": "Údaje kontaktu"
+  "routes_contactDetails": "Údaje kontaktu",
+  "appSettings_floodAttempts": "Pokusy zaplavením",
+  "appSettings_floodAttemptsSubtitle": "Ďalšie pokusy poslané zaplavením po zlyhaní priamych, ak sa trasa zmenila. Každý zaberie viac vysielacieho času. 0 ich vypne."
 }

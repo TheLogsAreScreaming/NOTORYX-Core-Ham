@@ -4083,5 +4083,7 @@
   "repeaterTools_toolsTitle": "Narzędzia",
   "repeaterTools_regionSetupHint": "Znajdź drzewo regionów dla swojej okolicy i skopiuj jego polecenia",
   "routes_failingOnly": "Tylko nieudane trasy",
-  "routes_contactDetails": "Szczegóły kontaktu"
+  "routes_contactDetails": "Szczegóły kontaktu",
+  "appSettings_floodAttempts": "Próby zalewowe",
+  "appSettings_floodAttemptsSubtitle": "Dodatkowe próby wysyłane zalewowo, gdy bezpośrednie zawiodą, na wypadek zmiany trasy. Każda zużywa więcej czasu nadawania. 0 je wyłącza."
 }

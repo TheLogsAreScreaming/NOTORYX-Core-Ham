@@ -4045,5 +4045,7 @@
   "repeaterTools_toolsTitle": "Hulpmiddelen",
   "repeaterTools_regionSetupHint": "Zoek de regioboom van je gebied en kopieer de opdrachten",
   "routes_failingOnly": "Alleen mislukte routes",
-  "routes_contactDetails": "Contactgegevens"
+  "routes_contactDetails": "Contactgegevens",
+  "appSettings_floodAttempts": "Flood-pogingen",
+  "appSettings_floodAttemptsSubtitle": "Extra pogingen als flood nadat de directe mislukken, voor het geval de route is veranderd. Elke poging kost meer zendtijd. 0 zet ze uit."
 }

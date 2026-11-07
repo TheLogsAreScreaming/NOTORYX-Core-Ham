@@ -9558,4 +9558,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Сведения о контакте';
+
+  @override
+  String get appSettings_floodAttempts => 'Попытки флудом';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Дополнительные попытки флудом после неудачных прямых, на случай если маршрут изменился. Каждая занимает больше эфирного времени. 0 отключает.';
 }

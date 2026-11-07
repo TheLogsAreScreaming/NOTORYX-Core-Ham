@@ -9534,4 +9534,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Datos del contacto';
+
+  @override
+  String get appSettings_floodAttempts => 'Intentos por inundación';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Intentos extra enviados por inundación cuando fallan los directos, por si la ruta ha cambiado. Cada uno usa más tiempo en el aire. 0 los desactiva.';
 }

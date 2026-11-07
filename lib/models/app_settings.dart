@@ -112,6 +112,10 @@ class AppSettings {
   final double routeWeightSuccessIncrement;
   final double routeWeightFailureDecrement;
   final int maxMessageRetries;
+
+  /// Tries sent as a flood after the [maxMessageRetries] direct ones fail,
+  /// in case the route has changed. 0 turns them off.
+  final int messageFloodAttempts;
   final String themeMode;
   final String? languageOverride; // null = system default
   final bool appDebugLogEnabled;
@@ -244,6 +248,7 @@ class AppSettings {
     this.routeWeightSuccessIncrement = 0.5,
     this.routeWeightFailureDecrement = 0.2,
     this.maxMessageRetries = 5,
+    this.messageFloodAttempts = 2,
     this.themeMode = 'system',
     this.languageOverride,
     this.appDebugLogEnabled = false,
@@ -329,6 +334,7 @@ class AppSettings {
       'route_weight_success_increment': routeWeightSuccessIncrement,
       'route_weight_failure_decrement': routeWeightFailureDecrement,
       'max_message_retries': maxMessageRetries,
+      'message_flood_attempts': messageFloodAttempts,
       'theme_mode': themeMode,
       'language_override': languageOverride,
       'app_debug_log_enabled': appDebugLogEnabled,
@@ -427,6 +433,7 @@ class AppSettings {
       routeWeightFailureDecrement:
           (json['route_weight_failure_decrement'] as num?)?.toDouble() ?? 0.2,
       maxMessageRetries: json['max_message_retries'] as int? ?? 5,
+      messageFloodAttempts: json['message_flood_attempts'] as int? ?? 2,
       themeMode: json['theme_mode'] as String? ?? 'system',
       languageOverride: json['language_override'] as String?,
       appDebugLogEnabled: json['app_debug_log_enabled'] as bool? ?? false,
@@ -568,6 +575,7 @@ class AppSettings {
     double? routeWeightSuccessIncrement,
     double? routeWeightFailureDecrement,
     int? maxMessageRetries,
+    int? messageFloodAttempts,
     String? themeMode,
     Object? languageOverride = _unset,
     bool? appDebugLogEnabled,
@@ -647,6 +655,7 @@ class AppSettings {
       routeWeightFailureDecrement:
           routeWeightFailureDecrement ?? this.routeWeightFailureDecrement,
       maxMessageRetries: maxMessageRetries ?? this.maxMessageRetries,
+      messageFloodAttempts: messageFloodAttempts ?? this.messageFloodAttempts,
       themeMode: themeMode ?? this.themeMode,
       languageOverride: languageOverride == _unset
           ? this.languageOverride

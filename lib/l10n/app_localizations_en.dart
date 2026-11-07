@@ -9407,4 +9407,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Contact details';
+
+  @override
+  String get appSettings_floodAttempts => 'Flood attempts';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra tries sent as a flood after the direct ones fail, in case the route has changed. Each one uses more airtime. 0 turns them off.';
 }

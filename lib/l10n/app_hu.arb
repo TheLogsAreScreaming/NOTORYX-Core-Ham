@@ -4083,5 +4083,7 @@
   "repeaterTools_toolsTitle": "Eszközök",
   "repeaterTools_regionSetupHint": "Keresd meg a környéked régiófáját, és másold a parancsait",
   "routes_failingOnly": "Csak sikertelen útvonalak",
-  "routes_contactDetails": "Névjegy adatai"
+  "routes_contactDetails": "Névjegy adatai",
+  "appSettings_floodAttempts": "Elárasztásos próbák",
+  "appSettings_floodAttemptsSubtitle": "Extra próbák elárasztással, ha a közvetlenek sikertelenek, arra az esetre, ha megváltozott az útvonal. Mindegyik több adásidőt használ. 0 kikapcsolja."
 }

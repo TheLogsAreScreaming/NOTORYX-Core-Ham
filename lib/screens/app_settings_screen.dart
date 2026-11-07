@@ -587,6 +587,33 @@ class AppSettingsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                      ListTile(
+                        title: Text(context.l10n.appSettings_floodAttempts),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              context.l10n.appSettings_floodAttemptsSubtitle,
+                            ),
+                            Slider(
+                              key: const ValueKey('flood-attempts'),
+                              value: settingsService
+                                  .settings
+                                  .messageFloodAttempts
+                                  .toDouble(),
+                              min: 0,
+                              max: 5,
+                              divisions: 5,
+                              label: settingsService
+                                  .settings
+                                  .messageFloodAttempts
+                                  .toString(),
+                              onChanged: (value) => settingsService
+                                  .setMessageFloodAttempts(value.toInt()),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 )

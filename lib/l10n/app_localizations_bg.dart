@@ -9515,4 +9515,11 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Данни за контакта';
+
+  @override
+  String get appSettings_floodAttempts => 'Опити с наводняване';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Допълнителни опити, изпратени чрез наводняване, след като директните се провалят, в случай че маршрутът се е променил. Всеки използва повече ефирно време. 0 ги изключва.';
 }

@@ -4045,5 +4045,7 @@
   "repeaterTools_toolsTitle": "Ferramentas",
   "repeaterTools_regionSetupHint": "Procure a árvore de regiões da sua zona e copie os comandos",
   "routes_failingOnly": "Só rotas que falharam",
-  "routes_contactDetails": "Detalhes do contacto"
+  "routes_contactDetails": "Detalhes do contacto",
+  "appSettings_floodAttempts": "Tentativas por inundação",
+  "appSettings_floodAttemptsSubtitle": "Tentativas extra enviadas por inundação depois de as diretas falharem, caso a rota tenha mudado. Cada uma usa mais tempo no ar. 0 desliga-as."
 }

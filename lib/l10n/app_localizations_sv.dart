@@ -9456,4 +9456,11 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Kontaktuppgifter';
+
+  @override
+  String get appSettings_floodAttempts => 'Flood-försök';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra försök som skickas som flood när de direkta misslyckas, ifall rutten har ändrats. Varje försök tar mer sändtid. 0 stänger av dem.';
 }

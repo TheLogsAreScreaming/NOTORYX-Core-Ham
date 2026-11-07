@@ -4179,5 +4179,7 @@
   "repeaterTools_toolsTitle": "Werkzeuge",
   "repeaterTools_regionSetupHint": "Finde den Regionsbaum deiner Gegend und kopiere seine Befehle",
   "routes_failingOnly": "Nur fehlgeschlagene Routen",
-  "routes_contactDetails": "Kontaktdetails"
+  "routes_contactDetails": "Kontaktdetails",
+  "appSettings_floodAttempts": "Flood-Versuche",
+  "appSettings_floodAttemptsSubtitle": "Zusätzliche Versuche als Flood, wenn die direkten scheitern, falls sich die Route geändert hat. Jeder braucht mehr Sendezeit. 0 schaltet sie ab."
 }

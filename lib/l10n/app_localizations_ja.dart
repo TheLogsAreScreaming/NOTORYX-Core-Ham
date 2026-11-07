@@ -9080,4 +9080,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get routes_contactDetails => '連絡先の詳細';
+
+  @override
+  String get appSettings_floodAttempts => 'フラッド送信の試行回数';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      '直接送信が失敗した後、経路が変わった場合に備えてフラッドで再送する回数です。1 回ごとに送信時間が増えます。0 でオフ。';
 }
