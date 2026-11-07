@@ -23,6 +23,7 @@ import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/emoji_utils.dart';
 import '../utils/main_tab_navigation.dart';
+import '../widgets/ui/unread_badge.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
@@ -1687,13 +1688,13 @@ class _ContactTile extends StatelessWidget {
                                 contact.name,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontWeight: hasUnread
-                                      ? FontWeight.w700
-                                      : FontWeight.w500,
-                                  fontSize: 15,
-                                  color: scheme.onSurface,
-                                ),
+                                style: Theme.of(context).textTheme.titleSmall
+                                    ?.copyWith(
+                                      fontSize: 15,
+                                      fontWeight: hasUnread
+                                          ? FontWeight.w700
+                                          : FontWeight.w500,
+                                    ),
                               ),
                             ),
                             if (isFavorite) ...[
@@ -1720,10 +1721,8 @@ class _ContactTile extends StatelessWidget {
                           subtitle,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: MeshPalette.ink3,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(fontSize: 13, color: MeshPalette.ink3),
                         ),
                       ],
                     ),
@@ -1743,15 +1742,10 @@ class _ContactTile extends StatelessWidget {
                           color: MeshPalette.ink3,
                         ),
                       ),
-                      if (hasUnread)
-                        Text(
-                          '$unreadCount',
-                          style: MeshTheme.mono(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w700,
-                            color: MeshPalette.accent,
-                          ),
-                        ),
+                      if (hasUnread) ...[
+                        const SizedBox(height: 4),
+                        UnreadBadge(unreadCount),
+                      ],
                     ],
                   ),
                 ],
