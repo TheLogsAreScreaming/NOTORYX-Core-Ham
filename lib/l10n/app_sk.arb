@@ -4010,5 +4010,12 @@
   "ham_operatorCardIncomplete": "Nastavte volaciu značku a prečítajte si príručku ku koordinácii",
   "ham_nodeNameCallsignHelper": "Začnite volacou značkou, napr. „W1AW“ alebo „W1AW Base“",
   "ham_repeaterNameNeedsCall": "Názov musí začínať volacou značkou prevádzača, napr. „N0RPT Hilltop“.",
-  "ham_repeaterPasswordsSerial": "Heslá nastavte cez sériovú USB konzolu prevádzača. Odoslané éterom by si ich mohol prečítať ktokoľvek."
+  "ham_repeaterPasswordsSerial": "Heslá nastavte cez sériovú USB konzolu prevádzača. Odoslané éterom by si ich mohol prečítať ktokoľvek.",
+  "ham_heardFrom": "Počuté od",
+  "ham_lastHeard": "Posledný rámec od",
+  "ham_nothingHeardYet": "zatiaľ nič",
+  "ham_readyToTransmit": "Pripravené na vysielanie",
+  "ham_notReadyToTransmit": "Pred vysielaním skontrolujte označené položky nižšie",
+  "ham_bannerNameMismatch": "Pred vysielaním pomenujte rádio svojou volacou značkou",
+  "ham_bannerOutOfBand": "Rádio je nastavené mimo amatérskych pásiem"
 }

@@ -9388,4 +9388,28 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Задавайте паролите през USB серийната конзола на ретранслатора. Изпратени по ефира, всеки би ги прочел.';
+
+  @override
+  String get ham_heardFrom => 'Чуто от';
+
+  @override
+  String get ham_lastHeard => 'Последен кадър от';
+
+  @override
+  String get ham_nothingHeardYet => 'още нищо';
+
+  @override
+  String get ham_readyToTransmit => 'Готово за предаване';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Проверете отбелязаните по-долу точки, преди да предавате';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Дайте на радиото име с вашата позивна, преди да предавате';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'Радиото е настроено извън радиолюбителските обхвати';
 }

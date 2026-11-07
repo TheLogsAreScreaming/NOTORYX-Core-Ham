@@ -4144,5 +4144,12 @@
   "ham_operatorCardIncomplete": "Indiquez votre indicatif et lisez le guide de coordination",
   "ham_nodeNameCallsignHelper": "Commencez par votre indicatif, comme « W1AW » ou « W1AW Base »",
   "ham_repeaterNameNeedsCall": "Le nom doit commencer par l'indicatif du relais, comme « N0RPT Hilltop ».",
-  "ham_repeaterPasswordsSerial": "Définissez les mots de passe sur la console série USB du relais. Envoyés par radio, tout le monde pourrait les lire."
+  "ham_repeaterPasswordsSerial": "Définissez les mots de passe sur la console série USB du relais. Envoyés par radio, tout le monde pourrait les lire.",
+  "ham_heardFrom": "Entendu de",
+  "ham_lastHeard": "Dernière trame de",
+  "ham_nothingHeardYet": "rien pour l’instant",
+  "ham_readyToTransmit": "Prêt à émettre",
+  "ham_notReadyToTransmit": "Vérifiez les points signalés ci-dessous avant d’émettre",
+  "ham_bannerNameMismatch": "Nommez la radio avec votre indicatif avant d’émettre",
+  "ham_bannerOutOfBand": "La radio est réglée hors des bandes radioamateurs"
 }

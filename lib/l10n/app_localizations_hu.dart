@@ -9387,4 +9387,28 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'A jelszavakat az átjátszó USB-s soros konzolján állítsd be. Rádión elküldve bárki elolvashatná őket.';
+
+  @override
+  String get ham_heardFrom => 'Hallva innen';
+
+  @override
+  String get ham_lastHeard => 'Utolsó keret innen';
+
+  @override
+  String get ham_nothingHeardYet => 'még semmi';
+
+  @override
+  String get ham_readyToTransmit => 'Adásra kész';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Adás előtt ellenőrizd az alább jelölt pontokat';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Adás előtt nevezd el a rádiót a hívójeleddel';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'A rádió a rádióamatőr sávokon kívülre van állítva';
 }

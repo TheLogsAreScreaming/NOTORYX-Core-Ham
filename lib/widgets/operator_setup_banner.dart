@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import '../connector/meshcore_connector.dart';
 import '../l10n/l10n.dart';
 import '../screens/licensed_operator_screen.dart';
+import '../models/operator_profile.dart';
 import '../services/operator_profile_service.dart';
+import '../utils/amateur_radio.dart';
 
 /// Sits above every screen while a radio is connected and the licensed
 /// operator setup isn't finished, so nobody talks to a ham radio without
@@ -24,10 +26,28 @@ class OperatorSetupBanner extends StatelessWidget {
     final connected = context.select<MeshCoreConnector, bool>(
       (c) => c.isConnected,
     );
-    final complete = context.select<OperatorProfileService, bool>(
-      (s) => s.profile.isComplete,
+    final profile = context.select<OperatorProfileService, OperatorProfile>(
+      (s) => s.profile,
     );
-    if (!connected || complete) return child;
+    final name = context.select<MeshCoreConnector, String?>((c) => c.selfName);
+    final freqKhz = context.select<MeshCoreConnector, int?>(
+      (c) => c.currentFreqHz,
+    );
+    if (!connected) return child;
+
+    // The most important thing to fix first: setup, then the radio's name
+    // (no call sign, no transmission), then its band.
+    final String? message;
+    if (!profile.isComplete) {
+      message = context.l10n.ham_setupBanner;
+    } else if (name != null && !profile.matchesNodeName(name)) {
+      message = context.l10n.ham_bannerNameMismatch;
+    } else if (freqKhz != null && !isAmateurFrequencyMHz(freqKhz / 1000.0)) {
+      message = context.l10n.ham_bannerOutOfBand;
+    } else {
+      message = null;
+    }
+    if (message == null) return child;
 
     final scheme = Theme.of(context).colorScheme;
     return Column(
@@ -56,7 +76,7 @@ class OperatorSetupBanner extends StatelessWidget {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        context.l10n.ham_setupBanner,
+                        message,
                         style: TextStyle(color: scheme.onErrorContainer),
                       ),
                     ),

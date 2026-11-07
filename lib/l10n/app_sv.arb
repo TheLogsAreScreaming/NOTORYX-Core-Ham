@@ -4010,5 +4010,12 @@
   "ham_operatorCardIncomplete": "Ange din anropssignal och läs samordningsguiden",
   "ham_nodeNameCallsignHelper": "Börja med din anropssignal, till exempel ”W1AW” eller ”W1AW Base”",
   "ham_repeaterNameNeedsCall": "Namnet måste börja med repeaterns anropssignal, till exempel ”N0RPT Hilltop”.",
-  "ham_repeaterPasswordsSerial": "Ställ in lösenord via repeaterns seriella USB-konsol. Skickade via radio kan vem som helst läsa dem."
+  "ham_repeaterPasswordsSerial": "Ställ in lösenord via repeaterns seriella USB-konsol. Skickade via radio kan vem som helst läsa dem.",
+  "ham_heardFrom": "Hört från",
+  "ham_lastHeard": "Senaste ram från",
+  "ham_nothingHeardYet": "inget än",
+  "ham_readyToTransmit": "Redo att sända",
+  "ham_notReadyToTransmit": "Kontrollera de markerade punkterna nedan innan du sänder",
+  "ham_bannerNameMismatch": "Namnge radion med din anropssignal innan du sänder",
+  "ham_bannerOutOfBand": "Radion är inställd utanför amatörbanden"
 }

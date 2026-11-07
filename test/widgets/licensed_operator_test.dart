@@ -11,10 +11,16 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class _Connector extends MeshCoreConnector {
-  _Connector({required this.connected});
+  _Connector({required this.connected, this.name, this.freqKhz});
   final bool connected;
+  final String? name;
+  final int? freqKhz;
   @override
   bool get isConnected => connected;
+  @override
+  String? get selfName => name;
+  @override
+  int? get currentFreqHz => freqKhz;
 }
 
 void main() {
@@ -27,12 +33,17 @@ void main() {
     profiles = OperatorProfileService()..load();
   });
 
-  Widget app(Widget home, {bool connected = false}) {
+  Widget app(
+    Widget home, {
+    bool connected = false,
+    String? name,
+    int? freqKhz,
+  }) {
     final navigatorKey = GlobalKey<NavigatorState>();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MeshCoreConnector>.value(
-          value: _Connector(connected: connected),
+          value: _Connector(connected: connected, name: name, freqKhz: freqKhz),
         ),
         ChangeNotifierProvider.value(value: profiles),
       ],
@@ -110,5 +121,45 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(find.text(banner), findsNothing);
+  });
+
+  testWidgets('banner then asks for the call sign name, then a ham band', (
+    tester,
+  ) async {
+    await profiles.save(
+      OperatorProfile(
+        callsign: 'W1AW',
+        licenseClass: LicenseClass.general,
+        acknowledgedAt: DateTime.now(),
+      ),
+    );
+    await tester.pumpWidget(
+      app(const Text('home'), connected: true, name: 'Base', freqKhz: 906875),
+    );
+    expect(
+      find.text('Name the radio with your call sign before transmitting'),
+      findsOneWidget,
+    );
+
+    await tester.pumpWidget(
+      app(
+        const Text('home'),
+        connected: true,
+        name: 'W1AW Base',
+        freqKhz: 869525,
+      ),
+    );
+    expect(find.text('The radio is set outside the ham bands'), findsOneWidget);
+
+    await tester.pumpWidget(
+      app(
+        const Text('home'),
+        connected: true,
+        name: 'W1AW Base',
+        freqKhz: 906875,
+      ),
+    );
+    expect(find.byType(OperatorSetupBanner), findsOneWidget);
+    expect(find.byIcon(Icons.warning_amber_rounded), findsNothing);
   });
 }

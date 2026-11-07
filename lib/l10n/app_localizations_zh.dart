@@ -8756,4 +8756,25 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       '请通过中继的 USB 串口控制台设置密码。通过无线发送的话，任何人都能读取。';
+
+  @override
+  String get ham_heardFrom => '收到自';
+
+  @override
+  String get ham_lastHeard => '最近一帧来自';
+
+  @override
+  String get ham_nothingHeardYet => '暂无';
+
+  @override
+  String get ham_readyToTransmit => '可以发射';
+
+  @override
+  String get ham_notReadyToTransmit => '发射前请检查下方标记的项目';
+
+  @override
+  String get ham_bannerNameMismatch => '发射前请用你的呼号命名电台';
+
+  @override
+  String get ham_bannerOutOfBand => '电台设置在业余频段之外';
 }

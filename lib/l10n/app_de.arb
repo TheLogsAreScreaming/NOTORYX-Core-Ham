@@ -4144,5 +4144,12 @@
   "ham_operatorCardIncomplete": "Rufzeichen eintragen und den Leitfaden zur Koordinierung lesen",
   "ham_nodeNameCallsignHelper": "Mit deinem Rufzeichen beginnen, z. B. „W1AW“ oder „W1AW Base“",
   "ham_repeaterNameNeedsCall": "Der Name muss mit dem Rufzeichen des Repeaters beginnen, z. B. „N0RPT Hilltop“.",
-  "ham_repeaterPasswordsSerial": "Passwörter über die serielle USB-Konsole des Repeaters setzen. Über Funk gesendet könnte sie jeder lesen."
+  "ham_repeaterPasswordsSerial": "Passwörter über die serielle USB-Konsole des Repeaters setzen. Über Funk gesendet könnte sie jeder lesen.",
+  "ham_heardFrom": "Gehört von",
+  "ham_lastHeard": "Letzter Rahmen von",
+  "ham_nothingHeardYet": "noch nichts",
+  "ham_readyToTransmit": "Sendebereit",
+  "ham_notReadyToTransmit": "Prüfe die unten markierten Punkte, bevor du sendest",
+  "ham_bannerNameMismatch": "Benenne das Funkgerät vor dem Senden mit deinem Rufzeichen",
+  "ham_bannerOutOfBand": "Das Funkgerät ist außerhalb der Amateurfunkbänder eingestellt"
 }

@@ -9384,4 +9384,28 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Gesla nastavite prek serijske konzole USB repetitorja. Poslana po zraku bi jih lahko prebral vsak.';
+
+  @override
+  String get ham_heardFrom => 'Slišano od';
+
+  @override
+  String get ham_lastHeard => 'Zadnji okvir od';
+
+  @override
+  String get ham_nothingHeardYet => 'še nič';
+
+  @override
+  String get ham_readyToTransmit => 'Pripravljeno za oddajanje';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Pred oddajanjem preverite spodaj označene točke';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Pred oddajanjem poimenujte postajo s svojim klicnim znakom';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'Postaja je nastavljena zunaj radioamaterskih pasov';
 }

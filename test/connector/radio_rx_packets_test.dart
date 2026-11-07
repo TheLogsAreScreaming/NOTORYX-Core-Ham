@@ -56,6 +56,7 @@ void main() {
     expect(packet.rssi, -92);
     expect(packet.fromSelf, isFalse);
     expect(packet.station, 'N0RPT');
+    expect(connector.lastHeardStation, 'N0RPT');
 
     expect((await rx(raw, snrX4: 0xF6)).snr, -2.5);
   });

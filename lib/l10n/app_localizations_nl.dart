@@ -9362,4 +9362,27 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Stel wachtwoorden in via de seriële USB-console van de repeater. Via de radio verzonden kan iedereen ze lezen.';
+
+  @override
+  String get ham_heardFrom => 'Gehoord van';
+
+  @override
+  String get ham_lastHeard => 'Laatste frame van';
+
+  @override
+  String get ham_nothingHeardYet => 'nog niets';
+
+  @override
+  String get ham_readyToTransmit => 'Klaar om uit te zenden';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Controleer de gemarkeerde punten hieronder voordat je uitzendt';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Geef de radio je roepnaam voordat je uitzendt';
+
+  @override
+  String get ham_bannerOutOfBand => 'De radio staat buiten de amateurbanden';
 }

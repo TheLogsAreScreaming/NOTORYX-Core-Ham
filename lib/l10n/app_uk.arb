@@ -3990,5 +3990,12 @@
   "ham_operatorCardIncomplete": "Вкажіть позивний і прочитайте посібник з координації",
   "ham_nodeNameCallsignHelper": "Почніть з позивного, наприклад «W1AW» або «W1AW Base»",
   "ham_repeaterNameNeedsCall": "Назва має починатися з позивного ретранслятора, наприклад «N0RPT Hilltop».",
-  "ham_repeaterPasswordsSerial": "Задавайте паролі через послідовну USB-консоль ретранслятора. Передані в ефірі, їх може прочитати будь-хто."
+  "ham_repeaterPasswordsSerial": "Задавайте паролі через послідовну USB-консоль ретранслятора. Передані в ефірі, їх може прочитати будь-хто.",
+  "ham_heardFrom": "Почуто від",
+  "ham_lastHeard": "Останній кадр від",
+  "ham_nothingHeardYet": "поки нічого",
+  "ham_readyToTransmit": "Готово до передавання",
+  "ham_notReadyToTransmit": "Перед передаванням перевірте позначені нижче пункти",
+  "ham_bannerNameMismatch": "Перед передаванням назвіть радіостанцію своїм позивним",
+  "ham_bannerOutOfBand": "Радіостанцію налаштовано поза аматорськими діапазонами"
 }
