@@ -7,6 +7,7 @@ import '../connector/meshcore_connector.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../models/operator_profile.dart';
 import '../services/operator_profile_service.dart';
+import '../utils/amateur_location.dart';
 import '../utils/amateur_power.dart';
 import '../utils/amateur_radio.dart';
 import '../widgets/mesh_ui.dart';
@@ -295,6 +296,12 @@ class _ConnectedRadioSection extends StatelessWidget {
                 note: "The radio chip's setting",
               ),
               ..._powerRows(connector.manufacturerName, tx, profile),
+              if (mhz != null)
+                ..._locationRows(
+                  mhz,
+                  connector.selfLatitude,
+                  connector.selfLongitude,
+                ),
               _StatusRow(
                 ok: true,
                 title: 'Firmware',
@@ -352,6 +359,24 @@ class _ConnectedRadioSection extends StatelessWidget {
             'After feedline loss and antenna gain, relative to a dipole. '
             'Check RF exposure (§97.13) at higher power.',
       ),
+    ];
+  }
+
+  List<Widget> _locationRows(double mhz, double? lat, double? lon) {
+    final cautions = locationCautions(mhz, lat, lon);
+    if (cautions.isEmpty) {
+      return const [
+        _StatusRow(
+          ok: true,
+          title: 'Location',
+          value: 'no band limits found',
+          note: "From the radio's position. Check §97.303 to be sure.",
+        ),
+      ];
+    }
+    return [
+      for (final c in cautions)
+        _StatusRow(ok: false, title: 'Location', value: 'check', note: c),
     ];
   }
 
