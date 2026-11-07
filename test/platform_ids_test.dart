@@ -10,15 +10,15 @@ void main() {
     final android = File('android/app/build.gradle.kts').readAsStringSync();
     expect(android, contains('applicationId = "$id"'));
 
-    final macos = File('macos/Runner/Configs/AppInfo.xcconfig')
-        .readAsStringSync();
+    final macos = File(
+      'macos/Runner/Configs/AppInfo.xcconfig',
+    ).readAsStringSync();
     expect(macos, contains('PRODUCT_BUNDLE_IDENTIFIER = $id'));
 
     final ios = File('ios/Runner.xcodeproj/project.pbxproj').readAsStringSync();
-    final ids = RegExp(r'PRODUCT_BUNDLE_IDENTIFIER = ([^;]+);')
-        .allMatches(ios)
-        .map((m) => m[1]!)
-        .toSet();
+    final ids = RegExp(
+      r'PRODUCT_BUNDLE_IDENTIFIER = ([^;]+);',
+    ).allMatches(ios).map((m) => m[1]!).toSet();
     expect(ids, {id, '$id.RunnerTests'});
   });
 
