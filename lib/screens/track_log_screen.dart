@@ -16,6 +16,7 @@ import '../utils/platform_info.dart';
 import '../widgets/connect_ui.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/ember_backdrop.dart';
+import '../widgets/ui/mesh_states.dart';
 
 /// Start and stop a breadcrumb trail from the radio's GPS, look at saved
 /// tracks, and export them as GPX.
@@ -66,22 +67,11 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
 
   Future<void> _confirmDelete(TrackLogService log, Track track) async {
     final l10n = context.l10n;
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(l10n.trackLog_deleteTitle),
-        content: Text(l10n.trackLog_deleteBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(l10n.common_cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(l10n.common_delete),
-          ),
-        ],
-      ),
+    final ok = await confirmDestructive(
+      context,
+      title: l10n.trackLog_deleteTitle,
+      message: l10n.trackLog_deleteBody,
+      confirmLabel: l10n.common_delete,
     );
     if (ok == true) {
       if (_selectedId == track.id) setState(() => _selectedId = null);

@@ -17,6 +17,8 @@ import '../widgets/radio_overview_card.dart';
 import 'scanner_screen.dart';
 import 'tcp_screen.dart';
 import 'usb_screen.dart';
+import '../widgets/ui/mesh_states.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// Radio and MQTT broker connections are shown and controlled separately.
 class ConnectionDashboardScreen extends StatelessWidget {
@@ -263,7 +265,7 @@ class RadioConnectionCard extends StatelessWidget {
       await connector.reconnectSavedRadio();
     } catch (_) {
       // The card already shows connector.lastConnectionError.
-      messenger.showSnackBar(SnackBar(content: Text(failed)));
+      messenger.showSnackBar(meshSnackBar(content: Text(failed)));
     }
   }
 }
@@ -591,22 +593,11 @@ class _ExtraBrokers extends StatelessWidget {
     MqttUploadersService uploaders,
     MqttUploader u,
   ) async {
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(context.l10n.mqttExtra_removeTitle(u.name)),
-        content: Text(context.l10n.mqttExtra_removeBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: Text(context.l10n.common_remove),
-          ),
-        ],
-      ),
+    final ok = await confirmDestructive(
+      context,
+      title: context.l10n.mqttExtra_removeTitle(u.name),
+      message: context.l10n.mqttExtra_removeBody,
+      confirmLabel: context.l10n.common_remove,
     );
     if (ok == true) await uploaders.remove(u.id);
   }

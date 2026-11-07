@@ -16,6 +16,7 @@ import '../widgets/app_bar.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/mesh_ui.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../widgets/ui/mesh_states.dart';
 
 enum DiscoverySortOption { lastSeen, name, type }
 
@@ -69,27 +70,14 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
       );
       return;
     }
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (d) => AlertDialog(
-        title: Text(l10n.discoveredContacts_addManyTitle(todo.length)),
-        content: Text(
-          todo.length > room
-              ? l10n.discoveredContacts_roomLimit(room, todo.length)
-              : l10n.discoveredContacts_roomLeft(room),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(d, false),
-            child: Text(l10n.common_cancel),
-          ),
-          FilledButton(
-            key: const ValueKey('discovered-add-many-confirm'),
-            onPressed: () => Navigator.pop(d, true),
-            child: Text(l10n.common_add),
-          ),
-        ],
-      ),
+    final ok = await confirmAction(
+      confirmKey: const ValueKey('discovered-add-many-confirm'),
+      context,
+      title: l10n.discoveredContacts_addManyTitle(todo.length),
+      message: todo.length > room
+          ? l10n.discoveredContacts_roomLimit(room, todo.length)
+          : l10n.discoveredContacts_roomLeft(room),
+      confirmLabel: l10n.common_add,
     );
     if (ok != true || !mounted) return;
     final batch = todo.take(room).toList();
@@ -567,28 +555,20 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     }
   }
 
-  void _deleteContacts(BuildContext context, MeshCoreConnector connector) {
+  Future<void> _deleteContacts(
+    BuildContext context,
+    MeshCoreConnector connector,
+  ) async {
     final l10n = context.l10n;
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.common_deleteAll),
-        content: Text(l10n.discoveredContacts_deleteContactAllContent),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context);
-              connector.removeAllDiscoveredContacts();
-            },
-            child: Text(l10n.common_deleteAll),
-          ),
-        ],
-      ),
+    final confirmed = await confirmDestructive(
+      context,
+      title: l10n.common_deleteAll,
+      message: l10n.discoveredContacts_deleteContactAllContent,
+      confirmLabel: l10n.common_deleteAll,
     );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    connector.removeAllDiscoveredContacts();
   }
 
   Widget _buildFilters(

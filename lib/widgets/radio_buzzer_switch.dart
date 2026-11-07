@@ -5,6 +5,7 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../screens/companion_cli_screen.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// Turns the radio's buzzer on or off, through the companion command line
 /// (`get buzzer` / `set buzzer on|off`). Only shown when the radio answers:
@@ -63,7 +64,9 @@ class _RadioBuzzerSwitchState extends State<RadioBuzzerSwitch> {
       if (!ok) _on = !on;
     });
     if (!ok) {
-      messenger.showSnackBar(SnackBar(content: Text(l10n.radioBuzzer_failed)));
+      messenger.showSnackBar(
+        meshSnackBar(content: Text(l10n.radioBuzzer_failed)),
+      );
     }
   }
 

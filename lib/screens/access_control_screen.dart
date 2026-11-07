@@ -13,8 +13,8 @@ import '../models/contact.dart';
 import '../services/access_control_service.dart';
 import '../services/repeater_command_service.dart';
 import '../theme/mesh_theme.dart';
-import '../widgets/empty_state.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/ui/mesh_states.dart';
 
 /// Lets an admin see and change who can log in to a repeater or room server
 /// without the password, and with which role.
@@ -171,7 +171,7 @@ class _AccessControlScreenState extends State<AccessControlScreen> {
       if (!mounted) return;
       showDismissibleSnackBar(
         context,
-        content: Text(l10n.accessControl_failed('$e')),
+        content: Text(l10n.accessControl_failed(friendlyError(e))),
         backgroundColor: Theme.of(context).colorScheme.error,
       );
     } finally {
@@ -181,30 +181,13 @@ class _AccessControlScreenState extends State<AccessControlScreen> {
 
   Future<void> _confirmRemove(_ResolvedEntry e) async {
     final l10n = context.l10n;
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(l10n.accessControl_remove),
-        content: Text(
-          e.isSelf
-              ? l10n.accessControl_removeSelfWarning
-              : l10n.accessControl_removeConfirm(_nameFor(e)),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(l10n.common_cancel),
-          ),
-          FilledButton(
-            style: FilledButton.styleFrom(
-              backgroundColor: Theme.of(dialogContext).colorScheme.error,
-              foregroundColor: Theme.of(dialogContext).colorScheme.onError,
-            ),
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(l10n.accessControl_remove),
-          ),
-        ],
-      ),
+    final ok = await confirmDestructive(
+      context,
+      title: l10n.accessControl_remove,
+      message: e.isSelf
+          ? l10n.accessControl_removeSelfWarning
+          : l10n.accessControl_removeConfirm(_nameFor(e)),
+      confirmLabel: l10n.accessControl_remove,
     );
     if (ok == true) {
       // Removal works with the 6-byte prefix when the full key is unknown.

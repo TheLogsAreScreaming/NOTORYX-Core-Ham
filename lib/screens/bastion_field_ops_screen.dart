@@ -23,6 +23,8 @@ import 'bastion_path_hub_screen.dart';
 import 'bot_settings_screen.dart';
 import 'map_cache_screen.dart';
 import 'scanner_screen.dart';
+import '../widgets/ui/mesh_states.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class BastionFieldOpsScreen extends StatefulWidget {
   const BastionFieldOpsScreen({super.key, this.initialCheckIn = false});
@@ -114,7 +116,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text(e.toString())));
+        ).showSnackBar(meshSnackBar(content: Text(friendlyError(e))));
       }
     }
   }
@@ -1016,22 +1018,11 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
   }
 
   Future<void> _clear(FieldOpsService ops) async {
-    final yes = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(_l10n.fieldOps_deleteLogTitle),
-        content: Text(_l10n.fieldOps_deleteLogBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: Text(_l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: Text(_l10n.common_delete),
-          ),
-        ],
-      ),
+    final yes = await confirmDestructive(
+      context,
+      title: _l10n.fieldOps_deleteLogTitle,
+      message: _l10n.fieldOps_deleteLogBody,
+      confirmLabel: _l10n.common_delete,
     );
     if (yes == true) await ops.clearLog();
   }

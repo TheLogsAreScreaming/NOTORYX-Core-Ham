@@ -21,7 +21,6 @@ import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
-import '../widgets/empty_state.dart';
 import '../widgets/ui/unread_badge.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/qr_code_display.dart';
@@ -41,6 +40,7 @@ import 'channel_directory_screen.dart';
 import 'message_search_screen.dart';
 import 'community_qr_scanner_screen.dart';
 import 'settings_screen.dart';
+import '../widgets/ui/mesh_states.dart';
 
 class ChannelsScreen extends StatefulWidget {
   /// Shown as the CHATS tab: no back button, and the bottom bar below.
@@ -1773,7 +1773,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             showDismissibleSnackBar(
                               context,
                               content: Text(
-                                context.l10n.channels_channelUpdateFailed('$e'),
+                                context.l10n.channels_channelUpdateFailed(
+                                  friendlyError(e),
+                                ),
                               ),
                             );
                           }
@@ -1791,64 +1793,41 @@ class _ChannelsScreenState extends State<ChannelsScreen>
     );
   }
 
-  void _confirmDeleteChannel(
+  Future<void> _confirmDeleteChannel(
     BuildContext context,
     MeshCoreConnector connector,
     ChannelMessageStore channelMessageStore,
     Channel channel,
-  ) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(dialogContext.l10n.channels_deleteChannel),
-        content: Text(
-          dialogContext.l10n.channels_deleteChannelConfirm(channel.name),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: Text(dialogContext.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(dialogContext);
-              try {
-                await connector.deleteChannel(channel.index);
-
-                await channelMessageStore.clearChannelMessages(channel.index);
-
-                if (!context.mounted) return;
-
-                showDismissibleSnackBar(
-                  context,
-                  content: Text(
-                    context.l10n.channels_channelDeleted(channel.name),
-                  ),
-                );
-              } catch (e, st) {
-                if (!context.mounted) return;
-
-                showDismissibleSnackBar(
-                  context,
-                  content: Text(
-                    context.l10n.channels_channelDeleteFailed(channel.name),
-                  ),
-                );
-
-                // Preserve existing logging (if it was there)
-                debugPrint('Failed to delete channel: $e\n$st');
-              }
-            },
-            child: Text(
-              dialogContext.l10n.common_delete,
-              style: TextStyle(
-                color: Theme.of(dialogContext).colorScheme.error,
-              ),
-            ),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.channels_deleteChannel,
+      message: context.l10n.channels_deleteChannelConfirm(channel.name),
+      confirmLabel: context.l10n.common_delete,
     );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    try {
+      await connector.deleteChannel(channel.index);
+
+      await channelMessageStore.clearChannelMessages(channel.index);
+
+      if (!context.mounted) return;
+
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.channels_channelDeleted(channel.name)),
+      );
+    } catch (e, st) {
+      if (!context.mounted) return;
+
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.channels_channelDeleteFailed(channel.name)),
+      );
+
+      debugPrint('Failed to delete channel: $e\n$st');
+    }
   }
 
   void _addPublicChannel(BuildContext context, MeshCoreConnector connector) {

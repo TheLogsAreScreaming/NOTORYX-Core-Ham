@@ -147,13 +147,48 @@ class MeshStatusBanner extends StatelessWidget {
   }
 }
 
-/// Asks before something that can't be undone. Returns true only when the
-/// user confirms. [confirmLabel] defaults to Delete.
+/// Asks before something that can't be undone (delete, clear, remove).
+/// The confirm button is filled in the error color. Returns true only when
+/// the user confirms. [confirmLabel] defaults to Delete.
 Future<bool> confirmDestructive(
   BuildContext context, {
-  required String title,
+  String? title,
   String? message,
   String? confirmLabel,
+  Key? confirmKey,
+}) => _confirm(
+  context,
+  title: title,
+  message: message,
+  confirmLabel: confirmLabel ?? context.l10n.common_delete,
+  confirmKey: confirmKey,
+  destructive: true,
+);
+
+/// Asks before a consequential but safe action (join, share, download,
+/// disconnect). Same layout as [confirmDestructive] with a primary button.
+Future<bool> confirmAction(
+  BuildContext context, {
+  String? title,
+  String? message,
+  required String confirmLabel,
+  Key? confirmKey,
+}) => _confirm(
+  context,
+  title: title,
+  message: message,
+  confirmLabel: confirmLabel,
+  confirmKey: confirmKey,
+  destructive: false,
+);
+
+Future<bool> _confirm(
+  BuildContext context, {
+  required String? title,
+  required String? message,
+  required String confirmLabel,
+  required bool destructive,
+  Key? confirmKey,
 }) async {
   final l10n = context.l10n;
   final result = await showDialog<bool>(
@@ -161,7 +196,7 @@ Future<bool> confirmDestructive(
     builder: (context) {
       final scheme = Theme.of(context).colorScheme;
       return AlertDialog(
-        title: Text(title),
+        title: title == null ? null : Text(title),
         content: message == null ? null : Text(message),
         actions: [
           TextButton(
@@ -169,12 +204,15 @@ Future<bool> confirmDestructive(
             child: Text(l10n.common_cancel),
           ),
           FilledButton(
-            style: FilledButton.styleFrom(
-              backgroundColor: scheme.error,
-              foregroundColor: scheme.onError,
-            ),
+            key: confirmKey,
+            style: destructive
+                ? FilledButton.styleFrom(
+                    backgroundColor: scheme.error,
+                    foregroundColor: scheme.onError,
+                  )
+                : null,
             onPressed: () => Navigator.pop(context, true),
-            child: Text(confirmLabel ?? l10n.common_delete),
+            child: Text(confirmLabel),
           ),
         ],
       );

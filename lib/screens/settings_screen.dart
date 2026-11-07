@@ -35,6 +35,7 @@ import 'wifi_settings_screen.dart';
 import 'region_management_screen.dart';
 import '../utils/amateur_radio.dart';
 import '../widgets/licensed_operator_card.dart';
+import '../widgets/ui/mesh_states.dart';
 
 /// Convert device coding-rate value (1-4 on some firmware, 5-8 on others)
 /// to the UI enum range (always 5-8).
@@ -1224,34 +1225,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _confirmDeleteAllPaths(
+  Future<void> _confirmDeleteAllPaths(
     BuildContext context,
     MeshCoreConnector connector,
-  ) {
+  ) async {
     final l10n = context.l10n;
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.settings_deleteAllPaths),
-        content: Text(l10n.settings_deleteAllPathsSubtitle),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              connector.deleteAllPaths();
-            },
-            child: Text(
-              l10n.common_deleteAll,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
-            ),
-          ),
-        ],
-      ),
+    final confirmed = await confirmDestructive(
+      context,
+      title: l10n.settings_deleteAllPaths,
+      message: l10n.settings_deleteAllPathsSubtitle,
+      confirmLabel: l10n.common_deleteAll,
     );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    connector.deleteAllPaths();
   }
 
   void _confirmReboot(BuildContext context, MeshCoreConnector connector) {

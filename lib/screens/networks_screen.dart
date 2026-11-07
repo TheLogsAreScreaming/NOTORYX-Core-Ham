@@ -17,6 +17,8 @@ import '../theme/mesh_theme.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/instrument.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/ui/mesh_states.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// Networks: scan for MeshCore networks nearby, keep a log of where each
 /// was heard, save networks and join one.
@@ -170,31 +172,20 @@ class _NetworksScreenState extends State<NetworksScreen> {
   Future<void> _join(NetworkScanService s, ScanTarget t) async {
     final l10n = context.l10n;
     final messenger = ScaffoldMessenger.of(context);
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (d) => AlertDialog(
-        title: Text(l10n.networks_join),
-        content: Text(l10n.networks_joinConfirm(t.name)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(d, false),
-            child: Text(l10n.common_cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(d, true),
-            child: Text(l10n.networks_join),
-          ),
-        ],
-      ),
+    final ok = await confirmAction(
+      context,
+      title: l10n.networks_join,
+      message: l10n.networks_joinConfirm(t.name),
+      confirmLabel: l10n.networks_join,
     );
     if (ok != true) return;
     try {
       await s.join(t);
       messenger.showSnackBar(
-        SnackBar(content: Text(l10n.networks_joined(t.name))),
+        meshSnackBar(content: Text(l10n.networks_joined(t.name))),
       );
     } catch (e) {
-      messenger.showSnackBar(SnackBar(content: Text('$e')));
+      messenger.showSnackBar(meshSnackBar(content: Text(friendlyError(e))));
     }
   }
 
@@ -317,21 +308,10 @@ class _NetworksScreenState extends State<NetworksScreen> {
 
   Future<void> _clearLog(NetworkScanService s) async {
     final l10n = context.l10n;
-    final ok = await showDialog<bool>(
-      context: context,
-      builder: (d) => AlertDialog(
-        content: Text(l10n.networks_clearLogConfirm),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(d, false),
-            child: Text(l10n.common_cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(d, true),
-            child: Text(l10n.common_delete),
-          ),
-        ],
-      ),
+    final ok = await confirmDestructive(
+      context,
+      message: l10n.networks_clearLogConfirm,
+      confirmLabel: l10n.common_delete,
     );
     if (ok == true) await s.clearLog();
   }

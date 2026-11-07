@@ -43,7 +43,6 @@ import '../widgets/quick_messages.dart';
 import '../widgets/share_in_chat.dart';
 import '../widgets/received_image_message.dart';
 import '../widgets/byte_count_input.dart';
-import '../widgets/empty_state.dart';
 import '../widgets/chat_zoom_wrapper.dart';
 import '../widgets/emoji_picker.dart';
 import '../widgets/gif_message.dart';
@@ -71,6 +70,7 @@ import 'channel_message_path_screen.dart';
 import 'map_screen.dart';
 import 'region_management_screen.dart';
 import '../storage/region_store.dart';
+import '../widgets/ui/mesh_states.dart';
 
 class ChannelChatScreen extends StatefulWidget {
   final Channel channel;
@@ -1352,7 +1352,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       debugPrint('image pick failed: $e');
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.chat_imagePickFailed)),
+        meshSnackBar(content: Text(context.l10n.chat_imagePickFailed)),
       );
       return;
     }
@@ -1369,7 +1369,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       debugPrint('image read failed: $e');
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.chat_imagePickFailed)),
+        meshSnackBar(content: Text(context.l10n.chat_imagePickFailed)),
       );
       return;
     }
@@ -1405,14 +1405,14 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
 
     if (!connector.supportsChannelData) {
       messenger.showSnackBar(
-        SnackBar(content: Text(l10n.imageSend_deviceUnsupported)),
+        meshSnackBar(content: Text(l10n.imageSend_deviceUnsupported)),
       );
       return;
     }
     final senderPrefix = connector.imageSenderPrefix;
     if (senderPrefix == null) {
       messenger.showSnackBar(
-        SnackBar(content: Text(l10n.imageSend_deviceUnsupported)),
+        meshSnackBar(content: Text(l10n.imageSend_deviceUnsupported)),
       );
       return;
     }
@@ -1435,7 +1435,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         parity: result.includeParity,
       );
     } on ArgumentError {
-      messenger.showSnackBar(SnackBar(content: Text(l10n.imageSend_tooLarge)));
+      messenger.showSnackBar(
+        meshSnackBar(content: Text(l10n.imageSend_tooLarge)),
+      );
       return;
     }
 
@@ -1477,7 +1479,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       }
       if (!mounted) return;
       messenger.showSnackBar(
-        SnackBar(
+        meshSnackBar(
           content: Text(
             sent
                 ? l10n.imageSend_sentConfirmation(chunkSet.blobs.length)
@@ -1488,7 +1490,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     } on Exception catch (error) {
       if (!mounted) return;
       messenger.showSnackBar(
-        SnackBar(content: Text(l10n.imageSend_sendFailed('$error'))),
+        meshSnackBar(
+          content: Text(l10n.imageSend_sendFailed(friendlyError(error))),
+        ),
       );
     } finally {
       if (mounted) {
@@ -2572,24 +2576,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   }
 
   Future<void> _confirmClearChat() async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.contact_clearChat),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.error,
-            ),
-            child: Text(context.l10n.common_delete),
-          ),
-        ],
-      ),
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.contact_clearChat,
+      confirmLabel: context.l10n.common_delete,
     );
     if (confirmed == true) {
       if (!mounted) return;
