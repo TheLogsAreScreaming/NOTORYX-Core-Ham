@@ -524,44 +524,52 @@ class _BarRow extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => InkWell(
-    onTap: onTap,
-    borderRadius: BorderRadius.circular(8),
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 104,
-            child: Text(
-              label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink2),
-            ),
-          ),
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(
-                value: total == 0 ? 0 : count / total,
-                minHeight: 10,
-                color: color,
-                backgroundColor: MeshPalette.line,
+  Widget build(BuildContext context) => Semantics(
+    button: true,
+    label: '$label, $count',
+    excludeSemantics: true,
+    child: InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: MeshShape.minTouch),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 104,
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink2),
+                ),
               ),
-            ),
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: LinearProgressIndicator(
+                    value: total == 0 ? 0 : count / total,
+                    minHeight: 10,
+                    color: color,
+                    backgroundColor: MeshPalette.line,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 44,
+                child: Text(
+                  '$count',
+                  textAlign: TextAlign.right,
+                  style: MeshTheme.mono(color: MeshPalette.ink, fontSize: 13),
+                ),
+              ),
+            ],
           ),
-          SizedBox(
-            width: 44,
-            child: Text(
-              '$count',
-              textAlign: TextAlign.right,
-              style: MeshTheme.mono(color: MeshPalette.ink, fontSize: 13),
-            ),
-          ),
-        ],
+        ),
       ),
     ),
   );
@@ -584,9 +592,12 @@ class _HourChart extends StatelessWidget {
         children: [
           for (final (i, c) in counts.indexed)
             Expanded(
+              // Bars are narrower than a finger; each still gets a spoken
+              // label ("3 hours ago, 4") so screen-reader users can drill in.
               child: Semantics(
                 button: true,
-                label: '$c',
+                label:
+                    '${i == 23 ? context.l10n.fieldIntel_lastHour : context.l10n.time_hoursAgo(23 - i)}, $c',
                 child: GestureDetector(
                   key: ValueKey('hour-$i'),
                   behavior: HitTestBehavior.opaque,

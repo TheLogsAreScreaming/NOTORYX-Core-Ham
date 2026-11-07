@@ -154,7 +154,6 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
                     decoration: InputDecoration(
                       labelText: l10n.ham_licenceClass,
                       helperText: l10n.ham_licenceClassHelper,
-                      helperMaxLines: 2,
                       border: const OutlineInputBorder(),
                     ),
                     items: [

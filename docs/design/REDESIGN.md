@@ -30,8 +30,88 @@ Material 3 structure (roles, components, motion), with Apple HIG restraint: cont
 | 2 | Shell and navigation: More reorganised (a Station group with Licensed operator, Connections and Radio), Home hierarchy, no "Private" padlocks for ham channels | Done, except Home (PR 8) |
 | 3 | Chats and Nodes: list rows, chat headers, composer, empty states | Done (PR 9) |
 | 4 | Settings, Connections, scanner, radio and repeater settings | Done (PR 8 scanner, PR 12) |
-| 5 | Tools: field ops, wardrive, track log, diagnostics, path and route tools, maps | PR 17 |
-| 6 | Dialogs, sheets and snackbars app-wide; destructive confirmations | PR 18 |
-| 7 | Accessibility pass (text scale, touch targets, semantics), screenshots, write-up | |
+| 5 | Tools: field ops, wardrive, track log, diagnostics, path and route tools, maps | Done (PR 17) |
+| 6 | Dialogs, sheets and snackbars app-wide; destructive confirmations | Done (PR 18) |
+| 7 | Accessibility pass (text scale, touch targets, semantics), screenshots, write-up | Done (PR 19) |
 
 Each stage ends with `flutter analyze`, the full test suite, and screenshots from `test/preview`. Anything that needs a real phone or radio to verify is listed in that stage's PR.
+
+## Outcome
+
+### Design system
+
+All of it lives in `lib/theme/` and `lib/widgets/ui/`; screens consume it rather than define their own.
+
+| Piece | What it is |
+|---|---|
+| Type scale | `meshTextTheme`: the Material 3 roles (display → label) set in Inter. Screens use `Theme.of(context).textTheme.<role>`. Radio readings use `MeshTheme.mono` on purpose. |
+| Colour | The theme's `ColorScheme`, built from five palettes: Blaze, Autumn Frost, Bubble Gum (light), Red light and Okabe-Ito. `MeshStatusColors` adds info, success, warning and error, each with a container colour. |
+| Shape | `MeshShape`: 12 for controls, 16 for cards, 24 for sheets and dialogs, and a 48 dp minimum touch size. All buttons, inputs, chips and toggles share the control radius. |
+| Motion | `MeshMotion`: short, medium and long durations. They become zero when the system asks for reduced motion. |
+| States | `EmptyState`, `MeshLoadingState`, `MeshErrorState` and `MeshStatusBanner`, all announced to screen readers. |
+| Feedback | `confirmDestructive` (red) and `confirmAction` (primary) for confirmations. `meshSnackBar` and `showDismissibleSnackBar` for messages: tap to dismiss, 4 s, never stuck. `friendlyError` for error text. |
+| Badges | `UnreadBadge`: "99+" cap and a spoken count. |
+
+### By the numbers
+
+Counted outside `lib/theme` and generated translations, before stage 1 and after stage 7:
+
+- Hand-set `fontSize:` dropped from 418 to 264. About half of what's left is `MeshTheme.mono` number readouts. The rest are chat bubbles that scale with their own setting, and canvas painters, which have no theme to read.
+- `TextStyle(` dropped from 414 to 253. Type-scale references went up to 294.
+- Confirmation dialogs: 22 hand-built ones now share one of two patterns.
+- Raw snack bars: 39 now go through one builder. 17 error messages no longer show raw exception text.
+- Icon buttons with no spoken label: 23 now have one.
+
+### Screens
+
+Every screen moved onto the type scale and the shared shapes. Stage by stage:
+
+- **Shell and Home (stage 2):**
+  - More is regrouped into Your station (Licensed operator, Connections), App & settings, and In the field.
+  - Ham channels no longer show a padlock or "Private".
+  - Home: see "Not finished" below.
+- **Chats and Nodes (stage 3):**
+  - List rows, unread badges, chat headers, composer, and empty states.
+  - Contact rows announce the contact instead of just "button".
+- **Settings, Connections, scanner, radio and repeater settings (stage 4).**
+- **Tools and maps (stage 5):**
+  - Covers path graph, route intelligence, track log, field stats, prefix tool, repeater tools, line of sight, coverage, field ops, diagnostics, networks and Wi-Fi.
+  - Shared loading states replace bare spinners.
+- **Dialogs, sheets and messages (stage 6):**
+  - One confirmation language.
+  - Sheets come from the theme: drag handle, 24-pt corners.
+- **Accessibility (stage 7):** see below.
+
+### Accessibility
+
+`PREVIEW_A11Y=1 PREVIEW_OUT=<dir> flutter test test/preview` runs Flutter's tap-target, labelled-target and text-contrast guidelines on every preview screen in both a dark theme (Blaze) and a light theme (Bubble Gum). It writes the results to `<dir>/a11y.txt`.
+
+- **Result:** 46 of 52 screen/theme combinations pass all three. Every combination passes contrast.
+- **Fixed in stage 7:**
+  - 23 unlabelled icon buttons now have spoken, translated tooltips: back, close, clear, show/hide password, send location, flashlight and switch camera.
+  - Contact rows and the add-contact button now have labels.
+  - Region switches are named.
+  - Bar-chart rows in path graph and field stats are 48 dp tall and read as one sentence.
+  - "Start recording", the scanner action and the channel header are now 48 dp tall.
+  - Help and error text under fields wraps instead of being cut off; the limit is set once, in the theme.
+  - Two English-only line-of-sight labels are translated.
+- **Accepted exceptions (the remaining 6):**
+  - Message text in chat bubbles is shorter than 48 dp, because the long-press target for text selection is the text itself. The whole bubble stays tappable.
+  - The 24-hour activity chart in field stats has bars narrower than a finger. Each bar has a spoken label ("3 hours ago, 4"), and the same data is also in the lists below it.
+- **Large text:** every preview screen renders at 200 % system text without a layout overflow.
+
+### Testing
+
+- `flutter analyze --fatal-infos`: clean.
+- `flutter test --exclude-tags=integration`: 1315+ tests passing at each stage. New tests cover the design tokens, shared states, confirmations, snack bars and `friendlyError`.
+- Screenshots: `test/preview` with `PREVIEW_THEME` (comma-separated theme ids), `PREVIEW_TEXT_SCALE`, `PREVIEW_LOCALE`, `PREVIEW_HEIGHT` and `PREVIEW_ONLY`.
+
+### Not finished, or needs a real phone
+
+- **Home hierarchy (stage 2):** Home kept its existing layout and only moved onto the tokens. A deeper rework of its order (status, trip, SOS, tools) is still open.
+- **On a phone:**
+  - TalkBack and VoiceOver walk-throughs of Home, Chats, a chat, Nodes and Settings.
+  - 200 % system text on line of sight and the map.
+  - Each delete and clear prompt appears once, and the item is gone afterwards.
+- **On air:** the two-station test needs radio hardware. It doesn't depend on the redesign, but it's still owed.
+- **Preview harness:** the `channels` preview leaves a self-rescheduling service timer pending, so that one preview test reports an error after writing its screenshot. Only the preview harness is affected.

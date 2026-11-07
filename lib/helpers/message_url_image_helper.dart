@@ -307,6 +307,9 @@ class MessageUrlImagePreview extends StatelessWidget {
                     top: 12,
                     right: 12,
                     child: IconButton(
+                      tooltip: MaterialLocalizations.of(
+                        context,
+                      ).closeButtonTooltip,
                       onPressed: () => Navigator.of(context).pop(),
                       icon: const Icon(Icons.close, color: Colors.white),
                       style: IconButton.styleFrom(

@@ -4308,5 +4308,12 @@
   "ham_readyToTransmit": "送信の準備ができています",
   "ham_notReadyToTransmit": "送信する前に、下で印の付いた項目を確認してください",
   "ham_bannerNameMismatch": "送信する前に無線機の名前をコールサインにしてください",
-  "ham_bannerOutOfBand": "無線機がアマチュアバンドの外に設定されています"
+  "ham_bannerOutOfBand": "無線機がアマチュアバンドの外に設定されています",
+  "a11y_showPassword": "パスワードを表示",
+  "a11y_hidePassword": "パスワードを隠す",
+  "a11y_sendLocation": "現在地を送信",
+  "a11y_toggleFlash": "ライト",
+  "a11y_switchCamera": "カメラを切り替え",
+  "los_worst": "最悪",
+  "los_selectedObstruction": "選択した障害物"
 }

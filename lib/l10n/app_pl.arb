@@ -4212,5 +4212,12 @@
   "ham_readyToTransmit": "Gotowe do nadawania",
   "ham_notReadyToTransmit": "Przed nadawaniem sprawdź zaznaczone poniżej pozycje",
   "ham_bannerNameMismatch": "Przed nadawaniem nazwij radio swoim znakiem wywoławczym",
-  "ham_bannerOutOfBand": "Radio jest ustawione poza pasmami amatorskimi"
+  "ham_bannerOutOfBand": "Radio jest ustawione poza pasmami amatorskimi",
+  "a11y_showPassword": "Pokaż hasło",
+  "a11y_hidePassword": "Ukryj hasło",
+  "a11y_sendLocation": "Wyślij moją lokalizację",
+  "a11y_toggleFlash": "Latarka",
+  "a11y_switchCamera": "Przełącz kamerę",
+  "los_worst": "NAJGORSZE",
+  "los_selectedObstruction": "Wybrana przeszkoda"
 }

@@ -4179,5 +4179,12 @@
   "ham_readyToTransmit": "可以发射",
   "ham_notReadyToTransmit": "发射前请检查下方标记的项目",
   "ham_bannerNameMismatch": "发射前请用你的呼号命名电台",
-  "ham_bannerOutOfBand": "电台设置在业余频段之外"
+  "ham_bannerOutOfBand": "电台设置在业余频段之外",
+  "a11y_showPassword": "显示密码",
+  "a11y_hidePassword": "隐藏密码",
+  "a11y_sendLocation": "发送我的位置",
+  "a11y_toggleFlash": "手电筒",
+  "a11y_switchCamera": "切换摄像头",
+  "los_worst": "最差",
+  "los_selectedObstruction": "选中的障碍物"
 }

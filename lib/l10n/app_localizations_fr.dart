@@ -10018,4 +10018,25 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get ham_bannerOutOfBand =>
       'La radio est réglée hors des bandes radioamateurs';
+
+  @override
+  String get a11y_showPassword => 'Afficher le mot de passe';
+
+  @override
+  String get a11y_hidePassword => 'Masquer le mot de passe';
+
+  @override
+  String get a11y_sendLocation => 'Envoyer ma position';
+
+  @override
+  String get a11y_toggleFlash => 'Lampe torche';
+
+  @override
+  String get a11y_switchCamera => 'Changer de caméra';
+
+  @override
+  String get los_worst => 'PIRE';
+
+  @override
+  String get los_selectedObstruction => 'Obstacle sélectionné';
 }

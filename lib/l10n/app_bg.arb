@@ -4174,5 +4174,12 @@
   "ham_readyToTransmit": "Готово за предаване",
   "ham_notReadyToTransmit": "Проверете отбелязаните по-долу точки, преди да предавате",
   "ham_bannerNameMismatch": "Дайте на радиото име с вашата позивна, преди да предавате",
-  "ham_bannerOutOfBand": "Радиото е настроено извън радиолюбителските обхвати"
+  "ham_bannerOutOfBand": "Радиото е настроено извън радиолюбителските обхвати",
+  "a11y_showPassword": "Покажи паролата",
+  "a11y_hidePassword": "Скрий паролата",
+  "a11y_sendLocation": "Изпрати местоположението ми",
+  "a11y_toggleFlash": "Фенерче",
+  "a11y_switchCamera": "Смени камерата",
+  "los_worst": "НАЙ-ЛОШО",
+  "los_selectedObstruction": "Избрано препятствие"
 }

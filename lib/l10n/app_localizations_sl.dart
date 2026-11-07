@@ -9968,4 +9968,25 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get ham_bannerOutOfBand =>
       'Postaja je nastavljena zunaj radioamaterskih pasov';
+
+  @override
+  String get a11y_showPassword => 'Pokaži geslo';
+
+  @override
+  String get a11y_hidePassword => 'Skrij geslo';
+
+  @override
+  String get a11y_sendLocation => 'Pošlji mojo lokacijo';
+
+  @override
+  String get a11y_toggleFlash => 'Svetilka';
+
+  @override
+  String get a11y_switchCamera => 'Preklopi kamero';
+
+  @override
+  String get los_worst => 'NAJSLABŠE';
+
+  @override
+  String get los_selectedObstruction => 'Izbrana ovira';
 }

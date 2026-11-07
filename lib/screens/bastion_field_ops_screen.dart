@@ -646,7 +646,6 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                     decoration: InputDecoration(
                       labelText: _l10n.fieldOps_checkInChannelLabel,
                       helperText: _l10n.fieldOps_checkInChannelHint,
-                      helperMaxLines: 3,
                     ),
                     items: [
                       DropdownMenuItem(

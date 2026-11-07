@@ -9519,4 +9519,25 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get ham_bannerOutOfBand => '무선기가 아마추어 대역 밖으로 설정되어 있습니다';
+
+  @override
+  String get a11y_showPassword => '비밀번호 표시';
+
+  @override
+  String get a11y_hidePassword => '비밀번호 숨기기';
+
+  @override
+  String get a11y_sendLocation => '내 위치 보내기';
+
+  @override
+  String get a11y_toggleFlash => '손전등';
+
+  @override
+  String get a11y_switchCamera => '카메라 전환';
+
+  @override
+  String get los_worst => '최악';
+
+  @override
+  String get los_selectedObstruction => '선택한 장애물';
 }

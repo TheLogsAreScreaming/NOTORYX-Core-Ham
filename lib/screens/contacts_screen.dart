@@ -513,6 +513,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             ],
           ),
           floatingActionButton: FloatingActionButton(
+            tooltip: context.l10n.discoveredContacts_addContact,
             onPressed: () => _showAddContactSheet(context),
             child: const Icon(Icons.person_add),
           ),
@@ -1635,95 +1636,102 @@ class _ContactTile extends StatelessWidget {
           : Icon(_typeIcon(), size: 19, color: MeshPalette.ink3),
     );
 
-    return GestureDetector(
-      onSecondaryTapUp: PlatformInfo.isDesktop ? (_) => onLongPress() : null,
-      child: InkWell(
-        onTap: onTap,
-        onLongPress: onLongPress,
-        // Each tile sits in its own glass card, so no divider line.
-        child: DecoratedBox(
-          decoration: const BoxDecoration(),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 56),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
-              child: Row(
-                children: [
-                  glyph,
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+    // Merge the name, type and distance into the row's tap target so a
+    // screen reader announces the contact, not just "button".
+    return MergeSemantics(
+      child: GestureDetector(
+        onSecondaryTapUp: PlatformInfo.isDesktop ? (_) => onLongPress() : null,
+        child: InkWell(
+          onTap: onTap,
+          onLongPress: onLongPress,
+          // Each tile sits in its own glass card, so no divider line.
+          child: DecoratedBox(
+            decoration: const BoxDecoration(),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 56),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
+                child: Row(
+                  children: [
+                    glyph,
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  contact.name,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.titleSmall
+                                      ?.copyWith(
+                                        fontSize: 15,
+                                        fontWeight: hasUnread
+                                            ? FontWeight.w700
+                                            : FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                              if (isFavorite) ...[
+                                const SizedBox(width: 6),
+                                Icon(
+                                  Icons.star,
+                                  size: 16,
+                                  color: MeshPalette.warn,
+                                  semanticLabel: l10n.listFilter_favorites,
+                                ),
+                              ],
+                              if (contact.hasLocation) ...[
+                                const SizedBox(width: 4),
+                                Icon(
+                                  Icons.location_on_outlined,
+                                  size: 16,
+                                  color: scheme.onSurfaceVariant,
+                                ),
+                              ],
+                            ],
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            subtitle,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  fontSize: 13,
+                                  color: MeshPalette.ink3,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Row(
-                          children: [
-                            Flexible(
-                              child: Text(
-                                contact.name,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.titleSmall
-                                    ?.copyWith(
-                                      fontSize: 15,
-                                      fontWeight: hasUnread
-                                          ? FontWeight.w700
-                                          : FontWeight.w500,
-                                    ),
-                              ),
-                            ),
-                            if (isFavorite) ...[
-                              const SizedBox(width: 6),
-                              Icon(
-                                Icons.star,
-                                size: 16,
-                                color: MeshPalette.warn,
-                                semanticLabel: l10n.listFilter_favorites,
-                              ),
-                            ],
-                            if (contact.hasLocation) ...[
-                              const SizedBox(width: 4),
-                              Icon(
-                                Icons.location_on_outlined,
-                                size: 16,
-                                color: scheme.onSurfaceVariant,
-                              ),
-                            ],
-                          ],
-                        ),
-                        const SizedBox(height: 2),
                         Text(
-                          subtitle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(fontSize: 13, color: MeshPalette.ink3),
+                          contact.pathLabel(
+                            l10n,
+                            pathHashByteWidth: pathHashByteWidth,
+                          ),
+                          style: MeshTheme.mono(
+                            fontSize: 12,
+                            color: MeshPalette.ink3,
+                          ),
                         ),
+                        if (hasUnread) ...[
+                          const SizedBox(height: 4),
+                          UnreadBadge(unreadCount),
+                        ],
                       ],
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        contact.pathLabel(
-                          l10n,
-                          pathHashByteWidth: pathHashByteWidth,
-                        ),
-                        style: MeshTheme.mono(
-                          fontSize: 12,
-                          color: MeshPalette.ink3,
-                        ),
-                      ),
-                      if (hasUnread) ...[
-                        const SizedBox(height: 4),
-                        UnreadBadge(unreadCount),
-                      ],
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

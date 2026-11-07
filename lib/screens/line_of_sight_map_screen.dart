@@ -841,7 +841,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                       borderRadius: BorderRadius.circular(99),
                     ),
                     child: Text(
-                      'WORST',
+                      context.l10n.los_worst,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
@@ -882,7 +882,7 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Selected obstruction',
+            context.l10n.los_selectedObstruction,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: LosPalette.text,
               fontWeight: FontWeight.w800,

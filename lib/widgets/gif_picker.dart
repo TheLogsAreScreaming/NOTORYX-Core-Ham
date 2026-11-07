@@ -135,6 +135,7 @@ class _GifPickerState extends State<GifPicker> {
               ),
               const Spacer(),
               IconButton(
+                tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
                 icon: const Icon(Icons.close),
                 onPressed: () => Navigator.pop(context),
               ),
@@ -150,6 +151,9 @@ class _GifPickerState extends State<GifPicker> {
               prefixIcon: const Icon(Icons.search),
               suffixIcon: _searchController.text.isNotEmpty
                   ? IconButton(
+                      tooltip: MaterialLocalizations.of(
+                        context,
+                      ).clearButtonTooltip,
                       icon: const Icon(Icons.clear),
                       onPressed: () {
                         _searchController.clear();

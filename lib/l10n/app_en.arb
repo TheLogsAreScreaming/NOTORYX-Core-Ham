@@ -5840,5 +5840,12 @@
   "ham_readyToTransmit": "Ready to transmit",
   "ham_notReadyToTransmit": "Check the items marked below before transmitting",
   "ham_bannerNameMismatch": "Name the radio with your call sign before transmitting",
-  "ham_bannerOutOfBand": "The radio is set outside the ham bands"
+  "ham_bannerOutOfBand": "The radio is set outside the ham bands",
+  "a11y_showPassword": "Show password",
+  "a11y_hidePassword": "Hide password",
+  "a11y_sendLocation": "Send my location",
+  "a11y_toggleFlash": "Flashlight",
+  "a11y_switchCamera": "Switch camera",
+  "los_worst": "WORST",
+  "los_selectedObstruction": "Selected obstruction"
 }

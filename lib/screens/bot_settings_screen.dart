@@ -62,7 +62,6 @@ class BotSettingsScreen extends StatelessWidget {
           decoration: const InputDecoration(
             helperText:
                 'Short replies save mesh airtime. Maximum 140 bytes including bot label.',
-            helperMaxLines: 3,
           ),
         ),
         actions: [

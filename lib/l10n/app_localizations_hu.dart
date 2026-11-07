@@ -9970,4 +9970,25 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get ham_bannerOutOfBand =>
       'A rádió a rádióamatőr sávokon kívülre van állítva';
+
+  @override
+  String get a11y_showPassword => 'Jelszó megjelenítése';
+
+  @override
+  String get a11y_hidePassword => 'Jelszó elrejtése';
+
+  @override
+  String get a11y_sendLocation => 'Helyzetem küldése';
+
+  @override
+  String get a11y_toggleFlash => 'Zseblámpa';
+
+  @override
+  String get a11y_switchCamera => 'Kamera váltása';
+
+  @override
+  String get los_worst => 'LEGROSSZABB';
+
+  @override
+  String get los_selectedObstruction => 'Kiválasztott akadály';
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
+import '../l10n/l10n.dart';
+
 /// A reusable QR code scanner widget that can be embedded anywhere.
 ///
 /// Features:
@@ -237,6 +239,7 @@ class _QrScannerWidgetState extends State<QrScannerWidget>
             valueListenable: _controller,
             builder: (context, state, child) {
               return IconButton.filled(
+                tooltip: context.l10n.a11y_toggleFlash,
                 onPressed: () => _controller.toggleTorch(),
                 icon: Icon(
                   state.torchState == TorchState.on
@@ -254,6 +257,7 @@ class _QrScannerWidgetState extends State<QrScannerWidget>
           const SizedBox(width: 24),
         if (widget.showCameraSwitchButton)
           IconButton.filled(
+            tooltip: context.l10n.a11y_switchCamera,
             onPressed: () => _controller.switchCamera(),
             icon: const Icon(Icons.cameraswitch),
             style: IconButton.styleFrom(

@@ -9505,4 +9505,25 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get ham_bannerOutOfBand => '無線機がアマチュアバンドの外に設定されています';
+
+  @override
+  String get a11y_showPassword => 'パスワードを表示';
+
+  @override
+  String get a11y_hidePassword => 'パスワードを隠す';
+
+  @override
+  String get a11y_sendLocation => '現在地を送信';
+
+  @override
+  String get a11y_toggleFlash => 'ライト';
+
+  @override
+  String get a11y_switchCamera => 'カメラを切り替え';
+
+  @override
+  String get los_worst => '最悪';
+
+  @override
+  String get los_selectedObstruction => '選択した障害物';
 }

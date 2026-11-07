@@ -4308,5 +4308,12 @@
   "ham_readyToTransmit": "Sendebereit",
   "ham_notReadyToTransmit": "Prüfe die unten markierten Punkte, bevor du sendest",
   "ham_bannerNameMismatch": "Benenne das Funkgerät vor dem Senden mit deinem Rufzeichen",
-  "ham_bannerOutOfBand": "Das Funkgerät ist außerhalb der Amateurfunkbänder eingestellt"
+  "ham_bannerOutOfBand": "Das Funkgerät ist außerhalb der Amateurfunkbänder eingestellt",
+  "a11y_showPassword": "Passwort anzeigen",
+  "a11y_hidePassword": "Passwort verbergen",
+  "a11y_sendLocation": "Meinen Standort senden",
+  "a11y_toggleFlash": "Taschenlampe",
+  "a11y_switchCamera": "Kamera wechseln",
+  "los_worst": "SCHLECHTESTE",
+  "los_selectedObstruction": "Ausgewähltes Hindernis"
 }

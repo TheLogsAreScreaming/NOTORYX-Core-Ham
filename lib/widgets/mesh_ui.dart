@@ -568,6 +568,7 @@ class BottomSheetHeader extends StatelessWidget {
               ),
               ?trailing,
               IconButton(
+                tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
                 icon: const Icon(Icons.close, size: 20),
                 onPressed: () => Navigator.of(context).maybePop(),
               ),

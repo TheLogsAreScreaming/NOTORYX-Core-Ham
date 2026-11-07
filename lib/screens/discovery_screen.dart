@@ -622,6 +622,9 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                 children: [
                   if (searchQuery.isNotEmpty)
                     IconButton(
+                      tooltip: MaterialLocalizations.of(
+                        context,
+                      ).clearButtonTooltip,
                       icon: const Icon(Icons.clear),
                       onPressed: () {
                         _searchController.clear();

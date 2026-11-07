@@ -9943,4 +9943,25 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get ham_bannerOutOfBand => 'De radio staat buiten de amateurbanden';
+
+  @override
+  String get a11y_showPassword => 'Wachtwoord tonen';
+
+  @override
+  String get a11y_hidePassword => 'Wachtwoord verbergen';
+
+  @override
+  String get a11y_sendLocation => 'Mijn locatie sturen';
+
+  @override
+  String get a11y_toggleFlash => 'Zaklamp';
+
+  @override
+  String get a11y_switchCamera => 'Camera wisselen';
+
+  @override
+  String get los_worst => 'SLECHTSTE';
+
+  @override
+  String get los_selectedObstruction => 'Geselecteerde obstructie';
 }

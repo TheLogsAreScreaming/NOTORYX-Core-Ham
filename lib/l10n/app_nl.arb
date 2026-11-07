@@ -4174,5 +4174,12 @@
   "ham_readyToTransmit": "Klaar om uit te zenden",
   "ham_notReadyToTransmit": "Controleer de gemarkeerde punten hieronder voordat je uitzendt",
   "ham_bannerNameMismatch": "Geef de radio je roepnaam voordat je uitzendt",
-  "ham_bannerOutOfBand": "De radio staat buiten de amateurbanden"
+  "ham_bannerOutOfBand": "De radio staat buiten de amateurbanden",
+  "a11y_showPassword": "Wachtwoord tonen",
+  "a11y_hidePassword": "Wachtwoord verbergen",
+  "a11y_sendLocation": "Mijn locatie sturen",
+  "a11y_toggleFlash": "Zaklamp",
+  "a11y_switchCamera": "Camera wisselen",
+  "los_worst": "SLECHTSTE",
+  "los_selectedObstruction": "Geselecteerde obstructie"
 }
