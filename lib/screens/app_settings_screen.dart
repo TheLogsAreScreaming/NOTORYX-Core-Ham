@@ -15,6 +15,7 @@ import '../services/map_tile_cache_service.dart';
 import '../services/notification_service.dart';
 import '../services/translation_service.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/battery_optimization_tile.dart';
 import '../widgets/blocked_senders_sheet.dart';
 import '../widgets/theme_picker.dart';
 import '../widgets/adaptive_app_bar_title.dart';
@@ -254,6 +255,7 @@ class AppSettingsScreen extends StatelessWidget {
     final notifEnabled = settingsService.settings.notificationsEnabled;
     return Column(
       children: [
+        const BatteryOptimizationTile(),
         SwitchListTile(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
