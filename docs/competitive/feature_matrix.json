@@ -1,0 +1,351 @@
+{
+  "meta": {
+    "legend": [
+      "NX cells come from source (app `lib/`, firmware `src/helpers/AmateurStation.*` on NOTORYX-Core-Ham-Firmware main). Competitor cells are I/S/F/M only when a primary source says so; otherwise U.",
+      "MC is included only for contrast: stock MeshCore encrypts all traffic, so it is not a Part 97 option on amateur frequencies.",
+      "This is an engineering comparison, not legal advice. Part 97 points must be checked against the current eCFR text.",
+      "No competitor app was installed and tested hands-on for this report."
+    ],
+    "title": "NOTORYX Core Ham: master feature comparison matrix",
+    "researched": "2026-11-07 (NOTORYX Core Ham `dev` d064a55, 0.1.0-test.3; open PRs #8/#9 are UI only)",
+    "ours": "NX",
+    "codes": {
+      "I": "Implemented",
+      "P": "Partial",
+      "M": "Missing",
+      "S": "Superior",
+      "F": "Inferior",
+      "U": "Unverified",
+      "NA": "Not applicable",
+      "O": "In open PR"
+    },
+    "counts_for_ours": {
+      "Implemented": 13,
+      "Superior": 4,
+      "Unverified": 1,
+      "Inferior": 3,
+      "Partial": 3,
+      "Missing": 1
+    },
+    "rows": 25
+  },
+  "apps": [
+    {
+      "key": "NX",
+      "name": "NOTORYX Core Ham + NOTORYX ham firmware"
+    },
+    {
+      "key": "MT",
+      "name": "Meshtastic licensed mode (official apps + firmware)"
+    },
+    {
+      "key": "LA",
+      "name": "LoRa APRS (trackers/iGates + APRSdroid / aprs.fi)"
+    },
+    {
+      "key": "RS",
+      "name": "Reticulum + Sideband on an RNode"
+    },
+    {
+      "key": "MC",
+      "name": "Stock MeshCore apps (official, MeshCore One)"
+    }
+  ],
+  "areas": [
+    {
+      "area": "Part 97 operation",
+      "features": [
+        {
+          "feature": "Unencrypted content on air",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Implemented",
+            "RS": "Unverified",
+            "MC": "Missing"
+          },
+          "evidence": "NX firmware sends plaintext with a 2-byte MAC kept; MT licensed mode clears encryption (meshtastic.org user config docs); APRS is plaintext by design; MC encrypts everything"
+        },
+        {
+          "feature": "Call sign carried by every transmitted frame, including relays",
+          "status": {
+            "NX": "Superior",
+            "MT": "Partial",
+            "LA": "Implemented",
+            "RS": "Partial",
+            "MC": "Missing"
+          },
+          "evidence": "NX: 8-byte call trailer added in firmware at send, so repeaters ID themselves; MT: call sign in NodeInfo broadcasts; APRS: source call in every frame; RS: periodic interface ID (`id_callsign`)"
+        },
+        {
+          "feature": "Transmit blocked until a valid call sign is set",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "NX firmware TX inhibit; app `isUsCallsign()` in `lib/utils/amateur_radio.dart:63`"
+        },
+        {
+          "feature": "Remote login without sending the password",
+          "status": {
+            "NX": "Superior",
+            "MT": "Unverified",
+            "LA": "Not applicable",
+            "RS": "Unverified",
+            "MC": "Missing"
+          },
+          "evidence": "NX login proof: HMAC-SHA256 over timestamp and both keys (firmware PR #2, merged)"
+        },
+        {
+          "feature": "Frequency locked to amateur bands",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "NX firmware 420–450 / 902–928 MHz; app `isAmateurFrequencyMHz()`"
+        },
+        {
+          "feature": "Chip power vs antenna output estimate",
+          "status": {
+            "NX": "Superior",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Missing"
+          },
+          "evidence": "`lib/utils/amateur_power.dart`: per-board amplifier gain, dBm→W, 10 W spread-spectrum ceiling (§97.311(d))"
+        },
+        {
+          "feature": "Location cautions (§97.303 33 cm exclusion areas, Line A)",
+          "status": {
+            "NX": "Superior",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "`lib/utils/amateur_location.dart`"
+        },
+        {
+          "feature": "Coordination guide for operators",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Partial",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "`docs/licensed-operator/COORDINATION.md`; MT has community guides (bayme.sh licensed operations)"
+        },
+        {
+          "feature": "Spoof-resistant licensed flag",
+          "status": {
+            "NX": "Unverified",
+            "MT": "Inferior",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "MT CVE-2025-55292: forged NodeInfo could advertise ham mode"
+        }
+      ]
+    },
+    {
+      "area": "Messaging and mesh",
+      "features": [
+        {
+          "feature": "Mesh routing (multi-hop, flood + direct)",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited from NOTORYX Core; APRS uses digipeaters, not mesh routing"
+        },
+        {
+          "feature": "Direct and channel messages",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "APRS messages are point-to-point with ACK"
+        },
+        {
+          "feature": "Delivery acknowledgements and retries",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited from Core (rc.24 retry logic)"
+        },
+        {
+          "feature": "Message storage engine",
+          "status": {
+            "NX": "Inferior",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Unverified"
+          },
+          "evidence": "Inherited `lib/storage/message_store.dart:29` JSON in SharedPreferences"
+        },
+        {
+          "feature": "Interop with the stock network on the same frequency",
+          "status": {
+            "NX": "Inferior",
+            "MT": "Inferior",
+            "LA": "Not applicable",
+            "RS": "Unverified",
+            "MC": "Not applicable"
+          },
+          "evidence": "By design: payload version 2 frames are not readable by stock MeshCore; MT licensed nodes can't talk to the encrypted mesh"
+        }
+      ]
+    },
+    {
+      "area": "Mapping, internet and tools",
+      "features": [
+        {
+          "feature": "Map with nodes and positions",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Implemented",
+            "RS": "Unverified",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited Core map"
+        },
+        {
+          "feature": "Internet gateway / bridge",
+          "status": {
+            "NX": "Partial",
+            "MT": "Implemented",
+            "LA": "Superior",
+            "RS": "Implemented",
+            "MC": "Partial"
+          },
+          "evidence": "NX inherits multi-broker MQTT from Core; APRS-IS iGates are the mature, worldwide ham option"
+        },
+        {
+          "feature": "Path / route diagnostics",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Partial",
+            "LA": "Partial",
+            "RS": "Unverified",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited Core Route Intelligence (rc.24 version)"
+        },
+        {
+          "feature": "Raw packet log with payload version",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Unverified",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Partial"
+          },
+          "evidence": "`lib/screens/ble_debug_log_screen.dart:310`"
+        }
+      ]
+    },
+    {
+      "area": "Platform and distribution",
+      "features": [
+        {
+          "feature": "Android",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Implemented",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "NX test builds in NOTORYX-Core-Ham-Releases (test.1–test.3)"
+        },
+        {
+          "feature": "iOS",
+          "status": {
+            "NX": "Missing",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Missing",
+            "MC": "Implemented"
+          },
+          "evidence": "NX iOS bundle ID still `com.monitormx.meshcoreopen`; aprs.fi iOS works with a BLE KISS TNC; Sideband has no iOS build"
+        },
+        {
+          "feature": "Desktop",
+          "status": {
+            "NX": "Partial",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "NX macOS build exists (inherited workflow), not released"
+        },
+        {
+          "feature": "Firmware for the boards",
+          "status": {
+            "NX": "Partial",
+            "MT": "Implemented",
+            "LA": "Implemented",
+            "RS": "Implemented",
+            "MC": "Implemented"
+          },
+          "evidence": "NX ham firmware builds 7 boards; Station G2/G3 BLE companion over partition size"
+        },
+        {
+          "feature": "Open source",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Partial",
+            "RS": "Implemented",
+            "MC": "Partial"
+          },
+          "evidence": "aprs.fi app is proprietary; MC official app is proprietary, MC1 is GPL-3.0"
+        },
+        {
+          "feature": "Translations",
+          "status": {
+            "NX": "Implemented",
+            "MT": "Implemented",
+            "LA": "Unverified",
+            "RS": "Unverified",
+            "MC": "Implemented"
+          },
+          "evidence": "Inherited Core locales; new Licensed Operator strings English-first"
+        },
+        {
+          "feature": "Tracks upstream app fixes",
+          "status": {
+            "NX": "Inferior",
+            "MT": "Not applicable",
+            "LA": "Not applicable",
+            "RS": "Not applicable",
+            "MC": "Not applicable"
+          },
+          "evidence": "NX app is based on Core rc.24 and is 70 commits behind Core `dev` (rc.33)"
+        }
+      ]
+    }
+  ]
+}
