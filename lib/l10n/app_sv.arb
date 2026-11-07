@@ -4081,5 +4081,11 @@
   "diag_noChannels": "Inga kanaler på radion.",
   "diag_tapToCopy": "Tryck på ett värde för att kopiera det. Dra nedåt för att uppdatera.",
   "diag_storage": "Lagring",
-  "diag_storageValue": "{used} av {total} KB"
+  "diag_storageValue": "{used} av {total} KB",
+  "favReturn_setting": "Favoriter tillbaka inom räckvidd",
+  "favReturn_settingHint": "Meddela när en favorit hörs igen efter en tyst period",
+  "favReturn_off": "Av",
+  "favReturn_hours": "{count, plural, =1{Efter 1 timme} other{Efter {count} timmar}}",
+  "favReturn_title": "Tillbaka inom räckvidd",
+  "favReturn_body": "{name} hörs igen efter {hours, plural, =1{1 timmes} other{{hours} timmars}} tystnad"
 }

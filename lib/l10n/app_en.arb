@@ -5476,5 +5476,13 @@
   "diag_tapToCopy": "Tap any value to copy it. Pull down to refresh.",
   "diag_storage": "Storage",
   "diag_storageValue": "{used} of {total} KB",
-  "@diag_storageValue": {"placeholders": {"used": {"type": "int"}, "total": {"type": "int"}}}
+  "@diag_storageValue": {"placeholders": {"used": {"type": "int"}, "total": {"type": "int"}}},
+  "favReturn_setting": "Favorites back in range",
+  "favReturn_settingHint": "Notify when a favorite is heard again after a quiet spell",
+  "favReturn_off": "Off",
+  "favReturn_hours": "{count, plural, =1{After 1 hour} other{After {count} hours}}",
+  "@favReturn_hours": {"placeholders": {"count": {"type": "int"}}},
+  "favReturn_title": "Back in range",
+  "favReturn_body": "{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet",
+  "@favReturn_body": {"placeholders": {"name": {"type": "String"}, "hours": {"type": "int"}}}
 }

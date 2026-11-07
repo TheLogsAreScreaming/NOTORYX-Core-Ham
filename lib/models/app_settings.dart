@@ -116,6 +116,10 @@ class AppSettings {
   /// Tries sent as a flood after the [maxMessageRetries] direct ones fail,
   /// in case the route has changed. 0 turns them off.
   final int messageFloodAttempts;
+
+  /// Hours a favorite must be quiet before hearing them again notifies
+  /// "back in range". 0 turns it off.
+  final int favoriteReturnHours;
   final String themeMode;
   final String? languageOverride; // null = system default
   final bool appDebugLogEnabled;
@@ -249,6 +253,7 @@ class AppSettings {
     this.routeWeightFailureDecrement = 0.2,
     this.maxMessageRetries = 5,
     this.messageFloodAttempts = 2,
+    this.favoriteReturnHours = 6,
     this.themeMode = 'system',
     this.languageOverride,
     this.appDebugLogEnabled = false,
@@ -335,6 +340,7 @@ class AppSettings {
       'route_weight_failure_decrement': routeWeightFailureDecrement,
       'max_message_retries': maxMessageRetries,
       'message_flood_attempts': messageFloodAttempts,
+      'favorite_return_hours': favoriteReturnHours,
       'theme_mode': themeMode,
       'language_override': languageOverride,
       'app_debug_log_enabled': appDebugLogEnabled,
@@ -434,6 +440,7 @@ class AppSettings {
           (json['route_weight_failure_decrement'] as num?)?.toDouble() ?? 0.2,
       maxMessageRetries: json['max_message_retries'] as int? ?? 5,
       messageFloodAttempts: json['message_flood_attempts'] as int? ?? 2,
+      favoriteReturnHours: json['favorite_return_hours'] as int? ?? 6,
       themeMode: json['theme_mode'] as String? ?? 'system',
       languageOverride: json['language_override'] as String?,
       appDebugLogEnabled: json['app_debug_log_enabled'] as bool? ?? false,
@@ -576,6 +583,7 @@ class AppSettings {
     double? routeWeightFailureDecrement,
     int? maxMessageRetries,
     int? messageFloodAttempts,
+    int? favoriteReturnHours,
     String? themeMode,
     Object? languageOverride = _unset,
     bool? appDebugLogEnabled,
@@ -656,6 +664,7 @@ class AppSettings {
           routeWeightFailureDecrement ?? this.routeWeightFailureDecrement,
       maxMessageRetries: maxMessageRetries ?? this.maxMessageRetries,
       messageFloodAttempts: messageFloodAttempts ?? this.messageFloodAttempts,
+      favoriteReturnHours: favoriteReturnHours ?? this.favoriteReturnHours,
       themeMode: themeMode ?? this.themeMode,
       languageOverride: languageOverride == _unset
           ? this.languageOverride

@@ -4081,5 +4081,11 @@
   "diag_noChannels": "Na tem radiu ni kanalov.",
   "diag_tapToCopy": "Tapnite vrednost, da jo kopirate. Povlecite navzdol za osvežitev.",
   "diag_storage": "Pomnilnik",
-  "diag_storageValue": "{used} od {total} KB"
+  "diag_storageValue": "{used} od {total} KB",
+  "favReturn_setting": "Priljubljeni spet v dosegu",
+  "favReturn_settingHint": "Obvesti, ko je priljubljenega po obdobju tišine spet slišati",
+  "favReturn_off": "Izklop",
+  "favReturn_hours": "{count, plural, =1{Po 1 uri} =2{Po 2 urah} other{Po {count} urah}}",
+  "favReturn_title": "Spet v dosegu",
+  "favReturn_body": "{name} je spet slišen po {hours, plural, =1{1 uri} =2{2 urah} other{{hours} urah}} tišine"
 }

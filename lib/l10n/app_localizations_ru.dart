@@ -9673,4 +9673,41 @@ class AppLocalizationsRu extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used из $total КБ';
   }
+
+  @override
+  String get favReturn_setting => 'Избранные снова в зоне';
+
+  @override
+  String get favReturn_settingHint =>
+      'Уведомлять, когда избранный контакт снова слышен после тишины';
+
+  @override
+  String get favReturn_off => 'Выкл.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Через $count часа',
+      many: 'Через $count часов',
+      few: 'Через $count часа',
+      one: 'Через 1 час',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Снова в зоне';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ч',
+      one: '1 часа',
+    );
+    return '$name снова слышен после $_temp0 тишины';
+  }
 }

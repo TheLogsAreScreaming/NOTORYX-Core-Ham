@@ -4061,5 +4061,11 @@
   "diag_noChannels": "У радіо немає каналів.",
   "diag_tapToCopy": "Торкніться значення, щоб скопіювати. Потягніть униз для оновлення.",
   "diag_storage": "Пам'ять",
-  "diag_storageValue": "{used} з {total} КБ"
+  "diag_storageValue": "{used} з {total} КБ",
+  "favReturn_setting": "Обрані знову в зоні",
+  "favReturn_settingHint": "Сповіщати, коли обраний контакт знову чути після тиші",
+  "favReturn_off": "Вимк.",
+  "favReturn_hours": "{count, plural, =1{Через 1 годину} few{Через {count} години} many{Через {count} годин} other{Через {count} години}}",
+  "favReturn_title": "Знову в зоні",
+  "favReturn_body": "{name} знову чути після {hours, plural, =1{1 години} other{{hours} год}} тиші"
 }

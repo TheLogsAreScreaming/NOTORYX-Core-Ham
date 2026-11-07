@@ -9520,4 +9520,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used of $total KB';
   }
+
+  @override
+  String get favReturn_setting => 'Favorites back in range';
+
+  @override
+  String get favReturn_settingHint =>
+      'Notify when a favorite is heard again after a quiet spell';
+
+  @override
+  String get favReturn_off => 'Off';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'After $count hours',
+      one: 'After 1 hour',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Back in range';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hours',
+      one: '1 hour',
+    );
+    return '$name heard again after $_temp0 quiet';
+  }
 }

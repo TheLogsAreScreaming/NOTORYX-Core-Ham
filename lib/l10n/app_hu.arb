@@ -4119,5 +4119,11 @@
   "diag_noChannels": "Nincs csatorna ezen a rádión.",
   "diag_tapToCopy": "Koppints egy értékre a másoláshoz. Húzd le a frissítéshez.",
   "diag_storage": "Tárhely",
-  "diag_storageValue": "{used} / {total} KB"
+  "diag_storageValue": "{used} / {total} KB",
+  "favReturn_setting": "Kedvencek újra hatótávon belül",
+  "favReturn_settingHint": "Értesítés, ha egy kedvenc csend után újra hallható",
+  "favReturn_off": "Ki",
+  "favReturn_hours": "{count, plural, =1{1 óra után} other{{count} óra után}}",
+  "favReturn_title": "Újra hatótávon belül",
+  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után"
 }

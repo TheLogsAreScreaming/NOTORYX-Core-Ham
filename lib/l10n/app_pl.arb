@@ -4119,5 +4119,11 @@
   "diag_noChannels": "Brak kanałów w tym radiu.",
   "diag_tapToCopy": "Stuknij wartość, aby ją skopiować. Pociągnij w dół, aby odświeżyć.",
   "diag_storage": "Pamięć",
-  "diag_storageValue": "{used} z {total} KB"
+  "diag_storageValue": "{used} z {total} KB",
+  "favReturn_setting": "Ulubione znów w zasięgu",
+  "favReturn_settingHint": "Powiadom, gdy ulubiony kontakt znów się odezwie po okresie ciszy",
+  "favReturn_off": "Wył.",
+  "favReturn_hours": "{count, plural, =1{Po 1 godzinie} other{Po {count} godzinach}}",
+  "favReturn_title": "Znów w zasięgu",
+  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy"
 }

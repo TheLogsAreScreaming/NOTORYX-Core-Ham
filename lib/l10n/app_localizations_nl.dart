@@ -9609,4 +9609,39 @@ class AppLocalizationsNl extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used van $total KB';
   }
+
+  @override
+  String get favReturn_setting => 'Favorieten weer binnen bereik';
+
+  @override
+  String get favReturn_settingHint =>
+      'Melding wanneer een favoriet na een stille periode weer te horen is';
+
+  @override
+  String get favReturn_off => 'Uit';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Na $count uur',
+      one: 'Na 1 uur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Weer binnen bereik';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours uur',
+      one: '1 uur',
+    );
+    return '$name weer gehoord na $_temp0 stilte';
+  }
 }

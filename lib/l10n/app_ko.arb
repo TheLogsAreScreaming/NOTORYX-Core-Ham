@@ -4215,5 +4215,11 @@
   "diag_noChannels": "이 무전기에는 채널이 없습니다.",
   "diag_tapToCopy": "값을 누르면 복사됩니다. 아래로 당겨 새로 고칩니다.",
   "diag_storage": "저장 공간",
-  "diag_storageValue": "{used} / {total} KB"
+  "diag_storageValue": "{used} / {total} KB",
+  "favReturn_setting": "즐겨찾기 범위 복귀",
+  "favReturn_settingHint": "한동안 조용하던 즐겨찾기가 다시 들리면 알림",
+  "favReturn_off": "끄기",
+  "favReturn_hours": "{count, plural, other{{count}시간 후}}",
+  "favReturn_title": "범위 복귀",
+  "favReturn_body": "{name}이(가) {hours, plural, other{{hours}시간}} 만에 다시 들립니다"
 }

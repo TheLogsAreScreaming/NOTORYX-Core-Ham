@@ -4215,5 +4215,11 @@
   "diag_noChannels": "Nessun canale su questa radio.",
   "diag_tapToCopy": "Tocca un valore per copiarlo. Trascina giù per aggiornare.",
   "diag_storage": "Memoria",
-  "diag_storageValue": "{used} di {total} KB"
+  "diag_storageValue": "{used} di {total} KB",
+  "favReturn_setting": "Preferiti di nuovo in portata",
+  "favReturn_settingHint": "Avvisa quando un preferito si sente di nuovo dopo un periodo di silenzio",
+  "favReturn_off": "Disattivato",
+  "favReturn_hours": "{count, plural, =1{Dopo 1 ora} other{Dopo {count} ore}}",
+  "favReturn_title": "Di nuovo in portata",
+  "favReturn_body": "{name} si sente di nuovo dopo {hours, plural, =1{1 ora} other{{hours} ore}} di silenzio"
 }

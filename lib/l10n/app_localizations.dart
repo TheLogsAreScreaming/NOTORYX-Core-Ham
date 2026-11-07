@@ -16134,6 +16134,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{used} of {total} KB'**
   String diag_storageValue(int used, int total);
+
+  /// No description provided for @favReturn_setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites back in range'**
+  String get favReturn_setting;
+
+  /// No description provided for @favReturn_settingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify when a favorite is heard again after a quiet spell'**
+  String get favReturn_settingHint;
+
+  /// No description provided for @favReturn_off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get favReturn_off;
+
+  /// No description provided for @favReturn_hours.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{After 1 hour} other{After {count} hours}}'**
+  String favReturn_hours(int count);
+
+  /// No description provided for @favReturn_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Back in range'**
+  String get favReturn_title;
+
+  /// No description provided for @favReturn_body.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet'**
+  String favReturn_body(String name, int hours);
 }
 
 class _AppLocalizationsDelegate
