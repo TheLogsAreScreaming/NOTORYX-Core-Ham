@@ -1,5 +1,6 @@
+import 'dart:ui' show SemanticsAction, Tristate;
+
 import 'package:flutter/material.dart';
-import 'dart:ui' show Tristate;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/l10n/app_localizations.dart';
@@ -417,6 +418,11 @@ void main() {
       expect(node.label, contains('Blaze'));
       expect(node.label, contains('high-visibility orange'));
       expect(node.flagsCollection.isSelected, Tristate.isTrue);
+      // The card can be activated from a screen reader.
+      expect(node.getSemanticsData().hasAction(SemanticsAction.tap), isTrue);
+      tester.semantics.tap(find.semantics.byLabel(RegExp('^Neon Anarchy')));
+      await tester.pumpAndSettle();
+      expect(settings.settings.appTheme, 'neon_anarchy');
       handle.dispose();
     });
   });

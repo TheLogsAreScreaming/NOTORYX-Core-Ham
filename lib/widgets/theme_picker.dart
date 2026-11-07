@@ -107,6 +107,9 @@ class _ThemeCard extends StatelessWidget {
       button: true,
       selected: selected,
       label: '${theme.label}. $description',
+      // Excluding the children drops the InkWell's tap, so add it back or
+      // screen-reader users couldn't choose a theme.
+      onTap: onTap,
       excludeSemantics: true,
       child: Material(
         color: Colors.transparent,
