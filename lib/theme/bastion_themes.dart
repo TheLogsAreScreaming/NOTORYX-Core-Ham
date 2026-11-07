@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'okabe_ito.dart';
 
-/// Every color a Bastion theme defines. [MeshPalette] reads the current one.
+/// Every color a Bastion theme defines; the app's single set of color
+/// tokens. [MeshPalette] reads the current one and `MeshTheme.forPalette`
+/// turns it into the Material color scheme, so cards, navigation, buttons,
+/// inputs, dialogs, chat bubbles and status colors all follow the theme.
 class BastionPalette {
   final Brightness brightness;
 
-  // Surfaces, darkest (or base) first.
+  // Surfaces, page first: page, raised, cards, elevated, highest.
   final Color bg, bg1, bg2, bg3, bg4;
   // Lines, faint to strong.
   final Color line, line2, line3;
@@ -15,6 +18,7 @@ class BastionPalette {
   // Signal quality (SNR) colors.
   final Color signal, signalDim;
   final Color warn, warnDim;
+  // Errors, SOS and emergencies. Always a red or vermillion.
   final Color alert;
   final Color accent, accentDim, onAccent;
   // A second and third hue, so a theme isn't one accent on grey. Used for
@@ -59,6 +63,69 @@ class BastionPalette {
     required this.tertiaryContainer,
   });
 
+  /// A full palette from a theme's few defining colors.
+  ///
+  /// Surfaces and lines step from [bg] toward [surface]; secondary text
+  /// sits between [ink] and [muted]. Each theme still picks its own status
+  /// colors and containers, since those carry meaning.
+  factory BastionPalette.derive({
+    required Brightness brightness,
+    required Color bg,
+    required Color surface,
+    required Color ink,
+    required Color muted,
+    required Color accent,
+    required Color onAccent,
+    required Color secondary,
+    required Color tertiary,
+    required Color signal,
+    required Color warn,
+    required Color alert,
+    required Color me,
+    required Color meInk,
+    required Color primaryContainer,
+    required Color secondaryContainer,
+    required Color tertiaryContainer,
+    Color? accentDim,
+    Color? magenta,
+    Color? meBorder,
+    Color? faint,
+  }) {
+    Color mix(Color a, Color b, double t) => Color.lerp(a, b, t)!;
+    return BastionPalette(
+      brightness: brightness,
+      bg: bg,
+      bg1: mix(bg, surface, 0.25),
+      bg2: mix(bg, surface, 0.5),
+      bg3: surface,
+      bg4: mix(surface, ink, 0.08),
+      line: mix(bg, surface, 0.9),
+      line2: mix(surface, ink, 0.16),
+      line3: mix(surface, ink, 0.32),
+      ink: ink,
+      ink2: mix(ink, muted, 0.45),
+      ink3: muted,
+      ink4: faint ?? mix(muted, bg, 0.12),
+      signal: signal,
+      signalDim: mix(signal, bg, 0.3),
+      warn: warn,
+      warnDim: mix(warn, bg, 0.3),
+      alert: alert,
+      accent: accent,
+      accentDim: accentDim ?? mix(accent, bg, 0.3),
+      onAccent: onAccent,
+      secondary: secondary,
+      tertiary: tertiary,
+      magenta: magenta ?? tertiary,
+      me: me,
+      meBorder: meBorder ?? accent,
+      meInk: meInk,
+      primaryContainer: primaryContainer,
+      secondaryContainer: secondaryContainer,
+      tertiaryContainer: tertiaryContainer,
+    );
+  }
+
   /// The theme's hues in order, for giving neighbouring icons or groups
   /// their own color. Pick by index with [hue].
   List<Color> get spectrum => [accent, secondary, tertiary, magenta, signal];
@@ -76,313 +143,462 @@ class BastionPalette {
   Color get magentaLine => magenta.withAlpha(0x47);
 }
 
-/// The themes offered in Settings.
+/// The eight themes offered in Settings, in display order.
 enum BastionTheme {
-  blaze(
-    'blaze',
-    'Blaze',
-    'Slate with hi-vis blaze orange',
-    BastionPalette(
-      brightness: Brightness.dark,
-      bg: Color(0xFF15181B),
-      bg1: Color(0xFF1A1E21),
-      bg2: Color(0xFF1F2428),
-      bg3: Color(0xFF272D32),
-      bg4: Color(0xFF33393E),
-      line: Color(0xFF33393E),
-      line2: Color(0xFF454C52),
-      line3: Color(0xFF61686E),
-      ink: Color(0xFFF2EFEA),
-      ink2: Color(0xFFD9D5CE),
-      ink3: Color(0xFFB3AFA8),
-      ink4: Color(0xFF9A9A95),
-      signal: Color(0xFF5FD98A),
-      signalDim: Color(0xFF6FA37B),
-      warn: Color(0xFFFFC83D),
-      warnDim: Color(0xFFC9A043),
-      alert: Color(0xFFFF5A4E),
-      accent: Color(0xFFFF8A1F),
-      accentDim: Color(0xFFC97526),
-      onAccent: Color(0xFF2A1300),
-      // Glacier teal and ultraviolet against the blaze orange.
-      secondary: Color(0xFF22D3E6),
-      tertiary: Color(0xFFA985FF),
-      magenta: Color(0xFFFF5FAE),
-      me: Color(0xFF3A2A1C),
-      meBorder: Color(0xFFFF8A1F),
-      meInk: Color(0xFFF2EFEA),
-      primaryContainer: Color(0xFF4A2E14),
-      secondaryContainer: Color(0xFF12393F),
-      tertiaryContainer: Color(0xFF2E2550),
-    ),
-  ),
-  autumnFrost(
-    'autumn_frost',
-    'Autumn Frost',
-    'Frozen slate, pine and amber leaves',
-    BastionPalette(
-      brightness: Brightness.dark,
-      bg: Color(0xFF1A262C),
-      bg1: Color(0xFF1F2D34),
-      // Frozen Slate
-      bg2: Color(0xFF24343C),
-      bg3: Color(0xFF2C3F48),
-      // Pine Frost
-      bg4: Color(0xFF3A574C),
-      line: Color(0xFF2C3F48),
-      line2: Color(0xFF3E525C),
-      line3: Color(0xFF5C727C),
-      ink: Color(0xFFF1E9DC),
-      ink2: Color(0xFFD9CDBB),
-      ink3: Color(0xFFB9AD9A),
-      ink4: Color(0xFFA69A87),
-      signal: Color(0xFF6FD69A),
-      signalDim: Color(0xFF6F9F7E),
-      warn: Color(0xFFF2C14A),
-      warnDim: Color(0xFFB8963F),
-      alert: Color(0xFFFF7A63),
-      // A brighter Amber Oak, so buttons and links read on the slate.
-      accent: Color(0xFFEBA43A),
-      // Amber Oak
-      accentDim: Color(0xFFA06A25),
-      onAccent: Color(0xFF24170A),
-      // Frost blue and cranberry beside the amber leaves.
-      secondary: Color(0xFF6CC4F0),
-      tertiary: Color(0xFFFF7A90),
-      magenta: Color(0xFFE07CC8),
-      // Chestnut Ember
-      me: Color(0xFF854D2B),
-      meBorder: Color(0xFFA06A25),
-      meInk: Color(0xFFFBF1E4),
-      primaryContainer: Color(0xFF3A574C),
-      // Bronze Leaf
-      secondaryContainer: Color(0xFF87591F),
-      tertiaryContainer: Color(0xFF5A2A33),
-    ),
-  ),
-  bubbleGum(
-    'bubble_gum',
-    'Bubble Gum',
-    'Rose pink, hot pink and lavender',
-    BastionPalette(
-      brightness: Brightness.light,
-      // A rose pink page instead of near-white, so it's easier on the eyes.
-      bg: Color(0xFFF2A9C9),
-      bg1: Color(0xFFEE9DC1),
-      bg2: Color(0xFFF7C3DA),
-      bg3: Color(0xFFE890BA),
-      bg4: Color(0xFFD9A2E6),
-      line: Color(0xFFE48AB6),
-      line2: Color(0xFFC9659C),
-      line3: Color(0xFF9C3F78),
-      ink: Color(0xFF3A0A2A),
-      ink2: Color(0xFF561540),
-      ink3: Color(0xFF6A1B4F),
-      ink4: Color(0xFF6E1C52),
-      signal: Color(0xFF1E5A3E),
-      signalDim: Color(0xFF2E6E50),
-      warn: Color(0xFF6E3F00),
-      warnDim: Color(0xFF7F4E07),
-      alert: Color(0xFF8F001E),
-      accent: Color(0xFF920054),
-      accentDim: Color(0xFFC77DDB),
-      onAccent: Color(0xFFFFEAF4),
-      // Deep lagoon teal and grape, dark enough to read on the pink.
-      secondary: Color(0xFF004E56),
-      tertiary: Color(0xFF5414B8),
-      magenta: Color(0xFF8010A0),
-      me: Color(0xFFB5207A),
-      meBorder: Color(0xFFD9A2E6),
-      meInk: Color(0xFFFFF2F8),
-      primaryContainer: Color(0xFFFAD3E6),
-      secondaryContainer: Color(0xFFC7EDEB),
-      tertiaryContainer: Color(0xFFE6C9F2),
-    ),
-  ),
-  bronzedBlush(
-    'bronzed_blush',
-    'Bronzed Blush',
-    'Deep bronze, pale and soft pinks, inner tone',
-    BastionPalette(
-      brightness: Brightness.dark,
-      // Warm bronze-brown surfaces, darkest first.
-      bg: Color(0xFF1C1412),
-      bg1: Color(0xFF221816),
-      bg2: Color(0xFF2A1D1B),
-      bg3: Color(0xFF342422),
-      bg4: Color(0xFF42302C),
-      line: Color(0xFF342422),
-      line2: Color(0xFF4A3531),
-      line3: Color(0xFF6B504A),
-      ink: Color(0xFFF8E9E4),
-      ink2: Color(0xFFE6D0C9),
-      ink3: Color(0xFFC9AEA6),
-      ink4: Color(0xFFB39890),
-      signal: Color(0xFF7FDA98),
-      signalDim: Color(0xFF74A47D),
-      warn: Color(0xFFF2C46A),
-      warnDim: Color(0xFFC29A45),
-      alert: Color(0xFFFF6B6B),
-      // Soft Pink
-      accent: Color(0xFFF3A7AD),
-      // Pale Pink
-      accentDim: Color(0xFFE6A6A6),
-      onAccent: Color(0xFF2A1214),
-      // A lighter copper of the bronze, and a rose mauve of the inner tone,
-      // so the pinks have company.
-      secondary: Color(0xFFF09E6A),
-      tertiary: Color(0xFFE88AB4),
-      // Pale Pink
-      magenta: Color(0xFFE6A6A6),
-      // Deep Bronze
-      me: Color(0xFF8A4E3C),
-      meBorder: Color(0xFFF3A7AD),
-      meInk: Color(0xFFFFF1EC),
-      // Inner Tone
-      primaryContainer: Color(0xFF874D5A),
-      // Deep Bronze
-      secondaryContainer: Color(0xFF8A4E3C),
-      tertiaryContainer: Color(0xFF5E3440),
-    ),
-  ),
-  redLight(
-    'red_light',
-    'Red light',
-    'All red, keeps your night vision',
-    BastionPalette(
-      brightness: Brightness.dark,
-      bg: Color(0xFF0A0606),
-      bg1: Color(0xFF110909),
-      bg2: Color(0xFF160C0C),
-      bg3: Color(0xFF1E1010),
-      bg4: Color(0xFF2C1715),
-      line: Color(0xFF3A1A18),
-      line2: Color(0xFF4E2421),
-      line3: Color(0xFF6A322E),
-      ink: Color(0xFFE8B4AE),
-      ink2: Color(0xFFD69A93),
-      ink3: Color(0xFFB98179),
-      ink4: Color(0xFFA06C66),
-      signal: Color(0xFFE08A7E),
-      signalDim: Color(0xFFB06A60),
-      warn: Color(0xFFFF8A5C),
-      warnDim: Color(0xFFC96A45),
-      alert: Color(0xFFFF2D20),
-      accent: Color(0xFFFF3B2E),
-      accentDim: Color(0xFFC23A30),
-      onAccent: Color(0xFF1A0503),
-      // Still only reds, for night vision: an ember orange-red and a coral.
-      secondary: Color(0xFFFF6A2E),
-      tertiary: Color(0xFFF0584A),
-      magenta: Color(0xFFD9786F),
-      me: Color(0xFF3A1412),
-      meBorder: Color(0xFF8A2E28),
-      meInk: Color(0xFFF0C2BC),
-      primaryContainer: Color(0xFF4A1512),
-      secondaryContainer: Color(0xFF3D1A10),
-      tertiaryContainer: Color(0xFF3A1218),
-    ),
-  ),
-  // Every status and accent color here is from the Okabe-Ito palette, so
-  // good, warning and bad signal stay apart with color blindness.
-  okabeIto(
-    'okabe_ito',
-    'Okabe-Ito',
-    'Color-blind safe, on black',
-    BastionPalette(
-      brightness: Brightness.dark,
-      // Black, the palette's eighth color, is the page.
-      bg: Color(0xFF000000),
-      bg1: Color(0xFF0C0F12),
-      bg2: Color(0xFF12161A),
-      bg3: Color(0xFF1A2026),
-      bg4: Color(0xFF242B32),
-      line: Color(0xFF242B32),
-      line2: Color(0xFF36404A),
-      line3: Color(0xFF56636F),
-      ink: Color(0xFFF2F4F5),
-      ink2: Color(0xFFD5DADE),
-      ink3: Color(0xFFAEB6BD),
-      ink4: Color(0xFF98A1A9),
-      signal: OkabeIto.bluishGreen,
-      signalDim: Color(0xFF00805E),
-      warn: OkabeIto.yellow,
-      warnDim: OkabeIto.orange,
-      alert: OkabeIto.vermillion,
-      accent: OkabeIto.skyBlue,
-      accentDim: OkabeIto.blue,
-      onAccent: OkabeIto.black,
-      secondary: OkabeIto.orange,
-      tertiary: OkabeIto.reddishPurple,
-      magenta: OkabeIto.reddishPurple,
-      me: OkabeIto.blue,
-      meBorder: OkabeIto.skyBlue,
-      meInk: Color(0xFFFFFFFF),
-      primaryContainer: Color(0xFF003A5C),
-      secondaryContainer: Color(0xFF4A3300),
-      tertiaryContainer: Color(0xFF4A2238),
-    ),
-  ),
-  // The same Okabe-Ito colors on charcoal instead of black. Bluish green,
-  // vermillion and reddish purple are lifted toward white (same hues) so
-  // they still read on the lighter page.
-  okabeItoSlate(
-    'okabe_ito_slate',
-    'Okabe-Ito Slate',
-    'Color-blind safe, on charcoal',
-    BastionPalette(
-      brightness: Brightness.dark,
-      bg: Color(0xFF23282E),
-      bg1: Color(0xFF292F35),
-      bg2: Color(0xFF2F353C),
-      bg3: Color(0xFF384048),
-      bg4: Color(0xFF434C55),
-      line: Color(0xFF384048),
-      line2: Color(0xFF4A535C),
-      line3: Color(0xFF66717B),
-      ink: Color(0xFFF2F4F5),
-      ink2: Color(0xFFD5DADE),
-      ink3: Color(0xFFB8C0C7),
-      ink4: Color(0xFFA6AFB7),
-      signal: Color(0xFF40B696),
-      signalDim: OkabeIto.bluishGreen,
-      warn: OkabeIto.yellow,
-      warnDim: OkabeIto.orange,
-      alert: Color(0xFFE08640),
-      accent: OkabeIto.skyBlue,
-      accentDim: OkabeIto.blue,
-      onAccent: OkabeIto.black,
-      secondary: OkabeIto.orange,
-      tertiary: Color(0xFFD694B9),
-      magenta: Color(0xFFD694B9),
-      me: OkabeIto.blue,
-      meBorder: OkabeIto.skyBlue,
-      meInk: Color(0xFFFFFFFF),
-      primaryContainer: Color(0xFF0B4A6E),
-      secondaryContainer: Color(0xFF5A4110),
-      tertiaryContainer: Color(0xFF5A3049),
-    ),
-  );
+  blaze('blaze', 'Blaze'),
+  neonAnarchy('neon_anarchy', 'Neon Anarchy'),
+  tactical('tactical', 'Tactical'),
+  pinkOverload('pink_overload', 'Pink Overload'),
+  bareBeauty('bare_beauty', 'Bare Beauty'),
+  okabeIto('okabe_ito', 'Okabe-Ito'),
+  nightOps('night_ops', 'Night Ops'),
+  seasonal('seasonal', 'Seasonal');
 
-  const BastionTheme(this.id, this.label, this.description, this.palette);
+  const BastionTheme(this.id, this.label);
+
+  /// The stored settings value.
   final String id;
+
+  /// The theme's name, the same in every language.
   final String label;
-  final String description;
-  final BastionPalette palette;
 
   static const fallback = BastionTheme.blaze;
 
+  /// This theme's palette. For [seasonal] it is the autumn palette; use
+  /// [resolveThemePalette] to get the one for today's date.
+  BastionPalette get palette => switch (this) {
+    blaze => _blaze,
+    neonAnarchy => _neonAnarchy,
+    tactical => _tactical,
+    pinkOverload => _pinkOverload,
+    bareBeauty => _bareBeauty,
+    okabeIto => _okabeIto,
+    nightOps => _nightOps,
+    seasonal => Season.autumn.palette,
+  };
+
+  /// Saved ids from earlier versions and the theme each now opens as.
+  static const Map<String, BastionTheme> legacyIds = {
+    'autumn_frost': seasonal,
+    'christmas': seasonal,
+    'bubble_gum': pinkOverload,
+    'topo_night': pinkOverload,
+    'bronzed_blush': bareBeauty,
+    'red_light': nightOps,
+    'okabe_ito_slate': okabeIto,
+    'alpine_day': blaze,
+    'halloween': blaze,
+  };
+
   static BastionTheme fromId(String? id) {
-    // Existing Topo night selections follow its replacement without losing
-    // the saved preference or falling back to an unrelated theme.
-    if (id == 'topo_night') return bubbleGum;
-    // Christmas became Autumn Frost. Alpine day is gone; its people get the
-    // default.
-    if (id == 'christmas') return autumnFrost;
-    if (id == 'alpine_day') return fallback;
+    final legacy = legacyIds[id];
+    if (legacy != null) return legacy;
     for (final t in values) {
       if (t.id == id) return t;
     }
     return fallback;
   }
 }
+
+/// The palettes inside the [BastionTheme.seasonal] theme.
+enum Season {
+  spring('spring'),
+  summer('summer'),
+  autumn('autumn'),
+  winter('winter'),
+  halloween('halloween'),
+  christmas('christmas'),
+  valentine('valentine');
+
+  const Season(this.id);
+
+  /// The stored settings value.
+  final String id;
+
+  /// Whether this is a holiday rather than one of the four seasons.
+  bool get isHoliday => index >= Season.halloween.index;
+
+  BastionPalette get palette => switch (this) {
+    spring => _spring,
+    summer => _summer,
+    autumn => _autumn,
+    winter => _winter,
+    halloween => _halloween,
+    christmas => _christmas,
+    valentine => _valentine,
+  };
+
+  static Season? fromId(String? id) {
+    for (final s in values) {
+      if (s.id == id) return s;
+    }
+    return null;
+  }
+}
+
+/// The season or holiday for [date], by the device's local calendar.
+///
+/// Seasons follow the northern-hemisphere months (spring is March to May);
+/// people elsewhere can pick their season by hand. Holidays apply only when
+/// [holidays] is on: Valentine's Day Feb 7–14, Halloween Oct 24–31 and
+/// Christmas Dec 10–26.
+Season seasonFor(DateTime date, {bool holidays = true}) {
+  final m = date.month, d = date.day;
+  if (holidays) {
+    if (m == 2 && d >= 7 && d <= 14) return Season.valentine;
+    if (m == 10 && d >= 24) return Season.halloween;
+    if (m == 12 && d >= 10 && d <= 26) return Season.christmas;
+  }
+  if (m >= 3 && m <= 5) return Season.spring;
+  if (m >= 6 && m <= 8) return Season.summer;
+  if (m >= 9 && m <= 11) return Season.autumn;
+  return Season.winter;
+}
+
+/// The season the Seasonal theme shows: [override] when it names one,
+/// otherwise the one for [now].
+Season activeSeason({
+  String override = 'auto',
+  bool holidays = true,
+  DateTime? now,
+}) =>
+    Season.fromId(override) ??
+    seasonFor(now ?? DateTime.now(), holidays: holidays);
+
+/// The palette for the saved theme [themeId]. Only the Seasonal theme looks
+/// at the date or the season override; every other theme ignores them.
+BastionPalette resolveThemePalette(
+  String? themeId, {
+  String seasonalOverride = 'auto',
+  bool seasonalHolidays = true,
+  DateTime? now,
+}) {
+  final theme = BastionTheme.fromId(themeId);
+  if (theme != BastionTheme.seasonal) return theme.palette;
+  return activeSeason(
+    override: seasonalOverride,
+    holidays: seasonalHolidays,
+    now: now,
+  ).palette;
+}
+
+const _dark = Brightness.dark;
+const _light = Brightness.light;
+
+// 1. Blaze: charcoal and slate with high-visibility orange. The default.
+final _blaze = BastionPalette.derive(
+  brightness: _dark,
+  bg: const Color(0xFF111820),
+  surface: const Color(0xFF273443),
+  ink: const Color(0xFFF4F6F8),
+  muted: const Color(0xFFAAB5C3),
+  accent: const Color(0xFFFF8A00),
+  onAccent: const Color(0xFF2A1300),
+  secondary: const Color(0xFFF07A12),
+  tertiary: const Color(0xFF22D3E6),
+  magenta: const Color(0xFFA985FF),
+  signal: const Color(0xFF5FD98A),
+  warn: const Color(0xFFFFC83D),
+  alert: const Color(0xFFFF5A4E),
+  me: const Color(0xFF3D2A18),
+  meInk: const Color(0xFFF4F6F8),
+  primaryContainer: const Color(0xFF4A2E10),
+  secondaryContainer: const Color(0xFF4A2A0C),
+  tertiaryContainer: const Color(0xFF12393F),
+);
+
+// 2. Neon Anarchy: toxic green and electric purple on near-black.
+final _neonAnarchy = BastionPalette.derive(
+  brightness: _dark,
+  bg: const Color(0xFF08060D),
+  surface: const Color(0xFF21112F),
+  ink: const Color(0xFFF1E9FF),
+  muted: const Color(0xFFBBA8D8),
+  accent: const Color(0xFFADFF2F),
+  onAccent: const Color(0xFF0B1400),
+  // Electric purple, lifted so it reads as text on black.
+  secondary: const Color(0xFFC766FF),
+  tertiary: const Color(0xFFFF4FD8),
+  magenta: const Color(0xFFB026FF),
+  signal: const Color(0xFF5CFF9A),
+  warn: const Color(0xFFFFD23F),
+  alert: const Color(0xFFFF4D6D),
+  me: const Color(0xFF3B1466),
+  meInk: const Color(0xFFF1E9FF),
+  meBorder: const Color(0xFFB026FF),
+  primaryContainer: const Color(0xFF2A3D0A),
+  secondaryContainer: const Color(0xFF7022C4),
+  tertiaryContainer: const Color(0xFF4A1660),
+);
+
+// 3. Tactical: olive, gunmetal, forest and earth.
+final _tactical = BastionPalette.derive(
+  brightness: _dark,
+  bg: const Color(0xFF171C19),
+  surface: const Color(0xFF303B32),
+  ink: const Color(0xFFE4E9DC),
+  muted: const Color(0xFFB4BEAA),
+  accent: const Color(0xFFA8BA79),
+  onAccent: const Color(0xFF141A0E),
+  secondary: const Color(0xFF8FB584),
+  tertiary: const Color(0xFFC9AE73),
+  signal: const Color(0xFF8FD18A),
+  warn: const Color(0xFFE6C55A),
+  alert: const Color(0xFFF06A55),
+  me: const Color(0xFF3E4A2A),
+  meInk: const Color(0xFFE4E9DC),
+  primaryContainer: const Color(0xFF3E4A2A),
+  secondaryContainer: const Color(0xFF3F4F38),
+  tertiaryContainer: const Color(0xFF4F4128),
+);
+
+// 4. Pink Overload: hot pink, bubblegum and lavender, unapologetically.
+final _pinkOverload = BastionPalette.derive(
+  brightness: _light,
+  bg: const Color(0xFFFFF0FA),
+  surface: const Color(0xFFFFC1E3),
+  ink: const Color(0xFF542044),
+  muted: const Color(0xFF7A2B62),
+  // Hot pink, deep enough for white button text and pink-page links.
+  accent: const Color(0xFFBD0065),
+  onAccent: const Color(0xFFFFFFFF),
+  secondary: const Color(0xFFA3127F),
+  tertiary: const Color(0xFF7A2FC9),
+  magenta: const Color(0xFFFF1493),
+  signal: const Color(0xFF1E6B3F),
+  warn: const Color(0xFF7A4A00),
+  alert: const Color(0xFFB00020),
+  me: const Color(0xFFC2127F),
+  meInk: const Color(0xFFFFFFFF),
+  meBorder: const Color(0xFFFF69B4),
+  primaryContainer: const Color(0xFFFFC1E3),
+  secondaryContainer: const Color(0xFFFFD6EC),
+  tertiaryContainer: const Color(0xFFEBD3FF),
+  faint: const Color(0xFF7A2B62),
+);
+
+// 5. Bare Beauty: warm nude, dusty rose, cocoa and hazel-sage.
+final _bareBeauty = BastionPalette.derive(
+  brightness: _light,
+  bg: const Color(0xFFFFF0E7),
+  surface: const Color(0xFFE8B69E),
+  ink: const Color(0xFF38232B),
+  muted: const Color(0xFF5E3D3F),
+  // Dusty rose, deepened for white text.
+  accent: const Color(0xFF84464F),
+  onAccent: const Color(0xFFFFFFFF),
+  // Cocoa and a hazel-sage.
+  secondary: const Color(0xFF754B43),
+  tertiary: const Color(0xFF44625A),
+  magenta: const Color(0xFFC77D87),
+  signal: const Color(0xFF2F6B45),
+  warn: const Color(0xFF7A4E00),
+  alert: const Color(0xFFA3122A),
+  me: const Color(0xFF8E4F58),
+  meInk: const Color(0xFFFFFFFF),
+  meBorder: const Color(0xFFC77D87),
+  primaryContainer: const Color(0xFFE8B69E),
+  secondaryContainer: const Color(0xFFF0C9C4),
+  tertiaryContainer: const Color(0xFFCFDDD5),
+  faint: const Color(0xFF5E3D3F),
+);
+
+// 6. Okabe-Ito: every accent and status color from the color-blind safe
+// palette, on charcoal. Vermillion is lifted slightly so SOS reads on cards.
+final _okabeIto = BastionPalette.derive(
+  brightness: _dark,
+  bg: const Color(0xFF161A20),
+  surface: const Color(0xFF343C48),
+  ink: const Color(0xFFFFFFFF),
+  muted: const Color(0xFFC3CBD5),
+  accent: OkabeIto.skyBlue,
+  accentDim: OkabeIto.blue,
+  onAccent: OkabeIto.black,
+  secondary: OkabeIto.orange,
+  tertiary: const Color(0xFF33B08A),
+  magenta: const Color(0xFFD694B9),
+  // Bluish green, lifted like vermillion so it reads on cards.
+  signal: const Color(0xFF33B08A),
+  warn: OkabeIto.yellow,
+  alert: const Color(0xFFF07A3A),
+  me: OkabeIto.blue,
+  meInk: const Color(0xFFFFFFFF),
+  meBorder: OkabeIto.skyBlue,
+  primaryContainer: OkabeIto.blue,
+  secondaryContainer: const Color(0xFF5A4110),
+  tertiaryContainer: const Color(0xFF0B4F3E),
+);
+
+// 7. Night Ops: near-black with restrained reds for low light.
+final _nightOps = BastionPalette.derive(
+  brightness: _dark,
+  bg: const Color(0xFF080808),
+  surface: const Color(0xFF251010),
+  ink: const Color(0xFFF3D6D3),
+  muted: const Color(0xFFC9A09B),
+  accent: const Color(0xFFE0574D),
+  accentDim: const Color(0xFFC23A32),
+  onAccent: const Color(0xFF1A0503),
+  secondary: const Color(0xFFE07A6E),
+  tertiary: const Color(0xFFF3A29A),
+  signal: const Color(0xFFE08A7E),
+  warn: const Color(0xFFFF8A5C),
+  alert: const Color(0xFFFF3B30),
+  me: const Color(0xFF3A1412),
+  meInk: const Color(0xFFF3D6D3),
+  meBorder: const Color(0xFF852722),
+  primaryContainer: const Color(0xFF5A1A16),
+  secondaryContainer: const Color(0xFF852722),
+  tertiaryContainer: const Color(0xFF3A1218),
+);
+
+// 8. Seasonal.
+final _spring = BastionPalette.derive(
+  brightness: _light,
+  bg: const Color(0xFFFAFBEA),
+  surface: const Color(0xFFDDE8CF),
+  ink: const Color(0xFF26331F),
+  muted: const Color(0xFF465640),
+  accent: const Color(0xFF4A7040),
+  onAccent: const Color(0xFFFFFFFF),
+  secondary: const Color(0xFF6A4BA3),
+  tertiary: const Color(0xFFB0306A),
+  magenta: const Color(0xFFE59BC0),
+  signal: const Color(0xFF2E6B3A),
+  warn: const Color(0xFF7A5200),
+  alert: const Color(0xFFB0201E),
+  me: const Color(0xFF4A7040),
+  meInk: const Color(0xFFFFFFFF),
+  meBorder: const Color(0xFFB9A3E3),
+  primaryContainer: const Color(0xFFDDE8CF),
+  secondaryContainer: const Color(0xFFE6DDF5),
+  tertiaryContainer: const Color(0xFFF9D9E6),
+  faint: const Color(0xFF465640),
+);
+
+final _summer = BastionPalette.derive(
+  brightness: _light,
+  bg: const Color(0xFFFFF7EA),
+  surface: const Color(0xFFF2DFC2),
+  ink: const Color(0xFF1F2A2E),
+  muted: const Color(0xFF475155),
+  accent: const Color(0xFF006D77),
+  onAccent: const Color(0xFFFFFFFF),
+  secondary: const Color(0xFFB8402A),
+  tertiary: const Color(0xFF00708A),
+  magenta: const Color(0xFFFF7F6B),
+  signal: const Color(0xFF1F6B3A),
+  warn: const Color(0xFF7A4E00),
+  alert: const Color(0xFFB0201E),
+  me: const Color(0xFF006D77),
+  meInk: const Color(0xFFFFFFFF),
+  meBorder: const Color(0xFF40C9C6),
+  primaryContainer: const Color(0xFFCDEDEB),
+  secondaryContainer: const Color(0xFFFFD9CF),
+  tertiaryContainer: const Color(0xFFCCEAF2),
+  faint: const Color(0xFF475155),
+);
+
+final _autumn = BastionPalette.derive(
+  brightness: _dark,
+  bg: const Color(0xFF1C1712),
+  surface: const Color(0xFF3A2E22),
+  ink: const Color(0xFFF4EADB),
+  muted: const Color(0xFFC9B9A2),
+  accent: const Color(0xFFF08A3C),
+  onAccent: const Color(0xFF24140A),
+  secondary: const Color(0xFFF2B544),
+  tertiary: const Color(0xFF7DBA84),
+  magenta: const Color(0xFFD9826B),
+  signal: const Color(0xFF7FD69A),
+  warn: const Color(0xFFF2C14A),
+  alert: const Color(0xFFFF6A55),
+  me: const Color(0xFF6E3A1A),
+  meInk: const Color(0xFFFBF1E4),
+  primaryContainer: const Color(0xFF5A3218),
+  secondaryContainer: const Color(0xFF5A4512),
+  tertiaryContainer: const Color(0xFF23432A),
+);
+
+final _winter = BastionPalette.derive(
+  brightness: _dark,
+  bg: const Color(0xFF0F1A2B),
+  surface: const Color(0xFF263A55),
+  ink: const Color(0xFFF3F8FC),
+  muted: const Color(0xFFB4C4D6),
+  accent: const Color(0xFF8FD3FF),
+  onAccent: const Color(0xFF07182A),
+  secondary: const Color(0xFFC9D3DE),
+  tertiary: const Color(0xFFA9B8FF),
+  signal: const Color(0xFF7FD6B0),
+  warn: const Color(0xFFFFD36B),
+  alert: const Color(0xFFFF6B6B),
+  me: const Color(0xFF1E4A6E),
+  meInk: const Color(0xFFF3F8FC),
+  primaryContainer: const Color(0xFF1E4A6E),
+  secondaryContainer: const Color(0xFF3A4656),
+  tertiaryContainer: const Color(0xFF2E3770),
+);
+
+final _halloween = BastionPalette.derive(
+  brightness: _dark,
+  bg: const Color(0xFF0C0A0F),
+  surface: const Color(0xFF2A1F33),
+  ink: const Color(0xFFF2E9F7),
+  muted: const Color(0xFFBFAFCB),
+  accent: const Color(0xFFFF8C1A),
+  onAccent: const Color(0xFF241000),
+  secondary: const Color(0xFFB57BFF),
+  tertiary: const Color(0xFF9FE870),
+  signal: const Color(0xFF7FD69A),
+  warn: const Color(0xFFFFD23F),
+  alert: const Color(0xFFFF5A5A),
+  me: const Color(0xFF5A3008),
+  meInk: const Color(0xFFF2E9F7),
+  primaryContainer: const Color(0xFF5A3008),
+  secondaryContainer: const Color(0xFF3E2160),
+  tertiaryContainer: const Color(0xFF2A4A1A),
+);
+
+final _christmas = BastionPalette.derive(
+  brightness: _dark,
+  bg: const Color(0xFF0E1A14),
+  surface: const Color(0xFF23402F),
+  ink: const Color(0xFFF5F1E6),
+  muted: const Color(0xFFC2C9B8),
+  accent: const Color(0xFFF66478),
+  onAccent: const Color(0xFF240008),
+  secondary: const Color(0xFFE8C15A),
+  tertiary: const Color(0xFF5FC48A),
+  signal: const Color(0xFF7FD69A),
+  warn: const Color(0xFFFFD36B),
+  alert: const Color(0xFFFF5A4E),
+  me: const Color(0xFF7A1C2A),
+  meInk: const Color(0xFFF5F1E6),
+  primaryContainer: const Color(0xFF5A1420),
+  secondaryContainer: const Color(0xFF4F4012),
+  tertiaryContainer: const Color(0xFF1D4A30),
+);
+
+final _valentine = BastionPalette.derive(
+  brightness: _light,
+  bg: const Color(0xFFFFF1F3),
+  surface: const Color(0xFFF7C9D2),
+  ink: const Color(0xFF3D0F1C),
+  muted: const Color(0xFF6B2A3B),
+  accent: const Color(0xFFC2185B),
+  onAccent: const Color(0xFFFFFFFF),
+  secondary: const Color(0xFF7A1033),
+  tertiary: const Color(0xFF9C3D6E),
+  magenta: const Color(0xFFF48FB1),
+  signal: const Color(0xFF1E6B3F),
+  warn: const Color(0xFF7A4A00),
+  alert: const Color(0xFFB00020),
+  me: const Color(0xFFC2185B),
+  meInk: const Color(0xFFFFFFFF),
+  meBorder: const Color(0xFFF48FB1),
+  primaryContainer: const Color(0xFFF7C9D2),
+  secondaryContainer: const Color(0xFFF1D0D8),
+  tertiaryContainer: const Color(0xFFEFD3E4),
+  faint: const Color(0xFF6B2A3B),
+);

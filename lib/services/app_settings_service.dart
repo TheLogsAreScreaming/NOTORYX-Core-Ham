@@ -314,6 +314,14 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(channelMessageRetentionDays: days));
   }
 
+  Future<void> setSeasonalOverride(String value) async {
+    await updateSettings(_settings.copyWith(seasonalOverride: value));
+  }
+
+  Future<void> setSeasonalHolidays(bool value) async {
+    await updateSettings(_settings.copyWith(seasonalHolidays: value));
+  }
+
   Future<void> setAppTheme(String id) async {
     await updateSettings(_settings.copyWith(appTheme: id));
   }

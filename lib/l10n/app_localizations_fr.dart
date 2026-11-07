@@ -10095,4 +10095,74 @@ class AppLocalizationsFr extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'jusqu\'à $seconds s';
   }
+
+  @override
+  String get theme_descBlaze =>
+      'Anthracite et ardoise avec orange haute visibilité';
+
+  @override
+  String get theme_descNeonAnarchy =>
+      'Vert toxique et violet électrique sur noir';
+
+  @override
+  String get theme_descTactical => 'Olive, gris canon et tons terre';
+
+  @override
+  String get theme_descPinkOverload => 'Rose vif, chewing-gum et lavande';
+
+  @override
+  String get theme_descBareBeauty => 'Nude chaud, vieux rose, cacao et sauge';
+
+  @override
+  String get theme_descOkabeIto => 'Adapté au daltonisme, très lisible';
+
+  @override
+  String get theme_descNightOps =>
+      'Rouges atténués sur quasi-noir pour la faible lumière';
+
+  @override
+  String get theme_descSeasonal => 'Change avec les saisons et les fêtes';
+
+  @override
+  String get theme_selected => 'Sélectionné';
+
+  @override
+  String get seasonal_season => 'Saison';
+
+  @override
+  String seasonal_auto(String season) {
+    return 'Automatique ($season en ce moment)';
+  }
+
+  @override
+  String get seasonal_autoHint =>
+      'Suit la date de l\'appareil, avec les saisons de l\'hémisphère nord';
+
+  @override
+  String get season_spring => 'Printemps';
+
+  @override
+  String get season_summer => 'Été';
+
+  @override
+  String get season_autumn => 'Automne';
+
+  @override
+  String get season_winter => 'Hiver';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Noël';
+
+  @override
+  String get season_valentine => 'Saint-Valentin';
+
+  @override
+  String get seasonal_holidays => 'Couleurs des fêtes';
+
+  @override
+  String get seasonal_holidaysHint =>
+      'Halloween, Noël et la Saint-Valentin à leurs dates';
 }

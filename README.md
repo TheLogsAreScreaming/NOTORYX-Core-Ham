@@ -63,7 +63,7 @@ Each release includes `SHA256SUMS-Android.txt` and `SHA256SUMS-macOS.txt` if you
 2. **Say hello.** Open **Chats** and send a message on a channel, or open someone in **Nodes** to message them directly.
 3. **Choose who gets your check-ins and SOS.** Tap **Check in: I'm OK** or hold **SOS**. The first time, NOTORYX Core asks who should get them. You can change this anytime in **Plan your trip**.
 4. **Set your radio for your area.** **Settings → Radio settings → Presets** lists MeshCore's community presets (USA, Canada, EU/UK, Australia and more) with the one for your country suggested first.
-5. **Pick a look.** **Settings → Theme** offers Blaze (default), Autumn Frost, Bubble Gum, Bronzed Blush, Red light and Okabe-Ito (color-blind safe, on black or charcoal).
+5. **Pick a look.** **Settings → Theme** offers eight themes: Blaze (default), Neon Anarchy, Tactical, Pink Overload, Bare Beauty, Okabe-Ito (color-blind safe), Night Ops (low light) and Seasonal.
 
 The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**. Home is where check-in, SOS and your radio's readings live; **More** holds every tool and setting, with a search box.
 
@@ -125,7 +125,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 ### Look and feel
 - **Frosted ember:** the main screens sit on a warm glow, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
-- Seven themes: **Blaze**, **Autumn Frost** (slate, pine and amber), **Bubble Gum** (rose and hot pink), **Bronzed Blush** (deep bronze, pale and soft pinks), **Red light** (keeps your night vision), **Okabe-Ito** (color-blind safe, on black) and **Okabe-Ito Slate** (the same colors on charcoal). Each theme has its own second and third color, used for icons, highlights and the background glow.
+- Eight themes: **Blaze** (charcoal and slate with high-visibility orange, the default), **Neon Anarchy** (toxic green and electric purple on black), **Tactical** (olive, gunmetal and earth tones), **Pink Overload** (hot pink, bubblegum and lavender), **Bare Beauty** (warm nude, dusty rose, cocoa and sage), **Okabe-Ito** (color-blind safe, on charcoal), **Night Ops** (dim reds on near-black for low light) and **Seasonal**, which follows the season by your device's date (spring, summer, autumn, winter, plus optional Halloween, Christmas and Valentine's Day colors) or a season you pick. Every theme meets WCAG AA contrast (4.5:1) for text, buttons, chat bubbles and SOS, and SOS stays red in all of them.
 - **Color-blind safe colors:** node types on the map and in lists (people, repeaters, rooms and sensors) use the [Okabe-Ito palette](https://jfly.uni-koeln.de/color/), whose colors stay distinct with the common forms of color blindness. The **Okabe-Ito** theme goes further: good, warning and bad signal are blue-green, yellow and vermillion instead of green and red, and every accent comes from the same palette.
 
   | Orange | Sky blue | Bluish green | Yellow | Blue | Vermillion | Reddish purple | Black |
@@ -142,12 +142,13 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 <p align="center">
   <img src="docs/screenshots/home.png" width="160" alt="Blaze theme">
-  <img src="docs/screenshots/home_autumn_frost.png" width="160" alt="Autumn Frost theme">
-  <img src="docs/screenshots/home_bubble_gum.png" width="160" alt="Bubble Gum theme">
-  <img src="docs/screenshots/home_bronzed_blush.png" width="160" alt="Bronzed Blush theme">
-  <img src="docs/screenshots/home_red_light.png" width="160" alt="Red light theme">
+  <img src="docs/screenshots/home_neon_anarchy.png" width="160" alt="Neon Anarchy theme">
+  <img src="docs/screenshots/home_tactical.png" width="160" alt="Tactical theme">
+  <img src="docs/screenshots/home_pink_overload.png" width="160" alt="Pink Overload theme">
+  <img src="docs/screenshots/home_bare_beauty.png" width="160" alt="Bare Beauty theme">
   <img src="docs/screenshots/home_okabe_ito.png" width="160" alt="Okabe-Ito color-blind safe theme">
-  <img src="docs/screenshots/home_okabe_ito_slate.png" width="160" alt="Okabe-Ito Slate color-blind safe theme on charcoal">
+  <img src="docs/screenshots/home_night_ops.png" width="160" alt="Night Ops low-light theme">
+  <img src="docs/screenshots/home_seasonal.png" width="160" alt="Seasonal theme in autumn">
 </p>
 
 <p align="center">
@@ -216,7 +217,7 @@ flutter test
 - `lib/services/`: field ops, coverage, routing, MQTT, notifications and other services
 - `lib/models/`, `lib/storage/`: data and persistence
 - `lib/theme/`: themes and colors
-- `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`, with `PREVIEW_THEME=autumn_frost`, `bubble_gum` or `red_light` for other themes)
+- `test/`: unit and widget tests; `test/preview/` renders screenshots (`PREVIEW_OUT=dir flutter test test/preview`, with `PREVIEW_THEME=neon_anarchy`, `pink_overload`, `night_ops` and so on for other themes, and `PREVIEW_THEME=seasonal PREVIEW_SEASON=winter` for a season)
 
 ## Contributing
 

@@ -10106,4 +10106,73 @@ class AppLocalizationsRu extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'до $seconds с';
   }
+
+  @override
+  String get theme_descBlaze => 'Графит и сланец с сигнальным оранжевым';
+
+  @override
+  String get theme_descNeonAnarchy =>
+      'Ядовито-зелёный и электрик-фиолетовый на чёрном';
+
+  @override
+  String get theme_descTactical => 'Олива, оружейный металл и землистые тона';
+
+  @override
+  String get theme_descPinkOverload => 'Ярко-розовый, жвачка и лаванда';
+
+  @override
+  String get theme_descBareBeauty => 'Тёплый нюд, пыльная роза, какао и шалфей';
+
+  @override
+  String get theme_descOkabeIto => 'Подходит при дальтонизме, высокая чёткость';
+
+  @override
+  String get theme_descNightOps =>
+      'Приглушённые красные на почти чёрном для темноты';
+
+  @override
+  String get theme_descSeasonal => 'Меняется с временами года и праздниками';
+
+  @override
+  String get theme_selected => 'Выбрана';
+
+  @override
+  String get seasonal_season => 'Время года';
+
+  @override
+  String seasonal_auto(String season) {
+    return 'Автоматически (сейчас $season)';
+  }
+
+  @override
+  String get seasonal_autoHint =>
+      'По дате устройства, сезоны северного полушария';
+
+  @override
+  String get season_spring => 'Весна';
+
+  @override
+  String get season_summer => 'Лето';
+
+  @override
+  String get season_autumn => 'Осень';
+
+  @override
+  String get season_winter => 'Зима';
+
+  @override
+  String get season_halloween => 'Хэллоуин';
+
+  @override
+  String get season_christmas => 'Рождество';
+
+  @override
+  String get season_valentine => 'День святого Валентина';
+
+  @override
+  String get seasonal_holidays => 'Праздничные цвета';
+
+  @override
+  String get seasonal_holidaysHint =>
+      'Хэллоуин, Рождество и День святого Валентина в свои даты';
 }
