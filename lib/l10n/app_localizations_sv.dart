@@ -9838,6 +9838,69 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Radions kontaktlista $percent % full';
+  }
+
+  @override
+  String get contactTable_full => 'Radions kontaktlista är full';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used av $max kontakter';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'När den är full ersätter radion den kontakt som hörts för längst sedan. Favoriter behålls.';
+
+  @override
+  String get contactTable_stopHint =>
+      'När den är full slutar radion lägga till nya kontakter den hör.';
+
+  @override
+  String get contactTable_freeUp => 'Frigör utrymme';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Hörda för längst sedan först. Favoriter visas inte.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Senast hörd $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Ta bort $count kontakter',
+      one: 'Ta bort 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'De tas bort från radion och deras meddelanden på den här enheten raderas. Det går inte att ångra.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tog bort $count kontakter',
+      one: 'Tog bort 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Alla kontakter är favoriter, så det finns inget att föreslå.';
+
+  @override
   String get adminWait_waiting => 'Väntar på svar';
 
   @override

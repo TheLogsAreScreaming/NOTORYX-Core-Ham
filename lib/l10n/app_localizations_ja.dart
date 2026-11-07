@@ -9443,6 +9443,64 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String contactTable_nearlyFull(int percent) {
+    return '無線機の連絡先リストが $percent% 使用中';
+  }
+
+  @override
+  String get contactTable_full => '無線機の連絡先リストがいっぱいです';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used / $max 件の連絡先';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'いっぱいになると、無線機は最も長く受信していない連絡先を置き換えます。お気に入りは残ります。';
+
+  @override
+  String get contactTable_stopHint => 'いっぱいになると、無線機は新しく受信した連絡先を追加しなくなります。';
+
+  @override
+  String get contactTable_freeUp => '空きを作る';
+
+  @override
+  String get contactTable_sheetBody => '受信が古い順に表示。お気に入りは表示されません。';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return '最終受信 $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件の連絡先を削除',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      '無線機から削除され、この端末上のメッセージも削除されます。元に戻せません。';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件の連絡先を削除しました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => 'すべての連絡先がお気に入りのため、候補はありません。';
+
+  @override
   String get adminWait_waiting => '応答を待っています';
 
   @override

@@ -9248,6 +9248,62 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String contactTable_nearlyFull(int percent) {
+    return '电台联系人列表已用 $percent%';
+  }
+
+  @override
+  String get contactTable_full => '电台联系人列表已满';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used / $max 个联系人';
+  }
+
+  @override
+  String get contactTable_overwriteHint => '列表满后，电台会替换最久未收到的联系人。收藏联系人会保留。';
+
+  @override
+  String get contactTable_stopHint => '列表满后，电台将不再添加新收到的联系人。';
+
+  @override
+  String get contactTable_freeUp => '释放空间';
+
+  @override
+  String get contactTable_sheetBody => '最久未收到的排在前面。收藏联系人不在列表中。';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return '最后收到 $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '删除 $count 个联系人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody => '这些联系人会从电台删除，其在本设备上的消息也会删除。此操作无法撤销。';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已删除 $count 个联系人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => '所有联系人都是收藏，因此没有可建议删除的。';
+
+  @override
   String get adminWait_waiting => '正在等待回复';
 
   @override
