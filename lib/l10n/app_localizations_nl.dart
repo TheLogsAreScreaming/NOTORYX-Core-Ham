@@ -9877,6 +9877,20 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String get batteryOpt_title => 'Batterijoptimalisatie';
+
+  @override
+  String get batteryOpt_off =>
+      'Uit voor NOTORYX Core, zodat meldingen op de achtergrond blijven werken.';
+
+  @override
+  String get batteryOpt_on =>
+      'Aan. Android kan de app op de achtergrond stoppen, waardoor SOS-, check-in- en berichtmeldingen te laat komen of wegblijven.';
+
+  @override
+  String get batteryOpt_fix => 'Uitzetten';
+
+  @override
   String block_sender(String name) {
     return '$name blokkeren';
   }

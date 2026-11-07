@@ -9898,6 +9898,20 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get batteryOpt_title => 'Оптимизация на батерията';
+
+  @override
+  String get batteryOpt_off =>
+      'Изключена за NOTORYX Core, така известията работят и във фонов режим.';
+
+  @override
+  String get batteryOpt_on =>
+      'Включена. Android може да спре приложението във фонов режим и известията за SOS, отметки и съобщения да закъснеят или да се изгубят.';
+
+  @override
+  String get batteryOpt_fix => 'Изключи';
+
+  @override
   String block_sender(String name) {
     return 'Блокирай $name';
   }

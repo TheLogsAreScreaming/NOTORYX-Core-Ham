@@ -9957,6 +9957,20 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
+  String get batteryOpt_title => 'Optymalizacja baterii';
+
+  @override
+  String get batteryOpt_off =>
+      'Wyłączona dla NOTORYX Core, więc powiadomienia działają w tle.';
+
+  @override
+  String get batteryOpt_on =>
+      'Włączona. Android może zatrzymać aplikację w tle, przez co powiadomienia SOS, meldunków i wiadomości mogą się spóźniać lub nie dotrzeć.';
+
+  @override
+  String get batteryOpt_fix => 'Wyłącz';
+
+  @override
   String block_sender(String name) {
     return 'Zablokuj $name';
   }
