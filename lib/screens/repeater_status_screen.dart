@@ -13,6 +13,7 @@ import '../services/app_settings_service.dart';
 import '../services/repeater_command_service.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/battery_utils.dart';
+import '../widgets/ui/mesh_states.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/routing_sheet.dart';
 import '../helpers/snack_bar_builder.dart';
@@ -470,7 +471,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
         child: RefreshIndicator(
           onRefresh: _loadStatus,
           child: _isLoading && _batteryMv == null
-              ? const Center(child: CircularProgressIndicator())
+              ? const MeshLoadingState()
               : _buildBody(l10n, repeater.name),
         ),
       ),
