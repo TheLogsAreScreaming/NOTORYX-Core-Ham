@@ -7,6 +7,7 @@ import '../connector/meshcore_connector.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../models/operator_profile.dart';
 import '../services/operator_profile_service.dart';
+import '../utils/amateur_power.dart';
 import '../utils/amateur_radio.dart';
 import '../widgets/mesh_ui.dart';
 
@@ -26,6 +27,9 @@ class LicensedOperatorScreen extends StatefulWidget {
 
 class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
   late final TextEditingController _callsign;
+  late final TextEditingController _externalAmp;
+  late final TextEditingController _feedlineLoss;
+  late final TextEditingController _antennaGain;
   LicenseClass? _licenseClass;
   bool _acknowledged = false;
 
@@ -34,6 +38,9 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
     super.initState();
     final profile = context.read<OperatorProfileService>().profile;
     _callsign = TextEditingController(text: profile.callsign);
+    _externalAmp = TextEditingController(text: _num(profile.externalAmpDb));
+    _feedlineLoss = TextEditingController(text: _num(profile.feedlineLossDb));
+    _antennaGain = TextEditingController(text: _num(profile.antennaGainDbi));
     _licenseClass = profile.licenseClass;
     _acknowledged = profile.acknowledgedAt != null;
   }
@@ -41,8 +48,17 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
   @override
   void dispose() {
     _callsign.dispose();
+    _externalAmp.dispose();
+    _feedlineLoss.dispose();
+    _antennaGain.dispose();
     super.dispose();
   }
+
+  static String _num(double v) =>
+      v == v.roundToDouble() ? v.toStringAsFixed(0) : v.toString();
+
+  static double _db(TextEditingController c) =>
+      double.tryParse(c.text.trim()) ?? 0;
 
   String get _call => _callsign.text.trim().toUpperCase();
 
@@ -60,11 +76,28 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
         acknowledgedAt: old.callsign == _call && old.acknowledgedAt != null
             ? old.acknowledgedAt
             : DateTime.now(),
+        externalAmpDb: _db(_externalAmp),
+        feedlineLossDb: _db(_feedlineLoss),
+        antennaGainDbi: _db(_antennaGain),
       ),
     );
     if (!mounted) return;
     showDismissibleSnackBar(context, content: const Text('Operator saved'));
   }
+
+  Widget _dbField(TextEditingController c, String label, String unit) =>
+      TextField(
+        controller: c,
+        keyboardType: const TextInputType.numberWithOptions(decimal: true),
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'^\d{0,2}(\.\d?)?')),
+        ],
+        decoration: InputDecoration(
+          labelText: label,
+          suffixText: unit,
+          border: const OutlineInputBorder(),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +161,26 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
                     ],
                     onChanged: (c) => setState(() => _licenseClass = c),
                   ),
+                ],
+              ),
+            ),
+            const SectionHeader('Antenna system'),
+            MeshCard(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'For the power estimate below. Leave 0 for anything you '
+                    "don't have.",
+                    style: textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: 12),
+                  _dbField(_externalAmp, 'External amplifier gain', 'dB'),
+                  const SizedBox(height: 12),
+                  _dbField(_feedlineLoss, 'Feedline loss', 'dB'),
+                  const SizedBox(height: 12),
+                  _dbField(_antennaGain, 'Antenna gain', 'dBi'),
                 ],
               ),
             ),
@@ -239,10 +292,9 @@ class _ConnectedRadioSection extends StatelessWidget {
                 value: tx == null
                     ? '—'
                     : '$tx dBm${maxTx == null ? '' : ' (max $maxTx)'}',
-                note:
-                    "The radio chip's setting. Boards with an amplifier "
-                    'transmit more; use the least power that works.',
+                note: "The radio chip's setting",
               ),
+              ..._powerRows(connector.manufacturerName, tx, profile),
               _StatusRow(
                 ok: true,
                 title: 'Firmware',
@@ -253,6 +305,54 @@ class _ConnectedRadioSection extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  /// Estimated output and ERP from the board's amplifier and the operator's
+  /// antenna system, flagged above the 10 W spread-spectrum limit.
+  List<Widget> _powerRows(String? board, int? chipDbm, OperatorProfile p) {
+    final amp = boardAmplifierFor(board);
+    final est = chipDbm == null
+        ? null
+        : PowerEstimate.of(
+            chipDbm: chipDbm,
+            board: amp,
+            externalAmpDb: p.externalAmpDb,
+            feedlineLossDb: p.feedlineLossDb,
+            antennaGainDbi: p.antennaGainDbi,
+          );
+    final boardNote = amp == null
+        ? 'Unknown board: counted as no amplifier'
+        : '${amp.board}: ${amp.note}';
+    if (est == null) {
+      return [
+        _StatusRow(
+          ok: false,
+          title: 'Estimated output',
+          value: 'unknown',
+          note: '$boardNote. Measure it before relying on any estimate.',
+        ),
+      ];
+    }
+    return [
+      _StatusRow(
+        ok: !est.overSpreadSpectrumLimit,
+        title: 'Estimated output',
+        value: formatPower(est.outputDbm),
+        note: est.overSpreadSpectrumLimit
+            ? 'Above 10 W PEP, the limit for spread spectrum such as LoRa '
+                  '(§97.311). Turn it down.'
+            : '$boardNote. An estimate: measure to be sure, and use the '
+                  'least power that works.',
+      ),
+      _StatusRow(
+        ok: true,
+        title: 'Estimated ERP',
+        value: formatPower(est.erpDbm),
+        note:
+            'After feedline loss and antenna gain, relative to a dipole. '
+            'Check RF exposure (§97.13) at higher power.',
+      ),
+    ];
   }
 
   Future<void> _setName(BuildContext context, String callsign) async {
