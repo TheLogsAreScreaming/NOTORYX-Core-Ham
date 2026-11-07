@@ -124,7 +124,9 @@ class _BastionRepeaterToolsScreenState
               ),
               child: Text(
                 l10n.repeaterTools_hint,
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
             const SizedBox(height: MeshSpace.sm),

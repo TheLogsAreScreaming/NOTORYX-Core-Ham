@@ -55,8 +55,7 @@ class ChromeRequiredScreen extends StatelessWidget {
                 Text(
                   l10n.scanner_chromeRequiredMessage,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: scheme.onSurfaceVariant,
                     height: 1.55,
                   ),

@@ -333,7 +333,9 @@ class _RegionSetupScreenState extends State<RegionSetupScreen> {
               else
                 Text(
                   l10n.regionSetup_howToSend,
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
               if (chain.isNotEmpty && ready) ...[
                 const SizedBox(height: 8),
@@ -386,9 +388,8 @@ class _OptionRow extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   body,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: warn && value ? MeshPalette.warn : MeshPalette.ink3,
-                    fontSize: 12.5,
                     height: 1.35,
                   ),
                 ),

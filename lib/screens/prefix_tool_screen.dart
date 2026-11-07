@@ -141,9 +141,8 @@ class _PrefixToolScreenState extends State<PrefixToolScreen> {
                       const SizedBox(height: 2),
                       Text(
                         l10n.prefixTool_freeOfSpace(freeCount, census.space),
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: MeshPalette.ink3,
-                          fontSize: 12.5,
                         ),
                       ),
                     ],
@@ -209,7 +208,9 @@ class _PrefixToolScreenState extends State<PrefixToolScreen> {
                 else ...[
                   Text(
                     l10n.prefixTool_sharedHint,
-                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                   ),
                   const SizedBox(height: 8),
                   for (final e in collisions.take(30))
@@ -267,7 +268,9 @@ class _PrefixToolScreenState extends State<PrefixToolScreen> {
                 const SizedBox(height: 16),
                 Text(
                   l10n.prefixTool_onlyKnown,
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
               ],
             ),
@@ -338,7 +341,9 @@ class _NodeRow extends StatelessWidget {
                   ),
                   Text(
                     contact.typeLabel(l10n),
-                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                   ),
                 ],
               ),
@@ -470,7 +475,9 @@ class _KeyGeneratorSheetState extends State<_KeyGeneratorSheet> {
               const SizedBox(height: 6),
               Text(
                 l10n.keyGen_howToUse,
-                style: TextStyle(color: MeshPalette.ink2, fontSize: 13),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink2),
               ),
               const SizedBox(height: 12),
               TextButton.icon(
@@ -514,9 +521,8 @@ class _KeyField extends StatelessWidget {
               children: [
                 Text(
                   label,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: MeshPalette.ink3,
-                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

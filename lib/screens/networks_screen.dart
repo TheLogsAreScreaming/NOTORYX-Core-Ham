@@ -375,7 +375,9 @@ class _NetworksScreenState extends State<NetworksScreen> {
                 children: [
                   Text(
                     l10n.networks_scanExplainer,
-                    style: TextStyle(color: MeshPalette.ink2, fontSize: 13),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink2),
                   ),
                   const SizedBox(height: MeshSpace.sm),
                   SegmentedButton<ScanMode>(
@@ -403,13 +405,17 @@ class _NetworksScreenState extends State<NetworksScreen> {
                     _mode == ScanMode.quick
                         ? l10n.networks_modeQuickHint
                         : l10n.networks_modeThoroughHint,
-                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                   ),
                   if (_mode == ScanMode.thorough) ...[
                     const SizedBox(height: MeshSpace.sm),
                     Text(
                       l10n.networks_listenFor,
-                      style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                     ),
                     const SizedBox(height: 4),
                     SegmentedButton<int>(
@@ -504,18 +510,14 @@ class _NetworksScreenState extends State<NetworksScreen> {
                             ),
                             Text(
                               n.target.summary,
-                              style: TextStyle(
-                                color: MeshPalette.ink2,
-                                fontSize: 12,
-                              ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: MeshPalette.ink2),
                             ),
                             Text(
                               '${l10n.networks_heardSummary(n.nodes.length, n.packets, n.bestSnr.toStringAsFixed(1))} · '
                               '${l10n.networks_lastHeard(_when(context, n.at))}',
-                              style: TextStyle(
-                                color: MeshPalette.ink3,
-                                fontSize: 12,
-                              ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: MeshPalette.ink3),
                             ),
                           ],
                         ),

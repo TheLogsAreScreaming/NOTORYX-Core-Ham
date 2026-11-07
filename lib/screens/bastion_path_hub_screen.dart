@@ -111,18 +111,16 @@ class _BastionPathHubScreenState extends State<BastionPathHubScreen> {
                 children: [
                   Text(
                     l10n.routes_headline,
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
                       color: MeshPalette.ink,
-                      fontSize: 17,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   const SizedBox(height: MeshSpace.xs),
                   Text(
                     l10n.routes_body,
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: MeshPalette.ink3,
-                      fontSize: 13.5,
                       height: 1.4,
                     ),
                   ),
@@ -373,16 +371,17 @@ class _ContactRouteCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   entry.contact.name,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: MeshPalette.ink,
-                    fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               Text(
                 l10n.routes_routeCount(entry.paths.length),
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ],
           ),
@@ -404,7 +403,9 @@ class _ContactRouteCard extends StatelessWidget {
                 l10n.routes_via(names),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(color: MeshPalette.ink2, fontSize: 12.5),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink2),
               ),
             ],
             const SizedBox(height: 5),
@@ -415,14 +416,18 @@ class _ContactRouteCard extends StatelessWidget {
                 '${best.successCount}',
                 '${best.failureCount}',
               ),
-              style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
             ),
           ],
           if (fastest != null) ...[
             const SizedBox(height: 4),
             Text(
               l10n.routes_fastest('${fastest.tripTimeMs}'),
-              style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
             ),
           ],
           if (entry.flood != null) ...[
@@ -432,7 +437,9 @@ class _ContactRouteCard extends StatelessWidget {
                 '${entry.flood!.successCount}',
                 '${entry.flood!.failureCount}',
               ),
-              style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
             ),
           ],
         ],
@@ -471,9 +478,8 @@ class _InfoPanel extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: MeshPalette.ink,
-                  fontSize: 15,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -587,9 +593,8 @@ class _BestRepeaterRow extends StatelessWidget {
               children: [
                 Text(
                   name ?? l10n.routes_repeaterWithId(id),
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: MeshPalette.ink,
-                    fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -599,7 +604,9 @@ class _BestRepeaterRow extends StatelessWidget {
                     heard.count,
                     l10n.routes_minutesAgo(minutesAgo),
                   ),
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
               ],
             ),

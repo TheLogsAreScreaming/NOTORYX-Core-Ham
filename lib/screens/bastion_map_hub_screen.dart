@@ -42,12 +42,12 @@ class BastionMapHubScreen extends StatelessWidget {
                       Expanded(
                         child: Text(
                           context.l10n.bastion_mapCoverage,
-                          style: TextStyle(
-                            color: MeshPalette.ink,
-                            fontSize: 21,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: .7,
-                          ),
+                          style: Theme.of(context).textTheme.headlineMedium
+                              ?.copyWith(
+                                color: MeshPalette.ink,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: .7,
+                              ),
                         ),
                       ),
                     ],
@@ -172,12 +172,12 @@ class _MapAction extends StatelessWidget {
                         ),
                         child: Text(
                           badge,
-                          style: TextStyle(
-                            color: BastionMapHubScreen._cyan,
-                            fontSize: 9,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: .7,
-                          ),
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
+                                color: BastionMapHubScreen._cyan,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: .7,
+                              ),
                         ),
                       ),
                     ],
@@ -185,9 +185,8 @@ class _MapAction extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: BastionMapHubScreen._muted,
-                      fontSize: 12.5,
                     ),
                   ),
                 ],

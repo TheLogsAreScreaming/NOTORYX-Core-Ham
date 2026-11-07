@@ -1822,8 +1822,7 @@ class _MapScreenState extends State<MapScreen> {
           Expanded(
             child: Text(
               label,
-              style: TextStyle(
-                fontSize: 12,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: _overlaySecondaryTextColor,
               ),
@@ -1921,8 +1920,7 @@ class _MapScreenState extends State<MapScreen> {
                         vertical: 12,
                       ),
                     ),
-                    style: TextStyle(
-                      fontSize: 14,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: _overlayPrimaryTextColor,
                       fontWeight: FontWeight.w600,
                     ),
@@ -2134,8 +2132,7 @@ class _MapScreenState extends State<MapScreen> {
                 ],
                 Text(
                   label,
-                  style: TextStyle(
-                    fontSize: 12.5,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: selected
                         ? _overlayPrimaryTextColor
@@ -2185,9 +2182,8 @@ class _MapScreenState extends State<MapScreen> {
               padding: const EdgeInsets.all(16),
               child: Text(
                 context.l10n.map_noResults,
-                style: TextStyle(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: _overlaySecondaryTextColor,
-                  fontSize: 13,
                 ),
               ),
             )
@@ -2217,11 +2213,11 @@ class _MapScreenState extends State<MapScreen> {
                             children: [
                               Text(
                                 c.name,
-                                style: TextStyle(
-                                  fontSize: 13.5,
-                                  fontWeight: FontWeight.w600,
-                                  color: _overlayPrimaryTextColor,
-                                ),
+                                style: Theme.of(context).textTheme.titleSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color: _overlayPrimaryTextColor,
+                                    ),
                                 overflow: TextOverflow.ellipsis,
                               ),
                               Text(
@@ -2379,8 +2375,7 @@ class _MapScreenState extends State<MapScreen> {
           Expanded(
             child: Text(
               label,
-              style: TextStyle(
-                fontSize: 12.5,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: _overlaySecondaryTextColor,
               ),
               overflow: TextOverflow.ellipsis,
@@ -2453,11 +2448,13 @@ class _MapScreenState extends State<MapScreen> {
                                 Flexible(
                                   child: Text(
                                     contact.name,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w700,
-                                      color: _overlayPrimaryTextColor,
-                                    ),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          color: _overlayPrimaryTextColor,
+                                        ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -2484,10 +2481,10 @@ class _MapScreenState extends State<MapScreen> {
                                 Flexible(
                                   child: Text(
                                     contact.typeLabel(context.l10n),
-                                    style: TextStyle(
-                                      fontSize: 11.5,
-                                      color: _overlaySecondaryTextColor,
-                                    ),
+                                    style: Theme.of(context).textTheme.bodySmall
+                                        ?.copyWith(
+                                          color: _overlaySecondaryTextColor,
+                                        ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -2614,7 +2611,7 @@ class _MapScreenState extends State<MapScreen> {
           ),
           onPressed: onPressed,
           icon: Icon(icon, size: 16),
-          label: Text(label, style: const TextStyle(fontSize: 12.5)),
+          label: Text(label, style: Theme.of(context).textTheme.bodySmall),
         ),
       );
     }
@@ -3074,8 +3071,7 @@ class _MapScreenState extends State<MapScreen> {
         children: [
           Text(
             label,
-            style: TextStyle(
-              fontSize: 12,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: Theme.of(context).colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w500,
             ),
@@ -3788,8 +3784,7 @@ class _MapScreenState extends State<MapScreen> {
                 if (_pathTrace.isEmpty)
                   Text(
                     l10n.map_tapToAdd,
-                    style: TextStyle(
-                      fontSize: 12,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: _overlaySecondaryTextColor,
                     ),
                   ),

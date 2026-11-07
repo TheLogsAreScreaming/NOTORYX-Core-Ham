@@ -1194,13 +1194,13 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
                           sheetContext.l10n.community_hashtagPrivacyHint,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Theme.of(
-                              sheetContext,
-                            ).colorScheme.onSurfaceVariant,
-                            fontStyle: FontStyle.italic,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Theme.of(
+                                  sheetContext,
+                                ).colorScheme.onSurfaceVariant,
+                                fontStyle: FontStyle.italic,
+                              ),
                         ),
                       ),
                     Padding(
@@ -1907,12 +1907,12 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             context.l10n.channels_communityShortId(
                               community.shortCommunityId,
                             ),
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.onSurfaceVariant,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
+                                ),
                           ),
                           trailing: PopupMenuButton<String>(
                             onSelected: (value) {

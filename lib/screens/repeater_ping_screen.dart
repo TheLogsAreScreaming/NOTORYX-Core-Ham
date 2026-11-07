@@ -176,7 +176,9 @@ class _RepeaterPingScreenState extends State<RepeaterPingScreen> {
               padding: const EdgeInsets.all(MeshSpace.lg),
               child: Text(
                 l10n.ping_explainer,
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
           ],

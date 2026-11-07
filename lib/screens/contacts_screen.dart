@@ -1656,7 +1656,7 @@ class _ContactTile extends StatelessWidget {
     final Widget glyph = SizedBox(
       width: 24,
       child: emoji != null
-          ? Text(emoji, style: const TextStyle(fontSize: 17))
+          ? Text(emoji, style: Theme.of(context).textTheme.titleLarge)
           : Icon(_typeIcon(), size: 19, color: MeshPalette.ink3),
     );
 

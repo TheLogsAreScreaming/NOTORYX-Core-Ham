@@ -359,14 +359,15 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           children: [
             Text(
               l10n.repeater_telemetry,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
             Text(
               widget.contact.name,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.normal),
             ),
           ],
         ),
@@ -408,8 +409,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
                 Center(
                   child: Text(
                     l10n.telemetry_noData,
-                    style: TextStyle(
-                      fontSize: 16,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: scheme.onSurfaceVariant,
                     ),
                   ),
@@ -926,9 +926,8 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           Expanded(
             child: Text(
               label,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: scheme.onSurfaceVariant,
-                fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),
             ),

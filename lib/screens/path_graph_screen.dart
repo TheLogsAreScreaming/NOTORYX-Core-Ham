@@ -111,7 +111,9 @@ class _PathGraphScreenState extends State<PathGraphScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
                   child: Text(
                     l10n.pathGraph_ambiguousNote,
-                    style: TextStyle(color: MeshPalette.warn, fontSize: 13),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(color: MeshPalette.warn),
                   ),
                 ),
               Flexible(
@@ -231,9 +233,8 @@ class _PathGraphScreenState extends State<PathGraphScreen> {
                 Text(
                   l10n.pathGraph_summary(_messages, graph.busiest.length),
                   key: const ValueKey('path-graph-summary'),
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: MeshPalette.ink,
-                    fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -247,7 +248,9 @@ class _PathGraphScreenState extends State<PathGraphScreen> {
                           graph.upgradedHops,
                           graph.ambiguousHops,
                         ),
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
                 const SizedBox(height: MeshSpace.md),
                 MeshCard(
@@ -261,7 +264,9 @@ class _PathGraphScreenState extends State<PathGraphScreen> {
                 const SizedBox(height: 6),
                 Text(
                   l10n.pathGraph_chartHint,
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
                 InstrumentLabel(l10n.pathGraph_busiest),
                 MeshCard(

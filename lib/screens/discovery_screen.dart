@@ -394,9 +394,8 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                     key: ValueKey('discovered-name-${contact.publicKeyHex}'),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w500,
-                      fontSize: 15,
                     ),
                   ),
                   const SizedBox(height: 4),

@@ -1762,8 +1762,7 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
                       padding: const EdgeInsets.fromLTRB(12, 0, 12, 4),
                       child: Text(
                         l10n.pathMap_partialAnimation(selected.unresolvedHops),
-                        style: TextStyle(
-                          fontSize: 10.5,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: MeshPalette.warn,
                         ),
                       ),
