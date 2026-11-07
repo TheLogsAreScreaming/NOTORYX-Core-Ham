@@ -289,8 +289,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   // status, so this row only opens the details.
                   child: Text(
                     l10n.settings_deviceInfo,
-                    style: TextStyle(
-                      fontSize: 16,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w500,
                       color: scheme.onSurface,
                     ),
@@ -2467,7 +2466,9 @@ class RefreshRateCard extends StatelessWidget {
         children: [
           Text(
             l10n.settings_refreshRate,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 8),
           SegmentedButton<String>(

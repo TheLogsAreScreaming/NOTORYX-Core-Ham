@@ -247,11 +247,8 @@ class _ChatScreenState extends State<ChatScreen> {
                             child: Text(
                               pathLabel,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 12.5,
-                                fontWeight: FontWeight.w500,
-                                color: MeshPalette.ink3,
-                              ),
+                              style: Theme.of(context).textTheme.labelMedium
+                                  ?.copyWith(color: MeshPalette.ink3),
                             ),
                           ),
                           Icon(

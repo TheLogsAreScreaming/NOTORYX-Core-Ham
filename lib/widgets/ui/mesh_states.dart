@@ -2,72 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../l10n/l10n.dart';
 import '../../theme/mesh_theme.dart';
+import '../empty_state.dart';
 
-/// A centred, quiet message for a list or screen with nothing in it yet:
-/// what's missing, why, and (optionally) the one thing to do about it.
-class MeshEmptyState extends StatelessWidget {
-  const MeshEmptyState({
-    super.key,
-    required this.icon,
-    required this.title,
-    this.message,
-    this.action,
-  });
-
-  final IconData icon;
-  final String title;
-  final String? message;
-
-  /// Usually a FilledButton or OutlinedButton.
-  final Widget? action;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    final text = Theme.of(context).textTheme;
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: MeshSpace.xxl,
-          vertical: MeshSpace.xl,
-        ),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 420),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 64,
-                height: 64,
-                decoration: BoxDecoration(
-                  color: scheme.surfaceContainerHigh,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(icon, size: 30, color: scheme.onSurfaceVariant),
-              ),
-              const SizedBox(height: MeshSpace.lg),
-              Text(title, style: text.titleMedium, textAlign: TextAlign.center),
-              if (message != null) ...[
-                const SizedBox(height: MeshSpace.sm),
-                Text(
-                  message!,
-                  style: text.bodyMedium?.copyWith(
-                    color: scheme.onSurfaceVariant,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-              if (action != null) ...[
-                const SizedBox(height: MeshSpace.xl),
-                action!,
-              ],
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+export '../empty_state.dart';
 
 /// A spinner with an optional line saying what is being loaded.
 class MeshLoadingState extends StatelessWidget {
@@ -121,10 +58,10 @@ class MeshErrorState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final status = MeshStatusColors.of(context);
-    return MeshEmptyState(
+    return EmptyState(
       icon: Icons.error_outline,
       title: title,
-      message: message,
+      subtitle: message,
       action: onRetry == null
           ? null
           : OutlinedButton.icon(

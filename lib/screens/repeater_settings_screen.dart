@@ -12,6 +12,7 @@ import '../connector/meshcore_protocol.dart';
 import '../services/repeater_command_service.dart';
 import '../services/storage_service.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/ui/mesh_states.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/us_bandwidth_notice.dart';
 import '../widgets/routing_sheet.dart';
@@ -1137,7 +1138,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
       body: SafeArea(
         top: false,
         child: _isLoading && _nameController.text.isEmpty
-            ? const Center(child: CircularProgressIndicator())
+            ? const MeshLoadingState()
             : ListView(
                 padding: const EdgeInsets.only(bottom: 32),
                 children: [
@@ -1914,7 +1915,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
         leading: const Icon(Icons.tune),
         title: Text(
           l10n.repeater_advancedSettings,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(l10n.repeater_advancedSettingsSubtitle),
         childrenPadding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
@@ -2102,7 +2105,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
         leading: const Icon(Icons.vpn_key),
         title: Text(
           l10n.repeater_keySettings,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(l10n.repeater_keySettingsSubtitle),
         childrenPadding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
@@ -2250,8 +2255,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
               const SizedBox(width: 8),
               Text(
                 l10n.repeater_dangerZone,
-                style: TextStyle(
-                  fontSize: 15,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                   color: MeshPalette.alert,
                 ),

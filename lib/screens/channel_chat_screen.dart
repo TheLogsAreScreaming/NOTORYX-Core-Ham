@@ -307,14 +307,14 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               width: 12,
               height: 12,
               decoration: BoxDecoration(
-                color: Colors.purple,
+                color: MeshPalette.magenta,
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: Theme.of(context).cardColor,
+                  color: Theme.of(context).colorScheme.surface,
                   width: 2,
                 ),
               ),
-              child: const Icon(Icons.people, size: 8, color: Colors.white),
+              child: Icon(Icons.people, size: 8, color: MeshPalette.bg),
             ),
           ),
       ],
@@ -348,7 +348,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                 widget.channel.index,
                               )
                             : widget.channel.name,
-                        style: const TextStyle(fontSize: 16),
+                        style: Theme.of(context).textTheme.titleMedium,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -366,7 +366,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           return Text(
                             '$privacy$regionText',
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontSize: 12),
+                            style: Theme.of(context).textTheme.bodySmall,
                           );
                         },
                       ),

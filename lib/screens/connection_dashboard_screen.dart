@@ -121,9 +121,8 @@ class RadioConnectionCard extends StatelessWidget {
                       title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: MeshPalette.ink,
-                        fontSize: 20,
                         fontWeight: FontWeight.w800,
                         height: 1.15,
                       ),
@@ -137,11 +136,11 @@ class RadioConnectionCard extends StatelessWidget {
                           child: Text(
                             radioStatusLabel(l10n, connector),
                             key: const ValueKey('radio-status'),
-                            style: TextStyle(
-                              color: statusColor,
-                              fontSize: 13.5,
-                              fontWeight: FontWeight.w700,
-                            ),
+                            style: Theme.of(context).textTheme.titleSmall
+                                ?.copyWith(
+                                  color: statusColor,
+                                  fontWeight: FontWeight.w700,
+                                ),
                           ),
                         ),
                         Flexible(
@@ -149,10 +148,8 @@ class RadioConnectionCard extends StatelessWidget {
                             '  ·  ${transportLabel(l10n, connector.activeTransport)}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: MeshPalette.ink3,
-                              fontSize: 13,
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(color: MeshPalette.ink3),
                           ),
                         ),
                       ],
@@ -389,9 +386,8 @@ class _StatTile extends StatelessWidget {
                   stat.label,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: MeshPalette.ink3,
-                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -520,7 +516,9 @@ class _ExtraBrokers extends StatelessWidget {
                 context.l10n.mqttExtra_ownKey(
                   uploaders.ownPublicKey(u.id)!.substring(0, 8),
                 ),
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
         ],
