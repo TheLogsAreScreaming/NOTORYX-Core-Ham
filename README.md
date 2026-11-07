@@ -63,7 +63,7 @@ Each release includes `SHA256SUMS-Android.txt` and `SHA256SUMS-macOS.txt` if you
 2. **Say hello.** Open **Chats** and send a message on a channel, or open someone in **Nodes** to message them directly.
 3. **Choose who gets your check-ins and SOS.** Tap **Check in: I'm OK** or hold **SOS**. The first time, NOTORYX Core asks who should get them. You can change this anytime in **Plan your trip**.
 4. **Set your radio for your area.** **Settings → Radio settings → Presets** lists MeshCore's community presets (USA, Canada, EU/UK, Australia and more) with the one for your country suggested first.
-5. **Pick a look.** **Settings → Theme** offers Blaze (default), Autumn Frost, Bubble Gum, Red light and Okabe-Ito (color-blind safe).
+5. **Pick a look.** **Settings → Theme** offers Blaze (default), Autumn Frost, Bubble Gum, Bronzed Blush, Red light and Okabe-Ito (color-blind safe, on black or charcoal).
 
 The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**. Home is where check-in, SOS and your radio's readings live; **More** holds every tool and setting, with a search box.
 
@@ -125,7 +125,7 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
 
 ### Look and feel
 - **Frosted ember:** the main screens sit on a warm glow, with see-through glass panels and a floating tab bar. With reduce motion turned on, the blur is off.
-- Five themes: **Blaze**, **Autumn Frost** (slate, pine and amber), **Bubble Gum** (rose and hot pink), **Red light** (keeps your night vision) and **Okabe-Ito** (color-blind safe, on black).
+- Seven themes: **Blaze**, **Autumn Frost** (slate, pine and amber), **Bubble Gum** (rose and hot pink), **Bronzed Blush** (deep bronze, pale and soft pinks), **Red light** (keeps your night vision), **Okabe-Ito** (color-blind safe, on black) and **Okabe-Ito Slate** (the same colors on charcoal). Each theme has its own second and third color, used for icons, highlights and the background glow.
 - **Color-blind safe colors:** node types on the map and in lists (people, repeaters, rooms and sensors) use the [Okabe-Ito palette](https://jfly.uni-koeln.de/color/), whose colors stay distinct with the common forms of color blindness. The **Okabe-Ito** theme goes further: good, warning and bad signal are blue-green, yellow and vermillion instead of green and red, and every accent comes from the same palette.
 
   | Orange | Sky blue | Bluish green | Yellow | Blue | Vermillion | Reddish purple | Black |
@@ -144,8 +144,10 @@ The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**.
   <img src="docs/screenshots/home.png" width="160" alt="Blaze theme">
   <img src="docs/screenshots/home_autumn_frost.png" width="160" alt="Autumn Frost theme">
   <img src="docs/screenshots/home_bubble_gum.png" width="160" alt="Bubble Gum theme">
+  <img src="docs/screenshots/home_bronzed_blush.png" width="160" alt="Bronzed Blush theme">
   <img src="docs/screenshots/home_red_light.png" width="160" alt="Red light theme">
   <img src="docs/screenshots/home_okabe_ito.png" width="160" alt="Okabe-Ito color-blind safe theme">
+  <img src="docs/screenshots/home_okabe_ito_slate.png" width="160" alt="Okabe-Ito Slate color-blind safe theme on charcoal">
 </p>
 
 <p align="center">

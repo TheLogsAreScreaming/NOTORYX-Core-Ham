@@ -35,8 +35,10 @@ void main() {
       'blaze',
       'autumn_frost',
       'bubble_gum',
+      'bronzed_blush',
       'red_light',
       'okabe_ito',
+      'okabe_ito_slate',
     ]);
   });
 
@@ -53,6 +55,12 @@ void main() {
         'accent on page': contrast(p.accent, p.bg),
         'alert': contrast(p.alert, p.bg2),
         'chat bubble': contrast(p.meInk, p.me),
+        'second color on page': contrast(p.secondary, p.bg),
+        'third color on page': contrast(p.tertiary, p.bg),
+        'second color on cards': contrast(p.secondary, p.bg2),
+        'third color on cards': contrast(p.tertiary, p.bg2),
+        'text on second container': contrast(p.ink, p.secondaryContainer),
+        'text on third container': contrast(p.ink, p.tertiaryContainer),
       };
       for (final c in checks.entries) {
         expect(
@@ -101,6 +109,40 @@ void main() {
     expect(colors.every(OkabeIto.categorical.contains), isTrue);
     expect(MapPalette.repeater, OkabeIto.nodeType(advTypeRepeater));
     expect(MapPalette.sensor, OkabeIto.nodeType(advTypeSensor));
+  });
+
+  test('Okabe-Ito comes on black and on charcoal', () {
+    expect(BastionTheme.okabeIto.palette.bg, OkabeIto.black);
+    final slate = BastionTheme.okabeItoSlate.palette;
+    expect(slate.bg.computeLuminance(), greaterThan(0.01));
+    expect(slate.brightness, Brightness.dark);
+    // Same palette: the accent, warning and your bubble are unchanged.
+    expect(slate.accent, OkabeIto.skyBlue);
+    expect(slate.warn, OkabeIto.yellow);
+    expect(slate.me, OkabeIto.blue);
+    expect(BastionTheme.fromId('okabe_ito_slate'), BastionTheme.okabeItoSlate);
+  });
+
+  test('Bronzed Blush uses its four colors', () {
+    final p = BastionTheme.bronzedBlush.palette;
+    expect(p.me, const Color(0xFF8A4E3C)); // Deep Bronze
+    expect(p.accentDim, const Color(0xFFE6A6A6)); // Pale Pink
+    expect(p.accent, const Color(0xFFF3A7AD)); // Soft Pink
+    expect(p.primaryContainer, const Color(0xFF874D5A)); // Inner Tone
+    expect(BastionTheme.fromId('bronzed_blush'), BastionTheme.bronzedBlush);
+  });
+
+  test('every theme has three distinct hues, not one accent on grey', () {
+    for (final t in BastionTheme.values) {
+      final p = t.palette;
+      final hues = {p.accent, p.secondary, p.tertiary};
+      expect(hues, hasLength(3), reason: t.id);
+      // The scheme's secondary and tertiary are no longer the warning color.
+      final s = MeshTheme.forPalette(p).colorScheme;
+      expect(s.secondary, p.secondary, reason: t.id);
+      expect(s.tertiary, p.tertiary, reason: t.id);
+      expect(s.secondary == p.warn, isFalse, reason: t.id);
+    }
   });
 
   test('Autumn Frost uses all five fall colors and replaces Christmas', () {
@@ -171,9 +213,9 @@ void main() {
 
   test('the palette follows the chosen theme', () {
     MeshPalette.current = BastionTheme.bubbleGum.palette;
-    expect(MeshPalette.accent, const Color(0xFF8E0B56));
+    expect(MeshPalette.accent, const Color(0xFF920054));
     MeshPalette.current = BastionTheme.blaze.palette;
-    expect(MeshPalette.accent, const Color(0xFFFF9A3C));
+    expect(MeshPalette.accent, const Color(0xFFFF8A1F));
     expect(MeshTheme.light().brightness, Brightness.light);
     expect(MeshTheme.dark().brightness, Brightness.dark);
   });

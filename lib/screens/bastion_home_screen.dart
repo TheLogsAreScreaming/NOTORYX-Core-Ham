@@ -158,7 +158,11 @@ class BastionHomeScreen extends StatelessWidget {
                       stats == null || !online ? '—' : '${stats.lastRssiDbm}',
                       'RSSI',
                     ),
-                    Readout('${c.contacts.length}', l10n.bastion_nodes),
+                    Readout(
+                      '${c.contacts.length}',
+                      l10n.bastion_nodes,
+                      color: MeshPalette.secondary,
+                    ),
                   ]),
                 ),
               ),
@@ -257,36 +261,43 @@ class BastionHomeScreen extends StatelessWidget {
               if (online)
                 GlassActionRow(
                   icon: Icons.monitor_heart_outlined,
+                  iconColor: MeshPalette.hue(0),
                   title: l10n.bastionHome_liveDiagnostics,
                   onTap: () => open(const BastionDiagnosticsScreen()),
                 ),
               GlassActionRow(
                 icon: Icons.radar_rounded,
+                iconColor: MeshPalette.hue(1),
                 title: l10n.bastionHome_meshDiscovery,
                 onTap: () => open(const DiscoveryScreen()),
               ),
               GlassActionRow(
                 icon: Icons.map_outlined,
+                iconColor: MeshPalette.hue(2),
                 title: l10n.bastion_mapCoverage,
                 onTap: () => open(const BastionMapHubScreen()),
               ),
               GlassActionRow(
                 icon: Icons.route_rounded,
+                iconColor: MeshPalette.hue(3),
                 title: l10n.bastion_routeIntelligence,
                 onTap: () => open(const BastionPathHubScreen()),
               ),
               GlassActionRow(
                 icon: Icons.cell_tower_rounded,
+                iconColor: MeshPalette.hue(4),
                 title: l10n.bastion_repeaterTools,
                 onTap: () => open(const BastionRepeaterToolsScreen()),
               ),
               GlassActionRow(
                 icon: Icons.analytics_outlined,
+                iconColor: MeshPalette.hue(5),
                 title: l10n.bastion_fieldStats,
                 onTap: () => open(const BastionFieldStatsScreen()),
               ),
               GlassActionRow(
                 icon: Icons.explore_outlined,
+                iconColor: MeshPalette.hue(6),
                 title: l10n.bastionHome_getStarted,
                 onTap: () => open(const BastionSetupScreen()),
               ),

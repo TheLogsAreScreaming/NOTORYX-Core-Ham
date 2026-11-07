@@ -169,7 +169,7 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
       showDismissibleSnackBar(
         context,
         content: Text(context.l10n.neighbors_receivedData),
-        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        backgroundColor: MeshPalette.warn,
       );
       _statusTimeout?.cancel();
       if (!mounted) return;

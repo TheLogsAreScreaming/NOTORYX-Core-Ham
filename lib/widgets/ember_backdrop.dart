@@ -25,10 +25,13 @@ class EmberBackdrop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = Theme.of(context).brightness == Brightness.dark;
+    // The second glow is the theme's own second and third hue, so each tab
+    // reads as two colors, not one accent on grey.
     final second = switch (scene) {
-      EmberScene.chats => MeshPalette.signal,
-      EmberScene.nodes => MeshPalette.warn,
-      _ => MeshPalette.magenta,
+      EmberScene.chats => MeshPalette.secondary,
+      EmberScene.nodes => MeshPalette.tertiary,
+      EmberScene.home => MeshPalette.secondary,
+      EmberScene.more => MeshPalette.tertiary,
     };
     return Stack(
       fit: StackFit.expand,
@@ -76,10 +79,10 @@ class EmberPainter extends CustomPainter {
   /// (centre x, centre y, radius, strength) for the two glows, in phone
   /// units.
   List<(double, double, double, double)> get _glows => switch (scene) {
-    EmberScene.home => [(90, 70, 210, 0.45), (370, 540, 180, 0.22)],
-    EmberScene.chats => [(360, 60, 230, 0.40), (0, 660, 190, 0.18)],
-    EmberScene.nodes => [(160, 0, 220, 0.42), (400, 720, 200, 0.16)],
-    EmberScene.more => [(320, 40, 220, 0.40), (20, 600, 190, 0.20)],
+    EmberScene.home => [(90, 70, 250, 0.64), (370, 560, 240, 0.48)],
+    EmberScene.chats => [(360, 60, 260, 0.60), (0, 660, 240, 0.44)],
+    EmberScene.nodes => [(160, 0, 250, 0.60), (400, 720, 240, 0.42)],
+    EmberScene.more => [(320, 40, 250, 0.60), (20, 600, 240, 0.44)],
   };
 
   /// Contour bands as y offsets of the first line; each band has three.
@@ -98,7 +101,7 @@ class EmberPainter extends CustomPainter {
     // A wide window stretches the layout; size glows by the shorter axis
     // so they stay round.
     final s = sx < sy ? sx : sy;
-    final fade = dark ? 1.0 : 0.5;
+    final fade = dark ? 1.0 : 0.7;
 
     for (final (i, (cx, cy, r, strength)) in _glows.indexed) {
       final colour = i == 0 ? glow : second;

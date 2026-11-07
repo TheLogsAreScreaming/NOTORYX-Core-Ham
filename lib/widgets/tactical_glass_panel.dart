@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../theme/mesh_theme.dart';
+
 /// Reusable NOTORYX frosted-glass panel.
 ///
 /// A see-through surface with a bright top edge, so the
@@ -46,10 +48,9 @@ class TacticalGlassPanel extends StatelessWidget {
             Colors.white.withValues(alpha: bottom),
           ],
         ),
+        // The edge catches the theme's accent, so cards carry its color.
         border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.12)
-              : Colors.black.withValues(alpha: 0.08),
+          color: MeshPalette.accent.withValues(alpha: isDark ? 0.30 : 0.38),
         ),
       ),
       child: Padding(padding: padding, child: child),

@@ -17,11 +17,14 @@ class BastionPalette {
   final Color warn, warnDim;
   final Color alert;
   final Color accent, accentDim, onAccent;
+  // A second and third hue, so a theme isn't one accent on grey. Used for
+  // icons, chips, highlights and the background glow; never for status.
+  final Color secondary, tertiary;
   final Color magenta;
   // Your own chat bubbles.
   final Color me, meBorder, meInk;
   // Filled containers for the color scheme.
-  final Color primaryContainer, secondaryContainer;
+  final Color primaryContainer, secondaryContainer, tertiaryContainer;
 
   const BastionPalette({
     required this.brightness,
@@ -45,13 +48,23 @@ class BastionPalette {
     required this.accent,
     required this.accentDim,
     required this.onAccent,
+    required this.secondary,
+    required this.tertiary,
     required this.magenta,
     required this.me,
     required this.meBorder,
     required this.meInk,
     required this.primaryContainer,
     required this.secondaryContainer,
+    required this.tertiaryContainer,
   });
+
+  /// The theme's hues in order, for giving neighbouring icons or groups
+  /// their own color. Pick by index with [hue].
+  List<Color> get spectrum => [accent, secondary, tertiary, magenta, signal];
+
+  /// The [spectrum] color for item [index], repeating.
+  Color hue(int index) => spectrum[index % spectrum.length];
 
   Color get warnBg => warn.withAlpha(0x1F);
   Color get warnLine => warn.withAlpha(0x66);
@@ -83,20 +96,24 @@ enum BastionTheme {
       ink2: Color(0xFFD9D5CE),
       ink3: Color(0xFFB3AFA8),
       ink4: Color(0xFF9A9A95),
-      signal: Color(0xFF8FCB9B),
+      signal: Color(0xFF5FD98A),
       signalDim: Color(0xFF6FA37B),
-      warn: Color(0xFFF5C85A),
+      warn: Color(0xFFFFC83D),
       warnDim: Color(0xFFC9A043),
       alert: Color(0xFFFF5A4E),
-      accent: Color(0xFFFF9A3C),
+      accent: Color(0xFFFF8A1F),
       accentDim: Color(0xFFC97526),
       onAccent: Color(0xFF2A1300),
-      magenta: Color(0xFFC8A6D6),
+      // Glacier teal and ultraviolet against the blaze orange.
+      secondary: Color(0xFF22D3E6),
+      tertiary: Color(0xFFA985FF),
+      magenta: Color(0xFFFF5FAE),
       me: Color(0xFF3A2A1C),
-      meBorder: Color(0xFFB5732F),
+      meBorder: Color(0xFFFF8A1F),
       meInk: Color(0xFFF2EFEA),
       primaryContainer: Color(0xFF4A2E14),
-      secondaryContainer: Color(0xFF4A3F22),
+      secondaryContainer: Color(0xFF12393F),
+      tertiaryContainer: Color(0xFF2E2550),
     ),
   ),
   autumnFrost(
@@ -119,17 +136,20 @@ enum BastionTheme {
       ink2: Color(0xFFD9CDBB),
       ink3: Color(0xFFB9AD9A),
       ink4: Color(0xFFA69A87),
-      signal: Color(0xFF8FC79F),
+      signal: Color(0xFF6FD69A),
       signalDim: Color(0xFF6F9F7E),
-      warn: Color(0xFFE8C062),
+      warn: Color(0xFFF2C14A),
       warnDim: Color(0xFFB8963F),
       alert: Color(0xFFFF7A63),
       // A brighter Amber Oak, so buttons and links read on the slate.
-      accent: Color(0xFFD9A04E),
+      accent: Color(0xFFEBA43A),
       // Amber Oak
       accentDim: Color(0xFFA06A25),
       onAccent: Color(0xFF24170A),
-      magenta: Color(0xFFC9A0B8),
+      // Frost blue and cranberry beside the amber leaves.
+      secondary: Color(0xFF6CC4F0),
+      tertiary: Color(0xFFFF7A90),
+      magenta: Color(0xFFE07CC8),
       // Chestnut Ember
       me: Color(0xFF854D2B),
       meBorder: Color(0xFFA06A25),
@@ -137,6 +157,7 @@ enum BastionTheme {
       primaryContainer: Color(0xFF3A574C),
       // Bronze Leaf
       secondaryContainer: Color(0xFF87591F),
+      tertiaryContainer: Color(0xFF5A2A33),
     ),
   ),
   bubbleGum(
@@ -163,15 +184,65 @@ enum BastionTheme {
       warn: Color(0xFF6E3F00),
       warnDim: Color(0xFF7F4E07),
       alert: Color(0xFF8F001E),
-      accent: Color(0xFF8E0B56),
+      accent: Color(0xFF920054),
       accentDim: Color(0xFFC77DDB),
       onAccent: Color(0xFFFFEAF4),
-      magenta: Color(0xFF7A1F8C),
+      // Deep lagoon teal and grape, dark enough to read on the pink.
+      secondary: Color(0xFF004E56),
+      tertiary: Color(0xFF5414B8),
+      magenta: Color(0xFF8010A0),
       me: Color(0xFFB5207A),
       meBorder: Color(0xFFD9A2E6),
       meInk: Color(0xFFFFF2F8),
       primaryContainer: Color(0xFFFAD3E6),
-      secondaryContainer: Color(0xFFE6C9F2),
+      secondaryContainer: Color(0xFFC7EDEB),
+      tertiaryContainer: Color(0xFFE6C9F2),
+    ),
+  ),
+  bronzedBlush(
+    'bronzed_blush',
+    'Bronzed Blush',
+    'Deep bronze, pale and soft pinks, inner tone',
+    BastionPalette(
+      brightness: Brightness.dark,
+      // Warm bronze-brown surfaces, darkest first.
+      bg: Color(0xFF1C1412),
+      bg1: Color(0xFF221816),
+      bg2: Color(0xFF2A1D1B),
+      bg3: Color(0xFF342422),
+      bg4: Color(0xFF42302C),
+      line: Color(0xFF342422),
+      line2: Color(0xFF4A3531),
+      line3: Color(0xFF6B504A),
+      ink: Color(0xFFF8E9E4),
+      ink2: Color(0xFFE6D0C9),
+      ink3: Color(0xFFC9AEA6),
+      ink4: Color(0xFFB39890),
+      signal: Color(0xFF7FDA98),
+      signalDim: Color(0xFF74A47D),
+      warn: Color(0xFFF2C46A),
+      warnDim: Color(0xFFC29A45),
+      alert: Color(0xFFFF6B6B),
+      // Soft Pink
+      accent: Color(0xFFF3A7AD),
+      // Pale Pink
+      accentDim: Color(0xFFE6A6A6),
+      onAccent: Color(0xFF2A1214),
+      // A lighter copper of the bronze, and a rose mauve of the inner tone,
+      // so the pinks have company.
+      secondary: Color(0xFFF09E6A),
+      tertiary: Color(0xFFE88AB4),
+      // Pale Pink
+      magenta: Color(0xFFE6A6A6),
+      // Deep Bronze
+      me: Color(0xFF8A4E3C),
+      meBorder: Color(0xFFF3A7AD),
+      meInk: Color(0xFFFFF1EC),
+      // Inner Tone
+      primaryContainer: Color(0xFF874D5A),
+      // Deep Bronze
+      secondaryContainer: Color(0xFF8A4E3C),
+      tertiaryContainer: Color(0xFF5E3440),
     ),
   ),
   redLight(
@@ -197,15 +268,19 @@ enum BastionTheme {
       warn: Color(0xFFFF8A5C),
       warnDim: Color(0xFFC96A45),
       alert: Color(0xFFFF2D20),
-      accent: Color(0xFFFF4A3D),
+      accent: Color(0xFFFF3B2E),
       accentDim: Color(0xFFC23A30),
       onAccent: Color(0xFF1A0503),
-      magenta: Color(0xFFC98C88),
+      // Still only reds, for night vision: an ember orange-red and a coral.
+      secondary: Color(0xFFFF6A2E),
+      tertiary: Color(0xFFF0584A),
+      magenta: Color(0xFFD9786F),
       me: Color(0xFF3A1412),
       meBorder: Color(0xFF8A2E28),
       meInk: Color(0xFFF0C2BC),
       primaryContainer: Color(0xFF4A1512),
       secondaryContainer: Color(0xFF3D1A10),
+      tertiaryContainer: Color(0xFF3A1218),
     ),
   ),
   // Every status and accent color here is from the Okabe-Ito palette, so
@@ -237,12 +312,55 @@ enum BastionTheme {
       accent: OkabeIto.skyBlue,
       accentDim: OkabeIto.blue,
       onAccent: OkabeIto.black,
+      secondary: OkabeIto.orange,
+      tertiary: OkabeIto.reddishPurple,
       magenta: OkabeIto.reddishPurple,
       me: OkabeIto.blue,
       meBorder: OkabeIto.skyBlue,
       meInk: Color(0xFFFFFFFF),
       primaryContainer: Color(0xFF003A5C),
       secondaryContainer: Color(0xFF4A3300),
+      tertiaryContainer: Color(0xFF4A2238),
+    ),
+  ),
+  // The same Okabe-Ito colors on charcoal instead of black. Bluish green,
+  // vermillion and reddish purple are lifted toward white (same hues) so
+  // they still read on the lighter page.
+  okabeItoSlate(
+    'okabe_ito_slate',
+    'Okabe-Ito Slate',
+    'Color-blind safe, on charcoal',
+    BastionPalette(
+      brightness: Brightness.dark,
+      bg: Color(0xFF23282E),
+      bg1: Color(0xFF292F35),
+      bg2: Color(0xFF2F353C),
+      bg3: Color(0xFF384048),
+      bg4: Color(0xFF434C55),
+      line: Color(0xFF384048),
+      line2: Color(0xFF4A535C),
+      line3: Color(0xFF66717B),
+      ink: Color(0xFFF2F4F5),
+      ink2: Color(0xFFD5DADE),
+      ink3: Color(0xFFB8C0C7),
+      ink4: Color(0xFFA6AFB7),
+      signal: Color(0xFF40B696),
+      signalDim: OkabeIto.bluishGreen,
+      warn: OkabeIto.yellow,
+      warnDim: OkabeIto.orange,
+      alert: Color(0xFFE08640),
+      accent: OkabeIto.skyBlue,
+      accentDim: OkabeIto.blue,
+      onAccent: OkabeIto.black,
+      secondary: OkabeIto.orange,
+      tertiary: Color(0xFFD694B9),
+      magenta: Color(0xFFD694B9),
+      me: OkabeIto.blue,
+      meBorder: OkabeIto.skyBlue,
+      meInk: Color(0xFFFFFFFF),
+      primaryContainer: Color(0xFF0B4A6E),
+      secondaryContainer: Color(0xFF5A4110),
+      tertiaryContainer: Color(0xFF5A3049),
     ),
   );
 

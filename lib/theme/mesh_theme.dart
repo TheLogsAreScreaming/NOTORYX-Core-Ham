@@ -40,7 +40,12 @@ class MeshPalette {
   static Color get accentBg => current.accentBg;
   static Color get accentLine => current.accentLine;
   static Color get onAccent => current.onAccent;
+  static Color get secondary => current.secondary;
+  static Color get tertiary => current.tertiary;
   static Color get magenta => current.magenta;
+
+  /// The current theme's color for item [index]; see [BastionPalette.hue].
+  static Color hue(int index) => current.hue(index);
   static Color get magentaBg => current.magentaBg;
   static Color get magentaLine => current.magentaLine;
   static Color get me => current.me;
@@ -191,13 +196,13 @@ class MeshTheme {
       onPrimary: p.onAccent,
       primaryContainer: p.primaryContainer,
       onPrimaryContainer: p.ink,
-      secondary: p.warn,
-      onSecondary: p.bg,
+      secondary: p.secondary,
+      onSecondary: isDark ? p.bg : Colors.white,
       secondaryContainer: p.secondaryContainer,
       onSecondaryContainer: p.ink,
-      tertiary: p.warn,
+      tertiary: p.tertiary,
       onTertiary: isDark ? p.bg : Colors.white,
-      tertiaryContainer: p.secondaryContainer,
+      tertiaryContainer: p.tertiaryContainer,
       onTertiaryContainer: p.ink,
       error: p.alert,
       onError: isDark ? p.bg : Colors.white,
