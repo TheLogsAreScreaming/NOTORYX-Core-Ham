@@ -332,8 +332,9 @@ class _RegionSetupScreenState extends State<RegionSetupScreen> {
               else
                 Text(
                   l10n.regionSetup_howToSend,
-                  style: Theme.of(context).textTheme.bodySmall
-                      ?.copyWith(color: MeshPalette.ink3),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
               if (chain.isNotEmpty && ready) ...[
                 const SizedBox(height: 8),

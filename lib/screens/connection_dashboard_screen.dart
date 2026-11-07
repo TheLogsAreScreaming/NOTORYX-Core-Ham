@@ -278,8 +278,9 @@ class _TransportChoices extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     void open(Widget screen) => unawaited(
-      Navigator.of(context)
-          .push(MaterialPageRoute<void>(builder: (_) => screen)),
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute<void>(builder: (_) => screen)),
     );
     return ResponsiveTilePair(
       children: [
@@ -517,8 +518,9 @@ class _ExtraBrokers extends StatelessWidget {
                 context.l10n.mqttExtra_ownKey(
                   uploaders.ownPublicKey(u.id)!.substring(0, 8),
                 ),
-                style: Theme.of(context).textTheme.bodySmall
-                    ?.copyWith(color: MeshPalette.ink3),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
         ],

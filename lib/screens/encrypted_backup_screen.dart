@@ -65,7 +65,8 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
       _confirmation.clear();
       if (mounted) {
         setState(
-          () => _status = 'Backup prepared. Keep your saved file and passphrase somewhere safe.',
+          () => _status =
+              'Backup prepared. Keep your saved file and passphrase somewhere safe.',
         );
       }
     } catch (_) {

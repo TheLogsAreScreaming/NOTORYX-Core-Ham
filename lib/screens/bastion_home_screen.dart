@@ -238,8 +238,9 @@ class BastionHomeScreen extends StatelessWidget {
                   ),
                   child: Text(
                     '$checkInHint ${sosHint(context, ops)}',
-                    style: Theme.of(context).textTheme.bodySmall
-                        ?.copyWith(color: MeshPalette.ink3),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                   ),
                 ),
               ],

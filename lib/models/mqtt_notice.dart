@@ -45,7 +45,8 @@ class MqttNotice {
       'Topic prefix must be a nonempty MQTT path without wildcards.',
     MqttNoticeKind.invalidRegion =>
       'Region must be 2-8 letters or digits, such as PHL.',
-    MqttNoticeKind.tlsRequired => 'TLS is required unless insecure local broker access is explicitly enabled.',
+    MqttNoticeKind.tlsRequired =>
+      'TLS is required unless insecure local broker access is explicitly enabled.',
     MqttNoticeKind.cleartextLocalOnly =>
       'Cleartext MQTT is restricted to explicitly approved local hosts.',
     MqttNoticeKind.regionNeededToShare =>

@@ -160,8 +160,9 @@ class _AntennaHuntScreenState extends State<AntennaHuntScreen> {
                   ),
                   Text(
                     stale ? l10n.hunt_noReply : l10n.hunt_heardHere,
-                    style: Theme.of(context).textTheme.bodyMedium
-                        ?.copyWith(color: MeshPalette.ink3),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink3),
                   ),
                 ],
               ),
@@ -202,8 +203,9 @@ class _AntennaHuntScreenState extends State<AntennaHuntScreen> {
               padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
               child: Text(
                 l10n.hunt_explainer,
-                style: Theme.of(context).textTheme.bodySmall
-                    ?.copyWith(color: MeshPalette.ink3),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
           ],

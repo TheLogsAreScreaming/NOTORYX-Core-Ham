@@ -1902,8 +1902,9 @@ class _MapScreenState extends State<MapScreen> {
                       ),
                       suffixIcon: hasQuery
                           ? IconButton(
-                              tooltip: MaterialLocalizations.of(context)
-                                  .closeButtonTooltip,
+                              tooltip: MaterialLocalizations.of(
+                                context,
+                              ).closeButtonTooltip,
                               color: _overlayPrimaryTextColor,
                               icon: const Icon(Icons.close, size: 18),
                               onPressed: () {
@@ -2186,8 +2187,9 @@ class _MapScreenState extends State<MapScreen> {
               padding: const EdgeInsets.all(16),
               child: Text(
                 context.l10n.map_noResults,
-                style: Theme.of(context).textTheme.bodyMedium
-                    ?.copyWith(color: _overlaySecondaryTextColor),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: _overlaySecondaryTextColor,
+                ),
               ),
             )
           : ListView.separated(
@@ -2378,8 +2380,9 @@ class _MapScreenState extends State<MapScreen> {
           Expanded(
             child: Text(
               label,
-              style: Theme.of(context).textTheme.bodySmall
-                  ?.copyWith(color: _overlaySecondaryTextColor),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: _overlaySecondaryTextColor,
+              ),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -2504,8 +2507,9 @@ class _MapScreenState extends State<MapScreen> {
                               _mapController.move(pos, max(_zoom, 15)),
                         ),
                       IconButton(
-                        tooltip: MaterialLocalizations.of(context)
-                            .closeButtonTooltip,
+                        tooltip: MaterialLocalizations.of(
+                          context,
+                        ).closeButtonTooltip,
                         color: _overlayPrimaryTextColor,
                         icon: const Icon(Icons.close, size: 20),
                         onPressed: _clearSelection,
@@ -3763,8 +3767,9 @@ class _MapScreenState extends State<MapScreen> {
                 if (_pathTrace.isEmpty)
                   Text(
                     l10n.map_tapToAdd,
-                    style: Theme.of(context).textTheme.bodySmall
-                        ?.copyWith(color: _overlaySecondaryTextColor),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: _overlaySecondaryTextColor,
+                    ),
                   ),
                 const SizedBox(height: 6),
                 if (_pathTrace.isNotEmpty)
@@ -4121,8 +4126,9 @@ class MarkerPayload {
 /// `m:<lat>,<lon>|<label>|<flags>` and return a [MarkerPayload].
 MarkerPayload? parseMarkerText(String text) {
   final trimmed = text.trim();
-  final match = RegExp(r'm:([\-0-9.]+),([\-0-9.]+)\|([^|]*)\|(.*)')
-      .firstMatch(trimmed);
+  final match = RegExp(
+    r'm:([\-0-9.]+),([\-0-9.]+)\|([^|]*)\|(.*)',
+  ).firstMatch(trimmed);
   if (match == null) return null;
   final lat = double.tryParse(match.group(1) ?? '');
   final lon = double.tryParse(match.group(2) ?? '');

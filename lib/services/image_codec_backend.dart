@@ -177,9 +177,8 @@ const bool kImageCodecBitstreamPathAvailable = true;
 /// Left null, [OnnxImageCodecBackend.supportsBitstreamCodec] is false and
 /// [OnnxImageCodecBackend.encode]/[OnnxImageCodecBackend.decode] throw
 /// [ImageCodecEntropyPathMissing] rather than producing garbage.
-typedef ImageCodecRansCoderBuilder = Future<AeicRansCoderFactory> Function(
-  String tablesPath,
-);
+typedef ImageCodecRansCoderBuilder =
+    Future<AeicRansCoderFactory> Function(String tablesPath);
 
 ImageCodecRansCoderBuilder? imageCodecRansCoderBuilder;
 

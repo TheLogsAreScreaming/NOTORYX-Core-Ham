@@ -247,8 +247,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           children: [
                             if (viewState.channelsSearchText.isNotEmpty)
                               IconButton(
-                                tooltip: MaterialLocalizations.of(context)
-                                    .clearButtonTooltip,
+                                tooltip: MaterialLocalizations.of(
+                                  context,
+                                ).clearButtonTooltip,
                                 icon: const Icon(Icons.clear),
                                 onPressed: () {
                                   _searchDebounce?.cancel();
@@ -1198,9 +1199,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           sheetContext.l10n.community_hashtagPrivacyHint,
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(
-                                color: Theme.of(sheetContext)
-                                    .colorScheme
-                                    .onSurfaceVariant,
+                                color: Theme.of(
+                                  sheetContext,
+                                ).colorScheme.onSurfaceVariant,
                                 fontStyle: FontStyle.italic,
                               ),
                         ),
@@ -1502,9 +1503,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                   const SizedBox(height: 2),
                                   Text(
                                     sheetContext.l10n.channelDirectory_subtitle,
-                                    style: Theme.of(sheetContext)
-                                        .textTheme
-                                        .bodySmall,
+                                    style: Theme.of(
+                                      sheetContext,
+                                    ).textTheme.bodySmall,
                                   ),
                                 ],
                               ),
@@ -1890,9 +1891,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             ),
                             style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
                                 ),
                           ),
                           trailing: PopupMenuButton<String>(
@@ -1923,17 +1924,17 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                   children: [
                                     Icon(
                                       Icons.exit_to_app,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .error,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.error,
                                     ),
                                     const SizedBox(width: 12),
                                     Text(
                                       context.l10n.community_delete,
                                       style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .error,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.error,
                                       ),
                                     ),
                                   ],
@@ -2196,8 +2197,9 @@ class _DiscoveredSheet extends StatelessWidget {
                   if (d.entry.description.isNotEmpty) d.entry.description,
                   l10n.discovered_heard(
                     d.heard,
-                    TimeOfDay.fromDateTime(d.lastHeard.toLocal())
-                        .format(context),
+                    TimeOfDay.fromDateTime(
+                      d.lastHeard.toLocal(),
+                    ).format(context),
                   ),
                 ].join(' \u00B7 '),
                 trailing: Row(
@@ -2255,8 +2257,9 @@ class _DiscoveredSheet extends StatelessWidget {
               ),
               child: Text(
                 l10n.discovered_explainer,
-                style: Theme.of(context).textTheme.bodySmall
-                    ?.copyWith(color: MeshPalette.ink3),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
           ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../l10n/l10n.dart';
+import '../theme/mesh_theme.dart';
 
 /// A reusable QR code scanner widget that can be embedded anywhere.
 ///
@@ -275,7 +276,8 @@ class _QrScannerWidgetState extends State<QrScannerWidget>
 
     switch (error.errorCode) {
       case MobileScannerErrorCode.permissionDenied:
-        message = 'Camera permission denied.\nPlease enable camera access in settings.';
+        message =
+            'Camera permission denied.\nPlease enable camera access in settings.';
         icon = Icons.no_photography;
         break;
       case MobileScannerErrorCode.unsupported:
@@ -294,12 +296,12 @@ class _QrScannerWidgetState extends State<QrScannerWidget>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 64, color: Colors.grey),
+            Icon(icon, size: 64, color: MeshPalette.ink4),
             const SizedBox(height: 16),
             Text(
               message,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey[600], fontSize: 16),
+              style: TextStyle(color: MeshPalette.ink3, fontSize: 16),
             ),
           ],
         ),

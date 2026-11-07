@@ -159,7 +159,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
       case advTypeRoom:
         return MeshPalette.magenta;
       case advTypeSensor:
-        return const Color(0xFF4ACCC4); // teal
+        return MeshPalette.signal;
       default:
         return MeshPalette.accent;
     }
@@ -382,8 +382,9 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                     key: ValueKey('discovered-name-${contact.publicKeyHex}'),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyLarge
-                        ?.copyWith(fontWeight: FontWeight.w500),
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Row(
@@ -621,8 +622,9 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                 children: [
                   if (searchQuery.isNotEmpty)
                     IconButton(
-                      tooltip: MaterialLocalizations.of(context)
-                          .clearButtonTooltip,
+                      tooltip: MaterialLocalizations.of(
+                        context,
+                      ).clearButtonTooltip,
                       icon: const Icon(Icons.clear),
                       onPressed: () {
                         _searchController.clear();

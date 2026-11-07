@@ -253,9 +253,9 @@ class EmojiPicker extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .secondaryContainer,
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.secondaryContainer,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(

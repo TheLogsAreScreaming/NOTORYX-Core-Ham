@@ -283,15 +283,17 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
           children: [
             Text(
               l10n.neighbors_repeatersNeighbors,
-              style: Theme.of(context).textTheme.titleLarge
-                  ?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             Text(
               repeater.name,
-              style: Theme.of(context).textTheme.bodyMedium
-                  ?.copyWith(fontWeight: FontWeight.normal),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.normal),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -397,8 +399,9 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
                   name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyLarge
-                      ?.copyWith(fontWeight: FontWeight.w500),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 2),
                 Text(

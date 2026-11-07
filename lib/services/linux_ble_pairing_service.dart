@@ -2,14 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-typedef ProcessStartFn = Future<Process> Function(
-  String executable,
-  List<String> arguments,
-);
-typedef ProcessRunFn = Future<ProcessResult> Function(
-  String executable,
-  List<String> arguments,
-);
+typedef ProcessStartFn =
+    Future<Process> Function(String executable, List<String> arguments);
+typedef ProcessRunFn =
+    Future<ProcessResult> Function(String executable, List<String> arguments);
 
 /// Best-effort Linux BLE pairing helper using bluetoothctl.
 ///

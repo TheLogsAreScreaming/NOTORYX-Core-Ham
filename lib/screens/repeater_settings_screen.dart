@@ -1913,8 +1913,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
         leading: const Icon(Icons.tune),
         title: Text(
           l10n.repeater_advancedSettings,
-          style: Theme.of(context).textTheme.titleMedium
-              ?.copyWith(fontWeight: FontWeight.w600),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(l10n.repeater_advancedSettingsSubtitle),
         childrenPadding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
@@ -2098,8 +2099,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
         leading: const Icon(Icons.vpn_key),
         title: Text(
           l10n.repeater_keySettings,
-          style: Theme.of(context).textTheme.titleMedium
-              ?.copyWith(fontWeight: FontWeight.w600),
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(l10n.repeater_keySettingsSubtitle),
         childrenPadding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
@@ -2156,8 +2158,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   readOnly: true,
                   controller: _pubKeyController,
                   style: TextStyle(
-                    color: Theme.of(context).textTheme.headlineSmall?.color
-                        ?.withValues(alpha: 0.6),
+                    color: Theme.of(
+                      context,
+                    ).textTheme.headlineSmall?.color?.withValues(alpha: 0.6),
                   ),
                   decoration: InputDecoration(
                     labelText: l10n.repeater_pubKey,

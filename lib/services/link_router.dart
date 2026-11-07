@@ -112,8 +112,9 @@ class LinkRouter {
           ),
         );
       case null:
-        ScaffoldMessenger.maybeOf(context)
-            ?.showSnackBar(meshSnackBar(content: Text(l10n.links_notContact)));
+        ScaffoldMessenger.maybeOf(
+          context,
+        )?.showSnackBar(meshSnackBar(content: Text(l10n.links_notContact)));
     }
   }
 }

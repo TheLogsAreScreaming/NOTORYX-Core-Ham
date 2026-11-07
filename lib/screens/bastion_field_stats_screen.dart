@@ -252,8 +252,9 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                     const SizedBox(height: 6),
                     Text(
                       l10n.fieldIntel_chartHint,
-                      style: Theme.of(context).textTheme.bodySmall
-                          ?.copyWith(color: MeshPalette.ink3),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                     ),
                   ],
                 ),
@@ -444,9 +445,9 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                 (Icons.radar, l10n.networks_title, const NetworksScreen()),
               ])
                 MeshCard(
-                  onTap: () =>
-                      Navigator.of(context)
-                          .push(MaterialPageRoute<void>(builder: (_) => page)),
+                  onTap: () => Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute<void>(builder: (_) => page)),
                   child: InstrumentRow(
                     icon: icon,
                     title: title,
@@ -487,15 +488,18 @@ class _Stat extends StatelessWidget {
       children: [
         Text(
           value,
-          style: Theme.of(context).textTheme.headlineMedium
-              ?.copyWith(color: MeshPalette.ink, fontWeight: FontWeight.w800),
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            color: MeshPalette.ink,
+            fontWeight: FontWeight.w800,
+          ),
         ),
         Text(
           label,
           maxLines: 2,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.labelSmall
-              ?.copyWith(color: MeshPalette.ink3),
+          style: Theme.of(
+            context,
+          ).textTheme.labelSmall?.copyWith(color: MeshPalette.ink3),
         ),
       ],
     ),
@@ -539,8 +543,9 @@ class _BarRow extends StatelessWidget {
                   label,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyMedium
-                      ?.copyWith(color: MeshPalette.ink2),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink2),
                 ),
               ),
               Expanded(

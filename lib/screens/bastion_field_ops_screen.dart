@@ -114,8 +114,9 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
       await action();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(meshSnackBar(content: Text(friendlyError(e))));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(meshSnackBar(content: Text(friendlyError(e))));
       }
     }
   }
@@ -470,9 +471,9 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            backgroundColor: Theme.of(context)
-                                .colorScheme
-                                .surface,
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.surface,
                           ),
                         ),
                       ],

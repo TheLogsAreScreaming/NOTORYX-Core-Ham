@@ -127,8 +127,9 @@ class CoverageHexScreen extends StatelessWidget {
                   const SizedBox(height: MeshSpace.md),
                   Text(
                     t.coverageHex_privacyNote,
-                    style: Theme.of(context).textTheme.bodySmall
-                        ?.copyWith(color: MeshPalette.ink3),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                   ),
                 ],
               ),

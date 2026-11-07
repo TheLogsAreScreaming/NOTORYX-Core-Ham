@@ -311,8 +311,9 @@ class _SeasonControls extends StatelessWidget {
         children: [
           Text(
             l10n.theme_season,
-            style: Theme.of(context).textTheme.titleSmall
-                ?.copyWith(fontWeight: FontWeight.w600),
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: MeshSpace.xs),
           Wrap(

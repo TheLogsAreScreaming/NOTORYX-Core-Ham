@@ -76,8 +76,9 @@ class _BastionCoverageCaptureScreenState
       }
     } catch (error) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(meshSnackBar(content: Text(friendlyError(error))));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(meshSnackBar(content: Text(friendlyError(error))));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -247,12 +248,10 @@ class _BastionCoverageCaptureScreenState
             const SizedBox(height: 16),
             FilledButton.icon(
               style: FilledButton.styleFrom(
-                backgroundColor: _capture.recording
-                    ? const Color(0xFF303A42)
-                    : cyan,
+                backgroundColor: _capture.recording ? MeshPalette.bg3 : cyan,
                 foregroundColor: _capture.recording
-                    ? Colors.white
-                    : Colors.black,
+                    ? MeshPalette.ink
+                    : MeshPalette.onAccent,
                 padding: const EdgeInsets.symmetric(vertical: 16),
               ),
               onPressed: !_busy && (connector.isConnected || _capture.recording)
@@ -340,8 +339,10 @@ class _Stat extends StatelessWidget {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.labelSmall
-              ?.copyWith(color: MeshPalette.ink3, fontWeight: FontWeight.w800),
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+            color: MeshPalette.ink3,
+            fontWeight: FontWeight.w800,
+          ),
         ),
         const SizedBox(height: 5),
         Text(
@@ -379,14 +380,14 @@ class _Status extends StatelessWidget {
         Icon(
           icon,
           size: 17,
-          color: active ? MeshPalette.accent : const Color(0xFF697680),
+          color: active ? MeshPalette.accent : MeshPalette.ink4,
         ),
         const SizedBox(width: 7),
         Expanded(
           child: Text(
             label,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: active ? Colors.white : const Color(0xFF89949D),
+              color: active ? MeshPalette.ink : MeshPalette.ink4,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -441,8 +442,9 @@ class _ObservationTile extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   '${observation.nodeType}  •  $signal  •  $snr',
-                  style: Theme.of(context).textTheme.bodySmall
-                      ?.copyWith(color: Color(0xFFB0BBC4)),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -454,8 +456,9 @@ class _ObservationTile extends StatelessWidget {
                         : l10n.bastion_hopsCount(observation.pathLength),
                     location,
                   ),
-                  style: Theme.of(context).textTheme.labelSmall
-                      ?.copyWith(color: Color(0xFF7F8B94)),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: MeshPalette.ink4),
                 ),
               ],
             ),
@@ -499,8 +502,10 @@ class _Info extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 body,
-                style: Theme.of(context).textTheme.bodySmall
-                    ?.copyWith(color: MeshPalette.ink3, height: 1.4),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: MeshPalette.ink3,
+                  height: 1.4,
+                ),
               ),
             ],
           ),

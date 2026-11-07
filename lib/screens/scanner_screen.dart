@@ -327,8 +327,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
               'USB selected, opening UsbScreen',
               tag: 'ScannerScreen',
             );
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => const UsbScreen()));
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => const UsbScreen()));
           },
         ),
       if (!PlatformInfo.isWeb)
@@ -336,9 +337,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
           icon: Icons.wifi_rounded,
           title: l10n.radioStatus_tcp,
           subtitle: l10n.scanner_tcpHint,
-          onTap: () =>
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => const TcpScreen())),
+          onTap: () => Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (_) => const TcpScreen())),
         ),
     ];
     if (tiles.isEmpty) return const [];
@@ -578,8 +579,10 @@ class _ScanHero extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           subtitle,
-          style: Theme.of(context).textTheme.bodyMedium
-              ?.copyWith(color: MeshPalette.ink2, height: 1.4),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: MeshPalette.ink2,
+            height: 1.4,
+          ),
         ),
         if (action != null) ...[
           const SizedBox(height: 14),
@@ -634,8 +637,10 @@ class _ScanTips extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: Theme.of(context).textTheme.bodyMedium
-                  ?.copyWith(color: MeshPalette.ink2, height: 1.35),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: MeshPalette.ink2,
+                height: 1.35,
+              ),
             ),
           ),
         ],
@@ -648,8 +653,10 @@ class _ScanTips extends StatelessWidget {
         children: [
           Text(
             l10n.scanner_tipsTitle,
-            style: Theme.of(context).textTheme.titleSmall
-                ?.copyWith(color: MeshPalette.ink, fontWeight: FontWeight.w700),
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              color: MeshPalette.ink,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           tip(Icons.power_settings_new_rounded, l10n.scanner_tipPower),
           tip(Icons.memory_rounded, l10n.scanner_tipFirmware),

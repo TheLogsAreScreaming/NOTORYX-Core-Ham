@@ -195,7 +195,7 @@ class CoverageSessionMap extends StatelessWidget {
                   '${recorder ? context.l10n.coverage_recorder : o.nodeName}: ${o.timestamp.toLocal()}',
               child: Icon(
                 recorder ? Icons.my_location : Icons.cell_tower,
-                color: recorder ? MeshPalette.accent : Colors.amber,
+                color: recorder ? MeshPalette.accent : MeshPalette.warn,
               ),
             ),
           ),

@@ -178,8 +178,9 @@ class BastionDiagnosticsScreen extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: Theme.of(context).textTheme.bodyMedium
-                    ?.copyWith(color: MeshPalette.ink3),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink3),
               ),
             ),
             const SizedBox(width: 12),
@@ -228,8 +229,9 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                 Text(
                   label,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.labelSmall
-                      ?.copyWith(color: MeshPalette.ink3),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: MeshPalette.ink3),
                 ),
               ],
             ),
@@ -296,8 +298,9 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                 child: Text(
                   l10n.diag_tapToCopy,
-                  style: Theme.of(context).textTheme.bodySmall
-                      ?.copyWith(color: MeshPalette.ink3),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
               ),
               section(l10n.bastionDiag_radio, [
@@ -380,9 +383,9 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                 ),
               ])
                 MeshCard(
-                  onTap: () =>
-                      Navigator.of(context)
-                          .push(MaterialPageRoute<void>(builder: (_) => page)),
+                  onTap: () => Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute<void>(builder: (_) => page)),
                   child: InstrumentRow(
                     icon: icon,
                     title: title,
@@ -437,8 +440,9 @@ class BastionDiagnosticsScreen extends StatelessWidget {
                 c.isConnected
                     ? '${c.deviceDisplayName} • ${c.activeTransport.name.toUpperCase()}'
                     : context.l10n.bastionDiag_offlineHint,
-                style: Theme.of(context).textTheme.bodySmall
-                    ?.copyWith(color: MeshPalette.ink3),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ],
           ),

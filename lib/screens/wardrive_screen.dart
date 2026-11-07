@@ -133,8 +133,9 @@ class _WardriveScreenState extends State<WardriveScreen> {
                 key: ValueKey('wardrive-session-${s.id}'),
                 leading: const Icon(Icons.route_outlined),
                 title: Text(
-                  MaterialLocalizations.of(context)
-                      .formatMediumDate(s.startedAt.toLocal()),
+                  MaterialLocalizations.of(
+                    context,
+                  ).formatMediumDate(s.startedAt.toLocal()),
                 ),
                 subtitle: Text(
                   l10n.wardrive_sessionSummary(s.pings.length, s.heardCount),
@@ -292,8 +293,9 @@ class _WardriveScreenState extends State<WardriveScreen> {
                 padding: const EdgeInsets.only(bottom: MeshSpace.sm),
                 child: Text(
                   status,
-                  style: Theme.of(context).textTheme.bodyMedium
-                      ?.copyWith(color: MeshPalette.ink3),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink3),
                 ),
               ),
             Expanded(
@@ -325,7 +327,8 @@ class _WardriveScreenState extends State<WardriveScreen> {
                         ),
                         children: [
                           TileLayer(
-                            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                            urlTemplate:
+                                'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                             userAgentPackageName: 'com.bastionmesh.ham',
                           ),
                           MarkerLayer(
@@ -376,8 +379,9 @@ class _WardriveScreenState extends State<WardriveScreen> {
               ),
               child: Text(
                 l10n.wardrive_explainer,
-                style: Theme.of(context).textTheme.bodySmall
-                    ?.copyWith(color: MeshPalette.ink3),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
           ],

@@ -5271,7 +5271,8 @@ class AppLocalizationsIt extends AppLocalizations {
       locale: localeName,
       other:
           '$count salti non hanno una posizione specifica — il percorso mostrato è parziale',
-      one: '1 salto non ha una posizione specifica — il percorso mostrato è parziale',
+      one:
+          '1 salto non ha una posizione specifica — il percorso mostrato è parziale',
     );
     return '$_temp0';
   }

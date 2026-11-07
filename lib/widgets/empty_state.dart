@@ -100,8 +100,9 @@ class _EmptyStateState extends State<EmptyState>
                     const SizedBox(height: 8),
                     Text(
                       widget.subtitle!,
-                      style: Theme.of(context).textTheme.bodyMedium
-                          ?.copyWith(color: scheme.onSurfaceVariant),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: scheme.onSurfaceVariant,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ],
