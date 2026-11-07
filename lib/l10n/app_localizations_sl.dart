@@ -6073,31 +6073,35 @@ class AppLocalizationsSl extends AppLocalizations {
   String get fieldOps_send => 'Pošlji';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Posredovanje SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Posreduj SOS, ki jih ni posredoval noben repetitor';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Zahteva vdelano programsko opremo radia v1.16 ali novejšo';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Še ni bil posredovan noben SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Posredovanih $count paketov SOS, nazadnje ob $time',
+      few: 'Posredovani $count paketi SOS, nazadnje ob $time',
+      two: 'Posredovana 2 paketa SOS, nazadnje ob $time',
+      one: 'Posredovan 1 paket SOS, nazadnje ob $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Ko radio sliši SOS neposredno od pošiljatelja in ga noben repetitor ne posreduje v približno 15 sekundah, ga NOTORYX še enkrat pošlje nespremenjenega, da doseže repetitor, ki ga slišite vi, pošiljatelj pa ne. Posredujejo se le SOS v vaših kanalih. Porabi nekaj baterije in časa oddajanja, zato je privzeto izklopljeno.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Pred odhodom';

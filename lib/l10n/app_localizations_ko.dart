@@ -5783,31 +5783,30 @@ class AppLocalizationsKo extends AppLocalizations {
   String get fieldOps_send => '보내기';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 중계';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => '리피터가 전달하지 않은 SOS 중계';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '무전기 펌웨어 v1.16 이상이 필요합니다';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => '아직 중계한 SOS가 없습니다';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'SOS 패킷 $count개 중계, 마지막 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '무전기가 보낸 사람에게서 직접 SOS를 듣고 약 15초 안에 어떤 리피터도 전달하지 않으면, NOTORYX가 그대로 한 번 더 보내 보낸 사람은 닿지 않지만 내가 들을 수 있는 리피터에 닿게 합니다. 내가 가진 채널의 SOS만 중계합니다. 배터리와 송신 시간을 쓰므로 기본적으로 꺼져 있습니다.';
 
   @override
   String get fieldOps_beforeYouLeave => '출발 전에';

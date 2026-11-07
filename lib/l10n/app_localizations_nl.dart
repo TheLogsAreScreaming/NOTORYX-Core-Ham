@@ -6055,31 +6055,31 @@ class AppLocalizationsNl extends AppLocalizations {
   String get fieldOps_send => 'Versturen';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS doorgeven';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => 'SOS doorgeven die geen repeater doorgaf';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => 'Vereist radiofirmware v1.16 of nieuwer';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Nog geen SOS doorgegeven';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-pakketten doorgegeven, laatst om $time',
+      one: '1 SOS-pakket doorgegeven, laatst om $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Als je radio een SOS direct van de afzender hoort en geen repeater het binnen ongeveer 15 seconden doorgeeft, stuurt NOTORYX het nog één keer, ongewijzigd, zodat het een repeater bereikt die jij hoort maar de afzender niet. Alleen SOS in jouw kanalen worden doorgegeven. Kost wat batterij en zendtijd, dus standaard uit.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Voordat je vertrekt';

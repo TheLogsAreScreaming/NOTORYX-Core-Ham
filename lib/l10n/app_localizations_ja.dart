@@ -5771,31 +5771,30 @@ class AppLocalizationsJa extends AppLocalizations {
   String get fieldOps_send => '送信';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 中継';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => 'リピーターが中継しなかった SOS を中継する';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '無線機ファームウェア v1.16 以降が必要です';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'まだ SOS を中継していません';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'SOS パケットを $count 件中継、最終 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '送信者から直接 SOS を受信し、約 15 秒以内にどのリピーターも中継しなかった場合、NOTORYX がそれをそのまま 1 回だけ再送信し、送信者には届かないがあなたには届くリピーターへ届けます。中継するのは、あなたが持っているチャンネルの SOS だけです。バッテリーと送信時間を使うため、既定ではオフです。';
 
   @override
   String get fieldOps_beforeYouLeave => '出発前に';

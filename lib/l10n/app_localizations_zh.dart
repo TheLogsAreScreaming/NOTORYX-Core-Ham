@@ -5644,31 +5644,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_send => '发送';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 转发';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => '转发没有中继器转发的 SOS';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '需要电台固件 v1.16 或更新版本';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => '尚未转发任何 SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '已转发 $count 个 SOS 数据包，最近一次在 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '当电台直接从发送者听到 SOS，且约 15 秒内没有中继器转发时，NOTORYX 会原样再发送一次，让它到达你能听到而发送者听不到的中继器。只转发你所拥有频道中的 SOS。会消耗电量和发射时间，因此默认关闭。';
 
   @override
   String get fieldOps_beforeYouLeave => '出发前';

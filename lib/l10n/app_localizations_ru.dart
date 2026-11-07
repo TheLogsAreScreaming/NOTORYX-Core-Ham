@@ -6115,31 +6115,33 @@ class AppLocalizationsRu extends AppLocalizations {
   String get fieldOps_send => 'Отправить';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Ретрансляция SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Ретранслировать SOS, которые не передал ни один ретранслятор';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => 'Нужна прошивка радио v1.16 или новее';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'SOS ещё не ретранслировались';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Ретранслировано $count пакетов SOS, последний в $time',
+      few: 'Ретранслировано $count пакета SOS, последний в $time',
+      one: 'Ретранслирован $count пакет SOS, последний в $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Если радио слышит SOS напрямую от отправителя, а ни один ретранслятор не передаёт его примерно за 15 секунд, NOTORYX отправляет его ещё раз без изменений, чтобы оно дошло до ретранслятора, который слышите вы, но не отправитель. Ретранслируются только SOS в ваших каналах. Расходует батарею и эфирное время, поэтому по умолчанию выключено.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Перед выходом';
