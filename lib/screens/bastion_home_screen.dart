@@ -110,9 +110,8 @@ class BastionHomeScreen extends StatelessWidget {
                             : l10n.scanner_notConnected,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: MeshPalette.ink,
-                          fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -251,7 +250,9 @@ class BastionHomeScreen extends StatelessWidget {
                   ),
                   child: Text(
                     '$checkInHint ${sosHint(context, ops)}',
-                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                   ),
                 ),
               InstrumentLabel(l10n.bastionHome_fieldTools),

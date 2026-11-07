@@ -293,7 +293,9 @@ class _WardriveScreenState extends State<WardriveScreen> {
                 padding: const EdgeInsets.only(bottom: MeshSpace.sm),
                 child: Text(
                   status,
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 13),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink3),
                 ),
               ),
             Expanded(
@@ -377,7 +379,9 @@ class _WardriveScreenState extends State<WardriveScreen> {
               ),
               child: Text(
                 l10n.wardrive_explainer,
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
           ],

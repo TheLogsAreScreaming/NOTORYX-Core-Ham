@@ -94,10 +94,8 @@ class CoverageHexScreen extends StatelessWidget {
                       Expanded(
                         child: Text(
                           t.coverageHex_mapCoverage,
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(fontWeight: FontWeight.w700),
                         ),
                       ),
                       Switch(
@@ -129,7 +127,9 @@ class CoverageHexScreen extends StatelessWidget {
                   const SizedBox(height: MeshSpace.md),
                   Text(
                     t.coverageHex_privacyNote,
-                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                   ),
                 ],
               ),

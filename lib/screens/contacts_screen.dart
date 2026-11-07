@@ -750,7 +750,7 @@ class _ContactsScreenState extends State<ContactsScreen>
         connector.isLoadingContacts && contacts.isEmpty;
 
     if (waitingForInitialContacts || waitingForFirstContact) {
-      return const Center(child: CircularProgressIndicator());
+      return const MeshLoadingState();
     }
 
     if (contacts.isEmpty && _groups.isEmpty) {
@@ -1631,7 +1631,7 @@ class _ContactTile extends StatelessWidget {
     final Widget glyph = SizedBox(
       width: 24,
       child: emoji != null
-          ? Text(emoji, style: const TextStyle(fontSize: 17))
+          ? Text(emoji, style: Theme.of(context).textTheme.titleLarge)
           : Icon(_typeIcon(), size: 19, color: MeshPalette.ink3),
     );
 

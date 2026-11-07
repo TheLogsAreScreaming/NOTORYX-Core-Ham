@@ -168,7 +168,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
             ),
           ),
           body: !ops.ready
-              ? const Center(child: CircularProgressIndicator())
+              ? const MeshLoadingState()
               : Column(
                   children: [
                     if (ops.error != null)

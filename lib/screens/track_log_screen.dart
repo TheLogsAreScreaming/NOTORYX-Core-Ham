@@ -126,11 +126,11 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
                                 ? l10n.trackLog_recording
                                 : l10n.trackLog_notRecording,
                             key: const ValueKey('track-status'),
-                            style: TextStyle(
-                              color: MeshPalette.ink,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge
+                                ?.copyWith(
+                                  color: MeshPalette.ink,
+                                  fontWeight: FontWeight.w800,
+                                ),
                           ),
                         ],
                       ),
@@ -184,9 +184,8 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
                       const SizedBox(height: 10),
                       Text(
                         l10n.trackLog_howItWorks,
-                        style: TextStyle(
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: MeshPalette.ink3,
-                          fontSize: 12.5,
                         ),
                       ),
                     ],
@@ -210,10 +209,8 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
                             ),
                             Text(
                               l10n.trackLog_snapBody,
-                              style: TextStyle(
-                                color: MeshPalette.ink3,
-                                fontSize: 12.5,
-                              ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: MeshPalette.ink3),
                             ),
                           ],
                         ),
@@ -287,10 +284,8 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
                                 ),
                                 Text(
                                   _stats(context, t, now),
-                                  style: TextStyle(
-                                    color: MeshPalette.ink3,
-                                    fontSize: 12.5,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(color: MeshPalette.ink3),
                                 ),
                               ],
                             ),

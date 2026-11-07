@@ -200,10 +200,8 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                                     _airtime(stats.txAirSecs),
                                     _airtime(stats.rxAirSecs),
                                   ),
-                                  style: TextStyle(
-                                    color: MeshPalette.ink3,
-                                    fontSize: 12,
-                                  ),
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(color: MeshPalette.ink3),
                                 ),
                               ),
                           ],
@@ -254,7 +252,9 @@ class _BastionFieldStatsScreenState extends State<BastionFieldStatsScreen> {
                     const SizedBox(height: 6),
                     Text(
                       l10n.fieldIntel_chartHint,
-                      style: TextStyle(color: MeshPalette.ink3, fontSize: 12),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                     ),
                   ],
                 ),
@@ -488,9 +488,8 @@ class _Stat extends StatelessWidget {
       children: [
         Text(
           value,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             color: MeshPalette.ink,
-            fontSize: 22,
             fontWeight: FontWeight.w800,
           ),
         ),
@@ -498,7 +497,9 @@ class _Stat extends StatelessWidget {
           label,
           maxLines: 2,
           textAlign: TextAlign.center,
-          style: TextStyle(color: MeshPalette.ink3, fontSize: 11),
+          style: Theme.of(
+            context,
+          ).textTheme.labelSmall?.copyWith(color: MeshPalette.ink3),
         ),
       ],
     ),
@@ -536,7 +537,9 @@ class _BarRow extends StatelessWidget {
               label,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: MeshPalette.ink2, fontSize: 13),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink2),
             ),
           ),
           Expanded(

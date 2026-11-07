@@ -177,11 +177,11 @@ class _BastionCoverageCaptureScreenState
                           _capture.recording
                               ? l10n.coverage_captureActive
                               : l10n.coverage_fieldSession,
-                          style: TextStyle(
-                            color: MeshPalette.ink,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w900,
-                          ),
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(
+                                color: MeshPalette.ink,
+                                fontWeight: FontWeight.w900,
+                              ),
                         ),
                       ),
                     ],
@@ -338,18 +338,16 @@ class _Stat extends StatelessWidget {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
             color: MeshPalette.ink3,
-            fontSize: 9,
             fontWeight: FontWeight.w800,
           ),
         ),
         const SizedBox(height: 5),
         Text(
           value,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: MeshPalette.accent,
-            fontSize: 15,
             fontWeight: FontWeight.w900,
           ),
         ),
@@ -387,9 +385,8 @@ class _Status extends StatelessWidget {
         Expanded(
           child: Text(
             label,
-            style: TextStyle(
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: active ? Colors.white : const Color(0xFF89949D),
-              fontSize: 10,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -444,10 +441,9 @@ class _ObservationTile extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   '${observation.nodeType}  •  $signal  •  $snr',
-                  style: const TextStyle(
-                    color: Color(0xFFB0BBC4),
-                    fontSize: 11.5,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: Color(0xFFB0BBC4)),
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -459,10 +455,9 @@ class _ObservationTile extends StatelessWidget {
                         : l10n.bastion_hopsCount(observation.pathLength),
                     location,
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF7F8B94),
-                    fontSize: 10.5,
-                  ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall?.copyWith(color: Color(0xFF7F8B94)),
                 ),
               ],
             ),
@@ -506,9 +501,8 @@ class _Info extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 body,
-                style: TextStyle(
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: MeshPalette.ink3,
-                  fontSize: 12.5,
                   height: 1.4,
                 ),
               ),

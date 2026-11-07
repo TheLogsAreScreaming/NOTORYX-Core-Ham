@@ -409,7 +409,7 @@ class _MapCacheScreenState extends State<MapCacheScreen> {
                       padding: const EdgeInsets.all(8),
                       child: Text(
                         'Z: ${_overlayZoom.round()}:',
-                        style: const TextStyle(fontSize: 12),
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
                   ),

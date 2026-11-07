@@ -239,7 +239,9 @@ class _ChannelDirectoryScreenState extends State<ChannelDirectoryScreen> {
                           )?.host ??
                           '',
                     ),
-                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                   ),
                   const SizedBox(height: 18),
                 ],
@@ -268,7 +270,9 @@ class _ChannelDirectoryScreenState extends State<ChannelDirectoryScreen> {
                 const SizedBox(height: 12),
                 Text(
                   l10n.channelDirectory_addHint,
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
               ],
             ),
@@ -358,9 +362,8 @@ class _DirectoryTile extends StatelessWidget {
               children: [
                 Text(
                   entry.name,
-                  style: TextStyle(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: MeshPalette.ink,
-                    fontSize: 15.5,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -368,9 +371,8 @@ class _DirectoryTile extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     entry.description,
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: MeshPalette.ink2,
-                      fontSize: 12.5,
                       height: 1.35,
                     ),
                   ),
@@ -386,10 +388,8 @@ class _DirectoryTile extends StatelessWidget {
                           entry.area!.name,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: MeshPalette.ink3,
-                            fontSize: 12,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: MeshPalette.ink3),
                         ),
                       ),
                     ],

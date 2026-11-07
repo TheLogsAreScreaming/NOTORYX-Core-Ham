@@ -53,7 +53,7 @@ class _HistoryState extends State<BastionCoverageHistoryScreen> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(context.l10n.coverage_historyTitle)),
     body: loading
-        ? const Center(child: CircularProgressIndicator())
+        ? const MeshLoadingState()
         : ListView(
             padding: const EdgeInsets.all(16),
             children: [

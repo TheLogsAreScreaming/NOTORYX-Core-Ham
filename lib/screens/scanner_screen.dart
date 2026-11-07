@@ -237,9 +237,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 DeviceTile.friendlyName(saved.name),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: MeshPalette.ink,
-                  fontSize: 15,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -567,9 +566,8 @@ class _ScanHero extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             color: MeshPalette.ink,
-            fontSize: 22,
             fontWeight: FontWeight.w800,
             height: 1.15,
           ),
@@ -577,9 +575,8 @@ class _ScanHero extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           subtitle,
-          style: TextStyle(
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: MeshPalette.ink2,
-            fontSize: 13.5,
             height: 1.4,
           ),
         ),
@@ -636,9 +633,8 @@ class _ScanTips extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: MeshPalette.ink2,
-                fontSize: 13,
                 height: 1.35,
               ),
             ),
@@ -653,9 +649,8 @@ class _ScanTips extends StatelessWidget {
         children: [
           Text(
             l10n.scanner_tipsTitle,
-            style: TextStyle(
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
               color: MeshPalette.ink,
-              fontSize: 14.5,
               fontWeight: FontWeight.w700,
             ),
           ),
