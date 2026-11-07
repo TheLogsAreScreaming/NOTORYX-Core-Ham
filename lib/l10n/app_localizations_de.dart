@@ -9926,4 +9926,67 @@ class AppLocalizationsDe extends AppLocalizations {
     );
     return '$name nach $_temp0 Funkstille wieder zu hören';
   }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Kontaktliste des Funkgeräts zu $percent% voll';
+  }
+
+  @override
+  String get contactTable_full => 'Kontaktliste des Funkgeräts ist voll';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used von $max Kontakten';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Wenn sie voll ist, ersetzt das Funkgerät den am längsten nicht gehörten Kontakt. Favoriten bleiben erhalten.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Wenn sie voll ist, fügt das Funkgerät keine neu gehörten Kontakte mehr hinzu.';
+
+  @override
+  String get contactTable_freeUp => 'Platz schaffen';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Am längsten nicht gehörte zuerst. Favoriten werden nicht aufgeführt.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Zuletzt gehört $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Kontakte entfernen',
+      one: '1 Kontakt entfernen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Sie werden vom Funkgerät entfernt und ihre Nachrichten auf diesem Gerät gelöscht. Das lässt sich nicht rückgängig machen.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Kontakte entfernt',
+      one: '1 Kontakt entfernt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Alle Kontakte sind Favoriten, daher gibt es keine Vorschläge.';
 }

@@ -3448,5 +3448,17 @@
   "favReturn_off": "Выкл.",
   "favReturn_hours": "{count, plural, =1{Через 1 час} few{Через {count} часа} many{Через {count} часов} other{Через {count} часа}}",
   "favReturn_title": "Снова в зоне",
-  "favReturn_body": "{name} снова слышен после {hours, plural, =1{1 часа} other{{hours} ч}} тишины"
+  "favReturn_body": "{name} снова слышен после {hours, plural, =1{1 часа} other{{hours} ч}} тишины",
+  "contactTable_nearlyFull": "Список контактов радио заполнен на {percent}%",
+  "contactTable_full": "Список контактов радио заполнен",
+  "contactTable_count": "{used} из {max} контактов",
+  "contactTable_overwriteHint": "Когда он заполнен, радио заменяет контакт, который дольше всех не был слышен. Избранные сохраняются.",
+  "contactTable_stopHint": "Когда он заполнен, радио перестаёт добавлять новые услышанные контакты.",
+  "contactTable_freeUp": "Освободить место",
+  "contactTable_sheetBody": "Сначала те, кого дольше всех не было слышно. Избранные не показаны.",
+  "contactTable_lastHeard": "Последний раз слышен {when}",
+  "contactTable_remove": "{count, plural, =1{Удалить 1 контакт} few{Удалить {count} контакта} many{Удалить {count} контактов} other{Удалить {count} контакта}}",
+  "contactTable_confirmBody": "Они будут удалены из радио, а их сообщения на этом устройстве стёрты. Это нельзя отменить.",
+  "contactTable_removed": "{count, plural, =1{Удалён 1 контакт} few{Удалено {count} контакта} many{Удалено {count} контактов} other{Удалено {count} контакта}}",
+  "contactTable_noneToSuggest": "Все контакты в избранном, предложить нечего."
 }

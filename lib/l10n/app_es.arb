@@ -4279,5 +4279,17 @@
   "favReturn_off": "Desactivado",
   "favReturn_hours": "{count, plural, =1{Tras 1 hora} other{Tras {count} horas}}",
   "favReturn_title": "De vuelta en alcance",
-  "favReturn_body": "Se vuelve a oír a {name} tras {hours, plural, =1{1 hora} other{{hours} horas}} en silencio"
+  "favReturn_body": "Se vuelve a oír a {name} tras {hours, plural, =1{1 hora} other{{hours} horas}} en silencio",
+  "contactTable_nearlyFull": "Lista de contactos de la radio al {percent}%",
+  "contactTable_full": "La lista de contactos de la radio está llena",
+  "contactTable_count": "{used} de {max} contactos",
+  "contactTable_overwriteHint": "Cuando está llena, la radio reemplaza el contacto oído hace más tiempo. Los favoritos se conservan.",
+  "contactTable_stopHint": "Cuando está llena, la radio deja de añadir los nuevos contactos que oye.",
+  "contactTable_freeUp": "Liberar espacio",
+  "contactTable_sheetBody": "Primero los oídos hace más tiempo. Los favoritos no aparecen.",
+  "contactTable_lastHeard": "Oído por última vez {when}",
+  "contactTable_remove": "{count, plural, =1{Quitar 1 contacto} other{Quitar {count} contactos}}",
+  "contactTable_confirmBody": "Se quitan de la radio y sus mensajes en este dispositivo se borran. No se puede deshacer.",
+  "contactTable_removed": "{count, plural, =1{Se quitó 1 contacto} other{Se quitaron {count} contactos}}",
+  "contactTable_noneToSuggest": "Todos los contactos son favoritos, así que no hay nada que sugerir."
 }

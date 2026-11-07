@@ -23,6 +23,7 @@ import '../utils/dialog_utils.dart';
 import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/emoji_utils.dart';
 import '../utils/main_tab_navigation.dart';
+import '../widgets/contact_table_banner.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
@@ -934,6 +935,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             ],
           ),
         ),
+        const ContactTableBanner(),
         Expanded(
           child: RefreshIndicator(
             onRefresh: () => connector.getContacts(),

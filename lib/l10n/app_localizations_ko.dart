@@ -9454,4 +9454,62 @@ class AppLocalizationsKo extends AppLocalizations {
     );
     return '$name이(가) $_temp0 만에 다시 들립니다';
   }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return '무전기 연락처 목록 $percent% 사용 중';
+  }
+
+  @override
+  String get contactTable_full => '무전기 연락처 목록이 가득 찼습니다';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '연락처 $used/$max개';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      '가득 차면 무전기는 가장 오래전에 수신한 연락처를 교체합니다. 즐겨찾기는 유지됩니다.';
+
+  @override
+  String get contactTable_stopHint => '가득 차면 무전기는 새로 수신한 연락처를 더 이상 추가하지 않습니다.';
+
+  @override
+  String get contactTable_freeUp => '공간 확보';
+
+  @override
+  String get contactTable_sheetBody => '가장 오래전에 수신한 순서. 즐겨찾기는 표시되지 않습니다.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return '마지막 수신 $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '연락처 $count개 삭제',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      '무전기에서 삭제되며 이 기기의 메시지도 삭제됩니다. 되돌릴 수 없습니다.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '연락처 $count개를 삭제했습니다',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => '모든 연락처가 즐겨찾기라 제안할 항목이 없습니다.';
 }

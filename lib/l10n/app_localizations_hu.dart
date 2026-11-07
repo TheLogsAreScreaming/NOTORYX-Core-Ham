@@ -9902,4 +9902,67 @@ class AppLocalizationsHu extends AppLocalizations {
     );
     return '$name újra hallható $_temp0 csend után';
   }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'A rádió névjegylistája $percent%-ban tele';
+  }
+
+  @override
+  String get contactTable_full => 'A rádió névjegylistája megtelt';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used / $max névjegy';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Ha megtelt, a rádió a legrégebben hallott névjegyet cseréli le. A kedvencek megmaradnak.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Ha megtelt, a rádió nem vesz fel több újonnan hallott névjegyet.';
+
+  @override
+  String get contactTable_freeUp => 'Hely felszabadítása';
+
+  @override
+  String get contactTable_sheetBody =>
+      'A legrégebben hallottak elöl. A kedvencek nem szerepelnek.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Utoljára hallva: $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count névjegy eltávolítása',
+      one: '1 névjegy eltávolítása',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Eltávolítjuk őket a rádióról, és az üzeneteik törlődnek erről az eszközről. Ez nem vonható vissza.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count névjegy eltávolítva',
+      one: '1 névjegy eltávolítva',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Minden névjegy kedvenc, így nincs mit javasolni.';
 }

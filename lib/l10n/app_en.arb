@@ -5556,5 +5556,22 @@
   "@favReturn_hours": {"placeholders": {"count": {"type": "int"}}},
   "favReturn_title": "Back in range",
   "favReturn_body": "{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet",
-  "@favReturn_body": {"placeholders": {"name": {"type": "String"}, "hours": {"type": "int"}}}
+  "@favReturn_body": {"placeholders": {"name": {"type": "String"}, "hours": {"type": "int"}}},
+  "contactTable_nearlyFull": "Radio contact list {percent}% full",
+  "@contactTable_nearlyFull": {"placeholders": {"percent": {"type": "int"}}},
+  "contactTable_full": "Radio contact list is full",
+  "contactTable_count": "{used} of {max} contacts",
+  "@contactTable_count": {"placeholders": {"used": {"type": "int"}, "max": {"type": "int"}}},
+  "contactTable_overwriteHint": "When it's full, the radio replaces the contact heard least recently. Favorites are kept.",
+  "contactTable_stopHint": "When it's full, the radio stops adding new contacts it hears.",
+  "contactTable_freeUp": "Free up space",
+  "contactTable_sheetBody": "Heard least recently first. Favorites aren't listed.",
+  "contactTable_lastHeard": "Last heard {when}",
+  "@contactTable_lastHeard": {"placeholders": {"when": {"type": "String"}}},
+  "contactTable_remove": "{count, plural, =1{Remove 1 contact} other{Remove {count} contacts}}",
+  "@contactTable_remove": {"placeholders": {"count": {"type": "int"}}},
+  "contactTable_confirmBody": "They're removed from the radio, and their messages on this device are deleted. This can't be undone.",
+  "contactTable_removed": "{count, plural, =1{Removed 1 contact} other{Removed {count} contacts}}",
+  "@contactTable_removed": {"placeholders": {"count": {"type": "int"}}},
+  "contactTable_noneToSuggest": "Every contact is a favorite, so there's nothing to suggest."
 }

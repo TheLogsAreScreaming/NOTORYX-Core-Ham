@@ -4145,5 +4145,17 @@
   "favReturn_off": "Av",
   "favReturn_hours": "{count, plural, =1{Efter 1 timme} other{Efter {count} timmar}}",
   "favReturn_title": "Tillbaka inom räckvidd",
-  "favReturn_body": "{name} hörs igen efter {hours, plural, =1{1 timmes} other{{hours} timmars}} tystnad"
+  "favReturn_body": "{name} hörs igen efter {hours, plural, =1{1 timmes} other{{hours} timmars}} tystnad",
+  "contactTable_nearlyFull": "Radions kontaktlista {percent} % full",
+  "contactTable_full": "Radions kontaktlista är full",
+  "contactTable_count": "{used} av {max} kontakter",
+  "contactTable_overwriteHint": "När den är full ersätter radion den kontakt som hörts för längst sedan. Favoriter behålls.",
+  "contactTable_stopHint": "När den är full slutar radion lägga till nya kontakter den hör.",
+  "contactTable_freeUp": "Frigör utrymme",
+  "contactTable_sheetBody": "Hörda för längst sedan först. Favoriter visas inte.",
+  "contactTable_lastHeard": "Senast hörd {when}",
+  "contactTable_remove": "{count, plural, =1{Ta bort 1 kontakt} other{Ta bort {count} kontakter}}",
+  "contactTable_confirmBody": "De tas bort från radion och deras meddelanden på den här enheten raderas. Det går inte att ångra.",
+  "contactTable_removed": "{count, plural, =1{Tog bort 1 kontakt} other{Tog bort {count} kontakter}}",
+  "contactTable_noneToSuggest": "Alla kontakter är favoriter, så det finns inget att föreslå."
 }

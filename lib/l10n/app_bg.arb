@@ -4145,5 +4145,17 @@
   "favReturn_off": "Изкл.",
   "favReturn_hours": "{count, plural, =1{След 1 час} other{След {count} часа}}",
   "favReturn_title": "Отново в обхват",
-  "favReturn_body": "{name} се чу отново след {hours, plural, =1{1 час} other{{hours} часа}} тишина"
+  "favReturn_body": "{name} се чу отново след {hours, plural, =1{1 час} other{{hours} часа}} тишина",
+  "contactTable_nearlyFull": "Списъкът с контакти на радиото е запълнен на {percent}%",
+  "contactTable_full": "Списъкът с контакти на радиото е пълен",
+  "contactTable_count": "{used} от {max} контакта",
+  "contactTable_overwriteHint": "Когато е пълен, радиото заменя най-отдавна чутия контакт. Любимите се запазват.",
+  "contactTable_stopHint": "Когато е пълен, радиото спира да добавя нови чути контакти.",
+  "contactTable_freeUp": "Освободи място",
+  "contactTable_sheetBody": "Първо най-отдавна чутите. Любимите не са в списъка.",
+  "contactTable_lastHeard": "Последно чут {when}",
+  "contactTable_remove": "{count, plural, =1{Премахни 1 контакт} other{Премахни {count} контакта}}",
+  "contactTable_confirmBody": "Премахват се от радиото, а съобщенията им на това устройство се изтриват. Това не може да се отмени.",
+  "contactTable_removed": "{count, plural, =1{Премахнат е 1 контакт} other{Премахнати са {count} контакта}}",
+  "contactTable_noneToSuggest": "Всички контакти са любими, затова няма какво да се предложи."
 }

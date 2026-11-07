@@ -9951,4 +9951,71 @@ class AppLocalizationsRu extends AppLocalizations {
     );
     return '$name снова слышен после $_temp0 тишины';
   }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Список контактов радио заполнен на $percent%';
+  }
+
+  @override
+  String get contactTable_full => 'Список контактов радио заполнен';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used из $max контактов';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Когда он заполнен, радио заменяет контакт, который дольше всех не был слышен. Избранные сохраняются.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Когда он заполнен, радио перестаёт добавлять новые услышанные контакты.';
+
+  @override
+  String get contactTable_freeUp => 'Освободить место';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Сначала те, кого дольше всех не было слышно. Избранные не показаны.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Последний раз слышен $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Удалить $count контакта',
+      many: 'Удалить $count контактов',
+      few: 'Удалить $count контакта',
+      one: 'Удалить 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Они будут удалены из радио, а их сообщения на этом устройстве стёрты. Это нельзя отменить.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Удалено $count контакта',
+      many: 'Удалено $count контактов',
+      few: 'Удалено $count контакта',
+      one: 'Удалён 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Все контакты в избранном, предложить нечего.';
 }

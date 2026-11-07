@@ -4279,5 +4279,17 @@
   "favReturn_off": "オフ",
   "favReturn_hours": "{count, plural, other{{count}時間後}}",
   "favReturn_title": "圏内に復帰",
-  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました"
+  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました",
+  "contactTable_nearlyFull": "無線機の連絡先リストが {percent}% 使用中",
+  "contactTable_full": "無線機の連絡先リストがいっぱいです",
+  "contactTable_count": "{used} / {max} 件の連絡先",
+  "contactTable_overwriteHint": "いっぱいになると、無線機は最も長く受信していない連絡先を置き換えます。お気に入りは残ります。",
+  "contactTable_stopHint": "いっぱいになると、無線機は新しく受信した連絡先を追加しなくなります。",
+  "contactTable_freeUp": "空きを作る",
+  "contactTable_sheetBody": "受信が古い順に表示。お気に入りは表示されません。",
+  "contactTable_lastHeard": "最終受信 {when}",
+  "contactTable_remove": "{count, plural, other{{count} 件の連絡先を削除}}",
+  "contactTable_confirmBody": "無線機から削除され、この端末上のメッセージも削除されます。元に戻せません。",
+  "contactTable_removed": "{count, plural, other{{count} 件の連絡先を削除しました}}",
+  "contactTable_noneToSuggest": "すべての連絡先がお気に入りのため、候補はありません。"
 }

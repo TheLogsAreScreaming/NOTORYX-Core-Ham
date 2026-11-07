@@ -4145,5 +4145,17 @@
   "favReturn_off": "Vyp.",
   "favReturn_hours": "{count, plural, =1{Po 1 hodine} other{Po {count} hodinách}}",
   "favReturn_title": "Opäť v dosahu",
-  "favReturn_body": "{name} je opäť počuť po {hours, plural, =1{1 hodine} other{{hours} hodinách}} ticha"
+  "favReturn_body": "{name} je opäť počuť po {hours, plural, =1{1 hodine} other{{hours} hodinách}} ticha",
+  "contactTable_nearlyFull": "Zoznam kontaktov rádia je plný na {percent} %",
+  "contactTable_full": "Zoznam kontaktov rádia je plný",
+  "contactTable_count": "{used} z {max} kontaktov",
+  "contactTable_overwriteHint": "Keď je plný, rádio nahradí kontakt počutý najdávnejšie. Obľúbené zostanú.",
+  "contactTable_stopHint": "Keď je plný, rádio prestane pridávať novo počuté kontakty.",
+  "contactTable_freeUp": "Uvoľniť miesto",
+  "contactTable_sheetBody": "Najprv najdávnejšie počuté. Obľúbené nie sú uvedené.",
+  "contactTable_lastHeard": "Naposledy počutý {when}",
+  "contactTable_remove": "{count, plural, =1{Odstrániť 1 kontakt} few{Odstrániť {count} kontakty} other{Odstrániť {count} kontaktov}}",
+  "contactTable_confirmBody": "Odstránia sa z rádia a ich správy v tomto zariadení sa vymažú. Nedá sa to vrátiť späť.",
+  "contactTable_removed": "{count, plural, =1{Odstránený 1 kontakt} few{Odstránené {count} kontakty} other{Odstránených {count} kontaktov}}",
+  "contactTable_noneToSuggest": "Všetky kontakty sú obľúbené, preto nie je čo navrhnúť."
 }

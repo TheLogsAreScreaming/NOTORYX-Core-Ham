@@ -9875,4 +9875,67 @@ class AppLocalizationsNl extends AppLocalizations {
     );
     return '$name weer gehoord na $_temp0 stilte';
   }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Contactlijst van de radio $percent% vol';
+  }
+
+  @override
+  String get contactTable_full => 'Contactlijst van de radio is vol';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used van $max contacten';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Als hij vol is, vervangt de radio het contact dat het langst niet is gehoord. Favorieten blijven.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Als hij vol is, voegt de radio geen nieuw gehoorde contacten meer toe.';
+
+  @override
+  String get contactTable_freeUp => 'Ruimte vrijmaken';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Langst niet gehoord eerst. Favorieten staan er niet bij.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Laatst gehoord $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contacten verwijderen',
+      one: '1 contact verwijderen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Ze worden van de radio verwijderd en hun berichten op dit apparaat worden gewist. Dit kan niet ongedaan worden.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contacten verwijderd',
+      one: '1 contact verwijderd',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Alle contacten zijn favorieten, dus er valt niets voor te stellen.';
 }
