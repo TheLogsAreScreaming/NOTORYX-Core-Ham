@@ -1,0 +1,4 @@
+• Repeater status, neighbours and telemetry show the route and wait time, and retry once if there's no reply
+• Warning when the radio's contact list is nearly full, with a way to free up space
+• @mention suggestions in channels, and blocking a channel sender
+• Settings shows whether Android battery optimisation can stop the app
