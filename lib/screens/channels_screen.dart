@@ -22,6 +22,7 @@ import '../utils/disconnect_navigation_mixin.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
+import '../widgets/ui/unread_badge.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/qr_code_display.dart';
 import '../widgets/sync_progress_overlay.dart';
@@ -529,13 +530,13 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       children: [
                         Text(
                           channelLabel,
-                          style: TextStyle(
-                            color: scheme.onSurface,
-                            fontSize: 15,
-                            fontWeight: unreadCount > 0
-                                ? FontWeight.w700
-                                : FontWeight.w500,
-                          ),
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(
+                                fontSize: 15,
+                                fontWeight: unreadCount > 0
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
+                              ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -553,12 +554,13 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           const SizedBox(height: 2),
                           Text(
                             lastPreview,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: unreadCount > 0
-                                  ? MeshPalette.ink2
-                                  : MeshPalette.ink3,
-                            ),
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
+                                  fontSize: 13,
+                                  color: unreadCount > 0
+                                      ? MeshPalette.ink2
+                                      : MeshPalette.ink3,
+                                ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -592,15 +594,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             ),
                             const SizedBox(width: 4),
                           ],
-                          if (unreadCount > 0)
-                            Text(
-                              '$unreadCount',
-                              style: MeshTheme.mono(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w700,
-                                color: MeshPalette.accent,
-                              ),
-                            ),
+                          if (unreadCount > 0) UnreadBadge(unreadCount),
                         ],
                       ),
                     ],
@@ -1890,42 +1884,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             const Divider(height: 1),
             Expanded(
               child: _communities.isEmpty
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.groups_outlined,
-                            size: 64,
-                            color: Theme.of(sheetContext)
-                                .colorScheme
-                                .onSurfaceVariant
-                                .withValues(alpha: 0.6),
-                          ),
-                          const SizedBox(height: 16),
-                          Text(
-                            sheetContext.l10n.community_noCommunities,
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Theme.of(
-                                sheetContext,
-                              ).colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            sheetContext.l10n.community_scanOrCreate,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Theme.of(sheetContext)
-                                  .colorScheme
-                                  .onSurfaceVariant
-                                  .withValues(alpha: 0.8),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
+                  ? EmptyState(
+                      icon: Icons.groups_outlined,
+                      title: sheetContext.l10n.community_noCommunities,
+                      subtitle: sheetContext.l10n.community_scanOrCreate,
                     )
                   : ListView.builder(
                       controller: scrollController,
@@ -2173,8 +2135,8 @@ class _DirectChats extends StatelessWidget {
                           : hops < 0
                           ? ''
                           : hops == 0
-                          ? 'direct'
-                          : '$hops hop${hops == 1 ? '' : 's'}',
+                          ? context.l10n.chat_direct
+                          : context.l10n.chat_hopsCount(hops),
                       style: MeshTheme.mono(
                         fontSize: 12,
                         fontWeight: unread > 0 ? FontWeight.w700 : null,
@@ -2313,7 +2275,9 @@ class _DiscoveredSheet extends StatelessWidget {
               ),
               child: Text(
                 l10n.discovered_explainer,
-                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
               ),
             ),
           ],
