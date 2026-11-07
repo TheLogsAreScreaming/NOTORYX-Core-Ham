@@ -4157,5 +4157,9 @@
   "contactTable_remove": "{count, plural, =1{Odstrani 1 stik} =2{Odstrani 2 stika} few{Odstrani {count} stike} other{Odstrani {count} stikov}}",
   "contactTable_confirmBody": "Odstranjeni bodo z radia, njihova sporočila na tej napravi pa izbrisana. Tega ni mogoče razveljaviti.",
   "contactTable_removed": "{count, plural, =1{Odstranjen 1 stik} =2{Odstranjena 2 stika} few{Odstranjeni {count} stiki} other{Odstranjenih {count} stikov}}",
-  "contactTable_noneToSuggest": "Vsi stiki so priljubljeni, zato ni kaj predlagati."
+  "contactTable_noneToSuggest": "Vsi stiki so priljubljeni, zato ni kaj predlagati.",
+  "adminWait_waiting": "Čakanje na odgovor",
+  "adminWait_retrying": "Odgovora še ni. Nov poskus ({attempt} od {total})",
+  "adminWait_direct": "{hops, plural, =0{Neposredno} =1{Neposredno, 1 skok} =2{Neposredno, 2 skoka} few{Neposredno, {hops} skoki} other{Neposredno, {hops} skokov}}",
+  "adminWait_upTo": "do {seconds} s"
 }

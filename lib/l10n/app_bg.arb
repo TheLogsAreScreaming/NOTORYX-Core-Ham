@@ -4157,5 +4157,9 @@
   "contactTable_remove": "{count, plural, =1{Премахни 1 контакт} other{Премахни {count} контакта}}",
   "contactTable_confirmBody": "Премахват се от радиото, а съобщенията им на това устройство се изтриват. Това не може да се отмени.",
   "contactTable_removed": "{count, plural, =1{Премахнат е 1 контакт} other{Премахнати са {count} контакта}}",
-  "contactTable_noneToSuggest": "Всички контакти са любими, затова няма какво да се предложи."
+  "contactTable_noneToSuggest": "Всички контакти са любими, затова няма какво да се предложи.",
+  "adminWait_waiting": "Изчакване на отговор",
+  "adminWait_retrying": "Още няма отговор. Нов опит ({attempt} от {total})",
+  "adminWait_direct": "{hops, plural, =0{Директно} =1{Директно, 1 скок} other{Директно, {hops} скока}}",
+  "adminWait_upTo": "до {seconds} с"
 }

@@ -9950,69 +9950,29 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String contactTable_nearlyFull(int percent) {
-    return 'Список контактів радіо заповнено на $percent%';
+  String get adminWait_waiting => 'Очікування відповіді';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Відповіді ще немає. Повторна спроба ($attempt з $total)';
   }
 
   @override
-  String get contactTable_full => 'Список контактів радіо заповнено';
-
-  @override
-  String contactTable_count(int used, int max) {
-    return '$used з $max контактів';
-  }
-
-  @override
-  String get contactTable_overwriteHint =>
-      'Коли він заповнений, радіо замінює контакт, якого найдовше не було чути. Обрані зберігаються.';
-
-  @override
-  String get contactTable_stopHint =>
-      'Коли він заповнений, радіо перестає додавати нові почуті контакти.';
-
-  @override
-  String get contactTable_freeUp => 'Звільнити місце';
-
-  @override
-  String get contactTable_sheetBody =>
-      'Спершу ті, кого найдовше не було чути. Обрані не показано.';
-
-  @override
-  String contactTable_lastHeard(String when) {
-    return 'Востаннє чути $when';
-  }
-
-  @override
-  String contactTable_remove(int count) {
+  String adminWait_direct(int hops) {
     String _temp0 = intl.Intl.pluralLogic(
-      count,
+      hops,
       locale: localeName,
-      other: 'Видалити $count контакту',
-      many: 'Видалити $count контактів',
-      few: 'Видалити $count контакти',
-      one: 'Видалити 1 контакт',
+      other: 'Напряму, $hops переходу',
+      many: 'Напряму, $hops переходів',
+      few: 'Напряму, $hops переходи',
+      one: 'Напряму, 1 перехід',
+      zero: 'Напряму',
     );
     return '$_temp0';
   }
 
   @override
-  String get contactTable_confirmBody =>
-      'Їх буде видалено з радіо, а їхні повідомлення на цьому пристрої стерто. Це не можна скасувати.';
-
-  @override
-  String contactTable_removed(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'Видалено $count контакту',
-      many: 'Видалено $count контактів',
-      few: 'Видалено $count контакти',
-      one: 'Видалено 1 контакт',
-    );
-    return '$_temp0';
+  String adminWait_upTo(int seconds) {
+    return 'до $seconds с';
   }
-
-  @override
-  String get contactTable_noneToSuggest =>
-      'Усі контакти в обраних, тож пропонувати нічого.';
 }

@@ -16519,77 +16519,29 @@ abstract class AppLocalizations {
   /// **'{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet'**
   String favReturn_body(String name, int hours);
 
-  /// No description provided for @contactTable_nearlyFull.
+  /// No description provided for @adminWait_waiting.
   ///
   /// In en, this message translates to:
-  /// **'Radio contact list {percent}% full'**
-  String contactTable_nearlyFull(int percent);
+  /// **'Waiting for a reply'**
+  String get adminWait_waiting;
 
-  /// No description provided for @contactTable_full.
+  /// No description provided for @adminWait_retrying.
   ///
   /// In en, this message translates to:
-  /// **'Radio contact list is full'**
-  String get contactTable_full;
+  /// **'No reply yet. Trying again ({attempt} of {total})'**
+  String adminWait_retrying(int attempt, int total);
 
-  /// No description provided for @contactTable_count.
+  /// No description provided for @adminWait_direct.
   ///
   /// In en, this message translates to:
-  /// **'{used} of {max} contacts'**
-  String contactTable_count(int used, int max);
+  /// **'{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}'**
+  String adminWait_direct(int hops);
 
-  /// No description provided for @contactTable_overwriteHint.
+  /// No description provided for @adminWait_upTo.
   ///
   /// In en, this message translates to:
-  /// **'When it\'s full, the radio replaces the contact heard least recently. Favorites are kept.'**
-  String get contactTable_overwriteHint;
-
-  /// No description provided for @contactTable_stopHint.
-  ///
-  /// In en, this message translates to:
-  /// **'When it\'s full, the radio stops adding new contacts it hears.'**
-  String get contactTable_stopHint;
-
-  /// No description provided for @contactTable_freeUp.
-  ///
-  /// In en, this message translates to:
-  /// **'Free up space'**
-  String get contactTable_freeUp;
-
-  /// No description provided for @contactTable_sheetBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Heard least recently first. Favorites aren\'t listed.'**
-  String get contactTable_sheetBody;
-
-  /// No description provided for @contactTable_lastHeard.
-  ///
-  /// In en, this message translates to:
-  /// **'Last heard {when}'**
-  String contactTable_lastHeard(String when);
-
-  /// No description provided for @contactTable_remove.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{Remove 1 contact} other{Remove {count} contacts}}'**
-  String contactTable_remove(int count);
-
-  /// No description provided for @contactTable_confirmBody.
-  ///
-  /// In en, this message translates to:
-  /// **'They\'re removed from the radio, and their messages on this device are deleted. This can\'t be undone.'**
-  String get contactTable_confirmBody;
-
-  /// No description provided for @contactTable_removed.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{Removed 1 contact} other{Removed {count} contacts}}'**
-  String contactTable_removed(int count);
-
-  /// No description provided for @contactTable_noneToSuggest.
-  ///
-  /// In en, this message translates to:
-  /// **'Every contact is a favorite, so there\'s nothing to suggest.'**
-  String get contactTable_noneToSuggest;
+  /// **'up to {seconds} s'**
+  String adminWait_upTo(int seconds);
 }
 
 class _AppLocalizationsDelegate

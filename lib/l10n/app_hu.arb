@@ -4195,5 +4195,9 @@
   "contactTable_remove": "{count, plural, =1{1 névjegy eltávolítása} other{{count} névjegy eltávolítása}}",
   "contactTable_confirmBody": "Eltávolítjuk őket a rádióról, és az üzeneteik törlődnek erről az eszközről. Ez nem vonható vissza.",
   "contactTable_removed": "{count, plural, =1{1 névjegy eltávolítva} other{{count} névjegy eltávolítva}}",
-  "contactTable_noneToSuggest": "Minden névjegy kedvenc, így nincs mit javasolni."
+  "contactTable_noneToSuggest": "Minden névjegy kedvenc, így nincs mit javasolni.",
+  "adminWait_waiting": "Válaszra várva",
+  "adminWait_retrying": "Még nincs válasz. Újrapróbálás ({attempt}/{total})",
+  "adminWait_direct": "{hops, plural, =0{Közvetlen} =1{Közvetlen, 1 ugrás} other{Közvetlen, {hops} ugrás}}",
+  "adminWait_upTo": "legfeljebb {seconds} mp"
 }

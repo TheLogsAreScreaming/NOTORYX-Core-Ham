@@ -4157,5 +4157,9 @@
   "contactTable_remove": "{count, plural, =1{1 contact verwijderen} other{{count} contacten verwijderen}}",
   "contactTable_confirmBody": "Ze worden van de radio verwijderd en hun berichten op dit apparaat worden gewist. Dit kan niet ongedaan worden.",
   "contactTable_removed": "{count, plural, =1{1 contact verwijderd} other{{count} contacten verwijderd}}",
-  "contactTable_noneToSuggest": "Alle contacten zijn favorieten, dus er valt niets voor te stellen."
+  "contactTable_noneToSuggest": "Alle contacten zijn favorieten, dus er valt niets voor te stellen.",
+  "adminWait_waiting": "Wachten op antwoord",
+  "adminWait_retrying": "Nog geen antwoord. Opnieuw proberen ({attempt} van {total})",
+  "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}",
+  "adminWait_upTo": "tot {seconds} s"
 }

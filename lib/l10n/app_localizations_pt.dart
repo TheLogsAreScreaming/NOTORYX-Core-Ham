@@ -9900,65 +9900,27 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String contactTable_nearlyFull(int percent) {
-    return 'Lista de contatos do rádio $percent% cheia';
+  String get adminWait_waiting => 'Aguardando resposta';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Ainda sem resposta. Tentando novamente ($attempt de $total)';
   }
 
   @override
-  String get contactTable_full => 'A lista de contatos do rádio está cheia';
-
-  @override
-  String contactTable_count(int used, int max) {
-    return '$used de $max contatos';
-  }
-
-  @override
-  String get contactTable_overwriteHint =>
-      'Quando está cheia, o rádio substitui o contato ouvido há mais tempo. Os favoritos são mantidos.';
-
-  @override
-  String get contactTable_stopHint =>
-      'Quando está cheia, o rádio deixa de adicionar novos contatos que ouve.';
-
-  @override
-  String get contactTable_freeUp => 'Liberar espaço';
-
-  @override
-  String get contactTable_sheetBody =>
-      'Primeiro os ouvidos há mais tempo. Os favoritos não aparecem.';
-
-  @override
-  String contactTable_lastHeard(String when) {
-    return 'Ouvido pela última vez $when';
-  }
-
-  @override
-  String contactTable_remove(int count) {
+  String adminWait_direct(int hops) {
     String _temp0 = intl.Intl.pluralLogic(
-      count,
+      hops,
       locale: localeName,
-      other: 'Remover $count contatos',
-      one: 'Remover 1 contato',
+      other: 'Direto, $hops saltos',
+      one: 'Direto, 1 salto',
+      zero: 'Direto',
     );
     return '$_temp0';
   }
 
   @override
-  String get contactTable_confirmBody =>
-      'Eles são removidos do rádio e as mensagens deles neste dispositivo são apagadas. Não é possível desfazer.';
-
-  @override
-  String contactTable_removed(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count contatos removidos',
-      one: '1 contato removido',
-    );
-    return '$_temp0';
+  String adminWait_upTo(int seconds) {
+    return 'até $seconds s';
   }
-
-  @override
-  String get contactTable_noneToSuggest =>
-      'Todos os contatos são favoritos, então não há nada a sugerir.';
 }

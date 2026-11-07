@@ -4291,5 +4291,9 @@
   "contactTable_remove": "{count, plural, other{연락처 {count}개 삭제}}",
   "contactTable_confirmBody": "무전기에서 삭제되며 이 기기의 메시지도 삭제됩니다. 되돌릴 수 없습니다.",
   "contactTable_removed": "{count, plural, other{연락처 {count}개를 삭제했습니다}}",
-  "contactTable_noneToSuggest": "모든 연락처가 즐겨찾기라 제안할 항목이 없습니다."
+  "contactTable_noneToSuggest": "모든 연락처가 즐겨찾기라 제안할 항목이 없습니다.",
+  "adminWait_waiting": "응답 대기 중",
+  "adminWait_retrying": "아직 응답이 없습니다. 다시 시도 중 ({attempt}/{total})",
+  "adminWait_direct": "{hops, plural, =0{직접} other{직접, {hops}홉}}",
+  "adminWait_upTo": "최대 {seconds}초"
 }

@@ -4137,5 +4137,9 @@
   "contactTable_remove": "{count, plural, =1{Видалити 1 контакт} few{Видалити {count} контакти} many{Видалити {count} контактів} other{Видалити {count} контакту}}",
   "contactTable_confirmBody": "Їх буде видалено з радіо, а їхні повідомлення на цьому пристрої стерто. Це не можна скасувати.",
   "contactTable_removed": "{count, plural, =1{Видалено 1 контакт} few{Видалено {count} контакти} many{Видалено {count} контактів} other{Видалено {count} контакту}}",
-  "contactTable_noneToSuggest": "Усі контакти в обраних, тож пропонувати нічого."
+  "contactTable_noneToSuggest": "Усі контакти в обраних, тож пропонувати нічого.",
+  "adminWait_waiting": "Очікування відповіді",
+  "adminWait_retrying": "Відповіді ще немає. Повторна спроба ({attempt} з {total})",
+  "adminWait_direct": "{hops, plural, =0{Напряму} =1{Напряму, 1 перехід} few{Напряму, {hops} переходи} many{Напряму, {hops} переходів} other{Напряму, {hops} переходу}}",
+  "adminWait_upTo": "до {seconds} с"
 }

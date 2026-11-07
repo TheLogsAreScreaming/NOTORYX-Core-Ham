@@ -4291,5 +4291,9 @@
   "contactTable_remove": "{count, plural, =1{Retirer 1 contact} other{Retirer {count} contacts}}",
   "contactTable_confirmBody": "Ils sont retirés de la radio et leurs messages sur cet appareil sont supprimés. Action irréversible.",
   "contactTable_removed": "{count, plural, =1{1 contact retiré} other{{count} contacts retirés}}",
-  "contactTable_noneToSuggest": "Tous les contacts sont des favoris, il n'y a donc rien à suggérer."
+  "contactTable_noneToSuggest": "Tous les contacts sont des favoris, il n'y a donc rien à suggérer.",
+  "adminWait_waiting": "En attente de réponse",
+  "adminWait_retrying": "Pas encore de réponse. Nouvel essai ({attempt} sur {total})",
+  "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 saut} other{Direct, {hops} sauts}}",
+  "adminWait_upTo": "jusqu'à {seconds} s"
 }

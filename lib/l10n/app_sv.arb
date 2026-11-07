@@ -4157,5 +4157,9 @@
   "contactTable_remove": "{count, plural, =1{Ta bort 1 kontakt} other{Ta bort {count} kontakter}}",
   "contactTable_confirmBody": "De tas bort från radion och deras meddelanden på den här enheten raderas. Det går inte att ångra.",
   "contactTable_removed": "{count, plural, =1{Tog bort 1 kontakt} other{Tog bort {count} kontakter}}",
-  "contactTable_noneToSuggest": "Alla kontakter är favoriter, så det finns inget att föreslå."
+  "contactTable_noneToSuggest": "Alla kontakter är favoriter, så det finns inget att föreslå.",
+  "adminWait_waiting": "Väntar på svar",
+  "adminWait_retrying": "Inget svar än. Försöker igen ({attempt} av {total})",
+  "adminWait_direct": "{hops, plural, =0{Direkt} =1{Direkt, 1 hopp} other{Direkt, {hops} hopp}}",
+  "adminWait_upTo": "upp till {seconds} s"
 }

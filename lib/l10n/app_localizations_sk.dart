@@ -9893,67 +9893,28 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String contactTable_nearlyFull(int percent) {
-    return 'Zoznam kontaktov rádia je plný na $percent %';
+  String get adminWait_waiting => 'Čaká sa na odpoveď';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Zatiaľ bez odpovede. Nový pokus ($attempt z $total)';
   }
 
   @override
-  String get contactTable_full => 'Zoznam kontaktov rádia je plný';
-
-  @override
-  String contactTable_count(int used, int max) {
-    return '$used z $max kontaktov';
-  }
-
-  @override
-  String get contactTable_overwriteHint =>
-      'Keď je plný, rádio nahradí kontakt počutý najdávnejšie. Obľúbené zostanú.';
-
-  @override
-  String get contactTable_stopHint =>
-      'Keď je plný, rádio prestane pridávať novo počuté kontakty.';
-
-  @override
-  String get contactTable_freeUp => 'Uvoľniť miesto';
-
-  @override
-  String get contactTable_sheetBody =>
-      'Najprv najdávnejšie počuté. Obľúbené nie sú uvedené.';
-
-  @override
-  String contactTable_lastHeard(String when) {
-    return 'Naposledy počutý $when';
-  }
-
-  @override
-  String contactTable_remove(int count) {
+  String adminWait_direct(int hops) {
     String _temp0 = intl.Intl.pluralLogic(
-      count,
+      hops,
       locale: localeName,
-      other: 'Odstrániť $count kontaktov',
-      few: 'Odstrániť $count kontakty',
-      one: 'Odstrániť 1 kontakt',
+      other: 'Priamo, $hops skokov',
+      few: 'Priamo, $hops skoky',
+      one: 'Priamo, 1 skok',
+      zero: 'Priamo',
     );
     return '$_temp0';
   }
 
   @override
-  String get contactTable_confirmBody =>
-      'Odstránia sa z rádia a ich správy v tomto zariadení sa vymažú. Nedá sa to vrátiť späť.';
-
-  @override
-  String contactTable_removed(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'Odstránených $count kontaktov',
-      few: 'Odstránené $count kontakty',
-      one: 'Odstránený 1 kontakt',
-    );
-    return '$_temp0';
+  String adminWait_upTo(int seconds) {
+    return 'až $seconds s';
   }
-
-  @override
-  String get contactTable_noneToSuggest =>
-      'Všetky kontakty sú obľúbené, preto nie je čo navrhnúť.';
 }

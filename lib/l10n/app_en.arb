@@ -5573,5 +5573,12 @@
   "contactTable_confirmBody": "They're removed from the radio, and their messages on this device are deleted. This can't be undone.",
   "contactTable_removed": "{count, plural, =1{Removed 1 contact} other{Removed {count} contacts}}",
   "@contactTable_removed": {"placeholders": {"count": {"type": "int"}}},
-  "contactTable_noneToSuggest": "Every contact is a favorite, so there's nothing to suggest."
+  "contactTable_noneToSuggest": "Every contact is a favorite, so there's nothing to suggest.",
+  "adminWait_waiting": "Waiting for a reply",
+  "adminWait_retrying": "No reply yet. Trying again ({attempt} of {total})",
+  "@adminWait_retrying": {"placeholders": {"attempt": {"type": "int"}, "total": {"type": "int"}}},
+  "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}",
+  "@adminWait_direct": {"placeholders": {"hops": {"type": "int"}}},
+  "adminWait_upTo": "up to {seconds} s",
+  "@adminWait_upTo": {"placeholders": {"seconds": {"type": "int"}}}
 }

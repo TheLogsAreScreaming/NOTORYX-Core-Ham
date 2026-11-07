@@ -4157,5 +4157,9 @@
   "contactTable_remove": "{count, plural, =1{Remover 1 contato} other{Remover {count} contatos}}",
   "contactTable_confirmBody": "Eles são removidos do rádio e as mensagens deles neste dispositivo são apagadas. Não é possível desfazer.",
   "contactTable_removed": "{count, plural, =1{1 contato removido} other{{count} contatos removidos}}",
-  "contactTable_noneToSuggest": "Todos os contatos são favoritos, então não há nada a sugerir."
+  "contactTable_noneToSuggest": "Todos os contatos são favoritos, então não há nada a sugerir.",
+  "adminWait_waiting": "Aguardando resposta",
+  "adminWait_retrying": "Ainda sem resposta. Tentando novamente ({attempt} de {total})",
+  "adminWait_direct": "{hops, plural, =0{Direto} =1{Direto, 1 salto} other{Direto, {hops} saltos}}",
+  "adminWait_upTo": "até {seconds} s"
 }

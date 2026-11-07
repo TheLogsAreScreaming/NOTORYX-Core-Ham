@@ -4291,5 +4291,9 @@
   "contactTable_remove": "{count, plural, =1{1 Kontakt entfernen} other{{count} Kontakte entfernen}}",
   "contactTable_confirmBody": "Sie werden vom Funkgerät entfernt und ihre Nachrichten auf diesem Gerät gelöscht. Das lässt sich nicht rückgängig machen.",
   "contactTable_removed": "{count, plural, =1{1 Kontakt entfernt} other{{count} Kontakte entfernt}}",
-  "contactTable_noneToSuggest": "Alle Kontakte sind Favoriten, daher gibt es keine Vorschläge."
+  "contactTable_noneToSuggest": "Alle Kontakte sind Favoriten, daher gibt es keine Vorschläge.",
+  "adminWait_waiting": "Warte auf Antwort",
+  "adminWait_retrying": "Noch keine Antwort. Neuer Versuch ({attempt} von {total})",
+  "adminWait_direct": "{hops, plural, =0{Direkt} =1{Direkt, 1 Hop} other{Direkt, {hops} Hops}}",
+  "adminWait_upTo": "bis zu {seconds} s"
 }

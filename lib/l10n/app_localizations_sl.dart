@@ -9909,69 +9909,29 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String contactTable_nearlyFull(int percent) {
-    return 'Seznam stikov radia je poln $percent %';
+  String get adminWait_waiting => 'Čakanje na odgovor';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Odgovora še ni. Nov poskus ($attempt od $total)';
   }
 
   @override
-  String get contactTable_full => 'Seznam stikov radia je poln';
-
-  @override
-  String contactTable_count(int used, int max) {
-    return '$used od $max stikov';
-  }
-
-  @override
-  String get contactTable_overwriteHint =>
-      'Ko je poln, radio zamenja stik, ki ga najdlje ni slišal. Priljubljeni ostanejo.';
-
-  @override
-  String get contactTable_stopHint =>
-      'Ko je poln, radio ne dodaja več novih slišanih stikov.';
-
-  @override
-  String get contactTable_freeUp => 'Sprosti prostor';
-
-  @override
-  String get contactTable_sheetBody =>
-      'Najprej tisti, ki jih najdlje ni bilo slišati. Priljubljeni niso navedeni.';
-
-  @override
-  String contactTable_lastHeard(String when) {
-    return 'Nazadnje slišan $when';
-  }
-
-  @override
-  String contactTable_remove(int count) {
+  String adminWait_direct(int hops) {
     String _temp0 = intl.Intl.pluralLogic(
-      count,
+      hops,
       locale: localeName,
-      other: 'Odstrani $count stikov',
-      few: 'Odstrani $count stike',
-      two: 'Odstrani 2 stika',
-      one: 'Odstrani 1 stik',
+      other: 'Neposredno, $hops skokov',
+      few: 'Neposredno, $hops skoki',
+      two: 'Neposredno, 2 skoka',
+      one: 'Neposredno, 1 skok',
+      zero: 'Neposredno',
     );
     return '$_temp0';
   }
 
   @override
-  String get contactTable_confirmBody =>
-      'Odstranjeni bodo z radia, njihova sporočila na tej napravi pa izbrisana. Tega ni mogoče razveljaviti.';
-
-  @override
-  String contactTable_removed(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'Odstranjenih $count stikov',
-      few: 'Odstranjeni $count stiki',
-      two: 'Odstranjena 2 stika',
-      one: 'Odstranjen 1 stik',
-    );
-    return '$_temp0';
+  String adminWait_upTo(int seconds) {
+    return 'do $seconds s';
   }
-
-  @override
-  String get contactTable_noneToSuggest =>
-      'Vsi stiki so priljubljeni, zato ni kaj predlagati.';
 }

@@ -4291,5 +4291,9 @@
   "contactTable_remove": "{count, plural, other{{count} 件の連絡先を削除}}",
   "contactTable_confirmBody": "無線機から削除され、この端末上のメッセージも削除されます。元に戻せません。",
   "contactTable_removed": "{count, plural, other{{count} 件の連絡先を削除しました}}",
-  "contactTable_noneToSuggest": "すべての連絡先がお気に入りのため、候補はありません。"
+  "contactTable_noneToSuggest": "すべての連絡先がお気に入りのため、候補はありません。",
+  "adminWait_waiting": "応答を待っています",
+  "adminWait_retrying": "まだ応答がありません。再試行中 ({attempt}/{total})",
+  "adminWait_direct": "{hops, plural, =0{直接} other{直接、{hops} ホップ}}",
+  "adminWait_upTo": "最大 {seconds} 秒"
 }
