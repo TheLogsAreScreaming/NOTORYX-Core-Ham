@@ -9907,4 +9907,31 @@ class AppLocalizationsSl extends AppLocalizations {
     );
     return '$name je spet slišen po $_temp0 tišine';
   }
+
+  @override
+  String get adminWait_waiting => 'Čakanje na odgovor';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Odgovora še ni. Nov poskus ($attempt od $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Neposredno, $hops skokov',
+      few: 'Neposredno, $hops skoki',
+      two: 'Neposredno, 2 skoka',
+      one: 'Neposredno, 1 skok',
+      zero: 'Neposredno',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'do $seconds s';
+  }
 }

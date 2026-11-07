@@ -4150,5 +4150,9 @@
   "favReturn_off": "关闭",
   "favReturn_hours": "{count, plural, other{{count} 小时后}}",
   "favReturn_title": "回到范围内",
-  "favReturn_body": "沉寂 {hours, plural, other{{hours} 小时}}后再次收到 {name}"
+  "favReturn_body": "沉寂 {hours, plural, other{{hours} 小时}}后再次收到 {name}",
+  "adminWait_waiting": "正在等待回复",
+  "adminWait_retrying": "尚未收到回复。正在重试（第 {attempt}/{total} 次）",
+  "adminWait_direct": "{hops, plural, =0{直连} other{直连，{hops} 跳}}",
+  "adminWait_upTo": "最多 {seconds} 秒"
 }

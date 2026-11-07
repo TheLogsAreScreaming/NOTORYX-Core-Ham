@@ -9891,4 +9891,30 @@ class AppLocalizationsSk extends AppLocalizations {
     );
     return '$name je opäť počuť po $_temp0 ticha';
   }
+
+  @override
+  String get adminWait_waiting => 'Čaká sa na odpoveď';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Zatiaľ bez odpovede. Nový pokus ($attempt z $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Priamo, $hops skokov',
+      few: 'Priamo, $hops skoky',
+      one: 'Priamo, 1 skok',
+      zero: 'Priamo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'až $seconds s';
+  }
 }

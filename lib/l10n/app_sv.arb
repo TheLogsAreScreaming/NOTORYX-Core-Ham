@@ -4145,5 +4145,9 @@
   "favReturn_off": "Av",
   "favReturn_hours": "{count, plural, =1{Efter 1 timme} other{Efter {count} timmar}}",
   "favReturn_title": "Tillbaka inom räckvidd",
-  "favReturn_body": "{name} hörs igen efter {hours, plural, =1{1 timmes} other{{hours} timmars}} tystnad"
+  "favReturn_body": "{name} hörs igen efter {hours, plural, =1{1 timmes} other{{hours} timmars}} tystnad",
+  "adminWait_waiting": "Väntar på svar",
+  "adminWait_retrying": "Inget svar än. Försöker igen ({attempt} av {total})",
+  "adminWait_direct": "{hops, plural, =0{Direkt} =1{Direkt, 1 hopp} other{Direkt, {hops} hopp}}",
+  "adminWait_upTo": "upp till {seconds} s"
 }

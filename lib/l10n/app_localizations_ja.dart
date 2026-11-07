@@ -9441,4 +9441,28 @@ class AppLocalizationsJa extends AppLocalizations {
     );
     return '$name を$_temp0ぶりに受信しました';
   }
+
+  @override
+  String get adminWait_waiting => '応答を待っています';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'まだ応答がありません。再試行中 ($attempt/$total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '直接、$hops ホップ',
+      zero: '直接',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '最大 $seconds 秒';
+  }
 }

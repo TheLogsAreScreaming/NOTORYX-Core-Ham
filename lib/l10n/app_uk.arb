@@ -4125,5 +4125,9 @@
   "favReturn_off": "Вимк.",
   "favReturn_hours": "{count, plural, =1{Через 1 годину} few{Через {count} години} many{Через {count} годин} other{Через {count} години}}",
   "favReturn_title": "Знову в зоні",
-  "favReturn_body": "{name} знову чути після {hours, plural, =1{1 години} other{{hours} год}} тиші"
+  "favReturn_body": "{name} знову чути після {hours, plural, =1{1 години} other{{hours} год}} тиші",
+  "adminWait_waiting": "Очікування відповіді",
+  "adminWait_retrying": "Відповіді ще немає. Повторна спроба ({attempt} з {total})",
+  "adminWait_direct": "{hops, plural, =0{Напряму} =1{Напряму, 1 перехід} few{Напряму, {hops} переходи} many{Напряму, {hops} переходів} other{Напряму, {hops} переходу}}",
+  "adminWait_upTo": "до {seconds} с"
 }

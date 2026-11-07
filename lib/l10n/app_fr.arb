@@ -4279,5 +4279,9 @@
   "favReturn_off": "Désactivé",
   "favReturn_hours": "{count, plural, =1{Après 1 heure} other{Après {count} heures}}",
   "favReturn_title": "De retour à portée",
-  "favReturn_body": "{name} entendu de nouveau après {hours, plural, =1{1 heure} other{{hours} heures}} de silence"
+  "favReturn_body": "{name} entendu de nouveau après {hours, plural, =1{1 heure} other{{hours} heures}} de silence",
+  "adminWait_waiting": "En attente de réponse",
+  "adminWait_retrying": "Pas encore de réponse. Nouvel essai ({attempt} sur {total})",
+  "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 saut} other{Direct, {hops} sauts}}",
+  "adminWait_upTo": "jusqu'à {seconds} s"
 }

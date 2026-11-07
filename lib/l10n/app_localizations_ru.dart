@@ -9951,4 +9951,31 @@ class AppLocalizationsRu extends AppLocalizations {
     );
     return '$name снова слышен после $_temp0 тишины';
   }
+
+  @override
+  String get adminWait_waiting => 'Ожидание ответа';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Ответа пока нет. Повторная попытка ($attempt из $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Напрямую, $hops перехода',
+      many: 'Напрямую, $hops переходов',
+      few: 'Напрямую, $hops перехода',
+      one: 'Напрямую, 1 переход',
+      zero: 'Напрямую',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'до $seconds с';
+  }
 }

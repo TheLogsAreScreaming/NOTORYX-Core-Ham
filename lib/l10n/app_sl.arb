@@ -4145,5 +4145,9 @@
   "favReturn_off": "Izklop",
   "favReturn_hours": "{count, plural, =1{Po 1 uri} =2{Po 2 urah} other{Po {count} urah}}",
   "favReturn_title": "Spet v dosegu",
-  "favReturn_body": "{name} je spet slišen po {hours, plural, =1{1 uri} =2{2 urah} other{{hours} urah}} tišine"
+  "favReturn_body": "{name} je spet slišen po {hours, plural, =1{1 uri} =2{2 urah} other{{hours} urah}} tišine",
+  "adminWait_waiting": "Čakanje na odgovor",
+  "adminWait_retrying": "Odgovora še ni. Nov poskus ({attempt} od {total})",
+  "adminWait_direct": "{hops, plural, =0{Neposredno} =1{Neposredno, 1 skok} =2{Neposredno, 2 skoka} few{Neposredno, {hops} skoki} other{Neposredno, {hops} skokov}}",
+  "adminWait_upTo": "do {seconds} s"
 }

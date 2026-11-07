@@ -4183,5 +4183,9 @@
   "favReturn_off": "Wył.",
   "favReturn_hours": "{count, plural, =1{Po 1 godzinie} other{Po {count} godzinach}}",
   "favReturn_title": "Znów w zasięgu",
-  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy"
+  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy",
+  "adminWait_waiting": "Oczekiwanie na odpowiedź",
+  "adminWait_retrying": "Wciąż brak odpowiedzi. Ponowna próba ({attempt} z {total})",
+  "adminWait_direct": "{hops, plural, =0{Bezpośrednio} =1{Bezpośrednio, 1 przeskok} few{Bezpośrednio, {hops} przeskoki} other{Bezpośrednio, {hops} przeskoków}}",
+  "adminWait_upTo": "do {seconds} s"
 }

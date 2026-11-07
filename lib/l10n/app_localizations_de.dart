@@ -9926,4 +9926,29 @@ class AppLocalizationsDe extends AppLocalizations {
     );
     return '$name nach $_temp0 Funkstille wieder zu hören';
   }
+
+  @override
+  String get adminWait_waiting => 'Warte auf Antwort';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Noch keine Antwort. Neuer Versuch ($attempt von $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Direkt, $hops Hops',
+      one: 'Direkt, 1 Hop',
+      zero: 'Direkt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'bis zu $seconds s';
+  }
 }

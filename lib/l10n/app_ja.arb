@@ -4279,5 +4279,9 @@
   "favReturn_off": "オフ",
   "favReturn_hours": "{count, plural, other{{count}時間後}}",
   "favReturn_title": "圏内に復帰",
-  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました"
+  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました",
+  "adminWait_waiting": "応答を待っています",
+  "adminWait_retrying": "まだ応答がありません。再試行中 ({attempt}/{total})",
+  "adminWait_direct": "{hops, plural, =0{直接} other{直接、{hops} ホップ}}",
+  "adminWait_upTo": "最大 {seconds} 秒"
 }

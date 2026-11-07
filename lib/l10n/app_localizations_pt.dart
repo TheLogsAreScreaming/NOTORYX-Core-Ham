@@ -9898,4 +9898,29 @@ class AppLocalizationsPt extends AppLocalizations {
     );
     return '$name ouvido de novo após $_temp0 em silêncio';
   }
+
+  @override
+  String get adminWait_waiting => 'Aguardando resposta';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Ainda sem resposta. Tentando novamente ($attempt de $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Direto, $hops saltos',
+      one: 'Direto, 1 salto',
+      zero: 'Direto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'até $seconds s';
+  }
 }

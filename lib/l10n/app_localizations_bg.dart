@@ -9896,4 +9896,29 @@ class AppLocalizationsBg extends AppLocalizations {
     );
     return '$name се чу отново след $_temp0 тишина';
   }
+
+  @override
+  String get adminWait_waiting => 'Изчакване на отговор';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Още няма отговор. Нов опит ($attempt от $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Директно, $hops скока',
+      one: 'Директно, 1 скок',
+      zero: 'Директно',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'до $seconds с';
+  }
 }

@@ -16518,6 +16518,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet'**
   String favReturn_body(String name, int hours);
+
+  /// No description provided for @adminWait_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for a reply'**
+  String get adminWait_waiting;
+
+  /// No description provided for @adminWait_retrying.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply yet. Trying again ({attempt} of {total})'**
+  String adminWait_retrying(int attempt, int total);
+
+  /// No description provided for @adminWait_direct.
+  ///
+  /// In en, this message translates to:
+  /// **'{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}'**
+  String adminWait_direct(int hops);
+
+  /// No description provided for @adminWait_upTo.
+  ///
+  /// In en, this message translates to:
+  /// **'up to {seconds} s'**
+  String adminWait_upTo(int seconds);
 }
 
 class _AppLocalizationsDelegate

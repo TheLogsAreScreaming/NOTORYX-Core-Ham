@@ -4145,5 +4145,9 @@
   "favReturn_off": "Uit",
   "favReturn_hours": "{count, plural, =1{Na 1 uur} other{Na {count} uur}}",
   "favReturn_title": "Weer binnen bereik",
-  "favReturn_body": "{name} weer gehoord na {hours, plural, =1{1 uur} other{{hours} uur}} stilte"
+  "favReturn_body": "{name} weer gehoord na {hours, plural, =1{1 uur} other{{hours} uur}} stilte",
+  "adminWait_waiting": "Wachten op antwoord",
+  "adminWait_retrying": "Nog geen antwoord. Opnieuw proberen ({attempt} van {total})",
+  "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}",
+  "adminWait_upTo": "tot {seconds} s"
 }
