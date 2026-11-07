@@ -1,0 +1,3 @@
+• Bolder themes: every theme now has its own second and third color, colored icons, a stronger glow and accent-edged cards
+• New theme: Bronzed Blush (deep bronze, pale and soft pinks)
+• New theme: Okabe-Ito Slate (color-blind safe, on charcoal)
