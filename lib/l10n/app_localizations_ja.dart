@@ -9579,4 +9579,27 @@ class AppLocalizationsJa extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return '最大 $seconds 秒';
   }
+
+  @override
+  String get coords_setting => '座標の形式';
+
+  @override
+  String get coords_decimal => '10進数の度';
+
+  @override
+  String get coords_dms => '度・分・秒';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => '位置をコピー';
+
+  @override
+  String coords_copied(String format) {
+    return '$format でコピーしました';
+  }
 }

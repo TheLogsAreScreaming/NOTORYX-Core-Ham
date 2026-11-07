@@ -4213,5 +4213,12 @@
   "adminWait_waiting": "Válaszra várva",
   "adminWait_retrying": "Még nincs válasz. Újrapróbálás ({attempt}/{total})",
   "adminWait_direct": "{hops, plural, =0{Közvetlen} =1{Közvetlen, 1 ugrás} other{Közvetlen, {hops} ugrás}}",
-  "adminWait_upTo": "legfeljebb {seconds} mp"
+  "adminWait_upTo": "legfeljebb {seconds} mp",
+  "coords_setting": "Koordinátaformátum",
+  "coords_decimal": "Tizedes fok",
+  "coords_dms": "Fok, perc, másodperc",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Pozíció másolása",
+  "coords_copied": "Másolva: {format}"
 }

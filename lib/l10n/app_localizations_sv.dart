@@ -9983,4 +9983,27 @@ class AppLocalizationsSv extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'upp till $seconds s';
   }
+
+  @override
+  String get coords_setting => 'Koordinatformat';
+
+  @override
+  String get coords_decimal => 'Decimalgrader';
+
+  @override
+  String get coords_dms => 'Grader, minuter, sekunder';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Kopiera position';
+
+  @override
+  String coords_copied(String format) {
+    return 'Kopierad som $format';
+  }
 }

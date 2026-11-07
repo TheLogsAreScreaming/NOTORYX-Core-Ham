@@ -16698,6 +16698,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'up to {seconds} s'**
   String adminWait_upTo(int seconds);
+
+  /// No description provided for @coords_setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Coordinate format'**
+  String get coords_setting;
+
+  /// No description provided for @coords_decimal.
+  ///
+  /// In en, this message translates to:
+  /// **'Decimal degrees'**
+  String get coords_decimal;
+
+  /// No description provided for @coords_dms.
+  ///
+  /// In en, this message translates to:
+  /// **'Degrees, minutes, seconds'**
+  String get coords_dms;
+
+  /// No description provided for @coords_utm.
+  ///
+  /// In en, this message translates to:
+  /// **'UTM'**
+  String get coords_utm;
+
+  /// No description provided for @coords_mgrs.
+  ///
+  /// In en, this message translates to:
+  /// **'MGRS'**
+  String get coords_mgrs;
+
+  /// No description provided for @coords_copyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy position'**
+  String get coords_copyTitle;
+
+  /// No description provided for @coords_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied as {format}'**
+  String coords_copied(String format);
 }
 
 class _AppLocalizationsDelegate

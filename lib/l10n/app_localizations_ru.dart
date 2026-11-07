@@ -10106,4 +10106,27 @@ class AppLocalizationsRu extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'до $seconds с';
   }
+
+  @override
+  String get coords_setting => 'Формат координат';
+
+  @override
+  String get coords_decimal => 'Десятичные градусы';
+
+  @override
+  String get coords_dms => 'Градусы, минуты, секунды';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Копировать позицию';
+
+  @override
+  String coords_copied(String format) {
+    return 'Скопировано как $format';
+  }
 }

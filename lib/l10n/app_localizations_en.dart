@@ -9933,4 +9933,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'up to $seconds s';
   }
+
+  @override
+  String get coords_setting => 'Coordinate format';
+
+  @override
+  String get coords_decimal => 'Decimal degrees';
+
+  @override
+  String get coords_dms => 'Degrees, minutes, seconds';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Copy position';
+
+  @override
+  String coords_copied(String format) {
+    return 'Copied as $format';
+  }
 }

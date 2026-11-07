@@ -10022,4 +10022,27 @@ class AppLocalizationsNl extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'tot $seconds s';
   }
+
+  @override
+  String get coords_setting => 'Coördinaatnotatie';
+
+  @override
+  String get coords_decimal => 'Decimale graden';
+
+  @override
+  String get coords_dms => 'Graden, minuten, seconden';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Positie kopiëren';
+
+  @override
+  String coords_copied(String format) {
+    return 'Gekopieerd als $format';
+  }
 }

@@ -4175,5 +4175,12 @@
   "adminWait_waiting": "Čaká sa na odpoveď",
   "adminWait_retrying": "Zatiaľ bez odpovede. Nový pokus ({attempt} z {total})",
   "adminWait_direct": "{hops, plural, =0{Priamo} =1{Priamo, 1 skok} few{Priamo, {hops} skoky} other{Priamo, {hops} skokov}}",
-  "adminWait_upTo": "až {seconds} s"
+  "adminWait_upTo": "až {seconds} s",
+  "coords_setting": "Formát súradníc",
+  "coords_decimal": "Desatinné stupne",
+  "coords_dms": "Stupne, minúty, sekundy",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Kopírovať polohu",
+  "coords_copied": "Skopírované ako {format}"
 }

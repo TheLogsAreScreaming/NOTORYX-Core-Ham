@@ -4175,5 +4175,12 @@
   "adminWait_waiting": "Aguardando resposta",
   "adminWait_retrying": "Ainda sem resposta. Tentando novamente ({attempt} de {total})",
   "adminWait_direct": "{hops, plural, =0{Direto} =1{Direto, 1 salto} other{Direto, {hops} saltos}}",
-  "adminWait_upTo": "até {seconds} s"
+  "adminWait_upTo": "até {seconds} s",
+  "coords_setting": "Formato de coordenadas",
+  "coords_decimal": "Graus decimais",
+  "coords_dms": "Graus, minutos, segundos",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Copiar posição",
+  "coords_copied": "Copiado como {format}"
 }

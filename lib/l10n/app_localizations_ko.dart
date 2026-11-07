@@ -9592,4 +9592,27 @@ class AppLocalizationsKo extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return '최대 $seconds초';
   }
+
+  @override
+  String get coords_setting => '좌표 형식';
+
+  @override
+  String get coords_decimal => '십진 도';
+
+  @override
+  String get coords_dms => '도, 분, 초';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => '위치 복사';
+
+  @override
+  String coords_copied(String format) {
+    return '$format(으)로 복사됨';
+  }
 }

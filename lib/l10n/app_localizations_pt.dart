@@ -10045,4 +10045,27 @@ class AppLocalizationsPt extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'até $seconds s';
   }
+
+  @override
+  String get coords_setting => 'Formato de coordenadas';
+
+  @override
+  String get coords_decimal => 'Graus decimais';
+
+  @override
+  String get coords_dms => 'Graus, minutos, segundos';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Copiar posição';
+
+  @override
+  String coords_copied(String format) {
+    return 'Copiado como $format';
+  }
 }

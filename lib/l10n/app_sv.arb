@@ -4175,5 +4175,12 @@
   "adminWait_waiting": "Väntar på svar",
   "adminWait_retrying": "Inget svar än. Försöker igen ({attempt} av {total})",
   "adminWait_direct": "{hops, plural, =0{Direkt} =1{Direkt, 1 hopp} other{Direkt, {hops} hopp}}",
-  "adminWait_upTo": "upp till {seconds} s"
+  "adminWait_upTo": "upp till {seconds} s",
+  "coords_setting": "Koordinatformat",
+  "coords_decimal": "Decimalgrader",
+  "coords_dms": "Grader, minuter, sekunder",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Kopiera position",
+  "coords_copied": "Kopierad som {format}"
 }

@@ -4175,5 +4175,12 @@
   "adminWait_waiting": "Wachten op antwoord",
   "adminWait_retrying": "Nog geen antwoord. Opnieuw proberen ({attempt} van {total})",
   "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}",
-  "adminWait_upTo": "tot {seconds} s"
+  "adminWait_upTo": "tot {seconds} s",
+  "coords_setting": "Coördinaatnotatie",
+  "coords_decimal": "Decimale graden",
+  "coords_dms": "Graden, minuten, seconden",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Positie kopiëren",
+  "coords_copied": "Gekopieerd als {format}"
 }

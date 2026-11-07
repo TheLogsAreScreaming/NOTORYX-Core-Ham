@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../widgets/coordinate_copy_sheet.dart';
 import '../widgets/map_telemetry.dart';
 import '../services/node_telemetry_store.dart';
 
@@ -2949,14 +2950,17 @@ class _MapScreenState extends State<MapScreen> {
                         ),
                       ),
                       if (contact.hasLocation)
-                        _buildInfoRow(
+                        _buildLocationRow(
                           context.l10n.map_location,
-                          '${contact.latitude!.toStringAsFixed(6)}, ${contact.longitude!.toStringAsFixed(6)}',
+                          contact.latitude!,
+                          contact.longitude!,
                         )
                       else if (guessedPosition != null)
-                        _buildInfoRow(
+                        _buildLocationRow(
                           context.l10n.map_estLocation,
-                          '~${guessedPosition.latitude.toStringAsFixed(6)}, ${guessedPosition.longitude.toStringAsFixed(6)}',
+                          guessedPosition.latitude,
+                          guessedPosition.longitude,
+                          prefix: '~',
                         ),
                       _buildInfoRow(
                         context.l10n.map_lastSeen,
@@ -3023,9 +3027,10 @@ class _MapScreenState extends State<MapScreen> {
               context.l10n.map_sharedAt,
               _formatLastSeen(marker.timestamp),
             ),
-            _buildInfoRow(
+            _buildLocationRow(
               context.l10n.map_location,
-              '${marker.position.latitude.toStringAsFixed(6)}, ${marker.position.longitude.toStringAsFixed(6)}',
+              marker.position.latitude,
+              marker.position.longitude,
             ),
             if (marker.flags.isNotEmpty)
               _buildInfoRow(context.l10n.map_flags, marker.flags),
@@ -3063,6 +3068,33 @@ class _MapScreenState extends State<MapScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  /// A position in the chosen coordinate format, with a button that copies
+  /// it in any format.
+  Widget _buildLocationRow(
+    String label,
+    double lat,
+    double lon, {
+    String prefix = '',
+  }) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: _buildInfoRow(
+            label,
+            '$prefix${formatCoordinateFor(context, lat, lon)}',
+          ),
+        ),
+        IconButton(
+          key: const ValueKey('map-copy-location'),
+          icon: const Icon(Icons.copy_all_outlined, size: 20),
+          tooltip: context.l10n.coords_copyTitle,
+          onPressed: () => showCoordinateCopySheet(context, lat: lat, lon: lon),
+        ),
+      ],
     );
   }
 

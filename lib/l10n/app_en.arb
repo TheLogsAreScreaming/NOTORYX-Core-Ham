@@ -5597,5 +5597,13 @@
   "adminWait_direct": "{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}",
   "@adminWait_direct": {"placeholders": {"hops": {"type": "int"}}},
   "adminWait_upTo": "up to {seconds} s",
-  "@adminWait_upTo": {"placeholders": {"seconds": {"type": "int"}}}
+  "@adminWait_upTo": {"placeholders": {"seconds": {"type": "int"}}},
+  "coords_setting": "Coordinate format",
+  "coords_decimal": "Decimal degrees",
+  "coords_dms": "Degrees, minutes, seconds",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Copy position",
+  "coords_copied": "Copied as {format}",
+  "@coords_copied": {"placeholders": {"format": {"type": "String"}}}
 }

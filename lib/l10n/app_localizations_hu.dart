@@ -10049,4 +10049,27 @@ class AppLocalizationsHu extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'legfeljebb $seconds mp';
   }
+
+  @override
+  String get coords_setting => 'Koordinátaformátum';
+
+  @override
+  String get coords_decimal => 'Tizedes fok';
+
+  @override
+  String get coords_dms => 'Fok, perc, másodperc';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Pozíció másolása';
+
+  @override
+  String coords_copied(String format) {
+    return 'Másolva: $format';
+  }
 }
