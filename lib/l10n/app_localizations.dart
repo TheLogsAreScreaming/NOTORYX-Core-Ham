@@ -16518,6 +16518,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet'**
   String favReturn_body(String name, int hours);
+
+  /// No description provided for @block_sender.
+  ///
+  /// In en, this message translates to:
+  /// **'Block {name}'**
+  String block_sender(String name);
+
+  /// No description provided for @block_confirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Their channel messages are hidden on this device and never notify you. They can still see your messages. You can unblock them in Settings.'**
+  String get block_confirmBody;
+
+  /// No description provided for @block_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Block'**
+  String get block_action;
+
+  /// No description provided for @block_done.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} blocked'**
+  String block_done(String name);
+
+  /// No description provided for @mention_suggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Name suggestions'**
+  String get mention_suggestions;
+
+  /// No description provided for @block_listTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked senders'**
+  String get block_listTitle;
+
+  /// No description provided for @block_listHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages from these names are hidden in channels and never notify you.'**
+  String get block_listHint;
+
+  /// No description provided for @block_listEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No one is blocked.'**
+  String get block_listEmpty;
+
+  /// No description provided for @block_unblock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unblock'**
+  String get block_unblock;
+
+  /// No description provided for @block_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No one blocked} =1{1 blocked} other{{count} blocked}}'**
+  String block_count(int count);
 }
 
 class _AppLocalizationsDelegate

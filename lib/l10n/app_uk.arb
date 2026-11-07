@@ -4125,5 +4125,15 @@
   "favReturn_off": "Вимк.",
   "favReturn_hours": "{count, plural, =1{Через 1 годину} few{Через {count} години} many{Через {count} годин} other{Через {count} години}}",
   "favReturn_title": "Знову в зоні",
-  "favReturn_body": "{name} знову чути після {hours, plural, =1{1 години} other{{hours} год}} тиші"
+  "favReturn_body": "{name} знову чути після {hours, plural, =1{1 години} other{{hours} год}} тиші",
+  "block_sender": "Заблокувати {name}",
+  "block_confirmBody": "Його повідомлення в каналах приховуються на цьому пристрої й ніколи не сповіщають вас. Він і далі бачить ваші повідомлення. Розблокувати можна в Налаштуваннях.",
+  "block_action": "Заблокувати",
+  "block_done": "{name} заблоковано",
+  "mention_suggestions": "Підказки імен",
+  "block_listTitle": "Заблоковані відправники",
+  "block_listHint": "Повідомлення від цих імен приховуються в каналах і ніколи не сповіщають вас.",
+  "block_listEmpty": "Ніхто не заблокований.",
+  "block_unblock": "Розблокувати",
+  "block_count": "{count, plural, =0{Ніхто не заблокований} =1{1 заблоковано} few{{count} заблоковано} many{{count} заблоковано} other{{count} заблоковано}}"
 }

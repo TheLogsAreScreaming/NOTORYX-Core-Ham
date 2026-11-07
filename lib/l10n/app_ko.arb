@@ -4279,5 +4279,15 @@
   "favReturn_off": "끄기",
   "favReturn_hours": "{count, plural, other{{count}시간 후}}",
   "favReturn_title": "범위 복귀",
-  "favReturn_body": "{name}이(가) {hours, plural, other{{hours}시간}} 만에 다시 들립니다"
+  "favReturn_body": "{name}이(가) {hours, plural, other{{hours}시간}} 만에 다시 들립니다",
+  "block_sender": "{name} 차단",
+  "block_confirmBody": "이 사용자의 채널 메시지는 이 기기에서 숨겨지며 알림이 오지 않습니다. 상대방은 여전히 내 메시지를 볼 수 있습니다. 설정에서 차단을 해제할 수 있습니다.",
+  "block_action": "차단",
+  "block_done": "{name} 차단됨",
+  "mention_suggestions": "이름 제안",
+  "block_listTitle": "차단된 발신자",
+  "block_listHint": "이 이름들의 메시지는 채널에서 숨겨지며 알림이 오지 않습니다.",
+  "block_listEmpty": "차단된 사용자가 없습니다.",
+  "block_unblock": "차단 해제",
+  "block_count": "{count, plural, =0{차단 없음} other{{count}명 차단됨}}"
 }

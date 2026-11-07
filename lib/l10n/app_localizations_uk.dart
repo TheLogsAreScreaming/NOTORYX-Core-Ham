@@ -9948,4 +9948,51 @@ class AppLocalizationsUk extends AppLocalizations {
     );
     return '$name знову чути після $_temp0 тиші';
   }
+
+  @override
+  String block_sender(String name) {
+    return 'Заблокувати $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Його повідомлення в каналах приховуються на цьому пристрої й ніколи не сповіщають вас. Він і далі бачить ваші повідомлення. Розблокувати можна в Налаштуваннях.';
+
+  @override
+  String get block_action => 'Заблокувати';
+
+  @override
+  String block_done(String name) {
+    return '$name заблоковано';
+  }
+
+  @override
+  String get mention_suggestions => 'Підказки імен';
+
+  @override
+  String get block_listTitle => 'Заблоковані відправники';
+
+  @override
+  String get block_listHint =>
+      'Повідомлення від цих імен приховуються в каналах і ніколи не сповіщають вас.';
+
+  @override
+  String get block_listEmpty => 'Ніхто не заблокований.';
+
+  @override
+  String get block_unblock => 'Розблокувати';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count заблоковано',
+      many: '$count заблоковано',
+      few: '$count заблоковано',
+      one: '1 заблоковано',
+      zero: 'Ніхто не заблокований',
+    );
+    return '$_temp0';
+  }
 }

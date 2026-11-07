@@ -4183,5 +4183,15 @@
   "favReturn_off": "Ki",
   "favReturn_hours": "{count, plural, =1{1 óra után} other{{count} óra után}}",
   "favReturn_title": "Újra hatótávon belül",
-  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után"
+  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után",
+  "block_sender": "{name} letiltása",
+  "block_confirmBody": "A csatornaüzenetei rejtve maradnak ezen az eszközön, és soha nem küldenek értesítést. Ő továbbra is látja az üzeneteidet. A tiltást a Beállításokban oldhatod fel.",
+  "block_action": "Letiltás",
+  "block_done": "{name} letiltva",
+  "mention_suggestions": "Névjavaslatok",
+  "block_listTitle": "Letiltott feladók",
+  "block_listHint": "Ezektől a nevektől érkező üzenetek rejtve maradnak a csatornákban, és soha nem küldenek értesítést.",
+  "block_listEmpty": "Senki sincs letiltva.",
+  "block_unblock": "Tiltás feloldása",
+  "block_count": "{count, plural, =0{Senki sincs letiltva} =1{1 letiltva} other{{count} letiltva}}"
 }

@@ -4150,5 +4150,15 @@
   "favReturn_off": "关闭",
   "favReturn_hours": "{count, plural, other{{count} 小时后}}",
   "favReturn_title": "回到范围内",
-  "favReturn_body": "沉寂 {hours, plural, other{{hours} 小时}}后再次收到 {name}"
+  "favReturn_body": "沉寂 {hours, plural, other{{hours} 小时}}后再次收到 {name}",
+  "block_sender": "屏蔽 {name}",
+  "block_confirmBody": "此人的频道消息会在本设备上隐藏，且不会通知你。对方仍能看到你的消息。可在设置中取消屏蔽。",
+  "block_action": "屏蔽",
+  "block_done": "已屏蔽 {name}",
+  "mention_suggestions": "名称建议",
+  "block_listTitle": "已屏蔽的发送者",
+  "block_listHint": "来自这些名称的消息会在频道中隐藏，且不会通知你。",
+  "block_listEmpty": "没有屏蔽任何人。",
+  "block_unblock": "取消屏蔽",
+  "block_count": "{count, plural, =0{未屏蔽任何人} other{已屏蔽 {count} 人}}"
 }

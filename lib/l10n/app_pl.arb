@@ -4183,5 +4183,15 @@
   "favReturn_off": "Wył.",
   "favReturn_hours": "{count, plural, =1{Po 1 godzinie} other{Po {count} godzinach}}",
   "favReturn_title": "Znów w zasięgu",
-  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy"
+  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy",
+  "block_sender": "Zablokuj {name}",
+  "block_confirmBody": "Wiadomości tej osoby na kanałach są ukrywane na tym urządzeniu i nigdy nie wywołują powiadomień. Nadal widzi ona Twoje wiadomości. Możesz ją odblokować w Ustawieniach.",
+  "block_action": "Zablokuj",
+  "block_done": "Zablokowano {name}",
+  "mention_suggestions": "Podpowiedzi nazw",
+  "block_listTitle": "Zablokowani nadawcy",
+  "block_listHint": "Wiadomości od tych nazw są ukrywane na kanałach i nigdy nie wywołują powiadomień.",
+  "block_listEmpty": "Nikt nie jest zablokowany.",
+  "block_unblock": "Odblokuj",
+  "block_count": "{count, plural, =0{Nikt nie jest zablokowany} =1{1 zablokowany} few{{count} zablokowanych} other{{count} zablokowanych}}"
 }

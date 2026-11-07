@@ -9875,4 +9875,49 @@ class AppLocalizationsNl extends AppLocalizations {
     );
     return '$name weer gehoord na $_temp0 stilte';
   }
+
+  @override
+  String block_sender(String name) {
+    return '$name blokkeren';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Kanaalberichten van deze persoon worden op dit apparaat verborgen en geven nooit een melding. Diegene ziet jouw berichten nog wel. Je kunt de blokkering opheffen in Instellingen.';
+
+  @override
+  String get block_action => 'Blokkeren';
+
+  @override
+  String block_done(String name) {
+    return '$name geblokkeerd';
+  }
+
+  @override
+  String get mention_suggestions => 'Naamsuggesties';
+
+  @override
+  String get block_listTitle => 'Geblokkeerde afzenders';
+
+  @override
+  String get block_listHint =>
+      'Berichten van deze namen worden in kanalen verborgen en geven nooit een melding.';
+
+  @override
+  String get block_listEmpty => 'Niemand is geblokkeerd.';
+
+  @override
+  String get block_unblock => 'Deblokkeren';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count geblokkeerd',
+      one: '1 geblokkeerd',
+      zero: 'Niemand geblokkeerd',
+    );
+    return '$_temp0';
+  }
 }

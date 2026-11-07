@@ -9907,4 +9907,51 @@ class AppLocalizationsSl extends AppLocalizations {
     );
     return '$name je spet slišen po $_temp0 tišine';
   }
+
+  @override
+  String block_sender(String name) {
+    return 'Blokiraj $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Njegova sporočila v kanalih so na tej napravi skrita in vas nikoli ne obvestijo. Še vedno vidi vaša sporočila. Blokado lahko odstranite v Nastavitvah.';
+
+  @override
+  String get block_action => 'Blokiraj';
+
+  @override
+  String block_done(String name) {
+    return '$name blokiran';
+  }
+
+  @override
+  String get mention_suggestions => 'Predlogi imen';
+
+  @override
+  String get block_listTitle => 'Blokirani pošiljatelji';
+
+  @override
+  String get block_listHint =>
+      'Sporočila teh imen so v kanalih skrita in vas nikoli ne obvestijo.';
+
+  @override
+  String get block_listEmpty => 'Nihče ni blokiran.';
+
+  @override
+  String get block_unblock => 'Odblokiraj';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blokiranih',
+      few: '$count blokirani',
+      two: '2 blokirana',
+      one: '1 blokiran',
+      zero: 'Nihče ni blokiran',
+    );
+    return '$_temp0';
+  }
 }

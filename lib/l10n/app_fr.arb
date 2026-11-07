@@ -4279,5 +4279,15 @@
   "favReturn_off": "Désactivé",
   "favReturn_hours": "{count, plural, =1{Après 1 heure} other{Après {count} heures}}",
   "favReturn_title": "De retour à portée",
-  "favReturn_body": "{name} entendu de nouveau après {hours, plural, =1{1 heure} other{{hours} heures}} de silence"
+  "favReturn_body": "{name} entendu de nouveau après {hours, plural, =1{1 heure} other{{hours} heures}} de silence",
+  "block_sender": "Bloquer {name}",
+  "block_confirmBody": "Ses messages de canal sont masqués sur cet appareil et ne vous notifient jamais. Cette personne voit toujours vos messages. Vous pouvez la débloquer dans les Réglages.",
+  "block_action": "Bloquer",
+  "block_done": "{name} bloqué",
+  "mention_suggestions": "Suggestions de noms",
+  "block_listTitle": "Expéditeurs bloqués",
+  "block_listHint": "Les messages de ces noms sont masqués dans les canaux et ne vous notifient jamais.",
+  "block_listEmpty": "Personne n'est bloqué.",
+  "block_unblock": "Débloquer",
+  "block_count": "{count, plural, =0{Personne de bloqué} =1{1 bloqué} other{{count} bloqués}}"
 }

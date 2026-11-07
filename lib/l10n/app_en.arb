@@ -5556,5 +5556,18 @@
   "@favReturn_hours": {"placeholders": {"count": {"type": "int"}}},
   "favReturn_title": "Back in range",
   "favReturn_body": "{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet",
-  "@favReturn_body": {"placeholders": {"name": {"type": "String"}, "hours": {"type": "int"}}}
+  "@favReturn_body": {"placeholders": {"name": {"type": "String"}, "hours": {"type": "int"}}},
+  "block_sender": "Block {name}",
+  "@block_sender": {"placeholders": {"name": {"type": "String"}}},
+  "block_confirmBody": "Their channel messages are hidden on this device and never notify you. They can still see your messages. You can unblock them in Settings.",
+  "block_action": "Block",
+  "block_done": "{name} blocked",
+  "@block_done": {"placeholders": {"name": {"type": "String"}}},
+  "mention_suggestions": "Name suggestions",
+  "block_listTitle": "Blocked senders",
+  "block_listHint": "Messages from these names are hidden in channels and never notify you.",
+  "block_listEmpty": "No one is blocked.",
+  "block_unblock": "Unblock",
+  "block_count": "{count, plural, =0{No one blocked} =1{1 blocked} other{{count} blocked}}",
+  "@block_count": {"placeholders": {"count": {"type": "int"}}}
 }

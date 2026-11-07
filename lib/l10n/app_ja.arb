@@ -4279,5 +4279,15 @@
   "favReturn_off": "オフ",
   "favReturn_hours": "{count, plural, other{{count}時間後}}",
   "favReturn_title": "圏内に復帰",
-  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました"
+  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました",
+  "block_sender": "{name} をブロック",
+  "block_confirmBody": "この相手のチャンネルメッセージはこの端末で非表示になり、通知もされません。相手からはあなたのメッセージが引き続き見えます。設定でブロックを解除できます。",
+  "block_action": "ブロック",
+  "block_done": "{name} をブロックしました",
+  "mention_suggestions": "名前の候補",
+  "block_listTitle": "ブロック中の送信者",
+  "block_listHint": "これらの名前からのメッセージはチャンネルで非表示になり、通知もされません。",
+  "block_listEmpty": "ブロック中の相手はいません。",
+  "block_unblock": "ブロック解除",
+  "block_count": "{count, plural, =0{ブロックなし} other{{count} 件ブロック中}}"
 }

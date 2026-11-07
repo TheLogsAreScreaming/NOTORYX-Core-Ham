@@ -9926,4 +9926,49 @@ class AppLocalizationsDe extends AppLocalizations {
     );
     return '$name nach $_temp0 Funkstille wieder zu hören';
   }
+
+  @override
+  String block_sender(String name) {
+    return '$name blockieren';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Kanalnachrichten dieser Person werden auf diesem Gerät ausgeblendet und lösen keine Benachrichtigung aus. Sie sieht deine Nachrichten weiterhin. Du kannst die Blockierung in den Einstellungen aufheben.';
+
+  @override
+  String get block_action => 'Blockieren';
+
+  @override
+  String block_done(String name) {
+    return '$name blockiert';
+  }
+
+  @override
+  String get mention_suggestions => 'Namensvorschläge';
+
+  @override
+  String get block_listTitle => 'Blockierte Absender';
+
+  @override
+  String get block_listHint =>
+      'Nachrichten von diesen Namen werden in Kanälen ausgeblendet und lösen nie eine Benachrichtigung aus.';
+
+  @override
+  String get block_listEmpty => 'Niemand ist blockiert.';
+
+  @override
+  String get block_unblock => 'Freigeben';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blockiert',
+      one: '1 blockiert',
+      zero: 'Niemand blockiert',
+    );
+    return '$_temp0';
+  }
 }

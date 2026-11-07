@@ -9955,4 +9955,50 @@ class AppLocalizationsPl extends AppLocalizations {
     );
     return '$name znów słyszany po $_temp0 ciszy';
   }
+
+  @override
+  String block_sender(String name) {
+    return 'Zablokuj $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Wiadomości tej osoby na kanałach są ukrywane na tym urządzeniu i nigdy nie wywołują powiadomień. Nadal widzi ona Twoje wiadomości. Możesz ją odblokować w Ustawieniach.';
+
+  @override
+  String get block_action => 'Zablokuj';
+
+  @override
+  String block_done(String name) {
+    return 'Zablokowano $name';
+  }
+
+  @override
+  String get mention_suggestions => 'Podpowiedzi nazw';
+
+  @override
+  String get block_listTitle => 'Zablokowani nadawcy';
+
+  @override
+  String get block_listHint =>
+      'Wiadomości od tych nazw są ukrywane na kanałach i nigdy nie wywołują powiadomień.';
+
+  @override
+  String get block_listEmpty => 'Nikt nie jest zablokowany.';
+
+  @override
+  String get block_unblock => 'Odblokuj';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count zablokowanych',
+      few: '$count zablokowanych',
+      one: '1 zablokowany',
+      zero: 'Nikt nie jest zablokowany',
+    );
+    return '$_temp0';
+  }
 }

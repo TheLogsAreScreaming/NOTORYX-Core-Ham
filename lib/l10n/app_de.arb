@@ -4279,5 +4279,15 @@
   "favReturn_off": "Aus",
   "favReturn_hours": "{count, plural, =1{Nach 1 Stunde} other{Nach {count} Stunden}}",
   "favReturn_title": "Wieder in Reichweite",
-  "favReturn_body": "{name} nach {hours, plural, =1{1 Stunde} other{{hours} Stunden}} Funkstille wieder zu hören"
+  "favReturn_body": "{name} nach {hours, plural, =1{1 Stunde} other{{hours} Stunden}} Funkstille wieder zu hören",
+  "block_sender": "{name} blockieren",
+  "block_confirmBody": "Kanalnachrichten dieser Person werden auf diesem Gerät ausgeblendet und lösen keine Benachrichtigung aus. Sie sieht deine Nachrichten weiterhin. Du kannst die Blockierung in den Einstellungen aufheben.",
+  "block_action": "Blockieren",
+  "block_done": "{name} blockiert",
+  "mention_suggestions": "Namensvorschläge",
+  "block_listTitle": "Blockierte Absender",
+  "block_listHint": "Nachrichten von diesen Namen werden in Kanälen ausgeblendet und lösen nie eine Benachrichtigung aus.",
+  "block_listEmpty": "Niemand ist blockiert.",
+  "block_unblock": "Freigeben",
+  "block_count": "{count, plural, =0{Niemand blockiert} =1{1 blockiert} other{{count} blockiert}}"
 }

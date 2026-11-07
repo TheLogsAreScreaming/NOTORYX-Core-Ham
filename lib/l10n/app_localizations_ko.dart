@@ -9454,4 +9454,47 @@ class AppLocalizationsKo extends AppLocalizations {
     );
     return '$name이(가) $_temp0 만에 다시 들립니다';
   }
+
+  @override
+  String block_sender(String name) {
+    return '$name 차단';
+  }
+
+  @override
+  String get block_confirmBody =>
+      '이 사용자의 채널 메시지는 이 기기에서 숨겨지며 알림이 오지 않습니다. 상대방은 여전히 내 메시지를 볼 수 있습니다. 설정에서 차단을 해제할 수 있습니다.';
+
+  @override
+  String get block_action => '차단';
+
+  @override
+  String block_done(String name) {
+    return '$name 차단됨';
+  }
+
+  @override
+  String get mention_suggestions => '이름 제안';
+
+  @override
+  String get block_listTitle => '차단된 발신자';
+
+  @override
+  String get block_listHint => '이 이름들의 메시지는 채널에서 숨겨지며 알림이 오지 않습니다.';
+
+  @override
+  String get block_listEmpty => '차단된 사용자가 없습니다.';
+
+  @override
+  String get block_unblock => '차단 해제';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count명 차단됨',
+      zero: '차단 없음',
+    );
+    return '$_temp0';
+  }
 }

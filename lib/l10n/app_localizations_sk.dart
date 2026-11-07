@@ -9891,4 +9891,50 @@ class AppLocalizationsSk extends AppLocalizations {
     );
     return '$name je opäť počuť po $_temp0 ticha';
   }
+
+  @override
+  String block_sender(String name) {
+    return 'Blokovať $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Jeho správy v kanáloch sa v tomto zariadení skryjú a nikdy vás neupozornia. Stále vidí vaše správy. Odblokovať ho môžete v Nastaveniach.';
+
+  @override
+  String get block_action => 'Blokovať';
+
+  @override
+  String block_done(String name) {
+    return '$name zablokovaný';
+  }
+
+  @override
+  String get mention_suggestions => 'Návrhy mien';
+
+  @override
+  String get block_listTitle => 'Zablokovaní odosielatelia';
+
+  @override
+  String get block_listHint =>
+      'Správy od týchto mien sa v kanáloch skrývajú a nikdy vás neupozornia.';
+
+  @override
+  String get block_listEmpty => 'Nikto nie je zablokovaný.';
+
+  @override
+  String get block_unblock => 'Odblokovať';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count zablokovaných',
+      few: '$count zablokovaní',
+      one: '1 zablokovaný',
+      zero: 'Nikto nie je zablokovaný',
+    );
+    return '$_temp0';
+  }
 }

@@ -9246,4 +9246,47 @@ class AppLocalizationsZh extends AppLocalizations {
     );
     return '沉寂 $_temp0后再次收到 $name';
   }
+
+  @override
+  String block_sender(String name) {
+    return '屏蔽 $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      '此人的频道消息会在本设备上隐藏，且不会通知你。对方仍能看到你的消息。可在设置中取消屏蔽。';
+
+  @override
+  String get block_action => '屏蔽';
+
+  @override
+  String block_done(String name) {
+    return '已屏蔽 $name';
+  }
+
+  @override
+  String get mention_suggestions => '名称建议';
+
+  @override
+  String get block_listTitle => '已屏蔽的发送者';
+
+  @override
+  String get block_listHint => '来自这些名称的消息会在频道中隐藏，且不会通知你。';
+
+  @override
+  String get block_listEmpty => '没有屏蔽任何人。';
+
+  @override
+  String get block_unblock => '取消屏蔽';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已屏蔽 $count 人',
+      zero: '未屏蔽任何人',
+    );
+    return '$_temp0';
+  }
 }
