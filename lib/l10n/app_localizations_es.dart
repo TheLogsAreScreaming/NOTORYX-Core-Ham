@@ -9918,6 +9918,70 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Lista de contactos de la radio al $percent%';
+  }
+
+  @override
+  String get contactTable_full =>
+      'La lista de contactos de la radio está llena';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used de $max contactos';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Cuando está llena, la radio reemplaza el contacto oído hace más tiempo. Los favoritos se conservan.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Cuando está llena, la radio deja de añadir los nuevos contactos que oye.';
+
+  @override
+  String get contactTable_freeUp => 'Liberar espacio';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Primero los oídos hace más tiempo. Los favoritos no aparecen.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Oído por última vez $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Quitar $count contactos',
+      one: 'Quitar 1 contacto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Se quitan de la radio y sus mensajes en este dispositivo se borran. No se puede deshacer.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Se quitaron $count contactos',
+      one: 'Se quitó 1 contacto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Todos los contactos son favoritos, así que no hay nada que sugerir.';
+
+  @override
   String get adminWait_waiting => 'Esperando respuesta';
 
   @override

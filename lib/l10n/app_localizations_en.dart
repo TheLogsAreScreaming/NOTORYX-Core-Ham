@@ -9788,6 +9788,69 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Radio contact list $percent% full';
+  }
+
+  @override
+  String get contactTable_full => 'Radio contact list is full';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used of $max contacts';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'When it\'s full, the radio replaces the contact heard least recently. Favorites are kept.';
+
+  @override
+  String get contactTable_stopHint =>
+      'When it\'s full, the radio stops adding new contacts it hears.';
+
+  @override
+  String get contactTable_freeUp => 'Free up space';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Heard least recently first. Favorites aren\'t listed.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Last heard $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Remove $count contacts',
+      one: 'Remove 1 contact',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'They\'re removed from the radio, and their messages on this device are deleted. This can\'t be undone.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Removed $count contacts',
+      one: 'Removed 1 contact',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Every contact is a favorite, so there\'s nothing to suggest.';
+
+  @override
   String get adminWait_waiting => 'Waiting for a reply';
 
   @override

@@ -9898,6 +9898,69 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Списъкът с контакти на радиото е запълнен на $percent%';
+  }
+
+  @override
+  String get contactTable_full => 'Списъкът с контакти на радиото е пълен';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used от $max контакта';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Когато е пълен, радиото заменя най-отдавна чутия контакт. Любимите се запазват.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Когато е пълен, радиото спира да добавя нови чути контакти.';
+
+  @override
+  String get contactTable_freeUp => 'Освободи място';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Първо най-отдавна чутите. Любимите не са в списъка.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Последно чут $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Премахни $count контакта',
+      one: 'Премахни 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Премахват се от радиото, а съобщенията им на това устройство се изтриват. Това не може да се отмени.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Премахнати са $count контакта',
+      one: 'Премахнат е 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Всички контакти са любими, затова няма какво да се предложи.';
+
+  @override
   String get adminWait_waiting => 'Изчакване на отговор';
 
   @override
