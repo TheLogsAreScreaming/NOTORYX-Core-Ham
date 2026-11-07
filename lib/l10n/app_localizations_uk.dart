@@ -9673,6 +9673,131 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get rxLog_title => 'Журнал прийому';
+
+  @override
+  String get rxLog_hint => 'Кожен пакет, який чує ваша рація, наживо';
+
+  @override
+  String get rxLog_empty =>
+      'Пакетів ще немає. Пакети, які чує рація, з\'являються тут щойно надходять.';
+
+  @override
+  String get rxLog_note =>
+      'Зберігається лише в пам\'яті, останні 2000 пакетів. Нічого не зберігається і не надсилається.';
+
+  @override
+  String get rxLog_pause => 'Пауза';
+
+  @override
+  String get rxLog_resume => 'Продовжити';
+
+  @override
+  String get rxLog_export => 'Експорт у CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Очистити журнал прийому?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return 'Показано $shown · почуто $total';
+  }
+
+  @override
+  String get rxLog_paused => 'Пауза: нові пакети не записуються';
+
+  @override
+  String get rxLog_kindAll => 'Усі';
+
+  @override
+  String get rxLog_kindAdvert => 'Оголошення';
+
+  @override
+  String get rxLog_kindChannel => 'Канал';
+
+  @override
+  String get rxLog_kindDirect => 'Особисті';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Шляхи';
+
+  @override
+  String get rxLog_kindTrace => 'Трасування';
+
+  @override
+  String get rxLog_kindControl => 'Керування';
+
+  @override
+  String get rxLog_kindOther => 'Інші';
+
+  @override
+  String get rxLog_routeFlood => 'Флуд';
+
+  @override
+  String get rxLog_routeDirect => 'Прямий маршрут';
+
+  @override
+  String get rxLog_heardDirectly => 'Почуто напряму';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count переходу',
+      many: '$count переходів',
+      few: '$count переходи',
+      one: '1 перехід',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count байта',
+      many: '$count байтів',
+      few: '$count байти',
+      one: '1 байт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Ваша рація';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Сигнал';
+
+  @override
+  String get rxLog_route => 'Маршрут';
+
+  @override
+  String get rxLog_path => 'Шлях';
+
+  @override
+  String get rxLog_payloadType => 'Тип даних';
+
+  @override
+  String get rxLog_hash => 'Хеш пакета';
+
+  @override
+  String get rxLog_raw => 'Сирий пакет';
+
+  @override
+  String get rxLog_copyHex => 'Копіювати hex';
+
+  @override
   String get deliv_title => 'Подробиці доставки';
 
   @override

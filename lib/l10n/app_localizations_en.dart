@@ -9522,6 +9522,127 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get rxLog_title => 'RX log';
+
+  @override
+  String get rxLog_hint => 'Every packet your radio hears, live';
+
+  @override
+  String get rxLog_empty =>
+      'No packets yet. Packets your radio hears show up here as they arrive.';
+
+  @override
+  String get rxLog_note =>
+      'Kept in memory only, the last 2,000 packets. Nothing is saved or sent.';
+
+  @override
+  String get rxLog_pause => 'Pause';
+
+  @override
+  String get rxLog_resume => 'Resume';
+
+  @override
+  String get rxLog_export => 'Export CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Clear the RX log?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown shown · $total heard';
+  }
+
+  @override
+  String get rxLog_paused => 'Paused: new packets aren\'t being logged';
+
+  @override
+  String get rxLog_kindAll => 'All';
+
+  @override
+  String get rxLog_kindAdvert => 'Adverts';
+
+  @override
+  String get rxLog_kindChannel => 'Channel';
+
+  @override
+  String get rxLog_kindDirect => 'Direct';
+
+  @override
+  String get rxLog_kindAck => 'ACKs';
+
+  @override
+  String get rxLog_kindPath => 'Paths';
+
+  @override
+  String get rxLog_kindTrace => 'Traces';
+
+  @override
+  String get rxLog_kindControl => 'Control';
+
+  @override
+  String get rxLog_kindOther => 'Other';
+
+  @override
+  String get rxLog_routeFlood => 'Flood';
+
+  @override
+  String get rxLog_routeDirect => 'Direct route';
+
+  @override
+  String get rxLog_heardDirectly => 'Heard directly';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hops',
+      one: '1 hop',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bytes',
+      one: '1 byte',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Your radio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Signal';
+
+  @override
+  String get rxLog_route => 'Route';
+
+  @override
+  String get rxLog_path => 'Path';
+
+  @override
+  String get rxLog_payloadType => 'Payload type';
+
+  @override
+  String get rxLog_hash => 'Packet hash';
+
+  @override
+  String get rxLog_raw => 'Raw packet';
+
+  @override
+  String get rxLog_copyHex => 'Copy hex';
+
+  @override
   String get deliv_title => 'Delivery details';
 
   @override

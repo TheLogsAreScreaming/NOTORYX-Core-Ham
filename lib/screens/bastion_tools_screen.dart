@@ -10,6 +10,7 @@ import 'antenna_hunt_screen.dart';
 import 'bastion_about_screen.dart';
 import 'bot_settings_screen.dart';
 import 'networks_screen.dart';
+import 'rx_log_screen.dart';
 import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
 import 'field_guide_screen.dart';
@@ -115,6 +116,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.bastionTools_diagnostics,
             subtitle: l10n.bastionTools_diagnosticsHint,
             builder: (_) => const BastionDiagnosticsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.receipt_long_outlined,
+            title: l10n.rxLog_title,
+            subtitle: l10n.rxLog_hint,
+            builder: (_) => const RxLogScreen(),
           ),
         ],
       ),

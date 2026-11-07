@@ -9637,6 +9637,128 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String get rxLog_title => 'RX napló';
+
+  @override
+  String get rxLog_hint => 'Minden csomag, amit a rádiód hall, élőben';
+
+  @override
+  String get rxLog_empty =>
+      'Még nincs csomag. A rádiód által hallott csomagok itt jelennek meg, amint megérkeznek.';
+
+  @override
+  String get rxLog_note =>
+      'Csak a memóriában, az utolsó 2000 csomag. Semmi nem kerül mentésre vagy elküldésre.';
+
+  @override
+  String get rxLog_pause => 'Szünet';
+
+  @override
+  String get rxLog_resume => 'Folytatás';
+
+  @override
+  String get rxLog_export => 'Exportálás CSV-be';
+
+  @override
+  String get rxLog_clearConfirm => 'Törlöd az RX naplót?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown látható · $total hallott';
+  }
+
+  @override
+  String get rxLog_paused =>
+      'Szüneteltetve: az új csomagok nem kerülnek naplózásra';
+
+  @override
+  String get rxLog_kindAll => 'Mind';
+
+  @override
+  String get rxLog_kindAdvert => 'Hirdetések';
+
+  @override
+  String get rxLog_kindChannel => 'Csatorna';
+
+  @override
+  String get rxLog_kindDirect => 'Közvetlen';
+
+  @override
+  String get rxLog_kindAck => 'Nyugták';
+
+  @override
+  String get rxLog_kindPath => 'Útvonalak';
+
+  @override
+  String get rxLog_kindTrace => 'Nyomkövetések';
+
+  @override
+  String get rxLog_kindControl => 'Vezérlés';
+
+  @override
+  String get rxLog_kindOther => 'Egyéb';
+
+  @override
+  String get rxLog_routeFlood => 'Elárasztás';
+
+  @override
+  String get rxLog_routeDirect => 'Közvetlen útvonal';
+
+  @override
+  String get rxLog_heardDirectly => 'Közvetlenül hallva';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ugrás',
+      one: '1 ugrás',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bájt',
+      one: '1 bájt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'A rádiód';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Jel';
+
+  @override
+  String get rxLog_route => 'Útvonal';
+
+  @override
+  String get rxLog_path => 'Út';
+
+  @override
+  String get rxLog_payloadType => 'Tartalomtípus';
+
+  @override
+  String get rxLog_hash => 'Csomag hash';
+
+  @override
+  String get rxLog_raw => 'Nyers csomag';
+
+  @override
+  String get rxLog_copyHex => 'Hex másolása';
+
+  @override
   String get deliv_title => 'Kézbesítési részletek';
 
   @override

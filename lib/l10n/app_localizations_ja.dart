@@ -9188,6 +9188,123 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get rxLog_title => '受信ログ';
+
+  @override
+  String get rxLog_hint => '無線機が受信したすべてのパケットをリアルタイムで表示';
+
+  @override
+  String get rxLog_empty => 'まだパケットはありません。無線機が受信したパケットは届き次第ここに表示されます。';
+
+  @override
+  String get rxLog_note => 'メモリ内のみに直近2,000件を保持します。保存や送信は行いません。';
+
+  @override
+  String get rxLog_pause => '一時停止';
+
+  @override
+  String get rxLog_resume => '再開';
+
+  @override
+  String get rxLog_export => 'CSVを書き出す';
+
+  @override
+  String get rxLog_clearConfirm => '受信ログを消去しますか？';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown件表示 · $total件受信';
+  }
+
+  @override
+  String get rxLog_paused => '一時停止中：新しいパケットは記録されません';
+
+  @override
+  String get rxLog_kindAll => 'すべて';
+
+  @override
+  String get rxLog_kindAdvert => 'アドバート';
+
+  @override
+  String get rxLog_kindChannel => 'チャンネル';
+
+  @override
+  String get rxLog_kindDirect => 'ダイレクト';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'パス';
+
+  @override
+  String get rxLog_kindTrace => 'トレース';
+
+  @override
+  String get rxLog_kindControl => '制御';
+
+  @override
+  String get rxLog_kindOther => 'その他';
+
+  @override
+  String get rxLog_routeFlood => 'フラッド';
+
+  @override
+  String get rxLog_routeDirect => 'ダイレクト経路';
+
+  @override
+  String get rxLog_heardDirectly => '直接受信';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countホップ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countバイト',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => '自分の無線機';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => '信号';
+
+  @override
+  String get rxLog_route => '経路';
+
+  @override
+  String get rxLog_path => 'パス';
+
+  @override
+  String get rxLog_payloadType => 'ペイロード種別';
+
+  @override
+  String get rxLog_hash => 'パケットハッシュ';
+
+  @override
+  String get rxLog_raw => '生パケット';
+
+  @override
+  String get rxLog_copyHex => '16進をコピー';
+
+  @override
   String get deliv_title => '配信の詳細';
 
   @override
