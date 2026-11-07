@@ -5439,5 +5439,10 @@
   "repeaterTools_toolsTitle": "Tools",
   "repeaterTools_regionSetupHint": "Look up your area's region tree and copy its commands",
   "routes_failingOnly": "Only routes that failed",
-  "routes_contactDetails": "Contact details"
+  "routes_contactDetails": "Contact details",
+  "links_contactTitle": "Add a contact?",
+  "links_importAdvert": "Add this contact to your radio?",
+  "links_connectFirst": "Connect your radio first, then open the link again.",
+  "links_added": "Contact added",
+  "links_notContact": "This link isn't a MeshCore contact."
 }

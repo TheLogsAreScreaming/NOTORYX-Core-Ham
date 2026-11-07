@@ -4045,5 +4045,10 @@
   "repeaterTools_toolsTitle": "Orodja",
   "repeaterTools_regionSetupHint": "Poiščite regijsko drevo za svoje območje in kopirajte njegove ukaze",
   "routes_failingOnly": "Samo neuspešne poti",
-  "routes_contactDetails": "Podrobnosti stika"
+  "routes_contactDetails": "Podrobnosti stika",
+  "links_contactTitle": "Dodam stik?",
+  "links_importAdvert": "Dodam ta stik v radio?",
+  "links_connectFirst": "Najprej povežite radio, nato znova odprite povezavo.",
+  "links_added": "Stik dodan",
+  "links_notContact": "Ta povezava ni stik MeshCore."
 }

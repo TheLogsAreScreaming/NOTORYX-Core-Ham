@@ -9091,4 +9091,19 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get routes_contactDetails => '연락처 정보';
+
+  @override
+  String get links_contactTitle => '연락처를 추가할까요?';
+
+  @override
+  String get links_importAdvert => '이 연락처를 무전기에 추가할까요?';
+
+  @override
+  String get links_connectFirst => '먼저 무전기를 연결한 뒤 링크를 다시 여세요.';
+
+  @override
+  String get links_added => '연락처를 추가했습니다';
+
+  @override
+  String get links_notContact => '이 링크는 MeshCore 연락처가 아닙니다.';
 }

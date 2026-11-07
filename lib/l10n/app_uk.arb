@@ -4025,5 +4025,10 @@
   "repeaterTools_toolsTitle": "Інструменти",
   "repeaterTools_regionSetupHint": "Знайдіть дерево регіонів для своєї місцевості й скопіюйте його команди",
   "routes_failingOnly": "Лише невдалі маршрути",
-  "routes_contactDetails": "Відомості про контакт"
+  "routes_contactDetails": "Відомості про контакт",
+  "links_contactTitle": "Додати контакт?",
+  "links_importAdvert": "Додати цей контакт до радіо?",
+  "links_connectFirst": "Спершу під'єднайте радіо, потім знову відкрийте посилання.",
+  "links_added": "Контакт додано",
+  "links_notContact": "Це посилання не є контактом MeshCore."
 }

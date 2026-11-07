@@ -9544,4 +9544,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Kontaktdetails';
+
+  @override
+  String get links_contactTitle => 'Kontakt hinzufügen?';
+
+  @override
+  String get links_importAdvert => 'Diesen Kontakt zum Funkgerät hinzufügen?';
+
+  @override
+  String get links_connectFirst =>
+      'Verbinde zuerst dein Funkgerät und öffne den Link dann erneut.';
+
+  @override
+  String get links_added => 'Kontakt hinzugefügt';
+
+  @override
+  String get links_notContact => 'Dieser Link ist kein MeshCore-Kontakt.';
 }

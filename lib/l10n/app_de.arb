@@ -4179,5 +4179,10 @@
   "repeaterTools_toolsTitle": "Werkzeuge",
   "repeaterTools_regionSetupHint": "Finde den Regionsbaum deiner Gegend und kopiere seine Befehle",
   "routes_failingOnly": "Nur fehlgeschlagene Routen",
-  "routes_contactDetails": "Kontaktdetails"
+  "routes_contactDetails": "Kontaktdetails",
+  "links_contactTitle": "Kontakt hinzufügen?",
+  "links_importAdvert": "Diesen Kontakt zum Funkgerät hinzufügen?",
+  "links_connectFirst": "Verbinde zuerst dein Funkgerät und öffne den Link dann erneut.",
+  "links_added": "Kontakt hinzugefügt",
+  "links_notContact": "Dieser Link ist kein MeshCore-Kontakt."
 }

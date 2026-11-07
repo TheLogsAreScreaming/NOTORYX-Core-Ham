@@ -4045,5 +4045,10 @@
   "repeaterTools_toolsTitle": "Hulpmiddelen",
   "repeaterTools_regionSetupHint": "Zoek de regioboom van je gebied en kopieer de opdrachten",
   "routes_failingOnly": "Alleen mislukte routes",
-  "routes_contactDetails": "Contactgegevens"
+  "routes_contactDetails": "Contactgegevens",
+  "links_contactTitle": "Contact toevoegen?",
+  "links_importAdvert": "Dit contact aan je radio toevoegen?",
+  "links_connectFirst": "Verbind eerst je radio en open de link daarna opnieuw.",
+  "links_added": "Contact toegevoegd",
+  "links_notContact": "Deze link is geen MeshCore-contact."
 }

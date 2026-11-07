@@ -4179,5 +4179,10 @@
   "repeaterTools_toolsTitle": "ツール",
   "repeaterTools_regionSetupHint": "地域のリージョンツリーを調べてコマンドをコピーします",
   "routes_failingOnly": "失敗したルートのみ",
-  "routes_contactDetails": "連絡先の詳細"
+  "routes_contactDetails": "連絡先の詳細",
+  "links_contactTitle": "連絡先を追加しますか?",
+  "links_importAdvert": "この連絡先を無線機に追加しますか?",
+  "links_connectFirst": "先に無線機を接続してから、もう一度リンクを開いてください。",
+  "links_added": "連絡先を追加しました",
+  "links_notContact": "このリンクは MeshCore の連絡先ではありません。"
 }

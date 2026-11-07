@@ -4045,5 +4045,10 @@
   "repeaterTools_toolsTitle": "Ferramentas",
   "repeaterTools_regionSetupHint": "Procure a árvore de regiões da sua zona e copie os comandos",
   "routes_failingOnly": "Só rotas que falharam",
-  "routes_contactDetails": "Detalhes do contacto"
+  "routes_contactDetails": "Detalhes do contacto",
+  "links_contactTitle": "Adicionar um contacto?",
+  "links_importAdvert": "Adicionar este contacto ao rádio?",
+  "links_connectFirst": "Ligue primeiro o rádio e volte a abrir a ligação.",
+  "links_added": "Contacto adicionado",
+  "links_notContact": "Esta ligação não é um contacto MeshCore."
 }

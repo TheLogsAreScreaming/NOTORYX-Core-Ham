@@ -3348,5 +3348,10 @@
   "repeaterTools_toolsTitle": "Инструменты",
   "repeaterTools_regionSetupHint": "Найдите дерево регионов для своей местности и скопируйте его команды",
   "routes_failingOnly": "Только неудачные маршруты",
-  "routes_contactDetails": "Сведения о контакте"
+  "routes_contactDetails": "Сведения о контакте",
+  "links_contactTitle": "Добавить контакт?",
+  "links_importAdvert": "Добавить этот контакт в радио?",
+  "links_connectFirst": "Сначала подключите радио, затем снова откройте ссылку.",
+  "links_added": "Контакт добавлен",
+  "links_notContact": "Эта ссылка не является контактом MeshCore."
 }

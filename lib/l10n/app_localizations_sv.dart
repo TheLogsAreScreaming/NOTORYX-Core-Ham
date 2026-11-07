@@ -9456,4 +9456,20 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Kontaktuppgifter';
+
+  @override
+  String get links_contactTitle => 'Lägga till en kontakt?';
+
+  @override
+  String get links_importAdvert => 'Lägga till den här kontakten i radion?';
+
+  @override
+  String get links_connectFirst =>
+      'Anslut radion först och öppna sedan länken igen.';
+
+  @override
+  String get links_added => 'Kontakt tillagd';
+
+  @override
+  String get links_notContact => 'Den här länken är ingen MeshCore-kontakt.';
 }

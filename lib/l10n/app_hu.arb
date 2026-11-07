@@ -4083,5 +4083,10 @@
   "repeaterTools_toolsTitle": "Eszközök",
   "repeaterTools_regionSetupHint": "Keresd meg a környéked régiófáját, és másold a parancsait",
   "routes_failingOnly": "Csak sikertelen útvonalak",
-  "routes_contactDetails": "Névjegy adatai"
+  "routes_contactDetails": "Névjegy adatai",
+  "links_contactTitle": "Névjegy hozzáadása?",
+  "links_importAdvert": "Hozzáadod ezt a névjegyet a rádióhoz?",
+  "links_connectFirst": "Előbb csatlakoztasd a rádiót, aztán nyisd meg újra a hivatkozást.",
+  "links_added": "Névjegy hozzáadva",
+  "links_notContact": "Ez a hivatkozás nem MeshCore-névjegy."
 }

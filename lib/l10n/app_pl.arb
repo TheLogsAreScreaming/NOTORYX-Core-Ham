@@ -4083,5 +4083,10 @@
   "repeaterTools_toolsTitle": "Narzędzia",
   "repeaterTools_regionSetupHint": "Znajdź drzewo regionów dla swojej okolicy i skopiuj jego polecenia",
   "routes_failingOnly": "Tylko nieudane trasy",
-  "routes_contactDetails": "Szczegóły kontaktu"
+  "routes_contactDetails": "Szczegóły kontaktu",
+  "links_contactTitle": "Dodać kontakt?",
+  "links_importAdvert": "Dodać ten kontakt do radia?",
+  "links_connectFirst": "Najpierw podłącz radio, a potem otwórz link ponownie.",
+  "links_added": "Dodano kontakt",
+  "links_notContact": "Ten link nie jest kontaktem MeshCore."
 }

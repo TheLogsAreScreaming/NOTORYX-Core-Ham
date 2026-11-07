@@ -4050,5 +4050,10 @@
   "repeaterTools_toolsTitle": "工具",
   "repeaterTools_regionSetupHint": "查找你所在地区的区域树并复制其命令",
   "routes_failingOnly": "仅失败的路由",
-  "routes_contactDetails": "联系人详情"
+  "routes_contactDetails": "联系人详情",
+  "links_contactTitle": "添加联系人？",
+  "links_importAdvert": "将此联系人添加到电台？",
+  "links_connectFirst": "请先连接电台，然后重新打开链接。",
+  "links_added": "已添加联系人",
+  "links_notContact": "此链接不是 MeshCore 联系人。"
 }

@@ -9505,4 +9505,20 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Údaje kontaktu';
+
+  @override
+  String get links_contactTitle => 'Pridať kontakt?';
+
+  @override
+  String get links_importAdvert => 'Pridať tento kontakt do rádia?';
+
+  @override
+  String get links_connectFirst =>
+      'Najprv pripojte rádio a potom odkaz otvorte znova.';
+
+  @override
+  String get links_added => 'Kontakt pridaný';
+
+  @override
+  String get links_notContact => 'Tento odkaz nie je kontakt MeshCore.';
 }

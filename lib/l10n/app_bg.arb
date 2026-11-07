@@ -4045,5 +4045,10 @@
   "repeaterTools_toolsTitle": "Инструменти",
   "repeaterTools_regionSetupHint": "Намерете регионалното дърво за района си и копирайте командите му",
   "routes_failingOnly": "Само неуспешни маршрути",
-  "routes_contactDetails": "Данни за контакта"
+  "routes_contactDetails": "Данни за контакта",
+  "links_contactTitle": "Добавяне на контакт?",
+  "links_importAdvert": "Да добавя ли този контакт в радиото?",
+  "links_connectFirst": "Първо свържете радиото, после отворете връзката отново.",
+  "links_added": "Контактът е добавен",
+  "links_notContact": "Тази връзка не е контакт на MeshCore."
 }

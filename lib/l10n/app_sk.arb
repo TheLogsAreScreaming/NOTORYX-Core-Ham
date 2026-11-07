@@ -4045,5 +4045,10 @@
   "repeaterTools_toolsTitle": "Nástroje",
   "repeaterTools_regionSetupHint": "Vyhľadajte strom regiónov pre svoju oblasť a skopírujte jeho príkazy",
   "routes_failingOnly": "Iba neúspešné trasy",
-  "routes_contactDetails": "Údaje kontaktu"
+  "routes_contactDetails": "Údaje kontaktu",
+  "links_contactTitle": "Pridať kontakt?",
+  "links_importAdvert": "Pridať tento kontakt do rádia?",
+  "links_connectFirst": "Najprv pripojte rádio a potom odkaz otvorte znova.",
+  "links_added": "Kontakt pridaný",
+  "links_notContact": "Tento odkaz nie je kontakt MeshCore."
 }

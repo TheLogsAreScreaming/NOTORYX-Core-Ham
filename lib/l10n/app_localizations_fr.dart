@@ -9566,4 +9566,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Détails du contact';
+
+  @override
+  String get links_contactTitle => 'Ajouter un contact ?';
+
+  @override
+  String get links_importAdvert => 'Ajouter ce contact à votre radio ?';
+
+  @override
+  String get links_connectFirst =>
+      'Connectez d’abord votre radio, puis rouvrez le lien.';
+
+  @override
+  String get links_added => 'Contact ajouté';
+
+  @override
+  String get links_notContact => 'Ce lien n’est pas un contact MeshCore.';
 }

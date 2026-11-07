@@ -9520,4 +9520,20 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Névjegy adatai';
+
+  @override
+  String get links_contactTitle => 'Névjegy hozzáadása?';
+
+  @override
+  String get links_importAdvert => 'Hozzáadod ezt a névjegyet a rádióhoz?';
+
+  @override
+  String get links_connectFirst =>
+      'Előbb csatlakoztasd a rádiót, aztán nyisd meg újra a hivatkozást.';
+
+  @override
+  String get links_added => 'Névjegy hozzáadva';
+
+  @override
+  String get links_notContact => 'Ez a hivatkozás nem MeshCore-névjegy.';
 }

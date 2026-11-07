@@ -4179,5 +4179,10 @@
   "repeaterTools_toolsTitle": "Outils",
   "repeaterTools_regionSetupHint": "Trouvez l’arbre de régions de votre secteur et copiez ses commandes",
   "routes_failingOnly": "Seulement les routes en échec",
-  "routes_contactDetails": "Détails du contact"
+  "routes_contactDetails": "Détails du contact",
+  "links_contactTitle": "Ajouter un contact ?",
+  "links_importAdvert": "Ajouter ce contact à votre radio ?",
+  "links_connectFirst": "Connectez d’abord votre radio, puis rouvrez le lien.",
+  "links_added": "Contact ajouté",
+  "links_notContact": "Ce lien n’est pas un contact MeshCore."
 }

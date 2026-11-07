@@ -9543,4 +9543,20 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Dettagli contatto';
+
+  @override
+  String get links_contactTitle => 'Aggiungere un contatto?';
+
+  @override
+  String get links_importAdvert => 'Aggiungere questo contatto alla radio?';
+
+  @override
+  String get links_connectFirst =>
+      'Collega prima la radio, poi riapri il link.';
+
+  @override
+  String get links_added => 'Contatto aggiunto';
+
+  @override
+  String get links_notContact => 'Questo link non è un contatto MeshCore.';
 }

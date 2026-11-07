@@ -9496,4 +9496,20 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Contactgegevens';
+
+  @override
+  String get links_contactTitle => 'Contact toevoegen?';
+
+  @override
+  String get links_importAdvert => 'Dit contact aan je radio toevoegen?';
+
+  @override
+  String get links_connectFirst =>
+      'Verbind eerst je radio en open de link daarna opnieuw.';
+
+  @override
+  String get links_added => 'Contact toegevoegd';
+
+  @override
+  String get links_notContact => 'Deze link is geen MeshCore-contact.';
 }

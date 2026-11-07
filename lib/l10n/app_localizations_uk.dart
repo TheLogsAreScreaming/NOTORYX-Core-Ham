@@ -9556,4 +9556,20 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Відомості про контакт';
+
+  @override
+  String get links_contactTitle => 'Додати контакт?';
+
+  @override
+  String get links_importAdvert => 'Додати цей контакт до радіо?';
+
+  @override
+  String get links_connectFirst =>
+      'Спершу під\'єднайте радіо, потім знову відкрийте посилання.';
+
+  @override
+  String get links_added => 'Контакт додано';
+
+  @override
+  String get links_notContact => 'Це посилання не є контактом MeshCore.';
 }
