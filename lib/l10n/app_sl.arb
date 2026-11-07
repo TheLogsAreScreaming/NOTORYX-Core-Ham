@@ -4181,5 +4181,7 @@
   "a11y_toggleFlash": "Svetilka",
   "a11y_switchCamera": "Preklopi kamero",
   "los_worst": "NAJSLABŠE",
-  "los_selectedObstruction": "Izbrana ovira"
+  "los_selectedObstruction": "Izbrana ovira",
+  "bastionHome_stationOk": "Ime vozlišča in pas sta v redu",
+  "bastionHome_stationConnectToCheck": "Povežite radio, da preverite njegovo ime in pas"
 }

@@ -10039,4 +10039,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Obstacle sélectionné';
+
+  @override
+  String get bastionHome_stationOk => 'Nom du nœud et bande corrects';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Connectez une radio pour vérifier son nom et sa bande';
 }

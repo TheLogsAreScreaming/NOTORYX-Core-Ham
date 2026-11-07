@@ -9989,4 +9989,11 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Izbrana ovira';
+
+  @override
+  String get bastionHome_stationOk => 'Ime vozlišča in pas sta v redu';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Povežite radio, da preverite njegovo ime in pas';
 }

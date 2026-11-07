@@ -9526,4 +9526,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => '選択した障害物';
+
+  @override
+  String get bastionHome_stationOk => 'ノード名とバンドは問題ありません';
+
+  @override
+  String get bastionHome_stationConnectToCheck => '無線機を接続して名前とバンドを確認してください';
 }

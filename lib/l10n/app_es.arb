@@ -4315,5 +4315,7 @@
   "a11y_toggleFlash": "Linterna",
   "a11y_switchCamera": "Cambiar cámara",
   "los_worst": "PEOR",
-  "los_selectedObstruction": "Obstrucción seleccionada"
+  "los_selectedObstruction": "Obstrucción seleccionada",
+  "bastionHome_stationOk": "El nombre del nodo y la banda son correctos",
+  "bastionHome_stationConnectToCheck": "Conecta una radio para comprobar su nombre y banda"
 }

@@ -9325,4 +9325,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => '选中的障碍物';
+
+  @override
+  String get bastionHome_stationOk => '节点名称和频段正常';
+
+  @override
+  String get bastionHome_stationConnectToCheck => '连接电台以检查其名称和频段';
 }

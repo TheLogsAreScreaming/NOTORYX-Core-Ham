@@ -9990,4 +9990,11 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Избрано препятствие';
+
+  @override
+  String get bastionHome_stationOk => 'Името на възела и обхватът са наред';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Свържете радио, за да проверите името и обхвата му';
 }

@@ -4181,5 +4181,7 @@
   "a11y_toggleFlash": "Фенерче",
   "a11y_switchCamera": "Смени камерата",
   "los_worst": "НАЙ-ЛОШО",
-  "los_selectedObstruction": "Избрано препятствие"
+  "los_selectedObstruction": "Избрано препятствие",
+  "bastionHome_stationOk": "Името на възела и обхватът са наред",
+  "bastionHome_stationConnectToCheck": "Свържете радио, за да проверите името и обхвата му"
 }

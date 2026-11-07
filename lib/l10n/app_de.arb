@@ -4315,5 +4315,7 @@
   "a11y_toggleFlash": "Taschenlampe",
   "a11y_switchCamera": "Kamera wechseln",
   "los_worst": "SCHLECHTESTE",
-  "los_selectedObstruction": "Ausgewähltes Hindernis"
+  "los_selectedObstruction": "Ausgewähltes Hindernis",
+  "bastionHome_stationOk": "Knotenname und Band stimmen",
+  "bastionHome_stationConnectToCheck": "Funkgerät verbinden, um Name und Band zu prüfen"
 }

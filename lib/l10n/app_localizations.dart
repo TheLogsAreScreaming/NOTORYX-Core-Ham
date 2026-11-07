@@ -16734,6 +16734,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Selected obstruction'**
   String get los_selectedObstruction;
+
+  /// No description provided for @bastionHome_stationOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Node name and band check out'**
+  String get bastionHome_stationOk;
+
+  /// No description provided for @bastionHome_stationConnectToCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a radio to check its name and band'**
+  String get bastionHome_stationConnectToCheck;
 }
 
 class _AppLocalizationsDelegate

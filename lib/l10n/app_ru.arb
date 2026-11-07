@@ -3484,5 +3484,7 @@
   "a11y_toggleFlash": "Фонарик",
   "a11y_switchCamera": "Сменить камеру",
   "los_worst": "ХУДШЕЕ",
-  "los_selectedObstruction": "Выбранное препятствие"
+  "los_selectedObstruction": "Выбранное препятствие",
+  "bastionHome_stationOk": "Имя узла и диапазон в порядке",
+  "bastionHome_stationConnectToCheck": "Подключите радио, чтобы проверить имя и диапазон"
 }

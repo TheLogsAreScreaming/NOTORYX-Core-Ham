@@ -9988,4 +9988,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Obstrução selecionada';
+
+  @override
+  String get bastionHome_stationOk => 'Nome do nó e banda estão corretos';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Ligue um rádio para verificar o nome e a banda';
 }

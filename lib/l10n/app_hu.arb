@@ -4219,5 +4219,7 @@
   "a11y_toggleFlash": "Zseblámpa",
   "a11y_switchCamera": "Kamera váltása",
   "los_worst": "LEGROSSZABB",
-  "los_selectedObstruction": "Kiválasztott akadály"
+  "los_selectedObstruction": "Kiválasztott akadály",
+  "bastionHome_stationOk": "A csomópont neve és a sáv rendben",
+  "bastionHome_stationConnectToCheck": "Csatlakoztass egy rádiót a neve és sávja ellenőrzéséhez"
 }

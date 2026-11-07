@@ -4181,5 +4181,7 @@
   "a11y_toggleFlash": "Lanterna",
   "a11y_switchCamera": "Trocar câmera",
   "los_worst": "PIOR",
-  "los_selectedObstruction": "Obstrução selecionada"
+  "los_selectedObstruction": "Obstrução selecionada",
+  "bastionHome_stationOk": "Nome do nó e banda estão corretos",
+  "bastionHome_stationConnectToCheck": "Ligue um rádio para verificar o nome e a banda"
 }

@@ -9540,4 +9540,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => '선택한 장애물';
+
+  @override
+  String get bastionHome_stationOk => '노드 이름과 대역이 정상입니다';
+
+  @override
+  String get bastionHome_stationConnectToCheck => '무선기를 연결해 이름과 대역을 확인하세요';
 }

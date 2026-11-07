@@ -4315,5 +4315,7 @@
   "a11y_toggleFlash": "Torcia",
   "a11y_switchCamera": "Cambia fotocamera",
   "los_worst": "PEGGIORE",
-  "los_selectedObstruction": "Ostacolo selezionato"
+  "los_selectedObstruction": "Ostacolo selezionato",
+  "bastionHome_stationOk": "Nome del nodo e banda corretti",
+  "bastionHome_stationConnectToCheck": "Collega una radio per controllarne nome e banda"
 }

@@ -9964,4 +9964,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Geselecteerde obstructie';
+
+  @override
+  String get bastionHome_stationOk => 'Knooppuntnaam en band kloppen';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Verbind een radio om de naam en band te controleren';
 }

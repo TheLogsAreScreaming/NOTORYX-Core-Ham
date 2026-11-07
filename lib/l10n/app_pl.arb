@@ -4219,5 +4219,7 @@
   "a11y_toggleFlash": "Latarka",
   "a11y_switchCamera": "Przełącz kamerę",
   "los_worst": "NAJGORSZE",
-  "los_selectedObstruction": "Wybrana przeszkoda"
+  "los_selectedObstruction": "Wybrana przeszkoda",
+  "bastionHome_stationOk": "Nazwa węzła i pasmo są poprawne",
+  "bastionHome_stationConnectToCheck": "Połącz radio, aby sprawdzić jego nazwę i pasmo"
 }
