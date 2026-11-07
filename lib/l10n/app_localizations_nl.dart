@@ -9496,4 +9496,15 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Contactgegevens';
+
+  @override
+  String get radioBuzzer_title => 'Zoemer van de radio';
+
+  @override
+  String get radioBuzzer_hint =>
+      'De radio piept bij nieuwe berichten. Alleen zichtbaar bij radio\'s met een zoemer.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'De radio nam de wijziging niet aan. Probeer het opnieuw.';
 }

@@ -4179,5 +4179,8 @@
   "repeaterTools_toolsTitle": "Herramientas",
   "repeaterTools_regionSetupHint": "Busca el árbol de regiones de tu zona y copia sus comandos",
   "routes_failingOnly": "Solo rutas fallidas",
-  "routes_contactDetails": "Datos del contacto"
+  "routes_contactDetails": "Datos del contacto",
+  "radioBuzzer_title": "Zumbador de la radio",
+  "radioBuzzer_hint": "La radio pita con los mensajes nuevos. Solo aparece en radios con zumbador.",
+  "radioBuzzer_failed": "La radio no aceptó el cambio. Inténtalo de nuevo."
 }

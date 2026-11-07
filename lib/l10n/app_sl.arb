@@ -4045,5 +4045,8 @@
   "repeaterTools_toolsTitle": "Orodja",
   "repeaterTools_regionSetupHint": "Poiščite regijsko drevo za svoje območje in kopirajte njegove ukaze",
   "routes_failingOnly": "Samo neuspešne poti",
-  "routes_contactDetails": "Podrobnosti stika"
+  "routes_contactDetails": "Podrobnosti stika",
+  "radioBuzzer_title": "Brenčač radia",
+  "radioBuzzer_hint": "Radio zapiska ob novih sporočilih. Prikazano samo za radie z brenčačem.",
+  "radioBuzzer_failed": "Radio ni sprejel spremembe. Poskusite znova."
 }

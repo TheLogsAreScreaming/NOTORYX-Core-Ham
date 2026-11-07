@@ -9515,4 +9515,15 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Данни за контакта';
+
+  @override
+  String get radioBuzzer_title => 'Звуков сигнал на радиото';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Радиото пиука при нови съобщения. Показва се само за радиа със зумер.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Радиото не прие промяната. Опитайте отново.';
 }

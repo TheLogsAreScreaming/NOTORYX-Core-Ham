@@ -4083,5 +4083,8 @@
   "repeaterTools_toolsTitle": "Narzędzia",
   "repeaterTools_regionSetupHint": "Znajdź drzewo regionów dla swojej okolicy i skopiuj jego polecenia",
   "routes_failingOnly": "Tylko nieudane trasy",
-  "routes_contactDetails": "Szczegóły kontaktu"
+  "routes_contactDetails": "Szczegóły kontaktu",
+  "radioBuzzer_title": "Brzęczyk radia",
+  "radioBuzzer_hint": "Radio piszczy przy nowych wiadomościach. Widoczne tylko dla radiów z brzęczykiem.",
+  "radioBuzzer_failed": "Radio nie przyjęło zmiany. Spróbuj ponownie."
 }

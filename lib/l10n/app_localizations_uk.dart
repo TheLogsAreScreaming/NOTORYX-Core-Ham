@@ -9556,4 +9556,14 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Відомості про контакт';
+
+  @override
+  String get radioBuzzer_title => 'Зумер радіо';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Радіо пищить при нових повідомленнях. Показується лише для радіо із зумером.';
+
+  @override
+  String get radioBuzzer_failed => 'Радіо не прийняло зміну. Спробуйте ще раз.';
 }

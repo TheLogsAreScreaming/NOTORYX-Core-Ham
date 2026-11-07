@@ -4045,5 +4045,8 @@
   "repeaterTools_toolsTitle": "Инструменти",
   "repeaterTools_regionSetupHint": "Намерете регионалното дърво за района си и копирайте командите му",
   "routes_failingOnly": "Само неуспешни маршрути",
-  "routes_contactDetails": "Данни за контакта"
+  "routes_contactDetails": "Данни за контакта",
+  "radioBuzzer_title": "Звуков сигнал на радиото",
+  "radioBuzzer_hint": "Радиото пиука при нови съобщения. Показва се само за радиа със зумер.",
+  "radioBuzzer_failed": "Радиото не прие промяната. Опитайте отново."
 }

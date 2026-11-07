@@ -15954,6 +15954,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact details'**
   String get routes_contactDetails;
+
+  /// No description provided for @radioBuzzer_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio buzzer'**
+  String get radioBuzzer_title;
+
+  /// No description provided for @radioBuzzer_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Beeps on the radio for new messages. Only shown for radios with a buzzer.'**
+  String get radioBuzzer_hint;
+
+  /// No description provided for @radioBuzzer_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio didn\'t accept the change. Try again.'**
+  String get radioBuzzer_failed;
 }
 
 class _AppLocalizationsDelegate

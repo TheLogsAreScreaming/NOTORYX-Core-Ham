@@ -9544,4 +9544,15 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Kontaktdetails';
+
+  @override
+  String get radioBuzzer_title => 'Summer des Funkgeräts';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Das Funkgerät piept bei neuen Nachrichten. Nur bei Funkgeräten mit Summer sichtbar.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Das Funkgerät hat die Änderung nicht übernommen. Versuche es erneut.';
 }

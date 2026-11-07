@@ -4179,5 +4179,8 @@
   "repeaterTools_toolsTitle": "Strumenti",
   "repeaterTools_regionSetupHint": "Trova l'albero delle regioni della tua zona e copiane i comandi",
   "routes_failingOnly": "Solo percorsi falliti",
-  "routes_contactDetails": "Dettagli contatto"
+  "routes_contactDetails": "Dettagli contatto",
+  "radioBuzzer_title": "Cicalino della radio",
+  "radioBuzzer_hint": "La radio emette un bip per i nuovi messaggi. Compare solo per radio con cicalino.",
+  "radioBuzzer_failed": "La radio non ha accettato la modifica. Riprova."
 }

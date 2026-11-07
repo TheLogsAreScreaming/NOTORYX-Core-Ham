@@ -5439,5 +5439,8 @@
   "repeaterTools_toolsTitle": "Tools",
   "repeaterTools_regionSetupHint": "Look up your area's region tree and copy its commands",
   "routes_failingOnly": "Only routes that failed",
-  "routes_contactDetails": "Contact details"
+  "routes_contactDetails": "Contact details",
+  "radioBuzzer_title": "Radio buzzer",
+  "radioBuzzer_hint": "Beeps on the radio for new messages. Only shown for radios with a buzzer.",
+  "radioBuzzer_failed": "The radio didn't accept the change. Try again."
 }

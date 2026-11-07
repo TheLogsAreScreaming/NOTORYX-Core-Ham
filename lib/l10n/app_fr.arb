@@ -4179,5 +4179,8 @@
   "repeaterTools_toolsTitle": "Outils",
   "repeaterTools_regionSetupHint": "Trouvez l’arbre de régions de votre secteur et copiez ses commandes",
   "routes_failingOnly": "Seulement les routes en échec",
-  "routes_contactDetails": "Détails du contact"
+  "routes_contactDetails": "Détails du contact",
+  "radioBuzzer_title": "Buzzer de la radio",
+  "radioBuzzer_hint": "La radio bipe à chaque nouveau message. Visible seulement pour les radios avec buzzer.",
+  "radioBuzzer_failed": "La radio n’a pas accepté le changement. Réessayez."
 }

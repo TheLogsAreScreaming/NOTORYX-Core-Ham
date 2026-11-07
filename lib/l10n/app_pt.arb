@@ -4045,5 +4045,8 @@
   "repeaterTools_toolsTitle": "Ferramentas",
   "repeaterTools_regionSetupHint": "Procure a árvore de regiões da sua zona e copie os comandos",
   "routes_failingOnly": "Só rotas que falharam",
-  "routes_contactDetails": "Detalhes do contacto"
+  "routes_contactDetails": "Detalhes do contacto",
+  "radioBuzzer_title": "Besouro do rádio",
+  "radioBuzzer_hint": "O rádio apita com mensagens novas. Só aparece em rádios com besouro.",
+  "radioBuzzer_failed": "O rádio não aceitou a alteração. Tente novamente."
 }

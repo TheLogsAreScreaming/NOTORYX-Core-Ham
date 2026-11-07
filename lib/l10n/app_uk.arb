@@ -4025,5 +4025,8 @@
   "repeaterTools_toolsTitle": "Інструменти",
   "repeaterTools_regionSetupHint": "Знайдіть дерево регіонів для своєї місцевості й скопіюйте його команди",
   "routes_failingOnly": "Лише невдалі маршрути",
-  "routes_contactDetails": "Відомості про контакт"
+  "routes_contactDetails": "Відомості про контакт",
+  "radioBuzzer_title": "Зумер радіо",
+  "radioBuzzer_hint": "Радіо пищить при нових повідомленнях. Показується лише для радіо із зумером.",
+  "radioBuzzer_failed": "Радіо не прийняло зміну. Спробуйте ще раз."
 }

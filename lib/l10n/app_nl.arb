@@ -4045,5 +4045,8 @@
   "repeaterTools_toolsTitle": "Hulpmiddelen",
   "repeaterTools_regionSetupHint": "Zoek de regioboom van je gebied en kopieer de opdrachten",
   "routes_failingOnly": "Alleen mislukte routes",
-  "routes_contactDetails": "Contactgegevens"
+  "routes_contactDetails": "Contactgegevens",
+  "radioBuzzer_title": "Zoemer van de radio",
+  "radioBuzzer_hint": "De radio piept bij nieuwe berichten. Alleen zichtbaar bij radio's met een zoemer.",
+  "radioBuzzer_failed": "De radio nam de wijziging niet aan. Probeer het opnieuw."
 }

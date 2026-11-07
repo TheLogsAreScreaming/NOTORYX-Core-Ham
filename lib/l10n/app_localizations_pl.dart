@@ -9566,4 +9566,15 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Szczegóły kontaktu';
+
+  @override
+  String get radioBuzzer_title => 'Brzęczyk radia';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Radio piszczy przy nowych wiadomościach. Widoczne tylko dla radiów z brzęczykiem.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Radio nie przyjęło zmiany. Spróbuj ponownie.';
 }

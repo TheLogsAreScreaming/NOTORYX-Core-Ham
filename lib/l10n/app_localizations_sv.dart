@@ -9456,4 +9456,14 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Kontaktuppgifter';
+
+  @override
+  String get radioBuzzer_title => 'Radions summer';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Radion piper vid nya meddelanden. Visas bara för radior med summer.';
+
+  @override
+  String get radioBuzzer_failed => 'Radion godtog inte ändringen. Försök igen.';
 }

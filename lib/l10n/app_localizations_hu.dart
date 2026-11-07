@@ -9520,4 +9520,15 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Névjegy adatai';
+
+  @override
+  String get radioBuzzer_title => 'Rádió hangjelzője';
+
+  @override
+  String get radioBuzzer_hint =>
+      'A rádió csipog új üzenetnél. Csak hangjelzős rádióknál látszik.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'A rádió nem fogadta el a változtatást. Próbáld újra.';
 }

@@ -3348,5 +3348,8 @@
   "repeaterTools_toolsTitle": "Инструменты",
   "repeaterTools_regionSetupHint": "Найдите дерево регионов для своей местности и скопируйте его команды",
   "routes_failingOnly": "Только неудачные маршруты",
-  "routes_contactDetails": "Сведения о контакте"
+  "routes_contactDetails": "Сведения о контакте",
+  "radioBuzzer_title": "Зуммер радио",
+  "radioBuzzer_hint": "Радио пищит при новых сообщениях. Показывается только для радио с зуммером.",
+  "radioBuzzer_failed": "Радио не приняло изменение. Попробуйте снова."
 }

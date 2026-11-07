@@ -8888,4 +8888,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get routes_contactDetails => '联系人详情';
+
+  @override
+  String get radioBuzzer_title => '电台蜂鸣器';
+
+  @override
+  String get radioBuzzer_hint => '收到新消息时电台会发出蜂鸣。仅在带蜂鸣器的电台上显示。';
+
+  @override
+  String get radioBuzzer_failed => '电台未接受此更改。请重试。';
 }

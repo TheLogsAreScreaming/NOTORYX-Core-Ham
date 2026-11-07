@@ -4179,5 +4179,8 @@
   "repeaterTools_toolsTitle": "도구",
   "repeaterTools_regionSetupHint": "내 지역의 리전 트리를 찾아 명령을 복사합니다",
   "routes_failingOnly": "실패한 경로만",
-  "routes_contactDetails": "연락처 정보"
+  "routes_contactDetails": "연락처 정보",
+  "radioBuzzer_title": "무전기 부저",
+  "radioBuzzer_hint": "새 메시지가 오면 무전기가 삐 소리를 냅니다. 부저가 있는 무전기에서만 표시됩니다.",
+  "radioBuzzer_failed": "무전기가 변경을 받아들이지 않았습니다. 다시 시도하세요."
 }

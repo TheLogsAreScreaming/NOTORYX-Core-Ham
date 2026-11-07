@@ -9514,4 +9514,15 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Podrobnosti stika';
+
+  @override
+  String get radioBuzzer_title => 'Brenčač radia';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Radio zapiska ob novih sporočilih. Prikazano samo za radie z brenčačem.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Radio ni sprejel spremembe. Poskusite znova.';
 }

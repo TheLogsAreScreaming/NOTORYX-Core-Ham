@@ -4050,5 +4050,8 @@
   "repeaterTools_toolsTitle": "工具",
   "repeaterTools_regionSetupHint": "查找你所在地区的区域树并复制其命令",
   "routes_failingOnly": "仅失败的路由",
-  "routes_contactDetails": "联系人详情"
+  "routes_contactDetails": "联系人详情",
+  "radioBuzzer_title": "电台蜂鸣器",
+  "radioBuzzer_hint": "收到新消息时电台会发出蜂鸣。仅在带蜂鸣器的电台上显示。",
+  "radioBuzzer_failed": "电台未接受此更改。请重试。"
 }

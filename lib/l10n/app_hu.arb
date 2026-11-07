@@ -4083,5 +4083,8 @@
   "repeaterTools_toolsTitle": "Eszközök",
   "repeaterTools_regionSetupHint": "Keresd meg a környéked régiófáját, és másold a parancsait",
   "routes_failingOnly": "Csak sikertelen útvonalak",
-  "routes_contactDetails": "Névjegy adatai"
+  "routes_contactDetails": "Névjegy adatai",
+  "radioBuzzer_title": "Rádió hangjelzője",
+  "radioBuzzer_hint": "A rádió csipog új üzenetnél. Csak hangjelzős rádióknál látszik.",
+  "radioBuzzer_failed": "A rádió nem fogadta el a változtatást. Próbáld újra."
 }
