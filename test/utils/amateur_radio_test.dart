@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:meshcore_open/services/image_chunk_transport.dart';
 import 'package:meshcore_open/utils/amateur_radio.dart';
 
 Uint8List _hex(String s) => Uint8List.fromList([
@@ -89,5 +90,10 @@ void main() {
     expect(isAmateurFrequencyMHz(869.618), isFalse);
     expect(isAmateurFrequencyMHz(910.525 + 20), isFalse);
     expect(isAmateurFrequencyMHz(419.9), isFalse);
+  });
+
+  test('picture chunks fit a ham GRP_DATA packet', () {
+    expect(amateurMaxGroupDataBytes, 157);
+    expect(kImageChunkBlobBytes, lessThanOrEqualTo(amateurMaxGroupDataBytes));
   });
 }

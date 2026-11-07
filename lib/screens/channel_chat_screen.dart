@@ -33,7 +33,6 @@ import '../services/read_aloud_service.dart';
 import '../services/app_settings_service.dart';
 import '../services/chat_text_scale_service.dart';
 import '../services/image_chunk_transport.dart';
-import '../utils/amateur_radio.dart';
 import '../services/image_codec_service.dart';
 import '../services/received_image_store.dart';
 import '../services/translation_service.dart';
@@ -1862,14 +1861,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final maxBytes = _maxMessageBytes(connector, corridor);
     final settings = context.watch<AppSettingsService>().settings;
     final imageCodecDownloading = _isImageCodecDownloading(context);
-    // Picture chunks are sized for stock 184-byte payloads; ham frames carry
-    // 176 (8 bytes go to the station ID), so the radio would refuse them.
-    final imagesFitAmateurFrames =
-        kImageChunkBlobBytes <= amateurMaxGroupDataBytes;
     final showImageAction =
-        imagesFitAmateurFrames &&
-        settings.imageMessagesEnabled &&
-        !imageCodecDownloading;
+        settings.imageMessagesEnabled && !imageCodecDownloading;
     final showCorridorAction = connector.floodCorridorSupported == true;
     final menuItemCount =
         3 + (showImageAction ? 1 : 0) + (showCorridorAction ? 1 : 0);

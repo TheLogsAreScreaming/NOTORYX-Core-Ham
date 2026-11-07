@@ -124,7 +124,10 @@ void main() {
     );
     final bytes = p.encode();
     expect(bytes.length, signedPostPayloadBytes);
-    expect(signedPostPayloadBytes, lessThanOrEqualTo(163));
+    expect(
+      signedPostPayloadBytes,
+      lessThanOrEqualTo(157),
+    ); // ham GRP_DATA limit
     final back = SignedPostPayload.decode(bytes)!;
     expect(back.publicKey, p.publicKey);
     expect(back.timestamp, _ts);

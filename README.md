@@ -30,6 +30,8 @@ NOTORYX Core Ham is the amateur radio (FCC Part 97) edition of NOTORYX Core. Pai
 | Repeater login | password sent encrypted | One-time proof; the password never goes on air |
 | Other traffic | — | Ordinary (Part 15) MeshCore traffic on the same channel is ignored |
 | Operator | — | **Licensed operator** setup: call sign, licence class and a coordination acknowledgment |
+| Power | — | Estimated output and ERP from the board's amplifier and your antenna system, flagged above 10 W (§97.311) |
+| Location | — | Cautions for the §97.303 limits: the 33 cm exclusion areas and 420–430 MHz north of Line A |
 
 The NOTORYX Ham firmware isn't compatible with ordinary MeshCore on the air. Every radio in your mesh, repeaters included, needs it.
 
@@ -54,7 +56,7 @@ Station G2 and G3 companions are USB only: the Bluetooth build doesn't fit on th
 3. **Set up your operator.** Open **Settings → Licensed operator**, enter your call sign and licence class, read the guide and tick the acknowledgment. Until you do, a banner reminds you on every screen while a radio is connected.
 4. **Name your radio with your call sign.** The Licensed operator page offers **Set to W1AW** (with your call); you can add a suffix like `W1AW-2` or `W1AW Base`.
 5. **Pick the agreed channel.** **Settings → Radio settings → Presets** starts with **US 33cm**, the firmware default.
-6. **Start low.** Use the least transmit power that works, and do an RF exposure evaluation before running higher power.
+6. **Check power and location.** On the Licensed operator page, enter any external amplifier, feedline loss and antenna gain. It estimates your output and ERP and warns about §97.303 location limits. Use the least power that works, and do an RF exposure evaluation before running higher power.
 
 The tabs at the bottom are **Home**, **Chats**, **Nodes**, **Map** and **More**. Home is where check-in, SOS and your radio's readings live; **More** holds every tool and setting, with a search box.
 
@@ -75,7 +77,7 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 - **Android home-screen widget:** radio status, battery and unread count, with one-tap Check in and SOS.
 
 ### Messaging
-- Direct and channel messages with delivery status, reactions and GIFs, up to 152 characters. Tapping a notification opens that chat. (Picture messages are off for now: they don't fit in ham frames yet.)
+- Direct and channel messages with delivery status, reactions, GIFs and picture messages, up to 152 characters. Pictures are sent in 157-byte chunks to fit ham frames. Tapping a notification opens that chat.
 - **Find channels:** a directory of public hashtag channels (local ones first), channels heard on air that you haven't joined, and **Active online**: the #channels an online analyzer has seen in use, with one-tap Join.
 - **Message search**, per-chat **drafts**, **read aloud** and on-device translation.
 - **Share your position or a contact** from the message box. Received contacts can be added in one tap.
