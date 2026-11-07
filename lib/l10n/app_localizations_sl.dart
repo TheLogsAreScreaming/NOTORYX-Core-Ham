@@ -1548,7 +1548,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'Prejeto prek MQTT, vaš radio ga ni slišal';
 
   @override
-  String get channels_private => 'Zasebni';
+  String get channels_private => 'S ključem';
 
   @override
   String get channels_editChannel => 'Uredi kanal';
@@ -1698,17 +1698,17 @@ class AppLocalizationsSl extends AppLocalizations {
   String get channels_sortUnread => 'Nerešeno';
 
   @override
-  String get channels_createPrivateChannel => 'Ustvari zasebno kanal.';
+  String get channels_createPrivateChannel => 'Ustvari kanal s ključem';
 
   @override
   String get channels_createPrivateChannelDesc =>
-      'Varno zaklenjeno s skrivnim ključem.';
+      'Uporablja skupni ključ za izbiro kanala. Sporočila lahko še vedno prebere vsak.';
 
   @override
-  String get channels_joinPrivateChannel => 'Pridružite se zasebni skupini';
+  String get channels_joinPrivateChannel => 'Pridruži se kanalu s ključem';
 
   @override
-  String get channels_joinPrivateChannelDesc => 'Ročno vnesite zaporni ključ.';
+  String get channels_joinPrivateChannelDesc => 'Vnesite skupni ključ kanala.';
 
   @override
   String get channels_joinPublicChannel => 'Pridružite se javnemu kanalu';
@@ -7422,7 +7422,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Radio potrebuje strojno programsko opremo MeshCore companion, ki podpira izbrano povezavo. Podpora je odvisna od plošče in različice; sama vrata USB še ne pomenijo podpore za serijski USB. Preverite navodila za svojo ploščo in nameščeno različico. Strojna programska oprema repetitorja ali strežnika sobe ni companion. Neuspešna povezava sama po sebi ne pomeni, da morate znova zapisati strojno programsko opremo.';
+      'Radio potrebuje strojno programsko opremo NOTORYX Ham companion, ki podpira izbrano povezavo. Podpora je odvisna od plošče in različice; sama vrata USB še ne pomenijo podpore za serijski USB. Preverite navodila za svojo ploščo in nameščeno različico. Strojna programska oprema repetitorja ali strežnika sobe ni companion. Neuspešna povezava sama po sebi ne pomeni, da morate znova zapisati strojno programsko opremo.';
 
   @override
   String get setupWizard_settings =>
@@ -7974,7 +7974,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Vklopite radio in ga imejte nekaj metrov stran. Potrebuje MeshCore companion strojno programsko opremo.';
+      'Vklopite radio in ga imejte nekaj metrov stran. Potrebuje NOTORYX Ham companion strojno programsko opremo.';
 
   @override
   String get scanner_tipsTitle => 'Ne vidite svojega radia?';
@@ -7984,7 +7984,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Potrebuje MeshCore companion strojno programsko opremo. Repetitorji in strežniki sob tukaj niso prikazani.';
+      'Potrebuje NOTORYX Ham companion strojno programsko opremo. Repetitorji in strežniki sob tukaj niso prikazani.';
 
   @override
   String get scanner_tipOtherDevice =>

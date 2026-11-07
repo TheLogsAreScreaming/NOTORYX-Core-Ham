@@ -1556,7 +1556,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'MQTT-n keresztül érkezett, a rádiója nem hallotta';
 
   @override
-  String get channels_private => 'Magán';
+  String get channels_private => 'Kulcsos';
 
   @override
   String get channels_editChannel => 'Csatorna szerkesztése';
@@ -1704,18 +1704,18 @@ class AppLocalizationsHu extends AppLocalizations {
   String get channels_sortUnread => 'Nem olvasott';
 
   @override
-  String get channels_createPrivateChannel =>
-      'Hozzon létre egy privát csatornát';
+  String get channels_createPrivateChannel => 'Kulcsos csatorna létrehozása';
 
   @override
-  String get channels_createPrivateChannelDesc => 'Titkos kulccsal biztosítva.';
+  String get channels_createPrivateChannelDesc =>
+      'Közös kulccsal választja ki a csatornát. Az üzeneteket továbbra is bárki elolvashatja.';
 
   @override
-  String get channels_joinPrivateChannel => 'Csatlakozz egy privát csatornához';
+  String get channels_joinPrivateChannel => 'Csatlakozás kulcsos csatornához';
 
   @override
   String get channels_joinPrivateChannelDesc =>
-      'Adjon meg kézzel egy titkos kulcsot.';
+      'Add meg a csatorna közös kulcsát.';
 
   @override
   String get channels_joinPublicChannel =>
@@ -7416,7 +7416,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'A rádiónak a választott kapcsolatot támogató MeshCore companion firmware kell. A támogatás panelenként és firmware-verziónként eltér; egy USB-aljzat önmagában nem jelent USB-soros támogatást. Nézze meg a panelje és a telepített verzió leírását. Az ismétlő vagy szobaszerver firmware nem companion. Egy sikertelen kapcsolódás önmagában nem jelenti, hogy újra kell flashelni.';
+      'A rádiónak a választott kapcsolatot támogató NOTORYX Ham companion firmware kell. A támogatás panelenként és firmware-verziónként eltér; egy USB-aljzat önmagában nem jelent USB-soros támogatást. Nézze meg a panelje és a telepített verzió leírását. Az ismétlő vagy szobaszerver firmware nem companion. Egy sikertelen kapcsolódás önmagában nem jelenti, hogy újra kell flashelni.';
 
   @override
   String get setupWizard_settings =>
@@ -7972,7 +7972,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Kapcsold be a rádiót, és tartsd néhány méteren belül. MeshCore companion firmware kell hozzá.';
+      'Kapcsold be a rádiót, és tartsd néhány méteren belül. NOTORYX Ham companion firmware kell hozzá.';
 
   @override
   String get scanner_tipsTitle => 'Nem látod a rádiódat?';
@@ -7983,7 +7983,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'MeshCore companion firmware kell hozzá. Az átjátszók és szobaszerverek itt nem jelennek meg.';
+      'NOTORYX Ham companion firmware kell hozzá. Az átjátszók és szobaszerverek itt nem jelennek meg.';
 
   @override
   String get scanner_tipOtherDevice =>

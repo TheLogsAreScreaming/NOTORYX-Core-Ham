@@ -1564,7 +1564,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Получено через MQTT, ваше радио его не слышало';
 
   @override
-  String get channels_private => 'Приватный';
+  String get channels_private => 'С ключом';
 
   @override
   String get channels_editChannel => 'Изменить канал';
@@ -1713,18 +1713,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get channels_sortUnread => 'По непрочитанным';
 
   @override
-  String get channels_createPrivateChannel => 'Создать приватный канал';
+  String get channels_createPrivateChannel => 'Создать канал с ключом';
 
   @override
-  String get channels_createPrivateChannelDesc => 'Защищён секретным ключом.';
+  String get channels_createPrivateChannelDesc =>
+      'Использует общий ключ для выбора канала. Сообщения по-прежнему может прочитать любой.';
 
   @override
-  String get channels_joinPrivateChannel =>
-      'Присоединиться к приватному каналу';
+  String get channels_joinPrivateChannel => 'Присоединиться к каналу с ключом';
 
   @override
-  String get channels_joinPrivateChannelDesc =>
-      'Введите секретный ключ вручную.';
+  String get channels_joinPrivateChannelDesc => 'Введите общий ключ канала.';
 
   @override
   String get channels_joinPublicChannel => 'Присоединиться к публичному каналу';
@@ -7467,7 +7466,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Радио нужна прошивка MeshCore companion с поддержкой выбранного подключения. Поддержка зависит от платы и сборки прошивки; наличие USB-разъёма ещё не означает поддержку USB-serial. Проверьте инструкции для вашей платы и установленной сборки. Прошивка репитера или комнатного сервера не является companion. Неудачное подключение само по себе не значит, что нужно перепрошивать.';
+      'Радио нужна прошивка NOTORYX Ham companion с поддержкой выбранного подключения. Поддержка зависит от платы и сборки прошивки; наличие USB-разъёма ещё не означает поддержку USB-serial. Проверьте инструкции для вашей платы и установленной сборки. Прошивка репитера или комнатного сервера не является companion. Неудачное подключение само по себе не значит, что нужно перепрошивать.';
 
   @override
   String get setupWizard_settings =>
@@ -8018,7 +8017,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Включите радио и держите его в нескольких метрах. Нужна прошивка MeshCore companion.';
+      'Включите радио и держите его в нескольких метрах. Нужна прошивка NOTORYX Ham companion.';
 
   @override
   String get scanner_tipsTitle => 'Не видно вашего радио?';
@@ -8028,7 +8027,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Нужна прошивка MeshCore companion. Ретрансляторы и комнатные серверы здесь не отображаются.';
+      'Нужна прошивка NOTORYX Ham companion. Ретрансляторы и комнатные серверы здесь не отображаются.';
 
   @override
   String get scanner_tipOtherDevice =>

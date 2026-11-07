@@ -1464,7 +1464,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_viaMqttSemantics => '通过 MQTT 收到，你的电台未接收到';
 
   @override
-  String get channels_private => '私有';
+  String get channels_private => '带密钥';
 
   @override
   String get channels_editChannel => '编辑频道';
@@ -1609,16 +1609,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_sortUnread => '未读';
 
   @override
-  String get channels_createPrivateChannel => '创建私有频道';
+  String get channels_createPrivateChannel => '创建带密钥的频道';
 
   @override
-  String get channels_createPrivateChannelDesc => '使用密钥保护。';
+  String get channels_createPrivateChannelDesc => '用共享密钥选择频道。消息仍然任何人都能读取。';
 
   @override
-  String get channels_joinPrivateChannel => '加入私有频道';
+  String get channels_joinPrivateChannel => '加入带密钥的频道';
 
   @override
-  String get channels_joinPrivateChannelDesc => '手动输入密钥。';
+  String get channels_joinPrivateChannelDesc => '输入频道的共享密钥。';
 
   @override
   String get channels_joinPublicChannel => '加入公共频道';
@@ -6919,7 +6919,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      '你的电台需要支持所选连接方式的 MeshCore companion 固件。支持情况因板卡和固件版本而异；有 USB 接口并不代表支持 USB 串口。请查看你的板卡和已安装版本的说明。转发节点或房间服务器固件不是 companion。连接失败本身并不意味着需要重新刷写固件。';
+      '你的电台需要支持所选连接方式的 NOTORYX Ham companion 固件。支持情况因板卡和固件版本而异；有 USB 接口并不代表支持 USB 串口。请查看你的板卡和已安装版本的说明。转发节点或房间服务器固件不是 companion。连接失败本身并不意味着需要重新刷写固件。';
 
   @override
   String get setupWizard_settings =>
@@ -7437,7 +7437,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get scanner_findTitle => '找到你的电台';
 
   @override
-  String get scanner_heroHint => '打开电台并放在几米范围内。需要 MeshCore companion 固件。';
+  String get scanner_heroHint => '打开电台并放在几米范围内。需要 NOTORYX Ham companion 固件。';
 
   @override
   String get scanner_tipsTitle => '看不到你的电台？';
@@ -7447,7 +7447,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      '需要 MeshCore companion 固件。中继器和房间服务器不会显示在这里。';
+      '需要 NOTORYX Ham companion 固件。中继器和房间服务器不会显示在这里。';
 
   @override
   String get scanner_tipOtherDevice => '电台一次只能连接一台设备。请先断开它与其他手机或电脑的连接。';

@@ -1568,7 +1568,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Reçu via MQTT, non entendu par votre radio';
 
   @override
-  String get channels_private => 'Privé';
+  String get channels_private => 'À clé';
 
   @override
   String get channels_editChannel => 'Modifier le canal';
@@ -1718,18 +1718,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get channels_sortUnread => 'Non lus';
 
   @override
-  String get channels_createPrivateChannel => 'Créer un Canal Privé';
+  String get channels_createPrivateChannel => 'Créer un canal à clé';
 
   @override
   String get channels_createPrivateChannelDesc =>
-      'Sécurisé avec une clé secrète.';
+      'Utilise une clé partagée pour choisir le canal. Les messages restent lisibles par tous.';
 
   @override
-  String get channels_joinPrivateChannel => 'Rejoindre un Canal Privé';
+  String get channels_joinPrivateChannel => 'Rejoindre un canal à clé';
 
   @override
   String get channels_joinPrivateChannelDesc =>
-      'Entrer manuellement une clé secrète.';
+      'Saisissez la clé partagée du canal.';
 
   @override
   String get channels_joinPublicChannel => 'Rejoindre le canal public';
@@ -7458,7 +7458,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Votre radio a besoin d\'un firmware companion MeshCore compatible avec la connexion choisie. La prise en charge dépend de la carte et de la version du firmware ; une prise USB ne garantit pas la prise en charge de l\'USB série. Consultez les instructions de votre carte et de la version installée. Un firmware de répéteur ou de serveur de salon n\'est pas un companion. Un échec de connexion ne signifie pas à lui seul qu\'il faut reflasher.';
+      'Votre radio a besoin d\'un firmware companion NOTORYX Ham compatible avec la connexion choisie. La prise en charge dépend de la carte et de la version du firmware ; une prise USB ne garantit pas la prise en charge de l\'USB série. Consultez les instructions de votre carte et de la version installée. Un firmware de répéteur ou de serveur de salon n\'est pas un companion. Un échec de connexion ne signifie pas à lui seul qu\'il faut reflasher.';
 
   @override
   String get setupWizard_settings =>
@@ -8015,7 +8015,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Allumez votre radio et gardez-la à quelques mètres. Elle doit avoir le firmware MeshCore companion.';
+      'Allumez votre radio et gardez-la à quelques mètres. Elle doit avoir le firmware NOTORYX Ham companion.';
 
   @override
   String get scanner_tipsTitle => 'Vous ne voyez pas votre radio ?';
@@ -8025,7 +8025,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Elle doit avoir le firmware MeshCore companion. Les répéteurs et serveurs de salon n’apparaissent pas ici.';
+      'Elle doit avoir le firmware NOTORYX Ham companion. Les répéteurs et serveurs de salon n’apparaissent pas ici.';
 
   @override
   String get scanner_tipOtherDevice =>

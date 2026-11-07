@@ -1537,7 +1537,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Received via MQTT, not heard by your radio';
 
   @override
-  String get channels_private => 'Private';
+  String get channels_private => 'Keyed';
 
   @override
   String get channels_editChannel => 'Edit channel';
@@ -1684,16 +1684,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get channels_sortUnread => 'Unread';
 
   @override
-  String get channels_createPrivateChannel => 'Create a Private Channel';
+  String get channels_createPrivateChannel => 'Create a keyed channel';
 
   @override
-  String get channels_createPrivateChannelDesc => 'Secured with a secret key.';
+  String get channels_createPrivateChannelDesc =>
+      'Uses a shared key to pick the channel. Messages are still readable by anyone.';
 
   @override
-  String get channels_joinPrivateChannel => 'Join a Private Channel';
+  String get channels_joinPrivateChannel => 'Join a keyed channel';
 
   @override
-  String get channels_joinPrivateChannelDesc => 'Manually enter a secret key.';
+  String get channels_joinPrivateChannelDesc =>
+      'Enter the channel\'s shared key.';
 
   @override
   String get channels_joinPublicChannel => 'Join the Public Channel';
@@ -7320,7 +7322,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
+      'Your radio needs NOTORYX Ham companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.';
 
   @override
   String get setupWizard_settings =>
@@ -7869,7 +7871,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Turn your radio on and keep it within a few meters. It needs MeshCore companion firmware.';
+      'Turn your radio on and keep it within a few meters. It needs NOTORYX Ham companion firmware.';
 
   @override
   String get scanner_tipsTitle => 'Can\'t see your radio?';
@@ -7879,7 +7881,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'It needs MeshCore companion firmware. Repeaters and room servers don\'t show up here.';
+      'It needs NOTORYX Ham companion firmware. Repeaters and room servers don\'t show up here.';
 
   @override
   String get scanner_tipOtherDevice =>

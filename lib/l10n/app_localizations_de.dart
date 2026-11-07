@@ -1565,7 +1565,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Über MQTT empfangen, nicht von deinem Funkgerät gehört';
 
   @override
-  String get channels_private => 'Privat';
+  String get channels_private => 'Mit Schlüssel';
 
   @override
   String get channels_editChannel => 'Kanal bearbeiten';
@@ -1716,19 +1716,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get channels_sortUnread => 'Ungelesen';
 
   @override
-  String get channels_createPrivateChannel => 'Erstelle einen privaten Kanal';
+  String get channels_createPrivateChannel => 'Kanal mit Schlüssel erstellen';
 
   @override
   String get channels_createPrivateChannelDesc =>
-      'Verschlüsselt mit einem geheimen Schlüssel.';
+      'Nutzt einen gemeinsamen Schlüssel zur Kanalauswahl. Nachrichten bleiben für jeden lesbar.';
 
   @override
-  String get channels_joinPrivateChannel =>
-      'Treten Sie einem privaten Kanal bei';
+  String get channels_joinPrivateChannel => 'Kanal mit Schlüssel beitreten';
 
   @override
   String get channels_joinPrivateChannelDesc =>
-      'Manuelle Eingabe eines geheimen Schlüssels.';
+      'Gemeinsamen Schlüssel des Kanals eingeben.';
 
   @override
   String get channels_joinPublicChannel => 'Tritt dem öffentlichen Kanal bei';
@@ -7437,7 +7436,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Dein Funkgerät braucht MeshCore-Companion-Firmware, die die gewählte Verbindung unterstützt. Die Unterstützung hängt von Board und Firmware-Build ab; eine USB-Buchse allein bedeutet noch keine USB-Seriell-Unterstützung. Prüfe die Anleitung für dein genaues Board und den installierten Build. Repeater- oder Room-Server-Firmware ist kein Companion. Eine fehlgeschlagene Verbindung heißt nicht automatisch, dass du neu flashen musst.';
+      'Dein Funkgerät braucht NOTORYX Ham-Companion-Firmware, die die gewählte Verbindung unterstützt. Die Unterstützung hängt von Board und Firmware-Build ab; eine USB-Buchse allein bedeutet noch keine USB-Seriell-Unterstützung. Prüfe die Anleitung für dein genaues Board und den installierten Build. Repeater- oder Room-Server-Firmware ist kein Companion. Eine fehlgeschlagene Verbindung heißt nicht automatisch, dass du neu flashen musst.';
 
   @override
   String get setupWizard_settings =>
@@ -7993,7 +7992,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Schalte dein Funkgerät ein und halte es in wenigen Metern Nähe. Es braucht MeshCore-Companion-Firmware.';
+      'Schalte dein Funkgerät ein und halte es in wenigen Metern Nähe. Es braucht NOTORYX Ham-Companion-Firmware.';
 
   @override
   String get scanner_tipsTitle => 'Funkgerät nicht zu sehen?';
@@ -8003,7 +8002,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Es braucht MeshCore-Companion-Firmware. Repeater und Room-Server erscheinen hier nicht.';
+      'Es braucht NOTORYX Ham-Companion-Firmware. Repeater und Room-Server erscheinen hier nicht.';
 
   @override
   String get scanner_tipOtherDevice =>

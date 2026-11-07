@@ -1548,7 +1548,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'Prijaté cez MQTT, vaše rádio to nepočulo';
 
   @override
-  String get channels_private => 'Osobné';
+  String get channels_private => 'S kľúčom';
 
   @override
   String get channels_editChannel => 'Upraviť kanál';
@@ -1698,17 +1698,17 @@ class AppLocalizationsSk extends AppLocalizations {
   String get channels_sortUnread => 'Nezriadené';
 
   @override
-  String get channels_createPrivateChannel => 'Vytvorte súkromný kanál';
+  String get channels_createPrivateChannel => 'Vytvoriť kanál s kľúčom';
 
   @override
   String get channels_createPrivateChannelDesc =>
-      'Zabezpečené pomocou tajného kľúča.';
+      'Používa spoločný kľúč na výber kanála. Správy si stále môže prečítať ktokoľvek.';
 
   @override
-  String get channels_joinPrivateChannel => 'Pripojiť sa k súkromnému kanálu';
+  String get channels_joinPrivateChannel => 'Pripojiť sa ku kanálu s kľúčom';
 
   @override
-  String get channels_joinPrivateChannelDesc => 'Ručne zadajte tajný kľúč.';
+  String get channels_joinPrivateChannelDesc => 'Zadajte spoločný kľúč kanála.';
 
   @override
   String get channels_joinPublicChannel => 'Pripojte sa k verejnému kanálu';
@@ -7418,7 +7418,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      'Rádio potrebuje firmvér MeshCore companion, ktorý podporuje zvolené pripojenie. Podpora sa líši podľa dosky a zostavy firmvéru; samotný USB konektor ešte neznamená podporu USB sériového rozhrania. Pozrite si pokyny pre svoju dosku a nainštalovanú zostavu. Firmvér opakovača alebo servera miestnosti nie je companion. Neúspešné pripojenie samo osebe neznamená, že treba firmvér nahrať znova.';
+      'Rádio potrebuje firmvér NOTORYX Ham companion, ktorý podporuje zvolené pripojenie. Podpora sa líši podľa dosky a zostavy firmvéru; samotný USB konektor ešte neznamená podporu USB sériového rozhrania. Pozrite si pokyny pre svoju dosku a nainštalovanú zostavu. Firmvér opakovača alebo servera miestnosti nie je companion. Neúspešné pripojenie samo osebe neznamená, že treba firmvér nahrať znova.';
 
   @override
   String get setupWizard_settings =>
@@ -7969,7 +7969,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      'Zapnite rádio a majte ho do pár metrov. Potrebuje firmvér MeshCore companion.';
+      'Zapnite rádio a majte ho do pár metrov. Potrebuje firmvér NOTORYX Ham companion.';
 
   @override
   String get scanner_tipsTitle => 'Nevidíte svoje rádio?';
@@ -7979,7 +7979,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'Potrebuje firmvér MeshCore companion. Opakovače a izbové servery sa tu nezobrazujú.';
+      'Potrebuje firmvér NOTORYX Ham companion. Opakovače a izbové servery sa tu nezobrazujú.';
 
   @override
   String get scanner_tipOtherDevice =>

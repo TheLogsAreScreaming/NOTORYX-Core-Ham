@@ -1483,7 +1483,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channels_viaMqttSemantics => 'MQTT経由で受信、無線機では受信していません';
 
   @override
-  String get channels_private => '非公開';
+  String get channels_private => 'キー付き';
 
   @override
   String get channels_editChannel => 'チャンネルを編集';
@@ -1628,16 +1628,17 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channels_sortUnread => '未読';
 
   @override
-  String get channels_createPrivateChannel => 'プライベートチャンネルを作成する';
+  String get channels_createPrivateChannel => 'キー付きチャンネルを作成';
 
   @override
-  String get channels_createPrivateChannelDesc => '秘密鍵で保護されます。';
+  String get channels_createPrivateChannelDesc =>
+      '共有キーでチャンネルを選びます。メッセージは引き続き誰でも読めます。';
 
   @override
-  String get channels_joinPrivateChannel => 'プライベートチャンネルに参加する';
+  String get channels_joinPrivateChannel => 'キー付きチャンネルに参加';
 
   @override
-  String get channels_joinPrivateChannelDesc => '秘密鍵を手動で入力します。';
+  String get channels_joinPrivateChannelDesc => 'チャンネルの共有キーを入力してください。';
 
   @override
   String get channels_joinPublicChannel => '公開チャンネルに参加する';
@@ -7067,7 +7068,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get setupWizard_firmware =>
-      '無線機には、選んだ接続方法に対応したMeshCoreコンパニオンファームウェアが必要です。対応状況はボードやファームウェアのビルドによって異なり、USBポートがあってもUSBシリアルに対応しているとは限りません。お使いのボードとインストール済みのビルドの説明を確認してください。リピーターやルームサーバーのファームウェアはコンパニオンではありません。接続に失敗しただけで書き直しが必要とは限りません。';
+      '無線機には、選んだ接続方法に対応したNOTORYX Hamコンパニオンファームウェアが必要です。対応状況はボードやファームウェアのビルドによって異なり、USBポートがあってもUSBシリアルに対応しているとは限りません。お使いのボードとインストール済みのビルドの説明を確認してください。リピーターやルームサーバーのファームウェアはコンパニオンではありません。接続に失敗しただけで書き直しが必要とは限りません。';
 
   @override
   String get setupWizard_settings =>
@@ -7597,7 +7598,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get scanner_heroHint =>
-      '無線機の電源を入れ、数メートル以内に置いてください。MeshCore companion ファームウェアが必要です。';
+      '無線機の電源を入れ、数メートル以内に置いてください。NOTORYX Ham companion ファームウェアが必要です。';
 
   @override
   String get scanner_tipsTitle => '無線機が表示されませんか？';
@@ -7607,7 +7608,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get scanner_tipFirmware =>
-      'MeshCore companion ファームウェアが必要です。リピーターとルームサーバーはここに表示されません。';
+      'NOTORYX Ham companion ファームウェアが必要です。リピーターとルームサーバーはここに表示されません。';
 
   @override
   String get scanner_tipOtherDevice =>

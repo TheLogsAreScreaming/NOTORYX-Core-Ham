@@ -288,7 +288,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       case ChannelType.hashtag:
         icon = Icons.tag;
       case ChannelType.private:
-        icon = Icons.lock;
+        icon = Icons.key_outlined;
     }
     return Stack(
       children: [

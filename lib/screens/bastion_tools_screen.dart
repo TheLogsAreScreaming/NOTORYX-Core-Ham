@@ -9,6 +9,8 @@ import 'antenna_coverage_screen.dart';
 import 'antenna_hunt_screen.dart';
 import 'bastion_about_screen.dart';
 import 'bot_settings_screen.dart';
+import 'connection_dashboard_screen.dart';
+import 'licensed_operator_screen.dart';
 import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
 import 'field_guide_screen.dart';
@@ -48,6 +50,24 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final groups = [
+      (
+        // Ham first: who is operating, and how the radio is connected.
+        title: l10n.ham_yourStation,
+        actions: <_ToolAction>[
+          _ToolAction(
+            icon: Icons.badge_outlined,
+            title: l10n.ham_licensedOperator,
+            subtitle: l10n.ham_operatorCardIncomplete,
+            builder: (_) => const LicensedOperatorScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.settings_input_antenna,
+            title: l10n.connections_title,
+            subtitle: l10n.ham_connectedRadio,
+            builder: (_) => const ConnectionDashboardScreen(),
+          ),
+        ],
+      ),
       (
         title: l10n.tools_groupApp,
         actions: <_ToolAction>[

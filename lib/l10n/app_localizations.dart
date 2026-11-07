@@ -2869,7 +2869,7 @@ abstract class AppLocalizations {
   /// No description provided for @channels_private.
   ///
   /// In en, this message translates to:
-  /// **'Private'**
+  /// **'Keyed'**
   String get channels_private;
 
   /// No description provided for @channels_editChannel.
@@ -3127,25 +3127,25 @@ abstract class AppLocalizations {
   /// No description provided for @channels_createPrivateChannel.
   ///
   /// In en, this message translates to:
-  /// **'Create a Private Channel'**
+  /// **'Create a keyed channel'**
   String get channels_createPrivateChannel;
 
   /// No description provided for @channels_createPrivateChannelDesc.
   ///
   /// In en, this message translates to:
-  /// **'Secured with a secret key.'**
+  /// **'Uses a shared key to pick the channel. Messages are still readable by anyone.'**
   String get channels_createPrivateChannelDesc;
 
   /// No description provided for @channels_joinPrivateChannel.
   ///
   /// In en, this message translates to:
-  /// **'Join a Private Channel'**
+  /// **'Join a keyed channel'**
   String get channels_joinPrivateChannel;
 
   /// No description provided for @channels_joinPrivateChannelDesc.
   ///
   /// In en, this message translates to:
-  /// **'Manually enter a secret key.'**
+  /// **'Enter the channel\'s shared key.'**
   String get channels_joinPrivateChannelDesc;
 
   /// No description provided for @channels_joinPublicChannel.
@@ -12448,7 +12448,7 @@ abstract class AppLocalizations {
   /// No description provided for @setupWizard_firmware.
   ///
   /// In en, this message translates to:
-  /// **'Your radio needs MeshCore companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.'**
+  /// **'Your radio needs NOTORYX Ham companion firmware that supports the selected connection. Support varies by board and firmware build; a USB socket alone does not confirm USB serial support. Check the instructions for your exact board and installed build. Repeater or room-server firmware is not a companion. A failed connection does not by itself mean you need to reflash.'**
   String get setupWizard_firmware;
 
   /// No description provided for @setupWizard_settings.
@@ -13378,7 +13378,7 @@ abstract class AppLocalizations {
   /// No description provided for @scanner_heroHint.
   ///
   /// In en, this message translates to:
-  /// **'Turn your radio on and keep it within a few meters. It needs MeshCore companion firmware.'**
+  /// **'Turn your radio on and keep it within a few meters. It needs NOTORYX Ham companion firmware.'**
   String get scanner_heroHint;
 
   /// No description provided for @scanner_tipsTitle.
@@ -13396,7 +13396,7 @@ abstract class AppLocalizations {
   /// No description provided for @scanner_tipFirmware.
   ///
   /// In en, this message translates to:
-  /// **'It needs MeshCore companion firmware. Repeaters and room servers don\'t show up here.'**
+  /// **'It needs NOTORYX Ham companion firmware. Repeaters and room servers don\'t show up here.'**
   String get scanner_tipFirmware;
 
   /// No description provided for @scanner_tipOtherDevice.
