@@ -16134,6 +16134,204 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{used} of {total} KB'**
   String diag_storageValue(int used, int total);
+
+  /// No description provided for @rxLog_title.
+  ///
+  /// In en, this message translates to:
+  /// **'RX log'**
+  String get rxLog_title;
+
+  /// No description provided for @rxLog_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every packet your radio hears, live'**
+  String get rxLog_hint;
+
+  /// No description provided for @rxLog_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No packets yet. Packets your radio hears show up here as they arrive.'**
+  String get rxLog_empty;
+
+  /// No description provided for @rxLog_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Kept in memory only, the last 2,000 packets. Nothing is saved or sent.'**
+  String get rxLog_note;
+
+  /// No description provided for @rxLog_pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get rxLog_pause;
+
+  /// No description provided for @rxLog_resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get rxLog_resume;
+
+  /// No description provided for @rxLog_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get rxLog_export;
+
+  /// No description provided for @rxLog_clearConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear the RX log?'**
+  String get rxLog_clearConfirm;
+
+  /// No description provided for @rxLog_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{shown} shown · {total} heard'**
+  String rxLog_count(int shown, int total);
+
+  /// No description provided for @rxLog_paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused: new packets aren\'t being logged'**
+  String get rxLog_paused;
+
+  /// No description provided for @rxLog_kindAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get rxLog_kindAll;
+
+  /// No description provided for @rxLog_kindAdvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Adverts'**
+  String get rxLog_kindAdvert;
+
+  /// No description provided for @rxLog_kindChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel'**
+  String get rxLog_kindChannel;
+
+  /// No description provided for @rxLog_kindDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct'**
+  String get rxLog_kindDirect;
+
+  /// No description provided for @rxLog_kindAck.
+  ///
+  /// In en, this message translates to:
+  /// **'ACKs'**
+  String get rxLog_kindAck;
+
+  /// No description provided for @rxLog_kindPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Paths'**
+  String get rxLog_kindPath;
+
+  /// No description provided for @rxLog_kindTrace.
+  ///
+  /// In en, this message translates to:
+  /// **'Traces'**
+  String get rxLog_kindTrace;
+
+  /// No description provided for @rxLog_kindControl.
+  ///
+  /// In en, this message translates to:
+  /// **'Control'**
+  String get rxLog_kindControl;
+
+  /// No description provided for @rxLog_kindOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get rxLog_kindOther;
+
+  /// No description provided for @rxLog_routeFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood'**
+  String get rxLog_routeFlood;
+
+  /// No description provided for @rxLog_routeDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct route'**
+  String get rxLog_routeDirect;
+
+  /// No description provided for @rxLog_heardDirectly.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard directly'**
+  String get rxLog_heardDirectly;
+
+  /// No description provided for @rxLog_hops.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 hop} other{{count} hops}}'**
+  String rxLog_hops(int count);
+
+  /// No description provided for @rxLog_bytes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 byte} other{{count} bytes}}'**
+  String rxLog_bytes(int count);
+
+  /// No description provided for @rxLog_own.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio'**
+  String get rxLog_own;
+
+  /// No description provided for @rxLog_signal.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR {snr} · {rssi} dBm'**
+  String rxLog_signal(String snr, int rssi);
+
+  /// No description provided for @rxLog_signalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Signal'**
+  String get rxLog_signalTitle;
+
+  /// No description provided for @rxLog_route.
+  ///
+  /// In en, this message translates to:
+  /// **'Route'**
+  String get rxLog_route;
+
+  /// No description provided for @rxLog_path.
+  ///
+  /// In en, this message translates to:
+  /// **'Path'**
+  String get rxLog_path;
+
+  /// No description provided for @rxLog_payloadType.
+  ///
+  /// In en, this message translates to:
+  /// **'Payload type'**
+  String get rxLog_payloadType;
+
+  /// No description provided for @rxLog_hash.
+  ///
+  /// In en, this message translates to:
+  /// **'Packet hash'**
+  String get rxLog_hash;
+
+  /// No description provided for @rxLog_raw.
+  ///
+  /// In en, this message translates to:
+  /// **'Raw packet'**
+  String get rxLog_raw;
+
+  /// No description provided for @rxLog_copyHex.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy hex'**
+  String get rxLog_copyHex;
 }
 
 class _AppLocalizationsDelegate

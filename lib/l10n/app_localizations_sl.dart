@@ -9631,4 +9631,129 @@ class AppLocalizationsSl extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used od $total KB';
   }
+
+  @override
+  String get rxLog_title => 'Dnevnik RX';
+
+  @override
+  String get rxLog_hint => 'Vsak paket, ki ga sliši vaš radio, v živo';
+
+  @override
+  String get rxLog_empty =>
+      'Paketov še ni. Paketi, ki jih sliši radio, se prikažejo tukaj, ko prispejo.';
+
+  @override
+  String get rxLog_note =>
+      'Shranjeno samo v pomnilniku, zadnjih 2000 paketov. Nič se ne shrani ali pošlje.';
+
+  @override
+  String get rxLog_pause => 'Premor';
+
+  @override
+  String get rxLog_resume => 'Nadaljuj';
+
+  @override
+  String get rxLog_export => 'Izvozi CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Počistim dnevnik RX?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown prikazanih · $total slišanih';
+  }
+
+  @override
+  String get rxLog_paused => 'Premor: novi paketi se ne beležijo';
+
+  @override
+  String get rxLog_kindAll => 'Vsi';
+
+  @override
+  String get rxLog_kindAdvert => 'Oglasi';
+
+  @override
+  String get rxLog_kindChannel => 'Kanal';
+
+  @override
+  String get rxLog_kindDirect => 'Neposredni';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Poti';
+
+  @override
+  String get rxLog_kindTrace => 'Sledenja';
+
+  @override
+  String get rxLog_kindControl => 'Krmiljenje';
+
+  @override
+  String get rxLog_kindOther => 'Drugo';
+
+  @override
+  String get rxLog_routeFlood => 'Poplava';
+
+  @override
+  String get rxLog_routeDirect => 'Neposredna pot';
+
+  @override
+  String get rxLog_heardDirectly => 'Slišano neposredno';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count skokov',
+      few: '$count skoki',
+      two: '2 skoka',
+      one: '1 skok',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bajtov',
+      few: '$count bajti',
+      two: '2 bajta',
+      one: '1 bajt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Vaš radio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Signal';
+
+  @override
+  String get rxLog_route => 'Usmerjanje';
+
+  @override
+  String get rxLog_path => 'Pot';
+
+  @override
+  String get rxLog_payloadType => 'Vrsta vsebine';
+
+  @override
+  String get rxLog_hash => 'Zgoščena vrednost paketa';
+
+  @override
+  String get rxLog_raw => 'Surovi paket';
+
+  @override
+  String get rxLog_copyHex => 'Kopiraj hex';
 }

@@ -9620,4 +9620,129 @@ class AppLocalizationsSk extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used z $total KB';
   }
+
+  @override
+  String get rxLog_title => 'Denník RX';
+
+  @override
+  String get rxLog_hint => 'Každý paket, ktorý vaše rádio počuje, naživo';
+
+  @override
+  String get rxLog_empty =>
+      'Zatiaľ žiadne pakety. Pakety, ktoré rádio počuje, sa tu zobrazia hneď, ako prídu.';
+
+  @override
+  String get rxLog_note =>
+      'Uchováva sa iba v pamäti, posledných 2 000 paketov. Nič sa neukladá ani neodosiela.';
+
+  @override
+  String get rxLog_pause => 'Pozastaviť';
+
+  @override
+  String get rxLog_resume => 'Pokračovať';
+
+  @override
+  String get rxLog_export => 'Exportovať CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Vymazať denník RX?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown zobrazených · $total počutých';
+  }
+
+  @override
+  String get rxLog_paused => 'Pozastavené: nové pakety sa nezaznamenávajú';
+
+  @override
+  String get rxLog_kindAll => 'Všetky';
+
+  @override
+  String get rxLog_kindAdvert => 'Ohlásenia';
+
+  @override
+  String get rxLog_kindChannel => 'Kanál';
+
+  @override
+  String get rxLog_kindDirect => 'Priame';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Cesty';
+
+  @override
+  String get rxLog_kindTrace => 'Trasovania';
+
+  @override
+  String get rxLog_kindControl => 'Riadenie';
+
+  @override
+  String get rxLog_kindOther => 'Iné';
+
+  @override
+  String get rxLog_routeFlood => 'Záplava';
+
+  @override
+  String get rxLog_routeDirect => 'Priama trasa';
+
+  @override
+  String get rxLog_heardDirectly => 'Počuté priamo';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count skokov',
+      many: '$count skoku',
+      few: '$count skoky',
+      one: '1 skok',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bajtov',
+      many: '$count bajtu',
+      few: '$count bajty',
+      one: '1 bajt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Vaše rádio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Signál';
+
+  @override
+  String get rxLog_route => 'Trasa';
+
+  @override
+  String get rxLog_path => 'Cesta';
+
+  @override
+  String get rxLog_payloadType => 'Typ obsahu';
+
+  @override
+  String get rxLog_hash => 'Hash paketu';
+
+  @override
+  String get rxLog_raw => 'Surový paket';
+
+  @override
+  String get rxLog_copyHex => 'Kopírovať hex';
 }

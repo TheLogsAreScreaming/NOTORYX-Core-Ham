@@ -9198,4 +9198,121 @@ class AppLocalizationsKo extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used / $total KB';
   }
+
+  @override
+  String get rxLog_title => '수신 로그';
+
+  @override
+  String get rxLog_hint => '무전기가 듣는 모든 패킷을 실시간으로';
+
+  @override
+  String get rxLog_empty => '아직 패킷이 없습니다. 무전기가 듣는 패킷은 도착하는 대로 여기에 표시됩니다.';
+
+  @override
+  String get rxLog_note => '메모리에만 최근 2,000개를 보관합니다. 저장하거나 전송하지 않습니다.';
+
+  @override
+  String get rxLog_pause => '일시 정지';
+
+  @override
+  String get rxLog_resume => '재개';
+
+  @override
+  String get rxLog_export => 'CSV 내보내기';
+
+  @override
+  String get rxLog_clearConfirm => '수신 로그를 지울까요?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown개 표시 · $total개 수신';
+  }
+
+  @override
+  String get rxLog_paused => '일시 정지됨: 새 패킷이 기록되지 않습니다';
+
+  @override
+  String get rxLog_kindAll => '전체';
+
+  @override
+  String get rxLog_kindAdvert => '광고';
+
+  @override
+  String get rxLog_kindChannel => '채널';
+
+  @override
+  String get rxLog_kindDirect => '직접';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => '경로';
+
+  @override
+  String get rxLog_kindTrace => '추적';
+
+  @override
+  String get rxLog_kindControl => '제어';
+
+  @override
+  String get rxLog_kindOther => '기타';
+
+  @override
+  String get rxLog_routeFlood => '플러드';
+
+  @override
+  String get rxLog_routeDirect => '직접 경로';
+
+  @override
+  String get rxLog_heardDirectly => '직접 수신';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count홉',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count바이트',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => '내 무전기';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => '신호';
+
+  @override
+  String get rxLog_route => '라우팅';
+
+  @override
+  String get rxLog_path => '경로';
+
+  @override
+  String get rxLog_payloadType => '페이로드 유형';
+
+  @override
+  String get rxLog_hash => '패킷 해시';
+
+  @override
+  String get rxLog_raw => '원시 패킷';
+
+  @override
+  String get rxLog_copyHex => '16진수 복사';
 }

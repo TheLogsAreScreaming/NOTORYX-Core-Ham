@@ -8992,4 +8992,121 @@ class AppLocalizationsZh extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used / $total KB';
   }
+
+  @override
+  String get rxLog_title => '接收日志';
+
+  @override
+  String get rxLog_hint => '实时显示电台收到的每个数据包';
+
+  @override
+  String get rxLog_empty => '暂无数据包。电台收到的数据包会在到达时显示在这里。';
+
+  @override
+  String get rxLog_note => '仅保存在内存中，最近 2,000 个数据包。不会保存或发送任何内容。';
+
+  @override
+  String get rxLog_pause => '暂停';
+
+  @override
+  String get rxLog_resume => '继续';
+
+  @override
+  String get rxLog_export => '导出 CSV';
+
+  @override
+  String get rxLog_clearConfirm => '清空接收日志？';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '显示 $shown 个 · 收到 $total 个';
+  }
+
+  @override
+  String get rxLog_paused => '已暂停：不记录新数据包';
+
+  @override
+  String get rxLog_kindAll => '全部';
+
+  @override
+  String get rxLog_kindAdvert => '广播';
+
+  @override
+  String get rxLog_kindChannel => '频道';
+
+  @override
+  String get rxLog_kindDirect => '私信';
+
+  @override
+  String get rxLog_kindAck => '确认';
+
+  @override
+  String get rxLog_kindPath => '路径';
+
+  @override
+  String get rxLog_kindTrace => '追踪';
+
+  @override
+  String get rxLog_kindControl => '控制';
+
+  @override
+  String get rxLog_kindOther => '其他';
+
+  @override
+  String get rxLog_routeFlood => '泛洪';
+
+  @override
+  String get rxLog_routeDirect => '直连路由';
+
+  @override
+  String get rxLog_heardDirectly => '直接收到';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 跳',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 字节',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => '你的电台';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => '信号';
+
+  @override
+  String get rxLog_route => '路由';
+
+  @override
+  String get rxLog_path => '路径';
+
+  @override
+  String get rxLog_payloadType => '负载类型';
+
+  @override
+  String get rxLog_hash => '数据包哈希';
+
+  @override
+  String get rxLog_raw => '原始数据包';
+
+  @override
+  String get rxLog_copyHex => '复制十六进制';
 }

@@ -63,6 +63,7 @@ import 'services/channel_discovery_service.dart';
 import 'services/corescope.dart';
 import 'services/my_sensors_service.dart';
 import 'services/network_scan_service.dart';
+import 'services/rx_log_service.dart';
 import 'services/wardrive_service.dart';
 import 'services/track_log_service.dart';
 import 'services/weather_service.dart';
@@ -286,6 +287,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
   late final NetworkScanService _networkScan;
+  late final RxLogService _rxLog;
   late final SosRelayService _sosRelay;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
@@ -330,6 +332,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       tripActive: () => _fieldOps.trip.active,
     )..load();
     _sosRelay = SosRelayService.forConnector(widget.connector)..load();
+    _rxLog = RxLogService(widget.connector.rxPackets);
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
     unawaited(_trackLog.load());
@@ -420,6 +423,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    _rxLog.dispose();
     _botService.dispose();
     _weather.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
@@ -543,6 +547,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider<NodeTelemetryStore?>.value(value: _telemetry),
         ChangeNotifierProvider.value(value: _wardrive),
         ChangeNotifierProvider.value(value: _networkScan),
+        ChangeNotifierProvider.value(value: _rxLog),
         ChangeNotifierProvider.value(value: _sosRelay),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(

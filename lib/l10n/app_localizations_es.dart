@@ -9649,4 +9649,125 @@ class AppLocalizationsEs extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used de $total KB';
   }
+
+  @override
+  String get rxLog_title => 'Registro RX';
+
+  @override
+  String get rxLog_hint => 'Cada paquete que oye tu radio, en directo';
+
+  @override
+  String get rxLog_empty =>
+      'Aún no hay paquetes. Los paquetes que oye tu radio aparecen aquí al llegar.';
+
+  @override
+  String get rxLog_note =>
+      'Solo en memoria, los últimos 2000 paquetes. No se guarda ni se envía nada.';
+
+  @override
+  String get rxLog_pause => 'Pausar';
+
+  @override
+  String get rxLog_resume => 'Reanudar';
+
+  @override
+  String get rxLog_export => 'Exportar CSV';
+
+  @override
+  String get rxLog_clearConfirm => '¿Borrar el registro RX?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown mostrados · $total oídos';
+  }
+
+  @override
+  String get rxLog_paused => 'En pausa: no se registran paquetes nuevos';
+
+  @override
+  String get rxLog_kindAll => 'Todos';
+
+  @override
+  String get rxLog_kindAdvert => 'Anuncios';
+
+  @override
+  String get rxLog_kindChannel => 'Canal';
+
+  @override
+  String get rxLog_kindDirect => 'Directos';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Rutas';
+
+  @override
+  String get rxLog_kindTrace => 'Trazas';
+
+  @override
+  String get rxLog_kindControl => 'Control';
+
+  @override
+  String get rxLog_kindOther => 'Otros';
+
+  @override
+  String get rxLog_routeFlood => 'Inundación';
+
+  @override
+  String get rxLog_routeDirect => 'Ruta directa';
+
+  @override
+  String get rxLog_heardDirectly => 'Oído directamente';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count saltos',
+      one: '1 salto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bytes',
+      one: '1 byte',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Tu radio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Señal';
+
+  @override
+  String get rxLog_route => 'Ruta';
+
+  @override
+  String get rxLog_path => 'Camino';
+
+  @override
+  String get rxLog_payloadType => 'Tipo de carga';
+
+  @override
+  String get rxLog_hash => 'Hash del paquete';
+
+  @override
+  String get rxLog_raw => 'Paquete en bruto';
+
+  @override
+  String get rxLog_copyHex => 'Copiar hex';
 }

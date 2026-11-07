@@ -9570,4 +9570,125 @@ class AppLocalizationsSv extends AppLocalizations {
   String diag_storageValue(int used, int total) {
     return '$used av $total KB';
   }
+
+  @override
+  String get rxLog_title => 'RX-logg';
+
+  @override
+  String get rxLog_hint => 'Varje paket din radio hör, live';
+
+  @override
+  String get rxLog_empty =>
+      'Inga paket än. Paket som din radio hör visas här när de kommer in.';
+
+  @override
+  String get rxLog_note =>
+      'Bara i minnet, de senaste 2 000 paketen. Inget sparas eller skickas.';
+
+  @override
+  String get rxLog_pause => 'Pausa';
+
+  @override
+  String get rxLog_resume => 'Fortsätt';
+
+  @override
+  String get rxLog_export => 'Exportera CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Rensa RX-loggen?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown visade · $total hörda';
+  }
+
+  @override
+  String get rxLog_paused => 'Pausad: nya paket loggas inte';
+
+  @override
+  String get rxLog_kindAll => 'Alla';
+
+  @override
+  String get rxLog_kindAdvert => 'Adverts';
+
+  @override
+  String get rxLog_kindChannel => 'Kanal';
+
+  @override
+  String get rxLog_kindDirect => 'Direkt';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Vägar';
+
+  @override
+  String get rxLog_kindTrace => 'Spårningar';
+
+  @override
+  String get rxLog_kindControl => 'Styrning';
+
+  @override
+  String get rxLog_kindOther => 'Övrigt';
+
+  @override
+  String get rxLog_routeFlood => 'Flood';
+
+  @override
+  String get rxLog_routeDirect => 'Direkt rutt';
+
+  @override
+  String get rxLog_heardDirectly => 'Hörd direkt';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hopp',
+      one: '1 hopp',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count byte',
+      one: '1 byte',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Din radio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Signal';
+
+  @override
+  String get rxLog_route => 'Rutt';
+
+  @override
+  String get rxLog_path => 'Väg';
+
+  @override
+  String get rxLog_payloadType => 'Nyttolasttyp';
+
+  @override
+  String get rxLog_hash => 'Pakethash';
+
+  @override
+  String get rxLog_raw => 'Råpaket';
+
+  @override
+  String get rxLog_copyHex => 'Kopiera hex';
 }
