@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
+import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/operator_profile.dart';
 import 'package:meshcore_open/screens/licensed_operator_screen.dart';
 import 'package:meshcore_open/services/operator_profile_service.dart';
@@ -37,6 +38,8 @@ void main() {
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         builder: (context, child) =>
             OperatorSetupBanner(navigatorKey: navigatorKey, child: child!),
         home: home,
