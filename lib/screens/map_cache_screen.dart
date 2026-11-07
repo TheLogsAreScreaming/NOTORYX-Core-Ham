@@ -12,6 +12,7 @@ import '../widgets/adaptive_app_bar_title.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/ui/mesh_states.dart';
 
 class MapCacheScreen extends StatefulWidget {
   const MapCacheScreen({super.key});
@@ -216,24 +217,11 @@ class _MapCacheScreenState extends State<MapCacheScreen> {
       return;
     }
 
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.mapCache_downloadTilesTitle),
-        content: Text(
-          context.l10n.mapCache_downloadTilesPrompt(_estimatedTiles),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(context.l10n.mapCache_downloadAction),
-          ),
-        ],
-      ),
+    final confirmed = await confirmAction(
+      context,
+      title: context.l10n.mapCache_downloadTilesTitle,
+      message: context.l10n.mapCache_downloadTilesPrompt(_estimatedTiles),
+      confirmLabel: context.l10n.mapCache_downloadAction,
     );
 
     if (confirmed != true || !mounted) return;
@@ -277,22 +265,11 @@ class _MapCacheScreenState extends State<MapCacheScreen> {
   }
 
   Future<void> _clearCache() async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.mapCache_clearOfflineCacheTitle),
-        content: Text(context.l10n.mapCache_clearOfflineCachePrompt),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(context.l10n.common_clear),
-          ),
-        ],
-      ),
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.mapCache_clearOfflineCacheTitle,
+      message: context.l10n.mapCache_clearOfflineCachePrompt,
+      confirmLabel: context.l10n.common_clear,
     );
     if (confirmed != true || !mounted) return;
 

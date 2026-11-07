@@ -22,6 +22,7 @@ import '../widgets/sync_progress_overlay.dart';
 import '../helpers/snack_bar_builder.dart';
 import 'map_cache_screen.dart';
 import 'bot_settings_screen.dart';
+import '../widgets/ui/mesh_states.dart';
 
 /// Quiet times offered for favorite back-in-range alerts, in hours.
 const favoriteReturnChoices = [0, 1, 3, 6, 12, 24];
@@ -843,7 +844,9 @@ class AppSettingsScreen extends StatelessWidget {
     try {
       await codec.downloadPresetModel(spec);
     } on Exception catch (error) {
-      messenger.showSnackBar(SnackBar(content: Text('$failed $error')));
+      messenger.showSnackBar(
+        meshSnackBar(content: Text('$failed ${friendlyError(error)}')),
+      );
     }
   }
 
@@ -2369,7 +2372,9 @@ class AppSettingsScreen extends StatelessWidget {
       showDismissibleSnackBar(
         context,
         content: Text(
-          context.l10n.appSettings_translationModelDeleteFailed('$error'),
+          context.l10n.appSettings_translationModelDeleteFailed(
+            friendlyError(error),
+          ),
         ),
       );
     }
@@ -2555,37 +2560,24 @@ class AppSettingsScreen extends StatelessWidget {
     );
   }
 
-  void _showDeleteCyr2LatProfileDialog(
+  Future<void> _showDeleteCyr2LatProfileDialog(
     BuildContext context,
     AppSettingsService settingsService,
     Cyr2LatProfile profile,
-  ) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(context.l10n.settings_cyr2latProfileDelete),
-        content: Text(
-          context.l10n.settings_cyr2latProfileDeleteDscr(profile.name),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              await settingsService.removeCyr2LatProfile(profile.id);
-              if (!context.mounted) return;
-              Navigator.pop(context);
-              showDismissibleSnackBar(
-                context,
-                content: Text(context.l10n.settings_cyr2latProfileDeleted),
-              );
-            },
-            child: Text(context.l10n.common_delete),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.settings_cyr2latProfileDelete,
+      message: context.l10n.settings_cyr2latProfileDeleteDscr(profile.name),
+      confirmLabel: context.l10n.common_delete,
+    );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    await settingsService.removeCyr2LatProfile(profile.id);
+    if (!context.mounted) return;
+    showDismissibleSnackBar(
+      context,
+      content: Text(context.l10n.settings_cyr2latProfileDeleted),
     );
   }
 }

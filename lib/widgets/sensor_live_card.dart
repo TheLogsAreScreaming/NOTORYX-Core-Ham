@@ -7,6 +7,7 @@ import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../models/sensor_subscription.dart';
 import '../services/sensor_subscription_service.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// "Live updates" for a sensor on its telemetry page: subscribe to pushes
 /// when chosen readings change, and show what arrives.
@@ -115,7 +116,7 @@ class SensorLiveCard extends StatelessWidget {
         duration: Duration(hours: choice.hours),
       );
     } catch (e) {
-      messenger.showSnackBar(SnackBar(content: Text('$e')));
+      messenger.showSnackBar(meshSnackBar(content: Text(friendlyError(e))));
     }
   }
 
@@ -129,7 +130,9 @@ class SensorLiveCard extends StatelessWidget {
       await service.unsubscribe(sensor);
     } catch (e) {
       messenger.showSnackBar(
-        SnackBar(content: Text(l10n.sensor_stopUnconfirmed('$e'))),
+        meshSnackBar(
+          content: Text(l10n.sensor_stopUnconfirmed(friendlyError(e))),
+        ),
       );
     }
   }

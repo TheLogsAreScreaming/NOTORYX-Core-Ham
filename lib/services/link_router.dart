@@ -9,6 +9,7 @@ import '../connector/meshcore_protocol.dart';
 import '../helpers/share_links.dart';
 import '../l10n/l10n.dart';
 import '../widgets/share_in_chat.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// Opens `meshcore://` links tapped in other apps: a contact link shows the
 /// same preview card as pasting one, with its Add button, and a full advert
@@ -95,11 +96,11 @@ class LinkRouter {
                           );
                           await connector.refreshContacts();
                           messenger?.showSnackBar(
-                            SnackBar(content: Text(l10n.links_added)),
+                            meshSnackBar(content: Text(l10n.links_added)),
                           );
                         } catch (_) {
                           messenger?.showSnackBar(
-                            SnackBar(
+                            meshSnackBar(
                               content: Text(l10n.contacts_contactImportFailed),
                             ),
                           );
@@ -113,7 +114,7 @@ class LinkRouter {
       case null:
         ScaffoldMessenger.maybeOf(
           context,
-        )?.showSnackBar(SnackBar(content: Text(l10n.links_notContact)));
+        )?.showSnackBar(meshSnackBar(content: Text(l10n.links_notContact)));
     }
   }
 }

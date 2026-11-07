@@ -42,6 +42,7 @@ import '../helpers/snack_bar_builder.dart';
 import 'repeater_hub_screen.dart';
 import 'settings_screen.dart';
 import 'line_of_sight_map_screen.dart';
+import '../widgets/ui/mesh_states.dart';
 
 class MapScreen extends StatefulWidget {
   final LatLng? highlightPosition;
@@ -2980,22 +2981,11 @@ class _MapScreenState extends State<MapScreen> {
     BuildContext context,
     MeshCoreConnector connector,
   ) async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.common_disconnect),
-        content: Text(context.l10n.map_disconnectConfirm),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(context.l10n.common_disconnect),
-          ),
-        ],
-      ),
+    final confirmed = await confirmAction(
+      context,
+      title: context.l10n.common_disconnect,
+      message: context.l10n.map_disconnectConfirm,
+      confirmLabel: context.l10n.common_disconnect,
     );
 
     if (confirmed == true) {
@@ -3143,7 +3133,7 @@ class _MapScreenState extends State<MapScreen> {
                 );
                 await connector.refreshDeviceInfo();
                 if (!mounted) return;
-                messenger.showSnackBar(SnackBar(content: Text(successMsg)));
+                messenger.showSnackBar(meshSnackBar(content: Text(successMsg)));
               },
             ),
             if (connector.floodCorridorSupported == true)
@@ -3395,26 +3385,12 @@ class _MapScreenState extends State<MapScreen> {
     BuildContext context,
     String channelLabel,
   ) async {
-    final result = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.map_publicLocationShare),
-        content: Text(
-          context.l10n.map_publicLocationShareConfirm(channelLabel),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(context.l10n.common_share),
-          ),
-        ],
-      ),
+    return confirmAction(
+      context,
+      title: context.l10n.map_publicLocationShare,
+      message: context.l10n.map_publicLocationShareConfirm(channelLabel),
+      confirmLabel: context.l10n.common_share,
     );
-    return result ?? false;
   }
 
   void _showFilterSheet(

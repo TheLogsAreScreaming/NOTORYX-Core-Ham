@@ -33,6 +33,7 @@ import '../widgets/sos_panel.dart';
 import '../widgets/quick_trip_setup.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../utils/main_tab_navigation.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class BastionHomeScreen extends StatelessWidget {
   const BastionHomeScreen({super.key});
@@ -310,7 +311,7 @@ class BastionHomeScreen extends StatelessWidget {
       try {
         await ops.startTrip();
       } catch (e) {
-        messenger.showSnackBar(SnackBar(content: Text('$e')));
+        messenger.showSnackBar(meshSnackBar(content: Text(friendlyError(e))));
         return;
       }
     }

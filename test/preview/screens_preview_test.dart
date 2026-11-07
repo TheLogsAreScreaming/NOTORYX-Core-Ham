@@ -6,6 +6,7 @@
 // PREVIEW_ONLY=home,tools renders just those screens; PREVIEW_HEIGHT=2400
 // renders taller than a phone screen, for reviewing long screens whole.
 // PREVIEW_TEXT_SCALE=1.5 renders with the system text size turned up.
+import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -80,6 +81,7 @@ import 'package:meshcore_open/models/operator_profile.dart';
 import 'package:meshcore_open/models/radio_settings.dart';
 import 'package:meshcore_open/screens/licensed_operator_screen.dart';
 import 'package:meshcore_open/widgets/operator_setup_banner.dart';
+import 'package:meshcore_open/widgets/ui/mesh_states.dart';
 
 // Anchored to today so time-filtered screens (path graph) have data in range.
 final _today = DateTime.now();
@@ -578,6 +580,21 @@ void main() {
     ),
     'companion_cli': () =>
         CompanionCliScreen(run: (c) async => 'v1.18.0 (Build: 15-Oct-2026)'),
+    'confirm_destructive': () => _OpensDialog(
+      (context) => confirmDestructive(
+        context,
+        title: 'Delete channel?',
+        message: 'This removes #trailhead and its history from this phone.',
+      ),
+    ),
+    'confirm_action': () => _OpensDialog(
+      (context) => confirmAction(
+        context,
+        title: 'Join network?',
+        message: 'Switch the radio to Hilltop club settings.',
+        confirmLabel: 'Join',
+      ),
+    ),
   };
 
   setUpAll(() async {
@@ -689,4 +706,27 @@ List<NetworkSighting> _sampleSightings() {
       nodes: const [HeardNode(key: '0badf00d', name: 'Seymour RPT', type: 2)],
     ),
   ];
+}
+
+/// A blank screen that opens [open] after its first frame, for dialog shots.
+class _OpensDialog extends StatefulWidget {
+  const _OpensDialog(this.open);
+
+  final Future<Object?> Function(BuildContext context) open;
+
+  @override
+  State<_OpensDialog> createState() => _OpensDialogState();
+}
+
+class _OpensDialogState extends State<_OpensDialog> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) unawaited(widget.open(context));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => const Scaffold(body: SizedBox());
 }

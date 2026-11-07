@@ -117,7 +117,7 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen> {
     } on _SaveRefused catch (e) {
       if (mounted) _showError(l10n.wifi_saveFailed(e.reply));
     } catch (e) {
-      if (mounted) _showError(l10n.wifi_saveFailed('$e'));
+      if (mounted) _showError(l10n.wifi_saveFailed(friendlyError(e)));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -138,7 +138,7 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen> {
         _rebootNeeded = true;
       });
     } catch (e) {
-      if (mounted) _showError(l10n.wifi_saveFailed('$e'));
+      if (mounted) _showError(l10n.wifi_saveFailed(friendlyError(e)));
     } finally {
       if (mounted) setState(() => _busy = false);
     }

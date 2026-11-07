@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import '../l10n/l10n.dart';
 import '../services/coverage_capture_service.dart';
 import '../widgets/ui/mesh_states.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class BastionCoverageHistoryScreen extends StatefulWidget {
   final CoverageCaptureService capture;
@@ -27,36 +28,23 @@ class _HistoryState extends State<BastionCoverageHistoryScreen> {
     try {
       await widget.capture.loadHistory();
     } catch (e) {
-      if (mounted) error = context.l10n.coverage_loadFailed('$e');
+      if (mounted) error = context.l10n.coverage_loadFailed(friendlyError(e));
     }
     if (mounted) setState(() => loading = false);
   }
 
   Future<void> _delete(CoverageCaptureSession session) async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(context.l10n.coverage_deleteTitle),
-        content: Text(
-          context.l10n.coverage_deleteBody(session.observations.length),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: Text(context.l10n.common_delete),
-          ),
-        ],
-      ),
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.coverage_deleteTitle,
+      message: context.l10n.coverage_deleteBody(session.observations.length),
+      confirmLabel: context.l10n.common_delete,
     );
     if (confirmed != true) return;
     try {
       await widget.capture.deleteSession(session.id);
     } catch (e) {
-      if (mounted) error = context.l10n.coverage_deleteFailed('$e');
+      if (mounted) error = context.l10n.coverage_deleteFailed(friendlyError(e));
     }
     if (mounted) setState(() {});
   }
@@ -128,7 +116,9 @@ class _SessionScreen extends StatelessWidget {
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(context.l10n.coverage_exportFailed('$e'))),
+          meshSnackBar(
+            content: Text(context.l10n.coverage_exportFailed(friendlyError(e))),
+          ),
         );
       }
     }

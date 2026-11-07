@@ -8,6 +8,7 @@ import '../l10n/l10n.dart';
 import '../models/field_ops.dart';
 import '../services/field_ops_service.dart';
 import 'quick_trip_setup.dart';
+import '../helpers/snack_bar_builder.dart';
 
 Color get _red => MeshPalette.alert;
 Color get _muted => MeshPalette.ink3;
@@ -70,7 +71,9 @@ class SosPanel extends StatelessWidget {
     try {
       await ops.startSos();
     } catch (e) {
-      messenger.showSnackBar(SnackBar(content: Text(l10n.sos_notSent('$e'))));
+      messenger.showSnackBar(
+        meshSnackBar(content: Text(l10n.sos_notSent(friendlyError(e)))),
+      );
     }
   }
 }

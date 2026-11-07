@@ -9,6 +9,7 @@ import '../l10n/l10n.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../services/coverage_capture_service.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class BastionCoverageCaptureScreen extends StatefulWidget {
   const BastionCoverageCaptureScreen({super.key});
@@ -72,11 +73,9 @@ class _BastionCoverageCaptureScreenState
       }
     } catch (error) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(error.toString().replaceFirst('Bad state: ', '')),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(meshSnackBar(content: Text(friendlyError(error))));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -123,9 +122,9 @@ class _BastionCoverageCaptureScreenState
       canPop: !_capture.recording && !_busy,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(l10n.coverage_leaveBlocked)));
+          ScaffoldMessenger.of(context).showSnackBar(
+            meshSnackBar(content: Text(l10n.coverage_leaveBlocked)),
+          );
         }
       },
       child: Scaffold(

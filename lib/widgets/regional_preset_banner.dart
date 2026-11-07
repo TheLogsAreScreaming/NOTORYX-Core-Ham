@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/regional_preset.dart';
 import '../services/regional_preset_service.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// "Your area's mesh uses…" with Review and Not now, shown when the radio
 /// doesn't match the local mesh's published settings.
@@ -132,11 +133,11 @@ Future<void> reviewRegionalPreset(
   try {
     await service.apply(preset);
     messenger.showSnackBar(
-      SnackBar(content: Text('Radio set to ${preset.name} settings.')),
+      meshSnackBar(content: Text('Radio set to ${preset.name} settings.')),
     );
   } catch (e) {
     messenger.showSnackBar(
-      SnackBar(content: Text('Could not change the radio: $e')),
+      meshSnackBar(content: Text('Could not change the radio: $e')),
     );
   }
 }

@@ -274,7 +274,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
       await connector.reconnectSavedRadio();
     } catch (e) {
       appLogger.warn('Reconnect failed: $e', tag: 'ScannerScreen');
-      messenger.showSnackBar(SnackBar(content: Text(failed)));
+      messenger.showSnackBar(meshSnackBar(content: Text(failed)));
     } finally {
       if (mounted) setState(() => _connectingDeviceId = null);
     }

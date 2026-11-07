@@ -20,6 +20,7 @@ import 'ble_debug_log_screen.dart';
 import 'channel_chat_screen.dart';
 import 'companion_radio_stats_screen.dart';
 import 'map_screen.dart';
+import '../helpers/snack_bar_builder.dart';
 
 class BastionDiagnosticsScreen extends StatelessWidget {
   const BastionDiagnosticsScreen({super.key});
@@ -102,9 +103,9 @@ class BastionDiagnosticsScreen extends StatelessWidget {
   void _copy(BuildContext context, String label, String value) {
     if (value == '—') return;
     Clipboard.setData(ClipboardData(text: value));
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(context.l10n.diag_copied(label))));
+    ScaffoldMessenger.of(context).showSnackBar(
+      meshSnackBar(content: Text(context.l10n.diag_copied(label))),
+    );
   }
 
   void _showChannels(BuildContext context, MeshCoreConnector c) {

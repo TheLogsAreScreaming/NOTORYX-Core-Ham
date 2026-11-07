@@ -9,6 +9,7 @@ import '../models/bot_settings.dart';
 import '../services/bot_service.dart';
 import '../services/weather_service.dart';
 import '../widgets/ember_backdrop.dart';
+import '../helpers/snack_bar_builder.dart';
 
 /// What the newer commands do, shown under their switches.
 String? _commandHint(AppLocalizations t, String command) => switch (command) {
@@ -39,7 +40,7 @@ class BotSettingsScreen extends StatelessWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text(error.message.toString())));
+        ).showSnackBar(meshSnackBar(content: Text(error.message.toString())));
       }
     }
   }
@@ -75,7 +76,7 @@ class BotSettingsScreen extends StatelessWidget {
                 Navigator.pop(context, controller.text.trim());
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
+                  meshSnackBar(
                     content: Text('Enter a shorter, non-empty reply.'),
                   ),
                 );
@@ -185,7 +186,7 @@ class BotSettingsScreen extends StatelessWidget {
                 if (trigger.text.trim().isEmpty ||
                     !isValidBotResponse(response.text)) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                    meshSnackBar(
                       content: Text(
                         'Enter a trigger and a short, non-empty reply.',
                       ),

@@ -31,7 +31,7 @@ Material 3 structure (roles, components, motion), with Apple HIG restraint: cont
 | 3 | Chats and Nodes: list rows, chat headers, composer, empty states | Done (PR 9) |
 | 4 | Settings, Connections, scanner, radio and repeater settings | Done (PR 8 scanner, PR 12) |
 | 5 | Tools: field ops, wardrive, track log, diagnostics, path and route tools, maps | PR 17 |
-| 6 | Dialogs, sheets and snackbars app-wide; destructive confirmations | |
+| 6 | Dialogs, sheets and snackbars app-wide; destructive confirmations | PR 18 |
 | 7 | Accessibility pass (text scale, touch targets, semantics), screenshots, write-up | |
 
 Each stage ends with `flutter analyze`, the full test suite, and screenshots from `test/preview`. Anything that needs a real phone or radio to verify is listed in that stage's PR.

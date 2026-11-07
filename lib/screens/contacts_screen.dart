@@ -1166,38 +1166,27 @@ class _ContactsScreenState extends State<ContactsScreen>
     );
   }
 
-  void _confirmDeleteGroup(BuildContext context, ContactGroup group) {
+  Future<void> _confirmDeleteGroup(
+    BuildContext context,
+    ContactGroup group,
+  ) async {
     if (!_hasGroupStoreScope(context.read<MeshCoreConnector>())) {
       _showGroupsUnavailableMessage(context);
       return;
     }
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.contacts_deleteGroup),
-        content: Text(context.l10n.contacts_deleteGroupConfirm(group.name)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(dialogContext);
-              setState(() {
-                _groups.removeWhere((g) => g.name == group.name);
-                _ensureValidSelectedGroup();
-              });
-              await _saveGroups();
-            },
-            child: Text(
-              context.l10n.common_delete,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
-            ),
-          ),
-        ],
-      ),
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.contacts_deleteGroup,
+      message: context.l10n.contacts_deleteGroupConfirm(group.name),
+      confirmLabel: context.l10n.common_delete,
     );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    setState(() {
+      _groups.removeWhere((g) => g.name == group.name);
+      _ensureValidSelectedGroup();
+    });
+    await _saveGroups();
   }
 
   void _showGroupEditor(
@@ -1576,34 +1565,20 @@ class _ContactsScreenState extends State<ContactsScreen>
     return Uint8List.fromList(contact.publicKey.sublist(0, width));
   }
 
-  void _confirmDelete(
+  Future<void> _confirmDelete(
     BuildContext context,
     MeshCoreConnector connector,
     Contact contact,
-  ) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.contacts_deleteContact),
-        content: Text(context.l10n.contacts_removeConfirm(contact.name)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(dialogContext);
-              connector.removeContact(contact);
-            },
-            child: Text(
-              context.l10n.common_delete,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
-            ),
-          ),
-        ],
-      ),
+  ) async {
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.contacts_deleteContact,
+      message: context.l10n.contacts_removeConfirm(contact.name),
+      confirmLabel: context.l10n.common_delete,
     );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    connector.removeContact(contact);
   }
 }
 

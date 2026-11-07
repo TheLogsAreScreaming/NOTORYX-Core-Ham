@@ -93,4 +93,41 @@ void main() {
     await tester.pumpAndSettle();
     expect(result, isTrue);
   });
+
+  testWidgets('destructive confirm is red; a safe confirm is primary', (
+    tester,
+  ) async {
+    late BuildContext ctx;
+    await tester.pumpWidget(
+      _app(
+        Builder(
+          builder: (c) {
+            ctx = c;
+            return const SizedBox();
+          },
+        ),
+      ),
+    );
+    final scheme = Theme.of(ctx).colorScheme;
+    Color? fill(String label) {
+      final button = tester.widget<FilledButton>(
+        find.widgetWithText(FilledButton, label),
+      );
+      return button.style?.backgroundColor?.resolve({});
+    }
+
+    final destructive = confirmDestructive(ctx, title: 'Remove?');
+    await tester.pumpAndSettle();
+    expect(fill('Delete'), scheme.error);
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+    expect(await destructive, isFalse);
+
+    final safe = confirmAction(ctx, message: 'Join?', confirmLabel: 'Join');
+    await tester.pumpAndSettle();
+    expect(fill('Join'), isNull);
+    await tester.tap(find.text('Join'));
+    await tester.pumpAndSettle();
+    expect(await safe, isTrue);
+  });
 }

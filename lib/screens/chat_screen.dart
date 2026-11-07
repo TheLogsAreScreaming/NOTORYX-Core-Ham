@@ -23,7 +23,6 @@ import '../widgets/add_first_banner.dart';
 import '../widgets/quick_messages.dart';
 import '../widgets/share_in_chat.dart';
 import '../widgets/message_status_icon.dart';
-import '../widgets/empty_state.dart';
 import '../helpers/chat_scroll_controller.dart';
 import '../helpers/gif_helper.dart';
 import '../models/channel_message.dart';
@@ -58,6 +57,7 @@ import '../widgets/link_preview_card.dart';
 import '../services/link_preview.dart';
 import '../widgets/mesh_ui.dart';
 import 'telemetry_screen.dart';
+import '../widgets/ui/mesh_states.dart';
 
 // Image messages are deliberately absent from this screen, and there is no
 // flag to flip: the AEIC wire format is `CMD_SEND_CHANNEL_DATA` (62) /
@@ -895,24 +895,10 @@ class _ChatScreenState extends State<ChatScreen> {
     BuildContext context,
     MeshCoreConnector connector,
   ) async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.contact_clearChat),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.error,
-            ),
-            child: Text(context.l10n.common_delete),
-          ),
-        ],
-      ),
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.contact_clearChat,
+      confirmLabel: context.l10n.common_delete,
     );
     if (confirmed == true) {
       connector.clearMessagesForContact(widget.contact);
@@ -1035,11 +1021,15 @@ class _ChatScreenState extends State<ChatScreen> {
                     try {
                       await connector.forgetLastAdvert(contact);
                       messenger.showSnackBar(
-                        SnackBar(content: Text(l10n.contact_forgetAdvertDone)),
+                        meshSnackBar(
+                          content: Text(l10n.contact_forgetAdvertDone),
+                        ),
                       );
                     } catch (e) {
                       messenger.showSnackBar(
-                        SnackBar(content: Text(l10n.settings_error('$e'))),
+                        meshSnackBar(
+                          content: Text(l10n.settings_error(friendlyError(e))),
+                        ),
                       );
                     }
                   }

@@ -12,6 +12,8 @@ import 'package:meshcore_open/theme/mesh_theme.dart';
 import 'package:meshcore_open/widgets/mesh_ui.dart';
 import 'package:provider/provider.dart';
 import 'region_setup_screen.dart';
+import '../widgets/ui/mesh_states.dart';
+import '../helpers/snack_bar_builder.dart';
 
 Future<void> pushRegionManagementScreen(BuildContext context) {
   return Navigator.push(
@@ -496,40 +498,22 @@ class _RegionManagementScreenState extends State<RegionManagementScreen> {
     );
   }
 
-  void _confirmDelete(BuildContext context, Region region) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(context.l10n.settings_deleteRegion),
-        content: Text(context.l10n.settings_deleteRegionConfirm(region)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: Text(context.l10n.common_cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              final connector = context.read<MeshCoreConnector>();
-              Navigator.pop(dialogContext);
-              await _regionStore.removeRegion(region);
-              // Deleting a region clears it from any channels that used it;
-              // refresh the connector's in-memory channel regions to match.
-              await connector.loadChannelSettings();
-              _loadRegions();
-              if (!context.mounted) return;
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(context.l10n.settings_regionDeleted)),
-              );
-            },
-            child: Text(
-              context.l10n.common_delete,
-              style: TextStyle(
-                color: Theme.of(dialogContext).colorScheme.error,
-              ),
-            ),
-          ),
-        ],
-      ),
+  Future<void> _confirmDelete(BuildContext context, Region region) async {
+    final confirmed = await confirmDestructive(
+      context,
+      title: context.l10n.settings_deleteRegion,
+      message: context.l10n.settings_deleteRegionConfirm(region),
+      confirmLabel: context.l10n.common_delete,
+    );
+    if (!confirmed) return;
+    if (!context.mounted) return;
+    final connector = context.read<MeshCoreConnector>();
+    await _regionStore.removeRegion(region);
+    await connector.loadChannelSettings();
+    _loadRegions();
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      meshSnackBar(content: Text(context.l10n.settings_regionDeleted)),
     );
   }
 }
