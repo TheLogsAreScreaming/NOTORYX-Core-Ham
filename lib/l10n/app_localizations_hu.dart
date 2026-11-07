@@ -9522,4 +9522,83 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Névjegy adatai';
+
+  @override
+  String get pathGraph_you => 'Te';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count üzenetet továbbított';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Ez a rövid azonosító több átjátszóhoz is illik, így nem köthető egyhez.';
+
+  @override
+  String get pathGraph_comesFrom => 'Honnan jön';
+
+  @override
+  String get pathGraph_goesTo => 'Hová megy';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Átjátszó adatai';
+
+  @override
+  String get pathGraph_days7 => '7 nap';
+
+  @override
+  String get pathGraph_empty =>
+      'Ebben az időszakban még nincs csatornaüzenet-útvonal. Az útvonalak a kapott csatornaüzenetekből gyűlnek, amíg a nyomkövetés be van kapcsolva.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths hallott útvonal · $repeaters átjátszó';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Minden ugrás a hash-előtagjával látszik, vagy a nevével, ha ismered az átjátszót.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count rövid (1 bájtos) ugrás hosszabb útvonalak alapján egy adott átjátszóhoz kötve.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched rövid (1 bájtos) ugrás hosszabb útvonalak alapján egy adott átjátszóhoz kötve · $ambiguous még kétértelmű (? jelöli).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Bal oldalt: távolabbi átjátszók. Jobb oldalt: te. A sáv vastagsága mutatja, hány üzenet ment azon az ugráson. Koppints egy dobozra az átjátszóért.';
+
+  @override
+  String get pathGraph_busiest => 'Legforgalmasabb átjátszók';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Útvonalgráf. Legforgalmasabb átjátszó: $name, $count üzenetet továbbított.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Másolva: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Nincs csatorna ezen a rádión.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Koppints egy értékre a másoláshoz. Húzd le a frissítéshez.';
+
+  @override
+  String get diag_storage => 'Tárhely';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
 }

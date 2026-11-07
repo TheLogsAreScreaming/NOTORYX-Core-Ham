@@ -9496,4 +9496,83 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Contactgegevens';
+
+  @override
+  String get pathGraph_you => 'Jij';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count berichten doorgegeven';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Deze korte ID past bij meer dan één repeater, dus hij is niet aan één toe te wijzen.';
+
+  @override
+  String get pathGraph_comesFrom => 'Komt van';
+
+  @override
+  String get pathGraph_goesTo => 'Gaat naar';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeatergegevens';
+
+  @override
+  String get pathGraph_days7 => '7 dagen';
+
+  @override
+  String get pathGraph_empty =>
+      'Nog geen kanaalberichtpaden in deze periode. Paden worden verzameld uit ontvangen kanaalberichten zolang het traceren aan staat.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths paden gehoord · $repeaters repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Elke hop wordt getoond met zijn hash-voorvoegsel, of met de naam als je de repeater kent.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count korte (1-byte) hops via langere paden aan een specifieke repeater gekoppeld.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched korte (1-byte) hops via langere paden aan een specifieke repeater gekoppeld · $ambiguous nog onduidelijk (gemarkeerd met ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Links: verder weg gelegen repeaters. Rechts: jij. De dikte van de band is hoeveel berichten die hop namen. Tik op een vakje om die repeater te zien.';
+
+  @override
+  String get pathGraph_busiest => 'Drukste repeaters';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Padgrafiek. Drukste repeater $name, $count berichten doorgegeven.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Gekopieerd: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Geen kanalen op deze radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tik op een waarde om die te kopiëren. Trek omlaag om te vernieuwen.';
+
+  @override
+  String get diag_storage => 'Opslag';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used van $total KB';
+  }
 }

@@ -9568,4 +9568,83 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Détails du contact';
+
+  @override
+  String get pathGraph_you => 'Vous';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count messages relayés';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Cet ID court correspond à plusieurs répéteurs, impossible de l’attribuer à un seul.';
+
+  @override
+  String get pathGraph_comesFrom => 'Vient de';
+
+  @override
+  String get pathGraph_goesTo => 'Va vers';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Détails du répéteur';
+
+  @override
+  String get pathGraph_days7 => '7 jours';
+
+  @override
+  String get pathGraph_empty =>
+      'Aucun chemin de message de canal sur cette période. Les chemins sont collectés à partir des messages de canal reçus quand le traçage est activé.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths chemins entendus · $repeaters répéteurs';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Chaque saut est affiché par son préfixe de hachage, ou son nom si vous connaissez le répéteur.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count sauts courts (1 octet) associés à un répéteur précis grâce à des chemins plus longs.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched sauts courts (1 octet) associés à un répéteur précis grâce à des chemins plus longs · $ambiguous encore ambigus (marqués ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'À gauche : répéteurs plus éloignés. À droite : vous. L’épaisseur de la bande indique combien de messages ont pris ce saut. Touchez une case pour voir ce répéteur.';
+
+  @override
+  String get pathGraph_busiest => 'Répéteurs les plus actifs';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Graphe des chemins. Répéteur le plus actif $name, $count messages relayés.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Copié : $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Aucun canal sur cette radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Touchez une valeur pour la copier. Tirez vers le bas pour actualiser.';
+
+  @override
+  String get diag_storage => 'Stockage';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used sur $total Ko';
+  }
 }

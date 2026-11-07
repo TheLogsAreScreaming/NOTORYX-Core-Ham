@@ -9545,4 +9545,83 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Dettagli contatto';
+
+  @override
+  String get pathGraph_you => 'Tu';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Inoltrati $count messaggi';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Questo ID corto corrisponde a più di un ripetitore, quindi non si può attribuire a uno solo.';
+
+  @override
+  String get pathGraph_comesFrom => 'Arriva da';
+
+  @override
+  String get pathGraph_goesTo => 'Va verso';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Dettagli ripetitore';
+
+  @override
+  String get pathGraph_days7 => '7 giorni';
+
+  @override
+  String get pathGraph_empty =>
+      'Ancora nessun percorso di messaggi di canale in questo periodo. I percorsi vengono raccolti dai messaggi di canale ricevuti mentre il tracciamento è attivo.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths percorsi sentiti · $repeaters ripetitori';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Ogni salto è mostrato con il suo prefisso hash, o con il nome se conosci il ripetitore.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count salti corti (1 byte) associati a un ripetitore preciso grazie a percorsi più lunghi.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched salti corti (1 byte) associati a un ripetitore preciso grazie a percorsi più lunghi · $ambiguous ancora ambigui (segnati con ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'A sinistra: ripetitori più lontani. A destra: tu. Lo spessore della banda indica quanti messaggi hanno fatto quel salto. Tocca un riquadro per vedere il ripetitore.';
+
+  @override
+  String get pathGraph_busiest => 'Ripetitori più attivi';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Grafico dei percorsi. Ripetitore più attivo $name, $count messaggi inoltrati.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Copiato: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Nessun canale su questa radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tocca un valore per copiarlo. Trascina giù per aggiornare.';
+
+  @override
+  String get diag_storage => 'Memoria';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used di $total KB';
+  }
 }

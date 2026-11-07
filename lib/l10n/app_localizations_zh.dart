@@ -8887,4 +8887,78 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get routes_contactDetails => '联系人详情';
+
+  @override
+  String get pathGraph_you => '你';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '中继了 $count 条消息';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => '这个短 ID 与多个中继器匹配，无法确定是哪一个。';
+
+  @override
+  String get pathGraph_comesFrom => '来自';
+
+  @override
+  String get pathGraph_goesTo => '去往';
+
+  @override
+  String get pathGraph_repeaterDetails => '中继器详情';
+
+  @override
+  String get pathGraph_days7 => '7 天';
+
+  @override
+  String get pathGraph_empty => '此期间还没有频道消息路径。消息追踪开启时，会从收到的频道消息中收集路径。';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '听到的路径 $paths · 中继器 $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '每一跳以其哈希前缀显示；如果你认识该中继器，则显示名称。';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '已通过更长的路径将 $count 个短（1 字节）跳匹配到具体中继器。';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '已通过更长的路径将 $matched 个短（1 字节）跳匹配到具体中继器 · $ambiguous 个仍不确定（标有 ?）。';
+  }
+
+  @override
+  String get pathGraph_chartHint => '左：较远的中继器。右：你。带宽表示经过该跳的消息数。点按方块可查看该中继器。';
+
+  @override
+  String get pathGraph_busiest => '最繁忙的中继器';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '路径图。最繁忙的中继器 $name，中继了 $count 条消息。';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return '已复制：$label';
+  }
+
+  @override
+  String get diag_noChannels => '此电台没有频道。';
+
+  @override
+  String get diag_tapToCopy => '点按任意值即可复制。下拉刷新。';
+
+  @override
+  String get diag_storage => '存储';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
 }

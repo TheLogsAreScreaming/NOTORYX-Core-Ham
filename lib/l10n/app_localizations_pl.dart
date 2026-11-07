@@ -9569,4 +9569,83 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Szczegóły kontaktu';
+
+  @override
+  String get pathGraph_you => 'Ty';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Przekazał $count wiadomości';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Ten krótki ID pasuje do więcej niż jednego przemiennika, więc nie da się go przypisać do jednego.';
+
+  @override
+  String get pathGraph_comesFrom => 'Przychodzi z';
+
+  @override
+  String get pathGraph_goesTo => 'Idzie do';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Szczegóły przemiennika';
+
+  @override
+  String get pathGraph_days7 => '7 dni';
+
+  @override
+  String get pathGraph_empty =>
+      'W tym okresie nie ma jeszcze tras wiadomości z kanałów. Trasy są zbierane z odebranych wiadomości z kanałów, gdy śledzenie jest włączone.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Usłyszane trasy: $paths · przemienniki: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Każdy skok jest pokazany przez prefiks skrótu lub nazwę, jeśli znasz przemiennik.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count krótkich (1-bajtowych) skoków przypisano do konkretnego przemiennika na podstawie dłuższych tras.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched krótkich (1-bajtowych) skoków przypisano do konkretnego przemiennika na podstawie dłuższych tras · $ambiguous nadal niejednoznacznych (oznaczone ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Po lewej: dalsze przemienniki. Po prawej: ty. Grubość pasma to liczba wiadomości przez ten skok. Stuknij pole, aby zobaczyć przemiennik.';
+
+  @override
+  String get pathGraph_busiest => 'Najbardziej obciążone przemienniki';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Graf tras. Najbardziej obciążony przemiennik $name, przekazał $count wiadomości.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Skopiowano: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Brak kanałów w tym radiu.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Stuknij wartość, aby ją skopiować. Pociągnij w dół, aby odświeżyć.';
+
+  @override
+  String get diag_storage => 'Pamięć';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used z $total KB';
+  }
 }

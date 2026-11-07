@@ -9090,4 +9090,80 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get routes_contactDetails => '연락처 정보';
+
+  @override
+  String get pathGraph_you => '나';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '메시지 $count개 중계';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => '이 짧은 ID는 여러 리피터와 일치해 하나로 특정할 수 없습니다.';
+
+  @override
+  String get pathGraph_comesFrom => '들어오는 곳';
+
+  @override
+  String get pathGraph_goesTo => '나가는 곳';
+
+  @override
+  String get pathGraph_repeaterDetails => '리피터 정보';
+
+  @override
+  String get pathGraph_days7 => '7일';
+
+  @override
+  String get pathGraph_empty =>
+      '이 기간에는 아직 채널 메시지 경로가 없습니다. 경로는 메시지 추적이 켜져 있는 동안 받은 채널 메시지에서 수집됩니다.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '들린 경로 $paths · 리피터 $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '각 홉은 해시 접두사로, 아는 리피터라면 이름으로 표시됩니다.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '짧은 (1바이트) 홉 $count개를 더 긴 경로로 특정 리피터에 연결했습니다.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '짧은 (1바이트) 홉 $matched개를 더 긴 경로로 특정 리피터에 연결했습니다 · $ambiguous개는 아직 모호합니다(? 표시).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      '왼쪽: 더 먼 리피터. 오른쪽: 나. 띠의 두께는 그 홉을 거친 메시지 수입니다. 상자를 누르면 해당 리피터를 봅니다.';
+
+  @override
+  String get pathGraph_busiest => '가장 바쁜 리피터';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '경로 그래프. 가장 바쁜 리피터 $name, 메시지 $count개 중계.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return '복사됨: $label';
+  }
+
+  @override
+  String get diag_noChannels => '이 무전기에는 채널이 없습니다.';
+
+  @override
+  String get diag_tapToCopy => '값을 누르면 복사됩니다. 아래로 당겨 새로 고칩니다.';
+
+  @override
+  String get diag_storage => '저장 공간';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
 }
