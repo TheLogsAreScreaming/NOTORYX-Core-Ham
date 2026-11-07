@@ -213,9 +213,9 @@ void main() {
 
   test('the palette follows the chosen theme', () {
     MeshPalette.current = BastionTheme.bubbleGum.palette;
-    expect(MeshPalette.accent, const Color(0xFF8E0B56));
+    expect(MeshPalette.accent, const Color(0xFF920054));
     MeshPalette.current = BastionTheme.blaze.palette;
-    expect(MeshPalette.accent, const Color(0xFFFF9A3C));
+    expect(MeshPalette.accent, const Color(0xFFFF8A1F));
     expect(MeshTheme.light().brightness, Brightness.light);
     expect(MeshTheme.dark().brightness, Brightness.dark);
   });

@@ -79,10 +79,10 @@ class EmberPainter extends CustomPainter {
   /// (centre x, centre y, radius, strength) for the two glows, in phone
   /// units.
   List<(double, double, double, double)> get _glows => switch (scene) {
-    EmberScene.home => [(90, 70, 220, 0.50), (370, 560, 210, 0.34)],
-    EmberScene.chats => [(360, 60, 240, 0.46), (0, 660, 210, 0.30)],
-    EmberScene.nodes => [(160, 0, 230, 0.47), (400, 720, 220, 0.28)],
-    EmberScene.more => [(320, 40, 230, 0.46), (20, 600, 210, 0.30)],
+    EmberScene.home => [(90, 70, 250, 0.64), (370, 560, 240, 0.48)],
+    EmberScene.chats => [(360, 60, 260, 0.60), (0, 660, 240, 0.44)],
+    EmberScene.nodes => [(160, 0, 250, 0.60), (400, 720, 240, 0.42)],
+    EmberScene.more => [(320, 40, 250, 0.60), (20, 600, 240, 0.44)],
   };
 
   /// Contour bands as y offsets of the first line; each band has three.
@@ -101,7 +101,7 @@ class EmberPainter extends CustomPainter {
     // A wide window stretches the layout; size glows by the shorter axis
     // so they stay round.
     final s = sx < sy ? sx : sy;
-    final fade = dark ? 1.0 : 0.5;
+    final fade = dark ? 1.0 : 0.7;
 
     for (final (i, (cx, cy, r, strength)) in _glows.indexed) {
       final colour = i == 0 ? glow : second;
