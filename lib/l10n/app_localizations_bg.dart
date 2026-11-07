@@ -9740,4 +9740,39 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get deliv_vNoAck =>
       'Няма потвърждение по никой маршрут. Може да е извън обхват или потвърждението не е стигнало до вас.';
+
+  @override
+  String get favReturn_setting => 'Любими отново в обхват';
+
+  @override
+  String get favReturn_settingHint =>
+      'Известие, когато любим контакт се чуе отново след период на тишина';
+
+  @override
+  String get favReturn_off => 'Изкл.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'След $count часа',
+      one: 'След 1 час',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Отново в обхват';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours часа',
+      one: '1 час',
+    );
+    return '$name се чу отново след $_temp0 тишина';
+  }
 }

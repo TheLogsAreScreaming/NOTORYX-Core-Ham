@@ -9305,4 +9305,36 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get deliv_vNoAck =>
       '어느 경로로도 확인이 없습니다. 범위 밖이거나 확인 응답이 돌아오지 못했을 수 있습니다.';
+
+  @override
+  String get favReturn_setting => '즐겨찾기 범위 복귀';
+
+  @override
+  String get favReturn_settingHint => '한동안 조용하던 즐겨찾기가 다시 들리면 알림';
+
+  @override
+  String get favReturn_off => '끄기';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count시간 후',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => '범위 복귀';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours시간',
+    );
+    return '$name이(가) $_temp0 만에 다시 들립니다';
+  }
 }

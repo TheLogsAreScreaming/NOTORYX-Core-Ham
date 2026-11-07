@@ -9769,4 +9769,39 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get deliv_vNoAck =>
       'Nessuna conferma da alcun percorso. Potrebbe essere fuori portata, o la sua conferma non è riuscita a tornare fino a te.';
+
+  @override
+  String get favReturn_setting => 'Preferiti di nuovo in portata';
+
+  @override
+  String get favReturn_settingHint =>
+      'Avvisa quando un preferito si sente di nuovo dopo un periodo di silenzio';
+
+  @override
+  String get favReturn_off => 'Disattivato';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Dopo $count ore',
+      one: 'Dopo 1 ora',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Di nuovo in portata';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ore',
+      one: '1 ora',
+    );
+    return '$name si sente di nuovo dopo $_temp0 di silenzio';
+  }
 }

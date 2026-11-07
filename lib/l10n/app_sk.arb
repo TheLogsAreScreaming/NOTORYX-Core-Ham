@@ -4106,5 +4106,11 @@
   "deliv_vNotSent": "Rádio túto správu nikdy neprijalo. Skontrolujte pripojenie a skúste znova.",
   "deliv_vQuiet": "Bez potvrdenia. {name} nebolo počuť {hours, plural, =1{1 hodinu} few{{hours} hodiny} other{{hours} hodín}}, môže byť mimo dosahu alebo vypnutý.",
   "deliv_vNoFlood": "Bez potvrdenia cez uloženú trasu a pokusy záplavou sú vypnuté. Zapnite ich v Nastavenia → Nastavenia aplikácie → Správy alebo skúste znova.",
-  "deliv_vNoAck": "Žiadne potvrdenie z žiadnej trasy. Môže byť mimo dosahu alebo sa potvrdenie nedostalo späť k vám."
+  "deliv_vNoAck": "Žiadne potvrdenie z žiadnej trasy. Môže byť mimo dosahu alebo sa potvrdenie nedostalo späť k vám.",
+  "favReturn_setting": "Obľúbené opäť v dosahu",
+  "favReturn_settingHint": "Upozorniť, keď je obľúbený kontakt po období ticha opäť počuť",
+  "favReturn_off": "Vyp.",
+  "favReturn_hours": "{count, plural, =1{Po 1 hodine} other{Po {count} hodinách}}",
+  "favReturn_title": "Opäť v dosahu",
+  "favReturn_body": "{name} je opäť počuť po {hours, plural, =1{1 hodine} other{{hours} hodinách}} ticha"
 }

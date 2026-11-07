@@ -4106,5 +4106,11 @@
   "deliv_vNotSent": "Je radio heeft dit bericht nooit aangenomen. Controleer de verbinding en probeer opnieuw.",
   "deliv_vQuiet": "Geen bevestiging. {name} is al {hours, plural, =1{1 uur} other{{hours} uur}} niet gehoord en is mogelijk buiten bereik of uitgeschakeld.",
   "deliv_vNoFlood": "Geen bevestiging via de opgeslagen route en flood-pogingen staan uit. Zet ze aan via Instellingen → App-instellingen → Berichten, of probeer opnieuw.",
-  "deliv_vNoAck": "Geen bevestiging via welke route dan ook. Mogelijk buiten bereik, of hun bevestiging kwam niet bij je terug."
+  "deliv_vNoAck": "Geen bevestiging via welke route dan ook. Mogelijk buiten bereik, of hun bevestiging kwam niet bij je terug.",
+  "favReturn_setting": "Favorieten weer binnen bereik",
+  "favReturn_settingHint": "Melding wanneer een favoriet na een stille periode weer te horen is",
+  "favReturn_off": "Uit",
+  "favReturn_hours": "{count, plural, =1{Na 1 uur} other{Na {count} uur}}",
+  "favReturn_title": "Weer binnen bereik",
+  "favReturn_body": "{name} weer gehoord na {hours, plural, =1{1 uur} other{{hours} uur}} stilte"
 }

@@ -4144,5 +4144,11 @@
   "deliv_vNotSent": "Radio nie przyjęło tej wiadomości. Sprawdź połączenie i spróbuj ponownie.",
   "deliv_vQuiet": "Brak potwierdzenia. {name} nie był słyszany od {hours, plural, =1{1 godziny} other{{hours} godzin}}, może być poza zasięgiem lub wyłączony.",
   "deliv_vNoFlood": "Brak potwierdzenia przez zapisaną trasę, a próby zalewaniem są wyłączone. Włącz je w Ustawienia → Ustawienia aplikacji → Wiadomości lub spróbuj ponownie.",
-  "deliv_vNoAck": "Brak potwierdzenia z żadnej trasy. Może być poza zasięgiem albo potwierdzenie nie dotarło z powrotem."
+  "deliv_vNoAck": "Brak potwierdzenia z żadnej trasy. Może być poza zasięgiem albo potwierdzenie nie dotarło z powrotem.",
+  "favReturn_setting": "Ulubione znów w zasięgu",
+  "favReturn_settingHint": "Powiadom, gdy ulubiony kontakt znów się odezwie po okresie ciszy",
+  "favReturn_off": "Wył.",
+  "favReturn_hours": "{count, plural, =1{Po 1 godzinie} other{Po {count} godzinach}}",
+  "favReturn_title": "Znów w zasięgu",
+  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy"
 }

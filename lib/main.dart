@@ -40,6 +40,7 @@ import 'services/received_image_store.dart';
 import 'services/storage_service.dart';
 import 'services/message_retry_service.dart';
 import 'services/bot_service.dart';
+import 'services/favorite_return_service.dart';
 import 'services/field_ops_service.dart';
 import 'services/path_history_service.dart';
 import 'services/app_settings_service.dart';
@@ -286,6 +287,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
   late final NetworkScanService _networkScan;
+  late final FavoriteReturnService _favoriteReturn;
   late final SosRelayService _sosRelay;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
@@ -330,6 +332,18 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       tripActive: () => _fieldOps.trip.active,
     )..load();
     _sosRelay = SosRelayService.forConnector(widget.connector)..load();
+    _favoriteReturn = FavoriteReturnService(
+      widget.connector,
+      quietHours: () => widget.appSettingsService.settings.favoriteReturnHours,
+      notify: (back) async {
+        if (!widget.appSettingsService.settings.notificationsEnabled) return;
+        await NotificationService().showFavoriteReturn(
+          contactId: back.key,
+          name: back.name,
+          quietHours: back.quiet.inHours,
+        );
+      },
+    );
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
     unawaited(_trackLog.load());
@@ -420,6 +434,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    _favoriteReturn.dispose();
     _botService.dispose();
     _weather.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);

@@ -5511,5 +5511,13 @@
   "deliv_vQuiet": "No confirmation. {name} hasn't been heard for {hours, plural, =1{1 hour} other{{hours} hours}}, so they may be out of range or switched off.",
   "@deliv_vQuiet": {"placeholders": {"name": {"type": "String"}, "hours": {"type": "int"}}},
   "deliv_vNoFlood": "No confirmation over the saved route, and flood attempts are off. Turn them on in Settings → App Settings → Messaging, or retry.",
-  "deliv_vNoAck": "No confirmation from any route. They may be out of range, or their confirmation couldn't get back to you."
+  "deliv_vNoAck": "No confirmation from any route. They may be out of range, or their confirmation couldn't get back to you.",
+  "favReturn_setting": "Favorites back in range",
+  "favReturn_settingHint": "Notify when a favorite is heard again after a quiet spell",
+  "favReturn_off": "Off",
+  "favReturn_hours": "{count, plural, =1{After 1 hour} other{After {count} hours}}",
+  "@favReturn_hours": {"placeholders": {"count": {"type": "int"}}},
+  "favReturn_title": "Back in range",
+  "favReturn_body": "{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet",
+  "@favReturn_body": {"placeholders": {"name": {"type": "String"}, "hours": {"type": "int"}}}
 }

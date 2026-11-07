@@ -9745,4 +9745,39 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get deliv_vNoAck =>
       'Egyik útvonalon sem jött megerősítés. Lehet hatótávon kívül, vagy a megerősítés nem jutott vissza hozzád.';
+
+  @override
+  String get favReturn_setting => 'Kedvencek újra hatótávon belül';
+
+  @override
+  String get favReturn_settingHint =>
+      'Értesítés, ha egy kedvenc csend után újra hallható';
+
+  @override
+  String get favReturn_off => 'Ki';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count óra után',
+      one: '1 óra után',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Újra hatótávon belül';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours óra',
+      one: '1 óra',
+    );
+    return '$name újra hallható $_temp0 csend után';
+  }
 }

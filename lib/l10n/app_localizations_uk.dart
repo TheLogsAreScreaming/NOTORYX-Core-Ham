@@ -9786,4 +9786,41 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get deliv_vNoAck =>
       'Немає підтвердження жодним маршрутом. Можливо, поза зоною, або підтвердження не змогло повернутися до вас.';
+
+  @override
+  String get favReturn_setting => 'Обрані знову в зоні';
+
+  @override
+  String get favReturn_settingHint =>
+      'Сповіщати, коли обраний контакт знову чути після тиші';
+
+  @override
+  String get favReturn_off => 'Вимк.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Через $count години',
+      many: 'Через $count годин',
+      few: 'Через $count години',
+      one: 'Через 1 годину',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Знову в зоні';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours год',
+      one: '1 години',
+    );
+    return '$name знову чути після $_temp0 тиші';
+  }
 }

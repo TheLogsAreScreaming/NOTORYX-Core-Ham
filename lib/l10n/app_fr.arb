@@ -4240,5 +4240,11 @@
   "deliv_vNotSent": "Votre radio n'a jamais pris ce message. Vérifiez qu'elle est connectée, puis réessayez.",
   "deliv_vQuiet": "Aucune confirmation. {name} n'a pas été entendu depuis {hours, plural, =1{1 heure} other{{hours} heures}} : hors de portée ou éteint ?",
   "deliv_vNoFlood": "Aucune confirmation par la route enregistrée, et les tentatives par inondation sont désactivées. Activez-les dans Réglages → Réglages de l'app → Messagerie, ou réessayez.",
-  "deliv_vNoAck": "Aucune confirmation par aucune route. Hors de portée, ou leur confirmation n'a pas pu revenir jusqu'à vous."
+  "deliv_vNoAck": "Aucune confirmation par aucune route. Hors de portée, ou leur confirmation n'a pas pu revenir jusqu'à vous.",
+  "favReturn_setting": "Favoris de retour à portée",
+  "favReturn_settingHint": "Prévenir quand un favori se fait de nouveau entendre après un silence",
+  "favReturn_off": "Désactivé",
+  "favReturn_hours": "{count, plural, =1{Après 1 heure} other{Après {count} heures}}",
+  "favReturn_title": "De retour à portée",
+  "favReturn_body": "{name} entendu de nouveau après {hours, plural, =1{1 heure} other{{hours} heures}} de silence"
 }

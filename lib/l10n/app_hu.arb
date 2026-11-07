@@ -4144,5 +4144,11 @@
   "deliv_vNotSent": "A rádiód nem vette át ezt az üzenetet. Ellenőrizd a kapcsolatot, majd próbáld újra.",
   "deliv_vQuiet": "Nincs megerősítés. {name} {hours, plural, =1{1 órája} other{{hours} órája}} nem hallható, lehet hatótávon kívül vagy kikapcsolva.",
   "deliv_vNoFlood": "Nincs megerősítés a mentett útvonalon, és az elárasztásos próbák ki vannak kapcsolva. Kapcsold be őket: Beállítások → Alkalmazás beállításai → Üzenetek, vagy próbáld újra.",
-  "deliv_vNoAck": "Egyik útvonalon sem jött megerősítés. Lehet hatótávon kívül, vagy a megerősítés nem jutott vissza hozzád."
+  "deliv_vNoAck": "Egyik útvonalon sem jött megerősítés. Lehet hatótávon kívül, vagy a megerősítés nem jutott vissza hozzád.",
+  "favReturn_setting": "Kedvencek újra hatótávon belül",
+  "favReturn_settingHint": "Értesítés, ha egy kedvenc csend után újra hallható",
+  "favReturn_off": "Ki",
+  "favReturn_hours": "{count, plural, =1{1 óra után} other{{count} óra után}}",
+  "favReturn_title": "Újra hatótávon belül",
+  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után"
 }

@@ -4111,5 +4111,11 @@
   "deliv_vNotSent": "电台从未接收此消息。请检查连接后重试。",
   "deliv_vQuiet": "无确认。已 {hours, plural, other{{hours} 小时}}未收到 {name}，可能超出范围或已关机。",
   "deliv_vNoFlood": "已保存路由无确认，且泛洪尝试已关闭。可在 设置 → 应用设置 → 消息 中开启，或重试。",
-  "deliv_vNoAck": "所有路由均无确认。可能超出范围，或确认未能传回给你。"
+  "deliv_vNoAck": "所有路由均无确认。可能超出范围，或确认未能传回给你。",
+  "favReturn_setting": "收藏联系人回到范围内",
+  "favReturn_settingHint": "收藏联系人沉寂一段时间后再次收到时通知",
+  "favReturn_off": "关闭",
+  "favReturn_hours": "{count, plural, other{{count} 小时后}}",
+  "favReturn_title": "回到范围内",
+  "favReturn_body": "沉寂 {hours, plural, other{{hours} 小时}}后再次收到 {name}"
 }

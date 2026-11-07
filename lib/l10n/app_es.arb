@@ -4240,5 +4240,11 @@
   "deliv_vNotSent": "Tu radio nunca aceptó este mensaje. Comprueba que está conectada y vuelve a intentarlo.",
   "deliv_vQuiet": "Sin confirmación. No se oye a {name} desde hace {hours, plural, =1{1 hora} other{{hours} horas}}; puede estar fuera de alcance o apagado.",
   "deliv_vNoFlood": "Sin confirmación por la ruta guardada y los intentos por inundación están desactivados. Actívalos en Ajustes → Ajustes de la app → Mensajes, o vuelve a intentarlo.",
-  "deliv_vNoAck": "Sin confirmación por ninguna ruta. Puede estar fuera de alcance o su confirmación no pudo volver hasta ti."
+  "deliv_vNoAck": "Sin confirmación por ninguna ruta. Puede estar fuera de alcance o su confirmación no pudo volver hasta ti.",
+  "favReturn_setting": "Favoritos de vuelta en alcance",
+  "favReturn_settingHint": "Avisar cuando se vuelva a oír a un favorito tras un tiempo en silencio",
+  "favReturn_off": "Desactivado",
+  "favReturn_hours": "{count, plural, =1{Tras 1 hora} other{Tras {count} horas}}",
+  "favReturn_title": "De vuelta en alcance",
+  "favReturn_body": "Se vuelve a oír a {name} tras {hours, plural, =1{1 hora} other{{hours} horas}} en silencio"
 }

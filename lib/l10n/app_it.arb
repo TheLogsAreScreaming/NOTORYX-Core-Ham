@@ -4240,5 +4240,11 @@
   "deliv_vNotSent": "La tua radio non ha mai accettato questo messaggio. Controlla che sia collegata e riprova.",
   "deliv_vQuiet": "Nessuna conferma. {name} non si sente da {hours, plural, =1{1 ora} other{{hours} ore}}: potrebbe essere fuori portata o spento.",
   "deliv_vNoFlood": "Nessuna conferma sul percorso salvato e i tentativi in flood sono disattivati. Attivali in Impostazioni → Impostazioni app → Messaggi, oppure riprova.",
-  "deliv_vNoAck": "Nessuna conferma da alcun percorso. Potrebbe essere fuori portata, o la sua conferma non è riuscita a tornare fino a te."
+  "deliv_vNoAck": "Nessuna conferma da alcun percorso. Potrebbe essere fuori portata, o la sua conferma non è riuscita a tornare fino a te.",
+  "favReturn_setting": "Preferiti di nuovo in portata",
+  "favReturn_settingHint": "Avvisa quando un preferito si sente di nuovo dopo un periodo di silenzio",
+  "favReturn_off": "Disattivato",
+  "favReturn_hours": "{count, plural, =1{Dopo 1 ora} other{Dopo {count} ore}}",
+  "favReturn_title": "Di nuovo in portata",
+  "favReturn_body": "{name} si sente di nuovo dopo {hours, plural, =1{1 ora} other{{hours} ore}} di silenzio"
 }

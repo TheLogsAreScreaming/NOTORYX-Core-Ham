@@ -9680,4 +9680,39 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get deliv_vNoAck =>
       'Ingen bekräftelse från någon rutt. Utom räckvidd, eller så kom bekräftelsen inte tillbaka till dig.';
+
+  @override
+  String get favReturn_setting => 'Favoriter tillbaka inom räckvidd';
+
+  @override
+  String get favReturn_settingHint =>
+      'Meddela när en favorit hörs igen efter en tyst period';
+
+  @override
+  String get favReturn_off => 'Av';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Efter $count timmar',
+      one: 'Efter 1 timme',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Tillbaka inom räckvidd';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours timmars',
+      one: '1 timmes',
+    );
+    return '$name hörs igen efter $_temp0 tystnad';
+  }
 }

@@ -216,6 +216,10 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(messageFloodAttempts: value));
   }
 
+  Future<void> setFavoriteReturnHours(int value) async {
+    await updateSettings(_settings.copyWith(favoriteReturnHours: value));
+  }
+
   Future<void> setThemeMode(String value) async {
     await updateSettings(_settings.copyWith(themeMode: value));
   }

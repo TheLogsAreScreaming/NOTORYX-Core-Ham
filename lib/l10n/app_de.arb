@@ -4240,5 +4240,11 @@
   "deliv_vNotSent": "Dein Funkgerät hat diese Nachricht nie übernommen. Prüfe die Verbindung und versuche es erneut.",
   "deliv_vQuiet": "Keine Bestätigung. {name} wurde seit {hours, plural, =1{1 Stunde} other{{hours} Stunden}} nicht gehört und ist vielleicht außer Reichweite oder ausgeschaltet.",
   "deliv_vNoFlood": "Keine Bestätigung über die gespeicherte Route, und Flood-Versuche sind aus. Schalte sie unter Einstellungen → App-Einstellungen → Nachrichten ein oder versuche es erneut.",
-  "deliv_vNoAck": "Keine Bestätigung über irgendeine Route. Vielleicht außer Reichweite, oder die Bestätigung kam nicht bis zu dir zurück."
+  "deliv_vNoAck": "Keine Bestätigung über irgendeine Route. Vielleicht außer Reichweite, oder die Bestätigung kam nicht bis zu dir zurück.",
+  "favReturn_setting": "Favoriten wieder in Reichweite",
+  "favReturn_settingHint": "Benachrichtigen, wenn ein Favorit nach einer Funkstille wieder zu hören ist",
+  "favReturn_off": "Aus",
+  "favReturn_hours": "{count, plural, =1{Nach 1 Stunde} other{Nach {count} Stunden}}",
+  "favReturn_title": "Wieder in Reichweite",
+  "favReturn_body": "{name} nach {hours, plural, =1{1 Stunde} other{{hours} Stunden}} Funkstille wieder zu hören"
 }

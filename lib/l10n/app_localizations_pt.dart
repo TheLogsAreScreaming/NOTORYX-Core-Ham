@@ -9741,4 +9741,39 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get deliv_vNoAck =>
       'Sem confirmação por nenhuma rota. Pode estar fora de alcance, ou a confirmação não conseguiu voltar até si.';
+
+  @override
+  String get favReturn_setting => 'Favoritos de volta ao alcance';
+
+  @override
+  String get favReturn_settingHint =>
+      'Notificar quando um favorito voltar a ser ouvido após um período de silêncio';
+
+  @override
+  String get favReturn_off => 'Desligado';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Após $count horas',
+      one: 'Após 1 hora',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'De volta ao alcance';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours horas',
+      one: '1 hora',
+    );
+    return '$name ouvido de novo após $_temp0 em silêncio';
+  }
 }

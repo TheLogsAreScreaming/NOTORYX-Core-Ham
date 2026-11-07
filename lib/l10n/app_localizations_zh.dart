@@ -9097,4 +9097,36 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get deliv_vNoAck => '所有路由均无确认。可能超出范围，或确认未能传回给你。';
+
+  @override
+  String get favReturn_setting => '收藏联系人回到范围内';
+
+  @override
+  String get favReturn_settingHint => '收藏联系人沉寂一段时间后再次收到时通知';
+
+  @override
+  String get favReturn_off => '关闭';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 小时后',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => '回到范围内';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时',
+    );
+    return '沉寂 $_temp0后再次收到 $name';
+  }
 }

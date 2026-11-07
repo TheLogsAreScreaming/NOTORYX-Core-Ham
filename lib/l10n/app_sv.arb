@@ -4106,5 +4106,11 @@
   "deliv_vNotSent": "Din radio tog aldrig emot meddelandet. Kontrollera att den är ansluten och försök igen.",
   "deliv_vQuiet": "Ingen bekräftelse. {name} har inte hörts på {hours, plural, =1{1 timme} other{{hours} timmar}} och kan vara utom räckvidd eller avstängd.",
   "deliv_vNoFlood": "Ingen bekräftelse via den sparade rutten, och flood-försök är avstängda. Slå på dem i Inställningar → Appinställningar → Meddelanden, eller försök igen.",
-  "deliv_vNoAck": "Ingen bekräftelse från någon rutt. Utom räckvidd, eller så kom bekräftelsen inte tillbaka till dig."
+  "deliv_vNoAck": "Ingen bekräftelse från någon rutt. Utom räckvidd, eller så kom bekräftelsen inte tillbaka till dig.",
+  "favReturn_setting": "Favoriter tillbaka inom räckvidd",
+  "favReturn_settingHint": "Meddela när en favorit hörs igen efter en tyst period",
+  "favReturn_off": "Av",
+  "favReturn_hours": "{count, plural, =1{Efter 1 timme} other{Efter {count} timmar}}",
+  "favReturn_title": "Tillbaka inom räckvidd",
+  "favReturn_body": "{name} hörs igen efter {hours, plural, =1{1 timmes} other{{hours} timmars}} tystnad"
 }

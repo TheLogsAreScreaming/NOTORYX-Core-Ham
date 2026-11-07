@@ -4106,5 +4106,11 @@
   "deliv_vNotSent": "Vaš radio tega sporočila ni sprejel. Preverite povezavo in poskusite znova.",
   "deliv_vQuiet": "Ni potrditve. {name} ni slišan že {hours, plural, =1{1 uro} =2{2 uri} few{{hours} ure} other{{hours} ur}}, morda je zunaj dosega ali izklopljen.",
   "deliv_vNoFlood": "Ni potrditve po shranjeni poti, poskusi s poplavo pa so izklopljeni. Vklopite jih v Nastavitve → Nastavitve aplikacije → Sporočila ali poskusite znova.",
-  "deliv_vNoAck": "Ni potrditve po nobeni poti. Morda je zunaj dosega ali potrditev ni prišla nazaj do vas."
+  "deliv_vNoAck": "Ni potrditve po nobeni poti. Morda je zunaj dosega ali potrditev ni prišla nazaj do vas.",
+  "favReturn_setting": "Priljubljeni spet v dosegu",
+  "favReturn_settingHint": "Obvesti, ko je priljubljenega po obdobju tišine spet slišati",
+  "favReturn_off": "Izklop",
+  "favReturn_hours": "{count, plural, =1{Po 1 uri} =2{Po 2 urah} other{Po {count} urah}}",
+  "favReturn_title": "Spet v dosegu",
+  "favReturn_body": "{name} je spet slišen po {hours, plural, =1{1 uri} =2{2 urah} other{{hours} urah}} tišine"
 }
