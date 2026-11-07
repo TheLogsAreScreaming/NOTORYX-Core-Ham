@@ -39,6 +39,7 @@ import '../services/translation_service.dart';
 import '../utils/lora_airtime.dart';
 import '../helpers/share_links.dart';
 import '../widgets/ember_backdrop.dart';
+import '../widgets/quick_messages.dart';
 import '../widgets/share_in_chat.dart';
 import '../widgets/received_image_message.dart';
 import '../widgets/byte_count_input.dart';
@@ -1844,6 +1845,19 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     String action,
     MeshCoreConnector connector,
   ) async {
+    if (action == 'quick') {
+      final quick = await pickQuickMessage(context);
+      if (quick == null || !mounted) return;
+      // A quick message joins whatever is already typed.
+      final typed = _textController.text.trimRight();
+      final text = typed.isEmpty ? quick : '$typed $quick';
+      _textController.value = TextEditingValue(
+        text: text,
+        selection: TextSelection.collapsed(offset: text.length),
+      );
+      _textFieldFocusNode.requestFocus();
+      return;
+    }
     final text = action == 'position'
         ? myPositionMessage(connector)
         : await pickContactToShare(context);
@@ -1865,7 +1879,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         settings.imageMessagesEnabled && !imageCodecDownloading;
     final showCorridorAction = connector.floodCorridorSupported == true;
     final menuItemCount =
-        3 + (showImageAction ? 1 : 0) + (showCorridorAction ? 1 : 0);
+        4 + (showImageAction ? 1 : 0) + (showCorridorAction ? 1 : 0);
     final scheme = Theme.of(context).colorScheme;
     return Container(
       decoration: BoxDecoration(
@@ -1912,11 +1926,28 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           break;
                         case 'position':
                         case 'contact':
+                        case 'quick':
                           _shareIntoComposer(action, connector);
                           break;
                       }
                     },
                     itemBuilder: (context) => [
+                      PopupMenuItem(
+                        key: const ValueKey('composer-quick'),
+                        value: 'quick',
+                        child: Row(
+                          children: [
+                            const Icon(Icons.bolt_outlined),
+                            const SizedBox(width: 12),
+                            Flexible(
+                              child: Text(
+                                context.l10n.quick_title,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       PopupMenuItem(
                         value: 'gif',
                         child: Row(

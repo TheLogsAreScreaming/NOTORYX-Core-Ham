@@ -11,6 +11,7 @@ import '../models/coverage_hex.dart';
 import '../services/coverage_hex_service.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/ember_backdrop.dart';
 
 String _privacyLabel(AppLocalizations t, CoveragePrivacy p) => switch (p) {
   CoveragePrivacy.live => t.coverageHex_privacyLive,
@@ -65,119 +66,128 @@ class CoverageHexScreen extends StatelessWidget {
         : fix.accuracyMeters > maxFixAccuracyMeters
         ? t.coverageHex_gpsTooRough('${fix.accuracyMeters.round()}')
         : t.coverageHex_recording('${fix.accuracyMeters.round()}');
-    return Scaffold(
-      appBar: AppBar(title: Text(t.coverageHex_title)),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(
-          MeshSpace.lg,
-          MeshSpace.sm,
-          MeshSpace.lg,
-          MeshSpace.xxl,
+    return EmberBackdrop(
+      scene: EmberScene.more,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          title: Text(t.coverageHex_title),
         ),
-        children: [
-          MeshCard(
-            margin: EdgeInsets.zero,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        t.coverageHex_mapCoverage,
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
+        body: ListView(
+          padding: const EdgeInsets.fromLTRB(
+            MeshSpace.lg,
+            MeshSpace.sm,
+            MeshSpace.lg,
+            MeshSpace.xxl,
+          ),
+          children: [
+            MeshCard(
+              margin: EdgeInsets.zero,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          t.coverageHex_mapCoverage,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
-                    ),
-                    Switch(
-                      key: const ValueKey('coverage-mapping'),
-                      value: service.mapping,
-                      onChanged: (v) => unawaited(service.setMapping(v)),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: MeshSpace.xs),
-                Text(status, style: TextStyle(color: MeshPalette.ink3)),
-                const SizedBox(height: MeshSpace.md),
-                Row(
-                  children: [
-                    Expanded(
-                      child: MeshStat(
-                        value: '${service.cells.length}',
-                        label: t.coverageHex_hexagons,
+                      Switch(
+                        key: const ValueKey('coverage-mapping'),
+                        value: service.mapping,
+                        onChanged: (v) => unawaited(service.setMapping(v)),
                       ),
-                    ),
-                    Expanded(
-                      child: MeshStat(
-                        value: '${service.sampleCount}',
-                        label: t.coverageHex_samples,
+                    ],
+                  ),
+                  const SizedBox(height: MeshSpace.xs),
+                  Text(status, style: TextStyle(color: MeshPalette.ink3)),
+                  const SizedBox(height: MeshSpace.md),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: MeshStat(
+                          value: '${service.cells.length}',
+                          label: t.coverageHex_hexagons,
+                        ),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: MeshStat(
+                          value: '${service.sampleCount}',
+                          label: t.coverageHex_samples,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: MeshSpace.md),
+                  Text(
+                    t.coverageHex_privacyNote,
+                    style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                  ),
+                ],
+              ),
+            ),
+            if (service.cells.isNotEmpty || fix != null) ...[
+              const SizedBox(height: MeshSpace.md),
+              _HexMap(service: service),
+            ],
+            SectionHeader(
+              t.coverageHex_uploadSection,
+              padding: EdgeInsets.fromLTRB(
+                MeshSpace.xs,
+                MeshSpace.xl,
+                MeshSpace.xs,
+                MeshSpace.sm,
+              ),
+            ),
+            MeshGroup(
+              children: [
+                SwitchListTile(
+                  title: Text(t.coverageHex_wifiOnly),
+                  subtitle: Text(t.coverageHex_wifiOnlyHint),
+                  value: service.wifiOnly,
+                  onChanged: (v) => unawaited(service.setWifiOnly(v)),
                 ),
-                const SizedBox(height: MeshSpace.md),
-                Text(
-                  t.coverageHex_privacyNote,
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+                for (final t in service.targets)
+                  MeshNavRow(
+                    icon: t.enabled
+                        ? Icons.cloud_upload_outlined
+                        : Icons.cloud_off_outlined,
+                    title: t.name,
+                    subtitle: [
+                      _privacyLabel(context.l10n, t.privacy),
+                      context.l10n.coverageHex_waiting(
+                        '${service.pendingFor(t)}',
+                      ),
+                      ?_uploadText(context, service.statusOf(t.id)),
+                    ].join(' · '),
+                    onTap: () => _editTarget(context, service, t),
+                  ),
+                MeshNavRow(
+                  icon: Icons.add_rounded,
+                  title: t.coverageHex_addMap,
+                  subtitle: t.coverageHex_addMapHint,
+                  onTap: () => _editTarget(context, service, null),
                 ),
               ],
             ),
-          ),
-          if (service.cells.isNotEmpty || fix != null) ...[
-            const SizedBox(height: MeshSpace.md),
-            _HexMap(service: service),
-          ],
-          SectionHeader(
-            t.coverageHex_uploadSection,
-            padding: EdgeInsets.fromLTRB(
-              MeshSpace.xs,
-              MeshSpace.xl,
-              MeshSpace.xs,
-              MeshSpace.sm,
-            ),
-          ),
-          MeshGroup(
-            children: [
-              SwitchListTile(
-                title: Text(t.coverageHex_wifiOnly),
-                subtitle: Text(t.coverageHex_wifiOnlyHint),
-                value: service.wifiOnly,
-                onChanged: (v) => unawaited(service.setWifiOnly(v)),
-              ),
-              for (final t in service.targets)
-                MeshNavRow(
-                  icon: t.enabled
-                      ? Icons.cloud_upload_outlined
-                      : Icons.cloud_off_outlined,
-                  title: t.name,
-                  subtitle: [
-                    _privacyLabel(context.l10n, t.privacy),
-                    context.l10n.coverageHex_waiting(
-                      '${service.pendingFor(t)}',
-                    ),
-                    ?_uploadText(context, service.statusOf(t.id)),
-                  ].join(' · '),
-                  onTap: () => _editTarget(context, service, t),
-                ),
-              MeshNavRow(
-                icon: Icons.add_rounded,
-                title: t.coverageHex_addMap,
-                subtitle: t.coverageHex_addMapHint,
-                onTap: () => _editTarget(context, service, null),
+            if (service.targets.isNotEmpty) ...[
+              const SizedBox(height: MeshSpace.md),
+              OutlinedButton.icon(
+                onPressed: () => unawaited(service.upload()),
+                icon: const Icon(Icons.upload_rounded),
+                label: Text(t.coverageHex_uploadNow),
               ),
             ],
-          ),
-          if (service.targets.isNotEmpty) ...[
-            const SizedBox(height: MeshSpace.md),
-            OutlinedButton.icon(
-              onPressed: () => unawaited(service.upload()),
-              icon: const Icon(Icons.upload_rounded),
-              label: Text(t.coverageHex_uploadNow),
-            ),
           ],
-        ],
+        ),
       ),
     );
   }

@@ -6070,31 +6070,34 @@ class AppLocalizationsSk extends AppLocalizations {
   String get fieldOps_send => 'Odoslať';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Preposielanie SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Preposielať SOS, ktoré nepreposlal žiadny opakovač';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Vyžaduje firmvér rádia v1.16 alebo novší';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Zatiaľ nebolo preposlané žiadne SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Preposlaných $count SOS paketov, naposledy o $time',
+      few: 'Preposlané $count SOS pakety, naposledy o $time',
+      one: 'Preposlaný 1 SOS paket, naposledy o $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Keď rádio počuje SOS priamo od odosielateľa a žiadny opakovač ho do približne 15 sekúnd nepreposlal, NOTORYX ho pošle ešte raz, nezmenené, aby sa dostalo k opakovaču, ktorý počujete vy, ale odosielateľ nie. Preposielajú sa len SOS vo vašich kanáloch. Spotrebúva batériu a čas vysielania, preto je predvolene vypnuté.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Pred odchodom';
@@ -9374,4 +9377,558 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Heslá nastavte cez sériovú USB konzolu prevádzača. Odoslané éterom by si ich mohol prečítať ktokoľvek.';
+
+  @override
+  String get networks_title => 'Siete';
+
+  @override
+  String get networks_hint => 'Vyhľadávanie sietí v okolí a ich záznam';
+
+  @override
+  String get networks_yourNetwork => 'Vaša sieť';
+
+  @override
+  String get networks_scanTitle => 'Hľadať siete';
+
+  @override
+  String get networks_scanExplainer =>
+      'Rádio počuje len siete s presne rovnakými nastaveniami, preto ho vyhľadávanie postupne prepne na každú, počúva a potom ho vráti späť. Počas vyhľadávania ste mimo svojej siete.';
+
+  @override
+  String get networks_listenFor => 'Počúvať na každej';
+
+  @override
+  String networks_choose(int count) {
+    return 'Siete na vyhľadanie: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Navrhované';
+
+  @override
+  String get networks_start => 'Spustiť vyhľadávanie';
+
+  @override
+  String get networks_cancel => 'Zastaviť vyhľadávanie';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Počúvam $name ($step z $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Pripojte rádio na vyhľadávanie.';
+
+  @override
+  String get networks_blockSettings => 'Čaká sa na nastavenia rádia.';
+
+  @override
+  String get networks_blockSos =>
+      'Nie počas SOS: vyhľadávanie vás odpojí od siete.';
+
+  @override
+  String get networks_blockTrip =>
+      'Nie počas výletu: vyhľadávanie vás odpojí od siete.';
+
+  @override
+  String get networks_nearby => 'Siete v okolí';
+
+  @override
+  String get networks_nothingYet =>
+      'Zatiaľ nebola počutá žiadna sieť. Spustite vyhľadávanie.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Uzly $nodes · pakety $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Naposledy počutá $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Koľkokrát počutá: $count';
+  }
+
+  @override
+  String get networks_saved => 'Uložené siete';
+
+  @override
+  String get networks_noSaved => 'Zatiaľ žiadne uložené siete.';
+
+  @override
+  String get networks_add => 'Pridať sieť';
+
+  @override
+  String get networks_join => 'Pripojiť sa';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Prepnúť rádio na $name? Opustíte aktuálnu sieť. Vysielací výkon zostane rovnaký.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Rádio je teraz na $name.';
+  }
+
+  @override
+  String get networks_log => 'Záznam sietí';
+
+  @override
+  String get networks_logEmpty => 'Zatiaľ nič zaznamenané.';
+
+  @override
+  String get networks_showMap => 'Mapa';
+
+  @override
+  String get networks_exportCsv => 'Exportovať CSV';
+
+  @override
+  String get networks_exportGpx => 'Exportovať GPX';
+
+  @override
+  String get networks_clearLog => 'Vymazať záznam';
+
+  @override
+  String get networks_clearLogConfirm => 'Odstrániť všetky zaznamenané siete?';
+
+  @override
+  String get networks_name => 'Názov';
+
+  @override
+  String get networks_invalid =>
+      'Skontrolujte nastavenia: sú mimo rozsahu, ktorý prijímajú rádiá MeshCore.';
+
+  @override
+  String get networks_nodesHeard => 'Počuté uzly';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Neodoslané: pripojte rádio a skúste to znova. Správa zostáva uložená.';
+
+  @override
+  String get quick_title => 'Rýchle správy';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Som na ceste';
+
+  @override
+  String get quick_atCamp => 'V tábore';
+
+  @override
+  String get quick_runningLate => 'Meškám';
+
+  @override
+  String get quick_needHelp => 'Potrebujem pomoc';
+
+  @override
+  String get quick_copyThat => 'Rozumiem';
+
+  @override
+  String get quick_empty =>
+      'Žiadne rýchle správy. Ťuknite na Upraviť a pridajte jednu.';
+
+  @override
+  String get quick_add => 'Nová rýchla správa';
+
+  @override
+  String get quick_reset => 'Obnoviť predvolené';
+
+  @override
+  String get chat_stopRetrying => 'Zastaviť opakovanie';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name môže čítať vaše priame správy a odpovedať na ne až po pridaní vás medzi kontakty. Ak to neurobil, pošlite svoj oznam alebo zdieľajte kontakt.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Prejsť na moju polohu';
+
+  @override
+  String get map_positionUnavailable =>
+      'Vaša poloha nie je dostupná. Zapnite polohu alebo nastavte polohu rádia.';
+
+  @override
+  String get contact_forgetAdvert => 'Zabudnúť posledný oznam';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Ak sa oznamy tohto uzla po resetovaní jeho hodín prestali aktualizovať, Zabudnúť posledný oznam prepustí ďalší.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Hotovo. Ďalší oznam tohto uzla bude prijatý.';
+
+  @override
+  String get networks_modeQuick => 'Rýchle';
+
+  @override
+  String get networks_modeThorough => 'Dôkladné';
+
+  @override
+  String get networks_modeQuickHint =>
+      'V každej sieti pošle jeden krátky ping bez preposielania a niekoľko sekúnd počúva. Nájde siete s opakovačom v dosahu.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Iba počúva, dlhšie v každej sieti. Nič neposiela a nájde aj siete bez opakovača v dosahu, ak niekto vysiela.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'asi $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return 'Vybrané: $count';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Vybrať všetko';
+
+  @override
+  String get discoveredContacts_addSelected => 'Pridať vybrané';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Pridať všetky zobrazené ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Pridať kontakty ($count)?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Rádio má miesto ešte pre $room kontaktov.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Rádio má miesto ešte pre $room kontaktov, preto sa pridá len prvých $room z $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Pridáva sa $done z $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Pridané kontakty: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Pridané kontakty: $added. Nepridané: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Zoznam kontaktov rádia je plný. Najprv odstráňte niektoré kontakty.';
+
+  @override
+  String get fieldIntel_radioNow => 'Rádio teraz';
+
+  @override
+  String get fieldIntel_noRadio => 'Pripojte rádio pre živé údaje.';
+
+  @override
+  String get fieldIntel_noise => 'šum dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'posledný SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'posledný RSSI';
+
+  @override
+  String get fieldIntel_battery => 'batéria V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Čas vysielania od štartu rádia: odoslané $sent, prijaté $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Kto je nablízku';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 hod.';
+
+  @override
+  String get fieldIntel_h24 => '24 hod.';
+
+  @override
+  String get fieldIntel_older => 'Staršie';
+
+  @override
+  String get fieldIntel_lastHour => 'Posledná hodina';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Kedy bol každý uzol naposledy počutý, po hodinách za posledný deň. Ťuknite na stĺpec a uvidíte kto.';
+
+  @override
+  String get fieldIntel_mix => 'Typy uzlov';
+
+  @override
+  String get fieldIntel_reach => 'Dosah';
+
+  @override
+  String get fieldIntel_hops1 => '1 skok';
+
+  @override
+  String get fieldIntel_hops2 => '2 skoky';
+
+  @override
+  String get fieldIntel_hops3 => '3+ skoky';
+
+  @override
+  String get fieldIntel_noRoute => 'Zatiaľ bez trasy';
+
+  @override
+  String get fieldIntel_distance => 'Najbližšie a najvzdialenejšie';
+
+  @override
+  String get fieldIntel_noneLocated => 'Žiadny z kontaktov nemá polohu.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Rádio zatiaľ nemá polohu, preto sa vzdialenosti nedajú vypočítať.';
+
+  @override
+  String get fieldIntel_bestRepeaters => 'Najlepšie priamo počuté opakovače';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'Za posledných 30 minút nebol priamo počutý žiadny opakovač.';
+
+  @override
+  String get fieldIntel_attention => 'Vyžaduje pozornosť';
+
+  @override
+  String get fieldIntel_allGood => 'Nič nevyžaduje pozornosť.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Slabá batéria: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Obľúbený nepočutý od $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Ďalšie nástroje';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Uzly: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Žiadne uzly.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Naposledy počutý $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Zobraziť na mape';
+
+  @override
+  String get fieldIntel_openChat => 'Otvoriť chat';
+
+  @override
+  String get repeaterTools_login => 'Prihlásiť sa';
+
+  @override
+  String get repeaterTools_heardDirect => 'Počutý priamo';
+
+  @override
+  String get repeaterTools_filterAll => 'Všetky';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Slabá batéria';
+
+  @override
+  String get repeaterTools_hint =>
+      'Ťuknite na opakovač pre podrobnosti a odtiaľ sa prihláste pre stav, susedov, telemetriu a príkazový riadok.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Žiadne opakovače.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Nástroje';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Vyhľadajte strom regiónov pre svoju oblasť a skopírujte jeho príkazy';
+
+  @override
+  String get routes_failingOnly => 'Iba neúspešné trasy';
+
+  @override
+  String get routes_contactDetails => 'Údaje kontaktu';
+
+  @override
+  String get links_contactTitle => 'Pridať kontakt?';
+
+  @override
+  String get links_importAdvert => 'Pridať tento kontakt do rádia?';
+
+  @override
+  String get links_connectFirst =>
+      'Najprv pripojte rádio a potom odkaz otvorte znova.';
+
+  @override
+  String get links_added => 'Kontakt pridaný';
+
+  @override
+  String get links_notContact => 'Tento odkaz nie je kontakt MeshCore.';
+
+  @override
+  String get radioBuzzer_title => 'Bzučiak rádia';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Rádio pípne pri nových správach. Zobrazuje sa len pri rádiách s bzučiakom.';
+
+  @override
+  String get radioBuzzer_failed => 'Rádio zmenu neprijalo. Skúste to znova.';
+
+  @override
+  String get appSettings_floodAttempts => 'Pokusy zaplavením';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Ďalšie pokusy poslané zaplavením po zlyhaní priamych, ak sa trasa zmenila. Každý zaberie viac vysielacieho času. 0 ich vypne.';
+
+  @override
+  String get pathGraph_you => 'Vy';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Preposlal $count správ';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Toto krátke ID zodpovedá viacerým opakovačom, takže sa nedá priradiť jednému.';
+
+  @override
+  String get pathGraph_comesFrom => 'Prichádza z';
+
+  @override
+  String get pathGraph_goesTo => 'Ide do';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Údaje opakovača';
+
+  @override
+  String get pathGraph_days7 => '7 dní';
+
+  @override
+  String get pathGraph_empty =>
+      'V tomto období zatiaľ nie sú trasy správ z kanálov. Trasy sa zbierajú z prijatých správ z kanálov, keď je sledovanie zapnuté.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Počuté trasy: $paths · opakovače: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Každý skok je zobrazený hash predponou alebo menom, ak opakovač poznáte.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count krátkych (1-bajtových) skokov priradených ku konkrétnemu opakovaču podľa dlhších trás.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched krátkych (1-bajtových) skokov priradených ku konkrétnemu opakovaču podľa dlhších trás · $ambiguous stále nejednoznačných (označené ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Vľavo: vzdialenejšie opakovače. Vpravo: vy. Hrúbka pásu je počet správ cez tento skok. Ťuknite na políčko a uvidíte opakovač.';
+
+  @override
+  String get pathGraph_busiest => 'Najvyťaženejšie opakovače';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Graf trás. Najvyťaženejší opakovač $name, preposlal $count správ.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Skopírované: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'V tomto rádiu nie sú kanály.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Ťuknite na hodnotu a skopírujete ju. Potiahnutím nadol obnovíte.';
+
+  @override
+  String get diag_storage => 'Úložisko';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used z $total KB';
+  }
+
+  @override
+  String get favReturn_setting => 'Obľúbené opäť v dosahu';
+
+  @override
+  String get favReturn_settingHint =>
+      'Upozorniť, keď je obľúbený kontakt po období ticha opäť počuť';
+
+  @override
+  String get favReturn_off => 'Vyp.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Po $count hodinách',
+      one: 'Po 1 hodine',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Opäť v dosahu';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hodinách',
+      one: '1 hodine',
+    );
+    return '$name je opäť počuť po $_temp0 ticha';
+  }
 }

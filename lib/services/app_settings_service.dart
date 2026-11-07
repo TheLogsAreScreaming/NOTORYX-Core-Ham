@@ -1,5 +1,7 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
+
 import '../models/app_settings.dart';
 import '../models/image_codec_support.dart';
 import '../models/translation_support.dart';
@@ -210,6 +212,14 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(maxMessageRetries: value));
   }
 
+  Future<void> setMessageFloodAttempts(int value) async {
+    await updateSettings(_settings.copyWith(messageFloodAttempts: value));
+  }
+
+  Future<void> setFavoriteReturnHours(int value) async {
+    await updateSettings(_settings.copyWith(favoriteReturnHours: value));
+  }
+
   Future<void> setThemeMode(String value) async {
     await updateSettings(_settings.copyWith(themeMode: value));
   }
@@ -291,6 +301,14 @@ class AppSettingsService extends ChangeNotifier {
 
   Future<void> setAutoConnectRadio(bool value) async {
     await updateSettings(_settings.copyWith(autoConnectRadio: value));
+  }
+
+  Future<void> setMapShowTelemetry(bool value) async {
+    await updateSettings(_settings.copyWith(mapShowTelemetry: value));
+  }
+
+  Future<void> setMapTelemetryMetric(String value) async {
+    await updateSettings(_settings.copyWith(mapTelemetryMetric: value));
   }
 
   Future<void> setLinkPreviews(bool value) async {

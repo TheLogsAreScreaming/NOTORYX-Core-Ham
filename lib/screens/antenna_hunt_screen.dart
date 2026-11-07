@@ -11,6 +11,7 @@ import '../models/contact.dart';
 import '../services/trace_pinger.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/instrument.dart';
+import '../widgets/ember_backdrop.dart';
 import 'repeater_ping_screen.dart';
 
 /// How long between clicks for an SNR: about 1.5 s when barely heard,
@@ -109,93 +110,102 @@ class _AntennaHuntScreenState extends State<AntennaHuntScreen> {
     final color = snr == null || stale
         ? MeshPalette.ink4
         : MeshTheme.snrColor(snr, blocked: false);
-    return Scaffold(
-      appBar: AppBar(title: Text(l10n.hunt_title)),
-      body: ListView(
-        children: [
-          InstrumentRow(
-            icon: Icons.cell_tower_rounded,
-            title: _target?.name ?? l10n.ping_choose,
-            subtitle: _target?.pathLabel(l10n),
-            onTap: _hunting
-                ? null
-                : () async {
-                    final picked = await pickRepeater(context);
-                    if (picked != null && mounted) {
-                      setState(() {
-                        _target = picked;
-                        _last = null;
-                        _best = null;
-                      });
-                    }
-                  },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: MeshSpace.xl),
-            child: Column(
-              children: [
-                Semantics(
-                  liveRegion: true,
-                  label: snr == null
-                      ? l10n.hunt_noSignal
-                      : 'SNR ${snr.toStringAsFixed(1)} dB',
-                  excludeSemantics: true,
-                  child: Text(
-                    snr == null ? '—' : snr.toStringAsFixed(1),
-                    style: MeshTheme.mono(
-                      fontSize: 88,
-                      fontWeight: FontWeight.w500,
-                      color: color,
+    return EmberBackdrop(
+      scene: EmberScene.more,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          scrolledUnderElevation: 0,
+          title: Text(l10n.hunt_title),
+        ),
+        body: ListView(
+          children: [
+            InstrumentRow(
+              icon: Icons.cell_tower_rounded,
+              title: _target?.name ?? l10n.ping_choose,
+              subtitle: _target?.pathLabel(l10n),
+              onTap: _hunting
+                  ? null
+                  : () async {
+                      final picked = await pickRepeater(context);
+                      if (picked != null && mounted) {
+                        setState(() {
+                          _target = picked;
+                          _last = null;
+                          _best = null;
+                        });
+                      }
+                    },
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: MeshSpace.xl),
+              child: Column(
+                children: [
+                  Semantics(
+                    liveRegion: true,
+                    label: snr == null
+                        ? l10n.hunt_noSignal
+                        : 'SNR ${snr.toStringAsFixed(1)} dB',
+                    excludeSemantics: true,
+                    child: Text(
+                      snr == null ? '—' : snr.toStringAsFixed(1),
+                      style: MeshTheme.mono(
+                        fontSize: 88,
+                        fontWeight: FontWeight.w500,
+                        color: color,
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  stale ? l10n.hunt_noReply : l10n.hunt_heardHere,
-                  style: TextStyle(color: MeshPalette.ink3, fontSize: 14),
-                ),
-              ],
+                  Text(
+                    stale ? l10n.hunt_noReply : l10n.hunt_heardHere,
+                    style: TextStyle(color: MeshPalette.ink3, fontSize: 14),
+                  ),
+                ],
+              ),
             ),
-          ),
-          ReadoutStrip([
-            Readout(
-              last == null ? '—' : last.snrThere.toStringAsFixed(1),
-              l10n.ping_snrThere,
+            ReadoutStrip([
+              Readout(
+                last == null ? '—' : last.snrThere.toStringAsFixed(1),
+                l10n.ping_snrThere,
+              ),
+              Readout(
+                _best == null ? '—' : _best!.toStringAsFixed(1),
+                l10n.hunt_best,
+              ),
+              Readout(
+                last == null ? '—' : '${last.roundTrip.inMilliseconds}',
+                l10n.ping_avgMs,
+              ),
+            ]),
+            SwitchListTile(
+              title: Text(l10n.hunt_sound),
+              subtitle: Text(l10n.hunt_soundHint),
+              value: _sound,
+              onChanged: (v) {
+                setState(() => _sound = v);
+                _retune();
+              },
             ),
-            Readout(
-              _best == null ? '—' : _best!.toStringAsFixed(1),
-              l10n.hunt_best,
+            Padding(
+              padding: const EdgeInsets.all(MeshSpace.lg),
+              child: InstrumentButton(
+                label: _hunting ? l10n.hunt_stop : l10n.hunt_start,
+                icon: _hunting ? Icons.stop_rounded : Icons.track_changes,
+                danger: _hunting,
+                onPressed: _target == null || !online ? null : _toggle,
+              ),
             ),
-            Readout(
-              last == null ? '—' : '${last.roundTrip.inMilliseconds}',
-              l10n.ping_avgMs,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
+              child: Text(
+                l10n.hunt_explainer,
+                style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
+              ),
             ),
-          ]),
-          SwitchListTile(
-            title: Text(l10n.hunt_sound),
-            subtitle: Text(l10n.hunt_soundHint),
-            value: _sound,
-            onChanged: (v) {
-              setState(() => _sound = v);
-              _retune();
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.all(MeshSpace.lg),
-            child: InstrumentButton(
-              label: _hunting ? l10n.hunt_stop : l10n.hunt_start,
-              icon: _hunting ? Icons.stop_rounded : Icons.track_changes,
-              danger: _hunting,
-              onPressed: _target == null || !online ? null : _toggle,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
-            child: Text(
-              l10n.hunt_explainer,
-              style: TextStyle(color: MeshPalette.ink3, fontSize: 12.5),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

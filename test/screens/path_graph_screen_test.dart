@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
+import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/channel.dart';
 import 'package:meshcore_open/models/channel_message.dart';
 import 'package:meshcore_open/models/path_graph.dart';
@@ -119,18 +120,34 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider<MeshCoreConnector>.value(
         value: radio,
-        child: const MaterialApp(home: PathGraphScreen()),
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: PathGraphScreen(),
+        ),
       ),
     );
     await tester.runAsync(() => Future<void>.delayed(Duration.zero));
     await tester.pump();
-    expect(find.text('4 paths heard • 3 repeaters'), findsOneWidget);
+    expect(find.text('4 paths heard · 3 repeaters'), findsOneWidget);
     expect(find.byKey(const ValueKey('path-sankey')), findsOneWidget);
     expect(find.text('Busiest repeaters'), findsOneWidget);
     expect(
       find.textContaining('matched to a specific repeater'),
       findsOneWidget,
     );
+
+    // A busiest repeater opens where its traffic comes from and goes.
+    final first = find.byWidgetPredicate(
+      (w) =>
+          w.key is ValueKey<String> &&
+          (w.key! as ValueKey<String>).value.startsWith('busiest-'),
+    );
+    await tester.ensureVisible(first.first);
+    await tester.tap(first.first);
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('hop-sheet')), findsOneWidget);
+    expect(find.textContaining('Relayed'), findsOneWidget);
   });
 }
 

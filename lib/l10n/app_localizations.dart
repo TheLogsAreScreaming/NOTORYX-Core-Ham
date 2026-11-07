@@ -15744,6 +15744,912 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Set passwords on the repeater\'s USB serial console. Sent over the air, anyone could read them.'**
   String get ham_repeaterPasswordsSerial;
+
+  /// No description provided for @networks_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Networks'**
+  String get networks_title;
+
+  /// No description provided for @networks_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan for networks nearby and keep a log'**
+  String get networks_hint;
+
+  /// No description provided for @networks_yourNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Your network'**
+  String get networks_yourNetwork;
+
+  /// No description provided for @networks_scanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan for networks'**
+  String get networks_scanTitle;
+
+  /// No description provided for @networks_scanExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio only hears networks that use its exact settings, so a scan switches it to each one in turn, listens, then switches it back. You\'re off your own mesh while it scans.'**
+  String get networks_scanExplainer;
+
+  /// No description provided for @networks_listenFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen on each'**
+  String get networks_listenFor;
+
+  /// No description provided for @networks_choose.
+  ///
+  /// In en, this message translates to:
+  /// **'Networks to scan: {count}'**
+  String networks_choose(int count);
+
+  /// No description provided for @networks_suggested.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested'**
+  String get networks_suggested;
+
+  /// No description provided for @networks_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start scan'**
+  String get networks_start;
+
+  /// No description provided for @networks_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop scan'**
+  String get networks_cancel;
+
+  /// No description provided for @networks_listening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening on {name} ({step} of {steps})'**
+  String networks_listening(String name, int step, int steps);
+
+  /// No description provided for @networks_blockNoRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a radio to scan.'**
+  String get networks_blockNoRadio;
+
+  /// No description provided for @networks_blockSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for your radio\'s settings.'**
+  String get networks_blockSettings;
+
+  /// No description provided for @networks_blockSos.
+  ///
+  /// In en, this message translates to:
+  /// **'Not while an SOS is active: a scan takes you off your mesh.'**
+  String get networks_blockSos;
+
+  /// No description provided for @networks_blockTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Not during a trip: a scan takes you off your mesh.'**
+  String get networks_blockTrip;
+
+  /// No description provided for @networks_nearby.
+  ///
+  /// In en, this message translates to:
+  /// **'Networks nearby'**
+  String get networks_nearby;
+
+  /// No description provided for @networks_nothingYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No networks heard yet. Run a scan to look for some.'**
+  String get networks_nothingYet;
+
+  /// No description provided for @networks_heardSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Nodes {nodes} · packets {packets} · SNR {snr} dB'**
+  String networks_heardSummary(int nodes, int packets, String snr);
+
+  /// No description provided for @networks_lastHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Last heard {time}'**
+  String networks_lastHeard(String time);
+
+  /// No description provided for @networks_timesHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Times heard: {count}'**
+  String networks_timesHeard(int count);
+
+  /// No description provided for @networks_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved networks'**
+  String get networks_saved;
+
+  /// No description provided for @networks_noSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved networks yet.'**
+  String get networks_noSaved;
+
+  /// No description provided for @networks_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a network'**
+  String get networks_add;
+
+  /// No description provided for @networks_join.
+  ///
+  /// In en, this message translates to:
+  /// **'Join'**
+  String get networks_join;
+
+  /// No description provided for @networks_joinConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch your radio to {name}? You\'ll leave your current network. Your transmit power stays the same.'**
+  String networks_joinConfirm(String name);
+
+  /// No description provided for @networks_joined.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio is on {name} now.'**
+  String networks_joined(String name);
+
+  /// No description provided for @networks_log.
+  ///
+  /// In en, this message translates to:
+  /// **'Network log'**
+  String get networks_log;
+
+  /// No description provided for @networks_logEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing logged yet.'**
+  String get networks_logEmpty;
+
+  /// No description provided for @networks_showMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get networks_showMap;
+
+  /// No description provided for @networks_exportCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get networks_exportCsv;
+
+  /// No description provided for @networks_exportGpx.
+  ///
+  /// In en, this message translates to:
+  /// **'Export GPX'**
+  String get networks_exportGpx;
+
+  /// No description provided for @networks_clearLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear log'**
+  String get networks_clearLog;
+
+  /// No description provided for @networks_clearLogConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete every logged network sighting?'**
+  String get networks_clearLogConfirm;
+
+  /// No description provided for @networks_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get networks_name;
+
+  /// No description provided for @networks_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the settings: they\'re outside what MeshCore radios accept.'**
+  String get networks_invalid;
+
+  /// No description provided for @networks_nodesHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Nodes heard'**
+  String get networks_nodesHeard;
+
+  /// No description provided for @chat_resendNeedsRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sent: connect your radio, then try again. The message is kept.'**
+  String get chat_resendNeedsRadio;
+
+  /// No description provided for @quick_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick messages'**
+  String get quick_title;
+
+  /// No description provided for @quick_ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get quick_ok;
+
+  /// No description provided for @quick_onMyWay.
+  ///
+  /// In en, this message translates to:
+  /// **'On my way'**
+  String get quick_onMyWay;
+
+  /// No description provided for @quick_atCamp.
+  ///
+  /// In en, this message translates to:
+  /// **'At camp'**
+  String get quick_atCamp;
+
+  /// No description provided for @quick_runningLate.
+  ///
+  /// In en, this message translates to:
+  /// **'Running late'**
+  String get quick_runningLate;
+
+  /// No description provided for @quick_needHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Need help'**
+  String get quick_needHelp;
+
+  /// No description provided for @quick_copyThat.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy that'**
+  String get quick_copyThat;
+
+  /// No description provided for @quick_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No quick messages. Tap Edit to add one.'**
+  String get quick_empty;
+
+  /// No description provided for @quick_add.
+  ///
+  /// In en, this message translates to:
+  /// **'New quick message'**
+  String get quick_add;
+
+  /// No description provided for @quick_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to the defaults'**
+  String get quick_reset;
+
+  /// No description provided for @chat_stopRetrying.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop retrying'**
+  String get chat_stopRetrying;
+
+  /// No description provided for @chat_addFirstBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} can only read and answer your direct messages after adding you as a contact. If they haven\'t, send your advert or share your contact with them.'**
+  String chat_addFirstBanner(String name);
+
+  /// No description provided for @map_goToMyPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to my position'**
+  String get map_goToMyPosition;
+
+  /// No description provided for @map_positionUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Your position isn\'t available. Turn on location, or set your radio\'s position.'**
+  String get map_positionUnavailable;
+
+  /// No description provided for @contact_forgetAdvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget last advert'**
+  String get contact_forgetAdvert;
+
+  /// No description provided for @contact_forgetAdvertHint.
+  ///
+  /// In en, this message translates to:
+  /// **'If this node\'s adverts stopped updating after its clock was reset, Forget last advert lets the next one through.'**
+  String get contact_forgetAdvertHint;
+
+  /// No description provided for @contact_forgetAdvertDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done. The next advert from this node will be accepted.'**
+  String get contact_forgetAdvertDone;
+
+  /// No description provided for @networks_modeQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick'**
+  String get networks_modeQuick;
+
+  /// No description provided for @networks_modeThorough.
+  ///
+  /// In en, this message translates to:
+  /// **'Thorough'**
+  String get networks_modeThorough;
+
+  /// No description provided for @networks_modeQuickHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sends one short zero-hop ping on each network and listens a few seconds. Finds networks with a repeater in range.'**
+  String get networks_modeQuickHint;
+
+  /// No description provided for @networks_modeThoroughHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only listens, longer on each network. Sends nothing, and also finds networks without a repeater in range if someone transmits.'**
+  String get networks_modeThoroughHint;
+
+  /// No description provided for @networks_estimate.
+  ///
+  /// In en, this message translates to:
+  /// **'about {time}'**
+  String networks_estimate(String time);
+
+  /// No description provided for @discoveredContacts_selected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} selected'**
+  String discoveredContacts_selected(int count);
+
+  /// No description provided for @discoveredContacts_selectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Select all'**
+  String get discoveredContacts_selectAll;
+
+  /// No description provided for @discoveredContacts_addSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Add selected'**
+  String get discoveredContacts_addSelected;
+
+  /// No description provided for @discoveredContacts_addAllShown.
+  ///
+  /// In en, this message translates to:
+  /// **'Add all shown ({count})'**
+  String discoveredContacts_addAllShown(int count);
+
+  /// No description provided for @discoveredContacts_addManyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {count} contacts?'**
+  String discoveredContacts_addManyTitle(int count);
+
+  /// No description provided for @discoveredContacts_roomLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio has room for {room} more contacts.'**
+  String discoveredContacts_roomLeft(int room);
+
+  /// No description provided for @discoveredContacts_roomLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio has room for {room} more contacts, so only the first {room} of {count} will be added.'**
+  String discoveredContacts_roomLimit(int room, int count);
+
+  /// No description provided for @discoveredContacts_adding.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding {done} of {total}…'**
+  String discoveredContacts_adding(int done, int total);
+
+  /// No description provided for @discoveredContacts_addedMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts added: {count}'**
+  String discoveredContacts_addedMany(int count);
+
+  /// No description provided for @discoveredContacts_addedSome.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts added: {added}. Not added: {failed}.'**
+  String discoveredContacts_addedSome(int added, int failed);
+
+  /// No description provided for @discoveredContacts_radioFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio\'s contact list is full. Remove some contacts first.'**
+  String get discoveredContacts_radioFull;
+
+  /// No description provided for @fieldIntel_radioNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio right now'**
+  String get fieldIntel_radioNow;
+
+  /// No description provided for @fieldIntel_noRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio for live readings.'**
+  String get fieldIntel_noRadio;
+
+  /// No description provided for @fieldIntel_noise.
+  ///
+  /// In en, this message translates to:
+  /// **'noise dBm'**
+  String get fieldIntel_noise;
+
+  /// No description provided for @fieldIntel_lastSnr.
+  ///
+  /// In en, this message translates to:
+  /// **'last SNR'**
+  String get fieldIntel_lastSnr;
+
+  /// No description provided for @fieldIntel_lastRssi.
+  ///
+  /// In en, this message translates to:
+  /// **'last RSSI'**
+  String get fieldIntel_lastRssi;
+
+  /// No description provided for @fieldIntel_battery.
+  ///
+  /// In en, this message translates to:
+  /// **'battery V'**
+  String get fieldIntel_battery;
+
+  /// No description provided for @fieldIntel_airtime.
+  ///
+  /// In en, this message translates to:
+  /// **'Airtime since the radio started: sent {sent}, received {received}'**
+  String fieldIntel_airtime(String sent, String received);
+
+  /// No description provided for @fieldIntel_whoAround.
+  ///
+  /// In en, this message translates to:
+  /// **'Who\'s around'**
+  String get fieldIntel_whoAround;
+
+  /// No description provided for @fieldIntel_m15.
+  ///
+  /// In en, this message translates to:
+  /// **'15 min'**
+  String get fieldIntel_m15;
+
+  /// No description provided for @fieldIntel_h1.
+  ///
+  /// In en, this message translates to:
+  /// **'1 hour'**
+  String get fieldIntel_h1;
+
+  /// No description provided for @fieldIntel_h24.
+  ///
+  /// In en, this message translates to:
+  /// **'24 hours'**
+  String get fieldIntel_h24;
+
+  /// No description provided for @fieldIntel_older.
+  ///
+  /// In en, this message translates to:
+  /// **'Older'**
+  String get fieldIntel_older;
+
+  /// No description provided for @fieldIntel_lastHour.
+  ///
+  /// In en, this message translates to:
+  /// **'Last hour'**
+  String get fieldIntel_lastHour;
+
+  /// No description provided for @fieldIntel_chartHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When each node was last heard, hour by hour, over the past day. Tap a bar to see who.'**
+  String get fieldIntel_chartHint;
+
+  /// No description provided for @fieldIntel_mix.
+  ///
+  /// In en, this message translates to:
+  /// **'Node mix'**
+  String get fieldIntel_mix;
+
+  /// No description provided for @fieldIntel_reach.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach'**
+  String get fieldIntel_reach;
+
+  /// No description provided for @fieldIntel_hops1.
+  ///
+  /// In en, this message translates to:
+  /// **'1 hop'**
+  String get fieldIntel_hops1;
+
+  /// No description provided for @fieldIntel_hops2.
+  ///
+  /// In en, this message translates to:
+  /// **'2 hops'**
+  String get fieldIntel_hops2;
+
+  /// No description provided for @fieldIntel_hops3.
+  ///
+  /// In en, this message translates to:
+  /// **'3+ hops'**
+  String get fieldIntel_hops3;
+
+  /// No description provided for @fieldIntel_noRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'No route yet'**
+  String get fieldIntel_noRoute;
+
+  /// No description provided for @fieldIntel_distance.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearest and farthest'**
+  String get fieldIntel_distance;
+
+  /// No description provided for @fieldIntel_noneLocated.
+  ///
+  /// In en, this message translates to:
+  /// **'None of your contacts has a position.'**
+  String get fieldIntel_noneLocated;
+
+  /// No description provided for @fieldIntel_noPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio has no position yet, so distances can\'t be worked out.'**
+  String get fieldIntel_noPosition;
+
+  /// No description provided for @fieldIntel_bestRepeaters.
+  ///
+  /// In en, this message translates to:
+  /// **'Best repeaters you hear directly'**
+  String get fieldIntel_bestRepeaters;
+
+  /// No description provided for @fieldIntel_noneDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'No repeater heard directly in the last 30 minutes.'**
+  String get fieldIntel_noneDirect;
+
+  /// No description provided for @fieldIntel_attention.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs attention'**
+  String get fieldIntel_attention;
+
+  /// No description provided for @fieldIntel_allGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing needs attention.'**
+  String get fieldIntel_allGood;
+
+  /// No description provided for @fieldIntel_lowBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery low: {volts} V'**
+  String fieldIntel_lowBattery(String volts);
+
+  /// No description provided for @fieldIntel_quietFavorite.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourite not heard since {ago}'**
+  String fieldIntel_quietFavorite(String ago);
+
+  /// No description provided for @fieldIntel_moreTools.
+  ///
+  /// In en, this message translates to:
+  /// **'More tools'**
+  String get fieldIntel_moreTools;
+
+  /// No description provided for @fieldIntel_nodeCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Nodes: {count}'**
+  String fieldIntel_nodeCount(int count);
+
+  /// No description provided for @fieldIntel_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No nodes here.'**
+  String get fieldIntel_none;
+
+  /// No description provided for @fieldIntel_lastHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Last heard {ago}'**
+  String fieldIntel_lastHeard(String ago);
+
+  /// No description provided for @fieldIntel_showOnMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Show on map'**
+  String get fieldIntel_showOnMap;
+
+  /// No description provided for @fieldIntel_openChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Open chat'**
+  String get fieldIntel_openChat;
+
+  /// No description provided for @repeaterTools_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get repeaterTools_login;
+
+  /// No description provided for @repeaterTools_heardDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard directly'**
+  String get repeaterTools_heardDirect;
+
+  /// No description provided for @repeaterTools_filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get repeaterTools_filterAll;
+
+  /// No description provided for @repeaterTools_filterLowBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'Low battery'**
+  String get repeaterTools_filterLowBattery;
+
+  /// No description provided for @repeaterTools_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a repeater for its details, and log in from there for status, neighbours, telemetry and the command line.'**
+  String get repeaterTools_hint;
+
+  /// No description provided for @repeaterTools_noneMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No repeaters here.'**
+  String get repeaterTools_noneMatch;
+
+  /// No description provided for @repeaterTools_toolsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get repeaterTools_toolsTitle;
+
+  /// No description provided for @repeaterTools_regionSetupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Look up your area\'s region tree and copy its commands'**
+  String get repeaterTools_regionSetupHint;
+
+  /// No description provided for @routes_failingOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Only routes that failed'**
+  String get routes_failingOnly;
+
+  /// No description provided for @routes_contactDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact details'**
+  String get routes_contactDetails;
+
+  /// No description provided for @links_contactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a contact?'**
+  String get links_contactTitle;
+
+  /// No description provided for @links_importAdvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Add this contact to your radio?'**
+  String get links_importAdvert;
+
+  /// No description provided for @links_connectFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio first, then open the link again.'**
+  String get links_connectFirst;
+
+  /// No description provided for @links_added.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact added'**
+  String get links_added;
+
+  /// No description provided for @links_notContact.
+  ///
+  /// In en, this message translates to:
+  /// **'This link isn\'t a MeshCore contact.'**
+  String get links_notContact;
+
+  /// No description provided for @radioBuzzer_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio buzzer'**
+  String get radioBuzzer_title;
+
+  /// No description provided for @radioBuzzer_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Beeps on the radio for new messages. Only shown for radios with a buzzer.'**
+  String get radioBuzzer_hint;
+
+  /// No description provided for @radioBuzzer_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio didn\'t accept the change. Try again.'**
+  String get radioBuzzer_failed;
+
+  /// No description provided for @appSettings_floodAttempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood attempts'**
+  String get appSettings_floodAttempts;
+
+  /// No description provided for @appSettings_floodAttemptsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra tries sent as a flood after the direct ones fail, in case the route has changed. Each one uses more airtime. 0 turns them off.'**
+  String get appSettings_floodAttemptsSubtitle;
+
+  /// No description provided for @pathGraph_you.
+  ///
+  /// In en, this message translates to:
+  /// **'You'**
+  String get pathGraph_you;
+
+  /// No description provided for @pathGraph_relayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Relayed {count} messages'**
+  String pathGraph_relayed(int count);
+
+  /// No description provided for @pathGraph_ambiguousNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This short ID matches more than one repeater, so it can\'t be pinned to one.'**
+  String get pathGraph_ambiguousNote;
+
+  /// No description provided for @pathGraph_comesFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Comes from'**
+  String get pathGraph_comesFrom;
+
+  /// No description provided for @pathGraph_goesTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Goes to'**
+  String get pathGraph_goesTo;
+
+  /// No description provided for @pathGraph_repeaterDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeater details'**
+  String get pathGraph_repeaterDetails;
+
+  /// No description provided for @pathGraph_days7.
+  ///
+  /// In en, this message translates to:
+  /// **'7 days'**
+  String get pathGraph_days7;
+
+  /// No description provided for @pathGraph_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No channel message paths in this period yet. Paths are collected from channel messages you receive while message tracing is on.'**
+  String get pathGraph_empty;
+
+  /// No description provided for @pathGraph_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{paths} paths heard · {repeaters} repeaters'**
+  String pathGraph_summary(int paths, int repeaters);
+
+  /// No description provided for @pathGraph_hashOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Each hop is shown by its hash prefix, or its name when you know the repeater.'**
+  String get pathGraph_hashOnly;
+
+  /// No description provided for @pathGraph_matched.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} short (1-byte) hops matched to a specific repeater using longer paths.'**
+  String pathGraph_matched(int count);
+
+  /// No description provided for @pathGraph_matchedAmbiguous.
+  ///
+  /// In en, this message translates to:
+  /// **'{matched} short (1-byte) hops matched to a specific repeater using longer paths · {ambiguous} still ambiguous (marked ?).'**
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous);
+
+  /// No description provided for @pathGraph_chartHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Left: repeaters farther away. Right: you. Band width is how many messages took that hop. Tap a box to see that repeater.'**
+  String get pathGraph_chartHint;
+
+  /// No description provided for @pathGraph_busiest.
+  ///
+  /// In en, this message translates to:
+  /// **'Busiest repeaters'**
+  String get pathGraph_busiest;
+
+  /// No description provided for @pathGraph_chartSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Path graph. Busiest repeater {name}, relayed {count} messages.'**
+  String pathGraph_chartSemantics(String name, int count);
+
+  /// No description provided for @diag_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied: {label}'**
+  String diag_copied(String label);
+
+  /// No description provided for @diag_noChannels.
+  ///
+  /// In en, this message translates to:
+  /// **'No channels on this radio.'**
+  String get diag_noChannels;
+
+  /// No description provided for @diag_tapToCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any value to copy it. Pull down to refresh.'**
+  String get diag_tapToCopy;
+
+  /// No description provided for @diag_storage.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage'**
+  String get diag_storage;
+
+  /// No description provided for @diag_storageValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {total} KB'**
+  String diag_storageValue(int used, int total);
+
+  /// No description provided for @favReturn_setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites back in range'**
+  String get favReturn_setting;
+
+  /// No description provided for @favReturn_settingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify when a favorite is heard again after a quiet spell'**
+  String get favReturn_settingHint;
+
+  /// No description provided for @favReturn_off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get favReturn_off;
+
+  /// No description provided for @favReturn_hours.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{After 1 hour} other{After {count} hours}}'**
+  String favReturn_hours(int count);
+
+  /// No description provided for @favReturn_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Back in range'**
+  String get favReturn_title;
+
+  /// No description provided for @favReturn_body.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet'**
+  String favReturn_body(String name, int hours);
 }
 
 class _AppLocalizationsDelegate

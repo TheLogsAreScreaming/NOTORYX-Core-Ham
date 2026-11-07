@@ -6074,31 +6074,35 @@ class AppLocalizationsSl extends AppLocalizations {
   String get fieldOps_send => 'Pošlji';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Posredovanje SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Posreduj SOS, ki jih ni posredoval noben repetitor';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Zahteva vdelano programsko opremo radia v1.16 ali novejšo';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Še ni bil posredovan noben SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: 'Posredovanih $count paketov SOS, nazadnje ob $time',
+      few: 'Posredovani $count paketi SOS, nazadnje ob $time',
+      two: 'Posredovana 2 paketa SOS, nazadnje ob $time',
+      one: 'Posredovan 1 paket SOS, nazadnje ob $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Ko radio sliši SOS neposredno od pošiljatelja in ga noben repetitor ne posreduje v približno 15 sekundah, ga NOTORYX še enkrat pošlje nespremenjenega, da doseže repetitor, ki ga slišite vi, pošiljatelj pa ne. Posredujejo se le SOS v vaših kanalih. Porabi nekaj baterije in časa oddajanja, zato je privzeto izklopljeno.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Pred odhodom';
@@ -9384,4 +9388,560 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Gesla nastavite prek serijske konzole USB repetitorja. Poslana po zraku bi jih lahko prebral vsak.';
+
+  @override
+  String get networks_title => 'Omrežja';
+
+  @override
+  String get networks_hint => 'Iskanje bližnjih omrežij in dnevnik';
+
+  @override
+  String get networks_yourNetwork => 'Vaše omrežje';
+
+  @override
+  String get networks_scanTitle => 'Iskanje omrežij';
+
+  @override
+  String get networks_scanExplainer =>
+      'Radio sliši le omrežja s povsem enakimi nastavitvami, zato ga iskanje po vrsti preklopi na vsako, posluša in ga nato vrne nazaj. Med iskanjem niste v svojem omrežju.';
+
+  @override
+  String get networks_listenFor => 'Poslušanje na vsakem';
+
+  @override
+  String networks_choose(int count) {
+    return 'Omrežja za iskanje: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Predlagana';
+
+  @override
+  String get networks_start => 'Začni iskanje';
+
+  @override
+  String get networks_cancel => 'Ustavi iskanje';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Poslušam $name ($step od $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Za iskanje povežite radio.';
+
+  @override
+  String get networks_blockSettings => 'Čakanje na nastavitve radia.';
+
+  @override
+  String get networks_blockSos => 'Ne med SOS: iskanje vas odklopi od omrežja.';
+
+  @override
+  String get networks_blockTrip =>
+      'Ne med izletom: iskanje vas odklopi od omrežja.';
+
+  @override
+  String get networks_nearby => 'Bližnja omrežja';
+
+  @override
+  String get networks_nothingYet =>
+      'Še nobeno omrežje ni bilo slišano. Zaženite iskanje.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Vozlišča $nodes · paketi $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Nazadnje slišano $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Kolikokrat slišano: $count';
+  }
+
+  @override
+  String get networks_saved => 'Shranjena omrežja';
+
+  @override
+  String get networks_noSaved => 'Še ni shranjenih omrežij.';
+
+  @override
+  String get networks_add => 'Dodaj omrežje';
+
+  @override
+  String get networks_join => 'Pridruži se';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Preklopim radio na $name? Zapustili boste trenutno omrežje. Oddajna moč ostane enaka.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Radio je zdaj na $name.';
+  }
+
+  @override
+  String get networks_log => 'Dnevnik omrežij';
+
+  @override
+  String get networks_logEmpty => 'Še nič zabeleženo.';
+
+  @override
+  String get networks_showMap => 'Zemljevid';
+
+  @override
+  String get networks_exportCsv => 'Izvozi CSV';
+
+  @override
+  String get networks_exportGpx => 'Izvozi GPX';
+
+  @override
+  String get networks_clearLog => 'Počisti dnevnik';
+
+  @override
+  String get networks_clearLogConfirm => 'Izbrišem vsa zabeležena omrežja?';
+
+  @override
+  String get networks_name => 'Ime';
+
+  @override
+  String get networks_invalid =>
+      'Preverite nastavitve: so zunaj obsega, ki ga sprejemajo radii MeshCore.';
+
+  @override
+  String get networks_nodesHeard => 'Slišana vozlišča';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Ni poslano: povežite radio in poskusite znova. Sporočilo ostane shranjeno.';
+
+  @override
+  String get quick_title => 'Hitra sporočila';
+
+  @override
+  String get quick_ok => 'V redu';
+
+  @override
+  String get quick_onMyWay => 'Na poti sem';
+
+  @override
+  String get quick_atCamp => 'V taboru';
+
+  @override
+  String get quick_runningLate => 'Zamujam';
+
+  @override
+  String get quick_needHelp => 'Potrebujem pomoč';
+
+  @override
+  String get quick_copyThat => 'Razumem';
+
+  @override
+  String get quick_empty => 'Ni hitrih sporočil. Tapnite Uredi, da dodate eno.';
+
+  @override
+  String get quick_add => 'Novo hitro sporočilo';
+
+  @override
+  String get quick_reset => 'Ponastavi na privzeta';
+
+  @override
+  String get chat_stopRetrying => 'Ustavi ponovne poskuse';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name lahko bere vaša neposredna sporočila in odgovarja nanje šele, ko vas doda med stike. Če tega še ni storil, pošljite svoj oglas ali delite stik.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Na moj položaj';
+
+  @override
+  String get map_positionUnavailable =>
+      'Vaš položaj ni na voljo. Vklopite lokacijo ali nastavite položaj radia.';
+
+  @override
+  String get contact_forgetAdvert => 'Pozabi zadnji oglas';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Če se oglasi tega vozlišča po ponastavitvi ure ne posodabljajo več, Pozabi zadnji oglas spusti naslednjega.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Končano. Naslednji oglas tega vozlišča bo sprejet.';
+
+  @override
+  String get networks_modeQuick => 'Hitro';
+
+  @override
+  String get networks_modeThorough => 'Temeljito';
+
+  @override
+  String get networks_modeQuickHint =>
+      'V vsakem omrežju pošlje en kratek ping brez posredovanja in posluša nekaj sekund. Najde omrežja z repetitorjem v dosegu.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Samo posluša, dlje v vsakem omrežju. Ničesar ne pošlje in najde tudi omrežja brez repetitorja v dosegu, če kdo oddaja.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'približno $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return 'Izbrano: $count';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Izberi vse';
+
+  @override
+  String get discoveredContacts_addSelected => 'Dodaj izbrane';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Dodaj vse prikazane ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Dodam stike ($count)?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Radio ima prostor še za $room stikov.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Radio ima prostor še za $room stikov, zato bo dodanih le prvih $room od $count.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Dodajanje $done od $total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Dodani stiki: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Dodani stiki: $added. Ni dodanih: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Seznam stikov radia je poln. Najprej odstranite nekaj stikov.';
+
+  @override
+  String get fieldIntel_radioNow => 'Radio zdaj';
+
+  @override
+  String get fieldIntel_noRadio => 'Povežite radio za podatke v živo.';
+
+  @override
+  String get fieldIntel_noise => 'šum dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'zadnji SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'zadnji RSSI';
+
+  @override
+  String get fieldIntel_battery => 'baterija V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Čas oddajanja od zagona radia: poslano $sent, prejeto $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Kdo je v bližini';
+
+  @override
+  String get fieldIntel_m15 => '15 min';
+
+  @override
+  String get fieldIntel_h1 => '1 ura';
+
+  @override
+  String get fieldIntel_h24 => '24 ur';
+
+  @override
+  String get fieldIntel_older => 'Starejši';
+
+  @override
+  String get fieldIntel_lastHour => 'Zadnja ura';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Kdaj je bilo vsako vozlišče nazadnje slišano, po urah v zadnjem dnevu. Tapnite stolpec, da vidite koga.';
+
+  @override
+  String get fieldIntel_mix => 'Vrste vozlišč';
+
+  @override
+  String get fieldIntel_reach => 'Doseg';
+
+  @override
+  String get fieldIntel_hops1 => '1 skok';
+
+  @override
+  String get fieldIntel_hops2 => '2 skoka';
+
+  @override
+  String get fieldIntel_hops3 => '3+ skoki';
+
+  @override
+  String get fieldIntel_noRoute => 'Še brez poti';
+
+  @override
+  String get fieldIntel_distance => 'Najbližja in najbolj oddaljena';
+
+  @override
+  String get fieldIntel_noneLocated => 'Noben stik nima položaja.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Radio še nima položaja, zato razdalj ni mogoče izračunati.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Najboljši neposredno slišani repetitorji';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'V zadnjih 30 minutah ni bil neposredno slišan noben repetitor.';
+
+  @override
+  String get fieldIntel_attention => 'Potrebuje pozornost';
+
+  @override
+  String get fieldIntel_allGood => 'Nič ne potrebuje pozornosti.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Šibka baterija: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Priljubljeni ni slišan od $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Več orodij';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Vozlišča: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Ni vozlišč.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Nazadnje slišano $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Pokaži na zemljevidu';
+
+  @override
+  String get fieldIntel_openChat => 'Odpri klepet';
+
+  @override
+  String get repeaterTools_login => 'Prijava';
+
+  @override
+  String get repeaterTools_heardDirect => 'Slišan neposredno';
+
+  @override
+  String get repeaterTools_filterAll => 'Vsi';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Šibka baterija';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tapnite repetitor za podrobnosti, nato se prijavite za stanje, sosede, telemetrijo in ukazno vrstico.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Tukaj ni repetitorjev.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Orodja';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Poiščite regijsko drevo za svoje območje in kopirajte njegove ukaze';
+
+  @override
+  String get routes_failingOnly => 'Samo neuspešne poti';
+
+  @override
+  String get routes_contactDetails => 'Podrobnosti stika';
+
+  @override
+  String get links_contactTitle => 'Dodam stik?';
+
+  @override
+  String get links_importAdvert => 'Dodam ta stik v radio?';
+
+  @override
+  String get links_connectFirst =>
+      'Najprej povežite radio, nato znova odprite povezavo.';
+
+  @override
+  String get links_added => 'Stik dodan';
+
+  @override
+  String get links_notContact => 'Ta povezava ni stik MeshCore.';
+
+  @override
+  String get radioBuzzer_title => 'Brenčač radia';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Radio zapiska ob novih sporočilih. Prikazano samo za radie z brenčačem.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Radio ni sprejel spremembe. Poskusite znova.';
+
+  @override
+  String get appSettings_floodAttempts => 'Poskusi s preplavljanjem';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Dodatni poskusi s preplavljanjem, ko neposredni ne uspejo, če se je pot spremenila. Vsak porabi več časa oddajanja. 0 jih izklopi.';
+
+  @override
+  String get pathGraph_you => 'Vi';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Posredoval $count sporočil';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Ta kratki ID se ujema z več repetitorji, zato ga ni mogoče pripisati enemu.';
+
+  @override
+  String get pathGraph_comesFrom => 'Prihaja od';
+
+  @override
+  String get pathGraph_goesTo => 'Gre k';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Podrobnosti repetitorja';
+
+  @override
+  String get pathGraph_days7 => '7 dni';
+
+  @override
+  String get pathGraph_empty =>
+      'V tem obdobju še ni poti sporočil kanalov. Poti se zbirajo iz prejetih sporočil kanalov, ko je sledenje vklopljeno.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Slišane poti: $paths · repetitorji: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Vsak skok je prikazan s predpono zgoščevanja ali z imenom, če repetitor poznate.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count kratkih (1-bajtnih) skokov je s pomočjo daljših poti pripisanih določenemu repetitorju.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched kratkih (1-bajtnih) skokov je s pomočjo daljših poti pripisanih določenemu repetitorju · $ambiguous jih je še nejasnih (označeno z ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Levo: bolj oddaljeni repetitorji. Desno: vi. Debelina pasu pove, koliko sporočil je šlo prek tega skoka. Tapnite polje za ta repetitor.';
+
+  @override
+  String get pathGraph_busiest => 'Najbolj obremenjeni repetitorji';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Graf poti. Najbolj obremenjen repetitor $name, posredoval $count sporočil.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Kopirano: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Na tem radiu ni kanalov.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tapnite vrednost, da jo kopirate. Povlecite navzdol za osvežitev.';
+
+  @override
+  String get diag_storage => 'Pomnilnik';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used od $total KB';
+  }
+
+  @override
+  String get favReturn_setting => 'Priljubljeni spet v dosegu';
+
+  @override
+  String get favReturn_settingHint =>
+      'Obvesti, ko je priljubljenega po obdobju tišine spet slišati';
+
+  @override
+  String get favReturn_off => 'Izklop';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Po $count urah',
+      two: 'Po 2 urah',
+      one: 'Po 1 uri',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Spet v dosegu';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours urah',
+      two: '2 urah',
+      one: '1 uri',
+    );
+    return '$name je spet slišen po $_temp0 tišine';
+  }
 }

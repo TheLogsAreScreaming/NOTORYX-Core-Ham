@@ -30,6 +30,7 @@ import '../widgets/radio_stats_entry.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/radio_overview_card.dart';
 import 'companion_cli_screen.dart';
+import '../widgets/radio_buzzer_switch.dart';
 import 'wifi_settings_screen.dart';
 import 'region_management_screen.dart';
 import '../utils/amateur_radio.dart';
@@ -542,6 +543,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         // The companion CLI (firmware v14+) also carries settings with no
         // dedicated protocol command, such as WiFi.
         if (connector.supportsCompanionCli) ...[
+          const RadioBuzzerSwitch(),
           _tappableTile(
             context,
             icon: Icons.wifi,

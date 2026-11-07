@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 
@@ -24,6 +25,10 @@ class RegionalPresetService extends ChangeNotifier {
   final http.Client _http;
   final Future<String> Function() _loadBundled;
   final Future<bool> Function(String message) _notify;
+  final Future<LatLng?> Function() _phonePosition;
+
+  /// The phone's last known position, used when the radio has none.
+  LatLng? _phone;
 
   static const _cacheKey = 'regional_presets_cache';
   static const _selectedKey = 'regional_preset_selected';
@@ -43,7 +48,9 @@ class RegionalPresetService extends ChangeNotifier {
     http.Client? httpClient,
     Future<String> Function()? loadBundled,
     Future<bool> Function(String message)? notify,
-  }) : _http = httpClient ?? http.Client(),
+    Future<LatLng?> Function()? phonePosition,
+  }) : _phonePosition = phonePosition ?? _lastKnownPhonePosition,
+       _http = httpClient ?? http.Client(),
        _loadBundled =
            loadBundled ??
            (() => rootBundle.loadString('assets/regional_presets.json')),
@@ -78,11 +85,12 @@ class RegionalPresetService extends ChangeNotifier {
         ? fromCache
         : parseRegionalPresets(await _loadBundled());
     _notifyListeners();
+    await _updatePhonePosition();
     unawaited(refresh());
-    _timer = Timer.periodic(
-      const Duration(hours: 12),
-      (_) => unawaited(refresh()),
-    );
+    _timer = Timer.periodic(const Duration(hours: 12), (_) async {
+      await _updatePhonePosition();
+      unawaited(refresh());
+    });
   }
 
   /// Fetches the latest list. Keeps the current one if offline or invalid.
@@ -122,8 +130,31 @@ class RegionalPresetService extends ChangeNotifier {
       return null;
     }
     final lat = _connector.selfLatitude, lon = _connector.selfLongitude;
-    if (lat == null || lon == null || (lat == 0 && lon == 0)) return null;
-    return presetForPosition(presets, LatLng(lat, lon));
+    final radioKnown = lat != null && lon != null && !(lat == 0 && lon == 0);
+    return presetForPosition(presets, radioKnown ? LatLng(lat, lon) : _phone);
+  }
+
+  Future<void> _updatePhonePosition() async {
+    try {
+      final p = await _phonePosition();
+      if (p == null) return;
+      _phone = p;
+      _notifyListeners();
+    } catch (e) {
+      debugPrint('Phone position unavailable: $e');
+    }
+  }
+
+  /// The phone's last known fix, only if location permission was already
+  /// granted elsewhere in the app; this never asks for it.
+  static Future<LatLng?> _lastKnownPhonePosition() async {
+    final permission = await Geolocator.checkPermission();
+    if (permission != LocationPermission.whileInUse &&
+        permission != LocationPermission.always) {
+      return null;
+    }
+    final p = await Geolocator.getLastKnownPosition();
+    return p == null ? null : LatLng(p.latitude, p.longitude);
   }
 
   RadioSettingsState get radio {
@@ -162,8 +193,8 @@ class RegionalPresetService extends ChangeNotifier {
   }
 
   /// Sets the radio to [preset]: frequency, bandwidth, spreading factor and
-  /// coding rate in one command, then the path hash mode. Transmit power
-  /// is left as it is.
+  /// coding rate in one command, then the path hash mode when the preset
+  /// knows it. Transmit power is left as it is.
   Future<void> apply(RegionalPreset preset) async {
     if (!_connector.isConnected) {
       throw StateError('Connect your radio first.');
@@ -176,7 +207,8 @@ class RegionalPresetService extends ChangeNotifier {
         preset.codingRate,
       ),
     );
-    await _connector.setPathHashMode(preset.pathHashBytes - 1);
+    final hash = preset.pathHashBytes;
+    if (hash != null) await _connector.setPathHashMode(hash - 1);
     await _connector.refreshDeviceInfo();
     await _setPref(_seenKey, preset.signature);
     _notifyListeners();

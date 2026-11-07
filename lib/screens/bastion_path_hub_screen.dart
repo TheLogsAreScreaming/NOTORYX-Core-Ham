@@ -15,12 +15,33 @@ import '../services/direct_repeater_service.dart';
 import '../services/path_history_service.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/ember_backdrop.dart';
+import '../widgets/instrument.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/node_sheet.dart';
 import 'discovery_screen.dart';
 import 'map_screen.dart';
 
-class BastionPathHubScreen extends StatelessWidget {
+class BastionPathHubScreen extends StatefulWidget {
   const BastionPathHubScreen({super.key});
+
+  @override
+  State<BastionPathHubScreen> createState() => _BastionPathHubScreenState();
+
+  static Widget _sectionTitle(String text) => SectionHeader(
+    text,
+    padding: const EdgeInsets.fromLTRB(
+      MeshSpace.xs,
+      MeshSpace.xl,
+      MeshSpace.xs,
+      MeshSpace.sm,
+    ),
+  );
+}
+
+class _BastionPathHubScreenState extends State<BastionPathHubScreen> {
+  /// Shows only contacts with a route that has failed, from the Failed
+  /// count.
+  bool _failingOnly = false;
 
   @override
   Widget build(BuildContext context) {
@@ -129,9 +150,18 @@ class BastionPathHubScreen extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          child: MeshStat(
-                            value: '$failed',
-                            label: l10n.routes_failed,
+                          child: InkWell(
+                            key: const ValueKey('routes-failed'),
+                            borderRadius: BorderRadius.circular(8),
+                            onTap: failed == 0
+                                ? null
+                                : () => setState(
+                                    () => _failingOnly = !_failingOnly,
+                                  ),
+                            child: MeshStat(
+                              value: '$failed',
+                              label: l10n.routes_failed,
+                            ),
                           ),
                         ),
                       ],
@@ -162,7 +192,18 @@ class BastionPathHubScreen extends StatelessWidget {
               ],
             ),
             _BestRepeaters(connector: connector),
-            _sectionTitle(l10n.routes_learned),
+            BastionPathHubScreen._sectionTitle(l10n.routes_learned),
+            if (_failingOnly)
+              Padding(
+                padding: const EdgeInsets.only(bottom: MeshSpace.sm),
+                child: Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: InputChip(
+                    label: Text(l10n.routes_failingOnly),
+                    onDeleted: () => setState(() => _failingOnly = false),
+                  ),
+                ),
+              ),
             if (entries.isEmpty)
               _InfoPanel(
                 icon: Icons.alt_route_rounded,
@@ -170,22 +211,14 @@ class BastionPathHubScreen extends StatelessWidget {
                 body: l10n.routes_noneBody,
               )
             else
-              ...entries.map((entry) => _ContactRouteCard(entry: entry)),
+              ...entries
+                  .where((e) => !_failingOnly || e.hasFailures)
+                  .map((entry) => _ContactRouteCard(entry: entry)),
           ],
         ),
       ),
     );
   }
-
-  static Widget _sectionTitle(String text) => SectionHeader(
-    text,
-    padding: const EdgeInsets.fromLTRB(
-      MeshSpace.xs,
-      MeshSpace.xl,
-      MeshSpace.xs,
-      MeshSpace.sm,
-    ),
-  );
 
   static double _successRate(PathRecord path) {
     final attempts = path.successCount + path.failureCount;
@@ -206,6 +239,9 @@ class _ContactRoutes {
   flood;
 
   const _ContactRoutes(this.contact, this.paths, this.flood);
+
+  bool get hasFailures =>
+      paths.any((p) => p.failureCount > 0) || (flood?.failureCount ?? 0) > 0;
 }
 
 class _ContactRouteCard extends StatelessWidget {
@@ -237,6 +273,78 @@ class _ContactRouteCard extends StatelessWidget {
     ).map(PathHelper.formatHopHex).join(' › ');
   }
 
+  /// Every learned route to this contact, best first, and the contact's
+  /// own details.
+  void _showRoutes(BuildContext context) {
+    final l10n = context.l10n;
+    final connector = context.read<MeshCoreConnector>();
+    showMeshSheet<void>(
+      context,
+      builder: (sheet) => SafeArea(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.sizeOf(sheet).height * 0.8,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              BottomSheetHeader(
+                title: entry.contact.name,
+                subtitle: l10n.routes_routeCount(entry.paths.length),
+              ),
+              Flexible(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for (final p in entry.paths)
+                      InstrumentRow(
+                        icon: Icons.alt_route,
+                        title: _path(context, p),
+                        subtitle: [
+                          ?_names(connector, p),
+                          l10n.routes_bestDetail(
+                            l10n.bastion_hopsCount(p.hopCount),
+                            p.routeWeight.toStringAsFixed(1),
+                            '${p.successCount}',
+                            '${p.failureCount}',
+                          ),
+                          if (p.tripTimeMs > 0)
+                            l10n.routes_fastest('${p.tripTimeMs}'),
+                        ].join('\n'),
+                        divider: false,
+                      ),
+                    if (entry.flood != null)
+                      InstrumentRow(
+                        icon: Icons.waves,
+                        title: l10n.routes_flood(
+                          '${entry.flood!.successCount}',
+                          '${entry.flood!.failureCount}',
+                        ),
+                        divider: false,
+                      ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(MeshSpace.lg),
+                child: InstrumentButton(
+                  key: const ValueKey('route-contact-details'),
+                  label: l10n.routes_contactDetails,
+                  icon: Icons.person_outline,
+                  onPressed: () {
+                    Navigator.pop(sheet);
+                    showNodeSheet(context, entry.contact);
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -251,14 +359,10 @@ class _ContactRouteCard extends StatelessWidget {
           return current;
         });
 
-    return Container(
+    return MeshCard(
+      key: ValueKey('route-${entry.contact.publicKeyHex}'),
       margin: const EdgeInsets.only(bottom: MeshSpace.sm),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        gradient: glassFill(context),
-        border: Border.all(color: glassEdge(context)),
-        borderRadius: BorderRadius.circular(glassRadius),
-      ),
+      onTap: () => _showRoutes(context),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -413,6 +517,13 @@ class _BestRepeaters extends StatelessWidget {
         else
           for (var i = 0; i < best.length; i++)
             _BestRepeaterRow(
+              contact: connector.contacts
+                  .where(
+                    (c) => c.publicKeyHex.toUpperCase().startsWith(
+                      best[i].id.toUpperCase(),
+                    ),
+                  )
+                  .firstOrNull,
               rank: i + 1,
               name: heardNameWithOnline(connector, analyzer, best[i].id),
               id: directHeardShortId(best[i].id),
@@ -426,6 +537,7 @@ class _BestRepeaters extends StatelessWidget {
 
 class _BestRepeaterRow extends StatelessWidget {
   const _BestRepeaterRow({
+    required this.contact,
     required this.rank,
     required this.name,
     required this.id,
@@ -433,6 +545,8 @@ class _BestRepeaterRow extends StatelessWidget {
     required this.minutesAgo,
   });
 
+  /// The repeater, when it's one of your contacts; tapping opens it.
+  final Contact? contact;
   final int rank;
 
   /// Null when the repeater isn't known by name; it's shown by [id].
@@ -451,14 +565,10 @@ class _BestRepeaterRow extends StatelessWidget {
         : snr >= -5
         ? MeshPalette.warn
         : MeshPalette.alert;
-    return Container(
+    return MeshCard(
       margin: const EdgeInsets.only(bottom: MeshSpace.sm),
       padding: const EdgeInsets.all(MeshSpace.md),
-      decoration: BoxDecoration(
-        gradient: glassFill(context),
-        border: Border.all(color: glassEdge(context)),
-        borderRadius: BorderRadius.circular(glassRadius),
-      ),
+      onTap: contact == null ? null : () => showNodeSheet(context, contact!),
       child: Row(
         children: [
           SizedBox(

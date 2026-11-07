@@ -174,6 +174,38 @@ class NotificationService {
     return _canNotify = true;
   }
 
+  /// "Back in range" for a favorite heard again after [quietHours] hours.
+  /// One notification per contact, replaced by the next.
+  Future<bool> showFavoriteReturn({
+    required String contactId,
+    required String name,
+    required int quietHours,
+  }) async {
+    if (_suppressNotifications || !await _ensureCanNotify()) return false;
+    try {
+      await _notifications.show(
+        id: 'favorite_return:$contactId'.hashCode,
+        title: _l10n.favReturn_title,
+        body: _l10n.favReturn_body(name, quietHours),
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'bastion_favorites',
+            'Favorites back in range',
+            channelDescription: 'A favorite is heard again after a quiet spell',
+            importance: Importance.defaultImportance,
+            priority: Priority.defaultPriority,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: DarwinNotificationDetails(),
+          macOS: DarwinNotificationDetails(),
+        ),
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<bool> showFieldAlert(String message) async {
     if (!await _ensureCanNotify()) return false;
     try {

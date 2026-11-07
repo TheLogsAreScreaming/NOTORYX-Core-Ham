@@ -112,6 +112,14 @@ class AppSettings {
   final double routeWeightSuccessIncrement;
   final double routeWeightFailureDecrement;
   final int maxMessageRetries;
+
+  /// Tries sent as a flood after the [maxMessageRetries] direct ones fail,
+  /// in case the route has changed. 0 turns them off.
+  final int messageFloodAttempts;
+
+  /// Hours a favorite must be quiet before hearing them again notifies
+  /// "back in range". 0 turns it off.
+  final int favoriteReturnHours;
   final String themeMode;
   final String? languageOverride; // null = system default
   final bool appDebugLogEnabled;
@@ -137,6 +145,11 @@ class AppSettings {
 
   /// Reconnect to the last radio by itself when the app opens.
   final bool autoConnectRadio;
+
+  /// The map's telemetry badges, and which reading they show (a
+  /// `TelemetryMetric` name), kept between visits.
+  final bool mapShowTelemetry;
+  final String mapTelemetryMetric;
 
   /// Signs every channel post, not only SOS. Each signature is one extra
   /// packet on air.
@@ -239,6 +252,8 @@ class AppSettings {
     this.routeWeightSuccessIncrement = 0.5,
     this.routeWeightFailureDecrement = 0.2,
     this.maxMessageRetries = 5,
+    this.messageFloodAttempts = 2,
+    this.favoriteReturnHours = 6,
     this.themeMode = 'system',
     this.languageOverride,
     this.appDebugLogEnabled = false,
@@ -254,6 +269,8 @@ class AppSettings {
     this.refreshRate = 'normal',
     this.linkPreviews = false,
     this.autoConnectRadio = false,
+    this.mapShowTelemetry = false,
+    this.mapTelemetryMetric = 'battery',
     this.signChannelPosts = false,
     this.appTheme = 'blaze',
     this.channelMessageRetentionDays = 0,
@@ -322,6 +339,8 @@ class AppSettings {
       'route_weight_success_increment': routeWeightSuccessIncrement,
       'route_weight_failure_decrement': routeWeightFailureDecrement,
       'max_message_retries': maxMessageRetries,
+      'message_flood_attempts': messageFloodAttempts,
+      'favorite_return_hours': favoriteReturnHours,
       'theme_mode': themeMode,
       'language_override': languageOverride,
       'app_debug_log_enabled': appDebugLogEnabled,
@@ -337,6 +356,8 @@ class AppSettings {
       'refresh_rate': refreshRate,
       'link_previews': linkPreviews,
       'auto_connect_radio': autoConnectRadio,
+      'map_show_telemetry': mapShowTelemetry,
+      'map_telemetry_metric': mapTelemetryMetric,
       'sign_channel_posts': signChannelPosts,
       'app_theme': appTheme,
       'channel_message_retention_days': channelMessageRetentionDays,
@@ -418,6 +439,8 @@ class AppSettings {
       routeWeightFailureDecrement:
           (json['route_weight_failure_decrement'] as num?)?.toDouble() ?? 0.2,
       maxMessageRetries: json['max_message_retries'] as int? ?? 5,
+      messageFloodAttempts: json['message_flood_attempts'] as int? ?? 2,
+      favoriteReturnHours: json['favorite_return_hours'] as int? ?? 6,
       themeMode: json['theme_mode'] as String? ?? 'system',
       languageOverride: json['language_override'] as String?,
       appDebugLogEnabled: json['app_debug_log_enabled'] as bool? ?? false,
@@ -446,6 +469,8 @@ class AppSettings {
       refreshRate: json['refresh_rate'] as String? ?? 'normal',
       linkPreviews: json['link_previews'] as bool? ?? false,
       autoConnectRadio: json['auto_connect_radio'] as bool? ?? false,
+      mapShowTelemetry: json['map_show_telemetry'] as bool? ?? false,
+      mapTelemetryMetric: json['map_telemetry_metric'] as String? ?? 'battery',
       signChannelPosts: json['sign_channel_posts'] as bool? ?? false,
       appTheme: json['app_theme'] as String? ?? 'blaze',
       channelMessageRetentionDays:
@@ -557,6 +582,8 @@ class AppSettings {
     double? routeWeightSuccessIncrement,
     double? routeWeightFailureDecrement,
     int? maxMessageRetries,
+    int? messageFloodAttempts,
+    int? favoriteReturnHours,
     String? themeMode,
     Object? languageOverride = _unset,
     bool? appDebugLogEnabled,
@@ -572,6 +599,8 @@ class AppSettings {
     String? refreshRate,
     bool? linkPreviews,
     bool? autoConnectRadio,
+    bool? mapShowTelemetry,
+    String? mapTelemetryMetric,
     bool? signChannelPosts,
     String? appTheme,
     int? channelMessageRetentionDays,
@@ -634,6 +663,8 @@ class AppSettings {
       routeWeightFailureDecrement:
           routeWeightFailureDecrement ?? this.routeWeightFailureDecrement,
       maxMessageRetries: maxMessageRetries ?? this.maxMessageRetries,
+      messageFloodAttempts: messageFloodAttempts ?? this.messageFloodAttempts,
+      favoriteReturnHours: favoriteReturnHours ?? this.favoriteReturnHours,
       themeMode: themeMode ?? this.themeMode,
       languageOverride: languageOverride == _unset
           ? this.languageOverride
@@ -654,6 +685,8 @@ class AppSettings {
       refreshRate: refreshRate ?? this.refreshRate,
       linkPreviews: linkPreviews ?? this.linkPreviews,
       autoConnectRadio: autoConnectRadio ?? this.autoConnectRadio,
+      mapShowTelemetry: mapShowTelemetry ?? this.mapShowTelemetry,
+      mapTelemetryMetric: mapTelemetryMetric ?? this.mapTelemetryMetric,
       signChannelPosts: signChannelPosts ?? this.signChannelPosts,
       appTheme: appTheme ?? this.appTheme,
       channelMessageRetentionDays:

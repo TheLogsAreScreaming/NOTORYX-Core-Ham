@@ -6092,31 +6092,33 @@ class AppLocalizationsDe extends AppLocalizations {
   String get fieldOps_send => 'Senden';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS-Weiterleitung';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'SOS weiterleiten, die kein Repeater übernommen hat';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Benötigt Funkgeräte-Firmware v1.16 oder neuer';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Noch kein SOS weitergeleitet';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-Pakete weitergeleitet, zuletzt um $time',
+      one: '1 SOS-Paket weitergeleitet, zuletzt um $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Wenn dein Funkgerät ein SOS direkt vom Absender hört und es innerhalb von etwa 15 Sekunden kein Repeater weitergibt, sendet NOTORYX es unverändert noch einmal, damit es einen Repeater erreicht, den du hörst, der Absender aber nicht. Nur SOS in deinen Kanälen werden weitergeleitet. Kostet etwas Akku und Sendezeit, daher standardmäßig aus.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Bevor du aufbrichst';
@@ -9411,4 +9413,561 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'Passwörter über die serielle USB-Konsole des Repeaters setzen. Über Funk gesendet könnte sie jeder lesen.';
+
+  @override
+  String get networks_title => 'Netze';
+
+  @override
+  String get networks_hint => 'Netze in der Nähe suchen und protokollieren';
+
+  @override
+  String get networks_yourNetwork => 'Dein Netz';
+
+  @override
+  String get networks_scanTitle => 'Nach Netzen suchen';
+
+  @override
+  String get networks_scanExplainer =>
+      'Dein Funkgerät hört nur Netze mit genau seinen Einstellungen. Ein Suchlauf schaltet es deshalb nacheinander auf jedes um, hört zu und schaltet zurück. Währenddessen bist du nicht in deinem Mesh.';
+
+  @override
+  String get networks_listenFor => 'Pro Netz zuhören';
+
+  @override
+  String networks_choose(int count) {
+    return 'Zu suchende Netze: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Vorschläge';
+
+  @override
+  String get networks_start => 'Suche starten';
+
+  @override
+  String get networks_cancel => 'Suche stoppen';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Höre auf $name ($step von $steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Verbinde ein Funkgerät zum Suchen.';
+
+  @override
+  String get networks_blockSettings =>
+      'Warte auf die Einstellungen des Funkgeräts.';
+
+  @override
+  String get networks_blockSos =>
+      'Nicht während eines SOS: Ein Suchlauf nimmt dich aus dem Mesh.';
+
+  @override
+  String get networks_blockTrip =>
+      'Nicht während einer Tour: Ein Suchlauf nimmt dich aus dem Mesh.';
+
+  @override
+  String get networks_nearby => 'Netze in der Nähe';
+
+  @override
+  String get networks_nothingYet =>
+      'Noch keine Netze gehört. Starte einen Suchlauf.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Knoten $nodes · Pakete $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Zuletzt gehört $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Mal gehört: $count';
+  }
+
+  @override
+  String get networks_saved => 'Gespeicherte Netze';
+
+  @override
+  String get networks_noSaved => 'Noch keine gespeicherten Netze.';
+
+  @override
+  String get networks_add => 'Netz hinzufügen';
+
+  @override
+  String get networks_join => 'Beitreten';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Funkgerät auf $name umstellen? Du verlässt dein aktuelles Netz. Die Sendeleistung bleibt gleich.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'Dein Funkgerät ist jetzt auf $name.';
+  }
+
+  @override
+  String get networks_log => 'Netzprotokoll';
+
+  @override
+  String get networks_logEmpty => 'Noch nichts protokolliert.';
+
+  @override
+  String get networks_showMap => 'Karte';
+
+  @override
+  String get networks_exportCsv => 'CSV exportieren';
+
+  @override
+  String get networks_exportGpx => 'GPX exportieren';
+
+  @override
+  String get networks_clearLog => 'Protokoll leeren';
+
+  @override
+  String get networks_clearLogConfirm => 'Alle protokollierten Netze löschen?';
+
+  @override
+  String get networks_name => 'Name';
+
+  @override
+  String get networks_invalid =>
+      'Prüfe die Einstellungen: Sie liegen außerhalb dessen, was MeshCore-Funkgeräte annehmen.';
+
+  @override
+  String get networks_nodesHeard => 'Gehörte Knoten';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Nicht gesendet: Verbinde dein Funkgerät und versuche es erneut. Die Nachricht bleibt erhalten.';
+
+  @override
+  String get quick_title => 'Schnellnachrichten';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Bin unterwegs';
+
+  @override
+  String get quick_atCamp => 'Im Lager';
+
+  @override
+  String get quick_runningLate => 'Verspäte mich';
+
+  @override
+  String get quick_needHelp => 'Brauche Hilfe';
+
+  @override
+  String get quick_copyThat => 'Verstanden';
+
+  @override
+  String get quick_empty =>
+      'Keine Schnellnachrichten. Tippe auf Bearbeiten, um eine hinzuzufügen.';
+
+  @override
+  String get quick_add => 'Neue Schnellnachricht';
+
+  @override
+  String get quick_reset => 'Auf Standard zurücksetzen';
+
+  @override
+  String get chat_stopRetrying => 'Wiederholen stoppen';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name kann deine Direktnachrichten erst lesen und beantworten, wenn er dich als Kontakt hinzugefügt hat. Falls nicht, sende dein Advert oder teile deinen Kontakt.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Zu meiner Position';
+
+  @override
+  String get map_positionUnavailable =>
+      'Deine Position ist nicht verfügbar. Schalte die Ortung ein oder setze die Position des Funkgeräts.';
+
+  @override
+  String get contact_forgetAdvert => 'Letztes Advert vergessen';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Wenn die Adverts dieses Knotens nach einem Zurücksetzen seiner Uhr nicht mehr aktualisiert werden, lässt Letztes Advert vergessen das nächste durch.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Erledigt. Das nächste Advert dieses Knotens wird angenommen.';
+
+  @override
+  String get networks_modeQuick => 'Schnell';
+
+  @override
+  String get networks_modeThorough => 'Gründlich';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Sendet in jedem Netz einen kurzen Ping ohne Weiterleitung und hört ein paar Sekunden zu. Findet Netze mit einem Repeater in Reichweite.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Hört nur zu, länger pro Netz. Sendet nichts und findet auch Netze ohne Repeater in Reichweite, wenn jemand sendet.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'etwa $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count ausgewählt';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Alle auswählen';
+
+  @override
+  String get discoveredContacts_addSelected => 'Auswahl hinzufügen';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Alle angezeigten hinzufügen ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return '$count Kontakte hinzufügen?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'Dein Funkgerät hat Platz für $room weitere Kontakte.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'Dein Funkgerät hat Platz für $room weitere Kontakte, daher werden nur die ersten $room von $count hinzugefügt.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Füge $done von $total hinzu…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Kontakte hinzugefügt: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Kontakte hinzugefügt: $added. Nicht hinzugefügt: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'Die Kontaktliste deines Funkgeräts ist voll. Entferne zuerst einige Kontakte.';
+
+  @override
+  String get fieldIntel_radioNow => 'Funkgerät gerade';
+
+  @override
+  String get fieldIntel_noRadio => 'Verbinde dein Funkgerät für Live-Werte.';
+
+  @override
+  String get fieldIntel_noise => 'Rauschen dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'letzter SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'letzter RSSI';
+
+  @override
+  String get fieldIntel_battery => 'Akku V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Sendezeit seit dem Start des Funkgeräts: gesendet $sent, empfangen $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Wer ist in der Nähe';
+
+  @override
+  String get fieldIntel_m15 => '15 Min.';
+
+  @override
+  String get fieldIntel_h1 => '1 Stunde';
+
+  @override
+  String get fieldIntel_h24 => '24 Stunden';
+
+  @override
+  String get fieldIntel_older => 'Älter';
+
+  @override
+  String get fieldIntel_lastHour => 'Letzte Stunde';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Wann jeder Knoten zuletzt gehört wurde, stündlich über den letzten Tag. Tippe auf einen Balken, um zu sehen, wer.';
+
+  @override
+  String get fieldIntel_mix => 'Knotenarten';
+
+  @override
+  String get fieldIntel_reach => 'Reichweite';
+
+  @override
+  String get fieldIntel_hops1 => '1 Hop';
+
+  @override
+  String get fieldIntel_hops2 => '2 Hops';
+
+  @override
+  String get fieldIntel_hops3 => '3+ Hops';
+
+  @override
+  String get fieldIntel_noRoute => 'Noch keine Route';
+
+  @override
+  String get fieldIntel_distance => 'Nächste und fernste';
+
+  @override
+  String get fieldIntel_noneLocated =>
+      'Keiner deiner Kontakte hat eine Position.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'Dein Funkgerät hat noch keine Position, daher lassen sich keine Entfernungen berechnen.';
+
+  @override
+  String get fieldIntel_bestRepeaters => 'Beste direkt gehörte Repeater';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'In den letzten 30 Minuten wurde kein Repeater direkt gehört.';
+
+  @override
+  String get fieldIntel_attention => 'Braucht Aufmerksamkeit';
+
+  @override
+  String get fieldIntel_allGood => 'Nichts braucht Aufmerksamkeit.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Akku schwach: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Favorit nicht gehört seit $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'Weitere Werkzeuge';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Knoten: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Keine Knoten.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Zuletzt gehört $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Auf Karte zeigen';
+
+  @override
+  String get fieldIntel_openChat => 'Chat öffnen';
+
+  @override
+  String get repeaterTools_login => 'Anmelden';
+
+  @override
+  String get repeaterTools_heardDirect => 'Direkt gehört';
+
+  @override
+  String get repeaterTools_filterAll => 'Alle';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Akku schwach';
+
+  @override
+  String get repeaterTools_hint =>
+      'Tippe auf einen Repeater für Details und melde dich dort an für Status, Nachbarn, Telemetrie und Befehlszeile.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Keine Repeater hier.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Werkzeuge';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Finde den Regionsbaum deiner Gegend und kopiere seine Befehle';
+
+  @override
+  String get routes_failingOnly => 'Nur fehlgeschlagene Routen';
+
+  @override
+  String get routes_contactDetails => 'Kontaktdetails';
+
+  @override
+  String get links_contactTitle => 'Kontakt hinzufügen?';
+
+  @override
+  String get links_importAdvert => 'Diesen Kontakt zum Funkgerät hinzufügen?';
+
+  @override
+  String get links_connectFirst =>
+      'Verbinde zuerst dein Funkgerät und öffne den Link dann erneut.';
+
+  @override
+  String get links_added => 'Kontakt hinzugefügt';
+
+  @override
+  String get links_notContact => 'Dieser Link ist kein MeshCore-Kontakt.';
+
+  @override
+  String get radioBuzzer_title => 'Summer des Funkgeräts';
+
+  @override
+  String get radioBuzzer_hint =>
+      'Das Funkgerät piept bei neuen Nachrichten. Nur bei Funkgeräten mit Summer sichtbar.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'Das Funkgerät hat die Änderung nicht übernommen. Versuche es erneut.';
+
+  @override
+  String get appSettings_floodAttempts => 'Flood-Versuche';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Zusätzliche Versuche als Flood, wenn die direkten scheitern, falls sich die Route geändert hat. Jeder braucht mehr Sendezeit. 0 schaltet sie ab.';
+
+  @override
+  String get pathGraph_you => 'Du';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count Nachrichten weitergeleitet';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Diese kurze ID passt zu mehr als einem Repeater und lässt sich keinem eindeutig zuordnen.';
+
+  @override
+  String get pathGraph_comesFrom => 'Kommt von';
+
+  @override
+  String get pathGraph_goesTo => 'Geht zu';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeater-Details';
+
+  @override
+  String get pathGraph_days7 => '7 Tage';
+
+  @override
+  String get pathGraph_empty =>
+      'In diesem Zeitraum noch keine Kanalnachrichten-Pfade. Pfade werden aus empfangenen Kanalnachrichten gesammelt, solange die Nachrichtenverfolgung an ist.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths Pfade gehört · $repeaters Repeater';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Jeder Hop wird mit seinem Hash-Präfix gezeigt, oder mit dem Namen, wenn du den Repeater kennst.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count kurze (1-Byte-)Hops über längere Pfade einem bestimmten Repeater zugeordnet.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched kurze (1-Byte-)Hops über längere Pfade einem bestimmten Repeater zugeordnet · $ambiguous weiterhin mehrdeutig (mit ? markiert).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Links: weiter entfernte Repeater. Rechts: du. Die Bandbreite zeigt, wie viele Nachrichten diesen Hop nahmen. Tippe auf ein Kästchen, um den Repeater zu sehen.';
+
+  @override
+  String get pathGraph_busiest => 'Meistgenutzte Repeater';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Pfadgraph. Meistgenutzter Repeater $name, $count Nachrichten weitergeleitet.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Kopiert: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Keine Kanäle auf diesem Funkgerät.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tippe auf einen Wert, um ihn zu kopieren. Zum Aktualisieren nach unten ziehen.';
+
+  @override
+  String get diag_storage => 'Speicher';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used von $total KB';
+  }
+
+  @override
+  String get favReturn_setting => 'Favoriten wieder in Reichweite';
+
+  @override
+  String get favReturn_settingHint =>
+      'Benachrichtigen, wenn ein Favorit nach einer Funkstille wieder zu hören ist';
+
+  @override
+  String get favReturn_off => 'Aus';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Nach $count Stunden',
+      one: 'Nach 1 Stunde',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Wieder in Reichweite';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours Stunden',
+      one: '1 Stunde',
+    );
+    return '$name nach $_temp0 Funkstille wieder zu hören';
+  }
 }

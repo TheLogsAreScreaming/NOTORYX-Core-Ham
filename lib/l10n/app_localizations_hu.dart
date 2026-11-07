@@ -6071,31 +6071,33 @@ class AppLocalizationsHu extends AppLocalizations {
   String get fieldOps_send => 'Küldés';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS-továbbítás';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Átjátszó által nem továbbított SOS továbbítása';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Rádió firmware v1.16 vagy újabb szükséges';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Még nem továbbítottunk SOS-t';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-csomag továbbítva, utoljára $time',
+      one: '1 SOS-csomag továbbítva, utoljára $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Ha a rádió közvetlenül a küldőtől hall egy SOS-t, és kb. 15 másodpercen belül egyetlen átjátszó sem adja tovább, a NOTORYX még egyszer elküldi változatlanul, hogy eljusson egy olyan átjátszóhoz, amelyet te hallasz, a küldő viszont nem. Csak a saját csatornáidon lévő SOS-t továbbítja. Akkut és adásidőt használ, ezért alapból ki van kapcsolva.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Indulás előtt';
@@ -9387,4 +9389,561 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get ham_repeaterPasswordsSerial =>
       'A jelszavakat az átjátszó USB-s soros konzolján állítsd be. Rádión elküldve bárki elolvashatná őket.';
+
+  @override
+  String get networks_title => 'Hálózatok';
+
+  @override
+  String get networks_hint => 'Közeli hálózatok keresése és naplózása';
+
+  @override
+  String get networks_yourNetwork => 'Saját hálózat';
+
+  @override
+  String get networks_scanTitle => 'Hálózatok keresése';
+
+  @override
+  String get networks_scanExplainer =>
+      'A rádió csak a pontosan saját beállításait használó hálózatokat hallja, ezért a keresés sorra átállítja mindegyikre, hallgat, majd visszaállítja. Keresés közben nem vagy a saját hálózatodon.';
+
+  @override
+  String get networks_listenFor => 'Hallgatás hálózatonként';
+
+  @override
+  String networks_choose(int count) {
+    return 'Keresendő hálózatok: $count';
+  }
+
+  @override
+  String get networks_suggested => 'Javasoltak';
+
+  @override
+  String get networks_start => 'Keresés indítása';
+
+  @override
+  String get networks_cancel => 'Keresés leállítása';
+
+  @override
+  String networks_listening(String name, int step, int steps) {
+    return 'Hallgatás: $name ($step/$steps)';
+  }
+
+  @override
+  String get networks_blockNoRadio => 'Csatlakoztass rádiót a kereséshez.';
+
+  @override
+  String get networks_blockSettings => 'Várakozás a rádió beállításaira.';
+
+  @override
+  String get networks_blockSos =>
+      'Aktív SOS alatt nem: a keresés lekapcsol a hálózatról.';
+
+  @override
+  String get networks_blockTrip =>
+      'Túra alatt nem: a keresés lekapcsol a hálózatról.';
+
+  @override
+  String get networks_nearby => 'Közeli hálózatok';
+
+  @override
+  String get networks_nothingYet =>
+      'Még nem hallottunk hálózatot. Indíts keresést.';
+
+  @override
+  String networks_heardSummary(int nodes, int packets, String snr) {
+    return 'Csomópont $nodes · csomag $packets · SNR $snr dB';
+  }
+
+  @override
+  String networks_lastHeard(String time) {
+    return 'Utoljára hallva $time';
+  }
+
+  @override
+  String networks_timesHeard(int count) {
+    return 'Hallva ennyiszer: $count';
+  }
+
+  @override
+  String get networks_saved => 'Mentett hálózatok';
+
+  @override
+  String get networks_noSaved => 'Még nincs mentett hálózat.';
+
+  @override
+  String get networks_add => 'Hálózat hozzáadása';
+
+  @override
+  String get networks_join => 'Csatlakozás';
+
+  @override
+  String networks_joinConfirm(String name) {
+    return 'Átállítod a rádiót erre: $name? Elhagyod a jelenlegi hálózatot. Az adóteljesítmény nem változik.';
+  }
+
+  @override
+  String networks_joined(String name) {
+    return 'A rádió most ezen van: $name.';
+  }
+
+  @override
+  String get networks_log => 'Hálózatnapló';
+
+  @override
+  String get networks_logEmpty => 'Még nincs naplózva semmi.';
+
+  @override
+  String get networks_showMap => 'Térkép';
+
+  @override
+  String get networks_exportCsv => 'CSV export';
+
+  @override
+  String get networks_exportGpx => 'GPX export';
+
+  @override
+  String get networks_clearLog => 'Napló törlése';
+
+  @override
+  String get networks_clearLogConfirm =>
+      'Törlöd az összes naplózott hálózatot?';
+
+  @override
+  String get networks_name => 'Név';
+
+  @override
+  String get networks_invalid =>
+      'Ellenőrizd a beállításokat: kívül esnek azon, amit a MeshCore rádiók elfogadnak.';
+
+  @override
+  String get networks_nodesHeard => 'Hallott csomópontok';
+
+  @override
+  String get chat_resendNeedsRadio =>
+      'Nincs elküldve: csatlakoztasd a rádiót, majd próbáld újra. Az üzenet megmarad.';
+
+  @override
+  String get quick_title => 'Gyorsüzenetek';
+
+  @override
+  String get quick_ok => 'OK';
+
+  @override
+  String get quick_onMyWay => 'Úton vagyok';
+
+  @override
+  String get quick_atCamp => 'A táborban';
+
+  @override
+  String get quick_runningLate => 'Késem';
+
+  @override
+  String get quick_needHelp => 'Segítség kell';
+
+  @override
+  String get quick_copyThat => 'Vettem';
+
+  @override
+  String get quick_empty =>
+      'Nincsenek gyorsüzenetek. Koppints a Szerkesztésre egy hozzáadásához.';
+
+  @override
+  String get quick_add => 'Új gyorsüzenet';
+
+  @override
+  String get quick_reset => 'Alapértelmezések visszaállítása';
+
+  @override
+  String get chat_stopRetrying => 'Újrapróbálás leállítása';
+
+  @override
+  String chat_addFirstBanner(String name) {
+    return '$name csak azután tudja olvasni és megválaszolni a közvetlen üzeneteidet, hogy felvett névjegyként. Ha még nem tette, küldd el a hirdetésed vagy oszd meg a névjegyed.';
+  }
+
+  @override
+  String get map_goToMyPosition => 'Ugrás a pozíciómra';
+
+  @override
+  String get map_positionUnavailable =>
+      'A pozíciód nem érhető el. Kapcsold be a helymeghatározást, vagy állítsd be a rádió pozícióját.';
+
+  @override
+  String get contact_forgetAdvert => 'Utolsó hirdetés elfelejtése';
+
+  @override
+  String get contact_forgetAdvertHint =>
+      'Ha a csomópont hirdetései az órája visszaállítása után nem frissülnek, az Utolsó hirdetés elfelejtése átengedi a következőt.';
+
+  @override
+  String get contact_forgetAdvertDone =>
+      'Kész. A csomópont következő hirdetése el lesz fogadva.';
+
+  @override
+  String get networks_modeQuick => 'Gyors';
+
+  @override
+  String get networks_modeThorough => 'Alapos';
+
+  @override
+  String get networks_modeQuickHint =>
+      'Minden hálózaton küld egy rövid, nulla ugrásos pinget, és néhány másodpercig hallgat. Megtalálja a hatótávon belüli átjátszós hálózatokat.';
+
+  @override
+  String get networks_modeThoroughHint =>
+      'Csak hallgat, hosszabban minden hálózaton. Semmit nem küld, és ha valaki ad, átjátszó nélküli hálózatokat is talál.';
+
+  @override
+  String networks_estimate(String time) {
+    return 'kb. $time';
+  }
+
+  @override
+  String discoveredContacts_selected(int count) {
+    return '$count kiválasztva';
+  }
+
+  @override
+  String get discoveredContacts_selectAll => 'Összes kijelölése';
+
+  @override
+  String get discoveredContacts_addSelected => 'Kijelöltek hozzáadása';
+
+  @override
+  String discoveredContacts_addAllShown(int count) {
+    return 'Összes látható hozzáadása ($count)';
+  }
+
+  @override
+  String discoveredContacts_addManyTitle(int count) {
+    return 'Hozzáadsz $count névjegyet?';
+  }
+
+  @override
+  String discoveredContacts_roomLeft(int room) {
+    return 'A rádión még $room névjegynek van hely.';
+  }
+
+  @override
+  String discoveredContacts_roomLimit(int room, int count) {
+    return 'A rádión még $room névjegynek van hely, ezért csak az első $room kerül hozzáadásra a(z) $count közül.';
+  }
+
+  @override
+  String discoveredContacts_adding(int done, int total) {
+    return 'Hozzáadás: $done/$total…';
+  }
+
+  @override
+  String discoveredContacts_addedMany(int count) {
+    return 'Hozzáadott névjegyek: $count';
+  }
+
+  @override
+  String discoveredContacts_addedSome(int added, int failed) {
+    return 'Hozzáadott névjegyek: $added. Nem sikerült: $failed.';
+  }
+
+  @override
+  String get discoveredContacts_radioFull =>
+      'A rádió névjegylistája megtelt. Előbb törölj néhány névjegyet.';
+
+  @override
+  String get fieldIntel_radioNow => 'Rádió most';
+
+  @override
+  String get fieldIntel_noRadio => 'Csatlakoztasd a rádiót az élő adatokhoz.';
+
+  @override
+  String get fieldIntel_noise => 'zaj dBm';
+
+  @override
+  String get fieldIntel_lastSnr => 'utolsó SNR';
+
+  @override
+  String get fieldIntel_lastRssi => 'utolsó RSSI';
+
+  @override
+  String get fieldIntel_battery => 'akku V';
+
+  @override
+  String fieldIntel_airtime(String sent, String received) {
+    return 'Adásidő a rádió indulása óta: küldve $sent, fogadva $received';
+  }
+
+  @override
+  String get fieldIntel_whoAround => 'Kik vannak a közelben';
+
+  @override
+  String get fieldIntel_m15 => '15 perc';
+
+  @override
+  String get fieldIntel_h1 => '1 óra';
+
+  @override
+  String get fieldIntel_h24 => '24 óra';
+
+  @override
+  String get fieldIntel_older => 'Régebbi';
+
+  @override
+  String get fieldIntel_lastHour => 'Utolsó óra';
+
+  @override
+  String get fieldIntel_chartHint =>
+      'Mikor hallottuk utoljára az egyes csomópontokat, óránként az elmúlt napban. Koppints egy oszlopra, hogy lásd, kiket.';
+
+  @override
+  String get fieldIntel_mix => 'Csomóponttípusok';
+
+  @override
+  String get fieldIntel_reach => 'Hatótáv';
+
+  @override
+  String get fieldIntel_hops1 => '1 ugrás';
+
+  @override
+  String get fieldIntel_hops2 => '2 ugrás';
+
+  @override
+  String get fieldIntel_hops3 => '3+ ugrás';
+
+  @override
+  String get fieldIntel_noRoute => 'Még nincs útvonal';
+
+  @override
+  String get fieldIntel_distance => 'Legközelebbi és legtávolabbi';
+
+  @override
+  String get fieldIntel_noneLocated => 'Egyik névjegyednek sincs pozíciója.';
+
+  @override
+  String get fieldIntel_noPosition =>
+      'A rádiónak még nincs pozíciója, így a távolság nem számolható.';
+
+  @override
+  String get fieldIntel_bestRepeaters =>
+      'Legjobb közvetlenül hallott átjátszók';
+
+  @override
+  String get fieldIntel_noneDirect =>
+      'Az elmúlt 30 percben nem hallottunk közvetlenül átjátszót.';
+
+  @override
+  String get fieldIntel_attention => 'Figyelmet igényel';
+
+  @override
+  String get fieldIntel_allGood => 'Semmi sem igényel figyelmet.';
+
+  @override
+  String fieldIntel_lowBattery(String volts) {
+    return 'Gyenge akku: $volts V';
+  }
+
+  @override
+  String fieldIntel_quietFavorite(String ago) {
+    return 'Kedvenc, nem hallott ennyi ideje: $ago';
+  }
+
+  @override
+  String get fieldIntel_moreTools => 'További eszközök';
+
+  @override
+  String fieldIntel_nodeCount(int count) {
+    return 'Csomópontok: $count';
+  }
+
+  @override
+  String get fieldIntel_none => 'Nincsenek csomópontok.';
+
+  @override
+  String fieldIntel_lastHeard(String ago) {
+    return 'Utoljára hallva $ago';
+  }
+
+  @override
+  String get fieldIntel_showOnMap => 'Megjelenítés a térképen';
+
+  @override
+  String get fieldIntel_openChat => 'Csevegés megnyitása';
+
+  @override
+  String get repeaterTools_login => 'Bejelentkezés';
+
+  @override
+  String get repeaterTools_heardDirect => 'Közvetlenül hallva';
+
+  @override
+  String get repeaterTools_filterAll => 'Mind';
+
+  @override
+  String get repeaterTools_filterLowBattery => 'Gyenge akku';
+
+  @override
+  String get repeaterTools_hint =>
+      'Koppints egy átjátszóra a részletekért, onnan bejelentkezve láthatod az állapotot, szomszédokat, telemetriát és a parancssort.';
+
+  @override
+  String get repeaterTools_noneMatch => 'Itt nincs átjátszó.';
+
+  @override
+  String get repeaterTools_toolsTitle => 'Eszközök';
+
+  @override
+  String get repeaterTools_regionSetupHint =>
+      'Keresd meg a környéked régiófáját, és másold a parancsait';
+
+  @override
+  String get routes_failingOnly => 'Csak sikertelen útvonalak';
+
+  @override
+  String get routes_contactDetails => 'Névjegy adatai';
+
+  @override
+  String get links_contactTitle => 'Névjegy hozzáadása?';
+
+  @override
+  String get links_importAdvert => 'Hozzáadod ezt a névjegyet a rádióhoz?';
+
+  @override
+  String get links_connectFirst =>
+      'Előbb csatlakoztasd a rádiót, aztán nyisd meg újra a hivatkozást.';
+
+  @override
+  String get links_added => 'Névjegy hozzáadva';
+
+  @override
+  String get links_notContact => 'Ez a hivatkozás nem MeshCore-névjegy.';
+
+  @override
+  String get radioBuzzer_title => 'Rádió hangjelzője';
+
+  @override
+  String get radioBuzzer_hint =>
+      'A rádió csipog új üzenetnél. Csak hangjelzős rádióknál látszik.';
+
+  @override
+  String get radioBuzzer_failed =>
+      'A rádió nem fogadta el a változtatást. Próbáld újra.';
+
+  @override
+  String get appSettings_floodAttempts => 'Elárasztásos próbák';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra próbák elárasztással, ha a közvetlenek sikertelenek, arra az esetre, ha megváltozott az útvonal. Mindegyik több adásidőt használ. 0 kikapcsolja.';
+
+  @override
+  String get pathGraph_you => 'Te';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count üzenetet továbbított';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Ez a rövid azonosító több átjátszóhoz is illik, így nem köthető egyhez.';
+
+  @override
+  String get pathGraph_comesFrom => 'Honnan jön';
+
+  @override
+  String get pathGraph_goesTo => 'Hová megy';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Átjátszó adatai';
+
+  @override
+  String get pathGraph_days7 => '7 nap';
+
+  @override
+  String get pathGraph_empty =>
+      'Ebben az időszakban még nincs csatornaüzenet-útvonal. Az útvonalak a kapott csatornaüzenetekből gyűlnek, amíg a nyomkövetés be van kapcsolva.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths hallott útvonal · $repeaters átjátszó';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Minden ugrás a hash-előtagjával látszik, vagy a nevével, ha ismered az átjátszót.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count rövid (1 bájtos) ugrás hosszabb útvonalak alapján egy adott átjátszóhoz kötve.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched rövid (1 bájtos) ugrás hosszabb útvonalak alapján egy adott átjátszóhoz kötve · $ambiguous még kétértelmű (? jelöli).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Bal oldalt: távolabbi átjátszók. Jobb oldalt: te. A sáv vastagsága mutatja, hány üzenet ment azon az ugráson. Koppints egy dobozra az átjátszóért.';
+
+  @override
+  String get pathGraph_busiest => 'Legforgalmasabb átjátszók';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Útvonalgráf. Legforgalmasabb átjátszó: $name, $count üzenetet továbbított.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Másolva: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Nincs csatorna ezen a rádión.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Koppints egy értékre a másoláshoz. Húzd le a frissítéshez.';
+
+  @override
+  String get diag_storage => 'Tárhely';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
+
+  @override
+  String get favReturn_setting => 'Kedvencek újra hatótávon belül';
+
+  @override
+  String get favReturn_settingHint =>
+      'Értesítés, ha egy kedvenc csend után újra hallható';
+
+  @override
+  String get favReturn_off => 'Ki';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count óra után',
+      one: '1 óra után',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Újra hatótávon belül';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours óra',
+      one: '1 óra',
+    );
+    return '$name újra hallható $_temp0 csend után';
+  }
 }

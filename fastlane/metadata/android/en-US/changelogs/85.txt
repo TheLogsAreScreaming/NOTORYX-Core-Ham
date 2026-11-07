@@ -1,0 +1,6 @@
+• Path graph and Diagnostics: tap hops, chart boxes and values for details
+• New "Flood attempts" setting for direct messages
+• Radio buzzer on/off switch (radios with a buzzer, newer firmware)
+• meshcore:// contact links open in the app
+• SOS relay text translated into every language
+• Glass look on more screens
