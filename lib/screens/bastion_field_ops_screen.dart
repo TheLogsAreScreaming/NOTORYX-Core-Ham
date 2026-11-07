@@ -16,6 +16,7 @@ import '../services/field_ops_service.dart';
 import '../services/map_tile_cache_service.dart';
 import '../services/sos_relay_service.dart';
 import '../services/notification_service.dart';
+import '../widgets/ember_backdrop.dart';
 import 'bastion_coverage_capture_screen.dart';
 import 'bastion_diagnostics_screen.dart';
 import 'bastion_path_hub_screen.dart';
@@ -143,56 +144,63 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     final l10n = context.l10n;
     return DefaultTabController(
       length: 6,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(l10n.fieldOps_title),
-          bottom: TabBar(
-            isScrollable: true,
-            tabs: [
-              Tab(text: l10n.fieldOps_tabTrip),
-              Tab(text: l10n.fieldOps_tabReady),
-              Tab(text: l10n.fieldOps_tabLog),
-              Tab(text: l10n.fieldOps_tabAuto),
-              Tab(text: l10n.fieldOps_tabCoverage),
-              Tab(text: l10n.fieldOps_tabConnection),
-            ],
+      child: EmberBackdrop(
+        scene: EmberScene.more,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            scrolledUnderElevation: 0,
+            title: Text(l10n.fieldOps_title),
+            bottom: TabBar(
+              isScrollable: true,
+              tabs: [
+                Tab(text: l10n.fieldOps_tabTrip),
+                Tab(text: l10n.fieldOps_tabReady),
+                Tab(text: l10n.fieldOps_tabLog),
+                Tab(text: l10n.fieldOps_tabAuto),
+                Tab(text: l10n.fieldOps_tabCoverage),
+                Tab(text: l10n.fieldOps_tabConnection),
+              ],
+            ),
           ),
+          body: !ops.ready
+              ? const Center(child: CircularProgressIndicator())
+              : Column(
+                  children: [
+                    if (ops.error != null)
+                      MaterialBanner(
+                        content: Text(switch (ops.error) {
+                          FieldOpsService.loadErrorText =>
+                            l10n.fieldOps_storageLoadError,
+                          FieldOpsService.saveErrorText =>
+                            l10n.fieldOps_storageSaveError,
+                          final error => error!,
+                        }),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                _open(const BastionDiagnosticsScreen()),
+                            child: Text(l10n.fieldOps_diagnostics),
+                          ),
+                        ],
+                      ),
+                    Expanded(
+                      child: TabBarView(
+                        children: [
+                          _trip(ops, radio),
+                          _readiness(ops, radio),
+                          _log(ops),
+                          _automations(ops),
+                          _coveragePage(),
+                          _connection(ops, radio),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
         ),
-        body: !ops.ready
-            ? const Center(child: CircularProgressIndicator())
-            : Column(
-                children: [
-                  if (ops.error != null)
-                    MaterialBanner(
-                      content: Text(switch (ops.error) {
-                        FieldOpsService.loadErrorText =>
-                          l10n.fieldOps_storageLoadError,
-                        FieldOpsService.saveErrorText =>
-                          l10n.fieldOps_storageSaveError,
-                        final error => error!,
-                      }),
-                      actions: [
-                        TextButton(
-                          onPressed: () =>
-                              _open(const BastionDiagnosticsScreen()),
-                          child: Text(l10n.fieldOps_diagnostics),
-                        ),
-                      ],
-                    ),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        _trip(ops, radio),
-                        _readiness(ops, radio),
-                        _log(ops),
-                        _automations(ops),
-                        _coveragePage(),
-                        _connection(ops, radio),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
       ),
     );
   }

@@ -8,6 +8,7 @@ import '../l10n/l10n.dart';
 import '../models/bot_settings.dart';
 import '../services/bot_service.dart';
 import '../services/weather_service.dart';
+import '../widgets/ember_backdrop.dart';
 
 /// What the newer commands do, shown under their switches.
 String? _commandHint(AppLocalizations t, String command) => switch (command) {
@@ -229,252 +230,265 @@ class BotSettingsScreen extends StatelessWidget {
   ) => Consumer2<BotService, MeshCoreConnector>(
     builder: (context, service, connector, _) {
       final settings = service.settings;
-      return Scaffold(
-        appBar: AppBar(title: const Text('NOTORYX Bot Mode')),
-        body: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            SwitchListTile(
-              title: const Text('Bot Mode'),
-              subtitle: Text(
-                !service.ready
-                    ? 'Loading settings…'
-                    : !settings.enabled
-                    ? 'Off'
-                    : connector.isConnected
-                    ? settings.channels.isEmpty
-                          ? 'On — listening for direct messages'
-                          : 'On — listening for direct messages and '
-                                '${settings.channels.length} '
-                                '${settings.channels.length == 1 ? 'channel' : 'channels'}'
-                    : 'On — waiting for a radio connection',
-              ),
-              value: settings.enabled,
-              onChanged: service.ready
-                  ? (value) => _save(context, settings.copyWith(enabled: value))
-                  : null,
-            ),
-            const Text(
-              'Free and local. Runs while NOTORYX Core is running and connected to the radio. Phone sleep or app closure can stop replies. Cached messages and reconnect backlog are ignored. Replies use the normal send queue.',
-            ),
-            if (service.error != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: Text(
-                  service.error!,
-                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+      return EmberBackdrop(
+        scene: EmberScene.more,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            scrolledUnderElevation: 0,
+            title: const Text('NOTORYX Bot Mode'),
+          ),
+          body: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              SwitchListTile(
+                title: const Text('Bot Mode'),
+                subtitle: Text(
+                  !service.ready
+                      ? 'Loading settings…'
+                      : !settings.enabled
+                      ? 'Off'
+                      : connector.isConnected
+                      ? settings.channels.isEmpty
+                            ? 'On — listening for direct messages'
+                            : 'On — listening for direct messages and '
+                                  '${settings.channels.length} '
+                                  '${settings.channels.length == 1 ? 'channel' : 'channels'}'
+                      : 'On — waiting for a radio connection',
                 ),
+                value: settings.enabled,
+                onChanged: service.ready
+                    ? (value) =>
+                          _save(context, settings.copyWith(enabled: value))
+                    : null,
               ),
-            const SizedBox(height: 16),
-            SwitchListTile(
-              title: const Text('Away auto-responder'),
-              value: settings.awayEnabled,
-              onChanged: (value) =>
-                  _save(context, settings.copyWith(awayEnabled: value)),
-            ),
-            ListTile(
-              title: const Text('Away reply'),
-              subtitle: Text(settings.awayMessage),
-              onTap: () => _editText(
-                context,
-                'Away reply',
-                settings.awayMessage,
-                (v) => service.settings.copyWith(awayMessage: v),
+              const Text(
+                'Free and local. Runs while NOTORYX Core is running and connected to the radio. Phone sleep or app closure can stop replies. Cached messages and reconnect backlog are ignored. Replies use the normal send queue.',
               ),
-            ),
-            ListTile(
-              title: const Text('Node / group information'),
-              subtitle: Text(settings.info),
-              onTap: () => _editText(
-                context,
-                'Information reply',
-                settings.info,
-                (v) => service.settings.copyWith(info: v),
-              ),
-            ),
-            ListTile(
-              title: const Text('Check-in reply'),
-              subtitle: Text(settings.checkIn),
-              onTap: () => _editText(
-                context,
-                'Check-in reply',
-                settings.checkIn,
-                (v) => service.settings.copyWith(checkIn: v),
-              ),
-            ),
-            const Divider(),
-            Text(
-              context.l10n.botChannels_title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4, bottom: 4),
-              child: Text(context.l10n.botChannels_hint),
-            ),
-            if (connector.channels.where((c) => !c.isEmpty).isEmpty)
-              ListTile(title: Text(context.l10n.botChannels_none)),
-            for (final channel in connector.channels.where((c) => !c.isEmpty))
+              if (service.error != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: Text(
+                    service.error!,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                ),
+              const SizedBox(height: 16),
               SwitchListTile(
-                key: ValueKey('bot-channel-${channel.index}'),
-                title: Text(channel.name),
-                value: settings.channels.contains(botChannelId(channel.psk)),
-                onChanged: (value) {
-                  final id = botChannelId(channel.psk);
-                  final channels = {...settings.channels};
-                  if (value) {
-                    channels.add(id);
-                  } else {
-                    channels.remove(id);
-                  }
-                  _save(context, settings.copyWith(channels: channels));
-                },
+                title: const Text('Away auto-responder'),
+                value: settings.awayEnabled,
+                onChanged: (value) =>
+                    _save(context, settings.copyWith(awayEnabled: value)),
               ),
-            const Divider(),
-            const Text(
-              'Commands',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            for (final command in botCommands)
-              SwitchListTile(
-                title: Text(command),
-                subtitle: _commandHint(context.l10n, command) == null
-                    ? null
-                    : Text(_commandHint(context.l10n, command)!),
-                value: settings.commands.contains(command),
-                onChanged: (value) {
-                  final commands = {...settings.commands};
-                  if (value) {
-                    commands.add(command);
-                  } else {
-                    commands.remove(command);
-                  }
-                  _save(context, settings.copyWith(commands: commands));
-                },
-              ),
-            SwitchListTile(
-              title: const Text('Allow !where location replies'),
-              subtitle: const Text(
-                'Shares the radio’s advertised coordinates with allowed contacts. They may be stale. Off by default.',
-              ),
-              value: settings.shareLocation,
-              onChanged: (value) =>
-                  _save(context, settings.copyWith(shareLocation: value)),
-            ),
-            const Divider(),
-            const _WeatherAlertsSection(),
-            const Divider(),
-            ListTile(
-              title: const Text('Custom commands and keyword rules'),
-              trailing: const Icon(Icons.add),
-              onTap: () => _editRule(context),
-            ),
-            for (var i = 0; i < settings.rules.length; i++)
               ListTile(
-                title: Text(settings.rules[i].trigger),
-                subtitle: Text(settings.rules[i].response),
-                onTap: () => _editRule(context, index: i),
-                leading: Switch(
-                  value: settings.rules[i].enabled,
+                title: const Text('Away reply'),
+                subtitle: Text(settings.awayMessage),
+                onTap: () => _editText(
+                  context,
+                  'Away reply',
+                  settings.awayMessage,
+                  (v) => service.settings.copyWith(awayMessage: v),
+                ),
+              ),
+              ListTile(
+                title: const Text('Node / group information'),
+                subtitle: Text(settings.info),
+                onTap: () => _editText(
+                  context,
+                  'Information reply',
+                  settings.info,
+                  (v) => service.settings.copyWith(info: v),
+                ),
+              ),
+              ListTile(
+                title: const Text('Check-in reply'),
+                subtitle: Text(settings.checkIn),
+                onTap: () => _editText(
+                  context,
+                  'Check-in reply',
+                  settings.checkIn,
+                  (v) => service.settings.copyWith(checkIn: v),
+                ),
+              ),
+              const Divider(),
+              Text(
+                context.l10n.botChannels_title,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 4, bottom: 4),
+                child: Text(context.l10n.botChannels_hint),
+              ),
+              if (connector.channels.where((c) => !c.isEmpty).isEmpty)
+                ListTile(title: Text(context.l10n.botChannels_none)),
+              for (final channel in connector.channels.where((c) => !c.isEmpty))
+                SwitchListTile(
+                  key: ValueKey('bot-channel-${channel.index}'),
+                  title: Text(channel.name),
+                  value: settings.channels.contains(botChannelId(channel.psk)),
                   onChanged: (value) {
-                    final rules = [...settings.rules];
-                    final rule = rules[i];
-                    rules[i] = BotRule(
-                      trigger: rule.trigger,
-                      response: rule.response,
-                      enabled: value,
-                      contains: rule.contains,
-                      senderKey: rule.senderKey,
-                    );
-                    _save(context, settings.copyWith(rules: rules));
+                    final id = botChannelId(channel.psk);
+                    final channels = {...settings.channels};
+                    if (value) {
+                      channels.add(id);
+                    } else {
+                      channels.remove(id);
+                    }
+                    _save(context, settings.copyWith(channels: channels));
                   },
                 ),
-                trailing: IconButton(
-                  tooltip: 'Delete rule',
-                  icon: const Icon(Icons.delete_outline),
-                  onPressed: () {
-                    final rules = [...settings.rules]..removeAt(i);
-                    _save(context, settings.copyWith(rules: rules));
+              const Divider(),
+              const Text(
+                'Commands',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              for (final command in botCommands)
+                SwitchListTile(
+                  title: Text(command),
+                  subtitle: _commandHint(context.l10n, command) == null
+                      ? null
+                      : Text(_commandHint(context.l10n, command)!),
+                  value: settings.commands.contains(command),
+                  onChanged: (value) {
+                    final commands = {...settings.commands};
+                    if (value) {
+                      commands.add(command);
+                    } else {
+                      commands.remove(command);
+                    }
+                    _save(context, settings.copyWith(commands: commands));
                   },
                 ),
+              SwitchListTile(
+                title: const Text('Allow !where location replies'),
+                subtitle: const Text(
+                  'Shares the radio’s advertised coordinates with allowed contacts. They may be stale. Off by default.',
+                ),
+                value: settings.shareLocation,
+                onChanged: (value) =>
+                    _save(context, settings.copyWith(shareLocation: value)),
               ),
-            const Divider(),
-            const Text(
-              'Airtime controls',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            DropdownButtonFormField<int>(
-              initialValue: settings.cooldownSeconds,
-              decoration: const InputDecoration(
-                labelText: 'Per-contact cooldown',
+              const Divider(),
+              const _WeatherAlertsSection(),
+              const Divider(),
+              ListTile(
+                title: const Text('Custom commands and keyword rules'),
+                trailing: const Icon(Icons.add),
+                onTap: () => _editRule(context),
               ),
-              items: {60, 300, 600, 1800, 3600, settings.cooldownSeconds}
-                  .map(
-                    (seconds) => DropdownMenuItem(
-                      value: seconds,
-                      child: Text('${seconds ~/ 60} minutes'),
-                    ),
-                  )
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  _save(context, settings.copyWith(cooldownSeconds: value));
-                }
-              },
-            ),
-            DropdownButtonFormField<int>(
-              initialValue: settings.repliesPerMinute,
-              decoration: const InputDecoration(
-                labelText: 'Maximum replies per minute (all contacts)',
-              ),
-              items: List.generate(
-                6,
-                (i) => DropdownMenuItem(value: i + 1, child: Text('${i + 1}')),
-              ),
-              onChanged: (value) {
-                if (value != null) {
-                  _save(context, settings.copyWith(repliesPerMinute: value));
-                }
-              },
-            ),
-            ExpansionTile(
-              title: const Text('Allowed contacts'),
-              subtitle: const Text(
-                'None selected means all known chat contacts.',
-              ),
-              children: [
-                for (final contact in connector.contacts.where(
-                  (c) => c.type == advTypeChat,
-                ))
-                  CheckboxListTile(
-                    title: Text(contact.name),
-                    value: settings.allowedSenders.contains(
-                      contact.publicKeyHex,
-                    ),
+              for (var i = 0; i < settings.rules.length; i++)
+                ListTile(
+                  title: Text(settings.rules[i].trigger),
+                  subtitle: Text(settings.rules[i].response),
+                  onTap: () => _editRule(context, index: i),
+                  leading: Switch(
+                    value: settings.rules[i].enabled,
                     onChanged: (value) {
-                      final allowed = {...settings.allowedSenders};
-                      if (value == true) {
-                        allowed.add(contact.publicKeyHex);
-                      } else {
-                        allowed.remove(contact.publicKeyHex);
-                      }
-                      _save(
-                        context,
-                        settings.copyWith(allowedSenders: allowed),
+                      final rules = [...settings.rules];
+                      final rule = rules[i];
+                      rules[i] = BotRule(
+                        trigger: rule.trigger,
+                        response: rule.response,
+                        enabled: value,
+                        contains: rule.contains,
+                        senderKey: rule.senderKey,
                       );
+                      _save(context, settings.copyWith(rules: rules));
                     },
                   ),
-              ],
-            ),
-            const Divider(),
-            const Text(
-              'Recent activity (this session)',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            if (service.activity.isEmpty)
-              const ListTile(title: Text('No bot replies yet.')),
-            for (final activity in service.activity)
-              ListTile(title: Text(activity)),
-          ],
+                  trailing: IconButton(
+                    tooltip: 'Delete rule',
+                    icon: const Icon(Icons.delete_outline),
+                    onPressed: () {
+                      final rules = [...settings.rules]..removeAt(i);
+                      _save(context, settings.copyWith(rules: rules));
+                    },
+                  ),
+                ),
+              const Divider(),
+              const Text(
+                'Airtime controls',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              DropdownButtonFormField<int>(
+                initialValue: settings.cooldownSeconds,
+                decoration: const InputDecoration(
+                  labelText: 'Per-contact cooldown',
+                ),
+                items: {60, 300, 600, 1800, 3600, settings.cooldownSeconds}
+                    .map(
+                      (seconds) => DropdownMenuItem(
+                        value: seconds,
+                        child: Text('${seconds ~/ 60} minutes'),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    _save(context, settings.copyWith(cooldownSeconds: value));
+                  }
+                },
+              ),
+              DropdownButtonFormField<int>(
+                initialValue: settings.repliesPerMinute,
+                decoration: const InputDecoration(
+                  labelText: 'Maximum replies per minute (all contacts)',
+                ),
+                items: List.generate(
+                  6,
+                  (i) =>
+                      DropdownMenuItem(value: i + 1, child: Text('${i + 1}')),
+                ),
+                onChanged: (value) {
+                  if (value != null) {
+                    _save(context, settings.copyWith(repliesPerMinute: value));
+                  }
+                },
+              ),
+              ExpansionTile(
+                title: const Text('Allowed contacts'),
+                subtitle: const Text(
+                  'None selected means all known chat contacts.',
+                ),
+                children: [
+                  for (final contact in connector.contacts.where(
+                    (c) => c.type == advTypeChat,
+                  ))
+                    CheckboxListTile(
+                      title: Text(contact.name),
+                      value: settings.allowedSenders.contains(
+                        contact.publicKeyHex,
+                      ),
+                      onChanged: (value) {
+                        final allowed = {...settings.allowedSenders};
+                        if (value == true) {
+                          allowed.add(contact.publicKeyHex);
+                        } else {
+                          allowed.remove(contact.publicKeyHex);
+                        }
+                        _save(
+                          context,
+                          settings.copyWith(allowedSenders: allowed),
+                        );
+                      },
+                    ),
+                ],
+              ),
+              const Divider(),
+              const Text(
+                'Recent activity (this session)',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              if (service.activity.isEmpty)
+                const ListTile(title: Text('No bot replies yet.')),
+              for (final activity in service.activity)
+                ListTile(title: Text(activity)),
+            ],
+          ),
         ),
       );
     },
