@@ -4279,5 +4279,9 @@
   "favReturn_off": "Desactivado",
   "favReturn_hours": "{count, plural, =1{Tras 1 hora} other{Tras {count} horas}}",
   "favReturn_title": "De vuelta en alcance",
-  "favReturn_body": "Se vuelve a oír a {name} tras {hours, plural, =1{1 hora} other{{hours} horas}} en silencio"
+  "favReturn_body": "Se vuelve a oír a {name} tras {hours, plural, =1{1 hora} other{{hours} horas}} en silencio",
+  "adminWait_waiting": "Esperando respuesta",
+  "adminWait_retrying": "Aún sin respuesta. Reintentando ({attempt} de {total})",
+  "adminWait_direct": "{hops, plural, =0{Directo} =1{Directo, 1 salto} other{Directo, {hops} saltos}}",
+  "adminWait_upTo": "hasta {seconds} s"
 }

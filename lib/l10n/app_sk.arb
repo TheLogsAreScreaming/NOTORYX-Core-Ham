@@ -4145,5 +4145,9 @@
   "favReturn_off": "Vyp.",
   "favReturn_hours": "{count, plural, =1{Po 1 hodine} other{Po {count} hodinách}}",
   "favReturn_title": "Opäť v dosahu",
-  "favReturn_body": "{name} je opäť počuť po {hours, plural, =1{1 hodine} other{{hours} hodinách}} ticha"
+  "favReturn_body": "{name} je opäť počuť po {hours, plural, =1{1 hodine} other{{hours} hodinách}} ticha",
+  "adminWait_waiting": "Čaká sa na odpoveď",
+  "adminWait_retrying": "Zatiaľ bez odpovede. Nový pokus ({attempt} z {total})",
+  "adminWait_direct": "{hops, plural, =0{Priamo} =1{Priamo, 1 skok} few{Priamo, {hops} skoky} other{Priamo, {hops} skokov}}",
+  "adminWait_upTo": "až {seconds} s"
 }

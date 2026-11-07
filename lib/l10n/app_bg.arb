@@ -4145,5 +4145,9 @@
   "favReturn_off": "Изкл.",
   "favReturn_hours": "{count, plural, =1{След 1 час} other{След {count} часа}}",
   "favReturn_title": "Отново в обхват",
-  "favReturn_body": "{name} се чу отново след {hours, plural, =1{1 час} other{{hours} часа}} тишина"
+  "favReturn_body": "{name} се чу отново след {hours, plural, =1{1 час} other{{hours} часа}} тишина",
+  "adminWait_waiting": "Изчакване на отговор",
+  "adminWait_retrying": "Още няма отговор. Нов опит ({attempt} от {total})",
+  "adminWait_direct": "{hops, plural, =0{Директно} =1{Директно, 1 скок} other{Директно, {hops} скока}}",
+  "adminWait_upTo": "до {seconds} с"
 }

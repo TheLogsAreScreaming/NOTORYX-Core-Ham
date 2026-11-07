@@ -4279,5 +4279,9 @@
   "favReturn_off": "Disattivato",
   "favReturn_hours": "{count, plural, =1{Dopo 1 ora} other{Dopo {count} ore}}",
   "favReturn_title": "Di nuovo in portata",
-  "favReturn_body": "{name} si sente di nuovo dopo {hours, plural, =1{1 ora} other{{hours} ore}} di silenzio"
+  "favReturn_body": "{name} si sente di nuovo dopo {hours, plural, =1{1 ora} other{{hours} ore}} di silenzio",
+  "adminWait_waiting": "In attesa di risposta",
+  "adminWait_retrying": "Ancora nessuna risposta. Nuovo tentativo ({attempt} di {total})",
+  "adminWait_direct": "{hops, plural, =0{Diretto} =1{Diretto, 1 salto} other{Diretto, {hops} salti}}",
+  "adminWait_upTo": "fino a {seconds} s"
 }

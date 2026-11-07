@@ -9246,4 +9246,28 @@ class AppLocalizationsZh extends AppLocalizations {
     );
     return '沉寂 $_temp0后再次收到 $name';
   }
+
+  @override
+  String get adminWait_waiting => '正在等待回复';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return '尚未收到回复。正在重试（第 $attempt/$total 次）';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '直连，$hops 跳',
+      zero: '直连',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '最多 $seconds 秒';
+  }
 }

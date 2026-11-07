@@ -9955,4 +9955,30 @@ class AppLocalizationsPl extends AppLocalizations {
     );
     return '$name znów słyszany po $_temp0 ciszy';
   }
+
+  @override
+  String get adminWait_waiting => 'Oczekiwanie na odpowiedź';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Wciąż brak odpowiedzi. Ponowna próba ($attempt z $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Bezpośrednio, $hops przeskoków',
+      few: 'Bezpośrednio, $hops przeskoki',
+      one: 'Bezpośrednio, 1 przeskok',
+      zero: 'Bezpośrednio',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'do $seconds s';
+  }
 }

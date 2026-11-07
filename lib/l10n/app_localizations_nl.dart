@@ -9875,4 +9875,29 @@ class AppLocalizationsNl extends AppLocalizations {
     );
     return '$name weer gehoord na $_temp0 stilte';
   }
+
+  @override
+  String get adminWait_waiting => 'Wachten op antwoord';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Nog geen antwoord. Opnieuw proberen ($attempt van $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Direct, $hops hops',
+      one: 'Direct, 1 hop',
+      zero: 'Direct',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'tot $seconds s';
+  }
 }

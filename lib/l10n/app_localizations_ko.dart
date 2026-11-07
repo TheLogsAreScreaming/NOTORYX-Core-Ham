@@ -9454,4 +9454,28 @@ class AppLocalizationsKo extends AppLocalizations {
     );
     return '$name이(가) $_temp0 만에 다시 들립니다';
   }
+
+  @override
+  String get adminWait_waiting => '응답 대기 중';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return '아직 응답이 없습니다. 다시 시도 중 ($attempt/$total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '직접, $hops홉',
+      zero: '직접',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '최대 $seconds초';
+  }
 }

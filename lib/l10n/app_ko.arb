@@ -4279,5 +4279,9 @@
   "favReturn_off": "끄기",
   "favReturn_hours": "{count, plural, other{{count}시간 후}}",
   "favReturn_title": "범위 복귀",
-  "favReturn_body": "{name}이(가) {hours, plural, other{{hours}시간}} 만에 다시 들립니다"
+  "favReturn_body": "{name}이(가) {hours, plural, other{{hours}시간}} 만에 다시 들립니다",
+  "adminWait_waiting": "응답 대기 중",
+  "adminWait_retrying": "아직 응답이 없습니다. 다시 시도 중 ({attempt}/{total})",
+  "adminWait_direct": "{hops, plural, =0{직접} other{직접, {hops}홉}}",
+  "adminWait_upTo": "최대 {seconds}초"
 }

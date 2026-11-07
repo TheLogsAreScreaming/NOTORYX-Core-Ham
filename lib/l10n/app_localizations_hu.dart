@@ -9902,4 +9902,29 @@ class AppLocalizationsHu extends AppLocalizations {
     );
     return '$name újra hallható $_temp0 csend után';
   }
+
+  @override
+  String get adminWait_waiting => 'Válaszra várva';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Még nincs válasz. Újrapróbálás ($attempt/$total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Közvetlen, $hops ugrás',
+      one: 'Közvetlen, 1 ugrás',
+      zero: 'Közvetlen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'legfeljebb $seconds mp';
+  }
 }

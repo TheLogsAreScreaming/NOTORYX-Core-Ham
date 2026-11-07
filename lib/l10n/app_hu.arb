@@ -4183,5 +4183,9 @@
   "favReturn_off": "Ki",
   "favReturn_hours": "{count, plural, =1{1 óra után} other{{count} óra után}}",
   "favReturn_title": "Újra hatótávon belül",
-  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után"
+  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után",
+  "adminWait_waiting": "Válaszra várva",
+  "adminWait_retrying": "Még nincs válasz. Újrapróbálás ({attempt}/{total})",
+  "adminWait_direct": "{hops, plural, =0{Közvetlen} =1{Közvetlen, 1 ugrás} other{Közvetlen, {hops} ugrás}}",
+  "adminWait_upTo": "legfeljebb {seconds} mp"
 }
