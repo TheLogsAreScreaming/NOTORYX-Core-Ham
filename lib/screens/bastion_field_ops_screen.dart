@@ -23,6 +23,7 @@ import 'bastion_path_hub_screen.dart';
 import 'bot_settings_screen.dart';
 import 'map_cache_screen.dart';
 import 'scanner_screen.dart';
+import '../widgets/ui/mesh_states.dart';
 
 class BastionFieldOpsScreen extends StatefulWidget {
   const BastionFieldOpsScreen({super.key, this.initialCheckIn = false});
@@ -166,7 +167,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
             ),
           ),
           body: !ops.ready
-              ? const Center(child: CircularProgressIndicator())
+              ? const MeshLoadingState()
               : Column(
                   children: [
                     if (ops.error != null)

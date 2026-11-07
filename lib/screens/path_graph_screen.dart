@@ -12,6 +12,7 @@ import '../widgets/instrument.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/node_sheet.dart';
 import '../widgets/path_sankey.dart';
+import '../widgets/ui/mesh_states.dart';
 
 /// How messages reach you: every path heard on channel messages, combined
 /// into one graph and drawn as flows from far repeaters to you. Tap a box
@@ -219,7 +220,7 @@ class _PathGraphScreenState extends State<PathGraphScreen> {
               ),
               const SizedBox(height: MeshSpace.md),
               if (_loading && graph == null)
-                const Center(child: CircularProgressIndicator())
+                const MeshLoadingState()
               else if (graph == null || graph.links.isEmpty)
                 MeshCard(
                   margin: EdgeInsets.zero,

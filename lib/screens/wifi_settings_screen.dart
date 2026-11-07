@@ -9,6 +9,7 @@ import '../helpers/snack_bar_builder.dart';
 import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
 import 'companion_cli_screen.dart';
+import '../widgets/ui/mesh_states.dart';
 
 /// WiFi settings of the connected companion, read and written through its
 /// CLI (firmware v14+, boards built with WiFi). Changes apply after a reboot.
@@ -187,7 +188,7 @@ class _WifiSettingsScreenState extends State<WifiSettingsScreen> {
     final Widget body;
     switch (_state) {
       case _LoadState.loading:
-        body = const Center(child: CircularProgressIndicator());
+        body = const MeshLoadingState();
       case _LoadState.unsupported:
         body = _Message(icon: Icons.wifi_off, text: l10n.wifi_unsupported);
       case _LoadState.failed:
