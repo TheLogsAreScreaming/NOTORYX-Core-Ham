@@ -204,9 +204,10 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
       ),
     ];
     final visibleGroups = [
-      for (final group in groups)
+      for (final (index, group) in groups.indexed)
         (
           title: group.title,
+          hue: index,
           actions: group.actions
               .where((action) => action.matches(_query))
               .toList(),
@@ -275,6 +276,9 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
                             for (final action in group.actions)
                               GlassActionRow(
                                 icon: action.icon,
+                                // Each group keeps its own color, also
+                                // while searching.
+                                iconColor: MeshPalette.hue(group.hue),
                                 title: action.title,
                                 subtitle: action.subtitle,
                                 onTap: () => Navigator.of(context).push(

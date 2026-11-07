@@ -976,7 +976,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
           showDismissibleSnackBar(
             context,
             content: Text(l10n.repeater_settingsSavedRebootNeeded),
-            backgroundColor: Theme.of(context).colorScheme.tertiary,
+            backgroundColor: MeshPalette.warn,
           );
         } else if (failures.isEmpty) {
           showDismissibleSnackBar(
