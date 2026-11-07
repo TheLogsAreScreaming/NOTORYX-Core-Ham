@@ -14,48 +14,26 @@ const double spreadSpectrumLimitDbm = 40.0;
 
 /// The amplifier a board puts after the radio chip.
 class BoardAmplifier {
-  const BoardAmplifier(this.board, this.gainDb, this.note);
+  const BoardAmplifier(this.board, this.gainDb);
 
   final String board;
 
-  /// dB added after the chip, or null when it depends on a setting.
+  /// dB added after the chip (0 for none), or null when it depends on a
+  /// setting on the board.
   final double? gainDb;
-  final String note;
 }
 
+// Matched against the radio's manufacturer name, lower-cased. Gains come from
+// the board makers' and MeshCore's notes, e.g. 7 dBm on a Station G2's chip
+// gives about 27 dBm, and 10 dBm on a Heltec V4's gives about 22 dBm.
 const List<(String, BoardAmplifier)> _boards = [
-  // Matched against the radio's manufacturer name, lower-cased.
-  (
-    'station g2',
-    BoardAmplifier(
-      'Station G2',
-      20,
-      'About +20 dB: 7 dBm on the chip gives about 27 dBm',
-    ),
-  ),
-  (
-    'station g3',
-    BoardAmplifier(
-      'Station G3',
-      null,
-      'Depends on the amplifier level setting',
-    ),
-  ),
-  (
-    'heltec v4',
-    BoardAmplifier(
-      'Heltec V4',
-      12,
-      'About +12 dB: 10 dBm on the chip gives about 22 dBm',
-    ),
-  ),
-  (
-    'rak 3401',
-    BoardAmplifier('RAK WisMesh 1W Booster', 8, 'About +8 dB: up to about 1 W'),
-  ),
-  ('heltec t114', BoardAmplifier('Heltec T114', 0, 'No amplifier')),
-  ('rak 4631', BoardAmplifier('RAK4631', 0, 'No amplifier')),
-  ('t1000', BoardAmplifier('SenseCAP T1000-E', 0, 'No amplifier')),
+  ('station g2', BoardAmplifier('Station G2', 20)),
+  ('station g3', BoardAmplifier('Station G3', null)),
+  ('heltec v4', BoardAmplifier('Heltec V4', 12)),
+  ('rak 3401', BoardAmplifier('RAK WisMesh 1W Booster', 8)),
+  ('heltec t114', BoardAmplifier('Heltec T114', 0)),
+  ('rak 4631', BoardAmplifier('RAK4631', 0)),
+  ('t1000', BoardAmplifier('SenseCAP T1000-E', 0)),
 ];
 
 /// The amplifier on the board that reports [manufacturerName], or null for a

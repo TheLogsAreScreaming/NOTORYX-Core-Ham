@@ -9182,4 +9182,196 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Po otvorení aplikácie sa znova pripojí k poslednému rádiu bez ťuknutia. Ak ešte nie je v dosahu, skúsi to niekoľkokrát.';
+
+  @override
+  String get ham_licensedOperator => 'Licencovaný operátor';
+
+  @override
+  String get ham_operatorIntro =>
+      'Rádiá NOTORYX Core Ham vysielajú na základe amatérskej licencie (FCC Part 97). Všetko odoslané si môže prečítať ktokoľvek a každý rámec nesie volaciu značku zo začiatku názvu rádia.';
+
+  @override
+  String get ham_yourStation => 'Vaša stanica';
+
+  @override
+  String get ham_callSign => 'Volacia značka';
+
+  @override
+  String get ham_notUsCallsign => 'Nie je to americká volacia značka';
+
+  @override
+  String get ham_licenceClass => 'Trieda licencie';
+
+  @override
+  String get ham_licenceClassHelper =>
+      'Každá trieda má plné oprávnenia na 33 cm a 70 cm';
+
+  @override
+  String get ham_antennaSystem => 'Anténny systém';
+
+  @override
+  String get ham_antennaSystemHint =>
+      'Na odhad výkonu nižšie. Pri tom, čo nemáte, nechajte 0.';
+
+  @override
+  String get ham_externalAmpGain => 'Zisk externého zosilňovača';
+
+  @override
+  String get ham_feedlineLoss => 'Straty v napájači';
+
+  @override
+  String get ham_antennaGain => 'Zisk antény';
+
+  @override
+  String get ham_coordination => 'Koordinácia';
+
+  @override
+  String get ham_coordinationNotice =>
+      'NOTORYX Core Ham používajte až po veľmi dôkladnej koordinácii. Rádiá a prevádzače vysielajú automaticky v zdieľaných pásmach, preto skôr než ktorékoľvek rádio začne vysielať, porozprávajte sa s koordinátorom frekvencií, dodržujte miestny pásmový plán a dohodnite sa na jednom kanáli so všetkými operátormi vo vašom okolí.';
+
+  @override
+  String get ham_readCoordinationGuide => 'Prečítať príručku ku koordinácii';
+
+  @override
+  String get ham_acknowledgment =>
+      'Mám túto licenciu, prečítal som si príručku ku koordinácii a pred vysielaním sa skoordinujem.';
+
+  @override
+  String get ham_operatorSaved => 'Uložené';
+
+  @override
+  String get ham_connectedRadio => 'Pripojené rádio';
+
+  @override
+  String get ham_nodeName => 'Názov uzla';
+
+  @override
+  String get ham_nodeNameOk => 'Začína vašou volacou značkou';
+
+  @override
+  String get ham_nodeNameBad =>
+      'Musí začínať vašou volacou značkou, inak rádio nevysiela';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return 'Nastaviť $callsign';
+  }
+
+  @override
+  String get ham_frequency => 'Frekvencia';
+
+  @override
+  String get ham_inHamBand => 'V amatérskom pásme';
+
+  @override
+  String get ham_outsideHamBands => 'Mimo 420–450 / 902–928 MHz';
+
+  @override
+  String get ham_txPowerSetting => 'Nastavený vysielací výkon';
+
+  @override
+  String get ham_chipSetting => 'Nastavenie rádiového čipu';
+
+  @override
+  String get ham_firmware => 'Firmvér';
+
+  @override
+  String get ham_estimatedOutput => 'Odhadovaný výstupný výkon';
+
+  @override
+  String get ham_estimatedErp => 'Odhadovaný ERP';
+
+  @override
+  String get ham_unknown => 'neznámy';
+
+  @override
+  String get ham_unknownBoard => 'Neznáma doska: počíta sa bez zosilňovača';
+
+  @override
+  String get ham_ampNone => 'bez zosilňovača';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'približne +$db dB zo zosilňovača';
+  }
+
+  @override
+  String get ham_ampVariable => 'závisí od nastavenia úrovne zosilňovača';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. Pred spoľahnutím sa na odhad ho zmerajte.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. Je to odhad: pre istotu zmerajte a používajte najmenší postačujúci výkon.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      'Nad 10 W PEP, limitom pre rozprestreté spektrum ako LoRa (§97.311). Znížte ho.';
+
+  @override
+  String get ham_erpNote =>
+      'Po stratách v napájači a zisku antény, voči dipólu. Pri vyššom výkone skontrolujte vystavenie RF (§97.13).';
+
+  @override
+  String get ham_location => 'Poloha';
+
+  @override
+  String get ham_noLocationLimits => 'žiadne obmedzenia pásma';
+
+  @override
+  String get ham_locationOkNote =>
+      'Podľa polohy rádia. Pre istotu skontrolujte §97.303.';
+
+  @override
+  String get ham_check => 'skontrolujte';
+
+  @override
+  String get ham_positionUnknown =>
+      'Poloha neznáma: skontrolujte §97.303 kvôli obmedzeniam tam, kde vysielate.';
+
+  @override
+  String get ham_exclusion33cm =>
+      'Táto oblasť sa zdá byť vo výnimke podľa §97.303(g): amatérske stanice tu nesmú vysielať na 33 cm.';
+
+  @override
+  String get ham_lineA =>
+      'Severne od línie A (pri kanadskej hranici) nie je 420–430 MHz k dispozícii. Skontrolujte §97.303.';
+
+  @override
+  String get ham_statusOk => 'OK';
+
+  @override
+  String get ham_needsAttention => 'Vyžaduje pozornosť';
+
+  @override
+  String get ham_setupBanner =>
+      'Pred vysielaním dokončite nastavenie operátora';
+
+  @override
+  String get ham_setUp => 'Nastaviť';
+
+  @override
+  String get ham_operatorCardIncomplete =>
+      'Nastavte volaciu značku a prečítajte si príručku ku koordinácii';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'Začnite volacou značkou, napr. „W1AW“ alebo „W1AW Base“';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      'Názov musí začínať volacou značkou prevádzača, napr. „N0RPT Hilltop“.';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'Heslá nastavte cez sériovú USB konzolu prevádzača. Odoslané éterom by si ich mohol prečítať ktokoľvek.';
 }

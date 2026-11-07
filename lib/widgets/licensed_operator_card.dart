@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../l10n/l10n.dart';
 import '../screens/licensed_operator_screen.dart';
 import '../services/operator_profile_service.dart';
 import 'mesh_ui.dart';
@@ -23,11 +24,11 @@ class LicensedOperatorCard extends StatelessWidget {
               : Icons.warning_amber_rounded,
           color: profile.isComplete ? scheme.onSurfaceVariant : scheme.error,
         ),
-        title: const Text('Licensed operator'),
+        title: Text(context.l10n.ham_licensedOperator),
         subtitle: Text(
           profile.isComplete
               ? '${profile.callsign} · ${profile.licenseClass!.label}'
-              : 'Set your call sign and read the coordination guide',
+              : context.l10n.ham_operatorCardIncomplete,
         ),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => Navigator.push(

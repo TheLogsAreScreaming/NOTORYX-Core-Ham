@@ -3527,15 +3527,21 @@
   "fieldOps_sendCheckInHint": "This uses normal direct-message sends. Delivery will be tracked in Field Log.",
   "fieldOps_send": "Send",
   "sosRelay_title": "SOS relay",
-  "@sosRelay_title": {"description": "Field Ops card title for relaying other people's SOS messages"},
+  "@sosRelay_title": {
+    "description": "Field Ops card title for relaying other people's SOS messages"
+  },
   "sosRelay_enable": "Relay SOS no repeater carried",
   "sosRelay_needsFirmware": "Needs radio firmware v1.16 or newer",
   "sosRelay_noneYet": "No SOS relayed yet",
   "sosRelay_relayedCount": "{count, plural, =1{Relayed 1 SOS packet, last at {time}} other{Relayed {count} SOS packets, last at {time}}}",
   "@sosRelay_relayedCount": {
     "placeholders": {
-      "count": {"type": "int"},
-      "time": {"type": "String"}
+      "count": {
+        "type": "int"
+      },
+      "time": {
+        "type": "String"
+      }
     }
   },
   "sosRelay_explainer": "When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can't. Only SOS on channels you have are relayed. Uses some battery and airtime, so it's off by default.",
@@ -5327,5 +5333,98 @@
   "wardrive_explainer": "Each ping is a zero-hop discover request: only repeaters in direct range answer, and nothing is posted to a channel. Positions come from your phone’s GPS, or your radio’s when the phone has none.",
   "mapTelemetry_policy": "Cached readings dim after 1 hour and disappear after 24 hours. Refresh sends one request; the node must allow telemetry and sensors may require login. The map never requests updates automatically.",
   "autoConnect_title": "Connect to my radio automatically",
-  "autoConnect_hint": "When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet."
+  "autoConnect_hint": "When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet.",
+  "ham_licensedOperator": "Licensed operator",
+  "ham_operatorIntro": "NOTORYX Core Ham radios transmit under an amateur licence (FCC Part 97). Everything sent is readable by anyone, and every frame carries the call sign at the start of the radio's name.",
+  "ham_yourStation": "Your station",
+  "ham_callSign": "Call sign",
+  "ham_notUsCallsign": "Not a US call sign",
+  "ham_licenceClass": "Licence class",
+  "ham_licenceClassHelper": "Every class has full 33 cm and 70 cm privileges",
+  "ham_antennaSystem": "Antenna system",
+  "ham_antennaSystemHint": "For the power estimate below. Leave 0 for anything you don't have.",
+  "ham_externalAmpGain": "External amplifier gain",
+  "ham_feedlineLoss": "Feedline loss",
+  "ham_antennaGain": "Antenna gain",
+  "ham_coordination": "Coordination",
+  "ham_coordinationNotice": "Use NOTORYX Core Ham only after a great deal of coordination. Radios and repeaters transmit automatically on shared bands, so before any radio goes on the air, talk to your frequency coordinator, follow the local band plan and agree one channel with every operator in your area.",
+  "ham_readCoordinationGuide": "Read the coordination guide",
+  "ham_acknowledgment": "I hold this licence, I have read the coordination guide, and I will coordinate before transmitting.",
+  "ham_operatorSaved": "Operator saved",
+  "ham_connectedRadio": "Connected radio",
+  "ham_nodeName": "Node name",
+  "ham_nodeNameOk": "Starts with your call sign",
+  "ham_nodeNameBad": "Must start with your call sign, or the radio stays silent",
+  "ham_setNameTo": "Set to {callsign}",
+  "@ham_setNameTo": {
+    "placeholders": {
+      "callsign": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_frequency": "Frequency",
+  "ham_inHamBand": "In a ham band",
+  "ham_outsideHamBands": "Outside 420–450 / 902–928 MHz",
+  "ham_txPowerSetting": "TX power setting",
+  "ham_chipSetting": "The radio chip's setting",
+  "ham_firmware": "Firmware",
+  "ham_estimatedOutput": "Estimated output",
+  "ham_estimatedErp": "Estimated ERP",
+  "ham_unknown": "unknown",
+  "ham_unknownBoard": "Unknown board: counted as no amplifier",
+  "ham_ampNone": "no amplifier",
+  "ham_ampGain": "about +{db} dB from its amplifier",
+  "@ham_ampGain": {
+    "placeholders": {
+      "db": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_ampVariable": "depends on its amplifier level setting",
+  "ham_boardNote": "{board}: {note}",
+  "@ham_boardNote": {
+    "placeholders": {
+      "board": {
+        "type": "String"
+      },
+      "note": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_measureFirst": "{board}. Measure it before relying on any estimate.",
+  "@ham_measureFirst": {
+    "placeholders": {
+      "board": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_outputNote": "{board}. An estimate: measure to be sure, and use the least power that works.",
+  "@ham_outputNote": {
+    "placeholders": {
+      "board": {
+        "type": "String"
+      }
+    }
+  },
+  "ham_overSpreadSpectrum": "Above 10 W PEP, the limit for spread spectrum such as LoRa (§97.311). Turn it down.",
+  "ham_erpNote": "After feedline loss and antenna gain, relative to a dipole. Check RF exposure (§97.13) at higher power.",
+  "ham_location": "Location",
+  "ham_noLocationLimits": "no band limits found",
+  "ham_locationOkNote": "From the radio's position. Check §97.303 to be sure.",
+  "ham_check": "check",
+  "ham_positionUnknown": "Position unknown: check §97.303 for limits where you operate.",
+  "ham_exclusion33cm": "This area appears to be inside a §97.303(g) exclusion: amateur stations may not transmit on 33 cm here.",
+  "ham_lineA": "If you are north of Line A (near the Canadian border), 420–430 MHz isn't available. Check §97.303.",
+  "ham_statusOk": "OK",
+  "ham_needsAttention": "Needs attention",
+  "ham_setupBanner": "Finish licensed operator setup before transmitting",
+  "ham_setUp": "Set up",
+  "ham_operatorCardIncomplete": "Set your call sign and read the coordination guide",
+  "ham_nodeNameCallsignHelper": "Start with your call sign, like \"W1AW\" or \"W1AW Base\"",
+  "ham_repeaterNameNeedsCall": "The name must start with the repeater's call sign, like \"N0RPT Hilltop\".",
+  "ham_repeaterPasswordsSerial": "Set passwords on the repeater's USB serial console. Sent over the air, anyone could read them."
 }

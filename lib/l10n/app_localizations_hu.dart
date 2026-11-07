@@ -9196,4 +9196,195 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Az alkalmazás megnyitásakor koppintás nélkül újracsatlakozik az utolsó rádióhoz. Ha még nincs hatótávon belül, többször is próbálkozik.';
+
+  @override
+  String get ham_licensedOperator => 'Engedélyes rádióamatőr';
+
+  @override
+  String get ham_operatorIntro =>
+      'A NOTORYX Core Ham rádiók rádióamatőr engedéllyel (FCC Part 97) adnak. Minden elküldött üzenetet bárki elolvashat, és minden keret tartalmazza a rádió nevének elején álló hívójelet.';
+
+  @override
+  String get ham_yourStation => 'Az állomásod';
+
+  @override
+  String get ham_callSign => 'Hívójel';
+
+  @override
+  String get ham_notUsCallsign => 'Nem amerikai hívójel';
+
+  @override
+  String get ham_licenceClass => 'Engedélyosztály';
+
+  @override
+  String get ham_licenceClassHelper =>
+      'Minden osztály teljes jogosultsággal rendelkezik 33 cm-en és 70 cm-en';
+
+  @override
+  String get ham_antennaSystem => 'Antennarendszer';
+
+  @override
+  String get ham_antennaSystemHint =>
+      'Az alábbi teljesítménybecsléshez. Hagyj 0-t ott, ami nincs.';
+
+  @override
+  String get ham_externalAmpGain => 'Külső erősítő erősítése';
+
+  @override
+  String get ham_feedlineLoss => 'Tápvonal-veszteség';
+
+  @override
+  String get ham_antennaGain => 'Antennanyereség';
+
+  @override
+  String get ham_coordination => 'Egyeztetés';
+
+  @override
+  String get ham_coordinationNotice =>
+      'A NOTORYX Core Ham-et csak alapos egyeztetés után használd. A rádiók és átjátszók automatikusan adnak megosztott sávokon, ezért mielőtt bármelyik rádió adásba megy, beszélj a frekvenciakoordinátoroddal, kövesd a helyi sávtervet, és egyezz meg egy csatornában a környék minden rádióamatőrével.';
+
+  @override
+  String get ham_readCoordinationGuide => 'Az egyeztetési útmutató elolvasása';
+
+  @override
+  String get ham_acknowledgment =>
+      'Rendelkezem ezzel az engedéllyel, elolvastam az egyeztetési útmutatót, és adás előtt egyeztetni fogok.';
+
+  @override
+  String get ham_operatorSaved => 'Mentve';
+
+  @override
+  String get ham_connectedRadio => 'Csatlakoztatott rádió';
+
+  @override
+  String get ham_nodeName => 'Csomópont neve';
+
+  @override
+  String get ham_nodeNameOk => 'A hívójeleddel kezdődik';
+
+  @override
+  String get ham_nodeNameBad =>
+      'A hívójeleddel kell kezdődnie, különben a rádió nem ad';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return 'Beállítás: $callsign';
+  }
+
+  @override
+  String get ham_frequency => 'Frekvencia';
+
+  @override
+  String get ham_inHamBand => 'Rádióamatőr sávban';
+
+  @override
+  String get ham_outsideHamBands => '420–450 / 902–928 MHz-en kívül';
+
+  @override
+  String get ham_txPowerSetting => 'Adóteljesítmény-beállítás';
+
+  @override
+  String get ham_chipSetting => 'A rádiócsip beállítása';
+
+  @override
+  String get ham_firmware => 'Firmware';
+
+  @override
+  String get ham_estimatedOutput => 'Becsült kimenő teljesítmény';
+
+  @override
+  String get ham_estimatedErp => 'Becsült ERP';
+
+  @override
+  String get ham_unknown => 'ismeretlen';
+
+  @override
+  String get ham_unknownBoard => 'Ismeretlen panel: erősítő nélkül számolva';
+
+  @override
+  String get ham_ampNone => 'nincs erősítő';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'kb. +$db dB az erősítőjétől';
+  }
+
+  @override
+  String get ham_ampVariable => 'az erősítő szintbeállításától függ';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. Mérd meg, mielőtt becslésre hagyatkozol.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. Becslés: a biztonság kedvéért mérd meg, és a legkisebb működő teljesítményt használd.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      'Több mint 10 W PEP, ami a LoRa-hoz hasonló szórt spektrumú adás határa (§97.311). Vedd lejjebb.';
+
+  @override
+  String get ham_erpNote =>
+      'A tápvonal-veszteség és az antennanyereség után, dipólhoz viszonyítva. Nagyobb teljesítménynél ellenőrizd az RF-expozíciót (§97.13).';
+
+  @override
+  String get ham_location => 'Hely';
+
+  @override
+  String get ham_noLocationLimits => 'nincs sávkorlátozás';
+
+  @override
+  String get ham_locationOkNote =>
+      'A rádió helyzete alapján. A biztonság kedvéért nézd meg a §97.303-at.';
+
+  @override
+  String get ham_check => 'ellenőrizd';
+
+  @override
+  String get ham_positionUnknown =>
+      'Ismeretlen helyzet: nézd meg a §97.303-at, milyen korlátozások vannak ott, ahol forgalmazol.';
+
+  @override
+  String get ham_exclusion33cm =>
+      'Ez a terület §97.303(g) szerinti tiltott zónának tűnik: itt amatőrállomások nem adhatnak 33 cm-en.';
+
+  @override
+  String get ham_lineA =>
+      'Ha az A vonaltól északra vagy (a kanadai határ közelében), a 420–430 MHz nem használható. Nézd meg a §97.303-at.';
+
+  @override
+  String get ham_statusOk => 'Rendben';
+
+  @override
+  String get ham_needsAttention => 'Figyelmet igényel';
+
+  @override
+  String get ham_setupBanner => 'Adás előtt fejezd be az operátor beállítását';
+
+  @override
+  String get ham_setUp => 'Beállítás';
+
+  @override
+  String get ham_operatorCardIncomplete =>
+      'Add meg a hívójeledet, és olvasd el az egyeztetési útmutatót';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'A hívójeleddel kezdd, például „W1AW” vagy „W1AW Base”';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      'A névnek az átjátszó hívójelével kell kezdődnie, például „N0RPT Hilltop”.';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'A jelszavakat az átjátszó USB-s soros konzolján állítsd be. Rádión elküldve bárki elolvashatná őket.';
 }

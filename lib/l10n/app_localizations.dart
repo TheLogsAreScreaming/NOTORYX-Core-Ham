@@ -15414,6 +15414,336 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet.'**
   String get autoConnect_hint;
+
+  /// No description provided for @ham_licensedOperator.
+  ///
+  /// In en, this message translates to:
+  /// **'Licensed operator'**
+  String get ham_licensedOperator;
+
+  /// No description provided for @ham_operatorIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTORYX Core Ham radios transmit under an amateur licence (FCC Part 97). Everything sent is readable by anyone, and every frame carries the call sign at the start of the radio\'s name.'**
+  String get ham_operatorIntro;
+
+  /// No description provided for @ham_yourStation.
+  ///
+  /// In en, this message translates to:
+  /// **'Your station'**
+  String get ham_yourStation;
+
+  /// No description provided for @ham_callSign.
+  ///
+  /// In en, this message translates to:
+  /// **'Call sign'**
+  String get ham_callSign;
+
+  /// No description provided for @ham_notUsCallsign.
+  ///
+  /// In en, this message translates to:
+  /// **'Not a US call sign'**
+  String get ham_notUsCallsign;
+
+  /// No description provided for @ham_licenceClass.
+  ///
+  /// In en, this message translates to:
+  /// **'Licence class'**
+  String get ham_licenceClass;
+
+  /// No description provided for @ham_licenceClassHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Every class has full 33 cm and 70 cm privileges'**
+  String get ham_licenceClassHelper;
+
+  /// No description provided for @ham_antennaSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Antenna system'**
+  String get ham_antennaSystem;
+
+  /// No description provided for @ham_antennaSystemHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For the power estimate below. Leave 0 for anything you don\'t have.'**
+  String get ham_antennaSystemHint;
+
+  /// No description provided for @ham_externalAmpGain.
+  ///
+  /// In en, this message translates to:
+  /// **'External amplifier gain'**
+  String get ham_externalAmpGain;
+
+  /// No description provided for @ham_feedlineLoss.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedline loss'**
+  String get ham_feedlineLoss;
+
+  /// No description provided for @ham_antennaGain.
+  ///
+  /// In en, this message translates to:
+  /// **'Antenna gain'**
+  String get ham_antennaGain;
+
+  /// No description provided for @ham_coordination.
+  ///
+  /// In en, this message translates to:
+  /// **'Coordination'**
+  String get ham_coordination;
+
+  /// No description provided for @ham_coordinationNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Use NOTORYX Core Ham only after a great deal of coordination. Radios and repeaters transmit automatically on shared bands, so before any radio goes on the air, talk to your frequency coordinator, follow the local band plan and agree one channel with every operator in your area.'**
+  String get ham_coordinationNotice;
+
+  /// No description provided for @ham_readCoordinationGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the coordination guide'**
+  String get ham_readCoordinationGuide;
+
+  /// No description provided for @ham_acknowledgment.
+  ///
+  /// In en, this message translates to:
+  /// **'I hold this licence, I have read the coordination guide, and I will coordinate before transmitting.'**
+  String get ham_acknowledgment;
+
+  /// No description provided for @ham_operatorSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Operator saved'**
+  String get ham_operatorSaved;
+
+  /// No description provided for @ham_connectedRadio.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected radio'**
+  String get ham_connectedRadio;
+
+  /// No description provided for @ham_nodeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Node name'**
+  String get ham_nodeName;
+
+  /// No description provided for @ham_nodeNameOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts with your call sign'**
+  String get ham_nodeNameOk;
+
+  /// No description provided for @ham_nodeNameBad.
+  ///
+  /// In en, this message translates to:
+  /// **'Must start with your call sign, or the radio stays silent'**
+  String get ham_nodeNameBad;
+
+  /// No description provided for @ham_setNameTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Set to {callsign}'**
+  String ham_setNameTo(String callsign);
+
+  /// No description provided for @ham_frequency.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency'**
+  String get ham_frequency;
+
+  /// No description provided for @ham_inHamBand.
+  ///
+  /// In en, this message translates to:
+  /// **'In a ham band'**
+  String get ham_inHamBand;
+
+  /// No description provided for @ham_outsideHamBands.
+  ///
+  /// In en, this message translates to:
+  /// **'Outside 420–450 / 902–928 MHz'**
+  String get ham_outsideHamBands;
+
+  /// No description provided for @ham_txPowerSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'TX power setting'**
+  String get ham_txPowerSetting;
+
+  /// No description provided for @ham_chipSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio chip\'s setting'**
+  String get ham_chipSetting;
+
+  /// No description provided for @ham_firmware.
+  ///
+  /// In en, this message translates to:
+  /// **'Firmware'**
+  String get ham_firmware;
+
+  /// No description provided for @ham_estimatedOutput.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated output'**
+  String get ham_estimatedOutput;
+
+  /// No description provided for @ham_estimatedErp.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated ERP'**
+  String get ham_estimatedErp;
+
+  /// No description provided for @ham_unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'unknown'**
+  String get ham_unknown;
+
+  /// No description provided for @ham_unknownBoard.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown board: counted as no amplifier'**
+  String get ham_unknownBoard;
+
+  /// No description provided for @ham_ampNone.
+  ///
+  /// In en, this message translates to:
+  /// **'no amplifier'**
+  String get ham_ampNone;
+
+  /// No description provided for @ham_ampGain.
+  ///
+  /// In en, this message translates to:
+  /// **'about +{db} dB from its amplifier'**
+  String ham_ampGain(String db);
+
+  /// No description provided for @ham_ampVariable.
+  ///
+  /// In en, this message translates to:
+  /// **'depends on its amplifier level setting'**
+  String get ham_ampVariable;
+
+  /// No description provided for @ham_boardNote.
+  ///
+  /// In en, this message translates to:
+  /// **'{board}: {note}'**
+  String ham_boardNote(String board, String note);
+
+  /// No description provided for @ham_measureFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'{board}. Measure it before relying on any estimate.'**
+  String ham_measureFirst(String board);
+
+  /// No description provided for @ham_outputNote.
+  ///
+  /// In en, this message translates to:
+  /// **'{board}. An estimate: measure to be sure, and use the least power that works.'**
+  String ham_outputNote(String board);
+
+  /// No description provided for @ham_overSpreadSpectrum.
+  ///
+  /// In en, this message translates to:
+  /// **'Above 10 W PEP, the limit for spread spectrum such as LoRa (§97.311). Turn it down.'**
+  String get ham_overSpreadSpectrum;
+
+  /// No description provided for @ham_erpNote.
+  ///
+  /// In en, this message translates to:
+  /// **'After feedline loss and antenna gain, relative to a dipole. Check RF exposure (§97.13) at higher power.'**
+  String get ham_erpNote;
+
+  /// No description provided for @ham_location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get ham_location;
+
+  /// No description provided for @ham_noLocationLimits.
+  ///
+  /// In en, this message translates to:
+  /// **'no band limits found'**
+  String get ham_noLocationLimits;
+
+  /// No description provided for @ham_locationOkNote.
+  ///
+  /// In en, this message translates to:
+  /// **'From the radio\'s position. Check §97.303 to be sure.'**
+  String get ham_locationOkNote;
+
+  /// No description provided for @ham_check.
+  ///
+  /// In en, this message translates to:
+  /// **'check'**
+  String get ham_check;
+
+  /// No description provided for @ham_positionUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Position unknown: check §97.303 for limits where you operate.'**
+  String get ham_positionUnknown;
+
+  /// No description provided for @ham_exclusion33cm.
+  ///
+  /// In en, this message translates to:
+  /// **'This area appears to be inside a §97.303(g) exclusion: amateur stations may not transmit on 33 cm here.'**
+  String get ham_exclusion33cm;
+
+  /// No description provided for @ham_lineA.
+  ///
+  /// In en, this message translates to:
+  /// **'If you are north of Line A (near the Canadian border), 420–430 MHz isn\'t available. Check §97.303.'**
+  String get ham_lineA;
+
+  /// No description provided for @ham_statusOk.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ham_statusOk;
+
+  /// No description provided for @ham_needsAttention.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs attention'**
+  String get ham_needsAttention;
+
+  /// No description provided for @ham_setupBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish licensed operator setup before transmitting'**
+  String get ham_setupBanner;
+
+  /// No description provided for @ham_setUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up'**
+  String get ham_setUp;
+
+  /// No description provided for @ham_operatorCardIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your call sign and read the coordination guide'**
+  String get ham_operatorCardIncomplete;
+
+  /// No description provided for @ham_nodeNameCallsignHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with your call sign, like \"W1AW\" or \"W1AW Base\"'**
+  String get ham_nodeNameCallsignHelper;
+
+  /// No description provided for @ham_repeaterNameNeedsCall.
+  ///
+  /// In en, this message translates to:
+  /// **'The name must start with the repeater\'s call sign, like \"N0RPT Hilltop\".'**
+  String get ham_repeaterNameNeedsCall;
+
+  /// No description provided for @ham_repeaterPasswordsSerial.
+  ///
+  /// In en, this message translates to:
+  /// **'Set passwords on the repeater\'s USB serial console. Sent over the air, anyone could read them.'**
+  String get ham_repeaterPasswordsSerial;
 }
 
 class _AppLocalizationsDelegate

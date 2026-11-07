@@ -9241,4 +9241,197 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'À l’ouverture de l’app, reconnexion à votre dernière radio sans toucher. Plusieurs essais si elle n’est pas encore à portée.';
+
+  @override
+  String get ham_licensedOperator => 'Opérateur licencié';
+
+  @override
+  String get ham_operatorIntro =>
+      'Les radios NOTORYX Core Ham émettent sous une licence radioamateur (FCC Part 97). Tout ce qui est envoyé est lisible par tous, et chaque trame porte l\'indicatif placé au début du nom de la radio.';
+
+  @override
+  String get ham_yourStation => 'Votre station';
+
+  @override
+  String get ham_callSign => 'Indicatif';
+
+  @override
+  String get ham_notUsCallsign => 'Ce n\'est pas un indicatif américain';
+
+  @override
+  String get ham_licenceClass => 'Classe de licence';
+
+  @override
+  String get ham_licenceClassHelper =>
+      'Chaque classe a tous les droits sur 33 cm et 70 cm';
+
+  @override
+  String get ham_antennaSystem => 'Système d\'antenne';
+
+  @override
+  String get ham_antennaSystemHint =>
+      'Pour l\'estimation de puissance ci-dessous. Laissez 0 pour ce que vous n\'avez pas.';
+
+  @override
+  String get ham_externalAmpGain => 'Gain de l\'amplificateur externe';
+
+  @override
+  String get ham_feedlineLoss => 'Pertes du câble';
+
+  @override
+  String get ham_antennaGain => 'Gain de l\'antenne';
+
+  @override
+  String get ham_coordination => 'Coordination';
+
+  @override
+  String get ham_coordinationNotice =>
+      'N\'utilisez NOTORYX Core Ham qu\'après une coordination très poussée. Les radios et les relais émettent automatiquement sur des bandes partagées : avant qu\'une radio passe à l\'antenne, parlez à votre coordinateur de fréquences, respectez le plan de bandes local et convenez d\'un canal unique avec chaque opérateur de votre région.';
+
+  @override
+  String get ham_readCoordinationGuide => 'Lire le guide de coordination';
+
+  @override
+  String get ham_acknowledgment =>
+      'Je détiens cette licence, j\'ai lu le guide de coordination et je me coordonnerai avant d\'émettre.';
+
+  @override
+  String get ham_operatorSaved => 'Opérateur enregistré';
+
+  @override
+  String get ham_connectedRadio => 'Radio connectée';
+
+  @override
+  String get ham_nodeName => 'Nom du nœud';
+
+  @override
+  String get ham_nodeNameOk => 'Commence par votre indicatif';
+
+  @override
+  String get ham_nodeNameBad =>
+      'Doit commencer par votre indicatif, sinon la radio reste muette';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return 'Définir sur $callsign';
+  }
+
+  @override
+  String get ham_frequency => 'Fréquence';
+
+  @override
+  String get ham_inHamBand => 'Dans une bande radioamateur';
+
+  @override
+  String get ham_outsideHamBands => 'En dehors de 420–450 / 902–928 MHz';
+
+  @override
+  String get ham_txPowerSetting => 'Réglage de puissance d\'émission';
+
+  @override
+  String get ham_chipSetting => 'Le réglage de la puce radio';
+
+  @override
+  String get ham_firmware => 'Micrologiciel';
+
+  @override
+  String get ham_estimatedOutput => 'Puissance de sortie estimée';
+
+  @override
+  String get ham_estimatedErp => 'PAR estimée (ERP)';
+
+  @override
+  String get ham_unknown => 'inconnue';
+
+  @override
+  String get ham_unknownBoard => 'Carte inconnue : comptée sans amplificateur';
+
+  @override
+  String get ham_ampNone => 'sans amplificateur';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'environ +$db dB grâce à son amplificateur';
+  }
+
+  @override
+  String get ham_ampVariable =>
+      'dépend du réglage de niveau de l\'amplificateur';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board : $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. Mesurez-la avant de vous fier à une estimation.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. Une estimation : mesurez pour en être sûr et utilisez la puissance minimale suffisante.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      'Au-delà de 10 W PEP, la limite pour l\'étalement de spectre comme LoRa (§97.311). Réduisez-la.';
+
+  @override
+  String get ham_erpNote =>
+      'Après les pertes du câble et le gain d\'antenne, par rapport à un dipôle. À puissance plus élevée, vérifiez l\'exposition RF (§97.13).';
+
+  @override
+  String get ham_location => 'Emplacement';
+
+  @override
+  String get ham_noLocationLimits => 'aucune limite de bande trouvée';
+
+  @override
+  String get ham_locationOkNote =>
+      'D\'après la position de la radio. Vérifiez §97.303 pour en être sûr.';
+
+  @override
+  String get ham_check => 'à vérifier';
+
+  @override
+  String get ham_positionUnknown =>
+      'Position inconnue : vérifiez §97.303 pour les limites là où vous opérez.';
+
+  @override
+  String get ham_exclusion33cm =>
+      'Cette zone semble se trouver dans une exclusion du §97.303(g) : les stations amateurs ne peuvent pas émettre sur 33 cm ici.';
+
+  @override
+  String get ham_lineA =>
+      'Au nord de la Ligne A (près de la frontière canadienne), 420–430 MHz n\'est pas disponible. Vérifiez §97.303.';
+
+  @override
+  String get ham_statusOk => 'OK';
+
+  @override
+  String get ham_needsAttention => 'À vérifier';
+
+  @override
+  String get ham_setupBanner =>
+      'Terminez la configuration de l\'opérateur avant d\'émettre';
+
+  @override
+  String get ham_setUp => 'Configurer';
+
+  @override
+  String get ham_operatorCardIncomplete =>
+      'Indiquez votre indicatif et lisez le guide de coordination';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'Commencez par votre indicatif, comme « W1AW » ou « W1AW Base »';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      'Le nom doit commencer par l\'indicatif du relais, comme « N0RPT Hilltop ».';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'Définissez les mots de passe sur la console série USB du relais. Envoyés par radio, tout le monde pourrait les lire.';
 }

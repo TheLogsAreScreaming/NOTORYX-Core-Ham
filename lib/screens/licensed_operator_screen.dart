@@ -5,6 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../connector/meshcore_connector.dart';
 import '../helpers/snack_bar_builder.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/l10n.dart';
 import '../models/operator_profile.dart';
 import '../services/operator_profile_service.dart';
 import '../utils/amateur_location.dart';
@@ -83,7 +85,10 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
       ),
     );
     if (!mounted) return;
-    showDismissibleSnackBar(context, content: const Text('Operator saved'));
+    showDismissibleSnackBar(
+      context,
+      content: Text(context.l10n.ham_operatorSaved),
+    );
   }
 
   Widget _dbField(TextEditingController c, String label, String unit) =>
@@ -103,11 +108,12 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final l10n = context.l10n;
     final callError = _call.isEmpty || isUsCallsign(_call)
         ? null
-        : 'Not a US call sign';
+        : l10n.ham_notUsCallsign;
     return Scaffold(
-      appBar: AppBar(title: const Text('Licensed operator')),
+      appBar: AppBar(title: Text(l10n.ham_licensedOperator)),
       body: SafeArea(
         top: false,
         child: ListView(
@@ -115,15 +121,9 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'NOTORYX Core Ham radios transmit under an amateur licence '
-                '(FCC Part 97). Everything sent is readable by anyone, and '
-                'every frame carries the call sign at the start of the '
-                "radio's name.",
-                style: textTheme.bodyMedium,
-              ),
+              child: Text(l10n.ham_operatorIntro, style: textTheme.bodyMedium),
             ),
-            const SectionHeader('Your station'),
+            SectionHeader(l10n.ham_yourStation),
             MeshCard(
               padding: const EdgeInsets.all(16),
               child: Column(
@@ -138,7 +138,7 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
                       LengthLimitingTextInputFormatter(6),
                     ],
                     decoration: InputDecoration(
-                      labelText: 'Call sign',
+                      labelText: l10n.ham_callSign,
                       hintText: 'W1AW',
                       errorText: callError,
                       border: const OutlineInputBorder(),
@@ -149,12 +149,11 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
                   DropdownButtonFormField<LicenseClass>(
                     key: const ValueKey('operator-class'),
                     initialValue: _licenseClass,
-                    decoration: const InputDecoration(
-                      labelText: 'Licence class',
-                      helperText:
-                          'Every class has full 33 cm and 70 cm privileges',
+                    decoration: InputDecoration(
+                      labelText: l10n.ham_licenceClass,
+                      helperText: l10n.ham_licenceClassHelper,
                       helperMaxLines: 2,
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                     ),
                     items: [
                       for (final c in LicenseClass.values)
@@ -165,44 +164,35 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
                 ],
               ),
             ),
-            const SectionHeader('Antenna system'),
+            SectionHeader(l10n.ham_antennaSystem),
             MeshCard(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    'For the power estimate below. Leave 0 for anything you '
-                    "don't have.",
-                    style: textTheme.bodySmall,
-                  ),
+                  Text(l10n.ham_antennaSystemHint, style: textTheme.bodySmall),
                   const SizedBox(height: 12),
-                  _dbField(_externalAmp, 'External amplifier gain', 'dB'),
+                  _dbField(_externalAmp, l10n.ham_externalAmpGain, 'dB'),
                   const SizedBox(height: 12),
-                  _dbField(_feedlineLoss, 'Feedline loss', 'dB'),
+                  _dbField(_feedlineLoss, l10n.ham_feedlineLoss, 'dB'),
                   const SizedBox(height: 12),
-                  _dbField(_antennaGain, 'Antenna gain', 'dBi'),
+                  _dbField(_antennaGain, l10n.ham_antennaGain, 'dBi'),
                 ],
               ),
             ),
-            const SectionHeader('Coordination'),
+            SectionHeader(l10n.ham_coordination),
             MeshCard(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Use NOTORYX Core Ham only after a great deal of '
-                    'coordination. Radios and repeaters transmit '
-                    'automatically on shared bands, so before any radio goes '
-                    'on the air, talk to your frequency coordinator, follow '
-                    'the local band plan and agree one channel with every '
-                    'operator in your area.',
+                    l10n.ham_coordinationNotice,
                     style: textTheme.bodyMedium,
                   ),
                   TextButton.icon(
                     icon: const Icon(Icons.open_in_new, size: 18),
-                    label: const Text('Read the coordination guide'),
+                    label: Text(l10n.ham_readCoordinationGuide),
                     onPressed: () => launchUrl(
                       coordinationGuideUrl,
                       mode: LaunchMode.externalApplication,
@@ -213,10 +203,7 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
                     contentPadding: EdgeInsets.zero,
                     controlAffinity: ListTileControlAffinity.leading,
                     value: _acknowledged,
-                    title: const Text(
-                      'I hold this licence, I have read the coordination '
-                      'guide, and I will coordinate before transmitting.',
-                    ),
+                    title: Text(l10n.ham_acknowledgment),
                     onChanged: (v) =>
                         setState(() => _acknowledged = v ?? false),
                   ),
@@ -228,7 +215,7 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
               child: FilledButton(
                 key: const ValueKey('operator-save'),
                 onPressed: _canSave ? _save : null,
-                child: const Text('Save'),
+                child: Text(l10n.common_save),
               ),
             ),
             const _ConnectedRadioSection(),
@@ -256,55 +243,55 @@ class _ConnectedRadioSection extends StatelessWidget {
     final mhz = freqHz == null ? null : freqHz / 1000.0;
     final tx = connector.currentTxPower;
     final maxTx = connector.maxTxPower;
+    final l10n = context.l10n;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const SectionHeader('Connected radio'),
+        SectionHeader(l10n.ham_connectedRadio),
         MeshCard(
           padding: EdgeInsets.zero,
           child: Column(
             children: [
               _StatusRow(
                 ok: nameOk,
-                title: 'Node name',
+                title: l10n.ham_nodeName,
                 value: name.isEmpty ? '—' : name,
-                note: nameOk
-                    ? 'Starts with your call sign'
-                    : 'Must start with your call sign, or the radio stays silent',
+                note: nameOk ? l10n.ham_nodeNameOk : l10n.ham_nodeNameBad,
                 action: !nameOk && profile.hasValidCallsign
                     ? TextButton(
                         onPressed: () => _setName(context, profile.callsign),
-                        child: Text('Set to ${profile.callsign}'),
+                        child: Text(l10n.ham_setNameTo(profile.callsign)),
                       )
                     : null,
               ),
               _StatusRow(
                 ok: mhz != null && isAmateurFrequencyMHz(mhz),
-                title: 'Frequency',
+                title: l10n.ham_frequency,
                 value: mhz == null ? '—' : '${mhz.toStringAsFixed(3)} MHz',
                 note: mhz != null && isAmateurFrequencyMHz(mhz)
-                    ? 'In a ham band'
-                    : 'Outside 420–450 / 902–928 MHz',
+                    ? l10n.ham_inHamBand
+                    : l10n.ham_outsideHamBands,
               ),
               _StatusRow(
                 ok: true,
-                title: 'TX power setting',
+                title: l10n.ham_txPowerSetting,
                 value: tx == null
                     ? '—'
                     : '$tx dBm${maxTx == null ? '' : ' (max $maxTx)'}',
-                note: "The radio chip's setting",
+                note: l10n.ham_chipSetting,
               ),
-              ..._powerRows(connector.manufacturerName, tx, profile),
+              ..._powerRows(l10n, connector.manufacturerName, tx, profile),
               if (mhz != null)
                 ..._locationRows(
+                  l10n,
                   mhz,
                   connector.selfLatitude,
                   connector.selfLongitude,
                 ),
               _StatusRow(
                 ok: true,
-                title: 'Firmware',
+                title: l10n.ham_firmware,
                 value: connector.firmwareVersionString ?? '—',
               ),
             ],
@@ -316,7 +303,12 @@ class _ConnectedRadioSection extends StatelessWidget {
 
   /// Estimated output and ERP from the board's amplifier and the operator's
   /// antenna system, flagged above the 10 W spread-spectrum limit.
-  List<Widget> _powerRows(String? board, int? chipDbm, OperatorProfile p) {
+  List<Widget> _powerRows(
+    AppLocalizations l10n,
+    String? board,
+    int? chipDbm,
+    OperatorProfile p,
+  ) {
     final amp = boardAmplifierFor(board);
     final est = chipDbm == null
         ? null
@@ -327,56 +319,74 @@ class _ConnectedRadioSection extends StatelessWidget {
             feedlineLossDb: p.feedlineLossDb,
             antennaGainDbi: p.antennaGainDbi,
           );
+    final gain = amp?.gainDb;
     final boardNote = amp == null
-        ? 'Unknown board: counted as no amplifier'
-        : '${amp.board}: ${amp.note}';
+        ? l10n.ham_unknownBoard
+        : l10n.ham_boardNote(
+            amp.board,
+            gain == null
+                ? l10n.ham_ampVariable
+                : gain == 0
+                ? l10n.ham_ampNone
+                : l10n.ham_ampGain(gain.toStringAsFixed(0)),
+          );
     if (est == null) {
       return [
         _StatusRow(
           ok: false,
-          title: 'Estimated output',
-          value: 'unknown',
-          note: '$boardNote. Measure it before relying on any estimate.',
+          title: l10n.ham_estimatedOutput,
+          value: l10n.ham_unknown,
+          note: l10n.ham_measureFirst(boardNote),
         ),
       ];
     }
     return [
       _StatusRow(
         ok: !est.overSpreadSpectrumLimit,
-        title: 'Estimated output',
+        title: l10n.ham_estimatedOutput,
         value: formatPower(est.outputDbm),
         note: est.overSpreadSpectrumLimit
-            ? 'Above 10 W PEP, the limit for spread spectrum such as LoRa '
-                  '(§97.311). Turn it down.'
-            : '$boardNote. An estimate: measure to be sure, and use the '
-                  'least power that works.',
+            ? l10n.ham_overSpreadSpectrum
+            : l10n.ham_outputNote(boardNote),
       ),
       _StatusRow(
         ok: true,
-        title: 'Estimated ERP',
+        title: l10n.ham_estimatedErp,
         value: formatPower(est.erpDbm),
-        note:
-            'After feedline loss and antenna gain, relative to a dipole. '
-            'Check RF exposure (§97.13) at higher power.',
+        note: l10n.ham_erpNote,
       ),
     ];
   }
 
-  List<Widget> _locationRows(double mhz, double? lat, double? lon) {
+  List<Widget> _locationRows(
+    AppLocalizations l10n,
+    double mhz,
+    double? lat,
+    double? lon,
+  ) {
     final cautions = locationCautions(mhz, lat, lon);
     if (cautions.isEmpty) {
-      return const [
+      return [
         _StatusRow(
           ok: true,
-          title: 'Location',
-          value: 'no band limits found',
-          note: "From the radio's position. Check §97.303 to be sure.",
+          title: l10n.ham_location,
+          value: l10n.ham_noLocationLimits,
+          note: l10n.ham_locationOkNote,
         ),
       ];
     }
     return [
       for (final c in cautions)
-        _StatusRow(ok: false, title: 'Location', value: 'check', note: c),
+        _StatusRow(
+          ok: false,
+          title: l10n.ham_location,
+          value: l10n.ham_check,
+          note: switch (c) {
+            LocationCaution.positionUnknown => l10n.ham_positionUnknown,
+            LocationCaution.exclusion33cm => l10n.ham_exclusion33cm,
+            LocationCaution.lineA => l10n.ham_lineA,
+          },
+        ),
     ];
   }
 
@@ -409,7 +419,9 @@ class _StatusRow extends StatelessWidget {
       leading: Icon(
         ok ? Icons.check_circle_outline : Icons.error_outline,
         color: ok ? scheme.primary : scheme.error,
-        semanticLabel: ok ? 'OK' : 'Needs attention',
+        semanticLabel: ok
+            ? context.l10n.ham_statusOk
+            : context.l10n.ham_needsAttention,
       ),
       title: Text('$title: $value'),
       subtitle: note == null ? null : Text(note!),
