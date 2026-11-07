@@ -4,6 +4,8 @@ import '../models/message.dart';
 import '../models/translation_support.dart';
 import '../helpers/smaz.dart';
 import '../utils/app_logger.dart';
+import 'db/message_db.dart';
+import 'db/prefs_import.dart';
 import 'prefs_manager.dart';
 
 class MessageStore {
@@ -15,12 +17,29 @@ class MessageStore {
 
   String get keyFor => '$_keyPrefix$publicKeyHex';
 
+  /// The message database for this radio, once its old history has been
+  /// moved in; null on web, or if it can't be used, so callers fall back to
+  /// SharedPreferences.
+  Future<MessageDb?> _db() async {
+    if (publicKeyHex.isEmpty) return null;
+    final db = await MessageDb.ready;
+    if (db == null) return null;
+    return await ensureScopeImported(db, publicKeyHex) ? db : null;
+  }
+
   Future<void> saveMessages(
     String contactKeyHex,
     List<Message> messages,
   ) async {
     if (publicKeyHex.isEmpty) {
       appLogger.warn('Public key hex is not set. Cannot save messages.');
+      return;
+    }
+    final db = await _db();
+    if (db != null) {
+      db.replace(MessageTable.direct, publicKeyHex, contactKeyHex, [
+        for (final m in messages) jsonEncode(_messageToJson(m)),
+      ]);
       return;
     }
     final prefs = PrefsManager.instance;
@@ -34,10 +53,18 @@ class MessageStore {
       appLogger.warn('Public key hex is not set. Cannot load messages.');
       return [];
     }
+    final db = await _db();
+    if (db != null) {
+      final rows = db.load(MessageTable.direct, publicKeyHex, contactKeyHex);
+      if (rows.isNotEmpty) {
+        return [for (final row in rows) ?_decodeRow(row)];
+      }
+    }
     final prefs = PrefsManager.instance;
     final key = '$keyFor$contactKeyHex';
     final oldKey = '$_keyPrefix$contactKeyHex';
-    String? jsonString = prefs.getString(key);
+    // Already moved into the database: only a legacy unscoped key is left.
+    String? jsonString = db == null ? prefs.getString(key) : null;
     if (jsonString == null || jsonString.isEmpty) {
       // Attempt migration from legacy unscoped key on first load
       final legacyJsonString = prefs.getString(oldKey);
@@ -46,11 +73,11 @@ class MessageStore {
         appLogger.info(
           'Migrating messages from legacy key $oldKey to scoped key $key',
         );
-        await prefs.setString(key, legacyJsonString);
         jsonString = legacyJsonString;
+        if (db == null) await prefs.setString(key, legacyJsonString);
       }
     }
-    if (jsonString == null || jsonString.isEmpty) {
+    if (db == null && (jsonString == null || jsonString.isEmpty)) {
       jsonString = prefs.getString(keyFor);
     }
     if (jsonString == null || jsonString.isEmpty) {
@@ -59,9 +86,22 @@ class MessageStore {
 
     try {
       final jsonList = jsonDecode(jsonString) as List<dynamic>;
-      return jsonList.map((json) => _messageFromJson(json)).toList();
+      final messages = jsonList.map((json) => _messageFromJson(json)).toList();
+      db?.replace(MessageTable.direct, publicKeyHex, contactKeyHex, [
+        for (final m in jsonList) jsonEncode(m),
+      ]);
+      return messages;
     } catch (e) {
       return [];
+    }
+  }
+
+  Message? _decodeRow(String row) {
+    try {
+      return _messageFromJson(jsonDecode(row) as Map<String, dynamic>);
+    } catch (e) {
+      appLogger.warn('Skipping unreadable stored message: $e');
+      return null;
     }
   }
 
@@ -70,6 +110,8 @@ class MessageStore {
       appLogger.warn('Public key hex is not set. Cannot clear messages.');
       return;
     }
+    final db = await _db();
+    db?.clear(MessageTable.direct, publicKeyHex, contactKeyHex);
     final prefs = PrefsManager.instance;
     final key = '$keyFor$contactKeyHex';
     await prefs.remove(key);

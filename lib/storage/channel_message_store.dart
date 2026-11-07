@@ -5,6 +5,8 @@ import 'package:meshcore_open/utils/app_logger.dart';
 import '../models/channel_message.dart';
 import '../models/translation_support.dart';
 import '../helpers/smaz.dart';
+import 'db/message_db.dart';
+import 'db/prefs_import.dart';
 import 'prefs_manager.dart';
 
 class ChannelMessageStore {
@@ -16,6 +18,16 @@ class ChannelMessageStore {
 
   String get keyFor => '$_keyPrefix$publicKeyHex';
 
+  /// The message database for this radio, once its old history has been
+  /// moved in; null on web, or if it can't be used, so callers fall back to
+  /// SharedPreferences.
+  Future<MessageDb?> _db() async {
+    if (publicKeyHex.isEmpty) return null;
+    final db = await MessageDb.ready;
+    if (db == null) return null;
+    return await ensureScopeImported(db, publicKeyHex) ? db : null;
+  }
+
   /// Save messages for a specific channel
   Future<void> saveChannelMessages(
     int channelIndex,
@@ -25,6 +37,13 @@ class ChannelMessageStore {
       appLogger.warn(
         'Public key hex is not set. Cannot save channel messages.',
       );
+      return;
+    }
+    final db = await _db();
+    if (db != null) {
+      db.replace(MessageTable.channel, publicKeyHex, '$channelIndex', [
+        for (final m in messages) jsonEncode(_messageToJson(m)),
+      ]);
       return;
     }
     final prefs = PrefsManager.instance;
@@ -45,11 +64,19 @@ class ChannelMessageStore {
       );
       return [];
     }
+    final db = await _db();
+    if (db != null) {
+      final rows = db.load(MessageTable.channel, publicKeyHex, '$channelIndex');
+      if (rows.isNotEmpty) {
+        return [for (final row in rows) ?_decodeRow(row)];
+      }
+    }
     final prefs = PrefsManager.instance;
     final key = '$keyFor$channelIndex';
     final oldKey = '$_keyPrefix$channelIndex';
 
-    String? jsonString = prefs.getString(key);
+    // Already moved into the database: only a legacy unscoped key is left.
+    String? jsonString = db == null ? prefs.getString(key) : null;
     if (jsonString == null || jsonString.isEmpty) {
       // Attempt migration from legacy unscoped key on first load
       final legacyJsonString = prefs.getString(oldKey);
@@ -58,11 +85,11 @@ class ChannelMessageStore {
         appLogger.info(
           'Migrating channel messages from legacy key $oldKey to scoped key $key',
         );
-        await prefs.setString(key, legacyJsonString);
         jsonString = legacyJsonString;
+        if (db == null) await prefs.setString(key, legacyJsonString);
       }
     }
-    if (jsonString == null || jsonString.isEmpty) {
+    if (db == null && (jsonString == null || jsonString.isEmpty)) {
       jsonString = prefs.getString(keyFor);
     }
     if (jsonString == null || jsonString.isEmpty) {
@@ -70,15 +97,30 @@ class ChannelMessageStore {
     }
     try {
       final jsonList = jsonDecode(jsonString) as List<dynamic>;
-      return jsonList.map((json) => _messageFromJson(json)).toList();
+      final messages = jsonList.map((json) => _messageFromJson(json)).toList();
+      db?.replace(MessageTable.channel, publicKeyHex, '$channelIndex', [
+        for (final m in jsonList) jsonEncode(m),
+      ]);
+      return messages;
     } catch (e) {
       // If parsing fails, return empty list
       return [];
     }
   }
 
+  ChannelMessage? _decodeRow(String row) {
+    try {
+      return _messageFromJson(jsonDecode(row) as Map<String, dynamic>);
+    } catch (e) {
+      appLogger.warn('Skipping unreadable stored channel message: $e');
+      return null;
+    }
+  }
+
   /// Clear messages for a specific channel
   Future<void> clearChannelMessages(int channelIndex) async {
+    final db = await _db();
+    db?.clear(MessageTable.channel, publicKeyHex, '$channelIndex');
     final prefs = PrefsManager.instance;
     final key = '$keyFor$channelIndex';
     await prefs.remove(key);
@@ -86,6 +128,8 @@ class ChannelMessageStore {
 
   /// Clear all channel messages
   Future<void> clearAllChannelMessages() async {
+    final db = await _db();
+    db?.clearScope(MessageTable.channel, publicKeyHex);
     final prefs = PrefsManager.instance;
     final keys = prefs.getKeys().where((k) => k.startsWith(keyFor));
     for (var key in keys) {
