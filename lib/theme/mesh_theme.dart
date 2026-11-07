@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'bastion_themes.dart';
+import 'mesh_design.dart';
 
 export 'bastion_themes.dart';
+export 'mesh_design.dart';
 
 /// Bastion palette: the colors of the theme chosen in Settings. Read these
 /// at build time (they are not constants) so a theme switch repaints.
@@ -216,20 +218,19 @@ class MeshTheme {
       onInverseSurface: p.bg,
       inversePrimary: p.accentDim,
     );
-    return _build(scheme, p.brightness);
+    return _build(scheme, p.brightness, MeshStatusColors.fromPalette(p));
   }
 
-  static ThemeData _build(ColorScheme scheme, Brightness brightness) {
-    final baseText =
-        Typography.material2021(
-          platform: TargetPlatform.android,
-          colorScheme: scheme,
-        ).black.apply(
-          bodyColor: scheme.onSurface,
-          displayColor: scheme.onSurface,
-          fontFamily: MeshFonts.sans,
-          fontFamilyFallback: MeshFonts.sansFallback,
-        );
+  static ThemeData _build(
+    ColorScheme scheme,
+    Brightness brightness,
+    MeshStatusColors status,
+  ) {
+    final text = meshTextTheme(scheme);
+    const controlShape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(MeshShape.control)),
+    );
+    const minControl = Size(64, MeshShape.minTouch);
 
     return ThemeData(
       useMaterial3: true,
@@ -239,7 +240,10 @@ class MeshTheme {
       canvasColor: scheme.surface,
       fontFamily: MeshFonts.sans,
       fontFamilyFallback: MeshFonts.sansFallback,
-      textTheme: baseText,
+      textTheme: text,
+      extensions: [status],
+      materialTapTargetSize: MaterialTapTargetSize.padded,
+      visualDensity: VisualDensity.standard,
       dividerColor: scheme.outlineVariant,
       dividerTheme: DividerThemeData(
         color: scheme.outlineVariant,
@@ -253,14 +257,7 @@ class MeshTheme {
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: false,
-        titleTextStyle: TextStyle(
-          fontFamily: MeshFonts.sans,
-          fontFamilyFallback: MeshFonts.sansFallback,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-          letterSpacing: -0.2,
-          color: scheme.onSurface,
-        ),
+        titleTextStyle: text.titleLarge,
         iconTheme: IconThemeData(color: scheme.onSurface),
       ),
       // Field-instrument cards: no fill, a hairline outline, squared off.
@@ -278,8 +275,11 @@ class MeshTheme {
         iconColor: scheme.onSurfaceVariant,
         textColor: scheme.onSurface,
         tileColor: Colors.transparent,
+        titleTextStyle: text.bodyLarge,
+        subtitleTextStyle: text.bodySmall,
+        minVerticalPadding: 10,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshShape.control),
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -289,9 +289,7 @@ class MeshTheme {
         focusElevation: 0,
         hoverElevation: 0,
         highlightElevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.sm),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         extendedTextStyle: const TextStyle(
           fontFamily: MeshFonts.sans,
           fontFamilyFallback: MeshFonts.sansFallback,
@@ -304,71 +302,60 @@ class MeshTheme {
           backgroundColor: scheme.primary,
           foregroundColor: scheme.onPrimary,
           elevation: 0,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.xs),
-          ),
-          textStyle: const TextStyle(
-            fontFamily: MeshFonts.sans,
-            fontFamilyFallback: MeshFonts.sansFallback,
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
+          minimumSize: minControl,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          shape: controlShape,
+          textStyle: text.labelLarge,
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: scheme.onSurface,
           side: BorderSide(color: scheme.outline),
+          minimumSize: minControl,
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.xs),
-          ),
+          shape: controlShape,
+          textStyle: text.labelLarge,
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: scheme.primary,
+          minimumSize: const Size(MeshShape.minTouch, MeshShape.minTouch),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.xs),
-          ),
+          shape: controlShape,
+          textStyle: text.labelLarge,
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: scheme.surfaceContainerHigh,
-        hintStyle: TextStyle(color: scheme.onSurfaceVariant),
+        hintStyle: text.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+        labelStyle: text.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+        helperStyle: text.bodySmall,
+        errorStyle: text.bodySmall?.copyWith(color: scheme.error),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshShape.control),
           borderSide: BorderSide(color: scheme.outline),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshShape.control),
           borderSide: BorderSide(color: scheme.outlineVariant),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.md),
+          borderRadius: BorderRadius.circular(MeshShape.control),
           borderSide: BorderSide(color: scheme.primary, width: 1.5),
         ),
       ),
       chipTheme: ChipThemeData(
         backgroundColor: scheme.surfaceContainerLow,
         side: BorderSide(color: scheme.outlineVariant),
-        labelStyle: TextStyle(
-          fontFamily: MeshFonts.sans,
-          fontFamilyFallback: MeshFonts.sansFallback,
-          fontSize: 12.5,
-          fontWeight: FontWeight.w600,
-          color: scheme.onSurfaceVariant,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.xs),
-        ),
+        labelStyle: text.labelMedium,
+        shape: controlShape,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       ),
       navigationBarTheme: NavigationBarThemeData(
@@ -401,22 +388,28 @@ class MeshTheme {
         backgroundColor: scheme.surfaceContainerLow,
         surfaceTintColor: Colors.transparent,
         modalBackgroundColor: scheme.surfaceContainerLow,
+        showDragHandle: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(MeshRadii.lg),
+            top: Radius.circular(MeshShape.sheet),
           ),
         ),
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: scheme.surfaceContainerLow,
         surfaceTintColor: Colors.transparent,
+        titleTextStyle: text.titleLarge,
+        contentTextStyle: text.bodyMedium?.copyWith(
+          color: scheme.onSurfaceVariant,
+        ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(MeshRadii.lg),
+          borderRadius: BorderRadius.circular(MeshShape.sheet),
         ),
       ),
       snackBarTheme: SnackBarThemeData(
         backgroundColor: scheme.surfaceContainerHigh,
-        contentTextStyle: TextStyle(color: scheme.onSurface),
+        contentTextStyle: text.bodyMedium,
+        actionTextColor: scheme.primary,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(MeshRadii.md),
@@ -445,6 +438,8 @@ class MeshTheme {
           selectedBackgroundColor: scheme.primary.withValues(alpha: 0.16),
           selectedForegroundColor: scheme.primary,
           side: BorderSide(color: scheme.outlineVariant),
+          minimumSize: const Size(MeshShape.minTouch, MeshShape.minTouch),
+          shape: controlShape,
           textStyle: const TextStyle(
             fontFamily: MeshFonts.sans,
             fontFamilyFallback: MeshFonts.sansFallback,
@@ -513,22 +508,38 @@ class MeshTheme {
           borderRadius: BorderRadius.circular(MeshRadii.sm),
           border: Border.all(color: scheme.outline),
         ),
-        textStyle: TextStyle(color: scheme.onSurface, fontSize: 12),
+        textStyle: text.bodySmall?.copyWith(color: scheme.onSurface),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           backgroundColor: scheme.primary,
           foregroundColor: scheme.onPrimary,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MeshRadii.xs),
-          ),
-          textStyle: const TextStyle(
-            fontFamily: MeshFonts.sans,
-            fontFamilyFallback: MeshFonts.sansFallback,
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
+          minimumSize: minControl,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          shape: controlShape,
+          textStyle: text.labelLarge,
+        ),
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          minimumSize: const Size(MeshShape.minTouch, MeshShape.minTouch),
+        ),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected)
+              ? scheme.primary
+              : Colors.transparent,
+        ),
+        checkColor: WidgetStatePropertyAll(scheme.onPrimary),
+        side: BorderSide(color: scheme.outline, width: 1.5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      ),
+      radioTheme: RadioThemeData(
+        fillColor: WidgetStateProperty.resolveWith(
+          (states) => states.contains(WidgetState.selected)
+              ? scheme.primary
+              : scheme.outline,
         ),
       ),
     );
