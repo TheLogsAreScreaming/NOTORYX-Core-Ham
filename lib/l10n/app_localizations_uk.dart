@@ -10008,4 +10008,25 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get ham_bannerOutOfBand =>
       'Радіостанцію налаштовано поза аматорськими діапазонами';
+
+  @override
+  String get a11y_showPassword => 'Показати пароль';
+
+  @override
+  String get a11y_hidePassword => 'Приховати пароль';
+
+  @override
+  String get a11y_sendLocation => 'Надіслати моє місцезнаходження';
+
+  @override
+  String get a11y_toggleFlash => 'Ліхтарик';
+
+  @override
+  String get a11y_switchCamera => 'Змінити камеру';
+
+  @override
+  String get los_worst => 'НАЙГІРШЕ';
+
+  @override
+  String get los_selectedObstruction => 'Вибрана перешкода';
 }

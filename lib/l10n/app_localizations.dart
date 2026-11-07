@@ -16692,6 +16692,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The radio is set outside the ham bands'**
   String get ham_bannerOutOfBand;
+
+  /// No description provided for @a11y_showPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get a11y_showPassword;
+
+  /// No description provided for @a11y_hidePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide password'**
+  String get a11y_hidePassword;
+
+  /// No description provided for @a11y_sendLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Send my location'**
+  String get a11y_sendLocation;
+
+  /// No description provided for @a11y_toggleFlash.
+  ///
+  /// In en, this message translates to:
+  /// **'Flashlight'**
+  String get a11y_toggleFlash;
+
+  /// No description provided for @a11y_switchCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch camera'**
+  String get a11y_switchCamera;
+
+  /// No description provided for @los_worst.
+  ///
+  /// In en, this message translates to:
+  /// **'WORST'**
+  String get los_worst;
+
+  /// No description provided for @los_selectedObstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected obstruction'**
+  String get los_selectedObstruction;
 }
 
 class _AppLocalizationsDelegate

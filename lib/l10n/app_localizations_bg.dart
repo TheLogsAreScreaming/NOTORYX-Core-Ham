@@ -9969,4 +9969,25 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get ham_bannerOutOfBand =>
       'Радиото е настроено извън радиолюбителските обхвати';
+
+  @override
+  String get a11y_showPassword => 'Покажи паролата';
+
+  @override
+  String get a11y_hidePassword => 'Скрий паролата';
+
+  @override
+  String get a11y_sendLocation => 'Изпрати местоположението ми';
+
+  @override
+  String get a11y_toggleFlash => 'Фенерче';
+
+  @override
+  String get a11y_switchCamera => 'Смени камерата';
+
+  @override
+  String get los_worst => 'НАЙ-ЛОШО';
+
+  @override
+  String get los_selectedObstruction => 'Избрано препятствие';
 }

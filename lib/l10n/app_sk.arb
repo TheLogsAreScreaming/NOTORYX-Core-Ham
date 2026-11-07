@@ -4174,5 +4174,12 @@
   "ham_readyToTransmit": "Pripravené na vysielanie",
   "ham_notReadyToTransmit": "Pred vysielaním skontrolujte označené položky nižšie",
   "ham_bannerNameMismatch": "Pred vysielaním pomenujte rádio svojou volacou značkou",
-  "ham_bannerOutOfBand": "Rádio je nastavené mimo amatérskych pásiem"
+  "ham_bannerOutOfBand": "Rádio je nastavené mimo amatérskych pásiem",
+  "a11y_showPassword": "Zobraziť heslo",
+  "a11y_hidePassword": "Skryť heslo",
+  "a11y_sendLocation": "Odoslať moju polohu",
+  "a11y_toggleFlash": "Baterka",
+  "a11y_switchCamera": "Prepnúť kameru",
+  "los_worst": "NAJHORŠIE",
+  "los_selectedObstruction": "Vybraná prekážka"
 }

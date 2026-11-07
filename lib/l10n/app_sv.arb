@@ -4174,5 +4174,12 @@
   "ham_readyToTransmit": "Redo att sända",
   "ham_notReadyToTransmit": "Kontrollera de markerade punkterna nedan innan du sänder",
   "ham_bannerNameMismatch": "Namnge radion med din anropssignal innan du sänder",
-  "ham_bannerOutOfBand": "Radion är inställd utanför amatörbanden"
+  "ham_bannerOutOfBand": "Radion är inställd utanför amatörbanden",
+  "a11y_showPassword": "Visa lösenord",
+  "a11y_hidePassword": "Dölj lösenord",
+  "a11y_sendLocation": "Skicka min position",
+  "a11y_toggleFlash": "Ficklampa",
+  "a11y_switchCamera": "Byt kamera",
+  "los_worst": "SÄMST",
+  "los_selectedObstruction": "Valt hinder"
 }

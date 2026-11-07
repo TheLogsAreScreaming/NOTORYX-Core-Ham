@@ -369,7 +369,6 @@ class _TargetDialogState extends State<_TargetDialog> {
               decoration: InputDecoration(
                 labelText: t.coverageHex_privacy,
                 helperText: _privacyHint(t, _privacy),
-                helperMaxLines: 3,
               ),
               items: [
                 for (final p in CoveragePrivacy.values)

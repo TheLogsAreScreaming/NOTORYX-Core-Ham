@@ -334,46 +334,49 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
           title: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () => openRegionSelectDialog(widget.channel),
-            child: Row(
-              children: [
-                _channelIcon(widget.channel),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.channel.name.isEmpty
-                            ? context.l10n.channels_channelIndex(
-                                widget.channel.index,
-                              )
-                            : widget.channel.name,
-                        style: Theme.of(context).textTheme.titleMedium,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Consumer<MeshCoreConnector>(
-                        builder: (context, connector, _) {
-                          final privacy = widget.channel.isPublicChannel
-                              ? context.l10n.channels_public
-                              : context.l10n.channels_private;
-                          final region = connector.getChannelRegion(
-                            widget.channel.index,
-                          );
-                          final regionText = region.isNotEmpty
-                              ? ' • ${context.l10n.channels_regionSetTo(region)}'
-                              : '';
-                          return Text(
-                            '$privacy$regionText',
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.bodySmall,
-                          );
-                        },
-                      ),
-                    ],
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: MeshShape.minTouch),
+              child: Row(
+                children: [
+                  _channelIcon(widget.channel),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.channel.name.isEmpty
+                              ? context.l10n.channels_channelIndex(
+                                  widget.channel.index,
+                                )
+                              : widget.channel.name,
+                          style: Theme.of(context).textTheme.titleMedium,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Consumer<MeshCoreConnector>(
+                          builder: (context, connector, _) {
+                            final privacy = widget.channel.isPublicChannel
+                                ? context.l10n.channels_public
+                                : context.l10n.channels_private;
+                            final region = connector.getChannelRegion(
+                              widget.channel.index,
+                            );
+                            final regionText = region.isNotEmpty
+                                ? ' • ${context.l10n.channels_regionSetTo(region)}'
+                                : '';
+                            return Text(
+                              '$privacy$regionText',
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           centerTitle: false,
@@ -1253,6 +1256,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         IconButton(
+          tooltip: context.l10n.a11y_sendLocation,
           icon: Icon(Icons.location_on_outlined, color: scheme.primary),
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
@@ -1803,6 +1807,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
             ),
           ),
           IconButton(
+            tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
             icon: const Icon(Icons.close, size: 18),
             onPressed: _cancelReply,
             color: scheme.onSurfaceVariant,
@@ -2069,6 +2074,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                 ),
                                 const SizedBox(width: 8),
                                 IconButton(
+                                  tooltip: MaterialLocalizations.of(
+                                    context,
+                                  ).closeButtonTooltip,
                                   icon: const Icon(Icons.close),
                                   onPressed: () {
                                     _textController.clear();

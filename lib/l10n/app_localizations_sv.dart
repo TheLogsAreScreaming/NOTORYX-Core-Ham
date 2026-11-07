@@ -9905,4 +9905,25 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get ham_bannerOutOfBand => 'Radion är inställd utanför amatörbanden';
+
+  @override
+  String get a11y_showPassword => 'Visa lösenord';
+
+  @override
+  String get a11y_hidePassword => 'Dölj lösenord';
+
+  @override
+  String get a11y_sendLocation => 'Skicka min position';
+
+  @override
+  String get a11y_toggleFlash => 'Ficklampa';
+
+  @override
+  String get a11y_switchCamera => 'Byt kamera';
+
+  @override
+  String get los_worst => 'SÄMST';
+
+  @override
+  String get los_selectedObstruction => 'Valt hinder';
 }

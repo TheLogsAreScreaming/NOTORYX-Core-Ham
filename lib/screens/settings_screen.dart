@@ -839,7 +839,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             // The ham firmware won't transmit until the name starts with a
             // call sign; it sends that call sign as the station ID.
             helperText: l10n.ham_nodeNameCallsignHelper,
-            helperMaxLines: 2,
             border: const OutlineInputBorder(),
           ),
           maxLength: 31,
@@ -2327,7 +2326,6 @@ class AnalyzerCard extends StatelessWidget {
             decoration: InputDecoration(
               labelText: t.analyzer_url,
               helperText: t.analyzer_urlHint,
-              helperMaxLines: 3,
               errorText: AnalyzerService.isValidUrl(controller.text)
                   ? null
                   : t.coverageHex_urlInvalid,
@@ -2519,7 +2517,6 @@ class ReadAloudCard extends StatelessWidget {
         decoration: InputDecoration(
           labelText: l10n.settings_readAloud,
           helperText: l10n.settings_readAloudHelper,
-          helperMaxLines: 3,
           icon: const Icon(Icons.record_voice_over_outlined),
         ),
         items: [

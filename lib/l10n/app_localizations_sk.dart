@@ -9955,4 +9955,25 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get ham_bannerOutOfBand =>
       'Rádio je nastavené mimo amatérskych pásiem';
+
+  @override
+  String get a11y_showPassword => 'Zobraziť heslo';
+
+  @override
+  String get a11y_hidePassword => 'Skryť heslo';
+
+  @override
+  String get a11y_sendLocation => 'Odoslať moju polohu';
+
+  @override
+  String get a11y_toggleFlash => 'Baterka';
+
+  @override
+  String get a11y_switchCamera => 'Prepnúť kameru';
+
+  @override
+  String get los_worst => 'NAJHORŠIE';
+
+  @override
+  String get los_selectedObstruction => 'Vybraná prekážka';
 }

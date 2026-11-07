@@ -4174,5 +4174,12 @@
   "ham_readyToTransmit": "Pripravljeno za oddajanje",
   "ham_notReadyToTransmit": "Pred oddajanjem preverite spodaj označene točke",
   "ham_bannerNameMismatch": "Pred oddajanjem poimenujte postajo s svojim klicnim znakom",
-  "ham_bannerOutOfBand": "Postaja je nastavljena zunaj radioamaterskih pasov"
+  "ham_bannerOutOfBand": "Postaja je nastavljena zunaj radioamaterskih pasov",
+  "a11y_showPassword": "Pokaži geslo",
+  "a11y_hidePassword": "Skrij geslo",
+  "a11y_sendLocation": "Pošlji mojo lokacijo",
+  "a11y_toggleFlash": "Svetilka",
+  "a11y_switchCamera": "Preklopi kamero",
+  "los_worst": "NAJSLABŠE",
+  "los_selectedObstruction": "Izbrana ovira"
 }

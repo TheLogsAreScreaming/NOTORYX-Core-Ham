@@ -4154,5 +4154,12 @@
   "ham_readyToTransmit": "Готово до передавання",
   "ham_notReadyToTransmit": "Перед передаванням перевірте позначені нижче пункти",
   "ham_bannerNameMismatch": "Перед передаванням назвіть радіостанцію своїм позивним",
-  "ham_bannerOutOfBand": "Радіостанцію налаштовано поза аматорськими діапазонами"
+  "ham_bannerOutOfBand": "Радіостанцію налаштовано поза аматорськими діапазонами",
+  "a11y_showPassword": "Показати пароль",
+  "a11y_hidePassword": "Приховати пароль",
+  "a11y_sendLocation": "Надіслати моє місцезнаходження",
+  "a11y_toggleFlash": "Ліхтарик",
+  "a11y_switchCamera": "Змінити камеру",
+  "los_worst": "НАЙГІРШЕ",
+  "los_selectedObstruction": "Вибрана перешкода"
 }

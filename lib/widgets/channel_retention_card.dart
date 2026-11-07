@@ -29,7 +29,6 @@ class ChannelRetentionCard extends StatelessWidget {
           labelText: 'Delete old channel messages',
           helperText:
               'Frees space on this phone. Direct messages are never deleted.',
-          helperMaxLines: 2,
           icon: Icon(Icons.auto_delete_outlined),
         ),
         items: [

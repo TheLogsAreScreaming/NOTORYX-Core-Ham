@@ -9304,4 +9304,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get ham_bannerOutOfBand => '电台设置在业余频段之外';
+
+  @override
+  String get a11y_showPassword => '显示密码';
+
+  @override
+  String get a11y_hidePassword => '隐藏密码';
+
+  @override
+  String get a11y_sendLocation => '发送我的位置';
+
+  @override
+  String get a11y_toggleFlash => '手电筒';
+
+  @override
+  String get a11y_switchCamera => '切换摄像头';
+
+  @override
+  String get los_worst => '最差';
+
+  @override
+  String get los_selectedObstruction => '选中的障碍物';
 }

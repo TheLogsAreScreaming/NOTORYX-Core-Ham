@@ -4308,5 +4308,12 @@
   "ham_readyToTransmit": "Listo para transmitir",
   "ham_notReadyToTransmit": "Revisa los puntos marcados abajo antes de transmitir",
   "ham_bannerNameMismatch": "Pon tu indicativo en el nombre de la radio antes de transmitir",
-  "ham_bannerOutOfBand": "La radio está fuera de las bandas de radioaficionado"
+  "ham_bannerOutOfBand": "La radio está fuera de las bandas de radioaficionado",
+  "a11y_showPassword": "Mostrar contraseña",
+  "a11y_hidePassword": "Ocultar contraseña",
+  "a11y_sendLocation": "Enviar mi ubicación",
+  "a11y_toggleFlash": "Linterna",
+  "a11y_switchCamera": "Cambiar cámara",
+  "los_worst": "PEOR",
+  "los_selectedObstruction": "Obstrucción seleccionada"
 }

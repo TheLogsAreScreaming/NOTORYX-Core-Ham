@@ -9994,4 +9994,25 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get ham_bannerOutOfBand =>
       'Das Funkgerät ist außerhalb der Amateurfunkbänder eingestellt';
+
+  @override
+  String get a11y_showPassword => 'Passwort anzeigen';
+
+  @override
+  String get a11y_hidePassword => 'Passwort verbergen';
+
+  @override
+  String get a11y_sendLocation => 'Meinen Standort senden';
+
+  @override
+  String get a11y_toggleFlash => 'Taschenlampe';
+
+  @override
+  String get a11y_switchCamera => 'Kamera wechseln';
+
+  @override
+  String get los_worst => 'SCHLECHTESTE';
+
+  @override
+  String get los_selectedObstruction => 'Ausgewähltes Hindernis';
 }

@@ -1741,7 +1741,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                       decoration: InputDecoration(
                         labelText: l10n.repeater_loopDetect,
                         helperText: l10n.repeater_loopDetectHelper,
-                        helperMaxLines: 3,
                       ),
                       items: [
                         DropdownMenuItem(
@@ -1847,7 +1846,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
             decoration: InputDecoration(
               labelText: l10n.repeater_ownerInfo,
               helperText: l10n.repeater_ownerInfoHelper,
-              helperMaxLines: 3,
             ),
             maxLines: 4,
             minLines: 2,
@@ -1931,7 +1929,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_pathHashMode,
                     helperText: l10n.repeater_pathHashModeHelper,
-                    helperMaxLines: 5,
                   ),
                   items: const [
                     DropdownMenuItem(value: 0, child: Text('0')),
@@ -1963,7 +1960,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_txDelay,
                     helperText: l10n.repeater_txDelayHelper,
-                    helperMaxLines: 3,
                   ),
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
@@ -1988,7 +1984,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_directTxDelay,
                     helperText: l10n.repeater_directTxDelayHelper,
-                    helperMaxLines: 3,
                   ),
                   keyboardType: const TextInputType.numberWithOptions(
                     decimal: true,
@@ -2013,7 +2008,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_intThresh,
                     helperText: l10n.repeater_intThreshHelper,
-                    helperMaxLines: 3,
                   ),
                   keyboardType: TextInputType.number,
                   onChanged: (_) => _markChanged(_SettingField.intThresh),
@@ -2124,7 +2118,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_prvKey,
                     helperText: l10n.repeater_prvKeyHelper,
-                    helperMaxLines: 3,
                     border: const OutlineInputBorder(),
                   ),
                   onChanged: (_) {
@@ -2172,7 +2165,6 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                   decoration: InputDecoration(
                     labelText: l10n.repeater_pubKey,
                     helperText: l10n.repeater_pubKeyHelper,
-                    helperMaxLines: 3,
                     border: const OutlineInputBorder(),
                   ),
                 ),
@@ -2208,9 +2200,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                     helperText: l10n.repeater_pubKeyPrefixHelper(
                       pow(16, _prvKeyPrefixController.text.length).toInt(),
                     ),
-                    helperMaxLines: 3,
                     errorText: _prefixClash(connector, repeater),
-                    errorMaxLines: 3,
                     border: const OutlineInputBorder(),
                   ),
                 ),

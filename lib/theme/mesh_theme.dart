@@ -332,6 +332,9 @@ class MeshTheme {
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
+        // Help and error text wraps instead of cutting off at large sizes.
+        helperMaxLines: 8,
+        errorMaxLines: 8,
         filled: true,
         fillColor: scheme.surfaceContainerHigh,
         hintStyle: text.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),

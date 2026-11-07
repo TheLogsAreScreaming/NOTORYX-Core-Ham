@@ -371,41 +371,50 @@ class _RepeaterRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 130,
-              child: Text(
-                node.label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(color: MeshPalette.ink),
-              ),
-            ),
-            Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(3),
-                child: LinearProgressIndicator(
-                  value: node.relays / max,
-                  minHeight: 8,
-                  color: node.ambiguous ? MapPalette.stale : scheme.primary,
-                  backgroundColor: MeshPalette.line,
+    // One spoken row ("N0RPT Hollyburn, 38") and a full-size tap target.
+    return Semantics(
+      button: true,
+      label: '${node.label}, ${node.relays}',
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: onTap,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: MeshShape.minTouch),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 130,
+                  child: Text(
+                    node.label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: MeshPalette.ink),
+                  ),
                 ),
-              ),
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(3),
+                    child: LinearProgressIndicator(
+                      value: node.relays / max,
+                      minHeight: 8,
+                      color: node.ambiguous ? MapPalette.stale : scheme.primary,
+                      backgroundColor: MeshPalette.line,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 44,
+                  child: Text(
+                    '${node.relays}',
+                    textAlign: TextAlign.end,
+                    style: MeshTheme.mono(color: MeshPalette.ink, fontSize: 13),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              width: 44,
-              child: Text(
-                '${node.relays}',
-                textAlign: TextAlign.end,
-                style: MeshTheme.mono(color: MeshPalette.ink, fontSize: 13),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

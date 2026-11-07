@@ -293,6 +293,9 @@ class _RoomLoginDialogState extends State<RoomLoginDialog> {
                       hintText: l10n.login_enterPassword,
                       prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
+                        tooltip: _obscurePassword
+                            ? context.l10n.a11y_showPassword
+                            : context.l10n.a11y_hidePassword,
                         icon: Icon(
                           _obscurePassword
                               ? Icons.visibility

@@ -228,7 +228,6 @@ class _RegionSetupScreenState extends State<RegionSetupScreen> {
                               : tooMany
                               ? l10n.regionSetup_tooMany(maxRegionsPerRepeater)
                               : null,
-                          errorMaxLines: 3,
                         ),
                         onChanged: (_) => _changed(() {}),
                       ),
@@ -396,7 +395,10 @@ class _OptionRow extends StatelessWidget {
               ],
             ),
           ),
-          Switch(value: value, onChanged: onChanged),
+          Semantics(
+            label: title,
+            child: Switch(value: value, onChanged: onChanged),
+          ),
         ],
       ),
     );

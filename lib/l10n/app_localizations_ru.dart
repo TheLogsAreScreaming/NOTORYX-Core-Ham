@@ -10008,4 +10008,25 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get ham_bannerOutOfBand =>
       'Радиостанция настроена вне любительских диапазонов';
+
+  @override
+  String get a11y_showPassword => 'Показать пароль';
+
+  @override
+  String get a11y_hidePassword => 'Скрыть пароль';
+
+  @override
+  String get a11y_sendLocation => 'Отправить моё местоположение';
+
+  @override
+  String get a11y_toggleFlash => 'Фонарик';
+
+  @override
+  String get a11y_switchCamera => 'Сменить камеру';
+
+  @override
+  String get los_worst => 'ХУДШЕЕ';
+
+  @override
+  String get los_selectedObstruction => 'Выбранное препятствие';
 }

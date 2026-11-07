@@ -4308,5 +4308,12 @@
   "ham_readyToTransmit": "송신 준비 완료",
   "ham_notReadyToTransmit": "송신하기 전에 아래 표시된 항목을 확인하세요",
   "ham_bannerNameMismatch": "송신하기 전에 무선기 이름을 호출부호로 정하세요",
-  "ham_bannerOutOfBand": "무선기가 아마추어 대역 밖으로 설정되어 있습니다"
+  "ham_bannerOutOfBand": "무선기가 아마추어 대역 밖으로 설정되어 있습니다",
+  "a11y_showPassword": "비밀번호 표시",
+  "a11y_hidePassword": "비밀번호 숨기기",
+  "a11y_sendLocation": "내 위치 보내기",
+  "a11y_toggleFlash": "손전등",
+  "a11y_switchCamera": "카메라 전환",
+  "los_worst": "최악",
+  "los_selectedObstruction": "선택한 장애물"
 }

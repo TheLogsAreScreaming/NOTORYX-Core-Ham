@@ -3477,5 +3477,12 @@
   "ham_readyToTransmit": "Готово к передаче",
   "ham_notReadyToTransmit": "Перед передачей проверьте отмеченные ниже пункты",
   "ham_bannerNameMismatch": "Перед передачей назовите радиостанцию своим позывным",
-  "ham_bannerOutOfBand": "Радиостанция настроена вне любительских диапазонов"
+  "ham_bannerOutOfBand": "Радиостанция настроена вне любительских диапазонов",
+  "a11y_showPassword": "Показать пароль",
+  "a11y_hidePassword": "Скрыть пароль",
+  "a11y_sendLocation": "Отправить моё местоположение",
+  "a11y_toggleFlash": "Фонарик",
+  "a11y_switchCamera": "Сменить камеру",
+  "los_worst": "ХУДШЕЕ",
+  "los_selectedObstruction": "Выбранное препятствие"
 }

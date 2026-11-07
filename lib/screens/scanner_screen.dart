@@ -112,6 +112,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
       appBar: AppBar(
         leading: canPop
             ? IconButton(
+                tooltip: MaterialLocalizations.of(context).backButtonTooltip,
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   appLogger.info('Back button pressed', tag: 'ScannerScreen');
@@ -582,7 +583,7 @@ class _ScanHero extends StatelessWidget {
         ),
         if (action != null) ...[
           const SizedBox(height: 14),
-          SizedBox(height: 46, child: action),
+          SizedBox(height: MeshShape.minTouch, child: action),
         ],
       ],
     );

@@ -247,6 +247,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           children: [
                             if (viewState.channelsSearchText.isNotEmpty)
                               IconButton(
+                                tooltip: MaterialLocalizations.of(
+                                  context,
+                                ).clearButtonTooltip,
                                 icon: const Icon(Icons.clear),
                                 onPressed: () {
                                   _searchDebounce?.cancel();

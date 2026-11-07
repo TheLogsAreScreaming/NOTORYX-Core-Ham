@@ -163,7 +163,7 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
                       ],
                       const SizedBox(height: 14),
                       SizedBox(
-                        height: 46,
+                        height: MeshShape.minTouch,
                         child: current != null
                             ? FilledButton.icon(
                                 key: const ValueKey('track-stop'),

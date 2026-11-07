@@ -4212,5 +4212,12 @@
   "ham_readyToTransmit": "Adásra kész",
   "ham_notReadyToTransmit": "Adás előtt ellenőrizd az alább jelölt pontokat",
   "ham_bannerNameMismatch": "Adás előtt nevezd el a rádiót a hívójeleddel",
-  "ham_bannerOutOfBand": "A rádió a rádióamatőr sávokon kívülre van állítva"
+  "ham_bannerOutOfBand": "A rádió a rádióamatőr sávokon kívülre van állítva",
+  "a11y_showPassword": "Jelszó megjelenítése",
+  "a11y_hidePassword": "Jelszó elrejtése",
+  "a11y_sendLocation": "Helyzetem küldése",
+  "a11y_toggleFlash": "Zseblámpa",
+  "a11y_switchCamera": "Kamera váltása",
+  "los_worst": "LEGROSSZABB",
+  "los_selectedObstruction": "Kiválasztott akadály"
 }

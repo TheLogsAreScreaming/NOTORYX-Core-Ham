@@ -598,10 +598,6 @@ void main() {
   };
 
   setUpAll(() async {
-    // PREVIEW_THEME=bubble_gum (etc.) renders that theme; Blaze by default.
-    MeshPalette.current = BastionTheme.fromId(
-      Platform.environment['PREVIEW_THEME'],
-    ).palette;
     if (out != null) await _loadFonts();
   });
 
@@ -630,16 +626,32 @@ void main() {
   final only = Platform.environment['PREVIEW_ONLY']?.split(',').toSet();
   final height =
       double.tryParse(Platform.environment['PREVIEW_HEIGHT'] ?? '') ?? 844;
-  for (final mode in [ThemeMode.dark, ThemeMode.light]) {
+  // PREVIEW_THEME=okabe_ito,red_light (etc.) picks themes; by default the
+  // dark Blaze theme and the light Bubble Gum theme.
+  final themes =
+      Platform.environment['PREVIEW_THEME']
+          ?.split(',')
+          .map(BastionTheme.fromId)
+          .toList() ??
+      const [BastionTheme.blaze, BastionTheme.bubbleGum];
+  // PREVIEW_A11Y=1 also runs Flutter's accessibility guidelines on every
+  // screen and writes the findings to a11y.txt instead of failing.
+  final a11y = Platform.environment['PREVIEW_A11Y'] != null;
+  for (final theme in themes) {
     for (final entry in screens.entries) {
       if (only != null && !only.contains(entry.key)) continue;
-      testWidgets('${entry.key} ${mode.name}', (tester) async {
+      testWidgets('${entry.key} ${theme.id}', (tester) async {
+        MeshPalette.current = theme.palette;
+        final semantics = a11y ? tester.ensureSemantics() : null;
         await tester.binding.setSurfaceSize(Size(390, height));
         tester.view.devicePixelRatio = 2;
         addTearDown(tester.view.reset);
         final boundary = GlobalKey();
         await tester.pumpWidget(
-          RepaintBoundary(key: boundary, child: _app(entry.value(), mode)),
+          RepaintBoundary(
+            key: boundary,
+            child: _app(entry.value(), ThemeMode.light),
+          ),
         );
         for (var i = 0; i < 10; i++) {
           await tester.pump(const Duration(milliseconds: 100));
@@ -657,10 +669,36 @@ void main() {
                   as RenderRepaintBoundary;
           final image = await ro.toImage(pixelRatio: 2);
           final png = await image.toByteData(format: ui.ImageByteFormat.png);
-          File('$out/${entry.key}_${mode.name}.png')
+          File('$out/${entry.key}_${theme.id}.png')
             ..createSync(recursive: true)
             ..writeAsBytesSync(png!.buffer.asUint8List());
         });
+        if (semantics != null) {
+          final report = StringBuffer();
+          for (final guideline in [
+            androidTapTargetGuideline,
+            labeledTapTargetGuideline,
+          ]) {
+            final result = await guideline.evaluate(tester);
+            if (!result.passed) report.writeln(result.reason);
+          }
+          final contrast = await tester.runAsync(
+            () async => textContrastGuideline.evaluate(tester),
+          );
+          if (contrast != null && !contrast.passed) {
+            report.writeln(contrast.reason);
+          }
+          File('$out/a11y.txt').writeAsStringSync(
+            '## ${entry.key} ${theme.id}\n'
+            '${report.isEmpty ? 'ok\n' : report}',
+            mode: FileMode.append,
+          );
+          semantics.dispose();
+        }
+        // Screens start polling and debounce timers; let them run out so
+        // the test ends clean.
+        await tester.pumpWidget(const SizedBox());
+        await tester.pump(const Duration(minutes: 2));
       }, skip: out == null);
     }
   }
