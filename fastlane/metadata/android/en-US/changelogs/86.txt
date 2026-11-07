@@ -1,0 +1,6 @@
+• Messages now stored in a database; existing history moves over once
+• RX log: every packet your radio hears, live
+• Delivery details: why a direct message did or didn't get through
+• Alerts when a favorite is back in range
+• TCP and USB links reconnect on their own
+• Fixed: one failed send could block later messages to that contact
