@@ -9084,4 +9084,196 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'When the app opens, reconnect to your last radio without a tap. It tries a few times if the radio isn’t in range yet.';
+
+  @override
+  String get ham_licensedOperator => 'Licensed operator';
+
+  @override
+  String get ham_operatorIntro =>
+      'NOTORYX Core Ham radios transmit under an amateur licence (FCC Part 97). Everything sent is readable by anyone, and every frame carries the call sign at the start of the radio\'s name.';
+
+  @override
+  String get ham_yourStation => 'Your station';
+
+  @override
+  String get ham_callSign => 'Call sign';
+
+  @override
+  String get ham_notUsCallsign => 'Not a US call sign';
+
+  @override
+  String get ham_licenceClass => 'Licence class';
+
+  @override
+  String get ham_licenceClassHelper =>
+      'Every class has full 33 cm and 70 cm privileges';
+
+  @override
+  String get ham_antennaSystem => 'Antenna system';
+
+  @override
+  String get ham_antennaSystemHint =>
+      'For the power estimate below. Leave 0 for anything you don\'t have.';
+
+  @override
+  String get ham_externalAmpGain => 'External amplifier gain';
+
+  @override
+  String get ham_feedlineLoss => 'Feedline loss';
+
+  @override
+  String get ham_antennaGain => 'Antenna gain';
+
+  @override
+  String get ham_coordination => 'Coordination';
+
+  @override
+  String get ham_coordinationNotice =>
+      'Use NOTORYX Core Ham only after a great deal of coordination. Radios and repeaters transmit automatically on shared bands, so before any radio goes on the air, talk to your frequency coordinator, follow the local band plan and agree one channel with every operator in your area.';
+
+  @override
+  String get ham_readCoordinationGuide => 'Read the coordination guide';
+
+  @override
+  String get ham_acknowledgment =>
+      'I hold this licence, I have read the coordination guide, and I will coordinate before transmitting.';
+
+  @override
+  String get ham_operatorSaved => 'Operator saved';
+
+  @override
+  String get ham_connectedRadio => 'Connected radio';
+
+  @override
+  String get ham_nodeName => 'Node name';
+
+  @override
+  String get ham_nodeNameOk => 'Starts with your call sign';
+
+  @override
+  String get ham_nodeNameBad =>
+      'Must start with your call sign, or the radio stays silent';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return 'Set to $callsign';
+  }
+
+  @override
+  String get ham_frequency => 'Frequency';
+
+  @override
+  String get ham_inHamBand => 'In a ham band';
+
+  @override
+  String get ham_outsideHamBands => 'Outside 420–450 / 902–928 MHz';
+
+  @override
+  String get ham_txPowerSetting => 'TX power setting';
+
+  @override
+  String get ham_chipSetting => 'The radio chip\'s setting';
+
+  @override
+  String get ham_firmware => 'Firmware';
+
+  @override
+  String get ham_estimatedOutput => 'Estimated output';
+
+  @override
+  String get ham_estimatedErp => 'Estimated ERP';
+
+  @override
+  String get ham_unknown => 'unknown';
+
+  @override
+  String get ham_unknownBoard => 'Unknown board: counted as no amplifier';
+
+  @override
+  String get ham_ampNone => 'no amplifier';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'about +$db dB from its amplifier';
+  }
+
+  @override
+  String get ham_ampVariable => 'depends on its amplifier level setting';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. Measure it before relying on any estimate.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. An estimate: measure to be sure, and use the least power that works.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      'Above 10 W PEP, the limit for spread spectrum such as LoRa (§97.311). Turn it down.';
+
+  @override
+  String get ham_erpNote =>
+      'After feedline loss and antenna gain, relative to a dipole. Check RF exposure (§97.13) at higher power.';
+
+  @override
+  String get ham_location => 'Location';
+
+  @override
+  String get ham_noLocationLimits => 'no band limits found';
+
+  @override
+  String get ham_locationOkNote =>
+      'From the radio\'s position. Check §97.303 to be sure.';
+
+  @override
+  String get ham_check => 'check';
+
+  @override
+  String get ham_positionUnknown =>
+      'Position unknown: check §97.303 for limits where you operate.';
+
+  @override
+  String get ham_exclusion33cm =>
+      'This area appears to be inside a §97.303(g) exclusion: amateur stations may not transmit on 33 cm here.';
+
+  @override
+  String get ham_lineA =>
+      'If you are north of Line A (near the Canadian border), 420–430 MHz isn\'t available. Check §97.303.';
+
+  @override
+  String get ham_statusOk => 'OK';
+
+  @override
+  String get ham_needsAttention => 'Needs attention';
+
+  @override
+  String get ham_setupBanner =>
+      'Finish licensed operator setup before transmitting';
+
+  @override
+  String get ham_setUp => 'Set up';
+
+  @override
+  String get ham_operatorCardIncomplete =>
+      'Set your call sign and read the coordination guide';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'Start with your call sign, like \"W1AW\" or \"W1AW Base\"';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      'The name must start with the repeater\'s call sign, like \"N0RPT Hilltop\".';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'Set passwords on the repeater\'s USB serial console. Sent over the air, anyone could read them.';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../l10n/l10n.dart';
 import '../screens/licensed_operator_screen.dart';
 import '../services/operator_profile_service.dart';
 
@@ -55,12 +56,12 @@ class OperatorSetupBanner extends StatelessWidget {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        'Finish licensed operator setup before transmitting',
+                        context.l10n.ham_setupBanner,
                         style: TextStyle(color: scheme.onErrorContainer),
                       ),
                     ),
                     Text(
-                      'Set up',
+                      context.l10n.ham_setUp,
                       style: TextStyle(
                         color: scheme.onErrorContainer,
                         fontWeight: FontWeight.w700,

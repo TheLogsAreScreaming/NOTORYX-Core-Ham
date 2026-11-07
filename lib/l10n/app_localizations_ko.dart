@@ -8776,4 +8776,188 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       '앱을 열면 탭하지 않아도 마지막 무전기에 다시 연결합니다. 아직 범위 밖이면 몇 번 시도합니다.';
+
+  @override
+  String get ham_licensedOperator => '자격을 갖춘 운용자';
+
+  @override
+  String get ham_operatorIntro =>
+      'NOTORYX Core Ham 무선기는 아마추어 무선 자격(FCC Part 97)으로 송신합니다. 보낸 내용은 누구나 읽을 수 있으며, 모든 프레임에는 무선기 이름 앞부분의 호출부호가 들어갑니다.';
+
+  @override
+  String get ham_yourStation => '내 무선국';
+
+  @override
+  String get ham_callSign => '호출부호';
+
+  @override
+  String get ham_notUsCallsign => '미국 호출부호가 아닙니다';
+
+  @override
+  String get ham_licenceClass => '자격 등급';
+
+  @override
+  String get ham_licenceClassHelper => '모든 등급이 33 cm와 70 cm를 모두 사용할 수 있습니다';
+
+  @override
+  String get ham_antennaSystem => '안테나 계통';
+
+  @override
+  String get ham_antennaSystemHint => '아래 출력 추정에 쓰입니다. 없는 항목은 0으로 두세요.';
+
+  @override
+  String get ham_externalAmpGain => '외부 증폭기 이득';
+
+  @override
+  String get ham_feedlineLoss => '급전선 손실';
+
+  @override
+  String get ham_antennaGain => '안테나 이득';
+
+  @override
+  String get ham_coordination => '조정';
+
+  @override
+  String get ham_coordinationNotice =>
+      'NOTORYX Core Ham은 충분한 조정을 거친 뒤에만 사용하세요. 무선기와 중계기는 공유 대역에서 자동으로 송신합니다. 어떤 무선기든 전파를 내기 전에 주파수 조정 담당자와 상의하고, 지역 대역 계획을 따르며, 지역의 모든 운용자와 하나의 채널을 합의하세요.';
+
+  @override
+  String get ham_readCoordinationGuide => '조정 안내서 읽기';
+
+  @override
+  String get ham_acknowledgment => '이 자격을 갖고 있으며 조정 안내서를 읽었고, 송신하기 전에 조정하겠습니다.';
+
+  @override
+  String get ham_operatorSaved => '저장했습니다';
+
+  @override
+  String get ham_connectedRadio => '연결된 무선기';
+
+  @override
+  String get ham_nodeName => '노드 이름';
+
+  @override
+  String get ham_nodeNameOk => '내 호출부호로 시작합니다';
+
+  @override
+  String get ham_nodeNameBad => '호출부호로 시작해야 하며, 그렇지 않으면 무선기가 송신하지 않습니다';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return '$callsign(으)로 설정';
+  }
+
+  @override
+  String get ham_frequency => '주파수';
+
+  @override
+  String get ham_inHamBand => '아마추어 대역 안';
+
+  @override
+  String get ham_outsideHamBands => '420–450 / 902–928 MHz 범위 밖';
+
+  @override
+  String get ham_txPowerSetting => '송신 출력 설정';
+
+  @override
+  String get ham_chipSetting => '무선 칩의 설정값';
+
+  @override
+  String get ham_firmware => '펌웨어';
+
+  @override
+  String get ham_estimatedOutput => '추정 출력';
+
+  @override
+  String get ham_estimatedErp => '추정 ERP';
+
+  @override
+  String get ham_unknown => '알 수 없음';
+
+  @override
+  String get ham_unknownBoard => '알 수 없는 보드: 증폭기 없음으로 계산';
+
+  @override
+  String get ham_ampNone => '증폭기 없음';
+
+  @override
+  String ham_ampGain(String db) {
+    return '증폭기로 약 +$db dB';
+  }
+
+  @override
+  String get ham_ampVariable => '증폭기 레벨 설정에 따라 다름';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. 추정치에 의존하기 전에 측정하세요.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. 추정치입니다. 확실히 하려면 측정하고, 통신되는 최소 출력을 쓰세요.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      '10 W PEP를 넘습니다. LoRa 같은 대역 확산의 한도입니다(§97.311). 낮추세요.';
+
+  @override
+  String get ham_erpNote =>
+      '급전선 손실과 안테나 이득을 반영한 다이폴 기준 값입니다. 출력이 높으면 전자파 노출(§97.13)을 확인하세요.';
+
+  @override
+  String get ham_location => '위치';
+
+  @override
+  String get ham_noLocationLimits => '대역 제한 없음';
+
+  @override
+  String get ham_locationOkNote => '무선기 위치 기준입니다. 확실히 하려면 §97.303을 확인하세요.';
+
+  @override
+  String get ham_check => '확인 필요';
+
+  @override
+  String get ham_positionUnknown => '위치를 알 수 없습니다. 운용 장소의 제한은 §97.303을 확인하세요.';
+
+  @override
+  String get ham_exclusion33cm =>
+      '이 지역은 §97.303(g) 제외 구역 안으로 보입니다. 여기서는 아마추어국이 33 cm로 송신할 수 없습니다.';
+
+  @override
+  String get ham_lineA =>
+      '라인 A 북쪽(캐나다 국경 부근)이라면 420–430 MHz는 사용할 수 없습니다. §97.303을 확인하세요.';
+
+  @override
+  String get ham_statusOk => '정상';
+
+  @override
+  String get ham_needsAttention => '확인 필요';
+
+  @override
+  String get ham_setupBanner => '송신하기 전에 운용자 설정을 마치세요';
+
+  @override
+  String get ham_setUp => '설정';
+
+  @override
+  String get ham_operatorCardIncomplete => '호출부호를 설정하고 조정 안내서를 읽으세요';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      '호출부호로 시작하세요(예: \"W1AW\", \"W1AW Base\")';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      '이름은 중계기의 호출부호로 시작해야 합니다(예: \"N0RPT Hilltop\").';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      '비밀번호는 중계기의 USB 시리얼 콘솔에서 설정하세요. 전파로 보내면 누구나 읽을 수 있습니다.';
 }

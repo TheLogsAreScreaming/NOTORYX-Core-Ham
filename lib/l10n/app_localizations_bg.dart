@@ -9193,4 +9193,197 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'При отваряне на приложението се свързва отново с последното радио без докосване. Опитва няколко пъти, ако радиото още не е в обхват.';
+
+  @override
+  String get ham_licensedOperator => 'Лицензиран оператор';
+
+  @override
+  String get ham_operatorIntro =>
+      'Радиата на NOTORYX Core Ham предават по радиолюбителски лиценз (FCC Part 97). Всичко изпратено може да бъде прочетено от всеки, а всеки кадър носи позивната от началото на името на радиото.';
+
+  @override
+  String get ham_yourStation => 'Вашата станция';
+
+  @override
+  String get ham_callSign => 'Позивна';
+
+  @override
+  String get ham_notUsCallsign => 'Не е американска позивна';
+
+  @override
+  String get ham_licenceClass => 'Клас на лиценза';
+
+  @override
+  String get ham_licenceClassHelper =>
+      'Всеки клас има пълни права на 33 cm и 70 cm';
+
+  @override
+  String get ham_antennaSystem => 'Антенна система';
+
+  @override
+  String get ham_antennaSystemHint =>
+      'За оценката на мощността по-долу. Оставете 0 за това, което нямате.';
+
+  @override
+  String get ham_externalAmpGain => 'Усилване на външния усилвател';
+
+  @override
+  String get ham_feedlineLoss => 'Загуби във фидера';
+
+  @override
+  String get ham_antennaGain => 'Усилване на антената';
+
+  @override
+  String get ham_coordination => 'Координация';
+
+  @override
+  String get ham_coordinationNotice =>
+      'Използвайте NOTORYX Core Ham само след много добра координация. Радиата и ретранслаторите предават автоматично в споделени обхвати, затова преди всяко радио да излезе в ефир, говорете с честотния си координатор, спазвайте местния лентов план и се договорете за един канал с всички оператори във вашия район.';
+
+  @override
+  String get ham_readCoordinationGuide =>
+      'Прочетете ръководството за координация';
+
+  @override
+  String get ham_acknowledgment =>
+      'Имам този лиценз, прочетох ръководството за координация и ще се координирам, преди да предавам.';
+
+  @override
+  String get ham_operatorSaved => 'Операторът е запазен';
+
+  @override
+  String get ham_connectedRadio => 'Свързано радио';
+
+  @override
+  String get ham_nodeName => 'Име на възела';
+
+  @override
+  String get ham_nodeNameOk => 'Започва с вашата позивна';
+
+  @override
+  String get ham_nodeNameBad =>
+      'Трябва да започва с вашата позивна, иначе радиото мълчи';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return 'Задай $callsign';
+  }
+
+  @override
+  String get ham_frequency => 'Честота';
+
+  @override
+  String get ham_inHamBand => 'В радиолюбителски обхват';
+
+  @override
+  String get ham_outsideHamBands => 'Извън 420–450 / 902–928 MHz';
+
+  @override
+  String get ham_txPowerSetting => 'Настройка на мощността';
+
+  @override
+  String get ham_chipSetting => 'Настройката на радиочипа';
+
+  @override
+  String get ham_firmware => 'Фърмуер';
+
+  @override
+  String get ham_estimatedOutput => 'Очаквана изходна мощност';
+
+  @override
+  String get ham_estimatedErp => 'Очаквана ЕИМ (ERP)';
+
+  @override
+  String get ham_unknown => 'неизвестно';
+
+  @override
+  String get ham_unknownBoard => 'Непозната платка: смята се без усилвател';
+
+  @override
+  String get ham_ampNone => 'без усилвател';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'около +$db dB от усилвателя';
+  }
+
+  @override
+  String get ham_ampVariable => 'зависи от настройката на усилвателя';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. Измерете я, преди да разчитате на оценка.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. Оценка: измерете, за да сте сигурни, и ползвайте най-малката достатъчна мощност.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      'Над 10 W PEP, границата за разпределен спектър като LoRa (§97.311). Намалете я.';
+
+  @override
+  String get ham_erpNote =>
+      'След загубите във фидера и усилването на антената, спрямо дипол. При по-голяма мощност проверете облъчването (§97.13).';
+
+  @override
+  String get ham_location => 'Местоположение';
+
+  @override
+  String get ham_noLocationLimits => 'не са открити ограничения';
+
+  @override
+  String get ham_locationOkNote =>
+      'По позицията на радиото. За сигурност проверете §97.303.';
+
+  @override
+  String get ham_check => 'проверете';
+
+  @override
+  String get ham_positionUnknown =>
+      'Позицията е неизвестна: проверете §97.303 за ограничения там, където работите.';
+
+  @override
+  String get ham_exclusion33cm =>
+      'Този район изглежда е в зона на изключение по §97.303(g): тук радиолюбителски станции не могат да предават на 33 cm.';
+
+  @override
+  String get ham_lineA =>
+      'Ако сте северно от Линия A (близо до канадската граница), 420–430 MHz не е достъпен. Проверете §97.303.';
+
+  @override
+  String get ham_statusOk => 'Наред';
+
+  @override
+  String get ham_needsAttention => 'Изисква внимание';
+
+  @override
+  String get ham_setupBanner =>
+      'Завършете настройката на оператора, преди да предавате';
+
+  @override
+  String get ham_setUp => 'Настрой';
+
+  @override
+  String get ham_operatorCardIncomplete =>
+      'Задайте позивната си и прочетете ръководството за координация';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'Започнете с позивната си, напр. „W1AW“ или „W1AW Base“';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      'Името трябва да започва с позивната на ретранслатора, напр. „N0RPT Hilltop“.';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'Задавайте паролите през USB серийната конзола на ретранслатора. Изпратени по ефира, всеки би ги прочел.';
 }

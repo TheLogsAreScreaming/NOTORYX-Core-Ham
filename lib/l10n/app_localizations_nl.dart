@@ -9170,4 +9170,196 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Bij het openen van de app opnieuw verbinden met je laatste radio, zonder tikken. Als hij nog niet in bereik is, probeert hij het een paar keer.';
+
+  @override
+  String get ham_licensedOperator => 'Gelicentieerde zendamateur';
+
+  @override
+  String get ham_operatorIntro =>
+      'NOTORYX Core Ham-radio’s zenden onder een zendamateurlicentie (FCC Part 97). Alles wat verzonden wordt is voor iedereen leesbaar, en elk frame draagt de roepnaam aan het begin van de radionaam.';
+
+  @override
+  String get ham_yourStation => 'Je station';
+
+  @override
+  String get ham_callSign => 'Roepnaam';
+
+  @override
+  String get ham_notUsCallsign => 'Geen Amerikaanse roepnaam';
+
+  @override
+  String get ham_licenceClass => 'Licentieklasse';
+
+  @override
+  String get ham_licenceClassHelper =>
+      'Elke klasse heeft volledige rechten op 33 cm en 70 cm';
+
+  @override
+  String get ham_antennaSystem => 'Antennesysteem';
+
+  @override
+  String get ham_antennaSystemHint =>
+      'Voor de vermogensschatting hieronder. Laat 0 staan voor wat je niet hebt.';
+
+  @override
+  String get ham_externalAmpGain => 'Versterking externe versterker';
+
+  @override
+  String get ham_feedlineLoss => 'Kabelverlies';
+
+  @override
+  String get ham_antennaGain => 'Antenneversterking';
+
+  @override
+  String get ham_coordination => 'Coördinatie';
+
+  @override
+  String get ham_coordinationNotice =>
+      'Gebruik NOTORYX Core Ham alleen na grondige coördinatie. Radio’s en repeaters zenden automatisch uit op gedeelde banden. Overleg daarom, voordat een radio de lucht in gaat, met je frequentiecoördinator, volg het lokale bandplan en spreek met alle zendamateurs in je omgeving één kanaal af.';
+
+  @override
+  String get ham_readCoordinationGuide => 'Lees de coördinatiegids';
+
+  @override
+  String get ham_acknowledgment =>
+      'Ik heb deze licentie, ik heb de coördinatiegids gelezen en ik coördineer voordat ik uitzend.';
+
+  @override
+  String get ham_operatorSaved => 'Opgeslagen';
+
+  @override
+  String get ham_connectedRadio => 'Verbonden radio';
+
+  @override
+  String get ham_nodeName => 'Knooppuntnaam';
+
+  @override
+  String get ham_nodeNameOk => 'Begint met je roepnaam';
+
+  @override
+  String get ham_nodeNameBad =>
+      'Moet met je roepnaam beginnen, anders zendt de radio niet';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return 'Instellen op $callsign';
+  }
+
+  @override
+  String get ham_frequency => 'Frequentie';
+
+  @override
+  String get ham_inHamBand => 'In een amateurband';
+
+  @override
+  String get ham_outsideHamBands => 'Buiten 420–450 / 902–928 MHz';
+
+  @override
+  String get ham_txPowerSetting => 'Ingesteld zendvermogen';
+
+  @override
+  String get ham_chipSetting => 'De instelling van de radiochip';
+
+  @override
+  String get ham_firmware => 'Firmware';
+
+  @override
+  String get ham_estimatedOutput => 'Geschat uitgangsvermogen';
+
+  @override
+  String get ham_estimatedErp => 'Geschatte ERP';
+
+  @override
+  String get ham_unknown => 'onbekend';
+
+  @override
+  String get ham_unknownBoard => 'Onbekend bord: gerekend zonder versterker';
+
+  @override
+  String get ham_ampNone => 'geen versterker';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'ongeveer +$db dB door de versterker';
+  }
+
+  @override
+  String get ham_ampVariable => 'hangt af van de versterkerstand';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. Meet het voordat je op een schatting vertrouwt.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. Een schatting: meet voor de zekerheid en gebruik het laagste vermogen dat werkt.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      'Boven 10 W PEP, de grens voor gespreid spectrum zoals LoRa (§97.311). Zet het lager.';
+
+  @override
+  String get ham_erpNote =>
+      'Na kabelverlies en antenneversterking, ten opzichte van een dipool. Controleer bij hoger vermogen de RF-blootstelling (§97.13).';
+
+  @override
+  String get ham_location => 'Locatie';
+
+  @override
+  String get ham_noLocationLimits => 'geen bandbeperkingen gevonden';
+
+  @override
+  String get ham_locationOkNote =>
+      'Op basis van de positie van de radio. Controleer §97.303 voor de zekerheid.';
+
+  @override
+  String get ham_check => 'controleren';
+
+  @override
+  String get ham_positionUnknown =>
+      'Positie onbekend: controleer §97.303 op beperkingen waar je uitzendt.';
+
+  @override
+  String get ham_exclusion33cm =>
+      'Dit gebied lijkt binnen een uitsluiting van §97.303(g) te liggen: amateurstations mogen hier niet op 33 cm uitzenden.';
+
+  @override
+  String get ham_lineA =>
+      'Ten noorden van Line A (bij de Canadese grens) is 420–430 MHz niet beschikbaar. Controleer §97.303.';
+
+  @override
+  String get ham_statusOk => 'OK';
+
+  @override
+  String get ham_needsAttention => 'Vraagt aandacht';
+
+  @override
+  String get ham_setupBanner =>
+      'Rond de instelling als zendamateur af voordat je uitzendt';
+
+  @override
+  String get ham_setUp => 'Instellen';
+
+  @override
+  String get ham_operatorCardIncomplete =>
+      'Stel je roepnaam in en lees de coördinatiegids';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'Begin met je roepnaam, zoals \"W1AW\" of \"W1AW Base\"';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      'De naam moet beginnen met de roepnaam van de repeater, zoals \"N0RPT Hilltop\".';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'Stel wachtwoorden in via de seriële USB-console van de repeater. Via de radio verzonden kan iedereen ze lezen.';
 }

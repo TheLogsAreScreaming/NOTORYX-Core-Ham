@@ -8576,4 +8576,184 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get autoConnect_hint => '打开应用时无需点按即可重新连接上次的电台。如果电台还不在范围内，会尝试几次。';
+
+  @override
+  String get ham_licensedOperator => '持照操作员';
+
+  @override
+  String get ham_operatorIntro =>
+      'NOTORYX Core Ham 电台依据业余无线电执照（FCC Part 97）发射。发送的内容任何人都能读取，每一帧都带有电台名称开头的呼号。';
+
+  @override
+  String get ham_yourStation => '你的电台';
+
+  @override
+  String get ham_callSign => '呼号';
+
+  @override
+  String get ham_notUsCallsign => '不是美国呼号';
+
+  @override
+  String get ham_licenceClass => '执照等级';
+
+  @override
+  String get ham_licenceClassHelper => '所有等级均可完整使用 33 cm 和 70 cm';
+
+  @override
+  String get ham_antennaSystem => '天线系统';
+
+  @override
+  String get ham_antennaSystemHint => '用于下方的功率估算。没有的项目请保留 0。';
+
+  @override
+  String get ham_externalAmpGain => '外接功放增益';
+
+  @override
+  String get ham_feedlineLoss => '馈线损耗';
+
+  @override
+  String get ham_antennaGain => '天线增益';
+
+  @override
+  String get ham_coordination => '协调';
+
+  @override
+  String get ham_coordinationNotice =>
+      '请在充分协调之后再使用 NOTORYX Core Ham。电台和中继会在共用频段上自动发射，所以在任何电台上线之前，请与你的频率协调人沟通，遵守当地频段规划，并与本地区所有操作员商定同一个信道。';
+
+  @override
+  String get ham_readCoordinationGuide => '阅读协调指南';
+
+  @override
+  String get ham_acknowledgment => '我持有此执照，已阅读协调指南，并会在发射前进行协调。';
+
+  @override
+  String get ham_operatorSaved => '已保存';
+
+  @override
+  String get ham_connectedRadio => '已连接的电台';
+
+  @override
+  String get ham_nodeName => '节点名称';
+
+  @override
+  String get ham_nodeNameOk => '以你的呼号开头';
+
+  @override
+  String get ham_nodeNameBad => '必须以你的呼号开头，否则电台不会发射';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return '设为 $callsign';
+  }
+
+  @override
+  String get ham_frequency => '频率';
+
+  @override
+  String get ham_inHamBand => '在业余频段内';
+
+  @override
+  String get ham_outsideHamBands => '不在 420–450 / 902–928 MHz 内';
+
+  @override
+  String get ham_txPowerSetting => '发射功率设置';
+
+  @override
+  String get ham_chipSetting => '射频芯片的设置值';
+
+  @override
+  String get ham_firmware => '固件';
+
+  @override
+  String get ham_estimatedOutput => '估算输出功率';
+
+  @override
+  String get ham_estimatedErp => '估算有效辐射功率（ERP）';
+
+  @override
+  String get ham_unknown => '未知';
+
+  @override
+  String get ham_unknownBoard => '未知主板：按无功放计算';
+
+  @override
+  String get ham_ampNone => '无功放';
+
+  @override
+  String ham_ampGain(String db) {
+    return '功放约 +$db dB';
+  }
+
+  @override
+  String get ham_ampVariable => '取决于功放档位设置';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board：$note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board。在依赖估算之前请先实测。';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board。这是估算值：请实测确认，并使用能通信的最小功率。';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      '超过 10 W PEP，即 LoRa 等扩频的上限（§97.311）。请调低。';
+
+  @override
+  String get ham_erpNote => '已计入馈线损耗和天线增益，相对于偶极子。功率较高时请检查射频暴露（§97.13）。';
+
+  @override
+  String get ham_location => '位置';
+
+  @override
+  String get ham_noLocationLimits => '未发现频段限制';
+
+  @override
+  String get ham_locationOkNote => '依据电台位置判断。请查阅 §97.303 确认。';
+
+  @override
+  String get ham_check => '需确认';
+
+  @override
+  String get ham_positionUnknown => '位置未知：请查阅 §97.303，了解你运行地点的限制。';
+
+  @override
+  String get ham_exclusion33cm =>
+      '此地区似乎位于 §97.303(g) 的排除区内：业余电台不得在此使用 33 cm 发射。';
+
+  @override
+  String get ham_lineA => '如果你位于 A 线以北（靠近加拿大边境），则不能使用 420–430 MHz。请查阅 §97.303。';
+
+  @override
+  String get ham_statusOk => '正常';
+
+  @override
+  String get ham_needsAttention => '需要注意';
+
+  @override
+  String get ham_setupBanner => '发射前请完成持照操作员设置';
+
+  @override
+  String get ham_setUp => '设置';
+
+  @override
+  String get ham_operatorCardIncomplete => '设置你的呼号并阅读协调指南';
+
+  @override
+  String get ham_nodeNameCallsignHelper => '以你的呼号开头，例如“W1AW”或“W1AW Base”';
+
+  @override
+  String get ham_repeaterNameNeedsCall => '名称必须以中继的呼号开头，例如“N0RPT Hilltop”。';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      '请通过中继的 USB 串口控制台设置密码。通过无线发送的话，任何人都能读取。';
 }

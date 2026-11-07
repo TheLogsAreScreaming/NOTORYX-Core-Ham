@@ -836,7 +836,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             hintText: l10n.settings_nodeNameHint,
             // The ham firmware won't transmit until the name starts with a
             // call sign; it sends that call sign as the station ID.
-            helperText: 'Start with your call sign, like "W1AW" or "W1AW Base"',
+            helperText: l10n.ham_nodeNameCallsignHelper,
             helperMaxLines: 2,
             border: const OutlineInputBorder(),
           ),

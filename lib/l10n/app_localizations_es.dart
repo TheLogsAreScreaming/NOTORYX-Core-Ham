@@ -9209,4 +9209,197 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get autoConnect_hint =>
       'Al abrir la app, se vuelve a conectar a tu última radio sin tocar nada. Lo intenta varias veces si aún no está al alcance.';
+
+  @override
+  String get ham_licensedOperator => 'Operador con licencia';
+
+  @override
+  String get ham_operatorIntro =>
+      'Las radios NOTORYX Core Ham transmiten con una licencia de radioaficionado (FCC Part 97). Todo lo enviado puede leerlo cualquiera, y cada trama lleva el indicativo del inicio del nombre de la radio.';
+
+  @override
+  String get ham_yourStation => 'Tu estación';
+
+  @override
+  String get ham_callSign => 'Indicativo';
+
+  @override
+  String get ham_notUsCallsign => 'No es un indicativo de EE. UU.';
+
+  @override
+  String get ham_licenceClass => 'Clase de licencia';
+
+  @override
+  String get ham_licenceClassHelper =>
+      'Todas las clases tienen privilegios completos en 33 cm y 70 cm';
+
+  @override
+  String get ham_antennaSystem => 'Sistema de antena';
+
+  @override
+  String get ham_antennaSystemHint =>
+      'Para la estimación de potencia de abajo. Deja 0 en lo que no tengas.';
+
+  @override
+  String get ham_externalAmpGain => 'Ganancia del amplificador externo';
+
+  @override
+  String get ham_feedlineLoss => 'Pérdida en la línea';
+
+  @override
+  String get ham_antennaGain => 'Ganancia de la antena';
+
+  @override
+  String get ham_coordination => 'Coordinación';
+
+  @override
+  String get ham_coordinationNotice =>
+      'Usa NOTORYX Core Ham solo tras una coordinación muy cuidadosa. Las radios y los repetidores transmiten automáticamente en bandas compartidas, así que antes de que una radio salga al aire, habla con tu coordinador de frecuencias, sigue el plan de bandas local y acuerda un único canal con todos los operadores de tu zona.';
+
+  @override
+  String get ham_readCoordinationGuide => 'Leer la guía de coordinación';
+
+  @override
+  String get ham_acknowledgment =>
+      'Tengo esta licencia, he leído la guía de coordinación y me coordinaré antes de transmitir.';
+
+  @override
+  String get ham_operatorSaved => 'Operador guardado';
+
+  @override
+  String get ham_connectedRadio => 'Radio conectada';
+
+  @override
+  String get ham_nodeName => 'Nombre del nodo';
+
+  @override
+  String get ham_nodeNameOk => 'Empieza por tu indicativo';
+
+  @override
+  String get ham_nodeNameBad =>
+      'Debe empezar por tu indicativo o la radio no transmitirá';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return 'Poner $callsign';
+  }
+
+  @override
+  String get ham_frequency => 'Frecuencia';
+
+  @override
+  String get ham_inHamBand => 'En una banda de radioaficionado';
+
+  @override
+  String get ham_outsideHamBands => 'Fuera de 420–450 / 902–928 MHz';
+
+  @override
+  String get ham_txPowerSetting => 'Potencia de TX configurada';
+
+  @override
+  String get ham_chipSetting => 'El ajuste del chip de radio';
+
+  @override
+  String get ham_firmware => 'Firmware';
+
+  @override
+  String get ham_estimatedOutput => 'Potencia de salida estimada';
+
+  @override
+  String get ham_estimatedErp => 'PRA estimada (ERP)';
+
+  @override
+  String get ham_unknown => 'desconocida';
+
+  @override
+  String get ham_unknownBoard =>
+      'Placa desconocida: se cuenta sin amplificador';
+
+  @override
+  String get ham_ampNone => 'sin amplificador';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'unos +$db dB de su amplificador';
+  }
+
+  @override
+  String get ham_ampVariable => 'depende del ajuste de nivel del amplificador';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board. Mídela antes de fiarte de una estimación.';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board. Es una estimación: mide para asegurarte y usa la menor potencia que funcione.';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      'Más de 10 W PEP, el límite para espectro ensanchado como LoRa (§97.311). Bájala.';
+
+  @override
+  String get ham_erpNote =>
+      'Tras la pérdida de la línea y la ganancia de la antena, respecto a un dipolo. Con más potencia, revisa la exposición a RF (§97.13).';
+
+  @override
+  String get ham_location => 'Ubicación';
+
+  @override
+  String get ham_noLocationLimits => 'sin límites de banda';
+
+  @override
+  String get ham_locationOkNote =>
+      'Según la posición de la radio. Revisa §97.303 para asegurarte.';
+
+  @override
+  String get ham_check => 'revisar';
+
+  @override
+  String get ham_positionUnknown =>
+      'Posición desconocida: revisa §97.303 para ver los límites donde operas.';
+
+  @override
+  String get ham_exclusion33cm =>
+      'Esta zona parece estar dentro de una exclusión de §97.303(g): aquí las estaciones de aficionado no pueden transmitir en 33 cm.';
+
+  @override
+  String get ham_lineA =>
+      'Si estás al norte de la Línea A (cerca de la frontera con Canadá), 420–430 MHz no está disponible. Revisa §97.303.';
+
+  @override
+  String get ham_statusOk => 'Correcto';
+
+  @override
+  String get ham_needsAttention => 'Requiere atención';
+
+  @override
+  String get ham_setupBanner =>
+      'Completa la configuración de operador antes de transmitir';
+
+  @override
+  String get ham_setUp => 'Configurar';
+
+  @override
+  String get ham_operatorCardIncomplete =>
+      'Indica tu indicativo y lee la guía de coordinación';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'Empieza por tu indicativo, como \"W1AW\" o \"W1AW Base\"';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      'El nombre debe empezar por el indicativo del repetidor, como \"N0RPT Hilltop\".';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'Cambia las contraseñas en la consola serie USB del repetidor. Enviadas por el aire, cualquiera podría leerlas.';
 }

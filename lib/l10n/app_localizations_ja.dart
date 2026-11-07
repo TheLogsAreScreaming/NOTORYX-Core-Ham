@@ -8763,4 +8763,188 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get autoConnect_hint => 'アプリを開くと、タップせずに前回の無線機へ再接続します。まだ圏外なら数回試します。';
+
+  @override
+  String get ham_licensedOperator => '免許を持つ運用者';
+
+  @override
+  String get ham_operatorIntro =>
+      'NOTORYX Core Ham の無線機はアマチュア無線の免許（FCC Part 97）で送信します。送信内容は誰でも読むことができ、すべてのフレームに無線機名の先頭にあるコールサインが含まれます。';
+
+  @override
+  String get ham_yourStation => 'あなたの局';
+
+  @override
+  String get ham_callSign => 'コールサイン';
+
+  @override
+  String get ham_notUsCallsign => '米国のコールサインではありません';
+
+  @override
+  String get ham_licenceClass => '免許クラス';
+
+  @override
+  String get ham_licenceClassHelper => 'どのクラスも 33 cm と 70 cm を全面的に運用できます';
+
+  @override
+  String get ham_antennaSystem => 'アンテナ系';
+
+  @override
+  String get ham_antennaSystemHint => '下の出力の推定に使います。ないものは 0 のままにしてください。';
+
+  @override
+  String get ham_externalAmpGain => '外部アンプの利得';
+
+  @override
+  String get ham_feedlineLoss => '給電線の損失';
+
+  @override
+  String get ham_antennaGain => 'アンテナ利得';
+
+  @override
+  String get ham_coordination => '調整';
+
+  @override
+  String get ham_coordinationNotice =>
+      'NOTORYX Core Ham は十分な調整を行ってから使ってください。無線機とレピーターは共用バンドで自動的に送信します。どの無線機も電波を出す前に、周波数調整担当者と相談し、地域のバンドプランに従い、地域のすべての運用者と 1 つのチャンネルを取り決めてください。';
+
+  @override
+  String get ham_readCoordinationGuide => '調整ガイドを読む';
+
+  @override
+  String get ham_acknowledgment => 'この免許を持っており、調整ガイドを読みました。送信する前に調整を行います。';
+
+  @override
+  String get ham_operatorSaved => '保存しました';
+
+  @override
+  String get ham_connectedRadio => '接続中の無線機';
+
+  @override
+  String get ham_nodeName => 'ノード名';
+
+  @override
+  String get ham_nodeNameOk => 'あなたのコールサインで始まっています';
+
+  @override
+  String get ham_nodeNameBad => 'コールサインで始まらないと無線機は送信しません';
+
+  @override
+  String ham_setNameTo(String callsign) {
+    return '$callsign に設定';
+  }
+
+  @override
+  String get ham_frequency => '周波数';
+
+  @override
+  String get ham_inHamBand => 'アマチュアバンド内';
+
+  @override
+  String get ham_outsideHamBands => '420–450 / 902–928 MHz の範囲外';
+
+  @override
+  String get ham_txPowerSetting => '送信出力の設定';
+
+  @override
+  String get ham_chipSetting => '無線チップの設定値';
+
+  @override
+  String get ham_firmware => 'ファームウェア';
+
+  @override
+  String get ham_estimatedOutput => '推定出力';
+
+  @override
+  String get ham_estimatedErp => '推定 ERP';
+
+  @override
+  String get ham_unknown => '不明';
+
+  @override
+  String get ham_unknownBoard => '不明なボード: アンプなしとして計算';
+
+  @override
+  String get ham_ampNone => 'アンプなし';
+
+  @override
+  String ham_ampGain(String db) {
+    return 'アンプで約 +$db dB';
+  }
+
+  @override
+  String get ham_ampVariable => 'アンプのレベル設定による';
+
+  @override
+  String ham_boardNote(String board, String note) {
+    return '$board: $note';
+  }
+
+  @override
+  String ham_measureFirst(String board) {
+    return '$board。推定に頼る前に測定してください。';
+  }
+
+  @override
+  String ham_outputNote(String board) {
+    return '$board。推定値です。確実を期すため測定し、通信できる最小の出力を使ってください。';
+  }
+
+  @override
+  String get ham_overSpreadSpectrum =>
+      '10 W PEP を超えています。LoRa のようなスペクトラム拡散の上限です（§97.311）。下げてください。';
+
+  @override
+  String get ham_erpNote =>
+      '給電線損失とアンテナ利得を考慮したダイポール比の値です。高出力では電波防護（§97.13）を確認してください。';
+
+  @override
+  String get ham_location => '場所';
+
+  @override
+  String get ham_noLocationLimits => '帯域の制限は見つかりません';
+
+  @override
+  String get ham_locationOkNote => '無線機の位置からの判断です。念のため §97.303 を確認してください。';
+
+  @override
+  String get ham_check => '要確認';
+
+  @override
+  String get ham_positionUnknown => '位置が不明です。運用場所の制限は §97.303 で確認してください。';
+
+  @override
+  String get ham_exclusion33cm =>
+      'この地域は §97.303(g) の除外区域内とみられます。ここではアマチュア局は 33 cm で送信できません。';
+
+  @override
+  String get ham_lineA =>
+      'ライン A の北側（カナダ国境付近）では 420–430 MHz は使えません。§97.303 を確認してください。';
+
+  @override
+  String get ham_statusOk => 'OK';
+
+  @override
+  String get ham_needsAttention => '要確認';
+
+  @override
+  String get ham_setupBanner => '送信する前に運用者の設定を完了してください';
+
+  @override
+  String get ham_setUp => '設定';
+
+  @override
+  String get ham_operatorCardIncomplete => 'コールサインを設定し、調整ガイドを読んでください';
+
+  @override
+  String get ham_nodeNameCallsignHelper =>
+      'コールサインで始めてください（例:「W1AW」「W1AW Base」）';
+
+  @override
+  String get ham_repeaterNameNeedsCall =>
+      '名前はレピーターのコールサインで始めてください（例:「N0RPT Hilltop」）。';
+
+  @override
+  String get ham_repeaterPasswordsSerial =>
+      'パスワードはレピーターの USB シリアルコンソールで設定してください。電波で送ると誰でも読めてしまいます。';
 }

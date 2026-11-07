@@ -735,13 +735,11 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
     if (_dirtyFields.contains(_SettingField.name) &&
         _nameController.text.isNotEmpty &&
         callsignOf(_nameController.text.trim()) == null) {
-      return 'The name must start with the repeater\'s call sign, '
-          'like "N0RPT Hilltop".';
+      return context.l10n.ham_repeaterNameNeedsCall;
     }
     if (_passwordController.text.isNotEmpty ||
         _guestPasswordController.text.isNotEmpty) {
-      return 'Set passwords on the repeater\'s USB serial console. '
-          'Sent over the air, anyone could read them.';
+      return context.l10n.ham_repeaterPasswordsSerial;
     }
     final mhz = double.tryParse(_freqController.text.trim());
     if (_dirtyFields.contains(_SettingField.radio) &&
