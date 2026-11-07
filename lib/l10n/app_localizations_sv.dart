@@ -6025,31 +6025,33 @@ class AppLocalizationsSv extends AppLocalizations {
   String get fieldOps_send => 'Skicka';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS-vidarebefordran';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Vidarebefordra SOS som ingen repeater skickade vidare';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Kräver radiofirmware v1.16 eller senare';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Inga SOS vidarebefordrade än';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count SOS-paket vidarebefordrade, senast $time',
+      one: '1 SOS-paket vidarebefordrat, senast $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'När radion hör ett SOS direkt från avsändaren och ingen repeater skickar det vidare inom ungefär 15 sekunder, skickar NOTORYX det en gång till, oförändrat, så att det når en repeater som du hör men avsändaren inte gör. Bara SOS i dina kanaler vidarebefordras. Använder lite batteri och sändtid, så det är av som standard.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Innan du ger dig av';
@@ -9463,4 +9465,83 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get appSettings_floodAttemptsSubtitle =>
       'Extra försök som skickas som flood när de direkta misslyckas, ifall rutten har ändrats. Varje försök tar mer sändtid. 0 stänger av dem.';
+
+  @override
+  String get pathGraph_you => 'Du';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Vidarebefordrade $count meddelanden';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Det här korta ID:t matchar mer än en repeater och kan inte knytas till en.';
+
+  @override
+  String get pathGraph_comesFrom => 'Kommer från';
+
+  @override
+  String get pathGraph_goesTo => 'Går till';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeaterdetaljer';
+
+  @override
+  String get pathGraph_days7 => '7 dagar';
+
+  @override
+  String get pathGraph_empty =>
+      'Inga kanalmeddelandevägar under perioden än. Vägar samlas från mottagna kanalmeddelanden medan spårning är på.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths vägar hörda · $repeaters repeatrar';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Varje hopp visas med sitt hashprefix, eller namnet om du känner repeatern.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count korta (1-byte) hopp kopplade till en viss repeater via längre vägar.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched korta (1-byte) hopp kopplade till en viss repeater via längre vägar · $ambiguous fortfarande tvetydiga (markerade ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Vänster: repeatrar längre bort. Höger: du. Bandets bredd är hur många meddelanden som tog det hoppet. Tryck på en ruta för att se repeatern.';
+
+  @override
+  String get pathGraph_busiest => 'Mest belastade repeatrar';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Väggraf. Mest belastad repeater $name, vidarebefordrade $count meddelanden.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Kopierat: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Inga kanaler på radion.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tryck på ett värde för att kopiera det. Dra nedåt för att uppdatera.';
+
+  @override
+  String get diag_storage => 'Lagring';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used av $total KB';
+  }
 }

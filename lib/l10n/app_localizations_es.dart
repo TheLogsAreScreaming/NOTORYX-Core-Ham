@@ -6086,31 +6086,33 @@ class AppLocalizationsEs extends AppLocalizations {
   String get fieldOps_send => 'Enviar';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'Reenvío de SOS';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable =>
+      'Reenviar SOS que ningún repetidor retransmitió';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware =>
+      'Requiere firmware de radio v1.16 o posterior';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => 'Aún no se ha reenviado ningún SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '$count paquetes SOS reenviados, el último a las $time',
+      one: '1 paquete SOS reenviado, el último a las $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      'Cuando tu radio oye un SOS directamente del remitente y ningún repetidor lo retransmite en unos 15 segundos, NOTORYX lo envía una vez más, sin cambios, para que llegue a un repetidor que tú oyes y el remitente no. Solo se reenvían SOS de tus canales. Gasta algo de batería y tiempo en el aire, por eso está desactivado por defecto.';
 
   @override
   String get fieldOps_beforeYouLeave => 'Antes de salir';
@@ -9541,4 +9543,83 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get appSettings_floodAttemptsSubtitle =>
       'Intentos extra enviados por inundación cuando fallan los directos, por si la ruta ha cambiado. Cada uno usa más tiempo en el aire. 0 los desactiva.';
+
+  @override
+  String get pathGraph_you => 'Tú';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Retransmitió $count mensajes';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Este ID corto coincide con más de un repetidor, así que no se puede asignar a uno.';
+
+  @override
+  String get pathGraph_comesFrom => 'Viene de';
+
+  @override
+  String get pathGraph_goesTo => 'Va a';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Detalles del repetidor';
+
+  @override
+  String get pathGraph_days7 => '7 días';
+
+  @override
+  String get pathGraph_empty =>
+      'Aún no hay rutas de mensajes de canal en este periodo. Las rutas se recogen de los mensajes de canal que recibes mientras el rastreo está activado.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths rutas oídas · $repeaters repetidores';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Cada salto se muestra por su prefijo hash, o por su nombre si conoces el repetidor.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count saltos cortos (1 byte) asociados a un repetidor concreto usando rutas más largas.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched saltos cortos (1 byte) asociados a un repetidor concreto usando rutas más largas · $ambiguous siguen siendo ambiguos (marcados con ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Izquierda: repetidores más lejanos. Derecha: tú. El grosor de la banda es cuántos mensajes tomaron ese salto. Toca una caja para ver ese repetidor.';
+
+  @override
+  String get pathGraph_busiest => 'Repetidores más usados';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Gráfico de rutas. Repetidor más usado $name, retransmitió $count mensajes.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Copiado: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'No hay canales en esta radio.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Toca un valor para copiarlo. Desliza hacia abajo para actualizar.';
+
+  @override
+  String get diag_storage => 'Almacenamiento';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used de $total KB';
+  }
 }

@@ -5644,31 +5644,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fieldOps_send => '发送';
 
   @override
-  String get sosRelay_title => 'SOS relay';
+  String get sosRelay_title => 'SOS 转发';
 
   @override
-  String get sosRelay_enable => 'Relay SOS no repeater carried';
+  String get sosRelay_enable => '转发没有中继器转发的 SOS';
 
   @override
-  String get sosRelay_needsFirmware => 'Needs radio firmware v1.16 or newer';
+  String get sosRelay_needsFirmware => '需要电台固件 v1.16 或更新版本';
 
   @override
-  String get sosRelay_noneYet => 'No SOS relayed yet';
+  String get sosRelay_noneYet => '尚未转发任何 SOS';
 
   @override
   String sosRelay_relayedCount(int count, String time) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Relayed $count SOS packets, last at $time',
-      one: 'Relayed 1 SOS packet, last at $time',
+      other: '已转发 $count 个 SOS 数据包，最近一次在 $time',
     );
     return '$_temp0';
   }
 
   @override
   String get sosRelay_explainer =>
-      'When your radio hears an SOS straight from the sender and no repeater passes it on within about 15 seconds, NOTORYX sends it once more, unchanged, so it can reach a repeater you can hear and they can\'t. Only SOS on channels you have are relayed. Uses some battery and airtime, so it\'s off by default.';
+      '当电台直接从发送者听到 SOS，且约 15 秒内没有中继器转发时，NOTORYX 会原样再发送一次，让它到达你能听到而发送者听不到的中继器。只转发你所拥有频道中的 SOS。会消耗电量和发射时间，因此默认关闭。';
 
   @override
   String get fieldOps_beforeYouLeave => '出发前';
@@ -8895,4 +8894,78 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get appSettings_floodAttemptsSubtitle =>
       '直接发送失败后，以泛洪方式额外重试，以防路由已变化。每次都会占用更多发射时间。设为 0 则关闭。';
+
+  @override
+  String get pathGraph_you => '你';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '中继了 $count 条消息';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => '这个短 ID 与多个中继器匹配，无法确定是哪一个。';
+
+  @override
+  String get pathGraph_comesFrom => '来自';
+
+  @override
+  String get pathGraph_goesTo => '去往';
+
+  @override
+  String get pathGraph_repeaterDetails => '中继器详情';
+
+  @override
+  String get pathGraph_days7 => '7 天';
+
+  @override
+  String get pathGraph_empty => '此期间还没有频道消息路径。消息追踪开启时，会从收到的频道消息中收集路径。';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '听到的路径 $paths · 中继器 $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '每一跳以其哈希前缀显示；如果你认识该中继器，则显示名称。';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '已通过更长的路径将 $count 个短（1 字节）跳匹配到具体中继器。';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '已通过更长的路径将 $matched 个短（1 字节）跳匹配到具体中继器 · $ambiguous 个仍不确定（标有 ?）。';
+  }
+
+  @override
+  String get pathGraph_chartHint => '左：较远的中继器。右：你。带宽表示经过该跳的消息数。点按方块可查看该中继器。';
+
+  @override
+  String get pathGraph_busiest => '最繁忙的中继器';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '路径图。最繁忙的中继器 $name，中继了 $count 条消息。';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return '已复制：$label';
+  }
+
+  @override
+  String get diag_noChannels => '此电台没有频道。';
+
+  @override
+  String get diag_tapToCopy => '点按任意值即可复制。下拉刷新。';
+
+  @override
+  String get diag_storage => '存储';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
 }
