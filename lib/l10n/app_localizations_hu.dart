@@ -10049,4 +10049,14 @@ class AppLocalizationsHu extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'legfeljebb $seconds mp';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Az útvonal $width bájtos útvonal-hasheket használ';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'A rádiód $width bájtosat használ';
+  }
 }

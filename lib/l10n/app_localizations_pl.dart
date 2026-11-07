@@ -10106,4 +10106,14 @@ class AppLocalizationsPl extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'do $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Trasa używa $width-bajtowych skrótów ścieżki';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Twoje radio używa $width bajtów';
+  }
 }

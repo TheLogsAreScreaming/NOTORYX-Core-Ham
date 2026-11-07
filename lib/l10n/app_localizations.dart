@@ -16698,6 +16698,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'up to {seconds} s'**
   String adminWait_upTo(int seconds);
+
+  /// No description provided for @pathHash_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'Route uses {width}-byte path hashes'**
+  String pathHash_badge(int width);
+
+  /// No description provided for @pathHash_mismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio uses {width}-byte'**
+  String pathHash_mismatch(int width);
 }
 
 class _AppLocalizationsDelegate

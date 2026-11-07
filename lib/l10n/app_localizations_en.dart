@@ -9933,4 +9933,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'up to $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Route uses $width-byte path hashes';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Your radio uses $width-byte';
+  }
 }

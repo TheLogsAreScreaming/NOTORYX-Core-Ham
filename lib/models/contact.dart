@@ -136,6 +136,18 @@ class Contact {
   /// Default grouping uses legacy single-byte hop hash width.
   String get pathIdList => pathFormattedIdList(pathHashSize);
 
+  /// Bytes per hop in the route the radio learned for this contact (1 to 4),
+  /// or null when there is no multi-hop route to tell from.
+  ///
+  /// Mixed widths in one mesh are a common source of confusion, so the
+  /// contact list shows this next to the hop count.
+  int? get routeHashWidth {
+    if (pathLength <= 0 || path.isEmpty) return null;
+    if (path.length % pathLength != 0) return null;
+    final width = path.length ~/ pathLength;
+    return width >= 1 && width <= 4 ? width : null;
+  }
+
   String get shortPubKeyHex {
     return "<${publicKeyHex.substring(0, 8)}...${publicKeyHex.substring(publicKeyHex.length - 8)}>";
   }

@@ -10103,4 +10103,14 @@ class AppLocalizationsUk extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'до $seconds с';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Маршрут використовує $width-байтові хеші шляху';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Ваше радіо використовує $width байт';
+  }
 }

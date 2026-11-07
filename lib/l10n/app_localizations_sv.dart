@@ -9983,4 +9983,14 @@ class AppLocalizationsSv extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'upp till $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Rutten använder $width-byte sökvägshashar';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Din radio använder $width byte';
+  }
 }

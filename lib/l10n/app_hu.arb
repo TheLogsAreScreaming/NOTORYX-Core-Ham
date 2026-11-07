@@ -4213,5 +4213,7 @@
   "adminWait_waiting": "Válaszra várva",
   "adminWait_retrying": "Még nincs válasz. Újrapróbálás ({attempt}/{total})",
   "adminWait_direct": "{hops, plural, =0{Közvetlen} =1{Közvetlen, 1 ugrás} other{Közvetlen, {hops} ugrás}}",
-  "adminWait_upTo": "legfeljebb {seconds} mp"
+  "adminWait_upTo": "legfeljebb {seconds} mp",
+  "pathHash_badge": "Az útvonal {width} bájtos útvonal-hasheket használ",
+  "pathHash_mismatch": "A rádiód {width} bájtosat használ"
 }

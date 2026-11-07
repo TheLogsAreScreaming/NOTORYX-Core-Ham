@@ -10073,4 +10073,14 @@ class AppLocalizationsIt extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'fino a $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Il percorso usa hash di percorso da $width byte';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'La tua radio usa $width byte';
+  }
 }

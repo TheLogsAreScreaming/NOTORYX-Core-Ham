@@ -10062,4 +10062,14 @@ class AppLocalizationsSl extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'do $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Pot uporablja $width-bajtne zgoščene vrednosti poti';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Vaš radio uporablja $width bajte';
+  }
 }

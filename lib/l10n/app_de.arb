@@ -4309,5 +4309,7 @@
   "adminWait_waiting": "Warte auf Antwort",
   "adminWait_retrying": "Noch keine Antwort. Neuer Versuch ({attempt} von {total})",
   "adminWait_direct": "{hops, plural, =0{Direkt} =1{Direkt, 1 Hop} other{Direkt, {hops} Hops}}",
-  "adminWait_upTo": "bis zu {seconds} s"
+  "adminWait_upTo": "bis zu {seconds} s",
+  "pathHash_badge": "Route nutzt {width}-Byte-Pfad-Hashes",
+  "pathHash_mismatch": "Dein Funkgerät nutzt {width} Byte"
 }

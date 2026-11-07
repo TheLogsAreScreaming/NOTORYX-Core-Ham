@@ -10106,4 +10106,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'до $seconds с';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Маршрут использует $width-байтовые хеши пути';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Ваше радио использует $width байт';
+  }
 }

@@ -4155,5 +4155,7 @@
   "adminWait_waiting": "Очікування відповіді",
   "adminWait_retrying": "Відповіді ще немає. Повторна спроба ({attempt} з {total})",
   "adminWait_direct": "{hops, plural, =0{Напряму} =1{Напряму, 1 перехід} few{Напряму, {hops} переходи} many{Напряму, {hops} переходів} other{Напряму, {hops} переходу}}",
-  "adminWait_upTo": "до {seconds} с"
+  "adminWait_upTo": "до {seconds} с",
+  "pathHash_badge": "Маршрут використовує {width}-байтові хеші шляху",
+  "pathHash_mismatch": "Ваше радіо використовує {width} байт"
 }

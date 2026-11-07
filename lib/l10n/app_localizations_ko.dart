@@ -9592,4 +9592,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return '최대 $seconds초';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return '경로가 $width바이트 경로 해시를 사용';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return '내 무전기는 $width바이트 사용';
+  }
 }

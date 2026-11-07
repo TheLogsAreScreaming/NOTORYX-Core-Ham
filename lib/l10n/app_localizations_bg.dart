@@ -10043,4 +10043,14 @@ class AppLocalizationsBg extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'до $seconds с';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Маршрутът използва $width-байтови хешове на пътя';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Вашето радио използва $width-байтови';
+  }
 }

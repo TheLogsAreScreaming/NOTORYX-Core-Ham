@@ -9579,4 +9579,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return '最大 $seconds 秒';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return '経路は $width バイトのパスハッシュを使用';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'この無線機は $width バイトを使用';
+  }
 }
