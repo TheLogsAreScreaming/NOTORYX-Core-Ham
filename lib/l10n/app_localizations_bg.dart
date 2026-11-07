@@ -1567,7 +1567,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'Получено чрез MQTT, не е чуто от вашето радио';
 
   @override
-  String get channels_private => 'Частен';
+  String get channels_private => 'С ключ';
 
   @override
   String get channels_editChannel => 'Редактирай канал';
@@ -1717,16 +1717,18 @@ class AppLocalizationsBg extends AppLocalizations {
   String get channels_sortUnread => 'Непрочетено';
 
   @override
-  String get channels_createPrivateChannel => 'Създай Частен Канал';
+  String get channels_createPrivateChannel => 'Създай канал с ключ';
 
   @override
-  String get channels_createPrivateChannelDesc => 'Защитено с таен ключ.';
+  String get channels_createPrivateChannelDesc =>
+      'Използва общ ключ за избор на канала. Съобщенията пак могат да се четат от всеки.';
 
   @override
-  String get channels_joinPrivateChannel => 'Присъедини се към Частен Канал';
+  String get channels_joinPrivateChannel => 'Присъедини се към канал с ключ';
 
   @override
-  String get channels_joinPrivateChannelDesc => 'Ръчно въведете таен ключ.';
+  String get channels_joinPrivateChannelDesc =>
+      'Въведете общия ключ на канала.';
 
   @override
   String get channels_joinPublicChannel =>

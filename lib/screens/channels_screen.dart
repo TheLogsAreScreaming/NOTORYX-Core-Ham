@@ -422,7 +422,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
       case ChannelType.hashtag:
         icon = Icons.tag;
       case ChannelType.private:
-        icon = Icons.lock;
+        icon = Icons.key_outlined;
     }
 
     // Last message preview
@@ -1532,7 +1532,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         buildExpandedContent(_channelMessageStore)!,
                       buildOptionCard(
                         optionIndex: 1,
-                        icon: Icons.lock,
+                        icon: Icons.key_outlined,
                         title: sheetContext.l10n.channels_joinPrivateChannel,
                         subtitle:
                             sheetContext.l10n.channels_joinPrivateChannelDesc,

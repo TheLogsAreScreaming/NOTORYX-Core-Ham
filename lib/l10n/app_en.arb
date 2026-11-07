@@ -742,7 +742,7 @@
   "@channels_viaMqttSemantics": {
     "description": "Screen reader label for the via MQTT marker on a channel message."
   },
-  "channels_private": "Private",
+  "channels_private": "Keyed",
   "channels_editChannel": "Edit channel",
   "channels_muteChannel": "Mute channel",
   "channels_unmuteChannel": "Unmute channel",
@@ -839,10 +839,10 @@
   "channels_sortAZ": "A-Z",
   "channels_sortLatestMessages": "Latest messages",
   "channels_sortUnread": "Unread",
-  "channels_createPrivateChannel": "Create a Private Channel",
-  "channels_createPrivateChannelDesc": "Secured with a secret key.",
-  "channels_joinPrivateChannel": "Join a Private Channel",
-  "channels_joinPrivateChannelDesc": "Manually enter a secret key.",
+  "channels_createPrivateChannel": "Create a keyed channel",
+  "channels_createPrivateChannelDesc": "Uses a shared key to pick the channel. Messages are still readable by anyone.",
+  "channels_joinPrivateChannel": "Join a keyed channel",
+  "channels_joinPrivateChannelDesc": "Enter the channel's shared key.",
   "channels_joinPublicChannel": "Join the Public Channel",
   "channels_joinPublicChannelDesc": "Anyone can join this channel.",
   "channels_joinHashtagChannel": "Join a Hashtag Channel",

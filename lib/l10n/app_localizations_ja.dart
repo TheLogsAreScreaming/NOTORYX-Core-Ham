@@ -1483,7 +1483,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channels_viaMqttSemantics => 'MQTT経由で受信、無線機では受信していません';
 
   @override
-  String get channels_private => '非公開';
+  String get channels_private => 'キー付き';
 
   @override
   String get channels_editChannel => 'チャンネルを編集';
@@ -1628,16 +1628,17 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channels_sortUnread => '未読';
 
   @override
-  String get channels_createPrivateChannel => 'プライベートチャンネルを作成する';
+  String get channels_createPrivateChannel => 'キー付きチャンネルを作成';
 
   @override
-  String get channels_createPrivateChannelDesc => '秘密鍵で保護されます。';
+  String get channels_createPrivateChannelDesc =>
+      '共有キーでチャンネルを選びます。メッセージは引き続き誰でも読めます。';
 
   @override
-  String get channels_joinPrivateChannel => 'プライベートチャンネルに参加する';
+  String get channels_joinPrivateChannel => 'キー付きチャンネルに参加';
 
   @override
-  String get channels_joinPrivateChannelDesc => '秘密鍵を手動で入力します。';
+  String get channels_joinPrivateChannelDesc => 'チャンネルの共有キーを入力してください。';
 
   @override
   String get channels_joinPublicChannel => '公開チャンネルに参加する';

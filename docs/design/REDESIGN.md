@@ -10,7 +10,6 @@ A full pass over the app's look and flow, done in stages so each one can be revi
 - **Corners disagree.** Buttons use 6 px corners, inputs 14 px and cards 18 px.
 - **Ham meaning.** Channels still show a padlock and "Private", which is misleading when everything on air is readable.
 - **Navigation gaps.** More has no entry for the ham-specific Licensed operator page or for Connections. Both are reachable only from Settings or Home.
-- **Small bugs.** The Chats "+" button covers the last row.
 
 ## Design direction
 
@@ -28,7 +27,7 @@ Material 3 structure (roles, components, motion), with Apple HIG restraint: cont
 | Stage | Scope | Status |
 |---|---|---|
 | 1 | Design system v2: type scale, status colours, unified corners and controls, touch targets, motion tokens; shared components for empty, loading and error states, status banners and destructive confirmations | |
-| 2 | Shell and navigation: More reorganised (a Station group with Licensed operator, Connections and Radio), Home hierarchy, no "Private" padlocks for ham channels, the FAB overlap | |
+| 2 | Shell and navigation: More reorganised (a Station group with Licensed operator, Connections and Radio), Home hierarchy, no "Private" padlocks for ham channels | |
 | 3 | Chats and Nodes: list rows, chat headers, composer, empty states | |
 | 4 | Settings, Connections, scanner, radio and repeater settings | |
 | 5 | Tools: field ops, wardrive, track log, diagnostics, path and route tools, maps | |

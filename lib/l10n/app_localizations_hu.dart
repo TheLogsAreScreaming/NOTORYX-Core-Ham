@@ -1556,7 +1556,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'MQTT-n keresztül érkezett, a rádiója nem hallotta';
 
   @override
-  String get channels_private => 'Magán';
+  String get channels_private => 'Kulcsos';
 
   @override
   String get channels_editChannel => 'Csatorna szerkesztése';
@@ -1704,18 +1704,18 @@ class AppLocalizationsHu extends AppLocalizations {
   String get channels_sortUnread => 'Nem olvasott';
 
   @override
-  String get channels_createPrivateChannel =>
-      'Hozzon létre egy privát csatornát';
+  String get channels_createPrivateChannel => 'Kulcsos csatorna létrehozása';
 
   @override
-  String get channels_createPrivateChannelDesc => 'Titkos kulccsal biztosítva.';
+  String get channels_createPrivateChannelDesc =>
+      'Közös kulccsal választja ki a csatornát. Az üzeneteket továbbra is bárki elolvashatja.';
 
   @override
-  String get channels_joinPrivateChannel => 'Csatlakozz egy privát csatornához';
+  String get channels_joinPrivateChannel => 'Csatlakozás kulcsos csatornához';
 
   @override
   String get channels_joinPrivateChannelDesc =>
-      'Adjon meg kézzel egy titkos kulcsot.';
+      'Add meg a csatorna közös kulcsát.';
 
   @override
   String get channels_joinPublicChannel =>

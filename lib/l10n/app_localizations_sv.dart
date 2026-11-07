@@ -1540,7 +1540,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'Mottaget via MQTT, inte hört av din radio';
 
   @override
-  String get channels_private => 'Privat';
+  String get channels_private => 'Med nyckel';
 
   @override
   String get channels_editChannel => 'Redigera kanal';
@@ -1688,17 +1688,17 @@ class AppLocalizationsSv extends AppLocalizations {
   String get channels_sortUnread => 'Oläst';
 
   @override
-  String get channels_createPrivateChannel => 'Skapa en privat kanal';
+  String get channels_createPrivateChannel => 'Skapa en kanal med nyckel';
 
   @override
   String get channels_createPrivateChannelDesc =>
-      'Säkrad med en hemlig nyckel.';
+      'Använder en delad nyckel för att välja kanalen. Meddelandena kan fortfarande läsas av alla.';
 
   @override
-  String get channels_joinPrivateChannel => 'Gå med i en privat kanal';
+  String get channels_joinPrivateChannel => 'Gå med i en kanal med nyckel';
 
   @override
-  String get channels_joinPrivateChannelDesc => 'Skriv in nyckeln manuellt.';
+  String get channels_joinPrivateChannelDesc => 'Ange kanalens delade nyckel.';
 
   @override
   String get channels_joinPublicChannel => 'Gå med i den publika kanalen';

@@ -1548,7 +1548,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'Prijaté cez MQTT, vaše rádio to nepočulo';
 
   @override
-  String get channels_private => 'Osobné';
+  String get channels_private => 'S kľúčom';
 
   @override
   String get channels_editChannel => 'Upraviť kanál';
@@ -1698,17 +1698,17 @@ class AppLocalizationsSk extends AppLocalizations {
   String get channels_sortUnread => 'Nezriadené';
 
   @override
-  String get channels_createPrivateChannel => 'Vytvorte súkromný kanál';
+  String get channels_createPrivateChannel => 'Vytvoriť kanál s kľúčom';
 
   @override
   String get channels_createPrivateChannelDesc =>
-      'Zabezpečené pomocou tajného kľúča.';
+      'Používa spoločný kľúč na výber kanála. Správy si stále môže prečítať ktokoľvek.';
 
   @override
-  String get channels_joinPrivateChannel => 'Pripojiť sa k súkromnému kanálu';
+  String get channels_joinPrivateChannel => 'Pripojiť sa ku kanálu s kľúčom';
 
   @override
-  String get channels_joinPrivateChannelDesc => 'Ručne zadajte tajný kľúč.';
+  String get channels_joinPrivateChannelDesc => 'Zadajte spoločný kľúč kanála.';
 
   @override
   String get channels_joinPublicChannel => 'Pripojte sa k verejnému kanálu';

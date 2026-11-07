@@ -1464,7 +1464,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_viaMqttSemantics => '通过 MQTT 收到，你的电台未接收到';
 
   @override
-  String get channels_private => '私有';
+  String get channels_private => '带密钥';
 
   @override
   String get channels_editChannel => '编辑频道';
@@ -1609,16 +1609,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get channels_sortUnread => '未读';
 
   @override
-  String get channels_createPrivateChannel => '创建私有频道';
+  String get channels_createPrivateChannel => '创建带密钥的频道';
 
   @override
-  String get channels_createPrivateChannelDesc => '使用密钥保护。';
+  String get channels_createPrivateChannelDesc => '用共享密钥选择频道。消息仍然任何人都能读取。';
 
   @override
-  String get channels_joinPrivateChannel => '加入私有频道';
+  String get channels_joinPrivateChannel => '加入带密钥的频道';
 
   @override
-  String get channels_joinPrivateChannelDesc => '手动输入密钥。';
+  String get channels_joinPrivateChannelDesc => '输入频道的共享密钥。';
 
   @override
   String get channels_joinPublicChannel => '加入公共频道';

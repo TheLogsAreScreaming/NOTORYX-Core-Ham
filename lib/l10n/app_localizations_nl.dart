@@ -1552,7 +1552,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Ontvangen via MQTT, niet gehoord door je radio';
 
   @override
-  String get channels_private => 'Privé';
+  String get channels_private => 'Met sleutel';
 
   @override
   String get channels_editChannel => 'Kanaal bewerken';
@@ -1701,18 +1701,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get channels_sortUnread => 'Ongelezen';
 
   @override
-  String get channels_createPrivateChannel => 'PrivéKanaal Aanmaken';
+  String get channels_createPrivateChannel => 'Kanaal met sleutel maken';
 
   @override
   String get channels_createPrivateChannelDesc =>
-      'Beveiligd met een geheime sleutel.';
+      'Gebruikt een gedeelde sleutel om het kanaal te kiezen. Berichten blijven voor iedereen leesbaar.';
 
   @override
-  String get channels_joinPrivateChannel => 'PrivéKanaal Toetreden';
+  String get channels_joinPrivateChannel => 'Kanaal met sleutel toevoegen';
 
   @override
   String get channels_joinPrivateChannelDesc =>
-      'Voer handmatig een geheime sleutel in.';
+      'Voer de gedeelde sleutel van het kanaal in.';
 
   @override
   String get channels_joinPublicChannel => 'Publiek Kanaal Toetreden';

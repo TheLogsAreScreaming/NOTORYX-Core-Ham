@@ -1568,7 +1568,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Reçu via MQTT, non entendu par votre radio';
 
   @override
-  String get channels_private => 'Privé';
+  String get channels_private => 'À clé';
 
   @override
   String get channels_editChannel => 'Modifier le canal';
@@ -1718,18 +1718,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get channels_sortUnread => 'Non lus';
 
   @override
-  String get channels_createPrivateChannel => 'Créer un Canal Privé';
+  String get channels_createPrivateChannel => 'Créer un canal à clé';
 
   @override
   String get channels_createPrivateChannelDesc =>
-      'Sécurisé avec une clé secrète.';
+      'Utilise une clé partagée pour choisir le canal. Les messages restent lisibles par tous.';
 
   @override
-  String get channels_joinPrivateChannel => 'Rejoindre un Canal Privé';
+  String get channels_joinPrivateChannel => 'Rejoindre un canal à clé';
 
   @override
   String get channels_joinPrivateChannelDesc =>
-      'Entrer manuellement une clé secrète.';
+      'Saisissez la clé partagée du canal.';
 
   @override
   String get channels_joinPublicChannel => 'Rejoindre le canal public';

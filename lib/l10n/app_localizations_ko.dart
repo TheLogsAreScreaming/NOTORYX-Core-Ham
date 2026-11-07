@@ -1485,7 +1485,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get channels_viaMqttSemantics => 'MQTT로 수신됨, 내 무전기는 듣지 못함';
 
   @override
-  String get channels_private => '사립';
+  String get channels_private => '키 지정';
 
   @override
   String get channels_editChannel => '채널 편집';
@@ -1630,16 +1630,17 @@ class AppLocalizationsKo extends AppLocalizations {
   String get channels_sortUnread => '읽지 않음';
 
   @override
-  String get channels_createPrivateChannel => '개인 채널 만들기';
+  String get channels_createPrivateChannel => '키 지정 채널 만들기';
 
   @override
-  String get channels_createPrivateChannelDesc => '비밀 키로 암호화되어 있습니다.';
+  String get channels_createPrivateChannelDesc =>
+      '공유 키로 채널을 고릅니다. 메시지는 여전히 누구나 읽을 수 있습니다.';
 
   @override
-  String get channels_joinPrivateChannel => '개인 채널에 참여하기';
+  String get channels_joinPrivateChannel => '키 지정 채널 참여';
 
   @override
-  String get channels_joinPrivateChannelDesc => '비밀 키를 수동으로 입력합니다.';
+  String get channels_joinPrivateChannelDesc => '채널의 공유 키를 입력하세요.';
 
   @override
   String get channels_joinPublicChannel => '공개 채널에 참여하세요';

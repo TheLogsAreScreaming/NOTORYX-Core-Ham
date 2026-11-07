@@ -2869,7 +2869,7 @@ abstract class AppLocalizations {
   /// No description provided for @channels_private.
   ///
   /// In en, this message translates to:
-  /// **'Private'**
+  /// **'Keyed'**
   String get channels_private;
 
   /// No description provided for @channels_editChannel.
@@ -3127,25 +3127,25 @@ abstract class AppLocalizations {
   /// No description provided for @channels_createPrivateChannel.
   ///
   /// In en, this message translates to:
-  /// **'Create a Private Channel'**
+  /// **'Create a keyed channel'**
   String get channels_createPrivateChannel;
 
   /// No description provided for @channels_createPrivateChannelDesc.
   ///
   /// In en, this message translates to:
-  /// **'Secured with a secret key.'**
+  /// **'Uses a shared key to pick the channel. Messages are still readable by anyone.'**
   String get channels_createPrivateChannelDesc;
 
   /// No description provided for @channels_joinPrivateChannel.
   ///
   /// In en, this message translates to:
-  /// **'Join a Private Channel'**
+  /// **'Join a keyed channel'**
   String get channels_joinPrivateChannel;
 
   /// No description provided for @channels_joinPrivateChannelDesc.
   ///
   /// In en, this message translates to:
-  /// **'Manually enter a secret key.'**
+  /// **'Enter the channel\'s shared key.'**
   String get channels_joinPrivateChannelDesc;
 
   /// No description provided for @channels_joinPublicChannel.
