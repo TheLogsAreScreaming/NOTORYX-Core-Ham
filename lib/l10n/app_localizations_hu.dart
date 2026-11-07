@@ -9904,6 +9904,51 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String block_sender(String name) {
+    return '$name letiltása';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'A csatornaüzenetei rejtve maradnak ezen az eszközön, és soha nem küldenek értesítést. Ő továbbra is látja az üzeneteidet. A tiltást a Beállításokban oldhatod fel.';
+
+  @override
+  String get block_action => 'Letiltás';
+
+  @override
+  String block_done(String name) {
+    return '$name letiltva';
+  }
+
+  @override
+  String get mention_suggestions => 'Névjavaslatok';
+
+  @override
+  String get block_listTitle => 'Letiltott feladók';
+
+  @override
+  String get block_listHint =>
+      'Ezektől a nevektől érkező üzenetek rejtve maradnak a csatornákban, és soha nem küldenek értesítést.';
+
+  @override
+  String get block_listEmpty => 'Senki sincs letiltva.';
+
+  @override
+  String get block_unblock => 'Tiltás feloldása';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count letiltva',
+      one: '1 letiltva',
+      zero: 'Senki sincs letiltva',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String contactTable_nearlyFull(int percent) {
     return 'A rádió névjegylistája $percent%-ban tele';
   }

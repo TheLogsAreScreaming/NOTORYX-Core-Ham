@@ -9953,6 +9953,53 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String block_sender(String name) {
+    return 'Заблокировать $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Его сообщения в каналах скрываются на этом устройстве и никогда не вызывают уведомлений. Он по-прежнему видит ваши сообщения. Разблокировать можно в Настройках.';
+
+  @override
+  String get block_action => 'Заблокировать';
+
+  @override
+  String block_done(String name) {
+    return '$name заблокирован';
+  }
+
+  @override
+  String get mention_suggestions => 'Подсказки имён';
+
+  @override
+  String get block_listTitle => 'Заблокированные отправители';
+
+  @override
+  String get block_listHint =>
+      'Сообщения от этих имён скрываются в каналах и никогда не вызывают уведомлений.';
+
+  @override
+  String get block_listEmpty => 'Никто не заблокирован.';
+
+  @override
+  String get block_unblock => 'Разблокировать';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count заблокировано',
+      many: '$count заблокировано',
+      few: '$count заблокировано',
+      one: '1 заблокирован',
+      zero: 'Никто не заблокирован',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String contactTable_nearlyFull(int percent) {
     return 'Список контактов радио заполнен на $percent%';
   }

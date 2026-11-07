@@ -9788,6 +9788,51 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String block_sender(String name) {
+    return 'Block $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Their channel messages are hidden on this device and never notify you. They can still see your messages. You can unblock them in Settings.';
+
+  @override
+  String get block_action => 'Block';
+
+  @override
+  String block_done(String name) {
+    return '$name blocked';
+  }
+
+  @override
+  String get mention_suggestions => 'Name suggestions';
+
+  @override
+  String get block_listTitle => 'Blocked senders';
+
+  @override
+  String get block_listHint =>
+      'Messages from these names are hidden in channels and never notify you.';
+
+  @override
+  String get block_listEmpty => 'No one is blocked.';
+
+  @override
+  String get block_unblock => 'Unblock';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blocked',
+      one: '1 blocked',
+      zero: 'No one blocked',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String contactTable_nearlyFull(int percent) {
     return 'Radio contact list $percent% full';
   }

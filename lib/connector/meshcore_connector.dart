@@ -7041,6 +7041,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     final label = channelName ?? _channelDisplayName(channelIndex);
     if (_appSettingsService!.isChannelMuted(label)) return;
+    if (_isBlockedChannelSender(message)) return;
     if (!_receivedChannelMessagesController.isClosed) {
       _receivedChannelMessagesController.add(
         ReceivedChannelMessage(message, label),
@@ -7736,10 +7737,17 @@ class MeshCoreConnector extends ChangeNotifier {
         );
   }
 
+  /// Whether [message] comes from a sender the user blocked: it is kept but
+  /// neither notifies nor counts as unread.
+  bool _isBlockedChannelSender(ChannelMessage message) =>
+      !message.isOutgoing &&
+      (_appSettingsService?.isSenderBlocked(message.senderName) ?? false);
+
   void _maybeIncrementChannelUnread(
     ChannelMessage message, {
     required bool isNew,
   }) {
+    if (_isBlockedChannelSender(message)) return;
     if (!isNew || message.isOutgoing) {
       _appDebugLogService?.info(
         'Skip unread increment: isNew=$isNew, isOutgoing=${message.isOutgoing}',

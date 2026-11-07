@@ -9838,6 +9838,51 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String block_sender(String name) {
+    return 'Blockera $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Personens kanalmeddelanden döljs på den här enheten och ger aldrig aviseringar. Personen ser fortfarande dina meddelanden. Du kan häva blockeringen i Inställningar.';
+
+  @override
+  String get block_action => 'Blockera';
+
+  @override
+  String block_done(String name) {
+    return '$name blockerad';
+  }
+
+  @override
+  String get mention_suggestions => 'Namnförslag';
+
+  @override
+  String get block_listTitle => 'Blockerade avsändare';
+
+  @override
+  String get block_listHint =>
+      'Meddelanden från de här namnen döljs i kanaler och ger aldrig aviseringar.';
+
+  @override
+  String get block_listEmpty => 'Ingen är blockerad.';
+
+  @override
+  String get block_unblock => 'Häv blockering';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blockerade',
+      one: '1 blockerad',
+      zero: 'Ingen blockerad',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String contactTable_nearlyFull(int percent) {
     return 'Radions kontaktlista $percent % full';
   }

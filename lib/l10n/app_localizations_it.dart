@@ -9928,6 +9928,51 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String block_sender(String name) {
+    return 'Blocca $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'I suoi messaggi nei canali vengono nascosti su questo dispositivo e non ti notificano mai. Può ancora vedere i tuoi messaggi. Puoi sbloccarlo nelle Impostazioni.';
+
+  @override
+  String get block_action => 'Blocca';
+
+  @override
+  String block_done(String name) {
+    return '$name bloccato';
+  }
+
+  @override
+  String get mention_suggestions => 'Suggerimenti di nomi';
+
+  @override
+  String get block_listTitle => 'Mittenti bloccati';
+
+  @override
+  String get block_listHint =>
+      'I messaggi di questi nomi sono nascosti nei canali e non ti notificano mai.';
+
+  @override
+  String get block_listEmpty => 'Nessuno è bloccato.';
+
+  @override
+  String get block_unblock => 'Sblocca';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bloccati',
+      one: '1 bloccato',
+      zero: 'Nessuno bloccato',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String contactTable_nearlyFull(int percent) {
     return 'Elenco contatti della radio pieno al $percent%';
   }
