@@ -4205,5 +4205,12 @@
   "favReturn_off": "Wył.",
   "favReturn_hours": "{count, plural, =1{Po 1 godzinie} other{Po {count} godzinach}}",
   "favReturn_title": "Znów w zasięgu",
-  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy"
+  "favReturn_body": "{name} znów słyszany po {hours, plural, =1{1 godzinie} other{{hours} godzinach}} ciszy",
+  "ham_heardFrom": "Odebrano od",
+  "ham_lastHeard": "Ostatnia ramka od",
+  "ham_nothingHeardYet": "jeszcze nic",
+  "ham_readyToTransmit": "Gotowe do nadawania",
+  "ham_notReadyToTransmit": "Przed nadawaniem sprawdź zaznaczone poniżej pozycje",
+  "ham_bannerNameMismatch": "Przed nadawaniem nazwij radio swoim znakiem wywoławczym",
+  "ham_bannerOutOfBand": "Radio jest ustawione poza pasmami amatorskimi"
 }

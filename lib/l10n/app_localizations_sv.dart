@@ -9882,4 +9882,27 @@ class AppLocalizationsSv extends AppLocalizations {
     );
     return '$name hörs igen efter $_temp0 tystnad';
   }
+
+  @override
+  String get ham_heardFrom => 'Hört från';
+
+  @override
+  String get ham_lastHeard => 'Senaste ram från';
+
+  @override
+  String get ham_nothingHeardYet => 'inget än';
+
+  @override
+  String get ham_readyToTransmit => 'Redo att sända';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Kontrollera de markerade punkterna nedan innan du sänder';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Namnge radion med din anropssignal innan du sänder';
+
+  @override
+  String get ham_bannerOutOfBand => 'Radion är inställd utanför amatörbanden';
 }

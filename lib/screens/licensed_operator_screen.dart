@@ -9,10 +9,12 @@ import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/operator_profile.dart';
 import '../services/operator_profile_service.dart';
+import '../theme/mesh_theme.dart';
 import '../utils/amateur_location.dart';
 import '../utils/amateur_power.dart';
 import '../utils/amateur_radio.dart';
 import '../widgets/mesh_ui.dart';
+import '../widgets/ui/mesh_states.dart';
 
 /// Where operators read what to coordinate before going on the air.
 final Uri coordinationGuideUrl = Uri.parse(
@@ -245,50 +247,67 @@ class _ConnectedRadioSection extends StatelessWidget {
     final maxTx = connector.maxTxPower;
     final l10n = context.l10n;
 
+    final rows = <_StatusRow>[
+      _StatusRow(
+        ok: nameOk,
+        title: l10n.ham_nodeName,
+        value: name.isEmpty ? '—' : name,
+        note: nameOk ? l10n.ham_nodeNameOk : l10n.ham_nodeNameBad,
+        action: !nameOk && profile.hasValidCallsign
+            ? TextButton(
+                onPressed: () => _setName(context, profile.callsign),
+                child: Text(l10n.ham_setNameTo(profile.callsign)),
+              )
+            : null,
+      ),
+      _StatusRow(
+        ok: mhz != null && isAmateurFrequencyMHz(mhz),
+        title: l10n.ham_frequency,
+        value: mhz == null ? '—' : '${mhz.toStringAsFixed(3)} MHz',
+        note: mhz != null && isAmateurFrequencyMHz(mhz)
+            ? l10n.ham_inHamBand
+            : l10n.ham_outsideHamBands,
+      ),
+      _StatusRow(
+        ok: true,
+        title: l10n.ham_txPowerSetting,
+        value: tx == null
+            ? '—'
+            : '$tx dBm${maxTx == null ? '' : ' (max $maxTx)'}',
+        note: l10n.ham_chipSetting,
+      ),
+      ..._powerRows(l10n, connector.manufacturerName, tx, profile),
+      if (mhz != null)
+        ..._locationRows(
+          l10n,
+          mhz,
+          connector.selfLatitude,
+          connector.selfLongitude,
+        ),
+    ];
+    // The pre-transmit checklist: setup finished and every check above passes.
+    final ready = profile.isComplete && rows.every((r) => r.ok);
+    final heard = connector.lastHeardStation;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SectionHeader(l10n.ham_connectedRadio),
+        MeshStatusBanner(
+          status: ready ? MeshStatus.success : MeshStatus.warning,
+          title: ready ? l10n.ham_readyToTransmit : l10n.ham_notReadyToTransmit,
+          margin: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+        ),
         MeshCard(
           padding: EdgeInsets.zero,
           child: Column(
             children: [
-              _StatusRow(
-                ok: nameOk,
-                title: l10n.ham_nodeName,
-                value: name.isEmpty ? '—' : name,
-                note: nameOk ? l10n.ham_nodeNameOk : l10n.ham_nodeNameBad,
-                action: !nameOk && profile.hasValidCallsign
-                    ? TextButton(
-                        onPressed: () => _setName(context, profile.callsign),
-                        child: Text(l10n.ham_setNameTo(profile.callsign)),
-                      )
-                    : null,
-              ),
-              _StatusRow(
-                ok: mhz != null && isAmateurFrequencyMHz(mhz),
-                title: l10n.ham_frequency,
-                value: mhz == null ? '—' : '${mhz.toStringAsFixed(3)} MHz',
-                note: mhz != null && isAmateurFrequencyMHz(mhz)
-                    ? l10n.ham_inHamBand
-                    : l10n.ham_outsideHamBands,
-              ),
+              ...rows,
               _StatusRow(
                 ok: true,
-                title: l10n.ham_txPowerSetting,
-                value: tx == null
-                    ? '—'
-                    : '$tx dBm${maxTx == null ? '' : ' (max $maxTx)'}',
-                note: l10n.ham_chipSetting,
+                title: l10n.ham_lastHeard,
+                value: heard ?? l10n.ham_nothingHeardYet,
               ),
-              ..._powerRows(l10n, connector.manufacturerName, tx, profile),
-              if (mhz != null)
-                ..._locationRows(
-                  l10n,
-                  mhz,
-                  connector.selfLatitude,
-                  connector.selfLongitude,
-                ),
               _StatusRow(
                 ok: true,
                 title: l10n.ham_firmware,
@@ -303,7 +322,7 @@ class _ConnectedRadioSection extends StatelessWidget {
 
   /// Estimated output and ERP from the board's amplifier and the operator's
   /// antenna system, flagged above the 10 W spread-spectrum limit.
-  List<Widget> _powerRows(
+  List<_StatusRow> _powerRows(
     AppLocalizations l10n,
     String? board,
     int? chipDbm,
@@ -358,7 +377,7 @@ class _ConnectedRadioSection extends StatelessWidget {
     ];
   }
 
-  List<Widget> _locationRows(
+  List<_StatusRow> _locationRows(
     AppLocalizations l10n,
     double mhz,
     double? lat,

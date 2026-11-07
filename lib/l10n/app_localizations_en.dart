@@ -9833,4 +9833,27 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$name heard again after $_temp0 quiet';
   }
+
+  @override
+  String get ham_heardFrom => 'Heard from';
+
+  @override
+  String get ham_lastHeard => 'Last frame heard from';
+
+  @override
+  String get ham_nothingHeardYet => 'nothing yet';
+
+  @override
+  String get ham_readyToTransmit => 'Ready to transmit';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Check the items marked below before transmitting';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Name the radio with your call sign before transmitting';
+
+  @override
+  String get ham_bannerOutOfBand => 'The radio is set outside the ham bands';
 }

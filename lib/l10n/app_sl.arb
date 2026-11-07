@@ -4167,5 +4167,12 @@
   "favReturn_off": "Izklop",
   "favReturn_hours": "{count, plural, =1{Po 1 uri} =2{Po 2 urah} other{Po {count} urah}}",
   "favReturn_title": "Spet v dosegu",
-  "favReturn_body": "{name} je spet slišen po {hours, plural, =1{1 uri} =2{2 urah} other{{hours} urah}} tišine"
+  "favReturn_body": "{name} je spet slišen po {hours, plural, =1{1 uri} =2{2 urah} other{{hours} urah}} tišine",
+  "ham_heardFrom": "Slišano od",
+  "ham_lastHeard": "Zadnji okvir od",
+  "ham_nothingHeardYet": "še nič",
+  "ham_readyToTransmit": "Pripravljeno za oddajanje",
+  "ham_notReadyToTransmit": "Pred oddajanjem preverite spodaj označene točke",
+  "ham_bannerNameMismatch": "Pred oddajanjem poimenujte postajo s svojim klicnim znakom",
+  "ham_bannerOutOfBand": "Postaja je nastavljena zunaj radioamaterskih pasov"
 }

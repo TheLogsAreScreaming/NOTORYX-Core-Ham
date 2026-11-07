@@ -7173,6 +7173,7 @@ class MeshCoreConnector extends ChangeNotifier {
     final amateur = AmateurFrame.unwrap(onAir);
     if (amateur == null) return;
     final raw = amateur.packet;
+    _recordHeardStation(raw, amateur.station);
     _handleRawRxPacket(raw);
     if (!_rxPacketsController.hasListener) return;
     final packet = _parseRawPacket(raw);
@@ -7245,6 +7246,37 @@ class MeshCoreConnector extends ChangeNotifier {
     final amateur = AmateurFrame.unwrap(raw);
     if (amateur == null) return;
     _handleRawRxPacket(amateur.packet, viaMqtt: true);
+  }
+
+  // Station IDs heard per packet (by packet hash), newest last, capped so a
+  // long session doesn't grow without bound. In memory only.
+  static const _maxHeardPackets = 500;
+  final _heardStations = <String, List<String>>{};
+  String? _lastHeardStation;
+  DateTime? _lastHeardAt;
+
+  /// The call sign in the last amateur frame the radio heard, and when.
+  String? get lastHeardStation => _lastHeardStation;
+  DateTime? get lastHeardAt => _lastHeardAt;
+
+  /// Call signs heard transmitting the packet with [packetHash]: the sender,
+  /// and any repeaters heard relaying it. Empty when none were recorded.
+  List<String> heardStationsFor(String? packetHash) =>
+      packetHash == null ? const [] : (_heardStations[packetHash] ?? const []);
+
+  void _recordHeardStation(Uint8List raw, String station) {
+    if (station.isEmpty) return;
+    _lastHeardStation = station;
+    _lastHeardAt = DateTime.now();
+    final packet = _parseRawPacket(raw);
+    if (packet == null) return;
+    final hash = _computePacketHash(packet.payloadType, packet.payload);
+    final list = _heardStations.remove(hash) ?? <String>[];
+    if (!list.contains(station)) list.add(station);
+    _heardStations[hash] = list; // re-insert: most recent last
+    if (_heardStations.length > _maxHeardPackets) {
+      _heardStations.remove(_heardStations.keys.first);
+    }
   }
 
   void _handleRawRxPacket(Uint8List raw, {bool viaMqtt = false}) {

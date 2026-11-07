@@ -4301,5 +4301,12 @@
   "favReturn_off": "Aus",
   "favReturn_hours": "{count, plural, =1{Nach 1 Stunde} other{Nach {count} Stunden}}",
   "favReturn_title": "Wieder in Reichweite",
-  "favReturn_body": "{name} nach {hours, plural, =1{1 Stunde} other{{hours} Stunden}} Funkstille wieder zu hören"
+  "favReturn_body": "{name} nach {hours, plural, =1{1 Stunde} other{{hours} Stunden}} Funkstille wieder zu hören",
+  "ham_heardFrom": "Gehört von",
+  "ham_lastHeard": "Letzter Rahmen von",
+  "ham_nothingHeardYet": "noch nichts",
+  "ham_readyToTransmit": "Sendebereit",
+  "ham_notReadyToTransmit": "Prüfe die unten markierten Punkte, bevor du sendest",
+  "ham_bannerNameMismatch": "Benenne das Funkgerät vor dem Senden mit deinem Rufzeichen",
+  "ham_bannerOutOfBand": "Das Funkgerät ist außerhalb der Amateurfunkbänder eingestellt"
 }

@@ -9484,4 +9484,25 @@ class AppLocalizationsJa extends AppLocalizations {
     );
     return '$name を$_temp0ぶりに受信しました';
   }
+
+  @override
+  String get ham_heardFrom => '受信元';
+
+  @override
+  String get ham_lastHeard => '最後に受信した局';
+
+  @override
+  String get ham_nothingHeardYet => 'まだありません';
+
+  @override
+  String get ham_readyToTransmit => '送信の準備ができています';
+
+  @override
+  String get ham_notReadyToTransmit => '送信する前に、下で印の付いた項目を確認してください';
+
+  @override
+  String get ham_bannerNameMismatch => '送信する前に無線機の名前をコールサインにしてください';
+
+  @override
+  String get ham_bannerOutOfBand => '無線機がアマチュアバンドの外に設定されています';
 }

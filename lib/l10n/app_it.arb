@@ -4301,5 +4301,12 @@
   "favReturn_off": "Disattivato",
   "favReturn_hours": "{count, plural, =1{Dopo 1 ora} other{Dopo {count} ore}}",
   "favReturn_title": "Di nuovo in portata",
-  "favReturn_body": "{name} si sente di nuovo dopo {hours, plural, =1{1 ora} other{{hours} ore}} di silenzio"
+  "favReturn_body": "{name} si sente di nuovo dopo {hours, plural, =1{1 ora} other{{hours} ore}} di silenzio",
+  "ham_heardFrom": "Ricevuto da",
+  "ham_lastHeard": "Ultimo frame da",
+  "ham_nothingHeardYet": "ancora niente",
+  "ham_readyToTransmit": "Pronto a trasmettere",
+  "ham_notReadyToTransmit": "Controlla le voci segnalate qui sotto prima di trasmettere",
+  "ham_bannerNameMismatch": "Dai alla radio il tuo nominativo prima di trasmettere",
+  "ham_bannerOutOfBand": "La radio è impostata fuori dalle bande radioamatoriali"
 }

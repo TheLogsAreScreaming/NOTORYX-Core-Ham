@@ -4301,5 +4301,12 @@
   "favReturn_off": "オフ",
   "favReturn_hours": "{count, plural, other{{count}時間後}}",
   "favReturn_title": "圏内に復帰",
-  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました"
+  "favReturn_body": "{name} を{hours, plural, other{{hours}時間}}ぶりに受信しました",
+  "ham_heardFrom": "受信元",
+  "ham_lastHeard": "最後に受信した局",
+  "ham_nothingHeardYet": "まだありません",
+  "ham_readyToTransmit": "送信の準備ができています",
+  "ham_notReadyToTransmit": "送信する前に、下で印の付いた項目を確認してください",
+  "ham_bannerNameMismatch": "送信する前に無線機の名前をコールサインにしてください",
+  "ham_bannerOutOfBand": "無線機がアマチュアバンドの外に設定されています"
 }

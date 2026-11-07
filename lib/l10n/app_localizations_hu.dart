@@ -9946,4 +9946,28 @@ class AppLocalizationsHu extends AppLocalizations {
     );
     return '$name újra hallható $_temp0 csend után';
   }
+
+  @override
+  String get ham_heardFrom => 'Hallott állomás';
+
+  @override
+  String get ham_lastHeard => 'Utolsó keret innen';
+
+  @override
+  String get ham_nothingHeardYet => 'még semmi';
+
+  @override
+  String get ham_readyToTransmit => 'Adásra kész';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Adás előtt ellenőrizd az alább jelölt pontokat';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Adás előtt nevezd el a rádiót a hívójeleddel';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'A rádió a rádióamatőr sávokon kívülre van állítva';
 }

@@ -9961,4 +9961,28 @@ class AppLocalizationsEs extends AppLocalizations {
     );
     return 'Se vuelve a oír a $name tras $_temp0 en silencio';
   }
+
+  @override
+  String get ham_heardFrom => 'Oído de';
+
+  @override
+  String get ham_lastHeard => 'Última trama de';
+
+  @override
+  String get ham_nothingHeardYet => 'nada aún';
+
+  @override
+  String get ham_readyToTransmit => 'Listo para transmitir';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Revisa los puntos marcados abajo antes de transmitir';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Pon tu indicativo en el nombre de la radio antes de transmitir';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'La radio está fuera de las bandas de radioaficionado';
 }

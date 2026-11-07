@@ -9994,4 +9994,28 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return '$name entendu de nouveau après $_temp0 de silence';
   }
+
+  @override
+  String get ham_heardFrom => 'Entendu de';
+
+  @override
+  String get ham_lastHeard => 'Dernière trame de';
+
+  @override
+  String get ham_nothingHeardYet => 'rien pour l’instant';
+
+  @override
+  String get ham_readyToTransmit => 'Prêt à émettre';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Vérifiez les points signalés ci-dessous avant d’émettre';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Nommez la radio avec votre indicatif avant d’émettre';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'La radio est réglée hors des bandes radioamateurs';
 }

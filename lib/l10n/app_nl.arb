@@ -4167,5 +4167,12 @@
   "favReturn_off": "Uit",
   "favReturn_hours": "{count, plural, =1{Na 1 uur} other{Na {count} uur}}",
   "favReturn_title": "Weer binnen bereik",
-  "favReturn_body": "{name} weer gehoord na {hours, plural, =1{1 uur} other{{hours} uur}} stilte"
+  "favReturn_body": "{name} weer gehoord na {hours, plural, =1{1 uur} other{{hours} uur}} stilte",
+  "ham_heardFrom": "Gehoord van",
+  "ham_lastHeard": "Laatste frame van",
+  "ham_nothingHeardYet": "nog niets",
+  "ham_readyToTransmit": "Klaar om uit te zenden",
+  "ham_notReadyToTransmit": "Controleer de gemarkeerde punten hieronder voordat je uitzendt",
+  "ham_bannerNameMismatch": "Geef de radio je roepnaam voordat je uitzendt",
+  "ham_bannerOutOfBand": "De radio staat buiten de amateurbanden"
 }

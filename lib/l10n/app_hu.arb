@@ -4205,5 +4205,12 @@
   "favReturn_off": "Ki",
   "favReturn_hours": "{count, plural, =1{1 óra után} other{{count} óra után}}",
   "favReturn_title": "Újra hatótávon belül",
-  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után"
+  "favReturn_body": "{name} újra hallható {hours, plural, =1{1 óra} other{{hours} óra}} csend után",
+  "ham_heardFrom": "Hallott állomás",
+  "ham_lastHeard": "Utolsó keret innen",
+  "ham_nothingHeardYet": "még semmi",
+  "ham_readyToTransmit": "Adásra kész",
+  "ham_notReadyToTransmit": "Adás előtt ellenőrizd az alább jelölt pontokat",
+  "ham_bannerNameMismatch": "Adás előtt nevezd el a rádiót a hívójeleddel",
+  "ham_bannerOutOfBand": "A rádió a rádióamatőr sávokon kívülre van állítva"
 }

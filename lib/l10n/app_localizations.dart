@@ -16650,6 +16650,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{name} heard again after {hours, plural, =1{1 hour} other{{hours} hours}} quiet'**
   String favReturn_body(String name, int hours);
+
+  /// No description provided for @ham_heardFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard from'**
+  String get ham_heardFrom;
+
+  /// No description provided for @ham_lastHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Last frame heard from'**
+  String get ham_lastHeard;
+
+  /// No description provided for @ham_nothingHeardYet.
+  ///
+  /// In en, this message translates to:
+  /// **'nothing yet'**
+  String get ham_nothingHeardYet;
+
+  /// No description provided for @ham_readyToTransmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to transmit'**
+  String get ham_readyToTransmit;
+
+  /// No description provided for @ham_notReadyToTransmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the items marked below before transmitting'**
+  String get ham_notReadyToTransmit;
+
+  /// No description provided for @ham_bannerNameMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Name the radio with your call sign before transmitting'**
+  String get ham_bannerNameMismatch;
+
+  /// No description provided for @ham_bannerOutOfBand.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio is set outside the ham bands'**
+  String get ham_bannerOutOfBand;
 }
 
 class _AppLocalizationsDelegate

@@ -5833,5 +5833,12 @@
         "type": "int"
       }
     }
-  }
+  },
+  "ham_heardFrom": "Heard from",
+  "ham_lastHeard": "Last frame heard from",
+  "ham_nothingHeardYet": "nothing yet",
+  "ham_readyToTransmit": "Ready to transmit",
+  "ham_notReadyToTransmit": "Check the items marked below before transmitting",
+  "ham_bannerNameMismatch": "Name the radio with your call sign before transmitting",
+  "ham_bannerOutOfBand": "The radio is set outside the ham bands"
 }

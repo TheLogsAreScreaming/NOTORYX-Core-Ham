@@ -9931,4 +9931,28 @@ class AppLocalizationsSk extends AppLocalizations {
     );
     return '$name je opäť počuť po $_temp0 ticha';
   }
+
+  @override
+  String get ham_heardFrom => 'Počuté od';
+
+  @override
+  String get ham_lastHeard => 'Posledný rámec od';
+
+  @override
+  String get ham_nothingHeardYet => 'zatiaľ nič';
+
+  @override
+  String get ham_readyToTransmit => 'Pripravené na vysielanie';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Pred vysielaním skontrolujte označené položky nižšie';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Pred vysielaním pomenujte rádio svojou volacou značkou';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'Rádio je nastavené mimo amatérskych pásiem';
 }

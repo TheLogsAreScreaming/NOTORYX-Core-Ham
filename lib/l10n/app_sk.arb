@@ -4167,5 +4167,12 @@
   "favReturn_off": "Vyp.",
   "favReturn_hours": "{count, plural, =1{Po 1 hodine} other{Po {count} hodinách}}",
   "favReturn_title": "Opäť v dosahu",
-  "favReturn_body": "{name} je opäť počuť po {hours, plural, =1{1 hodine} other{{hours} hodinách}} ticha"
+  "favReturn_body": "{name} je opäť počuť po {hours, plural, =1{1 hodine} other{{hours} hodinách}} ticha",
+  "ham_heardFrom": "Počuté od",
+  "ham_lastHeard": "Posledný rámec od",
+  "ham_nothingHeardYet": "zatiaľ nič",
+  "ham_readyToTransmit": "Pripravené na vysielanie",
+  "ham_notReadyToTransmit": "Pred vysielaním skontrolujte označené položky nižšie",
+  "ham_bannerNameMismatch": "Pred vysielaním pomenujte rádio svojou volacou značkou",
+  "ham_bannerOutOfBand": "Rádio je nastavené mimo amatérskych pásiem"
 }

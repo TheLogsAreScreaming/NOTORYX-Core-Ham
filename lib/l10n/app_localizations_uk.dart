@@ -9984,4 +9984,28 @@ class AppLocalizationsUk extends AppLocalizations {
     );
     return '$name знову чути після $_temp0 тиші';
   }
+
+  @override
+  String get ham_heardFrom => 'Почуто від';
+
+  @override
+  String get ham_lastHeard => 'Останній кадр від';
+
+  @override
+  String get ham_nothingHeardYet => 'поки нічого';
+
+  @override
+  String get ham_readyToTransmit => 'Готово до передавання';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Перед передаванням перевірте позначені нижче пункти';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Перед передаванням назвіть радіостанцію своїм позивним';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'Радіостанцію налаштовано поза аматорськими діапазонами';
 }

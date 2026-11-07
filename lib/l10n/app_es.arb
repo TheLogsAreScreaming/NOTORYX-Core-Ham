@@ -4301,5 +4301,12 @@
   "favReturn_off": "Desactivado",
   "favReturn_hours": "{count, plural, =1{Tras 1 hora} other{Tras {count} horas}}",
   "favReturn_title": "De vuelta en alcance",
-  "favReturn_body": "Se vuelve a oír a {name} tras {hours, plural, =1{1 hora} other{{hours} horas}} en silencio"
+  "favReturn_body": "Se vuelve a oír a {name} tras {hours, plural, =1{1 hora} other{{hours} horas}} en silencio",
+  "ham_heardFrom": "Oído de",
+  "ham_lastHeard": "Última trama de",
+  "ham_nothingHeardYet": "nada aún",
+  "ham_readyToTransmit": "Listo para transmitir",
+  "ham_notReadyToTransmit": "Revisa los puntos marcados abajo antes de transmitir",
+  "ham_bannerNameMismatch": "Pon tu indicativo en el nombre de la radio antes de transmitir",
+  "ham_bannerOutOfBand": "La radio está fuera de las bandas de radioaficionado"
 }

@@ -4167,5 +4167,12 @@
   "favReturn_off": "Av",
   "favReturn_hours": "{count, plural, =1{Efter 1 timme} other{Efter {count} timmar}}",
   "favReturn_title": "Tillbaka inom räckvidd",
-  "favReturn_body": "{name} hörs igen efter {hours, plural, =1{1 timmes} other{{hours} timmars}} tystnad"
+  "favReturn_body": "{name} hörs igen efter {hours, plural, =1{1 timmes} other{{hours} timmars}} tystnad",
+  "ham_heardFrom": "Hört från",
+  "ham_lastHeard": "Senaste ram från",
+  "ham_nothingHeardYet": "inget än",
+  "ham_readyToTransmit": "Redo att sända",
+  "ham_notReadyToTransmit": "Kontrollera de markerade punkterna nedan innan du sänder",
+  "ham_bannerNameMismatch": "Namnge radion med din anropssignal innan du sänder",
+  "ham_bannerOutOfBand": "Radion är inställd utanför amatörbanden"
 }

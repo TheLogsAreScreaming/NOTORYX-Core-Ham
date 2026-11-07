@@ -9498,4 +9498,25 @@ class AppLocalizationsKo extends AppLocalizations {
     );
     return '$name이(가) $_temp0 만에 다시 들립니다';
   }
+
+  @override
+  String get ham_heardFrom => '수신 출처';
+
+  @override
+  String get ham_lastHeard => '마지막 수신 프레임';
+
+  @override
+  String get ham_nothingHeardYet => '아직 없음';
+
+  @override
+  String get ham_readyToTransmit => '송신 준비 완료';
+
+  @override
+  String get ham_notReadyToTransmit => '송신하기 전에 아래 표시된 항목을 확인하세요';
+
+  @override
+  String get ham_bannerNameMismatch => '송신하기 전에 무선기 이름을 호출부호로 정하세요';
+
+  @override
+  String get ham_bannerOutOfBand => '무선기가 아마추어 대역 밖으로 설정되어 있습니다';
 }

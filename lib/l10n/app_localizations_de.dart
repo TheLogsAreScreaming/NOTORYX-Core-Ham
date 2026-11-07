@@ -9970,4 +9970,28 @@ class AppLocalizationsDe extends AppLocalizations {
     );
     return '$name nach $_temp0 Funkstille wieder zu hören';
   }
+
+  @override
+  String get ham_heardFrom => 'Gehört von';
+
+  @override
+  String get ham_lastHeard => 'Letzter Rahmen von';
+
+  @override
+  String get ham_nothingHeardYet => 'noch nichts';
+
+  @override
+  String get ham_readyToTransmit => 'Sendebereit';
+
+  @override
+  String get ham_notReadyToTransmit =>
+      'Prüfe die unten markierten Punkte, bevor du sendest';
+
+  @override
+  String get ham_bannerNameMismatch =>
+      'Benenne das Funkgerät vor dem Senden mit deinem Rufzeichen';
+
+  @override
+  String get ham_bannerOutOfBand =>
+      'Das Funkgerät ist außerhalb der Amateurfunkbänder eingestellt';
 }
