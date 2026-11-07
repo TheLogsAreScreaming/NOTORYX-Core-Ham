@@ -9498,6 +9498,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get routes_contactDetails => 'Contactgegevens';
 
   @override
+  String get appSettings_floodAttempts => 'Flood-pogingen';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Extra pogingen als flood nadat de directe mislukken, voor het geval de route is veranderd. Elke poging kost meer zendtijd. 0 zet ze uit.';
+
+  @override
   String get pathGraph_you => 'Jij';
 
   @override

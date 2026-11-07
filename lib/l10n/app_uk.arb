@@ -4026,6 +4026,8 @@
   "repeaterTools_regionSetupHint": "Знайдіть дерево регіонів для своєї місцевості й скопіюйте його команди",
   "routes_failingOnly": "Лише невдалі маршрути",
   "routes_contactDetails": "Відомості про контакт",
+  "appSettings_floodAttempts": "Спроби флудом",
+  "appSettings_floodAttemptsSubtitle": "Додаткові спроби флудом після невдалих прямих, якщо маршрут змінився. Кожна займає більше ефірного часу. 0 вимикає.",
   "sosRelay_title": "Ретрансляція SOS",
   "sosRelay_enable": "Ретранслювати SOS, які не передав жоден ретранслятор",
   "sosRelay_needsFirmware": "Потрібна прошивка радіо v1.16 або новіша",

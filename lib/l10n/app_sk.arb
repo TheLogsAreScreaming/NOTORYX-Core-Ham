@@ -4046,6 +4046,8 @@
   "repeaterTools_regionSetupHint": "Vyhľadajte strom regiónov pre svoju oblasť a skopírujte jeho príkazy",
   "routes_failingOnly": "Iba neúspešné trasy",
   "routes_contactDetails": "Údaje kontaktu",
+  "appSettings_floodAttempts": "Pokusy zaplavením",
+  "appSettings_floodAttemptsSubtitle": "Ďalšie pokusy poslané zaplavením po zlyhaní priamych, ak sa trasa zmenila. Každý zaberie viac vysielacieho času. 0 ich vypne.",
   "sosRelay_title": "Preposielanie SOS",
   "sosRelay_enable": "Preposielať SOS, ktoré nepreposlal žiadny opakovač",
   "sosRelay_needsFirmware": "Vyžaduje firmvér rádia v1.16 alebo novší",

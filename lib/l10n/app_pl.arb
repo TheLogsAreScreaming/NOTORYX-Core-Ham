@@ -4084,6 +4084,8 @@
   "repeaterTools_regionSetupHint": "Znajdź drzewo regionów dla swojej okolicy i skopiuj jego polecenia",
   "routes_failingOnly": "Tylko nieudane trasy",
   "routes_contactDetails": "Szczegóły kontaktu",
+  "appSettings_floodAttempts": "Próby zalewowe",
+  "appSettings_floodAttemptsSubtitle": "Dodatkowe próby wysyłane zalewowo, gdy bezpośrednie zawiodą, na wypadek zmiany trasy. Każda zużywa więcej czasu nadawania. 0 je wyłącza.",
   "sosRelay_title": "Przekazywanie SOS",
   "sosRelay_enable": "Przekazuj SOS, których nie przekazał żaden przemiennik",
   "sosRelay_needsFirmware": "Wymaga firmware radia v1.16 lub nowszego",

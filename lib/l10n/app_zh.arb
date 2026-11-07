@@ -4051,6 +4051,8 @@
   "repeaterTools_regionSetupHint": "查找你所在地区的区域树并复制其命令",
   "routes_failingOnly": "仅失败的路由",
   "routes_contactDetails": "联系人详情",
+  "appSettings_floodAttempts": "泛洪重试次数",
+  "appSettings_floodAttemptsSubtitle": "直接发送失败后，以泛洪方式额外重试，以防路由已变化。每次都会占用更多发射时间。设为 0 则关闭。",
   "sosRelay_title": "SOS 转发",
   "sosRelay_enable": "转发没有中继器转发的 SOS",
   "sosRelay_needsFirmware": "需要电台固件 v1.16 或更新版本",

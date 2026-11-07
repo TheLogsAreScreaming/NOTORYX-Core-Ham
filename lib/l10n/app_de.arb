@@ -4180,6 +4180,8 @@
   "repeaterTools_regionSetupHint": "Finde den Regionsbaum deiner Gegend und kopiere seine Befehle",
   "routes_failingOnly": "Nur fehlgeschlagene Routen",
   "routes_contactDetails": "Kontaktdetails",
+  "appSettings_floodAttempts": "Flood-Versuche",
+  "appSettings_floodAttemptsSubtitle": "Zusätzliche Versuche als Flood, wenn die direkten scheitern, falls sich die Route geändert hat. Jeder braucht mehr Sendezeit. 0 schaltet sie ab.",
   "sosRelay_title": "SOS-Weiterleitung",
   "sosRelay_enable": "SOS weiterleiten, die kein Repeater übernommen hat",
   "sosRelay_needsFirmware": "Benötigt Funkgeräte-Firmware v1.16 oder neuer",

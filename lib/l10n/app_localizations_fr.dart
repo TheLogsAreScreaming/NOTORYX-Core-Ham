@@ -9570,6 +9570,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get routes_contactDetails => 'Détails du contact';
 
   @override
+  String get appSettings_floodAttempts => 'Tentatives en inondation';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Essais supplémentaires envoyés en inondation après l’échec des essais directs, au cas où la route aurait changé. Chacun utilise plus de temps d’antenne. 0 les désactive.';
+
+  @override
   String get pathGraph_you => 'Vous';
 
   @override

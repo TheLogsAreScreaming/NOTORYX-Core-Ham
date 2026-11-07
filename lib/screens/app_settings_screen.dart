@@ -562,35 +562,47 @@ class AppSettingsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Divider(height: 1),
-                      ListTile(
-                        title: Text(context.l10n.appSettings_maxMessageRetries),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              context
-                                  .l10n
-                                  .appSettings_maxMessageRetriesSubtitle,
-                            ),
-                            Slider(
-                              value: settingsService.settings.maxMessageRetries
-                                  .toDouble(),
-                              min: 2,
-                              max: 10,
-                              divisions: 8,
-                              label: settingsService.settings.maxMessageRetries
-                                  .toString(),
-                              onChanged: (value) => settingsService
-                                  .setMaxMessageRetries(value.toInt()),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 )
               : const SizedBox.shrink(),
+        ),
+        ListTile(
+          title: Text(context.l10n.appSettings_maxMessageRetries),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(context.l10n.appSettings_maxMessageRetriesSubtitle),
+              Slider(
+                value: settingsService.settings.maxMessageRetries.toDouble(),
+                min: 2,
+                max: 10,
+                divisions: 8,
+                label: settingsService.settings.maxMessageRetries.toString(),
+                onChanged: (value) =>
+                    settingsService.setMaxMessageRetries(value.toInt()),
+              ),
+            ],
+          ),
+        ),
+        ListTile(
+          title: Text(context.l10n.appSettings_floodAttempts),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(context.l10n.appSettings_floodAttemptsSubtitle),
+              Slider(
+                key: const ValueKey('flood-attempts'),
+                value: settingsService.settings.messageFloodAttempts.toDouble(),
+                min: 0,
+                max: 5,
+                divisions: 5,
+                label: settingsService.settings.messageFloodAttempts.toString(),
+                onChanged: (value) =>
+                    settingsService.setMessageFloodAttempts(value.toInt()),
+              ),
+            ],
+          ),
         ),
         const Divider(height: 1, indent: 16),
         SwitchListTile(

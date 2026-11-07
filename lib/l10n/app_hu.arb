@@ -4084,6 +4084,8 @@
   "repeaterTools_regionSetupHint": "Keresd meg a környéked régiófáját, és másold a parancsait",
   "routes_failingOnly": "Csak sikertelen útvonalak",
   "routes_contactDetails": "Névjegy adatai",
+  "appSettings_floodAttempts": "Elárasztásos próbák",
+  "appSettings_floodAttemptsSubtitle": "Extra próbák elárasztással, ha a közvetlenek sikertelenek, arra az esetre, ha megváltozott az útvonal. Mindegyik több adásidőt használ. 0 kikapcsolja.",
   "sosRelay_title": "SOS-továbbítás",
   "sosRelay_enable": "Átjátszó által nem továbbított SOS továbbítása",
   "sosRelay_needsFirmware": "Rádió firmware v1.16 vagy újabb szükséges",

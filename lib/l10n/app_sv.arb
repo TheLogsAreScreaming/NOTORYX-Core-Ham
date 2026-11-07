@@ -4046,6 +4046,8 @@
   "repeaterTools_regionSetupHint": "Slå upp regionträdet för ditt område och kopiera dess kommandon",
   "routes_failingOnly": "Endast misslyckade rutter",
   "routes_contactDetails": "Kontaktuppgifter",
+  "appSettings_floodAttempts": "Flood-försök",
+  "appSettings_floodAttemptsSubtitle": "Extra försök som skickas som flood när de direkta misslyckas, ifall rutten har ändrats. Varje försök tar mer sändtid. 0 stänger av dem.",
   "sosRelay_title": "SOS-vidarebefordran",
   "sosRelay_enable": "Vidarebefordra SOS som ingen repeater skickade vidare",
   "sosRelay_needsFirmware": "Kräver radiofirmware v1.16 eller senare",

@@ -9092,6 +9092,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get routes_contactDetails => '연락처 정보';
 
   @override
+  String get appSettings_floodAttempts => '플러드 시도';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      '직접 전송이 실패한 뒤 경로가 바뀌었을 경우를 대비해 플러드로 추가 전송합니다. 시도마다 송신 시간이 더 듭니다. 0이면 끕니다.';
+
+  @override
   String get pathGraph_you => '나';
 
   @override

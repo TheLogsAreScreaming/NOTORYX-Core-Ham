@@ -8889,6 +8889,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get routes_contactDetails => '联系人详情';
 
   @override
+  String get appSettings_floodAttempts => '泛洪重试次数';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      '直接发送失败后，以泛洪方式额外重试，以防路由已变化。每次都会占用更多发射时间。设为 0 则关闭。';
+
+  @override
   String get pathGraph_you => '你';
 
   @override

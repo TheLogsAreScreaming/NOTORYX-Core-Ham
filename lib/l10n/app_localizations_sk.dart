@@ -9510,6 +9510,13 @@ class AppLocalizationsSk extends AppLocalizations {
   String get routes_contactDetails => 'Údaje kontaktu';
 
   @override
+  String get appSettings_floodAttempts => 'Pokusy zaplavením';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Ďalšie pokusy poslané zaplavením po zlyhaní priamych, ak sa trasa zmenila. Každý zaberie viac vysielacieho času. 0 ich vypne.';
+
+  @override
   String get pathGraph_you => 'Vy';
 
   @override

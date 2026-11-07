@@ -9520,6 +9520,13 @@ class AppLocalizationsSl extends AppLocalizations {
   String get routes_contactDetails => 'Podrobnosti stika';
 
   @override
+  String get appSettings_floodAttempts => 'Poskusi s preplavljanjem';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Dodatni poskusi s preplavljanjem, ko neposredni ne uspejo, če se je pot spremenila. Vsak porabi več časa oddajanja. 0 jih izklopi.';
+
+  @override
   String get pathGraph_you => 'Vi';
 
   @override

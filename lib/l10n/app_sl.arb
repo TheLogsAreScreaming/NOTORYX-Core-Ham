@@ -4046,6 +4046,8 @@
   "repeaterTools_regionSetupHint": "Poiščite regijsko drevo za svoje območje in kopirajte njegove ukaze",
   "routes_failingOnly": "Samo neuspešne poti",
   "routes_contactDetails": "Podrobnosti stika",
+  "appSettings_floodAttempts": "Poskusi s preplavljanjem",
+  "appSettings_floodAttemptsSubtitle": "Dodatni poskusi s preplavljanjem, ko neposredni ne uspejo, če se je pot spremenila. Vsak porabi več časa oddajanja. 0 jih izklopi.",
   "sosRelay_title": "Posredovanje SOS",
   "sosRelay_enable": "Posreduj SOS, ki jih ni posredoval noben repetitor",
   "sosRelay_needsFirmware": "Zahteva vdelano programsko opremo radia v1.16 ali novejšo",

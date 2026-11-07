@@ -9561,6 +9561,13 @@ class AppLocalizationsUk extends AppLocalizations {
   String get routes_contactDetails => 'Відомості про контакт';
 
   @override
+  String get appSettings_floodAttempts => 'Спроби флудом';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Додаткові спроби флудом після невдалих прямих, якщо маршрут змінився. Кожна займає більше ефірного часу. 0 вимикає.';
+
+  @override
   String get pathGraph_you => 'Ви';
 
   @override

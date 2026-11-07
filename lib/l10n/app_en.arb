@@ -5440,6 +5440,8 @@
   "repeaterTools_regionSetupHint": "Look up your area's region tree and copy its commands",
   "routes_failingOnly": "Only routes that failed",
   "routes_contactDetails": "Contact details",
+  "appSettings_floodAttempts": "Flood attempts",
+  "appSettings_floodAttemptsSubtitle": "Extra tries sent as a flood after the direct ones fail, in case the route has changed. Each one uses more airtime. 0 turns them off.",
   "pathGraph_you": "You",
   "pathGraph_relayed": "Relayed {count} messages",
   "@pathGraph_relayed": {"placeholders": {"count": {"type": "int"}}},

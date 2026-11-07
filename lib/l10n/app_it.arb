@@ -4180,6 +4180,8 @@
   "repeaterTools_regionSetupHint": "Trova l'albero delle regioni della tua zona e copiane i comandi",
   "routes_failingOnly": "Solo percorsi falliti",
   "routes_contactDetails": "Dettagli contatto",
+  "appSettings_floodAttempts": "Tentativi in flood",
+  "appSettings_floodAttemptsSubtitle": "Tentativi extra inviati in flood dopo che quelli diretti falliscono, nel caso il percorso sia cambiato. Ognuno usa più tempo in onda. 0 li disattiva.",
   "sosRelay_title": "Inoltro SOS",
   "sosRelay_enable": "Inoltra gli SOS che nessun ripetitore ha inoltrato",
   "sosRelay_needsFirmware": "Richiede firmware radio v1.16 o successivo",

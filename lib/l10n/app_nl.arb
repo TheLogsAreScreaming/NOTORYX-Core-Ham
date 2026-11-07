@@ -4046,6 +4046,8 @@
   "repeaterTools_regionSetupHint": "Zoek de regioboom van je gebied en kopieer de opdrachten",
   "routes_failingOnly": "Alleen mislukte routes",
   "routes_contactDetails": "Contactgegevens",
+  "appSettings_floodAttempts": "Flood-pogingen",
+  "appSettings_floodAttemptsSubtitle": "Extra pogingen als flood nadat de directe mislukken, voor het geval de route is veranderd. Elke poging kost meer zendtijd. 0 zet ze uit.",
   "sosRelay_title": "SOS doorgeven",
   "sosRelay_enable": "SOS doorgeven die geen repeater doorgaf",
   "sosRelay_needsFirmware": "Vereist radiofirmware v1.16 of nieuwer",

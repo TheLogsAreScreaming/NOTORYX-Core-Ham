@@ -1848,9 +1848,13 @@ class _MessageBubble extends StatelessWidget {
                                 context.l10n.chat_retryCount(
                                   message.retryCount,
                                   context
-                                      .read<AppSettingsService>()
-                                      .settings
-                                      .maxMessageRetries,
+                                          .read<AppSettingsService>()
+                                          .settings
+                                          .maxMessageRetries +
+                                      context
+                                          .read<AppSettingsService>()
+                                          .settings
+                                          .messageFloodAttempts,
                                 ),
                                 style: MeshTheme.mono(
                                   fontSize: 9.5 * textScale,

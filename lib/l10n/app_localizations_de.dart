@@ -9548,6 +9548,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get routes_contactDetails => 'Kontaktdetails';
 
   @override
+  String get appSettings_floodAttempts => 'Flood-Versuche';
+
+  @override
+  String get appSettings_floodAttemptsSubtitle =>
+      'Zusätzliche Versuche als Flood, wenn die direkten scheitern, falls sich die Route geändert hat. Jeder braucht mehr Sendezeit. 0 schaltet sie ab.';
+
+  @override
   String get pathGraph_you => 'Du';
 
   @override

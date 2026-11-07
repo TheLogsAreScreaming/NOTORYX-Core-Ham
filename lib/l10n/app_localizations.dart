@@ -15955,6 +15955,18 @@ abstract class AppLocalizations {
   /// **'Contact details'**
   String get routes_contactDetails;
 
+  /// No description provided for @appSettings_floodAttempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood attempts'**
+  String get appSettings_floodAttempts;
+
+  /// No description provided for @appSettings_floodAttemptsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra tries sent as a flood after the direct ones fail, in case the route has changed. Each one uses more airtime. 0 turns them off.'**
+  String get appSettings_floodAttemptsSubtitle;
+
   /// No description provided for @pathGraph_you.
   ///
   /// In en, this message translates to:

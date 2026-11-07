@@ -4180,6 +4180,8 @@
   "repeaterTools_regionSetupHint": "Trouvez l’arbre de régions de votre secteur et copiez ses commandes",
   "routes_failingOnly": "Seulement les routes en échec",
   "routes_contactDetails": "Détails du contact",
+  "appSettings_floodAttempts": "Tentatives en inondation",
+  "appSettings_floodAttemptsSubtitle": "Essais supplémentaires envoyés en inondation après l’échec des essais directs, au cas où la route aurait changé. Chacun utilise plus de temps d’antenne. 0 les désactive.",
   "sosRelay_title": "Relais SOS",
   "sosRelay_enable": "Relayer les SOS qu’aucun répéteur n’a transmis",
   "sosRelay_needsFirmware": "Nécessite le firmware radio v1.16 ou plus récent",
