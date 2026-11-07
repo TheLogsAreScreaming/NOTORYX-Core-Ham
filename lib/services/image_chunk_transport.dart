@@ -1232,8 +1232,10 @@ ParsedChannelData? parseChannelDataFrame(Uint8List frame) {
 ///
 /// Implemented by the connector-facing adapter; kept as a typedef so the
 /// transport itself never imports the connector (and stays testable).
-typedef ChannelBlobSender =
-    Future<void> Function(Uint8List blob, int channelIndex);
+typedef ChannelBlobSender = Future<void> Function(
+  Uint8List blob,
+  int channelIndex,
+);
 
 /// Progress report while an image is going out.
 class ImageSendProgress {

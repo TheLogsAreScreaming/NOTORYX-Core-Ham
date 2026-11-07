@@ -42,6 +42,8 @@ class EmberBackdrop extends StatelessWidget {
               second: second,
               contour: MeshPalette.ink,
               dark: dark,
+              motif: MeshPalette.motif,
+              sparkle: MeshPalette.magenta,
             ),
           ),
         ),
@@ -61,6 +63,8 @@ class EmberPainter extends CustomPainter {
     required this.second,
     required this.contour,
     required this.dark,
+    this.motif = BackdropMotif.contours,
+    this.sparkle = const Color(0x00000000),
   });
 
   final EmberScene scene;
@@ -69,6 +73,21 @@ class EmberPainter extends CustomPainter {
   final Color second;
   final Color contour;
   final bool dark;
+  final BackdropMotif motif;
+  final Color sparkle;
+
+  /// Sparkle positions and sizes in phone units: few and small, so they read
+  /// as texture, never as content.
+  static const _sparkles = [
+    (52.0, 132.0, 5.0),
+    (338.0, 96.0, 7.0),
+    (300.0, 288.0, 4.0),
+    (34.0, 410.0, 6.0),
+    (362.0, 470.0, 5.0),
+    (120.0, 610.0, 4.0),
+    (318.0, 700.0, 6.0),
+    (70.0, 790.0, 5.0),
+  ];
 
   static const _w = 390.0;
   static const _h = 844.0;
@@ -118,6 +137,39 @@ class EmberPainter extends CustomPainter {
       );
     }
 
+    if (motif == BackdropMotif.grid) {
+      final grid = Paint()
+        ..strokeWidth = 1
+        ..color = glow.withValues(alpha: 0.05);
+      const step = 28.0;
+      for (var x = 0.0; x < size.width; x += step * s) {
+        canvas.drawLine(Offset(x, 0), Offset(x, size.height), grid);
+      }
+      for (var y = 0.0; y < size.height; y += step * s) {
+        canvas.drawLine(Offset(0, y), Offset(size.width, y), grid);
+      }
+    }
+    if (motif == BackdropMotif.sparkle) {
+      final star = Paint()..color = sparkle.withValues(alpha: 0.35);
+      for (final (x, y, r) in _sparkles) {
+        final c = Offset(x * sx, y * sy);
+        final a = r * s, b = r * s * 0.28;
+        canvas.drawPath(
+          Path()
+            ..moveTo(c.dx, c.dy - a)
+            ..lineTo(c.dx + b, c.dy - b)
+            ..lineTo(c.dx + a, c.dy)
+            ..lineTo(c.dx + b, c.dy + b)
+            ..lineTo(c.dx, c.dy + a)
+            ..lineTo(c.dx - b, c.dy + b)
+            ..lineTo(c.dx - a, c.dy)
+            ..lineTo(c.dx - b, c.dy - b)
+            ..close(),
+          star,
+        );
+      }
+    }
+
     final line = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1
@@ -155,5 +207,7 @@ class EmberPainter extends CustomPainter {
       old.glow != glow ||
       old.second != second ||
       old.contour != contour ||
-      old.dark != dark;
+      old.dark != dark ||
+      old.motif != motif ||
+      old.sparkle != sparkle;
 }

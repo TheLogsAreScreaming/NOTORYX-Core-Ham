@@ -255,9 +255,8 @@ class NodeTelemetrySection extends StatelessWidget {
       );
       final title = Text(
         context.l10n.contact_telemetry,
-        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-          color: Theme.of(context).colorScheme.onSurface,
-        ),
+        style: Theme.of(context).textTheme.titleSmall
+            ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
       );
       final actions = Wrap(
         alignment: WrapAlignment.end,
@@ -337,9 +336,9 @@ class NodeTelemetrySection extends StatelessWidget {
                             '${context.l10n.sensor_readingValue(_readingLabel(context, reading.type), reading.channel.toString(), text)}\n${_age(context, reading, store.now)} • ${_source(context, reading.source)}',
                             style: TextStyle(
                               color: reading.staleAt(store.now)
-                                  ? Theme.of(
-                                      context,
-                                    ).colorScheme.onSurfaceVariant
+                                  ? Theme.of(context)
+                                        .colorScheme
+                                        .onSurfaceVariant
                                   : Theme.of(context).colorScheme.onSurface,
                             ),
                           ),

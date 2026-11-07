@@ -83,5 +83,7 @@ abstract class MqttTransport {
 
 typedef MqttMessageHandler = void Function(String topic, Uint8List payload);
 
-typedef MqttTransportFactory =
-    MqttTransport Function(MqttBrokerSettings settings, String clientId);
+typedef MqttTransportFactory = MqttTransport Function(
+  MqttBrokerSettings settings,
+  String clientId,
+);

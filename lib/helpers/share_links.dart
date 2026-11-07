@@ -144,15 +144,14 @@ ContactLink? _looseContactLink(String text) {
   for (final field in ['name', 'public_key', 'type']) {
     if (RegExp('(?:^|&)$field=').allMatches(query).length > 1) return null;
   }
-  final key = RegExp(
-    r'public_key=([0-9a-fA-F]{64})(?![0-9a-fA-F])',
-  ).firstMatch(query);
+  final key = RegExp(r'public_key=([0-9a-fA-F]{64})(?![0-9a-fA-F])')
+      .firstMatch(query);
   if (key == null) return null;
   final type = RegExp(r'type=([1-4])(?![0-9])').firstMatch(query);
   final rawName =
-      RegExp(
-        r'name=([^\r\n]*?)(?=&(?:public_key|type)=|[\r\n]|$)',
-      ).firstMatch(query)?.group(1) ??
+      RegExp(r'name=([^\r\n]*?)(?=&(?:public_key|type)=|[\r\n]|$)')
+          .firstMatch(query)
+          ?.group(1) ??
       '';
   var name = rawName.replaceAll('+', ' ');
   try {

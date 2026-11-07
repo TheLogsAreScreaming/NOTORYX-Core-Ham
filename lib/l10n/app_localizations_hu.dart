@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9998,4 +9999,76 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get bastionHome_stationConnectToCheck =>
       'Csatlakoztass egy rádiót a neve és sávja ellenőrzéséhez';
+
+  @override
+  String get theme_selected => 'Kiválasztva';
+
+  @override
+  String get theme_desc_blaze =>
+      'Sötét pala élénk narancssárgával. Alapértelmezett.';
+
+  @override
+  String get theme_desc_neon_anarchy =>
+      'Mérgező zöld és elektromos lila feketén';
+
+  @override
+  String get theme_desc_tactical =>
+      'Olajzöld, fegyverszürke és földszínek terepre';
+
+  @override
+  String get theme_desc_pink_overload =>
+      'Élénk rózsaszín, rágógumi és levendula';
+
+  @override
+  String get theme_desc_bare_beauty =>
+      'Meleg nude, púderrózsa, kakaó és zsálya';
+
+  @override
+  String get theme_desc_okabe_ito =>
+      'Színlátási zavarhoz igazítva, kékesszürkén';
+
+  @override
+  String get theme_desc_night_ops => 'Tompa vörös sötétben való munkához';
+
+  @override
+  String get theme_desc_seasonal => 'Követi az évszakot, vagy válassz egyet';
+
+  @override
+  String theme_seasonNow(String season) {
+    return 'Most: $season';
+  }
+
+  @override
+  String get theme_season => 'Évszak';
+
+  @override
+  String get theme_seasonAuto => 'Automatikus';
+
+  @override
+  String get season_spring => 'Tavasz';
+
+  @override
+  String get season_summer => 'Nyár';
+
+  @override
+  String get season_autumn => 'Ősz';
+
+  @override
+  String get season_winter => 'Tél';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Karácsony';
+
+  @override
+  String get season_valentine => 'Valentin-nap';
+
+  @override
+  String get theme_holidays => 'Ünnepi színek';
+
+  @override
+  String get theme_holidaysHint =>
+      'Halloween, karácsony és Valentin-nap, ha az évszak automatikus';
 }

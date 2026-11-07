@@ -559,9 +559,8 @@ class BottomSheetHeader extends StatelessWidget {
                     if (subtitle != null)
                       Text(
                         subtitle!,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: scheme.onSurfaceVariant,
-                        ),
+                        style: Theme.of(context).textTheme.bodySmall
+                            ?.copyWith(color: scheme.onSurfaceVariant),
                       ),
                   ],
                 ),

@@ -2451,9 +2451,8 @@ class RefreshRateCard extends StatelessWidget {
         children: [
           Text(
             l10n.settings_refreshRate,
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
+            style: Theme.of(context).textTheme.bodyLarge
+                ?.copyWith(fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 8),
           SegmentedButton<String>(

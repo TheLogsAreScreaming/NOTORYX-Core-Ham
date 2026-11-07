@@ -141,9 +141,8 @@ class _PrefixToolScreenState extends State<PrefixToolScreen> {
                       const SizedBox(height: 2),
                       Text(
                         l10n.prefixTool_freeOfSpace(freeCount, census.space),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: MeshPalette.ink3,
-                        ),
+                        style: Theme.of(context).textTheme.bodySmall
+                            ?.copyWith(color: MeshPalette.ink3),
                       ),
                     ],
                   ),
@@ -208,9 +207,8 @@ class _PrefixToolScreenState extends State<PrefixToolScreen> {
                 else ...[
                   Text(
                     l10n.prefixTool_sharedHint,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                    style: Theme.of(context).textTheme.bodySmall
+                        ?.copyWith(color: MeshPalette.ink3),
                   ),
                   const SizedBox(height: 8),
                   for (final e in collisions.take(30))
@@ -268,9 +266,8 @@ class _PrefixToolScreenState extends State<PrefixToolScreen> {
                 const SizedBox(height: 16),
                 Text(
                   l10n.prefixTool_onlyKnown,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                  style: Theme.of(context).textTheme.bodySmall
+                      ?.copyWith(color: MeshPalette.ink3),
                 ),
               ],
             ),
@@ -341,9 +338,8 @@ class _NodeRow extends StatelessWidget {
                   ),
                   Text(
                     contact.typeLabel(l10n),
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                    style: Theme.of(context).textTheme.bodySmall
+                        ?.copyWith(color: MeshPalette.ink3),
                   ),
                 ],
               ),
@@ -475,9 +471,8 @@ class _KeyGeneratorSheetState extends State<_KeyGeneratorSheet> {
               const SizedBox(height: 6),
               Text(
                 l10n.keyGen_howToUse,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink2),
+                style: Theme.of(context).textTheme.bodyMedium
+                    ?.copyWith(color: MeshPalette.ink2),
               ),
               const SizedBox(height: 12),
               TextButton.icon(

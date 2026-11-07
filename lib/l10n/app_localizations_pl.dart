@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10046,4 +10047,76 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get bastionHome_stationConnectToCheck =>
       'Połącz radio, aby sprawdzić jego nazwę i pasmo';
+
+  @override
+  String get theme_selected => 'Wybrany';
+
+  @override
+  String get theme_desc_blaze =>
+      'Ciemny łupek z pomarańczem ostrzegawczym. Domyślny.';
+
+  @override
+  String get theme_desc_neon_anarchy =>
+      'Toksyczna zieleń i elektryczny fiolet na czerni';
+
+  @override
+  String get theme_desc_tactical => 'Oliwka, grafit i barwy ziemi w teren';
+
+  @override
+  String get theme_desc_pink_overload =>
+      'Jaskrawy róż, guma balonowa i lawenda';
+
+  @override
+  String get theme_desc_bare_beauty =>
+      'Ciepły nude, pudrowy róż, kakao i szałwia';
+
+  @override
+  String get theme_desc_okabe_ito =>
+      'Przyjazny przy zaburzeniach widzenia barw, na niebieskoszarym';
+
+  @override
+  String get theme_desc_night_ops => 'Przygaszona czerwień do pracy po ciemku';
+
+  @override
+  String get theme_desc_seasonal =>
+      'Zmienia się z porą roku albo wybierz jedną';
+
+  @override
+  String theme_seasonNow(String season) {
+    return 'Teraz: $season';
+  }
+
+  @override
+  String get theme_season => 'Pora roku';
+
+  @override
+  String get theme_seasonAuto => 'Automatycznie';
+
+  @override
+  String get season_spring => 'Wiosna';
+
+  @override
+  String get season_summer => 'Lato';
+
+  @override
+  String get season_autumn => 'Jesień';
+
+  @override
+  String get season_winter => 'Zima';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Boże Narodzenie';
+
+  @override
+  String get season_valentine => 'Walentynki';
+
+  @override
+  String get theme_holidays => 'Kolory świąteczne';
+
+  @override
+  String get theme_holidaysHint =>
+      'Halloween, Boże Narodzenie i Walentynki, gdy pora roku jest automatyczna';
 }

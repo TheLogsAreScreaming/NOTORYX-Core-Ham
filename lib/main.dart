@@ -1,4 +1,5 @@
 import 'services/node_telemetry_store.dart';
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -6,7 +7,9 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+
 import 'l10n/app_localizations.dart';
+
 import 'package:provider/provider.dart';
 
 import 'screens/chrome_required_screen.dart';
@@ -55,6 +58,7 @@ import 'services/translation_service.dart';
 import 'services/ui_view_state_service.dart';
 import 'services/timeout_prediction_service.dart';
 import 'storage/prefs_manager.dart';
+import 'models/app_settings.dart';
 import 'theme/mesh_theme.dart';
 import 'utils/app_logger.dart';
 import 'widgets/image_send_codec_binding.dart';
@@ -525,6 +529,14 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _fieldOps.setForeground(state == AppLifecycleState.resumed);
     _readAloud.foreground = state == AppLifecycleState.resumed;
     widget.receivedImageStore.setForeground(state == AppLifecycleState.resumed);
+    // Seasonal follows the date: a phone left open overnight on the last day
+    // of a season picks up the new one when it comes back.
+    if (state == AppLifecycleState.resumed &&
+        BastionTheme.fromId(widget.appSettingsService.settings.appTheme) ==
+            BastionTheme.seasonal &&
+        !identical(MeshPalette.current, BastionTheme.seasonal.palette)) {
+      setState(() {});
+    }
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.hidden) {
       unawaited(_telemetry.flush());
@@ -588,7 +600,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       ],
       child: Consumer<AppSettingsService>(
         builder: (context, settingsService, child) {
-          final palette = _applyTheme(settingsService.settings.appTheme);
+          final palette = _applyTheme(settingsService.settings);
           return MaterialApp(
             navigatorKey: _navigatorKey,
             title: 'NOTORYX Core Ham',
@@ -658,8 +670,10 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   /// Points [MeshPalette] at the chosen theme. Screens read the palette
   /// directly, so after a switch every widget is rebuilt once, in place, so
   /// nothing (open screens, scroll position) is lost.
-  BastionPalette _applyTheme(String id) {
-    final palette = BastionTheme.fromId(id).palette;
+  BastionPalette _applyTheme(AppSettings settings) {
+    SeasonalTheme.choice = Season.fromId(settings.seasonalChoice);
+    SeasonalTheme.holidays = settings.seasonalHolidays;
+    final palette = BastionTheme.fromId(settings.appTheme).palette;
     if (!identical(MeshPalette.current, palette)) {
       MeshPalette.current = palette;
       WidgetsBinding.instance.addPostFrameCallback((_) {

@@ -4,6 +4,7 @@ import 'bastion_themes.dart';
 import 'mesh_design.dart';
 
 export 'bastion_themes.dart';
+export 'seasonal_theme.dart';
 export 'mesh_design.dart';
 import 'okabe_ito.dart';
 
@@ -49,6 +50,8 @@ class MeshPalette {
   static Color get me => current.me;
   static Color get meBorder => current.meBorder;
   static Color get meInk => current.meInk;
+  static Color get nav => current.nav;
+  static BackdropMotif get motif => current.motif;
 
   // ── Light variant (used when user explicitly picks light theme)
   static const lightBg = Color(0xFFF1F1E9);
@@ -182,7 +185,7 @@ class MeshTheme {
   static ThemeData light() => forPalette(
     MeshPalette.current.brightness == Brightness.light
         ? MeshPalette.current
-        : BastionTheme.bubbleGum.palette,
+        : BastionTheme.pinkOverload.palette,
   );
 
   /// Material theme for one of the Bastion palettes.
@@ -214,7 +217,7 @@ class MeshTheme {
       surfaceContainerHigh: p.bg2,
       surfaceContainerHighest: p.bg3,
       onSurfaceVariant: p.ink2,
-      outline: p.line2,
+      outline: p.line3,
       outlineVariant: p.line,
       shadow: Colors.black,
       scrim: Colors.black54,

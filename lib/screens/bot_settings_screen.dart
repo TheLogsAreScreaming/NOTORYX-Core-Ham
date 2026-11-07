@@ -60,8 +60,7 @@ class BotSettingsScreen extends StatelessWidget {
           controller: controller,
           maxLines: 3,
           decoration: const InputDecoration(
-            helperText:
-                'Short replies save mesh airtime. Maximum 140 bytes including bot label.',
+            helperText: 'Short replies save mesh airtime. Maximum 140 bytes including bot label.',
           ),
         ),
         actions: [
@@ -560,9 +559,8 @@ class _WeatherAlertsSection extends StatelessWidget {
                 weather.problem != null
                     ? _weatherProblem(t, weather)
                     : t.botWx_lastChecked(
-                        TimeOfDay.fromDateTime(
-                          checked!.toLocal(),
-                        ).format(context),
+                        TimeOfDay.fromDateTime(checked!.toLocal())
+                            .format(context),
                       ),
                 style: Theme.of(context).textTheme.bodySmall,
               ),

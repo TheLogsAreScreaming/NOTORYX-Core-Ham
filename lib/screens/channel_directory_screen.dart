@@ -234,14 +234,12 @@ class _ChannelDirectoryScreenState extends State<ChannelDirectoryScreen> {
                     ),
                   Text(
                     l10n.activeChannels_source(
-                      Uri.tryParse(
-                            context.read<AnalyzerService?>()?.url ?? '',
-                          )?.host ??
+                      Uri.tryParse(context.read<AnalyzerService?>()?.url ?? '')
+                              ?.host ??
                           '',
                     ),
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                    style: Theme.of(context).textTheme.bodySmall
+                        ?.copyWith(color: MeshPalette.ink3),
                   ),
                   const SizedBox(height: 18),
                 ],
@@ -270,9 +268,8 @@ class _ChannelDirectoryScreenState extends State<ChannelDirectoryScreen> {
                 const SizedBox(height: 12),
                 Text(
                   l10n.channelDirectory_addHint,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                  style: Theme.of(context).textTheme.bodySmall
+                      ?.copyWith(color: MeshPalette.ink3),
                 ),
               ],
             ),
@@ -371,10 +368,8 @@ class _DirectoryTile extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     entry.description,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: MeshPalette.ink2,
-                      height: 1.35,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall
+                        ?.copyWith(color: MeshPalette.ink2, height: 1.35),
                   ),
                 ],
                 if (entry.area != null) ...[

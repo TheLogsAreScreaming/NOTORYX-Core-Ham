@@ -32,7 +32,7 @@ class QuickSwitchBar extends StatelessWidget {
     final connector = context.watch<MeshCoreConnector>();
     final contactsUnreadCount = connector.getTotalContactsUnreadCount();
     final channelsUnreadCount = connector.getTotalChannelsUnreadCount();
-    final background = MapPalette.panelDark;
+    final background = MeshPalette.bg1;
     final muted = MeshPalette.ink4;
     final l10n = context.l10n;
 
@@ -46,7 +46,7 @@ class QuickSwitchBar extends StatelessWidget {
       }
     }
 
-    final selectedColor = highContrast ? MeshPalette.ink : MeshPalette.accent;
+    final selectedColor = highContrast ? MeshPalette.ink : MeshPalette.nav;
     final bar = NavigationBarTheme(
       data: NavigationBarThemeData(
         backgroundColor: Colors.transparent,
@@ -54,7 +54,7 @@ class QuickSwitchBar extends StatelessWidget {
         shadowColor: Colors.transparent,
         indicatorColor: highContrast
             ? Colors.transparent
-            : MeshPalette.accent.withValues(alpha: 0.16),
+            : MeshPalette.nav.withValues(alpha: 0.16),
         labelTextStyle: WidgetStateProperty.resolveWith((states) {
           final selected = states.contains(WidgetState.selected);
           return TextStyle(

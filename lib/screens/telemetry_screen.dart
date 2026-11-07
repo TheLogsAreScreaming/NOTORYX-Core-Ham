@@ -1,9 +1,12 @@
 import '../services/node_telemetry_store.dart';
+
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../models/path_selection.dart';
@@ -359,15 +362,13 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           children: [
             Text(
               l10n.repeater_telemetry,
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
             ),
             Text(
               widget.contact.name,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.normal),
+              style: Theme.of(context).textTheme.bodyMedium
+                  ?.copyWith(fontWeight: FontWeight.normal),
             ),
           ],
         ),
@@ -409,9 +410,8 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
                 Center(
                   child: Text(
                     l10n.telemetry_noData,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: scheme.onSurfaceVariant,
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge
+                        ?.copyWith(color: scheme.onSurfaceVariant),
                   ),
                 ),
               if ((_isLoaded || _hasData) &&
@@ -673,9 +673,9 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
                                 height: 18,
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onPrimary,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimary,
                                 ),
                               ),
                             ),

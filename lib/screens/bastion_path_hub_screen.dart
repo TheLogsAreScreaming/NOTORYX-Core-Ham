@@ -119,10 +119,8 @@ class _BastionPathHubScreenState extends State<BastionPathHubScreen> {
                   const SizedBox(height: MeshSpace.xs),
                   Text(
                     l10n.routes_body,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: MeshPalette.ink3,
-                      height: 1.4,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium
+                        ?.copyWith(color: MeshPalette.ink3, height: 1.4),
                   ),
                   // Counts only mean something once routes have been learned.
                   if (routeCount > 0) ...[
@@ -379,9 +377,8 @@ class _ContactRouteCard extends StatelessWidget {
               ),
               Text(
                 l10n.routes_routeCount(entry.paths.length),
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(color: MeshPalette.ink3),
               ),
             ],
           ),
@@ -403,9 +400,8 @@ class _ContactRouteCard extends StatelessWidget {
                 l10n.routes_via(names),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink2),
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(color: MeshPalette.ink2),
               ),
             ],
             const SizedBox(height: 5),
@@ -416,18 +412,16 @@ class _ContactRouteCard extends StatelessWidget {
                 '${best.successCount}',
                 '${best.failureCount}',
               ),
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+              style: Theme.of(context).textTheme.bodySmall
+                  ?.copyWith(color: MeshPalette.ink3),
             ),
           ],
           if (fastest != null) ...[
             const SizedBox(height: 4),
             Text(
               l10n.routes_fastest('${fastest.tripTimeMs}'),
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+              style: Theme.of(context).textTheme.bodySmall
+                  ?.copyWith(color: MeshPalette.ink3),
             ),
           ],
           if (entry.flood != null) ...[
@@ -437,9 +431,8 @@ class _ContactRouteCard extends StatelessWidget {
                 '${entry.flood!.successCount}',
                 '${entry.flood!.failureCount}',
               ),
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+              style: Theme.of(context).textTheme.bodySmall
+                  ?.copyWith(color: MeshPalette.ink3),
             ),
           ],
         ],
@@ -604,9 +597,8 @@ class _BestRepeaterRow extends StatelessWidget {
                     heard.count,
                     l10n.routes_minutesAgo(minutesAgo),
                   ),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                  style: Theme.of(context).textTheme.bodySmall
+                      ?.copyWith(color: MeshPalette.ink3),
                 ),
               ],
             ),

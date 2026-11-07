@@ -33,10 +33,8 @@ class FieldGuideScreen extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: MeshPalette.ink,
-                height: 1.4,
-              ),
+              style: Theme.of(context).textTheme.bodyLarge
+                  ?.copyWith(color: MeshPalette.ink, height: 1.4),
             ),
           ),
         ],

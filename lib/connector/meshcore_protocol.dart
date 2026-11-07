@@ -325,28 +325,20 @@ const int teleModeAllowFlags = 1; // use contact.flags
 const int teleModeAllowAll = 2;
 
 // Payload Types
-const int payloadTypeREQ =
-    0x00; // request (prefixed with dest/src hashes, MAC) (enc data: timestamp, blob)
-const int payloadTypeRESPONSE =
-    0x01; // response to REQ or ANON_REQ (prefixed with dest/src hashes, MAC) (enc data: timestamp, blob)
-const int payloadTypeTXTMSG =
-    0x02; // a plain text message (prefixed with dest/src hashes, MAC) (enc data: timestamp, text)
+const int payloadTypeREQ = 0x00; // request (prefixed with dest/src hashes, MAC) (enc data: timestamp, blob)
+const int payloadTypeRESPONSE = 0x01; // response to REQ or ANON_REQ (prefixed with dest/src hashes, MAC) (enc data: timestamp, blob)
+const int payloadTypeTXTMSG = 0x02; // a plain text message (prefixed with dest/src hashes, MAC) (enc data: timestamp, text)
 const int payloadTypeACK = 0x03; // a simple ack
 const int payloadTypeADVERT = 0x04; // a node advertising its Identity
-const int payloadTypeGRPTXT =
-    0x05; // an (unverified) group text message (prefixed with channel hash, MAC) (enc data: timestamp, "name: msg")
-const int payloadTypeGRPDATA =
-    0x06; // an (unverified) group datagram (prefixed with channel hash, MAC) (enc data: timestamp, blob)
-const int payloadTypeANONREQ =
-    0x07; // generic request (prefixed with dest_hash, ephemeral pub_key, MAC) (enc data: ...)
-const int payloadTypePATH =
-    0x08; // returned path (prefixed with dest/src hashes, MAC) (enc data: path, extra)
+const int payloadTypeGRPTXT = 0x05; // an (unverified) group text message (prefixed with channel hash, MAC) (enc data: timestamp, "name: msg")
+const int payloadTypeGRPDATA = 0x06; // an (unverified) group datagram (prefixed with channel hash, MAC) (enc data: timestamp, blob)
+const int payloadTypeANONREQ = 0x07; // generic request (prefixed with dest_hash, ephemeral pub_key, MAC) (enc data: ...)
+const int payloadTypePATH = 0x08; // returned path (prefixed with dest/src hashes, MAC) (enc data: path, extra)
 const int payloadTypeTRACE = 0x09; // trace a path, collecting SNI for each hop
 const int payloadTypeMULTIPART = 0x0A; // packet is one of a set of packets
 const int payloadTypeCONTROL = 0x0B; // a control/discovery packet
 //...
-const int payloadTypeRawCustom =
-    0x0F; // custom packet as raw bytes, for applications with custom encryption, payloads, etc
+const int payloadTypeRawCustom = 0x0F; // custom packet as raw bytes, for applications with custom encryption, payloads, etc
 
 //auto-add flags
 const int autoAddOverwriteOldestFlag =

@@ -637,14 +637,14 @@ void main() {
   final only = Platform.environment['PREVIEW_ONLY']?.split(',').toSet();
   final height =
       double.tryParse(Platform.environment['PREVIEW_HEIGHT'] ?? '') ?? 844;
-  // PREVIEW_THEME=okabe_ito,red_light (etc.) picks themes; by default the
-  // dark Blaze theme and the light Bubble Gum theme.
+  // PREVIEW_THEME=okabe_ito,night_ops (etc.) picks themes; by default the
+  // dark Blaze theme and the light Pink Overload theme.
   final themes =
       Platform.environment['PREVIEW_THEME']
           ?.split(',')
           .map(BastionTheme.fromId)
           .toList() ??
-      const [BastionTheme.blaze, BastionTheme.bubbleGum];
+      const [BastionTheme.blaze, BastionTheme.pinkOverload];
   // PREVIEW_A11Y=1 also runs Flutter's accessibility guidelines on every
   // screen and writes the findings to a11y.txt instead of failing.
   final a11y = Platform.environment['PREVIEW_A11Y'] != null;

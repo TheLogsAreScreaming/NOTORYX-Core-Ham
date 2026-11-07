@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
 import '../l10n/l10n.dart';
 
 class GifPicker extends StatefulWidget {
@@ -151,9 +152,8 @@ class _GifPickerState extends State<GifPicker> {
               prefixIcon: const Icon(Icons.search),
               suffixIcon: _searchController.text.isNotEmpty
                   ? IconButton(
-                      tooltip: MaterialLocalizations.of(
-                        context,
-                      ).clearButtonTooltip,
+                      tooltip: MaterialLocalizations.of(context)
+                          .clearButtonTooltip,
                       icon: const Icon(Icons.clear),
                       onPressed: () {
                         _searchController.clear();

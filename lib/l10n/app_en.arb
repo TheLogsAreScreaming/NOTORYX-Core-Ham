@@ -5849,5 +5849,33 @@
   "los_worst": "WORST",
   "los_selectedObstruction": "Selected obstruction",
   "bastionHome_stationOk": "Node name and band check out",
-  "bastionHome_stationConnectToCheck": "Connect a radio to check its name and band"
+  "bastionHome_stationConnectToCheck": "Connect a radio to check its name and band",
+  "theme_selected": "Selected",
+  "theme_desc_blaze": "Charcoal slate with hi-vis orange. The default.",
+  "theme_desc_neon_anarchy": "Toxic green and electric purple on black",
+  "theme_desc_tactical": "Olive, gunmetal and earth tones for the field",
+  "theme_desc_pink_overload": "Hot pink, bubblegum and lavender",
+  "theme_desc_bare_beauty": "Warm nude, dusty rose, cocoa and sage",
+  "theme_desc_okabe_ito": "Colour-vision friendly, on blue-grey",
+  "theme_desc_night_ops": "Dim red for working in the dark",
+  "theme_desc_seasonal": "Follows the season, or pick one",
+  "theme_seasonNow": "Now: {season}",
+  "theme_season": "Season",
+  "theme_seasonAuto": "Automatic",
+  "season_spring": "Spring",
+  "season_summer": "Summer",
+  "season_autumn": "Autumn",
+  "season_winter": "Winter",
+  "season_halloween": "Halloween",
+  "season_christmas": "Christmas",
+  "season_valentine": "Valentine's Day",
+  "theme_holidays": "Holiday colours",
+  "theme_holidaysHint": "Halloween, Christmas and Valentine's Day, when the season is Automatic",
+  "@theme_seasonNow": {
+    "placeholders": {
+      "season": {
+        "type": "String"
+      }
+    }
+  }
 }

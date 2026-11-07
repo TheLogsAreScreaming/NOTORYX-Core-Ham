@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
@@ -252,9 +253,9 @@ class EmojiPicker extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.secondaryContainer,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondaryContainer,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(

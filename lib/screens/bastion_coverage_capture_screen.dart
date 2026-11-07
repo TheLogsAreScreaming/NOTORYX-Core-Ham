@@ -1,10 +1,13 @@
 import 'dart:async';
+
 import 'bastion_coverage_history_screen.dart';
 
 import '../theme/mesh_theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../l10n/l10n.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -73,9 +76,8 @@ class _BastionCoverageCaptureScreenState
       }
     } catch (error) {
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(meshSnackBar(content: Text(friendlyError(error))));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(meshSnackBar(content: Text(friendlyError(error))));
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -338,10 +340,8 @@ class _Stat extends StatelessWidget {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: MeshPalette.ink3,
-            fontWeight: FontWeight.w800,
-          ),
+          style: Theme.of(context).textTheme.labelSmall
+              ?.copyWith(color: MeshPalette.ink3, fontWeight: FontWeight.w800),
         ),
         const SizedBox(height: 5),
         Text(
@@ -441,9 +441,8 @@ class _ObservationTile extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   '${observation.nodeType}  •  $signal  •  $snr',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: Color(0xFFB0BBC4)),
+                  style: Theme.of(context).textTheme.bodySmall
+                      ?.copyWith(color: Color(0xFFB0BBC4)),
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -455,9 +454,8 @@ class _ObservationTile extends StatelessWidget {
                         : l10n.bastion_hopsCount(observation.pathLength),
                     location,
                   ),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelSmall?.copyWith(color: Color(0xFF7F8B94)),
+                  style: Theme.of(context).textTheme.labelSmall
+                      ?.copyWith(color: Color(0xFF7F8B94)),
                 ),
               ],
             ),
@@ -501,10 +499,8 @@ class _Info extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 body,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: MeshPalette.ink3,
-                  height: 1.4,
-                ),
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(color: MeshPalette.ink3, height: 1.4),
               ),
             ],
           ),

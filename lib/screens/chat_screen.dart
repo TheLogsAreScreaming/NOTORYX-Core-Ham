@@ -691,9 +691,8 @@ class _ChatScreenState extends State<ChatScreen> {
                             ),
                             const SizedBox(width: 8),
                             IconButton(
-                              tooltip: MaterialLocalizations.of(
-                                context,
-                              ).closeButtonTooltip,
+                              tooltip: MaterialLocalizations.of(context)
+                                  .closeButtonTooltip,
                               icon: const Icon(Icons.close),
                               onPressed: () {
                                 _textController.clear();

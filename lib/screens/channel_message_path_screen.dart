@@ -287,9 +287,8 @@ class ChannelMessagePathScreen extends StatelessWidget {
                             l10n,
                           ),
                         ),
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: Theme.of(context).textTheme.bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(height: 2),
                       Text(
@@ -454,9 +453,8 @@ class ChannelMessagePathScreen extends StatelessWidget {
                 children: [
                   Text(
                     hop.displayLabel,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium
+                        ?.copyWith(fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 2),
                   Text(
@@ -1369,10 +1367,8 @@ class _ChannelMessagePathMapScreenState
             alignment: Alignment.center,
             child: Text(
               context.l10n.pathTrace_you,
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.labelMedium
+                  ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
         ),

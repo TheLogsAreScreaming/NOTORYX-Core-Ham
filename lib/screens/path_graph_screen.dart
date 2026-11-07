@@ -112,9 +112,8 @@ class _PathGraphScreenState extends State<PathGraphScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
                   child: Text(
                     l10n.pathGraph_ambiguousNote,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(color: MeshPalette.warn),
+                    style: Theme.of(context).textTheme.bodyMedium
+                        ?.copyWith(color: MeshPalette.warn),
                   ),
                 ),
               Flexible(
@@ -249,9 +248,8 @@ class _PathGraphScreenState extends State<PathGraphScreen> {
                           graph.upgradedHops,
                           graph.ambiguousHops,
                         ),
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                  style: Theme.of(context).textTheme.bodySmall
+                      ?.copyWith(color: MeshPalette.ink3),
                 ),
                 const SizedBox(height: MeshSpace.md),
                 MeshCard(
@@ -265,9 +263,8 @@ class _PathGraphScreenState extends State<PathGraphScreen> {
                 const SizedBox(height: 6),
                 Text(
                   l10n.pathGraph_chartHint,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                  style: Theme.of(context).textTheme.bodySmall
+                      ?.copyWith(color: MeshPalette.ink3),
                 ),
                 InstrumentLabel(l10n.pathGraph_busiest),
                 MeshCard(

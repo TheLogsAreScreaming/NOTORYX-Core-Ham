@@ -184,9 +184,8 @@ class _TrackLogScreenState extends State<TrackLogScreen> {
                       const SizedBox(height: 10),
                       Text(
                         l10n.trackLog_howItWorks,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: MeshPalette.ink3,
-                        ),
+                        style: Theme.of(context).textTheme.bodySmall
+                            ?.copyWith(color: MeshPalette.ink3),
                       ),
                     ],
                   ),

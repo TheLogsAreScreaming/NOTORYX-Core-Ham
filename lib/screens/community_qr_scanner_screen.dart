@@ -109,9 +109,8 @@ class _CommunityQrScannerScreenState extends State<CommunityQrScannerScreen> {
                 ),
                 child: Text(
                   context.l10n.community_scanInstructions,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodyMedium?.copyWith(color: MeshPalette.ink2),
+                  style: Theme.of(context).textTheme.bodyMedium
+                      ?.copyWith(color: MeshPalette.ink2),
                   textAlign: TextAlign.center,
                 ),
               ),

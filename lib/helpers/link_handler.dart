@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../l10n/l10n.dart';
 import '../utils/platform_info.dart';
 import '../helpers/snack_bar_builder.dart';

@@ -21,6 +21,7 @@ import 'package:meshcore_open/utils/app_logger.dart';
 import 'package:meshcore_open/widgets/path_map_ui.dart';
 import 'package:meshcore_open/widgets/snr_indicator.dart';
 import 'package:provider/provider.dart';
+
 import '../theme/mesh_theme.dart';
 
 export 'package:meshcore_open/widgets/path_map_ui.dart'
@@ -1762,9 +1763,8 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
                       padding: const EdgeInsets.fromLTRB(12, 0, 12, 4),
                       child: Text(
                         l10n.pathMap_partialAnimation(selected.unresolvedHops),
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: MeshPalette.warn,
-                        ),
+                        style: Theme.of(context).textTheme.labelSmall
+                            ?.copyWith(color: MeshPalette.warn),
                       ),
                     ),
                   if (combined)

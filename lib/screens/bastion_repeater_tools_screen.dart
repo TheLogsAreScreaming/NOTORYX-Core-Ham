@@ -124,9 +124,8 @@ class _BastionRepeaterToolsScreenState
               ),
               child: Text(
                 l10n.repeaterTools_hint,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(color: MeshPalette.ink3),
               ),
             ),
             const SizedBox(height: MeshSpace.sm),
@@ -193,9 +192,9 @@ class _BastionRepeaterToolsScreenState
               ),
             ])
               MeshCard(
-                onTap: () => Navigator.of(
-                  context,
-                ).push(MaterialPageRoute<void>(builder: (_) => page)),
+                onTap: () =>
+                    Navigator.of(context)
+                        .push(MaterialPageRoute<void>(builder: (_) => page)),
                 child: InstrumentRow(
                   icon: icon,
                   title: title,

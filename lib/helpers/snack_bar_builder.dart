@@ -95,9 +95,8 @@ SnackBar meshSnackBar({
 /// `Exception: ` / `Bad state: ` style prefixes and platform-channel noise.
 String friendlyError(Object error) {
   var text = error.toString();
-  final platform = RegExp(
-    r'^PlatformException\([^,]*, ([^,]*),',
-  ).firstMatch(text);
+  final platform = RegExp(r'^PlatformException\([^,]*, ([^,]*),')
+      .firstMatch(text);
   if (platform != null) text = platform.group(1)!;
   text = text.replaceFirst(
     RegExp(

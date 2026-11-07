@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
@@ -55,10 +56,8 @@ class ChromeRequiredScreen extends StatelessWidget {
                 Text(
                   l10n.scanner_chromeRequiredMessage,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: scheme.onSurfaceVariant,
-                    height: 1.55,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium
+                      ?.copyWith(color: scheme.onSurfaceVariant, height: 1.55),
                 ),
                 const SizedBox(height: 32),
 

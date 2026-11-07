@@ -1,5 +1,6 @@
 import '../services/node_telemetry_store.dart';
 import '../helpers/cayenne_lpp.dart';
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
@@ -764,11 +765,10 @@ class MeshCoreConnector extends ChangeNotifier {
       );
       _armContactSyncWatchdog();
       unawaited(
-        sendFrame(buildGetContactsFrame(since: _contactSyncSince)).catchError((
-          Object e,
-        ) {
-          appLogger.warn('Contact sync retry failed: $e', tag: 'Connector');
-        }),
+        sendFrame(buildGetContactsFrame(since: _contactSyncSince))
+            .catchError((Object e) {
+              appLogger.warn('Contact sync retry failed: $e', tag: 'Connector');
+            }),
       );
       return;
     }
@@ -5904,9 +5904,8 @@ class MeshCoreConnector extends ChangeNotifier {
       if (frame.length < start + maxLen) return null;
       final bytes = frame.sublist(start, start + maxLen);
       final end = bytes.indexOf(0);
-      final s = String.fromCharCodes(
-        end >= 0 ? bytes.sublist(0, end) : bytes,
-      ).trim();
+      final s = String.fromCharCodes(end >= 0 ? bytes.sublist(0, end) : bytes)
+          .trim();
       return s.isEmpty ? null : s;
     }
 

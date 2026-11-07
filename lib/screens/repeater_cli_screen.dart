@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
 import '../connector/meshcore_connector.dart';
@@ -362,9 +364,8 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
               padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
               child: Text(
                 'Runs on ${repeater.name}\'s radio only if they allowed you remote command line (MeshCore v1.18+). No reply means it was blocked or didn\'t arrive.',
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(color: MeshPalette.ink3),
               ),
             ),
           // Quick commands bar
@@ -535,9 +536,8 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
           const SizedBox(height: 4),
           Text(
             l10n.repeater_typeCommandOrUseQuick,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink4),
+            style: Theme.of(context).textTheme.bodySmall
+                ?.copyWith(color: MeshPalette.ink4),
           ),
         ],
       ),
@@ -1213,17 +1213,15 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
       children: [
         Text(
           title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
         ),
         if (note != null) ...[
           const SizedBox(height: 4),
           Text(
             note,
-            style: Theme.of(
-              context,
-            ).textTheme.labelSmall?.copyWith(color: scheme.onSurfaceVariant),
+            style: Theme.of(context).textTheme.labelSmall
+                ?.copyWith(color: scheme.onSurfaceVariant),
           ),
         ],
         const SizedBox(height: 8),
@@ -1261,9 +1259,8 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
               const SizedBox(height: 4),
               Text(
                 entry.description,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(color: scheme.onSurfaceVariant),
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(color: scheme.onSurfaceVariant),
               ),
             ],
           ),

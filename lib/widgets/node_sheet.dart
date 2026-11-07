@@ -101,9 +101,8 @@ void showNodeSheet(BuildContext context, Contact c) {
     builder: (sheet) {
       void go(Widget page) {
         Navigator.pop(sheet);
-        Navigator.of(
-          context,
-        ).push(MaterialPageRoute<void>(builder: (_) => page));
+        Navigator.of(context)
+            .push(MaterialPageRoute<void>(builder: (_) => page));
       }
 
       final actions = [
