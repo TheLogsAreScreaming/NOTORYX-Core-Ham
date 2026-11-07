@@ -9558,4 +9558,83 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Сведения о контакте';
+
+  @override
+  String get pathGraph_you => 'Вы';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Передал сообщений: $count';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Этот короткий ID совпадает с несколькими ретрансляторами, поэтому его нельзя отнести к одному.';
+
+  @override
+  String get pathGraph_comesFrom => 'Приходит от';
+
+  @override
+  String get pathGraph_goesTo => 'Уходит к';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Сведения о ретрансляторе';
+
+  @override
+  String get pathGraph_days7 => '7 дней';
+
+  @override
+  String get pathGraph_empty =>
+      'За этот период ещё нет маршрутов сообщений в каналах. Маршруты собираются из полученных сообщений в каналах, пока включена трассировка.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Услышано маршрутов: $paths · ретрансляторов: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Каждый хоп показан префиксом хеша или именем, если ретранслятор известен.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return 'Коротких (1-байтовых) хопов, сопоставленных с конкретным ретранслятором по более длинным маршрутам: $count.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return 'Коротких (1-байтовых) хопов, сопоставленных по более длинным маршрутам: $matched · всё ещё неоднозначных (с ?): $ambiguous.';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Слева: более далёкие ретрансляторы. Справа: вы. Толщина полосы — сколько сообщений прошло этим хопом. Нажмите на блок, чтобы увидеть ретранслятор.';
+
+  @override
+  String get pathGraph_busiest => 'Самые загруженные ретрансляторы';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Граф маршрутов. Самый загруженный ретранслятор $name, передал сообщений: $count.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Скопировано: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'В радио нет каналов.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Нажмите на значение, чтобы скопировать. Потяните вниз для обновления.';
+
+  @override
+  String get diag_storage => 'Память';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used из $total КБ';
+  }
 }

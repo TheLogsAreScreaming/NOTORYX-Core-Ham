@@ -9456,4 +9456,83 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Kontaktuppgifter';
+
+  @override
+  String get pathGraph_you => 'Du';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Vidarebefordrade $count meddelanden';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Det här korta ID:t matchar mer än en repeater och kan inte knytas till en.';
+
+  @override
+  String get pathGraph_comesFrom => 'Kommer från';
+
+  @override
+  String get pathGraph_goesTo => 'Går till';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeaterdetaljer';
+
+  @override
+  String get pathGraph_days7 => '7 dagar';
+
+  @override
+  String get pathGraph_empty =>
+      'Inga kanalmeddelandevägar under perioden än. Vägar samlas från mottagna kanalmeddelanden medan spårning är på.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths vägar hörda · $repeaters repeatrar';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Varje hopp visas med sitt hashprefix, eller namnet om du känner repeatern.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count korta (1-byte) hopp kopplade till en viss repeater via längre vägar.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched korta (1-byte) hopp kopplade till en viss repeater via längre vägar · $ambiguous fortfarande tvetydiga (markerade ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Vänster: repeatrar längre bort. Höger: du. Bandets bredd är hur många meddelanden som tog det hoppet. Tryck på en ruta för att se repeatern.';
+
+  @override
+  String get pathGraph_busiest => 'Mest belastade repeatrar';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Väggraf. Mest belastad repeater $name, vidarebefordrade $count meddelanden.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Kopierat: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Inga kanaler på radion.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tryck på ett värde för att kopiera det. Dra nedåt för att uppdatera.';
+
+  @override
+  String get diag_storage => 'Lagring';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used av $total KB';
+  }
 }

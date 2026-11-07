@@ -9544,4 +9544,83 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Kontaktdetails';
+
+  @override
+  String get pathGraph_you => 'Du';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count Nachrichten weitergeleitet';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Diese kurze ID passt zu mehr als einem Repeater und lässt sich keinem eindeutig zuordnen.';
+
+  @override
+  String get pathGraph_comesFrom => 'Kommt von';
+
+  @override
+  String get pathGraph_goesTo => 'Geht zu';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Repeater-Details';
+
+  @override
+  String get pathGraph_days7 => '7 Tage';
+
+  @override
+  String get pathGraph_empty =>
+      'In diesem Zeitraum noch keine Kanalnachrichten-Pfade. Pfade werden aus empfangenen Kanalnachrichten gesammelt, solange die Nachrichtenverfolgung an ist.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '$paths Pfade gehört · $repeaters Repeater';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Jeder Hop wird mit seinem Hash-Präfix gezeigt, oder mit dem Namen, wenn du den Repeater kennst.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count kurze (1-Byte-)Hops über längere Pfade einem bestimmten Repeater zugeordnet.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched kurze (1-Byte-)Hops über längere Pfade einem bestimmten Repeater zugeordnet · $ambiguous weiterhin mehrdeutig (mit ? markiert).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Links: weiter entfernte Repeater. Rechts: du. Die Bandbreite zeigt, wie viele Nachrichten diesen Hop nahmen. Tippe auf ein Kästchen, um den Repeater zu sehen.';
+
+  @override
+  String get pathGraph_busiest => 'Meistgenutzte Repeater';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Pfadgraph. Meistgenutzter Repeater $name, $count Nachrichten weitergeleitet.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Kopiert: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'Keine Kanäle auf diesem Funkgerät.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Tippe auf einen Wert, um ihn zu kopieren. Zum Aktualisieren nach unten ziehen.';
+
+  @override
+  String get diag_storage => 'Speicher';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used von $total KB';
+  }
 }

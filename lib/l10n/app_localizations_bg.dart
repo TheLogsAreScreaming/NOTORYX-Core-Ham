@@ -9515,4 +9515,83 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Данни за контакта';
+
+  @override
+  String get pathGraph_you => 'Вие';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Препредадени $count съобщения';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Този кратък ID съвпада с повече от един ретранслатор, затова не може да се определи точно.';
+
+  @override
+  String get pathGraph_comesFrom => 'Идва от';
+
+  @override
+  String get pathGraph_goesTo => 'Отива към';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Данни за ретранслатора';
+
+  @override
+  String get pathGraph_days7 => '7 дни';
+
+  @override
+  String get pathGraph_empty =>
+      'Още няма пътища на съобщения в канали за този период. Пътищата се събират от получени съобщения в канали, докато проследяването е включено.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Чути пътища: $paths · ретранслатори: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Всеки скок е показан с хеш префикса си или с името, ако познавате ретранслатора.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count кратки (1-байтови) скока са свързани с конкретен ретранслатор чрез по-дълги пътища.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched кратки (1-байтови) скока са свързани с конкретен ретранслатор чрез по-дълги пътища · $ambiguous остават неясни (с ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Вляво: по-далечни ретранслатори. Вдясно: вие. Дебелината на лентата е броят съобщения през този скок. Докоснете кутийка, за да видите ретранслатора.';
+
+  @override
+  String get pathGraph_busiest => 'Най-натоварени ретранслатори';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Граф на пътищата. Най-натоварен ретранслатор $name, препредал $count съобщения.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Копирано: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'В радиото няма канали.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Докоснете стойност, за да я копирате. Дръпнете надолу за обновяване.';
+
+  @override
+  String get diag_storage => 'Памет';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used от $total KB';
+  }
 }

@@ -9080,4 +9080,80 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get routes_contactDetails => '連絡先の詳細';
+
+  @override
+  String get pathGraph_you => 'あなた';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return '$count 件のメッセージを中継';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote => 'この短い ID は複数のリピーターに一致するため、1 つに特定できません。';
+
+  @override
+  String get pathGraph_comesFrom => '受信元';
+
+  @override
+  String get pathGraph_goesTo => '送信先';
+
+  @override
+  String get pathGraph_repeaterDetails => 'リピーターの詳細';
+
+  @override
+  String get pathGraph_days7 => '7 日間';
+
+  @override
+  String get pathGraph_empty =>
+      'この期間のチャンネルメッセージの経路はまだありません。経路は、メッセージ追跡がオンのときに受信したチャンネルメッセージから集められます。';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return '受信した経路 $paths · リピーター $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly => '各ホップはハッシュ接頭辞、またはリピーターが分かる場合はその名前で表示されます。';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count 件の短い (1 バイト) ホップを、より長い経路から特定のリピーターに対応付けました。';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched 件の短い (1 バイト) ホップを、より長い経路から特定のリピーターに対応付けました · $ambiguous 件はまだあいまいです (? 付き)。';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      '左: 遠くのリピーター。右: あなた。帯の太さはそのホップを通ったメッセージ数です。ボックスをタップするとそのリピーターを表示します。';
+
+  @override
+  String get pathGraph_busiest => '最も使われているリピーター';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return '経路グラフ。最も使われているリピーターは $name、$count 件を中継。';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'コピーしました: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'この無線機にはチャンネルがありません。';
+
+  @override
+  String get diag_tapToCopy => '値をタップするとコピーします。下に引くと更新します。';
+
+  @override
+  String get diag_storage => 'ストレージ';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used / $total KB';
+  }
 }

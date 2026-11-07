@@ -9505,4 +9505,83 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get routes_contactDetails => 'Údaje kontaktu';
+
+  @override
+  String get pathGraph_you => 'Vy';
+
+  @override
+  String pathGraph_relayed(int count) {
+    return 'Preposlal $count správ';
+  }
+
+  @override
+  String get pathGraph_ambiguousNote =>
+      'Toto krátke ID zodpovedá viacerým opakovačom, takže sa nedá priradiť jednému.';
+
+  @override
+  String get pathGraph_comesFrom => 'Prichádza z';
+
+  @override
+  String get pathGraph_goesTo => 'Ide do';
+
+  @override
+  String get pathGraph_repeaterDetails => 'Údaje opakovača';
+
+  @override
+  String get pathGraph_days7 => '7 dní';
+
+  @override
+  String get pathGraph_empty =>
+      'V tomto období zatiaľ nie sú trasy správ z kanálov. Trasy sa zbierajú z prijatých správ z kanálov, keď je sledovanie zapnuté.';
+
+  @override
+  String pathGraph_summary(int paths, int repeaters) {
+    return 'Počuté trasy: $paths · opakovače: $repeaters';
+  }
+
+  @override
+  String get pathGraph_hashOnly =>
+      'Každý skok je zobrazený hash predponou alebo menom, ak opakovač poznáte.';
+
+  @override
+  String pathGraph_matched(int count) {
+    return '$count krátkych (1-bajtových) skokov priradených ku konkrétnemu opakovaču podľa dlhších trás.';
+  }
+
+  @override
+  String pathGraph_matchedAmbiguous(int matched, int ambiguous) {
+    return '$matched krátkych (1-bajtových) skokov priradených ku konkrétnemu opakovaču podľa dlhších trás · $ambiguous stále nejednoznačných (označené ?).';
+  }
+
+  @override
+  String get pathGraph_chartHint =>
+      'Vľavo: vzdialenejšie opakovače. Vpravo: vy. Hrúbka pásu je počet správ cez tento skok. Ťuknite na políčko a uvidíte opakovač.';
+
+  @override
+  String get pathGraph_busiest => 'Najvyťaženejšie opakovače';
+
+  @override
+  String pathGraph_chartSemantics(String name, int count) {
+    return 'Graf trás. Najvyťaženejší opakovač $name, preposlal $count správ.';
+  }
+
+  @override
+  String diag_copied(String label) {
+    return 'Skopírované: $label';
+  }
+
+  @override
+  String get diag_noChannels => 'V tomto rádiu nie sú kanály.';
+
+  @override
+  String get diag_tapToCopy =>
+      'Ťuknite na hodnotu a skopírujete ju. Potiahnutím nadol obnovíte.';
+
+  @override
+  String get diag_storage => 'Úložisko';
+
+  @override
+  String diag_storageValue(int used, int total) {
+    return '$used z $total KB';
+  }
 }
