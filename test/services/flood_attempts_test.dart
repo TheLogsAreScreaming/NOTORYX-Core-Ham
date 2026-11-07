@@ -61,6 +61,7 @@ void main() {
               selfKey,
             );
             scheduleMicrotask(() => service.updateMessageFromSent(hash, 500));
+            return true;
           },
           getSelfPublicKey: () => selfKey,
           addMessage: (_, m) => last = m,

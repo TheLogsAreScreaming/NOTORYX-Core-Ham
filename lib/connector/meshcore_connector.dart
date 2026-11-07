@@ -1659,13 +1659,13 @@ class MeshCoreConnector extends ChangeNotifier {
     );
   }
 
-  Future<void> _sendMessageDirect(
+  Future<bool> _sendMessageDirect(
     Contact contact,
     String text,
     int attempt,
     int timestampSeconds,
   ) async {
-    if (!isConnected || text.isEmpty) return;
+    if (!isConnected || text.isEmpty) return false;
     try {
       await _waitForRadioQuiet(lastInboundRxTime: _lastContactMsgRxTime);
       final outboundText = prepareContactOutboundText(contact, text);
@@ -1677,8 +1677,10 @@ class MeshCoreConnector extends ChangeNotifier {
           timestampSeconds: timestampSeconds,
         ),
       );
+      return true;
     } catch (e) {
       appLogger.error('Failed to send message: $e', tag: 'Connector');
+      return false;
     }
   }
 
@@ -6280,6 +6282,12 @@ class MeshCoreConnector extends ChangeNotifier {
             (_autoAddRoomServers && contact.type == advTypeRoom) ||
             (_autoAddSensors && contact.type == advTypeSensor) ||
             isContact) {
+          // A contact from the radio's own list is truth; one the radio
+          // auto-added from an advert must fit its table, as it does there.
+          if (!isContact && !_admitAutoAddedContact(contact)) {
+            notifyListeners();
+            return;
+          }
           _contacts.add(contact);
           appLogger.info(
             'Added new contact ${contact.name}: pathLen=${contact.pathLength}',
@@ -6320,6 +6328,55 @@ class MeshCoreConnector extends ChangeNotifier {
         unawaited(_persistContacts());
       }
     }
+  }
+
+  /// Whether the radio would have room for a contact it auto-added from an
+  /// advert, mirroring its table: when full it either replaces the oldest
+  /// non-favorite (overwrite oldest on), which is dropped here too, or adds
+  /// nothing. Without this the list here drifts from the radio's over a long
+  /// session, keeping contacts the radio no longer has.
+  bool _admitAutoAddedContact(Contact contact) {
+    if (_contacts.length < _maxContacts) return true;
+    if (!_overwriteOldest) {
+      appLogger.info(
+        'Contact table full ($_maxContacts); radio did not add ${contact.name}',
+        tag: 'Connector',
+      );
+      return false;
+    }
+    Contact? oldest;
+    for (final c in _contacts) {
+      if (c.isFavorite) continue;
+      if (oldest == null ||
+          (c.lastModified ?? c.lastSeen).isBefore(
+            oldest.lastModified ?? oldest.lastSeen,
+          )) {
+        oldest = c;
+      }
+    }
+    if (oldest == null) return false;
+    final evicted = oldest;
+    _contacts.removeWhere((c) => c.publicKeyHex == evicted.publicKeyHex);
+    _knownContactKeys.remove(evicted.publicKeyHex);
+    appLogger.info(
+      'Contact table full; radio replaced ${evicted.name} with ${contact.name}',
+      tag: 'Connector',
+    );
+    return true;
+  }
+
+  /// Sets the contact-table limits as the radio reports them; for tests.
+  @visibleForTesting
+  void debugSetContactTable({
+    required int maxContacts,
+    bool overwriteOldest = false,
+    bool autoAddUsers = false,
+    bool autoAddRepeaters = false,
+  }) {
+    _maxContacts = maxContacts;
+    _overwriteOldest = overwriteOldest;
+    _autoAddUsers = autoAddUsers;
+    _autoAddRepeaters = autoAddRepeaters;
   }
 
   void _handleContactAdvert(Contact contact) {
@@ -6366,6 +6423,10 @@ class MeshCoreConnector extends ChangeNotifier {
         tag: 'Connector',
       );
     } else {
+      if (!_admitAutoAddedContact(contact)) {
+        notifyListeners();
+        return;
+      }
       _contacts.add(contact);
       appLogger.info(
         'Added new contact ${contact.name}: pathLen=${contact.pathLength}',
