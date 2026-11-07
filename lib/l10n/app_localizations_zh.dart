@@ -9109,4 +9109,141 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get rxLog_copyHex => '复制十六进制';
+
+  @override
+  String get deliv_title => '送达详情';
+
+  @override
+  String get deliv_note => '根据此消息保存的信息推算。';
+
+  @override
+  String get deliv_queued => '已排队';
+
+  @override
+  String get deliv_sent => '电台已发送';
+
+  @override
+  String get deliv_notSent => '电台未接收';
+
+  @override
+  String get deliv_attempts => '尝试';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return '计划：直连 $direct 次，然后泛洪 $flood 次';
+  }
+
+  @override
+  String get deliv_lastRoute => '最后路由';
+
+  @override
+  String get deliv_routeFlood => '泛洪，经过所有中继';
+
+  @override
+  String get deliv_routeNeighbor => '直连，无中继';
+
+  @override
+  String deliv_routeVia(String path) {
+    return '经 $path 直连';
+  }
+
+  @override
+  String get deliv_confirmed => '已确认收到';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return '往返 $seconds 秒';
+  }
+
+  @override
+  String get deliv_waiting => '等待确认';
+
+  @override
+  String get deliv_noConfirm => '无确认';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name 最后收到';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时前',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return '已送达。$name 已确认。';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return '直连尝试失败后通过泛洪送达。到 $name 的已保存路由可能已过时。';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return '仍在尝试：第 $attempt 次，共 $total 次。';
+  }
+
+  @override
+  String get deliv_vNotSent => '电台从未接收此消息。请检查连接后重试。';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时',
+    );
+    return '无确认。已 $_temp0未收到 $name，可能超出范围或已关机。';
+  }
+
+  @override
+  String get deliv_vNoFlood => '已保存路由无确认，且泛洪尝试已关闭。可在 设置 → 应用设置 → 消息 中开启，或重试。';
+
+  @override
+  String get deliv_vNoAck => '所有路由均无确认。可能超出范围，或确认未能传回给你。';
+
+  @override
+  String get favReturn_setting => '收藏联系人回到范围内';
+
+  @override
+  String get favReturn_settingHint => '收藏联系人沉寂一段时间后再次收到时通知';
+
+  @override
+  String get favReturn_off => '关闭';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 小时后',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => '回到范围内';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时',
+    );
+    return '沉寂 $_temp0后再次收到 $name';
+  }
 }

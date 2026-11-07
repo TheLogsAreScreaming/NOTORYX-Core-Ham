@@ -9796,4 +9796,156 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get rxLog_copyHex => 'Копіювати hex';
+
+  @override
+  String get deliv_title => 'Подробиці доставки';
+
+  @override
+  String get deliv_note =>
+      'Визначено з даних, збережених із цим повідомленням.';
+
+  @override
+  String get deliv_queued => 'У черзі';
+
+  @override
+  String get deliv_sent => 'Надіслано рацією';
+
+  @override
+  String get deliv_notSent => 'Рація не прийняла';
+
+  @override
+  String get deliv_attempts => 'Спроби';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made з $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'План: $direct напряму, потім $flood флудом';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Останній маршрут';
+
+  @override
+  String get deliv_routeFlood => 'Флуд через усі ретранслятори';
+
+  @override
+  String get deliv_routeNeighbor => 'Напряму, без ретрансляторів';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Напряму через $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Отримання підтверджено';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Туди й назад $seconds с';
+  }
+
+  @override
+  String get deliv_waiting => 'Очікування підтвердження';
+
+  @override
+  String get deliv_noConfirm => 'Немає підтвердження';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name було чути';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours години тому',
+      many: '$hours годин тому',
+      few: '$hours години тому',
+      one: '1 годину тому',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Доставлено. $name підтвердив отримання.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Доставлено флудом після невдалих прямих спроб. Збережений маршрут до $name може бути застарілим.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Ще намагається: спроба $attempt з $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Рація так і не прийняла це повідомлення. Перевірте з\'єднання й повторіть.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours години',
+      many: '$hours годин',
+      few: '$hours години',
+      one: '1 годину',
+    );
+    return 'Немає підтвердження. $name не чути вже $_temp0 — можливо, поза зоною або вимкнений.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Немає підтвердження за збереженим маршрутом, а спроби флудом вимкнено. Увімкніть їх у Налаштування → Налаштування застосунку → Повідомлення або повторіть.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Немає підтвердження жодним маршрутом. Можливо, поза зоною, або підтвердження не змогло повернутися до вас.';
+
+  @override
+  String get favReturn_setting => 'Обрані знову в зоні';
+
+  @override
+  String get favReturn_settingHint =>
+      'Сповіщати, коли обраний контакт знову чути після тиші';
+
+  @override
+  String get favReturn_off => 'Вимк.';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Через $count години',
+      many: 'Через $count годин',
+      few: 'Через $count години',
+      one: 'Через 1 годину',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Знову в зоні';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours год',
+      one: '1 години',
+    );
+    return '$name знову чути після $_temp0 тиші';
+  }
 }

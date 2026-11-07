@@ -9730,4 +9730,149 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get rxLog_copyHex => 'Hex kopiëren';
+
+  @override
+  String get deliv_title => 'Bezorgdetails';
+
+  @override
+  String get deliv_note => 'Afgeleid uit wat bij dit bericht is opgeslagen.';
+
+  @override
+  String get deliv_queued => 'In wachtrij';
+
+  @override
+  String get deliv_sent => 'Verzonden door je radio';
+
+  @override
+  String get deliv_notSent => 'Niet aangenomen door je radio';
+
+  @override
+  String get deliv_attempts => 'Pogingen';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made van $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plan: $direct direct, daarna $flood via flood';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Laatste route';
+
+  @override
+  String get deliv_routeFlood => 'Flood via alle repeaters';
+
+  @override
+  String get deliv_routeNeighbor => 'Direct, geen repeaters';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Direct via $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Ontvangst bevestigd';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Retourtijd $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Wacht op bevestiging';
+
+  @override
+  String get deliv_noConfirm => 'Geen bevestiging';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name laatst gehoord';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours uur geleden',
+      one: '1 uur geleden',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Bezorgd. $name heeft het bevestigd.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Via flood bezorgd nadat de directe pogingen mislukten. De opgeslagen route naar $name is mogelijk verouderd.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Nog bezig: poging $attempt van $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Je radio heeft dit bericht nooit aangenomen. Controleer de verbinding en probeer opnieuw.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours uur',
+      one: '1 uur',
+    );
+    return 'Geen bevestiging. $name is al $_temp0 niet gehoord en is mogelijk buiten bereik of uitgeschakeld.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Geen bevestiging via de opgeslagen route en flood-pogingen staan uit. Zet ze aan via Instellingen → App-instellingen → Berichten, of probeer opnieuw.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Geen bevestiging via welke route dan ook. Mogelijk buiten bereik, of hun bevestiging kwam niet bij je terug.';
+
+  @override
+  String get favReturn_setting => 'Favorieten weer binnen bereik';
+
+  @override
+  String get favReturn_settingHint =>
+      'Melding wanneer een favoriet na een stille periode weer te horen is';
+
+  @override
+  String get favReturn_off => 'Uit';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Na $count uur',
+      one: 'Na 1 uur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'Weer binnen bereik';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours uur',
+      one: '1 uur',
+    );
+    return '$name weer gehoord na $_temp0 stilte';
+  }
 }

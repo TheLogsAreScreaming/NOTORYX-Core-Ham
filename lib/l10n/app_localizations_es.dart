@@ -9770,4 +9770,150 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get rxLog_copyHex => 'Copiar hex';
+
+  @override
+  String get deliv_title => 'Detalles de entrega';
+
+  @override
+  String get deliv_note =>
+      'Calculado a partir de lo guardado con este mensaje.';
+
+  @override
+  String get deliv_queued => 'En cola';
+
+  @override
+  String get deliv_sent => 'Enviado por tu radio';
+
+  @override
+  String get deliv_notSent => 'Tu radio no lo aceptó';
+
+  @override
+  String get deliv_attempts => 'Intentos';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made de $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plan: $direct directos y luego $flood por inundación';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Última ruta';
+
+  @override
+  String get deliv_routeFlood => 'Inundación por todos los repetidores';
+
+  @override
+  String get deliv_routeNeighbor => 'Directo, sin repetidores';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Directo vía $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Recepción confirmada';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Ida y vuelta $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Esperando confirmación';
+
+  @override
+  String get deliv_noConfirm => 'Sin confirmación';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return 'Última vez que se oyó a $name';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'hace $hours horas',
+      one: 'hace 1 hora',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Entregado. $name lo confirmó.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Entregado por inundación tras fallar los intentos directos. La ruta guardada a $name puede estar desactualizada.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Sigue intentándolo: intento $attempt de $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Tu radio nunca aceptó este mensaje. Comprueba que está conectada y vuelve a intentarlo.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours horas',
+      one: '1 hora',
+    );
+    return 'Sin confirmación. No se oye a $name desde hace $_temp0; puede estar fuera de alcance o apagado.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Sin confirmación por la ruta guardada y los intentos por inundación están desactivados. Actívalos en Ajustes → Ajustes de la app → Mensajes, o vuelve a intentarlo.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Sin confirmación por ninguna ruta. Puede estar fuera de alcance o su confirmación no pudo volver hasta ti.';
+
+  @override
+  String get favReturn_setting => 'Favoritos de vuelta en alcance';
+
+  @override
+  String get favReturn_settingHint =>
+      'Avisar cuando se vuelva a oír a un favorito tras un tiempo en silencio';
+
+  @override
+  String get favReturn_off => 'Desactivado';
+
+  @override
+  String favReturn_hours(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tras $count horas',
+      one: 'Tras 1 hora',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get favReturn_title => 'De vuelta en alcance';
+
+  @override
+  String favReturn_body(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours horas',
+      one: '1 hora',
+    );
+    return 'Se vuelve a oír a $name tras $_temp0 en silencio';
+  }
 }
