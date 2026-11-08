@@ -4156,6 +4156,13 @@
   "adminWait_retrying": "Відповіді ще немає. Повторна спроба ({attempt} з {total})",
   "adminWait_direct": "{hops, plural, =0{Напряму} =1{Напряму, 1 перехід} few{Напряму, {hops} переходи} many{Напряму, {hops} переходів} other{Напряму, {hops} переходу}}",
   "adminWait_upTo": "до {seconds} с",
+  "coords_setting": "Формат координат",
+  "coords_decimal": "Десяткові градуси",
+  "coords_dms": "Градуси, хвилини, секунди",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Копіювати позицію",
+  "coords_copied": "Скопійовано як {format}",
   "pathHash_badge": "Маршрут використовує {width}-байтові хеші шляху",
   "pathHash_mismatch": "Ваше радіо використовує {width} байт"
 }

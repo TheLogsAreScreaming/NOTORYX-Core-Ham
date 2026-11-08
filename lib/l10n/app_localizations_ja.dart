@@ -9581,6 +9581,29 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get coords_setting => '座標の形式';
+
+  @override
+  String get coords_decimal => '10進数の度';
+
+  @override
+  String get coords_dms => '度・分・秒';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => '位置をコピー';
+
+  @override
+  String coords_copied(String format) {
+    return '$format でコピーしました';
+  }
+
+  @override
   String pathHash_badge(int width) {
     return '経路は $width バイトのパスハッシュを使用';
   }

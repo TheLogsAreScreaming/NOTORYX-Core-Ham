@@ -4310,6 +4310,13 @@
   "adminWait_retrying": "아직 응답이 없습니다. 다시 시도 중 ({attempt}/{total})",
   "adminWait_direct": "{hops, plural, =0{직접} other{직접, {hops}홉}}",
   "adminWait_upTo": "최대 {seconds}초",
+  "coords_setting": "좌표 형식",
+  "coords_decimal": "십진 도",
+  "coords_dms": "도, 분, 초",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "위치 복사",
+  "coords_copied": "{format}(으)로 복사됨",
   "pathHash_badge": "경로가 {width}바이트 경로 해시를 사용",
   "pathHash_mismatch": "내 무전기는 {width}바이트 사용"
 }

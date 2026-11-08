@@ -161,6 +161,9 @@ class AppSettings {
   /// The chosen color theme's id (see BastionTheme); Blaze by default.
   final String appTheme;
 
+  /// How positions are shown: 'decimal', 'dms', 'utm' or 'mgrs'.
+  final String coordinateFormat;
+
   /// Channel messages older than this many days are deleted; 0 keeps them.
   final int channelMessageRetentionDays;
   final bool imageMessagesEnabled;
@@ -277,6 +280,7 @@ class AppSettings {
     this.mapTelemetryMetric = 'battery',
     this.signChannelPosts = false,
     this.appTheme = 'blaze',
+    this.coordinateFormat = 'decimal',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
     this.imageProcessAutomatically = false,
@@ -366,6 +370,7 @@ class AppSettings {
       'map_telemetry_metric': mapTelemetryMetric,
       'sign_channel_posts': signChannelPosts,
       'app_theme': appTheme,
+      'coordinate_format': coordinateFormat,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
       'image_process_automatically': imageProcessAutomatically,
@@ -484,6 +489,7 @@ class AppSettings {
       mapTelemetryMetric: json['map_telemetry_metric'] as String? ?? 'battery',
       signChannelPosts: json['sign_channel_posts'] as bool? ?? false,
       appTheme: json['app_theme'] as String? ?? 'blaze',
+      coordinateFormat: json['coordinate_format'] as String? ?? 'decimal',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
             json['channel_message_retention_days'],
@@ -615,6 +621,7 @@ class AppSettings {
     String? mapTelemetryMetric,
     bool? signChannelPosts,
     String? appTheme,
+    String? coordinateFormat,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
     bool? imageProcessAutomatically,
@@ -702,6 +709,7 @@ class AppSettings {
       mapTelemetryMetric: mapTelemetryMetric ?? this.mapTelemetryMetric,
       signChannelPosts: signChannelPosts ?? this.signChannelPosts,
       appTheme: appTheme ?? this.appTheme,
+      coordinateFormat: coordinateFormat ?? this.coordinateFormat,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,
       imageMessagesEnabled: imageMessagesEnabled ?? this.imageMessagesEnabled,

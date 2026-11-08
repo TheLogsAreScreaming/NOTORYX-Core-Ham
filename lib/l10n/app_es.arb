@@ -4310,6 +4310,13 @@
   "adminWait_retrying": "Aún sin respuesta. Reintentando ({attempt} de {total})",
   "adminWait_direct": "{hops, plural, =0{Directo} =1{Directo, 1 salto} other{Directo, {hops} saltos}}",
   "adminWait_upTo": "hasta {seconds} s",
+  "coords_setting": "Formato de coordenadas",
+  "coords_decimal": "Grados decimales",
+  "coords_dms": "Grados, minutos, segundos",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Copiar posición",
+  "coords_copied": "Copiado como {format}",
   "pathHash_badge": "La ruta usa hashes de ruta de {width} bytes",
   "pathHash_mismatch": "Tu radio usa {width} bytes"
 }

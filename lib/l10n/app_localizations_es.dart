@@ -10066,6 +10066,29 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get coords_setting => 'Formato de coordenadas';
+
+  @override
+  String get coords_decimal => 'Grados decimales';
+
+  @override
+  String get coords_dms => 'Grados, minutos, segundos';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Copiar posición';
+
+  @override
+  String coords_copied(String format) {
+    return 'Copiado como $format';
+  }
+
+  @override
   String pathHash_badge(int width) {
     return 'La ruta usa hashes de ruta de $width bytes';
   }

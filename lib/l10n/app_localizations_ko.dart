@@ -9594,6 +9594,29 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get coords_setting => '좌표 형식';
+
+  @override
+  String get coords_decimal => '십진 도';
+
+  @override
+  String get coords_dms => '도, 분, 초';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => '위치 복사';
+
+  @override
+  String coords_copied(String format) {
+    return '$format(으)로 복사됨';
+  }
+
+  @override
   String pathHash_badge(int width) {
     return '경로가 $width바이트 경로 해시를 사용';
   }

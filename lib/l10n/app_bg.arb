@@ -4176,6 +4176,13 @@
   "adminWait_retrying": "Още няма отговор. Нов опит ({attempt} от {total})",
   "adminWait_direct": "{hops, plural, =0{Директно} =1{Директно, 1 скок} other{Директно, {hops} скока}}",
   "adminWait_upTo": "до {seconds} с",
+  "coords_setting": "Формат на координатите",
+  "coords_decimal": "Десетични градуси",
+  "coords_dms": "Градуси, минути, секунди",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Копирай позицията",
+  "coords_copied": "Копирано като {format}",
   "pathHash_badge": "Маршрутът използва {width}-байтови хешове на пътя",
   "pathHash_mismatch": "Вашето радио използва {width}-байтови"
 }
