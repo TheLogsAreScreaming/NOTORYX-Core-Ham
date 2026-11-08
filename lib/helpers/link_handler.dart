@@ -8,11 +8,16 @@ import '../helpers/snack_bar_builder.dart';
 
 class LinkHandler {
   static TextStyle defaultLinkStyle(BuildContext context, TextStyle base) {
-    final brightness = Theme.of(context).brightness;
-    final orange = brightness == Brightness.dark
-        ? const Color(0xFFFFB74D)
-        : const Color(0xFFE65100);
-    return base.copyWith(color: orange, decoration: TextDecoration.underline);
+    // Links keep the text color of the bubble they sit in, which every
+    // theme makes readable, and stand out by underline and weight rather
+    // than by a fixed color that fails on some bubbles.
+    final color = base.color ?? Theme.of(context).colorScheme.primary;
+    return base.copyWith(
+      color: color,
+      fontWeight: FontWeight.w600,
+      decoration: TextDecoration.underline,
+      decorationColor: color,
+    );
   }
 
   /// Returns a [SelectableLinkify] on desktop or a [Linkify] on mobile.
@@ -107,7 +112,7 @@ class LinkHandler {
           showDismissibleSnackBar(
             context,
             content: Text(context.l10n.chat_couldNotOpenLink(url)),
-            backgroundColor: Colors.red,
+            backgroundColor: Theme.of(context).colorScheme.error,
           );
         }
       }
@@ -116,7 +121,7 @@ class LinkHandler {
         showDismissibleSnackBar(
           context,
           content: Text(context.l10n.chat_invalidLink),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).colorScheme.error,
         );
       }
     }

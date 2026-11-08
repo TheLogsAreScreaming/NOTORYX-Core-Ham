@@ -308,14 +308,18 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               width: 12,
               height: 12,
               decoration: BoxDecoration(
-                color: Colors.purple,
+                color: MeshPalette.magenta,
                 shape: BoxShape.circle,
                 border: Border.all(
                   color: Theme.of(context).cardColor,
                   width: 2,
                 ),
               ),
-              child: const Icon(Icons.people, size: 8, color: Colors.white),
+              child: Icon(
+                Icons.people,
+                size: 8,
+                color: MeshPalette.onColor(MeshPalette.magenta),
+              ),
             ),
           ),
       ],

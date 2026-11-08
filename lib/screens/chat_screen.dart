@@ -1748,7 +1748,15 @@ class _MessageBubble extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
-                                  color: _colorForName(senderName),
+                                  // The bubble is see-through, so the name
+                                  // must read on cards and on the page.
+                                  color: MeshPalette.readable(
+                                    MeshPalette.readable(
+                                      _colorForName(senderName),
+                                      MeshPalette.bg2,
+                                    ),
+                                    MeshPalette.bg,
+                                  ),
                                 ),
                               ),
                             ),
@@ -2125,8 +2133,8 @@ Color _colorForName(String name) {
     MeshPalette.magenta,
     MeshPalette.signal,
     MeshPalette.warn,
-    Color(0xFF8FA8F0),
-    Color(0xFF6FD9CE),
+    MeshPalette.secondary,
+    MeshPalette.tertiary,
   ];
   var h = 0;
   for (final c in name.codeUnits) {

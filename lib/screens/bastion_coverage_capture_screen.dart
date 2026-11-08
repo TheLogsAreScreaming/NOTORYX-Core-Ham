@@ -246,12 +246,10 @@ class _BastionCoverageCaptureScreenState
             const SizedBox(height: 16),
             FilledButton.icon(
               style: FilledButton.styleFrom(
-                backgroundColor: _capture.recording
-                    ? const Color(0xFF303A42)
-                    : cyan,
+                backgroundColor: _capture.recording ? MeshPalette.bg3 : cyan,
                 foregroundColor: _capture.recording
-                    ? Colors.white
-                    : Colors.black,
+                    ? MeshPalette.ink
+                    : MeshPalette.onAccent,
                 padding: const EdgeInsets.symmetric(vertical: 16),
               ),
               onPressed: !_busy && (connector.isConnected || _capture.recording)
@@ -382,14 +380,14 @@ class _Status extends StatelessWidget {
         Icon(
           icon,
           size: 17,
-          color: active ? MeshPalette.accent : const Color(0xFF697680),
+          color: active ? MeshPalette.accent : MeshPalette.ink4,
         ),
         const SizedBox(width: 7),
         Expanded(
           child: Text(
             label,
             style: TextStyle(
-              color: active ? Colors.white : const Color(0xFF89949D),
+              color: active ? MeshPalette.ink : MeshPalette.ink3,
               fontSize: 10,
               fontWeight: FontWeight.w800,
             ),
@@ -445,10 +443,7 @@ class _ObservationTile extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   '${observation.nodeType}  •  $signal  •  $snr',
-                  style: const TextStyle(
-                    color: Color(0xFFB0BBC4),
-                    fontSize: 11.5,
-                  ),
+                  style: TextStyle(color: MeshPalette.ink2, fontSize: 11.5),
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -460,10 +455,7 @@ class _ObservationTile extends StatelessWidget {
                         : l10n.bastion_hopsCount(observation.pathLength),
                     location,
                   ),
-                  style: const TextStyle(
-                    color: Color(0xFF7F8B94),
-                    fontSize: 10.5,
-                  ),
+                  style: TextStyle(color: MeshPalette.ink3, fontSize: 10.5),
                 ),
               ],
             ),
