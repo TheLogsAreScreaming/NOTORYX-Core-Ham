@@ -10565,4 +10565,8 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'Ця назва не починається з позивного';
+
+  @override
+  String get ham_composerPlainText =>
+      'Відкритий текст: будь-хто, хто слухає, може це прочитати';
 }

@@ -10477,4 +10477,8 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'Deze naam begint niet met een roepnaam';
+
+  @override
+  String get ham_composerPlainText =>
+      'Platte tekst: iedereen die meeluistert kan dit lezen';
 }

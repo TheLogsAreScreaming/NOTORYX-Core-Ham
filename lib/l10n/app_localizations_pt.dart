@@ -10505,4 +10505,8 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'Este nome não começa com um indicativo';
+
+  @override
+  String get ham_composerPlainText =>
+      'Texto sem cifra: qualquer pessoa à escuta pode ler';
 }

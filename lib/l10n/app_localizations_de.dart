@@ -10528,4 +10528,8 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get ham_idMismatchNoCall =>
       'Dieser Name beginnt nicht mit einem Rufzeichen';
+
+  @override
+  String get ham_composerPlainText =>
+      'Klartext: Jeder, der mithört, kann das lesen';
 }

@@ -10508,4 +10508,8 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'Ez a név nem hívójellel kezdődik';
+
+  @override
+  String get ham_composerPlainText =>
+      'Nyílt szöveg: bárki, aki hallgatja, elolvashatja';
 }

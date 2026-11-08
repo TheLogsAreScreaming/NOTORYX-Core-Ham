@@ -10504,4 +10504,8 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'Tento názov nezačína volacou značkou';
+
+  @override
+  String get ham_composerPlainText =>
+      'Nešifrovaný text: ktokoľvek, kto počúva, si to môže prečítať';
 }

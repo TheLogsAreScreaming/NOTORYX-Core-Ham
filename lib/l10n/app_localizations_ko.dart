@@ -10031,4 +10031,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => '이 이름은 호출부호로 시작하지 않습니다';
+
+  @override
+  String get ham_composerPlainText => '평문입니다. 듣고 있는 누구나 읽을 수 있습니다';
 }

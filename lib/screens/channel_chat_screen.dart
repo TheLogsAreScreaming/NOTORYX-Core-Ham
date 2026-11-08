@@ -2097,7 +2097,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           maxBytes: maxBytes,
                           controller: _textController,
                           focusNode: _textFieldFocusNode,
-                          hintText: context.l10n.chat_typeMessage,
+                          hintText: context.l10n.ham_composerPlainText,
                           onSubmitted: (_) => _sendMessage(),
                           encoder:
                               (connector.isChannelSmazEnabled(
@@ -2112,7 +2112,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                 )
                               : null,
                           decoration: InputDecoration(
-                            hintText: context.l10n.chat_typeMessage,
+                            hintText: context.l10n.ham_composerPlainText,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(MeshRadii.md),
                               borderSide: BorderSide(

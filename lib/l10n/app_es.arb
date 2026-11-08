@@ -4440,5 +4440,6 @@
   "ham_idMismatchTitle": "{count, plural, =1{1 indicativo de estación no coincide con su nombre} other{{count} indicativos de estación no coinciden con sus nombres}}",
   "ham_idMismatchBody": "Recibidos directamente, estos anuncios llevaban un indicativo de estación distinto del que empieza su nombre. Puede ser una radio mal configurada; confírmelo con el operador antes de fiarse.",
   "ham_idMismatchSentAs": "enviado con indicativo {station}",
-  "ham_idMismatchNoCall": "Este nombre no empieza por un indicativo"
+  "ham_idMismatchNoCall": "Este nombre no empieza por un indicativo",
+  "ham_composerPlainText": "Texto sin cifrar: cualquiera que escuche puede leerlo"
 }

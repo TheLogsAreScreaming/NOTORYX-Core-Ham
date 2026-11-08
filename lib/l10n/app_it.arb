@@ -4440,5 +4440,6 @@
   "ham_idMismatchTitle": "{count, plural, =1{1 identificativo di stazione non corrisponde al nome} other{{count} identificativi di stazione non corrispondono ai nomi}}",
   "ham_idMismatchBody": "Ricevuti direttamente, questi annunci avevano un identificativo di stazione diverso dal nominativo con cui inizia il loro nome. Potrebbe essere una radio configurata male; verificate con l'operatore prima di fidarvi.",
   "ham_idMismatchSentAs": "inviato con identificativo {station}",
-  "ham_idMismatchNoCall": "Questo nome non inizia con un nominativo"
+  "ham_idMismatchNoCall": "Questo nome non inizia con un nominativo",
+  "ham_composerPlainText": "Testo in chiaro: chiunque ascolti può leggerlo"
 }
