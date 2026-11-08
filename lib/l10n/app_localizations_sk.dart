@@ -10042,4 +10042,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'až $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Trasa používa $width-bajtové hashe cesty';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Vaše rádio používa $width bajty';
+  }
 }

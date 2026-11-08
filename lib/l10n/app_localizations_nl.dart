@@ -10022,4 +10022,14 @@ class AppLocalizationsNl extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'tot $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Route gebruikt pad-hashes van $width byte';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Je radio gebruikt $width byte';
+  }
 }

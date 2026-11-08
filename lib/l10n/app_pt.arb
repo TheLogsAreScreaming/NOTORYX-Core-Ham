@@ -4175,5 +4175,7 @@
   "adminWait_waiting": "Aguardando resposta",
   "adminWait_retrying": "Ainda sem resposta. Tentando novamente ({attempt} de {total})",
   "adminWait_direct": "{hops, plural, =0{Direto} =1{Direto, 1 salto} other{Direto, {hops} saltos}}",
-  "adminWait_upTo": "até {seconds} s"
+  "adminWait_upTo": "até {seconds} s",
+  "pathHash_badge": "A rota usa hashes de caminho de {width} bytes",
+  "pathHash_mismatch": "Seu rádio usa {width} bytes"
 }

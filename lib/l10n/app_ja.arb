@@ -4309,5 +4309,7 @@
   "adminWait_waiting": "応答を待っています",
   "adminWait_retrying": "まだ応答がありません。再試行中 ({attempt}/{total})",
   "adminWait_direct": "{hops, plural, =0{直接} other{直接、{hops} ホップ}}",
-  "adminWait_upTo": "最大 {seconds} 秒"
+  "adminWait_upTo": "最大 {seconds} 秒",
+  "pathHash_badge": "経路は {width} バイトのパスハッシュを使用",
+  "pathHash_mismatch": "この無線機は {width} バイトを使用"
 }

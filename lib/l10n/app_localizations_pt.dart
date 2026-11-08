@@ -10045,4 +10045,14 @@ class AppLocalizationsPt extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'até $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'A rota usa hashes de caminho de $width bytes';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Seu rádio usa $width bytes';
+  }
 }

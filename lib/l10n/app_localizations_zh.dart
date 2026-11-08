@@ -9381,4 +9381,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return '最多 $seconds 秒';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return '该路由使用 $width 字节路径哈希';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return '你的电台使用 $width 字节';
+  }
 }

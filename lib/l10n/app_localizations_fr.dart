@@ -10095,4 +10095,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'jusqu\'à $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'La route utilise des hachages de chemin de $width octets';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Votre radio utilise $width octets';
+  }
 }

@@ -10073,4 +10073,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String adminWait_upTo(int seconds) {
     return 'bis zu $seconds s';
   }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Route nutzt $width-Byte-Pfad-Hashes';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Dein Funkgerät nutzt $width Byte';
+  }
 }

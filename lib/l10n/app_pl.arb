@@ -4213,5 +4213,7 @@
   "adminWait_waiting": "Oczekiwanie na odpowiedź",
   "adminWait_retrying": "Wciąż brak odpowiedzi. Ponowna próba ({attempt} z {total})",
   "adminWait_direct": "{hops, plural, =0{Bezpośrednio} =1{Bezpośrednio, 1 przeskok} few{Bezpośrednio, {hops} przeskoki} other{Bezpośrednio, {hops} przeskoków}}",
-  "adminWait_upTo": "do {seconds} s"
+  "adminWait_upTo": "do {seconds} s",
+  "pathHash_badge": "Trasa używa {width}-bajtowych skrótów ścieżki",
+  "pathHash_mismatch": "Twoje radio używa {width} bajtów"
 }

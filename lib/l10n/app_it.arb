@@ -4309,5 +4309,7 @@
   "adminWait_waiting": "In attesa di risposta",
   "adminWait_retrying": "Ancora nessuna risposta. Nuovo tentativo ({attempt} di {total})",
   "adminWait_direct": "{hops, plural, =0{Diretto} =1{Diretto, 1 salto} other{Diretto, {hops} salti}}",
-  "adminWait_upTo": "fino a {seconds} s"
+  "adminWait_upTo": "fino a {seconds} s",
+  "pathHash_badge": "Il percorso usa hash di percorso da {width} byte",
+  "pathHash_mismatch": "La tua radio usa {width} byte"
 }
