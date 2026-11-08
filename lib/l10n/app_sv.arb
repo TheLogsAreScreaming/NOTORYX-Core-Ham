@@ -4306,5 +4306,6 @@
   "ham_idMismatchTitle": "{count, plural, =1{1 stations-ID matchar inte sitt namn} other{{count} stations-ID matchar inte sina namn}}",
   "ham_idMismatchBody": "De här direkt mottagna annonserna hade ett annat stations-ID än anropssignalen som namnet börjar med. Det kan vara en felinställd radio; kontrollera med operatören innan du litar på det.",
   "ham_idMismatchSentAs": "skickad med stations-ID {station}",
-  "ham_idMismatchNoCall": "Namnet börjar inte med en anropssignal"
+  "ham_idMismatchNoCall": "Namnet börjar inte med en anropssignal",
+  "ham_composerPlainText": "Klartext: alla som lyssnar kan läsa detta"
 }

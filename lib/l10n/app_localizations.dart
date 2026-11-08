@@ -17484,6 +17484,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This name doesn\'t start with a call sign'**
   String get ham_idMismatchNoCall;
+
+  /// Hint in the message box: ham frames are not encrypted (FCC Part 97)
+  ///
+  /// In en, this message translates to:
+  /// **'Plain text: anyone listening can read this'**
+  String get ham_composerPlainText;
 }
 
 class _AppLocalizationsDelegate

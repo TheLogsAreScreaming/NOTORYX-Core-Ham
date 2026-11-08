@@ -709,7 +709,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       maxBytes: maxBytes,
                       controller: _textController,
                       focusNode: _textFieldFocusNode,
-                      hintText: context.l10n.chat_typeMessage,
+                      hintText: context.l10n.ham_composerPlainText,
                       onSubmitted: (_) => _sendMessage(connector),
                       encoder:
                           (connector.isContactSmazEnabled(
@@ -724,7 +724,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             )
                           : null,
                       decoration: InputDecoration(
-                        hintText: context.l10n.chat_typeMessage,
+                        hintText: context.l10n.ham_composerPlainText,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(MeshRadii.md),
                           borderSide: BorderSide(color: scheme.outlineVariant),

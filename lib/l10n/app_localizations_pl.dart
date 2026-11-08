@@ -10569,4 +10569,8 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get ham_idMismatchNoCall =>
       'Ta nazwa nie zaczyna się od znaku wywoławczego';
+
+  @override
+  String get ham_composerPlainText =>
+      'Zwykły tekst: każdy, kto słucha, może to przeczytać';
 }

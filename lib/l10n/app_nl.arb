@@ -4306,5 +4306,6 @@
   "ham_idMismatchTitle": "{count, plural, =1{1 stations-ID past niet bij de naam} other{{count} stations-ID's passen niet bij de namen}}",
   "ham_idMismatchBody": "Deze direct ontvangen adverts hadden een andere stations-ID dan de roepnaam waarmee hun naam begint. Mogelijk is een radio verkeerd ingesteld; overleg met de operator voordat u erop vertrouwt.",
   "ham_idMismatchSentAs": "verzonden met stations-ID {station}",
-  "ham_idMismatchNoCall": "Deze naam begint niet met een roepnaam"
+  "ham_idMismatchNoCall": "Deze naam begint niet met een roepnaam",
+  "ham_composerPlainText": "Platte tekst: iedereen die meeluistert kan dit lezen"
 }

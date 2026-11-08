@@ -9811,4 +9811,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => '此名称不以呼号开头';
+
+  @override
+  String get ham_composerPlainText => '明文：任何收听者都能读到';
 }

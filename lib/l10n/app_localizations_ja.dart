@@ -10016,4 +10016,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'この名前はコールサインで始まっていません';
+
+  @override
+  String get ham_composerPlainText => '平文です。受信している誰でも読めます';
 }

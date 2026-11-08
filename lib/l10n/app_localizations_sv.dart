@@ -10439,4 +10439,8 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'Namnet börjar inte med en anropssignal';
+
+  @override
+  String get ham_composerPlainText =>
+      'Klartext: alla som lyssnar kan läsa detta';
 }

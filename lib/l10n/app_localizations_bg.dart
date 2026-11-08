@@ -10505,4 +10505,8 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'Това име не започва с позивна';
+
+  @override
+  String get ham_composerPlainText =>
+      'Обикновен текст: всеки, който слуша, може да го прочете';
 }

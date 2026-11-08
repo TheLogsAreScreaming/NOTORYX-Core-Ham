@@ -10535,4 +10535,8 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'Questo nome non inizia con un nominativo';
+
+  @override
+  String get ham_composerPlainText =>
+      'Testo in chiaro: chiunque ascolti può leggerlo';
 }

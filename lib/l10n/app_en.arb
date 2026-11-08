@@ -6222,5 +6222,9 @@
   "ham_idMismatchNoCall": "This name doesn't start with a call sign",
   "@ham_idMismatchNoCall": {
     "description": "Licensed operator: note under an advert name with no call sign"
+  },
+  "ham_composerPlainText": "Plain text: anyone listening can read this",
+  "@ham_composerPlainText": {
+    "description": "Hint in the message box: ham frames are not encrypted (FCC Part 97)"
   }
 }

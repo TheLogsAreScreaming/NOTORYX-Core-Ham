@@ -10391,4 +10391,8 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get ham_idMismatchNoCall =>
       'This name doesn\'t start with a call sign';
+
+  @override
+  String get ham_composerPlainText =>
+      'Plain text: anyone listening can read this';
 }

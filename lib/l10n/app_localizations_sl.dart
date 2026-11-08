@@ -10522,4 +10522,8 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get ham_idMismatchNoCall => 'To ime se ne začne s klicnim znakom';
+
+  @override
+  String get ham_composerPlainText =>
+      'Navadno besedilo: vsak, ki posluša, ga lahko prebere';
 }

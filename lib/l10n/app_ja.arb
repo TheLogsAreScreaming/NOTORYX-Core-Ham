@@ -4440,5 +4440,6 @@
   "ham_idMismatchTitle": "{count, plural, other{名前と一致しない局識別が {count} 件あります}}",
   "ham_idMismatchBody": "直接受信したこれらのアドバートには、名前の先頭のコールサインと異なる局識別が付いていました。無線機の設定ミスかもしれません。頼りにする前に運用者に確認してください。",
   "ham_idMismatchSentAs": "局識別 {station} で送信",
-  "ham_idMismatchNoCall": "この名前はコールサインで始まっていません"
+  "ham_idMismatchNoCall": "この名前はコールサインで始まっていません",
+  "ham_composerPlainText": "平文です。受信している誰でも読めます"
 }
