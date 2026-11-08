@@ -63,7 +63,9 @@ jobs:
         run: |
           APP="build/macos/Build/Products/Release/NOTORYX Core Ham.app"
           codesign --force --deep --sign - "$APP"
+          codesign --force --sign - --entitlements macos/Runner/Release.entitlements "$APP"
           codesign --verify --deep --strict "$APP"
+          codesign -d --entitlements - "$APP" 2>/dev/null | grep -q com.apple.security.app-sandbox
           VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d+ -f1)
           mkdir -p dist
           ditto -c -k --keepParent "$APP" "dist/NOTORYX-Core-Ham-$VERSION-macOS-universal.zip"
