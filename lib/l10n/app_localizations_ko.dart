@@ -10009,4 +10009,26 @@ class AppLocalizationsKo extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return '내 무전기는 $width바이트 사용';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '이름과 맞지 않는 국 식별 $count건',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      '직접 수신한 이 광고들은 이름 앞의 호출부호와 다른 국 식별을 달고 있었습니다. 무전기 설정이 잘못되었을 수 있으니, 믿기 전에 운용자에게 확인하세요.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return '국 식별 $station(으)로 전송';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => '이 이름은 호출부호로 시작하지 않습니다';
 }

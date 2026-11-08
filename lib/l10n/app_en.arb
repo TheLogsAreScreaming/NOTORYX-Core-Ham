@@ -6195,5 +6195,32 @@
         "type": "int"
       }
     }
+  },
+  "ham_idMismatchTitle": "{count, plural, =1{1 station ID doesn't match its name} other{{count} station IDs don't match their names}}",
+  "@ham_idMismatchTitle": {
+    "description": "Licensed operator: heading over direct adverts whose station ID differs from the call sign in their name",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "ham_idMismatchBody": "Heard directly, these adverts carried a station ID other than the call sign their name starts with. It may be a misconfigured radio; check with the operator before relying on it.",
+  "@ham_idMismatchBody": {
+    "description": "Licensed operator: explains a station ID mismatch"
+  },
+  "ham_idMismatchSentAs": "sent with station ID {station}",
+  "@ham_idMismatchSentAs": {
+    "description": "Licensed operator: after an advert name, the station ID its frame carried",
+    "placeholders": {
+      "station": {
+        "type": "String",
+        "example": "W1AW"
+      }
+    }
+  },
+  "ham_idMismatchNoCall": "This name doesn't start with a call sign",
+  "@ham_idMismatchNoCall": {
+    "description": "Licensed operator: note under an advert name with no call sign"
   }
 }

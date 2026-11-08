@@ -4307,5 +4307,9 @@
   "coords_copyTitle": "复制位置",
   "coords_copied": "已按 {format} 复制",
   "pathHash_badge": "该路由使用 {width} 字节路径哈希",
-  "pathHash_mismatch": "你的电台使用 {width} 字节"
+  "pathHash_mismatch": "你的电台使用 {width} 字节",
+  "ham_idMismatchTitle": "{count, plural, other{{count} 个电台识别与名称不符}}",
+  "ham_idMismatchBody": "这些直接收到的广播所带的电台识别，与其名称开头的呼号不同。可能是电台设置有误；在依赖它之前请先与操作员核实。",
+  "ham_idMismatchSentAs": "以电台识别 {station} 发送",
+  "ham_idMismatchNoCall": "此名称不以呼号开头"
 }

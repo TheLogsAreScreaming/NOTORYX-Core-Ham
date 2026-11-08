@@ -10504,4 +10504,28 @@ class AppLocalizationsDe extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'Dein Funkgerät nutzt $width Byte';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Stationskennungen passen nicht zu den Namen',
+      one: '1 Stationskennung passt nicht zum Namen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Diese direkt empfangenen Adverts trugen eine andere Stationskennung als das Rufzeichen am Anfang ihres Namens. Vielleicht ist ein Funkgerät falsch eingerichtet; klären Sie das mit dem Betreiber, bevor Sie sich darauf verlassen.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'gesendet mit Stationskennung $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall =>
+      'Dieser Name beginnt nicht mit einem Rufzeichen';
 }

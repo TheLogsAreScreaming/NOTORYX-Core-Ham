@@ -6,15 +6,25 @@ import 'package:meshcore_open/models/operator_profile.dart';
 import 'package:meshcore_open/screens/licensed_operator_screen.dart';
 import 'package:meshcore_open/services/operator_profile_service.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
+import 'package:meshcore_open/theme/mesh_theme.dart';
+import 'package:meshcore_open/utils/station_id_check.dart';
 import 'package:meshcore_open/widgets/operator_setup_banner.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class _Connector extends MeshCoreConnector {
-  _Connector({required this.connected, this.name, this.freqKhz});
+  _Connector({
+    required this.connected,
+    this.name,
+    this.freqKhz,
+    this.mismatches = const [],
+  });
   final bool connected;
   final String? name;
   final int? freqKhz;
+  final List<StationIdMismatch> mismatches;
+  @override
+  List<StationIdMismatch> get stationIdMismatches => mismatches;
   @override
   bool get isConnected => connected;
   @override
@@ -38,17 +48,24 @@ void main() {
     bool connected = false,
     String? name,
     int? freqKhz,
+    List<StationIdMismatch> mismatches = const [],
   }) {
     final navigatorKey = GlobalKey<NavigatorState>();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<MeshCoreConnector>.value(
-          value: _Connector(connected: connected, name: name, freqKhz: freqKhz),
+          value: _Connector(
+            connected: connected,
+            name: name,
+            freqKhz: freqKhz,
+            mismatches: mismatches,
+          ),
         ),
         ChangeNotifierProvider.value(value: profiles),
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,
+        theme: MeshTheme.dark(),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         builder: (context, child) =>
@@ -161,5 +178,61 @@ void main() {
     );
     expect(find.byType(OperatorSetupBanner), findsOneWidget);
     expect(find.byIcon(Icons.warning_amber_rounded), findsNothing);
+  });
+
+  testWidgets('station ID mismatches are listed only when heard', (
+    tester,
+  ) async {
+    Future<void> open(List<StationIdMismatch> mismatches) async {
+      await tester.pumpWidget(
+        app(
+          const LicensedOperatorScreen(),
+          connected: true,
+          name: 'W1AW Base',
+          freqKhz: 910525,
+          mismatches: mismatches,
+        ),
+      );
+      await tester.pumpAndSettle();
+    }
+
+    await open(const []);
+    await tester.scrollUntilVisible(
+      find.textContaining('Firmware'),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(find.byKey(const ValueKey('station-id-mismatches')), findsNothing);
+
+    final at = DateTime.utc(2026, 11, 8);
+    await open([
+      StationIdMismatch(
+        nodeKey: 'cdcdcdcd',
+        advertName: 'Ridge Repeater',
+        station: 'N0RPT',
+        at: at,
+      ),
+      StationIdMismatch(
+        nodeKey: 'abababab',
+        advertName: 'W1AW Hilltop',
+        station: 'KD2ABC',
+        at: at,
+      ),
+    ]);
+    final rows = find.text('W1AW Hilltop: sent with station ID KD2ABC');
+    await tester.scrollUntilVisible(
+      rows,
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(find.text("2 station IDs don't match their names"), findsOneWidget);
+    expect(
+      find.text('Ridge Repeater: sent with station ID N0RPT'),
+      findsOneWidget,
+    );
+    expect(
+      find.text("This name doesn't start with a call sign"),
+      findsOneWidget,
+    );
   });
 }

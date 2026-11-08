@@ -72,6 +72,7 @@ import '../storage/prefs_manager.dart';
 import '../storage/unread_store.dart';
 import '../utils/app_logger.dart';
 import '../utils/amateur_radio.dart';
+import '../utils/station_id_check.dart';
 import '../utils/battery_utils.dart';
 import '../utils/platform_info.dart';
 import 'meshcore_uuids.dart';
@@ -7335,10 +7336,38 @@ class MeshCoreConnector extends ChangeNotifier {
   List<String> heardStationsFor(String? packetHash) =>
       packetHash == null ? const [] : (_heardStations[packetHash] ?? const []);
 
+  // Direct adverts whose station ID didn't match their name, newest first.
+  static const _maxStationIdMismatches = 20;
+  final _stationIdMismatches = <StationIdMismatch>[];
+
+  /// Nodes heard directly whose frames carried a station ID other than the
+  /// call sign their advertised name starts with, newest first; one entry
+  /// per node and station. In memory only.
+  List<StationIdMismatch> get stationIdMismatches =>
+      List.unmodifiable(_stationIdMismatches);
+
+  void _checkStationId(Uint8List raw, String station, DateTime at) {
+    final m = checkStationId(raw, station, at: at);
+    if (m == null) return;
+    _stationIdMismatches.removeWhere(
+      (o) => o.nodeKey == m.nodeKey && o.station == m.station,
+    );
+    _stationIdMismatches.insert(0, m);
+    if (_stationIdMismatches.length > _maxStationIdMismatches) {
+      _stationIdMismatches.removeLast();
+    }
+    appLogger.warn(
+      'Station ID ${m.station} on a direct advert named "${m.advertName}"',
+      tag: 'Ham',
+    );
+    notifyListeners();
+  }
+
   void _recordHeardStation(Uint8List raw, String station) {
     if (station.isEmpty) return;
     _lastHeardStation = station;
     _lastHeardAt = DateTime.now();
+    _checkStationId(raw, station, _lastHeardAt!);
     final packet = _parseRawPacket(raw);
     if (packet == null) return;
     final hash = _computePacketHash(packet.payloadType, packet.payload);

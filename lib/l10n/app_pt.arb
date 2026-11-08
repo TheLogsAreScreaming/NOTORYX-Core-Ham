@@ -4302,5 +4302,9 @@
   "coords_copyTitle": "Copiar posição",
   "coords_copied": "Copiado como {format}",
   "pathHash_badge": "A rota usa hashes de caminho de {width} bytes",
-  "pathHash_mismatch": "Seu rádio usa {width} bytes"
+  "pathHash_mismatch": "Seu rádio usa {width} bytes",
+  "ham_idMismatchTitle": "{count, plural, =1{1 identificação de estação não corresponde ao nome} other{{count} identificações de estação não correspondem aos nomes}}",
+  "ham_idMismatchBody": "Recebidos diretamente, estes anúncios traziam uma identificação de estação diferente do indicativo com que o nome começa. Pode ser um rádio mal configurado; confirme com o operador antes de confiar.",
+  "ham_idMismatchSentAs": "enviado com identificação {station}",
+  "ham_idMismatchNoCall": "Este nome não começa com um indicativo"
 }

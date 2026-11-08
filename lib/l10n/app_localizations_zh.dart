@@ -9789,4 +9789,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return '你的电台使用 $width 字节';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 个电台识别与名称不符',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      '这些直接收到的广播所带的电台识别，与其名称开头的呼号不同。可能是电台设置有误；在依赖它之前请先与操作员核实。';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return '以电台识别 $station 发送';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => '此名称不以呼号开头';
 }

@@ -10482,4 +10482,27 @@ class AppLocalizationsPt extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'Seu rádio usa $width bytes';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count identificações de estação não correspondem aos nomes',
+      one: '1 identificação de estação não corresponde ao nome',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Recebidos diretamente, estes anúncios traziam uma identificação de estação diferente do indicativo com que o nome começa. Pode ser um rádio mal configurado; confirme com o operador antes de confiar.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'enviado com identificação $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'Este nome não começa com um indicativo';
 }

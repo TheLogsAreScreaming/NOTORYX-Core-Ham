@@ -4436,5 +4436,9 @@
   "coords_copyTitle": "Copier la position",
   "coords_copied": "Copié en {format}",
   "pathHash_badge": "La route utilise des hachages de chemin de {width} octets",
-  "pathHash_mismatch": "Votre radio utilise {width} octets"
+  "pathHash_mismatch": "Votre radio utilise {width} octets",
+  "ham_idMismatchTitle": "{count, plural, =1{1 identifiant de station ne correspond pas à son nom} other{{count} identifiants de station ne correspondent pas à leur nom}}",
+  "ham_idMismatchBody": "Reçues en direct, ces annonces portaient un identifiant de station différent de l'indicatif par lequel commence leur nom. La radio est peut-être mal configurée ; vérifiez auprès de l'opérateur avant de vous y fier.",
+  "ham_idMismatchSentAs": "envoyé avec l'identifiant {station}",
+  "ham_idMismatchNoCall": "Ce nom ne commence pas par un indicatif"
 }

@@ -10482,4 +10482,27 @@ class AppLocalizationsBg extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'Вашето радио използва $width-байтови';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count идентификатора на станции не съвпадат с имената',
+      one: '1 идентификатор на станция не съвпада с името',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Приети директно, тези обявления носеха идентификатор на станция, различен от позивната, с която започва името им. Може радиото да е настроено грешно; проверете с оператора, преди да разчитате на това.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'изпратено с идентификатор $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'Това име не започва с позивна';
 }

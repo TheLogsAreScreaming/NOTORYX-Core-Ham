@@ -10479,4 +10479,29 @@ class AppLocalizationsSk extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'Vaše rádio používa $width bajty';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count identifikátorov staníc nesedí s názvami',
+      many: '$count identifikátora staníc nesedí s názvami',
+      few: '$count identifikátory staníc nesedia s názvami',
+      one: '1 identifikátor stanice nesedí s názvom',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Tieto priamo prijaté oznámenia niesli iný identifikátor stanice než volaciu značku, ktorou začína ich názov. Rádio môže byť zle nastavené; overte si to u operátora skôr, než sa na to spoľahnete.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'odoslané s identifikátorom $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'Tento názov nezačína volacou značkou';
 }

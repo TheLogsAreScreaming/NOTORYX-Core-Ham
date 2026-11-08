@@ -10485,4 +10485,27 @@ class AppLocalizationsHu extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'A rádiód $width bájtosat használ';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count állomásazonosító nem egyezik a nevével',
+      one: '1 állomásazonosító nem egyezik a nevével',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Ezek a közvetlenül vett hirdetések más állomásazonosítót hordoztak, mint a hívójel, amellyel a nevük kezdődik. Lehet, hogy egy rádió rosszul van beállítva; egyeztessen az üzemeltetővel, mielőtt megbízna benne.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'elküldve ezzel az állomásazonosítóval: $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'Ez a név nem hívójellel kezdődik';
 }
