@@ -4441,5 +4441,8 @@
   "ham_idMismatchBody": "直接受信したこれらのアドバートには、名前の先頭のコールサインと異なる局識別が付いていました。無線機の設定ミスかもしれません。頼りにする前に運用者に確認してください。",
   "ham_idMismatchSentAs": "局識別 {station} で送信",
   "ham_idMismatchNoCall": "この名前はコールサインで始まっていません",
-  "ham_composerPlainText": "平文です。受信している誰でも読めます"
+  "ham_composerPlainText": "平文です。受信している誰でも読めます",
+  "ham_bannerStockFirmware": "この無線機は標準の MeshCore です。アマチュアバンドで送信しないでください",
+  "ham_firmwareOk": "NOTORYX Ham ファームウェア: 局識別、平文、アマチュアバンドのみ",
+  "ham_firmwareStock": "標準の MeshCore は暗号化し、局識別を送りません。送信前に NOTORYX Ham ファームウェアを書き込んでください"
 }

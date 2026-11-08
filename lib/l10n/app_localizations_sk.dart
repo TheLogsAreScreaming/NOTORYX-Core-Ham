@@ -10508,4 +10508,16 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get ham_composerPlainText =>
       'Nešifrovaný text: ktokoľvek, kto počúva, si to môže prečítať';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'Toto rádio má štandardný MeshCore. Nevysielajte s ním v amatérskych pásmach';
+
+  @override
+  String get ham_firmwareOk =>
+      'Firmvér NOTORYX Ham: identifikátor stanice, nešifrovaný text, len amatérske pásma';
+
+  @override
+  String get ham_firmwareStock =>
+      'Štandardný MeshCore šifruje a neposiela identifikátor stanice. Pred vysielaním nahrajte firmvér NOTORYX Ham';
 }

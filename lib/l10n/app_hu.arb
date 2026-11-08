@@ -4345,5 +4345,8 @@
   "ham_idMismatchBody": "Ezek a közvetlenül vett hirdetések más állomásazonosítót hordoztak, mint a hívójel, amellyel a nevük kezdődik. Lehet, hogy egy rádió rosszul van beállítva; egyeztessen az üzemeltetővel, mielőtt megbízna benne.",
   "ham_idMismatchSentAs": "elküldve ezzel az állomásazonosítóval: {station}",
   "ham_idMismatchNoCall": "Ez a név nem hívójellel kezdődik",
-  "ham_composerPlainText": "Nyílt szöveg: bárki, aki hallgatja, elolvashatja"
+  "ham_composerPlainText": "Nyílt szöveg: bárki, aki hallgatja, elolvashatja",
+  "ham_bannerStockFirmware": "Ezen a rádión gyári MeshCore fut. Ne adjon vele az amatőrsávokon",
+  "ham_firmwareOk": "NOTORYX Ham firmware: állomásazonosító, nyílt szöveg, csak amatőrsávok",
+  "ham_firmwareStock": "A gyári MeshCore titkosít, és nem küld állomásazonosítót. Adás előtt töltse fel a NOTORYX Ham firmware-t"
 }

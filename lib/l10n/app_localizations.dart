@@ -17490,6 +17490,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Plain text: anyone listening can read this'**
   String get ham_composerPlainText;
+
+  /// Top banner when the connected radio reports a non-ham firmware version
+  ///
+  /// In en, this message translates to:
+  /// **'This radio runs stock MeshCore. Don\'t transmit with it on the ham bands'**
+  String get ham_bannerStockFirmware;
+
+  /// Licensed operator: note under the firmware row on NOTORYX Ham firmware
+  ///
+  /// In en, this message translates to:
+  /// **'NOTORYX Ham firmware: station ID, plain text, ham bands only'**
+  String get ham_firmwareOk;
+
+  /// Licensed operator: note under the firmware row on stock MeshCore
+  ///
+  /// In en, this message translates to:
+  /// **'Stock MeshCore encrypts and sends no station ID. Flash the NOTORYX Ham firmware before transmitting'**
+  String get ham_firmwareStock;
 }
 
 class _AppLocalizationsDelegate

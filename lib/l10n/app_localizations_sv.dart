@@ -10443,4 +10443,16 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get ham_composerPlainText =>
       'Klartext: alla som lyssnar kan läsa detta';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'Den här radion kör vanlig MeshCore. Sänd inte med den på amatörbanden';
+
+  @override
+  String get ham_firmwareOk =>
+      'NOTORYX Ham-firmware: stations-ID, klartext, bara amatörband';
+
+  @override
+  String get ham_firmwareStock =>
+      'Vanlig MeshCore krypterar och skickar inget stations-ID. Flasha NOTORYX Ham-firmware innan du sänder';
 }

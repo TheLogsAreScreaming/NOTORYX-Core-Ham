@@ -10532,4 +10532,16 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get ham_composerPlainText =>
       'Klartext: Jeder, der mithört, kann das lesen';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'Dieses Funkgerät läuft mit Standard-MeshCore. Senden Sie damit nicht auf den Amateurfunkbändern';
+
+  @override
+  String get ham_firmwareOk =>
+      'NOTORYX-Ham-Firmware: Stationskennung, Klartext, nur Amateurfunkbänder';
+
+  @override
+  String get ham_firmwareStock =>
+      'Standard-MeshCore verschlüsselt und sendet keine Stationskennung. Spielen Sie vor dem Senden die NOTORYX-Ham-Firmware auf';
 }

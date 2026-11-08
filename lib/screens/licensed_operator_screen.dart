@@ -246,7 +246,20 @@ class _ConnectedRadioSection extends StatelessWidget {
     final maxTx = connector.maxTxPower;
     final l10n = context.l10n;
 
+    final firmware = connector.firmwareVersionString;
+    final hamFirmware = isAmateurFirmware(firmware);
+
     final rows = <_StatusRow>[
+      _StatusRow(
+        ok: hamFirmware != false,
+        title: l10n.ham_firmware,
+        value: firmware ?? '—',
+        note: switch (hamFirmware) {
+          true => l10n.ham_firmwareOk,
+          false => l10n.ham_firmwareStock,
+          null => null,
+        },
+      ),
       _StatusRow(
         ok: nameOk,
         title: l10n.ham_nodeName,
@@ -306,11 +319,6 @@ class _ConnectedRadioSection extends StatelessWidget {
                 ok: true,
                 title: l10n.ham_lastHeard,
                 value: heard ?? l10n.ham_nothingHeardYet,
-              ),
-              _StatusRow(
-                ok: true,
-                title: l10n.ham_firmware,
-                value: connector.firmwareVersionString ?? '—',
               ),
             ],
           ),

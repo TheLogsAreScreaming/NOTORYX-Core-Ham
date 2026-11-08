@@ -9814,4 +9814,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get ham_composerPlainText => '明文：任何收听者都能读到';
+
+  @override
+  String get ham_bannerStockFirmware => '此电台运行标准 MeshCore。请勿用它在业余频段发射';
+
+  @override
+  String get ham_firmwareOk => 'NOTORYX Ham 固件：电台识别、明文、仅业余频段';
+
+  @override
+  String get ham_firmwareStock =>
+      '标准 MeshCore 会加密且不发送电台识别。发射前请刷入 NOTORYX Ham 固件';
 }

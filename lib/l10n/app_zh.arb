@@ -4312,5 +4312,8 @@
   "ham_idMismatchBody": "这些直接收到的广播所带的电台识别，与其名称开头的呼号不同。可能是电台设置有误；在依赖它之前请先与操作员核实。",
   "ham_idMismatchSentAs": "以电台识别 {station} 发送",
   "ham_idMismatchNoCall": "此名称不以呼号开头",
-  "ham_composerPlainText": "明文：任何收听者都能读到"
+  "ham_composerPlainText": "明文：任何收听者都能读到",
+  "ham_bannerStockFirmware": "此电台运行标准 MeshCore。请勿用它在业余频段发射",
+  "ham_firmwareOk": "NOTORYX Ham 固件：电台识别、明文、仅业余频段",
+  "ham_firmwareStock": "标准 MeshCore 会加密且不发送电台识别。发射前请刷入 NOTORYX Ham 固件"
 }
