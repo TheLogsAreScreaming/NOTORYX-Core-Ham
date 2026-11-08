@@ -309,6 +309,8 @@ class MeshCoreConnector extends ChangeNotifier {
       StreamController<RadioRxPacket>.broadcast();
   final StreamController<Message> _receivedDirectMessagesController =
       StreamController<Message>.broadcast();
+  final StreamController<Contact> _sentDirectMessagesController =
+      StreamController<Contact>.broadcast();
   final StreamController<ReceivedChannelMessage>
   _receivedChannelMessagesController =
       StreamController<ReceivedChannelMessage>.broadcast();
@@ -656,6 +658,11 @@ class MeshCoreConnector extends ChangeNotifier {
   /// Fresh direct-message events; cached history and reconnect sync are excluded.
   Stream<Message> get receivedDirectMessages =>
       _receivedDirectMessagesController.stream;
+
+  /// The contact each direct message is sent to, as the user sends it
+  /// (before delivery is known). Retries aren't repeated here.
+  Stream<Contact> get sentDirectMessages =>
+      _sentDirectMessagesController.stream;
 
   /// Incoming channel messages on channels that aren't muted.
   Stream<ReceivedChannelMessage> get receivedChannelMessages =>
@@ -4077,6 +4084,7 @@ class MeshCoreConnector extends ChangeNotifier {
       );
       return;
     }
+    _sentDirectMessagesController.add(contact);
 
     // Check if this is a reaction - apply locally with pending status and route through retry service
     final reactionInfo = ReactionHelper.parseReaction(text);
@@ -8715,6 +8723,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _receivedFramesController.close();
     _rxPacketsController.close();
     _receivedDirectMessagesController.close();
+    _sentDirectMessagesController.close();
     _receivedChannelMessagesController.close();
     _radioChannelMessagesController.close();
     _usbManager.dispose();

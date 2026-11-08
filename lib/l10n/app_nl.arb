@@ -4310,5 +4310,14 @@
   "ham_composerPlainText": "Platte tekst: iedereen die meeluistert kan dit lezen",
   "ham_bannerStockFirmware": "Deze radio draait standaard MeshCore. Zend er niet mee op de amateurbanden",
   "ham_firmwareOk": "NOTORYX Ham-firmware: stations-ID, platte tekst, alleen amateurbanden",
-  "ham_firmwareStock": "Standaard MeshCore versleutelt en zendt geen stations-ID. Flash de NOTORYX Ham-firmware voordat u zendt"
+  "ham_firmwareStock": "Standaard MeshCore versleutelt en zendt geen stations-ID. Flash de NOTORYX Ham-firmware voordat u zendt",
+  "ham_stationLog": "Stationslog",
+  "ham_stationLogExport": "Log exporteren",
+  "ham_exportAdif": "ADIF exporteren (.adi)",
+  "ham_exportCsv": "CSV exporteren",
+  "ham_stationLogClear": "Log wissen",
+  "ham_stationLogClearConfirm": "Alle regels in het stationslog verwijderen? Dit kan niet ongedaan worden.",
+  "ham_stationLogEmpty": "Nog geen stations gelogd",
+  "ham_stationLogHint": "Directe berichten met stations waarvan de naam met een roepnaam begint, worden hier gelogd, alleen op deze telefoon.",
+  "ham_stationLogCounts": "{sent} verzonden, {received} ontvangen"
 }

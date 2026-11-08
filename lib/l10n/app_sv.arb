@@ -4310,5 +4310,14 @@
   "ham_composerPlainText": "Klartext: alla som lyssnar kan läsa detta",
   "ham_bannerStockFirmware": "Den här radion kör vanlig MeshCore. Sänd inte med den på amatörbanden",
   "ham_firmwareOk": "NOTORYX Ham-firmware: stations-ID, klartext, bara amatörband",
-  "ham_firmwareStock": "Vanlig MeshCore krypterar och skickar inget stations-ID. Flasha NOTORYX Ham-firmware innan du sänder"
+  "ham_firmwareStock": "Vanlig MeshCore krypterar och skickar inget stations-ID. Flasha NOTORYX Ham-firmware innan du sänder",
+  "ham_stationLog": "Stationslogg",
+  "ham_stationLogExport": "Exportera loggen",
+  "ham_exportAdif": "Exportera ADIF (.adi)",
+  "ham_exportCsv": "Exportera CSV",
+  "ham_stationLogClear": "Töm loggen",
+  "ham_stationLogClearConfirm": "Radera alla poster i stationsloggen? Det går inte att ångra.",
+  "ham_stationLogEmpty": "Inga stationer loggade än",
+  "ham_stationLogHint": "Direktmeddelanden med stationer vars namn börjar med en anropssignal loggas här, bara på den här telefonen.",
+  "ham_stationLogCounts": "{sent} skickade, {received} mottagna"
 }

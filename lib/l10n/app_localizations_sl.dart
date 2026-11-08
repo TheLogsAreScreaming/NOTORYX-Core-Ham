@@ -10538,4 +10538,35 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       'Običajni MeshCore šifrira in ne pošilja oznake postaje. Pred oddajanjem naložite NOTORYX Ham';
+
+  @override
+  String get ham_stationLog => 'Dnevnik postaje';
+
+  @override
+  String get ham_stationLogExport => 'Izvozi dnevnik';
+
+  @override
+  String get ham_exportAdif => 'Izvozi ADIF (.adi)';
+
+  @override
+  String get ham_exportCsv => 'Izvozi CSV';
+
+  @override
+  String get ham_stationLogClear => 'Počisti dnevnik';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      'Izbrišem vse vnose v dnevniku? Tega ni mogoče razveljaviti.';
+
+  @override
+  String get ham_stationLogEmpty => 'V dnevniku še ni postaj';
+
+  @override
+  String get ham_stationLogHint =>
+      'Sem se beležijo neposredna sporočila s postajami, katerih ime se začne s klicnim znakom, le na tem telefonu.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return 'poslano: $sent, prejeto: $received';
+  }
 }

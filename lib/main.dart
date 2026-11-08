@@ -36,6 +36,7 @@ import 'services/mqtt_client_transport.dart';
 import 'services/network_monitor.dart';
 import 'services/secure_mqtt_credentials_store.dart';
 import 'services/operator_profile_service.dart';
+import 'services/station_log_service.dart';
 import 'services/sos_relay_service.dart';
 import 'services/image_chunk_transport.dart';
 import 'services/image_codec_service.dart';
@@ -298,6 +299,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final FavoriteReturnService _favoriteReturn;
   late final SosRelayService _sosRelay;
   final _operatorProfile = OperatorProfileService()..load();
+  late final StationLogService _stationLog;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -322,6 +324,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     unawaited(_botService.load());
     _fieldOps = FieldOpsService(widget.connector);
     unawaited(_fieldOps.load());
+    _stationLog = StationLogService(widget.connector)..start();
     _regionalPresets = RegionalPresetService(widget.connector);
     unawaited(_regionalPresets.start());
     _directRepeaters = DirectRepeaterService(widget.connector);
@@ -450,6 +453,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _weather.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
+    _stationLog.dispose();
     _regionalPresets.dispose();
     _directRepeaters.dispose();
     _trackLog.dispose();
@@ -587,6 +591,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider.value(value: _rxLog),
         ChangeNotifierProvider.value(value: _sosRelay),
         ChangeNotifierProvider.value(value: _operatorProfile),
+        ChangeNotifierProvider.value(value: _stationLog),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,

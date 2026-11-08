@@ -10540,4 +10540,35 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       'MeshCore estándar cifra y no envía indicativo. Instale el firmware NOTORYX Ham antes de transmitir';
+
+  @override
+  String get ham_stationLog => 'Registro de estación';
+
+  @override
+  String get ham_stationLogExport => 'Exportar el registro';
+
+  @override
+  String get ham_exportAdif => 'Exportar ADIF (.adi)';
+
+  @override
+  String get ham_exportCsv => 'Exportar CSV';
+
+  @override
+  String get ham_stationLogClear => 'Borrar el registro';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      '¿Eliminar todas las entradas del registro? No se puede deshacer.';
+
+  @override
+  String get ham_stationLogEmpty => 'Aún no hay estaciones registradas';
+
+  @override
+  String get ham_stationLogHint =>
+      'Aquí se registran los mensajes directos con estaciones cuyo nombre empieza por un indicativo, solo en este teléfono.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '$sent enviados, $received recibidos';
+  }
 }

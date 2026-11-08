@@ -3613,5 +3613,14 @@
   "ham_composerPlainText": "Открытый текст: любой, кто слушает, может это прочитать",
   "ham_bannerStockFirmware": "На этом радио стандартный MeshCore. Не передавайте с ним на любительских диапазонах",
   "ham_firmwareOk": "Прошивка NOTORYX Ham: позывной, открытый текст, только любительские диапазоны",
-  "ham_firmwareStock": "Стандартный MeshCore шифрует и не передаёт позывной. Прошейте NOTORYX Ham перед передачей"
+  "ham_firmwareStock": "Стандартный MeshCore шифрует и не передаёт позывной. Прошейте NOTORYX Ham перед передачей",
+  "ham_stationLog": "Аппаратный журнал",
+  "ham_stationLogExport": "Экспорт журнала",
+  "ham_exportAdif": "Экспорт ADIF (.adi)",
+  "ham_exportCsv": "Экспорт CSV",
+  "ham_stationLogClear": "Очистить журнал",
+  "ham_stationLogClearConfirm": "Удалить все записи журнала? Это нельзя отменить.",
+  "ham_stationLogEmpty": "Станций в журнале пока нет",
+  "ham_stationLogHint": "Здесь записываются личные сообщения со станциями, чьё имя начинается с позывного, только на этом телефоне.",
+  "ham_stationLogCounts": "отправлено: {sent}, получено: {received}"
 }

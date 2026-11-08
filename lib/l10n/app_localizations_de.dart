@@ -10544,4 +10544,35 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       'Standard-MeshCore verschlüsselt und sendet keine Stationskennung. Spielen Sie vor dem Senden die NOTORYX-Ham-Firmware auf';
+
+  @override
+  String get ham_stationLog => 'Stationslog';
+
+  @override
+  String get ham_stationLogExport => 'Log exportieren';
+
+  @override
+  String get ham_exportAdif => 'ADIF exportieren (.adi)';
+
+  @override
+  String get ham_exportCsv => 'CSV exportieren';
+
+  @override
+  String get ham_stationLogClear => 'Log leeren';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      'Alle Einträge im Stationslog löschen? Das lässt sich nicht rückgängig machen.';
+
+  @override
+  String get ham_stationLogEmpty => 'Noch keine Stationen im Log';
+
+  @override
+  String get ham_stationLogHint =>
+      'Direktnachrichten mit Stationen, deren Name mit einem Rufzeichen beginnt, werden hier protokolliert, nur auf diesem Telefon.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '$sent gesendet, $received empfangen';
+  }
 }

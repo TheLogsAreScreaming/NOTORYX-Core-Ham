@@ -10582,4 +10582,35 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       'Стандартный MeshCore шифрует и не передаёт позывной. Прошейте NOTORYX Ham перед передачей';
+
+  @override
+  String get ham_stationLog => 'Аппаратный журнал';
+
+  @override
+  String get ham_stationLogExport => 'Экспорт журнала';
+
+  @override
+  String get ham_exportAdif => 'Экспорт ADIF (.adi)';
+
+  @override
+  String get ham_exportCsv => 'Экспорт CSV';
+
+  @override
+  String get ham_stationLogClear => 'Очистить журнал';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      'Удалить все записи журнала? Это нельзя отменить.';
+
+  @override
+  String get ham_stationLogEmpty => 'Станций в журнале пока нет';
+
+  @override
+  String get ham_stationLogHint =>
+      'Здесь записываются личные сообщения со станциями, чьё имя начинается с позывного, только на этом телефоне.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return 'отправлено: $sent, получено: $received';
+  }
 }

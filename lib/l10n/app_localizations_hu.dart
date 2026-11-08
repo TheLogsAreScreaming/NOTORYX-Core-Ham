@@ -10524,4 +10524,35 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       'A gyári MeshCore titkosít, és nem küld állomásazonosítót. Adás előtt töltse fel a NOTORYX Ham firmware-t';
+
+  @override
+  String get ham_stationLog => 'Állomásnapló';
+
+  @override
+  String get ham_stationLogExport => 'Napló exportálása';
+
+  @override
+  String get ham_exportAdif => 'ADIF exportálása (.adi)';
+
+  @override
+  String get ham_exportCsv => 'CSV exportálása';
+
+  @override
+  String get ham_stationLogClear => 'Napló törlése';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      'Törli az állomásnapló összes bejegyzését? Ez nem vonható vissza.';
+
+  @override
+  String get ham_stationLogEmpty => 'Még nincs állomás a naplóban';
+
+  @override
+  String get ham_stationLogHint =>
+      'Itt naplózzuk a közvetlen üzeneteket olyan állomásokkal, amelyek neve hívójellel kezdődik, csak ezen a telefonon.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '$sent elküldve, $received fogadva';
+  }
 }

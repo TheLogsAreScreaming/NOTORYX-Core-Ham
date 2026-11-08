@@ -4444,5 +4444,14 @@
   "ham_composerPlainText": "Texte en clair : quiconque écoute peut le lire",
   "ham_bannerStockFirmware": "Cette radio utilise MeshCore standard. N'émettez pas avec elle sur les bandes amateur",
   "ham_firmwareOk": "Firmware NOTORYX Ham : identifiant de station, texte en clair, bandes amateur seulement",
-  "ham_firmwareStock": "MeshCore standard chiffre et n'envoie aucun identifiant de station. Installez le firmware NOTORYX Ham avant d'émettre"
+  "ham_firmwareStock": "MeshCore standard chiffre et n'envoie aucun identifiant de station. Installez le firmware NOTORYX Ham avant d'émettre",
+  "ham_stationLog": "Carnet de trafic",
+  "ham_stationLogExport": "Exporter le carnet",
+  "ham_exportAdif": "Exporter en ADIF (.adi)",
+  "ham_exportCsv": "Exporter en CSV",
+  "ham_stationLogClear": "Vider le carnet",
+  "ham_stationLogClearConfirm": "Supprimer toutes les entrées du carnet ? Action irréversible.",
+  "ham_stationLogEmpty": "Aucune station notée pour l'instant",
+  "ham_stationLogHint": "Les messages directs avec des stations dont le nom commence par un indicatif sont notés ici, sur ce téléphone uniquement.",
+  "ham_stationLogCounts": "{sent} envoyés, {received} reçus"
 }

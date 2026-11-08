@@ -10493,4 +10493,35 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       'Standaard MeshCore versleutelt en zendt geen stations-ID. Flash de NOTORYX Ham-firmware voordat u zendt';
+
+  @override
+  String get ham_stationLog => 'Stationslog';
+
+  @override
+  String get ham_stationLogExport => 'Log exporteren';
+
+  @override
+  String get ham_exportAdif => 'ADIF exporteren (.adi)';
+
+  @override
+  String get ham_exportCsv => 'CSV exporteren';
+
+  @override
+  String get ham_stationLogClear => 'Log wissen';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      'Alle regels in het stationslog verwijderen? Dit kan niet ongedaan worden.';
+
+  @override
+  String get ham_stationLogEmpty => 'Nog geen stations gelogd';
+
+  @override
+  String get ham_stationLogHint =>
+      'Directe berichten met stations waarvan de naam met een roepnaam begint, worden hier gelogd, alleen op deze telefoon.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '$sent verzonden, $received ontvangen';
+  }
 }

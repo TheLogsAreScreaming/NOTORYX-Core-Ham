@@ -4310,5 +4310,14 @@
   "ham_composerPlainText": "Обикновен текст: всеки, който слуша, може да го прочете",
   "ham_bannerStockFirmware": "Това радио е със стандартен MeshCore. Не предавайте с него в любителските обхвати",
   "ham_firmwareOk": "Фърмуер NOTORYX Ham: позивна, обикновен текст, само любителски обхвати",
-  "ham_firmwareStock": "Стандартният MeshCore шифрова и не изпраща позивна. Качете фърмуера NOTORYX Ham, преди да предавате"
+  "ham_firmwareStock": "Стандартният MeshCore шифрова и не изпраща позивна. Качете фърмуера NOTORYX Ham, преди да предавате",
+  "ham_stationLog": "Дневник на станцията",
+  "ham_stationLogExport": "Експорт на дневника",
+  "ham_exportAdif": "Експорт ADIF (.adi)",
+  "ham_exportCsv": "Експорт CSV",
+  "ham_stationLogClear": "Изчисти дневника",
+  "ham_stationLogClearConfirm": "Да се изтрият всички записи в дневника? Това не може да се отмени.",
+  "ham_stationLogEmpty": "Още няма станции в дневника",
+  "ham_stationLogHint": "Тук се записват директните съобщения със станции, чието име започва с позивна, само на този телефон.",
+  "ham_stationLogCounts": "изпратени: {sent}, получени: {received}"
 }

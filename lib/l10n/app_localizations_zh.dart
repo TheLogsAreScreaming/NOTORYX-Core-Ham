@@ -9824,4 +9824,33 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       '标准 MeshCore 会加密且不发送电台识别。发射前请刷入 NOTORYX Ham 固件';
+
+  @override
+  String get ham_stationLog => '电台日志';
+
+  @override
+  String get ham_stationLogExport => '导出日志';
+
+  @override
+  String get ham_exportAdif => '导出 ADIF (.adi)';
+
+  @override
+  String get ham_exportCsv => '导出 CSV';
+
+  @override
+  String get ham_stationLogClear => '清空日志';
+
+  @override
+  String get ham_stationLogClearConfirm => '删除电台日志中的所有记录？此操作无法撤销。';
+
+  @override
+  String get ham_stationLogEmpty => '尚未记录任何电台';
+
+  @override
+  String get ham_stationLogHint => '与名称以呼号开头的电台互发的私信会记录在这里，仅保存在本手机上。';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '已发送 $sent，已接收 $received';
+  }
 }
