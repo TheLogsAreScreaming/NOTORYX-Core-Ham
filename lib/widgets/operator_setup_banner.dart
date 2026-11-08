@@ -6,7 +6,7 @@ import '../l10n/l10n.dart';
 import '../screens/licensed_operator_screen.dart';
 import '../models/operator_profile.dart';
 import '../services/operator_profile_service.dart';
-import '../utils/amateur_radio.dart';
+import '../utils/station_readiness.dart';
 
 /// Sits above every screen while a radio is connected and the licensed
 /// operator setup isn't finished, so nobody talks to a ham radio without
@@ -35,18 +35,16 @@ class OperatorSetupBanner extends StatelessWidget {
     );
     if (!connected) return child;
 
-    // The most important thing to fix first: setup, then the radio's name
-    // (no call sign, no transmission), then its band.
-    final String? message;
-    if (!profile.isComplete) {
-      message = context.l10n.ham_setupBanner;
-    } else if (name != null && !profile.matchesNodeName(name)) {
-      message = context.l10n.ham_bannerNameMismatch;
-    } else if (freqKhz != null && !isAmateurFrequencyMHz(freqKhz / 1000.0)) {
-      message = context.l10n.ham_bannerOutOfBand;
-    } else {
-      message = null;
-    }
+    final message = switch (stationReadiness(
+      profile,
+      nodeName: name,
+      freqKhz: freqKhz,
+    )) {
+      StationReadiness.setupIncomplete => context.l10n.ham_setupBanner,
+      StationReadiness.nameMismatch => context.l10n.ham_bannerNameMismatch,
+      StationReadiness.outOfBand => context.l10n.ham_bannerOutOfBand,
+      StationReadiness.ready => null,
+    };
     if (message == null) return child;
 
     final scheme = Theme.of(context).colorScheme;

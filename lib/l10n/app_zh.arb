@@ -4186,5 +4186,7 @@
   "a11y_toggleFlash": "手电筒",
   "a11y_switchCamera": "切换摄像头",
   "los_worst": "最差",
-  "los_selectedObstruction": "选中的障碍物"
+  "los_selectedObstruction": "选中的障碍物",
+  "bastionHome_stationOk": "节点名称和频段正常",
+  "bastionHome_stationConnectToCheck": "连接电台以检查其名称和频段"
 }

@@ -9926,4 +9926,11 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Valt hinder';
+
+  @override
+  String get bastionHome_stationOk => 'Nodnamn och band stämmer';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Anslut en radio för att kontrollera namn och band';
 }

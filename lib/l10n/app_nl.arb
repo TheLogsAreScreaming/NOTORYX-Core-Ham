@@ -4181,5 +4181,7 @@
   "a11y_toggleFlash": "Zaklamp",
   "a11y_switchCamera": "Camera wisselen",
   "los_worst": "SLECHTSTE",
-  "los_selectedObstruction": "Geselecteerde obstructie"
+  "los_selectedObstruction": "Geselecteerde obstructie",
+  "bastionHome_stationOk": "Knooppuntnaam en band kloppen",
+  "bastionHome_stationConnectToCheck": "Verbind een radio om de naam en band te controleren"
 }

@@ -4315,5 +4315,7 @@
   "a11y_toggleFlash": "ライト",
   "a11y_switchCamera": "カメラを切り替え",
   "los_worst": "最悪",
-  "los_selectedObstruction": "選択した障害物"
+  "los_selectedObstruction": "選択した障害物",
+  "bastionHome_stationOk": "ノード名とバンドは問題ありません",
+  "bastionHome_stationConnectToCheck": "無線機を接続して名前とバンドを確認してください"
 }

@@ -5847,5 +5847,7 @@
   "a11y_toggleFlash": "Flashlight",
   "a11y_switchCamera": "Switch camera",
   "los_worst": "WORST",
-  "los_selectedObstruction": "Selected obstruction"
+  "los_selectedObstruction": "Selected obstruction",
+  "bastionHome_stationOk": "Node name and band check out",
+  "bastionHome_stationConnectToCheck": "Connect a radio to check its name and band"
 }

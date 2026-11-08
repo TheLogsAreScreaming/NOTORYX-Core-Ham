@@ -4161,5 +4161,7 @@
   "a11y_toggleFlash": "Ліхтарик",
   "a11y_switchCamera": "Змінити камеру",
   "los_worst": "НАЙГІРШЕ",
-  "los_selectedObstruction": "Вибрана перешкода"
+  "los_selectedObstruction": "Вибрана перешкода",
+  "bastionHome_stationOk": "Назва вузла й діапазон у порядку",
+  "bastionHome_stationConnectToCheck": "Під’єднайте радіо, щоб перевірити назву й діапазон"
 }

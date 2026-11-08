@@ -10029,4 +10029,11 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Вибрана перешкода';
+
+  @override
+  String get bastionHome_stationOk => 'Назва вузла й діапазон у порядку';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Під’єднайте радіо, щоб перевірити назву й діапазон';
 }

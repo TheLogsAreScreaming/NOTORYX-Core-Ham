@@ -4181,5 +4181,7 @@
   "a11y_toggleFlash": "Baterka",
   "a11y_switchCamera": "Prepnúť kameru",
   "los_worst": "NAJHORŠIE",
-  "los_selectedObstruction": "Vybraná prekážka"
+  "los_selectedObstruction": "Vybraná prekážka",
+  "bastionHome_stationOk": "Názov uzla a pásmo sú v poriadku",
+  "bastionHome_stationConnectToCheck": "Pripojte rádio a skontrolujte jeho názov a pásmo"
 }

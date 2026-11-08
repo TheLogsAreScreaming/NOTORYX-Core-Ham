@@ -4315,5 +4315,7 @@
   "a11y_toggleFlash": "Lampe torche",
   "a11y_switchCamera": "Changer de caméra",
   "los_worst": "PIRE",
-  "los_selectedObstruction": "Obstacle sélectionné"
+  "los_selectedObstruction": "Obstacle sélectionné",
+  "bastionHome_stationOk": "Nom du nœud et bande corrects",
+  "bastionHome_stationConnectToCheck": "Connectez une radio pour vérifier son nom et sa bande"
 }

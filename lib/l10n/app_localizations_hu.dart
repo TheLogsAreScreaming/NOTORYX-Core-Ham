@@ -9991,4 +9991,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Kiválasztott akadály';
+
+  @override
+  String get bastionHome_stationOk => 'A csomópont neve és a sáv rendben';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Csatlakoztass egy rádiót a neve és sávja ellenőrzéséhez';
 }

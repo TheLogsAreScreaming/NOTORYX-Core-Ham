@@ -10015,4 +10015,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Ausgewähltes Hindernis';
+
+  @override
+  String get bastionHome_stationOk => 'Knotenname und Band stimmen';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Funkgerät verbinden, um Name und Band zu prüfen';
 }

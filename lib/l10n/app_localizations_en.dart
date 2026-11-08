@@ -9877,4 +9877,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Selected obstruction';
+
+  @override
+  String get bastionHome_stationOk => 'Node name and band check out';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Connect a radio to check its name and band';
 }

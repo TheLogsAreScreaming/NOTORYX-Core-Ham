@@ -567,6 +567,17 @@ void main() {
         ),
       child: const LicensedOperatorScreen(),
     ),
+    'home_ready': () => ChangeNotifierProvider(
+      create: (_) => OperatorProfileService()
+        ..save(
+          OperatorProfile(
+            callsign: 'W1AW',
+            licenseClass: LicenseClass.general,
+            acknowledgedAt: DateTime(2026, 11, 5),
+          ),
+        ),
+      child: const BastionHomeScreen(),
+    ),
     'setup_banner': () => OperatorSetupBanner(
       navigatorKey: GlobalKey(),
       child: const BastionHomeScreen(),
@@ -682,10 +693,9 @@ void main() {
             final result = await guideline.evaluate(tester);
             if (!result.passed) report.writeln(result.reason);
           }
-          final contrast = await tester.runAsync(
-            () async => textContrastGuideline.evaluate(tester),
-          );
-          if (contrast != null && !contrast.passed) {
+          // The guideline runs its own runAsync to read pixels.
+          final contrast = await textContrastGuideline.evaluate(tester);
+          if (!contrast.passed) {
             report.writeln(contrast.reason);
           }
           File('$out/a11y.txt').writeAsStringSync(

@@ -9976,4 +9976,11 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Vybraná prekážka';
+
+  @override
+  String get bastionHome_stationOk => 'Názov uzla a pásmo sú v poriadku';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Pripojte rádio a skontrolujte jeho názov a pásmo';
 }

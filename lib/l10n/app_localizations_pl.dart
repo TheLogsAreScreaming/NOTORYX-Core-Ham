@@ -10039,4 +10039,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Wybrana przeszkoda';
+
+  @override
+  String get bastionHome_stationOk => 'Nazwa węzła i pasmo są poprawne';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Połącz radio, aby sprawdzić jego nazwę i pasmo';
 }

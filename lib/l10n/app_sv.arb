@@ -4181,5 +4181,7 @@
   "a11y_toggleFlash": "Ficklampa",
   "a11y_switchCamera": "Byt kamera",
   "los_worst": "SÄMST",
-  "los_selectedObstruction": "Valt hinder"
+  "los_selectedObstruction": "Valt hinder",
+  "bastionHome_stationOk": "Nodnamn och band stämmer",
+  "bastionHome_stationConnectToCheck": "Anslut en radio för att kontrollera namn och band"
 }

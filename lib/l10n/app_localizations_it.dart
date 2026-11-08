@@ -10017,4 +10017,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get los_selectedObstruction => 'Ostacolo selezionato';
+
+  @override
+  String get bastionHome_stationOk => 'Nome del nodo e banda corretti';
+
+  @override
+  String get bastionHome_stationConnectToCheck =>
+      'Collega una radio per controllarne nome e banda';
 }
