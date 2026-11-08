@@ -10097,6 +10097,29 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get coords_setting => 'Format des coordonnées';
+
+  @override
+  String get coords_decimal => 'Degrés décimaux';
+
+  @override
+  String get coords_dms => 'Degrés, minutes, secondes';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Copier la position';
+
+  @override
+  String coords_copied(String format) {
+    return 'Copié en $format';
+  }
+
+  @override
   String pathHash_badge(int width) {
     return 'La route utilise des hachages de chemin de $width octets';
   }

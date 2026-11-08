@@ -10105,6 +10105,29 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get coords_setting => 'Формат координат';
+
+  @override
+  String get coords_decimal => 'Десяткові градуси';
+
+  @override
+  String get coords_dms => 'Градуси, хвилини, секунди';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Копіювати позицію';
+
+  @override
+  String coords_copied(String format) {
+    return 'Скопійовано як $format';
+  }
+
+  @override
   String pathHash_badge(int width) {
     return 'Маршрут використовує $width-байтові хеші шляху';
   }

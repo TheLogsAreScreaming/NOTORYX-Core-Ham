@@ -10044,6 +10044,29 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String get coords_setting => 'Formát súradníc';
+
+  @override
+  String get coords_decimal => 'Desatinné stupne';
+
+  @override
+  String get coords_dms => 'Stupne, minúty, sekundy';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Kopírovať polohu';
+
+  @override
+  String coords_copied(String format) {
+    return 'Skopírované ako $format';
+  }
+
+  @override
   String pathHash_badge(int width) {
     return 'Trasa používa $width-bajtové hashe cesty';
   }

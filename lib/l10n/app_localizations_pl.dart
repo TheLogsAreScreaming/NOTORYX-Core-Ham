@@ -10108,6 +10108,29 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
+  String get coords_setting => 'Format współrzędnych';
+
+  @override
+  String get coords_decimal => 'Stopnie dziesiętne';
+
+  @override
+  String get coords_dms => 'Stopnie, minuty, sekundy';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Kopiuj pozycję';
+
+  @override
+  String coords_copied(String format) {
+    return 'Skopiowano jako $format';
+  }
+
+  @override
   String pathHash_badge(int width) {
     return 'Trasa używa $width-bajtowych skrótów ścieżki';
   }
