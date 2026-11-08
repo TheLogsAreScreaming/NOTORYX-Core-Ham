@@ -4456,5 +4456,7 @@
   "ham_stationLogCounts": "{sent} inviati, {received} ricevuti",
   "ham_rxStationId": "ID {call}",
   "ham_stationIdLabel": "Identificativo di stazione",
-  "ham_stationIdHint": "La stazione che ha trasmesso questo frame: il mittente o il ripetitore che l'ha ritrasmesso"
+  "ham_stationIdHint": "La stazione che ha trasmesso questo frame: il mittente o il ripetitore che l'ha ritrasmesso",
+  "ham_stockTrafficTitle": "{count, plural, =1{1 frame MeshCore standard sentito qui negli ultimi 10 minuti} other{{count} frame MeshCore standard sentiti qui negli ultimi 10 minuti}}",
+  "ham_stockTrafficBody": "Un'altra rete, come una mesh MeshCore Part 15, usa questa frequenza. I suoi frame non hanno identificativo di stazione e il firmware radioamatoriale non può leggerli. Sentite il vostro coordinatore di frequenze prima di trasmettere qui."
 }

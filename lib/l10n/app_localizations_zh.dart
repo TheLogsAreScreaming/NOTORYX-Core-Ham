@@ -9864,4 +9864,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get ham_stationIdHint => '发射此帧的电台：发送者，或转发它的中继';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '过去 10 分钟在此收到 $count 个标准 MeshCore 帧',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      '另一个网络（例如 Part 15 的 MeshCore 网状网）正在使用此频率。它的帧不带电台识别，业余固件也无法读取。在此发射前请先与频率协调员确认。';
 }

@@ -10614,4 +10614,20 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'La station qui a émis cette trame : l\'expéditeur, ou le relais qui l\'a retransmise';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count trames MeshCore standard entendues ici ces 10 dernières minutes',
+      one: '1 trame MeshCore standard entendue ici ces 10 dernières minutes',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Un autre réseau, comme un maillage MeshCore Part 15, utilise cette fréquence. Ses trames ne portent pas d\'identifiant de station et le firmware radioamateur ne peut pas les lire. Voyez avec votre coordinateur de fréquences avant d\'émettre ici.';
 }

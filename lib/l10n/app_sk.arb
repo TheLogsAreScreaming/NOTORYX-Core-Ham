@@ -4322,5 +4322,7 @@
   "ham_stationLogCounts": "odoslané: {sent}, prijaté: {received}",
   "ham_rxStationId": "ID {call}",
   "ham_stationIdLabel": "Identifikátor stanice",
-  "ham_stationIdHint": "Stanica, ktorá vyslala tento rámec: odosielateľ alebo prevádzač, ktorý ho preposlal"
+  "ham_stationIdHint": "Stanica, ktorá vyslala tento rámec: odosielateľ alebo prevádzač, ktorý ho preposlal",
+  "ham_stockTrafficTitle": "{count, plural, =1{Za 10 minút tu počuť 1 rámec štandardného MeshCore} few{Za 10 minút tu počuť {count} rámce štandardného MeshCore} many{Za 10 minút tu počuť {count} rámca štandardného MeshCore} other{Za 10 minút tu počuť {count} rámcov štandardného MeshCore}}",
+  "ham_stockTrafficBody": "Túto frekvenciu používa iná sieť, napríklad sieť MeshCore podľa Part 15. Jej rámce nemajú identifikátor stanice a amatérsky firmvér ich nevie prečítať. Pred vysielaním sa poraďte s koordinátorom frekvencií."
 }

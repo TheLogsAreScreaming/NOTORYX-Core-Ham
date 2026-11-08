@@ -19,8 +19,12 @@ class _Connector extends MeshCoreConnector {
     this.freqKhz,
     this.mismatches = const [],
     this.firmware,
+    this.stockFrames = 0,
   });
   final String? firmware;
+  final int stockFrames;
+  @override
+  int get stockFramesHeard => stockFrames;
   @override
   String? get firmwareVersionString => firmware;
   final bool connected;
@@ -54,6 +58,7 @@ void main() {
     int? freqKhz,
     List<StationIdMismatch> mismatches = const [],
     String? firmware,
+    int stockFrames = 0,
   }) {
     final navigatorKey = GlobalKey<NavigatorState>();
     return MultiProvider(
@@ -65,6 +70,7 @@ void main() {
             freqKhz: freqKhz,
             mismatches: mismatches,
             firmware: firmware,
+            stockFrames: stockFrames,
           ),
         ),
         ChangeNotifierProvider.value(value: profiles),
@@ -277,5 +283,36 @@ void main() {
     );
     expect(note, findsOneWidget);
     expect(find.text('Ready to transmit'), findsNothing);
+  });
+
+  testWidgets('stock MeshCore traffic on the frequency is called out', (
+    tester,
+  ) async {
+    Future<void> open(int stock) async {
+      await tester.pumpWidget(
+        app(
+          const LicensedOperatorScreen(),
+          connected: true,
+          name: 'W1AW Base',
+          freqKhz: 906875,
+          stockFrames: stock,
+        ),
+      );
+      await tester.pumpAndSettle();
+    }
+
+    await open(0);
+    expect(find.byKey(const ValueKey('stock-traffic')), findsNothing);
+    await open(3);
+    final banner = find.byKey(const ValueKey('stock-traffic'));
+    await tester.scrollUntilVisible(
+      banner,
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(
+      find.text('3 stock MeshCore frames heard here in the last 10 minutes'),
+      findsOneWidget,
+    );
   });
 }

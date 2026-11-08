@@ -17580,6 +17580,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The station that transmitted this frame: the sender, or the repeater that relayed it'**
   String get ham_stationIdHint;
+
+  /// Licensed operator: stock (non-ham) MeshCore frames heard on this frequency
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 stock MeshCore frame heard here in the last 10 minutes} other{{count} stock MeshCore frames heard here in the last 10 minutes}}'**
+  String ham_stockTrafficTitle(int count);
+
+  /// Licensed operator: what stock MeshCore traffic on the frequency means
+  ///
+  /// In en, this message translates to:
+  /// **'Another network, such as a Part 15 MeshCore mesh, is using this frequency. Its frames carry no station ID and the ham firmware can\'t read them. Check with your frequency coordinator before transmitting here.'**
+  String get ham_stockTrafficBody;
 }
 
 class _AppLocalizationsDelegate

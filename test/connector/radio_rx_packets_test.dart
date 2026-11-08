@@ -73,6 +73,20 @@ void main() {
     expect(heard.length, before);
   });
 
+  test('counts stock MeshCore frames, but not noise or ham frames', () async {
+    expect(connector.stockFramesHeard, 0);
+    void log(List<int> onAir) =>
+        connector.handleFrameForTest([pushCodeLogRxData, 0x1C, 0xA4, ...onAir]);
+
+    log(groupTextPacket(psk: psk, text: 'Alice: Part 15 mesh'));
+    log(groupTextPacket(psk: psk, text: 'Bob: also Part 15'));
+    log([0x11]); // too short to be a packet
+    log([0xD1, 0, 1, 2]); // payload version 4: not MeshCore
+    await rx(groupTextPacket(psk: psk, text: 'Alice: ham')); // amateur frame
+    expect(connector.stockFramesHeard, 2);
+    expect(connector.lastStockFrameAt, isNotNull);
+  });
+
   test('recognises its own advert', () async {
     expect((await rx(advert(selfKey))).fromSelf, isTrue);
     expect((await rx(advert(otherKey))).fromSelf, isFalse);

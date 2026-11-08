@@ -10536,4 +10536,20 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'Het station dat dit frame zond: de afzender, of de repeater die het doorgaf';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count standaard MeshCore-frames hier gehoord in de laatste 10 minuten',
+      one: '1 standaard MeshCore-frame hier gehoord in de laatste 10 minuten',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Een ander netwerk, zoals een MeshCore-mesh onder Part 15, gebruikt deze frequentie. De frames hebben geen stations-ID en de ham-firmware kan ze niet lezen. Overleg met uw frequentiecoördinator voordat u hier zendt.';
 }

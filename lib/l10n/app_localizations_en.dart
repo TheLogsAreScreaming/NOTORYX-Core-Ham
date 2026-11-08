@@ -10450,4 +10450,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'The station that transmitted this frame: the sender, or the repeater that relayed it';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stock MeshCore frames heard here in the last 10 minutes',
+      one: '1 stock MeshCore frame heard here in the last 10 minutes',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Another network, such as a Part 15 MeshCore mesh, is using this frequency. Its frames carry no station ID and the ham firmware can\'t read them. Check with your frequency coordinator before transmitting here.';
 }

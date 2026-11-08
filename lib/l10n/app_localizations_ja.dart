@@ -10070,4 +10070,18 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get ham_stationIdHint => 'このフレームを送信した局。送信者、または中継したリピーターです';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'この 10 分間に標準 MeshCore のフレームを $count 件受信しました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      '別のネットワーク (Part 15 の MeshCore メッシュなど) がこの周波数を使っています。そのフレームには局識別がなく、アマチュア無線用ファームウェアでは読めません。ここで送信する前に周波数調整担当者に確認してください。';
 }

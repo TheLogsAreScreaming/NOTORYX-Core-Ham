@@ -10564,4 +10564,20 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'Станцията, предала този кадър: подателят или ретранслаторът, който го препредаде';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count кадъра от стандартен MeshCore, чути тук през последните 10 минути',
+      one: '1 кадър от стандартен MeshCore, чут тук през последните 10 минути',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Друга мрежа, например MeshCore по Part 15, използва тази честота. Кадрите ѝ нямат позивна и любителският фърмуер не може да ги чете. Попитайте честотния координатор, преди да предавате тук.';
 }

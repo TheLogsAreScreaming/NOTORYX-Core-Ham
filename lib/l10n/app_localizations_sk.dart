@@ -10563,4 +10563,21 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'Stanica, ktorá vyslala tento rámec: odosielateľ alebo prevádzač, ktorý ho preposlal';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Za 10 minút tu počuť $count rámcov štandardného MeshCore',
+      many: 'Za 10 minút tu počuť $count rámca štandardného MeshCore',
+      few: 'Za 10 minút tu počuť $count rámce štandardného MeshCore',
+      one: 'Za 10 minút tu počuť 1 rámec štandardného MeshCore',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Túto frekvenciu používa iná sieť, napríklad sieť MeshCore podľa Part 15. Jej rámce nemajú identifikátor stanice a amatérsky firmvér ich nevie prečítať. Pred vysielaním sa poraďte s koordinátorom frekvencií.';
 }

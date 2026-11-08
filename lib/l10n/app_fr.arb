@@ -4456,5 +4456,7 @@
   "ham_stationLogCounts": "{sent} envoyés, {received} reçus",
   "ham_rxStationId": "ID {call}",
   "ham_stationIdLabel": "Identifiant de station",
-  "ham_stationIdHint": "La station qui a émis cette trame : l'expéditeur, ou le relais qui l'a retransmise"
+  "ham_stationIdHint": "La station qui a émis cette trame : l'expéditeur, ou le relais qui l'a retransmise",
+  "ham_stockTrafficTitle": "{count, plural, =1{1 trame MeshCore standard entendue ici ces 10 dernières minutes} other{{count} trames MeshCore standard entendues ici ces 10 dernières minutes}}",
+  "ham_stockTrafficBody": "Un autre réseau, comme un maillage MeshCore Part 15, utilise cette fréquence. Ses trames ne portent pas d'identifiant de station et le firmware radioamateur ne peut pas les lire. Voyez avec votre coordinateur de fréquences avant d'émettre ici."
 }

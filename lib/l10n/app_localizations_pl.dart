@@ -10628,4 +10628,23 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'Stacja, która nadała tę ramkę: nadawca lub przemiennik, który ją przekazał';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count ramki standardowego MeshCore usłyszanej tu w ciągu 10 minut',
+      many:
+          '$count ramek standardowego MeshCore usłyszanych tu w ciągu 10 minut',
+      few: '$count ramki standardowego MeshCore usłyszane tu w ciągu 10 minut',
+      one: '1 ramka standardowego MeshCore usłyszana tu w ciągu 10 minut',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Inna sieć, np. sieć MeshCore z Part 15, używa tej częstotliwości. Jej ramki nie mają identyfikatora stacji, a oprogramowanie krótkofalarskie nie umie ich odczytać. Przed nadawaniem tutaj skontaktuj się z koordynatorem częstotliwości.';
 }

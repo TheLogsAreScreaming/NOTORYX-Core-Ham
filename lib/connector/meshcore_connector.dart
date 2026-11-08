@@ -7251,7 +7251,10 @@ class MeshCoreConnector extends ChangeNotifier {
     // The radio logs everything it hears. Only amateur frames are ours; the
     // rest (eg. Part 15 MeshCore on the same channel) is left alone.
     final amateur = AmateurFrame.unwrap(onAir);
-    if (amateur == null) return;
+    if (amateur == null) {
+      _recordStockFrame(onAir);
+      return;
+    }
     final raw = amateur.packet;
     _recordHeardStation(raw, amateur.station);
     _handleRawRxPacket(raw);
@@ -7343,6 +7346,40 @@ class MeshCoreConnector extends ChangeNotifier {
   /// and any repeaters heard relaying it. Empty when none were recorded.
   List<String> heardStationsFor(String? packetHash) =>
       packetHash == null ? const [] : (_heardStations[packetHash] ?? const []);
+
+  /// How far back [stockFramesHeard] looks.
+  static const stockTrafficWindow = Duration(minutes: 10);
+  static const _maxStockFrames = 200;
+  final _stockFrameTimes = <DateTime>[];
+
+  /// Stock MeshCore frames (payload version 1, no station ID) the radio
+  /// heard in the last [stockTrafficWindow]: another network, such as a
+  /// Part 15 mesh, is using this frequency. They are counted, not read.
+  int get stockFramesHeard {
+    _pruneStockFrames(DateTime.now());
+    return _stockFrameTimes.length;
+  }
+
+  /// When the last stock MeshCore frame was heard, or null.
+  DateTime? get lastStockFrameAt =>
+      _stockFrameTimes.isEmpty ? null : _stockFrameTimes.last;
+
+  void _pruneStockFrames(DateTime now) {
+    final cutoff = now.subtract(stockTrafficWindow);
+    _stockFrameTimes.removeWhere((t) => t.isBefore(cutoff));
+  }
+
+  void _recordStockFrame(Uint8List onAir) {
+    // Version 1 is stock MeshCore; anything else unreadable is just noise.
+    if (onAir.isEmpty || (onAir[0] >> 6) & 0x03 != 0) return;
+    if (_parseRawPacket(onAir) == null) return;
+    final now = DateTime.now();
+    _pruneStockFrames(now);
+    _stockFrameTimes.add(now);
+    if (_stockFrameTimes.length > _maxStockFrames) {
+      _stockFrameTimes.removeAt(0);
+    }
+  }
 
   // Direct adverts whose station ID didn't match their name, newest first.
   static const _maxStationIdMismatches = 20;
@@ -8540,6 +8577,8 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   void _handleDisconnection() {
+    // The next radio may be on another frequency.
+    _stockFrameTimes.clear();
     _stopBatteryPolling();
     _stopGpsLocationPolling();
     _stopRadioStatsPolling();

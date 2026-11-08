@@ -4456,5 +4456,7 @@
   "ham_stationLogCounts": "보냄 {sent}, 받음 {received}",
   "ham_rxStationId": "ID {call}",
   "ham_stationIdLabel": "국 식별",
-  "ham_stationIdHint": "이 프레임을 송신한 국입니다. 보낸 사람이거나 중계한 리피터입니다"
+  "ham_stationIdHint": "이 프레임을 송신한 국입니다. 보낸 사람이거나 중계한 리피터입니다",
+  "ham_stockTrafficTitle": "{count, plural, other{지난 10분 동안 이곳에서 표준 MeshCore 프레임 {count}개를 수신했습니다}}",
+  "ham_stockTrafficBody": "다른 네트워크(Part 15 MeshCore 메시 등)가 이 주파수를 쓰고 있습니다. 그 프레임에는 국 식별이 없고 아마추어 펌웨어로는 읽을 수 없습니다. 여기서 송신하기 전에 주파수 조정자와 확인하세요."
 }
