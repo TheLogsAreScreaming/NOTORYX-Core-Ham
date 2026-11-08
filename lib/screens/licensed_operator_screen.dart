@@ -315,6 +315,32 @@ class _ConnectedRadioSection extends StatelessWidget {
             ],
           ),
         ),
+        if (connector.stationIdMismatches case final mismatches
+            when mismatches.isNotEmpty) ...[
+          MeshStatusBanner(
+            key: const ValueKey('station-id-mismatches'),
+            status: MeshStatus.warning,
+            title: l10n.ham_idMismatchTitle(mismatches.length),
+            message: l10n.ham_idMismatchBody,
+            margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+          ),
+          MeshCard(
+            padding: EdgeInsets.zero,
+            child: Column(
+              children: [
+                for (final m in mismatches)
+                  _StatusRow(
+                    ok: false,
+                    title: m.advertName,
+                    value: l10n.ham_idMismatchSentAs(m.station),
+                    note: m.namedCall == null
+                        ? l10n.ham_idMismatchNoCall
+                        : null,
+                  ),
+              ],
+            ),
+          ),
+        ],
       ],
     );
   }

@@ -10541,4 +10541,29 @@ class AppLocalizationsRu extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'Ваше радио использует $width байт';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count позывного станции не совпадают с именами',
+      many: '$count позывных станций не совпадают с именами',
+      few: '$count позывных станций не совпадают с именами',
+      one: '1 позывной станции не совпадает с именем',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Эти объявления, принятые напрямую, несли позывной станции, отличный от того, с которого начинается их имя. Возможно, радио настроено неверно; уточните у оператора, прежде чем полагаться на это.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'отправлено с позывным $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'Это имя не начинается с позывного';
 }

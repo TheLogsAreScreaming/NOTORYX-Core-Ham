@@ -10497,4 +10497,29 @@ class AppLocalizationsSl extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'Vaš radio uporablja $width bajte';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count oznak postaj se ne ujema z imeni',
+      few: '$count oznake postaj se ne ujemajo z imeni',
+      two: '2 oznaki postaj se ne ujemata z imeni',
+      one: '1 oznaka postaje se ne ujema z imenom',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Ta neposredno sprejeta oglašanja so nosila drugo oznako postaje kot klicni znak, s katerim se začne njihovo ime. Radio je morda napačno nastavljen; preverite pri operaterju, preden se zanesete na to.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'poslano z oznako $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'To ime se ne začne s klicnim znakom';
 }

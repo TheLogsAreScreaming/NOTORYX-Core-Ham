@@ -10367,4 +10367,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'Your radio uses $width-byte';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count station IDs don\'t match their names',
+      one: '1 station ID doesn\'t match its name',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Heard directly, these adverts carried a station ID other than the call sign their name starts with. It may be a misconfigured radio; check with the operator before relying on it.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'sent with station ID $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall =>
+      'This name doesn\'t start with a call sign';
 }

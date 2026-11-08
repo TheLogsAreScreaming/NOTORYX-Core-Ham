@@ -17460,6 +17460,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your radio uses {width}-byte'**
   String pathHash_mismatch(int width);
+
+  /// Licensed operator: heading over direct adverts whose station ID differs from the call sign in their name
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 station ID doesn\'t match its name} other{{count} station IDs don\'t match their names}}'**
+  String ham_idMismatchTitle(int count);
+
+  /// Licensed operator: explains a station ID mismatch
+  ///
+  /// In en, this message translates to:
+  /// **'Heard directly, these adverts carried a station ID other than the call sign their name starts with. It may be a misconfigured radio; check with the operator before relying on it.'**
+  String get ham_idMismatchBody;
+
+  /// Licensed operator: after an advert name, the station ID its frame carried
+  ///
+  /// In en, this message translates to:
+  /// **'sent with station ID {station}'**
+  String ham_idMismatchSentAs(String station);
+
+  /// Licensed operator: note under an advert name with no call sign
+  ///
+  /// In en, this message translates to:
+  /// **'This name doesn\'t start with a call sign'**
+  String get ham_idMismatchNoCall;
 }
 
 class _AppLocalizationsDelegate

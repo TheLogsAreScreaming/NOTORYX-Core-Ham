@@ -4340,5 +4340,9 @@
   "coords_copyTitle": "Pozíció másolása",
   "coords_copied": "Másolva: {format}",
   "pathHash_badge": "Az útvonal {width} bájtos útvonal-hasheket használ",
-  "pathHash_mismatch": "A rádiód {width} bájtosat használ"
+  "pathHash_mismatch": "A rádiód {width} bájtosat használ",
+  "ham_idMismatchTitle": "{count, plural, =1{1 állomásazonosító nem egyezik a nevével} other{{count} állomásazonosító nem egyezik a nevével}}",
+  "ham_idMismatchBody": "Ezek a közvetlenül vett hirdetések más állomásazonosítót hordoztak, mint a hívójel, amellyel a nevük kezdődik. Lehet, hogy egy rádió rosszul van beállítva; egyeztessen az üzemeltetővel, mielőtt megbízna benne.",
+  "ham_idMismatchSentAs": "elküldve ezzel az állomásazonosítóval: {station}",
+  "ham_idMismatchNoCall": "Ez a név nem hívójellel kezdődik"
 }

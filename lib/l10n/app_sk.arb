@@ -4302,5 +4302,9 @@
   "coords_copyTitle": "Kopírovať polohu",
   "coords_copied": "Skopírované ako {format}",
   "pathHash_badge": "Trasa používa {width}-bajtové hashe cesty",
-  "pathHash_mismatch": "Vaše rádio používa {width} bajty"
+  "pathHash_mismatch": "Vaše rádio používa {width} bajty",
+  "ham_idMismatchTitle": "{count, plural, =1{1 identifikátor stanice nesedí s názvom} few{{count} identifikátory staníc nesedia s názvami} many{{count} identifikátora staníc nesedí s názvami} other{{count} identifikátorov staníc nesedí s názvami}}",
+  "ham_idMismatchBody": "Tieto priamo prijaté oznámenia niesli iný identifikátor stanice než volaciu značku, ktorou začína ich názov. Rádio môže byť zle nastavené; overte si to u operátora skôr, než sa na to spoľahnete.",
+  "ham_idMismatchSentAs": "odoslané s identifikátorom {station}",
+  "ham_idMismatchNoCall": "Tento názov nezačína volacou značkou"
 }

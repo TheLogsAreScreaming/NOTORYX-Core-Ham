@@ -9994,4 +9994,26 @@ class AppLocalizationsJa extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'この無線機は $width バイトを使用';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '名前と一致しない局識別が $count 件あります',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      '直接受信したこれらのアドバートには、名前の先頭のコールサインと異なる局識別が付いていました。無線機の設定ミスかもしれません。頼りにする前に運用者に確認してください。';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return '局識別 $station で送信';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'この名前はコールサインで始まっていません';
 }

@@ -10416,4 +10416,27 @@ class AppLocalizationsSv extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'Din radio använder $width byte';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stations-ID matchar inte sina namn',
+      one: '1 stations-ID matchar inte sitt namn',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'De här direkt mottagna annonserna hade ett annat stations-ID än anropssignalen som namnet börjar med. Det kan vara en felinställd radio; kontrollera med operatören innan du litar på det.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'skickad med stations-ID $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall => 'Namnet börjar inte med en anropssignal';
 }

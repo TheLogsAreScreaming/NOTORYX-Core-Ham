@@ -10543,4 +10543,30 @@ class AppLocalizationsPl extends AppLocalizations {
   String pathHash_mismatch(int width) {
     return 'Twoje radio używa $width bajtów';
   }
+
+  @override
+  String ham_idMismatchTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count identyfikatora stacji nie pasuje do nazw',
+      many: '$count identyfikatorów stacji nie pasuje do nazw',
+      few: '$count identyfikatory stacji nie pasują do nazw',
+      one: '1 identyfikator stacji nie pasuje do nazwy',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_idMismatchBody =>
+      'Odebrane bezpośrednio ogłoszenia miały identyfikator stacji inny niż znak wywoławczy, od którego zaczyna się ich nazwa. Radio może być źle skonfigurowane; sprawdź z operatorem, zanim na tym polegasz.';
+
+  @override
+  String ham_idMismatchSentAs(String station) {
+    return 'wysłano z identyfikatorem $station';
+  }
+
+  @override
+  String get ham_idMismatchNoCall =>
+      'Ta nazwa nie zaczyna się od znaku wywoławczego';
 }

@@ -4436,5 +4436,9 @@
   "coords_copyTitle": "Position kopieren",
   "coords_copied": "Als {format} kopiert",
   "pathHash_badge": "Route nutzt {width}-Byte-Pfad-Hashes",
-  "pathHash_mismatch": "Dein Funkgerät nutzt {width} Byte"
+  "pathHash_mismatch": "Dein Funkgerät nutzt {width} Byte",
+  "ham_idMismatchTitle": "{count, plural, =1{1 Stationskennung passt nicht zum Namen} other{{count} Stationskennungen passen nicht zu den Namen}}",
+  "ham_idMismatchBody": "Diese direkt empfangenen Adverts trugen eine andere Stationskennung als das Rufzeichen am Anfang ihres Namens. Vielleicht ist ein Funkgerät falsch eingerichtet; klären Sie das mit dem Betreiber, bevor Sie sich darauf verlassen.",
+  "ham_idMismatchSentAs": "gesendet mit Stationskennung {station}",
+  "ham_idMismatchNoCall": "Dieser Name beginnt nicht mit einem Rufzeichen"
 }

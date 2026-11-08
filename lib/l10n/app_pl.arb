@@ -4340,5 +4340,9 @@
   "coords_copyTitle": "Kopiuj pozycję",
   "coords_copied": "Skopiowano jako {format}",
   "pathHash_badge": "Trasa używa {width}-bajtowych skrótów ścieżki",
-  "pathHash_mismatch": "Twoje radio używa {width} bajtów"
+  "pathHash_mismatch": "Twoje radio używa {width} bajtów",
+  "ham_idMismatchTitle": "{count, plural, =1{1 identyfikator stacji nie pasuje do nazwy} few{{count} identyfikatory stacji nie pasują do nazw} many{{count} identyfikatorów stacji nie pasuje do nazw} other{{count} identyfikatora stacji nie pasuje do nazw}}",
+  "ham_idMismatchBody": "Odebrane bezpośrednio ogłoszenia miały identyfikator stacji inny niż znak wywoławczy, od którego zaczyna się ich nazwa. Radio może być źle skonfigurowane; sprawdź z operatorem, zanim na tym polegasz.",
+  "ham_idMismatchSentAs": "wysłano z identyfikatorem {station}",
+  "ham_idMismatchNoCall": "Ta nazwa nie zaczyna się od znaku wywoławczego"
 }
