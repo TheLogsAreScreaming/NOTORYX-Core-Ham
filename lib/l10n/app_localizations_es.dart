@@ -10066,6 +10066,76 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get theme_descBlaze =>
+      'Carbón y pizarra con naranja de alta visibilidad';
+
+  @override
+  String get theme_descNeonAnarchy =>
+      'Verde tóxico y morado eléctrico sobre negro';
+
+  @override
+  String get theme_descTactical => 'Oliva, gris metal y tonos tierra';
+
+  @override
+  String get theme_descPinkOverload => 'Rosa fucsia, chicle y lavanda';
+
+  @override
+  String get theme_descBareBeauty => 'Nude cálido, rosa palo, cacao y salvia';
+
+  @override
+  String get theme_descOkabeIto => 'Apto para daltonismo, máxima claridad';
+
+  @override
+  String get theme_descNightOps =>
+      'Rojos tenues sobre casi negro para poca luz';
+
+  @override
+  String get theme_descSeasonal => 'Cambia con las estaciones y las fiestas';
+
+  @override
+  String get theme_selected => 'Seleccionado';
+
+  @override
+  String get seasonal_season => 'Estación';
+
+  @override
+  String seasonal_auto(String season) {
+    return 'Automática (ahora $season)';
+  }
+
+  @override
+  String get seasonal_autoHint =>
+      'Sigue la fecha del dispositivo, con estaciones del hemisferio norte';
+
+  @override
+  String get season_spring => 'Primavera';
+
+  @override
+  String get season_summer => 'Verano';
+
+  @override
+  String get season_autumn => 'Otoño';
+
+  @override
+  String get season_winter => 'Invierno';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Navidad';
+
+  @override
+  String get season_valentine => 'San Valentín';
+
+  @override
+  String get seasonal_holidays => 'Colores festivos';
+
+  @override
+  String get seasonal_holidaysHint =>
+      'Halloween, Navidad y San Valentín en sus fechas';
+
+  @override
   String get coords_setting => 'Formato de coordenadas';
 
   @override

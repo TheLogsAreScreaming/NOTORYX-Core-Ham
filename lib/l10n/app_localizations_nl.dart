@@ -10024,6 +10024,74 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String get theme_descBlaze => 'Antraciet en leisteen met signaaloranje';
+
+  @override
+  String get theme_descNeonAnarchy => 'Gifgroen en elektrisch paars op zwart';
+
+  @override
+  String get theme_descTactical => 'Olijf, gunmetal en aardetinten';
+
+  @override
+  String get theme_descPinkOverload => 'Felroze, kauwgomroze en lavendel';
+
+  @override
+  String get theme_descBareBeauty => 'Warm naturel, oudroze, cacao en salie';
+
+  @override
+  String get theme_descOkabeIto => 'Veilig bij kleurenblindheid, heel helder';
+
+  @override
+  String get theme_descNightOps =>
+      'Gedempt rood op bijna-zwart voor weinig licht';
+
+  @override
+  String get theme_descSeasonal => 'Verandert met de seizoenen en feestdagen';
+
+  @override
+  String get theme_selected => 'Geselecteerd';
+
+  @override
+  String get seasonal_season => 'Seizoen';
+
+  @override
+  String seasonal_auto(String season) {
+    return 'Automatisch (nu $season)';
+  }
+
+  @override
+  String get seasonal_autoHint =>
+      'Volgt de datum van je apparaat, met seizoenen van het noordelijk halfrond';
+
+  @override
+  String get season_spring => 'Lente';
+
+  @override
+  String get season_summer => 'Zomer';
+
+  @override
+  String get season_autumn => 'Herfst';
+
+  @override
+  String get season_winter => 'Winter';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Kerst';
+
+  @override
+  String get season_valentine => 'Valentijnsdag';
+
+  @override
+  String get seasonal_holidays => 'Feestkleuren';
+
+  @override
+  String get seasonal_holidaysHint =>
+      'Halloween, kerst en Valentijnsdag op hun data';
+
+  @override
   String get coords_setting => 'Coördinaatnotatie';
 
   @override
