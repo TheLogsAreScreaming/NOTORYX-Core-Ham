@@ -10064,25 +10064,12 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get coords_setting => 'Oblika koordinat';
+  String pathHash_badge(int width) {
+    return 'Pot uporablja $width-bajtne zgoščene vrednosti poti';
+  }
 
   @override
-  String get coords_decimal => 'Decimalne stopinje';
-
-  @override
-  String get coords_dms => 'Stopinje, minute, sekunde';
-
-  @override
-  String get coords_utm => 'UTM';
-
-  @override
-  String get coords_mgrs => 'MGRS';
-
-  @override
-  String get coords_copyTitle => 'Kopiraj položaj';
-
-  @override
-  String coords_copied(String format) {
-    return 'Kopirano kot $format';
+  String pathHash_mismatch(int width) {
+    return 'Vaš radio uporablja $width bajte';
   }
 }

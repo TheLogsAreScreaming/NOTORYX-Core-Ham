@@ -10045,25 +10045,12 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get coords_setting => 'Формат на координатите';
+  String pathHash_badge(int width) {
+    return 'Маршрутът използва $width-байтови хешове на пътя';
+  }
 
   @override
-  String get coords_decimal => 'Десетични градуси';
-
-  @override
-  String get coords_dms => 'Градуси, минути, секунди';
-
-  @override
-  String get coords_utm => 'UTM';
-
-  @override
-  String get coords_mgrs => 'MGRS';
-
-  @override
-  String get coords_copyTitle => 'Копирай позицията';
-
-  @override
-  String coords_copied(String format) {
-    return 'Копирано като $format';
+  String pathHash_mismatch(int width) {
+    return 'Вашето радио използва $width-байтови';
   }
 }

@@ -5605,5 +5605,9 @@
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Copy position",
   "coords_copied": "Copied as {format}",
-  "@coords_copied": {"placeholders": {"format": {"type": "String"}}}
+  "@coords_copied": {"placeholders": {"format": {"type": "String"}}},
+  "pathHash_badge": "Route uses {width}-byte path hashes",
+  "@pathHash_badge": {"placeholders": {"width": {"type": "int"}}},
+  "pathHash_mismatch": "Your radio uses {width}-byte",
+  "@pathHash_mismatch": {"placeholders": {"width": {"type": "int"}}}
 }

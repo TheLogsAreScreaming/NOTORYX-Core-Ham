@@ -9383,25 +9383,12 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get coords_setting => '坐标格式';
+  String pathHash_badge(int width) {
+    return '该路由使用 $width 字节路径哈希';
+  }
 
   @override
-  String get coords_decimal => '十进制度';
-
-  @override
-  String get coords_dms => '度分秒';
-
-  @override
-  String get coords_utm => 'UTM';
-
-  @override
-  String get coords_mgrs => 'MGRS';
-
-  @override
-  String get coords_copyTitle => '复制位置';
-
-  @override
-  String coords_copied(String format) {
-    return '已按 $format 复制';
+  String pathHash_mismatch(int width) {
+    return '你的电台使用 $width 字节';
   }
 }

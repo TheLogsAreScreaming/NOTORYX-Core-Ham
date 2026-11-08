@@ -3485,5 +3485,7 @@
   "coords_utm": "UTM",
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Копировать позицию",
-  "coords_copied": "Скопировано как {format}"
+  "coords_copied": "Скопировано как {format}",
+  "pathHash_badge": "Маршрут использует {width}-байтовые хеши пути",
+  "pathHash_mismatch": "Ваше радио использует {width} байт"
 }

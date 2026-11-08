@@ -4182,5 +4182,7 @@
   "coords_utm": "UTM",
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Positie kopiëren",
-  "coords_copied": "Gekopieerd als {format}"
+  "coords_copied": "Gekopieerd als {format}",
+  "pathHash_badge": "Route gebruikt pad-hashes van {width} byte",
+  "pathHash_mismatch": "Je radio gebruikt {width} byte"
 }

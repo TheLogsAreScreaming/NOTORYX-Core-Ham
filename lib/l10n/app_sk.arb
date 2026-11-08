@@ -4182,5 +4182,7 @@
   "coords_utm": "UTM",
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Kopírovať polohu",
-  "coords_copied": "Skopírované ako {format}"
+  "coords_copied": "Skopírované ako {format}",
+  "pathHash_badge": "Trasa používa {width}-bajtové hashe cesty",
+  "pathHash_mismatch": "Vaše rádio používa {width} bajty"
 }

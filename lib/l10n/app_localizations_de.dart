@@ -10075,25 +10075,12 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get coords_setting => 'Koordinatenformat';
+  String pathHash_badge(int width) {
+    return 'Route nutzt $width-Byte-Pfad-Hashes';
+  }
 
   @override
-  String get coords_decimal => 'Dezimalgrad';
-
-  @override
-  String get coords_dms => 'Grad, Minuten, Sekunden';
-
-  @override
-  String get coords_utm => 'UTM';
-
-  @override
-  String get coords_mgrs => 'MGRS';
-
-  @override
-  String get coords_copyTitle => 'Position kopieren';
-
-  @override
-  String coords_copied(String format) {
-    return 'Als $format kopiert';
+  String pathHash_mismatch(int width) {
+    return 'Dein Funkgerät nutzt $width Byte';
   }
 }

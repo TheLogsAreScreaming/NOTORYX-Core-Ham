@@ -9985,25 +9985,12 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get coords_setting => 'Koordinatformat';
+  String pathHash_badge(int width) {
+    return 'Rutten använder $width-byte sökvägshashar';
+  }
 
   @override
-  String get coords_decimal => 'Decimalgrader';
-
-  @override
-  String get coords_dms => 'Grader, minuter, sekunder';
-
-  @override
-  String get coords_utm => 'UTM';
-
-  @override
-  String get coords_mgrs => 'MGRS';
-
-  @override
-  String get coords_copyTitle => 'Kopiera position';
-
-  @override
-  String coords_copied(String format) {
-    return 'Kopierad som $format';
+  String pathHash_mismatch(int width) {
+    return 'Din radio använder $width byte';
   }
 }

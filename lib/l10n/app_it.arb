@@ -4316,5 +4316,7 @@
   "coords_utm": "UTM",
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Copia posizione",
-  "coords_copied": "Copiato come {format}"
+  "coords_copied": "Copiato come {format}",
+  "pathHash_badge": "Il percorso usa hash di percorso da {width} byte",
+  "pathHash_mismatch": "La tua radio usa {width} byte"
 }

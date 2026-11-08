@@ -4220,5 +4220,7 @@
   "coords_utm": "UTM",
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Pozíció másolása",
-  "coords_copied": "Másolva: {format}"
+  "coords_copied": "Másolva: {format}",
+  "pathHash_badge": "Az útvonal {width} bájtos útvonal-hasheket használ",
+  "pathHash_mismatch": "A rádiód {width} bájtosat használ"
 }

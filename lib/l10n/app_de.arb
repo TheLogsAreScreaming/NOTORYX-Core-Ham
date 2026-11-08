@@ -4316,5 +4316,7 @@
   "coords_utm": "UTM",
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Position kopieren",
-  "coords_copied": "Als {format} kopiert"
+  "coords_copied": "Als {format} kopiert",
+  "pathHash_badge": "Route nutzt {width}-Byte-Pfad-Hashes",
+  "pathHash_mismatch": "Dein Funkgerät nutzt {width} Byte"
 }

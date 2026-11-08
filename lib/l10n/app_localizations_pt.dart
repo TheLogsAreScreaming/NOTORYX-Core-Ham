@@ -10047,25 +10047,12 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get coords_setting => 'Formato de coordenadas';
+  String pathHash_badge(int width) {
+    return 'A rota usa hashes de caminho de $width bytes';
+  }
 
   @override
-  String get coords_decimal => 'Graus decimais';
-
-  @override
-  String get coords_dms => 'Graus, minutos, segundos';
-
-  @override
-  String get coords_utm => 'UTM';
-
-  @override
-  String get coords_mgrs => 'MGRS';
-
-  @override
-  String get coords_copyTitle => 'Copiar posição';
-
-  @override
-  String coords_copied(String format) {
-    return 'Copiado como $format';
+  String pathHash_mismatch(int width) {
+    return 'Seu rádio usa $width bytes';
   }
 }

@@ -10051,25 +10051,12 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get coords_setting => 'Koordinátaformátum';
+  String pathHash_badge(int width) {
+    return 'Az útvonal $width bájtos útvonal-hasheket használ';
+  }
 
   @override
-  String get coords_decimal => 'Tizedes fok';
-
-  @override
-  String get coords_dms => 'Fok, perc, másodperc';
-
-  @override
-  String get coords_utm => 'UTM';
-
-  @override
-  String get coords_mgrs => 'MGRS';
-
-  @override
-  String get coords_copyTitle => 'Pozíció másolása';
-
-  @override
-  String coords_copied(String format) {
-    return 'Másolva: $format';
+  String pathHash_mismatch(int width) {
+    return 'A rádiód $width bájtosat használ';
   }
 }

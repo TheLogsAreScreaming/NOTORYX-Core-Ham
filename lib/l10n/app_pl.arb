@@ -4220,5 +4220,7 @@
   "coords_utm": "UTM",
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Kopiuj pozycję",
-  "coords_copied": "Skopiowano jako {format}"
+  "coords_copied": "Skopiowano jako {format}",
+  "pathHash_badge": "Trasa używa {width}-bajtowych skrótów ścieżki",
+  "pathHash_mismatch": "Twoje radio używa {width} bajtów"
 }

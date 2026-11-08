@@ -10024,25 +10024,12 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get coords_setting => 'Coördinaatnotatie';
+  String pathHash_badge(int width) {
+    return 'Route gebruikt pad-hashes van $width byte';
+  }
 
   @override
-  String get coords_decimal => 'Decimale graden';
-
-  @override
-  String get coords_dms => 'Graden, minuten, seconden';
-
-  @override
-  String get coords_utm => 'UTM';
-
-  @override
-  String get coords_mgrs => 'MGRS';
-
-  @override
-  String get coords_copyTitle => 'Positie kopiëren';
-
-  @override
-  String coords_copied(String format) {
-    return 'Gekopieerd als $format';
+  String pathHash_mismatch(int width) {
+    return 'Je radio gebruikt $width byte';
   }
 }

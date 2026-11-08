@@ -4182,5 +4182,7 @@
   "coords_utm": "UTM",
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Kopiera position",
-  "coords_copied": "Kopierad som {format}"
+  "coords_copied": "Kopierad som {format}",
+  "pathHash_badge": "Rutten använder {width}-byte sökvägshashar",
+  "pathHash_mismatch": "Din radio använder {width} byte"
 }

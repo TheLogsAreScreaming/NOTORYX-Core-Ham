@@ -4162,5 +4162,7 @@
   "coords_utm": "UTM",
   "coords_mgrs": "MGRS",
   "coords_copyTitle": "Копіювати позицію",
-  "coords_copied": "Скопійовано як {format}"
+  "coords_copied": "Скопійовано як {format}",
+  "pathHash_badge": "Маршрут використовує {width}-байтові хеші шляху",
+  "pathHash_mismatch": "Ваше радіо використовує {width} байт"
 }
