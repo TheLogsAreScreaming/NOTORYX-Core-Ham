@@ -6,7 +6,9 @@ This page says what has been built and what has been proven. They are not the sa
 
 **No board has a completed on-air test record yet.** "Built" means CI compiled the firmware and it was published. It doesn't mean the build has transmitted, relayed or passed a Part 97 check on that board. A completed record goes in `docs/testing/on-air-YYYY-MM-DD.md`.
 
-## Published firmware (v1.18.0-ham-test.2)
+## Published firmware
+
+All boards below are on v1.18.0-ham-test.2. The Station G2 and G3 Bluetooth companion is on v1.18.0-ham-test.3.
 
 | Board | MCU | Companion | Repeater | How to flash | On-air record |
 |---|---|---|---|---|---|
@@ -15,12 +17,12 @@ This page says what has been built and what has been proven. They are not the sa
 | RAK4631 | nRF52840 | BLE | Yes | `.uf2` | None |
 | RAK WisMesh 1W Booster (RAK3401) | nRF52840 | BLE | Yes | `.uf2` | None |
 | SenseCAP T1000-E | nRF52840 | BLE | No | `.uf2` | None |
-| Station G2 | ESP32-S3 | USB only (see below) | Yes | Merged `.bin` at `0x0` | None |
-| Station G3 | ESP32-S3 | USB only (see below) | Yes | Merged `.bin` at `0x0` | None |
+| Station G2 | ESP32-S3 | USB, BLE (test.3, see below) | Yes | Merged `.bin` at `0x0` | None |
+| Station G3 | ESP32-S3 | USB, BLE (test.3, see below) | Yes | Merged `.bin` at `0x0` | None |
 
 ## Station G2 and G3 over Bluetooth
 
-The published G2 and G3 Bluetooth companion did not fit its 1.25 MB app partition, so only USB was released. The firmware fix moves those two Bluetooth builds to the 16 MB partition layout. It isn't in a published release yet.
+The G2 and G3 Bluetooth companion did not fit the default 1.25 MB app partition, so earlier releases had USB only. [Firmware test 3](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v1.18.0-ham-test.3) moves those two builds to the 16 MB partition layout. Neither has been run on a radio yet.
 
 Flash with **Erase flash** ticked. The layout moves the storage area, so anything saved on the radio, including its identity and contacts, is lost.
 
