@@ -4330,5 +4330,14 @@
   "season_christmas": "Weihnachten",
   "season_valentine": "Valentinstag",
   "seasonal_holidays": "Feiertagsfarben",
-  "seasonal_holidaysHint": "Halloween, Weihnachten und Valentinstag an ihren Daten"
+  "seasonal_holidaysHint": "Halloween, Weihnachten und Valentinstag an ihren Daten",
+  "coords_setting": "Koordinatenformat",
+  "coords_decimal": "Dezimalgrad",
+  "coords_dms": "Grad, Minuten, Sekunden",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Position kopieren",
+  "coords_copied": "Als {format} kopiert",
+  "pathHash_badge": "Route nutzt {width}-Byte-Pfad-Hashes",
+  "pathHash_mismatch": "Dein Funkgerät nutzt {width} Byte"
 }

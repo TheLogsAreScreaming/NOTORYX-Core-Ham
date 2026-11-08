@@ -9985,69 +9985,35 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get theme_descBlaze => 'Kol och skiffer med signalorange';
+  String get coords_setting => 'Koordinatformat';
 
   @override
-  String get theme_descNeonAnarchy => 'Giftgrönt och elektriskt lila på svart';
+  String get coords_decimal => 'Decimalgrader';
 
   @override
-  String get theme_descTactical => 'Oliv, gunmetal och jordtoner';
+  String get coords_dms => 'Grader, minuter, sekunder';
 
   @override
-  String get theme_descPinkOverload => 'Klarrosa, tuggummirosa och lavendel';
+  String get coords_utm => 'UTM';
 
   @override
-  String get theme_descBareBeauty => 'Varm nude, gammelrosa, kakao och salvia';
+  String get coords_mgrs => 'MGRS';
 
   @override
-  String get theme_descOkabeIto => 'Säker vid färgblindhet, mycket tydlig';
+  String get coords_copyTitle => 'Kopiera position';
 
   @override
-  String get theme_descNightOps => 'Dämpat rött på nästan svart för svagt ljus';
-
-  @override
-  String get theme_descSeasonal => 'Växlar med årstider och högtider';
-
-  @override
-  String get theme_selected => 'Vald';
-
-  @override
-  String get seasonal_season => 'Årstid';
-
-  @override
-  String seasonal_auto(String season) {
-    return 'Automatisk (nu $season)';
+  String coords_copied(String format) {
+    return 'Kopierad som $format';
   }
 
   @override
-  String get seasonal_autoHint =>
-      'Följer enhetens datum, med norra halvklotets årstider';
+  String pathHash_badge(int width) {
+    return 'Rutten använder $width-byte sökvägshashar';
+  }
 
   @override
-  String get season_spring => 'Vår';
-
-  @override
-  String get season_summer => 'Sommar';
-
-  @override
-  String get season_autumn => 'Höst';
-
-  @override
-  String get season_winter => 'Vinter';
-
-  @override
-  String get season_halloween => 'Halloween';
-
-  @override
-  String get season_christmas => 'Jul';
-
-  @override
-  String get season_valentine => 'Alla hjärtans dag';
-
-  @override
-  String get seasonal_holidays => 'Högtidsfärger';
-
-  @override
-  String get seasonal_holidaysHint =>
-      'Halloween, jul och alla hjärtans dag på sina datum';
+  String pathHash_mismatch(int width) {
+    return 'Din radio använder $width byte';
+  }
 }

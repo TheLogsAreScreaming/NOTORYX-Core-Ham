@@ -168,6 +168,9 @@ class AppSettings {
   /// Whether the Seasonal theme switches to holiday colors on their dates.
   final bool seasonalHolidays;
 
+  /// How positions are shown: 'decimal', 'dms', 'utm' or 'mgrs'.
+  final String coordinateFormat;
+
   /// Channel messages older than this many days are deleted; 0 keeps them.
   final int channelMessageRetentionDays;
   final bool imageMessagesEnabled;
@@ -286,6 +289,7 @@ class AppSettings {
     this.appTheme = 'blaze',
     this.seasonalOverride = 'auto',
     this.seasonalHolidays = true,
+    this.coordinateFormat = 'decimal',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
     this.imageProcessAutomatically = false,
@@ -377,6 +381,7 @@ class AppSettings {
       'app_theme': appTheme,
       'seasonal_override': seasonalOverride,
       'seasonal_holidays': seasonalHolidays,
+      'coordinate_format': coordinateFormat,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
       'image_process_automatically': imageProcessAutomatically,
@@ -500,6 +505,7 @@ class AppSettings {
           // Autumn Frost people keep autumn colors inside Seasonal.
           (json['app_theme'] == 'autumn_frost' ? 'autumn' : 'auto'),
       seasonalHolidays: json['seasonal_holidays'] as bool? ?? true,
+      coordinateFormat: json['coordinate_format'] as String? ?? 'decimal',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
             json['channel_message_retention_days'],
@@ -633,6 +639,7 @@ class AppSettings {
     String? appTheme,
     String? seasonalOverride,
     bool? seasonalHolidays,
+    String? coordinateFormat,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
     bool? imageProcessAutomatically,
@@ -722,6 +729,7 @@ class AppSettings {
       appTheme: appTheme ?? this.appTheme,
       seasonalOverride: seasonalOverride ?? this.seasonalOverride,
       seasonalHolidays: seasonalHolidays ?? this.seasonalHolidays,
+      coordinateFormat: coordinateFormat ?? this.coordinateFormat,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,
       imageMessagesEnabled: imageMessagesEnabled ?? this.imageMessagesEnabled,

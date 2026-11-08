@@ -9383,67 +9383,35 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get theme_descBlaze => '炭灰与石板蓝，配高可见度橙色';
+  String get coords_setting => '坐标格式';
 
   @override
-  String get theme_descNeonAnarchy => '黑底配毒绿与电光紫';
+  String get coords_decimal => '十进制度';
 
   @override
-  String get theme_descTactical => '橄榄绿、枪灰与大地色';
+  String get coords_dms => '度分秒';
 
   @override
-  String get theme_descPinkOverload => '亮粉、泡泡糖粉与薰衣草紫';
+  String get coords_utm => 'UTM';
 
   @override
-  String get theme_descBareBeauty => '温暖裸色、灰玫瑰、可可与鼠尾草';
+  String get coords_mgrs => 'MGRS';
 
   @override
-  String get theme_descOkabeIto => '色盲友好，清晰度高';
+  String get coords_copyTitle => '复制位置';
 
   @override
-  String get theme_descNightOps => '近黑底色配柔和红色，适合弱光';
-
-  @override
-  String get theme_descSeasonal => '随季节和节日变化';
-
-  @override
-  String get theme_selected => '已选择';
-
-  @override
-  String get seasonal_season => '季节';
-
-  @override
-  String seasonal_auto(String season) {
-    return '自动（当前：$season）';
+  String coords_copied(String format) {
+    return '已按 $format 复制';
   }
 
   @override
-  String get seasonal_autoHint => '跟随设备日期，按北半球季节';
+  String pathHash_badge(int width) {
+    return '该路由使用 $width 字节路径哈希';
+  }
 
   @override
-  String get season_spring => '春季';
-
-  @override
-  String get season_summer => '夏季';
-
-  @override
-  String get season_autumn => '秋季';
-
-  @override
-  String get season_winter => '冬季';
-
-  @override
-  String get season_halloween => '万圣节';
-
-  @override
-  String get season_christmas => '圣诞节';
-
-  @override
-  String get season_valentine => '情人节';
-
-  @override
-  String get seasonal_holidays => '节日配色';
-
-  @override
-  String get seasonal_holidaysHint => '在万圣节、圣诞节和情人节期间使用';
+  String pathHash_mismatch(int width) {
+    return '你的电台使用 $width 字节';
+  }
 }

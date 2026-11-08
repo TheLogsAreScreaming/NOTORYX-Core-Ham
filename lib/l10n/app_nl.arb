@@ -4196,5 +4196,14 @@
   "season_christmas": "Kerst",
   "season_valentine": "Valentijnsdag",
   "seasonal_holidays": "Feestkleuren",
-  "seasonal_holidaysHint": "Halloween, kerst en Valentijnsdag op hun data"
+  "seasonal_holidaysHint": "Halloween, kerst en Valentijnsdag op hun data",
+  "coords_setting": "Coördinaatnotatie",
+  "coords_decimal": "Decimale graden",
+  "coords_dms": "Graden, minuten, seconden",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Positie kopiëren",
+  "coords_copied": "Gekopieerd als {format}",
+  "pathHash_badge": "Route gebruikt pad-hashes van {width} byte",
+  "pathHash_mismatch": "Je radio gebruikt {width} byte"
 }

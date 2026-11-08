@@ -9935,71 +9935,35 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get theme_descBlaze =>
-      'Charcoal and slate with high-visibility orange';
+  String get coords_setting => 'Coordinate format';
 
   @override
-  String get theme_descNeonAnarchy =>
-      'Toxic green and electric purple on black';
+  String get coords_decimal => 'Decimal degrees';
 
   @override
-  String get theme_descTactical => 'Olive, gunmetal and earth tones';
+  String get coords_dms => 'Degrees, minutes, seconds';
 
   @override
-  String get theme_descPinkOverload => 'Hot pink, bubblegum and lavender';
+  String get coords_utm => 'UTM';
 
   @override
-  String get theme_descBareBeauty => 'Warm nude, dusty rose, cocoa and sage';
+  String get coords_mgrs => 'MGRS';
 
   @override
-  String get theme_descOkabeIto => 'Color-blind safe, high clarity';
+  String get coords_copyTitle => 'Copy position';
 
   @override
-  String get theme_descNightOps => 'Dim reds on near-black for low light';
-
-  @override
-  String get theme_descSeasonal => 'Changes with the seasons and holidays';
-
-  @override
-  String get theme_selected => 'Selected';
-
-  @override
-  String get seasonal_season => 'Season';
-
-  @override
-  String seasonal_auto(String season) {
-    return 'Automatic ($season now)';
+  String coords_copied(String format) {
+    return 'Copied as $format';
   }
 
   @override
-  String get seasonal_autoHint =>
-      'Follows your device\'s date, with northern-hemisphere seasons';
+  String pathHash_badge(int width) {
+    return 'Route uses $width-byte path hashes';
+  }
 
   @override
-  String get season_spring => 'Spring';
-
-  @override
-  String get season_summer => 'Summer';
-
-  @override
-  String get season_autumn => 'Autumn';
-
-  @override
-  String get season_winter => 'Winter';
-
-  @override
-  String get season_halloween => 'Halloween';
-
-  @override
-  String get season_christmas => 'Christmas';
-
-  @override
-  String get season_valentine => 'Valentine\'s Day';
-
-  @override
-  String get seasonal_holidays => 'Holiday colors';
-
-  @override
-  String get seasonal_holidaysHint =>
-      'Halloween, Christmas and Valentine\'s Day on their dates';
+  String pathHash_mismatch(int width) {
+    return 'Your radio uses $width-byte';
+  }
 }

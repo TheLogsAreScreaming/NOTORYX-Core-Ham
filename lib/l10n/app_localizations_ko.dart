@@ -9594,67 +9594,35 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get theme_descBlaze => '차콜과 슬레이트에 고시인성 오렌지';
+  String get coords_setting => '좌표 형식';
 
   @override
-  String get theme_descNeonAnarchy => '검정 위의 톡식 그린과 일렉트릭 퍼플';
+  String get coords_decimal => '십진 도';
 
   @override
-  String get theme_descTactical => '올리브, 건메탈, 어스 톤';
+  String get coords_dms => '도, 분, 초';
 
   @override
-  String get theme_descPinkOverload => '핫 핑크, 버블검, 라벤더';
+  String get coords_utm => 'UTM';
 
   @override
-  String get theme_descBareBeauty => '따뜻한 누드, 더스티 로즈, 코코아, 세이지';
+  String get coords_mgrs => 'MGRS';
 
   @override
-  String get theme_descOkabeIto => '색각 이상에 안전, 높은 선명도';
+  String get coords_copyTitle => '위치 복사';
 
   @override
-  String get theme_descNightOps => '저조도용 거의 검정 배경과 은은한 빨강';
-
-  @override
-  String get theme_descSeasonal => '계절과 기념일에 따라 바뀜';
-
-  @override
-  String get theme_selected => '선택됨';
-
-  @override
-  String get seasonal_season => '계절';
-
-  @override
-  String seasonal_auto(String season) {
-    return '자동 (현재 $season)';
+  String coords_copied(String format) {
+    return '$format(으)로 복사됨';
   }
 
   @override
-  String get seasonal_autoHint => '기기 날짜를 따르며 북반구 계절 기준';
+  String pathHash_badge(int width) {
+    return '경로가 $width바이트 경로 해시를 사용';
+  }
 
   @override
-  String get season_spring => '봄';
-
-  @override
-  String get season_summer => '여름';
-
-  @override
-  String get season_autumn => '가을';
-
-  @override
-  String get season_winter => '겨울';
-
-  @override
-  String get season_halloween => '핼러윈';
-
-  @override
-  String get season_christmas => '크리스마스';
-
-  @override
-  String get season_valentine => '밸런타인데이';
-
-  @override
-  String get seasonal_holidays => '기념일 색상';
-
-  @override
-  String get seasonal_holidaysHint => '핼러윈, 크리스마스, 밸런타인데이 기간에 적용';
+  String pathHash_mismatch(int width) {
+    return '내 무전기는 $width바이트 사용';
+  }
 }

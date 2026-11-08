@@ -4196,5 +4196,14 @@
   "season_christmas": "Natal",
   "season_valentine": "Dia dos Namorados",
   "seasonal_holidays": "Cores festivas",
-  "seasonal_holidaysHint": "Halloween, Natal e Dia dos Namorados nas suas datas"
+  "seasonal_holidaysHint": "Halloween, Natal e Dia dos Namorados nas suas datas",
+  "coords_setting": "Formato de coordenadas",
+  "coords_decimal": "Graus decimais",
+  "coords_dms": "Graus, minutos, segundos",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Copiar posição",
+  "coords_copied": "Copiado como {format}",
+  "pathHash_badge": "A rota usa hashes de caminho de {width} bytes",
+  "pathHash_mismatch": "Seu rádio usa {width} bytes"
 }

@@ -4196,5 +4196,14 @@
   "season_christmas": "Jul",
   "season_valentine": "Alla hjärtans dag",
   "seasonal_holidays": "Högtidsfärger",
-  "seasonal_holidaysHint": "Halloween, jul och alla hjärtans dag på sina datum"
+  "seasonal_holidaysHint": "Halloween, jul och alla hjärtans dag på sina datum",
+  "coords_setting": "Koordinatformat",
+  "coords_decimal": "Decimalgrader",
+  "coords_dms": "Grader, minuter, sekunder",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Kopiera position",
+  "coords_copied": "Kopierad som {format}",
+  "pathHash_badge": "Rutten använder {width}-byte sökvägshashar",
+  "pathHash_mismatch": "Din radio använder {width} byte"
 }

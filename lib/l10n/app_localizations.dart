@@ -16699,131 +16699,59 @@ abstract class AppLocalizations {
   /// **'up to {seconds} s'**
   String adminWait_upTo(int seconds);
 
-  /// No description provided for @theme_descBlaze.
+  /// No description provided for @coords_setting.
   ///
   /// In en, this message translates to:
-  /// **'Charcoal and slate with high-visibility orange'**
-  String get theme_descBlaze;
+  /// **'Coordinate format'**
+  String get coords_setting;
 
-  /// No description provided for @theme_descNeonAnarchy.
+  /// No description provided for @coords_decimal.
   ///
   /// In en, this message translates to:
-  /// **'Toxic green and electric purple on black'**
-  String get theme_descNeonAnarchy;
+  /// **'Decimal degrees'**
+  String get coords_decimal;
 
-  /// No description provided for @theme_descTactical.
+  /// No description provided for @coords_dms.
   ///
   /// In en, this message translates to:
-  /// **'Olive, gunmetal and earth tones'**
-  String get theme_descTactical;
+  /// **'Degrees, minutes, seconds'**
+  String get coords_dms;
 
-  /// No description provided for @theme_descPinkOverload.
+  /// No description provided for @coords_utm.
   ///
   /// In en, this message translates to:
-  /// **'Hot pink, bubblegum and lavender'**
-  String get theme_descPinkOverload;
+  /// **'UTM'**
+  String get coords_utm;
 
-  /// No description provided for @theme_descBareBeauty.
+  /// No description provided for @coords_mgrs.
   ///
   /// In en, this message translates to:
-  /// **'Warm nude, dusty rose, cocoa and sage'**
-  String get theme_descBareBeauty;
+  /// **'MGRS'**
+  String get coords_mgrs;
 
-  /// No description provided for @theme_descOkabeIto.
+  /// No description provided for @coords_copyTitle.
   ///
   /// In en, this message translates to:
-  /// **'Color-blind safe, high clarity'**
-  String get theme_descOkabeIto;
+  /// **'Copy position'**
+  String get coords_copyTitle;
 
-  /// No description provided for @theme_descNightOps.
+  /// No description provided for @coords_copied.
   ///
   /// In en, this message translates to:
-  /// **'Dim reds on near-black for low light'**
-  String get theme_descNightOps;
+  /// **'Copied as {format}'**
+  String coords_copied(String format);
 
-  /// No description provided for @theme_descSeasonal.
+  /// No description provided for @pathHash_badge.
   ///
   /// In en, this message translates to:
-  /// **'Changes with the seasons and holidays'**
-  String get theme_descSeasonal;
+  /// **'Route uses {width}-byte path hashes'**
+  String pathHash_badge(int width);
 
-  /// No description provided for @theme_selected.
+  /// No description provided for @pathHash_mismatch.
   ///
   /// In en, this message translates to:
-  /// **'Selected'**
-  String get theme_selected;
-
-  /// No description provided for @seasonal_season.
-  ///
-  /// In en, this message translates to:
-  /// **'Season'**
-  String get seasonal_season;
-
-  /// No description provided for @seasonal_auto.
-  ///
-  /// In en, this message translates to:
-  /// **'Automatic ({season} now)'**
-  String seasonal_auto(String season);
-
-  /// No description provided for @seasonal_autoHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Follows your device\'s date, with northern-hemisphere seasons'**
-  String get seasonal_autoHint;
-
-  /// No description provided for @season_spring.
-  ///
-  /// In en, this message translates to:
-  /// **'Spring'**
-  String get season_spring;
-
-  /// No description provided for @season_summer.
-  ///
-  /// In en, this message translates to:
-  /// **'Summer'**
-  String get season_summer;
-
-  /// No description provided for @season_autumn.
-  ///
-  /// In en, this message translates to:
-  /// **'Autumn'**
-  String get season_autumn;
-
-  /// No description provided for @season_winter.
-  ///
-  /// In en, this message translates to:
-  /// **'Winter'**
-  String get season_winter;
-
-  /// No description provided for @season_halloween.
-  ///
-  /// In en, this message translates to:
-  /// **'Halloween'**
-  String get season_halloween;
-
-  /// No description provided for @season_christmas.
-  ///
-  /// In en, this message translates to:
-  /// **'Christmas'**
-  String get season_christmas;
-
-  /// No description provided for @season_valentine.
-  ///
-  /// In en, this message translates to:
-  /// **'Valentine\'s Day'**
-  String get season_valentine;
-
-  /// No description provided for @seasonal_holidays.
-  ///
-  /// In en, this message translates to:
-  /// **'Holiday colors'**
-  String get seasonal_holidays;
-
-  /// No description provided for @seasonal_holidaysHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Halloween, Christmas and Valentine\'s Day on their dates'**
-  String get seasonal_holidaysHint;
+  /// **'Your radio uses {width}-byte'**
+  String pathHash_mismatch(int width);
 }
 
 class _AppLocalizationsDelegate

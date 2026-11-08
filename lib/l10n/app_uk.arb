@@ -4176,5 +4176,14 @@
   "season_christmas": "Різдво",
   "season_valentine": "День святого Валентина",
   "seasonal_holidays": "Святкові кольори",
-  "seasonal_holidaysHint": "Гелловін, Різдво і День святого Валентина у свої дати"
+  "seasonal_holidaysHint": "Гелловін, Різдво і День святого Валентина у свої дати",
+  "coords_setting": "Формат координат",
+  "coords_decimal": "Десяткові градуси",
+  "coords_dms": "Градуси, хвилини, секунди",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Копіювати позицію",
+  "coords_copied": "Скопійовано як {format}",
+  "pathHash_badge": "Маршрут використовує {width}-байтові хеші шляху",
+  "pathHash_mismatch": "Ваше радіо використовує {width} байт"
 }

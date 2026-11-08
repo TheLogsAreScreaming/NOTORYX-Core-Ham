@@ -4330,5 +4330,14 @@
   "season_christmas": "クリスマス",
   "season_valentine": "バレンタインデー",
   "seasonal_holidays": "行事の配色",
-  "seasonal_holidaysHint": "ハロウィン、クリスマス、バレンタインデーの期間に適用"
+  "seasonal_holidaysHint": "ハロウィン、クリスマス、バレンタインデーの期間に適用",
+  "coords_setting": "座標の形式",
+  "coords_decimal": "10進数の度",
+  "coords_dms": "度・分・秒",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "位置をコピー",
+  "coords_copied": "{format} でコピーしました",
+  "pathHash_badge": "経路は {width} バイトのパスハッシュを使用",
+  "pathHash_mismatch": "この無線機は {width} バイトを使用"
 }

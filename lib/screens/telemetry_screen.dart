@@ -15,6 +15,7 @@ import '../connector/meshcore_protocol.dart';
 import '../services/app_settings_service.dart';
 import '../services/repeater_command_service.dart';
 import '../utils/app_logger.dart';
+import '../widgets/coordinate_copy_sheet.dart';
 import '../widgets/admin_wait_banner.dart';
 import '../widgets/routing_sheet.dart';
 import '../helpers/cayenne_lpp.dart';
@@ -859,8 +860,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     final isValidPosition = _isValidGpsPosition(latitude, longitude);
     final gpsText = isValidPosition
         ? [
-            latitude!.toStringAsFixed(5),
-            longitude!.toStringAsFixed(5),
+            formatCoordinateFor(context, latitude!, longitude!),
             if (altitude != null) '${altitude.toStringAsFixed(1)} m',
           ].join(', ')
         : value.toString();

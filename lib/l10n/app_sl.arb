@@ -4196,5 +4196,14 @@
   "season_christmas": "Božič",
   "season_valentine": "Valentinovo",
   "seasonal_holidays": "Praznične barve",
-  "seasonal_holidaysHint": "Noč čarovnic, božič in valentinovo na njihove datume"
+  "seasonal_holidaysHint": "Noč čarovnic, božič in valentinovo na njihove datume",
+  "coords_setting": "Oblika koordinat",
+  "coords_decimal": "Decimalne stopinje",
+  "coords_dms": "Stopinje, minute, sekunde",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Kopiraj položaj",
+  "coords_copied": "Kopirano kot {format}",
+  "pathHash_badge": "Pot uporablja {width}-bajtne zgoščene vrednosti poti",
+  "pathHash_mismatch": "Vaš radio uporablja {width} bajte"
 }

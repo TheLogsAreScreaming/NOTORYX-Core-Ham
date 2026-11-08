@@ -10064,72 +10064,35 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get theme_descBlaze => 'Antracit in skrilavec z izrazito oranžno';
+  String get coords_setting => 'Oblika koordinat';
 
   @override
-  String get theme_descNeonAnarchy =>
-      'Strupeno zelena in električno vijolična na črni';
+  String get coords_decimal => 'Decimalne stopinje';
 
   @override
-  String get theme_descTactical => 'Olivna, kovinsko siva in zemeljski toni';
+  String get coords_dms => 'Stopinje, minute, sekunde';
 
   @override
-  String get theme_descPinkOverload => 'Živo roza, žvečilni gumi in sivka';
+  String get coords_utm => 'UTM';
 
   @override
-  String get theme_descBareBeauty =>
-      'Topel nude, starorožnata, kakav in žajbelj';
+  String get coords_mgrs => 'MGRS';
 
   @override
-  String get theme_descOkabeIto => 'Varno za barvno slepe, zelo jasno';
+  String get coords_copyTitle => 'Kopiraj položaj';
 
   @override
-  String get theme_descNightOps =>
-      'Pridušene rdeče na skoraj črni za šibko svetlobo';
-
-  @override
-  String get theme_descSeasonal => 'Spreminja se z letnimi časi in prazniki';
-
-  @override
-  String get theme_selected => 'Izbrano';
-
-  @override
-  String get seasonal_season => 'Letni čas';
-
-  @override
-  String seasonal_auto(String season) {
-    return 'Samodejno (zdaj $season)';
+  String coords_copied(String format) {
+    return 'Kopirano kot $format';
   }
 
   @override
-  String get seasonal_autoHint =>
-      'Sledi datumu naprave, z letnimi časi severne poloble';
+  String pathHash_badge(int width) {
+    return 'Pot uporablja $width-bajtne zgoščene vrednosti poti';
+  }
 
   @override
-  String get season_spring => 'Pomlad';
-
-  @override
-  String get season_summer => 'Poletje';
-
-  @override
-  String get season_autumn => 'Jesen';
-
-  @override
-  String get season_winter => 'Zima';
-
-  @override
-  String get season_halloween => 'Noč čarovnic';
-
-  @override
-  String get season_christmas => 'Božič';
-
-  @override
-  String get season_valentine => 'Valentinovo';
-
-  @override
-  String get seasonal_holidays => 'Praznične barve';
-
-  @override
-  String get seasonal_holidaysHint =>
-      'Noč čarovnic, božič in valentinovo na njihove datume';
+  String pathHash_mismatch(int width) {
+    return 'Vaš radio uporablja $width bajte';
+  }
 }

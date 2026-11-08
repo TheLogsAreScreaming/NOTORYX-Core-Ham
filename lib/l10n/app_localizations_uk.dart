@@ -10105,71 +10105,35 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get theme_descBlaze => 'Графіт і сланець із сигнальним помаранчевим';
+  String get coords_setting => 'Формат координат';
 
   @override
-  String get theme_descNeonAnarchy =>
-      'Отруйно-зелений і електрик-фіолетовий на чорному';
+  String get coords_decimal => 'Десяткові градуси';
 
   @override
-  String get theme_descTactical => 'Олива, збройовий метал і землисті тони';
+  String get coords_dms => 'Градуси, хвилини, секунди';
 
   @override
-  String get theme_descPinkOverload => 'Яскраво-рожевий, жуйка і лаванда';
+  String get coords_utm => 'UTM';
 
   @override
-  String get theme_descBareBeauty =>
-      'Теплий нюд, пильна троянда, какао і шавлія';
+  String get coords_mgrs => 'MGRS';
 
   @override
-  String get theme_descOkabeIto => 'Безпечна при дальтонізмі, висока чіткість';
+  String get coords_copyTitle => 'Копіювати позицію';
 
   @override
-  String get theme_descNightOps =>
-      'Приглушені червоні на майже чорному для темряви';
-
-  @override
-  String get theme_descSeasonal => 'Змінюється з порами року і святами';
-
-  @override
-  String get theme_selected => 'Вибрано';
-
-  @override
-  String get seasonal_season => 'Пора року';
-
-  @override
-  String seasonal_auto(String season) {
-    return 'Автоматично (зараз $season)';
+  String coords_copied(String format) {
+    return 'Скопійовано як $format';
   }
 
   @override
-  String get seasonal_autoHint => 'За датою пристрою, сезони північної півкулі';
+  String pathHash_badge(int width) {
+    return 'Маршрут використовує $width-байтові хеші шляху';
+  }
 
   @override
-  String get season_spring => 'Весна';
-
-  @override
-  String get season_summer => 'Літо';
-
-  @override
-  String get season_autumn => 'Осінь';
-
-  @override
-  String get season_winter => 'Зима';
-
-  @override
-  String get season_halloween => 'Гелловін';
-
-  @override
-  String get season_christmas => 'Різдво';
-
-  @override
-  String get season_valentine => 'День святого Валентина';
-
-  @override
-  String get seasonal_holidays => 'Святкові кольори';
-
-  @override
-  String get seasonal_holidaysHint =>
-      'Гелловін, Різдво і День святого Валентина у свої дати';
+  String pathHash_mismatch(int width) {
+    return 'Ваше радіо використовує $width байт';
+  }
 }

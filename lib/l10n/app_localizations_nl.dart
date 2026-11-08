@@ -10024,70 +10024,35 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get theme_descBlaze => 'Antraciet en leisteen met signaaloranje';
+  String get coords_setting => 'Coördinaatnotatie';
 
   @override
-  String get theme_descNeonAnarchy => 'Gifgroen en elektrisch paars op zwart';
+  String get coords_decimal => 'Decimale graden';
 
   @override
-  String get theme_descTactical => 'Olijf, gunmetal en aardetinten';
+  String get coords_dms => 'Graden, minuten, seconden';
 
   @override
-  String get theme_descPinkOverload => 'Felroze, kauwgomroze en lavendel';
+  String get coords_utm => 'UTM';
 
   @override
-  String get theme_descBareBeauty => 'Warm naturel, oudroze, cacao en salie';
+  String get coords_mgrs => 'MGRS';
 
   @override
-  String get theme_descOkabeIto => 'Veilig bij kleurenblindheid, heel helder';
+  String get coords_copyTitle => 'Positie kopiëren';
 
   @override
-  String get theme_descNightOps =>
-      'Gedempt rood op bijna-zwart voor weinig licht';
-
-  @override
-  String get theme_descSeasonal => 'Verandert met de seizoenen en feestdagen';
-
-  @override
-  String get theme_selected => 'Geselecteerd';
-
-  @override
-  String get seasonal_season => 'Seizoen';
-
-  @override
-  String seasonal_auto(String season) {
-    return 'Automatisch (nu $season)';
+  String coords_copied(String format) {
+    return 'Gekopieerd als $format';
   }
 
   @override
-  String get seasonal_autoHint =>
-      'Volgt de datum van je apparaat, met seizoenen van het noordelijk halfrond';
+  String pathHash_badge(int width) {
+    return 'Route gebruikt pad-hashes van $width byte';
+  }
 
   @override
-  String get season_spring => 'Lente';
-
-  @override
-  String get season_summer => 'Zomer';
-
-  @override
-  String get season_autumn => 'Herfst';
-
-  @override
-  String get season_winter => 'Winter';
-
-  @override
-  String get season_halloween => 'Halloween';
-
-  @override
-  String get season_christmas => 'Kerst';
-
-  @override
-  String get season_valentine => 'Valentijnsdag';
-
-  @override
-  String get seasonal_holidays => 'Feestkleuren';
-
-  @override
-  String get seasonal_holidaysHint =>
-      'Halloween, kerst en Valentijnsdag op hun data';
+  String pathHash_mismatch(int width) {
+    return 'Je radio gebruikt $width byte';
+  }
 }

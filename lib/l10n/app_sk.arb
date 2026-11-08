@@ -4196,5 +4196,14 @@
   "season_christmas": "Vianoce",
   "season_valentine": "Valentín",
   "seasonal_holidays": "Sviatočné farby",
-  "seasonal_holidaysHint": "Halloween, Vianoce a Valentín v ich termínoch"
+  "seasonal_holidaysHint": "Halloween, Vianoce a Valentín v ich termínoch",
+  "coords_setting": "Formát súradníc",
+  "coords_decimal": "Desatinné stupne",
+  "coords_dms": "Stupne, minúty, sekundy",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Kopírovať polohu",
+  "coords_copied": "Skopírované ako {format}",
+  "pathHash_badge": "Trasa používa {width}-bajtové hashe cesty",
+  "pathHash_mismatch": "Vaše rádio používa {width} bajty"
 }

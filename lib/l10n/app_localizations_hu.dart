@@ -10051,72 +10051,35 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get theme_descBlaze => 'Antracit és pala élénk narancssárgával';
+  String get coords_setting => 'Koordinátaformátum';
 
   @override
-  String get theme_descNeonAnarchy => 'Mérgező zöld és elektromos lila feketén';
+  String get coords_decimal => 'Tizedes fok';
 
   @override
-  String get theme_descTactical => 'Olíva, fegyverszürke és földszínek';
+  String get coords_dms => 'Fok, perc, másodperc';
 
   @override
-  String get theme_descPinkOverload => 'Pink, rágógumi rózsaszín és levendula';
+  String get coords_utm => 'UTM';
 
   @override
-  String get theme_descBareBeauty =>
-      'Meleg nude, fáradt rózsa, kakaó és zsálya';
+  String get coords_mgrs => 'MGRS';
 
   @override
-  String get theme_descOkabeIto =>
-      'Színtévesztőknek is biztonságos, nagyon tiszta';
+  String get coords_copyTitle => 'Pozíció másolása';
 
   @override
-  String get theme_descNightOps =>
-      'Tompa vörösek majdnem feketén, gyenge fényhez';
-
-  @override
-  String get theme_descSeasonal => 'Az évszakokkal és ünnepekkel változik';
-
-  @override
-  String get theme_selected => 'Kiválasztva';
-
-  @override
-  String get seasonal_season => 'Évszak';
-
-  @override
-  String seasonal_auto(String season) {
-    return 'Automatikus (most: $season)';
+  String coords_copied(String format) {
+    return 'Másolva: $format';
   }
 
   @override
-  String get seasonal_autoHint =>
-      'Az eszköz dátumát követi, északi féltekei évszakokkal';
+  String pathHash_badge(int width) {
+    return 'Az útvonal $width bájtos útvonal-hasheket használ';
+  }
 
   @override
-  String get season_spring => 'Tavasz';
-
-  @override
-  String get season_summer => 'Nyár';
-
-  @override
-  String get season_autumn => 'Ősz';
-
-  @override
-  String get season_winter => 'Tél';
-
-  @override
-  String get season_halloween => 'Halloween';
-
-  @override
-  String get season_christmas => 'Karácsony';
-
-  @override
-  String get season_valentine => 'Valentin-nap';
-
-  @override
-  String get seasonal_holidays => 'Ünnepi színek';
-
-  @override
-  String get seasonal_holidaysHint =>
-      'Halloween, karácsony és Valentin-nap a saját napjukon';
+  String pathHash_mismatch(int width) {
+    return 'A rádiód $width bájtosat használ';
+  }
 }

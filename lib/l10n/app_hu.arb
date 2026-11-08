@@ -4234,5 +4234,14 @@
   "season_christmas": "Karácsony",
   "season_valentine": "Valentin-nap",
   "seasonal_holidays": "Ünnepi színek",
-  "seasonal_holidaysHint": "Halloween, karácsony és Valentin-nap a saját napjukon"
+  "seasonal_holidaysHint": "Halloween, karácsony és Valentin-nap a saját napjukon",
+  "coords_setting": "Koordinátaformátum",
+  "coords_decimal": "Tizedes fok",
+  "coords_dms": "Fok, perc, másodperc",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Pozíció másolása",
+  "coords_copied": "Másolva: {format}",
+  "pathHash_badge": "Az útvonal {width} bájtos útvonal-hasheket használ",
+  "pathHash_mismatch": "A rádiód {width} bájtosat használ"
 }

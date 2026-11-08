@@ -4196,5 +4196,14 @@
   "season_christmas": "Коледа",
   "season_valentine": "Свети Валентин",
   "seasonal_holidays": "Празнични цветове",
-  "seasonal_holidaysHint": "Хелоуин, Коледа и Свети Валентин на техните дати"
+  "seasonal_holidaysHint": "Хелоуин, Коледа и Свети Валентин на техните дати",
+  "coords_setting": "Формат на координатите",
+  "coords_decimal": "Десетични градуси",
+  "coords_dms": "Градуси, минути, секунди",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Копирай позицията",
+  "coords_copied": "Копирано като {format}",
+  "pathHash_badge": "Маршрутът използва {width}-байтови хешове на пътя",
+  "pathHash_mismatch": "Вашето радио използва {width}-байтови"
 }

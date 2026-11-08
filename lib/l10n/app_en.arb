@@ -5619,5 +5619,17 @@
   "season_christmas": "Christmas",
   "season_valentine": "Valentine's Day",
   "seasonal_holidays": "Holiday colors",
-  "seasonal_holidaysHint": "Halloween, Christmas and Valentine's Day on their dates"
+  "seasonal_holidaysHint": "Halloween, Christmas and Valentine's Day on their dates",
+  "coords_setting": "Coordinate format",
+  "coords_decimal": "Decimal degrees",
+  "coords_dms": "Degrees, minutes, seconds",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Copy position",
+  "coords_copied": "Copied as {format}",
+  "@coords_copied": {"placeholders": {"format": {"type": "String"}}},
+  "pathHash_badge": "Route uses {width}-byte path hashes",
+  "@pathHash_badge": {"placeholders": {"width": {"type": "int"}}},
+  "pathHash_mismatch": "Your radio uses {width}-byte",
+  "@pathHash_mismatch": {"placeholders": {"width": {"type": "int"}}}
 }

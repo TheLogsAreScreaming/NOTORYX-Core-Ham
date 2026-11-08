@@ -3499,5 +3499,14 @@
   "season_christmas": "Рождество",
   "season_valentine": "День святого Валентина",
   "seasonal_holidays": "Праздничные цвета",
-  "seasonal_holidaysHint": "Хэллоуин, Рождество и День святого Валентина в свои даты"
+  "seasonal_holidaysHint": "Хэллоуин, Рождество и День святого Валентина в свои даты",
+  "coords_setting": "Формат координат",
+  "coords_decimal": "Десятичные градусы",
+  "coords_dms": "Градусы, минуты, секунды",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Копировать позицию",
+  "coords_copied": "Скопировано как {format}",
+  "pathHash_badge": "Маршрут использует {width}-байтовые хеши пути",
+  "pathHash_mismatch": "Ваше радио использует {width} байт"
 }

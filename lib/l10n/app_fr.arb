@@ -4330,5 +4330,14 @@
   "season_christmas": "Noël",
   "season_valentine": "Saint-Valentin",
   "seasonal_holidays": "Couleurs des fêtes",
-  "seasonal_holidaysHint": "Halloween, Noël et la Saint-Valentin à leurs dates"
+  "seasonal_holidaysHint": "Halloween, Noël et la Saint-Valentin à leurs dates",
+  "coords_setting": "Format des coordonnées",
+  "coords_decimal": "Degrés décimaux",
+  "coords_dms": "Degrés, minutes, secondes",
+  "coords_utm": "UTM",
+  "coords_mgrs": "MGRS",
+  "coords_copyTitle": "Copier la position",
+  "coords_copied": "Copié en {format}",
+  "pathHash_badge": "La route utilise des hachages de chemin de {width} octets",
+  "pathHash_mismatch": "Votre radio utilise {width} octets"
 }
