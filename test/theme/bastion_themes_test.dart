@@ -116,6 +116,7 @@ void main() {
 
   group('accessibility', () {
     test('every palette meets 4.5:1 for text, buttons, bubbles and SOS', () {
+      final failures = <String>[];
       for (final e in allPalettes().entries) {
         final p = e.value;
         final s = MeshTheme.forPalette(p).colorScheme;
@@ -142,16 +143,40 @@ void main() {
           'text on third container': contrast(p.ink, p.tertiaryContainer),
           'good signal on cards': contrast(p.signal, p.bg2),
           'warning on cards': contrast(p.warn, p.bg2),
+          'text on raised surface': contrast(p.ink, p.bg3),
+          'unread count': contrast(MeshPalette.onColor(p.alert), p.alert),
+          // Sender names and avatar initials use the theme hues as text,
+          // through MeshPalette.readable.
+          for (final (i, hue) in [
+            p.accent,
+            p.magenta,
+            p.signal,
+            p.warn,
+            p.secondary,
+            p.tertiary,
+          ].indexed) ...{
+            'name hue $i on cards': contrast(
+              MeshPalette.readable(hue, p.bg2),
+              p.bg2,
+            ),
+            'name hue $i on page': contrast(
+              MeshPalette.readable(hue, p.bg),
+              p.bg,
+            ),
+          },
         };
+        // Collected so one run lists every failing pair, not just the first.
         for (final c in checks.entries) {
-          expect(
-            c.value,
-            greaterThanOrEqualTo(4.5),
-            reason: '${e.key}: ${c.key} ${c.value.toStringAsFixed(2)}',
-          );
+          if (c.value < 4.5) {
+            failures.add('${e.key}: ${c.key} ${c.value.toStringAsFixed(2)}');
+          }
+        }
+        if (contrast(MeshPalette.onColor(p.magenta), p.magenta) < 3) {
+          failures.add('${e.key}: community badge icon');
         }
         expect(s.brightness, p.brightness, reason: e.key);
       }
+      expect(failures, isEmpty, reason: failures.join('\n'));
     });
 
     test('three distinct hues per palette, never the warning color', () {

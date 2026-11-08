@@ -286,13 +286,14 @@ class AvatarCircle extends StatelessWidget {
 
   static final _punctuation = RegExp(r'\p{P}', unicode: true);
 
-  static final _hues = [
+  // A getter, not a static final: the palette changes with the theme.
+  static List<Color> get _hues => [
     MeshPalette.accent,
     MeshPalette.magenta,
     MeshPalette.signal,
     MeshPalette.warn,
-    Color(0xFF8FA8F0),
-    Color(0xFF6FD9CE),
+    MeshPalette.secondary,
+    MeshPalette.tertiary,
   ];
 
   Color _colorFor(String s) {
@@ -306,6 +307,14 @@ class AvatarCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accent = color ?? _colorFor(name);
+    // Initials and icons are drawn in the hue on a light tint of it; keep
+    // them readable on that tint over both cards and the page.
+    Color tint(Color surface) =>
+        Color.alphaBlend(accent.withValues(alpha: 0.14), surface);
+    final ink = MeshPalette.readable(
+      MeshPalette.readable(accent, tint(MeshPalette.bg2)),
+      tint(MeshPalette.bg),
+    );
     final initials = initialsFor(name);
     return Container(
       width: size,
@@ -317,13 +326,13 @@ class AvatarCircle extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: icon != null
-          ? Icon(icon, size: size * 0.5, color: accent)
+          ? Icon(icon, size: size * 0.5, color: ink)
           : Text(
               initials,
               style: MeshTheme.mono(
                 fontSize: size * 0.36,
                 fontWeight: FontWeight.w700,
-                color: accent,
+                color: ink,
               ),
             ),
     );

@@ -302,9 +302,7 @@ class _MiniApp extends StatelessWidget {
                         child: Text(
                           'SOS',
                           style: TextStyle(
-                            color: p.brightness == Brightness.dark
-                                ? p.bg
-                                : Colors.white,
+                            color: MeshPalette.onColor(p.alert),
                             fontSize: 8,
                             fontWeight: FontWeight.w900,
                           ),
