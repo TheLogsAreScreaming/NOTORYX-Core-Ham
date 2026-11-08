@@ -31,6 +31,7 @@ import 'package:meshcore_open/screens/wifi_settings_screen.dart';
 import 'package:meshcore_open/screens/chat_screen.dart';
 import 'package:meshcore_open/screens/contacts_screen.dart';
 import 'package:meshcore_open/screens/bastion_home_screen.dart';
+import 'package:meshcore_open/widgets/theme_picker.dart';
 import 'package:meshcore_open/screens/bastion_tools_screen.dart';
 import 'package:meshcore_open/screens/settings_screen.dart';
 import 'package:meshcore_open/services/sensor_subscription_service.dart';
@@ -461,6 +462,14 @@ void main() {
     'channel_chat': () => ChannelChatScreen(channel: _channels[1]),
     'dm_chat': () => ChatScreen(contact: _contacts[0]),
     'settings': () => const SettingsScreen(),
+    'theme_picker': () => Scaffold(
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: const [ThemePicker()],
+        ),
+      ),
+    ),
     'connections': () => const ConnectionDashboardScreen(),
     'routes': () => Builder(
       builder: (context) {
@@ -637,22 +646,31 @@ void main() {
   final only = Platform.environment['PREVIEW_ONLY']?.split(',').toSet();
   final height =
       double.tryParse(Platform.environment['PREVIEW_HEIGHT'] ?? '') ?? 844;
-  // PREVIEW_THEME=okabe_ito,red_light (etc.) picks themes; by default the
-  // dark Blaze theme and the light Bubble Gum theme.
+  // PREVIEW_THEME=okabe_ito,night_ops (etc.) picks themes; by default the
+  // dark Blaze theme and the light Pink Overload theme.
+  // seasonal_winter (etc.) renders one of Seasonal's looks.
+  (String, BastionPalette) themeFor(String id) {
+    final season = Season.fromId(id.replaceFirst('seasonal_', ''));
+    if (id.startsWith('seasonal_') && season != null) {
+      return (id, SeasonalTheme.paletteFor(season));
+    }
+    final t = BastionTheme.fromId(id);
+    return (t.id, t.palette);
+  }
+
   final themes =
-      Platform.environment['PREVIEW_THEME']
-          ?.split(',')
-          .map(BastionTheme.fromId)
-          .toList() ??
-      const [BastionTheme.blaze, BastionTheme.bubbleGum];
+      (Platform.environment['PREVIEW_THEME'] ?? 'blaze,pink_overload')
+          .split(',')
+          .map(themeFor)
+          .toList();
   // PREVIEW_A11Y=1 also runs Flutter's accessibility guidelines on every
   // screen and writes the findings to a11y.txt instead of failing.
   final a11y = Platform.environment['PREVIEW_A11Y'] != null;
-  for (final theme in themes) {
+  for (final (themeId, palette) in themes) {
     for (final entry in screens.entries) {
       if (only != null && !only.contains(entry.key)) continue;
-      testWidgets('${entry.key} ${theme.id}', (tester) async {
-        MeshPalette.current = theme.palette;
+      testWidgets('${entry.key} $themeId', (tester) async {
+        MeshPalette.current = palette;
         final semantics = a11y ? tester.ensureSemantics() : null;
         await tester.binding.setSurfaceSize(Size(390, height));
         tester.view.devicePixelRatio = 2;
@@ -680,7 +698,7 @@ void main() {
                   as RenderRepaintBoundary;
           final image = await ro.toImage(pixelRatio: 2);
           final png = await image.toByteData(format: ui.ImageByteFormat.png);
-          File('$out/${entry.key}_${theme.id}.png')
+          File('$out/${entry.key}_$themeId.png')
             ..createSync(recursive: true)
             ..writeAsBytesSync(png!.buffer.asUint8List());
         });
@@ -699,7 +717,7 @@ void main() {
             report.writeln(contrast.reason);
           }
           File('$out/a11y.txt').writeAsStringSync(
-            '## ${entry.key} ${theme.id}\n'
+            '## ${entry.key} $themeId\n'
             '${report.isEmpty ? 'ok\n' : report}',
             mode: FileMode.append,
           );

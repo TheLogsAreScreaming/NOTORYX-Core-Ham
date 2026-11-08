@@ -1,8 +1,10 @@
 import '../theme/mesh_theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../l10n/l10n.dart';
 import '../services/coverage_capture_service.dart';
 import '../widgets/ui/mesh_states.dart';
@@ -193,7 +195,7 @@ class CoverageSessionMap extends StatelessWidget {
                   '${recorder ? context.l10n.coverage_recorder : o.nodeName}: ${o.timestamp.toLocal()}',
               child: Icon(
                 recorder ? Icons.my_location : Icons.cell_tower,
-                color: recorder ? MeshPalette.accent : Colors.amber,
+                color: recorder ? MeshPalette.accent : MeshPalette.warn,
               ),
             ),
           ),

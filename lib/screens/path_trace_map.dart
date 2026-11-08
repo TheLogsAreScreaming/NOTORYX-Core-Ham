@@ -21,6 +21,7 @@ import 'package:meshcore_open/utils/app_logger.dart';
 import 'package:meshcore_open/widgets/path_map_ui.dart';
 import 'package:meshcore_open/widgets/snr_indicator.dart';
 import 'package:provider/provider.dart';
+
 import '../theme/mesh_theme.dart';
 
 export 'package:meshcore_open/widgets/path_map_ui.dart'

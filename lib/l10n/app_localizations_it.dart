@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10024,4 +10025,76 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get bastionHome_stationConnectToCheck =>
       'Collega una radio per controllarne nome e banda';
+
+  @override
+  String get theme_selected => 'Selezionato';
+
+  @override
+  String get theme_desc_blaze =>
+      'Ardesia scura con arancione ad alta visibilità. Predefinito.';
+
+  @override
+  String get theme_desc_neon_anarchy =>
+      'Verde tossico e viola elettrico su nero';
+
+  @override
+  String get theme_desc_tactical =>
+      'Oliva, grigio canna di fucile e toni della terra per il campo';
+
+  @override
+  String get theme_desc_pink_overload =>
+      'Rosa acceso, gomma da masticare e lavanda';
+
+  @override
+  String get theme_desc_bare_beauty =>
+      'Nude caldo, rosa antico, cacao e salvia';
+
+  @override
+  String get theme_desc_okabe_ito =>
+      'Adatto ai deficit della visione dei colori, su grigio-blu';
+
+  @override
+  String get theme_desc_night_ops => 'Rosso tenue per lavorare al buio';
+
+  @override
+  String get theme_desc_seasonal => 'Segue la stagione, o scegline una';
+
+  @override
+  String theme_seasonNow(String season) {
+    return 'Ora: $season';
+  }
+
+  @override
+  String get theme_season => 'Stagione';
+
+  @override
+  String get theme_seasonAuto => 'Automatica';
+
+  @override
+  String get season_spring => 'Primavera';
+
+  @override
+  String get season_summer => 'Estate';
+
+  @override
+  String get season_autumn => 'Autunno';
+
+  @override
+  String get season_winter => 'Inverno';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Natale';
+
+  @override
+  String get season_valentine => 'San Valentino';
+
+  @override
+  String get theme_holidays => 'Colori delle feste';
+
+  @override
+  String get theme_holidaysHint =>
+      'Halloween, Natale e San Valentino, quando la stagione è automatica';
 }

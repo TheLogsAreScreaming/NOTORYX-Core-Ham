@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9546,4 +9547,69 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get bastionHome_stationConnectToCheck => '무선기를 연결해 이름과 대역을 확인하세요';
+
+  @override
+  String get theme_selected => '선택됨';
+
+  @override
+  String get theme_desc_blaze => '차콜 슬레이트와 고시인성 주황. 기본 테마.';
+
+  @override
+  String get theme_desc_neon_anarchy => '검정 바탕에 독성 초록과 전기 보라';
+
+  @override
+  String get theme_desc_tactical => '현장용 올리브, 건메탈, 흙빛 톤';
+
+  @override
+  String get theme_desc_pink_overload => '핫핑크, 버블검, 라벤더';
+
+  @override
+  String get theme_desc_bare_beauty => '따뜻한 누드, 더스티 로즈, 코코아, 세이지';
+
+  @override
+  String get theme_desc_okabe_ito => '색각 이상에 친화적, 청회색 바탕';
+
+  @override
+  String get theme_desc_night_ops => '어두운 곳에서 쓰는 은은한 빨강';
+
+  @override
+  String get theme_desc_seasonal => '계절을 따르거나 하나를 고르세요';
+
+  @override
+  String theme_seasonNow(String season) {
+    return '지금: $season';
+  }
+
+  @override
+  String get theme_season => '계절';
+
+  @override
+  String get theme_seasonAuto => '자동';
+
+  @override
+  String get season_spring => '봄';
+
+  @override
+  String get season_summer => '여름';
+
+  @override
+  String get season_autumn => '가을';
+
+  @override
+  String get season_winter => '겨울';
+
+  @override
+  String get season_halloween => '핼러윈';
+
+  @override
+  String get season_christmas => '크리스마스';
+
+  @override
+  String get season_valentine => '밸런타인데이';
+
+  @override
+  String get theme_holidays => '명절 색상';
+
+  @override
+  String get theme_holidaysHint => '계절이 자동일 때 핼러윈, 크리스마스, 밸런타인데이 색상 사용';
 }

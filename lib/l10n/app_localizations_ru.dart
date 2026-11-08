@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10036,4 +10037,77 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get bastionHome_stationConnectToCheck =>
       'Подключите радио, чтобы проверить имя и диапазон';
+
+  @override
+  String get theme_selected => 'Выбрана';
+
+  @override
+  String get theme_desc_blaze =>
+      'Тёмный сланец с сигнальным оранжевым. По умолчанию.';
+
+  @override
+  String get theme_desc_neon_anarchy =>
+      'Ядовито-зелёный и электрический фиолетовый на чёрном';
+
+  @override
+  String get theme_desc_tactical =>
+      'Оливковый, оружейный серый и земляные тона для поля';
+
+  @override
+  String get theme_desc_pink_overload => 'Ярко-розовый, жвачка и лаванда';
+
+  @override
+  String get theme_desc_bare_beauty =>
+      'Тёплый нюд, пыльная роза, какао и шалфей';
+
+  @override
+  String get theme_desc_okabe_ito =>
+      'Для нарушений цветового зрения, на сине-сером';
+
+  @override
+  String get theme_desc_night_ops =>
+      'Приглушённый красный для работы в темноте';
+
+  @override
+  String get theme_desc_seasonal =>
+      'Меняется с временем года, или выберите сами';
+
+  @override
+  String theme_seasonNow(String season) {
+    return 'Сейчас: $season';
+  }
+
+  @override
+  String get theme_season => 'Время года';
+
+  @override
+  String get theme_seasonAuto => 'Автоматически';
+
+  @override
+  String get season_spring => 'Весна';
+
+  @override
+  String get season_summer => 'Лето';
+
+  @override
+  String get season_autumn => 'Осень';
+
+  @override
+  String get season_winter => 'Зима';
+
+  @override
+  String get season_halloween => 'Хэллоуин';
+
+  @override
+  String get season_christmas => 'Рождество';
+
+  @override
+  String get season_valentine => 'День святого Валентина';
+
+  @override
+  String get theme_holidays => 'Праздничные цвета';
+
+  @override
+  String get theme_holidaysHint =>
+      'Хэллоуин, Рождество и День святого Валентина, когда время года выбирается автоматически';
 }

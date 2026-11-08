@@ -1,10 +1,13 @@
 import 'dart:async';
+
 import 'bastion_coverage_history_screen.dart';
 
 import '../theme/mesh_theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+
 import '../l10n/l10n.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -245,12 +248,10 @@ class _BastionCoverageCaptureScreenState
             const SizedBox(height: 16),
             FilledButton.icon(
               style: FilledButton.styleFrom(
-                backgroundColor: _capture.recording
-                    ? const Color(0xFF303A42)
-                    : cyan,
+                backgroundColor: _capture.recording ? MeshPalette.bg3 : cyan,
                 foregroundColor: _capture.recording
-                    ? Colors.white
-                    : Colors.black,
+                    ? MeshPalette.ink
+                    : MeshPalette.onAccent,
                 padding: const EdgeInsets.symmetric(vertical: 16),
               ),
               onPressed: !_busy && (connector.isConnected || _capture.recording)
@@ -379,14 +380,14 @@ class _Status extends StatelessWidget {
         Icon(
           icon,
           size: 17,
-          color: active ? MeshPalette.accent : const Color(0xFF697680),
+          color: active ? MeshPalette.accent : MeshPalette.ink4,
         ),
         const SizedBox(width: 7),
         Expanded(
           child: Text(
             label,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: active ? Colors.white : const Color(0xFF89949D),
+              color: active ? MeshPalette.ink : MeshPalette.ink4,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -443,7 +444,7 @@ class _ObservationTile extends StatelessWidget {
                   '${observation.nodeType}  •  $signal  •  $snr',
                   style: Theme.of(
                     context,
-                  ).textTheme.bodySmall?.copyWith(color: Color(0xFFB0BBC4)),
+                  ).textTheme.bodySmall?.copyWith(color: MeshPalette.ink3),
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -457,7 +458,7 @@ class _ObservationTile extends StatelessWidget {
                   ),
                   style: Theme.of(
                     context,
-                  ).textTheme.labelSmall?.copyWith(color: Color(0xFF7F8B94)),
+                  ).textTheme.labelSmall?.copyWith(color: MeshPalette.ink4),
                 ),
               ],
             ),

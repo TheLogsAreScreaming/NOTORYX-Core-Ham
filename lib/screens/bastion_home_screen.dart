@@ -6,6 +6,7 @@ import '../widgets/ember_backdrop.dart';
 import '../widgets/notoryx_logo.dart';
 import '../widgets/tactical_glass_panel.dart';
 import '../widgets/glass_action_row.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

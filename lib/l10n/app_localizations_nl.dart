@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9971,4 +9972,73 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get bastionHome_stationConnectToCheck =>
       'Verbind een radio om de naam en band te controleren';
+
+  @override
+  String get theme_selected => 'Geselecteerd';
+
+  @override
+  String get theme_desc_blaze =>
+      'Donker leisteen met signaaloranje. Standaard.';
+
+  @override
+  String get theme_desc_neon_anarchy => 'Gifgroen en elektrisch paars op zwart';
+
+  @override
+  String get theme_desc_tactical =>
+      'Olijf, kanongrijs en aardetinten voor in het veld';
+
+  @override
+  String get theme_desc_pink_overload => 'Felroze, kauwgomroze en lavendel';
+
+  @override
+  String get theme_desc_bare_beauty => 'Warm nude, oudroze, cacao en salie';
+
+  @override
+  String get theme_desc_okabe_ito =>
+      'Geschikt bij kleurenzienstoornissen, op blauwgrijs';
+
+  @override
+  String get theme_desc_night_ops => 'Gedempt rood voor werken in het donker';
+
+  @override
+  String get theme_desc_seasonal => 'Volgt het seizoen, of kies er een';
+
+  @override
+  String theme_seasonNow(String season) {
+    return 'Nu: $season';
+  }
+
+  @override
+  String get theme_season => 'Seizoen';
+
+  @override
+  String get theme_seasonAuto => 'Automatisch';
+
+  @override
+  String get season_spring => 'Lente';
+
+  @override
+  String get season_summer => 'Zomer';
+
+  @override
+  String get season_autumn => 'Herfst';
+
+  @override
+  String get season_winter => 'Winter';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Kerst';
+
+  @override
+  String get season_valentine => 'Valentijnsdag';
+
+  @override
+  String get theme_holidays => 'Feestdagkleuren';
+
+  @override
+  String get theme_holidaysHint =>
+      'Halloween, kerst en Valentijnsdag, als het seizoen automatisch is';
 }

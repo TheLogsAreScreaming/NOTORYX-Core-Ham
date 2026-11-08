@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9532,4 +9533,69 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get bastionHome_stationConnectToCheck => '無線機を接続して名前とバンドを確認してください';
+
+  @override
+  String get theme_selected => '選択中';
+
+  @override
+  String get theme_desc_blaze => 'チャコールスレートに高視認オレンジ。標準テーマ。';
+
+  @override
+  String get theme_desc_neon_anarchy => '黒地にトキシックグリーンとエレクトリックパープル';
+
+  @override
+  String get theme_desc_tactical => 'フィールド向けのオリーブ、ガンメタル、アースカラー';
+
+  @override
+  String get theme_desc_pink_overload => 'ホットピンク、バブルガム、ラベンダー';
+
+  @override
+  String get theme_desc_bare_beauty => '温かいヌード、ダスティローズ、ココア、セージ';
+
+  @override
+  String get theme_desc_okabe_ito => '色覚の多様性に配慮、青みがかったグレー地';
+
+  @override
+  String get theme_desc_night_ops => '暗所作業向けの落ち着いた赤';
+
+  @override
+  String get theme_desc_seasonal => '季節に合わせて変化、または季節を選択';
+
+  @override
+  String theme_seasonNow(String season) {
+    return '現在: $season';
+  }
+
+  @override
+  String get theme_season => '季節';
+
+  @override
+  String get theme_seasonAuto => '自動';
+
+  @override
+  String get season_spring => '春';
+
+  @override
+  String get season_summer => '夏';
+
+  @override
+  String get season_autumn => '秋';
+
+  @override
+  String get season_winter => '冬';
+
+  @override
+  String get season_halloween => 'ハロウィン';
+
+  @override
+  String get season_christmas => 'クリスマス';
+
+  @override
+  String get season_valentine => 'バレンタインデー';
+
+  @override
+  String get theme_holidays => '行事の配色';
+
+  @override
+  String get theme_holidaysHint => '季節が自動のとき、ハロウィン、クリスマス、バレンタインデーの配色を使用';
 }
