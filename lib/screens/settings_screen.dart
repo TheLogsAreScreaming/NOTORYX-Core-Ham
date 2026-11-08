@@ -123,19 +123,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const AnalyzerCard(),
                   const LinkPreviewsCard(),
                   const SignPostsCard(),
-                  const MeshCard(
-                    padding: EdgeInsets.fromLTRB(16, 12, 16, 16),
+                  MeshCard(
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(bottom: 10),
+                          padding: const EdgeInsets.only(bottom: 10),
                           child: Text(
-                            'Theme',
-                            style: TextStyle(fontWeight: FontWeight.w700),
+                            l10n.appSettings_theme,
+                            style: const TextStyle(fontWeight: FontWeight.w700),
                           ),
                         ),
-                        ThemePicker(),
+                        const ThemePicker(),
                       ],
                     ),
                   ),
