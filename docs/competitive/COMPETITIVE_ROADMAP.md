@@ -2,6 +2,37 @@
 
 Researched 2026-11-07 against `dev` d064a55. Evidence is in [COMPETITIVE_ANALYSIS.md](COMPETITIVE_ANALYSIS.md) and [FEATURE_MATRIX.md](FEATURE_MATRIX.md). Everything here is a proposal; nothing in this PR changes code. Regulatory points are an engineering reading of Part 97, not legal advice.
 
+## Status, 2026-11-08
+
+The research below is kept as written on 2026-11-07. This table tracks what has shipped since. "Open PR" means the code is written but not yet merged into `dev`.
+
+| Item | Status | Where |
+|---|---|---|
+| P0-1 Sync with Core | Done, now at Core rc.37 (54 commits after rc.33) | #16, #25 |
+| P0-2 Merge the redesign | Done | #8–#19 |
+| P0-3 SQLite message store | Done, through the Core sync | #25 |
+| P0-4 On-air validation record | **Open: needs two stations.** Template in the test kit | — |
+| P1-1 Pre-transmit checklist | Done. Firmware is the first check | #14, #28 |
+| P1-2 Station ID on every frame | Done on the message path screen; RX log in an open PR | #14, #30 |
+| P1-3 Trailer/name mismatch alert | Done, for direct adverts (relays carry the repeater's call) | #26 |
+| P1-4 ERP with antenna and feedline | Done | `amateur_power.dart` |
+| P1-5 iOS bundle ID | Done | #13 |
+| W4 Stock-network warning | Open PR | #31 |
+| Station log, ADIF/CSV export | Done. ADIF has no LoRa mode, so MODE is left out | #29 |
+| Licensed Operator strings translated | Done, all 18 languages | — |
+| Plain-text hint on the composer | Done | #27 |
+| Coordination checklist from first run | Open PR | #32 |
+| Firmware flag check on connect | Done: stock MeshCore is flagged by its version | #28 |
+| Ham band-plan presets | **Open: needs coordinator-agreed channels.** The file is empty on purpose | `assets/regional_presets.json` |
+| Hardware matrix doc | Open | — |
+| Measured PA tables | **Open: needs a dummy load** | — |
+| Station G2/G3 BLE size | Open (firmware) | — |
+| macOS release | Open: CI builds macOS; only Android is released | — |
+| APRS-IS gateway, third-party traffic | Open: research first (passcode, rate limits, §97.115) | — |
+| Phone screen-reader check | **Open: needs a phone.** Checklist in the test kit | — |
+
+Releases: test.5 (2026-11-08) is the latest published build; it predates #25–#32.
+
 ## 1. Competitive advantage opportunities
 
 | Opportunity | Why it is open | Head start |
