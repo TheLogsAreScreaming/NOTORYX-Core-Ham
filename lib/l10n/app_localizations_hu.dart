@@ -10555,4 +10555,16 @@ class AppLocalizationsHu extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return '$sent elküldve, $received fogadva';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'Azonosító: $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Állomásazonosító';
+
+  @override
+  String get ham_stationIdHint =>
+      'Az állomás, amely ezt a keretet sugározta: a feladó vagy a továbbító átjátszó';
 }

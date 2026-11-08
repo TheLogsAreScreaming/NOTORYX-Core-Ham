@@ -4299,5 +4299,8 @@
   "ham_stationLogClearConfirm": "Видалити всі записи журналу? Це не можна скасувати.",
   "ham_stationLogEmpty": "Станцій у журналі ще немає",
   "ham_stationLogHint": "Тут записуються особисті повідомлення зі станціями, чия назва починається з позивного, лише на цьому телефоні.",
-  "ham_stationLogCounts": "надіслано: {sent}, отримано: {received}"
+  "ham_stationLogCounts": "надіслано: {sent}, отримано: {received}",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Позивний станції",
+  "ham_stationIdHint": "Станція, що передала цей кадр: відправник або ретранслятор, який передав його далі"
 }

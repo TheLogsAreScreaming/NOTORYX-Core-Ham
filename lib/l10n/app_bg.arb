@@ -4319,5 +4319,8 @@
   "ham_stationLogClearConfirm": "Да се изтрият всички записи в дневника? Това не може да се отмени.",
   "ham_stationLogEmpty": "Още няма станции в дневника",
   "ham_stationLogHint": "Тук се записват директните съобщения със станции, чието име започва с позивна, само на този телефон.",
-  "ham_stationLogCounts": "изпратени: {sent}, получени: {received}"
+  "ham_stationLogCounts": "изпратени: {sent}, получени: {received}",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Идентификатор на станция",
+  "ham_stationIdHint": "Станцията, предала този кадър: подателят или ретранслаторът, който го препредаде"
 }

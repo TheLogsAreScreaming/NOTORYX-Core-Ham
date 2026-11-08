@@ -10575,4 +10575,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return '$sent gesendet, $received empfangen';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'Kennung $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Stationskennung';
+
+  @override
+  String get ham_stationIdHint =>
+      'Die Station, die diesen Rahmen gesendet hat: der Absender oder das Relais, das ihn weitergab';
 }

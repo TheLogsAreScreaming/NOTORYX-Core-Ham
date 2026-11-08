@@ -137,8 +137,26 @@ void main() {
       lines[1],
       startsWith('2026-11-07T12:00:00.000Z,advert,4,flood,1,A1,6.25,-92,7,'),
     );
-    expect(lines[1], endsWith(',0,1101A1DEADBEEF'));
+    // No station ID on these packets: the station column is empty.
+    expect(lines[1], endsWith(',0,,1101A1DEADBEEF'));
     expect(lines[2], contains(',direct,2,direct,0,,'));
+  });
+
+  test('the station ID is kept and exported', () {
+    final e = RxLogEntry.from(
+      RadioRxPacket(
+        raw: Uint8List.fromList([0x11, 0, 0xCA, 0xFE]),
+        snr: 1,
+        rssi: -90,
+        receivedAt: DateTime.utc(2026, 11, 8),
+        station: 'N0RPT',
+      ),
+    )!;
+    expect(e.station, 'N0RPT');
+    expect(
+      rxLogCsv([e]).trim().split('\n').last,
+      endsWith(',0,N0RPT,1100CAFE'),
+    );
   });
 
   test('every payload type has a kind', () {

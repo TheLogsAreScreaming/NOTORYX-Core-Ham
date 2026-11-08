@@ -10612,4 +10612,16 @@ class AppLocalizationsUk extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return 'надіслано: $sent, отримано: $received';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Позивний станції';
+
+  @override
+  String get ham_stationIdHint =>
+      'Станція, що передала цей кадр: відправник або ретранслятор, який передав його далі';
 }

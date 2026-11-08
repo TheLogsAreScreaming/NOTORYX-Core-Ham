@@ -4319,5 +4319,8 @@
   "ham_stationLogClearConfirm": "Izbrišem vse vnose v dnevniku? Tega ni mogoče razveljaviti.",
   "ham_stationLogEmpty": "V dnevniku še ni postaj",
   "ham_stationLogHint": "Sem se beležijo neposredna sporočila s postajami, katerih ime se začne s klicnim znakom, le na tem telefonu.",
-  "ham_stationLogCounts": "poslano: {sent}, prejeto: {received}"
+  "ham_stationLogCounts": "poslano: {sent}, prejeto: {received}",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Oznaka postaje",
+  "ham_stationIdHint": "Postaja, ki je oddala ta okvir: pošiljatelj ali repetitor, ki ga je posredoval"
 }

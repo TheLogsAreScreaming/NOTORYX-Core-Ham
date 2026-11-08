@@ -4453,5 +4453,8 @@
   "ham_stationLogClearConfirm": "¿Eliminar todas las entradas del registro? No se puede deshacer.",
   "ham_stationLogEmpty": "Aún no hay estaciones registradas",
   "ham_stationLogHint": "Aquí se registran los mensajes directos con estaciones cuyo nombre empieza por un indicativo, solo en este teléfono.",
-  "ham_stationLogCounts": "{sent} enviados, {received} recibidos"
+  "ham_stationLogCounts": "{sent} enviados, {received} recibidos",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Indicativo de estación",
+  "ham_stationIdHint": "La estación que transmitió esta trama: el remitente o el repetidor que la retransmitió"
 }

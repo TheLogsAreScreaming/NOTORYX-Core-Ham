@@ -10616,4 +10616,16 @@ class AppLocalizationsPl extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return 'wysłane: $sent, odebrane: $received';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Identyfikator stacji';
+
+  @override
+  String get ham_stationIdHint =>
+      'Stacja, która nadała tę ramkę: nadawca lub przemiennik, który ją przekazał';
 }

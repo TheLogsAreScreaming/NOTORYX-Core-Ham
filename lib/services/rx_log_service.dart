@@ -36,6 +36,7 @@ class RxLogEntry {
     required this.raw,
     required this.info,
     this.fromSelf = false,
+    this.station,
   });
 
   /// Decodes [packet]; null when its header is malformed.
@@ -49,6 +50,7 @@ class RxLogEntry {
       raw: packet.raw,
       info: info,
       fromSelf: packet.fromSelf,
+      station: packet.station,
     );
   }
 
@@ -60,6 +62,10 @@ class RxLogEntry {
 
   /// Whether this looks like this radio's own traffic heard back.
   final bool fromSelf;
+
+  /// The call sign in the frame's station ID: whoever transmitted it, the
+  /// sender or the repeater that relayed it. Null when there was none.
+  final String? station;
 
   RxKind get kind => rxKindFor(info.payloadType);
 
@@ -150,7 +156,8 @@ class RxLogService extends ChangeNotifier {
 /// [entries] as CSV, oldest first, with the raw packet in hex.
 String rxLogCsv(Iterable<RxLogEntry> entries) {
   final rows = <String>[
-    'time_utc,kind,payload_type,route,hops,path,snr,rssi,bytes,hash,own,raw_hex',
+    'time_utc,kind,payload_type,route,hops,path,snr,rssi,bytes,hash,own,'
+        'station,raw_hex',
   ];
   for (final e in entries.toList().reversed) {
     rows.add(
@@ -166,6 +173,8 @@ String rxLogCsv(Iterable<RxLogEntry> entries) {
         e.raw.length,
         e.info.hash,
         e.fromSelf ? 1 : 0,
+        // Call signs are letters, digits, / and -: nothing to quote.
+        (e.station ?? '').replaceAll(RegExp(r'[^A-Za-z0-9/-]'), ''),
         RxLogEntry.hex(e.raw),
       ].join(','),
     );

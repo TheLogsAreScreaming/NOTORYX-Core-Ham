@@ -4319,5 +4319,8 @@
   "ham_stationLogClearConfirm": "Apagar todas as entradas do registo? Não é possível desfazer.",
   "ham_stationLogEmpty": "Ainda não há estações registadas",
   "ham_stationLogHint": "As mensagens diretas com estações cujo nome começa por um indicativo ficam registadas aqui, só neste telefone.",
-  "ham_stationLogCounts": "{sent} enviadas, {received} recebidas"
+  "ham_stationLogCounts": "{sent} enviadas, {received} recebidas",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Identificação da estação",
+  "ham_stationIdHint": "A estação que transmitiu esta trama: o remetente ou o repetidor que a retransmitiu"
 }

@@ -10552,4 +10552,16 @@ class AppLocalizationsBg extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return 'изпратени: $sent, получени: $received';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Идентификатор на станция';
+
+  @override
+  String get ham_stationIdHint =>
+      'Станцията, предала този кадър: подателят или ретранслаторът, който го препредаде';
 }

@@ -4357,5 +4357,8 @@
   "ham_stationLogClearConfirm": "Törli az állomásnapló összes bejegyzését? Ez nem vonható vissza.",
   "ham_stationLogEmpty": "Még nincs állomás a naplóban",
   "ham_stationLogHint": "Itt naplózzuk a közvetlen üzeneteket olyan állomásokkal, amelyek neve hívójellel kezdődik, csak ezen a telefonon.",
-  "ham_stationLogCounts": "{sent} elküldve, {received} fogadva"
+  "ham_stationLogCounts": "{sent} elküldve, {received} fogadva",
+  "ham_rxStationId": "Azonosító: {call}",
+  "ham_stationIdLabel": "Állomásazonosító",
+  "ham_stationIdHint": "Az állomás, amely ezt a keretet sugározta: a feladó vagy a továbbító átjátszó"
 }

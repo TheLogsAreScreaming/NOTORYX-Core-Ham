@@ -4453,5 +4453,8 @@
   "ham_stationLogClearConfirm": "Eliminare tutte le voci del log? Non si può annullare.",
   "ham_stationLogEmpty": "Nessuna stazione nel log",
   "ham_stationLogHint": "Qui vengono registrati i messaggi diretti con stazioni il cui nome inizia con un nominativo, solo su questo telefono.",
-  "ham_stationLogCounts": "{sent} inviati, {received} ricevuti"
+  "ham_stationLogCounts": "{sent} inviati, {received} ricevuti",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Identificativo di stazione",
+  "ham_stationIdHint": "La stazione che ha trasmesso questo frame: il mittente o il ripetitore che l'ha ritrasmesso"
 }
