@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10110,4 +10109,436 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get theme_holidaysHint =>
       'Хэллоуин, Рождество и День святого Валентина, когда время года выбирается автоматически';
+
+  @override
+  String get rxLog_title => 'Журнал приёма';
+
+  @override
+  String get rxLog_hint =>
+      'Каждый пакет, который слышит ваша рация, в реальном времени';
+
+  @override
+  String get rxLog_empty =>
+      'Пакетов пока нет. Пакеты, которые слышит рация, появляются здесь по мере поступления.';
+
+  @override
+  String get rxLog_note =>
+      'Хранится только в памяти, последние 2000 пакетов. Ничего не сохраняется и не отправляется.';
+
+  @override
+  String get rxLog_pause => 'Пауза';
+
+  @override
+  String get rxLog_resume => 'Продолжить';
+
+  @override
+  String get rxLog_export => 'Экспорт в CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Очистить журнал приёма?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return 'Показано $shown · услышано $total';
+  }
+
+  @override
+  String get rxLog_paused => 'Пауза: новые пакеты не записываются';
+
+  @override
+  String get rxLog_kindAll => 'Все';
+
+  @override
+  String get rxLog_kindAdvert => 'Объявления';
+
+  @override
+  String get rxLog_kindChannel => 'Канал';
+
+  @override
+  String get rxLog_kindDirect => 'Личные';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Пути';
+
+  @override
+  String get rxLog_kindTrace => 'Трассировки';
+
+  @override
+  String get rxLog_kindControl => 'Управление';
+
+  @override
+  String get rxLog_kindOther => 'Другие';
+
+  @override
+  String get rxLog_routeFlood => 'Флуд';
+
+  @override
+  String get rxLog_routeDirect => 'Прямой маршрут';
+
+  @override
+  String get rxLog_heardDirectly => 'Услышан напрямую';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count перехода',
+      many: '$count переходов',
+      few: '$count перехода',
+      one: '1 переход',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count байта',
+      many: '$count байт',
+      few: '$count байта',
+      one: '1 байт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Ваша рация';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Сигнал';
+
+  @override
+  String get rxLog_route => 'Маршрут';
+
+  @override
+  String get rxLog_path => 'Путь';
+
+  @override
+  String get rxLog_payloadType => 'Тип данных';
+
+  @override
+  String get rxLog_hash => 'Хеш пакета';
+
+  @override
+  String get rxLog_raw => 'Сырой пакет';
+
+  @override
+  String get rxLog_copyHex => 'Копировать hex';
+
+  @override
+  String get deliv_title => 'Подробности доставки';
+
+  @override
+  String get deliv_note =>
+      'Определено по данным, сохранённым с этим сообщением.';
+
+  @override
+  String get deliv_queued => 'В очереди';
+
+  @override
+  String get deliv_sent => 'Отправлено рацией';
+
+  @override
+  String get deliv_notSent => 'Рация не приняла';
+
+  @override
+  String get deliv_attempts => 'Попытки';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made из $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'План: $direct напрямую, затем $flood флудом';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Последний маршрут';
+
+  @override
+  String get deliv_routeFlood => 'Флуд через все ретрансляторы';
+
+  @override
+  String get deliv_routeNeighbor => 'Напрямую, без ретрансляторов';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Напрямую через $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Получение подтверждено';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Туда и обратно $seconds с';
+  }
+
+  @override
+  String get deliv_waiting => 'Ожидание подтверждения';
+
+  @override
+  String get deliv_noConfirm => 'Нет подтверждения';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name был слышен';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours часа назад',
+      many: '$hours часов назад',
+      few: '$hours часа назад',
+      one: '1 час назад',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Доставлено. $name подтвердил получение.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Доставлено флудом после неудачных прямых попыток. Сохранённый маршрут к $name может быть устаревшим.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Всё ещё пытается: попытка $attempt из $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Рация так и не приняла это сообщение. Проверьте подключение и повторите.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours часа',
+      many: '$hours часов',
+      few: '$hours часа',
+      one: '1 час',
+    );
+    return 'Нет подтверждения. $name не слышен уже $_temp0 — возможно, вне зоны или выключен.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Нет подтверждения по сохранённому маршруту, а попытки флудом выключены. Включите их в Настройки → Настройки приложения → Сообщения или повторите.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Нет подтверждения ни по одному маршруту. Возможно, вне зоны, или подтверждение не смогло вернуться к вам.';
+
+  @override
+  String get batteryOpt_title => 'Оптимизация батареи';
+
+  @override
+  String get batteryOpt_off =>
+      'Отключена для NOTORYX Core Ham, поэтому уведомления работают в фоне.';
+
+  @override
+  String get batteryOpt_on =>
+      'Включена. Android может остановить приложение в фоне, и уведомления о SOS, отметках и сообщениях могут опаздывать или теряться.';
+
+  @override
+  String get batteryOpt_fix => 'Отключить';
+
+  @override
+  String block_sender(String name) {
+    return 'Заблокировать $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Его сообщения в каналах скрываются на этом устройстве и никогда не вызывают уведомлений. Он по-прежнему видит ваши сообщения. Разблокировать можно в Настройках.';
+
+  @override
+  String get block_action => 'Заблокировать';
+
+  @override
+  String block_done(String name) {
+    return '$name заблокирован';
+  }
+
+  @override
+  String get mention_suggestions => 'Подсказки имён';
+
+  @override
+  String get block_listTitle => 'Заблокированные отправители';
+
+  @override
+  String get block_listHint =>
+      'Сообщения от этих имён скрываются в каналах и никогда не вызывают уведомлений.';
+
+  @override
+  String get block_listEmpty => 'Никто не заблокирован.';
+
+  @override
+  String get block_unblock => 'Разблокировать';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count заблокировано',
+      many: '$count заблокировано',
+      few: '$count заблокировано',
+      one: '1 заблокирован',
+      zero: 'Никто не заблокирован',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Список контактов радио заполнен на $percent%';
+  }
+
+  @override
+  String get contactTable_full => 'Список контактов радио заполнен';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used из $max контактов';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Когда он заполнен, радио заменяет контакт, который дольше всех не был слышен. Избранные сохраняются.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Когда он заполнен, радио перестаёт добавлять новые услышанные контакты.';
+
+  @override
+  String get contactTable_freeUp => 'Освободить место';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Сначала те, кого дольше всех не было слышно. Избранные не показаны.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Последний раз слышен $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Удалить $count контакта',
+      many: 'Удалить $count контактов',
+      few: 'Удалить $count контакта',
+      one: 'Удалить 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Они будут удалены из радио, а их сообщения на этом устройстве стёрты. Это нельзя отменить.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Удалено $count контакта',
+      many: 'Удалено $count контактов',
+      few: 'Удалено $count контакта',
+      one: 'Удалён 1 контакт',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Все контакты в избранном, предложить нечего.';
+
+  @override
+  String get adminWait_waiting => 'Ожидание ответа';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Ответа пока нет. Повторная попытка ($attempt из $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Напрямую, $hops перехода',
+      many: 'Напрямую, $hops переходов',
+      few: 'Напрямую, $hops перехода',
+      one: 'Напрямую, 1 переход',
+      zero: 'Напрямую',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'до $seconds с';
+  }
+
+  @override
+  String get seasonal_holidays => 'Праздничные цвета';
+
+  @override
+  String get coords_setting => 'Формат координат';
+
+  @override
+  String get coords_decimal => 'Десятичные градусы';
+
+  @override
+  String get coords_dms => 'Градусы, минуты, секунды';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Копировать позицию';
+
+  @override
+  String coords_copied(String format) {
+    return 'Скопировано как $format';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Маршрут использует $width-байтовые хеши пути';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Ваше радио использует $width байт';
+  }
 }

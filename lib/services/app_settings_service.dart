@@ -8,6 +8,7 @@ import '../models/translation_support.dart';
 import '../storage/prefs_manager.dart';
 import '../utils/app_logger.dart';
 import '../helpers/cyr2lat.dart';
+import '../utils/grid_coords.dart';
 
 class AppSettingsService extends ChangeNotifier {
   static const String _settingsKey = 'app_settings';
@@ -283,6 +284,25 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(mutedChannels: updated));
   }
 
+  /// Whether channel messages from [senderName] are blocked.
+  bool isSenderBlocked(String senderName) {
+    final name = senderName.trim();
+    return name.isNotEmpty && _settings.blockedSenders.contains(name);
+  }
+
+  Future<void> blockSender(String senderName) async {
+    final name = senderName.trim();
+    if (name.isEmpty) return;
+    final updated = Set<String>.from(_settings.blockedSenders)..add(name);
+    await updateSettings(_settings.copyWith(blockedSenders: updated));
+  }
+
+  Future<void> unblockSender(String senderName) async {
+    final updated = Set<String>.from(_settings.blockedSenders)
+      ..remove(senderName.trim());
+    await updateSettings(_settings.copyWith(blockedSenders: updated));
+  }
+
   Future<void> setTcpServerAddress(String value) async {
     await updateSettings(_settings.copyWith(tcpServerAddress: value));
   }
@@ -293,6 +313,14 @@ class AppSettingsService extends ChangeNotifier {
 
   Future<void> setChannelMessageRetentionDays(int days) async {
     await updateSettings(_settings.copyWith(channelMessageRetentionDays: days));
+  }
+
+  /// The chosen way to show positions.
+  CoordinateFormat get coordinateFormat =>
+      CoordinateFormat.parse(_settings.coordinateFormat);
+
+  Future<void> setCoordinateFormat(CoordinateFormat format) async {
+    await updateSettings(_settings.copyWith(coordinateFormat: format.value));
   }
 
   Future<void> setAppTheme(String id) async {

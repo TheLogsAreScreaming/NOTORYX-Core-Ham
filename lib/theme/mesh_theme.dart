@@ -44,7 +44,41 @@ class MeshPalette {
   static Color get accentBg => current.accentBg;
   static Color get accentLine => current.accentLine;
   static Color get onAccent => current.onAccent;
+  static Color get secondary => current.secondary;
+  static Color get tertiary => current.tertiary;
   static Color get magenta => current.magenta;
+
+  /// The current theme's color for item [index]; see [BastionPalette.hue].
+  static Color hue(int index) => current.hue(index);
+
+  /// Black or white, whichever reads better on [fill]. For text and icons
+  /// on a status color that has no matching ink of its own.
+  static Color onColor(Color fill) {
+    final l = fill.computeLuminance();
+    // Contrast with white is 1.05 / (l + .05); with black (l + .05) / .05.
+    return 1.05 / (l + .05) >= (l + .05) / .05
+        ? const Color(0xFFFFFFFF)
+        : const Color(0xFF000000);
+  }
+
+  /// [color] darkened or lightened just enough to read as text on
+  /// [surface] (WCAG AA, 4.5:1 by default). The hue is kept, so per-name
+  /// colors stay apart; colors that already pass come back unchanged.
+  static Color readable(Color color, Color surface, {double minRatio = 4.5}) {
+    double ratio(Color a) {
+      final la = a.computeLuminance(), lb = surface.computeLuminance();
+      return (la > lb ? la + .05 : lb + .05) / (la > lb ? lb + .05 : la + .05);
+    }
+
+    final darken = onColor(surface) != const Color(0xFFFFFFFF);
+    var hsl = HSLColor.fromColor(color);
+    for (var i = 0; i < 50 && ratio(hsl.toColor()) < minRatio; i++) {
+      final l = hsl.lightness + (darken ? -.02 : .02);
+      hsl = hsl.withLightness(l.clamp(0.0, 1.0));
+    }
+    return hsl.toColor().withValues(alpha: color.a);
+  }
+
   static Color get magentaBg => current.magentaBg;
   static Color get magentaLine => current.magentaLine;
   static Color get me => current.me;
@@ -181,7 +215,7 @@ class MeshTheme {
         : BastionTheme.blaze.palette,
   );
 
-  /// The current theme if it's light, otherwise Bubble Gum (the light one).
+  /// The current theme if it's light, otherwise Pink Overload (a light one).
   static ThemeData light() => forPalette(
     MeshPalette.current.brightness == Brightness.light
         ? MeshPalette.current

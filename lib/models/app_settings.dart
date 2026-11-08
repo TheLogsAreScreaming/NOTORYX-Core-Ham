@@ -127,6 +127,9 @@ class AppSettings {
   final Map<String, String> batteryChemistryByRepeaterId;
   final UnitSystem unitSystem;
   final Set<String> mutedChannels;
+
+  /// Channel sender names whose messages are hidden and never notify.
+  final Set<String> blockedSenders;
   final bool mapShowDiscoveryContacts;
   final String tcpServerAddress;
   final int tcpServerPort;
@@ -164,6 +167,9 @@ class AppSettings {
 
   /// Whether Seasonal's Automatic also shows holiday colours.
   final bool seasonalHolidays;
+
+  /// How positions are shown: 'decimal', 'dms', 'utm' or 'mgrs'.
+  final String coordinateFormat;
 
   /// Channel messages older than this many days are deleted; 0 keeps them.
   final int channelMessageRetentionDays;
@@ -268,6 +274,7 @@ class AppSettings {
     Map<String, String>? batteryChemistryByRepeaterId,
     this.unitSystem = UnitSystem.metric,
     Set<String>? mutedChannels,
+    Set<String>? blockedSenders,
     this.mapShowDiscoveryContacts = true,
     this.tcpServerAddress = '',
     this.tcpServerPort = 0,
@@ -282,6 +289,7 @@ class AppSettings {
     this.appTheme = 'blaze',
     this.seasonalChoice = 'auto',
     this.seasonalHolidays = false,
+    this.coordinateFormat = 'decimal',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
     this.imageProcessAutomatically = false,
@@ -302,6 +310,7 @@ class AppSettings {
   }) : batteryChemistryByDeviceId = batteryChemistryByDeviceId ?? {},
        batteryChemistryByRepeaterId = batteryChemistryByRepeaterId ?? {},
        mutedChannels = mutedChannels ?? {},
+       blockedSenders = blockedSenders ?? {},
        imageCodecDownloadedModels = imageCodecDownloadedModels ?? const [],
        translationDownloadedModels = translationDownloadedModels ?? const [],
        cyr2latProfiles =
@@ -357,6 +366,7 @@ class AppSettings {
       'battery_chemistry_by_repeater_id': batteryChemistryByRepeaterId,
       'unit_system': unitSystem.value,
       'muted_channels': mutedChannels.toList(),
+      'blocked_senders': blockedSenders.toList(),
       'map_show_discovery_contacts': mapShowDiscoveryContacts,
       'tcp_server_address': tcpServerAddress,
       'tcp_server_port': tcpServerPort,
@@ -371,6 +381,7 @@ class AppSettings {
       'app_theme': appTheme,
       'seasonal_choice': seasonalChoice,
       'seasonal_holidays': seasonalHolidays,
+      'coordinate_format': coordinateFormat,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
       'image_process_automatically': imageProcessAutomatically,
@@ -471,6 +482,11 @@ class AppSettings {
               ?.map((e) => e.toString())
               .toSet()) ??
           {},
+      blockedSenders:
+          ((json['blocked_senders'] as List?)
+              ?.map((e) => e.toString())
+              .toSet()) ??
+          {},
       mapShowDiscoveryContacts:
           json['map_show_discovery_contacts'] as bool? ?? true,
       tcpServerAddress: json['tcp_server_address'] as String? ?? '',
@@ -486,6 +502,7 @@ class AppSettings {
       appTheme: json['app_theme'] as String? ?? 'blaze',
       seasonalChoice: json['seasonal_choice'] as String? ?? 'auto',
       seasonalHolidays: json['seasonal_holidays'] as bool? ?? false,
+      coordinateFormat: json['coordinate_format'] as String? ?? 'decimal',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
             json['channel_message_retention_days'],
@@ -604,6 +621,7 @@ class AppSettings {
     Map<String, String>? batteryChemistryByRepeaterId,
     UnitSystem? unitSystem,
     Set<String>? mutedChannels,
+    Set<String>? blockedSenders,
     bool? mapShowDiscoveryContacts,
     String? tcpServerAddress,
     int? tcpServerPort,
@@ -618,6 +636,7 @@ class AppSettings {
     String? appTheme,
     String? seasonalChoice,
     bool? seasonalHolidays,
+    String? coordinateFormat,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
     bool? imageProcessAutomatically,
@@ -691,6 +710,7 @@ class AppSettings {
           batteryChemistryByRepeaterId ?? this.batteryChemistryByRepeaterId,
       unitSystem: unitSystem ?? this.unitSystem,
       mutedChannels: mutedChannels ?? this.mutedChannels,
+      blockedSenders: blockedSenders ?? this.blockedSenders,
       mapShowDiscoveryContacts:
           mapShowDiscoveryContacts ?? this.mapShowDiscoveryContacts,
       tcpServerAddress: tcpServerAddress ?? this.tcpServerAddress,
@@ -706,6 +726,7 @@ class AppSettings {
       appTheme: appTheme ?? this.appTheme,
       seasonalChoice: seasonalChoice ?? this.seasonalChoice,
       seasonalHolidays: seasonalHolidays ?? this.seasonalHolidays,
+      coordinateFormat: coordinateFormat ?? this.coordinateFormat,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,
       imageMessagesEnabled: imageMessagesEnabled ?? this.imageMessagesEnabled,
@@ -746,3 +767,6 @@ class AppSettings {
 
 /// Auto-delete choices for channel messages, in days; 0 keeps them forever.
 const channelRetentionChoices = [0, 7, 30, 90, 365];
+
+/// A saved theme id from any version as one of today's eight theme ids, so
+/// an old choice opens as its closest new theme instead of resetting.

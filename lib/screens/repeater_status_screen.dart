@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
+import '../models/admin_wait.dart';
 import '../models/contact.dart';
 import '../models/path_selection.dart';
 import '../connector/meshcore_connector.dart';
@@ -15,7 +16,7 @@ import '../services/app_settings_service.dart';
 import '../services/repeater_command_service.dart';
 import '../theme/mesh_theme.dart';
 import '../utils/battery_utils.dart';
-import '../widgets/ui/mesh_states.dart';
+import '../widgets/admin_wait_banner.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/routing_sheet.dart';
 import '../helpers/snack_bar_builder.dart';
@@ -41,6 +42,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
       _statusPayloadOffset + _statusStatsSize;
 
   bool _isLoading = false;
+  AdminWait? _wait;
   StreamSubscription<Uint8List>? _frameSubscription;
   RepeaterCommandService? _commandService;
   Timer? _statusTimeout;
@@ -254,7 +256,7 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
     if (mounted) setState(() {});
   }
 
-  Future<void> _loadStatus() async {
+  Future<void> _loadStatus({int attempt = 1}) async {
     if (_commandService == null) return;
 
     setState(() {
@@ -297,16 +299,32 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
         pathLength: pathLengthValue,
         messageBytes: messageBytes,
       );
+      if (mounted) {
+        setState(() {
+          _wait = AdminWait(
+            hops: pathLengthValue,
+            timeout: Duration(milliseconds: timeoutMs),
+            attempt: attempt,
+          );
+        });
+      }
       _statusTimeout?.cancel();
       _statusTimeout = Timer(Duration(milliseconds: timeoutMs), () {
         if (!mounted) return;
-        setState(() => _isLoading = false);
+        _recordStatusResult(false);
+        if (attempt < adminRequestMaxAttempts) {
+          unawaited(_loadStatus(attempt: attempt + 1));
+          return;
+        }
+        setState(() {
+          _isLoading = false;
+          _wait = null;
+        });
         showDismissibleSnackBar(
           context,
           content: Text(context.l10n.repeater_statusRequestTimeout),
           backgroundColor: Theme.of(context).colorScheme.error,
         );
-        _recordStatusResult(false);
       });
     } catch (e) {
       if (mounted) {
@@ -473,18 +491,40 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
         child: RefreshIndicator(
           onRefresh: _loadStatus,
           child: _isLoading && _batteryMv == null
-              ? const MeshLoadingState()
+              ? _buildWaiting()
               : _buildBody(l10n, repeater.name),
         ),
       ),
     );
   }
 
+  Widget _buildWaiting() {
+    final wait = _wait;
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        if (wait != null)
+          AdminWaitBanner(wait: wait)
+        else
+          const Padding(
+            padding: EdgeInsets.only(top: 48),
+            child: Center(child: CircularProgressIndicator()),
+          ),
+      ],
+    );
+  }
+
   Widget _buildBody(dynamic l10n, String name) {
     final scheme = Theme.of(context).colorScheme;
+    final wait = _isLoading ? _wait : null;
     return ListView(
       padding: const EdgeInsets.only(bottom: 24),
       children: [
+        if (wait != null)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+            child: AdminWaitBanner(wait: wait),
+          ),
         // ── System ─────────────────────────────────────────────────────────
         SectionHeader(l10n.repeater_systemInformation),
         Padding(

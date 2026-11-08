@@ -84,7 +84,7 @@ class BastionAboutScreen extends StatelessWidget {
             FilledButton.icon(
               style: FilledButton.styleFrom(
                 backgroundColor: _cyan,
-                foregroundColor: Colors.black,
+                foregroundColor: MeshPalette.onAccent,
                 padding: const EdgeInsets.symmetric(vertical: 14),
               ),
               onPressed: () => showLicensePage(

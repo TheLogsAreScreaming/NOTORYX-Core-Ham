@@ -36,7 +36,9 @@ typedef AckHashMapping = ({
 });
 
 class RetryServiceConfig {
-  final void Function(Contact, String, int, int) sendMessage;
+  /// Writes one attempt to the radio. Returns false when the write failed
+  /// (not connected, or the link rejected it); null or true when it went out.
+  final FutureOr<bool?> Function(Contact, String, int, int) sendMessage;
   final void Function(String, Message) addMessage;
   final void Function(Message) updateMessage;
   final Function(Contact)? clearContactPath;
@@ -398,7 +400,29 @@ class MessageRetryService extends ChangeNotifier {
       );
     }
 
-    config.sendMessage(contact, message.text, attempt, timestampSeconds);
+    final written = await config.sendMessage(
+      contact,
+      message.text,
+      attempt,
+      timestampSeconds,
+    );
+    if (written == false) _failUnsent(messageId, contact.publicKeyHex);
+  }
+
+  /// The radio never took this attempt, so no "sent" reply or ACK will come
+  /// and no retry timer is running. Fail it now rather than leave it pending
+  /// forever holding the contact's send slot, which would queue every later
+  /// message to them behind it.
+  void _failUnsent(String messageId, String contactKey) {
+    final message = _pendingMessages[messageId];
+    if (message == null || _resolvedMessages.contains(messageId)) return;
+    _timeoutTimers[messageId]?.cancel();
+    final failed = message.copyWith(status: MessageStatus.failed);
+    _pendingMessages[messageId] = failed;
+    _config?.updateMessage(failed);
+    notifyListeners();
+    _onMessageResolved(messageId, contactKey);
+    _cleanupMessage(messageId);
   }
 
   bool updateMessageFromSent(int ackHash, int timeoutMs) {

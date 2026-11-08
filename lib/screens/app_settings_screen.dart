@@ -15,6 +15,8 @@ import '../services/map_tile_cache_service.dart';
 import '../services/notification_service.dart';
 import '../services/translation_service.dart';
 import '../theme/mesh_theme.dart';
+import '../widgets/battery_optimization_tile.dart';
+import '../widgets/blocked_senders_sheet.dart';
 import '../widgets/theme_picker.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/mesh_ui.dart';
@@ -23,6 +25,8 @@ import '../helpers/snack_bar_builder.dart';
 import 'map_cache_screen.dart';
 import 'bot_settings_screen.dart';
 import '../widgets/ui/mesh_states.dart';
+import '../utils/grid_coords.dart';
+import '../widgets/coordinate_copy_sheet.dart';
 
 /// Quiet times offered for favorite back-in-range alerts, in hours.
 const favoriteReturnChoices = [0, 1, 3, 6, 12, 24];
@@ -254,6 +258,7 @@ class AppSettingsScreen extends StatelessWidget {
     final notifEnabled = settingsService.settings.notificationsEnabled;
     return Column(
       children: [
+        const BatteryOptimizationTile(),
         SwitchListTile(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -413,6 +418,23 @@ class AppSettingsScreen extends StatelessWidget {
                 ),
             ],
           ),
+        ),
+        const Divider(height: 1, indent: 16),
+        ListTile(
+          key: const ValueKey('blocked-senders-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          leading: const Icon(Icons.block, size: 20),
+          title: Text(context.l10n.block_listTitle),
+          subtitle: Text(
+            context.l10n.block_count(
+              settingsService.settings.blockedSenders.length,
+            ),
+          ),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => showBlockedSendersSheet(context),
         ),
       ],
     );
@@ -964,6 +986,34 @@ class AppSettingsScreen extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final children = <Widget>[
+      ListTile(
+        key: const ValueKey('coordinate-format-setting'),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        leading: const Icon(Icons.grid_on, size: 20),
+        title: Text(context.l10n.coords_setting),
+        subtitle: Text(
+          formatCoordinate(
+            40.68925,
+            -74.0445,
+            settingsService.coordinateFormat,
+          ),
+        ),
+        trailing: DropdownButton<CoordinateFormat>(
+          value: settingsService.coordinateFormat,
+          underline: const SizedBox.shrink(),
+          onChanged: (v) {
+            if (v != null) settingsService.setCoordinateFormat(v);
+          },
+          items: [
+            for (final f in CoordinateFormat.values)
+              DropdownMenuItem(
+                value: f,
+                child: Text(coordinateFormatLabel(context, f)),
+              ),
+          ],
+        ),
+      ),
+      const Divider(height: 1, indent: 16),
       SwitchListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         secondary: const Icon(Icons.router_outlined, size: 20),

@@ -463,8 +463,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       valueColor = null;
     } else if (percent <= 15) {
       icon = Icons.battery_alert;
-      iconColor = Theme.of(context).colorScheme.tertiary;
-      valueColor = Theme.of(context).colorScheme.tertiary;
+      iconColor = MeshPalette.warn;
+      valueColor = MeshPalette.warn;
     } else {
       icon = Icons.battery_full;
       iconColor = null;
@@ -1259,7 +1259,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
             child: Text(
               l10n.common_reboot,
-              style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+              style: TextStyle(color: MeshPalette.warn),
             ),
           ),
         ],
