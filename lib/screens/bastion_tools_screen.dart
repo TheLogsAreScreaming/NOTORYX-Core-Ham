@@ -14,6 +14,7 @@ import 'bot_settings_screen.dart';
 import 'connection_dashboard_screen.dart';
 import 'licensed_operator_screen.dart';
 import 'networks_screen.dart';
+import 'rx_log_screen.dart';
 import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
 import 'field_guide_screen.dart';
@@ -138,6 +139,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             subtitle: l10n.bastionTools_diagnosticsHint,
             builder: (_) => const BastionDiagnosticsScreen(),
           ),
+          _ToolAction(
+            icon: Icons.receipt_long_outlined,
+            title: l10n.rxLog_title,
+            subtitle: l10n.rxLog_hint,
+            builder: (_) => const RxLogScreen(),
+          ),
         ],
       ),
       (
@@ -219,9 +226,10 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
       ),
     ];
     final visibleGroups = [
-      for (final group in groups)
+      for (final (index, group) in groups.indexed)
         (
           title: group.title,
+          hue: index,
           actions: group.actions
               .where((action) => action.matches(_query))
               .toList(),
@@ -290,6 +298,9 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
                             for (final action in group.actions)
                               GlassActionRow(
                                 icon: action.icon,
+                                // Each group keeps its own color, also
+                                // while searching.
+                                iconColor: MeshPalette.hue(group.hue),
                                 title: action.title,
                                 subtitle: action.subtitle,
                                 onTap: () => Navigator.of(context).push(

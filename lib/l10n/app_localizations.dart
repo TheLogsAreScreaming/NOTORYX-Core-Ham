@@ -16872,6 +16872,594 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Halloween, Christmas and Valentine\'s Day, when the season is Automatic'**
   String get theme_holidaysHint;
+
+  /// No description provided for @rxLog_title.
+  ///
+  /// In en, this message translates to:
+  /// **'RX log'**
+  String get rxLog_title;
+
+  /// No description provided for @rxLog_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every packet your radio hears, live'**
+  String get rxLog_hint;
+
+  /// No description provided for @rxLog_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No packets yet. Packets your radio hears show up here as they arrive.'**
+  String get rxLog_empty;
+
+  /// No description provided for @rxLog_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Kept in memory only, the last 2,000 packets. Nothing is saved or sent.'**
+  String get rxLog_note;
+
+  /// No description provided for @rxLog_pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get rxLog_pause;
+
+  /// No description provided for @rxLog_resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get rxLog_resume;
+
+  /// No description provided for @rxLog_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get rxLog_export;
+
+  /// No description provided for @rxLog_clearConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear the RX log?'**
+  String get rxLog_clearConfirm;
+
+  /// No description provided for @rxLog_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{shown} shown · {total} heard'**
+  String rxLog_count(int shown, int total);
+
+  /// No description provided for @rxLog_paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused: new packets aren\'t being logged'**
+  String get rxLog_paused;
+
+  /// No description provided for @rxLog_kindAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get rxLog_kindAll;
+
+  /// No description provided for @rxLog_kindAdvert.
+  ///
+  /// In en, this message translates to:
+  /// **'Adverts'**
+  String get rxLog_kindAdvert;
+
+  /// No description provided for @rxLog_kindChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel'**
+  String get rxLog_kindChannel;
+
+  /// No description provided for @rxLog_kindDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct'**
+  String get rxLog_kindDirect;
+
+  /// No description provided for @rxLog_kindAck.
+  ///
+  /// In en, this message translates to:
+  /// **'ACKs'**
+  String get rxLog_kindAck;
+
+  /// No description provided for @rxLog_kindPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Paths'**
+  String get rxLog_kindPath;
+
+  /// No description provided for @rxLog_kindTrace.
+  ///
+  /// In en, this message translates to:
+  /// **'Traces'**
+  String get rxLog_kindTrace;
+
+  /// No description provided for @rxLog_kindControl.
+  ///
+  /// In en, this message translates to:
+  /// **'Control'**
+  String get rxLog_kindControl;
+
+  /// No description provided for @rxLog_kindOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get rxLog_kindOther;
+
+  /// No description provided for @rxLog_routeFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood'**
+  String get rxLog_routeFlood;
+
+  /// No description provided for @rxLog_routeDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct route'**
+  String get rxLog_routeDirect;
+
+  /// No description provided for @rxLog_heardDirectly.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard directly'**
+  String get rxLog_heardDirectly;
+
+  /// No description provided for @rxLog_hops.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 hop} other{{count} hops}}'**
+  String rxLog_hops(int count);
+
+  /// No description provided for @rxLog_bytes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 byte} other{{count} bytes}}'**
+  String rxLog_bytes(int count);
+
+  /// No description provided for @rxLog_own.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio'**
+  String get rxLog_own;
+
+  /// No description provided for @rxLog_signal.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR {snr} · {rssi} dBm'**
+  String rxLog_signal(String snr, int rssi);
+
+  /// No description provided for @rxLog_signalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Signal'**
+  String get rxLog_signalTitle;
+
+  /// No description provided for @rxLog_route.
+  ///
+  /// In en, this message translates to:
+  /// **'Route'**
+  String get rxLog_route;
+
+  /// No description provided for @rxLog_path.
+  ///
+  /// In en, this message translates to:
+  /// **'Path'**
+  String get rxLog_path;
+
+  /// No description provided for @rxLog_payloadType.
+  ///
+  /// In en, this message translates to:
+  /// **'Payload type'**
+  String get rxLog_payloadType;
+
+  /// No description provided for @rxLog_hash.
+  ///
+  /// In en, this message translates to:
+  /// **'Packet hash'**
+  String get rxLog_hash;
+
+  /// No description provided for @rxLog_raw.
+  ///
+  /// In en, this message translates to:
+  /// **'Raw packet'**
+  String get rxLog_raw;
+
+  /// No description provided for @rxLog_copyHex.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy hex'**
+  String get rxLog_copyHex;
+
+  /// No description provided for @deliv_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery details'**
+  String get deliv_title;
+
+  /// No description provided for @deliv_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Worked out from what\'s saved with this message.'**
+  String get deliv_note;
+
+  /// No description provided for @deliv_queued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get deliv_queued;
+
+  /// No description provided for @deliv_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent by your radio'**
+  String get deliv_sent;
+
+  /// No description provided for @deliv_notSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Not taken by your radio'**
+  String get deliv_notSent;
+
+  /// No description provided for @deliv_attempts.
+  ///
+  /// In en, this message translates to:
+  /// **'Attempts'**
+  String get deliv_attempts;
+
+  /// No description provided for @deliv_attemptsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{made} of {total}'**
+  String deliv_attemptsValue(int made, int total);
+
+  /// No description provided for @deliv_plan.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan: {direct} direct, then {flood} flood'**
+  String deliv_plan(int direct, int flood);
+
+  /// No description provided for @deliv_lastRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Last route'**
+  String get deliv_lastRoute;
+
+  /// No description provided for @deliv_routeFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Flood, through every repeater'**
+  String get deliv_routeFlood;
+
+  /// No description provided for @deliv_routeNeighbor.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct, no repeaters'**
+  String get deliv_routeNeighbor;
+
+  /// No description provided for @deliv_routeVia.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct via {path}'**
+  String deliv_routeVia(String path);
+
+  /// No description provided for @deliv_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed received'**
+  String get deliv_confirmed;
+
+  /// No description provided for @deliv_tripTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Round trip {seconds} s'**
+  String deliv_tripTime(String seconds);
+
+  /// No description provided for @deliv_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for confirmation'**
+  String get deliv_waiting;
+
+  /// No description provided for @deliv_noConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmation'**
+  String get deliv_noConfirm;
+
+  /// No description provided for @deliv_lastHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} last heard'**
+  String deliv_lastHeard(String name);
+
+  /// No description provided for @deliv_hoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours, plural, =1{1 hour ago} other{{hours} hours ago}}'**
+  String deliv_hoursAgo(int hours);
+
+  /// No description provided for @deliv_vDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered. {name} confirmed it.'**
+  String deliv_vDelivered(String name);
+
+  /// No description provided for @deliv_vDeliveredFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered by flood after the direct tries failed. The saved route to {name} may be out of date.'**
+  String deliv_vDeliveredFlood(String name);
+
+  /// No description provided for @deliv_vPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Still trying: attempt {attempt} of {total}.'**
+  String deliv_vPending(int attempt, int total);
+
+  /// No description provided for @deliv_vNotSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio never took this message. Check it\'s connected, then retry.'**
+  String get deliv_vNotSent;
+
+  /// No description provided for @deliv_vQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmation. {name} hasn\'t been heard for {hours, plural, =1{1 hour} other{{hours} hours}}, so they may be out of range or switched off.'**
+  String deliv_vQuiet(String name, int hours);
+
+  /// No description provided for @deliv_vNoFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmation over the saved route, and flood attempts are off. Turn them on in Settings → App Settings → Messaging, or retry.'**
+  String get deliv_vNoFlood;
+
+  /// No description provided for @deliv_vNoAck.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmation from any route. They may be out of range, or their confirmation couldn\'t get back to you.'**
+  String get deliv_vNoAck;
+
+  /// No description provided for @batteryOpt_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery optimisation'**
+  String get batteryOpt_title;
+
+  /// No description provided for @batteryOpt_off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off for NOTORYX Core Ham, so alerts keep working in the background.'**
+  String get batteryOpt_off;
+
+  /// No description provided for @batteryOpt_on.
+  ///
+  /// In en, this message translates to:
+  /// **'On. Android may stop the app in the background, so SOS, check-in and message alerts can be late or missed.'**
+  String get batteryOpt_on;
+
+  /// No description provided for @batteryOpt_fix.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off'**
+  String get batteryOpt_fix;
+
+  /// No description provided for @block_sender.
+  ///
+  /// In en, this message translates to:
+  /// **'Block {name}'**
+  String block_sender(String name);
+
+  /// No description provided for @block_confirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Their channel messages are hidden on this device and never notify you. They can still see your messages. You can unblock them in Settings.'**
+  String get block_confirmBody;
+
+  /// No description provided for @block_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Block'**
+  String get block_action;
+
+  /// No description provided for @block_done.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} blocked'**
+  String block_done(String name);
+
+  /// No description provided for @mention_suggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Name suggestions'**
+  String get mention_suggestions;
+
+  /// No description provided for @block_listTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked senders'**
+  String get block_listTitle;
+
+  /// No description provided for @block_listHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages from these names are hidden in channels and never notify you.'**
+  String get block_listHint;
+
+  /// No description provided for @block_listEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No one is blocked.'**
+  String get block_listEmpty;
+
+  /// No description provided for @block_unblock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unblock'**
+  String get block_unblock;
+
+  /// No description provided for @block_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No one blocked} =1{1 blocked} other{{count} blocked}}'**
+  String block_count(int count);
+
+  /// No description provided for @contactTable_nearlyFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio contact list {percent}% full'**
+  String contactTable_nearlyFull(int percent);
+
+  /// No description provided for @contactTable_full.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio contact list is full'**
+  String get contactTable_full;
+
+  /// No description provided for @contactTable_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {max} contacts'**
+  String contactTable_count(int used, int max);
+
+  /// No description provided for @contactTable_overwriteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When it\'s full, the radio replaces the contact heard least recently. Favorites are kept.'**
+  String get contactTable_overwriteHint;
+
+  /// No description provided for @contactTable_stopHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When it\'s full, the radio stops adding new contacts it hears.'**
+  String get contactTable_stopHint;
+
+  /// No description provided for @contactTable_freeUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Free up space'**
+  String get contactTable_freeUp;
+
+  /// No description provided for @contactTable_sheetBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard least recently first. Favorites aren\'t listed.'**
+  String get contactTable_sheetBody;
+
+  /// No description provided for @contactTable_lastHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Last heard {when}'**
+  String contactTable_lastHeard(String when);
+
+  /// No description provided for @contactTable_remove.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Remove 1 contact} other{Remove {count} contacts}}'**
+  String contactTable_remove(int count);
+
+  /// No description provided for @contactTable_confirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'They\'re removed from the radio, and their messages on this device are deleted. This can\'t be undone.'**
+  String get contactTable_confirmBody;
+
+  /// No description provided for @contactTable_removed.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Removed 1 contact} other{Removed {count} contacts}}'**
+  String contactTable_removed(int count);
+
+  /// No description provided for @contactTable_noneToSuggest.
+  ///
+  /// In en, this message translates to:
+  /// **'Every contact is a favorite, so there\'s nothing to suggest.'**
+  String get contactTable_noneToSuggest;
+
+  /// No description provided for @adminWait_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for a reply'**
+  String get adminWait_waiting;
+
+  /// No description provided for @adminWait_retrying.
+  ///
+  /// In en, this message translates to:
+  /// **'No reply yet. Trying again ({attempt} of {total})'**
+  String adminWait_retrying(int attempt, int total);
+
+  /// No description provided for @adminWait_direct.
+  ///
+  /// In en, this message translates to:
+  /// **'{hops, plural, =0{Direct} =1{Direct, 1 hop} other{Direct, {hops} hops}}'**
+  String adminWait_direct(int hops);
+
+  /// No description provided for @adminWait_upTo.
+  ///
+  /// In en, this message translates to:
+  /// **'up to {seconds} s'**
+  String adminWait_upTo(int seconds);
+
+  /// No description provided for @seasonal_holidays.
+  ///
+  /// In en, this message translates to:
+  /// **'Holiday colors'**
+  String get seasonal_holidays;
+
+  /// No description provided for @coords_setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Coordinate format'**
+  String get coords_setting;
+
+  /// No description provided for @coords_decimal.
+  ///
+  /// In en, this message translates to:
+  /// **'Decimal degrees'**
+  String get coords_decimal;
+
+  /// No description provided for @coords_dms.
+  ///
+  /// In en, this message translates to:
+  /// **'Degrees, minutes, seconds'**
+  String get coords_dms;
+
+  /// No description provided for @coords_utm.
+  ///
+  /// In en, this message translates to:
+  /// **'UTM'**
+  String get coords_utm;
+
+  /// No description provided for @coords_mgrs.
+  ///
+  /// In en, this message translates to:
+  /// **'MGRS'**
+  String get coords_mgrs;
+
+  /// No description provided for @coords_copyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy position'**
+  String get coords_copyTitle;
+
+  /// No description provided for @coords_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied as {format}'**
+  String coords_copied(String format);
+
+  /// No description provided for @pathHash_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'Route uses {width}-byte path hashes'**
+  String pathHash_badge(int width);
+
+  /// No description provided for @pathHash_mismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio uses {width}-byte'**
+  String pathHash_mismatch(int width);
 }
 
 class _AppLocalizationsDelegate

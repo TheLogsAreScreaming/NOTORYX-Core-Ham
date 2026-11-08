@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10057,4 +10056,427 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get theme_holidaysHint =>
       'Halloween, Vianoce a Valentín, keď je ročné obdobie automatické';
+
+  @override
+  String get rxLog_title => 'Denník RX';
+
+  @override
+  String get rxLog_hint => 'Každý paket, ktorý vaše rádio počuje, naživo';
+
+  @override
+  String get rxLog_empty =>
+      'Zatiaľ žiadne pakety. Pakety, ktoré rádio počuje, sa tu zobrazia hneď, ako prídu.';
+
+  @override
+  String get rxLog_note =>
+      'Uchováva sa iba v pamäti, posledných 2 000 paketov. Nič sa neukladá ani neodosiela.';
+
+  @override
+  String get rxLog_pause => 'Pozastaviť';
+
+  @override
+  String get rxLog_resume => 'Pokračovať';
+
+  @override
+  String get rxLog_export => 'Exportovať CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Vymazať denník RX?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown zobrazených · $total počutých';
+  }
+
+  @override
+  String get rxLog_paused => 'Pozastavené: nové pakety sa nezaznamenávajú';
+
+  @override
+  String get rxLog_kindAll => 'Všetky';
+
+  @override
+  String get rxLog_kindAdvert => 'Ohlásenia';
+
+  @override
+  String get rxLog_kindChannel => 'Kanál';
+
+  @override
+  String get rxLog_kindDirect => 'Priame';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Cesty';
+
+  @override
+  String get rxLog_kindTrace => 'Trasovania';
+
+  @override
+  String get rxLog_kindControl => 'Riadenie';
+
+  @override
+  String get rxLog_kindOther => 'Iné';
+
+  @override
+  String get rxLog_routeFlood => 'Záplava';
+
+  @override
+  String get rxLog_routeDirect => 'Priama trasa';
+
+  @override
+  String get rxLog_heardDirectly => 'Počuté priamo';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count skokov',
+      many: '$count skoku',
+      few: '$count skoky',
+      one: '1 skok',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bajtov',
+      many: '$count bajtu',
+      few: '$count bajty',
+      one: '1 bajt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Vaše rádio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Signál';
+
+  @override
+  String get rxLog_route => 'Trasa';
+
+  @override
+  String get rxLog_path => 'Cesta';
+
+  @override
+  String get rxLog_payloadType => 'Typ obsahu';
+
+  @override
+  String get rxLog_hash => 'Hash paketu';
+
+  @override
+  String get rxLog_raw => 'Surový paket';
+
+  @override
+  String get rxLog_copyHex => 'Kopírovať hex';
+
+  @override
+  String get deliv_title => 'Podrobnosti doručenia';
+
+  @override
+  String get deliv_note => 'Zistené z údajov uložených s touto správou.';
+
+  @override
+  String get deliv_queued => 'V poradí';
+
+  @override
+  String get deliv_sent => 'Odoslané rádiom';
+
+  @override
+  String get deliv_notSent => 'Rádio neprijalo';
+
+  @override
+  String get deliv_attempts => 'Pokusy';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made z $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plán: $direct priamo, potom $flood záplavou';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Posledná trasa';
+
+  @override
+  String get deliv_routeFlood => 'Záplava cez všetky opakovače';
+
+  @override
+  String get deliv_routeNeighbor => 'Priamo, bez opakovačov';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Priamo cez $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Prijatie potvrdené';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Spiatočný čas $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Čaká sa na potvrdenie';
+
+  @override
+  String get deliv_noConfirm => 'Bez potvrdenia';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name naposledy počuť';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'pred $hours hodinami',
+      one: 'pred 1 hodinou',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Doručené. $name to potvrdil.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Doručené záplavou po zlyhaní priamych pokusov. Uložená trasa k $name môže byť zastaraná.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Stále sa skúša: pokus $attempt z $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Rádio túto správu nikdy neprijalo. Skontrolujte pripojenie a skúste znova.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours hodín',
+      few: '$hours hodiny',
+      one: '1 hodinu',
+    );
+    return 'Bez potvrdenia. $name nebolo počuť $_temp0, môže byť mimo dosahu alebo vypnutý.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Bez potvrdenia cez uloženú trasu a pokusy záplavou sú vypnuté. Zapnite ich v Nastavenia → Nastavenia aplikácie → Správy alebo skúste znova.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Žiadne potvrdenie z žiadnej trasy. Môže byť mimo dosahu alebo sa potvrdenie nedostalo späť k vám.';
+
+  @override
+  String get batteryOpt_title => 'Optimalizácia batérie';
+
+  @override
+  String get batteryOpt_off =>
+      'Pre NOTORYX Core Ham vypnutá, takže upozornenia fungujú aj na pozadí.';
+
+  @override
+  String get batteryOpt_on =>
+      'Zapnutá. Android môže aplikáciu na pozadí zastaviť, takže upozornenia na SOS, prihlásenia a správy môžu meškať alebo sa stratiť.';
+
+  @override
+  String get batteryOpt_fix => 'Vypnúť';
+
+  @override
+  String block_sender(String name) {
+    return 'Blokovať $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Jeho správy v kanáloch sa v tomto zariadení skryjú a nikdy vás neupozornia. Stále vidí vaše správy. Odblokovať ho môžete v Nastaveniach.';
+
+  @override
+  String get block_action => 'Blokovať';
+
+  @override
+  String block_done(String name) {
+    return '$name zablokovaný';
+  }
+
+  @override
+  String get mention_suggestions => 'Návrhy mien';
+
+  @override
+  String get block_listTitle => 'Zablokovaní odosielatelia';
+
+  @override
+  String get block_listHint =>
+      'Správy od týchto mien sa v kanáloch skrývajú a nikdy vás neupozornia.';
+
+  @override
+  String get block_listEmpty => 'Nikto nie je zablokovaný.';
+
+  @override
+  String get block_unblock => 'Odblokovať';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count zablokovaných',
+      few: '$count zablokovaní',
+      one: '1 zablokovaný',
+      zero: 'Nikto nie je zablokovaný',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Zoznam kontaktov rádia je plný na $percent %';
+  }
+
+  @override
+  String get contactTable_full => 'Zoznam kontaktov rádia je plný';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used z $max kontaktov';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Keď je plný, rádio nahradí kontakt počutý najdávnejšie. Obľúbené zostanú.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Keď je plný, rádio prestane pridávať novo počuté kontakty.';
+
+  @override
+  String get contactTable_freeUp => 'Uvoľniť miesto';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Najprv najdávnejšie počuté. Obľúbené nie sú uvedené.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Naposledy počutý $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Odstrániť $count kontaktov',
+      few: 'Odstrániť $count kontakty',
+      one: 'Odstrániť 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Odstránia sa z rádia a ich správy v tomto zariadení sa vymažú. Nedá sa to vrátiť späť.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Odstránených $count kontaktov',
+      few: 'Odstránené $count kontakty',
+      one: 'Odstránený 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Všetky kontakty sú obľúbené, preto nie je čo navrhnúť.';
+
+  @override
+  String get adminWait_waiting => 'Čaká sa na odpoveď';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Zatiaľ bez odpovede. Nový pokus ($attempt z $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Priamo, $hops skokov',
+      few: 'Priamo, $hops skoky',
+      one: 'Priamo, 1 skok',
+      zero: 'Priamo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'až $seconds s';
+  }
+
+  @override
+  String get seasonal_holidays => 'Sviatočné farby';
+
+  @override
+  String get coords_setting => 'Formát súradníc';
+
+  @override
+  String get coords_decimal => 'Desatinné stupne';
+
+  @override
+  String get coords_dms => 'Stupne, minúty, sekundy';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Kopírovať polohu';
+
+  @override
+  String coords_copied(String format) {
+    return 'Skopírované ako $format';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Trasa používa $width-bajtové hashe cesty';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Vaše rádio používa $width bajty';
+  }
 }

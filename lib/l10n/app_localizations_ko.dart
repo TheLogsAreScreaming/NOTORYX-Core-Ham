@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9612,4 +9611,402 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get theme_holidaysHint => '계절이 자동일 때 핼러윈, 크리스마스, 밸런타인데이 색상 사용';
+
+  @override
+  String get rxLog_title => '수신 로그';
+
+  @override
+  String get rxLog_hint => '무전기가 듣는 모든 패킷을 실시간으로';
+
+  @override
+  String get rxLog_empty => '아직 패킷이 없습니다. 무전기가 듣는 패킷은 도착하는 대로 여기에 표시됩니다.';
+
+  @override
+  String get rxLog_note => '메모리에만 최근 2,000개를 보관합니다. 저장하거나 전송하지 않습니다.';
+
+  @override
+  String get rxLog_pause => '일시 정지';
+
+  @override
+  String get rxLog_resume => '재개';
+
+  @override
+  String get rxLog_export => 'CSV 내보내기';
+
+  @override
+  String get rxLog_clearConfirm => '수신 로그를 지울까요?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown개 표시 · $total개 수신';
+  }
+
+  @override
+  String get rxLog_paused => '일시 정지됨: 새 패킷이 기록되지 않습니다';
+
+  @override
+  String get rxLog_kindAll => '전체';
+
+  @override
+  String get rxLog_kindAdvert => '광고';
+
+  @override
+  String get rxLog_kindChannel => '채널';
+
+  @override
+  String get rxLog_kindDirect => '직접';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => '경로';
+
+  @override
+  String get rxLog_kindTrace => '추적';
+
+  @override
+  String get rxLog_kindControl => '제어';
+
+  @override
+  String get rxLog_kindOther => '기타';
+
+  @override
+  String get rxLog_routeFlood => '플러드';
+
+  @override
+  String get rxLog_routeDirect => '직접 경로';
+
+  @override
+  String get rxLog_heardDirectly => '직접 수신';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count홉',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count바이트',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => '내 무전기';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => '신호';
+
+  @override
+  String get rxLog_route => '라우팅';
+
+  @override
+  String get rxLog_path => '경로';
+
+  @override
+  String get rxLog_payloadType => '페이로드 유형';
+
+  @override
+  String get rxLog_hash => '패킷 해시';
+
+  @override
+  String get rxLog_raw => '원시 패킷';
+
+  @override
+  String get rxLog_copyHex => '16진수 복사';
+
+  @override
+  String get deliv_title => '전달 세부정보';
+
+  @override
+  String get deliv_note => '이 메시지에 저장된 정보로 계산했습니다.';
+
+  @override
+  String get deliv_queued => '대기열';
+
+  @override
+  String get deliv_sent => '무전기가 전송함';
+
+  @override
+  String get deliv_notSent => '무전기가 받지 않음';
+
+  @override
+  String get deliv_attempts => '시도';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return '계획: 직접 $direct회, 이후 플러드 $flood회';
+  }
+
+  @override
+  String get deliv_lastRoute => '마지막 경로';
+
+  @override
+  String get deliv_routeFlood => '모든 중계기를 거치는 플러드';
+
+  @override
+  String get deliv_routeNeighbor => '직접, 중계기 없음';
+
+  @override
+  String deliv_routeVia(String path) {
+    return '$path 경유 직접';
+  }
+
+  @override
+  String get deliv_confirmed => '수신 확인됨';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return '왕복 $seconds초';
+  }
+
+  @override
+  String get deliv_waiting => '확인 대기 중';
+
+  @override
+  String get deliv_noConfirm => '확인 없음';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name 마지막 수신';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours시간 전',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return '전달됨. $name이(가) 확인했습니다.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return '직접 시도가 실패한 뒤 플러드로 전달되었습니다. $name에 대한 저장된 경로가 오래되었을 수 있습니다.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return '계속 시도 중: $total회 중 $attempt번째.';
+  }
+
+  @override
+  String get deliv_vNotSent => '무전기가 이 메시지를 받지 않았습니다. 연결을 확인한 뒤 다시 시도하세요.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours시간',
+    );
+    return '확인 없음. $name이(가) $_temp0 동안 들리지 않아 범위 밖이거나 꺼져 있을 수 있습니다.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      '저장된 경로로 확인이 없고 플러드 시도가 꺼져 있습니다. 설정 → 앱 설정 → 메시지에서 켜거나 다시 시도하세요.';
+
+  @override
+  String get deliv_vNoAck =>
+      '어느 경로로도 확인이 없습니다. 범위 밖이거나 확인 응답이 돌아오지 못했을 수 있습니다.';
+
+  @override
+  String get batteryOpt_title => '배터리 최적화';
+
+  @override
+  String get batteryOpt_off => 'NOTORYX Core Ham에 대해 꺼져 있어 백그라운드에서도 알림이 작동합니다.';
+
+  @override
+  String get batteryOpt_on =>
+      '켜짐. Android가 백그라운드에서 앱을 중지할 수 있어 SOS, 체크인, 메시지 알림이 늦거나 누락될 수 있습니다.';
+
+  @override
+  String get batteryOpt_fix => '끄기';
+
+  @override
+  String block_sender(String name) {
+    return '$name 차단';
+  }
+
+  @override
+  String get block_confirmBody =>
+      '이 사용자의 채널 메시지는 이 기기에서 숨겨지며 알림이 오지 않습니다. 상대방은 여전히 내 메시지를 볼 수 있습니다. 설정에서 차단을 해제할 수 있습니다.';
+
+  @override
+  String get block_action => '차단';
+
+  @override
+  String block_done(String name) {
+    return '$name 차단됨';
+  }
+
+  @override
+  String get mention_suggestions => '이름 제안';
+
+  @override
+  String get block_listTitle => '차단된 발신자';
+
+  @override
+  String get block_listHint => '이 이름들의 메시지는 채널에서 숨겨지며 알림이 오지 않습니다.';
+
+  @override
+  String get block_listEmpty => '차단된 사용자가 없습니다.';
+
+  @override
+  String get block_unblock => '차단 해제';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count명 차단됨',
+      zero: '차단 없음',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return '무전기 연락처 목록 $percent% 사용 중';
+  }
+
+  @override
+  String get contactTable_full => '무전기 연락처 목록이 가득 찼습니다';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '연락처 $used/$max개';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      '가득 차면 무전기는 가장 오래전에 수신한 연락처를 교체합니다. 즐겨찾기는 유지됩니다.';
+
+  @override
+  String get contactTable_stopHint => '가득 차면 무전기는 새로 수신한 연락처를 더 이상 추가하지 않습니다.';
+
+  @override
+  String get contactTable_freeUp => '공간 확보';
+
+  @override
+  String get contactTable_sheetBody => '가장 오래전에 수신한 순서. 즐겨찾기는 표시되지 않습니다.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return '마지막 수신 $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '연락처 $count개 삭제',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      '무전기에서 삭제되며 이 기기의 메시지도 삭제됩니다. 되돌릴 수 없습니다.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '연락처 $count개를 삭제했습니다',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => '모든 연락처가 즐겨찾기라 제안할 항목이 없습니다.';
+
+  @override
+  String get adminWait_waiting => '응답 대기 중';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return '아직 응답이 없습니다. 다시 시도 중 ($attempt/$total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '직접, $hops홉',
+      zero: '직접',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '최대 $seconds초';
+  }
+
+  @override
+  String get seasonal_holidays => '기념일 색상';
+
+  @override
+  String get coords_setting => '좌표 형식';
+
+  @override
+  String get coords_decimal => '십진 도';
+
+  @override
+  String get coords_dms => '도, 분, 초';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => '위치 복사';
+
+  @override
+  String coords_copied(String format) {
+    return '$format(으)로 복사됨';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return '경로가 $width바이트 경로 해시를 사용';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return '내 무전기는 $width바이트 사용';
+  }
 }

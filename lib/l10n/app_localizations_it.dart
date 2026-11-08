@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10097,4 +10096,420 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get theme_holidaysHint =>
       'Halloween, Natale e San Valentino, quando la stagione è automatica';
+
+  @override
+  String get rxLog_title => 'Registro RX';
+
+  @override
+  String get rxLog_hint => 'Ogni pacchetto che la tua radio sente, in diretta';
+
+  @override
+  String get rxLog_empty =>
+      'Nessun pacchetto per ora. I pacchetti sentiti dalla radio compaiono qui appena arrivano.';
+
+  @override
+  String get rxLog_note =>
+      'Solo in memoria, gli ultimi 2.000 pacchetti. Nulla viene salvato o inviato.';
+
+  @override
+  String get rxLog_pause => 'Pausa';
+
+  @override
+  String get rxLog_resume => 'Riprendi';
+
+  @override
+  String get rxLog_export => 'Esporta CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Cancellare il registro RX?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown mostrati · $total sentiti';
+  }
+
+  @override
+  String get rxLog_paused =>
+      'In pausa: i nuovi pacchetti non vengono registrati';
+
+  @override
+  String get rxLog_kindAll => 'Tutti';
+
+  @override
+  String get rxLog_kindAdvert => 'Annunci';
+
+  @override
+  String get rxLog_kindChannel => 'Canale';
+
+  @override
+  String get rxLog_kindDirect => 'Diretti';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Percorsi';
+
+  @override
+  String get rxLog_kindTrace => 'Tracce';
+
+  @override
+  String get rxLog_kindControl => 'Controllo';
+
+  @override
+  String get rxLog_kindOther => 'Altri';
+
+  @override
+  String get rxLog_routeFlood => 'Flood';
+
+  @override
+  String get rxLog_routeDirect => 'Percorso diretto';
+
+  @override
+  String get rxLog_heardDirectly => 'Sentito direttamente';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count salti',
+      one: '1 salto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count byte',
+      one: '1 byte',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'La tua radio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Segnale';
+
+  @override
+  String get rxLog_route => 'Instradamento';
+
+  @override
+  String get rxLog_path => 'Percorso';
+
+  @override
+  String get rxLog_payloadType => 'Tipo di contenuto';
+
+  @override
+  String get rxLog_hash => 'Hash del pacchetto';
+
+  @override
+  String get rxLog_raw => 'Pacchetto grezzo';
+
+  @override
+  String get rxLog_copyHex => 'Copia hex';
+
+  @override
+  String get deliv_title => 'Dettagli di consegna';
+
+  @override
+  String get deliv_note =>
+      'Ricavato da ciò che è salvato con questo messaggio.';
+
+  @override
+  String get deliv_queued => 'In coda';
+
+  @override
+  String get deliv_sent => 'Inviato dalla tua radio';
+
+  @override
+  String get deliv_notSent => 'Non accettato dalla tua radio';
+
+  @override
+  String get deliv_attempts => 'Tentativi';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made di $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Piano: $direct diretti, poi $flood in flood';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Ultimo percorso';
+
+  @override
+  String get deliv_routeFlood => 'Flood attraverso tutti i ripetitori';
+
+  @override
+  String get deliv_routeNeighbor => 'Diretto, senza ripetitori';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Diretto via $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Ricezione confermata';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Andata e ritorno $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'In attesa di conferma';
+
+  @override
+  String get deliv_noConfirm => 'Nessuna conferma';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name sentito l\'ultima volta';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ore fa',
+      one: '1 ora fa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Consegnato. $name l\'ha confermato.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Consegnato in flood dopo il fallimento dei tentativi diretti. Il percorso salvato verso $name potrebbe non essere aggiornato.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Ancora in corso: tentativo $attempt di $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'La tua radio non ha mai accettato questo messaggio. Controlla che sia collegata e riprova.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ore',
+      one: '1 ora',
+    );
+    return 'Nessuna conferma. $name non si sente da $_temp0: potrebbe essere fuori portata o spento.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Nessuna conferma sul percorso salvato e i tentativi in flood sono disattivati. Attivali in Impostazioni → Impostazioni app → Messaggi, oppure riprova.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Nessuna conferma da alcun percorso. Potrebbe essere fuori portata, o la sua conferma non è riuscita a tornare fino a te.';
+
+  @override
+  String get batteryOpt_title => 'Ottimizzazione batteria';
+
+  @override
+  String get batteryOpt_off =>
+      'Disattivata per NOTORYX Core Ham, così gli avvisi funzionano anche in background.';
+
+  @override
+  String get batteryOpt_on =>
+      'Attiva. Android può fermare l\'app in background, quindi gli avvisi di SOS, check-in e messaggi possono arrivare in ritardo o andare persi.';
+
+  @override
+  String get batteryOpt_fix => 'Disattiva';
+
+  @override
+  String block_sender(String name) {
+    return 'Blocca $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'I suoi messaggi nei canali vengono nascosti su questo dispositivo e non ti notificano mai. Può ancora vedere i tuoi messaggi. Puoi sbloccarlo nelle Impostazioni.';
+
+  @override
+  String get block_action => 'Blocca';
+
+  @override
+  String block_done(String name) {
+    return '$name bloccato';
+  }
+
+  @override
+  String get mention_suggestions => 'Suggerimenti di nomi';
+
+  @override
+  String get block_listTitle => 'Mittenti bloccati';
+
+  @override
+  String get block_listHint =>
+      'I messaggi di questi nomi sono nascosti nei canali e non ti notificano mai.';
+
+  @override
+  String get block_listEmpty => 'Nessuno è bloccato.';
+
+  @override
+  String get block_unblock => 'Sblocca';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bloccati',
+      one: '1 bloccato',
+      zero: 'Nessuno bloccato',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Elenco contatti della radio pieno al $percent%';
+  }
+
+  @override
+  String get contactTable_full => 'L\'elenco contatti della radio è pieno';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used di $max contatti';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Quando è pieno, la radio sostituisce il contatto sentito meno di recente. I preferiti restano.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Quando è pieno, la radio smette di aggiungere i nuovi contatti che sente.';
+
+  @override
+  String get contactTable_freeUp => 'Libera spazio';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Prima quelli sentiti meno di recente. I preferiti non sono elencati.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Sentito l\'ultima volta $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Rimuovi $count contatti',
+      one: 'Rimuovi 1 contatto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Vengono rimossi dalla radio e i loro messaggi su questo dispositivo vengono eliminati. Non si può annullare.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count contatti rimossi',
+      one: '1 contatto rimosso',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Tutti i contatti sono preferiti, quindi non c\'è nulla da suggerire.';
+
+  @override
+  String get adminWait_waiting => 'In attesa di risposta';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Ancora nessuna risposta. Nuovo tentativo ($attempt di $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Diretto, $hops salti',
+      one: 'Diretto, 1 salto',
+      zero: 'Diretto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'fino a $seconds s';
+  }
+
+  @override
+  String get seasonal_holidays => 'Colori delle feste';
+
+  @override
+  String get coords_setting => 'Formato coordinate';
+
+  @override
+  String get coords_decimal => 'Gradi decimali';
+
+  @override
+  String get coords_dms => 'Gradi, minuti, secondi';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Copia posizione';
+
+  @override
+  String coords_copied(String format) {
+    return 'Copiato come $format';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Il percorso usa hash di percorso da $width byte';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'La tua radio usa $width byte';
+  }
 }

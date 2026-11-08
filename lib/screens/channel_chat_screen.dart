@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../storage/draft_store.dart';
 import '../connector/meshcore_connector.dart';
+import '../models/channel_mentions.dart';
 import '../models/community.dart';
 import '../storage/community_store.dart';
 import '../utils/platform_info.dart';
@@ -426,8 +427,12 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               Expanded(
                 child: Consumer<MeshCoreConnector>(
                   builder: (context, connector, child) {
-                    final messages = connector.getChannelMessages(
-                      widget.channel,
+                    final messages = withoutBlockedSenders(
+                      connector.getChannelMessages(widget.channel),
+                      context
+                          .watch<AppSettingsService>()
+                          .settings
+                          .blockedSenders,
                     );
                     final imageRows = _receivedImageRows(context);
 
@@ -1912,6 +1917,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
               ),
             if (_imageSendTotal > 0) _buildImageSendProgress(scheme),
             if (_corridorRadiusCode != null) _buildCorridorBanner(scheme),
+            _buildMentionSuggestions(connector, settings.blockedSenders),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
               child: Row(
@@ -2532,6 +2538,16 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                   _markAsUnread(message);
                 },
               ),
+            if (!message.isOutgoing && message.senderName.trim().isNotEmpty)
+              ListTile(
+                key: const ValueKey('channel-block-sender'),
+                leading: const Icon(Icons.block),
+                title: Text(context.l10n.block_sender(message.senderName)),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  unawaited(_confirmBlockSender(message.senderName));
+                },
+              ),
             const Divider(height: 1),
             ListTile(
               leading: Icon(
@@ -2551,6 +2567,91 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _confirmBlockSender(String senderName) async {
+    final l10n = context.l10n;
+    final settingsService = context.read<AppSettingsService>();
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(l10n.block_sender(senderName)),
+        content: Text(l10n.block_confirmBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: Text(l10n.common_cancel),
+          ),
+          FilledButton(
+            key: const ValueKey('channel-block-confirm'),
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: Text(l10n.block_action),
+          ),
+        ],
+      ),
+    );
+    if (ok != true || !mounted) return;
+    await settingsService.blockSender(senderName);
+    if (!mounted) return;
+    showDismissibleSnackBar(
+      context,
+      content: Text(l10n.block_done(senderName)),
+      action: SnackBarAction(
+        label: l10n.common_undo,
+        onPressed: () => unawaited(settingsService.unblockSender(senderName)),
+      ),
+    );
+  }
+
+  /// Name suggestions while the user types an `@` mention: senders heard on
+  /// this channel, most recent first.
+  Widget _buildMentionSuggestions(
+    MeshCoreConnector connector,
+    Set<String> blocked,
+  ) {
+    return ValueListenableBuilder<TextEditingValue>(
+      valueListenable: _textController,
+      builder: (context, value, _) {
+        final cursor = value.selection.isCollapsed
+            ? value.selection.baseOffset
+            : -1;
+        final query = mentionQueryAt(value.text, cursor);
+        if (query == null) return const SizedBox.shrink();
+        final names = mentionCandidates(
+          connector.getChannelMessages(widget.channel),
+          query,
+          selfName: connector.selfName,
+          blocked: blocked,
+        );
+        if (names.isEmpty) return const SizedBox.shrink();
+        return Semantics(
+          container: true,
+          label: context.l10n.mention_suggestions,
+          child: SizedBox(
+            height: 48,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              itemCount: names.length,
+              separatorBuilder: (_, _) => const SizedBox(width: 8),
+              itemBuilder: (context, i) => ActionChip(
+                key: ValueKey('mention-${names[i]}'),
+                avatar: const Icon(Icons.alternate_email, size: 16),
+                label: Text(names[i]),
+                onPressed: () {
+                  final next = applyMention(value.text, cursor, names[i]);
+                  _textController.value = TextEditingValue(
+                    text: next.text,
+                    selection: TextSelection.collapsed(offset: next.cursor),
+                  );
+                  _textFieldFocusNode.requestFocus();
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 

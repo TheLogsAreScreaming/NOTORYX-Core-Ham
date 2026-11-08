@@ -429,6 +429,14 @@ class _ChannelsScreenState extends State<ChannelsScreen>
         icon = Icons.key_outlined;
     }
 
+    final glyphColor = switch (channelType) {
+      ChannelType.public => MeshPalette.accent,
+      ChannelType.hashtag => MeshPalette.secondary,
+      ChannelType.private => MeshPalette.tertiary,
+      ChannelType.communityPublic ||
+      ChannelType.communityHashtag => MeshPalette.magenta,
+    };
+
     // Last message preview
     final messages = connector.getChannelMessages(channel);
     final lastMessage = messages.isNotEmpty ? messages.last : null;
@@ -503,7 +511,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // A glyph, not an avatar: # hashtag, ◎ public, lock private.
+                  // A glyph, not an avatar: # hashtag, ◎ public, lock private,
+                  // each kind in its own theme color.
                   SizedBox(
                     width: 22,
                     child: channelType == ChannelType.hashtag
@@ -511,7 +520,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             '#',
                             style: MeshTheme.mono(
                               fontSize: 17,
-                              color: MeshPalette.ink3,
+                              color: glyphColor,
                             ),
                           )
                         : channelType == ChannelType.public
@@ -519,10 +528,10 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             '\u25CE',
                             style: MeshTheme.mono(
                               fontSize: 16,
-                              color: MeshPalette.ink3,
+                              color: glyphColor,
                             ),
                           )
-                        : Icon(icon, size: 17, color: MeshPalette.ink3),
+                        : Icon(icon, size: 17, color: glyphColor),
                   ),
                   const SizedBox(width: 12),
                   // Title + subtitle + ch chip

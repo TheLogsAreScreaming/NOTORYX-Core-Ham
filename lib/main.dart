@@ -17,6 +17,7 @@ import 'utils/platform_info.dart';
 
 import 'connector/meshcore_connector.dart';
 import 'connector/meshcore_protocol.dart';
+import 'models/app_settings.dart';
 import 'models/image_codec_support.dart';
 import 'models/mqtt_mesh_packet.dart';
 import 'models/mqtt_observer_status.dart';
@@ -58,7 +59,6 @@ import 'services/translation_service.dart';
 import 'services/ui_view_state_service.dart';
 import 'services/timeout_prediction_service.dart';
 import 'storage/prefs_manager.dart';
-import 'models/app_settings.dart';
 import 'theme/mesh_theme.dart';
 import 'utils/app_logger.dart';
 import 'widgets/image_send_codec_binding.dart';
@@ -70,6 +70,7 @@ import 'services/channel_discovery_service.dart';
 import 'services/corescope.dart';
 import 'services/my_sensors_service.dart';
 import 'services/network_scan_service.dart';
+import 'services/rx_log_service.dart';
 import 'services/wardrive_service.dart';
 import 'services/track_log_service.dart';
 import 'services/weather_service.dart';
@@ -293,6 +294,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final MySensorsService _mySensors;
   late final WardriveService _wardrive;
   late final NetworkScanService _networkScan;
+  late final RxLogService _rxLog;
   late final FavoriteReturnService _favoriteReturn;
   late final SosRelayService _sosRelay;
   final _operatorProfile = OperatorProfileService()..load();
@@ -339,6 +341,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       tripActive: () => _fieldOps.trip.active,
     )..load();
     _sosRelay = SosRelayService.forConnector(widget.connector)..load();
+    _rxLog = RxLogService(widget.connector.rxPackets);
     _favoriteReturn = FavoriteReturnService(
       widget.connector,
       quietHours: () => widget.appSettingsService.settings.favoriteReturnHours,
@@ -441,6 +444,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    _rxLog.dispose();
     _favoriteReturn.dispose();
     _botService.dispose();
     _weather.dispose();
@@ -526,6 +530,13 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+    // Seasonal follows the date, so check it again when the app comes back.
+    if (state == AppLifecycleState.resumed &&
+        BastionTheme.fromId(widget.appSettingsService.settings.appTheme) ==
+            BastionTheme.seasonal &&
+        mounted) {
+      setState(() {});
+    }
     _fieldOps.setForeground(state == AppLifecycleState.resumed);
     _readAloud.foreground = state == AppLifecycleState.resumed;
     widget.receivedImageStore.setForeground(state == AppLifecycleState.resumed);
@@ -573,6 +584,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider<NodeTelemetryStore?>.value(value: _telemetry),
         ChangeNotifierProvider.value(value: _wardrive),
         ChangeNotifierProvider.value(value: _networkScan),
+        ChangeNotifierProvider.value(value: _rxLog),
         ChangeNotifierProvider.value(value: _sosRelay),
         ChangeNotifierProvider.value(value: _operatorProfile),
         ChangeNotifierProvider.value(value: _coverageHex),

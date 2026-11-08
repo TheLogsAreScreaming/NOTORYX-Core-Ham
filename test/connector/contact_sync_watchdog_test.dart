@@ -58,7 +58,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     PrefsManager.reset();
     await PrefsManager.initialize();
-    MeshCoreConnector.contactSyncSilence = const Duration(milliseconds: 60);
+    MeshCoreConnector.contactSyncSilence = const Duration(milliseconds: 300);
     radio = _Radio()
       ..debugSetContacts([_contact(1, 'Sam'), _contact(2, 'Alex')]);
   });
@@ -75,10 +75,10 @@ void main() {
   test('a silent radio is asked once more, then the sync gives up', () async {
     await radio.getContacts();
     expect(radio.sent.where((f) => f[0] == cmdGetContacts), hasLength(1));
-    await wait(90);
+    await wait(450);
     expect(radio.sent.where((f) => f[0] == cmdGetContacts), hasLength(2));
     expect(radio.isLoadingContacts, isTrue);
-    await wait(90);
+    await wait(450);
     expect(radio.isLoadingContacts, isFalse);
     expect(radio.contactSyncStalled, isTrue);
     expect(radio.hasLoadedContacts, isTrue);
@@ -92,7 +92,7 @@ void main() {
   test('contacts arriving keep the sync alive', () async {
     await radio.getContacts();
     for (var i = 0; i < 4; i++) {
-      await wait(40);
+      await wait(150);
       radio.handleFrameForTest(_contactFrame(1, 'Sam'));
     }
     expect(radio.isLoadingContacts, isTrue);
@@ -107,7 +107,7 @@ void main() {
     expect(radio.isLoadingContacts, isFalse);
     expect(radio.contactSyncStalled, isFalse);
     expect(radio.contacts.map((c) => c.name), ['Sam']);
-    await wait(90);
+    await wait(450);
     expect(
       radio.sent.where((f) => f[0] == cmdGetContacts),
       hasLength(1),

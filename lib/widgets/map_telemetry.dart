@@ -14,6 +14,7 @@ import '../screens/telemetry_screen.dart';
 import '../services/app_settings_service.dart';
 import '../services/my_sensors_service.dart';
 import '../services/node_telemetry_store.dart';
+import '../theme/mesh_theme.dart';
 
 String telemetryMetricLabel(BuildContext context, TelemetryMetric metric) =>
     switch (metric) {
@@ -59,14 +60,16 @@ Color telemetryReadingColor(NodeReading reading, Color fallback) {
   final value = reading.value;
   if (value is! num) return fallback;
   // Voltage is not universally a single-cell Li-ion battery. Keep it neutral.
+  // Theme status colors, which every theme keeps readable: freezing and
+  // warm are cautions, hot is a problem. The number is always shown too.
   if (reading.type == CayenneLpp.lppTemperature) {
     return value < 0
-        ? Colors.lightBlue
+        ? MeshPalette.warn
         : value < 30
-        ? Colors.green
+        ? MeshPalette.signal
         : value < 40
-        ? Colors.orange
-        : Colors.red;
+        ? MeshPalette.warn
+        : MeshPalette.alert;
   }
   return fallback;
 }

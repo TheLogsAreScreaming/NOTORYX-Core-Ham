@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9598,4 +9597,401 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get theme_holidaysHint => '季節が自動のとき、ハロウィン、クリスマス、バレンタインデーの配色を使用';
+
+  @override
+  String get rxLog_title => '受信ログ';
+
+  @override
+  String get rxLog_hint => '無線機が受信したすべてのパケットをリアルタイムで表示';
+
+  @override
+  String get rxLog_empty => 'まだパケットはありません。無線機が受信したパケットは届き次第ここに表示されます。';
+
+  @override
+  String get rxLog_note => 'メモリ内のみに直近2,000件を保持します。保存や送信は行いません。';
+
+  @override
+  String get rxLog_pause => '一時停止';
+
+  @override
+  String get rxLog_resume => '再開';
+
+  @override
+  String get rxLog_export => 'CSVを書き出す';
+
+  @override
+  String get rxLog_clearConfirm => '受信ログを消去しますか？';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown件表示 · $total件受信';
+  }
+
+  @override
+  String get rxLog_paused => '一時停止中：新しいパケットは記録されません';
+
+  @override
+  String get rxLog_kindAll => 'すべて';
+
+  @override
+  String get rxLog_kindAdvert => 'アドバート';
+
+  @override
+  String get rxLog_kindChannel => 'チャンネル';
+
+  @override
+  String get rxLog_kindDirect => 'ダイレクト';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'パス';
+
+  @override
+  String get rxLog_kindTrace => 'トレース';
+
+  @override
+  String get rxLog_kindControl => '制御';
+
+  @override
+  String get rxLog_kindOther => 'その他';
+
+  @override
+  String get rxLog_routeFlood => 'フラッド';
+
+  @override
+  String get rxLog_routeDirect => 'ダイレクト経路';
+
+  @override
+  String get rxLog_heardDirectly => '直接受信';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countホップ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$countバイト',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => '自分の無線機';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => '信号';
+
+  @override
+  String get rxLog_route => '経路';
+
+  @override
+  String get rxLog_path => 'パス';
+
+  @override
+  String get rxLog_payloadType => 'ペイロード種別';
+
+  @override
+  String get rxLog_hash => 'パケットハッシュ';
+
+  @override
+  String get rxLog_raw => '生パケット';
+
+  @override
+  String get rxLog_copyHex => '16進をコピー';
+
+  @override
+  String get deliv_title => '配信の詳細';
+
+  @override
+  String get deliv_note => 'このメッセージに保存された情報から算出しています。';
+
+  @override
+  String get deliv_queued => 'キュー登録';
+
+  @override
+  String get deliv_sent => '無線機が送信';
+
+  @override
+  String get deliv_notSent => '無線機が受け付けませんでした';
+
+  @override
+  String get deliv_attempts => '試行';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return '予定：ダイレクト $direct 回、その後フラッド $flood 回';
+  }
+
+  @override
+  String get deliv_lastRoute => '最後の経路';
+
+  @override
+  String get deliv_routeFlood => 'すべての中継器を通るフラッド';
+
+  @override
+  String get deliv_routeNeighbor => 'ダイレクト（中継なし）';
+
+  @override
+  String deliv_routeVia(String path) {
+    return '$path 経由のダイレクト';
+  }
+
+  @override
+  String get deliv_confirmed => '受信を確認';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return '往復 $seconds 秒';
+  }
+
+  @override
+  String get deliv_waiting => '確認待ち';
+
+  @override
+  String get deliv_noConfirm => '確認なし';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name の最終受信';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours時間前',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return '配信済み。$name が確認しました。';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'ダイレクト送信が失敗した後、フラッドで配信されました。$name への保存経路が古い可能性があります。';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return '送信中：$total 回中 $attempt 回目。';
+  }
+
+  @override
+  String get deliv_vNotSent => '無線機がこのメッセージを受け付けませんでした。接続を確認してから再試行してください。';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours時間',
+    );
+    return '確認なし。$name は$_temp0受信されていないため、圏外か電源が切れている可能性があります。';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      '保存経路で確認がなく、フラッド試行がオフです。設定 → アプリ設定 → メッセージでオンにするか、再試行してください。';
+
+  @override
+  String get deliv_vNoAck => 'どの経路でも確認がありません。圏外か、確認があなたまで届かなかった可能性があります。';
+
+  @override
+  String get batteryOpt_title => 'バッテリーの最適化';
+
+  @override
+  String get batteryOpt_off => 'NOTORYX Core Ham ではオフのため、バックグラウンドでも通知が届きます。';
+
+  @override
+  String get batteryOpt_on =>
+      'オン。Android がバックグラウンドでアプリを停止することがあり、SOS・チェックイン・メッセージの通知が遅れたり届かなかったりします。';
+
+  @override
+  String get batteryOpt_fix => 'オフにする';
+
+  @override
+  String block_sender(String name) {
+    return '$name をブロック';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'この相手のチャンネルメッセージはこの端末で非表示になり、通知もされません。相手からはあなたのメッセージが引き続き見えます。設定でブロックを解除できます。';
+
+  @override
+  String get block_action => 'ブロック';
+
+  @override
+  String block_done(String name) {
+    return '$name をブロックしました';
+  }
+
+  @override
+  String get mention_suggestions => '名前の候補';
+
+  @override
+  String get block_listTitle => 'ブロック中の送信者';
+
+  @override
+  String get block_listHint => 'これらの名前からのメッセージはチャンネルで非表示になり、通知もされません。';
+
+  @override
+  String get block_listEmpty => 'ブロック中の相手はいません。';
+
+  @override
+  String get block_unblock => 'ブロック解除';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件ブロック中',
+      zero: 'ブロックなし',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return '無線機の連絡先リストが $percent% 使用中';
+  }
+
+  @override
+  String get contactTable_full => '無線機の連絡先リストがいっぱいです';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used / $max 件の連絡先';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'いっぱいになると、無線機は最も長く受信していない連絡先を置き換えます。お気に入りは残ります。';
+
+  @override
+  String get contactTable_stopHint => 'いっぱいになると、無線機は新しく受信した連絡先を追加しなくなります。';
+
+  @override
+  String get contactTable_freeUp => '空きを作る';
+
+  @override
+  String get contactTable_sheetBody => '受信が古い順に表示。お気に入りは表示されません。';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return '最終受信 $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件の連絡先を削除',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      '無線機から削除され、この端末上のメッセージも削除されます。元に戻せません。';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 件の連絡先を削除しました',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => 'すべての連絡先がお気に入りのため、候補はありません。';
+
+  @override
+  String get adminWait_waiting => '応答を待っています';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'まだ応答がありません。再試行中 ($attempt/$total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '直接、$hops ホップ',
+      zero: '直接',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '最大 $seconds 秒';
+  }
+
+  @override
+  String get seasonal_holidays => '行事の配色';
+
+  @override
+  String get coords_setting => '座標の形式';
+
+  @override
+  String get coords_decimal => '10進数の度';
+
+  @override
+  String get coords_dms => '度・分・秒';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => '位置をコピー';
+
+  @override
+  String coords_copied(String format) {
+    return '$format でコピーしました';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return '経路は $width バイトのパスハッシュを使用';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'この無線機は $width バイトを使用';
+  }
 }

@@ -72,6 +72,20 @@ class BastionPalette {
     this.motif = BackdropMotif.contours,
   });
 
+  /// A second hue for things that sit beside the accent: the bottom bar's
+  /// selection colour.
+  Color get secondary => nav;
+
+  /// A third hue, after [accent] and [secondary].
+  Color get tertiary => signal;
+
+  /// The theme's hues in order, for giving neighbouring icons or groups
+  /// their own colour. Pick by index with [hue].
+  List<Color> get spectrum => [accent, nav, signal, magenta];
+
+  /// The [spectrum] colour for item [index], repeating.
+  Color hue(int index) => spectrum[index % spectrum.length];
+
   Color get warnBg => warn.withAlpha(0x1F);
   Color get warnLine => warn.withAlpha(0x66);
   Color get alertBg => alert.withAlpha(0x1F);

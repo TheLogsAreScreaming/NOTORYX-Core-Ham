@@ -56,17 +56,24 @@ const double glassRadius = 16;
 /// [EmberBackdrop] glow shows through.
 LinearGradient glassFill(BuildContext context) {
   final dark = Theme.of(context).brightness == Brightness.dark;
+  final tint = glassTint(dark);
   return LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     stops: const [0, 0.06, 1],
     colors: [
-      Colors.white.withValues(alpha: dark ? 0.12 : 0.70),
-      Colors.white.withValues(alpha: dark ? 0.07 : 0.55),
-      Colors.white.withValues(alpha: dark ? 0.03 : 0.40),
+      tint.withValues(alpha: dark ? 0.12 : 0.70),
+      tint.withValues(alpha: dark ? 0.07 : 0.55),
+      tint.withValues(alpha: dark ? 0.03 : 0.40),
     ],
   );
 }
+
+/// The color glass cards are made of: white on dark themes, and on light
+/// themes white mixed with the theme's surface, so a pink or peach theme's
+/// cards are pink or peach rather than plain white.
+Color glassTint(bool dark) =>
+    dark ? Colors.white : Color.lerp(Colors.white, MeshPalette.bg3, 0.55)!;
 
 /// The thin edge of a glass card.
 Color glassEdge(BuildContext context) =>
@@ -279,13 +286,14 @@ class AvatarCircle extends StatelessWidget {
 
   static final _punctuation = RegExp(r'\p{P}', unicode: true);
 
-  static final _hues = [
+  // A getter, not a static final: the palette changes with the theme.
+  static List<Color> get _hues => [
     MeshPalette.accent,
     MeshPalette.magenta,
     MeshPalette.signal,
     MeshPalette.warn,
-    Color(0xFF8FA8F0),
-    Color(0xFF6FD9CE),
+    MeshPalette.secondary,
+    MeshPalette.tertiary,
   ];
 
   Color _colorFor(String s) {
@@ -299,6 +307,14 @@ class AvatarCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accent = color ?? _colorFor(name);
+    // Initials and icons are drawn in the hue on a light tint of it; keep
+    // them readable on that tint over both cards and the page.
+    Color tint(Color surface) =>
+        Color.alphaBlend(accent.withValues(alpha: 0.14), surface);
+    final ink = MeshPalette.readable(
+      MeshPalette.readable(accent, tint(MeshPalette.bg2)),
+      tint(MeshPalette.bg),
+    );
     final initials = initialsFor(name);
     return Container(
       width: size,
@@ -310,13 +326,13 @@ class AvatarCircle extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: icon != null
-          ? Icon(icon, size: size * 0.5, color: accent)
+          ? Icon(icon, size: size * 0.5, color: ink)
           : Text(
               initials,
               style: MeshTheme.mono(
                 fontSize: size * 0.36,
                 fontWeight: FontWeight.w700,
-                color: accent,
+                color: ink,
               ),
             ),
     );

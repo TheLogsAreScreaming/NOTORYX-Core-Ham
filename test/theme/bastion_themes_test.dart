@@ -139,6 +139,21 @@ void main() {
     expect(misses, isEmpty, reason: misses.join('\n'));
   });
 
+  test('icon hues read on every surface they sit on', () {
+    final fails = <String>[];
+    for (final MapEntry(key: name, value: p) in allPalettes().entries) {
+      for (final (i, c) in p.spectrum.indexed) {
+        for (final (surface, bg) in [('bg', p.bg), ('bg2', p.bg2)]) {
+          final r = contrast(c, bg);
+          if (r < 3) {
+            fails.add('$name hue($i) on $surface ${r.toStringAsFixed(2)}');
+          }
+        }
+      }
+    }
+    expect(fails, isEmpty);
+  });
+
   test('SOS and errors stay red in every theme', () {
     for (final MapEntry(key: name, value: p) in allPalettes().entries) {
       final hue = HSVColor.fromColor(p.alert).hue;

@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10003,4 +10002,418 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get theme_holidaysHint =>
       'Halloween, jul och alla hjärtans dag, när årstiden är automatisk';
+
+  @override
+  String get rxLog_title => 'RX-logg';
+
+  @override
+  String get rxLog_hint => 'Varje paket din radio hör, live';
+
+  @override
+  String get rxLog_empty =>
+      'Inga paket än. Paket som din radio hör visas här när de kommer in.';
+
+  @override
+  String get rxLog_note =>
+      'Bara i minnet, de senaste 2 000 paketen. Inget sparas eller skickas.';
+
+  @override
+  String get rxLog_pause => 'Pausa';
+
+  @override
+  String get rxLog_resume => 'Fortsätt';
+
+  @override
+  String get rxLog_export => 'Exportera CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Rensa RX-loggen?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown visade · $total hörda';
+  }
+
+  @override
+  String get rxLog_paused => 'Pausad: nya paket loggas inte';
+
+  @override
+  String get rxLog_kindAll => 'Alla';
+
+  @override
+  String get rxLog_kindAdvert => 'Adverts';
+
+  @override
+  String get rxLog_kindChannel => 'Kanal';
+
+  @override
+  String get rxLog_kindDirect => 'Direkt';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Vägar';
+
+  @override
+  String get rxLog_kindTrace => 'Spårningar';
+
+  @override
+  String get rxLog_kindControl => 'Styrning';
+
+  @override
+  String get rxLog_kindOther => 'Övrigt';
+
+  @override
+  String get rxLog_routeFlood => 'Flood';
+
+  @override
+  String get rxLog_routeDirect => 'Direkt rutt';
+
+  @override
+  String get rxLog_heardDirectly => 'Hörd direkt';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hopp',
+      one: '1 hopp',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count byte',
+      one: '1 byte',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Din radio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Signal';
+
+  @override
+  String get rxLog_route => 'Rutt';
+
+  @override
+  String get rxLog_path => 'Väg';
+
+  @override
+  String get rxLog_payloadType => 'Nyttolasttyp';
+
+  @override
+  String get rxLog_hash => 'Pakethash';
+
+  @override
+  String get rxLog_raw => 'Råpaket';
+
+  @override
+  String get rxLog_copyHex => 'Kopiera hex';
+
+  @override
+  String get deliv_title => 'Leveransdetaljer';
+
+  @override
+  String get deliv_note => 'Beräknat från det som sparats med meddelandet.';
+
+  @override
+  String get deliv_queued => 'I kö';
+
+  @override
+  String get deliv_sent => 'Skickat av din radio';
+
+  @override
+  String get deliv_notSent => 'Inte mottaget av din radio';
+
+  @override
+  String get deliv_attempts => 'Försök';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made av $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Plan: $direct direkt, sedan $flood via flood';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Senaste rutt';
+
+  @override
+  String get deliv_routeFlood => 'Flood via alla repeatrar';
+
+  @override
+  String get deliv_routeNeighbor => 'Direkt, inga repeatrar';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Direkt via $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Mottagning bekräftad';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Tur och retur $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Väntar på bekräftelse';
+
+  @override
+  String get deliv_noConfirm => 'Ingen bekräftelse';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name senast hörd';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'för $hours timmar sedan',
+      one: 'för 1 timme sedan',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Levererat. $name bekräftade det.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Levererat via flood efter att de direkta försöken misslyckats. Den sparade rutten till $name kan vara inaktuell.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Försöker fortfarande: försök $attempt av $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Din radio tog aldrig emot meddelandet. Kontrollera att den är ansluten och försök igen.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours timmar',
+      one: '1 timme',
+    );
+    return 'Ingen bekräftelse. $name har inte hörts på $_temp0 och kan vara utom räckvidd eller avstängd.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Ingen bekräftelse via den sparade rutten, och flood-försök är avstängda. Slå på dem i Inställningar → Appinställningar → Meddelanden, eller försök igen.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Ingen bekräftelse från någon rutt. Utom räckvidd, eller så kom bekräftelsen inte tillbaka till dig.';
+
+  @override
+  String get batteryOpt_title => 'Batterioptimering';
+
+  @override
+  String get batteryOpt_off =>
+      'Av för NOTORYX Core Ham, så aviseringar fungerar i bakgrunden.';
+
+  @override
+  String get batteryOpt_on =>
+      'På. Android kan stoppa appen i bakgrunden, så SOS-, incheckning- och meddelandeaviseringar kan bli sena eller utebli.';
+
+  @override
+  String get batteryOpt_fix => 'Stäng av';
+
+  @override
+  String block_sender(String name) {
+    return 'Blockera $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Personens kanalmeddelanden döljs på den här enheten och ger aldrig aviseringar. Personen ser fortfarande dina meddelanden. Du kan häva blockeringen i Inställningar.';
+
+  @override
+  String get block_action => 'Blockera';
+
+  @override
+  String block_done(String name) {
+    return '$name blockerad';
+  }
+
+  @override
+  String get mention_suggestions => 'Namnförslag';
+
+  @override
+  String get block_listTitle => 'Blockerade avsändare';
+
+  @override
+  String get block_listHint =>
+      'Meddelanden från de här namnen döljs i kanaler och ger aldrig aviseringar.';
+
+  @override
+  String get block_listEmpty => 'Ingen är blockerad.';
+
+  @override
+  String get block_unblock => 'Häv blockering';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blockerade',
+      one: '1 blockerad',
+      zero: 'Ingen blockerad',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Radions kontaktlista $percent % full';
+  }
+
+  @override
+  String get contactTable_full => 'Radions kontaktlista är full';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used av $max kontakter';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'När den är full ersätter radion den kontakt som hörts för längst sedan. Favoriter behålls.';
+
+  @override
+  String get contactTable_stopHint =>
+      'När den är full slutar radion lägga till nya kontakter den hör.';
+
+  @override
+  String get contactTable_freeUp => 'Frigör utrymme';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Hörda för längst sedan först. Favoriter visas inte.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Senast hörd $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Ta bort $count kontakter',
+      one: 'Ta bort 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'De tas bort från radion och deras meddelanden på den här enheten raderas. Det går inte att ångra.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Tog bort $count kontakter',
+      one: 'Tog bort 1 kontakt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Alla kontakter är favoriter, så det finns inget att föreslå.';
+
+  @override
+  String get adminWait_waiting => 'Väntar på svar';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Inget svar än. Försöker igen ($attempt av $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Direkt, $hops hopp',
+      one: 'Direkt, 1 hopp',
+      zero: 'Direkt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'upp till $seconds s';
+  }
+
+  @override
+  String get seasonal_holidays => 'Högtidsfärger';
+
+  @override
+  String get coords_setting => 'Koordinatformat';
+
+  @override
+  String get coords_decimal => 'Decimalgrader';
+
+  @override
+  String get coords_dms => 'Grader, minuter, sekunder';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Kopiera position';
+
+  @override
+  String coords_copied(String format) {
+    return 'Kopierad som $format';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Rutten använder $width-byte sökvägshashar';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Din radio använder $width byte';
+  }
 }

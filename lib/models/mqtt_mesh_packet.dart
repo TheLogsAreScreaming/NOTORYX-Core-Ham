@@ -47,12 +47,21 @@ class MeshPacketInfo {
     required this.hopCount,
     required this.payload,
     required this.hash,
+    required this.pathHashWidth,
+    required this.path,
   });
 
   final int routeType;
   final int payloadType;
   final int hopCount;
   final Uint8List payload;
+
+  /// Bytes per hop in [path]: 1, 2 or 3.
+  final int pathHashWidth;
+
+  /// The repeater hashes the packet has passed through, [pathHashWidth]
+  /// bytes each.
+  final Uint8List path;
 
   /// Firmware-compatible packet hash: the first 8 bytes of
   /// SHA-256(payload type + payload), as lowercase hex. The same packet heard
@@ -74,8 +83,10 @@ class MeshPacketInfo {
     final pathLenRaw = raw[offset++];
     final hopCount = pathLenRaw == 0xFF ? 0 : pathLenRaw & 63;
     final hashWidth = pathLenRaw == 0xFF ? 1 : ((pathLenRaw >> 6) & 0x03) + 1;
+    final pathStart = offset;
     offset += hopCount * hashWidth;
     if (offset > raw.length) return null;
+    final path = Uint8List.sublistView(raw, pathStart, offset);
     final payload = Uint8List.sublistView(raw, offset);
     final payloadType = (header >> 2) & 0x0F;
     return MeshPacketInfo._(
@@ -84,6 +95,8 @@ class MeshPacketInfo {
       hopCount: hopCount,
       payload: payload,
       hash: _packetHash(payloadType, payload),
+      pathHashWidth: hashWidth,
+      path: path,
     );
   }
 

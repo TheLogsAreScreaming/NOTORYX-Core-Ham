@@ -23,6 +23,7 @@ import '../widgets/add_first_banner.dart';
 import '../widgets/quick_messages.dart';
 import '../widgets/share_in_chat.dart';
 import '../widgets/message_status_icon.dart';
+import '../widgets/delivery_sheet.dart';
 import '../helpers/chat_scroll_controller.dart';
 import '../helpers/gif_helper.dart';
 import '../models/channel_message.dart';
@@ -1388,6 +1389,23 @@ class _ChatScreenState extends State<ChatScreen> {
                 _openMessagePath(message, contact);
               },
             ),
+            if (message.isOutgoing && !message.isCli)
+              ListTile(
+                key: const ValueKey('message-delivery-details'),
+                leading: const Icon(Icons.fact_check_outlined),
+                title: Text(context.l10n.deliv_title),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  unawaited(
+                    showDeliverySheet(
+                      context,
+                      message: message,
+                      contact: contact,
+                      onRetry: () => unawaited(_retryMessage(message)),
+                    ),
+                  );
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.copy),
               title: Text(context.l10n.common_copy),
@@ -1720,7 +1738,15 @@ class _MessageBubble extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
-                                  color: _colorForName(senderName),
+                                  // The bubble is see-through, so the name
+                                  // must read on cards and on the page.
+                                  color: MeshPalette.readable(
+                                    MeshPalette.readable(
+                                      _colorForName(senderName),
+                                      MeshPalette.bg2,
+                                    ),
+                                    MeshPalette.bg,
+                                  ),
                                 ),
                               ),
                             ),
@@ -2098,8 +2124,8 @@ Color _colorForName(String name) {
     MeshPalette.magenta,
     MeshPalette.signal,
     MeshPalette.warn,
-    Color(0xFF8FA8F0),
-    Color(0xFF6FD9CE),
+    MeshPalette.secondary,
+    MeshPalette.tertiary,
   ];
   var h = 0;
   for (final c in name.codeUnits) {

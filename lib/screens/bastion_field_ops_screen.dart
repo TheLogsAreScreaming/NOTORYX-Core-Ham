@@ -6,6 +6,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../theme/mesh_theme.dart';
 import '../connector/meshcore_connector.dart';
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
@@ -849,9 +850,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     contentPadding: EdgeInsets.zero,
     leading: Icon(
       good ? Icons.check_circle_outline : Icons.info_outline,
-      color: good
-          ? Theme.of(context).colorScheme.primary
-          : Theme.of(context).colorScheme.secondary,
+      color: good ? Theme.of(context).colorScheme.primary : MeshPalette.warn,
     ),
     title: Text(title),
     subtitle: Text(detail),
@@ -1232,7 +1231,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     }
 
     add(a, Theme.of(context).colorScheme.primary);
-    add(b, Theme.of(context).colorScheme.secondary);
+    add(b, MeshPalette.warn);
     for (final entry in context.watch<FieldOpsService>().entries) {
       if ((entry.kind == 'note' || entry.kind == 'dead-zone') &&
           usablePosition(entry.latitude, entry.longitude)) {
@@ -1248,7 +1247,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
                 entry.kind == 'dead-zone'
                     ? Icons.warning_amber
                     : Icons.edit_location_alt_outlined,
-                color: Theme.of(context).colorScheme.secondary,
+                color: MeshPalette.warn,
               ),
             ),
           ),

@@ -24,6 +24,8 @@ import '../utils/disconnect_navigation_mixin.dart';
 import '../utils/emoji_utils.dart';
 import '../utils/main_tab_navigation.dart';
 import '../widgets/ui/unread_badge.dart';
+import '../widgets/path_hash_badge.dart';
+import '../widgets/contact_table_banner.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/glass_node_card.dart';
@@ -936,6 +938,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             ],
           ),
         ),
+        const ContactTableBanner(),
         Expanded(
           child: RefreshIndicator(
             onRefresh: () => connector.getContacts(),
@@ -1714,15 +1717,27 @@ class _ContactTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          contact.pathLabel(
-                            l10n,
-                            pathHashByteWidth: pathHashByteWidth,
-                          ),
-                          style: MeshTheme.mono(
-                            fontSize: 12,
-                            color: MeshPalette.ink3,
-                          ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (contact.routeHashWidth case final width?) ...[
+                              PathHashBadge(
+                                width: width,
+                                radioWidth: pathHashByteWidth,
+                              ),
+                              const SizedBox(width: 6),
+                            ],
+                            Text(
+                              contact.pathLabel(
+                                l10n,
+                                pathHashByteWidth: pathHashByteWidth,
+                              ),
+                              style: MeshTheme.mono(
+                                fontSize: 12,
+                                color: MeshPalette.ink3,
+                              ),
+                            ),
+                          ],
                         ),
                         if (hasUnread) ...[
                           const SizedBox(height: 4),

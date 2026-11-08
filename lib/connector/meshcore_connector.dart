@@ -410,6 +410,7 @@ class MeshCoreConnector extends ChangeNotifier {
   static const int _defaultMaxContacts = 350;
   static const int _defaultMaxChannels = 40;
   int _maxContacts = _defaultMaxContacts;
+  bool _maxContactsReported = false;
   int _maxChannels = _defaultMaxChannels;
   int? _contactSyncTotal;
   int _contactSyncReceived = 0;
@@ -740,6 +741,10 @@ class MeshCoreConnector extends ChangeNotifier {
   int? get storageUsedKb => _storageUsedKb;
   int? get storageTotalKb => _storageTotalKb;
   int get maxContacts => _maxContacts;
+
+  /// Whether [maxContacts] came from the radio's device info rather than the
+  /// built-in default, so a fullness warning can trust it.
+  bool get maxContactsReported => _maxContactsReported;
   int get maxChannels => _maxChannels;
   Set<String> get knownContactKeys => Set.unmodifiable(_knownContactKeys);
 
@@ -1660,13 +1665,13 @@ class MeshCoreConnector extends ChangeNotifier {
     );
   }
 
-  Future<void> _sendMessageDirect(
+  Future<bool> _sendMessageDirect(
     Contact contact,
     String text,
     int attempt,
     int timestampSeconds,
   ) async {
-    if (!isConnected || text.isEmpty) return;
+    if (!isConnected || text.isEmpty) return false;
     try {
       await _waitForRadioQuiet(lastInboundRxTime: _lastContactMsgRxTime);
       final outboundText = prepareContactOutboundText(contact, text);
@@ -1678,8 +1683,10 @@ class MeshCoreConnector extends ChangeNotifier {
           timestampSeconds: timestampSeconds,
         ),
       );
+      return true;
     } catch (e) {
       appLogger.error('Failed to send message: $e', tag: 'Connector');
+      return false;
     }
   }
 
@@ -3614,6 +3621,7 @@ class MeshCoreConnector extends ChangeNotifier {
     _awaitingSelfInfo = false;
     _hasReceivedDeviceInfo = false;
     _maxContacts = _defaultMaxContacts;
+    _maxContactsReported = false;
     _maxChannels = _defaultMaxChannels;
     _resetSyncProgressState();
     _pendingChannelSentQueue.clear();
@@ -5936,6 +5944,7 @@ class MeshCoreConnector extends ChangeNotifier {
     final nextMaxContacts = reportedContacts > 0
         ? reportedContacts * 2
         : _maxContacts;
+    if (reportedContacts > 0) _maxContactsReported = true;
     final nextMaxChannels = reportedChannels > 0
         ? reportedChannels
         : _maxChannels;
@@ -6281,6 +6290,12 @@ class MeshCoreConnector extends ChangeNotifier {
             (_autoAddRoomServers && contact.type == advTypeRoom) ||
             (_autoAddSensors && contact.type == advTypeSensor) ||
             isContact) {
+          // A contact from the radio's own list is truth; one the radio
+          // auto-added from an advert must fit its table, as it does there.
+          if (!isContact && !_admitAutoAddedContact(contact)) {
+            notifyListeners();
+            return;
+          }
           _contacts.add(contact);
           appLogger.info(
             'Added new contact ${contact.name}: pathLen=${contact.pathLength}',
@@ -6321,6 +6336,56 @@ class MeshCoreConnector extends ChangeNotifier {
         unawaited(_persistContacts());
       }
     }
+  }
+
+  /// Whether the radio would have room for a contact it auto-added from an
+  /// advert, mirroring its table: when full it either replaces the oldest
+  /// non-favorite (overwrite oldest on), which is dropped here too, or adds
+  /// nothing. Without this the list here drifts from the radio's over a long
+  /// session, keeping contacts the radio no longer has.
+  bool _admitAutoAddedContact(Contact contact) {
+    if (_contacts.length < _maxContacts) return true;
+    if (!_overwriteOldest) {
+      appLogger.info(
+        'Contact table full ($_maxContacts); radio did not add ${contact.name}',
+        tag: 'Connector',
+      );
+      return false;
+    }
+    Contact? oldest;
+    for (final c in _contacts) {
+      if (c.isFavorite) continue;
+      if (oldest == null ||
+          (c.lastModified ?? c.lastSeen).isBefore(
+            oldest.lastModified ?? oldest.lastSeen,
+          )) {
+        oldest = c;
+      }
+    }
+    if (oldest == null) return false;
+    final evicted = oldest;
+    _contacts.removeWhere((c) => c.publicKeyHex == evicted.publicKeyHex);
+    _knownContactKeys.remove(evicted.publicKeyHex);
+    appLogger.info(
+      'Contact table full; radio replaced ${evicted.name} with ${contact.name}',
+      tag: 'Connector',
+    );
+    return true;
+  }
+
+  /// Sets the contact-table limits as the radio reports them; for tests.
+  @visibleForTesting
+  void debugSetContactTable({
+    required int maxContacts,
+    bool overwriteOldest = false,
+    bool autoAddUsers = false,
+    bool autoAddRepeaters = false,
+  }) {
+    _maxContacts = maxContacts;
+    _maxContactsReported = true;
+    _overwriteOldest = overwriteOldest;
+    _autoAddUsers = autoAddUsers;
+    _autoAddRepeaters = autoAddRepeaters;
   }
 
   void _handleContactAdvert(Contact contact) {
@@ -6367,6 +6432,10 @@ class MeshCoreConnector extends ChangeNotifier {
         tag: 'Connector',
       );
     } else {
+      if (!_admitAutoAddedContact(contact)) {
+        notifyListeners();
+        return;
+      }
       _contacts.add(contact);
       appLogger.info(
         'Added new contact ${contact.name}: pathLen=${contact.pathLength}',
@@ -6973,6 +7042,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
     final label = channelName ?? _channelDisplayName(channelIndex);
     if (_appSettingsService!.isChannelMuted(label)) return;
+    if (_isBlockedChannelSender(message)) return;
     if (!_receivedChannelMessagesController.isClosed) {
       _receivedChannelMessagesController.add(
         ReceivedChannelMessage(message, label),
@@ -7712,10 +7782,17 @@ class MeshCoreConnector extends ChangeNotifier {
         );
   }
 
+  /// Whether [message] comes from a sender the user blocked: it is kept but
+  /// neither notifies nor counts as unread.
+  bool _isBlockedChannelSender(ChannelMessage message) =>
+      !message.isOutgoing &&
+      (_appSettingsService?.isSenderBlocked(message.senderName) ?? false);
+
   void _maybeIncrementChannelUnread(
     ChannelMessage message, {
     required bool isNew,
   }) {
+    if (_isBlockedChannelSender(message)) return;
     if (!isNew || message.isOutgoing) {
       _appDebugLogService?.info(
         'Skip unread increment: isNew=$isNew, isOutgoing=${message.isOutgoing}',
@@ -8452,6 +8529,7 @@ class MeshCoreConnector extends ChangeNotifier {
     // They're only cleared on manual disconnect via disconnect() method
     _hasReceivedDeviceInfo = false;
     _maxContacts = _defaultMaxContacts;
+    _maxContactsReported = false;
     _maxChannels = _defaultMaxChannels;
     _resetSyncProgressState();
     _pendingChannelSentQueue.clear();

@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10071,4 +10070,419 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get theme_holidaysHint =>
       'Halloween, karácsony és Valentin-nap, ha az évszak automatikus';
+
+  @override
+  String get rxLog_title => 'RX napló';
+
+  @override
+  String get rxLog_hint => 'Minden csomag, amit a rádiód hall, élőben';
+
+  @override
+  String get rxLog_empty =>
+      'Még nincs csomag. A rádiód által hallott csomagok itt jelennek meg, amint megérkeznek.';
+
+  @override
+  String get rxLog_note =>
+      'Csak a memóriában, az utolsó 2000 csomag. Semmi nem kerül mentésre vagy elküldésre.';
+
+  @override
+  String get rxLog_pause => 'Szünet';
+
+  @override
+  String get rxLog_resume => 'Folytatás';
+
+  @override
+  String get rxLog_export => 'Exportálás CSV-be';
+
+  @override
+  String get rxLog_clearConfirm => 'Törlöd az RX naplót?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown látható · $total hallott';
+  }
+
+  @override
+  String get rxLog_paused =>
+      'Szüneteltetve: az új csomagok nem kerülnek naplózásra';
+
+  @override
+  String get rxLog_kindAll => 'Mind';
+
+  @override
+  String get rxLog_kindAdvert => 'Hirdetések';
+
+  @override
+  String get rxLog_kindChannel => 'Csatorna';
+
+  @override
+  String get rxLog_kindDirect => 'Közvetlen';
+
+  @override
+  String get rxLog_kindAck => 'Nyugták';
+
+  @override
+  String get rxLog_kindPath => 'Útvonalak';
+
+  @override
+  String get rxLog_kindTrace => 'Nyomkövetések';
+
+  @override
+  String get rxLog_kindControl => 'Vezérlés';
+
+  @override
+  String get rxLog_kindOther => 'Egyéb';
+
+  @override
+  String get rxLog_routeFlood => 'Elárasztás';
+
+  @override
+  String get rxLog_routeDirect => 'Közvetlen útvonal';
+
+  @override
+  String get rxLog_heardDirectly => 'Közvetlenül hallva';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ugrás',
+      one: '1 ugrás',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bájt',
+      one: '1 bájt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'A rádiód';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Jel';
+
+  @override
+  String get rxLog_route => 'Útvonal';
+
+  @override
+  String get rxLog_path => 'Út';
+
+  @override
+  String get rxLog_payloadType => 'Tartalomtípus';
+
+  @override
+  String get rxLog_hash => 'Csomag hash';
+
+  @override
+  String get rxLog_raw => 'Nyers csomag';
+
+  @override
+  String get rxLog_copyHex => 'Hex másolása';
+
+  @override
+  String get deliv_title => 'Kézbesítési részletek';
+
+  @override
+  String get deliv_note => 'Az üzenettel mentett adatokból számolva.';
+
+  @override
+  String get deliv_queued => 'Sorban áll';
+
+  @override
+  String get deliv_sent => 'A rádiód elküldte';
+
+  @override
+  String get deliv_notSent => 'A rádiód nem vette át';
+
+  @override
+  String get deliv_attempts => 'Próbálkozások';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Terv: $direct közvetlen, majd $flood elárasztásos';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Utolsó útvonal';
+
+  @override
+  String get deliv_routeFlood => 'Elárasztás minden átjátszón át';
+
+  @override
+  String get deliv_routeNeighbor => 'Közvetlen, átjátszó nélkül';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Közvetlenül ezen át: $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Kézbesítés megerősítve';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Oda-vissza $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Megerősítésre vár';
+
+  @override
+  String get deliv_noConfirm => 'Nincs megerősítés';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name utoljára hallva';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours órája',
+      one: '1 órája',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Kézbesítve. $name megerősítette.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Elárasztással kézbesítve, miután a közvetlen próbák nem sikerültek. A(z) $name felé mentett útvonal elavult lehet.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Még próbálkozik: $attempt. próba / $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'A rádiód nem vette át ezt az üzenetet. Ellenőrizd a kapcsolatot, majd próbáld újra.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours órája',
+      one: '1 órája',
+    );
+    return 'Nincs megerősítés. $name $_temp0 nem hallható, lehet hatótávon kívül vagy kikapcsolva.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Nincs megerősítés a mentett útvonalon, és az elárasztásos próbák ki vannak kapcsolva. Kapcsold be őket: Beállítások → Alkalmazás beállításai → Üzenetek, vagy próbáld újra.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Egyik útvonalon sem jött megerősítés. Lehet hatótávon kívül, vagy a megerősítés nem jutott vissza hozzád.';
+
+  @override
+  String get batteryOpt_title => 'Akkumulátor-optimalizálás';
+
+  @override
+  String get batteryOpt_off =>
+      'A NOTORYX Core Ham számára ki van kapcsolva, így az értesítések a háttérben is működnek.';
+
+  @override
+  String get batteryOpt_on =>
+      'Bekapcsolva. Az Android leállíthatja az alkalmazást a háttérben, így az SOS-, bejelentkezési és üzenetértesítések késhetnek vagy elmaradhatnak.';
+
+  @override
+  String get batteryOpt_fix => 'Kikapcsolás';
+
+  @override
+  String block_sender(String name) {
+    return '$name letiltása';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'A csatornaüzenetei rejtve maradnak ezen az eszközön, és soha nem küldenek értesítést. Ő továbbra is látja az üzeneteidet. A tiltást a Beállításokban oldhatod fel.';
+
+  @override
+  String get block_action => 'Letiltás';
+
+  @override
+  String block_done(String name) {
+    return '$name letiltva';
+  }
+
+  @override
+  String get mention_suggestions => 'Névjavaslatok';
+
+  @override
+  String get block_listTitle => 'Letiltott feladók';
+
+  @override
+  String get block_listHint =>
+      'Ezektől a nevektől érkező üzenetek rejtve maradnak a csatornákban, és soha nem küldenek értesítést.';
+
+  @override
+  String get block_listEmpty => 'Senki sincs letiltva.';
+
+  @override
+  String get block_unblock => 'Tiltás feloldása';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count letiltva',
+      one: '1 letiltva',
+      zero: 'Senki sincs letiltva',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'A rádió névjegylistája $percent%-ban tele';
+  }
+
+  @override
+  String get contactTable_full => 'A rádió névjegylistája megtelt';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used / $max névjegy';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Ha megtelt, a rádió a legrégebben hallott névjegyet cseréli le. A kedvencek megmaradnak.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Ha megtelt, a rádió nem vesz fel több újonnan hallott névjegyet.';
+
+  @override
+  String get contactTable_freeUp => 'Hely felszabadítása';
+
+  @override
+  String get contactTable_sheetBody =>
+      'A legrégebben hallottak elöl. A kedvencek nem szerepelnek.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Utoljára hallva: $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count névjegy eltávolítása',
+      one: '1 névjegy eltávolítása',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Eltávolítjuk őket a rádióról, és az üzeneteik törlődnek erről az eszközről. Ez nem vonható vissza.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count névjegy eltávolítva',
+      one: '1 névjegy eltávolítva',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Minden névjegy kedvenc, így nincs mit javasolni.';
+
+  @override
+  String get adminWait_waiting => 'Válaszra várva';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Még nincs válasz. Újrapróbálás ($attempt/$total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Közvetlen, $hops ugrás',
+      one: 'Közvetlen, 1 ugrás',
+      zero: 'Közvetlen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'legfeljebb $seconds mp';
+  }
+
+  @override
+  String get seasonal_holidays => 'Ünnepi színek';
+
+  @override
+  String get coords_setting => 'Koordinátaformátum';
+
+  @override
+  String get coords_decimal => 'Tizedes fok';
+
+  @override
+  String get coords_dms => 'Fok, perc, másodperc';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Pozíció másolása';
+
+  @override
+  String coords_copied(String format) {
+    return 'Másolva: $format';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Az útvonal $width bájtos útvonal-hasheket használ';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'A rádiód $width bájtosat használ';
+  }
 }

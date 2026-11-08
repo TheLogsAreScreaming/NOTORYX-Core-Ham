@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9397,4 +9396,397 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get theme_holidaysHint => '季节为自动时，使用万圣节、圣诞节和情人节配色';
+
+  @override
+  String get rxLog_title => '接收日志';
+
+  @override
+  String get rxLog_hint => '实时显示电台收到的每个数据包';
+
+  @override
+  String get rxLog_empty => '暂无数据包。电台收到的数据包会在到达时显示在这里。';
+
+  @override
+  String get rxLog_note => '仅保存在内存中，最近 2,000 个数据包。不会保存或发送任何内容。';
+
+  @override
+  String get rxLog_pause => '暂停';
+
+  @override
+  String get rxLog_resume => '继续';
+
+  @override
+  String get rxLog_export => '导出 CSV';
+
+  @override
+  String get rxLog_clearConfirm => '清空接收日志？';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '显示 $shown 个 · 收到 $total 个';
+  }
+
+  @override
+  String get rxLog_paused => '已暂停：不记录新数据包';
+
+  @override
+  String get rxLog_kindAll => '全部';
+
+  @override
+  String get rxLog_kindAdvert => '广播';
+
+  @override
+  String get rxLog_kindChannel => '频道';
+
+  @override
+  String get rxLog_kindDirect => '私信';
+
+  @override
+  String get rxLog_kindAck => '确认';
+
+  @override
+  String get rxLog_kindPath => '路径';
+
+  @override
+  String get rxLog_kindTrace => '追踪';
+
+  @override
+  String get rxLog_kindControl => '控制';
+
+  @override
+  String get rxLog_kindOther => '其他';
+
+  @override
+  String get rxLog_routeFlood => '泛洪';
+
+  @override
+  String get rxLog_routeDirect => '直连路由';
+
+  @override
+  String get rxLog_heardDirectly => '直接收到';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 跳',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count 字节',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => '你的电台';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => '信号';
+
+  @override
+  String get rxLog_route => '路由';
+
+  @override
+  String get rxLog_path => '路径';
+
+  @override
+  String get rxLog_payloadType => '负载类型';
+
+  @override
+  String get rxLog_hash => '数据包哈希';
+
+  @override
+  String get rxLog_raw => '原始数据包';
+
+  @override
+  String get rxLog_copyHex => '复制十六进制';
+
+  @override
+  String get deliv_title => '送达详情';
+
+  @override
+  String get deliv_note => '根据此消息保存的信息推算。';
+
+  @override
+  String get deliv_queued => '已排队';
+
+  @override
+  String get deliv_sent => '电台已发送';
+
+  @override
+  String get deliv_notSent => '电台未接收';
+
+  @override
+  String get deliv_attempts => '尝试';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made / $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return '计划：直连 $direct 次，然后泛洪 $flood 次';
+  }
+
+  @override
+  String get deliv_lastRoute => '最后路由';
+
+  @override
+  String get deliv_routeFlood => '泛洪，经过所有中继';
+
+  @override
+  String get deliv_routeNeighbor => '直连，无中继';
+
+  @override
+  String deliv_routeVia(String path) {
+    return '经 $path 直连';
+  }
+
+  @override
+  String get deliv_confirmed => '已确认收到';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return '往返 $seconds 秒';
+  }
+
+  @override
+  String get deliv_waiting => '等待确认';
+
+  @override
+  String get deliv_noConfirm => '无确认';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name 最后收到';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时前',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return '已送达。$name 已确认。';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return '直连尝试失败后通过泛洪送达。到 $name 的已保存路由可能已过时。';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return '仍在尝试：第 $attempt 次，共 $total 次。';
+  }
+
+  @override
+  String get deliv_vNotSent => '电台从未接收此消息。请检查连接后重试。';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours 小时',
+    );
+    return '无确认。已 $_temp0未收到 $name，可能超出范围或已关机。';
+  }
+
+  @override
+  String get deliv_vNoFlood => '已保存路由无确认，且泛洪尝试已关闭。可在 设置 → 应用设置 → 消息 中开启，或重试。';
+
+  @override
+  String get deliv_vNoAck => '所有路由均无确认。可能超出范围，或确认未能传回给你。';
+
+  @override
+  String get batteryOpt_title => '电池优化';
+
+  @override
+  String get batteryOpt_off => '已为 NOTORYX Core Ham 关闭，后台也能正常提醒。';
+
+  @override
+  String get batteryOpt_on => '已开启。Android 可能会在后台停止本应用，SOS、签到和消息提醒可能延迟或丢失。';
+
+  @override
+  String get batteryOpt_fix => '关闭';
+
+  @override
+  String block_sender(String name) {
+    return '屏蔽 $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      '此人的频道消息会在本设备上隐藏，且不会通知你。对方仍能看到你的消息。可在设置中取消屏蔽。';
+
+  @override
+  String get block_action => '屏蔽';
+
+  @override
+  String block_done(String name) {
+    return '已屏蔽 $name';
+  }
+
+  @override
+  String get mention_suggestions => '名称建议';
+
+  @override
+  String get block_listTitle => '已屏蔽的发送者';
+
+  @override
+  String get block_listHint => '来自这些名称的消息会在频道中隐藏，且不会通知你。';
+
+  @override
+  String get block_listEmpty => '没有屏蔽任何人。';
+
+  @override
+  String get block_unblock => '取消屏蔽';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已屏蔽 $count 人',
+      zero: '未屏蔽任何人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return '电台联系人列表已用 $percent%';
+  }
+
+  @override
+  String get contactTable_full => '电台联系人列表已满';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used / $max 个联系人';
+  }
+
+  @override
+  String get contactTable_overwriteHint => '列表满后，电台会替换最久未收到的联系人。收藏联系人会保留。';
+
+  @override
+  String get contactTable_stopHint => '列表满后，电台将不再添加新收到的联系人。';
+
+  @override
+  String get contactTable_freeUp => '释放空间';
+
+  @override
+  String get contactTable_sheetBody => '最久未收到的排在前面。收藏联系人不在列表中。';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return '最后收到 $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '删除 $count 个联系人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody => '这些联系人会从电台删除，其在本设备上的消息也会删除。此操作无法撤销。';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已删除 $count 个联系人',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest => '所有联系人都是收藏，因此没有可建议删除的。';
+
+  @override
+  String get adminWait_waiting => '正在等待回复';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return '尚未收到回复。正在重试（第 $attempt/$total 次）';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: '直连，$hops 跳',
+      zero: '直连',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return '最多 $seconds 秒';
+  }
+
+  @override
+  String get seasonal_holidays => '节日配色';
+
+  @override
+  String get coords_setting => '坐标格式';
+
+  @override
+  String get coords_decimal => '十进制度';
+
+  @override
+  String get coords_dms => '度分秒';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => '复制位置';
+
+  @override
+  String coords_copied(String format) {
+    return '已按 $format 复制';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return '该路由使用 $width 字节路径哈希';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return '你的电台使用 $width 字节';
+  }
 }

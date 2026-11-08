@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -10068,4 +10067,434 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get theme_holidaysHint =>
       'Noč čarovnic, božič in valentinovo, ko je letni čas samodejen';
+
+  @override
+  String get rxLog_title => 'Dnevnik RX';
+
+  @override
+  String get rxLog_hint => 'Vsak paket, ki ga sliši vaš radio, v živo';
+
+  @override
+  String get rxLog_empty =>
+      'Paketov še ni. Paketi, ki jih sliši radio, se prikažejo tukaj, ko prispejo.';
+
+  @override
+  String get rxLog_note =>
+      'Shranjeno samo v pomnilniku, zadnjih 2000 paketov. Nič se ne shrani ali pošlje.';
+
+  @override
+  String get rxLog_pause => 'Premor';
+
+  @override
+  String get rxLog_resume => 'Nadaljuj';
+
+  @override
+  String get rxLog_export => 'Izvozi CSV';
+
+  @override
+  String get rxLog_clearConfirm => 'Počistim dnevnik RX?';
+
+  @override
+  String rxLog_count(int shown, int total) {
+    return '$shown prikazanih · $total slišanih';
+  }
+
+  @override
+  String get rxLog_paused => 'Premor: novi paketi se ne beležijo';
+
+  @override
+  String get rxLog_kindAll => 'Vsi';
+
+  @override
+  String get rxLog_kindAdvert => 'Oglasi';
+
+  @override
+  String get rxLog_kindChannel => 'Kanal';
+
+  @override
+  String get rxLog_kindDirect => 'Neposredni';
+
+  @override
+  String get rxLog_kindAck => 'ACK';
+
+  @override
+  String get rxLog_kindPath => 'Poti';
+
+  @override
+  String get rxLog_kindTrace => 'Sledenja';
+
+  @override
+  String get rxLog_kindControl => 'Krmiljenje';
+
+  @override
+  String get rxLog_kindOther => 'Drugo';
+
+  @override
+  String get rxLog_routeFlood => 'Poplava';
+
+  @override
+  String get rxLog_routeDirect => 'Neposredna pot';
+
+  @override
+  String get rxLog_heardDirectly => 'Slišano neposredno';
+
+  @override
+  String rxLog_hops(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count skokov',
+      few: '$count skoki',
+      two: '2 skoka',
+      one: '1 skok',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String rxLog_bytes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bajtov',
+      few: '$count bajti',
+      two: '2 bajta',
+      one: '1 bajt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get rxLog_own => 'Vaš radio';
+
+  @override
+  String rxLog_signal(String snr, int rssi) {
+    return 'SNR $snr · $rssi dBm';
+  }
+
+  @override
+  String get rxLog_signalTitle => 'Signal';
+
+  @override
+  String get rxLog_route => 'Usmerjanje';
+
+  @override
+  String get rxLog_path => 'Pot';
+
+  @override
+  String get rxLog_payloadType => 'Vrsta vsebine';
+
+  @override
+  String get rxLog_hash => 'Zgoščena vrednost paketa';
+
+  @override
+  String get rxLog_raw => 'Surovi paket';
+
+  @override
+  String get rxLog_copyHex => 'Kopiraj hex';
+
+  @override
+  String get deliv_title => 'Podrobnosti dostave';
+
+  @override
+  String get deliv_note =>
+      'Izračunano iz podatkov, shranjenih s tem sporočilom.';
+
+  @override
+  String get deliv_queued => 'V čakalni vrsti';
+
+  @override
+  String get deliv_sent => 'Poslal vaš radio';
+
+  @override
+  String get deliv_notSent => 'Vaš radio ga ni sprejel';
+
+  @override
+  String get deliv_attempts => 'Poskusi';
+
+  @override
+  String deliv_attemptsValue(int made, int total) {
+    return '$made od $total';
+  }
+
+  @override
+  String deliv_plan(int direct, int flood) {
+    return 'Načrt: $direct neposredno, nato $flood s poplavo';
+  }
+
+  @override
+  String get deliv_lastRoute => 'Zadnja pot';
+
+  @override
+  String get deliv_routeFlood => 'Poplava prek vseh repetitorjev';
+
+  @override
+  String get deliv_routeNeighbor => 'Neposredno, brez repetitorjev';
+
+  @override
+  String deliv_routeVia(String path) {
+    return 'Neposredno prek $path';
+  }
+
+  @override
+  String get deliv_confirmed => 'Prejem potrjen';
+
+  @override
+  String deliv_tripTime(String seconds) {
+    return 'Povratni čas $seconds s';
+  }
+
+  @override
+  String get deliv_waiting => 'Čakanje na potrditev';
+
+  @override
+  String get deliv_noConfirm => 'Ni potrditve';
+
+  @override
+  String deliv_lastHeard(String name) {
+    return '$name nazadnje slišan';
+  }
+
+  @override
+  String deliv_hoursAgo(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'pred $hours urami',
+      two: 'pred 2 urama',
+      one: 'pred 1 uro',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String deliv_vDelivered(String name) {
+    return 'Dostavljeno. $name je potrdil.';
+  }
+
+  @override
+  String deliv_vDeliveredFlood(String name) {
+    return 'Dostavljeno s poplavo po neuspešnih neposrednih poskusih. Shranjena pot do $name je morda zastarela.';
+  }
+
+  @override
+  String deliv_vPending(int attempt, int total) {
+    return 'Še poskuša: poskus $attempt od $total.';
+  }
+
+  @override
+  String get deliv_vNotSent =>
+      'Vaš radio tega sporočila ni sprejel. Preverite povezavo in poskusite znova.';
+
+  @override
+  String deliv_vQuiet(String name, int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours ur',
+      few: '$hours ure',
+      two: '2 uri',
+      one: '1 uro',
+    );
+    return 'Ni potrditve. $name ni slišan že $_temp0, morda je zunaj dosega ali izklopljen.';
+  }
+
+  @override
+  String get deliv_vNoFlood =>
+      'Ni potrditve po shranjeni poti, poskusi s poplavo pa so izklopljeni. Vklopite jih v Nastavitve → Nastavitve aplikacije → Sporočila ali poskusite znova.';
+
+  @override
+  String get deliv_vNoAck =>
+      'Ni potrditve po nobeni poti. Morda je zunaj dosega ali potrditev ni prišla nazaj do vas.';
+
+  @override
+  String get batteryOpt_title => 'Optimizacija baterije';
+
+  @override
+  String get batteryOpt_off =>
+      'Za NOTORYX Core Ham je izklopljena, zato obvestila delujejo tudi v ozadju.';
+
+  @override
+  String get batteryOpt_on =>
+      'Vklopljena. Android lahko aplikacijo v ozadju ustavi, zato lahko obvestila o SOS, prijavah in sporočilih zamujajo ali se izgubijo.';
+
+  @override
+  String get batteryOpt_fix => 'Izklopi';
+
+  @override
+  String block_sender(String name) {
+    return 'Blokiraj $name';
+  }
+
+  @override
+  String get block_confirmBody =>
+      'Njegova sporočila v kanalih so na tej napravi skrita in vas nikoli ne obvestijo. Še vedno vidi vaša sporočila. Blokado lahko odstranite v Nastavitvah.';
+
+  @override
+  String get block_action => 'Blokiraj';
+
+  @override
+  String block_done(String name) {
+    return '$name blokiran';
+  }
+
+  @override
+  String get mention_suggestions => 'Predlogi imen';
+
+  @override
+  String get block_listTitle => 'Blokirani pošiljatelji';
+
+  @override
+  String get block_listHint =>
+      'Sporočila teh imen so v kanalih skrita in vas nikoli ne obvestijo.';
+
+  @override
+  String get block_listEmpty => 'Nihče ni blokiran.';
+
+  @override
+  String get block_unblock => 'Odblokiraj';
+
+  @override
+  String block_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count blokiranih',
+      few: '$count blokirani',
+      two: '2 blokirana',
+      one: '1 blokiran',
+      zero: 'Nihče ni blokiran',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String contactTable_nearlyFull(int percent) {
+    return 'Seznam stikov radia je poln $percent %';
+  }
+
+  @override
+  String get contactTable_full => 'Seznam stikov radia je poln';
+
+  @override
+  String contactTable_count(int used, int max) {
+    return '$used od $max stikov';
+  }
+
+  @override
+  String get contactTable_overwriteHint =>
+      'Ko je poln, radio zamenja stik, ki ga najdlje ni slišal. Priljubljeni ostanejo.';
+
+  @override
+  String get contactTable_stopHint =>
+      'Ko je poln, radio ne dodaja več novih slišanih stikov.';
+
+  @override
+  String get contactTable_freeUp => 'Sprosti prostor';
+
+  @override
+  String get contactTable_sheetBody =>
+      'Najprej tisti, ki jih najdlje ni bilo slišati. Priljubljeni niso navedeni.';
+
+  @override
+  String contactTable_lastHeard(String when) {
+    return 'Nazadnje slišan $when';
+  }
+
+  @override
+  String contactTable_remove(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Odstrani $count stikov',
+      few: 'Odstrani $count stike',
+      two: 'Odstrani 2 stika',
+      one: 'Odstrani 1 stik',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_confirmBody =>
+      'Odstranjeni bodo z radia, njihova sporočila na tej napravi pa izbrisana. Tega ni mogoče razveljaviti.';
+
+  @override
+  String contactTable_removed(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Odstranjenih $count stikov',
+      few: 'Odstranjeni $count stiki',
+      two: 'Odstranjena 2 stika',
+      one: 'Odstranjen 1 stik',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get contactTable_noneToSuggest =>
+      'Vsi stiki so priljubljeni, zato ni kaj predlagati.';
+
+  @override
+  String get adminWait_waiting => 'Čakanje na odgovor';
+
+  @override
+  String adminWait_retrying(int attempt, int total) {
+    return 'Odgovora še ni. Nov poskus ($attempt od $total)';
+  }
+
+  @override
+  String adminWait_direct(int hops) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hops,
+      locale: localeName,
+      other: 'Neposredno, $hops skokov',
+      few: 'Neposredno, $hops skoki',
+      two: 'Neposredno, 2 skoka',
+      one: 'Neposredno, 1 skok',
+      zero: 'Neposredno',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String adminWait_upTo(int seconds) {
+    return 'do $seconds s';
+  }
+
+  @override
+  String get seasonal_holidays => 'Praznične barve';
+
+  @override
+  String get coords_setting => 'Oblika koordinat';
+
+  @override
+  String get coords_decimal => 'Decimalne stopinje';
+
+  @override
+  String get coords_dms => 'Stopinje, minute, sekunde';
+
+  @override
+  String get coords_utm => 'UTM';
+
+  @override
+  String get coords_mgrs => 'MGRS';
+
+  @override
+  String get coords_copyTitle => 'Kopiraj položaj';
+
+  @override
+  String coords_copied(String format) {
+    return 'Kopirano kot $format';
+  }
+
+  @override
+  String pathHash_badge(int width) {
+    return 'Pot uporablja $width-bajtne zgoščene vrednosti poti';
+  }
+
+  @override
+  String pathHash_mismatch(int width) {
+    return 'Vaš radio uporablja $width bajte';
+  }
 }
