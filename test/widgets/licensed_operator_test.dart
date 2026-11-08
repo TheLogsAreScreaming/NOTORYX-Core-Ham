@@ -18,7 +18,11 @@ class _Connector extends MeshCoreConnector {
     this.name,
     this.freqKhz,
     this.mismatches = const [],
+    this.firmware,
   });
+  final String? firmware;
+  @override
+  String? get firmwareVersionString => firmware;
   final bool connected;
   final String? name;
   final int? freqKhz;
@@ -49,6 +53,7 @@ void main() {
     String? name,
     int? freqKhz,
     List<StationIdMismatch> mismatches = const [],
+    String? firmware,
   }) {
     final navigatorKey = GlobalKey<NavigatorState>();
     return MultiProvider(
@@ -59,6 +64,7 @@ void main() {
             name: name,
             freqKhz: freqKhz,
             mismatches: mismatches,
+            firmware: firmware,
           ),
         ),
         ChangeNotifierProvider.value(value: profiles),
@@ -234,5 +240,42 @@ void main() {
       find.text("This name doesn't start with a call sign"),
       findsOneWidget,
     );
+  });
+
+  testWidgets('stock firmware is flagged before anything else', (tester) async {
+    await tester.pumpWidget(
+      app(
+        const Text('home'),
+        connected: true,
+        name: 'Base',
+        firmware: 'v1.18.0-6aab3dd0',
+      ),
+    );
+    await tester.pump();
+    expect(
+      find.text(
+        "This radio runs stock MeshCore. Don't transmit with it on the ham "
+        'bands',
+      ),
+      findsOneWidget,
+    );
+
+    await tester.pumpWidget(
+      app(
+        const LicensedOperatorScreen(),
+        connected: true,
+        name: 'Base',
+        firmware: 'v1.18.0-6aab3dd0',
+      ),
+    );
+    await tester.pumpAndSettle();
+    final note = find.textContaining('Stock MeshCore encrypts');
+    await tester.scrollUntilVisible(
+      note,
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(note, findsOneWidget);
+    expect(find.text('Ready to transmit'), findsNothing);
   });
 }

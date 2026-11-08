@@ -4307,5 +4307,8 @@
   "ham_idMismatchBody": "Deze direct ontvangen adverts hadden een andere stations-ID dan de roepnaam waarmee hun naam begint. Mogelijk is een radio verkeerd ingesteld; overleg met de operator voordat u erop vertrouwt.",
   "ham_idMismatchSentAs": "verzonden met stations-ID {station}",
   "ham_idMismatchNoCall": "Deze naam begint niet met een roepnaam",
-  "ham_composerPlainText": "Platte tekst: iedereen die meeluistert kan dit lezen"
+  "ham_composerPlainText": "Platte tekst: iedereen die meeluistert kan dit lezen",
+  "ham_bannerStockFirmware": "Deze radio draait standaard MeshCore. Zend er niet mee op de amateurbanden",
+  "ham_firmwareOk": "NOTORYX Ham-firmware: stations-ID, platte tekst, alleen amateurbanden",
+  "ham_firmwareStock": "Standaard MeshCore versleutelt en zendt geen stations-ID. Flash de NOTORYX Ham-firmware voordat u zendt"
 }

@@ -4307,5 +4307,8 @@
   "ham_idMismatchBody": "De här direkt mottagna annonserna hade ett annat stations-ID än anropssignalen som namnet börjar med. Det kan vara en felinställd radio; kontrollera med operatören innan du litar på det.",
   "ham_idMismatchSentAs": "skickad med stations-ID {station}",
   "ham_idMismatchNoCall": "Namnet börjar inte med en anropssignal",
-  "ham_composerPlainText": "Klartext: alla som lyssnar kan läsa detta"
+  "ham_composerPlainText": "Klartext: alla som lyssnar kan läsa detta",
+  "ham_bannerStockFirmware": "Den här radion kör vanlig MeshCore. Sänd inte med den på amatörbanden",
+  "ham_firmwareOk": "NOTORYX Ham-firmware: stations-ID, klartext, bara amatörband",
+  "ham_firmwareStock": "Vanlig MeshCore krypterar och skickar inget stations-ID. Flasha NOTORYX Ham-firmware innan du sänder"
 }

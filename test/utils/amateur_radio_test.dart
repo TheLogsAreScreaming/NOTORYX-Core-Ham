@@ -96,4 +96,14 @@ void main() {
     expect(amateurMaxGroupDataBytes, 157);
     expect(kImageChunkBlobBytes, lessThanOrEqualTo(amateurMaxGroupDataBytes));
   });
+
+  test('tells the ham firmware from stock MeshCore by its version', () {
+    // The radio cuts the version to 19 characters.
+    expect(isAmateurFirmware('v1.18.0-ham-test.2-'), isTrue);
+    expect(isAmateurFirmware('v1.19.0-HAM-6aab3dd0'), isTrue);
+    expect(isAmateurFirmware('v1.18.0-6aab3dd0'), isFalse);
+    expect(isAmateurFirmware('v1.16.0'), isFalse);
+    expect(isAmateurFirmware(null), isNull);
+    expect(isAmateurFirmware('  '), isNull);
+  });
 }

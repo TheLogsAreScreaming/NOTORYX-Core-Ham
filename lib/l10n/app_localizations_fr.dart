@@ -10559,4 +10559,16 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get ham_composerPlainText =>
       'Texte en clair : quiconque écoute peut le lire';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'Cette radio utilise MeshCore standard. N\'émettez pas avec elle sur les bandes amateur';
+
+  @override
+  String get ham_firmwareOk =>
+      'Firmware NOTORYX Ham : identifiant de station, texte en clair, bandes amateur seulement';
+
+  @override
+  String get ham_firmwareStock =>
+      'MeshCore standard chiffre et n\'envoie aucun identifiant de station. Installez le firmware NOTORYX Ham avant d\'émettre';
 }

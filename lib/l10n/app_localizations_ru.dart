@@ -10570,4 +10570,16 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get ham_composerPlainText =>
       'Открытый текст: любой, кто слушает, может это прочитать';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'На этом радио стандартный MeshCore. Не передавайте с ним на любительских диапазонах';
+
+  @override
+  String get ham_firmwareOk =>
+      'Прошивка NOTORYX Ham: позывной, открытый текст, только любительские диапазоны';
+
+  @override
+  String get ham_firmwareStock =>
+      'Стандартный MeshCore шифрует и не передаёт позывной. Прошейте NOTORYX Ham перед передачей';
 }

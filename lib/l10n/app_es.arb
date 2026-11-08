@@ -4441,5 +4441,8 @@
   "ham_idMismatchBody": "Recibidos directamente, estos anuncios llevaban un indicativo de estación distinto del que empieza su nombre. Puede ser una radio mal configurada; confírmelo con el operador antes de fiarse.",
   "ham_idMismatchSentAs": "enviado con indicativo {station}",
   "ham_idMismatchNoCall": "Este nombre no empieza por un indicativo",
-  "ham_composerPlainText": "Texto sin cifrar: cualquiera que escuche puede leerlo"
+  "ham_composerPlainText": "Texto sin cifrar: cualquiera que escuche puede leerlo",
+  "ham_bannerStockFirmware": "Esta radio usa MeshCore estándar. No transmita con ella en las bandas de radioaficionado",
+  "ham_firmwareOk": "Firmware NOTORYX Ham: indicativo, texto sin cifrar, solo bandas de radioaficionado",
+  "ham_firmwareStock": "MeshCore estándar cifra y no envía indicativo. Instale el firmware NOTORYX Ham antes de transmitir"
 }

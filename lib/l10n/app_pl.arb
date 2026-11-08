@@ -4345,5 +4345,8 @@
   "ham_idMismatchBody": "Odebrane bezpośrednio ogłoszenia miały identyfikator stacji inny niż znak wywoławczy, od którego zaczyna się ich nazwa. Radio może być źle skonfigurowane; sprawdź z operatorem, zanim na tym polegasz.",
   "ham_idMismatchSentAs": "wysłano z identyfikatorem {station}",
   "ham_idMismatchNoCall": "Ta nazwa nie zaczyna się od znaku wywoławczego",
-  "ham_composerPlainText": "Zwykły tekst: każdy, kto słucha, może to przeczytać"
+  "ham_composerPlainText": "Zwykły tekst: każdy, kto słucha, może to przeczytać",
+  "ham_bannerStockFirmware": "To radio ma standardowy MeshCore. Nie nadawaj nim na pasmach amatorskich",
+  "ham_firmwareOk": "Oprogramowanie NOTORYX Ham: identyfikator stacji, zwykły tekst, tylko pasma amatorskie",
+  "ham_firmwareStock": "Standardowy MeshCore szyfruje i nie wysyła identyfikatora stacji. Wgraj oprogramowanie NOTORYX Ham przed nadawaniem"
 }

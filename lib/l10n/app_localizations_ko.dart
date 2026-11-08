@@ -10034,4 +10034,15 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get ham_composerPlainText => '평문입니다. 듣고 있는 누구나 읽을 수 있습니다';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      '이 무전기는 표준 MeshCore입니다. 아마추어 대역에서 송신하지 마세요';
+
+  @override
+  String get ham_firmwareOk => 'NOTORYX Ham 펌웨어: 국 식별, 평문, 아마추어 대역만';
+
+  @override
+  String get ham_firmwareStock =>
+      '표준 MeshCore는 암호화하고 국 식별을 보내지 않습니다. 송신 전에 NOTORYX Ham 펌웨어를 설치하세요';
 }

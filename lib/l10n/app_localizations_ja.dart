@@ -10019,4 +10019,15 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get ham_composerPlainText => '平文です。受信している誰でも読めます';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'この無線機は標準の MeshCore です。アマチュアバンドで送信しないでください';
+
+  @override
+  String get ham_firmwareOk => 'NOTORYX Ham ファームウェア: 局識別、平文、アマチュアバンドのみ';
+
+  @override
+  String get ham_firmwareStock =>
+      '標準の MeshCore は暗号化し、局識別を送りません。送信前に NOTORYX Ham ファームウェアを書き込んでください';
 }

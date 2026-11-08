@@ -4307,5 +4307,8 @@
   "ham_idMismatchBody": "Tieto priamo prijaté oznámenia niesli iný identifikátor stanice než volaciu značku, ktorou začína ich názov. Rádio môže byť zle nastavené; overte si to u operátora skôr, než sa na to spoľahnete.",
   "ham_idMismatchSentAs": "odoslané s identifikátorom {station}",
   "ham_idMismatchNoCall": "Tento názov nezačína volacou značkou",
-  "ham_composerPlainText": "Nešifrovaný text: ktokoľvek, kto počúva, si to môže prečítať"
+  "ham_composerPlainText": "Nešifrovaný text: ktokoľvek, kto počúva, si to môže prečítať",
+  "ham_bannerStockFirmware": "Toto rádio má štandardný MeshCore. Nevysielajte s ním v amatérskych pásmach",
+  "ham_firmwareOk": "Firmvér NOTORYX Ham: identifikátor stanice, nešifrovaný text, len amatérske pásma",
+  "ham_firmwareStock": "Štandardný MeshCore šifruje a neposiela identifikátor stanice. Pred vysielaním nahrajte firmvér NOTORYX Ham"
 }

@@ -4441,5 +4441,8 @@
   "ham_idMismatchBody": "Diese direkt empfangenen Adverts trugen eine andere Stationskennung als das Rufzeichen am Anfang ihres Namens. Vielleicht ist ein Funkgerät falsch eingerichtet; klären Sie das mit dem Betreiber, bevor Sie sich darauf verlassen.",
   "ham_idMismatchSentAs": "gesendet mit Stationskennung {station}",
   "ham_idMismatchNoCall": "Dieser Name beginnt nicht mit einem Rufzeichen",
-  "ham_composerPlainText": "Klartext: Jeder, der mithört, kann das lesen"
+  "ham_composerPlainText": "Klartext: Jeder, der mithört, kann das lesen",
+  "ham_bannerStockFirmware": "Dieses Funkgerät läuft mit Standard-MeshCore. Senden Sie damit nicht auf den Amateurfunkbändern",
+  "ham_firmwareOk": "NOTORYX-Ham-Firmware: Stationskennung, Klartext, nur Amateurfunkbänder",
+  "ham_firmwareStock": "Standard-MeshCore verschlüsselt und sendet keine Stationskennung. Spielen Sie vor dem Senden die NOTORYX-Ham-Firmware auf"
 }

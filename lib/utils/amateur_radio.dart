@@ -71,6 +71,15 @@ String? callsignOf(String nodeName) {
   return isUsCallsign(call) ? call : null;
 }
 
+/// Whether a radio reporting firmware [version] runs the NOTORYX Ham
+/// firmware: its builds are versioned like "v1.18.0-ham-test.2-6aab3dd0".
+/// Null when the radio hasn't reported a version yet, so nothing is held
+/// against it.
+bool? isAmateurFirmware(String? version) {
+  if (version == null || version.trim().isEmpty) return null;
+  return version.toLowerCase().contains('-ham');
+}
+
 /// Whether [mhz] is in a band the ham firmware allows: 70 cm (420-450 MHz)
 /// or 33 cm (902-928 MHz).
 bool isAmateurFrequencyMHz(double mhz) =>

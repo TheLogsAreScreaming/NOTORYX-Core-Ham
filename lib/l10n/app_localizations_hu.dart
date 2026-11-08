@@ -10512,4 +10512,16 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get ham_composerPlainText =>
       'Nyílt szöveg: bárki, aki hallgatja, elolvashatja';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'Ezen a rádión gyári MeshCore fut. Ne adjon vele az amatőrsávokon';
+
+  @override
+  String get ham_firmwareOk =>
+      'NOTORYX Ham firmware: állomásazonosító, nyílt szöveg, csak amatőrsávok';
+
+  @override
+  String get ham_firmwareStock =>
+      'A gyári MeshCore titkosít, és nem küld állomásazonosítót. Adás előtt töltse fel a NOTORYX Ham firmware-t';
 }

@@ -10481,4 +10481,16 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get ham_composerPlainText =>
       'Platte tekst: iedereen die meeluistert kan dit lezen';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'Deze radio draait standaard MeshCore. Zend er niet mee op de amateurbanden';
+
+  @override
+  String get ham_firmwareOk =>
+      'NOTORYX Ham-firmware: stations-ID, platte tekst, alleen amateurbanden';
+
+  @override
+  String get ham_firmwareStock =>
+      'Standaard MeshCore versleutelt en zendt geen stations-ID. Flash de NOTORYX Ham-firmware voordat u zendt';
 }

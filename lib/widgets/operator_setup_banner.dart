@@ -33,13 +33,18 @@ class OperatorSetupBanner extends StatelessWidget {
     final freqKhz = context.select<MeshCoreConnector, int?>(
       (c) => c.currentFreqHz,
     );
+    final firmware = context.select<MeshCoreConnector, String?>(
+      (c) => c.firmwareVersionString,
+    );
     if (!connected) return child;
 
     final message = switch (stationReadiness(
       profile,
       nodeName: name,
       freqKhz: freqKhz,
+      firmwareVersion: firmware,
     )) {
+      StationReadiness.stockFirmware => context.l10n.ham_bannerStockFirmware,
       StationReadiness.setupIncomplete => context.l10n.ham_setupBanner,
       StationReadiness.nameMismatch => context.l10n.ham_bannerNameMismatch,
       StationReadiness.outOfBand => context.l10n.ham_bannerOutOfBand,

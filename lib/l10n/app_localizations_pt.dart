@@ -10509,4 +10509,16 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get ham_composerPlainText =>
       'Texto sem cifra: qualquer pessoa à escuta pode ler';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'Este rádio usa o MeshCore padrão. Não transmita com ele nas faixas de radioamador';
+
+  @override
+  String get ham_firmwareOk =>
+      'Firmware NOTORYX Ham: identificação, texto sem cifra, só faixas de radioamador';
+
+  @override
+  String get ham_firmwareStock =>
+      'O MeshCore padrão cifra e não envia identificação. Instale o firmware NOTORYX Ham antes de transmitir';
 }

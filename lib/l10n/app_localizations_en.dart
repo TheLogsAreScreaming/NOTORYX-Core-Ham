@@ -10395,4 +10395,16 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get ham_composerPlainText =>
       'Plain text: anyone listening can read this';
+
+  @override
+  String get ham_bannerStockFirmware =>
+      'This radio runs stock MeshCore. Don\'t transmit with it on the ham bands';
+
+  @override
+  String get ham_firmwareOk =>
+      'NOTORYX Ham firmware: station ID, plain text, ham bands only';
+
+  @override
+  String get ham_firmwareStock =>
+      'Stock MeshCore encrypts and sends no station ID. Flash the NOTORYX Ham firmware before transmitting';
 }

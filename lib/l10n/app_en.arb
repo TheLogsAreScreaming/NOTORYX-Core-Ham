@@ -6226,5 +6226,17 @@
   "ham_composerPlainText": "Plain text: anyone listening can read this",
   "@ham_composerPlainText": {
     "description": "Hint in the message box: ham frames are not encrypted (FCC Part 97)"
+  },
+  "ham_bannerStockFirmware": "This radio runs stock MeshCore. Don't transmit with it on the ham bands",
+  "ham_firmwareOk": "NOTORYX Ham firmware: station ID, plain text, ham bands only",
+  "ham_firmwareStock": "Stock MeshCore encrypts and sends no station ID. Flash the NOTORYX Ham firmware before transmitting",
+  "@ham_bannerStockFirmware": {
+    "description": "Top banner when the connected radio reports a non-ham firmware version"
+  },
+  "@ham_firmwareOk": {
+    "description": "Licensed operator: note under the firmware row on NOTORYX Ham firmware"
+  },
+  "@ham_firmwareStock": {
+    "description": "Licensed operator: note under the firmware row on stock MeshCore"
   }
 }

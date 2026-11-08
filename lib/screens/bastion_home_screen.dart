@@ -380,6 +380,8 @@ class _StationRow extends StatelessWidget {
       profile,
       nodeName: c.selfName,
       freqKhz: c.currentFreqHz,
+      // Only a connected radio's firmware counts.
+      firmwareVersion: c.isConnected ? c.firmwareVersionString : null,
     );
     final online = c.isConnected;
     final title = profile.hasValidCallsign
@@ -387,7 +389,10 @@ class _StationRow extends StatelessWidget {
         : l10n.ham_licensedOperator;
     final String subtitle;
     final bool ok;
-    if (readiness == StationReadiness.setupIncomplete) {
+    if (readiness == StationReadiness.stockFirmware) {
+      subtitle = l10n.ham_bannerStockFirmware;
+      ok = false;
+    } else if (readiness == StationReadiness.setupIncomplete) {
       subtitle = l10n.ham_operatorCardIncomplete;
       ok = false;
     } else if (!online) {

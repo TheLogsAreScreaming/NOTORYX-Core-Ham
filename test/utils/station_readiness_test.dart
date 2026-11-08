@@ -9,6 +9,31 @@ void main() {
     acknowledgedAt: DateTime(2026, 11, 5),
   );
 
+  test('stock firmware comes first: no setup step fixes it', () {
+    expect(
+      stationReadiness(
+        const OperatorProfile(callsign: 'W1AW'),
+        nodeName: 'Base',
+        firmwareVersion: 'v1.18.0-6aab3dd0',
+      ),
+      StationReadiness.stockFirmware,
+    );
+    expect(
+      stationReadiness(
+        done,
+        nodeName: 'W1AW Base',
+        freqKhz: 915000,
+        firmwareVersion: 'v1.18.0-ham-test.2-',
+      ),
+      StationReadiness.ready,
+    );
+    // A radio that hasn't reported its firmware yet isn't held against you.
+    expect(
+      stationReadiness(done, nodeName: 'W1AW Base', freqKhz: 915000),
+      StationReadiness.ready,
+    );
+  });
+
   test('unfinished setup comes first, whatever the radio says', () {
     expect(
       stationReadiness(
