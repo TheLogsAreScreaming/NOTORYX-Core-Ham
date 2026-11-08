@@ -10580,4 +10580,16 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Outra rede, como uma malha MeshCore da Parte 15, usa esta frequência. As suas tramas não têm identificação e o firmware de radioamador não as consegue ler. Fale com o seu coordenador de frequências antes de transmitir aqui.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Antes de transmitir';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Leia o guia de coordenação e depois adicione o seu indicativo e licença em “Operador licenciado”. Não transmita até o seu coordenador de frequências e as outras estações da malha terem acordado um canal.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Operador licenciado configurado como $call';
+  }
 }

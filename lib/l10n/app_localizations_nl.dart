@@ -10552,4 +10552,16 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Een ander netwerk, zoals een MeshCore-mesh onder Part 15, gebruikt deze frequentie. De frames hebben geen stations-ID en de ham-firmware kan ze niet lezen. Overleg met uw frequentiecoördinator voordat u hier zendt.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Voordat u zendt';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Lees de coördinatiegids en vul daarna uw roepnaam en licentie in bij ‘Gelicentieerde zendamateur’. Zend pas als uw frequentiecoördinator en de andere stations in uw mesh het eens zijn over een kanaal.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Gelicentieerde zendamateur ingesteld als $call';
+  }
 }

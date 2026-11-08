@@ -10100,4 +10100,16 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       '다른 네트워크(Part 15 MeshCore 메시 등)가 이 주파수를 쓰고 있습니다. 그 프레임에는 국 식별이 없고 아마추어 펌웨어로는 읽을 수 없습니다. 여기서 송신하기 전에 주파수 조정자와 확인하세요.';
+
+  @override
+  String get ham_setupBeforeTitle => '송신하기 전에';
+
+  @override
+  String get ham_setupBeforeBody =>
+      '조정 안내서를 읽은 다음, ‘자격을 갖춘 운용자’에서 호출부호와 면허를 입력하세요. 주파수 조정자와 메시의 다른 국들이 채널에 합의할 때까지 송신하지 마세요.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return '면허 운용자 설정됨: $call';
+  }
 }

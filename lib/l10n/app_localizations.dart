@@ -17592,6 +17592,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Another network, such as a Part 15 MeshCore mesh, is using this frequency. Its frames carry no station ID and the ham firmware can\'t read them. Check with your frequency coordinator before transmitting here.'**
   String get ham_stockTrafficBody;
+
+  /// Get started: first card, before connecting a radio
+  ///
+  /// In en, this message translates to:
+  /// **'Before you transmit'**
+  String get ham_setupBeforeTitle;
+
+  /// Get started: coordinate before transmitting
+  ///
+  /// In en, this message translates to:
+  /// **'Read the coordination guide, then add your call sign and licence in Licensed operator. Don\'t transmit until your frequency coordinator and the other stations on your mesh have agreed on a channel.'**
+  String get ham_setupBeforeBody;
+
+  /// Get started: operator profile is complete
+  ///
+  /// In en, this message translates to:
+  /// **'Licensed operator set up as {call}'**
+  String ham_setupBeforeDone(String call);
 }
 
 class _AppLocalizationsDelegate

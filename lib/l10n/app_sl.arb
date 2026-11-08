@@ -4324,5 +4324,8 @@
   "ham_stationIdLabel": "Oznaka postaje",
   "ham_stationIdHint": "Postaja, ki je oddala ta okvir: pošiljatelj ali repetitor, ki ga je posredoval",
   "ham_stockTrafficTitle": "{count, plural, =1{V zadnjih 10 minutah je bil tu slišan 1 okvir običajnega MeshCore} =2{V zadnjih 10 minutah sta bila tu slišana 2 okvira običajnega MeshCore} few{V zadnjih 10 minutah so bili tu slišani {count} okvirji običajnega MeshCore} other{V zadnjih 10 minutah je bilo tu slišanih {count} okvirjev običajnega MeshCore}}",
-  "ham_stockTrafficBody": "To frekvenco uporablja drugo omrežje, na primer omrežje MeshCore po Part 15. Njegovi okvirji nimajo oznake postaje in radioamaterska programska oprema jih ne zna prebrati. Pred oddajanjem se posvetujte s koordinatorjem frekvenc."
+  "ham_stockTrafficBody": "To frekvenco uporablja drugo omrežje, na primer omrežje MeshCore po Part 15. Njegovi okvirji nimajo oznake postaje in radioamaterska programska oprema jih ne zna prebrati. Pred oddajanjem se posvetujte s koordinatorjem frekvenc.",
+  "ham_setupBeforeTitle": "Preden oddajate",
+  "ham_setupBeforeBody": "Preberite vodnik za usklajevanje, nato v razdelku »Licencirani operater« vnesite klicni znak in licenco. Ne oddajajte, dokler se koordinator frekvenc in druge postaje v omrežju ne dogovorijo za kanal.",
+  "ham_setupBeforeDone": "Licencirani operater nastavljen kot {call}"
 }

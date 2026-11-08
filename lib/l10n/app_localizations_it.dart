@@ -10610,4 +10610,16 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Un\'altra rete, come una mesh MeshCore Part 15, usa questa frequenza. I suoi frame non hanno identificativo di stazione e il firmware radioamatoriale non può leggerli. Sentite il vostro coordinatore di frequenze prima di trasmettere qui.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Prima di trasmettere';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Leggete la guida al coordinamento, poi inserite nominativo e licenza in “Operatore con licenza”. Non trasmettete finché il coordinatore di frequenze e le altre stazioni della mesh non hanno concordato un canale.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Operatore con licenza impostato come $call';
+  }
 }

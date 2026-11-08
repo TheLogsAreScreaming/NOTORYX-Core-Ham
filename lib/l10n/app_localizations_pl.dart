@@ -10647,4 +10647,16 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Inna sieć, np. sieć MeshCore z Part 15, używa tej częstotliwości. Jej ramki nie mają identyfikatora stacji, a oprogramowanie krótkofalarskie nie umie ich odczytać. Przed nadawaniem tutaj skontaktuj się z koordynatorem częstotliwości.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Zanim zaczniesz nadawać';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Przeczytaj przewodnik koordynacji, a potem dodaj znak wywoławczy i licencję w sekcji „Licencjonowany krótkofalowiec”. Nie nadawaj, dopóki koordynator częstotliwości i inne stacje w sieci nie uzgodnią kanału.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Licencjonowany operator ustawiony jako $call';
+  }
 }

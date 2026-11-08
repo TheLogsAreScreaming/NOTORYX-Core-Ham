@@ -10603,4 +10603,16 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Ein anderes Netz, etwa ein MeshCore-Netz nach Part 15, nutzt diese Frequenz. Seine Rahmen tragen keine Stationskennung, und die Ham-Firmware kann sie nicht lesen. Klären Sie das mit Ihrem Frequenzkoordinator, bevor Sie hier senden.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Bevor Sie senden';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Lesen Sie den Koordinationsleitfaden und tragen Sie dann Rufzeichen und Lizenz unter „Lizenzierter Funkamateur“ ein. Senden Sie erst, wenn Ihr Frequenzkoordinator und die anderen Stationen Ihres Netzes sich auf einen Kanal geeinigt haben.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Lizenzierter Funker eingerichtet als $call';
+  }
 }
