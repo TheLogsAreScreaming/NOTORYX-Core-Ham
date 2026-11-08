@@ -10513,4 +10513,16 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Ett annat nät, till exempel ett MeshCore-nät enligt Part 15, använder frekvensen. Dess ramar har inget stations-ID och ham-firmware kan inte läsa dem. Kontrollera med din frekvenskoordinator innan du sänder här.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Innan du sänder';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Läs samordningsguiden och lägg sedan in anropssignal och licens under ”Licensierad sändaramatör”. Sänd inte förrän din frekvenskoordinator och de andra stationerna i nätet har kommit överens om en kanal.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Licensierad operatör inställd som $call';
+  }
 }

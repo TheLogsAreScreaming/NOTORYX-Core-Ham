@@ -10630,4 +10630,16 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Un autre réseau, comme un maillage MeshCore Part 15, utilise cette fréquence. Ses trames ne portent pas d\'identifiant de station et le firmware radioamateur ne peut pas les lire. Voyez avec votre coordinateur de fréquences avant d\'émettre ici.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Avant d\'émettre';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Lisez le guide de coordination, puis ajoutez votre indicatif et votre licence dans « Opérateur licencié ». N\'émettez pas avant que votre coordinateur de fréquences et les autres stations de votre maillage se soient accordés sur un canal.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Opérateur licencié configuré : $call';
+  }
 }

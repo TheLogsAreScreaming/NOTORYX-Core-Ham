@@ -10582,4 +10582,16 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Egy másik hálózat, például egy Part 15 szerinti MeshCore háló használja ezt a frekvenciát. A keretei nem hordoznak állomásazonosítót, és a ham firmware nem tudja olvasni őket. Adás előtt egyeztessen a frekvenciakoordinátorral.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Adás előtt';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Olvassa el a koordinációs útmutatót, majd adja meg hívójelét és engedélyét az „Engedélyes rádióamatőr” részben. Ne adjon, amíg a frekvenciakoordinátor és a háló többi állomása meg nem egyezett egy csatornában.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Engedélyes operátor beállítva: $call';
+  }
 }

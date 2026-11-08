@@ -10580,4 +10580,16 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Túto frekvenciu používa iná sieť, napríklad sieť MeshCore podľa Part 15. Jej rámce nemajú identifikátor stanice a amatérsky firmvér ich nevie prečítať. Pred vysielaním sa poraďte s koordinátorom frekvencií.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Pred vysielaním';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Prečítajte si sprievodcu koordináciou a potom zadajte volaciu značku a licenciu v časti „Licencovaný operátor“. Nevysielajte, kým sa koordinátor frekvencií a ostatné stanice v sieti nedohodnú na kanáli.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Licencovaný operátor nastavený ako $call';
+  }
 }

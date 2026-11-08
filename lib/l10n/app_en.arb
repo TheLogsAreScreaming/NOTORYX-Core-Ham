@@ -6313,5 +6313,23 @@
   },
   "@ham_stockTrafficBody": {
     "description": "Licensed operator: what stock MeshCore traffic on the frequency means"
+  },
+  "ham_setupBeforeTitle": "Before you transmit",
+  "ham_setupBeforeBody": "Read the coordination guide, then add your call sign and licence in Licensed operator. Don't transmit until your frequency coordinator and the other stations on your mesh have agreed on a channel.",
+  "ham_setupBeforeDone": "Licensed operator set up as {call}",
+  "@ham_setupBeforeTitle": {
+    "description": "Get started: first card, before connecting a radio"
+  },
+  "@ham_setupBeforeBody": {
+    "description": "Get started: coordinate before transmitting"
+  },
+  "@ham_setupBeforeDone": {
+    "description": "Get started: operator profile is complete",
+    "placeholders": {
+      "call": {
+        "type": "String",
+        "example": "W1AW"
+      }
+    }
   }
 }

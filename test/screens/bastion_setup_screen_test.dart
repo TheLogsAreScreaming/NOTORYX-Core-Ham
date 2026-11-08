@@ -9,6 +9,9 @@ import 'package:meshcore_open/l10n/app_localizations.dart';
 import 'package:meshcore_open/models/contact.dart';
 import 'package:meshcore_open/models/message.dart';
 import 'package:meshcore_open/screens/bastion_setup_screen.dart';
+import 'package:meshcore_open/services/operator_profile_service.dart';
+import 'package:meshcore_open/storage/prefs_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class _Radio extends MeshCoreConnector {
   bool connected = false;
@@ -28,13 +31,24 @@ class _Radio extends MeshCoreConnector {
 }
 
 void main() {
+  setUp(() async {
+    SharedPreferences.setMockInitialValues({});
+    PrefsManager.reset();
+    await PrefsManager.initialize();
+  });
+
   testWidgets('disconnected guide explains connection and disables test chat', (
     tester,
   ) async {
     final radio = _Radio();
     await tester.pumpWidget(
-      ChangeNotifierProvider<MeshCoreConnector>.value(
-        value: radio,
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<MeshCoreConnector>.value(value: radio),
+          ChangeNotifierProvider(
+            create: (_) => OperatorProfileService()..load(),
+          ),
+        ],
         child: const MaterialApp(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
@@ -43,6 +57,15 @@ void main() {
       ),
     );
     expect(find.text('No radio connected yet.'), findsOneWidget);
+    expect(find.text('Before you transmit'), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('setup-coordination-guide')),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Set your call sign and read the coordination guide'),
+      findsOneWidget,
+    );
     await tester.scrollUntilVisible(find.text('Open test chat'), 200);
     final button = tester.widget<FilledButton>(
       find.widgetWithText(FilledButton, 'Open test chat'),
@@ -75,8 +98,13 @@ void main() {
       ),
     );
     await tester.pumpWidget(
-      ChangeNotifierProvider<MeshCoreConnector>.value(
-        value: radio,
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<MeshCoreConnector>.value(value: radio),
+          ChangeNotifierProvider(
+            create: (_) => OperatorProfileService()..load(),
+          ),
+        ],
         child: const MaterialApp(
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,

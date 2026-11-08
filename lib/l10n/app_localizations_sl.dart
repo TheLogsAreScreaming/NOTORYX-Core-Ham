@@ -10601,4 +10601,16 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'To frekvenco uporablja drugo omrežje, na primer omrežje MeshCore po Part 15. Njegovi okvirji nimajo oznake postaje in radioamaterska programska oprema jih ne zna prebrati. Pred oddajanjem se posvetujte s koordinatorjem frekvenc.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Preden oddajate';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Preberite vodnik za usklajevanje, nato v razdelku »Licencirani operater« vnesite klicni znak in licenco. Ne oddajajte, dokler se koordinator frekvenc in druge postaje v omrežju ne dogovorijo za kanal.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Licencirani operater nastavljen kot $call';
+  }
 }

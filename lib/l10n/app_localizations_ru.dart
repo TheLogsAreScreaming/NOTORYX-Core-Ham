@@ -10642,4 +10642,16 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Эту частоту использует другая сеть, например сеть MeshCore по Part 15. Её кадры не несут позывного, и любительская прошивка не может их прочитать. Прежде чем передавать здесь, уточните у координатора частот.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Перед передачей';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Прочитайте руководство по координации, затем укажите позывной и лицензию в разделе «Лицензированный оператор». Не передавайте, пока координатор частот и другие станции вашей сети не договорятся о канале.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Лицензированный оператор: $call';
+  }
 }

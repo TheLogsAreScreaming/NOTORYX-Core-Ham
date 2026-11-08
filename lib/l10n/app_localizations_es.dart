@@ -10599,4 +10599,16 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Otra red, como una malla MeshCore de la Parte 15, usa esta frecuencia. Sus tramas no llevan indicativo y el firmware de radioaficionado no puede leerlas. Consulte a su coordinador de frecuencias antes de transmitir aquí.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Antes de transmitir';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Lea la guía de coordinación y luego añada su indicativo y licencia en “Operador con licencia”. No transmita hasta que su coordinador de frecuencias y las demás estaciones de su malla hayan acordado un canal.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Operador con licencia configurado como $call';
+  }
 }

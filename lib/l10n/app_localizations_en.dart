@@ -10465,4 +10465,16 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Another network, such as a Part 15 MeshCore mesh, is using this frequency. Its frames carry no station ID and the ham firmware can\'t read them. Check with your frequency coordinator before transmitting here.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Before you transmit';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Read the coordination guide, then add your call sign and licence in Licensed operator. Don\'t transmit until your frequency coordinator and the other stations on your mesh have agreed on a channel.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Licensed operator set up as $call';
+  }
 }

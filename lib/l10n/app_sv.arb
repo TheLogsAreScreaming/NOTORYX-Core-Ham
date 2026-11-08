@@ -4324,5 +4324,8 @@
   "ham_stationIdLabel": "Stations-ID",
   "ham_stationIdHint": "Stationen som sände ramen: avsändaren eller repeatern som vidarebefordrade den",
   "ham_stockTrafficTitle": "{count, plural, =1{1 vanlig MeshCore-ram hörd här de senaste 10 minuterna} other{{count} vanliga MeshCore-ramar hörda här de senaste 10 minuterna}}",
-  "ham_stockTrafficBody": "Ett annat nät, till exempel ett MeshCore-nät enligt Part 15, använder frekvensen. Dess ramar har inget stations-ID och ham-firmware kan inte läsa dem. Kontrollera med din frekvenskoordinator innan du sänder här."
+  "ham_stockTrafficBody": "Ett annat nät, till exempel ett MeshCore-nät enligt Part 15, använder frekvensen. Dess ramar har inget stations-ID och ham-firmware kan inte läsa dem. Kontrollera med din frekvenskoordinator innan du sänder här.",
+  "ham_setupBeforeTitle": "Innan du sänder",
+  "ham_setupBeforeBody": "Läs samordningsguiden och lägg sedan in anropssignal och licens under ”Licensierad sändaramatör”. Sänd inte förrän din frekvenskoordinator och de andra stationerna i nätet har kommit överens om en kanal.",
+  "ham_setupBeforeDone": "Licensierad operatör inställd som {call}"
 }

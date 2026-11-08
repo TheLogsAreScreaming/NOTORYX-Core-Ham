@@ -10580,4 +10580,16 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       'Друга мрежа, например MeshCore по Part 15, използва тази честота. Кадрите ѝ нямат позивна и любителският фърмуер не може да ги чете. Попитайте честотния координатор, преди да предавате тук.';
+
+  @override
+  String get ham_setupBeforeTitle => 'Преди да предавате';
+
+  @override
+  String get ham_setupBeforeBody =>
+      'Прочетете ръководството за координация, после добавете позивната и лиценза си в „Лицензиран оператор“. Не предавайте, докато честотният координатор и другите станции в мрежата не се договорят за канал.';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return 'Лицензиран оператор: $call';
+  }
 }

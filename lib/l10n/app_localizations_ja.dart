@@ -10084,4 +10084,16 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       '別のネットワーク (Part 15 の MeshCore メッシュなど) がこの周波数を使っています。そのフレームには局識別がなく、アマチュア無線用ファームウェアでは読めません。ここで送信する前に周波数調整担当者に確認してください。';
+
+  @override
+  String get ham_setupBeforeTitle => '送信する前に';
+
+  @override
+  String get ham_setupBeforeBody =>
+      '調整ガイドを読み、「免許を持つ運用者」でコールサインと免許を入力してください。周波数調整担当者とメッシュ内の他局がチャンネルに合意するまで送信しないでください。';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return '免許局として設定済み: $call';
+  }
 }

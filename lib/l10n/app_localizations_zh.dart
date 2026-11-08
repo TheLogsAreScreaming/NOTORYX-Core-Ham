@@ -9878,4 +9878,16 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get ham_stockTrafficBody =>
       '另一个网络（例如 Part 15 的 MeshCore 网状网）正在使用此频率。它的帧不带电台识别，业余固件也无法读取。在此发射前请先与频率协调员确认。';
+
+  @override
+  String get ham_setupBeforeTitle => '发射之前';
+
+  @override
+  String get ham_setupBeforeBody =>
+      '请先阅读协调指南，然后在“持照操作员”中填写呼号和执照。在频率协调员和网状网中的其他电台就信道达成一致之前，请勿发射。';
+
+  @override
+  String ham_setupBeforeDone(String call) {
+    return '持照操作员已设置为 $call';
+  }
 }
