@@ -14,6 +14,7 @@ import 'utils/platform_info.dart';
 
 import 'connector/meshcore_connector.dart';
 import 'connector/meshcore_protocol.dart';
+import 'models/app_settings.dart';
 import 'models/image_codec_support.dart';
 import 'models/mqtt_mesh_packet.dart';
 import 'models/mqtt_observer_status.dart';
@@ -523,6 +524,13 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+    // Seasonal follows the date, so check it again when the app comes back.
+    if (state == AppLifecycleState.resumed &&
+        BastionTheme.fromId(widget.appSettingsService.settings.appTheme) ==
+            BastionTheme.seasonal &&
+        mounted) {
+      setState(() {});
+    }
     _fieldOps.setForeground(state == AppLifecycleState.resumed);
     _readAloud.foreground = state == AppLifecycleState.resumed;
     widget.receivedImageStore.setForeground(state == AppLifecycleState.resumed);
@@ -589,7 +597,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       ],
       child: Consumer<AppSettingsService>(
         builder: (context, settingsService, child) {
-          final palette = _applyTheme(settingsService.settings.appTheme);
+          final palette = _applyTheme(settingsService.settings);
           return MaterialApp(
             navigatorKey: _navigatorKey,
             title: 'NOTORYX Core',
@@ -656,8 +664,12 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   /// Points [MeshPalette] at the chosen theme. Screens read the palette
   /// directly, so after a switch every widget is rebuilt once, in place, so
   /// nothing (open screens, scroll position) is lost.
-  BastionPalette _applyTheme(String id) {
-    final palette = BastionTheme.fromId(id).palette;
+  BastionPalette _applyTheme(AppSettings settings) {
+    final palette = resolveThemePalette(
+      settings.appTheme,
+      seasonalOverride: settings.seasonalOverride,
+      seasonalHolidays: settings.seasonalHolidays,
+    );
     if (!identical(MeshPalette.current, palette)) {
       MeshPalette.current = palette;
       WidgetsBinding.instance.addPostFrameCallback((_) {

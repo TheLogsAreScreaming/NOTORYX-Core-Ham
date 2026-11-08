@@ -10044,6 +10044,76 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String get theme_descBlaze => 'Antracit a bridlica so signálnou oranžovou';
+
+  @override
+  String get theme_descNeonAnarchy =>
+      'Toxická zelená a elektrická fialová na čiernej';
+
+  @override
+  String get theme_descTactical => 'Olivová, oceľovo šedá a zemité tóny';
+
+  @override
+  String get theme_descPinkOverload => 'Sýto ružová, žuvačková a levanduľová';
+
+  @override
+  String get theme_descBareBeauty => 'Teplý nude, staroružová, kakao a šalvia';
+
+  @override
+  String get theme_descOkabeIto =>
+      'Bezpečné pre farboslepých, vysoká čitateľnosť';
+
+  @override
+  String get theme_descNightOps =>
+      'Tlmené červené na takmer čiernej pre slabé svetlo';
+
+  @override
+  String get theme_descSeasonal => 'Mení sa s ročnými obdobiami a sviatkami';
+
+  @override
+  String get theme_selected => 'Vybrané';
+
+  @override
+  String get seasonal_season => 'Ročné obdobie';
+
+  @override
+  String seasonal_auto(String season) {
+    return 'Automaticky (teraz $season)';
+  }
+
+  @override
+  String get seasonal_autoHint =>
+      'Podľa dátumu zariadenia, s ročnými obdobiami severnej pologule';
+
+  @override
+  String get season_spring => 'Jar';
+
+  @override
+  String get season_summer => 'Leto';
+
+  @override
+  String get season_autumn => 'Jeseň';
+
+  @override
+  String get season_winter => 'Zima';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Vianoce';
+
+  @override
+  String get season_valentine => 'Valentín';
+
+  @override
+  String get seasonal_holidays => 'Sviatočné farby';
+
+  @override
+  String get seasonal_holidaysHint =>
+      'Halloween, Vianoce a Valentín v ich termínoch';
+
+  @override
   String get coords_setting => 'Formát súradníc';
 
   @override

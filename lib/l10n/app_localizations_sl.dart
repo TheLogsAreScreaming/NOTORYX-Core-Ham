@@ -10064,6 +10064,76 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get theme_descBlaze => 'Antracit in skrilavec z izrazito oranžno';
+
+  @override
+  String get theme_descNeonAnarchy =>
+      'Strupeno zelena in električno vijolična na črni';
+
+  @override
+  String get theme_descTactical => 'Olivna, kovinsko siva in zemeljski toni';
+
+  @override
+  String get theme_descPinkOverload => 'Živo roza, žvečilni gumi in sivka';
+
+  @override
+  String get theme_descBareBeauty =>
+      'Topel nude, starorožnata, kakav in žajbelj';
+
+  @override
+  String get theme_descOkabeIto => 'Varno za barvno slepe, zelo jasno';
+
+  @override
+  String get theme_descNightOps =>
+      'Pridušene rdeče na skoraj črni za šibko svetlobo';
+
+  @override
+  String get theme_descSeasonal => 'Spreminja se z letnimi časi in prazniki';
+
+  @override
+  String get theme_selected => 'Izbrano';
+
+  @override
+  String get seasonal_season => 'Letni čas';
+
+  @override
+  String seasonal_auto(String season) {
+    return 'Samodejno (zdaj $season)';
+  }
+
+  @override
+  String get seasonal_autoHint =>
+      'Sledi datumu naprave, z letnimi časi severne poloble';
+
+  @override
+  String get season_spring => 'Pomlad';
+
+  @override
+  String get season_summer => 'Poletje';
+
+  @override
+  String get season_autumn => 'Jesen';
+
+  @override
+  String get season_winter => 'Zima';
+
+  @override
+  String get season_halloween => 'Noč čarovnic';
+
+  @override
+  String get season_christmas => 'Božič';
+
+  @override
+  String get season_valentine => 'Valentinovo';
+
+  @override
+  String get seasonal_holidays => 'Praznične barve';
+
+  @override
+  String get seasonal_holidaysHint =>
+      'Noč čarovnic, božič in valentinovo na njihove datume';
+
+  @override
   String get coords_setting => 'Oblika koordinat';
 
   @override

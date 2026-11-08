@@ -9935,6 +9935,75 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get theme_descBlaze =>
+      'Charcoal and slate with high-visibility orange';
+
+  @override
+  String get theme_descNeonAnarchy =>
+      'Toxic green and electric purple on black';
+
+  @override
+  String get theme_descTactical => 'Olive, gunmetal and earth tones';
+
+  @override
+  String get theme_descPinkOverload => 'Hot pink, bubblegum and lavender';
+
+  @override
+  String get theme_descBareBeauty => 'Warm nude, dusty rose, cocoa and sage';
+
+  @override
+  String get theme_descOkabeIto => 'Color-blind safe, high clarity';
+
+  @override
+  String get theme_descNightOps => 'Dim reds on near-black for low light';
+
+  @override
+  String get theme_descSeasonal => 'Changes with the seasons and holidays';
+
+  @override
+  String get theme_selected => 'Selected';
+
+  @override
+  String get seasonal_season => 'Season';
+
+  @override
+  String seasonal_auto(String season) {
+    return 'Automatic ($season now)';
+  }
+
+  @override
+  String get seasonal_autoHint =>
+      'Follows your device\'s date, with northern-hemisphere seasons';
+
+  @override
+  String get season_spring => 'Spring';
+
+  @override
+  String get season_summer => 'Summer';
+
+  @override
+  String get season_autumn => 'Autumn';
+
+  @override
+  String get season_winter => 'Winter';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Christmas';
+
+  @override
+  String get season_valentine => 'Valentine\'s Day';
+
+  @override
+  String get seasonal_holidays => 'Holiday colors';
+
+  @override
+  String get seasonal_holidaysHint =>
+      'Halloween, Christmas and Valentine\'s Day on their dates';
+
+  @override
   String get coords_setting => 'Coordinate format';
 
   @override

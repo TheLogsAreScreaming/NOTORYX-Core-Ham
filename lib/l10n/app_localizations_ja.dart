@@ -9581,6 +9581,71 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get theme_descBlaze => 'チャコールとスレートに視認性の高いオレンジ';
+
+  @override
+  String get theme_descNeonAnarchy => '黒地にトキシックグリーンとエレクトリックパープル';
+
+  @override
+  String get theme_descTactical => 'オリーブ、ガンメタル、アースカラー';
+
+  @override
+  String get theme_descPinkOverload => 'ホットピンク、バブルガム、ラベンダー';
+
+  @override
+  String get theme_descBareBeauty => '温かみのあるヌード、ダスティローズ、ココア、セージ';
+
+  @override
+  String get theme_descOkabeIto => '色覚の違いに配慮、高い明瞭さ';
+
+  @override
+  String get theme_descNightOps => '暗所向けの黒に近い背景と控えめな赤';
+
+  @override
+  String get theme_descSeasonal => '季節や行事に合わせて変化';
+
+  @override
+  String get theme_selected => '選択中';
+
+  @override
+  String get seasonal_season => '季節';
+
+  @override
+  String seasonal_auto(String season) {
+    return '自動（現在: $season）';
+  }
+
+  @override
+  String get seasonal_autoHint => '端末の日付に従います（北半球の季節）';
+
+  @override
+  String get season_spring => '春';
+
+  @override
+  String get season_summer => '夏';
+
+  @override
+  String get season_autumn => '秋';
+
+  @override
+  String get season_winter => '冬';
+
+  @override
+  String get season_halloween => 'ハロウィン';
+
+  @override
+  String get season_christmas => 'クリスマス';
+
+  @override
+  String get season_valentine => 'バレンタインデー';
+
+  @override
+  String get seasonal_holidays => '行事の配色';
+
+  @override
+  String get seasonal_holidaysHint => 'ハロウィン、クリスマス、バレンタインデーの期間に適用';
+
+  @override
   String get coords_setting => '座標の形式';
 
   @override

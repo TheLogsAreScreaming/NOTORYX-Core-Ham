@@ -553,10 +553,12 @@ void main() {
   };
 
   setUpAll(() async {
-    // PREVIEW_THEME=bubble_gum (etc.) renders that theme; Blaze by default.
-    MeshPalette.current = BastionTheme.fromId(
+    // PREVIEW_THEME=pink_overload (etc.) renders that theme; Blaze by
+    // default. PREVIEW_SEASON=winter picks the Seasonal theme's season.
+    MeshPalette.current = resolveThemePalette(
       Platform.environment['PREVIEW_THEME'],
-    ).palette;
+      seasonalOverride: Platform.environment['PREVIEW_SEASON'] ?? 'auto',
+    );
     if (out != null) await _loadFonts();
   });
 

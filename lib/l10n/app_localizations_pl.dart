@@ -10108,6 +10108,77 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
+  String get theme_descBlaze => 'Grafit i łupek z jaskrawym pomarańczem';
+
+  @override
+  String get theme_descNeonAnarchy =>
+      'Toksyczna zieleń i elektryczny fiolet na czerni';
+
+  @override
+  String get theme_descTactical => 'Oliwka, grafit metaliczny i barwy ziemi';
+
+  @override
+  String get theme_descPinkOverload => 'Ostry róż, gumowy róż i lawenda';
+
+  @override
+  String get theme_descBareBeauty =>
+      'Ciepły nude, przygaszony róż, kakao i szałwia';
+
+  @override
+  String get theme_descOkabeIto =>
+      'Bezpieczny dla daltonistów, bardzo czytelny';
+
+  @override
+  String get theme_descNightOps =>
+      'Przygaszone czerwienie na prawie czerni przy słabym świetle';
+
+  @override
+  String get theme_descSeasonal => 'Zmienia się z porami roku i świętami';
+
+  @override
+  String get theme_selected => 'Wybrany';
+
+  @override
+  String get seasonal_season => 'Pora roku';
+
+  @override
+  String seasonal_auto(String season) {
+    return 'Automatycznie (teraz $season)';
+  }
+
+  @override
+  String get seasonal_autoHint =>
+      'Według daty urządzenia, z porami roku półkuli północnej';
+
+  @override
+  String get season_spring => 'Wiosna';
+
+  @override
+  String get season_summer => 'Lato';
+
+  @override
+  String get season_autumn => 'Jesień';
+
+  @override
+  String get season_winter => 'Zima';
+
+  @override
+  String get season_halloween => 'Halloween';
+
+  @override
+  String get season_christmas => 'Boże Narodzenie';
+
+  @override
+  String get season_valentine => 'Walentynki';
+
+  @override
+  String get seasonal_holidays => 'Kolory świąteczne';
+
+  @override
+  String get seasonal_holidaysHint =>
+      'Halloween, Boże Narodzenie i Walentynki w swoich terminach';
+
+  @override
   String get coords_setting => 'Format współrzędnych';
 
   @override

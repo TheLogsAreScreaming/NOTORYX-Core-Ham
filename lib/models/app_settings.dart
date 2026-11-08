@@ -1,3 +1,4 @@
+import '../theme/bastion_themes.dart';
 import 'image_codec_support.dart';
 import 'translation_support.dart';
 
@@ -161,6 +162,12 @@ class AppSettings {
   /// The chosen color theme's id (see BastionTheme); Blaze by default.
   final String appTheme;
 
+  /// The Seasonal theme's season: 'auto' (by date) or a season id.
+  final String seasonalOverride;
+
+  /// Whether the Seasonal theme switches to holiday colors on their dates.
+  final bool seasonalHolidays;
+
   /// How positions are shown: 'decimal', 'dms', 'utm' or 'mgrs'.
   final String coordinateFormat;
 
@@ -280,6 +287,8 @@ class AppSettings {
     this.mapTelemetryMetric = 'battery',
     this.signChannelPosts = false,
     this.appTheme = 'blaze',
+    this.seasonalOverride = 'auto',
+    this.seasonalHolidays = true,
     this.coordinateFormat = 'decimal',
     this.channelMessageRetentionDays = 0,
     this.imageMessagesEnabled = false,
@@ -370,6 +379,8 @@ class AppSettings {
       'map_telemetry_metric': mapTelemetryMetric,
       'sign_channel_posts': signChannelPosts,
       'app_theme': appTheme,
+      'seasonal_override': seasonalOverride,
+      'seasonal_holidays': seasonalHolidays,
       'coordinate_format': coordinateFormat,
       'channel_message_retention_days': channelMessageRetentionDays,
       'image_messages_enabled': imageMessagesEnabled,
@@ -488,7 +499,12 @@ class AppSettings {
       mapShowTelemetry: json['map_show_telemetry'] as bool? ?? false,
       mapTelemetryMetric: json['map_telemetry_metric'] as String? ?? 'battery',
       signChannelPosts: json['sign_channel_posts'] as bool? ?? false,
-      appTheme: json['app_theme'] as String? ?? 'blaze',
+      appTheme: _migrateThemeId(json['app_theme'] as String?),
+      seasonalOverride:
+          json['seasonal_override'] as String? ??
+          // Autumn Frost people keep autumn colors inside Seasonal.
+          (json['app_theme'] == 'autumn_frost' ? 'autumn' : 'auto'),
+      seasonalHolidays: json['seasonal_holidays'] as bool? ?? true,
       coordinateFormat: json['coordinate_format'] as String? ?? 'decimal',
       channelMessageRetentionDays:
           channelRetentionChoices.contains(
@@ -621,6 +637,8 @@ class AppSettings {
     String? mapTelemetryMetric,
     bool? signChannelPosts,
     String? appTheme,
+    String? seasonalOverride,
+    bool? seasonalHolidays,
     String? coordinateFormat,
     int? channelMessageRetentionDays,
     bool? imageMessagesEnabled,
@@ -709,6 +727,8 @@ class AppSettings {
       mapTelemetryMetric: mapTelemetryMetric ?? this.mapTelemetryMetric,
       signChannelPosts: signChannelPosts ?? this.signChannelPosts,
       appTheme: appTheme ?? this.appTheme,
+      seasonalOverride: seasonalOverride ?? this.seasonalOverride,
+      seasonalHolidays: seasonalHolidays ?? this.seasonalHolidays,
       coordinateFormat: coordinateFormat ?? this.coordinateFormat,
       channelMessageRetentionDays:
           channelMessageRetentionDays ?? this.channelMessageRetentionDays,
@@ -750,3 +770,7 @@ class AppSettings {
 
 /// Auto-delete choices for channel messages, in days; 0 keeps them forever.
 const channelRetentionChoices = [0, 7, 30, 90, 365];
+
+/// A saved theme id from any version as one of today's eight theme ids, so
+/// an old choice opens as its closest new theme instead of resetting.
+String _migrateThemeId(String? id) => BastionTheme.fromId(id ?? 'blaze').id;

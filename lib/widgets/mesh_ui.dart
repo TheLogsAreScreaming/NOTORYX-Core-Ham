@@ -56,17 +56,24 @@ const double glassRadius = 16;
 /// [EmberBackdrop] glow shows through.
 LinearGradient glassFill(BuildContext context) {
   final dark = Theme.of(context).brightness == Brightness.dark;
+  final tint = glassTint(dark);
   return LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     stops: const [0, 0.06, 1],
     colors: [
-      Colors.white.withValues(alpha: dark ? 0.12 : 0.70),
-      Colors.white.withValues(alpha: dark ? 0.07 : 0.55),
-      Colors.white.withValues(alpha: dark ? 0.03 : 0.40),
+      tint.withValues(alpha: dark ? 0.12 : 0.70),
+      tint.withValues(alpha: dark ? 0.07 : 0.55),
+      tint.withValues(alpha: dark ? 0.03 : 0.40),
     ],
   );
 }
+
+/// The color glass cards are made of: white on dark themes, and on light
+/// themes white mixed with the theme's surface, so a pink or peach theme's
+/// cards are pink or peach rather than plain white.
+Color glassTint(bool dark) =>
+    dark ? Colors.white : Color.lerp(Colors.white, MeshPalette.bg3, 0.55)!;
 
 /// The thin edge of a glass card.
 Color glassEdge(BuildContext context) =>
