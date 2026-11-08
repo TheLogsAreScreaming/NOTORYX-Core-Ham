@@ -18,6 +18,6 @@
 4. **Plan every repeater.** Each needs a licensed control operator, a known location, and a way to shut it down quickly, both remotely and in person.
 5. **Check where you are.** Some areas are excluded or limited (47 CFR §97.303), for example parts of Colorado, Wyoming, Texas and New Mexico on 33 cm, and 420–430 MHz north of Line A near the Canadian border.
 6. **Start small.** Test on a dummy load or at minimum power first. Use the least power that works (§97.313), and do an RF exposure evaluation (§97.13) before running higher power.
-7. **Don't bridge.** Don't connect the ham mesh to Part 15 networks, MQTT or the internet without working through third-party traffic rules (§97.115).
+7. **Don't bridge.** Don't connect the ham mesh to Part 15 networks, MQTT or the internet without working through third-party traffic rules (§97.115). See the [third-party policy](THIRD_PARTY_POLICY.md), and leave Bot Mode and weather posts off unless your coordinator agrees.
 
 This is not legal advice. The control operator of each station is responsible for what it transmits. Check the current text of 47 CFR Part 97 before you operate.
