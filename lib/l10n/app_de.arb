@@ -4444,5 +4444,14 @@
   "ham_composerPlainText": "Klartext: Jeder, der mithört, kann das lesen",
   "ham_bannerStockFirmware": "Dieses Funkgerät läuft mit Standard-MeshCore. Senden Sie damit nicht auf den Amateurfunkbändern",
   "ham_firmwareOk": "NOTORYX-Ham-Firmware: Stationskennung, Klartext, nur Amateurfunkbänder",
-  "ham_firmwareStock": "Standard-MeshCore verschlüsselt und sendet keine Stationskennung. Spielen Sie vor dem Senden die NOTORYX-Ham-Firmware auf"
+  "ham_firmwareStock": "Standard-MeshCore verschlüsselt und sendet keine Stationskennung. Spielen Sie vor dem Senden die NOTORYX-Ham-Firmware auf",
+  "ham_stationLog": "Stationslog",
+  "ham_stationLogExport": "Log exportieren",
+  "ham_exportAdif": "ADIF exportieren (.adi)",
+  "ham_exportCsv": "CSV exportieren",
+  "ham_stationLogClear": "Log leeren",
+  "ham_stationLogClearConfirm": "Alle Einträge im Stationslog löschen? Das lässt sich nicht rückgängig machen.",
+  "ham_stationLogEmpty": "Noch keine Stationen im Log",
+  "ham_stationLogHint": "Direktnachrichten mit Stationen, deren Name mit einem Rufzeichen beginnt, werden hier protokolliert, nur auf diesem Telefon.",
+  "ham_stationLogCounts": "{sent} gesendet, {received} empfangen"
 }

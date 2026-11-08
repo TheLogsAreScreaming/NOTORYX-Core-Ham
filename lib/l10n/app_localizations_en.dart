@@ -10407,4 +10407,35 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       'Stock MeshCore encrypts and sends no station ID. Flash the NOTORYX Ham firmware before transmitting';
+
+  @override
+  String get ham_stationLog => 'Station log';
+
+  @override
+  String get ham_stationLogExport => 'Export the log';
+
+  @override
+  String get ham_exportAdif => 'Export ADIF (.adi)';
+
+  @override
+  String get ham_exportCsv => 'Export CSV';
+
+  @override
+  String get ham_stationLogClear => 'Clear the log';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      'Delete every entry in the station log? This can\'t be undone.';
+
+  @override
+  String get ham_stationLogEmpty => 'No stations logged yet';
+
+  @override
+  String get ham_stationLogHint =>
+      'Direct messages with stations whose names start with a call sign are logged here, on this phone only.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '$sent sent, $received received';
+  }
 }

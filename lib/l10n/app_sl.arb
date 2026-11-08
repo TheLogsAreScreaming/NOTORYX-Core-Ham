@@ -4310,5 +4310,14 @@
   "ham_composerPlainText": "Navadno besedilo: vsak, ki posluša, ga lahko prebere",
   "ham_bannerStockFirmware": "Ta radio ima običajni MeshCore. Z njim ne oddajajte na radioamaterskih pasovih",
   "ham_firmwareOk": "Strojna programska oprema NOTORYX Ham: oznaka postaje, navadno besedilo, le radioamaterski pasovi",
-  "ham_firmwareStock": "Običajni MeshCore šifrira in ne pošilja oznake postaje. Pred oddajanjem naložite NOTORYX Ham"
+  "ham_firmwareStock": "Običajni MeshCore šifrira in ne pošilja oznake postaje. Pred oddajanjem naložite NOTORYX Ham",
+  "ham_stationLog": "Dnevnik postaje",
+  "ham_stationLogExport": "Izvozi dnevnik",
+  "ham_exportAdif": "Izvozi ADIF (.adi)",
+  "ham_exportCsv": "Izvozi CSV",
+  "ham_stationLogClear": "Počisti dnevnik",
+  "ham_stationLogClearConfirm": "Izbrišem vse vnose v dnevniku? Tega ni mogoče razveljaviti.",
+  "ham_stationLogEmpty": "V dnevniku še ni postaj",
+  "ham_stationLogHint": "Sem se beležijo neposredna sporočila s postajami, katerih ime se začne s klicnim znakom, le na tem telefonu.",
+  "ham_stationLogCounts": "poslano: {sent}, prejeto: {received}"
 }

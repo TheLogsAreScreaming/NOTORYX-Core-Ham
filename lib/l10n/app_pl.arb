@@ -4348,5 +4348,14 @@
   "ham_composerPlainText": "Zwykły tekst: każdy, kto słucha, może to przeczytać",
   "ham_bannerStockFirmware": "To radio ma standardowy MeshCore. Nie nadawaj nim na pasmach amatorskich",
   "ham_firmwareOk": "Oprogramowanie NOTORYX Ham: identyfikator stacji, zwykły tekst, tylko pasma amatorskie",
-  "ham_firmwareStock": "Standardowy MeshCore szyfruje i nie wysyła identyfikatora stacji. Wgraj oprogramowanie NOTORYX Ham przed nadawaniem"
+  "ham_firmwareStock": "Standardowy MeshCore szyfruje i nie wysyła identyfikatora stacji. Wgraj oprogramowanie NOTORYX Ham przed nadawaniem",
+  "ham_stationLog": "Dziennik stacji",
+  "ham_stationLogExport": "Eksportuj dziennik",
+  "ham_exportAdif": "Eksportuj ADIF (.adi)",
+  "ham_exportCsv": "Eksportuj CSV",
+  "ham_stationLogClear": "Wyczyść dziennik",
+  "ham_stationLogClearConfirm": "Usunąć wszystkie wpisy z dziennika? Nie można tego cofnąć.",
+  "ham_stationLogEmpty": "Brak stacji w dzienniku",
+  "ham_stationLogHint": "Wiadomości bezpośrednie ze stacjami, których nazwa zaczyna się od znaku wywoławczego, są tu zapisywane, tylko na tym telefonie.",
+  "ham_stationLogCounts": "wysłane: {sent}, odebrane: {received}"
 }

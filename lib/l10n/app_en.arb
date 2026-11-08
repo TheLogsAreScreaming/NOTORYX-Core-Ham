@@ -6238,5 +6238,49 @@
   },
   "@ham_firmwareStock": {
     "description": "Licensed operator: note under the firmware row on stock MeshCore"
+  },
+  "ham_stationLog": "Station log",
+  "ham_stationLogExport": "Export the log",
+  "ham_exportAdif": "Export ADIF (.adi)",
+  "ham_exportCsv": "Export CSV",
+  "ham_stationLogClear": "Clear the log",
+  "ham_stationLogClearConfirm": "Delete every entry in the station log? This can't be undone.",
+  "ham_stationLogEmpty": "No stations logged yet",
+  "ham_stationLogHint": "Direct messages with stations whose names start with a call sign are logged here, on this phone only.",
+  "ham_stationLogCounts": "{sent} sent, {received} received",
+  "@ham_stationLog": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogExport": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_exportAdif": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_exportCsv": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogClear": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogClearConfirm": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogEmpty": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogHint": {
+    "description": "Station log (ham QSO log) screen"
+  },
+  "@ham_stationLogCounts": {
+    "description": "Station log row: messages sent and received in one exchange",
+    "placeholders": {
+      "sent": {
+        "type": "int"
+      },
+      "received": {
+        "type": "int"
+      }
+    }
   }
 }

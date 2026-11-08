@@ -10045,4 +10045,34 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       '표준 MeshCore는 암호화하고 국 식별을 보내지 않습니다. 송신 전에 NOTORYX Ham 펌웨어를 설치하세요';
+
+  @override
+  String get ham_stationLog => '국 로그';
+
+  @override
+  String get ham_stationLogExport => '로그 내보내기';
+
+  @override
+  String get ham_exportAdif => 'ADIF로 내보내기 (.adi)';
+
+  @override
+  String get ham_exportCsv => 'CSV로 내보내기';
+
+  @override
+  String get ham_stationLogClear => '로그 지우기';
+
+  @override
+  String get ham_stationLogClearConfirm => '국 로그의 모든 항목을 삭제할까요? 되돌릴 수 없습니다.';
+
+  @override
+  String get ham_stationLogEmpty => '아직 기록된 국이 없습니다';
+
+  @override
+  String get ham_stationLogHint =>
+      '이름이 호출부호로 시작하는 국과 주고받은 개인 메시지가 이 휴대폰에만 기록됩니다.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '보냄 $sent, 받음 $received';
+  }
 }

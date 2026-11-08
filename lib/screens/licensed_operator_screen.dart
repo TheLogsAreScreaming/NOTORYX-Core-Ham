@@ -7,6 +7,7 @@ import '../connector/meshcore_connector.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
+import 'station_log_screen.dart';
 import '../models/operator_profile.dart';
 import '../services/operator_profile_service.dart';
 import '../theme/mesh_theme.dart';
@@ -115,7 +116,19 @@ class _LicensedOperatorScreenState extends State<LicensedOperatorScreen> {
         ? null
         : l10n.ham_notUsCallsign;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.ham_licensedOperator)),
+      appBar: AppBar(
+        title: Text(l10n.ham_licensedOperator),
+        actions: [
+          IconButton(
+            key: const ValueKey('open-station-log'),
+            icon: const Icon(Icons.menu_book_outlined),
+            tooltip: l10n.ham_stationLog,
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const StationLogScreen()),
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
         top: false,
         child: ListView(

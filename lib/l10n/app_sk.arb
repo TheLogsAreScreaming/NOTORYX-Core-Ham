@@ -4310,5 +4310,14 @@
   "ham_composerPlainText": "Nešifrovaný text: ktokoľvek, kto počúva, si to môže prečítať",
   "ham_bannerStockFirmware": "Toto rádio má štandardný MeshCore. Nevysielajte s ním v amatérskych pásmach",
   "ham_firmwareOk": "Firmvér NOTORYX Ham: identifikátor stanice, nešifrovaný text, len amatérske pásma",
-  "ham_firmwareStock": "Štandardný MeshCore šifruje a neposiela identifikátor stanice. Pred vysielaním nahrajte firmvér NOTORYX Ham"
+  "ham_firmwareStock": "Štandardný MeshCore šifruje a neposiela identifikátor stanice. Pred vysielaním nahrajte firmvér NOTORYX Ham",
+  "ham_stationLog": "Staničný denník",
+  "ham_stationLogExport": "Exportovať denník",
+  "ham_exportAdif": "Exportovať ADIF (.adi)",
+  "ham_exportCsv": "Exportovať CSV",
+  "ham_stationLogClear": "Vymazať denník",
+  "ham_stationLogClearConfirm": "Odstrániť všetky záznamy v denníku? Nedá sa to vrátiť.",
+  "ham_stationLogEmpty": "V denníku zatiaľ nie sú žiadne stanice",
+  "ham_stationLogHint": "Priame správy so stanicami, ktorých názov začína volacou značkou, sa zapisujú sem, len na tomto telefóne.",
+  "ham_stationLogCounts": "odoslané: {sent}, prijaté: {received}"
 }

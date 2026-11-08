@@ -4444,5 +4444,14 @@
   "ham_composerPlainText": "平文です。受信している誰でも読めます",
   "ham_bannerStockFirmware": "この無線機は標準の MeshCore です。アマチュアバンドで送信しないでください",
   "ham_firmwareOk": "NOTORYX Ham ファームウェア: 局識別、平文、アマチュアバンドのみ",
-  "ham_firmwareStock": "標準の MeshCore は暗号化し、局識別を送りません。送信前に NOTORYX Ham ファームウェアを書き込んでください"
+  "ham_firmwareStock": "標準の MeshCore は暗号化し、局識別を送りません。送信前に NOTORYX Ham ファームウェアを書き込んでください",
+  "ham_stationLog": "局ログ",
+  "ham_stationLogExport": "ログを書き出す",
+  "ham_exportAdif": "ADIF で書き出す (.adi)",
+  "ham_exportCsv": "CSV で書き出す",
+  "ham_stationLogClear": "ログを消去",
+  "ham_stationLogClearConfirm": "局ログのすべての記録を削除しますか？元に戻せません。",
+  "ham_stationLogEmpty": "まだ記録された局はありません",
+  "ham_stationLogHint": "名前がコールサインで始まる局とのダイレクトメッセージを、この端末にだけ記録します。",
+  "ham_stationLogCounts": "送信 {sent}、受信 {received}"
 }

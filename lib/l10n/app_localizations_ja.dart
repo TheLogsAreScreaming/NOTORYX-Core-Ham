@@ -10030,4 +10030,33 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       '標準の MeshCore は暗号化し、局識別を送りません。送信前に NOTORYX Ham ファームウェアを書き込んでください';
+
+  @override
+  String get ham_stationLog => '局ログ';
+
+  @override
+  String get ham_stationLogExport => 'ログを書き出す';
+
+  @override
+  String get ham_exportAdif => 'ADIF で書き出す (.adi)';
+
+  @override
+  String get ham_exportCsv => 'CSV で書き出す';
+
+  @override
+  String get ham_stationLogClear => 'ログを消去';
+
+  @override
+  String get ham_stationLogClearConfirm => '局ログのすべての記録を削除しますか？元に戻せません。';
+
+  @override
+  String get ham_stationLogEmpty => 'まだ記録された局はありません';
+
+  @override
+  String get ham_stationLogHint => '名前がコールサインで始まる局とのダイレクトメッセージを、この端末にだけ記録します。';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return '送信 $sent、受信 $received';
+  }
 }

@@ -10585,4 +10585,35 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get ham_firmwareStock =>
       'Standardowy MeshCore szyfruje i nie wysyła identyfikatora stacji. Wgraj oprogramowanie NOTORYX Ham przed nadawaniem';
+
+  @override
+  String get ham_stationLog => 'Dziennik stacji';
+
+  @override
+  String get ham_stationLogExport => 'Eksportuj dziennik';
+
+  @override
+  String get ham_exportAdif => 'Eksportuj ADIF (.adi)';
+
+  @override
+  String get ham_exportCsv => 'Eksportuj CSV';
+
+  @override
+  String get ham_stationLogClear => 'Wyczyść dziennik';
+
+  @override
+  String get ham_stationLogClearConfirm =>
+      'Usunąć wszystkie wpisy z dziennika? Nie można tego cofnąć.';
+
+  @override
+  String get ham_stationLogEmpty => 'Brak stacji w dzienniku';
+
+  @override
+  String get ham_stationLogHint =>
+      'Wiadomości bezpośrednie ze stacjami, których nazwa zaczyna się od znaku wywoławczego, są tu zapisywane, tylko na tym telefonie.';
+
+  @override
+  String ham_stationLogCounts(int sent, int received) {
+    return 'wysłane: $sent, odebrane: $received';
+  }
 }

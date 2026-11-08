@@ -4315,5 +4315,14 @@
   "ham_composerPlainText": "明文：任何收听者都能读到",
   "ham_bannerStockFirmware": "此电台运行标准 MeshCore。请勿用它在业余频段发射",
   "ham_firmwareOk": "NOTORYX Ham 固件：电台识别、明文、仅业余频段",
-  "ham_firmwareStock": "标准 MeshCore 会加密且不发送电台识别。发射前请刷入 NOTORYX Ham 固件"
+  "ham_firmwareStock": "标准 MeshCore 会加密且不发送电台识别。发射前请刷入 NOTORYX Ham 固件",
+  "ham_stationLog": "电台日志",
+  "ham_stationLogExport": "导出日志",
+  "ham_exportAdif": "导出 ADIF (.adi)",
+  "ham_exportCsv": "导出 CSV",
+  "ham_stationLogClear": "清空日志",
+  "ham_stationLogClearConfirm": "删除电台日志中的所有记录？此操作无法撤销。",
+  "ham_stationLogEmpty": "尚未记录任何电台",
+  "ham_stationLogHint": "与名称以呼号开头的电台互发的私信会记录在这里，仅保存在本手机上。",
+  "ham_stationLogCounts": "已发送 {sent}，已接收 {received}"
 }

@@ -17508,6 +17508,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Stock MeshCore encrypts and sends no station ID. Flash the NOTORYX Ham firmware before transmitting'**
   String get ham_firmwareStock;
+
+  /// Station log (ham QSO log) screen
+  ///
+  /// In en, this message translates to:
+  /// **'Station log'**
+  String get ham_stationLog;
+
+  /// Station log (ham QSO log) screen
+  ///
+  /// In en, this message translates to:
+  /// **'Export the log'**
+  String get ham_stationLogExport;
+
+  /// Station log (ham QSO log) screen
+  ///
+  /// In en, this message translates to:
+  /// **'Export ADIF (.adi)'**
+  String get ham_exportAdif;
+
+  /// Station log (ham QSO log) screen
+  ///
+  /// In en, this message translates to:
+  /// **'Export CSV'**
+  String get ham_exportCsv;
+
+  /// Station log (ham QSO log) screen
+  ///
+  /// In en, this message translates to:
+  /// **'Clear the log'**
+  String get ham_stationLogClear;
+
+  /// Station log (ham QSO log) screen
+  ///
+  /// In en, this message translates to:
+  /// **'Delete every entry in the station log? This can\'t be undone.'**
+  String get ham_stationLogClearConfirm;
+
+  /// Station log (ham QSO log) screen
+  ///
+  /// In en, this message translates to:
+  /// **'No stations logged yet'**
+  String get ham_stationLogEmpty;
+
+  /// Station log (ham QSO log) screen
+  ///
+  /// In en, this message translates to:
+  /// **'Direct messages with stations whose names start with a call sign are logged here, on this phone only.'**
+  String get ham_stationLogHint;
+
+  /// Station log row: messages sent and received in one exchange
+  ///
+  /// In en, this message translates to:
+  /// **'{sent} sent, {received} received'**
+  String ham_stationLogCounts(int sent, int received);
 }
 
 class _AppLocalizationsDelegate

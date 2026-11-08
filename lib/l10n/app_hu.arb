@@ -4348,5 +4348,14 @@
   "ham_composerPlainText": "Nyílt szöveg: bárki, aki hallgatja, elolvashatja",
   "ham_bannerStockFirmware": "Ezen a rádión gyári MeshCore fut. Ne adjon vele az amatőrsávokon",
   "ham_firmwareOk": "NOTORYX Ham firmware: állomásazonosító, nyílt szöveg, csak amatőrsávok",
-  "ham_firmwareStock": "A gyári MeshCore titkosít, és nem küld állomásazonosítót. Adás előtt töltse fel a NOTORYX Ham firmware-t"
+  "ham_firmwareStock": "A gyári MeshCore titkosít, és nem küld állomásazonosítót. Adás előtt töltse fel a NOTORYX Ham firmware-t",
+  "ham_stationLog": "Állomásnapló",
+  "ham_stationLogExport": "Napló exportálása",
+  "ham_exportAdif": "ADIF exportálása (.adi)",
+  "ham_exportCsv": "CSV exportálása",
+  "ham_stationLogClear": "Napló törlése",
+  "ham_stationLogClearConfirm": "Törli az állomásnapló összes bejegyzését? Ez nem vonható vissza.",
+  "ham_stationLogEmpty": "Még nincs állomás a naplóban",
+  "ham_stationLogHint": "Itt naplózzuk a közvetlen üzeneteket olyan állomásokkal, amelyek neve hívójellel kezdődik, csak ezen a telefonon.",
+  "ham_stationLogCounts": "{sent} elküldve, {received} fogadva"
 }
