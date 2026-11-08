@@ -10594,4 +10594,20 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'La stazione che ha trasmesso questo frame: il mittente o il ripetitore che l\'ha ritrasmesso';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count frame MeshCore standard sentiti qui negli ultimi 10 minuti',
+      one: '1 frame MeshCore standard sentito qui negli ultimi 10 minuti',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Un\'altra rete, come una mesh MeshCore Part 15, usa questa frequenza. I suoi frame non hanno identificativo di stazione e il firmware radioamatoriale non può leggerli. Sentite il vostro coordinatore di frequenze prima di trasmettere qui.';
 }

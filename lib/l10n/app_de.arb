@@ -4456,5 +4456,7 @@
   "ham_stationLogCounts": "{sent} gesendet, {received} empfangen",
   "ham_rxStationId": "Kennung {call}",
   "ham_stationIdLabel": "Stationskennung",
-  "ham_stationIdHint": "Die Station, die diesen Rahmen gesendet hat: der Absender oder das Relais, das ihn weitergab"
+  "ham_stationIdHint": "Die Station, die diesen Rahmen gesendet hat: der Absender oder das Relais, das ihn weitergab",
+  "ham_stockTrafficTitle": "{count, plural, =1{1 Standard-MeshCore-Rahmen in den letzten 10 Minuten hier gehört} other{{count} Standard-MeshCore-Rahmen in den letzten 10 Minuten hier gehört}}",
+  "ham_stockTrafficBody": "Ein anderes Netz, etwa ein MeshCore-Netz nach Part 15, nutzt diese Frequenz. Seine Rahmen tragen keine Stationskennung, und die Ham-Firmware kann sie nicht lesen. Klären Sie das mit Ihrem Frequenzkoordinator, bevor Sie hier senden."
 }

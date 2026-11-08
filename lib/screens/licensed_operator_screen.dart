@@ -336,6 +336,14 @@ class _ConnectedRadioSection extends StatelessWidget {
             ],
           ),
         ),
+        if (connector.stockFramesHeard case final stock when stock > 0)
+          MeshStatusBanner(
+            key: const ValueKey('stock-traffic'),
+            status: MeshStatus.warning,
+            title: l10n.ham_stockTrafficTitle(stock),
+            message: l10n.ham_stockTrafficBody,
+            margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+          ),
         if (connector.stationIdMismatches case final mismatches
             when mismatches.isNotEmpty) ...[
           MeshStatusBanner(

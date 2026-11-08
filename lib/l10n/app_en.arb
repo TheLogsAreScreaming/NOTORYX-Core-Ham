@@ -6300,5 +6300,18 @@
   },
   "@ham_stationIdHint": {
     "description": "RX packet details: what the station ID means"
+  },
+  "ham_stockTrafficTitle": "{count, plural, =1{1 stock MeshCore frame heard here in the last 10 minutes} other{{count} stock MeshCore frames heard here in the last 10 minutes}}",
+  "ham_stockTrafficBody": "Another network, such as a Part 15 MeshCore mesh, is using this frequency. Its frames carry no station ID and the ham firmware can't read them. Check with your frequency coordinator before transmitting here.",
+  "@ham_stockTrafficTitle": {
+    "description": "Licensed operator: stock (non-ham) MeshCore frames heard on this frequency",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@ham_stockTrafficBody": {
+    "description": "Licensed operator: what stock MeshCore traffic on the frequency means"
   }
 }

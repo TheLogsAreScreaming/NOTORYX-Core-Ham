@@ -10567,4 +10567,19 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'Az állomás, amely ezt a keretet sugározta: a feladó vagy a továbbító átjátszó';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count gyári MeshCore keret hallatszott itt az elmúlt 10 percben',
+      one: '1 gyári MeshCore keret hallatszott itt az elmúlt 10 percben',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Egy másik hálózat, például egy Part 15 szerinti MeshCore háló használja ezt a frekvenciát. A keretei nem hordoznak állomásazonosítót, és a ham firmware nem tudja olvasni őket. Adás előtt egyeztessen a frekvenciakoordinátorral.';
 }

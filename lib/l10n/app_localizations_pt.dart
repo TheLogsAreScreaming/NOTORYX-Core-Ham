@@ -10564,4 +10564,20 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'A estação que transmitiu esta trama: o remetente ou o repetidor que a retransmitiu';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count tramas MeshCore padrão ouvidas aqui nos últimos 10 minutos',
+      one: '1 trama MeshCore padrão ouvida aqui nos últimos 10 minutos',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Outra rede, como uma malha MeshCore da Parte 15, usa esta frequência. As suas tramas não têm identificação e o firmware de radioamador não as consegue ler. Fale com o seu coordenador de frequências antes de transmitir aqui.';
 }

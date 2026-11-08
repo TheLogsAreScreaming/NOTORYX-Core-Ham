@@ -10498,4 +10498,19 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'Stationen som sände ramen: avsändaren eller repeatern som vidarebefordrade den';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count vanliga MeshCore-ramar hörda här de senaste 10 minuterna',
+      one: '1 vanlig MeshCore-ram hörd här de senaste 10 minuterna',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Ett annat nät, till exempel ett MeshCore-nät enligt Part 15, använder frekvensen. Dess ramar har inget stations-ID och ham-firmware kan inte läsa dem. Kontrollera med din frekvenskoordinator innan du sänder här.';
 }

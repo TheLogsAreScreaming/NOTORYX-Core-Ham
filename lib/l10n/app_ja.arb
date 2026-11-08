@@ -4456,5 +4456,7 @@
   "ham_stationLogCounts": "送信 {sent}、受信 {received}",
   "ham_rxStationId": "ID {call}",
   "ham_stationIdLabel": "局識別",
-  "ham_stationIdHint": "このフレームを送信した局。送信者、または中継したリピーターです"
+  "ham_stationIdHint": "このフレームを送信した局。送信者、または中継したリピーターです",
+  "ham_stockTrafficTitle": "{count, plural, other{この 10 分間に標準 MeshCore のフレームを {count} 件受信しました}}",
+  "ham_stockTrafficBody": "別のネットワーク (Part 15 の MeshCore メッシュなど) がこの周波数を使っています。そのフレームには局識別がなく、アマチュア無線用ファームウェアでは読めません。ここで送信する前に周波数調整担当者に確認してください。"
 }

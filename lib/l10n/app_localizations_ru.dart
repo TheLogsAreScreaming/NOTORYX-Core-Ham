@@ -10625,4 +10625,21 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'Станция, передавшая этот кадр: отправитель или ретранслятор, который его передал дальше';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'За 10 минут здесь услышано $count кадра стандартного MeshCore',
+      many: 'За 10 минут здесь услышано $count кадров стандартного MeshCore',
+      few: 'За 10 минут здесь услышано $count кадра стандартного MeshCore',
+      one: 'За 10 минут здесь услышан 1 кадр стандартного MeshCore',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Эту частоту использует другая сеть, например сеть MeshCore по Part 15. Её кадры не несут позывного, и любительская прошивка не может их прочитать. Прежде чем передавать здесь, уточните у координатора частот.';
 }

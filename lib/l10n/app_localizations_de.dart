@@ -10587,4 +10587,20 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get ham_stationIdHint =>
       'Die Station, die diesen Rahmen gesendet hat: der Absender oder das Relais, das ihn weitergab';
+
+  @override
+  String ham_stockTrafficTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '$count Standard-MeshCore-Rahmen in den letzten 10 Minuten hier gehört',
+      one: '1 Standard-MeshCore-Rahmen in den letzten 10 Minuten hier gehört',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ham_stockTrafficBody =>
+      'Ein anderes Netz, etwa ein MeshCore-Netz nach Part 15, nutzt diese Frequenz. Seine Rahmen tragen keine Stationskennung, und die Ham-Firmware kann sie nicht lesen. Klären Sie das mit Ihrem Frequenzkoordinator, bevor Sie hier senden.';
 }

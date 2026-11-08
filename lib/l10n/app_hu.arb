@@ -4360,5 +4360,7 @@
   "ham_stationLogCounts": "{sent} elküldve, {received} fogadva",
   "ham_rxStationId": "Azonosító: {call}",
   "ham_stationIdLabel": "Állomásazonosító",
-  "ham_stationIdHint": "Az állomás, amely ezt a keretet sugározta: a feladó vagy a továbbító átjátszó"
+  "ham_stationIdHint": "Az állomás, amely ezt a keretet sugározta: a feladó vagy a továbbító átjátszó",
+  "ham_stockTrafficTitle": "{count, plural, =1{1 gyári MeshCore keret hallatszott itt az elmúlt 10 percben} other{{count} gyári MeshCore keret hallatszott itt az elmúlt 10 percben}}",
+  "ham_stockTrafficBody": "Egy másik hálózat, például egy Part 15 szerinti MeshCore háló használja ezt a frekvenciát. A keretei nem hordoznak állomásazonosítót, és a ham firmware nem tudja olvasni őket. Adás előtt egyeztessen a frekvenciakoordinátorral."
 }
