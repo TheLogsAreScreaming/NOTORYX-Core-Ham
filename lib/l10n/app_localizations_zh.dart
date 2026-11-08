@@ -9853,4 +9853,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return '已发送 $sent，已接收 $received';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => '电台识别';
+
+  @override
+  String get ham_stationIdHint => '发射此帧的电台：发送者，或转发它的中继';
 }

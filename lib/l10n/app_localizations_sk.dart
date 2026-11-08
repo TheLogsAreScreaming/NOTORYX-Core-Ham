@@ -10551,4 +10551,16 @@ class AppLocalizationsSk extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return 'odoslané: $sent, prijaté: $received';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Identifikátor stanice';
+
+  @override
+  String get ham_stationIdHint =>
+      'Stanica, ktorá vyslala tento rámec: odosielateľ alebo prevádzač, ktorý ho preposlal';
 }

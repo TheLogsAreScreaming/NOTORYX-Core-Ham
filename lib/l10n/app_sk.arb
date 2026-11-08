@@ -4319,5 +4319,8 @@
   "ham_stationLogClearConfirm": "Odstrániť všetky záznamy v denníku? Nedá sa to vrátiť.",
   "ham_stationLogEmpty": "V denníku zatiaľ nie sú žiadne stanice",
   "ham_stationLogHint": "Priame správy so stanicami, ktorých názov začína volacou značkou, sa zapisujú sem, len na tomto telefóne.",
-  "ham_stationLogCounts": "odoslané: {sent}, prijaté: {received}"
+  "ham_stationLogCounts": "odoslané: {sent}, prijaté: {received}",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Identifikátor stanice",
+  "ham_stationIdHint": "Stanica, ktorá vyslala tento rámec: odosielateľ alebo prevádzač, ktorý ho preposlal"
 }

@@ -4324,5 +4324,8 @@
   "ham_stationLogClearConfirm": "删除电台日志中的所有记录？此操作无法撤销。",
   "ham_stationLogEmpty": "尚未记录任何电台",
   "ham_stationLogHint": "与名称以呼号开头的电台互发的私信会记录在这里，仅保存在本手机上。",
-  "ham_stationLogCounts": "已发送 {sent}，已接收 {received}"
+  "ham_stationLogCounts": "已发送 {sent}，已接收 {received}",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "电台识别",
+  "ham_stationIdHint": "发射此帧的电台：发送者，或转发它的中继"
 }

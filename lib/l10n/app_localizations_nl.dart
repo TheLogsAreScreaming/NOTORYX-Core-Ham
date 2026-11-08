@@ -10524,4 +10524,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return '$sent verzonden, $received ontvangen';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Stations-ID';
+
+  @override
+  String get ham_stationIdHint =>
+      'Het station dat dit frame zond: de afzender, of de repeater die het doorgaf';
 }

@@ -10075,4 +10075,15 @@ class AppLocalizationsKo extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return '보냄 $sent, 받음 $received';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => '국 식별';
+
+  @override
+  String get ham_stationIdHint => '이 프레임을 송신한 국입니다. 보낸 사람이거나 중계한 리피터입니다';
 }

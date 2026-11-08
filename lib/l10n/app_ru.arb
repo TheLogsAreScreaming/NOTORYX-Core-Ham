@@ -3622,5 +3622,8 @@
   "ham_stationLogClearConfirm": "Удалить все записи журнала? Это нельзя отменить.",
   "ham_stationLogEmpty": "Станций в журнале пока нет",
   "ham_stationLogHint": "Здесь записываются личные сообщения со станциями, чьё имя начинается с позывного, только на этом телефоне.",
-  "ham_stationLogCounts": "отправлено: {sent}, получено: {received}"
+  "ham_stationLogCounts": "отправлено: {sent}, получено: {received}",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Позывной станции",
+  "ham_stationIdHint": "Станция, передавшая этот кадр: отправитель или ретранслятор, который его передал дальше"
 }

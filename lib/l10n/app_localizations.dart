@@ -17562,6 +17562,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{sent} sent, {received} received'**
   String ham_stationLogCounts(int sent, int received);
+
+  /// RX log row: the call sign in the frame's station ID
+  ///
+  /// In en, this message translates to:
+  /// **'ID {call}'**
+  String ham_rxStationId(String call);
+
+  /// RX packet details: station ID row title
+  ///
+  /// In en, this message translates to:
+  /// **'Station ID'**
+  String get ham_stationIdLabel;
+
+  /// RX packet details: what the station ID means
+  ///
+  /// In en, this message translates to:
+  /// **'The station that transmitted this frame: the sender, or the repeater that relayed it'**
+  String get ham_stationIdHint;
 }
 
 class _AppLocalizationsDelegate

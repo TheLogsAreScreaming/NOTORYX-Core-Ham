@@ -6282,5 +6282,23 @@
         "type": "int"
       }
     }
+  },
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Station ID",
+  "ham_stationIdHint": "The station that transmitted this frame: the sender, or the repeater that relayed it",
+  "@ham_rxStationId": {
+    "description": "RX log row: the call sign in the frame's station ID",
+    "placeholders": {
+      "call": {
+        "type": "String",
+        "example": "W1AW"
+      }
+    }
+  },
+  "@ham_stationIdLabel": {
+    "description": "RX packet details: station ID row title"
+  },
+  "@ham_stationIdHint": {
+    "description": "RX packet details: what the station ID means"
   }
 }

@@ -4357,5 +4357,8 @@
   "ham_stationLogClearConfirm": "Usunąć wszystkie wpisy z dziennika? Nie można tego cofnąć.",
   "ham_stationLogEmpty": "Brak stacji w dzienniku",
   "ham_stationLogHint": "Wiadomości bezpośrednie ze stacjami, których nazwa zaczyna się od znaku wywoławczego, są tu zapisywane, tylko na tym telefonie.",
-  "ham_stationLogCounts": "wysłane: {sent}, odebrane: {received}"
+  "ham_stationLogCounts": "wysłane: {sent}, odebrane: {received}",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Identyfikator stacji",
+  "ham_stationIdHint": "Stacja, która nadała tę ramkę: nadawca lub przemiennik, który ją przekazał"
 }

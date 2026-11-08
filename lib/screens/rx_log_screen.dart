@@ -245,6 +245,8 @@ class _PacketRow extends StatelessWidget {
         ? l10n.rxLog_routeDirect
         : l10n.rxLog_routeFlood;
     final parts = [
+      if (entry.station case final call? when call.isNotEmpty)
+        l10n.ham_rxStationId(call),
       route,
       _hopsText(l10n, entry),
       l10n.rxLog_bytes(entry.raw.length),
@@ -334,6 +336,13 @@ Future<void> showRxPacketSheet(BuildContext context, RxLogEntry e) {
                 shrinkWrap: true,
                 padding: const EdgeInsets.symmetric(horizontal: MeshSpace.lg),
                 children: [
+                  if (e.station case final call? when call.isNotEmpty)
+                    InstrumentRow(
+                      icon: Icons.badge_outlined,
+                      title: l10n.ham_stationIdLabel,
+                      subtitle: l10n.ham_stationIdHint,
+                      trailing: Text(call),
+                    ),
                   InstrumentRow(
                     icon: Icons.alt_route,
                     title: l10n.rxLog_route,

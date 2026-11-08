@@ -10569,4 +10569,16 @@ class AppLocalizationsSl extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return 'poslano: $sent, prejeto: $received';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => 'Oznaka postaje';
+
+  @override
+  String get ham_stationIdHint =>
+      'Postaja, ki je oddala ta okvir: pošiljatelj ali repetitor, ki ga je posredoval';
 }

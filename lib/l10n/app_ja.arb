@@ -4453,5 +4453,8 @@
   "ham_stationLogClearConfirm": "局ログのすべての記録を削除しますか？元に戻せません。",
   "ham_stationLogEmpty": "まだ記録された局はありません",
   "ham_stationLogHint": "名前がコールサインで始まる局とのダイレクトメッセージを、この端末にだけ記録します。",
-  "ham_stationLogCounts": "送信 {sent}、受信 {received}"
+  "ham_stationLogCounts": "送信 {sent}、受信 {received}",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "局識別",
+  "ham_stationIdHint": "このフレームを送信した局。送信者、または中継したリピーターです"
 }

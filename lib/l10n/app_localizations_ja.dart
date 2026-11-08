@@ -10059,4 +10059,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String ham_stationLogCounts(int sent, int received) {
     return '送信 $sent、受信 $received';
   }
+
+  @override
+  String ham_rxStationId(String call) {
+    return 'ID $call';
+  }
+
+  @override
+  String get ham_stationIdLabel => '局識別';
+
+  @override
+  String get ham_stationIdHint => 'このフレームを送信した局。送信者、または中継したリピーターです';
 }

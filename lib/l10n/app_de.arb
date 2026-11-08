@@ -4453,5 +4453,8 @@
   "ham_stationLogClearConfirm": "Alle Einträge im Stationslog löschen? Das lässt sich nicht rückgängig machen.",
   "ham_stationLogEmpty": "Noch keine Stationen im Log",
   "ham_stationLogHint": "Direktnachrichten mit Stationen, deren Name mit einem Rufzeichen beginnt, werden hier protokolliert, nur auf diesem Telefon.",
-  "ham_stationLogCounts": "{sent} gesendet, {received} empfangen"
+  "ham_stationLogCounts": "{sent} gesendet, {received} empfangen",
+  "ham_rxStationId": "Kennung {call}",
+  "ham_stationIdLabel": "Stationskennung",
+  "ham_stationIdHint": "Die Station, die diesen Rahmen gesendet hat: der Absender oder das Relais, das ihn weitergab"
 }

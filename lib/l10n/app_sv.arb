@@ -4319,5 +4319,8 @@
   "ham_stationLogClearConfirm": "Radera alla poster i stationsloggen? Det går inte att ångra.",
   "ham_stationLogEmpty": "Inga stationer loggade än",
   "ham_stationLogHint": "Direktmeddelanden med stationer vars namn börjar med en anropssignal loggas här, bara på den här telefonen.",
-  "ham_stationLogCounts": "{sent} skickade, {received} mottagna"
+  "ham_stationLogCounts": "{sent} skickade, {received} mottagna",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Stations-ID",
+  "ham_stationIdHint": "Stationen som sände ramen: avsändaren eller repeatern som vidarebefordrade den"
 }

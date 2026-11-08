@@ -4319,5 +4319,8 @@
   "ham_stationLogClearConfirm": "Alle regels in het stationslog verwijderen? Dit kan niet ongedaan worden.",
   "ham_stationLogEmpty": "Nog geen stations gelogd",
   "ham_stationLogHint": "Directe berichten met stations waarvan de naam met een roepnaam begint, worden hier gelogd, alleen op deze telefoon.",
-  "ham_stationLogCounts": "{sent} verzonden, {received} ontvangen"
+  "ham_stationLogCounts": "{sent} verzonden, {received} ontvangen",
+  "ham_rxStationId": "ID {call}",
+  "ham_stationIdLabel": "Stations-ID",
+  "ham_stationIdHint": "Het station dat dit frame zond: de afzender, of de repeater die het doorgaf"
 }
