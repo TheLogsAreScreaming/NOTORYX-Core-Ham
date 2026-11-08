@@ -3,7 +3,7 @@ description: "NOTORYX Core Ham: an independent MeshCore LoRa companion app"
 publish_to: 'none'
 # NOTORYX Core Ham versions. The build number stays above 76 (the copy of
 # NOTORYX Core it started from), so Android installs updates over test 1.
-version: 0.1.0-test.4+102
+version: 0.1.0-test.5+103
 
 environment:
   sdk: ^3.9.2
