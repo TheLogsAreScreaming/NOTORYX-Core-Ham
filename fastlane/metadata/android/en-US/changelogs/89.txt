@@ -1,0 +1,3 @@
+• Eight colour themes, including Seasonal (follows the date, with optional holiday colours), in a new picker with previews
+• Contacts show each contact's path hash width (1B/2B/3B), flagged when it differs from your radio
+• Copy a position as decimal, DMS, UTM or MGRS, and choose how positions are shown
