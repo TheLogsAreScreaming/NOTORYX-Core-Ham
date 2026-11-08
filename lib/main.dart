@@ -524,6 +524,13 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+    // Seasonal follows the date, so check it again when the app comes back.
+    if (state == AppLifecycleState.resumed &&
+        BastionTheme.fromId(widget.appSettingsService.settings.appTheme) ==
+            BastionTheme.seasonal &&
+        mounted) {
+      setState(() {});
+    }
     _fieldOps.setForeground(state == AppLifecycleState.resumed);
     _readAloud.foreground = state == AppLifecycleState.resumed;
     widget.receivedImageStore.setForeground(state == AppLifecycleState.resumed);
