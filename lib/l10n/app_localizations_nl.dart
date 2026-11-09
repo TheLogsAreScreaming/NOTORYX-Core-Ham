@@ -10512,6 +10512,34 @@ class AppLocalizationsNl extends AppLocalizations {
       'Een ander netwerk, zoals een MeshCore-mesh onder Part 15, gebruikt deze frequentie. De frames hebben geen stations-ID en de ham-firmware kan ze niet lezen. Overleg met uw frequentiecoördinator voordat u hier zendt.';
 
   @override
+  String get forward_action => 'Doorsturen';
+
+  @override
+  String get forward_title => 'Bericht doorsturen';
+
+  @override
+  String get forward_to => 'Verzenden naar';
+
+  @override
+  String get forward_send => 'Verzenden';
+
+  @override
+  String get forward_hint =>
+      'Gaat uit onder uw roepletters en noemt de schrijver. U bent verantwoordelijk voor wat u doorstuurt.';
+
+  @override
+  String get forward_needCallsign =>
+      'Stel eerst uw roepletters in onder Gelicentieerde operator.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count bytes te lang. Maak het bericht korter.';
+  }
+
+  @override
+  String get forward_sent => 'Doorgestuurd naar de radio';
+
+  @override
   String get ham_setupBeforeTitle => 'Voordat u zendt';
 
   @override

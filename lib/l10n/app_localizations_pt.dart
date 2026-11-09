@@ -10538,6 +10538,34 @@ class AppLocalizationsPt extends AppLocalizations {
       'Outra rede, como uma malha MeshCore da Parte 15, usa esta frequência. As suas tramas não têm identificação e o firmware de radioamador não as consegue ler. Fale com o seu coordenador de frequências antes de transmitir aqui.';
 
   @override
+  String get forward_action => 'Encaminhar';
+
+  @override
+  String get forward_title => 'Encaminhar mensagem';
+
+  @override
+  String get forward_to => 'Enviar para';
+
+  @override
+  String get forward_send => 'Enviar';
+
+  @override
+  String get forward_hint =>
+      'Sai com o seu indicativo e indica quem a escreveu. É responsável pelo que encaminha.';
+
+  @override
+  String get forward_needCallsign =>
+      'Defina primeiro o seu indicativo em Operador licenciado.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Demasiado longa em $count bytes. Encurte a mensagem.';
+  }
+
+  @override
+  String get forward_sent => 'Encaminhada para o rádio';
+
+  @override
   String get ham_setupBeforeTitle => 'Antes de transmitir';
 
   @override

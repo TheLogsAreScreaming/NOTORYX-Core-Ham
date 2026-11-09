@@ -10423,6 +10423,34 @@ class AppLocalizationsEn extends AppLocalizations {
       'Another network, such as a Part 15 MeshCore mesh, is using this frequency. Its frames carry no station ID and the ham firmware can\'t read them. Check with your frequency coordinator before transmitting here.';
 
   @override
+  String get forward_action => 'Forward';
+
+  @override
+  String get forward_title => 'Forward message';
+
+  @override
+  String get forward_to => 'Send to';
+
+  @override
+  String get forward_send => 'Send';
+
+  @override
+  String get forward_hint =>
+      'Goes out under your call sign and names who wrote it. You\'re responsible for what you forward.';
+
+  @override
+  String get forward_needCallsign =>
+      'Set your call sign under Licensed operator first.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Too long by $count bytes. Shorten the message.';
+  }
+
+  @override
+  String get forward_sent => 'Forwarded to the radio';
+
+  @override
   String get ham_setupBeforeTitle => 'Before you transmit';
 
   @override

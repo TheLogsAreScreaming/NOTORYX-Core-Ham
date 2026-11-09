@@ -10600,6 +10600,34 @@ class AppLocalizationsRu extends AppLocalizations {
       'Эту частоту использует другая сеть, например сеть MeshCore по Part 15. Её кадры не несут позывного, и любительская прошивка не может их прочитать. Прежде чем передавать здесь, уточните у координатора частот.';
 
   @override
+  String get forward_action => 'Переслать';
+
+  @override
+  String get forward_title => 'Переслать сообщение';
+
+  @override
+  String get forward_to => 'Кому';
+
+  @override
+  String get forward_send => 'Отправить';
+
+  @override
+  String get forward_hint =>
+      'Уходит под вашим позывным с указанием автора. Вы отвечаете за то, что пересылаете.';
+
+  @override
+  String get forward_needCallsign =>
+      'Сначала укажите позывной в разделе «Лицензированный оператор».';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Слишком длинно на $count байт. Сократите сообщение.';
+  }
+
+  @override
+  String get forward_sent => 'Переслано на радио';
+
+  @override
   String get ham_setupBeforeTitle => 'Перед передачей';
 
   @override

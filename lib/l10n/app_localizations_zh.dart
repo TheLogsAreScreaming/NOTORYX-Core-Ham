@@ -9839,6 +9839,32 @@ class AppLocalizationsZh extends AppLocalizations {
       '另一个网络（例如 Part 15 的 MeshCore 网状网）正在使用此频率。它的帧不带电台识别，业余固件也无法读取。在此发射前请先与频率协调员确认。';
 
   @override
+  String get forward_action => '转发';
+
+  @override
+  String get forward_title => '转发消息';
+
+  @override
+  String get forward_to => '发送至';
+
+  @override
+  String get forward_send => '发送';
+
+  @override
+  String get forward_hint => '将以您的呼号发出并注明原作者。您需对转发内容负责。';
+
+  @override
+  String get forward_needCallsign => '请先在“持证操作员”中设置您的呼号。';
+
+  @override
+  String forward_tooLong(int count) {
+    return '超出 $count 字节。请缩短消息。';
+  }
+
+  @override
+  String get forward_sent => '已转发到电台';
+
+  @override
   String get ham_setupBeforeTitle => '发射之前';
 
   @override

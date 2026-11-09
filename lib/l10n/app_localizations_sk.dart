@@ -10539,6 +10539,34 @@ class AppLocalizationsSk extends AppLocalizations {
       'Túto frekvenciu používa iná sieť, napríklad sieť MeshCore podľa Part 15. Jej rámce nemajú identifikátor stanice a amatérsky firmvér ich nevie prečítať. Pred vysielaním sa poraďte s koordinátorom frekvencií.';
 
   @override
+  String get forward_action => 'Preposlať';
+
+  @override
+  String get forward_title => 'Preposlať správu';
+
+  @override
+  String get forward_to => 'Odoslať komu';
+
+  @override
+  String get forward_send => 'Odoslať';
+
+  @override
+  String get forward_hint =>
+      'Odíde pod vašou volacou značkou a uvedie autora. Za preposlaný obsah zodpovedáte vy.';
+
+  @override
+  String get forward_needCallsign =>
+      'Najprv nastavte volaciu značku v časti Licencovaný operátor.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Príliš dlhé o $count bajtov. Skráťte správu.';
+  }
+
+  @override
+  String get forward_sent => 'Preposlané do rádia';
+
+  @override
   String get ham_setupBeforeTitle => 'Pred vysielaním';
 
   @override
