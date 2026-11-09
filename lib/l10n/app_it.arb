@@ -552,6 +552,7 @@
     }
   },
   "chat_selectSendAction": "Seleziona azione di invio",
+  "chat_jumpToLatest": "Vai all'ultimo messaggio",
   "chat_sendGif": "Invia GIF",
   "chat_reply": "Rispondi",
   "chat_addReaction": "Aggiungi Reazione",

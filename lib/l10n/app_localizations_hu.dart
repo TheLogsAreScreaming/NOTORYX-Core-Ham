@@ -1815,6 +1815,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get chat_selectSendAction => 'Küldési művelet kiválasztása';
 
   @override
+  String get chat_jumpToLatest => 'Ugrás a legújabb üzenethez';
+
+  @override
   String get chat_sendGif => 'GIF küldése';
 
   @override

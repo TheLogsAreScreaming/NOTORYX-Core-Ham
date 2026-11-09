@@ -1734,6 +1734,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_selectSendAction => '送信アクションを選択';
 
   @override
+  String get chat_jumpToLatest => '最新のメッセージへ移動';
+
+  @override
   String get chat_sendGif => 'GIF を送信';
 
   @override

@@ -1293,40 +1293,46 @@ class _MapScreenState extends State<MapScreen> {
         point: guess.position,
         width: 48,
         height: 48,
-        child: GestureDetector(
-          onLongPress: () {
-            if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
-          },
-          onSecondaryTap: () {
-            if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
-          },
-          onTap: () => _isBuildingPathTrace
-              ? _addToPath(context, guess.contact, position: guess.position)
-              : _selectNode(guess.contact, guessedPosition: guess.position),
-          child: Center(
-            child: Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _overlayPanelColor,
-                border: Border.all(
-                  color: guess.highConfidence ? color : _overlayMutedTextColor,
-                  width: guess.highConfidence ? 2.5 : 2,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: _overlayShadowColor,
-                    blurRadius: 7,
-                    offset: Offset(0, 2),
+        child: Semantics(
+          button: true,
+          label: guess.contact.name,
+          child: GestureDetector(
+            onLongPress: () {
+              if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
+            },
+            onSecondaryTap: () {
+              if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
+            },
+            onTap: () => _isBuildingPathTrace
+                ? _addToPath(context, guess.contact, position: guess.position)
+                : _selectNode(guess.contact, guessedPosition: guess.position),
+            child: Center(
+              child: Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _overlayPanelColor,
+                  border: Border.all(
+                    color: guess.highConfidence
+                        ? color
+                        : _overlayMutedTextColor,
+                    width: guess.highConfidence ? 2.5 : 2,
                   ),
-                ],
-              ),
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.not_listed_location,
-                color: _overlayPrimaryTextColor,
-                size: 19,
+                  boxShadow: [
+                    BoxShadow(
+                      color: _overlayShadowColor,
+                      blurRadius: 7,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                child: Icon(
+                  Icons.not_listed_location,
+                  color: _overlayPrimaryTextColor,
+                  size: 19,
+                ),
               ),
             ),
           ),
@@ -1515,46 +1521,50 @@ class _MapScreenState extends State<MapScreen> {
       point: LatLng(contact.latitude!, contact.longitude!),
       width: size,
       height: size,
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onLongPress: () {
-          if (_isBuildingPathTrace) _showNodeInfo(context, contact);
-        },
-        onSecondaryTap: () {
-          if (_isBuildingPathTrace) _showNodeInfo(context, contact);
-        },
-        onTap: () => _isBuildingPathTrace
-            ? _addToPath(context, contact)
-            : _selectNode(contact),
-        child: Center(
-          child: dot && !selected
-              ? Container(
-                  width: 15,
-                  height: 15,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: baseColor,
-                    border: Border.all(
-                      color: MapPalette.markerOutline,
-                      width: 2,
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: MapPalette.markerShadow,
-                        blurRadius: 6,
-                        offset: Offset(0, 2),
+      child: Semantics(
+        button: true,
+        label: contact.name,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onLongPress: () {
+            if (_isBuildingPathTrace) _showNodeInfo(context, contact);
+          },
+          onSecondaryTap: () {
+            if (_isBuildingPathTrace) _showNodeInfo(context, contact);
+          },
+          onTap: () => _isBuildingPathTrace
+              ? _addToPath(context, contact)
+              : _selectNode(contact),
+          child: Center(
+            child: dot && !selected
+                ? Container(
+                    width: 15,
+                    height: 15,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: baseColor,
+                      border: Border.all(
+                        color: MapPalette.markerOutline,
+                        width: 2,
                       ),
-                    ],
+                      boxShadow: const [
+                        BoxShadow(
+                          color: MapPalette.markerShadow,
+                          blurRadius: 6,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                  )
+                : _buildNodeMarkerWidget(
+                    color: baseColor,
+                    icon: _getNodeIcon(contact.type),
+                    selected: selected,
+                    stale: stale,
+                    online: online,
+                    batteryLow: batteryLow,
                   ),
-                )
-              : _buildNodeMarkerWidget(
-                  color: baseColor,
-                  icon: _getNodeIcon(contact.type),
-                  selected: selected,
-                  stale: stale,
-                  online: online,
-                  batteryLow: batteryLow,
-                ),
+          ),
         ),
       ),
     );

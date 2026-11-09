@@ -916,6 +916,7 @@
     }
   },
   "chat_selectSendAction": "Select send action",
+  "chat_jumpToLatest": "Jump to the latest message",
   "chat_sendGif": "Send GIF",
   "chat_limitToArea": "Limit to an area",
   "chat_limitToAreaTitle": "Only send within…",

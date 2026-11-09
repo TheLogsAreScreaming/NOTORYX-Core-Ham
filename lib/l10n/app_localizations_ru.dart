@@ -1821,6 +1821,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get chat_selectSendAction => 'Выберите действие отправки';
 
   @override
+  String get chat_jumpToLatest => 'К последнему сообщению';
+
+  @override
   String get chat_sendGif => 'Отправить GIF';
 
   @override

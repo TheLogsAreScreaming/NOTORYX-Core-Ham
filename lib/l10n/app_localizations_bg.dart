@@ -1827,6 +1827,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get chat_selectSendAction => 'Изберете действие за изпращане';
 
   @override
+  String get chat_jumpToLatest => 'Към последното съобщение';
+
+  @override
   String get chat_sendGif => 'Изпрати GIF';
 
   @override

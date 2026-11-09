@@ -1813,6 +1813,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get chat_selectSendAction => 'Виберіть дію надсилання';
 
   @override
+  String get chat_jumpToLatest => 'До останнього повідомлення';
+
+  @override
   String get chat_sendGif => 'Надіслати GIF';
 
   @override

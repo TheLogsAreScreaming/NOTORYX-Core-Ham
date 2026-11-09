@@ -486,6 +486,7 @@
     }
   },
   "chat_selectSendAction": "Verzendactie selecteren",
+  "chat_jumpToLatest": "Naar het nieuwste bericht",
   "chat_sendGif": "GIF verzenden",
   "chat_reply": "Reageren",
   "chat_addReaction": "Reactie toevoegen",

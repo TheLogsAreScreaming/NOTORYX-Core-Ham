@@ -317,6 +317,7 @@
   "chat_retryingMessage": "Повтор отправки сообщения",
   "chat_retryCount": "Попытка {current}/{max}",
   "chat_selectSendAction": "Выберите действие отправки",
+  "chat_jumpToLatest": "К последнему сообщению",
   "chat_sendGif": "Отправить GIF",
   "chat_reply": "Ответить",
   "chat_addReaction": "Добавить реакцию",

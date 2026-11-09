@@ -486,6 +486,7 @@
     }
   },
   "chat_selectSendAction": "Izberite dejanje pošiljanja",
+  "chat_jumpToLatest": "Skoči na najnovejše sporočilo",
   "chat_sendGif": "Pošlji GIF",
   "chat_reply": "Odgovori",
   "chat_addReaction": "Dodaj reakcijo",

@@ -1714,6 +1714,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_selectSendAction => '选择发送操作';
 
   @override
+  String get chat_jumpToLatest => '跳到最新消息';
+
+  @override
   String get chat_sendGif => '发送 GIF';
 
   @override

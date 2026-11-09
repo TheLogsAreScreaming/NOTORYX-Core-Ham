@@ -480,7 +480,8 @@ class MeshTheme {
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: SegmentedButton.styleFrom(
           selectedBackgroundColor: scheme.primary.withValues(alpha: 0.16),
-          selectedForegroundColor: scheme.primary,
+          foregroundColor: scheme.onSurface,
+          selectedForegroundColor: scheme.onSurface,
           side: BorderSide(color: scheme.outlineVariant),
           minimumSize: const Size(MeshShape.minTouch, MeshShape.minTouch),
           shape: controlShape,

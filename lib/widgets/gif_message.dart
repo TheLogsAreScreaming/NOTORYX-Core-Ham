@@ -2,6 +2,8 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
+
 class GifMessage extends StatefulWidget {
   final String url;
   final Color backgroundColor;
@@ -177,24 +179,28 @@ class _GifMessageState extends State<GifMessage> {
       );
     }
 
-    return GestureDetector(
-      onTap: _togglePause,
-      child: Container(
-        color: widget.backgroundColor,
-        width: displayWidth,
-        height: displayHeight,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            content,
-            if (_isPaused && _image != null)
-              Container(
-                color: Colors.black.withValues(alpha: 0.2),
-                child: const Center(
-                  child: Icon(Icons.pause, color: Colors.white70, size: 28),
+    return Semantics(
+      button: true,
+      label: _isPaused ? context.l10n.pathMap_play : context.l10n.pathMap_pause,
+      child: GestureDetector(
+        onTap: _togglePause,
+        child: Container(
+          color: widget.backgroundColor,
+          width: displayWidth,
+          height: displayHeight,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              content,
+              if (_isPaused && _image != null)
+                Container(
+                  color: Colors.black.withValues(alpha: 0.2),
+                  child: const Center(
+                    child: Icon(Icons.pause, color: Colors.white70, size: 28),
+                  ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );

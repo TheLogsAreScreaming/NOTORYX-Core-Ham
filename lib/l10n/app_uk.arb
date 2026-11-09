@@ -489,6 +489,7 @@
     }
   },
   "chat_selectSendAction": "Виберіть дію надсилання",
+  "chat_jumpToLatest": "До останнього повідомлення",
   "chat_sendGif": "Надіслати GIF",
   "chat_reply": "Відповісти",
   "chat_addReaction": "Додати реакцію",

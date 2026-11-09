@@ -266,35 +266,39 @@ class _GifPickerState extends State<GifPicker> {
         final previewUrl =
             gif['images']?['fixed_height_small']?['url'] as String?;
 
-        return GestureDetector(
-          onTap: () {
-            widget.onGifSelected(gifId);
-            Navigator.pop(context);
-          },
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Container(
-              color: Theme.of(context).colorScheme.surfaceContainerHighest,
-              child: previewUrl != null
-                  ? Image.network(
-                      previewUrl,
-                      fit: BoxFit.cover,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                      loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        );
-                      },
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Center(child: Icon(Icons.error_outline));
-                      },
-                    )
-                  : const Center(child: Icon(Icons.gif_box)),
+        return Semantics(
+          button: true,
+          label: context.l10n.chat_sendGif,
+          child: GestureDetector(
+            onTap: () {
+              widget.onGifSelected(gifId);
+              Navigator.pop(context);
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Container(
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                child: previewUrl != null
+                    ? Image.network(
+                        previewUrl,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(child: Icon(Icons.error_outline));
+                        },
+                      )
+                    : const Center(child: Icon(Icons.gif_box)),
+              ),
             ),
           ),
         );
