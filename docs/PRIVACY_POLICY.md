@@ -1,19 +1,21 @@
-# NOTORYX Core privacy policy (release review draft)
+# NOTORYX Core Ham privacy policy (release review draft)
 
-**Last reviewed:** October 1, 2026  
+**Last reviewed:** November 9, 2026  
 **Status:** Draft for code and distribution review before public release.
 
-## About NOTORYX Core
+## About NOTORYX Core Ham
 
-NOTORYX Core is an independent MeshCore companion app. It communicates with compatible mesh radios and provides messaging, maps, route intelligence, diagnostics and coverage capture. No NOTORYX Core account is required for the current companion workflows.
+NOTORYX Core Ham is an independent MeshCore companion app. It communicates with compatible mesh radios and provides messaging, maps, route intelligence, diagnostics and coverage capture. No NOTORYX Core account is required for the current companion workflows.
 
 ## Information stored on the device
 
 Depending on the features you use, NOTORYX Core can store messages, contact identifiers, channel settings, routing/path history, coverage sessions and observations, mesh node positions, app preferences, cached map tiles and optional diagnostic logs. Coverage observations can contain the connected radio's GPS coordinates and nearby signal measurements. A radio's GPS position is not necessarily the phone's position.
 
-The app uses device storage and operating-system protections; do not assume that all stored messages, logs or exports have additional app-level encryption. Anyone with access to an exported file may be able to read its contents.
+The app uses device storage and operating-system protections. Encrypted message history is optional and off by default; it covers the message database on this device, not the other settings, logs or exports. Anyone with access to an exported file, or to the unlocked device, may be able to read its contents.
 
 ## Radio communication and sharing
+
+**Amateur radio traffic is plain text. Anyone listening can read it, and every transmission carries your call sign.** Encrypted history only protects the copy on this device.
 
 Messages and other information sent over a MeshCore network are transmitted to compatible radio devices. Their reach and visibility depend on the protocol, radio configuration, recipients and network participants. NOTORYX Core can let you export coverage data or diagnostics; sharing those files with other people or services is your choice.
 
@@ -25,8 +27,10 @@ Messages and other information sent over a MeshCore network are transmitted to c
 - **Notifications:** display incoming-message notifications when permitted.
 - **Foreground service / wake lock:** maintain a connected-device session in the background where Android permits it.
 - **Camera:** scan QR codes when that feature is used.
+- **Face ID or device passcode:** unlock the app when App lock is on. The check is done by the operating system and the app never sees your biometric data.
+- **Photos:** attach an image when you choose to.
 
-Permissions can be managed through Android settings, although denying a permission may disable the associated feature.
+Permissions can be managed through the phone's settings, although denying a permission may disable the associated feature.
 
 ## Third-party network services
 
@@ -38,7 +42,7 @@ Debug logs and exported diagnostics can include device, network and radio metada
 
 ## Children and policy updates
 
-NOTORYX Core is not designed to collect information from children. This policy will be updated if data handling or integrations change.
+NOTORYX Core Ham is not designed to collect information from children. This policy will be updated if data handling or integrations change.
 
 ## Contact
 
