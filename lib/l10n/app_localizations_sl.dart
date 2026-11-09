@@ -10556,6 +10556,58 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get security_title => 'Varnost';
+
+  @override
+  String get security_toolSubtitle =>
+      'Zaklep aplikacije in šifrirana zgodovina sporočil';
+
+  @override
+  String get appLock_title => 'Zaklep aplikacije';
+
+  @override
+  String get appLock_subtitle =>
+      'Ob odpiranju zahteva prstni odtis, obraz ali zaklep zaslona. Opozorila delujejo naprej, SOS pa ostane na zaklenjenem zaslonu.';
+
+  @override
+  String get appLock_reason => 'Odkleni NOTORYX Core Ham';
+
+  @override
+  String get appLock_unlock => 'Odkleni';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham je zaklenjen';
+
+  @override
+  String get appLock_unavailable =>
+      'Ta naprava nima zaklepa zaslona ali ga ni bilo mogoče potrditi.';
+
+  @override
+  String get dbEncrypt_title => 'Šifriraj zgodovino sporočil';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Šifrira zbirko sporočil v tej napravi s ključem v varni shrambi telefona. Če ključ izgubite, zgodovine ni mogoče obnoviti, zato hranite varnostno kopijo.';
+
+  @override
+  String get dbEncrypt_on => 'Stanje: šifrirano';
+
+  @override
+  String get dbEncrypt_off => 'Stanje: ni šifrirano';
+
+  @override
+  String get dbEncrypt_failed =>
+      'Stanje: ni uspelo. Zgodovina je nespremenjena.';
+
+  @override
+  String get dbEncrypt_restart =>
+      'Začne veljati ob naslednjem zagonu aplikacije.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Najprej odklenite in izberite, kdo prejme vaš SOS.';
+
+  @override
   String get ham_stockTrafficBody =>
       'To frekvenco uporablja drugo omrežje, na primer omrežje MeshCore po Part 15. Njegovi okvirji nimajo oznake postaje in radioamaterska programska oprema jih ne zna prebrati. Pred oddajanjem se posvetujte s koordinatorjem frekvenc.';
 

@@ -10056,6 +10056,53 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get security_title => '보안';
+
+  @override
+  String get security_toolSubtitle => '앱 잠금 및 메시지 기록 암호화';
+
+  @override
+  String get appLock_title => '앱 잠금';
+
+  @override
+  String get appLock_subtitle =>
+      '앱을 열 때 지문, 얼굴 또는 화면 잠금을 요구합니다. 알림은 계속 작동하며 SOS는 잠금 화면에서도 사용할 수 있습니다.';
+
+  @override
+  String get appLock_reason => 'NOTORYX Core Ham 잠금 해제';
+
+  @override
+  String get appLock_unlock => '잠금 해제';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham가 잠겨 있습니다';
+
+  @override
+  String get appLock_unavailable => '이 기기에 화면 잠금이 없거나 확인할 수 없습니다.';
+
+  @override
+  String get dbEncrypt_title => '메시지 기록 암호화';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      '휴대폰의 보안 저장소에 있는 키로 이 기기의 메시지 데이터베이스를 암호화합니다. 키를 잃으면 기록을 복구할 수 없으니 백업을 보관하세요.';
+
+  @override
+  String get dbEncrypt_on => '상태: 암호화됨';
+
+  @override
+  String get dbEncrypt_off => '상태: 암호화되지 않음';
+
+  @override
+  String get dbEncrypt_failed => '상태: 적용하지 못했습니다. 기록은 변경되지 않았습니다.';
+
+  @override
+  String get dbEncrypt_restart => '다음에 앱을 시작할 때 적용됩니다.';
+
+  @override
+  String get appLock_sosNoTarget => '먼저 잠금을 해제하고 SOS를 받을 사람을 선택하세요.';
+
+  @override
   String get ham_stockTrafficBody =>
       '다른 네트워크(Part 15 MeshCore 메시 등)가 이 주파수를 쓰고 있습니다. 그 프레임에는 국 식별이 없고 아마추어 펌웨어로는 읽을 수 없습니다. 여기서 송신하기 전에 주파수 조정자와 확인하세요.';
 

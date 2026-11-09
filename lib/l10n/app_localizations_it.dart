@@ -10564,6 +10564,56 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get security_title => 'Sicurezza';
+
+  @override
+  String get security_toolSubtitle => 'Blocco app e cronologia cifrata';
+
+  @override
+  String get appLock_title => 'Blocco app';
+
+  @override
+  String get appLock_subtitle =>
+      'Chiede impronta, volto o blocco schermo all\'apertura. Gli avvisi continuano e l\'SOS resta nella schermata di blocco.';
+
+  @override
+  String get appLock_reason => 'Sblocca NOTORYX Core Ham';
+
+  @override
+  String get appLock_unlock => 'Sblocca';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham è bloccato';
+
+  @override
+  String get appLock_unavailable =>
+      'Questo dispositivo non ha un blocco schermo, o non è stato possibile confermarlo.';
+
+  @override
+  String get dbEncrypt_title => 'Cifra la cronologia messaggi';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Cifra il database dei messaggi su questo dispositivo con una chiave nella memoria sicura del telefono. Se la chiave va persa la cronologia non è recuperabile, quindi conserva un backup.';
+
+  @override
+  String get dbEncrypt_on => 'Stato: cifrato';
+
+  @override
+  String get dbEncrypt_off => 'Stato: non cifrato';
+
+  @override
+  String get dbEncrypt_failed =>
+      'Stato: non applicato. La cronologia è invariata.';
+
+  @override
+  String get dbEncrypt_restart => 'Avrà effetto al prossimo avvio dell\'app.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Prima sblocca e scegli chi riceve il tuo SOS.';
+
+  @override
   String get ham_stockTrafficBody =>
       'Un\'altra rete, come una mesh MeshCore Part 15, usa questa frequenza. I suoi frame non hanno identificativo di stazione e il firmware radioamatoriale non può leggerli. Sentite il vostro coordinatore di frequenze prima di trasmettere qui.';
 

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
+import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/field_ops.dart';
 import '../services/field_ops_service.dart';
@@ -76,6 +77,55 @@ class SosPanel extends StatelessWidget {
         meshSnackBar(content: Text(l10n.sos_notSent(friendlyError(e)))),
       );
     }
+  }
+}
+
+/// SOS for the app lock screen, which sits above the navigator, so it can't
+/// open the recipient picker. It sends only to a recipient already chosen.
+class LockScreenSos extends StatefulWidget {
+  const LockScreenSos({super.key});
+
+  @override
+  State<LockScreenSos> createState() => _LockScreenSosState();
+}
+
+class _LockScreenSosState extends State<LockScreenSos> {
+  String? _error;
+
+  Future<void> _start(FieldOpsService ops, AppLocalizations l10n) async {
+    setState(() => _error = null);
+    try {
+      await ops.startSos();
+    } catch (e) {
+      if (mounted) setState(() => _error = l10n.sos_notSent('$e'));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    context.watch<MeshCoreConnector>();
+    final ops = context.watch<FieldOpsService>();
+    if (ops.sos.active) return _ActiveSos(ops: ops);
+    final l10n = context.l10n;
+    final reason =
+        hardBlockReason(ops) ??
+        (hasSosTarget(ops) ? null : l10n.appLock_sosNoTarget);
+    final note = _error ?? reason;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        HoldToConfirmButton(
+          key: const ValueKey('sos-hold'),
+          enabled: reason == null,
+          onConfirmed: () => _start(ops, l10n),
+        ),
+        if (note != null) ...[
+          const SizedBox(height: 4),
+          Text(note, style: TextStyle(color: _muted, fontSize: 12)),
+        ],
+      ],
+    );
   }
 }
 

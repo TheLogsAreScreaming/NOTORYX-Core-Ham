@@ -1,9 +1,9 @@
 package com.meshcore.meshcore_open
 
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
 
-class MainActivity : FlutterActivity() {
+class MainActivity : FlutterFragmentActivity() {
     private val usbFunctions by lazy { MeshcoreUsbFunctions(this) }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {

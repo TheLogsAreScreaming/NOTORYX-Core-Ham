@@ -10537,6 +10537,58 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String get security_title => 'Biztonság';
+
+  @override
+  String get security_toolSubtitle =>
+      'Alkalmazászár és titkosított üzenetelőzmények';
+
+  @override
+  String get appLock_title => 'Alkalmazászár';
+
+  @override
+  String get appLock_subtitle =>
+      'Megnyitáskor ujjlenyomatot, arcot vagy képernyőzárat kér. A riasztások működnek, az SOS pedig a zárolási képernyőn is elérhető.';
+
+  @override
+  String get appLock_reason => 'NOTORYX Core Ham feloldása';
+
+  @override
+  String get appLock_unlock => 'Feloldás';
+
+  @override
+  String get appLock_locked => 'A NOTORYX Core Ham zárolva van';
+
+  @override
+  String get appLock_unavailable =>
+      'Ezen az eszközön nincs képernyőzár, vagy nem sikerült megerősíteni.';
+
+  @override
+  String get dbEncrypt_title => 'Üzenetelőzmények titkosítása';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Titkosítja az eszközön az üzenetadatbázist a telefon biztonságos tárolójában lévő kulccsal. Ha a kulcs elvész, az előzmények nem állíthatók vissza, ezért készíts biztonsági mentést.';
+
+  @override
+  String get dbEncrypt_on => 'Állapot: titkosítva';
+
+  @override
+  String get dbEncrypt_off => 'Állapot: nincs titkosítva';
+
+  @override
+  String get dbEncrypt_failed =>
+      'Állapot: nem sikerült. Az előzmények nem változtak.';
+
+  @override
+  String get dbEncrypt_restart =>
+      'Az alkalmazás következő indításakor lép életbe.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Előbb oldd fel, és válaszd ki, ki kapja az SOS-t.';
+
+  @override
   String get ham_stockTrafficBody =>
       'Egy másik hálózat, például egy Part 15 szerinti MeshCore háló használja ezt a frekvenciát. A keretei nem hordoznak állomásazonosítót, és a ham firmware nem tudja olvasni őket. Adás előtt egyeztessen a frekvenciakoordinátorral.';
 

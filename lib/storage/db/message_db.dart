@@ -14,7 +14,23 @@ enum MessageTable {
 /// Message history in SQLite: one row per message, keyed by the connected
 /// radio (scope) and the conversation, holding the message's JSON. Absent on
 /// web, where the stores keep using SharedPreferences.
+/// Whether the message database file is encrypted on disk.
+enum MessageDbEncryption {
+  off,
+  on,
+
+  /// Encryption was asked for or is in place, but couldn't be applied or
+  /// the key couldn't be read. The file is left as it was.
+  failed,
+}
+
 abstract class MessageDb {
+  /// The preference asking for an encrypted database; applied at startup.
+  static const encryptPrefKey = 'message_db_encrypt';
+
+  /// What the last open actually achieved.
+  static MessageDbEncryption encryptionState = MessageDbEncryption.off;
+
   /// The open database, or null where SQLite isn't available or failed to
   /// open (the stores then fall back to SharedPreferences).
   static Future<MessageDb?> get ready => _ready ??= impl.openMessageDb();
@@ -47,6 +63,9 @@ abstract class MessageDb {
   void clear(MessageTable table, String scope, String conversation);
 
   void clearScope(MessageTable table, String scope);
+
+  /// Whether this database is encrypted on disk.
+  bool get isEncrypted;
 
   /// Whether [scope]'s SharedPreferences history has been copied in.
   bool isMigrated(String scope);
