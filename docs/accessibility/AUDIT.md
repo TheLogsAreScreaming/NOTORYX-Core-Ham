@@ -23,8 +23,9 @@ Anyone can repeat these steps from the repository.
 
 | Finding | Where | Measured | Verdict |
 |---|---|---|---|
-| Text contrast below 4.5:1 | Settings segmented control, both themes | 3.25:1 and 3.85:1 | **Open defect** |
-| Text contrast below 4.5:1 | Prefix tool, both themes | 3.82:1 | **Open defect** |
+| Text contrast below 4.5:1 | Settings segmented control | Blaze 3.25:1 and 3.85:1; Pink Overload 4.06:1 | **Open defect** |
+| Text contrast below 4.5:1 | Prefix tool | Blaze 3.82:1; Pink Overload 4.45:1 | **Open defect** |
+| Text contrast below 4.5:1 | Networks, Pink Overload | 4.48:1 | **Open defect** |
 | Text contrast below 2.5:1 (36 results) | Section labels and headers on the patterned backdrop, such as "Trip" and "Your station" | 1.0 to 2.5:1 | Likely false positives, because the checker reads the backdrop pattern. An earlier review compared these with screenshots; they were not re-inspected one by one for this audit |
 | Tap target under 48 dp | Message text in chat bubbles | Text height | Accepted: the whole bubble stays tappable |
 | Tap target under 48 dp | 24-hour chart bars in field stats | About 14 dp wide | Accepted: each bar has a spoken label and the same data is listed below |
