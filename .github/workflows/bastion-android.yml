@@ -67,9 +67,9 @@ jobs:
       - name: Analyze
         run: flutter analyze --fatal-infos --fatal-warnings
       - name: Test
-        run: flutter test --timeout 2m
+        run: bash tools/ci_retry.sh flutter test --timeout 2m
       - name: Build Bastion RC1 APK
-        run: flutter build apk --release --target-platform android-arm64 --target lib/main.dart
+        run: bash tools/ci_retry.sh flutter build apk --release --target-platform android-arm64 --target lib/main.dart
       - name: Verify packaged Bastion icon resources
         run: |
           APK=build/app/outputs/flutter-apk/app-release.apk

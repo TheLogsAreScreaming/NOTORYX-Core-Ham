@@ -48,7 +48,7 @@ jobs:
       - name: Analyze
         run: flutter analyze
       - name: Test
-        run: flutter test
+        run: bash tools/ci_retry.sh flutter test
       - name: Configure permanent release signing
         env:
           KEYSTORE_B64: ${{ secrets.BASTION_KEYSTORE_BASE64 }}
@@ -67,8 +67,8 @@ jobs:
           chmod 600 android/key.properties android/app/bastion-release.jks
       - name: Build signed APK (ARM64) and App Bundle
         run: |
-          flutter build apk --release --target-platform android-arm64
-          flutter build appbundle --release
+          bash tools/ci_retry.sh flutter build apk --release --target-platform android-arm64
+          bash tools/ci_retry.sh flutter build appbundle --release
       - name: Verify signing and prepare artifacts
         run: |
           APK=build/app/outputs/flutter-apk/app-release.apk

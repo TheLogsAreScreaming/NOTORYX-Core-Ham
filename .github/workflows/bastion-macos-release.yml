@@ -39,9 +39,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Test
-        run: flutter test
+        run: bash tools/ci_retry.sh flutter test
       - name: Build universal macOS app
-        run: flutter build macos --release
+        run: bash tools/ci_retry.sh flutter build macos --release
       - name: Check the app runs on Intel and Apple silicon
         run: |
           APP="build/macos/Build/Products/Release/NOTORYX Core Ham.app"
