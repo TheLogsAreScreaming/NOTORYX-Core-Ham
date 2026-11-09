@@ -2494,21 +2494,22 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                   _showEmojiPicker(message);
                 },
               ),
-            ListTile(
-              key: const ValueKey('message-forward'),
-              leading: const Icon(Icons.forward),
-              title: Text(context.l10n.forward_action),
-              onTap: () {
-                Navigator.pop(sheetContext);
-                unawaited(
-                  showForwardMessageDialog(
-                    context,
-                    from: message.senderName,
-                    body: message.text,
-                  ),
-                );
-              },
-            ),
+            if (GifHelper.parseGif(message.text) == null)
+              ListTile(
+                key: const ValueKey('message-forward'),
+                leading: const Icon(Icons.forward),
+                title: Text(context.l10n.forward_action),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  unawaited(
+                    showForwardMessageDialog(
+                      context,
+                      from: message.senderName,
+                      body: message.text,
+                    ),
+                  );
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.copy),
               title: Text(context.l10n.common_copy),
