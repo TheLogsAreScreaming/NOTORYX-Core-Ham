@@ -1,0 +1,56 @@
+name: iOS TestFlight
+
+# Run by hand after the Apple Developer account and the four secrets below exist.
+on:
+  workflow_dispatch:
+
+jobs:
+  testflight:
+    runs-on: macos-15-intel
+    env:
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stop if the Apple secrets are missing
+        run: |
+          for name in APPLE_TEAM_ID ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do
+            if [ -z "${!name}" ]; then
+              echo "::error::Missing secret $name. See docs/APP_STORE.md."
+              exit 1
+            fi
+          done
+      - name: Use Xcode 26
+        run: |
+          XCODE=$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)
+          test -n "$XCODE"
+          sudo xcode-select -s "$XCODE"
+          xcodebuild -version
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.6"
+          channel: "stable"
+          cache: true
+      - run: flutter pub get
+      - name: Build the archive
+        run: |
+          sed -i '' "s/DEVELOPMENT_TEAM = [A-Z0-9]*;/DEVELOPMENT_TEAM = $APPLE_TEAM_ID;/" ios/Runner.xcodeproj/project.pbxproj
+          bash tools/ci_retry.sh flutter build ipa --release --no-codesign --no-pub
+      - name: Sign and upload to TestFlight
+        run: |
+          KEY="$RUNNER_TEMP/AuthKey_$ASC_KEY_ID.p8"
+          printf '%s' "$ASC_KEY_P8" > "$KEY"
+          sed "s/__APPLE_TEAM_ID__/$APPLE_TEAM_ID/" ios/ExportOptions.plist.template > "$RUNNER_TEMP/ExportOptions.plist"
+          xcodebuild -exportArchive \
+            -archivePath build/ios/archive/Runner.xcarchive \
+            -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
+            -exportPath "$RUNNER_TEMP/export" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$KEY" \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID"
+      - name: Remove the key
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey_$ASC_KEY_ID.p8"
