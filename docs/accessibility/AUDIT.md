@@ -30,7 +30,7 @@ After the fixes, 32 of 56 screen and theme combinations pass every check (30 of 
 
 ### 2. Code scan
 
-No icon button lacks a tooltip, and nothing overrides the system text size. The scan flags 18 tap handlers. All have now been read; the scan can't see every label, so some remain listed after being fixed or cleared.
+No icon button lacks a tooltip, and nothing overrides the system text size. The first scan flagged 18 tap handlers, and all have now been read. The scan can't see every label, so it still lists some that were fixed or cleared.
 
 | Where | Finding | Verdict |
 |---|---|---|
