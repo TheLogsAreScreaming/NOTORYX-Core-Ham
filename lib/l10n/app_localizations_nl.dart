@@ -10563,7 +10563,78 @@ class AppLocalizationsNl extends AppLocalizations {
       'Een ander netwerk, zoals een MeshCore-mesh onder Part 15, gebruikt deze frequentie. De frames hebben geen stations-ID en de ham-firmware kan ze niet lezen. Overleg met uw frequentiecoördinator voordat u hier zendt.';
 
   @override
+  String get forward_action => 'Doorsturen';
+
+  @override
+  String get forward_title => 'Bericht doorsturen';
+
+  @override
+  String get forward_to => 'Verzenden naar';
+
+  @override
+  String get forward_send => 'Verzenden';
+
+  @override
+  String get forward_hint =>
+      'Gaat uit onder uw roepletters en noemt de schrijver. U bent verantwoordelijk voor wat u doorstuurt.';
+
+  @override
+  String get forward_needCallsign =>
+      'Stel eerst uw roepletters in onder Gelicentieerde operator.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count bytes te lang. Maak het bericht korter.';
+  }
+
+  @override
+  String get forward_sent => 'Doorgestuurd naar de radio';
+
+  @override
   String get ham_setupBeforeTitle => 'Voordat u zendt';
+
+  @override
+  String get team_title => 'Teamconfiguratie';
+
+  @override
+  String get team_toolSubtitle =>
+      'Radio-instellingen en kanalen delen via QR of bestand';
+
+  @override
+  String get team_shareHint =>
+      'Deelt frequentie, bandbreedte, spreidingsfactor, codeersnelheid en hashtagkanalen van deze radio. Geen sleutels en geen zendvermogen.';
+
+  @override
+  String get team_shareFile => 'Delen als bestand';
+
+  @override
+  String get team_scan => 'Team-QR-code scannen';
+
+  @override
+  String get team_openFile => 'Teambestand openen';
+
+  @override
+  String get team_importTitle => 'Teamconfiguratie toepassen?';
+
+  @override
+  String get team_apply => 'Toepassen op radio';
+
+  @override
+  String get team_invalid =>
+      'Dit is geen geldige teamconfiguratie of de frequentie ligt buiten de amateurbanden.';
+
+  @override
+  String get team_applied => 'Teamconfiguratie toegepast';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanalen: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10573,4 +10644,36 @@ class AppLocalizationsNl extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Gelicentieerde zendamateur ingesteld als $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Rapport';
+
+  @override
+  String get fieldReport_title => 'Veldrapporten';
+
+  @override
+  String get fieldReport_open => 'Een SALUTE- of 9-Line-rapport schrijven';
+
+  @override
+  String get fieldReport_hint =>
+      'Wordt als platte tekst onder uw roepletters verzonden naar uw tochtcontacten en het SOS-kanaal. Er gaat niets uit tot u op Verzenden drukt.';
+
+  @override
+  String get fieldReport_usePosition => 'Positie van de radio gebruiken';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Te verzenden berichten: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Stel eerst uw roepletters in onder Gelicentieerde operator.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Een regel is te lang voor één bericht. Maak hem korter.';
+
+  @override
+  String get fieldReport_sent => 'Rapport naar de radio verzonden';
 }

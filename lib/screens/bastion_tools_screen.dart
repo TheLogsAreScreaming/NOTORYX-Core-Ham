@@ -18,6 +18,7 @@ import 'rx_log_screen.dart';
 import 'path_graph_screen.dart';
 import 'encrypted_backup_screen.dart';
 import 'security_screen.dart';
+import 'team_config_screen.dart';
 import 'field_guide_screen.dart';
 import 'bastion_field_ops_screen.dart';
 import 'bastion_diagnostics_screen.dart';
@@ -98,6 +99,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.security_title,
             subtitle: l10n.security_toolSubtitle,
             builder: (_) => const SecurityScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.qr_code_2,
+            title: l10n.team_title,
+            subtitle: l10n.team_toolSubtitle,
+            builder: (_) => const TeamConfigScreen(),
           ),
           _ToolAction(
             icon: Icons.menu_book_outlined,

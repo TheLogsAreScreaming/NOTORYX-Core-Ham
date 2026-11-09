@@ -9885,7 +9885,73 @@ class AppLocalizationsZh extends AppLocalizations {
       '另一个网络（例如 Part 15 的 MeshCore 网状网）正在使用此频率。它的帧不带电台识别，业余固件也无法读取。在此发射前请先与频率协调员确认。';
 
   @override
+  String get forward_action => '转发';
+
+  @override
+  String get forward_title => '转发消息';
+
+  @override
+  String get forward_to => '发送至';
+
+  @override
+  String get forward_send => '发送';
+
+  @override
+  String get forward_hint => '将以您的呼号发出并注明原作者。您需对转发内容负责。';
+
+  @override
+  String get forward_needCallsign => '请先在“持证操作员”中设置您的呼号。';
+
+  @override
+  String forward_tooLong(int count) {
+    return '超出 $count 字节。请缩短消息。';
+  }
+
+  @override
+  String get forward_sent => '已转发到电台';
+
+  @override
   String get ham_setupBeforeTitle => '发射之前';
+
+  @override
+  String get team_title => '团队配置';
+
+  @override
+  String get team_toolSubtitle => '通过二维码或文件共享电台设置和频道';
+
+  @override
+  String get team_shareHint => '共享此电台的频率、带宽、扩频因子、编码率和话题频道。不包含密钥和发射功率。';
+
+  @override
+  String get team_shareFile => '作为文件共享';
+
+  @override
+  String get team_scan => '扫描团队二维码';
+
+  @override
+  String get team_openFile => '打开团队文件';
+
+  @override
+  String get team_importTitle => '应用团队配置？';
+
+  @override
+  String get team_apply => '应用到电台';
+
+  @override
+  String get team_invalid => '这不是有效的团队配置，或其频率超出业余频段。';
+
+  @override
+  String get team_applied => '已应用团队配置';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return '频道：$names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -9895,4 +9961,33 @@ class AppLocalizationsZh extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return '持照操作员已设置为 $call';
   }
+
+  @override
+  String get fieldOps_kindReport => '报告';
+
+  @override
+  String get fieldReport_title => '现场报告';
+
+  @override
+  String get fieldReport_open => '撰写 SALUTE 或 9-Line 报告';
+
+  @override
+  String get fieldReport_hint => '以明文并附上您的呼号发送给行程联系人和 SOS 频道。按下发送之前不会发出任何内容。';
+
+  @override
+  String get fieldReport_usePosition => '使用电台位置';
+
+  @override
+  String fieldReport_preview(int count) {
+    return '待发送消息：$count';
+  }
+
+  @override
+  String get fieldReport_needCallsign => '请先在“持证操作员”中设置您的呼号。';
+
+  @override
+  String get fieldReport_tooLong => '有一行太长，无法放入一条消息。请缩短。';
+
+  @override
+  String get fieldReport_sent => '报告已发送到电台';
 }

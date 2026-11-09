@@ -10652,7 +10652,78 @@ class AppLocalizationsRu extends AppLocalizations {
       'Эту частоту использует другая сеть, например сеть MeshCore по Part 15. Её кадры не несут позывного, и любительская прошивка не может их прочитать. Прежде чем передавать здесь, уточните у координатора частот.';
 
   @override
+  String get forward_action => 'Переслать';
+
+  @override
+  String get forward_title => 'Переслать сообщение';
+
+  @override
+  String get forward_to => 'Кому';
+
+  @override
+  String get forward_send => 'Отправить';
+
+  @override
+  String get forward_hint =>
+      'Уходит под вашим позывным с указанием автора. Вы отвечаете за то, что пересылаете.';
+
+  @override
+  String get forward_needCallsign =>
+      'Сначала укажите позывной в разделе «Лицензированный оператор».';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Слишком длинно на $count байт. Сократите сообщение.';
+  }
+
+  @override
+  String get forward_sent => 'Переслано на радио';
+
+  @override
   String get ham_setupBeforeTitle => 'Перед передачей';
+
+  @override
+  String get team_title => 'Настройки команды';
+
+  @override
+  String get team_toolSubtitle =>
+      'Поделиться настройками радио и каналами через QR или файл';
+
+  @override
+  String get team_shareHint =>
+      'Передаёт частоту, полосу, SF, CR и хештег-каналы этого радио. Ключи и мощность передачи не включаются.';
+
+  @override
+  String get team_shareFile => 'Поделиться файлом';
+
+  @override
+  String get team_scan => 'Сканировать QR команды';
+
+  @override
+  String get team_openFile => 'Открыть файл команды';
+
+  @override
+  String get team_importTitle => 'Применить настройки команды?';
+
+  @override
+  String get team_apply => 'Применить на радио';
+
+  @override
+  String get team_invalid =>
+      'Это неверные настройки, или частота вне любительских диапазонов.';
+
+  @override
+  String get team_applied => 'Настройки команды применены';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Каналы: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10662,4 +10733,36 @@ class AppLocalizationsRu extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Лицензированный оператор: $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Донесение';
+
+  @override
+  String get fieldReport_title => 'Полевые донесения';
+
+  @override
+  String get fieldReport_open => 'Написать донесение SALUTE или 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Отправляется открытым текстом с вашим позывным контактам поездки и в канал SOS. Ничего не передаётся, пока вы не нажмёте «Отправить».';
+
+  @override
+  String get fieldReport_usePosition => 'Использовать позицию радио';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Сообщений к отправке: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Сначала укажите позывной в разделе «Лицензированный оператор».';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Одна строка слишком длинна для одного сообщения. Сократите её.';
+
+  @override
+  String get fieldReport_sent => 'Донесение передано на радио';
 }

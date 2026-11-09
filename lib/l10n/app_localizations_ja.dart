@@ -10092,7 +10092,74 @@ class AppLocalizationsJa extends AppLocalizations {
       '別のネットワーク (Part 15 の MeshCore メッシュなど) がこの周波数を使っています。そのフレームには局識別がなく、アマチュア無線用ファームウェアでは読めません。ここで送信する前に周波数調整担当者に確認してください。';
 
   @override
+  String get forward_action => '転送';
+
+  @override
+  String get forward_title => 'メッセージを転送';
+
+  @override
+  String get forward_to => '送信先';
+
+  @override
+  String get forward_send => '送信';
+
+  @override
+  String get forward_hint => 'あなたのコールサインで送信され、作成者の名前も示されます。転送内容の責任はあなたにあります。';
+
+  @override
+  String get forward_needCallsign => '先に「免許を持つオペレーター」でコールサインを設定してください。';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count バイト長すぎます。メッセージを短くしてください。';
+  }
+
+  @override
+  String get forward_sent => '無線機に転送しました';
+
+  @override
   String get ham_setupBeforeTitle => '送信する前に';
+
+  @override
+  String get team_title => 'チーム設定';
+
+  @override
+  String get team_toolSubtitle => '無線設定とチャンネルを QR またはファイルで共有';
+
+  @override
+  String get team_shareHint =>
+      'この無線機の周波数、帯域幅、拡散率、符号化率、ハッシュタグチャンネルを共有します。鍵と送信出力は含まれません。';
+
+  @override
+  String get team_shareFile => 'ファイルで共有';
+
+  @override
+  String get team_scan => 'チームの QR コードをスキャン';
+
+  @override
+  String get team_openFile => 'チームファイルを開く';
+
+  @override
+  String get team_importTitle => 'チーム設定を適用しますか？';
+
+  @override
+  String get team_apply => '無線機に適用';
+
+  @override
+  String get team_invalid => '有効なチーム設定ではないか、周波数がアマチュアバンド外です。';
+
+  @override
+  String get team_applied => 'チーム設定を適用しました';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'チャンネル: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10102,4 +10169,34 @@ class AppLocalizationsJa extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return '免許局として設定済み: $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'レポート';
+
+  @override
+  String get fieldReport_title => 'フィールドレポート';
+
+  @override
+  String get fieldReport_open => 'SALUTE または 9-Line レポートを作成';
+
+  @override
+  String get fieldReport_hint =>
+      'コールサインを付けた平文で、トリップの連絡先と SOS チャンネルに送信します。送信を押すまで何も送られません。';
+
+  @override
+  String get fieldReport_usePosition => '無線機の位置を使う';
+
+  @override
+  String fieldReport_preview(int count) {
+    return '送信するメッセージ: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign => '先に「免許を持つオペレーター」でコールサインを設定してください。';
+
+  @override
+  String get fieldReport_tooLong => '1 行が長すぎて 1 通に収まりません。短くしてください。';
+
+  @override
+  String get fieldReport_sent => 'レポートを無線機に渡しました';
 }

@@ -10520,7 +10520,78 @@ class AppLocalizationsSv extends AppLocalizations {
       'Ett annat nät, till exempel ett MeshCore-nät enligt Part 15, använder frekvensen. Dess ramar har inget stations-ID och ham-firmware kan inte läsa dem. Kontrollera med din frekvenskoordinator innan du sänder här.';
 
   @override
+  String get forward_action => 'Vidarebefordra';
+
+  @override
+  String get forward_title => 'Vidarebefordra meddelande';
+
+  @override
+  String get forward_to => 'Skicka till';
+
+  @override
+  String get forward_send => 'Skicka';
+
+  @override
+  String get forward_hint =>
+      'Går ut under din anropssignal och anger vem som skrev det. Du ansvarar för det du vidarebefordrar.';
+
+  @override
+  String get forward_needCallsign =>
+      'Ange först din anropssignal under Licensierad operatör.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count byte för långt. Korta ner meddelandet.';
+  }
+
+  @override
+  String get forward_sent => 'Vidarebefordrat till radion';
+
+  @override
   String get ham_setupBeforeTitle => 'Innan du sänder';
+
+  @override
+  String get team_title => 'Teamkonfiguration';
+
+  @override
+  String get team_toolSubtitle =>
+      'Dela radioinställningar och kanaler via QR eller fil';
+
+  @override
+  String get team_shareHint =>
+      'Delar radions frekvens, bandbredd, spridningsfaktor, kodningsgrad och hashtagkanaler. Inga nycklar och ingen sändningseffekt ingår.';
+
+  @override
+  String get team_shareFile => 'Dela som fil';
+
+  @override
+  String get team_scan => 'Skanna en team-QR-kod';
+
+  @override
+  String get team_openFile => 'Öppna en teamfil';
+
+  @override
+  String get team_importTitle => 'Använda teamkonfigurationen?';
+
+  @override
+  String get team_apply => 'Använd på radion';
+
+  @override
+  String get team_invalid =>
+      'Det här är ingen giltig teamkonfiguration, eller så ligger frekvensen utanför amatörbanden.';
+
+  @override
+  String get team_applied => 'Teamkonfigurationen används';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanaler: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10530,4 +10601,36 @@ class AppLocalizationsSv extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Licensierad operatör inställd som $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Rapport';
+
+  @override
+  String get fieldReport_title => 'Fältrapporter';
+
+  @override
+  String get fieldReport_open => 'Skriv en SALUTE- eller 9-Line-rapport';
+
+  @override
+  String get fieldReport_hint =>
+      'Skickas som klartext under din anropssignal till dina turkontakter och SOS-kanalen. Inget sänds förrän du trycker på Skicka.';
+
+  @override
+  String get fieldReport_usePosition => 'Använd radions position';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Meddelanden att skicka: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Ange först din anropssignal under Licensierad operatör.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'En rad är för lång för ett enda meddelande. Korta ner den.';
+
+  @override
+  String get fieldReport_sent => 'Rapporten skickad till radion';
 }

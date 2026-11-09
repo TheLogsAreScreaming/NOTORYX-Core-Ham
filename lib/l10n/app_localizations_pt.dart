@@ -10588,7 +10588,78 @@ class AppLocalizationsPt extends AppLocalizations {
       'Outra rede, como uma malha MeshCore da Parte 15, usa esta frequência. As suas tramas não têm identificação e o firmware de radioamador não as consegue ler. Fale com o seu coordenador de frequências antes de transmitir aqui.';
 
   @override
+  String get forward_action => 'Encaminhar';
+
+  @override
+  String get forward_title => 'Encaminhar mensagem';
+
+  @override
+  String get forward_to => 'Enviar para';
+
+  @override
+  String get forward_send => 'Enviar';
+
+  @override
+  String get forward_hint =>
+      'Sai com o seu indicativo e indica quem a escreveu. É responsável pelo que encaminha.';
+
+  @override
+  String get forward_needCallsign =>
+      'Defina primeiro o seu indicativo em Operador licenciado.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Demasiado longa em $count bytes. Encurte a mensagem.';
+  }
+
+  @override
+  String get forward_sent => 'Encaminhada para o rádio';
+
+  @override
   String get ham_setupBeforeTitle => 'Antes de transmitir';
+
+  @override
+  String get team_title => 'Configuração da equipa';
+
+  @override
+  String get team_toolSubtitle =>
+      'Partilhar definições do rádio e canais por QR ou ficheiro';
+
+  @override
+  String get team_shareHint =>
+      'Partilha a frequência, largura de banda, fator de espalhamento, taxa de codificação e canais hashtag deste rádio. Não inclui chaves nem potência de transmissão.';
+
+  @override
+  String get team_shareFile => 'Partilhar como ficheiro';
+
+  @override
+  String get team_scan => 'Ler um QR da equipa';
+
+  @override
+  String get team_openFile => 'Abrir um ficheiro da equipa';
+
+  @override
+  String get team_importTitle => 'Aplicar a configuração da equipa?';
+
+  @override
+  String get team_apply => 'Aplicar ao rádio';
+
+  @override
+  String get team_invalid =>
+      'Configuração inválida ou frequência fora das bandas de amador.';
+
+  @override
+  String get team_applied => 'Configuração aplicada';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Canais: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10598,4 +10669,36 @@ class AppLocalizationsPt extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Operador licenciado configurado como $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Relatório';
+
+  @override
+  String get fieldReport_title => 'Relatórios de campo';
+
+  @override
+  String get fieldReport_open => 'Escrever um relatório SALUTE ou 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Enviado como texto simples com o seu indicativo aos contactos da saída e ao canal SOS. Nada é transmitido até premir Enviar.';
+
+  @override
+  String get fieldReport_usePosition => 'Usar a posição do rádio';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Mensagens a enviar: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Defina primeiro o seu indicativo em Operador licenciado.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Uma linha é demasiado longa para uma só mensagem. Encurte-a.';
+
+  @override
+  String get fieldReport_sent => 'Relatório enviado para o rádio';
 }

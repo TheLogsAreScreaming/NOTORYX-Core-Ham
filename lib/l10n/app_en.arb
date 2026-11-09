@@ -6303,7 +6303,30 @@
   "@ham_stockTrafficBody": {
     "description": "Licensed operator: what stock MeshCore traffic on the frequency means"
   },
+  "forward_action": "Forward",
+  "forward_title": "Forward message",
+  "forward_to": "Send to",
+  "forward_send": "Send",
+  "forward_hint": "Goes out under your call sign and names who wrote it. You're responsible for what you forward.",
+  "forward_needCallsign": "Set your call sign under Licensed operator first.",
+  "forward_tooLong": "Too long by {count} bytes. Shorten the message.",
+  "forward_sent": "Forwarded to the radio",
+  "@forward_tooLong": {"placeholders": {"count": {"type": "int"}}},
   "ham_setupBeforeTitle": "Before you transmit",
+  "team_title": "Team config",
+  "team_toolSubtitle": "Share radio settings and channels by QR or file",
+  "team_shareHint": "Shares this radio's frequency, bandwidth, spreading factor, coding rate and hashtag channels. No keys and no transmit power are included.",
+  "team_shareFile": "Share as a file",
+  "team_scan": "Scan a team QR code",
+  "team_openFile": "Open a team file",
+  "team_importTitle": "Apply team config?",
+  "team_apply": "Apply to radio",
+  "team_invalid": "This isn't a valid team config, or its frequency is outside the amateur bands.",
+  "team_applied": "Team config applied",
+  "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
+  "team_channels": "Channels: {names}",
+  "@team_summary": {"placeholders": {"freq": {"type": "String"}, "bandwidth": {"type": "String"}, "sf": {"type": "int"}, "cr": {"type": "int"}}},
+  "@team_channels": {"placeholders": {"names": {"type": "String"}}},
   "ham_setupBeforeBody": "Read the coordination guide, then add your call sign and licence in Licensed operator. Don't transmit until your frequency coordinator and the other stations on your mesh have agreed on a channel.",
   "ham_setupBeforeDone": "Licensed operator set up as {call}",
   "@ham_setupBeforeTitle": {
@@ -6320,5 +6343,15 @@
         "example": "W1AW"
       }
     }
-  }
+  },
+  "fieldOps_kindReport": "Report",
+  "fieldReport_title": "Field reports",
+  "fieldReport_open": "Write a SALUTE or 9-Line report",
+  "fieldReport_hint": "Sent as plain text under your call sign to your trip contacts and SOS channel. Nothing goes out until you press Send.",
+  "fieldReport_usePosition": "Use the radio's position",
+  "fieldReport_preview": "Messages to send: {count}",
+  "fieldReport_needCallsign": "Set your call sign under Licensed operator first.",
+  "fieldReport_tooLong": "One line is too long for a single message. Shorten it.",
+  "fieldReport_sent": "Report sent to the radio",
+  "@fieldReport_preview": {"placeholders": {"count": {"type": "int"}}}
 }

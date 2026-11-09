@@ -10589,7 +10589,78 @@ class AppLocalizationsBg extends AppLocalizations {
       'Друга мрежа, например MeshCore по Part 15, използва тази честота. Кадрите ѝ нямат позивна и любителският фърмуер не може да ги чете. Попитайте честотния координатор, преди да предавате тук.';
 
   @override
+  String get forward_action => 'Препрати';
+
+  @override
+  String get forward_title => 'Препращане на съобщение';
+
+  @override
+  String get forward_to => 'Изпрати до';
+
+  @override
+  String get forward_send => 'Изпрати';
+
+  @override
+  String get forward_hint =>
+      'Изпраща се с вашия позивен и посочва автора. Вие отговаряте за това, което препращате.';
+
+  @override
+  String get forward_needCallsign =>
+      'Първо задайте позивния си в „Лицензиран оператор“.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Твърде дълго с $count байта. Съкратете съобщението.';
+  }
+
+  @override
+  String get forward_sent => 'Препратено към радиото';
+
+  @override
   String get ham_setupBeforeTitle => 'Преди да предавате';
+
+  @override
+  String get team_title => 'Настройки на екипа';
+
+  @override
+  String get team_toolSubtitle =>
+      'Споделяне на настройки и канали чрез QR или файл';
+
+  @override
+  String get team_shareHint =>
+      'Споделя честотата, лентата, SF, CR и хаштаг каналите на това радио. Не включва ключове и мощност на предаване.';
+
+  @override
+  String get team_shareFile => 'Сподели като файл';
+
+  @override
+  String get team_scan => 'Сканирай QR код на екипа';
+
+  @override
+  String get team_openFile => 'Отвори файл на екипа';
+
+  @override
+  String get team_importTitle => 'Да се приложат настройките на екипа?';
+
+  @override
+  String get team_apply => 'Приложи към радиото';
+
+  @override
+  String get team_invalid =>
+      'Това не са валидни настройки или честотата е извън любителските обхвати.';
+
+  @override
+  String get team_applied => 'Настройките са приложени';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Канали: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10599,4 +10670,36 @@ class AppLocalizationsBg extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Лицензиран оператор: $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Доклад';
+
+  @override
+  String get fieldReport_title => 'Полеви доклади';
+
+  @override
+  String get fieldReport_open => 'Напишете доклад SALUTE или 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Изпраща се като обикновен текст с вашия позивен до контактите от пътуването и SOS канала. Нищо не се изпраща, докато не натиснете Изпрати.';
+
+  @override
+  String get fieldReport_usePosition => 'Използвай позицията на радиото';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Съобщения за изпращане: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Първо задайте позивния си в „Лицензиран оператор“.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Един ред е твърде дълъг за едно съобщение. Съкратете го.';
+
+  @override
+  String get fieldReport_sent => 'Докладът е изпратен към радиото';
 }

@@ -10589,7 +10589,78 @@ class AppLocalizationsSk extends AppLocalizations {
       'Túto frekvenciu používa iná sieť, napríklad sieť MeshCore podľa Part 15. Jej rámce nemajú identifikátor stanice a amatérsky firmvér ich nevie prečítať. Pred vysielaním sa poraďte s koordinátorom frekvencií.';
 
   @override
+  String get forward_action => 'Preposlať';
+
+  @override
+  String get forward_title => 'Preposlať správu';
+
+  @override
+  String get forward_to => 'Odoslať komu';
+
+  @override
+  String get forward_send => 'Odoslať';
+
+  @override
+  String get forward_hint =>
+      'Odíde pod vašou volacou značkou a uvedie autora. Za preposlaný obsah zodpovedáte vy.';
+
+  @override
+  String get forward_needCallsign =>
+      'Najprv nastavte volaciu značku v časti Licencovaný operátor.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Príliš dlhé o $count bajtov. Skráťte správu.';
+  }
+
+  @override
+  String get forward_sent => 'Preposlané do rádia';
+
+  @override
   String get ham_setupBeforeTitle => 'Pred vysielaním';
+
+  @override
+  String get team_title => 'Konfigurácia tímu';
+
+  @override
+  String get team_toolSubtitle =>
+      'Zdieľať nastavenia rádia a kanály cez QR alebo súbor';
+
+  @override
+  String get team_shareHint =>
+      'Zdieľa frekvenciu, šírku pásma, SF, CR a hashtag kanály tohto rádia. Bez kľúčov a vysielacieho výkonu.';
+
+  @override
+  String get team_shareFile => 'Zdieľať ako súbor';
+
+  @override
+  String get team_scan => 'Naskenovať QR tímu';
+
+  @override
+  String get team_openFile => 'Otvoriť súbor tímu';
+
+  @override
+  String get team_importTitle => 'Použiť konfiguráciu tímu?';
+
+  @override
+  String get team_apply => 'Použiť v rádiu';
+
+  @override
+  String get team_invalid =>
+      'Toto nie je platná konfigurácia alebo je frekvencia mimo amatérskych pásiem.';
+
+  @override
+  String get team_applied => 'Konfigurácia tímu použitá';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanály: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10599,4 +10670,36 @@ class AppLocalizationsSk extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Licencovaný operátor nastavený ako $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Hlásenie';
+
+  @override
+  String get fieldReport_title => 'Terénne hlásenia';
+
+  @override
+  String get fieldReport_open => 'Napísať hlásenie SALUTE alebo 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Odošle sa ako čistý text s vašou volacou značkou kontaktom výpravy a na kanál SOS. Nič sa nevyšle, kým nestlačíte Odoslať.';
+
+  @override
+  String get fieldReport_usePosition => 'Použiť polohu rádia';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Správy na odoslanie: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Najprv nastavte volaciu značku v časti Licencovaný operátor.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Jeden riadok je pre jednu správu príliš dlhý. Skráťte ho.';
+
+  @override
+  String get fieldReport_sent => 'Hlásenie odoslané do rádia';
 }

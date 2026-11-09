@@ -42,6 +42,7 @@ import 'channel_message_path_screen.dart';
 import 'repeater_cli_screen.dart';
 import 'map_screen.dart';
 import '../widgets/emoji_picker.dart';
+import '../widgets/forward_message_dialog.dart';
 import '../widgets/gif_message.dart';
 import '../widgets/jump_to_bottom_button.dart';
 import '../widgets/gif_picker.dart';
@@ -1402,6 +1403,24 @@ class _ChatScreenState extends State<ChatScreen> {
                       message: message,
                       contact: contact,
                       onRetry: () => unawaited(_retryMessage(message)),
+                    ),
+                  );
+                },
+              ),
+            if (!message.isCli && GifHelper.parseGif(message.text) == null)
+              ListTile(
+                key: const ValueKey('message-forward'),
+                leading: const Icon(Icons.forward),
+                title: Text(context.l10n.forward_action),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  unawaited(
+                    showForwardMessageDialog(
+                      context,
+                      from: message.isOutgoing
+                          ? context.read<MeshCoreConnector>().selfName ?? ''
+                          : contact.name,
+                      body: message.text,
                     ),
                   );
                 },

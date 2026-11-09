@@ -10612,7 +10612,78 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ein anderes Netz, etwa ein MeshCore-Netz nach Part 15, nutzt diese Frequenz. Seine Rahmen tragen keine Stationskennung, und die Ham-Firmware kann sie nicht lesen. Klären Sie das mit Ihrem Frequenzkoordinator, bevor Sie hier senden.';
 
   @override
+  String get forward_action => 'Weiterleiten';
+
+  @override
+  String get forward_title => 'Nachricht weiterleiten';
+
+  @override
+  String get forward_to => 'Senden an';
+
+  @override
+  String get forward_send => 'Senden';
+
+  @override
+  String get forward_hint =>
+      'Geht unter Ihrem Rufzeichen hinaus und nennt den Verfasser. Sie sind für das Weitergeleitete verantwortlich.';
+
+  @override
+  String get forward_needCallsign =>
+      'Tragen Sie zuerst Ihr Rufzeichen unter „Lizenzierter Funkamateur“ ein.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count Byte zu lang. Bitte kürzen.';
+  }
+
+  @override
+  String get forward_sent => 'An das Funkgerät weitergeleitet';
+
+  @override
   String get ham_setupBeforeTitle => 'Bevor Sie senden';
+
+  @override
+  String get team_title => 'Team-Konfiguration';
+
+  @override
+  String get team_toolSubtitle =>
+      'Funkeinstellungen und Kanäle per QR oder Datei teilen';
+
+  @override
+  String get team_shareHint =>
+      'Teilt Frequenz, Bandbreite, Spreizfaktor, Coding-Rate und Hashtag-Kanäle dieses Funkgeräts. Schlüssel und Sendeleistung sind nicht enthalten.';
+
+  @override
+  String get team_shareFile => 'Als Datei teilen';
+
+  @override
+  String get team_scan => 'Team-QR-Code scannen';
+
+  @override
+  String get team_openFile => 'Team-Datei öffnen';
+
+  @override
+  String get team_importTitle => 'Team-Konfiguration anwenden?';
+
+  @override
+  String get team_apply => 'Auf Funkgerät anwenden';
+
+  @override
+  String get team_invalid =>
+      'Dies ist keine gültige Team-Konfiguration oder die Frequenz liegt außerhalb der Amateurbänder.';
+
+  @override
+  String get team_applied => 'Team-Konfiguration angewendet';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanäle: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10622,4 +10693,36 @@ class AppLocalizationsDe extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Lizenzierter Funker eingerichtet als $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Bericht';
+
+  @override
+  String get fieldReport_title => 'Feldberichte';
+
+  @override
+  String get fieldReport_open => 'SALUTE- oder 9-Line-Bericht schreiben';
+
+  @override
+  String get fieldReport_hint =>
+      'Wird als Klartext unter Ihrem Rufzeichen an Ihre Tourkontakte und den SOS-Kanal gesendet. Erst wenn Sie auf Senden tippen, geht etwas hinaus.';
+
+  @override
+  String get fieldReport_usePosition => 'Position des Funkgeräts verwenden';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Zu sendende Nachrichten: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Tragen Sie zuerst Ihr Rufzeichen unter „Lizenzierter Funkamateur“ ein.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Eine Zeile ist für eine einzelne Nachricht zu lang. Bitte kürzen.';
+
+  @override
+  String get fieldReport_sent => 'Bericht an das Funkgerät übergeben';
 }

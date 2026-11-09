@@ -10612,7 +10612,78 @@ class AppLocalizationsSl extends AppLocalizations {
       'To frekvenco uporablja drugo omrežje, na primer omrežje MeshCore po Part 15. Njegovi okvirji nimajo oznake postaje in radioamaterska programska oprema jih ne zna prebrati. Pred oddajanjem se posvetujte s koordinatorjem frekvenc.';
 
   @override
+  String get forward_action => 'Posreduj';
+
+  @override
+  String get forward_title => 'Posreduj sporočilo';
+
+  @override
+  String get forward_to => 'Pošlji na';
+
+  @override
+  String get forward_send => 'Pošlji';
+
+  @override
+  String get forward_hint =>
+      'Odda se z vašim klicnim znakom in navede avtorja. Za posredovano ste odgovorni vi.';
+
+  @override
+  String get forward_needCallsign =>
+      'Najprej nastavite klicni znak pod Licencirani operater.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Predolgo za $count bajtov. Skrajšajte sporočilo.';
+  }
+
+  @override
+  String get forward_sent => 'Posredovano v radio';
+
+  @override
   String get ham_setupBeforeTitle => 'Preden oddajate';
+
+  @override
+  String get team_title => 'Nastavitve ekipe';
+
+  @override
+  String get team_toolSubtitle =>
+      'Deli nastavitve radia in kanale s QR ali datoteko';
+
+  @override
+  String get team_shareHint =>
+      'Deli frekvenco, pasovno širino, SF, CR in kanale s ključnikom tega radia. Brez ključev in oddajne moči.';
+
+  @override
+  String get team_shareFile => 'Deli kot datoteko';
+
+  @override
+  String get team_scan => 'Skeniraj QR ekipe';
+
+  @override
+  String get team_openFile => 'Odpri datoteko ekipe';
+
+  @override
+  String get team_importTitle => 'Uporabim nastavitve ekipe?';
+
+  @override
+  String get team_apply => 'Uporabi na radiu';
+
+  @override
+  String get team_invalid =>
+      'To niso veljavne nastavitve ali pa je frekvenca zunaj amaterskih pasov.';
+
+  @override
+  String get team_applied => 'Nastavitve ekipe uporabljene';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanali: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10622,4 +10693,36 @@ class AppLocalizationsSl extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Licencirani operater nastavljen kot $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Poročilo';
+
+  @override
+  String get fieldReport_title => 'Terenska poročila';
+
+  @override
+  String get fieldReport_open => 'Napiši poročilo SALUTE ali 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Pošlje se kot navadno besedilo z vašim klicnim znakom stikom izleta in na kanal SOS. Nič se ne odda, dokler ne pritisnete Pošlji.';
+
+  @override
+  String get fieldReport_usePosition => 'Uporabi položaj radia';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Sporočila za pošiljanje: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Najprej nastavite klicni znak pod Licencirani operater.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Ena vrstica je predolga za eno sporočilo. Skrajšajte jo.';
+
+  @override
+  String get fieldReport_sent => 'Poročilo poslano v radio';
 }

@@ -10593,7 +10593,78 @@ class AppLocalizationsHu extends AppLocalizations {
       'Egy másik hálózat, például egy Part 15 szerinti MeshCore háló használja ezt a frekvenciát. A keretei nem hordoznak állomásazonosítót, és a ham firmware nem tudja olvasni őket. Adás előtt egyeztessen a frekvenciakoordinátorral.';
 
   @override
+  String get forward_action => 'Továbbítás';
+
+  @override
+  String get forward_title => 'Üzenet továbbítása';
+
+  @override
+  String get forward_to => 'Címzett';
+
+  @override
+  String get forward_send => 'Küldés';
+
+  @override
+  String get forward_hint =>
+      'Az Ön hívójelével megy ki, és megnevezi a szerzőt. Ön felel azért, amit továbbít.';
+
+  @override
+  String get forward_needCallsign =>
+      'Előbb adja meg a hívójelét az Engedélyes operátor részben.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count bájttal túl hosszú. Rövidítse az üzenetet.';
+  }
+
+  @override
+  String get forward_sent => 'Továbbítva a rádióhoz';
+
+  @override
   String get ham_setupBeforeTitle => 'Adás előtt';
+
+  @override
+  String get team_title => 'Csapatbeállítás';
+
+  @override
+  String get team_toolSubtitle =>
+      'Rádióbeállítások és csatornák megosztása QR-rel vagy fájlban';
+
+  @override
+  String get team_shareHint =>
+      'Megosztja a rádió frekvenciáját, sávszélességét, SF- és CR-értékét, valamint a hashtag csatornákat. Kulcsot és adóteljesítményt nem tartalmaz.';
+
+  @override
+  String get team_shareFile => 'Megosztás fájlként';
+
+  @override
+  String get team_scan => 'Csapat QR-kód beolvasása';
+
+  @override
+  String get team_openFile => 'Csapatfájl megnyitása';
+
+  @override
+  String get team_importTitle => 'Alkalmazza a csapatbeállítást?';
+
+  @override
+  String get team_apply => 'Alkalmazás a rádión';
+
+  @override
+  String get team_invalid =>
+      'Ez nem érvényes csapatbeállítás, vagy a frekvencia az amatőrsávokon kívül esik.';
+
+  @override
+  String get team_applied => 'Csapatbeállítás alkalmazva';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Csatornák: $names';
+  }
 
   @override
   String get ham_setupBeforeBody =>
@@ -10603,4 +10674,36 @@ class AppLocalizationsHu extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Engedélyes operátor beállítva: $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Jelentés';
+
+  @override
+  String get fieldReport_title => 'Terepi jelentések';
+
+  @override
+  String get fieldReport_open => 'SALUTE vagy 9-Line jelentés írása';
+
+  @override
+  String get fieldReport_hint =>
+      'Sima szövegként, az Ön hívójelével megy a túra kapcsolatainak és az SOS-csatornára. Semmi nem megy ki, amíg nem nyomja meg a Küldés gombot.';
+
+  @override
+  String get fieldReport_usePosition => 'A rádió pozíciójának használata';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Küldendő üzenetek: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Előbb adja meg a hívójelét az Engedélyes operátor részben.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Egy sor túl hosszú egyetlen üzenethez. Rövidítse le.';
+
+  @override
+  String get fieldReport_sent => 'A jelentés a rádióhoz került';
 }

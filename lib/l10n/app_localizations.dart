@@ -17611,11 +17611,131 @@ abstract class AppLocalizations {
   /// **'Another network, such as a Part 15 MeshCore mesh, is using this frequency. Its frames carry no station ID and the ham firmware can\'t read them. Check with your frequency coordinator before transmitting here.'**
   String get ham_stockTrafficBody;
 
+  /// No description provided for @forward_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Forward'**
+  String get forward_action;
+
+  /// No description provided for @forward_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Forward message'**
+  String get forward_title;
+
+  /// No description provided for @forward_to.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to'**
+  String get forward_to;
+
+  /// No description provided for @forward_send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get forward_send;
+
+  /// No description provided for @forward_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Goes out under your call sign and names who wrote it. You\'re responsible for what you forward.'**
+  String get forward_hint;
+
+  /// No description provided for @forward_needCallsign.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your call sign under Licensed operator first.'**
+  String get forward_needCallsign;
+
+  /// No description provided for @forward_tooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Too long by {count} bytes. Shorten the message.'**
+  String forward_tooLong(int count);
+
+  /// No description provided for @forward_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Forwarded to the radio'**
+  String get forward_sent;
+
   /// Get started: first card, before connecting a radio
   ///
   /// In en, this message translates to:
   /// **'Before you transmit'**
   String get ham_setupBeforeTitle;
+
+  /// No description provided for @team_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Team config'**
+  String get team_title;
+
+  /// No description provided for @team_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share radio settings and channels by QR or file'**
+  String get team_toolSubtitle;
+
+  /// No description provided for @team_shareHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Shares this radio\'s frequency, bandwidth, spreading factor, coding rate and hashtag channels. No keys and no transmit power are included.'**
+  String get team_shareHint;
+
+  /// No description provided for @team_shareFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as a file'**
+  String get team_shareFile;
+
+  /// No description provided for @team_scan.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a team QR code'**
+  String get team_scan;
+
+  /// No description provided for @team_openFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a team file'**
+  String get team_openFile;
+
+  /// No description provided for @team_importTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply team config?'**
+  String get team_importTitle;
+
+  /// No description provided for @team_apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply to radio'**
+  String get team_apply;
+
+  /// No description provided for @team_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'This isn\'t a valid team config, or its frequency is outside the amateur bands.'**
+  String get team_invalid;
+
+  /// No description provided for @team_applied.
+  ///
+  /// In en, this message translates to:
+  /// **'Team config applied'**
+  String get team_applied;
+
+  /// No description provided for @team_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}'**
+  String team_summary(String freq, String bandwidth, int sf, int cr);
+
+  /// No description provided for @team_channels.
+  ///
+  /// In en, this message translates to:
+  /// **'Channels: {names}'**
+  String team_channels(String names);
 
   /// Get started: coordinate before transmitting
   ///
@@ -17628,6 +17748,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Licensed operator set up as {call}'**
   String ham_setupBeforeDone(String call);
+
+  /// No description provided for @fieldOps_kindReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get fieldOps_kindReport;
+
+  /// No description provided for @fieldReport_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Field reports'**
+  String get fieldReport_title;
+
+  /// No description provided for @fieldReport_open.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a SALUTE or 9-Line report'**
+  String get fieldReport_open;
+
+  /// No description provided for @fieldReport_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent as plain text under your call sign to your trip contacts and SOS channel. Nothing goes out until you press Send.'**
+  String get fieldReport_hint;
+
+  /// No description provided for @fieldReport_usePosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the radio\'s position'**
+  String get fieldReport_usePosition;
+
+  /// No description provided for @fieldReport_preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages to send: {count}'**
+  String fieldReport_preview(int count);
+
+  /// No description provided for @fieldReport_needCallsign.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your call sign under Licensed operator first.'**
+  String get fieldReport_needCallsign;
+
+  /// No description provided for @fieldReport_tooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'One line is too long for a single message. Shorten it.'**
+  String get fieldReport_tooLong;
+
+  /// No description provided for @fieldReport_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Report sent to the radio'**
+  String get fieldReport_sent;
 }
 
 class _AppLocalizationsDelegate

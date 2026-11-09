@@ -9,6 +9,7 @@ import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/field_ops.dart';
 import '../services/field_ops_service.dart';
+import '../screens/field_report_screen.dart';
 import 'quick_trip_setup.dart';
 import '../helpers/snack_bar_builder.dart';
 
@@ -58,6 +59,20 @@ class SosPanel extends StatelessWidget {
         Text(
           sosHint(context, ops),
           style: TextStyle(color: _muted, fontSize: 12),
+        ),
+        Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: TextButton.icon(
+            key: const ValueKey('sos-open-report'),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (_) => const FieldReportScreen(),
+              ),
+            ),
+            icon: const Icon(Icons.assignment_outlined),
+            label: Text(context.l10n.fieldReport_open),
+          ),
         ),
       ],
     );

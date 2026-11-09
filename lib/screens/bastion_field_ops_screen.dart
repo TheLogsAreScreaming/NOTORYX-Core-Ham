@@ -16,6 +16,7 @@ import '../services/app_settings_service.dart';
 import '../services/field_ops_service.dart';
 import '../services/map_tile_cache_service.dart';
 import '../services/sos_relay_service.dart';
+import 'field_report_screen.dart';
 import '../services/notification_service.dart';
 import '../widgets/ember_backdrop.dart';
 import 'bastion_coverage_capture_screen.dart';
@@ -229,6 +230,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     'automation' => _l10n.fieldOps_kindAutomation,
     'missed' => _l10n.fieldOps_kindMissed,
     'sos' => _l10n.fieldOps_kindSos,
+    'report' => _l10n.fieldOps_kindReport,
     'trip' => _l10n.fieldOps_kindTrip,
     'overdue' => _l10n.fieldOps_kindOverdue,
     _ => kind,
@@ -310,6 +312,13 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
               child: Text(_checkInLabel(label)),
             ),
         ],
+      ),
+      const SizedBox(height: 8),
+      OutlinedButton.icon(
+        key: const ValueKey('open-field-report'),
+        onPressed: () => _open(const FieldReportScreen()),
+        icon: const Icon(Icons.assignment_outlined),
+        label: Text(_l10n.fieldReport_open),
       ),
       if (ops.busy) const LinearProgressIndicator(),
       if (ops.latestDelivery case final delivery?) ...[
