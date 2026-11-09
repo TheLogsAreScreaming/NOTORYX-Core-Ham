@@ -41,12 +41,7 @@ void main() {
     await tester.pump();
     expect(find.textContaining('call sign under Licensed'), findsOneWidget);
     final send = tester.widget<ButtonStyleButton>(
-      find
-          .descendant(
-            of: find.byKey(const ValueKey('report-send')),
-            matching: find.byWidgetPredicate((w) => w is ButtonStyleButton),
-          )
-          .first,
+      find.byKey(const ValueKey('report-send')),
     );
     expect(send.onPressed, isNull);
   });
