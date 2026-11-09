@@ -10563,6 +10563,49 @@ class AppLocalizationsSl extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Preden oddajate';
 
   @override
+  String get team_title => 'Nastavitve ekipe';
+
+  @override
+  String get team_toolSubtitle =>
+      'Deli nastavitve radia in kanale s QR ali datoteko';
+
+  @override
+  String get team_shareHint =>
+      'Deli frekvenco, pasovno širino, SF, CR in kanale s ključnikom tega radia. Brez ključev in oddajne moči.';
+
+  @override
+  String get team_shareFile => 'Deli kot datoteko';
+
+  @override
+  String get team_scan => 'Skeniraj QR ekipe';
+
+  @override
+  String get team_openFile => 'Odpri datoteko ekipe';
+
+  @override
+  String get team_importTitle => 'Uporabim nastavitve ekipe?';
+
+  @override
+  String get team_apply => 'Uporabi na radiu';
+
+  @override
+  String get team_invalid =>
+      'To niso veljavne nastavitve ali pa je frekvenca zunaj amaterskih pasov.';
+
+  @override
+  String get team_applied => 'Nastavitve ekipe uporabljene';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanali: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Preberite vodnik za usklajevanje, nato v razdelku »Licencirani operater« vnesite klicni znak in licenco. Ne oddajajte, dokler se koordinator frekvenc in druge postaje v omrežju ne dogovorijo za kanal.';
 

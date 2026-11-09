@@ -4448,6 +4448,18 @@
   "ham_stockTrafficTitle": "{count, plural, other{この 10 分間に標準 MeshCore のフレームを {count} 件受信しました}}",
   "ham_stockTrafficBody": "別のネットワーク (Part 15 の MeshCore メッシュなど) がこの周波数を使っています。そのフレームには局識別がなく、アマチュア無線用ファームウェアでは読めません。ここで送信する前に周波数調整担当者に確認してください。",
   "ham_setupBeforeTitle": "送信する前に",
+  "team_title": "チーム設定",
+  "team_toolSubtitle": "無線設定とチャンネルを QR またはファイルで共有",
+  "team_shareHint": "この無線機の周波数、帯域幅、拡散率、符号化率、ハッシュタグチャンネルを共有します。鍵と送信出力は含まれません。",
+  "team_shareFile": "ファイルで共有",
+  "team_scan": "チームの QR コードをスキャン",
+  "team_openFile": "チームファイルを開く",
+  "team_importTitle": "チーム設定を適用しますか？",
+  "team_apply": "無線機に適用",
+  "team_invalid": "有効なチーム設定ではないか、周波数がアマチュアバンド外です。",
+  "team_applied": "チーム設定を適用しました",
+  "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
+  "team_channels": "チャンネル: {names}",
   "ham_setupBeforeBody": "調整ガイドを読み、「免許を持つ運用者」でコールサインと免許を入力してください。周波数調整担当者とメッシュ内の他局がチャンネルに合意するまで送信しないでください。",
   "ham_setupBeforeDone": "免許局として設定済み: {call}"
 }

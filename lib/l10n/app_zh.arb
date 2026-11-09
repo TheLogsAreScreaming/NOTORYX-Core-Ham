@@ -4319,6 +4319,18 @@
   "ham_stockTrafficTitle": "{count, plural, other{过去 10 分钟在此收到 {count} 个标准 MeshCore 帧}}",
   "ham_stockTrafficBody": "另一个网络（例如 Part 15 的 MeshCore 网状网）正在使用此频率。它的帧不带电台识别，业余固件也无法读取。在此发射前请先与频率协调员确认。",
   "ham_setupBeforeTitle": "发射之前",
+  "team_title": "团队配置",
+  "team_toolSubtitle": "通过二维码或文件共享电台设置和频道",
+  "team_shareHint": "共享此电台的频率、带宽、扩频因子、编码率和话题频道。不包含密钥和发射功率。",
+  "team_shareFile": "作为文件共享",
+  "team_scan": "扫描团队二维码",
+  "team_openFile": "打开团队文件",
+  "team_importTitle": "应用团队配置？",
+  "team_apply": "应用到电台",
+  "team_invalid": "这不是有效的团队配置，或其频率超出业余频段。",
+  "team_applied": "已应用团队配置",
+  "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
+  "team_channels": "频道：{names}",
   "ham_setupBeforeBody": "请先阅读协调指南，然后在“持照操作员”中填写呼号和执照。在频率协调员和网状网中的其他电台就信道达成一致之前，请勿发射。",
   "ham_setupBeforeDone": "持照操作员已设置为 {call}"
 }

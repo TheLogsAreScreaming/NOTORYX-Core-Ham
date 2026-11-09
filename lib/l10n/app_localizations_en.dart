@@ -10426,6 +10426,49 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Before you transmit';
 
   @override
+  String get team_title => 'Team config';
+
+  @override
+  String get team_toolSubtitle =>
+      'Share radio settings and channels by QR or file';
+
+  @override
+  String get team_shareHint =>
+      'Shares this radio\'s frequency, bandwidth, spreading factor, coding rate and hashtag channels. No keys and no transmit power are included.';
+
+  @override
+  String get team_shareFile => 'Share as a file';
+
+  @override
+  String get team_scan => 'Scan a team QR code';
+
+  @override
+  String get team_openFile => 'Open a team file';
+
+  @override
+  String get team_importTitle => 'Apply team config?';
+
+  @override
+  String get team_apply => 'Apply to radio';
+
+  @override
+  String get team_invalid =>
+      'This isn\'t a valid team config, or its frequency is outside the amateur bands.';
+
+  @override
+  String get team_applied => 'Team config applied';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Channels: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Read the coordination guide, then add your call sign and licence in Licensed operator. Don\'t transmit until your frequency coordinator and the other stations on your mesh have agreed on a channel.';
 

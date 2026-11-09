@@ -10542,6 +10542,49 @@ class AppLocalizationsSk extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Pred vysielaním';
 
   @override
+  String get team_title => 'Konfigurácia tímu';
+
+  @override
+  String get team_toolSubtitle =>
+      'Zdieľať nastavenia rádia a kanály cez QR alebo súbor';
+
+  @override
+  String get team_shareHint =>
+      'Zdieľa frekvenciu, šírku pásma, SF, CR a hashtag kanály tohto rádia. Bez kľúčov a vysielacieho výkonu.';
+
+  @override
+  String get team_shareFile => 'Zdieľať ako súbor';
+
+  @override
+  String get team_scan => 'Naskenovať QR tímu';
+
+  @override
+  String get team_openFile => 'Otvoriť súbor tímu';
+
+  @override
+  String get team_importTitle => 'Použiť konfiguráciu tímu?';
+
+  @override
+  String get team_apply => 'Použiť v rádiu';
+
+  @override
+  String get team_invalid =>
+      'Toto nie je platná konfigurácia alebo je frekvencia mimo amatérskych pásiem.';
+
+  @override
+  String get team_applied => 'Konfigurácia tímu použitá';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanály: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Prečítajte si sprievodcu koordináciou a potom zadajte volaciu značku a licenciu v časti „Licencovaný operátor“. Nevysielajte, kým sa koordinátor frekvencií a ostatné stanice v sieti nedohodnú na kanáli.';
 

@@ -17527,6 +17527,78 @@ abstract class AppLocalizations {
   /// **'Before you transmit'**
   String get ham_setupBeforeTitle;
 
+  /// No description provided for @team_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Team config'**
+  String get team_title;
+
+  /// No description provided for @team_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share radio settings and channels by QR or file'**
+  String get team_toolSubtitle;
+
+  /// No description provided for @team_shareHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Shares this radio\'s frequency, bandwidth, spreading factor, coding rate and hashtag channels. No keys and no transmit power are included.'**
+  String get team_shareHint;
+
+  /// No description provided for @team_shareFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as a file'**
+  String get team_shareFile;
+
+  /// No description provided for @team_scan.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan a team QR code'**
+  String get team_scan;
+
+  /// No description provided for @team_openFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Open a team file'**
+  String get team_openFile;
+
+  /// No description provided for @team_importTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply team config?'**
+  String get team_importTitle;
+
+  /// No description provided for @team_apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply to radio'**
+  String get team_apply;
+
+  /// No description provided for @team_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'This isn\'t a valid team config, or its frequency is outside the amateur bands.'**
+  String get team_invalid;
+
+  /// No description provided for @team_applied.
+  ///
+  /// In en, this message translates to:
+  /// **'Team config applied'**
+  String get team_applied;
+
+  /// No description provided for @team_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}'**
+  String team_summary(String freq, String bandwidth, int sf, int cr);
+
+  /// No description provided for @team_channels.
+  ///
+  /// In en, this message translates to:
+  /// **'Channels: {names}'**
+  String team_channels(String names);
+
   /// Get started: coordinate before transmitting
   ///
   /// In en, this message translates to:

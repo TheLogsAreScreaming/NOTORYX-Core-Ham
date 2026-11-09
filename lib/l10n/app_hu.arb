@@ -4352,6 +4352,18 @@
   "ham_stockTrafficTitle": "{count, plural, =1{1 gyári MeshCore keret hallatszott itt az elmúlt 10 percben} other{{count} gyári MeshCore keret hallatszott itt az elmúlt 10 percben}}",
   "ham_stockTrafficBody": "Egy másik hálózat, például egy Part 15 szerinti MeshCore háló használja ezt a frekvenciát. A keretei nem hordoznak állomásazonosítót, és a ham firmware nem tudja olvasni őket. Adás előtt egyeztessen a frekvenciakoordinátorral.",
   "ham_setupBeforeTitle": "Adás előtt",
+  "team_title": "Csapatbeállítás",
+  "team_toolSubtitle": "Rádióbeállítások és csatornák megosztása QR-rel vagy fájlban",
+  "team_shareHint": "Megosztja a rádió frekvenciáját, sávszélességét, SF- és CR-értékét, valamint a hashtag csatornákat. Kulcsot és adóteljesítményt nem tartalmaz.",
+  "team_shareFile": "Megosztás fájlként",
+  "team_scan": "Csapat QR-kód beolvasása",
+  "team_openFile": "Csapatfájl megnyitása",
+  "team_importTitle": "Alkalmazza a csapatbeállítást?",
+  "team_apply": "Alkalmazás a rádión",
+  "team_invalid": "Ez nem érvényes csapatbeállítás, vagy a frekvencia az amatőrsávokon kívül esik.",
+  "team_applied": "Csapatbeállítás alkalmazva",
+  "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
+  "team_channels": "Csatornák: {names}",
   "ham_setupBeforeBody": "Olvassa el a koordinációs útmutatót, majd adja meg hívójelét és engedélyét az „Engedélyes rádióamatőr” részben. Ne adjon, amíg a frekvenciakoordinátor és a háló többi állomása meg nem egyezett egy csatornában.",
   "ham_setupBeforeDone": "Engedélyes operátor beállítva: {call}"
 }

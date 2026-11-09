@@ -4314,6 +4314,18 @@
   "ham_stockTrafficTitle": "{count, plural, =1{1 standaard MeshCore-frame hier gehoord in de laatste 10 minuten} other{{count} standaard MeshCore-frames hier gehoord in de laatste 10 minuten}}",
   "ham_stockTrafficBody": "Een ander netwerk, zoals een MeshCore-mesh onder Part 15, gebruikt deze frequentie. De frames hebben geen stations-ID en de ham-firmware kan ze niet lezen. Overleg met uw frequentiecoördinator voordat u hier zendt.",
   "ham_setupBeforeTitle": "Voordat u zendt",
+  "team_title": "Teamconfiguratie",
+  "team_toolSubtitle": "Radio-instellingen en kanalen delen via QR of bestand",
+  "team_shareHint": "Deelt frequentie, bandbreedte, spreidingsfactor, codeersnelheid en hashtagkanalen van deze radio. Geen sleutels en geen zendvermogen.",
+  "team_shareFile": "Delen als bestand",
+  "team_scan": "Team-QR-code scannen",
+  "team_openFile": "Teambestand openen",
+  "team_importTitle": "Teamconfiguratie toepassen?",
+  "team_apply": "Toepassen op radio",
+  "team_invalid": "Dit is geen geldige teamconfiguratie of de frequentie ligt buiten de amateurbanden.",
+  "team_applied": "Teamconfiguratie toegepast",
+  "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
+  "team_channels": "Kanalen: {names}",
   "ham_setupBeforeBody": "Lees de coördinatiegids en vul daarna uw roepnaam en licentie in bij ‘Gelicentieerde zendamateur’. Zend pas als uw frequentiecoördinator en de andere stations in uw mesh het eens zijn over een kanaal.",
   "ham_setupBeforeDone": "Gelicentieerde zendamateur ingesteld als {call}"
 }

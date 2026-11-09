@@ -4448,6 +4448,18 @@
   "ham_stockTrafficTitle": "{count, plural, =1{1 trama de MeshCore estándar oída aquí en los últimos 10 minutos} other{{count} tramas de MeshCore estándar oídas aquí en los últimos 10 minutos}}",
   "ham_stockTrafficBody": "Otra red, como una malla MeshCore de la Parte 15, usa esta frecuencia. Sus tramas no llevan indicativo y el firmware de radioaficionado no puede leerlas. Consulte a su coordinador de frecuencias antes de transmitir aquí.",
   "ham_setupBeforeTitle": "Antes de transmitir",
+  "team_title": "Configuración de equipo",
+  "team_toolSubtitle": "Compartir ajustes de radio y canales por QR o archivo",
+  "team_shareHint": "Comparte la frecuencia, el ancho de banda, el factor de dispersión, la tasa de codificación y los canales hashtag de esta radio. No incluye claves ni potencia de transmisión.",
+  "team_shareFile": "Compartir como archivo",
+  "team_scan": "Escanear un QR de equipo",
+  "team_openFile": "Abrir un archivo de equipo",
+  "team_importTitle": "¿Aplicar la configuración de equipo?",
+  "team_apply": "Aplicar a la radio",
+  "team_invalid": "No es una configuración válida o su frecuencia está fuera de las bandas de radioaficionado.",
+  "team_applied": "Configuración aplicada",
+  "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
+  "team_channels": "Canales: {names}",
   "ham_setupBeforeBody": "Lea la guía de coordinación y luego añada su indicativo y licencia en “Operador con licencia”. No transmita hasta que su coordinador de frecuencias y las demás estaciones de su malla hayan acordado un canal.",
   "ham_setupBeforeDone": "Operador con licencia configurado como {call}"
 }

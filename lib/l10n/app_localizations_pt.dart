@@ -10541,6 +10541,49 @@ class AppLocalizationsPt extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Antes de transmitir';
 
   @override
+  String get team_title => 'Configuração da equipa';
+
+  @override
+  String get team_toolSubtitle =>
+      'Partilhar definições do rádio e canais por QR ou ficheiro';
+
+  @override
+  String get team_shareHint =>
+      'Partilha a frequência, largura de banda, fator de espalhamento, taxa de codificação e canais hashtag deste rádio. Não inclui chaves nem potência de transmissão.';
+
+  @override
+  String get team_shareFile => 'Partilhar como ficheiro';
+
+  @override
+  String get team_scan => 'Ler um QR da equipa';
+
+  @override
+  String get team_openFile => 'Abrir um ficheiro da equipa';
+
+  @override
+  String get team_importTitle => 'Aplicar a configuração da equipa?';
+
+  @override
+  String get team_apply => 'Aplicar ao rádio';
+
+  @override
+  String get team_invalid =>
+      'Configuração inválida ou frequência fora das bandas de amador.';
+
+  @override
+  String get team_applied => 'Configuração aplicada';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Canais: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Leia o guia de coordenação e depois adicione o seu indicativo e licença em “Operador licenciado”. Não transmita até o seu coordenador de frequências e as outras estações da malha terem acordado um canal.';
 

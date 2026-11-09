@@ -4448,6 +4448,18 @@
   "ham_stockTrafficTitle": "{count, plural, =1{1 trame MeshCore standard entendue ici ces 10 dernières minutes} other{{count} trames MeshCore standard entendues ici ces 10 dernières minutes}}",
   "ham_stockTrafficBody": "Un autre réseau, comme un maillage MeshCore Part 15, utilise cette fréquence. Ses trames ne portent pas d'identifiant de station et le firmware radioamateur ne peut pas les lire. Voyez avec votre coordinateur de fréquences avant d'émettre ici.",
   "ham_setupBeforeTitle": "Avant d'émettre",
+  "team_title": "Configuration d'équipe",
+  "team_toolSubtitle": "Partager réglages radio et canaux par QR ou fichier",
+  "team_shareHint": "Partage la fréquence, la largeur de bande, le facteur d'étalement, le taux de codage et les canaux hashtag de cette radio. Ni clés ni puissance d'émission.",
+  "team_shareFile": "Partager en fichier",
+  "team_scan": "Scanner un QR d'équipe",
+  "team_openFile": "Ouvrir un fichier d'équipe",
+  "team_importTitle": "Appliquer la configuration d'équipe ?",
+  "team_apply": "Appliquer à la radio",
+  "team_invalid": "Configuration non valide, ou fréquence hors des bandes amateur.",
+  "team_applied": "Configuration appliquée",
+  "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
+  "team_channels": "Canaux : {names}",
   "ham_setupBeforeBody": "Lisez le guide de coordination, puis ajoutez votre indicatif et votre licence dans « Opérateur licencié ». N'émettez pas avant que votre coordinateur de fréquences et les autres stations de votre maillage se soient accordés sur un canal.",
   "ham_setupBeforeDone": "Opérateur licencié configuré : {call}"
 }

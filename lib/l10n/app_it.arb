@@ -4448,6 +4448,18 @@
   "ham_stockTrafficTitle": "{count, plural, =1{1 frame MeshCore standard sentito qui negli ultimi 10 minuti} other{{count} frame MeshCore standard sentiti qui negli ultimi 10 minuti}}",
   "ham_stockTrafficBody": "Un'altra rete, come una mesh MeshCore Part 15, usa questa frequenza. I suoi frame non hanno identificativo di stazione e il firmware radioamatoriale non può leggerli. Sentite il vostro coordinatore di frequenze prima di trasmettere qui.",
   "ham_setupBeforeTitle": "Prima di trasmettere",
+  "team_title": "Configurazione squadra",
+  "team_toolSubtitle": "Condividi impostazioni radio e canali con QR o file",
+  "team_shareHint": "Condivide frequenza, larghezza di banda, fattore di spreading, coding rate e canali hashtag di questa radio. Non include chiavi né potenza di trasmissione.",
+  "team_shareFile": "Condividi come file",
+  "team_scan": "Scansiona un QR di squadra",
+  "team_openFile": "Apri un file di squadra",
+  "team_importTitle": "Applicare la configurazione di squadra?",
+  "team_apply": "Applica alla radio",
+  "team_invalid": "Configurazione non valida o frequenza fuori dalle bande radioamatoriali.",
+  "team_applied": "Configurazione applicata",
+  "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
+  "team_channels": "Canali: {names}",
   "ham_setupBeforeBody": "Leggete la guida al coordinamento, poi inserite nominativo e licenza in “Operatore con licenza”. Non trasmettete finché il coordinatore di frequenze e le altre stazioni della mesh non hanno concordato un canale.",
   "ham_setupBeforeDone": "Operatore con licenza impostato come {call}"
 }

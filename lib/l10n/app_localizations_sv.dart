@@ -10474,6 +10474,49 @@ class AppLocalizationsSv extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Innan du sänder';
 
   @override
+  String get team_title => 'Teamkonfiguration';
+
+  @override
+  String get team_toolSubtitle =>
+      'Dela radioinställningar och kanaler via QR eller fil';
+
+  @override
+  String get team_shareHint =>
+      'Delar radions frekvens, bandbredd, spridningsfaktor, kodningsgrad och hashtagkanaler. Inga nycklar och ingen sändningseffekt ingår.';
+
+  @override
+  String get team_shareFile => 'Dela som fil';
+
+  @override
+  String get team_scan => 'Skanna en team-QR-kod';
+
+  @override
+  String get team_openFile => 'Öppna en teamfil';
+
+  @override
+  String get team_importTitle => 'Använda teamkonfigurationen?';
+
+  @override
+  String get team_apply => 'Använd på radion';
+
+  @override
+  String get team_invalid =>
+      'Det här är ingen giltig teamkonfiguration, eller så ligger frekvensen utanför amatörbanden.';
+
+  @override
+  String get team_applied => 'Teamkonfigurationen används';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanaler: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Läs samordningsguiden och lägg sedan in anropssignal och licens under ”Licensierad sändaramatör”. Sänd inte förrän din frekvenskoordinator och de andra stationerna i nätet har kommit överens om en kanal.';
 

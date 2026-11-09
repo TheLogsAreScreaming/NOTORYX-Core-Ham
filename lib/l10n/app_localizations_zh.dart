@@ -9842,6 +9842,46 @@ class AppLocalizationsZh extends AppLocalizations {
   String get ham_setupBeforeTitle => '发射之前';
 
   @override
+  String get team_title => '团队配置';
+
+  @override
+  String get team_toolSubtitle => '通过二维码或文件共享电台设置和频道';
+
+  @override
+  String get team_shareHint => '共享此电台的频率、带宽、扩频因子、编码率和话题频道。不包含密钥和发射功率。';
+
+  @override
+  String get team_shareFile => '作为文件共享';
+
+  @override
+  String get team_scan => '扫描团队二维码';
+
+  @override
+  String get team_openFile => '打开团队文件';
+
+  @override
+  String get team_importTitle => '应用团队配置？';
+
+  @override
+  String get team_apply => '应用到电台';
+
+  @override
+  String get team_invalid => '这不是有效的团队配置，或其频率超出业余频段。';
+
+  @override
+  String get team_applied => '已应用团队配置';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return '频道：$names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       '请先阅读协调指南，然后在“持照操作员”中填写呼号和执照。在频率协调员和网状网中的其他电台就信道达成一致之前，请勿发射。';
 
