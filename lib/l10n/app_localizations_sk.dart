@@ -5553,6 +5553,10 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Dosiahne len vybrané kontakty a rádiá v dosahu. Nekontaktuje 911 ani záchranné služby.';
+
+  @override
   String get sos_holdHint =>
       'Podržte 2 sekundy. Každých 5 minút posiela vašu polohu kontaktom túry, kým niekto neodpovie.';
 

@@ -5518,6 +5518,10 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Når bara dina valda kontakter och radioapparater inom räckhåll. Kontaktar inte 911 eller räddningstjänsten.';
+
+  @override
   String get sos_holdHint =>
       'Håll in i 2 sekunder. Skickar din position till dina turkontakter var 5:e minut tills någon svarar.';
 

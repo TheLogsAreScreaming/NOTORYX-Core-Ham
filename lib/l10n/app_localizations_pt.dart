@@ -5563,6 +5563,10 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Só chega aos contactos escolhidos e a rádios ao alcance. Não contacta o 911 nem serviços de emergência.';
+
+  @override
   String get sos_holdHint =>
       'Mantenha pressionado 2 segundos. Envia a sua posição aos contactos da saída a cada 5 minutos até alguém responder.';
 

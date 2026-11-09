@@ -2884,6 +2884,7 @@
   "bastion_uniqueNodesCount": "{count, plural, =1{1 egyedi csomópont} other{{count} egyedi csomópont}}",
   "bastion_hopsCount": "{count, plural, =1{1 ugrás} other{{count} ugrás}}",
   "bastion_minutesCount": "{count, plural, =1{1 perc} other{{count} perc}}",
+  "sos_notEmergencyService": "Csak a kiválasztott kapcsolatokat és a hatótávon belüli rádiókat éri el. Nem értesíti a segélyhívót vagy a mentőszolgálatokat.",
   "sos_holdHint": "Tartsa nyomva 2 másodpercig. 5 percenként elküldi a pozícióját a túrakapcsolatainak, amíg valaki nem válaszol.",
   "sos_holdHintChannel": "Tartsa nyomva 2 másodpercig. 5 percenként elküldi a pozícióját a túrakapcsolatainak és a(z) {channel} csatornának, amíg valaki nem válaszol.",
   "sos_notSent": "Az SOS nem lett elküldve: {error}",

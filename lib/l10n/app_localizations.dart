@@ -9430,6 +9430,12 @@ abstract class AppLocalizations {
   /// **'{count, plural, =1{1 minute} other{{count} minutes}}'**
   String bastion_minutesCount(int count);
 
+  /// No description provided for @sos_notEmergencyService.
+  ///
+  /// In en, this message translates to:
+  /// **'Reaches only your chosen contacts and radios in range. It doesn\'t contact 911 or emergency services.'**
+  String get sos_notEmergencyService;
+
   /// No description provided for @sos_holdHint.
   ///
   /// In en, this message translates to:

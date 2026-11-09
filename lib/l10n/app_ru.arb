@@ -2149,6 +2149,7 @@
   "bastion_uniqueNodesCount": "{count, plural, one{{count} уникальный узел} few{{count} уникальных узла} many{{count} уникальных узлов} other{{count} уникального узла}}",
   "bastion_hopsCount": "{count, plural, one{{count} переход} few{{count} перехода} many{{count} переходов} other{{count} перехода}}",
   "bastion_minutesCount": "{count, plural, one{{count} минута} few{{count} минуты} many{{count} минут} other{{count} минуты}}",
+  "sos_notEmergencyService": "Доходит только до выбранных контактов и радио в зоне действия. Не связывается с 911 и экстренными службами.",
   "sos_holdHint": "Удерживайте 2 секунды. Отправляет ваше местоположение контактам похода каждые 5 минут, пока кто-нибудь не ответит.",
   "sos_holdHintChannel": "Удерживайте 2 секунды. Отправляет ваше местоположение контактам похода и в {channel} каждые 5 минут, пока кто-нибудь не ответит.",
   "sos_notSent": "SOS не отправлен: {error}",

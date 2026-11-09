@@ -2826,6 +2826,7 @@
   "bastion_uniqueNodesCount": "{count, plural, one{{count} унікальний вузол} few{{count} унікальні вузли} many{{count} унікальних вузлів} other{{count} унікального вузла}}",
   "bastion_hopsCount": "{count, plural, one{{count} перехід} few{{count} переходи} many{{count} переходів} other{{count} переходу}}",
   "bastion_minutesCount": "{count, plural, one{{count} хвилина} few{{count} хвилини} many{{count} хвилин} other{{count} хвилини}}",
+  "sos_notEmergencyService": "Доходить лише до вибраних контактів і радіо в зоні дії. Не зв'язується з 911 чи екстреними службами.",
   "sos_holdHint": "Утримуйте 2 секунди. Надсилає ваше місцезнаходження контактам походу кожні 5 хвилин, доки хтось не відповість.",
   "sos_holdHintChannel": "Утримуйте 2 секунди. Надсилає ваше місцезнаходження контактам походу та в {channel} кожні 5 хвилин, доки хтось не відповість.",
   "sos_notSent": "SOS не надіслано: {error}",

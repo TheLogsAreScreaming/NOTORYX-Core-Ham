@@ -2851,6 +2851,7 @@
   "bastion_uniqueNodesCount": "{count, plural, other{{count} 个唯一节点}}",
   "bastion_hopsCount": "{count, plural, other{{count} 跳}}",
   "bastion_minutesCount": "{count, plural, other{{count} 分钟}}",
+  "sos_notEmergencyService": "仅能到达您选择的联系人和范围内的电台。不会联系 911 或紧急服务。",
   "sos_holdHint": "按住 2 秒。每 5 分钟向你的行程联系人发送你的位置，直到有人回复。",
   "sos_holdHintChannel": "按住 2 秒。每 5 分钟向你的行程联系人和 {channel} 发送你的位置，直到有人回复。",
   "sos_notSent": "SOS 未发送：{error}",

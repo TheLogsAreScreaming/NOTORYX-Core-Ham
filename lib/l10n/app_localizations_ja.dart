@@ -5292,6 +5292,10 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      '選択した連絡先と範囲内の無線機にのみ届きます。911 や緊急サービスには連絡しません。';
+
+  @override
   String get sos_holdHint => '2秒間長押しします。誰かが応答するまで、5分ごとに行程の連絡先へ位置を送信します。';
 
   @override

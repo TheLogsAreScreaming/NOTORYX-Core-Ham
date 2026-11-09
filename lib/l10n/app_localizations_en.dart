@@ -5484,6 +5484,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Reaches only your chosen contacts and radios in range. It doesn\'t contact 911 or emergency services.';
+
+  @override
   String get sos_holdHint =>
       'Hold 2 seconds. Sends your position to your trip contacts every 5 minutes until someone replies.';
 

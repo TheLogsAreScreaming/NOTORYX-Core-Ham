@@ -5546,6 +5546,10 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Bereikt alleen uw gekozen contacten en radio\'s binnen bereik. Neemt geen contact op met 911 of hulpdiensten.';
+
+  @override
   String get sos_holdHint =>
       'Houd 2 seconden ingedrukt. Stuurt je positie elke 5 minuten naar je tochtcontacten tot iemand antwoordt.';
 

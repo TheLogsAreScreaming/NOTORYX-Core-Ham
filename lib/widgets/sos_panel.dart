@@ -60,6 +60,10 @@ class SosPanel extends StatelessWidget {
           sosHint(context, ops),
           style: TextStyle(color: _muted, fontSize: 12),
         ),
+        Text(
+          context.l10n.sos_notEmergencyService,
+          style: TextStyle(color: _muted, fontSize: 12),
+        ),
         Align(
           alignment: AlignmentDirectional.centerStart,
           child: TextButton.icon(
@@ -139,6 +143,11 @@ class _LockScreenSosState extends State<LockScreenSos> {
           const SizedBox(height: 4),
           Text(note, style: TextStyle(color: _muted, fontSize: 12)),
         ],
+        const SizedBox(height: 4),
+        Text(
+          l10n.sos_notEmergencyService,
+          style: TextStyle(color: _muted, fontSize: 12),
+        ),
       ],
     );
   }

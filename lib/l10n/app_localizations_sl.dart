@@ -5557,6 +5557,10 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Doseže samo izbrane stike in radie v dosegu. Ne kliče 911 ali služb za nujno pomoč.';
+
+  @override
   String get sos_holdHint =>
       'Pridržite 2 sekundi. Vsakih 5 minut pošlje vaš položaj stikom na turi, dokler se nekdo ne odzove.';
 

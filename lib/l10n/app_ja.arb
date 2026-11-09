@@ -2980,6 +2980,7 @@
   "bastion_uniqueNodesCount": "{count, plural, other{固有ノード{count}個}}",
   "bastion_hopsCount": "{count, plural, other{{count}ホップ}}",
   "bastion_minutesCount": "{count, plural, other{{count}分}}",
+  "sos_notEmergencyService": "選択した連絡先と範囲内の無線機にのみ届きます。911 や緊急サービスには連絡しません。",
   "sos_holdHint": "2秒間長押しします。誰かが応答するまで、5分ごとに行程の連絡先へ位置を送信します。",
   "sos_holdHintChannel": "2秒間長押しします。誰かが応答するまで、5分ごとに行程の連絡先と{channel}へ位置を送信します。",
   "sos_notSent": "SOSを送信できませんでした: {error}",

@@ -5567,6 +5567,10 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Достига само до избраните контакти и радиа в обхват. Не се свързва със 112 или спешни служби.';
+
+  @override
   String get sos_holdHint =>
       'Задръжте 2 секунди. Изпраща местоположението ви до контактите от похода на всеки 5 минути, докато някой отговори.';
 

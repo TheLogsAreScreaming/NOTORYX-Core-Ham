@@ -17,10 +17,6 @@ Use NOTORYX Core Ham only after a great deal of coordination with your frequency
 - [ ] Finish the on-air test and coordinator review, and resolve the §97.119 and §97.113(d) questions.
 - [ ] Have someone check the encryption answers below.
 
-### Code still needed
-
-- [ ] Add a notice on the SOS screen that it doesn't contact emergency services. The app doesn't say this yet.
-
 ### Set up the upload job
 
 In App Store Connect, create a team API key with the **Admin** role, which automatic cloud signing needs. Add these GitHub Actions secrets to this repository, then run **iOS TestFlight** from the Actions tab:
@@ -76,7 +72,7 @@ The job replaces the team ID stored in the project with yours for that build.
 >
 > Transmitting legally requires a US amateur radio licence, so the app asks the operator for a call sign. It doesn't verify licences. Radio traffic is plain text by law. Bluetooth background mode keeps the connection to the radio so incoming messages and safety alerts continue while the phone is locked.
 >
-> SOS and report features only send text to radios and stations the user has chosen. They don't contact emergency services.
+> SOS and report features only send text to radios and stations the user has chosen. They don't contact emergency services, and the SOS panel says so.
 
 ## Likely review questions
 
