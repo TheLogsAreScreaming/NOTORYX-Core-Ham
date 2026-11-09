@@ -5582,6 +5582,10 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Erreicht nur Ihre gewählten Kontakte und Funkgeräte in Reichweite. Es kontaktiert weder Notruf noch Rettungsdienste.';
+
+  @override
   String get sos_holdHint =>
       '2 Sekunden halten. Sendet deine Position alle 5 Minuten an deine Tourkontakte, bis jemand antwortet.';
 

@@ -5300,6 +5300,10 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      '선택한 연락처와 범위 내 무전기에만 전달됩니다. 911이나 긴급 서비스에는 연락하지 않습니다.';
+
+  @override
   String get sos_holdHint => '2초간 길게 누르세요. 누군가 응답할 때까지 5분마다 여정 연락처에 위치를 보냅니다.';
 
   @override

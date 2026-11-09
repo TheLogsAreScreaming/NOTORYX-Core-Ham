@@ -2846,6 +2846,7 @@
   "bastion_uniqueNodesCount": "{count, plural, one{1 jedinečný uzol} few{{count} jedinečné uzly} many{{count} jedinečného uzla} other{{count} jedinečných uzlov}}",
   "bastion_hopsCount": "{count, plural, one{1 skok} few{{count} skoky} many{{count} skoku} other{{count} skokov}}",
   "bastion_minutesCount": "{count, plural, one{1 minúta} few{{count} minúty} many{{count} minúty} other{{count} minút}}",
+  "sos_notEmergencyService": "Dosiahne len vybrané kontakty a rádiá v dosahu. Nekontaktuje 911 ani záchranné služby.",
   "sos_holdHint": "Podržte 2 sekundy. Každých 5 minút posiela vašu polohu kontaktom túry, kým niekto neodpovie.",
   "sos_holdHintChannel": "Podržte 2 sekundy. Každých 5 minút posiela vašu polohu kontaktom túry a do {channel}, kým niekto neodpovie.",
   "sos_notSent": "SOS nebolo odoslané: {error}",

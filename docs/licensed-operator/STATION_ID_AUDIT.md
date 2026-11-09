@@ -19,7 +19,7 @@ Use NOTORYX Core Ham only after a great deal of coordination with your frequency
 
 `examples/kiss_modem/KissModem.cpp` calls `startSendRaw` directly, with no call sign and no check for one. The `*_kiss_modem` build targets are still in the firmware tree.
 
-These builds are not in the NOTORYX test firmware kit. Nothing should be flashed from those targets for amateur use until they are removed or made to refuse to transmit.
+These builds are not in the NOTORYX test firmware kit. A firmware change makes ham KISS builds refuse to transmit; don't use any earlier KISS build for amateur use.
 
 ## What the app adds
 

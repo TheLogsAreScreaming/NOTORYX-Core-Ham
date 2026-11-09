@@ -2884,6 +2884,7 @@
   "bastion_uniqueNodesCount": "{count, plural, one{1 unikalny węzeł} few{{count} unikalne węzły} many{{count} unikalnych węzłów} other{{count} unikalnych węzłów}}",
   "bastion_hopsCount": "{count, plural, one{1 skok} few{{count} skoki} many{{count} skoków} other{{count} skoków}}",
   "bastion_minutesCount": "{count, plural, one{1 minuta} few{{count} minuty} many{{count} minut} other{{count} minut}}",
+  "sos_notEmergencyService": "Dociera tylko do wybranych kontaktów i radiotelefonów w zasięgu. Nie łączy się z numerem 911 ani służbami ratunkowymi.",
   "sos_holdHint": "Przytrzymaj 2 sekundy. Wysyła twoją pozycję do kontaktów wyprawy co 5 minut, dopóki ktoś nie odpowie.",
   "sos_holdHintChannel": "Przytrzymaj 2 sekundy. Wysyła twoją pozycję do kontaktów wyprawy i na {channel} co 5 minut, dopóki ktoś nie odpowie.",
   "sos_notSent": "SOS nie wysłano: {error}",

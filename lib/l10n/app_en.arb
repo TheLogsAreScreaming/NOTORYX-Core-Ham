@@ -3159,6 +3159,7 @@
       }
     }
   },
+  "sos_notEmergencyService": "Reaches only your chosen contacts and radios in range. It doesn't contact 911 or emergency services.",
   "sos_holdHint": "Hold 2 seconds. Sends your position to your trip contacts every 5 minutes until someone replies.",
   "sos_holdHintChannel": "Hold 2 seconds. Sends your position to your trip contacts and {channel} every 5 minutes until someone replies.",
   "@sos_holdHintChannel": {

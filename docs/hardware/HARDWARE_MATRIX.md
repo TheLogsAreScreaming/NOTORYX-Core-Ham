@@ -20,6 +20,29 @@ All boards below are on v1.18.0-ham-test.2. The Station G2 and G3 Bluetooth comp
 | Station G2 | ESP32-S3 | USB, BLE (test.3, see below) | Yes | Merged `.bin` at `0x0` | None |
 | Station G3 | ESP32-S3 | USB, BLE (test.3, see below) | Yes | Merged `.bin` at `0x0` | None |
 
+## Compiled only (v1.18.0-ham-test.4)
+
+These compiled, but none has been flashed to its board or run on a radio. They may not boot or work.
+
+| Board | MCU | Companion | Repeater | How to flash | On-air record |
+|---|---|---|---|---|---|
+| Heltec V3 | ESP32-S3 | BLE | Yes | Merged `.bin` at `0x0` | None |
+| Heltec Wireless Stick Lite V3 | ESP32-S3 | BLE | Yes | Merged `.bin` at `0x0` | None |
+| Seeed Xiao S3 | ESP32-S3 | BLE | Yes | Merged `.bin` at `0x0` | None |
+| LilyGO T-Beam (SX1262 or SX1276) | ESP32 | BLE | Yes | Merged `.bin` at `0x0` | None |
+| LilyGO T-Beam S3 | ESP32-S3 | BLE | Yes | Merged `.bin` at `0x0` | None |
+| LilyGO T-LoRa V2.1-1.6 | ESP32 | BLE | Yes | Merged `.bin` at `0x0` | None |
+| LilyGO T3-S3 (SX1262 or SX1276) | ESP32-S3 | BLE | Yes | Merged `.bin` at `0x0` | None |
+| LilyGO T-Deck | ESP32-S3 | BLE | Yes | Merged `.bin` at `0x0` | None |
+| RAK WisMesh Tag | nRF52840 | BLE | Yes | `.uf2` | None |
+| Seeed SenseCAP Solar Node | nRF52840 | BLE | Yes | `.uf2` | None |
+| Seeed Wio Tracker L1 | nRF52840 | BLE | Yes | `.uf2` | None |
+| Seeed Xiao nRF52 kit | nRF52840 | BLE | Yes | `.uf2` | None |
+| nRF52 Pro Micro DIY | nRF52840 | BLE | Yes | `.uf2` | None |
+| LilyGO T-Echo | nRF52840 | BLE | Yes | `.uf2` | None |
+
+Companion builds for every board in this page are on the [web flasher](https://www.meshmayhem.org/hamwebflasher/), except Station G3. KISS modem builds aren't published for amateur use.
+
 ## Station G2 and G3 over Bluetooth
 
 The G2 and G3 Bluetooth companion did not fit the default 1.25 MB app partition, so earlier releases had USB only. [Firmware test 3](https://github.com/TheLogsAreScreaming/NOTORYX-Core-Ham-Releases/releases/tag/v1.18.0-ham-test.3) moves those two builds to the 16 MB partition layout. Neither has been run on a radio yet.

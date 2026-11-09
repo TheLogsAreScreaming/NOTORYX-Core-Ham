@@ -5595,6 +5595,10 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Доходить лише до вибраних контактів і радіо в зоні дії. Не зв\'язується з 911 чи екстреними службами.';
+
+  @override
   String get sos_holdHint =>
       'Утримуйте 2 секунди. Надсилає ваше місцезнаходження контактам походу кожні 5 хвилин, доки хтось не відповість.';
 

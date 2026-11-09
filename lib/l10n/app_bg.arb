@@ -2846,6 +2846,7 @@
   "bastion_uniqueNodesCount": "{count, plural, =1{1 уникален възел} other{{count} уникални възела}}",
   "bastion_hopsCount": "{count, plural, =1{1 скок} other{{count} скока}}",
   "bastion_minutesCount": "{count, plural, =1{1 минута} other{{count} минути}}",
+  "sos_notEmergencyService": "Достига само до избраните контакти и радиа в обхват. Не се свързва със 112 или спешни служби.",
   "sos_holdHint": "Задръжте 2 секунди. Изпраща местоположението ви до контактите от похода на всеки 5 минути, докато някой отговори.",
   "sos_holdHintChannel": "Задръжте 2 секунди. Изпраща местоположението ви до контактите от похода и до {channel} на всеки 5 минути, докато някой отговори.",
   "sos_notSent": "SOS не е изпратен: {error}",

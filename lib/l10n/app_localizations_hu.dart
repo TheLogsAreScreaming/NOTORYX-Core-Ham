@@ -5558,6 +5558,10 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Csak a kiválasztott kapcsolatokat és a hatótávon belüli rádiókat éri el. Nem értesíti a segélyhívót vagy a mentőszolgálatokat.';
+
+  @override
   String get sos_holdHint =>
       'Tartsa nyomva 2 másodpercig. 5 percenként elküldi a pozícióját a túrakapcsolatainak, amíg valaki nem válaszol.';
 

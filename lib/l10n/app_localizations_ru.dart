@@ -5598,6 +5598,10 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService =>
+      'Доходит только до выбранных контактов и радио в зоне действия. Не связывается с 911 и экстренными службами.';
+
+  @override
   String get sos_holdHint =>
       'Удерживайте 2 секунды. Отправляет ваше местоположение контактам похода каждые 5 минут, пока кто-нибудь не ответит.';
 

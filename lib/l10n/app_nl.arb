@@ -2846,6 +2846,7 @@
   "bastion_uniqueNodesCount": "{count, plural, =1{1 unieke node} other{{count} unieke nodes}}",
   "bastion_hopsCount": "{count, plural, =1{1 hop} other{{count} hops}}",
   "bastion_minutesCount": "{count, plural, =1{1 minuut} other{{count} minuten}}",
+  "sos_notEmergencyService": "Bereikt alleen uw gekozen contacten en radio's binnen bereik. Neemt geen contact op met 911 of hulpdiensten.",
   "sos_holdHint": "Houd 2 seconden ingedrukt. Stuurt je positie elke 5 minuten naar je tochtcontacten tot iemand antwoordt.",
   "sos_holdHintChannel": "Houd 2 seconden ingedrukt. Stuurt je positie elke 5 minuten naar je tochtcontacten en {channel} tot iemand antwoordt.",
   "sos_notSent": "SOS niet verzonden: {error}",

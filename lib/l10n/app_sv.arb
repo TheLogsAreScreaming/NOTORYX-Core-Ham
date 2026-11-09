@@ -2847,6 +2847,7 @@
   "bastion_uniqueNodesCount": "{count, plural, =1{1 unik nod} other{{count} unika noder}}",
   "bastion_hopsCount": "{count, plural, =1{1 hopp} other{{count} hopp}}",
   "bastion_minutesCount": "{count, plural, =1{1 minut} other{{count} minuter}}",
+  "sos_notEmergencyService": "Når bara dina valda kontakter och radioapparater inom räckhåll. Kontaktar inte 911 eller räddningstjänsten.",
   "sos_holdHint": "Håll in i 2 sekunder. Skickar din position till dina turkontakter var 5:e minut tills någon svarar.",
   "sos_holdHintChannel": "Håll in i 2 sekunder. Skickar din position till dina turkontakter och {channel} var 5:e minut tills någon svarar.",
   "sos_notSent": "SOS skickades inte: {error}",

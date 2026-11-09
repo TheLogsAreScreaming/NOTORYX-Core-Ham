@@ -2846,6 +2846,7 @@
   "bastion_uniqueNodesCount": "{count, plural, one{{count} edinstveno vozlišče} two{{count} edinstveni vozlišči} few{{count} edinstvena vozlišča} other{{count} edinstvenih vozlišč}}",
   "bastion_hopsCount": "{count, plural, one{{count} skok} two{{count} skoka} few{{count} skoki} other{{count} skokov}}",
   "bastion_minutesCount": "{count, plural, one{{count} minuta} two{{count} minuti} few{{count} minute} other{{count} minut}}",
+  "sos_notEmergencyService": "Doseže samo izbrane stike in radie v dosegu. Ne kliče 911 ali služb za nujno pomoč.",
   "sos_holdHint": "Pridržite 2 sekundi. Vsakih 5 minut pošlje vaš položaj stikom na turi, dokler se nekdo ne odzove.",
   "sos_holdHintChannel": "Pridržite 2 sekundi. Vsakih 5 minut pošlje vaš položaj stikom na turi in na {channel}, dokler se nekdo ne odzove.",
   "sos_notSent": "SOS ni bil poslan: {error}",

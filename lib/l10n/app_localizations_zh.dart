@@ -5173,6 +5173,9 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get sos_notEmergencyService => '仅能到达您选择的联系人和范围内的电台。不会联系 911 或紧急服务。';
+
+  @override
   String get sos_holdHint => '按住 2 秒。每 5 分钟向你的行程联系人发送你的位置，直到有人回复。';
 
   @override

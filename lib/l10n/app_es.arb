@@ -2980,6 +2980,7 @@
   "bastion_uniqueNodesCount": "{count, plural, =1{1 nodo único} other{{count} nodos únicos}}",
   "bastion_hopsCount": "{count, plural, =1{1 salto} other{{count} saltos}}",
   "bastion_minutesCount": "{count, plural, =1{1 minuto} other{{count} minutos}}",
+  "sos_notEmergencyService": "Solo llega a tus contactos elegidos y a radios en alcance. No contacta con el 911 ni con servicios de emergencia.",
   "sos_holdHint": "Mantén pulsado 2 segundos. Envía tu posición a tus contactos de la salida cada 5 minutos hasta que alguien responda.",
   "sos_holdHintChannel": "Mantén pulsado 2 segundos. Envía tu posición a tus contactos de la salida y a {channel} cada 5 minutos hasta que alguien responda.",
   "sos_notSent": "SOS no enviado: {error}",

@@ -2982,6 +2982,7 @@
   "bastion_uniqueNodesCount": "{count, plural, =1{1 eindeutiger Knoten} other{{count} eindeutige Knoten}}",
   "bastion_hopsCount": "{count, plural, =1{1 Hop} other{{count} Hops}}",
   "bastion_minutesCount": "{count, plural, =1{1 Minute} other{{count} Minuten}}",
+  "sos_notEmergencyService": "Erreicht nur Ihre gewählten Kontakte und Funkgeräte in Reichweite. Es kontaktiert weder Notruf noch Rettungsdienste.",
   "sos_holdHint": "2 Sekunden halten. Sendet deine Position alle 5 Minuten an deine Tourkontakte, bis jemand antwortet.",
   "sos_holdHintChannel": "2 Sekunden halten. Sendet deine Position alle 5 Minuten an deine Tourkontakte und {channel}, bis jemand antwortet.",
   "sos_notSent": "SOS nicht gesendet: {error}",
