@@ -10433,4 +10433,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Licensed operator set up as $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Report';
+
+  @override
+  String get fieldReport_title => 'Field reports';
+
+  @override
+  String get fieldReport_open => 'Write a SALUTE or 9-Line report';
+
+  @override
+  String get fieldReport_hint =>
+      'Sent as plain text under your call sign to your trip contacts and SOS channel. Nothing goes out until you press Send.';
+
+  @override
+  String get fieldReport_usePosition => 'Use the radio\'s position';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Messages to send: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Set your call sign under Licensed operator first.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'One line is too long for a single message. Shorten it.';
+
+  @override
+  String get fieldReport_sent => 'Report sent to the radio';
 }

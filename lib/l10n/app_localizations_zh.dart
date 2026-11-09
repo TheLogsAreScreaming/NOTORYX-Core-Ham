@@ -9849,4 +9849,33 @@ class AppLocalizationsZh extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return '持照操作员已设置为 $call';
   }
+
+  @override
+  String get fieldOps_kindReport => '报告';
+
+  @override
+  String get fieldReport_title => '现场报告';
+
+  @override
+  String get fieldReport_open => '撰写 SALUTE 或 9-Line 报告';
+
+  @override
+  String get fieldReport_hint => '以明文并附上您的呼号发送给行程联系人和 SOS 频道。按下发送之前不会发出任何内容。';
+
+  @override
+  String get fieldReport_usePosition => '使用电台位置';
+
+  @override
+  String fieldReport_preview(int count) {
+    return '待发送消息：$count';
+  }
+
+  @override
+  String get fieldReport_needCallsign => '请先在“持证操作员”中设置您的呼号。';
+
+  @override
+  String get fieldReport_tooLong => '有一行太长，无法放入一条消息。请缩短。';
+
+  @override
+  String get fieldReport_sent => '报告已发送到电台';
 }

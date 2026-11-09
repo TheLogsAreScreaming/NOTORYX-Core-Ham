@@ -10571,4 +10571,36 @@ class AppLocalizationsDe extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Lizenzierter Funker eingerichtet als $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Bericht';
+
+  @override
+  String get fieldReport_title => 'Feldberichte';
+
+  @override
+  String get fieldReport_open => 'SALUTE- oder 9-Line-Bericht schreiben';
+
+  @override
+  String get fieldReport_hint =>
+      'Wird als Klartext unter Ihrem Rufzeichen an Ihre Tourkontakte und den SOS-Kanal gesendet. Erst wenn Sie auf Senden tippen, geht etwas hinaus.';
+
+  @override
+  String get fieldReport_usePosition => 'Position des Funkgeräts verwenden';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Zu sendende Nachrichten: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Tragen Sie zuerst Ihr Rufzeichen unter „Lizenzierter Funkamateur“ ein.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Eine Zeile ist für eine einzelne Nachricht zu lang. Bitte kürzen.';
+
+  @override
+  String get fieldReport_sent => 'Bericht an das Funkgerät übergeben';
 }

@@ -10548,4 +10548,36 @@ class AppLocalizationsBg extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Лицензиран оператор: $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Доклад';
+
+  @override
+  String get fieldReport_title => 'Полеви доклади';
+
+  @override
+  String get fieldReport_open => 'Напишете доклад SALUTE или 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Изпраща се като обикновен текст с вашия позивен до контактите от пътуването и SOS канала. Нищо не се изпраща, докато не натиснете Изпрати.';
+
+  @override
+  String get fieldReport_usePosition => 'Използвай позицията на радиото';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Съобщения за изпращане: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Първо задайте позивния си в „Лицензиран оператор“.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Един ред е твърде дълъг за едно съобщение. Съкратете го.';
+
+  @override
+  String get fieldReport_sent => 'Докладът е изпратен към радиото';
 }

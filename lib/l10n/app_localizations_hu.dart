@@ -10551,4 +10551,36 @@ class AppLocalizationsHu extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Engedélyes operátor beállítva: $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Jelentés';
+
+  @override
+  String get fieldReport_title => 'Terepi jelentések';
+
+  @override
+  String get fieldReport_open => 'SALUTE vagy 9-Line jelentés írása';
+
+  @override
+  String get fieldReport_hint =>
+      'Sima szövegként, az Ön hívójelével megy a túra kapcsolatainak és az SOS-csatornára. Semmi nem megy ki, amíg nem nyomja meg a Küldés gombot.';
+
+  @override
+  String get fieldReport_usePosition => 'A rádió pozíciójának használata';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Küldendő üzenetek: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Előbb adja meg a hívójelét az Engedélyes operátor részben.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Egy sor túl hosszú egyetlen üzenethez. Rövidítse le.';
+
+  @override
+  String get fieldReport_sent => 'A jelentés a rádióhoz került';
 }

@@ -4449,5 +4449,14 @@
   "ham_stockTrafficBody": "Otra red, como una malla MeshCore de la Parte 15, usa esta frecuencia. Sus tramas no llevan indicativo y el firmware de radioaficionado no puede leerlas. Consulte a su coordinador de frecuencias antes de transmitir aquí.",
   "ham_setupBeforeTitle": "Antes de transmitir",
   "ham_setupBeforeBody": "Lea la guía de coordinación y luego añada su indicativo y licencia en “Operador con licencia”. No transmita hasta que su coordinador de frecuencias y las demás estaciones de su malla hayan acordado un canal.",
-  "ham_setupBeforeDone": "Operador con licencia configurado como {call}"
+  "ham_setupBeforeDone": "Operador con licencia configurado como {call}",
+  "fieldOps_kindReport": "Informe",
+  "fieldReport_title": "Informes de campo",
+  "fieldReport_open": "Escribir un informe SALUTE o 9-Line",
+  "fieldReport_hint": "Se envía como texto sin cifrar con tu indicativo a tus contactos de la salida y al canal SOS. No se transmite nada hasta que pulses Enviar.",
+  "fieldReport_usePosition": "Usar la posición de la radio",
+  "fieldReport_preview": "Mensajes por enviar: {count}",
+  "fieldReport_needCallsign": "Primero configura tu indicativo en Operador con licencia.",
+  "fieldReport_tooLong": "Una línea es demasiado larga para un solo mensaje. Acórtala.",
+  "fieldReport_sent": "Informe enviado a la radio"
 }

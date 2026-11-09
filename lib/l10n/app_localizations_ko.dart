@@ -10070,4 +10070,34 @@ class AppLocalizationsKo extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return '면허 운용자 설정됨: $call';
   }
+
+  @override
+  String get fieldOps_kindReport => '보고';
+
+  @override
+  String get fieldReport_title => '현장 보고';
+
+  @override
+  String get fieldReport_open => 'SALUTE 또는 9-Line 보고 작성';
+
+  @override
+  String get fieldReport_hint =>
+      '호출부호와 함께 평문으로 여행 연락처와 SOS 채널에 보냅니다. 보내기를 누르기 전에는 아무것도 전송되지 않습니다.';
+
+  @override
+  String get fieldReport_usePosition => '무전기 위치 사용';
+
+  @override
+  String fieldReport_preview(int count) {
+    return '보낼 메시지: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign => '먼저 면허 운용자에서 호출부호를 설정하세요.';
+
+  @override
+  String get fieldReport_tooLong => '한 줄이 메시지 하나에 들어가기에 너무 깁니다. 줄여 주세요.';
+
+  @override
+  String get fieldReport_sent => '보고를 무전기로 보냈습니다';
 }

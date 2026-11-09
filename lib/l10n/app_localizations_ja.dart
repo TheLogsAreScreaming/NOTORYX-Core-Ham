@@ -10055,4 +10055,34 @@ class AppLocalizationsJa extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return '免許局として設定済み: $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'レポート';
+
+  @override
+  String get fieldReport_title => 'フィールドレポート';
+
+  @override
+  String get fieldReport_open => 'SALUTE または 9-Line レポートを作成';
+
+  @override
+  String get fieldReport_hint =>
+      'コールサインを付けた平文で、トリップの連絡先と SOS チャンネルに送信します。送信を押すまで何も送られません。';
+
+  @override
+  String get fieldReport_usePosition => '無線機の位置を使う';
+
+  @override
+  String fieldReport_preview(int count) {
+    return '送信するメッセージ: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign => '先に「免許を持つオペレーター」でコールサインを設定してください。';
+
+  @override
+  String get fieldReport_tooLong => '1 行が長すぎて 1 通に収まりません。短くしてください。';
+
+  @override
+  String get fieldReport_sent => 'レポートを無線機に渡しました';
 }

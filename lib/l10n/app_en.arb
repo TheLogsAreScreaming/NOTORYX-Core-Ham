@@ -6305,5 +6305,15 @@
         "example": "W1AW"
       }
     }
-  }
+  },
+  "fieldOps_kindReport": "Report",
+  "fieldReport_title": "Field reports",
+  "fieldReport_open": "Write a SALUTE or 9-Line report",
+  "fieldReport_hint": "Sent as plain text under your call sign to your trip contacts and SOS channel. Nothing goes out until you press Send.",
+  "fieldReport_usePosition": "Use the radio's position",
+  "fieldReport_preview": "Messages to send: {count}",
+  "fieldReport_needCallsign": "Set your call sign under Licensed operator first.",
+  "fieldReport_tooLong": "One line is too long for a single message. Shorten it.",
+  "fieldReport_sent": "Report sent to the radio",
+  "@fieldReport_preview": {"placeholders": {"count": {"type": "int"}}}
 }

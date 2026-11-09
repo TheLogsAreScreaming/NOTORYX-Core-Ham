@@ -10522,4 +10522,36 @@ class AppLocalizationsNl extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Gelicentieerde zendamateur ingesteld als $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Rapport';
+
+  @override
+  String get fieldReport_title => 'Veldrapporten';
+
+  @override
+  String get fieldReport_open => 'Een SALUTE- of 9-Line-rapport schrijven';
+
+  @override
+  String get fieldReport_hint =>
+      'Wordt als platte tekst onder uw roepletters verzonden naar uw tochtcontacten en het SOS-kanaal. Er gaat niets uit tot u op Verzenden drukt.';
+
+  @override
+  String get fieldReport_usePosition => 'Positie van de radio gebruiken';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Te verzenden berichten: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Stel eerst uw roepletters in onder Gelicentieerde operator.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Een regel is te lang voor één bericht. Maak hem korter.';
+
+  @override
+  String get fieldReport_sent => 'Rapport naar de radio verzonden';
 }

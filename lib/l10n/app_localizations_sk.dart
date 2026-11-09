@@ -10549,4 +10549,36 @@ class AppLocalizationsSk extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Licencovaný operátor nastavený ako $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Hlásenie';
+
+  @override
+  String get fieldReport_title => 'Terénne hlásenia';
+
+  @override
+  String get fieldReport_open => 'Napísať hlásenie SALUTE alebo 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Odošle sa ako čistý text s vašou volacou značkou kontaktom výpravy a na kanál SOS. Nič sa nevyšle, kým nestlačíte Odoslať.';
+
+  @override
+  String get fieldReport_usePosition => 'Použiť polohu rádia';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Správy na odoslanie: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Najprv nastavte volaciu značku v časti Licencovaný operátor.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Jeden riadok je pre jednu správu príliš dlhý. Skráťte ho.';
+
+  @override
+  String get fieldReport_sent => 'Hlásenie odoslané do rádia';
 }

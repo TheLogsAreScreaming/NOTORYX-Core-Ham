@@ -10598,4 +10598,36 @@ class AppLocalizationsFr extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Opérateur licencié configuré : $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Rapport';
+
+  @override
+  String get fieldReport_title => 'Rapports de terrain';
+
+  @override
+  String get fieldReport_open => 'Rédiger un rapport SALUTE ou 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Envoyé en texte clair sous votre indicatif à vos contacts de sortie et au canal SOS. Rien ne part tant que vous n\'appuyez pas sur Envoyer.';
+
+  @override
+  String get fieldReport_usePosition => 'Utiliser la position de la radio';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Messages à envoyer : $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Indiquez d\'abord votre indicatif sous Opérateur licencié.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Une ligne est trop longue pour un seul message. Raccourcissez-la.';
+
+  @override
+  String get fieldReport_sent => 'Rapport transmis à la radio';
 }

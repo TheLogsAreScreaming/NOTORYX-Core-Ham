@@ -4315,5 +4315,14 @@
   "ham_stockTrafficBody": "To frekvenco uporablja drugo omrežje, na primer omrežje MeshCore po Part 15. Njegovi okvirji nimajo oznake postaje in radioamaterska programska oprema jih ne zna prebrati. Pred oddajanjem se posvetujte s koordinatorjem frekvenc.",
   "ham_setupBeforeTitle": "Preden oddajate",
   "ham_setupBeforeBody": "Preberite vodnik za usklajevanje, nato v razdelku »Licencirani operater« vnesite klicni znak in licenco. Ne oddajajte, dokler se koordinator frekvenc in druge postaje v omrežju ne dogovorijo za kanal.",
-  "ham_setupBeforeDone": "Licencirani operater nastavljen kot {call}"
+  "ham_setupBeforeDone": "Licencirani operater nastavljen kot {call}",
+  "fieldOps_kindReport": "Poročilo",
+  "fieldReport_title": "Terenska poročila",
+  "fieldReport_open": "Napiši poročilo SALUTE ali 9-Line",
+  "fieldReport_hint": "Pošlje se kot navadno besedilo z vašim klicnim znakom stikom izleta in na kanal SOS. Nič se ne odda, dokler ne pritisnete Pošlji.",
+  "fieldReport_usePosition": "Uporabi položaj radia",
+  "fieldReport_preview": "Sporočila za pošiljanje: {count}",
+  "fieldReport_needCallsign": "Najprej nastavite klicni znak pod Licencirani operater.",
+  "fieldReport_tooLong": "Ena vrstica je predolga za eno sporočilo. Skrajšajte jo.",
+  "fieldReport_sent": "Poročilo poslano v radio"
 }
