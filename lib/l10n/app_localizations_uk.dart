@@ -10599,6 +10599,34 @@ class AppLocalizationsUk extends AppLocalizations {
       'Цю частоту використовує інша мережа, наприклад мережа MeshCore за Part 15. Її кадри не мають позивного, і аматорська прошивка не може їх прочитати. Перш ніж передавати тут, уточніть у координатора частот.';
 
   @override
+  String get forward_action => 'Переслати';
+
+  @override
+  String get forward_title => 'Переслати повідомлення';
+
+  @override
+  String get forward_to => 'Кому';
+
+  @override
+  String get forward_send => 'Надіслати';
+
+  @override
+  String get forward_hint =>
+      'Виходить під вашим позивним із зазначенням автора. Ви відповідаєте за те, що пересилаєте.';
+
+  @override
+  String get forward_needCallsign =>
+      'Спочатку вкажіть позивний у розділі «Ліцензований оператор».';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Задовге на $count байтів. Скоротіть повідомлення.';
+  }
+
+  @override
+  String get forward_sent => 'Переслано на радіо';
+
+  @override
   String get ham_setupBeforeTitle => 'Перед передаванням';
 
   @override

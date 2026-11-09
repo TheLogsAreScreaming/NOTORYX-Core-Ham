@@ -10561,6 +10561,34 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ein anderes Netz, etwa ein MeshCore-Netz nach Part 15, nutzt diese Frequenz. Seine Rahmen tragen keine Stationskennung, und die Ham-Firmware kann sie nicht lesen. Klären Sie das mit Ihrem Frequenzkoordinator, bevor Sie hier senden.';
 
   @override
+  String get forward_action => 'Weiterleiten';
+
+  @override
+  String get forward_title => 'Nachricht weiterleiten';
+
+  @override
+  String get forward_to => 'Senden an';
+
+  @override
+  String get forward_send => 'Senden';
+
+  @override
+  String get forward_hint =>
+      'Geht unter Ihrem Rufzeichen hinaus und nennt den Verfasser. Sie sind für das Weitergeleitete verantwortlich.';
+
+  @override
+  String get forward_needCallsign =>
+      'Tragen Sie zuerst Ihr Rufzeichen unter „Lizenzierter Funkamateur“ ein.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count Byte zu lang. Bitte kürzen.';
+  }
+
+  @override
+  String get forward_sent => 'An das Funkgerät weitergeleitet';
+
+  @override
   String get ham_setupBeforeTitle => 'Bevor Sie senden';
 
   @override

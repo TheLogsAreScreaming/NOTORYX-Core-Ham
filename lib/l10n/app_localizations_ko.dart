@@ -10060,6 +10060,32 @@ class AppLocalizationsKo extends AppLocalizations {
       '다른 네트워크(Part 15 MeshCore 메시 등)가 이 주파수를 쓰고 있습니다. 그 프레임에는 국 식별이 없고 아마추어 펌웨어로는 읽을 수 없습니다. 여기서 송신하기 전에 주파수 조정자와 확인하세요.';
 
   @override
+  String get forward_action => '전달';
+
+  @override
+  String get forward_title => '메시지 전달';
+
+  @override
+  String get forward_to => '받는 곳';
+
+  @override
+  String get forward_send => '보내기';
+
+  @override
+  String get forward_hint => '내 호출부호로 전송되며 작성자를 표시합니다. 전달한 내용의 책임은 본인에게 있습니다.';
+
+  @override
+  String get forward_needCallsign => '먼저 면허 운용자에서 호출부호를 설정하세요.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count바이트 초과입니다. 메시지를 줄여 주세요.';
+  }
+
+  @override
+  String get forward_sent => '무전기로 전달했습니다';
+
+  @override
   String get ham_setupBeforeTitle => '송신하기 전에';
 
   @override

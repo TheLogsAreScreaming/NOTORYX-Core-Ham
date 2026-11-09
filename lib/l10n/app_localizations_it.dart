@@ -10568,6 +10568,34 @@ class AppLocalizationsIt extends AppLocalizations {
       'Un\'altra rete, come una mesh MeshCore Part 15, usa questa frequenza. I suoi frame non hanno identificativo di stazione e il firmware radioamatoriale non può leggerli. Sentite il vostro coordinatore di frequenze prima di trasmettere qui.';
 
   @override
+  String get forward_action => 'Inoltra';
+
+  @override
+  String get forward_title => 'Inoltra messaggio';
+
+  @override
+  String get forward_to => 'Invia a';
+
+  @override
+  String get forward_send => 'Invia';
+
+  @override
+  String get forward_hint =>
+      'Parte con il tuo nominativo e indica chi l\'ha scritto. Sei responsabile di ciò che inoltri.';
+
+  @override
+  String get forward_needCallsign =>
+      'Imposta prima il tuo nominativo in Operatore con licenza.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Troppo lungo di $count byte. Accorcia il messaggio.';
+  }
+
+  @override
+  String get forward_sent => 'Inoltrato alla radio';
+
+  @override
   String get ham_setupBeforeTitle => 'Prima di trasmettere';
 
   @override

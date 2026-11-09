@@ -10471,6 +10471,34 @@ class AppLocalizationsSv extends AppLocalizations {
       'Ett annat nät, till exempel ett MeshCore-nät enligt Part 15, använder frekvensen. Dess ramar har inget stations-ID och ham-firmware kan inte läsa dem. Kontrollera med din frekvenskoordinator innan du sänder här.';
 
   @override
+  String get forward_action => 'Vidarebefordra';
+
+  @override
+  String get forward_title => 'Vidarebefordra meddelande';
+
+  @override
+  String get forward_to => 'Skicka till';
+
+  @override
+  String get forward_send => 'Skicka';
+
+  @override
+  String get forward_hint =>
+      'Går ut under din anropssignal och anger vem som skrev det. Du ansvarar för det du vidarebefordrar.';
+
+  @override
+  String get forward_needCallsign =>
+      'Ange först din anropssignal under Licensierad operatör.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count byte för långt. Korta ner meddelandet.';
+  }
+
+  @override
+  String get forward_sent => 'Vidarebefordrat till radion';
+
+  @override
   String get ham_setupBeforeTitle => 'Innan du sänder';
 
   @override

@@ -10606,6 +10606,34 @@ class AppLocalizationsPl extends AppLocalizations {
       'Inna sieć, np. sieć MeshCore z Part 15, używa tej częstotliwości. Jej ramki nie mają identyfikatora stacji, a oprogramowanie krótkofalarskie nie umie ich odczytać. Przed nadawaniem tutaj skontaktuj się z koordynatorem częstotliwości.';
 
   @override
+  String get forward_action => 'Przekaż';
+
+  @override
+  String get forward_title => 'Przekaż wiadomość';
+
+  @override
+  String get forward_to => 'Wyślij do';
+
+  @override
+  String get forward_send => 'Wyślij';
+
+  @override
+  String get forward_hint =>
+      'Wychodzi z Twoim znakiem i podaje autora. Odpowiadasz za to, co przekazujesz.';
+
+  @override
+  String get forward_needCallsign =>
+      'Najpierw ustaw swój znak w sekcji Licencjonowany operator.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Za długa o $count bajtów. Skróć wiadomość.';
+  }
+
+  @override
+  String get forward_sent => 'Przekazano do radia';
+
+  @override
   String get ham_setupBeforeTitle => 'Zanim zaczniesz nadawać';
 
   @override

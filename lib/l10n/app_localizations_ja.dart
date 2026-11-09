@@ -10045,6 +10045,32 @@ class AppLocalizationsJa extends AppLocalizations {
       '別のネットワーク (Part 15 の MeshCore メッシュなど) がこの周波数を使っています。そのフレームには局識別がなく、アマチュア無線用ファームウェアでは読めません。ここで送信する前に周波数調整担当者に確認してください。';
 
   @override
+  String get forward_action => '転送';
+
+  @override
+  String get forward_title => 'メッセージを転送';
+
+  @override
+  String get forward_to => '送信先';
+
+  @override
+  String get forward_send => '送信';
+
+  @override
+  String get forward_hint => 'あなたのコールサインで送信され、作成者の名前も示されます。転送内容の責任はあなたにあります。';
+
+  @override
+  String get forward_needCallsign => '先に「免許を持つオペレーター」でコールサインを設定してください。';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count バイト長すぎます。メッセージを短くしてください。';
+  }
+
+  @override
+  String get forward_sent => '無線機に転送しました';
+
+  @override
   String get ham_setupBeforeTitle => '送信する前に';
 
   @override

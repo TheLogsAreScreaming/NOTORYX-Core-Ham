@@ -10560,6 +10560,34 @@ class AppLocalizationsSl extends AppLocalizations {
       'To frekvenco uporablja drugo omrežje, na primer omrežje MeshCore po Part 15. Njegovi okvirji nimajo oznake postaje in radioamaterska programska oprema jih ne zna prebrati. Pred oddajanjem se posvetujte s koordinatorjem frekvenc.';
 
   @override
+  String get forward_action => 'Posreduj';
+
+  @override
+  String get forward_title => 'Posreduj sporočilo';
+
+  @override
+  String get forward_to => 'Pošlji na';
+
+  @override
+  String get forward_send => 'Pošlji';
+
+  @override
+  String get forward_hint =>
+      'Odda se z vašim klicnim znakom in navede avtorja. Za posredovano ste odgovorni vi.';
+
+  @override
+  String get forward_needCallsign =>
+      'Najprej nastavite klicni znak pod Licencirani operater.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Predolgo za $count bajtov. Skrajšajte sporočilo.';
+  }
+
+  @override
+  String get forward_sent => 'Posredovano v radio';
+
+  @override
   String get ham_setupBeforeTitle => 'Preden oddajate';
 
   @override

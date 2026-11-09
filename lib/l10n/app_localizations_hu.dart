@@ -10541,6 +10541,34 @@ class AppLocalizationsHu extends AppLocalizations {
       'Egy másik hálózat, például egy Part 15 szerinti MeshCore háló használja ezt a frekvenciát. A keretei nem hordoznak állomásazonosítót, és a ham firmware nem tudja olvasni őket. Adás előtt egyeztessen a frekvenciakoordinátorral.';
 
   @override
+  String get forward_action => 'Továbbítás';
+
+  @override
+  String get forward_title => 'Üzenet továbbítása';
+
+  @override
+  String get forward_to => 'Címzett';
+
+  @override
+  String get forward_send => 'Küldés';
+
+  @override
+  String get forward_hint =>
+      'Az Ön hívójelével megy ki, és megnevezi a szerzőt. Ön felel azért, amit továbbít.';
+
+  @override
+  String get forward_needCallsign =>
+      'Előbb adja meg a hívójelét az Engedélyes operátor részben.';
+
+  @override
+  String forward_tooLong(int count) {
+    return '$count bájttal túl hosszú. Rövidítse az üzenetet.';
+  }
+
+  @override
+  String get forward_sent => 'Továbbítva a rádióhoz';
+
+  @override
   String get ham_setupBeforeTitle => 'Adás előtt';
 
   @override

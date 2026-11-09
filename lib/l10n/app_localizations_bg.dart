@@ -10538,6 +10538,34 @@ class AppLocalizationsBg extends AppLocalizations {
       'Друга мрежа, например MeshCore по Part 15, използва тази честота. Кадрите ѝ нямат позивна и любителският фърмуер не може да ги чете. Попитайте честотния координатор, преди да предавате тук.';
 
   @override
+  String get forward_action => 'Препрати';
+
+  @override
+  String get forward_title => 'Препращане на съобщение';
+
+  @override
+  String get forward_to => 'Изпрати до';
+
+  @override
+  String get forward_send => 'Изпрати';
+
+  @override
+  String get forward_hint =>
+      'Изпраща се с вашия позивен и посочва автора. Вие отговаряте за това, което препращате.';
+
+  @override
+  String get forward_needCallsign =>
+      'Първо задайте позивния си в „Лицензиран оператор“.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Твърде дълго с $count байта. Съкратете съобщението.';
+  }
+
+  @override
+  String get forward_sent => 'Препратено към радиото';
+
+  @override
   String get ham_setupBeforeTitle => 'Преди да предавате';
 
   @override

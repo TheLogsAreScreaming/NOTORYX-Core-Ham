@@ -10588,6 +10588,34 @@ class AppLocalizationsFr extends AppLocalizations {
       'Un autre réseau, comme un maillage MeshCore Part 15, utilise cette fréquence. Ses trames ne portent pas d\'identifiant de station et le firmware radioamateur ne peut pas les lire. Voyez avec votre coordinateur de fréquences avant d\'émettre ici.';
 
   @override
+  String get forward_action => 'Transférer';
+
+  @override
+  String get forward_title => 'Transférer le message';
+
+  @override
+  String get forward_to => 'Envoyer à';
+
+  @override
+  String get forward_send => 'Envoyer';
+
+  @override
+  String get forward_hint =>
+      'Part sous votre indicatif et nomme son auteur. Vous êtes responsable de ce que vous transférez.';
+
+  @override
+  String get forward_needCallsign =>
+      'Indiquez d\'abord votre indicatif sous Opérateur licencié.';
+
+  @override
+  String forward_tooLong(int count) {
+    return 'Trop long de $count octets. Raccourcissez le message.';
+  }
+
+  @override
+  String get forward_sent => 'Transféré à la radio';
+
+  @override
   String get ham_setupBeforeTitle => 'Avant d\'émettre';
 
   @override

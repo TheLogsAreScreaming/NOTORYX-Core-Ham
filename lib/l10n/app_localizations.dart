@@ -17521,6 +17521,54 @@ abstract class AppLocalizations {
   /// **'Another network, such as a Part 15 MeshCore mesh, is using this frequency. Its frames carry no station ID and the ham firmware can\'t read them. Check with your frequency coordinator before transmitting here.'**
   String get ham_stockTrafficBody;
 
+  /// No description provided for @forward_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Forward'**
+  String get forward_action;
+
+  /// No description provided for @forward_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Forward message'**
+  String get forward_title;
+
+  /// No description provided for @forward_to.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to'**
+  String get forward_to;
+
+  /// No description provided for @forward_send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get forward_send;
+
+  /// No description provided for @forward_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Goes out under your call sign and names who wrote it. You\'re responsible for what you forward.'**
+  String get forward_hint;
+
+  /// No description provided for @forward_needCallsign.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your call sign under Licensed operator first.'**
+  String get forward_needCallsign;
+
+  /// No description provided for @forward_tooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Too long by {count} bytes. Shorten the message.'**
+  String forward_tooLong(int count);
+
+  /// No description provided for @forward_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Forwarded to the radio'**
+  String get forward_sent;
+
   /// Get started: first card, before connecting a radio
   ///
   /// In en, this message translates to:

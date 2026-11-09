@@ -6288,6 +6288,15 @@
   "@ham_stockTrafficBody": {
     "description": "Licensed operator: what stock MeshCore traffic on the frequency means"
   },
+  "forward_action": "Forward",
+  "forward_title": "Forward message",
+  "forward_to": "Send to",
+  "forward_send": "Send",
+  "forward_hint": "Goes out under your call sign and names who wrote it. You're responsible for what you forward.",
+  "forward_needCallsign": "Set your call sign under Licensed operator first.",
+  "forward_tooLong": "Too long by {count} bytes. Shorten the message.",
+  "forward_sent": "Forwarded to the radio",
+  "@forward_tooLong": {"placeholders": {"count": {"type": "int"}}},
   "ham_setupBeforeTitle": "Before you transmit",
   "team_title": "Team config",
   "team_toolSubtitle": "Share radio settings and channels by QR or file",
