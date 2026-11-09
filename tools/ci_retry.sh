@@ -3,7 +3,7 @@
 # error (5xx). Real build and test failures still fail on the first attempt.
 set -uo pipefail
 
-network_error='Unexpected response code: 5[0-9][0-9]|Server returned HTTP response code: 5[0-9][0-9]|Gateway Time-out'
+network_error='Unexpected response code: 5[0-9][0-9]|Server returned HTTP response code: 5[0-9][0-9]|Gateway Time-out|Failed to download .*\(5[0-9][0-9]\)|returned error: 5[0-9][0-9]'
 attempts="${CI_RETRY_ATTEMPTS:-3}"
 delay="${CI_RETRY_DELAY:-60}"
 log="$(mktemp)"
