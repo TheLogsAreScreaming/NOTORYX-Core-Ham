@@ -8576,53 +8576,11 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Weerwaarschuwingen in een kanaal plaatsen';
-
-  @override
-  String get botWx_body =>
-      'Controleert elke 10 minuten bij de Amerikaanse National Weather Service op ernstige en extreme waarschuwingen op de gps-positie van de radio (afgerond op ongeveer 1 km) en plaatst elke nieuwe één keer. Vereist internet op de telefoon.';
-
-  @override
-  String get botWx_channel => 'Plaatsen in kanaal';
-
-  @override
-  String get botWx_moderate => 'Matige waarschuwingen meenemen';
-
-  @override
-  String get botWx_moderateHint => 'Adviezen én waarschuwingen. Drukker.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Laatst gecontroleerd $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'De radio heeft nog geen gps-positie gemeld.';
-
-  @override
-  String get botWx_noChannel => 'Kies een kanaal voor de waarschuwingen.';
-
-  @override
-  String get botWx_channelGone => 'Het gekozen kanaal bestaat niet meer.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'De weerdienst antwoordde $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Weerdienst niet bereikbaar.';
-
-  @override
   String get botCmd_sun =>
       'Zonsopkomst en -ondergang op de gps-positie van de radio.';
 
   @override
   String get botCmd_moon => 'Maanfase en hoeveel verlicht is.';
-
-  @override
-  String get botCmd_weather =>
-      'Huidig weer bij de radio (Open-Meteo). Stuurt de positie, afgerond op ongeveer 1 km.';
 
   @override
   String get botCmd_dice => 'Gooit dobbelstenen: !dice, !dice 20 of !dice 2d6.';
@@ -9012,7 +8970,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get tools_botHint =>
-      'Automatische antwoorden, !opdrachten en weerwaarschuwingen in kanalen';
+      'Automatische antwoorden en !opdrachten in kanalen';
 
   @override
   String get botChannels_title => 'Kanalen';

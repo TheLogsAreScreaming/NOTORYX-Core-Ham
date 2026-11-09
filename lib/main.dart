@@ -74,7 +74,6 @@ import 'services/network_scan_service.dart';
 import 'services/rx_log_service.dart';
 import 'services/wardrive_service.dart';
 import 'services/track_log_service.dart';
-import 'services/weather_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -284,7 +283,6 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   Timer? _imageSweepTimer;
   Timer? _channelPruneTimer;
   late final BotService _botService;
-  late final WeatherService _weather;
   late final FieldOpsService _fieldOps;
   late final RegionalPresetService _regionalPresets;
   late final DirectRepeaterService _directRepeaters;
@@ -318,9 +316,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    _weather = WeatherService(widget.connector);
-    unawaited(_weather.load());
-    _botService = BotService(widget.connector, weather: _weather);
+    _botService = BotService(widget.connector);
     unawaited(_botService.load());
     _fieldOps = FieldOpsService(widget.connector);
     unawaited(_fieldOps.load());
@@ -450,7 +446,6 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _rxLog.dispose();
     _favoriteReturn.dispose();
     _botService.dispose();
-    _weather.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
     _stationLog.dispose();
@@ -574,7 +569,6 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: _botService),
-        ChangeNotifierProvider<WeatherService?>.value(value: _weather),
         ChangeNotifierProvider.value(value: _fieldOps),
         ChangeNotifierProvider<DirectRepeaterService?>.value(
           value: _directRepeaters,

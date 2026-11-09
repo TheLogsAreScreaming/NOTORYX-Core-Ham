@@ -8650,53 +8650,10 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Publikuj ostrzeżenia pogodowe na kanale';
-
-  @override
-  String get botWx_body =>
-      'Co 10 minut sprawdza w amerykańskiej National Weather Service poważne i skrajne ostrzeżenia dla pozycji GPS radia (zaokrąglonej do ok. 1 km) i publikuje każde nowe raz. Wymaga internetu w telefonie.';
-
-  @override
-  String get botWx_channel => 'Publikuj na kanale';
-
-  @override
-  String get botWx_moderate => 'Uwzględnij umiarkowane ostrzeżenia';
-
-  @override
-  String get botWx_moderateHint =>
-      'Komunikaty i ostrzeżenia. Więcej wiadomości.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Ostatnio sprawdzono $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'Radio nie zgłosiło jeszcze pozycji GPS.';
-
-  @override
-  String get botWx_noChannel => 'Wybierz kanał dla ostrzeżeń.';
-
-  @override
-  String get botWx_channelGone => 'Wybrany kanał już nie istnieje.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Służba pogodowa odpowiedziała $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Brak połączenia ze służbą pogodową.';
-
-  @override
   String get botCmd_sun => 'Wschód i zachód słońca w pozycji GPS radia.';
 
   @override
   String get botCmd_moon => 'Faza Księżyca i stopień oświetlenia.';
-
-  @override
-  String get botCmd_weather =>
-      'Bieżąca pogoda przy radiu (Open-Meteo). Wysyła pozycję zaokrągloną do ok. 1 km.';
 
   @override
   String get botCmd_dice => 'Rzut kośćmi: !dice, !dice 20 lub !dice 2d6.';
@@ -9086,7 +9043,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get tools_botHint =>
-      'Automatyczne odpowiedzi, !polecenia i ostrzeżenia pogodowe na kanałach';
+      'Automatyczne odpowiedzi i !polecenia na kanałach';
 
   @override
   String get botChannels_title => 'Kanały';

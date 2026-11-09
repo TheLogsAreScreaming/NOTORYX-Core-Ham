@@ -8624,54 +8624,11 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Wetterwarnungen in einem Kanal posten';
-
-  @override
-  String get botWx_body =>
-      'Prüft alle 10 Minuten beim US National Weather Service auf schwere und extreme Warnungen an der GPS-Position des Funkgeräts (auf etwa 1 km gerundet) und postet jede neue einmal. Braucht Internet auf dem Telefon.';
-
-  @override
-  String get botWx_channel => 'In Kanal posten';
-
-  @override
-  String get botWx_moderate => 'Mäßige Warnungen einschließen';
-
-  @override
-  String get botWx_moderateHint => 'Hinweise und Warnungen. Mehr Meldungen.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Zuletzt geprüft $time.';
-  }
-
-  @override
-  String get botWx_noPosition =>
-      'Das Funkgerät hat noch keine GPS-Position gemeldet.';
-
-  @override
-  String get botWx_noChannel => 'Wähle einen Kanal für die Warnungen.';
-
-  @override
-  String get botWx_channelGone => 'Der gewählte Kanal existiert nicht mehr.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Der Wetterdienst antwortete mit $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Wetterdienst nicht erreichbar.';
-
-  @override
   String get botCmd_sun =>
       'Sonnenauf- und -untergang an der GPS-Position des Funkgeräts.';
 
   @override
   String get botCmd_moon => 'Mondphase und wie viel beleuchtet ist.';
-
-  @override
-  String get botCmd_weather =>
-      'Aktuelles Wetter am Funkgerät (Open-Meteo). Sendet die Position, auf etwa 1 km gerundet.';
 
   @override
   String get botCmd_dice => 'Würfelt: !dice, !dice 20 oder !dice 2d6.';
@@ -9061,8 +9018,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get tools_bot => 'Bot-Modus';
 
   @override
-  String get tools_botHint =>
-      'Automatische Antworten, !Befehle und Wetterwarnungen in Kanälen';
+  String get tools_botHint => 'Automatische Antworten und !Befehle in Kanälen';
 
   @override
   String get botChannels_title => 'Kanäle';

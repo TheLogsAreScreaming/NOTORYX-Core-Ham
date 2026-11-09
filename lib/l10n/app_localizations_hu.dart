@@ -8602,53 +8602,10 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Időjárási riasztások közzététele csatornán';
-
-  @override
-  String get botWx_body =>
-      '10 percenként lekéri az amerikai Nemzeti Meteorológiai Szolgálat súlyos és szélsőséges figyelmeztetéseit a rádió GPS-helyén (kb. 1 km-re kerekítve), és minden újat egyszer közzétesz. Internet szükséges a telefonon.';
-
-  @override
-  String get botWx_channel => 'Közzététel csatornán';
-
-  @override
-  String get botWx_moderate => 'Mérsékelt riasztások is';
-
-  @override
-  String get botWx_moderateHint =>
-      'Tájékoztatók és figyelmeztetések is. Több üzenet.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Utolsó ellenőrzés: $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'A rádió még nem jelentett GPS-helyet.';
-
-  @override
-  String get botWx_noChannel => 'Válasszon csatornát a riasztásokhoz.';
-
-  @override
-  String get botWx_channelGone => 'A kiválasztott csatorna már nem létezik.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Az időjárási szolgálat válasza: $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Az időjárási szolgálat nem érhető el.';
-
-  @override
   String get botCmd_sun => 'Napkelte és napnyugta a rádió GPS-helyén.';
 
   @override
   String get botCmd_moon => 'Holdfázis és megvilágítottság.';
-
-  @override
-  String get botCmd_weather =>
-      'Aktuális időjárás a rádiónál (Open-Meteo). A helyet kb. 1 km-re kerekítve küldi.';
 
   @override
   String get botCmd_dice => 'Kockadobás: !dice, !dice 20 vagy !dice 2d6.';
@@ -9039,7 +8996,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get tools_botHint =>
-      'Automatikus válaszok, !parancsok és időjárási riasztások a csatornákon';
+      'Automatikus válaszok és !parancsok a csatornákon';
 
   @override
   String get botChannels_title => 'Csatornák';

@@ -5043,34 +5043,8 @@
       }
     }
   },
-  "botWx_title": "Post weather alerts to a channel",
-  "botWx_body": "Checks the US National Weather Service every 10 minutes for severe and extreme warnings at the radio’s GPS position (rounded to about 1 km), and posts each new one once. Needs phone internet.",
-  "botWx_channel": "Post to channel",
-  "botWx_moderate": "Include moderate alerts",
-  "botWx_moderateHint": "Advisories as well as warnings. Busier.",
-  "botWx_lastChecked": "Last checked {time}.",
-  "@botWx_lastChecked": {
-    "placeholders": {
-      "time": {
-        "type": "String"
-      }
-    }
-  },
-  "botWx_noPosition": "The radio hasn’t reported a GPS position yet.",
-  "botWx_noChannel": "Choose a channel to post alerts to.",
-  "botWx_channelGone": "The chosen channel no longer exists.",
-  "botWx_httpError": "Weather Service answered {code}.",
-  "@botWx_httpError": {
-    "placeholders": {
-      "code": {
-        "type": "String"
-      }
-    }
-  },
-  "botWx_unreachable": "Couldn’t reach the Weather Service.",
   "botCmd_sun": "Sunrise and sunset at the radio’s GPS position.",
   "botCmd_moon": "Moon phase and how much is lit.",
-  "botCmd_weather": "Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.",
   "botCmd_dice": "Rolls dice: !dice, !dice 20 or !dice 2d6.",
   "botCmd_trace": "Lists the repeaters the sender’s message came through.",
   "ping_title": "Repeater ping",
@@ -5247,7 +5221,7 @@
   "tools_search": "Search tools and settings",
   "tools_noMatches": "No tools match your search.",
   "tools_bot": "Bot Mode",
-  "tools_botHint": "Auto replies, !commands and weather alerts on channels",
+  "tools_botHint": "Auto replies and !commands on channels",
   "botChannels_title": "Channels",
   "botChannels_hint": "The bot also answers !commands in the channels you turn on, in that channel. It never sends away replies there.",
   "botChannels_none": "No channels on this radio yet.",

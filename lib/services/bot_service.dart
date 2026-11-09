@@ -13,13 +13,10 @@ import '../models/channel_message.dart';
 import '../models/message.dart';
 import '../storage/prefs_manager.dart';
 import 'bot_engine.dart';
-import 'weather_service.dart';
 
 class BotService extends ChangeNotifier {
   final MeshCoreConnector connector;
 
-  /// Source for `!weather`; without it the command says it's unavailable.
-  final WeatherService? weather;
   final math.Random _random = math.Random();
   final BotEngine _engine = BotEngine();
   StreamSubscription<Message>? _subscription;
@@ -32,7 +29,7 @@ class BotService extends ChangeNotifier {
   Future<void> _writes = Future<void>.value();
   final List<String> _activity = [];
 
-  BotService(this.connector, {this.weather});
+  BotService(this.connector);
 
   BotSettings get settings => _settings;
   bool get ready => _ready;
@@ -109,11 +106,7 @@ class BotService extends ChangeNotifier {
     return next;
   }
 
-  Map<String, String> _responses(
-    Uint8List pathBytes,
-    int? pathLength,
-    WeatherNow? weatherNow,
-  ) {
+  Map<String, String> _responses(Uint8List pathBytes, int? pathLength) {
     final commands = [
       ..._settings.commands,
       if (_settings.shareLocation) '!where',
@@ -153,9 +146,6 @@ class BotService extends ChangeNotifier {
           ? sunReply(latitude, longitude, DateTime.now())
           : 'Sun times need the radio\u2019s GPS position.',
       '!moon': moonReply(DateTime.now()),
-      '!weather':
-          weatherNow?.reply(DateTime.now()) ??
-          'Weather unavailable: needs the radio\u2019s GPS and phone internet.',
       '!trace': traceReply(pathBytes, pathLength),
       if (_settings.shareLocation)
         '!where': hasLocation
@@ -171,13 +161,6 @@ class BotService extends ChangeNotifier {
     final contact = connector.getContactByPubKeyHex(message.senderKeyHex);
     final radioKey = connector.selfPublicKeyHex;
     final revision = _revision;
-    // Only !weather needs the network; fetch before the synchronous engine.
-    final wantsWeather =
-        message.text.trim().toLowerCase() == '!weather' &&
-        _settings.enabled &&
-        _settings.commands.contains('!weather');
-    final weatherNow = wantsWeather ? await weather?.weather() : null;
-    if (_disposed) return;
     final response = _engine.reply(
       settings: _settings,
       messageId: '${connector.selfPublicKeyHex}:${message.messageId}',
@@ -185,11 +168,7 @@ class BotService extends ChangeNotifier {
       text: message.text,
       timestamp: message.timestamp,
       now: DateTime.now(),
-      commandResponses: _responses(
-        message.pathBytes,
-        message.pathLength,
-        weatherNow,
-      ),
+      commandResponses: _responses(message.pathBytes, message.pathLength),
       argCommands: {
         '!dice': (args) =>
             rollDice(args, _random) ?? 'Try !dice, !dice 20 or !dice 2d6.',
@@ -245,11 +224,6 @@ class BotService extends ChangeNotifier {
     }
     final radioKey = connector.selfPublicKeyHex;
     final revision = _revision;
-    final wantsWeather =
-        message.text.trim().toLowerCase() == '!weather' &&
-        _settings.commands.contains('!weather');
-    final weatherNow = wantsWeather ? await weather?.weather() : null;
-    if (_disposed) return;
     final response = _engine.reply(
       settings: _settings,
       messageId: '$radioKey:channel:${message.messageId}',
@@ -257,11 +231,7 @@ class BotService extends ChangeNotifier {
       text: message.text,
       timestamp: message.timestamp,
       now: DateTime.now(),
-      commandResponses: _responses(
-        message.pathBytes,
-        message.pathLength,
-        weatherNow,
-      ),
+      commandResponses: _responses(message.pathBytes, message.pathLength),
       argCommands: {
         '!dice': (args) =>
             rollDice(args, _random) ?? 'Try !dice, !dice 20 or !dice 2d6.',

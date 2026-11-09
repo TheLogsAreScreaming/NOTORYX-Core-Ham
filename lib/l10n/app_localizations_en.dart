@@ -8492,53 +8492,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Post weather alerts to a channel';
-
-  @override
-  String get botWx_body =>
-      'Checks the US National Weather Service every 10 minutes for severe and extreme warnings at the radio’s GPS position (rounded to about 1 km), and posts each new one once. Needs phone internet.';
-
-  @override
-  String get botWx_channel => 'Post to channel';
-
-  @override
-  String get botWx_moderate => 'Include moderate alerts';
-
-  @override
-  String get botWx_moderateHint => 'Advisories as well as warnings. Busier.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Last checked $time.';
-  }
-
-  @override
-  String get botWx_noPosition =>
-      'The radio hasn’t reported a GPS position yet.';
-
-  @override
-  String get botWx_noChannel => 'Choose a channel to post alerts to.';
-
-  @override
-  String get botWx_channelGone => 'The chosen channel no longer exists.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Weather Service answered $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Couldn’t reach the Weather Service.';
-
-  @override
   String get botCmd_sun => 'Sunrise and sunset at the radio’s GPS position.';
 
   @override
   String get botCmd_moon => 'Moon phase and how much is lit.';
-
-  @override
-  String get botCmd_weather =>
-      'Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.';
 
   @override
   String get botCmd_dice => 'Rolls dice: !dice, !dice 20 or !dice 2d6.';
@@ -8927,8 +8884,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tools_bot => 'Bot Mode';
 
   @override
-  String get tools_botHint =>
-      'Auto replies, !commands and weather alerts on channels';
+  String get tools_botHint => 'Auto replies and !commands on channels';
 
   @override
   String get botChannels_title => 'Channels';

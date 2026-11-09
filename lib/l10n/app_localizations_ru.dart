@@ -8640,53 +8640,10 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Публиковать погодные предупреждения в канал';
-
-  @override
-  String get botWx_body =>
-      'Каждые 10 минут проверяет Национальную метеослужбу США на серьёзные и экстремальные предупреждения для GPS-позиции радио (округлённой до ~1 км) и публикует каждое новое один раз. Нужен интернет на телефоне.';
-
-  @override
-  String get botWx_channel => 'Публиковать в канал';
-
-  @override
-  String get botWx_moderate => 'Включать умеренные предупреждения';
-
-  @override
-  String get botWx_moderateHint =>
-      'Рекомендации и предупреждения. Больше сообщений.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Последняя проверка $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'Радио ещё не сообщило GPS-позицию.';
-
-  @override
-  String get botWx_noChannel => 'Выберите канал для предупреждений.';
-
-  @override
-  String get botWx_channelGone => 'Выбранного канала больше нет.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Метеослужба ответила $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Метеослужба недоступна.';
-
-  @override
   String get botCmd_sun => 'Восход и закат в GPS-позиции радио.';
 
   @override
   String get botCmd_moon => 'Фаза Луны и освещённость.';
-
-  @override
-  String get botCmd_weather =>
-      'Текущая погода у радио (Open-Meteo). Отправляет позицию, округлённую до ~1 км.';
 
   @override
   String get botCmd_dice => 'Бросает кости: !dice, !dice 20 или !dice 2d6.';
@@ -9074,8 +9031,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get tools_bot => 'Режим бота';
 
   @override
-  String get tools_botHint =>
-      'Автоответы, !команды и погодные предупреждения в каналах';
+  String get tools_botHint => 'Автоответы и !команды в каналах';
 
   @override
   String get botChannels_title => 'Каналы';

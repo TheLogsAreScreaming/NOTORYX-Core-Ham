@@ -8601,53 +8601,10 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Публикуване на метеопредупреждения в канал';
-
-  @override
-  String get botWx_body =>
-      'Проверява Националната метеорологична служба на САЩ на всеки 10 минути за сериозни и екстремни предупреждения на GPS позицията на радиото (закръглена до около 1 км) и публикува всяко ново веднъж. Нужен е интернет на телефона.';
-
-  @override
-  String get botWx_channel => 'Публикуване в канал';
-
-  @override
-  String get botWx_moderate => 'Включване на умерени предупреждения';
-
-  @override
-  String get botWx_moderateHint =>
-      'Съвети, както и предупреждения. По-натоварено.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Последна проверка $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'Радиото още не е съобщило GPS позиция.';
-
-  @override
-  String get botWx_noChannel => 'Изберете канал за предупрежденията.';
-
-  @override
-  String get botWx_channelGone => 'Избраният канал вече не съществува.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Метеослужбата отговори с $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Метеослужбата е недостъпна.';
-
-  @override
   String get botCmd_sun => 'Изгрев и залез на GPS позицията на радиото.';
 
   @override
   String get botCmd_moon => 'Фаза на Луната и колко е осветена.';
-
-  @override
-  String get botCmd_weather =>
-      'Текущо време при радиото (Open-Meteo). Изпраща позицията, закръглена до около 1 км.';
 
   @override
   String get botCmd_dice => 'Хвърля зарове: !dice, !dice 20 или !dice 2d6.';
@@ -9038,8 +8995,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get tools_bot => 'Режим бот';
 
   @override
-  String get tools_botHint =>
-      'Автоматични отговори, !команди и метео предупреждения в каналите';
+  String get tools_botHint => 'Автоматични отговори и !команди в каналите';
 
   @override
   String get botChannels_title => 'Канали';

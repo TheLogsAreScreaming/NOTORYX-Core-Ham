@@ -104,7 +104,7 @@ Everything from NOTORYX Core, working over plain-text ham frames:
 - **Repeater ping:** a one-hop trace showing the signal both ways. **Antenna hunt:** clicks faster as a chosen repeater gets louder.
 - Repeater and room-server tools: login, status, neighbors, telemetry, command line and **access control**.
 - **Repeater IDs** (who uses an ID, which are free) and **Region setup** (US and Canada region trees, or your own) for repeater owners.
-- **Bot Mode:** local auto-replies, keyword rules and commands like `!ping`, `!sun`, `!moon`, `!weather`, `!dice` and `!trace`, in direct messages and in the channels you choose. It can also post weather alerts to a channel.
+- **Bot Mode:** local auto-replies, keyword rules and commands like `!ping`, `!sun`, `!moon`, `!dice` and `!trace`, in direct messages and in the channels you choose.
 - **Field guide**, encrypted backup and app-icon shortcuts.
 
 ### MQTT bridge (optional)
