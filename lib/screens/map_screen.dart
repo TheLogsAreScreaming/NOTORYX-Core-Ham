@@ -2791,37 +2791,44 @@ class _MapScreenState extends State<MapScreen> {
       point: marker.position,
       width: 60,
       height: 60,
-      child: GestureDetector(
-        onTap: () async {
-          if (_removedMarkerIds.contains(marker.id)) {
-            setState(() {
-              _removedMarkerIds.remove(marker.id);
-            });
-            await _markerService.saveRemovedIds(_removedMarkerIds);
-          }
-          _showMarkerInfo(marker);
-        },
-        child: Column(
-          children: [
-            Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: markerColor,
-                border: Border.all(color: MapPalette.markerOutline, width: 2.5),
-                boxShadow: const [
-                  BoxShadow(
-                    color: MapPalette.markerShadow,
-                    blurRadius: 8,
-                    offset: Offset(0, 3),
+      child: Semantics(
+        button: true,
+        label: marker.label.isEmpty ? context.l10n.map_sharedPin : marker.label,
+        child: GestureDetector(
+          onTap: () async {
+            if (_removedMarkerIds.contains(marker.id)) {
+              setState(() {
+                _removedMarkerIds.remove(marker.id);
+              });
+              await _markerService.saveRemovedIds(_removedMarkerIds);
+            }
+            _showMarkerInfo(marker);
+          },
+          child: Column(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: markerColor,
+                  border: Border.all(
+                    color: MapPalette.markerOutline,
+                    width: 2.5,
                   ),
-                ],
+                  boxShadow: const [
+                    BoxShadow(
+                      color: MapPalette.markerShadow,
+                      blurRadius: 8,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                alignment: Alignment.center,
+                child: const Icon(Icons.flag, color: Colors.white, size: 19),
               ),
-              alignment: Alignment.center,
-              child: const Icon(Icons.flag, color: Colors.white, size: 19),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1492,40 +1492,50 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
           point: obstruction.point,
           width: 52,
           height: 52,
-          child: GestureDetector(
-            onTap: () => _centerOnObstruction(obstruction),
-            child: Center(
-              child: Container(
-                width:
-                    _selectedObstruction?.sampleIndex == obstruction.sampleIndex
-                    ? 36
-                    : 24,
-                height:
-                    _selectedObstruction?.sampleIndex == obstruction.sampleIndex
-                    ? 36
-                    : 24,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.transparent,
-                  border: Border.all(
-                    color:
-                        _selectedObstruction?.sampleIndex ==
-                            obstruction.sampleIndex
-                        ? LosPalette.selected
-                        : LosPalette.blocked,
-                    width:
-                        _selectedObstruction?.sampleIndex ==
-                            obstruction.sampleIndex
-                        ? 4
-                        : 3,
-                  ),
-                  boxShadow: [
-                    const BoxShadow(
-                      color: LosPalette.shadow,
-                      blurRadius: 8,
-                      offset: Offset(0, 2),
+          child: Semantics(
+            button: true,
+            label: _obstructionChipLabel(
+              obstruction,
+              context.read<AppSettingsService>().settings.unitSystem ==
+                  UnitSystem.imperial,
+            ),
+            child: GestureDetector(
+              onTap: () => _centerOnObstruction(obstruction),
+              child: Center(
+                child: Container(
+                  width:
+                      _selectedObstruction?.sampleIndex ==
+                          obstruction.sampleIndex
+                      ? 36
+                      : 24,
+                  height:
+                      _selectedObstruction?.sampleIndex ==
+                          obstruction.sampleIndex
+                      ? 36
+                      : 24,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.transparent,
+                    border: Border.all(
+                      color:
+                          _selectedObstruction?.sampleIndex ==
+                              obstruction.sampleIndex
+                          ? LosPalette.selected
+                          : LosPalette.blocked,
+                      width:
+                          _selectedObstruction?.sampleIndex ==
+                              obstruction.sampleIndex
+                          ? 4
+                          : 3,
                     ),
-                  ],
+                    boxShadow: [
+                      const BoxShadow(
+                        color: LosPalette.shadow,
+                        blurRadius: 8,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
