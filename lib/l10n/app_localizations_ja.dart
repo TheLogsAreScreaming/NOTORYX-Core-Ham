@@ -10041,6 +10041,53 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get security_title => 'セキュリティ';
+
+  @override
+  String get security_toolSubtitle => 'アプリのロックとメッセージ履歴の暗号化';
+
+  @override
+  String get appLock_title => 'アプリのロック';
+
+  @override
+  String get appLock_subtitle =>
+      'アプリを開くときに指紋、顔、または画面ロックを求めます。通知は届き、SOSはロック画面からも送信できます。';
+
+  @override
+  String get appLock_reason => 'NOTORYX Core Hamのロックを解除';
+
+  @override
+  String get appLock_unlock => 'ロック解除';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Hamはロックされています';
+
+  @override
+  String get appLock_unavailable => 'この端末には画面ロックがないか、確認できませんでした。';
+
+  @override
+  String get dbEncrypt_title => 'メッセージ履歴を暗号化';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'この端末のメッセージデータベースを、スマートフォンの安全な保管領域にある鍵で暗号化します。鍵を失うと履歴は復元できないため、バックアップを保管してください。';
+
+  @override
+  String get dbEncrypt_on => '状態: 暗号化済み';
+
+  @override
+  String get dbEncrypt_off => '状態: 暗号化なし';
+
+  @override
+  String get dbEncrypt_failed => '状態: 適用できませんでした。履歴は変更されていません。';
+
+  @override
+  String get dbEncrypt_restart => '次回アプリを起動したときに有効になります。';
+
+  @override
+  String get appLock_sosNoTarget => '先にロックを解除し、SOSの送信先を選んでください。';
+
+  @override
   String get ham_stockTrafficBody =>
       '別のネットワーク (Part 15 の MeshCore メッシュなど) がこの周波数を使っています。そのフレームには局識別がなく、アマチュア無線用ファームウェアでは読めません。ここで送信する前に周波数調整担当者に確認してください。';
 

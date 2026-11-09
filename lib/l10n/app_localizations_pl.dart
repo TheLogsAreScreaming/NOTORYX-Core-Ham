@@ -10602,6 +10602,57 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
+  String get security_title => 'Bezpieczeństwo';
+
+  @override
+  String get security_toolSubtitle =>
+      'Blokada aplikacji i szyfrowana historia wiadomości';
+
+  @override
+  String get appLock_title => 'Blokada aplikacji';
+
+  @override
+  String get appLock_subtitle =>
+      'Prosi o odcisk palca, twarz lub blokadę ekranu przy otwieraniu. Alerty działają dalej, a SOS pozostaje na ekranie blokady.';
+
+  @override
+  String get appLock_reason => 'Odblokuj NOTORYX Core Ham';
+
+  @override
+  String get appLock_unlock => 'Odblokuj';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham jest zablokowany';
+
+  @override
+  String get appLock_unavailable =>
+      'To urządzenie nie ma blokady ekranu lub nie udało się jej potwierdzić.';
+
+  @override
+  String get dbEncrypt_title => 'Szyfruj historię wiadomości';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Szyfruje bazę wiadomości na tym urządzeniu kluczem z bezpiecznego magazynu telefonu. Utrata klucza oznacza utratę historii, więc zachowaj kopię zapasową.';
+
+  @override
+  String get dbEncrypt_on => 'Stan: zaszyfrowano';
+
+  @override
+  String get dbEncrypt_off => 'Stan: bez szyfrowania';
+
+  @override
+  String get dbEncrypt_failed => 'Stan: nie udało się. Historia bez zmian.';
+
+  @override
+  String get dbEncrypt_restart =>
+      'Zacznie działać przy następnym uruchomieniu aplikacji.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Najpierw odblokuj i wybierz, kto otrzyma SOS.';
+
+  @override
   String get ham_stockTrafficBody =>
       'Inna sieć, np. sieć MeshCore z Part 15, używa tej częstotliwości. Jej ramki nie mają identyfikatora stacji, a oprogramowanie krótkofalarskie nie umie ich odczytać. Przed nadawaniem tutaj skontaktuj się z koordynatorem częstotliwości.';
 

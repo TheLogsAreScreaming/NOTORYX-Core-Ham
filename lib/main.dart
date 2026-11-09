@@ -1,3 +1,5 @@
+import 'services/app_lock_service.dart';
+import 'widgets/app_lock_gate.dart';
 import 'services/node_telemetry_store.dart';
 
 import 'dart:async';
@@ -297,6 +299,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final FavoriteReturnService _favoriteReturn;
   late final SosRelayService _sosRelay;
   final _operatorProfile = OperatorProfileService()..load();
+  final _appLock = AppLockService(PrefsManager.instance);
   late final StationLogService _stationLog;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
@@ -585,6 +588,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider.value(value: _rxLog),
         ChangeNotifierProvider.value(value: _sosRelay),
         ChangeNotifierProvider.value(value: _operatorProfile),
+        ChangeNotifierProvider<AppLockService>.value(value: _appLock),
         ChangeNotifierProvider.value(value: _stationLog),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(
@@ -637,9 +641,11 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
               _relabelShortcuts(locale);
               return AnnotatedRegion<SystemUiOverlayStyle>(
                 value: _systemUiOverlayStyle(context),
-                child: OperatorSetupBanner(
-                  navigatorKey: _navigatorKey,
-                  child: child ?? const SizedBox.shrink(),
+                child: AppLockGate(
+                  child: OperatorSetupBanner(
+                    navigatorKey: _navigatorKey,
+                    child: child ?? const SizedBox.shrink(),
+                  ),
                 ),
               );
             },

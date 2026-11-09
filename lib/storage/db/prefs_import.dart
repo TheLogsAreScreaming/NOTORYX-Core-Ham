@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import '../../utils/app_logger.dart';
@@ -10,16 +11,44 @@ final Map<String, Future<bool>> _imports = {};
 /// and returns whether the database now holds it. The preference keys are
 /// left in place, so an older build still finds its history.
 Future<bool> ensureScopeImported(MessageDb db, String scope) {
-  if (db.isMigrated(scope)) return Future.value(true);
+  if (db.isMigrated(scope)) {
+    _purgeIfEncrypted(db, scope);
+    return Future.value(true);
+  }
   return _imports[scope] ??= Future(() {
     final ok = importScopeFromPrefs(db, scope);
-    if (!ok) _imports.remove(scope);
+    if (ok) {
+      _purgeIfEncrypted(db, scope);
+    } else {
+      _imports.remove(scope);
+    }
     return ok;
   });
 }
 
+final Set<String> _purged = {};
+
+/// The import leaves the old preference keys for older builds, but those are
+/// plaintext copies. Once the database is encrypted they must go.
+void _purgeIfEncrypted(MessageDb db, String scope) {
+  if (!db.isEncrypted || !_purged.add(scope)) return;
+  final prefs = PrefsManager.instance;
+  for (final key in prefs.getKeys().toList()) {
+    final channel =
+        key.startsWith('channel_messages_$scope') &&
+        _channelIndex.hasMatch(key.substring('channel_messages_$scope'.length));
+    final direct =
+        key.startsWith('messages_$scope') &&
+        _contactKey.hasMatch(key.substring('messages_$scope'.length));
+    if (channel || direct) unawaited(prefs.remove(key));
+  }
+}
+
 /// Forgets in-flight imports; for tests.
-void resetImportsForTest() => _imports.clear();
+void resetImportsForTest() {
+  _imports.clear();
+  _purged.clear();
+}
 
 final _contactKey = RegExp(r'^[0-9a-fA-F]{64}$');
 final _channelIndex = RegExp(r'^\d{1,3}$');

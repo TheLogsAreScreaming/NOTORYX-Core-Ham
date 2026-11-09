@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqlite3/sqlite3.dart';
 
 import '../../utils/app_logger.dart';
 import 'message_db.dart';
+import 'message_db_key.dart';
 
 const _schemaVersion = 1;
 
@@ -12,18 +14,128 @@ Future<MessageDb?> openMessageDb() async {
   try {
     final dir = await getApplicationSupportDirectory();
     await dir.create(recursive: true);
-    final db = sqlite3.open('${dir.path}${Platform.pathSeparator}messages.db');
-    return _SqliteMessageDb(db);
+    final prefs = await SharedPreferences.getInstance();
+    return await openMessageDbFile(
+      '${dir.path}${Platform.pathSeparator}messages.db',
+      wantEncrypted: prefs.getBool(MessageDb.encryptPrefKey) ?? false,
+      vault: SecureMessageDbKeyVault(),
+    );
   } catch (e) {
+    MessageDb.encryptionState = MessageDbEncryption.failed;
     appLogger.error('Message database unavailable, using preferences: $e');
     return null;
   }
 }
 
-MessageDb? openInMemoryMessageDb() => _SqliteMessageDb(sqlite3.openInMemory());
+MessageDb? openInMemoryMessageDb() =>
+    _SqliteMessageDb(sqlite3.openInMemory(), isEncrypted: false);
+
+/// Whether [file] has content that isn't a plain SQLite database.
+Future<bool> _looksEncrypted(File file) async {
+  if (!await file.exists() || await file.length() == 0) return false;
+  final head = await file.openRead(0, 15).expand((b) => b).toList();
+  return String.fromCharCodes(head) != 'SQLite format 3';
+}
+
+void _applyKey(Database db, String key) => db.execute("PRAGMA key = '$key'");
+
+/// Throws unless the open database can really be read.
+void _checkReadable(Database db) =>
+    db.select('SELECT count(*) FROM sqlite_master');
+
+/// Rewrites the open file under [key], or without a key when it's empty.
+/// Encryption can't change while in WAL mode, and this also folds any
+/// plaintext write-ahead log into the file and removes it.
+void _rekey(Database db, String key) {
+  db.execute('PRAGMA wal_checkpoint(TRUNCATE)');
+  db.execute('PRAGMA journal_mode = DELETE');
+  db.execute("PRAGMA rekey = '$key'");
+}
+
+/// Reads the vault's key, creating and storing one if needed, and confirms
+/// it reads back before anything is encrypted with it.
+Future<String> _keyFor(MessageDbKeyVault vault) async {
+  final existing = await vault.read();
+  if (existing != null) return existing;
+  final key = generateMessageDbKey();
+  await vault.write(key);
+  if (await vault.read() != key) throw StateError('key did not persist');
+  return key;
+}
+
+/// Opens the database at [path], encrypting or decrypting it first if that
+/// differs from [wantEncrypted]. If a conversion fails the file stays as it
+/// was. If an encrypted file's key can't be read this returns null and the
+/// file is left alone, so the history isn't lost.
+Future<MessageDb?> openMessageDbFile(
+  String path, {
+  required bool wantEncrypted,
+  required MessageDbKeyVault vault,
+}) async {
+  final file = File(path);
+  final existing = await file.exists() && await file.length() > 0;
+  var encrypted = await _looksEncrypted(file);
+  String? key;
+  if (encrypted) {
+    key = await vault.read();
+    if (key == null) {
+      MessageDb.encryptionState = MessageDbEncryption.failed;
+      appLogger.error('Message database key is missing');
+      return null;
+    }
+  }
+  Database open() {
+    final db = sqlite3.open(path);
+    try {
+      if (key != null) _applyKey(db, key);
+      _checkReadable(db);
+      return db;
+    } catch (_) {
+      db.close();
+      rethrow;
+    }
+  }
+
+  var failed = false;
+  try {
+    if (wantEncrypted && !encrypted) {
+      final newKey = await _keyFor(vault);
+      if (existing) {
+        final db = open();
+        try {
+          _rekey(db, newKey);
+        } finally {
+          db.close();
+        }
+      }
+      key = newKey;
+      encrypted = true;
+    } else if (!wantEncrypted && encrypted) {
+      final db = open();
+      try {
+        _rekey(db, '');
+      } finally {
+        db.close();
+      }
+      key = null;
+      encrypted = false;
+      await vault.delete();
+    }
+  } catch (e) {
+    failed = true;
+    appLogger.error('Could not change message database encryption: $e');
+  }
+  final db = open();
+  MessageDb.encryptionState = failed
+      ? MessageDbEncryption.failed
+      : encrypted
+      ? MessageDbEncryption.on
+      : MessageDbEncryption.off;
+  return _SqliteMessageDb(db, isEncrypted: encrypted);
+}
 
 class _SqliteMessageDb implements MessageDb {
-  _SqliteMessageDb(this._db) {
+  _SqliteMessageDb(this._db, {required this.isEncrypted}) {
     _db.execute('PRAGMA journal_mode = WAL');
     _db.execute('PRAGMA synchronous = NORMAL');
     final version = _db.select('PRAGMA user_version').single.values.first;
@@ -47,6 +159,9 @@ class _SqliteMessageDb implements MessageDb {
   }
 
   final Database _db;
+
+  @override
+  final bool isEncrypted;
 
   @override
   List<String> load(MessageTable table, String scope, String conversation) => [

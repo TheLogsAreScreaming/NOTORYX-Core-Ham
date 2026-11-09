@@ -10508,6 +10508,57 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String get security_title => 'Beveiliging';
+
+  @override
+  String get security_toolSubtitle =>
+      'App-vergrendeling en versleutelde berichtgeschiedenis';
+
+  @override
+  String get appLock_title => 'App-vergrendeling';
+
+  @override
+  String get appLock_subtitle =>
+      'Vraagt bij het openen om vingerafdruk, gezicht of schermvergrendeling. Meldingen blijven werken en SOS blijft op het vergrendelscherm.';
+
+  @override
+  String get appLock_reason => 'NOTORYX Core Ham ontgrendelen';
+
+  @override
+  String get appLock_unlock => 'Ontgrendelen';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham is vergrendeld';
+
+  @override
+  String get appLock_unavailable =>
+      'Dit apparaat heeft geen schermvergrendeling, of die kon niet worden bevestigd.';
+
+  @override
+  String get dbEncrypt_title => 'Berichtgeschiedenis versleutelen';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Versleutelt de berichtendatabase op dit apparaat met een sleutel in de beveiligde opslag van de telefoon. Gaat de sleutel verloren, dan is de geschiedenis niet te herstellen, dus bewaar een back-up.';
+
+  @override
+  String get dbEncrypt_on => 'Status: versleuteld';
+
+  @override
+  String get dbEncrypt_off => 'Status: niet versleuteld';
+
+  @override
+  String get dbEncrypt_failed =>
+      'Status: niet gelukt. Je geschiedenis is ongewijzigd.';
+
+  @override
+  String get dbEncrypt_restart => 'Gaat in bij de volgende start van de app.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Ontgrendel eerst en kies wie je SOS ontvangt.';
+
+  @override
   String get ham_stockTrafficBody =>
       'Een ander netwerk, zoals een MeshCore-mesh onder Part 15, gebruikt deze frequentie. De frames hebben geen stations-ID en de ham-firmware kan ze niet lezen. Overleg met uw frequentiecoördinator voordat u hier zendt.';
 

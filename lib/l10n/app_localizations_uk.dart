@@ -10595,6 +10595,58 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get security_title => 'Безпека';
+
+  @override
+  String get security_toolSubtitle =>
+      'Блокування застосунку та шифрування історії';
+
+  @override
+  String get appLock_title => 'Блокування застосунку';
+
+  @override
+  String get appLock_subtitle =>
+      'Запитує відбиток, обличчя або блокування екрана під час відкриття. Сповіщення працюють, а SOS доступний на екрані блокування.';
+
+  @override
+  String get appLock_reason => 'Розблокувати NOTORYX Core Ham';
+
+  @override
+  String get appLock_unlock => 'Розблокувати';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham заблоковано';
+
+  @override
+  String get appLock_unavailable =>
+      'На цьому пристрої немає блокування екрана, або його не вдалося підтвердити.';
+
+  @override
+  String get dbEncrypt_title => 'Шифрувати історію повідомлень';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Шифрує базу повідомлень на пристрої ключем із захищеного сховища телефона. Якщо ключ втрачено, історію не відновити, тому збережіть резервну копію.';
+
+  @override
+  String get dbEncrypt_on => 'Стан: зашифровано';
+
+  @override
+  String get dbEncrypt_off => 'Стан: не зашифровано';
+
+  @override
+  String get dbEncrypt_failed =>
+      'Стан: не вдалося застосувати. Історію не змінено.';
+
+  @override
+  String get dbEncrypt_restart =>
+      'Набуде чинності під час наступного запуску застосунку.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Спочатку розблокуйте та виберіть, хто отримає SOS.';
+
+  @override
   String get ham_stockTrafficBody =>
       'Цю частоту використовує інша мережа, наприклад мережа MeshCore за Part 15. Її кадри не мають позивного, і аматорська прошивка не може їх прочитати. Перш ніж передавати тут, уточніть у координатора частот.';
 

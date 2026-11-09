@@ -10584,6 +10584,58 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get security_title => 'Sécurité';
+
+  @override
+  String get security_toolSubtitle =>
+      'Verrouillage de l\'app et historique chiffré';
+
+  @override
+  String get appLock_title => 'Verrouillage de l\'app';
+
+  @override
+  String get appLock_subtitle =>
+      'Demande l\'empreinte, le visage ou le verrouillage de l\'écran à l\'ouverture. Les alertes continuent et le SOS reste sur l\'écran verrouillé.';
+
+  @override
+  String get appLock_reason => 'Déverrouiller NOTORYX Core Ham';
+
+  @override
+  String get appLock_unlock => 'Déverrouiller';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham est verrouillé';
+
+  @override
+  String get appLock_unavailable =>
+      'Cet appareil n\'a pas de verrouillage d\'écran, ou il n\'a pas pu être confirmé.';
+
+  @override
+  String get dbEncrypt_title => 'Chiffrer l\'historique des messages';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Chiffre la base de messages sur cet appareil avec une clé conservée dans le stockage sécurisé du téléphone. Si la clé est perdue, l\'historique est irrécupérable : gardez une sauvegarde.';
+
+  @override
+  String get dbEncrypt_on => 'État : chiffré';
+
+  @override
+  String get dbEncrypt_off => 'État : non chiffré';
+
+  @override
+  String get dbEncrypt_failed =>
+      'État : échec. Votre historique n\'a pas changé.';
+
+  @override
+  String get dbEncrypt_restart =>
+      'Prend effet au prochain démarrage de l\'app.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Déverrouillez d\'abord et choisissez qui reçoit votre SOS.';
+
+  @override
   String get ham_stockTrafficBody =>
       'Un autre réseau, comme un maillage MeshCore Part 15, utilise cette fréquence. Ses trames ne portent pas d\'identifiant de station et le firmware radioamateur ne peut pas les lire. Voyez avec votre coordinateur de fréquences avant d\'émettre ici.';
 

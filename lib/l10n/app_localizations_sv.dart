@@ -10467,6 +10467,55 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get security_title => 'Säkerhet';
+
+  @override
+  String get security_toolSubtitle => 'Applås och krypterad meddelandehistorik';
+
+  @override
+  String get appLock_title => 'Applås';
+
+  @override
+  String get appLock_subtitle =>
+      'Frågar efter fingeravtryck, ansikte eller skärmlås när appen öppnas. Varningar fungerar, och SOS finns kvar på låsskärmen.';
+
+  @override
+  String get appLock_reason => 'Lås upp NOTORYX Core Ham';
+
+  @override
+  String get appLock_unlock => 'Lås upp';
+
+  @override
+  String get appLock_locked => 'NOTORYX Core Ham är låst';
+
+  @override
+  String get appLock_unavailable =>
+      'Enheten har inget skärmlås, eller så kunde det inte bekräftas.';
+
+  @override
+  String get dbEncrypt_title => 'Kryptera meddelandehistoriken';
+
+  @override
+  String get dbEncrypt_subtitle =>
+      'Krypterar meddelandedatabasen på enheten med en nyckel i telefonens säkra lagring. Om nyckeln försvinner går historiken inte att återställa, så behåll en säkerhetskopia.';
+
+  @override
+  String get dbEncrypt_on => 'Status: krypterad';
+
+  @override
+  String get dbEncrypt_off => 'Status: inte krypterad';
+
+  @override
+  String get dbEncrypt_failed => 'Status: gick inte. Historiken är oförändrad.';
+
+  @override
+  String get dbEncrypt_restart => 'Börjar gälla nästa gång appen startas.';
+
+  @override
+  String get appLock_sosNoTarget =>
+      'Lås upp först och välj vem som får din SOS.';
+
+  @override
   String get ham_stockTrafficBody =>
       'Ett annat nät, till exempel ett MeshCore-nät enligt Part 15, använder frekvensen. Dess ramar har inget stations-ID och ham-firmware kan inte läsa dem. Kontrollera med din frekvenskoordinator innan du sänder här.';
 
