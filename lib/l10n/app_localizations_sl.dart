@@ -8603,52 +8603,10 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Objavljaj vremenska opozorila v kanalu';
-
-  @override
-  String get botWx_body =>
-      'Vsakih 10 minut preveri ameriško National Weather Service za resna in skrajna opozorila na GPS-položaju radia (zaokroženem na približno 1 km) in vsako novo objavi enkrat. Potrebuje internet na telefonu.';
-
-  @override
-  String get botWx_channel => 'Objavi v kanalu';
-
-  @override
-  String get botWx_moderate => 'Vključi zmerna opozorila';
-
-  @override
-  String get botWx_moderateHint => 'Obvestila in opozorila. Več sporočil.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Nazadnje preverjeno $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'Radio še ni sporočil položaja GPS.';
-
-  @override
-  String get botWx_noChannel => 'Izberite kanal za opozorila.';
-
-  @override
-  String get botWx_channelGone => 'Izbrani kanal ne obstaja več.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Vremenska služba je odgovorila $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Vremenska služba ni dosegljiva.';
-
-  @override
   String get botCmd_sun => 'Sončni vzhod in zahod na položaju GPS radia.';
 
   @override
   String get botCmd_moon => 'Lunina mena in osvetljenost.';
-
-  @override
-  String get botCmd_weather =>
-      'Trenutno vreme pri radiu (Open-Meteo). Pošlje položaj, zaokrožen na približno 1 km.';
 
   @override
   String get botCmd_dice => 'Vrže kocke: !dice, !dice 20 ali !dice 2d6.';
@@ -9037,8 +8995,7 @@ class AppLocalizationsSl extends AppLocalizations {
   String get tools_bot => 'Način bota';
 
   @override
-  String get tools_botHint =>
-      'Samodejni odgovori, !ukazi in vremenska opozorila v kanalih';
+  String get tools_botHint => 'Samodejni odgovori in !ukazi v kanalih';
 
   @override
   String get botChannels_title => 'Kanali';

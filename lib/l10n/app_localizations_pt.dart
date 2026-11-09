@@ -8600,53 +8600,10 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Publicar alertas meteorológicos num canal';
-
-  @override
-  String get botWx_body =>
-      'Consulta a cada 10 minutos o National Weather Service dos EUA para avisos graves e extremos na posição GPS do rádio (arredondada a cerca de 1 km) e publica cada novo uma vez. Requer internet no telefone.';
-
-  @override
-  String get botWx_channel => 'Publicar no canal';
-
-  @override
-  String get botWx_moderate => 'Incluir alertas moderados';
-
-  @override
-  String get botWx_moderateHint => 'Avisos e alertas. Mais mensagens.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Última verificação $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'O rádio ainda não indicou a posição GPS.';
-
-  @override
-  String get botWx_noChannel => 'Escolha um canal para os alertas.';
-
-  @override
-  String get botWx_channelGone => 'O canal escolhido já não existe.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'O serviço meteorológico respondeu $code.';
-  }
-
-  @override
-  String get botWx_unreachable =>
-      'Não foi possível contactar o serviço meteorológico.';
-
-  @override
   String get botCmd_sun => 'Nascer e pôr do sol na posição GPS do rádio.';
 
   @override
   String get botCmd_moon => 'Fase da Lua e quanto está iluminada.';
-
-  @override
-  String get botCmd_weather =>
-      'Tempo atual no rádio (Open-Meteo). Envia a posição arredondada a cerca de 1 km.';
 
   @override
   String get botCmd_dice => 'Lança dados: !dice, !dice 20 ou !dice 2d6.';
@@ -9034,8 +8991,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get tools_bot => 'Modo bot';
 
   @override
-  String get tools_botHint =>
-      'Respostas automáticas, !comandos e alertas meteorológicos nos canais';
+  String get tools_botHint => 'Respostas automáticas e !comandos nos canais';
 
   @override
   String get botChannels_title => 'Canais';

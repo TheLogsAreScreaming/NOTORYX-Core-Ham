@@ -8195,51 +8195,10 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => '気象警報をチャンネルに投稿';
-
-  @override
-  String get botWx_body =>
-      '10 分ごとに米国国立気象局で無線機の GPS 位置（約 1 km に丸め）の重大・極端な警報を確認し、新しい警報を 1 回ずつ投稿します。スマートフォンのインターネットが必要です。';
-
-  @override
-  String get botWx_channel => '投稿先チャンネル';
-
-  @override
-  String get botWx_moderate => '中程度の警報も含める';
-
-  @override
-  String get botWx_moderateHint => '注意報と警報の両方。投稿が増えます。';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return '最終確認 $time。';
-  }
-
-  @override
-  String get botWx_noPosition => '無線機はまだ GPS 位置を報告していません。';
-
-  @override
-  String get botWx_noChannel => '警報の投稿先チャンネルを選んでください。';
-
-  @override
-  String get botWx_channelGone => '選んだチャンネルはもう存在しません。';
-
-  @override
-  String botWx_httpError(String code) {
-    return '気象サービスが $code を返しました。';
-  }
-
-  @override
-  String get botWx_unreachable => '気象サービスに接続できません。';
-
-  @override
   String get botCmd_sun => '無線機の GPS 位置の日の出と日の入り。';
 
   @override
   String get botCmd_moon => '月相と照らされている割合。';
-
-  @override
-  String get botCmd_weather => '無線機の現在の天気（Open-Meteo）。約 1 km に丸めた位置を送信します。';
 
   @override
   String get botCmd_dice => 'サイコロを振ります：!dice、!dice 20、!dice 2d6。';
@@ -8612,7 +8571,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get tools_bot => 'ボットモード';
 
   @override
-  String get tools_botHint => 'チャンネルでの自動返信、!コマンド、気象警報';
+  String get tools_botHint => 'チャンネルでの自動返信と!コマンド';
 
   @override
   String get botChannels_title => 'チャンネル';

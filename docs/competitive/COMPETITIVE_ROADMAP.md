@@ -29,7 +29,7 @@ The research below is kept as written on 2026-11-07. This table tracks what has 
 | Station G2/G3 BLE size | Open (firmware) | — |
 | macOS release | Open: CI builds macOS; only Android is released | — |
 | APRS-IS gateway, third-party traffic | Researched: own position only is a go; nothing into RF. Not built | `docs/licensed-operator/APRS_IS_RESEARCH.md` |
-| Third-party traffic policy | Written. Bot Mode and weather posts under review | `docs/licensed-operator/THIRD_PARTY_POLICY.md` |
+| Third-party traffic policy | Written. Bot Mode under review; internet weather on RF removed | `docs/licensed-operator/THIRD_PARTY_POLICY.md` |
 | Bluetooth-only auto-reconnect fix | Done, via Core | #25 |
 | Phone screen-reader check | **Open: needs a phone.** Checklist in the test kit | — |
 

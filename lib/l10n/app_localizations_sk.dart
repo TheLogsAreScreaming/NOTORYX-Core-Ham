@@ -8593,52 +8593,10 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Uverejňovať výstrahy počasia v kanáli';
-
-  @override
-  String get botWx_body =>
-      'Každých 10 minút kontroluje americkú National Weather Service na vážne a extrémne výstrahy pre GPS polohu rádia (zaokrúhlenú na asi 1 km) a každú novú uverejní raz. Potrebuje internet v telefóne.';
-
-  @override
-  String get botWx_channel => 'Uverejniť v kanáli';
-
-  @override
-  String get botWx_moderate => 'Zahrnúť mierne výstrahy';
-
-  @override
-  String get botWx_moderateHint => 'Upozornenia aj výstrahy. Viac správ.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Naposledy skontrolované $time.';
-  }
-
-  @override
-  String get botWx_noPosition => 'Rádio ešte nenahlásilo GPS polohu.';
-
-  @override
-  String get botWx_noChannel => 'Vyberte kanál pre výstrahy.';
-
-  @override
-  String get botWx_channelGone => 'Vybraný kanál už neexistuje.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Meteorologická služba odpovedala $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Meteorologická služba je nedostupná.';
-
-  @override
   String get botCmd_sun => 'Východ a západ slnka na GPS polohe rádia.';
 
   @override
   String get botCmd_moon => 'Fáza Mesiaca a osvetlenie.';
-
-  @override
-  String get botCmd_weather =>
-      'Aktuálne počasie pri rádiu (Open-Meteo). Posiela polohu zaokrúhlenú na asi 1 km.';
 
   @override
   String get botCmd_dice => 'Hádže kockami: !dice, !dice 20 alebo !dice 2d6.';
@@ -9026,8 +8984,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get tools_bot => 'Režim bota';
 
   @override
-  String get tools_botHint =>
-      'Automatické odpovede, !príkazy a výstrahy počasia v kanáloch';
+  String get tools_botHint => 'Automatické odpovede a !príkazy v kanáloch';
 
   @override
   String get botChannels_title => 'Kanály';

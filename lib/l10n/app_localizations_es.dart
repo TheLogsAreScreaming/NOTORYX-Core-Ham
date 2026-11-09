@@ -8615,55 +8615,11 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Publicar alertas meteorológicas en un canal';
-
-  @override
-  String get botWx_body =>
-      'Consulta cada 10 minutos el Servicio Meteorológico Nacional de EE. UU. en busca de avisos graves y extremos en la posición GPS de la radio (redondeada a 1 km) y publica cada nuevo una vez. Necesita internet en el teléfono.';
-
-  @override
-  String get botWx_channel => 'Publicar en el canal';
-
-  @override
-  String get botWx_moderate => 'Incluir alertas moderadas';
-
-  @override
-  String get botWx_moderateHint => 'Avisos además de alertas. Más mensajes.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Última comprobación $time.';
-  }
-
-  @override
-  String get botWx_noPosition =>
-      'La radio aún no ha informado de su posición GPS.';
-
-  @override
-  String get botWx_noChannel => 'Elige un canal para las alertas.';
-
-  @override
-  String get botWx_channelGone => 'El canal elegido ya no existe.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'El servicio meteorológico respondió $code.';
-  }
-
-  @override
-  String get botWx_unreachable =>
-      'No se pudo contactar con el servicio meteorológico.';
-
-  @override
   String get botCmd_sun =>
       'Salida y puesta del sol en la posición GPS de la radio.';
 
   @override
   String get botCmd_moon => 'Fase lunar y cuánto está iluminada.';
-
-  @override
-  String get botCmd_weather =>
-      'Tiempo actual en la radio (Open-Meteo). Envía la posición redondeada a 1 km.';
 
   @override
   String get botCmd_dice => 'Tira dados: !dice, !dice 20 o !dice 2d6.';
@@ -9051,8 +9007,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tools_bot => 'Modo bot';
 
   @override
-  String get tools_botHint =>
-      'Respuestas automáticas, !comandos y avisos meteorológicos en canales';
+  String get tools_botHint => 'Respuestas automáticas y !comandos en canales';
 
   @override
   String get botChannels_title => 'Canales';

@@ -18,7 +18,6 @@ const botCommands = <String>[
   '!repeater',
   '!sun',
   '!moon',
-  '!weather',
   '!dice',
   '!trace',
 ];
@@ -162,7 +161,9 @@ class BotSettings {
     checkIn: json['checkIn'] as String? ?? 'No check-in status configured.',
     cooldownSeconds: (json['cooldownSeconds'] as int? ?? 300).clamp(60, 3600),
     repliesPerMinute: (json['repliesPerMinute'] as int? ?? 3).clamp(1, 6),
-    commands: (json['commands'] as List?)?.cast<String>().toSet(),
+    // `!weather` was removed; older saved settings may still list it.
+    commands: (json['commands'] as List?)?.cast<String>().toSet()
+      ?..remove('!weather'),
     rules: (json['rules'] as List? ?? [])
         .map((r) => BotRule.fromJson(Map<String, dynamic>.from(r as Map)))
         .toList(),

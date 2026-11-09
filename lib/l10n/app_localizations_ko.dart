@@ -8208,52 +8208,10 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => '기상 경보를 채널에 게시';
-
-  @override
-  String get botWx_body =>
-      '10분마다 미국 국립기상청에서 무전기 GPS 위치(약 1km로 반올림)의 심각·극단 경보를 확인하고 새 경보를 한 번씩 게시합니다. 휴대폰 인터넷이 필요합니다.';
-
-  @override
-  String get botWx_channel => '게시할 채널';
-
-  @override
-  String get botWx_moderate => '중간 수준 경보 포함';
-
-  @override
-  String get botWx_moderateHint => '주의보와 경보 모두. 메시지가 늘어납니다.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return '마지막 확인 $time.';
-  }
-
-  @override
-  String get botWx_noPosition => '무전기가 아직 GPS 위치를 보고하지 않았습니다.';
-
-  @override
-  String get botWx_noChannel => '경보를 게시할 채널을 선택하세요.';
-
-  @override
-  String get botWx_channelGone => '선택한 채널이 더 이상 없습니다.';
-
-  @override
-  String botWx_httpError(String code) {
-    return '기상 서비스가 $code로 응답했습니다.';
-  }
-
-  @override
-  String get botWx_unreachable => '기상 서비스에 연결할 수 없습니다.';
-
-  @override
   String get botCmd_sun => '무전기 GPS 위치의 일출과 일몰.';
 
   @override
   String get botCmd_moon => '달의 위상과 밝은 비율.';
-
-  @override
-  String get botCmd_weather =>
-      '무전기 위치의 현재 날씨(Open-Meteo). 약 1km로 반올림한 위치를 보냅니다.';
 
   @override
   String get botCmd_dice => '주사위 굴리기: !dice, !dice 20, !dice 2d6.';
@@ -8624,7 +8582,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get tools_bot => '봇 모드';
 
   @override
-  String get tools_botHint => '채널 자동 응답, !명령, 기상 경보';
+  String get tools_botHint => '채널 자동 응답 및 !명령';
 
   @override
   String get botChannels_title => '채널';

@@ -14389,72 +14389,6 @@ abstract class AppLocalizations {
   /// **'Signs in with its own key: {key}…'**
   String mqttExtra_ownKey(String key);
 
-  /// No description provided for @botWx_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Post weather alerts to a channel'**
-  String get botWx_title;
-
-  /// No description provided for @botWx_body.
-  ///
-  /// In en, this message translates to:
-  /// **'Checks the US National Weather Service every 10 minutes for severe and extreme warnings at the radio’s GPS position (rounded to about 1 km), and posts each new one once. Needs phone internet.'**
-  String get botWx_body;
-
-  /// No description provided for @botWx_channel.
-  ///
-  /// In en, this message translates to:
-  /// **'Post to channel'**
-  String get botWx_channel;
-
-  /// No description provided for @botWx_moderate.
-  ///
-  /// In en, this message translates to:
-  /// **'Include moderate alerts'**
-  String get botWx_moderate;
-
-  /// No description provided for @botWx_moderateHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Advisories as well as warnings. Busier.'**
-  String get botWx_moderateHint;
-
-  /// No description provided for @botWx_lastChecked.
-  ///
-  /// In en, this message translates to:
-  /// **'Last checked {time}.'**
-  String botWx_lastChecked(String time);
-
-  /// No description provided for @botWx_noPosition.
-  ///
-  /// In en, this message translates to:
-  /// **'The radio hasn’t reported a GPS position yet.'**
-  String get botWx_noPosition;
-
-  /// No description provided for @botWx_noChannel.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose a channel to post alerts to.'**
-  String get botWx_noChannel;
-
-  /// No description provided for @botWx_channelGone.
-  ///
-  /// In en, this message translates to:
-  /// **'The chosen channel no longer exists.'**
-  String get botWx_channelGone;
-
-  /// No description provided for @botWx_httpError.
-  ///
-  /// In en, this message translates to:
-  /// **'Weather Service answered {code}.'**
-  String botWx_httpError(String code);
-
-  /// No description provided for @botWx_unreachable.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn’t reach the Weather Service.'**
-  String get botWx_unreachable;
-
   /// No description provided for @botCmd_sun.
   ///
   /// In en, this message translates to:
@@ -14466,12 +14400,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Moon phase and how much is lit.'**
   String get botCmd_moon;
-
-  /// No description provided for @botCmd_weather.
-  ///
-  /// In en, this message translates to:
-  /// **'Current weather at the radio (Open-Meteo). Sends the position, rounded to about 1 km.'**
-  String get botCmd_weather;
 
   /// No description provided for @botCmd_dice.
   ///
@@ -15142,7 +15070,7 @@ abstract class AppLocalizations {
   /// No description provided for @tools_botHint.
   ///
   /// In en, this message translates to:
-  /// **'Auto replies, !commands and weather alerts on channels'**
+  /// **'Auto replies and !commands on channels'**
   String get tools_botHint;
 
   /// No description provided for @botChannels_title.

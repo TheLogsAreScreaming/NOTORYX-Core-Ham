@@ -7,7 +7,6 @@ import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/bot_settings.dart';
 import '../services/bot_service.dart';
-import '../services/weather_service.dart';
 import '../widgets/ember_backdrop.dart';
 import '../helpers/snack_bar_builder.dart';
 
@@ -15,20 +14,10 @@ import '../helpers/snack_bar_builder.dart';
 String? _commandHint(AppLocalizations t, String command) => switch (command) {
   '!sun' => t.botCmd_sun,
   '!moon' => t.botCmd_moon,
-  '!weather' => t.botCmd_weather,
   '!dice' => t.botCmd_dice,
   '!trace' => t.botCmd_trace,
   _ => null,
 };
-
-String _weatherProblem(AppLocalizations t, WeatherService w) =>
-    switch (w.problem!) {
-      WeatherAlertProblem.noPosition => t.botWx_noPosition,
-      WeatherAlertProblem.noChannel => t.botWx_noChannel,
-      WeatherAlertProblem.channelGone => t.botWx_channelGone,
-      WeatherAlertProblem.rejected => t.botWx_httpError('${w.problemCode}'),
-      WeatherAlertProblem.unreachable => t.botWx_unreachable,
-    };
 
 class BotSettingsScreen extends StatelessWidget {
   const BotSettingsScreen({super.key});
@@ -373,8 +362,6 @@ class BotSettingsScreen extends StatelessWidget {
                     _save(context, settings.copyWith(shareLocation: value)),
               ),
               const Divider(),
-              const _WeatherAlertsSection(),
-              const Divider(),
               ListTile(
                 title: const Text('Custom commands and keyword rules'),
                 trailing: const Icon(Icons.add),
@@ -493,82 +480,4 @@ class BotSettingsScreen extends StatelessWidget {
       );
     },
   );
-}
-
-/// Posts National Weather Service warnings for the radio's area to a
-/// channel. US only, since it uses the NWS feed.
-class _WeatherAlertsSection extends StatelessWidget {
-  const _WeatherAlertsSection();
-
-  @override
-  Widget build(BuildContext context) {
-    final weather = context.watch<WeatherService?>();
-    if (weather == null) return const SizedBox.shrink();
-    final connector = context.watch<MeshCoreConnector>();
-    final settings = weather.settings;
-    final channels = connector.channels.where((c) => !c.isEmpty).toList();
-    final selected = channels.any((c) => c.index == settings.channelIndex)
-        ? settings.channelIndex
-        : null;
-    final checked = weather.lastCheck;
-    final t = context.l10n;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SwitchListTile(
-          key: const ValueKey('weather-alerts'),
-          title: Text(t.botWx_title),
-          subtitle: Text(t.botWx_body),
-          value: settings.enabled,
-          onChanged: (value) =>
-              weather.saveSettings(settings.copyWith(enabled: value)),
-        ),
-        if (settings.enabled) ...[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DropdownButtonFormField<int>(
-              key: const ValueKey('weather-alerts-channel'),
-              isExpanded: true,
-              initialValue: selected,
-              decoration: InputDecoration(labelText: t.botWx_channel),
-              items: [
-                for (final c in channels)
-                  DropdownMenuItem(
-                    value: c.index,
-                    child: Text(
-                      c.name.isEmpty
-                          ? t.channels_channelIndex(c.index)
-                          : c.name,
-                    ),
-                  ),
-              ],
-              onChanged: (index) =>
-                  weather.saveSettings(settings.copyWith(channelIndex: index)),
-            ),
-          ),
-          SwitchListTile(
-            title: Text(t.botWx_moderate),
-            subtitle: Text(t.botWx_moderateHint),
-            value: settings.includeModerate,
-            onChanged: (value) =>
-                weather.saveSettings(settings.copyWith(includeModerate: value)),
-          ),
-          if (weather.problem != null || checked != null)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-              child: Text(
-                weather.problem != null
-                    ? _weatherProblem(t, weather)
-                    : t.botWx_lastChecked(
-                        TimeOfDay.fromDateTime(
-                          checked!.toLocal(),
-                        ).format(context),
-                      ),
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ),
-        ],
-      ],
-    );
-  }
 }

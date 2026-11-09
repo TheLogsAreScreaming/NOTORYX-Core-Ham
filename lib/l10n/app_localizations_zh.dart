@@ -8022,51 +8022,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => '将天气预警发布到频道';
-
-  @override
-  String get botWx_body =>
-      '每 10 分钟查询美国国家气象局在电台 GPS 位置（约取整到 1 公里）的严重和极端预警，每条新预警发布一次。需要手机联网。';
-
-  @override
-  String get botWx_channel => '发布到频道';
-
-  @override
-  String get botWx_moderate => '包括中等预警';
-
-  @override
-  String get botWx_moderateHint => '包括提示和预警。消息更多。';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return '上次检查 $time。';
-  }
-
-  @override
-  String get botWx_noPosition => '电台尚未报告 GPS 位置。';
-
-  @override
-  String get botWx_noChannel => '请选择发布预警的频道。';
-
-  @override
-  String get botWx_channelGone => '所选频道已不存在。';
-
-  @override
-  String botWx_httpError(String code) {
-    return '气象服务返回 $code。';
-  }
-
-  @override
-  String get botWx_unreachable => '无法连接气象服务。';
-
-  @override
   String get botCmd_sun => '电台 GPS 位置的日出和日落。';
 
   @override
   String get botCmd_moon => '月相和照亮比例。';
-
-  @override
-  String get botCmd_weather => '电台处的当前天气（Open-Meteo）。发送约取整到 1 公里的位置。';
 
   @override
   String get botCmd_dice => '掷骰子：!dice、!dice 20 或 !dice 2d6。';
@@ -8425,7 +8384,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tools_bot => '机器人模式';
 
   @override
-  String get tools_botHint => '频道自动回复、!命令和天气警报';
+  String get tools_botHint => '频道自动回复和!命令';
 
   @override
   String get botChannels_title => '频道';

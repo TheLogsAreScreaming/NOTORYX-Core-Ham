@@ -8540,54 +8540,11 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get botWx_title => 'Publicera vädervarningar i en kanal';
-
-  @override
-  String get botWx_body =>
-      'Kontrollerar var 10:e minut den amerikanska vädertjänsten efter allvarliga och extrema varningar vid radions GPS-position (avrundad till cirka 1 km) och publicerar varje ny en gång. Kräver internet i telefonen.';
-
-  @override
-  String get botWx_channel => 'Publicera i kanal';
-
-  @override
-  String get botWx_moderate => 'Ta med måttliga varningar';
-
-  @override
-  String get botWx_moderateHint => 'Råd såväl som varningar. Fler meddelanden.';
-
-  @override
-  String botWx_lastChecked(String time) {
-    return 'Senast kontrollerad $time.';
-  }
-
-  @override
-  String get botWx_noPosition =>
-      'Radion har inte rapporterat någon GPS-position än.';
-
-  @override
-  String get botWx_noChannel => 'Välj en kanal för varningarna.';
-
-  @override
-  String get botWx_channelGone => 'Den valda kanalen finns inte längre.';
-
-  @override
-  String botWx_httpError(String code) {
-    return 'Vädertjänsten svarade $code.';
-  }
-
-  @override
-  String get botWx_unreachable => 'Kunde inte nå vädertjänsten.';
-
-  @override
   String get botCmd_sun =>
       'Soluppgång och solnedgång vid radions GPS-position.';
 
   @override
   String get botCmd_moon => 'Månfas och hur mycket som är upplyst.';
-
-  @override
-  String get botCmd_weather =>
-      'Aktuellt väder vid radion (Open-Meteo). Skickar positionen avrundad till cirka 1 km.';
 
   @override
   String get botCmd_dice => 'Slår tärning: !dice, !dice 20 eller !dice 2d6.';
@@ -8975,8 +8932,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get tools_bot => 'Botläge';
 
   @override
-  String get tools_botHint =>
-      'Autosvar, !kommandon och vädervarningar i kanaler';
+  String get tools_botHint => 'Autosvar och !kommandon i kanaler';
 
   @override
   String get botChannels_title => 'Kanaler';

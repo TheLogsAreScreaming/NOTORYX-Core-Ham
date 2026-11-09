@@ -97,7 +97,7 @@ void main() {
   testWidgets('Bot Mode is listed and found by search', (tester) async {
     await _pump(tester);
     expect(find.text('Bot Mode'), findsOneWidget);
-    await tester.enterText(find.byType(TextField), 'weather alerts');
+    await tester.enterText(find.byType(TextField), 'auto replies');
     await tester.pumpAndSettle();
     expect(find.text('Bot Mode'), findsOneWidget);
   });
