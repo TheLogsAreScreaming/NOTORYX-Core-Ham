@@ -3310,6 +3310,12 @@ abstract class AppLocalizations {
   /// **'Select send action'**
   String get chat_selectSendAction;
 
+  /// No description provided for @chat_jumpToLatest.
+  ///
+  /// In en, this message translates to:
+  /// **'Jump to the latest message'**
+  String get chat_jumpToLatest;
+
   /// No description provided for @chat_sendGif.
   ///
   /// In en, this message translates to:

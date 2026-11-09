@@ -513,6 +513,7 @@
     }
   },
   "chat_selectSendAction": "选择发送操作",
+  "chat_jumpToLatest": "跳到最新消息",
   "chat_sendGif": "发送 GIF",
   "chat_reply": "回复",
   "chat_addReaction": "添加表情",

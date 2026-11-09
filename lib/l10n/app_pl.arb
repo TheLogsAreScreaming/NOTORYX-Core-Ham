@@ -496,6 +496,7 @@
     }
   },
   "chat_selectSendAction": "Wybierz czynność wysyłania",
+  "chat_jumpToLatest": "Przejdź do najnowszej wiadomości",
   "chat_sendGif": "Wyślij GIF",
   "chat_reply": "Odpowiedz",
   "chat_addReaction": "Dodaj Reakcję",

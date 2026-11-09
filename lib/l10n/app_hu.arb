@@ -658,6 +658,7 @@
     }
   },
   "chat_selectSendAction": "Küldési művelet kiválasztása",
+  "chat_jumpToLatest": "Ugrás a legújabb üzenethez",
   "chat_sendGif": "GIF küldése",
   "chat_reply": "Válasz",
   "chat_addReaction": "Reakció hozzáadása",

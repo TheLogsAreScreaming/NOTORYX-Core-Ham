@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../helpers/chat_scroll_controller.dart';
+import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
 
 class JumpToBottomButton extends StatelessWidget {
@@ -24,8 +25,8 @@ class JumpToBottomButton extends StatelessWidget {
               onTap: scrollController.jumpToBottom,
               borderRadius: BorderRadius.circular(MeshRadii.pill),
               child: Container(
-                width: 40,
-                height: 40,
+                width: MeshShape.minTouch,
+                height: MeshShape.minTouch,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: scheme.surfaceContainerHigh.withValues(alpha: 0.92),
@@ -42,6 +43,7 @@ class JumpToBottomButton extends StatelessWidget {
                   Icons.keyboard_arrow_down,
                   size: 22,
                   color: scheme.primary,
+                  semanticLabel: context.l10n.chat_jumpToLatest,
                 ),
               ),
             ),

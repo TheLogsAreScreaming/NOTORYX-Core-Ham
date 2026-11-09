@@ -1806,6 +1806,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chat_selectSendAction => 'Vybrať akciu odoslania';
 
   @override
+  String get chat_jumpToLatest => 'Prejsť na najnovšiu správu';
+
+  @override
   String get chat_sendGif => 'Odoslať GIF';
 
   @override

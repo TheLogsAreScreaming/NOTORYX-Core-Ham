@@ -486,6 +486,7 @@
     }
   },
   "chat_selectSendAction": "Välj sändningsåtgärd",
+  "chat_jumpToLatest": "Gå till senaste meddelandet",
   "chat_sendGif": "Skicka GIF",
   "chat_reply": "Svara",
   "chat_addReaction": "Lägg till reaktion",

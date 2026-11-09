@@ -1810,6 +1810,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get chat_selectSendAction => 'Verzendactie selecteren';
 
   @override
+  String get chat_jumpToLatest => 'Naar het nieuwste bericht';
+
+  @override
   String get chat_sendGif => 'GIF verzenden';
 
   @override

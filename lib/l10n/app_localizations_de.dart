@@ -1827,6 +1827,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get chat_selectSendAction => 'Sendeaktion auswählen';
 
   @override
+  String get chat_jumpToLatest => 'Zur neuesten Nachricht springen';
+
+  @override
   String get chat_sendGif => 'GIF senden';
 
   @override

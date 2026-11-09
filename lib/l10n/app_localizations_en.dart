@@ -1792,6 +1792,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chat_selectSendAction => 'Select send action';
 
   @override
+  String get chat_jumpToLatest => 'Jump to the latest message';
+
+  @override
   String get chat_sendGif => 'Send GIF';
 
   @override

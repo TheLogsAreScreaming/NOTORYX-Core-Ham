@@ -504,11 +504,12 @@ class _RepeaterCliScreenState extends State<RepeaterCliScreen> {
                         _sendCommand();
                       },
                       child: Padding(
-                        padding: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(15),
                         child: Icon(
                           Icons.send,
                           size: 18,
                           color: MeshPalette.accent,
+                          semanticLabel: context.l10n.companionCli_send,
                         ),
                       ),
                     ),

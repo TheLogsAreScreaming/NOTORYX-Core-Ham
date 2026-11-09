@@ -1736,6 +1736,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get chat_selectSendAction => '전송 작업 선택';
 
   @override
+  String get chat_jumpToLatest => '최신 메시지로 이동';
+
+  @override
   String get chat_sendGif => 'GIF 보내기';
 
   @override

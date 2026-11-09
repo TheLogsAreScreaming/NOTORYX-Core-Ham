@@ -1807,6 +1807,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get chat_selectSendAction => 'Izberite dejanje pošiljanja';
 
   @override
+  String get chat_jumpToLatest => 'Skoči na najnovejše sporočilo';
+
+  @override
   String get chat_sendGif => 'Pošlji GIF';
 
   @override
