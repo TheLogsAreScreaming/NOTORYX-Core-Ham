@@ -10603,6 +10603,49 @@ class AppLocalizationsRu extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Перед передачей';
 
   @override
+  String get team_title => 'Настройки команды';
+
+  @override
+  String get team_toolSubtitle =>
+      'Поделиться настройками радио и каналами через QR или файл';
+
+  @override
+  String get team_shareHint =>
+      'Передаёт частоту, полосу, SF, CR и хештег-каналы этого радио. Ключи и мощность передачи не включаются.';
+
+  @override
+  String get team_shareFile => 'Поделиться файлом';
+
+  @override
+  String get team_scan => 'Сканировать QR команды';
+
+  @override
+  String get team_openFile => 'Открыть файл команды';
+
+  @override
+  String get team_importTitle => 'Применить настройки команды?';
+
+  @override
+  String get team_apply => 'Применить на радио';
+
+  @override
+  String get team_invalid =>
+      'Это неверные настройки, или частота вне любительских диапазонов.';
+
+  @override
+  String get team_applied => 'Настройки команды применены';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Каналы: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Прочитайте руководство по координации, затем укажите позывной и лицензию в разделе «Лицензированный оператор». Не передавайте, пока координатор частот и другие станции вашей сети не договорятся о канале.';
 

@@ -10063,6 +10063,47 @@ class AppLocalizationsKo extends AppLocalizations {
   String get ham_setupBeforeTitle => '송신하기 전에';
 
   @override
+  String get team_title => '팀 설정';
+
+  @override
+  String get team_toolSubtitle => '무전 설정과 채널을 QR 또는 파일로 공유';
+
+  @override
+  String get team_shareHint =>
+      '이 무전기의 주파수, 대역폭, 확산 계수, 코딩 레이트, 해시태그 채널을 공유합니다. 키와 송신 출력은 포함되지 않습니다.';
+
+  @override
+  String get team_shareFile => '파일로 공유';
+
+  @override
+  String get team_scan => '팀 QR 코드 스캔';
+
+  @override
+  String get team_openFile => '팀 파일 열기';
+
+  @override
+  String get team_importTitle => '팀 설정을 적용할까요?';
+
+  @override
+  String get team_apply => '무전기에 적용';
+
+  @override
+  String get team_invalid => '유효한 팀 설정이 아니거나 주파수가 아마추어 대역을 벗어났습니다.';
+
+  @override
+  String get team_applied => '팀 설정을 적용했습니다';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return '채널: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       '조정 안내서를 읽은 다음, ‘자격을 갖춘 운용자’에서 호출부호와 면허를 입력하세요. 주파수 조정자와 메시의 다른 국들이 채널에 합의할 때까지 송신하지 마세요.';
 

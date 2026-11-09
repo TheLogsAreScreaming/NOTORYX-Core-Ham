@@ -10048,6 +10048,47 @@ class AppLocalizationsJa extends AppLocalizations {
   String get ham_setupBeforeTitle => '送信する前に';
 
   @override
+  String get team_title => 'チーム設定';
+
+  @override
+  String get team_toolSubtitle => '無線設定とチャンネルを QR またはファイルで共有';
+
+  @override
+  String get team_shareHint =>
+      'この無線機の周波数、帯域幅、拡散率、符号化率、ハッシュタグチャンネルを共有します。鍵と送信出力は含まれません。';
+
+  @override
+  String get team_shareFile => 'ファイルで共有';
+
+  @override
+  String get team_scan => 'チームの QR コードをスキャン';
+
+  @override
+  String get team_openFile => 'チームファイルを開く';
+
+  @override
+  String get team_importTitle => 'チーム設定を適用しますか？';
+
+  @override
+  String get team_apply => '無線機に適用';
+
+  @override
+  String get team_invalid => '有効なチーム設定ではないか、周波数がアマチュアバンド外です。';
+
+  @override
+  String get team_applied => 'チーム設定を適用しました';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'チャンネル: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       '調整ガイドを読み、「免許を持つ運用者」でコールサインと免許を入力してください。周波数調整担当者とメッシュ内の他局がチャンネルに合意するまで送信しないでください。';
 

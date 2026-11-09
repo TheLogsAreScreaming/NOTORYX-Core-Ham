@@ -10544,6 +10544,49 @@ class AppLocalizationsHu extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Adás előtt';
 
   @override
+  String get team_title => 'Csapatbeállítás';
+
+  @override
+  String get team_toolSubtitle =>
+      'Rádióbeállítások és csatornák megosztása QR-rel vagy fájlban';
+
+  @override
+  String get team_shareHint =>
+      'Megosztja a rádió frekvenciáját, sávszélességét, SF- és CR-értékét, valamint a hashtag csatornákat. Kulcsot és adóteljesítményt nem tartalmaz.';
+
+  @override
+  String get team_shareFile => 'Megosztás fájlként';
+
+  @override
+  String get team_scan => 'Csapat QR-kód beolvasása';
+
+  @override
+  String get team_openFile => 'Csapatfájl megnyitása';
+
+  @override
+  String get team_importTitle => 'Alkalmazza a csapatbeállítást?';
+
+  @override
+  String get team_apply => 'Alkalmazás a rádión';
+
+  @override
+  String get team_invalid =>
+      'Ez nem érvényes csapatbeállítás, vagy a frekvencia az amatőrsávokon kívül esik.';
+
+  @override
+  String get team_applied => 'Csapatbeállítás alkalmazva';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Csatornák: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Olvassa el a koordinációs útmutatót, majd adja meg hívójelét és engedélyét az „Engedélyes rádióamatőr” részben. Ne adjon, amíg a frekvenciakoordinátor és a háló többi állomása meg nem egyezett egy csatornában.';
 

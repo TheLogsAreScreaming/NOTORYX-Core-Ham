@@ -10609,6 +10609,49 @@ class AppLocalizationsPl extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Zanim zaczniesz nadawać';
 
   @override
+  String get team_title => 'Konfiguracja zespołu';
+
+  @override
+  String get team_toolSubtitle =>
+      'Udostępnij ustawienia radia i kanały przez QR lub plik';
+
+  @override
+  String get team_shareHint =>
+      'Udostępnia częstotliwość, pasmo, współczynnik rozpraszania, współczynnik kodowania i kanały hashtag tego radia. Bez kluczy i mocy nadawania.';
+
+  @override
+  String get team_shareFile => 'Udostępnij jako plik';
+
+  @override
+  String get team_scan => 'Zeskanuj kod QR zespołu';
+
+  @override
+  String get team_openFile => 'Otwórz plik zespołu';
+
+  @override
+  String get team_importTitle => 'Zastosować konfigurację zespołu?';
+
+  @override
+  String get team_apply => 'Zastosuj w radiu';
+
+  @override
+  String get team_invalid =>
+      'To nie jest poprawna konfiguracja albo częstotliwość jest poza pasmami amatorskimi.';
+
+  @override
+  String get team_applied => 'Zastosowano konfigurację zespołu';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanały: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Przeczytaj przewodnik koordynacji, a potem dodaj znak wywoławczy i licencję w sekcji „Licencjonowany krótkofalowiec”. Nie nadawaj, dopóki koordynator częstotliwości i inne stacje w sieci nie uzgodnią kanału.';
 

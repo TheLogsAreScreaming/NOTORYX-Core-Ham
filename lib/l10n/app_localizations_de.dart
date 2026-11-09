@@ -10564,6 +10564,49 @@ class AppLocalizationsDe extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Bevor Sie senden';
 
   @override
+  String get team_title => 'Team-Konfiguration';
+
+  @override
+  String get team_toolSubtitle =>
+      'Funkeinstellungen und Kanäle per QR oder Datei teilen';
+
+  @override
+  String get team_shareHint =>
+      'Teilt Frequenz, Bandbreite, Spreizfaktor, Coding-Rate und Hashtag-Kanäle dieses Funkgeräts. Schlüssel und Sendeleistung sind nicht enthalten.';
+
+  @override
+  String get team_shareFile => 'Als Datei teilen';
+
+  @override
+  String get team_scan => 'Team-QR-Code scannen';
+
+  @override
+  String get team_openFile => 'Team-Datei öffnen';
+
+  @override
+  String get team_importTitle => 'Team-Konfiguration anwenden?';
+
+  @override
+  String get team_apply => 'Auf Funkgerät anwenden';
+
+  @override
+  String get team_invalid =>
+      'Dies ist keine gültige Team-Konfiguration oder die Frequenz liegt außerhalb der Amateurbänder.';
+
+  @override
+  String get team_applied => 'Team-Konfiguration angewendet';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanäle: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Lesen Sie den Koordinationsleitfaden und tragen Sie dann Rufzeichen und Lizenz unter „Lizenzierter Funkamateur“ ein. Senden Sie erst, wenn Ihr Frequenzkoordinator und die anderen Stationen Ihres Netzes sich auf einen Kanal geeinigt haben.';
 

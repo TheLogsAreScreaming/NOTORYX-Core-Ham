@@ -10515,6 +10515,49 @@ class AppLocalizationsNl extends AppLocalizations {
   String get ham_setupBeforeTitle => 'Voordat u zendt';
 
   @override
+  String get team_title => 'Teamconfiguratie';
+
+  @override
+  String get team_toolSubtitle =>
+      'Radio-instellingen en kanalen delen via QR of bestand';
+
+  @override
+  String get team_shareHint =>
+      'Deelt frequentie, bandbreedte, spreidingsfactor, codeersnelheid en hashtagkanalen van deze radio. Geen sleutels en geen zendvermogen.';
+
+  @override
+  String get team_shareFile => 'Delen als bestand';
+
+  @override
+  String get team_scan => 'Team-QR-code scannen';
+
+  @override
+  String get team_openFile => 'Teambestand openen';
+
+  @override
+  String get team_importTitle => 'Teamconfiguratie toepassen?';
+
+  @override
+  String get team_apply => 'Toepassen op radio';
+
+  @override
+  String get team_invalid =>
+      'Dit is geen geldige teamconfiguratie of de frequentie ligt buiten de amateurbanden.';
+
+  @override
+  String get team_applied => 'Teamconfiguratie toegepast';
+
+  @override
+  String team_summary(String freq, String bandwidth, int sf, int cr) {
+    return '$freq MHz, $bandwidth kHz, SF$sf, CR$cr';
+  }
+
+  @override
+  String team_channels(String names) {
+    return 'Kanalen: $names';
+  }
+
+  @override
   String get ham_setupBeforeBody =>
       'Lees de coördinatiegids en vul daarna uw roepnaam en licentie in bij ‘Gelicentieerde zendamateur’. Zend pas als uw frequentiecoördinator en de andere stations in uw mesh het eens zijn over een kanaal.';
 
