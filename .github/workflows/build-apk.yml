@@ -63,7 +63,7 @@ jobs:
         run: flutter pub get
 
       - name: Build ARM64 release APK
-        run: flutter build apk --release --target-platform android-arm64 --no-pub
+        run: bash tools/ci_retry.sh flutter build apk --release --target-platform android-arm64 --no-pub
 
       - name: Prepare artifact
         shell: bash
@@ -84,7 +84,7 @@ jobs:
 
       - name: Build release app bundle
         if: github.event_name != 'pull_request'
-        run: flutter build appbundle --release --no-pub
+        run: bash tools/ci_retry.sh flutter build appbundle --release --no-pub
 
       - name: Prepare app bundle artifact
         if: github.event_name != 'pull_request'
