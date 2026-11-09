@@ -4320,5 +4320,14 @@
   "ham_stockTrafficBody": "另一个网络（例如 Part 15 的 MeshCore 网状网）正在使用此频率。它的帧不带电台识别，业余固件也无法读取。在此发射前请先与频率协调员确认。",
   "ham_setupBeforeTitle": "发射之前",
   "ham_setupBeforeBody": "请先阅读协调指南，然后在“持照操作员”中填写呼号和执照。在频率协调员和网状网中的其他电台就信道达成一致之前，请勿发射。",
-  "ham_setupBeforeDone": "持照操作员已设置为 {call}"
+  "ham_setupBeforeDone": "持照操作员已设置为 {call}",
+  "fieldOps_kindReport": "报告",
+  "fieldReport_title": "现场报告",
+  "fieldReport_open": "撰写 SALUTE 或 9-Line 报告",
+  "fieldReport_hint": "以明文并附上您的呼号发送给行程联系人和 SOS 频道。按下发送之前不会发出任何内容。",
+  "fieldReport_usePosition": "使用电台位置",
+  "fieldReport_preview": "待发送消息：{count}",
+  "fieldReport_needCallsign": "请先在“持证操作员”中设置您的呼号。",
+  "fieldReport_tooLong": "有一行太长，无法放入一条消息。请缩短。",
+  "fieldReport_sent": "报告已发送到电台"
 }

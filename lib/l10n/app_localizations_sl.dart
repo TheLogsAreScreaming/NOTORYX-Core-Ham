@@ -10570,4 +10570,36 @@ class AppLocalizationsSl extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Licencirani operater nastavljen kot $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Poročilo';
+
+  @override
+  String get fieldReport_title => 'Terenska poročila';
+
+  @override
+  String get fieldReport_open => 'Napiši poročilo SALUTE ali 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Pošlje se kot navadno besedilo z vašim klicnim znakom stikom izleta in na kanal SOS. Nič se ne odda, dokler ne pritisnete Pošlji.';
+
+  @override
+  String get fieldReport_usePosition => 'Uporabi položaj radia';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Sporočila za pošiljanje: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Najprej nastavite klicni znak pod Licencirani operater.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Ena vrstica je predolga za eno sporočilo. Skrajšajte jo.';
+
+  @override
+  String get fieldReport_sent => 'Poročilo poslano v radio';
 }

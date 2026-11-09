@@ -4353,5 +4353,14 @@
   "ham_stockTrafficBody": "Egy másik hálózat, például egy Part 15 szerinti MeshCore háló használja ezt a frekvenciát. A keretei nem hordoznak állomásazonosítót, és a ham firmware nem tudja olvasni őket. Adás előtt egyeztessen a frekvenciakoordinátorral.",
   "ham_setupBeforeTitle": "Adás előtt",
   "ham_setupBeforeBody": "Olvassa el a koordinációs útmutatót, majd adja meg hívójelét és engedélyét az „Engedélyes rádióamatőr” részben. Ne adjon, amíg a frekvenciakoordinátor és a háló többi állomása meg nem egyezett egy csatornában.",
-  "ham_setupBeforeDone": "Engedélyes operátor beállítva: {call}"
+  "ham_setupBeforeDone": "Engedélyes operátor beállítva: {call}",
+  "fieldOps_kindReport": "Jelentés",
+  "fieldReport_title": "Terepi jelentések",
+  "fieldReport_open": "SALUTE vagy 9-Line jelentés írása",
+  "fieldReport_hint": "Sima szövegként, az Ön hívójelével megy a túra kapcsolatainak és az SOS-csatornára. Semmi nem megy ki, amíg nem nyomja meg a Küldés gombot.",
+  "fieldReport_usePosition": "A rádió pozíciójának használata",
+  "fieldReport_preview": "Küldendő üzenetek: {count}",
+  "fieldReport_needCallsign": "Előbb adja meg a hívójelét az Engedélyes operátor részben.",
+  "fieldReport_tooLong": "Egy sor túl hosszú egyetlen üzenethez. Rövidítse le.",
+  "fieldReport_sent": "A jelentés a rádióhoz került"
 }

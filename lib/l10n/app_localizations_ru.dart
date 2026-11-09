@@ -10610,4 +10610,36 @@ class AppLocalizationsRu extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Лицензированный оператор: $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Донесение';
+
+  @override
+  String get fieldReport_title => 'Полевые донесения';
+
+  @override
+  String get fieldReport_open => 'Написать донесение SALUTE или 9-Line';
+
+  @override
+  String get fieldReport_hint =>
+      'Отправляется открытым текстом с вашим позывным контактам поездки и в канал SOS. Ничего не передаётся, пока вы не нажмёте «Отправить».';
+
+  @override
+  String get fieldReport_usePosition => 'Использовать позицию радио';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Сообщений к отправке: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Сначала укажите позывной в разделе «Лицензированный оператор».';
+
+  @override
+  String get fieldReport_tooLong =>
+      'Одна строка слишком длинна для одного сообщения. Сократите её.';
+
+  @override
+  String get fieldReport_sent => 'Донесение передано на радио';
 }

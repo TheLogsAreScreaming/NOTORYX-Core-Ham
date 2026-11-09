@@ -4315,5 +4315,14 @@
   "ham_stockTrafficBody": "Ett annat nät, till exempel ett MeshCore-nät enligt Part 15, använder frekvensen. Dess ramar har inget stations-ID och ham-firmware kan inte läsa dem. Kontrollera med din frekvenskoordinator innan du sänder här.",
   "ham_setupBeforeTitle": "Innan du sänder",
   "ham_setupBeforeBody": "Läs samordningsguiden och lägg sedan in anropssignal och licens under ”Licensierad sändaramatör”. Sänd inte förrän din frekvenskoordinator och de andra stationerna i nätet har kommit överens om en kanal.",
-  "ham_setupBeforeDone": "Licensierad operatör inställd som {call}"
+  "ham_setupBeforeDone": "Licensierad operatör inställd som {call}",
+  "fieldOps_kindReport": "Rapport",
+  "fieldReport_title": "Fältrapporter",
+  "fieldReport_open": "Skriv en SALUTE- eller 9-Line-rapport",
+  "fieldReport_hint": "Skickas som klartext under din anropssignal till dina turkontakter och SOS-kanalen. Inget sänds förrän du trycker på Skicka.",
+  "fieldReport_usePosition": "Använd radions position",
+  "fieldReport_preview": "Meddelanden att skicka: {count}",
+  "fieldReport_needCallsign": "Ange först din anropssignal under Licensierad operatör.",
+  "fieldReport_tooLong": "En rad är för lång för ett enda meddelande. Korta ner den.",
+  "fieldReport_sent": "Rapporten skickad till radion"
 }

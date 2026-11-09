@@ -4315,5 +4315,14 @@
   "ham_stockTrafficBody": "Outra rede, como uma malha MeshCore da Parte 15, usa esta frequência. As suas tramas não têm identificação e o firmware de radioamador não as consegue ler. Fale com o seu coordenador de frequências antes de transmitir aqui.",
   "ham_setupBeforeTitle": "Antes de transmitir",
   "ham_setupBeforeBody": "Leia o guia de coordenação e depois adicione o seu indicativo e licença em “Operador licenciado”. Não transmita até o seu coordenador de frequências e as outras estações da malha terem acordado um canal.",
-  "ham_setupBeforeDone": "Operador licenciado configurado como {call}"
+  "ham_setupBeforeDone": "Operador licenciado configurado como {call}",
+  "fieldOps_kindReport": "Relatório",
+  "fieldReport_title": "Relatórios de campo",
+  "fieldReport_open": "Escrever um relatório SALUTE ou 9-Line",
+  "fieldReport_hint": "Enviado como texto simples com o seu indicativo aos contactos da saída e ao canal SOS. Nada é transmitido até premir Enviar.",
+  "fieldReport_usePosition": "Usar a posição do rádio",
+  "fieldReport_preview": "Mensagens a enviar: {count}",
+  "fieldReport_needCallsign": "Defina primeiro o seu indicativo em Operador licenciado.",
+  "fieldReport_tooLong": "Uma linha é demasiado longa para uma só mensagem. Encurte-a.",
+  "fieldReport_sent": "Relatório enviado para o rádio"
 }

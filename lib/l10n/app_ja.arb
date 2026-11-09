@@ -4449,5 +4449,14 @@
   "ham_stockTrafficBody": "別のネットワーク (Part 15 の MeshCore メッシュなど) がこの周波数を使っています。そのフレームには局識別がなく、アマチュア無線用ファームウェアでは読めません。ここで送信する前に周波数調整担当者に確認してください。",
   "ham_setupBeforeTitle": "送信する前に",
   "ham_setupBeforeBody": "調整ガイドを読み、「免許を持つ運用者」でコールサインと免許を入力してください。周波数調整担当者とメッシュ内の他局がチャンネルに合意するまで送信しないでください。",
-  "ham_setupBeforeDone": "免許局として設定済み: {call}"
+  "ham_setupBeforeDone": "免許局として設定済み: {call}",
+  "fieldOps_kindReport": "レポート",
+  "fieldReport_title": "フィールドレポート",
+  "fieldReport_open": "SALUTE または 9-Line レポートを作成",
+  "fieldReport_hint": "コールサインを付けた平文で、トリップの連絡先と SOS チャンネルに送信します。送信を押すまで何も送られません。",
+  "fieldReport_usePosition": "無線機の位置を使う",
+  "fieldReport_preview": "送信するメッセージ: {count}",
+  "fieldReport_needCallsign": "先に「免許を持つオペレーター」でコールサインを設定してください。",
+  "fieldReport_tooLong": "1 行が長すぎて 1 通に収まりません。短くしてください。",
+  "fieldReport_sent": "レポートを無線機に渡しました"
 }

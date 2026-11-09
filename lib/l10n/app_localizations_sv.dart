@@ -10481,4 +10481,36 @@ class AppLocalizationsSv extends AppLocalizations {
   String ham_setupBeforeDone(String call) {
     return 'Licensierad operatör inställd som $call';
   }
+
+  @override
+  String get fieldOps_kindReport => 'Rapport';
+
+  @override
+  String get fieldReport_title => 'Fältrapporter';
+
+  @override
+  String get fieldReport_open => 'Skriv en SALUTE- eller 9-Line-rapport';
+
+  @override
+  String get fieldReport_hint =>
+      'Skickas som klartext under din anropssignal till dina turkontakter och SOS-kanalen. Inget sänds förrän du trycker på Skicka.';
+
+  @override
+  String get fieldReport_usePosition => 'Använd radions position';
+
+  @override
+  String fieldReport_preview(int count) {
+    return 'Meddelanden att skicka: $count';
+  }
+
+  @override
+  String get fieldReport_needCallsign =>
+      'Ange först din anropssignal under Licensierad operatör.';
+
+  @override
+  String get fieldReport_tooLong =>
+      'En rad är för lång för ett enda meddelande. Korta ner den.';
+
+  @override
+  String get fieldReport_sent => 'Rapporten skickad till radion';
 }

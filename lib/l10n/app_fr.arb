@@ -4449,5 +4449,14 @@
   "ham_stockTrafficBody": "Un autre réseau, comme un maillage MeshCore Part 15, utilise cette fréquence. Ses trames ne portent pas d'identifiant de station et le firmware radioamateur ne peut pas les lire. Voyez avec votre coordinateur de fréquences avant d'émettre ici.",
   "ham_setupBeforeTitle": "Avant d'émettre",
   "ham_setupBeforeBody": "Lisez le guide de coordination, puis ajoutez votre indicatif et votre licence dans « Opérateur licencié ». N'émettez pas avant que votre coordinateur de fréquences et les autres stations de votre maillage se soient accordés sur un canal.",
-  "ham_setupBeforeDone": "Opérateur licencié configuré : {call}"
+  "ham_setupBeforeDone": "Opérateur licencié configuré : {call}",
+  "fieldOps_kindReport": "Rapport",
+  "fieldReport_title": "Rapports de terrain",
+  "fieldReport_open": "Rédiger un rapport SALUTE ou 9-Line",
+  "fieldReport_hint": "Envoyé en texte clair sous votre indicatif à vos contacts de sortie et au canal SOS. Rien ne part tant que vous n'appuyez pas sur Envoyer.",
+  "fieldReport_usePosition": "Utiliser la position de la radio",
+  "fieldReport_preview": "Messages à envoyer : {count}",
+  "fieldReport_needCallsign": "Indiquez d'abord votre indicatif sous Opérateur licencié.",
+  "fieldReport_tooLong": "Une ligne est trop longue pour un seul message. Raccourcissez-la.",
+  "fieldReport_sent": "Rapport transmis à la radio"
 }

@@ -17538,6 +17538,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Licensed operator set up as {call}'**
   String ham_setupBeforeDone(String call);
+
+  /// No description provided for @fieldOps_kindReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get fieldOps_kindReport;
+
+  /// No description provided for @fieldReport_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Field reports'**
+  String get fieldReport_title;
+
+  /// No description provided for @fieldReport_open.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a SALUTE or 9-Line report'**
+  String get fieldReport_open;
+
+  /// No description provided for @fieldReport_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent as plain text under your call sign to your trip contacts and SOS channel. Nothing goes out until you press Send.'**
+  String get fieldReport_hint;
+
+  /// No description provided for @fieldReport_usePosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the radio\'s position'**
+  String get fieldReport_usePosition;
+
+  /// No description provided for @fieldReport_preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages to send: {count}'**
+  String fieldReport_preview(int count);
+
+  /// No description provided for @fieldReport_needCallsign.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your call sign under Licensed operator first.'**
+  String get fieldReport_needCallsign;
+
+  /// No description provided for @fieldReport_tooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'One line is too long for a single message. Shorten it.'**
+  String get fieldReport_tooLong;
+
+  /// No description provided for @fieldReport_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Report sent to the radio'**
+  String get fieldReport_sent;
 }
 
 class _AppLocalizationsDelegate

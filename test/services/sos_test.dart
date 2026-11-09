@@ -158,6 +158,14 @@ void main() {
       radio.dispose();
     });
 
+    test('a field report goes out unsigned, to the same stations', () async {
+      await ops.sendFieldReport('SALUTE', ['SALUTE de W1AW 1/1 S:3']);
+      expect(radio.sent.single.text, 'SALUTE de W1AW 1/1 S:3');
+      expect(radio.channelSends.single, '#search-team: SALUTE de W1AW 1/1 S:3');
+      expect(radio.signedSends, 0);
+      expect(ops.entries.where((e) => e.kind == 'report'), hasLength(2));
+    });
+
     test('sends to contacts and channel without an active trip', () async {
       expect(ops.trip.active, false);
       await ops.startSos();
