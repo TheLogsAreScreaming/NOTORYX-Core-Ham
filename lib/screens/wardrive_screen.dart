@@ -338,9 +338,15 @@ class _WardriveScreenState extends State<WardriveScreen> {
                                   point: LatLng(p.latitude, p.longitude),
                                   width: 22,
                                   height: 22,
-                                  child: GestureDetector(
-                                    onTap: () => _showPing(p),
-                                    child: _PingDot(ping: p),
+                                  child: Semantics(
+                                    button: true,
+                                    label: TimeOfDay.fromDateTime(
+                                      p.at.toLocal(),
+                                    ).format(context),
+                                    child: GestureDetector(
+                                      onTap: () => _showPing(p),
+                                      child: _PingDot(ping: p),
+                                    ),
                                   ),
                                 ),
                               if (here != null)

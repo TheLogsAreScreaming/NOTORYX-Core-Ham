@@ -39,9 +39,9 @@ No icon button lacks a tooltip, and nothing overrides the system text size. The 
 | `lib/widgets/gif_message.dart` | Tap to pause had no spoken name | **Fixed:** says Play or Pause |
 | `lib/widgets/gif_picker.dart` | GIF tiles had no spoken name | **Fixed:** says Send GIF, though not which GIF |
 | `lib/screens/map_screen.dart` node and guessed-position markers | Had no spoken name | **Fixed:** say the node name |
-| `lib/screens/map_screen.dart` flag markers | No spoken name | **Open** |
-| `lib/screens/wardrive_screen.dart` ping dots | No spoken name, 22 dp | **Open** |
-| `lib/screens/line_of_sight_map_screen.dart:1495` obstruction markers | No spoken name | **Open**; the chart markers beside them have a tooltip |
+| `lib/screens/map_screen.dart` shared-pin markers | Had no spoken name | **Fixed:** say the pin's label |
+| `lib/screens/wardrive_screen.dart` ping dots | Had no spoken name; 22 dp | **Fixed name:** say the ping's time. Still 22 dp, because larger targets would overlap on a dense drive |
+| `lib/screens/line_of_sight_map_screen.dart` obstruction markers | Had no spoken name | **Fixed:** say the blocked spot's distance and height |
 | `lib/widgets/received_image_message.dart` | Depends on what the caller puts inside | Needs a screen-reader check |
 | Field stats chart, the line-of-sight chart markers, `radio_stats_entry.dart` | Already labelled | No defect |
 | `mesh_ui.dart`, `settings_screen.dart` rows, snack bars | The name comes from their content | No defect |
