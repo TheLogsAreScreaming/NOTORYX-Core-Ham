@@ -148,4 +148,32 @@ void main() {
       '433.000,1,0\n',
     );
   });
+
+  test('automated transmissions export as CSV, formulas escaped', () {
+    final csv = automatedTransmissionsCsv([
+      AutomatedTransmission(
+        at: DateTime.utc(2026, 11, 13, 12),
+        rule: '=cmd',
+        to: 'ARES "net"',
+        text: '[auto] hi',
+        station: 'W1AW',
+        freqKhz: 433125,
+      ),
+    ]);
+    expect(
+      csv.split('\n')[1],
+      '2026-11-13T12:00:00.000Z,"W1AW","\'=cmd","ARES ""net""",70cm,'
+      '433.125,"[auto] hi"',
+    );
+    final back = AutomatedTransmission.fromJson(
+      AutomatedTransmission(
+        at: DateTime.utc(2026),
+        rule: 'r',
+        to: 't',
+        text: 'x',
+      ).toJson(),
+    );
+    expect(back?.rule, 'r');
+    expect(AutomatedTransmission.fromJson({'rule': 'r'}), isNull);
+  });
 }

@@ -9,6 +9,7 @@ import '../widgets/instrument.dart';
 import '../widgets/glass_action_row.dart';
 
 import 'antenna_coverage_screen.dart';
+import 'automation_screen.dart';
 import 'antenna_hunt_screen.dart';
 import 'waypoints_screen.dart';
 import 'network_changes_screen.dart';
@@ -91,6 +92,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.tools_bot,
             subtitle: l10n.tools_botHint,
             builder: (_) => const BotSettingsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.bolt_outlined,
+            title: l10n.automation_title,
+            subtitle: l10n.automation_toolHint,
+            builder: (_) => const AutomationScreen(),
           ),
           _ToolAction(
             icon: Icons.lock_outline,

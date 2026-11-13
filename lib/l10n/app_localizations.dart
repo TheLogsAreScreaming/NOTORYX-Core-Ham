@@ -18648,6 +18648,504 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Restored {count} settings. Close the app fully and open it again to use them.'**
   String bk_restored(int count);
+
+  /// No description provided for @automation_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Automation'**
+  String get automation_title;
+
+  /// No description provided for @automation_toolHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules that alert you or send a message when something happens'**
+  String get automation_toolHint;
+
+  /// No description provided for @automation_newRule.
+  ///
+  /// In en, this message translates to:
+  /// **'New rule'**
+  String get automation_newRule;
+
+  /// No description provided for @automation_editRule.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit rule'**
+  String get automation_editRule;
+
+  /// No description provided for @automation_hamNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules run while the app is open. Automated messages are plain text and start with [auto]. They are held unless your station is ready to transmit (ham firmware, call sign in the radio\'s name, in band), limited to 3 every 10 minutes, and written to the station log. You remain the control operator for every automated transmission.'**
+  String get automation_hamNotice;
+
+  /// No description provided for @automation_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No rules yet'**
+  String get automation_empty;
+
+  /// No description provided for @automation_emptyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a rule to get an alert when your battery runs low, a station goes quiet or a message arrives.'**
+  String get automation_emptyHint;
+
+  /// No description provided for @automation_allowWebhooks.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow webhooks'**
+  String get automation_allowWebhooks;
+
+  /// No description provided for @automation_allowWebhooksHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs internet. Off by default; webhook actions do nothing while this is off.'**
+  String get automation_allowWebhooksHint;
+
+  /// No description provided for @automation_workingChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Working channel'**
+  String get automation_workingChannel;
+
+  /// No description provided for @automation_stationLogHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every automated transmission is listed there'**
+  String get automation_stationLogHint;
+
+  /// No description provided for @automation_activity.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent activity'**
+  String get automation_activity;
+
+  /// No description provided for @automation_none.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get automation_none;
+
+  /// No description provided for @automation_unnamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unnamed rule'**
+  String get automation_unnamed;
+
+  /// No description provided for @automation_transmits.
+  ///
+  /// In en, this message translates to:
+  /// **'Transmits on air'**
+  String get automation_transmits;
+
+  /// No description provided for @automation_incomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfinished'**
+  String get automation_incomplete;
+
+  /// No description provided for @automation_ruleSwitch.
+  ///
+  /// In en, this message translates to:
+  /// **'Rule {name} on'**
+  String automation_ruleSwitch(String name);
+
+  /// No description provided for @automation_ruleName.
+  ///
+  /// In en, this message translates to:
+  /// **'Rule name'**
+  String get automation_ruleName;
+
+  /// No description provided for @automation_when.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get automation_when;
+
+  /// No description provided for @automation_then.
+  ///
+  /// In en, this message translates to:
+  /// **'Then'**
+  String get automation_then;
+
+  /// No description provided for @automation_matchAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All are true (AND)'**
+  String get automation_matchAll;
+
+  /// No description provided for @automation_matchAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Any is true (OR)'**
+  String get automation_matchAny;
+
+  /// No description provided for @automation_matchAllShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 condition} other{All of {count} conditions}}'**
+  String automation_matchAllShort(int count);
+
+  /// No description provided for @automation_matchAnyShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 condition} other{Any of {count} conditions}}'**
+  String automation_matchAnyShort(int count);
+
+  /// No description provided for @automation_actionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 action} other{{count} actions}}'**
+  String automation_actionCount(int count);
+
+  /// No description provided for @automation_addCondition.
+  ///
+  /// In en, this message translates to:
+  /// **'Add condition'**
+  String get automation_addCondition;
+
+  /// No description provided for @automation_addAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add action'**
+  String get automation_addAction;
+
+  /// No description provided for @automation_remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {item}'**
+  String automation_remove(String item);
+
+  /// No description provided for @automation_savedOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved switched off. Fill in every field to turn it on.'**
+  String get automation_savedOff;
+
+  /// No description provided for @automation_deleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this rule?'**
+  String get automation_deleteConfirm;
+
+  /// No description provided for @automation_transmitNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'This rule transmits. It only sends when your station is ready, at most 3 automated messages every 10 minutes and once every 15 minutes per rule, and each one is logged in the station log.'**
+  String get automation_transmitNotice;
+
+  /// No description provided for @automation_condBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery low'**
+  String get automation_condBattery;
+
+  /// No description provided for @automation_condTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time of day'**
+  String get automation_condTime;
+
+  /// No description provided for @automation_condEnter.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an area'**
+  String get automation_condEnter;
+
+  /// No description provided for @automation_condLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave an area'**
+  String get automation_condLeave;
+
+  /// No description provided for @automation_condMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Message received'**
+  String get automation_condMessage;
+
+  /// No description provided for @automation_condOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Node online'**
+  String get automation_condOnline;
+
+  /// No description provided for @automation_condOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Node offline'**
+  String get automation_condOffline;
+
+  /// No description provided for @automation_batteryBelow.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio battery below {percent}%'**
+  String automation_batteryBelow(int percent);
+
+  /// No description provided for @automation_timeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every day at this time, on this device\'s clock'**
+  String get automation_timeHint;
+
+  /// No description provided for @automation_latitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Latitude'**
+  String get automation_latitude;
+
+  /// No description provided for @automation_longitude.
+  ///
+  /// In en, this message translates to:
+  /// **'Longitude'**
+  String get automation_longitude;
+
+  /// No description provided for @automation_radiusMeters.
+  ///
+  /// In en, this message translates to:
+  /// **'Radius (meters)'**
+  String get automation_radiusMeters;
+
+  /// No description provided for @automation_useRadioPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the radio\'s position'**
+  String get automation_useRadioPosition;
+
+  /// No description provided for @automation_areaHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses the position the radio reports.'**
+  String get automation_areaHint;
+
+  /// No description provided for @automation_sourceAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Any'**
+  String get automation_sourceAny;
+
+  /// No description provided for @automation_sourceDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct'**
+  String get automation_sourceDirect;
+
+  /// No description provided for @automation_sourceChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel'**
+  String get automation_sourceChannel;
+
+  /// No description provided for @automation_onChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'On channel'**
+  String get automation_onChannel;
+
+  /// No description provided for @automation_anyChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Any channel'**
+  String get automation_anyChannel;
+
+  /// No description provided for @automation_from.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get automation_from;
+
+  /// No description provided for @automation_anyone.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone'**
+  String get automation_anyone;
+
+  /// No description provided for @automation_contains.
+  ///
+  /// In en, this message translates to:
+  /// **'Contains text (optional)'**
+  String get automation_contains;
+
+  /// No description provided for @automation_node.
+  ///
+  /// In en, this message translates to:
+  /// **'Node'**
+  String get automation_node;
+
+  /// No description provided for @automation_heardWithinMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard within (minutes)'**
+  String get automation_heardWithinMinutes;
+
+  /// No description provided for @automation_actionSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a message'**
+  String get automation_actionSend;
+
+  /// No description provided for @automation_actionAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert me'**
+  String get automation_actionAlert;
+
+  /// No description provided for @automation_actionChangeChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Change working channel'**
+  String get automation_actionChangeChannel;
+
+  /// No description provided for @automation_actionSound.
+  ///
+  /// In en, this message translates to:
+  /// **'Play a sound'**
+  String get automation_actionSound;
+
+  /// No description provided for @automation_actionWebhook.
+  ///
+  /// In en, this message translates to:
+  /// **'Call a webhook'**
+  String get automation_actionWebhook;
+
+  /// No description provided for @automation_sendTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to'**
+  String get automation_sendTo;
+
+  /// No description provided for @automation_targetChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel'**
+  String get automation_targetChannel;
+
+  /// No description provided for @automation_targetContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get automation_targetContact;
+
+  /// No description provided for @automation_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get automation_message;
+
+  /// No description provided for @automation_messageTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Too long: 140 bytes at most, [auto] included'**
+  String get automation_messageTooLong;
+
+  /// No description provided for @automation_sendHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent on air as plain text with [auto] in front, and logged in the station log.'**
+  String get automation_sendHint;
+
+  /// No description provided for @automation_alertText.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert text'**
+  String get automation_alertText;
+
+  /// No description provided for @automation_changeChannelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Rules that send to the working channel use this channel from now on.'**
+  String get automation_changeChannelHint;
+
+  /// No description provided for @automation_soundHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Plays this device\'s alert sound.'**
+  String get automation_soundHint;
+
+  /// No description provided for @automation_webhookUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Webhook address (https://)'**
+  String get automation_webhookUrl;
+
+  /// No description provided for @automation_webhookHttps.
+  ///
+  /// In en, this message translates to:
+  /// **'Use an https:// address'**
+  String get automation_webhookHttps;
+
+  /// No description provided for @automation_webhookNeedsInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs internet. Sends the rule\'s name and the time.'**
+  String get automation_webhookNeedsInternet;
+
+  /// No description provided for @automation_webhookOffNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs internet. Webhooks are off: allow them on the Automation page.'**
+  String get automation_webhookOffNotice;
+
+  /// No description provided for @automation_outDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get automation_outDone;
+
+  /// No description provided for @automation_outNotConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Held: no radio connected'**
+  String get automation_outNotConnected;
+
+  /// No description provided for @automation_outNotReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Held: station not ready to transmit'**
+  String get automation_outNotReady;
+
+  /// No description provided for @automation_outRateLimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Held: automated message limit reached'**
+  String get automation_outRateLimited;
+
+  /// No description provided for @automation_outNoTarget.
+  ///
+  /// In en, this message translates to:
+  /// **'Held: contact or channel not on the radio'**
+  String get automation_outNoTarget;
+
+  /// No description provided for @automation_outWebhooksOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped: webhooks are off'**
+  String get automation_outWebhooksOff;
+
+  /// No description provided for @automation_outFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get automation_outFailed;
+
+  /// No description provided for @ham_automatedTx.
+  ///
+  /// In en, this message translates to:
+  /// **'Automated transmissions'**
+  String get ham_automatedTx;
+
+  /// No description provided for @ham_automatedTxHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages your automation rules sent on air.'**
+  String get ham_automatedTxHint;
+
+  /// No description provided for @ham_exportAutomatedCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Export automated transmissions (CSV)'**
+  String get ham_exportAutomatedCsv;
 }
 
 class _AppLocalizationsDelegate
