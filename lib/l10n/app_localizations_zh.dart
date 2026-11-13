@@ -10021,4 +10021,127 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get notification_replyHint => '输入回复';
+
+  @override
+  String get mesh_title => '网状网络状态';
+
+  @override
+  String get mesh_overallGood => '网络状态良好';
+
+  @override
+  String get mesh_overallFair => '网络可用，但有些问题';
+
+  @override
+  String get mesh_overallPoor => '网络状况不佳';
+
+  @override
+  String get mesh_overallUnknown => '数据还不够';
+
+  @override
+  String get mesh_gradeGood => '良好';
+
+  @override
+  String get mesh_gradeFair => '一般';
+
+  @override
+  String get mesh_gradePoor => '较差';
+
+  @override
+  String get mesh_gradeUnknown => '无数据';
+
+  @override
+  String get mesh_noise => '噪声';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return '噪声底 $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => '最近信号';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => '信道占用';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return '最近 15 分钟内 $percent% 在收发';
+  }
+
+  @override
+  String get mesh_neighbours => '直接收到';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '最近一小时 $count 个节点';
+  }
+
+  @override
+  String get mesh_delivery => '私信';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '最近一天 $total 条中送达 $delivered 条';
+  }
+
+  @override
+  String get mesh_tipNoise => '附近有东西在此频率上产生噪声。请让天线远离电子设备和充电器。';
+
+  @override
+  String get mesh_tipSignal => '最近的数据包信号较弱。请升高天线或移到更高处。';
+
+  @override
+  String get mesh_tipBusy => '信道繁忙。请保持消息简短，避免泛洪。';
+
+  @override
+  String get mesh_tipNeighbours => '直接收到的节点很少。请升高天线或靠近中继。';
+
+  @override
+  String get mesh_tipDelivery => '许多消息未被确认。打开一条失败的消息查看它停在哪里。';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return '到 $name 的路由可能已过时';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return '到 $name 的路由不可靠';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return '上次可用于 $hours 小时前';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return '上次可用于 $days 天前';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return '$days 天未收到';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$attempts 次尝试中 $failures 次失败';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops 跳';
+  }
+
+  @override
+  String get routeHealth_useFlood => '寻找新路由';
+
+  @override
+  String get routeHealth_keep => '保留此路由';
 }

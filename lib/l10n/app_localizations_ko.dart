@@ -10246,4 +10246,129 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get notification_replyHint => '답장 입력';
+
+  @override
+  String get mesh_title => '메시 상태';
+
+  @override
+  String get mesh_overallGood => '메시가 양호합니다';
+
+  @override
+  String get mesh_overallFair => '메시가 작동하지만 문제가 있습니다';
+
+  @override
+  String get mesh_overallPoor => '메시가 불안정합니다';
+
+  @override
+  String get mesh_overallUnknown => '아직 판단할 데이터가 부족합니다';
+
+  @override
+  String get mesh_gradeGood => '좋음';
+
+  @override
+  String get mesh_gradeFair => '보통';
+
+  @override
+  String get mesh_gradePoor => '나쁨';
+
+  @override
+  String get mesh_gradeUnknown => '데이터 없음';
+
+  @override
+  String get mesh_noise => '노이즈';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return '노이즈 플로어 $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => '마지막 신호';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => '채널 사용률';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return '최근 15분 중 $percent% 송수신';
+  }
+
+  @override
+  String get mesh_neighbours => '직접 수신';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '최근 1시간 동안 $count개 노드';
+  }
+
+  @override
+  String get mesh_delivery => '다이렉트 메시지';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '최근 하루 $total개 중 $delivered개 전달';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      '근처의 무언가가 이 주파수에서 노이즈를 냅니다. 안테나를 전자기기와 충전기에서 멀리 두세요.';
+
+  @override
+  String get mesh_tipSignal => '마지막 패킷이 약했습니다. 안테나를 높이거나 높은 곳으로 이동하세요.';
+
+  @override
+  String get mesh_tipBusy => '채널이 혼잡합니다. 메시지를 짧게 하고 플러드 전송을 피하세요.';
+
+  @override
+  String get mesh_tipNeighbours => '직접 수신되는 노드가 적습니다. 안테나를 높이거나 리피터에 가까이 가세요.';
+
+  @override
+  String get mesh_tipDelivery =>
+      '많은 메시지가 확인되지 않았습니다. 실패한 메시지를 열어 어디서 멈췄는지 확인하세요.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return '$name까지의 경로가 오래되었을 수 있습니다';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return '$name까지의 경로가 불안정합니다';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return '$hours시간 전에 마지막으로 작동';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return '$days일 전에 마지막으로 작동';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return '$days일 동안 수신 없음';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$attempts번 중 $failures번 실패';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops홉';
+  }
+
+  @override
+  String get routeHealth_useFlood => '새 경로 찾기';
+
+  @override
+  String get routeHealth_keep => '이 경로 유지';
 }

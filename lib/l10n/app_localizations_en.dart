@@ -10618,4 +10618,132 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notification_replyHint => 'Write a reply';
+
+  @override
+  String get mesh_title => 'Mesh health';
+
+  @override
+  String get mesh_overallGood => 'The mesh looks healthy';
+
+  @override
+  String get mesh_overallFair => 'The mesh works, with some trouble';
+
+  @override
+  String get mesh_overallPoor => 'The mesh is struggling';
+
+  @override
+  String get mesh_overallUnknown => 'Not enough to go on yet';
+
+  @override
+  String get mesh_gradeGood => 'Good';
+
+  @override
+  String get mesh_gradeFair => 'Fair';
+
+  @override
+  String get mesh_gradePoor => 'Poor';
+
+  @override
+  String get mesh_gradeUnknown => 'No data';
+
+  @override
+  String get mesh_noise => 'Noise';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return '$dbm dBm noise floor';
+  }
+
+  @override
+  String get mesh_signal => 'Last signal';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'Channel use';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return 'on air $percent% of the last 15 minutes';
+  }
+
+  @override
+  String get mesh_neighbours => 'Heard directly';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count nodes in the last hour';
+  }
+
+  @override
+  String get mesh_delivery => 'Direct messages';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '$delivered of $total delivered in the last day';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Something nearby is noisy on this frequency. Move the antenna away from electronics and chargers.';
+
+  @override
+  String get mesh_tipSignal =>
+      'The last packet was weak. Raise the antenna or move to higher ground.';
+
+  @override
+  String get mesh_tipBusy =>
+      'The channel is busy. Keep messages short and avoid sending floods.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Few nodes are heard directly. Raise the antenna or move closer to a repeater.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Many messages aren\'t acknowledged. Open a failed message to see where it stopped.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'The route to $name may be out of date';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'The route to $name is unreliable';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'last worked $hours h ago';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'last worked $days days ago';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return 'not heard from in $days days';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$failures of $attempts tries failed';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops hops';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Find a new route';
+
+  @override
+  String get routeHealth_keep => 'Keep this route';
 }

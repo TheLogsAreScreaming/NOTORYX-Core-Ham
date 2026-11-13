@@ -10796,4 +10796,132 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get notification_replyHint => 'Напишіть відповідь';
+
+  @override
+  String get mesh_title => 'Стан мережі';
+
+  @override
+  String get mesh_overallGood => 'Мережа в порядку';
+
+  @override
+  String get mesh_overallFair => 'Мережа працює, але з проблемами';
+
+  @override
+  String get mesh_overallPoor => 'Мережі важко';
+
+  @override
+  String get mesh_overallUnknown => 'Поки мало даних';
+
+  @override
+  String get mesh_gradeGood => 'Добре';
+
+  @override
+  String get mesh_gradeFair => 'Середньо';
+
+  @override
+  String get mesh_gradePoor => 'Погано';
+
+  @override
+  String get mesh_gradeUnknown => 'Немає даних';
+
+  @override
+  String get mesh_noise => 'Шум';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'Рівень шуму $dbm дБм';
+  }
+
+  @override
+  String get mesh_signal => 'Останній сигнал';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db дБ';
+  }
+
+  @override
+  String get mesh_busy => 'Завантаженість каналу';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return 'в ефірі $percent% останніх 15 хвилин';
+  }
+
+  @override
+  String get mesh_neighbours => 'Чути напряму';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count вузлів за останню годину';
+  }
+
+  @override
+  String get mesh_delivery => 'Особисті повідомлення';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return 'доставлено $delivered з $total за добу';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Щось поруч шумить на цій частоті. Відсуньте антену від електроніки та зарядок.';
+
+  @override
+  String get mesh_tipSignal =>
+      'Останній пакет був слабким. Підніміть антену або підніміться вище.';
+
+  @override
+  String get mesh_tipBusy =>
+      'Канал завантажений. Пишіть коротко й уникайте розсилок.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Напряму чути мало вузлів. Підніміть антену або підійдіть ближче до ретранслятора.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Багато повідомлень не підтверджено. Відкрийте невдале повідомлення, щоб побачити, де воно зупинилося.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'Маршрут до $name може бути застарілим';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'Маршрут до $name ненадійний';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'востаннє працював $hours год тому';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'востаннє працював $days дн. тому';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return 'не чути $days дн.';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$failures з $attempts спроб невдалі';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops хопів';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Знайти новий маршрут';
+
+  @override
+  String get routeHealth_keep => 'Залишити маршрут';
 }

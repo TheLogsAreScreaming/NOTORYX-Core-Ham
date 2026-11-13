@@ -13,6 +13,7 @@ import '../l10n/l10n.dart';
 import '../theme/mesh_theme.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/instrument.dart';
+import '../widgets/mesh_health_card.dart';
 import '../widgets/mesh_ui.dart';
 import '../widgets/node_sheet.dart';
 import 'app_debug_log_screen.dart';
@@ -262,6 +263,11 @@ class BastionDiagnosticsScreen extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: MeshSpace.xxl),
             children: [
               _statusCard(context, c),
+              if (c.isConnected)
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  child: MeshHealthCard(),
+                ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                 child: Row(

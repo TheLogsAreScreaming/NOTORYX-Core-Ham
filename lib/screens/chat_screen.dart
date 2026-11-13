@@ -18,6 +18,7 @@ import '../helpers/message_url_image_helper.dart';
 import '../helpers/path_helper.dart';
 import '../helpers/reaction_helper.dart';
 import '../helpers/share_links.dart';
+import '../widgets/route_health_banner.dart';
 import '../widgets/ember_backdrop.dart';
 import '../widgets/add_first_banner.dart';
 import '../widgets/quick_messages.dart';
@@ -404,6 +405,8 @@ class _ChatScreenState extends State<ChatScreen> {
                     ],
                   ),
                 ),
+                if (contact.type == advTypeChat)
+                  RouteHealthBanner(contact: contact),
                 if (_replyingTo != null) _buildReplyBanner(connector),
                 _buildInputBar(connector),
               ],

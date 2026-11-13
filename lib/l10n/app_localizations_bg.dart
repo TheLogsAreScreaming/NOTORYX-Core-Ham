@@ -10734,4 +10734,132 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get notification_replyHint => 'Напишете отговор';
+
+  @override
+  String get mesh_title => 'Състояние на мрежата';
+
+  @override
+  String get mesh_overallGood => 'Мрежата изглежда наред';
+
+  @override
+  String get mesh_overallFair => 'Мрежата работи, но с проблеми';
+
+  @override
+  String get mesh_overallPoor => 'Мрежата се затруднява';
+
+  @override
+  String get mesh_overallUnknown => 'Още няма достатъчно данни';
+
+  @override
+  String get mesh_gradeGood => 'Добро';
+
+  @override
+  String get mesh_gradeFair => 'Средно';
+
+  @override
+  String get mesh_gradePoor => 'Слабо';
+
+  @override
+  String get mesh_gradeUnknown => 'Няма данни';
+
+  @override
+  String get mesh_noise => 'Шум';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'Шумов праг $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => 'Последен сигнал';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'Заетост на канала';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return 'в ефир $percent% от последните 15 минути';
+  }
+
+  @override
+  String get mesh_neighbours => 'Чути директно';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count възела за последния час';
+  }
+
+  @override
+  String get mesh_delivery => 'Лични съобщения';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '$delivered от $total доставени за последния ден';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Нещо наблизо шуми на тази честота. Отдалечете антената от електроника и зарядни.';
+
+  @override
+  String get mesh_tipSignal =>
+      'Последният пакет беше слаб. Повдигнете антената или се преместете по-високо.';
+
+  @override
+  String get mesh_tipBusy =>
+      'Каналът е зает. Пишете кратко и избягвайте наводнителни изпращания.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Малко възли се чуват директно. Повдигнете антената или се приближете до ретранслатор.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Много съобщения не са потвърдени. Отворете неуспешно съобщение, за да видите къде е спряло.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'Маршрутът до $name може да е остарял';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'Маршрутът до $name е ненадежден';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'последно работи преди $hours ч';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'последно работи преди $days дни';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return 'не е чуван от $days дни';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$failures от $attempts опита неуспешни';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops скока';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Намери нов маршрут';
+
+  @override
+  String get routeHealth_keep => 'Запази маршрута';
 }

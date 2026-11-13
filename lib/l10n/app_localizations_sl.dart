@@ -10757,4 +10757,132 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get notification_replyHint => 'Napišite odgovor';
+
+  @override
+  String get mesh_title => 'Stanje mreže';
+
+  @override
+  String get mesh_overallGood => 'Mreža je videti zdrava';
+
+  @override
+  String get mesh_overallFair => 'Mreža deluje, a s težavami';
+
+  @override
+  String get mesh_overallPoor => 'Mreža se muči';
+
+  @override
+  String get mesh_overallUnknown => 'Še premalo podatkov';
+
+  @override
+  String get mesh_gradeGood => 'Dobro';
+
+  @override
+  String get mesh_gradeFair => 'Srednje';
+
+  @override
+  String get mesh_gradePoor => 'Slabo';
+
+  @override
+  String get mesh_gradeUnknown => 'Ni podatkov';
+
+  @override
+  String get mesh_noise => 'Šum';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'Raven šuma $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => 'Zadnji signal';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'Zasedenost kanala';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return 'v etru $percent % zadnjih 15 minut';
+  }
+
+  @override
+  String get mesh_neighbours => 'Slišani neposredno';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count vozlišč v zadnji uri';
+  }
+
+  @override
+  String get mesh_delivery => 'Neposredna sporočila';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return 'dostavljenih $delivered od $total v zadnjem dnevu';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Nekaj v bližini šumi na tej frekvenci. Anteno odmaknite od elektronike in polnilnikov.';
+
+  @override
+  String get mesh_tipSignal =>
+      'Zadnji paket je bil šibek. Dvignite anteno ali pojdite višje.';
+
+  @override
+  String get mesh_tipBusy =>
+      'Kanal je zaseden. Pišite kratko in se izogibajte poplavljanju.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Neposredno je slišati malo vozlišč. Dvignite anteno ali se približajte repetitorju.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Veliko sporočil ni potrjenih. Odprite neuspelo sporočilo in poglejte, kje se je ustavilo.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'Pot do $name je morda zastarela';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'Pot do $name je nezanesljiva';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'nazadnje delovala pred $hours h';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'nazadnje delovala pred $days dnevi';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return 'neslišan $days dni';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$failures od $attempts poskusov neuspešnih';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops skokov';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Poišči novo pot';
+
+  @override
+  String get routeHealth_keep => 'Obdrži pot';
 }

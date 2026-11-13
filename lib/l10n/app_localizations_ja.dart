@@ -10231,4 +10231,129 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get notification_replyHint => '返信を入力';
+
+  @override
+  String get mesh_title => 'メッシュの状態';
+
+  @override
+  String get mesh_overallGood => 'メッシュは良好です';
+
+  @override
+  String get mesh_overallFair => 'メッシュは動いていますが問題があります';
+
+  @override
+  String get mesh_overallPoor => 'メッシュは不調です';
+
+  @override
+  String get mesh_overallUnknown => 'まだ判断できるデータがありません';
+
+  @override
+  String get mesh_gradeGood => '良好';
+
+  @override
+  String get mesh_gradeFair => '普通';
+
+  @override
+  String get mesh_gradePoor => '不良';
+
+  @override
+  String get mesh_gradeUnknown => 'データなし';
+
+  @override
+  String get mesh_noise => 'ノイズ';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'ノイズフロア $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => '直近の信号';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'チャンネル使用率';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return '直近15分のうち$percent%が送受信中';
+  }
+
+  @override
+  String get mesh_neighbours => '直接受信';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '直近1時間で$countノード';
+  }
+
+  @override
+  String get mesh_delivery => 'ダイレクトメッセージ';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '直近1日で$total件中$delivered件配信';
+  }
+
+  @override
+  String get mesh_tipNoise => '近くの何かがこの周波数でノイズを出しています。アンテナを電子機器や充電器から離してください。';
+
+  @override
+  String get mesh_tipSignal => '直近のパケットは弱い信号でした。アンテナを高くするか、高い場所へ移動してください。';
+
+  @override
+  String get mesh_tipBusy => 'チャンネルが混雑しています。メッセージは短くし、フラッド送信は避けてください。';
+
+  @override
+  String get mesh_tipNeighbours =>
+      '直接受信できるノードが少ないです。アンテナを高くするか、リピーターに近づいてください。';
+
+  @override
+  String get mesh_tipDelivery =>
+      '多くのメッセージが確認応答されていません。失敗したメッセージを開いて、どこで止まったか確認してください。';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return '$nameへのルートは古いかもしれません';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return '$nameへのルートは不安定です';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return '最後に成功したのは$hours時間前';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return '最後に成功したのは$days日前';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return '$days日間受信なし';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$attempts回中$failures回失敗';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hopsホップ';
+  }
+
+  @override
+  String get routeHealth_useFlood => '新しいルートを探す';
+
+  @override
+  String get routeHealth_keep => 'このルートを使う';
 }
