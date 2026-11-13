@@ -11240,4 +11240,42 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Також захищає контакти, ключі каналів, путівні точки, збережені маршрути, чернетки й очікувані повідомлення.';
+
+  @override
+  String get bk_intro =>
+      'Зберігає зашифровану копію налаштувань, контактів, ключів каналів, точок маршруту й чернеток, а за бажанням і історію повідомлень. Офлайн-карти, фото та прошивка радіо не включаються.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Буде замінено $count збережених налаштувань на цьому пристрої, зокрема контакти, ключі каналів і точки маршруту, на ті, що в резервній копії. Скасувати це не можна.';
+  }
+
+  @override
+  String get bk_history => 'Додати історію повідомлень';
+
+  @override
+  String get bk_historyHint =>
+      'Особисті повідомлення та повідомлення каналів для кожного радіо. Файл буде більшим.';
+
+  @override
+  String get bk_tooLarge =>
+      'Резервна копія завелика. Вимкніть історію повідомлень і спробуйте ще раз.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Також до історії буде додано до $count повідомлень. Повідомлення, які вже є на пристрої, збережуться.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'До історії додано повідомлень: $count.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Відновити цю копію?';
+
+  @override
+  String bk_restored(int count) {
+    return 'Відновлено налаштувань: $count. Повністю закрийте застосунок і відкрийте знову.';
+  }
 }

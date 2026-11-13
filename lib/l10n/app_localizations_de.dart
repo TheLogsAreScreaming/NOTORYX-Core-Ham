@@ -11205,4 +11205,42 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Umfasst auch Kontakte, Kanalschlüssel, Wegpunkte, gespeicherte Routen, Entwürfe und wartende Nachrichten.';
+
+  @override
+  String get bk_intro =>
+      'Speichert eine verschlüsselte Kopie von App-Einstellungen, Kontakten, Kanalschlüsseln, Wegpunkten und Entwürfen und auf Wunsch auch den Nachrichtenverlauf. Offline-Karten, Fotos und Funk-Firmware sind nicht enthalten.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Damit werden $count gespeicherte Einstellungen auf diesem Gerät, darunter Kontakte, Kanalschlüssel und Wegpunkte, durch die aus der Sicherung ersetzt. Das lässt sich nicht rückgängig machen.';
+  }
+
+  @override
+  String get bk_history => 'Nachrichtenverlauf einschließen';
+
+  @override
+  String get bk_historyHint =>
+      'Direkt- und Kanalnachrichten aller Funkgeräte. Die Datei wird größer.';
+
+  @override
+  String get bk_tooLarge =>
+      'Die Sicherung ist zu groß. Schalte den Nachrichtenverlauf aus und versuche es erneut.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Außerdem werden bis zu $count Nachrichten zum Verlauf hinzugefügt. Nachrichten, die schon auf dem Gerät sind, bleiben erhalten.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '$count Nachrichten zum Verlauf hinzugefügt.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Diese Sicherung wiederherstellen?';
+
+  @override
+  String bk_restored(int count) {
+    return '$count Einstellungen wiederhergestellt. Schließe die App vollständig und öffne sie erneut.';
+  }
 }

@@ -4529,5 +4529,14 @@
   "waypoints_saved": "Mentve az Útpontokhoz",
   "waypoints_alreadySaved": "Már az Útpontok között van",
   "map_showWaypoints": "Mentett útpontok és útvonalak megjelenítése",
-  "dbEncrypt_covers": "Kiterjed a névjegyekre, csatornakulcsokra, útpontokra, mentett útvonalakra, piszkozatokra és a várakozó üzenetekre is."
+  "dbEncrypt_covers": "Kiterjed a névjegyekre, csatornakulcsokra, útpontokra, mentett útvonalakra, piszkozatokra és a várakozó üzenetekre is.",
+  "bk_intro": "Titkosított másolatot ment a beállításokról, névjegyekről, csatornakulcsokról, útpontokról és piszkozatokról, és ha kéri, az üzenetelőzményekről. Az offline térképek, fotók és a rádió firmware-e nem kerül bele.",
+  "bk_confirmBody": "Ez lecseréli a készüléken tárolt {count} beállítást, köztük a névjegyeket, csatornakulcsokat és útpontokat, a mentésben lévőkre. Ez nem vonható vissza.",
+  "bk_history": "Üzenetelőzmények hozzáadása",
+  "bk_historyHint": "Közvetlen és csatornaüzenetek minden rádióhoz. A fájl nagyobb lesz.",
+  "bk_tooLarge": "A mentés túl nagy. Kapcsolja ki az üzenetelőzményeket, és próbálja újra.",
+  "bk_confirmHistory": "Emellett legfeljebb {count} üzenetet ad az előzményekhez. A készüléken már meglévő üzenetek megmaradnak.",
+  "bk_restoredHistory": "{count} üzenet került az előzményekbe.",
+  "bk_confirmTitle": "Visszaállítod ezt a mentést?",
+  "bk_restored": "{count} beállítás visszaállítva. Zárd be teljesen az alkalmazást, majd nyisd meg újra."
 }

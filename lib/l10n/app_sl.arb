@@ -4491,5 +4491,14 @@
   "waypoints_saved": "Shranjeno v Točke",
   "waypoints_alreadySaved": "Že v Točkah",
   "map_showWaypoints": "Prikaži shranjene točke in poti",
-  "dbEncrypt_covers": "Zajema tudi stike, ključe kanalov, točke poti, shranjene poti, osnutke in čakajoča sporočila."
+  "dbEncrypt_covers": "Zajema tudi stike, ključe kanalov, točke poti, shranjene poti, osnutke in čakajoča sporočila.",
+  "bk_intro": "Shrani šifrirano kopijo nastavitev, stikov, ključev kanalov, točk poti in osnutkov ter po želji zgodovino sporočil. Zemljevidi brez povezave, fotografije in vdelana programska oprema radia niso vključeni.",
+  "bk_confirmBody": "S tem boste {count} shranjenih nastavitev v tej napravi, vključno s stiki, ključi kanalov in točkami poti, zamenjali s tistimi iz varnostne kopije. Tega ni mogoče razveljaviti.",
+  "bk_history": "Vključi zgodovino sporočil",
+  "bk_historyHint": "Neposredna sporočila in sporočila kanalov za vse radie. Datoteka bo večja.",
+  "bk_tooLarge": "Varnostna kopija je prevelika. Izklopite zgodovino sporočil in poskusite znova.",
+  "bk_confirmHistory": "Doda tudi do {count} sporočil v zgodovino. Sporočila, ki so že v napravi, ostanejo.",
+  "bk_restoredHistory": "V zgodovino je bilo dodanih {count} sporočil.",
+  "bk_confirmTitle": "Obnovim to kopijo?",
+  "bk_restored": "Obnovljene nastavitve: {count}. Aplikacijo povsem zapri in jo znova odpri."
 }

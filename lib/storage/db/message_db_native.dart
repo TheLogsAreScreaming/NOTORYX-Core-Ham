@@ -259,6 +259,28 @@ class _SqliteMessageDb implements MessageDb {
   ) => _transaction(() => _write(table, scope, conversation, rows));
 
   @override
+  Map<String, Map<String, List<String>>> exportTable(MessageTable table) {
+    final out = <String, Map<String, List<String>>>{};
+    for (final row in _db.select(
+      'SELECT scope, conversation, json FROM ${table.sql} '
+      'ORDER BY scope, conversation, position',
+    )) {
+      out
+          .putIfAbsent(row['scope'] as String, () => {})
+          .putIfAbsent(row['conversation'] as String, () => [])
+          .add(row['json'] as String);
+    }
+    return out;
+  }
+
+  @override
+  void replaceMany(List<ConversationRows> writes) => _transaction(() {
+    for (final w in writes) {
+      _write(w.table, w.scope, w.conversation, w.rows);
+    }
+  });
+
+  @override
   void clear(MessageTable table, String scope, String conversation) =>
       _db.execute(
         'DELETE FROM ${table.sql} WHERE scope = ? AND conversation = ?',

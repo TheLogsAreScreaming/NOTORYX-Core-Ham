@@ -11201,4 +11201,42 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Zajema tudi stike, ključe kanalov, točke poti, shranjene poti, osnutke in čakajoča sporočila.';
+
+  @override
+  String get bk_intro =>
+      'Shrani šifrirano kopijo nastavitev, stikov, ključev kanalov, točk poti in osnutkov ter po želji zgodovino sporočil. Zemljevidi brez povezave, fotografije in vdelana programska oprema radia niso vključeni.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'S tem boste $count shranjenih nastavitev v tej napravi, vključno s stiki, ključi kanalov in točkami poti, zamenjali s tistimi iz varnostne kopije. Tega ni mogoče razveljaviti.';
+  }
+
+  @override
+  String get bk_history => 'Vključi zgodovino sporočil';
+
+  @override
+  String get bk_historyHint =>
+      'Neposredna sporočila in sporočila kanalov za vse radie. Datoteka bo večja.';
+
+  @override
+  String get bk_tooLarge =>
+      'Varnostna kopija je prevelika. Izklopite zgodovino sporočil in poskusite znova.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Doda tudi do $count sporočil v zgodovino. Sporočila, ki so že v napravi, ostanejo.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'V zgodovino je bilo dodanih $count sporočil.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Obnovim to kopijo?';
+
+  @override
+  String bk_restored(int count) {
+    return 'Obnovljene nastavitve: $count. Aplikacijo povsem zapri in jo znova odpri.';
+  }
 }

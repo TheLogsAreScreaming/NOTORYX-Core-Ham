@@ -24,6 +24,14 @@ enum MessageDbEncryption {
   failed,
 }
 
+/// One conversation's rows, for [MessageDb.replaceMany].
+typedef ConversationRows = ({
+  MessageTable table,
+  String scope,
+  String conversation,
+  List<String> rows,
+});
+
 abstract class MessageDb {
   /// The preference asking for an encrypted database; applied at startup.
   static const encryptPrefKey = 'message_db_encrypt';
@@ -61,6 +69,12 @@ abstract class MessageDb {
   );
 
   void clear(MessageTable table, String scope, String conversation);
+
+  /// Every row of [table], by radio scope then conversation, oldest first.
+  Map<String, Map<String, List<String>>> exportTable(MessageTable table);
+
+  /// Replaces several conversations in one transaction: all or nothing.
+  void replaceMany(List<ConversationRows> writes);
 
   void clearScope(MessageTable table, String scope);
 

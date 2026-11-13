@@ -11062,4 +11062,42 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Also covers contacts, channel keys, waypoints, saved routes, drafts and waiting messages.';
+
+  @override
+  String get bk_intro =>
+      'Save an encrypted copy of app settings, contacts, channel keys, waypoints and drafts, and if you choose, your message history. Offline maps, photos and radio firmware are not included.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'This replaces $count saved settings on this device, including contacts, channel keys and waypoints, with the ones in the backup. This cannot be undone.';
+  }
+
+  @override
+  String get bk_history => 'Include message history';
+
+  @override
+  String get bk_historyHint =>
+      'Direct and channel messages for every radio. The file will be bigger.';
+
+  @override
+  String get bk_tooLarge =>
+      'The backup is too large. Turn off message history and try again.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'It also adds up to $count messages to your history. Messages already on this device are kept.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'Added $count messages to your history.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Restore this backup?';
+
+  @override
+  String bk_restored(int count) {
+    return 'Restored $count settings. Close the app fully and open it again to use them.';
+  }
 }

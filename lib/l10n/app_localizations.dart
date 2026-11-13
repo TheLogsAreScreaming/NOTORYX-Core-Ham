@@ -18594,6 +18594,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Also covers contacts, channel keys, waypoints, saved routes, drafts and waiting messages.'**
   String get dbEncrypt_covers;
+
+  /// No description provided for @bk_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Save an encrypted copy of app settings, contacts, channel keys, waypoints and drafts, and if you choose, your message history. Offline maps, photos and radio firmware are not included.'**
+  String get bk_intro;
+
+  /// No description provided for @bk_confirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This replaces {count} saved settings on this device, including contacts, channel keys and waypoints, with the ones in the backup. This cannot be undone.'**
+  String bk_confirmBody(Object count);
+
+  /// No description provided for @bk_history.
+  ///
+  /// In en, this message translates to:
+  /// **'Include message history'**
+  String get bk_history;
+
+  /// No description provided for @bk_historyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct and channel messages for every radio. The file will be bigger.'**
+  String get bk_historyHint;
+
+  /// No description provided for @bk_tooLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup is too large. Turn off message history and try again.'**
+  String get bk_tooLarge;
+
+  /// No description provided for @bk_confirmHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'It also adds up to {count} messages to your history. Messages already on this device are kept.'**
+  String bk_confirmHistory(int count);
+
+  /// No description provided for @bk_restoredHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Added {count} messages to your history.'**
+  String bk_restoredHistory(int count);
+
+  /// No description provided for @bk_confirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore this backup?'**
+  String get bk_confirmTitle;
+
+  /// No description provided for @bk_restored.
+  ///
+  /// In en, this message translates to:
+  /// **'Restored {count} settings. Close the app fully and open it again to use them.'**
+  String bk_restored(int count);
 }
 
 class _AppLocalizationsDelegate

@@ -10441,4 +10441,39 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get dbEncrypt_covers => '同时涵盖联系人、频道密钥、航点、已保存的路线、草稿和待发送消息。';
+
+  @override
+  String get bk_intro => '加密保存应用设置、联系人、频道密钥、航点和草稿，也可选择包含消息记录。不包括离线地图、照片和电台固件。';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return '这将用备份中的内容替换此设备上已保存的 $count 项设置，包括联系人、频道密钥和航点。此操作无法撤销。';
+  }
+
+  @override
+  String get bk_history => '包含消息记录';
+
+  @override
+  String get bk_historyHint => '所有电台的私信和频道消息。文件会更大。';
+
+  @override
+  String get bk_tooLarge => '备份太大。请关闭消息记录后重试。';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return '还会向消息记录添加最多 $count 条消息。此设备上已有的消息会保留。';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '已向消息记录添加 $count 条消息。';
+  }
+
+  @override
+  String get bk_confirmTitle => '恢复此备份吗？';
+
+  @override
+  String bk_restored(int count) {
+    return '已恢复 $count 项设置。请完全关闭应用并重新打开以使用。';
+  }
 }

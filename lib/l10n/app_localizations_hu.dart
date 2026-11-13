@@ -11183,4 +11183,42 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Kiterjed a névjegyekre, csatornakulcsokra, útpontokra, mentett útvonalakra, piszkozatokra és a várakozó üzenetekre is.';
+
+  @override
+  String get bk_intro =>
+      'Titkosított másolatot ment a beállításokról, névjegyekről, csatornakulcsokról, útpontokról és piszkozatokról, és ha kéri, az üzenetelőzményekről. Az offline térképek, fotók és a rádió firmware-e nem kerül bele.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Ez lecseréli a készüléken tárolt $count beállítást, köztük a névjegyeket, csatornakulcsokat és útpontokat, a mentésben lévőkre. Ez nem vonható vissza.';
+  }
+
+  @override
+  String get bk_history => 'Üzenetelőzmények hozzáadása';
+
+  @override
+  String get bk_historyHint =>
+      'Közvetlen és csatornaüzenetek minden rádióhoz. A fájl nagyobb lesz.';
+
+  @override
+  String get bk_tooLarge =>
+      'A mentés túl nagy. Kapcsolja ki az üzenetelőzményeket, és próbálja újra.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Emellett legfeljebb $count üzenetet ad az előzményekhez. A készüléken már meglévő üzenetek megmaradnak.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '$count üzenet került az előzményekbe.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Visszaállítod ezt a mentést?';
+
+  @override
+  String bk_restored(int count) {
+    return '$count beállítás visszaállítva. Zárd be teljesen az alkalmazást, majd nyisd meg újra.';
+  }
 }

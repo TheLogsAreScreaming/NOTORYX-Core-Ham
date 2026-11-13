@@ -11154,4 +11154,42 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Omvat ook contacten, kanaalsleutels, waypoints, opgeslagen routes, concepten en wachtende berichten.';
+
+  @override
+  String get bk_intro =>
+      'Slaat een versleutelde kopie op van app-instellingen, contacten, kanaalsleutels, waypoints en concepten, en desgewenst je berichtgeschiedenis. Offline kaarten, foto\'s en radiofirmware zitten er niet in.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Hiermee worden $count opgeslagen instellingen op dit apparaat, waaronder contacten, kanaalsleutels en waypoints, vervangen door die uit de back-up. Dit kan niet ongedaan worden gemaakt.';
+  }
+
+  @override
+  String get bk_history => 'Berichtgeschiedenis meenemen';
+
+  @override
+  String get bk_historyHint =>
+      'Directe en kanaalberichten van elke radio. Het bestand wordt groter.';
+
+  @override
+  String get bk_tooLarge =>
+      'De back-up is te groot. Zet berichtgeschiedenis uit en probeer het opnieuw.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Er worden ook tot $count berichten aan je geschiedenis toegevoegd. Berichten die al op dit apparaat staan, blijven bewaard.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '$count berichten aan je geschiedenis toegevoegd.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Deze back-up terugzetten?';
+
+  @override
+  String bk_restored(int count) {
+    return '$count instellingen teruggezet. Sluit de app volledig en open hem opnieuw.';
+  }
 }

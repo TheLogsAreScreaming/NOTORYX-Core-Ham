@@ -11247,4 +11247,42 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Obejmuje też kontakty, klucze kanałów, punkty trasy, zapisane trasy, wersje robocze i oczekujące wiadomości.';
+
+  @override
+  String get bk_intro =>
+      'Zapisuje zaszyfrowaną kopię ustawień, kontaktów, kluczy kanałów, punktów i szkiców, a jeśli chcesz, także historii wiadomości. Mapy offline, zdjęcia i oprogramowanie radia nie są dołączane.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Zastąpi to $count zapisanych ustawień na tym urządzeniu, w tym kontakty, klucze kanałów i punkty, ustawieniami z kopii. Tego nie można cofnąć.';
+  }
+
+  @override
+  String get bk_history => 'Dołącz historię wiadomości';
+
+  @override
+  String get bk_historyHint =>
+      'Wiadomości prywatne i z kanałów dla każdego radia. Plik będzie większy.';
+
+  @override
+  String get bk_tooLarge =>
+      'Kopia jest za duża. Wyłącz historię wiadomości i spróbuj ponownie.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Doda też do $count wiadomości do historii. Wiadomości, które już są na tym urządzeniu, zostaną zachowane.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'Dodano $count wiadomości do historii.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Przywrócić tę kopię?';
+
+  @override
+  String bk_restored(int count) {
+    return 'Przywrócono ustawienia: $count. Zamknij całkowicie aplikację i otwórz ją ponownie.';
+  }
 }

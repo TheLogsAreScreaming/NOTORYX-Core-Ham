@@ -11181,4 +11181,42 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Обхваща и контакти, ключове на канали, точки, запазени маршрути, чернови и чакащи съобщения.';
+
+  @override
+  String get bk_intro =>
+      'Запазва криптирано копие на настройките, контактите, ключовете на каналите, точките и черновите, а по избор и историята на съобщенията. Офлайн карти, снимки и фърмуер на радиото не се включват.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Това заменя $count запазени настройки на това устройство, включително контакти, ключове на канали и точки, с тези от резервното копие. Действието не може да бъде отменено.';
+  }
+
+  @override
+  String get bk_history => 'Включи историята на съобщенията';
+
+  @override
+  String get bk_historyHint =>
+      'Лични и канални съобщения за всяко радио. Файлът ще е по-голям.';
+
+  @override
+  String get bk_tooLarge =>
+      'Резервното копие е твърде голямо. Изключете историята на съобщенията и опитайте отново.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Освен това добавя до $count съобщения към историята. Съобщенията, които вече са на устройството, се запазват.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'Добавени са $count съобщения към историята.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Да се възстанови ли това копие?';
+
+  @override
+  String bk_restored(int count) {
+    return 'Възстановени настройки: $count. Затворете напълно приложението и го отворете отново.';
+  }
 }

@@ -11179,4 +11179,42 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Abrange também contactos, chaves de canal, pontos de passagem, rotas guardadas, rascunhos e mensagens em espera.';
+
+  @override
+  String get bk_intro =>
+      'Guarda uma cópia encriptada das definições, contactos, chaves de canal, pontos de passagem e rascunhos e, se quiser, do histórico de mensagens. Mapas offline, fotos e firmware do rádio não são incluídos.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Isto substitui $count definições guardadas neste dispositivo, incluindo contactos, chaves de canal e pontos de passagem, pelas da cópia. Não é possível anular.';
+  }
+
+  @override
+  String get bk_history => 'Incluir histórico de mensagens';
+
+  @override
+  String get bk_historyHint =>
+      'Mensagens diretas e de canal de todos os rádios. O ficheiro ficará maior.';
+
+  @override
+  String get bk_tooLarge =>
+      'A cópia é demasiado grande. Desative o histórico de mensagens e tente novamente.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Também adiciona até $count mensagens ao histórico. As mensagens que já estão neste dispositivo são mantidas.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'Foram adicionadas $count mensagens ao histórico.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Restaurar esta cópia?';
+
+  @override
+  String bk_restored(int count) {
+    return '$count definições restauradas. Fecha a app por completo e volta a abri-la para as usar.';
+  }
 }
