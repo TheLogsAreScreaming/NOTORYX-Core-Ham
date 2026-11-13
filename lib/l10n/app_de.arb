@@ -4623,5 +4623,6 @@
   "waypoints_save": "Als Wegpunkt speichern",
   "waypoints_unnamed": "Geteilter Ort",
   "waypoints_saved": "In Wegpunkten gespeichert",
-  "waypoints_alreadySaved": "Schon in Wegpunkten"
+  "waypoints_alreadySaved": "Schon in Wegpunkten",
+  "map_showWaypoints": "Gespeicherte Wegpunkte und Routen anzeigen"
 }

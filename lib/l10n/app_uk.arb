@@ -4469,5 +4469,6 @@
   "waypoints_save": "Зберегти як точку",
   "waypoints_unnamed": "Місце з чату",
   "waypoints_saved": "Збережено в точках маршруту",
-  "waypoints_alreadySaved": "Уже є в точках маршруту"
+  "waypoints_alreadySaved": "Уже є в точках маршруту",
+  "map_showWaypoints": "Показувати збережені точки та маршрути"
 }

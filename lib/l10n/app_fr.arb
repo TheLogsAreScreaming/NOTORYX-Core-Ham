@@ -4623,5 +4623,6 @@
   "waypoints_save": "Enregistrer comme point",
   "waypoints_unnamed": "Lieu partagé",
   "waypoints_saved": "Enregistré dans Points de passage",
-  "waypoints_alreadySaved": "Déjà dans Points de passage"
+  "waypoints_alreadySaved": "Déjà dans Points de passage",
+  "map_showWaypoints": "Afficher les points et itinéraires enregistrés"
 }

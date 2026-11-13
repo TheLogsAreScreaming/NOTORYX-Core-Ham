@@ -3792,5 +3792,6 @@
   "waypoints_save": "Сохранить как точку",
   "waypoints_unnamed": "Место из чата",
   "waypoints_saved": "Сохранено в путевых точках",
-  "waypoints_alreadySaved": "Уже есть в путевых точках"
+  "waypoints_alreadySaved": "Уже есть в путевых точках",
+  "map_showWaypoints": "Показывать сохранённые точки и маршруты"
 }

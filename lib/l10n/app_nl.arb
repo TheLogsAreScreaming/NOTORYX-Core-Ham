@@ -4489,5 +4489,6 @@
   "waypoints_save": "Bewaren als waypoint",
   "waypoints_unnamed": "Gedeelde plek",
   "waypoints_saved": "Bewaard in Waypoints",
-  "waypoints_alreadySaved": "Staat al in Waypoints"
+  "waypoints_alreadySaved": "Staat al in Waypoints",
+  "map_showWaypoints": "Opgeslagen waypoints en routes tonen"
 }

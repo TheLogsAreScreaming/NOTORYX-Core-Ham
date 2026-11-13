@@ -4489,5 +4489,6 @@
   "waypoints_save": "Uložiť ako bod",
   "waypoints_unnamed": "Zdieľané miesto",
   "waypoints_saved": "Uložené v Bodoch trasy",
-  "waypoints_alreadySaved": "Už je v Bodoch trasy"
+  "waypoints_alreadySaved": "Už je v Bodoch trasy",
+  "map_showWaypoints": "Zobraziť uložené body a trasy"
 }

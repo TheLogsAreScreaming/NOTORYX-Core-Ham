@@ -4494,5 +4494,6 @@
   "waypoints_save": "保存为航点",
   "waypoints_unnamed": "分享的地点",
   "waypoints_saved": "已保存到航点",
-  "waypoints_alreadySaved": "已在航点中"
+  "waypoints_alreadySaved": "已在航点中",
+  "map_showWaypoints": "显示已保存的航点和路线"
 }

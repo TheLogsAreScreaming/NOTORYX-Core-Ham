@@ -4489,5 +4489,6 @@
   "waypoints_save": "Запази като точка",
   "waypoints_unnamed": "Споделено място",
   "waypoints_saved": "Запазено в Точки",
-  "waypoints_alreadySaved": "Вече е в Точки"
+  "waypoints_alreadySaved": "Вече е в Точки",
+  "map_showWaypoints": "Показвай запазените точки и маршрути"
 }

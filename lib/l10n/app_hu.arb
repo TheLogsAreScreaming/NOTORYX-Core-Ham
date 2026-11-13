@@ -4527,5 +4527,6 @@
   "waypoints_save": "Mentés útpontként",
   "waypoints_unnamed": "Megosztott hely",
   "waypoints_saved": "Mentve az Útpontokhoz",
-  "waypoints_alreadySaved": "Már az Útpontok között van"
+  "waypoints_alreadySaved": "Már az Útpontok között van",
+  "map_showWaypoints": "Mentett útpontok és útvonalak megjelenítése"
 }

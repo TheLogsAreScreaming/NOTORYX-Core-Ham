@@ -4623,5 +4623,6 @@
   "waypoints_save": "Salva come waypoint",
   "waypoints_unnamed": "Luogo condiviso",
   "waypoints_saved": "Salvato nei Waypoint",
-  "waypoints_alreadySaved": "Già nei Waypoint"
+  "waypoints_alreadySaved": "Già nei Waypoint",
+  "map_showWaypoints": "Mostra waypoint e percorsi salvati"
 }

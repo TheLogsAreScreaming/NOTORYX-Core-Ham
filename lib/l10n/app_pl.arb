@@ -4527,5 +4527,6 @@
   "waypoints_save": "Zapisz jako punkt",
   "waypoints_unnamed": "Udostępnione miejsce",
   "waypoints_saved": "Zapisano w Punktach",
-  "waypoints_alreadySaved": "Już jest w Punktach"
+  "waypoints_alreadySaved": "Już jest w Punktach",
+  "map_showWaypoints": "Pokaż zapisane punkty i trasy"
 }

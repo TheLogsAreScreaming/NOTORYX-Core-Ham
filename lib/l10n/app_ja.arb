@@ -4623,5 +4623,6 @@
   "waypoints_save": "ウェイポイントとして保存",
   "waypoints_unnamed": "共有された場所",
   "waypoints_saved": "ウェイポイントに保存しました",
-  "waypoints_alreadySaved": "すでにウェイポイントにあります"
+  "waypoints_alreadySaved": "すでにウェイポイントにあります",
+  "map_showWaypoints": "保存したウェイポイントとルートを表示"
 }

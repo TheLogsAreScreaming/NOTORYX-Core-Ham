@@ -4623,5 +4623,6 @@
   "waypoints_save": "웨이포인트로 저장",
   "waypoints_unnamed": "공유된 장소",
   "waypoints_saved": "웨이포인트에 저장됨",
-  "waypoints_alreadySaved": "이미 웨이포인트에 있음"
+  "waypoints_alreadySaved": "이미 웨이포인트에 있음",
+  "map_showWaypoints": "저장된 웨이포인트와 경로 표시"
 }

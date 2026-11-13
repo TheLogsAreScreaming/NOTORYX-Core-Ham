@@ -4489,5 +4489,6 @@
   "waypoints_save": "Shrani kot točko",
   "waypoints_unnamed": "Deljeno mesto",
   "waypoints_saved": "Shranjeno v Točke",
-  "waypoints_alreadySaved": "Že v Točkah"
+  "waypoints_alreadySaved": "Že v Točkah",
+  "map_showWaypoints": "Prikaži shranjene točke in poti"
 }

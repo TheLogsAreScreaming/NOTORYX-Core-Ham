@@ -1,4 +1,6 @@
 import 'dart:async';
+import '../services/waypoint_store.dart';
+import '../widgets/waypoint_map_layer.dart';
 import '../widgets/coordinate_copy_sheet.dart';
 import '../widgets/map_telemetry.dart';
 import '../services/node_telemetry_store.dart';
@@ -410,6 +412,9 @@ class _MapScreenState extends State<MapScreen> {
             ? allContacts
             : allContacts.where((c) => c.isActive).toList();
 
+        final waypointStore = settings.mapShowWaypoints
+            ? context.watch<WaypointStore>()
+            : null;
         final highlightPosition = widget.highlightPosition;
         final sharedMarkers = settings.mapShowMarkers
             ? _collectSharedMarkers(
@@ -835,6 +840,14 @@ class _MapScreenState extends State<MapScreen> {
                     tileCache.buildTileLayer(context),
                     if (_polylines.isNotEmpty && _isBuildingPathTrace)
                       PolylineLayer(polylines: _polylines),
+                    if (waypointStore != null &&
+                        waypointStore.routes.isNotEmpty)
+                      PolylineLayer(
+                        polylines: [
+                          for (final route in waypointStore.routes)
+                            waypointRoutePolyline(route),
+                        ],
+                      ),
                     if (sharedMarkerPolylines.isNotEmpty)
                       PolylineLayer(polylines: sharedMarkerPolylines),
                     MarkerLayer(
@@ -893,6 +906,13 @@ class _MapScreenState extends State<MapScreen> {
                           ),
                           showLabels: _showNodeLabels,
                           selectedContact: selectedContact,
+                        ),
+                        ...?waypointStore?.waypoints.map(
+                          (w) => waypointMapMarker(
+                            w,
+                            showLabel: _showNodeLabels,
+                            onTap: () => showWaypointMapSheet(context, w),
+                          ),
                         ),
                         ...sharedMarkers.map(_buildSharedMarker),
                         if (connector.selfLatitude != null &&
@@ -3589,6 +3609,13 @@ class _MapScreenState extends State<MapScreen> {
                           dense: true,
                           onChanged: (value) =>
                               service.setMapShowMarkers(value),
+                        ),
+                        SwitchListTile(
+                          title: Text(sheetContext.l10n.map_showWaypoints),
+                          value: settings.mapShowWaypoints,
+                          dense: true,
+                          onChanged: (value) =>
+                              service.setMapShowWaypoints(value),
                         ),
                         SwitchListTile(
                           title: Text(

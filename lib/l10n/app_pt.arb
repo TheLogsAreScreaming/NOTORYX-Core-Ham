@@ -4489,5 +4489,6 @@
   "waypoints_save": "Guardar como ponto",
   "waypoints_unnamed": "Local partilhado",
   "waypoints_saved": "Guardado em Pontos de passagem",
-  "waypoints_alreadySaved": "Já está em Pontos de passagem"
+  "waypoints_alreadySaved": "Já está em Pontos de passagem",
+  "map_showWaypoints": "Mostrar pontos e rotas guardados"
 }

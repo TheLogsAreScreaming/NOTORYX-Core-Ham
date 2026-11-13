@@ -4489,5 +4489,6 @@
   "waypoints_save": "Spara som vägpunkt",
   "waypoints_unnamed": "Delad plats",
   "waypoints_saved": "Sparad i Vägpunkter",
-  "waypoints_alreadySaved": "Redan i Vägpunkter"
+  "waypoints_alreadySaved": "Redan i Vägpunkter",
+  "map_showWaypoints": "Visa sparade vägpunkter och rutter"
 }

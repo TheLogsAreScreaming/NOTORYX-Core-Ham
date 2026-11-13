@@ -6695,5 +6695,6 @@
   "waypoints_save": "Save as waypoint",
   "waypoints_unnamed": "Shared place",
   "waypoints_saved": "Saved to Waypoints",
-  "waypoints_alreadySaved": "Already in Waypoints"
+  "waypoints_alreadySaved": "Already in Waypoints",
+  "map_showWaypoints": "Show saved waypoints and routes"
 }

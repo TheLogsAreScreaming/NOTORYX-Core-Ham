@@ -4623,5 +4623,6 @@
   "waypoints_save": "Guardar como punto",
   "waypoints_unnamed": "Lugar compartido",
   "waypoints_saved": "Guardado en Puntos de ruta",
-  "waypoints_alreadySaved": "Ya está en Puntos de ruta"
+  "waypoints_alreadySaved": "Ya está en Puntos de ruta",
+  "map_showWaypoints": "Mostrar puntos y rutas guardados"
 }
