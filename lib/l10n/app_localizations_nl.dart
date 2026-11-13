@@ -10702,4 +10702,10 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Uit (dit apparaat)';
+
+  @override
+  String get notification_replyAction => 'Beantwoorden';
+
+  @override
+  String get notification_replyHint => 'Schrijf een antwoord';
 }

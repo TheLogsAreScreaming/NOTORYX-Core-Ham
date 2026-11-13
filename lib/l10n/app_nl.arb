@@ -4367,5 +4367,7 @@
   "reactions_radioHint": "Elke reactie is een pakket in de lucht. Automatisch houdt ze op dit apparaat op de EU 868 MHz-band, waar zendtijd beperkt is.",
   "reactions_radioAuto": "Automatisch",
   "reactions_radioOn": "Aan",
-  "reactions_radioOff": "Uit (dit apparaat)"
+  "reactions_radioOff": "Uit (dit apparaat)",
+  "notification_replyAction": "Beantwoorden",
+  "notification_replyHint": "Schrijf een antwoord"
 }

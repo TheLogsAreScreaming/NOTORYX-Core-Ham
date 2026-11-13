@@ -4367,5 +4367,7 @@
   "reactions_radioHint": "Varje reaktion är ett paket i luften. Automatiskt behåller dem på den här enheten på EU:s 868 MHz-band, där sändningstiden är begränsad.",
   "reactions_radioAuto": "Automatiskt",
   "reactions_radioOn": "På",
-  "reactions_radioOff": "Av (den här enheten)"
+  "reactions_radioOff": "Av (den här enheten)",
+  "notification_replyAction": "Svara",
+  "notification_replyHint": "Skriv ett svar"
 }

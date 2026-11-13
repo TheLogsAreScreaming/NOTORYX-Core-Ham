@@ -10791,4 +10791,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Выкл. (это устройство)';
+
+  @override
+  String get notification_replyAction => 'Ответить';
+
+  @override
+  String get notification_replyHint => 'Напишите ответ';
 }

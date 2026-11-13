@@ -4372,5 +4372,7 @@
   "reactions_radioHint": "每个回应都是一个空中数据包。自动模式在发射时间受限的欧盟 868 MHz 频段只在本设备上显示。",
   "reactions_radioAuto": "自动",
   "reactions_radioOn": "开",
-  "reactions_radioOff": "关（仅本设备）"
+  "reactions_radioOff": "关（仅本设备）",
+  "notification_replyAction": "回复",
+  "notification_replyHint": "输入回复"
 }

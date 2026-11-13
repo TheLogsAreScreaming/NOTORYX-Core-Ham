@@ -10240,4 +10240,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get reactions_radioOff => '끄기(이 기기)';
+
+  @override
+  String get notification_replyAction => '답장';
+
+  @override
+  String get notification_replyHint => '답장 입력';
 }

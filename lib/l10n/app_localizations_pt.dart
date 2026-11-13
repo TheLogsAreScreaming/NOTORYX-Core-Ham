@@ -10727,4 +10727,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Desligado (este dispositivo)';
+
+  @override
+  String get notification_replyAction => 'Responder';
+
+  @override
+  String get notification_replyHint => 'Escreve uma resposta';
 }

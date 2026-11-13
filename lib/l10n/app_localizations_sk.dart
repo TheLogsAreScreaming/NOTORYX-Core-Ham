@@ -10728,4 +10728,10 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Vyp. (toto zariadenie)';
+
+  @override
+  String get notification_replyAction => 'Odpovedať';
+
+  @override
+  String get notification_replyHint => 'Napíšte odpoveď';
 }

@@ -4367,5 +4367,7 @@
   "reactions_radioHint": "Cada reação é um pacote no ar. Automático mantém-nas neste dispositivo na banda europeia de 868 MHz, onde o tempo de emissão é limitado.",
   "reactions_radioAuto": "Automático",
   "reactions_radioOn": "Ligado",
-  "reactions_radioOff": "Desligado (este dispositivo)"
+  "reactions_radioOff": "Desligado (este dispositivo)",
+  "notification_replyAction": "Responder",
+  "notification_replyHint": "Escreve uma resposta"
 }

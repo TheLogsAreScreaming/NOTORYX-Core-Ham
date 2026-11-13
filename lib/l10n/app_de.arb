@@ -4501,5 +4501,7 @@
   "reactions_radioHint": "Jede Reaktion ist ein Paket in der Luft. Automatisch behält sie im EU-868-MHz-Band, wo die Sendezeit begrenzt ist, auf diesem Gerät.",
   "reactions_radioAuto": "Automatisch",
   "reactions_radioOn": "An",
-  "reactions_radioOff": "Aus (dieses Gerät)"
+  "reactions_radioOff": "Aus (dieses Gerät)",
+  "notification_replyAction": "Antworten",
+  "notification_replyHint": "Antwort schreiben"
 }

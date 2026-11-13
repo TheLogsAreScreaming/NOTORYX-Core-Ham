@@ -10732,4 +10732,10 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Ki (ez az eszköz)';
+
+  @override
+  String get notification_replyAction => 'Válasz';
+
+  @override
+  String get notification_replyHint => 'Írj választ';
 }

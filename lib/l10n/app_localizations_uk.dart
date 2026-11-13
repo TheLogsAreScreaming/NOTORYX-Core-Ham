@@ -10790,4 +10790,10 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Вимк. (цей пристрій)';
+
+  @override
+  String get notification_replyAction => 'Відповісти';
+
+  @override
+  String get notification_replyHint => 'Напишіть відповідь';
 }

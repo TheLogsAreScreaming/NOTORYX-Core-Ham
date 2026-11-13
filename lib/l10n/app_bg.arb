@@ -4367,5 +4367,7 @@
   "reactions_radioHint": "Всяка реакция е пакет в ефира. Автоматично ги пази на това устройство в европейската лента 868 MHz, където ефирното време е ограничено.",
   "reactions_radioAuto": "Автоматично",
   "reactions_radioOn": "Вкл.",
-  "reactions_radioOff": "Изкл. (това устройство)"
+  "reactions_radioOff": "Изкл. (това устройство)",
+  "notification_replyAction": "Отговор",
+  "notification_replyHint": "Напишете отговор"
 }

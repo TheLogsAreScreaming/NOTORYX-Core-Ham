@@ -310,6 +310,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final NotificationRouter _notificationRouter;
   late final LinkRouter _linkRouter;
   StreamSubscription<String>? _notificationTaps;
+  StreamSubscription<NotificationReply>? _notificationReplies;
   String? _shortcutLanguage;
   late final SensorSubscriptionService _sensorSubscriptions;
   late final MqttBrokerService _mqtt;
@@ -387,13 +388,22 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       widget.appSettingsService,
     )..start();
     // Clicking a notification opens what it's about.
-    _notificationRouter = NotificationRouter(_navigatorKey, widget.connector);
+    _notificationRouter = NotificationRouter(
+      _navigatorKey,
+      widget.connector,
+      isLocked: () => _appLock.locked,
+    );
+    _syncQuickReply();
+    _appLock.addListener(_syncQuickReply);
     _linkRouter = LinkRouter(_navigatorKey, widget.connector)..start();
     _notificationTaps = NotificationService().taps.listen(
       _notificationRouter.open,
     );
     final launchPayload = NotificationService().takeLaunchPayload();
     if (launchPayload != null) _notificationRouter.open(launchPayload);
+    _notificationReplies = NotificationService().replies.listen(_sendReply);
+    final launchReply = NotificationService().takeLaunchReply();
+    if (launchReply != null) _sendReply(launchReply);
     _sensorSubscriptions = SensorSubscriptionService(widget.connector);
     _mqtt = MqttBrokerService(
       prefs: PrefsManager.instance,
@@ -469,6 +479,8 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
     unawaited(_notificationTaps?.cancel());
+    unawaited(_notificationReplies?.cancel());
+    _appLock.removeListener(_syncQuickReply);
     _autoConnect.dispose();
     unawaited(_mqttPackets?.cancel());
     unawaited(_radioRxPackets?.cancel());
@@ -484,6 +496,20 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
 
   void _syncTelemetryScope() {
     _telemetry.setScope(widget.connector.selfPublicKeyHex);
+  }
+
+  void _syncQuickReply() {
+    NotificationService().quickReplyEnabled = !_appLock.enabled;
+  }
+
+  void _sendReply(NotificationReply reply) {
+    unawaited(
+      _notificationRouter.reply(reply.payload, reply.text).catchError((
+        Object e,
+      ) {
+        debugPrint('Quick reply failed: $e');
+      }),
+    );
   }
 
   void _syncMqttObserverIdentity() {

@@ -4367,5 +4367,7 @@
   "reactions_radioHint": "Vsak odziv je paket v etru. Samodejno jih v pasu EU 868 MHz, kjer je čas oddajanja omejen, ohrani na tej napravi.",
   "reactions_radioAuto": "Samodejno",
   "reactions_radioOn": "Vklop",
-  "reactions_radioOff": "Izklop (ta naprava)"
+  "reactions_radioOff": "Izklop (ta naprava)",
+  "notification_replyAction": "Odgovori",
+  "notification_replyHint": "Napišite odgovor"
 }

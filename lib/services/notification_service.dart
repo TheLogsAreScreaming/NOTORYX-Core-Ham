@@ -12,13 +12,55 @@ import '../helpers/reaction_helper.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/platform_info.dart';
 
+/// Text typed into a notification's reply box, and what it answers.
+class NotificationReply {
+  const NotificationReply(this.payload, this.text);
+
+  /// The notification's payload: `message:<contact key>` or `channel:<index>`.
+  final String payload;
+  final String text;
+}
+
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
   NotificationService._internal();
 
   final StreamController<String> _taps = StreamController<String>.broadcast();
+  final StreamController<NotificationReply> _replies =
+      StreamController<NotificationReply>.broadcast();
   String? _launchPayload;
+  NotificationReply? _launchReply;
+
+  static const _replyActionId = 'reply';
+  static const _replyCategoryId = 'message_reply';
+
+  /// Whether new message notifications offer a reply box. Turned off while
+  /// app lock is on, so nobody can answer from the phone's lock screen.
+  bool quickReplyEnabled = true;
+
+  /// Replies typed into a notification while the app runs.
+  Stream<NotificationReply> get replies => _replies.stream;
+
+  /// The reply that launched the app, once.
+  NotificationReply? takeLaunchReply() {
+    final reply = _launchReply;
+    _launchReply = null;
+    return reply;
+  }
+
+  /// The reply [response] carries, or null when it was a plain tap.
+  @visibleForTesting
+  static NotificationReply? replyFrom(NotificationResponse response) {
+    final payload = response.payload;
+    final text = response.input?.trim() ?? '';
+    if (response.actionId != _replyActionId ||
+        payload == null ||
+        text.isEmpty) {
+      return null;
+    }
+    return NotificationReply(payload, text);
+  }
 
   /// The payload of each notification the user clicks while the app runs:
   /// `message:<contact key>`, `channel:<index>`, `advert:<key>` or `batch`.
@@ -77,15 +119,29 @@ class NotificationService {
     const androidSettings = AndroidInitializationSettings(
       '@mipmap/ic_launcher',
     );
-    const iosSettings = DarwinInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
-      requestSoundPermission: true,
+    final replyCategory = DarwinNotificationCategory(
+      _replyCategoryId,
+      actions: [
+        DarwinNotificationAction.text(
+          _replyActionId,
+          _l10n.notification_replyAction,
+          buttonTitle: _l10n.notification_replyAction,
+          placeholder: _l10n.notification_replyHint,
+          options: const {DarwinNotificationActionOption.foreground},
+        ),
+      ],
     );
-    const macSettings = DarwinInitializationSettings(
+    final iosSettings = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
+      notificationCategories: [replyCategory],
+    );
+    final macSettings = DarwinInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+      notificationCategories: [replyCategory],
     );
     const windowsSettings = WindowsInitializationSettings(
       appName: 'NOTORYX Core Ham',
@@ -96,7 +152,7 @@ class NotificationService {
       defaultActionName: 'Open notification',
     );
 
-    const initSettings = InitializationSettings(
+    final initSettings = InitializationSettings(
       android: androidSettings,
       iOS: iosSettings,
       macOS: macSettings,
@@ -121,7 +177,9 @@ class NotificationService {
       _isInitialized = true;
       final launch = await _notifications.getNotificationAppLaunchDetails();
       if (launch?.didNotificationLaunchApp ?? false) {
-        _launchPayload = launch!.notificationResponse?.payload;
+        final response = launch!.notificationResponse;
+        if (response != null) _launchReply = replyFrom(response);
+        if (_launchReply == null) _launchPayload = response?.payload;
       }
     } catch (e) {
       debugPrint('Error initializing notifications: $e');
@@ -341,6 +399,25 @@ class NotificationService {
     }
   }
 
+  List<AndroidNotificationAction>? get _replyActions => quickReplyEnabled
+      ? [
+          AndroidNotificationAction(
+            _replyActionId,
+            _l10n.notification_replyAction,
+            // The radio link lives in the app's main isolate, so the app has
+            // to come forward to send.
+            showsUserInterface: true,
+            inputs: [
+              AndroidNotificationActionInput(
+                label: _l10n.notification_replyHint,
+              ),
+            ],
+          ),
+        ]
+      : null;
+
+  String? get _replyCategory => quickReplyEnabled ? _replyCategoryId : null;
+
   Future<void> _showMessageNotificationImpl({
     required String contactName,
     required String message,
@@ -361,6 +438,7 @@ class NotificationService {
       channelDescription: 'New message notifications',
       importance: Importance.high,
       priority: Priority.high,
+      actions: _replyActions,
       icon: '@mipmap/ic_launcher',
       number: badgeCount,
       styleInformation: imagePath != null
@@ -372,6 +450,7 @@ class NotificationService {
     );
 
     final iosDetails = DarwinNotificationDetails(
+      categoryIdentifier: _replyCategory,
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -384,6 +463,7 @@ class NotificationService {
     );
 
     final macDetails = DarwinNotificationDetails(
+      categoryIdentifier: _replyCategory,
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -483,6 +563,7 @@ class NotificationService {
       channelDescription: 'New channel message notifications',
       importance: Importance.high,
       priority: Priority.high,
+      actions: _replyActions,
       icon: '@mipmap/ic_launcher',
       number: badgeCount,
       styleInformation: imagePath != null
@@ -494,6 +575,7 @@ class NotificationService {
     );
 
     final iosDetails = DarwinNotificationDetails(
+      categoryIdentifier: _replyCategory,
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -506,6 +588,7 @@ class NotificationService {
     );
 
     final macDetails = DarwinNotificationDetails(
+      categoryIdentifier: _replyCategory,
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
@@ -559,6 +642,11 @@ class NotificationService {
   }
 
   void _onNotificationTapped(NotificationResponse response) {
+    final reply = replyFrom(response);
+    if (reply != null) {
+      if (!_replies.isClosed) _replies.add(reply);
+      return;
+    }
     final payload = response.payload;
     if (payload != null && !_taps.isClosed) _taps.add(payload);
   }

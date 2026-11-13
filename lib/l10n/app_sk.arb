@@ -4367,5 +4367,7 @@
   "reactions_radioHint": "Každá reakcia je paket vo vzduchu. Automaticky ich v pásme EÚ 868 MHz, kde je vysielací čas obmedzený, necháva len na tomto zariadení.",
   "reactions_radioAuto": "Automaticky",
   "reactions_radioOn": "Zap.",
-  "reactions_radioOff": "Vyp. (toto zariadenie)"
+  "reactions_radioOff": "Vyp. (toto zariadenie)",
+  "notification_replyAction": "Odpovedať",
+  "notification_replyHint": "Napíšte odpoveď"
 }

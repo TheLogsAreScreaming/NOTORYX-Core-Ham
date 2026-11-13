@@ -4501,5 +4501,7 @@
   "reactions_radioHint": "リアクションは1件ごとに電波で送られます。自動では、送信時間が制限されるEUの868 MHz帯ではこの端末内だけに表示します。",
   "reactions_radioAuto": "自動",
   "reactions_radioOn": "オン",
-  "reactions_radioOff": "オフ（この端末）"
+  "reactions_radioOff": "オフ（この端末）",
+  "notification_replyAction": "返信",
+  "notification_replyHint": "返信を入力"
 }

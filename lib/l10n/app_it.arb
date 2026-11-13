@@ -4501,5 +4501,7 @@
   "reactions_radioHint": "Ogni reazione è un pacchetto trasmesso. Automatico le tiene su questo dispositivo nella banda UE 868 MHz, dove il tempo di trasmissione è limitato.",
   "reactions_radioAuto": "Automatico",
   "reactions_radioOn": "Sì",
-  "reactions_radioOff": "No (questo dispositivo)"
+  "reactions_radioOff": "No (questo dispositivo)",
+  "notification_replyAction": "Rispondi",
+  "notification_replyHint": "Scrivi una risposta"
 }

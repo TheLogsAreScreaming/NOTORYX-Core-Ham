@@ -10728,4 +10728,10 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Изкл. (това устройство)';
+
+  @override
+  String get notification_replyAction => 'Отговор';
+
+  @override
+  String get notification_replyHint => 'Напишете отговор';
 }

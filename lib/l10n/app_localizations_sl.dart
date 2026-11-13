@@ -10751,4 +10751,10 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Izklop (ta naprava)';
+
+  @override
+  String get notification_replyAction => 'Odgovori';
+
+  @override
+  String get notification_replyHint => 'Napišite odgovor';
 }
