@@ -10738,4 +10738,132 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get notification_replyHint => 'Írj választ';
+
+  @override
+  String get mesh_title => 'Háló állapota';
+
+  @override
+  String get mesh_overallGood => 'A háló rendben van';
+
+  @override
+  String get mesh_overallFair => 'A háló működik, de vannak gondok';
+
+  @override
+  String get mesh_overallPoor => 'A háló nehezen boldogul';
+
+  @override
+  String get mesh_overallUnknown => 'Még kevés az adat';
+
+  @override
+  String get mesh_gradeGood => 'Jó';
+
+  @override
+  String get mesh_gradeFair => 'Közepes';
+
+  @override
+  String get mesh_gradePoor => 'Gyenge';
+
+  @override
+  String get mesh_gradeUnknown => 'Nincs adat';
+
+  @override
+  String get mesh_noise => 'Zaj';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return '$dbm dBm zajszint';
+  }
+
+  @override
+  String get mesh_signal => 'Utolsó jel';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'Csatornahasználat';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return 'adásban az utolsó 15 perc $percent%-ában';
+  }
+
+  @override
+  String get mesh_neighbours => 'Közvetlenül hallott';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count csomópont az elmúlt órában';
+  }
+
+  @override
+  String get mesh_delivery => 'Közvetlen üzenetek';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '$total-ból $delivered kézbesítve az elmúlt napban';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Valami a közelben zajos ezen a frekvencián. Vidd távolabb az antennát elektronikától és töltőktől.';
+
+  @override
+  String get mesh_tipSignal =>
+      'Az utolsó csomag gyenge volt. Emeld az antennát vagy menj magasabbra.';
+
+  @override
+  String get mesh_tipBusy =>
+      'A csatorna foglalt. Írj röviden és kerüld az elárasztást.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Kevés csomópont hallható közvetlenül. Emeld az antennát vagy menj közelebb egy átjátszóhoz.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Sok üzenetet nem nyugtáznak. Nyiss meg egy sikertelen üzenetet, hogy lásd, hol akadt el.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'A(z) $name felé vezető útvonal elavult lehet';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'A(z) $name felé vezető útvonal megbízhatatlan';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'utoljára $hours órája működött';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'utoljára $days napja működött';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return '$days napja nem hallható';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$attempts próbából $failures sikertelen';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops ugrás';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Új útvonal keresése';
+
+  @override
+  String get routeHealth_keep => 'Útvonal megtartása';
 }

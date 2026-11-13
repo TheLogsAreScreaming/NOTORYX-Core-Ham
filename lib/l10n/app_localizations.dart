@@ -17862,6 +17862,204 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Write a reply'**
   String get notification_replyHint;
+
+  /// No description provided for @mesh_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Mesh health'**
+  String get mesh_title;
+
+  /// No description provided for @mesh_overallGood.
+  ///
+  /// In en, this message translates to:
+  /// **'The mesh looks healthy'**
+  String get mesh_overallGood;
+
+  /// No description provided for @mesh_overallFair.
+  ///
+  /// In en, this message translates to:
+  /// **'The mesh works, with some trouble'**
+  String get mesh_overallFair;
+
+  /// No description provided for @mesh_overallPoor.
+  ///
+  /// In en, this message translates to:
+  /// **'The mesh is struggling'**
+  String get mesh_overallPoor;
+
+  /// No description provided for @mesh_overallUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough to go on yet'**
+  String get mesh_overallUnknown;
+
+  /// No description provided for @mesh_gradeGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get mesh_gradeGood;
+
+  /// No description provided for @mesh_gradeFair.
+  ///
+  /// In en, this message translates to:
+  /// **'Fair'**
+  String get mesh_gradeFair;
+
+  /// No description provided for @mesh_gradePoor.
+  ///
+  /// In en, this message translates to:
+  /// **'Poor'**
+  String get mesh_gradePoor;
+
+  /// No description provided for @mesh_gradeUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'No data'**
+  String get mesh_gradeUnknown;
+
+  /// No description provided for @mesh_noise.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise'**
+  String get mesh_noise;
+
+  /// No description provided for @mesh_noiseValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{dbm} dBm noise floor'**
+  String mesh_noiseValue(String dbm);
+
+  /// No description provided for @mesh_signal.
+  ///
+  /// In en, this message translates to:
+  /// **'Last signal'**
+  String get mesh_signal;
+
+  /// No description provided for @mesh_signalValue.
+  ///
+  /// In en, this message translates to:
+  /// **'SNR {db} dB'**
+  String mesh_signalValue(String db);
+
+  /// No description provided for @mesh_busy.
+  ///
+  /// In en, this message translates to:
+  /// **'Channel use'**
+  String get mesh_busy;
+
+  /// No description provided for @mesh_busyValue.
+  ///
+  /// In en, this message translates to:
+  /// **'on air {percent}% of the last 15 minutes'**
+  String mesh_busyValue(int percent);
+
+  /// No description provided for @mesh_neighbours.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard directly'**
+  String get mesh_neighbours;
+
+  /// No description provided for @mesh_neighboursValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} nodes in the last hour'**
+  String mesh_neighboursValue(int count);
+
+  /// No description provided for @mesh_delivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct messages'**
+  String get mesh_delivery;
+
+  /// No description provided for @mesh_deliveryValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{delivered} of {total} delivered in the last day'**
+  String mesh_deliveryValue(int delivered, int total);
+
+  /// No description provided for @mesh_tipNoise.
+  ///
+  /// In en, this message translates to:
+  /// **'Something nearby is noisy on this frequency. Move the antenna away from electronics and chargers.'**
+  String get mesh_tipNoise;
+
+  /// No description provided for @mesh_tipSignal.
+  ///
+  /// In en, this message translates to:
+  /// **'The last packet was weak. Raise the antenna or move to higher ground.'**
+  String get mesh_tipSignal;
+
+  /// No description provided for @mesh_tipBusy.
+  ///
+  /// In en, this message translates to:
+  /// **'The channel is busy. Keep messages short and avoid sending floods.'**
+  String get mesh_tipBusy;
+
+  /// No description provided for @mesh_tipNeighbours.
+  ///
+  /// In en, this message translates to:
+  /// **'Few nodes are heard directly. Raise the antenna or move closer to a repeater.'**
+  String get mesh_tipNeighbours;
+
+  /// No description provided for @mesh_tipDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Many messages aren\'t acknowledged. Open a failed message to see where it stopped.'**
+  String get mesh_tipDelivery;
+
+  /// No description provided for @routeHealth_staleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The route to {name} may be out of date'**
+  String routeHealth_staleTitle(String name);
+
+  /// No description provided for @routeHealth_weakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The route to {name} is unreliable'**
+  String routeHealth_weakTitle(String name);
+
+  /// No description provided for @routeHealth_lastWorkedHours.
+  ///
+  /// In en, this message translates to:
+  /// **'last worked {hours} h ago'**
+  String routeHealth_lastWorkedHours(int hours);
+
+  /// No description provided for @routeHealth_lastWorkedDays.
+  ///
+  /// In en, this message translates to:
+  /// **'last worked {days} days ago'**
+  String routeHealth_lastWorkedDays(int days);
+
+  /// No description provided for @routeHealth_notHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'not heard from in {days} days'**
+  String routeHealth_notHeard(int days);
+
+  /// No description provided for @routeHealth_failures.
+  ///
+  /// In en, this message translates to:
+  /// **'{failures} of {attempts} tries failed'**
+  String routeHealth_failures(int failures, int attempts);
+
+  /// No description provided for @routeHealth_longPath.
+  ///
+  /// In en, this message translates to:
+  /// **'{hops} hops'**
+  String routeHealth_longPath(int hops);
+
+  /// No description provided for @routeHealth_useFlood.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a new route'**
+  String get routeHealth_useFlood;
+
+  /// No description provided for @routeHealth_keep.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep this route'**
+  String get routeHealth_keep;
 }
 
 class _AppLocalizationsDelegate

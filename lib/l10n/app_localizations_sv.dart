@@ -10665,4 +10665,132 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get notification_replyHint => 'Skriv ett svar';
+
+  @override
+  String get mesh_title => 'Meshhälsa';
+
+  @override
+  String get mesh_overallGood => 'Meshen ser frisk ut';
+
+  @override
+  String get mesh_overallFair => 'Meshen fungerar, med vissa problem';
+
+  @override
+  String get mesh_overallPoor => 'Meshen har det svårt';
+
+  @override
+  String get mesh_overallUnknown => 'För lite data än';
+
+  @override
+  String get mesh_gradeGood => 'Bra';
+
+  @override
+  String get mesh_gradeFair => 'Medel';
+
+  @override
+  String get mesh_gradePoor => 'Dålig';
+
+  @override
+  String get mesh_gradeUnknown => 'Ingen data';
+
+  @override
+  String get mesh_noise => 'Brus';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'Brusgolv $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => 'Senaste signal';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'Kanalanvändning';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return 'i luften $percent % av de senaste 15 minuterna';
+  }
+
+  @override
+  String get mesh_neighbours => 'Hörda direkt';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count noder senaste timmen';
+  }
+
+  @override
+  String get mesh_delivery => 'Direktmeddelanden';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '$delivered av $total levererade senaste dygnet';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Något i närheten brusar på den här frekvensen. Flytta antennen från elektronik och laddare.';
+
+  @override
+  String get mesh_tipSignal =>
+      'Senaste paketet var svagt. Höj antennen eller gå högre upp.';
+
+  @override
+  String get mesh_tipBusy =>
+      'Kanalen är upptagen. Håll meddelanden korta och undvik floods.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Få noder hörs direkt. Höj antennen eller gå närmare en repeater.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Många meddelanden kvitteras inte. Öppna ett misslyckat meddelande för att se var det stannade.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'Vägen till $name kan vara inaktuell';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'Vägen till $name är opålitlig';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'fungerade senast för $hours h sedan';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'fungerade senast för $days dagar sedan';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return 'inte hörd på $days dagar';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$failures av $attempts försök misslyckades';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops hopp';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Hitta en ny väg';
+
+  @override
+  String get routeHealth_keep => 'Behåll vägen';
 }

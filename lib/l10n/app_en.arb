@@ -6396,5 +6396,128 @@
   "reactions_radioOn": "On",
   "reactions_radioOff": "Off (this device)",
   "notification_replyAction": "Reply",
-  "notification_replyHint": "Write a reply"
+  "notification_replyHint": "Write a reply",
+  "mesh_title": "Mesh health",
+  "mesh_overallGood": "The mesh looks healthy",
+  "mesh_overallFair": "The mesh works, with some trouble",
+  "mesh_overallPoor": "The mesh is struggling",
+  "mesh_overallUnknown": "Not enough to go on yet",
+  "mesh_gradeGood": "Good",
+  "mesh_gradeFair": "Fair",
+  "mesh_gradePoor": "Poor",
+  "mesh_gradeUnknown": "No data",
+  "mesh_noise": "Noise",
+  "mesh_noiseValue": "{dbm} dBm noise floor",
+  "@mesh_noiseValue": {
+    "placeholders": {
+      "dbm": {
+        "type": "String"
+      }
+    }
+  },
+  "mesh_signal": "Last signal",
+  "mesh_signalValue": "SNR {db} dB",
+  "@mesh_signalValue": {
+    "placeholders": {
+      "db": {
+        "type": "String"
+      }
+    }
+  },
+  "mesh_busy": "Channel use",
+  "mesh_busyValue": "on air {percent}% of the last 15 minutes",
+  "@mesh_busyValue": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "mesh_neighbours": "Heard directly",
+  "mesh_neighboursValue": "{count} nodes in the last hour",
+  "@mesh_neighboursValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mesh_delivery": "Direct messages",
+  "mesh_deliveryValue": "{delivered} of {total} delivered in the last day",
+  "@mesh_deliveryValue": {
+    "placeholders": {
+      "delivered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "mesh_tipNoise": "Something nearby is noisy on this frequency. Move the antenna away from electronics and chargers.",
+  "mesh_tipSignal": "The last packet was weak. Raise the antenna or move to higher ground.",
+  "mesh_tipBusy": "The channel is busy. Keep messages short and avoid sending floods.",
+  "mesh_tipNeighbours": "Few nodes are heard directly. Raise the antenna or move closer to a repeater.",
+  "mesh_tipDelivery": "Many messages aren't acknowledged. Open a failed message to see where it stopped.",
+  "routeHealth_staleTitle": "The route to {name} may be out of date",
+  "@routeHealth_staleTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "routeHealth_weakTitle": "The route to {name} is unreliable",
+  "@routeHealth_weakTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "routeHealth_lastWorkedHours": "last worked {hours} h ago",
+  "@routeHealth_lastWorkedHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_lastWorkedDays": "last worked {days} days ago",
+  "@routeHealth_lastWorkedDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_notHeard": "not heard from in {days} days",
+  "@routeHealth_notHeard": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_failures": "{failures} of {attempts} tries failed",
+  "@routeHealth_failures": {
+    "placeholders": {
+      "failures": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_longPath": "{hops} hops",
+  "@routeHealth_longPath": {
+    "placeholders": {
+      "hops": {
+        "type": "int"
+      }
+    }
+  },
+  "routeHealth_useFlood": "Find a new route",
+  "routeHealth_keep": "Keep this route"
 }

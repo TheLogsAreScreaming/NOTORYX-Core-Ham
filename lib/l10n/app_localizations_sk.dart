@@ -10734,4 +10734,132 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get notification_replyHint => 'Napíšte odpoveď';
+
+  @override
+  String get mesh_title => 'Stav siete';
+
+  @override
+  String get mesh_overallGood => 'Sieť vyzerá v poriadku';
+
+  @override
+  String get mesh_overallFair => 'Sieť funguje, ale s problémami';
+
+  @override
+  String get mesh_overallPoor => 'Sieť má problémy';
+
+  @override
+  String get mesh_overallUnknown => 'Zatiaľ málo údajov';
+
+  @override
+  String get mesh_gradeGood => 'Dobrý';
+
+  @override
+  String get mesh_gradeFair => 'Priemerný';
+
+  @override
+  String get mesh_gradePoor => 'Slabý';
+
+  @override
+  String get mesh_gradeUnknown => 'Bez údajov';
+
+  @override
+  String get mesh_noise => 'Šum';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'Úroveň šumu $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => 'Posledný signál';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'Využitie kanála';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return 'vo vysielaní $percent % z posledných 15 minút';
+  }
+
+  @override
+  String get mesh_neighbours => 'Počuté priamo';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count uzlov za poslednú hodinu';
+  }
+
+  @override
+  String get mesh_delivery => 'Priame správy';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return 'doručené $delivered z $total za posledný deň';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Niečo v blízkosti šumí na tejto frekvencii. Dajte anténu ďalej od elektroniky a nabíjačiek.';
+
+  @override
+  String get mesh_tipSignal =>
+      'Posledný paket bol slabý. Zdvihnite anténu alebo choďte vyššie.';
+
+  @override
+  String get mesh_tipBusy =>
+      'Kanál je vyťažený. Píšte stručne a vyhnite sa zaplavovaniu.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Priamo počuť málo uzlov. Zdvihnite anténu alebo sa priblížte k opakovaču.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Mnoho správ nie je potvrdených. Otvorte neúspešnú správu a pozrite, kde sa zastavila.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'Trasa k $name môže byť zastaraná';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'Trasa k $name je nespoľahlivá';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'naposledy fungovala pred $hours h';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'naposledy fungovala pred $days dňami';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return 'nepočuť $days dní';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$failures z $attempts pokusov zlyhalo';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops skokov';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Nájsť novú trasu';
+
+  @override
+  String get routeHealth_keep => 'Ponechať trasu';
 }

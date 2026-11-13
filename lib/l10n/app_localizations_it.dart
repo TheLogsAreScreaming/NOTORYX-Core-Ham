@@ -10763,4 +10763,132 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get notification_replyHint => 'Scrivi una risposta';
+
+  @override
+  String get mesh_title => 'Salute della rete';
+
+  @override
+  String get mesh_overallGood => 'La rete sembra in salute';
+
+  @override
+  String get mesh_overallFair => 'La rete funziona, con qualche problema';
+
+  @override
+  String get mesh_overallPoor => 'La rete è in difficoltà';
+
+  @override
+  String get mesh_overallUnknown => 'Dati non ancora sufficienti';
+
+  @override
+  String get mesh_gradeGood => 'Buona';
+
+  @override
+  String get mesh_gradeFair => 'Discreta';
+
+  @override
+  String get mesh_gradePoor => 'Scarsa';
+
+  @override
+  String get mesh_gradeUnknown => 'Nessun dato';
+
+  @override
+  String get mesh_noise => 'Rumore';
+
+  @override
+  String mesh_noiseValue(String dbm) {
+    return 'Rumore di fondo $dbm dBm';
+  }
+
+  @override
+  String get mesh_signal => 'Ultimo segnale';
+
+  @override
+  String mesh_signalValue(String db) {
+    return 'SNR $db dB';
+  }
+
+  @override
+  String get mesh_busy => 'Uso del canale';
+
+  @override
+  String mesh_busyValue(int percent) {
+    return 'in onda il $percent% degli ultimi 15 minuti';
+  }
+
+  @override
+  String get mesh_neighbours => 'Sentiti direttamente';
+
+  @override
+  String mesh_neighboursValue(int count) {
+    return '$count nodi nell\'ultima ora';
+  }
+
+  @override
+  String get mesh_delivery => 'Messaggi diretti';
+
+  @override
+  String mesh_deliveryValue(int delivered, int total) {
+    return '$delivered su $total consegnati nell\'ultimo giorno';
+  }
+
+  @override
+  String get mesh_tipNoise =>
+      'Qualcosa vicino disturba questa frequenza. Allontana l\'antenna da elettronica e caricatori.';
+
+  @override
+  String get mesh_tipSignal =>
+      'L\'ultimo pacchetto era debole. Alza l\'antenna o spostati più in alto.';
+
+  @override
+  String get mesh_tipBusy =>
+      'Il canale è occupato. Scrivi messaggi brevi ed evita i flood.';
+
+  @override
+  String get mesh_tipNeighbours =>
+      'Pochi nodi si sentono direttamente. Alza l\'antenna o avvicinati a un ripetitore.';
+
+  @override
+  String get mesh_tipDelivery =>
+      'Molti messaggi non sono confermati. Apri un messaggio fallito per vedere dove si è fermato.';
+
+  @override
+  String routeHealth_staleTitle(String name) {
+    return 'Il percorso verso $name potrebbe essere superato';
+  }
+
+  @override
+  String routeHealth_weakTitle(String name) {
+    return 'Il percorso verso $name è inaffidabile';
+  }
+
+  @override
+  String routeHealth_lastWorkedHours(int hours) {
+    return 'ha funzionato $hours h fa';
+  }
+
+  @override
+  String routeHealth_lastWorkedDays(int days) {
+    return 'ha funzionato $days giorni fa';
+  }
+
+  @override
+  String routeHealth_notHeard(int days) {
+    return 'non sentito da $days giorni';
+  }
+
+  @override
+  String routeHealth_failures(int failures, int attempts) {
+    return '$failures tentativi su $attempts falliti';
+  }
+
+  @override
+  String routeHealth_longPath(int hops) {
+    return '$hops salti';
+  }
+
+  @override
+  String get routeHealth_useFlood => 'Trova un nuovo percorso';
+
+  @override
+  String get routeHealth_keep => 'Mantieni questo percorso';
 }
