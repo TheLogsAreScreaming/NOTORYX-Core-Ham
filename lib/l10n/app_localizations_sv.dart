@@ -10659,4 +10659,10 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Av (den här enheten)';
+
+  @override
+  String get notification_replyAction => 'Svara';
+
+  @override
+  String get notification_replyHint => 'Skriv ett svar';
 }

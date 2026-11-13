@@ -10779,4 +10779,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Non (cet appareil)';
+
+  @override
+  String get notification_replyAction => 'Répondre';
+
+  @override
+  String get notification_replyHint => 'Écrire une réponse';
 }

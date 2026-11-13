@@ -10612,4 +10612,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'Off (this device)';
+
+  @override
+  String get notification_replyAction => 'Reply';
+
+  @override
+  String get notification_replyHint => 'Write a reply';
 }

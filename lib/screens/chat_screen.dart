@@ -26,6 +26,7 @@ import '../widgets/message_status_icon.dart';
 import '../widgets/delivery_sheet.dart';
 import '../helpers/chat_scroll_controller.dart';
 import '../helpers/gif_helper.dart';
+import '../models/direct_quote.dart';
 import '../models/channel_message.dart';
 import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
@@ -87,6 +88,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final _textController = TextEditingController();
   final _scrollController = ChatScrollController();
   final _textFieldFocusNode = FocusNode();
+  Message? _replyingTo;
   final GlobalKey _unreadScrollKey = GlobalKey();
   bool _isLoadingOlder = false;
   MeshCoreConnector? _connector;
@@ -402,6 +404,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     ],
                   ),
                 ),
+                if (_replyingTo != null) _buildReplyBanner(connector),
                 _buildInputBar(connector),
               ],
             );
@@ -493,6 +496,9 @@ class _ChatScreenState extends State<ChatScreen> {
                           : "[$fourByteHex]")
                     : contact.name,
                 showSender: isRoom,
+                quote: isRoom
+                    ? null
+                    : directQuoteFor(reversedMessages, messageIndex),
                 sourceId: widget.contact.publicKeyHex,
                 textScale: textScale,
                 onLongPress: () => _showMessageActions(message, contact),
@@ -558,6 +564,51 @@ class _ChatScreenState extends State<ChatScreen> {
       selection: TextSelection.collapsed(offset: text.length),
     );
     _textFieldFocusNode.requestFocus();
+  }
+
+  Widget _buildReplyBanner(MeshCoreConnector connector) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      color: scheme.surfaceContainerHigh,
+      child: Row(
+        children: [
+          Icon(Icons.reply, size: 18, color: scheme.primary),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  context.l10n.chat_replyingTo(_resolveContact(connector).name),
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    color: scheme.primary,
+                  ),
+                ),
+                Text(
+                  _replyingTo!.text,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            tooltip: context.l10n.common_close,
+            icon: const Icon(Icons.close, size: 18),
+            onPressed: () => setState(() => _replyingTo = null),
+            constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildInputBar(MeshCoreConnector connector) {
@@ -860,6 +911,10 @@ class _ChatScreenState extends State<ChatScreen> {
         }
       }
     }
+    final replyingTo = _replyingTo;
+    if (replyingTo != null) {
+      outgoingText = '@[${_resolveContact(connector).name}] $outgoingText';
+    }
     final maxBytes = maxContactMessageBytes();
     final outboundText = connector.prepareContactOutboundText(
       _resolveContact(connector),
@@ -886,6 +941,7 @@ class _ChatScreenState extends State<ChatScreen> {
     // end transform
 
     _textController.clear();
+    if (replyingTo != null) setState(() => _replyingTo = null);
     _textFieldFocusNode.requestFocus();
     connector.sendMessage(
       _resolveContact(connector),
@@ -1382,6 +1438,18 @@ class _ChatScreenState extends State<ChatScreen> {
                   _showEmojiPicker(message, contact);
                 },
               ),
+            if (!message.isOutgoing &&
+                !message.isCli &&
+                contact.type != advTypeRoom)
+              ListTile(
+                leading: const Icon(Icons.reply),
+                title: Text(context.l10n.chat_reply),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  setState(() => _replyingTo = message);
+                  _textFieldFocusNode.requestFocus();
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.route),
               title: Text(context.l10n.chat_path),
@@ -1430,7 +1498,12 @@ class _ChatScreenState extends State<ChatScreen> {
               title: Text(context.l10n.common_copy),
               onTap: () {
                 Navigator.pop(sheetContext);
-                _copyMessageText(message.text);
+                _copyMessageText(
+                  ChannelMessage.parseReplyMention(
+                        message.text,
+                      )?.actualMessage ??
+                      message.text,
+                );
               },
             ),
             ListTile(
@@ -1596,6 +1669,9 @@ class _MessageBubble extends StatelessWidget {
   /// Whether to label each incoming bubble with its author: true in room
   /// servers, where several people post; false in a 1:1 chat.
   final bool showSender;
+
+  /// The reply this message carries, shown above its text.
+  final DirectQuote? quote;
   final VoidCallback? onLongPress;
   final void Function(Message message, String emoji)? onRetryReaction;
   final double textScale;
@@ -1606,10 +1682,49 @@ class _MessageBubble extends StatelessWidget {
     required this.senderName,
     required this.showSender,
     required this.sourceId,
+    this.quote,
     required this.textScale,
     this.onLongPress,
     this.onRetryReaction,
   });
+
+  Widget _buildQuote(BuildContext context, DirectQuote q) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: scheme.surfaceContainerHighest.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(MeshRadii.sm),
+        border: Border(left: BorderSide(color: scheme.primary, width: 3)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            context.l10n.chat_replyTo(q.name),
+            style: TextStyle(
+              fontSize: 11 * textScale,
+              fontWeight: FontWeight.bold,
+              color: scheme.onSurface,
+            ),
+          ),
+          if (q.originalText case final original?) ...[
+            const SizedBox(height: 2),
+            Text(
+              original,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 12 * textScale,
+                fontStyle: FontStyle.italic,
+                color: scheme.onSurface.withValues(alpha: 0.7),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1638,11 +1753,11 @@ class _MessageBubble extends StatelessWidget {
 
     // Do not strip room-server author bytes here: the parser stores them in
     // fourByteRoomContactKey, so message.text is safe to render as-is.
-    final messageText = message.text;
-    final translatedDisplayText =
-        message.translatedText != null &&
-            message.translatedText!.trim().isNotEmpty
-        ? message.translatedText!.trim()
+    final messageText = quote?.body ?? message.text;
+    final translated = message.translatedText?.trim() ?? '';
+    final translatedDisplayText = translated.isNotEmpty
+        ? (ChannelMessage.parseReplyMention(translated)?.actualMessage ??
+              translated)
         : messageText;
     final originalDisplayText = isOutgoing
         ? message.originalText
@@ -1770,6 +1885,10 @@ class _MessageBubble extends StatelessWidget {
                               ),
                             ),
                             if (gifId == null) const SizedBox(height: 2),
+                          ],
+                          if (quote case final q?) ...[
+                            _buildQuote(context, q),
+                            const SizedBox(height: 6),
                           ],
                           if (poi != null)
                             _buildPoiMessage(

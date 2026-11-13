@@ -6394,5 +6394,7 @@
   "reactions_radioHint": "Each reaction is a packet on air. Automatic keeps them on this device on the EU 868 MHz band, where airtime is limited.",
   "reactions_radioAuto": "Automatic",
   "reactions_radioOn": "On",
-  "reactions_radioOff": "Off (this device)"
+  "reactions_radioOff": "Off (this device)",
+  "notification_replyAction": "Reply",
+  "notification_replyHint": "Write a reply"
 }

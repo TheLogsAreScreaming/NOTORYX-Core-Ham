@@ -4501,5 +4501,7 @@
   "reactions_radioHint": "반응 하나하나가 전파로 나가는 패킷입니다. 자동은 송신 시간이 제한된 EU 868 MHz 대역에서 이 기기에만 표시합니다.",
   "reactions_radioAuto": "자동",
   "reactions_radioOn": "켜기",
-  "reactions_radioOff": "끄기(이 기기)"
+  "reactions_radioOff": "끄기(이 기기)",
+  "notification_replyAction": "답장",
+  "notification_replyHint": "답장 입력"
 }

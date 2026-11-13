@@ -10225,4 +10225,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get reactions_radioOff => 'オフ（この端末）';
+
+  @override
+  String get notification_replyAction => '返信';
+
+  @override
+  String get notification_replyHint => '返信を入力';
 }

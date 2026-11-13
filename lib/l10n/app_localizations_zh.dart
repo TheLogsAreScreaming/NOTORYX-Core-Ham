@@ -10015,4 +10015,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get reactions_radioOff => '关（仅本设备）';
+
+  @override
+  String get notification_replyAction => '回复';
+
+  @override
+  String get notification_replyHint => '输入回复';
 }

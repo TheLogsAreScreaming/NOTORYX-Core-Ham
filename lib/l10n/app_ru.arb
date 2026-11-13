@@ -3670,5 +3670,7 @@
   "reactions_radioHint": "Каждая реакция — это пакет в эфире. «Автоматически» оставляет их на этом устройстве в европейском диапазоне 868 МГц, где эфирное время ограничено.",
   "reactions_radioAuto": "Автоматически",
   "reactions_radioOn": "Вкл.",
-  "reactions_radioOff": "Выкл. (это устройство)"
+  "reactions_radioOff": "Выкл. (это устройство)",
+  "notification_replyAction": "Ответить",
+  "notification_replyHint": "Напишите ответ"
 }

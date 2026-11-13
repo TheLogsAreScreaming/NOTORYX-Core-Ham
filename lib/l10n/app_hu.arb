@@ -4405,5 +4405,7 @@
   "reactions_radioHint": "Minden reakció egy adott csomag. Az Automatikus az EU 868 MHz-es sávon, ahol korlátozott az adásidő, ezen az eszközön tartja őket.",
   "reactions_radioAuto": "Automatikus",
   "reactions_radioOn": "Be",
-  "reactions_radioOff": "Ki (ez az eszköz)"
+  "reactions_radioOff": "Ki (ez az eszköz)",
+  "notification_replyAction": "Válasz",
+  "notification_replyHint": "Írj választ"
 }

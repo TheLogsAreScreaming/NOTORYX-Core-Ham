@@ -4501,5 +4501,7 @@
   "reactions_radioHint": "Chaque réaction est un paquet émis. Automatique les garde sur cet appareil sur la bande européenne 868 MHz, où le temps d'émission est limité.",
   "reactions_radioAuto": "Automatique",
   "reactions_radioOn": "Oui",
-  "reactions_radioOff": "Non (cet appareil)"
+  "reactions_radioOff": "Non (cet appareil)",
+  "notification_replyAction": "Répondre",
+  "notification_replyHint": "Écrire une réponse"
 }

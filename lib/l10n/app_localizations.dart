@@ -17850,6 +17850,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Off (this device)'**
   String get reactions_radioOff;
+
+  /// No description provided for @notification_replyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply'**
+  String get notification_replyAction;
+
+  /// No description provided for @notification_replyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a reply'**
+  String get notification_replyHint;
 }
 
 class _AppLocalizationsDelegate
