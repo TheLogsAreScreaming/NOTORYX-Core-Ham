@@ -4441,6 +4441,73 @@ class AppLocalizationsUk extends AppLocalizations {
   String get listFilter_newGroup => 'Нова група';
 
   @override
+  String get traceCard_title => 'Картка трасування';
+
+  @override
+  String get traceCard_open => 'Поділитися карткою трасування';
+
+  @override
+  String traceCard_from(String name) {
+    return 'Від $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'До $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Надіслано $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Туди й назад $seconds с';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Стрибків: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Назад до вас';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Маршрут $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Найслабша ланка $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Позиції на цьому маршруті невідомі, тому карти немає.';
+
+  @override
+  String get traceCard_guessed => 'приблизна позиція';
+
+  @override
+  String get traceCard_mapLabel => 'Карта шляху туди й назад';
+
+  @override
+  String get traceCard_shareImage => 'Поділитися зображенням';
+
+  @override
+  String get traceCard_shareText => 'Поділитися текстом';
+
+  @override
+  String get traceCard_shareFailed =>
+      'Не вдалося поділитися карткою трасування.';
+
+  @override
+  String get traceCard_snrUnknown => 'немає SNR';
+
+  @override
   String get pathTrace_you => 'Ви';
 
   @override

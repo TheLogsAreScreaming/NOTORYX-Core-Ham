@@ -4210,6 +4210,71 @@ class AppLocalizationsJa extends AppLocalizations {
   String get listFilter_newGroup => '新しいグループ';
 
   @override
+  String get traceCard_title => 'トレースカード';
+
+  @override
+  String get traceCard_open => 'トレースカードを共有';
+
+  @override
+  String traceCard_from(String name) {
+    return '送信元: $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return '宛先: $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return '送信日時 $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return '往復 $seconds 秒';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'ホップ数: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'あなたに戻る';
+
+  @override
+  String traceCard_distance(String distance) {
+    return '経路 $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return '最も弱いリンク $snr';
+  }
+
+  @override
+  String get traceCard_noMap => 'この経路の位置情報がないため、地図はありません。';
+
+  @override
+  String get traceCard_guessed => '推定位置';
+
+  @override
+  String get traceCard_mapLabel => '往復経路の地図';
+
+  @override
+  String get traceCard_shareImage => '画像を共有';
+
+  @override
+  String get traceCard_shareText => 'テキストを共有';
+
+  @override
+  String get traceCard_shareFailed => 'トレースカードを共有できませんでした。';
+
+  @override
+  String get traceCard_snrUnknown => 'SNRなし';
+
+  @override
   String get pathTrace_you => 'あなた';
 
   @override

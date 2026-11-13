@@ -4427,6 +4427,73 @@ class AppLocalizationsHu extends AppLocalizations {
   String get listFilter_newGroup => 'Új csoport';
 
   @override
+  String get traceCard_title => 'Nyomkövetési kártya';
+
+  @override
+  String get traceCard_open => 'Nyomkövetési kártya megosztása';
+
+  @override
+  String traceCard_from(String name) {
+    return 'Feladó: $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'Címzett: $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Elküldve: $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Oda-vissza $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Ugrások: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Vissza hozzád';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Útvonal $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Leggyengébb kapcsolat $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Ehhez az útvonalhoz nincs ismert pozíció, ezért nincs térkép.';
+
+  @override
+  String get traceCard_guessed => 'becsült pozíció';
+
+  @override
+  String get traceCard_mapLabel => 'Az oda-vissza út térképe';
+
+  @override
+  String get traceCard_shareImage => 'Kép megosztása';
+
+  @override
+  String get traceCard_shareText => 'Szöveg megosztása';
+
+  @override
+  String get traceCard_shareFailed =>
+      'A nyomkövetési kártyát nem sikerült megosztani.';
+
+  @override
+  String get traceCard_snrUnknown => 'nincs SNR';
+
+  @override
   String get pathTrace_you => 'Te';
 
   @override

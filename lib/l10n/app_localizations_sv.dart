@@ -4393,6 +4393,72 @@ class AppLocalizationsSv extends AppLocalizations {
   String get listFilter_newGroup => 'Ny grupp';
 
   @override
+  String get traceCard_title => 'Spårkort';
+
+  @override
+  String get traceCard_open => 'Dela spårkort';
+
+  @override
+  String traceCard_from(String name) {
+    return 'Från $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'Till $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Skickat $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Tur och retur $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Hopp: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Tillbaka till dig';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Rutt $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Svagaste länken $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Inga kända positioner för rutten, så ingen karta.';
+
+  @override
+  String get traceCard_guessed => 'uppskattad position';
+
+  @override
+  String get traceCard_mapLabel => 'Karta över tur och retur';
+
+  @override
+  String get traceCard_shareImage => 'Dela bild';
+
+  @override
+  String get traceCard_shareText => 'Dela text';
+
+  @override
+  String get traceCard_shareFailed => 'Kunde inte dela spårkortet.';
+
+  @override
+  String get traceCard_snrUnknown => 'ingen SNR';
+
+  @override
   String get pathTrace_you => 'Du';
 
   @override

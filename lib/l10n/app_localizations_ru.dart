@@ -4444,6 +4444,73 @@ class AppLocalizationsRu extends AppLocalizations {
   String get listFilter_newGroup => 'Новая группа';
 
   @override
+  String get traceCard_title => 'Карточка трассировки';
+
+  @override
+  String get traceCard_open => 'Поделиться карточкой трассировки';
+
+  @override
+  String traceCard_from(String name) {
+    return 'От $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'К $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Отправлено $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Туда и обратно $seconds с';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Хопов: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Обратно к вам';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Маршрут $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Самое слабое звено $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Позиции на этом маршруте неизвестны, поэтому карты нет.';
+
+  @override
+  String get traceCard_guessed => 'примерная позиция';
+
+  @override
+  String get traceCard_mapLabel => 'Карта пути туда и обратно';
+
+  @override
+  String get traceCard_shareImage => 'Поделиться изображением';
+
+  @override
+  String get traceCard_shareText => 'Поделиться текстом';
+
+  @override
+  String get traceCard_shareFailed =>
+      'Не удалось поделиться карточкой трассировки.';
+
+  @override
+  String get traceCard_snrUnknown => 'нет SNR';
+
+  @override
   String get pathTrace_you => 'Вы';
 
   @override

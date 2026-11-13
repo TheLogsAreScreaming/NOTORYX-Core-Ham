@@ -4370,6 +4370,72 @@ class AppLocalizationsEn extends AppLocalizations {
   String get listFilter_newGroup => 'New group';
 
   @override
+  String get traceCard_title => 'Trace card';
+
+  @override
+  String get traceCard_open => 'Share trace card';
+
+  @override
+  String traceCard_from(String name) {
+    return 'From $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'To $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Sent $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Round trip $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Hops: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Back to you';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Route $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Weakest link $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'No positions known for this route, so there is no map.';
+
+  @override
+  String get traceCard_guessed => 'estimated position';
+
+  @override
+  String get traceCard_mapLabel => 'Map of the round trip';
+
+  @override
+  String get traceCard_shareImage => 'Share image';
+
+  @override
+  String get traceCard_shareText => 'Share text';
+
+  @override
+  String get traceCard_shareFailed => 'Could not share the trace card.';
+
+  @override
+  String get traceCard_snrUnknown => 'no SNR';
+
+  @override
   String get pathTrace_you => 'You';
 
   @override

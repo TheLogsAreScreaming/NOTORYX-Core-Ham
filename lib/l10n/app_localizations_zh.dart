@@ -4126,6 +4126,71 @@ class AppLocalizationsZh extends AppLocalizations {
   String get listFilter_newGroup => '新建群聊';
 
   @override
+  String get traceCard_title => '路径追踪卡片';
+
+  @override
+  String get traceCard_open => '分享路径追踪卡片';
+
+  @override
+  String traceCard_from(String name) {
+    return '来自 $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return '发往 $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return '发送于 $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return '往返 $seconds 秒';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return '跳数：$count';
+  }
+
+  @override
+  String get traceCard_backToYou => '返回到你';
+
+  @override
+  String traceCard_distance(String distance) {
+    return '路线 $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return '最弱链路 $snr';
+  }
+
+  @override
+  String get traceCard_noMap => '此路线没有已知位置，因此没有地图。';
+
+  @override
+  String get traceCard_guessed => '估计位置';
+
+  @override
+  String get traceCard_mapLabel => '往返路线地图';
+
+  @override
+  String get traceCard_shareImage => '分享图片';
+
+  @override
+  String get traceCard_shareText => '分享文本';
+
+  @override
+  String get traceCard_shareFailed => '无法分享路径追踪卡片。';
+
+  @override
+  String get traceCard_snrUnknown => '无 SNR';
+
+  @override
   String get pathTrace_you => '我自己';
 
   @override

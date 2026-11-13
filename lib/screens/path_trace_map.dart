@@ -14,6 +14,8 @@ import 'package:meshcore_open/models/contact.dart';
 import 'package:meshcore_open/models/display_path.dart';
 import 'package:meshcore_open/models/path_history.dart';
 import 'package:meshcore_open/models/path_playback.dart';
+import 'package:meshcore_open/models/trace_card.dart';
+import 'package:meshcore_open/screens/trace_card_screen.dart';
 import 'package:meshcore_open/services/app_settings_service.dart';
 import 'package:meshcore_open/services/map_tile_cache_service.dart';
 import 'package:meshcore_open/services/path_history_service.dart';
@@ -118,6 +120,10 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
   // Live path resolved at trace time; used by the response handler for
   // endpoint inference so it matches the path that was actually traced.
   Uint8List _tracedPath = Uint8List(0);
+  // When the trace went out and how long the reply took, for the trace card.
+  DateTime? _traceSentAt;
+  final Stopwatch _traceWatch = Stopwatch();
+  Duration _traceRoundTrip = Duration.zero;
 
   // Packet-flow animation + multi-path view state.
   late final PathPlaybackController _playback;
@@ -454,6 +460,10 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
     }
     _timeoutTimer?.cancel();
     _timeoutTimer = Timer(_noReplyTimeout, _traceFailed);
+    _traceSentAt = DateTime.now();
+    _traceWatch
+      ..reset()
+      ..start();
     try {
       await connector.sendFrame(frame);
     } catch (e) {
@@ -533,6 +543,8 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
 
   Future<void> _handleTraceResponse(Uint8List frame) async {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    _traceRoundTrip = _traceWatch.elapsed;
+    _traceWatch.stop();
 
     final buffer = BufferReader(frame);
     try {
@@ -780,6 +792,40 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
         });
       }
     }
+  }
+
+  /// The finished trace as a shareable card.
+  TraceCard _buildTraceCard(MeshCoreConnector connector) {
+    final data = _traceData!;
+    final hopCount = data.pathData.length;
+    return TraceCard(
+      sender: connector.selfName?.trim().isNotEmpty == true
+          ? connector.selfName!.trim()
+          : context.l10n.pathTrace_you,
+      target: _targetContact?.name ?? widget.title,
+      sentAt: _traceSentAt ?? DateTime.now(),
+      roundTrip: _traceRoundTrip,
+      senderLat: connector.selfLatitude,
+      senderLon: connector.selfLongitude,
+      returnSnr: data.snrData.length > hopCount ? data.snrData.last : null,
+      hops: [
+        for (final (i, hop) in data.pathData.indexed)
+          () {
+            final key = _hopKey(hop);
+            final contact = data.pathContacts[key];
+            final known = contact != null && contact.hasLocation;
+            final guess = known ? null : _inferredHopPositions[key];
+            return TraceCardHop(
+              id: key,
+              name: contact?.name,
+              snr: i < data.snrData.length ? data.snrData[i] : null,
+              lat: known ? contact.latitude : guess?.latitude,
+              lon: known ? contact.longitude : guess?.longitude,
+              positionGuessed: guess != null,
+            );
+          }(),
+      ],
+    );
   }
 
   /// Outbound hop bytes of the traced path, mirroring the round-trip
@@ -1058,6 +1104,17 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
             title: Text(widget.title),
             centerTitle: true,
             actions: [
+              if (_hasData && _traceData != null && !_isLoading)
+                IconButton(
+                  icon: const Icon(Icons.ios_share),
+                  tooltip: context.l10n.traceCard_open,
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) =>
+                          TraceCardScreen(card: _buildTraceCard(connector)),
+                    ),
+                  ),
+                ),
               IconButton(
                 icon: _isLoading
                     ? const SizedBox(

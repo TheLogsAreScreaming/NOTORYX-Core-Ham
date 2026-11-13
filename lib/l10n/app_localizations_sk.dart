@@ -4415,6 +4415,72 @@ class AppLocalizationsSk extends AppLocalizations {
   String get listFilter_newGroup => 'Nová skupina';
 
   @override
+  String get traceCard_title => 'Karta trasovania';
+
+  @override
+  String get traceCard_open => 'Zdieľať kartu trasovania';
+
+  @override
+  String traceCard_from(String name) {
+    return 'Od $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'Pre $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Odoslané $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Tam a späť $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Skoky: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Späť k tebe';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Trasa $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Najslabšie spojenie $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Pre túto trasu nie sú známe polohy, preto nie je mapa.';
+
+  @override
+  String get traceCard_guessed => 'odhadovaná poloha';
+
+  @override
+  String get traceCard_mapLabel => 'Mapa cesty tam a späť';
+
+  @override
+  String get traceCard_shareImage => 'Zdieľať obrázok';
+
+  @override
+  String get traceCard_shareText => 'Zdieľať text';
+
+  @override
+  String get traceCard_shareFailed => 'Kartu trasovania sa nepodarilo zdieľať.';
+
+  @override
+  String get traceCard_snrUnknown => 'bez SNR';
+
+  @override
   String get pathTrace_you => 'Vy';
 
   @override

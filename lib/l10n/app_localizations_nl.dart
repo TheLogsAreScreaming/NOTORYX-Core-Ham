@@ -4416,6 +4416,72 @@ class AppLocalizationsNl extends AppLocalizations {
   String get listFilter_newGroup => 'Nieuwe groep';
 
   @override
+  String get traceCard_title => 'Tracekaart';
+
+  @override
+  String get traceCard_open => 'Tracekaart delen';
+
+  @override
+  String traceCard_from(String name) {
+    return 'Van $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'Naar $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Verzonden $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Heen en terug $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Hops: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Terug bij jou';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Route $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Zwakste schakel $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Geen posities bekend voor deze route, dus geen kaart.';
+
+  @override
+  String get traceCard_guessed => 'geschatte positie';
+
+  @override
+  String get traceCard_mapLabel => 'Kaart van de heen- en terugweg';
+
+  @override
+  String get traceCard_shareImage => 'Afbeelding delen';
+
+  @override
+  String get traceCard_shareText => 'Tekst delen';
+
+  @override
+  String get traceCard_shareFailed => 'Kon de tracekaart niet delen.';
+
+  @override
+  String get traceCard_snrUnknown => 'geen SNR';
+
+  @override
   String get pathTrace_you => 'Jij';
 
   @override

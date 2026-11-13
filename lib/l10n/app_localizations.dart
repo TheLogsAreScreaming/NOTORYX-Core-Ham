@@ -7682,6 +7682,108 @@ abstract class AppLocalizations {
   /// **'New group'**
   String get listFilter_newGroup;
 
+  /// No description provided for @traceCard_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Trace card'**
+  String get traceCard_title;
+
+  /// No description provided for @traceCard_open.
+  ///
+  /// In en, this message translates to:
+  /// **'Share trace card'**
+  String get traceCard_open;
+
+  /// No description provided for @traceCard_from.
+  ///
+  /// In en, this message translates to:
+  /// **'From {name}'**
+  String traceCard_from(String name);
+
+  /// No description provided for @traceCard_to.
+  ///
+  /// In en, this message translates to:
+  /// **'To {name}'**
+  String traceCard_to(String name);
+
+  /// No description provided for @traceCard_sentAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent {time}'**
+  String traceCard_sentAt(String time);
+
+  /// No description provided for @traceCard_roundTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Round trip {seconds} s'**
+  String traceCard_roundTrip(String seconds);
+
+  /// No description provided for @traceCard_hops.
+  ///
+  /// In en, this message translates to:
+  /// **'Hops: {count}'**
+  String traceCard_hops(int count);
+
+  /// No description provided for @traceCard_backToYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to you'**
+  String get traceCard_backToYou;
+
+  /// No description provided for @traceCard_distance.
+  ///
+  /// In en, this message translates to:
+  /// **'Route {distance}'**
+  String traceCard_distance(String distance);
+
+  /// No description provided for @traceCard_weakest.
+  ///
+  /// In en, this message translates to:
+  /// **'Weakest link {snr}'**
+  String traceCard_weakest(String snr);
+
+  /// No description provided for @traceCard_noMap.
+  ///
+  /// In en, this message translates to:
+  /// **'No positions known for this route, so there is no map.'**
+  String get traceCard_noMap;
+
+  /// No description provided for @traceCard_guessed.
+  ///
+  /// In en, this message translates to:
+  /// **'estimated position'**
+  String get traceCard_guessed;
+
+  /// No description provided for @traceCard_mapLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Map of the round trip'**
+  String get traceCard_mapLabel;
+
+  /// No description provided for @traceCard_shareImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Share image'**
+  String get traceCard_shareImage;
+
+  /// No description provided for @traceCard_shareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Share text'**
+  String get traceCard_shareText;
+
+  /// No description provided for @traceCard_shareFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not share the trace card.'**
+  String get traceCard_shareFailed;
+
+  /// No description provided for @traceCard_snrUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'no SNR'**
+  String get traceCard_snrUnknown;
+
   /// No description provided for @pathTrace_you.
   ///
   /// In en, this message translates to:

@@ -4434,6 +4434,73 @@ class AppLocalizationsEs extends AppLocalizations {
   String get listFilter_newGroup => 'Nuevo grupo';
 
   @override
+  String get traceCard_title => 'Tarjeta de traza';
+
+  @override
+  String get traceCard_open => 'Compartir tarjeta de traza';
+
+  @override
+  String traceCard_from(String name) {
+    return 'De $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'Para $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Enviado $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Ida y vuelta $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Saltos: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'De vuelta a ti';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Ruta $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Enlace más débil $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'No se conocen posiciones de esta ruta, así que no hay mapa.';
+
+  @override
+  String get traceCard_guessed => 'posición estimada';
+
+  @override
+  String get traceCard_mapLabel => 'Mapa del viaje de ida y vuelta';
+
+  @override
+  String get traceCard_shareImage => 'Compartir imagen';
+
+  @override
+  String get traceCard_shareText => 'Compartir texto';
+
+  @override
+  String get traceCard_shareFailed =>
+      'No se pudo compartir la tarjeta de traza.';
+
+  @override
+  String get traceCard_snrUnknown => 'sin SNR';
+
+  @override
   String get pathTrace_you => 'Tú';
 
   @override
