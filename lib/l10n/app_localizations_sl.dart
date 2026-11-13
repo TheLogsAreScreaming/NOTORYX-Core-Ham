@@ -10885,4 +10885,168 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get routeHealth_keep => 'Obdrži pot';
+
+  @override
+  String get netChange_title => 'Spremembe v mreži';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Repetitorji, ki so se pojavili v bližini ali utihnili';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Nov repetitor slišan neposredno: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Nov repetitor $hops skok stran: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name je utihnil: neslišan $hours h';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Še ni sprememb. Tu se pokažejo priljubljeni repetitorji, ki utihnejo, in novi repetitorji v bližini.';
+
+  @override
+  String get netChange_quietSetting => 'Priljubljeni repetitor utihne';
+
+  @override
+  String get netChange_quietHint =>
+      'Obvesti, ko priljubljenega repetitorja toliko časa ni slišati';
+
+  @override
+  String get netChange_newSetting => 'Nov repetitor v bližini';
+
+  @override
+  String get netChange_newHint =>
+      'Obvesti, ko je neznan repetitor slišan znotraj enega skoka';
+
+  @override
+  String get netChange_clear => 'Počisti';
+
+  @override
+  String get netChange_notifTitle => 'Sprememba v mreži';
+
+  @override
+  String get trouble_title => 'Odpravljanje težav';
+
+  @override
+  String get trouble_toolSubtitle => 'Pomoč po korakih, ko nekaj ne deluje';
+
+  @override
+  String get trouble_pick => 'Kaj je narobe?';
+
+  @override
+  String get trouble_noDelivery => 'Sporočila niso dostavljena';
+
+  @override
+  String get trouble_noConnect => 'Ne morem se povezati z radiem';
+
+  @override
+  String get trouble_hearNobody => 'Nikogar ne slišim';
+
+  @override
+  String get trouble_startHere => 'Začnite tukaj';
+
+  @override
+  String get trouble_resultOk => 'V redu';
+
+  @override
+  String get trouble_resultProblem => 'Težava';
+
+  @override
+  String get trouble_resultUnchecked => 'Ni mogoče preveriti';
+
+  @override
+  String get trouble_connectedNow =>
+      'Zdaj ste povezani. Če povezava kar naprej pada, vam koraki spodaj še vedno pomagajo.';
+
+  @override
+  String get trouble_allOk =>
+      'Vsa preverjanja so uspela. Če še vedno ne deluje, si oglejte korake spodaj.';
+
+  @override
+  String get trouble_connected => 'Radio je povezan';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Najprej povežite radio: Nastavitve → Poveži radio.';
+
+  @override
+  String get trouble_routes => 'Do ljudi, ki jim pišete, so znane poti';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Sporočila nekomu brez znane poti poplavijo vso mrežo in pogosto ne pridejo. Počakajte, da se oglasi, ali ga prosite za to, in pišite znova.';
+
+  @override
+  String get trouble_heardRecently =>
+      'Ljudi, ki jim pišete, ste slišali v zadnjem dnevu';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Kogar dolgo niste slišali, je morda zunaj dosega ali izklopljen. Njegova sporočila ne bodo potrjena, dokler se ne vrne.';
+
+  @override
+  String get trouble_neighbours => 'Radio sliši druga vozlišča';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Če neposredno ni slišati ničesar, radio od tu ne doseže mreže. Dvignite anteno, pojdite višje ali bližje repetitorju.';
+
+  @override
+  String get trouble_bluetooth =>
+      'Bluetooth je vklopljen in ga aplikacija sme uporabljati';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Preverite, da je Bluetooth vklopljen in da ima NOTORYX Core Ham v nastavitvah telefona dovoljenje za Bluetooth (v Androidu tudi Naprave v bližini).';
+
+  @override
+  String get trouble_otherApp =>
+      'Noben drug telefon ali aplikacija ni povezana z radiem';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'Radio se pogovarja le z eno aplikacijo naenkrat. Zaprite druge aplikacije MeshCore ali izklopite Bluetooth na drugih seznanjenih telefonih.';
+
+  @override
+  String get trouble_inRange => 'Radio je vklopljen in blizu';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Preverite, da je radio napolnjen, vklopljen in nekaj metrov stran. Ponovni zagon radia pogosto odpravi zataknjeno povezavo.';
+
+  @override
+  String get trouble_otherTransport => 'Poskusite drug način povezave';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Če Bluetooth kar naprej odpove, se povežite s kablom USB ali prek Wi-Fi (TCP), če radio to podpira.';
+
+  @override
+  String get trouble_noise => 'Radio ne utone v šumu';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'Visoka raven šuma skrije šibke signale. Anteno odmaknite od elektronike, polnilnikov in sončnih regulatorjev.';
+
+  @override
+  String get trouble_region => 'Radio uporablja nastavitve vašega območja';
+
+  @override
+  String get trouble_regionAdvice =>
+      'Z drugo frekvenco, pasovno širino ali faktorjem razširjanja kot lokalna mreža ne slišite nikogar. Primerjajte Nastavitve → Radio s tistimi na vašem območju.';
+
+  @override
+  String get trouble_antenna => 'Antena je nameščena';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Prepričajte se, da je antena trdno privita. Nikoli ne oddajajte brez nje; to lahko poškoduje radio.';
 }

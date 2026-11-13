@@ -10913,4 +10913,171 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get routeHealth_keep => 'Garder cette route';
+
+  @override
+  String get netChange_title => 'Changements du réseau';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Répéteurs apparus à proximité ou devenus silencieux';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Nouveau répéteur entendu directement : $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Nouveau répéteur à $hops saut : $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name est silencieux : pas entendu depuis $hours h';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Aucun changement pour l\'instant. Les répéteurs favoris devenus silencieux et les nouveaux répéteurs proches apparaissent ici.';
+
+  @override
+  String get netChange_quietSetting => 'Un répéteur favori devient silencieux';
+
+  @override
+  String get netChange_quietHint =>
+      'Prévenir quand un répéteur favori n\'a pas été entendu depuis ce délai';
+
+  @override
+  String get netChange_newSetting => 'Nouveau répéteur à proximité';
+
+  @override
+  String get netChange_newHint =>
+      'Prévenir quand un répéteur jamais vu est entendu à un saut au plus';
+
+  @override
+  String get netChange_clear => 'Effacer';
+
+  @override
+  String get netChange_notifTitle => 'Changement du réseau';
+
+  @override
+  String get trouble_title => 'Dépannage';
+
+  @override
+  String get trouble_toolSubtitle =>
+      'Aide pas à pas quand quelque chose ne marche pas';
+
+  @override
+  String get trouble_pick => 'Quel est le problème ?';
+
+  @override
+  String get trouble_noDelivery => 'Les messages ne sont pas remis';
+
+  @override
+  String get trouble_noConnect => 'Impossible de me connecter à ma radio';
+
+  @override
+  String get trouble_hearNobody => 'Je n\'entends personne';
+
+  @override
+  String get trouble_startHere => 'Commencez ici';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => 'Problème';
+
+  @override
+  String get trouble_resultUnchecked => 'Vérification impossible';
+
+  @override
+  String get trouble_connectedNow =>
+      'Vous êtes connecté. Si la connexion tombe souvent, les étapes ci-dessous restent utiles.';
+
+  @override
+  String get trouble_allOk =>
+      'Toutes les vérifications sont bonnes. Si ça ne marche toujours pas, voyez les étapes ci-dessous.';
+
+  @override
+  String get trouble_connected => 'Votre radio est connectée';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Connectez d\'abord votre radio : Réglages → Connecter une radio.';
+
+  @override
+  String get trouble_routes =>
+      'Des routes sont connues vers vos correspondants';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Les messages vers quelqu\'un sans route connue inondent tout le maillage et arrivent souvent mal. Attendez qu\'il s\'annonce, ou demandez-le-lui, puis réécrivez.';
+
+  @override
+  String get trouble_heardRecently =>
+      'Vos correspondants ont été entendus dans la dernière journée';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Quelqu\'un qu\'on n\'a pas entendu depuis longtemps est peut-être hors de portée ou éteint. Ses messages ne peuvent pas être confirmés avant son retour.';
+
+  @override
+  String get trouble_neighbours => 'Votre radio entend d\'autres nœuds';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Si rien n\'est entendu directement, votre radio n\'atteint pas le maillage d\'ici. Montez l\'antenne, allez plus haut ou rapprochez-vous d\'un répéteur.';
+
+  @override
+  String get trouble_bluetooth =>
+      'Le Bluetooth est activé et l\'app peut l\'utiliser';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Vérifiez que le Bluetooth est activé et que NOTORYX Core Ham a l\'autorisation Bluetooth (et sur Android, Appareils à proximité) dans les réglages du téléphone.';
+
+  @override
+  String get trouble_otherApp =>
+      'Aucun autre téléphone ni app n\'est connecté à la radio';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'Une radio ne parle qu\'à une app à la fois. Fermez les autres apps MeshCore ou coupez le Bluetooth des autres téléphones appairés.';
+
+  @override
+  String get trouble_inRange => 'La radio est allumée et à proximité';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Vérifiez que la radio est chargée, allumée et à quelques mètres. Redémarrer la radio débloque souvent une connexion figée.';
+
+  @override
+  String get trouble_otherTransport => 'Essayer un autre mode de connexion';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Si le Bluetooth échoue sans cesse, connectez-vous par câble USB, ou en Wi-Fi (TCP) si votre radio le permet.';
+
+  @override
+  String get trouble_noise => 'La radio n\'est pas noyée dans le bruit';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'Un plancher de bruit élevé masque les signaux faibles. Éloignez l\'antenne de l\'électronique, des chargeurs et des régulateurs solaires.';
+
+  @override
+  String get trouble_region =>
+      'Votre radio utilise les réglages de votre région';
+
+  @override
+  String get trouble_regionAdvice =>
+      'Avec une fréquence, une largeur de bande ou un facteur d\'étalement différents du maillage local, on n\'entend personne. Comparez Réglages → Radio avec ce qu\'utilise votre région.';
+
+  @override
+  String get trouble_antenna => 'L\'antenne est montée';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Vérifiez que l\'antenne est bien vissée. N\'émettez jamais sans antenne ; cela peut endommager la radio.';
 }

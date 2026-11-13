@@ -10862,4 +10862,169 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get routeHealth_keep => 'Ponechať trasu';
+
+  @override
+  String get netChange_title => 'Zmeny v sieti';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Opakovače, ktoré sa objavili nablízku alebo stíchli';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Nový opakovač počutý priamo: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Nový opakovač $hops skok ďaleko: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name stíchol: nepočuť $hours h';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Zatiaľ žiadne zmeny. Tu sa zobrazia obľúbené opakovače, ktoré stíchnu, a nové opakovače nablízku.';
+
+  @override
+  String get netChange_quietSetting => 'Obľúbený opakovač stíchne';
+
+  @override
+  String get netChange_quietHint =>
+      'Upozorniť, keď obľúbený opakovač nepočuť tak dlho';
+
+  @override
+  String get netChange_newSetting => 'Nový opakovač nablízku';
+
+  @override
+  String get netChange_newHint =>
+      'Upozorniť, keď je neznámy opakovač počuť do jedného skoku';
+
+  @override
+  String get netChange_clear => 'Vymazať';
+
+  @override
+  String get netChange_notifTitle => 'Zmena v sieti';
+
+  @override
+  String get trouble_title => 'Riešenie problémov';
+
+  @override
+  String get trouble_toolSubtitle =>
+      'Pomoc krok za krokom, keď niečo nefunguje';
+
+  @override
+  String get trouble_pick => 'Čo je zle?';
+
+  @override
+  String get trouble_noDelivery => 'Správy sa nedoručujú';
+
+  @override
+  String get trouble_noConnect => 'Neviem sa pripojiť k rádiu';
+
+  @override
+  String get trouble_hearNobody => 'Nikoho nepočujem';
+
+  @override
+  String get trouble_startHere => 'Začnite tu';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => 'Problém';
+
+  @override
+  String get trouble_resultUnchecked => 'Nedá sa overiť';
+
+  @override
+  String get trouble_connectedNow =>
+      'Teraz ste pripojení. Ak spojenie stále padá, kroky nižšie aj tak pomôžu.';
+
+  @override
+  String get trouble_allOk =>
+      'Všetky kontroly prešli. Ak to stále nefunguje, pozrite si kroky nižšie.';
+
+  @override
+  String get trouble_connected => 'Vaše rádio je pripojené';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Najprv pripojte rádio: Nastavenia → Pripojiť rádio.';
+
+  @override
+  String get trouble_routes => 'K ľuďom, ktorým píšete, sú známe trasy';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Správy niekomu bez známej trasy zaplavia celú sieť a často nedorazia. Počkajte, kým sa ohlási, alebo ho o to požiadajte, a napíšte znova.';
+
+  @override
+  String get trouble_heardRecently =>
+      'Ľudí, ktorým píšete, bolo počuť za posledný deň';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Kto nebol dlho počuť, môže byť mimo dosahu alebo vypnutý. Jeho správy sa nepotvrdia, kým sa nevráti.';
+
+  @override
+  String get trouble_neighbours => 'Vaše rádio počuje iné uzly';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Ak nič nepočuť priamo, rádio odtiaľto nedosiahne sieť. Zdvihnite anténu, choďte vyššie alebo bližšie k opakovaču.';
+
+  @override
+  String get trouble_bluetooth =>
+      'Bluetooth je zapnutý a aplikácia ho smie používať';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Skontrolujte, či je Bluetooth zapnutý a či má NOTORYX Core Ham v nastaveniach telefónu povolenie Bluetooth (a v Androide Zariadenia v okolí).';
+
+  @override
+  String get trouble_otherApp =>
+      'Žiadny iný telefón ani aplikácia nie je pripojená k rádiu';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'Rádio komunikuje naraz len s jednou aplikáciou. Zatvorte iné aplikácie MeshCore alebo vypnite Bluetooth na iných spárovaných telefónoch.';
+
+  @override
+  String get trouble_inRange => 'Rádio je zapnuté a nablízku';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Skontrolujte, či je rádio nabité, zapnuté a pár metrov od vás. Reštart rádia často vyrieši zaseknuté spojenie.';
+
+  @override
+  String get trouble_otherTransport => 'Skúste iný spôsob pripojenia';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Ak Bluetooth stále zlyháva, pripojte sa USB káblom alebo cez Wi-Fi (TCP), ak to rádio podporuje.';
+
+  @override
+  String get trouble_noise => 'Rádio sa neutápa v šume';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'Vysoká úroveň šumu skrýva slabé signály. Dajte anténu ďalej od elektroniky, nabíjačiek a solárnych regulátorov.';
+
+  @override
+  String get trouble_region => 'Rádio používa nastavenia vašej oblasti';
+
+  @override
+  String get trouble_regionAdvice =>
+      'S inou frekvenciou, šírkou pásma alebo rozprestieracím faktorom než miestna sieť nikoho nepočujete. Porovnajte Nastavenia → Rádio s tým, čo používa vaša oblasť.';
+
+  @override
+  String get trouble_antenna => 'Anténa je nasadená';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Uistite sa, že anténa je pevne priskrutkovaná. Nikdy nevysielajte bez nej; môže to poškodiť rádio.';
 }

@@ -232,6 +232,40 @@ class NotificationService {
     return _canNotify = true;
   }
 
+  /// A repeater appeared nearby or a favourite one went quiet.
+  Future<bool> showNetworkChange({
+    required String repeaterKey,
+    required String body,
+  }) async {
+    if (_suppressNotifications || !await _ensureCanNotify()) return false;
+    try {
+      await _notifications.show(
+        id: 'network_change:$repeaterKey'.hashCode,
+        title: _l10n.netChange_notifTitle,
+        body: body,
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'bastion_network_changes',
+            'Network changes',
+            channelDescription:
+                'A new repeater nearby, or a favourite repeater went quiet',
+            importance: Importance.defaultImportance,
+            priority: Priority.defaultPriority,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: DarwinNotificationDetails(),
+          macOS: DarwinNotificationDetails(),
+        ),
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Whether the app may post notifications on this device.
+  Future<bool> canNotify() => _ensureCanNotify();
+
   /// "Back in range" for a favorite heard again after [quietHours] hours.
   /// One notification per contact, replaced by the next.
   Future<bool> showFavoriteReturn({

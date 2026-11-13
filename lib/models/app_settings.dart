@@ -120,6 +120,12 @@ class AppSettings {
   /// Hours a favorite must be quiet before hearing them again notifies
   /// "back in range". 0 turns it off.
   final int favoriteReturnHours;
+
+  /// Hours a favourite repeater may go unheard before a notification; 0 off.
+  final int repeaterQuietHours;
+
+  /// Whether to notify when a repeater not seen before is heard within one hop.
+  final bool newRepeaterAlerts;
   final String themeMode;
   final String? languageOverride; // null = system default
   final bool appDebugLogEnabled;
@@ -271,6 +277,8 @@ class AppSettings {
     this.maxMessageRetries = 5,
     this.messageFloodAttempts = 2,
     this.favoriteReturnHours = 6,
+    this.repeaterQuietHours = 24,
+    this.newRepeaterAlerts = false,
     this.themeMode = 'system',
     this.languageOverride,
     this.appDebugLogEnabled = false,
@@ -364,6 +372,8 @@ class AppSettings {
       'max_message_retries': maxMessageRetries,
       'message_flood_attempts': messageFloodAttempts,
       'favorite_return_hours': favoriteReturnHours,
+      'repeater_quiet_hours': repeaterQuietHours,
+      'new_repeater_alerts': newRepeaterAlerts,
       'theme_mode': themeMode,
       'language_override': languageOverride,
       'app_debug_log_enabled': appDebugLogEnabled,
@@ -469,6 +479,8 @@ class AppSettings {
       maxMessageRetries: json['max_message_retries'] as int? ?? 5,
       messageFloodAttempts: json['message_flood_attempts'] as int? ?? 2,
       favoriteReturnHours: json['favorite_return_hours'] as int? ?? 6,
+      repeaterQuietHours: json['repeater_quiet_hours'] as int? ?? 24,
+      newRepeaterAlerts: json['new_repeater_alerts'] as bool? ?? false,
       themeMode: json['theme_mode'] as String? ?? 'system',
       languageOverride: json['language_override'] as String?,
       appDebugLogEnabled: json['app_debug_log_enabled'] as bool? ?? false,
@@ -624,6 +636,8 @@ class AppSettings {
     int? maxMessageRetries,
     int? messageFloodAttempts,
     int? favoriteReturnHours,
+    int? repeaterQuietHours,
+    bool? newRepeaterAlerts,
     String? themeMode,
     Object? languageOverride = _unset,
     bool? appDebugLogEnabled,
@@ -710,6 +724,8 @@ class AppSettings {
       maxMessageRetries: maxMessageRetries ?? this.maxMessageRetries,
       messageFloodAttempts: messageFloodAttempts ?? this.messageFloodAttempts,
       favoriteReturnHours: favoriteReturnHours ?? this.favoriteReturnHours,
+      repeaterQuietHours: repeaterQuietHours ?? this.repeaterQuietHours,
+      newRepeaterAlerts: newRepeaterAlerts ?? this.newRepeaterAlerts,
       themeMode: themeMode ?? this.themeMode,
       languageOverride: languageOverride == _unset
           ? this.languageOverride

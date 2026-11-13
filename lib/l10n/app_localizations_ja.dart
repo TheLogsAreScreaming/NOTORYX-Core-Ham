@@ -10356,4 +10356,159 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get routeHealth_keep => 'このルートを使う';
+
+  @override
+  String get netChange_title => 'ネットワークの変化';
+
+  @override
+  String get netChange_toolSubtitle => '近くに現れた、または沈黙したリピーター';
+
+  @override
+  String netChange_newDirect(String name) {
+    return '直接受信した新しいリピーター: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return '$hopsホップ先の新しいリピーター: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$nameが沈黙: $hours時間受信なし';
+  }
+
+  @override
+  String get netChange_empty =>
+      'まだ変化はありません。沈黙したお気に入りリピーターや近くの新しいリピーターがここに表示されます。';
+
+  @override
+  String get netChange_quietSetting => 'お気に入りリピーターの沈黙';
+
+  @override
+  String get netChange_quietHint => 'お気に入りリピーターがこの時間受信されないときに通知';
+
+  @override
+  String get netChange_newSetting => '近くの新しいリピーター';
+
+  @override
+  String get netChange_newHint => '未知のリピーターが1ホップ以内で受信されたら通知';
+
+  @override
+  String get netChange_clear => 'クリア';
+
+  @override
+  String get netChange_notifTitle => 'ネットワークの変化';
+
+  @override
+  String get trouble_title => 'トラブルシューティング';
+
+  @override
+  String get trouble_toolSubtitle => 'うまくいかないときの手順ごとのヘルプ';
+
+  @override
+  String get trouble_pick => '何が問題ですか？';
+
+  @override
+  String get trouble_noDelivery => 'メッセージが届かない';
+
+  @override
+  String get trouble_noConnect => '無線機に接続できない';
+
+  @override
+  String get trouble_hearNobody => '誰も受信できない';
+
+  @override
+  String get trouble_startHere => 'ここから';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => '問題あり';
+
+  @override
+  String get trouble_resultUnchecked => '確認できません';
+
+  @override
+  String get trouble_connectedNow => '現在は接続されています。接続が何度も切れる場合は、以下の手順も役立ちます。';
+
+  @override
+  String get trouble_allOk => 'すべてのチェックに合格しました。それでも動かない場合は、以下の手順を確認してください。';
+
+  @override
+  String get trouble_connected => '無線機が接続されている';
+
+  @override
+  String get trouble_connectedAdvice => 'まず無線機を接続してください: 設定 → 無線機を接続。';
+
+  @override
+  String get trouble_routes => 'メッセージ相手へのルートがわかっている';
+
+  @override
+  String get trouble_routesAdvice =>
+      'ルートが不明な相手へのメッセージはメッシュ全体にフラッドされ、届かないことがよくあります。相手がアドバートするのを待つか依頼してから、もう一度送ってください。';
+
+  @override
+  String get trouble_heardRecently => 'メッセージ相手を直近1日で受信している';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'しばらく受信がない相手は圏外か電源オフかもしれません。戻るまでメッセージは確認応答されません。';
+
+  @override
+  String get trouble_neighbours => '無線機がほかのノードを受信している';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      '直接何も受信できない場合、ここからはメッシュに届きません。アンテナを高くする、高い場所へ行く、またはリピーターに近づいてください。';
+
+  @override
+  String get trouble_bluetooth => 'Bluetoothがオンで、アプリが使える';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Bluetoothがオンで、端末の設定でNOTORYX Core HamにBluetooth（Androidでは付近のデバイス）の権限があるか確認してください。';
+
+  @override
+  String get trouble_otherApp => 'ほかの端末やアプリが無線機に接続していない';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      '無線機は一度に1つのアプリとだけ通信します。ほかのMeshCoreアプリを閉じるか、ペアリング済みのほかの端末でBluetoothをオフにしてください。';
+
+  @override
+  String get trouble_inRange => '無線機の電源が入っていて近くにある';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      '無線機が充電され、電源が入り、数メートル以内にあるか確認してください。無線機の再起動で固まった接続が直ることがよくあります。';
+
+  @override
+  String get trouble_otherTransport => '別の接続方法を試す';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Bluetoothで失敗が続く場合は、USBケーブル、または対応していればWi-Fi（TCP）で接続してください。';
+
+  @override
+  String get trouble_noise => '無線機がノイズに埋もれていない';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'ノイズフロアが高いと弱い信号が隠れます。アンテナを電子機器、充電器、ソーラーコントローラーから離してください。';
+
+  @override
+  String get trouble_region => '無線機が地域の設定を使っている';
+
+  @override
+  String get trouble_regionAdvice =>
+      '周波数、帯域幅、拡散率が地元のメッシュと違うと誰も受信できません。設定 → 無線機を地域の設定と比べてください。';
+
+  @override
+  String get trouble_antenna => 'アンテナが取り付けられている';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'アンテナがしっかり締まっているか確認してください。アンテナなしで送信しないでください。無線機が壊れることがあります。';
 }

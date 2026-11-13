@@ -10793,4 +10793,168 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get routeHealth_keep => 'Behåll vägen';
+
+  @override
+  String get netChange_title => 'Nätverksändringar';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Repeatrar som dök upp nära eller tystnade';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Ny repeater hörd direkt: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Ny repeater $hops hopp bort: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name har tystnat: inte hörd på $hours h';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Inga ändringar än. Favoritrepeatrar som tystnar och nya repeatrar i närheten visas här.';
+
+  @override
+  String get netChange_quietSetting => 'Favoritrepeater tystnar';
+
+  @override
+  String get netChange_quietHint =>
+      'Avisera när en favoritrepeater inte hörts så här länge';
+
+  @override
+  String get netChange_newSetting => 'Ny repeater i närheten';
+
+  @override
+  String get netChange_newHint =>
+      'Avisera när en okänd repeater hörs inom ett hopp';
+
+  @override
+  String get netChange_clear => 'Rensa';
+
+  @override
+  String get netChange_notifTitle => 'Nätverksändring';
+
+  @override
+  String get trouble_title => 'Felsökning';
+
+  @override
+  String get trouble_toolSubtitle =>
+      'Steg-för-steg-hjälp när något inte fungerar';
+
+  @override
+  String get trouble_pick => 'Vad är fel?';
+
+  @override
+  String get trouble_noDelivery => 'Meddelanden levereras inte';
+
+  @override
+  String get trouble_noConnect => 'Jag kan inte ansluta till radion';
+
+  @override
+  String get trouble_hearNobody => 'Jag hör ingen';
+
+  @override
+  String get trouble_startHere => 'Börja här';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => 'Problem';
+
+  @override
+  String get trouble_resultUnchecked => 'Kan inte kontrolleras';
+
+  @override
+  String get trouble_connectedNow =>
+      'Du är ansluten nu. Om anslutningen fortsätter att tappas hjälper stegen nedan ändå.';
+
+  @override
+  String get trouble_allOk =>
+      'Alla kontroller gick bra. Om det ändå inte fungerar är stegen nedan värda en titt.';
+
+  @override
+  String get trouble_connected => 'Din radio är ansluten';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Anslut din radio först: Inställningar → Anslut en radio.';
+
+  @override
+  String get trouble_routes => 'Vägar är kända till dem du skriver till';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Meddelanden till någon utan känd väg floodas över hela meshen och kommer ofta inte fram. Vänta tills de annonserar sig, eller be dem, och skriv igen.';
+
+  @override
+  String get trouble_heardRecently =>
+      'De du skriver till har hörts det senaste dygnet';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Den som inte hörts på ett tag kan vara utom räckhåll eller avstängd. Meddelanden kan inte kvitteras förrän de är tillbaka.';
+
+  @override
+  String get trouble_neighbours => 'Din radio hör andra noder';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Hörs inget direkt når din radio inte meshen härifrån. Höj antennen, gå högre eller närmare en repeater.';
+
+  @override
+  String get trouble_bluetooth => 'Bluetooth är på och appen får använda det';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Kontrollera att Bluetooth är på och att NOTORYX Core Ham har behörighet för Bluetooth (och på Android Enheter i närheten) i telefonens inställningar.';
+
+  @override
+  String get trouble_otherApp =>
+      'Ingen annan telefon eller app är ansluten till radion';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'En radio pratar med en app i taget. Stäng andra MeshCore-appar eller stäng av Bluetooth på andra parkopplade telefoner.';
+
+  @override
+  String get trouble_inRange => 'Radion är på och i närheten';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Kontrollera att radion är laddad, påslagen och inom några meter. En omstart av radion löser ofta en låst anslutning.';
+
+  @override
+  String get trouble_otherTransport => 'Prova ett annat sätt att ansluta';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Om Bluetooth fortsätter att misslyckas, anslut med USB-kabel eller via Wi-Fi (TCP) om radion stöder det.';
+
+  @override
+  String get trouble_noise => 'Radion dränks inte i brus';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'Ett högt brusgolv döljer svaga signaler. Flytta antennen från elektronik, laddare och solcellsregulatorer.';
+
+  @override
+  String get trouble_region => 'Din radio använder ditt områdes inställningar';
+
+  @override
+  String get trouble_regionAdvice =>
+      'Med annan frekvens, bandbredd eller spridningsfaktor än det lokala meshen hör du ingen. Jämför Inställningar → Radio med vad ditt område använder.';
+
+  @override
+  String get trouble_antenna => 'Antennen sitter på';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Se till att antennen är ordentligt fastskruvad. Sänd aldrig utan antenn; det kan skada radion.';
 }

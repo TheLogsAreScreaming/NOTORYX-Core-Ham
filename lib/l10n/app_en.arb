@@ -6519,5 +6519,78 @@
     }
   },
   "routeHealth_useFlood": "Find a new route",
-  "routeHealth_keep": "Keep this route"
+  "routeHealth_keep": "Keep this route",
+  "netChange_title": "Network changes",
+  "netChange_toolSubtitle": "Repeaters that appeared nearby or went quiet",
+  "netChange_newDirect": "New repeater heard directly: {name}",
+  "@netChange_newDirect": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "netChange_newHops": "New repeater {hops} hop away: {name}",
+  "@netChange_newHops": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "hops": {
+        "type": "int"
+      }
+    }
+  },
+  "netChange_wentQuiet": "{name} went quiet: not heard for {hours} h",
+  "@netChange_wentQuiet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "netChange_empty": "No changes yet. Favourite repeaters that go quiet, and new repeaters nearby, show up here.",
+  "netChange_quietSetting": "Favourite repeater goes quiet",
+  "netChange_quietHint": "Notify when a favourite repeater hasn't been heard for this long",
+  "netChange_newSetting": "New repeater nearby",
+  "netChange_newHint": "Notify when a repeater not seen before is heard within one hop",
+  "netChange_clear": "Clear",
+  "netChange_notifTitle": "Network change",
+  "trouble_title": "Troubleshooting",
+  "trouble_toolSubtitle": "Step-by-step help when something doesn't work",
+  "trouble_pick": "What's wrong?",
+  "trouble_noDelivery": "Messages aren't delivered",
+  "trouble_noConnect": "Can't connect to my radio",
+  "trouble_hearNobody": "I don't hear anyone",
+  "trouble_startHere": "Start here",
+  "trouble_resultOk": "OK",
+  "trouble_resultProblem": "Problem",
+  "trouble_resultUnchecked": "Can't check",
+  "trouble_connectedNow": "You're connected now. If it keeps dropping, the steps below still help.",
+  "trouble_allOk": "Every check passed. If it still doesn't work, the steps below are worth a look.",
+  "trouble_connected": "Your radio is connected",
+  "trouble_connectedAdvice": "Connect your radio first: Settings → Connect a radio.",
+  "trouble_routes": "Routes are known to the people you message",
+  "trouble_routesAdvice": "Messages to someone with no known route flood the whole mesh and often don't arrive. Wait until they advert, or ask them to, then message again.",
+  "trouble_heardRecently": "The people you message were heard in the last day",
+  "trouble_heardRecentlyAdvice": "Someone not heard in a while may be out of range or switched off. Their messages can't be acknowledged until they're back.",
+  "trouble_neighbours": "Your radio hears other nodes",
+  "trouble_neighboursAdvice": "Nothing heard directly means your radio can't reach the mesh from here. Raise the antenna, go higher, or move closer to a repeater.",
+  "trouble_bluetooth": "Bluetooth is on and the app may use it",
+  "trouble_bluetoothAdvice": "Check Bluetooth is on, and that NOTORYX Core Ham has Bluetooth (and on Android, Nearby devices) permission in the phone's settings.",
+  "trouble_otherApp": "No other phone or app is connected to the radio",
+  "trouble_otherAppAdvice": "A radio talks to one app at a time. Close other MeshCore apps, or turn Bluetooth off on other phones that were paired.",
+  "trouble_inRange": "The radio is on and nearby",
+  "trouble_inRangeAdvice": "Check the radio is charged and switched on, and within a few metres. Restarting the radio often clears a stuck connection.",
+  "trouble_otherTransport": "Try another way to connect",
+  "trouble_otherTransportAdvice": "If Bluetooth keeps failing, connect with a USB cable, or over Wi-Fi (TCP) if your radio supports it.",
+  "trouble_noise": "The radio isn't drowned in noise",
+  "trouble_noiseAdvice": "A high noise floor hides weak signals. Move the antenna away from electronics, chargers and solar controllers.",
+  "trouble_region": "Your radio uses the agreed channel",
+  "trouble_regionAdvice": "A different frequency, bandwidth or spreading factor from the other stations hears no one. Compare Settings → Radio with the channel agreed with your frequency coordinator.",
+  "trouble_antenna": "The antenna is fitted",
+  "trouble_antennaAdvice": "Make sure the antenna is screwed on firmly. Never transmit without one; it can damage the radio."
 }
