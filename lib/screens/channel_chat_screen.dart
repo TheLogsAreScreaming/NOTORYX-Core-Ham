@@ -70,6 +70,7 @@ import '../widgets/mesh_ui.dart';
 import 'app_settings_screen.dart';
 import 'channel_message_path_screen.dart';
 import 'map_screen.dart';
+import 'waypoints_screen.dart' show SaveWaypointButton;
 import 'region_management_screen.dart';
 import '../storage/region_store.dart';
 import '../widgets/ui/mesh_states.dart';
@@ -1310,6 +1311,12 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 ),
             ],
           ),
+        ),
+        SaveWaypointButton(
+          label: poi.label,
+          lat: poi.position.latitude,
+          lon: poi.position.longitude,
+          color: textColor,
         ),
         if (trailing != null) ...[const SizedBox(width: 4), trailing],
       ],

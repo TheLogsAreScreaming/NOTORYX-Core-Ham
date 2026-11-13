@@ -18061,6 +18061,138 @@ abstract class AppLocalizations {
   /// **'Keep this route'**
   String get routeHealth_keep;
 
+  /// No description provided for @waypoints_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Waypoints'**
+  String get waypoints_title;
+
+  /// No description provided for @waypoints_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved places and routes; import or export GPX'**
+  String get waypoints_toolSubtitle;
+
+  /// No description provided for @waypoints_importFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Import GPX file'**
+  String get waypoints_importFile;
+
+  /// No description provided for @waypoints_importPaste.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste GPX'**
+  String get waypoints_importPaste;
+
+  /// No description provided for @waypoints_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export GPX'**
+  String get waypoints_export;
+
+  /// No description provided for @waypoints_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No waypoints yet. Import a GPX file, or save a place someone shared in a chat.'**
+  String get waypoints_empty;
+
+  /// No description provided for @waypoints_waypoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Waypoints ({count})'**
+  String waypoints_waypoints(int count);
+
+  /// No description provided for @waypoints_routes.
+  ///
+  /// In en, this message translates to:
+  /// **'Routes ({count})'**
+  String waypoints_routes(int count);
+
+  /// No description provided for @waypoints_routeSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{points} points · {km} km'**
+  String waypoints_routeSummary(int points, String km);
+
+  /// No description provided for @waypoints_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get waypoints_delete;
+
+  /// No description provided for @waypoints_copy.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy coordinates'**
+  String get waypoints_copy;
+
+  /// No description provided for @waypoints_sendToChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to a channel'**
+  String get waypoints_sendToChannel;
+
+  /// No description provided for @waypoints_pickChannel.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to which channel?'**
+  String get waypoints_pickChannel;
+
+  /// No description provided for @waypoints_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to {channel}'**
+  String waypoints_sent(String channel);
+
+  /// No description provided for @waypoints_importFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'That isn\'t a GPX file the app can read.'**
+  String get waypoints_importFailed;
+
+  /// No description provided for @waypoints_pasteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste the GPX text here'**
+  String get waypoints_pasteHint;
+
+  /// No description provided for @waypoints_import.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get waypoints_import;
+
+  /// No description provided for @waypoints_imported.
+  ///
+  /// In en, this message translates to:
+  /// **'Added {waypoints} waypoints and {routes} routes'**
+  String waypoints_imported(int waypoints, int routes);
+
+  /// No description provided for @waypoints_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save as waypoint'**
+  String get waypoints_save;
+
+  /// No description provided for @waypoints_unnamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared place'**
+  String get waypoints_unnamed;
+
+  /// No description provided for @waypoints_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to Waypoints'**
+  String get waypoints_saved;
+
+  /// No description provided for @waypoints_alreadySaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Already in Waypoints'**
+  String get waypoints_alreadySaved;
+
   /// No description provided for @netChange_title.
   ///
   /// In en, this message translates to:
