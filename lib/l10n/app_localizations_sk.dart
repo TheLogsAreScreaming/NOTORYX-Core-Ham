@@ -11027,4 +11027,70 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Uistite sa, že anténa je pevne priskrutkovaná. Nikdy nevysielajte bez nej; môže to poškodiť rádio.';
+
+  @override
+  String get readiness_sos => 'Príjemcovia SOS';
+
+  @override
+  String get readiness_sosOk => 'SOS má príjemcov.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS nemá komu poslať. Pridajte účastníkov výletu zo svojich kontaktov alebo nastavte SOS kanál.';
+
+  @override
+  String get readiness_routes => 'Trasy k účastníkom';
+
+  @override
+  String get readiness_routesOk => 'Ku každému účastníkovi je známa trasa.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'K $names nie je známa trasa. Správy sa budú šíriť zaplavením, kým sa trasa nenaučí. Pošlite im správu pred odchodom.';
+  }
+
+  @override
+  String get readiness_notifications => 'Upozornenia';
+
+  @override
+  String get readiness_notificationsOk => 'Povolené.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Upozornenia sú vypnuté, takže nebudete počuť odpovede, hlásenia ani výstrahy.';
+
+  @override
+  String get readiness_batteryOpt => 'Optimalizácia batérie';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham je vyňatý.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android môže aplikáciu na pozadí zastaviť. Vypnite to v Nastavenia → Nastavenia aplikácie → Upozornenia.';
+
+  @override
+  String get readiness_blockedTitle => 'Výlet sa ešte nedá začať';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count vecí na kontrolu';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Začať aj tak';
+
+  @override
+  String get readiness_review => 'Skontrolovať';
+
+  @override
+  String get readiness_summaryReady => 'Pripravené na cestu';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count na kontrolu';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS sa k nikomu nedostane';
 }

@@ -11001,4 +11001,71 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Zorg dat de antenne stevig vastgeschroefd is. Zend nooit zonder antenne; dat kan de radio beschadigen.';
+
+  @override
+  String get readiness_sos => 'SOS-ontvangers';
+
+  @override
+  String get readiness_sosOk => 'SOS heeft ontvangers.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS heeft niemand om te bereiken. Voeg tochtcontacten uit je contacten toe of stel een SOS-kanaal in.';
+
+  @override
+  String get readiness_routes => 'Routes naar tochtcontacten';
+
+  @override
+  String get readiness_routesOk =>
+      'Er is een route bekend naar elk tochtcontact.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Geen bekende route naar $names. Berichten worden geflood tot er een route geleerd is. Stuur ze een bericht voor vertrek.';
+  }
+
+  @override
+  String get readiness_notifications => 'Meldingen';
+
+  @override
+  String get readiness_notificationsOk => 'Toegestaan.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Meldingen staan uit, dus je hoort geen antwoorden, check-ins of waarschuwingen.';
+
+  @override
+  String get readiness_batteryOpt => 'Batterijoptimalisatie';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham is uitgezonderd.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android kan de app op de achtergrond stoppen. Zet het uit via Instellingen → App-instellingen → Meldingen.';
+
+  @override
+  String get readiness_blockedTitle => 'Tocht kan nog niet starten';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count punten om na te kijken';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Toch starten';
+
+  @override
+  String get readiness_review => 'Bekijken';
+
+  @override
+  String get readiness_summaryReady => 'Klaar om te gaan';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count na te kijken';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS bereikt niemand';
 }

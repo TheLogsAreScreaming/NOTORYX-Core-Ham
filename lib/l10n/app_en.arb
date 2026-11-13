@@ -6592,5 +6592,45 @@
   "trouble_region": "Your radio uses the agreed channel",
   "trouble_regionAdvice": "A different frequency, bandwidth or spreading factor from the other stations hears no one. Compare Settings → Radio with the channel agreed with your frequency coordinator.",
   "trouble_antenna": "The antenna is fitted",
-  "trouble_antennaAdvice": "Make sure the antenna is screwed on firmly. Never transmit without one; it can damage the radio."
+  "trouble_antennaAdvice": "Make sure the antenna is screwed on firmly. Never transmit without one; it can damage the radio.",
+  "readiness_sos": "SOS recipients",
+  "readiness_sosOk": "SOS has someone to send to.",
+  "readiness_sosBlocked": "SOS has no one to reach. Add trip contacts who are in your contacts, or set an SOS channel.",
+  "readiness_routes": "Routes to trip contacts",
+  "readiness_routesOk": "A route is known to every trip contact.",
+  "readiness_routesMissing": "No known route to {names}. Messages will flood until one is learned. Send them a message before you go.",
+  "@readiness_routesMissing": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "readiness_notifications": "Notifications",
+  "readiness_notificationsOk": "Allowed.",
+  "readiness_notificationsOff": "Notifications are off, so you won't hear replies, check-ins or alerts.",
+  "readiness_batteryOpt": "Battery optimisation",
+  "readiness_batteryOptOk": "NOTORYX Core Ham is exempt.",
+  "readiness_batteryOptOn": "Android may stop the app in the background. Turn it off in Settings → App Settings → Notifications.",
+  "readiness_blockedTitle": "Can't start the trip yet",
+  "readiness_warnTitle": "{count} things to check",
+  "@readiness_warnTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readiness_startAnyway": "Start anyway",
+  "readiness_review": "Review",
+  "readiness_summaryReady": "Ready to go",
+  "readiness_summaryWarn": "{count} to check",
+  "@readiness_summaryWarn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readiness_summaryBlocked": "SOS can't reach anyone"
 }

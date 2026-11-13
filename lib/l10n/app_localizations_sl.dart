@@ -11049,4 +11049,70 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Prepričajte se, da je antena trdno privita. Nikoli ne oddajajte brez nje; to lahko poškoduje radio.';
+
+  @override
+  String get readiness_sos => 'Prejemniki SOS';
+
+  @override
+  String get readiness_sosOk => 'SOS ima prejemnike.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS nima koga doseči. Dodajte udeležence izleta iz svojih stikov ali nastavite kanal SOS.';
+
+  @override
+  String get readiness_routes => 'Poti do udeležencev';
+
+  @override
+  String get readiness_routesOk => 'Do vsakega udeleženca je znana pot.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Do $names ni znane poti. Sporočila bodo poplavljala, dokler se pot ne nauči. Pred odhodom jim pošljite sporočilo.';
+  }
+
+  @override
+  String get readiness_notifications => 'Obvestila';
+
+  @override
+  String get readiness_notificationsOk => 'Dovoljena.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Obvestila so izklopljena, zato ne boste slišali odgovorov, javljanj ali opozoril.';
+
+  @override
+  String get readiness_batteryOpt => 'Optimizacija baterije';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham je izvzet.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android lahko aplikacijo ustavi v ozadju. Izklopite v Nastavitve → Nastavitve aplikacije → Obvestila.';
+
+  @override
+  String get readiness_blockedTitle => 'Izleta še ni mogoče začeti';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count stvari za preverjanje';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Vseeno začni';
+
+  @override
+  String get readiness_review => 'Preglej';
+
+  @override
+  String get readiness_summaryReady => 'Pripravljeni';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count za preverjanje';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS ne doseže nikogar';
 }

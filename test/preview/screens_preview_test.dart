@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:meshcore_open/services/sos_relay_service.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/l10n/app_localizations.dart';
@@ -397,6 +398,9 @@ Widget _app(Widget home, ThemeMode mode) {
     providers: [
       ChangeNotifierProvider<MeshCoreConnector>.value(value: connector),
       ChangeNotifierProvider(create: (_) => FieldOpsService(connector)..load()),
+      ChangeNotifierProvider(
+        create: (_) => SosRelayService.forConnector(connector),
+      ),
       ChangeNotifierProvider(
         create: (_) => SensorSubscriptionService(connector),
       ),

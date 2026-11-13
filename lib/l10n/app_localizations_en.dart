@@ -10910,4 +10910,70 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Make sure the antenna is screwed on firmly. Never transmit without one; it can damage the radio.';
+
+  @override
+  String get readiness_sos => 'SOS recipients';
+
+  @override
+  String get readiness_sosOk => 'SOS has someone to send to.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS has no one to reach. Add trip contacts who are in your contacts, or set an SOS channel.';
+
+  @override
+  String get readiness_routes => 'Routes to trip contacts';
+
+  @override
+  String get readiness_routesOk => 'A route is known to every trip contact.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'No known route to $names. Messages will flood until one is learned. Send them a message before you go.';
+  }
+
+  @override
+  String get readiness_notifications => 'Notifications';
+
+  @override
+  String get readiness_notificationsOk => 'Allowed.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Notifications are off, so you won\'t hear replies, check-ins or alerts.';
+
+  @override
+  String get readiness_batteryOpt => 'Battery optimisation';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham is exempt.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android may stop the app in the background. Turn it off in Settings → App Settings → Notifications.';
+
+  @override
+  String get readiness_blockedTitle => 'Can\'t start the trip yet';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count things to check';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Start anyway';
+
+  @override
+  String get readiness_review => 'Review';
+
+  @override
+  String get readiness_summaryReady => 'Ready to go';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count to check';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS can\'t reach anyone';
 }

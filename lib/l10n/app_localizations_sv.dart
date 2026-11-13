@@ -10957,4 +10957,70 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Se till att antennen är ordentligt fastskruvad. Sänd aldrig utan antenn; det kan skada radion.';
+
+  @override
+  String get readiness_sos => 'SOS-mottagare';
+
+  @override
+  String get readiness_sosOk => 'SOS har mottagare.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS har ingen att nå. Lägg till turkontakter som finns bland dina kontakter, eller välj en SOS-kanal.';
+
+  @override
+  String get readiness_routes => 'Vägar till turkontakter';
+
+  @override
+  String get readiness_routesOk => 'En väg är känd till varje turkontakt.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Ingen känd väg till $names. Meddelanden floodas tills en väg lärs in. Skicka ett meddelande till dem innan du går.';
+  }
+
+  @override
+  String get readiness_notifications => 'Aviseringar';
+
+  @override
+  String get readiness_notificationsOk => 'Tillåtna.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Aviseringar är avstängda, så du hör inga svar, incheckningar eller larm.';
+
+  @override
+  String get readiness_batteryOpt => 'Batterioptimering';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham är undantaget.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android kan stoppa appen i bakgrunden. Stäng av det under Inställningar → Appinställningar → Aviseringar.';
+
+  @override
+  String get readiness_blockedTitle => 'Turen kan inte starta än';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count saker att kolla';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Starta ändå';
+
+  @override
+  String get readiness_review => 'Granska';
+
+  @override
+  String get readiness_summaryReady => 'Redo att gå';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count att kolla';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS når ingen';
 }

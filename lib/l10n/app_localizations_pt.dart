@@ -11026,4 +11026,71 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Confirme que a antena está bem enroscada. Nunca transmita sem ela; pode danificar o rádio.';
+
+  @override
+  String get readiness_sos => 'Destinatários do SOS';
+
+  @override
+  String get readiness_sosOk => 'O SOS tem destinatários.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'O SOS não tem a quem chegar. Adicione contactos da saída que estejam nos seus contactos ou defina um canal SOS.';
+
+  @override
+  String get readiness_routes => 'Rotas para os contactos da saída';
+
+  @override
+  String get readiness_routesOk =>
+      'Há rota conhecida para cada contacto da saída.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Sem rota conhecida para $names. As mensagens vão por inundação até se aprender uma rota. Envie-lhes uma mensagem antes de partir.';
+  }
+
+  @override
+  String get readiness_notifications => 'Notificações';
+
+  @override
+  String get readiness_notificationsOk => 'Permitidas.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'As notificações estão desligadas, por isso não ouvirá respostas, check-ins nem alertas.';
+
+  @override
+  String get readiness_batteryOpt => 'Otimização da bateria';
+
+  @override
+  String get readiness_batteryOptOk => 'O NOTORYX Core Ham está isento.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'O Android pode parar a app em segundo plano. Desligue em Definições → Definições da app → Notificações.';
+
+  @override
+  String get readiness_blockedTitle => 'Ainda não pode iniciar a saída';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count coisas a verificar';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Iniciar mesmo assim';
+
+  @override
+  String get readiness_review => 'Rever';
+
+  @override
+  String get readiness_summaryReady => 'Pronto para partir';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count a verificar';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'O SOS não chega a ninguém';
 }

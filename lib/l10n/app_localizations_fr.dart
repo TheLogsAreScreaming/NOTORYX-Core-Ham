@@ -11080,4 +11080,71 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Vérifiez que l\'antenne est bien vissée. N\'émettez jamais sans antenne ; cela peut endommager la radio.';
+
+  @override
+  String get readiness_sos => 'Destinataires du SOS';
+
+  @override
+  String get readiness_sosOk => 'Le SOS a des destinataires.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'Le SOS n\'a personne à joindre. Ajoutez des contacts de sortie présents dans vos contacts, ou définissez un canal SOS.';
+
+  @override
+  String get readiness_routes => 'Routes vers les contacts de sortie';
+
+  @override
+  String get readiness_routesOk =>
+      'Une route est connue vers chaque contact de sortie.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Aucune route connue vers $names. Les messages seront diffusés en inondation jusqu\'à ce qu\'une route soit apprise. Envoyez-leur un message avant de partir.';
+  }
+
+  @override
+  String get readiness_notifications => 'Notifications';
+
+  @override
+  String get readiness_notificationsOk => 'Autorisées.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Les notifications sont désactivées : vous n\'entendrez ni réponses, ni pointages, ni alertes.';
+
+  @override
+  String get readiness_batteryOpt => 'Optimisation de la batterie';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham est exempté.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android peut arrêter l\'app en arrière-plan. Désactivez-la dans Réglages → Réglages de l\'app → Notifications.';
+
+  @override
+  String get readiness_blockedTitle => 'Impossible de démarrer la sortie';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count points à vérifier';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Démarrer quand même';
+
+  @override
+  String get readiness_review => 'Vérifier';
+
+  @override
+  String get readiness_summaryReady => 'Prêt à partir';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count à vérifier';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'Le SOS ne joint personne';
 }
