@@ -4414,6 +4414,72 @@ class AppLocalizationsSl extends AppLocalizations {
   String get listFilter_newGroup => 'Nova skupina';
 
   @override
+  String get traceCard_title => 'Kartica sledi';
+
+  @override
+  String get traceCard_open => 'Deli kartico sledi';
+
+  @override
+  String traceCard_from(String name) {
+    return 'Od $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'Za $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Poslano $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Tja in nazaj $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Skoki: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Nazaj k tebi';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Pot $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Najšibkejša povezava $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Za to pot ni znanih položajev, zato ni zemljevida.';
+
+  @override
+  String get traceCard_guessed => 'ocenjen položaj';
+
+  @override
+  String get traceCard_mapLabel => 'Zemljevid poti tja in nazaj';
+
+  @override
+  String get traceCard_shareImage => 'Deli sliko';
+
+  @override
+  String get traceCard_shareText => 'Deli besedilo';
+
+  @override
+  String get traceCard_shareFailed => 'Kartice sledi ni bilo mogoče deliti.';
+
+  @override
+  String get traceCard_snrUnknown => 'ni SNR';
+
+  @override
   String get pathTrace_you => 'Ti';
 
   @override

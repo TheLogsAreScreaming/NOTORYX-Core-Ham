@@ -4442,6 +4442,73 @@ class AppLocalizationsDe extends AppLocalizations {
   String get listFilter_newGroup => 'Neue Gruppe';
 
   @override
+  String get traceCard_title => 'Trace-Karte';
+
+  @override
+  String get traceCard_open => 'Trace-Karte teilen';
+
+  @override
+  String traceCard_from(String name) {
+    return 'Von $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return 'An $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return 'Gesendet $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return 'Hin und zurück $seconds s';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return 'Hops: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => 'Zurück bei dir';
+
+  @override
+  String traceCard_distance(String distance) {
+    return 'Strecke $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return 'Schwächste Verbindung $snr';
+  }
+
+  @override
+  String get traceCard_noMap =>
+      'Für diese Strecke sind keine Positionen bekannt, daher gibt es keine Karte.';
+
+  @override
+  String get traceCard_guessed => 'geschätzte Position';
+
+  @override
+  String get traceCard_mapLabel => 'Karte von Hin- und Rückweg';
+
+  @override
+  String get traceCard_shareImage => 'Bild teilen';
+
+  @override
+  String get traceCard_shareText => 'Text teilen';
+
+  @override
+  String get traceCard_shareFailed =>
+      'Die Trace-Karte konnte nicht geteilt werden.';
+
+  @override
+  String get traceCard_snrUnknown => 'kein SNR';
+
+  @override
   String get pathTrace_you => 'Du';
 
   @override

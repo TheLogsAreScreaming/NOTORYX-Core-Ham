@@ -4219,6 +4219,71 @@ class AppLocalizationsKo extends AppLocalizations {
   String get listFilter_newGroup => '새로운 그룹';
 
   @override
+  String get traceCard_title => '추적 카드';
+
+  @override
+  String get traceCard_open => '추적 카드 공유';
+
+  @override
+  String traceCard_from(String name) {
+    return '보낸 곳: $name';
+  }
+
+  @override
+  String traceCard_to(String name) {
+    return '받는 곳: $name';
+  }
+
+  @override
+  String traceCard_sentAt(String time) {
+    return '보낸 시각 $time';
+  }
+
+  @override
+  String traceCard_roundTrip(String seconds) {
+    return '왕복 $seconds초';
+  }
+
+  @override
+  String traceCard_hops(int count) {
+    return '홉: $count';
+  }
+
+  @override
+  String get traceCard_backToYou => '나에게 돌아옴';
+
+  @override
+  String traceCard_distance(String distance) {
+    return '경로 $distance';
+  }
+
+  @override
+  String traceCard_weakest(String snr) {
+    return '가장 약한 링크 $snr';
+  }
+
+  @override
+  String get traceCard_noMap => '이 경로의 위치를 알 수 없어 지도가 없습니다.';
+
+  @override
+  String get traceCard_guessed => '추정 위치';
+
+  @override
+  String get traceCard_mapLabel => '왕복 경로 지도';
+
+  @override
+  String get traceCard_shareImage => '이미지 공유';
+
+  @override
+  String get traceCard_shareText => '텍스트 공유';
+
+  @override
+  String get traceCard_shareFailed => '추적 카드를 공유할 수 없습니다.';
+
+  @override
+  String get traceCard_snrUnknown => 'SNR 없음';
+
+  @override
   String get pathTrace_you => '당신';
 
   @override

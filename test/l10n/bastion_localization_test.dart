@@ -29,6 +29,7 @@ const _bastionPrefixes = [
   'settings_batterySaver',
   'settings_readAloud',
   'chat_readAloud',
+  'traceCard_',
 ];
 
 Map<String, dynamic> _arb(String locale) =>
