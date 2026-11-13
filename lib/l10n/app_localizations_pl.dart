@@ -11243,4 +11243,8 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Pokaż zapisane punkty i trasy';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Obejmuje też kontakty, klucze kanałów, punkty trasy, zapisane trasy, wersje robocze i oczekujące wiadomości.';
 }

@@ -11150,4 +11150,8 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Opgeslagen waypoints en routes tonen';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Omvat ook contacten, kanaalsleutels, waypoints, opgeslagen routes, concepten en wachtende berichten.';
 }

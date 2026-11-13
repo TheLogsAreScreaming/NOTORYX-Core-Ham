@@ -4624,5 +4624,6 @@
   "waypoints_unnamed": "Lieu partagé",
   "waypoints_saved": "Enregistré dans Points de passage",
   "waypoints_alreadySaved": "Déjà dans Points de passage",
-  "map_showWaypoints": "Afficher les points et itinéraires enregistrés"
+  "map_showWaypoints": "Afficher les points et itinéraires enregistrés",
+  "dbEncrypt_covers": "Couvre aussi les contacts, les clés de canal, les points de repère, les itinéraires enregistrés, les brouillons et les messages en attente."
 }

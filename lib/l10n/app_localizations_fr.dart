@@ -11230,4 +11230,8 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get map_showWaypoints =>
       'Afficher les points et itinéraires enregistrés';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Couvre aussi les contacts, les clés de canal, les points de repère, les itinéraires enregistrés, les brouillons et les messages en attente.';
 }

@@ -10656,4 +10656,8 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get map_showWaypoints => '保存したウェイポイントとルートを表示';
+
+  @override
+  String get dbEncrypt_covers =>
+      '連絡先、チャンネルキー、ウェイポイント、保存したルート、下書き、送信待ちメッセージも対象です。';
 }

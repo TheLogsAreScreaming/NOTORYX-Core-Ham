@@ -11175,4 +11175,8 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Zobraziť uložené body a trasy';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Zahŕňa aj kontakty, kľúče kanálov, body trasy, uložené trasy, koncepty a čakajúce správy.';
 }

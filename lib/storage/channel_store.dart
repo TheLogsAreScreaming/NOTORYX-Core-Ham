@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import '../models/channel.dart';
 import '../utils/app_logger.dart';
-import 'prefs_manager.dart';
+import 'secure_prefs.dart';
 
 class ChannelStore {
   static const String _keyPrefix = 'channels';
@@ -18,23 +18,22 @@ class ChannelStore {
       appLogger.warn('Public key hex is not set. Cannot load channels.');
       return [];
     }
-    final prefs = PrefsManager.instance;
-    String? jsonString = prefs.getString(keyFor);
+    String? jsonString = SecurePrefs.getString(keyFor);
     if (jsonString == null || jsonString.isEmpty) {
       // Attempt migration from legacy unscoped key on first load
-      final legacyJsonString = prefs.getString(_keyPrefix);
-      prefs.remove(_keyPrefix);
+      final legacyJsonString = SecurePrefs.getString(_keyPrefix);
+      SecurePrefs.remove(_keyPrefix);
       if (legacyJsonString != null && legacyJsonString.isNotEmpty) {
         appLogger.info(
           'Migrating channel messages from legacy key $_keyPrefix to scoped key $keyFor',
         );
-        await prefs.setString(keyFor, legacyJsonString);
+        await SecurePrefs.setString(keyFor, legacyJsonString);
         jsonString = legacyJsonString;
       }
     }
 
     if (jsonString == null || jsonString.isEmpty) {
-      jsonString = prefs.getString(keyFor);
+      jsonString = SecurePrefs.getString(keyFor);
     }
     if (jsonString == null || jsonString.isEmpty) {
       return [];
@@ -55,9 +54,8 @@ class ChannelStore {
       appLogger.warn('Public key hex is not set. Cannot save channels.');
       return;
     }
-    final prefs = PrefsManager.instance;
     final jsonList = channels.map(_toJson).toList();
-    await prefs.setString(keyFor, jsonEncode(jsonList));
+    await SecurePrefs.setString(keyFor, jsonEncode(jsonList));
   }
 
   Map<String, dynamic> _toJson(Channel channel) {

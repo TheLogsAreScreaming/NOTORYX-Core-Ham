@@ -11058,4 +11058,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Show saved waypoints and routes';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Also covers contacts, channel keys, waypoints, saved routes, drafts and waiting messages.';
 }

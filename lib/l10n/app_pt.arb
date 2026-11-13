@@ -4490,5 +4490,6 @@
   "waypoints_unnamed": "Local partilhado",
   "waypoints_saved": "Guardado em Pontos de passagem",
   "waypoints_alreadySaved": "Já está em Pontos de passagem",
-  "map_showWaypoints": "Mostrar pontos e rotas guardados"
+  "map_showWaypoints": "Mostrar pontos e rotas guardados",
+  "dbEncrypt_covers": "Abrange também contactos, chaves de canal, pontos de passagem, rotas guardadas, rascunhos e mensagens em espera."
 }

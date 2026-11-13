@@ -88,6 +88,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
             subtitle: Text(
               [
                 l10n.dbEncrypt_subtitle,
+                l10n.dbEncrypt_covers,
                 if (want != null) _encryptStatus(context, want),
               ].join('\n'),
             ),

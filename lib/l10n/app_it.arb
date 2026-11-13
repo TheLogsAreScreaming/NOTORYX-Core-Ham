@@ -4624,5 +4624,6 @@
   "waypoints_unnamed": "Luogo condiviso",
   "waypoints_saved": "Salvato nei Waypoint",
   "waypoints_alreadySaved": "Già nei Waypoint",
-  "map_showWaypoints": "Mostra waypoint e percorsi salvati"
+  "map_showWaypoints": "Mostra waypoint e percorsi salvati",
+  "dbEncrypt_covers": "Copre anche contatti, chiavi dei canali, waypoint, percorsi salvati, bozze e messaggi in attesa."
 }

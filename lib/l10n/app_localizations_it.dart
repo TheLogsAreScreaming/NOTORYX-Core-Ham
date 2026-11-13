@@ -11204,4 +11204,8 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Mostra waypoint e percorsi salvati';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Copre anche contatti, chiavi dei canali, waypoint, percorsi salvati, bozze e messaggi in attesa.';
 }

@@ -4490,5 +4490,6 @@
   "waypoints_unnamed": "Zdieľané miesto",
   "waypoints_saved": "Uložené v Bodoch trasy",
   "waypoints_alreadySaved": "Už je v Bodoch trasy",
-  "map_showWaypoints": "Zobraziť uložené body a trasy"
+  "map_showWaypoints": "Zobraziť uložené body a trasy",
+  "dbEncrypt_covers": "Zahŕňa aj kontakty, kľúče kanálov, body trasy, uložené trasy, koncepty a čakajúce správy."
 }

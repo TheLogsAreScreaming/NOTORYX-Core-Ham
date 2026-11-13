@@ -11175,4 +11175,8 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Mostrar pontos e rotas guardados';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Abrange também contactos, chaves de canal, pontos de passagem, rotas guardadas, rascunhos e mensagens em espera.';
 }

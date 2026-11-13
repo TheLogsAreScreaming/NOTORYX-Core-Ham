@@ -67,6 +67,16 @@ abstract class MessageDb {
   /// Whether this database is encrypted on disk.
   bool get isEncrypted;
 
+  /// Every stored sensitive setting.
+  Map<String, String> loadSecrets();
+
+  /// Adds or replaces [values] in one transaction.
+  void putSecrets(Map<String, String> values);
+
+  void removeSecret(String key);
+
+  void clearSecrets();
+
   /// Whether [scope]'s SharedPreferences history has been copied in.
   bool isMigrated(String scope);
 
