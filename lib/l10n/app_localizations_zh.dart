@@ -10438,4 +10438,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get map_showWaypoints => '显示已保存的航点和路线';
+
+  @override
+  String get dbEncrypt_covers => '同时涵盖联系人、频道密钥、航点、已保存的路线、草稿和待发送消息。';
 }

@@ -4624,5 +4624,6 @@
   "waypoints_unnamed": "Lugar compartido",
   "waypoints_saved": "Guardado en Puntos de ruta",
   "waypoints_alreadySaved": "Ya está en Puntos de ruta",
-  "map_showWaypoints": "Mostrar puntos y rutas guardados"
+  "map_showWaypoints": "Mostrar puntos y rutas guardados",
+  "dbEncrypt_covers": "También cubre contactos, claves de canal, puntos de ruta, rutas guardadas, borradores y mensajes en espera."
 }

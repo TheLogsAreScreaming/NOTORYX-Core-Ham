@@ -11179,4 +11179,8 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Mentett útpontok és útvonalak megjelenítése';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Kiterjed a névjegyekre, csatornakulcsokra, útpontokra, mentett útvonalakra, piszkozatokra és a várakozó üzenetekre is.';
 }

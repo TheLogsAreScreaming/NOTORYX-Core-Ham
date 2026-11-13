@@ -65,6 +65,7 @@ import 'services/translation_service.dart';
 import 'services/ui_view_state_service.dart';
 import 'services/timeout_prediction_service.dart';
 import 'storage/prefs_manager.dart';
+import 'storage/secure_prefs.dart';
 import 'theme/mesh_theme.dart';
 import 'utils/app_logger.dart';
 import 'widgets/image_send_codec_binding.dart';
@@ -86,6 +87,7 @@ void main() async {
     debugPrint = (String? message, {int? wrapWidth}) {};
   }
   await PrefsManager.initialize();
+  await SecurePrefs.initialize();
   final storage = StorageService();
   final connector = MeshCoreConnector();
   final pathHistoryService = PathHistoryService(storage);

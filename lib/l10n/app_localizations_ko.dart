@@ -10672,4 +10672,8 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get map_showWaypoints => '저장된 웨이포인트와 경로 표시';
+
+  @override
+  String get dbEncrypt_covers =>
+      '연락처, 채널 키, 웨이포인트, 저장된 경로, 임시 저장 글, 대기 중인 메시지도 포함합니다.';
 }

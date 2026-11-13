@@ -4528,5 +4528,6 @@
   "waypoints_unnamed": "Udostępnione miejsce",
   "waypoints_saved": "Zapisano w Punktach",
   "waypoints_alreadySaved": "Już jest w Punktach",
-  "map_showWaypoints": "Pokaż zapisane punkty i trasy"
+  "map_showWaypoints": "Pokaż zapisane punkty i trasy",
+  "dbEncrypt_covers": "Obejmuje też kontakty, klucze kanałów, punkty trasy, zapisane trasy, wersje robocze i oczekujące wiadomości."
 }

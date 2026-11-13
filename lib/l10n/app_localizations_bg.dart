@@ -11177,4 +11177,8 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Показвай запазените точки и маршрути';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Обхваща и контакти, ключове на канали, точки, запазени маршрути, чернови и чакащи съобщения.';
 }

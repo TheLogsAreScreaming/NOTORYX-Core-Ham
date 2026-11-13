@@ -11,7 +11,9 @@ NOTORYX Core Ham is an independent MeshCore companion app. It communicates with 
 
 Depending on the features you use, NOTORYX Core can store messages, contact identifiers, channel settings, routing/path history, coverage sessions and observations, mesh node positions, app preferences, cached map tiles and optional diagnostic logs. Coverage observations can contain the connected radio's GPS coordinates and nearby signal measurements. A radio's GPS position is not necessarily the phone's position.
 
-The app uses device storage and operating-system protections. Encrypted message history is optional and off by default; it covers the message database on this device, not the other settings, logs or exports. Anyone with access to an exported file, or to the unlocked device, may be able to read its contents.
+The app uses device storage and operating-system protections. Anyone with access to an exported file, or to the unlocked device, may be able to read its contents.
+
+You can turn on **App lock** and **Encrypt message history** under Tools → Security. Both are off by default. Encryption covers messages, contacts, channel keys, waypoints, saved routes and drafts on this device. Other settings, logs, exports and the app's route history are not encrypted.
 
 ## Radio communication and sharing
 
