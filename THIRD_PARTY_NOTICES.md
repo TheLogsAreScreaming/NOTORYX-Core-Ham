@@ -62,6 +62,3 @@ Source: https://github.com/MeshMapper/MeshMapper_Flutter_App
 
 Bastion also uses third-party Flutter and Dart packages. Their notices are available from the app's Open Source Licenses screen and their respective distributions.
 
-## KiekR
-
-No KiekR source code, assets or proprietary UI are included in Bastion. Any similar behavior is independently implemented from public product behavior and MeshCore protocol capabilities.
