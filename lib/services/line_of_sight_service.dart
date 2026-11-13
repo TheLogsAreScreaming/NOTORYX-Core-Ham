@@ -361,6 +361,7 @@ class LineOfSightService {
     required double radiusMeters,
     double receiverHeightMeters = 1.5,
     double? frequencyMHz,
+    CoverageRadio? radio,
     int bearings = 36,
     int samples = 30,
   }) async {
@@ -408,6 +409,17 @@ class LineOfSightService {
             receiverHeightMeters: receiverHeightMeters,
             kFactor: kFactor,
           ),
+          signalDbm: radio == null
+              ? const []
+              : signalAlongRay(
+                  radio: radio,
+                  originGroundMeters: ground,
+                  antennaHeightMeters: antennaHeightMeters,
+                  distances: distances,
+                  terrain: heights.sublist(start, start + samples),
+                  receiverHeightMeters: receiverHeightMeters,
+                  kFactor: kFactor,
+                ),
         ),
       );
     }
@@ -416,6 +428,7 @@ class LineOfSightService {
       antennaHeightMeters: antennaHeightMeters,
       radiusMeters: radiusMeters,
       rays: out,
+      radio: radio,
     );
   }
 

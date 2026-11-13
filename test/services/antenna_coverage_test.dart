@@ -146,4 +146,92 @@ void main() {
     expect(find.textContaining('farthest 10.0 km'), findsOneWidget);
     service.dispose();
   });
+
+  group('signal estimate', () {
+    const radio = CoverageRadio(
+      txPowerDbm: 22,
+      frequencyMHz: 915,
+      bandwidthHz: 250000,
+      spreadingFactor: 11,
+    );
+    final distances = [for (var i = 1; i <= 30; i++) 1000.0 * i];
+
+    List<double?> run(List<double?> terrain, {double antenna = 10}) =>
+        signalAlongRay(
+          radio: radio,
+          originGroundMeters: 0,
+          antennaHeightMeters: antenna,
+          distances: distances,
+          terrain: terrain,
+        );
+
+    test('sensitivity follows bandwidth and spreading factor', () {
+      expect(radio.sensitivityDbm, closeTo(-131.5, 0.1));
+      const narrow = CoverageRadio(
+        txPowerDbm: 22,
+        frequencyMHz: 915,
+        bandwidthHz: 125000,
+        spreadingFactor: 11,
+      );
+      expect(narrow.sensitivityDbm, lessThan(radio.sensitivityDbm));
+    });
+
+    test('knife-edge loss matches known values', () {
+      expect(knifeEdgeLossDb(-1), 0);
+      expect(knifeEdgeLossDb(0), closeTo(6.0, 0.2));
+      expect(knifeEdgeLossDb(2.4), closeTo(20.2, 0.5));
+    });
+
+    test('signal weakens with distance over open ground', () {
+      final s = run(List<double?>.filled(30, 0), antenna: 200);
+      expect(s.first!, greaterThan(s.last!));
+      expect(radio.levelOf(s.first!), SignalLevel.strong);
+    });
+
+    test('a ridge costs signal behind it but not before it', () {
+      final flat = run(List<double?>.filled(30, 0), antenna: 200);
+      final ridge = List<double?>.filled(30, 0)..[9] = 600;
+      final behind = run(ridge, antenna: 200);
+      expect(behind[5], closeTo(flat[5]!, 0.01));
+      expect(behind[20]!, lessThan(flat[20]! - 10));
+    });
+
+    test('two ridges cost more than one', () {
+      final one = List<double?>.filled(30, 0)..[9] = 600;
+      final two = List<double?>.of(one)..[18] = 600;
+      expect(
+        run(two, antenna: 200)[25]!,
+        lessThan(run(one, antenna: 200)[25]!),
+      );
+    });
+
+    test('missing terrain at a point is unknown, not zero', () {
+      final t = List<double?>.filled(30, 0)..[4] = null;
+      final s = run(t, antenna: 200);
+      expect(s[4], isNull);
+      expect(s[5], isNotNull);
+    });
+
+    test('levels split on sensitivity and a 10 dB margin', () {
+      final limit = radio.sensitivityDbm;
+      expect(radio.levelOf(limit + 11), SignalLevel.strong);
+      expect(radio.levelOf(limit + 1), SignalLevel.marginal);
+      expect(radio.levelOf(limit - 1), SignalLevel.none);
+    });
+
+    test('a sweep carries estimates when radio settings are given', () async {
+      final service = LineOfSightService(
+        elevationDataSource: (p) async => List<double?>.filled(p.length, 0),
+      );
+      final r = await service.analyzeCoverage(
+        _origin,
+        antennaHeightMeters: 40,
+        radiusMeters: 10000,
+        radio: radio,
+      );
+      expect(r.rays.first.signalDbm, hasLength(30));
+      expect(r.countAt(SignalLevel.strong), greaterThan(0));
+      service.dispose();
+    });
+  });
 }
