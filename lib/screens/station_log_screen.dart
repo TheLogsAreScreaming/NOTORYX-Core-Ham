@@ -23,12 +23,13 @@ class StationLogScreen extends StatelessWidget {
     final l10n = context.l10n;
     final log = context.watch<StationLogService>();
     final entries = log.entries;
+    final automated = log.automated;
     final loc = MaterialLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.ham_stationLog),
         actions: [
-          if (entries.isNotEmpty)
+          if (entries.isNotEmpty || automated.isNotEmpty)
             PopupMenuButton<String>(
               key: const ValueKey('station-log-menu'),
               tooltip: l10n.ham_stationLogExport,
@@ -36,11 +37,22 @@ class StationLogScreen extends StatelessWidget {
               onSelected: (v) => switch (v) {
                 'adif' => _export(context, entries, adif: true),
                 'csv' => _export(context, entries, adif: false),
+                'auto' => _exportAutomated(context, automated),
                 _ => _clear(context, log),
               },
               itemBuilder: (_) => [
-                PopupMenuItem(value: 'adif', child: Text(l10n.ham_exportAdif)),
-                PopupMenuItem(value: 'csv', child: Text(l10n.ham_exportCsv)),
+                if (entries.isNotEmpty) ...[
+                  PopupMenuItem(
+                    value: 'adif',
+                    child: Text(l10n.ham_exportAdif),
+                  ),
+                  PopupMenuItem(value: 'csv', child: Text(l10n.ham_exportCsv)),
+                ],
+                if (automated.isNotEmpty)
+                  PopupMenuItem(
+                    value: 'auto',
+                    child: Text(l10n.ham_exportAutomatedCsv),
+                  ),
                 PopupMenuItem(
                   value: 'clear',
                   child: Text(l10n.ham_stationLogClear),
@@ -51,7 +63,7 @@ class StationLogScreen extends StatelessWidget {
       ),
       body: SafeArea(
         top: false,
-        child: entries.isEmpty
+        child: entries.isEmpty && automated.isEmpty
             ? EmptyState(
                 icon: Icons.menu_book_outlined,
                 title: l10n.ham_stationLogEmpty,
@@ -86,6 +98,48 @@ class StationLogScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  if (automated.isNotEmpty) ...[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
+                      child: Semantics(
+                        header: true,
+                        child: Text(
+                          l10n.ham_automatedTx,
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                      child: Text(
+                        l10n.ham_automatedTxHint,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ),
+                    MeshCard(
+                      key: const ValueKey('station-log-automated'),
+                      padding: EdgeInsets.zero,
+                      child: Column(
+                        children: [
+                          for (final a in automated)
+                            ListTile(
+                              leading: const ExcludeSemantics(
+                                child: Icon(Icons.bolt_outlined),
+                              ),
+                              title: Text('${a.rule} → ${a.to}'),
+                              subtitle: Text(
+                                [
+                                  '${loc.formatShortDate(a.at.toLocal())} '
+                                      '${loc.formatTimeOfDay(TimeOfDay.fromDateTime(a.at.toLocal()))}',
+                                  ?a.band,
+                                  a.text,
+                                ].join(' · '),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ],
               ),
       ),
@@ -112,6 +166,23 @@ class StationLogScreen extends StatelessWidget {
       '${dir.path}/notoryx-ham-log-$stamp.${adif ? 'adi' : 'csv'}',
     );
     await file.writeAsString(text);
+    await SharePlus.instance.share(
+      ShareParams(subject: subject, files: [XFile(file.path)]),
+    );
+  }
+
+  Future<void> _exportAutomated(
+    BuildContext context,
+    List<AutomatedTransmission> automated,
+  ) async {
+    final subject = context.l10n.ham_automatedTx;
+    final dir = await getTemporaryDirectory();
+    final stamp = DateTime.now().toUtc().toIso8601String().replaceAll(
+      RegExp(r'[:.]'),
+      '-',
+    );
+    final file = File('${dir.path}/notoryx-ham-automated-$stamp.csv');
+    await file.writeAsString(automatedTransmissionsCsv(automated));
     await SharePlus.instance.share(
       ShareParams(subject: subject, files: [XFile(file.path)]),
     );

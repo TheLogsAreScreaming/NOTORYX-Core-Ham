@@ -19,14 +19,19 @@ class StationLogService extends ChangeNotifier {
     : _clock = clock ?? DateTime.now;
 
   static const _prefKey = 'ham_station_log';
+  static const _autoKey = 'ham_automated_tx_log';
 
   final MeshCoreConnector _connector;
   final DateTime Function() _clock;
   final _subs = <StreamSubscription<Object>>[];
   List<StationLogEntry> _log = const [];
+  List<AutomatedTransmission> _automated = const [];
 
   /// Entries, newest first.
   List<StationLogEntry> get entries => _log;
+
+  /// Messages automation rules sent on air, newest first.
+  List<AutomatedTransmission> get automated => _automated;
 
   /// Loads the saved log and starts logging.
   void start() {
@@ -37,6 +42,7 @@ class StationLogService extends ChangeNotifier {
   }
 
   void _load() {
+    _loadAutomated();
     final stored = PrefsManager.instance.getString(_prefKey);
     if (stored == null) return;
     try {
@@ -51,6 +57,48 @@ class StationLogService extends ChangeNotifier {
         PrefsManager.instance.setString('${_prefKey}_unreadable', stored),
       );
     }
+  }
+
+  void _loadAutomated() {
+    final stored = PrefsManager.instance.getString(_autoKey);
+    if (stored == null) return;
+    try {
+      _automated = [
+        for (final j in jsonDecode(stored) as List)
+          ?AutomatedTransmission.fromJson(j),
+      ];
+    } catch (e) {
+      appLogger.warn('Automated log unreadable, kept a copy: $e', tag: 'Ham');
+      unawaited(
+        PrefsManager.instance.setString('${_autoKey}_unreadable', stored),
+      );
+    }
+  }
+
+  /// Records a message an automation rule just sent on air.
+  Future<void> recordAutomated({
+    required String rule,
+    required String to,
+    required String text,
+    required String station,
+  }) {
+    final entry = AutomatedTransmission(
+      at: _clock().toUtc(),
+      rule: rule,
+      to: to,
+      text: text,
+      station: station.toUpperCase(),
+      freqKhz: _connector.currentFreqHz,
+    );
+    final out = [entry, ..._automated];
+    _automated = out.length > stationLogMax
+        ? out.sublist(0, stationLogMax)
+        : out;
+    notifyListeners();
+    return PrefsManager.instance.setString(
+      _autoKey,
+      jsonEncode([for (final e in _automated) e.toJson()]),
+    );
   }
 
   void _received(Message m) {
@@ -78,8 +126,10 @@ class StationLogService extends ChangeNotifier {
   /// Deletes every entry.
   Future<void> clear() async {
     _log = const [];
+    _automated = const [];
     notifyListeners();
     await PrefsManager.instance.remove(_prefKey);
+    await PrefsManager.instance.remove(_autoKey);
   }
 
   Future<void> _save() => PrefsManager.instance.setString(

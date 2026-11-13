@@ -210,3 +210,84 @@ String stationLogCsv(List<StationLogEntry> log) {
   }
   return b.toString();
 }
+
+/// One message an automation rule sent on air. Kept apart from the
+/// exchanges above so the operator can always see what the station sent
+/// without a person at the keyboard.
+class AutomatedTransmission {
+  const AutomatedTransmission({
+    required this.at,
+    required this.rule,
+    required this.to,
+    required this.text,
+    this.station = '',
+    this.freqKhz,
+  });
+
+  /// When it was handed to the radio, UTC.
+  final DateTime at;
+
+  /// The rule that sent it.
+  final String rule;
+
+  /// Where it went: a contact's name or a channel's name.
+  final String to;
+
+  /// The text sent, prefix included.
+  final String text;
+
+  /// This station's call sign at the time.
+  final String station;
+  final int? freqKhz;
+
+  String? get band => bandFor(freqKhz);
+
+  Map<String, dynamic> toJson() => {
+    'at': at.toUtc().toIso8601String(),
+    'rule': rule,
+    'to': to,
+    'text': text,
+    'station': station,
+    'khz': ?freqKhz,
+  };
+
+  static AutomatedTransmission? fromJson(Object? j) {
+    if (j is! Map) return null;
+    final at = DateTime.tryParse('${j['at']}');
+    final rule = j['rule'], to = j['to'], text = j['text'];
+    if (at == null || rule is! String || to is! String || text is! String) {
+      return null;
+    }
+    return AutomatedTransmission(
+      at: at.toUtc(),
+      rule: rule,
+      to: to,
+      text: text,
+      station: j['station'] as String? ?? '',
+      freqKhz: (j['khz'] as num?)?.toInt(),
+    );
+  }
+}
+
+String _csvField(String v) =>
+    // Formula characters are escaped so a spreadsheet shows the text.
+    '"${(RegExp(r'^[=+\-@]').hasMatch(v) ? "'$v" : v).replaceAll('"', '""')}"';
+
+/// [log] (newest first) as CSV.
+String automatedTransmissionsCsv(List<AutomatedTransmission> log) {
+  final b = StringBuffer('time_utc,station,rule,to,band,frequency_mhz,text\n');
+  for (final e in log) {
+    b.writeln(
+      [
+        e.at.toUtc().toIso8601String(),
+        _csvField(e.station),
+        _csvField(e.rule),
+        _csvField(e.to),
+        e.band ?? '',
+        e.freqKhz == null ? '' : (e.freqKhz! / 1000).toStringAsFixed(3),
+        _csvField(e.text),
+      ].join(','),
+    );
+  }
+  return b.toString();
+}

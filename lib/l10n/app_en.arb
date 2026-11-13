@@ -6727,5 +6727,130 @@
         "type": "int"
       }
     }
-  }
+  },
+  "automation_title": "Automation",
+  "automation_toolHint": "Rules that alert you or send a message when something happens",
+  "automation_newRule": "New rule",
+  "automation_editRule": "Edit rule",
+  "automation_hamNotice": "Rules run while the app is open. Automated messages are plain text and start with [auto]. They are held unless your station is ready to transmit (ham firmware, call sign in the radio's name, in band), limited to 3 every 10 minutes, and written to the station log. You remain the control operator for every automated transmission.",
+  "automation_empty": "No rules yet",
+  "automation_emptyHint": "Add a rule to get an alert when your battery runs low, a station goes quiet or a message arrives.",
+  "automation_allowWebhooks": "Allow webhooks",
+  "automation_allowWebhooksHint": "Needs internet. Off by default; webhook actions do nothing while this is off.",
+  "automation_workingChannel": "Working channel",
+  "automation_stationLogHint": "Every automated transmission is listed there",
+  "automation_activity": "Recent activity",
+  "automation_none": "None",
+  "automation_unnamed": "Unnamed rule",
+  "automation_transmits": "Transmits on air",
+  "automation_incomplete": "Unfinished",
+  "automation_ruleSwitch": "Rule {name} on",
+  "@automation_ruleSwitch": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "automation_ruleName": "Rule name",
+  "automation_when": "When",
+  "automation_then": "Then",
+  "automation_matchAll": "All are true (AND)",
+  "automation_matchAny": "Any is true (OR)",
+  "automation_matchAllShort": "{count, plural, =1{1 condition} other{All of {count} conditions}}",
+  "@automation_matchAllShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "automation_matchAnyShort": "{count, plural, =1{1 condition} other{Any of {count} conditions}}",
+  "@automation_matchAnyShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "automation_actionCount": "{count, plural, =1{1 action} other{{count} actions}}",
+  "@automation_actionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "automation_addCondition": "Add condition",
+  "automation_addAction": "Add action",
+  "automation_remove": "Remove {item}",
+  "@automation_remove": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "automation_savedOff": "Saved switched off. Fill in every field to turn it on.",
+  "automation_deleteConfirm": "Delete this rule?",
+  "automation_transmitNotice": "This rule transmits. It only sends when your station is ready, at most 3 automated messages every 10 minutes and once every 15 minutes per rule, and each one is logged in the station log.",
+  "automation_condBattery": "Battery low",
+  "automation_condTime": "Time of day",
+  "automation_condEnter": "Enter an area",
+  "automation_condLeave": "Leave an area",
+  "automation_condMessage": "Message received",
+  "automation_condOnline": "Node online",
+  "automation_condOffline": "Node offline",
+  "automation_batteryBelow": "Radio battery below {percent}%",
+  "@automation_batteryBelow": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "automation_timeHint": "Every day at this time, on this device's clock",
+  "automation_latitude": "Latitude",
+  "automation_longitude": "Longitude",
+  "automation_radiusMeters": "Radius (meters)",
+  "automation_useRadioPosition": "Use the radio's position",
+  "automation_areaHint": "Uses the position the radio reports.",
+  "automation_sourceAny": "Any",
+  "automation_sourceDirect": "Direct",
+  "automation_sourceChannel": "Channel",
+  "automation_onChannel": "On channel",
+  "automation_anyChannel": "Any channel",
+  "automation_from": "From",
+  "automation_anyone": "Anyone",
+  "automation_contains": "Contains text (optional)",
+  "automation_node": "Node",
+  "automation_heardWithinMinutes": "Heard within (minutes)",
+  "automation_actionSend": "Send a message",
+  "automation_actionAlert": "Alert me",
+  "automation_actionChangeChannel": "Change working channel",
+  "automation_actionSound": "Play a sound",
+  "automation_actionWebhook": "Call a webhook",
+  "automation_sendTo": "Send to",
+  "automation_targetChannel": "Channel",
+  "automation_targetContact": "Contact",
+  "automation_message": "Message",
+  "automation_messageTooLong": "Too long: 140 bytes at most, [auto] included",
+  "automation_sendHint": "Sent on air as plain text with [auto] in front, and logged in the station log.",
+  "automation_alertText": "Alert text",
+  "automation_changeChannelHint": "Rules that send to the working channel use this channel from now on.",
+  "automation_soundHint": "Plays this device's alert sound.",
+  "automation_webhookUrl": "Webhook address (https://)",
+  "automation_webhookHttps": "Use an https:// address",
+  "automation_webhookNeedsInternet": "Needs internet. Sends the rule's name and the time.",
+  "automation_webhookOffNotice": "Needs internet. Webhooks are off: allow them on the Automation page.",
+  "automation_outDone": "Done",
+  "automation_outNotConnected": "Held: no radio connected",
+  "automation_outNotReady": "Held: station not ready to transmit",
+  "automation_outRateLimited": "Held: automated message limit reached",
+  "automation_outNoTarget": "Held: contact or channel not on the radio",
+  "automation_outWebhooksOff": "Skipped: webhooks are off",
+  "automation_outFailed": "Failed",
+  "ham_automatedTx": "Automated transmissions",
+  "ham_automatedTxHint": "Messages your automation rules sent on air.",
+  "ham_exportAutomatedCsv": "Export automated transmissions (CSV)"
 }

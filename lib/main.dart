@@ -38,6 +38,7 @@ import 'services/mqtt_client_transport.dart';
 import 'services/network_monitor.dart';
 import 'services/secure_mqtt_credentials_store.dart';
 import 'services/operator_profile_service.dart';
+import 'services/automation_service.dart';
 import 'services/station_log_service.dart';
 import 'services/sos_relay_service.dart';
 import 'services/image_chunk_transport.dart';
@@ -308,6 +309,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   final _operatorProfile = OperatorProfileService()..load();
   final _appLock = AppLockService(PrefsManager.instance);
   late final StationLogService _stationLog;
+  late final AutomationService _automation;
   late final CoverageHexService _coverageHex;
   late final ReadAloudService _readAloud;
   final _navigatorKey = GlobalKey<NavigatorState>();
@@ -332,6 +334,11 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _fieldOps = FieldOpsService(widget.connector);
     unawaited(_fieldOps.load());
     _stationLog = StationLogService(widget.connector)..start();
+    _automation = AutomationService(
+      widget.connector,
+      operator: _operatorProfile,
+      stationLog: _stationLog,
+    )..start();
     _regionalPresets = RegionalPresetService(widget.connector);
     unawaited(_regionalPresets.start());
     _directRepeaters = DirectRepeaterService(widget.connector);
@@ -485,6 +492,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _botService.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
+    _automation.dispose();
     _stationLog.dispose();
     _regionalPresets.dispose();
     _directRepeaters.dispose();
@@ -645,6 +653,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider.value(value: _operatorProfile),
         ChangeNotifierProvider<AppLockService>.value(value: _appLock),
         ChangeNotifierProvider.value(value: _stationLog),
+        ChangeNotifierProvider.value(value: _automation),
         ChangeNotifierProvider.value(value: _coverageHex),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,
