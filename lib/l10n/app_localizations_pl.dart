@@ -11045,6 +11045,125 @@ class AppLocalizationsPl extends AppLocalizations {
   String get netChange_notifTitle => 'Zmiana w sieci';
 
   @override
+  String get journal_title => 'Dziennik węzłów';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Każdy usłyszany węzeł z etykietami zachowania, tagami i notatkami';
+
+  @override
+  String get journal_empty =>
+      'Brak węzłów. Każdy węzeł usłyszany przez radio trafia tu automatycznie.';
+
+  @override
+  String get journal_search => 'Szukaj nazw, ID, tagów i notatek';
+
+  @override
+  String get journal_filterAll => 'Wszystkie';
+
+  @override
+  String get journal_bSteadyRelay => 'Stały przekaźnik';
+
+  @override
+  String get journal_bRegular => 'Stały bywalec';
+
+  @override
+  String get journal_bRoamer => 'Wędrowiec';
+
+  @override
+  String get journal_bRarelyHeard => 'Rzadko słyszany';
+
+  @override
+  String get journal_bNewcomer => 'Nowy';
+
+  @override
+  String get journal_bGoneQuiet => 'Ucichł';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent% pewności';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Słyszany przez $heard z $days dni';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Pierwszy raz $hours h temu';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Nie słyszany od $days dni';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Widziany w $places miejscach odległych do $km km';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'Łącznie $count nowych ogłoszeń';
+  }
+
+  @override
+  String get journal_noLabel => 'Za mało danych na etykietę.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Pierwszy raz: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Ostatnio: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Przeskoki: od $min do $max';
+  }
+
+  @override
+  String get journal_tags => 'Tagi';
+
+  @override
+  String get journal_addTag => 'Dodaj tag';
+
+  @override
+  String get journal_tagHint => 'np. szlak, klub, mój';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Usuń tag $tag';
+  }
+
+  @override
+  String get journal_note => 'Notatka';
+
+  @override
+  String get journal_saveNote => 'Zapisz notatkę';
+
+  @override
+  String get journal_forget => 'Zapomnij ten węzeł';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Usunąć $name z dziennika wraz z tagami i notatką? Gdy znów zostanie usłyszany, zacznie od nowa.';
+  }
+
+  @override
+  String get journal_forgotten => 'Węzeł usunięty z dziennika.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Wygenerowany znak dla $name';
+  }
+
+  @override
   String get trouble_title => 'Rozwiązywanie problemów';
 
   @override

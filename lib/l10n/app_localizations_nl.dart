@@ -10950,6 +10950,125 @@ class AppLocalizationsNl extends AppLocalizations {
   String get netChange_notifTitle => 'Netwerkwijziging';
 
   @override
+  String get journal_title => 'Knooppuntlogboek';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Elk ooit gehoord knooppunt, met gedragslabels, tags en notities';
+
+  @override
+  String get journal_empty =>
+      'Nog geen knooppunten. Elk knooppunt dat je radio hoort, komt hier vanzelf bij.';
+
+  @override
+  String get journal_search => 'Zoek namen, ID\'s, tags en notities';
+
+  @override
+  String get journal_filterAll => 'Alle';
+
+  @override
+  String get journal_bSteadyRelay => 'Altijd-aan relais';
+
+  @override
+  String get journal_bRegular => 'Vaste bezoeker';
+
+  @override
+  String get journal_bRoamer => 'Zwerver';
+
+  @override
+  String get journal_bRarelyHeard => 'Zelden gehoord';
+
+  @override
+  String get journal_bNewcomer => 'Nieuwkomer';
+
+  @override
+  String get journal_bGoneQuiet => 'Stil geworden';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent% zeker';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Gehoord op $heard van $days dagen';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Voor het eerst $hours u geleden gehoord';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return '$days dagen niet gehoord';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Gezien op $places plekken tot $km km uit elkaar';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'In totaal $count nieuwe adverts';
+  }
+
+  @override
+  String get journal_noLabel => 'Nog te weinig gezien voor een label.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Eerst gehoord: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Laatst gehoord: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Geziene hops: $min tot $max';
+  }
+
+  @override
+  String get journal_tags => 'Tags';
+
+  @override
+  String get journal_addTag => 'Tag toevoegen';
+
+  @override
+  String get journal_tagHint => 'bijv. startpunt, club, van mij';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Tag $tag verwijderen';
+  }
+
+  @override
+  String get journal_note => 'Notitie';
+
+  @override
+  String get journal_saveNote => 'Notitie opslaan';
+
+  @override
+  String get journal_forget => 'Dit knooppunt vergeten';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return '$name met tags en notitie uit het logboek verwijderen? Wordt het weer gehoord, dan begint het opnieuw.';
+  }
+
+  @override
+  String get journal_forgotten => 'Knooppunt uit het logboek verwijderd.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Gegenereerd teken voor $name';
+  }
+
+  @override
   String get trouble_title => 'Probleemoplossing';
 
   @override

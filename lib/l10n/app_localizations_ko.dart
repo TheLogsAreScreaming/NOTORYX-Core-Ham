@@ -10481,6 +10481,123 @@ class AppLocalizationsKo extends AppLocalizations {
   String get netChange_notifTitle => '네트워크 변화';
 
   @override
+  String get journal_title => '노드 일지';
+
+  @override
+  String get journal_toolSubtitle => '지금까지 수신한 모든 노드와 행동 라벨, 태그, 메모';
+
+  @override
+  String get journal_empty => '아직 노드가 없습니다. 무전기가 수신한 모든 노드가 자동으로 여기에 추가됩니다.';
+
+  @override
+  String get journal_search => '이름, ID, 태그, 메모 검색';
+
+  @override
+  String get journal_filterAll => '전체';
+
+  @override
+  String get journal_bSteadyRelay => '상시 중계기';
+
+  @override
+  String get journal_bRegular => '단골';
+
+  @override
+  String get journal_bRoamer => '이동형';
+
+  @override
+  String get journal_bRarelyHeard => '드물게 수신';
+
+  @override
+  String get journal_bNewcomer => '새로 등장';
+
+  @override
+  String get journal_bGoneQuiet => '조용해짐';
+
+  @override
+  String journal_confidence(int percent) {
+    return '확신도 $percent%';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return '$days일 중 $heard일 수신';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return '$hours시간 전 처음 수신';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return '$days일 동안 수신 없음';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return '$places곳에서 확인, 최대 ${km}km 떨어짐';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return '새 알림 총 $count개';
+  }
+
+  @override
+  String get journal_noLabel => '라벨을 붙이기엔 아직 자료가 부족합니다.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return '처음 수신: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return '마지막 수신: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return '확인된 홉: $min~$max';
+  }
+
+  @override
+  String get journal_tags => '태그';
+
+  @override
+  String get journal_addTag => '태그 추가';
+
+  @override
+  String get journal_tagHint => '예: 등산로 입구, 클럽, 내 것';
+
+  @override
+  String journal_removeTag(String tag) {
+    return '태그 $tag 제거';
+  }
+
+  @override
+  String get journal_note => '메모';
+
+  @override
+  String get journal_saveNote => '메모 저장';
+
+  @override
+  String get journal_forget => '이 노드 잊기';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return '$name을(를) 태그와 메모와 함께 일지에서 제거할까요? 다시 수신되면 새로 시작합니다.';
+  }
+
+  @override
+  String get journal_forgotten => '노드를 일지에서 제거했습니다.';
+
+  @override
+  String journal_markLabel(String name) {
+    return '$name의 생성된 표식';
+  }
+
+  @override
   String get trouble_title => '문제 해결';
 
   @override

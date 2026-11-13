@@ -10860,6 +10860,125 @@ class AppLocalizationsEn extends AppLocalizations {
   String get netChange_notifTitle => 'Network change';
 
   @override
+  String get journal_title => 'Node journal';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Every node ever heard, with behaviour labels, tags and notes';
+
+  @override
+  String get journal_empty =>
+      'No nodes yet. Every node your radio hears is added here automatically.';
+
+  @override
+  String get journal_search => 'Search names, IDs, tags and notes';
+
+  @override
+  String get journal_filterAll => 'All';
+
+  @override
+  String get journal_bSteadyRelay => 'Always-on relay';
+
+  @override
+  String get journal_bRegular => 'Regular';
+
+  @override
+  String get journal_bRoamer => 'Roamer';
+
+  @override
+  String get journal_bRarelyHeard => 'Rarely heard';
+
+  @override
+  String get journal_bNewcomer => 'Newcomer';
+
+  @override
+  String get journal_bGoneQuiet => 'Gone quiet';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent% sure';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Heard on $heard of $days days';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'First heard $hours h ago';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Not heard for $days days';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Seen at $places places up to $km km apart';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return '$count fresh adverts in all';
+  }
+
+  @override
+  String get journal_noLabel => 'Not enough seen yet for a label.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'First heard: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Last heard: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Hops seen: $min to $max';
+  }
+
+  @override
+  String get journal_tags => 'Tags';
+
+  @override
+  String get journal_addTag => 'Add tag';
+
+  @override
+  String get journal_tagHint => 'e.g. trailhead, club, mine';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Remove tag $tag';
+  }
+
+  @override
+  String get journal_note => 'Note';
+
+  @override
+  String get journal_saveNote => 'Save note';
+
+  @override
+  String get journal_forget => 'Forget this node';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Remove $name from the journal, with its tags and note? It starts fresh if heard again.';
+  }
+
+  @override
+  String get journal_forgotten => 'Node removed from the journal.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Generated mark for $name';
+  }
+
+  @override
   String get trouble_title => 'Troubleshooting';
 
   @override

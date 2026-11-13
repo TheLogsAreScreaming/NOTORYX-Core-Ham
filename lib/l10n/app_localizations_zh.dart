@@ -10253,6 +10253,123 @@ class AppLocalizationsZh extends AppLocalizations {
   String get netChange_notifTitle => '网络变化';
 
   @override
+  String get journal_title => '节点日志';
+
+  @override
+  String get journal_toolSubtitle => '所有听到过的节点，附行为标签、标记和备注';
+
+  @override
+  String get journal_empty => '还没有节点。电台听到的每个节点都会自动添加到这里。';
+
+  @override
+  String get journal_search => '搜索名称、ID、标记和备注';
+
+  @override
+  String get journal_filterAll => '全部';
+
+  @override
+  String get journal_bSteadyRelay => '常在中继';
+
+  @override
+  String get journal_bRegular => '常客';
+
+  @override
+  String get journal_bRoamer => '漫游者';
+
+  @override
+  String get journal_bRarelyHeard => '很少听到';
+
+  @override
+  String get journal_bNewcomer => '新来者';
+
+  @override
+  String get journal_bGoneQuiet => '已沉寂';
+
+  @override
+  String journal_confidence(int percent) {
+    return '把握度 $percent%';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return '$days 天中有 $heard 天听到';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return '$hours 小时前首次听到';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return '$days 天未听到';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return '在 $places 个地点出现，最远相距 $km 公里';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return '共 $count 次新广播';
+  }
+
+  @override
+  String get journal_noLabel => '数据不足，暂无标签。';
+
+  @override
+  String journal_firstSeen(String time) {
+    return '首次听到：$time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return '最后听到：$time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return '跳数：$min 至 $max';
+  }
+
+  @override
+  String get journal_tags => '标记';
+
+  @override
+  String get journal_addTag => '添加标记';
+
+  @override
+  String get journal_tagHint => '例如：步道口、俱乐部、我的';
+
+  @override
+  String journal_removeTag(String tag) {
+    return '移除标记 $tag';
+  }
+
+  @override
+  String get journal_note => '备注';
+
+  @override
+  String get journal_saveNote => '保存备注';
+
+  @override
+  String get journal_forget => '忘记此节点';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return '从日志中移除 $name 及其标记和备注？再次听到时会重新开始记录。';
+  }
+
+  @override
+  String get journal_forgotten => '已从日志中移除节点。';
+
+  @override
+  String journal_markLabel(String name) {
+    return '$name 的生成标识';
+  }
+
+  @override
   String get trouble_title => '故障排查';
 
   @override

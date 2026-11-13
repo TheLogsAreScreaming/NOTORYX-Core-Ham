@@ -10466,6 +10466,123 @@ class AppLocalizationsJa extends AppLocalizations {
   String get netChange_notifTitle => 'ネットワークの変化';
 
   @override
+  String get journal_title => 'ノード日誌';
+
+  @override
+  String get journal_toolSubtitle => 'これまでに受信したすべてのノード。行動ラベル、タグ、メモ付き';
+
+  @override
+  String get journal_empty => 'まだノードはありません。無線機が受信したノードは自動でここに追加されます。';
+
+  @override
+  String get journal_search => '名前、ID、タグ、メモを検索';
+
+  @override
+  String get journal_filterAll => 'すべて';
+
+  @override
+  String get journal_bSteadyRelay => '常時稼働の中継';
+
+  @override
+  String get journal_bRegular => '常連';
+
+  @override
+  String get journal_bRoamer => '移動型';
+
+  @override
+  String get journal_bRarelyHeard => 'めったに受信しない';
+
+  @override
+  String get journal_bNewcomer => '新顔';
+
+  @override
+  String get journal_bGoneQuiet => '沈黙中';
+
+  @override
+  String journal_confidence(int percent) {
+    return '確度 $percent%';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return '$days 日中 $heard 日受信';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return '$hours 時間前に初受信';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return '$days 日間受信なし';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return '$places か所で確認、最大 $km km 離れている';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return '新しいアドバート計 $count 件';
+  }
+
+  @override
+  String get journal_noLabel => 'ラベルを付けるにはまだデータが足りません。';
+
+  @override
+  String journal_firstSeen(String time) {
+    return '初受信: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return '最終受信: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'ホップ数: $min〜$max';
+  }
+
+  @override
+  String get journal_tags => 'タグ';
+
+  @override
+  String get journal_addTag => 'タグを追加';
+
+  @override
+  String get journal_tagHint => '例: 登山口、クラブ、自分の';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'タグ $tag を削除';
+  }
+
+  @override
+  String get journal_note => 'メモ';
+
+  @override
+  String get journal_saveNote => 'メモを保存';
+
+  @override
+  String get journal_forget => 'このノードを削除';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return '$name をタグとメモごと日誌から削除しますか？再び受信すると最初から記録されます。';
+  }
+
+  @override
+  String get journal_forgotten => 'ノードを日誌から削除しました。';
+
+  @override
+  String journal_markLabel(String name) {
+    return '$name の生成マーク';
+  }
+
+  @override
   String get trouble_title => 'トラブルシューティング';
 
   @override

@@ -10981,6 +10981,126 @@ class AppLocalizationsHu extends AppLocalizations {
   String get netChange_notifTitle => 'Hálózati változás';
 
   @override
+  String get journal_title => 'Csomópontnapló';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Minden valaha hallott csomópont viselkedéscímkékkel, címkékkel és jegyzetekkel';
+
+  @override
+  String get journal_empty =>
+      'Még nincs csomópont. Minden csomópont, amelyet a rádiód hall, automatikusan ide kerül.';
+
+  @override
+  String get journal_search =>
+      'Nevek, azonosítók, címkék és jegyzetek keresése';
+
+  @override
+  String get journal_filterAll => 'Mind';
+
+  @override
+  String get journal_bSteadyRelay => 'Mindig aktív átjátszó';
+
+  @override
+  String get journal_bRegular => 'Rendszeres';
+
+  @override
+  String get journal_bRoamer => 'Vándor';
+
+  @override
+  String get journal_bRarelyHeard => 'Ritkán hallott';
+
+  @override
+  String get journal_bNewcomer => 'Újonc';
+
+  @override
+  String get journal_bGoneQuiet => 'Elnémult';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent% biztos';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return '$days napból $heard napon hallott';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Először $hours órája hallott';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return '$days napja nem hallott';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return '$places helyen látva, egymástól legfeljebb $km km-re';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'Összesen $count friss hirdetés';
+  }
+
+  @override
+  String get journal_noLabel => 'Még nincs elég adat a címkéhez.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Először hallott: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Utoljára hallott: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Látott ugrások: $min–$max';
+  }
+
+  @override
+  String get journal_tags => 'Címkék';
+
+  @override
+  String get journal_addTag => 'Címke hozzáadása';
+
+  @override
+  String get journal_tagHint => 'pl. túrakezdet, klub, saját';
+
+  @override
+  String journal_removeTag(String tag) {
+    return '$tag címke eltávolítása';
+  }
+
+  @override
+  String get journal_note => 'Jegyzet';
+
+  @override
+  String get journal_saveNote => 'Jegyzet mentése';
+
+  @override
+  String get journal_forget => 'Csomópont elfelejtése';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Eltávolítod $name csomópontot a naplóból a címkéivel és jegyzetével? Ha újra hallod, elölről kezdődik.';
+  }
+
+  @override
+  String get journal_forgotten => 'Csomópont eltávolítva a naplóból.';
+
+  @override
+  String journal_markLabel(String name) {
+    return '$name generált jele';
+  }
+
+  @override
   String get trouble_title => 'Hibaelhárítás';
 
   @override

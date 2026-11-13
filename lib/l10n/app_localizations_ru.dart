@@ -11040,6 +11040,125 @@ class AppLocalizationsRu extends AppLocalizations {
   String get netChange_notifTitle => 'Изменение в сети';
 
   @override
+  String get journal_title => 'Журнал узлов';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Каждый услышанный узел с метками поведения, тегами и заметками';
+
+  @override
+  String get journal_empty =>
+      'Узлов пока нет. Каждый узел, услышанный радио, добавляется сюда автоматически.';
+
+  @override
+  String get journal_search => 'Поиск по именам, ID, тегам и заметкам';
+
+  @override
+  String get journal_filterAll => 'Все';
+
+  @override
+  String get journal_bSteadyRelay => 'Постоянный ретранслятор';
+
+  @override
+  String get journal_bRegular => 'Постоянный';
+
+  @override
+  String get journal_bRoamer => 'Кочевник';
+
+  @override
+  String get journal_bRarelyHeard => 'Слышен редко';
+
+  @override
+  String get journal_bNewcomer => 'Новичок';
+
+  @override
+  String get journal_bGoneQuiet => 'Замолчал';
+
+  @override
+  String journal_confidence(int percent) {
+    return 'Уверенность $percent%';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Слышен $heard из $days дней';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Впервые услышан $hours ч назад';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Не слышен $days дней';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Замечен в $places местах на расстоянии до $km км';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'Всего $count новых объявлений';
+  }
+
+  @override
+  String get journal_noLabel => 'Пока недостаточно данных для метки.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Впервые: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Последний раз: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Хопов: от $min до $max';
+  }
+
+  @override
+  String get journal_tags => 'Теги';
+
+  @override
+  String get journal_addTag => 'Добавить тег';
+
+  @override
+  String get journal_tagHint => 'напр. тропа, клуб, мой';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Удалить тег $tag';
+  }
+
+  @override
+  String get journal_note => 'Заметка';
+
+  @override
+  String get journal_saveNote => 'Сохранить заметку';
+
+  @override
+  String get journal_forget => 'Забыть этот узел';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Удалить $name из журнала вместе с тегами и заметкой? Если он снова будет услышан, запись начнётся заново.';
+  }
+
+  @override
+  String get journal_forgotten => 'Узел удалён из журнала.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Сгенерированный знак для $name';
+  }
+
+  @override
   String get trouble_title => 'Устранение неполадок';
 
   @override

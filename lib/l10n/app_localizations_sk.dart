@@ -10976,6 +10976,125 @@ class AppLocalizationsSk extends AppLocalizations {
   String get netChange_notifTitle => 'Zmena v sieti';
 
   @override
+  String get journal_title => 'Denník uzlov';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Každý počutý uzol so štítkami správania, značkami a poznámkami';
+
+  @override
+  String get journal_empty =>
+      'Zatiaľ žiadne uzly. Každý uzol, ktorý rádio začuje, sa sem pridá automaticky.';
+
+  @override
+  String get journal_search => 'Hľadať mená, ID, značky a poznámky';
+
+  @override
+  String get journal_filterAll => 'Všetky';
+
+  @override
+  String get journal_bSteadyRelay => 'Stále zapnutý prenos';
+
+  @override
+  String get journal_bRegular => 'Pravidelný';
+
+  @override
+  String get journal_bRoamer => 'Tulák';
+
+  @override
+  String get journal_bRarelyHeard => 'Zriedka počuť';
+
+  @override
+  String get journal_bNewcomer => 'Nováčik';
+
+  @override
+  String get journal_bGoneQuiet => 'Utíchol';
+
+  @override
+  String journal_confidence(int percent) {
+    return 'Istota $percent %';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Počuť $heard z $days dní';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Prvýkrát počuť pred $hours h';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Nepočuť $days dní';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Videný na $places miestach vzdialených až $km km';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'Spolu $count nových oznámení';
+  }
+
+  @override
+  String get journal_noLabel => 'Zatiaľ málo údajov na štítok.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Prvýkrát: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Naposledy: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Skoky: $min až $max';
+  }
+
+  @override
+  String get journal_tags => 'Značky';
+
+  @override
+  String get journal_addTag => 'Pridať značku';
+
+  @override
+  String get journal_tagHint => 'napr. chodník, klub, môj';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Odstrániť značku $tag';
+  }
+
+  @override
+  String get journal_note => 'Poznámka';
+
+  @override
+  String get journal_saveNote => 'Uložiť poznámku';
+
+  @override
+  String get journal_forget => 'Zabudnúť tento uzol';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Odstrániť $name z denníka aj so značkami a poznámkou? Ak ho znova začuješ, začne sa odznova.';
+  }
+
+  @override
+  String get journal_forgotten => 'Uzol odstránený z denníka.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Vygenerovaná značka pre $name';
+  }
+
+  @override
   String get trouble_title => 'Riešenie problémov';
 
   @override
