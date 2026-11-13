@@ -52,7 +52,7 @@ Contact contact(int n) => Contact(
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('Offband #395: a failed write must not wedge later sends', () {
+  group('a failed write must not wedge later sends', () {
     test('the failed message fails and the next one still goes out', () {
       final writes = <String>[];
       final updates = <Message>[];
@@ -101,7 +101,7 @@ void main() {
     });
   });
 
-  group('Offband #592: message limits never shrink with the BLE MTU', () {
+  group('message limits never shrink with the BLE MTU', () {
     test('composer limits are fixed by the protocol, not the link', () {
       expect(maxContactMessageBytes(), greaterThanOrEqualTo(150));
       expect(maxChannelMessageBytes('A long sender name'), greaterThan(100));
@@ -119,7 +119,7 @@ void main() {
     });
   });
 
-  group('Offband #838: the contact list must not drift from the radio', () {
+  group('the contact list must not drift from the radio', () {
     late MeshCoreConnector connector;
 
     setUp(() async {
