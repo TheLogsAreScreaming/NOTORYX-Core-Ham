@@ -7927,6 +7927,72 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => '签名报告';
+
+  @override
+  String get signedCov_share => '分享签名报告';
+
+  @override
+  String get signedCov_shareHint =>
+      '每个六边形都用本机的覆盖密钥签名，被修改或伪造的数据可以识别。除非你分享，否则数据不会离开手机。';
+
+  @override
+  String get signedCov_check => '检查报告';
+
+  @override
+  String get signedCov_checkHint => '粘贴签名报告，查看哪些观测是真实的';
+
+  @override
+  String get signedCov_paste => '签名报告（JSON）';
+
+  @override
+  String get signedCov_verify => '检查';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return '你的覆盖密钥：$fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '已验证 $accepted 条观测，拒绝 $rejected 条';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return '签名密钥 $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => '这不是签名的覆盖报告。';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count 条签名缺失或错误';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count 条已损坏';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count 条信号值不可能';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count 条日期在未来';
+  }
+
+  @override
+  String get signedCov_empty => '还没有可分享的覆盖样本。';
+
+  @override
+  String get signedCov_shareFailed => '无法分享报告。';
+
+  @override
   String get coverageHex_title => '覆盖六边形';
 
   @override

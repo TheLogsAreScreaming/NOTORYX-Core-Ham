@@ -8525,6 +8525,75 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => 'Rapporti firmati';
+
+  @override
+  String get signedCov_share => 'Condividi rapporto firmato';
+
+  @override
+  String get signedCov_shareHint =>
+      'Ogni esagono è firmato con la chiave di copertura del telefono, così quelli modificati o inventati si riconoscono. Nulla lascia il telefono se non lo condividi.';
+
+  @override
+  String get signedCov_check => 'Verifica un rapporto';
+
+  @override
+  String get signedCov_checkHint =>
+      'Incolla un rapporto firmato per vedere quali osservazioni sono autentiche';
+
+  @override
+  String get signedCov_paste => 'Rapporto firmato (JSON)';
+
+  @override
+  String get signedCov_verify => 'Verifica';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'La tua chiave di copertura: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return '$accepted osservazioni verificate, $rejected rifiutate';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Firmato con la chiave $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable =>
+      'Questo non è un rapporto di copertura firmato.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count con firma mancante o errata';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count danneggiate';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count con valori di segnale impossibili';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count con data futura';
+  }
+
+  @override
+  String get signedCov_empty =>
+      'Ancora nessun campione di copertura da condividere.';
+
+  @override
+  String get signedCov_shareFailed => 'Impossibile condividere il rapporto.';
+
+  @override
   String get coverageHex_title => 'Esagoni di copertura';
 
   @override

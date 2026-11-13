@@ -8,6 +8,7 @@ import 'package:http/testing.dart';
 import 'package:meshcore_open/connector/meshcore_connector.dart';
 import 'package:meshcore_open/models/coverage_hex.dart';
 import 'package:meshcore_open/models/radio_rx_packet.dart';
+import 'package:meshcore_open/models/signed_coverage.dart';
 import 'package:meshcore_open/services/coverage_hex_service.dart';
 import 'package:meshcore_open/services/network_monitor.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
@@ -120,6 +121,25 @@ void main() {
     final body = jsonDecode(posts.single.body) as Map;
     expect((body['cells'] as List).single['cell'], 'cell-47');
     expect(service.pendingFor(target), 0);
+    // Each uploaded cell carries its own verifiable signature.
+    final verdict = await verifyCoverageReport(body, now: now);
+    expect(verdict.accepted, hasLength(1));
+    expect(verdict.signer, await service.signerKey());
+  });
+
+  test('a signed report of every sample verifies', () async {
+    service.fixForTesting = PositionFix(47, -122, 10, now);
+    service.recordForTesting(_packet(now, 0x5a));
+    service.fixForTesting = PositionFix(48, -122, 10, now);
+    service.recordForTesting(_packet(now, 0x3d, snr: -7.5));
+    final report = await service.signedReport();
+    final verdict = await verifyCoverageReport(report, now: now);
+    expect(verdict.accepted.map((c) => c['cell']), ['cell-47', 'cell-48']);
+    expect(verdict.rejectedCount, 0);
+    final edited = report.replaceFirst('-7.5', '9.5');
+    expect((await verifyCoverageReport(edited, now: now)).rejected, {
+      CoverageRejection.badSignature: 1,
+    });
   });
 
   test('wifi-only waits for wifi; anonymous uploads are unsigned', () async {

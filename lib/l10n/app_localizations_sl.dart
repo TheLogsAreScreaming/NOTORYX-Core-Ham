@@ -8501,6 +8501,73 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => 'Podpisana poročila';
+
+  @override
+  String get signedCov_share => 'Deli podpisano poročilo';
+
+  @override
+  String get signedCov_shareHint =>
+      'Vsak šestkotnik je podpisan s ključem pokritosti tega telefona, zato je spremenjene ali izmišljene mogoče prepoznati. Nič ne zapusti telefona, razen če to deliš.';
+
+  @override
+  String get signedCov_check => 'Preveri poročilo';
+
+  @override
+  String get signedCov_checkHint =>
+      'Prilepi podpisano poročilo in poglej, katera opazovanja so pristna';
+
+  @override
+  String get signedCov_paste => 'Podpisano poročilo (JSON)';
+
+  @override
+  String get signedCov_verify => 'Preveri';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Tvoj ključ pokritosti: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return 'Potrjenih opazovanj: $accepted, zavrnjenih: $rejected';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Podpisano s ključem $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'To ni podpisano poročilo o pokritosti.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count brez podpisa ali z napačnim podpisom';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count poškodovanih';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count z nemogočimi vrednostmi signala';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count z datumom v prihodnosti';
+  }
+
+  @override
+  String get signedCov_empty => 'Še ni vzorcev pokritosti za deljenje.';
+
+  @override
+  String get signedCov_shareFailed => 'Poročila ni bilo mogoče deliti.';
+
+  @override
   String get coverageHex_title => 'Šesterokotniki pokritosti';
 
   @override

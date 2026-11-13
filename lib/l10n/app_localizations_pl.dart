@@ -8548,6 +8548,73 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => 'Podpisane raporty';
+
+  @override
+  String get signedCov_share => 'Udostępnij podpisany raport';
+
+  @override
+  String get signedCov_shareHint =>
+      'Każdy sześciokąt jest podpisany kluczem pokrycia tego telefonu, więc zmienione lub zmyślone da się wykryć. Nic nie opuszcza telefonu, dopóki tego nie udostępnisz.';
+
+  @override
+  String get signedCov_check => 'Sprawdź raport';
+
+  @override
+  String get signedCov_checkHint =>
+      'Wklej podpisany raport, aby zobaczyć, które obserwacje są prawdziwe';
+
+  @override
+  String get signedCov_paste => 'Podpisany raport (JSON)';
+
+  @override
+  String get signedCov_verify => 'Sprawdź';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Twój klucz pokrycia: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return 'Zweryfikowano $accepted obserwacji, odrzucono $rejected';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Podpisano kluczem $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'To nie jest podpisany raport pokrycia.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count bez podpisu lub z błędnym podpisem';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count uszkodzonych';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count z niemożliwymi wartościami sygnału';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count z datą w przyszłości';
+  }
+
+  @override
+  String get signedCov_empty => 'Brak próbek pokrycia do udostępnienia.';
+
+  @override
+  String get signedCov_shareFailed => 'Nie udało się udostępnić raportu.';
+
+  @override
   String get coverageHex_title => 'Sześciokąty zasięgu';
 
   @override

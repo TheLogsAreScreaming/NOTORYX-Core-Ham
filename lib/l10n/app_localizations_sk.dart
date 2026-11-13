@@ -8492,6 +8492,73 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String get signedCov_section => 'Podpísané správy';
+
+  @override
+  String get signedCov_share => 'Zdieľať podpísanú správu';
+
+  @override
+  String get signedCov_shareHint =>
+      'Každý šesťuholník je podpísaný kľúčom pokrytia tohto telefónu, takže upravené či vymyslené sa dajú odhaliť. Nič neopustí telefón, kým to nezdieľaš.';
+
+  @override
+  String get signedCov_check => 'Overiť správu';
+
+  @override
+  String get signedCov_checkHint =>
+      'Vlož podpísanú správu a uvidíš, ktoré pozorovania sú pravé';
+
+  @override
+  String get signedCov_paste => 'Podpísaná správa (JSON)';
+
+  @override
+  String get signedCov_verify => 'Overiť';
+
+  @override
+  String signedCov_yourKey(String fingerprint) {
+    return 'Tvoj kľúč pokrytia: $fingerprint';
+  }
+
+  @override
+  String signedCov_result(int accepted, int rejected) {
+    return 'Overené pozorovania: $accepted, zamietnuté: $rejected';
+  }
+
+  @override
+  String signedCov_signer(String fingerprint) {
+    return 'Podpísané kľúčom $fingerprint';
+  }
+
+  @override
+  String get signedCov_unreadable => 'Toto nie je podpísaná správa o pokrytí.';
+
+  @override
+  String signedCov_rBadSignature(int count) {
+    return '$count bez podpisu alebo s chybným podpisom';
+  }
+
+  @override
+  String signedCov_rMalformed(int count) {
+    return '$count poškodených';
+  }
+
+  @override
+  String signedCov_rImpossible(int count) {
+    return '$count s nemožnými hodnotami signálu';
+  }
+
+  @override
+  String signedCov_rFuture(int count) {
+    return '$count s dátumom v budúcnosti';
+  }
+
+  @override
+  String get signedCov_empty => 'Zatiaľ nie sú vzorky pokrytia na zdieľanie.';
+
+  @override
+  String get signedCov_shareFailed => 'Správu sa nepodarilo zdieľať.';
+
+  @override
   String get coverageHex_title => 'Šesťuholníky pokrytia';
 
   @override

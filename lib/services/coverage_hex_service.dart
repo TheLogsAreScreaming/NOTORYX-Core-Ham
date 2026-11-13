@@ -13,6 +13,7 @@ import 'package:uuid/uuid.dart';
 import '../connector/meshcore_connector.dart';
 import '../helpers/path_helper.dart';
 import '../models/coverage_hex.dart';
+import '../models/signed_coverage.dart';
 import '../models/direct_repeaters.dart';
 import '../models/radio_rx_packet.dart';
 import '../storage/prefs_manager.dart';
@@ -358,7 +359,19 @@ class CoverageHexService extends ChangeNotifier {
   }
 
   Future<bool> _post(CoverageTarget target, List<HexSample> batch) async {
+    final signed = target.privacy != CoveragePrivacy.anonymous;
     final body = jsonEncode(switch (target.format) {
+      // Signed hexagon uploads add a key and a signature per cell; the
+      // rest of the format is unchanged, so older maps still read them.
+      CoverageFormat.hexagons when signed => {
+        ...await signCoverageReport(
+          batch,
+          target.privacy,
+          await _coverageKeys(),
+          created: _now(),
+        ),
+        'format': 'notoryx-coverage-hex/1',
+      },
       CoverageFormat.hexagons => hexagonPayload(batch, target.privacy),
       CoverageFormat.meshMapper => meshMapperPayload(
         batch,
@@ -389,24 +402,48 @@ class CoverageHexService extends ChangeNotifier {
 
   SimpleKeyPair? _keyPair;
 
-  /// Headers proving uploads come from the same (pseudonymous) mapper,
-  /// signed with a key used only for coverage, never the radio identity.
-  Future<Map<String, String>> _sign(String body) async {
-    final algo = Ed25519();
-    var keys = _keyPair;
-    if (keys == null) {
-      final prefs = PrefsManager.instance;
-      final saved = prefs.getString(_signingKey);
-      final List<int> seed;
-      if (saved != null) {
-        seed = base64Decode(saved);
-      } else {
-        seed = randomBytes(32);
-        await prefs.setString(_signingKey, base64Encode(seed));
-      }
-      keys = _keyPair = await algo.newKeyPairFromSeed(seed);
+  /// The phone's coverage key, made on first use. It is used only for
+  /// coverage, never the radio identity, so reports can't be tied to the
+  /// radio.
+  Future<SimpleKeyPair> _coverageKeys() async {
+    final existing = _keyPair;
+    if (existing != null) return existing;
+    final prefs = PrefsManager.instance;
+    final saved = prefs.getString(_signingKey);
+    final List<int> seed;
+    if (saved != null) {
+      seed = base64Decode(saved);
+    } else {
+      seed = randomBytes(32);
+      await prefs.setString(_signingKey, base64Encode(seed));
     }
-    final sig = await algo.sign(utf8.encode(body), keyPair: keys);
+    return _keyPair = await Ed25519().newKeyPairFromSeed(seed);
+  }
+
+  /// The coverage public key in base64, for others to check reports with.
+  Future<String> signerKey() async =>
+      base64Encode((await (await _coverageKeys()).extractPublicKey()).bytes);
+
+  /// Every sample as a signed report, kept on the phone until the user
+  /// shares it. Times are the 15-minute buckets, as live uploads use.
+  Future<String> signedReport() async {
+    final samples = _grid.samples.values.where((s) => s.count > 0).toList()
+      ..sort((a, b) => a.bucket.compareTo(b.bucket));
+    return jsonEncode(
+      await signCoverageReport(
+        samples,
+        CoveragePrivacy.live,
+        await _coverageKeys(),
+        created: _now(),
+      ),
+    );
+  }
+
+  /// Headers proving uploads come from the same (pseudonymous) mapper,
+  /// signed with the coverage key.
+  Future<Map<String, String>> _sign(String body) async {
+    final keys = await _coverageKeys();
+    final sig = await Ed25519().sign(utf8.encode(body), keyPair: keys);
     final pub = await keys.extractPublicKey();
     return {
       'X-Notoryx-Key': base64Encode(pub.bytes),
