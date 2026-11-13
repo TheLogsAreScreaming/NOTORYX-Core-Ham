@@ -4341,5 +4341,11 @@
   "fieldReport_preview": "Повідомлень до надсилання: {count}",
   "fieldReport_needCallsign": "Спочатку вкажіть позивний у розділі «Ліцензований оператор».",
   "fieldReport_tooLong": "Один рядок задовгий для одного повідомлення. Скоротіть його.",
-  "fieldReport_sent": "Донесення передано на радіо"
+  "fieldReport_sent": "Донесення передано на радіо",
+  "coords_maidenhead": "Локатор Maidenhead",
+  "reactions_radioTitle": "Надсилати реакції радіо",
+  "reactions_radioHint": "Кожна реакція — це пакет в ефірі. «Автоматично» залишає їх на цьому пристрої в європейському діапазоні 868 МГц, де ефірний час обмежений.",
+  "reactions_radioAuto": "Автоматично",
+  "reactions_radioOn": "Увімк.",
+  "reactions_radioOff": "Вимк. (цей пристрій)"
 }

@@ -10709,4 +10709,23 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get fieldReport_sent => 'Hlásenie odoslané do rádia';
+
+  @override
+  String get coords_maidenhead => 'Lokátor Maidenhead';
+
+  @override
+  String get reactions_radioTitle => 'Posielať reakcie rádiom';
+
+  @override
+  String get reactions_radioHint =>
+      'Každá reakcia je paket vo vzduchu. Automaticky ich v pásme EÚ 868 MHz, kde je vysielací čas obmedzený, necháva len na tomto zariadení.';
+
+  @override
+  String get reactions_radioAuto => 'Automaticky';
+
+  @override
+  String get reactions_radioOn => 'Zap.';
+
+  @override
+  String get reactions_radioOff => 'Vyp. (toto zariadenie)';
 }

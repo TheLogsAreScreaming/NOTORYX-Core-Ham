@@ -10709,4 +10709,23 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get fieldReport_sent => 'Докладът е изпратен към радиото';
+
+  @override
+  String get coords_maidenhead => 'Локатор Maidenhead';
+
+  @override
+  String get reactions_radioTitle => 'Изпращай реакциите по радиото';
+
+  @override
+  String get reactions_radioHint =>
+      'Всяка реакция е пакет в ефира. Автоматично ги пази на това устройство в европейската лента 868 MHz, където ефирното време е ограничено.';
+
+  @override
+  String get reactions_radioAuto => 'Автоматично';
+
+  @override
+  String get reactions_radioOn => 'Вкл.';
+
+  @override
+  String get reactions_radioOff => 'Изкл. (това устройство)';
 }

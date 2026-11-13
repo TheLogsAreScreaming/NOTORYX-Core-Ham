@@ -10593,4 +10593,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fieldReport_sent => 'Report sent to the radio';
+
+  @override
+  String get coords_maidenhead => 'Maidenhead locator';
+
+  @override
+  String get reactions_radioTitle => 'Send reactions over the radio';
+
+  @override
+  String get reactions_radioHint =>
+      'Each reaction is a packet on air. Automatic keeps them on this device on the EU 868 MHz band, where airtime is limited.';
+
+  @override
+  String get reactions_radioAuto => 'Automatic';
+
+  @override
+  String get reactions_radioOn => 'On';
+
+  @override
+  String get reactions_radioOff => 'Off (this device)';
 }

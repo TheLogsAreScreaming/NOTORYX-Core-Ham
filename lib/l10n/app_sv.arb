@@ -4361,5 +4361,11 @@
   "fieldReport_preview": "Meddelanden att skicka: {count}",
   "fieldReport_needCallsign": "Ange först din anropssignal under Licensierad operatör.",
   "fieldReport_tooLong": "En rad är för lång för ett enda meddelande. Korta ner den.",
-  "fieldReport_sent": "Rapporten skickad till radion"
+  "fieldReport_sent": "Rapporten skickad till radion",
+  "coords_maidenhead": "Maidenhead-lokator",
+  "reactions_radioTitle": "Skicka reaktioner via radio",
+  "reactions_radioHint": "Varje reaktion är ett paket i luften. Automatiskt behåller dem på den här enheten på EU:s 868 MHz-band, där sändningstiden är begränsad.",
+  "reactions_radioAuto": "Automatiskt",
+  "reactions_radioOn": "På",
+  "reactions_radioOff": "Av (den här enheten)"
 }

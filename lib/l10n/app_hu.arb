@@ -4399,5 +4399,11 @@
   "fieldReport_preview": "Küldendő üzenetek: {count}",
   "fieldReport_needCallsign": "Előbb adja meg a hívójelét az Engedélyes operátor részben.",
   "fieldReport_tooLong": "Egy sor túl hosszú egyetlen üzenethez. Rövidítse le.",
-  "fieldReport_sent": "A jelentés a rádióhoz került"
+  "fieldReport_sent": "A jelentés a rádióhoz került",
+  "coords_maidenhead": "Maidenhead lokátor",
+  "reactions_radioTitle": "Reakciók küldése rádión",
+  "reactions_radioHint": "Minden reakció egy adott csomag. Az Automatikus az EU 868 MHz-es sávon, ahol korlátozott az adásidő, ezen az eszközön tartja őket.",
+  "reactions_radioAuto": "Automatikus",
+  "reactions_radioOn": "Be",
+  "reactions_radioOff": "Ki (ez az eszköz)"
 }

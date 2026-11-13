@@ -12,7 +12,10 @@ enum CoordinateFormat {
   utm('utm'),
 
   /// 18T WL 80734 04695
-  mgrs('mgrs');
+  mgrs('mgrs'),
+
+  /// FN20xq (Maidenhead locator, 6 characters)
+  maidenhead('maidenhead');
 
   const CoordinateFormat(this.value);
 
@@ -183,5 +186,39 @@ String formatCoordinate(double lat, double lon, CoordinateFormat format) {
     case CoordinateFormat.mgrs:
       return toMgrs(lat, lon) ??
           formatCoordinate(lat, lon, CoordinateFormat.decimal);
+    case CoordinateFormat.maidenhead:
+      return toMaidenhead(lat, lon);
   }
+}
+
+/// The Maidenhead locator of a position, as hams write it: field (two
+/// capitals), square (two digits), subsquare (two lower-case letters), and
+/// with [precision] 8 an extended square (two more digits).
+String toMaidenhead(double lat, double lon, {int precision = 6}) {
+  assert(precision == 4 || precision == 6 || precision == 8);
+  // Shift to 0..360 and 0..180, keeping the far edges inside the grid.
+  var x = (lon + 180).clamp(0.0, 359.9999999);
+  var y = (lat + 90).clamp(0.0, 179.9999999);
+  final out = StringBuffer();
+  int take(double v, double size) => (v / size).floor();
+  final fx = take(x, 20), fy = take(y, 10);
+  out
+    ..write(String.fromCharCode(65 + fx))
+    ..write(String.fromCharCode(65 + fy));
+  x -= fx * 20;
+  y -= fy * 10;
+  final sx = take(x, 2), sy = take(y, 1);
+  out.write('$sx$sy');
+  if (precision == 4) return out.toString();
+  x -= sx * 2;
+  y -= sy * 1;
+  final ux = take(x, 2 / 24), uy = take(y, 1 / 24);
+  out
+    ..write(String.fromCharCode(97 + ux))
+    ..write(String.fromCharCode(97 + uy));
+  if (precision == 6) return out.toString();
+  x -= ux * 2 / 24;
+  y -= uy / 24;
+  out.write('${take(x, 2 / 240)}${take(y, 1 / 240)}');
+  return out.toString();
 }

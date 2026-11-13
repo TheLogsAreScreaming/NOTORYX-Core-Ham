@@ -10640,4 +10640,23 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get fieldReport_sent => 'Rapporten skickad till radion';
+
+  @override
+  String get coords_maidenhead => 'Maidenhead-lokator';
+
+  @override
+  String get reactions_radioTitle => 'Skicka reaktioner via radio';
+
+  @override
+  String get reactions_radioHint =>
+      'Varje reaktion är ett paket i luften. Automatiskt behåller dem på den här enheten på EU:s 868 MHz-band, där sändningstiden är begränsad.';
+
+  @override
+  String get reactions_radioAuto => 'Automatiskt';
+
+  @override
+  String get reactions_radioOn => 'På';
+
+  @override
+  String get reactions_radioOff => 'Av (den här enheten)';
 }

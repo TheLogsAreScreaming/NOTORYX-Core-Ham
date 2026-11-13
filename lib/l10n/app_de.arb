@@ -4495,5 +4495,11 @@
   "fieldReport_preview": "Zu sendende Nachrichten: {count}",
   "fieldReport_needCallsign": "Tragen Sie zuerst Ihr Rufzeichen unter „Lizenzierter Funkamateur“ ein.",
   "fieldReport_tooLong": "Eine Zeile ist für eine einzelne Nachricht zu lang. Bitte kürzen.",
-  "fieldReport_sent": "Bericht an das Funkgerät übergeben"
+  "fieldReport_sent": "Bericht an das Funkgerät übergeben",
+  "coords_maidenhead": "Maidenhead-Locator",
+  "reactions_radioTitle": "Reaktionen per Funk senden",
+  "reactions_radioHint": "Jede Reaktion ist ein Paket in der Luft. Automatisch behält sie im EU-868-MHz-Band, wo die Sendezeit begrenzt ist, auf diesem Gerät.",
+  "reactions_radioAuto": "Automatisch",
+  "reactions_radioOn": "An",
+  "reactions_radioOff": "Aus (dieses Gerät)"
 }

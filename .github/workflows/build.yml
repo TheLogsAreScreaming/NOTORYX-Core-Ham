@@ -78,7 +78,7 @@ jobs:
       - run: bash tools/ci_retry.sh flutter build ios --release --no-codesign --no-pub
 
   linux:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # 26.04 headers break the Flutter Linux build
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2

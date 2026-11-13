@@ -4361,5 +4361,11 @@
   "fieldReport_preview": "Съобщения за изпращане: {count}",
   "fieldReport_needCallsign": "Първо задайте позивния си в „Лицензиран оператор“.",
   "fieldReport_tooLong": "Един ред е твърде дълъг за едно съобщение. Съкратете го.",
-  "fieldReport_sent": "Докладът е изпратен към радиото"
+  "fieldReport_sent": "Докладът е изпратен към радиото",
+  "coords_maidenhead": "Локатор Maidenhead",
+  "reactions_radioTitle": "Изпращай реакциите по радиото",
+  "reactions_radioHint": "Всяка реакция е пакет в ефира. Автоматично ги пази на това устройство в европейската лента 868 MHz, където ефирното време е ограничено.",
+  "reactions_radioAuto": "Автоматично",
+  "reactions_radioOn": "Вкл.",
+  "reactions_radioOff": "Изкл. (това устройство)"
 }

@@ -4495,5 +4495,11 @@
   "fieldReport_preview": "送信するメッセージ: {count}",
   "fieldReport_needCallsign": "先に「免許を持つオペレーター」でコールサインを設定してください。",
   "fieldReport_tooLong": "1 行が長すぎて 1 通に収まりません。短くしてください。",
-  "fieldReport_sent": "レポートを無線機に渡しました"
+  "fieldReport_sent": "レポートを無線機に渡しました",
+  "coords_maidenhead": "メイデンヘッド・ロケーター",
+  "reactions_radioTitle": "リアクションを無線で送信",
+  "reactions_radioHint": "リアクションは1件ごとに電波で送られます。自動では、送信時間が制限されるEUの868 MHz帯ではこの端末内だけに表示します。",
+  "reactions_radioAuto": "自動",
+  "reactions_radioOn": "オン",
+  "reactions_radioOff": "オフ（この端末）"
 }

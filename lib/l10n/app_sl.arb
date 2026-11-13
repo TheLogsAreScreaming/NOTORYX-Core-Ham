@@ -4361,5 +4361,11 @@
   "fieldReport_preview": "Sporočila za pošiljanje: {count}",
   "fieldReport_needCallsign": "Najprej nastavite klicni znak pod Licencirani operater.",
   "fieldReport_tooLong": "Ena vrstica je predolga za eno sporočilo. Skrajšajte jo.",
-  "fieldReport_sent": "Poročilo poslano v radio"
+  "fieldReport_sent": "Poročilo poslano v radio",
+  "coords_maidenhead": "Lokator Maidenhead",
+  "reactions_radioTitle": "Pošiljaj odzive po radiu",
+  "reactions_radioHint": "Vsak odziv je paket v etru. Samodejno jih v pasu EU 868 MHz, kjer je čas oddajanja omejen, ohrani na tej napravi.",
+  "reactions_radioAuto": "Samodejno",
+  "reactions_radioOn": "Vklop",
+  "reactions_radioOff": "Izklop (ta naprava)"
 }

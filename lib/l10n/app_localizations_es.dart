@@ -10727,4 +10727,23 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get fieldReport_sent => 'Informe enviado a la radio';
+
+  @override
+  String get coords_maidenhead => 'Localizador Maidenhead';
+
+  @override
+  String get reactions_radioTitle => 'Enviar reacciones por radio';
+
+  @override
+  String get reactions_radioHint =>
+      'Cada reacción es un paquete en el aire. Automático las deja en este dispositivo en la banda europea de 868 MHz, donde el tiempo de emisión es limitado.';
+
+  @override
+  String get reactions_radioAuto => 'Automático';
+
+  @override
+  String get reactions_radioOn => 'Sí';
+
+  @override
+  String get reactions_radioOff => 'No (este dispositivo)';
 }
