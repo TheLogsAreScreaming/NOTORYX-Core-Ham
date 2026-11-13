@@ -10676,4 +10676,40 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       '연락처, 채널 키, 웨이포인트, 저장된 경로, 임시 저장 글, 대기 중인 메시지도 포함합니다.';
+
+  @override
+  String get bk_intro =>
+      '앱 설정, 연락처, 채널 키, 웨이포인트, 임시 저장 메시지를 암호화해 저장하며, 선택하면 메시지 기록도 포함합니다. 오프라인 지도, 사진, 무전기 펌웨어는 포함되지 않습니다.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return '이 기기에 저장된 설정 $count개(연락처, 채널 키, 웨이포인트 포함)를 백업의 내용으로 바꿉니다. 되돌릴 수 없습니다.';
+  }
+
+  @override
+  String get bk_history => '메시지 기록 포함';
+
+  @override
+  String get bk_historyHint => '모든 무전기의 개인 메시지와 채널 메시지입니다. 파일이 커집니다.';
+
+  @override
+  String get bk_tooLarge => '백업이 너무 큽니다. 메시지 기록을 끄고 다시 시도하세요.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return '메시지 최대 $count개도 기록에 추가합니다. 이 기기에 이미 있는 메시지는 유지됩니다.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '메시지 $count개를 기록에 추가했습니다.';
+  }
+
+  @override
+  String get bk_confirmTitle => '이 백업을 복원할까요?';
+
+  @override
+  String bk_restored(int count) {
+    return '설정 $count개를 복원했습니다. 앱을 완전히 닫았다가 다시 여세요.';
+  }
 }

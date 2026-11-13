@@ -11242,4 +11242,42 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Также защищает контакты, ключи каналов, путевые точки, сохранённые маршруты, черновики и ожидающие сообщения.';
+
+  @override
+  String get bk_intro =>
+      'Сохраняет зашифрованную копию настроек, контактов, ключей каналов, путевых точек и черновиков, а по желанию и историю сообщений. Офлайн-карты, фото и прошивка радио не включаются.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Будут заменены $count сохранённых настроек на этом устройстве, включая контакты, ключи каналов и путевые точки, на настройки из резервной копии. Отменить это нельзя.';
+  }
+
+  @override
+  String get bk_history => 'Включить историю сообщений';
+
+  @override
+  String get bk_historyHint =>
+      'Личные сообщения и сообщения каналов для всех радио. Файл станет больше.';
+
+  @override
+  String get bk_tooLarge =>
+      'Резервная копия слишком большая. Отключите историю сообщений и повторите попытку.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Также в историю будет добавлено до $count сообщений. Сообщения, которые уже есть на устройстве, сохранятся.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'В историю добавлено сообщений: $count.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Восстановить эту копию?';
+
+  @override
+  String bk_restored(int count) {
+    return 'Восстановлено настроек: $count. Полностью закройте приложение и откройте снова.';
+  }
 }

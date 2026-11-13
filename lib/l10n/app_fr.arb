@@ -4625,5 +4625,14 @@
   "waypoints_saved": "Enregistré dans Points de passage",
   "waypoints_alreadySaved": "Déjà dans Points de passage",
   "map_showWaypoints": "Afficher les points et itinéraires enregistrés",
-  "dbEncrypt_covers": "Couvre aussi les contacts, les clés de canal, les points de repère, les itinéraires enregistrés, les brouillons et les messages en attente."
+  "dbEncrypt_covers": "Couvre aussi les contacts, les clés de canal, les points de repère, les itinéraires enregistrés, les brouillons et les messages en attente.",
+  "bk_intro": "Enregistre une copie chiffrée des réglages, contacts, clés de canal, points de repère et brouillons, et si vous le souhaitez de l'historique des messages. Les cartes hors ligne, les photos et le firmware de la radio ne sont pas inclus.",
+  "bk_confirmBody": "Cela remplace {count} réglages enregistrés sur cet appareil, dont les contacts, les clés de canal et les points de repère, par ceux de la sauvegarde. Cette action est irréversible.",
+  "bk_history": "Inclure l'historique des messages",
+  "bk_historyHint": "Messages directs et de canal de toutes les radios. Le fichier sera plus gros.",
+  "bk_tooLarge": "La sauvegarde est trop volumineuse. Désactivez l'historique des messages et réessayez.",
+  "bk_confirmHistory": "Elle ajoute aussi jusqu'à {count} messages à votre historique. Les messages déjà présents sur cet appareil sont conservés.",
+  "bk_restoredHistory": "{count} messages ajoutés à votre historique.",
+  "bk_confirmTitle": "Restaurer cette sauvegarde ?",
+  "bk_restored": "{count} réglages restaurés. Fermez complètement l'application et rouvrez-la pour les utiliser."
 }

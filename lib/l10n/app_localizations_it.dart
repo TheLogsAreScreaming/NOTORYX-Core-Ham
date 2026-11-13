@@ -11208,4 +11208,42 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Copre anche contatti, chiavi dei canali, waypoint, percorsi salvati, bozze e messaggi in attesa.';
+
+  @override
+  String get bk_intro =>
+      'Salva una copia cifrata di impostazioni, contatti, chiavi dei canali, waypoint e bozze e, se vuoi, della cronologia dei messaggi. Mappe offline, foto e firmware della radio non sono inclusi.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Sostituisce $count impostazioni salvate su questo dispositivo, inclusi contatti, chiavi dei canali e waypoint, con quelle del backup. L\'operazione non si può annullare.';
+  }
+
+  @override
+  String get bk_history => 'Includi cronologia messaggi';
+
+  @override
+  String get bk_historyHint =>
+      'Messaggi diretti e di canale di tutte le radio. Il file sarà più grande.';
+
+  @override
+  String get bk_tooLarge =>
+      'Il backup è troppo grande. Disattiva la cronologia dei messaggi e riprova.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Aggiunge anche fino a $count messaggi alla cronologia. I messaggi già presenti su questo dispositivo restano.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'Aggiunti $count messaggi alla cronologia.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Ripristinare questo backup?';
+
+  @override
+  String bk_restored(int count) {
+    return '$count impostazioni ripristinate. Chiudi del tutto l\'app e riaprila per usarle.';
+  }
 }

@@ -11234,4 +11234,42 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Couvre aussi les contacts, les clés de canal, les points de repère, les itinéraires enregistrés, les brouillons et les messages en attente.';
+
+  @override
+  String get bk_intro =>
+      'Enregistre une copie chiffrée des réglages, contacts, clés de canal, points de repère et brouillons, et si vous le souhaitez de l\'historique des messages. Les cartes hors ligne, les photos et le firmware de la radio ne sont pas inclus.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Cela remplace $count réglages enregistrés sur cet appareil, dont les contacts, les clés de canal et les points de repère, par ceux de la sauvegarde. Cette action est irréversible.';
+  }
+
+  @override
+  String get bk_history => 'Inclure l\'historique des messages';
+
+  @override
+  String get bk_historyHint =>
+      'Messages directs et de canal de toutes les radios. Le fichier sera plus gros.';
+
+  @override
+  String get bk_tooLarge =>
+      'La sauvegarde est trop volumineuse. Désactivez l\'historique des messages et réessayez.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Elle ajoute aussi jusqu\'à $count messages à votre historique. Les messages déjà présents sur cet appareil sont conservés.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '$count messages ajoutés à votre historique.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Restaurer cette sauvegarde ?';
+
+  @override
+  String bk_restored(int count) {
+    return '$count réglages restaurés. Fermez complètement l\'application et rouvrez-la pour les utiliser.';
+  }
 }

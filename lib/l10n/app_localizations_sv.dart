@@ -11109,4 +11109,42 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Omfattar även kontakter, kanalnycklar, vägpunkter, sparade rutter, utkast och väntande meddelanden.';
+
+  @override
+  String get bk_intro =>
+      'Sparar en krypterad kopia av inställningar, kontakter, kanalnycklar, waypoints och utkast, och om du vill även meddelandehistoriken. Offlinekartor, foton och radions firmware ingår inte.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Det här ersätter $count sparade inställningar på enheten, bland annat kontakter, kanalnycklar och waypoints, med dem i säkerhetskopian. Det går inte att ångra.';
+  }
+
+  @override
+  String get bk_history => 'Ta med meddelandehistorik';
+
+  @override
+  String get bk_historyHint =>
+      'Direkt- och kanalmeddelanden för alla radioenheter. Filen blir större.';
+
+  @override
+  String get bk_tooLarge =>
+      'Säkerhetskopian är för stor. Stäng av meddelandehistorik och försök igen.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Den lägger också till upp till $count meddelanden i historiken. Meddelanden som redan finns på enheten behålls.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '$count meddelanden har lagts till i historiken.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Återställa den här säkerhetskopian?';
+
+  @override
+  String bk_restored(int count) {
+    return '$count inställningar återställda. Stäng appen helt och öppna den igen.';
+  }
 }

@@ -4491,5 +4491,14 @@
   "waypoints_saved": "Bewaard in Waypoints",
   "waypoints_alreadySaved": "Staat al in Waypoints",
   "map_showWaypoints": "Opgeslagen waypoints en routes tonen",
-  "dbEncrypt_covers": "Omvat ook contacten, kanaalsleutels, waypoints, opgeslagen routes, concepten en wachtende berichten."
+  "dbEncrypt_covers": "Omvat ook contacten, kanaalsleutels, waypoints, opgeslagen routes, concepten en wachtende berichten.",
+  "bk_intro": "Slaat een versleutelde kopie op van app-instellingen, contacten, kanaalsleutels, waypoints en concepten, en desgewenst je berichtgeschiedenis. Offline kaarten, foto's en radiofirmware zitten er niet in.",
+  "bk_confirmBody": "Hiermee worden {count} opgeslagen instellingen op dit apparaat, waaronder contacten, kanaalsleutels en waypoints, vervangen door die uit de back-up. Dit kan niet ongedaan worden gemaakt.",
+  "bk_history": "Berichtgeschiedenis meenemen",
+  "bk_historyHint": "Directe en kanaalberichten van elke radio. Het bestand wordt groter.",
+  "bk_tooLarge": "De back-up is te groot. Zet berichtgeschiedenis uit en probeer het opnieuw.",
+  "bk_confirmHistory": "Er worden ook tot {count} berichten aan je geschiedenis toegevoegd. Berichten die al op dit apparaat staan, blijven bewaard.",
+  "bk_restoredHistory": "{count} berichten aan je geschiedenis toegevoegd.",
+  "bk_confirmTitle": "Deze back-up terugzetten?",
+  "bk_restored": "{count} instellingen teruggezet. Sluit de app volledig en open hem opnieuw."
 }

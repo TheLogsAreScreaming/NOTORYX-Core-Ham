@@ -4491,5 +4491,14 @@
   "waypoints_saved": "Uložené v Bodoch trasy",
   "waypoints_alreadySaved": "Už je v Bodoch trasy",
   "map_showWaypoints": "Zobraziť uložené body a trasy",
-  "dbEncrypt_covers": "Zahŕňa aj kontakty, kľúče kanálov, body trasy, uložené trasy, koncepty a čakajúce správy."
+  "dbEncrypt_covers": "Zahŕňa aj kontakty, kľúče kanálov, body trasy, uložené trasy, koncepty a čakajúce správy.",
+  "bk_intro": "Uloží šifrovanú kópiu nastavení, kontaktov, kľúčov kanálov, bodov trasy a konceptov a ak chcete, aj históriu správ. Offline mapy, fotky a firmvér rádia nie sú zahrnuté.",
+  "bk_confirmBody": "Nahradí {count} uložených nastavení v tomto zariadení vrátane kontaktov, kľúčov kanálov a bodov trasy tými zo zálohy. Nedá sa to vrátiť späť.",
+  "bk_history": "Zahrnúť históriu správ",
+  "bk_historyHint": "Priame a kanálové správy pre každé rádio. Súbor bude väčší.",
+  "bk_tooLarge": "Záloha je príliš veľká. Vypnite históriu správ a skúste to znova.",
+  "bk_confirmHistory": "Pridá aj až {count} správ do histórie. Správy, ktoré už v zariadení sú, zostanú zachované.",
+  "bk_restoredHistory": "Do histórie sa pridalo {count} správ.",
+  "bk_confirmTitle": "Obnoviť túto zálohu?",
+  "bk_restored": "Obnovené nastavenia: {count}. Úplne zatvor aplikáciu a znova ju otvor."
 }

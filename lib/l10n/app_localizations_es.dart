@@ -11199,4 +11199,42 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'También cubre contactos, claves de canal, puntos de ruta, rutas guardadas, borradores y mensajes en espera.';
+
+  @override
+  String get bk_intro =>
+      'Guarda una copia cifrada de los ajustes, contactos, claves de canal, puntos de ruta y borradores y, si quieres, del historial de mensajes. No incluye mapas sin conexión, fotos ni el firmware de la radio.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Esto sustituye $count ajustes guardados en este dispositivo, incluidos contactos, claves de canal y puntos de ruta, por los de la copia. No se puede deshacer.';
+  }
+
+  @override
+  String get bk_history => 'Incluir historial de mensajes';
+
+  @override
+  String get bk_historyHint =>
+      'Mensajes directos y de canal de todas las radios. El archivo será más grande.';
+
+  @override
+  String get bk_tooLarge =>
+      'La copia es demasiado grande. Desactiva el historial de mensajes y vuelve a intentarlo.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'También añade hasta $count mensajes a tu historial. Los mensajes que ya están en este dispositivo se conservan.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'Se añadieron $count mensajes a tu historial.';
+  }
+
+  @override
+  String get bk_confirmTitle => '¿Restaurar esta copia?';
+
+  @override
+  String bk_restored(int count) {
+    return 'Se restauraron $count ajustes. Cierra la app por completo y vuelve a abrirla para usarlos.';
+  }
 }

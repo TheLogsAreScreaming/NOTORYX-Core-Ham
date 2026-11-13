@@ -10660,4 +10660,40 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       '連絡先、チャンネルキー、ウェイポイント、保存したルート、下書き、送信待ちメッセージも対象です。';
+
+  @override
+  String get bk_intro =>
+      'アプリ設定、連絡先、チャンネル鍵、ウェイポイント、下書きを暗号化して保存します。選択すればメッセージ履歴も含めます。オフライン地図、写真、無線機のファームウェアは含まれません。';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'この端末に保存されている$count件の設定（連絡先、チャンネル鍵、ウェイポイントを含む）をバックアップの内容で置き換えます。元に戻すことはできません。';
+  }
+
+  @override
+  String get bk_history => 'メッセージ履歴を含める';
+
+  @override
+  String get bk_historyHint => 'すべての無線機のダイレクトメッセージとチャンネルメッセージ。ファイルが大きくなります。';
+
+  @override
+  String get bk_tooLarge => 'バックアップが大きすぎます。メッセージ履歴をオフにしてもう一度お試しください。';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return '最大$count件のメッセージも履歴に追加します。この端末にすでにあるメッセージは残ります。';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return '$count件のメッセージを履歴に追加しました。';
+  }
+
+  @override
+  String get bk_confirmTitle => 'このバックアップを復元しますか？';
+
+  @override
+  String bk_restored(int count) {
+    return '$count件の設定を復元しました。アプリを完全に終了して開き直してください。';
+  }
 }

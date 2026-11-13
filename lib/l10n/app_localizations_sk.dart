@@ -11179,4 +11179,42 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get dbEncrypt_covers =>
       'Zahŕňa aj kontakty, kľúče kanálov, body trasy, uložené trasy, koncepty a čakajúce správy.';
+
+  @override
+  String get bk_intro =>
+      'Uloží šifrovanú kópiu nastavení, kontaktov, kľúčov kanálov, bodov trasy a konceptov a ak chcete, aj históriu správ. Offline mapy, fotky a firmvér rádia nie sú zahrnuté.';
+
+  @override
+  String bk_confirmBody(Object count) {
+    return 'Nahradí $count uložených nastavení v tomto zariadení vrátane kontaktov, kľúčov kanálov a bodov trasy tými zo zálohy. Nedá sa to vrátiť späť.';
+  }
+
+  @override
+  String get bk_history => 'Zahrnúť históriu správ';
+
+  @override
+  String get bk_historyHint =>
+      'Priame a kanálové správy pre každé rádio. Súbor bude väčší.';
+
+  @override
+  String get bk_tooLarge =>
+      'Záloha je príliš veľká. Vypnite históriu správ a skúste to znova.';
+
+  @override
+  String bk_confirmHistory(int count) {
+    return 'Pridá aj až $count správ do histórie. Správy, ktoré už v zariadení sú, zostanú zachované.';
+  }
+
+  @override
+  String bk_restoredHistory(int count) {
+    return 'Do histórie sa pridalo $count správ.';
+  }
+
+  @override
+  String get bk_confirmTitle => 'Obnoviť túto zálohu?';
+
+  @override
+  String bk_restored(int count) {
+    return 'Obnovené nastavenia: $count. Úplne zatvor aplikáciu a znova ju otvor.';
+  }
 }

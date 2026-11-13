@@ -4625,5 +4625,14 @@
   "waypoints_saved": "Salvato nei Waypoint",
   "waypoints_alreadySaved": "Già nei Waypoint",
   "map_showWaypoints": "Mostra waypoint e percorsi salvati",
-  "dbEncrypt_covers": "Copre anche contatti, chiavi dei canali, waypoint, percorsi salvati, bozze e messaggi in attesa."
+  "dbEncrypt_covers": "Copre anche contatti, chiavi dei canali, waypoint, percorsi salvati, bozze e messaggi in attesa.",
+  "bk_intro": "Salva una copia cifrata di impostazioni, contatti, chiavi dei canali, waypoint e bozze e, se vuoi, della cronologia dei messaggi. Mappe offline, foto e firmware della radio non sono inclusi.",
+  "bk_confirmBody": "Sostituisce {count} impostazioni salvate su questo dispositivo, inclusi contatti, chiavi dei canali e waypoint, con quelle del backup. L'operazione non si può annullare.",
+  "bk_history": "Includi cronologia messaggi",
+  "bk_historyHint": "Messaggi diretti e di canale di tutte le radio. Il file sarà più grande.",
+  "bk_tooLarge": "Il backup è troppo grande. Disattiva la cronologia dei messaggi e riprova.",
+  "bk_confirmHistory": "Aggiunge anche fino a {count} messaggi alla cronologia. I messaggi già presenti su questo dispositivo restano.",
+  "bk_restoredHistory": "Aggiunti {count} messaggi alla cronologia.",
+  "bk_confirmTitle": "Ripristinare questo backup?",
+  "bk_restored": "{count} impostazioni ripristinate. Chiudi del tutto l'app e riaprila per usarle."
 }

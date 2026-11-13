@@ -4491,5 +4491,14 @@
   "waypoints_saved": "Guardado em Pontos de passagem",
   "waypoints_alreadySaved": "Já está em Pontos de passagem",
   "map_showWaypoints": "Mostrar pontos e rotas guardados",
-  "dbEncrypt_covers": "Abrange também contactos, chaves de canal, pontos de passagem, rotas guardadas, rascunhos e mensagens em espera."
+  "dbEncrypt_covers": "Abrange também contactos, chaves de canal, pontos de passagem, rotas guardadas, rascunhos e mensagens em espera.",
+  "bk_intro": "Guarda uma cópia encriptada das definições, contactos, chaves de canal, pontos de passagem e rascunhos e, se quiser, do histórico de mensagens. Mapas offline, fotos e firmware do rádio não são incluídos.",
+  "bk_confirmBody": "Isto substitui {count} definições guardadas neste dispositivo, incluindo contactos, chaves de canal e pontos de passagem, pelas da cópia. Não é possível anular.",
+  "bk_history": "Incluir histórico de mensagens",
+  "bk_historyHint": "Mensagens diretas e de canal de todos os rádios. O ficheiro ficará maior.",
+  "bk_tooLarge": "A cópia é demasiado grande. Desative o histórico de mensagens e tente novamente.",
+  "bk_confirmHistory": "Também adiciona até {count} mensagens ao histórico. As mensagens que já estão neste dispositivo são mantidas.",
+  "bk_restoredHistory": "Foram adicionadas {count} mensagens ao histórico.",
+  "bk_confirmTitle": "Restaurar esta cópia?",
+  "bk_restored": "{count} definições restauradas. Fecha a app por completo e volta a abri-la para as usar."
 }

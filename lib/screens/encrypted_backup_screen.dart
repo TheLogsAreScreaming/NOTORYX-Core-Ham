@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../l10n/l10n.dart';
 import '../services/encrypted_backup_service.dart';
+import '../storage/db/history_backup.dart';
+import '../storage/db/message_db.dart';
 import '../widgets/ember_backdrop.dart';
 
 class EncryptedBackupScreen extends StatefulWidget {
@@ -19,6 +22,7 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
   final _confirmation = TextEditingController();
   final _restorePassphrase = TextEditingController();
   bool _busy = false;
+  bool _includeHistory = true;
   String? _status;
 
   @override
@@ -44,10 +48,10 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
     File? file;
     try {
       final service = EncryptedBackupService();
-      final encrypted = await service.seal(
-        service.snapshot(includeChats: false),
-        _passphrase.text,
-      );
+      var values = service.snapshot(includeChats: false);
+      final db = _includeHistory ? await MessageDb.ready : null;
+      if (db != null) values = EncryptedBackupService.withHistory(values, db);
+      final encrypted = await service.seal(values, _passphrase.text);
       final directory = await getTemporaryDirectory();
       file = File(
         '${directory.path}/bastion-backup-${DateTime.now().millisecondsSinceEpoch}.json',
@@ -70,6 +74,10 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
           () => _status =
               'Backup prepared. Keep your saved file and passphrase somewhere safe.',
         );
+      }
+    } on BackupTooLargeException {
+      if (mounted) {
+        setState(() => _status = context.l10n.bk_tooLarge);
       }
     } catch (_) {
       if (mounted) {
@@ -118,12 +126,16 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
       final count = values.keys
           .where(EncryptedBackupService.isRestorable)
           .length;
+      final messages = HistoryBackup.count(values[HistoryBackup.key]);
       final go = await showDialog<bool>(
         context: context,
         builder: (dialog) => AlertDialog(
-          title: const Text('Restore this backup?'),
+          title: Text(context.l10n.bk_confirmTitle),
           content: Text(
-            'This replaces $count saved settings on this device, including contacts, channel keys and waypoints, with the ones in the backup. Message history is not affected. This cannot be undone.',
+            messages > 0
+                ? '${context.l10n.bk_confirmBody(count)}\n\n'
+                      '${context.l10n.bk_confirmHistory(messages)}'
+                : context.l10n.bk_confirmBody(count),
           ),
           actions: [
             TextButton(
@@ -139,11 +151,17 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
       );
       if (go != true) return;
       final restored = await service.restore(values);
+      final db = messages > 0 ? await MessageDb.ready : null;
+      final added = db == null
+          ? 0
+          : EncryptedBackupService.restoreHistory(values, db);
       _restorePassphrase.clear();
       if (mounted) {
+        final l10n = context.l10n;
         setState(
-          () => _status =
-              'Restored $restored settings. Close the app fully and open it again to use them.',
+          () => _status = added > 0
+              ? '${l10n.bk_restoredHistory(added)} ${l10n.bk_restored(restored)}'
+              : l10n.bk_restored(restored),
         );
       }
     } catch (_) {
@@ -197,6 +215,16 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
             autocorrect: false,
             enableSuggestions: false,
             decoration: const InputDecoration(labelText: 'Confirm passphrase'),
+          ),
+          SwitchListTile(
+            key: const ValueKey('backup-history'),
+            contentPadding: EdgeInsets.zero,
+            value: _includeHistory,
+            onChanged: _busy
+                ? null
+                : (value) => setState(() => _includeHistory = value),
+            title: Text(context.l10n.bk_history),
+            subtitle: Text(context.l10n.bk_historyHint),
           ),
           FilledButton(
             onPressed: _busy ? null : _export,

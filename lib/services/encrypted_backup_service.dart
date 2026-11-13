@@ -2,13 +2,22 @@ import 'dart:convert';
 
 import 'package:cryptography/cryptography.dart';
 
+import '../storage/db/history_backup.dart';
 import '../storage/db/message_db.dart';
 import '../storage/prefs_manager.dart';
 import '../storage/secure_prefs.dart';
 
+/// Thrown when a backup would be bigger than [EncryptedBackupService.maxBytes].
+class BackupTooLargeException implements Exception {
+  const BackupTooLargeException();
+}
+
 /// Portable authenticated backup. Never sends settings to a server or radio.
 class EncryptedBackupService {
   static const _iterations = 310000;
+
+  /// The largest backup file this app writes or reads.
+  static const maxBytes = 96 * 1024 * 1024;
   final _cipher = AesGcm.with256bits();
   final _kdf = Pbkdf2(
     macAlgorithm: Hmac.sha256(),
@@ -31,7 +40,7 @@ class EncryptedBackupService {
       secretKey: key,
       aad: utf8.encode('bastion-meshcore-backup-v1'),
     );
-    return jsonEncode({
+    final sealed = jsonEncode({
       'format': 'bastion-meshcore-backup',
       'version': 1,
       'iterations': _iterations,
@@ -40,10 +49,12 @@ class EncryptedBackupService {
       'ciphertext': base64Encode(box.cipherText),
       'tag': base64Encode(box.mac.bytes),
     });
+    if (sealed.length > maxBytes) throw const BackupTooLargeException();
+    return sealed;
   }
 
   Future<Map<String, Object>> open(String text, String passphrase) async {
-    if (text.length > 32 * 1024 * 1024) {
+    if (text.length > maxBytes) {
       throw const FormatException('Backup is too large.');
     }
     final json = jsonDecode(text);
@@ -102,8 +113,10 @@ class EncryptedBackupService {
   /// Whether a backed-up setting may be written back on this device.
   ///
   /// Security switches stay as this device has them. Old chat keys are
-  /// skipped because message history lives in the database now.
+  /// skipped because message history lives in the database now, and is
+  /// restored by [restoreHistory].
   static bool isRestorable(String key) =>
+      key != HistoryBackup.key &&
       key != MessageDb.encryptPrefKey &&
       key != 'app_lock_enabled' &&
       !key.startsWith('messages_') &&
@@ -149,4 +162,20 @@ class EncryptedBackupService {
       ...SecurePrefs.snapshot(),
     };
   }
+
+  /// Adds the message history in [values] to [db], keeping what's already
+  /// there, and returns how many messages were new. Does nothing if the
+  /// backup has no history.
+  static int restoreHistory(Map<String, Object> values, MessageDb db) {
+    final history = values[HistoryBackup.key];
+    if (history == null) return 0;
+    return HistoryBackup.restore(db, history);
+  }
+
+  /// [values] with this device's message history added under
+  /// [HistoryBackup.key].
+  static Map<String, Object> withHistory(
+    Map<String, Object> values,
+    MessageDb db,
+  ) => {...values, HistoryBackup.key: HistoryBackup.encode(db)};
 }

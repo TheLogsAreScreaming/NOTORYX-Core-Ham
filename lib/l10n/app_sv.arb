@@ -4491,5 +4491,14 @@
   "waypoints_saved": "Sparad i Vägpunkter",
   "waypoints_alreadySaved": "Redan i Vägpunkter",
   "map_showWaypoints": "Visa sparade vägpunkter och rutter",
-  "dbEncrypt_covers": "Omfattar även kontakter, kanalnycklar, vägpunkter, sparade rutter, utkast och väntande meddelanden."
+  "dbEncrypt_covers": "Omfattar även kontakter, kanalnycklar, vägpunkter, sparade rutter, utkast och väntande meddelanden.",
+  "bk_intro": "Sparar en krypterad kopia av inställningar, kontakter, kanalnycklar, waypoints och utkast, och om du vill även meddelandehistoriken. Offlinekartor, foton och radions firmware ingår inte.",
+  "bk_confirmBody": "Det här ersätter {count} sparade inställningar på enheten, bland annat kontakter, kanalnycklar och waypoints, med dem i säkerhetskopian. Det går inte att ångra.",
+  "bk_history": "Ta med meddelandehistorik",
+  "bk_historyHint": "Direkt- och kanalmeddelanden för alla radioenheter. Filen blir större.",
+  "bk_tooLarge": "Säkerhetskopian är för stor. Stäng av meddelandehistorik och försök igen.",
+  "bk_confirmHistory": "Den lägger också till upp till {count} meddelanden i historiken. Meddelanden som redan finns på enheten behålls.",
+  "bk_restoredHistory": "{count} meddelanden har lagts till i historiken.",
+  "bk_confirmTitle": "Återställa den här säkerhetskopian?",
+  "bk_restored": "{count} inställningar återställda. Stäng appen helt och öppna den igen."
 }

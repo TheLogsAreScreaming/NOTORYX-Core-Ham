@@ -4625,5 +4625,14 @@
   "waypoints_saved": "Guardado en Puntos de ruta",
   "waypoints_alreadySaved": "Ya está en Puntos de ruta",
   "map_showWaypoints": "Mostrar puntos y rutas guardados",
-  "dbEncrypt_covers": "También cubre contactos, claves de canal, puntos de ruta, rutas guardadas, borradores y mensajes en espera."
+  "dbEncrypt_covers": "También cubre contactos, claves de canal, puntos de ruta, rutas guardadas, borradores y mensajes en espera.",
+  "bk_intro": "Guarda una copia cifrada de los ajustes, contactos, claves de canal, puntos de ruta y borradores y, si quieres, del historial de mensajes. No incluye mapas sin conexión, fotos ni el firmware de la radio.",
+  "bk_confirmBody": "Esto sustituye {count} ajustes guardados en este dispositivo, incluidos contactos, claves de canal y puntos de ruta, por los de la copia. No se puede deshacer.",
+  "bk_history": "Incluir historial de mensajes",
+  "bk_historyHint": "Mensajes directos y de canal de todas las radios. El archivo será más grande.",
+  "bk_tooLarge": "La copia es demasiado grande. Desactiva el historial de mensajes y vuelve a intentarlo.",
+  "bk_confirmHistory": "También añade hasta {count} mensajes a tu historial. Los mensajes que ya están en este dispositivo se conservan.",
+  "bk_restoredHistory": "Se añadieron {count} mensajes a tu historial.",
+  "bk_confirmTitle": "¿Restaurar esta copia?",
+  "bk_restored": "Se restauraron {count} ajustes. Cierra la app por completo y vuelve a abrirla para usarlos."
 }

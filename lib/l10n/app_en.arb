@@ -6697,5 +6697,35 @@
   "waypoints_saved": "Saved to Waypoints",
   "waypoints_alreadySaved": "Already in Waypoints",
   "map_showWaypoints": "Show saved waypoints and routes",
-  "dbEncrypt_covers": "Also covers contacts, channel keys, waypoints, saved routes, drafts and waiting messages."
+  "dbEncrypt_covers": "Also covers contacts, channel keys, waypoints, saved routes, drafts and waiting messages.",
+  "bk_intro": "Save an encrypted copy of app settings, contacts, channel keys, waypoints and drafts, and if you choose, your message history. Offline maps, photos and radio firmware are not included.",
+  "bk_confirmBody": "This replaces {count} saved settings on this device, including contacts, channel keys and waypoints, with the ones in the backup. This cannot be undone.",
+  "bk_history": "Include message history",
+  "bk_historyHint": "Direct and channel messages for every radio. The file will be bigger.",
+  "bk_tooLarge": "The backup is too large. Turn off message history and try again.",
+  "bk_confirmHistory": "It also adds up to {count} messages to your history. Messages already on this device are kept.",
+  "@bk_confirmHistory": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bk_restoredHistory": "Added {count} messages to your history.",
+  "@bk_restoredHistory": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bk_confirmTitle": "Restore this backup?",
+  "bk_restored": "Restored {count} settings. Close the app fully and open it again to use them.",
+  "@bk_restored": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
