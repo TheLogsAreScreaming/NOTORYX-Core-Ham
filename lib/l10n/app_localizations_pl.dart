@@ -11161,4 +11161,86 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS nie dotrze do nikogo';
+
+  @override
+  String get waypoints_title => 'Punkty';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Zapisane miejsca i trasy; import i eksport GPX';
+
+  @override
+  String get waypoints_importFile => 'Importuj plik GPX';
+
+  @override
+  String get waypoints_importPaste => 'Wklej GPX';
+
+  @override
+  String get waypoints_export => 'Eksportuj GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Brak punktów. Zaimportuj plik GPX lub zapisz miejsce udostępnione w czacie.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Punkty ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Trasy ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points punktów · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Usuń';
+
+  @override
+  String get waypoints_copy => 'Kopiuj współrzędne';
+
+  @override
+  String get waypoints_sendToChannel => 'Wyślij na kanał';
+
+  @override
+  String get waypoints_pickChannel => 'Na który kanał wysłać?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Wysłano na $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'To nie jest plik GPX, który aplikacja potrafi odczytać.';
+
+  @override
+  String get waypoints_pasteHint => 'Wklej tutaj tekst GPX';
+
+  @override
+  String get waypoints_import => 'Importuj';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'Dodano $waypoints punktów i $routes tras';
+  }
+
+  @override
+  String get waypoints_save => 'Zapisz jako punkt';
+
+  @override
+  String get waypoints_unnamed => 'Udostępnione miejsce';
+
+  @override
+  String get waypoints_saved => 'Zapisano w Punktach';
+
+  @override
+  String get waypoints_alreadySaved => 'Już jest w Punktach';
+
+  @override
+  String get map_showWaypoints => 'Pokaż zapisane punkty i trasy';
 }

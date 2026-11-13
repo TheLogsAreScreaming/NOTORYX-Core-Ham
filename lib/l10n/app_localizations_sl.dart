@@ -11115,4 +11115,86 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS ne doseže nikogar';
+
+  @override
+  String get waypoints_title => 'Točke';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Shranjena mesta in poti; uvoz in izvoz GPX';
+
+  @override
+  String get waypoints_importFile => 'Uvozi datoteko GPX';
+
+  @override
+  String get waypoints_importPaste => 'Prilepi GPX';
+
+  @override
+  String get waypoints_export => 'Izvozi GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Še ni točk. Uvozite datoteko GPX ali shranite mesto, ki ga je nekdo delil v klepetu.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Točke ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Poti ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points točk · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Izbriši';
+
+  @override
+  String get waypoints_copy => 'Kopiraj koordinate';
+
+  @override
+  String get waypoints_sendToChannel => 'Pošlji v kanal';
+
+  @override
+  String get waypoints_pickChannel => 'V kateri kanal poslati?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Poslano v $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'To ni datoteka GPX, ki jo aplikacija zna prebrati.';
+
+  @override
+  String get waypoints_pasteHint => 'Sem prilepite besedilo GPX';
+
+  @override
+  String get waypoints_import => 'Uvozi';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'Dodanih točk: $waypoints, poti: $routes';
+  }
+
+  @override
+  String get waypoints_save => 'Shrani kot točko';
+
+  @override
+  String get waypoints_unnamed => 'Deljeno mesto';
+
+  @override
+  String get waypoints_saved => 'Shranjeno v Točke';
+
+  @override
+  String get waypoints_alreadySaved => 'Že v Točkah';
+
+  @override
+  String get map_showWaypoints => 'Prikaži shranjene točke in poti';
 }

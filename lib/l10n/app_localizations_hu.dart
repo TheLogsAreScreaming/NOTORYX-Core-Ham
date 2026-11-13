@@ -11097,4 +11097,86 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'Az SOS senkit sem ér el';
+
+  @override
+  String get waypoints_title => 'Útpontok';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Mentett helyek és útvonalak; GPX be- és kivitel';
+
+  @override
+  String get waypoints_importFile => 'GPX fájl importálása';
+
+  @override
+  String get waypoints_importPaste => 'GPX beillesztése';
+
+  @override
+  String get waypoints_export => 'GPX exportálása';
+
+  @override
+  String get waypoints_empty =>
+      'Még nincsenek útpontok. Importálj egy GPX fájlt, vagy ments el egy csevegésben megosztott helyet.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Útpontok ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Útvonalak ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points pont · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Törlés';
+
+  @override
+  String get waypoints_copy => 'Koordináták másolása';
+
+  @override
+  String get waypoints_sendToChannel => 'Küldés csatornára';
+
+  @override
+  String get waypoints_pickChannel => 'Melyik csatornára küldjem?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Elküldve ide: $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Ez nem olyan GPX fájl, amit az alkalmazás be tud olvasni.';
+
+  @override
+  String get waypoints_pasteHint => 'Illeszd be ide a GPX szöveget';
+
+  @override
+  String get waypoints_import => 'Importálás';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return '$waypoints útpont és $routes útvonal hozzáadva';
+  }
+
+  @override
+  String get waypoints_save => 'Mentés útpontként';
+
+  @override
+  String get waypoints_unnamed => 'Megosztott hely';
+
+  @override
+  String get waypoints_saved => 'Mentve az Útpontokhoz';
+
+  @override
+  String get waypoints_alreadySaved => 'Már az Útpontok között van';
+
+  @override
+  String get map_showWaypoints => 'Mentett útpontok és útvonalak megjelenítése';
 }

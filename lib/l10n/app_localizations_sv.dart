@@ -11023,4 +11023,86 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS når ingen';
+
+  @override
+  String get waypoints_title => 'Vägpunkter';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Sparade platser och rutter; importera eller exportera GPX';
+
+  @override
+  String get waypoints_importFile => 'Importera GPX-fil';
+
+  @override
+  String get waypoints_importPaste => 'Klistra in GPX';
+
+  @override
+  String get waypoints_export => 'Exportera GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Inga vägpunkter än. Importera en GPX-fil eller spara en plats som någon delat i en chatt.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Vägpunkter ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Rutter ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points punkter · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Ta bort';
+
+  @override
+  String get waypoints_copy => 'Kopiera koordinater';
+
+  @override
+  String get waypoints_sendToChannel => 'Skicka till en kanal';
+
+  @override
+  String get waypoints_pickChannel => 'Skicka till vilken kanal?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Skickat till $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Det är ingen GPX-fil som appen kan läsa.';
+
+  @override
+  String get waypoints_pasteHint => 'Klistra in GPX-texten här';
+
+  @override
+  String get waypoints_import => 'Importera';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'La till $waypoints vägpunkter och $routes rutter';
+  }
+
+  @override
+  String get waypoints_save => 'Spara som vägpunkt';
+
+  @override
+  String get waypoints_unnamed => 'Delad plats';
+
+  @override
+  String get waypoints_saved => 'Sparad i Vägpunkter';
+
+  @override
+  String get waypoints_alreadySaved => 'Redan i Vägpunkter';
+
+  @override
+  String get map_showWaypoints => 'Visa sparade vägpunkter och rutter';
 }

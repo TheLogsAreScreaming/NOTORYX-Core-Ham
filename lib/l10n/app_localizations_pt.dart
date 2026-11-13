@@ -11093,4 +11093,86 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'O SOS não chega a ninguém';
+
+  @override
+  String get waypoints_title => 'Pontos de passagem';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Locais e rotas guardados; importar ou exportar GPX';
+
+  @override
+  String get waypoints_importFile => 'Importar ficheiro GPX';
+
+  @override
+  String get waypoints_importPaste => 'Colar GPX';
+
+  @override
+  String get waypoints_export => 'Exportar GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Ainda sem pontos. Importe um ficheiro GPX ou guarde um local partilhado numa conversa.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Pontos ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Rotas ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points pontos · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Eliminar';
+
+  @override
+  String get waypoints_copy => 'Copiar coordenadas';
+
+  @override
+  String get waypoints_sendToChannel => 'Enviar para um canal';
+
+  @override
+  String get waypoints_pickChannel => 'Enviar para que canal?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Enviado para $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Não é um ficheiro GPX que a app consiga ler.';
+
+  @override
+  String get waypoints_pasteHint => 'Cole aqui o texto GPX';
+
+  @override
+  String get waypoints_import => 'Importar';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'Adicionados $waypoints pontos e $routes rotas';
+  }
+
+  @override
+  String get waypoints_save => 'Guardar como ponto';
+
+  @override
+  String get waypoints_unnamed => 'Local partilhado';
+
+  @override
+  String get waypoints_saved => 'Guardado em Pontos de passagem';
+
+  @override
+  String get waypoints_alreadySaved => 'Já está em Pontos de passagem';
+
+  @override
+  String get map_showWaypoints => 'Mostrar pontos e rotas guardados';
 }

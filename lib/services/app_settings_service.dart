@@ -100,6 +100,10 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(mapKeyPrefix: value));
   }
 
+  Future<void> setMapShowWaypoints(bool value) async {
+    await updateSettings(_settings.copyWith(mapShowWaypoints: value));
+  }
+
   Future<void> setMapShowMarkers(bool value) async {
     await updateSettings(_settings.copyWith(mapShowMarkers: value));
   }

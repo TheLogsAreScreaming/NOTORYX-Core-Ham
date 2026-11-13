@@ -9,6 +9,7 @@ import '../widgets/glass_action_row.dart';
 
 import 'antenna_coverage_screen.dart';
 import 'antenna_hunt_screen.dart';
+import 'waypoints_screen.dart';
 import 'network_changes_screen.dart';
 import 'troubleshooting_screen.dart';
 import 'bastion_about_screen.dart';
@@ -171,6 +172,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.bastion_mapCoverage,
             subtitle: l10n.bastionTools_mapHint,
             builder: (_) => const BastionMapHubScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.place_outlined,
+            title: l10n.waypoints_title,
+            subtitle: l10n.waypoints_toolSubtitle,
+            builder: (_) => const WaypointsScreen(),
           ),
           _ToolAction(
             icon: Icons.cell_tower,

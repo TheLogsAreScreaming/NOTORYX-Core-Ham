@@ -6632,5 +6632,69 @@
       }
     }
   },
-  "readiness_summaryBlocked": "SOS can't reach anyone"
+  "readiness_summaryBlocked": "SOS can't reach anyone",
+  "waypoints_title": "Waypoints",
+  "waypoints_toolSubtitle": "Saved places and routes; import or export GPX",
+  "waypoints_importFile": "Import GPX file",
+  "waypoints_importPaste": "Paste GPX",
+  "waypoints_export": "Export GPX",
+  "waypoints_empty": "No waypoints yet. Import a GPX file, or save a place someone shared in a chat.",
+  "waypoints_waypoints": "Waypoints ({count})",
+  "@waypoints_waypoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waypoints_routes": "Routes ({count})",
+  "@waypoints_routes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waypoints_routeSummary": "{points} points · {km} km",
+  "@waypoints_routeSummary": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "waypoints_delete": "Delete",
+  "waypoints_copy": "Copy coordinates",
+  "waypoints_sendToChannel": "Send to a channel",
+  "waypoints_pickChannel": "Send to which channel?",
+  "waypoints_sent": "Sent to {channel}",
+  "@waypoints_sent": {
+    "placeholders": {
+      "channel": {
+        "type": "String"
+      }
+    }
+  },
+  "waypoints_importFailed": "That isn't a GPX file the app can read.",
+  "waypoints_pasteHint": "Paste the GPX text here",
+  "waypoints_import": "Import",
+  "waypoints_imported": "Added {waypoints} waypoints and {routes} routes",
+  "@waypoints_imported": {
+    "placeholders": {
+      "waypoints": {
+        "type": "int"
+      },
+      "routes": {
+        "type": "int"
+      }
+    }
+  },
+  "waypoints_save": "Save as waypoint",
+  "waypoints_unnamed": "Shared place",
+  "waypoints_saved": "Saved to Waypoints",
+  "waypoints_alreadySaved": "Already in Waypoints",
+  "map_showWaypoints": "Show saved waypoints and routes"
 }
