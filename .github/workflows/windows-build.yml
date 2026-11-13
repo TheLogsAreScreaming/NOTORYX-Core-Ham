@@ -1,0 +1,33 @@
+name: Windows build
+
+# Runs only when Windows files change, or by hand, so it can't slow normal PRs.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "windows/**"
+      - ".github/workflows/windows-build.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  # windows-latest ships Visual Studio 18, which rejects the /await option
+  # local_auth_windows still uses. Visual Studio 2022 accepts it.
+  windows:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.6"
+          channel: "stable"
+          cache: true
+      - run: flutter pub get
+      - run: bash tools/ci_retry.sh flutter build windows --release --no-pub
+        shell: bash
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NOTORYX-Core-Ham-Windows-x64
+          path: build/windows/x64/runner/Release
+          if-no-files-found: error
