@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cryptography/cryptography.dart';
 
+import '../storage/db/message_db.dart';
 import '../storage/prefs_manager.dart';
 
 /// Portable authenticated backup. Never sends settings to a server or radio.
@@ -95,6 +96,44 @@ class EncryptedBackupService {
         throw const FormatException('Unsupported setting value.');
       }
     }
+  }
+
+  /// Whether a backed-up setting may be written back on this device.
+  ///
+  /// Security switches stay as this device has them. Old chat keys are
+  /// skipped because message history lives in the database now.
+  static bool isRestorable(String key) =>
+      key != MessageDb.encryptPrefKey &&
+      key != 'app_lock_enabled' &&
+      !key.startsWith('messages_') &&
+      !key.startsWith('channel_messages');
+
+  /// Writes [values] back and returns how many were restored. Settings not
+  /// in the backup are left alone. The app must restart to use them.
+  Future<int> restore(Map<String, Object> values) async {
+    _validate(values);
+    final prefs = PrefsManager.instance;
+    var restored = 0;
+    for (final entry in values.entries) {
+      final key = entry.key;
+      if (!isRestorable(key)) continue;
+      switch (entry.value) {
+        case final String v:
+          await prefs.setString(key, v);
+        case final bool v:
+          await prefs.setBool(key, v);
+        case final int v:
+          await prefs.setInt(key, v);
+        case final double v:
+          await prefs.setDouble(key, v);
+        case final List<dynamic> v:
+          await prefs.setStringList(key, v.cast<String>());
+        default:
+          continue;
+      }
+      restored++;
+    }
+    return restored;
   }
 
   Map<String, Object> snapshot({required bool includeChats}) {
