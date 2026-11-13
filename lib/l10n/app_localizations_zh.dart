@@ -10359,4 +10359,83 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS 无法送达任何人';
+
+  @override
+  String get waypoints_title => '航点';
+
+  @override
+  String get waypoints_toolSubtitle => '已保存的地点和路线；导入或导出 GPX';
+
+  @override
+  String get waypoints_importFile => '导入 GPX 文件';
+
+  @override
+  String get waypoints_importPaste => '粘贴 GPX';
+
+  @override
+  String get waypoints_export => '导出 GPX';
+
+  @override
+  String get waypoints_empty => '还没有航点。导入 GPX 文件，或保存聊天中分享的地点。';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return '航点（$count）';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return '路线（$count）';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points 个点 · $km 公里';
+  }
+
+  @override
+  String get waypoints_delete => '删除';
+
+  @override
+  String get waypoints_copy => '复制坐标';
+
+  @override
+  String get waypoints_sendToChannel => '发送到频道';
+
+  @override
+  String get waypoints_pickChannel => '发送到哪个频道？';
+
+  @override
+  String waypoints_sent(String channel) {
+    return '已发送到 $channel';
+  }
+
+  @override
+  String get waypoints_importFailed => '这不是应用能读取的 GPX 文件。';
+
+  @override
+  String get waypoints_pasteHint => '在此粘贴 GPX 文本';
+
+  @override
+  String get waypoints_import => '导入';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return '已添加 $waypoints 个航点和 $routes 条路线';
+  }
+
+  @override
+  String get waypoints_save => '保存为航点';
+
+  @override
+  String get waypoints_unnamed => '分享的地点';
+
+  @override
+  String get waypoints_saved => '已保存到航点';
+
+  @override
+  String get waypoints_alreadySaved => '已在航点中';
+
+  @override
+  String get map_showWaypoints => '显示已保存的航点和路线';
 }

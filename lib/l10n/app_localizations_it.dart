@@ -11123,4 +11123,85 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'L\'SOS non raggiunge nessuno';
+
+  @override
+  String get waypoints_title => 'Waypoint';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Luoghi e percorsi salvati; importa o esporta GPX';
+
+  @override
+  String get waypoints_importFile => 'Importa file GPX';
+
+  @override
+  String get waypoints_importPaste => 'Incolla GPX';
+
+  @override
+  String get waypoints_export => 'Esporta GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Ancora nessun waypoint. Importa un file GPX o salva un luogo condiviso in una chat.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Waypoint ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Percorsi ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points punti · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Elimina';
+
+  @override
+  String get waypoints_copy => 'Copia coordinate';
+
+  @override
+  String get waypoints_sendToChannel => 'Invia a un canale';
+
+  @override
+  String get waypoints_pickChannel => 'A quale canale inviare?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Inviato a $channel';
+  }
+
+  @override
+  String get waypoints_importFailed => 'Non è un file GPX leggibile dall\'app.';
+
+  @override
+  String get waypoints_pasteHint => 'Incolla qui il testo GPX';
+
+  @override
+  String get waypoints_import => 'Importa';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'Aggiunti $waypoints waypoint e $routes percorsi';
+  }
+
+  @override
+  String get waypoints_save => 'Salva come waypoint';
+
+  @override
+  String get waypoints_unnamed => 'Luogo condiviso';
+
+  @override
+  String get waypoints_saved => 'Salvato nei Waypoint';
+
+  @override
+  String get waypoints_alreadySaved => 'Già nei Waypoint';
+
+  @override
+  String get map_showWaypoints => 'Mostra waypoint e percorsi salvati';
 }

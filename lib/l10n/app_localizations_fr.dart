@@ -11147,4 +11147,87 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'Le SOS ne joint personne';
+
+  @override
+  String get waypoints_title => 'Points de passage';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Lieux et itinéraires enregistrés ; importer ou exporter du GPX';
+
+  @override
+  String get waypoints_importFile => 'Importer un fichier GPX';
+
+  @override
+  String get waypoints_importPaste => 'Coller du GPX';
+
+  @override
+  String get waypoints_export => 'Exporter en GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Aucun point pour l\'instant. Importez un fichier GPX ou enregistrez un lieu partagé dans une discussion.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Points ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Itinéraires ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points points · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Supprimer';
+
+  @override
+  String get waypoints_copy => 'Copier les coordonnées';
+
+  @override
+  String get waypoints_sendToChannel => 'Envoyer à un canal';
+
+  @override
+  String get waypoints_pickChannel => 'Envoyer à quel canal ?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Envoyé à $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Ce n\'est pas un fichier GPX lisible par l\'app.';
+
+  @override
+  String get waypoints_pasteHint => 'Collez le texte GPX ici';
+
+  @override
+  String get waypoints_import => 'Importer';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return '$waypoints points et $routes itinéraires ajoutés';
+  }
+
+  @override
+  String get waypoints_save => 'Enregistrer comme point';
+
+  @override
+  String get waypoints_unnamed => 'Lieu partagé';
+
+  @override
+  String get waypoints_saved => 'Enregistré dans Points de passage';
+
+  @override
+  String get waypoints_alreadySaved => 'Déjà dans Points de passage';
+
+  @override
+  String get map_showWaypoints =>
+      'Afficher les points et itinéraires enregistrés';
 }

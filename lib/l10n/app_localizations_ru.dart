@@ -11156,4 +11156,86 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS никому не дойдёт';
+
+  @override
+  String get waypoints_title => 'Путевые точки';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Сохранённые места и маршруты; импорт и экспорт GPX';
+
+  @override
+  String get waypoints_importFile => 'Импорт файла GPX';
+
+  @override
+  String get waypoints_importPaste => 'Вставить GPX';
+
+  @override
+  String get waypoints_export => 'Экспорт GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Путевых точек пока нет. Импортируйте файл GPX или сохраните место, которым поделились в чате.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Точки ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Маршруты ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return 'Точек: $points · $km км';
+  }
+
+  @override
+  String get waypoints_delete => 'Удалить';
+
+  @override
+  String get waypoints_copy => 'Копировать координаты';
+
+  @override
+  String get waypoints_sendToChannel => 'Отправить в канал';
+
+  @override
+  String get waypoints_pickChannel => 'В какой канал отправить?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Отправлено в $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Это не файл GPX, который приложение может прочитать.';
+
+  @override
+  String get waypoints_pasteHint => 'Вставьте сюда текст GPX';
+
+  @override
+  String get waypoints_import => 'Импорт';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'Добавлено точек: $waypoints, маршрутов: $routes';
+  }
+
+  @override
+  String get waypoints_save => 'Сохранить как точку';
+
+  @override
+  String get waypoints_unnamed => 'Место из чата';
+
+  @override
+  String get waypoints_saved => 'Сохранено в путевых точках';
+
+  @override
+  String get waypoints_alreadySaved => 'Уже есть в путевых точках';
+
+  @override
+  String get map_showWaypoints => 'Показывать сохранённые точки и маршруты';
 }

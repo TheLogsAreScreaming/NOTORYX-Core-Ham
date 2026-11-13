@@ -11113,4 +11113,86 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'El SOS no llega a nadie';
+
+  @override
+  String get waypoints_title => 'Puntos de ruta';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Lugares y rutas guardados; importar o exportar GPX';
+
+  @override
+  String get waypoints_importFile => 'Importar archivo GPX';
+
+  @override
+  String get waypoints_importPaste => 'Pegar GPX';
+
+  @override
+  String get waypoints_export => 'Exportar GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Aún no hay puntos. Importa un archivo GPX o guarda un lugar que alguien compartió en un chat.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Puntos ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Rutas ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points puntos · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Eliminar';
+
+  @override
+  String get waypoints_copy => 'Copiar coordenadas';
+
+  @override
+  String get waypoints_sendToChannel => 'Enviar a un canal';
+
+  @override
+  String get waypoints_pickChannel => '¿A qué canal enviar?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Enviado a $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'No es un archivo GPX que la app pueda leer.';
+
+  @override
+  String get waypoints_pasteHint => 'Pega aquí el texto GPX';
+
+  @override
+  String get waypoints_import => 'Importar';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'Añadidos $waypoints puntos y $routes rutas';
+  }
+
+  @override
+  String get waypoints_save => 'Guardar como punto';
+
+  @override
+  String get waypoints_unnamed => 'Lugar compartido';
+
+  @override
+  String get waypoints_saved => 'Guardado en Puntos de ruta';
+
+  @override
+  String get waypoints_alreadySaved => 'Ya está en Puntos de ruta';
+
+  @override
+  String get map_showWaypoints => 'Mostrar puntos y rutas guardados';
 }

@@ -11093,4 +11093,86 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS sa k nikomu nedostane';
+
+  @override
+  String get waypoints_title => 'Body trasy';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Uložené miesta a trasy; import a export GPX';
+
+  @override
+  String get waypoints_importFile => 'Importovať súbor GPX';
+
+  @override
+  String get waypoints_importPaste => 'Vložiť GPX';
+
+  @override
+  String get waypoints_export => 'Exportovať GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Zatiaľ žiadne body. Importujte súbor GPX alebo uložte miesto zdieľané v chate.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Body ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Trasy ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points bodov · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Odstrániť';
+
+  @override
+  String get waypoints_copy => 'Kopírovať súradnice';
+
+  @override
+  String get waypoints_sendToChannel => 'Poslať do kanála';
+
+  @override
+  String get waypoints_pickChannel => 'Do ktorého kanála poslať?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Odoslané do $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Toto nie je súbor GPX, ktorý aplikácia vie prečítať.';
+
+  @override
+  String get waypoints_pasteHint => 'Sem vložte text GPX';
+
+  @override
+  String get waypoints_import => 'Importovať';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'Pridané body: $waypoints, trasy: $routes';
+  }
+
+  @override
+  String get waypoints_save => 'Uložiť ako bod';
+
+  @override
+  String get waypoints_unnamed => 'Zdieľané miesto';
+
+  @override
+  String get waypoints_saved => 'Uložené v Bodoch trasy';
+
+  @override
+  String get waypoints_alreadySaved => 'Už je v Bodoch trasy';
+
+  @override
+  String get map_showWaypoints => 'Zobraziť uložené body a trasy';
 }

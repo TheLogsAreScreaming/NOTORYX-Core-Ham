@@ -11154,4 +11154,86 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS нікому не дійде';
+
+  @override
+  String get waypoints_title => 'Точки маршруту';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Збережені місця й маршрути; імпорт та експорт GPX';
+
+  @override
+  String get waypoints_importFile => 'Імпорт файлу GPX';
+
+  @override
+  String get waypoints_importPaste => 'Вставити GPX';
+
+  @override
+  String get waypoints_export => 'Експорт GPX';
+
+  @override
+  String get waypoints_empty =>
+      'Точок поки немає. Імпортуйте файл GPX або збережіть місце, яким поділилися в чаті.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Точки ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Маршрути ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return 'Точок: $points · $km км';
+  }
+
+  @override
+  String get waypoints_delete => 'Видалити';
+
+  @override
+  String get waypoints_copy => 'Копіювати координати';
+
+  @override
+  String get waypoints_sendToChannel => 'Надіслати в канал';
+
+  @override
+  String get waypoints_pickChannel => 'У який канал надіслати?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Надіслано в $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Це не файл GPX, який застосунок може прочитати.';
+
+  @override
+  String get waypoints_pasteHint => 'Вставте сюди текст GPX';
+
+  @override
+  String get waypoints_import => 'Імпорт';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'Додано точок: $waypoints, маршрутів: $routes';
+  }
+
+  @override
+  String get waypoints_save => 'Зберегти як точку';
+
+  @override
+  String get waypoints_unnamed => 'Місце з чату';
+
+  @override
+  String get waypoints_saved => 'Збережено в точках маршруту';
+
+  @override
+  String get waypoints_alreadySaved => 'Уже є в точках маршруту';
+
+  @override
+  String get map_showWaypoints => 'Показувати збережені точки та маршрути';
 }

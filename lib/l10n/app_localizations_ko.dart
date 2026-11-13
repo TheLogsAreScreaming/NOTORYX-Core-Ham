@@ -10592,4 +10592,84 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS가 아무에게도 닿지 않음';
+
+  @override
+  String get waypoints_title => '웨이포인트';
+
+  @override
+  String get waypoints_toolSubtitle => '저장된 장소와 경로; GPX 가져오기 및 내보내기';
+
+  @override
+  String get waypoints_importFile => 'GPX 파일 가져오기';
+
+  @override
+  String get waypoints_importPaste => 'GPX 붙여넣기';
+
+  @override
+  String get waypoints_export => 'GPX 내보내기';
+
+  @override
+  String get waypoints_empty =>
+      '아직 웨이포인트가 없습니다. GPX 파일을 가져오거나 채팅에서 공유된 장소를 저장하세요.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return '웨이포인트 ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return '경로 ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points개 지점 · $km km';
+  }
+
+  @override
+  String get waypoints_delete => '삭제';
+
+  @override
+  String get waypoints_copy => '좌표 복사';
+
+  @override
+  String get waypoints_sendToChannel => '채널로 보내기';
+
+  @override
+  String get waypoints_pickChannel => '어느 채널로 보낼까요?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return '$channel에 보냄';
+  }
+
+  @override
+  String get waypoints_importFailed => '앱이 읽을 수 있는 GPX 파일이 아닙니다.';
+
+  @override
+  String get waypoints_pasteHint => '여기에 GPX 텍스트를 붙여넣으세요';
+
+  @override
+  String get waypoints_import => '가져오기';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return '웨이포인트 $waypoints개와 경로 $routes개를 추가했습니다';
+  }
+
+  @override
+  String get waypoints_save => '웨이포인트로 저장';
+
+  @override
+  String get waypoints_unnamed => '공유된 장소';
+
+  @override
+  String get waypoints_saved => '웨이포인트에 저장됨';
+
+  @override
+  String get waypoints_alreadySaved => '이미 웨이포인트에 있음';
+
+  @override
+  String get map_showWaypoints => '저장된 웨이포인트와 경로 표시';
 }

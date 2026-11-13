@@ -11119,4 +11119,86 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS erreicht niemanden';
+
+  @override
+  String get waypoints_title => 'Wegpunkte';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Gespeicherte Orte und Routen; GPX importieren oder exportieren';
+
+  @override
+  String get waypoints_importFile => 'GPX-Datei importieren';
+
+  @override
+  String get waypoints_importPaste => 'GPX einfügen';
+
+  @override
+  String get waypoints_export => 'GPX exportieren';
+
+  @override
+  String get waypoints_empty =>
+      'Noch keine Wegpunkte. Importiere eine GPX-Datei oder speichere einen Ort, den jemand im Chat geteilt hat.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Wegpunkte ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Routen ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points Punkte · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Löschen';
+
+  @override
+  String get waypoints_copy => 'Koordinaten kopieren';
+
+  @override
+  String get waypoints_sendToChannel => 'An einen Kanal senden';
+
+  @override
+  String get waypoints_pickChannel => 'An welchen Kanal senden?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'An $channel gesendet';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Das ist keine GPX-Datei, die die App lesen kann.';
+
+  @override
+  String get waypoints_pasteHint => 'GPX-Text hier einfügen';
+
+  @override
+  String get waypoints_import => 'Importieren';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return '$waypoints Wegpunkte und $routes Routen hinzugefügt';
+  }
+
+  @override
+  String get waypoints_save => 'Als Wegpunkt speichern';
+
+  @override
+  String get waypoints_unnamed => 'Geteilter Ort';
+
+  @override
+  String get waypoints_saved => 'In Wegpunkten gespeichert';
+
+  @override
+  String get waypoints_alreadySaved => 'Schon in Wegpunkten';
+
+  @override
+  String get map_showWaypoints => 'Gespeicherte Wegpunkte und Routen anzeigen';
 }

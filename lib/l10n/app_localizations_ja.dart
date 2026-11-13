@@ -10576,4 +10576,84 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOSの送信先がありません';
+
+  @override
+  String get waypoints_title => 'ウェイポイント';
+
+  @override
+  String get waypoints_toolSubtitle => '保存した場所とルート。GPXの読み込み・書き出し';
+
+  @override
+  String get waypoints_importFile => 'GPXファイルを読み込む';
+
+  @override
+  String get waypoints_importPaste => 'GPXを貼り付け';
+
+  @override
+  String get waypoints_export => 'GPXを書き出す';
+
+  @override
+  String get waypoints_empty =>
+      'ウェイポイントはまだありません。GPXファイルを読み込むか、チャットで共有された場所を保存してください。';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'ウェイポイント ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'ルート ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points地点 · $km km';
+  }
+
+  @override
+  String get waypoints_delete => '削除';
+
+  @override
+  String get waypoints_copy => '座標をコピー';
+
+  @override
+  String get waypoints_sendToChannel => 'チャンネルに送信';
+
+  @override
+  String get waypoints_pickChannel => 'どのチャンネルに送りますか？';
+
+  @override
+  String waypoints_sent(String channel) {
+    return '$channelに送信しました';
+  }
+
+  @override
+  String get waypoints_importFailed => 'アプリで読めるGPXファイルではありません。';
+
+  @override
+  String get waypoints_pasteHint => 'GPXのテキストをここに貼り付け';
+
+  @override
+  String get waypoints_import => '読み込む';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return 'ウェイポイント$waypoints件とルート$routes件を追加しました';
+  }
+
+  @override
+  String get waypoints_save => 'ウェイポイントとして保存';
+
+  @override
+  String get waypoints_unnamed => '共有された場所';
+
+  @override
+  String get waypoints_saved => 'ウェイポイントに保存しました';
+
+  @override
+  String get waypoints_alreadySaved => 'すでにウェイポイントにあります';
+
+  @override
+  String get map_showWaypoints => '保存したウェイポイントとルートを表示';
 }

@@ -11068,4 +11068,86 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get readiness_summaryBlocked => 'SOS bereikt niemand';
+
+  @override
+  String get waypoints_title => 'Waypoints';
+
+  @override
+  String get waypoints_toolSubtitle =>
+      'Opgeslagen plaatsen en routes; GPX importeren of exporteren';
+
+  @override
+  String get waypoints_importFile => 'GPX-bestand importeren';
+
+  @override
+  String get waypoints_importPaste => 'GPX plakken';
+
+  @override
+  String get waypoints_export => 'GPX exporteren';
+
+  @override
+  String get waypoints_empty =>
+      'Nog geen waypoints. Importeer een GPX-bestand of bewaar een plek die iemand in een chat deelde.';
+
+  @override
+  String waypoints_waypoints(int count) {
+    return 'Waypoints ($count)';
+  }
+
+  @override
+  String waypoints_routes(int count) {
+    return 'Routes ($count)';
+  }
+
+  @override
+  String waypoints_routeSummary(int points, String km) {
+    return '$points punten · $km km';
+  }
+
+  @override
+  String get waypoints_delete => 'Verwijderen';
+
+  @override
+  String get waypoints_copy => 'Coördinaten kopiëren';
+
+  @override
+  String get waypoints_sendToChannel => 'Naar een kanaal sturen';
+
+  @override
+  String get waypoints_pickChannel => 'Naar welk kanaal sturen?';
+
+  @override
+  String waypoints_sent(String channel) {
+    return 'Verstuurd naar $channel';
+  }
+
+  @override
+  String get waypoints_importFailed =>
+      'Dit is geen GPX-bestand dat de app kan lezen.';
+
+  @override
+  String get waypoints_pasteHint => 'Plak hier de GPX-tekst';
+
+  @override
+  String get waypoints_import => 'Importeren';
+
+  @override
+  String waypoints_imported(int waypoints, int routes) {
+    return '$waypoints waypoints en $routes routes toegevoegd';
+  }
+
+  @override
+  String get waypoints_save => 'Bewaren als waypoint';
+
+  @override
+  String get waypoints_unnamed => 'Gedeelde plek';
+
+  @override
+  String get waypoints_saved => 'Bewaard in Waypoints';
+
+  @override
+  String get waypoints_alreadySaved => 'Staat al in Waypoints';
+
+  @override
+  String get map_showWaypoints => 'Opgeslagen waypoints en routes tonen';
 }
