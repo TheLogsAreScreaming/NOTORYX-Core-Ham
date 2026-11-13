@@ -25,6 +25,8 @@ String coordinateFormatLabel(BuildContext context, CoordinateFormat format) {
       return l10n.coords_utm;
     case CoordinateFormat.mgrs:
       return l10n.coords_mgrs;
+    case CoordinateFormat.maidenhead:
+      return l10n.coords_maidenhead;
   }
 }
 

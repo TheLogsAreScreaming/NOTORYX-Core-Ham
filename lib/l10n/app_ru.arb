@@ -3664,5 +3664,11 @@
   "fieldReport_preview": "Сообщений к отправке: {count}",
   "fieldReport_needCallsign": "Сначала укажите позывной в разделе «Лицензированный оператор».",
   "fieldReport_tooLong": "Одна строка слишком длинна для одного сообщения. Сократите её.",
-  "fieldReport_sent": "Донесение передано на радио"
+  "fieldReport_sent": "Донесение передано на радио",
+  "coords_maidenhead": "Локатор Maidenhead",
+  "reactions_radioTitle": "Отправлять реакции по радио",
+  "reactions_radioHint": "Каждая реакция — это пакет в эфире. «Автоматически» оставляет их на этом устройстве в европейском диапазоне 868 МГц, где эфирное время ограничено.",
+  "reactions_radioAuto": "Автоматически",
+  "reactions_radioOn": "Вкл.",
+  "reactions_radioOff": "Выкл. (это устройство)"
 }

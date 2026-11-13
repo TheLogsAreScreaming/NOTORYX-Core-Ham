@@ -4495,5 +4495,11 @@
   "fieldReport_preview": "Mensajes por enviar: {count}",
   "fieldReport_needCallsign": "Primero configura tu indicativo en Operador con licencia.",
   "fieldReport_tooLong": "Una línea es demasiado larga para un solo mensaje. Acórtala.",
-  "fieldReport_sent": "Informe enviado a la radio"
+  "fieldReport_sent": "Informe enviado a la radio",
+  "coords_maidenhead": "Localizador Maidenhead",
+  "reactions_radioTitle": "Enviar reacciones por radio",
+  "reactions_radioHint": "Cada reacción es un paquete en el aire. Automático las deja en este dispositivo en la banda europea de 868 MHz, donde el tiempo de emisión es limitado.",
+  "reactions_radioAuto": "Automático",
+  "reactions_radioOn": "Sí",
+  "reactions_radioOff": "No (este dispositivo)"
 }

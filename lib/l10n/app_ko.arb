@@ -4495,5 +4495,11 @@
   "fieldReport_preview": "보낼 메시지: {count}",
   "fieldReport_needCallsign": "먼저 면허 운용자에서 호출부호를 설정하세요.",
   "fieldReport_tooLong": "한 줄이 메시지 하나에 들어가기에 너무 깁니다. 줄여 주세요.",
-  "fieldReport_sent": "보고를 무전기로 보냈습니다"
+  "fieldReport_sent": "보고를 무전기로 보냈습니다",
+  "coords_maidenhead": "메이든헤드 로케이터",
+  "reactions_radioTitle": "반응을 무선으로 보내기",
+  "reactions_radioHint": "반응 하나하나가 전파로 나가는 패킷입니다. 자동은 송신 시간이 제한된 EU 868 MHz 대역에서 이 기기에만 표시합니다.",
+  "reactions_radioAuto": "자동",
+  "reactions_radioOn": "켜기",
+  "reactions_radioOff": "끄기(이 기기)"
 }

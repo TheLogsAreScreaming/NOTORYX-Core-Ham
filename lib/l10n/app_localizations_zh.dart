@@ -9996,4 +9996,23 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get fieldReport_sent => '报告已发送到电台';
+
+  @override
+  String get coords_maidenhead => '梅登黑德定位符';
+
+  @override
+  String get reactions_radioTitle => '通过电台发送回应';
+
+  @override
+  String get reactions_radioHint =>
+      '每个回应都是一个空中数据包。自动模式在发射时间受限的欧盟 868 MHz 频段只在本设备上显示。';
+
+  @override
+  String get reactions_radioAuto => '自动';
+
+  @override
+  String get reactions_radioOn => '开';
+
+  @override
+  String get reactions_radioOff => '关（仅本设备）';
 }

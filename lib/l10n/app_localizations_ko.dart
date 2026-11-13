@@ -10221,4 +10221,23 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get fieldReport_sent => '보고를 무전기로 보냈습니다';
+
+  @override
+  String get coords_maidenhead => '메이든헤드 로케이터';
+
+  @override
+  String get reactions_radioTitle => '반응을 무선으로 보내기';
+
+  @override
+  String get reactions_radioHint =>
+      '반응 하나하나가 전파로 나가는 패킷입니다. 자동은 송신 시간이 제한된 EU 868 MHz 대역에서 이 기기에만 표시합니다.';
+
+  @override
+  String get reactions_radioAuto => '자동';
+
+  @override
+  String get reactions_radioOn => '켜기';
+
+  @override
+  String get reactions_radioOff => '끄기(이 기기)';
 }

@@ -4366,5 +4366,11 @@
   "fieldReport_preview": "待发送消息：{count}",
   "fieldReport_needCallsign": "请先在“持证操作员”中设置您的呼号。",
   "fieldReport_tooLong": "有一行太长，无法放入一条消息。请缩短。",
-  "fieldReport_sent": "报告已发送到电台"
+  "fieldReport_sent": "报告已发送到电台",
+  "coords_maidenhead": "梅登黑德定位符",
+  "reactions_radioTitle": "通过电台发送回应",
+  "reactions_radioHint": "每个回应都是一个空中数据包。自动模式在发射时间受限的欧盟 868 MHz 频段只在本设备上显示。",
+  "reactions_radioAuto": "自动",
+  "reactions_radioOn": "开",
+  "reactions_radioOff": "关（仅本设备）"
 }

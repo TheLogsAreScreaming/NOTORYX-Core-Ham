@@ -706,6 +706,22 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   int? get currentFreqHz => _currentFreqHz;
+
+  /// Whether the radio is on the EU 863–870 MHz band, where duty-cycle
+  /// limits make every extra packet count.
+  bool get isOnEuDutyCycleBand {
+    final hz = _currentFreqHz;
+    return hz != null && hz >= 863000000 && hz <= 870000000;
+  }
+
+  /// Whether a reaction is sent over the radio, or only shown on this
+  /// device. 'auto' keeps reactions local on the EU duty-cycle band.
+  bool get sendsReactionsOverRadio =>
+      switch (_appSettingsService?.settings.reactionsOverRadio) {
+        'on' => true,
+        'off' => false,
+        _ => !isOnEuDutyCycleBand,
+      };
   int? get currentBwHz => _currentBwHz;
   int? get currentSf => _currentSf;
   int? get currentCr => _currentCr;
@@ -1354,6 +1370,10 @@ class MeshCoreConnector extends ChangeNotifier {
 
   /// Points the channel message store at [selfKeyHex]'s data and uses
   /// [settings], as connecting to that radio would.
+  /// Sets the radio frequency as a self-info reply would.
+  @visibleForTesting
+  void debugSetFrequencyHz(int? hz) => _currentFreqHz = hz;
+
   @visibleForTesting
   void debugUseChannelStore(String selfKeyHex, AppSettingsService settings) {
     _channelMessageStore.setPublicKeyHex = selfKeyHex;
@@ -4100,6 +4120,12 @@ class MeshCoreConnector extends ChangeNotifier {
 
       // Apply reaction locally with pending status
       _processOutgoingContactReaction(messages, reactionInfo, contact);
+      if (!sendsReactionsOverRadio) {
+        // Local only: shown here, never sent, so there's nothing pending.
+        _messageStore.saveMessages(contact.publicKeyHex, messages);
+        notifyListeners();
+        return;
+      }
       _setReactionStatus(
         contact.publicKeyHex,
         reactionInfo,
@@ -4511,6 +4537,7 @@ class MeshCoreConnector extends ChangeNotifier {
       _processedChannelReactions[channel.index]!.add(reactionIdentifier);
 
       notifyListeners();
+      if (!sendsReactionsOverRadio) return;
 
       // Send the reaction to the device (don't add as a visible message)
       final reactionQueueId = _nextReactionSendQueueId();

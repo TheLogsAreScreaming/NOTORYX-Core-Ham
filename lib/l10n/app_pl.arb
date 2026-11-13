@@ -4399,5 +4399,11 @@
   "fieldReport_preview": "Wiadomości do wysłania: {count}",
   "fieldReport_needCallsign": "Najpierw ustaw swój znak w sekcji Licencjonowany operator.",
   "fieldReport_tooLong": "Jeden wiersz jest za długi na jedną wiadomość. Skróć go.",
-  "fieldReport_sent": "Raport przekazano do radia"
+  "fieldReport_sent": "Raport przekazano do radia",
+  "coords_maidenhead": "Lokator Maidenhead",
+  "reactions_radioTitle": "Wysyłaj reakcje przez radio",
+  "reactions_radioHint": "Każda reakcja to pakiet w eterze. Automatycznie zostawia je na tym urządzeniu w paśmie UE 868 MHz, gdzie czas nadawania jest ograniczony.",
+  "reactions_radioAuto": "Automatycznie",
+  "reactions_radioOn": "Wł.",
+  "reactions_radioOff": "Wył. (to urządzenie)"
 }

@@ -123,6 +123,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const AnalyzerCard(),
                   const LinkPreviewsCard(),
                   const SignPostsCard(),
+                  const SizedBox(height: MeshSpace.md),
+                  const ReactionsOverRadioCard(),
                   MeshCard(
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
                     child: Column(
@@ -2429,6 +2431,46 @@ class SignPostsCard extends StatelessWidget {
         isThreeLine: true,
         value: settings.settings.signChannelPosts,
         onChanged: settings.setSignChannelPosts,
+      ),
+    );
+  }
+}
+
+/// Whether reactions go out over the radio or stay on this device.
+class ReactionsOverRadioCard extends StatelessWidget {
+  const ReactionsOverRadioCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<AppSettingsService>();
+    final l10n = context.l10n;
+    final value = settings.settings.reactionsOverRadio;
+    return MeshCard(
+      padding: EdgeInsets.zero,
+      child: ListTile(
+        key: const ValueKey('reactions-over-radio'),
+        leading: const Icon(Icons.add_reaction_outlined),
+        title: Text(l10n.reactions_radioTitle),
+        subtitle: Text(l10n.reactions_radioHint),
+        isThreeLine: true,
+        trailing: DropdownButton<String>(
+          value: value,
+          underline: const SizedBox.shrink(),
+          onChanged: (v) {
+            if (v != null) settings.setReactionsOverRadio(v);
+          },
+          items: [
+            DropdownMenuItem(
+              value: 'auto',
+              child: Text(l10n.reactions_radioAuto),
+            ),
+            DropdownMenuItem(value: 'on', child: Text(l10n.reactions_radioOn)),
+            DropdownMenuItem(
+              value: 'off',
+              child: Text(l10n.reactions_radioOff),
+            ),
+          ],
+        ),
       ),
     );
   }

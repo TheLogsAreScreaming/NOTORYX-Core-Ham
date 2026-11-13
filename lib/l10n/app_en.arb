@@ -6313,7 +6313,13 @@
   "forward_needCallsign": "Set your call sign under Licensed operator first.",
   "forward_tooLong": "Too long by {count} bytes. Shorten the message.",
   "forward_sent": "Forwarded to the radio",
-  "@forward_tooLong": {"placeholders": {"count": {"type": "int"}}},
+  "@forward_tooLong": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "ham_setupBeforeTitle": "Before you transmit",
   "team_title": "Team config",
   "team_toolSubtitle": "Share radio settings and channels by QR or file",
@@ -6327,8 +6333,29 @@
   "team_applied": "Team config applied",
   "team_summary": "{freq} MHz, {bandwidth} kHz, SF{sf}, CR{cr}",
   "team_channels": "Channels: {names}",
-  "@team_summary": {"placeholders": {"freq": {"type": "String"}, "bandwidth": {"type": "String"}, "sf": {"type": "int"}, "cr": {"type": "int"}}},
-  "@team_channels": {"placeholders": {"names": {"type": "String"}}},
+  "@team_summary": {
+    "placeholders": {
+      "freq": {
+        "type": "String"
+      },
+      "bandwidth": {
+        "type": "String"
+      },
+      "sf": {
+        "type": "int"
+      },
+      "cr": {
+        "type": "int"
+      }
+    }
+  },
+  "@team_channels": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
   "ham_setupBeforeBody": "Read the coordination guide, then add your call sign and licence in Licensed operator. Don't transmit until your frequency coordinator and the other stations on your mesh have agreed on a channel.",
   "ham_setupBeforeDone": "Licensed operator set up as {call}",
   "@ham_setupBeforeTitle": {
@@ -6355,5 +6382,17 @@
   "fieldReport_needCallsign": "Set your call sign under Licensed operator first.",
   "fieldReport_tooLong": "One line is too long for a single message. Shorten it.",
   "fieldReport_sent": "Report sent to the radio",
-  "@fieldReport_preview": {"placeholders": {"count": {"type": "int"}}}
+  "@fieldReport_preview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coords_maidenhead": "Maidenhead locator",
+  "reactions_radioTitle": "Send reactions over the radio",
+  "reactions_radioHint": "Each reaction is a packet on air. Automatic keeps them on this device on the EU 868 MHz band, where airtime is limited.",
+  "reactions_radioAuto": "Automatic",
+  "reactions_radioOn": "On",
+  "reactions_radioOff": "Off (this device)"
 }

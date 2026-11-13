@@ -10683,4 +10683,23 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get fieldReport_sent => 'Rapport naar de radio verzonden';
+
+  @override
+  String get coords_maidenhead => 'Maidenhead-locator';
+
+  @override
+  String get reactions_radioTitle => 'Reacties via de radio sturen';
+
+  @override
+  String get reactions_radioHint =>
+      'Elke reactie is een pakket in de lucht. Automatisch houdt ze op dit apparaat op de EU 868 MHz-band, waar zendtijd beperkt is.';
+
+  @override
+  String get reactions_radioAuto => 'Automatisch';
+
+  @override
+  String get reactions_radioOn => 'Aan';
+
+  @override
+  String get reactions_radioOff => 'Uit (dit apparaat)';
 }

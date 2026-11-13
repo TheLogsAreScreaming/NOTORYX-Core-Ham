@@ -17814,6 +17814,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Report sent to the radio'**
   String get fieldReport_sent;
+
+  /// No description provided for @coords_maidenhead.
+  ///
+  /// In en, this message translates to:
+  /// **'Maidenhead locator'**
+  String get coords_maidenhead;
+
+  /// No description provided for @reactions_radioTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reactions over the radio'**
+  String get reactions_radioTitle;
+
+  /// No description provided for @reactions_radioHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Each reaction is a packet on air. Automatic keeps them on this device on the EU 868 MHz band, where airtime is limited.'**
+  String get reactions_radioHint;
+
+  /// No description provided for @reactions_radioAuto.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic'**
+  String get reactions_radioAuto;
+
+  /// No description provided for @reactions_radioOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get reactions_radioOn;
+
+  /// No description provided for @reactions_radioOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off (this device)'**
+  String get reactions_radioOff;
 }
 
 class _AppLocalizationsDelegate

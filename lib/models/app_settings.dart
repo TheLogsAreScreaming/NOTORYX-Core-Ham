@@ -158,6 +158,10 @@ class AppSettings {
   /// packet on air.
   final bool signChannelPosts;
 
+  /// Whether reactions go out over the radio: 'auto' (not on the EU
+  /// 863–870 MHz duty-cycle band), 'on' or 'off' (this device only).
+  final String reactionsOverRadio;
+
   /// The chosen color theme's id (see BastionTheme); Blaze by default.
   final String appTheme;
 
@@ -286,6 +290,7 @@ class AppSettings {
     this.mapShowTelemetry = false,
     this.mapTelemetryMetric = 'battery',
     this.signChannelPosts = false,
+    this.reactionsOverRadio = 'auto',
     this.appTheme = 'blaze',
     this.seasonalChoice = 'auto',
     this.seasonalHolidays = false,
@@ -378,6 +383,7 @@ class AppSettings {
       'map_show_telemetry': mapShowTelemetry,
       'map_telemetry_metric': mapTelemetryMetric,
       'sign_channel_posts': signChannelPosts,
+      'reactions_over_radio': reactionsOverRadio,
       'app_theme': appTheme,
       'seasonal_choice': seasonalChoice,
       'seasonal_holidays': seasonalHolidays,
@@ -499,6 +505,10 @@ class AppSettings {
       mapShowTelemetry: json['map_show_telemetry'] as bool? ?? false,
       mapTelemetryMetric: json['map_telemetry_metric'] as String? ?? 'battery',
       signChannelPosts: json['sign_channel_posts'] as bool? ?? false,
+      reactionsOverRadio: switch (json['reactions_over_radio']) {
+        final String v when const {'auto', 'on', 'off'}.contains(v) => v,
+        _ => 'auto',
+      },
       appTheme: json['app_theme'] as String? ?? 'blaze',
       seasonalChoice: json['seasonal_choice'] as String? ?? 'auto',
       seasonalHolidays: json['seasonal_holidays'] as bool? ?? false,
@@ -633,6 +643,7 @@ class AppSettings {
     bool? mapShowTelemetry,
     String? mapTelemetryMetric,
     bool? signChannelPosts,
+    String? reactionsOverRadio,
     String? appTheme,
     String? seasonalChoice,
     bool? seasonalHolidays,
@@ -723,6 +734,7 @@ class AppSettings {
       mapShowTelemetry: mapShowTelemetry ?? this.mapShowTelemetry,
       mapTelemetryMetric: mapTelemetryMetric ?? this.mapTelemetryMetric,
       signChannelPosts: signChannelPosts ?? this.signChannelPosts,
+      reactionsOverRadio: reactionsOverRadio ?? this.reactionsOverRadio,
       appTheme: appTheme ?? this.appTheme,
       seasonalChoice: seasonalChoice ?? this.seasonalChoice,
       seasonalHolidays: seasonalHolidays ?? this.seasonalHolidays,
