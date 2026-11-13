@@ -11312,4 +11312,131 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => '체크리스트';
+
+  @override
+  String get checklist_toolSubtitle => '출발 전·설치용 재사용 체크리스트, 오프라인 작동';
+
+  @override
+  String get checklist_empty => '체크리스트가 없습니다. 아래 버튼으로 추가하세요.';
+
+  @override
+  String get checklist_add => '새 체크리스트';
+
+  @override
+  String get checklist_edit => '체크리스트 편집';
+
+  @override
+  String get checklist_name => '이름';
+
+  @override
+  String get checklist_items => '항목 (한 줄에 하나)';
+
+  @override
+  String checklist_itemCount(int count) {
+    return '항목: $count';
+  }
+
+  @override
+  String get checklist_history => '완료된 기록';
+
+  @override
+  String get checklist_noRuns => '아직 완료된 기록이 없습니다.';
+
+  @override
+  String get checklist_inProgress => '진행 중';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$total개 중 $done개 완료';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return '시작 $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return '완료 $time';
+  }
+
+  @override
+  String get checklist_note => '메모';
+
+  @override
+  String get checklist_finish => '완료하고 저장';
+
+  @override
+  String get checklist_unfinished => '체크하지 않은 항목이 있습니다. 그래도 저장할까요?';
+
+  @override
+  String get checklist_saveAnyway => '그래도 저장';
+
+  @override
+  String get checklist_export => '내보내기 또는 삭제';
+
+  @override
+  String get checklist_exportText => '텍스트로 공유';
+
+  @override
+  String get checklist_exportJson => 'JSON으로 공유';
+
+  @override
+  String get checklist_exportFailed => '기록을 공유할 수 없습니다.';
+
+  @override
+  String get checklist_deleteRun => '기록 삭제';
+
+  @override
+  String get checklist_deleteRunConfirm => '이 기록을 삭제할까요? 되돌릴 수 없습니다.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return '$name을(를) 삭제할까요? 완료된 기록은 유지됩니다.';
+  }
+
+  @override
+  String get checklist_preTrip => '출발 전';
+
+  @override
+  String get checklist_preTrip1 => '무전기 충전, 예비 배터리 챙김';
+
+  @override
+  String get checklist_preTrip2 => '무전기와 휴대폰 연결, 테스트 메시지 전송';
+
+  @override
+  String get checklist_preTrip3 => '해당 지역 오프라인 지도 저장';
+
+  @override
+  String get checklist_preTrip4 => '경로와 귀환 시간을 누군가에게 알림';
+
+  @override
+  String get checklist_preTrip5 => '그룹 채널과 팀 연락처 확인';
+
+  @override
+  String get checklist_preTrip6 => 'SOS와 체크인을 한 번 시험';
+
+  @override
+  String get checklist_deploy => '노드 설치';
+
+  @override
+  String get checklist_deploy1 => '장소와 허가 확인';
+
+  @override
+  String get checklist_deploy2 => '안테나 설치, 커넥터 방수 처리';
+
+  @override
+  String get checklist_deploy3 => '전원과 태양광 확인';
+
+  @override
+  String get checklist_deploy4 => '무선 설정과 지역 확인';
+
+  @override
+  String get checklist_deploy5 => '노드를 통해 테스트 메시지 수신';
+
+  @override
+  String get checklist_deploy6 => '위치, 사진, 메모 기록';
 }

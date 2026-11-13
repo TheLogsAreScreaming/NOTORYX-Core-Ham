@@ -74,6 +74,7 @@ import 'widgets/image_send_codec_binding.dart';
 import 'widgets/operator_setup_banner.dart';
 import 'services/direct_repeater_service.dart';
 import 'services/mqtt_uploaders_service.dart';
+import 'services/checklist_store.dart';
 import 'services/coverage_hex_service.dart';
 import 'services/channel_discovery_service.dart';
 import 'services/corescope.dart';
@@ -298,6 +299,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final DirectRepeaterService _directRepeaters;
   late final WaypointStore _waypoints;
   late final TimelineService _timeline;
+  late final ChecklistStore _checklists;
   late final TrackLogService _trackLog;
   late final ChannelDiscoveryService _channelDiscovery;
   late final AnalyzerService _analyzer;
@@ -352,6 +354,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       prefs: PrefsManager.instance,
       waypoints: _waypoints,
     );
+    _checklists = ChecklistStore(PrefsManager.instance);
     _trackLog = TrackLogService(widget.connector);
     _channelDiscovery = ChannelDiscoveryService(widget.connector);
     unawaited(_channelDiscovery.load());
@@ -524,6 +527,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _networkScan.dispose();
     _sosRelay.dispose();
     _coverageHex.dispose();
+    _checklists.dispose();
     _readAloud.dispose();
     _sensorSubscriptions.dispose();
     unawaited(_notificationTaps?.cancel());
@@ -649,6 +653,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider.value(value: _fieldOps),
         ChangeNotifierProvider<WaypointStore>.value(value: _waypoints),
         ChangeNotifierProvider<TimelineService?>.value(value: _timeline),
+        ChangeNotifierProvider.value(value: _checklists),
         ChangeNotifierProvider<NetworkChangeService?>.value(
           value: _networkChanges,
         ),

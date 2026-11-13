@@ -27,6 +27,7 @@ import 'security_screen.dart';
 import 'team_config_screen.dart';
 import 'field_guide_screen.dart';
 import 'bastion_field_ops_screen.dart';
+import 'checklists_screen.dart';
 import 'bastion_diagnostics_screen.dart';
 import 'bastion_field_stats_screen.dart';
 import 'bastion_map_hub_screen.dart';
@@ -147,6 +148,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.bastion_fieldOps,
             subtitle: l10n.bastionTools_fieldOpsHint,
             builder: (_) => const BastionFieldOpsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.checklist,
+            title: l10n.checklist_title,
+            subtitle: l10n.checklist_toolSubtitle,
+            builder: (_) => const ChecklistsScreen(),
           ),
           _ToolAction(
             icon: Icons.analytics_outlined,

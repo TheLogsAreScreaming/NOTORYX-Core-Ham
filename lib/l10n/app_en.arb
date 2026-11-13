@@ -2430,20 +2430,62 @@
   "traceCard_title": "Trace card",
   "traceCard_open": "Share trace card",
   "traceCard_from": "From {name}",
-  "@traceCard_from": {"placeholders": {"name": {"type": "String"}}},
+  "@traceCard_from": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "traceCard_to": "To {name}",
-  "@traceCard_to": {"placeholders": {"name": {"type": "String"}}},
+  "@traceCard_to": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "traceCard_sentAt": "Sent {time}",
-  "@traceCard_sentAt": {"placeholders": {"time": {"type": "String"}}},
+  "@traceCard_sentAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "traceCard_roundTrip": "Round trip {seconds} s",
-  "@traceCard_roundTrip": {"placeholders": {"seconds": {"type": "String"}}},
+  "@traceCard_roundTrip": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
   "traceCard_hops": "Hops: {count}",
-  "@traceCard_hops": {"placeholders": {"count": {"type": "int"}}},
+  "@traceCard_hops": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "traceCard_backToYou": "Back to you",
   "traceCard_distance": "Route {distance}",
-  "@traceCard_distance": {"placeholders": {"distance": {"type": "String"}}},
+  "@traceCard_distance": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
   "traceCard_weakest": "Weakest link {snr}",
-  "@traceCard_weakest": {"placeholders": {"snr": {"type": "String"}}},
+  "@traceCard_weakest": {
+    "placeholders": {
+      "snr": {
+        "type": "String"
+      }
+    }
+  },
   "traceCard_noMap": "No positions known for this route, so there is no map.",
   "traceCard_guessed": "estimated position",
   "traceCard_mapLabel": "Map of the round trip",
@@ -4969,20 +5011,65 @@
   "signedCov_paste": "Signed report (JSON)",
   "signedCov_verify": "Check",
   "signedCov_yourKey": "Your coverage key: {fingerprint}",
-  "@signedCov_yourKey": {"placeholders": {"fingerprint": {"type": "String"}}},
+  "@signedCov_yourKey": {
+    "placeholders": {
+      "fingerprint": {
+        "type": "String"
+      }
+    }
+  },
   "signedCov_result": "{accepted} observations verified, {rejected} rejected",
-  "@signedCov_result": {"placeholders": {"accepted": {"type": "int"}, "rejected": {"type": "int"}}},
+  "@signedCov_result": {
+    "placeholders": {
+      "accepted": {
+        "type": "int"
+      },
+      "rejected": {
+        "type": "int"
+      }
+    }
+  },
   "signedCov_signer": "Signed by key {fingerprint}",
-  "@signedCov_signer": {"placeholders": {"fingerprint": {"type": "String"}}},
+  "@signedCov_signer": {
+    "placeholders": {
+      "fingerprint": {
+        "type": "String"
+      }
+    }
+  },
   "signedCov_unreadable": "This isn't a signed coverage report.",
   "signedCov_rBadSignature": "{count} with a missing or wrong signature",
-  "@signedCov_rBadSignature": {"placeholders": {"count": {"type": "int"}}},
+  "@signedCov_rBadSignature": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "signedCov_rMalformed": "{count} damaged",
-  "@signedCov_rMalformed": {"placeholders": {"count": {"type": "int"}}},
+  "@signedCov_rMalformed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "signedCov_rImpossible": "{count} with impossible signal values",
-  "@signedCov_rImpossible": {"placeholders": {"count": {"type": "int"}}},
+  "@signedCov_rImpossible": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "signedCov_rFuture": "{count} dated in the future",
-  "@signedCov_rFuture": {"placeholders": {"count": {"type": "int"}}},
+  "@signedCov_rFuture": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "signedCov_empty": "No coverage samples to share yet.",
   "signedCov_shareFailed": "Could not share the report.",
   "coverageHex_title": "Coverage hexagons",
@@ -5325,17 +5412,71 @@
   "timeline_kindSignal": "Signal",
   "timeline_kindPlaces": "Places",
   "timeline_messageFrom": "{sender} in {where}",
-  "@timeline_messageFrom": {"placeholders": {"sender": {"type": "String"}, "where": {"type": "String"}}},
+  "@timeline_messageFrom": {
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "where": {
+        "type": "String"
+      }
+    }
+  },
   "timeline_nodeJoined": "First heard: {name}",
-  "@timeline_nodeJoined": {"placeholders": {"name": {"type": "String"}}},
+  "@timeline_nodeJoined": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "timeline_signalUp": "{name}: signal up from {from} to {to} dB",
-  "@timeline_signalUp": {"placeholders": {"name": {"type": "String"}, "from": {"type": "String"}, "to": {"type": "String"}}},
+  "@timeline_signalUp": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
   "timeline_signalDown": "{name}: signal down from {from} to {to} dB",
-  "@timeline_signalDown": {"placeholders": {"name": {"type": "String"}, "from": {"type": "String"}, "to": {"type": "String"}}},
+  "@timeline_signalDown": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
   "timeline_placeSaved": "Place saved: {name}",
-  "@timeline_placeSaved": {"placeholders": {"name": {"type": "String"}}},
+  "@timeline_placeSaved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "timeline_placeShared": "{sender} shared a place in {where}",
-  "@timeline_placeShared": {"placeholders": {"sender": {"type": "String"}, "where": {"type": "String"}}},
+  "@timeline_placeShared": {
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "where": {
+        "type": "String"
+      }
+    }
+  },
   "timeline_empty": "Nothing yet. Messages, newly heard nodes, signal changes and places show up here.",
   "wardrive_title": "Wardrive",
   "wardrive_hint": "Ping from where you are and map which repeaters hear you",
@@ -6640,37 +6781,118 @@
   "journal_bNewcomer": "Newcomer",
   "journal_bGoneQuiet": "Gone quiet",
   "journal_confidence": "{percent}% sure",
-  "@journal_confidence": {"placeholders": {"percent": {"type": "int"}}},
+  "@journal_confidence": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
   "journal_eDaysHeard": "Heard on {heard} of {days} days",
-  "@journal_eDaysHeard": {"placeholders": {"heard": {"type": "int"}, "days": {"type": "int"}}},
+  "@journal_eDaysHeard": {
+    "placeholders": {
+      "heard": {
+        "type": "int"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "journal_eFirstHeard": "First heard {hours} h ago",
-  "@journal_eFirstHeard": {"placeholders": {"hours": {"type": "int"}}},
+  "@journal_eFirstHeard": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
   "journal_eSilent": "Not heard for {days} days",
-  "@journal_eSilent": {"placeholders": {"days": {"type": "int"}}},
+  "@journal_eSilent": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "journal_ePlaces": "Seen at {places} places up to {km} km apart",
-  "@journal_ePlaces": {"placeholders": {"places": {"type": "int"}, "km": {"type": "int"}}},
+  "@journal_ePlaces": {
+    "placeholders": {
+      "places": {
+        "type": "int"
+      },
+      "km": {
+        "type": "int"
+      }
+    }
+  },
   "journal_eSightings": "{count} fresh adverts in all",
-  "@journal_eSightings": {"placeholders": {"count": {"type": "int"}}},
+  "@journal_eSightings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "journal_noLabel": "Not enough seen yet for a label.",
   "journal_firstSeen": "First heard: {time}",
-  "@journal_firstSeen": {"placeholders": {"time": {"type": "String"}}},
+  "@journal_firstSeen": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "journal_lastSeen": "Last heard: {time}",
-  "@journal_lastSeen": {"placeholders": {"time": {"type": "String"}}},
+  "@journal_lastSeen": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "journal_hops": "Hops seen: {min} to {max}",
-  "@journal_hops": {"placeholders": {"min": {"type": "int"}, "max": {"type": "int"}}},
+  "@journal_hops": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
   "journal_tags": "Tags",
   "journal_addTag": "Add tag",
   "journal_tagHint": "e.g. trailhead, club, mine",
   "journal_removeTag": "Remove tag {tag}",
-  "@journal_removeTag": {"placeholders": {"tag": {"type": "String"}}},
+  "@journal_removeTag": {
+    "placeholders": {
+      "tag": {
+        "type": "String"
+      }
+    }
+  },
   "journal_note": "Note",
   "journal_saveNote": "Save note",
   "journal_forget": "Forget this node",
   "journal_forgetConfirm": "Remove {name} from the journal, with its tags and note? It starts fresh if heard again.",
-  "@journal_forgetConfirm": {"placeholders": {"name": {"type": "String"}}},
+  "@journal_forgetConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "journal_forgotten": "Node removed from the journal.",
   "journal_markLabel": "Generated mark for {name}",
-  "@journal_markLabel": {"placeholders": {"name": {"type": "String"}}},
+  "@journal_markLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "trouble_title": "Troubleshooting",
   "trouble_toolSubtitle": "Step-by-step help when something doesn't work",
   "trouble_pick": "What's wrong?",
@@ -6964,5 +7186,82 @@
   "automation_outFailed": "Failed",
   "ham_automatedTx": "Automated transmissions",
   "ham_automatedTxHint": "Messages your automation rules sent on air.",
-  "ham_exportAutomatedCsv": "Export automated transmissions (CSV)"
+  "ham_exportAutomatedCsv": "Export automated transmissions (CSV)",
+  "checklist_title": "Checklists",
+  "checklist_toolSubtitle": "Reusable pre-trip and deployment checklists that work offline",
+  "checklist_empty": "No checklists. Add one with the button below.",
+  "checklist_add": "New checklist",
+  "checklist_edit": "Edit checklist",
+  "checklist_name": "Name",
+  "checklist_items": "Items, one per line",
+  "checklist_itemCount": "Items: {count}",
+  "@checklist_itemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "checklist_history": "Completed runs",
+  "checklist_noRuns": "No completed runs yet.",
+  "checklist_inProgress": "In progress",
+  "checklist_progress": "{done} of {total} done",
+  "@checklist_progress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "checklist_startedAt": "Started {time}",
+  "@checklist_startedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "checklist_finishedAt": "Finished {time}",
+  "@checklist_finishedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "checklist_note": "Note",
+  "checklist_finish": "Finish and save",
+  "checklist_unfinished": "Some items aren't ticked. Save the record anyway?",
+  "checklist_saveAnyway": "Save anyway",
+  "checklist_export": "Export or delete",
+  "checklist_exportText": "Share as text",
+  "checklist_exportJson": "Share as JSON",
+  "checklist_exportFailed": "Could not share the record.",
+  "checklist_deleteRun": "Delete record",
+  "checklist_deleteRunConfirm": "Delete this record? It can't be undone.",
+  "checklist_deleteConfirm": "Delete {name}? Its completed records are kept.",
+  "@checklist_deleteConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "checklist_preTrip": "Before a trip",
+  "checklist_preTrip1": "Radio charged and a spare battery packed",
+  "checklist_preTrip2": "Radio paired with the phone and a test message sent",
+  "checklist_preTrip3": "Offline maps saved for the area",
+  "checklist_preTrip4": "Route and return time left with someone at home",
+  "checklist_preTrip5": "Group channel and team contacts checked",
+  "checklist_preTrip6": "SOS and check-in tried once",
+  "checklist_deploy": "Putting up a node",
+  "checklist_deploy1": "Site and permission confirmed",
+  "checklist_deploy2": "Antenna mounted and connectors sealed",
+  "checklist_deploy3": "Power and solar checked",
+  "checklist_deploy4": "Radio settings and region confirmed",
+  "checklist_deploy5": "Test message heard through the node",
+  "checklist_deploy6": "Location, photos and notes recorded"
 }

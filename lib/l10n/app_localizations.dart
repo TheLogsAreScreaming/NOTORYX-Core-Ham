@@ -19626,6 +19626,240 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Export automated transmissions (CSV)'**
   String get ham_exportAutomatedCsv;
+
+  /// No description provided for @checklist_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Checklists'**
+  String get checklist_title;
+
+  /// No description provided for @checklist_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reusable pre-trip and deployment checklists that work offline'**
+  String get checklist_toolSubtitle;
+
+  /// No description provided for @checklist_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No checklists. Add one with the button below.'**
+  String get checklist_empty;
+
+  /// No description provided for @checklist_add.
+  ///
+  /// In en, this message translates to:
+  /// **'New checklist'**
+  String get checklist_add;
+
+  /// No description provided for @checklist_edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit checklist'**
+  String get checklist_edit;
+
+  /// No description provided for @checklist_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get checklist_name;
+
+  /// No description provided for @checklist_items.
+  ///
+  /// In en, this message translates to:
+  /// **'Items, one per line'**
+  String get checklist_items;
+
+  /// No description provided for @checklist_itemCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Items: {count}'**
+  String checklist_itemCount(int count);
+
+  /// No description provided for @checklist_history.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed runs'**
+  String get checklist_history;
+
+  /// No description provided for @checklist_noRuns.
+  ///
+  /// In en, this message translates to:
+  /// **'No completed runs yet.'**
+  String get checklist_noRuns;
+
+  /// No description provided for @checklist_inProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get checklist_inProgress;
+
+  /// No description provided for @checklist_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} done'**
+  String checklist_progress(int done, int total);
+
+  /// No description provided for @checklist_startedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Started {time}'**
+  String checklist_startedAt(String time);
+
+  /// No description provided for @checklist_finishedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished {time}'**
+  String checklist_finishedAt(String time);
+
+  /// No description provided for @checklist_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get checklist_note;
+
+  /// No description provided for @checklist_finish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish and save'**
+  String get checklist_finish;
+
+  /// No description provided for @checklist_unfinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Some items aren\'t ticked. Save the record anyway?'**
+  String get checklist_unfinished;
+
+  /// No description provided for @checklist_saveAnyway.
+  ///
+  /// In en, this message translates to:
+  /// **'Save anyway'**
+  String get checklist_saveAnyway;
+
+  /// No description provided for @checklist_export.
+  ///
+  /// In en, this message translates to:
+  /// **'Export or delete'**
+  String get checklist_export;
+
+  /// No description provided for @checklist_exportText.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as text'**
+  String get checklist_exportText;
+
+  /// No description provided for @checklist_exportJson.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as JSON'**
+  String get checklist_exportJson;
+
+  /// No description provided for @checklist_exportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not share the record.'**
+  String get checklist_exportFailed;
+
+  /// No description provided for @checklist_deleteRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete record'**
+  String get checklist_deleteRun;
+
+  /// No description provided for @checklist_deleteRunConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this record? It can\'t be undone.'**
+  String get checklist_deleteRunConfirm;
+
+  /// No description provided for @checklist_deleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {name}? Its completed records are kept.'**
+  String checklist_deleteConfirm(String name);
+
+  /// No description provided for @checklist_preTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Before a trip'**
+  String get checklist_preTrip;
+
+  /// No description provided for @checklist_preTrip1.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio charged and a spare battery packed'**
+  String get checklist_preTrip1;
+
+  /// No description provided for @checklist_preTrip2.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio paired with the phone and a test message sent'**
+  String get checklist_preTrip2;
+
+  /// No description provided for @checklist_preTrip3.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline maps saved for the area'**
+  String get checklist_preTrip3;
+
+  /// No description provided for @checklist_preTrip4.
+  ///
+  /// In en, this message translates to:
+  /// **'Route and return time left with someone at home'**
+  String get checklist_preTrip4;
+
+  /// No description provided for @checklist_preTrip5.
+  ///
+  /// In en, this message translates to:
+  /// **'Group channel and team contacts checked'**
+  String get checklist_preTrip5;
+
+  /// No description provided for @checklist_preTrip6.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS and check-in tried once'**
+  String get checklist_preTrip6;
+
+  /// No description provided for @checklist_deploy.
+  ///
+  /// In en, this message translates to:
+  /// **'Putting up a node'**
+  String get checklist_deploy;
+
+  /// No description provided for @checklist_deploy1.
+  ///
+  /// In en, this message translates to:
+  /// **'Site and permission confirmed'**
+  String get checklist_deploy1;
+
+  /// No description provided for @checklist_deploy2.
+  ///
+  /// In en, this message translates to:
+  /// **'Antenna mounted and connectors sealed'**
+  String get checklist_deploy2;
+
+  /// No description provided for @checklist_deploy3.
+  ///
+  /// In en, this message translates to:
+  /// **'Power and solar checked'**
+  String get checklist_deploy3;
+
+  /// No description provided for @checklist_deploy4.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio settings and region confirmed'**
+  String get checklist_deploy4;
+
+  /// No description provided for @checklist_deploy5.
+  ///
+  /// In en, this message translates to:
+  /// **'Test message heard through the node'**
+  String get checklist_deploy5;
+
+  /// No description provided for @checklist_deploy6.
+  ///
+  /// In en, this message translates to:
+  /// **'Location, photos and notes recorded'**
+  String get checklist_deploy6;
 }
 
 class _AppLocalizationsDelegate

@@ -11845,4 +11845,137 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Kontrolni seznami';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Ponovno uporabni seznami pred izletom in za postavitev, delujejo brez povezave';
+
+  @override
+  String get checklist_empty => 'Ni seznamov. Dodaj ga z gumbom spodaj.';
+
+  @override
+  String get checklist_add => 'Nov seznam';
+
+  @override
+  String get checklist_edit => 'Uredi seznam';
+
+  @override
+  String get checklist_name => 'Ime';
+
+  @override
+  String get checklist_items => 'Postavke, ena na vrstico';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Postavke: $count';
+  }
+
+  @override
+  String get checklist_history => 'Dokončena preverjanja';
+
+  @override
+  String get checklist_noRuns => 'Še ni dokončanih preverjanj.';
+
+  @override
+  String get checklist_inProgress => 'V teku';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return 'Opravljeno $done od $total';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Začeto $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Končano $time';
+  }
+
+  @override
+  String get checklist_note => 'Opomba';
+
+  @override
+  String get checklist_finish => 'Končaj in shrani';
+
+  @override
+  String get checklist_unfinished =>
+      'Nekatere postavke niso označene. Vseeno shranim?';
+
+  @override
+  String get checklist_saveAnyway => 'Vseeno shrani';
+
+  @override
+  String get checklist_export => 'Izvozi ali izbriši';
+
+  @override
+  String get checklist_exportText => 'Deli kot besedilo';
+
+  @override
+  String get checklist_exportJson => 'Deli kot JSON';
+
+  @override
+  String get checklist_exportFailed => 'Zapisa ni bilo mogoče deliti.';
+
+  @override
+  String get checklist_deleteRun => 'Izbriši zapis';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Izbrišem ta zapis? Tega ni mogoče razveljaviti.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return 'Izbrišem $name? Dokončeni zapisi ostanejo.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Pred izletom';
+
+  @override
+  String get checklist_preTrip1 =>
+      'Radio napolnjen, rezervna baterija spakirana';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Radio seznanjen s telefonom, testno sporočilo poslano';
+
+  @override
+  String get checklist_preTrip3 =>
+      'Zemljevidi območja shranjeni za brez povezave';
+
+  @override
+  String get checklist_preTrip4 => 'Pot in čas vrnitve pustil nekomu';
+
+  @override
+  String get checklist_preTrip5 => 'Skupinski kanal in stiki ekipe preverjeni';
+
+  @override
+  String get checklist_preTrip6 => 'SOS in prijava enkrat preizkušena';
+
+  @override
+  String get checklist_deploy => 'Postavitev vozlišča';
+
+  @override
+  String get checklist_deploy1 => 'Lokacija in dovoljenje potrjena';
+
+  @override
+  String get checklist_deploy2 => 'Antena nameščena, konektorji zatesnjeni';
+
+  @override
+  String get checklist_deploy3 => 'Napajanje in sončna celica preverjena';
+
+  @override
+  String get checklist_deploy4 => 'Nastavitve radia in regija potrjene';
+
+  @override
+  String get checklist_deploy5 => 'Testno sporočilo slišano prek vozlišča';
+
+  @override
+  String get checklist_deploy6 => 'Lokacija, fotografije in opombe zapisane';
 }

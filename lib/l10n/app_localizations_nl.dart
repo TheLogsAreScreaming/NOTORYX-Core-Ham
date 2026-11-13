@@ -11798,4 +11798,138 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Checklists';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Herbruikbare checklists voor vertrek en plaatsing, ook offline';
+
+  @override
+  String get checklist_empty =>
+      'Geen checklists. Voeg er een toe met de knop hieronder.';
+
+  @override
+  String get checklist_add => 'Nieuwe checklist';
+
+  @override
+  String get checklist_edit => 'Checklist bewerken';
+
+  @override
+  String get checklist_name => 'Naam';
+
+  @override
+  String get checklist_items => 'Punten, één per regel';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Punten: $count';
+  }
+
+  @override
+  String get checklist_history => 'Afgeronde rondes';
+
+  @override
+  String get checklist_noRuns => 'Nog geen afgeronde rondes.';
+
+  @override
+  String get checklist_inProgress => 'Bezig';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$done van $total klaar';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Gestart $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Afgerond $time';
+  }
+
+  @override
+  String get checklist_note => 'Notitie';
+
+  @override
+  String get checklist_finish => 'Afronden en opslaan';
+
+  @override
+  String get checklist_unfinished => 'Niet alles is afgevinkt. Toch opslaan?';
+
+  @override
+  String get checklist_saveAnyway => 'Toch opslaan';
+
+  @override
+  String get checklist_export => 'Exporteren of verwijderen';
+
+  @override
+  String get checklist_exportText => 'Delen als tekst';
+
+  @override
+  String get checklist_exportJson => 'Delen als JSON';
+
+  @override
+  String get checklist_exportFailed => 'Kon het verslag niet delen.';
+
+  @override
+  String get checklist_deleteRun => 'Verslag verwijderen';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Dit verslag verwijderen? Dit kan niet ongedaan worden.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return '$name verwijderen? Afgeronde verslagen blijven bewaard.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Voor vertrek';
+
+  @override
+  String get checklist_preTrip1 =>
+      'Radio opgeladen en reservebatterij ingepakt';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Radio gekoppeld aan de telefoon en testbericht verstuurd';
+
+  @override
+  String get checklist_preTrip3 => 'Offline kaarten van het gebied opgeslagen';
+
+  @override
+  String get checklist_preTrip4 =>
+      'Route en terugkeertijd achtergelaten bij iemand';
+
+  @override
+  String get checklist_preTrip5 =>
+      'Groepskanaal en teamcontacten gecontroleerd';
+
+  @override
+  String get checklist_preTrip6 => 'SOS en inchecken één keer geprobeerd';
+
+  @override
+  String get checklist_deploy => 'Knooppunt plaatsen';
+
+  @override
+  String get checklist_deploy1 => 'Locatie en toestemming bevestigd';
+
+  @override
+  String get checklist_deploy2 => 'Antenne gemonteerd en connectoren afgedicht';
+
+  @override
+  String get checklist_deploy3 => 'Voeding en zonnepaneel gecontroleerd';
+
+  @override
+  String get checklist_deploy4 => 'Radio-instellingen en regio bevestigd';
+
+  @override
+  String get checklist_deploy5 => 'Testbericht via het knooppunt gehoord';
+
+  @override
+  String get checklist_deploy6 => 'Locatie, foto\'s en notities vastgelegd';
 }

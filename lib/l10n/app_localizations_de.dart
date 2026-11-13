@@ -11852,4 +11852,137 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get ham_exportAutomatedCsv => 'Export automated transmissions (CSV)';
+
+  @override
+  String get checklist_title => 'Checklisten';
+
+  @override
+  String get checklist_toolSubtitle =>
+      'Wiederverwendbare Checklisten für Touren und Aufbau, auch offline';
+
+  @override
+  String get checklist_empty => 'Keine Checklisten. Füge unten eine hinzu.';
+
+  @override
+  String get checklist_add => 'Neue Checkliste';
+
+  @override
+  String get checklist_edit => 'Checkliste bearbeiten';
+
+  @override
+  String get checklist_name => 'Name';
+
+  @override
+  String get checklist_items => 'Punkte, einer pro Zeile';
+
+  @override
+  String checklist_itemCount(int count) {
+    return 'Punkte: $count';
+  }
+
+  @override
+  String get checklist_history => 'Abgeschlossene Durchgänge';
+
+  @override
+  String get checklist_noRuns => 'Noch keine abgeschlossenen Durchgänge.';
+
+  @override
+  String get checklist_inProgress => 'Läuft';
+
+  @override
+  String checklist_progress(int done, int total) {
+    return '$done von $total erledigt';
+  }
+
+  @override
+  String checklist_startedAt(String time) {
+    return 'Begonnen $time';
+  }
+
+  @override
+  String checklist_finishedAt(String time) {
+    return 'Abgeschlossen $time';
+  }
+
+  @override
+  String get checklist_note => 'Notiz';
+
+  @override
+  String get checklist_finish => 'Abschließen und speichern';
+
+  @override
+  String get checklist_unfinished =>
+      'Nicht alle Punkte sind abgehakt. Trotzdem speichern?';
+
+  @override
+  String get checklist_saveAnyway => 'Trotzdem speichern';
+
+  @override
+  String get checklist_export => 'Exportieren oder löschen';
+
+  @override
+  String get checklist_exportText => 'Als Text teilen';
+
+  @override
+  String get checklist_exportJson => 'Als JSON teilen';
+
+  @override
+  String get checklist_exportFailed =>
+      'Der Eintrag konnte nicht geteilt werden.';
+
+  @override
+  String get checklist_deleteRun => 'Eintrag löschen';
+
+  @override
+  String get checklist_deleteRunConfirm =>
+      'Diesen Eintrag löschen? Das lässt sich nicht rückgängig machen.';
+
+  @override
+  String checklist_deleteConfirm(String name) {
+    return '$name löschen? Abgeschlossene Einträge bleiben erhalten.';
+  }
+
+  @override
+  String get checklist_preTrip => 'Vor der Tour';
+
+  @override
+  String get checklist_preTrip1 => 'Funkgerät geladen, Ersatzakku eingepackt';
+
+  @override
+  String get checklist_preTrip2 =>
+      'Funkgerät mit dem Telefon gekoppelt, Testnachricht gesendet';
+
+  @override
+  String get checklist_preTrip3 => 'Offline-Karten für das Gebiet gespeichert';
+
+  @override
+  String get checklist_preTrip4 =>
+      'Route und Rückkehrzeit bei jemandem hinterlassen';
+
+  @override
+  String get checklist_preTrip5 => 'Gruppenkanal und Teamkontakte geprüft';
+
+  @override
+  String get checklist_preTrip6 => 'SOS und Check-in einmal ausprobiert';
+
+  @override
+  String get checklist_deploy => 'Knoten aufstellen';
+
+  @override
+  String get checklist_deploy1 => 'Standort und Erlaubnis bestätigt';
+
+  @override
+  String get checklist_deploy2 => 'Antenne montiert, Stecker abgedichtet';
+
+  @override
+  String get checklist_deploy3 => 'Stromversorgung und Solar geprüft';
+
+  @override
+  String get checklist_deploy4 => 'Funkeinstellungen und Region bestätigt';
+
+  @override
+  String get checklist_deploy5 => 'Testnachricht über den Knoten gehört';
+
+  @override
+  String get checklist_deploy6 => 'Standort, Fotos und Notizen festgehalten';
 }
