@@ -54,17 +54,43 @@ class _AntennaCoverageScreenState extends State<AntennaCoverageScreen> {
   double? _frequencyMHz(MeshCoreConnector c) =>
       radioFrequencyMHz(c.currentFreqHz);
 
+  CoverageRadio? _radioSettings(MeshCoreConnector c) {
+    final freq = _frequencyMHz(c);
+    final power = c.currentTxPower;
+    final bw = c.currentBwHz;
+    final sf = c.currentSf;
+    if (freq == null || power == null || bw == null || sf == null) return null;
+    return CoverageRadio(
+      txPowerDbm: power,
+      frequencyMHz: freq,
+      bandwidthHz: bw,
+      spreadingFactor: sf,
+    );
+  }
+
+  String _summary(CoverageResult r) {
+    if (r.radio == null) {
+      return 'Line of sight to ${(r.visibleFraction * 100).round()}% of sampled points • farthest ${(r.maxReachMeters / 1000).toStringAsFixed(1)} km';
+    }
+    final strong = (r.fractionAt(SignalLevel.strong) * 100).round();
+    final marginal = (r.fractionAt(SignalLevel.marginal) * 100).round();
+    return 'Estimated signal: strong to $strong% of the area, marginal to $marginal%, usable up to ${(r.maxSignalReachMeters / 1000).toStringAsFixed(1)} km.';
+  }
+
   Future<void> _analyze() async {
     final origin = _origin;
     if (origin == null) return;
     final run = ++_run;
-    final freq = _frequencyMHz(context.read<MeshCoreConnector>());
+    final connector = context.read<MeshCoreConnector>();
+    final freq = _frequencyMHz(connector);
+    final radio = _radioSettings(connector);
     setState(() => _running = true);
     final result = await _service.analyzeCoverage(
       origin,
       antennaHeightMeters: _height,
       radiusMeters: _radiusKm * 1000.0,
       frequencyMHz: freq,
+      radio: radio,
     );
     if (!mounted || run != _run) return;
     setState(() {
@@ -125,16 +151,7 @@ class _AntennaCoverageScreenState extends State<AntennaCoverageScreen> {
                   if (result != null && result.error == null)
                     CircleLayer(
                       key: const ValueKey('coverage-points'),
-                      circles: [
-                        for (final ray in result.rays)
-                          for (var i = 0; i < ray.points.length; i++)
-                            if (ray.visible[i])
-                              CircleMarker(
-                                point: ray.points[i],
-                                radius: 5,
-                                color: MapPalette.online.withValues(alpha: .75),
-                              ),
-                      ],
+                      circles: _coverageDots(result),
                     ),
                   if (origin != null)
                     MarkerLayer(
@@ -208,14 +225,16 @@ class _AntennaCoverageScreenState extends State<AntennaCoverageScreen> {
                       Text(
                         result.error != null
                             ? 'Terrain heights could not be loaded. This needs an internet connection the first time.'
-                            : 'Line of sight to ${(result.visibleFraction * 100).round()}% of sampled points • farthest ${(result.maxReachMeters / 1000).toStringAsFixed(1)} km',
+                            : _summary(result),
                         key: const ValueKey('coverage-summary'),
                         style: const TextStyle(fontWeight: FontWeight.w700),
                       ),
                     ],
                     const SizedBox(height: 4),
                     Text(
-                      'Green dots have terrain line of sight to a handheld radio (1.5 m). LoRa can sometimes reach past hills, and trees and buildings are not included, so treat this as a guide.',
+                      result?.radio != null
+                          ? 'Large green dots: strong signal. Small orange dots: marginal. A rough estimate from terrain and your radio settings, assuming 2 dBi antennas. Trees and buildings are not included, so real range is often shorter.'
+                          : 'Connect a radio for signal estimates. Green dots have terrain line of sight to a handheld radio (1.5 m). A rough estimate, not a guarantee.',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
@@ -227,6 +246,35 @@ class _AntennaCoverageScreenState extends State<AntennaCoverageScreen> {
       ),
     );
   }
+
+  /// Colour never stands alone: marginal dots are also smaller.
+  List<CircleMarker> _coverageDots(CoverageResult result) {
+    final radio = result.radio;
+    final dots = <CircleMarker>[];
+    for (final ray in result.rays) {
+      for (var i = 0; i < ray.points.length; i++) {
+        if (radio == null) {
+          if (ray.visible[i]) dots.add(_dot(ray.points[i], true));
+          continue;
+        }
+        final dbm = ray.signalDbm[i];
+        if (dbm == null) continue;
+        final level = radio.levelOf(dbm);
+        if (level != SignalLevel.none) {
+          dots.add(_dot(ray.points[i], level == SignalLevel.strong));
+        }
+      }
+    }
+    return dots;
+  }
+
+  CircleMarker _dot(LatLng point, bool strong) => CircleMarker(
+    point: point,
+    radius: strong ? 5 : 3,
+    color: (strong ? MapPalette.online : MeshPalette.warn).withValues(
+      alpha: .75,
+    ),
+  );
 
   Widget _choices<T>(
     String label,
