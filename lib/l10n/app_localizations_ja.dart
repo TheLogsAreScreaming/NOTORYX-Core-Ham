@@ -10511,4 +10511,69 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'アンテナがしっかり締まっているか確認してください。アンテナなしで送信しないでください。無線機が壊れることがあります。';
+
+  @override
+  String get readiness_sos => 'SOSの送信先';
+
+  @override
+  String get readiness_sosOk => 'SOSの送信先があります。';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOSの送信先がありません。連絡先にいる同行者を追加するか、SOSチャンネルを設定してください。';
+
+  @override
+  String get readiness_routes => '同行者へのルート';
+
+  @override
+  String get readiness_routesOk => 'すべての同行者へのルートがわかっています。';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return '$namesへのルートが不明です。ルートを学習するまでメッセージはフラッドで送られます。出発前にメッセージを送ってください。';
+  }
+
+  @override
+  String get readiness_notifications => '通知';
+
+  @override
+  String get readiness_notificationsOk => '許可されています。';
+
+  @override
+  String get readiness_notificationsOff => '通知がオフのため、返信・チェックイン・アラートが届きません。';
+
+  @override
+  String get readiness_batteryOpt => 'バッテリー最適化';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Hamは対象外です。';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Androidがバックグラウンドでアプリを停止する可能性があります。設定 → アプリ設定 → 通知でオフにしてください。';
+
+  @override
+  String get readiness_blockedTitle => 'まだ出発できません';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '確認事項 $count 件';
+  }
+
+  @override
+  String get readiness_startAnyway => 'このまま開始';
+
+  @override
+  String get readiness_review => '確認する';
+
+  @override
+  String get readiness_summaryReady => '準備完了';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '確認 $count 件';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOSの送信先がありません';
 }

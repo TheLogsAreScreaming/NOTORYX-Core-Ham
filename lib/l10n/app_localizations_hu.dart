@@ -11031,4 +11031,70 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Győződj meg róla, hogy az antenna szorosan fel van csavarva. Soha ne adj antenna nélkül; ez károsíthatja a rádiót.';
+
+  @override
+  String get readiness_sos => 'SOS címzettek';
+
+  @override
+  String get readiness_sosOk => 'Az SOS-nak van címzettje.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'Az SOS senkit sem ér el. Adj hozzá túratársakat a névjegyeid közül, vagy állíts be SOS csatornát.';
+
+  @override
+  String get readiness_routes => 'Útvonalak a túratársakhoz';
+
+  @override
+  String get readiness_routesOk => 'Minden túratárshoz ismert útvonal.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Nincs ismert útvonal ide: $names. Az üzenetek elárasztással mennek, amíg nem tanul útvonalat. Küldj nekik üzenetet indulás előtt.';
+  }
+
+  @override
+  String get readiness_notifications => 'Értesítések';
+
+  @override
+  String get readiness_notificationsOk => 'Engedélyezve.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Az értesítések ki vannak kapcsolva, így nem hallod a válaszokat, bejelentkezéseket és riasztásokat.';
+
+  @override
+  String get readiness_batteryOpt => 'Akkuoptimalizálás';
+
+  @override
+  String get readiness_batteryOptOk => 'A NOTORYX Core Ham kivétel.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Az Android leállíthatja az alkalmazást a háttérben. Kapcsold ki: Beállítások → Alkalmazásbeállítások → Értesítések.';
+
+  @override
+  String get readiness_blockedTitle => 'A túra még nem indítható';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count ellenőrizendő dolog';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Indítás mégis';
+
+  @override
+  String get readiness_review => 'Áttekintés';
+
+  @override
+  String get readiness_summaryReady => 'Indulásra kész';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count ellenőrizendő';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'Az SOS senkit sem ér el';
 }

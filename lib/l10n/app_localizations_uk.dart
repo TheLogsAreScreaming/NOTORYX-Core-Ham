@@ -11088,4 +11088,70 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Переконайтеся, що антена щільно прикручена. Ніколи не передавайте без антени — це може пошкодити радіо.';
+
+  @override
+  String get readiness_sos => 'Одержувачі SOS';
+
+  @override
+  String get readiness_sosOk => 'У SOS є одержувачі.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS нікому надіслати. Додайте учасників походу з контактів або задайте SOS-канал.';
+
+  @override
+  String get readiness_routes => 'Маршрути до учасників';
+
+  @override
+  String get readiness_routesOk => 'Маршрут відомий до кожного учасника.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Немає відомого маршруту до $names. Повідомлення йтимуть розсилкою, доки маршрут не вивчено. Надішліть їм повідомлення перед виходом.';
+  }
+
+  @override
+  String get readiness_notifications => 'Сповіщення';
+
+  @override
+  String get readiness_notificationsOk => 'Дозволено.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Сповіщення вимкнені — ви не почуєте відповіді, відмітки й тривоги.';
+
+  @override
+  String get readiness_batteryOpt => 'Оптимізація батареї';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham у винятках.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android може зупинити застосунок у фоні. Вимкніть це в Налаштування → Налаштування застосунку → Сповіщення.';
+
+  @override
+  String get readiness_blockedTitle => 'Похід поки не можна почати';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return 'Перевірити: $count';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Почати все одно';
+
+  @override
+  String get readiness_review => 'Переглянути';
+
+  @override
+  String get readiness_summaryReady => 'Можна виходити';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return 'Перевірити: $count';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS нікому не дійде';
 }

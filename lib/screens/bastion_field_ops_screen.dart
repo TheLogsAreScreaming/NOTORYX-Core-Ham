@@ -11,6 +11,8 @@ import '../connector/meshcore_connector.dart';
 import '../l10n/app_localizations.dart';
 import '../l10n/l10n.dart';
 import '../models/field_ops.dart';
+import '../models/trip_readiness.dart';
+import '../services/battery_optimization_gateway.dart';
 import '../services/coverage_capture_service.dart';
 import '../services/app_settings_service.dart';
 import '../services/field_ops_service.dart';
@@ -29,8 +31,19 @@ import '../widgets/ui/mesh_states.dart';
 import '../helpers/snack_bar_builder.dart';
 
 class BastionFieldOpsScreen extends StatefulWidget {
-  const BastionFieldOpsScreen({super.key, this.initialCheckIn = false});
+  const BastionFieldOpsScreen({
+    super.key,
+    this.initialCheckIn = false,
+    this.batteryGateway = const PlatformBatteryOptimizationGateway(),
+    this.initialTab = 0,
+  });
   final bool initialCheckIn;
+
+  /// The tab to open on: 0 Trip, 1 Before you leave, and so on.
+  final int initialTab;
+
+  /// Android's battery optimisation, for the readiness check.
+  final BatteryOptimizationGateway batteryGateway;
   @override
   State<BastionFieldOpsScreen> createState() => _FieldOpsState();
 }
@@ -44,15 +57,38 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
   ({int expected, int available})? _region;
   String? _regionLabel;
   bool _loadingMaps = false;
+  bool? _notificationsAllowed;
+  bool? _batteryExempt;
   @override
   void initState() {
     super.initState();
     unawaited(_loadCoverage());
+    unawaited(_loadDeviceChecks());
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(_loadMaps());
       if (mounted && widget.initialCheckIn) {
         unawaited(_checkIn(context.read<FieldOpsService>(), checkInLabels[0]));
       }
+    });
+  }
+
+  Future<void> _loadDeviceChecks() async {
+    bool? allowed;
+    bool? exempt;
+    try {
+      allowed = await NotificationService().canNotify();
+    } catch (_) {
+      allowed = null; // The platform can't say; the check is left out.
+    }
+    try {
+      exempt = await widget.batteryGateway.isExempt();
+    } catch (_) {
+      exempt = null;
+    }
+    if (!mounted) return;
+    setState(() {
+      _notificationsAllowed = allowed;
+      _batteryExempt = exempt;
     });
   }
 
@@ -148,6 +184,7 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     final l10n = context.l10n;
     return DefaultTabController(
       length: 6,
+      initialIndex: widget.initialTab,
       child: EmberBackdrop(
         scene: EmberScene.more,
         child: Scaffold(
@@ -269,7 +306,9 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
           FilledButton.icon(
             onPressed: ops.busy || ops.error != null
                 ? null
-                : () => _perform(ops.trip.active ? ops.endTrip : ops.startTrip),
+                : ops.trip.active
+                ? () => _perform(ops.endTrip)
+                : () => _startTrip(ops, radio),
             icon: Icon(
               ops.trip.active ? Icons.stop_circle_outlined : Icons.play_arrow,
             ),
@@ -757,36 +796,73 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
     if (approved == true) await _perform(() => ops.sendCheckIn(text));
   }
 
-  Widget _readiness(FieldOpsService ops, MeshCoreConnector radio) => _page([
-    _card(_l10n.fieldOps_beforeYouLeave, [
-      _readyRow(
-        radio.isConnected,
-        _l10n.fieldOps_radioConnected,
+  /// Runs the pre-trip checks on what the screen knows now.
+  List<ReadinessItem> _assess(FieldOpsService ops, MeshCoreConnector radio) =>
+      assessTrip(
+        ReadinessInputs(
+          connected: radio.isConnected,
+          radioBatteryPercent: radio.batteryPercent,
+          sosUnavailable: ops.sosUnavailable,
+          hasSosChannel: ops.sosChannel != null,
+          tripMembers: ops.trip.members.length,
+          presentMembers: ops.members.length,
+          membersWithoutRoute: [
+            for (final c in ops.members)
+              if (c.pathLength < 0) c.name,
+          ],
+          offlineMap: _loadingMaps || _cacheError != null ? null : _region,
+          shareLocation: ops.trip.shareLocation,
+          hasPosition: usablePosition(radio.selfLatitude, radio.selfLongitude),
+          notificationsAllowed: _notificationsAllowed,
+          batteryOptimisationExempt: _batteryExempt,
+          automationEnabled: ops.automationEnabled,
+          foreground: ops.foreground,
+        ),
+      );
+
+  String _readinessTitle(ReadinessCheck check) => switch (check) {
+    ReadinessCheck.sosRecipients => _l10n.readiness_sos,
+    ReadinessCheck.radio => _l10n.fieldOps_radioConnected,
+    ReadinessCheck.radioBattery => _l10n.fieldOps_radioBattery,
+    ReadinessCheck.tripContacts => _l10n.fieldOps_tripContacts,
+    ReadinessCheck.routes => _l10n.readiness_routes,
+    ReadinessCheck.notifications => _l10n.readiness_notifications,
+    ReadinessCheck.batteryOptimisation => _l10n.readiness_batteryOpt,
+    ReadinessCheck.offlineMap => _l10n.fieldOps_offlineArea,
+    ReadinessCheck.location => _l10n.fieldOps_locationChoice,
+    ReadinessCheck.automation => _l10n.fieldOps_automationAvailability,
+  };
+
+  String _readinessDetail(
+    ReadinessItem item,
+    FieldOpsService ops,
+    MeshCoreConnector radio,
+  ) {
+    final ok = item.level == ReadinessLevel.ok;
+    return switch (item.check) {
+      ReadinessCheck.sosRecipients =>
+        ok ? _l10n.readiness_sosOk : _l10n.readiness_sosBlocked,
+      ReadinessCheck.radio =>
         radio.isConnected
             ? '${radio.deviceDisplayName} • ${radio.activeTransport.name}'
             : _l10n.fieldOps_connectHint,
-      ),
-      _readyRow(
-        radio.batteryPercent != null && radio.batteryPercent! >= 30,
-        _l10n.fieldOps_radioBattery,
+      ReadinessCheck.radioBattery =>
         radio.batteryPercent == null
             ? _l10n.fieldOps_batteryUnknown
             : _l10n.fieldOps_batteryDetail('${radio.batteryPercent}'),
+      ReadinessCheck.tripContacts => _l10n.fieldOps_tripContactsDetail(
+        '${ops.members.length}',
+        '${ops.trip.members.length}',
       ),
-      _readyRow(
-        ops.trip.members.isNotEmpty &&
-            ops.members.length == ops.trip.members.length,
-        _l10n.fieldOps_tripContacts,
-        _l10n.fieldOps_tripContactsDetail(
-          '${ops.members.length}',
-          '${ops.trip.members.length}',
-        ),
-      ),
-      _readyRow(
-        !_loadingMaps &&
-            _region != null &&
-            _region!.available == _region!.expected,
-        _l10n.fieldOps_offlineArea,
+      ReadinessCheck.routes =>
+        ok
+            ? _l10n.readiness_routesOk
+            : _l10n.readiness_routesMissing(item.names.join(', ')),
+      ReadinessCheck.notifications =>
+        ok ? _l10n.readiness_notificationsOk : _l10n.readiness_notificationsOff,
+      ReadinessCheck.batteryOptimisation =>
+        ok ? _l10n.readiness_batteryOptOk : _l10n.readiness_batteryOptOn,
+      ReadinessCheck.offlineMap =>
         _cacheError != null
             ? _l10n.fieldOps_mapVerifyFailed(_cacheError!)
             : _loadingMaps
@@ -794,42 +870,114 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
             : _region == null
             ? _regionLabel ?? _l10n.fieldOps_regionHint
             : '${_regionLabel ?? _l10n.fieldOps_regionHint}\n${_l10n.fieldOps_regionStatus('${_region!.available}', '${_region!.expected}', '${_region!.expected - _region!.available}')}',
-      ),
-      _readyRow(
-        !ops.trip.shareLocation ||
-            usablePosition(radio.selfLatitude, radio.selfLongitude),
-        _l10n.fieldOps_locationChoice,
+      ReadinessCheck.location =>
         ops.trip.shareLocation
             ? _l10n.fieldOps_locationOptedIn
             : _l10n.fieldOps_locationOff,
+      ReadinessCheck.automation => _l10n.fieldOps_automationAvailabilityDetail,
+    };
+  }
+
+  Widget _readinessRow(
+    ReadinessItem item,
+    FieldOpsService ops,
+    MeshCoreConnector radio,
+  ) {
+    final (icon, color) = switch (item.level) {
+      ReadinessLevel.ok => (
+        Icons.check_circle_outline,
+        Theme.of(context).colorScheme.primary,
       ),
-      _readyRow(
-        !ops.automationEnabled || ops.foreground,
-        _l10n.fieldOps_automationAvailability,
-        _l10n.fieldOps_automationAvailabilityDetail,
-      ),
-      const Divider(),
-      Text(_l10n.fieldOps_readinessCaveat),
-      Wrap(
-        spacing: 8,
-        children: [
-          TextButton(
-            onPressed: () => _open(const ScannerScreen()),
-            child: Text(_l10n.fieldOps_radio),
+      ReadinessLevel.warn => (Icons.info_outline, MeshPalette.warn),
+      ReadinessLevel.block => (Icons.block, MeshPalette.alert),
+    };
+    return ListTile(
+      key: ValueKey('readiness-${item.check.name}'),
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(icon, color: color),
+      title: Text(_readinessTitle(item.check)),
+      subtitle: Text(_readinessDetail(item, ops, radio)),
+    );
+  }
+
+  String _readinessSummary(List<ReadinessItem> items) {
+    if (!canStartTrip(items)) return _l10n.readiness_summaryBlocked;
+    final problems = readinessProblems(items).length;
+    return problems == 0
+        ? _l10n.readiness_summaryReady
+        : _l10n.readiness_summaryWarn(problems);
+  }
+
+  /// Starts the trip after the checks: a blocked SOS stops it, warnings
+  /// ask first.
+  Future<void> _startTrip(FieldOpsService ops, MeshCoreConnector radio) async {
+    final items = _assess(ops, radio);
+    final problems = readinessProblems(items);
+    if (problems.isNotEmpty) {
+      final blocked = !canStartTrip(items);
+      final go = await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: Text(
+            blocked
+                ? _l10n.readiness_blockedTitle
+                : _l10n.readiness_warnTitle(problems.length),
           ),
-          TextButton(
-            onPressed: () => _open(const MapCacheScreen()),
-            child: Text(_l10n.fieldOps_offlineMaps),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (final item in problems) _readinessRow(item, ops, radio),
+              ],
+            ),
           ),
-          TextButton(
-            onPressed: _loadingMaps ? null : _loadMaps,
-            child: Text(_l10n.fieldOps_refreshChecks),
-          ),
-        ],
-      ),
-    ]),
-    _sosRelayCard(radio),
-  ]);
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: Text(_l10n.readiness_review),
+            ),
+            if (!blocked)
+              FilledButton(
+                key: const ValueKey('readiness-start-anyway'),
+                onPressed: () => Navigator.pop(dialogContext, true),
+                child: Text(_l10n.readiness_startAnyway),
+              ),
+          ],
+        ),
+      );
+      if (go != true || !mounted) return;
+    }
+    await _perform(ops.startTrip);
+  }
+
+  Widget _readiness(FieldOpsService ops, MeshCoreConnector radio) {
+    final items = _assess(ops, radio);
+    return _page([
+      _card(_readinessSummary(items), [
+        for (final item in items) _readinessRow(item, ops, radio),
+        const Divider(),
+        Text(_l10n.fieldOps_readinessCaveat),
+        Wrap(
+          spacing: 8,
+          children: [
+            TextButton(
+              onPressed: () => _open(const ScannerScreen()),
+              child: Text(_l10n.fieldOps_radio),
+            ),
+            TextButton(
+              onPressed: () => _open(const MapCacheScreen()),
+              child: Text(_l10n.fieldOps_offlineMaps),
+            ),
+            TextButton(
+              onPressed: _loadingMaps ? null : _loadMaps,
+              child: Text(_l10n.fieldOps_refreshChecks),
+            ),
+          ],
+        ),
+      ]),
+      _sosRelayCard(radio),
+    ]);
+  }
 
   Widget _sosRelayCard(MeshCoreConnector radio) {
     final relay = context.watch<SosRelayService>();
@@ -854,16 +1002,6 @@ class _FieldOpsState extends State<BastionFieldOpsScreen> {
       Text(_l10n.sosRelay_explainer),
     ]);
   }
-
-  Widget _readyRow(bool good, String title, String detail) => ListTile(
-    contentPadding: EdgeInsets.zero,
-    leading: Icon(
-      good ? Icons.check_circle_outline : Icons.info_outline,
-      color: good ? Theme.of(context).colorScheme.primary : MeshPalette.warn,
-    ),
-    title: Text(title),
-    subtitle: Text(detail),
-  );
 
   Widget _log(FieldOpsService ops) {
     final rows = ops.entries

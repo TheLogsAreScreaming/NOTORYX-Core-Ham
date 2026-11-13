@@ -11090,4 +11090,70 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Убедитесь, что антенна плотно прикручена. Никогда не передавайте без антенны — это может повредить радио.';
+
+  @override
+  String get readiness_sos => 'Получатели SOS';
+
+  @override
+  String get readiness_sosOk => 'У SOS есть получатели.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS некому отправить. Добавьте участников похода из контактов или задайте SOS-канал.';
+
+  @override
+  String get readiness_routes => 'Маршруты до участников';
+
+  @override
+  String get readiness_routesOk => 'Маршрут известен до каждого участника.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Нет известного маршрута до $names. Сообщения будут идти рассылкой, пока маршрут не изучен. Отправьте им сообщение перед выходом.';
+  }
+
+  @override
+  String get readiness_notifications => 'Уведомления';
+
+  @override
+  String get readiness_notificationsOk => 'Разрешены.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Уведомления выключены — вы не услышите ответы, отметки и тревоги.';
+
+  @override
+  String get readiness_batteryOpt => 'Оптимизация батареи';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham в исключениях.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android может остановить приложение в фоне. Отключите это в Настройки → Настройки приложения → Уведомления.';
+
+  @override
+  String get readiness_blockedTitle => 'Поход пока нельзя начать';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return 'Проверить: $count';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Начать всё равно';
+
+  @override
+  String get readiness_review => 'Просмотреть';
+
+  @override
+  String get readiness_summaryReady => 'Можно выходить';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return 'Проверить: $count';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS никому не дойдёт';
 }

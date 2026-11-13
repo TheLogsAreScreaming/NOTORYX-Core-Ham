@@ -18336,6 +18336,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Make sure the antenna is screwed on firmly. Never transmit without one; it can damage the radio.'**
   String get trouble_antennaAdvice;
+
+  /// No description provided for @readiness_sos.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS recipients'**
+  String get readiness_sos;
+
+  /// No description provided for @readiness_sosOk.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS has someone to send to.'**
+  String get readiness_sosOk;
+
+  /// No description provided for @readiness_sosBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS has no one to reach. Add trip contacts who are in your contacts, or set an SOS channel.'**
+  String get readiness_sosBlocked;
+
+  /// No description provided for @readiness_routes.
+  ///
+  /// In en, this message translates to:
+  /// **'Routes to trip contacts'**
+  String get readiness_routes;
+
+  /// No description provided for @readiness_routesOk.
+  ///
+  /// In en, this message translates to:
+  /// **'A route is known to every trip contact.'**
+  String get readiness_routesOk;
+
+  /// No description provided for @readiness_routesMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'No known route to {names}. Messages will flood until one is learned. Send them a message before you go.'**
+  String readiness_routesMissing(String names);
+
+  /// No description provided for @readiness_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get readiness_notifications;
+
+  /// No description provided for @readiness_notificationsOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Allowed.'**
+  String get readiness_notificationsOk;
+
+  /// No description provided for @readiness_notificationsOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are off, so you won\'t hear replies, check-ins or alerts.'**
+  String get readiness_notificationsOff;
+
+  /// No description provided for @readiness_batteryOpt.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery optimisation'**
+  String get readiness_batteryOpt;
+
+  /// No description provided for @readiness_batteryOptOk.
+  ///
+  /// In en, this message translates to:
+  /// **'NOTORYX Core Ham is exempt.'**
+  String get readiness_batteryOptOk;
+
+  /// No description provided for @readiness_batteryOptOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Android may stop the app in the background. Turn it off in Settings → App Settings → Notifications.'**
+  String get readiness_batteryOptOn;
+
+  /// No description provided for @readiness_blockedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t start the trip yet'**
+  String get readiness_blockedTitle;
+
+  /// No description provided for @readiness_warnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} things to check'**
+  String readiness_warnTitle(int count);
+
+  /// No description provided for @readiness_startAnyway.
+  ///
+  /// In en, this message translates to:
+  /// **'Start anyway'**
+  String get readiness_startAnyway;
+
+  /// No description provided for @readiness_review.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get readiness_review;
+
+  /// No description provided for @readiness_summaryReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to go'**
+  String get readiness_summaryReady;
+
+  /// No description provided for @readiness_summaryWarn.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} to check'**
+  String readiness_summaryWarn(int count);
+
+  /// No description provided for @readiness_summaryBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS can\'t reach anyone'**
+  String get readiness_summaryBlocked;
 }
 
 class _AppLocalizationsDelegate

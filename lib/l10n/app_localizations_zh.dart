@@ -10295,4 +10295,68 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get trouble_antennaAdvice => '确认天线拧紧。切勿在没有天线时发射，否则可能损坏电台。';
+
+  @override
+  String get readiness_sos => 'SOS 接收者';
+
+  @override
+  String get readiness_sosOk => 'SOS 有接收者。';
+
+  @override
+  String get readiness_sosBlocked => 'SOS 没有可送达的人。请添加联系人中的行程成员，或设置 SOS 频道。';
+
+  @override
+  String get readiness_routes => '到行程成员的路由';
+
+  @override
+  String get readiness_routesOk => '已知到每位行程成员的路由。';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return '尚无到 $names 的已知路由。在学到路由前消息将以泛洪发送。出发前先给他们发一条消息。';
+  }
+
+  @override
+  String get readiness_notifications => '通知';
+
+  @override
+  String get readiness_notificationsOk => '已允许。';
+
+  @override
+  String get readiness_notificationsOff => '通知已关闭，你将收不到回复、报平安和警报。';
+
+  @override
+  String get readiness_batteryOpt => '电池优化';
+
+  @override
+  String get readiness_batteryOptOk => 'NOTORYX Core Ham 已豁免。';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android 可能会在后台停止应用。请在 设置 → 应用设置 → 通知 中关闭。';
+
+  @override
+  String get readiness_blockedTitle => '暂时无法开始行程';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count 项需检查';
+  }
+
+  @override
+  String get readiness_startAnyway => '仍然开始';
+
+  @override
+  String get readiness_review => '查看';
+
+  @override
+  String get readiness_summaryReady => '准备就绪';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count 项需检查';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS 无法送达任何人';
 }

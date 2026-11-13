@@ -11094,4 +11094,71 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Upewnij się, że antena jest mocno przykręcona. Nigdy nie nadawaj bez niej; może to uszkodzić radio.';
+
+  @override
+  String get readiness_sos => 'Odbiorcy SOS';
+
+  @override
+  String get readiness_sosOk => 'SOS ma odbiorców.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS nie ma do kogo dotrzeć. Dodaj uczestników wyprawy ze swoich kontaktów lub ustaw kanał SOS.';
+
+  @override
+  String get readiness_routes => 'Trasy do uczestników';
+
+  @override
+  String get readiness_routesOk => 'Znana jest trasa do każdego uczestnika.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Brak znanej trasy do $names. Wiadomości będą zalewane, dopóki trasa nie zostanie poznana. Wyślij im wiadomość przed wyjściem.';
+  }
+
+  @override
+  String get readiness_notifications => 'Powiadomienia';
+
+  @override
+  String get readiness_notificationsOk => 'Dozwolone.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Powiadomienia są wyłączone, więc nie usłyszysz odpowiedzi, meldunków ani alarmów.';
+
+  @override
+  String get readiness_batteryOpt => 'Optymalizacja baterii';
+
+  @override
+  String get readiness_batteryOptOk =>
+      'NOTORYX Core Ham jest wyłączony z optymalizacji.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android może zatrzymać aplikację w tle. Wyłącz to w Ustawienia → Ustawienia aplikacji → Powiadomienia.';
+
+  @override
+  String get readiness_blockedTitle => 'Nie można jeszcze rozpocząć wyprawy';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count rzeczy do sprawdzenia';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Rozpocznij mimo to';
+
+  @override
+  String get readiness_review => 'Przejrzyj';
+
+  @override
+  String get readiness_summaryReady => 'Gotowe do drogi';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count do sprawdzenia';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS nie dotrze do nikogo';
 }

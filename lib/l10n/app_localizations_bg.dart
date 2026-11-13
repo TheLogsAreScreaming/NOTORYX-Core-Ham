@@ -11028,4 +11028,71 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get trouble_antennaAdvice =>
       'Уверете се, че антената е завита здраво. Никога не предавайте без нея; това може да повреди радиото.';
+
+  @override
+  String get readiness_sos => 'Получатели на SOS';
+
+  @override
+  String get readiness_sosOk => 'SOS има към кого да изпрати.';
+
+  @override
+  String get readiness_sosBlocked =>
+      'SOS няма към кого да изпрати. Добавете участници от контактите си или задайте SOS канал.';
+
+  @override
+  String get readiness_routes => 'Маршрути до участниците';
+
+  @override
+  String get readiness_routesOk => 'Известен е маршрут до всеки участник.';
+
+  @override
+  String readiness_routesMissing(String names) {
+    return 'Няма известен маршрут до $names. Съобщенията ще се разпространяват наводнително, докато се научи маршрут. Изпратете им съобщение, преди да тръгнете.';
+  }
+
+  @override
+  String get readiness_notifications => 'Известия';
+
+  @override
+  String get readiness_notificationsOk => 'Разрешени.';
+
+  @override
+  String get readiness_notificationsOff =>
+      'Известията са изключени, така че няма да чуете отговори, отметки или сигнали.';
+
+  @override
+  String get readiness_batteryOpt => 'Оптимизация на батерията';
+
+  @override
+  String get readiness_batteryOptOk =>
+      'NOTORYX Core Ham е изключено от оптимизацията.';
+
+  @override
+  String get readiness_batteryOptOn =>
+      'Android може да спре приложението във фонов режим. Изключете я в Настройки → Настройки на приложението → Известия.';
+
+  @override
+  String get readiness_blockedTitle => 'Пътуването още не може да започне';
+
+  @override
+  String readiness_warnTitle(int count) {
+    return '$count неща за проверка';
+  }
+
+  @override
+  String get readiness_startAnyway => 'Започни въпреки това';
+
+  @override
+  String get readiness_review => 'Прегледай';
+
+  @override
+  String get readiness_summaryReady => 'Готови за тръгване';
+
+  @override
+  String readiness_summaryWarn(int count) {
+    return '$count за проверка';
+  }
+
+  @override
+  String get readiness_summaryBlocked => 'SOS не може да достигне никого';
 }
