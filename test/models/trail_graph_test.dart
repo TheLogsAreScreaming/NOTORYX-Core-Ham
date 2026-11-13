@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:meshcore_open/models/trail_graph.dart';
+import 'package:meshcore_open/models/trail_place.dart';
 import 'package:meshcore_open/services/trail_store.dart';
 
 Map<String, dynamic> way(
@@ -214,6 +215,110 @@ void main() {
       await store.download('Test', box);
       expect(store.areaFor(40, -74, 40.002, -74), isNotNull);
       expect(store.areaFor(40, -74, 45, -74), isNull);
+    });
+  });
+
+  group('places', () {
+    Map<String, dynamic> node(Map<String, String> tags) => {
+      'type': 'node',
+      'lat': 44.5,
+      'lon': -71.5,
+      'tags': tags,
+    };
+    final reply = {
+      'elements': [
+        node(const {'natural': 'peak', 'name': 'Mount Crescent'}),
+        node(const {'highway': 'trailhead', 'name': 'Crescent Ridge'}),
+        node(const {'tourism': 'wilderness_hut', 'name': 'Café Hut'}),
+        node(const {'natural': 'peak'}),
+        node(const {'shop': 'bakery', 'name': 'Bread'}),
+      ],
+    };
+
+    test('reads named places and skips the rest', () {
+      final places = placesFromOverpass(reply);
+      expect(places.map((p) => p.name), [
+        'Mount Crescent',
+        'Crescent Ridge',
+        'Café Hut',
+      ]);
+      expect(places.first.kind, TrailPlaceKind.peak);
+    });
+
+    test('search ranks names starting with the query first', () {
+      final found = searchPlaces(placesFromOverpass(reply), 'cres');
+      expect(found.map((p) => p.name), ['Crescent Ridge', 'Mount Crescent']);
+    });
+
+    test('search ignores case and accents', () {
+      final found = searchPlaces(placesFromOverpass(reply), 'CAFE');
+      expect(found.single.name, 'Café Hut');
+    });
+
+    test('an empty search finds nothing, and the limit holds', () {
+      expect(searchPlaces(placesFromOverpass(reply), '  '), isEmpty);
+      final many = [
+        for (var i = 0; i < 50; i++)
+          TrailPlace('Peak $i', TrailPlaceKind.peak, 1, 1),
+      ];
+      expect(searchPlaces(many, 'peak'), hasLength(30));
+    });
+
+    test('saved bytes read back', () {
+      final back = placesFromBytes(placesToBytes(placesFromOverpass(reply)));
+      expect(back[2].name, 'Café Hut');
+      expect(back[2].kind, TrailPlaceKind.hut);
+      expect(back[2].lat, closeTo(44.5, 1e-6));
+    });
+
+    test('a download keeps places, across a reload and a delete', () async {
+      final dir = await Directory.systemTemp.createTemp('trails');
+      addTearDown(() => dir.delete(recursive: true));
+      final client = MockClient(
+        (_) async => http.Response.bytes(
+          utf8.encode(
+            jsonEncode({
+              'elements': [..._diamond['elements']!, ...reply['elements']!],
+            }),
+          ),
+          200,
+        ),
+      );
+      const box = TrailBounds(
+        south: 39.9,
+        west: -74.1,
+        north: 40.1,
+        east: -73.9,
+      );
+      final store = TrailStore(client: client, directory: dir);
+      final area = await store.download('Test', box);
+      final again = TrailStore(client: client, directory: dir);
+      await again.load();
+      expect(await again.allPlaces(), hasLength(3));
+      await store.delete(area.id);
+      expect(dir.listSync(), isEmpty);
+    });
+
+    test('an area saved before place search just has none', () async {
+      final dir = await Directory.systemTemp.createTemp('trails');
+      addTearDown(() => dir.delete(recursive: true));
+      final client = MockClient(
+        (_) async => http.Response(jsonEncode(_diamond), 200),
+      );
+      const box = TrailBounds(
+        south: 39.9,
+        west: -74.1,
+        north: 40.1,
+        east: -73.9,
+      );
+      await TrailStore(client: client, directory: dir).download('Old', box);
+      for (final f in dir.listSync()) {
+        if (f.path.endsWith('.places')) f.deleteSync();
+      }
+      final store = TrailStore(client: client, directory: dir);
+      await store.load();
+      expect(store.areas, hasLength(1));
+      expect(await store.allPlaces(), isEmpty);
     });
   });
 }

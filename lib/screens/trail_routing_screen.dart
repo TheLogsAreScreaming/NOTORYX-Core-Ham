@@ -6,6 +6,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../models/trail_graph.dart';
+import '../models/trail_place.dart';
 import '../models/waypoint.dart';
 import '../services/map_tile_cache_service.dart';
 import '../services/trail_store.dart';
@@ -190,6 +191,26 @@ class _TrailRoutingScreenState extends State<TrailRoutingScreen> {
     if (mounted) setState(() => _message = 'Saved to your routes.');
   }
 
+  Future<void> _search() async {
+    final waypoints = context.read<WaypointStore>().waypoints;
+    final places = [
+      ...await _store.allPlaces(),
+      for (final w in waypoints)
+        TrailPlace(w.name, TrailPlaceKind.waypoint, w.lat, w.lon),
+    ];
+    if (!mounted) return;
+    final picked = await showModalBottomSheet<TrailPlace>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (_) => _PlaceSearchSheet(places: places),
+    );
+    if (picked == null || !mounted) return;
+    final point = LatLng(picked.lat, picked.lon);
+    _map.move(point, 14);
+    _tap(point);
+  }
+
   void _showAreas() {
     unawaited(
       showModalBottomSheet<void>(
@@ -231,6 +252,11 @@ class _TrailRoutingScreenState extends State<TrailRoutingScreen> {
       appBar: AppBar(
         title: const Text('Trail routing'),
         actions: [
+          IconButton(
+            tooltip: 'Search places',
+            icon: const Icon(Icons.search),
+            onPressed: _search,
+          ),
           IconButton(
             tooltip: 'Downloaded areas',
             icon: const Icon(Icons.folder_outlined),
@@ -360,6 +386,66 @@ class _TrailRoutingScreenState extends State<TrailRoutingScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _PlaceSearchSheet extends StatefulWidget {
+  const _PlaceSearchSheet({required this.places});
+  final List<TrailPlace> places;
+
+  @override
+  State<_PlaceSearchSheet> createState() => _PlaceSearchSheetState();
+}
+
+class _PlaceSearchSheetState extends State<_PlaceSearchSheet> {
+  var _query = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final results = searchPlaces(widget.places, _query);
+    return Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
+      child: SizedBox(
+        height: MediaQuery.sizeOf(context).height * 0.7,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: TextField(
+                key: const ValueKey('place-search'),
+                autofocus: true,
+                onChanged: (v) => setState(() => _query = v),
+                decoration: const InputDecoration(
+                  labelText: 'Search downloaded places',
+                  helperText:
+                      'Peaks, trailheads, water, huts, towns and your waypoints. Choosing one sets the next route point.',
+                  helperMaxLines: 3,
+                ),
+              ),
+            ),
+            if (_query.trim().isNotEmpty && results.isEmpty)
+              const Padding(
+                padding: EdgeInsets.all(12),
+                child: Text(
+                  'Nothing found. Search only covers downloaded areas, and areas saved before place search need downloading again.',
+                ),
+              ),
+            Expanded(
+              child: ListView(
+                children: [
+                  for (final place in results)
+                    ListTile(
+                      title: Text(place.name),
+                      subtitle: Text(place.kind.label),
+                      onTap: () => Navigator.of(context).pop(place),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

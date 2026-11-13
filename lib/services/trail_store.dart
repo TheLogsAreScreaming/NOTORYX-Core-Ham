@@ -6,11 +6,13 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 import '../models/trail_graph.dart';
+import '../models/trail_place.dart';
 
 // Big replies are parsed off the UI thread.
-TrailGraph _parseOverpass(List<int> body) => TrailGraph.fromOverpass(
-  jsonDecode(utf8.decode(body)) as Map<String, dynamic>,
-);
+(TrailGraph, List<TrailPlace>) _parseOverpass(List<int> body) {
+  final json = jsonDecode(utf8.decode(body)) as Map<String, dynamic>;
+  return (TrailGraph.fromOverpass(json), placesFromOverpass(json));
+}
 
 /// Why an area couldn't be saved.
 enum TrailDownloadProblem { tooLarge, storageFull, noTrails, failed }
@@ -54,6 +56,7 @@ class TrailStore extends ChangeNotifier {
   Directory? _directory;
   final List<TrailArea> _areas = [];
   final Map<String, TrailGraph> _loaded = {};
+  final Map<String, List<TrailPlace>> _places = {};
   var _seq = 0;
 
   List<TrailArea> get areas => List.unmodifiable(_areas);
@@ -93,7 +96,11 @@ class TrailStore extends ChangeNotifier {
               north: (j['n'] as num).toDouble(),
               east: (j['e'] as num).toDouble(),
             ),
-            bytes: await data.length(),
+            bytes:
+                await data.length() +
+                await _lengthIfThere(
+                  File('${dir.path}${Platform.pathSeparator}$id.places'),
+                ),
           ),
         );
       } on FormatException {
@@ -112,8 +119,12 @@ class TrailStore extends ChangeNotifier {
     }
     final box = '${bounds.south},${bounds.west},${bounds.north},${bounds.east}';
     final query =
-        '[out:json][timeout:90];way["highway"~"$walkableHighwayPattern"]($box);out body geom;';
+        '[out:json][timeout:90];('
+        'way["highway"~"$walkableHighwayPattern"]($box);'
+        '${placeQueryStatements(box)}'
+        ');out body geom;';
     final TrailGraph graph;
+    final List<TrailPlace> places;
     try {
       final response = await _client
           .post(
@@ -125,24 +136,27 @@ class TrailStore extends ChangeNotifier {
       if (response.statusCode != 200) {
         throw const TrailDownloadException(TrailDownloadProblem.failed);
       }
-      graph = await compute(_parseOverpass, response.bodyBytes);
+      (graph, places) = await compute(_parseOverpass, response.bodyBytes);
     } on TrailDownloadException {
       rethrow;
     } catch (e) {
       debugPrint('Trail download failed: $e');
       throw const TrailDownloadException(TrailDownloadProblem.failed);
     }
-    if (graph.nodeCount == 0) {
+    if (graph.nodeCount == 0 && places.isEmpty) {
       throw const TrailDownloadException(TrailDownloadProblem.noTrails);
     }
     final bytes = graph.toBytes();
-    if (usedBytes + bytes.length > limitBytes) {
+    final placeBytes = placesToBytes(places);
+    final size = bytes.length + placeBytes.length;
+    if (usedBytes + size > limitBytes) {
       throw const TrailDownloadException(TrailDownloadProblem.storageFull);
     }
     final dir = await _folder();
     final id = '${DateTime.now().microsecondsSinceEpoch}-${_seq++}';
     final base = '${dir.path}${Platform.pathSeparator}$id';
     await File('$base.trail').writeAsBytes(bytes, flush: true);
+    await File('$base.places').writeAsBytes(placeBytes, flush: true);
     await File('$base.meta').writeAsString(
       jsonEncode({
         'id': id,
@@ -154,14 +168,10 @@ class TrailStore extends ChangeNotifier {
       }),
       flush: true,
     );
-    final area = TrailArea(
-      id: id,
-      name: name,
-      bounds: bounds,
-      bytes: bytes.length,
-    );
+    final area = TrailArea(id: id, name: name, bounds: bounds, bytes: size);
     _areas.add(area);
     _loaded[id] = graph;
+    _places[id] = places;
     notifyListeners();
     return area;
   }
@@ -169,13 +179,42 @@ class TrailStore extends ChangeNotifier {
   Future<void> delete(String id) async {
     final dir = await _folder();
     final base = '${dir.path}${Platform.pathSeparator}$id';
-    for (final path in ['$base.trail', '$base.meta']) {
+    for (final path in ['$base.trail', '$base.places', '$base.meta']) {
       final file = File(path);
       if (await file.exists()) await file.delete();
     }
     _areas.removeWhere((a) => a.id == id);
     _loaded.remove(id);
+    _places.remove(id);
     notifyListeners();
+  }
+
+  Future<int> _lengthIfThere(File file) async =>
+      await file.exists() ? await file.length() : 0;
+
+  /// Every place in the downloaded areas. Areas saved before place search
+  /// have none until they're downloaded again.
+  Future<List<TrailPlace>> allPlaces() async {
+    final dir = await _folder();
+    final out = <TrailPlace>[];
+    for (final area in _areas) {
+      var places = _places[area.id];
+      if (places == null) {
+        final file = File(
+          '${dir.path}${Platform.pathSeparator}${area.id}.places',
+        );
+        try {
+          places = await file.exists()
+              ? placesFromBytes(await file.readAsBytes())
+              : const <TrailPlace>[];
+        } on FormatException {
+          places = const <TrailPlace>[];
+        }
+        _places[area.id] = places;
+      }
+      out.addAll(places);
+    }
+    return out;
   }
 
   /// The downloaded area holding both points, or null.
