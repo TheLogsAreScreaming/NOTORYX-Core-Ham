@@ -10907,6 +10907,125 @@ class AppLocalizationsSv extends AppLocalizations {
   String get netChange_notifTitle => 'Nätverksändring';
 
   @override
+  String get journal_title => 'Noddagbok';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Varje nod som hörts, med beteende, taggar och anteckningar';
+
+  @override
+  String get journal_empty =>
+      'Inga noder än. Varje nod som radion hör läggs till här automatiskt.';
+
+  @override
+  String get journal_search => 'Sök namn, ID, taggar och anteckningar';
+
+  @override
+  String get journal_filterAll => 'Alla';
+
+  @override
+  String get journal_bSteadyRelay => 'Alltid-på-relä';
+
+  @override
+  String get journal_bRegular => 'Stamgäst';
+
+  @override
+  String get journal_bRoamer => 'Vandrare';
+
+  @override
+  String get journal_bRarelyHeard => 'Sällan hörd';
+
+  @override
+  String get journal_bNewcomer => 'Nykomling';
+
+  @override
+  String get journal_bGoneQuiet => 'Tystnat';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent % säker';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Hörd $heard av $days dagar';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Först hörd för $hours h sedan';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Inte hörd på $days dagar';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Sedd på $places platser upp till $km km isär';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return '$count nya annonser totalt';
+  }
+
+  @override
+  String get journal_noLabel => 'Inte nog sett än för en etikett.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Först hörd: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Senast hörd: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Hopp: $min till $max';
+  }
+
+  @override
+  String get journal_tags => 'Taggar';
+
+  @override
+  String get journal_addTag => 'Lägg till tagg';
+
+  @override
+  String get journal_tagHint => 't.ex. led, klubb, min';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Ta bort taggen $tag';
+  }
+
+  @override
+  String get journal_note => 'Anteckning';
+
+  @override
+  String get journal_saveNote => 'Spara anteckning';
+
+  @override
+  String get journal_forget => 'Glöm den här noden';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Ta bort $name ur dagboken med taggar och anteckning? Hörs den igen börjar den om.';
+  }
+
+  @override
+  String get journal_forgotten => 'Noden togs bort ur dagboken.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Genererat märke för $name';
+  }
+
+  @override
   String get trouble_title => 'Felsökning';
 
   @override

@@ -54,6 +54,7 @@ import 'services/field_ops_service.dart';
 import 'services/path_history_service.dart';
 import 'services/app_settings_service.dart';
 import 'services/waypoint_store.dart';
+import 'services/node_journal_service.dart';
 import 'services/network_change_service.dart';
 import 'screens/network_changes_screen.dart' show networkChangeText;
 import 'services/notification_service.dart';
@@ -305,6 +306,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final RxLogService _rxLog;
   late final FavoriteReturnService _favoriteReturn;
   late final NetworkChangeService _networkChanges;
+  late final NodeJournalService _nodeJournal;
   late final SosRelayService _sosRelay;
   final _operatorProfile = OperatorProfileService()..load();
   final _appLock = AppLockService(PrefsManager.instance);
@@ -386,6 +388,10 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
           body: networkChangeText(l10n, change),
         );
       },
+    );
+    _nodeJournal = NodeJournalService(
+      widget.connector,
+      prefs: PrefsManager.instance,
     );
     _coverageHex = CoverageHexService(widget.connector);
     unawaited(_coverageHex.load());
@@ -489,6 +495,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _rxLog.dispose();
     _favoriteReturn.dispose();
     _networkChanges.dispose();
+    _nodeJournal.dispose();
     _botService.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
@@ -655,6 +662,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
         ChangeNotifierProvider.value(value: _stationLog),
         ChangeNotifierProvider.value(value: _automation),
         ChangeNotifierProvider.value(value: _coverageHex),
+        ChangeNotifierProvider<NodeJournalService?>.value(value: _nodeJournal),
         ChangeNotifierProvider<RegionalPresetService?>.value(
           value: _regionalPresets,
         ),

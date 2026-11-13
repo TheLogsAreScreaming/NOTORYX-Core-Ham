@@ -11000,6 +11000,125 @@ class AppLocalizationsDe extends AppLocalizations {
   String get netChange_notifTitle => 'Netzänderung';
 
   @override
+  String get journal_title => 'Knoten-Tagebuch';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Jeder je gehörte Knoten, mit Verhaltenslabels, Tags und Notizen';
+
+  @override
+  String get journal_empty =>
+      'Noch keine Knoten. Jeder Knoten, den dein Funkgerät hört, wird hier automatisch eingetragen.';
+
+  @override
+  String get journal_search => 'Namen, IDs, Tags und Notizen suchen';
+
+  @override
+  String get journal_filterAll => 'Alle';
+
+  @override
+  String get journal_bSteadyRelay => 'Dauerhaftes Relais';
+
+  @override
+  String get journal_bRegular => 'Stammgast';
+
+  @override
+  String get journal_bRoamer => 'Wanderer';
+
+  @override
+  String get journal_bRarelyHeard => 'Selten gehört';
+
+  @override
+  String get journal_bNewcomer => 'Neuling';
+
+  @override
+  String get journal_bGoneQuiet => 'Verstummt';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent % sicher';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'An $heard von $days Tagen gehört';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Zuerst vor $hours h gehört';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Seit $days Tagen nicht gehört';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'An $places Orten gesehen, bis zu $km km auseinander';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'Insgesamt $count neue Adverts';
+  }
+
+  @override
+  String get journal_noLabel => 'Noch zu wenig gesehen für ein Label.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Zuerst gehört: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Zuletzt gehört: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Gesehene Hops: $min bis $max';
+  }
+
+  @override
+  String get journal_tags => 'Tags';
+
+  @override
+  String get journal_addTag => 'Tag hinzufügen';
+
+  @override
+  String get journal_tagHint => 'z. B. Wanderparkplatz, Verein, meiner';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Tag $tag entfernen';
+  }
+
+  @override
+  String get journal_note => 'Notiz';
+
+  @override
+  String get journal_saveNote => 'Notiz speichern';
+
+  @override
+  String get journal_forget => 'Diesen Knoten vergessen';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return '$name samt Tags und Notiz aus dem Tagebuch entfernen? Wird er wieder gehört, beginnt er neu.';
+  }
+
+  @override
+  String get journal_forgotten => 'Knoten aus dem Tagebuch entfernt.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Erzeugtes Zeichen für $name';
+  }
+
+  @override
   String get trouble_title => 'Fehlersuche';
 
   @override

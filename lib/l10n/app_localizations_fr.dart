@@ -11028,6 +11028,126 @@ class AppLocalizationsFr extends AppLocalizations {
   String get netChange_notifTitle => 'Changement du réseau';
 
   @override
+  String get journal_title => 'Journal des nœuds';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Chaque nœud déjà entendu, avec comportement, étiquettes et notes';
+
+  @override
+  String get journal_empty =>
+      'Aucun nœud pour l\'instant. Chaque nœud entendu par votre radio est ajouté ici automatiquement.';
+
+  @override
+  String get journal_search => 'Rechercher noms, ID, étiquettes et notes';
+
+  @override
+  String get journal_filterAll => 'Tous';
+
+  @override
+  String get journal_bSteadyRelay => 'Relais toujours actif';
+
+  @override
+  String get journal_bRegular => 'Habitué';
+
+  @override
+  String get journal_bRoamer => 'Itinérant';
+
+  @override
+  String get journal_bRarelyHeard => 'Rarement entendu';
+
+  @override
+  String get journal_bNewcomer => 'Nouveau venu';
+
+  @override
+  String get journal_bGoneQuiet => 'Devenu silencieux';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent % de certitude';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Entendu $heard jours sur $days';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Entendu pour la première fois il y a $hours h';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Pas entendu depuis $days jours';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Vu à $places endroits distants jusqu\'à $km km';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return '$count nouvelles annonces au total';
+  }
+
+  @override
+  String get journal_noLabel =>
+      'Pas encore assez d\'observations pour un libellé.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Première écoute : $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Dernière écoute : $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Sauts observés : $min à $max';
+  }
+
+  @override
+  String get journal_tags => 'Étiquettes';
+
+  @override
+  String get journal_addTag => 'Ajouter une étiquette';
+
+  @override
+  String get journal_tagHint => 'p. ex. départ de sentier, club, le mien';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Retirer l\'étiquette $tag';
+  }
+
+  @override
+  String get journal_note => 'Note';
+
+  @override
+  String get journal_saveNote => 'Enregistrer la note';
+
+  @override
+  String get journal_forget => 'Oublier ce nœud';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Retirer $name du journal, avec ses étiquettes et sa note ? S\'il est réentendu, il repart de zéro.';
+  }
+
+  @override
+  String get journal_forgotten => 'Nœud retiré du journal.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Marque générée pour $name';
+  }
+
+  @override
   String get trouble_title => 'Dépannage';
 
   @override

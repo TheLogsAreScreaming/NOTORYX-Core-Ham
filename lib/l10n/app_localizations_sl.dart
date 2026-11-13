@@ -10999,6 +10999,125 @@ class AppLocalizationsSl extends AppLocalizations {
   String get netChange_notifTitle => 'Sprememba v mreži';
 
   @override
+  String get journal_title => 'Dnevnik vozlišč';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Vsako slišano vozlišče z oznakami vedenja, značkami in opombami';
+
+  @override
+  String get journal_empty =>
+      'Še ni vozlišč. Vsako vozlišče, ki ga radio sliši, se samodejno doda sem.';
+
+  @override
+  String get journal_search => 'Iskanje imen, ID-jev, značk in opomb';
+
+  @override
+  String get journal_filterAll => 'Vsa';
+
+  @override
+  String get journal_bSteadyRelay => 'Vedno vklopljen rele';
+
+  @override
+  String get journal_bRegular => 'Reden';
+
+  @override
+  String get journal_bRoamer => 'Popotnik';
+
+  @override
+  String get journal_bRarelyHeard => 'Redko slišan';
+
+  @override
+  String get journal_bNewcomer => 'Novinec';
+
+  @override
+  String get journal_bGoneQuiet => 'Utihnil';
+
+  @override
+  String journal_confidence(int percent) {
+    return 'Gotovost $percent %';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Slišan $heard od $days dni';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Prvič slišan pred $hours h';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Ni slišan $days dni';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Viden na $places mestih, do $km km narazen';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'Skupaj $count novih oglasov';
+  }
+
+  @override
+  String get journal_noLabel => 'Še premalo podatkov za oznako.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Prvič: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Nazadnje: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Skoki: od $min do $max';
+  }
+
+  @override
+  String get journal_tags => 'Značke';
+
+  @override
+  String get journal_addTag => 'Dodaj značko';
+
+  @override
+  String get journal_tagHint => 'npr. pot, klub, moj';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Odstrani značko $tag';
+  }
+
+  @override
+  String get journal_note => 'Opomba';
+
+  @override
+  String get journal_saveNote => 'Shrani opombo';
+
+  @override
+  String get journal_forget => 'Pozabi to vozlišče';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Odstranim $name iz dnevnika z značkami in opombo? Če bo spet slišan, se začne znova.';
+  }
+
+  @override
+  String get journal_forgotten => 'Vozlišče odstranjeno iz dnevnika.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Ustvarjen znak za $name';
+  }
+
+  @override
   String get trouble_title => 'Odpravljanje težav';
 
   @override

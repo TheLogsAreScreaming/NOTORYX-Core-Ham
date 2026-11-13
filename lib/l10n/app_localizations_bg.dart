@@ -10977,6 +10977,125 @@ class AppLocalizationsBg extends AppLocalizations {
   String get netChange_notifTitle => 'Промяна в мрежата';
 
   @override
+  String get journal_title => 'Дневник на възлите';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Всеки чут възел с етикети за поведение, тагове и бележки';
+
+  @override
+  String get journal_empty =>
+      'Още няма възли. Всеки възел, който радиото ти чуе, се добавя тук автоматично.';
+
+  @override
+  String get journal_search => 'Търси имена, ID, тагове и бележки';
+
+  @override
+  String get journal_filterAll => 'Всички';
+
+  @override
+  String get journal_bSteadyRelay => 'Постоянен ретранслатор';
+
+  @override
+  String get journal_bRegular => 'Редовен';
+
+  @override
+  String get journal_bRoamer => 'Скитник';
+
+  @override
+  String get journal_bRarelyHeard => 'Рядко чуван';
+
+  @override
+  String get journal_bNewcomer => 'Новодошъл';
+
+  @override
+  String get journal_bGoneQuiet => 'Замлъкнал';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent% сигурност';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Чут в $heard от $days дни';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'За първи път чут преди $hours ч';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Не е чут от $days дни';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Видян на $places места на до $km km едно от друго';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return 'Общо $count нови обявявания';
+  }
+
+  @override
+  String get journal_noLabel => 'Все още няма достатъчно данни за етикет.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'За първи път чут: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Последно чут: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Видени скокове: от $min до $max';
+  }
+
+  @override
+  String get journal_tags => 'Тагове';
+
+  @override
+  String get journal_addTag => 'Добави таг';
+
+  @override
+  String get journal_tagHint => 'напр. начало на пътека, клуб, мой';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Премахни таг $tag';
+  }
+
+  @override
+  String get journal_note => 'Бележка';
+
+  @override
+  String get journal_saveNote => 'Запази бележката';
+
+  @override
+  String get journal_forget => 'Забрави този възел';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return 'Да се премахне ли $name от дневника с таговете и бележката? Ако бъде чут отново, започва наново.';
+  }
+
+  @override
+  String get journal_forgotten => 'Възелът е премахнат от дневника.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Генериран знак за $name';
+  }
+
+  @override
   String get trouble_title => 'Отстраняване на проблеми';
 
   @override

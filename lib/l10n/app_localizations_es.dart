@@ -10995,6 +10995,126 @@ class AppLocalizationsEs extends AppLocalizations {
   String get netChange_notifTitle => 'Cambio en la red';
 
   @override
+  String get journal_title => 'Diario de nodos';
+
+  @override
+  String get journal_toolSubtitle =>
+      'Cada nodo escuchado, con etiquetas de comportamiento, etiquetas y notas';
+
+  @override
+  String get journal_empty =>
+      'Aún no hay nodos. Cada nodo que oiga tu radio se añade aquí automáticamente.';
+
+  @override
+  String get journal_search => 'Buscar nombres, ID, etiquetas y notas';
+
+  @override
+  String get journal_filterAll => 'Todos';
+
+  @override
+  String get journal_bSteadyRelay => 'Relé siempre activo';
+
+  @override
+  String get journal_bRegular => 'Habitual';
+
+  @override
+  String get journal_bRoamer => 'Itinerante';
+
+  @override
+  String get journal_bRarelyHeard => 'Rara vez escuchado';
+
+  @override
+  String get journal_bNewcomer => 'Recién llegado';
+
+  @override
+  String get journal_bGoneQuiet => 'En silencio';
+
+  @override
+  String journal_confidence(int percent) {
+    return '$percent % de certeza';
+  }
+
+  @override
+  String journal_eDaysHeard(int heard, int days) {
+    return 'Escuchado $heard de $days días';
+  }
+
+  @override
+  String journal_eFirstHeard(int hours) {
+    return 'Escuchado por primera vez hace $hours h';
+  }
+
+  @override
+  String journal_eSilent(int days) {
+    return 'Sin escuchar desde hace $days días';
+  }
+
+  @override
+  String journal_ePlaces(int places, int km) {
+    return 'Visto en $places lugares a hasta $km km';
+  }
+
+  @override
+  String journal_eSightings(int count) {
+    return '$count anuncios nuevos en total';
+  }
+
+  @override
+  String get journal_noLabel =>
+      'Aún no hay datos suficientes para una etiqueta.';
+
+  @override
+  String journal_firstSeen(String time) {
+    return 'Primera vez: $time';
+  }
+
+  @override
+  String journal_lastSeen(String time) {
+    return 'Última vez: $time';
+  }
+
+  @override
+  String journal_hops(int min, int max) {
+    return 'Saltos vistos: de $min a $max';
+  }
+
+  @override
+  String get journal_tags => 'Etiquetas';
+
+  @override
+  String get journal_addTag => 'Añadir etiqueta';
+
+  @override
+  String get journal_tagHint => 'p. ej. sendero, club, mío';
+
+  @override
+  String journal_removeTag(String tag) {
+    return 'Quitar etiqueta $tag';
+  }
+
+  @override
+  String get journal_note => 'Nota';
+
+  @override
+  String get journal_saveNote => 'Guardar nota';
+
+  @override
+  String get journal_forget => 'Olvidar este nodo';
+
+  @override
+  String journal_forgetConfirm(String name) {
+    return '¿Quitar $name del diario, con sus etiquetas y nota? Si se vuelve a oír, empieza de cero.';
+  }
+
+  @override
+  String get journal_forgotten => 'Nodo quitado del diario.';
+
+  @override
+  String journal_markLabel(String name) {
+    return 'Marca generada de $name';
+  }
+
+  @override
   String get trouble_title => 'Solución de problemas';
 
   @override

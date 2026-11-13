@@ -13,6 +13,7 @@ import 'automation_screen.dart';
 import 'antenna_hunt_screen.dart';
 import 'waypoints_screen.dart';
 import 'network_changes_screen.dart';
+import 'node_journal_screen.dart';
 import 'troubleshooting_screen.dart';
 import 'bastion_about_screen.dart';
 import 'bot_settings_screen.dart';
@@ -229,6 +230,12 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.bastion_repeaterTools,
             subtitle: l10n.bastionTools_repeaterHint,
             builder: (_) => const BastionRepeaterToolsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.auto_stories_outlined,
+            title: l10n.journal_title,
+            subtitle: l10n.journal_toolSubtitle,
+            builder: (_) => const NodeJournalScreen(),
           ),
           _ToolAction(
             icon: Icons.notifications_active_outlined,

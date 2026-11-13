@@ -18235,6 +18235,192 @@ abstract class AppLocalizations {
   /// **'Network change'**
   String get netChange_notifTitle;
 
+  /// No description provided for @journal_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Node journal'**
+  String get journal_title;
+
+  /// No description provided for @journal_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Every node ever heard, with behaviour labels, tags and notes'**
+  String get journal_toolSubtitle;
+
+  /// No description provided for @journal_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No nodes yet. Every node your radio hears is added here automatically.'**
+  String get journal_empty;
+
+  /// No description provided for @journal_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search names, IDs, tags and notes'**
+  String get journal_search;
+
+  /// No description provided for @journal_filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get journal_filterAll;
+
+  /// No description provided for @journal_bSteadyRelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Always-on relay'**
+  String get journal_bSteadyRelay;
+
+  /// No description provided for @journal_bRegular.
+  ///
+  /// In en, this message translates to:
+  /// **'Regular'**
+  String get journal_bRegular;
+
+  /// No description provided for @journal_bRoamer.
+  ///
+  /// In en, this message translates to:
+  /// **'Roamer'**
+  String get journal_bRoamer;
+
+  /// No description provided for @journal_bRarelyHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Rarely heard'**
+  String get journal_bRarelyHeard;
+
+  /// No description provided for @journal_bNewcomer.
+  ///
+  /// In en, this message translates to:
+  /// **'Newcomer'**
+  String get journal_bNewcomer;
+
+  /// No description provided for @journal_bGoneQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Gone quiet'**
+  String get journal_bGoneQuiet;
+
+  /// No description provided for @journal_confidence.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% sure'**
+  String journal_confidence(int percent);
+
+  /// No description provided for @journal_eDaysHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard on {heard} of {days} days'**
+  String journal_eDaysHeard(int heard, int days);
+
+  /// No description provided for @journal_eFirstHeard.
+  ///
+  /// In en, this message translates to:
+  /// **'First heard {hours} h ago'**
+  String journal_eFirstHeard(int hours);
+
+  /// No description provided for @journal_eSilent.
+  ///
+  /// In en, this message translates to:
+  /// **'Not heard for {days} days'**
+  String journal_eSilent(int days);
+
+  /// No description provided for @journal_ePlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Seen at {places} places up to {km} km apart'**
+  String journal_ePlaces(int places, int km);
+
+  /// No description provided for @journal_eSightings.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} fresh adverts in all'**
+  String journal_eSightings(int count);
+
+  /// No description provided for @journal_noLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough seen yet for a label.'**
+  String get journal_noLabel;
+
+  /// No description provided for @journal_firstSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'First heard: {time}'**
+  String journal_firstSeen(String time);
+
+  /// No description provided for @journal_lastSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Last heard: {time}'**
+  String journal_lastSeen(String time);
+
+  /// No description provided for @journal_hops.
+  ///
+  /// In en, this message translates to:
+  /// **'Hops seen: {min} to {max}'**
+  String journal_hops(int min, int max);
+
+  /// No description provided for @journal_tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get journal_tags;
+
+  /// No description provided for @journal_addTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Add tag'**
+  String get journal_addTag;
+
+  /// No description provided for @journal_tagHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. trailhead, club, mine'**
+  String get journal_tagHint;
+
+  /// No description provided for @journal_removeTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove tag {tag}'**
+  String journal_removeTag(String tag);
+
+  /// No description provided for @journal_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get journal_note;
+
+  /// No description provided for @journal_saveNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Save note'**
+  String get journal_saveNote;
+
+  /// No description provided for @journal_forget.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget this node'**
+  String get journal_forget;
+
+  /// No description provided for @journal_forgetConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name} from the journal, with its tags and note? It starts fresh if heard again.'**
+  String journal_forgetConfirm(String name);
+
+  /// No description provided for @journal_forgotten.
+  ///
+  /// In en, this message translates to:
+  /// **'Node removed from the journal.'**
+  String get journal_forgotten;
+
+  /// No description provided for @journal_markLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Generated mark for {name}'**
+  String journal_markLabel(String name);
+
   /// No description provided for @trouble_title.
   ///
   /// In en, this message translates to:
