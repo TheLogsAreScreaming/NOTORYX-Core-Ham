@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../storage/secure_prefs.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,7 +27,9 @@ class WaypointStore extends ChangeNotifier {
 
   void _load() {
     try {
-      final raw = prefs.getString(_key);
+      final raw = SecurePrefs.isActive
+          ? SecurePrefs.getString(_key)
+          : prefs.getString(_key);
       if (raw == null) return;
       final data = jsonDecode(raw);
       if (data is! Map) return;
@@ -42,13 +46,15 @@ class WaypointStore extends ChangeNotifier {
 
   Future<void> _save() async {
     notifyListeners();
-    await prefs.setString(
-      _key,
-      jsonEncode({
-        'waypoints': [for (final w in _waypoints) w.toJson()],
-        'routes': [for (final r in _routes) r.toJson()],
-      }),
-    );
+    final encoded = jsonEncode({
+      'waypoints': [for (final w in _waypoints) w.toJson()],
+      'routes': [for (final r in _routes) r.toJson()],
+    });
+    if (SecurePrefs.isActive) {
+      await SecurePrefs.setString(_key, encoded);
+    } else {
+      await prefs.setString(_key, encoded);
+    }
   }
 
   /// Whether a waypoint with this name is already saved within about 2 m.

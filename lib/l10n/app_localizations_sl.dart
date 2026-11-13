@@ -11197,4 +11197,8 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Prikaži shranjene točke in poti';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Zajema tudi stike, ključe kanalov, točke poti, shranjene poti, osnutke in čakajoča sporočila.';
 }

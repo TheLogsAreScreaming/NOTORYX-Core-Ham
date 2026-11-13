@@ -4490,5 +4490,6 @@
   "waypoints_unnamed": "Deljeno mesto",
   "waypoints_saved": "Shranjeno v Točke",
   "waypoints_alreadySaved": "Že v Točkah",
-  "map_showWaypoints": "Prikaži shranjene točke in poti"
+  "map_showWaypoints": "Prikaži shranjene točke in poti",
+  "dbEncrypt_covers": "Zajema tudi stike, ključe kanalov, točke poti, shranjene poti, osnutke in čakajoča sporočila."
 }

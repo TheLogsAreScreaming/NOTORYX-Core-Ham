@@ -11238,4 +11238,8 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Показывать сохранённые точки и маршруты';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Также защищает контакты, ключи каналов, путевые точки, сохранённые маршруты, черновики и ожидающие сообщения.';
 }

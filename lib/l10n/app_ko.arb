@@ -4624,5 +4624,6 @@
   "waypoints_unnamed": "공유된 장소",
   "waypoints_saved": "웨이포인트에 저장됨",
   "waypoints_alreadySaved": "이미 웨이포인트에 있음",
-  "map_showWaypoints": "저장된 웨이포인트와 경로 표시"
+  "map_showWaypoints": "저장된 웨이포인트와 경로 표시",
+  "dbEncrypt_covers": "연락처, 채널 키, 웨이포인트, 저장된 경로, 임시 저장 글, 대기 중인 메시지도 포함합니다."
 }

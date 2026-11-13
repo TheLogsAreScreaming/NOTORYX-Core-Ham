@@ -11236,4 +11236,8 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Показувати збережені точки та маршрути';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Також захищає контакти, ключі каналів, путівні точки, збережені маршрути, чернетки й очікувані повідомлення.';
 }

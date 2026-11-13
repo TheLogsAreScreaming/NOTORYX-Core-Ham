@@ -4490,5 +4490,6 @@
   "waypoints_unnamed": "Gedeelde plek",
   "waypoints_saved": "Bewaard in Waypoints",
   "waypoints_alreadySaved": "Staat al in Waypoints",
-  "map_showWaypoints": "Opgeslagen waypoints en routes tonen"
+  "map_showWaypoints": "Opgeslagen waypoints en routes tonen",
+  "dbEncrypt_covers": "Omvat ook contacten, kanaalsleutels, waypoints, opgeslagen routes, concepten en wachtende berichten."
 }

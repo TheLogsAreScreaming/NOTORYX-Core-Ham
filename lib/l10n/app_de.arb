@@ -4624,5 +4624,6 @@
   "waypoints_unnamed": "Geteilter Ort",
   "waypoints_saved": "In Wegpunkten gespeichert",
   "waypoints_alreadySaved": "Schon in Wegpunkten",
-  "map_showWaypoints": "Gespeicherte Wegpunkte und Routen anzeigen"
+  "map_showWaypoints": "Gespeicherte Wegpunkte und Routen anzeigen",
+  "dbEncrypt_covers": "Umfasst auch Kontakte, Kanalschlüssel, Wegpunkte, gespeicherte Routen, Entwürfe und wartende Nachrichten."
 }

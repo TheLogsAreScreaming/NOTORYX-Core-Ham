@@ -156,12 +156,46 @@ class _SqliteMessageDb implements MessageDb {
       _db.execute('PRAGMA user_version = $_schemaVersion');
       _db.execute('COMMIT');
     }
+    _db.execute(
+      'CREATE TABLE IF NOT EXISTS secure_kv (key TEXT PRIMARY KEY, '
+      'value TEXT NOT NULL) WITHOUT ROWID',
+    );
   }
 
   final Database _db;
 
   @override
   final bool isEncrypted;
+
+  @override
+  Map<String, String> loadSecrets() => {
+    for (final row in _db.select('SELECT key, value FROM secure_kv'))
+      row['key'] as String: row['value'] as String,
+  };
+
+  @override
+  void putSecrets(Map<String, String> values) {
+    _db.execute('BEGIN');
+    try {
+      for (final entry in values.entries) {
+        _db.execute(
+          'INSERT OR REPLACE INTO secure_kv (key, value) VALUES (?, ?)',
+          [entry.key, entry.value],
+        );
+      }
+      _db.execute('COMMIT');
+    } catch (_) {
+      _db.execute('ROLLBACK');
+      rethrow;
+    }
+  }
+
+  @override
+  void removeSecret(String key) =>
+      _db.execute('DELETE FROM secure_kv WHERE key = ?', [key]);
+
+  @override
+  void clearSecrets() => _db.execute('DELETE FROM secure_kv');
 
   @override
   List<String> load(MessageTable table, String scope, String conversation) => [

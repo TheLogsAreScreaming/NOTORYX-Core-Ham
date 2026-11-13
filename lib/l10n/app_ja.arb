@@ -4624,5 +4624,6 @@
   "waypoints_unnamed": "共有された場所",
   "waypoints_saved": "ウェイポイントに保存しました",
   "waypoints_alreadySaved": "すでにウェイポイントにあります",
-  "map_showWaypoints": "保存したウェイポイントとルートを表示"
+  "map_showWaypoints": "保存したウェイポイントとルートを表示",
+  "dbEncrypt_covers": "連絡先、チャンネルキー、ウェイポイント、保存したルート、下書き、送信待ちメッセージも対象です。"
 }

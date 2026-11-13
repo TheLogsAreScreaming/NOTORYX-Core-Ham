@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:meshcore_open/storage/secure_prefs.dart';
 import 'package:meshcore_open/services/encrypted_backup_service.dart';
 import 'package:meshcore_open/storage/prefs_manager.dart';
 
@@ -49,6 +50,7 @@ void main() {
   group('restore', () {
     setUp(() async {
       PrefsManager.reset();
+      SecurePrefs.resetForTest();
       SharedPreferences.setMockInitialValues({
         'theme': 'light',
         'untouched': 'stays',

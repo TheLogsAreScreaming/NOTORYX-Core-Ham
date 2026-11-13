@@ -4490,5 +4490,6 @@
   "waypoints_unnamed": "Delad plats",
   "waypoints_saved": "Sparad i Vägpunkter",
   "waypoints_alreadySaved": "Redan i Vägpunkter",
-  "map_showWaypoints": "Visa sparade vägpunkter och rutter"
+  "map_showWaypoints": "Visa sparade vägpunkter och rutter",
+  "dbEncrypt_covers": "Omfattar även kontakter, kanalnycklar, vägpunkter, sparade rutter, utkast och väntande meddelanden."
 }

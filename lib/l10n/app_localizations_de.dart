@@ -11201,4 +11201,8 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Gespeicherte Wegpunkte und Routen anzeigen';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Umfasst auch Kontakte, Kanalschlüssel, Wegpunkte, gespeicherte Routen, Entwürfe und wartende Nachrichten.';
 }

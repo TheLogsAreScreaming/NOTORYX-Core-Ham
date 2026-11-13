@@ -11105,4 +11105,8 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get map_showWaypoints => 'Visa sparade vägpunkter och rutter';
+
+  @override
+  String get dbEncrypt_covers =>
+      'Omfattar även kontakter, kanalnycklar, vägpunkter, sparade rutter, utkast och väntande meddelanden.';
 }
