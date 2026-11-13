@@ -9156,6 +9156,65 @@ class AppLocalizationsHu extends AppLocalizations {
       'Az alkalmazás által nem ismert régiónak küldve';
 
   @override
+  String get timeline_title => 'Idővonal';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Üzenetek, új csomópontok, jelváltozások és helyek egy folyamban';
+
+  @override
+  String get timeline_refresh => 'Újratöltés';
+
+  @override
+  String get timeline_search => 'Keresés az idővonalon';
+
+  @override
+  String get timeline_kindMessages => 'Üzenetek';
+
+  @override
+  String get timeline_kindNodes => 'Új csomópontok';
+
+  @override
+  String get timeline_kindSignal => 'Jel';
+
+  @override
+  String get timeline_kindPlaces => 'Helyek';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender itt: $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Először hallott: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: a jel $from dB-ről $to dB-re javult';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: a jel $from dB-ről $to dB-re romlott';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Hely mentve: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender megosztott egy helyet itt: $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Még semmi. Itt jelennek meg az üzenetek, az újonnan hallott csomópontok, a jelváltozások és a helyek.';
+
+  @override
   String get wardrive_title => 'Lefedettség-felmérés';
 
   @override

@@ -9091,6 +9091,65 @@ class AppLocalizationsSv extends AppLocalizations {
       'Skickat till en region appen inte känner';
 
   @override
+  String get timeline_title => 'Tidslinje';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Meddelanden, nya noder, signaländringar och platser i ett flöde';
+
+  @override
+  String get timeline_refresh => 'Ladda om';
+
+  @override
+  String get timeline_search => 'Sök i tidslinjen';
+
+  @override
+  String get timeline_kindMessages => 'Meddelanden';
+
+  @override
+  String get timeline_kindNodes => 'Nya noder';
+
+  @override
+  String get timeline_kindSignal => 'Signal';
+
+  @override
+  String get timeline_kindPlaces => 'Platser';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender i $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Hörd för första gången: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: signalen steg från $from till $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: signalen sjönk från $from till $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Plats sparad: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender delade en plats i $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Inget än. Meddelanden, nyhörda noder, signaländringar och platser visas här.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

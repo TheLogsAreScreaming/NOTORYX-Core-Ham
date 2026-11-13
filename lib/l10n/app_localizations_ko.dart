@@ -8735,6 +8735,63 @@ class AppLocalizationsKo extends AppLocalizations {
   String get channels_regionUnknownSemantics => '앱이 모르는 지역으로 보냄';
 
   @override
+  String get timeline_title => '타임라인';
+
+  @override
+  String get timeline_toolSubtitle => '메시지, 새 노드, 신호 변화, 장소를 한 피드에서';
+
+  @override
+  String get timeline_refresh => '새로고침';
+
+  @override
+  String get timeline_search => '타임라인 검색';
+
+  @override
+  String get timeline_kindMessages => '메시지';
+
+  @override
+  String get timeline_kindNodes => '새 노드';
+
+  @override
+  String get timeline_kindSignal => '신호';
+
+  @override
+  String get timeline_kindPlaces => '장소';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$where의 $sender';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return '처음 수신: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: 신호가 $from에서 $to dB로 상승';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: 신호가 $from에서 $to dB로 하락';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return '장소 저장: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender님이 $where에서 장소를 공유함';
+  }
+
+  @override
+  String get timeline_empty => '아직 없습니다. 메시지, 새로 수신한 노드, 신호 변화, 장소가 여기에 표시됩니다.';
+
+  @override
   String get wardrive_title => '워드라이브';
 
   @override

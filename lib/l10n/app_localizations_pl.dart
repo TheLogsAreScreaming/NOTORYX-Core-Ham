@@ -9202,6 +9202,65 @@ class AppLocalizationsPl extends AppLocalizations {
       'Wysłane do regionu nieznanego aplikacji';
 
   @override
+  String get timeline_title => 'Oś czasu';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Wiadomości, nowe węzły, zmiany sygnału i miejsca w jednym widoku';
+
+  @override
+  String get timeline_refresh => 'Odśwież';
+
+  @override
+  String get timeline_search => 'Szukaj na osi czasu';
+
+  @override
+  String get timeline_kindMessages => 'Wiadomości';
+
+  @override
+  String get timeline_kindNodes => 'Nowe węzły';
+
+  @override
+  String get timeline_kindSignal => 'Sygnał';
+
+  @override
+  String get timeline_kindPlaces => 'Miejsca';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender w $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Usłyszany pierwszy raz: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: sygnał wzrósł z $from do $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: sygnał spadł z $from do $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Zapisano miejsce: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender udostępnił miejsce w $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Na razie nic. Tu pojawią się wiadomości, nowo usłyszane węzły, zmiany sygnału i miejsca.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

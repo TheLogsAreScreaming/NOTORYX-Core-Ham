@@ -9176,6 +9176,65 @@ class AppLocalizationsIt extends AppLocalizations {
       'Inviato a una regione sconosciuta all’app';
 
   @override
+  String get timeline_title => 'Cronologia';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Messaggi, nuovi nodi, variazioni di segnale e luoghi in un unico flusso';
+
+  @override
+  String get timeline_refresh => 'Ricarica';
+
+  @override
+  String get timeline_search => 'Cerca nella cronologia';
+
+  @override
+  String get timeline_kindMessages => 'Messaggi';
+
+  @override
+  String get timeline_kindNodes => 'Nuovi nodi';
+
+  @override
+  String get timeline_kindSignal => 'Segnale';
+
+  @override
+  String get timeline_kindPlaces => 'Luoghi';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender in $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Sentito per la prima volta: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: segnale salito da $from a $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: segnale sceso da $from a $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Luogo salvato: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender ha condiviso un luogo in $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Ancora niente. Qui compaiono messaggi, nodi appena sentiti, variazioni di segnale e luoghi.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

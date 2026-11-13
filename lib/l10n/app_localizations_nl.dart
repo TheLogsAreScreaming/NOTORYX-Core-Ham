@@ -9128,6 +9128,65 @@ class AppLocalizationsNl extends AppLocalizations {
       'Verzonden naar een regio die de app niet kent';
 
   @override
+  String get timeline_title => 'Tijdlijn';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Berichten, nieuwe knooppunten, signaalwijzigingen en plaatsen in één overzicht';
+
+  @override
+  String get timeline_refresh => 'Opnieuw laden';
+
+  @override
+  String get timeline_search => 'Zoek in de tijdlijn';
+
+  @override
+  String get timeline_kindMessages => 'Berichten';
+
+  @override
+  String get timeline_kindNodes => 'Nieuwe knooppunten';
+
+  @override
+  String get timeline_kindSignal => 'Signaal';
+
+  @override
+  String get timeline_kindPlaces => 'Plaatsen';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender in $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Voor het eerst gehoord: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: signaal omhoog van $from naar $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: signaal omlaag van $from naar $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Plaats opgeslagen: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender deelde een plaats in $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Nog niets. Berichten, nieuw gehoorde knooppunten, signaalwijzigingen en plaatsen verschijnen hier.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

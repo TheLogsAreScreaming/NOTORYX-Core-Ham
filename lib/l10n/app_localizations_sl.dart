@@ -9153,6 +9153,65 @@ class AppLocalizationsSl extends AppLocalizations {
       'Poslano v regijo, ki je aplikacija ne pozna';
 
   @override
+  String get timeline_title => 'Časovnica';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Sporočila, nova vozlišča, spremembe signala in kraji v enem toku';
+
+  @override
+  String get timeline_refresh => 'Znova naloži';
+
+  @override
+  String get timeline_search => 'Iskanje po časovnici';
+
+  @override
+  String get timeline_kindMessages => 'Sporočila';
+
+  @override
+  String get timeline_kindNodes => 'Nova vozlišča';
+
+  @override
+  String get timeline_kindSignal => 'Signal';
+
+  @override
+  String get timeline_kindPlaces => 'Kraji';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender v $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Prvič slišan: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: signal se je dvignil s $from na $to dB';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: signal je padel s $from na $to dB';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Kraj shranjen: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender je delil kraj v $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Še nič. Tu se prikažejo sporočila, na novo slišana vozlišča, spremembe signala in kraji.';
+
+  @override
   String get wardrive_title => 'Wardrive';
 
   @override

@@ -8724,6 +8724,63 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channels_regionUnknownSemantics => 'アプリが知らない地域宛てに送信';
 
   @override
+  String get timeline_title => 'タイムライン';
+
+  @override
+  String get timeline_toolSubtitle => 'メッセージ、新しいノード、信号の変化、場所をひとつのフィードに';
+
+  @override
+  String get timeline_refresh => '再読み込み';
+
+  @override
+  String get timeline_search => 'タイムラインを検索';
+
+  @override
+  String get timeline_kindMessages => 'メッセージ';
+
+  @override
+  String get timeline_kindNodes => '新しいノード';
+
+  @override
+  String get timeline_kindSignal => '信号';
+
+  @override
+  String get timeline_kindPlaces => '場所';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$where の $sender';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return '初めて受信: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: 信号が $from から $to dB に上昇';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: 信号が $from から $to dB に低下';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return '場所を保存: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender が $where で場所を共有';
+  }
+
+  @override
+  String get timeline_empty => 'まだ何もありません。メッセージ、新しく受信したノード、信号の変化、場所がここに表示されます。';
+
+  @override
   String get wardrive_title => 'ウォードライブ';
 
   @override

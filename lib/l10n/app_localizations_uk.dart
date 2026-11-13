@@ -9191,6 +9191,65 @@ class AppLocalizationsUk extends AppLocalizations {
       'Надіслано в регіон, невідомий застосунку';
 
   @override
+  String get timeline_title => 'Хронологія';
+
+  @override
+  String get timeline_toolSubtitle =>
+      'Повідомлення, нові вузли, зміни сигналу й місця в одній стрічці';
+
+  @override
+  String get timeline_refresh => 'Оновити';
+
+  @override
+  String get timeline_search => 'Пошук у хронології';
+
+  @override
+  String get timeline_kindMessages => 'Повідомлення';
+
+  @override
+  String get timeline_kindNodes => 'Нові вузли';
+
+  @override
+  String get timeline_kindSignal => 'Сигнал';
+
+  @override
+  String get timeline_kindPlaces => 'Місця';
+
+  @override
+  String timeline_messageFrom(String sender, String where) {
+    return '$sender у $where';
+  }
+
+  @override
+  String timeline_nodeJoined(String name) {
+    return 'Уперше почуто: $name';
+  }
+
+  @override
+  String timeline_signalUp(String name, String from, String to) {
+    return '$name: сигнал зріс з $from до $to дБ';
+  }
+
+  @override
+  String timeline_signalDown(String name, String from, String to) {
+    return '$name: сигнал впав з $from до $to дБ';
+  }
+
+  @override
+  String timeline_placeSaved(String name) {
+    return 'Місце збережено: $name';
+  }
+
+  @override
+  String timeline_placeShared(String sender, String where) {
+    return '$sender поділився місцем у $where';
+  }
+
+  @override
+  String get timeline_empty =>
+      'Поки нічого. Тут з\'являться повідомлення, нові вузли, зміни сигналу й місця.';
+
+  @override
   String get wardrive_title => 'Вардрайв';
 
   @override
