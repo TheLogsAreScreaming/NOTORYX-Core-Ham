@@ -10885,4 +10885,171 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get routeHealth_keep => 'Route behalten';
+
+  @override
+  String get netChange_title => 'Netzänderungen';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Repeater, die in der Nähe auftauchten oder verstummten';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Neuer Repeater direkt gehört: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Neuer Repeater $hops Hop entfernt: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name ist verstummt: seit $hours h nicht gehört';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Noch keine Änderungen. Hier erscheinen Favoriten-Repeater, die verstummen, und neue Repeater in der Nähe.';
+
+  @override
+  String get netChange_quietSetting => 'Favoriten-Repeater verstummt';
+
+  @override
+  String get netChange_quietHint =>
+      'Benachrichtigen, wenn ein Favoriten-Repeater so lange nicht gehört wurde';
+
+  @override
+  String get netChange_newSetting => 'Neuer Repeater in der Nähe';
+
+  @override
+  String get netChange_newHint =>
+      'Benachrichtigen, wenn ein unbekannter Repeater innerhalb eines Hops gehört wird';
+
+  @override
+  String get netChange_clear => 'Leeren';
+
+  @override
+  String get netChange_notifTitle => 'Netzänderung';
+
+  @override
+  String get trouble_title => 'Fehlersuche';
+
+  @override
+  String get trouble_toolSubtitle =>
+      'Schritt-für-Schritt-Hilfe, wenn etwas nicht klappt';
+
+  @override
+  String get trouble_pick => 'Was stimmt nicht?';
+
+  @override
+  String get trouble_noDelivery => 'Nachrichten kommen nicht an';
+
+  @override
+  String get trouble_noConnect =>
+      'Ich kann mich nicht mit dem Funkgerät verbinden';
+
+  @override
+  String get trouble_hearNobody => 'Ich höre niemanden';
+
+  @override
+  String get trouble_startHere => 'Hier anfangen';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => 'Problem';
+
+  @override
+  String get trouble_resultUnchecked => 'Nicht prüfbar';
+
+  @override
+  String get trouble_connectedNow =>
+      'Du bist jetzt verbunden. Wenn die Verbindung immer wieder abbricht, helfen die Schritte unten trotzdem.';
+
+  @override
+  String get trouble_allOk =>
+      'Alle Prüfungen bestanden. Wenn es trotzdem nicht klappt, lohnt sich ein Blick auf die Schritte unten.';
+
+  @override
+  String get trouble_connected => 'Dein Funkgerät ist verbunden';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Verbinde zuerst dein Funkgerät: Einstellungen → Funkgerät verbinden.';
+
+  @override
+  String get trouble_routes =>
+      'Zu deinen Gesprächspartnern sind Routen bekannt';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Nachrichten an jemanden ohne bekannte Route fluten das ganze Mesh und kommen oft nicht an. Warte auf ein Advert oder bitte darum und schreib dann noch einmal.';
+
+  @override
+  String get trouble_heardRecently =>
+      'Deine Gesprächspartner wurden am letzten Tag gehört';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Wer länger nicht gehört wurde, ist vielleicht außer Reichweite oder ausgeschaltet. Nachrichten können erst bestätigt werden, wenn er zurück ist.';
+
+  @override
+  String get trouble_neighbours => 'Dein Funkgerät hört andere Knoten';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Wird nichts direkt gehört, erreicht dein Funkgerät das Mesh von hier nicht. Antenne höher, höher stehen oder näher an einen Repeater.';
+
+  @override
+  String get trouble_bluetooth => 'Bluetooth ist an und die App darf es nutzen';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Prüfe, ob Bluetooth an ist und NOTORYX Core Ham in den Telefoneinstellungen Bluetooth (und unter Android Geräte in der Nähe) darf.';
+
+  @override
+  String get trouble_otherApp =>
+      'Kein anderes Telefon und keine andere App ist verbunden';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'Ein Funkgerät spricht immer nur mit einer App. Schließe andere MeshCore-Apps oder schalte Bluetooth auf anderen gekoppelten Telefonen aus.';
+
+  @override
+  String get trouble_inRange => 'Das Funkgerät ist an und in der Nähe';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Prüfe, ob das Funkgerät geladen, eingeschaltet und wenige Meter entfernt ist. Ein Neustart des Funkgeräts löst oft eine hängende Verbindung.';
+
+  @override
+  String get trouble_otherTransport => 'Andere Verbindungsart versuchen';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Wenn Bluetooth immer wieder scheitert, verbinde per USB-Kabel oder per WLAN (TCP), falls dein Funkgerät das kann.';
+
+  @override
+  String get trouble_noise => 'Das Funkgerät geht nicht im Rauschen unter';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'Ein hoher Rauschpegel verdeckt schwache Signale. Halte die Antenne von Elektronik, Ladegeräten und Solarreglern fern.';
+
+  @override
+  String get trouble_region =>
+      'Dein Funkgerät nutzt die Einstellungen deiner Gegend';
+
+  @override
+  String get trouble_regionAdvice =>
+      'Mit anderer Frequenz, Bandbreite oder anderem Spreizfaktor als das lokale Mesh hörst du niemanden. Vergleiche Einstellungen → Funk mit dem, was in deiner Gegend genutzt wird.';
+
+  @override
+  String get trouble_antenna => 'Die Antenne ist angeschlossen';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Schraub die Antenne fest an. Sende nie ohne Antenne; das kann das Funkgerät beschädigen.';
 }

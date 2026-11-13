@@ -10866,4 +10866,169 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get routeHealth_keep => 'Útvonal megtartása';
+
+  @override
+  String get netChange_title => 'Hálózati változások';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Közelben megjelent vagy elnémult átjátszók';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Új átjátszó közvetlenül hallva: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Új átjátszó $hops ugrásra: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name elnémult: $hours órája nem hallható';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Még nincs változás. Itt jelennek meg az elnémuló kedvenc átjátszók és a közeli új átjátszók.';
+
+  @override
+  String get netChange_quietSetting => 'Kedvenc átjátszó elnémul';
+
+  @override
+  String get netChange_quietHint =>
+      'Értesítés, ha egy kedvenc átjátszó ennyi ideje nem hallható';
+
+  @override
+  String get netChange_newSetting => 'Új átjátszó a közelben';
+
+  @override
+  String get netChange_newHint =>
+      'Értesítés, ha egy eddig nem látott átjátszó egy ugráson belül hallható';
+
+  @override
+  String get netChange_clear => 'Törlés';
+
+  @override
+  String get netChange_notifTitle => 'Hálózati változás';
+
+  @override
+  String get trouble_title => 'Hibaelhárítás';
+
+  @override
+  String get trouble_toolSubtitle =>
+      'Lépésenkénti segítség, ha valami nem működik';
+
+  @override
+  String get trouble_pick => 'Mi a baj?';
+
+  @override
+  String get trouble_noDelivery => 'Az üzenetek nem érkeznek meg';
+
+  @override
+  String get trouble_noConnect => 'Nem tudok csatlakozni a rádióhoz';
+
+  @override
+  String get trouble_hearNobody => 'Senkit sem hallok';
+
+  @override
+  String get trouble_startHere => 'Kezdd itt';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => 'Probléma';
+
+  @override
+  String get trouble_resultUnchecked => 'Nem ellenőrizhető';
+
+  @override
+  String get trouble_connectedNow =>
+      'Most csatlakozva vagy. Ha a kapcsolat folyton megszakad, az alábbi lépések akkor is segítenek.';
+
+  @override
+  String get trouble_allOk =>
+      'Minden ellenőrzés rendben. Ha mégsem működik, nézd át az alábbi lépéseket.';
+
+  @override
+  String get trouble_connected => 'A rádiód csatlakoztatva van';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Először csatlakoztasd a rádiót: Beállítások → Rádió csatlakoztatása.';
+
+  @override
+  String get trouble_routes => 'Ismert útvonal van azokhoz, akiknek írsz';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Az ismert útvonal nélküli címzettnek küldött üzenetek elárasztják az egész hálót, és gyakran nem érnek célba. Várd meg, amíg hirdeti magát, vagy kérd meg rá, aztán írj újra.';
+
+  @override
+  String get trouble_heardRecently =>
+      'Akiknek írsz, azokat az elmúlt napban hallottad';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Akit régóta nem hallottál, lehet hatótávon kívül vagy kikapcsolva. Az üzeneteit nem lehet nyugtázni, amíg vissza nem tér.';
+
+  @override
+  String get trouble_neighbours => 'A rádiód hall más csomópontokat';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Ha semmi sem hallható közvetlenül, a rádiód innen nem éri el a hálót. Emeld az antennát, menj magasabbra vagy közelebb egy átjátszóhoz.';
+
+  @override
+  String get trouble_bluetooth =>
+      'A Bluetooth be van kapcsolva, és az alkalmazás használhatja';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Ellenőrizd, hogy a Bluetooth be van kapcsolva, és a NOTORYX Core Ham kapott Bluetooth (Androidon Közeli eszközök) engedélyt a telefon beállításaiban.';
+
+  @override
+  String get trouble_otherApp =>
+      'Más telefon vagy alkalmazás nem csatlakozik a rádióhoz';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'A rádió egyszerre csak egy alkalmazással beszél. Zárd be a többi MeshCore alkalmazást, vagy kapcsold ki a Bluetooth-t a többi párosított telefonon.';
+
+  @override
+  String get trouble_inRange => 'A rádió be van kapcsolva és közel van';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Ellenőrizd, hogy a rádió fel van töltve, be van kapcsolva és pár méterre van. A rádió újraindítása gyakran megoldja a beragadt kapcsolatot.';
+
+  @override
+  String get trouble_otherTransport => 'Próbálj másképp csatlakozni';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Ha a Bluetooth folyton hibázik, csatlakozz USB-kábellel vagy Wi-Fin (TCP), ha a rádió támogatja.';
+
+  @override
+  String get trouble_noise => 'A rádiót nem nyomja el a zaj';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'A magas zajszint elfedi a gyenge jeleket. Vidd távolabb az antennát elektronikától, töltőktől és napelemes vezérlőktől.';
+
+  @override
+  String get trouble_region => 'A rádió a környéked beállításait használja';
+
+  @override
+  String get trouble_regionAdvice =>
+      'Ha a frekvencia, sávszélesség vagy szórási tényező eltér a helyi hálóétól, senkit sem hallasz. Hasonlítsd össze a Beállítások → Rádió értékeit a környéked beállításaival.';
+
+  @override
+  String get trouble_antenna => 'Az antenna fel van szerelve';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Győződj meg róla, hogy az antenna szorosan fel van csavarva. Soha ne adj antenna nélkül; ez károsíthatja a rádiót.';
 }

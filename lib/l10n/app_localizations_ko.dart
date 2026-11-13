@@ -10371,4 +10371,160 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get routeHealth_keep => '이 경로 유지';
+
+  @override
+  String get netChange_title => '네트워크 변화';
+
+  @override
+  String get netChange_toolSubtitle => '근처에 나타났거나 조용해진 리피터';
+
+  @override
+  String netChange_newDirect(String name) {
+    return '직접 수신된 새 리피터: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return '$hops홉 거리의 새 리피터: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name 조용해짐: $hours시간 동안 수신 없음';
+  }
+
+  @override
+  String get netChange_empty =>
+      '아직 변화가 없습니다. 조용해진 즐겨찾기 리피터와 근처의 새 리피터가 여기에 표시됩니다.';
+
+  @override
+  String get netChange_quietSetting => '즐겨찾기 리피터가 조용해짐';
+
+  @override
+  String get netChange_quietHint => '즐겨찾기 리피터가 이만큼 수신되지 않으면 알림';
+
+  @override
+  String get netChange_newSetting => '근처의 새 리피터';
+
+  @override
+  String get netChange_newHint => '처음 보는 리피터가 1홉 이내에서 수신되면 알림';
+
+  @override
+  String get netChange_clear => '지우기';
+
+  @override
+  String get netChange_notifTitle => '네트워크 변화';
+
+  @override
+  String get trouble_title => '문제 해결';
+
+  @override
+  String get trouble_toolSubtitle => '무언가 안 될 때 단계별 도움말';
+
+  @override
+  String get trouble_pick => '무엇이 문제인가요?';
+
+  @override
+  String get trouble_noDelivery => '메시지가 전달되지 않음';
+
+  @override
+  String get trouble_noConnect => '무전기에 연결할 수 없음';
+
+  @override
+  String get trouble_hearNobody => '아무도 들리지 않음';
+
+  @override
+  String get trouble_startHere => '여기서 시작';
+
+  @override
+  String get trouble_resultOk => '정상';
+
+  @override
+  String get trouble_resultProblem => '문제';
+
+  @override
+  String get trouble_resultUnchecked => '확인할 수 없음';
+
+  @override
+  String get trouble_connectedNow =>
+      '지금은 연결되어 있습니다. 연결이 자꾸 끊기면 아래 단계가 여전히 도움이 됩니다.';
+
+  @override
+  String get trouble_allOk => '모든 확인을 통과했습니다. 그래도 안 되면 아래 단계를 살펴보세요.';
+
+  @override
+  String get trouble_connected => '무전기가 연결됨';
+
+  @override
+  String get trouble_connectedAdvice => '먼저 무전기를 연결하세요: 설정 → 무전기 연결.';
+
+  @override
+  String get trouble_routes => '메시지를 보내는 사람까지 경로를 알고 있음';
+
+  @override
+  String get trouble_routesAdvice =>
+      '경로를 모르는 사람에게 보낸 메시지는 메시 전체에 플러드되고 자주 도착하지 못합니다. 상대가 광고할 때까지 기다리거나 요청한 뒤 다시 보내세요.';
+
+  @override
+  String get trouble_heardRecently => '메시지를 보내는 사람이 최근 하루 안에 수신됨';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      '한동안 수신되지 않은 사람은 범위 밖이거나 꺼져 있을 수 있습니다. 돌아올 때까지 메시지가 확인되지 않습니다.';
+
+  @override
+  String get trouble_neighbours => '무전기가 다른 노드를 수신함';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      '직접 수신되는 것이 없으면 여기서는 메시에 닿지 않습니다. 안테나를 높이거나, 높은 곳으로 가거나, 리피터에 가까이 가세요.';
+
+  @override
+  String get trouble_bluetooth => '블루투스가 켜져 있고 앱이 사용할 수 있음';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      '블루투스가 켜져 있고 휴대폰 설정에서 NOTORYX Core Ham에 블루투스(Android는 근처 기기) 권한이 있는지 확인하세요.';
+
+  @override
+  String get trouble_otherApp => '다른 휴대폰이나 앱이 무전기에 연결되어 있지 않음';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      '무전기는 한 번에 한 앱과만 통신합니다. 다른 MeshCore 앱을 닫거나 페어링된 다른 휴대폰의 블루투스를 끄세요.';
+
+  @override
+  String get trouble_inRange => '무전기가 켜져 있고 가까이 있음';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      '무전기가 충전되어 켜져 있고 몇 미터 안에 있는지 확인하세요. 무전기를 재시작하면 멈춘 연결이 풀리는 경우가 많습니다.';
+
+  @override
+  String get trouble_otherTransport => '다른 연결 방법 시도';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      '블루투스가 계속 실패하면 USB 케이블로, 또는 지원한다면 Wi-Fi(TCP)로 연결하세요.';
+
+  @override
+  String get trouble_noise => '무전기가 노이즈에 묻히지 않음';
+
+  @override
+  String get trouble_noiseAdvice =>
+      '노이즈 플로어가 높으면 약한 신호가 가려집니다. 안테나를 전자기기, 충전기, 태양광 컨트롤러에서 멀리 두세요.';
+
+  @override
+  String get trouble_region => '무전기가 지역 설정을 사용함';
+
+  @override
+  String get trouble_regionAdvice =>
+      '주파수, 대역폭, 확산 계수가 지역 메시와 다르면 아무도 들리지 않습니다. 설정 → 무전기를 지역 설정과 비교하세요.';
+
+  @override
+  String get trouble_antenna => '안테나가 장착됨';
+
+  @override
+  String get trouble_antennaAdvice =>
+      '안테나가 단단히 조여져 있는지 확인하세요. 안테나 없이 송신하지 마세요. 무전기가 손상될 수 있습니다.';
 }

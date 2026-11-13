@@ -693,6 +693,22 @@ class MeshCoreConnector extends ChangeNotifier {
 
   CompanionRadioStats? get latestRadioStats => _latestRadioStats;
 
+  /// Contacts you sent a direct message to in the last [within].
+  List<Contact> recentlyMessagedContacts({
+    Duration within = const Duration(days: 7),
+  }) {
+    final since = DateTime.now().subtract(within);
+    final keys = <String>{
+      for (final e in _conversations.entries)
+        if (e.value.any((m) => m.isOutgoing && m.timestamp.isAfter(since)))
+          e.key,
+    };
+    return [
+      for (final c in _contacts)
+        if (keys.contains(c.publicKeyHex)) c,
+    ];
+  }
+
   final List<AirtimeSample> _airtimeSamples = [];
 
   /// Recent airtime counter readings (about the last half hour), for how

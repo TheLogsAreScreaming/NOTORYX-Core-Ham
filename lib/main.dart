@@ -52,6 +52,8 @@ import 'services/favorite_return_service.dart';
 import 'services/field_ops_service.dart';
 import 'services/path_history_service.dart';
 import 'services/app_settings_service.dart';
+import 'services/network_change_service.dart';
+import 'screens/network_changes_screen.dart' show networkChangeText;
 import 'services/notification_service.dart';
 import 'services/ble_debug_log_service.dart';
 import 'services/app_debug_log_service.dart';
@@ -297,6 +299,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   late final NetworkScanService _networkScan;
   late final RxLogService _rxLog;
   late final FavoriteReturnService _favoriteReturn;
+  late final NetworkChangeService _networkChanges;
   late final SosRelayService _sosRelay;
   final _operatorProfile = OperatorProfileService()..load();
   final _appLock = AppLockService(PrefsManager.instance);
@@ -354,6 +357,21 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
           contactId: back.key,
           name: back.name,
           quietHours: back.quiet.inHours,
+        );
+      },
+    );
+    _networkChanges = NetworkChangeService(
+      widget.connector,
+      prefs: PrefsManager.instance,
+      quietHours: () => widget.appSettingsService.settings.repeaterQuietHours,
+      newNearby: () => widget.appSettingsService.settings.newRepeaterAlerts,
+      notify: (change) async {
+        if (!widget.appSettingsService.settings.notificationsEnabled) return;
+        final notifications = NotificationService();
+        final l10n = notifications.l10n;
+        await notifications.showNetworkChange(
+          repeaterKey: change.key,
+          body: networkChangeText(l10n, change),
         );
       },
     );
@@ -458,6 +476,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   void dispose() {
     _rxLog.dispose();
     _favoriteReturn.dispose();
+    _networkChanges.dispose();
     _botService.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
@@ -599,6 +618,9 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
       providers: [
         ChangeNotifierProvider.value(value: _botService),
         ChangeNotifierProvider.value(value: _fieldOps),
+        ChangeNotifierProvider<NetworkChangeService?>.value(
+          value: _networkChanges,
+        ),
         ChangeNotifierProvider<DirectRepeaterService?>.value(
           value: _directRepeaters,
         ),

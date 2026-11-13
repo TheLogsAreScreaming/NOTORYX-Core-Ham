@@ -9,6 +9,8 @@ import '../widgets/glass_action_row.dart';
 
 import 'antenna_coverage_screen.dart';
 import 'antenna_hunt_screen.dart';
+import 'network_changes_screen.dart';
+import 'troubleshooting_screen.dart';
 import 'bastion_about_screen.dart';
 import 'bot_settings_screen.dart';
 import 'connection_dashboard_screen.dart';
@@ -205,6 +207,18 @@ class _BastionToolsScreenState extends State<BastionToolsScreen> {
             title: l10n.bastion_repeaterTools,
             subtitle: l10n.bastionTools_repeaterHint,
             builder: (_) => const BastionRepeaterToolsScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.notifications_active_outlined,
+            title: l10n.netChange_title,
+            subtitle: l10n.netChange_toolSubtitle,
+            builder: (_) => const NetworkChangesScreen(),
+          ),
+          _ToolAction(
+            icon: Icons.healing_outlined,
+            title: l10n.trouble_title,
+            subtitle: l10n.trouble_toolSubtitle,
+            builder: (_) => const TroubleshootingScreen(),
           ),
           _ToolAction(
             icon: Icons.network_ping,

@@ -217,6 +217,14 @@ class AppSettingsService extends ChangeNotifier {
     await updateSettings(_settings.copyWith(messageFloodAttempts: value));
   }
 
+  Future<void> setRepeaterQuietHours(int value) async {
+    await updateSettings(_settings.copyWith(repeaterQuietHours: value));
+  }
+
+  Future<void> setNewRepeaterAlerts(bool value) async {
+    await updateSettings(_settings.copyWith(newRepeaterAlerts: value));
+  }
+
   Future<void> setFavoriteReturnHours(int value) async {
     await updateSettings(_settings.copyWith(favoriteReturnHours: value));
   }

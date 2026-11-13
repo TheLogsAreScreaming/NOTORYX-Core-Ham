@@ -18060,6 +18060,282 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep this route'**
   String get routeHealth_keep;
+
+  /// No description provided for @netChange_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Network changes'**
+  String get netChange_title;
+
+  /// No description provided for @netChange_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeaters that appeared nearby or went quiet'**
+  String get netChange_toolSubtitle;
+
+  /// No description provided for @netChange_newDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'New repeater heard directly: {name}'**
+  String netChange_newDirect(String name);
+
+  /// No description provided for @netChange_newHops.
+  ///
+  /// In en, this message translates to:
+  /// **'New repeater {hops} hop away: {name}'**
+  String netChange_newHops(String name, int hops);
+
+  /// No description provided for @netChange_wentQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} went quiet: not heard for {hours} h'**
+  String netChange_wentQuiet(String name, int hours);
+
+  /// No description provided for @netChange_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No changes yet. Favourite repeaters that go quiet, and new repeaters nearby, show up here.'**
+  String get netChange_empty;
+
+  /// No description provided for @netChange_quietSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourite repeater goes quiet'**
+  String get netChange_quietSetting;
+
+  /// No description provided for @netChange_quietHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify when a favourite repeater hasn\'t been heard for this long'**
+  String get netChange_quietHint;
+
+  /// No description provided for @netChange_newSetting.
+  ///
+  /// In en, this message translates to:
+  /// **'New repeater nearby'**
+  String get netChange_newSetting;
+
+  /// No description provided for @netChange_newHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify when a repeater not seen before is heard within one hop'**
+  String get netChange_newHint;
+
+  /// No description provided for @netChange_clear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get netChange_clear;
+
+  /// No description provided for @netChange_notifTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Network change'**
+  String get netChange_notifTitle;
+
+  /// No description provided for @trouble_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Troubleshooting'**
+  String get trouble_title;
+
+  /// No description provided for @trouble_toolSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Step-by-step help when something doesn\'t work'**
+  String get trouble_toolSubtitle;
+
+  /// No description provided for @trouble_pick.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s wrong?'**
+  String get trouble_pick;
+
+  /// No description provided for @trouble_noDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages aren\'t delivered'**
+  String get trouble_noDelivery;
+
+  /// No description provided for @trouble_noConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t connect to my radio'**
+  String get trouble_noConnect;
+
+  /// No description provided for @trouble_hearNobody.
+  ///
+  /// In en, this message translates to:
+  /// **'I don\'t hear anyone'**
+  String get trouble_hearNobody;
+
+  /// No description provided for @trouble_startHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Start here'**
+  String get trouble_startHere;
+
+  /// No description provided for @trouble_resultOk.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get trouble_resultOk;
+
+  /// No description provided for @trouble_resultProblem.
+  ///
+  /// In en, this message translates to:
+  /// **'Problem'**
+  String get trouble_resultProblem;
+
+  /// No description provided for @trouble_resultUnchecked.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t check'**
+  String get trouble_resultUnchecked;
+
+  /// No description provided for @trouble_connectedNow.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re connected now. If it keeps dropping, the steps below still help.'**
+  String get trouble_connectedNow;
+
+  /// No description provided for @trouble_allOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Every check passed. If it still doesn\'t work, the steps below are worth a look.'**
+  String get trouble_allOk;
+
+  /// No description provided for @trouble_connected.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio is connected'**
+  String get trouble_connected;
+
+  /// No description provided for @trouble_connectedAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect your radio first: Settings → Connect a radio.'**
+  String get trouble_connectedAdvice;
+
+  /// No description provided for @trouble_routes.
+  ///
+  /// In en, this message translates to:
+  /// **'Routes are known to the people you message'**
+  String get trouble_routes;
+
+  /// No description provided for @trouble_routesAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages to someone with no known route flood the whole mesh and often don\'t arrive. Wait until they advert, or ask them to, then message again.'**
+  String get trouble_routesAdvice;
+
+  /// No description provided for @trouble_heardRecently.
+  ///
+  /// In en, this message translates to:
+  /// **'The people you message were heard in the last day'**
+  String get trouble_heardRecently;
+
+  /// No description provided for @trouble_heardRecentlyAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone not heard in a while may be out of range or switched off. Their messages can\'t be acknowledged until they\'re back.'**
+  String get trouble_heardRecentlyAdvice;
+
+  /// No description provided for @trouble_neighbours.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio hears other nodes'**
+  String get trouble_neighbours;
+
+  /// No description provided for @trouble_neighboursAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing heard directly means your radio can\'t reach the mesh from here. Raise the antenna, go higher, or move closer to a repeater.'**
+  String get trouble_neighboursAdvice;
+
+  /// No description provided for @trouble_bluetooth.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth is on and the app may use it'**
+  String get trouble_bluetooth;
+
+  /// No description provided for @trouble_bluetoothAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Check Bluetooth is on, and that NOTORYX Core Ham has Bluetooth (and on Android, Nearby devices) permission in the phone\'s settings.'**
+  String get trouble_bluetoothAdvice;
+
+  /// No description provided for @trouble_otherApp.
+  ///
+  /// In en, this message translates to:
+  /// **'No other phone or app is connected to the radio'**
+  String get trouble_otherApp;
+
+  /// No description provided for @trouble_otherAppAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'A radio talks to one app at a time. Close other MeshCore apps, or turn Bluetooth off on other phones that were paired.'**
+  String get trouble_otherAppAdvice;
+
+  /// No description provided for @trouble_inRange.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio is on and nearby'**
+  String get trouble_inRange;
+
+  /// No description provided for @trouble_inRangeAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the radio is charged and switched on, and within a few metres. Restarting the radio often clears a stuck connection.'**
+  String get trouble_inRangeAdvice;
+
+  /// No description provided for @trouble_otherTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another way to connect'**
+  String get trouble_otherTransport;
+
+  /// No description provided for @trouble_otherTransportAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'If Bluetooth keeps failing, connect with a USB cable, or over Wi-Fi (TCP) if your radio supports it.'**
+  String get trouble_otherTransportAdvice;
+
+  /// No description provided for @trouble_noise.
+  ///
+  /// In en, this message translates to:
+  /// **'The radio isn\'t drowned in noise'**
+  String get trouble_noise;
+
+  /// No description provided for @trouble_noiseAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'A high noise floor hides weak signals. Move the antenna away from electronics, chargers and solar controllers.'**
+  String get trouble_noiseAdvice;
+
+  /// No description provided for @trouble_region.
+  ///
+  /// In en, this message translates to:
+  /// **'Your radio uses the agreed channel'**
+  String get trouble_region;
+
+  /// No description provided for @trouble_regionAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'A different frequency, bandwidth or spreading factor from the other stations hears no one. Compare Settings → Radio with the channel agreed with your frequency coordinator.'**
+  String get trouble_regionAdvice;
+
+  /// No description provided for @trouble_antenna.
+  ///
+  /// In en, this message translates to:
+  /// **'The antenna is fitted'**
+  String get trouble_antenna;
+
+  /// No description provided for @trouble_antennaAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Make sure the antenna is screwed on firmly. Never transmit without one; it can damage the radio.'**
+  String get trouble_antennaAdvice;
 }
 
 class _AppLocalizationsDelegate

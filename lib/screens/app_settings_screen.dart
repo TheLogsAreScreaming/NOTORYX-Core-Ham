@@ -31,6 +31,9 @@ import '../widgets/coordinate_copy_sheet.dart';
 /// Quiet times offered for favorite back-in-range alerts, in hours.
 const favoriteReturnChoices = [0, 1, 3, 6, 12, 24];
 
+/// Hours a favourite repeater may go unheard before a notification.
+const repeaterQuietChoices = [0, 12, 24, 48];
+
 class AppSettingsScreen extends StatelessWidget {
   /// Scrolls the image-message settings into view once, on first build.
   ///
@@ -418,6 +421,56 @@ class AppSettingsScreen extends StatelessWidget {
                 ),
             ],
           ),
+        ),
+        const Divider(height: 1, indent: 16),
+        ListTile(
+          key: const ValueKey('repeater-quiet-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          enabled: notifEnabled,
+          leading: const Icon(Icons.portable_wifi_off, size: 20),
+          title: Text(context.l10n.netChange_quietSetting),
+          subtitle: Text(context.l10n.netChange_quietHint),
+          trailing: DropdownButton<int>(
+            value:
+                repeaterQuietChoices.contains(
+                  settingsService.settings.repeaterQuietHours,
+                )
+                ? settingsService.settings.repeaterQuietHours
+                : 24,
+            underline: const SizedBox.shrink(),
+            onChanged: notifEnabled
+                ? (v) {
+                    if (v != null) settingsService.setRepeaterQuietHours(v);
+                  }
+                : null,
+            items: [
+              for (final h in repeaterQuietChoices)
+                DropdownMenuItem(
+                  value: h,
+                  child: Text(
+                    h == 0
+                        ? context.l10n.favReturn_off
+                        : context.l10n.favReturn_hours(h),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        const Divider(height: 1, indent: 16),
+        SwitchListTile(
+          key: const ValueKey('new-repeater-setting'),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          secondary: const Icon(Icons.cell_tower, size: 20),
+          title: Text(context.l10n.netChange_newSetting),
+          subtitle: Text(context.l10n.netChange_newHint),
+          value: settingsService.settings.newRepeaterAlerts,
+          onChanged: notifEnabled ? settingsService.setNewRepeaterAlerts : null,
         ),
         const Divider(height: 1, indent: 16),
         ListTile(

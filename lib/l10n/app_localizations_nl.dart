@@ -10836,4 +10836,169 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get routeHealth_keep => 'Route houden';
+
+  @override
+  String get netChange_title => 'Netwerkwijzigingen';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Repeaters die in de buurt verschenen of stil werden';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Nieuwe repeater direct gehoord: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Nieuwe repeater op $hops hop: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name is stil: al $hours u niet gehoord';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Nog geen wijzigingen. Favoriete repeaters die stil worden en nieuwe repeaters in de buurt verschijnen hier.';
+
+  @override
+  String get netChange_quietSetting => 'Favoriete repeater wordt stil';
+
+  @override
+  String get netChange_quietHint =>
+      'Melden als een favoriete repeater zo lang niet gehoord is';
+
+  @override
+  String get netChange_newSetting => 'Nieuwe repeater in de buurt';
+
+  @override
+  String get netChange_newHint =>
+      'Melden als een onbekende repeater binnen één hop gehoord wordt';
+
+  @override
+  String get netChange_clear => 'Wissen';
+
+  @override
+  String get netChange_notifTitle => 'Netwerkwijziging';
+
+  @override
+  String get trouble_title => 'Probleemoplossing';
+
+  @override
+  String get trouble_toolSubtitle => 'Stap-voor-stap hulp als iets niet werkt';
+
+  @override
+  String get trouble_pick => 'Wat is er mis?';
+
+  @override
+  String get trouble_noDelivery => 'Berichten komen niet aan';
+
+  @override
+  String get trouble_noConnect => 'Ik kan geen verbinding maken met mijn radio';
+
+  @override
+  String get trouble_hearNobody => 'Ik hoor niemand';
+
+  @override
+  String get trouble_startHere => 'Begin hier';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => 'Probleem';
+
+  @override
+  String get trouble_resultUnchecked => 'Niet te controleren';
+
+  @override
+  String get trouble_connectedNow =>
+      'Je bent nu verbonden. Als de verbinding steeds wegvalt, helpen de stappen hieronder nog steeds.';
+
+  @override
+  String get trouble_allOk =>
+      'Alle controles zijn goed. Werkt het nog steeds niet, kijk dan naar de stappen hieronder.';
+
+  @override
+  String get trouble_connected => 'Je radio is verbonden';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Verbind eerst je radio: Instellingen → Radio verbinden.';
+
+  @override
+  String get trouble_routes =>
+      'Er zijn routes bekend naar wie je berichten stuurt';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Berichten naar iemand zonder bekende route floodden het hele mesh en komen vaak niet aan. Wacht tot diegene adverteert, of vraag erom, en stuur het opnieuw.';
+
+  @override
+  String get trouble_heardRecently =>
+      'Wie je berichten stuurt is het afgelopen etmaal gehoord';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Wie al een tijd niet gehoord is, is misschien buiten bereik of uit. Berichten kunnen pas bevestigd worden als diegene terug is.';
+
+  @override
+  String get trouble_neighbours => 'Je radio hoort andere nodes';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Als niets direct gehoord wordt, bereikt je radio het mesh hier niet. Zet de antenne hoger, ga hoger staan of ga dichter bij een repeater.';
+
+  @override
+  String get trouble_bluetooth =>
+      'Bluetooth staat aan en de app mag het gebruiken';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Controleer of Bluetooth aan staat en of NOTORYX Core Ham toestemming heeft voor Bluetooth (en op Android Apparaten in de buurt) in de telefooninstellingen.';
+
+  @override
+  String get trouble_otherApp =>
+      'Geen andere telefoon of app is met de radio verbonden';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'Een radio praat met één app tegelijk. Sluit andere MeshCore-apps of zet Bluetooth uit op andere gekoppelde telefoons.';
+
+  @override
+  String get trouble_inRange => 'De radio staat aan en is dichtbij';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Controleer of de radio geladen is, aan staat en binnen een paar meter is. De radio herstarten verhelpt vaak een vastgelopen verbinding.';
+
+  @override
+  String get trouble_otherTransport => 'Probeer een andere verbinding';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Als Bluetooth steeds faalt, verbind dan met een USB-kabel of via wifi (TCP) als je radio dat kan.';
+
+  @override
+  String get trouble_noise => 'De radio verdrinkt niet in ruis';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'Een hoge ruisvloer verbergt zwakke signalen. Houd de antenne weg van elektronica, laders en zonneregelaars.';
+
+  @override
+  String get trouble_region => 'Je radio gebruikt de instellingen van je regio';
+
+  @override
+  String get trouble_regionAdvice =>
+      'Met een andere frequentie, bandbreedte of spreidingsfactor dan het lokale mesh hoor je niemand. Vergelijk Instellingen → Radio met wat je regio gebruikt.';
+
+  @override
+  String get trouble_antenna => 'De antenne zit erop';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Zorg dat de antenne stevig vastgeschroefd is. Zend nooit zonder antenne; dat kan de radio beschadigen.';
 }

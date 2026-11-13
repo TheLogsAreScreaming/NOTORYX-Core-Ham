@@ -10144,4 +10144,155 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get routeHealth_keep => '保留此路由';
+
+  @override
+  String get netChange_title => '网络变化';
+
+  @override
+  String get netChange_toolSubtitle => '附近出现或变得沉默的中继';
+
+  @override
+  String netChange_newDirect(String name) {
+    return '直接收到新中继：$name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return '$hops 跳外的新中继：$name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name 已沉默：$hours 小时未收到';
+  }
+
+  @override
+  String get netChange_empty => '暂无变化。沉默的收藏中继和附近的新中继会显示在这里。';
+
+  @override
+  String get netChange_quietSetting => '收藏的中继沉默';
+
+  @override
+  String get netChange_quietHint => '收藏的中继这么久未收到时通知';
+
+  @override
+  String get netChange_newSetting => '附近的新中继';
+
+  @override
+  String get netChange_newHint => '一跳内收到从未见过的中继时通知';
+
+  @override
+  String get netChange_clear => '清除';
+
+  @override
+  String get netChange_notifTitle => '网络变化';
+
+  @override
+  String get trouble_title => '故障排查';
+
+  @override
+  String get trouble_toolSubtitle => '出问题时的分步帮助';
+
+  @override
+  String get trouble_pick => '遇到了什么问题？';
+
+  @override
+  String get trouble_noDelivery => '消息没有送达';
+
+  @override
+  String get trouble_noConnect => '无法连接电台';
+
+  @override
+  String get trouble_hearNobody => '听不到任何人';
+
+  @override
+  String get trouble_startHere => '从这里开始';
+
+  @override
+  String get trouble_resultOk => '正常';
+
+  @override
+  String get trouble_resultProblem => '有问题';
+
+  @override
+  String get trouble_resultUnchecked => '无法检查';
+
+  @override
+  String get trouble_connectedNow => '现在已连接。如果连接经常断开，下面的步骤仍然有用。';
+
+  @override
+  String get trouble_allOk => '所有检查都通过了。如果仍然不行，请看看下面的步骤。';
+
+  @override
+  String get trouble_connected => '电台已连接';
+
+  @override
+  String get trouble_connectedAdvice => '先连接电台：设置 → 连接电台。';
+
+  @override
+  String get trouble_routes => '已知到你发消息对象的路由';
+
+  @override
+  String get trouble_routesAdvice =>
+      '发给没有已知路由的人的消息会在整个网络中泛洪，常常送不到。等对方广播，或请对方广播，然后再发。';
+
+  @override
+  String get trouble_heardRecently => '你发消息的对象在最近一天内被收到过';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      '很久没收到的人可能不在范围内或已关机。在对方回来之前，消息无法被确认。';
+
+  @override
+  String get trouble_neighbours => '电台能收到其他节点';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      '如果直接收不到任何节点，说明从这里够不到网络。升高天线、去更高处，或靠近中继。';
+
+  @override
+  String get trouble_bluetooth => '蓝牙已打开且应用可以使用';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      '确认蓝牙已打开，并在手机设置中给 NOTORYX Core Ham 蓝牙权限（Android 上还有附近设备权限）。';
+
+  @override
+  String get trouble_otherApp => '没有其他手机或应用连接着电台';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      '电台一次只能和一个应用通信。关闭其他 MeshCore 应用，或关闭其他已配对手机的蓝牙。';
+
+  @override
+  String get trouble_inRange => '电台已开机且在附近';
+
+  @override
+  String get trouble_inRangeAdvice => '确认电台有电、已开机且在几米之内。重启电台通常能解决卡住的连接。';
+
+  @override
+  String get trouble_otherTransport => '试试其他连接方式';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      '如果蓝牙一直失败，用 USB 线连接，或在电台支持时通过 Wi-Fi（TCP）连接。';
+
+  @override
+  String get trouble_noise => '电台没有被噪声淹没';
+
+  @override
+  String get trouble_noiseAdvice => '噪声底过高会掩盖弱信号。让天线远离电子设备、充电器和太阳能控制器。';
+
+  @override
+  String get trouble_region => '电台使用你所在地区的设置';
+
+  @override
+  String get trouble_regionAdvice =>
+      '频率、带宽或扩频因子与本地网络不同，就听不到任何人。把 设置 → 电台 与本地区的设置对比。';
+
+  @override
+  String get trouble_antenna => '天线已装好';
+
+  @override
+  String get trouble_antennaAdvice => '确认天线拧紧。切勿在没有天线时发射，否则可能损坏电台。';
 }

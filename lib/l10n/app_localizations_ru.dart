@@ -10925,4 +10925,169 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get routeHealth_keep => 'Оставить маршрут';
+
+  @override
+  String get netChange_title => 'Изменения в сети';
+
+  @override
+  String get netChange_toolSubtitle =>
+      'Ретрансляторы, появившиеся рядом или замолчавшие';
+
+  @override
+  String netChange_newDirect(String name) {
+    return 'Новый ретранслятор слышен напрямую: $name';
+  }
+
+  @override
+  String netChange_newHops(String name, int hops) {
+    return 'Новый ретранслятор в $hops хопе: $name';
+  }
+
+  @override
+  String netChange_wentQuiet(String name, int hours) {
+    return '$name замолчал: не слышно $hours ч';
+  }
+
+  @override
+  String get netChange_empty =>
+      'Изменений пока нет. Здесь появятся замолчавшие избранные ретрансляторы и новые ретрансляторы рядом.';
+
+  @override
+  String get netChange_quietSetting => 'Избранный ретранслятор замолчал';
+
+  @override
+  String get netChange_quietHint =>
+      'Уведомлять, если избранного ретранслятора не слышно столько времени';
+
+  @override
+  String get netChange_newSetting => 'Новый ретранслятор рядом';
+
+  @override
+  String get netChange_newHint =>
+      'Уведомлять, если незнакомый ретранслятор слышен в пределах одного хопа';
+
+  @override
+  String get netChange_clear => 'Очистить';
+
+  @override
+  String get netChange_notifTitle => 'Изменение в сети';
+
+  @override
+  String get trouble_title => 'Устранение неполадок';
+
+  @override
+  String get trouble_toolSubtitle =>
+      'Пошаговая помощь, когда что-то не работает';
+
+  @override
+  String get trouble_pick => 'Что не так?';
+
+  @override
+  String get trouble_noDelivery => 'Сообщения не доставляются';
+
+  @override
+  String get trouble_noConnect => 'Не могу подключиться к радио';
+
+  @override
+  String get trouble_hearNobody => 'Никого не слышу';
+
+  @override
+  String get trouble_startHere => 'Начните здесь';
+
+  @override
+  String get trouble_resultOk => 'OK';
+
+  @override
+  String get trouble_resultProblem => 'Проблема';
+
+  @override
+  String get trouble_resultUnchecked => 'Нельзя проверить';
+
+  @override
+  String get trouble_connectedNow =>
+      'Сейчас вы подключены. Если связь постоянно рвётся, шаги ниже всё равно помогут.';
+
+  @override
+  String get trouble_allOk =>
+      'Все проверки пройдены. Если всё ещё не работает, посмотрите шаги ниже.';
+
+  @override
+  String get trouble_connected => 'Радио подключено';
+
+  @override
+  String get trouble_connectedAdvice =>
+      'Сначала подключите радио: Настройки → Подключить радио.';
+
+  @override
+  String get trouble_routes => 'Маршруты к собеседникам известны';
+
+  @override
+  String get trouble_routesAdvice =>
+      'Сообщения тому, к кому нет известного маршрута, рассылаются по всей сети и часто не доходят. Дождитесь его объявления или попросите о нём и напишите снова.';
+
+  @override
+  String get trouble_heardRecently =>
+      'Собеседников было слышно за последние сутки';
+
+  @override
+  String get trouble_heardRecentlyAdvice =>
+      'Того, кого давно не слышно, может не быть в зоне связи или он выключен. Его сообщения не подтвердятся, пока он не вернётся.';
+
+  @override
+  String get trouble_neighbours => 'Ваше радио слышит другие узлы';
+
+  @override
+  String get trouble_neighboursAdvice =>
+      'Если напрямую ничего не слышно, отсюда радио не достаёт до сети. Поднимите антенну, поднимитесь выше или подойдите ближе к ретранслятору.';
+
+  @override
+  String get trouble_bluetooth =>
+      'Bluetooth включён, и приложение может им пользоваться';
+
+  @override
+  String get trouble_bluetoothAdvice =>
+      'Проверьте, что Bluetooth включён и у NOTORYX Core Ham есть разрешение на Bluetooth (а на Android — на Устройства поблизости) в настройках телефона.';
+
+  @override
+  String get trouble_otherApp =>
+      'Никакой другой телефон или приложение не подключено к радио';
+
+  @override
+  String get trouble_otherAppAdvice =>
+      'Радио общается только с одним приложением за раз. Закройте другие приложения MeshCore или выключите Bluetooth на других сопряжённых телефонах.';
+
+  @override
+  String get trouble_inRange => 'Радио включено и рядом';
+
+  @override
+  String get trouble_inRangeAdvice =>
+      'Проверьте, что радио заряжено, включено и в нескольких метрах. Перезапуск радио часто исправляет зависшее соединение.';
+
+  @override
+  String get trouble_otherTransport => 'Попробуйте другой способ подключения';
+
+  @override
+  String get trouble_otherTransportAdvice =>
+      'Если Bluetooth постоянно сбоит, подключитесь кабелем USB или по Wi-Fi (TCP), если радио это умеет.';
+
+  @override
+  String get trouble_noise => 'Радио не тонет в шуме';
+
+  @override
+  String get trouble_noiseAdvice =>
+      'Высокий уровень шума скрывает слабые сигналы. Уберите антенну от электроники, зарядок и солнечных контроллеров.';
+
+  @override
+  String get trouble_region => 'Радио настроено как сеть в вашем районе';
+
+  @override
+  String get trouble_regionAdvice =>
+      'С другой частотой, полосой или коэффициентом расширения, чем у местной сети, вы никого не услышите. Сравните Настройки → Радио с настройками вашего района.';
+
+  @override
+  String get trouble_antenna => 'Антенна установлена';
+
+  @override
+  String get trouble_antennaAdvice =>
+      'Убедитесь, что антенна плотно прикручена. Никогда не передавайте без антенны — это может повредить радио.';
 }
