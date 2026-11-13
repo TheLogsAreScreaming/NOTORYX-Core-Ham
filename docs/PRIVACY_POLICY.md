@@ -34,7 +34,7 @@ Permissions can be managed through the phone's settings, although denying a perm
 
 ## Third-party network services
 
-Depending on the features and settings used, the app may request map tiles from OpenStreetMap or Stadia Maps, terrain elevation from Open-Meteo, optional models from Hugging Face, and GIF results from Giphy. Those requests can reveal your IP address and relevant request data (for example, map tile coordinates, selected path coordinates or a GIF search query) to the provider. Review each provider's privacy policy before using the feature.
+Depending on the features and settings used, the app may request map tiles from OpenStreetMap or Stadia Maps, terrain elevation from Open-Meteo, trail and place data from the OpenStreetMap Overpass service when you download an area for trail routing, optional models from Hugging Face, and GIF results from Giphy. Those requests can reveal your IP address and relevant request data (for example, map tile coordinates, selected path coordinates or a GIF search query) to the provider. Review each provider's privacy policy before using the feature.
 
 ## Diagnostics and data removal
 
