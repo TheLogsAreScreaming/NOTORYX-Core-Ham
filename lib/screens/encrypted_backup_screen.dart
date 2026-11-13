@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -16,7 +17,7 @@ class EncryptedBackupScreen extends StatefulWidget {
 class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
   final _passphrase = TextEditingController();
   final _confirmation = TextEditingController();
-  bool _chats = false;
+  final _restorePassphrase = TextEditingController();
   bool _busy = false;
   String? _status;
 
@@ -24,6 +25,7 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
   void dispose() {
     _passphrase.dispose();
     _confirmation.dispose();
+    _restorePassphrase.dispose();
     super.dispose();
   }
 
@@ -43,7 +45,7 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
     try {
       final service = EncryptedBackupService();
       final encrypted = await service.seal(
-        service.snapshot(includeChats: _chats),
+        service.snapshot(includeChats: false),
         _passphrase.text,
       );
       final directory = await getTemporaryDirectory();
@@ -82,6 +84,80 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
     }
   }
 
+  Future<void> _restore() async {
+    final XFile? file;
+    try {
+      file = await openFile();
+    } catch (_) {
+      setState(() => _status = 'Could not open that file.');
+      return;
+    }
+    if (file == null || !mounted) return;
+    setState(() {
+      _busy = true;
+      _status = null;
+    });
+    try {
+      final service = EncryptedBackupService();
+      final Map<String, Object> values;
+      try {
+        values = await service.open(
+          await file.readAsString(),
+          _restorePassphrase.text,
+        );
+      } catch (_) {
+        if (mounted) {
+          setState(
+            () => _status =
+                'Wrong passphrase, or this isn\'t a valid backup. Nothing was changed.',
+          );
+        }
+        return;
+      }
+      if (!mounted) return;
+      final count = values.keys
+          .where(EncryptedBackupService.isRestorable)
+          .length;
+      final go = await showDialog<bool>(
+        context: context,
+        builder: (dialog) => AlertDialog(
+          title: const Text('Restore this backup?'),
+          content: Text(
+            'This replaces $count saved settings on this device, including contacts, channel keys and waypoints, with the ones in the backup. Message history is not affected. This cannot be undone.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialog, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(dialog, true),
+              child: const Text('Restore'),
+            ),
+          ],
+        ),
+      );
+      if (go != true) return;
+      final restored = await service.restore(values);
+      _restorePassphrase.clear();
+      if (mounted) {
+        setState(
+          () => _status =
+              'Restored $restored settings. Close the app fully and open it again to use them.',
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(
+          () => _status =
+              'Restore stopped part way, so some settings may have changed. Try again.',
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) => EmberBackdrop(
     scene: EmberScene.more,
@@ -97,11 +173,11 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
         padding: const EdgeInsets.all(20),
         children: [
           const Text(
-            'Save an encrypted copy of app settings, contacts and channel keys. Chat history is optional. Offline maps, photos and radio firmware are not included.',
+            'Save an encrypted copy of app settings, contacts, channel keys, waypoints and drafts. Message history, offline maps, photos and radio firmware are not included.',
           ),
           const SizedBox(height: 16),
           const Text(
-            'Keep the passphrase separately. A lost passphrase cannot be recovered. Restore is not available in this preview.',
+            'Keep the passphrase separately. A lost passphrase cannot be recovered.',
           ),
           const SizedBox(height: 16),
           TextField(
@@ -122,14 +198,29 @@ class _EncryptedBackupScreenState extends State<EncryptedBackupScreen> {
             enableSuggestions: false,
             decoration: const InputDecoration(labelText: 'Confirm passphrase'),
           ),
-          SwitchListTile(
-            title: const Text('Include chat history'),
-            value: _chats,
-            onChanged: _busy ? null : (value) => setState(() => _chats = value),
-          ),
           FilledButton(
             onPressed: _busy ? null : _export,
-            child: Text(_busy ? 'Encrypting…' : 'Save encrypted backup'),
+            child: Text(_busy ? 'Working…' : 'Save encrypted backup'),
+          ),
+          const Divider(height: 40),
+          const Text(
+            'Restore a backup',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          TextField(
+            key: const ValueKey('restore-passphrase'),
+            controller: _restorePassphrase,
+            obscureText: true,
+            enabled: !_busy,
+            autocorrect: false,
+            enableSuggestions: false,
+            decoration: const InputDecoration(labelText: 'Backup passphrase'),
+          ),
+          const SizedBox(height: 8),
+          OutlinedButton(
+            key: const ValueKey('restore-backup'),
+            onPressed: _busy ? null : _restore,
+            child: const Text('Choose backup file'),
           ),
           if (_status != null)
             Padding(
