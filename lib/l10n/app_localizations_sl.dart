@@ -7226,6 +7226,68 @@ class AppLocalizationsSl extends AppLocalizations {
       'Upravljajte in pridobite regionalne definicije omrežja';
 
   @override
+  String get replay_title => 'Predvajaj dan';
+
+  @override
+  String get replay_entryHint => 'Kje je bila ekipa na izbrani dan';
+
+  @override
+  String get replay_badge => 'Zgodovina';
+
+  @override
+  String get replay_day => 'Dan';
+
+  @override
+  String get replay_team => 'Ekipa';
+
+  @override
+  String get replay_everyone => 'Vsi';
+
+  @override
+  String get replay_emptyTeam =>
+      'Na ta dan ni položajev ekipe. Člani se prikažejo, ko delijo sledene položaje v kanalu. Za oglase vozlišč izberite Vsi.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'Na ta dan ni zabeleženih položajev. Telefon odslej beleži položaje, ki jih oglašujejo vozlišča, dokler je aplikacija odprta.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Zemljevid ob $time: prikazanih $count';
+  }
+
+  @override
+  String get replay_play => 'Predvajaj';
+
+  @override
+  String get replay_pause => 'Premor';
+
+  @override
+  String get replay_speed => 'Hitrost';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes min na sekundo';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return 'Prikaži ali skrij $name';
+  }
+
+  @override
+  String get replay_notYet => 'Ob tem času še ni viden';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Nazadnje ob $time na $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Položaji ekipe izvirajo iz sledenih položajev, deljenih v kanalih. Vsi doda položaje, ki jih oglašujejo vozlišča; telefon jih beleži, ko je aplikacija odprta, in hrani 30 dni. Nič se ne pošlje.';
+
+  @override
   String get mapHub_badgeRegions => 'REGIJE';
 
   @override

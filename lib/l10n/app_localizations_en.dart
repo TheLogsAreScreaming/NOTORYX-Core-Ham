@@ -7130,6 +7130,69 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mapHub_regionsHint => 'Manage and fetch regional mesh definitions';
 
   @override
+  String get replay_title => 'Replay a day';
+
+  @override
+  String get replay_entryHint =>
+      'Play back where the team went on a chosen day';
+
+  @override
+  String get replay_badge => 'History';
+
+  @override
+  String get replay_day => 'Day';
+
+  @override
+  String get replay_team => 'Team';
+
+  @override
+  String get replay_everyone => 'Everyone';
+
+  @override
+  String get replay_emptyTeam =>
+      'No team positions on this day. Teammates show up when they share tracked positions on a channel. Try Everyone for node adverts.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'No positions recorded on this day. This phone records the positions nodes advertise from now on, while the app is open.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Map at $time: $count shown';
+  }
+
+  @override
+  String get replay_play => 'Play';
+
+  @override
+  String get replay_pause => 'Pause';
+
+  @override
+  String get replay_speed => 'Speed';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes min per second';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return 'Show or hide $name';
+  }
+
+  @override
+  String get replay_notYet => 'Not seen yet at this time';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Last seen $time at $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Team positions come from the tracked positions teammates share on channels. Everyone adds the positions nodes advertise, which this phone records while the app is open and keeps for 30 days. Nothing is sent.';
+
+  @override
   String get mapHub_badgeRegions => 'REGIONS';
 
   @override

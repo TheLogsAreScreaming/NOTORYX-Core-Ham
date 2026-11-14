@@ -12146,6 +12146,108 @@ abstract class AppLocalizations {
   /// **'Manage and fetch regional mesh definitions'**
   String get mapHub_regionsHint;
 
+  /// No description provided for @replay_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay a day'**
+  String get replay_title;
+
+  /// No description provided for @replay_entryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Play back where the team went on a chosen day'**
+  String get replay_entryHint;
+
+  /// No description provided for @replay_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get replay_badge;
+
+  /// No description provided for @replay_day.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get replay_day;
+
+  /// No description provided for @replay_team.
+  ///
+  /// In en, this message translates to:
+  /// **'Team'**
+  String get replay_team;
+
+  /// No description provided for @replay_everyone.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone'**
+  String get replay_everyone;
+
+  /// No description provided for @replay_emptyTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'No team positions on this day. Teammates show up when they share tracked positions on a channel. Try Everyone for node adverts.'**
+  String get replay_emptyTeam;
+
+  /// No description provided for @replay_emptyEveryone.
+  ///
+  /// In en, this message translates to:
+  /// **'No positions recorded on this day. This phone records the positions nodes advertise from now on, while the app is open.'**
+  String get replay_emptyEveryone;
+
+  /// No description provided for @replay_mapSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Map at {time}: {count} shown'**
+  String replay_mapSummary(String time, int count);
+
+  /// No description provided for @replay_play.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get replay_play;
+
+  /// No description provided for @replay_pause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get replay_pause;
+
+  /// No description provided for @replay_speed.
+  ///
+  /// In en, this message translates to:
+  /// **'Speed'**
+  String get replay_speed;
+
+  /// No description provided for @replay_speedValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min per second'**
+  String replay_speedValue(int minutes);
+
+  /// No description provided for @replay_showNode.
+  ///
+  /// In en, this message translates to:
+  /// **'Show or hide {name}'**
+  String replay_showNode(String name);
+
+  /// No description provided for @replay_notYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not seen yet at this time'**
+  String get replay_notYet;
+
+  /// No description provided for @replay_lastSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Last seen {time} at {lat}, {lon}'**
+  String replay_lastSeen(String time, String lat, String lon);
+
+  /// No description provided for @replay_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Team positions come from the tracked positions teammates share on channels. Everyone adds the positions nodes advertise, which this phone records while the app is open and keeps for 30 days. Nothing is sent.'**
+  String get replay_explainer;
+
   /// No description provided for @mapHub_badgeRegions.
   ///
   /// In en, this message translates to:

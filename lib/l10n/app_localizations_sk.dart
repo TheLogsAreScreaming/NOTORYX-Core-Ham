@@ -7222,6 +7222,68 @@ class AppLocalizationsSk extends AppLocalizations {
       'Spravujte a sťahujte regionálne definície siete';
 
   @override
+  String get replay_title => 'Prehrať deň';
+
+  @override
+  String get replay_entryHint => 'Kde bol tím vo vybraný deň';
+
+  @override
+  String get replay_badge => 'História';
+
+  @override
+  String get replay_day => 'Deň';
+
+  @override
+  String get replay_team => 'Tím';
+
+  @override
+  String get replay_everyone => 'Všetci';
+
+  @override
+  String get replay_emptyTeam =>
+      'V tento deň žiadne pozície tímu. Členovia sa zobrazia, keď zdieľajú sledované pozície v kanáli. Pre oznámenia uzlov skúste Všetci.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'V tento deň nie sú zaznamenané žiadne pozície. Telefón odteraz zaznamenáva pozície oznamované uzlami, kým je aplikácia otvorená.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Mapa o $time: zobrazené $count';
+  }
+
+  @override
+  String get replay_play => 'Prehrať';
+
+  @override
+  String get replay_pause => 'Pozastaviť';
+
+  @override
+  String get replay_speed => 'Rýchlosť';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes min za sekundu';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return 'Zobraziť alebo skryť $name';
+  }
+
+  @override
+  String get replay_notYet => 'V tomto čase ešte nevidený';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Naposledy o $time na $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Pozície tímu pochádzajú zo sledovaných pozícií zdieľaných v kanáloch. Všetci pridá pozície oznamované uzlami, ktoré telefón zaznamenáva pri otvorenej aplikácii a uchováva 30 dní. Nič sa neodosiela.';
+
+  @override
   String get mapHub_badgeRegions => 'REGIÓNY';
 
   @override

@@ -7256,6 +7256,68 @@ class AppLocalizationsIt extends AppLocalizations {
       'Gestisci e scarica le definizioni regionali della rete mesh';
 
   @override
+  String get replay_title => 'Rivedi una giornata';
+
+  @override
+  String get replay_entryHint => 'Rivedi dove è andata la squadra in un giorno';
+
+  @override
+  String get replay_badge => 'Cronologia';
+
+  @override
+  String get replay_day => 'Giorno';
+
+  @override
+  String get replay_team => 'Squadra';
+
+  @override
+  String get replay_everyone => 'Tutti';
+
+  @override
+  String get replay_emptyTeam =>
+      'Nessuna posizione della squadra in questo giorno. I compagni compaiono quando condividono posizioni tracciate su un canale. Prova Tutti per gli annunci dei nodi.';
+
+  @override
+  String get replay_emptyEveryone =>
+      'Nessuna posizione registrata in questo giorno. Da ora questo telefono registra le posizioni annunciate dai nodi mentre l’app è aperta.';
+
+  @override
+  String replay_mapSummary(String time, int count) {
+    return 'Mappa alle $time: $count mostrati';
+  }
+
+  @override
+  String get replay_play => 'Riproduci';
+
+  @override
+  String get replay_pause => 'Pausa';
+
+  @override
+  String get replay_speed => 'Velocità';
+
+  @override
+  String replay_speedValue(int minutes) {
+    return '$minutes min al secondo';
+  }
+
+  @override
+  String replay_showNode(String name) {
+    return 'Mostra o nascondi $name';
+  }
+
+  @override
+  String get replay_notYet => 'Non ancora visto a quest’ora';
+
+  @override
+  String replay_lastSeen(String time, String lat, String lon) {
+    return 'Visto l’ultima volta alle $time a $lat, $lon';
+  }
+
+  @override
+  String get replay_explainer =>
+      'Le posizioni della squadra provengono dalle posizioni tracciate condivise nei canali. Tutti aggiunge le posizioni annunciate dai nodi, che questo telefono registra con l’app aperta e conserva per 30 giorni. Non viene inviato nulla.';
+
+  @override
   String get mapHub_badgeRegions => 'REGIONI';
 
   @override

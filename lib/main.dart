@@ -57,6 +57,7 @@ import 'services/waypoint_store.dart';
 import 'services/node_journal_service.dart';
 import 'services/network_change_service.dart';
 import 'screens/network_changes_screen.dart' show networkChangeText;
+import 'services/position_history_service.dart';
 import 'services/notification_service.dart';
 import 'services/ble_debug_log_service.dart';
 import 'services/app_debug_log_service.dart';
@@ -294,6 +295,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
   Timer? _imageSweepTimer;
   Timer? _channelPruneTimer;
   late final BotService _botService;
+  late final PositionHistoryService _positionHistory;
   late final FieldOpsService _fieldOps;
   late final RegionalPresetService _regionalPresets;
   late final DirectRepeaterService _directRepeaters;
@@ -337,6 +339,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     super.initState();
     _botService = BotService(widget.connector);
     unawaited(_botService.load());
+    _positionHistory = PositionHistoryService(widget.connector);
     _fieldOps = FieldOpsService(widget.connector);
     unawaited(_fieldOps.load());
     _stationLog = StationLogService(widget.connector)..start();
@@ -507,6 +510,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     _networkChanges.dispose();
     _nodeJournal.dispose();
     _botService.dispose();
+    _positionHistory.dispose();
     widget.appSettingsService.removeListener(_applyBatterySaver);
     _fieldOps.dispose();
     _automation.dispose();
@@ -650,6 +654,7 @@ class _MeshCoreAppState extends State<MeshCoreApp> with WidgetsBindingObserver {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: _botService),
+        ChangeNotifierProvider.value(value: _positionHistory),
         ChangeNotifierProvider.value(value: _fieldOps),
         ChangeNotifierProvider<WaypointStore>.value(value: _waypoints),
         ChangeNotifierProvider<TimelineService?>.value(value: _timeline),
